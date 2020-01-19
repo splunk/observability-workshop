@@ -2,6 +2,9 @@
 package_update: true
 package_upgrade: true
 runcmd:
- - "curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/smartgateway-installer.sh -o /home/ubuntu/smartgateway-install.sh"
+ - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/smartgateway-installer.sh -o /home/ubuntu/smartgateway-install.sh'
  - chown ubuntu:ubuntu /home/ubuntu/smartgateway-install.sh
  - chmod 755 /home/ubuntu/smartgateway-install.sh
+ # Replace ACCESS_TOKEN, REALM, HOSTNAME & CLUSTER_NAME accordingly
+ - ./home/ubuntu/smartgateway-install.sh ACCESS_TOKEN REALM HOSTNAME CLUSTER_NAME
+ - 'nohup /usr/local/bin/smart-gateway --configfile /var/lib/gateway/etc/gateway.conf &>/dev/null &'
