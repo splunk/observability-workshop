@@ -14,7 +14,7 @@ fi
 
 printf "\nDownloading SmartGateway, please hold on...\n"
 printf "https://app."$REALM".signalfx.com/v2/smart-gateway/download"
-curl -qs -H "X-SF-Token:"$TOKEN"" https://app."$REALM".signalfx.com/v2/smart-gateway/download | gunzip > /usr/local/bin/smart-gateway
+curl -qs -H "X-SF-Token:"$TOKEN"" https://app."$REALM".signalfx.com/v2/smart-gateway/download/v2.1.5 | gunzip > /usr/local/bin/smart-gateway
 chmod 755 /usr/local/bin/smart-gateway
 
 mkdir -p /var/lib/gateway/etc
