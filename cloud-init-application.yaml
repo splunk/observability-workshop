@@ -41,7 +41,7 @@ write_files:
    path: /home/ubuntu/mypythonapp/demo.py
    permissions: '0755'
 runcmd:
- - chown -R ubuntu:ubuntu /home/ubuntu/mypythonapp
+ - chown -R ubuntu:ubuntu /home/ubuntu
  - "curl https://bootstrap.pypa.io/get-pip.py -o /run/get-pip.py"
  - python3 /run/get-pip.py
  - pip install flask requests signalfx-tracing
