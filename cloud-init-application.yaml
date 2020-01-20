@@ -4,7 +4,8 @@ package_upgrade: true
 packages:
  - default-jre            
  - openjdk-11-jre-headless
- - openjdk-8-jre-headless 
+ - openjdk-8-jre-headless
+ - maven
  - python3-distutils
  - apache2-utils
 write_files:
