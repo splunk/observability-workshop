@@ -1,0 +1,14 @@
+[Unit]
+Description=Smart Gateway
+After=network.target
+
+[Service]
+ExecStart=/var/lib/gateway/smart-gateway --configfile /var/lib/gateway/etc/gateway.conf --cluster-op seed
+KillMode=mixed
+Restart=on-failure
+Type=simple
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
