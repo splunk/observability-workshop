@@ -11,4 +11,4 @@ runcmd:
  - 'add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"'
  - apt update
  - apt install docker-ce docker-ce-cli containerd.io -y
- - 'curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --docker" sh -s -'
+ - 'curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --kubelet-arg containerd=/run/k3s/containerd/containerd.sock" sh -s -'
