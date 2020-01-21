@@ -13,3 +13,14 @@ runcmd:
  - apt update
  - apt install docker-ce docker-ce-cli containerd.io -y
  - 'curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --kubelet-arg containerd=/run/k3s/containerd/containerd.sock" sh -s -'
+ - mkdir /home/ubuntu/signalfx-agent
+ - mkdir /home/ubuntu/nginx
+ - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/signalfx-agent/clusterrole.yaml -o /home/ubuntu/signalfx-agent/clusterrole.yaml'
+ - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/signalfx-agent/clusterrolebinding.yaml -o /home/ubuntu/signalfx-agent/clusterrolebinding.yaml'
+ - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/signalfx-agent/configmap.yaml -o /home/ubuntu/signalfx-agent/configmap.yaml'
+ - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/signalfx-agent/daemonset.yaml -o /home/ubuntu/signalfx-agent/daemonset.yaml'
+ - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/signalfx-agent/serviceaccount.yaml -o /home/ubuntu/signalfx-agent/serviceaccount.yaml'
+ - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/nginx/nginx-deployment.yaml -o /home/ubuntu/nginx/nginx-deployment.yaml'
+ - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/nginx/nginx.conf -o /home/ubuntu/nginx/nginx.conf'
+ - chown -R ubuntu:ubuntu /home/ubuntu/signalfx-agent
+ - chown -R ubuntu:ubuntu /home/ubuntu/nginx
