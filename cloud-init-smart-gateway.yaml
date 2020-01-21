@@ -7,4 +7,7 @@ runcmd:
  - chmod 755 /home/ubuntu/smartgateway-install.sh
  # Replace ACCESS_TOKEN, REALM, HOSTNAME & CLUSTER_NAME accordingly
  - ./home/ubuntu/smartgateway-install.sh ACCESS_TOKEN REALM HOSTNAME CLUSTER_NAME
- - 'nohup /usr/local/bin/smart-gateway --configfile /var/lib/gateway/etc/gateway.conf &>/dev/null &'
+ - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/smart-gateway/smart-gateway.service -o /lib/systemd/system/smart-gateway.service'
+ - systemctl enable smart-gateway.service
+ - systemctl daemon-reload
+ - systemctl restart smart-gateway

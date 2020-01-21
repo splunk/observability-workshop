@@ -1,9 +1,9 @@
 [Unit]
-Description=Smart Gateway
+Description=SignalFx Smart Gateway
 After=network.target
 
 [Service]
-ExecStart=/usr/local/bin/smart-gateway --configfile /var/lib/gateway/etc/gateway.conf --cluster-op seed
+ExecStart=/usr/local/bin/smart-gateway --configfile /var/lib/gateway/etc/gateway.conf
 KillMode=mixed
 Restart=on-failure
 Type=simple
