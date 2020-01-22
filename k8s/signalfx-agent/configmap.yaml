@@ -17,13 +17,13 @@ data:
 
     intervalSeconds: 10
 
-    cluster: MY-CLUSTER
+    cluster: SFX-WORKSHOP 
 
     logging:
       level: info
 
     globalDimensions:
-      kubernetes_cluster: MY-CLUSTER
+      kubernetes_cluster: [YOUR_INITIALS]-SFX-WORKSHOPR
 
     sendMachineID: false
 
