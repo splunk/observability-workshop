@@ -88,7 +88,7 @@ data:
         metric_source: kubernetes-controller-manager
 
     - type: coredns
-      host: CLUSTER-IP-ADDRESS
+      host: 10.43.0.10S
       port: 9153
       useServiceAccount: true
       extraDimensions:
