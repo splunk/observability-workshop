@@ -12,8 +12,8 @@ data:
 
     signalFxRealm: us0
 
-    etcPath: /hostfs/etc
-    procPath: /hostfs/proc
+#    etcPath: /hostfs/etc
+#    procPath: /hostfs/proc
 
     intervalSeconds: 10
 
@@ -33,8 +33,8 @@ data:
     monitors:
     - type: collectd/cpu
     - type: collectd/cpufreq
-    - type: collectd/df
-      hostFSPath: /hostfs
+#    - type: collectd/df
+#      hostFSPath: /hostfs
     - type: collectd/disk
     - type: collectd/interface
     - type: collectd/load
@@ -101,19 +101,19 @@ data:
       extraDimensions:
         metric_source: kubernetes-proxy
 
-    - type: docker-container-stats
-      dockerURL: unix:///var/run/docker.sock
-      excludedImages:
-       - '*pause-amd64*'
-       - 'k8s.gcr.io/pause*'
-      labelsToDimensions:
-        io.kubernetes.container.name: container_spec_name
-        io.kubernetes.pod.name: kubernetes_pod_name
-        io.kubernetes.pod.uid: kubernetes_pod_uid
-        io.kubernetes.pod.namespace: kubernetes_namespace
+#    - type: docker-container-stats
+#      dockerURL: unix:///var/run/docker.sock
+#      excludedImages:
+#       - '*pause-amd64*'
+#       - 'k8s.gcr.io/pause*'
+#      labelsToDimensions:
+#        io.kubernetes.container.name: container_spec_name
+#        io.kubernetes.pod.name: kubernetes_pod_name
+#        io.kubernetes.pod.uid: kubernetes_pod_uid
+#        io.kubernetes.pod.namespace: kubernetes_namespace
 
-    - type: collectd/apache
-      discoveryRule: container_image =~ "apache" && private_port == 80
+#    - type: collectd/apache
+#      discoveryRule: container_image =~ "apache" && private_port == 80
 
     - type: collectd/nginx
       discoveryRule: container_image =~ "nginx" && private_port == 80
@@ -124,6 +124,9 @@ data:
       writeQueueLimitLow: 400000
       timeout: 40
       logLevel: info
+
+    writer:
+      maxDatapointsBuffered: 50000
 
     enableBuiltInFiltering: true
 
