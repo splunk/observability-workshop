@@ -1,0 +1,137 @@
+---
+# Source: signalfx-agent/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: signalfx-agent
+  labels:
+    app: signalfx-agent
+data:
+  agent.yaml: |
+    signalFxAccessToken: ${SFX_ACCESS_TOKEN}
+
+    signalFxRealm: us0
+
+    #etcPath: /hostfs/etc
+    #procPath: /hostfs/proc
+
+    intervalSeconds: 10
+
+    cluster: SFX-WORKSHOP 
+
+    logging:
+      level: info
+
+    globalDimensions:
+      kubernetes_cluster: [YOUR_INITIALS]-SFX-WORKSHOP
+
+    sendMachineID: false
+
+    observers:
+    - type: k8s-api
+
+    monitors:
+    - type: collectd/cpu
+    - type: collectd/cpufreq
+    #- type: collectd/df
+    #  hostFSPath: /hostfs
+    - type: collectd/disk
+    - type: collectd/interface
+    - type: collectd/load
+    - type: collectd/memory
+    - type: collectd/protocols
+    - type: collectd/signalfx-metadata
+    - type: host-metadata
+    - type: collectd/uptime
+    - type: collectd/vmem
+
+    - type: kubelet-stats
+      kubeletAPI:
+        authType: serviceAccount
+        url: http://localhost:10255
+      datapointsToExclude:
+      - dimensions:
+          container_image:
+           - '*pause-amd64*'
+           - 'k8s.gcr.io/pause*'
+        metricNames:
+          - '*'
+          - '!*network*'
+
+    # Collects k8s cluster-level metrics
+    - type: kubernetes-cluster
+      useNodeName: true
+
+    - type: kubernetes-apiserver
+      host: 127.0.0.1
+      port: 16443
+      useHTTPS: true
+      skipVerify: true
+      useServiceAccount: true
+      extraDimensions:
+        metric_source: kubernetes-apiserver
+
+    - type: kubernetes-scheduler
+      host: 127.0.0.1
+      port: 10251
+      skipVerify: true
+      useServiceAccount: true
+      extraDimensions:
+        metric_source: kubernetes-scheduler
+       
+    - type: kube-controller-manager
+      host: 127.0.0.1
+      port: 10252
+      skipVerify: true
+      useServiceAccount: true
+      extraDimensions:
+        metric_source: kubernetes-controller-manager
+
+    #- type: coredns
+    #  host: 10.43.0.10
+    #  port: 9153
+    #  useServiceAccount: true
+    #  extraDimensions:
+    #    metric_source: k8s-coredns
+
+    - type: kubernetes-proxy
+      host: 127.0.0.1
+      port: 10249
+      useServiceAccount: true
+      extraDimensions:
+        metric_source: kubernetes-proxy
+
+    #- type: docker-container-stats
+    #  dockerURL: unix:///var/run/docker.sock
+    #  excludedImages:
+    #   - '*pause-amd64*'
+    #   - 'k8s.gcr.io/pause*'
+    #  labelsToDimensions:
+    #    io.kubernetes.container.name: container_spec_name
+    #    io.kubernetes.pod.name: kubernetes_pod_name
+    #    io.kubernetes.pod.uid: kubernetes_pod_uid
+    #    io.kubernetes.pod.namespace: kubernetes_namespace
+
+    #- type: collectd/apache
+    #  discoveryRule: container_image =~ "apache" && private_port == 80
+
+    - type: collectd/nginx
+      discoveryRule: container_image =~ "nginx" && private_port == 80
+
+    collectd:
+      readThreads: 5
+      writeQueueLimitHigh: 500000
+      writeQueueLimitLow: 400000
+      timeout: 40
+      logLevel: info
+
+    writer:
+      maxDatapointsBuffered: 50000
+
+    enableBuiltInFiltering: true
+
+    metricsToExclude:
+      # The StackDriver metadata-agent pod on GKE restarts every few minutes so
+      # ignore its containers
+      - dimensions:
+          container_spec_name: metadata-agent
