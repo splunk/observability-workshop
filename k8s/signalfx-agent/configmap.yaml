@@ -12,8 +12,8 @@ data:
 
     signalFxRealm: us0
 
-#    etcPath: /hostfs/etc
-#    procPath: /hostfs/proc
+    #etcPath: /hostfs/etc
+    #procPath: /hostfs/proc
 
     intervalSeconds: 10
 
@@ -33,8 +33,8 @@ data:
     monitors:
     - type: collectd/cpu
     - type: collectd/cpufreq
-#    - type: collectd/df
-#      hostFSPath: /hostfs
+    #- type: collectd/df
+    #  hostFSPath: /hostfs
     - type: collectd/disk
     - type: collectd/interface
     - type: collectd/load
@@ -112,8 +112,8 @@ data:
 #        io.kubernetes.pod.uid: kubernetes_pod_uid
 #        io.kubernetes.pod.namespace: kubernetes_namespace
 
-#    - type: collectd/apache
-#      discoveryRule: container_image =~ "apache" && private_port == 80
+    #- type: collectd/apache
+    #  discoveryRule: container_image =~ "apache" && private_port == 80
 
     - type: collectd/nginx
       discoveryRule: container_image =~ "nginx" && private_port == 80
