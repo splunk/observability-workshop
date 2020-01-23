@@ -101,16 +101,16 @@ data:
       extraDimensions:
         metric_source: kubernetes-proxy
 
-#    - type: docker-container-stats
-#      dockerURL: unix:///var/run/docker.sock
-#      excludedImages:
-#       - '*pause-amd64*'
-#       - 'k8s.gcr.io/pause*'
-#      labelsToDimensions:
-#        io.kubernetes.container.name: container_spec_name
-#        io.kubernetes.pod.name: kubernetes_pod_name
-#        io.kubernetes.pod.uid: kubernetes_pod_uid
-#        io.kubernetes.pod.namespace: kubernetes_namespace
+    #- type: docker-container-stats
+    #  dockerURL: unix:///var/run/docker.sock
+    #  excludedImages:
+    #   - '*pause-amd64*'
+    #   - 'k8s.gcr.io/pause*'
+    #  labelsToDimensions:
+    #    io.kubernetes.container.name: container_spec_name
+    #    io.kubernetes.pod.name: kubernetes_pod_name
+    #    io.kubernetes.pod.uid: kubernetes_pod_uid
+    #    io.kubernetes.pod.namespace: kubernetes_namespace
 
     #- type: collectd/apache
     #  discoveryRule: container_image =~ "apache" && private_port == 80
