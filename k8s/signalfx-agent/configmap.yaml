@@ -23,7 +23,7 @@ data:
       level: info
 
     globalDimensions:
-      kubernetes_cluster: [YOUR_INITIALS]-SFX-WORKSHOPR
+      kubernetes_cluster: [YOUR_INITIALS]-SFX-WORKSHOP
 
     sendMachineID: false
 
