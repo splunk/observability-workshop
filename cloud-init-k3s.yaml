@@ -22,6 +22,14 @@ runcmd:
  - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/signalfx-agent/serviceaccount.yaml -o /home/ubuntu/signalfx-agent/serviceaccount.yaml'
  - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/nginx/nginx-deployment.yaml -o /home/ubuntu/nginx/nginx-deployment.yaml'
  - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/nginx/nginx.conf -o /home/ubuntu/nginx/nginx.conf'
+ - 'curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash'
+ - helm repo add stable https://kubernetes-charts.storage.googleapis.com/
  - chown -R ubuntu:ubuntu /home/ubuntu/signalfx-agent
  - chown -R ubuntu:ubuntu /home/ubuntu/nginx
  - chmod 644 /etc/rancher/k3s/k3s.yaml 
+write_files:
+ - path: /etc/environment
+   permissions: 0644
+   content: | 
+     KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
+   append: true
