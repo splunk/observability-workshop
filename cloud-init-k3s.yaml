@@ -7,6 +7,12 @@ packages:
 #  - gnupg-agent
 #  - software-properties-common
  - apache2-utils
+write_files:
+ - path: /etc/environment
+   permissions: 0644
+   content: | 
+     KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
+   append: true
 runcmd:
 # - 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -'
 # - 'add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"'
@@ -22,14 +28,9 @@ runcmd:
  - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/signalfx-agent/serviceaccount.yaml -o /home/ubuntu/signalfx-agent/serviceaccount.yaml'
  - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/nginx/nginx-deployment.yaml -o /home/ubuntu/nginx/nginx-deployment.yaml'
  - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/nginx/nginx.conf -o /home/ubuntu/nginx/nginx.conf'
+ - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/etc/motd -o /etc/motd'
  - 'curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash'
- - helm repo add stable https://kubernetes-charts.storage.googleapis.com/
- - chown -R ubuntu:ubuntu /home/ubuntu/signalfx-agent
+# - 'sudo -u ubuntu git clone https://github.com/signalfx/streaming-analytics-workshop.git /home/ubuntu/workshop'
+ - chown -R ubuntu:ubuntu /home/ubuntu/workshop
  - chown -R ubuntu:ubuntu /home/ubuntu/nginx
  - chmod 644 /etc/rancher/k3s/k3s.yaml 
-write_files:
- - path: /etc/environment
-   permissions: 0644
-   content: | 
-     KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
-   append: true
