@@ -64,45 +64,6 @@ data:
     - type: kubernetes-cluster
       useNodeName: true
 
-    - type: kubernetes-apiserver
-      host: 127.0.0.1
-      port: 6443
-      useHTTPS: true
-      skipVerify: true
-      useServiceAccount: true
-      extraDimensions:
-        metric_source: kubernetes-apiserver
-
-    - type: kubernetes-scheduler
-      host: 127.0.0.1
-      port: 10251
-      skipVerify: true
-      useServiceAccount: true
-      extraDimensions:
-        metric_source: kubernetes-scheduler
-       
-    - type: kube-controller-manager
-      host: 127.0.0.1
-      port: 10252
-      skipVerify: true
-      useServiceAccount: true
-      extraDimensions:
-        metric_source: kubernetes-controller-manager
-
-    - type: coredns
-      host: 10.43.0.10
-      port: 9153
-      useServiceAccount: true
-      extraDimensions:
-        metric_source: k8s-coredns
-
-    - type: kubernetes-proxy
-      host: 127.0.0.1
-      port: 10249
-      useServiceAccount: true
-      extraDimensions:
-        metric_source: kubernetes-proxy
-
     #- type: docker-container-stats
     #  dockerURL: unix:///var/run/docker.sock
     #  excludedImages:
