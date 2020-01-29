@@ -30,7 +30,6 @@ runcmd:
  - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/nginx/nginx.conf -o /home/ubuntu/nginx/nginx.conf'
  - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/etc/motd -o /etc/motd'
  - 'curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash'
-# - 'sudo -u ubuntu git clone https://github.com/signalfx/streaming-analytics-workshop.git /home/ubuntu/workshop'
- - chown -R ubuntu:ubuntu /home/ubuntu/workshop
+ - chown -R ubuntu:ubuntu /home/ubuntu/signalfx-agent
  - chown -R ubuntu:ubuntu /home/ubuntu/nginx
  - chmod 644 /etc/rancher/k3s/k3s.yaml 
