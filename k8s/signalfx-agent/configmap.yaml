@@ -10,7 +10,7 @@ data:
   agent.yaml: |
     signalFxAccessToken: ${SFX_ACCESS_TOKEN}
 
-    signalFxRealm: us0
+    signalFxRealm: us1
 
     etcPath: /hostfs/etc
     procPath: /hostfs/proc
