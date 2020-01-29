@@ -14,6 +14,7 @@ runcmd:
  - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/signalfx-agent/serviceaccount.yaml -o /home/ubuntu/signalfx-agent/serviceaccount.yaml'
  - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/nginx/nginx-deployment.yaml -o /home/ubuntu/nginx/nginx-deployment.yaml'
  - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/nginx/nginx.conf -o /home/ubuntu/nginx/nginx.conf'
+ - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/etc/motd -o /etc/motd'
  - chown -R ubuntu:ubuntu /home/ubuntu/signalfx-agent
  - chown -R ubuntu:ubuntu /home/ubuntu/nginx
  - echo '--containerd=${SNAP_COMMON}/run/containerd.sock' >> /var/snap/microk8s/current/args/kubelet 
