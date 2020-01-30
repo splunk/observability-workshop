@@ -1,6 +1,7 @@
 #cloud-config
 package_update: true
 package_upgrade: true
+
 packages:
  - default-jre            
  - openjdk-11-jre-headless
@@ -8,6 +9,7 @@ packages:
  - maven
  - python3-distutils
  - apache2-utils
+
 write_files:
  - content: |
       "Hello from the SAW Workshop!"
@@ -40,6 +42,7 @@ write_files:
 
    path: /home/ubuntu/mypythonapp/demo.py
    permissions: '0755'
+
 runcmd:
  - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/etc/motd -o /etc/motd'
  - "curl -L https://github.com/signalfx/streaming-analytics-workshop/raw/master/apm/java-app.tar.gz -o /run/java-app.tar.gz"

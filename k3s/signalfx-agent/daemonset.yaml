@@ -1,0 +1,99 @@
+---
+# Source: signalfx-agent/templates/daemonset.yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: signalfx-agent
+  labels:
+    app: signalfx-agent
+    version: 4.18.3
+spec:
+  selector:
+    matchLabels:
+      app: signalfx-agent
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
+
+  template:
+    metadata:
+      labels:
+        app: signalfx-agent
+        version: 4.18.3
+
+    spec:
+      # Use host network so we can access kubelet directly
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      restartPolicy: Always
+      serviceAccountName: signalfx-agent
+
+      tolerations:
+      - effect: NoSchedule
+        key: node.alpha.kubernetes.io/role
+        operator: Exists
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/master
+        operator: Exists
+
+      containers:
+      - name: signalfx-agent
+        image: "quay.io/signalfx/signalfx-agent:4.18.3"
+        imagePullPolicy: IfNotPresent
+        command:
+        - /bin/signalfx-agent
+        volumeMounts:
+        - mountPath: /etc/signalfx
+          name: config
+        - mountPath: /etc/machine-id
+          name: machine-id
+          readOnly: true
+        - mountPath: /hostfs
+          name: hostfs
+          readOnly: true
+          mountPropagation: HostToContainer
+        - mountPath: /var/run/docker.sock
+          name: docker
+          readOnly: true
+        - mountPath: /etc/passwd
+          name: etc-passwd
+          readOnly: true
+        resources:
+          {}
+        env:
+        - name: SFX_ACCESS_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: signalfx-agent
+              key: access-token
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: MY_NODE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: MY_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+      volumes:
+      - name: config
+        configMap:
+          name: signalfx-agent
+      - name: hostfs
+        hostPath:
+          path: /
+      - name: docker
+        hostPath:
+          path: /var/run/docker.sock
+      - name: machine-id
+        hostPath:
+          path: /etc/machine-id
+      - name: etc-passwd
+        hostPath:
+          path: /etc/passwd

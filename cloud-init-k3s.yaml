@@ -1,18 +1,21 @@
 #cloud-config
 package_update: true
 package_upgrade: true
+
 packages:
 #  - apt-transport-https
 #  - ca-certificates
 #  - gnupg-agent
 #  - software-properties-common
  - apache2-utils
+
 write_files:
  - path: /etc/environment
    permissions: 0644
    content: | 
      KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
    append: true
+
 runcmd:
 # - 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -'
 # - 'add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"'
@@ -20,19 +23,22 @@ runcmd:
 # - apt install docker-ce docker-ce-cli containerd.io -y
 # - 'curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --kubelet-arg containerd=/run/k3s/containerd/containerd.sock" sh -s -'
  - 'curl -sfL https://get.k3s.io | sh -'
+ - 'git clone https://github.com/signalfx/streaming-analytics-workshop.git /home/ubuntu/workshop'
  - mkdir /home/ubuntu/signalfx-agent
  - mkdir /home/ubuntu/nginx
- - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/signalfx-agent/clusterrole.yaml -o /home/ubuntu/signalfx-agent/clusterrole.yaml'
- - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/signalfx-agent/clusterrolebinding.yaml -o /home/ubuntu/signalfx-agent/clusterrolebinding.yaml'
- - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/signalfx-agent/configmap.yaml -o /home/ubuntu/signalfx-agent/configmap.yaml'
- - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/signalfx-agent/daemonset.yaml -o /home/ubuntu/signalfx-agent/daemonset.yaml'
- - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/signalfx-agent/serviceaccount.yaml -o /home/ubuntu/signalfx-agent/serviceaccount.yaml'
- - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/nginx/nginx-deployment.yaml -o /home/ubuntu/nginx/nginx-deployment.yaml'
- - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/nginx/nginx.conf -o /home/ubuntu/nginx/nginx.conf'
+ - mkdir /home/ubuntu/redis
+ - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k3s/signalfx-agent/clusterrole.yaml -o /home/ubuntu/signalfx-agent/clusterrole.yaml'
+ - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k3s/signalfx-agent/clusterrolebinding.yaml -o /home/ubuntu/signalfx-agent/clusterrolebinding.yaml'
+ - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k3s/signalfx-agent/configmap.yaml -o /home/ubuntu/signalfx-agent/configmap.yaml'
+ - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k3s/signalfx-agent/daemonset.yaml -o /home/ubuntu/signalfx-agent/daemonset.yaml'
+ - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k3s/signalfx-agent/serviceaccount.yaml -o /home/ubuntu/signalfx-agent/serviceaccount.yaml'
+ - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k3s/nginx/nginx-deployment.yaml -o /home/ubuntu/nginx/nginx-deployment.yaml'
+ - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k3s/nginx/nginx.conf -o /home/ubuntu/nginx/nginx.conf'
  - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/etc/motd -o /etc/motd'
  - 'curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash'
  - chown -R ubuntu:ubuntu /home/ubuntu/signalfx-agent
  - chown -R ubuntu:ubuntu /home/ubuntu/nginx
+ - chown -R ubuntu:ubuntu /home/ubuntu/redis
  - chmod 644 /etc/rancher/k3s/k3s.yaml
  - 'curl -OL https://github.com/derailed/k9s/releases/download/v0.13.6/k9s_0.13.6_Linux_x86_64.tar.gz'
  - tar xvfz k9s_0.13.6_Linux_x86_64.tar.gz
