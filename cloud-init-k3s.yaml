@@ -26,7 +26,6 @@ runcmd:
  - 'git clone https://github.com/signalfx/streaming-analytics-workshop.git /home/ubuntu/workshop'
  - mkdir /home/ubuntu/signalfx-agent
  - mkdir /home/ubuntu/nginx
- - mkdir /home/ubuntu/redis
  - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k3s/signalfx-agent/clusterrole.yaml -o /home/ubuntu/signalfx-agent/clusterrole.yaml'
  - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k3s/signalfx-agent/clusterrolebinding.yaml -o /home/ubuntu/signalfx-agent/clusterrolebinding.yaml'
  - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k3s/signalfx-agent/configmap.yaml -o /home/ubuntu/signalfx-agent/configmap.yaml'
@@ -38,7 +37,7 @@ runcmd:
  - 'curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash'
  - chown -R ubuntu:ubuntu /home/ubuntu/signalfx-agent
  - chown -R ubuntu:ubuntu /home/ubuntu/nginx
- - chown -R ubuntu:ubuntu /home/ubuntu/redis
+ - chown -R ubuntu:ubuntu /home/ubuntu/workshop
  - chmod 644 /etc/rancher/k3s/k3s.yaml
  - 'curl -OL https://github.com/derailed/k9s/releases/download/v0.13.6/k9s_0.13.6_Linux_x86_64.tar.gz'
  - tar xvfz k9s_0.13.6_Linux_x86_64.tar.gz
