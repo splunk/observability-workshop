@@ -18,7 +18,8 @@ runcmd:
 # - 'add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"'
 # - apt update
 # - apt install docker-ce docker-ce-cli containerd.io -y
- - 'curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --kubelet-arg containerd=/run/k3s/containerd/containerd.sock" sh -s -'
+# - 'curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --kubelet-arg containerd=/run/k3s/containerd/containerd.sock" sh -s -'
+ - 'curl -sfL https://get.k3s.io | sh -'
  - mkdir /home/ubuntu/signalfx-agent
  - mkdir /home/ubuntu/nginx
  - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/k8s/signalfx-agent/clusterrole.yaml -o /home/ubuntu/signalfx-agent/clusterrole.yaml'
@@ -32,4 +33,7 @@ runcmd:
  - 'curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash'
  - chown -R ubuntu:ubuntu /home/ubuntu/signalfx-agent
  - chown -R ubuntu:ubuntu /home/ubuntu/nginx
- - chmod 644 /etc/rancher/k3s/k3s.yaml 
+ - chmod 644 /etc/rancher/k3s/k3s.yaml
+ - 'curl -OL https://github.com/derailed/k9s/releases/download/v0.13.6/k9s_0.13.6_Linux_x86_64.tar.gz'
+ - tar xvfz k9s_0.13.6_Linux_x86_64.tar.gz
+ - mv k9s /usr/local/bin
