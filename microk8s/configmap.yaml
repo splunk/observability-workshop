@@ -10,10 +10,10 @@ data:
   agent.yaml: |
     signalFxAccessToken: ${SFX_ACCESS_TOKEN}
 
-    signalFxRealm: us0
+    signalFxRealm: us1
 
-    #etcPath: /hostfs/etc
-    #procPath: /hostfs/proc
+    etcPath: /hostfs/etc
+    procPath: /hostfs/proc
 
     intervalSeconds: 10
 
@@ -35,13 +35,15 @@ data:
     - type: collectd/cpufreq
     #- type: collectd/df
     #  hostFSPath: /hostfs
-    - type: collectd/disk
+    - type: disk-io
     - type: collectd/interface
-    - type: collectd/load
+    - type: load
     - type: collectd/memory
     - type: collectd/protocols
     - type: collectd/signalfx-metadata
+      omitProcessInfo: true
     - type: host-metadata
+    - type: processlist
     - type: collectd/uptime
     - type: collectd/vmem
 
@@ -62,45 +64,6 @@ data:
     - type: kubernetes-cluster
       useNodeName: true
 
-    - type: kubernetes-apiserver
-      host: 127.0.0.1
-      port: 16443
-      useHTTPS: true
-      skipVerify: true
-      useServiceAccount: true
-      extraDimensions:
-        metric_source: kubernetes-apiserver
-
-    - type: kubernetes-scheduler
-      host: 127.0.0.1
-      port: 10251
-      skipVerify: true
-      useServiceAccount: true
-      extraDimensions:
-        metric_source: kubernetes-scheduler
-       
-    - type: kube-controller-manager
-      host: 127.0.0.1
-      port: 10252
-      skipVerify: true
-      useServiceAccount: true
-      extraDimensions:
-        metric_source: kubernetes-controller-manager
-
-    #- type: coredns
-    #  host: 10.43.0.10
-    #  port: 9153
-    #  useServiceAccount: true
-    #  extraDimensions:
-    #    metric_source: k8s-coredns
-
-    - type: kubernetes-proxy
-      host: 127.0.0.1
-      port: 10249
-      useServiceAccount: true
-      extraDimensions:
-        metric_source: kubernetes-proxy
-
     #- type: docker-container-stats
     #  dockerURL: unix:///var/run/docker.sock
     #  excludedImages:
@@ -112,8 +75,8 @@ data:
     #    io.kubernetes.pod.uid: kubernetes_pod_uid
     #    io.kubernetes.pod.namespace: kubernetes_namespace
 
-    #- type: collectd/apache
-    #  discoveryRule: container_image =~ "apache" && private_port == 80
+    - type: collectd/apache
+      discoveryRule: container_image =~ "apache" && private_port == 80
 
     - type: collectd/nginx
       discoveryRule: container_image =~ "nginx" && private_port == 80
