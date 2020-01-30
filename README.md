@@ -5,4 +5,6 @@ Install Multipass for your OS - https://multipass.run/. On a Mac you can also in
 
 Launch the Multipass instance which will run Kubernetes e.g.
 
-```multipass launch --name k3s --cloud-init cloud-init-k3s.yaml --cpus=2 --mem=2G```
+```
+multipass launch --name k3s --cloud-init cloud-init-k3s.yaml --cpus=2 --mem=2G
+```
