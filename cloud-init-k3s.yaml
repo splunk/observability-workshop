@@ -29,5 +29,6 @@ runcmd:
  - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/etc/motd -o /etc/motd'
  - 'curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash'
  - 'curl -OL https://github.com/derailed/k9s/releases/download/v0.13.6/k9s_0.13.6_Linux_x86_64.tar.gz'
- - tar xvfz k9s_0.13.6_Linux_x86_64.tar.gz
+ - 'curl -OL https://github.com/derailed/k9s/releases/download/v0.13.8/k9s_0.13.8_Linux_x86_64.tar.gz'
+ - tar xvfz k9s_0.13.8_Linux_x86_64.tar.gz
  - mv k9s /usr/local/bin
