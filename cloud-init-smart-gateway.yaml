@@ -2,14 +2,6 @@
 package_update: true
 package_upgrade: true
 
-runcmd:
- - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/etc/motd -o /etc/motd'
- - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/smart-gateway/install.sh -o /home/ubuntu/smartgateway-install.sh'
- - chown ubuntu:ubuntu /home/ubuntu/smartgateway-install.sh
- - chmod 755 /home/ubuntu/smartgateway-install.sh
- # Replace ACCESS_TOKEN, REALM, HOSTNAME & CLUSTER_NAME accordingly
- - ./home/ubuntu/smartgateway-install.sh ACCESS_TOKEN REALM HOSTNAME CLUSTER_NAME
-
 write_files:
  - content: |
       [Unit]
@@ -29,6 +21,13 @@ write_files:
    path: /lib/systemd/system/smart-gateway.service
    permissons: '0644'
 
+runcmd:
+ - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/etc/motd -o /etc/motd'
+ - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/smart-gateway/install.sh -o /home/ubuntu/smartgateway-install.sh'
+ - chown ubuntu:ubuntu /home/ubuntu/smartgateway-install.sh
+ - chmod 755 /home/ubuntu/smartgateway-install.sh
+ # Replace ACCESS_TOKEN, REALM, HOSTNAME & CLUSTER_NAME accordingly
+ - ./home/ubuntu/smartgateway-install.sh ACCESS_TOKEN REALM HOSTNAME CLUSTER_NAME
  - systemctl enable smart-gateway.service
  - systemctl daemon-reload
  - systemctl restart smart-gateway
