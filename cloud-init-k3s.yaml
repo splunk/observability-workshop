@@ -3,32 +3,23 @@ package_update: true
 package_upgrade: true
 
 packages:
-#  - apt-transport-https
-#  - ca-certificates
-#  - gnupg-agent
-#  - software-properties-common
  - apache2-utils
 
-write_files:
- - path: /etc/environment
-   permissions: 0644
-   content: | 
-     KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
-   append: true
+#write_files:
+#   permissions: 0644
+# - path: /etc/environment
+#   content: | 
+#     KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
+#   append: true
 
 runcmd:
-# - 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -'
-# - 'add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"'
-# - apt update
-# - apt install docker-ce docker-ce-cli containerd.io -y
-# - 'curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --kubelet-arg containerd=/run/k3s/containerd/containerd.sock" sh -s -'
- - 'curl -sfL https://get.k3s.io | sh -'
+ - 'curl -sfL https://get.k3s.io | sh -s'
+# - 'curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644'
  - chmod 644 /etc/rancher/k3s/k3s.yaml
  - 'git clone https://github.com/signalfx/streaming-analytics-workshop.git /home/ubuntu/workshop'
  - chown -R ubuntu:ubuntu /home/ubuntu/workshop 
  - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/etc/motd -o /etc/motd'
  - 'curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash'
- - 'curl -OL https://github.com/derailed/k9s/releases/download/v0.13.6/k9s_0.13.6_Linux_x86_64.tar.gz'
- - 'curl -OL https://github.com/derailed/k9s/releases/download/v0.13.8/k9s_0.13.8_Linux_x86_64.tar.gz'
- - tar xvfz k9s_0.13.8_Linux_x86_64.tar.gz
+ - 'curl -OL https://github.com/derailed/k9s/releases/download/v0.16.1/k9s_Linux_x86_64.tar.gz'
+ - tar xvfz k9s_Linux_x86_64.tar.gz 
  - mv k9s /usr/local/bin
