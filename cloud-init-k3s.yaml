@@ -5,12 +5,12 @@ package_upgrade: true
 packages:
  - apache2-utils
 
-#write_files:
-#   permissions: 0644
-# - path: /etc/environment
-#   content: | 
-#     KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
-#   append: true
+write_files:
+ - path: /etc/environment
+   permissions: 0644
+   content: | 
+     KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
+   append: true
 
 runcmd:
  - 'curl -sfL https://get.k3s.io | sh -s'
