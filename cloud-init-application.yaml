@@ -44,8 +44,8 @@ write_files:
    permissions: '0755'
 
 runcmd:
- - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/etc/motd -o /etc/motd'
- - 'curl -L https://github.com/signalfx/streaming-analytics-workshop/raw/master/apm/java-app.tar.gz -o /run/java-app.tar.gz'
+ - 'curl https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd -o /etc/motd'
+ - 'curl -L https://github.com/signalfx/app-dev-workshop/raw/master/apm/java-app.tar.gz -o /run/java-app.tar.gz'
  - tar xvfz /run/java-app.tar.gz -C /home/ubuntu/
  - chown -R ubuntu:ubuntu /home/ubuntu
  - 'curl https://bootstrap.pypa.io/get-pip.py -o /run/get-pip.py'

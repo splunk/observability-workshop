@@ -7,8 +7,8 @@ packages:
 
 runcmd:
  - snap install microk8s --classic
- - 'git clone https://github.com/signalfx/streaming-analytics-workshop.git /home/ubuntu/workshop'
- - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/etc/motd -o /etc/motd'
+ - 'git clone https://github.com/signalfx/app-dev-workshop.git /home/ubuntu/workshop'
+ - 'curl https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd -o /etc/motd'
  - chown -R ubuntu:ubuntu /home/ubuntu/workshop 
  - echo '--containerd=${SNAP_COMMON}/run/containerd.sock' >> /var/snap/microk8s/current/args/kubelet
  - usermod -a -G microk8s ubuntu

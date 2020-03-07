@@ -16,9 +16,9 @@ runcmd:
  - 'curl -sfL https://get.k3s.io | sh -s'
 # - 'curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644'
  - chmod 644 /etc/rancher/k3s/k3s.yaml
- - 'git clone https://github.com/signalfx/streaming-analytics-workshop.git /home/ubuntu/workshop'
+ - 'git clone https://github.com/signalfx/app-dev-workshop.git /home/ubuntu/workshop'
  - chown -R ubuntu:ubuntu /home/ubuntu/workshop 
- - 'curl https://raw.githubusercontent.com/signalfx/streaming-analytics-workshop/master/etc/motd -o /etc/motd'
+ - 'curl https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd -o /etc/motd'
  - 'curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash'
  - 'curl -OL https://github.com/derailed/k9s/releases/download/v0.16.1/k9s_Linux_x86_64.tar.gz'
  - tar xvfz k9s_Linux_x86_64.tar.gz 

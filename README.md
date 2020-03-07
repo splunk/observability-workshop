@@ -1,4 +1,4 @@
-# streaming-analytics-workshop
+# App Devorkshop Workshop
 Files used for creation of workshop instances, useful tools and anything else!
 
 Install Multipass for your OS - https://multipass.run/. On a Mac you can also install via brew e.g. `brew cask install multipass`
