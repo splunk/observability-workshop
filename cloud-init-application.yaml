@@ -12,7 +12,7 @@ packages:
 
 write_files:
  - content: |
-      "Hello from the SAW Workshop!"
+      "Hello from the App Dev Workshop!"
    path: /home/ubuntu/mypythonapp/post_data.json
    permissons: '0644'
  - content: | 
