@@ -1,8 +1,8 @@
 # Welcome!
-
-## Glad that you are here with us today!
 In this workshop we're going to take you though the exciting journey of App Dev, what they are, why they are important, and how to get started right away!
 Make sure you have completed the pre-requisites checklist before starting, if you have any questions about this checklist, please ask your facilitator Engineer.
+
+---
 
 ## The workshop consists of Modules and Labs
 Each Module captures an entire section of our platform, and each Lab, has a specific goal to help you progress in the Workshop.
