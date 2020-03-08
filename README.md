@@ -1,10 +1,11 @@
-# App Devorkshop Workshop
-Files used for creation of workshop instances, useful tools and anything else!
+# Welcome!
 
-Install Multipass for your OS - https://multipass.run/. On a Mac you can also install via brew e.g. `brew cask install multipass`
+## Glad that you are here with us today!
+In this workshop we're going to take you though the exciting journey of App Dev, what they are, why they are important, and how to get started right away!
+Make sure you have completed the pre-requisites checklist before starting, if you have any questions about this checklist, please ask your facilitator Engineer.
 
-Launch the Multipass instance which will run Kubernetes e.g.
+## The workshop consists of Modules and Labs
+Each Module captures an entire section of our platform, and each Lab, has a specific goal to help you progress in the Workshop.
+Labs can be related to each other, they can be a separation of a large collection of steps, or they can be siloed goals for you to achieve.
 
-```
-multipass launch --name k3s --cloud-init cloud-init-k3s.yaml --cpus=2 --mem=2G
-```
+To get started, please proceed to [The Workshop](https://github.com/signalfx/app-dev-workshop/wiki)
