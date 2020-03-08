@@ -4,7 +4,7 @@ TOKEN=$1
 REALM=$2
 HOSTNAME=$3
 CLUSTERNAME=$4
-VERSION=v2.1.5
+VERSION=v2.1.6
 
 if [ -z "$1" ] ; then
   printf "Token not set, exiting ...\n"
