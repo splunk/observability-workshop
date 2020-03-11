@@ -6,7 +6,6 @@ import opentracing
 
 app = Flask(__name__)
 
-
 @trace
 def convert_response(message):
 
@@ -14,7 +13,7 @@ def convert_response(message):
 
     opentracing.tracer.active_span.set_tag('sampling.priority', 1)
     opentracing.tracer.active_span.set_tag('message', message)
-    print opentracing.tracer.active_span
+    print (opentracing.tracer.active_span)
     return 'You said: {}'.format(message)
 
 
