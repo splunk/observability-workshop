@@ -9,6 +9,8 @@ spec:
   replicas: 4 # Update the replicas from 2 to 4
   template:
     metadata:
+      annotations:
+        agent.signalfx.com/monitorType.80: "collectd/nginx"
       labels:
         app: nginx
     spec:
