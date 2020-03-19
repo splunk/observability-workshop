@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: py-echo-service
+spec:
+  selector:
+    app: py-echo
+  ports:
+    - port: 6000
+      targetPort: 5000
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: py-echo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: py-echo
+  template:
+    metadata:
+      labels:
+        app: py-echo
+    spec:
+      containers:
+      - name: py-echo
+        image: registry.local:5000/py-echo:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        env:
+          - name: SIGNALFX_AGENT_HOST
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: status.hostIP
+          - name: SIGNALFX_ENDPOINT_URL
+            value: http://$(SIGNALFX_AGENT_HOST):9080/v1/trace
