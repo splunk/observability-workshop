@@ -1,9 +1,3 @@
-logging:
-  level: debug
-
-writer:
-  logTraceSpans: true
-
 monitors:
 - type: signalfx-forwarder
   listenAddress: 0.0.0.0:9080
