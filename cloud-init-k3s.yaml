@@ -24,6 +24,14 @@ write_files:
    content: | 
      KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
    append: true
+ - path: /etc/rancher/k3s/registries.yaml
+   permissions: 0644
+   content: | 
+     mirrors:
+       "registry.local:5000":
+         endpoint:
+          - http://registry.local:5000
+   append: false
 
 runcmd:
  - 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -'
@@ -32,6 +40,9 @@ runcmd:
  - apt-get install -y docker-ce docker-ce-cli containerd.io -y
  - 'curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server --docker" sh -s -'
  - chmod 644 /etc/rancher/k3s/k3s.yaml
+ - 'docker volume create local_registry'
+ - 'docker container run -d --name registry.local -v local_registry:/var/lib/registry --restart always -p 5000:5000 registry:2'
+ - 'echo "127.0.0.1 registry.local" >> /etc/hosts'
  - 'git clone https://github.com/signalfx/app-dev-workshop.git /home/ubuntu/workshop'
  - chown -R ubuntu:ubuntu /home/ubuntu/workshop 
  - 'curl https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd -o /etc/motd'
