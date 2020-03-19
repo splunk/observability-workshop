@@ -44,9 +44,9 @@ runcmd:
  - 'docker container run -d --name registry.local -v local_registry:/var/lib/registry --restart always -p 5000:5000 registry:2'
  - 'echo "127.0.0.1 registry.local" >> /etc/hosts'
  - 'git clone https://github.com/signalfx/app-dev-workshop.git /home/ubuntu/workshop'
- - chown -R ubuntu:ubuntu /home/ubuntu/workshop 
+ - chown -R ubuntu:ubuntu /home/ubuntu/workshop
  - 'curl https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd -o /etc/motd'
  - 'curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash'
  - 'curl -OL https://github.com/derailed/k9s/releases/download/v0.17.7/k9s_Linux_x86_64.tar.gz'
- - tar xvfz k9s_Linux_x86_64.tar.gz 
+ - tar xvfz k9s_Linux_x86_64.tar.gz
  - mv k9s /usr/local/bin
