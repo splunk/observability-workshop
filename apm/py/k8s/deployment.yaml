@@ -28,6 +28,8 @@ spec:
                 fieldPath: status.hostIP
           - name: SIGNALFX_ENDPOINT_URL
             value: http://$(SIGNALFX_AGENT_HOST):9080/v1/trace
+          - name: SIGNALFX_SERVICE_NAME
+            value: AS2-py-echo
 ---
 apiVersion: v1
 kind: Service
