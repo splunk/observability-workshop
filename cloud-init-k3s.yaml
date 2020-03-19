@@ -1,6 +1,8 @@
 #cloud-config
 package_update: true
 package_upgrade: true
+package_reboot_if_required: true
+
 apt:
   sources_list: | 
     deb mirror://mirrors.ubuntu.com/mirrors.txt bionic main restricted universe multiverse
