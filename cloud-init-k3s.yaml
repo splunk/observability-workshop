@@ -17,6 +17,7 @@ packages:
  - curl
  - gnupg-agent
  - software-properties-common
+ - wamerican
 
 write_files:
  - path: /etc/environment
