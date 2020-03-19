@@ -1,0 +1,20 @@
+{
+  "name": "knote",
+  "version": "2.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "marked": "^0.6.2",
+    "minio": "^7.0.10",
+    "mongodb": "^3.2.7",
+    "multer": "^1.4.1",
+    "pug": "^2.0.3",
+    "signalfx-tracing": "^0.4.0"
+  }
+}
