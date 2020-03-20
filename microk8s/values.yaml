@@ -1,0 +1,19 @@
+- type: trace-forwarder
+  listenAddress: 0.0.0.0:9080
+
+- type: kubernetes-events
+  whitelistedEvents:
+   - reason: Killing
+     involvedObjectKind: Pod
+   - reason: Created
+     involvedObjectKind: Pod
+   - reason: ScalingReplicaSet
+     involvedObjectKind: Deployment
+   - reason: SuccessfulCreate
+     involvedObjectKind: ReplicaSet
+   - reason: Scheduled
+     involvedObjectKind: Pod
+   - reason: Started
+     involvedObjectKind: Pod
+   - reason: Pulled
+     involvedObjectKind: Pod
