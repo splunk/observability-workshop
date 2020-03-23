@@ -17,7 +17,6 @@ packages:
 
 write_files:
   - path: /home/ubuntu/.profile
-    owner: ubuntu:ubuntu
     permissions: '0755'
     content: | 
       mkdir -p "$HOME/.kube"
