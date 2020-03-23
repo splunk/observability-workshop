@@ -17,7 +17,6 @@ packages:
 
 write_files:
   - path: /home/ubuntu/.profile
-    owner: ubuntu:ubuntu
     permissions: '0755'
     content: | 
       mkdir -p "$HOME/.kube"
@@ -26,6 +25,13 @@ write_files:
       export KUBECONFIG
       alias kubectl='microk8s.kubectl'
       alias kc='microk8s.kubectl'
+  - path: /etc/docker/daemon.json
+    owner: root:root
+    permissions: '0644'
+    content: |
+      {
+        "insecure-registries" : ["localhost:32000"]
+      }
 
 runcmd:
  - snap install microk8s --classic --channel=1.17/stable
@@ -37,6 +43,7 @@ runcmd:
  - 'git clone https://github.com/signalfx/app-dev-workshop.git /home/ubuntu/workshop'
  - chown ubuntu:ubuntu /home/ubuntu
  - chown -R ubuntu:ubuntu /home/ubuntu/workshop
+ - systemctl restart docker
  - 'curl https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd -o /etc/motd'
  - 'curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash'
  - 'curl -OL https://github.com/derailed/k9s/releases/download/v0.17.7/k9s_Linux_x86_64.tar.gz'
