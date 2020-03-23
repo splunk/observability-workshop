@@ -9,12 +9,23 @@ apt:
     deb mirror://mirrors.ubuntu.com/mirrors.txt bionic-backports main restricted universe multiverse
     deb mirror://mirrors.ubuntu.com/mirrors.txt bionic-security main restricted universe multiverse
 
-
 packages:
  - apache2-utils
  - apparmor-utils
  - docker.io
  - wamerican
+
+write_files:
+  - path: /home/ubuntu/.profile
+    owner: ubuntu:ubuntu
+    permissions: '0755'
+    content: | 
+      mkdir -p "$HOME/.kube"
+      microk8s.config > "$HOME/.kube/config"
+      KUBECONFIG="$HOME/.kube/config"
+      export KUBECONFIG
+      alias kubectl='microk8s.kubectl'
+      alias kc='microk8s.kubectl'
 
 runcmd:
  - snap install microk8s --classic --channel=1.17/stable
@@ -22,11 +33,15 @@ runcmd:
  - iptables -P FORWARD ACCEPT
  - usermod -a -G microk8s ubuntu
  - usermod -a -G docker ubuntu
+ - 'chown ubuntu:ubuntu /home/ubuntu/.profile'
  - aa-disable /etc/apparmor.d/cri-containerd.apparmor.d
  - 'git clone https://github.com/signalfx/app-dev-workshop.git /home/ubuntu/workshop'
+ - chown ubuntu:ubuntu /home/ubuntu
  - chown -R ubuntu:ubuntu /home/ubuntu/workshop
  - 'curl https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd -o /etc/motd'
  - 'curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash'
  - 'curl -OL https://github.com/derailed/k9s/releases/download/v0.17.7/k9s_Linux_x86_64.tar.gz'
  - tar xvfz k9s_Linux_x86_64.tar.gz
  - mv k9s /usr/local/bin
+ - 'microk8s.enable metallb <<< "10.64.140.43-10.64.140.49"'
+ - 'microk8s.enable registry'
