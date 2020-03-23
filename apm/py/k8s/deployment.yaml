@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: py-echo
-        image: registry.local:5000/py-echo:latest
+        image: localhost:32000/py-echo:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 5000

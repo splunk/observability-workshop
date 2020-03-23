@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: knote
-          image: registry.local:5000/knote-js:3.0.0
+          image: localhost:32000/knote-js:3.0.0
           ports:
             - containerPort: 3000
           env:
