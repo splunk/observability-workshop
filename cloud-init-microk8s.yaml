@@ -34,7 +34,6 @@ runcmd:
  - usermod -a -G microk8s ubuntu
  - usermod -a -G docker ubuntu
  - 'chown ubuntu:ubuntu /home/ubuntu/.profile'
- - aa-disable /etc/apparmor.d/cri-containerd.apparmor.d
  - 'git clone https://github.com/signalfx/app-dev-workshop.git /home/ubuntu/workshop'
  - chown ubuntu:ubuntu /home/ubuntu
  - chown -R ubuntu:ubuntu /home/ubuntu/workshop
@@ -45,3 +44,4 @@ runcmd:
  - mv k9s /usr/local/bin
  - 'microk8s.enable metallb:10.64.140.43-10.64.140.49'
  - 'microk8s.enable registry'
+ - aa-disable /etc/apparmor.d/cri-containerd.apparmor.d
