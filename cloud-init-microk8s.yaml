@@ -20,15 +20,6 @@ packages:
  - software-properties-common
 
 write_files:
-  - path: /home/ubuntu/.profile
-    permissions: '0755'
-    content: | 
-      mkdir -p "$HOME/.kube"
-      microk8s.config > "$HOME/.kube/config"
-      KUBECONFIG="$HOME/.kube/config"
-      export KUBECONFIG
-      alias kubectl='microk8s.kubectl'
-      alias kc='microk8s.kubectl'
   - path: /etc/docker/daemon.json
     owner: root:root
     permissions: '0644'
@@ -59,3 +50,4 @@ runcmd:
  - microk8s.enable registry
  - microk8s.enable dns
  - aa-disable /etc/apparmor.d/cri-containerd.apparmor.d
+ - "bash -c \"echo $'mkdir -p \$HOME/.kube\nmicrok8s.config > \$HOME/.kube/config\nKUBECONFIG=\$HOME/.kube/config\nexport KUBECONFIG\nalias kubectl=microk8s.kubectl\nalias kc=microk8s.kubectl' >> /home/ubuntu/.bashrc\""
