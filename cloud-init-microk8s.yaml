@@ -43,5 +43,5 @@ runcmd:
  - 'curl -OL https://github.com/derailed/k9s/releases/download/v0.17.7/k9s_Linux_x86_64.tar.gz'
  - tar xvfz k9s_Linux_x86_64.tar.gz
  - mv k9s /usr/local/bin
- - 'microk8s.enable metallb <<< "10.64.140.43-10.64.140.49"'
+ - 'microk8s.enable metallb:10.64.140.43-10.64.140.49'
  - 'microk8s.enable registry'
