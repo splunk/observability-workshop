@@ -21,6 +21,7 @@ runcmd:
  - echo '--containerd=${SNAP_COMMON}/run/containerd.sock' >> /var/snap/microk8s/current/args/kubelet
  - iptables -P FORWARD ACCEPT
  - usermod -a -G microk8s ubuntu
+ - usermod -a -G docker ubuntu
  - aa-disable /etc/apparmor.d/cri-containerd.apparmor.d
  - 'git clone https://github.com/signalfx/app-dev-workshop.git /home/ubuntu/workshop'
  - chown -R ubuntu:ubuntu /home/ubuntu/workshop
