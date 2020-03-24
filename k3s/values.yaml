@@ -1,5 +1,5 @@
 monitors:
-- type: trace-forwarder
+- type: signalfx-forwarder
   listenAddress: 0.0.0.0:9080
 
 - type: kubernetes-events
