@@ -32,7 +32,7 @@ spec:
                   apiVersion: v1
                   fieldPath: status.hostIP
             - name: JAEGER_ENDPOINT
-              value: http://$(SIGNALFX_AGENT_HOST):9081/v1/trace
+              value: http://$(SIGNALFX_AGENT_HOST):9080/v1/trace
 ---
 apiVersion: v1
 kind: Service
