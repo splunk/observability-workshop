@@ -50,4 +50,9 @@ runcmd:
  - microk8s.enable registry
  - microk8s.enable dns
  - aa-disable /etc/apparmor.d/cri-containerd.apparmor.d
- - "bash -c \"echo $'mkdir -p /home/ubuntu/.kube\nmicrok8s.config > $/home/ubuntu/.kube/config\nKUBECONFIG=$/home/ubuntu/.kube/config\nexport KUBECONFIG\nalias kubectl=microk8s.kubectl\nalias kc=microk8s.kubectl' >> /home/ubuntu/.bashrc\""
+ - aa-complain /etc/apparmor.d/cri-containerd.apparmor.d
+ - aa-remove-unknown
+ - microk8s.stop
+ - service docker restart
+ - microk8s.start
+ - "bash -c \"echo $'mkdir -p /home/ubuntu/.kube\nmicrok8s.config > /home/ubuntu/.kube/config\nKUBECONFIG=/home/ubuntu/.kube/config\nexport KUBECONFIG\nalias kubectl=microk8s.kubectl\nalias kc=microk8s.kubectl' >> /home/ubuntu/.bashrc\""
