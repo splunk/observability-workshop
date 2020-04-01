@@ -12,11 +12,7 @@ apt:
 
 packages:
  - apache2-utils
- - apt-transport-https
- - ca-certificates
  - curl
- - gnupg-agent
- - software-properties-common
  - wamerican
 
 write_files:
