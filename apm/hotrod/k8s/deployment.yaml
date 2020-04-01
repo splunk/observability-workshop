@@ -25,14 +25,14 @@ spec:
               protocol: TCP
           env:
             - name: SIGNALFX_SERVICE_NAME
-              value: as-hotrod
+              value: [INITIALS]-hotrod
             - name: SIGNALFX_AGENT_HOST
               valueFrom:
                 fieldRef:
                   apiVersion: v1
                   fieldPath: status.hostIP
             - name: JAEGER_ENDPOINT
-              value: http://$(SIGNALFX_AGENT_HOST)/v1/trace
+              value: http://$(SIGNALFX_AGENT_HOST):9080/v1/trace
 ---
 apiVersion: v1
 kind: Service
