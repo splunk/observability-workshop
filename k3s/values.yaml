@@ -2,7 +2,7 @@ monitors:
 - type: signalfx-forwarder
   listenAddress: 0.0.0.0:9080
   defaultSpanTags:
-    environment: app-dev-workshop
+    environment: [INITIALS]-app-dev-workshop
 
 - type: kubernetes-events
   whitelistedEvents:
