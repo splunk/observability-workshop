@@ -24,8 +24,6 @@ spec:
               containerPort: 8080
               protocol: TCP
           env:
-            - name: SIGNALFX_SERVICE_NAME
-              value: [INITIALS]-hotrod
             - name: SIGNALFX_AGENT_HOST
               valueFrom:
                 fieldRef:
