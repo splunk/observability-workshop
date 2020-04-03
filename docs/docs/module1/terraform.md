@@ -56,7 +56,7 @@ Validate that the detectors were created, under the _**Alerts tab → Detectors*
 
 ---
 ### 3. Destroy all your hard work
-You will first need to ensure you are in the correct workspace (replace `WORKSPACE_NAME` with the name created in _**Step #1.4**_)
+You will first need to ensure you are in the correct workspace (replace `WORKSPACE_NAME` with the name created in the initial setup)
 
 ``` bash
 terraform workspace select WORKSPACE_NAME
@@ -66,18 +66,4 @@ Destroy all Detectors and Dashboards that were previously applied. NOTE: The `va
 
 ``` bash
 terraform destroy -var="access_token=abc123" -var="realm=us1"
-```
-
-``` bash tab="Bash"
-#!/bin/bash
-
-echo "Hello world!"
-```
-
-``` c tab="C"
-#include <stdio.h>
-
-int main(void) {
-  printf("Hello world!\n");
-}
 ```
