@@ -52,8 +52,8 @@
     
       
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
     <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
@@ -374,19 +374,32 @@
     Before We Start - SignalFx Org Access
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-1-create-an-instance-running-kubernetes" class="md-nav__link">
-    Step 1: Create an instance running Kubernetes
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-create-an-instance-running-kubernetes" class="md-nav__link">
+    1. Create an instance running Kubernetes
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-deploy-the-hotrod-application-into-k3s" class="md-nav__link">
-    Step 2: Deploy the Hotrod application into K3s
+        
+          <li class="md-nav__item">
+  <a href="#2-deploy-the-hotrod-application-into-k3s" class="md-nav__link">
+    2. Deploy the Hotrod application into K3s
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-generate-some-traffic-to-the-application-using-apache-benchmark" class="md-nav__link">
+    3. Generate some traffic to the application using Apache Benchmark
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -429,19 +442,32 @@
     Before We Start - SignalFx Org Access
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-1-create-an-instance-running-kubernetes" class="md-nav__link">
-    Step 1: Create an instance running Kubernetes
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-create-an-instance-running-kubernetes" class="md-nav__link">
+    1. Create an instance running Kubernetes
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-deploy-the-hotrod-application-into-k3s" class="md-nav__link">
-    Step 2: Deploy the Hotrod application into K3s
+        
+          <li class="md-nav__item">
+  <a href="#2-deploy-the-hotrod-application-into-k3s" class="md-nav__link">
+    2. Deploy the Hotrod application into K3s
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-generate-some-traffic-to-the-application-using-apache-benchmark" class="md-nav__link">
+    3. Generate some traffic to the application using Apache Benchmark
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -466,62 +492,54 @@
                 
                   <h1>1. µAPM: Hotrod in K3s</h1>
                 
-                <h2 id="before-we-start-signalfx-org-access">Before We Start - SignalFx Org Access<a class="headerlink" href="#before-we-start-signalfx-org-access" title="Permanent link">&para;</a></h2>
+                <h2 id="before-we-start-signalfx-org-access">Before We Start - SignalFx Org Access</h2>
 <p><em>An organisation needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already.</em></p>
 <p><em>To check if you have an organisation with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards.</em></p>
 <hr />
-<h2 id="step-1-create-an-instance-running-kubernetes">Step 1: Create an instance running Kubernetes<a class="headerlink" href="#step-1-create-an-instance-running-kubernetes" title="Permanent link">&para;</a></h2>
+<h3 id="1-create-an-instance-running-kubernetes">1. Create an instance running Kubernetes</h3>
 <ol>
 <li>This is already documented in <a href="https://github.com/signalfx/app-dev-workshop/wiki/1.4-Running-the-SmartAgent-in-Kubernetes-using-K3s">1.4 Running the SmartAgent in Kubernetes using K3s</a>. </li>
 </ol>
 <hr />
-<h2 id="step-2-deploy-the-hotrod-application-into-k3s">Step 2: Deploy the Hotrod application into K3s<a class="headerlink" href="#step-2-deploy-the-hotrod-application-into-k3s" title="Permanent link">&para;</a></h2>
-<ol>
-<li>
+<h3 id="2-deploy-the-hotrod-application-into-k3s">2. Deploy the Hotrod application into K3s</h3>
 <p>To deploy the Hotrod application into K3s apply the deployment</p>
-<p><code>kubectl apply -f workshop/apm/hotrod/k8s/deployment.yaml</code></p>
-<p><em>Output</em></p>
-<p><code>deployment.apps/hotrod created
-service/hotrod created</code></p>
-</li>
-<li>
+<pre><code class="bash">kubectl apply -f workshop/apm/hotrod/k8s/deployment.yaml 
+</code></pre>
+
+<pre><code>deployment.apps/hotrod created
+service/hotrod created
+</code></pre>
+
 <p>Make sure the application is now running</p>
-<p><code>kubectl get pods</code></p>
-<p><em>Output</em></p>
-<p><code>NAME                      READY   STATUS    RESTARTS   AGE
+<pre><code class="bash">kubectl get pods
+</code></pre>
+
+<pre><code>NAME                      READY   STATUS    RESTARTS   AGE
 signalfx-agent-mmzxk      1/1     Running   0          110s
-hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s</code></p>
-</li>
-<li>
+hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s
+</code></pre>
+
 <p>To find the IP address assigned to the Hotrod service</p>
-<p><code>kubectl get svc</code></p>
-<p><em>Output</em>
-<code>NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+<pre><code class="bash">kubectl get svc
+</code></pre>
+
+<pre><code>NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
 kubernetes   ClusterIP   10.43.0.1       &lt;none&gt;        443/TCP    25m
-hotrod       ClusterIP   10.43.124.159   &lt;none&gt;        8080/TCP   94s</code></p>
+hotrod       ClusterIP   10.43.124.159   &lt;none&gt;        8080/TCP   94s
+</code></pre>
+
 <p>Make note of the ClusterIP address associated with Hotrod</p>
-</li>
-<li>
-<p>Generate some traffic to the application using Apache Benchmark</p>
-<p><code>ab -n10 -c10 "http://[CLUSTERIP]:8080/dispatch?customer=392&amp;nonse=0.17041229755366172"</code></p>
-</li>
-</ol>
-<p>Create some errors with an invalid customer number</p>
-<p><code>ab -n10 -c10 "http://[CLUSTERIP]:8080/dispatch?customer=391&amp;nonse=0.17041229755366172"</code></p>
 <hr />
+<h3 id="3-generate-some-traffic-to-the-application-using-apache-benchmark">3. Generate some traffic to the application using Apache Benchmark</h3>
+<pre><code class="bash">ab -n10 -c10 &quot;http://[CLUSTERIP]:8080/dispatch?customer=392&amp;nonse=0.17041229755366172&quot;
+</code></pre>
+
+<p>Create some errors with an invalid customer number</p>
+<pre><code class="bash">ab -n10 -c10 &quot;http://[CLUSTERIP]:8080/dispatch?customer=391&amp;nonse=0.17041229755366172&quot;
+</code></pre>
                 
                   
                 
-                
-                  
-                  <hr>
-                  <div class="md-source-date">
-                    <small>
-                      
-                        Last update: April 3, 2020
-                      
-                    </small>
-                  </div>
                 
               
               
