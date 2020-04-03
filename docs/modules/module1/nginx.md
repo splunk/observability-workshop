@@ -42,7 +42,7 @@ If you select the **WORKLOADS** tab again you should now see that there is a new
 
 ---
 
-Let's validate this in your shell as well, before creating load on you system:
+Let's validate this in your shell as well, before creating load on your system:
    
 ```bash
 kubectl get pods
@@ -67,7 +67,7 @@ kubectl create service nodeport nginx --tcp=80:80
 service/nginx created
 ```
 
-Run `kubectl get svc` then make a note of the IP address allocated to the NGINX service.
+Run `kubectl get svc` then make a note of the `CLUSTER-IP` address allocated to the NGINX service.
    
 ```bash
 kubectl get svc
@@ -79,10 +79,10 @@ kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP        9m3s
 nginx        NodePort    10.110.36.62   <none>        80:30995/TCP   8s
 ```
 
-Using the NGINX IP address reported from **Step #6** above, use Apache Benchmark (`ab`) to create some traffic to light up your SignalFx NGINX dashboard. Run this a couple of times to generate some metrics!
+Using the NGINX CLUSTER-IP address reported from above, use Apache Benchmark (`ab`) to create some traffic to light up your SignalFx NGINX dashboard. Run this a couple of times to generate some metrics!
    
 ```bash
-ab -n1000 -c20 http://<INSERT_NGINX_IP_ADDRESS>/
+ab -n1000 -c20 http://{INSERT_NGINX_IP_ADDRESS}/
 ```
 
 ```text
@@ -102,20 +102,8 @@ Server Port:            30995
 ...
 ```
 
-Validate you are seeing metrics in the UI by going to _**Dashboards → NGINX → NGINX Servers**_ Tip: you can again apply the filter `kubernetes_cluster: [YOUR-INITIALS]-SFX-WORKSHOP` to focus on only your containers.
+Validate you are seeing metrics in the UI by going to _**Dashboards → NGINX → NGINX Servers**_ Tip: you can again apply the filter `kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP` to focus on only your containers.
 ![](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/m1_l4-nginx-dashboard.png)
-
----
-
-### 2. Cleaning up
-
-Once you have finished with this workshop `exit` from the Multipass instance you are in and get back to your system command prompt and enter the following to delete the Multipass instance (replace `[YOUR-INITIALS]` with the ones you used in **Step #1.3**):
-
-```
-multipass delete --purge [YOUR-INITIALS]-k3s
-```
-
-_If you are using a workshop instance on EC2 please ignore the previous instruction._
 
 ---
 

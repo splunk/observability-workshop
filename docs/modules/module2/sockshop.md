@@ -5,7 +5,10 @@ _To check if you have an organisation with µAPM enabled, just login to SignalFx
 
 ---
 
-### 1. Deploy the Sock Shop application into K3s
+### 1. Create an instance running Kubernetes
+This is already documented in [1.4 Running the SmartAgent in Kubernetes using K3s](https://signalfx.github.io/app-dev-workshop/module1/k3s/). 
+
+### 2. Deploy the Sock Shop application into K3s
 
 To deploy the Sock Shop application into K3s apply the deployment
 
@@ -46,7 +49,7 @@ deployment.apps/user created
 service/user created
 ```
 
-### 2. Take Sock Shop for a test drive
+### 3. Take Sock Shop for a test drive
 
 Sock Shop should be running in your cluster and exposes services via cluster IP and port. Obtain the ip address for the front-end service.
 
@@ -70,7 +73,7 @@ and it should respond with HTML markup:
 </html>
 ```
 
-### 3. Apply load on Sock Shop
+### 4. Apply load on Sock Shop
 
 Use a load test for sock shop.
 
@@ -80,7 +83,7 @@ kubectl run --generator=run-pod/v1 load-test --rm -i --tty --image weaveworksdem
 
 The parameter `-c` controls the amount of concurrent clients and `-r` the amount of requests sent. To apply continuous load just set `-r` to some higher number.
 
-### 4. Visualize and analyze trace data
+### 5. Visualize and analyze trace data
 
 Navigate to µAPM (*not* µAPM PG) and select Monitoring, then ensure you have selected your environment from the dropdown at the top, you should see something like this:
 

@@ -37,3 +37,4 @@ nav:
   - 'Module Two':
     - '1. µAPM: Hotrod in K3s': module2/hotrod.md
     - '2. µAPM: Sock Shop in K3s': module2/sockshop.md
+  - 'Cleaning Up!': cleanup.md
