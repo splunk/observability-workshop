@@ -324,8 +324,6 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
-      
-    
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
         6. Monitoring as Code with Detectors & Dashboards
@@ -339,30 +337,41 @@
 <nav class="md-nav md-nav--secondary">
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#summary-of-this-lab" class="md-nav__link">
+    Summary of this lab
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#1-initial-setup" class="md-nav__link">
     1. Initial setup
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#2-plan-and-apply-the-terraform" class="md-nav__link">
     2. Plan and apply the Terraform
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#3-destroy-all-your-hard-work" class="md-nav__link">
     3. Destroy all your hard work
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -444,30 +453,41 @@
 <nav class="md-nav md-nav--secondary">
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#summary-of-this-lab" class="md-nav__link">
+    Summary of this lab
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#1-initial-setup" class="md-nav__link">
     1. Initial setup
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#2-plan-and-apply-the-terraform" class="md-nav__link">
     2. Plan and apply the Terraform
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#3-destroy-all-your-hard-work" class="md-nav__link">
     3. Destroy all your hard work
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -489,6 +509,8 @@
                 
                   <a href="https://github.com/signalfx/app-dev-workshop/edit/master/docs/module1/terraform.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
+                
+                  <h1>6. Monitoring as Code with Detectors & Dashboards</h1>
                 
                 <h2 id="summary-of-this-lab">Summary of this lab<a class="headerlink" href="#summary-of-this-lab" title="Permanent link">&para;</a></h2>
 <ul>
@@ -541,25 +563,13 @@ terraform apply -var<span class="o">=</span><span class="s2">&quot;access_token=
 <p><img alt="" src="../../images/m1_l3-detectors.png" /></p>
 <hr />
 <h3 id="3-destroy-all-your-hard-work">3. Destroy all your hard work<a class="headerlink" href="#3-destroy-all-your-hard-work" title="Permanent link">&para;</a></h3>
-<p>You will first need to ensure you are in the correct workspace (replace <code>WORKSPACE_NAME</code> with the name created in <em><strong>Step #1.4</strong></em>)</p>
+<p>You will first need to ensure you are in the correct workspace (replace <code>WORKSPACE_NAME</code> with the name created in the initial setup)</p>
 <div class="codehilite"><pre><span></span><code>terraform workspace <span class="k">select</span> WORKSPACE_NAME
 </code></pre></div>
 
 
 <p>Destroy all Detectors and Dashboards that were previously applied. NOTE: The <code>var=”sfx_prefix=[YOUR-INITIALS]”</code> is not required!</p>
 <div class="codehilite"><pre><span></span><code>terraform destroy -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span>
-</code></pre></div>
-
-
-<p>``` bash tab="Bash"</p>
-<h1 id="binbash">!/bin/bash<a class="headerlink" href="#binbash" title="Permanent link">&para;</a></h1>
-<p>echo "Hello world!"</p>
-<div class="codehilite"><pre><span></span><code>``` c tab=&quot;C&quot;
-#include &lt;stdio.h&gt;
-
-int main(void) {
-  printf(&quot;Hello world!\n&quot;);
-}
 </code></pre></div>
                 
                   
