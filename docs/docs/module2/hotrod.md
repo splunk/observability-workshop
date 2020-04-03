@@ -5,65 +5,58 @@ _To check if you have an organisation with µAPM enabled, just login to SignalFx
 
 ---
 
-## Step 1: Create an instance running Kubernetes
+### 1. Create an instance running Kubernetes
 1. This is already documented in [1.4 Running the SmartAgent in Kubernetes using K3s](https://github.com/signalfx/app-dev-workshop/wiki/1.4-Running-the-SmartAgent-in-Kubernetes-using-K3s). 
 
 ---
 
-## Step 2: Deploy the Hotrod application into K3s
-1. To deploy the Hotrod application into K3s apply the deployment
+### 2. Deploy the Hotrod application into K3s
+To deploy the Hotrod application into K3s apply the deployment
   
-    ```
-    kubectl apply -f workshop/apm/hotrod/k8s/deployment.yaml 
-    ```
+```bash
+kubectl apply -f workshop/apm/hotrod/k8s/deployment.yaml 
+```
 
-    _Output_
+```
+deployment.apps/hotrod created
+service/hotrod created
+```
 
-    ```
-    deployment.apps/hotrod created
-    service/hotrod created
-    ```
+Make sure the application is now running
 
-2. Make sure the application is now running
+```bash
+kubectl get pods
+```
 
-    ```
-    kubectl get pods
-    ```
+```
+NAME                      READY   STATUS    RESTARTS   AGE
+signalfx-agent-mmzxk      1/1     Running   0          110s
+hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s
+```
 
-    _Output_
+To find the IP address assigned to the Hotrod service
 
-    ```
-    NAME                      READY   STATUS    RESTARTS   AGE
-    signalfx-agent-mmzxk      1/1     Running   0          110s
-    hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s
-    ```
+```bash
+kubectl get svc
+```
 
-3. To find the IP address assigned to the Hotrod service
+```
+NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+kubernetes   ClusterIP   10.43.0.1       <none>        443/TCP    25m
+hotrod       ClusterIP   10.43.124.159   <none>        8080/TCP   94s
+```
 
-    ```
-    kubectl get svc
-    ```
+Make note of the ClusterIP address associated with Hotrod
 
-    _Output_
-    ```
-    NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
-    kubernetes   ClusterIP   10.43.0.1       <none>        443/TCP    25m
-    hotrod       ClusterIP   10.43.124.159   <none>        8080/TCP   94s
-    ```
-
-    Make note of the ClusterIP address associated with Hotrod
-
-4. Generate some traffic to the application using Apache Benchmark
-
-    ```
-    ab -n10 -c10 "http://[CLUSTERIP]:8080/dispatch?customer=392&nonse=0.17041229755366172"
-    ```
-
-   Create some errors with an invalid customer number
-
-   ```
-   ab -n10 -c10 "http://[CLUSTERIP]:8080/dispatch?customer=391&nonse=0.17041229755366172"
-   ```
 ---
 
+### 3. Generate some traffic to the application using Apache Benchmark
+```bash
+ab -n10 -c10 "http://[CLUSTERIP]:8080/dispatch?customer=392&nonse=0.17041229755366172"
+```
 
+Create some errors with an invalid customer number
+
+```bash
+ab -n10 -c10 "http://[CLUSTERIP]:8080/dispatch?customer=391&nonse=0.17041229755366172"
+```
