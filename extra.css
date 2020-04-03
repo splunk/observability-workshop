@@ -2,3 +2,22 @@
 img {
     height: auto;
 }
+
+.md-header {
+    background-color: #000
+}
+
+.md-logo img {
+    width: auto;
+    height: 40px;
+}
+
+.md-typeset {
+    font-size: .7rem;
+    line-height: 1.5;
+}
+
+.md-typeset code,
+.md-typeset pre {
+    white-space: pre-wrap;
+}
