@@ -1,1 +1,11 @@
-site_name: My Docs
+site_name: 'App Dev Workshop'
+site_url: 'https://signalfx.github.io/app-dev-workshop/'
+repo_url: 'https://github.com/signalfx/app-dev-workshop/'
+theme:
+  name: 'material'
+  language: 'en'
+
+markdown_extensions:
+  # Code highlighting in ``` ``` blocks
+  - codehilite:
+      guess_lang: true
