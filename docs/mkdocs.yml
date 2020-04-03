@@ -1,6 +1,7 @@
 site_name: 'App Dev Workshop'
 site_url: 'https://signalfx.github.io/app-dev-workshop/'
 repo_url: 'https://github.com/signalfx/app-dev-workshop/'
+edit_uri: 'edit/master/docs/modules/'
 remote_branch: gh-pages
 docs_dir: modules
 theme:
