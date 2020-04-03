@@ -44,6 +44,12 @@
     
       <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
       
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
       
     
     
@@ -67,7 +73,9 @@
     
   </head>
   
-    <body dir="ltr">
+    
+    
+    <body dir="ltr" data-md-color-primary="black" data-md-color-accent="pink">
   
     <svg class="md-svg">
       <defs>
@@ -408,6 +416,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../module2/sockshop/" title="2. µAPM: Sock Shop in K3s" class="md-nav__link">
+      2. µAPM: Sock Shop in K3s
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -480,7 +500,7 @@
                 
                   <h1>4. Running the Smart Agent in Kubernetes (K3s)</h1>
                 
-                <h2 id="summary-of-this-lab">Summary of this lab:</h2>
+                <h2 id="summary-of-this-lab">Summary of this lab:<a class="headerlink" href="#summary-of-this-lab" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Download the workshop and configure Kubernetes (<a href="https://k3s.io/">K3s</a>) environment.  </li>
 <li>Use the SignalFx Helm chart to install the Smart Agent in K3s.</li>
@@ -488,7 +508,7 @@
 </ul>
 <p>If you have been given access to the workshop instance on AWS Ec2, please follow instructions and go to step 2.</p>
 <hr />
-<h2 id="step-1-lets-bake-some-k8s">Step 1: Let’s bake some K8s</h2>
+<h2 id="step-1-lets-bake-some-k8s">Step 1: Let’s bake some K8s<a class="headerlink" href="#step-1-lets-bake-some-k8s" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Install Multipass for your OS - https://multipass.run/. On a Mac you can also install via <code>brew</code> e.g. <code>brew cask install multipass</code></p>
@@ -512,7 +532,7 @@
 </li>
 </ol>
 <hr />
-<h2 id="step-2-ive-got-the-key-ive-got-the-secret">Step 2: I’ve got the key, I’ve got the secret!</h2>
+<h2 id="step-2-ive-got-the-key-ive-got-the-secret">Step 2: I’ve got the key, I’ve got the secret!<a class="headerlink" href="#step-2-ive-got-the-key-ive-got-the-secret" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>You will need to obtain your Access Token from the SignalFx UI once Kubernetes is running. You can find your Access Token by clicking on your profile icon on the top right of the SignalFx UI. Then select <em><strong>Organisation Settings → Access Tokens</strong></em>.  Expand the Default token, then click on <em><strong>Show Token</strong></em> to expose your token. Later in the lab you can come back here and click the <em><strong>Copy</strong></em> button which will copy it to your clipboard  so you can paste it when you need to provide an access token in the lab.
@@ -524,7 +544,7 @@
 </li>
 </ol>
 <hr />
-<h2 id="step-3-take-the-helm">Step 3: Take the Helm!</h2>
+<h2 id="step-3-take-the-helm">Step 3: Take the Helm!<a class="headerlink" href="#step-3-take-the-helm" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Create the following variables to use in the proceeding helm install command:
    <code>export ACCESS_TOKEN=&lt;token from Step 2&gt;

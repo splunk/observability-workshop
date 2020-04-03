@@ -44,6 +44,12 @@
     
       <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
       
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
       
     
     
@@ -67,7 +73,9 @@
     
   </head>
   
-    <body dir="ltr">
+    
+    
+    <body dir="ltr" data-md-color-primary="black" data-md-color-accent="pink">
   
     <svg class="md-svg">
       <defs>
@@ -414,6 +422,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sockshop/" title="2. µAPM: Sock Shop in K3s" class="md-nav__link">
+      2. µAPM: Sock Shop in K3s
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -492,51 +512,55 @@
                 
                   <h1>1. µAPM: Hotrod in K3s</h1>
                 
-                <h2 id="before-we-start-signalfx-org-access">Before We Start - SignalFx Org Access</h2>
+                <h2 id="before-we-start-signalfx-org-access">Before We Start - SignalFx Org Access<a class="headerlink" href="#before-we-start-signalfx-org-access" title="Permanent link">&para;</a></h2>
 <p><em>An organisation needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already.</em></p>
 <p><em>To check if you have an organisation with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards.</em></p>
 <hr />
-<h3 id="1-create-an-instance-running-kubernetes">1. Create an instance running Kubernetes</h3>
-<ol>
-<li>This is already documented in <a href="https://github.com/signalfx/app-dev-workshop/wiki/1.4-Running-the-SmartAgent-in-Kubernetes-using-K3s">1.4 Running the SmartAgent in Kubernetes using K3s</a>. </li>
-</ol>
+<h3 id="1-create-an-instance-running-kubernetes">1. Create an instance running Kubernetes<a class="headerlink" href="#1-create-an-instance-running-kubernetes" title="Permanent link">&para;</a></h3>
+<p>This is already documented in <a href="https://github.com/signalfx/app-dev-workshop/wiki/1.4-Running-the-SmartAgent-in-Kubernetes-using-K3s">1.4 Running the SmartAgent in Kubernetes using K3s</a>. </p>
 <hr />
-<h3 id="2-deploy-the-hotrod-application-into-k3s">2. Deploy the Hotrod application into K3s</h3>
+<h3 id="2-deploy-the-hotrod-application-into-k3s">2. Deploy the Hotrod application into K3s<a class="headerlink" href="#2-deploy-the-hotrod-application-into-k3s" title="Permanent link">&para;</a></h3>
 <p>To deploy the Hotrod application into K3s apply the deployment</p>
-<pre><code class="bash">kubectl apply -f workshop/apm/hotrod/k8s/deployment.yaml 
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f workshop/apm/hotrod/k8s/deployment.yaml 
+</code></pre></div>
 
-<pre><code>deployment.apps/hotrod created
+
+<div class="codehilite"><pre><span></span><code>deployment.apps/hotrod created
 service/hotrod created
-</code></pre>
+</code></pre></div>
+
 
 <p>Make sure the application is now running</p>
-<pre><code class="bash">kubectl get pods
-</code></pre>
-
-<pre><code>NAME                      READY   STATUS    RESTARTS   AGE
+<p>``` bash tab="Input"
+kubectl get pods</p>
+<div class="codehilite"><pre><span></span><code>``` text tab=&quot;Output&quot;
+NAME                      READY   STATUS    RESTARTS   AGE
 signalfx-agent-mmzxk      1/1     Running   0          110s
 hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s
-</code></pre>
+</code></pre></div>
+
 
 <p>To find the IP address assigned to the Hotrod service</p>
-<pre><code class="bash">kubectl get svc
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl get svc
+</code></pre></div>
 
-<pre><code>NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+
+<div class="codehilite"><pre><span></span><code>NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
 kubernetes   ClusterIP   10.43.0.1       &lt;none&gt;        443/TCP    25m
 hotrod       ClusterIP   10.43.124.159   &lt;none&gt;        8080/TCP   94s
-</code></pre>
+</code></pre></div>
+
 
 <p>Make note of the ClusterIP address associated with Hotrod</p>
 <hr />
-<h3 id="3-generate-some-traffic-to-the-application-using-apache-benchmark">3. Generate some traffic to the application using Apache Benchmark</h3>
-<pre><code class="bash">ab -n10 -c10 &quot;http://[CLUSTERIP]:8080/dispatch?customer=392&amp;nonse=0.17041229755366172&quot;
-</code></pre>
+<h3 id="3-generate-some-traffic-to-the-application-using-apache-benchmark">3. Generate some traffic to the application using Apache Benchmark<a class="headerlink" href="#3-generate-some-traffic-to-the-application-using-apache-benchmark" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>ab -n10 -c10 <span class="s2">&quot;http://[CLUSTERIP]:8080/dispatch?customer=392&amp;nonse=0.17041229755366172&quot;</span>
+</code></pre></div>
+
 
 <p>Create some errors with an invalid customer number</p>
-<pre><code class="bash">ab -n10 -c10 &quot;http://[CLUSTERIP]:8080/dispatch?customer=391&amp;nonse=0.17041229755366172&quot;
-</code></pre>
+<div class="codehilite"><pre><span></span><code>ab -n10 -c10 <span class="s2">&quot;http://[CLUSTERIP]:8080/dispatch?customer=391&amp;nonse=0.17041229755366172&quot;</span>
+</code></pre></div>
                 
                   
                 
@@ -572,6 +596,20 @@ hotrod       ClusterIP   10.43.124.159   &lt;none&gt;        8080/TCP   94s
             </div>
           </a>
         
+        
+          <a href="../sockshop/" title="2. µAPM: Sock Shop in K3s" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                2. µAPM: Sock Shop in K3s
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>

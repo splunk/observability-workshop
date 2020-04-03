@@ -11,7 +11,7 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
-        <link rel="canonical" href="https://signalfx.github.io/app-dev-workshop/module1/terraform/">
+        <link rel="canonical" href="https://signalfx.github.io/app-dev-workshop/module2/sockshop/">
       
       
       
@@ -38,7 +38,7 @@
     
     
       
-        <title>6. Monitoring as Code with Detectors & Dashboards - App Dev Workshop</title>
+        <title>2. µAPM: Sock Shop in K3s - App Dev Workshop</title>
       
     
     
@@ -89,7 +89,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#summary-of-this-lab" tabindex="0" class="md-skip">
+      <a href="#before-we-start-signalfx-org-access" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -115,7 +115,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                6. Monitoring as Code with Detectors & Dashboards
+                2. µAPM: Sock Shop in K3s
               
             </span>
           
@@ -236,12 +236,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
     
     <label class="md-nav__link" for="nav-2">
       Module One
@@ -259,7 +257,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../dashboards/" title="1. Working with Dashboards, Charts and Metrics" class="md-nav__link">
+    <a href="../../module1/dashboards/" title="1. Working with Dashboards, Charts and Metrics" class="md-nav__link">
       1. Working with Dashboards, Charts and Metrics
     </a>
   </li>
@@ -271,7 +269,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../detectors/" title="2. Working with Detectors" class="md-nav__link">
+    <a href="../../module1/detectors/" title="2. Working with Detectors" class="md-nav__link">
       2. Working with Detectors
     </a>
   </li>
@@ -283,7 +281,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../muting/" title="3. Working with Muting Rules" class="md-nav__link">
+    <a href="../../module1/muting/" title="3. Working with Muting Rules" class="md-nav__link">
       3. Working with Muting Rules
     </a>
   </li>
@@ -295,7 +293,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../k3s/" title="4. Running the Smart Agent in Kubernetes (K3s)" class="md-nav__link">
+    <a href="../../module1/k3s/" title="4. Running the Smart Agent in Kubernetes (K3s)" class="md-nav__link">
       4. Running the Smart Agent in Kubernetes (K3s)
     </a>
   </li>
@@ -307,7 +305,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../nginx/" title="5. Deploying NGINX in K3s" class="md-nav__link">
+    <a href="../../module1/nginx/" title="5. Deploying NGINX in K3s" class="md-nav__link">
       5. Deploying NGINX in K3s
     </a>
   </li>
@@ -317,63 +315,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        6. Monitoring as Code with Detectors & Dashboards
-      </label>
-    
-    <a href="./" title="6. Monitoring as Code with Detectors & Dashboards" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../module1/terraform/" title="6. Monitoring as Code with Detectors & Dashboards" class="md-nav__link">
       6. Monitoring as Code with Detectors & Dashboards
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-initial-setup" class="md-nav__link">
-    1. Initial setup
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-plan-and-apply-the-terraform" class="md-nav__link">
-    Step 2: Plan and apply the Terraform
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-3-destroy-all-your-hard-work" class="md-nav__link">
-    Step 3: Destroy all your hard work
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -386,10 +332,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
       Module Two
@@ -407,7 +355,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module2/hotrod/" title="1. µAPM: Hotrod in K3s" class="md-nav__link">
+    <a href="../hotrod/" title="1. µAPM: Hotrod in K3s" class="md-nav__link">
       1. µAPM: Hotrod in K3s
     </a>
   </li>
@@ -417,11 +365,79 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../module2/sockshop/" title="2. µAPM: Sock Shop in K3s" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        2. µAPM: Sock Shop in K3s
+      </label>
+    
+    <a href="./" title="2. µAPM: Sock Shop in K3s" class="md-nav__link md-nav__link--active">
       2. µAPM: Sock Shop in K3s
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-we-start-signalfx-org-access" class="md-nav__link">
+    Before We Start - SignalFx Org Access
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-deploy-the-sock-shop-application-into-k3s" class="md-nav__link">
+    1. Deploy the Sock Shop application into K3s
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-take-sock-shop-for-a-test-drive" class="md-nav__link">
+    2. Take Sock Shop for a test drive
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-apply-load-on-sock-shop" class="md-nav__link">
+    3. Apply load on Sock Shop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-visualize-and-analyze-trace-data" class="md-nav__link">
+    4. Visualize and analyze trace data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -444,30 +460,48 @@
 <nav class="md-nav md-nav--secondary">
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-initial-setup" class="md-nav__link">
-    1. Initial setup
+  <a href="#before-we-start-signalfx-org-access" class="md-nav__link">
+    Before We Start - SignalFx Org Access
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-deploy-the-sock-shop-application-into-k3s" class="md-nav__link">
+    1. Deploy the Sock Shop application into K3s
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-plan-and-apply-the-terraform" class="md-nav__link">
-    Step 2: Plan and apply the Terraform
+        
+          <li class="md-nav__item">
+  <a href="#2-take-sock-shop-for-a-test-drive" class="md-nav__link">
+    2. Take Sock Shop for a test drive
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#step-3-destroy-all-your-hard-work" class="md-nav__link">
-    Step 3: Destroy all your hard work
+        
+          <li class="md-nav__item">
+  <a href="#3-apply-load-on-sock-shop" class="md-nav__link">
+    3. Apply load on Sock Shop
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-visualize-and-analyze-trace-data" class="md-nav__link">
+    4. Visualize and analyze trace data
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -487,80 +521,91 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/signalfx/app-dev-workshop/edit/master/docs/module1/terraform.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/signalfx/app-dev-workshop/edit/master/docs/module2/sockshop.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h2 id="summary-of-this-lab">Summary of this lab<a class="headerlink" href="#summary-of-this-lab" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Install Terraform and initialise the SignalFx Provider.</li>
-<li>Run Terraform to create SignalFx detectors and dashboards from code using our Terraform provider.</li>
-<li>See how Terraform can also delete detectors and dashboards.</li>
-<li>(Optional) Upgrade the SignalFx Provider.</li>
-</ul>
+                  <h1>2. µAPM: Sock Shop in K3s</h1>
+                
+                <h2 id="before-we-start-signalfx-org-access">Before We Start - SignalFx Org Access<a class="headerlink" href="#before-we-start-signalfx-org-access" title="Permanent link">&para;</a></h2>
+<p><em>An organisation needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already.</em></p>
+<p><em>To check if you have an organisation with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards.</em></p>
 <hr />
-<h3 id="1-initial-setup">1. Initial setup<a class="headerlink" href="#1-initial-setup" title="Permanent link">&para;</a></h3>
-<p>Download and install Terraform for your platform - https://www.terraform.io/downloads.html (min. requirement v. 0.12.18)</p>
-<p>Download the SignalFx Jumpstart Terraform master zip file, unzip the file and change into the <code>signalfx-jumpstart-master</code> directory</p>
-<div class="codehilite"><pre><span></span><code>curl -LO https://github.com/signalfx/signalfx-jumpstart/archive/master.zip
-unzip master.zip
-<span class="nb">cd</span> signalfx-jumpstart-master
+<h3 id="1-deploy-the-sock-shop-application-into-k3s">1. Deploy the Sock Shop application into K3s<a class="headerlink" href="#1-deploy-the-sock-shop-application-into-k3s" title="Permanent link">&para;</a></h3>
+<p>To deploy the Sock Shop application into K3s apply the deployment</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span> apm/sockshop
+kubectl create ns sock-shop
+kubectl apply -f k8s/complete-demo.yaml
 </code></pre></div>
 
 
-<p>Initialise Terraform. <strong>Note:</strong> You will need to run this command each time a new version of the Terraform Provider is released. You can track the releases on <a href="https://github.com/terraform-providers/terraform-provider-signalfx/releases">GitHub</a>.</p>
-<div class="codehilite"><pre><span></span><code>terraform init -upgrade
+<div class="codehilite"><pre><span></span><code>namespace/sock-shop created
+deployment.apps/carts-db created
+service/carts-db created
+deployment.apps/carts created
+service/carts created
+deployment.apps/catalogue-db created
+service/catalogue-db created
+deployment.apps/catalogue created
+service/catalogue created
+deployment.apps/front-end created
+service/front-end created
+deployment.apps/orders-db created
+service/orders-db created
+deployment.apps/orders created
+service/orders created
+deployment.apps/payment created
+service/payment created
+deployment.apps/queue-master created
+service/queue-master created
+deployment.apps/rabbitmq created
+service/rabbitmq created
+deployment.apps/shipping created
+service/shipping created
+deployment.apps/user-db created
+service/user-db created
+deployment.apps/user created
+service/user created
 </code></pre></div>
 
 
-<p>Create a new workspace (replace <code>WORKSPACE_NAME</code> with what you want your workspace to be called)</p>
-<div class="codehilite"><pre><span></span><code>terraform workspace new WORKSPACE_NAME
+<h3 id="2-take-sock-shop-for-a-test-drive">2. Take Sock Shop for a test drive<a class="headerlink" href="#2-take-sock-shop-for-a-test-drive" title="Permanent link">&para;</a></h3>
+<p>Sock Shop should be running in your cluster and exposes services via cluster IP and port. Obtain the ip address for the front-end service.</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">SOCKS_ENDPOINT</span><span class="o">=</span><span class="k">$(</span>kubectl get svc front-end -n sock-shop -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.spec.clusterIP}:{.spec.ports[0].port}&#39;</span><span class="k">)</span>
 </code></pre></div>
 
 
-<hr />
-<h3 id="step-2-plan-and-apply-the-terraform">Step 2: Plan and apply the Terraform<a class="headerlink" href="#step-2-plan-and-apply-the-terraform" title="Permanent link">&para;</a></h3>
-<p>Review the execution plan. Replace <code>[YOUR-INITIALS]</code> e.g. <code>-var=”sfx_prefix=RWC”</code></p>
-<div class="codehilite"><pre><span></span><code>terraform plan -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span> -var<span class="o">=</span><span class="s2">&quot;sfx_prefix=[YOUR-INITIALS]&quot;</span>
+<p>Then send a </p>
+<div class="codehilite"><pre><span></span><code>curl <span class="nv">$SOCKS_ENDPOINT</span>
 </code></pre></div>
 
 
-<p>Where <code>access_token</code> is the SignalFx Access Token and realm is either <code>eu0</code>, <code>us1</code> or <code>ap0</code></p>
-<p>If the plan executes successfully, we can go ahead and apply</p>
-<div class="codehilite"><pre><span></span><code>terraform apply -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span> -var<span class="o">=</span><span class="s2">&quot;sfx_prefix=[YOUR-INITIALS]&quot;</span>
+<p>and it should respond with HTML markup:</p>
+<div class="codehilite"><pre><span></span><code>...
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </code></pre></div>
 
 
-<p>To deploy only a subset (by module see <code>main.tf</code>) e.g.</p>
-<div class="codehilite"><pre><span></span><code>terraform apply -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span> -var<span class="o">=</span><span class="s2">&quot;sfx_prefix=[YOUR-INITIALS]&quot;</span> -target<span class="o">=</span>module.aws
-terraform apply -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span> -var<span class="o">=</span><span class="s2">&quot;sfx_prefix=[YOUR-INITIALS]&quot;</span> - <span class="nv">target</span><span class="o">=</span>module.usage_dashboard
-terraform apply -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span> -var<span class="o">=</span><span class="s2">&quot;sfx_prefix=[YOUR-INITIALS]&quot;</span> -target<span class="o">=</span>module.gcp
+<h3 id="3-apply-load-on-sock-shop">3. Apply load on Sock Shop<a class="headerlink" href="#3-apply-load-on-sock-shop" title="Permanent link">&para;</a></h3>
+<p>Use a load test for sock shop.</p>
+<div class="codehilite"><pre><span></span><code>kubectl run --generator<span class="o">=</span>run-pod/v1 load-test --rm -i --tty --image weaveworksdemos/load-test -- -d <span class="m">5</span> -h <span class="nv">$SOCKS_ENDPOINT</span> -c <span class="m">15</span> -r <span class="m">1000</span>
 </code></pre></div>
 
 
-<p>Validate that the detectors were created, under the <em><strong>Alerts tab → Detectors</strong></em>, you should see a list of new detectors with the a prefix of your initials:</p>
-<p><img alt="" src="../../images/m1_l3-detectors.png" /></p>
-<hr />
-<h3 id="step-3-destroy-all-your-hard-work">Step 3: Destroy all your hard work<a class="headerlink" href="#step-3-destroy-all-your-hard-work" title="Permanent link">&para;</a></h3>
-<p>You will first need to ensure you are in the correct workspace (replace <code>WORKSPACE_NAME</code> with the name created in <em><strong>Step #1.4</strong></em>)</p>
-<div class="codehilite"><pre><span></span><code>terraform workspace <span class="k">select</span> WORKSPACE_NAME
-</code></pre></div>
-
-
-<p>Destroy all Detectors and Dashboards that were previously applied. NOTE: The <code>var=”sfx_prefix=[YOUR-INITIALS]”</code> is not required!</p>
-<div class="codehilite"><pre><span></span><code>terraform destroy -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span>
-</code></pre></div>
-
-
-<p>``` bash tab="Bash"</p>
-<h1 id="binbash">!/bin/bash<a class="headerlink" href="#binbash" title="Permanent link">&para;</a></h1>
-<p>echo "Hello world!"</p>
-<div class="codehilite"><pre><span></span><code>``` c tab=&quot;C&quot;
-#include &lt;stdio.h&gt;
-
-int main(void) {
-  printf(&quot;Hello world!\n&quot;);
-}
-</code></pre></div>
+<p>The parameter <code>-c</code> controls the amount of concurrent clients and <code>-r</code> the amount of requests sent. To apply continuous load just set <code>-r</code> to some higher number.</p>
+<h3 id="4-visualize-and-analyze-trace-data">4. Visualize and analyze trace data<a class="headerlink" href="#4-visualize-and-analyze-trace-data" title="Permanent link">&para;</a></h3>
+<p>Navigate to µAPM (<em>not</em> µAPM PG) and select Monitoring, then ensure you have selected your environment from the dropdown at the top, you should see something like this:</p>
+<p><img alt="µAPM Monitoring" src="../../images/m2-monitoring.png" /></p>
+<p>Explore the User Interface: Review an automatically generated Service Dashboard. How do you correlate Service performance with Infrastructure?</p>
+<p><img alt="µAPM Service Dashboard" src="../../images/m2-service.png" /></p>
+<p>Troubleshoot a service. Let's stress the sock shop a bit. Increase the amount of clients running for the load test to something ludicrous (1000+ seems to do the trick). What happens with the services? Troubleshoot a service with a higher error rate. Also review the service dependencies.</p>
+<p><img alt="µAPM Service Dashboard" src="../../images/m2-troubleshoot.png" /></p>
+<p><img alt="µAPM Service Dashboard" src="../../images/m2-deps.png" /></p>
+<p>Look at individual traces and span performance.</p>
+<p><img alt="µAPM Service Dashboard" src="../../images/m2-waterfall.png" /></p>
+<p><img alt="µAPM Service Dashboard" src="../../images/m2-spanperf.png" /></p>
                 
                   
                 
@@ -582,7 +627,7 @@ int main(void) {
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../nginx/" title="5. Deploying NGINX in K3s" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../hotrod/" title="1. µAPM: Hotrod in K3s" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -591,25 +636,11 @@ int main(void) {
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                5. Deploying NGINX in K3s
-              </span>
-            </div>
-          </a>
-        
-        
-          <a href="../../module2/hotrod/" title="1. µAPM: Hotrod in K3s" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
                 1. µAPM: Hotrod in K3s
               </span>
             </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
           </a>
+        
         
       </nav>
     </div>
