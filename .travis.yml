@@ -18,4 +18,7 @@ after_success:
 - git remote set-url origin git@github.com:signalfx/app-dev-workshop.git
 - git remote set-branches --add origin gh-pages
 - git fetch origin && git fetch origin gh-pages:gh-pages;
-- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then echo "Pushing to github"; cd docs && mkdocs gh-deploy -v --clean -m "(git log -1 --pretty=format:'Docs: %s (via travis)')" --remote-name origin ; git push origin gh-pages; fi;
+- HASH=$(git rev-parse HEAD)
+- MSG=$(git log -1 --pretty=format:'Docs: %s (via travis)' "$HASH")
+- echo "$HASH $MSG"
+- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then echo "Pushing to github"; HASH=$(git rev-parse HEAD); MSG=$(git log -1 --pretty=format:'Docs: %s (via travis)' "$HASH") cd docs && mkdocs gh-deploy -v --clean -m "$MSG" --remote-name origin ; git push origin gh-pages; fi;
