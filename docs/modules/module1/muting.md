@@ -1,4 +1,4 @@
-## Summary of this lab:
+## Lab Summary
 * Learn how to configure how to mute Alerts
   
 ---

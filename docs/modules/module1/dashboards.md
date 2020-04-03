@@ -1,8 +1,8 @@
-## Summary of this lab:
+## Lab Summary
 * Introduction to the SignalFx Dashboards and charts
 * How to create Charts and Dashboards
 ---
-## Step 1: Introduction to the SignalFx environment  
+### 1. Introduction to the SignalFx environment  
 Logon to the SignalFx organization you have been invited to
 
 Hover over DASHBOARDS in the top menu, and then click on All Dashboards at the bottom
@@ -58,7 +58,7 @@ In the PLOT EDITOR tab under Signal you see the metric demo.trans.latency we are
 
 
 ---
-## Step 2: How to create Charts and Dashboards
+### 2. How to create Charts and Dashboards
 Let's now create a new chart and save it in a new dashboard!
 
 Click on the plus icon and from the drop down, click on Chart

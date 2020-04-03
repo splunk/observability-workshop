@@ -1,4 +1,4 @@
-## Summary of this lab:
+## Lab Summary
 
 *  How to keep track of the usage of SignalFx in your organization.
 *  Learn how to keep track of spend by exploring the Billing and Usage interface.

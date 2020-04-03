@@ -1,5 +1,4 @@
-## Summary of this lab:
-
+## Lab Summary
 * Download the workshop and configure Kubernetes ([K3s](https://k3s.io/)) environment.
 * Use the SignalFx Helm chart to install the Smart Agent in K3s.
 * Explore Your cluster in the Kubernetes Navigator

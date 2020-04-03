@@ -1,4 +1,4 @@
-## Summary of this lab:
+## Lab Summary
 * Create a Detector from one of you charts
 
 ---

@@ -1,4 +1,4 @@
-## Summary of this lab:
+## Lab Summary
 * Deploy a NGINX ReplicaSet into your K3s cluster and confirm the auto discovery of your NGINX deployment.
 * Run a benchmark test to create metrics and confirm them streaming into SignalFX!
 

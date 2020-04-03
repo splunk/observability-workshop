@@ -1,4 +1,4 @@
-## Summary of this lab
+## Lab Summary
 * Install Terraform and initialise the SignalFx Provider.
 * Run Terraform to create SignalFx detectors and dashboards from code using our Terraform provider.
 * See how Terraform can also delete detectors and dashboards.
