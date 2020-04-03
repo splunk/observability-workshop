@@ -13,7 +13,6 @@ after_success:
 - chmod 600 app-dev-workshop-deploy-key
 - eval $(ssh-agent -s)
 - ssh-add app-dev-workshop-deploy-key
-- git rev-parse HEAD
 - git config user.name "$GH_USER_NAME"
 - git config user.email "$GH_USER_EMAIL"
 - git remote set-url origin git@github.com:signalfx/app-dev-workshop.git
