@@ -11,5 +11,5 @@ after_success:
 - git config user.name "a-staebler"
 - git config user.email "astaebler@splunk.com"
 - git remote add docs "https://${GH_TOKEN}@github.com/signalfx/app-dev-workshop.git";
-- git fetch docs && git fetch gh-token gh-pages:gh-pages;
+- git fetch docs && git fetch docs gh-pages:gh-pages;
 - mkdocs gh-deploy -v --clean --remote-name docs;
