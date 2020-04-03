@@ -1,14 +1,18 @@
 ## Summary of this lab:
-* Download the workshop and configure Kubernetes ([K3s](https://k3s.io/)) environment.  
+
+* Download the workshop and configure Kubernetes ([K3s](https://k3s.io/)) environment.
 * Use the SignalFx Helm chart to install the Smart Agent in K3s.
-* Explore Your cluster in the Kubernetes Navigator 
+* Explore Your cluster in the Kubernetes Navigator
 
 If you have been given access to the workshop instance on AWS Ec2, please follow instructions and go to step 2.
 
 ---
 
 ### 1. Let’s bake some K8s
-Install Multipass for your OS - https://multipass.run/. On a Mac you can also install via `brew` e.g. `brew cask install multipass`
+
+Install [Multipass][] for your OS. On a Mac you can also install via `brew` e.g. `brew cask install multipass`
+
+[Multipass]: https://multipass.run/
 
 Download the App Dev Workshop master zip file, unzip the file and change into the app-dev-workshop-master directory
 
@@ -25,6 +29,7 @@ multipass launch --name [YOUR-INITIALS]-k3s --cloud-init cloud-init-k3s.yaml --c
 ```
 
 Once the instance has been successfully created shell into it.
+
 ```bash
 multipass shell [YOUR-INITIALS]-k3s
 ```
@@ -32,6 +37,7 @@ multipass shell [YOUR-INITIALS]-k3s
 ---
 
 ### 2. I’ve got the key, I’ve got the secret!
+
 You will need to obtain your Access Token from the SignalFx UI once Kubernetes is running. You can find your Access Token by clicking on your profile icon on the top right of the SignalFx UI. Then select _**Organisation Settings → Access Tokens**_.  Expand the Default token, then click on _**Show Token**_ to expose your token. Later in the lab you can come back here and click the _**Copy**_ button which will copy it to your clipboard  so you can paste it when you need to provide an access token in the lab.
 ![Access Token](../images/m1-l4-access-token.png)
 
@@ -41,6 +47,7 @@ You will also need to obtain the name of the Realm for your SignalFx account.  C
 ---
 
 ## Step 3: Take the Helm!
+
 Create the following variables to use in the proceeding helm install command:
 
 ```
@@ -49,6 +56,7 @@ export REALM=<realm from Step 2>
 export INITIALS=<your initials e.g. GH>
 export VERSION=<Smart Agent version e.g. 5.0.4>
 ```
+
 The latest version of the Smart Agent can be found on [GitHub](https://github.com/signalfx/signalfx-agent/releases)
 
 Install the agent using the SignalFx Helm chart. Firstly, add the SignalFx Helm chart repository to Helm.
@@ -56,11 +64,13 @@ Install the agent using the SignalFx Helm chart. Firstly, add the SignalFx Helm 
 ```
 helm repo add signalfx https://dl.signalfx.com/helm-repo
 ```
+
 Ensure the latest state of the repository
 
 ```
 helm repo update
 ```
+
 Install the Smart Agent chart with the following configuration values for the chart.
 
 ```
@@ -69,7 +79,6 @@ helm install --set signalFxAccessToken=$ACCESS_TOKEN --set clusterName=$INITIALS
 ```
 
 You can monitor the progress of the deployment by running `kubectl get pods` which should typically report a new pod is up and running after about 30 seconds. Ensure the status is reported as Running before continuing.
-
 
 ```bash
 kubectl get pods
@@ -85,7 +94,6 @@ Ensure there are no errors by tailing the logs from the Smart Agent Pod. Output 
 ```bash
 kubectl logs -l app=signalfx-agent -f
 ```
-
 
 ```text
 time="2020-03-15T11:30:28Z" level=info msg="Starting up agent version 5.0.0"
@@ -119,7 +127,7 @@ time="2020-03-15T11:30:29Z" level=info msg="K8s leader is now node ph-k3s"
 time="2020-03-15T11:30:29Z" level=info msg="Starting K8s API resource sync"
 ```
 
-In the SignalFx UI, goto _**INFRASTRUCTURE → Kubernetes Navigator → Cluster Map**_ and open the Kubernetes Navigator Cluster Map to ensure metrics are being sent. 
+In the SignalFx UI, goto _**INFRASTRUCTURE → Kubernetes Navigator → Cluster Map**_ and open the Kubernetes Navigator Cluster Map to ensure metrics are being sent.
 
 ![Selecting the Kubernetes Navigator Map](../images/M1-l4-select-kubenetes-map.jpg)
 
@@ -129,8 +137,7 @@ Validate that your cluster is discovered and shown (In a workshop you can see ma
 
 ![Find Your Cluster](../images/M1-l4-All-clusters.jpg)
 
-
-If there are many clusters you can use the dashboard filter to narrow down to your K8s cluster e.g. `kubernetes_cluster: [YOUR-INITIALS]-SFX-WORKSHOP` or do this by clicking on the blue cross ![blue cross](../images/M1-l4-blue-cross.jpg) after selecting your cluster with your mouse. 
+If there are many clusters you can use the dashboard filter to narrow down to your K8s cluster e.g. `kubernetes_cluster: [YOUR-INITIALS]-SFX-WORKSHOP` or do this by clicking on the blue cross ![blue cross](../images/M1-l4-blue-cross.jpg) after selecting your cluster with your mouse.
 ![K8S Clusters Filter](../images/M1-l4-Selecting-K3-cluster.jpg)
 
 To examine the health of your cluster, open the side bar by clicking on the ![side bar button](../images/M1-l4-sidebar-button.jpg) button to open the Metrics side bar. Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: Cpu%, Mem%, Network in & out. Events and Container list.
