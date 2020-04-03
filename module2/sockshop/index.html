@@ -398,29 +398,36 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-deploy-the-sock-shop-application-into-k3s" class="md-nav__link">
-    1. Deploy the Sock Shop application into K3s
+  <a href="#1-create-an-instance-running-kubernetes" class="md-nav__link">
+    1. Create an instance running Kubernetes
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-take-sock-shop-for-a-test-drive" class="md-nav__link">
-    2. Take Sock Shop for a test drive
+  <a href="#2-deploy-the-sock-shop-application-into-k3s" class="md-nav__link">
+    2. Deploy the Sock Shop application into K3s
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-apply-load-on-sock-shop" class="md-nav__link">
-    3. Apply load on Sock Shop
+  <a href="#3-take-sock-shop-for-a-test-drive" class="md-nav__link">
+    3. Take Sock Shop for a test drive
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-visualize-and-analyze-trace-data" class="md-nav__link">
-    4. Visualize and analyze trace data
+  <a href="#4-apply-load-on-sock-shop" class="md-nav__link">
+    4. Apply load on Sock Shop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-visualize-and-analyze-trace-data" class="md-nav__link">
+    5. Visualize and analyze trace data
   </a>
   
 </li>
@@ -443,6 +450,18 @@
         
       </ul>
     </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../cleanup/" title="Cleaning Up!" class="md-nav__link">
+      Cleaning Up!
+    </a>
   </li>
 
     
@@ -473,29 +492,36 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-deploy-the-sock-shop-application-into-k3s" class="md-nav__link">
-    1. Deploy the Sock Shop application into K3s
+  <a href="#1-create-an-instance-running-kubernetes" class="md-nav__link">
+    1. Create an instance running Kubernetes
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-take-sock-shop-for-a-test-drive" class="md-nav__link">
-    2. Take Sock Shop for a test drive
+  <a href="#2-deploy-the-sock-shop-application-into-k3s" class="md-nav__link">
+    2. Deploy the Sock Shop application into K3s
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-apply-load-on-sock-shop" class="md-nav__link">
-    3. Apply load on Sock Shop
+  <a href="#3-take-sock-shop-for-a-test-drive" class="md-nav__link">
+    3. Take Sock Shop for a test drive
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-visualize-and-analyze-trace-data" class="md-nav__link">
-    4. Visualize and analyze trace data
+  <a href="#4-apply-load-on-sock-shop" class="md-nav__link">
+    4. Apply load on Sock Shop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-visualize-and-analyze-trace-data" class="md-nav__link">
+    5. Visualize and analyze trace data
   </a>
   
 </li>
@@ -530,7 +556,9 @@
 <p><em>An organisation needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already.</em></p>
 <p><em>To check if you have an organisation with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards.</em></p>
 <hr />
-<h3 id="1-deploy-the-sock-shop-application-into-k3s">1. Deploy the Sock Shop application into K3s<a class="headerlink" href="#1-deploy-the-sock-shop-application-into-k3s" title="Permanent link">&para;</a></h3>
+<h3 id="1-create-an-instance-running-kubernetes">1. Create an instance running Kubernetes<a class="headerlink" href="#1-create-an-instance-running-kubernetes" title="Permanent link">&para;</a></h3>
+<p>This is already documented in <a href="https://signalfx.github.io/app-dev-workshop/module1/k3s/">1.4 Running the SmartAgent in Kubernetes using K3s</a>. </p>
+<h3 id="2-deploy-the-sock-shop-application-into-k3s">2. Deploy the Sock Shop application into K3s<a class="headerlink" href="#2-deploy-the-sock-shop-application-into-k3s" title="Permanent link">&para;</a></h3>
 <p>To deploy the Sock Shop application into K3s apply the deployment</p>
 <div class="codehilite"><pre><span></span><code><span class="nb">cd</span> apm/sockshop
 kubectl create ns sock-shop
@@ -568,7 +596,7 @@ service/user created
 </code></pre></div>
 
 
-<h3 id="2-take-sock-shop-for-a-test-drive">2. Take Sock Shop for a test drive<a class="headerlink" href="#2-take-sock-shop-for-a-test-drive" title="Permanent link">&para;</a></h3>
+<h3 id="3-take-sock-shop-for-a-test-drive">3. Take Sock Shop for a test drive<a class="headerlink" href="#3-take-sock-shop-for-a-test-drive" title="Permanent link">&para;</a></h3>
 <p>Sock Shop should be running in your cluster and exposes services via cluster IP and port. Obtain the ip address for the front-end service.</p>
 <div class="codehilite"><pre><span></span><code><span class="nv">SOCKS_ENDPOINT</span><span class="o">=</span><span class="k">$(</span>kubectl get svc front-end -n sock-shop -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.spec.clusterIP}:{.spec.ports[0].port}&#39;</span><span class="k">)</span>
 </code></pre></div>
@@ -588,14 +616,14 @@ service/user created
 </code></pre></div>
 
 
-<h3 id="3-apply-load-on-sock-shop">3. Apply load on Sock Shop<a class="headerlink" href="#3-apply-load-on-sock-shop" title="Permanent link">&para;</a></h3>
+<h3 id="4-apply-load-on-sock-shop">4. Apply load on Sock Shop<a class="headerlink" href="#4-apply-load-on-sock-shop" title="Permanent link">&para;</a></h3>
 <p>Use a load test for sock shop.</p>
 <div class="codehilite"><pre><span></span><code>kubectl run --generator<span class="o">=</span>run-pod/v1 load-test --rm -i --tty --image weaveworksdemos/load-test -- -d <span class="m">5</span> -h <span class="nv">$SOCKS_ENDPOINT</span> -c <span class="m">15</span> -r <span class="m">1000</span>
 </code></pre></div>
 
 
 <p>The parameter <code>-c</code> controls the amount of concurrent clients and <code>-r</code> the amount of requests sent. To apply continuous load just set <code>-r</code> to some higher number.</p>
-<h3 id="4-visualize-and-analyze-trace-data">4. Visualize and analyze trace data<a class="headerlink" href="#4-visualize-and-analyze-trace-data" title="Permanent link">&para;</a></h3>
+<h3 id="5-visualize-and-analyze-trace-data">5. Visualize and analyze trace data<a class="headerlink" href="#5-visualize-and-analyze-trace-data" title="Permanent link">&para;</a></h3>
 <p>Navigate to µAPM (<em>not</em> µAPM PG) and select Monitoring, then ensure you have selected your environment from the dropdown at the top, you should see something like this:</p>
 <p><img alt="µAPM Monitoring" src="../../images/m2-monitoring.png" /></p>
 <p>Explore the User Interface: Review an automatically generated Service Dashboard. How do you correlate Service performance with Infrastructure?</p>
@@ -641,6 +669,20 @@ service/user created
             </div>
           </a>
         
+        
+          <a href="../../cleanup/" title="Cleaning Up!" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Cleaning Up!
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>

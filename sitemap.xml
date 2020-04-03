@@ -35,5 +35,9 @@
      <loc>https://signalfx.github.io/app-dev-workshop/module2/sockshop/</loc>
      <lastmod>2020-04-03</lastmod>
      <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://signalfx.github.io/app-dev-workshop/cleanup/</loc>
+     <lastmod>2020-04-03</lastmod>
+     <changefreq>daily</changefreq>
     </url>
 </urlset>
