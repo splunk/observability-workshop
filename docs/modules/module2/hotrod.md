@@ -25,12 +25,12 @@ service/hotrod created
 
 Make sure the application is now running
 
-``` bash tab="Input"
+```bash
 kubectl get pods
 ```
 
 
-``` text tab="Output"
+```text
 NAME                      READY   STATUS    RESTARTS   AGE
 signalfx-agent-mmzxk      1/1     Running   0          110s
 hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s
