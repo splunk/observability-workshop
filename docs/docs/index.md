@@ -1,5 +1,7 @@
 _**SignalFx Infrastructure Monitoring is able to monitor today’s elastic cloud-native environment in real-time. With SignalFx’s patented SignalFlow streaming analytics technology, users get real-time visibility and analytics-driven alerting. SignalFx is the only infrastructure monitoring solution that can detect and alert on meaningful conditions within seconds – and let you automatically remediate issues before customers are ever affected.**_
-***
+
+---
+
 ### Act in Real-Time with High-Resolution Metrics
 
 * High-resolution metrics drive real-time dashboards, alerts, and insights so you can act before infrastructure performance affects end-user experience
@@ -19,7 +21,9 @@ _**SignalFx Infrastructure Monitoring is able to monitor today’s elastic cloud
 * Embrace infrastructure immutability. Deploy infrastructure and monitoring-as-code. Instantly start monitoring high-churn, ephemeral infrastructure components
 
 * Drive closed-loop automation such as auto-scaling cloud environments to ensure a flawless end-user experience
-***
+
+---
+
 ### Continually Improve with High-Cardinality Analytics
 
 * Leverage unique insights powered by high-cardinality analytics to optimize infrastructure, application performance and business outcomes
@@ -30,5 +34,5 @@ _**SignalFx Infrastructure Monitoring is able to monitor today’s elastic cloud
 
 * Unlock the value of data science by leveraging SignalFlow Analytics, a data-flow-oriented programming language syntactically similar to python, to express complex data computations with a large library of built-in functions
 
-***
+---
 [Let's get started!](https://signalfx.github.io/app-dev-workshop/module1/dashboards/)
