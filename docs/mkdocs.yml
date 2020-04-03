@@ -4,6 +4,8 @@ repo_url: 'https://github.com/signalfx/app-dev-workshop/'
 remote_branch: gh-pages
 theme:
   name: 'material'
+  highlightjs: true
+  hljs_style: github
   language: 'en'
   favicon: 'images/favicon.ico'
   logo: 'images/logo.png'
@@ -13,8 +15,8 @@ theme:
 
 markdown_extensions:
   # Code highlighting in ``` ``` blocks
-  - codehilite:
-      guess_lang: true
+#  - codehilite:
+#      guess_lang: true
   - toc:
       permalink: true
   - markdown_include.include:
@@ -24,8 +26,14 @@ nav:
   - Overview: index.md
   - 'Module One':
     - '1. Working with Dashboards, Charts and Metrics': module1/dashboards.md
+    - '2. Working with Detectors': module1/detectors.md
+    - '3. Working with Muting Rules': module1/muting.md
+    - '4. Running the Smart Agent in Kubernetes (K3s)': module1/k3s.md
+    - '5. Deploying NGINX in K3s': module1/nginx.md
+    - '6. Monitoring as Code with Detectors & Dashboards': module1/terraform.md
   - 'Module Two':
     - '1. µAPM: Hotrod in K3s': module2/hotrod.md
+
 extra_css:
   - extra.css
 
