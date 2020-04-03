@@ -542,7 +542,7 @@ service/hotrod created
 </code></pre></div>
 
 
-<p>Make sure the application is now running</p>
+<p>To ensure the Hotrod application is running:</p>
 <div class="codehilite"><pre><span></span><code>kubectl get pods
 </code></pre></div>
 
@@ -553,7 +553,7 @@ hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s
 </code></pre></div>
 
 
-<p>To find the IP address assigned to the Hotrod service</p>
+<p>You then need find the IP address assigned to the Hotrod service:</p>
 <div class="codehilite"><pre><span></span><code>kubectl get svc
 </code></pre></div>
 
@@ -564,15 +564,15 @@ hotrod       ClusterIP   10.43.124.159   &lt;none&gt;        8080/TCP   94s
 </code></pre></div>
 
 
-<p>Make note of the ClusterIP address associated with Hotrod</p>
+<p>Make note of the <code>CLUSTER-IP</code> address associated with Hotrod</p>
 <hr />
 <h3 id="3-generate-some-traffic-to-the-application-using-apache-benchmark">3. Generate some traffic to the application using Apache Benchmark<a class="headerlink" href="#3-generate-some-traffic-to-the-application-using-apache-benchmark" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>ab -n10 -c10 <span class="s2">&quot;http://[CLUSTERIP]:8080/dispatch?customer=392&amp;nonse=0.17041229755366172&quot;</span>
+<div class="codehilite"><pre><span></span><code>ab -n10 -c10 <span class="s2">&quot;http://{CLUSTER-IP}:8080/dispatch?customer=392&amp;nonse=0.17041229755366172&quot;</span>
 </code></pre></div>
 
 
 <p>Create some errors with an invalid customer number</p>
-<div class="codehilite"><pre><span></span><code>ab -n10 -c10 <span class="s2">&quot;http://[CLUSTERIP]:8080/dispatch?customer=391&amp;nonse=0.17041229755366172&quot;</span>
+<div class="codehilite"><pre><span></span><code>ab -n10 -c10 <span class="s2">&quot;http://{CLUSTER-IP}:8080/dispatch?customer=391&amp;nonse=0.17041229755366172&quot;</span>
 </code></pre></div>
                 
                   
