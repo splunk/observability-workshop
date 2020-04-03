@@ -21,4 +21,4 @@ after_success:
 - HASH=$(git rev-parse HEAD)
 - MSG=$(git log -1 --pretty=format:'Docs: %s (via travis)' "$HASH")
 - echo "$HASH $MSG"
-- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then echo "Pushing to github"; HASH=$(git rev-parse HEAD); MSG=$(git log -1 --pretty=format:'Docs: %s (via travis)' "$HASH") cd docs && mkdocs gh-deploy -v --clean -m "$MSG" --remote-name origin ; git push origin gh-pages; fi;
+- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then echo "Pushing to github"; HASH=$(git rev-parse HEAD); MSG=$(git log -1 --pretty=format:'Docs: %s (via travis)' "$HASH"); cd docs && mkdocs gh-deploy -v --clean -m "$MSG" --remote-name origin ; git push origin gh-pages; fi;
