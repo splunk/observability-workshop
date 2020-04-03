@@ -12,10 +12,16 @@ img {
     height: 40px;
 }
 
+.md-typeset {
+    font-size: .7rem;
+    line-height: 1.5;
+}
+
 .md-typeset code,
 .md-typeset pre {
     white-space: pre-wrap;
-    color: #e20082
+    color: #e20082;
+    margin: 0;
 }
 
 .text-center {
@@ -23,5 +29,5 @@ img {
 }
 
 .md-nav__link--active, .md-nav__link:hover {
-  color: #e20082
+  color: #e20082;
 }

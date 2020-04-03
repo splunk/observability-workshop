@@ -11,7 +11,7 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
-        <link rel="canonical" href="https://signalfx.github.io/app-dev-workshop/module2/hotrod/">
+        <link rel="canonical" href="https://signalfx.github.io/app-dev-workshop/module1/detectors/">
       
       
       
@@ -38,7 +38,7 @@
     
     
       
-        <title>1. µAPM: Hotrod in K3s - App Dev Workshop</title>
+        <title>2. Working with Detectors - App Dev Workshop</title>
       
     
     
@@ -81,7 +81,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#before-we-start-signalfx-org-access" tabindex="0" class="md-skip">
+      <a href="#summary-of-this-lab" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -107,7 +107,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                1. µAPM: Hotrod in K3s
+                2. Working with Detectors
               
             </span>
           
@@ -228,10 +228,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       Module One
@@ -249,7 +251,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module1/dashboards/" title="1. Working with Dashboards, Charts and Metrics" class="md-nav__link">
+    <a href="../dashboards/" title="1. Working with Dashboards, Charts and Metrics" class="md-nav__link">
       1. Working with Dashboards, Charts and Metrics
     </a>
   </li>
@@ -259,11 +261,52 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../module1/detectors/" title="2. Working with Detectors" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        2. Working with Detectors
+      </label>
+    
+    <a href="./" title="2. Working with Detectors" class="md-nav__link md-nav__link--active">
       2. Working with Detectors
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-this-lab" class="md-nav__link">
+    Summary of this lab:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-create-a-detector-from-one-of-your-charts" class="md-nav__link">
+    Step 1: Create a Detector from one of your charts
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -273,7 +316,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module1/muting/" title="3. Working with Muting Rules" class="md-nav__link">
+    <a href="../muting/" title="3. Working with Muting Rules" class="md-nav__link">
       3. Working with Muting Rules
     </a>
   </li>
@@ -285,7 +328,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module1/k3s/" title="4. Running the Smart Agent in Kubernetes (K3s)" class="md-nav__link">
+    <a href="../k3s/" title="4. Running the Smart Agent in Kubernetes (K3s)" class="md-nav__link">
       4. Running the Smart Agent in Kubernetes (K3s)
     </a>
   </li>
@@ -297,7 +340,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module1/nginx/" title="5. Deploying NGINX in K3s" class="md-nav__link">
+    <a href="../nginx/" title="5. Deploying NGINX in K3s" class="md-nav__link">
       5. Deploying NGINX in K3s
     </a>
   </li>
@@ -309,7 +352,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module1/terraform/" title="6. Monitoring as Code with Detectors & Dashboards" class="md-nav__link">
+    <a href="../terraform/" title="6. Monitoring as Code with Detectors & Dashboards" class="md-nav__link">
       6. Monitoring as Code with Detectors & Dashboards
     </a>
   </li>
@@ -324,12 +367,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
       Module Two
@@ -345,59 +386,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        1. µAPM: Hotrod in K3s
-      </label>
-    
-    <a href="./" title="1. µAPM: Hotrod in K3s" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../module2/hotrod/" title="1. µAPM: Hotrod in K3s" class="md-nav__link">
       1. µAPM: Hotrod in K3s
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#before-we-start-signalfx-org-access" class="md-nav__link">
-    Before We Start - SignalFx Org Access
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-1-create-an-instance-running-kubernetes" class="md-nav__link">
-    Step 1: Create an instance running Kubernetes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-deploy-the-hotrod-application-into-k3s" class="md-nav__link">
-    Step 2: Deploy the Hotrod application into K3s
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -425,22 +418,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#before-we-start-signalfx-org-access" class="md-nav__link">
-    Before We Start - SignalFx Org Access
+  <a href="#summary-of-this-lab" class="md-nav__link">
+    Summary of this lab:
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-1-create-an-instance-running-kubernetes" class="md-nav__link">
-    Step 1: Create an instance running Kubernetes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-deploy-the-hotrod-application-into-k3s" class="md-nav__link">
-    Step 2: Deploy the Hotrod application into K3s
+  <a href="#step-1-create-a-detector-from-one-of-your-charts" class="md-nav__link">
+    Step 1: Create a Detector from one of your charts
   </a>
   
 </li>
@@ -461,54 +447,64 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/signalfx/app-dev-workshop/edit/master/docs/module2/hotrod.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/signalfx/app-dev-workshop/edit/master/docs/module1/detectors.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>1. µAPM: Hotrod in K3s</h1>
+                  <h1>2. Working with Detectors</h1>
                 
-                <h2 id="before-we-start-signalfx-org-access">Before We Start - SignalFx Org Access<a class="headerlink" href="#before-we-start-signalfx-org-access" title="Permanent link">&para;</a></h2>
-<p><em>An organisation needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already.</em></p>
-<p><em>To check if you have an organisation with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards.</em></p>
+                <h2 id="summary-of-this-lab">Summary of this lab:<a class="headerlink" href="#summary-of-this-lab" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Create a Detector from one of you charts</li>
+</ul>
 <hr />
-<h2 id="step-1-create-an-instance-running-kubernetes">Step 1: Create an instance running Kubernetes<a class="headerlink" href="#step-1-create-an-instance-running-kubernetes" title="Permanent link">&para;</a></h2>
-<ol>
-<li>This is already documented in <a href="https://github.com/signalfx/app-dev-workshop/wiki/1.4-Running-the-SmartAgent-in-Kubernetes-using-K3s">1.4 Running the SmartAgent in Kubernetes using K3s</a>. </li>
-</ol>
+<h2 id="step-1-create-a-detector-from-one-of-your-charts">Step 1: Create a Detector from one of your charts<a class="headerlink" href="#step-1-create-a-detector-from-one-of-your-charts" title="Permanent link">&para;</a></h2>
+<p>Logon to your account in SignalFx, and click on DASHBOARDS in the menu.</p>
+<p>In <strong>DASHBOARDS</strong> click on your dashboard group (the one with your email address) and then on the dashboard name where the chart you created in the previous lab resides.</p>
+<p>OR </p>
+<p>Search for your previously created dashboard's name, and click on that dashboard's name in the results.</p>
+<p><img alt="" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-1.png" /></p>
+<p>Once you see the chart...
+Click on the bell icon  on your chart and on New Detector From Chart - ADD YOUR INITIALS TO THE NAME (see next step).
+We are going to create a new alert detector from the chart.</p>
+<p><img alt="" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-2.png" /> </p>
+<p>IMPORTANT - In the window that opens, add your initials in front of the proposed text, and click on Create Alert Rule.
+It should be something like this: LI's Latency Chart Detector.</p>
+<p><img alt="" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-3.png" />  </p>
+<p>In the detector window, inside Alert signal, the signal we will alert on is marked with a bell.
+The bell in the 'Alert on' column indicates which Signal is being used to generate the alert.</p>
+<p><img alt="" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-4.png" />  </p>
+<p>Click on Proceed to Alert Condition.
+On Alert Condition, click on Static Threshold and then on Proceed to Alert Settings.</p>
+<p><img alt="" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-5.png" />  </p>
+<p>In Alert Settings, enter the value "290" in the Threshold box and change Time on top right to past day.</p>
+<p><img alt="" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-6.png" />   </p>
+<p>Once you set an alert condition, SignalFx shows how many alerts you would get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.
+Immediately, the platform will start analysing the signals with the current settings, and perform something we call a Pre-flight Check, This enables me to test the alert conditions using the historical data in the platform, to ensure the settings are logical and will not inadvertently generate an alert storm, removing the guess work from configuring alerts in a simple but very powerful way, only available using SignalFx.</p>
+<p>I can see that based on my current settings, the amount of alerts I would’ve received in 1 day would've been around 18.</p>
+<p>To read more about Detector Previews, please visit this link:
+https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#previewing-the-results-of-a-detector</p>
+<p>Click on Proceed to Alert Message</p>
+<p>In Severity choose Major</p>
+<p><img alt="" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-7.png" />  </p>
+<p>Click on Proceed to Alert Recipients</p>
+<p>Click on Add Recipient and then on your email displayed as the first option</p>
+<p><img alt="" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-8.png" />   </p>
+<p>That's the same as entering that email address
+OR you can enter another email address by clicking on E-mail...</p>
+<p>That's just one example of the many Notification Services SignalFx has available
+You can check this out by going to the INTEGRATIONS tab of the top menu, and see Notification Services </p>
+<p>Click on Proceed to Alert Activation</p>
+<p>In Activate...click on Activate Alert Rule</p>
+<p><img alt="" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-9.png" />  </p>
+<p>If you want to get alerts quicker you can click back on Alert Settings and lower the value from 290 to say 280.
+If you change the Time to 1h you can see how many alerts you will be getting with the threshold you have chosen based on the metics from the last 1 hour.</p>
+<p>Hover over ALERTS in the top menu and then click on Detectors</p>
+<p><img alt="" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-10.png" /> </p>
+<p>You will see you alert detector listed here.</p>
+<p><img alt="" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-11.png" /> </p>
+<p>Congrats! You have created your first alert detector and activated it!</p>
 <hr />
-<h2 id="step-2-deploy-the-hotrod-application-into-k3s">Step 2: Deploy the Hotrod application into K3s<a class="headerlink" href="#step-2-deploy-the-hotrod-application-into-k3s" title="Permanent link">&para;</a></h2>
-<ol>
-<li>
-<p>To deploy the Hotrod application into K3s apply the deployment</p>
-<p><code>kubectl apply -f workshop/apm/hotrod/k8s/deployment.yaml</code></p>
-<p><em>Output</em></p>
-<p><code>deployment.apps/hotrod created
-service/hotrod created</code></p>
-</li>
-<li>
-<p>Make sure the application is now running</p>
-<p><code>kubectl get pods</code></p>
-<p><em>Output</em></p>
-<p><code>NAME                      READY   STATUS    RESTARTS   AGE
-signalfx-agent-mmzxk      1/1     Running   0          110s
-hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s</code></p>
-</li>
-<li>
-<p>To find the IP address assigned to the Hotrod service</p>
-<p><code>kubectl get svc</code></p>
-<p><em>Output</em>
-<code>NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
-kubernetes   ClusterIP   10.43.0.1       &lt;none&gt;        443/TCP    25m
-hotrod       ClusterIP   10.43.124.159   &lt;none&gt;        8080/TCP   94s</code></p>
-<p>Make note of the ClusterIP address associated with Hotrod</p>
-</li>
-<li>
-<p>Generate some traffic to the application using Apache Benchmark</p>
-<p><code>ab -n10 -c10 "http://[CLUSTERIP]:8080/dispatch?customer=392&amp;nonse=0.17041229755366172"</code></p>
-</li>
-</ol>
-<p>Create some errors with an invalid customer number</p>
-<p><code>ab -n10 -c10 "http://[CLUSTERIP]:8080/dispatch?customer=391&amp;nonse=0.17041229755366172"</code></p>
-<hr />
+<p>Continue the workshop with <a href="https://github.com/signalfx/app-dev-workshop/wiki/1.3-Working-with-Muting-Rules">Working with Muting Rules</a></p>
                 
                   
                 
@@ -540,7 +536,7 @@ hotrod       ClusterIP   10.43.124.159   &lt;none&gt;        8080/TCP   94s</cod
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../module1/terraform/" title="6. Monitoring as Code with Detectors & Dashboards" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../dashboards/" title="1. Working with Dashboards, Charts and Metrics" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -549,11 +545,25 @@ hotrod       ClusterIP   10.43.124.159   &lt;none&gt;        8080/TCP   94s</cod
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                6. Monitoring as Code with Detectors & Dashboards
+                1. Working with Dashboards, Charts and Metrics
               </span>
             </div>
           </a>
         
+        
+          <a href="../muting/" title="3. Working with Muting Rules" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                3. Working with Muting Rules
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>

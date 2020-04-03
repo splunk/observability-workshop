@@ -11,7 +11,7 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
-        <link rel="canonical" href="https://signalfx.github.io/app-dev-workshop/module2/hotrod/">
+        <link rel="canonical" href="https://signalfx.github.io/app-dev-workshop/module1/nginx/">
       
       
       
@@ -38,7 +38,7 @@
     
     
       
-        <title>1. µAPM: Hotrod in K3s - App Dev Workshop</title>
+        <title>5. Deploying NGINX in K3s - App Dev Workshop</title>
       
     
     
@@ -81,7 +81,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#before-we-start-signalfx-org-access" tabindex="0" class="md-skip">
+      <a href="#summary-of-this-lab" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -107,7 +107,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                1. µAPM: Hotrod in K3s
+                5. Deploying NGINX in K3s
               
             </span>
           
@@ -228,10 +228,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       Module One
@@ -249,7 +251,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module1/dashboards/" title="1. Working with Dashboards, Charts and Metrics" class="md-nav__link">
+    <a href="../dashboards/" title="1. Working with Dashboards, Charts and Metrics" class="md-nav__link">
       1. Working with Dashboards, Charts and Metrics
     </a>
   </li>
@@ -261,7 +263,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module1/detectors/" title="2. Working with Detectors" class="md-nav__link">
+    <a href="../detectors/" title="2. Working with Detectors" class="md-nav__link">
       2. Working with Detectors
     </a>
   </li>
@@ -273,7 +275,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module1/muting/" title="3. Working with Muting Rules" class="md-nav__link">
+    <a href="../muting/" title="3. Working with Muting Rules" class="md-nav__link">
       3. Working with Muting Rules
     </a>
   </li>
@@ -285,7 +287,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module1/k3s/" title="4. Running the Smart Agent in Kubernetes (K3s)" class="md-nav__link">
+    <a href="../k3s/" title="4. Running the Smart Agent in Kubernetes (K3s)" class="md-nav__link">
       4. Running the Smart Agent in Kubernetes (K3s)
     </a>
   </li>
@@ -295,11 +297,59 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../module1/nginx/" title="5. Deploying NGINX in K3s" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        5. Deploying NGINX in K3s
+      </label>
+    
+    <a href="./" title="5. Deploying NGINX in K3s" class="md-nav__link md-nav__link--active">
       5. Deploying NGINX in K3s
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-this-lab" class="md-nav__link">
+    Summary of this lab:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-start-your-nginx" class="md-nav__link">
+    Step 1: Start your NGINX!
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-cleaning-up" class="md-nav__link">
+    Step 2: Cleaning up
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -309,7 +359,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module1/terraform/" title="6. Monitoring as Code with Detectors & Dashboards" class="md-nav__link">
+    <a href="../terraform/" title="6. Monitoring as Code with Detectors & Dashboards" class="md-nav__link">
       6. Monitoring as Code with Detectors & Dashboards
     </a>
   </li>
@@ -324,12 +374,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
       Module Two
@@ -345,59 +393,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        1. µAPM: Hotrod in K3s
-      </label>
-    
-    <a href="./" title="1. µAPM: Hotrod in K3s" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../module2/hotrod/" title="1. µAPM: Hotrod in K3s" class="md-nav__link">
       1. µAPM: Hotrod in K3s
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#before-we-start-signalfx-org-access" class="md-nav__link">
-    Before We Start - SignalFx Org Access
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-1-create-an-instance-running-kubernetes" class="md-nav__link">
-    Step 1: Create an instance running Kubernetes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-deploy-the-hotrod-application-into-k3s" class="md-nav__link">
-    Step 2: Deploy the Hotrod application into K3s
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -425,22 +425,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#before-we-start-signalfx-org-access" class="md-nav__link">
-    Before We Start - SignalFx Org Access
+  <a href="#summary-of-this-lab" class="md-nav__link">
+    Summary of this lab:
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-1-create-an-instance-running-kubernetes" class="md-nav__link">
-    Step 1: Create an instance running Kubernetes
+  <a href="#step-1-start-your-nginx" class="md-nav__link">
+    Step 1: Start your NGINX!
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-deploy-the-hotrod-application-into-k3s" class="md-nav__link">
-    Step 2: Deploy the Hotrod application into K3s
+  <a href="#step-2-cleaning-up" class="md-nav__link">
+    Step 2: Cleaning up
   </a>
   
 </li>
@@ -461,54 +461,114 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/signalfx/app-dev-workshop/edit/master/docs/module2/hotrod.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/signalfx/app-dev-workshop/edit/master/docs/module1/nginx.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>1. µAPM: Hotrod in K3s</h1>
+                  <h1>5. Deploying NGINX in K3s</h1>
                 
-                <h2 id="before-we-start-signalfx-org-access">Before We Start - SignalFx Org Access<a class="headerlink" href="#before-we-start-signalfx-org-access" title="Permanent link">&para;</a></h2>
-<p><em>An organisation needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already.</em></p>
-<p><em>To check if you have an organisation with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards.</em></p>
+                <h2 id="summary-of-this-lab">Summary of this lab:<a class="headerlink" href="#summary-of-this-lab" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Deploy a NGINX ReplicaSet into your K3s cluster and confirm the auto discovery of your NGINX deployment.</li>
+<li>Run a benchmark test to create metrics and confirm them streaming into SignalFX!</li>
+</ul>
 <hr />
-<h2 id="step-1-create-an-instance-running-kubernetes">Step 1: Create an instance running Kubernetes<a class="headerlink" href="#step-1-create-an-instance-running-kubernetes" title="Permanent link">&para;</a></h2>
-<ol>
-<li>This is already documented in <a href="https://github.com/signalfx/app-dev-workshop/wiki/1.4-Running-the-SmartAgent-in-Kubernetes-using-K3s">1.4 Running the SmartAgent in Kubernetes using K3s</a>. </li>
-</ol>
-<hr />
-<h2 id="step-2-deploy-the-hotrod-application-into-k3s">Step 2: Deploy the Hotrod application into K3s<a class="headerlink" href="#step-2-deploy-the-hotrod-application-into-k3s" title="Permanent link">&para;</a></h2>
+<h2 id="step-1-start-your-nginx">Step 1: Start your NGINX!<a class="headerlink" href="#step-1-start-your-nginx" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
-<p>To deploy the Hotrod application into K3s apply the deployment</p>
-<p><code>kubectl apply -f workshop/apm/hotrod/k8s/deployment.yaml</code></p>
-<p><em>Output</em></p>
-<p><code>deployment.apps/hotrod created
-service/hotrod created</code></p>
+<p>Still within the k3s shell session, change into the <code>nginx</code> directory
+   <code>bash
+   cd ~/workshop/k3s/nginx</code></p>
 </li>
 <li>
-<p>Make sure the application is now running</p>
-<p><code>kubectl get pods</code></p>
-<p><em>Output</em></p>
-<p><code>NAME                      READY   STATUS    RESTARTS   AGE
-signalfx-agent-mmzxk      1/1     Running   0          110s
-hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s</code></p>
-</li>
-<li>
-<p>To find the IP address assigned to the Hotrod service</p>
-<p><code>kubectl get svc</code></p>
-<p><em>Output</em>
-<code>NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
-kubernetes   ClusterIP   10.43.0.1       &lt;none&gt;        443/TCP    25m
-hotrod       ClusterIP   10.43.124.159   &lt;none&gt;        8080/TCP   94s</code></p>
-<p>Make note of the ClusterIP address associated with Hotrod</p>
-</li>
-<li>
-<p>Generate some traffic to the application using Apache Benchmark</p>
-<p><code>ab -n10 -c10 "http://[CLUSTERIP]:8080/dispatch?customer=392&amp;nonse=0.17041229755366172"</code></p>
+<p>Create the NGINX configmap using the <code>nginx.conf</code> file
+   <code>kubectl create configmap nginxconfig --from-file=nginx.conf</code>
+   Verify the number of pods running in the SignalFx UI by selecting the <strong>WORKLOADS</strong> tab
+   This should give you an overview of the workloads on your cluster.
+<img alt="Workload Agent" src="../../images/M1-l4-workload-list-agent.jpg" /></p>
 </li>
 </ol>
-<p>Create some errors with an invalid customer number</p>
-<p><code>ab -n10 -c10 "http://[CLUSTERIP]:8080/dispatch?customer=391&amp;nonse=0.17041229755366172"</code></p>
+<p>Note the single agent container running per node among the default Kubernetes pods. This single 
+  container will monitor all the pods and services being deployed on this node!</p>
+<p>Now switch back to the default cluster node view by selecting  the <strong>MAP</strong> tab and select your cluster again.</p>
 <hr />
+<p>Continue the workshop in your shell with the next steps:</p>
+<ol>
+<li>
+<p>Create the NGINX deployment
+   <code>kubectl create -f nginx-deployment.yaml</code></p>
+</li>
+<li>
+<p>Validate the deployment has been successful and that the NGINX pods are running. If you have the SignalFx
+   UI open you should see new Pods being started and containers being deployed. It should only take around 20
+   seconds for the pods to transition into a Running state.
+   In the SignalFx UI you should have a cluster that looks like below:</p>
+</li>
+</ol>
+<p><img alt="back to Cluster" src="../../images/M1-l4-back-cluster.jpg" /></p>
+<p>If you select the <strong>WORKLOADS</strong> tab again you should now see that there is a new replica set and a deployment 
+   added for the NGINX deployment:
+<img alt="NGINX loaded" src="../../images/M1-l4-NGINX-loaded.jpg" /></p>
+<hr />
+<p>Let's validate this in your shell as well, before creating load on you system:</p>
+<p><strong>Input:</strong>
+   <code>kubectl get pods</code></p>
+<p><strong>Output:</strong>
+   <code>NAME                               READY   STATUS    RESTARTS   AGE
+   signalfx-agent-n7nz2               1/1     Running   0          11m
+   nginx-deployment-f96cf6966-jhmjp   1/1     Running   0          21s
+   nginx-deployment-f96cf6966-459vf   1/1     Running   0          21s
+   nginx-deployment-f96cf6966-vrnfc   1/1     Running   0          21s
+   nginx-deployment-f96cf6966-7z4tm   1/1     Running   0          21s</code></p>
+<ol>
+<li>Next we need to expose port 80 (HTTP)</li>
+</ol>
+<p><strong>Input:</strong>
+   <code>kubectl create service nodeport nginx --tcp=80:80</code></p>
+<p><strong>Output:</strong>
+   <code>service/nginx created</code></p>
+<ol>
+<li>Run <code>kubectl get svc</code> then make a note of the IP address allocated to the NGINX service.</li>
+</ol>
+<p><strong>Input:</strong>
+   <code>kubectl get svc</code></p>
+<p><strong>Output:</strong>
+   <code>NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+   kubernetes   ClusterIP   10.96.0.1      &lt;none&gt;        443/TCP        9m3s
+   nginx        NodePort    10.110.36.62   &lt;none&gt;        80:30995/TCP   8s</code></p>
+<ol>
+<li>Using the NGINX IP address reported from <strong>Step #6</strong> above, use Apache Benchmark (<code>ab</code>) to create some traffic to light up your SignalFx NGINX dashboard. Run this a couple of times to generate some metrics!</li>
+</ol>
+<p><strong>Input:</strong>
+   <code>ab -n1000 -c20 http://&lt;INSERT_NGINX_IP_ADDRESS&gt;/</code></p>
+<p><strong>Output:</strong> 
+   ```
+   This is ApacheBench, Version 2.3 &lt;$Revision: 1826891 $&gt;
+   Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+   Licensed to The Apache Software Foundation, http://www.apache.org/</p>
+<p>Benchmarking localhost (be patient)
+   Completed 100 requests
+   ...
+   Completed 1000 requests
+   Finished 1000 requests</p>
+<p>Server Software:        nginx/1.17.5
+   Server Hostname:        localhost
+   Server Port:            30995...
+   ```</p>
+<ol>
+<li>Validate you are seeing metrics in the UI by going to <em><strong>Dashboards → NGINX → NGINX Servers</strong></em> Tip: you can again apply the filter <code>kubernetes_cluster: [YOUR-INITIALS]-SFX-WORKSHOP</code> to focus on only your containers.
+   <img alt="" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/m1_l4-nginx-dashboard.png" /></li>
+</ol>
+<hr />
+<h2 id="step-2-cleaning-up">Step 2: Cleaning up<a class="headerlink" href="#step-2-cleaning-up" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Once you have finished with this workshop <code>exit</code> from the Multipass instance you are in and get back to your system command prompt and enter the following to delete the Multipass instance (replace <code>[YOUR-INITIALS]</code> with the ones you used in <strong>Step #1.3</strong>):</p>
+<p><code>multipass delete --purge [YOUR-INITIALS]-k3s</code></p>
+<p><em>If you are using a workshop instance on EC2 please ignore the previous instruction.</em></p>
+</li>
+</ol>
+<hr />
+<p>Once you are finished please proceed to <a href="https://github.com/signalfx/app-dev-workshop/wiki/1.6-Monitoring-as-Code-with-Detectors">Monitoring as Code with Detectors</a></p>
                 
                   
                 
@@ -540,7 +600,7 @@ hotrod       ClusterIP   10.43.124.159   &lt;none&gt;        8080/TCP   94s</cod
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../../module1/terraform/" title="6. Monitoring as Code with Detectors & Dashboards" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../k3s/" title="4. Running the Smart Agent in Kubernetes (K3s)" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -549,11 +609,25 @@ hotrod       ClusterIP   10.43.124.159   &lt;none&gt;        8080/TCP   94s</cod
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                6. Monitoring as Code with Detectors & Dashboards
+                4. Running the Smart Agent in Kubernetes (K3s)
               </span>
             </div>
           </a>
         
+        
+          <a href="../terraform/" title="6. Monitoring as Code with Detectors & Dashboards" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                6. Monitoring as Code with Detectors & Dashboards
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>
