@@ -353,15 +353,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-plan-and-apply-the-terraform" class="md-nav__link">
-    Step 2: Plan and apply the Terraform
+  <a href="#2-plan-and-apply-the-terraform" class="md-nav__link">
+    2. Plan and apply the Terraform
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-3-destroy-all-your-hard-work" class="md-nav__link">
-    Step 3: Destroy all your hard work
+  <a href="#3-destroy-all-your-hard-work" class="md-nav__link">
+    3. Destroy all your hard work
   </a>
   
 </li>
@@ -458,15 +458,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-plan-and-apply-the-terraform" class="md-nav__link">
-    Step 2: Plan and apply the Terraform
+  <a href="#2-plan-and-apply-the-terraform" class="md-nav__link">
+    2. Plan and apply the Terraform
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-3-destroy-all-your-hard-work" class="md-nav__link">
-    Step 3: Destroy all your hard work
+  <a href="#3-destroy-all-your-hard-work" class="md-nav__link">
+    3. Destroy all your hard work
   </a>
   
 </li>
@@ -518,7 +518,7 @@ unzip master.zip
 
 
 <hr />
-<h3 id="step-2-plan-and-apply-the-terraform">Step 2: Plan and apply the Terraform<a class="headerlink" href="#step-2-plan-and-apply-the-terraform" title="Permanent link">&para;</a></h3>
+<h3 id="2-plan-and-apply-the-terraform">2. Plan and apply the Terraform<a class="headerlink" href="#2-plan-and-apply-the-terraform" title="Permanent link">&para;</a></h3>
 <p>Review the execution plan. Replace <code>[YOUR-INITIALS]</code> e.g. <code>-var=”sfx_prefix=RWC”</code></p>
 <div class="codehilite"><pre><span></span><code>terraform plan -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span> -var<span class="o">=</span><span class="s2">&quot;sfx_prefix=[YOUR-INITIALS]&quot;</span>
 </code></pre></div>
@@ -540,7 +540,7 @@ terraform apply -var<span class="o">=</span><span class="s2">&quot;access_token=
 <p>Validate that the detectors were created, under the <em><strong>Alerts tab → Detectors</strong></em>, you should see a list of new detectors with the a prefix of your initials:</p>
 <p><img alt="" src="../../images/m1_l3-detectors.png" /></p>
 <hr />
-<h3 id="step-3-destroy-all-your-hard-work">Step 3: Destroy all your hard work<a class="headerlink" href="#step-3-destroy-all-your-hard-work" title="Permanent link">&para;</a></h3>
+<h3 id="3-destroy-all-your-hard-work">3. Destroy all your hard work<a class="headerlink" href="#3-destroy-all-your-hard-work" title="Permanent link">&para;</a></h3>
 <p>You will first need to ensure you are in the correct workspace (replace <code>WORKSPACE_NAME</code> with the name created in <em><strong>Step #1.4</strong></em>)</p>
 <div class="codehilite"><pre><span></span><code>terraform workspace <span class="k">select</span> WORKSPACE_NAME
 </code></pre></div>
