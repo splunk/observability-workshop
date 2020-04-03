@@ -4,14 +4,21 @@ repo_url: 'https://github.com/signalfx/app-dev-workshop/'
 remote_branch: gh-pages
 theme:
   name: material
-  #custom_dir: 'cinder'
-  colorscheme: github
-  highlightjs: true
+  palette:
+    primary: 'black'
+    accent: 'pink'
   favicon: 'images/favicon.ico'
   logo: 'images/logo.png'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
 
 markdown_extensions:
   - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
 
 extra_css:
   - "extra.css"
@@ -27,3 +34,4 @@ nav:
     - '6. Monitoring as Code with Detectors & Dashboards': module1/terraform.md
   - 'Module Two':
     - '1. µAPM: Hotrod in K3s': module2/hotrod.md
+    - '2. µAPM: Sock Shop in K3s': module2/sockshop.md

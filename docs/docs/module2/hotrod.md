@@ -6,7 +6,7 @@ _To check if you have an organisation with µAPM enabled, just login to SignalFx
 ---
 
 ### 1. Create an instance running Kubernetes
-1. This is already documented in [1.4 Running the SmartAgent in Kubernetes using K3s](https://github.com/signalfx/app-dev-workshop/wiki/1.4-Running-the-SmartAgent-in-Kubernetes-using-K3s). 
+This is already documented in [1.4 Running the SmartAgent in Kubernetes using K3s](https://github.com/signalfx/app-dev-workshop/wiki/1.4-Running-the-SmartAgent-in-Kubernetes-using-K3s). 
 
 ---
 
@@ -17,18 +17,20 @@ To deploy the Hotrod application into K3s apply the deployment
 kubectl apply -f workshop/apm/hotrod/k8s/deployment.yaml 
 ```
 
-```
+
+```text
 deployment.apps/hotrod created
 service/hotrod created
 ```
 
 Make sure the application is now running
 
-```bash
+``` bash tab="Input"
 kubectl get pods
 ```
 
-```
+
+``` text tab="Output"
 NAME                      READY   STATUS    RESTARTS   AGE
 signalfx-agent-mmzxk      1/1     Running   0          110s
 hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s
@@ -40,7 +42,8 @@ To find the IP address assigned to the Hotrod service
 kubectl get svc
 ```
 
-```
+
+```text
 NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
 kubernetes   ClusterIP   10.43.0.1       <none>        443/TCP    25m
 hotrod       ClusterIP   10.43.124.159   <none>        8080/TCP   94s

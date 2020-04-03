@@ -3,19 +3,8 @@ img {
     height: auto;
 }
 
-.md-header {
-    background-color: #000
-}
 
 .md-logo img {
     width: auto;
     height: 40px;
-}
-
-.text-center {
-    text-align: center !important;
-}
-
-.md-nav__link--active, .md-nav__link:hover {
-  color: #e20082;
 }
