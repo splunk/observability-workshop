@@ -1,0 +1,4 @@
+/* needed because images have `max-width: 100%` in the theme */
+img {
+    height: auto;
+}
