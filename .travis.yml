@@ -19,6 +19,6 @@ after_success:
 - git remote set-branches --add origin gh-pages
 - git fetch origin && git fetch origin gh-pages:gh-pages;
 - HASH=$(git rev-parse HEAD)
-- MSG=$(git log -1 --pretty=format:'Docs: %s (via travis)' "$HASH")
+- MSG=$(git log -1 --pretty=format:"'Docs: %%s (via travis)' "$HASH")
 - echo "$HASH $MSG"
 - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then echo "Pushing to github"; HASH=$(git rev-parse HEAD); MSG=$(git log -1 --pretty=format:'Docs: %s (via travis)' "$HASH"); cd docs && mkdocs gh-deploy -v --clean -m "$MSG" --remote-name origin ; git push origin gh-pages; fi;
