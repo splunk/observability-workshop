@@ -3,7 +3,7 @@
 
 ---
 
-## Step 1: Create a Detector from one of your charts
+### 1. Create a Detector from one of your charts
 Logon to your account in SignalFx, and click on DASHBOARDS in the menu.
 
 In **DASHBOARDS** click on your dashboard group (the one with your email address) and then on the dashboard name where the chart you created in the previous lab resides.
@@ -12,32 +12,32 @@ OR
 
 Search for your previously created dashboard's name, and click on that dashboard's name in the results.
 
-![](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-1.png)
+![](../images/M1-l2-1.png)
  
 Once you see the chart...
 Click on the bell icon  on your chart and on New Detector From Chart - ADD YOUR INITIALS TO THE NAME (see next step).
 We are going to create a new alert detector from the chart.
 
-![](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-2.png) 
+![](../images/M1-l2-2.png) 
 
 IMPORTANT - In the window that opens, add your initials in front of the proposed text, and click on Create Alert Rule.
 It should be something like this: LI's Latency Chart Detector.
 
-![](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-3.png)  
+![](../images/M1-l2-3.png)  
 
 In the detector window, inside Alert signal, the signal we will alert on is marked with a bell.
 The bell in the 'Alert on' column indicates which Signal is being used to generate the alert.
 
-![](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-4.png)  
+![](../images/M1-l2-4.png)  
 
 Click on Proceed to Alert Condition.
 On Alert Condition, click on Static Threshold and then on Proceed to Alert Settings.
 
-![](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-5.png)  
+![](../images/M1-l2-5.png)  
 
 In Alert Settings, enter the value "290" in the Threshold box and change Time on top right to past day.
 
-![](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-6.png)   
+![](../images/M1-l2-6.png)   
 
 Once you set an alert condition, SignalFx shows how many alerts you would get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.
 Immediately, the platform will start analysing the signals with the current settings, and perform something we call a Pre-flight Check, This enables me to test the alert conditions using the historical data in the platform, to ensure the settings are logical and will not inadvertently generate an alert storm, removing the guess work from configuring alerts in a simple but very powerful way, only available using SignalFx.
@@ -51,13 +51,13 @@ Click on Proceed to Alert Message
 
 In Severity choose Major
 
-![](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-7.png)  
+![](../images/M1-l2-7.png)  
 
 Click on Proceed to Alert Recipients
 
 Click on Add Recipient and then on your email displayed as the first option
 
-![](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-8.png)   
+![](../images/M1-l2-8.png)   
 
 That's the same as entering that email address
 OR you can enter another email address by clicking on E-mail...
@@ -69,20 +69,20 @@ Click on Proceed to Alert Activation
 
 In Activate...click on Activate Alert Rule
 
-![](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-9.png)  
+![](../images/M1-l2-9.png)  
  
 If you want to get alerts quicker you can click back on Alert Settings and lower the value from 290 to say 280.
 If you change the Time to 1h you can see how many alerts you will be getting with the threshold you have chosen based on the metics from the last 1 hour.
 
 Hover over ALERTS in the top menu and then click on Detectors
 
-![](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-10.png) 
+![](../images/M1-l2-10.png) 
 
 You will see you alert detector listed here.
 
-![](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/M1-l2-11.png) 
+![](../images/M1-l2-11.png) 
 
 Congrats! You have created your first alert detector and activated it!
 
 ***
-Continue the workshop with [Working with Muting Rules](https://github.com/signalfx/app-dev-workshop/wiki/1.3-Working-with-Muting-Rules)
+Continue the workshop with [Working with Muting Rules](https://signalfx.github.io/app-dev-workshop/module1/muting/)

@@ -29,7 +29,7 @@ terraform workspace new WORKSPACE_NAME
 
 ---
 
-### Step 2: Plan and apply the Terraform
+### 2. Plan and apply the Terraform
 Review the execution plan. Replace `[YOUR-INITIALS]` e.g. `-var=”sfx_prefix=RWC”`
 
 ``` bash
@@ -55,7 +55,7 @@ Validate that the detectors were created, under the _**Alerts tab → Detectors*
 ![](../images/m1_l3-detectors.png)
 
 ---
-### Step 3: Destroy all your hard work
+### 3. Destroy all your hard work
 You will first need to ensure you are in the correct workspace (replace `WORKSPACE_NAME` with the name created in _**Step #1.4**_)
 
 ``` bash
