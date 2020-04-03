@@ -23,7 +23,7 @@ deployment.apps/hotrod created
 service/hotrod created
 ```
 
-Make sure the application is now running
+To ensure the Hotrod application is running:
 
 ```bash
 kubectl get pods
@@ -36,7 +36,7 @@ signalfx-agent-mmzxk      1/1     Running   0          110s
 hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s
 ```
 
-To find the IP address assigned to the Hotrod service
+You then need find the IP address assigned to the Hotrod service:
 
 ```bash
 kubectl get svc
@@ -49,17 +49,17 @@ kubernetes   ClusterIP   10.43.0.1       <none>        443/TCP    25m
 hotrod       ClusterIP   10.43.124.159   <none>        8080/TCP   94s
 ```
 
-Make note of the ClusterIP address associated with Hotrod
+Make note of the `CLUSTER-IP` address associated with Hotrod
 
 ---
 
 ### 3. Generate some traffic to the application using Apache Benchmark
 ```bash
-ab -n10 -c10 "http://[CLUSTERIP]:8080/dispatch?customer=392&nonse=0.17041229755366172"
+ab -n10 -c10 "http://{CLUSTER-IP}:8080/dispatch?customer=392&nonse=0.17041229755366172"
 ```
 
 Create some errors with an invalid customer number
 
 ```bash
-ab -n10 -c10 "http://[CLUSTERIP]:8080/dispatch?customer=391&nonse=0.17041229755366172"
+ab -n10 -c10 "http://{CLUSTER-IP}:8080/dispatch?customer=391&nonse=0.17041229755366172"
 ```
