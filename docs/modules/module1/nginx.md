@@ -5,12 +5,13 @@
 ***
 
 ### 1. Start your NGINX!
-Still within the k3s shell session, change into the `nginx` directory
+Remain in the Multipass shell session and change into the `nginx` directory:
+
 ```bash
 cd ~/workshop/k3s/nginx
 ```
 
-Create the NGINX configmap using the `nginx.conf` file
+Create the NGINX configmap using the `nginx.conf` file:
 
 ```bash
 kubectl create configmap nginxconfig --from-file=nginx.conf
@@ -24,10 +25,8 @@ Note the single agent container running per node among the default Kubernetes po
 Now switch back to the default cluster node view by selecting  the **MAP** tab and select your cluster again.
   
 ---
-
-Continue the workshop in your shell with the next steps
  
-Create the NGINX deployment
+### 2. Create NGINX deployment!
 
 ```
 kubectl create -f nginx-deployment.yaml
@@ -79,6 +78,10 @@ kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP        9m3s
 nginx        NodePort    10.110.36.62   <none>        80:30995/TCP   8s
 ```
 
+---
+
+### 3. Run a benchmark
+
 Using the NGINX CLUSTER-IP address reported from above, use Apache Benchmark (`ab`) to create some traffic to light up your SignalFx NGINX dashboard. Run this a couple of times to generate some metrics!
    
 ```bash
@@ -102,7 +105,7 @@ Server Port:            30995
 ...
 ```
 
-Validate you are seeing metrics in the UI by going to _**Dashboards → NGINX → NGINX Servers**_ Tip: you can again apply the filter `kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP` to focus on only your containers.
+Validate you are seeing metrics in the UI by going to _**Dashboards → NGINX → NGINX Servers**_ Tip: you can again apply the filter `kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP` to focus on only your metrics.
 ![](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/m1_l4-nginx-dashboard.png)
 
 ---

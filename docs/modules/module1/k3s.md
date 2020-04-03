@@ -4,7 +4,7 @@
 * Use the SignalFx Helm chart to install the Smart Agent in K3s.
 * Explore Your cluster in the Kubernetes Navigator
 
-If you have chosen to run the workshop on a AWS/EC2 instance, please follow instructions and go to **Step #2**.
+If you have chosen to run the workshop on a AWS/EC2 instance, please follow instructions and go to [Step 2](http://127.0.0.1:8000/module1/k3s/#2-ive-got-the-key-ive-got-the-secret).
 
 ---
 
@@ -46,7 +46,7 @@ You will also need to obtain the name of the Realm for your SignalFx account.  C
 
 ---
 
-## Step 3: Take the Helm!
+### 3. Take the Helm!
 
 Create the following variables to use in the proceeding helm install command:
 
@@ -126,6 +126,10 @@ time="2020-03-15T11:30:29Z" level=info msg="Serving internal metrics at localhos
 time="2020-03-15T11:30:29Z" level=info msg="K8s leader is now node ph-k3s"
 time="2020-03-15T11:30:29Z" level=info msg="Starting K8s API resource sync"
 ```
+
+---
+
+### 4. Check all is well in the SignalFx UI!
 
 In the SignalFx UI, goto _**INFRASTRUCTURE → Kubernetes Navigator → Cluster Map**_ and open the Kubernetes Navigator Cluster Map to ensure metrics are being sent.
 
