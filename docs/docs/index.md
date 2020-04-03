@@ -29,5 +29,6 @@ _**SignalFx Infrastructure Monitoring is able to monitor today’s elastic cloud
 * Aggregate thousands of time series to get the high-fidelity view of the entire infrastructure stack using built-in aggregate functions
 
 * Unlock the value of data science by leveraging SignalFlow Analytics, a data-flow-oriented programming language syntactically similar to python, to express complex data computations with a large library of built-in functions
+
 ***
 [Let's get started!](https://github.com/signalfx/app-dev-workshop/wiki/1.1-Working-with-Dashboards,-Charts-and-Metrics)
