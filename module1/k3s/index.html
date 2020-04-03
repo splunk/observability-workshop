@@ -339,15 +339,22 @@
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#3-take-the-helm" class="md-nav__link">
+    3. Take the Helm!
+  </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#step-3-take-the-helm" class="md-nav__link">
-    Step 3: Take the Helm!
+        
+          <li class="md-nav__item">
+  <a href="#4-check-all-is-well-in-the-signalfx-ui" class="md-nav__link">
+    4. Check all is well in the SignalFx UI!
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -491,15 +498,22 @@
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#3-take-the-helm" class="md-nav__link">
+    3. Take the Helm!
+  </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#step-3-take-the-helm" class="md-nav__link">
-    Step 3: Take the Helm!
+        
+          <li class="md-nav__item">
+  <a href="#4-check-all-is-well-in-the-signalfx-ui" class="md-nav__link">
+    4. Check all is well in the SignalFx UI!
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -530,7 +544,7 @@
 <li>Use the SignalFx Helm chart to install the Smart Agent in K3s.</li>
 <li>Explore Your cluster in the Kubernetes Navigator</li>
 </ul>
-<p>If you have chosen to run the workshop on a AWS/EC2 instance, please follow instructions and go to <strong>Step #2</strong>.</p>
+<p>If you have chosen to run the workshop on a AWS/EC2 instance, please follow instructions and go to <a href="http://127.0.0.1:8000/module1/k3s/#2-ive-got-the-key-ive-got-the-secret">Step 2</a>.</p>
 <hr />
 <h3 id="1-lets-bake-some-k8s">1. Let’s bake some K8s<a class="headerlink" href="#1-lets-bake-some-k8s" title="Permanent link">&para;</a></h3>
 <p>Install <a href="https://multipass.run/">Multipass</a> for your OS. On a Mac you can also install via <code>brew</code> e.g. <code>brew cask install multipass</code></p>
@@ -558,7 +572,7 @@ unzip master.zip
 <p>You will also need to obtain the name of the Realm for your SignalFx account.  Click on the profile icon again, but this time select 'My Profile'.  The Ream can be found in the middle of the page within the Organizations section.  In this example it is <code>us1</code>.
 <img alt="Realm" src="../../images/m1-l4-realm.png" /></p>
 <hr />
-<h2 id="step-3-take-the-helm">Step 3: Take the Helm!<a class="headerlink" href="#step-3-take-the-helm" title="Permanent link">&para;</a></h2>
+<h3 id="3-take-the-helm">3. Take the Helm!<a class="headerlink" href="#3-take-the-helm" title="Permanent link">&para;</a></h3>
 <p>Create the following variables to use in the proceeding helm install command:</p>
 <div class="codehilite"><pre><span></span><code>export ACCESS_TOKEN=&lt;token from Step 2&gt;
 export REALM=&lt;realm from Step 2&gt;
@@ -631,6 +645,8 @@ time=&quot;2020-03-15T11:30:29Z&quot; level=info msg=&quot;Starting K8s API reso
 </code></pre></div>
 
 
+<hr />
+<h3 id="4-check-all-is-well-in-the-signalfx-ui">4. Check all is well in the SignalFx UI!<a class="headerlink" href="#4-check-all-is-well-in-the-signalfx-ui" title="Permanent link">&para;</a></h3>
 <p>In the SignalFx UI, goto <em><strong>INFRASTRUCTURE → Kubernetes Navigator → Cluster Map</strong></em> and open the Kubernetes Navigator Cluster Map to ensure metrics are being sent.</p>
 <p><img alt="Selecting the Kubernetes Navigator Map" src="../../images/M1-l4-select-kubenetes-map.jpg" /></p>
 <hr />

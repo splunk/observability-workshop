@@ -344,6 +344,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#2-create-nginx-deployment" class="md-nav__link">
+    2. Create NGINX deployment!
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-run-a-benchmark" class="md-nav__link">
+    3. Run a benchmark
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -470,6 +484,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#2-create-nginx-deployment" class="md-nav__link">
+    2. Create NGINX deployment!
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-run-a-benchmark" class="md-nav__link">
+    3. Run a benchmark
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -503,12 +531,12 @@
 </ul>
 <hr />
 <h3 id="1-start-your-nginx">1. Start your NGINX!<a class="headerlink" href="#1-start-your-nginx" title="Permanent link">&para;</a></h3>
-<p>Still within the k3s shell session, change into the <code>nginx</code> directory</p>
+<p>Remain in the Multipass shell session and change into the <code>nginx</code> directory:</p>
 <div class="codehilite"><pre><span></span><code><span class="nb">cd</span> ~/workshop/k3s/nginx
 </code></pre></div>
 
 
-<p>Create the NGINX configmap using the <code>nginx.conf</code> file</p>
+<p>Create the NGINX configmap using the <code>nginx.conf</code> file:</p>
 <div class="codehilite"><pre><span></span><code>kubectl create configmap nginxconfig --from-file<span class="o">=</span>nginx.conf
 </code></pre></div>
 
@@ -518,8 +546,7 @@
 <p>Note the single agent container running per node among the default Kubernetes pods. This single container will monitor all the pods and services being deployed on this node!</p>
 <p>Now switch back to the default cluster node view by selecting  the <strong>MAP</strong> tab and select your cluster again.</p>
 <hr />
-<p>Continue the workshop in your shell with the next steps</p>
-<p>Create the NGINX deployment</p>
+<h3 id="2-create-nginx-deployment">2. Create NGINX deployment!<a class="headerlink" href="#2-create-nginx-deployment" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code>kubectl create -f nginx-deployment.yaml
 </code></pre></div>
 
@@ -563,6 +590,8 @@ nginx        NodePort    10.110.36.62   &lt;none&gt;        80:30995/TCP   8s
 </code></pre></div>
 
 
+<hr />
+<h3 id="3-run-a-benchmark">3. Run a benchmark<a class="headerlink" href="#3-run-a-benchmark" title="Permanent link">&para;</a></h3>
 <p>Using the NGINX CLUSTER-IP address reported from above, use Apache Benchmark (<code>ab</code>) to create some traffic to light up your SignalFx NGINX dashboard. Run this a couple of times to generate some metrics!</p>
 <div class="codehilite"><pre><span></span><code>ab -n1000 -c20 http://<span class="o">{</span>INSERT_NGINX_IP_ADDRESS<span class="o">}</span>/
 </code></pre></div>
@@ -585,7 +614,7 @@ Server Port:            30995
 </code></pre></div>
 
 
-<p>Validate you are seeing metrics in the UI by going to <em><strong>Dashboards → NGINX → NGINX Servers</strong></em> Tip: you can again apply the filter <code>kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP</code> to focus on only your containers.
+<p>Validate you are seeing metrics in the UI by going to <em><strong>Dashboards → NGINX → NGINX Servers</strong></em> Tip: you can again apply the filter <code>kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP</code> to focus on only your metrics.
 <img alt="" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/m1_l4-nginx-dashboard.png" /></p>
 <hr />
 <p>Once you are finished please proceed to <a href="https://signalfx.github.io/app-dev-workshop/module1/terraform/">Monitoring as Code with Detectors</a></p>
