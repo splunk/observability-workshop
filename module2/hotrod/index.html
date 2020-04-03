@@ -416,24 +416,23 @@
 </ol>
 <hr />
 <h2 id="step-2-deploy-the-hotrod-application-into-k3s">Step 2: Deploy the Hotrod application into K3s<a class="headerlink" href="#step-2-deploy-the-hotrod-application-into-k3s" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>To</code> deploy the Hotrod application into K3s apply the deployment</li>
-</ul>
-<p><code>text
-  kubectl apply -f workshop/apm/hotrod/k8s/deployment.yaml</code></p>
-<p><strong>Output</strong></p>
-<p><code>bash
-   deployment.apps/hotrod created
+<ol>
+<li>To deploy the Hotrod application into K3s apply the deployment</li>
+</ol>
+<p><strong>Input</strong>
+   <code>kubectl apply -f workshop/apm/hotrod/k8s/deployment.yaml</code></p>
+<p><strong>Output</strong>
+   <code>deployment.apps/hotrod created
    service/hotrod created</code></p>
 <ol>
 <li>Make sure the application is now running</li>
 </ol>
-<p><strong>Input</strong></p>
-<p><code>kubectl get pods</code></p>
-<p><strong>Output</strong></p>
-<p><code>NAME                      READY   STATUS    RESTARTS   AGE
-signalfx-agent-mmzxk      1/1     Running   0          110s
-hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s</code></p>
+<p><strong>Input</strong>
+   <code>kubectl get pods</code></p>
+<p><strong>Output</strong>
+   <code>NAME                      READY   STATUS    RESTARTS   AGE
+   signalfx-agent-mmzxk      1/1     Running   0          110s
+   hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s</code></p>
 <ol>
 <li>To find the IP address assigned to the Hotrod service</li>
 </ol>
