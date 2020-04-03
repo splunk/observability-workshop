@@ -2,14 +2,19 @@ sudo: false
 language: python
 env:
   global:
-  - secure: TAoqtk4EDogPQag32C6tSSZFbO9z2oooxzjawQzc4Vh/SWfsCc/tqXz68TVrivpURGkROceZiNvghOb9BMF5onbvsQzG5BVSIR7F+eQ+XAI8RHNPD8BP4/+OcwYFIPCiZ6IUnzglstyg4WAeJuexScJJwmnqGfWLIhPjtqffgSRauVXkfh8g6fiEyBnubuqUMVPC1axtTwd2DI0oG/U9i0XcEkb9QR2nC6djWkdN4kHmHwZvbCqYWRE1HePuBNjZ95o09FgL5+YMwI4a+1GFqocM+nhwTl0vNdJ/z82EjYsst1q+6xsz5O9iYi5rnPYY5W/eD41HhKS/rum8XqwzRQ71vs2HBF7jKI1UBYkj8/T513+DdX0BXML1TY+4aHe7hSfFNLUP3zufKngPK3na9cGU3hkKkEocAjkl3M5w6rzgDeitK/W/+ENuQU1y7CJmmmtwMME5uRlmNx5cxdlDWd5eMzK6W7LY9ndrYUmWJAimGh6NOTZE0dWigptbIGLCQ9s5cpYnjmuf0tupNUg54CWXiNljKUJtZNBpo6Bt1qqGrij4F8BfYqywjK/pSBus8UGugOFhvtZ9uZ2NRCKTVvye17QSqd+DMPi77ftT/MSZGamVho3QDRuSN3LZsBhm5ltXn4kvuPRwWVHmeBLIS3Xm89BqSeUFAVuNrBkkzbQ=
+    secure: VZOHb2OeqHMjeHhIMN9+9xN5lOU52kvoDtTRFXyOafkZaASOWlkvMBMCShckx4Wi2dChGjCNHe0P/MKWthDvM3RzHT3dzUjYe+K0PBEdPKNv5YX1xkLH03ObmFnjyu/hSvz9LJBzjbV2EkLD50tEk18o1Ix3ekjePbwHpMqenYu+7lph7VUTIy71ClNQXQ8/uIFfSuQ7Blu9FLMQh2mPkZYzQphT1gIQ8D1vof2jLQLu5uIOedmWQWQOms0o0Alw81ts2Ndh+ftxlXeNucqtZaQdxRbfEXhX3X0nJZnE1afGNc+tXb3t4O3RwztWKTZBpwYYsW9O3f4KMh5+JXwNEKBV9T7/IETQCiPKB2VVI7Jvgv5/rWoZYqYU8HuBilaJcQZ0sYt9VL0f2WHve54sZ/V6eWJWplFgaf4yF1RwlisqsxDu2JyQnLSH4ct+3MUFupduc/T5SDQBMsy53Bpk8DVQ/EfdUCjmUWiIG7PvBw60YCjxoXxhHZuKZl6ervG1UBuHV6uRpL4NVh2QIQhrt/p8RQe3slN9R2A8RjsT1GdO85l66HAn/ijnacFjhN+9AW5lyItH0yLCRO447bUZ3ir73lhHi1nj2VRi1yJyb74r7TsF1/veEGP44Jqi+rd1MXkdiTIhladhlp3DVYe6BC5O1+m7sNdOlHNJMjGHkjA=
 install:
 - pip install pygments mkdocs mkdocs-material
 script:
 - git clean -f -d -x
 after_success:
-- git config user.name "a-staebler"
-- git config user.email "astaebler@splunk.com"
-- git remote add origin "https://${GITHUB_TOKEN}@github.com/signalfx/app-dev-workshop.git";
+- openssl aes-256-cbc -K $encrypted_f8c0f51459af_key -iv $encrypted_f8c0f51459af_iv
+  -in app-dev-workshop-deploy-key.enc -out ~\/app-dev-workshop-deploy-key -d
+- chmod 600 app-dev-workshop-deploy-key
+- eval $(ssh-agent -s)
+- ssh-add app-dev-workshop-deploy-key
+- git config user.name "$GH_USER_NAME"
+- git config user.email "$GH_USER_EMAIL"
+- git remote add origin git@github.com:signalfx/app-dev-workshop.git
 - git fetch origin && git fetch origin gh-pages:gh-pages;
-- pushd docs && mkdocs gh-deploy -v --clean --remote-name origin;
+- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then echo "Pushing to github"; pushd docs && mkdocs gh-deploy -v --clean --remote-name origin ; git push origin gh-pages; fi;
