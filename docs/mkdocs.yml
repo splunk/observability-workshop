@@ -1,6 +1,7 @@
 site_name: 'App Dev Workshop'
 site_url: 'https://signalfx.github.io/app-dev-workshop/'
 repo_url: 'https://github.com/signalfx/app-dev-workshop/'
+remote_branch: gh-pages
 theme:
   name: 'material'
   language: 'en'
@@ -9,3 +10,8 @@ markdown_extensions:
   # Code highlighting in ``` ``` blocks
   - codehilite:
       guess_lang: true
+
+nav:
+  - Overview: index.md
+  - 'Module One':
+    - '1. Working with Dashboards, Charts and Metrics': module1/dashboards.md

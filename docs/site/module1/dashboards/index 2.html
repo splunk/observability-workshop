@@ -1,0 +1,571 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+        <link rel="canonical" href="https://signalfx.github.io/app-dev-workshop/module1/dashboards/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>1. Working with Dashboards, Charts and Metrics - App Dev Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
+      
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#summary-of-this-lab" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://signalfx.github.io/app-dev-workshop/" title="App Dev Workshop" aria-label="App Dev Workshop" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              App Dev Workshop
+            </span>
+            <span class="md-header-nav__topic">
+              
+                1. Working with Dashboards, Charts and Metrics
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/signalfx/app-dev-workshop/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://signalfx.github.io/app-dev-workshop/" title="App Dev Workshop" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    App Dev Workshop
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/signalfx/app-dev-workshop/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Module One
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Module One
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        1. Working with Dashboards, Charts and Metrics
+      </label>
+    
+    <a href="./" title="1. Working with Dashboards, Charts and Metrics" class="md-nav__link md-nav__link--active">
+      1. Working with Dashboards, Charts and Metrics
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-this-lab" class="md-nav__link">
+    Summary of this lab:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-introduction-to-the-signalfx-environment" class="md-nav__link">
+    Step 1: Introduction to the SignalFx environment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-how-to-create-charts-and-dashboards" class="md-nav__link">
+    Step 2: How to create Charts and Dashboards
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-this-lab" class="md-nav__link">
+    Summary of this lab:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-introduction-to-the-signalfx-environment" class="md-nav__link">
+    Step 1: Introduction to the SignalFx environment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-how-to-create-charts-and-dashboards" class="md-nav__link">
+    Step 2: How to create Charts and Dashboards
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/signalfx/app-dev-workshop/edit/master/docs/module1/dashboards.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>1. Working with Dashboards, Charts and Metrics</h1>
+                
+                <h2 id="summary-of-this-lab">Summary of this lab:</h2>
+<ul>
+<li>Introduction to the SignalFx Dashboards and charts</li>
+<li>How to create Charts and Dashboards</li>
+</ul>
+<hr />
+<h2 id="step-1-introduction-to-the-signalfx-environment">Step 1: Introduction to the SignalFx environment</h2>
+<p>Logon to the SignalFx organization you have been invited to</p>
+<p>Hover over DASHBOARDS in the top menu, and then click on All Dashboards at the bottom
+You will see a number of prebuilt dashboards</p>
+<p><img alt="" src="../../images/M1-l1-1.png" /></p>
+<p>If you are getting metrics already through cloud API integration or the Smart Agent you will see relevant dashboards for the services you are getting metrics for in SignalFx.</p>
+<p>Among the dashboards there you will see a Dashboard group called Sample Data. This group exists by default in all SignalFx accounts. Let's take a closer look at it.</p>
+<hr />
+<p>In the All Dashboards window expand the Sample Data dashboard group by clicking on it, and then click on Intro to SignalFx dashboard</p>
+<p><img alt="" src="../../images/M1-l1-2.png" /></p>
+<p>You will see a selection of sample charts. To learn more about charts you can click on the Intro to SignalFx, Part 1, 2 and Part 3 dashboards and read the description of the charts and its metrics.</p>
+<hr />
+<p>Let's take a look at the Sample charts</p>
+<p>Click on the Sample charts dashboard name</p>
+<p><img alt="" src="../../images/M1-l1-3.png" /></p>
+<p>In the SAMPLE CHARTS dashboard you see a selection of charts that shows the different styles, colours and formats you can apply to the different visualisations available.</p>
+<hr />
+<p>Let's work on a specific chart.</p>
+<p>Click on the three dots (...) on the Latency histogram chart (circled in the screenshot above) and then on Open. You will see the plot options, current plot and signal (metric) for the Latency histogram chart.</p>
+<p><img alt="" src="../../images/M1-l1-4.png" /></p>
+<hr />
+<p>Click on the different chart type icons to explore each of the visualisations
+<img alt="" src="../../images/M1-l1-5.png" /></p>
+<p>See how the chart changes. You can use different ways to visualise your metrics - you choose which chart type fits best for the visualisation you want to have.
+For more info on the different chart types see: <a href="https://docs.signalfx.com/en/latest/charts/chart-planning-creating.html#choosing-a-chart-type">Choosing a chart type</a></p>
+<p>Click on Line chart type and you will see the line plot.</p>
+<p><img alt="" src="../../images/M1-l1-6.png" /></p>
+<p>In the PLOT EDITOR tab under Signal you see the metric demo.trans.latency we are currently plotting.</p>
+<p><img alt="" src="../../images/M1-l1-7.png" /></p>
+<hr />
+<h2 id="step-2-how-to-create-charts-and-dashboards">Step 2: How to create Charts and Dashboards</h2>
+<p>Let's now create a new chart and save it in a new dashboard!</p>
+<p>Click on the plus icon and from the drop down, click on Chart</p>
+<p><img alt="" src="../../images/M1-l1-8.png" /></p>
+<p>You will now see a chart template like the following. </p>
+<p><img alt="" src="../../images/M1-l1-9.png" /></p>
+<hr />
+<p>Let's enter a metric to plot. We are going to use the same metric we saw in step 7, namely demo.trans.latency</p>
+<p>In the PLOT EDITOR tab under Signal enter demo.trans.latency</p>
+<p><img alt="" src="../../images/M1-l1-10.png" /></p>
+<p>You will instantly see a number of Line plots, like below. The number "18 ts" indicates that we are plotting 18 metric time series in the chart.</p>
+<p><img alt="" src="../../images/M1-l1-11.png" /></p>
+<p>Click on the DATA TABLE tab</p>
+<p><img alt="" src="../../images/M1-l1-12.png" /></p>
+<p>You see now 18 rows, each representing a metics time series with a number of columns. If you swipe over the plot horizontally you will see the metrics in these columns at different times.
+In the demo_datacenter column you see that there are two data centers, Paris and Tokyo, for which we are getting metrics.</p>
+<hr />
+<p>Let's now select the Paris datacenter to do some analytics - for that we will use a filter.</p>
+<p>Let's go back to the PLOT EDITOR tab
+Click on Add filter, wait until it automatically populates, choose demo_datacenter, and then Paris</p>
+<p><img alt="" src="../../images/M1-l1-13.png" /></p>
+<p>In the F(x) column, add the analytic function Percentile:Aggregation, and leave the value to 95 (click outside to confirm)</p>
+<p><img alt="" src="../../images/M1-l1-14.png" /></p>
+<p>For info on the Percentile function and the other functions see:<a href="https://docs.signalfx.com/en/latest/reference/analytics-docs/analytics-reference.html">Analytics reference</a></p>
+<hr />
+<p>Let's now compare with older metrics.</p>
+<p>Click on ... and then on Clone in the dropdown to clone that Signal</p>
+<p><img alt="" src="../../images/M1-l1-15.png" /></p>
+<p>You will see a new row identical to A, called B, both visible  and plotted</p>
+<p><img alt="" src="../../images/M1-l1-16.png" /></p>
+<p>For the B Signal, In F(x) add the analytic function Timeshift and enter 7d (7 days = 1 week), and click outside to confirm</p>
+<p><img alt="" src="../../images/M1-l1-17.png" /></p>
+<p>Click on the cogwheel  on the far right, and choose a color, say pink, from Plot Color, to change color for the plot of B</p>
+<p><img alt="" src="../../images/M1-l1-18.png" /></p>
+<p>Click on Close</p>
+<hr />
+<p>Click on the field next to Time and choose Past Day from the dropdown</p>
+<p><img alt="" src="../../images/M1-l1-19.png" /></p>
+<p>We now see datapoint for A for the last day (rolling) as a blue plot, and 7 days ago in pink </p>
+<p><img alt="" src="../../images/M1-l1-20.png" /></p>
+<p>Click on Area chart icon</p>
+<p><img alt="" src="../../images/M1-l1-21.png" /></p>
+<p>We now have a better view of our two plots</p>
+<hr />
+<p>Let's now plot the difference of all metric values for a day with 7 days between</p>
+<p>Click on Enter Formula then enter A-B (A minus B) and hide (deselect) all Signals using the eye, except C</p>
+<p><img alt="" src="../../images/M1-l1-22.png" /></p>
+<p>We now see only the difference of all metric values of A and B being plotted. We see that we have some negative values on the plot because a metric value of B has some times larger value than the metric value of A at that time.
+If you click on DATA TABLE you can swipe horizontally along the X axis to see the metric values at different times.</p>
+<p>Let's apply another function to get the values of C to positive values.
+By doing so we will the difference between the metric values for a period of 24 hours with 7 days between. This difference can be used to see an alarming trend if we consider last week to be a baseline (the bigger the number - the more we deviate from the baseline) - but mainly we do this for you to get a bit more training on using functions...</p>
+<p>In the PLOT EDITOR for C click on Add Analytics and choose Absolute Value</p>
+<p><img alt="" src="../../images/M1-l1-23.png" /></p>
+<p>You will see the C plot now having only positive values</p>
+<p><img alt="" src="../../images/M1-l1-24.png" /></p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Let's now overlay metrics and events to our initial plot to see if there is any correlation with high latency&lt;&lt;&lt;&lt;</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>To discover and add new metrics to the chart from the ones that are being sent to SignalFx already, click on Browse on the bottom of the screen
+Then, in the Metrics sidebar on the right, enter "demo" and click on the search icon to search.</p>
+<p>Observe that the Find Metrics option is pre selected</p>
+<p><img alt="" src="../../images/M1-l1-25.png" /></p>
+<p>The metrics search is showing 3 metrics with demo in the name</p>
+<p>Select demo.trans.count and click on the Add Plot green button</p>
+<p><img alt="" src="../../images/M1-l1-26.png" /></p>
+<p>Click on the blue eye icon next to C to hide that Signal, and on the greyed eye icon for Signal A to show it</p>
+<p>Filter the Paris datacenter (see step 12 above if you need help with this) and function percentile 95 (see step 13 above) and enter 1h in the Time frame for the entire chart</p>
+<p><img alt="" src="../../images/M1-l1-27.png" /></p>
+<p>We see that there is a correlation between latency and number of transactions! Hooray!
+Likewise we could check Find Events and find events like deployment events etc. to correlate with.</p>
+<p>Click on the  icon to collapse the Metrics sidebar</p>
+<p><img alt="" src="../../images/M1-l1-28.png" /></p>
+<p>Let's take a look at SignalFlow - the analytics language of SignalFx that can be used to setup monitoring as code.</p>
+<p>Click on View SignalFlow</p>
+<p><img alt="" src="../../images/M1-l1-29.png" /></p>
+<p>You will see the SignalFlow code that composes the chart we were working on</p>
+<p><img alt="" src="../../images/M1-l1-30.png" /></p>
+<p>...this is the analytics language of SignalFx. Between the many benefits it provides, It can be used to setup monitoring as code. In the next lab we will see it being used in action.
+For more info on SignalFlow see:
+https://docs.signalfx.com/en/latest/getting-started/concepts/analytics-signalflow.html#signalflow-analytics-language</p>
+<p>Click on View Builder to go back to the UI Signal builder </p>
+<p><img alt="" src="../../images/M1-l1-31.png" /> </p>
+<hr />
+<p>Let's now save our chart.</p>
+<p>Click on Save as... and enter a name for your chart, use your initials like '<your initials>'s Latency Chart' and click OK</p>
+<p><img alt="" src="../../images/M1-l1-32.png" /> </p>
+<p>In the next window...</p>
+<p>Find your email address in the list and select it, then click Ok</p>
+<p><img alt="" src="../../images/M1-l1-33.png" /> </p>
+<p>You will immediately be transported to the dashboard created under your selected group (make sure the group name on the top left is your email) </p>
+<p>Last but not least, change the dashboard's name, by clicking the ... icon on the top right and selecting Dashboard Info</p>
+<p><img alt="" src="../../images/M1-l1-34.png" /> </p>
+<p>Enter a new name for your dashboard and click on Done</p>
+<p><img alt="" src="../../images/M1-l1-35.png" /> </p>
+<p>Congratulations! You have created your first chart and dashboard!</p>
+<p><img alt="" src="../../images/M1-l1-36.png" /> </p>
+<hr />
+<p>Continue the workshop with <a href="https://github.com/signalfx/app-dev-workshop/wiki/1.2-Working-with-Detectors">Working with Detectors</a> </p>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../.." title="Overview" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Overview
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.1",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
