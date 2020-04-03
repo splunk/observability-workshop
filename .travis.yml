@@ -3,12 +3,9 @@ language: python
 env:
   global:
     secure: VZOHb2OeqHMjeHhIMN9+9xN5lOU52kvoDtTRFXyOafkZaASOWlkvMBMCShckx4Wi2dChGjCNHe0P/MKWthDvM3RzHT3dzUjYe+K0PBEdPKNv5YX1xkLH03ObmFnjyu/hSvz9LJBzjbV2EkLD50tEk18o1Ix3ekjePbwHpMqenYu+7lph7VUTIy71ClNQXQ8/uIFfSuQ7Blu9FLMQh2mPkZYzQphT1gIQ8D1vof2jLQLu5uIOedmWQWQOms0o0Alw81ts2Ndh+ftxlXeNucqtZaQdxRbfEXhX3X0nJZnE1afGNc+tXb3t4O3RwztWKTZBpwYYsW9O3f4KMh5+JXwNEKBV9T7/IETQCiPKB2VVI7Jvgv5/rWoZYqYU8HuBilaJcQZ0sYt9VL0f2WHve54sZ/V6eWJWplFgaf4yF1RwlisqsxDu2JyQnLSH4ct+3MUFupduc/T5SDQBMsy53Bpk8DVQ/EfdUCjmUWiIG7PvBw60YCjxoXxhHZuKZl6ervG1UBuHV6uRpL4NVh2QIQhrt/p8RQe3slN9R2A8RjsT1GdO85l66HAn/ijnacFjhN+9AW5lyItH0yLCRO447bUZ3ir73lhHi1nj2VRi1yJyb74r7TsF1/veEGP44Jqi+rd1MXkdiTIhladhlp3DVYe6BC5O1+m7sNdOlHNJMjGHkjA=
-before_install:
-- cd docs
 install:
-- pip install pygments
-- pip install -r requirements.txt
-- cd ..
+- cd docs && pip install pygments
+- cd docs && pip install -r requirements.txt
 script:
 - git clean -f -d -x
 after_success:
