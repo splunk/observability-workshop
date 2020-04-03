@@ -33,15 +33,11 @@ Create the NGINX deployment
 kubectl create -f nginx-deployment.yaml
 ```
 
-1. Validate the deployment has been successful and that the NGINX pods are running. If you have the SignalFx
-   UI open you should see new Pods being started and containers being deployed. It should only take around 20
-   seconds for the pods to transition into a Running state.
-   In the SignalFx UI you should have a cluster that looks like below:
+Validate the deployment has been successful and that the NGINX pods are running. If you have the SignalFx UI open you should see new Pods being started and containers being deployed. It should only take around 20 seconds for the pods to transition into a Running state. In the SignalFx UI you should have a cluster that looks like below:
 
 ![back to Cluster](../images/M1-l4-back-cluster.jpg)
 
-   If you select the **WORKLOADS** tab again you should now see that there is a new replica set and a deployment 
-   added for the NGINX deployment:
+If you select the **WORKLOADS** tab again you should now see that there is a new replica set and a deployment added for the NGINX deployment:
 ![NGINX loaded](../images/M1-l4-NGINX-loaded.jpg)
 
 ---
@@ -83,32 +79,31 @@ kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP        9m3s
 nginx        NodePort    10.110.36.62   <none>        80:30995/TCP   8s
 ```
 
-1. Using the NGINX IP address reported from **Step #6** above, use Apache Benchmark (`ab`) to create some traffic to light up your SignalFx NGINX dashboard. Run this a couple of times to generate some metrics!
+Using the NGINX IP address reported from **Step #6** above, use Apache Benchmark (`ab`) to create some traffic to light up your SignalFx NGINX dashboard. Run this a couple of times to generate some metrics!
    
-   **Input:**
-   ```
-   ab -n1000 -c20 http://<INSERT_NGINX_IP_ADDRESS>/
-   ```
+```bash
+ab -n1000 -c20 http://<INSERT_NGINX_IP_ADDRESS>/
+```
 
-   **Output:** 
-   ```
-   This is ApacheBench, Version 2.3 <$Revision: 1826891 $>
-   Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
-   Licensed to The Apache Software Foundation, http://www.apache.org/
+```text
+This is ApacheBench, Version 2.3 <$Revision: 1826891 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
  
-   Benchmarking localhost (be patient)
-   Completed 100 requests
-   ...
-   Completed 1000 requests
-   Finished 1000 requests
+Benchmarking localhost (be patient)
+Completed 100 requests
+...
+Completed 1000 requests
+Finished 1000 requests
  
-   Server Software:        nginx/1.17.5
-   Server Hostname:        localhost
-   Server Port:            30995...
-   ```
+Server Software:        nginx/1.17.5
+Server Hostname:        localhost
+Server Port:            30995
+...
+```
 
-2. Validate you are seeing metrics in the UI by going to _**Dashboards → NGINX → NGINX Servers**_ Tip: you can again apply the filter `kubernetes_cluster: [YOUR-INITIALS]-SFX-WORKSHOP` to focus on only your containers.
-   ![](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/m1_l4-nginx-dashboard.png)
+Validate you are seeing metrics in the UI by going to _**Dashboards → NGINX → NGINX Servers**_ Tip: you can again apply the filter `kubernetes_cluster: [YOUR-INITIALS]-SFX-WORKSHOP` to focus on only your containers.
+![](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/m1_l4-nginx-dashboard.png)
 
 ---
 
