@@ -1,0 +1,15 @@
+sudo: false
+language: python
+env:
+  global:
+  - secure: TAoqtk4EDogPQag32C6tSSZFbO9z2oooxzjawQzc4Vh/SWfsCc/tqXz68TVrivpURGkROceZiNvghOb9BMF5onbvsQzG5BVSIR7F+eQ+XAI8RHNPD8BP4/+OcwYFIPCiZ6IUnzglstyg4WAeJuexScJJwmnqGfWLIhPjtqffgSRauVXkfh8g6fiEyBnubuqUMVPC1axtTwd2DI0oG/U9i0XcEkb9QR2nC6djWkdN4kHmHwZvbCqYWRE1HePuBNjZ95o09FgL5+YMwI4a+1GFqocM+nhwTl0vNdJ/z82EjYsst1q+6xsz5O9iYi5rnPYY5W/eD41HhKS/rum8XqwzRQ71vs2HBF7jKI1UBYkj8/T513+DdX0BXML1TY+4aHe7hSfFNLUP3zufKngPK3na9cGU3hkKkEocAjkl3M5w6rzgDeitK/W/+ENuQU1y7CJmmmtwMME5uRlmNx5cxdlDWd5eMzK6W7LY9ndrYUmWJAimGh6NOTZE0dWigptbIGLCQ9s5cpYnjmuf0tupNUg54CWXiNljKUJtZNBpo6Bt1qqGrij4F8BfYqywjK/pSBus8UGugOFhvtZ9uZ2NRCKTVvye17QSqd+DMPi77ftT/MSZGamVho3QDRuSN3LZsBhm5ltXn4kvuPRwWVHmeBLIS3Xm89BqSeUFAVuNrBkkzbQ=
+install:
+- pip install pygments mkdocs mkdocs-material
+script:
+- git clean -f -d -x
+after_success:
+- git config user.name "a-staebler"
+- git config user.email "astaebler@splunk.com"
+- git remote add docs "https://${GH_TOKEN}@github.com/signalfx/app-dev-workshop.git";
+- git fetch docs && git fetch gh-token gh-pages:gh-pages;
+- mkdocs gh-deploy -v --clean --remote-name docs;
