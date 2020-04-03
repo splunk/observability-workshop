@@ -8,4 +8,4 @@ Make sure you have completed the pre-requisites checklist before starting, if yo
 Each Module captures an entire section of our platform, and each Lab, has a specific goal to help you progress in the Workshop.
 Labs can be related to each other, they can be a separation of a large collection of steps, or they can be siloed goals for you to achieve.
 
-To get started, please proceed to [The Workshop](https://github.com/signalfx/app-dev-workshop/wiki)
+To get started, please proceed to [The Workshop](https://signalfx.github.io/app-dev-workshop/)
