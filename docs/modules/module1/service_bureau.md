@@ -7,7 +7,7 @@
 
 ---
 
-## Step 1: Let's see what has been created!
+### 1. Let's see what has been created!
 
 1. To see who is registered and what is being build inside your organization, right click on the *settings* icon on the top right of the SignalFx UI,
 ![Settings Icon](../images/M1-l7-1.jpg)
