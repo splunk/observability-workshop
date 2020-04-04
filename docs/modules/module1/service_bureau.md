@@ -65,7 +65,7 @@
 
 ***
 
-## Step 3: Let's see our teamwork!
+### 3. Let's see our teamwork!
 1. most organization will devide theri users in terams, where a team will..
 
 ![Billing and Usage](../images/M1-l7-7.jpg)
