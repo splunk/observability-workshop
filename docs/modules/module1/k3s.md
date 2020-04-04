@@ -105,25 +105,16 @@ time="2020-03-15T11:30:28Z" level=info msg="Using hostname PH-k3s"
 time="2020-03-15T11:30:29Z" level=info msg="Using host id dimensions map[host:PH-k3s    kubernetes_node_uid:05ba9d7b-89d4-4c70-a3e9-4dc72923423a]"
 time="2020-03-15T11:30:29Z" level=info msg="Sending datapoints to https://ingest.us1.signalfx.com/v2/datapoint"
 time="2020-03-15T11:30:29Z" level=info msg="Sending events to https://ingest.us1.signalfx.com/v2/event"
-time="2020-03-15T11:30:29Z" level=info msg="Sending trace spans to https://ingest.us1.signalfx.com/v1/trace"
-time="2020-03-15T11:30:29Z" level=info msg="Setting cluster:SFX-WORKSHOP property on host:PH-k3s dimension"
-time="2020-03-15T11:30:29Z" level=info msg="Creating new monitor" discoveryRule= monitorID=1 monitorType=cpu
-time="2020-03-15T11:30:29Z" level=info msg="Creating new monitor" discoveryRule= monitorID=2 monitorType=filesystems
-time="2020-03-15T11:30:29Z" level=info msg="Creating new monitor" discoveryRule= monitorID=3 monitorType=disk-io
-time="2020-03-15T11:30:29Z" level=info msg="Creating new monitor" discoveryRule= monitorID=4 monitorType=net-io
-time="2020-03-15T11:30:29Z" level=info msg="Creating new monitor" discoveryRule= monitorID=5 monitorType=load
-time="2020-03-15T11:30:29Z" level=info msg="Creating new monitor" discoveryRule= monitorID=6 monitorType=memory
-time="2020-03-15T11:30:29Z" level=info msg="Creating new monitor" discoveryRule= monitorID=7 monitorType=host-metadata
-time="2020-03-15T11:30:29Z" level=info msg="Creating new monitor" discoveryRule= monitorID=8 monitorType=processlist
-time="2020-03-15T11:30:29Z" level=info msg="Creating new monitor" discoveryRule= monitorID=9 monitorType=vmem
 time="2020-03-15T11:30:29Z" level=info msg="Creating new monitor" discoveryRule= monitorID=10 monitorType=kubelet-stats
 time="2020-03-15T11:30:29Z" level=info msg="Creating new monitor" discoveryRule= monitorID=11 monitorType=kubernetes-cluster
 time="2020-03-15T11:30:29Z" level=info msg="Done configuring agent"
+...
 time="2020-03-15T11:30:29Z" level=info msg="Serving internal metrics at localhost:8095"
    I0315 11:30:29.922577       1 leaderelection.go:242] attempting to acquire leader lease  default/signalfx-agent-leader...
    I0315 11:30:29.950448       1 leaderelection.go:252] successfully acquired lease default/signalfx-agent-leader
 time="2020-03-15T11:30:29Z" level=info msg="K8s leader is now node ph-k3s"
 time="2020-03-15T11:30:29Z" level=info msg="Starting K8s API resource sync"
+...
 ```
 
 ---
