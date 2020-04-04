@@ -4,13 +4,13 @@
 ---
 
 ### 1. Learn how to configure muting your alerts
-There are times when you, for a period of time, don't want to be disturbed by notifications for some non ## critical alerts. For that you can use muting rules in SignalFx. Let's create one!
+There are times when you, for a period of time, don't want to be disturbed by notifications for some non critical alerts. For that you can use muting rules in SignalFx. Let's create one!
 
-Hover over ALERTS in the menu and click on Detectors
+Hover over **ALERTS** in the menu and click on **Detectors**
 
 ![](../images/M1-l3-1.png) 
 
-If you created an alert detector in "Working with Detectors" you can click on the three dots (...) on the far right and click on Create Muting Rule...
+If you created an alert detector in "Working with Detectors" you can click on the three dots `...` on the far right and click on **Create Muting Rule...**
 
 ![](../images/M1-l3-2.png) 
 
@@ -26,12 +26,18 @@ Click on Mute Indefinitely to confirm. You won't be receiving any email notifica
 
 ![](../images/M1-l3-5.png) 
 
-To Resume notifications, hover over ALERTS in the top menu and click on Muting Rules. You will see the name of the detector you muted notifications for under Detector.
+---
+
+### 2. Resuming notifications
+
+To Resume notifications, hover over **ALERTS** in the top menu and click on Muting Rules. You will see the name of the detector you muted notifications for under Detector.
 
 ![](../images/M1-l3-6.png) 
 ![](../images/M1-l3-7.png) 
 
-Click on the thee dots (...) on the far right 
+---
+
+Click on the thee dots `...` on the far right 
 
 Click on Resume Notifications
 
@@ -42,7 +48,5 @@ Click on Resume to confirm and resume notifications for this detector
 ![](../images/M1-l3-9.png) 
 
 **Congratulations!** You have now resumed your alert notifications!
-
-![](../images/M1-l3-10.png) 
 
 Continue the workshop with [Running the SmartAgent in Kubernetes](https://signalfx.github.io/app-dev-workshop/module1/k3s/)
