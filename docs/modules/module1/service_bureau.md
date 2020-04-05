@@ -86,13 +86,43 @@
 2. To work with  to signalFx's Team UI click on the settings ![gray user icon](../images/M1-l7-2.jpg) ) icon on the right top of the page and
    select the **Organizations Settings → Teams** tab, or select the **Teams** tab from the left pane.
     
-![Billing and Usage](../images/M1-l7-7.jpg)
+![location of settings](../images/M1-l7-7.jpg)
 
    When the **Team** UI is selected you will be presented in the workshop with an empty Teams's list 
   
-  ![No teams shown](../images/M1-l7-15.jpg)
-  
-   To add a **Team** click on the green ![Create team](../images/M1-l7-15.jpg) button.
+  ![No teams shown](../images/M1-l7-14.jpg)
+
+***  
+3. To add a **Team** click on the green ![Create team](../images/M1-l7-15.jpg) button. This will presetn youy with the **Create New Team** Dialog.
+
+![Add Team](../images/M1-l7-16.jpg)
+
+   Create your own team by naming it [YOUR-INITIALS]-Team and Add yourself by searching for your name and selecting **add**.
+   This should result in a dialog simular to the one below:
+
+![Add Team complete](../images/M1-l7-17.jpg)
+
+   You can remove selected users by pressing  **remove** or the small **x** behind a name.
+   Make sure you have your group created with your initials and with youself  as memeber added, then press done.
+
+   This will bring you back to the **Teams** list that should now show your Team and the ones created by others.
+   You should see  that the group(s) you are a member of has a gray **Member** icon in front of it.
+   If no members are assigned to your group, you should see a blue link instead of the member count, 
+   clicking that will bring you to the **Edit Team** dialog where you can add yourself.   
+   This is the same dialog you get when pressing the 3 dots **...**   at the end of the Line with your team.
+
+   The 3 **...** menu give you the option to Edit a Team, Join or leave a Team or Delete a team.
+   
+   ***
+
+4. An
+
+
+
+
+
+
+
 
 
 ***
