@@ -79,7 +79,7 @@
    
    ![Billing and Usage](../images/M1-l7-9.jpg)
 
-   The abovelanding page has three Dashboard groups assigned, shows there is a critical alert that had this team as an adressee and some text and urls with other topics of interest. 
+   The above landing page has three Dashboard groups assigned, shows there is a critical alert that had this team as an adressee and some text and urls with other topics of interest. 
 
    ***
    
@@ -88,8 +88,14 @@
     
 ![Billing and Usage](../images/M1-l7-7.jpg)
 
-   When the **Team** UI is selected you will be presented with asnd empty list or with a list of Teams previously created in your Organization.
-   To add a **Team** click on the green ![Create team](../images/M1-l7-14.jpg) button.
+   When the **Team** UI is selected you will be presented in the workshop with an empty Teams's list 
+  
+  ![No teams shown](../images/M1-l7-15.jpg)
+  
+   To add a **Team** click on the green ![Create team](../images/M1-l7-15.jpg) button.
+
+
+***
 
    as shown 
    in the screenshot based of an Organizartion that has been using Signal Fx for some time.
