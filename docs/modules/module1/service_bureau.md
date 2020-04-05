@@ -88,34 +88,56 @@
     
 ![location of settings](../images/M1-l7-7.jpg)
 
-   When the **Team** UI is selected you will be presented in the workshop with an empty Teams's list 
+   When the **Team** UI is selected you will be presented in the workshop with an empty Team's list 
   
   ![No teams shown](../images/M1-l7-14.jpg)
 
 ***  
-3. To add a **Team** click on the green ![Create team](../images/M1-l7-15.jpg) button. This will presetn youy with the **Create New Team** Dialog.
+3. To add a new **Team** click on the green ![Create team](../images/M1-l7-15.jpg) button. This will present youy with the **Create New Team** Dialog.
 
 ![Add Team](../images/M1-l7-16.jpg)
 
-   Create your own team by naming it [YOUR-INITIALS]-Team and Add yourself by searching for your name and selecting **add**.
-   This should result in a dialog simular to the one below:
+   Create your own team by naming it [YOUR-INITIALS]-Team and add yourself by searching for your name and 
+   selecting  the **Add** link behind your name. This should result in a dialog simular to the one below:
+   
+   You can remove selected users by pressing  **remove** or the small **x** behind a name.
+   Make sure you have your group created with your initials and with yourself added as a member, then press done.
 
 ![Add Team complete](../images/M1-l7-17.jpg)
 
-   You can remove selected users by pressing  **remove** or the small **x** behind a name.
-   Make sure you have your group created with your initials and with youself  as memeber added, then press done.
+***   
 
-   This will bring you back to the **Teams** list that should now show your Team and the ones created by others.
-   You should see  that the group(s) you are a member of has a gray **Member** icon in front of it.
-   If no members are assigned to your group, you should see a blue link instead of the member count, 
-   clicking that will bring you to the **Edit Team** dialog where you can add yourself.   
-   This is the same dialog you get when pressing the 3 dots **...**   at the end of the Line with your team.
+
+4. This will bring you back to the **Teams** list that now show your Team and the one's created by others.
+   Note that the group(s) you are a member of has a gray **Member** icon in front of it.
+   If no members are assigned to your group, you should see a blue **Add members** link instead of the member count, 
+   clicking on that link  will get you to the **Edit Team** dialog where you can add yourself.   
+   This is the same dialog you get when pressing the 3 dots **...**   at the end of the Line with your team
+   and select **Edit Team**.
 
    The 3 **...** menu give you the option to Edit a Team, Join or leave a Team or Delete a team.
    
    ***
 
-4. An
+4. You can set up specific Notification rules per team, click on the **NOTIFICATION POLICY** Button, 
+   this will open the notification edit menu.
+
+![Base  notification meny](../images/M1-l7-18.jpg)
+
+   By default the system offers you the ability to set up a general notification rule for your team.
+   Note the Email all members, This mean all memebers n theis team will recieve an email with the Alert information, regrdless of the alert type.
+   You can add other recpiens, by  clicking [alert recipient](../images/M1-l7-19.jpg)
+
+   You can add a  email adress  other then, the team members,  like -alerts@your-company.com-  for example or  send an alert to an other team.
+    
+    However if you click on the link **Configure separate notification tiers for different severity alerts**  You can configure every alert leve differently.
+
+
+![Billing and Usage](../images/M1-l7-10.jpg)
+![Billing and Usage](../images/M1-l7-11.jpg)
+
+
+
 
 
 
@@ -138,8 +160,6 @@
  ß
 
 
-![Billing and Usage](../images/M1-l7-10.jpg)
-![Billing and Usage](../images/M1-l7-11.jpg)
 
 ***
 
