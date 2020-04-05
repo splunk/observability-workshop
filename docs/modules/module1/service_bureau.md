@@ -66,9 +66,9 @@
 ***
 
 ### 3. Let's see our teamwork!
-1. Making sure the users that are logged in see directly what is relevant to them,most organization's will use 
-   SignalFx's Teams mechanisme to assign User access to dahboard groups. 
-   To go to signalFx's Team  UI   click on the settings ![gray user icon](../images/M1-l7-2.jpg) ) icon on the right top of the page and select the **Organizations Settings → Teams** tab,  
+1. Making sure the users that are logged in see directly what is relevant to them, most organizations
+   will use SignalFx's Teams mechanisme to assign User access to dashboard groups. 
+   To work with  to signalFx's Team  UI  click on the settings ![gray user icon](../images/M1-l7-2.jpg) ) icon on the right top of the page and select the **Organizations Settings → Teams** tab,  
     or select the **Teams** tab from the left pane.
     
 ![Billing and Usage](../images/M1-l7-7.jpg)
