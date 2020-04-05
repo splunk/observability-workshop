@@ -66,14 +66,20 @@
 ***
 
 ### 3. Let's see our teamwork!
-1. To make sure that users who logged in, see directly what is relevant to them, most organizations
-   will use SignalFx's Teams mechanisme to assign a user to a Team. Often this matches work related roles . 
-   For example, A member of a Dev-ops  or Product group whould be assigned to the corresponding Team in SignalFx.
-   Once an Team member is logged in, they will arrive in the Teams landing page, like the one shown below, for the Poduct Management team.
-   Here, users see all the Dashboard and any alerts that are assigned the team and  focus on what is rlevant to their job.
+1. To make sure that users directly see the dasboards and alerts that are relevant to them when they login to SignalFX, 
+   most organizations will use SignalFx's Teams mechanisme to assign a user to a Team.
+   Usually this matches work related roles, for example, members of a Dev-ops or Product Management group whould be assigned 
+   to the corresponding Teams in SignalFx.
+
+   Once an Team member is connected to SignalFx, they will be shown the Teams landing page, simular to the one shown below, 
+   In this case for the Poduct Management team.
+   Here, members see all the Dashboard, alerts that are assigned the team and  any other useful information so they
+   can focus on what is relevant to their job.
 
    
    ![Billing and Usage](../images/M1-l7-9.jpg)
+
+   The abovelanding page has three Dashboard groups assigned, shows there is a critical alert that had this team as an adressee and some text and urls with other topics of interest. 
 
    ***
    
@@ -82,9 +88,14 @@
     
 ![Billing and Usage](../images/M1-l7-7.jpg)
 
-   When the **Team** UI is selected you will be presented with asnd empty list or with a list of Teams previously created in your Organization as shown 
+   When the **Team** UI is selected you will be presented with asnd empty list or with a list of Teams previously created in your Organization.
+   To add a **Team** click on the green ![Create team](../images/M1-l7-14.jpg) button.
+
+   as shown 
    in the screenshot based of an Organizartion that has been using Signal Fx for some time.
      
+
+
 
 ![Billing and Usage](../images/M1-l7-8.jpg)
 
