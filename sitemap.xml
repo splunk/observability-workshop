@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
      <loc>https://signalfx.github.io/app-dev-workshop/</loc>
-     <lastmod>2020-04-04</lastmod>
+     <lastmod>2020-04-05</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module1/dashboards/</loc>
-     <lastmod>2020-04-04</lastmod>
+     <lastmod>2020-04-05</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module1/detectors/</loc>
-     <lastmod>2020-04-04</lastmod>
+     <lastmod>2020-04-05</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module1/muting/</loc>
-     <lastmod>2020-04-04</lastmod>
+     <lastmod>2020-04-05</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module1/k3s/</loc>
-     <lastmod>2020-04-04</lastmod>
+     <lastmod>2020-04-05</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module1/nginx/</loc>
-     <lastmod>2020-04-04</lastmod>
+     <lastmod>2020-04-05</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module1/terraform/</loc>
-     <lastmod>2020-04-04</lastmod>
+     <lastmod>2020-04-05</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module2/hotrod/</loc>
-     <lastmod>2020-04-04</lastmod>
+     <lastmod>2020-04-05</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module2/sockshop/</loc>
-     <lastmod>2020-04-04</lastmod>
+     <lastmod>2020-04-05</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/cleanup/</loc>
-     <lastmod>2020-04-04</lastmod>
+     <lastmod>2020-04-05</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
