@@ -66,24 +66,31 @@
 ***
 
 ### 3. Let's see our teamwork!
-1. Making sure the users that are logged in see directly what is relevant to them, most organizations
-   will use SignalFx's Teams mechanisme to assign User access to dashboard groups. 
-   To work with  to signalFx's Team  UI  click on the settings ![gray user icon](../images/M1-l7-2.jpg) ) icon on the right top of the page and select the **Organizations Settings → Teams** tab,  
-    or select the **Teams** tab from the left pane.
+1. To make sure that users who logged in, see directly what is relevant to them, most organizations
+   will use SignalFx's Teams mechanisme to assign a user to a Team. Often this matches work related roles . 
+   For example, A member of a Dev-ops  or Product group whould be assigned to the corresponding Team in SignalFx.
+   Once an Team member is logged in, they will arrive in the Teams landing page, like the one shown below, for the Poduct Management team.
+   Here, users see all the Dashboard and any alerts that are assigned the team and  focus on what is rlevant to their job.
+
+   
+   ![Billing and Usage](../images/M1-l7-9.jpg)
+
+   ***
+   
+2. To work with  to signalFx's Team UI click on the settings ![gray user icon](../images/M1-l7-2.jpg) ) icon on the right top of the page and
+   select the **Organizations Settings → Teams** tab, or select the **Teams** tab from the left pane.
     
 ![Billing and Usage](../images/M1-l7-7.jpg)
 
-   When the **Team** UI is selected you will be presented with a list of Teams created in your Organization.  IN the Workshop Organization it is likely empty
-   but in the s creenshot below you see how it looks for an Organizartion that has been using Signal Fx for some time.
+   When the **Team** UI is selected you will be presented with asnd empty list or with a list of Teams previously created in your Organization as shown 
+   in the screenshot based of an Organizartion that has been using Signal Fx for some time.
      
 
 ![Billing and Usage](../images/M1-l7-8.jpg)
 
- Often this matches work related roles as well. 
-   For example, A memeber of a Dev-ops  or product grou-pteam once assigned to the Team in signal fx will arrive in the Teams  landing page,
-   Here They see all the Dashboard that are assigned to them and or any alerts that are relevant to the team
+ ß
 
-![Billing and Usage](../images/M1-l7-9.jpg)
+
 ![Billing and Usage](../images/M1-l7-10.jpg)
 ![Billing and Usage](../images/M1-l7-11.jpg)
 
