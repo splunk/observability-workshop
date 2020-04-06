@@ -128,7 +128,7 @@
    Note the Email all members, This mean all memebers n theis team will recieve an email with the Alert information, regrdless of the alert type.
    You can add other recpiens, by  clicking [alert recipient](../images/M1-l7-19.jpg)
 
-   You can add a  email adress  other then, the team members,  like -alerts@your-company.com-  for example or  send an alert to an other team.
+   You can add a  email adress  other then, the team members,  like _alerts@your-company.com_  for example or  send an alert to an other team.
     
    However if you click on the link **Configure separate notification tiers for different severity alerts**  You can configure every alert level differently.
 
@@ -139,19 +139,11 @@
    In the screen shot below above 
 
 
-
 ***
 
-
-
-![Billing and Usage](../images/M1-l7-8.jpg)
-
-
-
-***
 
 ## Step 4: Let's control a teams usage!
-1. m
+1. Managing tokens
 
 ![Billing and Usage](../images/M1-l7-13.jpg)
 ![Billing and Usage](../images/M1-l7-12.jpg)
