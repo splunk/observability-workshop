@@ -1,4 +1,4 @@
-## Lab Summary
+### Lab Summary
 * Introduction to the SignalFx Dashboards and charts
 * Editing and creating charts
 * Filtering and analytical functions
@@ -6,6 +6,7 @@
 * Introduction to SignalFlow
 
 ---
+
 ### 1. Introduction to the SignalFx environment  
 Logon to the SignalFx organization you have been invited to
 
@@ -241,5 +242,3 @@ Enter a new name for your dashboard and click on Done
 Congratulations! You have created your first chart and dashboard!
 
 ![](../images/M1-l1-36.png) 
-
----

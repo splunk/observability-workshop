@@ -137,7 +137,3 @@ If there are many clusters you can use the dashboard filter to narrow down to yo
 To examine the health of your cluster, open the side bar by clicking on the ![side bar button](../images/M1-l4-sidebar-button.jpg) button to open the Metrics side bar. Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: Cpu%, Mem%, Network in & out. Events and Container list.
 
 ![side bar metrics](../images/M1-l4-explore-metrics.jpg)
-
----
-
-Once you are finished please proceed to [Deploying NGINX in Kubernetes](https://signalfx.github.io/app-dev-workshop/module1/nginx/)

@@ -107,7 +107,3 @@ Server Port:            30995
 
 Validate you are seeing metrics in the UI by going to _**Dashboards → NGINX → NGINX Servers**_ Tip: you can again apply the filter `kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP` to focus on only your metrics.
 ![](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/m1_l4-nginx-dashboard.png)
-
----
-
-Once you are finished please proceed to [Monitoring as Code with Detectors](https://signalfx.github.io/app-dev-workshop/module1/terraform/)

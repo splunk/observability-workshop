@@ -1,4 +1,4 @@
-## Lab Summary
+### Lab Summary
 * Create a Detector from one of you charts
 
 ---
@@ -92,6 +92,3 @@ You will see you alert detector listed here.
 ![](../images/M1-l2-11.png) 
 
 Congrats! You have created your first alert detector and activated it!
-
-***
-Continue the workshop with [Working with Muting Rules](https://signalfx.github.io/app-dev-workshop/module1/muting/)
