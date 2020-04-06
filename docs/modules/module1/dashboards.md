@@ -1,7 +1,12 @@
-## Lab Summary
+### Lab Summary
 * Introduction to the SignalFx Dashboards and charts
-* How to create Charts and Dashboards
+* Editing and creating charts
+* Filtering and analytical functions
+* Using formulas
+* Introduction to SignalFlow
+
 ---
+
 ### 1. Introduction to the SignalFx environment  
 Logon to the SignalFx organization you have been invited to
 
@@ -40,10 +45,10 @@ Click on the three dots (...) on the Latency histogram chart (circled in the scr
 
 ***
 
-Click on the different chart type icons to explore each of the visualisations
+Click on the different chart type icons to explore each of the visualizations
 ![](../images/M1-l1-5.png)
  
-See how the chart changes. You can use different ways to visualise your metrics - you choose which chart type fits best for the visualisation you want to have.
+See how the chart changes. You can use different ways to visualize your metrics - you choose which chart type fits best for the visualization you want to have.
 For more info on the different chart types see: [Choosing a chart type](https://docs.signalfx.com/en/latest/charts/chart-planning-creating.html#choosing-a-chart-type)
 
 Click on Line chart type and you will see the line plot.
@@ -54,8 +59,8 @@ In the PLOT EDITOR tab under Signal you see the metric demo.trans.latency we are
 
 ![](../images/M1-l1-7.png)
 
-
 ---
+
 ### 4. Creating a new chart
 Let's now create a new chart and save it in a new dashboard! Click on the plus icon and from the drop down, click on **Chart**
 
@@ -91,7 +96,7 @@ In the demo_datacenter column you see that there are two data centers, Paris and
 Let's now select the Paris datacenter to do some analytics - for that we will use a filter.
 
 Let's go back to the PLOT EDITOR tab
-Click on Add filter, wait until it automatically populates, choose demo_datacenter, and then Paris
+Click on Add filter, wait until it automatically populates, choose `demo_datacenter`, and then Paris
 
 ![](../images/M1-l1-13.png)
 
@@ -187,7 +192,7 @@ Filter the Paris datacenter (see step 12 above if you need help with this) and f
 We see that there is a correlation between latency and number of transactions! Hooray!
 Likewise we could check Find Events and find events like deployment events etc. to correlate with.
 
-Click on the  icon to collapse the Metrics sidebar
+Click on the icon to collapse the Metrics sidebar
 
 ![](../images/M1-l1-28.png)
 
@@ -237,7 +242,3 @@ Enter a new name for your dashboard and click on Done
 Congratulations! You have created your first chart and dashboard!
 
 ![](../images/M1-l1-36.png) 
-
-***
-Continue the workshop with [Working with Detectors](https://github.com/signalfx/app-dev-workshop/wiki/1.2-Working-with-Detectors) 
-

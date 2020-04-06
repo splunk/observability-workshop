@@ -12,14 +12,14 @@ This is already documented in [1.4 Running the SmartAgent in Kubernetes using K3
 
 To deploy the Sock Shop application into K3s apply the deployment
 
-```bash
+```bash tab="Input"
 cd apm/sockshop
 kubectl create ns sock-shop
 kubectl apply -f k8s/complete-demo.yaml
 ```
 
 
-```text
+```text tab="Output"
 namespace/sock-shop created
 deployment.apps/carts-db created
 service/carts-db created
@@ -59,13 +59,11 @@ SOCKS_ENDPOINT=$(kubectl get svc front-end -n sock-shop -o jsonpath='{.spec.clus
 
 Then send a 
 
-```bash
+```bash tab="Input"
 curl $SOCKS_ENDPOINT
 ```
 
-and it should respond with HTML markup:
-
-```html
+```html tab="Output"
 ...
 </script>
 </body>
