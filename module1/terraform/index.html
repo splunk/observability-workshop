@@ -357,15 +357,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-plan-and-apply-the-terraform" class="md-nav__link">
-    2. Plan and apply the Terraform
+  <a href="#2-create-an-execution-plan" class="md-nav__link">
+    2. Create an execution plan
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-destroy-all-your-hard-work" class="md-nav__link">
-    3. Destroy all your hard work
+  <a href="#3-apply-actions-from-execution-plan" class="md-nav__link">
+    3. Apply actions from execution plan
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-destroy-all-your-hard-work" class="md-nav__link">
+    4. Destroy all your hard work
   </a>
   
 </li>
@@ -497,15 +504,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-plan-and-apply-the-terraform" class="md-nav__link">
-    2. Plan and apply the Terraform
+  <a href="#2-create-an-execution-plan" class="md-nav__link">
+    2. Create an execution plan
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-destroy-all-your-hard-work" class="md-nav__link">
-    3. Destroy all your hard work
+  <a href="#3-apply-actions-from-execution-plan" class="md-nav__link">
+    3. Apply actions from execution plan
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-destroy-all-your-hard-work" class="md-nav__link">
+    4. Destroy all your hard work
   </a>
   
 </li>
@@ -541,7 +555,6 @@
 <li>Install Terraform and initialise the SignalFx Provider.</li>
 <li>Run Terraform to create SignalFx detectors and dashboards from code using our Terraform provider.</li>
 <li>See how Terraform can also delete detectors and dashboards.</li>
-<li>(Optional) Upgrade the SignalFx Provider.</li>
 </ul>
 <hr />
 <h3 id="1-initial-setup">1. Initial setup<a class="headerlink" href="#1-initial-setup" title="Permanent link">&para;</a></h3>
@@ -561,29 +574,30 @@ unzip master.zip
 </code></pre></div>
 
 <hr />
-<h3 id="2-plan-and-apply-the-terraform">2. Plan and apply the Terraform<a class="headerlink" href="#2-plan-and-apply-the-terraform" title="Permanent link">&para;</a></h3>
+<h3 id="2-create-an-execution-plan">2. Create an execution plan<a class="headerlink" href="#2-create-an-execution-plan" title="Permanent link">&para;</a></h3>
 <p>Review the execution plan. Replace <code>{YOUR_INITIALS}</code> e.g. <code>-var=”sfx_prefix=RWC”</code></p>
 <div class="codehilite"><pre><span></span><code>terraform plan -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span> -var<span class="o">=</span><span class="s2">&quot;sfx_prefix={YOUR_INITIALS}&quot;</span>
 </code></pre></div>
 
 <p>Where <code>access_token</code> is the SignalFx Access Token and realm is either <code>eu0</code>, <code>us1</code> or <code>ap0</code>. If the plan executes successfully, we can go ahead and apply:</p>
+<hr />
+<h3 id="3-apply-actions-from-execution-plan">3. Apply actions from execution plan<a class="headerlink" href="#3-apply-actions-from-execution-plan" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code>terraform apply -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span> -var<span class="o">=</span><span class="s2">&quot;sfx_prefix={YOUR_INITIALS}&quot;</span>
 </code></pre></div>
 
-<p>To deploy only a subset (by module see <code>main.tf</code>) e.g.
-<div class="codehilite"><pre><span></span><code>terraform apply -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span> -var<span class="o">=</span><span class="s2">&quot;sfx_prefix={YOUR_INITIALS}&quot;</span> -target<span class="o">=</span>module.aws
-terraform apply -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span> -var<span class="o">=</span><span class="s2">&quot;sfx_prefix={YOUR_INITIALS}&quot;</span> - <span class="nv">target</span><span class="o">=</span>module.usage_dashboard
-terraform apply -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span> -var<span class="o">=</span><span class="s2">&quot;sfx_prefix={YOUR_INITIALS}&quot;</span> -target<span class="o">=</span>module.gcp
-</code></pre></div></p>
 <p>Validate that the detectors were created, under the <em><strong>Alerts tab → Detectors</strong></em>, you should see a list of new detectors with the a prefix of your initials:</p>
 <p><img alt="" src="../../images/m1_l3-detectors.png" /></p>
 <hr />
-<h3 id="3-destroy-all-your-hard-work">3. Destroy all your hard work<a class="headerlink" href="#3-destroy-all-your-hard-work" title="Permanent link">&para;</a></h3>
+<h3 id="4-destroy-all-your-hard-work">4. Destroy all your hard work<a class="headerlink" href="#4-destroy-all-your-hard-work" title="Permanent link">&para;</a></h3>
 <p>You will first need to ensure you are in the correct workspace, replace <code>{WORKSPACE_NAME}</code> with the name created in the initial setup)</p>
-<div class="codehilite"><pre><span></span><code>terraform workspace <span class="k">select</span> <span class="o">{</span>WORKSPACE_NAME<span class="o">}</span>
+<div class="codehilite"><pre><span></span><code>terraform workspace select {WORKSPACE_NAME}
 </code></pre></div>
 
-<p>Destroy all Detectors and Dashboards that were previously applied. <strong>Note:</strong> The <code>var=”sfx_prefix={YOUR_INITIALS}”</code> is not required!</p>
+<p>Destroy all Detectors and Dashboards that were previously applied.</p>
+<div class="admonition info">
+<p class="admonition-title">Note</p>
+<p>The <code>var=”sfx_prefix={YOUR_INITIALS}”</code> is not required!</p>
+</div>
 <div class="codehilite"><pre><span></span><code>terraform destroy -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span>
 </code></pre></div>
                 
