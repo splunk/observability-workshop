@@ -93,7 +93,7 @@ Where `access_token` is the SignalFx Access Token and realm is either `eu0`, `us
 terraform apply -var="access_token=abc123" -var="realm=us1" -var="sfx_prefix={YOUR_INITIALS}"
 ```
 
-Validate that the detectors were created, under the _**Alerts tab → Detectors**_, you should see a list of new detectors with the a prefix of your initials:
+Validate that the detectors were created, under the _**ALERTS → Detectors**_, you should see a list of new detectors with the a prefix of your initials:
 
 ![](../images/module4/detectors.png)
 
@@ -116,3 +116,7 @@ Destroy all Detectors and Dashboards that were previously applied.
 ```bash
 terraform destroy -var="access_token=abc123" -var="realm=us1"
 ```
+
+Validate all the detectors have been removed by navigating to _**ALERTS → Detectors**_
+
+![](../images/module4/destroy.png)
