@@ -761,7 +761,7 @@ for this configuration.
 <div class="codehilite"><pre><span></span><code>terraform apply -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span> -var<span class="o">=</span><span class="s2">&quot;sfx_prefix={YOUR_INITIALS}&quot;</span>
 </code></pre></div>
 
-<p>Validate that the detectors were created, under the <em><strong>Alerts tab → Detectors</strong></em>, you should see a list of new detectors with the a prefix of your initials:</p>
+<p>Validate that the detectors were created, under the <em><strong>ALERTS → Detectors</strong></em>, you should see a list of new detectors with the a prefix of your initials:</p>
 <p><img alt="" src="../../images/module4/detectors.png" /></p>
 <hr />
 <h3 id="4-destroy-all-your-hard-work">4. Destroy all your hard work<a class="headerlink" href="#4-destroy-all-your-hard-work" title="Permanent link">&para;</a></h3>
@@ -776,6 +776,9 @@ for this configuration.
 </div>
 <div class="codehilite"><pre><span></span><code>terraform destroy -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span>
 </code></pre></div>
+
+<p>Validate all the detectors have been removed by navigating to <em><strong>ALERTS → Detectors</strong></em></p>
+<p><img alt="" src="../../images/module4/destroy.png" /></p>
                 
                   
                 
