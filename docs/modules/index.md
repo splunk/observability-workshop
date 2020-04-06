@@ -56,4 +56,6 @@ SignalFx provides a unified, single-pane-of-glass view of infrastructure and app
 * Navigate to the application code-level insights within seconds using contextual alerts pointing to the relevant traces;
 * Reduce MTTR and enable DevOps practices by having a single source of truth across infrastructure and deployed microservices.
 
-[Let's get started!](https://signalfx.github.io/app-dev-workshop/module1/dashboards/)
+---
+
+**[Let's get started!](https://signalfx.github.io/app-dev-workshop/module1/dashboards/)**
