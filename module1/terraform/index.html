@@ -653,13 +653,66 @@ unzip master.zip
 </code></pre></div>
 
 <p>Initialise Terraform. <strong>Note:</strong> You will need to run this command each time a new version of the Terraform Provider is released. You can track the releases on <a href="https://github.com/terraform-providers/terraform-provider-signalfx/releases">GitHub</a>.</p>
-<div class="codehilite"><pre><span></span><code>terraform init -upgrade
-</code></pre></div>
+<div class="superfences-tabs">
+<input name="__tabs_1" type="radio" id="__tab_1_0" checked="checked" />
+<label for="__tab_1_0">Input</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>terraform init -upgrade
+</code></pre></div></div>
+<input name="__tabs_1" type="radio" id="__tab_1_1" />
+<label for="__tab_1_1">Output</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>Upgrading modules...
+- aws in modules/aws
+- azure in modules/azure
+- docker in modules/docker
+- gcp in modules/gcp
+- host in modules/host
+- kubernetes in modules/kubernetes
+- parent_child_dashboard in modules/dashboards/parent
+- pivotal in modules/pivotal
+- usage_dashboard in modules/dashboards/usage
 
+Initializing the backend...
+
+Initializing provider plugins...
+- Checking for available provider plugins...
+- Downloading plugin for provider &quot;signalfx&quot; (terraform-providers/signalfx) 4.18.6...
+
+The following providers do not have any version constraints in configuration,
+so the latest version was installed.
+
+To prevent automatic upgrades to new major versions that may contain breaking
+changes, it is recommended to add version = &quot;...&quot; constraints to the
+corresponding provider blocks in configuration, with the constraint strings
+suggested below.
+
+* provider.signalfx: version = &quot;~&gt; 4.18&quot;
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running &quot;terraform plan&quot; to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+</code></pre></div></div>
+</div>
 <p>Create a new workspace, replace <code>{WORKSPACE_NAME}</code> with what you want your workspace to be called:</p>
-<div class="codehilite"><pre><span></span><code>terraform workspace new <span class="o">{</span>WORKSPACE_NAME<span class="o">}</span>
-</code></pre></div>
+<div class="superfences-tabs">
+<input name="__tabs_2" type="radio" id="__tab_2_0" checked="checked" />
+<label for="__tab_2_0">Input</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>terraform workspace new <span class="o">{</span>WORKSPACE_NAME<span class="o">}</span>
+</code></pre></div></div>
+<input name="__tabs_2" type="radio" id="__tab_2_1" />
+<label for="__tab_2_1">Output</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>Created and switched to workspace &quot;my_workspace&quot;!
 
+You&#39;re now on a new, empty workspace. Workspaces isolate their state,
+so if you run &quot;terraform plan&quot; Terraform will not see any existing state
+for this configuration.
+</code></pre></div></div>
+</div>
 <hr />
 <h3 id="2-create-an-execution-plan">2. Create an execution plan<a class="headerlink" href="#2-create-an-execution-plan" title="Permanent link">&para;</a></h3>
 <p>Review the execution plan. Replace <code>{YOUR_INITIALS}</code> e.g. <code>-var=”sfx_prefix=RWC”</code></p>
