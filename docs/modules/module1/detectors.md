@@ -18,7 +18,7 @@ We are going to create a new alert detector from the chart.
 
 ![](../images/M1-l2-2.png) 
 
-!!! note
+!!! warning "Important"
     In the window that opens, add your initials in front of the proposed text, and click on Create Alert Rule.
     It should be something like this: LI's Latency Chart Detector.
 
