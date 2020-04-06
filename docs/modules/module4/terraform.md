@@ -95,7 +95,7 @@ terraform apply -var="access_token=abc123" -var="realm=us1" -var="sfx_prefix={YO
 
 Validate that the detectors were created, under the _**Alerts tab → Detectors**_, you should see a list of new detectors with the a prefix of your initials:
 
-![](../images/m1_l3-detectors.png)
+![](../images/module4/detectors.png)
 
 
 ---
