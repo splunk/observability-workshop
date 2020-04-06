@@ -1,6 +1,10 @@
 ## Lab Summary
 * Introduction to the SignalFx Dashboards and charts
-* How to create Charts and Dashboards
+* Editing and creating charts
+* Filtering and analytical functions
+* Using formulas
+* Introduction to SignalFlow
+
 ---
 ### 1. Introduction to the SignalFx environment  
 Logon to the SignalFx organization you have been invited to
@@ -238,6 +242,4 @@ Congratulations! You have created your first chart and dashboard!
 
 ![](../images/M1-l1-36.png) 
 
-***
-Continue the workshop with [Working with Detectors](https://signalfx.github.io/app-dev-workshop/module1/detectors/) 
-
+---
