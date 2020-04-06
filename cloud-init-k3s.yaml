@@ -32,3 +32,4 @@ runcmd:
  - 'curl -OL https://github.com/derailed/k9s/releases/download/v0.17.7/k9s_Linux_x86_64.tar.gz'
  - tar xvfz k9s_Linux_x86_64.tar.gz
  - mv k9s /usr/local/bin
+ - chmod -x /etc/update-motd.d/*
