@@ -1,7 +1,10 @@
 site_name: 'App Dev Workshop'
+site_description: 'Splunk App Dev Workshop'
+site_author: 'Sales Engineering'
 site_url: 'https://signalfx.github.io/app-dev-workshop/'
 repo_url: 'https://github.com/signalfx/app-dev-workshop/'
 edit_uri: 'edit/master/docs/modules/'
+copyright: Copyright &copy; 2020 Splunk Inc. All rights reserved.
 remote_branch: gh-pages
 docs_dir: modules
 theme:
