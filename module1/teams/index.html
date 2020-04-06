@@ -13,7 +13,7 @@
         <meta name="description" content="Splunk App Dev Workshop">
       
       
-        <link rel="canonical" href="https://signalfx.github.io/app-dev-workshop/module1/ecs-setup/">
+        <link rel="canonical" href="https://signalfx.github.io/app-dev-workshop/module1/teams/">
       
       
         <meta name="author" content="Sales Engineering">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Ecs setup - App Dev Workshop</title>
+        <title>2. Teams - App Dev Workshop</title>
       
     
     
@@ -93,7 +93,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#summary-of-this-wiki-page" tabindex="0" class="md-skip">
+      <a href="#lab-summary" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -119,7 +119,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Ecs setup
+                2. Teams
               
             </span>
           
@@ -383,10 +383,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
     
     <label class="md-nav__link" for="nav-6">
       <b>Module 5</b> - Service Bureau
@@ -414,11 +416,73 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../teams/" title="2. Teams" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        2. Teams
+      </label>
+    
+    <a href="./" title="2. Teams" class="md-nav__link md-nav__link--active">
       2. Teams
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lab-summary" class="md-nav__link">
+    Lab Summary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction-to-teams" class="md-nav__link">
+    1. Introduction to Teams
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-creating-a-new-team" class="md-nav__link">
+    2. Creating a new Team
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-adding-notification-rules-to-a-team" class="md-nav__link">
+    3. Adding Notification Rules to a Team
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-controlling-a-teams-usage" class="md-nav__link">
+    4. Controlling a Team's usage!
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -506,22 +570,36 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#summary-of-this-wiki-page" class="md-nav__link">
-    Summary of this wiki page:
+  <a href="#lab-summary" class="md-nav__link">
+    Lab Summary
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-starting-the-workshop-instance" class="md-nav__link">
-    1. Starting the workshop instance
+  <a href="#1-introduction-to-teams" class="md-nav__link">
+    1. Introduction to Teams
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-connecting-to-your-workshop-instance" class="md-nav__link">
-    2. Connecting to your workshop instance
+  <a href="#2-creating-a-new-team" class="md-nav__link">
+    2. Creating a new Team
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-adding-notification-rules-to-a-team" class="md-nav__link">
+    3. Adding Notification Rules to a Team
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-controlling-a-teams-usage" class="md-nav__link">
+    4. Controlling a Team's usage!
   </a>
   
 </li>
@@ -542,43 +620,107 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/signalfx/app-dev-workshop/edit/master/docs/modules/module1/ecs-setup.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/signalfx/app-dev-workshop/edit/master/docs/modules/module1/teams.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Ecs setup</h1>
+                  <h1>2. Teams</h1>
                 
-                <h3 id="summary-of-this-wiki-page">Summary of this wiki page:<a class="headerlink" href="#summary-of-this-wiki-page" title="Permanent link">&para;</a></h3>
+                <h3 id="lab-summary">Lab Summary<a class="headerlink" href="#lab-summary" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Use AWS EC2 to deploy a Ubuntu server prebuild for the work shop.</li>
-<li>Explain the extra steps needed to  run the workshop on this instance</li>
+<li>Create a team and add members to team</li>
+<li>Discover how you can restrict usage for teams by creating separate access token's and set limits.</li>
 </ul>
 <hr />
-<h3 id="1-starting-the-workshop-instance">1. Starting the workshop instance<a class="headerlink" href="#1-starting-the-workshop-instance" title="Permanent link">&para;</a></h3>
-<p>Login into your AWS account using the <a href="https://signin.aws.amazon.com">AWS console</a> and go to the EC2 service page. As the Workshop Instance currently only resides in AWS Frankfurt please change your region to Frankfurt by changing the drop-down list at the top of the screen</p>
-<p><img alt="Frankfurt selection" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-SelectFrankfurt.jpg" /></p>
-<p>Click the blue <strong>launch instance</strong> button to go to the instance selection page and search for the workshop by typing the name <em><strong>App-Dev-Workshop</strong></em> into the search box. You should find  get 1 result in the Community AMI's, and click on the on the Result link:</p>
-<p><img alt="Result found" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-AMI-select.jpg" /></p>
-<p>This should bring you to the choose and instance type screen. Here you can select the type of machine you wish to run the workshop on, we do recommend to use at least a <strong>t2 medium</strong>  with at least two  cpu and 4 GB of memory. Once you made your selection press <strong>Review and Launch</strong> button.</p>
-<p><img alt="AWS instance type" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-InstamceType.jpg" /></p>
-<p>Validate that the information on the review page looks like what is shown below and hit the <strong>Launch</strong> button to start the workshop instance.</p>
-<p><img alt="Launcing instance" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-Launch.jpg" /></p>
-<p>You will be presented with a dialog box asking to provide credentials, there is no need to provide ssh keys so you can select the option <strong><em>Proceed without a key pair</em></strong>, then tick the acknowledge box to confirm you willing to pay AWS for this then hit the blue <strong>LAUNCH INSTANCE</strong> button</p>
-<p><img alt="Launch dialog" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS_-Launch-dialog.jpg" /></p>
-<p>On the left side of you screen click under the <strong>INSTANCES</strong> heading on the <em>instances</em> link to see your instance being deployed. Once the deployment is complete, copy the Public IP address from the <strong>Description</strong> panel at the bottom.</p>
-<p><img alt="IP adress" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-Get-ip.jpg" /></p>
+<h3 id="1-introduction-to-teams">1. Introduction to Teams<a class="headerlink" href="#1-introduction-to-teams" title="Permanent link">&para;</a></h3>
+<p>To make sure that users directly see the dashboards and alerts that are relevant to them when they login to SignalFX, 
+most organizations will use SignalFx's Teams mechanism to assign a user to a Team.
+Usually this matches work related roles, for example, members of a Dev-ops or Product Management group would be assigned 
+to the corresponding Teams in SignalFx.</p>
+<p>Once an Team member is connected to SignalFx, they will be shown the Teams landing page, similar to the one shown below, In this case for the Product Management team.
+Here, members see all the Dashboard, alerts that are assigned the team and  any other useful information so they can focus on what is relevant to their job.</p>
+<p><img alt="Teams" src="../../images/M1-l7-9.jpg" /></p>
+<p>The above landing page has three Dashboard groups assigned, shows there is a critical alert that had this team as an adressee and some text and urls with other topics of interest. </p>
 <hr />
-<h3 id="2-connecting-to-your-workshop-instance">2. Connecting to your workshop instance<a class="headerlink" href="#2-connecting-to-your-workshop-instance" title="Permanent link">&para;</a></h3>
-<p>Start a command line session on your PC (terminal on a Mac, or putty on Windows for example) Login to your instance by starting an ssh session. (replace [IP-ADRESS] with the IP address copied at step 6 from the previous section:</p>
-<p><code>ssh ubuntu@[IP-ADRESS]</code></p>
-<p>You will usually be asked to confirm that you wish to connect via ssh to the server, type yes to confirm, followed by a query for a password.</p>
-<p><em><strong>The password will be provided by the facilitator of the workshop</strong></em>.</p>
-<p><img alt="doing an ssh session" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-Shell-connect.jpg" /></p>
-<p>Once your logged in successfully you should see the <strong>APP-DEV</strong> logo confirming that you are indeed using a workshop instance. </p>
-<p>To make sure you can run the instruction as described in the Workshop pages please enter the command <code>sudo -s</code> to elevate your permissions, your prompt should change from <code>ubuntu@[Servername]</code> to <code>root@[Servername]</code></p>
-<p>Next type <code>ls</code> to confirm there is a workshop folder available to you on the machine.</p>
-<p><img alt="APP_DEV shell" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-shell%20done.jpg" /></p>
+<h3 id="2-creating-a-new-team">2. Creating a new Team<a class="headerlink" href="#2-creating-a-new-team" title="Permanent link">&para;</a></h3>
+<p>To work with  to signalFx's Team UI click on the settings <img alt="gray user icon" src="../../images/M1-l7-2.jpg" /> ) icon on the right top of the page and select the <strong>Organizations Settings → Teams</strong> tab, or select the <strong>Teams</strong> tab from the left pane.</p>
+<p><img alt="location of settings" src="../../images/M1-l7-7.jpg" /></p>
+<p>When the <strong>Team</strong> UI is selected you will be presented in the workshop with an empty Team's list </p>
+<p><img alt="No teams shown" src="../../images/M1-l7-14.jpg" /></p>
 <hr />
-<p>If everything matches the screen shot above, your ready to begin your <a href="https://github.com/signalfx/app-dev-workshop/wiki">workshop</a></p>
+<p>To add a new <strong>Team</strong> click on the green <img alt="Create team" src="../../images/M1-l7-15.jpg" /> button. This will present youy with the <strong>Create New Team</strong> Dialog.</p>
+<p><img alt="Add Team" src="../../images/M1-l7-16.jpg" /></p>
+<p>Create your own team by naming it [YOUR-INITIALS]-Team and add yourself by searching for your name and 
+selecting  the <strong>Add</strong> link behind your name. This should result in a dialog similar to the one below:</p>
+<p>You can remove selected users by pressing  <strong>remove</strong> or the small <strong>x</strong> behind a name.
+Make sure you have your group created with your initials and with yourself added as a member, then press done.</p>
+<p><img alt="Add Team complete" src="../../images/M1-l7-17.jpg" /></p>
+<p>This will bring you back to the <strong>Teams</strong> list that now show your Team and the one's created by others.
+Note that the group(s) you are a member of has a gray <strong>Member</strong> icon in front of it.
+If no members are assigned to your group, you should see a blue <strong>Add members</strong> link instead of the member count, 
+clicking on that link  will get you to the <strong>Edit Team</strong> dialog where you can add yourself. <br />
+This is the same dialog you get when pressing the 3 dots <strong>...</strong>   at the end of the Line with your team
+and select <strong>Edit Team</strong>.</p>
+<p>The 3 <strong>...</strong> menu give you the option to Edit a Team, Join or leave a Team or Delete a team.</p>
+<hr />
+<h3 id="3-adding-notification-rules-to-a-team">3. Adding Notification Rules to a Team<a class="headerlink" href="#3-adding-notification-rules-to-a-team" title="Permanent link">&para;</a></h3>
+<p>You can set up specific Notification rules per team, click on the <strong>NOTIFICATION POLICY</strong> Button, 
+this will open the notification edit menu.</p>
+<p><img alt="Base  notification meny" src="../../images/M1-l7-18.jpg" /></p>
+<p>By default the system offers you the ability to set up a general notification rule for your team.
+Note the Email all members, This mean all members of this team will receive an email with the Alert information, regardless of the alert type.
+You can add other recipients, by  clicking <img alt="add recipient" src="../../images/M1-l7-19.jpg" /></p>
+<p>You can add a different email addresses to inform people outside SignalFx users like
+ <em>alerts@your-company.com</em> if that is way to inform people outside SignalFx. AAdding groups you would use when you also want to send an alert to an other team, like sending an alert on the Database of your application to the  general Database team along with one to your team.</p>
+<p>However if you click on the link <strong>Configure separate notification tiers for different severity alerts</strong> you can configure every alert level differently.</p>
+<p><img alt="Multiple Notifications" src="../../images/M1-l7-10.jpg" /></p>
+<p>As you can see in th above screenshot, you can set up different alert rules for the different alert level.
+We have different rules set up for all the various Error levels, Showing you how Splunk's VictorOps offering would integrate with SignalFx.
+Both at a Critical and Major alert, the alert gets forwarded to Splunk's VictorOps that will handle alerting the on call engineer and/or manager.
+For the Minor alerts we send it to the Teams slack channel and for warning and info messages we just use an email</p>
+<p>Below you see some of the Notification options you can install in your SignalFx Organization:</p>
+<p><img alt="Notifications options" src="../../images/M1-l7-20.jpg" /></p>
+<p>Take a moment to create some notification rules for you Team.</p>
+<hr />
+<h3 id="4-controlling-a-teams-usage">4. Controlling a Team's usage!<a class="headerlink" href="#4-controlling-a-teams-usage" title="Permanent link">&para;</a></h3>
+<p>If you wish to make sure certain teams or users cannot use more then a certain allotment of you overall  allotment of nodes, containers and Metrics' you can create multiple Access keys.</p>
+<p>To work with SignalFx's Access Tokens UI click on the settings <img alt="gray user icon" src="../../images/M1-l7-2.jpg" /> ) icon on the right top of the page and select the <strong>Organizations Settings → Access tokens</strong> tab, or select the <strong>Access Tokens</strong> tab from the left pane.</p>
+<p><img alt="Select Token" src="../../images/M1-l7-13.jpg" /></p>
+<p>This will open up the <strong>Access Token</strong> Interface.  It consist of a an overview of your Allotments for this organization and a list of Access Tokens that have been generated.
+Every Organization wil have a Default token that is generated when  Organization is created.</p>
+<p>Each Token is unique and can be assigned limits for the amount of  Nodes,containers Custom Metrics and High Resolution it can use.</p>
+<p>The <strong>Usage Status</strong> Column shows if a token is used above or below its assigned limits. </p>
+<p><img alt="New token" src="../../images/M1-l7-21.jpg" /></p>
+<hr />
+<p>Let create a new token by clicking on  the <img alt="new token button" src="../../images/M1-l7-22.jpg" /> button.
+This will provide you with the <strong>Name Your Access Token</strong> dialog.
+Enter the new name of the new Token  by using your Initials  ie. PH-Token</p>
+<p><img alt="Name Your token" src="../../images/M1-l7-23.jpg" /></p>
+<p>After you press Ok,  you will be taken back to the <strong>Access token</strong> UI, here your new token should be present, among the ones created by others.</p>
+<p><img alt="full tokenlist" src="../../images/M1-l7-24.jpg" /></p>
+<p>If you have made an error in your naming, want to disable/enable a token or set a Token limit, click on the 3 <strong>...</strong> menu button behind a token limit to open the manage token menu.</p>
+<p><img alt="Show Menu" src="../../images/M1-l7-25.jpg" /></p>
+<p>If you made a type you can use the Rename Token option to correct the name of your token.</p>
+<hr />
+<p>If you need to make sure a token  cannot be used a to send Metrics in you can Disable a token.
+Click on the Disable button to Disable the token, this means the token cannot be used for sending in data to SignalFX.<br />
+The line with Your Token should turn greyed out to indicate that is been Disabled as you can see in the screenshot below.</p>
+<p><img alt="Token disabled" src="../../images/M1-l7-26.jpg" /></p>
+<p>Go ahead and click on the 3 <strong>...</strong> menu button to Disable and Enable your token.</p>
+<hr />
+<p>Now Lets start limiting usage by clicking on Manage Token Limit in teh 3 <strong>...</strong> menu.
+This will show the Manage Token Limit Dialog: </p>
+<p><img alt="Set Limits on token" src="../../images/M1-l7-12.jpg" /></p>
+<p>In this Dialog you can set the limits per category.</p>
+<p>Please go ahead and specify the limits as shown above for each usage metric.
+For our lab use your own email address, and double check if you have the  number in you dialog as shown above.</p>
+<p>Token limits are used to trigger an alert that notify one or more recipients when the usage has been above 90% of the limit for 5 minutes. To specify the recipients, click Add Recipient, then select the recipient or notification method you want to use. (Specifying recipients is optional but highly recommended.) The severity for token alerts is always Critical.</p>
+<p>Click on <strong>Update</strong> to save your Access Tokens limits and The Alert Settings.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When a token is at or above its limit in a usage category, new metrics for that usage category will not be stored and processed by SignalFx. This will make sure you there  will be no unexpected cost due to a team sending in data without restriction.</p>
+</div>
+<p>In your company you would distribute these new Access Tokens to various teams, controlling how much information/data they can send to SignalFx. This will allow you to fine tune the way you consume your SignalFx allotment and stop expensive surprises from happening</p>
+<p><strong>Congratulations!</strong> You have now  have completed the Service Bureau module.</p>
                 
                   
                 
@@ -606,6 +748,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../service_bureau/" title="1. Billing and Usage" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                1. Billing and Usage
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../module2/hotrod/" title="1. µAPM: Hotrod in K3s" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                1. µAPM: Hotrod in K3s
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
