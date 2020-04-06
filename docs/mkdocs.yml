@@ -34,15 +34,20 @@ plugins:
   
 nav:
   - Overview: index.md
-  - 'Module One':
+  - '<b>Module 1</b> - Dashboards':
     - '1. Working with Dashboards, Charts and Metrics': module1/dashboards.md
-    - '2. Working with Detectors': module1/detectors.md
-    - '3. Working with Muting Rules': module1/muting.md
-    - '4. Running the Smart Agent in Kubernetes (K3s)': module1/k3s.md
-    - '5. Deploying NGINX in K3s': module1/nginx.md
-    - '6. Monitoring as Code with Detectors & Dashboards': module1/terraform.md
-    - '7. Service Bureau' : module1/service_bureau.md
-  - 'Module Two':
+  - '<b>Module 2</b> - Detectors':
+    - '1. Working with Detectors': module1/detectors.md
+    - '2. Working with Muting Rules': module1/muting.md
+  - '<b>Module 3</b> - Smart Agent':
+    - '1. Running the Smart Agent in Kubernetes (K3s)': module1/k3s.md
+    - '2. Deploying NGINX in K3s' : module1/nginx.md
+  - '<b>Module 4</b> - Monitoring as Code':
+    - '1. Using Terraform' : module1/terraform.md
+  - '<b>Module 5</b> - Service Bureau':
+    - '1. Billing and Usage' : module1/service_bureau.md
+    - '2. Teams' : module1/teams.md
+  - '<b>Module 6</b> - APM':
     - '1. µAPM: Hotrod in K3s': module2/hotrod.md
     - '2. µAPM: Sock Shop in K3s': module2/sockshop.md
   - 'Cleaning Up!': cleanup.md
