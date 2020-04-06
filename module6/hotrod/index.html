@@ -13,7 +13,7 @@
         <meta name="description" content="Splunk App Dev Workshop">
       
       
-        <link rel="canonical" href="https://signalfx.github.io/app-dev-workshop/module1/terraform/">
+        <link rel="canonical" href="https://signalfx.github.io/app-dev-workshop/module6/hotrod/">
       
       
         <meta name="author" content="Sales Engineering">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Using Terraform for charts and dashboards - App Dev Workshop</title>
+        <title>Hotrod - App Dev Workshop</title>
       
     
     
@@ -93,7 +93,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#lab-summary" tabindex="0" class="md-skip">
+      <a href="#enabling-apm" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -119,7 +119,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Using Terraform for charts and dashboards
+                Hotrod
               
             </span>
           
@@ -236,7 +236,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../dashboards/" title="Working with Dashboards, Charts and Metrics" class="md-nav__link">
+    <a href="../../module1/dashboards/" title="Working with Dashboards, Charts and Metrics" class="md-nav__link">
       Working with Dashboards, Charts and Metrics
     </a>
   </li>
@@ -272,7 +272,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../detectors/" title="Working with Detectors" class="md-nav__link">
+    <a href="../../module1/detectors.md" title="Working with Detectors" class="md-nav__link">
       Working with Detectors
     </a>
   </li>
@@ -284,7 +284,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../muting/" title="Working with Muting Rules" class="md-nav__link">
+    <a href="../../module1/muting.md" title="Working with Muting Rules" class="md-nav__link">
       Working with Muting Rules
     </a>
   </li>
@@ -320,7 +320,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../k3s/" title="Deploying the Smart Agent in Kubernetes (K3s)" class="md-nav__link">
+    <a href="../../module1/k3s.md" title="Deploying the Smart Agent in Kubernetes (K3s)" class="md-nav__link">
       Deploying the Smart Agent in Kubernetes (K3s)
     </a>
   </li>
@@ -332,7 +332,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../nginx/" title="Deploying NGINX in K3s" class="md-nav__link">
+    <a href="../../module1/nginx.md" title="Deploying NGINX in K3s" class="md-nav__link">
       Deploying NGINX in K3s
     </a>
   </li>
@@ -347,12 +347,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
     <label class="md-nav__link" for="nav-5">
       <b>Module 4</b> - Monitoring as Code
@@ -368,79 +366,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Using Terraform for charts and dashboards
-      </label>
-    
-    <a href="./" title="Using Terraform for charts and dashboards" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../module1/terraform.md" title="Using Terraform for charts and dashboards" class="md-nav__link">
       Using Terraform for charts and dashboards
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#lab-summary" class="md-nav__link">
-    Lab Summary
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-initial-setup" class="md-nav__link">
-    1. Initial setup
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-create-an-execution-plan" class="md-nav__link">
-    2. Create an execution plan
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-apply-actions-from-execution-plan" class="md-nav__link">
-    3. Apply actions from execution plan
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-destroy-all-your-hard-work" class="md-nav__link">
-    4. Destroy all your hard work
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -474,7 +404,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../service_bureau/" title="Billing and Usage" class="md-nav__link">
+    <a href="../../module1/service_bureau.md" title="Billing and Usage" class="md-nav__link">
       Billing and Usage
     </a>
   </li>
@@ -486,7 +416,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../teams/" title="Teams" class="md-nav__link">
+    <a href="../../module1/teams.md" title="Teams" class="md-nav__link">
       Teams
     </a>
   </li>
@@ -522,7 +452,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module2/hotrod/" title="Running Hotrod in K3s" class="md-nav__link">
+    <a href="../../module2/hotrod.md" title="Running Hotrod in K3s" class="md-nav__link">
       Running Hotrod in K3s
     </a>
   </li>
@@ -534,7 +464,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module2/sockshop/" title="Running Sock Shop in K3s" class="md-nav__link">
+    <a href="../../module2/sockshop.md" title="Running Sock Shop in K3s" class="md-nav__link">
       Running Sock Shop in K3s
     </a>
   </li>
@@ -576,37 +506,30 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#lab-summary" class="md-nav__link">
-    Lab Summary
+  <a href="#enabling-apm" class="md-nav__link">
+    Enabling µAPM
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-initial-setup" class="md-nav__link">
-    1. Initial setup
+  <a href="#1-create-an-instance-running-kubernetes" class="md-nav__link">
+    1. Create an instance running Kubernetes
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-create-an-execution-plan" class="md-nav__link">
-    2. Create an execution plan
+  <a href="#2-deploy-the-hotrod-application-into-k3s" class="md-nav__link">
+    2. Deploy the Hotrod application into K3s
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-apply-actions-from-execution-plan" class="md-nav__link">
-    3. Apply actions from execution plan
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-destroy-all-your-hard-work" class="md-nav__link">
-    4. Destroy all your hard work
+  <a href="#3-generate-some-traffic-to-the-application-using-apache-benchmark" class="md-nav__link">
+    3. Generate some traffic to the application using Apache Benchmark
   </a>
   
 </li>
@@ -632,113 +555,65 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/signalfx/app-dev-workshop/edit/master/docs/modules/module1/terraform.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/signalfx/app-dev-workshop/edit/master/docs/modules/module6/hotrod.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Using Terraform for charts and dashboards</h1>
+                  <h1>Hotrod</h1>
                 
-                <h2 id="lab-summary">Lab Summary<a class="headerlink" href="#lab-summary" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Install Terraform and initialise the SignalFx Provider.</li>
-<li>Run Terraform to create SignalFx detectors and dashboards from code using our Terraform provider.</li>
-<li>See how Terraform can also delete detectors and dashboards.</li>
-</ul>
+                <h2 id="enabling-apm">Enabling µAPM<a class="headerlink" href="#enabling-apm" title="Permanent link">&para;</a></h2>
+<p><em>An organisation needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already.</em></p>
+<p><em>To check if you have an organisation with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards.</em></p>
 <hr />
-<h3 id="1-initial-setup">1. Initial setup<a class="headerlink" href="#1-initial-setup" title="Permanent link">&para;</a></h3>
-<p>Download and install Terraform for your platform - https://www.terraform.io/downloads.html (min. requirement v. 0.12.18)</p>
-<p>Download the SignalFx Jumpstart Terraform master zip file, unzip the file and change into the <code>signalfx-jumpstart-master</code> directory</p>
-<div class="codehilite"><pre><span></span><code>curl -LO https://github.com/signalfx/signalfx-jumpstart/archive/master.zip
-unzip master.zip
-<span class="nb">cd</span> signalfx-jumpstart-master
-</code></pre></div>
-
-<p>Initialise Terraform. <strong>Note:</strong> You will need to run this command each time a new version of the Terraform Provider is released. You can track the releases on <a href="https://github.com/terraform-providers/terraform-provider-signalfx/releases">GitHub</a>.</p>
+<h3 id="1-create-an-instance-running-kubernetes">1. Create an instance running Kubernetes<a class="headerlink" href="#1-create-an-instance-running-kubernetes" title="Permanent link">&para;</a></h3>
+<p>This is already documented in <a href="https://signalfx.github.io/app-dev-workshop/module1/k3s/">Deploying the Smart Agent in Kubernetes (K3s)</a>. </p>
+<hr />
+<h3 id="2-deploy-the-hotrod-application-into-k3s">2. Deploy the Hotrod application into K3s<a class="headerlink" href="#2-deploy-the-hotrod-application-into-k3s" title="Permanent link">&para;</a></h3>
+<p>To deploy the Hotrod application into K3s apply the deployment</p>
 <div class="superfences-tabs">
 <input name="__tabs_1" type="radio" id="__tab_1_0" checked="checked" />
 <label for="__tab_1_0">Input</label>
-<div class="superfences-content"><div class="codehilite"><pre><span></span><code>terraform init -upgrade
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>kubectl apply -f workshop/apm/hotrod/k8s/deployment.yaml 
 </code></pre></div></div>
 <input name="__tabs_1" type="radio" id="__tab_1_1" />
 <label for="__tab_1_1">Output</label>
-<div class="superfences-content"><div class="codehilite"><pre><span></span><code>Upgrading modules...
-- aws in modules/aws
-- azure in modules/azure
-- docker in modules/docker
-- gcp in modules/gcp
-- host in modules/host
-- kubernetes in modules/kubernetes
-- parent_child_dashboard in modules/dashboards/parent
-- pivotal in modules/pivotal
-- usage_dashboard in modules/dashboards/usage
-
-Initializing the backend...
-
-Initializing provider plugins...
-- Checking for available provider plugins...
-- Downloading plugin for provider &quot;signalfx&quot; (terraform-providers/signalfx) 4.18.6...
-
-The following providers do not have any version constraints in configuration,
-so the latest version was installed.
-
-To prevent automatic upgrades to new major versions that may contain breaking
-changes, it is recommended to add version = &quot;...&quot; constraints to the
-corresponding provider blocks in configuration, with the constraint strings
-suggested below.
-
-* provider.signalfx: version = &quot;~&gt; 4.18&quot;
-
-Terraform has been successfully initialized!
-
-You may now begin working with Terraform. Try running &quot;terraform plan&quot; to see
-any changes that are required for your infrastructure. All Terraform commands
-should now work.
-
-If you ever set or change modules or backend configuration for Terraform,
-rerun this command to reinitialize your working directory. If you forget, other
-commands will detect it and remind you to do so if necessary.
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>deployment.apps/hotrod created
+service/hotrod created
 </code></pre></div></div>
 </div>
-<p>Create a new workspace, replace <code>{WORKSPACE_NAME}</code> with what you want your workspace to be called:</p>
+<p>To ensure the Hotrod application is running:</p>
 <div class="superfences-tabs">
 <input name="__tabs_2" type="radio" id="__tab_2_0" checked="checked" />
 <label for="__tab_2_0">Input</label>
-<div class="superfences-content"><div class="codehilite"><pre><span></span><code>terraform workspace new <span class="o">{</span>WORKSPACE_NAME<span class="o">}</span>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>kubectl get pods
 </code></pre></div></div>
 <input name="__tabs_2" type="radio" id="__tab_2_1" />
 <label for="__tab_2_1">Output</label>
-<div class="superfences-content"><div class="codehilite"><pre><span></span><code>Created and switched to workspace &quot;my_workspace&quot;!
-
-You&#39;re now on a new, empty workspace. Workspaces isolate their state,
-so if you run &quot;terraform plan&quot; Terraform will not see any existing state
-for this configuration.
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>NAME                      READY   STATUS    RESTARTS   AGE
+signalfx-agent-mmzxk      1/1     Running   0          110s
+hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s
 </code></pre></div></div>
 </div>
-<hr />
-<h3 id="2-create-an-execution-plan">2. Create an execution plan<a class="headerlink" href="#2-create-an-execution-plan" title="Permanent link">&para;</a></h3>
-<p>Review the execution plan. Replace <code>{YOUR_INITIALS}</code> e.g. <code>-var=”sfx_prefix=RWC”</code></p>
-<div class="codehilite"><pre><span></span><code>terraform plan -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span> -var<span class="o">=</span><span class="s2">&quot;sfx_prefix={YOUR_INITIALS}&quot;</span>
-</code></pre></div>
-
-<p>Where <code>access_token</code> is the SignalFx Access Token and realm is either <code>eu0</code>, <code>us1</code> or <code>ap0</code>. If the plan executes successfully, we can go ahead and apply:</p>
-<hr />
-<h3 id="3-apply-actions-from-execution-plan">3. Apply actions from execution plan<a class="headerlink" href="#3-apply-actions-from-execution-plan" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>terraform apply -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span> -var<span class="o">=</span><span class="s2">&quot;sfx_prefix={YOUR_INITIALS}&quot;</span>
-</code></pre></div>
-
-<p>Validate that the detectors were created, under the <em><strong>Alerts tab → Detectors</strong></em>, you should see a list of new detectors with the a prefix of your initials:</p>
-<p><img alt="" src="../../images/m1_l3-detectors.png" /></p>
-<hr />
-<h3 id="4-destroy-all-your-hard-work">4. Destroy all your hard work<a class="headerlink" href="#4-destroy-all-your-hard-work" title="Permanent link">&para;</a></h3>
-<p>You will first need to ensure you are in the correct workspace, replace <code>{WORKSPACE_NAME}</code> with the name created in the initial setup)</p>
-<div class="codehilite"><pre><span></span><code>terraform workspace select {WORKSPACE_NAME}
-</code></pre></div>
-
-<p>Destroy all Detectors and Dashboards that were previously applied.</p>
-<div class="admonition info">
-<p class="admonition-title">Note</p>
-<p>The <code>var=”sfx_prefix={YOUR_INITIALS}”</code> is not required!</p>
+<p>You then need find the IP address assigned to the Hotrod service:</p>
+<div class="superfences-tabs">
+<input name="__tabs_3" type="radio" id="__tab_3_0" checked="checked" />
+<label for="__tab_3_0">Input</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>kubectl get svc
+</code></pre></div></div>
+<input name="__tabs_3" type="radio" id="__tab_3_1" />
+<label for="__tab_3_1">Output</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+kubernetes   ClusterIP   10.43.0.1       &lt;none&gt;        443/TCP    25m
+hotrod       ClusterIP   10.43.124.159   &lt;none&gt;        8080/TCP   94s
+</code></pre></div></div>
 </div>
-<div class="codehilite"><pre><span></span><code>terraform destroy -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span>
+<p>Make note of the <code>CLUSTER-IP</code> address associated with Hotrod</p>
+<hr />
+<h3 id="3-generate-some-traffic-to-the-application-using-apache-benchmark">3. Generate some traffic to the application using Apache Benchmark<a class="headerlink" href="#3-generate-some-traffic-to-the-application-using-apache-benchmark" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>ab -n10 -c10 <span class="s2">&quot;http://{CLUSTER-IP}:8080/dispatch?customer=392&amp;nonse=0.17041229755366172&quot;</span>
+</code></pre></div>
+
+<p>Create some errors with an invalid customer number</p>
+<div class="codehilite"><pre><span></span><code>ab -n10 -c10 <span class="s2">&quot;http://{CLUSTER-IP}:8080/dispatch?customer=391&amp;nonse=0.17041229755366172&quot;</span>
 </code></pre></div>
                 
                   
@@ -767,41 +642,6 @@ for this configuration.
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-        
-          <a href="../nginx/" title="Deploying NGINX in K3s" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Deploying NGINX in K3s
-              </span>
-            </div>
-          </a>
-        
-        
-          <a href="../service_bureau/" title="Billing and Usage" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Billing and Usage
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

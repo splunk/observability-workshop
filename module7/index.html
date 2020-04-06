@@ -13,7 +13,7 @@
         <meta name="description" content="Splunk App Dev Workshop">
       
       
-        <link rel="canonical" href="https://signalfx.github.io/app-dev-workshop/module1/detectors/">
+        <link rel="canonical" href="https://signalfx.github.io/app-dev-workshop/module7/">
       
       
         <meta name="author" content="Sales Engineering">
@@ -37,18 +37,18 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="../../images/favicon.ico">
+      <link rel="shortcut icon" href="../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
     
     
       
-        <title>Working with Detectors - App Dev Workshop</title>
+        <title>Index - App Dev Workshop</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
+      <link rel="stylesheet" href="../assets/stylesheets/application.adb8469c.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.a8b3c06d.css">
       
       
         
@@ -57,7 +57,7 @@
       
     
     
-      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
+      <script src="../assets/javascripts/modernizr.86422ebf.js"></script>
     
     
       
@@ -66,10 +66,10 @@
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
     
-      <link rel="stylesheet" href="../../extra.css">
+      <link rel="stylesheet" href="../extra.css">
     
     
       
@@ -93,7 +93,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#lab-summary" tabindex="0" class="md-skip">
+      <a href="#coming-soon" tabindex="0" class="md-skip">
         Skip to content
       </a>
     
@@ -104,7 +104,7 @@
       <div class="md-flex__cell md-flex__cell--shrink">
         <a href="https://signalfx.github.io/app-dev-workshop/" title="App Dev Workshop" aria-label="App Dev Workshop" class="md-header-nav__button md-logo">
           
-            <img alt="logo" src="../../images/logo.png" width="24" height="24">
+            <img alt="logo" src="../images/logo.png" width="24" height="24">
           
         </a>
       </div>
@@ -119,7 +119,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Working with Detectors
+                Index
               
             </span>
           
@@ -171,7 +171,7 @@
   <label class="md-nav__title md-nav__title--site" for="__drawer">
     <a href="https://signalfx.github.io/app-dev-workshop/" title="App Dev Workshop" class="md-nav__button md-logo">
       
-        <img alt="logo" src="../../images/logo.png" width="48" height="48">
+        <img alt="logo" src="../images/logo.png" width="48" height="48">
       
     </a>
     App Dev Workshop
@@ -205,7 +205,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../.." title="Overview" class="md-nav__link">
+    <a href=".." title="Overview" class="md-nav__link">
       Overview
     </a>
   </li>
@@ -236,7 +236,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../dashboards/" title="Working with Dashboards, Charts and Metrics" class="md-nav__link">
+    <a href="../module1/dashboards/" title="Working with Dashboards, Charts and Metrics" class="md-nav__link">
       Working with Dashboards, Charts and Metrics
     </a>
   </li>
@@ -251,12 +251,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
       <b>Module 2</b> - Detectors
@@ -272,80 +270,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Working with Detectors
-      </label>
-    
-    <a href="./" title="Working with Detectors" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../module1/detectors.md" title="Working with Detectors" class="md-nav__link">
       Working with Detectors
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#lab-summary" class="md-nav__link">
-    Lab Summary
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-create-a-detector-from-one-of-your-charts" class="md-nav__link">
-    1. Create a Detector from one of your charts
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-setting-alert-condition" class="md-nav__link">
-    2. Setting Alert condition
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-alert-pre-flight-check" class="md-nav__link">
-    3. Alert pre-flight check
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-configuring-the-alert-message" class="md-nav__link">
-    4. Configuring the alert message
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-activating-the-alert" class="md-nav__link">
-    5. Activating the alert
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -355,7 +284,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../muting/" title="Working with Muting Rules" class="md-nav__link">
+    <a href="../module1/muting.md" title="Working with Muting Rules" class="md-nav__link">
       Working with Muting Rules
     </a>
   </li>
@@ -391,7 +320,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../k3s/" title="Deploying the Smart Agent in Kubernetes (K3s)" class="md-nav__link">
+    <a href="../module1/k3s.md" title="Deploying the Smart Agent in Kubernetes (K3s)" class="md-nav__link">
       Deploying the Smart Agent in Kubernetes (K3s)
     </a>
   </li>
@@ -403,7 +332,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../nginx/" title="Deploying NGINX in K3s" class="md-nav__link">
+    <a href="../module1/nginx.md" title="Deploying NGINX in K3s" class="md-nav__link">
       Deploying NGINX in K3s
     </a>
   </li>
@@ -439,7 +368,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../terraform/" title="Using Terraform for charts and dashboards" class="md-nav__link">
+    <a href="../module1/terraform.md" title="Using Terraform for charts and dashboards" class="md-nav__link">
       Using Terraform for charts and dashboards
     </a>
   </li>
@@ -475,7 +404,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../service_bureau/" title="Billing and Usage" class="md-nav__link">
+    <a href="../module1/service_bureau.md" title="Billing and Usage" class="md-nav__link">
       Billing and Usage
     </a>
   </li>
@@ -487,7 +416,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../teams/" title="Teams" class="md-nav__link">
+    <a href="../module1/teams.md" title="Teams" class="md-nav__link">
       Teams
     </a>
   </li>
@@ -523,7 +452,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module2/hotrod/" title="Running Hotrod in K3s" class="md-nav__link">
+    <a href="../module2/hotrod.md" title="Running Hotrod in K3s" class="md-nav__link">
       Running Hotrod in K3s
     </a>
   </li>
@@ -535,7 +464,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module2/sockshop/" title="Running Sock Shop in K3s" class="md-nav__link">
+    <a href="../module2/sockshop.md" title="Running Sock Shop in K3s" class="md-nav__link">
       Running Sock Shop in K3s
     </a>
   </li>
@@ -552,7 +481,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../cleanup/" title="Cleaning Up!" class="md-nav__link">
+    <a href="../cleanup/" title="Cleaning Up!" class="md-nav__link">
       Cleaning Up!
     </a>
   </li>
@@ -577,43 +506,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#lab-summary" class="md-nav__link">
-    Lab Summary
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-create-a-detector-from-one-of-your-charts" class="md-nav__link">
-    1. Create a Detector from one of your charts
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-setting-alert-condition" class="md-nav__link">
-    2. Setting Alert condition
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-alert-pre-flight-check" class="md-nav__link">
-    3. Alert pre-flight check
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-configuring-the-alert-message" class="md-nav__link">
-    4. Configuring the alert message
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-activating-the-alert" class="md-nav__link">
-    5. Activating the alert
+  <a href="#coming-soon" class="md-nav__link">
+    Coming Soon!
   </a>
   
 </li>
@@ -634,70 +528,12 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/signalfx/app-dev-workshop/edit/master/docs/modules/module1/detectors.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/signalfx/app-dev-workshop/edit/master/docs/modules/module7/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Working with Detectors</h1>
+                  <h1>Index</h1>
                 
-                <h3 id="lab-summary">Lab Summary<a class="headerlink" href="#lab-summary" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Create a Detector from one of you charts</li>
-</ul>
-<hr />
-<h3 id="1-create-a-detector-from-one-of-your-charts">1. Create a Detector from one of your charts<a class="headerlink" href="#1-create-a-detector-from-one-of-your-charts" title="Permanent link">&para;</a></h3>
-<p>In <strong>DASHBOARDS</strong> click on your dashboard group (the one with your email address) and then on the dashboard name where the chart you created in the previous lab resides.</p>
-<p>OR </p>
-<p>Search for your previously created dashboard's name, and click on that dashboard's name in the results.</p>
-<p><img alt="" src="../../images/M1-l2-1.png" /></p>
-<p>Once you see the chart...
-Click on the bell icon  on your chart and on New Detector From Chart - ADD YOUR INITIALS TO THE NAME (see next step).
-We are going to create a new alert detector from the chart.</p>
-<p><img alt="" src="../../images/M1-l2-2.png" /> </p>
-<div class="admonition warning">
-<p class="admonition-title">Important</p>
-<p>In the window that opens, add your initials in front of the proposed text, and click on Create Alert Rule.
-It should be something like this: LI's Latency Chart Detector.</p>
-</div>
-<p><img alt="" src="../../images/M1-l2-3.png" />  </p>
-<p>In the detector window, inside Alert signal, the signal we will alert on is marked with a bell.
-The bell in the 'Alert on' column indicates which Signal is being used to generate the alert. Click on Proceed to Alert Condition.</p>
-<p><img alt="" src="../../images/M1-l2-4.png" />  </p>
-<hr />
-<h3 id="2-setting-alert-condition">2. Setting Alert condition<a class="headerlink" href="#2-setting-alert-condition" title="Permanent link">&para;</a></h3>
-<p>In Alert Condition, click on Static Threshold and then on Proceed to Alert Settings.</p>
-<p><img alt="" src="../../images/M1-l2-5.png" />  </p>
-<p>In Alert Settings, enter the value "290" in the Threshold box and change Time on top right to past day.</p>
-<p><img alt="" src="../../images/M1-l2-6.png" />   </p>
-<hr />
-<h3 id="3-alert-pre-flight-check">3. Alert pre-flight check<a class="headerlink" href="#3-alert-pre-flight-check" title="Permanent link">&para;</a></h3>
-<p>Once you set an alert condition, SignalFx shows how many alerts you would get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.</p>
-<p>Immediately, the platform will start analyzing the signals with the current settings, and perform something we call a Pre-flight Check, This enables me to test the alert conditions using the historical data in the platform, to ensure the settings are logical and will not inadvertently generate an alert storm, removing the guess work from configuring alerts in a simple but very powerful way, only available using SignalFx.</p>
-<p>We can see that based on the current settings, the amount of alerts we would’ve received in 1 day would've been around 18.</p>
-<p>To read more about Detector Previews, please visit this link 
-<a href="https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#previewing-the-results-of-a-detector">Setting up detectors</a></p>
-<hr />
-<h3 id="4-configuring-the-alert-message">4. Configuring the alert message<a class="headerlink" href="#4-configuring-the-alert-message" title="Permanent link">&para;</a></h3>
-<p>Click on Proceed to Alert Message. In Severity choose Major</p>
-<p><img alt="" src="../../images/M1-l2-7.png" />  </p>
-<p>Click on Proceed to Alert Recipients</p>
-<p>Click on Add Recipient and then on your email displayed as the first option</p>
-<p><img alt="" src="../../images/M1-l2-8.png" />   </p>
-<p>That's the same as entering that email address
-OR you can enter another email address by clicking on E-mail...</p>
-<p>That's just one example of the many Notification Services SignalFx has available
-You can check this out by going to the INTEGRATIONS tab of the top menu, and see Notification Services </p>
-<hr />
-<h3 id="5-activating-the-alert">5. Activating the alert<a class="headerlink" href="#5-activating-the-alert" title="Permanent link">&para;</a></h3>
-<p>Click on Proceed to Alert Activation</p>
-<p>In Activate...click on Activate Alert Rule</p>
-<p><img alt="" src="../../images/M1-l2-9.png" />  </p>
-<p>If you want to get alerts quicker you can click back on Alert Settings and lower the value from 290 to say 280.
-If you change the Time to 1h you can see how many alerts you will be getting with the threshold you have chosen based on the metics from the last 1 hour.</p>
-<p>Hover over ALERTS in the top menu and then click on Detectors</p>
-<p><img alt="" src="../../images/M1-l2-10.png" /> </p>
-<p>You will see you alert detector listed here.</p>
-<p><img alt="" src="../../images/M1-l2-11.png" /> </p>
-<p>Congrats! You have created your first alert detector and activated it!</p>
+                <h2 id="coming-soon">Coming Soon!<a class="headerlink" href="#coming-soon" title="Permanent link">&para;</a></h2>
                 
                   
                 
@@ -726,41 +562,6 @@ If you change the Time to 1h you can see how many alerts you will be getting wit
         
 <footer class="md-footer">
   
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-        
-          <a href="../dashboards/" title="Working with Dashboards, Charts and Metrics" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Working with Dashboards, Charts and Metrics
-              </span>
-            </div>
-          </a>
-        
-        
-          <a href="../muting/" title="Working with Muting Rules" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Working with Muting Rules
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
-  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
@@ -782,9 +583,9 @@ If you change the Time to 1h you can see how many alerts you will be getting wit
       
     </div>
     
-      <script src="../../assets/javascripts/application.c33a9706.js"></script>
+      <script src="../assets/javascripts/application.c33a9706.js"></script>
       
-      <script>app.initialize({version:"1.1",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"1.1",url:{base:".."}})</script>
       
     
   </body>
