@@ -549,31 +549,43 @@
 <hr />
 <h3 id="2-deploy-the-hotrod-application-into-k3s">2. Deploy the Hotrod application into K3s<a class="headerlink" href="#2-deploy-the-hotrod-application-into-k3s" title="Permanent link">&para;</a></h3>
 <p>To deploy the Hotrod application into K3s apply the deployment</p>
-<div class="codehilite"><pre><span></span><code>kubectl apply -f workshop/apm/hotrod/k8s/deployment.yaml 
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>deployment.apps/hotrod created
+<div class="superfences-tabs">
+<input name="__tabs_1" type="radio" id="__tab_1_0" checked="checked" />
+<label for="__tab_1_0">Input</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>kubectl apply -f workshop/apm/hotrod/k8s/deployment.yaml 
+</code></pre></div></div>
+<input name="__tabs_1" type="radio" id="__tab_1_1" />
+<label for="__tab_1_1">Output</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>deployment.apps/hotrod created
 service/hotrod created
-</code></pre></div>
-
+</code></pre></div></div>
+</div>
 <p>To ensure the Hotrod application is running:</p>
-<div class="codehilite"><pre><span></span><code>kubectl get pods
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>NAME                      READY   STATUS    RESTARTS   AGE
+<div class="superfences-tabs">
+<input name="__tabs_2" type="radio" id="__tab_2_0" checked="checked" />
+<label for="__tab_2_0">Input</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div></div>
+<input name="__tabs_2" type="radio" id="__tab_2_1" />
+<label for="__tab_2_1">Output</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>NAME                      READY   STATUS    RESTARTS   AGE
 signalfx-agent-mmzxk      1/1     Running   0          110s
 hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s
-</code></pre></div>
-
+</code></pre></div></div>
+</div>
 <p>You then need find the IP address assigned to the Hotrod service:</p>
-<div class="codehilite"><pre><span></span><code>kubectl get svc
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+<div class="superfences-tabs">
+<input name="__tabs_3" type="radio" id="__tab_3_0" checked="checked" />
+<label for="__tab_3_0">Input</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>kubectl get svc
+</code></pre></div></div>
+<input name="__tabs_3" type="radio" id="__tab_3_1" />
+<label for="__tab_3_1">Output</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
 kubernetes   ClusterIP   10.43.0.1       &lt;none&gt;        443/TCP    25m
 hotrod       ClusterIP   10.43.124.159   &lt;none&gt;        8080/TCP   94s
-</code></pre></div>
-
+</code></pre></div></div>
+</div>
 <p>Make note of the <code>CLUSTER-IP</code> address associated with Hotrod</p>
 <hr />
 <h3 id="3-generate-some-traffic-to-the-application-using-apache-benchmark">3. Generate some traffic to the application using Apache Benchmark<a class="headerlink" href="#3-generate-some-traffic-to-the-application-using-apache-benchmark" title="Permanent link">&para;</a></h3>
