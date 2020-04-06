@@ -59,13 +59,11 @@ SOCKS_ENDPOINT=$(kubectl get svc front-end -n sock-shop -o jsonpath='{.spec.clus
 
 Then send a 
 
-```bash
+```bash tab="Input"
 curl $SOCKS_ENDPOINT
 ```
 
-and it should respond with HTML markup:
-
-```html
+```html tab="Output"
 ...
 </script>
 </body>
