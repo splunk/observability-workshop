@@ -771,10 +771,10 @@ time=&quot;2020-03-15T11:30:29Z&quot; level=info msg=&quot;Starting K8s API reso
 <hr />
 <h3 id="4-check-all-is-well-in-the-signalfx-ui">4. Check all is well in the SignalFx UI!<a class="headerlink" href="#4-check-all-is-well-in-the-signalfx-ui" title="Permanent link">&para;</a></h3>
 <p>In the SignalFx UI, goto <em><strong>INFRASTRUCTURE → Kubernetes Navigator → Cluster Map</strong></em> and open the Kubernetes Navigator Cluster Map to ensure metrics are being sent.</p>
-<p><img alt="Selecting the Kubernetes Navigator Map" src="../../images/M1-l4-select-kubenetes-map.jpg" /></p>
+<p><img alt="Selecting the Kubernetes Navigator Map" src="../../images/module3/clustermap-nav.png" /></p>
 <hr />
 <p>Validate that your cluster is discovered and shown (In a workshop you can see many more clusters) by finding your cluster by searching for <code>{YOUR_INITIALS}-SFX-WORKSHOP</code>:</p>
-<p><img alt="Find Your Cluster" src="../../images/M1-l4-All-clusters.jpg" /></p>
+<p><img alt="Find Your Cluster" src="../../images/module3/find-cluster.png" /></p>
 <p>If there are many clusters you can use the dashboard filter to narrow down to your K8s cluster e.g. <code>kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP</code> or do this by clicking on the blue cross <img alt="blue cross" src="../../images/M1-l4-blue-cross.jpg" /> after selecting your cluster with your mouse.
 <img alt="K8S Clusters Filter" src="../../images/M1-l4-Selecting-K3-cluster.jpg" /></p>
 <p>To examine the health of your cluster, open the side bar by clicking on the <img alt="side bar button" src="../../images/M1-l4-sidebar-button.jpg" /> button to open the Metrics side bar. Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: Cpu%, Mem%, Network in &amp; out. Events and Container list.</p>
