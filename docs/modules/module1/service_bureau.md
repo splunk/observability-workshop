@@ -130,7 +130,7 @@
 
    You can add a different email adresses to inform people outside SignalFx like _alerts@your-company.com_  for example or send an alert to an other team, like sending an alert on the Database of your application to the Database team along to you team.
     
-   However if you click on the link **Configure separate notification tiers for different severity alerts**  You can configure every alert level differently.
+5. However if you click on the link **Configure separate notification tiers for different severity alerts** you can configure every alert level differently.
 
 
 ![Multiple Notifications](../images/M1-l7-10.jpg)
@@ -138,7 +138,7 @@
    As you can see, You can set up different alert rules for the different alert level.
    In the screen shot below above you see that there have differn rules set up for all the Error levels,
    Here you see how wyou whold use send an alert to Splunk's VictorOps that will handle alertin the on call engineer and/or manager.
-   For the Minor aleert we send it to the Teams slack channel and warning and info messages are send by email
+   For the Minor alerts we send it to the Teams slack channel and for warning and info messages we just an email
 
    Below you see some of the Notification aoptions you can install in your SignalFx Organization:
 
