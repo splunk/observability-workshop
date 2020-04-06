@@ -21,6 +21,7 @@ markdown_extensions:
       guess_lang: false
   - toc:
       permalink: true
+  - pymdownx.superfences
 
 extra_css:
   - "extra.css"
@@ -34,6 +35,7 @@ nav:
     - '4. Running the Smart Agent in Kubernetes (K3s)': module1/k3s.md
     - '5. Deploying NGINX in K3s': module1/nginx.md
     - '6. Monitoring as Code with Detectors & Dashboards': module1/terraform.md
+    - '7. Service Bureau' : module1/service_bureau.md
   - 'Module Two':
     - '1. µAPM: Hotrod in K3s': module2/hotrod.md
     - '2. µAPM: Sock Shop in K3s': module2/sockshop.md
