@@ -1,10 +1,15 @@
 /* needed because images have `max-width: 100%` in the theme */
 img {
     height: auto;
+    border: 1px solid #9f9f9f;
 }
 
 
 .md-logo img {
     width: auto;
     height: 40px;
+}
+
+a.md-logo img {
+    border: none;
 }
