@@ -51,4 +51,4 @@ nav:
     - 'Running Sock Shop in K3s': module6/sockshop.md
   - '<b>Module 7</b> - VictorOps':
     - 'Coming Soon!': module7/index.md
-  - 'Cleaning Up!': cleanup.md
+  - 'Post Workshop Clean Up!': cleanup.md
