@@ -36,17 +36,19 @@ nav:
   - '<b>Module 1</b> - Dashboards':
     - 'Working with Dashboards, Charts and Metrics': module1/dashboards.md
   - '<b>Module 2</b> - Detectors':
-    - 'Working with Detectors': module1/detectors.md
-    - 'Working with Muting Rules': module1/muting.md
+    - 'Working with Detectors': module2/detectors.md
+    - 'Working with Muting Rules': module2/muting.md
   - '<b>Module 3</b> - Smart Agent':
-    - 'Deploying the Smart Agent in Kubernetes (K3s)': module1/k3s.md
-    - 'Deploying NGINX in K3s' : module1/nginx.md
+    - 'Deploying the Smart Agent in Kubernetes (K3s)': module3/k3s.md
+    - 'Deploying NGINX in K3s' : module3/nginx.md
   - '<b>Module 4</b> - Monitoring as Code':
-    - 'Using Terraform for charts and dashboards' : module1/terraform.md
+    - 'Using Terraform for charts and dashboards' : module4/terraform.md
   - '<b>Module 5</b> - Service Bureau':
-    - 'Billing and Usage' : module1/service_bureau.md
-    - 'Teams' : module1/teams.md
+    - 'Billing and Usage' : module5/service_bureau.md
+    - 'Teams' : module5/teams.md
   - '<b>Module 6</b> - µAPM':
-    - 'Running Hotrod in K3s': module2/hotrod.md
-    - 'Running Sock Shop in K3s': module2/sockshop.md
+    - 'Running Hotrod in K3s': module6/hotrod.md
+    - 'Running Sock Shop in K3s': module6/sockshop.md
+  - '<b>Module 7</b> - VictorOps':
+    - 'Coming Soon!': module7/index.md
   - 'Cleaning Up!': cleanup.md
