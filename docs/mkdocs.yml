@@ -43,7 +43,7 @@ nav:
     - 'Deploying the Smart Agent in Kubernetes (K3s)': module1/k3s.md
     - 'Deploying NGINX in K3s' : module1/nginx.md
   - '<b>Module 4</b> - Monitoring as Code':
-    - 'Using Terraform' : module1/terraform.md
+    - 'Using Terraform for charts and dashboards' : module1/terraform.md
   - '<b>Module 5</b> - Service Bureau':
     - 'Billing and Usage' : module1/service_bureau.md
     - 'Teams' : module1/teams.md
