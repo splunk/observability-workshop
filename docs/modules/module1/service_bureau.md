@@ -130,11 +130,15 @@
 
    You can add a  email adress  other then, the team members,  like -alerts@your-company.com-  for example or  send an alert to an other team.
     
-    However if you click on the link **Configure separate notification tiers for different severity alerts**  You can configure every alert leve differently.
+    However if you click on the link **Configure separate notification tiers for different severity alerts**  You can configure every alert level differently.
 
 
 ![Billing and Usage](../images/M1-l7-10.jpg)
-![Billing and Usage](../images/M1-l7-11.jpg)
+
+
+
+
+[Billing and Usage](../images/M1-l7-11.jpg)
 
 
 
@@ -149,15 +153,9 @@
 
 ***
 
-   as shown 
-   in the screenshot based of an Organizartion that has been using Signal Fx for some time.
-     
-
 
 
 ![Billing and Usage](../images/M1-l7-8.jpg)
-
- ß
 
 
 
