@@ -430,15 +430,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-1-starting-the-workshop-instance" class="md-nav__link">
-    * Step 1 Starting the workshop instance
+  <a href="#1-starting-the-workshop-instance" class="md-nav__link">
+    1. Starting the workshop instance
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-connecting-to-your-workshop-instance" class="md-nav__link">
-    * Step 2 Connecting to your workshop instance
+  <a href="#2-connecting-to-your-workshop-instance" class="md-nav__link">
+    2. Connecting to your workshop instance
   </a>
   
 </li>
@@ -464,77 +464,35 @@
                 
                   <h1>Ecs setup</h1>
                 
-                <h2 id="summary-of-this-wiki-page">Summary of this wiki page:<a class="headerlink" href="#summary-of-this-wiki-page" title="Permanent link">&para;</a></h2>
+                <h3 id="summary-of-this-wiki-page">Summary of this wiki page:<a class="headerlink" href="#summary-of-this-wiki-page" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Use AWS EC2 to deploy a Ubuntu server prebuild for the work shop.</li>
 <li>Explain the extra steps needed to  run the workshop on this instance</li>
 </ul>
 <hr />
-<h2 id="step-1-starting-the-workshop-instance">* Step 1 Starting the workshop instance<a class="headerlink" href="#step-1-starting-the-workshop-instance" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Login into your AWS account using the <a href="https://signin.aws.amazon.com">AWS console</a> 
-   and go to the EC2 service page.
-   As the Workshop Instance currently only resides in AWS Frankfurt please change your region to Frankfurt 
-   by changing the drop-down list at the top of the screen</li>
-</ol>
+<h3 id="1-starting-the-workshop-instance">1. Starting the workshop instance<a class="headerlink" href="#1-starting-the-workshop-instance" title="Permanent link">&para;</a></h3>
+<p>Login into your AWS account using the <a href="https://signin.aws.amazon.com">AWS console</a> and go to the EC2 service page. As the Workshop Instance currently only resides in AWS Frankfurt please change your region to Frankfurt by changing the drop-down list at the top of the screen</p>
 <p><img alt="Frankfurt selection" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-SelectFrankfurt.jpg" /></p>
-<ol>
-<li>Click the blue <strong>launch instance</strong> button to go to the instance selection page and search for
-    the workshop  by typing the name <em><strong>App-Dev-Workshop</strong></em> into the search box,
-    You should find  get 1 result in the Community AMI's, and click on the on the Result link:</li>
-</ol>
+<p>Click the blue <strong>launch instance</strong> button to go to the instance selection page and search for the workshop by typing the name <em><strong>App-Dev-Workshop</strong></em> into the search box. You should find  get 1 result in the Community AMI's, and click on the on the Result link:</p>
 <p><img alt="Result found" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-AMI-select.jpg" /></p>
-<ol>
-<li>This should bring you to the choose and instance type screen. 
-    Here you can select the type of machine you wish to run the workshop on, 
-    We do recommend to use at least a <strong>t2 medium</strong>  with at least two  cpu and 4 GB of memory.
-    once you made your selection press <strong>Review and Launch</strong> button.</li>
-</ol>
+<p>This should bring you to the choose and instance type screen. Here you can select the type of machine you wish to run the workshop on, we do recommend to use at least a <strong>t2 medium</strong>  with at least two  cpu and 4 GB of memory. Once you made your selection press <strong>Review and Launch</strong> button.</p>
 <p><img alt="AWS instance type" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-InstamceType.jpg" /></p>
-<ol>
-<li>Validate that the information on the review page looks like what is shown below 
-    and hit the <strong>Launch</strong> button to start the workshop instance.</li>
-</ol>
+<p>Validate that the information on the review page looks like what is shown below and hit the <strong>Launch</strong> button to start the workshop instance.</p>
 <p><img alt="Launcing instance" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-Launch.jpg" /></p>
-<ol>
-<li>You will be presented with a dialog box asking to provide credentials, there is no need to provide ssh keys
-    so you can select the option <strong><em>Proceed without a key pair</em></strong>,
-    then tick the acknowledge box to confirm you willing to pay AWS for this then 
-    hit the blue <strong>LAUNCH INSTANCE</strong> button</li>
-</ol>
+<p>You will be presented with a dialog box asking to provide credentials, there is no need to provide ssh keys so you can select the option <strong><em>Proceed without a key pair</em></strong>, then tick the acknowledge box to confirm you willing to pay AWS for this then hit the blue <strong>LAUNCH INSTANCE</strong> button</p>
 <p><img alt="Launch dialog" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS_-Launch-dialog.jpg" /></p>
-<ol>
-<li>On the left side of you screen click under the <strong>INSTANCES</strong> heading on the <em>instances</em> link to see your 
-   instance being deployed. Once the deployment is complete, copy the Public IP address from the 
-   <strong>Description</strong> panel at the bottom.</li>
-</ol>
+<p>On the left side of you screen click under the <strong>INSTANCES</strong> heading on the <em>instances</em> link to see your instance being deployed. Once the deployment is complete, copy the Public IP address from the <strong>Description</strong> panel at the bottom.</p>
 <p><img alt="IP adress" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-Get-ip.jpg" /></p>
 <hr />
-<h2 id="step-2-connecting-to-your-workshop-instance">* Step 2 Connecting to your workshop instance<a class="headerlink" href="#step-2-connecting-to-your-workshop-instance" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Start a command line session on your PC (terminal on a Mac, or putty on Windows for example)
-   Login  to your instance by starting an ssh session. (replace [IP-ADRESS] with the IP address copied 
-   at step 6 from the previous section:</li>
-</ol>
+<h3 id="2-connecting-to-your-workshop-instance">2. Connecting to your workshop instance<a class="headerlink" href="#2-connecting-to-your-workshop-instance" title="Permanent link">&para;</a></h3>
+<p>Start a command line session on your PC (terminal on a Mac, or putty on Windows for example) Login to your instance by starting an ssh session. (replace [IP-ADRESS] with the IP address copied at step 6 from the previous section:</p>
 <p><code>ssh ubuntu@[IP-ADRESS]</code></p>
-<p>You will usually be asked to confirm that you wish to connect via ssh to the server, type yes to confirm,
-   followed by a query for a password.</p>
+<p>You will usually be asked to confirm that you wish to connect via ssh to the server, type yes to confirm, followed by a query for a password.</p>
 <p><em><strong>The password will be provided by the facilitator of the workshop</strong></em>.</p>
 <p><img alt="doing an ssh session" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-Shell-connect.jpg" /></p>
-<ol>
-<li>
-<p>Once your logged in successfully you should see the <strong>APP-DEV</strong> logo confirming  that you are indeed using a 
-   workshop instance. </p>
-</li>
-<li>
-<p>To make sure you can run the instruction as described in the Workshop pages 
-    please enter the command <em>sudo -s</em> to elevate your permissions, your prompt should change from 
-    ubuntu@[Servername] to root@[Servername] </p>
-</li>
-<li>
-<p>Next type <em>ls</em> to confirm there is a workshop folder available to you on the machine.</p>
-</li>
-</ol>
+<p>Once your logged in successfully you should see the <strong>APP-DEV</strong> logo confirming that you are indeed using a workshop instance. </p>
+<p>To make sure you can run the instruction as described in the Workshop pages please enter the command <code>sudo -s</code> to elevate your permissions, your prompt should change from <code>ubuntu@[Servername]</code> to <code>root@[Servername]</code></p>
+<p>Next type <code>ls</code> to confirm there is a workshop folder available to you on the machine.</p>
 <p><img alt="APP_DEV shell" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-shell%20done.jpg" /></p>
 <hr />
 <p>If everything matches the screen shot above, your ready to begin your <a href="https://github.com/signalfx/app-dev-workshop/wiki">workshop</a></p>
