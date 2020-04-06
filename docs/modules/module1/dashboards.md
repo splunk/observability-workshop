@@ -10,8 +10,7 @@
 ### 1. Introduction to the SignalFx environment  
 Logon to the SignalFx organization you have been invited to
 
-Hover over **DASHBOARDS** in the top menu, and then click on All Dashboards at the bottom
-You will see a number of prebuilt dashboards
+Hover over _**DASHBOARDS**_ in the top menu, and then click on All Dashboards at the bottom and you will see a number of prebuilt dashboards
 
 ![](../images/M1-l1-1.png)
 
