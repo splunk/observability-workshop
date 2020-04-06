@@ -4,8 +4,6 @@
 ---
 
 ### 1. Create a Detector from one of your charts
-Logon to your account in SignalFx, and click on DASHBOARDS in the menu.
-
 In **DASHBOARDS** click on your dashboard group (the one with your email address) and then on the dashboard name where the chart you created in the previous lab resides.
 
 OR 
@@ -20,18 +18,21 @@ We are going to create a new alert detector from the chart.
 
 ![](../images/M1-l2-2.png) 
 
-IMPORTANT - In the window that opens, add your initials in front of the proposed text, and click on Create Alert Rule.
-It should be something like this: LI's Latency Chart Detector.
+!!! note
+    In the window that opens, add your initials in front of the proposed text, and click on Create Alert Rule.
+    It should be something like this: LI's Latency Chart Detector.
 
 ![](../images/M1-l2-3.png)  
 
 In the detector window, inside Alert signal, the signal we will alert on is marked with a bell.
-The bell in the 'Alert on' column indicates which Signal is being used to generate the alert.
+The bell in the 'Alert on' column indicates which Signal is being used to generate the alert. Click on Proceed to Alert Condition.
 
 ![](../images/M1-l2-4.png)  
 
-Click on Proceed to Alert Condition.
-On Alert Condition, click on Static Threshold and then on Proceed to Alert Settings.
+---
+
+### 2. Setting Alert condition
+In Alert Condition, click on Static Threshold and then on Proceed to Alert Settings.
 
 ![](../images/M1-l2-5.png)  
 
@@ -39,17 +40,22 @@ In Alert Settings, enter the value "290" in the Threshold box and change Time on
 
 ![](../images/M1-l2-6.png)   
 
+---
+
+### 3. Alert pre-flight check
 Once you set an alert condition, SignalFx shows how many alerts you would get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.
+
 Immediately, the platform will start analysing the signals with the current settings, and perform something we call a Pre-flight Check, This enables me to test the alert conditions using the historical data in the platform, to ensure the settings are logical and will not inadvertently generate an alert storm, removing the guess work from configuring alerts in a simple but very powerful way, only available using SignalFx.
 
-I can see that based on my current settings, the amount of alerts I would’ve received in 1 day would've been around 18.
+We can see that based on the current settings, the amount of alerts we would’ve received in 1 day would've been around 18.
 
-To read more about Detector Previews, please visit this link:
-https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#previewing-the-results-of-a-detector
+To read more about Detector Previews, please visit this link 
+[Setting up detectors](https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#previewing-the-results-of-a-detector)
 
-Click on Proceed to Alert Message
+---
 
-In Severity choose Major
+### 4. Configuring the alert message
+Click on Proceed to Alert Message. In Severity choose Major
 
 ![](../images/M1-l2-7.png)  
 
@@ -65,6 +71,9 @@ OR you can enter another email address by clicking on E-mail...
 That's just one example of the many Notification Services SignalFx has available
 You can check this out by going to the INTEGRATIONS tab of the top menu, and see Notification Services 
 
+---
+
+### 5. Activating the alert
 Click on Proceed to Alert Activation
 
 In Activate...click on Activate Alert Rule
