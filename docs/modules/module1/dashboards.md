@@ -239,5 +239,5 @@ Congratulations! You have created your first chart and dashboard!
 ![](../images/M1-l1-36.png) 
 
 ***
-Continue the workshop with [Working with Detectors](https://github.com/signalfx/app-dev-workshop/wiki/1.2-Working-with-Detectors) 
+Continue the workshop with [Working with Detectors](https://signalfx.github.io/app-dev-workshop/module1/detectors/) 
 
