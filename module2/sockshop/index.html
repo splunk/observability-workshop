@@ -620,17 +620,20 @@ service/user created
 </code></pre></div>
 
 <p>Then send a </p>
-<div class="codehilite"><pre><span></span><code>curl <span class="nv">$SOCKS_ENDPOINT</span>
-</code></pre></div>
-
-<p>and it should respond with HTML markup:</p>
-<div class="codehilite"><pre><span></span><code>...
+<div class="superfences-tabs">
+<input name="__tabs_2" type="radio" id="__tab_2_0" checked="checked" />
+<label for="__tab_2_0">Input</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>curl <span class="nv">$SOCKS_ENDPOINT</span>
+</code></pre></div></div>
+<input name="__tabs_2" type="radio" id="__tab_2_1" />
+<label for="__tab_2_1">Output</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>...
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</code></pre></div>
-
+</code></pre></div></div>
+</div>
 <h3 id="4-apply-load-on-sock-shop">4. Apply load on Sock Shop<a class="headerlink" href="#4-apply-load-on-sock-shop" title="Permanent link">&para;</a></h3>
 <p>Use a load test for sock shop.</p>
 <div class="codehilite"><pre><span></span><code>kubectl run --generator<span class="o">=</span>run-pod/v1 load-test --rm -i --tty --image weaveworksdemos/load-test -- -d <span class="m">5</span> -h <span class="nv">$SOCKS_ENDPOINT</span> -c <span class="m">15</span> -r <span class="m">1000</span>
