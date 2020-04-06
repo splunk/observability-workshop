@@ -130,24 +130,13 @@
 
    You can add a  email adress  other then, the team members,  like -alerts@your-company.com-  for example or  send an alert to an other team.
     
-    However if you click on the link **Configure separate notification tiers for different severity alerts**  You can configure every alert level differently.
+   However if you click on the link **Configure separate notification tiers for different severity alerts**  You can configure every alert level differently.
 
 
 ![Billing and Usage](../images/M1-l7-10.jpg)
-
-
-
-
-[Billing and Usage](../images/M1-l7-11.jpg)
-
-
-
-
-
-
-
-
-
+  
+   As you can see,  You can set up different alert rules for the different alert level.
+   In the screen shot below above 
 
 
 
