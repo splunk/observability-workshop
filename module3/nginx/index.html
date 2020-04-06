@@ -671,11 +671,11 @@
 </code></pre></div>
 
 <p>Create the NGINX configmap using the <code>nginx.conf</code> file:</p>
-<div class="codehilite"><pre><span></span><code>kubectl create configmap nginxconfig --from-file<span class="o">=</span>nginx.conf
+<div class="codehilite"><pre><span></span><code>kubectl create configmap nginxconfig --from-file=nginx.conf
 </code></pre></div>
 
-<p>Verify the number of pods running in the SignalFx UI by selecting the <strong>WORKLOADS</strong> tab. This should give you an overview of the workloads on your cluster.
-<img alt="Workload Agent" src="../../images/M1-l4-workload-list-agent.jpg" /></p>
+<p>Verify the number of pods running in the SignalFx UI by selecting the <strong>WORKLOADS</strong> tab. This should give you an overview of the workloads on your cluster.</p>
+<p><img alt="Workload Agent" src="../../images/module3/M1-l4-workload-list-agent.jpg" /></p>
 <p>Note the single agent container running per node among the default Kubernetes pods. This single container will monitor all the pods and services being deployed on this node!</p>
 <p>Now switch back to the default cluster node view by selecting  the <strong>MAP</strong> tab and select your cluster again.</p>
 <hr />
@@ -684,9 +684,9 @@
 </code></pre></div>
 
 <p>Validate the deployment has been successful and that the NGINX pods are running. If you have the SignalFx UI open you should see new Pods being started and containers being deployed. It should only take around 20 seconds for the pods to transition into a Running state. In the SignalFx UI you should have a cluster that looks like below:</p>
-<p><img alt="back to Cluster" src="../../images/M1-l4-back-cluster.jpg" /></p>
-<p>If you select the <strong>WORKLOADS</strong> tab again you should now see that there is a new replica set and a deployment added for the NGINX deployment:
-<img alt="NGINX loaded" src="../../images/M1-l4-NGINX-loaded.jpg" /></p>
+<p><img alt="back to Cluster" src="../../images/module3/M1-l4-back-cluster.jpg" /></p>
+<p>If you select the <strong>WORKLOADS</strong> tab again you should now see that there is a new replica set and a deployment added for the NGINX deployment:</p>
+<p><img alt="NGINX loaded" src="../../images/module3/M1-l4-NGINX-loaded.jpg" /></p>
 <hr />
 <p>Let's validate this in your shell as well, before creating load on your system:</p>
 <div class="superfences-tabs">
@@ -708,7 +708,7 @@ nginx-deployment-f96cf6966-7z4tm   1/1     Running   0          21s
 <div class="superfences-tabs">
 <input name="__tabs_2" type="radio" id="__tab_2_0" checked="checked" />
 <label for="__tab_2_0">Input</label>
-<div class="superfences-content"><div class="codehilite"><pre><span></span><code>kubectl create service nodeport nginx --tcp<span class="o">=</span><span class="m">80</span>:80
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>kubectl create service nodeport nginx --tcp=80:80
 </code></pre></div></div>
 <input name="__tabs_2" type="radio" id="__tab_2_1" />
 <label for="__tab_2_1">Output</label>
@@ -734,7 +734,7 @@ nginx        NodePort    10.110.36.62   &lt;none&gt;        80:30995/TCP   8s
 <div class="superfences-tabs">
 <input name="__tabs_4" type="radio" id="__tab_4_0" checked="checked" />
 <label for="__tab_4_0">Input</label>
-<div class="superfences-content"><div class="codehilite"><pre><span></span><code>ab -n1000 -c20 http://<span class="o">{</span>INSERT_NGINX_IP_ADDRESS<span class="o">}</span>/
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>ab -n1000 -c20 http://{INSERT_NGINX_IP_ADDRESS}/
 </code></pre></div></div>
 <input name="__tabs_4" type="radio" id="__tab_4_1" />
 <label for="__tab_4_1">Output</label>
@@ -754,8 +754,8 @@ Server Port:            30995
 ...
 </code></pre></div></div>
 </div>
-<p>Validate you are seeing metrics in the UI by going to <em><strong>Dashboards → NGINX → NGINX Servers</strong></em> Tip: you can again apply the filter <code>kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP</code> to focus on only your metrics.
-<img alt="" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/m1_l4-nginx-dashboard.png" /></p>
+<p>Validate you are seeing metrics in the UI by going to <em><strong>Dashboards → NGINX → NGINX Servers</strong></em> Tip: you can again apply the filter <code>kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP</code> to focus on only your metrics.</p>
+<p><img alt="" src="../../images/module3/m1_l4-nginx-dashboard.png" /></p>
                 
                   
                 
