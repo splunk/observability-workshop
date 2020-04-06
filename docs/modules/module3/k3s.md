@@ -123,13 +123,13 @@ time="2020-03-15T11:30:29Z" level=info msg="Starting K8s API resource sync"
 
 In the SignalFx UI, goto _**INFRASTRUCTURE → Kubernetes Navigator → Cluster Map**_ and open the Kubernetes Navigator Cluster Map to ensure metrics are being sent.
 
-![Selecting the Kubernetes Navigator Map](../images/M1-l4-select-kubenetes-map.jpg)
+![Selecting the Kubernetes Navigator Map](../images/module3/clustermap-nav.png)
 
 ---
 
 Validate that your cluster is discovered and shown (In a workshop you can see many more clusters) by finding your cluster by searching for `{YOUR_INITIALS}-SFX-WORKSHOP`:
 
-![Find Your Cluster](../images/M1-l4-All-clusters.jpg)
+![Find Your Cluster](../images/module3/find-cluster.png)
 
 If there are many clusters you can use the dashboard filter to narrow down to your K8s cluster e.g. `kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP` or do this by clicking on the blue cross ![blue cross](../images/M1-l4-blue-cross.jpg) after selecting your cluster with your mouse.
 ![K8S Clusters Filter](../images/M1-l4-Selecting-K3-cluster.jpg)
