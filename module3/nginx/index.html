@@ -42,7 +42,7 @@
     
     
       
-        <title>Nginx - App Dev Workshop</title>
+        <title>Deploying NGINX in K3s - App Dev Workshop</title>
       
     
     
@@ -119,7 +119,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Nginx
+                Deploying NGINX in K3s
               
             </span>
           
@@ -272,7 +272,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module1/detectors.md" title="Working with Detectors" class="md-nav__link">
+    <a href="../../module2/detectors/" title="Working with Detectors" class="md-nav__link">
       Working with Detectors
     </a>
   </li>
@@ -284,7 +284,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module1/muting.md" title="Working with Muting Rules" class="md-nav__link">
+    <a href="../../module2/muting/" title="Working with Muting Rules" class="md-nav__link">
       Working with Muting Rules
     </a>
   </li>
@@ -299,10 +299,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
     
     <label class="md-nav__link" for="nav-4">
       <b>Module 3</b> - Smart Agent
@@ -320,7 +322,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module1/k3s.md" title="Deploying the Smart Agent in Kubernetes (K3s)" class="md-nav__link">
+    <a href="../k3s/" title="Deploying the Smart Agent in Kubernetes (K3s)" class="md-nav__link">
       Deploying the Smart Agent in Kubernetes (K3s)
     </a>
   </li>
@@ -330,11 +332,72 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../module1/nginx.md" title="Deploying NGINX in K3s" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Deploying NGINX in K3s
+      </label>
+    
+    <a href="./" title="Deploying NGINX in K3s" class="md-nav__link md-nav__link--active">
       Deploying NGINX in K3s
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lab-summary" class="md-nav__link">
+    Lab Summary
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-start-your-nginx" class="md-nav__link">
+    1. Start your NGINX!
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-create-nginx-deployment" class="md-nav__link">
+    2. Create NGINX deployment!
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-run-a-benchmark" class="md-nav__link">
+    3. Run a benchmark
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -368,7 +431,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module1/terraform.md" title="Using Terraform for charts and dashboards" class="md-nav__link">
+    <a href="../../module4/terraform/" title="Using Terraform for charts and dashboards" class="md-nav__link">
       Using Terraform for charts and dashboards
     </a>
   </li>
@@ -404,7 +467,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module1/service_bureau.md" title="Billing and Usage" class="md-nav__link">
+    <a href="../../module5/service_bureau/" title="Billing and Usage" class="md-nav__link">
       Billing and Usage
     </a>
   </li>
@@ -416,7 +479,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module1/teams.md" title="Teams" class="md-nav__link">
+    <a href="../../module5/teams/" title="Teams" class="md-nav__link">
       Teams
     </a>
   </li>
@@ -452,7 +515,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module2/hotrod.md" title="Running Hotrod in K3s" class="md-nav__link">
+    <a href="../../module6/hotrod/" title="Running Hotrod in K3s" class="md-nav__link">
       Running Hotrod in K3s
     </a>
   </li>
@@ -464,8 +527,44 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module2/sockshop.md" title="Running Sock Shop in K3s" class="md-nav__link">
+    <a href="../../module6/sockshop/" title="Running Sock Shop in K3s" class="md-nav__link">
       Running Sock Shop in K3s
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      <b>Module 7</b> - VictorOps
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        <b>Module 7</b> - VictorOps
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../module7/" title="Coming Soon!" class="md-nav__link">
+      Coming Soon!
     </a>
   </li>
 
@@ -558,7 +657,7 @@
                   <a href="https://github.com/signalfx/app-dev-workshop/edit/master/docs/modules/module3/nginx.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Nginx</h1>
+                  <h1>Deploying NGINX in K3s</h1>
                 
                 <h2 id="lab-summary">Lab Summary<a class="headerlink" href="#lab-summary" title="Permanent link">&para;</a></h2>
 <ul>
@@ -572,7 +671,7 @@
 </code></pre></div>
 
 <p>Create the NGINX configmap using the <code>nginx.conf</code> file:</p>
-<div class="codehilite"><pre><span></span><code>kubectl create configmap nginxconfig --from-file<span class="o">=</span>nginx.conf
+<div class="codehilite"><pre><span></span><code>kubectl create configmap nginxconfig --from-file=nginx.conf
 </code></pre></div>
 
 <p>Verify the number of pods running in the SignalFx UI by selecting the <strong>WORKLOADS</strong> tab. This should give you an overview of the workloads on your cluster.
@@ -609,7 +708,7 @@ nginx-deployment-f96cf6966-7z4tm   1/1     Running   0          21s
 <div class="superfences-tabs">
 <input name="__tabs_2" type="radio" id="__tab_2_0" checked="checked" />
 <label for="__tab_2_0">Input</label>
-<div class="superfences-content"><div class="codehilite"><pre><span></span><code>kubectl create service nodeport nginx --tcp<span class="o">=</span><span class="m">80</span>:80
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>kubectl create service nodeport nginx --tcp=80:80
 </code></pre></div></div>
 <input name="__tabs_2" type="radio" id="__tab_2_1" />
 <label for="__tab_2_1">Output</label>
@@ -635,7 +734,7 @@ nginx        NodePort    10.110.36.62   &lt;none&gt;        80:30995/TCP   8s
 <div class="superfences-tabs">
 <input name="__tabs_4" type="radio" id="__tab_4_0" checked="checked" />
 <label for="__tab_4_0">Input</label>
-<div class="superfences-content"><div class="codehilite"><pre><span></span><code>ab -n1000 -c20 http://<span class="o">{</span>INSERT_NGINX_IP_ADDRESS<span class="o">}</span>/
+<div class="superfences-content"><div class="codehilite"><pre><span></span><code>ab -n1000 -c20 http://{INSERT_NGINX_IP_ADDRESS}/
 </code></pre></div></div>
 <input name="__tabs_4" type="radio" id="__tab_4_1" />
 <label for="__tab_4_1">Output</label>
@@ -684,6 +783,41 @@ Server Port:            30995
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../k3s/" title="Deploying the Smart Agent in Kubernetes (K3s)" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Deploying the Smart Agent in Kubernetes (K3s)
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../module4/terraform/" title="Using Terraform for charts and dashboards" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Using Terraform for charts and dashboards
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
