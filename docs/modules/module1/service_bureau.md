@@ -66,18 +66,89 @@
 ***
 
 ### 3. Let's see our teamwork!
-1. most organization will devide theri users in terams, where a team will..
+1. To make sure that users directly see the dasboards and alerts that are relevant to them when they login to SignalFX, 
+   most organizations will use SignalFx's Teams mechanisme to assign a user to a Team.
+   Usually this matches work related roles, for example, members of a Dev-ops or Product Management group whould be assigned 
+   to the corresponding Teams in SignalFx.
 
-![Billing and Usage](../images/M1-l7-7.jpg)
-![Billing and Usage](../images/M1-l7-8.jpg)
-![Billing and Usage](../images/M1-l7-9.jpg)
-![Billing and Usage](../images/M1-l7-10.jpg)
-![Billing and Usage](../images/M1-l7-11.jpg)
+   Once an Team member is connected to SignalFx, they will be shown the Teams landing page, simular to the one shown below, 
+   In this case for the Poduct Management team.
+   Here, members see all the Dashboard, alerts that are assigned the team and  any other useful information so they
+   can focus on what is relevant to their job.
+
+   
+   ![Billing and Usage](../images/M1-l7-9.jpg)
+
+   The above landing page has three Dashboard groups assigned, shows there is a critical alert that had this team as an adressee and some text and urls with other topics of interest. 
+
+   ***
+   
+2. To work with  to signalFx's Team UI click on the settings ![gray user icon](../images/M1-l7-2.jpg) ) icon on the right top of the page and
+   select the **Organizations Settings → Teams** tab, or select the **Teams** tab from the left pane.
+    
+![location of settings](../images/M1-l7-7.jpg)
+
+   When the **Team** UI is selected you will be presented in the workshop with an empty Team's list 
+  
+  ![No teams shown](../images/M1-l7-14.jpg)
+
+***  
+3. To add a new **Team** click on the green ![Create team](../images/M1-l7-15.jpg) button. This will present youy with the **Create New Team** Dialog.
+
+![Add Team](../images/M1-l7-16.jpg)
+
+   Create your own team by naming it [YOUR-INITIALS]-Team and add yourself by searching for your name and 
+   selecting  the **Add** link behind your name. This should result in a dialog simular to the one below:
+   
+   You can remove selected users by pressing  **remove** or the small **x** behind a name.
+   Make sure you have your group created with your initials and with yourself added as a member, then press done.
+
+![Add Team complete](../images/M1-l7-17.jpg)
+
+***   
+
+
+4. This will bring you back to the **Teams** list that now show your Team and the one's created by others.
+   Note that the group(s) you are a member of has a gray **Member** icon in front of it.
+   If no members are assigned to your group, you should see a blue **Add members** link instead of the member count, 
+   clicking on that link  will get you to the **Edit Team** dialog where you can add yourself.   
+   This is the same dialog you get when pressing the 3 dots **...**   at the end of the Line with your team
+   and select **Edit Team**.
+
+   The 3 **...** menu give you the option to Edit a Team, Join or leave a Team or Delete a team.
+   
+   ***
+
+4. You can set up specific Notification rules per team, click on the **NOTIFICATION POLICY** Button, 
+   this will open the notification edit menu.
+
+![Base  notification meny](../images/M1-l7-18.jpg)
+
+   By default the system offers you the ability to set up a general notification rule for your team.
+   Note the Email all members, This mean all memebers n theis team will recieve an email with the Alert information, regrdless of the alert type.
+   You can add other recipients, by  clicking ![add recipient](../images/M1-l7-19.jpg)
+
+   You can add a different email adresses to inform people outside SignalFx like _alerts@your-company.com_  for example or send an alert to an other team, like sending an alert on the Database of your application to the Database team along to you team.
+    
+5. However if you click on the link **Configure separate notification tiers for different severity alerts** you can configure every alert level differently.
+
+
+![Multiple Notifications](../images/M1-l7-10.jpg)
+  
+   As you can see, You can set up different alert rules for the different alert level.
+   In the screen shot below above you see that there have differn rules set up for all the Error levels,
+   Here you see how wyou whold use send an alert to Splunk's VictorOps that will handle alertin the on call engineer and/or manager.
+   For the Minor alerts we send it to the Teams slack channel and for warning and info messages we just an email
+
+   Below you see some of the Notification aoptions you can install in your SignalFx Organization:
+
+![Notifications options](../images/M1-l7-20.jpg)
 
 ***
 
+
 ## Step 4: Let's control a teams usage!
-1. m
+1. Managing tokens
 
 ![Billing and Usage](../images/M1-l7-13.jpg)
 ![Billing and Usage](../images/M1-l7-12.jpg)
