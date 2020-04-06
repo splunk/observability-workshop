@@ -126,7 +126,7 @@
 
    By default the system offers you the ability to set up a general notification rule for your team.
    Note the Email all members, This mean all memebers n theis team will recieve an email with the Alert information, regrdless of the alert type.
-   You can add other recpiens, by  clicking [alert recipient](../images/M1-l7-19.jpg)
+   You can add other recpiens, by  clicking [add recipient](../images/M1-l7-19.jpg)
 
    You can add a  email adress  other then, the team members,  like _alerts@your-company.com_  for example or  send an alert to an other team.
     
