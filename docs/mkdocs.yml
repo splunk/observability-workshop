@@ -40,7 +40,7 @@ nav:
     - '1. Working with Detectors': module1/detectors.md
     - '2. Working with Muting Rules': module1/muting.md
   - '<b>Module 3</b> - Smart Agent':
-    - '1. Running the Smart Agent in Kubernetes (K3s)': module1/k3s.md
+    - '1. Deploying the Smart Agent in Kubernetes (K3s)': module1/k3s.md
     - '2. Deploying NGINX in K3s' : module1/nginx.md
   - '<b>Module 4</b> - Monitoring as Code':
     - '1. Using Terraform' : module1/terraform.md
