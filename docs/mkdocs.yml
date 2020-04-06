@@ -29,6 +29,9 @@ markdown_extensions:
 extra_css:
   - "extra.css"
 
+plugins:
+  - git-revision-date-localized
+  
 nav:
   - Overview: index.md
   - 'Module One':
