@@ -386,6 +386,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../service_bureau/" title="7. Service Bureau" class="md-nav__link">
+      7. Service Bureau
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -535,11 +547,9 @@
 <div class="codehilite"><pre><span></span><code><span class="nb">cd</span> ~/workshop/k3s/nginx
 </code></pre></div>
 
-
 <p>Create the NGINX configmap using the <code>nginx.conf</code> file:</p>
 <div class="codehilite"><pre><span></span><code>kubectl create configmap nginxconfig --from-file<span class="o">=</span>nginx.conf
 </code></pre></div>
-
 
 <p>Verify the number of pods running in the SignalFx UI by selecting the <strong>WORKLOADS</strong> tab. This should give you an overview of the workloads on your cluster.
 <img alt="Workload Agent" src="../../images/M1-l4-workload-list-agent.jpg" /></p>
@@ -550,7 +560,6 @@
 <div class="codehilite"><pre><span></span><code>kubectl create -f nginx-deployment.yaml
 </code></pre></div>
 
-
 <p>Validate the deployment has been successful and that the NGINX pods are running. If you have the SignalFx UI open you should see new Pods being started and containers being deployed. It should only take around 20 seconds for the pods to transition into a Running state. In the SignalFx UI you should have a cluster that looks like below:</p>
 <p><img alt="back to Cluster" src="../../images/M1-l4-back-cluster.jpg" /></p>
 <p>If you select the <strong>WORKLOADS</strong> tab again you should now see that there is a new replica set and a deployment added for the NGINX deployment:
@@ -560,7 +569,6 @@
 <div class="codehilite"><pre><span></span><code>kubectl get pods
 </code></pre></div>
 
-
 <div class="codehilite"><pre><span></span><code>NAME                               READY   STATUS    RESTARTS   AGE
 signalfx-agent-n7nz2               <span class="m">1</span>/1     Running   <span class="m">0</span>          11m
 nginx-deployment-f96cf6966-jhmjp   <span class="m">1</span>/1     Running   <span class="m">0</span>          21s
@@ -569,33 +577,27 @@ nginx-deployment-f96cf6966-vrnfc   <span class="m">1</span>/1     Running   <spa
 nginx-deployment-f96cf6966-7z4tm   <span class="m">1</span>/1     Running   <span class="m">0</span>          21s
 </code></pre></div>
 
-
 <p>Next we need to expose port 80 (HTTP)</p>
 <div class="codehilite"><pre><span></span><code>kubectl create service nodeport nginx --tcp<span class="o">=</span><span class="m">80</span>:80
 </code></pre></div>
 
-
 <div class="codehilite"><pre><span></span><code>service/nginx created
 </code></pre></div>
-
 
 <p>Run <code>kubectl get svc</code> then make a note of the <code>CLUSTER-IP</code> address allocated to the NGINX service.</p>
 <div class="codehilite"><pre><span></span><code>kubectl get svc
 </code></pre></div>
-
 
 <div class="codehilite"><pre><span></span><code>NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
 kubernetes   ClusterIP   10.96.0.1      &lt;none&gt;        443/TCP        9m3s
 nginx        NodePort    10.110.36.62   &lt;none&gt;        80:30995/TCP   8s
 </code></pre></div>
 
-
 <hr />
 <h3 id="3-run-a-benchmark">3. Run a benchmark<a class="headerlink" href="#3-run-a-benchmark" title="Permanent link">&para;</a></h3>
 <p>Using the NGINX CLUSTER-IP address reported from above, use Apache Benchmark (<code>ab</code>) to create some traffic to light up your SignalFx NGINX dashboard. Run this a couple of times to generate some metrics!</p>
 <div class="codehilite"><pre><span></span><code>ab -n1000 -c20 http://<span class="o">{</span>INSERT_NGINX_IP_ADDRESS<span class="o">}</span>/
 </code></pre></div>
-
 
 <div class="codehilite"><pre><span></span><code>This is ApacheBench, Version 2.3 &lt;$Revision: 1826891 $&gt;
 Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
@@ -612,7 +614,6 @@ Server Hostname:        localhost
 Server Port:            30995
 ...
 </code></pre></div>
-
 
 <p>Validate you are seeing metrics in the UI by going to <em><strong>Dashboards → NGINX → NGINX Servers</strong></em> Tip: you can again apply the filter <code>kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP</code> to focus on only your metrics.
 <img alt="" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/m1_l4-nginx-dashboard.png" /></p>

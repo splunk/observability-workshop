@@ -323,6 +323,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../module1/service_bureau/" title="7. Service Bureau" class="md-nav__link">
+      7. Service Bureau
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -565,7 +577,6 @@ kubectl create ns sock-shop
 kubectl apply -f k8s/complete-demo.yaml
 </code></pre></div>
 
-
 <div class="codehilite"><pre><span></span><code>namespace/sock-shop created
 deployment.apps/carts-db created
 service/carts-db created
@@ -595,17 +606,14 @@ deployment.apps/user created
 service/user created
 </code></pre></div>
 
-
 <h3 id="3-take-sock-shop-for-a-test-drive">3. Take Sock Shop for a test drive<a class="headerlink" href="#3-take-sock-shop-for-a-test-drive" title="Permanent link">&para;</a></h3>
 <p>Sock Shop should be running in your cluster and exposes services via cluster IP and port. Obtain the ip address for the front-end service.</p>
 <div class="codehilite"><pre><span></span><code><span class="nv">SOCKS_ENDPOINT</span><span class="o">=</span><span class="k">$(</span>kubectl get svc front-end -n sock-shop -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.spec.clusterIP}:{.spec.ports[0].port}&#39;</span><span class="k">)</span>
 </code></pre></div>
 
-
 <p>Then send a </p>
 <div class="codehilite"><pre><span></span><code>curl <span class="nv">$SOCKS_ENDPOINT</span>
 </code></pre></div>
-
 
 <p>and it should respond with HTML markup:</p>
 <div class="codehilite"><pre><span></span><code>...
@@ -615,12 +623,10 @@ service/user created
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </code></pre></div>
 
-
 <h3 id="4-apply-load-on-sock-shop">4. Apply load on Sock Shop<a class="headerlink" href="#4-apply-load-on-sock-shop" title="Permanent link">&para;</a></h3>
 <p>Use a load test for sock shop.</p>
 <div class="codehilite"><pre><span></span><code>kubectl run --generator<span class="o">=</span>run-pod/v1 load-test --rm -i --tty --image weaveworksdemos/load-test -- -d <span class="m">5</span> -h <span class="nv">$SOCKS_ENDPOINT</span> -c <span class="m">15</span> -r <span class="m">1000</span>
 </code></pre></div>
-
 
 <p>The parameter <code>-c</code> controls the amount of concurrent clients and <code>-r</code> the amount of requests sent. To apply continuous load just set <code>-r</code> to some higher number.</p>
 <h3 id="5-visualize-and-analyze-trace-data">5. Visualize and analyze trace data<a class="headerlink" href="#5-visualize-and-analyze-trace-data" title="Permanent link">&para;</a></h3>
