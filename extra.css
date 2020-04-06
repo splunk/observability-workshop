@@ -13,3 +13,12 @@ img {
 a.md-logo img {
     border: none;
 }
+
+.md-nav__link--active,
+.md-nav__link:active {
+    color: #E20082;
+}
+
+.md-nav__link:focus, .md-nav__link:hover {
+    color: #E20082;
+}
