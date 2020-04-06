@@ -308,6 +308,34 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#2-setting-alert-condition" class="md-nav__link">
+    2. Setting Alert condition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-alert-pre-flight-check" class="md-nav__link">
+    3. Alert pre-flight check
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-configuring-the-alert-message" class="md-nav__link">
+    4. Configuring the alert message
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-activating-the-alert" class="md-nav__link">
+    5. Activating the alert
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -470,6 +498,34 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#2-setting-alert-condition" class="md-nav__link">
+    2. Setting Alert condition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-alert-pre-flight-check" class="md-nav__link">
+    3. Alert pre-flight check
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-configuring-the-alert-message" class="md-nav__link">
+    4. Configuring the alert message
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-activating-the-alert" class="md-nav__link">
+    5. Activating the alert
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -502,7 +558,6 @@
 </ul>
 <hr />
 <h3 id="1-create-a-detector-from-one-of-your-charts">1. Create a Detector from one of your charts<a class="headerlink" href="#1-create-a-detector-from-one-of-your-charts" title="Permanent link">&para;</a></h3>
-<p>Logon to your account in SignalFx, and click on DASHBOARDS in the menu.</p>
 <p>In <strong>DASHBOARDS</strong> click on your dashboard group (the one with your email address) and then on the dashboard name where the chart you created in the previous lab resides.</p>
 <p>OR </p>
 <p>Search for your previously created dashboard's name, and click on that dashboard's name in the results.</p>
@@ -511,24 +566,31 @@
 Click on the bell icon  on your chart and on New Detector From Chart - ADD YOUR INITIALS TO THE NAME (see next step).
 We are going to create a new alert detector from the chart.</p>
 <p><img alt="" src="../../images/M1-l2-2.png" /> </p>
-<p>IMPORTANT - In the window that opens, add your initials in front of the proposed text, and click on Create Alert Rule.
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the window that opens, add your initials in front of the proposed text, and click on Create Alert Rule.
 It should be something like this: LI's Latency Chart Detector.</p>
+</div>
 <p><img alt="" src="../../images/M1-l2-3.png" />  </p>
 <p>In the detector window, inside Alert signal, the signal we will alert on is marked with a bell.
-The bell in the 'Alert on' column indicates which Signal is being used to generate the alert.</p>
+The bell in the 'Alert on' column indicates which Signal is being used to generate the alert. Click on Proceed to Alert Condition.</p>
 <p><img alt="" src="../../images/M1-l2-4.png" />  </p>
-<p>Click on Proceed to Alert Condition.
-On Alert Condition, click on Static Threshold and then on Proceed to Alert Settings.</p>
+<hr />
+<h3 id="2-setting-alert-condition">2. Setting Alert condition<a class="headerlink" href="#2-setting-alert-condition" title="Permanent link">&para;</a></h3>
+<p>In Alert Condition, click on Static Threshold and then on Proceed to Alert Settings.</p>
 <p><img alt="" src="../../images/M1-l2-5.png" />  </p>
 <p>In Alert Settings, enter the value "290" in the Threshold box and change Time on top right to past day.</p>
 <p><img alt="" src="../../images/M1-l2-6.png" />   </p>
-<p>Once you set an alert condition, SignalFx shows how many alerts you would get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.
-Immediately, the platform will start analysing the signals with the current settings, and perform something we call a Pre-flight Check, This enables me to test the alert conditions using the historical data in the platform, to ensure the settings are logical and will not inadvertently generate an alert storm, removing the guess work from configuring alerts in a simple but very powerful way, only available using SignalFx.</p>
-<p>I can see that based on my current settings, the amount of alerts I would’ve received in 1 day would've been around 18.</p>
-<p>To read more about Detector Previews, please visit this link:
-https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#previewing-the-results-of-a-detector</p>
-<p>Click on Proceed to Alert Message</p>
-<p>In Severity choose Major</p>
+<hr />
+<h3 id="3-alert-pre-flight-check">3. Alert pre-flight check<a class="headerlink" href="#3-alert-pre-flight-check" title="Permanent link">&para;</a></h3>
+<p>Once you set an alert condition, SignalFx shows how many alerts you would get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.</p>
+<p>Immediately, the platform will start analysing the signals with the current settings, and perform something we call a Pre-flight Check, This enables me to test the alert conditions using the historical data in the platform, to ensure the settings are logical and will not inadvertently generate an alert storm, removing the guess work from configuring alerts in a simple but very powerful way, only available using SignalFx.</p>
+<p>We can see that based on the current settings, the amount of alerts we would’ve received in 1 day would've been around 18.</p>
+<p>To read more about Detector Previews, please visit this link 
+<a href="https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#previewing-the-results-of-a-detector">Setting up detectors</a></p>
+<hr />
+<h3 id="4-configuring-the-alert-message">4. Configuring the alert message<a class="headerlink" href="#4-configuring-the-alert-message" title="Permanent link">&para;</a></h3>
+<p>Click on Proceed to Alert Message. In Severity choose Major</p>
 <p><img alt="" src="../../images/M1-l2-7.png" />  </p>
 <p>Click on Proceed to Alert Recipients</p>
 <p>Click on Add Recipient and then on your email displayed as the first option</p>
@@ -537,6 +599,8 @@ https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#previewin
 OR you can enter another email address by clicking on E-mail...</p>
 <p>That's just one example of the many Notification Services SignalFx has available
 You can check this out by going to the INTEGRATIONS tab of the top menu, and see Notification Services </p>
+<hr />
+<h3 id="5-activating-the-alert">5. Activating the alert<a class="headerlink" href="#5-activating-the-alert" title="Permanent link">&para;</a></h3>
 <p>Click on Proceed to Alert Activation</p>
 <p>In Activate...click on Activate Alert Rule</p>
 <p><img alt="" src="../../images/M1-l2-9.png" />  </p>
