@@ -34,7 +34,7 @@
 
 ![Left pane](../images/M1-l7-4.jpg)
 
-   Given this will recalculate the usage across your organization you may see a spinning ![Spinner wait](../images/M1-l7-5.jpg)
+   Given this will recalculate the usage across your organization you may see a spinning
     
 ***
 
@@ -81,5 +81,4 @@
 
 ![Billing and Usage](../images/M1-l7-13.jpg)
 ![Billing and Usage](../images/M1-l7-12.jpg)
-![Billing and Usage](../images/M1-l7-14.jpg)
 
