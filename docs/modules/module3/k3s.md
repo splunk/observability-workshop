@@ -9,9 +9,7 @@ If you have chosen to run the workshop on a AWS/EC2 instance, please follow inst
 
 ### 1. Let’s bake some K8s
 
-Install [Multipass][] for your OS. On a Mac you can also install via `brew` e.g. `brew cask install multipass`
-
-[Multipass]: https://multipass.run/
+Install [Multipass](https://multipass.run/) for your OS. On a Mac you can also install via `brew` e.g. `brew cask install multipass`
 
 Download the App Dev Workshop master zip file, unzip the file and change into the app-dev-workshop-master directory
 
@@ -21,7 +19,10 @@ unzip master.zip
 cd app-dev-workshop-master
 ```
 
-Launch the Multipass instance which will run Kubernetes. **Note:** Use `{YOUR_INITIALS}-k3s` this is so the value of the instance hostname is unique e.g. `rwc-k3s`
+Launch the Multipass instance which will run Kubernetes (K3s)
+
+!!! note 
+    Use `{YOUR_INITIALS}-k3s` so that the value of the instance hostname is unique e.g. `rwc-k3s`
 
 ```bash
 multipass launch --name {YOUR_INITIALS}-k3s --cloud-init cloud-init-k3s.yaml --cpus=2 --mem=2G
@@ -32,6 +33,8 @@ Once the instance has been successfully created shell into it.
 ```bash
 multipass shell {YOUR_INITIALS}-k3s
 ```
+
+![Shell](../images/module3/shell.png)
 
 ---
 
@@ -132,6 +135,7 @@ Validate that your cluster is discovered and shown (In a workshop you can see ma
 ![Find Your Cluster](../images/module3/find-cluster.png)
 
 If there are many clusters you can use the dashboard filter to narrow down to your K8s cluster e.g. `kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP` or do this by clicking on the blue cross ![blue cross](../images/M1-l4-blue-cross.jpg) after selecting your cluster with your mouse.
+
 ![K8S Clusters Filter](../images/M1-l4-Selecting-K3-cluster.jpg)
 
 To examine the health of your cluster, open the side bar by clicking on the ![side bar button](../images/M1-l4-sidebar-button.jpg) button to open the Metrics side bar. Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: Cpu%, Mem%, Network in & out. Events and Container list.
