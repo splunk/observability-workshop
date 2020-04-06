@@ -19,7 +19,7 @@ kubectl create configmap nginxconfig --from-file=nginx.conf
 
 Verify the number of pods running in the SignalFx UI by selecting the **WORKLOADS** tab. This should give you an overview of the workloads on your cluster.
 
-![Workload Agent](../images/module3/M1-l4-workload-list-agent.jpg)
+![Workload Agent](../images/module3/k8s-workloads.jpg)
 
 Note the single agent container running per node among the default Kubernetes pods. This single container will monitor all the pods and services being deployed on this node!
 
@@ -35,11 +35,11 @@ kubectl create -f nginx-deployment.yaml
 
 Validate the deployment has been successful and that the NGINX pods are running. If you have the SignalFx UI open you should see new Pods being started and containers being deployed. It should only take around 20 seconds for the pods to transition into a Running state. In the SignalFx UI you should have a cluster that looks like below:
 
-![back to Cluster](../images/module3/M1-l4-back-cluster.jpg)
+![back to Cluster](../images/module3/cluster.jpg)
 
 If you select the **WORKLOADS** tab again you should now see that there is a new replica set and a deployment added for the NGINX deployment:
 
-![NGINX loaded](../images/module3/M1-l4-NGINX-loaded.jpg)
+![NGINX loaded](../images/module3/k8s-workloads-nginx.jpg)
 
 ---
 
@@ -109,4 +109,4 @@ Server Port:            30995
 
 Validate you are seeing metrics in the UI by going to _**Dashboards → NGINX → NGINX Servers**_ Tip: you can again apply the filter `kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP` to focus on only your metrics.
 
-![](../images/module3/m1_l4-nginx-dashboard.png)
+![](../images/module3/nginx-dashboard.png)
