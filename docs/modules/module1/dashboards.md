@@ -5,7 +5,7 @@
 ### 1. Introduction to the SignalFx environment  
 Logon to the SignalFx organization you have been invited to
 
-Hover over DASHBOARDS in the top menu, and then click on All Dashboards at the bottom
+Hover over **DASHBOARDS** in the top menu, and then click on All Dashboards at the bottom
 You will see a number of prebuilt dashboards
 
 ![](../images/M1-l1-1.png)
@@ -14,7 +14,9 @@ If you are getting metrics already through cloud API integration or the Smart Ag
 
 Among the dashboards there you will see a Dashboard group called Sample Data. This group exists by default in all SignalFx accounts. Let's take a closer look at it.
 
-***
+---
+
+### 2. Inspecting the Sample Data
 
 In the All Dashboards window expand the Sample Data dashboard group by clicking on it, and then click on Intro to SignalFx dashboard
  
@@ -22,19 +24,15 @@ In the All Dashboards window expand the Sample Data dashboard group by clicking 
 
 You will see a selection of sample charts. To learn more about charts you can click on the Intro to SignalFx, Part 1, 2 and Part 3 dashboards and read the description of the charts and its metrics.
 
-***
-
-Let's take a look at the Sample charts
-
-Click on the Sample charts dashboard name
+Let's take a look at the Sample charts. Click on the Sample charts dashboard name:
 
 ![](../images/M1-l1-3.png)
 
 In the SAMPLE CHARTS dashboard you see a selection of charts that shows the different styles, colours and formats you can apply to the different visualisations available.
 
-***
+---
 
-Let's work on a specific chart.
+### 3. Editing charts
 
 Click on the three dots (...) on the Latency histogram chart (circled in the screenshot above) and then on Open. You will see the plot options, current plot and signal (metric) for the Latency histogram chart.
 
@@ -58,10 +56,8 @@ In the PLOT EDITOR tab under Signal you see the metric demo.trans.latency we are
 
 
 ---
-### 2. How to create Charts and Dashboards
-Let's now create a new chart and save it in a new dashboard!
-
-Click on the plus icon and from the drop down, click on Chart
+### 4. Creating a new chart
+Let's now create a new chart and save it in a new dashboard! Click on the plus icon and from the drop down, click on **Chart**
 
 ![](../images/M1-l1-8.png)
  
@@ -71,24 +67,26 @@ You will now see a chart template like the following.
 
 ***
  
-Let's enter a metric to plot. We are going to use the same metric we saw in step 7, namely demo.trans.latency
+Let's enter a metric to plot. We are going to use the metric `demo.trans.latency`
 
-In the PLOT EDITOR tab under Signal enter demo.trans.latency
+In the **PLOT EDITOR** tab under **Signal** enter `demo.trans.latency`
 
 ![](../images/M1-l1-10.png)
 
-You will instantly see a number of Line plots, like below. The number "18 ts" indicates that we are plotting 18 metric time series in the chart.
+You will instantly see a number of Line plots, like below. The number `18 ts` indicates that we are plotting 18 metric time series in the chart.
 
 ![](../images/M1-l1-11.png)
 
-Click on the DATA TABLE tab
+Click on the ***DATA TABLE** tab
 
 ![](../images/M1-l1-12.png)
 
 You see now 18 rows, each representing a metics time series with a number of columns. If you swipe over the plot horizontally you will see the metrics in these columns at different times.
 In the demo_datacenter column you see that there are two data centers, Paris and Tokyo, for which we are getting metrics.
 
-***
+---
+
+### 5. Filtering and Analytics
 
 Let's now select the Paris datacenter to do some analytics - for that we will use a filter.
 
@@ -101,14 +99,12 @@ In the F(x) column, add the analytic function Percentile:Aggregation, and leave 
 
 ![](../images/M1-l1-14.png)
 
+For info on the Percentile function and the other functions see [Analytics reference](https://docs.signalfx.com/en/latest/reference/analytics-docs/analytics-reference.html )
 
-For info on the Percentile function and the other functions see:[Analytics reference](https://docs.signalfx.com/en/latest/reference/analytics-docs/analytics-reference.html )
+---
 
-***
-
-Let's now compare with older metrics.
-
-Click on ... and then on Clone in the dropdown to clone that Signal
+### 6. Using Timeshift analytical function
+Let's now compare with older metrics. Click on `...` and then on Clone in the dropdown to clone that Signal
 
 ![](../images/M1-l1-15.png)
 
@@ -125,8 +121,6 @@ Click on the cogwheel  on the far right, and choose a color, say pink, from Plot
 ![](../images/M1-l1-18.png)
  
 Click on Close
-
-***
  
 Click on the field next to Time and choose Past Day from the dropdown
 
@@ -142,7 +136,9 @@ Click on Area chart icon
 
 We now have a better view of our two plots
 
-***
+---
+
+### 7. Using formulas
 
 Let's now plot the difference of all metric values for a day with 7 days between
 
@@ -163,7 +159,10 @@ In the PLOT EDITOR for C click on Add Analytics and choose Absolute Value
 You will see the C plot now having only positive values
 
 ![](../images/M1-l1-24.png)
- 
+
+---
+
+### 8. Overlaying metrics and events
 Let's now overlay metrics and events to our initial plot to see if there is any correlation with high latency
 
 To discover and add new metrics to the chart from the ones that are being sent to SignalFx already, click on Browse on the bottom of the screen
@@ -192,6 +191,9 @@ Click on the  icon to collapse the Metrics sidebar
 
 ![](../images/M1-l1-28.png)
 
+---
+
+### 9. Introduction to SignalFlow
 Let's take a look at SignalFlow - the analytics language of SignalFx that can be used to setup monitoring as code.
 
 Click on View SignalFlow
@@ -202,25 +204,23 @@ You will see the SignalFlow code that composes the chart we were working on
 
 ![](../images/M1-l1-30.png)
  
-...this is the analytics language of SignalFx. Between the many benefits it provides, It can be used to setup monitoring as code. In the next lab we will see it being used in action.
-For more info on SignalFlow see:
-https://docs.signalfx.com/en/latest/getting-started/concepts/analytics-signalflow.html#signalflow-analytics-language
+SignalFlow is the analytics language of SignalFx. Between the many benefits it provides, it can be used to setup monitoring as code. In the next lab we will see it being used in action.
+For more info on SignalFlow see
+[Getting started with SignalFlow](https://docs.signalfx.com/en/latest/getting-started/concepts/analytics-signalflow.html#signalflow-analytics-language)
 
 Click on View Builder to go back to the UI Signal builder 
 
 ![](../images/M1-l1-31.png) 
 
-***
+---
 
-Let's now save our chart.
+### 10. Adding charts to dashboards 
 
-Click on Save as... and enter a name for your chart, use your initials like '<your initials>'s Latency Chart' and click OK
+Let's now save our chart. Click on Save as... and enter a name for your chart, use your initials like `<your initials>'s Latency Chart` and click OK
 
 ![](../images/M1-l1-32.png) 
  
-In the next window...
-
-Find your email address in the list and select it, then click Ok
+In the next window, find your email address in the list and select it, then click Ok
 
 ![](../images/M1-l1-33.png) 
 
