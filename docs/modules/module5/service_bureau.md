@@ -16,7 +16,7 @@ you with the following dashboard that shows you how your SignalFx organization i
 
 ![Organization overview](../images/M1-l7-3.jpg)
 
-On the left, you will see a list of registered users (blurred in the above screenshot), and the various charts that show you the number of registered users, chart's and dashboards created and growth trends.
+On the left, you will see a list of registered users (blurred for privacy in the above screenshot), and the various charts that show you the number of registered users, chart's and dashboards created and growth trends.
 
 The screenshot is taken from an actual organization, the workshop organization  your are looking at,
 may have less data to work with.
