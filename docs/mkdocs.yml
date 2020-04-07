@@ -49,6 +49,7 @@ nav:
     - 'Billing and Usage' : module5/service_bureau.md
     - 'Teams' : module5/teams.md
   - '<b>Module 6</b> - µAPM':
+    - 'µAPM Architecture Overview': module6/index.md
     - 'Running Hotrod in K3s': module6/hotrod.md
     - 'Running Sock Shop in K3s': module6/sockshop.md
   - '<b>Module 7</b> - VictorOps':
