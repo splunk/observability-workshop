@@ -349,39 +349,33 @@
     Lab Summary
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-lets-bake-some-k8s" class="md-nav__link">
     1. Let’s bake some K8s
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#2-ive-got-the-key-ive-got-the-secret" class="md-nav__link">
     2. I’ve got the key, I’ve got the secret!
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#3-take-the-helm" class="md-nav__link">
     3. Take the Helm!
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#4-check-all-is-well-in-the-signalfx-ui" class="md-nav__link">
     4. Check all is well in the SignalFx UI!
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -522,6 +516,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../module6/" title="µAPM Architecture Overview" class="md-nav__link">
+      µAPM Architecture Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../module6/hotrod/" title="Running Hotrod in K3s" class="md-nav__link">
       Running Hotrod in K3s
     </a>
@@ -616,39 +622,33 @@
     Lab Summary
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#1-lets-bake-some-k8s" class="md-nav__link">
     1. Let’s bake some K8s
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#2-ive-got-the-key-ive-got-the-secret" class="md-nav__link">
     2. I’ve got the key, I’ve got the secret!
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#3-take-the-helm" class="md-nav__link">
     3. Take the Helm!
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#4-check-all-is-well-in-the-signalfx-ui" class="md-nav__link">
     4. Check all is well in the SignalFx UI!
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -673,13 +673,13 @@
                 
                   <h1>Deploying the Smart Agent in Kubernetes (K3s)</h1>
                 
-                <h2 id="lab-summary">Lab Summary<a class="headerlink" href="#lab-summary" title="Permanent link">&para;</a></h2>
+                <h3 id="lab-summary">Lab Summary<a class="headerlink" href="#lab-summary" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Download the workshop and configure Kubernetes (<a href="https://k3s.io/">K3s</a>) environment.</li>
 <li>Use the SignalFx Helm chart to install the Smart Agent in K3s.</li>
 <li>Explore Your cluster in the Kubernetes Navigator</li>
 </ul>
-<p>If you have chosen to run the workshop on a AWS/EC2 instance, please follow instructions and go to <a href="http://127.0.0.1:8000/module1/k3s/#2-ive-got-the-key-ive-got-the-secret">Step 2</a>.</p>
+<p>If you have chosen to run the workshop on a AWS/EC2 instance, please follow instructions and go to <a href="https://signalfx.github.io/app-dev-workshop/module3/k3s/#2-ive-got-the-key-ive-got-the-secret">Step 2</a>.</p>
 <hr />
 <h3 id="1-lets-bake-some-k8s">1. Let’s bake some K8s<a class="headerlink" href="#1-lets-bake-some-k8s" title="Permanent link">&para;</a></h3>
 <p>Install <a href="https://multipass.run/">Multipass</a> for your OS. On a Mac you can also install via <code>brew</code> e.g. <code>brew cask install multipass</code></p>
@@ -717,7 +717,10 @@ export INITIALS=&lt;your initials e.g. GXH&gt;
 export VERSION=&lt;Smart Agent version e.g. 5.0.4&gt;
 </code></pre></div>
 
-<p><strong>Note:</strong> The latest version of the Smart Agent can be found on <a href="https://github.com/signalfx/signalfx-agent/releases">GitHub</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The latest version of the Smart Agent can be found on <a href="https://github.com/signalfx/signalfx-agent/releases">GitHub</a></p>
+</div>
 <p>Install the agent using the SignalFx Helm chart. Firstly, add the SignalFx Helm chart repository to Helm.</p>
 <div class="codehilite"><pre><span></span><code>helm repo add signalfx https://dl.signalfx.com/helm-repo
 </code></pre></div>
@@ -780,10 +783,10 @@ time=&quot;2020-03-15T11:30:29Z&quot; level=info msg=&quot;Starting K8s API reso
 <hr />
 <p>Validate that your cluster is discovered and shown (In a workshop you can see many more clusters) by finding your cluster by searching for <code>{YOUR_INITIALS}-SFX-WORKSHOP</code>:</p>
 <p><img alt="Find Your Cluster" src="../../images/module3/find-cluster.png" /></p>
-<p>If there are many clusters you can use the dashboard filter to narrow down to your K8s cluster e.g. <code>kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP</code> or do this by clicking on the blue cross <img alt="blue cross" src="../../images/M1-l4-blue-cross.jpg" /> after selecting your cluster with your mouse.</p>
+<p>If there are many clusters you can use the dashboard filter to narrow down to your Kubernetes cluster e.g. <code>kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP</code> or do this by clicking on the blue cross <img alt="blue cross" src="../../images/M1-l4-blue-cross.jpg" /> after selecting your cluster with your mouse.</p>
 <p><img alt="K8S Clusters Filter" src="../../images/M1-l4-Selecting-K3-cluster.jpg" /></p>
 <p>To examine the health of your cluster, open the side bar by clicking on the <img alt="side bar button" src="../../images/M1-l4-sidebar-button.jpg" /> button to open the Metrics side bar. Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: Cpu%, Mem%, Network in &amp; out. Events and Container list.</p>
-<p><img alt="side bar metrics" src="../../images/M1-l4-explore-metrics.jpg" /></p>
+<p><img alt="Sidebar metrics" src="../../images/M1-l4-explore-metrics.jpg" /></p>
                 
                   
                 
@@ -793,7 +796,7 @@ time=&quot;2020-03-15T11:30:29Z&quot; level=info msg=&quot;Starting K8s API reso
                   <div class="md-source-date">
                     <small>
                       
-                        Last update: April 6, 2020 20:08:21
+                        Last update: April 7, 2020 15:13:03
                       
                     </small>
                   </div>
