@@ -1,6 +1,4 @@
-### Testing your changes
-
-When working on this repo, it is advised that you review your changes locally before committing them. The `mkdocs serve` command can be used to live preview your changes (as you type) on your local machine.
+When working on the workshop, it is advised that you review your changes locally before committing them. The `mkdocs serve` command can be used to live preview your changes (as you type) on your local machine.
 
 ### Cloning the repo and installing dependancies
 ```bash
