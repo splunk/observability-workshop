@@ -12,19 +12,19 @@ Hover over **ALERTS** in the menu and click on **Detectors**
 
 If you created an alert detector in "Working with Detectors" you can click on the three dots `...` on the far right and click on **Create Muting Rule...**
 
-![](../images/M1-l3-2.png) 
+![Create Muting Rule](../images/module2/create-rule.png) 
 
-In the Muting Rule window check Mute Indefinitely. This will mute the rule permanently, let's say for maintenance windows, until you come back here and uncheck this box.
+In the Muting Rule window check Mute Indefinitely and enter a reason. This will mute the rule permanently until you come back here and uncheck this box.
 
-![](../images/M1-l3-3.png) 
+![Mute Indefinitely](../images/module2/mute-indefinitely.png) 
 
-Click Next and in the new window read the muting rule setup
+Click Next and in the new modal window confirm the muting rule setup
 
-![](../images/M1-l3-4.png) 
+![](../images/module2/confirm-rule.png) 
 
 Click on Mute Indefinitely to confirm. You won't be receiving any email notifications from you alert detector until you resume notifications again.
 
-![](../images/M1-l3-5.png) 
+![](../images/module2/list-muted-rule.png) 
 
 ---
 
