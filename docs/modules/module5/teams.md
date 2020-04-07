@@ -32,7 +32,7 @@ When the **Team** UI is selected you will be presented in the workshop with an e
 ***  
 To add a new **Team** click on the green ![Create team](../images/M1-l7-15.jpg) button. This will present youy with the **Create New Team** Dialog.
 
-![Add Team](../images/M1-l7-16.jpg)
+![Add Team](../images/M1-l7-16.jpg#shadow)
 
 Create your own team by naming it [YOUR-INITIALS]-Team and add yourself by searching for your name and 
 selecting  the **Add** link behind your name. This should result in a dialog similar to the one below:
@@ -87,12 +87,11 @@ Take a moment to create some notification rules for you Team.
 ### 4. Controlling a Team's usage!
 If you wish to make sure certain teams or users cannot use more then a certain allotment of you overall  allotment of nodes, containers and Metrics' you can create multiple Access keys.
 
-  
 To work with SignalFx's Access Tokens UI click on the settings ![gray user icon](../images/M1-l7-2.jpg) ) icon on the right top of the page and select the **Organizations Settings → Access tokens** tab, or select the **Access Tokens** tab from the left pane.
 
 ![Select Token](../images/M1-l7-13.jpg)
 
-This will open up the **Access Token** Interface.  It consist of a an overview of your Allotments for this organization and a list of Access Tokens that have been generated.
+This will open up the **Access Token** Interface. It consist of a an overview of your Allotments for this organization and a list of Access Tokens that have been generated.
 Every Organization wil have a Default token that is generated when  Organization is created.
 
 Each Token is unique and can be assigned limits for the amount of  Nodes,containers Custom Metrics and High Resolution it can use.
@@ -107,7 +106,7 @@ Let create a new token by clicking on  the ![new token button](../images/M1-l7-2
 This will provide you with the **Name Your Access Token** dialog.
 Enter the new name of the new Token  by using your Initials  ie. PH-Token
 
-![Name Your token](../images/M1-l7-23.jpg)
+![Name Your token](../images/M1-l7-23.jpg#shadow)
 
 After you press Ok,  you will be taken back to the **Access token** UI, here your new token should be present, among the ones created by others.
 
@@ -135,7 +134,7 @@ Go ahead and click on the 3 **...** menu button to Disable and Enable your token
 Now Lets start limiting usage by clicking on Manage Token Limit in teh 3 **...** menu.
 This will show the Manage Token Limit Dialog: 
 
-![Set Limits on token](../images/M1-l7-12.jpg)
+![Set Limits on token](../images/M1-l7-12.jpg#shadow)
 
 In this Dialog you can set the limits per category.
 
@@ -153,4 +152,4 @@ Click on **Update** to save your Access Tokens limits and The Alert Settings.
 In your company you would distribute these new Access Tokens to various teams, controlling how much information/data they can send to SignalFx. This will allow you to fine tune the way you consume your SignalFx allotment and stop expensive surprises from happening
 
     
-**Congratulations!** You have now  have completed the Service Bureau module.
+**Congratulations!** You have now have completed the Service Bureau module.
