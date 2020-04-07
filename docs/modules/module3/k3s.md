@@ -1,9 +1,9 @@
-## Lab Summary
+### Lab Summary
 * Download the workshop and configure Kubernetes ([K3s](https://k3s.io/)) environment.
 * Use the SignalFx Helm chart to install the Smart Agent in K3s.
 * Explore Your cluster in the Kubernetes Navigator
 
-If you have chosen to run the workshop on a AWS/EC2 instance, please follow instructions and go to [Step 2](http://127.0.0.1:8000/module1/k3s/#2-ive-got-the-key-ive-got-the-secret).
+If you have chosen to run the workshop on a AWS/EC2 instance, please follow instructions and go to [Step 2](https://signalfx.github.io/app-dev-workshop/module3/k3s/#2-ive-got-the-key-ive-got-the-secret).
 
 ---
 
@@ -59,7 +59,8 @@ export INITIALS=<your initials e.g. GXH>
 export VERSION=<Smart Agent version e.g. 5.0.4>
 ```
 
-**Note:** The latest version of the Smart Agent can be found on [GitHub](https://github.com/signalfx/signalfx-agent/releases)
+!!! note
+    The latest version of the Smart Agent can be found on [GitHub](https://github.com/signalfx/signalfx-agent/releases)
 
 Install the agent using the SignalFx Helm chart. Firstly, add the SignalFx Helm chart repository to Helm.
 
@@ -134,10 +135,10 @@ Validate that your cluster is discovered and shown (In a workshop you can see ma
 
 ![Find Your Cluster](../images/module3/find-cluster.png)
 
-If there are many clusters you can use the dashboard filter to narrow down to your K8s cluster e.g. `kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP` or do this by clicking on the blue cross ![blue cross](../images/M1-l4-blue-cross.jpg) after selecting your cluster with your mouse.
+If there are many clusters you can use the dashboard filter to narrow down to your Kubernetes cluster e.g. `kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP` or do this by clicking on the blue cross ![blue cross](../images/M1-l4-blue-cross.jpg) after selecting your cluster with your mouse.
 
 ![K8S Clusters Filter](../images/M1-l4-Selecting-K3-cluster.jpg)
 
 To examine the health of your cluster, open the side bar by clicking on the ![side bar button](../images/M1-l4-sidebar-button.jpg) button to open the Metrics side bar. Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: Cpu%, Mem%, Network in & out. Events and Container list.
 
-![side bar metrics](../images/M1-l4-explore-metrics.jpg)
+![Sidebar metrics](../images/M1-l4-explore-metrics.jpg)

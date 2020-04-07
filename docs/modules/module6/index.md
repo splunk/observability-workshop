@@ -3,5 +3,4 @@ SignalFx µAPM captures end-to-end distributed transactions from your applicatio
 
 The following illustrations show the recommended deployment model: SignalFx auto-instrumentation libraries send spans to the Smart Agent; the Smart Agent can send the spans to SignalFx directly or via an optional OpenTelemetry Collector.
 
-![iAcrcitecture Oveeview](../images/module6/arch-overview.png#shadow) 
-
+![Architecture Ove4view](../images/module6/arch-overview.png#shadow) 
