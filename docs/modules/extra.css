@@ -1,9 +1,13 @@
 /* needed because images have `max-width: 100%` in the theme */
 img {
     height: auto;
+    width: auto;
     border: 1px solid #9f9f9f;
 }
 
+img[src*="#shadow"] {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 .md-logo img {
     width: auto;
