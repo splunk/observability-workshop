@@ -7,7 +7,7 @@
 
 ### 1. Understanding SignalFx engagement
 
-To see fully understand SignalFx adoption inside your organization, click on the **Settings** icon on the top right of the SignalFx UI,
+To fully understand SignalFx adoption inside your organization, click on the **Settings** icon on the top right of the SignalFx UI,
 ![Settings Icon](../images/M1-l7-1.jpg)
 
 It may also look like this ![gray user icon](../images/M1-l7-2.jpg).
