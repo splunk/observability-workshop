@@ -6,7 +6,7 @@ _To check if you have an organisation with µAPM enabled, just login to SignalFx
 ---
 
 ### 1. Create an instance running Kubernetes
-This is already documented in [Deploying the Smart Agent in Kubernetes (K3s)](https://signalfx.github.io/app-dev-workshop/module1/k3s/). 
+This is already documented in [Deploying the Smart Agent in Kubernetes (K3s)](https://signalfx.github.io/app-dev-workshop/module3/k3s/).  
 
 ---
 

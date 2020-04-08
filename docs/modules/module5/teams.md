@@ -15,13 +15,14 @@ Here, members see all the Dashboard, alerts that are assigned the team and  any 
 
 ![Teams](../images/M1-l7-9.jpg)
 
-The above landing page has three Dashboard groups assigned, shows there is a critical alert that had this team as an adressee and some text and urls with other topics of interest. 
+The above landing page has three Dashboard groups assigned, shows there is a critical alert that had this team as an addressee and some text and urls with other topics of interest. 
 
 ---
 
 ### 2. Creating a new Team
    
-To work with  to signalFx's Team UI click on the settings ![gray user icon](../images/M1-l7-2.jpg) ) icon on the right top of the page and select the **Organizations Settings → Teams** tab, or select the **Teams** tab from the left pane.
+To work with  to signalFx's Team UI cick on the **Settings** icon on the top right of the SignalFx UI,
+![Settings Icon](../images/module5/M5-l1-1.png) (t may also look like this ![gray user icon](../images/module5/M5-l1-2.png)) and select the **Organizations Settings → Teams** tab, or select the **Teams** tab from the left pane. 
     
 ![location of settings](../images/M1-l7-7.jpg)
 
@@ -87,7 +88,7 @@ Take a moment to create some notification rules for you Team.
 ### 4. Controlling a Team's usage!
 If you wish to make sure certain teams or users cannot use more then a certain allotment of you overall  allotment of nodes, containers and Metrics' you can create multiple Access keys.
 
-To work with SignalFx's Access Tokens UI click on the settings ![gray user icon](../images/M1-l7-2.jpg) ) icon on the right top of the page and select the **Organizations Settings → Access tokens** tab, or select the **Access Tokens** tab from the left pane.
+To work with SignalFx's Access Tokens UI click on the settings ![gray user icon](../images/module5/M5-l1-2.png) ) icon on the right top of the page and select the **Organizations Settings → Access tokens** tab, or select the **Access Tokens** tab from the left pane.
 
 ![Select Token](../images/M1-l7-13.jpg)
 
@@ -150,6 +151,5 @@ Click on **Update** to save your Access Tokens limits and The Alert Settings.
 
 
 In your company you would distribute these new Access Tokens to various teams, controlling how much information/data they can send to SignalFx. This will allow you to fine tune the way you consume your SignalFx allotment and stop expensive surprises from happening
-
     
 **Congratulations!** You have now have completed the Service Bureau module.

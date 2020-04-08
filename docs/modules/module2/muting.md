@@ -45,8 +45,6 @@ Click on Resume Notifications
 
 Click on Resume to confirm and resume notifications for this detector
 
-![](../images/M1-l3-9.png) 
+![](../images/module2/resume.png#shadow) 
 
 **Congratulations!** You have now resumed your alert notifications!
-
-Continue the workshop with [Running the SmartAgent in Kubernetes](https://signalfx.github.io/app-dev-workshop/module1/k3s/)
