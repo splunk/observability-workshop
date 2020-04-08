@@ -3,7 +3,7 @@
 * Use the SignalFx Helm chart to install the Smart Agent in K3s.
 * Explore Your cluster in the Kubernetes Navigator
 
-If you have chosen to run the workshop on a AWS/EC2 instance, please follow instructions and go to [Step 2](https://signalfx.github.io/app-dev-workshop/module3/k3s/#2-ive-got-the-key-ive-got-the-secret).
+If you have chosen to run the workshop on a AWS/EC2 instance, please follow instructions given and go to [Step 2](https://signalfx.github.io/app-dev-workshop/module3/k3s/#2-ive-got-the-key-ive-got-the-secret).
 
 ---
 
@@ -16,7 +16,7 @@ Download the App Dev Workshop master zip file, unzip the file and change into th
 ```bash
 curl -LO https://github.com/signalfx/app-dev-workshop/archive/master.zip
 unzip master.zip
-cd app-dev-workshop-master
+mv app-dev-workshop-master workshop
 ```
 
 Launch the Multipass instance which will run Kubernetes (K3s)
