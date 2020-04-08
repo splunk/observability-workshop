@@ -48,7 +48,7 @@ For more information on what these are please read [Billing and Usage informatio
 
 The top chart shows you the current allotment per category,
 (shown at the red arrows at the top in the screenshot below), as wel as your current usage of the four catagories. (Shown at the red lines at the bottom of the chart, as you can see we consumed 
-18 hosts, 0 containers and 1152 custom metrics and 0 high resolution metrics) 
+18 hosts, 0 containers and 1038 custom metrics and 0 high resolution metrics) 
 
 ![Billing and Usage-top](../images/module5/M5-l1-6.png)
 
@@ -56,7 +56,7 @@ In the bottom chart, you can see the usage per category for the current period (
 drop-down box on the top right of the chart.) 
 The blue line marked _Average usage_ indicates what SignalFx will use to calculate your average usage for the current period. 
 
-![Billing and Usage-Bottom](../images/module5/M5-l1-6A.png)
+![Billing and Usage-Bottom](../images/module5/M5-l1-7.png)
 
 
 !!! info
@@ -65,8 +65,8 @@ The blue line marked _Average usage_ indicates what SignalFx will use to calcula
 
 In the pane on the right  shows you information about your organizations and contract end date.
 
-![Billing and Usage-Pane](../images/module5/M5-l1-6B.png)
+![Billing and Usage-Pane](../images/module5/M5-l1-8.png)
 
 To get a feel of the options you can change the category type by the drop down on the left or the time period with the right drop box.
 
-Please take a minute to explore the different time periods & categories and their usage.
+Please take a minute to explore the different time periods & categories and their views.
