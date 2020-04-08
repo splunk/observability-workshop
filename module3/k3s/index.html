@@ -679,14 +679,14 @@
 <li>Use the SignalFx Helm chart to install the Smart Agent in K3s.</li>
 <li>Explore Your cluster in the Kubernetes Navigator</li>
 </ul>
-<p>If you have chosen to run the workshop on a AWS/EC2 instance, please follow instructions and go to <a href="https://signalfx.github.io/app-dev-workshop/module3/k3s/#2-ive-got-the-key-ive-got-the-secret">Step 2</a>.</p>
+<p>If you have chosen to run the workshop on a AWS/EC2 instance, please follow instructions given and go to <a href="https://signalfx.github.io/app-dev-workshop/module3/k3s/#2-ive-got-the-key-ive-got-the-secret">Step 2</a>.</p>
 <hr />
 <h3 id="1-lets-bake-some-k8s">1. Let’s bake some K8s<a class="headerlink" href="#1-lets-bake-some-k8s" title="Permanent link">&para;</a></h3>
 <p>Install <a href="https://multipass.run/">Multipass</a> for your OS. On a Mac you can also install via <code>brew</code> e.g. <code>brew cask install multipass</code></p>
 <p>Download the App Dev Workshop master zip file, unzip the file and change into the app-dev-workshop-master directory</p>
 <div class="codehilite"><pre><span></span><code>curl -LO https://github.com/signalfx/app-dev-workshop/archive/master.zip
 unzip master.zip
-<span class="nb">cd</span> app-dev-workshop-master
+mv app-dev-workshop-master workshop
 </code></pre></div>
 
 <p>Launch the Multipass instance which will run Kubernetes (K3s)</p>
@@ -796,7 +796,7 @@ time=&quot;2020-03-15T11:30:29Z&quot; level=info msg=&quot;Starting K8s API reso
                   <div class="md-source-date">
                     <small>
                       
-                        Last update: April 7, 2020 15:13:03
+                        Last update: April 8, 2020 10:25:35
                       
                     </small>
                   </div>
