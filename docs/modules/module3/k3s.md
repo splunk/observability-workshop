@@ -16,7 +16,7 @@ Download the App Dev Workshop master zip file, unzip the file and change into th
 ```bash
 curl -LO https://github.com/signalfx/app-dev-workshop/archive/master.zip
 unzip master.zip
-mv app-dev-workshop-master workshop
+mv app-dev-workshop-master workshop 
 ```
 
 Launch the Multipass instance which will run Kubernetes (K3s)
