@@ -57,7 +57,7 @@ Create the following variables to use in the proceeding helm install command:
 export ACCESS_TOKEN=<token from Step 2>
 export REALM=<realm from Step 2>
 export INITIALS=<your initials e.g. GXH>
-export VERSION=<Smart Agent version e.g. 5.0.4>
+export VERSION=<Smart Agent version e.g. 5.1.0>
 ```
 
 !!! note
