@@ -44,68 +44,72 @@ If you select the **WORKLOADS** tab again you should now see that there is a new
 ---
 
 Let's validate this in your shell as well, before creating load on your system:
-   
-```text tab="Input"
-kubectl get pods
-```
 
-```text tab="Output"
-NAME                               READY   STATUS    RESTARTS   AGE
-signalfx-agent-n7nz2               1/1     Running   0          11m
-nginx-deployment-f96cf6966-jhmjp   1/1     Running   0          21s
-nginx-deployment-f96cf6966-459vf   1/1     Running   0          21s
-nginx-deployment-f96cf6966-vrnfc   1/1     Running   0          21s
-nginx-deployment-f96cf6966-7z4tm   1/1     Running   0          21s
-```
+=== "Input"
+    ```text
+    kubectl get pods
+    ```
+=== "Output"
+    ```text
+    NAME                               READY   STATUS    RESTARTS   AGE
+    signalfx-agent-n7nz2               1/1     Running   0          11m
+    nginx-deployment-f96cf6966-jhmjp   1/1     Running   0          21s
+    nginx-deployment-f96cf6966-459vf   1/1     Running   0          21s
+    nginx-deployment-f96cf6966-vrnfc   1/1     Running   0          21s
+    nginx-deployment-f96cf6966-7z4tm   1/1     Running   0          21s
+    ```
 
 Next we need to expose port 80 (HTTP)
 
-```text tab="Input"
-kubectl create service nodeport nginx --tcp=80:80
-```
-
-```text tab="Output"
-service/nginx created
-```
+=== "Input"
+    ```text
+    kubectl create service nodeport nginx --tcp=80:80
+    ```
+=== "Output"
+    ```text
+    service/nginx created
+    ```
 
 Run `kubectl get svc` then make a note of the `CLUSTER-IP` address allocated to the NGINX service.
    
-```text tab="Input"
-kubectl get svc
-```
-
-```text tab="Output"
-NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
-kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP        9m3s
-nginx        NodePort    10.110.36.62   <none>        80:30995/TCP   8s
-```
+=== "Input"
+    ```text
+    kubectl get svc
+    ```
+=== "Output"
+    ```text
+    NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+    kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP        9m3s
+    nginx        NodePort    10.110.36.62   <none>        80:30995/TCP   8s
+    ```
 
 ---
 
 ### 3. Run a benchmark
 
 Using the NGINX CLUSTER-IP address reported from above, use Apache Benchmark (`ab`) to create some traffic to light up your SignalFx NGINX dashboard. Run this a couple of times to generate some metrics!
-   
-```text tab="Input"
-ab -n1000 -c20 http://{INSERT_NGINX_IP_ADDRESS}/
-```
 
-```text tab="Output"
-This is ApacheBench, Version 2.3 <$Revision: 1826891 $>
-Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
-Licensed to The Apache Software Foundation, http://www.apache.org/
+=== "Input"   
+    ```text
+    ab -n1000 -c20 http://{INSERT_NGINX_IP_ADDRESS}/
+    ```
+=== "Output"
+    ```text
+    This is ApacheBench, Version 2.3 <$Revision: 1826891 $>
+    Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+    Licensed to The Apache Software Foundation, http://www.apache.org/
  
-Benchmarking localhost (be patient)
-Completed 100 requests
-...
-Completed 1000 requests
-Finished 1000 requests
+    Benchmarking localhost (be patient)
+    Completed 100 requests
+    ...
+    Completed 1000 requests
+    Finished 1000 requests
  
-Server Software:        nginx/1.17.5
-Server Hostname:        localhost
-Server Port:            30995
-...
-```
+    Server Software:        nginx/1.17.5
+    Server Hostname:        localhost
+    Server Port:            30995
+    ...
+    ```
 
 Validate you are seeing metrics in the UI by going to _**Dashboards → NGINX → NGINX Servers**_ Tip: you can again apply the filter `kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP` to focus on only your metrics.
 

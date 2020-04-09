@@ -18,21 +18,22 @@ cd signalfx-jumpstart-master
 
 Initialise Terraform. **Note:** You will need to run this command each time a new version of the Terraform Provider is released. You can track the releases on [GitHub](https://github.com/terraform-providers/terraform-provider-signalfx/releases).
 
-```bash tab="Input"
-terraform init -upgrade
-```
-
-```text tab="Output"
-Upgrading modules...
-- aws in modules/aws
-- azure in modules/azure
-- docker in modules/docker
-- gcp in modules/gcp
-- host in modules/host
-- kubernetes in modules/kubernetes
-- parent_child_dashboard in modules/dashboards/parent
-- pivotal in modules/pivotal
-- usage_dashboard in modules/dashboards/usage
+=== "Input"
+    ```bash
+    terraform init -upgrade
+    ```
+=== "Output"
+    ```text
+    Upgrading modules...
+    - aws in modules/aws
+    - azure in modules/azure
+    - docker in modules/docker
+    - gcp in modules/gcp
+    - host in modules/host
+    - kubernetes in modules/kubernetes
+    - parent_child_dashboard in modules/dashboards/parent
+    - pivotal in modules/pivotal
+    - usage_dashboard in modules/dashboards/usage
 
 Initializing the backend...
 
@@ -63,17 +64,18 @@ commands will detect it and remind you to do so if necessary.
 
 Create a new workspace, replace `{WORKSPACE_NAME}` with what you want your workspace to be called:
 
-``` bash tab="Input"
-terraform workspace new {WORKSPACE_NAME}
-```
+=== "Input"
+    ``` bash
+    terraform workspace new {WORKSPACE_NAME}
+    ```
+=== "Output"
+    ```text
+    Created and switched to workspace "my_workspace"!
 
-```text tab="Output"
-Created and switched to workspace "my_workspace"!
-
-You're now on a new, empty workspace. Workspaces isolate their state,
-so if you run "terraform plan" Terraform will not see any existing state
-for this configuration.
-```
+    You're now on a new, empty workspace. Workspaces isolate their state,
+    so if you run "terraform plan" Terraform will not see any existing state
+    for this configuration.
+    ```
 
 ---
 

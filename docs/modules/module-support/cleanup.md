@@ -8,16 +8,3 @@ multipass delete --purge {YOUR_INITIALS}-k3s
 
 !!! note
     If you are using a workshop instance on EC2 please ignore this and just terminate your instance.
-
-**Testing tabbed**
-
-=== "Input"
-    ``` bash
-    kubectl get pods
-    ```
-
-=== "Output"
-    ```
-    NAME                   READY   STATUS    RESTARTS   AGE
-    signalfx-agent-66tvr   1/1     Running   0          7s
-    ```

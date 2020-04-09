@@ -13,39 +13,40 @@ This is already documented in [Deploying the Smart Agent in Kubernetes (K3s)](ht
 ### 2. Deploy the Hotrod application into K3s
 To deploy the Hotrod application into K3s apply the deployment
   
-```bash tab="Input"
-kubectl apply -f workshop/apm/hotrod/k8s/deployment.yaml 
-```
-
-
-```text tab="Output"
-deployment.apps/hotrod created
-service/hotrod created
-```
+=== "Input"
+    ```bash
+    kubectl apply -f workshop/apm/hotrod/k8s/deployment.yaml 
+    ```
+=== "Output"
+    ```text
+    deployment.apps/hotrod created
+    service/hotrod created
+    ```
 
 To ensure the Hotrod application is running:
-
-```bash tab="Input"
-kubectl get pods
-```
-
-```text tab="Output"
-NAME                      READY   STATUS    RESTARTS   AGE
-signalfx-agent-mmzxk      1/1     Running   0          110s
-hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s
-```
+=== "Input"
+    ```bash
+    kubectl get pods
+    ```
+=== "Output"
+    ```text
+    NAME                      READY   STATUS    RESTARTS   AGE
+    signalfx-agent-mmzxk      1/1     Running   0          110s
+    hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s
+    ```
 
 You then need find the IP address assigned to the Hotrod service:
 
-```bash tab="Input"
-kubectl get svc
-```
-
-```text tab="Output"
-NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
-kubernetes   ClusterIP   10.43.0.1       <none>        443/TCP    25m
-hotrod       ClusterIP   10.43.124.159   <none>        8080/TCP   94s
-```
+=== "Input"
+    ```bash
+    kubectl get svc
+    ```
+=== "Output"
+    ```text
+    NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+    kubernetes   ClusterIP   10.43.0.1       <none>        443/TCP    25m
+    hotrod       ClusterIP   10.43.124.159   <none>        8080/TCP   94s
+    ```
 
 Make note of the `CLUSTER-IP` address associated with Hotrod
 

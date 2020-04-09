@@ -12,42 +12,42 @@ This is already documented in [Deploying the SmartAgent in Kubernetes using K3s]
 
 To deploy the Sock Shop application into K3s apply the deployment
 
-```bash tab="Input"
-cd apm/sockshop
-kubectl create ns sock-shop
-kubectl apply -f k8s/complete-demo.yaml
-```
-
-
-```text tab="Output"
-namespace/sock-shop created
-deployment.apps/carts-db created
-service/carts-db created
-deployment.apps/carts created
-service/carts created
-deployment.apps/catalogue-db created
-service/catalogue-db created
-deployment.apps/catalogue created
-service/catalogue created
-deployment.apps/front-end created
-service/front-end created
-deployment.apps/orders-db created
-service/orders-db created
-deployment.apps/orders created
-service/orders created
-deployment.apps/payment created
-service/payment created
-deployment.apps/queue-master created
-service/queue-master created
-deployment.apps/rabbitmq created
-service/rabbitmq created
-deployment.apps/shipping created
-service/shipping created
-deployment.apps/user-db created
-service/user-db created
-deployment.apps/user created
-service/user created
-```
+=== "Input"
+    ```bash
+    cd apm/sockshop
+    kubectl create ns sock-shop
+    kubectl apply -f k8s/complete-demo.yaml
+    ```
+=== "Output"
+    ```text
+    namespace/sock-shop created
+    deployment.apps/carts-db created
+    service/carts-db created
+    deployment.apps/carts created
+    service/carts created
+    deployment.apps/catalogue-db created
+    service/catalogue-db created
+    deployment.apps/catalogue created
+    service/catalogue created
+    deployment.apps/front-end created
+    service/front-end created
+    deployment.apps/orders-db created
+    service/orders-db created
+    deployment.apps/orders created
+    service/orders created
+    deployment.apps/payment created
+    service/payment created
+    deployment.apps/queue-master created
+    service/queue-master created
+    deployment.apps/rabbitmq created
+    service/rabbitmq created
+    deployment.apps/shipping created
+    service/shipping created
+    deployment.apps/user-db created
+    service/user-db created
+    deployment.apps/user created
+    service/user created
+    ```
 
 ### 3. Take Sock Shop for a test drive
 
@@ -59,17 +59,18 @@ SOCKS_ENDPOINT=$(kubectl get svc front-end -n sock-shop -o jsonpath='{.spec.clus
 
 Then send a 
 
-```bash tab="Input"
-curl $SOCKS_ENDPOINT
-```
+=== "Input"
+    ```bash
+    curl $SOCKS_ENDPOINT
+    ```
+=== "Input"
+    ```html
+    ...
+    </script>
+    </body>
 
-```html tab="Output"
-...
-</script>
-</body>
-
-</html>
-```
+    </html>
+    ```
 
 ### 4. Apply load on Sock Shop
 

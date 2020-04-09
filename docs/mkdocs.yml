@@ -11,7 +11,7 @@ theme:
   name: material
   palette:
     primary: 'black'
-  favicon: 'images/favicon.ico'
+  favicon: images/favicon.ico
   logo: images/logo.png
   font:
     text: Roboto
@@ -27,6 +27,7 @@ markdown_extensions:
   - markdown.extensions.toc:
       permalink: true
   - pymdownx.tabbed
+  - pymdownx.superfences
   - pymdownx.mark
 
 extra_css:
