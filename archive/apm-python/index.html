@@ -639,60 +639,65 @@
 <ol>
 <li>
 <p>Switch to the Application instance (the one created in Lab #1) and change to the mypythonapp directory
-   <code>bash
-   cd ~/mypythonapp</code></p>
+   <div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/mypythonapp
+</code></pre></div></p>
 </li>
 <li>
 <p>In order to see how the demonstration Python application has been instrumented using https://github.com/signalfx/signalfx-python-tracing type <code>more demo.py</code>
-   ```python
-   #!/usr/bin/env python</p>
+   <div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">make_response</span><span class="p">,</span> <span class="n">request</span>
+<span class="kn">from</span> <span class="nn">signalfx_tracing</span> <span class="kn">import</span> <span class="n">trace</span>
+<span class="kn">import</span> <span class="nn">opentracing</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@trace</span>
+<span class="k">def</span> <span class="nf">convert_response</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+  <span class="c1"># In this example we want to force this trace to be retained</span>
+  <span class="n">opentracing</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">active_span</span><span class="o">.</span><span class="n">set_tag</span><span class="p">(</span><span class="s1">&#39;sampling.priority&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="n">opentracing</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">active_span</span><span class="o">.</span><span class="n">set_tag</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">opentracing</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">active_span</span><span class="p">)</span>
+  <span class="k">return</span> <span class="s1">&#39;You said: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/echo&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">echo</span><span class="p">():</span>
+  <span class="n">message</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">make_response</span><span class="p">(</span><span class="n">convert_response</span><span class="p">(</span><span class="n">message</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+  <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div></p>
 </li>
-</ol>
-<p>from flask import Flask, make_response, request
-   from signalfx_tracing import trace
-   import opentracing</p>
-<p>app = Flask(<strong>name</strong>)</p>
-<p>@trace
-   def convert_response(message):
-     # In this example we want to force this trace to be retained
-     opentracing.tracer.active_span.set_tag('sampling.priority', 1)
-     opentracing.tracer.active_span.set_tag('message', message)
-     print(opentracing.tracer.active_span)
-     return 'You said: {}'.format(message)</p>
-<p>@app.route('/echo', methods=['POST'])
-   def echo():
-     message = request.data.decode('utf-8')
-     return make_response(convert_response(message))</p>
-<p>if <strong>name</strong> == '<strong>main</strong>':
-     app.run()
-   ```</p>
-<ol>
-<li>Start the Python application by running the following command, replace <code>[YOUR_INITIALS]</code> to make your application unique.
-   <code>bash
-   SIGNALFX_SERVICE_NAME=[YOUR_INITIALS]-app-dev-python-app sfx-py-trace ./demo.py &amp; disown</code></li>
+<li>
+<p>Start the Python application by running the following command, replace <code>[YOUR_INITIALS]</code> to make your application unique.
+   <div class="highlight"><pre><span></span><code><span class="nv">SIGNALFX_SERVICE_NAME</span><span class="o">=[</span>YOUR_INITIALS<span class="o">]</span>-app-dev-python-app sfx-py-trace ./demo.py <span class="p">&amp;</span> <span class="nb">disown</span>
+</code></pre></div></p>
+</li>
 </ol>
 <p><strong>IMPORTANT:</strong> After running this code, hit the enter key in your keyboard to get out of the process and continue with the following steps. Don't worry, your python app will continue running in the background.</p>
 <hr />
 <h2 id="step-2-generate-some-traces">Step 2: Generate some Traces<a class="headerlink" href="#step-2-generate-some-traces" title="Permanent link">&para;</a></h2>
 <ol>
 <li>We will be using a really practical tool to simulate requests called Apache Benchmark or ab. But first let's make sure that the service we started before can actually accept requests, by running the following command:
-   <code>bash
-   curl -XPOST -d'Hello, world' -H'Content-Type:text/plain' http://localhost:5000/echo</code></li>
+   <div class="highlight"><pre><span></span><code>curl -XPOST -d<span class="s1">&#39;Hello, world&#39;</span> -H<span class="s1">&#39;Content-Type:text/plain&#39;</span> http://localhost:5000/echo
+</code></pre></div></li>
 </ol>
 <p>You should get something like:
-   <code>bash
-   795cf220f0ee0afa:7a1f10140ad14024:4a81cc4098335da:3 rwc-app-dev-python-app.convert_response
-   127.0.0.1 - - [04/Nov/2019 15:07:24] "POST /echo HTTP/1.1" 200 -</code></p>
+   <div class="highlight"><pre><span></span><code>795cf220f0ee0afa:7a1f10140ad14024:4a81cc4098335da:3 rwc-app-dev-python-app.convert_response
+<span class="m">127</span>.0.0.1 - - <span class="o">[</span><span class="m">04</span>/Nov/2019 <span class="m">15</span>:07:24<span class="o">]</span> <span class="s2">&quot;POST /echo HTTP/1.1&quot;</span> <span class="m">200</span> -
+</code></pre></div></p>
 <p>If you don't get this response, make sure the Step #1.2 (above) was executed properly and that you have a service running called <code>./demo.py</code> executed by python. On the Application instance itself you can confirm this by running <code>ps -ef | grep demo.py</code></p>
 <ol>
 <li>
 <p>Now that we know we can call our service, let's run ab to simulate load and start generating traces that our Smart Gateway can capture and send to the SignalFx platform. Confirm a file named <code>~/mypythonapp/post_data.json</code> exists and has the following inside:
-   <code>"Hello from the App Dev Workshop!"</code></p>
+   <div class="highlight"><pre><span></span><code>&quot;Hello from the App Dev Workshop!&quot;
+</code></pre></div></p>
 </li>
 <li>
 <p>Save the file, and in the same directory, execute the following:
-   <code>bash
-   ab -p post_data.json -T application/json -c20 -n1000 http://localhost:5000/echo</code></p>
+   <div class="highlight"><pre><span></span><code>ab -p post_data.json -T application/json -c20 -n1000 http://localhost:5000/echo
+</code></pre></div></p>
 </li>
 </ol>
 <p>This will create 20 concurrent connections to our localhost python app, and it will post the data 1000 times.</p>
@@ -745,7 +750,7 @@ Also, you can try sending more tests or changing the payload of the tests to see
 <div class="md-source-date">
   <small>
     
-      Last update: April 6, 2020 11:53:48
+      Last update: April 6, 2020 11:55:02
     
   </small>
 </div>

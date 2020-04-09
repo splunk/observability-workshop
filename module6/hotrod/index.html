@@ -717,43 +717,52 @@
 <hr />
 <h3 id="2-deploy-the-hotrod-application-into-k3s">2. Deploy the Hotrod application into K3s<a class="headerlink" href="#2-deploy-the-hotrod-application-into-k3s" title="Permanent link">&para;</a></h3>
 <p>To deploy the Hotrod application into K3s apply the deployment</p>
-<p>```bash tab="Input"
-kubectl apply -f workshop/apm/hotrod/k8s/deployment.yaml </p>
-<div class="codehilite"><pre><span></span><code>```text tab=&quot;Output&quot;
-deployment.apps/hotrod created
+<div class="tabbed-set" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Input</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>kubectl apply -f workshop/apm/hotrod/k8s/deployment.yaml 
+</code></pre></div>
+
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Output</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>deployment.apps/hotrod created
 service/hotrod created
 </code></pre></div>
 
+</div>
+<input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><label for="__tabbed_1_3">Input</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>kubectl get pods
+</code></pre></div>
 
-<p>To ensure the Hotrod application is running:</p>
-<p>```bash tab="Input"
-kubectl get pods</p>
-<div class="codehilite"><pre><span></span><code>```text tab=&quot;Output&quot;
-NAME                      READY   STATUS    RESTARTS   AGE
+</div>
+<input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><label for="__tabbed_1_4">Output</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>NAME                      READY   STATUS    RESTARTS   AGE
 signalfx-agent-mmzxk      1/1     Running   0          110s
 hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s
 </code></pre></div>
 
-
+</div>
+</div>
 <p>You then need find the IP address assigned to the Hotrod service:</p>
-<p>```bash tab="Input"
-kubectl get svc</p>
-<div class="codehilite"><pre><span></span><code>```text tab=&quot;Output&quot;
-NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Input</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>kubectl get svc
+</code></pre></div>
+
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Output</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
 kubernetes   ClusterIP   10.43.0.1       &lt;none&gt;        443/TCP    25m
 hotrod       ClusterIP   10.43.124.159   &lt;none&gt;        8080/TCP   94s
 </code></pre></div>
 
-
+</div>
+</div>
 <p>Make note of the <code>CLUSTER-IP</code> address associated with Hotrod</p>
 <hr />
 <h3 id="3-generate-some-traffic-to-the-application-using-apache-benchmark">3. Generate some traffic to the application using Apache Benchmark<a class="headerlink" href="#3-generate-some-traffic-to-the-application-using-apache-benchmark" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>ab -n10 -c10 <span class="s2">&quot;http://{CLUSTER-IP}:8080/dispatch?customer=392&amp;nonse=0.17041229755366172&quot;</span>
+<div class="highlight"><pre><span></span><code>ab -n10 -c10 <span class="s2">&quot;http://{CLUSTER-IP}:8080/dispatch?customer=392&amp;nonse=0.17041229755366172&quot;</span>
 </code></pre></div>
 
-
 <p>Create some errors with an invalid customer number</p>
-<div class="codehilite"><pre><span></span><code>ab -n10 -c10 <span class="s2">&quot;http://{CLUSTER-IP}:8080/dispatch?customer=391&amp;nonse=0.17041229755366172&quot;</span>
+<div class="highlight"><pre><span></span><code>ab -n10 -c10 <span class="s2">&quot;http://{CLUSTER-IP}:8080/dispatch?customer=391&amp;nonse=0.17041229755366172&quot;</span>
 </code></pre></div>
                 
                   
@@ -763,7 +772,7 @@ hotrod       ClusterIP   10.43.124.159   &lt;none&gt;        8080/TCP   94s
 <div class="md-source-date">
   <small>
     
-      Last update: April 8, 2020 09:56:43
+      Last update: April 9, 2020 19:28:01
     
   </small>
 </div>

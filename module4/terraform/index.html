@@ -425,13 +425,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-create-an-execution-plan" class="md-nav__link">
-    2. Create an execution plan
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#3-apply-actions-from-execution-plan" class="md-nav__link">
     3. Apply actions from execution plan
   </a>
@@ -675,13 +668,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-create-an-execution-plan" class="md-nav__link">
-    2. Create an execution plan
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#3-apply-actions-from-execution-plan" class="md-nav__link">
     3. Apply actions from execution plan
   </a>
@@ -732,16 +718,19 @@
 <h3 id="1-initial-setup">1. Initial setup<a class="headerlink" href="#1-initial-setup" title="Permanent link">&para;</a></h3>
 <p>Download and install Terraform for your platform - https://www.terraform.io/downloads.html (min. requirement v. 0.12.18)</p>
 <p>Download the SignalFx Jumpstart Terraform master zip file, unzip the file and change into the <code>signalfx-jumpstart-master</code> directory</p>
-<div class="codehilite"><pre><span></span><code>curl -LO https://github.com/signalfx/signalfx-jumpstart/archive/master.zip
+<div class="highlight"><pre><span></span><code>curl -LO https://github.com/signalfx/signalfx-jumpstart/archive/master.zip
 unzip master.zip
 <span class="nb">cd</span> signalfx-jumpstart-master
 </code></pre></div>
 
-
 <p>Initialise Terraform. <strong>Note:</strong> You will need to run this command each time a new version of the Terraform Provider is released. You can track the releases on <a href="https://github.com/terraform-providers/terraform-provider-signalfx/releases">GitHub</a>.</p>
-<p>```bash tab="Input"
-terraform init -upgrade</p>
-<div class="codehilite"><pre><span></span><code>```text tab=&quot;Output&quot;
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Input</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>terraform init -upgrade
+</code></pre></div>
+
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Output</label><div class="tabbed-content">
+<p>```text
 Upgrading modules...
 - aws in modules/aws
 - azure in modules/azure
@@ -751,79 +740,73 @@ Upgrading modules...
 - kubernetes in modules/kubernetes
 - parent_child_dashboard in modules/dashboards/parent
 - pivotal in modules/pivotal
-- usage_dashboard in modules/dashboards/usage
-
-Initializing the backend...
-
-Initializing provider plugins...
+- usage_dashboard in modules/dashboards/usage</p>
+</div>
+</div>
+<p>Initializing the backend...</p>
+<p>Initializing provider plugins...
 - Checking for available provider plugins...
-- Downloading plugin for provider &quot;signalfx&quot; (terraform-providers/signalfx) 4.18.6...
-
-The following providers do not have any version constraints in configuration,
-so the latest version was installed.
-
-To prevent automatic upgrades to new major versions that may contain breaking
-changes, it is recommended to add version = &quot;...&quot; constraints to the
+- Downloading plugin for provider "signalfx" (terraform-providers/signalfx) 4.18.6...</p>
+<p>The following providers do not have any version constraints in configuration,
+so the latest version was installed.</p>
+<p>To prevent automatic upgrades to new major versions that may contain breaking
+changes, it is recommended to add version = "..." constraints to the
 corresponding provider blocks in configuration, with the constraint strings
-suggested below.
-
-* provider.signalfx: version = &quot;~&gt; 4.18&quot;
-
-Terraform has been successfully initialized!
-
-You may now begin working with Terraform. Try running &quot;terraform plan&quot; to see
+suggested below.</p>
+<ul>
+<li>provider.signalfx: version = "~&gt; 4.18"</li>
+</ul>
+<p>Terraform has been successfully initialized!</p>
+<p>You may now begin working with Terraform. Try running "terraform plan" to see
 any changes that are required for your infrastructure. All Terraform commands
-should now work.
-
-If you ever set or change modules or backend configuration for Terraform,
+should now work.</p>
+<p>If you ever set or change modules or backend configuration for Terraform,
 rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
-</code></pre></div>
+<div class="highlight"><pre><span></span><code>Create a new workspace, replace `{WORKSPACE_NAME}` with what you want your workspace to be called:
 
+=== &quot;Input&quot;
+    ``` bash
+    terraform workspace new {WORKSPACE_NAME}
+    ```
+=== &quot;Output&quot;
+    ```text
+    Created and switched to workspace &quot;my_workspace&quot;!
 
-<p>Create a new workspace, replace <code>{WORKSPACE_NAME}</code> with what you want your workspace to be called:</p>
-<p>``` bash tab="Input"
-terraform workspace new {WORKSPACE_NAME}</p>
-<div class="codehilite"><pre><span></span><code>```text tab=&quot;Output&quot;
-Created and switched to workspace &quot;my_workspace&quot;!
+    You&#39;re now on a new, empty workspace. Workspaces isolate their state,
+    so if you run &quot;terraform plan&quot; Terraform will not see any existing state
+    for this configuration.
+    ```
 
-You&#39;re now on a new, empty workspace. Workspaces isolate their state,
-so if you run &quot;terraform plan&quot; Terraform will not see any existing state
-for this configuration.
-</code></pre></div>
+---
 
+### 2. Create an execution plan
+Review the execution plan. Replace `{YOUR_INITIALS}` e.g. `-var=”sfx_prefix=RWC”`
 
-<hr />
-<h3 id="2-create-an-execution-plan">2. Create an execution plan<a class="headerlink" href="#2-create-an-execution-plan" title="Permanent link">&para;</a></h3>
-<p>Review the execution plan. Replace <code>{YOUR_INITIALS}</code> e.g. <code>-var=”sfx_prefix=RWC”</code></p>
-<div class="codehilite"><pre><span></span><code>terraform plan -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span> -var<span class="o">=</span><span class="s2">&quot;sfx_prefix={YOUR_INITIALS}&quot;</span>
-</code></pre></div>
-
-
+``` bash
+terraform plan -var=&quot;access_token=abc123&quot; -var=&quot;realm=us1&quot; -var=&quot;sfx_prefix={YOUR_INITIALS}&quot;
+</code></pre></div></p>
 <p>Where <code>access_token</code> is the SignalFx Access Token and realm is either <code>eu0</code>, <code>us1</code> or <code>ap0</code>. If the plan executes successfully, we can go ahead and apply:</p>
 <hr />
 <h3 id="3-apply-actions-from-execution-plan">3. Apply actions from execution plan<a class="headerlink" href="#3-apply-actions-from-execution-plan" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>terraform apply -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span> -var<span class="o">=</span><span class="s2">&quot;sfx_prefix={YOUR_INITIALS}&quot;</span>
+<div class="highlight"><pre><span></span><code>terraform apply -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span> -var<span class="o">=</span><span class="s2">&quot;sfx_prefix={YOUR_INITIALS}&quot;</span>
 </code></pre></div>
-
 
 <p>Validate that the detectors were created, under the <em><strong>ALERTS → Detectors</strong></em>, you should see a list of new detectors with the a prefix of your initials:</p>
 <p><img alt="" src="../../images/module4/detectors.png" /></p>
 <hr />
 <h3 id="4-destroy-all-your-hard-work">4. Destroy all your hard work<a class="headerlink" href="#4-destroy-all-your-hard-work" title="Permanent link">&para;</a></h3>
 <p>You will first need to ensure you are in the correct workspace, replace <code>{WORKSPACE_NAME}</code> with the name created in the initial setup)</p>
-<div class="codehilite"><pre><span></span><code>terraform workspace select {WORKSPACE_NAME}
+<div class="highlight"><pre><span></span><code>terraform workspace select {WORKSPACE_NAME}
 </code></pre></div>
-
 
 <p>Destroy all Detectors and Dashboards that were previously applied.</p>
 <div class="admonition info">
 <p class="admonition-title">Note</p>
 <p>The <code>var=”sfx_prefix={YOUR_INITIALS}”</code> is not required!</p>
 </div>
-<div class="codehilite"><pre><span></span><code>terraform destroy -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span>
+<div class="highlight"><pre><span></span><code>terraform destroy -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span>
 </code></pre></div>
-
 
 <p>Validate all the detectors have been removed by navigating to <em><strong>ALERTS → Detectors</strong></em></p>
 <p><img alt="" src="../../images/module4/destroy.png" /></p>
@@ -835,7 +818,7 @@ for this configuration.
 <div class="md-source-date">
   <small>
     
-      Last update: April 6, 2020 19:38:36
+      Last update: April 9, 2020 19:28:01
     
   </small>
 </div>

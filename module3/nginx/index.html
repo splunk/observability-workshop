@@ -716,14 +716,12 @@
 <hr />
 <h3 id="1-start-your-nginx">1. Start your NGINX!<a class="headerlink" href="#1-start-your-nginx" title="Permanent link">&para;</a></h3>
 <p>Remain in the Multipass shell session and change into the <code>nginx</code> directory:</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">cd</span> ~/workshop/k3s/nginx
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/workshop/k3s/nginx
 </code></pre></div>
-
 
 <p>Create the NGINX configmap using the <code>nginx.conf</code> file:</p>
-<div class="codehilite"><pre><span></span><code>kubectl create configmap nginxconfig --from-file=nginx.conf
+<div class="highlight"><pre><span></span><code>kubectl create configmap nginxconfig --from-file=nginx.conf
 </code></pre></div>
-
 
 <p>Verify the number of pods running in the SignalFx UI by selecting the <strong>WORKLOADS</strong> tab. This should give you an overview of the workloads on your cluster.</p>
 <p><img alt="Workload Agent" src="../../images/module3/k8s-workloads.jpg" /></p>
@@ -731,9 +729,8 @@
 <p>Now switch back to the default cluster node view by selecting  the <strong>MAP</strong> tab and select your cluster again.</p>
 <hr />
 <h3 id="2-create-nginx-deployment">2. Create NGINX deployment!<a class="headerlink" href="#2-create-nginx-deployment" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>kubectl create -f nginx-deployment.yaml
+<div class="highlight"><pre><span></span><code>kubectl create -f nginx-deployment.yaml
 </code></pre></div>
-
 
 <p>Validate the deployment has been successful and that the NGINX pods are running. If you have the SignalFx UI open you should see new Pods being started and containers being deployed. It should only take around 20 seconds for the pods to transition into a Running state. In the SignalFx UI you should have a cluster that looks like below:</p>
 <p><img alt="back to Cluster" src="../../images/module3/cluster.jpg" /></p>
@@ -741,10 +738,13 @@
 <p><img alt="NGINX loaded" src="../../images/module3/k8s-workloads-nginx.jpg" /></p>
 <hr />
 <p>Let's validate this in your shell as well, before creating load on your system:</p>
-<p>```text tab="Input"
-kubectl get pods</p>
-<div class="codehilite"><pre><span></span><code>```text tab=&quot;Output&quot;
-NAME                               READY   STATUS    RESTARTS   AGE
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Input</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Output</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>NAME                               READY   STATUS    RESTARTS   AGE
 signalfx-agent-n7nz2               1/1     Running   0          11m
 nginx-deployment-f96cf6966-jhmjp   1/1     Running   0          21s
 nginx-deployment-f96cf6966-459vf   1/1     Running   0          21s
@@ -752,32 +752,44 @@ nginx-deployment-f96cf6966-vrnfc   1/1     Running   0          21s
 nginx-deployment-f96cf6966-7z4tm   1/1     Running   0          21s
 </code></pre></div>
 
-
+</div>
+</div>
 <p>Next we need to expose port 80 (HTTP)</p>
-<p>```text tab="Input"
-kubectl create service nodeport nginx --tcp=80:80</p>
-<div class="codehilite"><pre><span></span><code>```text tab=&quot;Output&quot;
-service/nginx created
+<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Input</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>kubectl create service nodeport nginx --tcp=80:80
 </code></pre></div>
 
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Output</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>service/nginx created
+</code></pre></div>
 
+</div>
+</div>
 <p>Run <code>kubectl get svc</code> then make a note of the <code>CLUSTER-IP</code> address allocated to the NGINX service.</p>
-<p>```text tab="Input"
-kubectl get svc</p>
-<div class="codehilite"><pre><span></span><code>```text tab=&quot;Output&quot;
-NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+<div class="tabbed-set" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Input</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>kubectl get svc
+</code></pre></div>
+
+</div>
+<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">Output</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
 kubernetes   ClusterIP   10.96.0.1      &lt;none&gt;        443/TCP        9m3s
 nginx        NodePort    10.110.36.62   &lt;none&gt;        80:30995/TCP   8s
 </code></pre></div>
 
-
+</div>
+</div>
 <hr />
 <h3 id="3-run-a-benchmark">3. Run a benchmark<a class="headerlink" href="#3-run-a-benchmark" title="Permanent link">&para;</a></h3>
 <p>Using the NGINX CLUSTER-IP address reported from above, use Apache Benchmark (<code>ab</code>) to create some traffic to light up your SignalFx NGINX dashboard. Run this a couple of times to generate some metrics!</p>
-<p>```text tab="Input"
-ab -n1000 -c20 http://{INSERT_NGINX_IP_ADDRESS}/</p>
-<div class="codehilite"><pre><span></span><code>```text tab=&quot;Output&quot;
-This is ApacheBench, Version 2.3 &lt;$Revision: 1826891 $&gt;
+<div class="tabbed-set" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><label for="__tabbed_4_1">Input</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>ab -n1000 -c20 http://{INSERT_NGINX_IP_ADDRESS}/
+</code></pre></div>
+
+</div>
+<input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><label for="__tabbed_4_2">Output</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>This is ApacheBench, Version 2.3 &lt;$Revision: 1826891 $&gt;
 Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
 Licensed to The Apache Software Foundation, http://www.apache.org/
 
@@ -793,7 +805,8 @@ Server Port:            30995
 ...
 </code></pre></div>
 
-
+</div>
+</div>
 <p>Validate you are seeing metrics in the UI by going to <em><strong>Dashboards → NGINX → NGINX Servers</strong></em> Tip: you can again apply the filter <code>kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP</code> to focus on only your metrics.</p>
 <p><img alt="" src="../../images/module3/nginx-dashboard.png" /></p>
                 
@@ -804,7 +817,7 @@ Server Port:            30995
 <div class="md-source-date">
   <small>
     
-      Last update: April 6, 2020 19:07:21
+      Last update: April 9, 2020 19:28:01
     
   </small>
 </div>

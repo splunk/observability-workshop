@@ -673,68 +673,74 @@
 </li>
 <li>
 <p>Download the App Dev Workshop master zip file and unzip it
-   <code>curl -LO https://github.com/signalfx/app-dev-workshop/archive/master.zip
-   unzip master.zip</code></p>
+   <div class="highlight"><pre><span></span><code>curl -LO https://github.com/signalfx/app-dev-workshop/archive/master.zip
+unzip master.zip
+</code></pre></div></p>
 </li>
 <li>
 <p>Change into the <code>app-dev-workshop-master</code> directory
-   <code>cd app-dev-workshop-master</code></p>
+   <div class="highlight"><pre><span></span><code>cd app-dev-workshop-master
+</code></pre></div></p>
 </li>
 <li>
 <p>Edit cloud-init-smart-gateway.yaml and on line #30 replace ACCESS_TOKEN with your SignalFx token, REALM with the SignalFx realm you are running in, HOSTNAME with YOUR_INITIALS-sg and CLUSTER_NAME with YOUR_INITIALS-sg-cluster. NOTE: The hostname defined here will be the same hostname that we will use to launch the instance in Step #1.7
-   ```yaml
-   #cloud-config
-   package_update: true
-   package_upgrade: true</p>
+   <div class="highlight"><pre><span></span><code><span class="c1">#cloud-config</span>
+<span class="nt">package_update</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">package_upgrade</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="nt">write_files</span><span class="p">:</span>
+ <span class="p p-Indicator">-</span> <span class="nt">content</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+      <span class="no">[Unit]</span>
+      <span class="no">Description=SignalFx Smart Gateway</span>
+      <span class="no">After=network.target</span>
+      <span class="no">[Service]</span>
+      <span class="no">ExecStart=/usr/local/bin/smart-gateway --configfile /var/lib/gateway/etc/gateway.conf</span>
+      <span class="no">KillMode=mixed</span>
+      <span class="no">Restart=on-failure</span>
+      <span class="no">Type=simple</span>
+      <span class="no">User=root</span>
+      <span class="no">Group=root</span>
+      <span class="no">[Install]</span>
+      <span class="no">WantedBy=multi-user.target</span>
+   <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/lib/systemd/system/smart-gateway.service</span>
+   <span class="nt">permissons</span><span class="p">:</span> <span class="s">&#39;0644&#39;</span>
+<span class="nt">runcmd</span><span class="p">:</span>
+ <span class="p p-Indicator">-</span> <span class="s">&#39;curl</span><span class="nv"> </span><span class="s">https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd</span><span class="nv"> </span><span class="s">-o</span><span class="nv"> </span><span class="s">/etc/motd&#39;</span>
+ <span class="p p-Indicator">-</span> <span class="s">&#39;curl</span><span class="nv"> </span><span class="s">https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/smart-gateway/install.sh</span><span class="nv"> </span><span class="s">-o</span><span class="nv"> </span><span class="s">/home/ubuntu/smartgateway-install.sh&#39;</span>
+ <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">chown ubuntu:ubuntu /home/ubuntu/smartgateway-install.sh</span>
+ <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">chmod 755 /home/ubuntu/smartgateway-install.sh</span>
+ <span class="c1"># Replace ACCESS_TOKEN, REALM, HOSTNAME &amp; CLUSTER_NAME accordingly</span>
+ <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./home/ubuntu/smartgateway-install.sh ACCESS_TOKEN REALM HOSTNAME CLUSTER_NAME</span>
+ <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">systemctl enable smart-gateway.service</span>
+ <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">systemctl daemon-reload</span>
+ <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">systemctl restart smart-gateway</span>
+</code></pre></div></p>
 </li>
-</ol>
-<p>write_files:
-    - content: |
-         [Unit]
-         Description=SignalFx Smart Gateway
-         After=network.target
-         [Service]
-         ExecStart=/usr/local/bin/smart-gateway --configfile /var/lib/gateway/etc/gateway.conf
-         KillMode=mixed
-         Restart=on-failure
-         Type=simple
-         User=root
-         Group=root
-         [Install]
-         WantedBy=multi-user.target
-      path: /lib/systemd/system/smart-gateway.service
-      permissons: '0644'
-   runcmd:
-    - 'curl https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd -o /etc/motd'
-    - 'curl https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/smart-gateway/install.sh -o /home/ubuntu/smartgateway-install.sh'
-    - chown ubuntu:ubuntu /home/ubuntu/smartgateway-install.sh
-    - chmod 755 /home/ubuntu/smartgateway-install.sh
-    # Replace ACCESS_TOKEN, REALM, HOSTNAME &amp; CLUSTER_NAME accordingly
-    - ./home/ubuntu/smartgateway-install.sh ACCESS_TOKEN REALM HOSTNAME CLUSTER_NAME
-    - systemctl enable smart-gateway.service
-    - systemctl daemon-reload
-    - systemctl restart smart-gateway
-   ```</p>
-<ol>
 <li>
 <p>Now we can start up the SmartGateway instance, replacing YOUR_INITIALS accordingly.
-   <code>multipass launch --name YOUR_INITIALS-sg --cloud-init cloud-init-smart-gateway.yaml</code></p>
+   <div class="highlight"><pre><span></span><code>multipass launch --name YOUR_INITIALS-sg --cloud-init cloud-init-smart-gateway.yaml
+</code></pre></div></p>
 </li>
 <li>
 <p>Find out which IP address has been assigned for the newly created instance and make a note of the IPv4 address that has been assigned.
-   <code>multipass list</code></p>
+   <div class="highlight"><pre><span></span><code>multipass list
+</code></pre></div></p>
 </li>
 </ol>
-<p><code>Name                    State             IPv4             Image
-   rwc-sg                  Running           192.168.64.30    Ubuntu 18.04 LTS</code></p>
+<div class="highlight"><pre><span></span><code>Name                    State             IPv4             Image
+rwc-sg                  Running           192.168.64.30    Ubuntu 18.04 LTS
+</code></pre></div>
+
 <ol>
 <li>
 <p>Shell into the newly created Smart-Gateway instance. Please use your initials to prefix <code>sg</code> for the name of the instance.
-   <code>multipass shell YOUR_INITIALS-sg</code></p>
+   <div class="highlight"><pre><span></span><code>multipass shell YOUR_INITIALS-sg
+</code></pre></div></p>
 </li>
 <li>
 <p>Test the gateway is running and working with the following <code>curl</code> command
-    <code>curl -d'[]' -H'Content-Type:application/json' 127.0.0.1:8080/v1/trace</code></p>
+    <div class="highlight"><pre><span></span><code>curl -d&#39;[]&#39; -H&#39;Content-Type:application/json&#39; 127.0.0.1:8080/v1/trace
+</code></pre></div></p>
 <p>If result is <code>"OK"</code> we can continue, else validate the steps above.</p>
 </li>
 </ol>
@@ -743,85 +749,93 @@
 <ol>
 <li>
 <p>Remaining in the shell for the SmartGateway instance, next we need to install a SmartAgent to monitor SmartGateway. Using the same <code>ACCESS_TOKEN</code> that was used in <strong>Step #1</strong> above.
-   <code>bash
-   curl -sSL https://dl.signalfx.com/signalfx-agent.sh &gt; /tmp/signalfx-agent.sh
-   sudo sh /tmp/signalfx-agent.sh --realm YOUR_REALM YOUR_ACCESS_TOKEN</code></p>
+   <div class="highlight"><pre><span></span><code>curl -sSL https://dl.signalfx.com/signalfx-agent.sh &gt; /tmp/signalfx-agent.sh
+sudo sh /tmp/signalfx-agent.sh --realm YOUR_REALM YOUR_ACCESS_TOKEN
+</code></pre></div></p>
 </li>
 <li>
 <p>Once the Agent has installed edit <code>sudo vi /etc/signalfx/agent.yaml</code> and add the <code>extraDimensions</code> under the <code>signalfx-metadata</code> plugin. For the cluster parameter you will need to set it to exactly what was used for the SmartGateway installation above e.g. <code>YOUR_INITIALS-sg-cluster</code>. You do not need to restart the agent for this change to take effect.
-   ```yaml</p>
-</li>
-<li>
-<p>type: collectd/signalfx-metadata
-     extraDimensions:
-       source: gateway
-       cluster: YOUR_INITIALS-sg-cluster
-   ```</p>
+   <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">collectd/signalfx-metadata</span>
+  <span class="nt">extraDimensions</span><span class="p">:</span>
+    <span class="nt">source</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gateway</span>
+    <span class="nt">cluster</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">YOUR_INITIALS-sg-cluster</span>
+</code></pre></div></p>
 </li>
 <li>
 <p>Once the installation and configuration is complete, validate the agent is running.
-   <code>signalfx-agent status</code></p>
+   <div class="highlight"><pre><span></span><code>signalfx-agent status
+</code></pre></div></p>
 </li>
 </ol>
-<p><code>SignalFx Agent version:           4.18.3
-   Agent uptime:                     3s
-   Observers active:                 host
-   Active Monitors:                  10
-   Configured Monitors:              10
-   Discovered Endpoint Count:        6
-   Bad Monitor Config:               None
-   Global Dimensions:                {host: rwc}
-   Datapoints sent (last minute):    0
-   Datapoints failed (last minute):  0
-   Datapoints overwritten (total):   0
-   Events Sent (last minute):        0
-   Trace Spans Sent (last minute):   0
-   Trace Spans overwritten (total):  0</code></p>
+<div class="highlight"><pre><span></span><code>SignalFx Agent version:           4.18.3
+Agent uptime:                     3s
+Observers active:                 host
+Active Monitors:                  10
+Configured Monitors:              10
+Discovered Endpoint Count:        6
+Bad Monitor Config:               None
+Global Dimensions:                {host: rwc}
+Datapoints sent (last minute):    0
+Datapoints failed (last minute):  0
+Datapoints overwritten (total):   0
+Events Sent (last minute):        0
+Trace Spans Sent (last minute):   0
+Trace Spans overwritten (total):  0
+</code></pre></div>
+
 <hr />
 <h2 id="step-3-create-the-application-instance-with-multipass-and-deploy-the-smartagent">Step 3: Create the Application instance with Multipass and deploy the SmartAgent<a class="headerlink" href="#step-3-create-the-application-instance-with-multipass-and-deploy-the-smartagent" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Open a new terminal and create a Multipass instance to host the application and the SmartAgent. We shall refer to this as the Application instance. Please use your initials to prefix <code>app</code> for the name of the instance.
-   <code>multipass launch --name YOUR_INITIALS-app --cloud-init cloud-init-application.yaml</code></p>
+   <div class="highlight"><pre><span></span><code>multipass launch --name YOUR_INITIALS-app --cloud-init cloud-init-application.yaml
+</code></pre></div></p>
 </li>
 <li>
 <p>Find out which IP address has been assigned for the newly created instance and make a note of the IPv4 address that has been assigned.
-   <code>multipass list</code></p>
+   <div class="highlight"><pre><span></span><code>multipass list
+</code></pre></div></p>
 </li>
 </ol>
-<p><code>Name                    State             IPv4             Image
-   rwc-app                 Running           192.168.64.31    Ubuntu 18.04 LTS
-   rwc-sg                  Running           192.168.64.30    Ubuntu 18.04 LTS</code></p>
+<div class="highlight"><pre><span></span><code>Name                    State             IPv4             Image
+rwc-app                 Running           192.168.64.31    Ubuntu 18.04 LTS
+rwc-sg                  Running           192.168.64.30    Ubuntu 18.04 LTS
+</code></pre></div>
+
 <ol>
 <li>
 <p>Once the instance has been successfully created shell into it.
-   <code>multipass shell YOUR_INITIALS-app</code></p>
+   <div class="highlight"><pre><span></span><code>multipass shell YOUR_INITIALS-app
+</code></pre></div></p>
 </li>
 <li>
 <p>Next we need to install the SmartAgent itself using the same <code>ACCESS_TOKEN</code> that was used in <strong>Step #1</strong> above.
-   <code>bash
-   curl -sSL https://dl.signalfx.com/signalfx-agent.sh &gt; /tmp/signalfx-agent.sh
-   sudo sh /tmp/signalfx-agent.sh --realm YOUR_REALM YOUR_ACCESS_TOKEN</code></p>
+   <div class="highlight"><pre><span></span><code>curl -sSL https://dl.signalfx.com/signalfx-agent.sh &gt; /tmp/signalfx-agent.sh
+sudo sh /tmp/signalfx-agent.sh --realm YOUR_REALM YOUR_ACCESS_TOKEN
+</code></pre></div></p>
 </li>
 <li>
 <p>Once the installation is complete, validate the agent is running.
-   <code>signalfx-agent status</code></p>
+   <div class="highlight"><pre><span></span><code>signalfx-agent status
+</code></pre></div></p>
 </li>
 </ol>
-<p><code>SignalFx Agent version:           4.18.3
-   Agent uptime:                     3s
-   Observers active:                 host
-   Active Monitors:                  10
-   Configured Monitors:              10
-   Discovered Endpoint Count:        6
-   Bad Monitor Config:               None
-   Global Dimensions:                {host: rwc}
-   Datapoints sent (last minute):    0
-   Datapoints failed (last minute):  0
-   Datapoints overwritten (total):   0
-   Events Sent (last minute):        0
-   Trace Spans Sent (last minute):   0
-   Trace Spans overwritten (total):  0</code></p>
+<div class="highlight"><pre><span></span><code>SignalFx Agent version:           4.18.3
+Agent uptime:                     3s
+Observers active:                 host
+Active Monitors:                  10
+Configured Monitors:              10
+Discovered Endpoint Count:        6
+Bad Monitor Config:               None
+Global Dimensions:                {host: rwc}
+Datapoints sent (last minute):    0
+Datapoints failed (last minute):  0
+Datapoints overwritten (total):   0
+Events Sent (last minute):        0
+Trace Spans Sent (last minute):   0
+Trace Spans overwritten (total):  0
+</code></pre></div>
+
 <hr />
 <h2 id="step-4-update-the-application-instance-to-accept-traces-and-to-send-traces-to-the-smartgateway">Step 4: Update the Application instance to accept traces and to send traces to the SmartGateway<a class="headerlink" href="#step-4-update-the-application-instance-to-accept-traces-and-to-send-traces-to-the-smartgateway" title="Permanent link">&para;</a></h2>
 <ol>
@@ -830,21 +844,19 @@
 </li>
 <li>
 <p>Edit <code>/etc/signalfx/agent.yaml</code> and add <code>traceEndpointUrl</code> parameter and value just before <code>intervalSeconds</code> parameter. Please use the IP address from <strong>Step #1.7</strong>.
-   <code>yaml
-   traceEndpointUrl: http://SMART_GATEWAY_IP_ADDRESSS:8080/v1/trace</code></p>
+   <div class="highlight"><pre><span></span><code><span class="nt">traceEndpointUrl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http://SMART_GATEWAY_IP_ADDRESSS:8080/v1/trace</span> 
+</code></pre></div></p>
 </li>
 <li>
 <p>Under the monitors section of the <code>agent.yaml</code> add the following (best placed at the end of the list of monitors)
-   ```yaml</p>
-</li>
-<li>
-<p>type: trace-forwarder
-     listenAddress: 127.0.0.1:9080
-   ```</p>
+   <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">trace-forwarder</span>
+  <span class="nt">listenAddress</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">127.0.0.1:9080</span>
+</code></pre></div></p>
 </li>
 <li>
 <p>Check the trace-forwarder is responding
-   <code>curl -d'[]' -H'Content-Type:application/json' 127.0.0.1:9080/v1/trace</code></p>
+   <div class="highlight"><pre><span></span><code>curl -d&#39;[]&#39; -H&#39;Content-Type:application/json&#39; 127.0.0.1:9080/v1/trace
+</code></pre></div></p>
 </li>
 </ol>
 <p>If result is "OK" we can continue, else validate the steps above.</p>
@@ -889,7 +901,7 @@
 <div class="md-source-date">
   <small>
     
-      Last update: April 6, 2020 11:53:48
+      Last update: April 6, 2020 11:55:02
     
   </small>
 </div>
