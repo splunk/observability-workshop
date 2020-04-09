@@ -9,6 +9,8 @@ multipass delete --purge {YOUR_INITIALS}-k3s
 !!! note
     If you are using a workshop instance on EC2 please ignore this and just terminate your instance.
 
+**Testing tabbed**
+
 === "Input"
     ``` bash
     kubectl get pods
