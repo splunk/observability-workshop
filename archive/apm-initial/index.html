@@ -1,14 +1,12 @@
 
 
 
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
         <meta name="description" content="Splunk App Dev Workshop">
       
@@ -18,27 +16,8 @@
       
         <meta name="author" content="Sales Engineering">
       
-      
-        <meta name="lang:clipboard.copy" content="Copy to clipboard">
-      
-        <meta name="lang:clipboard.copied" content="Copied to clipboard">
-      
-        <meta name="lang:search.language" content="en">
-      
-        <meta name="lang:search.pipeline.stopwords" content="True">
-      
-        <meta name="lang:search.pipeline.trimmer" content="True">
-      
-        <meta name="lang:search.result.none" content="No matching documents">
-      
-        <meta name="lang:search.result.one" content="1 matching document">
-      
-        <meta name="lang:search.result.other" content="# matching documents">
-      
-        <meta name="lang:search.tokenizer" content="[\s\-]+">
-      
       <link rel="shortcut icon" href="../../images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-4.6.3">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.0.1">
     
     
       
@@ -46,9 +25,9 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.adb8469c.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.c3000690.min.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.4444686e.min.css">
       
       
         
@@ -57,16 +36,13 @@
       
     
     
-      <script src="../../assets/javascripts/modernizr.86422ebf.js"></script>
-    
     
       
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
     
-    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
     
       <link rel="stylesheet" href="../../extra.css">
@@ -77,120 +53,129 @@
     
   </head>
   
+  
     
     
     <body dir="ltr" data-md-color-primary="black" data-md-color-accent="">
   
-    <svg class="md-svg">
-      <defs>
-        
-        
-          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
-        
-      </defs>
-    </svg>
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="#before-we-start-signalfx-org-access" tabindex="0" class="md-skip">
-        Skip to content
-      </a>
-    
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#before-we-start-signalfx-org-access" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
     
       <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://signalfx.github.io/app-dev-workshop/" title="App Dev Workshop" aria-label="App Dev Workshop" class="md-header-nav__button md-logo">
-          
-            <img alt="logo" src="../../images/logo.png" width="24" height="24">
-          
-        </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            <span class="md-header-nav__topic">
-              App Dev Workshop
-            </span>
-            <span class="md-header-nav__topic">
-              
-                Apm initial
-              
-            </span>
-          
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://signalfx.github.io/app-dev-workshop/" title="App Dev Workshop" class="md-header-nav__button md-logo" aria-label="App Dev Workshop">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            App Dev Workshop
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Apm initial
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
         </div>
       </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        
-      </div>
-      
-        <div class="md-flex__cell md-flex__cell--shrink">
-          <div class="md-header-nav__source">
-            
-
-
-  
-
-<a href="https://github.com/signalfx/app-dev-workshop/" title="Go to repository" class="md-source" data-md-source="github">
-  
-    <div class="md-source__icon">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
     </div>
-  
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/signalfx/app-dev-workshop/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     GitHub
   </div>
 </a>
-          </div>
-        </div>
-      
-    </div>
+      </div>
+    
   </nav>
 </header>
     
-    <div class="md-container">
+    <div class="md-container" data-md-component="container">
       
         
       
       
-      <main class="md-main" role="main">
-        <div class="md-main__inner md-grid" data-md-component="container">
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
           
             
               <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="https://signalfx.github.io/app-dev-workshop/" title="App Dev Workshop" class="md-nav__button md-logo">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://signalfx.github.io/app-dev-workshop/" title="App Dev Workshop" class="md-nav__button md-logo" aria-label="App Dev Workshop">
       
-        <img alt="logo" src="../../images/logo.png" width="48" height="48">
-      
+  <img src="../../images/logo.png" alt="logo">
+
     </a>
     App Dev Workshop
   </label>
   
     <div class="md-nav__source">
       
-
-
-  
-
-<a href="https://github.com/signalfx/app-dev-workshop/" title="Go to repository" class="md-source" data-md-source="github">
-  
-    <div class="md-source__icon">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
+<a href="https://github.com/signalfx/app-dev-workshop/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     GitHub
   </div>
@@ -218,13 +203,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
     
     <label class="md-nav__link" for="nav-2">
       <b>Module 1</b> - Dashboards
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="<b>Module 1</b> - Dashboards" data-md-level="1">
       <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         <b>Module 1</b> - Dashboards
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -254,13 +245,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
       <b>Module 2</b> - Detectors
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="<b>Module 2</b> - Detectors" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         <b>Module 2</b> - Detectors
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -302,13 +299,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
       <b>Module 3</b> - Smart Agent
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="<b>Module 3</b> - Smart Agent" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         <b>Module 3</b> - Smart Agent
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -350,13 +353,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
     
     <label class="md-nav__link" for="nav-5">
       <b>Module 4</b> - Monitoring as Code
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="<b>Module 4</b> - Monitoring as Code" data-md-level="1">
       <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         <b>Module 4</b> - Monitoring as Code
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -386,13 +395,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
     
     <label class="md-nav__link" for="nav-6">
       <b>Module 5</b> - Service Bureau
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="<b>Module 5</b> - Service Bureau" data-md-level="1">
       <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         <b>Module 5</b> - Service Bureau
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -434,13 +449,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
     
     <label class="md-nav__link" for="nav-7">
       <b>Module 6</b> - µAPM
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="<b>Module 6</b> - µAPM" data-md-level="1">
       <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         <b>Module 6</b> - µAPM
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -494,13 +515,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
     
     <label class="md-nav__link" for="nav-8">
       <b>Module 7</b> - VictorOps
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="<b>Module 7</b> - VictorOps" data-md-level="1">
       <label class="md-nav__title" for="nav-8">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
         <b>Module 7</b> - VictorOps
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -546,11 +573,16 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
@@ -602,10 +634,6 @@
   
 </li>
       
-      
-      
-      
-      
     </ul>
   
 </nav>
@@ -618,7 +646,12 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/signalfx/app-dev-workshop/edit/master/docs/modules/archive/apm-initial.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/signalfx/app-dev-workshop/edit/master/docs/modules/archive/apm-initial.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
+                  </a>
+                
+                
+                  
                 
                 
                   <h1>Apm initial</h1>
@@ -640,74 +673,68 @@
 </li>
 <li>
 <p>Download the App Dev Workshop master zip file and unzip it
-   <div class="codehilite"><pre><span></span><code>curl -LO https://github.com/signalfx/app-dev-workshop/archive/master.zip
-unzip master.zip
-</code></pre></div></p>
+   <code>curl -LO https://github.com/signalfx/app-dev-workshop/archive/master.zip
+   unzip master.zip</code></p>
 </li>
 <li>
 <p>Change into the <code>app-dev-workshop-master</code> directory
-   <div class="codehilite"><pre><span></span><code>cd app-dev-workshop-master
-</code></pre></div></p>
+   <code>cd app-dev-workshop-master</code></p>
 </li>
 <li>
 <p>Edit cloud-init-smart-gateway.yaml and on line #30 replace ACCESS_TOKEN with your SignalFx token, REALM with the SignalFx realm you are running in, HOSTNAME with YOUR_INITIALS-sg and CLUSTER_NAME with YOUR_INITIALS-sg-cluster. NOTE: The hostname defined here will be the same hostname that we will use to launch the instance in Step #1.7
-   <div class="codehilite"><pre><span></span><code><span class="c1">#cloud-config</span>
-<span class="nt">package_update</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="nt">package_upgrade</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-
-<span class="nt">write_files</span><span class="p">:</span>
- <span class="p p-Indicator">-</span> <span class="nt">content</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-      <span class="no">[Unit]</span>
-      <span class="no">Description=SignalFx Smart Gateway</span>
-      <span class="no">After=network.target</span>
-      <span class="no">[Service]</span>
-      <span class="no">ExecStart=/usr/local/bin/smart-gateway --configfile /var/lib/gateway/etc/gateway.conf</span>
-      <span class="no">KillMode=mixed</span>
-      <span class="no">Restart=on-failure</span>
-      <span class="no">Type=simple</span>
-      <span class="no">User=root</span>
-      <span class="no">Group=root</span>
-      <span class="no">[Install]</span>
-      <span class="no">WantedBy=multi-user.target</span>
-   <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/lib/systemd/system/smart-gateway.service</span>
-   <span class="nt">permissons</span><span class="p">:</span> <span class="s">&#39;0644&#39;</span>
-<span class="nt">runcmd</span><span class="p">:</span>
- <span class="p p-Indicator">-</span> <span class="s">&#39;curl</span><span class="nv"> </span><span class="s">https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd</span><span class="nv"> </span><span class="s">-o</span><span class="nv"> </span><span class="s">/etc/motd&#39;</span>
- <span class="p p-Indicator">-</span> <span class="s">&#39;curl</span><span class="nv"> </span><span class="s">https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/smart-gateway/install.sh</span><span class="nv"> </span><span class="s">-o</span><span class="nv"> </span><span class="s">/home/ubuntu/smartgateway-install.sh&#39;</span>
- <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">chown ubuntu:ubuntu /home/ubuntu/smartgateway-install.sh</span>
- <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">chmod 755 /home/ubuntu/smartgateway-install.sh</span>
- <span class="c1"># Replace ACCESS_TOKEN, REALM, HOSTNAME &amp; CLUSTER_NAME accordingly</span>
- <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./home/ubuntu/smartgateway-install.sh ACCESS_TOKEN REALM HOSTNAME CLUSTER_NAME</span>
- <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">systemctl enable smart-gateway.service</span>
- <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">systemctl daemon-reload</span>
- <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">systemctl restart smart-gateway</span>
-</code></pre></div></p>
+   ```yaml
+   #cloud-config
+   package_update: true
+   package_upgrade: true</p>
 </li>
+</ol>
+<p>write_files:
+    - content: |
+         [Unit]
+         Description=SignalFx Smart Gateway
+         After=network.target
+         [Service]
+         ExecStart=/usr/local/bin/smart-gateway --configfile /var/lib/gateway/etc/gateway.conf
+         KillMode=mixed
+         Restart=on-failure
+         Type=simple
+         User=root
+         Group=root
+         [Install]
+         WantedBy=multi-user.target
+      path: /lib/systemd/system/smart-gateway.service
+      permissons: '0644'
+   runcmd:
+    - 'curl https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd -o /etc/motd'
+    - 'curl https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/smart-gateway/install.sh -o /home/ubuntu/smartgateway-install.sh'
+    - chown ubuntu:ubuntu /home/ubuntu/smartgateway-install.sh
+    - chmod 755 /home/ubuntu/smartgateway-install.sh
+    # Replace ACCESS_TOKEN, REALM, HOSTNAME &amp; CLUSTER_NAME accordingly
+    - ./home/ubuntu/smartgateway-install.sh ACCESS_TOKEN REALM HOSTNAME CLUSTER_NAME
+    - systemctl enable smart-gateway.service
+    - systemctl daemon-reload
+    - systemctl restart smart-gateway
+   ```</p>
+<ol>
 <li>
 <p>Now we can start up the SmartGateway instance, replacing YOUR_INITIALS accordingly.
-   <div class="codehilite"><pre><span></span><code>multipass launch --name YOUR_INITIALS-sg --cloud-init cloud-init-smart-gateway.yaml
-</code></pre></div></p>
+   <code>multipass launch --name YOUR_INITIALS-sg --cloud-init cloud-init-smart-gateway.yaml</code></p>
 </li>
 <li>
 <p>Find out which IP address has been assigned for the newly created instance and make a note of the IPv4 address that has been assigned.
-   <div class="codehilite"><pre><span></span><code>multipass list
-</code></pre></div></p>
+   <code>multipass list</code></p>
 </li>
 </ol>
-<div class="codehilite"><pre><span></span><code>Name                    State             IPv4             Image
-rwc-sg                  Running           192.168.64.30    Ubuntu 18.04 LTS
-</code></pre></div>
-
+<p><code>Name                    State             IPv4             Image
+   rwc-sg                  Running           192.168.64.30    Ubuntu 18.04 LTS</code></p>
 <ol>
 <li>
 <p>Shell into the newly created Smart-Gateway instance. Please use your initials to prefix <code>sg</code> for the name of the instance.
-   <div class="codehilite"><pre><span></span><code>multipass shell YOUR_INITIALS-sg
-</code></pre></div></p>
+   <code>multipass shell YOUR_INITIALS-sg</code></p>
 </li>
 <li>
 <p>Test the gateway is running and working with the following <code>curl</code> command
-    <div class="codehilite"><pre><span></span><code>curl -d&#39;[]&#39; -H&#39;Content-Type:application/json&#39; 127.0.0.1:8080/v1/trace
-</code></pre></div></p>
+    <code>curl -d'[]' -H'Content-Type:application/json' 127.0.0.1:8080/v1/trace</code></p>
 <p>If result is <code>"OK"</code> we can continue, else validate the steps above.</p>
 </li>
 </ol>
@@ -716,93 +743,85 @@ rwc-sg                  Running           192.168.64.30    Ubuntu 18.04 LTS
 <ol>
 <li>
 <p>Remaining in the shell for the SmartGateway instance, next we need to install a SmartAgent to monitor SmartGateway. Using the same <code>ACCESS_TOKEN</code> that was used in <strong>Step #1</strong> above.
-   <div class="codehilite"><pre><span></span><code>curl -sSL https://dl.signalfx.com/signalfx-agent.sh &gt; /tmp/signalfx-agent.sh
-sudo sh /tmp/signalfx-agent.sh --realm YOUR_REALM YOUR_ACCESS_TOKEN
-</code></pre></div></p>
+   <code>bash
+   curl -sSL https://dl.signalfx.com/signalfx-agent.sh &gt; /tmp/signalfx-agent.sh
+   sudo sh /tmp/signalfx-agent.sh --realm YOUR_REALM YOUR_ACCESS_TOKEN</code></p>
 </li>
 <li>
 <p>Once the Agent has installed edit <code>sudo vi /etc/signalfx/agent.yaml</code> and add the <code>extraDimensions</code> under the <code>signalfx-metadata</code> plugin. For the cluster parameter you will need to set it to exactly what was used for the SmartGateway installation above e.g. <code>YOUR_INITIALS-sg-cluster</code>. You do not need to restart the agent for this change to take effect.
-   <div class="codehilite"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">collectd/signalfx-metadata</span>
-  <span class="nt">extraDimensions</span><span class="p">:</span>
-    <span class="nt">source</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">gateway</span>
-    <span class="nt">cluster</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">YOUR_INITIALS-sg-cluster</span>
-</code></pre></div></p>
+   ```yaml</p>
+</li>
+<li>
+<p>type: collectd/signalfx-metadata
+     extraDimensions:
+       source: gateway
+       cluster: YOUR_INITIALS-sg-cluster
+   ```</p>
 </li>
 <li>
 <p>Once the installation and configuration is complete, validate the agent is running.
-   <div class="codehilite"><pre><span></span><code>signalfx-agent status
-</code></pre></div></p>
+   <code>signalfx-agent status</code></p>
 </li>
 </ol>
-<div class="codehilite"><pre><span></span><code>SignalFx Agent version:           4.18.3
-Agent uptime:                     3s
-Observers active:                 host
-Active Monitors:                  10
-Configured Monitors:              10
-Discovered Endpoint Count:        6
-Bad Monitor Config:               None
-Global Dimensions:                {host: rwc}
-Datapoints sent (last minute):    0
-Datapoints failed (last minute):  0
-Datapoints overwritten (total):   0
-Events Sent (last minute):        0
-Trace Spans Sent (last minute):   0
-Trace Spans overwritten (total):  0
-</code></pre></div>
-
+<p><code>SignalFx Agent version:           4.18.3
+   Agent uptime:                     3s
+   Observers active:                 host
+   Active Monitors:                  10
+   Configured Monitors:              10
+   Discovered Endpoint Count:        6
+   Bad Monitor Config:               None
+   Global Dimensions:                {host: rwc}
+   Datapoints sent (last minute):    0
+   Datapoints failed (last minute):  0
+   Datapoints overwritten (total):   0
+   Events Sent (last minute):        0
+   Trace Spans Sent (last minute):   0
+   Trace Spans overwritten (total):  0</code></p>
 <hr />
 <h2 id="step-3-create-the-application-instance-with-multipass-and-deploy-the-smartagent">Step 3: Create the Application instance with Multipass and deploy the SmartAgent<a class="headerlink" href="#step-3-create-the-application-instance-with-multipass-and-deploy-the-smartagent" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Open a new terminal and create a Multipass instance to host the application and the SmartAgent. We shall refer to this as the Application instance. Please use your initials to prefix <code>app</code> for the name of the instance.
-   <div class="codehilite"><pre><span></span><code>multipass launch --name YOUR_INITIALS-app --cloud-init cloud-init-application.yaml
-</code></pre></div></p>
+   <code>multipass launch --name YOUR_INITIALS-app --cloud-init cloud-init-application.yaml</code></p>
 </li>
 <li>
 <p>Find out which IP address has been assigned for the newly created instance and make a note of the IPv4 address that has been assigned.
-   <div class="codehilite"><pre><span></span><code>multipass list
-</code></pre></div></p>
+   <code>multipass list</code></p>
 </li>
 </ol>
-<div class="codehilite"><pre><span></span><code>Name                    State             IPv4             Image
-rwc-app                 Running           192.168.64.31    Ubuntu 18.04 LTS
-rwc-sg                  Running           192.168.64.30    Ubuntu 18.04 LTS
-</code></pre></div>
-
+<p><code>Name                    State             IPv4             Image
+   rwc-app                 Running           192.168.64.31    Ubuntu 18.04 LTS
+   rwc-sg                  Running           192.168.64.30    Ubuntu 18.04 LTS</code></p>
 <ol>
 <li>
 <p>Once the instance has been successfully created shell into it.
-   <div class="codehilite"><pre><span></span><code>multipass shell YOUR_INITIALS-app
-</code></pre></div></p>
+   <code>multipass shell YOUR_INITIALS-app</code></p>
 </li>
 <li>
 <p>Next we need to install the SmartAgent itself using the same <code>ACCESS_TOKEN</code> that was used in <strong>Step #1</strong> above.
-   <div class="codehilite"><pre><span></span><code>curl -sSL https://dl.signalfx.com/signalfx-agent.sh &gt; /tmp/signalfx-agent.sh
-sudo sh /tmp/signalfx-agent.sh --realm YOUR_REALM YOUR_ACCESS_TOKEN
-</code></pre></div></p>
+   <code>bash
+   curl -sSL https://dl.signalfx.com/signalfx-agent.sh &gt; /tmp/signalfx-agent.sh
+   sudo sh /tmp/signalfx-agent.sh --realm YOUR_REALM YOUR_ACCESS_TOKEN</code></p>
 </li>
 <li>
 <p>Once the installation is complete, validate the agent is running.
-   <div class="codehilite"><pre><span></span><code>signalfx-agent status
-</code></pre></div></p>
+   <code>signalfx-agent status</code></p>
 </li>
 </ol>
-<div class="codehilite"><pre><span></span><code>SignalFx Agent version:           4.18.3
-Agent uptime:                     3s
-Observers active:                 host
-Active Monitors:                  10
-Configured Monitors:              10
-Discovered Endpoint Count:        6
-Bad Monitor Config:               None
-Global Dimensions:                {host: rwc}
-Datapoints sent (last minute):    0
-Datapoints failed (last minute):  0
-Datapoints overwritten (total):   0
-Events Sent (last minute):        0
-Trace Spans Sent (last minute):   0
-Trace Spans overwritten (total):  0
-</code></pre></div>
-
+<p><code>SignalFx Agent version:           4.18.3
+   Agent uptime:                     3s
+   Observers active:                 host
+   Active Monitors:                  10
+   Configured Monitors:              10
+   Discovered Endpoint Count:        6
+   Bad Monitor Config:               None
+   Global Dimensions:                {host: rwc}
+   Datapoints sent (last minute):    0
+   Datapoints failed (last minute):  0
+   Datapoints overwritten (total):   0
+   Events Sent (last minute):        0
+   Trace Spans Sent (last minute):   0
+   Trace Spans overwritten (total):  0</code></p>
 <hr />
 <h2 id="step-4-update-the-application-instance-to-accept-traces-and-to-send-traces-to-the-smartgateway">Step 4: Update the Application instance to accept traces and to send traces to the SmartGateway<a class="headerlink" href="#step-4-update-the-application-instance-to-accept-traces-and-to-send-traces-to-the-smartgateway" title="Permanent link">&para;</a></h2>
 <ol>
@@ -811,19 +830,21 @@ Trace Spans overwritten (total):  0
 </li>
 <li>
 <p>Edit <code>/etc/signalfx/agent.yaml</code> and add <code>traceEndpointUrl</code> parameter and value just before <code>intervalSeconds</code> parameter. Please use the IP address from <strong>Step #1.7</strong>.
-   <div class="codehilite"><pre><span></span><code><span class="nt">traceEndpointUrl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http://SMART_GATEWAY_IP_ADDRESSS:8080/v1/trace</span> 
-</code></pre></div></p>
+   <code>yaml
+   traceEndpointUrl: http://SMART_GATEWAY_IP_ADDRESSS:8080/v1/trace</code></p>
 </li>
 <li>
 <p>Under the monitors section of the <code>agent.yaml</code> add the following (best placed at the end of the list of monitors)
-   <div class="codehilite"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">trace-forwarder</span>
-  <span class="nt">listenAddress</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">127.0.0.1:9080</span>
-</code></pre></div></p>
+   ```yaml</p>
+</li>
+<li>
+<p>type: trace-forwarder
+     listenAddress: 127.0.0.1:9080
+   ```</p>
 </li>
 <li>
 <p>Check the trace-forwarder is responding
-   <div class="codehilite"><pre><span></span><code>curl -d&#39;[]&#39; -H&#39;Content-Type:application/json&#39; 127.0.0.1:9080/v1/trace
-</code></pre></div></p>
+   <code>curl -d'[]' -H'Content-Type:application/json' 127.0.0.1:9080/v1/trace</code></p>
 </li>
 </ol>
 <p>If result is "OK" we can continue, else validate the steps above.</p>
@@ -862,17 +883,17 @@ Trace Spans overwritten (total):  0
 <p>Once you finish, please proceed to <a href="https://github.com/signalfx/app-dev-workshop/wiki/Module-2-Lab-2:-Traced-Python-Application-Example">Lab 2: Traced Python Application Example</a></p>
                 
                   
-                
-                
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: April 6, 2020 11:53:48
+    
+  </small>
+</div>
                   
-                  <hr>
-                  <div class="md-source-date">
-                    <small>
-                      
-                        Last update: April 6, 2020 11:53:48
-                      
-                    </small>
-                  </div>
                 
               
               
@@ -896,11 +917,10 @@ Trace Spans overwritten (total):  0
             Copyright &copy; 2020 Splunk Inc. All rights reserved.
           </div>
         
-        powered by
-        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
-        and
+        Made with
         <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs</a>
+          Material for MkDocs
+        </a>
       </div>
       
     </div>
@@ -909,9 +929,18 @@ Trace Spans overwritten (total):  0
       
     </div>
     
-      <script src="../../assets/javascripts/application.c33a9706.js"></script>
+      <script src="../../assets/javascripts/vendor.f45d2d8d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.74d0b805.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
-      <script>app.initialize({version:"1.1",url:{base:"../.."}})</script>
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.7f7c8775.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
     
   </body>
