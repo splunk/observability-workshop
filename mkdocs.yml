@@ -40,7 +40,7 @@ plugins:
   - search
   
 nav:
-  - Overview: index.md
+  - '<b>Introduction</b>': index.md
   - '<b>Module 1</b> - Dashboards':
     - 'Working with Dashboards, Charts and Metrics': module1/dashboards.md
   - '<b>Module 2</b> - Detectors':
@@ -60,4 +60,4 @@ nav:
     - 'Running Sock Shop in K3s': module6/sockshop.md
   - '<b>Module 7</b> - VictorOps':
     - 'Coming Soon!': module7/index.md
-  - 'Post Workshop Clean Up!': module-support/cleanup.md
+  - '<b>Post Workshop Clean Up!</b>': module-support/cleanup.md
