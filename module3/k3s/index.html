@@ -330,69 +330,12 @@
     
     <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
+      
     
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Deploying the Smart Agent in Kubernetes (K3s)
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
-        </span>
-      </label>
     
     <a href="./" title="Deploying the Smart Agent in Kubernetes (K3s)" class="md-nav__link md-nav__link--active">
       Deploying the Smart Agent in Kubernetes (K3s)
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#lab-summary" class="md-nav__link">
-    Lab Summary
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-lets-bake-some-k8s" class="md-nav__link">
-    1. Let’s bake some K8s
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-ive-got-the-key-ive-got-the-secret" class="md-nav__link">
-    2. I’ve got the key, I’ve got the secret!
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-take-the-helm" class="md-nav__link">
-    3. Take the Helm!
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-check-all-is-well-in-the-signalfx-ui" class="md-nav__link">
-    4. Check all is well in the SignalFx UI!
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
     
   </li>
 
@@ -644,51 +587,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+    
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#lab-summary" class="md-nav__link">
-    Lab Summary
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-lets-bake-some-k8s" class="md-nav__link">
-    1. Let’s bake some K8s
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-ive-got-the-key-ive-got-the-secret" class="md-nav__link">
-    2. I’ve got the key, I’ve got the secret!
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-take-the-helm" class="md-nav__link">
-    3. Take the Helm!
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-check-all-is-well-in-the-signalfx-ui" class="md-nav__link">
-    4. Check all is well in the SignalFx UI!
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -708,8 +608,6 @@
                   
                 
                 
-                  <h1>Deploying the Smart Agent in Kubernetes (K3s)</h1>
-                
                 <h3 id="lab-summary">Lab Summary<a class="headerlink" href="#lab-summary" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Download the workshop and configure Kubernetes (<a href="https://k3s.io/">K3s</a>) environment.</li>
@@ -718,6 +616,41 @@
 </ul>
 <p>If you have chosen to run the workshop on a AWS/EC2 instance, please follow instructions given and go to <a href="https://signalfx.github.io/app-dev-workshop/module3/k3s/#2-ive-got-the-key-ive-got-the-secret">Step 2</a>.</p>
 <hr />
+<div class="tabbed-set" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Bash</label><div class="tabbed-content">
+<p>``` bash</p>
+<h1 id="binbash">!/bin/bash<a class="headerlink" href="#binbash" title="Permanent link">&para;</a></h1>
+<p>echo "Hello world!"
+```</p>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">C</label><div class="tabbed-content">
+<p>``` c</p>
+<h1 id="include">include <stdio.h><a class="headerlink" href="#include" title="Permanent link">&para;</a></h1>
+<p>int main(void) {
+  printf("Hello world!\n");
+  return 0;
+}
+```</p>
+</div>
+<input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><label for="__tabbed_1_3">C++</label><div class="tabbed-content">
+<p>``` c++</p>
+<h1 id="include_1">include <iostream><a class="headerlink" href="#include_1" title="Permanent link">&para;</a></h1>
+<p>int main(void) {
+  std::cout &lt;&lt; "Hello world!" &lt;&lt; std::endl;
+  return 0;
+}
+```</p>
+</div>
+<input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><label for="__tabbed_1_4">C#</label><div class="tabbed-content">
+<p>``` c#
+using System;</p>
+<p>class Program {
+  static void Main(string[] args) {
+    Console.WriteLine("Hello world!");
+  }
+}
+```</p>
+</div>
+</div>
 <h3 id="1-lets-bake-some-k8s">1. Let’s bake some K8s<a class="headerlink" href="#1-lets-bake-some-k8s" title="Permanent link">&para;</a></h3>
 <p>Install <a href="https://multipass.run/">Multipass</a> for your OS. On a Mac you can also install via <code>brew</code> e.g. <code>brew cask install multipass</code></p>
 <p>Download the App Dev Workshop master zip file, unzip the file and change into the app-dev-workshop-master directory</p>
@@ -780,14 +713,15 @@ helm install --set signalFxAccessToken=$ACCESS_TOKEN --set clusterName=$INITIALS
 
 
 <p>You can monitor the progress of the deployment by running <code>kubectl get pods</code> which should typically report a new pod is up and running after about 30 seconds. Ensure the status is reported as Running before continuing.</p>
-<p>```bash tab="Input"
-kubectl get pods</p>
-<div class="codehilite"><pre><span></span><code>```text tab=&quot;Output&quot;
-NAME                   READY   STATUS    RESTARTS   AGE
-signalfx-agent-66tvr   1/1     Running   0          7s
-</code></pre></div>
-
-
+<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Input</label><div class="tabbed-content">
+<p><code>bash
+kubectl get pods</code></p>
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Output</label><div class="tabbed-content">
+<p><code>NAME                   READY   STATUS    RESTARTS   AGE
+signalfx-agent-66tvr   1/1     Running   0          7s</code></p>
+</div>
+</div>
 <p>Ensure there are no errors by tailing the logs from the Smart Agent Pod. Output should look similar to the log output shown below. Use the label set by the <code>helm</code> install to tail logs (You will need to press Ctrl-C to exit). Or use the installed <code>k9s</code> terminal UI for bonus points!</p>
 <p>```bash tab="Input"
 kubectl logs -l app=signalfx-agent -f</p>
