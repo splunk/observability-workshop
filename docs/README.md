@@ -3,7 +3,7 @@ When working on the workshop, it is advised that you review your changes locally
 ### Cloning the repo and installing dependancies
 ```bash
 git clone https://github.com/signalfx/app-dev-workshop.git
-cd ~/app-dev-workshop/docs
+cd ~/app-dev-workshop
 sudo pip3 install -r requirements.txt
 ```
 

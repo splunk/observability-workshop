@@ -26,7 +26,7 @@ Launch the Multipass instance which will run Kubernetes (K3s)
     Use `{YOUR_INITIALS}-k3s` so that the value of the instance hostname is unique e.g. `rwc-k3s`
 
 ```bash
-multipass launch --name {YOUR_INITIALS}-k3s --cloud-init cloud-init-k3s.yaml --cpus=2 --disk=10G --mem=4G
+multipass launch --name {YOUR_INITIALS}-k3s --cloud-init cloud-init/k3s.yaml --cpus=2 --disk=10G --mem=4G
 ```
 
 Once the instance has been successfully created shell into it.

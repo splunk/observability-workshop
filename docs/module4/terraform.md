@@ -60,7 +60,6 @@ should now work.
 If you ever set or change modules or backend configuration for Terraform,
 rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
-```
 
 Create a new workspace, replace `{WORKSPACE_NAME}` with what you want your workspace to be called:
 

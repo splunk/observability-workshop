@@ -18,7 +18,7 @@ __## Summary of this lab:
 
 3. Launch the Multipass instance which will run Kubernetes. **Note:** Use `[YOUR-INITIALS]-microk8s` this is so the value of the instance hostname is unique e.g. `rwc-microk8s`
    ```bash
-   multipass launch --name [YOUR-INITIALS]-microk8s --cloud-init cloud-init-microk8s.yaml --cpus=4 --mem=2G
+   multipass launch --name [YOUR-INITIALS]-microk8s --cloud-init cloud-init/microk8s.yaml --cpus=4 --mem=2G
    ```
 
 4. Once the instance has been successfully created shell into it.

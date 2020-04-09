@@ -23,7 +23,7 @@ _To check if you have an organisation with µAPM enabled, just login to SignalFx
    cd app-dev-workshop-master
    ```
 
-6. Edit cloud-init-smart-gateway.yaml and on line #30 replace ACCESS_TOKEN with your SignalFx token, REALM with the SignalFx realm you are running in, HOSTNAME with YOUR_INITIALS-sg and CLUSTER_NAME with YOUR_INITIALS-sg-cluster. NOTE: The hostname defined here will be the same hostname that we will use to launch the instance in Step #1.7
+6. Edit `cloud-init/smart-gateway.yaml` and on line #30 replace ACCESS_TOKEN with your SignalFx token, REALM with the SignalFx realm you are running in, HOSTNAME with YOUR_INITIALS-sg and CLUSTER_NAME with YOUR_INITIALS-sg-cluster. NOTE: The hostname defined here will be the same hostname that we will use to launch the instance in Step #1.7
    ```yaml
    #cloud-config
    package_update: true
@@ -59,7 +59,7 @@ _To check if you have an organisation with µAPM enabled, just login to SignalFx
    
 7. Now we can start up the SmartGateway instance, replacing YOUR_INITIALS accordingly.
    ```
-   multipass launch --name YOUR_INITIALS-sg --cloud-init cloud-init-smart-gateway.yaml
+   multipass launch --name YOUR_INITIALS-sg --cloud-init cloud-init/smart-gateway.yaml
    ```
 
 8. Find out which IP address has been assigned for the newly created instance and make a note of the IPv4 address that has been assigned.
@@ -128,7 +128,7 @@ _To check if you have an organisation with µAPM enabled, just login to SignalFx
 ## Step 3: Create the Application instance with Multipass and deploy the SmartAgent
 1. Open a new terminal and create a Multipass instance to host the application and the SmartAgent. We shall refer to this as the Application instance. Please use your initials to prefix `app` for the name of the instance.
    ```
-   multipass launch --name YOUR_INITIALS-app --cloud-init cloud-init-application.yaml
+   multipass launch --name YOUR_INITIALS-app --cloud-init cloud-init/application.yaml
    ```
 
 2. Find out which IP address has been assigned for the newly created instance and make a note of the IPv4 address that has been assigned.
