@@ -1,5 +1,5 @@
 .vscode
 .DS_Store
-docs/site
+site
 docs/nohup.out
 .gitignore
