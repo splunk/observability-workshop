@@ -12,18 +12,22 @@ theme:
   palette:
     primary: 'black'
   favicon: 'images/favicon.ico'
-  logo: 'images/logo.png'
+  logo: images/logo.png
   font:
-    text: 'Roboto'
-    code: 'Roboto Mono'
+    text: Roboto
+    code: Roboto Mono
+  include_search_page: false
+  search_index_only: true
+  language: en
 
 markdown_extensions:
-  - admonition
-  - codehilite:
+  - markdown.extensions.admonition
+  - markdown.extensions.codehilite:
       guess_lang: false
-  - toc:
+  - markdown.extensions.toc:
       permalink: true
-  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.mark
 
 extra_css:
   - "extra.css"
@@ -32,6 +36,7 @@ plugins:
   - git-revision-date-localized:
       type: datetime
       locale: en
+  - search
   
 nav:
   - Overview: index.md
