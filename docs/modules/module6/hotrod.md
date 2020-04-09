@@ -24,6 +24,7 @@ To deploy the Hotrod application into K3s apply the deployment
     ```
 
 To ensure the Hotrod application is running:
+
 === "Input"
     ```bash
     kubectl get pods
