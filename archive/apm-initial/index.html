@@ -683,7 +683,7 @@ unzip master.zip
 </code></pre></div></p>
 </li>
 <li>
-<p>Edit cloud-init-smart-gateway.yaml and on line #30 replace ACCESS_TOKEN with your SignalFx token, REALM with the SignalFx realm you are running in, HOSTNAME with YOUR_INITIALS-sg and CLUSTER_NAME with YOUR_INITIALS-sg-cluster. NOTE: The hostname defined here will be the same hostname that we will use to launch the instance in Step #1.7
+<p>Edit <code>cloud-init/smart-gateway.yaml</code> and on line #30 replace ACCESS_TOKEN with your SignalFx token, REALM with the SignalFx realm you are running in, HOSTNAME with YOUR_INITIALS-sg and CLUSTER_NAME with YOUR_INITIALS-sg-cluster. NOTE: The hostname defined here will be the same hostname that we will use to launch the instance in Step #1.7
    <div class="highlight"><pre><span></span><code><span class="c1">#cloud-config</span>
 <span class="nt">package_update</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">package_upgrade</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
@@ -718,7 +718,7 @@ unzip master.zip
 </li>
 <li>
 <p>Now we can start up the SmartGateway instance, replacing YOUR_INITIALS accordingly.
-   <div class="highlight"><pre><span></span><code>multipass launch --name YOUR_INITIALS-sg --cloud-init cloud-init-smart-gateway.yaml
+   <div class="highlight"><pre><span></span><code>multipass launch --name YOUR_INITIALS-sg --cloud-init cloud-init/smart-gateway.yaml
 </code></pre></div></p>
 </li>
 <li>
@@ -788,7 +788,7 @@ Trace Spans overwritten (total):  0
 <ol>
 <li>
 <p>Open a new terminal and create a Multipass instance to host the application and the SmartAgent. We shall refer to this as the Application instance. Please use your initials to prefix <code>app</code> for the name of the instance.
-   <div class="highlight"><pre><span></span><code>multipass launch --name YOUR_INITIALS-app --cloud-init cloud-init-application.yaml
+   <div class="highlight"><pre><span></span><code>multipass launch --name YOUR_INITIALS-app --cloud-init cloud-init/application.yaml
 </code></pre></div></p>
 </li>
 <li>
@@ -901,7 +901,7 @@ Trace Spans overwritten (total):  0
 <div class="md-source-date">
   <small>
     
-      Last update: April 6, 2020 11:55:02
+      Last update: April 9, 2020 20:48:17
     
   </small>
 </div>

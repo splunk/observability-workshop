@@ -425,6 +425,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#2-create-an-execution-plan" class="md-nav__link">
+    2. Create an execution plan
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#3-apply-actions-from-execution-plan" class="md-nav__link">
     3. Apply actions from execution plan
   </a>
@@ -668,6 +675,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#2-create-an-execution-plan" class="md-nav__link">
+    2. Create an execution plan
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#3-apply-actions-from-execution-plan" class="md-nav__link">
     3. Apply actions from execution plan
   </a>
@@ -762,30 +776,29 @@ any changes that are required for your infrastructure. All Terraform commands
 should now work.</p>
 <p>If you ever set or change modules or backend configuration for Terraform,
 rerun this command to reinitialize your working directory. If you forget, other
-commands will detect it and remind you to do so if necessary.
-<div class="highlight"><pre><span></span><code>Create a new workspace, replace `{WORKSPACE_NAME}` with what you want your workspace to be called:
+commands will detect it and remind you to do so if necessary.</p>
+<p>Create a new workspace, replace <code>{WORKSPACE_NAME}</code> with what you want your workspace to be called:</p>
+<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Input</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>terraform workspace new <span class="o">{</span>WORKSPACE_NAME<span class="o">}</span>
+</code></pre></div>
 
-=== &quot;Input&quot;
-    ``` bash
-    terraform workspace new {WORKSPACE_NAME}
-    ```
-=== &quot;Output&quot;
-    ```text
-    Created and switched to workspace &quot;my_workspace&quot;!
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Output</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>Created and switched to workspace &quot;my_workspace&quot;!
 
-    You&#39;re now on a new, empty workspace. Workspaces isolate their state,
-    so if you run &quot;terraform plan&quot; Terraform will not see any existing state
-    for this configuration.
-    ```
+You&#39;re now on a new, empty workspace. Workspaces isolate their state,
+so if you run &quot;terraform plan&quot; Terraform will not see any existing state
+for this configuration.
+</code></pre></div>
 
----
+</div>
+</div>
+<hr />
+<h3 id="2-create-an-execution-plan">2. Create an execution plan<a class="headerlink" href="#2-create-an-execution-plan" title="Permanent link">&para;</a></h3>
+<p>Review the execution plan. Replace <code>{YOUR_INITIALS}</code> e.g. <code>-var=”sfx_prefix=RWC”</code></p>
+<div class="highlight"><pre><span></span><code>terraform plan -var<span class="o">=</span><span class="s2">&quot;access_token=abc123&quot;</span> -var<span class="o">=</span><span class="s2">&quot;realm=us1&quot;</span> -var<span class="o">=</span><span class="s2">&quot;sfx_prefix={YOUR_INITIALS}&quot;</span>
+</code></pre></div>
 
-### 2. Create an execution plan
-Review the execution plan. Replace `{YOUR_INITIALS}` e.g. `-var=”sfx_prefix=RWC”`
-
-``` bash
-terraform plan -var=&quot;access_token=abc123&quot; -var=&quot;realm=us1&quot; -var=&quot;sfx_prefix={YOUR_INITIALS}&quot;
-</code></pre></div></p>
 <p>Where <code>access_token</code> is the SignalFx Access Token and realm is either <code>eu0</code>, <code>us1</code> or <code>ap0</code>. If the plan executes successfully, we can go ahead and apply:</p>
 <hr />
 <h3 id="3-apply-actions-from-execution-plan">3. Apply actions from execution plan<a class="headerlink" href="#3-apply-actions-from-execution-plan" title="Permanent link">&para;</a></h3>
@@ -818,7 +831,7 @@ terraform plan -var=&quot;access_token=abc123&quot; -var=&quot;realm=us1&quot; -
 <div class="md-source-date">
   <small>
     
-      Last update: April 9, 2020 19:28:01
+      Last update: April 9, 2020 20:48:17
     
   </small>
 </div>
