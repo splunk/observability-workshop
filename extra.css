@@ -21,3 +21,7 @@ a.md-logo img {
 .md-nav__link:focus, .md-nav__link:hover {
     color: #E20082;
 }
+
+:root{
+    --md-primary-fg-color: rgb(231, 12, 176);
+}

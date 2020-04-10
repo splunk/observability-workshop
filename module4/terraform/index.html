@@ -8,7 +8,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Splunk App Dev Workshop">
+        <meta name="description" content="This workshop is going to take you though the exciting journey of App Dev, what this is, why this is important, and how to get started right away!">
       
       
         <link rel="canonical" href="https://signalfx.github.io/app-dev-workshop/module4/terraform/">
@@ -21,7 +21,7 @@
     
     
       
-        <title>Using Terraform for charts and dashboards - App Dev Workshop</title>
+        <title>Using Terraform for charts and dashboards - Splunk App Dev Workshop</title>
       
     
     
@@ -75,7 +75,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="https://signalfx.github.io/app-dev-workshop/" title="App Dev Workshop" class="md-header-nav__button md-logo" aria-label="App Dev Workshop">
+    <a href="https://signalfx.github.io/app-dev-workshop/" title="Splunk App Dev Workshop" class="md-header-nav__button md-logo" aria-label="Splunk App Dev Workshop">
       
   <img src="../../images/logo.png" alt="logo">
 
@@ -87,7 +87,7 @@
       
         <div class="md-header-nav__ellipsis">
           <span class="md-header-nav__topic md-ellipsis">
-            App Dev Workshop
+            Splunk App Dev Workshop
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
@@ -161,12 +161,12 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="https://signalfx.github.io/app-dev-workshop/" title="App Dev Workshop" class="md-nav__button md-logo" aria-label="App Dev Workshop">
+    <a href="https://signalfx.github.io/app-dev-workshop/" title="Splunk App Dev Workshop" class="md-nav__button md-logo" aria-label="Splunk App Dev Workshop">
       
   <img src="../../images/logo.png" alt="logo">
 
     </a>
-    App Dev Workshop
+    Splunk App Dev Workshop
   </label>
   
     <div class="md-nav__source">
@@ -190,8 +190,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../.." title="Overview" class="md-nav__link">
-      Overview
+    <a href="../.." title="Home" class="md-nav__link">
+      <b>Home</b>
     </a>
   </li>
 
@@ -631,7 +631,7 @@
 
   <li class="md-nav__item">
     <a href="../../module-support/cleanup/" title="Post Workshop Clean Up!" class="md-nav__link">
-      Post Workshop Clean Up!
+      <b>Post Workshop Clean Up!</b>
     </a>
   </li>
 
@@ -744,8 +744,7 @@ unzip master.zip
 
 </div>
 <input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Output</label><div class="tabbed-content">
-<p>```text
-Upgrading modules...
+<div class="highlight"><pre><span></span><code>Upgrading modules...
 - aws in modules/aws
 - azure in modules/azure
 - docker in modules/docker
@@ -754,29 +753,37 @@ Upgrading modules...
 - kubernetes in modules/kubernetes
 - parent_child_dashboard in modules/dashboards/parent
 - pivotal in modules/pivotal
-- usage_dashboard in modules/dashboards/usage</p>
-</div>
-</div>
-<p>Initializing the backend...</p>
-<p>Initializing provider plugins...
+- usage_dashboard in modules/dashboards/usage
+
+Initializing the backend...
+
+Initializing provider plugins...
 - Checking for available provider plugins...
-- Downloading plugin for provider "signalfx" (terraform-providers/signalfx) 4.18.6...</p>
-<p>The following providers do not have any version constraints in configuration,
-so the latest version was installed.</p>
-<p>To prevent automatic upgrades to new major versions that may contain breaking
-changes, it is recommended to add version = "..." constraints to the
+- Downloading plugin for provider &quot;signalfx&quot; (terraform-providers/signalfx) 4.18.6...
+
+The following providers do not have any version constraints in configuration,
+so the latest version was installed.
+
+To prevent automatic upgrades to new major versions that may contain breaking
+changes, it is recommended to add version = &quot;...&quot; constraints to the
 corresponding provider blocks in configuration, with the constraint strings
-suggested below.</p>
-<ul>
-<li>provider.signalfx: version = "~&gt; 4.18"</li>
-</ul>
-<p>Terraform has been successfully initialized!</p>
-<p>You may now begin working with Terraform. Try running "terraform plan" to see
+suggested below.
+
+* provider.signalfx: version = &quot;~&gt; 4.18&quot;
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running &quot;terraform plan&quot; to see
 any changes that are required for your infrastructure. All Terraform commands
-should now work.</p>
-<p>If you ever set or change modules or backend configuration for Terraform,
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
 rerun this command to reinitialize your working directory. If you forget, other
-commands will detect it and remind you to do so if necessary.</p>
+commands will detect it and remind you to do so if necessary.
+</code></pre></div>
+
+</div>
+</div>
 <p>Create a new workspace, replace <code>{WORKSPACE_NAME}</code> with what you want your workspace to be called:</p>
 <div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Input</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>terraform workspace new <span class="o">{</span>WORKSPACE_NAME<span class="o">}</span>
@@ -823,6 +830,8 @@ for this configuration.
 
 <p>Validate all the detectors have been removed by navigating to <em><strong>ALERTS → Detectors</strong></em></p>
 <p><img alt="" src="../../images/module4/destroy.png" /></p>
+<hr />
+<p>Use the <strong>Next</strong> link in the footer below to continue the workshop</p>
                 
                   
                     
@@ -831,7 +840,7 @@ for this configuration.
 <div class="md-source-date">
   <small>
     
-      Last update: April 9, 2020 20:48:17
+      Last update: April 10, 2020 12:19:42
     
   </small>
 </div>
