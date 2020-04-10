@@ -41,6 +41,7 @@ plugins:
   
 nav:
   - '<b>Home</b>': index.md
+  - '<b>Introduction</b>': introduction.md
   - '<b>Module 1</b> - Dashboards':
     - 'Working with Dashboards, Charts and Metrics': module1/dashboards.md
   - '<b>Module 2</b> - Detectors':
