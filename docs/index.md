@@ -58,4 +58,4 @@ SignalFx provides a unified, single-pane-of-glass view of infrastructure and app
 
 ---
 
-**[Let's get started!](https://signalfx.github.io/app-dev-workshop/module1/dashboards/)**
+**To start the workshop, please click on the Next lab displayed below!**
