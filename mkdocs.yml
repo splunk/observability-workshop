@@ -1,5 +1,5 @@
-site_name: 'App Dev Workshop'
-site_description: 'Splunk App Dev Workshop'
+site_name: 'Splunk App Dev Workshop'
+site_description: 'This workshop is going to take you though the exciting journey of App Dev, what this is, why this is important, and how to get started right away!'
 site_author: 'Sales Engineering'
 site_url: 'https://signalfx.github.io/app-dev-workshop/'
 repo_url: 'https://github.com/signalfx/app-dev-workshop/'
@@ -19,7 +19,7 @@ theme:
   include_search_page: false
   search_index_only: true
   language: en
-
+  custom_dir: material
 markdown_extensions:
   - markdown.extensions.admonition
   - markdown.extensions.codehilite:
@@ -40,7 +40,7 @@ plugins:
   - search
   
 nav:
-  - '<b>Introduction</b>': index.md
+  - '<b>Home</b>': index.md
   - '<b>Module 1</b> - Dashboards':
     - 'Working with Dashboards, Charts and Metrics': module1/dashboards.md
   - '<b>Module 2</b> - Detectors':
