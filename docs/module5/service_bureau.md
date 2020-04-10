@@ -70,3 +70,7 @@ In the pane on the right  shows you information about your organizations and con
 To get a feel of the options you can change the category type by the drop down on the left or the time period with the right drop box.
 
 Please take a minute to explore the different time periods & categories and their views.
+
+---
+
+Use the **Next** link in the footer below to continue the workshop

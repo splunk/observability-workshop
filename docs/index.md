@@ -58,4 +58,4 @@ SignalFx provides a unified, single-pane-of-glass view of infrastructure and app
 
 ---
 
-**To start the workshop, please click on the Next lab displayed below!**
+Use the **Next** link in the footer below to move to the first module and start the workshop

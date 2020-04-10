@@ -3,3 +3,4 @@
 site
 docs/nohup.out
 .gitignore
+nohup.out

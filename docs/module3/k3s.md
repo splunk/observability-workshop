@@ -9,9 +9,10 @@ If you have chosen to run the workshop on a AWS/EC2 instance, please follow inst
 
 ### 1. Let’s bake some K8s
 
-Install [Multipass](https://multipass.run/) for your OS. On a Mac you can also install via `brew` e.g. `brew cask install multipass`
+If you are  going to run this localy please install [Multipass](https://multipass.run/) for your OS. On a Mac you can also install via `brew` e.g. `brew cask install multipass`
 
-Download the App Dev Workshop master zip file, unzip the file and change into the app-dev-workshop-master directory
+ 
+Regardless if you are running this lab locally  or use an EC2 instance, download the App Dev Workshop Master Zip file locally or on to the EC2 instance.then proceed to unzip the file, rename it, and  change into the workshop directory
 
 ```bash
 curl -LO https://github.com/signalfx/app-dev-workshop/archive/master.zip
@@ -19,6 +20,7 @@ unzip master.zip
 mv app-dev-workshop-master workshop
 cd workshop
 ```
+When using an EC2 instance you can now skip to [Step 2](../module3/k3s/#2-ive-got-the-key-ive-got-the-secret "How to get an Access token")
 
 Launch the Multipass instance which will run Kubernetes (K3s)
 
@@ -143,6 +145,13 @@ If there are many clusters you can use the dashboard filter to narrow down to yo
 
 ![K8S Clusters Filter](../images/M1-l4-Selecting-K3-cluster.jpg)
 
-To examine the health of your cluster, open the side bar by clicking on the ![side bar button](../images/M1-l4-sidebar-button.jpg) button to open the Metrics side bar. Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: Cpu%, Mem%, Network in & out. Events and Container list.
+To examine the health of your cluster, open the side bar by clicking on the side bar button to open the Metrics side bar. Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: Cpu%, Mem%, Network in & out. Events and Container list.
 
 ![Sidebar metrics](../images/M1-l4-explore-metrics.jpg)
+
+
+Take some time to explore the Kubernetes Navigator UI.
+
+---
+
+Use the **Next** link in the footer below to continue the workshop

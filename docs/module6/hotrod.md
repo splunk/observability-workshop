@@ -63,3 +63,7 @@ Create some errors with an invalid customer number
 ```bash
 ab -n10 -c10 "http://{CLUSTER-IP}:8080/dispatch?customer=391&nonse=0.17041229755366172"
 ```
+
+---
+
+Use the **Next** link in the footer below to continue the workshop

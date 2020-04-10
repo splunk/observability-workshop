@@ -6,11 +6,11 @@ _To check if you have an organisation with µAPM enabled, just login to SignalFx
 ---
 
 ### 1. Create an instance running Kubernetes
-This is already documented in [Deploying the SmartAgent in Kubernetes using K3s](https://signalfx.github.io/app-dev-workshop/module1/k3s/). 
+This is already documented in [Deploying the SmartAgent in Kubernetes using K3s](https://signalfx.github.io/app-dev-workshop/module3/k3s/). 
 
 ### 2. Deploy the Sock Shop application into K3s
 
-To deploy the Sock Shop application into K3s apply the deployment
+To deploy the Sock Shop application into K3s apply the deployment 
 
 === "Input"
     ```bash
@@ -105,3 +105,7 @@ Look at individual traces and span performance.
 ![µAPM Service Dashboard](../images/m2-waterfall.png)
 
 ![µAPM Service Dashboard](../images/m2-spanperf.png)
+
+---
+
+Use the **Next** link in the footer below to continue the workshop
