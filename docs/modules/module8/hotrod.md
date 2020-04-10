@@ -7,7 +7,7 @@ _To check if you have an organisation with µAPM enabled, just login to SignalFx
 
 ### 1. Requirements and Document Conventions
 
-This workshop is tested on MacOS and Linux- it should work on Windowa as well if requirements are met. Tips, references, and troubleshooting tips for these components are in the appendix.
+This workshop is tested on MacOS and Linux- it should work on Windows as well if requirements are met. Tips, references, and troubleshooting tips for these components are in the appendix.
 
 **Requirements**
 
