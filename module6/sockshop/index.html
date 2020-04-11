@@ -584,6 +584,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#6-viewing-the-sockshop-application-in-your-browser" class="md-nav__link">
+    6. Viewing the SockShop application in your browser
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -721,6 +728,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#6-viewing-the-sockshop-application-in-your-browser" class="md-nav__link">
+    6. Viewing the SockShop application in your browser
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -834,6 +848,35 @@ service/user created
 <p><img alt="µAPM Service Dashboard" src="../../images/m2-waterfall.png" /></p>
 <p><img alt="µAPM Service Dashboard" src="../../images/m2-spanperf.png" /></p>
 <hr />
+<h3 id="6-viewing-the-sockshop-application-in-your-browser">6. Viewing the SockShop application in your browser<a class="headerlink" href="#6-viewing-the-sockshop-application-in-your-browser" title="Permanent link">&para;</a></h3>
+<p>In order to view the application in your web browser we need to find the LoadBalancer IP address and the port the application is listening on.</p>
+<div class="tabbed-set" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Input</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>kubectl get svc -n sockshop
+</code></pre></div>
+
+</div>
+<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">Output</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>NAME           TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)          AGE
+carts-db       ClusterIP      10.43.221.67    &lt;none&gt;          27017/TCP        34m
+carts          ClusterIP      10.43.61.101    &lt;none&gt;          80/TCP           34m
+catalogue-db   ClusterIP      10.43.57.198    &lt;none&gt;          3306/TCP         34m
+catalogue      ClusterIP      10.43.216.173   &lt;none&gt;          80/TCP           34m
+orders-db      ClusterIP      10.43.236.48    &lt;none&gt;          27017/TCP        34m
+orders         ClusterIP      10.43.115.92    &lt;none&gt;          80/TCP           34m
+payment        ClusterIP      10.43.242.227   &lt;none&gt;          80/TCP           34m
+queue-master   ClusterIP      10.43.73.136    &lt;none&gt;          80/TCP           34m
+rabbitmq       ClusterIP      10.43.113.211   &lt;none&gt;          5672/TCP         34m
+shipping       ClusterIP      10.43.250.115   &lt;none&gt;          80/TCP           34m
+user-db        ClusterIP      10.43.152.153   &lt;none&gt;          27017/TCP        34m
+user           ClusterIP      10.43.45.155    &lt;none&gt;          80/TCP           34m
+front-end      LoadBalancer   10.43.247.97    192.168.64.35   8082:30001/TCP   34m
+</code></pre></div>
+
+</div>
+</div>
+<p>Make note of the <code>EXTERNAL-IP</code> (in the example above this is <code>192.168.64.35</code>). Then head over to your web browser and type in <code>http://{EXTERNAL-IP}:8081</code>, you should then be able to see the application running. Happy Shopping!</p>
+<p><img alt="SockShop Application" src="../../images/module6/sockshop-app.png" /></p>
+<hr />
 <p>Use the <strong>Next</strong> link in the footer below to continue the workshop</p>
                 
                   
@@ -843,7 +886,7 @@ service/user created
 <div class="md-source-date">
   <small>
     
-      Last update: April 10, 2020 12:19:42
+      Last update: April 11, 2020 08:20:14
     
   </small>
 </div>
