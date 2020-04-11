@@ -15,7 +15,7 @@ To deploy the Hotrod application into K3s apply the deployment
   
 === "Input"
     ```bash
-    kubectl apply -f workshop/apm/hotrod/k8s/deployment.yaml 
+    kubectl apply -f ~/workshop/apm/hotrod/k8s/deployment.yaml 
     ```
 === "Output"
     ```text
