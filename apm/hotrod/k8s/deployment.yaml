@@ -39,6 +39,7 @@ metadata:
   labels:
     app: hotrod
 spec:
+  type: LoadBalancer
   selector:
     app: hotrod
   ports:
