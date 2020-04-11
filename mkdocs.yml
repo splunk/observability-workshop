@@ -3,7 +3,7 @@ site_description: 'This workshop is going to take you though the exciting journe
 site_author: 'Sales Engineering'
 site_url: 'https://signalfx.github.io/app-dev-workshop/'
 repo_url: 'https://github.com/signalfx/app-dev-workshop/'
-edit_uri: 'edit/master/docs/modules/'
+edit_uri: 'edit/master/docs/'
 copyright: Copyright &copy; 2020 Splunk Inc. All rights reserved.
 remote_branch: gh-pages
 
