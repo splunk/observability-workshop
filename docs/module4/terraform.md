@@ -16,6 +16,12 @@ unzip master.zip
 cd signalfx-jumpstart-master
 ```
 
+Create the following environment variables to use in the Terraform steps below
+```
+export ACCESS_TOKEN=<token from Module 3>
+export REALM=<realm from Module 3>
+export INITIALS=<your initials e.g. RWC>
+```
 Initialise Terraform. **Note:** You will need to run this command each time a new version of the Terraform Provider is released. You can track the releases on [GitHub](https://github.com/terraform-providers/terraform-provider-signalfx/releases).
 
 === "Input"
@@ -80,19 +86,19 @@ Create a new workspace, replace `{WORKSPACE_NAME}` with what you want your works
 ---
 
 ### 2. Create an execution plan
-Review the execution plan. Replace `{YOUR_INITIALS}` e.g. `-var=”sfx_prefix=RWC”`
+Review the execution plan.
 
 ``` bash
-terraform plan -var="access_token=abc123" -var="realm=us1" -var="sfx_prefix={YOUR_INITIALS}"
+terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$INITIALS"
 ```
 
-Where `access_token` is the SignalFx Access Token and realm is either `eu0`, `us1` or `ap0`. If the plan executes successfully, we can go ahead and apply:
+If the plan executes successfully, we can go ahead and apply:
 
 ---
 
 ### 3. Apply actions from execution plan
 ``` bash
-terraform apply -var="access_token=abc123" -var="realm=us1" -var="sfx_prefix={YOUR_INITIALS}"
+terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$INITIALS"
 ```
 
 Validate that the detectors were created, under the _**ALERTS → Detectors**_, you should see a list of new detectors with the a prefix of your initials:
@@ -113,10 +119,10 @@ Destroy all Detectors and Dashboards that were previously applied.
 
 !!! info "Note"
     
-    The `var=”sfx_prefix={YOUR_INITIALS}”` is not required!
+    The `var=”sfx_prefix=$INITIALS”` is not required!
 
 ```bash
-terraform destroy -var="access_token=abc123" -var="realm=us1"
+terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
 ```
 
 Validate all the detectors have been removed by navigating to _**ALERTS → Detectors**_
