@@ -40,33 +40,18 @@ You should have basic familiary with AWS, your account especially access key/ID 
 AWS CLI Official Instructions:  https://docs.aws.amazon.com/cli/ 
 
 === "Macos"
-    ```test
+    ```text
     brew install awscli`
     ```
-
 === "Linux"
     ```text
      `curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" `
      `unzip awscliv2.zip`
      `sudo ./aws/install`
     ```
-
 === "Windows" 
     ```text
     Download and execute: https://awscli.amazonaws.com/AWSCLIV2.msi
-    ```
-    
-Run `kubectl get svc` then make a note of the `CLUSTER-IP` address allocated to the NGINX service.
-   
-=== "Input"
-    ```text
-    kubectl get svc
-    ```
-=== "Output"
-    ```text
-    NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
-    kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP        9m3s
-    nginx        NodePort    10.110.36.62   <none>        80:30995/TCP   8s
     ```
     
 #### <u>**1a Step 2: Configure AWS CLI for your account:**</u>
@@ -86,44 +71,56 @@ Default output format [None]: json
 
 Helm Official Instructions: https://helm.sh/docs/intro/install/
 
-**Macos:** `brew install helm`
-
-**Linux:** `sudo snap install helm --classic`
-
-**Windows:** `choco install kubernetes-helm`
-
+=== "Macos"
+    ```text
+    `brew install helm`
+    ```
+=== "Linux"
+    ```text
+    `sudo snap install helm --classic`
+    ```
+=== "Windows" 
+    ```text
+    choco install kubernetes-helm`
+    ```
+    
 #### <u>1c eksctl</u>
 
 eksctl Official Instructions: https://eksctl.io/introduction/installation/
 
-**Macos:** 
-
-`brew tap weaveworks/tap` 
-
-`brew install weaveworks/tap/eksctl`
-
-**Linux: **
-
-`curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp` 
-
-`sudo mv /tmp/eksctl /usr/local/bin`
-
-**Windows:** `chocolatey install eksctl`
-
+=== "Macos"
+    ```text
+    `brew tap weaveworks/tap` 
+    `brew install weaveworks/tap/eksctl`
+    ```
+=== "Linux"
+    ```text
+    `curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp` 
+     
+    `sudo mv /tmp/eksctl /usr/local/bin`
+    ```
+=== "Windows" 
+    ```text
+    `chocolatey install eksctl`
+    ```
 #### <u>**1d kubectl:**</u>
 
-**Macos:** `brew install kubectl
+=== "Macos"
+    ```text
+    `brew install kubectl
+    ```
+=== "Linux"
+    ```text
+    `curl -LO https://storage.googleapis.com/kubernetes-release/release/curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt/bin/linux/amd64/kubectl`
 
-**Linux: **
+    `chmod +x ./kubectl`
 
-`curl -LO https://storage.googleapis.com/kubernetes-release/release/curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt/bin/linux/amd64/kubectl`
+    `sudo mv ./kubectl /usr/local/bin/kubectl`
 
-`chmod +x ./kubectl`
-
-`sudo mv ./kubectl /usr/local/bin/kubectl`
-
-**Windows:** `curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/windows/amd64/kubectl.exe`
-
+=== "Windows" 
+    ```text
+    `curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/windows/amd64/kubectl.exe`
+    ```
 ---
 
 ### 1. Create a cluster running Amazon Elastic Kubernetes (EKS) Service
