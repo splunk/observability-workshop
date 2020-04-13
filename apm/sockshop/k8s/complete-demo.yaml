@@ -12,6 +12,9 @@ spec:
   replicas: 1
   template:
     metadata:
+      annotations:
+        agent.signalfx.com/monitorType.27017: "collectd/mongodb"
+        agent.signalfx.com/config.27017.databases: "[data]"
       labels:
         name: carts-db
     spec:
@@ -308,6 +311,9 @@ spec:
   replicas: 1
   template:
     metadata:
+      annotations:
+        agent.signalfx.com/monitorType.27017: "collectd/mongodb"
+        agent.signalfx.com/config.27017.databases: "[data]"
       labels:
         name: orders-db
     spec:
@@ -541,21 +547,25 @@ metadata:
     name: rabbitmq
   namespace: sock-shop
 spec:
-spec:
   selector:
     matchLabels:
       name: rabbitmq
   replicas: 1
   template:
     metadata:
+      annotations:
+        agent.signalfx.com/monitorType.15672: "collectd/rabbitmq"
+        agent.signalfx.com/config.15672.username: "guest"
+        agent.signalfx.com/config.15672.password: "guest"
       labels:
         name: rabbitmq
     spec:
       containers:
       - name: rabbitmq
-        image: rabbitmq:3.6.8
+        image: rabbitmq:3.6.8-management
         ports:
         - containerPort: 5672
+        - containerPort: 15672
         securityContext:
           capabilities:
             drop:
@@ -578,9 +588,12 @@ metadata:
   namespace: sock-shop
 spec:
   ports:
-    # the port that this service should serve on
-  - port: 5672
+  - name: rabbitmq
+    port: 5672
     targetPort: 5672
+  - name: rabbitmq-management
+    port: 15672
+    targetPort: 15672
   selector:
     name: rabbitmq
 ---
@@ -665,6 +678,9 @@ spec:
   replicas: 1
   template:
     metadata:
+      annotations:
+        agent.signalfx.com/monitorType.27017: "collectd/mongodb"
+        agent.signalfx.com/config.27017.databases: "[users]"
       labels:
         name: user-db
     spec:
