@@ -59,5 +59,9 @@
      <loc>https://signalfx.github.io/app-dev-workshop/module-support/cleanup/</loc>
      <lastmod>2020-04-13</lastmod>
      <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://signalfx.github.io/app-dev-workshop/module8/hotrod-eks/</loc>
+     <lastmod>2020-04-13</lastmod>
+     <changefreq>daily</changefreq>
     </url>
 </urlset>

@@ -17,15 +17,15 @@
         <meta name="author" content="Sales Engineering">
       
       <link rel="shortcut icon" href="../../images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.0">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.0.2">
     
     
       
-        <title>Hotrod eks - Splunk App Dev Workshop</title>
+        <title>Running Hotrod in EKS - Splunk App Dev Workshop</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.89dc9fe3.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.07c9fbf5.min.css">
       
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ecd4686e.min.css">
       
@@ -91,7 +91,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Hotrod eks
+              Running Hotrod in EKS
             
           </span>
         </div>
@@ -574,6 +574,150 @@
   </li>
 
     
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11" checked>
+    
+    <label class="md-nav__link" for="nav-11">
+      <b>Optional Modules</b>
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="<b>Optional Modules</b>" data-md-level="1">
+      <label class="md-nav__title" for="nav-11">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        <b>Optional Modules</b>
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Running Hotrod in EKS
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Running Hotrod in EKS" class="md-nav__link md-nav__link--active">
+      Running Hotrod in EKS
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enabling-apm-on-eks" class="md-nav__link">
+    Enabling µAPM on EKS
+  </a>
+  
+    <nav class="md-nav" aria-label="Enabling µAPM on EKS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-launch-the-multipass-instance" class="md-nav__link">
+    1. Launch the Multipass instance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-create-environment-variables" class="md-nav__link">
+    2. Create environment variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-configure-aws-cli-for-your-account" class="md-nav__link">
+    3. Configure AWS CLI for your account
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-create-a-cluster-running-amazon-elastic-kubernetes-service-eks" class="md-nav__link">
+    4. Create a cluster running Amazon Elastic Kubernetes Service (EKS)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-deploy-signalfx-smartagent-to-your-eks-cluster" class="md-nav__link">
+    5. Deploy SignalFx SmartAgent to your EKS Cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-deploy-hotrod-application-to-eks" class="md-nav__link">
+    6. Deploy Hotrod Application to EKS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-generate-some-traffic-to-the-application-using-apache-benchmark" class="md-nav__link">
+    7. Generate some traffic to the application using Apache Benchmark
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-cleaning-up" class="md-nav__link">
+    8. Cleaning up!
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -686,7 +830,7 @@
                   
                 
                 
-                  <h1>Hotrod eks</h1>
+                  <h1>Running Hotrod in EKS</h1>
                 
                 <h2 id="enabling-apm-on-eks">Enabling µAPM on EKS<a class="headerlink" href="#enabling-apm-on-eks" title="Permanent link">&para;</a></h2>
 <p><em>An organisation needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already.</em></p>
@@ -905,14 +1049,14 @@ kubernetes   ClusterIP      10.100.0.1       &lt;none&gt;                       
 <h3 id="8-cleaning-up">8. Cleaning up!<a class="headerlink" href="#8-cleaning-up" title="Permanent link">&para;</a></h3>
 <p>To delete entire EKS cluster:</p>
 <div class="tabbed-set" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><label for="__tabbed_9_1">Input</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>eksctl delete cluster YOURCLUSTERNAMEHERE`
+<div class="highlight"><pre><span></span><code>eksctl delete cluster $EKS_CLUSTER_NAME
 </code></pre></div>
 
 </div>
 <input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><label for="__tabbed_9_2">Output</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>[ℹ]  eksctl version 0.16.0
 [ℹ]  using region us-east-1
-[ℹ]  deleting EKS cluster &quot;EKS-APP-DEV&quot;
+[ℹ]  deleting EKS cluster &quot;RWC-APP-DEV&quot;
 [ℹ]  deleted 0 Fargate profile(s)
 [ℹ]  cleaning up LoadBalancer services
 [ℹ]  2 sequential tasks: { delete nodegroup &quot;ng-371a784a&quot;, delete cluster control plane &quot;EKS-APP-DEV&quot; [async] }
@@ -940,7 +1084,7 @@ helm delete signalfx-agent
 <div class="md-source-date">
   <small>
     
-      Last update: April 13, 2020 18:36:56
+      Last update: April 13, 2020 18:56:56
     
   </small>
 </div>
@@ -959,6 +1103,27 @@ helm delete signalfx-agent
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../module-support/cleanup/" title="Post Workshop Clean Up!" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                <b>Post Workshop Clean Up!</b>
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
