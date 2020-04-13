@@ -5,13 +5,13 @@ _To check if you have an organisation with µAPM enabled, just login to SignalFx
 
 ---
 
-### 1. Launch Multipass instance
+### 1. Launch the Multipass instance
 
-If you have not already completed [Step #1](https://signalfx.github.io/app-dev-workshop/module3/k3s/#1-lets-bake-some-k8s) in Module 3 then please do so, otherwise jump to Step #2
+If you have not already completed [Step #1](https://signalfx.github.io/app-dev-workshop/module3/k3s/#1-lets-bake-some-k8s) in Module 3 then please do so, otherwise jump to [Step #2](http://192.168.1.4:8001/module8/hotrod-eks/#2-create-environment-variables)
 
 ### 2. Create environment variables
 
-Create the following environment variables for **SignalFx** and **AWS** to use in the proceeding steps:
+Create the following environment variables for **SignalFx** and **AWS** to use in the proceeding steps.
 
 === "SignalFx"
     ```
@@ -34,7 +34,7 @@ You can check for the latest SignalFx Smart Agent release on [Github](https://gi
 
 ### 3. Configure AWS CLI for your account
 
-Use the `AWS CLI` to configure access to your AWS environment
+Use the `AWS CLI` to configure access to your AWS environment. The environment variables configured above mean you can just hit enter on each of the prompts to accept the values.
 
 === "Input"
     ```
@@ -51,7 +51,7 @@ Use the `AWS CLI` to configure access to your AWS environment
     
 ---
 
-### 3. Create a cluster running Amazon Elastic Kubernetes (EKS) Service
+### 4. Create a cluster running Amazon Elastic Kubernetes Service (EKS)
 
 === "Input"
     ```
@@ -109,7 +109,7 @@ sudo eksctl utils write-kubeconfig -n $EKS_CLUSTER_NAME
 
 ---
 
-### 4. Deploy SignalFx SmartAgent to your EKS Cluster
+### 5. Deploy SignalFx SmartAgent to your EKS Cluster
 
 Add the SignalFx Helm chart repository to Helm:
 
@@ -175,7 +175,7 @@ Validate cluster looks healthy in SignalFx Kubernetes Navigator dashboard
 
 ---
 
-### 5. Deploy Hotrod Application to EKS
+### 6. Deploy Hotrod Application to EKS
 
 ```
 kubectl apply -f ~/workshop/apm/hotrod/eks/deployment.yaml
@@ -223,7 +223,7 @@ https://af26ce80ef2e14c9292ae5b4bc0d2dd0-1826890352.us-east-2.elb.amazonaws.com:
 
 ---
 
-### 6. Generate some traffic to the application using Apache Benchmark
+### 7. Generate some traffic to the application using Apache Benchmark
 ```bash
 ab -n100 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
 ```
@@ -238,7 +238,7 @@ You should now be able to exercise SignalFx APM dashboards.
 
 ---
 
-### 5. Deleting resources
+### 8. Cleaning up!
 
 To delete entire EKS cluster:
 
@@ -268,39 +268,8 @@ kubectl delete deploy/hotrod svc/hotrod
 helm delete signalfx-agent
 ```
 
----
+To switch back to using the local K3s cluster:
 
-To switch back to using K3s cluster
 ```
 sudo kubectl config use-context default
 ```
-
-### Appendix: Tips, Troubleshooting, and References
-
-Set AWS EKS context to your cluster (i.e. when switching machines)
-
-`aws eks --region YOURAWSREGION update-kubeconfig --name YOURCLUSTERNAME`
-
-Ensure kubectl context is correct
-
-`kubectl config get-contexts`              
-
-Will display list of contexts 
-
-`kubectl config use-context YOURCLUSTERNAME`    
-
-Will set the default context to cluster with ARN: YOURCLUSTERNAME
-
-Set up kubectl for EKS
-
-`aws eks --region YOURREGION update-kubeconfig --name YOURCLUSTERNAME`
-`kubectl get pods --kubeconfig ./.kube/config`
-`kubectl get svc`
-
-Check SignalFx Agent Values
-
-`helm get values signalfx-agent -a`
-
-`kubectl` reference
-
-[https://kubernetes.io/docs/reference/kubectl/cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
