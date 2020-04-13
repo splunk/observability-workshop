@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotrod
+  labels:
+    app: hotrod
+  annotations:
+    "sidecar.jaegertracing.io/inject": "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hotrod
+  template:
+    metadata:
+      labels:
+        app: hotrod
+    spec:
+      containers:
+        - name: hotrod
+          image: jaegertracing/example-hotrod
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: SIGNALFX_AGENT_HOST
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.hostIP
+            - name: JAEGER_ENDPOINT
+              value: http://$(SIGNALFX_AGENT_HOST):9080/v1/trace
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hotrod
+  labels:
+    app: hotrod
+spec:
+  selector:
+    app: hotrod
+  type: LoadBalancer
+  ports:
+  - name: app
+    port: 8080
+    targetPort: 8080
+    protocol: TCP

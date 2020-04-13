@@ -1,0 +1,35 @@
+intervalSeconds: 10
+
+logging:
+  # Valid values are 'debug', 'info', 'warning', and 'error'
+  level: info
+
+observers:
+  - type: host
+
+monitors:
+  enabled: true
+
+monitors:
+  - type: host-metadata
+  - type: processlist
+  - type: cpu
+  - type: filesystems
+  - type: disk-io
+  - type: net-io
+  - type: load
+  - type: memory
+  - type: vmem
+  - type: signalfx-forwarder
+    listenAddress: 0.0.0.0:9080
+    extraSpanTags:
+      environment: YOURAPMENVIRONMENTHERE
+
+traceEndpointUrl: "https://ingest.YOURREALMHERE.signalfx.com/v2/trace"
+
+collectd:
+  disableCollectd: true
+  configDir: /tmp/collectd
+
+writer:
+  traceExportFormat: sapm
