@@ -744,7 +744,10 @@ When using an EC2 instance you can now skip to <a href="../module3/k3s/#2-ive-go
 <p class="admonition-title">Note</p>
 <p>Use <code>{YOUR_INITIALS}-k3s</code> so that the value of the instance hostname is unique e.g. <code>rwc-k3s</code></p>
 </div>
-<div class="highlight"><pre><span></span><code>multipass launch --name <span class="o">{</span>YOUR_INITIALS<span class="o">}</span>-k3s --cloud-init cloud-init/k3s.yaml --cpus<span class="o">=</span><span class="m">2</span> --disk<span class="o">=</span>10G --mem<span class="o">=</span>4G
+<div class="highlight"><pre><span></span><code>multipass launch \
+--name {YOUR_INITIALS}-k3s \
+--cloud-init cloud-init/k3s.yaml \
+--cpus=2 --disk=10G --mem=4G
 </code></pre></div>
 
 <p>Once the instance has been successfully created shell into it.</p>
@@ -763,8 +766,8 @@ When using an EC2 instance you can now skip to <a href="../module3/k3s/#2-ive-go
 <p>Create the following variables to use in the proceeding helm install command:</p>
 <div class="highlight"><pre><span></span><code>export ACCESS_TOKEN=&lt;token from Step 2&gt;
 export REALM=&lt;realm from Step 2&gt;
-export INITIALS=&lt;your initials e.g. GXH&gt;
-export VERSION=&lt;Smart Agent version e.g. 5.1.0&gt;
+export INITIALS=&lt;your initials e.g. RWC&gt;
+export VERSION=&lt;Smart Agent version e.g. 5.1.1&gt;
 </code></pre></div>
 
 <div class="admonition note">
@@ -781,7 +784,16 @@ export VERSION=&lt;Smart Agent version e.g. 5.1.0&gt;
 
 <p>Install the Smart Agent Helmchart with the following commands:</p>
 <div class="highlight"><pre><span></span><code>sed -i -e &#39;s/\[INITIALS\]/&#39;&quot;$INITIALS&quot;&#39;/&#39; workshop/k3s/values.yaml
-helm install --set signalFxAccessToken=$ACCESS_TOKEN --set clusterName=$INITIALS-SFX-WORKSHOP --set kubeletAPI.url=https://localhost:10250  --set signalFxRealm=$REALM  --set agentVersion=$VERSION --set traceEndpointUrl=https://ingest.$REALM.signalfx.com/v2/trace --set gatherDockerMetrics=false signalfx-agent signalfx/signalfx-agent -f workshop/k3s/values.yaml
+helm install \
+--set signalFxAccessToken=$ACCESS_TOKEN \
+--set clusterName=$INITIALS-SFX-WORKSHOP \
+--set kubeletAPI.url=https://localhost:10250  \
+--set signalFxRealm=$REALM  \
+--set agentVersion=$VERSION \
+--set traceEndpointUrl=https://ingest.$REALM.signalfx.com/v2/trace \
+--set gatherDockerMetrics=false \
+signalfx-agent signalfx/signalfx-agent \
+-f workshop/k3s/values.yaml
 </code></pre></div>
 
 <p>You can monitor the progress of the deployment by running <code>kubectl get pods</code> which should typically report a new pod is up and running after about 30 seconds. Ensure the status is reported as Running before continuing.</p>
@@ -850,7 +862,7 @@ time=&quot;2020-03-15T11:30:29Z&quot; level=info msg=&quot;Starting K8s API reso
 <div class="md-source-date">
   <small>
     
-      Last update: April 10, 2020 12:19:42
+      Last update: April 13, 2020 13:55:43
     
   </small>
 </div>
