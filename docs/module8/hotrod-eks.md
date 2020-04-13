@@ -178,7 +178,7 @@ Validate cluster looks healthy in SignalFx Kubernetes Navigator dashboard
 ### 6. Deploy Hotrod Application to EKS
 
 ```
-kubectl apply -f ~/workshop/apm/hotrod/eks/deployment.yaml
+kubectl apply -f ~/workshop/apm/hotrod/k8s/deployment.yaml
 ```
 
 To ensure the Hotrod application is running see examples below:
