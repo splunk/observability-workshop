@@ -11,19 +11,24 @@ If you have not already completed [Step #1](https://signalfx.github.io/app-dev-w
 
 ### 2. Create environment variables
 
-Create the following environment variables to use in the proceeding steps:
+Create the following environment variables for **SignalFx** and **AWS** to use in the proceeding steps:
 
-```
-export AWS_ACCESS_KEY_ID=<AWS Access Key>
-export AWS_SECRET_ACCESS_KEY=<AWS Secret Access Key>
-export AWS_DEFAULT_REGION=<e.g. us-east-1>
-export AWS_DEFAULT_OUTPUT=json
-export EKS_CLUSTER_NAME=<e.g. EKS-APP-DEV>
-export ACCESS_TOKEN=<SignalFx Access Token>
-export REALM=<SignalFx Realm e.g. us1>
-export INITIALS=<your initials e.g. RWC>
-export VERSION=<Smart Agent version e.g. 5.1.1>
-```
+=== "SignalFx"
+    ```
+    export ACCESS_TOKEN=<SignalFx Access Token>
+    export REALM=<SignalFx Realm e.g. us1>
+    export INITIALS=<your initials e.g. RWC>
+    export VERSION=<Smart Agent version e.g. 5.1.1>
+    ```
+
+=== "AWS"
+    ```
+    export AWS_ACCESS_KEY_ID=<AWS Access Key>
+    export AWS_SECRET_ACCESS_KEY=<AWS Secret Access Key>
+    export AWS_DEFAULT_REGION=<e.g. us-east-1>
+    export AWS_DEFAULT_OUTPUT=json
+    export EKS_CLUSTER_NAME=$INITIALS-APP-DEV
+    ```
 
 You can check for the latest SignalFx Smart Agent release on [Github](https://github.com/signalfx/signalfx-agent/releases).
 
