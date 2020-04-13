@@ -39,9 +39,9 @@ You should have basic familiary with AWS, your account especially access key/ID 
 
  AWS CLI Official Instructions:  https://docs.aws.amazon.com/cli/ 
 
-**Macos:** `brew install awscli`
+===**Macos** `brew install awscli`
 
-**Linux:**
+===**Linux**
 
 `curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" `
 
@@ -49,7 +49,7 @@ You should have basic familiary with AWS, your account especially access key/ID 
 
 `sudo ./aws/install`
 
-**Windows:** Download and execute: https://awscli.amazonaws.com/AWSCLIV2.msi
+===**Windows** Download and execute: https://awscli.amazonaws.com/AWSCLIV2.msi
 
 #### <u>**1a Step 2: Configure AWS CLI for your account:**</u>
 
