@@ -51,13 +51,13 @@ You should have basic familiary with AWS, your account especially access key/ID 
 
 And enter the variables from your AWS account as shown below with sample values:
 
-`AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
+`AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE`
 
-AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+`AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY`
 
-Default region name [None]: us-west-2
+`Default region name [None]: us-west-2`
 
-Default output format [None]: json`
+`Default output format [None]: json`
 
 #### 1b Helm 
 
