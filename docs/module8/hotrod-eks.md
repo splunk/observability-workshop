@@ -11,7 +11,7 @@ If you have not already completed [Step #1](https://signalfx.github.io/app-dev-w
 
 ### 2. Create environment variables
 
-Create the following environment variables for **SignalFx** and **AWS** to use in the proceeding steps.
+Create the following environment variables for **SignalFx** and **AWS** to use in the proceeding steps:
 
 === "SignalFx"
     ```
@@ -34,7 +34,7 @@ You can check for the latest SignalFx Smart Agent release on [Github](https://gi
 
 ### 3. Configure AWS CLI for your account
 
-Use the `AWS CLI` to configure access to your AWS environment. The environment variables configured above mean you can just hit enter on each of the prompts to accept the values.
+Use the `AWS CLI` to configure access to your AWS environment. The environment variables configured above mean you can just hit enter on each of the prompts to accept the values:
 
 === "Input"
     ```
@@ -96,10 +96,10 @@ Use the `AWS CLI` to configure access to your AWS environment. The environment v
     [✔]  EKS cluster "EKS-APP-DEV" in "us-east-1" region is ready
     ```
 
-!!! note
-    You can ignore the error about `unable to write kubeconfig` as we address this in the next step.
-
 This may take some time (10-15 minutes). Ensure you see your cluster active in AWS EKS console before proceeding.
+
+!!! note
+    You can ignore the error about `unable to write kubeconfig` as we address this below.
 
 Once complete update your `kubeconfig` to allow `kubectl` access to the cluster:
 
