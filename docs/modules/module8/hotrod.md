@@ -27,7 +27,7 @@ For this workshop you must have the following installed:
 
 Instructions are below- note that official instructions may change over time from this document.
 
-##### 1a Step 1: Install AWS CLI
+#### 1a Step 1: Install AWS CLI
 
 You should have basic familiary with AWS, your account especially access key/ID and default region, and associated administration.
 
@@ -45,7 +45,7 @@ You should have basic familiary with AWS, your account especially access key/ID 
 
 **Windows:** Download and execute: https://awscli.amazonaws.com/AWSCLIV2.msi
 
-##### **1a Step 2: Configure AWS CLI for your account:**
+#### **1a Step 2: Configure AWS CLI for your account:**
 
 `aws configure`
 
@@ -56,7 +56,7 @@ And enter the variables from your AWS account as shown below with sample values:
 `Default region name [None]: us-west-2` 
 `Default output format [None]: json`
 
-##### 1b Helm 
+#### 1b Helm 
 
 Helm Official Instructions: https://helm.sh/docs/intro/install/
 
@@ -66,7 +66,7 @@ Helm Official Instructions: https://helm.sh/docs/intro/install/
 
 **Windows:** `choco install kubernetes-helm`
 
-##### 1c eksctl
+#### 1c eksctl
 
 eksctl Official Instructions: https://eksctl.io/introduction/installation/
 
