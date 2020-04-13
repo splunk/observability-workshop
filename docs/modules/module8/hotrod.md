@@ -52,11 +52,8 @@ You should have basic familiary with AWS, your account especially access key/ID 
 And enter the variables from your AWS account as shown below with sample values:
 
 `AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE`
-
 `AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY` 
-
 `Default region name [None]: us-west-2` 
-
 `Default output format [None]: json`
 
 ##### 1b Helm 
@@ -65,7 +62,7 @@ Helm Official Instructions: https://helm.sh/docs/intro/install/
 
 **Macos:** `brew install helm`
 
-**Linux: **`sudo snap install helm --classic`
+**Linux:** `sudo snap install helm --classic`
 
 **Windows:** `choco install kubernetes-helm`
 
@@ -95,9 +92,7 @@ eksctl Official Instructions: https://eksctl.io/introduction/installation/
 
 `curl -LO https://storage.googleapis.com/kubernetes-release/release/curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt/bin/linux/amd64/kubectl`
 
-```
-chmod +x ./kubectl
-```
+`chmod +x ./kubectl`
 
 `sudo mv ./kubectl /usr/local/bin/kubectl`
 
@@ -109,15 +104,10 @@ chmod +x ./kubectl
 `eksctl create cluster \`
 
 `--name YOUREKSCLUSTERNAMEHERE \`
-
 `--region YOURAWSREGIONHERE FOR EXAMPLE us-east-2 \`
-
 `--node-type t3.medium \`
-
 `--nodes-min 3 \`
-
 `--nodes-max 7 \`
-
 `--version=1.15`
 
 This may take some time- ensure you see your cluster live in AWS EKS console before proceeding.
