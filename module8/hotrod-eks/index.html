@@ -606,8 +606,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-launch-multipass-instance" class="md-nav__link">
-    1. Launch Multipass instance
+  <a href="#1-launch-the-multipass-instance" class="md-nav__link">
+    1. Launch the Multipass instance
   </a>
   
 </li>
@@ -627,43 +627,36 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-create-a-cluster-running-amazon-elastic-kubernetes-eks-service" class="md-nav__link">
-    3. Create a cluster running Amazon Elastic Kubernetes (EKS) Service
+  <a href="#4-create-a-cluster-running-amazon-elastic-kubernetes-service-eks" class="md-nav__link">
+    4. Create a cluster running Amazon Elastic Kubernetes Service (EKS)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-deploy-signalfx-smartagent-to-your-eks-cluster" class="md-nav__link">
-    4. Deploy SignalFx SmartAgent to your EKS Cluster
+  <a href="#5-deploy-signalfx-smartagent-to-your-eks-cluster" class="md-nav__link">
+    5. Deploy SignalFx SmartAgent to your EKS Cluster
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-deploy-hotrod-application-to-eks" class="md-nav__link">
-    5. Deploy Hotrod Application to EKS
+  <a href="#6-deploy-hotrod-application-to-eks" class="md-nav__link">
+    6. Deploy Hotrod Application to EKS
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-generate-some-traffic-to-the-application-using-apache-benchmark" class="md-nav__link">
-    6. Generate some traffic to the application using Apache Benchmark
+  <a href="#7-generate-some-traffic-to-the-application-using-apache-benchmark" class="md-nav__link">
+    7. Generate some traffic to the application using Apache Benchmark
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-deleting-resources" class="md-nav__link">
-    5. Deleting resources
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#appendix-tips-troubleshooting-and-references" class="md-nav__link">
-    Appendix: Tips, Troubleshooting, and References
+  <a href="#8-cleaning-up" class="md-nav__link">
+    8. Cleaning up!
   </a>
   
 </li>
@@ -699,8 +692,8 @@
 <p><em>An organisation needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already.</em></p>
 <p><em>To check if you have an organisation with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards.</em></p>
 <hr />
-<h3 id="1-launch-multipass-instance">1. Launch Multipass instance<a class="headerlink" href="#1-launch-multipass-instance" title="Permanent link">&para;</a></h3>
-<p>If you have not already completed <a href="https://signalfx.github.io/app-dev-workshop/module3/k3s/#1-lets-bake-some-k8s">Step #1</a> in Module 3 then please do so, otherwise jump to Step #2</p>
+<h3 id="1-launch-the-multipass-instance">1. Launch the Multipass instance<a class="headerlink" href="#1-launch-the-multipass-instance" title="Permanent link">&para;</a></h3>
+<p>If you have not already completed <a href="https://signalfx.github.io/app-dev-workshop/module3/k3s/#1-lets-bake-some-k8s">Step #1</a> in Module 3 then please do so, otherwise jump to <a href="http://192.168.1.4:8001/module8/hotrod-eks/#2-create-environment-variables">Step #2</a></p>
 <h3 id="2-create-environment-variables">2. Create environment variables<a class="headerlink" href="#2-create-environment-variables" title="Permanent link">&para;</a></h3>
 <p>Create the following environment variables for <strong>SignalFx</strong> and <strong>AWS</strong> to use in the proceeding steps:</p>
 <div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">SignalFx</label><div class="tabbed-content">
@@ -723,7 +716,7 @@ export EKS_CLUSTER_NAME=$INITIALS-APP-DEV
 </div>
 <p>You can check for the latest SignalFx Smart Agent release on <a href="https://github.com/signalfx/signalfx-agent/releases">Github</a>.</p>
 <h3 id="3-configure-aws-cli-for-your-account">3. Configure AWS CLI for your account<a class="headerlink" href="#3-configure-aws-cli-for-your-account" title="Permanent link">&para;</a></h3>
-<p>Use the <code>AWS CLI</code> to configure access to your AWS environment</p>
+<p>Use the <code>AWS CLI</code> to configure access to your AWS environment. The environment variables configured above mean you can just hit enter on each of the prompts to accept the values:</p>
 <div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Input</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>aws configure
 </code></pre></div>
@@ -739,7 +732,7 @@ Default output format [json]:
 </div>
 </div>
 <hr />
-<h3 id="3-create-a-cluster-running-amazon-elastic-kubernetes-eks-service">3. Create a cluster running Amazon Elastic Kubernetes (EKS) Service<a class="headerlink" href="#3-create-a-cluster-running-amazon-elastic-kubernetes-eks-service" title="Permanent link">&para;</a></h3>
+<h3 id="4-create-a-cluster-running-amazon-elastic-kubernetes-service-eks">4. Create a cluster running Amazon Elastic Kubernetes Service (EKS)<a class="headerlink" href="#4-create-a-cluster-running-amazon-elastic-kubernetes-service-eks" title="Permanent link">&para;</a></h3>
 <div class="tabbed-set" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Input</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>eksctl create cluster \
 --name $EKS_CLUSTER_NAME \
@@ -784,17 +777,17 @@ Default output format [json]:
 
 </div>
 </div>
+<p>This may take some time (10-15 minutes). Ensure you see your cluster active in AWS EKS console before proceeding.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You can ignore the error about <code>unable to write kubeconfig</code> as we address this in the next step.</p>
+<p>You can ignore the error about <code>unable to write kubeconfig</code> as we address this below.</p>
 </div>
-<p>This may take some time (10-15 minutes). Ensure you see your cluster active in AWS EKS console before proceeding.</p>
 <p>Once complete update your <code>kubeconfig</code> to allow <code>kubectl</code> access to the cluster:</p>
 <div class="highlight"><pre><span></span><code>sudo eksctl utils write-kubeconfig -n $EKS_CLUSTER_NAME
 </code></pre></div>
 
 <hr />
-<h3 id="4-deploy-signalfx-smartagent-to-your-eks-cluster">4. Deploy SignalFx SmartAgent to your EKS Cluster<a class="headerlink" href="#4-deploy-signalfx-smartagent-to-your-eks-cluster" title="Permanent link">&para;</a></h3>
+<h3 id="5-deploy-signalfx-smartagent-to-your-eks-cluster">5. Deploy SignalFx SmartAgent to your EKS Cluster<a class="headerlink" href="#5-deploy-signalfx-smartagent-to-your-eks-cluster" title="Permanent link">&para;</a></h3>
 <p>Add the SignalFx Helm chart repository to Helm:</p>
 <div class="tabbed-set" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><label for="__tabbed_4_1">Input</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>helm repo add signalfx https://dl.signalfx.com/helm-repo
@@ -858,7 +851,7 @@ to see all of the pods in your cluster.
 </div>
 <p>Validate cluster looks healthy in SignalFx Kubernetes Navigator dashboard</p>
 <hr />
-<h3 id="5-deploy-hotrod-application-to-eks">5. Deploy Hotrod Application to EKS<a class="headerlink" href="#5-deploy-hotrod-application-to-eks" title="Permanent link">&para;</a></h3>
+<h3 id="6-deploy-hotrod-application-to-eks">6. Deploy Hotrod Application to EKS<a class="headerlink" href="#6-deploy-hotrod-application-to-eks" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>kubectl apply -f ~/workshop/apm/hotrod/eks/deployment.yaml
 </code></pre></div>
 
@@ -899,7 +892,7 @@ kubernetes   ClusterIP      10.100.0.1       &lt;none&gt;                       
 <p>You can view / exercise Hotrod yourself in a browser by opening the <code>EXTERNAL-IP:PORT</code> as shown above i.e.</p>
 <p>https://af26ce80ef2e14c9292ae5b4bc0d2dd0-1826890352.us-east-2.elb.amazonaws.com:8080</p>
 <hr />
-<h3 id="6-generate-some-traffic-to-the-application-using-apache-benchmark">6. Generate some traffic to the application using Apache Benchmark<a class="headerlink" href="#6-generate-some-traffic-to-the-application-using-apache-benchmark" title="Permanent link">&para;</a></h3>
+<h3 id="7-generate-some-traffic-to-the-application-using-apache-benchmark">7. Generate some traffic to the application using Apache Benchmark<a class="headerlink" href="#7-generate-some-traffic-to-the-application-using-apache-benchmark" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>ab -n100 -c10 <span class="s2">&quot;http://</span><span class="nv">$HOTROD_ENDPOINT</span><span class="s2">/dispatch?customer=392&amp;nonse=0.17041229755366172&quot;</span>
 </code></pre></div>
 
@@ -909,7 +902,7 @@ kubernetes   ClusterIP      10.100.0.1       &lt;none&gt;                       
 
 <p>You should now be able to exercise SignalFx APM dashboards.</p>
 <hr />
-<h3 id="5-deleting-resources">5. Deleting resources<a class="headerlink" href="#5-deleting-resources" title="Permanent link">&para;</a></h3>
+<h3 id="8-cleaning-up">8. Cleaning up!<a class="headerlink" href="#8-cleaning-up" title="Permanent link">&para;</a></h3>
 <p>To delete entire EKS cluster:</p>
 <div class="tabbed-set" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><label for="__tabbed_9_1">Input</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>eksctl delete cluster YOURCLUSTERNAMEHERE`
@@ -936,26 +929,9 @@ kubernetes   ClusterIP      10.100.0.1       &lt;none&gt;                       
 helm delete signalfx-agent
 </code></pre></div>
 
-<hr />
-<p>To switch back to using K3s cluster
+<p>To switch back to using the local K3s cluster:</p>
 <div class="highlight"><pre><span></span><code>sudo kubectl config use-context default
-</code></pre></div></p>
-<h3 id="appendix-tips-troubleshooting-and-references">Appendix: Tips, Troubleshooting, and References<a class="headerlink" href="#appendix-tips-troubleshooting-and-references" title="Permanent link">&para;</a></h3>
-<p>Set AWS EKS context to your cluster (i.e. when switching machines)</p>
-<p><code>aws eks --region YOURAWSREGION update-kubeconfig --name YOURCLUSTERNAME</code></p>
-<p>Ensure kubectl context is correct</p>
-<p><code>kubectl config get-contexts</code>              </p>
-<p>Will display list of contexts </p>
-<p><code>kubectl config use-context YOURCLUSTERNAME</code>    </p>
-<p>Will set the default context to cluster with ARN: YOURCLUSTERNAME</p>
-<p>Set up kubectl for EKS</p>
-<p><code>aws eks --region YOURREGION update-kubeconfig --name YOURCLUSTERNAME</code>
-<code>kubectl get pods --kubeconfig ./.kube/config</code>
-<code>kubectl get svc</code></p>
-<p>Check SignalFx Agent Values</p>
-<p><code>helm get values signalfx-agent -a</code></p>
-<p><code>kubectl</code> reference</p>
-<p><a href="https://kubernetes.io/docs/reference/kubectl/cheatsheet/">https://kubernetes.io/docs/reference/kubectl/cheatsheet</a></p>
+</code></pre></div>
                 
                   
                     
@@ -964,7 +940,7 @@ helm delete signalfx-agent
 <div class="md-source-date">
   <small>
     
-      Last update: April 13, 2020 16:05:34
+      Last update: April 13, 2020 18:34:43
     
   </small>
 </div>
