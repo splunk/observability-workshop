@@ -244,14 +244,14 @@ To delete entire EKS cluster:
 
 === "Input"
     ```
-    eksctl delete cluster YOURCLUSTERNAMEHERE`
+    eksctl delete cluster $EKS_CLUSTER_NAME
     ```
 
 === "Output"
     ``` 
     [ℹ]  eksctl version 0.16.0
     [ℹ]  using region us-east-1
-    [ℹ]  deleting EKS cluster "EKS-APP-DEV"
+    [ℹ]  deleting EKS cluster "RWC-APP-DEV"
     [ℹ]  deleted 0 Fargate profile(s)
     [ℹ]  cleaning up LoadBalancer services
     [ℹ]  2 sequential tasks: { delete nodegroup "ng-371a784a", delete cluster control plane "EKS-APP-DEV" [async] }
