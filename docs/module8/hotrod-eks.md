@@ -5,79 +5,166 @@ _To check if you have an organisation with µAPM enabled, just login to SignalFx
 
 ---
 
-### 1. Set environment variables
+### 1. Launch Multipass instance
 
-Create the following variables to use in the proceeding helm install command:
+If you have not already completed [Step #1](https://signalfx.github.io/app-dev-workshop/module3/k3s/#1-lets-bake-some-k8s) in Module 3 then please do so, otherwise jump to Step #2
+
+### 2. Create environment variables
+
+Create the following environment variables to use in the proceeding steps:
 
 ```
-export ACCESS_TOKEN=<token from Step 2>
+export AWS_ACCESS_KEY_ID=<AWS Access Key>
+export AWS_SECRET_ACCESS_KEY=<AWS Secret Access Key>
+export AWS_DEFAULT_REGION=<e.g. us-east-1>
+export AWS_DEFAULT_OUTPUT=json
 export EKS_CLUSTER_NAME=<e.g. EKS-APP-DEV>
-export REALM=<realm from Step 2>
+export ACCESS_TOKEN=<SignalFx Access Token>
+export REALM=<SignalFx Realm e.g. us1>
 export INITIALS=<your initials e.g. RWC>
 export VERSION=<Smart Agent version e.g. 5.1.1>
-export AWS_REGION=<e.g. us-east-1>
 ```
 
-Check SignalFx Smart Agent release version on [Github](https://github.com/signalfx/signalfx-agent/releases) i.e. 5.1.1
+You can check for the latest SignalFx Smart Agent release on [Github](https://github.com/signalfx/signalfx-agent/releases).
 
-### 2. Configure AWS CLI for your account
+### 3. Configure AWS CLI for your account
 
-`aws configure`
+Use the `AWS CLI` to configure access to your AWS environment
 
-And enter the variables from your AWS account as shown below with sample values:
+=== "Input"
+    ```
+    aws configure
+    ```
 
-```
-AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
-AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-Default region name [None]: us-west-2
-Default output format [None]: json
-```
+=== "Output"
+    ```
+    AWS Access Key ID [****************TVAQ]: 
+    AWS Secret Access Key [****************MkB4]: 
+    Default region name [us-east-1]: 
+    Default output format [json]: 
+    ```
     
 ---
 
 ### 3. Create a cluster running Amazon Elastic Kubernetes (EKS) Service
-```
-eksctl create cluster \
---name $EKS_CLUSTER_NAME \
---region $AWS_REGION \
---node-type t3.medium \
---nodes-min 3 \
---nodes-max 7 \
---version=1.15
-```
 
-This may take some time (10-15 minutes). Once complete update `kubeconfig` to allow `kubectl` access to the cluster:
+=== "Input"
+    ```
+    eksctl create cluster \
+    --name $EKS_CLUSTER_NAME \
+    --region $AWS_DEFAULT_REGION \
+    --node-type t3.medium \
+    --nodes-min 3 \
+    --nodes-max 7 \
+    --version=1.15
+    ```
+
+=== "Output"
+    ```
+    [ℹ]  eksctl version 0.16.0
+    [ℹ]  using region us-east-1
+    [ℹ]  setting availability zones to [us-east-1a us-east-1f]
+    [ℹ]  subnets for us-east-1a - public:192.168.0.0/19 private:192.168.64.0/19
+    [ℹ]  subnets for us-east-1f - public:192.168.32.0/19 private:192.168.96.0/19
+    [ℹ]  nodegroup "ng-371a784a" will use "ami-0e5bb2367e692b807" [AmazonLinux2/1.15]
+    [ℹ]  using Kubernetes version 1.15
+    [ℹ]  creating EKS cluster "EKS-APP-DEV" in "us-east-1" region with un-managed nodes
+    [ℹ]  will create 2 separate CloudFormation stacks for cluster itself and the initial nodegroup
+    [ℹ]  if you encounter any issues, check CloudFormation console or try 'eksctl utils describe-stacks --region=us-east-1 --cluster=EKS-APP-DEV'
+    [ℹ]  CloudWatch logging will not be enabled for cluster "EKS-APP-DEV" in "us-east-1"
+    [ℹ]  you can enable it with 'eksctl utils update-cluster-logging --region=us-east-1 --cluster=EKS-APP-DEV'
+    [ℹ]  Kubernetes API endpoint access will use default of {publicAccess=true, privateAccess=false} for cluster "EKS-APP-DEV" in "us-east-1"
+    [ℹ]  2 sequential tasks: { create cluster control plane "EKS-APP-DEV", create nodegroup "ng-371a784a" }
+    [ℹ]  building cluster stack "eksctl-EKS-APP-DEV-cluster"
+    [ℹ]  deploying stack "eksctl-EKS-APP-DEV-cluster"
+    [ℹ]  building nodegroup stack "eksctl-EKS-APP-DEV-nodegroup-ng-371a784a"
+    [ℹ]  deploying stack "eksctl-EKS-APP-DEV-nodegroup-ng-371a784a"
+    [✔]  all EKS cluster resources for "EKS-APP-DEV" have been created
+    [!]  unable to write kubeconfig , please retry with 'eksctl utils write-kubeconfig -n EKS-APP-DEV': unable to modify kubeconfig /home/ubuntu/.kube/config: open /etc/rancher/k3s/k3s.yaml.lock: permission denied
+    [ℹ]  adding identity "arn:aws:iam::327192335161:role/eksctl-EKS-APP-DEV-nodegroup-ng-3-NodeInstanceRole-2RMH7RBODD62" to auth ConfigMap
+    [ℹ]  nodegroup "ng-371a784a" has 0 node(s)
+    [ℹ]  waiting for at least 3 node(s) to become ready in "ng-371a784a"
+    [ℹ]  nodegroup "ng-371a784a" has 3 node(s)
+    [ℹ]  node "ip-192-168-35-104.ec2.internal" is ready
+    [ℹ]  node "ip-192-168-52-88.ec2.internal" is ready
+    [ℹ]  node "ip-192-168-8-236.ec2.internal" is ready
+    [✔]  EKS cluster "EKS-APP-DEV" in "us-east-1" region is ready
+    ```
+
+!!! note
+    You can ignore the error about `unable to write kubeconfig` as we address this in the next step.
+
+This may take some time (10-15 minutes). Ensure you see your cluster active in AWS EKS console before proceeding.
+
+Once complete update your `kubeconfig` to allow `kubectl` access to the cluster:
 
 ```
 sudo eksctl utils write-kubeconfig -n $EKS_CLUSTER_NAME
 ```
 
-Ensure you see your cluster active in AWS EKS console before proceeding.
-
 ---
 
 ### 4. Deploy SignalFx SmartAgent to your EKS Cluster
 
-```bash
-helm repo add signalfx https://dl.signalfx.com/helm-repo
-```
+Add the SignalFx Helm chart repository to Helm:
 
-```text
-helm repo update
-```
+=== "Input"
+    ```bash
+    helm repo add signalfx https://dl.signalfx.com/helm-repo
+    ```
 
-```
-sed -i -e 's/\[INITIALS\]/'"$INITIALS"'/' workshop/k3s/values.yaml
-helm install \
---set signalFxAccessToken=$ACCESS_TOKEN \
---set clusterName=$EKS_CLUSTER_NAME \
---set signalFxRealm=$REAM \
---set agentVersion=$VERSION \
---set kubeletAPI.url=https://localhost:10250 \
---set traceEndpointUrl=https://ingest.$REALM.signalfx.com/v2/trace \
-signalfx-agent signalfx/signalfx-agent \
--f workshop/k3s/values.yaml
-```
+=== "Output"
+    ```
+    "signalfx" has been added to your repositories
+    ```
+
+Ensure the latest state of the SignalFx Helm repository:
+
+=== "Input"
+    ```text
+    helm repo update
+    ```
+
+=== "Output"
+    ```
+    Hang tight while we grab the latest from your chart repositories...
+    ...Successfully got an update from the "signalfx" chart repository
+    ```
+Install the Smart Agent Helm chart with the following commands:
+
+=== "Input"
+    ```
+    sed -i -e 's/\[INITIALS\]/'"$INITIALS"'/' workshop/k3s/values.yaml
+    helm install \
+    --set signalFxAccessToken=$ACCESS_TOKEN \
+    --set clusterName=$EKS_CLUSTER_NAME \
+    --set signalFxRealm=$REAM \
+    --set agentVersion=$VERSION \
+    --set kubeletAPI.url=https://localhost:10250 \
+    --set traceEndpointUrl=https://ingest.$REALM.signalfx.com/v2/trace \
+    signalfx-agent signalfx/signalfx-agent \
+    -f workshop/k3s/values.yaml
+    ```
+
+=== "Output"
+    ```
+    NAME: signalfx-agent
+    LAST DEPLOYED: Mon Apr 13 14:23:19 2020
+    NAMESPACE: default
+    STATUS: deployed
+    REVISION: 1
+    TEST SUITE: None
+    NOTES:
+    The SignalFx agent is being deployed in your Kubernetes cluster.  You should
+    see metrics flowing once the agent image is downloaded and started (this may
+    take a few minutes since it has to download the agent container image).
+
+    Assuming you are logged into SignalFx in your browser, visit
+
+    https://app.us0.signalfx.com/#/navigator/kubernetes%20pods/kubernetes%20pods
+
+    to see all of the pods in your cluster.
+    ```
 
 Validate cluster looks healthy in SignalFx Kubernetes Navigator dashboard
 
@@ -150,9 +237,24 @@ You should now be able to exercise SignalFx APM dashboards.
 
 To delete entire EKS cluster:
 
-```
-eksctl delete cluster YOURCLUSTERNAMEHERE`
-```
+=== "Input"
+    ```
+    eksctl delete cluster YOURCLUSTERNAMEHERE`
+    ```
+
+=== "Output"
+    ``` 
+    [ℹ]  eksctl version 0.16.0
+    [ℹ]  using region us-east-1
+    [ℹ]  deleting EKS cluster "EKS-APP-DEV"
+    [ℹ]  deleted 0 Fargate profile(s)
+    [ℹ]  cleaning up LoadBalancer services
+    [ℹ]  2 sequential tasks: { delete nodegroup "ng-371a784a", delete cluster control plane "EKS-APP-DEV" [async] }
+    [ℹ]  will delete stack "eksctl-EKS-APP-DEV-nodegroup-ng-371a784a"
+    [ℹ]  waiting for stack "eksctl-EKS-APP-DEV-nodegroup-ng-371a784a" to get deleted
+    [ℹ]  will delete stack "eksctl-EKS-APP-DEV-cluster"
+    [✔]  all cluster resources were deleted
+    ```
 
 Or to delete individual components:
 
