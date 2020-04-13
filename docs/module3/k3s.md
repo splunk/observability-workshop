@@ -27,8 +27,11 @@ Launch the Multipass instance which will run Kubernetes (K3s)
 !!! note 
     Use `{YOUR_INITIALS}-k3s` so that the value of the instance hostname is unique e.g. `rwc-k3s`
 
-```bash
-multipass launch --name {YOUR_INITIALS}-k3s --cloud-init cloud-init/k3s.yaml --cpus=2 --disk=10G --mem=4G
+```text
+multipass launch \
+--name {YOUR_INITIALS}-k3s \
+--cloud-init cloud-init/k3s.yaml \
+--cpus=2 --disk=10G --mem=4G
 ```
 
 Once the instance has been successfully created shell into it.
@@ -58,8 +61,8 @@ Create the following variables to use in the proceeding helm install command:
 ```
 export ACCESS_TOKEN=<token from Step 2>
 export REALM=<realm from Step 2>
-export INITIALS=<your initials e.g. GXH>
-export VERSION=<Smart Agent version e.g. 5.1.0>
+export INITIALS=<your initials e.g. RWC>
+export VERSION=<Smart Agent version e.g. 5.1.1>
 ```
 
 !!! note
@@ -81,7 +84,16 @@ Install the Smart Agent Helmchart with the following commands:
 
 ```
 sed -i -e 's/\[INITIALS\]/'"$INITIALS"'/' workshop/k3s/values.yaml
-helm install --set signalFxAccessToken=$ACCESS_TOKEN --set clusterName=$INITIALS-SFX-WORKSHOP --set kubeletAPI.url=https://localhost:10250  --set signalFxRealm=$REALM  --set agentVersion=$VERSION --set traceEndpointUrl=https://ingest.$REALM.signalfx.com/v2/trace --set gatherDockerMetrics=false signalfx-agent signalfx/signalfx-agent -f workshop/k3s/values.yaml
+helm install \
+--set signalFxAccessToken=$ACCESS_TOKEN \
+--set clusterName=$INITIALS-SFX-WORKSHOP \
+--set kubeletAPI.url=https://localhost:10250  \
+--set signalFxRealm=$REALM  \
+--set agentVersion=$VERSION \
+--set traceEndpointUrl=https://ingest.$REALM.signalfx.com/v2/trace \
+--set gatherDockerMetrics=false \
+signalfx-agent signalfx/signalfx-agent \
+-f workshop/k3s/values.yaml
 ```
 
 You can monitor the progress of the deployment by running `kubectl get pods` which should typically report a new pod is up and running after about 30 seconds. Ensure the status is reported as Running before continuing.
