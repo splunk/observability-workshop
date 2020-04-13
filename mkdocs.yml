@@ -62,5 +62,5 @@ nav:
   - '<b>Module 7</b> - VictorOps':
     - 'Coming Soon!': module7/index.md
   - '<b>Post Workshop Clean Up!</b>': module-support/cleanup.md
-  - '<b>Optional Modules</b>'
+  - '<b>Optional Modules</b>':
     - 'Running Hotrod in EKS': module8/hotrod-eks.md
