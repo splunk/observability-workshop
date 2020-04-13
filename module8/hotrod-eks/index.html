@@ -606,98 +606,43 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-requirements-and-document-conventions" class="md-nav__link">
-    1. Requirements and Document Conventions
-  </a>
-  
-    <nav class="md-nav" aria-label="1. Requirements and Document Conventions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#document-conventions" class="md-nav__link">
-    Document Conventions
+  <a href="#1-set-environment-variables" class="md-nav__link">
+    1. Set environment variables
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
-    Requirements
+  <a href="#2-configure-aws-cli-for-your-account" class="md-nav__link">
+    2. Configure AWS CLI for your account
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1a-step-1-install-aws-cli" class="md-nav__link">
-    1a Step 1: Install AWS CLI
+  <a href="#3-create-a-cluster-running-amazon-elastic-kubernetes-eks-service" class="md-nav__link">
+    3. Create a cluster running Amazon Elastic Kubernetes (EKS) Service
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1a-step-2-configure-aws-cli-for-your-account" class="md-nav__link">
-    1a Step 2: Configure AWS CLI for your account:
+  <a href="#4-deploy-signalfx-smartagent-to-your-eks-cluster" class="md-nav__link">
+    4. Deploy SignalFx SmartAgent to your EKS Cluster
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1b-helm" class="md-nav__link">
-    1b Helm
+  <a href="#5-deploy-hotrod-application-to-eks" class="md-nav__link">
+    5. Deploy Hotrod Application to EKS
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1c-eksctl" class="md-nav__link">
-    1c eksctl
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1d-kubectl" class="md-nav__link">
-    1d kubectl:
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1-create-a-cluster-running-amazon-elastic-kubernetes-eks-service" class="md-nav__link">
-    1. Create a cluster running Amazon Elastic Kubernetes (EKS) Service
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-deploy-signalfx-smartagent-to-your-eks-cluster" class="md-nav__link">
-    2. Deploy SignalFx SmartAgent to your EKS Cluster
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-update-signalfx-agent-deployment-in-k8s-for-apm" class="md-nav__link">
-    3. Update SignalFX Agent Deployment in K8S for APM
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-deploy-hotrod-application-to-eks" class="md-nav__link">
-    4. Deploy Hotrod Application to EKS
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-generate-some-traffic-to-the-application-using-apache-benchmark" class="md-nav__link">
-    5. Generate some traffic to the application using Apache Benchmark
+  <a href="#6-generate-some-traffic-to-the-application-using-apache-benchmark" class="md-nav__link">
+    6. Generate some traffic to the application using Apache Benchmark
   </a>
   
 </li>
@@ -747,48 +692,18 @@
 <p><em>An organisation needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already.</em></p>
 <p><em>To check if you have an organisation with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards.</em></p>
 <hr />
-<h3 id="1-requirements-and-document-conventions">1. Requirements and Document Conventions<a class="headerlink" href="#1-requirements-and-document-conventions" title="Permanent link">&para;</a></h3>
-<p>This workshop is tested on MacOS and Linux- it should work on Windows as well if requirements are met. Tips, references, and troubleshooting tips for these components are in the appendix.</p>
-<p>The previous workshops should have been completed such that you have the following variables at the ready:</p>
-<p>SignalFx token</p>
-<p>SignalFx realm</p>
-<h4 id="document-conventions"><strong>Document Conventions</strong><a class="headerlink" href="#document-conventions" title="Permanent link">&para;</a></h4>
-<p>Variables that require you to alter them based on information in your environment are displayed like this: <code>{YOUR_VARIABLE}</code>. For example if you need to set your realm to <code>us1</code> in a hostname you'd change <code>api.{REALM}.signalfx.com</code> to <code>api.us1.signalfx.com</code></p>
-<h4 id="requirements"><strong>Requirements</strong><a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h4>
-<p>For this workshop you must have the following installed:</p>
-<ul>
-<li>
-<p><strong>AWS CLI</strong></p>
-</li>
-<li>
-<p><strong>Helm</strong></p>
-</li>
-</ul>
-<p><strong>eksctl</strong></p>
-<p><strong>kubectl</strong></p>
-<p>Instructions are below- note that official instructions may change over time from this document.</p>
-<h4 id="1a-step-1-install-aws-cli"><u>1a Step 1: Install AWS CLI</u><a class="headerlink" href="#1a-step-1-install-aws-cli" title="Permanent link">&para;</a></h4>
-<p>You should have basic familiary with AWS, your account especially access key/ID and default region, and associated administration.</p>
-<p>AWS CLI Official Instructions:  https://docs.aws.amazon.com/cli/ </p>
-<div class="tabbed-set" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Macos</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>brew install awscli
+<h3 id="1-set-environment-variables">1. Set environment variables<a class="headerlink" href="#1-set-environment-variables" title="Permanent link">&para;</a></h3>
+<p>Create the following variables to use in the proceeding helm install command:</p>
+<div class="highlight"><pre><span></span><code>export ACCESS_TOKEN=&lt;token from Step 2&gt;
+export EKS_CLUSTER_NAME=&lt;e.g. EKS-APP-DEV&gt;
+export REALM=&lt;realm from Step 2&gt;
+export INITIALS=&lt;your initials e.g. RWC&gt;
+export VERSION=&lt;Smart Agent version e.g. 5.1.1&gt;
+export AWS_REGION=&lt;e.g. us-east-1&gt;
 </code></pre></div>
 
-</div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Linux</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>curl &quot;https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip&quot; -o &quot;awscliv2.zip&quot; 
-unzip awscliv2.zi
-sudo ./aws/install
-</code></pre></div>
-
-</div>
-<input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><label for="__tabbed_1_3">Windows</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>Download and execute: https://awscli.amazonaws.com/AWSCLIV2.msi
-</code></pre></div>
-
-</div>
-</div>
-<h4 id="1a-step-2-configure-aws-cli-for-your-account"><u><strong>1a Step 2: Configure AWS CLI for your account:</strong></u><a class="headerlink" href="#1a-step-2-configure-aws-cli-for-your-account" title="Permanent link">&para;</a></h4>
+<p>Check SignalFx Smart Agent release version on <a href="https://github.com/signalfx/signalfx-agent/releases">Github</a> i.e. 5.1.1</p>
+<h3 id="2-configure-aws-cli-for-your-account">2. Configure AWS CLI for your account<a class="headerlink" href="#2-configure-aws-cli-for-your-account" title="Permanent link">&para;</a></h3>
 <p><code>aws configure</code></p>
 <p>And enter the variables from your AWS account as shown below with sample values:</p>
 <div class="highlight"><pre><span></span><code>AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
@@ -797,108 +712,55 @@ Default region name [None]: us-west-2
 Default output format [None]: json
 </code></pre></div>
 
-<h4 id="1b-helm"><u>1b Helm</u><a class="headerlink" href="#1b-helm" title="Permanent link">&para;</a></h4>
-<p>Helm Official Instructions: https://helm.sh/docs/intro/install/</p>
-<div class="tabbed-set" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Macos</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>brew install helm
-</code></pre></div>
-
-</div>
-<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Linux</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>sudo snap install helm --classic
-</code></pre></div>
-
-</div>
-<input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><label for="__tabbed_2_3">Windows</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>choco install kubernetes-helm
-</code></pre></div>
-
-</div>
-</div>
-<h4 id="1c-eksctl"><u>1c eksctl</u><a class="headerlink" href="#1c-eksctl" title="Permanent link">&para;</a></h4>
-<p>eksctl Official Instructions: https://eksctl.io/introduction/installation/</p>
-<div class="tabbed-set" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Macos</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>brew tap weaveworks/tap
-brew install weaveworks/tap/eksctl
-</code></pre></div>
-
-</div>
-<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">Linux</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>curl --silent --location &quot;https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz&quot; | tar xz -C /tmp
-sudo mv /tmp/eksctl /usr/local/bin
-</code></pre></div>
-
-</div>
-<input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><label for="__tabbed_3_3">Windows</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>chocolatey install eksctl
-</code></pre></div>
-
-</div>
-</div>
-<h4 id="1d-kubectl"><u><strong>1d kubectl:</strong></u><a class="headerlink" href="#1d-kubectl" title="Permanent link">&para;</a></h4>
-<div class="tabbed-set" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><label for="__tabbed_4_1">Macos</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>brew install kubectl
-</code></pre></div>
-
-</div>
-<input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><label for="__tabbed_4_2">Linux</label><div class="tabbed-content">
-<p>```text
-curl -LO https://storage.googleapis.com/kubernetes-release/release/curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt/bin/linux/amd64/kubectl
-chmod +x ./kubectl
-sudo mv ./kubectl /usr/local/bin/kubectl</p>
-</div>
-<input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><label for="__tabbed_4_3">Windows</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/windows/amd64/kubectl.exe
-</code></pre></div>
-
-</div>
-</div>
 <hr />
-<h3 id="1-create-a-cluster-running-amazon-elastic-kubernetes-eks-service">1. Create a cluster running Amazon Elastic Kubernetes (EKS) Service<a class="headerlink" href="#1-create-a-cluster-running-amazon-elastic-kubernetes-eks-service" title="Permanent link">&para;</a></h3>
-<p><div class="highlight"><pre><span></span><code>eksctl create cluster \
---name {EKS_CLUSTER_NAME} \
---region {AWS_REGION} FOR EXAMPLE us-east-2 \
+<h3 id="3-create-a-cluster-running-amazon-elastic-kubernetes-eks-service">3. Create a cluster running Amazon Elastic Kubernetes (EKS) Service<a class="headerlink" href="#3-create-a-cluster-running-amazon-elastic-kubernetes-eks-service" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>eksctl create cluster \
+--name $EKS_CLUSTER_NAME \
+--region $AWS_REGION \
 --node-type t3.medium \
 --nodes-min 3 \
 --nodes-max 7 \
 --version=1.15
 </code></pre></div>
-This may take some time- ensure you see your cluster live in AWS EKS console before proceeding.</p>
+
+<p>This may take some time (10-15 minutes). Once complete update <code>kubeconfig</code> to allow <code>kubectl</code> access to the cluster:</p>
+<div class="highlight"><pre><span></span><code>sudo eksctl utils write-kubeconfig -n $EKS_CLUSTER_NAME
+</code></pre></div>
+
+<p>Ensure you see your cluster active in AWS EKS console before proceeding.</p>
 <hr />
-<h3 id="2-deploy-signalfx-smartagent-to-your-eks-cluster">2. Deploy SignalFx SmartAgent to your EKS Cluster<a class="headerlink" href="#2-deploy-signalfx-smartagent-to-your-eks-cluster" title="Permanent link">&para;</a></h3>
-<p>Check release version: https://github.com/signalfx/signalfx-agent/releases i.e. 5.1.1</p>
+<h3 id="4-deploy-signalfx-smartagent-to-your-eks-cluster">4. Deploy SignalFx SmartAgent to your EKS Cluster<a class="headerlink" href="#4-deploy-signalfx-smartagent-to-your-eks-cluster" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>helm repo add signalfx https://dl.signalfx.com/helm-repo
 </code></pre></div>
 
 <div class="highlight"><pre><span></span><code>helm repo update
 </code></pre></div>
 
-<div class="highlight"><pre><span></span><code>helm install \
---set signalFxAccessToken=TOKENHERE \
---set clusterName=YOURK8SCLUSTERNAME \
---set signalFxRealm=YOUREALMHERE \
---set agentVersion=RELEASEVERSIONHERE \
+<div class="highlight"><pre><span></span><code>sed -i -e &#39;s/\[INITIALS\]/&#39;&quot;$INITIALS&quot;&#39;/&#39; workshop/k3s/values.yaml
+helm install \
+--set signalFxAccessToken=$ACCESS_TOKEN \
+--set clusterName=$EKS_CLUSTER_NAME \
+--set signalFxRealm=$REAM \
+--set agentVersion=$VERSION \
 --set kubeletAPI.url=https://localhost:10250 \
-signalfx-agent signalfx/signalfx-agent
+--set traceEndpointUrl=https://ingest.$REALM.signalfx.com/v2/trace \
+signalfx-agent signalfx/signalfx-agent \
+-f workshop/k3s/values.yaml
 </code></pre></div>
 
 <p>Validate cluster looks healthy in SignalFx Kubernetes Navigator dashboard</p>
 <hr />
-<h3 id="3-update-signalfx-agent-deployment-in-k8s-for-apm">3. Update SignalFX Agent Deployment in K8S for APM<a class="headerlink" href="#3-update-signalfx-agent-deployment-in-k8s-for-apm" title="Permanent link">&para;</a></h3>
-<p>This repo file: <code>/app-dev-workshop/apm/hotrod/eks/agent-apm.yaml</code> has elements needed for APM. </p>
-<p>Substitute <code>YOURAPMENVIRONMENTHERE</code> with your chosen application environment name i.e. <code>KarthikHotRodApp</code> and <code>YOUREALMHERE</code> with your realm as identified in your SignalFx profile i.e. <code>us1</code>.</p>
-<p>After udpating <code>/app-dev-workshop/apm/hotrod/eks/agent-apm.yaml</code> then from the directory above the repo:</p>
-<p><code>helm upgrade --reuse-values -f ./app-dev-workshop/apm/hotrod/eks/agent-apm.yaml signalfx-agent signalfx/signalfx-agent</code></p>
-<hr />
-<h3 id="4-deploy-hotrod-application-to-eks">4. Deploy Hotrod Application to EKS<a class="headerlink" href="#4-deploy-hotrod-application-to-eks" title="Permanent link">&para;</a></h3>
-<p>kubectl apply -f .<code>/app-dev-workshop/apm/hotrod/eks/deployment.yaml</code> </p>
+<h3 id="5-deploy-hotrod-application-to-eks">5. Deploy Hotrod Application to EKS<a class="headerlink" href="#5-deploy-hotrod-application-to-eks" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl apply -f ~/workshop/apm/hotrod/eks/deployment.yaml
+</code></pre></div>
+
 <p>To ensure the Hotrod application is running see examples below:</p>
-<div class="tabbed-set" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><label for="__tabbed_5_1">Input</label><div class="tabbed-content">
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Input</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>kubectl get pods
 </code></pre></div>
 
 </div>
-<input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><label for="__tabbed_5_2">Output</label><div class="tabbed-content">
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Output</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>NAME                      READY   STATUS    RESTARTS   AGE
 hotrod-7564774bf5-vjpfw   1/1     Running   0          47h
 signalfx-agent-jmq4f      1/1     Running   0          138m
@@ -909,12 +771,12 @@ signalfx-agent-q5tzh      1/1     Running   0          138m
 </div>
 </div>
 <p>You then need find the IP address assigned to the Hotrod service:</p>
-<div class="tabbed-set" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><label for="__tabbed_6_1">Input</label><div class="tabbed-content">
+<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Input</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>kubectl get svc
 </code></pre></div>
 
 </div>
-<input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><label for="__tabbed_6_2">Output</label><div class="tabbed-content">
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Output</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>NAME         TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)          AGE
 hotrod       LoadBalancer   10.100.188.249   af26ce80ef2e14c9292ae5b4bc0d2dd0-1826890352.us-east-2.elb.amazonaws.com   8080:32521/TCP   47h
 kubernetes   ClusterIP      10.100.0.1       &lt;none&gt;                                                                    443/TCP          3d1h
@@ -922,27 +784,37 @@ kubernetes   ClusterIP      10.100.0.1       &lt;none&gt;                       
 
 </div>
 </div>
-<p>Make note of the <code>CLUSTER-IP</code> address associated with Hotrod</p>
-<p>You can view / exercise Hotrod yourself in a browser by opening the IP:PORT as shown above i.e.</p>
+<p>Create an environment variable for the IP address and port that the Hotrod application is exposed on:</p>
+<div class="highlight"><pre><span></span><code>HOTROD_ENDPOINT=$(kubectl get svc hotrod -n default -o jsonpath=&#39;{.spec.clusterIP}:{.spec.ports[0].port}&#39;)
+</code></pre></div>
+
+<p>You can view / exercise Hotrod yourself in a browser by opening the <code>EXTERNAL-IP:PORT</code> as shown above i.e.</p>
 <p>https://af26ce80ef2e14c9292ae5b4bc0d2dd0-1826890352.us-east-2.elb.amazonaws.com:8080</p>
 <hr />
-<h3 id="5-generate-some-traffic-to-the-application-using-apache-benchmark">5. Generate some traffic to the application using Apache Benchmark<a class="headerlink" href="#5-generate-some-traffic-to-the-application-using-apache-benchmark" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>ab -n100 -c10 <span class="s2">&quot;http://{CLUSTER-IP}:8080/dispatch?customer=392&amp;nonse=0.17041229755366172&quot;</span> <span class="p">&amp;</span>
+<h3 id="6-generate-some-traffic-to-the-application-using-apache-benchmark">6. Generate some traffic to the application using Apache Benchmark<a class="headerlink" href="#6-generate-some-traffic-to-the-application-using-apache-benchmark" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>ab -n100 -c10 <span class="s2">&quot;http://</span><span class="nv">$HOTROD_ENDPOINT</span><span class="s2">/dispatch?customer=392&amp;nonse=0.17041229755366172&quot;</span>
 </code></pre></div>
 
 <p>Create some errors with an invalid customer number</p>
-<div class="highlight"><pre><span></span><code>ab -n100 -c10 <span class="s2">&quot;http://{CLUSTER-IP}:8080/dispatch?customer=391&amp;nonse=0.17041229755366172&quot;</span> <span class="p">&amp;</span>
+<div class="highlight"><pre><span></span><code>ab -n100 -c10 <span class="s2">&quot;http://</span><span class="nv">$HOTROD_ENDPOINT</span><span class="s2">/dispatch?customer=391&amp;nonse=0.17041229755366172&quot;</span>
 </code></pre></div>
 
 <p>You should now be able to exercise SignalFx APM dashboards.</p>
-<p>https://af26ce80ef2e14c9292ae5b4bc0d2dd0-1826890352.us-east-2.elb.amazonaws.com:8080</p>
 <hr />
 <h3 id="5-deleting-resources">5. Deleting resources<a class="headerlink" href="#5-deleting-resources" title="Permanent link">&para;</a></h3>
-<p>To delete entire EKS cluster: <code>eksctl delete cluster YOURCLUSTERNAMEHERE</code></p>
+<p>To delete entire EKS cluster:</p>
+<div class="highlight"><pre><span></span><code>eksctl delete cluster YOURCLUSTERNAMEHERE`
+</code></pre></div>
+
 <p>Or to delete individual components:</p>
-<p><code>kubectl delete deploy/hotrod svc/hotrod</code></p>
-<p><code>helm delete signalfx-agent</code></p>
+<div class="highlight"><pre><span></span><code>kubectl delete deploy/hotrod svc/hotrod
+helm delete signalfx-agent
+</code></pre></div>
+
 <hr />
+<p>To switch back to using K3s cluster
+<div class="highlight"><pre><span></span><code>sudo kubectl config use-context default
+</code></pre></div></p>
 <h3 id="appendix-tips-troubleshooting-and-references">Appendix: Tips, Troubleshooting, and References<a class="headerlink" href="#appendix-tips-troubleshooting-and-references" title="Permanent link">&para;</a></h3>
 <p>Set AWS EKS context to your cluster (i.e. when switching machines)</p>
 <p><code>aws eks --region YOURAWSREGION update-kubeconfig --name YOURCLUSTERNAME</code></p>
@@ -967,7 +839,7 @@ kubernetes   ClusterIP      10.100.0.1       &lt;none&gt;                       
 <div class="md-source-date">
   <small>
     
-      Last update: April 13, 2020 08:01:49
+      Last update: April 13, 2020 13:58:06
     
   </small>
 </div>
