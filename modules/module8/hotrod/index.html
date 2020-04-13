@@ -1,0 +1,1041 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="This workshop is going to take you though the exciting journey of App Dev, what this is, why this is important, and how to get started right away!">
+      
+      
+        <link rel="canonical" href="https://signalfx.github.io/app-dev-workshop/modules/module8/hotrod/">
+      
+      
+        <meta name="author" content="Sales Engineering">
+      
+      <link rel="shortcut icon" href="../../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.0">
+    
+    
+      
+        <title>Hotrod - Splunk App Dev Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.89dc9fe3.min.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ecd4686e.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="black" data-md-color-accent="">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#enabling-apm-on-eks" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://signalfx.github.io/app-dev-workshop/" title="Splunk App Dev Workshop" class="md-header-nav__button md-logo" aria-label="Splunk App Dev Workshop">
+      
+  <img src="../../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Splunk App Dev Workshop
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Hotrod
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/signalfx/app-dev-workshop/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://signalfx.github.io/app-dev-workshop/" title="Splunk App Dev Workshop" class="md-nav__button md-logo" aria-label="Splunk App Dev Workshop">
+      
+  <img src="../../../images/logo.png" alt="logo">
+
+    </a>
+    Splunk App Dev Workshop
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/signalfx/app-dev-workshop/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      <b>Home</b>
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../introduction/" title="Introduction" class="md-nav__link">
+      <b>Introduction</b>
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      <b>Module 1</b> - Dashboards
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="<b>Module 1</b> - Dashboards" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        <b>Module 1</b> - Dashboards
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../module1/dashboards/" title="Working with Dashboards, Charts and Metrics" class="md-nav__link">
+      Working with Dashboards, Charts and Metrics
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      <b>Module 2</b> - Detectors
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="<b>Module 2</b> - Detectors" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        <b>Module 2</b> - Detectors
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../module2/detectors/" title="Working with Detectors" class="md-nav__link">
+      Working with Detectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../module2/muting/" title="Working with Muting Rules" class="md-nav__link">
+      Working with Muting Rules
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      <b>Module 3</b> - Smart Agent
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="<b>Module 3</b> - Smart Agent" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        <b>Module 3</b> - Smart Agent
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../module3/k3s/" title="Deploying the Smart Agent in Kubernetes (K3s)" class="md-nav__link">
+      Deploying the Smart Agent in Kubernetes (K3s)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../module3/nginx/" title="Deploying NGINX in K3s" class="md-nav__link">
+      Deploying NGINX in K3s
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      <b>Module 4</b> - Monitoring as Code
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="<b>Module 4</b> - Monitoring as Code" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        <b>Module 4</b> - Monitoring as Code
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../module4/terraform/" title="Using Terraform for charts and dashboards" class="md-nav__link">
+      Using Terraform for charts and dashboards
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      <b>Module 5</b> - Service Bureau
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="<b>Module 5</b> - Service Bureau" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        <b>Module 5</b> - Service Bureau
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../module5/service_bureau/" title="Billing and Usage" class="md-nav__link">
+      Billing and Usage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../module5/teams/" title="Teams" class="md-nav__link">
+      Teams
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      <b>Module 6</b> - µAPM
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="<b>Module 6</b> - µAPM" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        <b>Module 6</b> - µAPM
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../module6/" title="µAPM Architecture Overview" class="md-nav__link">
+      µAPM Architecture Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../module6/hotrod/" title="Running Hotrod in K3s" class="md-nav__link">
+      Running Hotrod in K3s
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../module6/sockshop/" title="Running Sock Shop in K3s" class="md-nav__link">
+      Running Sock Shop in K3s
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      <b>Module 7</b> - VictorOps
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="<b>Module 7</b> - VictorOps" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        <b>Module 7</b> - VictorOps
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../module7/" title="Coming Soon!" class="md-nav__link">
+      Coming Soon!
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../module-support/cleanup/" title="Post Workshop Clean Up!" class="md-nav__link">
+      <b>Post Workshop Clean Up!</b>
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enabling-apm-on-eks" class="md-nav__link">
+    Enabling µAPM on EKS
+  </a>
+  
+    <nav class="md-nav" aria-label="Enabling µAPM on EKS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-requirements-and-document-conventions" class="md-nav__link">
+    1. Requirements and Document Conventions
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Requirements and Document Conventions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document-conventions" class="md-nav__link">
+    Document Conventions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1a-step-1-install-aws-cli" class="md-nav__link">
+    1a Step 1: Install AWS CLI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1a-step-2-configure-aws-cli-for-your-account" class="md-nav__link">
+    1a Step 2: Configure AWS CLI for your account:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1b-helm" class="md-nav__link">
+    1b Helm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1c-eksctl" class="md-nav__link">
+    1c eksctl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1d-kubectl" class="md-nav__link">
+    1d kubectl:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-create-a-cluster-running-amazon-elastic-kubernetes-eks-service" class="md-nav__link">
+    1. Create a cluster running Amazon Elastic Kubernetes (EKS) Service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-deploy-signalfx-smartagent-to-your-eks-cluster" class="md-nav__link">
+    2. Deploy SignalFx SmartAgent to your EKS Cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-update-signalfx-agent-deployment-in-k8s-for-apm" class="md-nav__link">
+    3. Update SignalFX Agent Deployment in K8S for APM
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-deploy-hotrod-application-to-eks" class="md-nav__link">
+    4. Deploy Hotrod Application to EKS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-generate-some-traffic-to-the-application-using-apache-benchmark" class="md-nav__link">
+    5. Generate some traffic to the application using Apache Benchmark
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-deleting-resources" class="md-nav__link">
+    5. Deleting resources
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appendix-tips-troubleshooting-and-references" class="md-nav__link">
+    Appendix: Tips, Troubleshooting, and References
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendix: Tips, Troubleshooting, and References">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-aws-eks-context-to-your-cluster-ie-when-switching-machines" class="md-nav__link">
+    Set AWS EKS context to your cluster (i.e. when switching machines)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ensure-kubectl-context-is-correct" class="md-nav__link">
+    Ensure kubectl context is correct
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-up-kubectl-for-eks" class="md-nav__link">
+    Set up kubectl for EKS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-signalfx-agent-values" class="md-nav__link">
+    Check SignalFx Agent Values
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubectl-reference" class="md-nav__link">
+    kubectl reference
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/signalfx/app-dev-workshop/edit/master/docs/modules/module8/hotrod.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                  <h1>Hotrod</h1>
+                
+                <h2 id="enabling-apm-on-eks">Enabling µAPM on EKS<a class="headerlink" href="#enabling-apm-on-eks" title="Permanent link">&para;</a></h2>
+<p><em>An organisation needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already.</em></p>
+<p><em>To check if you have an organisation with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards.</em></p>
+<hr />
+<h3 id="1-requirements-and-document-conventions">1. Requirements and Document Conventions<a class="headerlink" href="#1-requirements-and-document-conventions" title="Permanent link">&para;</a></h3>
+<p>This workshop is tested on MacOS and Linux- it should work on Windows as well if requirements are met. Tips, references, and troubleshooting tips for these components are in the appendix.</p>
+<p>The previous workshops should have been completed such that you have the following variables at the ready:</p>
+<p>SignalFx token</p>
+<p>SignalFx realm</p>
+<h4 id="document-conventions"><strong>Document Conventions</strong><a class="headerlink" href="#document-conventions" title="Permanent link">&para;</a></h4>
+<p>Variables that require you to alter them based on information in your environment are displayed like this: YOURVARIABLEHERE. For example if you need to set your realm to <code>us1</code> in a hostname you'd change <code>api.YOURREALMHERE.signalfx.com</code> to <code>api.us1.signalfx.com</code></p>
+<h4 id="requirements"><strong>Requirements</strong><a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h4>
+<p>For this workshop you must have the following installed:</p>
+<p><strong>AWS CLI</strong></p>
+<p><strong>Helm</strong></p>
+<p><strong>eksctl</strong></p>
+<p><strong>kubectl</strong></p>
+<p>Instructions are below- note that official instructions may change over time from this document.</p>
+<h4 id="1a-step-1-install-aws-cli"><u>1a Step 1: Install AWS CLI</u><a class="headerlink" href="#1a-step-1-install-aws-cli" title="Permanent link">&para;</a></h4>
+<p>You should have basic familiary with AWS, your account especially access key/ID and default region, and associated administration.</p>
+<p>AWS CLI Official Instructions:  https://docs.aws.amazon.com/cli/ </p>
+<div class="tabbed-set" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Macos</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>brew install awscli`
+</code></pre></div>
+
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Linux</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code> `curl &quot;https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip&quot; -o &quot;awscliv2.zip&quot; `
+ `unzip awscliv2.zip`
+ `sudo ./aws/install`
+</code></pre></div>
+
+</div>
+<input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><label for="__tabbed_1_3">Windows</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>Download and execute: https://awscli.amazonaws.com/AWSCLIV2.msi
+</code></pre></div>
+
+</div>
+</div>
+<h4 id="1a-step-2-configure-aws-cli-for-your-account"><u><strong>1a Step 2: Configure AWS CLI for your account:</strong></u><a class="headerlink" href="#1a-step-2-configure-aws-cli-for-your-account" title="Permanent link">&para;</a></h4>
+<p><code>aws configure</code></p>
+<p>And enter the variables from your AWS account as shown below with sample values:</p>
+<div class="highlight"><pre><span></span><code>AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
+AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+Default region name [None]: us-west-2
+Default output format [None]: json
+</code></pre></div>
+
+<h4 id="1b-helm"><u>1b Helm</u><a class="headerlink" href="#1b-helm" title="Permanent link">&para;</a></h4>
+<p>Helm Official Instructions: https://helm.sh/docs/intro/install/</p>
+<div class="tabbed-set" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Macos</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>`brew install helm`
+</code></pre></div>
+
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Linux</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>`sudo snap install helm --classic`
+</code></pre></div>
+
+</div>
+<input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><label for="__tabbed_2_3">Windows</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>choco install kubernetes-helm`
+</code></pre></div>
+
+</div>
+</div>
+<h4 id="1c-eksctl"><u>1c eksctl</u><a class="headerlink" href="#1c-eksctl" title="Permanent link">&para;</a></h4>
+<p>eksctl Official Instructions: https://eksctl.io/introduction/installation/</p>
+<div class="tabbed-set" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Macos</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>`brew tap weaveworks/tap` 
+`brew install weaveworks/tap/eksctl`
+</code></pre></div>
+
+</div>
+<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">Linux</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>`curl --silent --location &quot;https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz&quot; | tar xz -C /tmp` 
+
+`sudo mv /tmp/eksctl /usr/local/bin`
+</code></pre></div>
+
+</div>
+<input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><label for="__tabbed_3_3">Windows</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>`chocolatey install eksctl`
+</code></pre></div>
+
+</div>
+</div>
+<h4 id="1d-kubectl"><u><strong>1d kubectl:</strong></u><a class="headerlink" href="#1d-kubectl" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><label for="__tabbed_4_1">Macos</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>`brew install kubectl
+</code></pre></div>
+
+</div>
+<input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><label for="__tabbed_4_2">Linux</label><div class="tabbed-content">
+<p><code>``text</code>curl -LO https://storage.googleapis.com/kubernetes-release/release/curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt/bin/linux/amd64/kubectl`</p>
+<p><code>chmod +x ./kubectl</code></p>
+<p><code>sudo mv ./kubectl /usr/local/bin/kubectl</code></p>
+</div>
+<input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><label for="__tabbed_4_3">Windows</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>`curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/windows/amd64/kubectl.exe`
+</code></pre></div>
+
+</div>
+</div>
+<hr />
+<h3 id="1-create-a-cluster-running-amazon-elastic-kubernetes-eks-service">1. Create a cluster running Amazon Elastic Kubernetes (EKS) Service<a class="headerlink" href="#1-create-a-cluster-running-amazon-elastic-kubernetes-eks-service" title="Permanent link">&para;</a></h3>
+<p><code>eksctl create cluster \</code></p>
+<p><code>--name YOUREKSCLUSTERNAMEHERE \</code>
+<code>--region YOURAWSREGIONHERE FOR EXAMPLE us-east-2 \</code>
+<code>--node-type t3.medium \</code>
+<code>--nodes-min 3 \</code>
+<code>--nodes-max 7 \</code>
+<code>--version=1.15</code></p>
+<p>This may take some time- ensure you see your cluster live in AWS EKS console before proceeding.</p>
+<hr />
+<h3 id="2-deploy-signalfx-smartagent-to-your-eks-cluster">2. Deploy SignalFx SmartAgent to your EKS Cluster<a class="headerlink" href="#2-deploy-signalfx-smartagent-to-your-eks-cluster" title="Permanent link">&para;</a></h3>
+<p>Check release version: https://github.com/signalfx/signalfx-agent/releases i.e. 5.1.1</p>
+<div class="tabbed-set" data-tabs="5:2">
+<input name="__tabbed_5" type="radio" id="__tabbed_5_1" checked="checked" /><label for="__tabbed_5_1">Input</label><div class="tabbed-content"><div class="highlight"><pre><span></span><code>helm repo add signalfx https://dl.signalfx.com/helm-repo
+</code></pre></div></div>
+<input name="__tabbed_5" type="radio" id="__tabbed_5_2" /><label for="__tabbed_5_2">Output</label><div class="tabbed-content"><div class="highlight"><pre><span></span><code>helm repo update
+</code></pre></div></div>
+</div>
+<p><code>helm install --set signalFxAccessToken=TOKENHERE --set clusterName=YOURK8SCLUSTERNAME --set signalFxRealm=YOUREALMHERE --set agentVersion=RELEASEVERSIONHERE --set kubeletAPI.url=https://localhost:10250 signalfx-agent signalfx/signalfx-agent</code></p>
+<p>Validate cluster looks healthy in SignalFx Kubernetes Navigator dashboard</p>
+<hr />
+<h3 id="3-update-signalfx-agent-deployment-in-k8s-for-apm">3. Update SignalFX Agent Deployment in K8S for APM<a class="headerlink" href="#3-update-signalfx-agent-deployment-in-k8s-for-apm" title="Permanent link">&para;</a></h3>
+<p>This repo file: <code>/app-dev-workshop/apm/hotrod/eks/agent-apm.yaml</code> has elements needed for APM. </p>
+<p>Substitute <code>YOURAPMENVIRONMENTHERE</code> with your chosen application environment name i.e. <code>KarthikHotRodApp</code> and <code>YOUREALMHERE</code> with your realm as identified in your SignalFx profile i.e. <code>us1</code>.</p>
+<p>After udpating <code>/app-dev-workshop/apm/hotrod/eks/agent-apm.yaml</code> then from the directory above the repo:</p>
+<p><code>helm upgrade --reuse-values -f ./app-dev-workshop/apm/hotrod/eks/agent-apm.yaml signalfx-agent signalfx/signalfx-agent</code></p>
+<hr />
+<h3 id="4-deploy-hotrod-application-to-eks">4. Deploy Hotrod Application to EKS<a class="headerlink" href="#4-deploy-hotrod-application-to-eks" title="Permanent link">&para;</a></h3>
+<p>kubectl apply -f .<code>/app-dev-workshop/apm/hotrod/eks/deployment.yaml</code> </p>
+<p>To ensure the Hotrod application is running see examples below:</p>
+<div class="tabbed-set" data-tabs="6:2">
+<input name="__tabbed_6" type="radio" id="__tabbed_6_1" checked="checked" /><label for="__tabbed_6_1">Input</label><div class="tabbed-content"><div class="highlight"><pre><span></span><code>kubectl get pods
+</code></pre></div></div>
+<input name="__tabbed_6" type="radio" id="__tabbed_6_2" /><label for="__tabbed_6_2">Output</label><div class="tabbed-content"><div class="highlight"><pre><span></span><code>NAME                      READY   STATUS    RESTARTS   AGE
+hotrod-7564774bf5-vjpfw   1/1     Running   0          47h
+signalfx-agent-jmq4f      1/1     Running   0          138m
+signalfx-agent-nk8p9      1/1     Running   0          138m
+signalfx-agent-q5tzh      1/1     Running   0          138m
+</code></pre></div></div>
+</div>
+<p>You then need find the IP address assigned to the Hotrod service:</p>
+<div class="tabbed-set" data-tabs="7:2">
+<input name="__tabbed_7" type="radio" id="__tabbed_7_1" checked="checked" /><label for="__tabbed_7_1">Input</label><div class="tabbed-content"><div class="highlight"><pre><span></span><code>kubectl get svc
+</code></pre></div></div>
+<input name="__tabbed_7" type="radio" id="__tabbed_7_2" /><label for="__tabbed_7_2">Output</label><div class="tabbed-content"><div class="highlight"><pre><span></span><code>NAME         TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)          AGE
+hotrod       LoadBalancer   10.100.188.249   af26ce80ef2e14c9292ae5b4bc0d2dd0-1826890352.us-east-2.elb.amazonaws.com   8080:32521/TCP   47h
+kubernetes   ClusterIP      10.100.0.1       &lt;none&gt;                                                                    443/TCP          3d1h
+</code></pre></div></div>
+</div>
+<p>Make note of the <code>CLUSTER-IP</code> address associated with Hotrod</p>
+<p>You can view / exercise Hotrod yourself in a browser by opening the IP:PORT as shown above i.e.</p>
+<p>https://af26ce80ef2e14c9292ae5b4bc0d2dd0-1826890352.us-east-2.elb.amazonaws.com:8080</p>
+<hr />
+<h3 id="5-generate-some-traffic-to-the-application-using-apache-benchmark">5. Generate some traffic to the application using Apache Benchmark<a class="headerlink" href="#5-generate-some-traffic-to-the-application-using-apache-benchmark" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>ab -n100 -c10 <span class="s2">&quot;http://{CLUSTER-IP}:8080/dispatch?customer=392&amp;nonse=0.17041229755366172&quot;</span> <span class="p">&amp;</span>
+</code></pre></div>
+
+<p>Create some errors with an invalid customer number</p>
+<div class="highlight"><pre><span></span><code>ab -n100 -c10 <span class="s2">&quot;http://{CLUSTER-IP}:8080/dispatch?customer=391&amp;nonse=0.17041229755366172&quot;</span> <span class="p">&amp;</span>
+</code></pre></div>
+
+<p>You should now be able to exercise SignalFx APM dashboards.</p>
+<p>https://af26ce80ef2e14c9292ae5b4bc0d2dd0-1826890352.us-east-2.elb.amazonaws.com:8080</p>
+<hr />
+<h3 id="5-deleting-resources">5. Deleting resources<a class="headerlink" href="#5-deleting-resources" title="Permanent link">&para;</a></h3>
+<p>To delete entire EKS cluster: <code>eksctl delete cluster YOURCLUSTERNAMEHERE</code></p>
+<p>Or to delete individual components:</p>
+<p><code>kubectl delete deploy/hotrod svc/hotrod</code></p>
+<p><code>helm delete signalfx-agent</code></p>
+<hr />
+<h3 id="appendix-tips-troubleshooting-and-references">Appendix: Tips, Troubleshooting, and References<a class="headerlink" href="#appendix-tips-troubleshooting-and-references" title="Permanent link">&para;</a></h3>
+<h6 id="set-aws-eks-context-to-your-cluster-ie-when-switching-machines">Set AWS EKS context to your cluster (i.e. when switching machines)<a class="headerlink" href="#set-aws-eks-context-to-your-cluster-ie-when-switching-machines" title="Permanent link">&para;</a></h6>
+<p><code>aws eks --region YOURAWSREGION update-kubeconfig --name YOURCLUSTERNAME</code></p>
+<h6 id="ensure-kubectl-context-is-correct">Ensure kubectl context is correct<a class="headerlink" href="#ensure-kubectl-context-is-correct" title="Permanent link">&para;</a></h6>
+<p><code>kubectl config get-contexts</code>              </p>
+<p>Will display list of contexts </p>
+<p><code>kubectl config use-context YOURCLUSTERNAME</code>    </p>
+<p>Will set the default context to cluster with ARN: YOURCLUSTERNAME</p>
+<h6 id="set-up-kubectl-for-eks">Set up kubectl for EKS<a class="headerlink" href="#set-up-kubectl-for-eks" title="Permanent link">&para;</a></h6>
+<p><code>aws eks --region YOURREGION update-kubeconfig --name YOURCLUSTERNAME</code>
+<code>kubectl get pods --kubeconfig ./.kube/config</code>
+<code>kubectl get svc</code></p>
+<h6 id="check-signalfx-agent-values">Check SignalFx Agent Values<a class="headerlink" href="#check-signalfx-agent-values" title="Permanent link">&para;</a></h6>
+<p><code>helm get values signalfx-agent -a</code></p>
+<h6 id="kubectl-reference">kubectl reference<a class="headerlink" href="#kubectl-reference" title="Permanent link">&para;</a></h6>
+<p>https://kubernetes.io/docs/reference/kubectl/cheatsheet/</p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: April 13, 2020 03:24:20
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2020 Splunk Inc. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.36cbf620.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.00c583dd.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.7f7c8775.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
