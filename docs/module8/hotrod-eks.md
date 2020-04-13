@@ -5,56 +5,22 @@ _To check if you have an organisation with µAPM enabled, just login to SignalFx
 
 ---
 
-### 1. Requirements and Document Conventions
+### 1. Set environment variables
 
-This workshop is tested on MacOS and Linux- it should work on Windows as well if requirements are met. Tips, references, and troubleshooting tips for these components are in the appendix.
+Create the following variables to use in the proceeding helm install command:
 
-The previous workshops should have been completed such that you have the following variables at the ready:
+```
+export ACCESS_TOKEN=<token from Step 2>
+export EKS_CLUSTER_NAME=<e.g. EKS-APP-DEV>
+export REALM=<realm from Step 2>
+export INITIALS=<your initials e.g. RWC>
+export VERSION=<Smart Agent version e.g. 5.1.1>
+export AWS_REGION=<e.g. us-east-1>
+```
 
-SignalFx token
+Check SignalFx Smart Agent release version on [Github](https://github.com/signalfx/signalfx-agent/releases) i.e. 5.1.1
 
-SignalFx realm
-
-#### **Document Conventions**
-
-Variables that require you to alter them based on information in your environment are displayed like this: `{YOUR_VARIABLE}`. For example if you need to set your realm to `us1` in a hostname you'd change `api.{REALM}.signalfx.com` to `api.us1.signalfx.com`
-
-#### **Requirements**
-
-For this workshop you must have the following installed:
-
-- **AWS CLI**
-
-- **Helm**
-
-**eksctl**
-
-**kubectl**
-
-Instructions are below- note that official instructions may change over time from this document.
-
-#### <u>1a Step 1: Install AWS CLI</u>
-
-You should have basic familiary with AWS, your account especially access key/ID and default region, and associated administration.
-
-AWS CLI Official Instructions:  https://docs.aws.amazon.com/cli/ 
-
-=== "Macos"
-    ```text
-    brew install awscli
-    ```
-=== "Linux"
-    ```text
-    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" 
-    unzip awscliv2.zi
-    sudo ./aws/install
-    ```
-=== "Windows" 
-    ```text
-    Download and execute: https://awscli.amazonaws.com/AWSCLIV2.msi
-    ```
-    
-#### <u>**1a Step 2: Configure AWS CLI for your account:**</u>
+### 2. Configure AWS CLI for your account
 
 `aws configure`
 
@@ -66,77 +32,31 @@ AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 Default region name [None]: us-west-2
 Default output format [None]: json
 ```
-
-#### <u>1b Helm</u> 
-
-Helm Official Instructions: https://helm.sh/docs/intro/install/
-
-=== "Macos"
-    ```text
-    brew install helm
-    ```
-=== "Linux"
-    ```text
-    sudo snap install helm --classic
-    ```
-=== "Windows" 
-    ```text
-    choco install kubernetes-helm
-    ```
     
-#### <u>1c eksctl</u>
-
-eksctl Official Instructions: https://eksctl.io/introduction/installation/
-
-=== "Macos"
-    ```text
-    brew tap weaveworks/tap
-    brew install weaveworks/tap/eksctl
-    ```
-=== "Linux"
-    ```text
-    curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-    sudo mv /tmp/eksctl /usr/local/bin
-    ```
-=== "Windows" 
-    ```text
-    chocolatey install eksctl
-    ```
-#### <u>**1d kubectl:**</u>
-
-=== "Macos"
-    ```text
-    brew install kubectl
-    ```
-=== "Linux"
-    ```text
-    curl -LO https://storage.googleapis.com/kubernetes-release/release/curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt/bin/linux/amd64/kubectl
-    chmod +x ./kubectl
-    sudo mv ./kubectl /usr/local/bin/kubectl
-
-=== "Windows" 
-    ```text
-    curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/windows/amd64/kubectl.exe
-    ```
 ---
 
-### 1. Create a cluster running Amazon Elastic Kubernetes (EKS) Service
+### 3. Create a cluster running Amazon Elastic Kubernetes (EKS) Service
 ```
 eksctl create cluster \
---name {EKS_CLUSTER_NAME} \
---region {AWS_REGION} FOR EXAMPLE us-east-2 \
+--name $EKS_CLUSTER_NAME \
+--region $AWS_REGION \
 --node-type t3.medium \
 --nodes-min 3 \
 --nodes-max 7 \
 --version=1.15
 ```
-This may take some time- ensure you see your cluster live in AWS EKS console before proceeding.
+
+This may take some time (10-15 minutes). Once complete update `kubeconfig` to allow `kubectl` access to the cluster:
+
+```
+sudo eksctl utils write-kubeconfig -n $EKS_CLUSTER_NAME
+```
+
+Ensure you see your cluster active in AWS EKS console before proceeding.
 
 ---
 
-### 2. Deploy SignalFx SmartAgent to your EKS Cluster
-Check release version: https://github.com/signalfx/signalfx-agent/releases i.e. 5.1.1
-
+### 4. Deploy SignalFx SmartAgent to your EKS Cluster
 
 ```bash
 helm repo add signalfx https://dl.signalfx.com/helm-repo
@@ -147,34 +67,27 @@ helm repo update
 ```
 
 ```
+sed -i -e 's/\[INITIALS\]/'"$INITIALS"'/' workshop/k3s/values.yaml
 helm install \
---set signalFxAccessToken=TOKENHERE \
---set clusterName=YOURK8SCLUSTERNAME \
---set signalFxRealm=YOUREALMHERE \
---set agentVersion=RELEASEVERSIONHERE \
+--set signalFxAccessToken=$ACCESS_TOKEN \
+--set clusterName=$EKS_CLUSTER_NAME \
+--set signalFxRealm=$REAM \
+--set agentVersion=$VERSION \
 --set kubeletAPI.url=https://localhost:10250 \
-signalfx-agent signalfx/signalfx-agent
+--set traceEndpointUrl=https://ingest.$REALM.signalfx.com/v2/trace \
+signalfx-agent signalfx/signalfx-agent \
+-f workshop/k3s/values.yaml
 ```
 
 Validate cluster looks healthy in SignalFx Kubernetes Navigator dashboard
 
-------
+---
 
-### 3. Update SignalFX Agent Deployment in K8S for APM
+### 5. Deploy Hotrod Application to EKS
 
-This repo file: `/app-dev-workshop/apm/hotrod/eks/agent-apm.yaml` has elements needed for APM. 
-
-Substitute `YOURAPMENVIRONMENTHERE` with your chosen application environment name i.e. `KarthikHotRodApp` and `YOUREALMHERE` with your realm as identified in your SignalFx profile i.e. `us1`.
-
-After udpating `/app-dev-workshop/apm/hotrod/eks/agent-apm.yaml` then from the directory above the repo:
-
-`helm upgrade --reuse-values -f ./app-dev-workshop/apm/hotrod/eks/agent-apm.yaml signalfx-agent signalfx/signalfx-agent`
-
-------
-
-### 4. Deploy Hotrod Application to EKS
-
-kubectl apply -f .`/app-dev-workshop/apm/hotrod/eks/deployment.yaml` 
+```
+kubectl apply -f ~/workshop/apm/hotrod/eks/deployment.yaml
+```
 
 To ensure the Hotrod application is running see examples below:
 
@@ -206,42 +119,54 @@ You then need find the IP address assigned to the Hotrod service:
     kubernetes   ClusterIP      10.100.0.1       <none>                                                                    443/TCP          3d1h
     ```
 
-Make note of the `CLUSTER-IP` address associated with Hotrod
+Create an environment variable for the IP address and port that the Hotrod application is exposed on:
 
-You can view / exercise Hotrod yourself in a browser by opening the IP:PORT as shown above i.e.
+```
+HOTROD_ENDPOINT=$(kubectl get svc hotrod -n default -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
+```
+
+You can view / exercise Hotrod yourself in a browser by opening the `EXTERNAL-IP:PORT` as shown above i.e.
 
 https://af26ce80ef2e14c9292ae5b4bc0d2dd0-1826890352.us-east-2.elb.amazonaws.com:8080
 
 ---
 
-### 5. Generate some traffic to the application using Apache Benchmark
+### 6. Generate some traffic to the application using Apache Benchmark
 ```bash
-ab -n100 -c10 "http://{CLUSTER-IP}:8080/dispatch?customer=392&nonse=0.17041229755366172" &
+ab -n100 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
 ```
 
 Create some errors with an invalid customer number
 
 ```bash
-ab -n100 -c10 "http://{CLUSTER-IP}:8080/dispatch?customer=391&nonse=0.17041229755366172" &
+ab -n100 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=391&nonse=0.17041229755366172"
 ```
 
 You should now be able to exercise SignalFx APM dashboards.
-
-https://af26ce80ef2e14c9292ae5b4bc0d2dd0-1826890352.us-east-2.elb.amazonaws.com:8080
 
 ---
 
 ### 5. Deleting resources
 
-To delete entire EKS cluster: `eksctl delete cluster YOURCLUSTERNAMEHERE`
+To delete entire EKS cluster:
+
+```
+eksctl delete cluster YOURCLUSTERNAMEHERE`
+```
 
 Or to delete individual components:
 
-`kubectl delete deploy/hotrod svc/hotrod`
-
-`helm delete signalfx-agent`
+```
+kubectl delete deploy/hotrod svc/hotrod
+helm delete signalfx-agent
+```
 
 ---
+
+To switch back to using K3s cluster
+```
+sudo kubectl config use-context default
+```
 
 ### Appendix: Tips, Troubleshooting, and References
 
