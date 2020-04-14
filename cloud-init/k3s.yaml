@@ -5,7 +5,17 @@ package_upgrade: true
 packages:
  - apache2-utils
  - unzip
+ - powerline
 
+write_files:
+ - path: /home/ubuntu/.bashrc
+   permissions: 0644
+   content: |
+     if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
+     source /usr/share/powerline/bindings/bash/powerline.sh
+     fi
+   append: true
+   
 runcmd:
  - 'curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server" sh -s -'
  - chmod 644 /etc/rancher/k3s/k3s.yaml
