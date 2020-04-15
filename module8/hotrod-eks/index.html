@@ -21,7 +21,7 @@
     
     
       
-        <title>Running Hotrod in EKS - Splunk App Dev Workshop</title>
+        <title>Deploying Hot R.O.D. in EKS - Splunk App Dev Workshop</title>
       
     
     
@@ -91,7 +91,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Running Hotrod in EKS
+              Deploying Hot R.O.D. in EKS
             
           </span>
         </div>
@@ -497,8 +497,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module6/hotrod/" title="Running Hotrod in K3s" class="md-nav__link">
-      Running Hotrod in K3s
+    <a href="../../module6/hotrod/" title="Deploying Hot R.O.D. in K3s" class="md-nav__link">
+      Deploying Hot R.O.D. in K3s
     </a>
   </li>
 
@@ -509,8 +509,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module6/sockshop/" title="Running Sock Shop in K3s" class="md-nav__link">
-      Running Sock Shop in K3s
+    <a href="../../module6/sockshop/" title="Deploying Sock Shop in K3s" class="md-nav__link">
+      Deploying Sock Shop in K3s
     </a>
   </li>
 
@@ -614,14 +614,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Running Hotrod in EKS
+        Deploying Hot R.O.D. in EKS
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
         </span>
       </label>
     
-    <a href="./" title="Running Hotrod in EKS" class="md-nav__link md-nav__link--active">
-      Running Hotrod in EKS
+    <a href="./" title="Deploying Hot R.O.D. in EKS" class="md-nav__link md-nav__link--active">
+      Deploying Hot R.O.D. in EKS
     </a>
     
       
@@ -681,8 +681,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-deploy-hotrod-application-to-eks" class="md-nav__link">
-    6. Deploy Hotrod Application to EKS
+  <a href="#6-deploy-hot-rod-application-to-eks" class="md-nav__link">
+    6. Deploy Hot R.O.D. Application to EKS
   </a>
   
 </li>
@@ -719,8 +719,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module-support/ec2-setup/" title="Provide a prepared EC instance" class="md-nav__link">
-      Provide a prepared EC instance
+    <a href="../../module-support/ec2-setup/" title="Creating an AWS/EC2 instance" class="md-nav__link">
+      Creating an AWS/EC2 instance
     </a>
   </li>
 
@@ -797,8 +797,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-deploy-hotrod-application-to-eks" class="md-nav__link">
-    6. Deploy Hotrod Application to EKS
+  <a href="#6-deploy-hot-rod-application-to-eks" class="md-nav__link">
+    6. Deploy Hot R.O.D. Application to EKS
   </a>
   
 </li>
@@ -842,7 +842,7 @@
                   
                 
                 
-                  <h1>Running Hotrod in EKS</h1>
+                  <h1>Deploying Hot R.O.D. in EKS</h1>
                 
                 <h2 id="enabling-apm-on-eks">Enabling µAPM on EKS<a class="headerlink" href="#enabling-apm-on-eks" title="Permanent link">&para;</a></h2>
 <p><em>An organisation needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already.</em></p>
@@ -1007,11 +1007,11 @@ to see all of the pods in your cluster.
 </div>
 <p>Validate cluster looks healthy in SignalFx Kubernetes Navigator dashboard</p>
 <hr />
-<h3 id="6-deploy-hotrod-application-to-eks">6. Deploy Hotrod Application to EKS<a class="headerlink" href="#6-deploy-hotrod-application-to-eks" title="Permanent link">&para;</a></h3>
+<h3 id="6-deploy-hot-rod-application-to-eks">6. Deploy Hot R.O.D. Application to EKS<a class="headerlink" href="#6-deploy-hot-rod-application-to-eks" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>kubectl apply -f ~/workshop/apm/hotrod/k8s/deployment.yaml
 </code></pre></div>
 
-<p>To ensure the Hotrod application is running see examples below:</p>
+<p>To ensure the Hot R.O.D. application is running see examples below:</p>
 <div class="tabbed-set" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><label for="__tabbed_7_1">Input</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>kubectl get pods
 </code></pre></div>
@@ -1027,7 +1027,7 @@ signalfx-agent-q5tzh      1/1     Running   0          138m
 
 </div>
 </div>
-<p>You then need find the IP address assigned to the Hotrod service:</p>
+<p>You then need find the IP address assigned to the Hot R.O.D. service:</p>
 <div class="tabbed-set" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><label for="__tabbed_8_1">Input</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>kubectl get svc
 </code></pre></div>
@@ -1041,11 +1041,11 @@ kubernetes   ClusterIP      10.100.0.1       &lt;none&gt;                       
 
 </div>
 </div>
-<p>Create an environment variable for the IP address and port that the Hotrod application is exposed on:</p>
+<p>Create an environment variable for the IP address and port that the Hot R.O.D. application is exposed on:</p>
 <div class="highlight"><pre><span></span><code>HOTROD_ENDPOINT=$(kubectl get svc hotrod -n default -o jsonpath=&#39;{.spec.clusterIP}:{.spec.ports[0].port}&#39;)
 </code></pre></div>
 
-<p>You can view / exercise Hotrod yourself in a browser by opening the <code>EXTERNAL-IP:PORT</code> as shown above i.e.</p>
+<p>You can view / exercise Hot R.O.D. yourself in a browser by opening the <code>EXTERNAL-IP:PORT</code> as shown above i.e.</p>
 <p>https://af26ce80ef2e14c9292ae5b4bc0d2dd0-1826890352.us-east-2.elb.amazonaws.com:8080</p>
 <hr />
 <h3 id="7-generate-some-traffic-to-the-application-using-apache-benchmark">7. Generate some traffic to the application using Apache Benchmark<a class="headerlink" href="#7-generate-some-traffic-to-the-application-using-apache-benchmark" title="Permanent link">&para;</a></h3>
@@ -1096,7 +1096,7 @@ helm delete signalfx-agent
 <div class="md-source-date">
   <small>
     
-      Last update: April 15, 2020 08:26:36
+      Last update: April 15, 2020 20:20:09
     
   </small>
 </div>
@@ -1134,13 +1134,13 @@ helm delete signalfx-agent
           </a>
         
         
-          <a href="../../module-support/ec2-setup/" title="Provide a prepared EC instance" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../module-support/ec2-setup/" title="Creating an AWS/EC2 instance" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Provide a prepared EC instance
+                Creating an AWS/EC2 instance
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

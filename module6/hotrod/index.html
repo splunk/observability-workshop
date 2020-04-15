@@ -21,7 +21,7 @@
     
     
       
-        <title>Running Hotrod in K3s - Splunk App Dev Workshop</title>
+        <title>Deploying Hot R.O.D. in K3s - Splunk App Dev Workshop</title>
       
     
     
@@ -91,7 +91,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Running Hotrod in K3s
+              Deploying Hot R.O.D. in K3s
             
           </span>
         </div>
@@ -506,14 +506,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Running Hotrod in K3s
+        Deploying Hot R.O.D. in K3s
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
         </span>
       </label>
     
-    <a href="./" title="Running Hotrod in K3s" class="md-nav__link md-nav__link--active">
-      Running Hotrod in K3s
+    <a href="./" title="Deploying Hot R.O.D. in K3s" class="md-nav__link md-nav__link--active">
+      Deploying Hot R.O.D. in K3s
     </a>
     
       
@@ -545,15 +545,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-deploy-the-hotrod-application-into-k3s" class="md-nav__link">
-    2. Deploy the Hotrod application into K3s
+  <a href="#2-deploy-the-hot-rod-application-into-k3s" class="md-nav__link">
+    2. Deploy the Hot R.O.D. application into K3s
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-viewing-the-hotrod-application-in-your-browser" class="md-nav__link">
-    3. Viewing the Hotrod application in your browser
+  <a href="#3-viewing-the-hot-rod-application-in-your-browser" class="md-nav__link">
+    3. Viewing the Hot R.O.D. application in your browser
   </a>
   
 </li>
@@ -590,8 +590,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../sockshop/" title="Running Sock Shop in K3s" class="md-nav__link">
-      Running Sock Shop in K3s
+    <a href="../sockshop/" title="Deploying Sock Shop in K3s" class="md-nav__link">
+      Deploying Sock Shop in K3s
     </a>
   </li>
 
@@ -686,8 +686,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module8/hotrod-eks/" title="Running Hotrod in EKS" class="md-nav__link">
-      Running Hotrod in EKS
+    <a href="../../module8/hotrod-eks/" title="Deploying Hot R.O.D. in EKS" class="md-nav__link">
+      Deploying Hot R.O.D. in EKS
     </a>
   </li>
 
@@ -698,8 +698,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../module-support/ec2-setup/" title="Provide a prepared EC instance" class="md-nav__link">
-      Provide a prepared EC instance
+    <a href="../../module-support/ec2-setup/" title="Creating an AWS/EC2 instance" class="md-nav__link">
+      Creating an AWS/EC2 instance
     </a>
   </li>
 
@@ -748,15 +748,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-deploy-the-hotrod-application-into-k3s" class="md-nav__link">
-    2. Deploy the Hotrod application into K3s
+  <a href="#2-deploy-the-hot-rod-application-into-k3s" class="md-nav__link">
+    2. Deploy the Hot R.O.D. application into K3s
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-viewing-the-hotrod-application-in-your-browser" class="md-nav__link">
-    3. Viewing the Hotrod application in your browser
+  <a href="#3-viewing-the-hot-rod-application-in-your-browser" class="md-nav__link">
+    3. Viewing the Hot R.O.D. application in your browser
   </a>
   
 </li>
@@ -800,7 +800,7 @@
                   
                 
                 
-                  <h1>Running Hotrod in K3s</h1>
+                  <h1>Deploying Hot R.O.D. in K3s</h1>
                 
                 <h2 id="enabling-apm">Enabling µAPM<a class="headerlink" href="#enabling-apm" title="Permanent link">&para;</a></h2>
 <p><em>An organisation needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already.</em></p>
@@ -810,8 +810,8 @@
 <p>This is already documented in <a href="https://signalfx.github.io/app-dev-workshop/module3/k3s/">Deploying the Smart Agent in Kubernetes (K3s)</a>.<br />
 You can reuse your current running instance, or start fresh. </p>
 <hr />
-<h3 id="2-deploy-the-hotrod-application-into-k3s">2. Deploy the Hotrod application into K3s<a class="headerlink" href="#2-deploy-the-hotrod-application-into-k3s" title="Permanent link">&para;</a></h3>
-<p>To deploy the Hotrod application into K3s apply the deployment</p>
+<h3 id="2-deploy-the-hot-rod-application-into-k3s">2. Deploy the Hot R.O.D. application into K3s<a class="headerlink" href="#2-deploy-the-hot-rod-application-into-k3s" title="Permanent link">&para;</a></h3>
+<p>To deploy the Hot R.O.D. application into K3s apply the deployment</p>
 <div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Input</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>kubectl apply -f ~/workshop/apm/hotrod/k8s/deployment.yaml 
 </code></pre></div>
@@ -824,7 +824,7 @@ service/hotrod created
 
 </div>
 </div>
-<p>To ensure the Hotrod application is running:</p>
+<p>To ensure the Hot R.O.D. application is running:</p>
 <div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Input</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>kubectl get pods
 </code></pre></div>
@@ -839,7 +839,7 @@ hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s
 </div>
 </div>
 <hr />
-<h3 id="3-viewing-the-hotrod-application-in-your-browser">3. Viewing the Hotrod application in your browser<a class="headerlink" href="#3-viewing-the-hotrod-application-in-your-browser" title="Permanent link">&para;</a></h3>
+<h3 id="3-viewing-the-hot-rod-application-in-your-browser">3. Viewing the Hot R.O.D. application in your browser<a class="headerlink" href="#3-viewing-the-hot-rod-application-in-your-browser" title="Permanent link">&para;</a></h3>
 <p>In order to view the application in your web browser we need to find the LoadBalancer IP address and the port the application is listening on.</p>
 <div class="tabbed-set" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Input</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>kubectl get svc
@@ -855,10 +855,10 @@ hotrod       LoadBalancer   10.43.32.97   192.168.64.35   8080:31521/TCP   40m
 </div>
 </div>
 <p>Make note of the <code>EXTERNAL-IP</code> (in the example above this is <code>192.168.64.35</code>). Then head over to your web browser and type in <code>http://{EXTERNAL-IP}:8080</code>, you should then be able to see the application running. Click on customer names to order a car:</p>
-<p><img alt="Hotrod Application" src="../../images/module6/hotrod-app.png" /></p>
+<p><img alt="Hot R.O.D. Application" src="../../images/module6/hotrod-app.png" /></p>
 <hr />
 <h3 id="4-generate-some-traffic-to-the-application-using-apache-benchmark">4. Generate some traffic to the application using Apache Benchmark<a class="headerlink" href="#4-generate-some-traffic-to-the-application-using-apache-benchmark" title="Permanent link">&para;</a></h3>
-<p>Return to your shell and create an environment variable for the IP address and port that the Hotrod application is exposed on:</p>
+<p>Return to your shell and create an environment variable for the IP address and port that the Hot R.O.D. application is exposed on:</p>
 <p><div class="highlight"><pre><span></span><code>HOTROD_ENDPOINT=$(kubectl get svc hotrod -n default -o jsonpath=&#39;{.spec.clusterIP}:{.spec.ports[0].port}&#39;)
 </code></pre></div>
 then run the following command to create load on the service:</p>
@@ -875,7 +875,7 @@ then run the following command to create load on the service:</p>
 <p><img alt="select APM" src="../../images/module6/M6-l1-select-apm.png" /></p>
 <p>Select the troubleshooting tab, and select your environment and set the time to 15 minutes.
 This  should show you the dependency map for the hotrod app</p>
-<p><img alt="Hotrod in APM" src="../../images/module6/M6-l1-Hotrod-TS.png" /></p>
+<p><img alt="Hot R.O.D. in APM" src="../../images/module6/M6-l1-Hotrod-TS.png" /></p>
 <hr />
 <p>Use the <strong>Next</strong> link in the footer below to continue the workshop</p>
                 
@@ -886,7 +886,7 @@ This  should show you the dependency map for the hotrod app</p>
 <div class="md-source-date">
   <small>
     
-      Last update: April 15, 2020 16:12:26
+      Last update: April 15, 2020 20:20:09
     
   </small>
 </div>
@@ -924,13 +924,13 @@ This  should show you the dependency map for the hotrod app</p>
           </a>
         
         
-          <a href="../sockshop/" title="Running Sock Shop in K3s" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../sockshop/" title="Deploying Sock Shop in K3s" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Running Sock Shop in K3s
+                Deploying Sock Shop in K3s
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
