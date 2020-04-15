@@ -564,6 +564,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#3-ensure-sock-shop-is-fully-deployed" class="md-nav__link">
+    3. Ensure Sock Shop is fully deployed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#3-take-sock-shop-for-a-test-drive" class="md-nav__link">
     3. Take Sock Shop for a test drive
   </a>
@@ -762,6 +769,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#3-ensure-sock-shop-is-fully-deployed" class="md-nav__link">
+    3. Ensure Sock Shop is fully deployed
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#3-take-sock-shop-for-a-test-drive" class="md-nav__link">
     3. Take Sock Shop for a test drive
   </a>
@@ -821,12 +835,17 @@
 <p><em>To check if you have an organisation with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards.</em></p>
 <hr />
 <h3 id="1-create-an-instance-running-kubernetes">1. Create an instance running Kubernetes<a class="headerlink" href="#1-create-an-instance-running-kubernetes" title="Permanent link">&para;</a></h3>
-<p>This is already documented in <a href="https://signalfx.github.io/app-dev-workshop/module3/k3s/">Deploying the SmartAgent in Kubernetes using K3s</a>. </p>
+<p>This is already documented in <a href="https://signalfx.github.io/app-dev-workshop/module3/k3s/">Deploying the SmartAgent in Kubernetes using K3s</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The Sock Shop application requires some horse power to run it, please ensure you are running a Multipass instance that can handle it.</p>
+<p><strong>Sock Shop minimum requirements:</strong> 2 vCPU, 10Gb Disk, 4Gb Memory </p>
+</div>
 <h3 id="2-deploy-the-sock-shop-application-into-k3s">2. Deploy the Sock Shop application into K3s<a class="headerlink" href="#2-deploy-the-sock-shop-application-into-k3s" title="Permanent link">&para;</a></h3>
 <p>To deploy the Sock Shop application into K3s apply the deployment </p>
 <div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Input</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> apm/sockshop
-kubectl create ns sock-shop
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/workshop/apm/sockshop
+kubectl create namespace sock-shop
 kubectl apply -f k8s/complete-demo.yaml
 </code></pre></div>
 
@@ -863,6 +882,13 @@ service/user created
 
 </div>
 </div>
+<h3 id="3-ensure-sock-shop-is-fully-deployed">3. Ensure Sock Shop is fully deployed<a class="headerlink" href="#3-ensure-sock-shop-is-fully-deployed" title="Permanent link">&para;</a></h3>
+<p>To monitor the deployment of Sock Shop using <code>k9s</code> to monitor:</p>
+<div class="highlight"><pre><span></span><code>k9s
+</code></pre></div>
+
+<p>Once in <code>k9s</code> press <code>0</code> to show all namespaces:</p>
+<p><img alt="k9s" src="../../images/module6/k9s.png" /></p>
 <h3 id="3-take-sock-shop-for-a-test-drive">3. Take Sock Shop for a test drive<a class="headerlink" href="#3-take-sock-shop-for-a-test-drive" title="Permanent link">&para;</a></h3>
 <p>Sock Shop should be running in your cluster and exposes services via cluster IP and port. Obtain the ip address for the front-end service.</p>
 <div class="highlight"><pre><span></span><code><span class="nv">SOCKS_ENDPOINT</span><span class="o">=</span><span class="k">$(</span>kubectl get svc front-end -n sock-shop -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.spec.clusterIP}:{.spec.ports[0].port}&#39;</span><span class="k">)</span>
@@ -940,7 +966,7 @@ front-end      LoadBalancer   10.43.247.97    192.168.64.35   8082:30001/TCP   3
 <div class="md-source-date">
   <small>
     
-      Last update: April 15, 2020 17:05:46
+      Last update: April 15, 2020 20:39:39
     
   </small>
 </div>
