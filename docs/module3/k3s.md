@@ -3,22 +3,22 @@
 * Use the SignalFx Helm chart to install the Smart Agent in K3s.
 * Explore Your cluster in the Kubernetes Navigator
 
-If you have chosen to run the workshop on a AWS/EC2 instance, please follow instructions given and go to [Step 2](https://signalfx.github.io/app-dev-workshop/module3/k3s/#2-ive-got-the-key-ive-got-the-secret).
+If you have chosen to run the workshop on a AWS/EC2 instance, please follow instructions given to connect and  run the Workshop as described, however skip the Multipass commands in the next section.
 
 ---
 
 ### 1. Let’s bake some K8s
 
-If you are  going to run this localy please install [Multipass](https://multipass.run/) for your OS. On a Mac you can also install via `brew` e.g. `brew cask install multipass`
+If you are  going to run this locally please install [Multipass](https://multipass.run/) for your OS. On a Mac you can also install via `brew` e.g. `brew cask install multipass`
 
  
-Regardless if you are running this lab locally  or use an EC2 instance, download the App Dev Workshop Master Zip file locally or on to the EC2 instance.then proceed to unzip the file, rename it, and  change into the workshop directory
+Regardless if you are running this lab locally  or use an EC2 instance, download the App Dev Workshop Master Zip file locally or on to the EC2 instance, then proceed to unzip the file and rename it
 
 ```bash
 curl -LO https://github.com/signalfx/app-dev-workshop/archive/master.zip
 unzip master.zip
 mv app-dev-workshop-master workshop
-cd workshop
+
 ```
 When using an EC2 instance you can now skip to [Step 2](../module3/k3s/#2-ive-got-the-key-ive-got-the-secret "How to get an Access token")
 
@@ -30,7 +30,7 @@ Launch the Multipass instance which will run Kubernetes (K3s)
 ```text
 multipass launch \
 --name {YOUR_INITIALS}-k3s \
---cloud-init cloud-init/k3s.yaml \
+--cloud-init workshop/cloud-init/k3s.yaml \
 --cpus=2 --disk=10G --mem=4G
 ```
 
@@ -151,16 +151,16 @@ In the SignalFx UI, goto _**INFRASTRUCTURE → Kubernetes Navigator → Cluster 
 
 Validate that your cluster is discovered and shown (In a workshop you can see many more clusters) by finding your cluster by searching for `{YOUR_INITIALS}-SFX-WORKSHOP`:
 
-![Find Your Cluster](../images/module3/find-cluster.png)
+![Find Your Cluster](../images/module3/M3-l1-find-cluster.png)
 
-If there are many clusters you can use the dashboard filter to narrow down to your Kubernetes cluster e.g. `kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP` or do this by clicking on the blue cross ![blue cross](../images/M1-l4-blue-cross.jpg) after selecting your cluster with your mouse.
+If there are many clusters you can use the dashboard filter to narrow down to your Kubernetes cluster e.g. `kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP` or do this by  after selecting your cluster with your mouse.
 
-![K8S Clusters Filter](../images/M1-l4-Selecting-K3-cluster.jpg)
+![K8S Clusters Filter](../images/module3/M3-l1-selecting-k3-cluster.png)
 
-To examine the health of your cluster, open the side bar by clicking on the side bar button to open the Metrics side bar. Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: Cpu%, Mem%, Network in & out. Events and Container list.
+To examine the health of your node, first click on the blue cross ![blue cross](../images/module3/M3-l1-blue-cross.png)  when selecting your cluster. This will drill down to the node level.  Next, open the side bar by clicking on the side bar button to open the Metrics side bar. Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: Cpu%, Mem%, Network in & out, Events and Container list etc. etc. 
 
-![Sidebar metrics](../images/M1-l4-explore-metrics.jpg)
-
+![Sidebar metrics](../images/module3/M3-l1-explore-metrics.png)
+  
 
 Take some time to explore the Kubernetes Navigator UI.
 

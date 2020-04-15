@@ -14,7 +14,7 @@ Click the blue **launch instance** button to go to the instance selection page a
 
 ![Result found](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-AMI-select.jpg)
 
-This should bring you to the choose and instance type screen. Here you can select the type of machine you wish to run the workshop on, we do recommend to use at least a **t2 medium**  with at least two  cpu and 4 GB of memory. Once you made your selection press **Review and Launch** button.
+This should bring you to the choose and instance type screen. Here you can select the type of machine you wish to run the workshop on, we do recommend to use at least a **t2 medium**  with at least two cpu and 4 GB of memory. Once you made your selection press **Review and Launch** button.
 
 ![AWS instance type](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-InstamceType.jpg)
 
@@ -28,30 +28,28 @@ You will be presented with a dialog box asking to provide credentials, there is 
 
 On the left side of you screen click under the **INSTANCES** heading on the _instances_ link to see your instance being deployed. Once the deployment is complete, copy the Public IP address from the **Description** panel at the bottom.
 
-![IP adress](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-Get-ip.jpg)
+![IP adress](../images/setup_EC2/MEC2-6.png)
 
 ---
 
 ### 2. Connecting to your workshop instance
 
-Start a command line session on your PC (terminal on a Mac, or putty on Windows for example) Login to your instance by starting an ssh session. (replace [IP-ADRESS] with the IP address copied at step 6 from the previous section:
+Start a command line session on your PC (terminal on a Mac, or putty on Windows for example) Login to your instance by starting an ssh session. (replace [IP-ADDRESS] with the IP address copied at step 6 from the previous section:
   
-   `ssh ubuntu@[IP-ADRESS]`
+   `ssh ubuntu@[IP-ADDRESS]`
 
 You will usually be asked to confirm that you wish to connect via ssh to the server, type yes to confirm, followed by a query for a password.
  
 _**The password will be provided by the facilitator of the workshop**_.
 
-![doing an ssh session](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-Shell-connect.jpg)
+![doing an ssh session](../images/setup_EC2/MEC2-7.png)
 
 Once your logged in successfully you should see the **APP-DEV** logo confirming that you are indeed using a workshop instance. 
 
-To make sure you can run the instruction as described in the Workshop pages please enter the command `sudo -s` to elevate your permissions, your prompt should change from `ubuntu@[Servername]` to `root@[Servername]`
+The system will install and launch your k3s kubernetes platform
 
-Next type `ls` to confirm there is a workshop folder available to you on the machine.
-
-![APP_DEV shell](https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-shell%20done.jpg)
+![APP_DEV shell](../images/setup_EC2/MEC2-8.png)
 
 ---
 
-If everything matches the screen shot above, your ready to begin your [workshop](https://github.com/signalfx/app-dev-workshop/wiki)
+If everything matches the screen shot above, your ready to begin your [workshop](https://signalfx.github.io/app-dev-workshop)

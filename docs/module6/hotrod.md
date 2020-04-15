@@ -36,28 +36,8 @@ To ensure the Hotrod application is running:
     hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s
     ```
 
-Create an environment variable for the IP address and port that the Hotrod application is exposed on:
-
-```
-HOTROD_ENDPOINT=$(kubectl get svc hotrod -n default -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
-```
-
 ---
-
-### 3. Generate some traffic to the application using Apache Benchmark
-```bash
-ab -n10 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
-```
-
-Create some errors with an invalid customer number
-
-```bash
-ab -n10 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=391&nonse=0.17041229755366172"
-```
-
----
-
-### 4. Viewing the Hotrod application in your browser
+### 3. Viewing the Hotrod application in your browser
 In order to view the application in your web browser we need to find the LoadBalancer IP address and the port the application is listening on.
 
 === "Input"
@@ -75,6 +55,35 @@ In order to view the application in your web browser we need to find the LoadBal
 Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). Then head over to your web browser and type in `http://{EXTERNAL-IP}:8080`, you should then be able to see the application running. Click on customer names to order a car:
 
 ![Hotrod Application](../images/module6/hotrod-app.png)
+
+---
+
+### 4. Generate some traffic to the application using Apache Benchmark
+
+Create an environment variable for the IP address and port that the Hotrod application is exposed on:
+
+```
+HOTROD_ENDPOINT=$(kubectl get svc hotrod -n default -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
+```
+then run the following command to create load on the service:
+
+```bash
+ab -n10 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
+```
+
+Create some errors with an invalid customer number
+
+```bash
+ab -n10 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=391&nonse=0.17041229755366172"
+```
+
+---
+
+### 5. Verify that APM traffic is reaching SignalFx
+
+Open the APM dashboard in signal fx and ....
+
+[PLACE_HOLDER FOR SFX SCREENSHOT]
 
 ---
 
