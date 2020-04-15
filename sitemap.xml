@@ -63,5 +63,9 @@
      <loc>https://signalfx.github.io/app-dev-workshop/module8/hotrod-eks/</loc>
      <lastmod>2020-04-15</lastmod>
      <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://signalfx.github.io/app-dev-workshop/module-support/ec2-setup/</loc>
+     <lastmod>2020-04-15</lastmod>
+     <changefreq>daily</changefreq>
     </url>
 </urlset>

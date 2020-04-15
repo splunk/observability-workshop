@@ -21,7 +21,7 @@
     
     
       
-        <title>Ec2 setup - Splunk App Dev Workshop</title>
+        <title>Provide a prepared EC instance - Splunk App Dev Workshop</title>
       
     
     
@@ -91,7 +91,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Ec2 setup
+              Provide a prepared EC instance
             
           </span>
         </div>
@@ -578,10 +578,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11" checked>
     
     <label class="md-nav__link" for="nav-11">
       <b>Optional Modules</b>
@@ -608,6 +610,70 @@
     <a href="../../module8/hotrod-eks/" title="Running Hotrod in EKS" class="md-nav__link">
       Running Hotrod in EKS
     </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Provide a prepared EC instance
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Provide a prepared EC instance" class="md-nav__link md-nav__link--active">
+      Provide a prepared EC instance
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary-of-this-wiki-page" class="md-nav__link">
+    Summary of this wiki page:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-starting-the-workshop-instance" class="md-nav__link">
+    1. Starting the workshop instance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-connecting-to-your-workshop-instance" class="md-nav__link">
+    2. Connecting to your workshop instance
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -680,7 +746,7 @@
                   
                 
                 
-                  <h1>Ec2 setup</h1>
+                  <h1>Provide a prepared EC instance</h1>
                 
                 <h3 id="summary-of-this-wiki-page">Summary of this wiki page:<a class="headerlink" href="#summary-of-this-wiki-page" title="Permanent link">&para;</a></h3>
 <ul>
@@ -693,27 +759,26 @@
 <p><img alt="Frankfurt selection" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-SelectFrankfurt.jpg" /></p>
 <p>Click the blue <strong>launch instance</strong> button to go to the instance selection page and search for the workshop by typing the name <em><strong>App-Dev-Workshop</strong></em> into the search box. You should find  get 1 result in the Community AMI's, and click on the on the Result link:</p>
 <p><img alt="Result found" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-AMI-select.jpg" /></p>
-<p>This should bring you to the choose and instance type screen. Here you can select the type of machine you wish to run the workshop on, we do recommend to use at least a <strong>t2 medium</strong>  with at least two  cpu and 4 GB of memory. Once you made your selection press <strong>Review and Launch</strong> button.</p>
+<p>This should bring you to the choose and instance type screen. Here you can select the type of machine you wish to run the workshop on, we do recommend to use at least a <strong>t2 medium</strong>  with at least two cpu and 4 GB of memory. Once you made your selection press <strong>Review and Launch</strong> button.</p>
 <p><img alt="AWS instance type" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-InstamceType.jpg" /></p>
 <p>Validate that the information on the review page looks like what is shown below and hit the <strong>Launch</strong> button to start the workshop instance.</p>
 <p><img alt="Launcing instance" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-Launch.jpg" /></p>
 <p>You will be presented with a dialog box asking to provide credentials, there is no need to provide ssh keys so you can select the option <strong><em>Proceed without a key pair</em></strong>, then tick the acknowledge box to confirm you willing to pay AWS for this then hit the blue <strong>LAUNCH INSTANCE</strong> button</p>
 <p><img alt="Launch dialog" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS_-Launch-dialog.jpg" /></p>
 <p>On the left side of you screen click under the <strong>INSTANCES</strong> heading on the <em>instances</em> link to see your instance being deployed. Once the deployment is complete, copy the Public IP address from the <strong>Description</strong> panel at the bottom.</p>
-<p><img alt="IP adress" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-Get-ip.jpg" /></p>
+<p><img alt="IP adress" src="../../images/setup_EC2/MEC2-6.png" /></p>
 <hr />
 <h3 id="2-connecting-to-your-workshop-instance">2. Connecting to your workshop instance<a class="headerlink" href="#2-connecting-to-your-workshop-instance" title="Permanent link">&para;</a></h3>
-<p>Start a command line session on your PC (terminal on a Mac, or putty on Windows for example) Login to your instance by starting an ssh session. (replace [IP-ADRESS] with the IP address copied at step 6 from the previous section:</p>
-<p><code>ssh ubuntu@[IP-ADRESS]</code></p>
+<p>Start a command line session on your PC (terminal on a Mac, or putty on Windows for example) Login to your instance by starting an ssh session. (replace [IP-ADDRESS] with the IP address copied at step 6 from the previous section:</p>
+<p><code>ssh ubuntu@[IP-ADDRESS]</code></p>
 <p>You will usually be asked to confirm that you wish to connect via ssh to the server, type yes to confirm, followed by a query for a password.</p>
 <p><em><strong>The password will be provided by the facilitator of the workshop</strong></em>.</p>
-<p><img alt="doing an ssh session" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-Shell-connect.jpg" /></p>
+<p><img alt="doing an ssh session" src="../../images/setup_EC2/MEC2-7.png" /></p>
 <p>Once your logged in successfully you should see the <strong>APP-DEV</strong> logo confirming that you are indeed using a workshop instance. </p>
-<p>To make sure you can run the instruction as described in the Workshop pages please enter the command <code>sudo -s</code> to elevate your permissions, your prompt should change from <code>ubuntu@[Servername]</code> to <code>root@[Servername]</code></p>
-<p>Next type <code>ls</code> to confirm there is a workshop folder available to you on the machine.</p>
-<p><img alt="APP_DEV shell" src="https://github.com/signalfx/app-dev-workshop/blob/master/screenshots/AWS-shell%20done.jpg" /></p>
+<p>The system will install and launch your k3s kubernetes platform</p>
+<p><img alt="APP_DEV shell" src="../../images/setup_EC2/MEC2-8.png" /></p>
 <hr />
-<p>If everything matches the screen shot above, your ready to begin your <a href="https://github.com/signalfx/app-dev-workshop/wiki">workshop</a></p>
+<p>If everything matches the screen shot above, your ready to begin your <a href="https://signalfx.github.io/app-dev-workshop">workshop</a></p>
                 
                   
                     
@@ -722,7 +787,7 @@
 <div class="md-source-date">
   <small>
     
-      Last update: April 13, 2020 07:59:49
+      Last update: April 15, 2020 15:33:06
     
   </small>
 </div>
@@ -741,6 +806,27 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../module8/hotrod-eks/" title="Running Hotrod in EKS" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Running Hotrod in EKS
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
