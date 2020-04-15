@@ -7,6 +7,7 @@ _To check if you have an organisation with µAPM enabled, just login to SignalFx
 
 ### 1. Create an instance running Kubernetes
 This is already documented in [Deploying the Smart Agent in Kubernetes (K3s)](https://signalfx.github.io/app-dev-workshop/module3/k3s/).  
+You can reuse your current running instance, or start fresh. 
 
 ---
 
@@ -60,7 +61,7 @@ Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). T
 
 ### 4. Generate some traffic to the application using Apache Benchmark
 
-Create an environment variable for the IP address and port that the Hotrod application is exposed on:
+Return to your shell and create an environment variable for the IP address and port that the Hotrod application is exposed on:
 
 ```
 HOTROD_ENDPOINT=$(kubectl get svc hotrod -n default -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
@@ -81,9 +82,14 @@ ab -n10 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=391&nonse=0.170412297553
 
 ### 5. Verify that APM traffic is reaching SignalFx
 
-Open the APM dashboard in signal fx and ....
+Open SignalFx in your browser and select the APM tab to open the APM UI. 
 
-[PLACE_HOLDER FOR SFX SCREENSHOT]
+![select APM](../images/module6/M6-l1-select-apm.png)
+
+Select the troubleshooting tab, and select your environment and set the time to 15 minutes.
+This  should show you the dependency map for the hotrod app
+
+![Hotrod in APM](../images/module6/M6-l1-Hotrod-TS.png)
 
 ---
 
