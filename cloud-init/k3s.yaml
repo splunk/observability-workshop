@@ -5,12 +5,12 @@ package_upgrade: true
 packages:
  - apache2-utils
  - unzip
+ - powerline
 
 runcmd:
  - 'curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server" sh -s -'
  - chmod 644 /etc/rancher/k3s/k3s.yaml
  - 'git clone https://github.com/signalfx/app-dev-workshop.git /home/ubuntu/workshop'
- - chown -R ubuntu:ubuntu /home/ubuntu/workshop
  - 'curl https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd -o /etc/motd'
  - 'curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash'
  - 'curl -OL https://github.com/derailed/k9s/releases/download/v0.19.1/k9s_Linux_x86_64.tar.gz'
@@ -22,3 +22,5 @@ runcmd:
  - ./aws/install
  - curl --silent --location https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz | tar xz -C /tmp'
  - mv /tmp/eksctl /usr/local/bin
+ - cat /home/ubuntu/workshop/cloud-init/powerline.txt >> /home/ubuntu/.bashrc
+ - chown -R ubuntu:ubuntu /home/ubuntu

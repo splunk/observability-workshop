@@ -7,7 +7,7 @@ _To check if you have an organisation with µAPM enabled, just login to SignalFx
 
 ### 1. Launch the Multipass instance
 
-If you have not already completed [Step #1](https://signalfx.github.io/app-dev-workshop/module3/k3s/#1-lets-bake-some-k8s) in Module 3 then please do so, otherwise jump to [Step #2](http://192.168.1.4:8001/module8/hotrod-eks/#2-create-environment-variables)
+If you have not already completed [Step #1](https://signalfx.github.io/app-dev-workshop/module3/k3s/#1-lets-bake-some-k8s) in Module 3 then please do so, otherwise jump to [Step #2](https://signalfx.github.io/app-dev-workshop/module8/hotrod-eks/#2-create-environment-variables)
 
 ### 2. Create environment variables
 
@@ -139,11 +139,11 @@ Install the Smart Agent Helm chart with the following commands:
 
 === "Input"
     ```
-    sed -i -e 's/\[INITIALS\]/'"$INITIALS"'/' workshop/k3s/values.yaml
+    sed -i -e 's/\[INITIALS\]/'"$INITIALS"'/' ~/workshop/k3s/values.yaml
     helm install \
     --set signalFxAccessToken=$ACCESS_TOKEN \
     --set clusterName=$EKS_CLUSTER_NAME \
-    --set signalFxRealm=$REAM \
+    --set signalFxRealm=$REALM \
     --set agentVersion=$VERSION \
     --set kubeletAPI.url=https://localhost:10250 \
     --set traceEndpointUrl=https://ingest.$REALM.signalfx.com/v2/trace \
