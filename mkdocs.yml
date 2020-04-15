@@ -57,11 +57,11 @@ nav:
     - 'Teams' : module5/teams.md
   - '<b>Module 6</b> - µAPM':
     - 'µAPM Architecture Overview': module6/index.md
-    - 'Running Hotrod in K3s': module6/hotrod.md
-    - 'Running Sock Shop in K3s': module6/sockshop.md
+    - 'Deploying Hot R.O.D. in K3s': module6/hotrod.md
+    - 'Deploying Sock Shop in K3s': module6/sockshop.md
   - '<b>Module 7</b> - VictorOps':
     - 'Coming Soon!': module7/index.md
   - '<b>Post Workshop Clean Up!</b>': module-support/cleanup.md
   - '<b>Optional Modules</b>':
-    - 'Running Hotrod in EKS': module8/hotrod-eks.md
-    - 'Provide a prepared EC instance': module-support/ec2-setup.md
+    - 'Deploying Hot R.O.D. in EKS': module8/hotrod-eks.md
+    - 'Creating an AWS/EC2 instance': module-support/ec2-setup.md

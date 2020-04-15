@@ -175,13 +175,13 @@ Validate cluster looks healthy in SignalFx Kubernetes Navigator dashboard
 
 ---
 
-### 6. Deploy Hotrod Application to EKS
+### 6. Deploy Hot R.O.D. Application to EKS
 
 ```
 kubectl apply -f ~/workshop/apm/hotrod/k8s/deployment.yaml
 ```
 
-To ensure the Hotrod application is running see examples below:
+To ensure the Hot R.O.D. application is running see examples below:
 
 === "Input"
     ```bash
@@ -197,7 +197,7 @@ To ensure the Hotrod application is running see examples below:
     signalfx-agent-q5tzh      1/1     Running   0          138m
     ```
 
-You then need find the IP address assigned to the Hotrod service:
+You then need find the IP address assigned to the Hot R.O.D. service:
 
 === "Input"
     ```bash
@@ -211,13 +211,13 @@ You then need find the IP address assigned to the Hotrod service:
     kubernetes   ClusterIP      10.100.0.1       <none>                                                                    443/TCP          3d1h
     ```
 
-Create an environment variable for the IP address and port that the Hotrod application is exposed on:
+Create an environment variable for the IP address and port that the Hot R.O.D. application is exposed on:
 
 ```
 HOTROD_ENDPOINT=$(kubectl get svc hotrod -n default -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
 ```
 
-You can view / exercise Hotrod yourself in a browser by opening the `EXTERNAL-IP:PORT` as shown above i.e.
+You can view / exercise Hot R.O.D. yourself in a browser by opening the `EXTERNAL-IP:PORT` as shown above i.e.
 
 https://af26ce80ef2e14c9292ae5b4bc0d2dd0-1826890352.us-east-2.elb.amazonaws.com:8080
 

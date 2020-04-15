@@ -11,8 +11,8 @@ You can reuse your current running instance, or start fresh.
 
 ---
 
-### 2. Deploy the Hotrod application into K3s
-To deploy the Hotrod application into K3s apply the deployment
+### 2. Deploy the Hot R.O.D. application into K3s
+To deploy the Hot R.O.D. application into K3s apply the deployment
   
 === "Input"
     ```bash
@@ -24,7 +24,7 @@ To deploy the Hotrod application into K3s apply the deployment
     service/hotrod created
     ```
 
-To ensure the Hotrod application is running:
+To ensure the Hot R.O.D. application is running:
 
 === "Input"
     ```bash
@@ -38,7 +38,7 @@ To ensure the Hotrod application is running:
     ```
 
 ---
-### 3. Viewing the Hotrod application in your browser
+### 3. Viewing the Hot R.O.D. application in your browser
 In order to view the application in your web browser we need to find the LoadBalancer IP address and the port the application is listening on.
 
 === "Input"
@@ -55,13 +55,13 @@ In order to view the application in your web browser we need to find the LoadBal
 
 Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). Then head over to your web browser and type in `http://{EXTERNAL-IP}:8080`, you should then be able to see the application running. Click on customer names to order a car:
 
-![Hotrod Application](../images/module6/hotrod-app.png)
+![Hot R.O.D. Application](../images/module6/hotrod-app.png)
 
 ---
 
 ### 4. Generate some traffic to the application using Apache Benchmark
 
-Return to your shell and create an environment variable for the IP address and port that the Hotrod application is exposed on:
+Return to your shell and create an environment variable for the IP address and port that the Hot R.O.D. application is exposed on:
 
 ```
 HOTROD_ENDPOINT=$(kubectl get svc hotrod -n default -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
@@ -89,7 +89,7 @@ Open SignalFx in your browser and select the APM tab to open the APM UI.
 Select the troubleshooting tab, and select your environment and set the time to 15 minutes.
 This  should show you the dependency map for the hotrod app
 
-![Hotrod in APM](../images/module6/M6-l1-Hotrod-TS.png)
+![Hot R.O.D. in APM](../images/module6/M6-l1-Hotrod-TS.png)
 
 ---
 

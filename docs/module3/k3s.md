@@ -38,7 +38,7 @@ Select either the Hot R.O.D or Sock Shop Multipass launch parameters:
 === "Hot R.O.D" 
     ```text
     multipass launch \
-    --name $INITIALS-k3s \
+    --name {YOUR_INITIALS}-k3s \
     --cloud-init workshop/cloud-init/k3s.yaml \
     ```
 
