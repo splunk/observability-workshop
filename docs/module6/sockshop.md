@@ -6,7 +6,13 @@ _To check if you have an organisation with µAPM enabled, just login to SignalFx
 ---
 
 ### 1. Create an instance running Kubernetes
-This is already documented in [Deploying the SmartAgent in Kubernetes using K3s](https://signalfx.github.io/app-dev-workshop/module3/k3s/). 
+
+This is already documented in [Deploying the SmartAgent in Kubernetes using K3s](https://signalfx.github.io/app-dev-workshop/module3/k3s/).
+
+!!! Warning
+    The Sock Shop application requires some horse power to run it, please ensure you are running a Multipass instance that can handle it.
+
+    **Sock Shop minimum requirements:** 2 vCPU, 10Gb Disk, 4Gb Memory 
 
 ### 2. Deploy the Sock Shop application into K3s
 
@@ -14,10 +20,11 @@ To deploy the Sock Shop application into K3s apply the deployment
 
 === "Input"
     ```bash
-    cd apm/sockshop
-    kubectl create ns sock-shop
+    cd ~/workshop/apm/sockshop
+    kubectl create namespace sock-shop
     kubectl apply -f k8s/complete-demo.yaml
     ```
+
 === "Output"
     ```text
     namespace/sock-shop created
@@ -48,6 +55,18 @@ To deploy the Sock Shop application into K3s apply the deployment
     deployment.apps/user created
     service/user created
     ```
+
+### 3. Ensure Sock Shop is fully deployed
+
+To monitor the deployment of Sock Shop using `k9s` to monitor:
+
+```
+k9s
+```
+
+Once in `k9s` press `0` to show all namespaces:
+
+![k9s](../images/module6/k9s.png)
 
 ### 3. Take Sock Shop for a test drive
 
