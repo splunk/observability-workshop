@@ -959,11 +959,11 @@ Default output format [json]:
 </div>
 <p>Install the Smart Agent Helm chart with the following commands:</p>
 <div class="tabbed-set" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><label for="__tabbed_6_1">Input</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>sed -i -e &#39;s/\[INITIALS\]/&#39;&quot;$INITIALS&quot;&#39;/&#39; workshop/k3s/values.yaml
+<div class="highlight"><pre><span></span><code>sed -i -e &#39;s/\[INITIALS\]/&#39;&quot;$INITIALS&quot;&#39;/&#39; ~/workshop/k3s/values.yaml
 helm install \
 --set signalFxAccessToken=$ACCESS_TOKEN \
 --set clusterName=$EKS_CLUSTER_NAME \
---set signalFxRealm=$REAM \
+--set signalFxRealm=$REALM \
 --set agentVersion=$VERSION \
 --set kubeletAPI.url=https://localhost:10250 \
 --set traceEndpointUrl=https://ingest.$REALM.signalfx.com/v2/trace \
@@ -1084,7 +1084,7 @@ helm delete signalfx-agent
 <div class="md-source-date">
   <small>
     
-      Last update: April 14, 2020 18:07:31
+      Last update: April 15, 2020 08:26:36
     
   </small>
 </div>
