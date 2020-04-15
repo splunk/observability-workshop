@@ -13,7 +13,7 @@ write_files:
    content: | 
      KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
    append: true
-   
+
 runcmd:
  - 'curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server" sh -s -'
  - chmod 644 /etc/rancher/k3s/k3s.yaml
@@ -25,7 +25,7 @@ runcmd:
  - mv k9s /usr/local/bin/
  - chmod -x /etc/update-motd.d/*
  - 'curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip'
- - unzip awscliv2.zip
+ - unzip -qq awscliv2.zip
  - ./aws/install
  - 'curl --silent --location https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz | tar xz -C /tmp'
  - mv /tmp/eksctl /usr/local/bin/
