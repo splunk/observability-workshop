@@ -86,25 +86,25 @@ The parameter `-c` controls the amount of concurrent clients and `-r` the amount
 
 Navigate to µAPM (*not* µAPM PG) and select Monitoring, then ensure you have selected your environment from the dropdown at the top, you should see something like this:
 
-![µAPM Monitoring](../images/m2-monitoring.png)
+![µAPM Monitoring](../images/module6/m2-monitoring.png)
 
 Explore the User Interface: Review an automatically generated Service Dashboard. How do you correlate Service performance with Infrastructure?
 
-![µAPM Service Dashboard](../images/m2-service.png)
+![µAPM Service Dashboard](../images/module6/m2-service.png)
 
 
 
 Troubleshoot a service. Let's stress the sock shop a bit. Increase the amount of clients running for the load test to something ludicrous (1000+ seems to do the trick). What happens with the services? Troubleshoot a service with a higher error rate. Also review the service dependencies.
 
-![µAPM Service Dashboard](../images/m2-troubleshoot.png)
+![µAPM Service Dashboard](../images/module6/m2-troubleshoot.png)
 
-![µAPM Service Dashboard](../images/m2-deps.png)
+![µAPM Service Dashboard](../images/module6/m2-deps.png)
 
 Look at individual traces and span performance.
 
-![µAPM Service Dashboard](../images/m2-waterfall.png)
+![µAPM Service Dashboard](../images/module6/m2-waterfall.png)
 
-![µAPM Service Dashboard](../images/m2-spanperf.png)
+![µAPM Service Dashboard](../images/module6/m2-spanperf.png)
 
 ---
 

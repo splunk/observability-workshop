@@ -8,7 +8,7 @@ There are times when you, for a period of time, don't want to be disturbed by no
 
 Hover over **ALERTS** in the menu and click on **Detectors**
 
-![](../images/M1-l3-1.png) 
+![](../images/module2/M1-l3-1.png) 
 
 If you created an alert detector in "Working with Detectors" you can click on the three dots `...` on the far right and click on **Create Muting Rule...**
 
@@ -32,8 +32,8 @@ Click on Mute Indefinitely to confirm. You won't be receiving any email notifica
 
 To Resume notifications, hover over **ALERTS** in the top menu and click on Muting Rules. You will see the name of the detector you muted notifications for under Detector.
 
-![](../images/M1-l3-6.png) 
-![](../images/M1-l3-7.png) 
+![](../images/module2/M1-l3-6.png) 
+![](../images/module2/M1-l3-7.png) 
 
 ---
 
@@ -41,7 +41,7 @@ Click on the thee dots `...` on the far right
 
 Click on Resume Notifications
 
-![](../images/M1-l3-8.png) 
+![](../images/module2/M1-l3-8.png) 
 
 Click on Resume to confirm and resume notifications for this detector
 
