@@ -11,28 +11,44 @@ If you have chosen to run the workshop on a AWS/EC2 instance, please follow inst
 
 If you are  going to run this locally please install [Multipass](https://multipass.run/) for your OS. On a Mac you can also install via `brew` e.g. `brew cask install multipass`
 
- 
-Regardless if you are running this lab locally  or use an EC2 instance, download the App Dev Workshop Master Zip file locally or on to the EC2 instance, then proceed to unzip the file and rename it
+Regardless if you are running this lab locally or using an AWS/EC2 instance, download the App Dev Workshop Master Zip file locally or on to the EC2 instance, then proceed to unzip the file and rename it:
 
 ```bash
 curl -LO https://github.com/signalfx/app-dev-workshop/archive/master.zip
 unzip master.zip
 mv app-dev-workshop-master workshop
-
 ```
-When using an EC2 instance you can now skip to [Step 2](../module3/k3s/#2-ive-got-the-key-ive-got-the-secret "How to get an Access token")
+
+When using an EC2 instance you can skip to [Step 2](https://signalfx.github.io/app-dev-workshop/module3/k3s/#2-ive-got-the-key-ive-got-the-secret)
 
 Launch the Multipass instance which will run Kubernetes (K3s)
+
+!!! Warning
+    In [Module 6](https://signalfx.github.io/app-dev-workshop/module6/) there are two applications for deployment for µAPM (Hot R.O.D & Sock Shop).
+    
+    **Hot R.O.D minimum requirements:** 1 vCPU, 5Gb Disk, 1Gb Memory
+
+    **Sock Shop minimum requirements:** 2 vCPU, 10Gb Disk, 4Gb Memory
 
 !!! note 
     Use `{YOUR_INITIALS}-k3s` so that the value of the instance hostname is unique e.g. `rwc-k3s`
 
-```text
-multipass launch \
---name {YOUR_INITIALS}-k3s \
---cloud-init workshop/cloud-init/k3s.yaml \
---cpus=2 --disk=10G --mem=4G
-```
+Select either the Hot R.O.D or Sock Shop Multipass launch parameters:
+
+=== "Hot R.O.D" 
+    ```text
+    multipass launch \
+    --name $INITIALS-k3s \
+    --cloud-init workshop/cloud-init/k3s.yaml \
+    ```
+
+=== "Sock Shop"
+    ```text
+    multipass launch \
+    --name {YOUR_INITIALS}-k3s \
+    --cloud-init workshop/cloud-init/k3s.yaml \
+    --cpus=2 --disk=10G --mem=4G
+    ```
 
 Once the instance has been successfully created shell into it.
 
@@ -40,7 +56,7 @@ Once the instance has been successfully created shell into it.
 multipass shell {YOUR_INITIALS}-k3s
 ```
 
-![Shell](../module3/shell.png)
+![Shell](../images/module3/shell.png)
 
 ---
 
