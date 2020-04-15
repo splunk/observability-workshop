@@ -139,11 +139,11 @@ Install the Smart Agent Helm chart with the following commands:
 
 === "Input"
     ```
-    sed -i -e 's/\[INITIALS\]/'"$INITIALS"'/' workshop/k3s/values.yaml
+    sed -i -e 's/\[INITIALS\]/'"$INITIALS"'/' ~/workshop/k3s/values.yaml
     helm install \
     --set signalFxAccessToken=$ACCESS_TOKEN \
     --set clusterName=$EKS_CLUSTER_NAME \
-    --set signalFxRealm=$REAM \
+    --set signalFxRealm=$REALM \
     --set agentVersion=$VERSION \
     --set kubeletAPI.url=https://localhost:10250 \
     --set traceEndpointUrl=https://ingest.$REALM.signalfx.com/v2/trace \
