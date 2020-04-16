@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
      <loc>https://signalfx.github.io/app-dev-workshop/</loc>
-     <lastmod>2020-04-15</lastmod>
+     <lastmod>2020-04-16</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/introduction/</loc>
-     <lastmod>2020-04-15</lastmod>
+     <lastmod>2020-04-16</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module1/dashboards/</loc>
-     <lastmod>2020-04-15</lastmod>
+     <lastmod>2020-04-16</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module2/detectors/</loc>
-     <lastmod>2020-04-15</lastmod>
+     <lastmod>2020-04-16</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module2/muting/</loc>
-     <lastmod>2020-04-15</lastmod>
+     <lastmod>2020-04-16</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module3/k3s/</loc>
-     <lastmod>2020-04-15</lastmod>
+     <lastmod>2020-04-16</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module3/nginx/</loc>
-     <lastmod>2020-04-15</lastmod>
+     <lastmod>2020-04-16</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module4/terraform/</loc>
-     <lastmod>2020-04-15</lastmod>
+     <lastmod>2020-04-16</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module5/service_bureau/</loc>
-     <lastmod>2020-04-15</lastmod>
+     <lastmod>2020-04-16</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module5/teams/</loc>
-     <lastmod>2020-04-15</lastmod>
+     <lastmod>2020-04-16</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module6/</loc>
-     <lastmod>2020-04-15</lastmod>
+     <lastmod>2020-04-16</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module6/hotrod/</loc>
-     <lastmod>2020-04-15</lastmod>
+     <lastmod>2020-04-16</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module6/sockshop/</loc>
-     <lastmod>2020-04-15</lastmod>
+     <lastmod>2020-04-16</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module7/</loc>
-     <lastmod>2020-04-15</lastmod>
+     <lastmod>2020-04-16</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module-support/cleanup/</loc>
-     <lastmod>2020-04-15</lastmod>
+     <lastmod>2020-04-16</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module8/hotrod-eks/</loc>
-     <lastmod>2020-04-15</lastmod>
+     <lastmod>2020-04-16</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://signalfx.github.io/app-dev-workshop/module-support/ec2-setup/</loc>
-     <lastmod>2020-04-15</lastmod>
+     <lastmod>2020-04-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
