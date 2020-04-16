@@ -28,7 +28,7 @@ Launch the Multipass instance which will run Kubernetes (K3s)
     
     **Hot R.O.D minimum requirements:** 1 vCPU, 5Gb Disk, 1Gb Memory
 
-    **Sock Shop minimum requirements:** 2 vCPU, 10Gb Disk, 4Gb Memory
+    **Sock Shop minimum requirements:** 2 vCPU, 15Gb Disk, 4Gb Memory
 
 !!! note 
     Use `{YOUR_INITIALS}-k3s` so that the value of the instance hostname is unique e.g. `rwc-k3s`
