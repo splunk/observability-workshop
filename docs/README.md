@@ -10,7 +10,7 @@ sudo pip3 install -r requirements.txt
 ### Running the docs server:
 
 ```bash
-mkdocs serve --dev-addr 0.0.0.0:8000
+mkdocs serve
 ```
 
 After these commands, the current branch is accessible through your favorite browser at <http://localhost:8000>
