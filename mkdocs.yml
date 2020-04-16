@@ -19,7 +19,7 @@ theme:
   include_search_page: false
   search_index_only: true
   language: en
-  custom_dir: material
+  custom_dir: docs/material
 markdown_extensions:
   - markdown.extensions.admonition
   - markdown.extensions.codehilite:
