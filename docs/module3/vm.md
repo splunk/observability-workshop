@@ -58,8 +58,6 @@ In the next module we are going to roll out the agent on the Kubernetes cluster.
 Input:
 
 ```
-signalfx-agent stop
+sudo service signalfx-agent stop
 ```
-
-Output:
 
