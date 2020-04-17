@@ -23,26 +23,25 @@ signalfx-agent status
 Output:
 
 ```text
-SignalFx Agent version:           5.0.4
-Agent uptime:                     9m34s
-Observers active:                 k8s-api
-Active Monitors:                  13
-Configured Monitors:              13
-Discovered Endpoint Count:        15
+SignalFx Agent version:           5.1.1
+Agent uptime:                     4s
+Observers active:                 host
+Active Monitors:                  9
+Configured Monitors:              9
+Discovered Endpoint Count:        16
 Bad Monitor Config:               None
-Global Dimensions:                {kubernetes_cluster:    AS-SFX-WORKSHOP, host: as-k3s, kubernetes_node_uid:    a58cf908-0536-478d-aa63-8ba381ef2c33}
+Global Dimensions:                {host: as-k3s}
 GlobalSpanTags:                   map[]
-Datapoints sent (last minute):    726
+Datapoints sent (last minute):    0
 Datapoints failed (last minute):  0
 Datapoints overwritten (total):   0
-Events Sent (last minute):        6
+Events Sent (last minute):        0
 Trace Spans Sent (last minute):   0
 Trace Spans overwritten (total):  0
-Kubernetes Leader Node:           as-k3s
 
 Additional status commands:
 
-signalfx-agent status config - show resolved config in use    by agent
+signalfx-agent status config - show resolved config in use by agent
 signalfx-agent status endpoints - show discovered endpoints
 signalfx-agent status monitors - show active monitors
 signalfx-agent status all - show everything
