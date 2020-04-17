@@ -2,8 +2,12 @@
 
 ### Lab Summary
 * Activate your login
-* Configure your profile
-* Create routing key
+* Configure your Profile
+* Create your Team
+* Configure Rotations
+* Configure Escalation Policies
+* Create a Routing Key
+* Launch test VMs & Monitor with SignalFx
 
 ---
 
@@ -92,4 +96,81 @@ Your profile is now fully configured using these example configurations. Organis
 
 ---
 
-### 3. Create Routing Key
+### 3. Create Your Team
+Navigate to the Teams Tab on the main toolbar, select 'Add Team', then enter your team name using the format '&lt;Your Initals&gt; Workshop' and then save by clicking the 'Add Team' button.
+
+INSERT SCREEN SHOT HERE
+
+You now need to add other users to your team.  If you are running this workshop using the Splunk provided envrionment, the following accounts are available for testing.  If you are running this lab in your own environment, you will have been provided a list of usernames you can use in place of the table below.
+
+| Name | Username | Shift |
+| --- | --- | --- |
+| Duane Chow | duanechow | Europe |
+| Steven Gomez | gomez | Europe |
+| Walter White | heisenberg | Europe |
+| Jim Halpert | jimhalpert | Asia |
+| Lydia Rodarte-Quayle | lydia | Asia |
+| Marie Schrader | marie | Asia |
+| Maximo Arciniega | maximo | West Coast |
+| Michael Scott | michaelscott | West Coast |
+| Tuco Salamanca | tuco | West Coast |
+| Jack Welker | jackwelker | 24/7 |
+| Hank Schrader | hankschrader | 24/7 |
+| Pam Beesly | pambeesly | 24/7 |
+
+Add the users to your team, using either the above list or the alternate one provided to you. The value in the Shift column can be ignored for now, but will be required for a later step.
+
+Click the Invite User button then either start typing the usernames (this will filter the list), or copy and paste them into the dialogue box. Once all users are added click the 'Add User' button.
+
+To make a team member a Team Admin, simply click the Pencil icon in the right hand column, pick any user and make them an Admin.
+
+!!!tip
+For large team managment you could use the API to streamline this process, and we will look at that in a later module
+
+---
+
+### 3. Configure Rotations 
+Navigate to the Rotations tab on the Teams sub menu, you should have no existing Rotations so we need to create some. The 1st Rotation you will create is for a follow the sun support pattern where the members of each shift provide cover during their normal working hours within their time zone.  The 2nd will be a Rotation used to provide escalation support by more experienced senior members of the team, based on a 24/7, 1 week shift pattern.
+
+* Follow the Sun Support - Business Hours
+    * Click 'Add Rotation'
+    * Enter a name of Follow the Sun Support - Business Hours
+    * Select 'Partial day' from the three available shift templates
+        * Enter a Shift name of Asia
+        * Time Zone set to Asia/Tokyo
+        * Each user is on duty from 'Monday through Friday from 9.00am to 5.00pm'
+        * Handoff happens every 1 days
+        * The next handoff happens &lt;the next Monday will have been automatically selected&gt;
+        * Save Rotation
+    * Now add an 2nd shft for Asia by clicking '+Add a shift'
+        * Enter a Shift name of Europe
+        * Time Zone set to Europe/London
+        * The remaining settings will have been copied from the 1st shift
+        * Save Shift
+    * Now add a 3rd shft for West Coast USA by clicking '+Add a shift'
+        * Enter a Shift name of West Coast
+        * Time Zone set to US/Pacific
+        * The remaining settings will have been copied from the 1st shift
+        * Save Shift
+    * You new need to add the users into their allocated shift patterns using either the table above, or the list of users provided to you separately
+        * For each Shift, click on the 'Manage Members' icon which is the left of the three icons and resembles the image of three heads
+        * Add the users to each Shift (note how you have to use their Username and not their real names)
+        * The first user added will the 'current' user for that shift
+        * You can re-order the shifts by simply dragging the users up and down, and you can change the current user by clicking 'Set Current' on an alternate user
+
+You will now have three different Shift patterns, that provide cover 24hr hours, Mon - Fri, but with no cover at weekends.
+
+We will now add the 2nd Rotation for our Senior SRE Escalation cover.
+
+* Senior SRE Escalation
+    * Click 'Add Rotation'
+    * Enter a name of Senior SRE Escalation
+    * Select '24/7 from the three available shift templates
+        * Enter a Shift name of Senior SRE Escalation
+        * Time Zone set to Asia/Tokyo
+        * andoff happens every 7 days at 9.00am
+        * The next handoff happens &lt;select the next Monday from the date picker&gt;
+        * Save Rotation
+    * Add the users who are allocated the 24/7 shift
+
+
