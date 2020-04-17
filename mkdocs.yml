@@ -67,4 +67,3 @@ nav:
   - '<b>Optional Modules</b>':
     - 'Deploying Hot R.O.D. in EKS': module8/hotrod-eks.md
     - 'Creating an AWS/EC2 instance': module-support/ec2-setup.md
-
