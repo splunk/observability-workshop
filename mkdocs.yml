@@ -39,9 +39,9 @@ plugins:
       locale: en
   - search
   - minify:
-    minify_html: true
-    minify_js: true
-    htmlmin_opts:
+      minify_html: true
+      minify_js: true
+      htmlmin_opts:
         remove_comments: true
         
 nav:
