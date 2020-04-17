@@ -48,6 +48,8 @@ nav:
     - 'Working with Detectors': module2/detectors.md
     - 'Working with Muting Rules': module2/muting.md
   - '<b>Module 3</b> - Smart Agent':
+    - 'Preparation': module3/prep.md
+    - 'Deploying the Smart Agent on a VM': module3/vm.md
     - 'Deploying the Smart Agent in Kubernetes (K3s)': module3/k3s.md
     - 'Deploying NGINX in K3s' : module3/nginx.md
   - '<b>Module 4</b> - Monitoring as Code':

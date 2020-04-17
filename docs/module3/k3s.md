@@ -1,5 +1,5 @@
 ### Lab Summary
-* Download the workshop and configure Kubernetes ([K3s](https://k3s.io/)) environment.
+
 * Use the SignalFx Helm chart to install the Smart Agent in K3s.
 * Explore Your cluster in the Kubernetes Navigator
 
@@ -7,60 +7,7 @@ If you have chosen to run the workshop on a AWS/EC2 instance, please follow inst
 
 ---
 
-### 1. Let’s bake some K8s
-
-If you are  going to run this locally please install [Multipass](https://multipass.run/) for your OS. On a Mac you can also install via `brew` e.g. `brew cask install multipass`
-
-Regardless if you are running this lab locally or using an AWS/EC2 instance, download the App Dev Workshop Master Zip file locally or on to the EC2 instance, then proceed to unzip the file and rename it:
-
-```bash
-curl -LO https://github.com/signalfx/app-dev-workshop/archive/master.zip
-unzip master.zip
-mv app-dev-workshop-master workshop
-```
-
-When using an EC2 instance you can skip to [Step 2](https://signalfx.github.io/app-dev-workshop/module3/k3s/#2-ive-got-the-key-ive-got-the-secret)
-
-Launch the Multipass instance which will run Kubernetes (K3s)
-
-!!! Warning
-    In [Module 6](https://signalfx.github.io/app-dev-workshop/module6/) there are two applications for deployment for µAPM (Hot R.O.D & Sock Shop).
-    
-    **Hot R.O.D minimum requirements:** 1 vCPU, 5Gb Disk, 1Gb Memory
-
-    **Sock Shop minimum requirements:** 2 vCPU, 15Gb Disk, 4Gb Memory
-
-!!! note 
-    Use `{YOUR_INITIALS}-k3s` so that the value of the instance hostname is unique e.g. `rwc-k3s`
-
-Select either the Hot R.O.D or Sock Shop Multipass launch parameters:
-
-=== "Hot R.O.D" 
-    ```text
-    multipass launch \
-    --name {YOUR_INITIALS}-k3s \
-    --cloud-init workshop/cloud-init/k3s.yaml \
-    ```
-
-=== "Sock Shop"
-    ```text
-    multipass launch \
-    --name {YOUR_INITIALS}-k3s \
-    --cloud-init workshop/cloud-init/k3s.yaml \
-    --cpus=2 --disk=10G --mem=4G
-    ```
-
-Once the instance has been successfully created shell into it.
-
-```bash
-multipass shell {YOUR_INITIALS}-k3s
-```
-
-![Shell](../images/module3/shell.png)
-
----
-
-### 2. I’ve got the key, I’ve got the secret!
+### 1. I’ve got the key, I’ve got the secret!
 
 You will need to obtain your Access Token from the SignalFx UI once Kubernetes is running. You can find your Access Token by clicking on your profile icon on the top right of the SignalFx UI. Then select _**Organisation Settings → Access Tokens**_.  Expand the Default token, then click on _**Show Token**_ to expose your token. Later in the lab you can come back here and click the _**Copy**_ button which will copy it to your clipboard  so you can paste it when you need to provide an access token in the lab.
 ![Access Token](../images/module3/m1-l4-access-token.png)
@@ -70,7 +17,7 @@ You will also need to obtain the name of the Realm for your SignalFx account.  C
 
 ---
 
-### 3. Take the Helm!
+### 2. Take the Helm!
 
 Create the following variables to use in the proceeding helm install command:
 
@@ -157,7 +104,7 @@ Ensure there are no errors by tailing the logs from the Smart Agent Pod. Output 
 
 ---
 
-### 4. Check all is well in the SignalFx UI!
+### 3. Check all is well in the SignalFx UI!
 
 In the SignalFx UI, goto _**INFRASTRUCTURE → Kubernetes Navigator → Cluster Map**_ and open the Kubernetes Navigator Cluster Map to ensure metrics are being sent.
 
@@ -176,10 +123,10 @@ If there are many clusters you can use the dashboard filter to narrow down to yo
 To examine the health of your node, first click on the blue cross ![blue cross](../images/module3/M3-l1-blue-cross.png)  when selecting your cluster. This will drill down to the node level.  Next, open the side bar by clicking on the side bar button to open the Metrics side bar. Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: Cpu%, Mem%, Network in & out, Events and Container list etc. etc. 
 
 ![Sidebar metrics](../images/module3/M3-l1-explore-metrics.png)
-  
 
 Take some time to explore the Kubernetes Navigator UI.
 
 ---
 
 Use the **Next** link in the footer below to continue the workshop
+
