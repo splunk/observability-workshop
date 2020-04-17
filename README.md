@@ -1,5 +1,5 @@
 # Welcome!
-In this workshop we're going to take you though the exciting journey of App Dev, what this is, why this is important, and how to get started right away!
+In this workshop we're going to take you through the exciting journey of App Dev, what this is, why this is important, and how to get started right away!
 Make sure you have [Multipass](https://multipass.run) installed before starting, if you have any questions about this, please ask your Sales Engineer (AWS/EC2 option also available).
 
 ---
