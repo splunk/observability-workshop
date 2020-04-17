@@ -38,7 +38,12 @@ plugins:
       type: datetime
       locale: en
   - search
-  
+  - minify:
+    minify_html: true
+    minify_js: true
+    htmlmin_opts:
+        remove_comments: true
+        
 nav:
   - '<b>Home</b>': index.md
   - '<b>Introduction</b>': introduction.md
