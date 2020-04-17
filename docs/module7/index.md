@@ -1,13 +1,13 @@
 ## Victor Ops Getting Started
 
 ### Lab Summary
-* Activate your login
-* Configure your Profile
-* Create your Team
-* Configure Rotations
-* Configure Escalation Policies
-* Create a Routing Key
-* Launch test VMs & Monitor with SignalFx
+1. Activate your login
+2. Configure your Profile
+3. Create your Team
+4. Configure Rotations
+5. Configure Escalation Policies
+6. Create a Routing Key
+7. Launch test VMs & Monitor with SignalFx
 
 ---
 
@@ -99,8 +99,6 @@ Your profile is now fully configured using these example configurations. Organis
 ### 3. Create Your Team
 Navigate to the Teams Tab on the main toolbar, select 'Add Team', then enter your team name using the format '&lt;Your Initals&gt; Workshop' and then save by clicking the 'Add Team' button.
 
-INSERT SCREEN SHOT HERE
-
 You now need to add other users to your team.  If you are running this workshop using the Splunk provided envrionment, the following accounts are available for testing.  If you are running this lab in your own environment, you will have been provided a list of usernames you can use in place of the table below.
 
 | Name | Username | Shift |
@@ -129,7 +127,7 @@ For large team managment you could use the API to streamline this process, and w
 
 ---
 
-### 3. Configure Rotations 
+### 4. Configure Rotations 
 Navigate to the Rotations tab on the Teams sub menu, you should have no existing Rotations so we need to create some. The 1st Rotation you will create is for a follow the sun support pattern where the members of each shift provide cover during their normal working hours within their time zone.  The 2nd will be a Rotation used to provide escalation support by more experienced senior members of the team, based on a 24/7, 1 week shift pattern.
 
 * Follow the Sun Support - Business Hours
@@ -173,4 +171,23 @@ We will now add the 2nd Rotation for our Senior SRE Escalation cover.
         * Save Rotation
     * Add the users who are allocated the 24/7 shift
 
+That completes the configuation of the Rotations, we now need to configure the Escalation Policies and Routing Keys.
 
+---
+
+### 5. Configure Escalation Policies
+Navigate to the Ecsalation Polices tab on the Teams sub menu, you should have no existing Polices so we need to create some.  We are going to create three different Polices to cover off three eyoical use cases.
+
+* Primary
+    * Click 'Add Escalation Policy'
+    * 
+
+    
+    
+* Waiting Room
+    * xxx
+
+    
+
+* 24/7
+    * xxx
