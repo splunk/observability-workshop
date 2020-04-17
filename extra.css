@@ -24,4 +24,5 @@ a.md-logo img {
 
 :root{
     --md-primary-fg-color: rgb(231, 12, 176);
+    --md-accent-fg-color: rgb(231, 12, 176);
 }
