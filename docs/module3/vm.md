@@ -9,7 +9,7 @@ SignalFx maintains a shell script to install on supported distributions:
 
 ```
 curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
-sudo sh /tmp/signalfx-agent.sh --realm $REALM $ACCESS_TOKEN
+sudo sh /tmp/signalfx-agent.sh --realm $REALM -- $ACCESS_TOKEN
 ```
 
 Once the installation is complete, validate the agent is running.
