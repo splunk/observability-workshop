@@ -794,7 +794,7 @@
 <h3 id="1-deploy-signalfx-smart-agent-via-install-script-on-a-vm">1. Deploy SignalFx Smart Agent via install script on a VM<a class="headerlink" href="#1-deploy-signalfx-smart-agent-via-install-script-on-a-vm" title="Permanent link">&para;</a></h3>
 <p>SignalFx maintains a shell script to install on supported distributions:</p>
 <div class="highlight"><pre><span></span><code>curl -sSL https://dl.signalfx.com/signalfx-agent.sh &gt; /tmp/signalfx-agent.sh
-sudo sh /tmp/signalfx-agent.sh --realm $REALM $ACCESS_TOKEN
+sudo sh /tmp/signalfx-agent.sh --realm $REALM -- $ACCESS_TOKEN
 </code></pre></div>
 
 <p>Once the installation is complete, validate the agent is running.</p>
@@ -842,7 +842,7 @@ signalfx-agent status all - show everything
 <div class="md-source-date">
   <small>
     
-      Last update: April 17, 2020 11:47:39
+      Last update: April 17, 2020 13:20:55
     
   </small>
 </div>
