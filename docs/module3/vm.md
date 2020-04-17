@@ -56,7 +56,7 @@ In the SignalFX UI, go to Infrastructure, Hosts and make sure you see your multi
 
 In the next module we are going to roll out the agent on the Kubernetes cluster. Before doing that, stop the VM agent with the following command:
 
-Input:
+Input: 
 
 ```
 sudo service signalfx-agent stop
