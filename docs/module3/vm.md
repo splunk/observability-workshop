@@ -2,6 +2,7 @@
 
 1. Deploy SignalFx Smart Agent via install script on a VM
 1. Confirm the Smart Agent is working and sending data
+3. Stop the agent on the VM
 
 ### 1. Deploy SignalFx Smart Agent via install script on a VM
 
