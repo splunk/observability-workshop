@@ -671,8 +671,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-create-routing-key" class="md-nav__link">
-    3. Create Routing Key
+  <a href="#3-create-your-team" class="md-nav__link">
+    3. Create Your Team
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-configure-rotations" class="md-nav__link">
+    3. Configure Rotations
   </a>
   
 </li>
@@ -847,8 +854,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-create-routing-key" class="md-nav__link">
-    3. Create Routing Key
+  <a href="#3-create-your-team" class="md-nav__link">
+    3. Create Your Team
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-configure-rotations" class="md-nav__link">
+    3. Configure Rotations
   </a>
   
 </li>
@@ -884,8 +898,12 @@
 <h3 id="lab-summary">Lab Summary<a class="headerlink" href="#lab-summary" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Activate your login</li>
-<li>Configure your profile</li>
-<li>Create routing key</li>
+<li>Configure your Profile</li>
+<li>Create your Team</li>
+<li>Configure Rotations</li>
+<li>Configure Escalation Policies</li>
+<li>Create a Routing Key</li>
+<li>Launch test VMs &amp; Monitor with SignalFx</li>
 </ul>
 <hr />
 <h3 id="1-activate-your-login">1. Activate your login<a class="headerlink" href="#1-activate-your-login" title="Permanent link">&para;</a></h3>
@@ -973,7 +991,146 @@
 <p>The final option here is the setting for Recovery Notifications.  As these are typically low priority simply sending you an email is the typical setting used.</p>
 <p>Your profile is now fully configured using these example configurations. Organisations will have different views on how profiles should be configured and will typically issue guidelines for paging policies and times between escallations etc.</p>
 <hr />
-<h3 id="3-create-routing-key">3. Create Routing Key<a class="headerlink" href="#3-create-routing-key" title="Permanent link">&para;</a></h3>
+<h3 id="3-create-your-team">3. Create Your Team<a class="headerlink" href="#3-create-your-team" title="Permanent link">&para;</a></h3>
+<p>Navigate to the Teams Tab on the main toolbar, select 'Add Team', then enter your team name using the format '&lt;Your Initals&gt; Workshop' and then save by clicking the 'Add Team' button.</p>
+<p>INSERT SCREEN SHOT HERE</p>
+<p>You now need to add other users to your team.  If you are running this workshop using the Splunk provided envrionment, the following accounts are available for testing.  If you are running this lab in your own environment, you will have been provided a list of usernames you can use in place of the table below.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Username</th>
+<th>Shift</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Duane Chow</td>
+<td>duanechow</td>
+<td>Europe</td>
+</tr>
+<tr>
+<td>Steven Gomez</td>
+<td>gomez</td>
+<td>Europe</td>
+</tr>
+<tr>
+<td>Walter White</td>
+<td>heisenberg</td>
+<td>Europe</td>
+</tr>
+<tr>
+<td>Jim Halpert</td>
+<td>jimhalpert</td>
+<td>Asia</td>
+</tr>
+<tr>
+<td>Lydia Rodarte-Quayle</td>
+<td>lydia</td>
+<td>Asia</td>
+</tr>
+<tr>
+<td>Marie Schrader</td>
+<td>marie</td>
+<td>Asia</td>
+</tr>
+<tr>
+<td>Maximo Arciniega</td>
+<td>maximo</td>
+<td>West Coast</td>
+</tr>
+<tr>
+<td>Michael Scott</td>
+<td>michaelscott</td>
+<td>West Coast</td>
+</tr>
+<tr>
+<td>Tuco Salamanca</td>
+<td>tuco</td>
+<td>West Coast</td>
+</tr>
+<tr>
+<td>Jack Welker</td>
+<td>jackwelker</td>
+<td>24/7</td>
+</tr>
+<tr>
+<td>Hank Schrader</td>
+<td>hankschrader</td>
+<td>24/7</td>
+</tr>
+<tr>
+<td>Pam Beesly</td>
+<td>pambeesly</td>
+<td>24/7</td>
+</tr>
+</tbody>
+</table>
+<p>Add the users to your team, using either the above list or the alternate one provided to you. The value in the Shift column can be ignored for now, but will be required for a later step.</p>
+<p>Click the Invite User button then either start typing the usernames (this will filter the list), or copy and paste them into the dialogue box. Once all users are added click the 'Add User' button.</p>
+<p>To make a team member a Team Admin, simply click the Pencil icon in the right hand column, pick any user and make them an Admin.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+</div>
+<p>For large team managment you could use the API to streamline this process, and we will look at that in a later module</p>
+<hr />
+<h3 id="3-configure-rotations">3. Configure Rotations<a class="headerlink" href="#3-configure-rotations" title="Permanent link">&para;</a></h3>
+<p>Navigate to the Rotations tab on the Teams sub menu, you should have no existing Rotations so we need to create some. The 1st Rotation you will create is for a follow the sun support pattern where the members of each shift provide cover during their normal working hours within their time zone.  The 2nd will be a Rotation used to provide escalation support by more experienced senior members of the team, based on a 24/7, 1 week shift pattern.</p>
+<ul>
+<li>Follow the Sun Support - Business Hours<ul>
+<li>Click 'Add Rotation'</li>
+<li>Enter a name of Follow the Sun Support - Business Hours</li>
+<li>Select 'Partial day' from the three available shift templates<ul>
+<li>Enter a Shift name of Asia</li>
+<li>Time Zone set to Asia/Tokyo</li>
+<li>Each user is on duty from 'Monday through Friday from 9.00am to 5.00pm'</li>
+<li>Handoff happens every 1 days</li>
+<li>The next handoff happens &lt;the next Monday will have been automatically selected&gt;</li>
+<li>Save Rotation</li>
+</ul>
+</li>
+<li>Now add an 2nd shft for Asia by clicking '+Add a shift'<ul>
+<li>Enter a Shift name of Europe</li>
+<li>Time Zone set to Europe/London</li>
+<li>The remaining settings will have been copied from the 1st shift</li>
+<li>Save Shift</li>
+</ul>
+</li>
+<li>Now add a 3rd shft for West Coast USA by clicking '+Add a shift'<ul>
+<li>Enter a Shift name of West Coast</li>
+<li>Time Zone set to US/Pacific</li>
+<li>The remaining settings will have been copied from the 1st shift</li>
+<li>Save Shift</li>
+</ul>
+</li>
+<li>You new need to add the users into their allocated shift patterns using either the table above, or the list of users provided to you separately<ul>
+<li>For each Shift, click on the 'Manage Members' icon which is the left of the three icons and resembles the image of three heads</li>
+<li>Add the users to each Shift (note how you have to use their Username and not their real names)</li>
+<li>The first user added will the 'current' user for that shift</li>
+<li>You can re-order the shifts by simply dragging the users up and down, and you can change the current user by clicking 'Set Current' on an alternate user</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>You will now have three different Shift patterns, that provide cover 24hr hours, Mon - Fri, but with no cover at weekends.</p>
+<p>We will now add the 2nd Rotation for our Senior SRE Escalation cover.</p>
+<ul>
+<li>Senior SRE Escalation<ul>
+<li>Click 'Add Rotation'</li>
+<li>Enter a name of Senior SRE Escalation</li>
+<li>Select '24/7 from the three available shift templates<ul>
+<li>Enter a Shift name of Senior SRE Escalation</li>
+<li>Time Zone set to Asia/Tokyo</li>
+<li>andoff happens every 7 days at 9.00am</li>
+<li>The next handoff happens &lt;select the next Monday from the date picker&gt;</li>
+<li>Save Rotation</li>
+</ul>
+</li>
+<li>Add the users who are allocated the 24/7 shift</li>
+</ul>
+</li>
+</ul>
                 
                   
                     
@@ -982,7 +1139,7 @@
 <div class="md-source-date">
   <small>
     
-      Last update: April 15, 2020 10:11:13
+      Last update: April 17, 2020 14:19:51
     
   </small>
 </div>
