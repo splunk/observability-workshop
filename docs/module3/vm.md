@@ -21,9 +21,9 @@ In the modal window that appears click on **SETUP** and click **Copy** from the 
     Installing package signalfx-agent (latest) from release repo
     Get:1 http://mirrors.ubuntu.com/mirrors.txt Mirrorlist [736 B]
     Get:4 http://mirror.as29550.net/archive.ubuntu.com bionic-backports InRelease [74.6 kB]
-    Get:3 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]                                                                            
-    Hit:5 http://uk-mirrors.evowise.com/ubuntu bionic-security InRelease                                                                                 
-    Hit:2 http://mirrors.ukfast.co.uk/sites/archive.ubuntu.com bionic InRelease                                
+    Get:3 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
+    Hit:5 http://uk-mirrors.evowise.com/ubuntu bionic-security InRelease
+    Hit:2 http://mirrors.ukfast.co.uk/sites/archive.ubuntu.com bionic InRelease
     ....
     Processing triggers for systemd (237-3ubuntu10.39) ...
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
