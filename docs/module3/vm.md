@@ -15,7 +15,7 @@ In the modal window that appears click on **SETUP** and click **Copy** from the 
 === "Output"
     ```text
     ubuntu@rwc-k3s:~$ curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
-    ubuntu@rwc-k3s:~$ sudo sh /tmp/signalfx-agent.sh --realm us1 -- -rRrdhqtnP-AZ-RNKEMe7g
+    ubuntu@rwc-k3s:~$ sudo sh /tmp/signalfx-agent.sh --realm us1 -- -rxxxxxxxxxxxxxxxxg
     Ingest URL: https://ingest.us1.signalfx.com
     API URL: https://api.us1.signalfx.com
     Installing package signalfx-agent (latest) from release repo
