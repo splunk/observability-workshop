@@ -29,6 +29,7 @@ markdown_extensions:
   - pymdownx.tabbed
   - pymdownx.superfences
   - pymdownx.mark
+  - pymdownx.inlinehilite
 
 extra_css:
   - "extra.css"

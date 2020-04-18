@@ -6,11 +6,9 @@
 
 ### Let’s bake some K8s
 
-* Download the workshop and configure Kubernetes ([K3s](https://k3s.io/)) environment.
-
 If you have chosen to run the workshop on a AWS/EC2 instance, please follow instructions given to connect and run the Workshop as described, however skip the Multipass commands in the next section.
 
-If you are  going to run this locally please install [Multipass](https://multipass.run/) for your OS. On a Mac you can also install via `brew` e.g. `brew cask install multipass`
+If you are  going to run this locally please install [Multipass](https://multipass.run/) for your OS. On a Mac you can also install via [Homebrew](https://brew.sh/) e.g. `brew cask install multipass`
 
 Regardless if you are running this lab locally or using an AWS/EC2 instance, download the App Dev Workshop Master Zip file locally or on to the EC2 instance, then proceed to unzip the file, rename it and cd into it:
 
@@ -26,7 +24,7 @@ When using an EC2 instance you can skip the following section and continue to [S
 Launch the Multipass instance which will run Kubernetes (K3s)
 
 !!! Warning
-    In [Module 6](https://signalfx.github.io/app-dev-workshop/module6/) there are two applications for deployment for µAPM (Hot R.O.D & Sock Shop).
+    In [Module 6](https://signalfx.github.io/app-dev-workshop/module6/) there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
 
     **Hot R.O.D minimum requirements:** 1 vCPU, 5Gb Disk, 1Gb Memory
 
@@ -35,17 +33,17 @@ Launch the Multipass instance which will run Kubernetes (K3s)
 !!! note
     Use `{YOUR_INITIALS}-k3s` so that the value of the instance hostname is unique e.g. `rwc-k3s`
 
-Select either the Hot R.O.D or Sock Shop Multipass launch parameters:
+Select either the Hot R.O.D or Sock Shop Multipass launch parameters Lines highlighted in yellow need to be edited:
 
 === "Hot R.O.D"
-    ```text
+    ```text hl_lines="2"
     multipass launch \
     --name {YOUR_INITIALS}-k3s \
     --cloud-init cloud-init/k3s.yaml \
     ```
 
 === "Sock Shop"
-    ```text
+    ```text hl_lines="2"
     multipass launch \
     --name {YOUR_INITIALS}-k3s \
     --cloud-init cloud-init/k3s.yaml \
@@ -54,10 +52,8 @@ Select either the Hot R.O.D or Sock Shop Multipass launch parameters:
 
 Once the instance has been successfully created shell into it.
 
-```bash
+```bash hl_lines="1"
 multipass shell {YOUR_INITIALS}-k3s
 ```
 
 ![Shell](../images/module3/shell.png)
-
----
