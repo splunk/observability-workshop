@@ -4,6 +4,8 @@
 1. Confirm the Smart Agent is working and sending data
 3. Stop the agent on the VM
 
+---
+
 ### 1. Deploy SignalFx Smart Agent via install script on a VM
 
 Login into the SignalFx UI and click on **INTEGRATIONS** on the top menu bar. Click on the SignalFx SmartAgent tile
@@ -45,7 +47,10 @@ Once the installation is complete check the status of the agent
     signalfx-agent status
     ```
 
-And validate that it is running 
+And validate that it is running.
+
+!!! Note 
+    Remember the value displayed for you in the _Host:_ name in the _Global Dimensions_ section of the output, as you need this later
 
 === "Output"
     ```text
@@ -73,9 +78,30 @@ And validate that it is running
     signalfx-agent status all - show everything
     ```
 
+---
+
 ### 2. Confirm the Smart Agent is working and sending data
 
-In the SignalFX UI, go to Infrastructure, Hosts and make sure you see your Multipass instance in the list of hosts. You can also set a filter for just your instance.
+To see the Metrics that the Smart Agent is sending to SignalFx, please goto the SignalFX UI,  and select  **Infrastructure → Hosts**   to see the lists of hosts.
+
+![Goto host ](../images/module3/M3-hosts.png)
+
+Here you see a list of the Nodes that have an Smart Agent installed and are reporting into SignalFx. Make sure you see your Multipass/EC2 instance in the list of hosts. (The hostname from the previous section) 
+
+You can also set a filter for just your instance by selecting the _host:_  attribute, followed by picking the name of your host from the drop down list.
+
+![Filter host ](../images/module3/M3-list-of-hosts.png)
+
+Click on the link to your host from the list, this wil take you to the overview page of your host.
+
+Make sure you have the **SYSTEM METRIC**  tab selected. Here you can see various charts that relate to the health of your host, like CPU &  Memory Used%, Disk I/O and many more.
+You can also see the list of seervices running on your host by selecting  the **PROCESSES** tab.
+
+![Host Selected](../images/module3/M3-host-selected.png)
+
+Take a moment to explore the various charts and the Processes list.
+
+---
 
 ### 3. Stop the agent on the VM
 
@@ -84,3 +110,7 @@ In the next module we are going to roll out the agent on the Kubernetes cluster.
 ```
 sudo service signalfx-agent stop
 ```
+
+---
+
+Use the **Next** link in the footer below to continue the workshop

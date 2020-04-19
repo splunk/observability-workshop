@@ -142,7 +142,7 @@ Look at individual traces and span performance.
 
 ### 7. Viewing the SockShop application in your browser
 
-(If you are using an EC2 instance, please skip to this section. 
+(If you are using an EC2 instance, please skip to this section.)
 
 In order to view the application in your web browser we need to find the LoadBalancer IP address and the port the application is listening on.
 
