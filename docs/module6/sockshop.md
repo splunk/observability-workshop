@@ -7,12 +7,18 @@ _To check if you have an organisation with µAPM enabled, just login to SignalFx
 
 ### 1. Create an instance running Kubernetes
 
-This is already documented in [Deploying the SmartAgent in Kubernetes using K3s](https://signalfx.github.io/app-dev-workshop/module3/k3s/).
+The setup part is already documented in the [Preparation section](https://signalfx.github.io/app-dev-workshop/module3/prep/) & [Install k3s section](https://signalfx.github.io/app-dev-workshop/module3/k3s/).  
+
+
+You can reuse your current running instance, or start fresh 
+(If you start fresh, please run both sections before continuing). 
 
 !!! Warning
     The Sock Shop application requires some horse power to run it, please ensure you are running a Multipass instance that can handle it.
 
     **Sock Shop minimum requirements:** 2 vCPU, 10Gb Disk, 4Gb Memory 
+
+---
 
 ### 2. Deploy the Sock Shop application into K3s
 
@@ -56,6 +62,8 @@ To deploy the Sock Shop application into K3s apply the deployment
     service/user created
     ```
 
+---
+
 ### 3. Ensure Sock Shop is fully deployed
 
 To monitor the deployment of Sock Shop using `k9s` to monitor:
@@ -68,7 +76,9 @@ Once in `k9s` press `0` to show all namespaces:
 
 ![k9s](../images/module6/k9s.png)
 
-### 3. Take Sock Shop for a test drive
+---
+
+### 4. Take Sock Shop for a test drive
 
 Sock Shop should be running in your cluster and exposes services via cluster IP and port. Obtain the ip address for the front-end service.
 
@@ -91,7 +101,9 @@ Then send a
     </html>
     ```
 
-### 4. Apply load on Sock Shop
+---
+
+### 5. Apply load on Sock Shop
 
 Use a load test for sock shop.
 
@@ -101,7 +113,9 @@ kubectl run --generator=run-pod/v1 load-test --rm -i --tty --image weaveworksdem
 
 The parameter `-c` controls the amount of concurrent clients and `-r` the amount of requests sent. To apply continuous load just set `-r` to some higher number.
 
-### 5. Visualize and analyze trace data
+---
+
+### 6. Visualize and analyze trace data
 
 Navigate to µAPM (*not* µAPM PG) and select Monitoring, then ensure you have selected your environment from the dropdown at the top, you should see something like this:
 
@@ -110,7 +124,6 @@ Navigate to µAPM (*not* µAPM PG) and select Monitoring, then ensure you have s
 Explore the User Interface: Review an automatically generated Service Dashboard. How do you correlate Service performance with Infrastructure?
 
 ![µAPM Service Dashboard](../images/module6/m2-service.png)
-
 
 
 Troubleshoot a service. Let's stress the sock shop a bit. Increase the amount of clients running for the load test to something ludicrous (1000+ seems to do the trick). What happens with the services? Troubleshoot a service with a higher error rate. Also review the service dependencies.
@@ -127,7 +140,10 @@ Look at individual traces and span performance.
 
 ---
 
-### 6. Viewing the SockShop application in your browser
+### 7. Viewing the SockShop application in your browser
+
+(If you are using an EC2 instance, please skip to this section. 
+
 In order to view the application in your web browser we need to find the LoadBalancer IP address and the port the application is listening on.
 
 === "Input"

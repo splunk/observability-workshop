@@ -46,7 +46,7 @@ helm repo update
 Install the Smart Agent Helmchart with the following commands:
 
 ```
-sed -i -e 's/\[INITIALS\]/'"$INITIALS"'/' workshop/k3s/values.yaml
+sed -i -e 's/\[INITIALS\]/'"$INITIALS"'/' ~/workshop/k3s/values.yaml
 helm install \
 --set signalFxAccessToken=$ACCESS_TOKEN \
 --set clusterName=$INITIALS-SFX-WORKSHOP \
@@ -56,7 +56,7 @@ helm install \
 --set traceEndpointUrl=https://ingest.$REALM.signalfx.com/v2/trace \
 --set gatherDockerMetrics=false \
 signalfx-agent signalfx/signalfx-agent \
--f workshop/k3s/values.yaml
+-f ~/workshop/k3s/values.yaml
 ```
 
 You can monitor the progress of the deployment by running `kubectl get pods` which should typically report a new pod is up and running after about 30 seconds. Ensure the status is reported as Running before continuing.

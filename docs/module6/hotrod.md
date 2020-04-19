@@ -6,8 +6,12 @@ _To check if you have an organisation with µAPM enabled, just login to SignalFx
 ---
 
 ### 1. Create an instance running Kubernetes
-This is already documented in [Deploying the Smart Agent in Kubernetes (K3s)](https://signalfx.github.io/app-dev-workshop/module3/k3s/).  
-You can reuse your current running instance, or start fresh. 
+
+The setup part is already documented in the [Preparation section](https://signalfx.github.io/app-dev-workshop/module3/prep/) & [Install k3s section](https://signalfx.github.io/app-dev-workshop/module3/k3s/).  
+
+
+You can reuse your current running instance, or start fresh 
+(If you start fresh, please run both sections before continuing). 
 
 ---
 
@@ -38,7 +42,10 @@ To ensure the Hot R.O.D. application is running:
     ```
 
 ---
+
 ### 3. Viewing the Hot R.O.D. application in your browser
+(If you are using an EC2 instance, please skip to the next section [Generate Traffic](https://signalfx.github.io/app-dev-workshop/module6/hotrod/#4-generate-some-traffic-to-the-application-using-apache-benchmark)).
+
 In order to view the application in your web browser we need to find the LoadBalancer IP address and the port the application is listening on.
 
 === "Input"
@@ -90,6 +97,8 @@ Select the troubleshooting tab, and select your environment and set the time to 
 This  should show you the dependency map for the hotrod app
 
 ![Hot R.O.D. in APM](../images/module6/M6-l1-Hotrod-TS.png)
+
+If you did create some errors, they show up as the big red dot in the Redis service.
 
 ---
 
