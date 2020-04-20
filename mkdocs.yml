@@ -68,7 +68,7 @@ nav:
     - 'Deploying Hot R.O.D. in K3s': module6/hotrod.md
     - 'Deploying Sock Shop in K3s': module6/sockshop.md
   - '<b>Module 7</b> - VictorOps':
-    - 'Coming Soon!': module7/index.md
+    - 'Victor Ops Getting Started': module7/vo_getting_started.md
   - '<b>Post Workshop Clean Up!</b>': module-support/cleanup.md
   - '<b>Optional Modules</b>':
     - 'Deploying Hot R.O.D. in EKS': module8/hotrod-eks.md
