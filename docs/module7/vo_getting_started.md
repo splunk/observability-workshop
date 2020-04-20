@@ -9,18 +9,22 @@
 ---
 
 ### 1. Activate your login
-You will have received an invitation to Activate your VictorOps aaccount via e-mail, click the 'Activate Account' link and follow the prompts.
+You will have received an invitation to Activate your VictorOps account via e-mail, click the 'Activate Account' link and follow the prompts.
 
 ---
 
 ### 2. Configure Your Profile
-Once you are logged in to VictorOps you now need to setup your profile.  Click on your login name in the top right hand corner and chose 'Your Profile' from the drop down.
+Once you are logged in to VictorOps you now need to set up your profile.  Click on your login name in the top right hand corner and chose 'Profile' from the drop down.
 
 #### Contact Methods
-Confirm your contant methods are listed correctly and add any addiontal phone numbers and e-mail address you wish to use.
+Confirm your contact methods are listed correctly and add any addiontal phone numbers and e-mail address you wish to use.
 
 #### Devices
 Install the VictorOps app for your smartphone.  Search your phones App Store for VictorOps to find the appropriate version of the app.  The publisher should be listed as VictorOps Inc.
+
+* iPhone (https://apps.apple.com/us/app/victorops/id696974262)
+
+* Android (https://play.google.com/store/apps/details?id=com.victorops.androidclient&hl=en) - must be opened on mobile
 
 Configuration help guides are available here:
 
@@ -55,9 +59,16 @@ Then add a new step
     - Every 5 minutes until we have reached you
     - Make a phone call to &lt;your phone number&gt;
 
-Then save the policy
+Then save the policy.
 
-Reviewing what we have just created, you will initally get paged using your smart phone, if you have not acknowledged within 5 minutes the policy will move on to the next step. Step 2 will send you an e-mail, but will also repeat Step 1 so you will get another push notification to your smart phone, then wait for 5 minutes for an acknowledgement before again escalating to the next step. Step 3 will phone you every 5 minutes until acknowledged, and will also send a push notification and email.
+When you are on-call or in the escalation path of an incident, you will receive notifications in this order following these time delays. To cease the paging you must acknowledge the incident. Acknowledgements can occur in one of the following ways:
+
+* Expanding the Push Notification and selecting Acknowledge
+* Responding to the SMS with the 5 digit code included
+* Pressing 4 during the Phone Call 
+* Slack Button
+
+For more information on Notification Types, see here: https://help.victorops.com/knowledge-base/notification-types/
 
 Custom paging polices enable you to overide the primary policy based on the time and day of the week. A good example would be get the system to immediately phone you whenever you get a page during the evening or weekends as this is more likely to get your attention than a push notification.
 
@@ -89,7 +100,7 @@ These custom paging policies will be used during the specified times in place of
 
 The final option here is the setting for Recovery Notifications.  As these are typically low priority simply sending you an email is the typical setting used.
 
-Your profile is now fully configured using these example configurations. Organisations will have different views on how profiles should be configured and will typically issue guidelines for paging policies and times between escallations etc.
+Your profile is now fully configured using these example configurations. Organisations will have different views on how profiles should be configured and will typically issue guidelines for paging policies and times between escalations etc.
 
 ---
 
@@ -173,7 +184,7 @@ That completes the configuation of the Rotations, we now need to configure the E
 ---
 
 ### 5. Configure Escalation Policies
-Navigate to the Ecsalation Polices tab on the Teams sub menu, you should have no existing Polices so we need to create some.  We are going to create three different Polices to cover off three eyoical use cases.
+Navigate to the Ecsalation Polices tab on the Teams sub menu, you should have no existing Polices so we need to create some.  We are going to create three different Polices to cover off three typical use cases.
 
 * **24/7**
     * Click 'Add Escalation Policy'
@@ -209,7 +220,7 @@ Navigate to the Ecsalation Polices tab on the Teams sub menu, you should have no
         * Execute Policy -> &lt;Your Team Name&gt; : Primary
     * Click 'Save'
 
-You ay have noticed that when we created each Policies there was the warning message "*There are no routing keys for this policy - it will only receive incidents via manual reroute or when on another escalation policy*"
+You may have noticed that when we created each policy there was the warning message "*There are no routing keys for this policy - it will only receive incidents via manual reroute or when on another escalation policy*"
 
 This is becuase there are no Routing Keys linked to these Escalation Polices, so now that we have these polices configured we can go and create the Routing Keys.
 
@@ -217,9 +228,9 @@ This is becuase there are no Routing Keys linked to these Escalation Polices, so
 
 Routing Keys map the incoming alert messages from your monitoring system to an Escalation Policy which in turn sends the notifications to the appropriate team.
 
-Navigate to Settings on the main menu bar, then select Routing Keys on the sub menu bar.
+Navigate to Settings on the main menu bar. You'll be dropped into the Routing Key configuration by default.
 
-There will probably already be a number of Routing Keys configured, but to add a new one simply click 'Add Key' then enter the name for the key in the empty box in the Routing Key column, and then select the appropriate policy from the drop down in the Escalation Polices column. Create the follwoing two Routing Keys:
+There will probably already be a number of Routing Keys configured, but to add a new one simply click 'Add Key' then enter the name for the key in the empty box in the Routing Key column, and then select the appropriate policy from the drop down in the Escalation Polices column. Create the following two Routing Keys:
 
 | Routing Key | Escalation Policies |
 | --- | --- |
