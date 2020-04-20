@@ -14,6 +14,7 @@ If you have not already completed [Step #1](https://signalfx.github.io/app-dev-w
 Create the following environment variables for **SignalFx** and **AWS** to use in the proceeding steps:
 
 === "SignalFx"
+
     ```
     export ACCESS_TOKEN=<SignalFx Access Token>
     export REALM=<SignalFx Realm e.g. us1>
@@ -22,6 +23,7 @@ Create the following environment variables for **SignalFx** and **AWS** to use i
     ```
 
 === "AWS"
+
     ```
     export AWS_ACCESS_KEY_ID=<AWS Access Key>
     export AWS_SECRET_ACCESS_KEY=<AWS Secret Access Key>
@@ -37,11 +39,13 @@ You can check for the latest SignalFx Smart Agent release on [Github](https://gi
 Use the `AWS CLI` to configure access to your AWS environment. The environment variables configured above mean you can just hit enter on each of the prompts to accept the values:
 
 === "Input"
+
     ```
     aws configure
     ```
 
 === "Output"
+
     ```
     AWS Access Key ID [****************TVAQ]: 
     AWS Secret Access Key [****************MkB4]: 
@@ -54,6 +58,7 @@ Use the `AWS CLI` to configure access to your AWS environment. The environment v
 ### 4. Create a cluster running Amazon Elastic Kubernetes Service (EKS)
 
 === "Input"
+
     ```
     eksctl create cluster \
     --name $EKS_CLUSTER_NAME \
@@ -65,6 +70,7 @@ Use the `AWS CLI` to configure access to your AWS environment. The environment v
     ```
 
 === "Output"
+
     ```
     [ℹ]  eksctl version 0.16.0
     [ℹ]  using region us-east-1
@@ -103,9 +109,11 @@ This may take some time (10-15 minutes). Ensure you see your cluster active in A
 
 Once complete update your `kubeconfig` to allow `kubectl` access to the cluster:
 
-```
-sudo eksctl utils write-kubeconfig -n $EKS_CLUSTER_NAME
-```
+=== "Input"
+
+    ```
+    sudo eksctl utils write-kubeconfig -n $EKS_CLUSTER_NAME
+    ```
 
 ---
 
@@ -114,11 +122,13 @@ sudo eksctl utils write-kubeconfig -n $EKS_CLUSTER_NAME
 Add the SignalFx Helm chart repository to Helm:
 
 === "Input"
+
     ```bash
     helm repo add signalfx https://dl.signalfx.com/helm-repo
     ```
 
 === "Output"
+
     ```
     "signalfx" has been added to your repositories
     ```
@@ -126,18 +136,22 @@ Add the SignalFx Helm chart repository to Helm:
 Ensure the latest state of the SignalFx Helm repository:
 
 === "Input"
+
     ```text
     helm repo update
     ```
 
 === "Output"
+
     ```
     Hang tight while we grab the latest from your chart repositories...
     ...Successfully got an update from the "signalfx" chart repository
     ```
+
 Install the Smart Agent Helm chart with the following commands:
 
 === "Input"
+
     ```
     sed -i -e 's/\[INITIALS\]/'"$INITIALS"'/' ~/workshop/k3s/values.yaml
     helm install \
@@ -152,6 +166,7 @@ Install the Smart Agent Helm chart with the following commands:
     ```
 
 === "Output"
+
     ```
     NAME: signalfx-agent
     LAST DEPLOYED: Mon Apr 13 14:23:19 2020
@@ -177,18 +192,22 @@ Validate cluster looks healthy in SignalFx Kubernetes Navigator dashboard
 
 ### 6. Deploy Hot R.O.D. Application to EKS
 
-```
-kubectl apply -f ~/workshop/apm/hotrod/k8s/deployment.yaml
-```
+=== "Input"
+
+    ```
+    kubectl apply -f ~/workshop/apm/hotrod/k8s/deployment.yaml
+    ```
 
 To ensure the Hot R.O.D. application is running see examples below:
 
 === "Input"
+
     ```bash
     kubectl get pods
     ```
 
 === "Output"
+
     ```text
     NAME                      READY   STATUS    RESTARTS   AGE
     hotrod-7564774bf5-vjpfw   1/1     Running   0          47h
@@ -200,11 +219,13 @@ To ensure the Hot R.O.D. application is running see examples below:
 You then need find the IP address assigned to the Hot R.O.D. service:
 
 === "Input"
+
     ```bash
     kubectl get svc
     ```
 
 === "Output"
+
     ```text
     NAME         TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)          AGE
     hotrod       LoadBalancer   10.100.188.249   af26ce80ef2e14c9292ae5b4bc0d2dd0-1826890352.us-east-2.elb.amazonaws.com   8080:32521/TCP   47h
@@ -213,26 +234,35 @@ You then need find the IP address assigned to the Hot R.O.D. service:
 
 Create an environment variable for the IP address and port that the Hot R.O.D. application is exposed on:
 
-```
-HOTROD_ENDPOINT=$(kubectl get svc hotrod -n default -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
-```
+=== "Input"
 
-You can view / exercise Hot R.O.D. yourself in a browser by opening the `EXTERNAL-IP:PORT` as shown above i.e.
+    ```
+    HOTROD_ENDPOINT=$(kubectl get svc hotrod -n default -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
+    ```
 
+You can view / exercise Hot R.O.D. yourself in a browser by opening the `EXTERNAL-IP:PORT` as shown above e.g.
+
+```
 https://af26ce80ef2e14c9292ae5b4bc0d2dd0-1826890352.us-east-2.elb.amazonaws.com:8080
+```
 
 ---
 
 ### 7. Generate some traffic to the application using Apache Benchmark
-```bash
-ab -n100 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
-```
+
+=== "Input"
+
+    ```bash
+    ab -n100 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
+    ```
 
 Create some errors with an invalid customer number
 
-```bash
-ab -n100 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=391&nonse=0.17041229755366172"
-```
+=== "Input"
+
+    ```bash
+    ab -n100 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=391&nonse=0.17041229755366172"
+    ```
 
 You should now be able to exercise SignalFx APM dashboards.
 
@@ -243,11 +273,13 @@ You should now be able to exercise SignalFx APM dashboards.
 To delete entire EKS cluster:
 
 === "Input"
+
     ```
     eksctl delete cluster $EKS_CLUSTER_NAME
     ```
 
 === "Output"
+
     ``` 
     [ℹ]  eksctl version 0.16.0
     [ℹ]  using region us-east-1
@@ -263,13 +295,17 @@ To delete entire EKS cluster:
 
 Or to delete individual components:
 
-```
-kubectl delete deploy/hotrod svc/hotrod
-helm delete signalfx-agent
-```
+=== "Input"
+
+    ```
+    kubectl delete deploy/hotrod svc/hotrod
+    helm delete signalfx-agent
+    ```
 
 To switch back to using the local K3s cluster:
 
-```
-sudo kubectl config use-context default
-```
+=== "Input"
+
+    ```
+    sudo kubectl config use-context default
+    ```
