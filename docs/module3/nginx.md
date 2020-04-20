@@ -7,15 +7,19 @@
 ### 1. Start your NGINX!
 Remain in the Multipass  or EC2 shell session and change into the `nginx` directory:
 
-```bash
-cd ~/workshop/k3s/nginx
-```
+=== "Input"
+
+    ```bash
+    cd ~/workshop/k3s/nginx
+    ```
 
 Create the NGINX configmap using the `nginx.conf` file:
 
-```text
-kubectl create configmap nginxconfig --from-file=nginx.conf
-```
+=== "Input"
+
+    ```text
+    kubectl create configmap nginxconfig --from-file=nginx.conf
+    ```
 
 Verify the number of pods running in the SignalFx UI by selecting the **WORKLOADS** tab. This should give you an overview of the workloads on your cluster.
 
@@ -29,9 +33,11 @@ Now switch back to the default cluster node view by selecting  the **MAP** tab a
  
 ### 2. Create NGINX deployment!
 
-```
-kubectl create -f nginx-deployment.yaml
-```
+=== "Input"
+
+    ```
+    kubectl create -f nginx-deployment.yaml
+    ```
 
 Validate the deployment has been successful and that the NGINX pods are running. If you have the SignalFx UI open you should see new Pods being started and containers being deployed. It should only take around 20 seconds for the pods to transition into a Running state. In the SignalFx UI you should have a cluster that looks like below:
 
@@ -46,10 +52,13 @@ If you select the **WORKLOADS** tab again you should now see that there is a new
 Let's validate this in your shell as well, before creating load on your system:
 
 === "Input"
+
     ```text
     kubectl get pods
     ```
+
 === "Output"
+
     ```text
     NAME                               READY   STATUS    RESTARTS   AGE
     signalfx-agent-n7nz2               1/1     Running   0          11m
@@ -62,10 +71,13 @@ Let's validate this in your shell as well, before creating load on your system:
 Next we need to expose port 80 (HTTP)
 
 === "Input"
+
     ```text
     kubectl create service nodeport nginx --tcp=80:80
     ```
+
 === "Output"
+
     ```text
     service/nginx created
     ```
@@ -73,10 +85,13 @@ Next we need to expose port 80 (HTTP)
 Run `kubectl get svc` then make a note of the `CLUSTER-IP` address allocated to the NGINX service.
    
 === "Input"
+
     ```text
     kubectl get svc
     ```
+
 === "Output"
+
     ```text
     NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
     kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP        9m3s
@@ -90,10 +105,13 @@ Run `kubectl get svc` then make a note of the `CLUSTER-IP` address allocated to 
 Using the NGINX CLUSTER-IP address reported from above, use Apache Benchmark (`ab`) to create some traffic to light up your SignalFx NGINX dashboard. Run this a couple of times to generate some metrics!
 
 === "Input"   
+
     ```text
     ab -n1000 -c20 http://{INSERT_NGINX_IP_ADDRESS}/
     ```
+
 === "Output"
+
     ```text
     This is ApacheBench, Version 2.3 <$Revision: 1826891 $>
     Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/

@@ -10,18 +10,24 @@ Download and install Terraform for your platform - https://www.terraform.io/down
 
 Download the SignalFx Jumpstart Terraform master zip file, unzip the file and change into the `signalfx-jumpstart-master` directory
 
-``` bash
-curl -LO https://github.com/signalfx/signalfx-jumpstart/archive/master.zip
-unzip master.zip
-cd signalfx-jumpstart-master
-```
+=== "Input"
 
-Create the following environment variables to use in the Terraform steps below
-```
-export ACCESS_TOKEN=<token from Module 3>
-export REALM=<realm from Module 3>
-export INITIALS=<your initials e.g. RWC>
-```
+    ``` bash
+    curl -LO https://github.com/signalfx/signalfx-jumpstart/archive/master.zip
+    unzip master.zip
+    cd signalfx-jumpstart-master
+    ```
+
+The environment variables needed should already be set from [**Step #2** in Module 3](http://192.168.1.4:8001/module3/k3s/#2-take-the-helm). If not, create the following environment variables to use in the Terraform steps below
+
+=== "Input"
+
+    ```
+    export ACCESS_TOKEN=<token from Module 3>
+    export REALM=<realm from Module 3>
+    export INITIALS=<your initials e.g. RWC>
+    ```
+
 Initialise Terraform. **Note:** You will need to run this command each time a new version of the Terraform Provider is released. You can track the releases on [GitHub](https://github.com/terraform-providers/terraform-provider-signalfx/releases).
 
 === "Input"

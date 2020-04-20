@@ -21,43 +21,51 @@ You will also need to obtain the name of the Realm for your SignalFx account.  C
 
 Create the following variables to use in the proceeding helm install command:
 
-```
-export ACCESS_TOKEN=<token from Step 2>
-export REALM=<realm from Step 2>
-export INITIALS=<your initials e.g. RWC>
-export VERSION=<Smart Agent version e.g. 5.1.1>
-```
+=== "Input"
+
+    ```
+    export ACCESS_TOKEN=<token from Step 2>
+    export REALM=<realm from Step 2>
+    export INITIALS=<your initials e.g. RWC>
+    export VERSION=<Smart Agent version e.g. 5.1.1>
+    ```
 
 !!! note
     The latest version of the Smart Agent can be found on [GitHub](https://github.com/signalfx/signalfx-agent/releases)
 
 Install the agent using the SignalFx Helm chart. Firstly, add the SignalFx Helm chart repository to Helm.
 
-```
-helm repo add signalfx https://dl.signalfx.com/helm-repo
-```
+=== "Input"
+
+    ```
+    helm repo add signalfx https://dl.signalfx.com/helm-repo
+    ```
 
 Ensure the latest state of the SignalFx Helm repository
 
-```
-helm repo update
-```
+=== "Input"
+
+    ```
+    helm repo update
+    ```
 
 Install the Smart Agent Helmchart with the following commands:
 
-```
-sed -i -e 's/\[INITIALS\]/'"$INITIALS"'/' ~/workshop/k3s/values.yaml
-helm install \
---set signalFxAccessToken=$ACCESS_TOKEN \
---set clusterName=$INITIALS-SFX-WORKSHOP \
---set kubeletAPI.url=https://localhost:10250  \
---set signalFxRealm=$REALM  \
---set agentVersion=$VERSION \
---set traceEndpointUrl=https://ingest.$REALM.signalfx.com/v2/trace \
---set gatherDockerMetrics=false \
-signalfx-agent signalfx/signalfx-agent \
--f ~/workshop/k3s/values.yaml
-```
+=== "Input"
+
+    ```
+    sed -i -e 's/\[INITIALS\]/'"$INITIALS"'/' ~/workshop/k3s/values.yaml
+    helm install \
+    --set signalFxAccessToken=$ACCESS_TOKEN \
+    --set clusterName=$INITIALS-SFX-WORKSHOP \
+    --set kubeletAPI.url=https://localhost:10250  \
+    --set signalFxRealm=$REALM  \
+    --set agentVersion=$VERSION \
+    --set traceEndpointUrl=https://ingest.$REALM.signalfx.com/v2/trace \
+    --set gatherDockerMetrics=false \
+    signalfx-agent signalfx/signalfx-agent \
+    -f ~/workshop/k3s/values.yaml
+    ```
 
 You can monitor the progress of the deployment by running `kubectl get pods` which should typically report a new pod is up and running after about 30 seconds. Ensure the status is reported as Running before continuing.
 
@@ -134,4 +142,3 @@ Take some time to explore the Kubernetes Navigator UI.
 ---
 
 Use the **Next** link in the footer below to continue the workshop
-

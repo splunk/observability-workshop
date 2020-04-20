@@ -53,11 +53,6 @@ Once the installation is complete check the status of the agent.
     signalfx-agent status
     ```
 
-And validate that it is running.
-
-!!! Note
-    Remember the value displayed for you in the _Host:_ name in the _Global Dimensions_ section of the output, as you need this later
-
 === "Output"
 
     ```text
@@ -84,6 +79,9 @@ And validate that it is running.
     signalfx-agent status monitors - show active monitors
     signalfx-agent status all - show everything
     ```
+
+!!! important
+    Make a note of the value displayed for `host` in the `Global Dimensions` section of the output, as you need this later!
 
 ---
 
@@ -114,9 +112,11 @@ Take a moment to explore the various charts and the Processes list.
 
 In the next module we are going to roll out the agent on the Kubernetes cluster. Before doing that, stop the VM agent with the following command:
 
-```
-sudo service signalfx-agent stop
-```
+=== "Input"
+
+    ```
+    sudo service signalfx-agent stop
+    ```
 
 ---
 
