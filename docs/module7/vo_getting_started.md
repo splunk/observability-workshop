@@ -1,5 +1,3 @@
-## Victor Ops Getting Started
-
 ### Lab Summary
 1. Activate your login
 2. Configure your Profile
@@ -7,7 +5,6 @@
 4. Configure Rotations
 5. Configure Escalation Policies
 6. Create Routing Keys
-7. Setup SignalFx Integration
 
 ---
 
@@ -123,7 +120,7 @@ Click the Invite User button then either start typing the usernames (this will f
 To make a team member a Team Admin, simply click the Pencil icon in the right hand column, pick any user and make them an Admin.
 
 !!!tip
-For large team managment you could use the API to streamline this process, and we will look at that in a later module
+    *For large team managment you could use the API to streamline this process, and we will look at that in a later module*
 
 ---
 
@@ -231,5 +228,6 @@ There will probably already be a number of Routing Keys configured, but to add a
 
 If you now navigate back to Teams > &lt;Your Team Name&gt; > Escalation Policies and look at the settings for your Primary and Wating Room polices you will see that these now have Routes assigned to them.  The 24/7 policy does not have a Route assigned as this will only be triggered via an 'Execute Policy' escalation from the Primary policy.
 
-### 7. Setup SignalFx Integration
+---
 
+This completes the inital getting started steps for VictorOps, the next step will be to configure the Integration between VictorOps and SignalFx.
