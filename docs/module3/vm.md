@@ -13,7 +13,7 @@ Login into the SignalFx UI and click on **INTEGRATIONS** on the top menu bar. Cl
 ![SmartAgent tile](../images/module3/smartagent-tile.png)
 
 In the modal window that appears click on **SETUP** and click **Copy** from the Linux instructions and paste into your Multipass shell
-
+`````
 === "Output"
     ```text
     ubuntu@rwc-k3s:~$ curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
@@ -37,7 +37,7 @@ In the modal window that appears click on **SETUP** and click **Copy** from the 
     The agent's main configuration file is located at /etc/signalfx/agent.yaml.
     ubuntu@rwc-k3s:~$ 
     ```
-
+`````
 ![Copy code](../images/module3/copycode.png)
 
 Once the installation is complete check the status of the agent
