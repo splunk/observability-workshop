@@ -19,10 +19,13 @@ You can reuse your current running instance, or start fresh
 To deploy the Hot R.O.D. application into K3s apply the deployment
   
 === "Input"
+
     ```bash
     kubectl apply -f ~/workshop/apm/hotrod/k8s/deployment.yaml 
     ```
+
 === "Output"
+
     ```text
     deployment.apps/hotrod created
     service/hotrod created
@@ -31,10 +34,13 @@ To deploy the Hot R.O.D. application into K3s apply the deployment
 To ensure the Hot R.O.D. application is running:
 
 === "Input"
+
     ```bash
     kubectl get pods
     ```
+
 === "Output"
+
     ```text
     NAME                      READY   STATUS    RESTARTS   AGE
     signalfx-agent-mmzxk      1/1     Running   0          110s
@@ -49,6 +55,7 @@ To ensure the Hot R.O.D. application is running:
 In order to view the application in your web browser we need to find the LoadBalancer IP address and the port the application is listening on.
 
 === "Input"
+
     ```bash
     kubectl get svc
     ```
@@ -70,20 +77,26 @@ Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). T
 
 Return to your shell and create an environment variable for the IP address and port that the Hot R.O.D. application is exposed on:
 
-```
-HOTROD_ENDPOINT=$(kubectl get svc hotrod -n default -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
-```
+=== "Input"
+
+    ```
+    HOTROD_ENDPOINT=$(kubectl get svc hotrod -n default -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
+    ```
 then run the following command to create load on the service:
 
-```bash
-ab -n10 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
-```
+=== "Input"
+
+    ```bash
+    ab -n10 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
+    ```
 
 Create some errors with an invalid customer number
 
-```bash
-ab -n10 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=391&nonse=0.17041229755366172"
-```
+=== "Input"
+
+    ```bash
+    ab -n10 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=391&nonse=0.17041229755366172"
+    ```
 
 ---
 

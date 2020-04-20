@@ -25,6 +25,7 @@ You can reuse your current running instance, or start fresh
 To deploy the Sock Shop application into K3s apply the deployment 
 
 === "Input"
+
     ```bash
     cd ~/workshop/apm/sockshop
     kubectl create namespace sock-shop
@@ -32,6 +33,7 @@ To deploy the Sock Shop application into K3s apply the deployment
     ```
 
 === "Output"
+
     ```text
     namespace/sock-shop created
     deployment.apps/carts-db created
@@ -68,9 +70,11 @@ To deploy the Sock Shop application into K3s apply the deployment
 
 To monitor the deployment of Sock Shop using `k9s` to monitor:
 
-```
-k9s
-```
+=== "Input"
+
+    ```
+    k9s
+    ```
 
 Once in `k9s` press `0` to show all namespaces:
 
@@ -82,17 +86,22 @@ Once in `k9s` press `0` to show all namespaces:
 
 Sock Shop should be running in your cluster and exposes services via cluster IP and port. Obtain the ip address for the front-end service.
 
-```bash
-SOCKS_ENDPOINT=$(kubectl get svc front-end -n sock-shop -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
-```
+=== "Input"
 
-Then send a 
+    ```bash
+    SOCKS_ENDPOINT=$(kubectl get svc front-end -n sock-shop -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
+    ```
+
+Then confirm the `SOCKS_ENDPOINT` environment variable has been set:
 
 === "Input"
+
     ```bash
     curl $SOCKS_ENDPOINT
     ```
-=== "Input"
+
+=== "Output"
+
     ```html
     ...
     </script>
@@ -105,13 +114,15 @@ Then send a
 
 ### 5. Apply load on Sock Shop
 
-Use a load test for sock shop.
+A load testing application is available for the Sock Shop application. To generate some load run the following command:
 
-```bash
-kubectl run --generator=run-pod/v1 load-test --rm -i --tty --image weaveworksdemos/load-test -- -d 5 -h $SOCKS_ENDPOINT -c 15 -r 1000
-```
+=== "Input"
 
-The parameter `-c` controls the amount of concurrent clients and `-r` the amount of requests sent. To apply continuous load just set `-r` to some higher number.
+    ```bash
+    kubectl run --generator=run-pod/v1 load-test --rm -i --tty --image weaveworksdemos/load-test -- -d 5 -h $SOCKS_ENDPOINT -c 15 -r 1000
+    ```
+
+The parameter `-c` controls the amount of concurrent clients and `-r` the amount of requests sent. To apply continuous load just set `-r` to a higher number.
 
 ---
 
@@ -124,7 +135,6 @@ Navigate to µAPM (*not* µAPM PG) and select Monitoring, then ensure you have s
 Explore the User Interface: Review an automatically generated Service Dashboard. How do you correlate Service performance with Infrastructure?
 
 ![µAPM Service Dashboard](../images/module6/m2-service.png)
-
 
 Troubleshoot a service. Let's stress the sock shop a bit. Increase the amount of clients running for the load test to something ludicrous (1000+ seems to do the trick). What happens with the services? Troubleshoot a service with a higher error rate. Also review the service dependencies.
 
@@ -147,11 +157,13 @@ Look at individual traces and span performance.
 In order to view the application in your web browser we need to find the LoadBalancer IP address and the port the application is listening on.
 
 === "Input"
+
     ```bash
     kubectl get svc -n sockshop
     ```
 
 === "Output"
+
     ```text
     NAME           TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)          AGE
     carts-db       ClusterIP      10.43.221.67    <none>          27017/TCP        34m

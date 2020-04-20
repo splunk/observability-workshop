@@ -25,10 +25,13 @@ export INITIALS=<your initials e.g. RWC>
 Initialise Terraform. **Note:** You will need to run this command each time a new version of the Terraform Provider is released. You can track the releases on [GitHub](https://github.com/terraform-providers/terraform-provider-signalfx/releases).
 
 === "Input"
+
     ```bash
     terraform init -upgrade
     ```
+
 === "Output"
+
     ```
     Upgrading modules...
     - aws in modules/aws
@@ -67,14 +70,17 @@ Initialise Terraform. **Note:** You will need to run this command each time a ne
     rerun this command to reinitialize your working directory. If you forget, other
     commands will detect it and remind you to do so if necessary.
     ```
-    
+
 Create a new workspace, replace `{WORKSPACE_NAME}` with what you want your workspace to be called:
 
 === "Input"
+
     ``` bash
     terraform workspace new {WORKSPACE_NAME}
     ```
+
 === "Output"
+
     ```text
     Created and switched to workspace "my_workspace"!
 
@@ -88,18 +94,23 @@ Create a new workspace, replace `{WORKSPACE_NAME}` with what you want your works
 ### 2. Create an execution plan
 Review the execution plan.
 
-``` bash
-terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$INITIALS"
-```
+=== "Input"
+
+    ``` bash
+    terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$INITIALS"
+    ```
 
 If the plan executes successfully, we can go ahead and apply:
 
 ---
 
 ### 3. Apply actions from execution plan
-``` bash
-terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$INITIALS"
-```
+
+=== "Input"
+
+    ``` bash
+    terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$INITIALS"
+    ```
 
 Validate that the detectors were created, under the _**ALERTS → Detectors**_, you should see a list of new detectors with the a prefix of your initials:
 
@@ -111,9 +122,11 @@ Validate that the detectors were created, under the _**ALERTS → Detectors**_, 
 ### 4. Destroy all your hard work
 You will first need to ensure you are in the correct workspace, replace `{WORKSPACE_NAME}` with the name created in the initial setup)
 
-```text
-terraform workspace select {WORKSPACE_NAME}
-```
+=== "Input"
+
+    ```text
+    terraform workspace select {WORKSPACE_NAME}
+    ```
 
 Destroy all Detectors and Dashboards that were previously applied.
 
@@ -121,9 +134,11 @@ Destroy all Detectors and Dashboards that were previously applied.
     
     The `var=”sfx_prefix=$INITIALS”` is not required!
 
-```bash
-terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
-```
+=== "Input"
+
+    ```bash
+    terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
+    ```
 
 Validate all the detectors have been removed by navigating to _**ALERTS → Detectors**_
 

@@ -12,12 +12,14 @@ If you are  going to run this locally please install [Multipass](https://multipa
 
 Regardless if you are running this lab locally or using an AWS/EC2 instance, download the App Dev Workshop Master Zip file locally or on to the EC2 instance, then proceed to unzip the file, rename it and cd into it:
 
-```bash
-curl -LO https://github.com/signalfx/app-dev-workshop/archive/master.zip
-unzip master.zip
-mv app-dev-workshop-master workshop
-cd workshop
-```
+=== "Input"
+
+    ```bash
+    curl -LO https://github.com/signalfx/app-dev-workshop/archive/master.zip
+    unzip master.zip
+    mv app-dev-workshop-master workshop
+    cd workshop
+    ```
 
 When using an EC2 instance you can skip the following section and continue to [Step 2](https://signalfx.github.io/app-dev-workshop/module3/k3s/#2-ive-got-the-key-ive-got-the-secret)
 
@@ -36,6 +38,7 @@ Launch the Multipass instance which will run Kubernetes (K3s)
 Select either the Hot R.O.D or Sock Shop Multipass launch parameters Lines highlighted in yellow need to be edited:
 
 === "Hot R.O.D"
+
     ```text hl_lines="2"
     multipass launch \
     --name {YOUR_INITIALS}-k3s \
@@ -43,6 +46,7 @@ Select either the Hot R.O.D or Sock Shop Multipass launch parameters Lines highl
     ```
 
 === "Sock Shop"
+
     ```text hl_lines="2"
     multipass launch \
     --name {YOUR_INITIALS}-k3s \
@@ -52,8 +56,10 @@ Select either the Hot R.O.D or Sock Shop Multipass launch parameters Lines highl
 
 Once the instance has been successfully created shell into it.
 
-```bash hl_lines="1"
-multipass shell {YOUR_INITIALS}-k3s
-```
+=== "Input"
+
+    ```bash hl_lines="1"
+    multipass shell {YOUR_INITIALS}-k3s
+    ```
 
 ![Shell](../images/module3/shell.png)
