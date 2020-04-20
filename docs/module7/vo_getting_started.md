@@ -6,8 +6,8 @@
 3. Create your Team
 4. Configure Rotations
 5. Configure Escalation Policies
-6. Create a Routing Key
-7. Launch test VMs & Monitor with SignalFx
+6. Create Routing Keys
+7. Setup SignalFx Integration
 
 ---
 
@@ -178,16 +178,58 @@ That completes the configuation of the Rotations, we now need to configure the E
 ### 5. Configure Escalation Policies
 Navigate to the Ecsalation Polices tab on the Teams sub menu, you should have no existing Polices so we need to create some.  We are going to create three different Polices to cover off three eyoical use cases.
 
-* Primary
+* **24/7**
     * Click 'Add Escalation Policy'
-    * 
+    * Policy Name: 24/7
+    * Step 1
+        * Immediately
+        * Notify the on-duty user(s) in rotation -> Senior SRE Escalation
+    * Click 'Save'
 
-    
-    
-* Waiting Room
-    * xxx
+&nbsp;
 
-    
+* **Primary**
+    * Click 'Add Escalation Policy'
+    * Policy Name: Primary
+    * Step 1
+        * Immediately
+        * Notify the on-duty user(s) in rotation -> Follow the Sun Support - Business Hours
+    * Step 2
+        * If still unacked after 15 minutes
+        * Notify the next user(s) in the current on-duty shift -> Follow the Sun Support - Business Hours
+    * Step 3
+        * If still unacked after 15 more minutes
+        * Execute Poilcy -> &lt;Your Team Name&gt; : 24/7
+    * Click 'Save'
 
-* 24/7
-    * xxx
+&nbsp;
+
+* **Waiting Room**
+    * Click 'Add Escalation Policy'
+    * Policy Name: Waiting Room
+    * Step 1
+        * If still unacked after 10 more minutes
+        * Execute Policy -> &lt;Your Team Name&gt; : Primary
+    * Click 'Save'
+
+You ay have noticed that when we created each Policies there was the warning message "*There are no routing keys for this policy - it will only receive incidents via manual reroute or when on another escalation policy*"
+
+This is becuase there are no Routing Keys linked to these Escalation Polices, so now that we have these polices configured we can go and create the Routing Keys.
+
+### 6. Create Routing Keys
+
+Routing Keys map the incoming alert messages from your monitoring system to an Escalation Policy which in turn sends the notifications to the appropriate team.
+
+Navigate to Settings on the main menu bar, then select Routing Keys on the sub menu bar.
+
+There will probably already be a number of Routing Keys configured, but to add a new one simply click 'Add Key' then enter the name for the key in the empty box in the Routing Key column, and then select the appropriate policy from the drop down in the Escalation Polices column. Create the follwoing two Routing Keys:
+
+| Routing Key | Escalation Policies |
+| --- | --- |
+| &lt;Your Initials&gt;_PRI | &lt;Your Team Name&gt; : Primary |
+| &lt;Your Initials&gt;_WR | &lt;Your Team Name&gt; : Waiting Room |
+
+If you now navigate back to Teams > &lt;Your Team Name&gt; > Escalation Policies and look at the settings for your Primary and Wating Room polices you will see that these now have Routes assigned to them.  The 24/7 policy does not have a Route assigned as this will only be triggered via an 'Execute Policy' escalation from the Primary policy.
+
+### 7. Setup SignalFx Integration
+

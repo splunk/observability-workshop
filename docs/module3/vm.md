@@ -12,12 +12,19 @@ Login into the SignalFx UI and click on **INTEGRATIONS** on the top menu bar. Cl
 
 ![SmartAgent tile](../images/module3/smartagent-tile.png)
 
-In the modal window that appears click on **SETUP** and click **Copy** from the Linux instructions and paste into your Multipass shell
+In the modal window that appears click on **SETUP** and click **Copy** from the Linux instructions and paste into your Multipass shell.
+![Copy code](../images/module3/copycode.png)
+
+=== "Input"
+
+    ```text
+    curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
+    sudo sh /tmp/signalfx-agent.sh --realm us1 -- xxxxxxxxxxxxxxxxxxx
+    ```
 
 === "Output"
+
     ```text
-    ubuntu@rwc-k3s:~$ curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
-    ubuntu@rwc-k3s:~$ sudo sh /tmp/signalfx-agent.sh --realm us1 -- -rxxxxxxxxxxxxxxxxg
     Ingest URL: https://ingest.us1.signalfx.com
     API URL: https://api.us1.signalfx.com
     Installing package signalfx-agent (latest) from release repo
@@ -26,33 +33,33 @@ In the modal window that appears click on **SETUP** and click **Copy** from the 
     Get:3 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
     Hit:5 http://uk-mirrors.evowise.com/ubuntu bionic-security InRelease
     Hit:2 http://mirrors.ukfast.co.uk/sites/archive.ubuntu.com bionic InRelease
-    ....
+    ...
     Processing triggers for systemd (237-3ubuntu10.39) ...
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     Processing triggers for ureadahead (0.100.0-21) ...
     The SignalFx Agent has been successfully installed.
-
+    
     Make sure that your system's time is relatively accurate or else datapoints may not be accepted.
-
+    
     The agent's main configuration file is located at /etc/signalfx/agent.yaml.
-    ubuntu@rwc-k3s:~$ 
     ```
 
-![Copy code](../images/module3/copycode.png)
 
-Once the installation is complete check the status of the agent
+Once the installation is complete check the status of the agent.
 
 === "Input"
+
     ```text
     signalfx-agent status
     ```
 
 And validate that it is running.
 
-!!! Note 
+!!! Note
     Remember the value displayed for you in the _Host:_ name in the _Global Dimensions_ section of the output, as you need this later
 
 === "Output"
+
     ```text
     SignalFx Agent version:           5.1.1
     Agent uptime:                     4s
