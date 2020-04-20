@@ -41,17 +41,17 @@ In the modal window that appears click on **SETUP** and click **Copy** from the 
 ![Copy code](../images/module3/copycode.png)
 
 Once the installation is complete check the status of the agent
-
+````
 === "Input"
     ```text
     signalfx-agent status
     ```
-
+````
 And validate that it is running.
 
 !!! Note 
     Remember the value displayed for you in the _Host:_ name in the _Global Dimensions_ section of the output, as you need this later
-
+````
 === "Output"
     ```text
     SignalFx Agent version:           5.1.1
@@ -77,7 +77,7 @@ And validate that it is running.
     signalfx-agent status monitors - show active monitors
     signalfx-agent status all - show everything
     ```
-
+````
 ---
 
 ### 2. Confirm the Smart Agent is working and sending data
