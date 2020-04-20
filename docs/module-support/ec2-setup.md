@@ -6,11 +6,11 @@
 
 ### 1. Starting the workshop instance
      
-Login into your AWS account using the [AWS console](https://signin.aws.amazon.com) and go to the EC2 service page. As the Workshop Instance currently only resides in AWS Frankfurt please change your region to Frankfurt by changing the drop-down list at the top of the screen
+Login into your AWS account using the [AWS console](https://signin.aws.amazon.com) and go to the EC2 service page. As the Workshop Instance AMI currently only resides in AWS Frankfurt, Ireland, Ohio, Oregon or Singapore, please change your region to one of those by changing the drop-down list at the top of the screen
 
 ![Frankfurt selection](../images/module-support/AWS-SelectFrankfurt.jpg)
 
-Click the blue **launch instance** button to go to the instance selection page and search for the workshop by typing the name _**App-Dev-Workshop**_ into the search box. You should find  get 1 result in the Community AMI's, and click on the on the Result link:
+Click the blue **launch instance** button to go to the instance selection page and search for the workshop by typing the name _**App Dev Workshop V1.01**_ into the search box. You should find  get 1 result in the Community AMI's, and click on the on the Result link:
 
 ![Result found](../images/module-support/AWS-AMI-select.jpg)
 
