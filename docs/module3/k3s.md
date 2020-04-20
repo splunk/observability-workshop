@@ -62,11 +62,13 @@ signalfx-agent signalfx/signalfx-agent \
 You can monitor the progress of the deployment by running `kubectl get pods` which should typically report a new pod is up and running after about 30 seconds. Ensure the status is reported as Running before continuing.
 
 === "Input"
+
     ``` bash
     kubectl get pods
     ```
 
 === "Output"
+
     ```
     NAME                   READY   STATUS    RESTARTS   AGE
     signalfx-agent-66tvr   1/1     Running   0          7s
@@ -75,10 +77,13 @@ You can monitor the progress of the deployment by running `kubectl get pods` whi
 Ensure there are no errors by tailing the logs from the Smart Agent Pod. Output should look similar to the log output shown below. Use the label set by the `helm` install to tail logs (You will need to press Ctrl-C to exit). Or use the installed `k9s` terminal UI for bonus points!
 
 === "Input"
+
     ```bash
     kubectl logs -l app=signalfx-agent -f
     ```
+
 === "Output"
+
     ```text
     time="2020-03-15T11:30:28Z" level=info msg="Starting up agent version 5.0.0"
     time="2020-03-15T11:30:28Z" level=info msg="Watching for config file changes"
