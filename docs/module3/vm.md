@@ -8,42 +8,20 @@
 
 ### 1. Deploy SignalFx Smart Agent via install script on a VM
 
-Login into the SignalFx UI and click on **INTEGRATIONS** on the top menu bar. Click on the SignalFx SmartAgent tile
+You will need to obtain your Access Token from the SignalFx UI once Kubernetes is running. You can find your Access Token by clicking on your profile icon on the top right of the SignalFx UI. Then select _**Organisation Settings → Access Tokens**_.  Expand the Default token, then click on _**Show Token**_ to expose your token. Later in the lab you can come back here and click the _**Copy**_ button which will copy it to your clipboard  so you can paste it when you need to provide an access token in the lab.
+![Access Token](../images/module3/m1-l4-access-token.png)
 
-![SmartAgent tile](../images/module3/smartagent-tile.png)
+You will also need to obtain the name of the Realm for your SignalFx account.  Click on the profile icon again, but this time select 'My Profile'.  The Ream can be found in the middle of the page within the Organizations section.  In this example it is `us1`.
+![Realm](../images/module3/m1-l4-realm.png)
 
-In the modal window that appears click on **SETUP** and click **Copy** from the Linux instructions and paste into your Multipass shell.
-![Copy code](../images/module3/copycode.png)
+---
 
-=== "Input"
+SignalFx maintains a shell script to install on supported distributions. Copy the script below and replace $REALM and $ACCESS_TOKEN with the values found in previous screen:
 
-    ```text
-    curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
-    sudo sh /tmp/signalfx-agent.sh --realm us1 -- xxxxxxxxxxxxxxxxxxx
-    ```
-
-=== "Output"
-
-    ```text
-    Ingest URL: https://ingest.us1.signalfx.com
-    API URL: https://api.us1.signalfx.com
-    Installing package signalfx-agent (latest) from release repo
-    Get:1 http://mirrors.ubuntu.com/mirrors.txt Mirrorlist [736 B]
-    Get:4 http://mirror.as29550.net/archive.ubuntu.com bionic-backports InRelease [74.6 kB]
-    Get:3 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
-    Hit:5 http://uk-mirrors.evowise.com/ubuntu bionic-security InRelease
-    Hit:2 http://mirrors.ukfast.co.uk/sites/archive.ubuntu.com bionic InRelease
-    ...
-    Processing triggers for systemd (237-3ubuntu10.39) ...
-    Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
-    Processing triggers for ureadahead (0.100.0-21) ...
-    The SignalFx Agent has been successfully installed.
-    
-    Make sure that your system's time is relatively accurate or else datapoints may not be accepted.
-    
-    The agent's main configuration file is located at /etc/signalfx/agent.yaml.
-    ```
-
+```
+curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
+sudo sh /tmp/signalfx-agent.sh --realm  -- $REALM $ACCESS_TOKEN
+```
 
 Once the installation is complete check the status of the agent.
 
@@ -100,7 +78,7 @@ You can also set a filter for just your instance by selecting the _host:_  attri
 Click on the link to your host from the list, this wil take you to the overview page of your host.
 
 Make sure you have the **SYSTEM METRIC**  tab selected. Here you can see various charts that relate to the health of your host, like CPU &  Memory Used%, Disk I/O and many more.
-You can also see the list of seervices running on your host by selecting  the **PROCESSES** tab.
+You can also see the list of services running on your host by selecting  the **PROCESSES** tab.
 
 ![Host Selected](../images/module3/M3-host-selected.png)
 
