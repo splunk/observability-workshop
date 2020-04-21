@@ -168,14 +168,14 @@ You will now have three different Shift patterns, that provide cover 24hr hours,
 We will now add the 2nd Rotation for our Senior SRE Escalation cover.
 
 #### Senior SRE Escalation
-* Click 'Add Rotation'
-* Enter a name of Senior SRE Escalation
-* Select '24/7 from the three available shift templates
-    * Enter a Shift name of Senior SRE Escalation
-    * Time Zone set to Asia/Tokyo
-    * andoff happens every 7 days at 9.00am
+* Click `Add Rotation`
+* Enter a name of "*Senior SRE Escalation*"
+* Select `24/7` from the three available shift templates
+    * Enter a Shift namof "*Senior SRE Escalatonion*"
+    * Time Zone set to "*Asia/Tokyo*"
+    * Handoff happens every "*7 days at 9.00am*"
     * The next handoff happens &lt;select the next Monday from the date picker&gt;
-    * Save Rotation
+    * Click `Save Rotation`
 * Add the users who are allocated the 24/7 shift
 
 That completes the configuation of the Rotations, we now need to configure the Escalation Policies and Routing Keys.
