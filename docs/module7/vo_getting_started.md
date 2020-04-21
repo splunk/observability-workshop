@@ -1,4 +1,5 @@
-### Lab Summary
+# VictorOps Getting Started - Lab Summary
+
 1. Activate your login
 2. Configure your Profile
 3. Create your Team
@@ -8,53 +9,59 @@
 
 ---
 
-### 1. Activate your login
+## 1. Activate your login
+
 You will have received an invitation to Activate your VictorOps account via e-mail, click the 'Activate Account' link and follow the prompts.
 
 ---
 
-### 2. Configure Your Profile
+## 2. Configure Your Profile
+
 Once you are logged in to VictorOps you now need to set up your profile.  Click on your login name in the top right hand corner and chose `Profile` from the drop down.
 
-#### Contact Methods
+### 2.1. Contact Methods
+
 Confirm your contact methods are listed correctly and add any additional phone numbers and e-mail address you wish to use.
 
-#### Devices
+### 2.2. Devices
+
 Install the VictorOps app for your smartphone.  Search your phones App Store for VictorOps to find the appropriate version of the app.  The publisher should be listed as VictorOps Inc.
 
 [![iPhone](../images/module7/app-store.svg#no-border)](ttps://apps.apple.com/us/app/victorops/id696974262) [![Android](../images/module7/play-store.svg#no-border)](https://play.google.com/store/apps/details?id=com.victorops.androidclient&hl=en)
 
 Configuration help guides are available here:
 
-* [Apple](https://help.victorops.com/knowledge-base/ios-application/) 
+* [Apple](https://help.victorops.com/knowledge-base/ios-application/)
 
 * [Android](https://help.victorops.com/knowledge-base/android-devices-victorops/)
 
-Install the App and login, then refresh the Profile page and your device should now be listed under the devices section.  Click the `Test push notification` button and confirm you recieve the test message.
+Install the App and login, then refresh the Profile page and your device should now be listed under the devices section.  Click the `Test push notification` button and confirm you receive the test message.
 
-#### Personal Calendar
-This link will enable you to sync your VictorOps on-call schedule with your calendar, however as you do not have any allocated shifts yet this will currently be empty. You can add it to you celendar by copying the link into your preferred appliction and seting it up as a new subscritpion.
+### 2.3. Personal Calendar
 
-#### Paging Polices
+This link will enable you to sync your VictorOps on-call schedule with your calendar, however as you do not have any allocated shifts yet this will currently be empty. You can add it to you calendar by copying the link into your preferred application and setting it up as a new subscription.
+
+### 2.4. Paging Polices
+
 Paging Polices specify how you will be contacted by VictorOps when on-call. The Primary Paging Policy will have defaulted to sending you an SMS assuming you added your phone number when activating your account. We will now configure this policy into a three tier multi-stage policy.
 
 Click the edit policy button for the Primary Paging Policy.  
 
 * Step 1
-    - Send a push notification to all my devices
-    - Execute the next step if I have not responded within 5 minutes
+    * Send a push notification to all my devices
+    * Execute the next step if I have not responded within 5 minutes
 
 Then add an new step
 
 * Step 2
-    - Send an email to &lt;your email address&gt;
-    - Execute the next step if I have not responded within 5 minutes
+    * Send an email to &lt;your email address&gt;
+    * Execute the next step if I have not responded within 5 minutes
 
 Then add a new step
 
 * Step 3
-    - Every 5 minutes until we have reached you
-    - Make a phone call to &lt;your phone number&gt;
+    * Every 5 minutes until we have reached you
+    * Make a phone call to &lt;your phone number&gt;
 
 Then save the policy.
 
@@ -62,12 +69,12 @@ When you are on-call or in the escalation path of an incident, you will receive 
 
 * Expanding the Push Notification on your device and selecting Acknowledge
 * Responding to the SMS with the 5 digit code included
-* Pressing 4 during the Phone Call 
+* Pressing 4 during the Phone Call
 * Slack Button
 
-For more information on Notification Types, see here: https://help.victorops.com/knowledge-base/notification-types/
+For more information on Notification Types, see [here](https://help.victorops.com/knowledge-base/notification-types/).
 
-Custom paging polices enable you to overide the primary policy based on the time and day of the week. A good example would be get the system to immediately phone you whenever you get a page during the evening or weekends as this is more likely to get your attention than a push notification.
+Custom paging polices enable you to override the primary policy based on the time and day of the week. A good example would be get the system to immediately phone you whenever you get a page during the evening or weekends as this is more likely to get your attention than a push notification.
 
 Create a new Custom Policy by clicking `Add a Policy` and configure with the following settings:
 
@@ -78,8 +85,8 @@ Policy Name: Evening
     * Make a phone call to &lt;your phone number&gt;
     * Time Period: All 7 Days
     * Timezone
-        *  &lt;your time zone&gt;
-        *  Between 7pm and 9am
+        * &lt;your time zone&gt;
+        * Between 7pm and 9am
 
 Save the policy then add one more
 
@@ -90,21 +97,22 @@ Policy Name: Weekend
     * Make a phone call to &lt;your phone number&gt;
     * Time Period: Sat & Sun
     * Timezone
-        *  &lt;your time zone&gt;
-        *  Between 9am and 7pm
+        * &lt;your time zone&gt;
+        * Between 9am and 7pm
 
-These custom paging policies will be used during the specified times in place of the Primary Policy, however admins do have the abiltiy to ignore these custom policies, and we will highlight how this is achieved in a later module.
+These custom paging policies will be used during the specified times in place of the Primary Policy, however admins do have the ability to ignore these custom policies, and we will highlight how this is achieved in a later module.
 
 The final option here is the setting for Recovery Notifications.  As these are typically low priority simply sending you an email is the typical setting used.
 
-Your profile is now fully configured using these example configurations. Organisations will have different views on how profiles should be configured and will typically issue guidelines for paging policies and times between escalations etc.
+Your profile is now fully configured using these example configurations. Organizations will have different views on how profiles should be configured and will typically issue guidelines for paging policies and times between escalations etc.
 
 ---
 
-### 3. Create Your Team
-Navigate to the Teams Tab on the main toolbar, select `Add Team`, then enter your team name using the format "&lt;Your Initals&gt; Workshop" and then save by clicking the `Add Team` button.
+## 3. Create Your Team
 
-You now need to add other users to your team.  If you are running this workshop using the Splunk provided envrionment, the following accounts are available for testing.  If you are running this lab in your own environment, you will have been provided a list of usernames you can use in place of the table below.
+Navigate to the Teams Tab on the main toolbar, select `Add Team`, then enter your team name using the format "&lt;Your Initials&gt; Workshop" and then save by clicking the `Add Team` button.
+
+You now need to add other users to your team.  If you are running this workshop using the Splunk provided environment, the following accounts are available for testing.  If you are running this lab in your own environment, you will have been provided a list of usernames you can use in place of the table below.
 
 | Name | Username | Shift |
 | --- | --- | --- |
@@ -127,15 +135,17 @@ Click the `Invite User` button then either start typing the usernames (this will
 
 To make a team member a Team Admin, simply click the `Pencil` icon in the right hand column, pick any user and make them an Admin.
 
-!!!tip
-    *For large team managment you could use the API to streamline this process, and we will look at that in a later module*
+!!! tip
+    For large team management you could use the API to streamline this process, and we will look at that in a later module
 
 ---
 
-### 4. Configure Rotations 
+## 4. Configure Rotations
+
 Navigate to the `Rotations` tab on the `Teams` sub menu, you should have no existing Rotations so we need to create some. The 1st Rotation you will create is for a follow the sun support pattern where the members of each shift provide cover during their normal working hours within their time zone.  The 2nd will be a Rotation used to provide escalation support by more experienced senior members of the team, based on a 24/7, 1 week shift pattern.
 
-#### Follow the Sun Support - Business Hours
+### 4.1. Follow the Sun Support - Business Hours
+
 * Click `Add Rotation`
 * Enter a name of "*Follow the Sun Support - Business Hours*"
 * Select `Partial day` from the three available shift templates
@@ -165,25 +175,28 @@ You will now have three different Shift patterns, that provide cover 24hr hours,
 
 We will now add the 2nd Rotation for our Senior SRE Escalation cover.
 
-#### Senior SRE Escalation
+### 4.2. Senior SRE Escalation
+
 * Click `Add Rotation`
 * Enter a name of "*Senior SRE Escalation*"
 * Select `24/7` from the three available shift templates
-    * Enter a Shift namof "*Senior SRE Escalatonion*"
+    * Enter a Shift namof "*Senior SRE Escalation*"
     * Time Zone set to "*Asia/Tokyo*"
     * Handoff happens every "*7 days at 9.00am*"
     * The next handoff happens &lt;select the next Monday from the date picker&gt;
     * Click `Save Rotation`
 * Add the users who are allocated the 24/7 shift
 
-That completes the configuation of the Rotations, we now need to configure the Escalation Policies and Routing Keys.
+That completes the configuration of the Rotations, we now need to configure the Escalation Policies and Routing Keys.
 
 ---
 
-### 5. Configure Escalation Policies
-Navigate to the Ecsalation Polices tab on the Teams sub menu, you should have no existing Polices so we need to create some.  We are going to create three different Polices to cover off three typical use cases.
+## 5. Configure Escalation Policies
 
-#### 24/7
+Navigate to the Escalation Polices tab on the Teams sub menu, you should have no existing Polices so we need to create some.  We are going to create three different Polices to cover off three typical use cases.
+
+### 5.1. 24/7
+
 * Click `Add Escalation Policy`
 * Policy Name: "*24/7*"
 * Step 1
@@ -191,9 +204,8 @@ Navigate to the Ecsalation Polices tab on the Teams sub menu, you should have no
     * `Notify the on-duty user(s) in rotation` -> `Senior SRE Escalation`
 * Click `Save`
 
-&nbsp;
+### 5.2. Primary
 
-#### Primary
 * Click `Add Escalation Policy`
 * Policy Name: "*Primary*"
 * Step 1
@@ -206,12 +218,11 @@ Navigate to the Ecsalation Polices tab on the Teams sub menu, you should have no
     * Click `Add Step`
 * Step 3
     * `If still unacked after 15 more minutes`
-    * `Execute Poilcy` `-> <Your Team Name> : 24/7`
+    * `Execute Policy` `-> <Your Team Name> : 24/7`
 * Click `Save`
 
-&nbsp;
+### 5.3. Waiting Room
 
-#### Waiting Room
 * Click `Add Escalation Policy`
 * Policy Name: "*Waiting Room*"
 * Step 1
@@ -221,9 +232,9 @@ Navigate to the Ecsalation Polices tab on the Teams sub menu, you should have no
 
 You may have noticed that when we created each policy there was the warning message `There are no routing keys for this policy - it will only receive incidents via manual reroute or when on another escalation policy`
 
-This is becuase there are no Routing Keys linked to these Escalation Polices, so now that we have these polices configured we can go and create the Routing Keys.
+This is because there are no Routing Keys linked to these Escalation Polices, so now that we have these polices configured we can go and create the Routing Keys.
 
-### 6. Create Routing Keys
+## 6. Create Routing Keys
 
 Routing Keys map the incoming alert messages from your monitoring system to an Escalation Policy which in turn sends the notifications to the appropriate team.
 
@@ -236,11 +247,11 @@ There will probably already be a number of Routing Keys configured, but to add a
 | &lt;Your Initials&gt;_PRI | &lt;Your Team Name&gt; : Primary |
 | &lt;Your Initials&gt;_WR | &lt;Your Team Name&gt; : Waiting Room |
 
-!!! Note
-    *You can assign a Routing Key to multiple Escalation Policies if required by simply selecting more from the list*
+!!! note
+    You can assign a Routing Key to multiple Escalation Policies if required by simply selecting more from the list
 
 If you now navigate back to `Teams` -> `<Your Team Name>` -> `Escalation Policies` and look at the settings for your `Primary` and `Waiting Room` polices you will see that these now have `Routes` assigned to them.  The `24/7` policy does not have a Route assigned as this will only be triggered via an `Execute Policy` escalation from the `Primary` policy.
 
 ---
 
-This completes the inital getting started steps for VictorOps, the next step will be to configure the Integration between VictorOps and SignalFx.
+This completes the initial getting started steps for VictorOps, the next step will be to configure the Integration between VictorOps and SignalFx.
