@@ -4,13 +4,17 @@
 3. Testing the Integraion
 
 ---
-You are going to need to record a number of values during this module to use in a later steps so I suggest you create a `values document` to store the following values as you work through it.
+You are going to need to record a number of values during this module which we will export as variables in a later step so I suggest you create a `values document` to store the following values as you work through it.
 
 === "Values"
     ```bash
-    SFXVOPSID=
-    ACCESSTOKEN=
-    REALM=
+    export SFXVOPSID=
+    export ACCESS_TOKEN=
+    export REALM=
+    export ROUTINGKEY=
+    export INITIALS= 
+      
+    Service_API_Endpoint=
     ```
     
 ### 1. Configuring the Intergration between VictorOps and SignalFx
@@ -21,27 +25,26 @@ You are going to need to record a number of values during this module to use in 
     
 In order to integrate SignalFx with VictorOps we need to first obtain the Service API Endpoint for VictorOps.
 
-Navigate to Integrations and then use the search feature to find the SignalFx Integration. If it is not already enabled, click the Enable Integration button to activate it.
+Within the VictorOps UI navigate to `Integrations` main tab and then use the search feature to find the SignalFx Integration. If it is not already enabled, click the Enable Integration button to activate it.
 
-You simply need to copy the Service API Endpoint, including the `$routing_key` paramater onto you clipboard ready for use when configuring the VictorOps Integration within SignalFx.
+You simply need to copy the Service API Endpoint, including the `$routing_key` into your `values document` using the `Service_API_Endpoint` paramater.  This will be used when configuring the VictorOps Integration within the SignalFx UI.
 
 #### Enable VictorOps Integration within SignalFx
 
 Login to your SignalFx account and navigate to Integrations and use the search feature to find the VictorOps integration.
 
-!!! Note
-    *SignalFx can integrate with multiple VictorOps accounts so it is important when creating one to use a descriptive name and to not simply call it VictorOps*
-
 Assuming you are using the AppDev EMEA instance of VictorOps you will find the VictorOps Integration has already been confgured so there is no need to create a new one.
 
-However the process of creating a new Intergration is simply to click on 'Create New Integration', 
+However the process of creating a new Intergration is simply to click on `Create New Integration` like in the image below, or if there are existing integrations and you want to add another one you would click `New Integration`. 
 
 ![VictorOps Integration](../images/module7/m7-sfx-new-vo-integration.png)
 
-...give it a descriptive `Name` then paste the `Service API Enpoint` value you copied in the previous step into the `Post URL` field, then save it.
+...give it a descriptive `Name` then paste the `Service_API_Endpoint` value you copied in the previous step into the `Post URL` field, then save it.
 
 ![VictorOps Integration](../images/module7/m7-sfx-vo-integration-url.png)
 
+!!! Note
+    *SignalFx can integrate with multiple VictorOps accounts so it is important when creating one to use a descriptive name and to not simply call it VictorOps.  This name will be used within the SignalFx UI when selecting this integration, so ensure it is unambiguous*
 Once saved you need to copy the ID and save it in your `values document` using the `SFXVOPSID` paramater for use later in the module.
 
 ![VictorOps Integration](../images/module7/m7-sfx-vo-integration-id.png)
@@ -54,16 +57,21 @@ Once saved you need to copy the ID and save it in your `values document` using t
 #### Multipass
 The easiest way to test VictorOps is to use Multipass to run some local test VMs which will be monitored by SignalFx.
 
-If you do not already have Multipass installed you can download the installer from [here](https://multipass.run/).  MAC users can install it using Homebrew by running `brew cask install multipass`
+If you do not already have Multipass installed you can download the installer from [here](https://multipass.run/).  MAC users can install it using Homebrew by running:
+
+=== "Code"
+    ``` bash
+    brew cask install multipass
+    ```
 
 #### SignalFx Details
-We will use cloud-init to install the SignalFx Agent into the VMs but we first need to obtain the 'Token' and 'Realm' from your SignalFx account.
+We will use cloud-init to install the SignalFx Agent into the VMs but we first need to obtain the `Token` and `Realm` from your SignalFx account.
 
-You can find your Access Token by clicking on your `profile` icon on the top right of the SignalFx UI, select `Organisation Settings` → `Access Tokens`, expand the Default token, then click on `Show Token` to expose your token, click the `Copy` button to copy it to your clipboard, then paste it into the document you created in the previous step using the `ACCESSTOKEN` parameter.
+You can find your Access Token by clicking on the `settings` icon on the top right of the SignalFx UI, select `Organisation Settings` → `Access Tokens`, expand the Default token, then click on `Show Token` to expose your token, click the `Copy` button to copy it to your clipboard, then paste it into your `values document` using the `ACCESS_TOKEN` parameter.
 
 ![Access Token](../images/module7/m7-access-token.png)
 
-You will also need to obtain the name of the Realm for your SignalFx account.  Click on the profile icon again, but this time select `My Profile`.  The Ream can be found in the middle of the page within the Organizations section.  In this example it is `us1`. Again, make a note of this in your `values document` using the `REALM` paramter.
+You will also need to obtain the name of the Realm for your SignalFx account.  Click on the `account` icon again, but this time select `My Profile`.  The Ream can be found in the middle of the page within the Organizations section.  In this example it is `us1`. Again, make a note of this in your `values document` using the `REALM` paramter.
 
 ![Realm](../images/module7/m7-realm.png)
 
@@ -83,7 +91,10 @@ The next step is to create a cloud-init file that will automatically install the
 
     ```
     
-With the cloud-init file created, from the same directory where you created it run the following commands to create two VMs.  As in other modules prefix the name of each VM with your initials to make them unique within your SignalFx account. You may also want to first shutdown any other VMs you still have running from previous modules to free up resources.
+With the `victorops.yaml` file created, from the same directory where you created it run the following commands to create two VMs.  As in other modules prefix the name of each VM with your initials to make them unique within your SignalFx account. You may also want to first shutdown any other VMs you still have running from previous modules to free up resources.
+
+!!! Tip
+    Use two terminal windows to create the two VMs in parallel
 
 1st VictorOps VM
 
@@ -127,7 +138,7 @@ With the cloud-init file created, from the same directory where you created it r
     Launched: gh-vo2
     ```
 
-Once your two VMs have been created check within the SignalFx UI, Infrastructure Tab, and confirm they are being reporting in correctly.  
+Once your two VMs have been created check within the SignalFx UI, Infrastructure Tab, and confirm they are reporting in correctly.  Allow a couple or minutes for the VMs to spin up, install updates and then install the SignalFx Agent etc. 
 
 If they fail to appear, double check your Token and Realm settings within your victorops.yaml file.  If errors are found these can easily be updated directly within the VM. Simply update the token or api_url and ingest_url files located within /etc/signalfx.
 
@@ -135,9 +146,9 @@ If they fail to appear, double check your Token and Realm settings within your v
 #### SignalFx Detector
 We now need to create a new Detector within SignalFx which will use VictorOps as the target to send alerts to.  We will use Terraform to create the detector in a similar way to 'Module 4 - Monitoring as Code'.
 
-If you have not completed Module 4, and do not have Terraform already installed, download and install it for your platform - https://www.terraform.io/downloads.html (min. requirement v. 0.12.18)
+If you have not completed Module 4, and do not have Terraform already installed, download and install it for your platform - `https://www.terraform.io/downloads.html` (min. requirement v. 0.12.18)
 
-Copy and run the following code to download the VictorOps Workshop Detectors master zip file, unzip the file, then change into the victorops-workshop-detectors-master directory.
+Copy and run the following code to download the VictorOps Workshop Detectors master zip file, unzip the file, then change into the `victorops-workshop-detectors-master` directory.
 
 === "Input"
     ``` bash
@@ -171,14 +182,27 @@ Copy and run the following code to download the VictorOps Workshop Detectors mas
 
 
 
-Create the following environment variables to use in the Terraform steps below
-```
-export ACCESS_TOKEN=<SignalFx Access Token from Step 2>
-export REALM=<SignalFx Realm from Step 2>
-export SFXVOPSID=<VictorOps Integration ID from Step 2>
-export ROUTINGKEY=<Routing Key from Step 6 in module 'VictorOps Getting Started'>
-export INITIALS=<your initials e.g. GH>
-```
+Create the following environment variables to use in the Terraform steps below.  The 1st three variables should be stored in your `values document` if you have been populating it as you have worked through this module.  You can populate the final two now then simply copy all five lines into your terminal window where you downloaded the terraform files in the previous step.
+
+=== "Variables"
+    ```
+    export SFXVOPSID=<VictorOps Integration ID from Step 2>
+    export ACCESS_TOKEN=<SignalFx Access Token from Step 2>
+    export REALM=<SignalFx Realm from Step 2>
+    export ROUTINGKEY=<YOUR_INITIALS>_PRI
+    export INITIALS=<YOUR_INITIALS>
+    ```
+
+=== "Example"
+    ```
+    export SFXVOPSID=xxxxxxxxxxxx
+    export ACCESS_TOKEN=xxxxxxxxxxxxxxx
+    export REALM=us1
+    export ROUTINGKEY=GH_PRI
+    export INITIALS=GH
+    ```
+
+
 Initialise Terraform. **Note:** You will need to run this command each time a new version of the Terraform Provider is released. You can track the releases on [GitHub](https://github.com/terraform-providers/terraform-provider-signalfx/releases).
 
 === "Input"
@@ -318,8 +342,6 @@ It is considered best practice to run a terraform plan to see what changes may g
     Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
     ```
 
+---
 
-
-
-
-### 3. Testing the Integration
+You have now configured the Integrations between VicorOps and SignalFx so the final part of this module is to test the flow of alerts from SignalFx into VictorOps and see how you can manage the incident with both the VictorOps UI and Mobile App.

@@ -69,7 +69,8 @@ nav:
     - 'Deploying Sock Shop in K3s': module6/sockshop.md
   - '<b>Module 7</b> - VictorOps':
     - 'VictorOps Getting Started': module7/vo_getting_started.md
-    - 'VictorOps Integrations': module7/integrations.md
+    - 'VictorOps Integrations': module7/vo_integrations.md
+    - 'VictorOps Incident Lifecycle': module7/vo_incident_lifecycle.md
   - '<b>Post Workshop Clean Up!</b>': module-support/cleanup.md
   - '<b>Optional Modules</b>':
     - 'Deploying Hot R.O.D. in EKS': module8/hotrod-eks.md
