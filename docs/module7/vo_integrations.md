@@ -201,7 +201,6 @@ Create the following environment variables to use in the Terraform steps below. 
     export INITIALS=GH
     ```
 
-
 Initialise Terraform.
 
 !!! note

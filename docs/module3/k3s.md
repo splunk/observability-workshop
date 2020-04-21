@@ -7,7 +7,7 @@ If you have chosen to run the workshop on a AWS/EC2 instance, please follow inst
 
 ---
 
-### 1. I’ve got the key, I’ve got the secret!
+### 1. I’ve got the key, I’ve got the secret
 
 You will need to obtain your Access Token from the SignalFx UI once Kubernetes is running. You can find your Access Token by clicking on your profile icon on the top right of the SignalFx UI. Then select _**Organisation Settings → Access Tokens**_.  Expand the Default token, then click on _**Show Token**_ to expose your token. Later in the lab you can come back here and click the _**Copy**_ button which will copy it to your clipboard  so you can paste it when you need to provide an access token in the lab.
 ![Access Token](../images/module3/m1-l4-access-token.png)
@@ -17,7 +17,7 @@ You will also need to obtain the name of the Realm for your SignalFx account.  C
 
 ---
 
-### 2. Take the Helm!
+### 2. Take the Helm
 
 Create the following variables to use in the proceeding helm install command:
 
@@ -117,7 +117,7 @@ Ensure there are no errors by tailing the logs from the Smart Agent Pod. Output 
 
 ---
 
-### 3. Check all is well in the SignalFx UI!
+### 3. Check all is well in the SignalFx UI
 
 In the SignalFx UI, goto _**INFRASTRUCTURE → Kubernetes Navigator → Cluster Map**_ and open the Kubernetes Navigator Cluster Map to ensure metrics are being sent.
 
@@ -133,7 +133,7 @@ If there are many clusters you can use the dashboard filter to narrow down to yo
 
 ![K8S Clusters Filter](../images/module3/M3-l1-selecting-k3-cluster.png)
 
-To examine the health of your node, first click on the blue cross ![blue cross](../images/module3/M3-l1-blue-cross.png)  when selecting your cluster. This will drill down to the node level.  Next, open the side bar by clicking on the side bar button to open the Metrics side bar. Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: Cpu%, Mem%, Network in & out, Events and Container list etc. etc. 
+To examine the health of your node, first click on the blue cross ![blue cross](../images/module3/M3-l1-blue-cross.png)  when selecting your cluster. This will drill down to the node level.  Next, open the side bar by clicking on the side bar button to open the Metrics side bar. Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: Cpu%, Mem%, Network in & out, Events and Container list etc. etc.
 
 ![Sidebar metrics](../images/module3/M3-l1-explore-metrics.png)
 
