@@ -186,40 +186,42 @@ That completes the configuation of the Rotations, we now need to configure the E
 Navigate to the Ecsalation Polices tab on the Teams sub menu, you should have no existing Polices so we need to create some.  We are going to create three different Polices to cover off three typical use cases.
 
 #### 24/7
-* Click 'Add Escalation Policy'
-* Policy Name: 24/7
+* Click `Add Escalation Policy`
+* Policy Name: "*24/7*"
 * Step 1
-    * Immediately
-    * Notify the on-duty user(s) in rotation -> Senior SRE Escalation
-* Click 'Save'
+    * `Immediately`
+    * `Notify the on-duty user(s) in rotation` -> `Senior SRE Escalation`
+* Click `Save`
 
 &nbsp;
 
 #### Primary
-* Click 'Add Escalation Policy'
-* Policy Name: Primary
+* Click `Add Escalation Policy`
+* Policy Name: "*Primary*"
 * Step 1
-    * Immediately
-    * Notify the on-duty user(s) in rotation -> Follow the Sun Support - Business Hours
+    * `Immediately`
+    * `Notify the on-duty user(s) in rotation` -> `Follow the Sun Support - Business Hours`
+    * Click `Add Step`
 * Step 2
-    * If still unacked after 15 minutes
-    * Notify the next user(s) in the current on-duty shift -> Follow the Sun Support - Business Hours
+    * `If still unacked after 15 minutes`
+    * `Notify the next user(s) in the current on-duty shift` -> `Follow the Sun Support - Business Hours`
+    * Click `Add Step`
 * Step 3
-    * If still unacked after 15 more minutes
-    * Execute Poilcy -> &lt;Your Team Name&gt; : 24/7
-* Click 'Save'
+    * `If still unacked after 15 more minutes`
+    * `Execute Poilcy` `-> <Your Team Name> : 24/7`
+* Click `Save`
 
 &nbsp;
 
 #### Waiting Room
-* Click 'Add Escalation Policy'
-* Policy Name: Waiting Room
+* Click `Add Escalation Policy`
+* Policy Name: "*Waiting Room*"
 * Step 1
-    * If still unacked after 10 more minutes
-    * Execute Policy -> &lt;Your Team Name&gt; : Primary
-* Click 'Save'
+    * `If still unacked after 10 more minutes`
+    * `Execute Policy` -> `<Your Team Name> : Primary`
+* Click `Save`
 
-You may have noticed that when we created each policy there was the warning message "*There are no routing keys for this policy - it will only receive incidents via manual reroute or when on another escalation policy*"
+You may have noticed that when we created each policy there was the warning message `There are no routing keys for this policy - it will only receive incidents via manual reroute or when on another escalation policy`
 
 This is becuase there are no Routing Keys linked to these Escalation Polices, so now that we have these polices configured we can go and create the Routing Keys.
 
@@ -229,14 +231,17 @@ Routing Keys map the incoming alert messages from your monitoring system to an E
 
 Navigate to Settings on the main menu bar. You'll be dropped into the Routing Key configuration by default.
 
-There will probably already be a number of Routing Keys configured, but to add a new one simply click 'Add Key' then enter the name for the key in the empty box in the Routing Key column, and then select the appropriate policy from the drop down in the Escalation Polices column. Create the following two Routing Keys:
+There will probably already be a number of Routing Keys configured, but to add a new one simply click `Add Key` then enter the name for the key in the empty box in the `Routing Key` column, and then select the appropriate policy from the drop down in the `Escalation Polices` column. Create the following two Routing Keys:
 
 | Routing Key | Escalation Policies |
 | --- | --- |
 | &lt;Your Initials&gt;_PRI | &lt;Your Team Name&gt; : Primary |
 | &lt;Your Initials&gt;_WR | &lt;Your Team Name&gt; : Waiting Room |
 
-If you now navigate back to Teams > &lt;Your Team Name&gt; > Escalation Policies and look at the settings for your Primary and Wating Room polices you will see that these now have Routes assigned to them.  The 24/7 policy does not have a Route assigned as this will only be triggered via an 'Execute Policy' escalation from the Primary policy.
+!!! Note
+    *You can assign a Routing Key to multiple Escalation Policies if required by simply selecting more from the list*
+
+If you now navigate back to `Teams` -> `<Your Team Name>` -> `Escalation Policies` and look at the settings for your `Primary` and `Waiting Room` polices you will see that these now have `Routes` assigned to them.  The `24/7` policy does not have a Route assigned as this will only be triggered via an `Execute Policy` escalation from the `Primary` policy.
 
 ---
 
