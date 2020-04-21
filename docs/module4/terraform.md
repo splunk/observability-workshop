@@ -1,6 +1,6 @@
 # Using Terraform - Lab Summary
 
-* Install Terraform and initialise the SignalFx Provider.
+* Install Terraform and initialize the SignalFx Provider.
 * Run Terraform to create SignalFx detectors and dashboards from code using our Terraform provider.
 * See how Terraform can also delete detectors and dashboards.
 
@@ -30,7 +30,7 @@ The environment variables needed should already be set from [**Step #2** in Modu
     export INITIALS=<your initials e.g. RWC>
     ```
 
-Initialise Terraform. **Note:** You will need to run this command each time a new version of the Terraform Provider is released. You can track the releases on [GitHub](https://github.com/terraform-providers/terraform-provider-signalfx/releases).
+Initialize Terraform. **Note:** You will need to run this command each time a new version of the Terraform Provider is released. You can track the releases on [GitHub](https://github.com/terraform-providers/terraform-provider-signalfx/releases).
 
 === "Input"
 
