@@ -9,18 +9,22 @@
 ---
 
 ### 1. Activate your login
-You will have received an invitation to Activate your VictorOps aaccount via e-mail, click the 'Activate Account' link and follow the prompts.
+You will have received an invitation to Activate your VictorOps account via e-mail, click the 'Activate Account' link and follow the prompts.
 
 ---
 
 ### 2. Configure Your Profile
-Once you are logged in to VictorOps you now need to setup your profile.  Click on your login name in the top right hand corner and chose 'Your Profile' from the drop down.
+Once you are logged in to VictorOps you now need to set up your profile.  Click on your login name in the top right hand corner and chose `Profile` from the drop down.
 
 #### Contact Methods
-Confirm your contant methods are listed correctly and add any addiontal phone numbers and e-mail address you wish to use.
+Confirm your contact methods are listed correctly and add any additional phone numbers and e-mail address you wish to use.
 
 #### Devices
 Install the VictorOps app for your smartphone.  Search your phones App Store for VictorOps to find the appropriate version of the app.  The publisher should be listed as VictorOps Inc.
+
+* iPhone (https://apps.apple.com/us/app/victorops/id696974262)
+
+* Android (https://play.google.com/store/apps/details?id=com.victorops.androidclient&hl=en) - must be opened on mobile
 
 Configuration help guides are available here:
 
@@ -28,7 +32,7 @@ Configuration help guides are available here:
 
 * [Android](https://help.victorops.com/knowledge-base/android-devices-victorops/)
 
-Install the App and login, then refresh the Profile page and your device should now be listed under the devices section.  Click the "Test push notification" button and confirm you recieve the test message.
+Install the App and login, then refresh the Profile page and your device should now be listed under the devices section.  Click the `Test push notification` button and confirm you recieve the test message.
 
 #### Personal Calendar
 This link will enable you to sync your VictorOps on-call schedule with your calendar, however as you do not have any allocated shifts yet this will currently be empty. You can add it to you celendar by copying the link into your preferred appliction and seting it up as a new subscritpion.
@@ -39,7 +43,6 @@ Paging Polices specify how you will be contacted by VictorOps when on-call. The 
 Click the edit policy button for the Primary Paging Policy.  
 
 * Step 1
-    - Every 5 minutes until we have reached you
     - Send a push notification to all my devices
     - Execute the next step if I have not responded within 5 minutes
 
@@ -55,13 +58,20 @@ Then add a new step
     - Every 5 minutes until we have reached you
     - Make a phone call to &lt;your phone number&gt;
 
-Then save the policy
+Then save the policy.
 
-Reviewing what we have just created, you will initally get paged using your smart phone, if you have not acknowledged within 5 minutes the policy will move on to the next step. Step 2 will send you an e-mail, but will also repeat Step 1 so you will get another push notification to your smart phone, then wait for 5 minutes for an acknowledgement before again escalating to the next step. Step 3 will phone you every 5 minutes until acknowledged, and will also send a push notification and email.
+When you are on-call or in the escalation path of an incident, you will receive notifications in this order following these time delays. To cease the paging you must acknowledge the incident. Acknowledgements can occur in one of the following ways:
+
+* Expanding the Push Notification on your device and selecting Acknowledge
+* Responding to the SMS with the 5 digit code included
+* Pressing 4 during the Phone Call 
+* Slack Button
+
+For more information on Notification Types, see here: https://help.victorops.com/knowledge-base/notification-types/
 
 Custom paging polices enable you to overide the primary policy based on the time and day of the week. A good example would be get the system to immediately phone you whenever you get a page during the evening or weekends as this is more likely to get your attention than a push notification.
 
-Create a new Custom Policy by clicking Add a Policy and configure with the following settings:
+Create a new Custom Policy by clicking `Add a Policy` and configure with the following settings:
 
 Policy Name: Evening
 
@@ -89,12 +99,12 @@ These custom paging policies will be used during the specified times in place of
 
 The final option here is the setting for Recovery Notifications.  As these are typically low priority simply sending you an email is the typical setting used.
 
-Your profile is now fully configured using these example configurations. Organisations will have different views on how profiles should be configured and will typically issue guidelines for paging policies and times between escallations etc.
+Your profile is now fully configured using these example configurations. Organisations will have different views on how profiles should be configured and will typically issue guidelines for paging policies and times between escalations etc.
 
 ---
 
 ### 3. Create Your Team
-Navigate to the Teams Tab on the main toolbar, select 'Add Team', then enter your team name using the format '&lt;Your Initals&gt; Workshop' and then save by clicking the 'Add Team' button.
+Navigate to the Teams Tab on the main toolbar, select `Add Team`, then enter your team name using the format "&lt;Your Initals&gt; Workshop" and then save by clicking the `Add Team` button.
 
 You now need to add other users to your team.  If you are running this workshop using the Splunk provided envrionment, the following accounts are available for testing.  If you are running this lab in your own environment, you will have been provided a list of usernames you can use in place of the table below.
 
@@ -113,11 +123,11 @@ You now need to add other users to your team.  If you are running this workshop 
 | Hank Schrader | hankschrader | 24/7 |
 | Pam Beesly | pambeesly | 24/7 |
 
-Add the users to your team, using either the above list or the alternate one provided to you. The value in the Shift column can be ignored for now, but will be required for a later step.
+Add the users to your team, using either the above list or the alternate one provided to you. The value in the `Shift` column can be ignored for now, but will be required for a later step.
 
-Click the Invite User button then either start typing the usernames (this will filter the list), or copy and paste them into the dialogue box. Once all users are added click the 'Add User' button.
+Click the `Invite User` button then either start typing the usernames (this will filter the list), or copy and paste them into the dialogue box. Once all users are added click the `Add User` button.
 
-To make a team member a Team Admin, simply click the Pencil icon in the right hand column, pick any user and make them an Admin.
+To make a team member a Team Admin, simply click the `Pencil` icon in the right hand column, pick any user and make them an Admin.
 
 !!!tip
     *For large team managment you could use the API to streamline this process, and we will look at that in a later module*
@@ -125,91 +135,91 @@ To make a team member a Team Admin, simply click the Pencil icon in the right ha
 ---
 
 ### 4. Configure Rotations 
-Navigate to the Rotations tab on the Teams sub menu, you should have no existing Rotations so we need to create some. The 1st Rotation you will create is for a follow the sun support pattern where the members of each shift provide cover during their normal working hours within their time zone.  The 2nd will be a Rotation used to provide escalation support by more experienced senior members of the team, based on a 24/7, 1 week shift pattern.
+Navigate to the `Rotations` tab on the `Teams` sub menu, you should have no existing Rotations so we need to create some. The 1st Rotation you will create is for a follow the sun support pattern where the members of each shift provide cover during their normal working hours within their time zone.  The 2nd will be a Rotation used to provide escalation support by more experienced senior members of the team, based on a 24/7, 1 week shift pattern.
 
-* Follow the Sun Support - Business Hours
-    * Click 'Add Rotation'
-    * Enter a name of Follow the Sun Support - Business Hours
-    * Select 'Partial day' from the three available shift templates
-        * Enter a Shift name of Asia
-        * Time Zone set to Asia/Tokyo
-        * Each user is on duty from 'Monday through Friday from 9.00am to 5.00pm'
-        * Handoff happens every 1 days
-        * The next handoff happens &lt;the next Monday will have been automatically selected&gt;
-        * Save Rotation
-    * Now add an 2nd shft for Asia by clicking '+Add a shift'
-        * Enter a Shift name of Europe
-        * Time Zone set to Europe/London
-        * The remaining settings will have been copied from the 1st shift
-        * Save Shift
-    * Now add a 3rd shft for West Coast USA by clicking '+Add a shift'
-        * Enter a Shift name of West Coast
-        * Time Zone set to US/Pacific
-        * The remaining settings will have been copied from the 1st shift
-        * Save Shift
-    * You new need to add the users into their allocated shift patterns using either the table above, or the list of users provided to you separately
-        * For each Shift, click on the 'Manage Members' icon which is the left of the three icons and resembles the image of three heads
-        * Add the users to each Shift (note how you have to use their Username and not their real names)
-        * The first user added will the 'current' user for that shift
-        * You can re-order the shifts by simply dragging the users up and down, and you can change the current user by clicking 'Set Current' on an alternate user
+#### Follow the Sun Support - Business Hours
+* Click `Add Rotation`
+* Enter a name of "*Follow the Sun Support - Business Hours*"
+* Select `Partial day` from the three available shift templates
+    * Enter a Shift name of "*Asia*"
+    * Time Zone set to "*Asia/Tokyo*"
+    * Each user is on duty from "*Monday through Friday from 9.00am to 5.00pm*"
+    * Handoff happens every "*1 days*"
+    * The next handoff happens &lt;the next Monday will have been automatically selected&gt;
+    * Click `Save Rotation`
+* Now add an 2nd shft for Europe by clicking `+Add a shift` - `Partial Day`
+    * Enter a Shift name of "*Europe*"
+    * Time Zone set to "*Europe/London*"
+    * The remaining settings will have been copied from the 1st shift
+    * Click `Save Shift`
+* Now add a 3rd shft for West Coast USA by clicking `+Add a shift` - `Partial Day`
+    * Enter a Shift name of "*West Coast*"
+    * Time Zone set to "*US/Pacific*"
+    * The remaining settings will have been copied from the 1st shift
+    * Click `Save Shift`
+* You new need to add the users into their allocated shift patterns using either the table above, or the list of users provided to you separately
+    * For each Shift, click on the `Manage Members` icon which is the left of the three icons and resembles the image of three heads
+    * Add the users to each Shift (note how you have to use their Username and not their real names)
+    * The first user added will be the 'current' user for that shift
+    * You can re-order the shifts by simply dragging the users up and down, and you can change the current user by clicking `Set Current` on an alternate user
 
 You will now have three different Shift patterns, that provide cover 24hr hours, Mon - Fri, but with no cover at weekends.
 
 We will now add the 2nd Rotation for our Senior SRE Escalation cover.
 
-* Senior SRE Escalation
-    * Click 'Add Rotation'
-    * Enter a name of Senior SRE Escalation
-    * Select '24/7 from the three available shift templates
-        * Enter a Shift name of Senior SRE Escalation
-        * Time Zone set to Asia/Tokyo
-        * andoff happens every 7 days at 9.00am
-        * The next handoff happens &lt;select the next Monday from the date picker&gt;
-        * Save Rotation
-    * Add the users who are allocated the 24/7 shift
+#### Senior SRE Escalation
+* Click `Add Rotation`
+* Enter a name of "*Senior SRE Escalation*"
+* Select `24/7` from the three available shift templates
+    * Enter a Shift namof "*Senior SRE Escalatonion*"
+    * Time Zone set to "*Asia/Tokyo*"
+    * Handoff happens every "*7 days at 9.00am*"
+    * The next handoff happens &lt;select the next Monday from the date picker&gt;
+    * Click `Save Rotation`
+* Add the users who are allocated the 24/7 shift
 
 That completes the configuation of the Rotations, we now need to configure the Escalation Policies and Routing Keys.
 
 ---
 
 ### 5. Configure Escalation Policies
-Navigate to the Ecsalation Polices tab on the Teams sub menu, you should have no existing Polices so we need to create some.  We are going to create three different Polices to cover off three eyoical use cases.
+Navigate to the Ecsalation Polices tab on the Teams sub menu, you should have no existing Polices so we need to create some.  We are going to create three different Polices to cover off three typical use cases.
 
-* **24/7**
-    * Click 'Add Escalation Policy'
-    * Policy Name: 24/7
-    * Step 1
-        * Immediately
-        * Notify the on-duty user(s) in rotation -> Senior SRE Escalation
-    * Click 'Save'
-
-&nbsp;
-
-* **Primary**
-    * Click 'Add Escalation Policy'
-    * Policy Name: Primary
-    * Step 1
-        * Immediately
-        * Notify the on-duty user(s) in rotation -> Follow the Sun Support - Business Hours
-    * Step 2
-        * If still unacked after 15 minutes
-        * Notify the next user(s) in the current on-duty shift -> Follow the Sun Support - Business Hours
-    * Step 3
-        * If still unacked after 15 more minutes
-        * Execute Poilcy -> &lt;Your Team Name&gt; : 24/7
-    * Click 'Save'
+#### 24/7
+* Click 'Add Escalation Policy'
+* Policy Name: 24/7
+* Step 1
+    * Immediately
+    * Notify the on-duty user(s) in rotation -> Senior SRE Escalation
+* Click 'Save'
 
 &nbsp;
 
-* **Waiting Room**
-    * Click 'Add Escalation Policy'
-    * Policy Name: Waiting Room
-    * Step 1
-        * If still unacked after 10 more minutes
-        * Execute Policy -> &lt;Your Team Name&gt; : Primary
-    * Click 'Save'
+#### Primary
+* Click 'Add Escalation Policy'
+* Policy Name: Primary
+* Step 1
+    * Immediately
+    * Notify the on-duty user(s) in rotation -> Follow the Sun Support - Business Hours
+* Step 2
+    * If still unacked after 15 minutes
+    * Notify the next user(s) in the current on-duty shift -> Follow the Sun Support - Business Hours
+* Step 3
+    * If still unacked after 15 more minutes
+    * Execute Poilcy -> &lt;Your Team Name&gt; : 24/7
+* Click 'Save'
 
-You ay have noticed that when we created each Policies there was the warning message "*There are no routing keys for this policy - it will only receive incidents via manual reroute or when on another escalation policy*"
+&nbsp;
+
+#### Waiting Room
+* Click 'Add Escalation Policy'
+* Policy Name: Waiting Room
+* Step 1
+    * If still unacked after 10 more minutes
+    * Execute Policy -> &lt;Your Team Name&gt; : Primary
+* Click 'Save'
+
+You may have noticed that when we created each policy there was the warning message "*There are no routing keys for this policy - it will only receive incidents via manual reroute or when on another escalation policy*"
 
 This is becuase there are no Routing Keys linked to these Escalation Polices, so now that we have these polices configured we can go and create the Routing Keys.
 
@@ -217,9 +227,9 @@ This is becuase there are no Routing Keys linked to these Escalation Polices, so
 
 Routing Keys map the incoming alert messages from your monitoring system to an Escalation Policy which in turn sends the notifications to the appropriate team.
 
-Navigate to Settings on the main menu bar, then select Routing Keys on the sub menu bar.
+Navigate to Settings on the main menu bar. You'll be dropped into the Routing Key configuration by default.
 
-There will probably already be a number of Routing Keys configured, but to add a new one simply click 'Add Key' then enter the name for the key in the empty box in the Routing Key column, and then select the appropriate policy from the drop down in the Escalation Polices column. Create the follwoing two Routing Keys:
+There will probably already be a number of Routing Keys configured, but to add a new one simply click 'Add Key' then enter the name for the key in the empty box in the Routing Key column, and then select the appropriate policy from the drop down in the Escalation Polices column. Create the following two Routing Keys:
 
 | Routing Key | Escalation Policies |
 | --- | --- |
