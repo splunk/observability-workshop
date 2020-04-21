@@ -1,12 +1,14 @@
-## Lab Summary
+# Using Terraform - Lab Summary
+
 * Install Terraform and initialise the SignalFx Provider.
 * Run Terraform to create SignalFx detectors and dashboards from code using our Terraform provider.
 * See how Terraform can also delete detectors and dashboards.
 
 ---
 
-### 1. Initial setup
-Download and install Terraform for your platform - https://www.terraform.io/downloads.html (min. requirement v. 0.12.18)
+## 1. Initial setup
+
+Download and install Terraform for your platform - <https://www.terraform.io/downloads.html> (min. requirement v. 0.12.18)
 
 Download the SignalFx Jumpstart Terraform master zip file, unzip the file and change into the `signalfx-jumpstart-master` directory
 
@@ -97,7 +99,8 @@ Create a new workspace, replace `{WORKSPACE_NAME}` with what you want your works
 
 ---
 
-### 2. Create an execution plan
+## 2. Create an execution plan
+
 Review the execution plan.
 
 === "Input"
@@ -110,7 +113,7 @@ If the plan executes successfully, we can go ahead and apply:
 
 ---
 
-### 3. Apply actions from execution plan
+## 3. Apply actions from execution plan
 
 === "Input"
 
@@ -120,12 +123,12 @@ If the plan executes successfully, we can go ahead and apply:
 
 Validate that the detectors were created, under the _**ALERTS → Detectors**_, you should see a list of new detectors with the a prefix of your initials:
 
-![](../images/module4/detectors.png)
-
+![Detectors](../images/module4/detectors.png)
 
 ---
 
-### 4. Destroy all your hard work
+## 4. Destroy all your hard work
+
 You will first need to ensure you are in the correct workspace, replace `{WORKSPACE_NAME}` with the name created in the initial setup)
 
 === "Input"
@@ -137,7 +140,7 @@ You will first need to ensure you are in the correct workspace, replace `{WORKSP
 Destroy all Detectors and Dashboards that were previously applied.
 
 !!! info "Note"
-    
+
     The `var=”sfx_prefix=$INITIALS”` is not required!
 
 === "Input"
@@ -148,7 +151,7 @@ Destroy all Detectors and Dashboards that were previously applied.
 
 Validate all the detectors have been removed by navigating to _**ALERTS → Detectors**_
 
-![](../images/module4/destroy.png)
+![Destroyed](../images/module4/destroy.png)
 
 ---
 

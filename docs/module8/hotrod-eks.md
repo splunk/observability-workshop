@@ -1,15 +1,16 @@
-## Enabling µAPM on EKS
+# Enabling µAPM on EKS
+
 _An organisation needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already._
 
 _To check if you have an organisation with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards._
 
 ---
 
-### 1. Launch the Multipass instance
+## 1. Launch the Multipass instance
 
 If you have not already completed [Step #1](https://signalfx.github.io/app-dev-workshop/module3/k3s/#1-lets-bake-some-k8s) in Module 3 then please do so, otherwise jump to [Step #2](https://signalfx.github.io/app-dev-workshop/module8/hotrod-eks/#2-create-environment-variables)
 
-### 2. Create environment variables
+## 2. Create environment variables
 
 Create the following environment variables for **SignalFx** and **AWS** to use in the proceeding steps:
 
@@ -34,7 +35,7 @@ Create the following environment variables for **SignalFx** and **AWS** to use i
 
 You can check for the latest SignalFx Smart Agent release on [Github](https://github.com/signalfx/signalfx-agent/releases).
 
-### 3. Configure AWS CLI for your account
+## 3. Configure AWS CLI for your account
 
 Use the `AWS CLI` to configure access to your AWS environment. The environment variables configured above mean you can just hit enter on each of the prompts to accept the values:
 
@@ -52,10 +53,10 @@ Use the `AWS CLI` to configure access to your AWS environment. The environment v
     Default region name [us-east-1]: 
     Default output format [json]: 
     ```
-    
+
 ---
 
-### 4. Create a cluster running Amazon Elastic Kubernetes Service (EKS)
+## 4. Create a cluster running Amazon Elastic Kubernetes Service (EKS)
 
 === "Input"
 
@@ -117,7 +118,7 @@ Once complete update your `kubeconfig` to allow `kubectl` access to the cluster:
 
 ---
 
-### 5. Deploy SignalFx SmartAgent to your EKS Cluster
+## 5. Deploy SignalFx SmartAgent to your EKS Cluster
 
 Add the SignalFx Helm chart repository to Helm:
 
@@ -190,7 +191,7 @@ Validate cluster looks healthy in SignalFx Kubernetes Navigator dashboard
 
 ---
 
-### 6. Deploy Hot R.O.D. Application to EKS
+## 6. Deploy Hot R.O.D. Application to EKS
 
 === "Input"
 
@@ -242,13 +243,13 @@ Create an environment variable for the IP address and port that the Hot R.O.D. a
 
 You can view / exercise Hot R.O.D. yourself in a browser by opening the `EXTERNAL-IP:PORT` as shown above e.g.
 
-```
+```text
 https://af26ce80ef2e14c9292ae5b4bc0d2dd0-1826890352.us-east-2.elb.amazonaws.com:8080
 ```
 
 ---
 
-### 7. Generate some traffic to the application using Apache Benchmark
+## 7. Generate some traffic to the application using Apache Benchmark
 
 === "Input"
 
@@ -268,7 +269,7 @@ You should now be able to exercise SignalFx APM dashboards.
 
 ---
 
-### 8. Cleaning up!
+## 8. Cleaning up
 
 To delete entire EKS cluster:
 
