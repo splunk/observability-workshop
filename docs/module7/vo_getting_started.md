@@ -17,7 +17,7 @@ You will have received an invitation to Activate your VictorOps account via e-ma
 Once you are logged in to VictorOps you now need to set up your profile.  Click on your login name in the top right hand corner and chose 'Profile' from the drop down.
 
 #### Contact Methods
-Confirm your contact methods are listed correctly and add any addiontal phone numbers and e-mail address you wish to use.
+Confirm your contact methods are listed correctly and add any additional phone numbers and e-mail address you wish to use.
 
 #### Devices
 Install the VictorOps app for your smartphone.  Search your phones App Store for VictorOps to find the appropriate version of the app.  The publisher should be listed as VictorOps Inc.
