@@ -1,10 +1,12 @@
-## Lab Summary
+# Deploying NGINX in K3s - Lab Summary
+
 * Deploy a NGINX ReplicaSet into your K3s cluster and confirm the auto discovery of your NGINX deployment.
 * Run a benchmark test to create metrics and confirm them streaming into SignalFX!
 
-***
+---
 
-### 1. Start your NGINX!
+## 1. Start your NGINX
+
 Remain in the Multipass  or EC2 shell session and change into the `nginx` directory:
 
 === "Input"
@@ -30,8 +32,8 @@ Note the single agent container running per node among the default Kubernetes po
 Now switch back to the default cluster node view by selecting  the **MAP** tab and select your cluster again.
   
 ---
- 
-### 2. Create NGINX deployment!
+
+## 2. Create NGINX deployment
 
 === "Input"
 
@@ -83,7 +85,7 @@ Next we need to expose port 80 (HTTP)
     ```
 
 Run `kubectl get svc` then make a note of the `CLUSTER-IP` address allocated to the NGINX service.
-   
+
 === "Input"
 
     ```text
@@ -100,11 +102,11 @@ Run `kubectl get svc` then make a note of the `CLUSTER-IP` address allocated to 
 
 ---
 
-### 3. Run a benchmark
+## 3. Run a benchmark
 
 Using the NGINX CLUSTER-IP address reported from above, use Apache Benchmark (`ab`) to create some traffic to light up your SignalFx NGINX dashboard. Run this a couple of times to generate some metrics!
 
-=== "Input"   
+=== "Input"
 
     ```text
     ab -n1000 -c20 http://{INSERT_NGINX_IP_ADDRESS}/
@@ -131,7 +133,7 @@ Using the NGINX CLUSTER-IP address reported from above, use Apache Benchmark (`a
 
 Validate you are seeing metrics in the UI by going to _**Dashboards → NGINX → NGINX Servers**_ Tip: you can again apply the filter `kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP` to focus on only your metrics.
 
-![](../images/module3/nginx-dashboard.png)
+![NGINX Dashboard](../images/module3/nginx-dashboard.png)
 
 ---
 

@@ -3,7 +3,7 @@
 * Use AWS EC2 to deploy a Ubuntu server prebuilt for the work shop.
 * Explain the extra steps needed to  run the workshop on this instance
 
-***
+---
 
 ## 1. Starting the workshop instance
 
@@ -31,7 +31,7 @@ On the left side of you screen click under the **INSTANCES** heading on the _ins
 
 ![IP address](../images/module-support/MEC2-6.png)
 
-***
+---
 
 ## 2. Connecting to your workshop instance
 
@@ -51,6 +51,6 @@ The system will install and launch your k3s kubernetes platform
 
 ![APP_DEV shell](../images/module-support/MEC2-8.png)
 
-***
+---
 
 If everything matches the screen shot above, your ready to begin your [workshop](https://signalfx.github.io/app-dev-workshop)

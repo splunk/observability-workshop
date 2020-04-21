@@ -1,14 +1,14 @@
 ### Lab Summary
 
 1. Deploy SignalFx Smart Agent via install script on a VM
-1. Confirm the Smart Agent is working and sending data
+2. Confirm the Smart Agent is working and sending data
 3. Stop the agent on the VM
 
 ---
 
 ### 1. Deploy SignalFx Smart Agent via install script on a VM
 
-You will need to obtain your Access Token from the SignalFx UI once Kubernetes is running. You can find your Access Token by clicking on your profile icon on the top right of the SignalFx UI. Then select _**Organisation Settings → Access Tokens**_.  Expand the Default token, then click on _**Show Token**_ to expose your token. Later in the lab you can come back here and click the _**Copy**_ button which will copy it to your clipboard  so you can paste it when you need to provide an access token in the lab.
+You will need to obtain your Access Token from the SignalFx UI once Kubernetes is running. You can find your Access Token by clicking on your profile icon on the top right of the SignalFx UI. Then select _**Organization Settings → Access Tokens**_.  Expand the Default token, then click on _**Show Token**_ to expose your token. Later in the lab you can come back here and click the _**Copy**_ button which will copy it to your clipboard  so you can paste it when you need to provide an access token in the lab.
 ![Access Token](../images/module3/m1-l4-access-token.png)
 
 You will also need to obtain the name of the Realm for your SignalFx account.  Click on the profile icon again, but this time select 'My Profile'.  The Ream can be found in the middle of the page within the Organizations section.  In this example it is `us1`.
@@ -18,7 +18,7 @@ You will also need to obtain the name of the Realm for your SignalFx account.  C
 
 SignalFx maintains a shell script to install on supported distributions. Copy the script below and replace $REALM and $ACCESS_TOKEN with the values found in previous screen:
 
-```
+```bash
 curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
 sudo sh /tmp/signalfx-agent.sh --realm  $REALM -- $ACCESS_TOKEN
 ```
@@ -67,9 +67,9 @@ Once the installation is complete check the status of the agent.
 
 To see the Metrics that the Smart Agent is sending to SignalFx, please goto the SignalFX UI,  and select  **Infrastructure → Hosts**   to see the lists of hosts.
 
-![Goto host ](../images/module3/M3-hosts.png)
+![Goto host](../images/module3/M3-hosts.png)
 
-Here you see a list of the Nodes that have an Smart Agent installed and are reporting into SignalFx. Make sure you see your Multipass/EC2 instance in the list of hosts. (The hostname from the previous section) 
+Here you see a list of the Nodes that have an Smart Agent installed and are reporting into SignalFx. Make sure you see your Multipass/EC2 instance in the list of hosts. (The hostname from the previous section)
 
 You can also set a filter for just your instance by selecting the _host:_  attribute, followed by picking the name of your host from the drop down list.
 

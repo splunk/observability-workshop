@@ -1,10 +1,10 @@
-### Lab Summary
+# Lab Summary
 
 * Download the workshop and configure Kubernetes ([K3s](https://k3s.io/)) environment.
 
 ---
 
-### Let’s bake some K8s
+## Let’s bake some K8s
 
 If you have chosen to run the workshop on a AWS/EC2 instance, please follow instructions given to connect and run the Workshop as described, however skip the Multipass commands in the next section.
 
