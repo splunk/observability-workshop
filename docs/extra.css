@@ -11,6 +11,7 @@ img[src*="#shadow"] {
 
 img[src*="#no-border"] {
     border: 0px;
+    width: 200px;
 }
 
 a.md-logo img {
