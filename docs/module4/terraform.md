@@ -152,7 +152,3 @@ Destroy all Detectors and Dashboards that were previously applied.
 Validate all the detectors have been removed by navigating to _**ALERTS → Detectors**_
 
 ![Destroyed](../images/module4/destroy.png)
-
----
-
-Use the **Next** link in the footer below to continue the workshop

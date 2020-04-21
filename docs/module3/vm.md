@@ -97,7 +97,3 @@ In the next module we are going to roll out the agent on the Kubernetes cluster.
     ```
     sudo service signalfx-agent stop
     ```
-
----
-
-Use the **Next** link in the footer below to continue the workshop

@@ -243,7 +243,3 @@ Enter a new name for your dashboard and click on Done
 Congratulations! You have created your first chart and dashboard!
 
 ![](../images/module1/M1-l1-36.png)
-
----
-
-Use the **Next** link in the footer below to continue the workshop

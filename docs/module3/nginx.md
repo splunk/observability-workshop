@@ -134,7 +134,3 @@ Using the NGINX CLUSTER-IP address reported from above, use Apache Benchmark (`a
 Validate you are seeing metrics in the UI by going to _**Dashboards → NGINX → NGINX Servers**_ Tip: you can again apply the filter `kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP` to focus on only your metrics.
 
 ![NGINX Dashboard](../images/module3/nginx-dashboard.png)
-
----
-
-Use the **Next** link in the footer below to continue the workshop

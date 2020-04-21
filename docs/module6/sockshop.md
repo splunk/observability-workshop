@@ -186,7 +186,3 @@ In order to view the application in your web browser we need to find the LoadBal
 Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). Then head over to your web browser and type in `http://{EXTERNAL-IP}:8081`, you should then be able to see the application running. Happy Shopping!
 
 ![SockShop Application](../images/module6/sockshop-app.png)
-
----
-
-Use the **Next** link in the footer below to continue the workshop

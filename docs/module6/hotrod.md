@@ -115,7 +115,3 @@ This  should show you the dependency map for the hotrod app
 ![Hot R.O.D. in APM](../images/module6/M6-l1-Hotrod-TS.png)
 
 If you did create some errors, they show up as the big red dot in the Redis service.
-
----
-
-Use the **Next** link in the footer below to continue the workshop

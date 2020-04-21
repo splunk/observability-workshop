@@ -159,7 +159,3 @@ Click on **Update** to save your Access Tokens limits and The Alert Settings.
 In your company you would distribute these new Access Tokens to various teams, controlling how much information/data they can send to SignalFx. This will allow you to fine tune the way you consume your SignalFx allotment and stop expensive surprises from happening
 
 **Congratulations!** You have now have completed the Service Bureau module.
-
----
-
-Use the **Next** link in the footer below to continue the workshop

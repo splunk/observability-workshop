@@ -94,7 +94,3 @@ You will see you alert detector listed here.
 ![Detector List](../images/module2/M1-l2-11.png)
 
 Congrats! You have created your first alert detector and activated it!
-
----
-
-Use the **Next** link in the footer below to continue the workshop

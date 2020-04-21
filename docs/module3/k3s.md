@@ -138,7 +138,3 @@ To examine the health of your node, first click on the blue cross ![blue cross](
 ![Sidebar metrics](../images/module3/M3-l1-explore-metrics.png)
 
 Take some time to explore the Kubernetes Navigator UI.
-
----
-
-Use the **Next** link in the footer below to continue the workshop

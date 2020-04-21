@@ -58,7 +58,3 @@ SignalFx provides a unified, single-pane-of-glass view of infrastructure and app
 * Correlate how infrastructure performance is impacting application performance;
 * Navigate to the application code-level insights within seconds using contextual alerts pointing to the relevant traces;
 * Reduce MTTR and enable DevOps practices by having a single source of truth across infrastructure and deployed microservices.
-
----
-
-Use the **Next** link in the footer below to move to the first module and start the workshop
