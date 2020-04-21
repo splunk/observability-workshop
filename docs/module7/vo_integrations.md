@@ -20,7 +20,7 @@ You are going to need to record a number of values during this module which we w
 
 ## 1. Configuring the Integration between VictorOps and SignalFx
 
-### VictorOps Service API Endpoint
+### 1.1. VictorOps Service API Endpoint
 
 !!! warning
     The SignalFx Integration only needs to be enabled once per VictorOps instance, so you will probably find it has already been enabled, please **DO NOT** disable an already active integration when completing this lab.
@@ -29,7 +29,7 @@ In order to integrate SignalFx with VictorOps we need to first obtain the Servic
 
 You simply need to copy the Service API Endpoint, including the `$routing_key` into your `values document` using the `Service_API_Endpoint` parameter.  This will be used when configuring the VictorOps Integration within the SignalFx UI.
 
-## Enable VictorOps Integration within SignalFx
+### 1.2. Enable VictorOps Integration within SignalFx
 
 Login to your SignalFx account and navigate to Integrations and use the search feature to find the VictorOps integration. Assuming you are using the AppDev EMEA instance of VictorOps you will find the VictorOps Integration has already been configured so there is no need to create a new one.
 
@@ -53,7 +53,7 @@ Once saved you need to copy the ID and save it in your `values document` using t
 
 ## 2. Creating a Test Environment
 
-### Multipass
+### 2.1. Multipass
 
 The easiest way to test VictorOps is to use Multipass to run some local test VMs which will be monitored by SignalFx.
 
@@ -64,7 +64,7 @@ If you do not already have Multipass installed you can download the installer fr
     brew cask install multipass
     ```
 
-### SignalFx Details
+### 2.2. SignalFx Details
 
 We will use cloud-init to install the SignalFx Agent into the VMs but we first need to obtain the `Token` and `Realm` from your SignalFx account.
 
@@ -76,7 +76,7 @@ You will also need to obtain the name of the Realm for your SignalFx account.  C
 
 ![Realm](../images/module7/m7-realm.png)
 
-### Local VMs using Multipass
+### 2.3. Local VMs using Multipass
 
 The next step is to create a cloud-init file that will automatically install the SignalFx Agent when the VMs are created.  Create a `victorops.yaml` file using your preferred editor and populate it with the following, but replacing &lt;YOUR REALM&gt; & &lt;YOUR TOKEN&gt; with the values stored in your `values document`.
 
@@ -143,7 +143,7 @@ Once your two VMs have been created check within the SignalFx UI, Infrastructure
 
 If they fail to appear, double check your Token and Realm settings within your victorops.yaml file.  If errors are found these can easily be updated directly within the VM. Simply update the `token` or `api_url` and `ingest_url` files located within `/etc/signalfx`.
 
-### SignalFx Detector
+### 2.4. SignalFx Detector
 
 We now need to create a new Detector within SignalFx which will use VictorOps as the target to send alerts to.  We will use Terraform to create the detector in a similar way to 'Module 4 - Monitoring as Code'.
 
