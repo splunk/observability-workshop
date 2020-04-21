@@ -1,4 +1,7 @@
+# Deploying Hot R.O.D. in K3s
+
 ## Enabling µAPM
+
 _An organisation needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already._
 
 _To check if you have an organisation with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards._
@@ -9,13 +12,12 @@ _To check if you have an organisation with µAPM enabled, just login to SignalFx
 
 The setup part is already documented in the [Preparation section](https://signalfx.github.io/app-dev-workshop/module3/prep/) & [Install k3s section](https://signalfx.github.io/app-dev-workshop/module3/k3s/).  
 
-
-You can reuse your current running instance, or start fresh 
-(If you start fresh, please run both sections before continuing). 
+You can reuse your current running instance, or start afresh (If you start afresh, please run both sections before continuing).
 
 ---
 
 ### 2. Deploy the Hot R.O.D. application into K3s
+
 To deploy the Hot R.O.D. application into K3s apply the deployment
   
 === "Input"
@@ -50,6 +52,7 @@ To ensure the Hot R.O.D. application is running:
 ---
 
 ### 3. Viewing the Hot R.O.D. application in your browser
+
 (If you are using an EC2 instance, please skip to the next section [Generate Traffic](https://signalfx.github.io/app-dev-workshop/module6/hotrod/#4-generate-some-traffic-to-the-application-using-apache-benchmark)).
 
 In order to view the application in your web browser we need to find the LoadBalancer IP address and the port the application is listening on.
@@ -102,7 +105,7 @@ Create some errors with an invalid customer number
 
 ### 5. Verify that APM traffic is reaching SignalFx
 
-Open SignalFx in your browser and select the APM tab to open the APM UI. 
+Open SignalFx in your browser and select the APM tab to open the APM UI.
 
 ![select APM](../images/module6/M6-l1-select-apm.png)
 

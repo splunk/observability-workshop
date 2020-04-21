@@ -1,4 +1,7 @@
+# Deploying Sock Shop in K3s
+
 ## Enabling µAPM
+
 _An organisation needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already._
 
 _To check if you have an organisation with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards._
@@ -9,9 +12,8 @@ _To check if you have an organisation with µAPM enabled, just login to SignalFx
 
 The setup part is already documented in the [Preparation section](https://signalfx.github.io/app-dev-workshop/module3/prep/) & [Install k3s section](https://signalfx.github.io/app-dev-workshop/module3/k3s/).  
 
-
-You can reuse your current running instance, or start fresh 
-(If you start fresh, please run both sections before continuing). 
+You can reuse your current running instance, or start fresh
+(If you start fresh, please run both sections before continuing).
 
 !!! Warning
     The Sock Shop application requires some horse power to run it, please ensure you are running a Multipass instance that can handle it.
@@ -22,7 +24,7 @@ You can reuse your current running instance, or start fresh
 
 ### 2. Deploy the Sock Shop application into K3s
 
-To deploy the Sock Shop application into K3s apply the deployment 
+To deploy the Sock Shop application into K3s apply the deployment
 
 === "Input"
 
@@ -186,4 +188,5 @@ Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). T
 ![SockShop Application](../images/module6/sockshop-app.png)
 
 ---
+
 Use the **Next** link in the footer below to continue the workshop
