@@ -1,51 +1,47 @@
-### Lab Summary
+# Working with Detectors - Lab Summary
 
 * Create a Detector from one of you charts
 
 ---
 
-### 1. Create a Detector from one of your charts
+## 1. Create a Detector from one of your charts
 
-In **DASHBOARDS** click on your dashboard group (the one with your email address) and then on the dashboard name where the chart you created in the previous lab resides.
+In **DASHBOARDS** click on your dashboard group (the one with your email address) and then on the dashboard name where the chart you created in the previous lab resides or search for your previously created dashboard's name, and click on that dashboard's name in the results.
 
-OR
-
-Search for your previously created dashboard's name, and click on that dashboard's name in the results.
-
-![](../images/module2/M1-l2-1.png)
+![Dashboards](../images/module2/M1-l2-1.png)
 
 Once you see the chart...
 Click on the bell icon  on your chart and on New Detector From Chart - ADD YOUR INITIALS TO THE NAME (see next step).
 We are going to create a new alert detector from the chart.
 
-![](../images/module2/M1-l2-2.png)
+![Chart](../images/module2/M1-l2-2.png)
 
-!!! warning "Important"
+!!! important
     In the window that opens, add your initials in front of the proposed text, and click on Create Alert Rule.
     It should be something like this: LI's Latency Chart Detector.
 
-![](../images/module2/M1-l2-3.png)
+![New Detector](../images/module2/M1-l2-3.png)
 
 In the detector window, inside Alert signal, the signal we will alert on is marked with a bell.
 The bell in the 'Alert on' column indicates which Signal is being used to generate the alert. Click on Proceed to Alert Condition.
 
-![](../images/module2/M1-l2-4.png)
+![Alert Signal](../images/module2/M1-l2-4.png)
 
 ---
 
-### 2. Setting Alert condition
+## 2. Setting Alert condition
 
 In Alert Condition, click on Static Threshold and then on Proceed to Alert Settings.
 
-![](../images/module2/M1-l2-5.png)
+![Alert Condition](../images/module2/M1-l2-5.png)
 
 In Alert Settings, enter the value "290" in the Threshold box and change Time on top right to past day.
 
-![](../images/module2/M1-l2-6.png)
+![Threshold](../images/module2/M1-l2-6.png)
 
 ---
 
-### 3. Alert pre-flight check
+## 3. Alert pre-flight check
 
 Once you set an alert condition, SignalFx shows how many alerts you would get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.
 
@@ -58,17 +54,17 @@ To read more about Detector Previews, please visit this link
 
 ---
 
-### 4. Configuring the alert message
+## 4. Configuring the alert message
 
 Click on Proceed to Alert Message. In Severity choose Major
 
-![](../images/module2/M1-l2-7.png)
+![Alert Message](../images/module2/M1-l2-7.png)
 
 Click on Proceed to Alert Recipients
 
 Click on Add Recipient and then on your email displayed as the first option
 
-![](../images/module2/M1-l2-8.png)
+![Add Recipient](../images/module2/M1-l2-8.png)
 
 That's the same as entering that email address
 OR you can enter another email address by clicking on E-mail...
@@ -78,24 +74,24 @@ You can check this out by going to the INTEGRATIONS tab of the top menu, and see
 
 ---
 
-### 5. Activating the alert
+## 5. Activating the alert
 
 Click on Proceed to Alert Activation
 
 In Activate...click on Activate Alert Rule
 
-![](../images/module2/M1-l2-9.png)
+![Activate](../images/module2/M1-l2-9.png)
 
 If you want to get alerts quicker you can click back on Alert Settings and lower the value from 290 to say 280.
 If you change the Time to 1h you can see how many alerts you will be getting with the threshold you have chosen based on the metics from the last 1 hour.
 
-Hover over ALERTS in the top menu and then click on Detectors
+Hover over **ALERTS** in the top menu and then click on Detectors
 
-![](../images/module2/M1-l2-10.png)
+![Detectors](../images/module2/M1-l2-10.png)
 
 You will see you alert detector listed here.
 
-![](../images/module2/M1-l2-11.png)
+![Detector List](../images/module2/M1-l2-11.png)
 
 Congrats! You have created your first alert detector and activated it!
 

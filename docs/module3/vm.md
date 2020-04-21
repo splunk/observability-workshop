@@ -1,4 +1,4 @@
-### Lab Summary
+# Lab Summary
 
 1. Deploy SignalFx Smart Agent via install script on a VM
 2. Confirm the Smart Agent is working and sending data
@@ -6,12 +6,14 @@
 
 ---
 
-### 1. Deploy SignalFx Smart Agent via install script on a VM
+## 1. Deploy SignalFx Smart Agent via install script on a VM
 
 You will need to obtain your Access Token from the SignalFx UI once Kubernetes is running. You can find your Access Token by clicking on your profile icon on the top right of the SignalFx UI. Then select _**Organization Settings → Access Tokens**_.  Expand the Default token, then click on _**Show Token**_ to expose your token. Later in the lab you can come back here and click the _**Copy**_ button which will copy it to your clipboard  so you can paste it when you need to provide an access token in the lab.
+
 ![Access Token](../images/module3/m1-l4-access-token.png)
 
 You will also need to obtain the name of the Realm for your SignalFx account.  Click on the profile icon again, but this time select 'My Profile'.  The Ream can be found in the middle of the page within the Organizations section.  In this example it is `us1`.
+
 ![Realm](../images/module3/m1-l4-realm.png)
 
 ---
@@ -63,7 +65,7 @@ Once the installation is complete check the status of the agent.
 
 ---
 
-### 2. Confirm the Smart Agent is working and sending data
+## 2. Confirm the Smart Agent is working and sending data
 
 To see the Metrics that the Smart Agent is sending to SignalFx, please goto the SignalFX UI,  and select  **Infrastructure → Hosts**   to see the lists of hosts.
 
@@ -86,7 +88,7 @@ Take a moment to explore the various charts and the Processes list.
 
 ---
 
-### 3. Stop the agent on the VM
+## 3. Stop the agent on the VM
 
 In the next module we are going to roll out the agent on the Kubernetes cluster. Before doing that, stop the VM agent with the following command:
 
