@@ -113,6 +113,6 @@ Open SignalFx in your browser and select the APM tab to open the APM UI.
 Select the troubleshooting tab, and select your environment and set the time to 15 minutes.
 This  should show you the dependency map for the hotrod app
 
-![Hot R.O.D. in APM](../images/module6/M6-l1-Hotrod-TS.png#zoom)
+![Hot R.O.D. in APM](../images/module6/M6-l1-Hotrod-TS.png#)
 
 If you did create some errors, they show up as the big red dot in the Redis service.
