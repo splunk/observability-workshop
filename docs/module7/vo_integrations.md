@@ -60,6 +60,7 @@ The easiest way to test VictorOps is to use Multipass to run some local test VMs
 If you do not already have Multipass installed you can download the installer from [here](https://multipass.run/).  Mac OS users can install it using Homebrew by running:
 
 === "Code"
+
     ```bash
     brew cask install multipass
     ```
@@ -68,7 +69,7 @@ If you do not already have Multipass installed you can download the installer fr
 
 We will use cloud-init to install the SignalFx Agent into the VMs but we first need to obtain the `Token` and `Realm` from your SignalFx account.
 
-You can find your Access Token by clicking on the `settings` icon on the top right of the SignalFx UI, select `Organisation Settings` → `Access Tokens`, expand the Default token, then click on `Show Token` to expose your token, click the `Copy` button to copy it to your clipboard, then paste it into your `values document` using the `ACCESS_TOKEN` parameter.
+You can find your Access Token by clicking on the `settings` icon on the top right of the SignalFx UI, select `Organization Settings` → `Access Tokens`, expand the Default token, then click on `Show Token` to expose your token, click the `Copy` button to copy it to your clipboard, then paste it into your `values document` using the `ACCESS_TOKEN` parameter.
 
 ![Access Token](../images/module7/m7-access-token.png)
 
@@ -152,6 +153,7 @@ If you have not completed Module 4, and do not have Terraform already installed,
 Copy and run the following code to download the VictorOps Workshop Detectors master zip file, unzip the file, then change into the `victorops-workshop-detectors-master` directory.
 
 === "Input"
+
     ```bash
     curl -LO https://github.com/signalfx/victorops-workshop-detectors/archive/master.zip
     unzip master.zip
@@ -159,6 +161,7 @@ Copy and run the following code to download the VictorOps Workshop Detectors mas
     ```
 
 === "Output"
+
     ```text
     % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                      Dload  Upload   Total   Spent    Left  Speed
@@ -184,6 +187,7 @@ Copy and run the following code to download the VictorOps Workshop Detectors mas
 Create the following environment variables to use in the Terraform steps below.  The 1st three variables should be stored in your `values document` if you have been populating it as you have worked through this module.  You can populate the final two now then simply copy all five lines into your terminal window where you downloaded the terraform files in the previous step.
 
 === "Variables"
+
     ```bash
     export SFXVOPSID=<VictorOps Integration ID from Step 2>
     export ACCESS_TOKEN=<SignalFx Access Token from Step 2>
@@ -193,6 +197,7 @@ Create the following environment variables to use in the Terraform steps below. 
     ```
 
 === "Example"
+
     ```bash
     export SFXVOPSID=xxxxxxxxxxxx
     export ACCESS_TOKEN=xxxxxxxxxxxxxxx
@@ -201,17 +206,19 @@ Create the following environment variables to use in the Terraform steps below. 
     export INITIALS=GH
     ```
 
-Initialise Terraform.
+Initialize Terraform.
 
 !!! note
     You will need to run this command each time a new version of the Terraform Provider is released. You can track the releases on [GitHub](https://github.com/terraform-providers/terraform-provider-signalfx/releases).
 
 === "Input"
+
     ```bash
     terraform init -upgrade
     ```
 
 === "Output"
+
     ```text
     Upgrading modules...
     - host in modules/host
@@ -246,11 +253,13 @@ Initialise Terraform.
 Create a new Terraform Workspace which will track the state for this environment.  Workspaces allow you to run Terraform against different environments each with their own state data stored in the workspace.  In the following example we create a workspace called 'Workshop' but feel free to use whatever name you like.
 
 === "Input"
+
     ```text
     terraform workspace new Workshop
     ```
 
 === "Output"
+
     ```text
     Created and switched to workspace "Workshop"!
 
@@ -262,11 +271,13 @@ Create a new Terraform Workspace which will track the state for this environment
 It is considered best practice to run a terraform plan to see what changes may get made and check for potential errors before running an apply as we did in Module 4, however as the first stage of apply is to plan we can safely skip that step and just run apply.  Check the plan output for errors before typing _**yes**_ to commit the apply.
 
 === "Input"
+
     ```text
     terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$INITIALS" -var="sfx_vo_id=$SFXVOPSID" -var="routing_key=$ROUTINGKEY"
     ```
 
 === "Output"
+
     ```
     An execution plan has been generated and is shown below.
     Resource actions are indicated with the following symbols:

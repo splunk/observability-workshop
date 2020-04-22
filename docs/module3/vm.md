@@ -20,10 +20,12 @@ You will also need to obtain the name of the Realm for your SignalFx account.  C
 
 SignalFx maintains a shell script to install on supported distributions. Copy the script below and replace $REALM and $ACCESS_TOKEN with the values found in previous screen:
 
-```bash
-curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
-sudo sh /tmp/signalfx-agent.sh --realm  $REALM -- $ACCESS_TOKEN
-```
+=== "Input"
+
+    ```bash
+    curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
+    sudo sh /tmp/signalfx-agent.sh --realm  $REALM -- $ACCESS_TOKEN
+    ```
 
 Once the installation is complete check the status of the agent.
 

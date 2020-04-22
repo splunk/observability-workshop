@@ -243,9 +243,11 @@ Create an environment variable for the IP address and port that the Hot R.O.D. a
 
 You can view / exercise Hot R.O.D. yourself in a browser by opening the `EXTERNAL-IP:PORT` as shown above e.g.
 
-```text
-https://af26ce80ef2e14c9292ae5b4bc0d2dd0-1826890352.us-east-2.elb.amazonaws.com:8080
-```
+=== "Example URL"
+
+    ```text
+    https://af26ce80ef2e14c9292ae5b4bc0d2dd0-1826890352.us-east-2.elb.amazonaws.com:8080
+    ```
 
 ---
 

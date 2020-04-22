@@ -64,6 +64,7 @@ In order to view the application in your web browser we need to find the LoadBal
     ```
 
 === "Output"
+
     ```text
     NAME         TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)          AGE
     kubernetes   ClusterIP      10.43.0.1     <none>          443/TCP          43m
