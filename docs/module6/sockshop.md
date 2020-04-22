@@ -161,7 +161,7 @@ In order to view the application in your web browser we need to find the LoadBal
 === "Input"
 
     ```bash
-    kubectl get svc -n sockshop
+    kubectl get svc -n sock-shop
     ```
 
 === "Output"
@@ -180,7 +180,7 @@ In order to view the application in your web browser we need to find the LoadBal
     shipping       ClusterIP      10.43.250.115   <none>          80/TCP           34m
     user-db        ClusterIP      10.43.152.153   <none>          27017/TCP        34m
     user           ClusterIP      10.43.45.155    <none>          80/TCP           34m
-    front-end      LoadBalancer   10.43.247.97    192.168.64.35   8082:30001/TCP   34m
+    front-end      LoadBalancer   10.43.247.97    192.168.64.35   8081:30001/TCP   34m
     ```
 
 Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). Then head over to your web browser and type in `http://{EXTERNAL-IP}:8081`, you should then be able to see the application running. Happy Shopping!
