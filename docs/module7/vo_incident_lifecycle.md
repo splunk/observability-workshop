@@ -64,7 +64,7 @@ Before generating any incidents you should assign yourself to the current `Shift
 
 ### 2.2 Trigger Alert
 
-Log into your first VM you created back in the `VictorOps Getting Started` section:
+Log into your first VM you created during step [2. Creating a Test Environment](../vo_integrations/#2-creating-a-test-environment) in VictorOps Integrations
 
 === "Input"
 
