@@ -48,20 +48,20 @@ Paging Polices specify how you will be contacted by VictorOps when on-call. The 
 Click the edit policy button for the Primary Paging Policy.  
 
 * Step 1
-    * Send a push notification to all my devices
-    * Execute the next step if I have not responded within 5 minutes
+  * Send a push notification to all my devices
+  * Execute the next step if I have not responded within 5 minutes
 
 Then add an new step
 
 * Step 2
-    * Send an email to &lt;your email address&gt;
-    * Execute the next step if I have not responded within 5 minutes
+  * Send an email to &lt;your email address&gt;
+  * Execute the next step if I have not responded within 5 minutes
 
 Then add a new step
 
 * Step 3
-    * Every 5 minutes until we have reached you
-    * Make a phone call to &lt;your phone number&gt;
+  * Every 5 minutes until we have reached you
+  * Make a phone call to &lt;your phone number&gt;
 
 Then save the policy.
 
@@ -81,11 +81,11 @@ Create a new Custom Policy by clicking `Add a Policy` and configure with the fol
 Policy Name: Evening
 
 * Step 1
-    * Every 5 minutes until we have reached you
+  * Every 5 minutes until we have reached you
     * Make a phone call to &lt;your phone number&gt;
     * Time Period: All 7 Days
     * Timezone
-        * &lt;your time zone&gt;
+      * &lt;your time zone&gt;
         * Between 7pm and 9am
 
 Save the policy then add one more
@@ -93,11 +93,11 @@ Save the policy then add one more
 Policy Name: Weekend
 
 * Step 1
-    * Every 5 minutes until we have reached you
+  * Every 5 minutes until we have reached you
     * Make a phone call to &lt;your phone number&gt;
     * Time Period: Sat & Sun
     * Timezone
-        * &lt;your time zone&gt;
+      * &lt;your time zone&gt;
         * Between 9am and 7pm
 
 These custom paging policies will be used during the specified times in place of the Primary Policy, however admins do have the ability to ignore these custom policies, and we will highlight how this is achieved in a later module.
@@ -149,24 +149,24 @@ Navigate to the `Rotations` tab on the `Teams` sub menu, you should have no exis
 * Click `Add Rotation`
 * Enter a name of "*Follow the Sun Support - Business Hours*"
 * Select `Partial day` from the three available shift templates
-    * Enter a Shift name of "*Asia*"
+  * Enter a Shift name of "*Asia*"
     * Time Zone set to "*Asia/Tokyo*"
     * Each user is on duty from "*Monday through Friday from 9.00am to 5.00pm*"
     * Handoff happens every "*1 days*"
     * The next handoff happens &lt;the next Monday will have been automatically selected&gt;
     * Click `Save Rotation`
 * Now add an 2nd shft for Europe by clicking `+Add a shift` - `Partial Day`
-    * Enter a Shift name of "*Europe*"
+  * Enter a Shift name of "*Europe*"
     * Time Zone set to "*Europe/London*"
     * The remaining settings will have been copied from the 1st shift
     * Click `Save Shift`
 * Now add a 3rd shft for West Coast USA by clicking `+Add a shift` - `Partial Day`
-    * Enter a Shift name of "*West Coast*"
+  * Enter a Shift name of "*West Coast*"
     * Time Zone set to "*US/Pacific*"
     * The remaining settings will have been copied from the 1st shift
     * Click `Save Shift`
 * You new need to add the users into their allocated shift patterns using either the table above, or the list of users provided to you separately
-    * For each Shift, click on the `Manage Members` icon which is the left of the three icons and resembles the image of three heads
+  * For each Shift, click on the `Manage Members` icon which is the left of the three icons and resembles the image of three heads
     * Add the users to each Shift (note how you have to use their Username and not their real names)
     * The first user added will be the 'current' user for that shift
     * You can re-order the shifts by simply dragging the users up and down, and you can change the current user by clicking `Set Current` on an alternate user
@@ -180,7 +180,7 @@ We will now add the 2nd Rotation for our Senior SRE Escalation cover.
 * Click `Add Rotation`
 * Enter a name of "*Senior SRE Escalation*"
 * Select `24/7` from the three available shift templates
-    * Enter a Shift namof "*Senior SRE Escalation*"
+  * Enter a Shift namof "*Senior SRE Escalation*"
     * Time Zone set to "*Asia/Tokyo*"
     * Handoff happens every "*7 days at 9.00am*"
     * The next handoff happens &lt;select the next Monday from the date picker&gt;
@@ -200,7 +200,7 @@ Navigate to the Escalation Polices tab on the Teams sub menu, you should have no
 * Click `Add Escalation Policy`
 * Policy Name: "*24/7*"
 * Step 1
-    * `Immediately`
+  * `Immediately`
     * `Notify the on-duty user(s) in rotation` -> `Senior SRE Escalation`
 * Click `Save`
 
@@ -209,15 +209,15 @@ Navigate to the Escalation Polices tab on the Teams sub menu, you should have no
 * Click `Add Escalation Policy`
 * Policy Name: "*Primary*"
 * Step 1
-    * `Immediately`
+  * `Immediately`
     * `Notify the on-duty user(s) in rotation` -> `Follow the Sun Support - Business Hours`
     * Click `Add Step`
 * Step 2
-    * `If still unacked after 15 minutes`
+  * `If still unacked after 15 minutes`
     * `Notify the next user(s) in the current on-duty shift` -> `Follow the Sun Support - Business Hours`
     * Click `Add Step`
 * Step 3
-    * `If still unacked after 15 more minutes`
+  * `If still unacked after 15 more minutes`
     * `Execute Policy` `-> <Your Team Name> : 24/7`
 * Click `Save`
 
@@ -226,13 +226,15 @@ Navigate to the Escalation Polices tab on the Teams sub menu, you should have no
 * Click `Add Escalation Policy`
 * Policy Name: "*Waiting Room*"
 * Step 1
-    * `If still unacked after 10 more minutes`
+  * `If still unacked after 10 more minutes`
     * `Execute Policy` -> `<Your Team Name> : Primary`
 * Click `Save`
 
 You may have noticed that when we created each policy there was the warning message `There are no routing keys for this policy - it will only receive incidents via manual reroute or when on another escalation policy`
 
 This is because there are no Routing Keys linked to these Escalation Polices, so now that we have these polices configured we can go and create the Routing Keys.
+
+---
 
 ## 6. Create Routing Keys
 

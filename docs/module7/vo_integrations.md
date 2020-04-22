@@ -2,7 +2,6 @@
 
 1. Configuring the Integration between VictorOps and SignalFx
 2. Creating a test environment using Multipass
-3. Testing the Integration
 
 ---
 You are going to need to record a number of values during this module which we will export as variables in a later step so I suggest you create a `values document` to store the following values as you work through it.
@@ -17,6 +16,7 @@ You are going to need to record a number of values during this module which we w
 
     Service_API_Endpoint=
     ```
+---
 
 ## 1. Configuring the Integration between VictorOps and SignalFx
 
