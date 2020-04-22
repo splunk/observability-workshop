@@ -35,7 +35,7 @@ Launch the Multipass instance which will run Kubernetes (K3s)
 !!! note
     Use `{YOUR_INITIALS}-k3s` so that the value of the instance hostname is unique e.g. `rwc-k3s`
 
-Select either the Hot R.O.D or Sock Shop Multipass launch parameters Lines highlighted in yellow need to be edited:
+Select either the Hot R.O.D or Sock Shop Multipass launch parameters. Lines highlighted in yellow need to be edited:
 
 === "Hot R.O.D"
 
