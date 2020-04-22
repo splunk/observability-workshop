@@ -1,4 +1,4 @@
-### Lab Summary
+# Deploying the Smart Agent in Kubernetes (K3s)
 
 * Use the SignalFx Helm chart to install the Smart Agent in K3s.
 * Explore Your cluster in the Kubernetes Navigator
@@ -7,9 +7,9 @@ If you have chosen to run the workshop on a AWS/EC2 instance, please follow inst
 
 ---
 
-### 1. I’ve got the key, I’ve got the secret
+## 1. I’ve got the key, I’ve got the secret
 
-You will need to obtain your Access Token from the SignalFx UI once Kubernetes is running. You can find your Access Token by clicking on your profile icon on the top right of the SignalFx UI. Then select _**Organisation Settings → Access Tokens**_.  Expand the Default token, then click on _**Show Token**_ to expose your token. Later in the lab you can come back here and click the _**Copy**_ button which will copy it to your clipboard  so you can paste it when you need to provide an access token in the lab.
+You will need to obtain your Access Token from the SignalFx UI once Kubernetes is running. You can find your Access Token by clicking on your profile icon on the top right of the SignalFx UI. Then select _**Organization Settings → Access Tokens**_.  Expand the Default token, then click on _**Show Token**_ to expose your token. Later in the lab you can come back here and click the _**Copy**_ button which will copy it to your clipboard  so you can paste it when you need to provide an access token in the lab.
 ![Access Token](../images/module3/m1-l4-access-token.png)
 
 You will also need to obtain the name of the Realm for your SignalFx account.  Click on the profile icon again, but this time select 'My Profile'.  The Ream can be found in the middle of the page within the Organizations section.  In this example it is `us1`.
@@ -17,7 +17,7 @@ You will also need to obtain the name of the Realm for your SignalFx account.  C
 
 ---
 
-### 2. Take the Helm
+## 2. Take the Helm
 
 Create the following variables to use in the proceeding helm install command:
 
@@ -117,7 +117,7 @@ Ensure there are no errors by tailing the logs from the Smart Agent Pod. Output 
 
 ---
 
-### 3. Check all is well in the SignalFx UI
+## 3. Check all is well in the SignalFx UI
 
 In the SignalFx UI, goto _**INFRASTRUCTURE → Kubernetes Navigator → Cluster Map**_ and open the Kubernetes Navigator Cluster Map to ensure metrics are being sent.
 
