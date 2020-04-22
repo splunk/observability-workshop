@@ -73,7 +73,7 @@ In order to view the application in your web browser we need to find the LoadBal
 
 Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). Then head over to your web browser and type in `http://{EXTERNAL-IP}:8080`, you should then be able to see the application running. Click on customer names to order a car:
 
-![Hot R.O.D. Application](../images/module6/hotrod-app.png)
+![Hot R.O.D. Application](../images/module6/hotrod-app.png#zoom)
 
 ---
 
@@ -108,11 +108,11 @@ Create some errors with an invalid customer number
 
 Open SignalFx in your browser and select the APM tab to open the APM UI.
 
-![select APM](../images/module6/M6-l1-select-apm.png)
+![select APM](../images/module6/M6-l1-select-apm.png#zoom)
 
 Select the troubleshooting tab, and select your environment and set the time to 15 minutes.
 This  should show you the dependency map for the hotrod app
 
-![Hot R.O.D. in APM](../images/module6/M6-l1-Hotrod-TS.png)
+![Hot R.O.D. in APM](../images/module6/M6-l1-Hotrod-TS.png#zoom)
 
 If you did create some errors, they show up as the big red dot in the Redis service.
