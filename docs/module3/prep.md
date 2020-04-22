@@ -12,7 +12,7 @@ If you are  going to run this locally please install [Multipass](https://multipa
 
 Regardless if you are running this lab locally or using an AWS/EC2 instance, download the App Dev Workshop Master Zip file locally or on to the EC2 instance, then proceed to unzip the file, rename it and cd into it:
 
-=== "Input"
+=== "Linux/Mac OS"
 
     ```bash
     curl -LO https://github.com/signalfx/app-dev-workshop/archive/v1.2.zip
@@ -20,6 +20,13 @@ Regardless if you are running this lab locally or using an AWS/EC2 instance, dow
     mv app-dev-workshop-master workshop
     cd workshop
     ```
+
+=== "Windows"
+
+    !!! info
+        Download the zip by clicking on the following URL <https://github.com/signalfx/app-dev-workshop/archive/v1.2.zip>.
+
+        Once downloaded, unzip the the file and from the command prompt change into that directory.
 
 When using an EC2 instance you can skip the following section and continue to [Deploying the Smart Agent in Kubernetes (K3s)](../../module3/k3s/#2-ive-got-the-key-ive-got-the-secret)
 
