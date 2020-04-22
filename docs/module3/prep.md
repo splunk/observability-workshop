@@ -15,7 +15,7 @@ Regardless if you are running this lab locally or using an AWS/EC2 instance, dow
 === "Input"
 
     ```bash
-    curl -LO https://github.com/signalfx/app-dev-workshop/archive/master.zip
+    curl -LO https://github.com/signalfx/app-dev-workshop/archive/v1.2.zip
     unzip master.zip
     mv app-dev-workshop-master workshop
     cd workshop
