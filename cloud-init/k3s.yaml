@@ -33,4 +33,7 @@ runcmd:
  - ./aws/install
  - 'curl --silent --location https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz | tar xz -C /tmp'
  - mv /tmp/eksctl /usr/local/bin/
+ - 'curl -OL https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip'
+ - unzip terraform_0.12.24_linux_amd64.zip
+ - mv terraform /usr/local/bin/
  - chown -R ubuntu:ubuntu /home/ubuntu
