@@ -12,7 +12,7 @@ The aim of VictorOps is to "Make On Call Suck Less", and it does this by getting
 
 The key to making VictorOps work for you is to centralise all your alerting sources, sending them all to the VictorOps platform, then you have a single pane of glass in which to manage all of your alerting.
 
-Login to the VictorOps UI and select the `Timeline` tab on the main menu bar.
+Login to the VictorOps UI and select the `Timeline` tab on the main menu bar, you should have a screen similar to the following image:
 
 ![VictorOps UI](../images/module7/m7-vo-ui.png#zoom)
 
@@ -20,7 +20,9 @@ Login to the VictorOps UI and select the `Timeline` tab on the main menu bar.
 
 On the left we have the `People` section with the `Teams` and `Users` sub tabs. On the `Teams` tab, click on `All Teams` then expand &lt;Your Teamname&gt;. Users with the VictorOps Logo against their name are currently on call. Here you can see who is on call within a particular Team, or across all Teams via `Users` -> `On-Call`.
 
-If you click into one of the currently on call users, you can see their status. It shows which Rotation they are on call for, when their current Shift ends and their next Shift starts, what contact methods they have and which Teams they belong to.
+If you click into one of the currently on call users, you can see their status. It shows which Rotation they are on call for, when their current Shift ends and their next Shift starts (times are displayed in your timezone), what contact methods they have and which Teams they belong to (dummy users such as Hank do not have Contact Methods configured).
+
+![User Detail](../images/module7/m7-user-detail.png#zoom)
 
 ### 1.2 Timeline
 
@@ -28,13 +30,17 @@ In the centre `Timeline` section you get a realtime view of what is happening wi
 
 Lets change the Filters setttings to streamline your view. Click the `Filters` button then within the `Routing Keys` tab change the `show` setting from `all routing keys` to `selected routing keys`, then change the `My Keys` value to `all` and the `Other Keys` value to `selected` and deselect all keys under the Other Keys section. Click anywhere outside of the dialogue box to close it.
 
+![Timeline Filters](../images/module7/m7-timeline-filters.png#zoom)
+
 You will probably now have a much simpler view as you will not currently have Incidents created using your Routing Keys, so you are left with the other types of messages that the Timeline can display.
 
 Click on `Filters` again, but this time switch to the `Message Types` tab.  Here you control the types of messages that are displayed.  For example deselect `On-call Changes` and `Escalations`, this will reduce the amount of messages displayed.
 
+![Timeline Filters Message Types](../images/module7/m7-timeline-filters-message-types.png#zoom)
+
 ### 1.3 Incidents
 
-On the right we have the `Incidents` section.  Here we get a list of all the incidents within the platform, or we view more a more specific list such as incidents you are specifically assigned to, or for any of the Teams you are a member of.
+On the right we have the `Incidents` section.  Here we get a list of all the incidents within the platform, or we view a more specific list such as incidents you are specifically assigned to, or for any of the Teams you are a member of.
 
 Select the `Team Incidents` tab you should find that the `Triggered`, `Acknowledged` & `Resolved` tabs are currently all empty as you have had no incidents logged, yet so let's change that by generating your first incident.  
 
@@ -53,6 +59,8 @@ Before generating any incidents you should assign yourself to the current `Shift
 * Use the `Select a user to add...` dropdown to add yourself to the shift
 * Then click on `Set Current` to make yourself the current `on-call` user within the shift
 * You should now get a `Push Notification` to your phone informing you that `You Are Now On-Call`
+
+![On Duty](../images/module7/m7-on-duty.png#zoom)
 
 ### 2.2 Trigger Alert
 
