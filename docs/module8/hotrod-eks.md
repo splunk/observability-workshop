@@ -8,7 +8,7 @@ _To check if you have an Organization with µAPM enabled, just login to SignalFx
 
 ## 1. Launch the Multipass instance
 
-If you have not already completed [Step #1](https://signalfx.github.io/app-dev-workshop/module3/k3s/#1-lets-bake-some-k8s) in Module 3 then please do so, otherwise jump to [Step #2](https://signalfx.github.io/app-dev-workshop/module8/hotrod-eks/#2-create-environment-variables)
+If you have not already completed [Step #1](../../module3/k3s/#1-lets-bake-some-k8s) in Module 3 then please do so, otherwise jump to [Step #2](../../module8/hotrod-eks/#2-create-environment-variables)
 
 ## 2. Create environment variables
 

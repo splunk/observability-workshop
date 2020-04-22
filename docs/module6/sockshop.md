@@ -10,7 +10,7 @@ _To check if you have an organisation with µAPM enabled, just login to SignalFx
 
 ### 1. Create an instance running Kubernetes
 
-The setup part is already documented in the [Preparation section](https://signalfx.github.io/app-dev-workshop/module3/prep/) & [Install k3s section](https://signalfx.github.io/app-dev-workshop/module3/k3s/).  
+The setup part is already documented in the [Preparation section](../..//module3/prep/) & [Install k3s section](../../module3/k3s/).  
 
 You can reuse your current running instance, or start fresh
 (If you start fresh, please run both sections before continuing).

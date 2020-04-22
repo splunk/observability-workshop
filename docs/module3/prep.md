@@ -21,12 +21,12 @@ Regardless if you are running this lab locally or using an AWS/EC2 instance, dow
     cd workshop
     ```
 
-When using an EC2 instance you can skip the following section and continue to [Step 2](https://signalfx.github.io/app-dev-workshop/module3/k3s/#2-ive-got-the-key-ive-got-the-secret)
+When using an EC2 instance you can skip the following section and continue to [Deploying the Smart Agent in Kubernetes (K3s)](../../module3/k3s/#2-ive-got-the-key-ive-got-the-secret)
 
 Launch the Multipass instance which will run Kubernetes (K3s)
 
 !!! Warning
-    In [Module 6](https://signalfx.github.io/app-dev-workshop/module6/) there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
+    In [Module 6](../../module6/) there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
 
     **Hot R.O.D minimum requirements:** 1 vCPU, 5Gb Disk, 1Gb Memory
 
