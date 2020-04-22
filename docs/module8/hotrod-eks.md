@@ -20,7 +20,7 @@ Create the following environment variables for **SignalFx** and **AWS** to use i
     export ACCESS_TOKEN=<SignalFx Access Token>
     export REALM=<SignalFx Realm e.g. us1>
     export INITIALS=<your initials e.g. RWC>
-    export VERSION=<Smart Agent version e.g. 5.1.1>
+    export VERSION=<Smart Agent version e.g. 5.1.2>
     ```
 
 === "AWS"

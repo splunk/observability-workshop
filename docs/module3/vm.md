@@ -38,7 +38,7 @@ Once the installation is complete check the status of the agent.
 === "Output"
 
     ```text
-    SignalFx Agent version:           5.1.1
+    SignalFx Agent version:           5.1.2
     Agent uptime:                     4s
     Observers active:                 host
     Active Monitors:                  9
