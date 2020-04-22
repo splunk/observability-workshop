@@ -12,7 +12,7 @@ img[src*="#shadow"] {
 
 img:active[src*="#zoom"] {
     cursor: zoom-out;
-    transform: scale(1.5);
+    transform: scale(2.0);
 }
 
 img[src*="#zoom"] {
