@@ -2,7 +2,7 @@
 
 RESULT=$(curl -s -w "\n%{http_code}\n" \
   "https://api.github.com/repos/$TRAVIS_REPO_SLUG/releases" \
-  -H "Authorization: token $api_token"  \
+  -H "Authorization: token $api_key"  \
   -d @- <<'EOF'
 {
   "tag_name":         "$TRAVIS_TAG"
