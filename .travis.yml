@@ -1,4 +1,5 @@
 language: python
+if: tag IS present
 cache: pip
 env:
   global:
