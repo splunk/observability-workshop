@@ -2,8 +2,8 @@ site_name: 'Splunk App Dev Workshop'
 site_description: 'This workshop is going to take you through the exciting journey of App Dev, what this is, why this is important, and how to get started right away!'
 site_author: 'Sales Engineering'
 site_url: 'https://signalfx.github.io/app-dev-workshop/'
-repo_url: 'https://github.com/signalfx/app-dev-workshop/'
-edit_uri: 'edit/master/docs/'
+#repo_url: 'https://github.com/signalfx/app-dev-workshop/'
+#edit_uri: 'edit/master/docs/'
 copyright: Copyright &copy; 2020 Splunk Inc. All rights reserved.
 remote_branch: gh-pages
 
