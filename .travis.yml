@@ -11,45 +11,14 @@ install:
 script:
 - git clean -f -d -x
 after_success:
-- ". ./.ci/deploy.sh"
 - eval $(ssh-agent -s)
 - openssl aes-256-cbc -K $encrypted_5c4519557e13_key -iv $encrypted_5c4519557e13_iv
   -in app-dev-workshop-deploy-key.enc -d | ssh-add -
-- git config user.name "$GH_USER_NAME"
-- git config user.email "$GH_USER_EMAIL"
-- git remote set-url origin git@github.com:signalfx/app-dev-workshop.git
+- ./.ci/deploy.sh
 deploy:
   provider: script
-  script: |
-    RESULT=$(curl -s -w "\n%{http_code}\n" \
-      "https://api.github.com/repos/$TRAVIS_REPO_SLUG/releases" \
-      -H "Authorization: token $api_token"  \
-      -d @- <<'EOF'
-    {
-      "tag_name":         "$TRAVIS_TAG"
-    }
-    EOF
-    )
-    if [ "$(tail -1 <<< $RESULT)" != "201" ]; then
-      echo FAILED
-      echo "$RESULT"
-      exit 1
-    fi
-    RELEASE_ID=$(sed -ne 's/^  "id": \(.*\),$/\1/p' <<< $RESULT)
-    if [[ -z "$RELEASE_ID" ]]; then
-      echo FAILED
-      echo "$RESULT"
-      exit 1
-    fi
+  script: ./.ci/release.sh
   on:
     repo: signalfx/app-dev-workshop
     tags: true
 after_deploy:
-- git remote set-branches --add origin gh-pages
-- git fetch origin && git fetch origin gh-pages:gh-pages;
-- |
-  if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
-    echo "Pushing to github";
-    mkdocs gh-deploy -v --clean -m "$MSG" --remote-name origin
-    git push origin gh-pages;
-  fi
