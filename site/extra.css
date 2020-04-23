@@ -1,0 +1,10 @@
+/* needed because images have `max-width: 100%` in the theme */
+img {
+    height: auto;
+}
+
+
+.md-logo img {
+    width: auto;
+    height: 40px;
+}
