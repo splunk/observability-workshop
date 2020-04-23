@@ -23,3 +23,5 @@ if [[ -z "$RELEASE_ID" ]]; then
   echo "$RESULT"
   exit 1
 fi
+
+echo SUCCESS
