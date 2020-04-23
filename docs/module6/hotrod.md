@@ -1,14 +1,12 @@
 # Deploying Hot R.O.D. in K3s
 
-## Enabling µAPM
+!!! important "Enabling µAPM"
 
-_An organisation needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already._
+    An Organization needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already.
 
-_To check if you have an organisation with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards._
+    To check if you have an Organization with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards.
 
----
-
-### 1. Create an instance running Kubernetes
+## 1. Create an instance running Kubernetes
 
 The setup part is already documented in the [Preparation section](../../module3/prep/) & [Install k3s section](../../module3/k3s/).  
 
@@ -16,7 +14,7 @@ You can reuse your current running instance, or start afresh (If you start afres
 
 ---
 
-### 2. Deploy the Hot R.O.D. application into K3s
+## 2. Deploy the Hot R.O.D. application into K3s
 
 To deploy the Hot R.O.D. application into K3s apply the deployment
   
@@ -51,7 +49,7 @@ To ensure the Hot R.O.D. application is running:
 
 ---
 
-### 3. Viewing the Hot R.O.D. application in your browser
+## 3. Viewing the Hot R.O.D. application in your browser
 
 (If you are using an EC2 instance, please skip to the next section [Generate Traffic](../../module6/hotrod/#4-generate-some-traffic-to-the-application-using-apache-benchmark)).
 
@@ -77,7 +75,7 @@ Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). T
 
 ---
 
-### 4. Generate some traffic to the application using Apache Benchmark
+## 4. Generate some traffic to the application using Apache Benchmark
 
 Return to your shell and create an environment variable for the IP address and port that the Hot R.O.D. application is exposed on:
 
@@ -104,7 +102,7 @@ Create some errors with an invalid customer number
 
 ---
 
-### 5. Verify that APM traffic is reaching SignalFx
+## 5. Verify that APM traffic is reaching SignalFx
 
 Open SignalFx in your browser and select the APM tab to open the APM UI.
 

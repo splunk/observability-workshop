@@ -1,14 +1,12 @@
 # Deploying Sock Shop in K3s
 
-## Enabling µAPM
+!!! important "Enabling µAPM"
 
-_An organisation needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already._
+    An Organization needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already.
 
-_To check if you have an organisation with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards._
+    To check if you have an Organization with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards.
 
----
-
-### 1. Create an instance running Kubernetes
+## 1. Create an instance running Kubernetes
 
 The setup part is already documented in the [Preparation section](../..//module3/prep/) & [Install k3s section](../../module3/k3s/).  
 
@@ -18,11 +16,11 @@ You can reuse your current running instance, or start fresh
 !!! Warning
     The Sock Shop application requires some horse power to run it, please ensure you are running a Multipass instance that can handle it.
 
-    **Sock Shop minimum requirements:** 2 vCPU, 10Gb Disk, 4Gb Memory 
+    **Sock Shop minimum requirements:** 2 vCPU, 15Gb Disk, 4Gb Memory 
 
 ---
 
-### 2. Deploy the Sock Shop application into K3s
+## 2. Deploy the Sock Shop application into K3s
 
 To deploy the Sock Shop application into K3s apply the deployment
 
@@ -68,7 +66,7 @@ To deploy the Sock Shop application into K3s apply the deployment
 
 ---
 
-### 3. Ensure Sock Shop is fully deployed
+## 3. Ensure Sock Shop is fully deployed
 
 To monitor the deployment of Sock Shop using `k9s` to monitor:
 
@@ -84,7 +82,7 @@ Once in `k9s` press `0` to show all namespaces:
 
 ---
 
-### 4. Take Sock Shop for a test drive
+## 4. Take Sock Shop for a test drive
 
 Sock Shop should be running in your cluster and exposes services via cluster IP and port. Obtain the ip address for the front-end service.
 
@@ -114,7 +112,7 @@ Then confirm the `SOCKS_ENDPOINT` environment variable has been set:
 
 ---
 
-### 5. Apply load on Sock Shop
+## 5. Apply load on Sock Shop
 
 A load testing application is available for the Sock Shop application. To generate some load run the following command:
 
@@ -128,7 +126,7 @@ The parameter `-c` controls the amount of concurrent clients and `-r` the amount
 
 ---
 
-### 6. Visualize and analyze trace data
+## 6. Visualize and analyze trace data
 
 Navigate to µAPM (*not* µAPM PG) and select Monitoring, then ensure you have selected your environment from the dropdown at the top, you should see something like this:
 
@@ -152,7 +150,7 @@ Look at individual traces and span performance.
 
 ---
 
-### 7. Viewing the SockShop application in your browser
+## 7. Viewing the SockShop application in your browser
 
 (If you are using an EC2 instance, please skip to this section.)
 
