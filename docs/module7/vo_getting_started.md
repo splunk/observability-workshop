@@ -27,7 +27,7 @@ Confirm your contact methods are listed correctly and add any additional phone n
 
 Install the VictorOps app for your smartphone.  Search your phones App Store for VictorOps to find the appropriate version of the app.  The publisher should be listed as VictorOps Inc.
 
-[![iPhone](../images/module7/app-store.svg#no-border)](ttps://apps.apple.com/us/app/victorops/id696974262) [![Android](../images/module7/play-store.svg#no-border)](https://play.google.com/store/apps/details?id=com.victorops.androidclient&hl=en)
+[![iPhone](../images/module7/app-store.svg#appstore)](ttps://apps.apple.com/us/app/victorops/id696974262) [![Android](../images/module7/play-store.svg#appstore)](https://play.google.com/store/apps/details?id=com.victorops.androidclient&hl=en)
 
 Configuration help guides are available here:
 
