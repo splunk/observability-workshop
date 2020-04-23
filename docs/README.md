@@ -19,3 +19,26 @@ mkdocs serve -a 0.0.0.0:8000
 ```
 
 After these commands, the current branch is accessible through your favorite browser at <http://localhost:8000>
+
+## How to create a new tagged release
+
+1. Update the `version` list in `mkdocs.yml` with the name of the release tag, e.g. `v4.2`.
+
+1. Commit this change with a message like `Releasing v4.2`:
+
+    ```bash
+    git add mkdocs.yml && git commit -m 'Releasing v4.2
+    ```
+
+1. Tag the release:
+
+    ```bash
+    git tag -a v4.2 -m "Version 4.2"
+    ```
+
+1. Push the branch and the tag
+
+```bash
+git push --follow-tags origin master
+```
+
