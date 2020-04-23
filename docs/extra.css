@@ -1,9 +1,10 @@
-/* needed because images have `max-width: 100%` in the theme */
 img {
     height: auto;
     width: auto;
-    border: 1px solid #9f9f9f;
+    border: 1px solid #ddd;
     transition: transform ease-in-out 0.3s;
+    border-radius: 4px;
+    padding: 4px;
 }
 
 img[src*="#shadow"] {
@@ -25,8 +26,8 @@ img[src*="#center"] {
     margin-right: auto;
 }
 
-img[src*="#no-border"] {
-    border: 0px;
+img[src*="#appstore"] {
+    border: none;
     width: 200px;
 }
 
@@ -44,6 +45,6 @@ a.md-logo img {
 }
 
 :root{
-    --md-primary-fg-color: rgb(231, 12, 176);
-    --md-accent-fg-color: rgb(231, 12, 176);
+    --md-primary-fg-color: #E20082;
+    --md-accent-fg-color: #E20082;
 }
