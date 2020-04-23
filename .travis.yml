@@ -14,11 +14,11 @@ after_success:
 - eval $(ssh-agent -s)
 - openssl aes-256-cbc -K $encrypted_5c4519557e13_key -iv $encrypted_5c4519557e13_iv
   -in app-dev-workshop-deploy-key.enc -d | ssh-add -
-- ./.ci/deploy.sh
+- ./.ci/release.sh
 deploy:
   provider: script
-  script: ./.ci/release.sh
+  skip_cleanup: true
+  script: ./.ci/deploy.sh
   on:
     repo: signalfx/app-dev-workshop
     tags: true
-after_deploy:
