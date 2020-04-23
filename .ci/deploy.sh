@@ -10,7 +10,7 @@ SHORT=$(git rev-parse --short HEAD)
 MSG="Docs: $(git log -1 --pretty=format:'%s' "$HASH") ($SHORT via travis)"
 DOCS_BRANCH=gh-pages
 
-if git show-ref --verify --quiet refs/heads/"$DOCS_BRANCH"; then
+if git ls-remote origin $DOCS_BRANCH | grep -q $DOCS_BRANCH; then
     # docs branch already exists, clone it
     echo "Using existing docs branch"
     git clone --single-branch --branch $DOCS_BRANCH git@github.com:"$TRAVIS_REPO_SLUG".git ../site
