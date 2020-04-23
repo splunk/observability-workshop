@@ -1,34 +1,47 @@
 #!/usr/bin/env bash
 
+if [[ "${TRAVIS_PULL_REQUEST}" != "false" || "$TRAVIS_BRANCH" != "master" ]]; then
+    echo "Not publishing docs for pull requests or branches other than master"
+    exit 0
+fi
+
 HASH="$(git rev-parse HEAD)"
-MSG="$(git log -1 --pretty=format:'Docs: %s ({sha} via travis)' "$HASH")"
-DOCS_BRANCH=gh-pages2
-export HASH MSG
+SHORT=$(git rev-parse --short HEAD)
+MSG="Docs: $(git log -1 --pretty=format:'%s' "$HASH") ($SHORT via travis)"
+DOCS_BRANCH=gh-pages
 
-git remote set-url origin git@github.com:"$TRAVIS_REPO_SLUG".git
+if git show-ref --verify --quiet refs/heads/"$DOCS_BRANCH"; then
+    # docs branch already exists, clone it
+    echo "Using existing docs branch"
+    git clone --single-branch --branch $DOCS_BRANCH git@github.com:"$TRAVIS_REPO_SLUG".git ../site
+    pushd ../site || exit
+else
+    echo "Creating docs branch"
+    mkdir ../site
+    pushd ../site || exit
+    git init
+    # create docs branch
+    git checkout --orphan $DOCS_BRANCH
+    touch .nojekyll
+    git add .nojekyll
+    git remote add origin git@github.com:"$TRAVIS_REPO_SLUG".git
+fi
 
-# git remote set-branches --add origin $DOCS_BRANCH
-# git fetch origin && git fetch origin $DOCS_BRANCH:$DOCS_BRANCH
-
-git clone --single-branch --branch $DOCS_BRANCH "$(git config remote.origin.url)" ../site
-pushd ../site || exit
 git config user.name "$GH_USER_NAME"
 git config user.email "$GH_USER_EMAIL"
-git checkout $DOCS_BRANCH || git checkout --orphan $DOCS_BRANCH
 popd || exit
 
-if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
-  echo "Running mkdocs"
-  # mkdocs gh-deploy -v --clean -m "$MSG" --remote-name origin
+echo "Running mkdocs"
 
-  SITE_DIR=../site/$TRAVIS_TAG
-  mkdir -p "$SITE_DIR"
-  touch "$SITE_DIR/.nojekyll"
-  mkdocs build --site-dir "$SITE_DIR"
-  cd ../site || exit
+SITE_DIR=../site/$TRAVIS_TAG
+mkdir -p "$SITE_DIR"
+mkdocs build -v --site-dir "$SITE_DIR"
+pushd ../site || exit
 
-  git add "$TRAVIS_TAG"
-  git commit -m "$MSG"
-  echo "Pushing to GitHub pages"
-  git push origin $DOCS_BRANCH
-fi
+rm -f latest
+ln -s "$TRAVIS_TAG" latest
+git add "$TRAVIS_TAG" latest
+git commit -m "$MSG"
+echo "Pushing to GitHub pages"
+git push origin $DOCS_BRANCH
+popd || exit
