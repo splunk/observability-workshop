@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-if [[ "${TRAVIS_PULL_REQUEST}" != "false" || "$TRAVIS_BRANCH" != "master" ]]; then
-    echo "Not publishing docs for pull requests or branches other than master"
+if [[ "${TRAVIS_PULL_REQUEST}" != "false" ]]; then
+    echo "Not publishing docs for pull requests"
     exit 0
 fi
 
