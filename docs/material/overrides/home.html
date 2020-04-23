@@ -17,6 +17,11 @@
           <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | striptags }}" class="md-button md-button--primary">
             Get started
           </a>
+          <ul>
+          {% for version in config.versions|sort(reverse=true) %}
+          <li><a href="{{ config.site_url }}{{ version }}/">Read version {{ version }}</a></li>
+          {% endfor %}
+          </ul>
         </div>
       </div>
     </div>
