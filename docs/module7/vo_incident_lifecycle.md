@@ -10,7 +10,7 @@
 
 The aim of VictorOps is to "Make On Call Suck Less", and it does this by getting the critical data, to the right people, at the right time.
 
-The key to making VictorOps work for you is to centralise all your alerting sources, sending them all to the VictorOps platform, then you have a single pane of glass in which to manage all of your alerting.
+The key to making VictorOps work for you is to centralize all your alerting sources, sending them all to the VictorOps platform, then you have a single pane of glass in which to manage all of your alerting.
 
 Login to the VictorOps UI and select the `Timeline` tab on the main menu bar, you should have a screen similar to the following image:
 
@@ -26,9 +26,9 @@ If you click into one of the currently on call users, you can see their status. 
 
 ### 1.2 Timeline
 
-In the centre `Timeline` section you get a realtime view of what is happening within your environment with the newest messages at the top.  Here you can quickly post update messages to make your colleagues aware of important developments etc.  You can filter the view using the buttons on the top toolbar showing only update messages, github intergrations, or apply more advanced filters.
+In the centre `Timeline` section you get a realtime view of what is happening within your environment with the newest messages at the top.  Here you can quickly post update messages to make your colleagues aware of important developments etc.  You can filter the view using the buttons on the top toolbar showing only update messages, github integrations, or apply more advanced filters.
 
-Lets change the Filters setttings to streamline your view. Click the `Filters` button then within the `Routing Keys` tab change the `show` setting from `all routing keys` to `selected routing keys`, then change the `My Keys` value to `all` and the `Other Keys` value to `selected` and deselect all keys under the Other Keys section. Click anywhere outside of the dialogue box to close it.
+Lets change the Filters settings to streamline your view. Click the `Filters` button then within the `Routing Keys` tab change the `show` setting from `all routing keys` to `selected routing keys`, then change the `My Keys` value to `all` and the `Other Keys` value to `selected` and deselect all keys under the Other Keys section. Click anywhere outside of the dialogue box to close it.
 
 ![Timeline Filters](../images/module7/m7-timeline-filters.png)
 
@@ -156,12 +156,12 @@ Use your VictorOps App on your phone to acknowledge the Incident by clicking on 
 
 ![Phone Alert](../images/module7/m7-phone-alert.png#center)
 
-...then clicking on either the `single tick` in the top right hand corner, or the `Aknowledge` link.  
+...then clicking on either the `single tick` in the top right hand corner, or the `Acknowledge` link.  
 
 The `single tick` will then transform into a `double tick`, and the status will change from `TRIGGERED` to `ACKNOWLEDGED`.
 
-![Aknowledge Alert](../images/module7/m7-phone-aknowledge-alert.png)
-![Alert Aknowledged](../images/module7/m7-phone-alert-sknowledged.png)
+![Acknowledge Alert](../images/module7/m7-phone-acknowledge-alert.png)
+![Alert Acknowledged](../images/module7/m7-phone-alert-acknowledged.png)
 
 Still on your phone, select the Alert Details tab.  Then on the Web UI, navigate back to `Timeline`, select `Team Incidents` on the right, then select `Acknowledged` and click into the new `Incident`.
 
@@ -185,9 +185,9 @@ Sticking with the Web UI, click the `2. Alert Details in SignalFx` link...
 
 ![Alert Details](../images/module7/m7-alert-details-in-sfx.png#center)
 
-...this will open a new browser tab and take you directly to the Alert within SignalFx where you could then progress your troubleshooting using the powerful tools built into the SignalFx UI.  Howerver we are focussing on VictorOps so close this tab and return to the VictorOps UI.
+...this will open a new browser tab and take you directly to the Alert within SignalFx where you could then progress your troubleshooting using the powerful tools built into the SignalFx UI.  However, we are focussing on VictorOps so close this tab and return to the VictorOps UI.
 
-What if VictorOps could identify previous incidents whithin the system which may give you a clue to the best way to tackle this incident.  The `Similar Incidents` tab does exactly that, surfacing previous incidents allowing you to look at them and see what actions were taken to resolve them, actions which could be easily repeated for this incident.
+What if VictorOps could identify previous incidents within the system which may give you a clue to the best way to tackle this incident.  The `Similar Incidents` tab does exactly that, surfacing previous incidents allowing you to look at them and see what actions were taken to resolve them, actions which could be easily repeated for this incident.
 
 ![Similar Incidents](../images/module7/m7-similar-incidents.png#center)
 
@@ -199,7 +199,7 @@ With the Incident expanded, you can see on the right we have a Time Line view wh
 
 ![Incident View](../images/module7/m7-incident-view.png#center#zoom)
 
-On the far left you have the option of allocating additional resources to this indcident by clicking on the `Add Responders` link.  This allows you build a virtual team specific to this incident by adding other Teams or individual Users, and also share details of a `Conference Bridge` where you can all get together and collaborate. Close the `Add Responders` dialogue by clicking `cancel`.
+On the far left you have the option of allocating additional resources to this incident by clicking on the `Add Responders` link.  This allows you build a virtual team specific to this incident by adding other Teams or individual Users, and also share details of a `Conference Bridge` where you can all get together and collaborate. Close the `Add Responders` dialogue by clicking `cancel`.
 
 You can also `snooze` this incident for up to 24hrs by clicking on the `alarm clock` in the very top left, or `re-route` it to a different team who may be better placed to deal with this particular incident.
 
