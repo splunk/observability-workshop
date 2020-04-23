@@ -155,12 +155,12 @@ Navigate to the `Rotations` tab on the `Teams` sub menu, you should have no exis
     * Handoff happens every "*1 days*"
     * The next handoff happens &lt;the next Monday will have been automatically selected&gt;
     * Click `Save Rotation`
-* Now add an 2nd shft for Europe by clicking `+Add a shift` - `Partial Day`
+* Now add an 2nd shift for Europe by clicking `+Add a shift` - `Partial Day`
   * Enter a Shift name of "*Europe*"
     * Time Zone set to "*Europe/London*"
     * The remaining settings will have been copied from the 1st shift
     * Click `Save Shift`
-* Now add a 3rd shft for West Coast USA by clicking `+Add a shift` - `Partial Day`
+* Now add a 3rd shift for West Coast USA by clicking `+Add a shift` - `Partial Day`
   * Enter a Shift name of "*West Coast*"
     * Time Zone set to "*US/Pacific*"
     * The remaining settings will have been copied from the 1st shift
@@ -180,7 +180,7 @@ We will now add the 2nd Rotation for our Senior SRE Escalation cover.
 * Click `Add Rotation`
 * Enter a name of "*Senior SRE Escalation*"
 * Select `24/7` from the three available shift templates
-  * Enter a Shift namof "*Senior SRE Escalation*"
+  * Enter a Shift name of "*Senior SRE Escalation*"
     * Time Zone set to "*Asia/Tokyo*"
     * Handoff happens every "*7 days at 9.00am*"
     * The next handoff happens &lt;select the next Monday from the date picker&gt;
