@@ -14,18 +14,16 @@
         <div class="tx-hero__content">
           <h1 style="color: #fff">Real-Time Cloud Monitoring and Observability for Infrastructure, Microservices and Applications</h1>
           <p>{{ config.site_description }}.</p>
-          <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | striptags }}" class="md-button md-button--primary">
-            Get started
-          </a>
-          <ul>
+          <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | striptags }}" class="md-button md-button--primary" style="width: 150px">Let's Go!</a>
+          <br />
           {% for version in config.versions|sort(reverse=true) %}
-          <li><a href="{{ config.site_url }}{{ version }}/">Read version {{ version }}</a></li>
+          <a class="md-button md-button--primary" style="width: 150px" href="{{ config.site_url }}{{ version }}/">Use {{ version }}</a><br />
           {% endfor %}
-          </ul>
         </div>
       </div>
     </div>
   </section>
 {% endblock %}
-{% block content %}{% endblock %}
+{% block content %}
+{% endblock %}
 {% block footer %}{% endblock %}

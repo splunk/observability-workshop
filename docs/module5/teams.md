@@ -36,7 +36,7 @@ When the **Team** UI is selected you will be presented in the workshop with an e
 
 To add a new **Team** click on the green ![Create team](../images/module5/M1-l7-15.jpg) button. This will present youy with the **Create New Team** Dialog.
 
-![Add Team](../images/module5/M1-l7-16.jpg#shadow)
+![Add Team](../images/module5/M1-l7-16.jpg){: .shadow}
 
 Create your own team by naming it [YOUR-INITIALS]-Team and add yourself by searching for your name and
 selecting  the **Add** link behind your name. This should result in a dialog similar to the one below:
@@ -114,7 +114,7 @@ Let create a new token by clicking on  the ![new token button](../images/module5
 
 Enter the new name of the new Token by using your Initials e.g. PH-Token
 
-![Name Your token](../images/module5/M1-l7-23.jpg#shadow)
+![Name Your token](../images/module5/M1-l7-23.jpg){: .shadow}
 
 After you press Ok,  you will be taken back to the **Access Token** UI, here your new token should be present, among the ones created by others.
 
@@ -142,7 +142,7 @@ Now Lets start limiting usage by clicking on Manage Token Limit in teh 3 **...**
 
 This will show the Manage Token Limit Dialog:
 
-![Set Limits on token](../images/module5/M1-l7-12.jpg#shadow)
+![Set Limits on token](../images/module5/M1-l7-12.jpg){: .shadow}
 
 In this Dialog you can set the limits per category.
 

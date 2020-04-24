@@ -18,11 +18,11 @@ If you created an alert detector in "Working with Detectors" you can click on th
 
 In the Muting Rule window check Mute Indefinitely and enter a reason. This will mute the rule permanently until you come back here and un-check this box.
 
-![Mute Indefinitely](../images/module2/mute-indefinitely.png#shadow)
+![Mute Indefinitely](../images/module2/mute-indefinitely.png){: .shadow}
 
 Click Next and in the new modal window confirm the muting rule setup
 
-![Confirm Rule](../images/module2/confirm-rule.png#shadow)
+![Confirm Rule](../images/module2/confirm-rule.png){: .shadow}
 
 Click on Mute Indefinitely to confirm. You won't be receiving any email notifications from you alert detector until you resume notifications again.
 
@@ -47,6 +47,10 @@ Click on Resume Notifications
 
 Click on Resume to confirm and resume notifications for this detector
 
-![Resume](../images/module2/resume.png#shadow)
+![Resume](../images/module2/resume.png){: .shadow}
 
 **Congratulations!** You have now resumed your alert notifications!
+
+---
+
+Use the **Next** link in the footer below to continue the workshop

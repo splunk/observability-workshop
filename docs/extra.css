@@ -7,26 +7,26 @@ img {
     padding: 4px;
 }
 
-img[src*="#shadow"] {
+.shadow {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-img:active[src*="#zoom"] {
+.zoom:active {
     cursor: zoom-out;
     transform: scale(2.0);
 }
 
-img[src*="#zoom"] {
+.zoom {
     cursor: zoom-in;
 }
 
-img[src*="#center"] {
+.center {
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-img[src*="#appstore"] {
+.appstore {
     border: none;
     width: 200px;
 }

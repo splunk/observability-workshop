@@ -28,6 +28,7 @@ theme:
   custom_dir: docs/material
 markdown_extensions:
   - markdown.extensions.admonition
+  - markdown.extensions.attr_list
   - markdown.extensions.codehilite:
       guess_lang: false
   - markdown.extensions.toc:
@@ -36,6 +37,7 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.mark
   - pymdownx.inlinehilite
+
 
 extra_css:
   - "extra.css"
