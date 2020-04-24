@@ -81,7 +81,7 @@ You will instantly see a number of Line plots, like below. The number `18 ts` in
 
 ![Chart](../images/module1/M1-l1-11.png)
 
-Click on the ***DATA TABLE** tab
+Click on the **DATA TABLE** tab
 
 ![Data Table](../images/module1/M1-l1-12.png)
 
