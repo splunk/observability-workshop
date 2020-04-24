@@ -23,7 +23,9 @@ Validate that the information on the review page looks like what is shown below 
 
 ![Launching instance](../images/module-support/AWS-Launch.jpg)
 
-You will be presented with a dialog box asking to provide credentials, there is no need to provide ssh keys so you can select the option **_Proceed without a key pair_**, then tick the acknowledge box to confirm you willing to pay AWS for this then hit the blue **LAUNCH INSTANCE** button
+You will be presented with a dialog box asking to provide credentials, there is no need to provide ssh keys so you can select the option _**Proceed without a key pair**_.
+
+Then tick the acknowledge box to confirm you willing to pay AWS for this then hit the blue **LAUNCH INSTANCE** button.
 
 ![Launch dialog](../images/module-support/AWS_-Launch-dialog.jpg)
 
