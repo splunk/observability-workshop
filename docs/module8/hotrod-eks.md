@@ -1,4 +1,4 @@
-# Deploying Sock Shop in AWS/EKS
+# Deploying Hot R.O.D. in AWS/EKS
 
 !!! important "Enabling µAPM"
 
