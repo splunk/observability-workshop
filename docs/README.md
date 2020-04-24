@@ -29,12 +29,24 @@ After these commands, the current branch is accessible through your favorite bro
 
 ## How to create a new tagged release
 
+Use the script `./ci/prepare-release.sh`. It takes a single optional argument, the type of release. It defaults to a minor release. To perform a major release:
+
+```bash
+./.ci/prepare-release.sh major
+```
+
+This will perform the following changes:
+
+1. Determine the new version by bumping the major or minor version.
+
 1. Update the `version` list in `mkdocs.yml` with the name of the release tag, e.g. `v4.2`.
 
-1. Commit this change with a message like `Releasing v4.2`:
+1. Update [README.md](../README.md) and prepend the version to the list of available versions.
+
+1. Commit these change with a message like `Releasing v4.2`:
 
     ```bash
-    git add mkdocs.yml && git commit -m 'Releasing v4.2
+    git add mkdocs.yml README.md && git commit -m 'Releasing v4.2
     ```
 
 1. Tag the release:
