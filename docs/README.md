@@ -12,13 +12,13 @@ sudo pip3 install -r requirements.txt
 
 ## Running the docs server
 
-Use `0.0.0.0` for the IP address so it listens on all interfaces and define the port you want to listen on e.g. `8000`
+In most cases, the default settings with `mkdocs serve` work well, and mkdocs is available at <http://127.0.0.1:8000/>. Otherwise you can use `0.0.0.0` for the IP address so mkdocs listens on all interfaces and define the port you want to listen on e.g. `1234`:
 
 ```bash
-mkdocs serve -a 0.0.0.0:8000
+mkdocs serve -a 0.0.0.0:8123
 ```
 
-After these commands, the current branch is accessible through your favorite browser at <http://localhost:8000>
+After these commands, the current branch is accessible through your favorite browser at <http://localhost:8123>
 
 ## How to create a new tagged release
 
