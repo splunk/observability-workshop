@@ -7,7 +7,14 @@ When working on the workshop, it is advised that you review your changes locally
 ```bash
 git clone https://github.com/signalfx/app-dev-workshop.git
 cd ~/app-dev-workshop
-sudo pip3 install -r requirements.txt
+```
+
+We recommend that you set up a virtualenv and install dependencies into it:
+
+```bash
+python -m venv venv
+source venv/bin/activate
+pip3 install -r requirements.txt
 ```
 
 ## Running the docs server
