@@ -1,10 +1,10 @@
-# Enabling µAPM on EKS
+# Deploying Sock Shop in AWS/EKS
 
-_An Organization needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already._
+!!! important "Enabling µAPM"
 
-_To check if you have an Organization with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards._
+    An Organization needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already.
 
----
+    To check if you have an Organization with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards.
 
 ## 1. Launch the Multipass instance
 
