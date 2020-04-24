@@ -13,12 +13,16 @@
         </div>
         <div class="tx-hero__content">
           <h1 style="color: #fff">Real-Time Cloud Monitoring and Observability for Infrastructure, Microservices and Applications</h1>
-          <p>{{ config.site_description }}.</p>
-          <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | striptags }}" class="md-button md-button--primary" style="width: 180px">Let's Go!</a>
-          <br />
-          {% for version in config.versions|sort(reverse=true) %}
-          <a class="md-button md-button--primary" style="width: 180px" href="{{ config.site_url }}{{ version }}/">Use {{ version }}</a><br />
-          {% endfor %}
+          <p>{{ config.site_description }}.</p>          
+          <div class="dropdown">
+            <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | striptags }}" class="md-button md-button--primary">Get Started</a>
+            <div class="dropdown-content">
+              {% for version in config.versions|sort(reverse=true) %}
+              <a style="width: 180px" href="{{ config.site_url }}{{ version }}/">Use {{ version }}</a>
+              <br />
+              {% endfor %}
+            </div>
+          </div>
         </div>
       </div>
     </div>
