@@ -59,7 +59,7 @@ Select either the Hot R.O.D or Sock Shop Multipass launch parameters. Lines high
     multipass launch \
     --name [YOUR_INITIALS]-k3s \
     --cloud-init cloud-init/k3s.yaml \
-    --cpus=4 --disk=15G --mem=8G
+    --cpus 4 --disk 15G --mem 8G
     ```
 
 Once the instance has been successfully created shell into it.

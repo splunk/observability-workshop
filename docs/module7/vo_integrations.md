@@ -105,8 +105,7 @@ With the `victorops.yaml` file created, from the same directory where you create
     ``` bash
     multipass launch \
     --name [YOUR INITIALS]-vo1 \
-    --cloud-init victorops.yaml \
-    --cpus=1 --disk=2G --mem=1G
+    --cloud-init victorops.yaml
     ```
 
 === "Output"
@@ -114,8 +113,7 @@ With the `victorops.yaml` file created, from the same directory where you create
     ```
     multipass launch \
     --name gh-vo1 \
-    --cloud-init victorops.yaml \
-    --cpus=1 --disk=2G --mem=1G
+    --cloud-init victorops.yaml
     Launched: gh-vo1
     ```
 
@@ -126,8 +124,7 @@ With the `victorops.yaml` file created, from the same directory where you create
     ``` bash
     multipass launch \
     --name [YOUR INITIALS]-vo2 \
-    --cloud-init victorops.yaml \
-    --cpus=1 --disk=2G --mem=1G
+    --cloud-init victorops.yaml
     ```
 
 === "Output"
@@ -135,8 +132,7 @@ With the `victorops.yaml` file created, from the same directory where you create
     ```
     multipass launch \
     --name gh-vo2 \
-    --cloud-init victorops.yaml \
-    --cpus=1 --disk=2G --mem=1G
+    --cloud-init victorops.yaml
     Launched: gh-vo2
     ```
 
