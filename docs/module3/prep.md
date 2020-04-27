@@ -49,7 +49,7 @@ Select either the Hot R.O.D or Sock Shop Multipass launch parameters. Lines high
     ```text hl_lines="2"
     multipass launch \
     --name {YOUR_INITIALS}-k3s \
-    --cloud-init cloud-init/k3s.yaml \
+    --cloud-init cloud-init/k3s.yaml
     ```
 
 === "Sock Shop"
