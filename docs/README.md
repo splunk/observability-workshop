@@ -35,7 +35,7 @@ Use the script `./ci/prepare-release.sh`. It takes a single optional argument, t
 ./.ci/prepare-release.sh major
 ```
 
-This will perform the following changes:
+This will perform the following changes (DO NOT MANUALLY PERFORM THESE STEPS):
 
 1. Determine the new version by bumping the major or minor version.
 
