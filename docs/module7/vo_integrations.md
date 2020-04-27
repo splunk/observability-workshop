@@ -90,7 +90,7 @@ The next step is to create a cloud-init file that will automatically install the
 
     runcmd:
     - curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
-    - sudo sh /tmp/signalfx-agent.sh --realm <YOUR REALM> <YOUR TOKEN>
+    - sudo sh /tmp/signalfx-agent.sh --realm <YOUR REALM> -- <YOUR TOKEN>
     ```
 
 With the `victorops.yaml` file created, from the same directory where you created it run the following commands to create two VMs.  As in other modules prefix the name of each VM with your initials to make them unique within your SignalFx account. You may also want to first shutdown any other VMs you still have running from previous modules to free up resources.
@@ -157,7 +157,8 @@ Copy and run the following code to download the VictorOps Workshop Detectors mas
     ```bash
     curl -LO https://github.com/signalfx/victorops-workshop-detectors/archive/master.zip
     unzip master.zip
-    cd victorops-workshop-detectors-master
+    mv victorops-workshop-detectors-master victorops
+    cd victorops
     ```
 
 === "Output"
