@@ -16,7 +16,9 @@ If you click on **DATA TABLE** you can swipe horizontally along the X axis to se
 
 Let's apply another function to get the values of **C** to positive values.
 
-By doing so we will see the difference between the metric values for a period of 24 hours with 7 days between. This difference can be used to see an alarming trend if we consider last week to be a baseline (the bigger the number - the more we deviate from the baseline) - but mainly we do this for you to get a bit more training on using analytical functions!
+By doing so we will see the difference between the metric values for a period of 24 hours with 7 days between.
+
+This difference can be used to see an alarming trend if we consider last week to be a baseline (the bigger the number - the more we deviate from the baseline) - but mainly we do this for you to get a bit more training on using analytical functions!
 
 In the **PLOT EDITOR** for **C** click on **Add Analytics** and choose `Absolute Value`
 
