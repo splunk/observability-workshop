@@ -17,7 +17,7 @@ Regardless if you are running this lab locally or using an AWS/EC2 instance, dow
     ```bash
     curl -OL https://github.com/signalfx/app-dev-workshop/archive/v1.3.zip
     unzip v1.3.zip
-    mv app-dev-workshop-master workshop
+    mv app-dev-workshop-1.3 workshop
     cd workshop
     ```
 
