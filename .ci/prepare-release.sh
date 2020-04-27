@@ -18,7 +18,7 @@ mv mkdocs.new.yml mkdocs.yml
 awk "/Previous versions of the workshop are also available:/ { print; print \"[v$TAG](https://signalfx.github.io/app-dev-workshop/v$TAG/)\";next }1" README.md > README.new.md
 mv README.new.md README.md
 
-git add README.md mkdocs.yml
+git add README.md docs/module3/prep.md mkdocs.yml
 git commit -m "Releasing v$TAG"
 git tag -a "v$TAG" -m "Version $TAG"
 git push --follow-tags origin master
