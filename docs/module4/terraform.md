@@ -14,7 +14,7 @@ Remaining in your Multipass instance from **Module #3**, download the SignalFx J
 
     ``` bash
     curl -L https://github.com/signalfx/signalfx-jumpstart/archive/master.zip > ~/master.zip
-    cd ~/.
+    cd ~
     unzip master.zip
     cd signalfx-jumpstart-master
     ```
