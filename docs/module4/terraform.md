@@ -18,17 +18,20 @@ Remaining in your Multipass instance from **Module #3**, download the SignalFx J
     cd signalfx-jumpstart-master
     ```
 
-The environment variables needed should already be set from [**Step #2** in Module 3](http://192.168.1.4:8001/module3/k3s/#2-take-the-helm). If not, create the following environment variables to use in the Terraform steps below
+The environment variables needed should already be set from [**Step #2** in Module 3](../../module3/k3s/#2-take-the-helm). If not, create the following environment variables to use in the Terraform steps below
 
 === "Input"
 
     ```
-    export ACCESS_TOKEN=<token from Module 3>
-    export REALM=<realm from Module 3>
-    export INITIALS=<your initials e.g. RWC>
+    export ACCESS_TOKEN=<SignalFx Access Token>
+    export REALM=<SignalFx Realm e.g. us1>
+    export INITIALS=<Your initials e.g. RWC>
     ```
 
-Initialize Terraform. **Note:** You will need to run this command each time a new version of the Terraform Provider is released. You can track the releases on [GitHub](https://github.com/terraform-providers/terraform-provider-signalfx/releases).
+Initialize Terraform and upgrade to the latest version of the SignalFx Terraform Provider
+
+!!! Note
+    You will need to run this command each time a new version of the Terraform Provider is released. You can track the releases on [GitHub](https://github.com/terraform-providers/terraform-provider-signalfx/releases).
 
 === "Input"
 
