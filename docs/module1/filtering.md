@@ -1,0 +1,51 @@
+# Using Filters
+
+## 1. Filtering and Analytics
+
+Let's now select the Paris datacenter to do some analytics - for that we will use a filter.
+
+Let's go back to the **PLOT EDITOR** tab and click on Add filter, wait until it automatically populates, choose `demo_datacenter`, and then Paris
+
+![Filter](../images/module1/M1-l1-13.png){: .zoom}
+
+In the F(x) column, add the analytic function Percentile:Aggregation, and leave the value to 95 (click outside to confirm)
+
+![Analytics](../images/module1/M1-l1-14.png){: .zoom}
+
+For info on the Percentile function and the other functions see [Analytics reference](https://docs.signalfx.com/en/latest/reference/analytics-docs/analytics-reference.html)
+
+---
+
+## 2. Using Timeshift analytical function
+
+Let's now compare with older metrics. Click on `...` and then on Clone in the dropdown to clone that Signal
+
+![Clone Signal](../images/module1/M1-l1-15.png){: .zoom}
+
+You will see a new row identical to **A**, called **B**, both visible and plotted
+
+![Plot Editor](../images/module1/M1-l1-16.png){: .zoom}
+
+For the **B** Signal, In F(x) add the analytic function **Timeshift** and enter `7d` (7 days = 1 week), and click outside to confirm
+
+![Timeshift](../images/module1/M1-l1-17.png){: .zoom}
+
+Click on the cogwheel on the far right, and choose a color, say pink, from Plot Color, to change color for the plot of **B**
+
+![Change Plot Colour](../images/module1/M1-l1-18.png){: .zoom}
+
+Click on Close
+
+Click in to the field next to **Time** and choose `Past Day` from the dropdown
+
+![Timeframe](../images/module1/M1-l1-19.png)
+
+We now see datapoint for **A** for the last day (rolling) as a blue plot, and 7 days ago in pink
+
+![Chart](../images/module1/M1-l1-20.png)
+
+Click on Area chart icon
+
+![Area Chart](../images/module1/M1-l1-21.png){: .zoom}
+
+We now have a better view of our two plots

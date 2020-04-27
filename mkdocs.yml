@@ -55,7 +55,13 @@ nav:
   - '<b>Home</b>': index.md
   - '<b>Introduction</b>': introduction.md
   - '<b>Module 1</b> - Dashboards':
-    - 'Working with Dashboards, Charts and Metrics': module1/dashboards.md
+    - 'Introduction': module1/intro.md
+    - 'Editing Charts': module1/editing.md
+    - 'Using filters': module1/filtering.md
+    - 'Using formulas': module1/formulas.md
+    - 'Using overlays': module1/overlay.md
+    - 'Introduction to SignalFlow': module1/signalflow.md
+    - 'Adding charts to dashboards': module1/adding-charts.md
   - '<b>Module 2</b> - Detectors':
     - 'Working with Detectors': module2/detectors.md
     - 'Working with Muting Rules': module2/muting.md
