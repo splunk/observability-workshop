@@ -222,7 +222,7 @@ Click on View Builder to go back to the UI Signal builder
 
 ## 10. Adding charts to dashboards
 
-Let's now save our chart. Click on Save as... and enter a name for your chart, use your initials like `<your initials>'s Latency Chart` and click OK
+Let's now save our chart. Click on Save as... and enter a name for your chart, use your initials like `[YOUR INITIALS] Latency Chart` and click OK
 
 ![Save Chart](../images/module1/M1-l1-32.png)
 

@@ -90,7 +90,7 @@ The next step is to create a cloud-init file that will automatically install the
 
     runcmd:
     - curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
-    - sudo sh /tmp/signalfx-agent.sh --realm <YOUR REALM> -- <YOUR TOKEN>
+    - sudo sh /tmp/signalfx-agent.sh --realm [YOUR REALM] -- [YOUR TOKEN]
     ```
 
 With the `victorops.yaml` file created, from the same directory where you created it run the following commands to create two VMs.  As in other modules prefix the name of each VM with your initials to make them unique within your SignalFx account. You may also want to first shutdown any other VMs you still have running from previous modules to free up resources.
@@ -104,7 +104,7 @@ With the `victorops.yaml` file created, from the same directory where you create
 
     ``` bash
     multipass launch \
-    --name <YOUR INITIALS>-vo1 \
+    --name [YOUR INITIALS]-vo1 \
     --cloud-init victorops.yaml \
     --cpus=1 --disk=2G --mem=1G
     ```
@@ -125,7 +125,7 @@ With the `victorops.yaml` file created, from the same directory where you create
 
     ``` bash
     multipass launch \
-    --name <YOUR INITIALS>-vo2 \
+    --name [YOUR INITIALS]-vo2 \
     --cloud-init victorops.yaml \
     --cpus=1 --disk=2G --mem=1G
     ```
@@ -190,11 +190,11 @@ Create the following environment variables to use in the Terraform steps below. 
 === "Variables"
 
     ```bash
-    export SFXVOPSID=<VictorOps Integration ID from Step 2>
-    export ACCESS_TOKEN=<SignalFx Access Token from Step 2>
-    export REALM=<SignalFx Realm from Step 2>
-    export ROUTINGKEY=<YOUR_INITIALS>_PRI
-    export INITIALS=<YOUR_INITIALS>
+    export SFXVOPSID=[VictorOps Integration ID from Step 2]
+    export ACCESS_TOKEN=[SignalFx Access Token from Step 2]
+    export REALM=[SignalFx Realm from Step 2]
+    export ROUTINGKEY=[YOUR_INITIALS]_PRI
+    export INITIALS=[YOUR_INITIALS]
     ```
 
 === "Example"

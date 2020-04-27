@@ -53,7 +53,7 @@ Select the `Team Incidents` tab you should find that the `Triggered`, `Acknowled
 Before generating any incidents you should assign yourself to the current `Shift` within your `Follow the Sun Support - Business Hours` Rotation and also place yourself `On-Call`.
 
 * Click on the `Schedule` link within your `Team` in the `People` section on the left
-* Or navigate to `Teams` -> `<Your Team>` -> `Rotations`
+* Or navigate to `Teams` -> `[Your Team]` -> `Rotations`
 * Expand the `Follow the Sun Support - Business Hours` Rotation
 * Click on the `Manage members` icon (the figures) for the current active shift depending on your timezone
 * Use the `Select a user to add...` dropdown to add yourself to the shift
@@ -69,7 +69,7 @@ Log into your first VM you created during step [2. Creating a Test Environment](
 === "Input"
 
     ```
-    multipass shell <YOUR INITIALS>-vo1
+    multipass shell [YOUR INITIALS]-vo1
     ```
 
 === "Example"

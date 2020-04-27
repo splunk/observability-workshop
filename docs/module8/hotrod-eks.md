@@ -17,18 +17,18 @@ Create the following environment variables for **SignalFx** and **AWS** to use i
 === "SignalFx"
 
     ```
-    export ACCESS_TOKEN=<SignalFx Access Token>
-    export REALM=<SignalFx Realm e.g. us1>
-    export INITIALS=<your initials e.g. RWC>
-    export VERSION=<Smart Agent version e.g. 5.1.2>
+    export ACCESS_TOKEN=[ACCESS_TOKEN]
+    export REALM=[REALM e.g. us1]
+    export INITIALS=[YOUR_INITIALS e.g. RWC]
+    export VERSION=[VERSION e.g. 5.1.2]
     ```
 
 === "AWS"
 
     ```
-    export AWS_ACCESS_KEY_ID=<AWS Access Key>
-    export AWS_SECRET_ACCESS_KEY=<AWS Secret Access Key>
-    export AWS_DEFAULT_REGION=<e.g. us-east-1>
+    export AWS_ACCESS_KEY_ID=[AWS Access Key]
+    export AWS_SECRET_ACCESS_KEY=[AWS Secret Access Key]
+    export AWS_DEFAULT_REGION=[e.g. us-east-1]
     export AWS_DEFAULT_OUTPUT=json
     export EKS_CLUSTER_NAME=$INITIALS-APP-DEV
     ```

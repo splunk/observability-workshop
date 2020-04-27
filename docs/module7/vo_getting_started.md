@@ -218,7 +218,7 @@ Navigate to the Escalation Polices tab on the Teams sub menu, you should have no
     * Click `Add Step`
 * Step 3
   * `If still unacked after 15 more minutes`
-    * `Execute Policy` `-> <Your Team Name> : 24/7`
+    * `Execute Policy` `-> [Your Team Name] : 24/7`
 * Click `Save`
 
 ### 5.3. Waiting Room
@@ -227,7 +227,7 @@ Navigate to the Escalation Polices tab on the Teams sub menu, you should have no
 * Policy Name: "*Waiting Room*"
 * Step 1
   * `If still unacked after 10 more minutes`
-    * `Execute Policy` -> `<Your Team Name> : Primary`
+    * `Execute Policy` -> `[Your Team Name] : Primary`
 * Click `Save`
 
 You may have noticed that when we created each policy there was the warning message `There are no routing keys for this policy - it will only receive incidents via manual reroute or when on another escalation policy`
@@ -252,7 +252,7 @@ There will probably already be a number of Routing Keys configured, but to add a
 !!! note
     You can assign a Routing Key to multiple Escalation Policies if required by simply selecting more from the list
 
-If you now navigate back to `Teams` -> `<Your Team Name>` -> `Escalation Policies` and look at the settings for your `Primary` and `Waiting Room` polices you will see that these now have `Routes` assigned to them.  The `24/7` policy does not have a Route assigned as this will only be triggered via an `Execute Policy` escalation from the `Primary` policy.
+If you now navigate back to `Teams` -> `[Your Team Name]` -> `Escalation Policies` and look at the settings for your `Primary` and `Waiting Room` polices you will see that these now have `Routes` assigned to them.  The `24/7` policy does not have a Route assigned as this will only be triggered via an `Execute Policy` escalation from the `Primary` policy.
 
 ---
 

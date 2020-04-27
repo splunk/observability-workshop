@@ -41,7 +41,7 @@ Launch the Multipass instance which will run Kubernetes (K3s)
     **Sock Shop minimum requirements:** 2 vCPU, 15Gb Disk, 4Gb Memory
 
 !!! note
-    Use `{YOUR_INITIALS}-k3s` so that the value of the instance hostname is unique e.g. `rwc-k3s`
+    Use `[YOUR_INITIALS]-k3s` so that the value of the instance hostname is unique e.g. `rwc-k3s`
 
 Select either the Hot R.O.D or Sock Shop Multipass launch parameters. Lines highlighted in yellow need to be edited:
 
@@ -49,7 +49,7 @@ Select either the Hot R.O.D or Sock Shop Multipass launch parameters. Lines high
 
     ```text hl_lines="2"
     multipass launch \
-    --name {YOUR_INITIALS}-k3s \
+    --name [YOUR_INITIALS]-k3s \
     --cloud-init cloud-init/k3s.yaml
     ```
 
@@ -57,9 +57,9 @@ Select either the Hot R.O.D or Sock Shop Multipass launch parameters. Lines high
 
     ```text hl_lines="2"
     multipass launch \
-    --name {YOUR_INITIALS}-k3s \
+    --name [YOUR_INITIALS]-k3s \
     --cloud-init cloud-init/k3s.yaml \
-    --cpus=2 --disk=15G --mem=4G
+    --cpus=4 --disk=15G --mem=8G
     ```
 
 Once the instance has been successfully created shell into it.
@@ -67,7 +67,7 @@ Once the instance has been successfully created shell into it.
 === "Input"
 
     ```bash hl_lines="1"
-    multipass shell {YOUR_INITIALS}-k3s
+    multipass shell [YOUR_INITIALS]-k3s
     ```
 
 ![Shell](../images/module3/shell.png)

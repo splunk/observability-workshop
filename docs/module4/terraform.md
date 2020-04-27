@@ -24,9 +24,9 @@ The environment variables needed should already be set from [**Step #2** in Modu
 === "Input"
 
     ```
-    export ACCESS_TOKEN=<SignalFx Access Token>
-    export REALM=<SignalFx Realm e.g. us1>
-    export INITIALS=<Your initials e.g. RWC>
+    export ACCESS_TOKEN=[ACCESS_TOKEN]
+    export REALM=[REALM e.g. us1]
+    export INITIALS=[YOUR_INITIALS e.g. RWC]
     ```
 
 Initialize Terraform and upgrade to the latest version of the SignalFx Terraform Provider
@@ -81,12 +81,12 @@ Initialize Terraform and upgrade to the latest version of the SignalFx Terraform
     commands will detect it and remind you to do so if necessary.
     ```
 
-Create a new workspace, replace `{WORKSPACE_NAME}` with what you want your workspace to be called:
+Create a new workspace, replace `[WORKSPACE_NAME]` with what you want your workspace to be called:
 
 === "Input"
 
     ``` bash
-    terraform workspace new {WORKSPACE_NAME}
+    terraform workspace new [WORKSPACE_NAME]
     ```
 
 === "Output"
@@ -131,12 +131,12 @@ Validate that the detectors were created, under the _**ALERTS → Detectors**_, 
 
 ## 4. Destroy all your hard work
 
-You will first need to ensure you are in the correct workspace, replace `{WORKSPACE_NAME}` with the name created in the initial setup)
+You will first need to ensure you are in the correct workspace, replace `[WORKSPACE_NAME]` with the name created in the initial setup)
 
 === "Input"
 
     ```text
-    terraform workspace select {WORKSPACE_NAME}
+    terraform workspace select [WORKSPACE_NAME]
     ```
 
 Destroy all Detectors and Dashboards that were previously applied.
