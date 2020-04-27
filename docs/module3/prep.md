@@ -8,7 +8,7 @@
 
 If you have chosen to run the workshop on a AWS/EC2 instance, please follow instructions given to connect and run the Workshop as described, however skip the Multipass commands in the next section.
 
-If you are  going to run this locally please install [Multipass](https://multipass.run/) for your OS. On a Mac you can also install via [Homebrew](https://brew.sh/) e.g. `brew cask install multipass`
+If you are  going to run this locally please install [Multipass](https://multipass.run/) for your OS. Make sure you are using at least version `1.2.0`. On a Mac you can also install via [Homebrew](https://brew.sh/) e.g. `brew cask install multipass`
 
 Regardless if you are running this lab locally or using an AWS/EC2 instance, download the App Dev Workshop Master Zip file locally or on to the EC2 instance, then proceed to unzip the file, rename it and cd into it:
 
