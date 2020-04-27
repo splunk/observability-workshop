@@ -109,7 +109,7 @@ Using the NGINX CLUSTER-IP address reported from above, use Apache Benchmark (`a
 === "Input"
 
     ```text
-    ab -n1000 -c20 http://{INSERT_NGINX_IP_ADDRESS}/
+    ab -n1000 -c20 http://[INSERT_NGINX_IP_ADDRESS]/
     ```
 
 === "Output"
@@ -131,6 +131,6 @@ Using the NGINX CLUSTER-IP address reported from above, use Apache Benchmark (`a
     ...
     ```
 
-Validate you are seeing metrics in the UI by going to _**Dashboards → NGINX → NGINX Servers**_ Tip: you can again apply the filter `kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP` to focus on only your metrics.
+Validate you are seeing metrics in the UI by going to _**Dashboards → NGINX → NGINX Servers**_ Tip: you can again apply the filter `kubernetes_cluster: [YOUR_INITIALS]-SFX-WORKSHOP` to focus on only your metrics.
 
 ![NGINX Dashboard](../images/module3/nginx-dashboard.png)

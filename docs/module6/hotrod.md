@@ -69,7 +69,7 @@ In order to view the application in your web browser we need to find the LoadBal
     hotrod       LoadBalancer   10.43.32.97   192.168.64.35   8080:31521/TCP   40m
     ```
 
-Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). Then head over to your web browser and type in `http://{EXTERNAL-IP}:8080`, you should then be able to see the application running. Click on customer names to order a car:
+Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). Then head over to your web browser and type in `http://[EXTERNAL-IP]:8080`, you should then be able to see the application running. Click on customer names to order a car:
 
 ![Hot R.O.D. Application](../images/module6/hotrod-app.png)
 

@@ -24,10 +24,10 @@ Create the following variables to use in the proceeding helm install command:
 === "Input"
 
     ```
-    export ACCESS_TOKEN=<token from Step 2>
-    export REALM=<realm from Step 2>
-    export INITIALS=<your initials e.g. RWC>
-    export VERSION=<Smart Agent version e.g. 5.1.2>
+    export ACCESS_TOKEN=[ACCESS_TOKEN]
+    export REALM=[REALM e.g. us1]
+    export INITIALS=[YOUR_INITIALS e.g. RWC]
+    export VERSION=[VERSION e.g. 5.1.2]
     ```
 
 !!! note
@@ -125,11 +125,11 @@ In the SignalFx UI, goto _**INFRASTRUCTURE → Kubernetes Navigator → Cluster 
 
 ---
 
-Validate that your cluster is discovered and shown (In a workshop you can see many more clusters) by finding your cluster by searching for `{YOUR_INITIALS}-SFX-WORKSHOP`:
+Validate that your cluster is discovered and shown (In a workshop you can see many more clusters) by finding your cluster by searching for `[YOUR_INITIALS]-SFX-WORKSHOP`:
 
 ![Find Your Cluster](../images/module3/M3-l1-find-cluster.png)
 
-If there are many clusters you can use the dashboard filter to narrow down to your Kubernetes cluster e.g. `kubernetes_cluster: {YOUR_INITIALS}-SFX-WORKSHOP` or do this by  after selecting your cluster with your mouse.
+If there are many clusters you can use the dashboard filter to narrow down to your Kubernetes cluster e.g. `kubernetes_cluster: [YOUR_INITIALS]-SFX-WORKSHOP` or do this by  after selecting your cluster with your mouse.
 
 ![K8S Clusters Filter](../images/module3/M3-l1-selecting-k3-cluster.png)
 
