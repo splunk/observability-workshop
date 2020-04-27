@@ -50,7 +50,3 @@ Click on Resume to confirm and resume notifications for this detector
 ![Resume](../images/module2/resume.png){: .shadow}
 
 **Congratulations!** You have now resumed your alert notifications!
-
----
-
-Use the **Next** link in the footer below to continue the workshop
