@@ -10,7 +10,7 @@ TAG=$(bumpversion --list "$FLAVOUR" | awk -F= '/new_version=/ { print $2 }')
 
 awk "/versions:/ { print; print \"  - v$TAG\";next }1" mkdocs.yml > mkdocs.new.yml
 mv mkdocs.new.yml mkdocs.yml
-awk "/Previous versions of the workshop are also available:/ { print; print \"[v$TAG](https://signalfx.github.io/app-dev-workshop/v$TAG/)\";next }1" README.md > README.new.md
+awk "/Previous versions of the workshop are also available:/ { print; print \"- [v$TAG](https://signalfx.github.io/app-dev-workshop/v$TAG/)\";next }1" README.md > README.new.md
 mv README.new.md README.md
 
 git add README.md docs/module3/prep.md mkdocs.yml
