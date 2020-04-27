@@ -73,7 +73,7 @@ You will now see a chart template like the following.
 
 Let's enter a metric to plot. We are going to use the metric `demo.trans.latency`
 
-In the ****PLOT EDITOR**** tab under **Signal** enter `demo.trans.latency`
+In the **PLOT EDITOR** tab under **Signal** enter `demo.trans.latency`
 
 ![Signal](../images/module1/M1-l1-10.png)
 
