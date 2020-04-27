@@ -6,7 +6,7 @@
 
 ---
 
-Remain in the Multipass  or EC2 shell session you set up previously.
+Remain in the Multipass or EC2 shell session you set up previously. See the [Preparation with Multipass](../prep) and [with EC2](../module-support/ec2-setup.md).
 
 ## 1. Deploy SignalFx Smart Agent via install script on a VM
 
