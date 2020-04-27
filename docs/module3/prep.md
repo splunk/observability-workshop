@@ -25,7 +25,7 @@ Regardless if you are running this lab locally or using an AWS/EC2 instance, dow
 === "Windows"
 
     !!! info
-        Download the zip by clicking on the following URL <https://github.com/signalfx/app-dev-workshop/archive/v1.2.zip>.
+        Download the zip by clicking on the following URL <https://github.com/signalfx/app-dev-workshop/archive/v1.3.zip>.
 
         Once downloaded, unzip the the file and from the command prompt change into that directory.
 
