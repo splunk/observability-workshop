@@ -48,7 +48,7 @@ This will perform the following changes:
 1. Commit these change with a message like `Releasing v4.2`:
 
     ```bash
-    git add mkdocs.yml README.md && git commit -m 'Releasing v4.2
+    git add mkdocs.yml README.md && git commit -m 'Releasing v4.2'
     ```
 
 1. Tag the release:
@@ -59,7 +59,7 @@ This will perform the following changes:
 
 1. Push the branch and the tag
 
-```bash
-git push --follow-tags origin master
-```
+    ```bash
+    git push --follow-tags origin master
+    ```
 
