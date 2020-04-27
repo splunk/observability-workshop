@@ -2,15 +2,21 @@
 
 1. Deploy SignalFx Smart Agent via install script on a VM
 2. Confirm the Smart Agent is working and sending data
-3. Stop the agent on the VM
 
 ---
 
-Remain in the Multipass or EC2 shell session you set up previously. See the [Preparation with Multipass](../prep) and [with EC2](../module-support/ec2-setup.md).
+Use `multipass` to create a vanilla Ubuntu VM and shell into it. You can also use a Linux-based VM with your cloud provider of choice. Replace `[INITIALS]` with your actual initials.
+
+=== "Input"
+
+    ```bash hl_lines="1-2"
+    multipass launch [INITIALS]-vm
+    multipass shell [INITIALs]-vm
+    ```
 
 ## 1. Deploy SignalFx Smart Agent via install script on a VM
 
-You will need to obtain your Access Token from the SignalFx UI once Kubernetes is running. You can find your Access Token by clicking on your profile icon on the top right of the SignalFx UI. Then select _**Organization Settings → Access Tokens**_. Expand the Default token, then click on _**Show Token**_ to expose your token. Later in the lab you can come back here and click the _**Copy**_ button which will copy it to your clipboard so you can paste it when you need to provide an access token in the lab.
+You will need to obtain your Access Token from the SignalFx UI. You can find your Access Token by clicking on your profile icon on the top right of the SignalFx UI. Then select _**Organization Settings → Access Tokens**_. Expand the Default token, then click on _**Show Token**_ to expose your token. Later in the lab you can come back here and click the _**Copy**_ button which will copy it to your clipboard so you can paste it when you need to provide an access token in the lab.
 
 ![Access Token](../images/module3/m3-access-token.png){: .zoom}
 
@@ -90,14 +96,3 @@ You can also see the list of services running on your host by selecting the **PR
 
 Take a moment to explore the various charts and the Processes list.
 
----
-
-## 3. Stop the agent on the VM
-
-In the next module we are going to roll out the agent on the Kubernetes cluster. Before doing that, stop the VM agent with the following command:
-
-=== "Input"
-
-    ```
-    sudo service signalfx-agent stop
-    ```
