@@ -89,18 +89,19 @@ Take a moment to create some notification rules for you Team.
 
 ## 4. Controlling a Team's usage
 
-If you wish to make sure certain teams or users cannot use more then a certain allotment of you overall  allotment of nodes, containers and Metrics' you can create multiple Access keys.
+If you wish to control the consumption of Hosts, Containers, Custom Metrics and High Resolution Metrics, you can create multiple Access Tokens and allocate them to different parts of your organization.
 
-To work with SignalFx's Access Tokens UI click on the settings ![gray user icon](../images/module5/M5-l1-2.png) ) icon on the right top of the page and select the **Organizations Settings → Access tokens** tab, or select the **Access Tokens** tab from the left pane.
+Assuming you are still within the Organization Overview section, simply select the **Access Tokens** tab from the left pane.
 
 ![Select Token](../images/module5/M1-l7-13.jpg)
 
-This will open up the **Access Token** Interface. It consist of a an overview of your Allotments for this organization and a list of Access Tokens that have been generated.
-Every Organization wil have a Default token that is generated when  Organization is created.
+However to get to this section from anywhere click on the settings ![gray user icon](../images/module5/M5-l1-2.png) icon at the top right top of the page and select **Organizations Settings → Access tokens**
 
-Each Token is unique and can be assigned limits for the amount of  Nodes,containers Custom Metrics and High Resolution it can use.
+The **Access Tokens** Interface provides an overview of your Allotments in the form of a list of Access Tokens that have been generated. Every Organization will have a **Default** token generated when they are first setup, but there will typically be multiple Tokens configured.
 
-The **Usage Status** Column shows if a token is used above or below its assigned limits.
+Each Token is unique and can be assigned limits for the amount of Hosts, Containers, Custom Metrics and High Resolution Metrics it can consume.
+
+The **Usage Status** Column quickly shows if a token is above or below its assigned limits.
 
 ![New token](../images/module5/M1-l7-21.jpg)
 
@@ -120,13 +121,14 @@ If you have made an error in your naming, want to disable/enable a token or set 
 
 ![Show Menu](../images/module5/M1-l7-25.jpg)
 
-If you made a type you can use the Rename Token option to correct the name of your token.
+If you made a typo you can use the Rename Token option to correct the name of your token.
 
 ---
 
-If you need to make sure a token  cannot be used a to send Metrics in you can Disable a token.
-Click on the Disable button to Disable the token, this means the token cannot be used for sending in data to SignalFX.  
-The line with Your Token should turn greyed out to indicate that is been Disabled as you can see in the screenshot below.
+If you need to make sure a token cannot be used to send Metrics in you can Disable a token.
+Click on the Disable button to Disable the token, this means the token cannot be used for sending in data to SignalFX.
+
+The line with Your Token should become greyed out to indicate that is has been Disabled as you can see in the screenshot below.
 
 ![Token disabled](../images/module5/M1-l7-26.jpg)
 
@@ -134,7 +136,7 @@ Go ahead and click on the 3 **...** menu button to Disable and Enable your token
 
 ---
 
-Now Lets start limiting usage by clicking on Manage Token Limit in teh 3 **...** menu.
+Now Lets start limiting usage by clicking on Manage Token Limit in the 3 **...** menu.
 
 This will show the Manage Token Limit Dialog:
 
@@ -143,7 +145,7 @@ This will show the Manage Token Limit Dialog:
 In this Dialog you can set the limits per category.
 
 Please go ahead and specify the limits as shown above for each usage metric.
-For our lab use your own email address, and double check if you have the  number in you dialog as shown above.
+For our lab use your own email address, and double check that you have the correct numbers in your dialog box as shown above.
 
 Token limits are used to trigger an alert that notify one or more recipients when the usage has been above 90% of the limit for 5 minutes. To specify the recipients, click Add Recipient, then select the recipient or notification method you want to use. (Specifying recipients is optional but highly recommended.) The severity for token alerts is always Critical.
 
@@ -152,6 +154,9 @@ Click on **Update** to save your Access Tokens limits and The Alert Settings.
 !!! Note
     When a token is at or above its limit in a usage category, new metrics for that usage category will not be stored and processed by SignalFx. This will make sure you there  will be no unexpected cost due to a team sending in data without restriction.
 
-In your company you would distribute these new Access Tokens to various teams, controlling how much information/data they can send to SignalFx. This will allow you to fine tune the way you consume your SignalFx allotment and stop expensive surprises from happening
+!!! Note
+    If you wish to get alerts before you hit 90%, you can create additional detectors using whatever values you want. These detectors could target the Teams consuming the specific Access Tokens so they can take action before the admins need to get involved.
+
+In your company you would distribute these new Access Tokens to various teams, controlling how much information/data they can send to SignalFx. This will allow you to fine tune the way you consume your SignalFx allotment and stop expensive surprises from happening.
 
 **Congratulations!** You have now have completed the Service Bureau module.
