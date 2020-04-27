@@ -6,7 +6,7 @@
 
 ## Let’s bake some K8s
 
-If you have chosen to run the workshop on a AWS/EC2 instance, please follow instructions given to connect and run the Workshop as described, however skip the Multipass commands in the next section.
+If you have chosen to run the workshop on a [AWS/EC2 instance](../module-support/ec2-setup.md), please follow instructions given to connect and run the Workshop as described, however skip the Multipass commands in the next section.
 
 If you are  going to run this locally please install [Multipass](https://multipass.run/) for your OS. Make sure you are using at least version `1.2.0`. On a Mac you can also install via [Homebrew](https://brew.sh/) e.g. `brew cask install multipass`
 
