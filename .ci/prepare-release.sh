@@ -8,9 +8,6 @@ set -o pipefail  # Use last non-zero exit code in a pipeline
 FLAVOUR=${1:-minor}
 CURRENT=$(git describe --abbrev=0 --match "v*")
 TAG=$(bumpversion \
---parse "v?(?P<major>\d+)\.(?P<minor>\d+)" \
---serialize "{major}.{minor}" \
---current-version "$CURRENT" \
 --dry-run \
 --allow-dirty \
 --list "$FLAVOUR" |
