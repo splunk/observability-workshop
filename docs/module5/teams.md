@@ -1,23 +1,25 @@
 # Teams - Lab Summary
 
 * Create a team and add members to team
-*cDiscover how you can restrict usage for teams by creating separate access token's and set limits.
+* Discover how you can restrict usage for teams by creating separate access tokens and set limits.
 
 ---
 
 ## 1. Introduction to Teams
 
-To make sure that users directly see the dashboards and alerts that are relevant to them when they login to SignalFX,
-most organizations will use SignalFx's Teams mechanism to assign a user to a Team.
-Usually this matches work related roles, for example, members of a Dev-ops or Product Management group would be assigned
-to the corresponding Teams in SignalFx.
+To make sure that users  see the dashboards and alerts that are relevant to them when using SignalFX, most organizations will use SignalFx's Teams mechanism to assign a user to one or more Teams. Usually this matches work related roles, for example, members of a Dev-Ops or Product Management group would be assigned to the corresponding Teams in SignalFx.
 
-Once an Team member is connected to SignalFx, they will be shown the Teams landing page, similar to the one shown below, In this case for the Product Management team.
-Here, members see all the Dashboard, alerts that are assigned the team and  any other useful information so they can focus on what is relevant to their job.
+When a user logs into SignalFx, they can choose which team dashboard will be their home page and they will typically select the page for their primary role.
 
-![Teams](../images/module5/M1-l7-9.jpg)
+In the example below, the user is a member of the Development, Operations and Product Management Teams, and is currently viewing the Dashboard for the Operations Team.  This Dashboard has specific Dashboard Groups for Nginx, Infra and K8S assigned but any Dashboard Group can be linked to a Teams Dashboard.
 
-The above landing page has three Dashboard groups assigned, shows there is a critical alert that had this team as an addressee and some text and urls with other topics of interest.
+They can use the menu along the top left to quickly navigate between their allocated teams, or they can use the All TEAMS dropdown on the right to select specific Team Dashboards, as well as quickly accessing All Dashboards using the adjacent link.
+
+![Teams](../images/module5/m5-team-homepage.png){: .zoom}
+
+Alerts can be linked to specific Teams so the Team can monitor only the Alerts they are interested in, and in the above example they currently have 1 active Critical Alert.
+
+The Description for the Team Dashboard can be customized and can include links to team specific resources.
 
 ---
 
