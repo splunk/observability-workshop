@@ -43,6 +43,8 @@ This will perform the following changes:
 
 1. Update [README.md](../README.md) and prepend the version to the list of available versions.
 
+1. Catch up with any remote tags not present locally. This will prevent accidentially pushing tags deleted on the remote.
+
 1. Commit these change with a message like `Releasing v4.2`:
 
     ```bash
