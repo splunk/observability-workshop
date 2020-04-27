@@ -31,8 +31,8 @@ The environment variables needed should already be set from [**Step #2** in Modu
 
 Initialize Terraform and upgrade to the latest version of the SignalFx Terraform Provider
 
-!!! Note
-    You will need to run this command each time a new version of the Terraform Provider is released. You can track the releases on [GitHub](https://github.com/terraform-providers/terraform-provider-signalfx/releases).
+!!! note "Upgrading the SignalFx Terraform Provider"
+    You will need to run this command each time a new version of the SignalFx Terraform Provider is released. You can track the releases on [GitHub](https://github.com/terraform-providers/terraform-provider-signalfx/releases).
 
 === "Input"
 
@@ -141,7 +141,7 @@ You will first need to ensure you are in the correct workspace, replace `[WORKSP
 
 Destroy all Detectors and Dashboards that were previously applied.
 
-!!! info "Note"
+!!! info
 
     The `var=”sfx_prefix=$INITIALS”` is not required!
 
