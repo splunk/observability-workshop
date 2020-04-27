@@ -15,17 +15,17 @@ From the drop down, select the **Organizations Settings → Organization Overvie
 
 ![Organization overview](../images/module5/M5-l1-3.png)
 
-On the left, you will see a list of registered users (blurred for privacy in the above screenshot), and the various charts that show you the number of registered users, chart's and dashboards created and growth trends.
+On the left hand menu (not shown in the above screenshot) you will see a list of members, and in the centre, various charts that show you the number of users, teams, charts, dashboards, and Groups created, as well as various growth trends.
 
 The screenshot is taken from an actual organization, the workshop organization you're looking at may have less data to work with.
 
-Take a minute to explore the various charts in the Organization over view of the workshop instance.
+Take a minute to explore the various charts in the Organization Overview of the workshop instance.
 
 ---
 
 ## 2. Usage and Billing
 
-If you want to see what your spend is against your contract you can either select the  **Settings** icon on the top right of the SignalFx UI again,
+If you want to see what your spend is against your contract you can select either the **Settings** icon on the top right of the SignalFx UI again,
 ![Settings Icon](../images/module5/M5-l1-1.png)
 but this time select the **Organizations Settings → Billing and Usage** tab, or the faster way, select the **Usage and Billing** tab from the left pane!
 
@@ -39,7 +39,7 @@ This screen may take a few seconds to load whilst it calculates the usage.
 
 You should see a screen similar like the one below  that will give you an overview of the current usage, the average usage  and your entitlement per category : Nodes, Containers, Customer Metrics and High Resolution Metrics.  
 
-For more information on what these are please read [Billing and Usage information](https://docs.signalfx.com/en/latest/admin-guide/usage.html#viewing-billing-and-usage-information)
+For more information about about these elements please refer to [Billing and Usage information](https://docs.signalfx.com/en/latest/admin-guide/usage.html#viewing-billing-and-usage-information)
 
 ![Billing and Usage](../images/module5/M5-l1-5.png)
 
@@ -47,24 +47,24 @@ For more information on what these are please read [Billing and Usage informatio
 
 ### 3.1. Let's examine this page in more detail
 
-The top chart shows you the current allotment per category (shown by the red arrows at the top in the screenshot below) as well as your current usage of the four catagories. (Shown at the red lines at the bottom of the chart, as you can see we consumed 18 Hosts, 0 Containers and 1038 Custom Metrics and 0 High Resolution Metrics)
+The top chart shows you the current allotment per category (shown by the red arrows at the top in the screenshot below) as well as your current usage of the four catagories. (Shown at the red lines at the bottom of the chart, as you can see we consumed 18 Hosts, 0 Containers and 1038 Custom Metrics and 0 High Resolution Metrics).
 
 ![Billing and Usage-top](../images/module5/M5-l1-6.png)
 
-In the bottom chart, you can see the usage per category for the current period (shown in the drop-down box on the top right of the chart)
+In the bottom chart, you can see the usage per category for the current period (shown in the drop-down box on the top right of the chart).
 
-The blue line marked _Average usage_ indicates what SignalFx will use to calculate your average usage for the current period.
+The blue line marked _Average Usage_ indicates what SignalFx will use to calculate your average usage for the current period.
 
 ![Billing and Usage-Bottom](../images/module5/M5-l1-7.png)
 
 !!! info
 
-    As you can see from the screenshot, SignalFx does not use High water mark or p95% for cost calculation but the actual average usage, allowing you do performance testing or Blue/Green style deployments etc. without risk of overage charges.
+    As you can see from the screenshot, SignalFx does not use High water mark or p95% for cost calculation but the actual average usage, allowing you to do performance testing or Blue/Green style deployments etc. without the risk of overage charges.
 
-In the pane on the right  shows you information about your organizations and contract end date.
-
-![Billing and Usage-Pane](../images/module5/M5-l1-8.png)
-
-To get a feel of the options you can change the category type by the drop down on the left or the time period with the right drop box.
+To get a feel for the options you can change the metric displayed by selecting the different options from the Usage Metric drop down on the left, or change the the time period with the drop down on the right.
 
 Please take a minute to explore the different time periods & categories and their views.
+
+Finally, the pane on the right shows you information about your Subscription.
+
+![Billing and Usage-Pane](../images/module5/M5-l1-8.png)
