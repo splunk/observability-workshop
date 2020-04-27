@@ -8,7 +8,7 @@
 
 ## 1. Create an instance running Kubernetes
 
-The setup part is already documented in the [Preparation section](../../module3/prep/) & [Install k3s section](../../module3/k3s/).  
+The setup part is already documented in the [Preparation section](../../module3/prep/) & [Install K3s section](../../module3/k3s/).  
 
 You can reuse your current running instance, or start afresh (If you start afresh, please run both sections before continuing).
 
@@ -51,9 +51,10 @@ To ensure the Hot R.O.D. application is running:
 
 ## 3. Viewing the Hot R.O.D. application in your browser
 
-(If you are using an EC2 instance, please skip to the next section [Generate Traffic](../../module6/hotrod/#4-generate-some-traffic-to-the-application-using-apache-benchmark)).
+!!! note
+    If you are using an EC2 instance, please skip to the next section [Generate Traffic](../../module6/hotrod/#4-generate-some-traffic-to-the-application-using-apache-benchmark).
 
-In order to view the application in your web browser we need to find the LoadBalancer IP address and the port the application is listening on.
+In order to view the application in your web browser we need to find the `LoadBalancer` IP address and the port the application is listening on.
 
 === "Input"
 
@@ -69,7 +70,7 @@ In order to view the application in your web browser we need to find the LoadBal
     hotrod       LoadBalancer   10.43.32.97   192.168.64.35   8080:31521/TCP   40m
     ```
 
-Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). Then head over to your web browser and type in `http://[EXTERNAL-IP]:8080`, you should then be able to see the application running. Click on customer names to order a car:
+Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). Open your web browser and type in `http://[EXTERNAL-IP]:8080`, you will then be able to see the application running. Click on customer name to order a car:
 
 ![Hot R.O.D. Application](../images/module6/hotrod-app.png)
 
@@ -84,7 +85,16 @@ Return to your shell and create an environment variable for the IP address and p
     ```
     HOTROD_ENDPOINT=$(kubectl get svc hotrod -n default -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
     ```
-then run the following command to create load on the service:
+
+Confirm the environment variable is set
+
+=== "Input"
+
+    ```
+    curl $HOTROD_ENDPOINT
+    ```
+
+Then run the following command(s) to create load on the service:
 
 === "Input"
 
