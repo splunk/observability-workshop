@@ -2,7 +2,7 @@
 
 ## 1. Edit Histogram Chart
 
-Click on the three dots (...) on the Latency Histogram chart and then on Open.
+Click on the three dots (**...**) on the Latency Histogram chart in the Sample Data dashboard and then on **Open** (or you can click on the title of the chart).
 
 ![Sample Data](../images/module1/M1-l1-3.png){: .zoom}
 
@@ -29,7 +29,7 @@ In the **PLOT EDITOR** tab under Signal you see the metric `demo.trans.latency` 
 
 ## 2. Creating a new chart
 
-Let's now create a new chart and save it in a new dashboard! Click on the plus icon and from the drop down, click on **Chart**
+Let's now create a new chart and save it in a new dashboard! Click on the plus icon (top right of the UI) and from the drop down, click on **Chart**
 
 ![Create new chart](../images/module1/M1-l1-8.png){: .zoom}
 

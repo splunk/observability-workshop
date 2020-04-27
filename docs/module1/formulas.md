@@ -2,9 +2,9 @@
 
 ## 1. Plotting differences
 
-Let's now plot the difference of all metric values for a day with 7 days between.
+Let's now plot the difference of all metric values for a day with 7 days in between.
 
-Click on Enter Formula then enter `A-B` (A minus B) and hide (deselect) all Signals using the eye, except **C**
+Click on Enter Formula then enter `A-B` (A minus B) and hide (deselect) all Signals using the eye, except **C**.
 
 ![Formulas](../images/module1/M1-l1-22.png){: .zoom}
 
@@ -22,6 +22,6 @@ In the **PLOT EDITOR** for **C** click on **Add Analytics** and choose `Absolute
 
 ![Absolute Value](../images/module1/M1-l1-23.png){: .zoom}
 
-You will see the **C** plot now having only positive values
+You will see the **C** plot now having only positive values.
 
 ![Chart](../images/module1/M1-l1-24.png){: .zoom}

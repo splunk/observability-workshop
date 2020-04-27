@@ -8,11 +8,11 @@
 
 ---
 
-## 1. Introduction to the SignalFx environment
+## 1. Introduction to the SignalFx UI
 
-Logon to the SignalFx organization you have been invited to
+Logon to the SignalFx organization you have been invited to.
 
-Hover over _**DASHBOARDS**_ in the top menu, and then click on All Dashboards. A number of prebuilt dashboards are provided for you in your default view.
+Hover over **DASHBOARDS** in the top menu, and then click on All Dashboards. A number of prebuilt dashboards are provided for you in your default view.
 
 ![Dashboards](../images/module1/M1-l1-1.png)
 
@@ -24,14 +24,14 @@ Among the dashboards you will see a Dashboard group called Sample Data. This gro
 
 ## 2. Inspecting the Sample Data
 
-In the All Dashboards view expand the Sample Data dashboard group by clicking on it, and then click on Intro to SignalFx dashboard
+In this dashboards view expand the **Sample Data** dashboard group by clicking on it, and then click on **Intro to SignalFx** dashboard.
 
 ![Sample Data](../images/module1/M1-l1-2.png){: .zoom}
 
-You will see a selection of sample charts. To learn more about charts you can click on the Intro to SignalFx, Part 1, 2 and Part 3 dashboards and read the description of the charts and its metrics.
+You will see a selection of sample charts. To learn more about charts you can click on the other sample dashboards (**PART 1**, **PART 2** and **PART 3**).
 
 Let's take a look at the Sample charts. Click on the **SAMPLE CHARTS** dashboard name:
 
 ![Sample Data](../images/module1/M1-l1-3.png)
 
-In the **SAMPLE CHARTS** dashboard you see a selection of charts that show a sample of the various styles, colors and formats you can apply to your charts in the dashboards.
+In the Sample Charts dashboard you can see a selection of charts that show a sample of the various styles, colors and formats you can apply to your charts in the dashboards.
