@@ -6,6 +6,8 @@
 
 ---
 
+Remain in the Multipass  or EC2 shell session you set up previously.
+
 ## 1. Deploy SignalFx Smart Agent via install script on a VM
 
 You will need to obtain your Access Token from the SignalFx UI once Kubernetes is running. You can find your Access Token by clicking on your profile icon on the top right of the SignalFx UI. Then select _**Organization Settings → Access Tokens**_.  Expand the Default token, then click on _**Show Token**_ to expose your token. Later in the lab you can come back here and click the _**Copy**_ button which will copy it to your clipboard  so you can paste it when you need to provide an access token in the lab.
