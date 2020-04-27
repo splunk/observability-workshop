@@ -37,22 +37,27 @@ On the left side of you screen click under the **INSTANCES** heading on the _ins
 
 ## 2. Connecting to your workshop instance
 
-Start a command line session on your PC (terminal on a Mac, or putty on Windows for example) Login to your instance by starting an ssh session. (replace [IP-ADDRESS] with the IP address copied at step 6 from the previous section:
-  
-   `ssh ubuntu@[IP-ADDRESS]`
+Start a command line session on your PC (terminal on a Mac, or putty on Windows for example) Login to your instance by starting an ssh session. (replace [IP-ADDRESS] with the IP address copied from the previous section:
+
+=== "Input"
+
+   ```bash
+   ssh ubuntu@[IP-ADDRESS]
+   ```
 
 You will usually be asked to confirm that you wish to connect via ssh to the server, type yes to confirm, followed by a query for a password.
 
-_**The password will be provided by the facilitator of the workshop**_.
+!!! note
+    **The password will be provided by the facilitator of the workshop**
 
 ![doing an ssh session](../images/module-support/MEC2-7.png)
 
 Once your logged in successfully you should see the **APP-DEV** logo confirming that you are indeed using a workshop instance.
 
-The system will install and launch your k3s kubernetes platform
+The instance will install all the required software and launch your Kubernetes (K3s) platform
 
 ![APP_DEV shell](../images/module-support/MEC2-8.png)
 
 ---
 
-If everything matches the screen shot above, your ready to begin your [workshop](https://signalfx.github.io/app-dev-workshop)
+If everything matches the screen shot above, your ready to begin the [Workshop](../module1/dashboards)
