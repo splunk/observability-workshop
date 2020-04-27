@@ -54,14 +54,14 @@ Click the edit policy button for the Primary Paging Policy.
 Then add an new step
 
 * Step 2
-  * Send an email to &lt;your email address&gt;
+  * Send an email to [your email address]
   * Execute the next step if I have not responded within 5 minutes
 
 Then add a new step
 
 * Step 3
   * Every 5 minutes until we have reached you
-  * Make a phone call to &lt;your phone number&gt;
+  * Make a phone call to [your phone number]
 
 Then save the policy.
 
@@ -82,10 +82,10 @@ Policy Name: Evening
 
 * Step 1
   * Every 5 minutes until we have reached you
-    * Make a phone call to &lt;your phone number&gt;
+    * Make a phone call to [your phone number]
     * Time Period: All 7 Days
     * Timezone
-      * &lt;your time zone&gt;
+      * [your time zone]
         * Between 7pm and 9am
 
 Save the policy then add one more
@@ -94,10 +94,10 @@ Policy Name: Weekend
 
 * Step 1
   * Every 5 minutes until we have reached you
-    * Make a phone call to &lt;your phone number&gt;
+    * Make a phone call to [your phone number]
     * Time Period: Sat & Sun
     * Timezone
-      * &lt;your time zone&gt;
+      * [your time zone]
         * Between 9am and 7pm
 
 These custom paging policies will be used during the specified times in place of the Primary Policy, however admins do have the ability to ignore these custom policies, and we will highlight how this is achieved in a later module.
@@ -110,7 +110,7 @@ Your profile is now fully configured using these example configurations. Organiz
 
 ## 3. Create Your Team
 
-Navigate to the Teams Tab on the main toolbar, select `Add Team`, then enter your team name using the format "&lt;Your Initials&gt; Workshop" and then save by clicking the `Add Team` button.
+Navigate to the Teams Tab on the main toolbar, select `Add Team`, then enter your team name using the format "[Your Initials] Workshop" and then save by clicking the `Add Team` button.
 
 You now need to add other users to your team.  If you are running this workshop using the Splunk provided environment, the following accounts are available for testing.  If you are running this lab in your own environment, you will have been provided a list of usernames you can use in place of the table below.
 
@@ -153,7 +153,7 @@ Navigate to the `Rotations` tab on the `Teams` sub menu, you should have no exis
     * Time Zone set to "*Asia/Tokyo*"
     * Each user is on duty from "*Monday through Friday from 9.00am to 5.00pm*"
     * Handoff happens every "*1 days*"
-    * The next handoff happens &lt;the next Monday will have been automatically selected&gt;
+    * The next handoff happens [the next Monday will have been automatically selected]
     * Click `Save Rotation`
 * Now add an 2nd shift for Europe by clicking `+Add a shift` - `Partial Day`
   * Enter a Shift name of "*Europe*"
@@ -183,7 +183,7 @@ We will now add the 2nd Rotation for our Senior SRE Escalation cover.
   * Enter a Shift name of "*Senior SRE Escalation*"
     * Time Zone set to "*Asia/Tokyo*"
     * Handoff happens every "*7 days at 9.00am*"
-    * The next handoff happens &lt;select the next Monday from the date picker&gt;
+    * The next handoff happens [select the next Monday from the date picker]
     * Click `Save Rotation`
 * Add the users who are allocated the 24/7 shift
 
@@ -201,7 +201,7 @@ Navigate to the Escalation Polices tab on the Teams sub menu, you should have no
 * Policy Name: "*24/7*"
 * Step 1
   * `Immediately`
-    * `Notify the on-duty user(s) in rotation` -> `Senior SRE Escalation`
+    * `Notify the on-duty user(s) in rotation` → `Senior SRE Escalation`
 * Click `Save`
 
 ### 5.2. Primary
@@ -210,15 +210,15 @@ Navigate to the Escalation Polices tab on the Teams sub menu, you should have no
 * Policy Name: "*Primary*"
 * Step 1
   * `Immediately`
-    * `Notify the on-duty user(s) in rotation` -> `Follow the Sun Support - Business Hours`
+    * `Notify the on-duty user(s) in rotation` → `Follow the Sun Support - Business Hours`
     * Click `Add Step`
 * Step 2
   * `If still unacked after 15 minutes`
-    * `Notify the next user(s) in the current on-duty shift` -> `Follow the Sun Support - Business Hours`
+    * `Notify the next user(s) in the current on-duty shift` → `Follow the Sun Support - Business Hours`
     * Click `Add Step`
 * Step 3
   * `If still unacked after 15 more minutes`
-    * `Execute Policy` `-> [Your Team Name] : 24/7`
+    * `Execute Policy` → `[Your Team Name] : 24/7`
 * Click `Save`
 
 ### 5.3. Waiting Room
@@ -227,7 +227,7 @@ Navigate to the Escalation Polices tab on the Teams sub menu, you should have no
 * Policy Name: "*Waiting Room*"
 * Step 1
   * `If still unacked after 10 more minutes`
-    * `Execute Policy` -> `[Your Team Name] : Primary`
+    * `Execute Policy` → `[Your Team Name] : Primary`
 * Click `Save`
 
 You may have noticed that when we created each policy there was the warning message `There are no routing keys for this policy - it will only receive incidents via manual reroute or when on another escalation policy`
@@ -246,13 +246,13 @@ There will probably already be a number of Routing Keys configured, but to add a
 
 | Routing Key | Escalation Policies |
 | --- | --- |
-| &lt;Your Initials&gt;_PRI | &lt;Your Team Name&gt; : Primary |
-| &lt;Your Initials&gt;_WR | &lt;Your Team Name&gt; : Waiting Room |
+| [Your Initials]_PRI | [Your Team Name] : Primary |
+| [Your Initials]_WR | [Your Team Name] : Waiting Room |
 
 !!! note
     You can assign a Routing Key to multiple Escalation Policies if required by simply selecting more from the list
 
-If you now navigate back to `Teams` -> `[Your Team Name]` -> `Escalation Policies` and look at the settings for your `Primary` and `Waiting Room` polices you will see that these now have `Routes` assigned to them.  The `24/7` policy does not have a Route assigned as this will only be triggered via an `Execute Policy` escalation from the `Primary` policy.
+If you now navigate back to `Teams` → `[Your Team Name]` → `Escalation Policies` and look at the settings for your `Primary` and `Waiting Room` polices you will see that these now have `Routes` assigned to them.  The `24/7` policy does not have a Route assigned as this will only be triggered via an `Execute Policy` escalation from the `Primary` policy.
 
 ---
 
