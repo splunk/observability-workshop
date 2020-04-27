@@ -9,7 +9,7 @@ Use `multipass` to create a vanilla Ubuntu VM and shell into it. You can also us
 
 === "Input"
 
-    ```bash hl_lines="1-2"
+    ```bash hl_lines="1 2"
     multipass launch [INITIALS]-vm
     multipass shell [INITIALs]-vm
     ```
