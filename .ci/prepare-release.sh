@@ -6,12 +6,7 @@ set -o nounset   # Disallow expansion of unset variables
 set -o pipefail  # Use last non-zero exit code in a pipeline
 
 FLAVOUR=${1:-minor}
-CURRENT=$(git describe --abbrev=0 --match "v*")
-TAG=$(bumpversion \
---dry-run \
---allow-dirty \
---list "$FLAVOUR" |
-awk -F= '/new_version/ { print $2 }')
+TAG=$(bumpversion --list "$FLAVOUR" | awk -F= '/new_version/ { print $2 }')
 
 awk "/versions:/ { print; print \"  - v$TAG\";next }1" mkdocs.yml > mkdocs.new.yml
 mv mkdocs.new.yml mkdocs.yml
