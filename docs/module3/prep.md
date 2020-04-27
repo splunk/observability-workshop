@@ -36,11 +36,11 @@ Launch the Multipass instance which will run Kubernetes (K3s)
 !!! Warning
     In [Module 6](../../module6/) there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
 
-    **Hot R.O.D minimum requirements:** 1 vCPU, 5Gb Disk, 1Gb Memory
+    **Hot R.O.D Multipass min. requirements:** 1 vCPU, 5Gb Disk, 1Gb Memory
 
-    **Sock Shop minimum requirements:** 4 vCPU, 15Gb Disk, 8Gb Memory
+    **Sock Shop Multipass min. requirements:** 4 vCPU, 15Gb Disk, 8Gb Memory
 
-!!! note
+!!! important "Make sure to use your initials"
     Use `[YOUR_INITIALS]-k3s` so that the value of the instance hostname is unique e.g. `rwc-k3s`
 
 Select either the Hot R.O.D or Sock Shop Multipass launch parameters. Lines highlighted in yellow need to be edited:
