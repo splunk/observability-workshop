@@ -54,7 +54,7 @@ plugins:
         
 nav:
   - '<b>Home</b>': index.md
-  - '<b>Introduction</b>': introduction.md
+#  - '<b>Introduction</b>': introduction.md
   - '<b>Module 1</b> - Dashboards':
     - 'Introduction': module1/intro.md
     - 'Editing Charts': module1/editing.md
@@ -83,7 +83,7 @@ nav:
     - 'VictorOps Getting Started': module7/vo_getting_started.md
     - 'VictorOps Integrations': module7/vo_integrations.md
     - 'VictorOps Incident Lifecycle': module7/vo_incident_lifecycle.md
-  - '<b>Post Workshop Clean Up!</b>': module-support/cleanup.md
+  - '<b>Post Workshop Clean Up</b>': module-support/cleanup.md
   - '<b>Optional Modules</b>':
     - 'Deploying Hot R.O.D. in EKS': module8/hotrod-eks.md
     - 'Creating an AWS/EC2 instance': module-support/ec2-setup.md
