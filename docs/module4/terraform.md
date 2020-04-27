@@ -13,7 +13,8 @@ Remaining in your Multipass instance from **Module #3**, download the SignalFx J
 === "Input"
 
     ``` bash
-    curl -LO https://github.com/signalfx/signalfx-jumpstart/archive/master.zip
+    curl -L https://github.com/signalfx/signalfx-jumpstart/archive/master.zip > ~/master.zip
+    cd ~/.
     unzip master.zip
     cd signalfx-jumpstart-master
     ```
