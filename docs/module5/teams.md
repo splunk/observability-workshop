@@ -25,41 +25,35 @@ The Description for the Team Dashboard can be customized and can include links t
 
 ## 2. Creating a new Team
 
-To work with  to signalFx's Team UI cick on the **Settings** icon on the top right of the SignalFx UI,
-![Settings Icon](../images/module5/M5-l1-1.png) (t may also look like this ![gray user icon](../images/module5/M5-l1-2.png)) and select the **Organizations Settings → Teams** tab, or select the **Teams** tab from the left pane.
+To work with  to SignalFx's Team UI click on the **Settings** icon on the top right of the SignalFx UI, ![Settings Icon](../images/module5/M5-l1-1.png)(it may also look like this ![gray user icon](../images/module5/M5-l1-2.png)) and select the **Organizations Settings → Teams** tab, or select the **Teams** tab from the left pane.
 
 ![location of settings](../images/module5/M1-l7-7.jpg)
 
-When the **Team** UI is selected you will be presented in the workshop with an empty Team's list
+When the **Team** UI is selected you will be presented with the list of current Teams.
   
-![No teams shown](../images/module5/M1-l7-14.jpg)
-
 ---
 
-To add a new **Team** click on the green ![Create team](../images/module5/M1-l7-15.jpg) button. This will present youy with the **Create New Team** Dialog.
+To add a new **Team** click on the green ![Create team](../images/module5/M1-l7-15.jpg) button. This will present you with the **Create New Team** Dialog.
 
 ![Add Team](../images/module5/M1-l7-16.jpg){: .shadow}
 
-Create your own team by naming it [YOUR-INITIALS]-Team and add yourself by searching for your name and
-selecting  the **Add** link behind your name. This should result in a dialog similar to the one below:
+Create your own team by naming it [YOUR-INITIALS]-Team and add yourself by searching for your name and selecting the **Add** link next to your name. This should result in a dialog similar to the one below:
 
 You can remove selected users by pressing  **remove** or the small **x** behind a name.
 Make sure you have your group created with your initials and with yourself added as a member, then press done.
 
 ![Add Team complete](../images/module5/M1-l7-17.jpg)
 
-This will bring you back to the **Teams** list that now show your Team and the one's created by others.
+This will bring you back to the **Teams** list that will now show your Team and the one's created by others.
 
 !!! note
-    The group(s) you are a member of has a grey **Member** icon in front of it.
+    The Teams(s) you are a member of have a grey **Member** icon in front of it.
 
-If no members are assigned to your group, you should see a blue **Add members** link instead of the member count,
-clicking on that link  will get you to the **Edit Team** dialog where you can add yourself.
+If no members are assigned to your Team, you should see a blue **Add members** link instead of the member count, clicking on that link will get you to the **Edit Team** dialog where you can add yourself.
 
-This is the same dialog you get when pressing the 3 dots **...**   at the end of the Line with your team
-and select **Edit Team**.
+This is the same dialog you get when pressing the 3 dots **...** at the end of the line with your Team and selecting **Edit Team**
 
-The 3 **...** menu give you the option to Edit a Team, Join or leave a Team or Delete a team.
+The **...** menu gives you the option to Edit, Join, Leave or Delete a Team (leave and join will depend on if you are currently a member).
 
 ---
 
@@ -70,20 +64,20 @@ You can set up specific Notification rules per team, click on the **NOTIFICATION
 ![Base notification menu](../images/module5/M1-l7-18.jpg)
 
 By default the system offers you the ability to set up a general notification rule for your team.
-Note the Email all members, This mean all members of this team will receive an email with the Alert information, regardless of the alert type.
-You can add other recipients, by  clicking ![add recipient](../images/module5/M1-l7-19.jpg)
+Note the Email all team members option. This means all members of this team will receive an email with the Alert information, regardless of the alert type.
 
-You can add a different email addresses to inform people outside SignalFx users like
- _alerts@your-company.com_ if that is way to inform people outside SignalFx. AAdding groups you would use when you also want to send an alert to an other team, like sending an alert on the Database of your application to the  general Database team along with one to your team.
+You can add other recipients, by clicking ![add recipient](../images/module5/M1-l7-19.jpg)
+
+You can add multiple email addresses to inform none SignalFx users such as
+_alerts@your-company.com_. Using this setting will ensure these external users will be notified of alerts whenever the recipients setting within a Detector has this Team selected as one of the options.
 
 However if you click on the link **Configure separate notification tiers for different severity alerts** you can configure every alert level differently.
 
 ![Multiple Notifications](../images/module5/M1-l7-10.jpg)
 
-As you can see in th above screenshot, you can set up different alert rules for the different alert level.
-We have different rules set up for all the various Error levels, Showing you how Splunk's VictorOps offering would integrate with SignalFx.
-Both at a Critical and Major alert, the alert gets forwarded to Splunk's VictorOps that will handle alerting the on call engineer and/or manager.
-For the Minor alerts we send it to the Teams slack channel and for warning and info messages we just use an email
+Different alert rules for the different alert levels can be configured, as shown in the above image.
+
+Critical and Major are using Splunk's VictorOps offering. For the Minor alerts we send it to the Teams Slack channel and for Warning and Info we send an email.
 
 Below you see some of the Notification options you can install in your SignalFx Organization:
 
