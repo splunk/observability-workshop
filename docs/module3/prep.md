@@ -70,4 +70,17 @@ Once the instance has been successfully created shell into it.
     multipass shell [YOUR_INITIALS]-k3s
     ```
 
-![Shell](../images/module3/shell.png)
+=== "Output"
+    ```text
+     █████╗ ██████╗ ██████╗     ██████╗ ███████╗██╗   ██╗
+    ██╔══██╗██╔══██╗██╔══██╗    ██╔══██╗██╔════╝██║   ██║
+    ███████║██████╔╝██████╔╝    ██║  ██║█████╗  ██║   ██║
+    ██╔══██║██╔═══╝ ██╔═══╝     ██║  ██║██╔══╝  ╚██╗ ██╔╝
+    ██║  ██║██║     ██║         ██████╔╝███████╗ ╚████╔╝
+    ╚═╝  ╚═╝╚═╝     ╚═╝         ╚═════╝ ╚══════╝  ╚═══╝  
+
+    To run a command as administrator (user "root"), use "sudo <command>".
+    See "man sudo_root" for details
+
+    ubuntu@rwc-k3s:~$
+    ```
