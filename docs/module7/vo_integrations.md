@@ -79,7 +79,7 @@ You will also need to obtain the name of the Realm for your SignalFx account.  C
 
 ### 2.3. Local VMs using Multipass
 
-The next step is to create a cloud-init file that will automatically install the SignalFx Agent when the VMs are created.  Create a `victorops.yaml` file using your preferred editor and populate it with the following, but replacing &lt;YOUR REALM&gt; & &lt;YOUR TOKEN&gt; with the values stored in your `values document`.
+The next step is to create a cloud-init file that will automatically install the SignalFx Agent when the VMs are created.  Create a `victorops.yaml` file using your preferred editor and populate it with the following, but replacing [YOUR REALM] & [YOUR TOKEN] with the values stored in your `values document`.
 
 === "victorops.yaml"
 

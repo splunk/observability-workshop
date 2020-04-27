@@ -18,7 +18,7 @@ Login to the VictorOps UI and select the `Timeline` tab on the main menu bar, yo
 
 ### 1.1 People
 
-On the left we have the `People` section with the `Teams` and `Users` sub tabs. On the `Teams` tab, click on `All Teams` then expand &lt;Your Teamname&gt;. Users with the VictorOps Logo against their name are currently on call. Here you can see who is on call within a particular Team, or across all Teams via `Users` -> `On-Call`.
+On the left we have the `People` section with the `Teams` and `Users` sub tabs. On the `Teams` tab, click on `All Teams` then expand [Your Teamname]. Users with the VictorOps Logo against their name are currently on call. Here you can see who is on call within a particular Team, or across all Teams via `Users` → `On-Call`.
 
 If you click into one of the currently on call users, you can see their status. It shows which Rotation they are on call for, when their current Shift ends and their next Shift starts (times are displayed in your timezone), what contact methods they have and which Teams they belong to (dummy users such as Hank do not have Contact Methods configured).
 
@@ -53,7 +53,7 @@ Select the `Team Incidents` tab you should find that the `Triggered`, `Acknowled
 Before generating any incidents you should assign yourself to the current `Shift` within your `Follow the Sun Support - Business Hours` Rotation and also place yourself `On-Call`.
 
 * Click on the `Schedule` link within your `Team` in the `People` section on the left
-* Or navigate to `Teams` -> `[Your Team]` -> `Rotations`
+* Or navigate to `Teams` → `[Your Team]` → `Rotations`
 * Expand the `Follow the Sun Support - Business Hours` Rotation
 * Click on the `Manage members` icon (the figures) for the current active shift depending on your timezone
 * Use the `Select a user to add...` dropdown to add yourself to the shift
