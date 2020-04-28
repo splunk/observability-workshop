@@ -1,22 +1,25 @@
 # Using Terraform - Lab Summary
 
-* Download the Jumpstart repository and initialize the SignalFx Provider.
-* Run Terraform to create SignalFx detectors and dashboards from code using our Terraform provider.
+* Initialize the SignalFx Provider.
+* Run Terraform to create SignalFx detectors and dashboards from code using the SignalFx Terraform Provider.
 * See how Terraform can also delete detectors and dashboards.
+
+{==
+
+Minimum recommended time to complete - **10 minutes**
+
+==}
 
 ---
 
 ## 1. Initial setup
 
-Remaining in your Multipass instance from **Module #3**, download the SignalFx Jumpstart Terraform master zip file, unzip the file and change into the `signalfx-jumpstart-master` directory
+Remaining in your Multipass instance from **Module #3**, change into the `signalfx-jumpstart` directory
 
 === "Input"
 
     ``` bash
-    curl -L https://github.com/signalfx/signalfx-jumpstart/archive/master.zip > ~/master.zip
-    cd ~
-    unzip master.zip
-    cd signalfx-jumpstart-master
+    cd ~/signalfx-jumpstart
     ```
 
 The environment variables needed should already be set from [**Step #2** in Module 3](../../module3/k3s/#2-take-the-helm). If not, create the following environment variables to use in the Terraform steps below
