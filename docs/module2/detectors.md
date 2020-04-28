@@ -1,6 +1,15 @@
 # Working with Detectors - Lab Summary
 
 * Create a Detector from one of you charts
+* Setting Alert conditions
+* Running a pre-flight check
+* Working with muting rules
+
+{==
+
+Minimum recommended time to complete - **15 minutes**
+
+==}
 
 ---
 
