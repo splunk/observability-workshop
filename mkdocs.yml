@@ -36,7 +36,8 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.mark
   - pymdownx.inlinehilite
-
+  - pymdownx.critic
+  - pymdownx.keys
 
 extra_css:
   - "extra.css"
