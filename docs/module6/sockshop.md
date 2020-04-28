@@ -6,21 +6,30 @@
 
     To check if you have an Organization with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards.
 
-## 1. Create an instance running Kubernetes
+!!! note
+    The setup part is already documented in the [Preparation](../../module3/prep/) and [Deploy the Smart Agent in K3s](../../module3/k3s/) steps. Please ensure this instance is available and running before continuing.
 
-The setup part is already documented in the [Preparation section](../..//module3/prep/) & [Install k3s section](../../module3/k3s/).  
+    === "Input"
 
-You can reuse your current running instance, or start fresh
-(If you start fresh, please run both sections before continuing).
+        ```
+        multipass list
+        ```
+
+    === "Output"
+
+        ```
+        Name                    State             IPv4             Image
+        rwc-k3s                 Running           192.168.64.17    Ubuntu 18.04 LTS
+        ```
 
 !!! Warning
     The Sock Shop application requires some horse power to run it, please ensure you are running a Multipass instance that can handle it.
 
-    **Sock Shop minimum requirements:** 2 vCPU, 15Gb Disk, 4Gb Memory 
+    **Sock Shop Multipass min. requirements:** 4 vCPU, 15Gb Disk, 8Gb Memory 
 
 ---
 
-## 2. Deploy the Sock Shop application into K3s
+## 1. Deploy the Sock Shop application into K3s
 
 To deploy the Sock Shop application into K3s apply the deployment
 
@@ -29,7 +38,7 @@ To deploy the Sock Shop application into K3s apply the deployment
     ```bash
     cd ~/workshop/apm/sockshop
     kubectl create namespace sock-shop
-    kubectl apply -f k8s/complete-demo.yaml
+    kubectl apply -f k8s/deployment.yaml
     ```
 
 === "Output"
@@ -66,7 +75,7 @@ To deploy the Sock Shop application into K3s apply the deployment
 
 ---
 
-## 3. Ensure Sock Shop is fully deployed
+## 2. Ensure Sock Shop is fully deployed
 
 To monitor the deployment of Sock Shop using `k9s` to monitor:
 
@@ -82,7 +91,7 @@ Once in `k9s` press `0` to show all namespaces:
 
 ---
 
-## 4. Take Sock Shop for a test drive
+## 3. Take Sock Shop for a test drive
 
 Sock Shop should be running in your cluster and exposes services via cluster IP and port. Obtain the ip address for the front-end service.
 
@@ -109,6 +118,43 @@ Then confirm the `SOCKS_ENDPOINT` environment variable has been set:
 
     </html>
     ```
+
+---
+
+## 4. Viewing the SockShop application in your browser
+
+(If you are using an EC2 instance, please skip to this section.)
+
+In order to view the application in your web browser we need to find the LoadBalancer IP address and the port the application is listening on.
+
+=== "Input"
+
+    ```bash
+    kubectl get svc -n sock-shop
+    ```
+
+=== "Output"
+
+    ```text
+    NAME           TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)          AGE
+    carts-db       ClusterIP      10.43.221.67    <none>          27017/TCP        34m
+    carts          ClusterIP      10.43.61.101    <none>          80/TCP           34m
+    catalogue-db   ClusterIP      10.43.57.198    <none>          3306/TCP         34m
+    catalogue      ClusterIP      10.43.216.173   <none>          80/TCP           34m
+    orders-db      ClusterIP      10.43.236.48    <none>          27017/TCP        34m
+    orders         ClusterIP      10.43.115.92    <none>          80/TCP           34m
+    payment        ClusterIP      10.43.242.227   <none>          80/TCP           34m
+    queue-master   ClusterIP      10.43.73.136    <none>          80/TCP           34m
+    rabbitmq       ClusterIP      10.43.113.211   <none>          5672/TCP         34m
+    shipping       ClusterIP      10.43.250.115   <none>          80/TCP           34m
+    user-db        ClusterIP      10.43.152.153   <none>          27017/TCP        34m
+    user           ClusterIP      10.43.45.155    <none>          80/TCP           34m
+    front-end      LoadBalancer   10.43.247.97    192.168.64.35   8081:30001/TCP   34m
+    ```
+
+Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). Then head over to your web browser and type in `http://{EXTERNAL-IP}:8081`, you should then be able to see the application running. Happy Shopping!
+
+![SockShop Application](../images/module6/sockshop-app.png)
 
 ---
 
@@ -147,40 +193,3 @@ Look at individual traces and span performance.
 ![µAPM Service Dashboard](../images/module6/m2-waterfall.png)
 
 ![µAPM Service Dashboard](../images/module6/m2-spanperf.png)
-
----
-
-## 7. Viewing the SockShop application in your browser
-
-(If you are using an EC2 instance, please skip to this section.)
-
-In order to view the application in your web browser we need to find the LoadBalancer IP address and the port the application is listening on.
-
-=== "Input"
-
-    ```bash
-    kubectl get svc -n sock-shop
-    ```
-
-=== "Output"
-
-    ```text
-    NAME           TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)          AGE
-    carts-db       ClusterIP      10.43.221.67    <none>          27017/TCP        34m
-    carts          ClusterIP      10.43.61.101    <none>          80/TCP           34m
-    catalogue-db   ClusterIP      10.43.57.198    <none>          3306/TCP         34m
-    catalogue      ClusterIP      10.43.216.173   <none>          80/TCP           34m
-    orders-db      ClusterIP      10.43.236.48    <none>          27017/TCP        34m
-    orders         ClusterIP      10.43.115.92    <none>          80/TCP           34m
-    payment        ClusterIP      10.43.242.227   <none>          80/TCP           34m
-    queue-master   ClusterIP      10.43.73.136    <none>          80/TCP           34m
-    rabbitmq       ClusterIP      10.43.113.211   <none>          5672/TCP         34m
-    shipping       ClusterIP      10.43.250.115   <none>          80/TCP           34m
-    user-db        ClusterIP      10.43.152.153   <none>          27017/TCP        34m
-    user           ClusterIP      10.43.45.155    <none>          80/TCP           34m
-    front-end      LoadBalancer   10.43.247.97    192.168.64.35   8081:30001/TCP   34m
-    ```
-
-Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). Then head over to your web browser and type in `http://{EXTERNAL-IP}:8081`, you should then be able to see the application running. Happy Shopping!
-
-![SockShop Application](../images/module6/sockshop-app.png)
