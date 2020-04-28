@@ -1,4 +1,5 @@
 #cloud-config
+package_update: true
 
 apt:
   sources_list: | 
@@ -24,7 +25,7 @@ runcmd:
  - 'git clone https://github.com/signalfx/app-dev-workshop.git /home/ubuntu/workshop'
  - 'curl https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd -o /etc/motd'
  - 'curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash'
- - 'curl -OL https://github.com/derailed/k9s/releases/download/v0.19.2/k9s_Linux_x86_64.tar.gz'
+ - 'curl -OL https://github.com/derailed/k9s/releases/download/v0.19.3/k9s_Linux_x86_64.tar.gz'
  - tar xvfz k9s_Linux_x86_64.tar.gz
  - mv k9s /usr/local/bin/
  - chmod -x /etc/update-motd.d/*
