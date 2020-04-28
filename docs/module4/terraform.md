@@ -22,7 +22,7 @@ Remaining in your Multipass instance from **Module #3**, change into the `signal
     cd ~/signalfx-jumpstart
     ```
 
-The environment variables needed should already be set from [**Step #2** in Module 3](../../module3/k3s/#2-take-the-helm). If not, create the following environment variables to use in the Terraform steps below
+The environment variables needed should already be set from [**Step #2** in Module 3](../../module3/k3s/#2-use-helm-to-deploy-agent). If not, create the following environment variables to use in the Terraform steps below
 
 === "Input"
 
