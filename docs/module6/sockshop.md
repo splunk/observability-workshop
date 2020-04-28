@@ -166,11 +166,15 @@ Navigate to µAPM (*not* µAPM PG) and select Monitoring, then ensure you have s
 
 ![µAPM Monitoring](../images/module6/m2-monitoring.png)
 
-Explore the User Interface: Review an automatically generated Service Dashboard. How do you correlate Service performance with Infrastructure?
+### Explore the User Interface
+
+Review an automatically generated Service Dashboard. How do you correlate Service performance with Infrastructure?
 
 ![µAPM Service Dashboard](../images/module6/m2-service.png)
 
-Troubleshoot a service. Let's stress the sock shop a bit. Increase the amount of clients running for the load test to something ludicrous (1000+ seems to do the trick). What happens with the services? Troubleshoot a service with a higher error rate. Also review the service dependencies.
+### Troubleshoot a service
+
+Let's stress the sock shop a bit. Increase the amount of clients running for the load test to something ludicrous (setting `-c 1000` in the above command seems to do the trick). What happens with the services? Troubleshoot a service with a higher error rate. Also review the service dependencies.
 
 ![µAPM Service Dashboard](../images/module6/m2-troubleshoot.png)
 
