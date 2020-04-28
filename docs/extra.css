@@ -28,12 +28,14 @@ img {
 }
 
 .appstore {
-    border: none;
+    border: 0px;
     width: 200px;
 }
 
 a.md-logo img {
-    border: none;
+    border: 0px;
+    padding: 0px;
+    background-color: transparent;
 }
 
 .md-nav__link--active,
