@@ -1,10 +1,21 @@
-# Lab Summary
+# SignalFx Smart Agent - Lab Summary
 
-* Download the workshop and configure Kubernetes ([K3s](https://k3s.io/)) environment.
+* Download the workshop
+* Start a Multipass instance
+* Deploy the SignalFx Smart Agent in K3s
+* Validate K3s cluster is visible in Kubernetes Navigator
+* Deploy a NGINX ReplicaSet in K3s
+* Validate NGNIX metrics are flowing
+
+{==
+
+Minimum recommended time to complete - **20 minutes**
+
+==}
 
 ---
 
-## Let’s bake some K8s
+## 1. Let’s bake some K8s
 
 If you have chosen to run the workshop on a [AWS/EC2 instance](../module-support/ec2-setup.md), please follow instructions given to connect and run the Workshop as described, however skip the Multipass commands in the next section.
 
