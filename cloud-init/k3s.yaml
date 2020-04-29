@@ -1,6 +1,6 @@
 #cloud-config
 ssh_pwauth: yes
-password: ubuntu
+password: AppDev2020!
 chpasswd:
   expire: false
 

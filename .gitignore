@@ -7,6 +7,7 @@ nohup.out
 ec2/terraform.tfstate
 ec2/terraform.tfstate.d/*
 ec2/terraform.tfstate.backup
+ec2/.terraform.tfstate.lock.info
 ec2/.terraform
 ec2/secret.tfvars
 ec2/terraform.tfvars
