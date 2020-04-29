@@ -1,4 +1,9 @@
 #cloud-config
+ssh_pwauth: yes
+password: ubuntu
+chpasswd:
+  expire: false
+
 package_update: true
 
 apt:
