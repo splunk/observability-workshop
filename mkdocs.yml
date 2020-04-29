@@ -67,15 +67,15 @@ nav:
   - '<b>Module 2</b> - Detectors':
     - 'Working with Detectors': module2/detectors.md
     - 'Working with Muting Rules': module2/muting.md
-  - '<b>Module 3</b> - Smart Agent':
+  - '<b>Module 3</b> - Service Bureau':
+      - 'Billing and Usage' : module3a/service_bureau.md
+      - 'Teams' : module3a/teams.md
+  - '<b>Module 4</b> - Smart Agent':
     - 'Preparation': module3/prep.md
     - 'Deploy the Smart Agent in K3s': module3/k3s.md
     - 'Deploy NGINX in K3s' : module3/nginx.md
-  - '<b>Module 4</b> - Monitoring as Code':
-    - 'Using Terraform' : module4/terraform.md
-  - '<b>Module 5</b> - Service Bureau':
-    - 'Billing and Usage' : module5/service_bureau.md
-    - 'Teams' : module5/teams.md
+  - '<b>Module 5</b> - Monitoring as Code':
+    - 'Using Terraform for charts and dashboards': module4/terraform.md
   - '<b>Module 6</b> - µAPM':
     - 'µAPM Architecture Overview': module6/index.md
     - 'Deploying Hot R.O.D. in K3s': module6/hotrod.md
