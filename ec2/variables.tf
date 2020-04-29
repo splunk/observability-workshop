@@ -1,3 +1,7 @@
-variable "key_name" {
-  description = "AWS Key Name"
+variable "instance_count" {
+  description = "Instance Count"
+}
+
+variable "region" {
+  description = "Region"
 }
