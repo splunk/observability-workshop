@@ -4,10 +4,10 @@ site
 docs/nohup.out
 nohup.out
 .github
-terraform/terraform.tfstate
-terraform/terraform.tfstate.d/*
-terraform/terraform.tfstate.backup
-terraform/.terraform
-terraform/secret.tfvars
-terraform/terraform.tfvars
+ec2/terraform.tfstate
+ec2/terraform.tfstate.d/*
+ec2/terraform.tfstate.backup
+ec2/.terraform
+ec2/secret.tfvars
+ec2/terraform.tfvars
 
