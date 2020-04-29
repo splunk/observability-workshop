@@ -152,18 +152,22 @@ Navigate to the `Rotations` tab on the `Teams` sub menu, you should have no exis
   * Enter a Shift name of "*Asia*"
     * Time Zone set to "*Asia/Tokyo*"
     * Each user is on duty from "*Monday through Friday from 9.00am to 5.00pm*"
-    * Handoff happens every "*1 days*"
-    * The next handoff happens [the next Monday will have been automatically selected]
+    * Handoff happens every "*7 days*"
+    * The next handoff happens - Select the next Monday using the calendar
     * Click `Save Rotation`
 * Now add an 2nd shift for Europe by clicking `+Add a shift` - `Partial Day`
   * Enter a Shift name of "*Europe*"
     * Time Zone set to "*Europe/London*"
-    * The remaining settings will have been copied from the 1st shift
+    * Each user is on duty from "*Monday through Friday from 9.00am to 5.00pm*"
+    * Handoff happens every "*7 days*"
+    * The next handoff happens - Select the next Monday using the calendar
     * Click `Save Shift`
 * Now add a 3rd shift for West Coast USA by clicking `+Add a shift` - `Partial Day`
   * Enter a Shift name of "*West Coast*"
     * Time Zone set to "*US/Pacific*"
-    * The remaining settings will have been copied from the 1st shift
+    * Each user is on duty from "*Monday through Friday from 9.00am to 5.00pm*"
+    * Handoff happens every "*7 days*"
+    * The next handoff happens - Select the next Monday using the calendar
     * Click `Save Shift`
 * You new need to add the users into their allocated shift patterns using either the table above, or the list of users provided to you separately
   * For each Shift, click on the `Manage Members` icon which is the left of the three icons and resembles the image of three heads
