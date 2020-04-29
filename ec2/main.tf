@@ -4,8 +4,8 @@ provider "aws" {
 }
 
 resource "aws_instance" "app-dev-instance" {
-  count         = "${var.instance_count)"
-  ami           = "${lookup(var.ami,var.aws_region)}"
+  count         = "${var.instance_count}"
+  ami           = "${lookup(var.ami,var.region)}"
   instance_type = "${var.instance_type}"
   user_data     = file("../cloud-init/k3s.yaml")
   tags = {

@@ -11,3 +11,5 @@ ec2/.terraform
 ec2/secret.tfvars
 ec2/terraform.tfvars
 
+ec2/.terraform.tfstate.lock.info
+.gitignore
