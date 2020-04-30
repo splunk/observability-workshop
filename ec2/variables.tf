@@ -2,26 +2,26 @@ variable "aws_instance_count" {
   description = "Instance Count"
 }
  
-variable "ami" {
-  type = map
-
-  default = {
-    "us-east-1"         = "ami-085925f297f89fce1"
-    "us-west-1"         = "ami-0f56279347d2fa43e"
-    "eu-central-1"      = "ami-0e342d72b12109f91"
-    "eu-west-1"         = "ami-0dad359ff462124ca"
-    "ap-southeast-1"    = "ami-0dad359ff462124ca"
-  }
-}
-
 variable "aws_region" {
- description = "Region (us-east-1, us-west-1, eu-central-1, eu-west-1, ap-southeast-1)" 
+  description = "Provide the desired region (for example: us-west-2)" 
 }
 
 variable "instance_type" {
   default = "t2.large"
 }
 
-#variable "key_name" {
-#  description = "Provide a valid key name for the region "
-#}
+
+data "aws_ami" "latest-ubuntu" {
+most_recent = true
+owners = ["099720109477"] # This is the owner id of Canonical who owns the official aws ubuntu images
+
+  filter {
+      name   = "name"
+      values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
+  }
+
+  filter {
+      name   = "virtualization-type"
+      values = ["hvm"]
+  }
+}
