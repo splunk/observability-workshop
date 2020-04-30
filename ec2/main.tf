@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 resource "aws_security_group" "instance" {
-  name = "AppDev-WorkShop-SG"
+  name = "App-Dev-Workshop-SG"
 
   ingress {
     from_port   = 22
