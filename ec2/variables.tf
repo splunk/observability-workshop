@@ -22,6 +22,6 @@ variable "instance_type" {
   default = "t2.large"
 }
 
-variable "key_name" {
-  description = "Provide a valid key name for the region "
-}
+#variable "key_name" {
+#  description = "Provide a valid key name for the region "
+#}
