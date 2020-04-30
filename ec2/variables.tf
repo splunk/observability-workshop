@@ -10,7 +10,6 @@ variable "instance_type" {
   default = "t2.large"
 }
 
-
 data "aws_ami" "latest-ubuntu" {
 most_recent = true
 owners = ["099720109477"] # This is the owner id of Canonical who owns the official aws ubuntu images

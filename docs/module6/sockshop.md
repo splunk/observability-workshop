@@ -130,29 +130,17 @@ In order to view the application in your web browser we need to find the LoadBal
 === "Input"
 
     ```bash
-    kubectl get svc -n sock-shop
+    kubectl get svc -n sock-shop front-end
     ```
 
 === "Output"
 
     ```text
     NAME           TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)          AGE
-    carts-db       ClusterIP      10.43.221.67    <none>          27017/TCP        34m
-    carts          ClusterIP      10.43.61.101    <none>          80/TCP           34m
-    catalogue-db   ClusterIP      10.43.57.198    <none>          3306/TCP         34m
-    catalogue      ClusterIP      10.43.216.173   <none>          80/TCP           34m
-    orders-db      ClusterIP      10.43.236.48    <none>          27017/TCP        34m
-    orders         ClusterIP      10.43.115.92    <none>          80/TCP           34m
-    payment        ClusterIP      10.43.242.227   <none>          80/TCP           34m
-    queue-master   ClusterIP      10.43.73.136    <none>          80/TCP           34m
-    rabbitmq       ClusterIP      10.43.113.211   <none>          5672/TCP         34m
-    shipping       ClusterIP      10.43.250.115   <none>          80/TCP           34m
-    user-db        ClusterIP      10.43.152.153   <none>          27017/TCP        34m
-    user           ClusterIP      10.43.45.155    <none>          80/TCP           34m
     front-end      LoadBalancer   10.43.247.97    192.168.64.35   8081:30001/TCP   34m
     ```
 
-Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). Then head over to your web browser and type in `http://{EXTERNAL-IP}:8081`, you should then be able to see the application running. Happy Shopping!
+Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). Then head over to your web browser and type in `http://[EXTERNAL-IP]:8081`, you should then be able to see the application running. Happy Shopping!
 
 ![SockShop Application](../images/module6/sockshop-app.png)
 
@@ -178,11 +166,15 @@ Navigate to µAPM (*not* µAPM PG) and select Monitoring, then ensure you have s
 
 ![µAPM Monitoring](../images/module6/m2-monitoring.png)
 
-Explore the User Interface: Review an automatically generated Service Dashboard. How do you correlate Service performance with Infrastructure?
+### Explore the User Interface
+
+Review an automatically generated Service Dashboard. How do you correlate Service performance with Infrastructure?
 
 ![µAPM Service Dashboard](../images/module6/m2-service.png)
 
-Troubleshoot a service. Let's stress the sock shop a bit. Increase the amount of clients running for the load test to something ludicrous (1000+ seems to do the trick). What happens with the services? Troubleshoot a service with a higher error rate. Also review the service dependencies.
+### Troubleshoot a service
+
+Let's stress the sock shop a bit. Increase the amount of clients running for the load test to something ludicrous (setting `-c 1000` in the above command seems to do the trick). What happens with the services? Troubleshoot a service with a higher error rate. Also review the service dependencies.
 
 ![µAPM Service Dashboard](../images/module6/m2-troubleshoot.png)
 

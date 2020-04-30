@@ -4,8 +4,8 @@ provider "aws" {
 }
 
 resource "aws_security_group" "instance" {
-  name = "AppDev-WorkShop-SG"  
-  
+  name = "AppDev-WorkShop-SG"
+
   ingress {
     from_port   = 22
     to_port     = 22
@@ -22,7 +22,7 @@ resource "aws_instance" "app-dev-instance" {
   user_data     = file("../cloud-init/k3s.yaml")
   
   root_block_device {
-    volume_size           = "15"
+    volume_size = "15"
   }
 
   tags = {
