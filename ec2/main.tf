@@ -30,3 +30,4 @@ resource "aws_instance" "app-dev-instance" {
   }
 
 }
+ 
