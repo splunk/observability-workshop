@@ -554,7 +554,7 @@ spec:
     spec:
       containers:
       - name: rabbitmq
-        image: rabbitmq:3.6.10-management
+        image: rabbitmq:3.8.3-management
         ports:
         - containerPort: 5672
         - containerPort: 15672
