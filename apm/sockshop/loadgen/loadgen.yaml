@@ -17,6 +17,7 @@ spec:
           - name: LOCUSTFILE_PATH
             value: /mnt/locustfile.py
           - name: LOCUST_OPTS
+            valueFrom:
               configMapKeyRef:
                 name: locust-config
                 key: locustOpts
