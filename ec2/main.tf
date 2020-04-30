@@ -24,10 +24,10 @@ resource "aws_security_group" "instance" {
 resource "aws_instance" "app-dev-instance" {
   count         = var.aws_instance_count
   ami           = data.aws_ami.latest-ubuntu.id
-  instance_type =  var.instance_type  
+  instance_type =  var.instance_type
   vpc_security_group_ids  = [aws_security_group.instance.id]
   user_data     = file("../cloud-init/k3s.yaml")
-  
+
   root_block_device {
     volume_size = "15"
   }
@@ -37,4 +37,4 @@ resource "aws_instance" "app-dev-instance" {
   }
 
 }
- 
+
