@@ -18,13 +18,13 @@ Minimum recommended time to complete - **20 minutes**
 
 To fully understand SignalFx engagement inside your organization, click on the **Settings** icon on the top right of the SignalFx UI.
 
-![Settings Icon](../images/module5/M5-l1-1.png)
+![Settings Icon](../images/module3/M5-l1-1.png)
 
-It may also look like this ![gray user icon](../images/module5/M5-l1-2.png)
+It may also look like this ![gray user icon](../images/module3/M5-l1-2.png)
 
 From the drop down, select the **Organizations Settings → Organization Overview**, this will provide you with the following dashboard that shows you how your SignalFx organization is being used:
 
-![Organization overview](../images/module5/M5-l1-3.png)
+![Organization overview](../images/module3/M5-l1-3.png)
 
 On the left hand menu (not shown in the above screenshot) you will see a list of members, and in the centre, various charts that show you the number of users, teams, charts, dashboards, and dashboard groups created, as well as various growth trends.
 
@@ -38,11 +38,11 @@ Take a minute to explore the various charts in the Organization Overview of this
 
 If you want to see what your usage is against your contract you can select the **Organizations Settings → Billing and Usage** from your profile icon top right of the SignalFx UI.
 
-![Settings Icon](../images/module5/M5-l1-1.png)
+![Settings Icon](../images/module3/M5-l1-1.png)
 
 Or the faster way is to select the **Billing and Usage** item from the left hand pane.
 
-![Left pane](../images/module5/M5-l1-4.png)
+![Left pane](../images/module3/M5-l1-4.png)
 
 This screen may take a few seconds to load whilst it calculates and pulls in the usage.
 
@@ -54,7 +54,7 @@ You will see a screen similar like the one below that will give you an overview 
 
 For more information about about these categories please refer to [Billing and Usage information](https://docs.signalfx.com/en/latest/admin-guide/usage.html#viewing-billing-and-usage-information)
 
-![Billing and Usage](../images/module5/M5-l1-5.png)
+![Billing and Usage](../images/module3/M5-l1-5.png)
 
 ---
 
@@ -66,13 +66,13 @@ Also, your current usage of the four catagories is displayed (shown at the red l
 
 In this example you can see that there are 18 Hosts, 0 Containers and 1038 Custom Metrics and 0 High Resolution Metrics.
 
-![Billing and Usage-top](../images/module5/M5-l1-6.png)
+![Billing and Usage-top](../images/module3/M5-l1-6.png)
 
 In the bottom chart, you can see the usage per category for the current period (shown in the drop-down box on the top right of the chart).
 
 The blue line marked **Average Usage** indicates what SignalFx will use to calculate your average usage for the current billing period.
 
-![Billing and Usage-Bottom](../images/module5/M5-l1-7.png)
+![Billing and Usage-Bottom](../images/module3/M5-l1-7.png)
 
 !!! info
 
@@ -84,4 +84,4 @@ Please take a minute to explore the different time periods & categories and thei
 
 Finally, the pane on the right shows you information about your Subscription.
 
-![Billing and Usage-Pane](../images/module5/M5-l1-8.png)
+![Billing and Usage-Pane](../images/module3/M5-l1-8.png)
