@@ -56,7 +56,6 @@ plugins:
         
 nav:
   - '<b>Home</b>': index.md
-#  - '<b>Introduction</b>': introduction.md
   - '<b>Module 1</b> - Dashboards':
     - 'Introduction': module1/intro.md
     - 'Editing Charts': module1/editing.md
@@ -69,14 +68,14 @@ nav:
     - 'Working with Detectors': module2/detectors.md
     - 'Working with Muting Rules': module2/muting.md
   - '<b>Module 3</b> - Service Bureau':
-      - 'Billing and Usage' : module3a/service_bureau.md
-      - 'Teams' : module3a/teams.md
+      - 'Billing and Usage' : module3/service_bureau.md
+      - 'Teams' : module3/teams.md
   - '<b>Module 4</b> - Smart Agent':
-    - 'Preparation': module3/prep.md
-    - 'Deploy the Smart Agent in K3s': module3/k3s.md
-    - 'Deploy NGINX in K3s' : module3/nginx.md
+    - 'Preparation': module4/prep.md
+    - 'Deploy the Smart Agent in K3s': module4/k3s.md
+    - 'Deploy NGINX in K3s' : module4/nginx.md
   - '<b>Module 5</b> - Monitoring as Code':
-    - 'Using Terraform for charts and dashboards': module4/terraform.md
+    - 'Using Terraform for charts and dashboards': module5/terraform.md
   - '<b>Module 6</b> - µAPM':
     - 'µAPM Architecture Overview': module6/index.md
     - 'Deploying Hot R.O.D. in K3s': module6/hotrod.md
@@ -87,6 +86,6 @@ nav:
     - 'VictorOps Incident Lifecycle': module7/vo_incident_lifecycle.md
   - '<b>Post Workshop Clean Up</b>': module-support/cleanup.md
   - '<b>Optional Modules</b>':
-    - 'Deploying Hot R.O.D. in EKS': module8/hotrod-eks.md
+    - 'Deploying Hot R.O.D. in EKS': module-support/hotrod-eks.md
     - 'Creating an AWS/EC2 instance': module-support/ec2-setup.md
     - 'Deploy Smart Agent on a VM': module-support/vm.md
