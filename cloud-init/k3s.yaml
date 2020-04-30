@@ -34,10 +34,10 @@ runcmd:
  - curl -s -L https://github.com/signalfx/signalfx-jumpstart/archive/master.zip -o jumpstart.zip
  - unzip -qq jumpstart.zip -d /home/ubuntu/
  - mv /home/ubuntu/signalfx-jumpstart-master /home/ubuntu/signalfx-jumpstart
- - 'curl -s https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd -o /etc/motd'
+ - curl -s https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd -o /etc/motd
  - 'curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash'
- - 'curl -s -OL https://github.com/derailed/k9s/releases/download/v0.19.3/k9s_Linux_x86_64.tar.gz'
- - tar xvfz k9s_Linux_x86_64.tar.gz
+ - curl -s -OL https://github.com/derailed/k9s/releases/download/v0.19.3/k9s_Linux_x86_64.tar.gz
+ - tar xfz k9s_Linux_x86_64.tar.gz
  - mv k9s /usr/local/bin/
  - chmod -x /etc/update-motd.d/*
  - 'curl -s https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip'
@@ -45,7 +45,7 @@ runcmd:
  - ./aws/install
  - 'curl -s --silent --location https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz | tar xz -C /tmp'
  - mv /tmp/eksctl /usr/local/bin/
- - 'curl -OL https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip'
+ - curl -s -OL https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip
  - unzip -qq terraform_0.12.24_linux_amd64.zip
  - mv terraform /usr/local/bin/
  - chown -R ubuntu:ubuntu /home/ubuntu
