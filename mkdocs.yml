@@ -26,6 +26,9 @@ theme:
   search_index_only: true
   language: en
   custom_dir: docs/material
+  features:
+    - tabs
+
 markdown_extensions:
   - markdown.extensions.admonition
   - markdown.extensions.attr_list
@@ -55,36 +58,38 @@ plugins:
         remove_comments: true
         
 nav:
-  - '<b>Home</b>': index.md
-  - '<b>Module 1</b> - Dashboards':
-    - 'Introduction': module1/intro.md
-    - 'Editing Charts': module1/editing.md
-    - 'Using filters': module1/filtering.md
-    - 'Using formulas': module1/formulas.md
-    - 'Using overlays': module1/overlay.md
-    - 'SignalFlow': module1/signalflow.md
-    - 'Adding charts': module1/adding-charts.md
-  - '<b>Module 2</b> - Detectors':
-    - 'Working with Detectors': module2/detectors.md
-    - 'Working with Muting Rules': module2/muting.md
-  - '<b>Module 3</b> - Service Bureau':
-      - 'Billing and Usage' : module3/service_bureau.md
-      - 'Teams' : module3/teams.md
-  - '<b>Module 4</b> - Smart Agent':
-    - 'Preparation': module4/prep.md
-    - 'Deploy the Smart Agent in K3s': module4/k3s.md
-    - 'Deploy NGINX in K3s' : module4/nginx.md
-  - '<b>Module 5</b> - Monitoring as Code':
-    - 'Using Terraform for charts and dashboards': module5/terraform.md
-  - '<b>Module 6</b> - µAPM':
-    - 'µAPM Architecture Overview': module6/index.md
-    - 'Deploying Hot R.O.D. in K3s': module6/hotrod.md
-    - 'Deploying Sock Shop in K3s': module6/sockshop.md
-  - '<b>Module 7</b> - VictorOps':
-    - 'VictorOps Getting Started': module7/vo_getting_started.md
-    - 'VictorOps Integrations': module7/vo_integrations.md
-    - 'VictorOps Incident Lifecycle': module7/vo_incident_lifecycle.md
-  - '<b>Post Workshop Clean Up</b>': module-support/cleanup.md
+  - 'Home': index.md
+  - 'SignalFx':
+    - '<b>Dashboards</b>':
+      - 'Introduction': module1/intro.md
+      - 'Editing Charts': module1/editing.md
+      - 'Using filters': module1/filtering.md
+      - 'Using formulas': module1/formulas.md
+      - 'Using overlays': module1/overlay.md
+      - 'SignalFlow': module1/signalflow.md
+      - 'Adding charts': module1/adding-charts.md
+    - '<b>Detectors</b>':
+      - 'Working with Detectors': module2/detectors.md
+      - 'Working with Muting Rules': module2/muting.md
+    - '<b>Service Bureau</b>':
+        - 'Billing and Usage' : module3/service_bureau.md
+        - 'Teams' : module3/teams.md
+    - '<b>Smart Agent</b>':
+      - 'Preparation': module4/prep.md
+      - 'Deploy the Smart Agent in K3s': module4/k3s.md
+      - 'Deploy NGINX in K3s' : module4/nginx.md
+    - '<b>Monitoring as Code</b>':
+      - 'Using Terraform for charts and dashboards': module5/terraform.md
+    - '<b>µAPM</b>':
+      - 'µAPM Architecture Overview': module6/index.md
+      - 'Deploying Hot R.O.D. in K3s': module6/hotrod.md
+      - 'Deploying Sock Shop in K3s': module6/sockshop.md
+  - '<b>VictorOps</b>':
+    - 'Getting Started': module7/vo_getting_started.md
+    - 'Integrations': module7/vo_integrations.md
+    - 'Incident Lifecycle': module7/vo_incident_lifecycle.md
+  - '<b>Post Workshop</b>': 
+    - 'Clean Up': module-support/cleanup.md
   - '<b>Optional Modules</b>':
     - 'Deploying Hot R.O.D. in EKS': module-support/hotrod-eks.md
     - 'Creating an AWS/EC2 instance': module-support/ec2-setup.md
