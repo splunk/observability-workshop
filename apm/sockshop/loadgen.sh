@@ -19,15 +19,30 @@ exit_usage() {
 }
 
 run_test() {
+  kubectl delete -n sock-shop -f loadgen/loadgen.yaml 2>/dev/null
   kubectl delete configmap -n sock-shop locust-file
   kubectl delete configmap -n sock-shop locust-config
 
   kubectl create configmap -n sock-shop locust-file --from-file loadgen/locustfile.py
   kubectl create configmap -n sock-shop locust-config \
       --from-literal=targetUrl="$TARGET_HOST" \
-      --from-literal=locustOpts="--clients $CLIENTS --hatch-rate $HATCH_RATE --runtime $RUNTIME --no-web"
-  kubectl apply -n sockshop -f loadgen/loadgen.yaml
+      --from-literal=locustOpts="--clients $CLIENTS --hatch-rate $HATCH_RATE --run-time $RUNTIME --no-web"
+  kubectl apply -n sock-shop -f loadgen/loadgen.yaml
 }
+
+validate() {
+  set +u
+  TARGET_HOST=${TARGET_HOST:-http://$SOCKS_ENDPOINT}
+  set -u
+  if [ "${TARGET_HOST}" == "http://" ]; then
+    echo "No target host given and SOCKS_ENDPOINT is not set. Please provide a target host."
+    exit 1;
+  fi
+}
+
+HATCH_RATE=5
+CLIENTS=15
+RUNTIME=1m
 
 while getopts ":a:c:h:r:" o; do
   case "${o}" in
@@ -54,5 +69,5 @@ while getopts ":a:c:h:r:" o; do
 done
 shift $((OPTIND -1))
 
+validate
 run_test
-
