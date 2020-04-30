@@ -220,3 +220,15 @@ That completes this introduction to VictorOps, but feel free to checkout the mor
 * Webhooks
 * Alert Rules Engine
 * Maintenance Mode
+
+---
+
+## 4. Post Workshop Clean Up
+
+Once you have finished with this workshop `exit` from the Multipass instance(s) you are in and get back to your system command prompt and enter the following to delete the Multipass instance(s), replace `[YOUR_INITIALS]` with the ones you used in [Integrations - Step #2.3](../../module7/vo_integrations/#23-local-vms-using-multipass):
+
+=== "Input"
+
+    ```bash
+    multipass delete --purge [YOUR_INITIALS]-vo1
+    ```
