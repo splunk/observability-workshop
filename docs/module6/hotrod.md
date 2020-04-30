@@ -126,11 +126,11 @@ Create some errors with an invalid customer number
 
 Open SignalFx in your browser and select the APM tab to open the APM UI.
 
-![select APM](../images/module6/M6-l1-select-apm.png){: .zoom}
+![select APM](../images/module6/select-apm.png){: .zoom}
 
 Select the troubleshooting tab, and select your environment and set the time to 15 minutes.
 This  should show you the dependency map for the hotrod app
 
-![Hot R.O.D. in APM](../images/module6/M6-l1-Hotrod-TS.png)
+![Hot R.O.D. in APM](../images/module6/hotrod-troubleshooting.png)
 
 If you did create some errors, they show up as the big red dot in the Redis service.
