@@ -95,4 +95,3 @@ You can also see the list of services running on your host by selecting the **PR
 ![Host Selected](../images/module4/M3-host-selected.png)
 
 Take a moment to explore the various charts and the Processes list.
-
