@@ -119,11 +119,12 @@ In this section you will use terraform to build an EC2 instance in your favorite
 
     **Hot R.O.D EC2 Instance min. requirements:** _t2.micro_ 1 vCPU, 8Gb Disk, 1Gb Memory
 
-    **Sock Shop EC2 Instance min. requirements:** _t2.largefrom _ 2 vCPU, 15Gb Disk, 8Gb Memory
+    **Sock Shop EC2 Instance min. requirements:** _t2.largefrom_ 2 vCPU, 15Gb Disk, 8Gb Memory
 
 Ask which version is going to be used as part of this workshop, then select either the Hot R.O.D or Sock Shop option when using terraform to launch your instance.
 
 ### Step 1: Prepare Terraform
+
 The first step is to go into the sub-directory where the terraform files are located
 
 === "Input"
@@ -147,6 +148,7 @@ Verify that you are running version V0.12.12 or above of Terraform>
     ```
 
 === "Output"
+
     ```text
     Terraform v0.12.24
     ```
@@ -202,9 +204,10 @@ First you need to provide your AWS credentials to terraform, you do this by prov
     ```
 
 === "Output"
+
     ```text
-    ID: AXXXXXXXXXXXXXXXXXXX, KEY: AvErYsCraMbLeDsTrInGOFText123456789qqaabb
-    ``` 
+    ID: Axxxxxxxxxxxxxxxxy, KEY: Axxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxb
+    ```
 
 If you have confirmed that you have set you **AWS_SECRET_ACCESS_KEY_ID** & **AWS_SECRET_ACCESS_KEY** correctly, you can start with the planning phase to verify all is working correctly. During this phase you need to  provide the following inputs:
 
@@ -236,7 +239,7 @@ Start the planning phase for Terraform. As we only wish to provide the input onc
 
 On the question Instance count, type 1 to indicate you wish a single EC2 instance to be created
 
-=== "Input" 
+=== "Input"
 
     ```bash hl_lines="1"
     Enter a value:  [NUMBER]
@@ -351,6 +354,7 @@ In most cases your ssh client will ask you to verify the connection.
     ```
 
 === "Output"
+
     ```text
     The authenticity of host '[YOUR_IP-ADDRESS] ([YOUR_IP-ADDRESS])' can't be established.
     ECDSA key fingerprint is SHA256:XdqN55g0z/ER660PARM+mGqtpYpwM3333YS9Ac8Y9hLY.
@@ -396,4 +400,3 @@ To login to your instance please use the password provided by the workshop host.
     ```
 
 Once your instance presents you with the App Dev logo, you have completed the preparation for your EC2 instance and can go directly to  the next lab [Deploying the Smart Agent in Kubernetes (K3s)](../../module4/k3s).
-
