@@ -156,17 +156,21 @@ A load testing scenario is available for the Sock Shop application. To generate 
     ./loadgen.sh -c 50 -r 3m
     ```
 
-The parameter `-c` controls the amount of concurrent clients and `-r` the runtime of the load test. To apply continuous load set `-r` to the desired runtime. The load test runs as a job in the K8S cluster. Observe the progress: 
+The parameter `-c` controls the amount of concurrent clients and `-r` the runtime of the load test. To apply continuous load set `-r` to the desired runtime. The load test runs as a job in the K8S cluster. Observe the progress:
 
-```bash
-kubectl -n sock-shop logs -f jobs/loadgen
-```
+=== "Input"
+
+    ```bash
+    kubectl -n sock-shop logs -f jobs/loadgen
+    ```
 
 If you want to abort a load test, delete the job:
 
-```bash
-kubectl -n sock-shop delete jobs/loadgen
-```
+=== "Input"
+
+    ```bash
+    kubectl -n sock-shop delete jobs/loadgen
+    ```
 
 ---
 
@@ -186,9 +190,11 @@ Review an automatically generated Service Dashboard. How do you correlate Servic
 
 Let's stress the sock shop a bit. Increase the amount of clients running for the load test to something ludicrous, e.g.:
 
-```bash
-./loadgen.sh -c 1000 -a 100 -r 5m
-```
+=== "Input"
+
+    ```bash
+    ./loadgen.sh -c 1000 -a 100 -r 5m
+    ```
 
 While the load test is running observe in SignalFx what happens with the services. Troubleshoot a service with a higher error rate. Also review the service dependencies.
 
