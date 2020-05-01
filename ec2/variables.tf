@@ -1,5 +1,5 @@
 variable "aws_instance_count" {
-  description = "Instance Count"
+  description = "Instance Count (Usually 1)"
 }
  
 variable "aws_region" {
@@ -7,7 +7,7 @@ variable "aws_region" {
 }
 
 variable "instance_type" {
-  default = "t2.large"
+ description = "Select instance type required (1 = Hot R.O.D. 2 = Sock Shop)" 
 }
 
 data "aws_ami" "latest-ubuntu" {
@@ -22,5 +22,22 @@ owners = ["099720109477"] # This is the owner id of Canonical who owns the offic
   filter {
       name   = "virtualization-type"
       values = ["hvm"]
+  }
+}
+variable "instance_type_aws" {
+  type = map
+
+  default = {
+    "1" = "t2.micro"
+    "2" = "t2.large"
+  }
+}
+
+variable "instance_disk_aws" {
+  type = map
+
+  default = {
+    "1" = "8"
+    "2" = "15"
   }
 }
