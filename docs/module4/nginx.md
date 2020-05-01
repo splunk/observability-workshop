@@ -17,7 +17,7 @@ Remain in the Multipass  or EC2 shell session and change into the `nginx` direct
 
 Verify the number of pods running in the SignalFx UI by selecting the **WORKLOADS** tab. This should give you an overview of the workloads on your cluster.
 
-![Workload Agent](../images/module4/k8s-workloads.jpg){: .zoom}
+![Workload Agent](../images/module4/k8s-workloads.png){: .zoom}
 
 Note the single agent container running per node among the default Kubernetes pods. This single container will monitor all the pods and services being deployed on this node!
 
