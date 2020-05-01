@@ -18,17 +18,23 @@ Minimum recommended time to complete - **20 minutes**
 
 ---
 
-## 1. Let’s bake some K8s
+## 1. Module Pre-requisites
 
-If you are going to run this locally please install [Multipass](https://multipass.run/) for your OS. Make sure you are using at least version `1.2.0`. On a Mac you can also install via [Homebrew](https://brew.sh/) e.g. `brew cask install multipass`
+=== "Running Locally"
 
-If you have chosen to run the workshop on an EC2 instance and its not yet provisioned for you,  please install [Terraform](https://www.terraform.io/downloads.html) for your OS. Please make sure it is version 0.12.12 or above.
-On a Mac you can also install via [Homebrew](https://brew.sh/) e.g. `brew install terraform`
+    !!! abstract "Multipass"
+        Install [Multipass](https://multipass.run/) for your operating system. Make sure you are using at least version `1.2.0`.
+        
+        On a Mac you can also install via [Homebrew](https://brew.sh/) e.g. `brew cask install multipass`
 
-!!! note AWS Account detail
-    You also need access to an AWS account and have an AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY.
+=== "Running in AWS"
 
-Regardless if you are running this lab locally or if you are going to create your own AWS/EC2 instance, download the App Dev Workshop Zip file locally, then proceed to unzip the file, rename it and cd into it:
+    !!! abstract "EC2 Instance"
+        Install [Terraform](https://www.terraform.io/downloads.html) for your operating system. Please make sure it is version `0.12.18` or above.
+
+        On a Mac you can also install via [Homebrew](https://brew.sh/) e.g. `brew install terraform`. This will get around Mac OS Catalina security.
+
+Regardless if you are running this lab locally or if you are going to create your own AWS/EC2 Instance you need to download the App Dev Workshop zip file locally, unzip the file, rename it and `cd` into the directory.
 
 === "Linux/Mac OS"
 
@@ -45,13 +51,13 @@ Regardless if you are running this lab locally or if you are going to create you
     !!! info
         Download the zip by clicking on the following URL <https://github.com/signalfx/app-dev-workshop/archive/v1.7.zip>.
 
-        Once downloaded, unzip the the file and from the command prompt then change into that directory.
+        Once downloaded, unzip the the file and rename it to `workshop`. Then, from the command prompt change into that directory.
 
-If you are using your own EC2 instance please skip to the [EC2 preparation section](../../module4/prep/#3-preparation-for-ec2-instances)
+If you are using your own EC2 instance please skip to the [Launch EC2 instance](../../module4/prep/#3-launch-ec2-instance)
 
 ---
 
-## 2. Preparation for Multipass
+## 2. Launch Multipass instance
 
 In this section you will  build and launch the Multipass instance which will run the Kubernetes (K3s) environment that you will use in multiple labs.
 
@@ -106,24 +112,27 @@ Once the instance has been successfully created (this can take several minutes),
     ubuntu@rwc-k3s:~$
     ```
 
-Once your instance presents you with the App Dev logo, you have completed the preparation for your Multipass instance and can go directly to  the next lab [Deploying the Smart Agent in Kubernetes (K3s)](../../module4/k3s).
+Once your instance presents you with the App Dev logo, you have completed the preparation for your Multipass instance and can go directly to  the next lab [Deploying the Smart Agent in K3s](../../module4/k3s).
 
 ---
 
-## 3. Preparation for EC2 Instances
+## 3. Launch EC2 instance
 
-In this section you will use terraform to build an EC2 instance in your favorite AWS region and will automatically deploy the Kubernetes (K3s) environment that you will use in multiple labs on it.
+In this section you will use terraform to build an EC2 instance in your favorite AWS region and will automatically deploy the Kubernetes (K3s) environment that you will use in this workshop.
+
+!!! important AWS ACCESS KEYS
+    You will need access to an AWS account to obtain both `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
 
 !!! Warning
     In [Module 6](../../module6/) there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
 
     **Hot R.O.D EC2 Instance min. requirements:** _t2.micro_ 1 vCPU, 8Gb Disk, 1Gb Memory
 
-    **Sock Shop EC2 Instance min. requirements:** _t2.largefrom_ 2 vCPU, 15Gb Disk, 8Gb Memory
+    **Sock Shop EC2 Instance min. requirements:** _t2.large_ 2 vCPU, 15Gb Disk, 8Gb Memory
 
 Ask which version is going to be used as part of this workshop, then select either the Hot R.O.D or Sock Shop option when using terraform to launch your instance.
 
-### Step 1: Prepare Terraform
+### 3.1 Prepare Terraform
 
 The first step is to go into the sub-directory where the terraform files are located
 
@@ -135,11 +144,11 @@ The first step is to go into the sub-directory where the terraform files are loc
 
 === "Output"
 
-    ```text
+    ```bash
     ~/workshop/ec2$  
     ```
 
-Verify that you are running version V0.12.12 or above of Terraform>
+Verify that you are running version V0.12.18 or above of Terraform
 
 === "Input"
 
@@ -153,12 +162,12 @@ Verify that you are running version V0.12.12 or above of Terraform>
     Terraform v0.12.24
     ```
 
-Initialize your terraform environment, this will download or upgrade the terraform providers plugins needed to run the terraform scripts in this directory.
+Next, initialize Terraform, this will download or upgrade the AWS Terraform Provider.
 
 === "Input"
 
     ```bash 
-    terraform init
+    terraform init -upgrade
     ```
 
 === "Output"
@@ -190,10 +199,14 @@ Initialize your terraform environment, this will download or upgrade the terrafo
     commands will detect it and remind you to do so if necessary.
     ```
 
-### Step 2: Creating your EC2 Instance
+### 3.2 Create EC2 Instance
 
-Creating the EC2 instance is done in two steps, a planning phase and an apply phase. The planning phase will validate the terraform scripts and check what changes it will make to your AWS environment. The apply phase will actually create the instances.
-First you need to provide your AWS credentials to terraform, you do this by providing two environment variables.
+Creating the EC2 instance is done in two steps, a planning phase and an apply phase.
+
+* The planning phase will validate the Terraform scripts and check what changes it will make to your AWS environment.
+* The apply phase will actually create the instance(s).
+
+First, you need to create environment variables for your AWS access keys.
 
 === "Input"
 
@@ -209,18 +222,18 @@ First you need to provide your AWS credentials to terraform, you do this by prov
     ID: Axxxxxxxxxxxxxxxxy, KEY: Axxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxb
     ```
 
-If you have confirmed that you have set you **AWS_SECRET_ACCESS_KEY_ID** & **AWS_SECRET_ACCESS_KEY** correctly, you can start with the planning phase to verify all is working correctly. During this phase you need to  provide the following inputs:
+Once you have confirmed that you have set you `AWS_SECRET_ACCESS_KEY_ID` & `AWS_SECRET_ACCESS_KEY` correctly, you can start with the planning phase.
 
-!!! note Required input for Terraform
+!!! important Required input for Terraform
     **Instance Count**: (If your not batch creating instances, type **1** to create a single Instance)
 
-    **Desired AWS region**: (Any AWS region by name, for example **us-west-2**) 
+    **Desired AWS Region**: (Any AWS region by name, for example **us-west-2**) 
     
-    **Instance Type**:      (Type **1** for the Hot R.O.D. or **2** for the Sock Shop instance type)
+    **Instance Type**:      (Type **1** for Hot R.O.D. instance type or **2** for the Sock Shop instance type)
 
-    Please remember the values you provide as you will need them again for  the planning phase and when you use Terraform to destroy your EC2 instance.
+    Please remember these values as you will need them again for the planning phase and when you use Terraform to destroy your EC2 instance(s).
 
-Start the planning phase for Terraform. As we only wish to provide the input once, we are going to catch the output in a out file that we can reuse. Please provide your initials for the output file as indicated.
+As we only wish to provide the input once, we are going to capture the output in a `.out` file that we can use for the apply step. Please provide your initials for the output file as indicated.
 
 === "Input"
 
@@ -228,53 +241,37 @@ Start the planning phase for Terraform. As we only wish to provide the input onc
     terraform plan -out=[YOUR_INITIALS].out
     ```
 
-=== "Output"
+Next enter 1 to to create a single EC2 instance.
 
-    ```text
+=== "Example"
+
+    ```bash hl_lines="4"
     var.aws_instance_count
-    Instance Count (Usually 1) 
+    Instance Count
 
-    Enter a value:
+    Enter a value: 1
     ```
 
-On the question Instance count, type 1 to indicate you wish a single EC2 instance to be created
+Enter your desired AWS Region where you wish to run the EC2 instance e.g. us-west-2
 
-=== "Input"
+=== "Example"
 
-    ```bash hl_lines="1"
-    Enter a value:  [NUMBER]
-    ```
-
-=== "Output"
-
-    ```text
+    ```text hl_lines="4"
     var.aws_region
-    Provide the desired region (for example: us-west-2)
+    Provide the desired region
 
-    Enter a value: 
-    ```
-On the question, Provide the desired AWS region, enter the name of your favorite AWS region. This is where you want to deploy the EC2 instance in.
-
-=== "Input"
-
-    ```text hl_lines="1"
-    Enter a value: [Your preferred AWS region name]
+    Enter a value: us-west-2
     ```
 
-=== "Output"
+Next, enter **1** for Hot R.O.D. instance size (_t2.micro_) or **2** for Sock Shop instance size (_t2.large_)
 
-    ```text
+=== "Example"
+
+    ```bash  hl_lines="4"
     var.instance_type
     Select instance type required (1 = Hot R.O.D. 2 = Sock Shop)
      
-    Enter a value: 
-    ```
-On the question which instance types do you wish to use, choose **1** or **2**, If in doubt ask you workshop host.
-
-=== "Input"
-
-    ```bash  hl_lines="1"
-     Enter a value: [1 or 2]
+    Enter a value: 1
     ```
 
 === "Output"
@@ -342,7 +339,7 @@ If there are no errors in the output and terraform has created your output file,
 
 Verify there are no errors and copy the ip address that you see in the green output.  
 
-### Step 3: Connect to your EC2 Instance
+### 3.3 SSH into EC2 Instance
 
 Once the instance has been successfully created (this can take several minutes), ssh into it.
 In most cases your ssh client will ask you to verify the connection.
@@ -361,7 +358,7 @@ In most cases your ssh client will ask you to verify the connection.
     Are you sure you want to continue connecting (yes/no/[fingerprint])?  
     ```
 
-Please confirm that you wish to continue by replying to the prompt with  **yes**
+Please confirm that you wish to continue by replying to the prompt with `yes`
 
 === "Input"
 
@@ -399,4 +396,4 @@ To login to your instance please use the password provided by the workshop host.
     ubuntu@ip-172-31-41-196:~$
     ```
 
-Once your instance presents you with the App Dev logo, you have completed the preparation for your EC2 instance and can go directly to  the next lab [Deploying the Smart Agent in Kubernetes (K3s)](../../module4/k3s).
+Once your instance presents you with the App Dev logo, you have completed the preparation for your EC2 instance and can go directly to  the next lab [Deploying the Smart Agent in K3s](../../module4/k3s).
