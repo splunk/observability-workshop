@@ -89,7 +89,7 @@ nav:
     - '<b>Post Workshop Clean Up</b>': module-support/cleanup.md
     - '<b>Optional Modules</b>':
       - 'Deploying Hot R.O.D. in EKS': module-support/hotrod-eks.md
-      - 'Creating an AWS/EC2 instance': module-support/ec2-setup.md
+#      - 'Creating an AWS/EC2 instance': module-support/ec2-setup.md
       - 'Deploy Smart Agent on a VM': module-support/vm.md
   - '<b>VictorOps</b>':
     - 'Getting Started': module7/vo_getting_started.md
