@@ -204,7 +204,7 @@ Next, initialize Terraform, this will download or upgrade the AWS Terraform Prov
 Creating the EC2 instance is done in two steps, a planning phase and an apply phase.
 
 * The planning phase will validate the Terraform scripts and check what changes it will make to your AWS environment.
-* The apply phase will actually create the instance(s).
+* The apply phase will actually create the instance.
 
 First, you need to create environment variables for your AWS access keys.
 
@@ -231,7 +231,7 @@ Once you have confirmed that you have set you `AWS_SECRET_ACCESS_KEY_ID` & `AWS_
     
     **Instance Type**:      (Type **1** for Hot R.O.D. instance type or **2** for the Sock Shop instance type)
 
-    Please remember these values as you will need them again for the planning phase and when you use Terraform to destroy your EC2 instance(s).
+    Please remember these values as you will need them again for the planning phase and when you use Terraform to destroy your EC2 instance.
 
 As we only wish to provide the input once, we are going to capture the output in a `.out` file that we can use for the apply step. Please provide your initials for the output file as indicated.
 
