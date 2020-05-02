@@ -1,6 +1,6 @@
 # SignalFx Smart Agent - Lab Summary
 
-* Download the workshop
+* Download the Workshop
 * Start a Multipass or AWS EC2 instance
 * Deploy the SignalFx Smart Agent in K3s
 * Validate K3s cluster is visible in Kubernetes Navigator
@@ -71,7 +71,7 @@ In this section you will  build and launch the Multipass instance which will run
 
     **Sock Shop Multipass min. requirements:** 4 vCPU, 15Gb Disk, 8Gb Memory
 
-Ask which version is going to be used as part of this workshop, then select either the Hot R.O.D or Sock Shop Multipass launch parameters. Lines highlighted in yellow need to be edited:
+Ask which version is going to be used as part of this Workshop, then select either the Hot R.O.D or Sock Shop Multipass launch parameters. Lines highlighted in yellow need to be edited:
 === "Hot R.O.D"
 
     ```text hl_lines="2"
@@ -118,7 +118,7 @@ Once your instance presents you with the App Dev logo, you have completed the pr
 
 ## 3. Launch EC2 instance
 
-In this section you will use terraform to build an EC2 instance in your favorite AWS region and will automatically deploy the Kubernetes (K3s) environment that you will use in this workshop.
+In this section you will use terraform to build an EC2 instance in your favorite AWS region and will automatically deploy the Kubernetes (K3s) environment that you will use in this Workshop.
 
 !!! important AWS ACCESS KEYS
     You will need access to an AWS account to obtain both `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
@@ -130,7 +130,7 @@ In this section you will use terraform to build an EC2 instance in your favorite
 
     **Sock Shop EC2 Instance min. requirements:** _t2.large_ 2 vCPU, 15Gb Disk, 8Gb Memory
 
-Ask which version is going to be used as part of this workshop, then select either the Hot R.O.D or Sock Shop option when using terraform to launch your instance.
+Ask which version is going to be used as part of this Workshop, then select either the Hot R.O.D or Sock Shop option when using terraform to launch your instance.
 
 ### 3.1 Prepare Terraform
 
@@ -204,7 +204,7 @@ Next, initialize Terraform, this will download or upgrade the AWS Terraform Prov
 Creating the EC2 instance is done in two steps, a planning phase and an apply phase.
 
 * The planning phase will validate the Terraform scripts and check what changes it will make to your AWS environment.
-* The apply phase will actually create the instance(s).
+* The apply phase will actually create the instance.
 
 First, you need to create environment variables for your AWS access keys.
 
@@ -225,13 +225,13 @@ First, you need to create environment variables for your AWS access keys.
 Once you have confirmed that you have set you `AWS_SECRET_ACCESS_KEY_ID` & `AWS_SECRET_ACCESS_KEY` correctly, you can start with the planning phase.
 
 !!! important Required input for Terraform
-    **Instance Count**: (If your not batch creating instances, type **1** to create a single Instance)
+    **Instance Count**: (Type **1** to create a single Instance)
 
     **Desired AWS Region**: (Any AWS region by name, for example **us-west-2**) 
     
     **Instance Type**:      (Type **1** for Hot R.O.D. instance type or **2** for the Sock Shop instance type)
 
-    Please remember these values as you will need them again for the planning phase and when you use Terraform to destroy your EC2 instance(s).
+    Please remember these values as you will need them again for the planning phase and when you use Terraform to destroy your EC2 instance.
 
 As we only wish to provide the input once, we are going to capture the output in a `.out` file that we can use for the apply step. Please provide your initials for the output file as indicated.
 
@@ -252,7 +252,7 @@ Next enter 1 to to create a single EC2 instance.
     Enter a value: 1
     ```
 
-Enter your desired AWS Region where you wish to run the EC2 instance e.g. us-west-2
+Enter your desired AWS Region where you wish to run the EC2 instance e.g. **us-west-2**
 
 === "Example"
 
@@ -373,7 +373,7 @@ Please confirm that you wish to continue by replying to the prompt with `yes`
     ubuntu@YOUR_IP-ADDRESS's password:
     ```
 
-To login to your instance please use the password provided by the workshop host.
+To login to your instance please use the password provided by the Workshop host.
 
 === "Input"
 
