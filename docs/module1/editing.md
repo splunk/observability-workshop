@@ -2,11 +2,11 @@
 
 ## 1. Edit Histogram Chart
 
-Click on the three dots (**...**) on the Latency Histogram chart in the Sample Data dashboard and then on **Open** (or you can click on the title of the chart).
+Click on the three dots **`...`** on the **Latency histogram** chart in the **Sample Data** dashboard and then on **Open** (or you can click on the title of the chart).
 
 ![Sample Data](../images/module1/M1-l1-3.png){: .zoom}
 
-You will see the plot options, current plot and signal (metric) for the Latency histogram chart.
+You will see the plot options, current plot and signal (metric) for the **Latency histogram** chart.
 
 ![Heatmap Chart](../images/module1/M1-l1-4.png){: .zoom}
 
@@ -47,7 +47,7 @@ You will instantly see a number of Line plots, like below. The number `18 ts` in
 
 ![Chart](../images/module1/M1-l1-11.png){: .zoom}
 
-Click on the **DATA TABLE** tab
+Click on the **DATA TABLE** tab.
 
 ![Data Table](../images/module1/M1-l1-12.png){: .zoom}
 

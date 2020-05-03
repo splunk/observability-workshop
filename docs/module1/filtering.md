@@ -4,7 +4,7 @@
 
 Let's now select the Paris datacenter to do some analytics - for that we will use a filter.
 
-Let's go back to the **PLOT EDITOR** tab and click on Add filter, wait until it automatically populates, choose `demo_datacenter`, and then Paris.
+Let's go back to the **PLOT EDITOR** tab and click on **Add filter**, wait until it automatically populates, choose `demo_datacenter`, and then `Paris`.
 
 ![Filter](../images/module1/M1-l1-13.png){: .zoom}
 
@@ -12,13 +12,13 @@ In the **F(x)** column, add the analytic function `Percentile:Aggregation`, and 
 
 ![Analytics](../images/module1/M1-l1-14.png){: .zoom}
 
-For info on the Percentile function and the other functions see [Analytics reference](https://docs.signalfx.com/en/latest/reference/analytics-docs/analytics-reference.html).
+For info on the **Percentile** function and the other functions see [Analytics reference](https://docs.signalfx.com/en/latest/reference/analytics-docs/analytics-reference.html).
 
 ---
 
 ## 2. Using Timeshift analytical function
 
-Let's now compare with older metrics. Click on **...** and then on **Clone** in the dropdown to clone Signal **A**.
+Let's now compare with older metrics. Click on **`...`** and then on **Clone** in the dropdown to clone Signal **A**.
 
 ![Clone Signal](../images/module1/M1-l1-15.png){: .zoom}
 
