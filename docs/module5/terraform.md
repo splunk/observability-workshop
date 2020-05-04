@@ -14,7 +14,7 @@ Minimum recommended time to complete - **10 minutes**
 
 ## 1. Initial setup
 
-Remaining in your Multipass instance from **Module #3**, change into the `signalfx-jumpstart` directory
+Remaining in your Multipass or EC2 instance from **Module #3**, change into the `signalfx-jumpstart` directory
 
 === "Input"
 

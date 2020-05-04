@@ -3,9 +3,6 @@
 * Use the SignalFx Helm chart to install the Smart Agent in K3s
 * Explore your cluster in the Kubernetes Navigator
 
-!!! note
-    If you have chosen to run the workshop on a AWS/EC2 instance, please follow instructions given to connect and run the Workshop as described, however skip the Multipass commands in the next section.
-
 ---
 
 ## 1. Obtain SignalFx Access Token
