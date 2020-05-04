@@ -23,9 +23,10 @@
         ```
 
 !!! Warning
-    The Sock Shop application requires some horse power to run it, please ensure you are running a Multipass instance that can handle it.
+    The Sock Shop application requires some horse power to run it, please ensure you are running a Multipass or EC2 instance that can handle it.
 
     **Sock Shop Multipass min. requirements:** 4 vCPU, 15Gb Disk, 8Gb Memory 
+    **Sock Shop EC2 Instance min. requirements:** _t2.large_ 2 vCPU, 15Gb Disk, 8Gb Memory
 
 ---
 
