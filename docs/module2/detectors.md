@@ -1,6 +1,6 @@
 # Working with Detectors - Lab Summary
 
-* Create a Detector from one of you charts
+* Create a Detector from one of your charts
 * Setting Alert conditions
 * Running a pre-flight check
 * Working with muting rules
@@ -17,89 +17,103 @@ Minimum recommended time to complete - **15 minutes**
 
 In **DASHBOARDS** click on your dashboard group (the one with your email address) and then on the dashboard name where the chart you created in the previous lab resides or search for your previously created dashboard's name, and click on that dashboard's name in the results.
 
-![Dashboards](../images/module2/M1-l2-1.png)
+![Dashboards](../images/module2/M1-l2-1.png){: .zoom}
+
+We are now going to create a new alert detector from this chart.
 
 Once you see the chart...
-Click on the bell icon  on your chart and on New Detector From Chart - ADD YOUR INITIALS TO THE NAME (see next step).
-We are going to create a new alert detector from the chart.
 
-![Chart](../images/module2/M1-l2-2.png)
+Click on the bell icon  on your chart and on **New Detector From Chart**.
+
+![Chart](../images/module2/M1-l2-2.png){: .zoom}
+
+In the text field next to **Detector Name**, **ADD YOUR INITIALS** before the proposed detector name.
 
 !!! important
-    In the window that opens, add your initials in front of the proposed text, and click on Create Alert Rule.
-    It should be something like this: LI's Latency Chart Detector.
+    It's important that you add your initials in front of the proposed detector name.
+    It should be something like this: **LI's Latency Chart Detector**.
 
-![New Detector](../images/module2/M1-l2-3.png)
+Click on **Create Alert Rule**.
 
-In the detector window, inside Alert signal, the signal we will alert on is marked with a bell.
-The bell in the 'Alert on' column indicates which Signal is being used to generate the alert. Click on Proceed to Alert Condition.
+![New Detector](../images/module2/M1-l2-3.png){: .zoom}
 
-![Alert Signal](../images/module2/M1-l2-4.png)
+In the detector window, inside **Alert signal**, the Signal we will alert on is marked with a bell in the **Alert on** column. The bell indicates which Signal is being used to generate the alert. 
+
+Click on **Proceed to Alert Condition**.
+
+![Alert Signal](../images/module2/M1-l2-4.png){: .zoom}
 
 ---
 
 ## 2. Setting Alert condition
 
-In Alert Condition, click on Static Threshold and then on Proceed to Alert Settings.
+In **Alert condition**, click on **Static Threshold** and then on **Proceed to Alert Settings**.
 
-![Alert Condition](../images/module2/M1-l2-5.png)
+![Alert Condition](../images/module2/M1-l2-5.png){: .zoom}
 
-In Alert Settings, enter the value "290" in the Threshold box and change Time on top right to past day.
+In **Alert Settings**, enter the value **`290`** in the **Threshold** field. 
 
-![Threshold](../images/module2/M1-l2-6.png)
+In the same window change **Time** on top right to past day (-1d).
+
+![Threshold](../images/module2/M1-l2-6.png){: .zoom}
 
 ---
 
 ## 3. Alert pre-flight check
 
-Once you set an alert condition, SignalFx shows how many alerts you would get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.
+!!! note
+    Once you set an alert condition, SignalFx shows how many alerts you would get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.
+    
+    Immediately, the platform will start analyzing the signals with the current settings, and perform something we call a Pre-flight Check. This enables you to test the alert conditions using the historical data in the platform, to ensure the settings are logical and will not inadvertently generate an alert storm, removing the guess work from configuring alerts in a simple but very powerful way, only available using SignalFx.
 
-Immediately, the platform will start analyzing the signals with the current settings, and perform something we call a Pre-flight Check, This enables me to test the alert conditions using the historical data in the platform, to ensure the settings are logical and will not inadvertently generate an alert storm, removing the guess work from configuring alerts in a simple but very powerful way, only available using SignalFx.
+    To read more about alert detector previewing, please visit this link
+    [Setting up detectors](https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#previewing-the-results-of-a-detector).
 
-We can see that based on the current settings, the amount of alerts we would’ve received in 1 day would've been around 18.
 
-To read more about Detector Previews, please visit this link
-[Setting up detectors](https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#previewing-the-results-of-a-detector)
+See **Estimated alert count**. We see that based on the current settings, the amount of alerts we would’ve received in 1 day would've been around **`18`**.
 
 ---
 
 ## 4. Configuring the alert message
 
-Click on Proceed to Alert Message. In Severity choose Major
+In **Alert Setting** click on **Proceed to Alert Message**. 
 
-![Alert Message](../images/module2/M1-l2-7.png)
+In **Alert message**, in **Severity** choose **Major**.
 
-Click on Proceed to Alert Recipients
+![Alert Message](../images/module2/M1-l2-7.png){: .zoom}
 
-Click on Add Recipient and then on your email displayed as the first option
+Click on **Proceed to Alert Recipients**.
 
-![Add Recipient](../images/module2/M1-l2-8.png)
+Click on **Add Recipient** and then on your email address displayed as the first option.
 
-That's the same as entering that email address
-OR you can enter another email address by clicking on E-mail...
+![Add Recipient](../images/module2/M1-l2-8.png){: .zoom}
 
-That's just one example of the many Notification Services SignalFx has available
-You can check this out by going to the INTEGRATIONS tab of the top menu, and see Notification Services
+!!! note
+    That's the same as entering that email address OR you can enter another email address by clicking on **E-mail...** 
+    
+    That's just one example of the many **Notification Services** SignalFx has available. 
+    
+    You can check this out by going to the **INTEGRATIONS** tab of the top menu, and see **Notification Services**.
 
 ---
 
 ## 5. Activating the alert
 
-Click on Proceed to Alert Activation
+Click on **Proceed to Alert Activation**.
 
-In Activate...click on Activate Alert Rule
+In **Activate...** click on **Activate Alert Rule**.
 
-![Activate](../images/module2/M1-l2-9.png)
+![Activate](../images/module2/M1-l2-9.png){: .zoom}
 
-If you want to get alerts quicker you can click back on Alert Settings and lower the value from 290 to say 280.
-If you change the Time to 1h you can see how many alerts you will be getting with the threshold you have chosen based on the metics from the last 1 hour.
+If you want to get alerts quicker you can click back on **Alert Settings** and lower the value from **`290`** to say **`280`**.
+If you change the **Time** to 1h you can see how many alerts you will be getting with the threshold you have chosen based on the metics from the last 1 hour.
 
-Hover over **ALERTS** in the top menu and then click on Detectors
+Hover over **ALERTS** in the top menu and then click on **Detectors**.
 
 ![Detectors](../images/module2/M1-l2-10.png)
 
 You will see you alert detector listed here.
 
-![Detector List](../images/module2/M1-l2-11.png)
+![Detector List](../images/module2/M1-l2-11.png){: .zoom}
 
 Congrats! You have created your first alert detector and activated it!
