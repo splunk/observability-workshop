@@ -1,5 +1,11 @@
 # Deploying Sock Shop in K3s
 
+{==
+
+Minimum recommended time to complete - **45 minutes**
+
+==}
+
 !!! important "Enabling µAPM"
 
     An Organization needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already.
