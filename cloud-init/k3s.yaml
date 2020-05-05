@@ -27,7 +27,7 @@ write_files:
 runcmd:
  - 'curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server" sh -s -'
  - chmod 644 /etc/rancher/k3s/k3s.yaml
- - export WSVERSION=1.10
+ - export WSVERSION=1.11
  - curl -s -OL https://github.com/signalfx/app-dev-workshop/archive/v$WSVERSION.zip
  - unzip -qq v$WSVERSION.zip -d /home/ubuntu/
  - mv /home/ubuntu/app-dev-workshop-$WSVERSION /home/ubuntu/workshop
