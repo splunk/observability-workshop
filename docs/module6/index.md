@@ -8,4 +8,4 @@ In addition to proxying spans and infrastructure metrics, the OpenTelemetry Coll
 
 The following illustration shows the recommended deployment model: SignalFx auto-instrumentation libraries send spans to the Smart Agent; the Smart Agent can send the spans to SignalFx directly or via an optional OpenTelemetry Collector.
 
-![Architecture Ove4view](../images/module6/arch-overview.png){: .zoom}
+![Architecture Overview](../images/module6/arch-overview.png){: .zoom}
