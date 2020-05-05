@@ -39,7 +39,7 @@ Regardless if you are running this lab locally or if you are going to create you
 === "Linux/Mac OS"
 
     ```bash
-    WSVERSION=1.9
+    WSVERSION=1.10
     curl -OL https://github.com/signalfx/app-dev-workshop/archive/v$WSVERSION.zip
     unzip v$WSVERSION.zip
     mv app-dev-workshop-$WSVERSION workshop
@@ -49,7 +49,7 @@ Regardless if you are running this lab locally or if you are going to create you
 === "Windows"
 
     !!! info
-        Download the zip by clicking on the following URL <https://github.com/signalfx/app-dev-workshop/archive/v1.9.zip>.
+        Download the zip by clicking on the following URL <https://github.com/signalfx/app-dev-workshop/archive/v1.10.zip>.
 
         Once downloaded, unzip the the file and rename it to `workshop`. Then, from the command prompt change into that directory.
 
