@@ -36,7 +36,7 @@ In this dashboard view expand the **Sample Data** dashboard group by clicking on
 
 You will see a selection of sample charts. To learn more about charts you can click on the other sample dashboards (**PART 1**, **PART 2** and **PART 3**).
 
-Let's take a look at the Sample charts. 
+Let's take a look at the Sample charts.
 
 Click on the **SAMPLE CHARTS** dashboard name.
 
