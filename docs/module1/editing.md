@@ -14,11 +14,11 @@ Click on the different chart type icons to explore each of the visualizations. N
 
 ![Chart Types](../images/module1/M1-l1-5.png)
 
-See how the chart changes. 
+See how the chart changes.
 
 !!! note
-    You can use different ways to visualize your metrics - you choose which chart type fits best for the visualization you want to have. 
-    
+    You can use different ways to visualize your metrics - you choose which chart type fits best for the visualization you want to have.
+
     For more info on the different chart types see [Choosing a chart type](https://docs.signalfx.com/en/latest/charts/chart-planning-creating.html#choosing-a-chart-type).
 
 Click on the **Line** chart type and you will see the line plot.
@@ -33,7 +33,7 @@ In the **PLOT EDITOR** tab under **Signal** you see the metric **`demo.trans.lat
 
 ## 2. Creating a new chart
 
-Let's now create a new chart and save it in a new dashboard! 
+Let's now create a new chart and save it in a new dashboard!
 
 Click on the plus icon (top right of the UI) and from the drop down, click on **Chart**.
 

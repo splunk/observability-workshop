@@ -37,7 +37,7 @@ Click on **Create Alert Rule**.
 
 ![New Detector](../images/module2/M1-l2-3.png){: .zoom}
 
-In the detector window, inside **Alert signal**, the Signal we will alert on is marked with a bell in the **Alert on** column. The bell indicates which Signal is being used to generate the alert. 
+In the detector window, inside **Alert signal**, the Signal we will alert on is marked with a bell in the **Alert on** column. The bell indicates which Signal is being used to generate the alert.
 
 Click on **Proceed to Alert Condition**.
 
@@ -51,7 +51,7 @@ In **Alert condition**, click on **Static Threshold** and then on **Proceed to A
 
 ![Alert Condition](../images/module2/M1-l2-5.png){: .zoom}
 
-In **Alert Settings**, enter the value **`290`** in the **Threshold** field. 
+In **Alert Settings**, enter the value **`290`** in the **Threshold** field.
 
 In the same window change **Time** on top right to past day (-1d).
 
@@ -63,12 +63,11 @@ In the same window change **Time** on top right to past day (-1d).
 
 !!! note
     Once you set an alert condition, SignalFx shows how many alerts you would get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.
-    
+
     Immediately, the platform will start analyzing the signals with the current settings, and perform something we call a Pre-flight Check. This enables you to test the alert conditions using the historical data in the platform, to ensure the settings are logical and will not inadvertently generate an alert storm, removing the guess work from configuring alerts in a simple but very powerful way, only available using SignalFx.
 
     To read more about alert detector previewing, please visit this link
     [Setting up detectors](https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#previewing-the-results-of-a-detector).
-
 
 See **Estimated alert count**. We see that based on the current settings, the amount of alerts we would’ve received in 1 day would've been around **`18`**.
 
@@ -76,7 +75,7 @@ See **Estimated alert count**. We see that based on the current settings, the am
 
 ## 4. Configuring the alert message
 
-In **Alert Setting** click on **Proceed to Alert Message**. 
+In **Alert Setting** click on **Proceed to Alert Message**.
 
 In **Alert message**, in **Severity** choose **Major**.
 
@@ -89,8 +88,8 @@ Click on **Add Recipient** and then on your email address displayed as the first
 ![Add Recipient](../images/module2/M1-l2-8.png){: .zoom}
 
 !!! note
-    That's the same as entering that email address OR you can enter another email address by clicking on **E-mail...** 
-    
+    That's the same as entering that email address OR you can enter another email address by clicking on **E-mail...**
+
     That's just one example of the many **Notification Services** SignalFx has available. 
     
     You can check this out by going to the **INTEGRATIONS** tab of the top menu, and see **Notification Services**.

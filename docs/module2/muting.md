@@ -33,7 +33,7 @@ Click **Next** and in the new modal window confirm the muting rule setup.
 
 ![Confirm Rule](../images/module2/confirm-rule.png){: .shadow}
 
-Click on **Mute Indefinitely** to confirm. 
+Click on **Mute Indefinitely** to confirm.
 
 ![List muted rule](../images/module2/list-muted-rule.png){: .zoom}
 

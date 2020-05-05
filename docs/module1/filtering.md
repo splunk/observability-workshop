@@ -34,7 +34,7 @@ Click on the cog on the far right, and choose a **Plot Color** e.g. pink, to cha
 
 ![Change Plot Colour](../images/module1/M1-l1-18.png){: .zoom}
 
-Click on **Close**. 
+Click on **Close**.
 
 Next, click into the field next to **Time** on the Override bar and choose **`Past Day`** from the dropdown.
 

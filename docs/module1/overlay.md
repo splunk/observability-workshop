@@ -18,17 +18,17 @@ Select **`demo.trans.count`** and click on the **Add Plot** green button.
 
 Click on the blue eye icon next to **C** to hide that Signal, and on the greyed eye icon for Signal **A** to show it.
 
-On plot **D**, apply the **Percentile:Aggregation** function and set to **`95`**. 
+On plot **D**, apply the **Percentile:Aggregation** function and set to **`95`**.
 
 Enter **`-1h`** in the **Time** frame for the entire chart.
 
 ![Aggregation](../images/module1/M1-l1-27.png){: .zoom}
 
-We see that there is a correlation between latency and number of transactions. 
+We see that there is a correlation between latency and number of transactions.
 
 !!! note
-    Likewise we could check **Find Events** and find events like deployment events etc. to correlate with. 
-    
+    Likewise we could check **Find Events** and find events like deployment events etc. to correlate with.
+
 Click on the the greater than sign icon to collapse the **METRICS** sidebar.
 
 ![Collapse Sidebar](../images/module1/M1-l1-28.png)
