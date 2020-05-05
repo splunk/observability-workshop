@@ -20,7 +20,7 @@ Logon to the SignalFx organization you have been invited to.
 
 Hover over **DASHBOARDS** in the top menu, and then click on **All Dashboards**. A number of prebuilt dashboards are provided for you in your default view.
 
-![Dashboards](../images/module1/M1-l1-1.png){: .sample-zoom}
+![Dashboards](../images/module1/M1-l1-1.png){: .zoom}
 
 If you are already receiving metrics through a Cloud API integration or the Smart Agent you will see relevant dashboards for these services in SignalFx.
 
