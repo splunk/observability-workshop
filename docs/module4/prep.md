@@ -55,7 +55,7 @@ Regardless if you are running this lab locally or if you are going to create you
 
         Once downloaded, unzip the the file and rename it to `workshop`. Then, from the command prompt change into that directory.
 
-If you are using your own EC2 instance please skip to the [Launch EC2 instance](../../module4/prep/#3-launch-ec2-instance)
+If you are using your own EC2 instance please skip to [3. Launch Instance](../../module4/prep/#3-launch-instance) and select the **Launch EC2 instance** tab
 
 ---
 
@@ -202,7 +202,7 @@ If you are using your own EC2 instance please skip to the [Launch EC2 instance](
         ```
 
     ---
-    
+
     **Create EC2 Instance**
 
     Creating the EC2 instance is done in two steps, a planning phase and an apply phase.
