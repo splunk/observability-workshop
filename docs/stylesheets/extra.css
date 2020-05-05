@@ -43,11 +43,12 @@ a.md-logo img {
     color: #E20082;
 }
 
-.md-nav__link:focus, .md-nav__link:hover {
+.md-nav__link:focus,
+.md-nav__link:hover {
     color: #E20082;
 }
 
-:root{
+:root {
     --md-primary-fg-color: #E20082;
     --md-accent-fg-color: #E20082;
 }
