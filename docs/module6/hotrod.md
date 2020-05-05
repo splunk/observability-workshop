@@ -13,7 +13,7 @@ Minimum recommended time to complete - **25 minutes**
     To check if you have an Organization with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards.
 
 !!! note
-    The setup part is already documented in the [Preparation](../../module3/prep/) and [Deploy the Smart Agent in K3s](../../module3/k3s/) steps. If you are using an EC2 instance, make sure it is available and skip to step 1, otherwise ensure your Multipass instance is available and running before continuing.
+    The setup part is already documented in the [Preparation](../../module4/prep/) and [Deploy the Smart Agent in K3s](../../module4/k3s/) steps. If you are using an EC2 instance, make sure it is available and skip to step 1, otherwise ensure your Multipass instance is available and running before continuing.
 
     === "Input"
 

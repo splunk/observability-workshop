@@ -14,7 +14,7 @@
 
     Once you have finished with this Workshop `exit` from the AWS/EC2 instance to get back to your system command prompt.
     
-    We will use Terraform to destroy the instance with the parameters you used in [Smart Agent](../../module3/prep/) module:
+    We will use Terraform to destroy the instance with the parameters you used in [Smart Agent](../../module4/prep/) module:
 
     ```bash
     cd ~/workshop/ec2
