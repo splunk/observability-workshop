@@ -14,7 +14,7 @@ Minimum recommended time to complete - **10 minutes**
 
 ## 1. Initial setup
 
-Remaining in your Multipass or EC2 instance from **Module #3**, change into the `signalfx-jumpstart` directory
+Remaining in your Multipass or EC2 instance from the **Smart Agent** module, change into the `signalfx-jumpstart` directory
 
 === "Input"
 
@@ -22,7 +22,7 @@ Remaining in your Multipass or EC2 instance from **Module #3**, change into the 
     cd ~/signalfx-jumpstart
     ```
 
-The environment variables needed should already be set from [**Step #2** in Module 3](../../module3/k3s/#2-use-helm-to-deploy-agent). If not, create the following environment variables to use in the Terraform steps below
+The environment variables needed should already be set from [Deploy the Smart Agent in K3s](../../module4/k3s/#2-use-helm-to-deploy-agent). If not, create the following environment variables to use in the Terraform steps below
 
 === "Input"
 

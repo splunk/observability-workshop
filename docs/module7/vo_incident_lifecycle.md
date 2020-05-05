@@ -213,7 +213,7 @@ Now kill off the process we started in the VM to max out the CPU. Within no grea
 
 ---
 
-That completes this introduction to VictorOps, but feel free to checkout the more advanced modules which will be published in the coming weeks in the `Optional Modules` section.  These will cover topics such as:
+That completes this introduction to VictorOps, but feel free to checkout the more advanced modules which will be published in the coming weeks in the **Optional Modules** section.  These will cover topics such as:
 
 * Reporting
 * Using the API

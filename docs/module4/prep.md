@@ -69,7 +69,7 @@ If you are using your own EC2 instance please skip to [3. Launch Instance](../..
         During the build of your Multipass instance you need to provide a name, please use your initials `[YOUR_INITIALS]-k3s` so that the value of the instance hostname is unique e.g. `rwc-k3s`
 
     !!! Warning
-        In [Module 6](../../module6/) there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
+        In the [µAPM](../../module6/) module there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
 
         **Hot R.O.D Multipass min. requirements:** 1 vCPU, 5Gb Disk, 1Gb Memory
 
@@ -122,11 +122,11 @@ If you are using your own EC2 instance please skip to [3. Launch Instance](../..
 
     In this section you will use terraform to build an EC2 instance in your favorite AWS region and will automatically deploy the Kubernetes (K3s) environment that you will use in this Workshop.
 
-    !!! important AWS ACCESS KEYS
+    !!! important "AWS Access Keys"
         You will need access to an AWS account to obtain both `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
 
-    !!! Warning
-        In [Module 6](../../module6/) there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
+    !!! warning "Minimum requirements"
+        In the [µAPM](../../module6/) module there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
 
         **Hot R.O.D EC2 Instance min. requirements:** _t2.micro_ 1 vCPU, 8Gb Disk, 1Gb Memory
 
@@ -136,44 +136,18 @@ If you are using your own EC2 instance please skip to [3. Launch Instance](../..
 
     **Prepare Terraform**
 
-    The first step is to go into the sub-directory where the terraform files are located
+    The first step is to go into the sub-directory where the Terraform files are located and initialise Terraform and upgrade the AWS Terraform Provider.
 
     === "Input"
 
         ```bash 
         cd ec2
-        ```
-
-    === "Output"
-
-        ```bash
-        ~/workshop/ec2$  
-        ```
-
-    Verify that you are running version V0.12.18 or above of Terraform
-
-    === "Input"
-
-        ```bash 
-        terraform version
-        ```
-
-    === "Output"
-
-        ```text
-        Terraform v0.12.24
-        ```
-
-    Next, initialize Terraform, this will download or upgrade the AWS Terraform Provider.
-
-    === "Input"
-
-        ```bash 
         terraform init -upgrade
         ```
 
     === "Output"
         ```text
+        ~/workshop/ec2$ terraform init -upgrade
         Initializing the backend...
 
         Initializing provider plugins...
