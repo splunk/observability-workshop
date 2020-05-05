@@ -25,8 +25,6 @@ data "aws_ami" "latest-ubuntu" {
   }
 }
 variable "instance_type_aws" {
-  type = map
-
   default = {
     "1" = "t2.micro"
     "2" = "t2.large"
@@ -34,8 +32,6 @@ variable "instance_type_aws" {
 }
 
 variable "instance_disk_aws" {
-  type = map
-
   default = {
     "1" = "8"
     "2" = "15"
