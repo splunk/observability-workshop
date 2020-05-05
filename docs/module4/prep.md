@@ -34,6 +34,8 @@ Minimum recommended time to complete - **20 minutes**
 
         On a Mac you can also install via [Homebrew](https://brew.sh/) e.g. `brew install terraform`. This will get around Mac OS Catalina security.
 
+## 2. Download App Dev Workshop
+
 Regardless if you are running this lab locally or if you are going to create your own AWS/EC2 Instance you need to download the App Dev Workshop zip file locally, unzip the file, rename it and `cd` into the directory.
 
 === "Linux/Mac OS"
@@ -57,343 +59,347 @@ If you are using your own EC2 instance please skip to the [Launch EC2 instance](
 
 ---
 
-## 2. Launch Multipass instance
+## 3. Launch Instance
 
-In this section you will  build and launch the Multipass instance which will run the Kubernetes (K3s) environment that you will use in multiple labs.
+=== "Launch Multipass instance"
 
-!!! important "Make sure to use your initials"
-    During the build of your Multipass instance you need to provide a name, please use your initials `[YOUR_INITIALS]-k3s` so that the value of the instance hostname is unique e.g. `rwc-k3s`
+    In this section you will  build and launch the Multipass instance which will run the Kubernetes (K3s) environment that you will use in multiple labs.
 
-!!! Warning
-    In [Module 6](../../module6/) there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
+    !!! important "Make sure to use your initials"
+        During the build of your Multipass instance you need to provide a name, please use your initials `[YOUR_INITIALS]-k3s` so that the value of the instance hostname is unique e.g. `rwc-k3s`
 
-    **Hot R.O.D Multipass min. requirements:** 1 vCPU, 5Gb Disk, 1Gb Memory
+    !!! Warning
+        In [Module 6](../../module6/) there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
 
-    **Sock Shop Multipass min. requirements:** 4 vCPU, 15Gb Disk, 8Gb Memory
+        **Hot R.O.D Multipass min. requirements:** 1 vCPU, 5Gb Disk, 1Gb Memory
 
-Ask which version is going to be used as part of this Workshop, then select either the Hot R.O.D or Sock Shop Multipass launch parameters. Lines highlighted in yellow need to be edited:
-=== "Hot R.O.D"
+        **Sock Shop Multipass min. requirements:** 4 vCPU, 15Gb Disk, 8Gb Memory
 
-    ```text hl_lines="2"
-    multipass launch \
-    --name [YOUR_INITIALS]-k3s \
-    --cloud-init cloud-init/k3s.yaml
-    ```
+    Ask which version is going to be used as part of this Workshop, then select either the Hot R.O.D or Sock Shop Multipass launch parameters. Lines highlighted in yellow need to be edited:
+    === "Hot R.O.D"
 
-=== "Sock Shop"
+        ```text hl_lines="2"
+        multipass launch \
+        --name [YOUR_INITIALS]-k3s \
+        --cloud-init cloud-init/k3s.yaml
+        ```
 
-    ```text hl_lines="2"
-    multipass launch \
-    --name [YOUR_INITIALS]-k3s \
-    --cloud-init cloud-init/k3s.yaml \
-    --cpus 4 --disk 15G --mem 8G
-    ```
+    === "Sock Shop"
 
-Once the instance has been successfully created (this can take several minutes), shell into it.
+        ```text hl_lines="2"
+        multipass launch \
+        --name [YOUR_INITIALS]-k3s \
+        --cloud-init cloud-init/k3s.yaml \
+        --cpus 4 --disk 15G --mem 8G
+        ```
 
-=== "Input"
+    Once the instance has been successfully created (this can take several minutes), shell into it.
 
-    ```bash hl_lines="1"
-    multipass shell [YOUR_INITIALS]-k3s
-    ```
+    === "Input"
 
-=== "Output"
-    ```text
-     █████╗ ██████╗ ██████╗     ██████╗ ███████╗██╗   ██╗
-    ██╔══██╗██╔══██╗██╔══██╗    ██╔══██╗██╔════╝██║   ██║
-    ███████║██████╔╝██████╔╝    ██║  ██║█████╗  ██║   ██║
-    ██╔══██║██╔═══╝ ██╔═══╝     ██║  ██║██╔══╝  ╚██╗ ██╔╝
-    ██║  ██║██║     ██║         ██████╔╝███████╗ ╚████╔╝
-    ╚═╝  ╚═╝╚═╝     ╚═╝         ╚═════╝ ╚══════╝  ╚═══╝  
+        ```bash hl_lines="1"
+        multipass shell [YOUR_INITIALS]-k3s
+        ```
 
-    To run a command as administrator (user "root"), use "sudo <command>".
-    See "man sudo_root" for details
+    === "Output"
+        ```text
+        █████╗ ██████╗ ██████╗     ██████╗ ███████╗██╗   ██╗
+        ██╔══██╗██╔══██╗██╔══██╗    ██╔══██╗██╔════╝██║   ██║
+        ███████║██████╔╝██████╔╝    ██║  ██║█████╗  ██║   ██║
+        ██╔══██║██╔═══╝ ██╔═══╝     ██║  ██║██╔══╝  ╚██╗ ██╔╝
+        ██║  ██║██║     ██║         ██████╔╝███████╗ ╚████╔╝
+        ╚═╝  ╚═╝╚═╝     ╚═╝         ╚═════╝ ╚══════╝  ╚═══╝  
 
-    ubuntu@rwc-k3s:~$
-    ```
+        To run a command as administrator (user "root"), use "sudo <command>".
+        See "man sudo_root" for details
 
-Once your instance presents you with the App Dev logo, you have completed the preparation for your Multipass instance and can go directly to  the next lab [Deploying the Smart Agent in K3s](../../module4/k3s).
+        ubuntu@rwc-k3s:~$
+        ```
 
----
+    Once your instance presents you with the App Dev logo, you have completed the preparation for your Multipass instance and can go directly to  the next lab [Deploying the Smart Agent in K3s](../../module4/k3s).
 
-## 3. Launch EC2 instance
+=== "Launch EC2 instance"
 
-In this section you will use terraform to build an EC2 instance in your favorite AWS region and will automatically deploy the Kubernetes (K3s) environment that you will use in this Workshop.
+    In this section you will use terraform to build an EC2 instance in your favorite AWS region and will automatically deploy the Kubernetes (K3s) environment that you will use in this Workshop.
 
-!!! important AWS ACCESS KEYS
-    You will need access to an AWS account to obtain both `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+    !!! important AWS ACCESS KEYS
+        You will need access to an AWS account to obtain both `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
 
-!!! Warning
-    In [Module 6](../../module6/) there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
+    !!! Warning
+        In [Module 6](../../module6/) there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
 
-    **Hot R.O.D EC2 Instance min. requirements:** _t2.micro_ 1 vCPU, 8Gb Disk, 1Gb Memory
+        **Hot R.O.D EC2 Instance min. requirements:** _t2.micro_ 1 vCPU, 8Gb Disk, 1Gb Memory
 
-    **Sock Shop EC2 Instance min. requirements:** _t2.large_ 2 vCPU, 15Gb Disk, 8Gb Memory
+        **Sock Shop EC2 Instance min. requirements:** _t2.large_ 2 vCPU, 15Gb Disk, 8Gb Memory
 
-Ask which version is going to be used as part of this Workshop, then select either the Hot R.O.D or Sock Shop option when using terraform to launch your instance.
+    Ask which version is going to be used as part of this Workshop, then select either the Hot R.O.D or Sock Shop option when using terraform to launch your instance.
 
-### 3.1 Prepare Terraform
+    **Prepare Terraform**
 
-The first step is to go into the sub-directory where the terraform files are located
+    The first step is to go into the sub-directory where the terraform files are located
 
-=== "Input"
+    === "Input"
 
-    ```bash 
-    cd ec2
-    ```
+        ```bash 
+        cd ec2
+        ```
 
-=== "Output"
+    === "Output"
 
-    ```bash
-    ~/workshop/ec2$  
-    ```
+        ```bash
+        ~/workshop/ec2$  
+        ```
 
-Verify that you are running version V0.12.18 or above of Terraform
+    Verify that you are running version V0.12.18 or above of Terraform
 
-=== "Input"
+    === "Input"
 
-    ```bash 
-    terraform version
-    ```
+        ```bash 
+        terraform version
+        ```
 
-=== "Output"
+    === "Output"
 
-    ```text
-    Terraform v0.12.24
-    ```
+        ```text
+        Terraform v0.12.24
+        ```
 
-Next, initialize Terraform, this will download or upgrade the AWS Terraform Provider.
+    Next, initialize Terraform, this will download or upgrade the AWS Terraform Provider.
 
-=== "Input"
+    === "Input"
 
-    ```bash 
-    terraform init -upgrade
-    ```
+        ```bash 
+        terraform init -upgrade
+        ```
 
-=== "Output"
-    ```text
-    Initializing the backend...
+    === "Output"
+        ```text
+        Initializing the backend...
 
-    Initializing provider plugins...
-    - Checking for available provider plugins...
-    - Downloading plugin for provider "aws" (hashicorp/aws) 2.60.0...
+        Initializing provider plugins...
+        - Checking for available provider plugins...
+        - Downloading plugin for provider "aws" (hashicorp/aws) 2.60.0...
 
-    The following providers do not have any version constraints in configuration,
-    so the latest version was installed.
+        The following providers do not have any version constraints in configuration,
+        so the latest version was installed.
 
-    To prevent automatic upgrades to new major versions that may contain breaking
-    changes, it is recommended to add version = "..." constraints to the
-    corresponding provider blocks in configuration, with the constraint strings
-    suggested below.
+        To prevent automatic upgrades to new major versions that may contain breaking
+        changes, it is recommended to add version = "..." constraints to the
+        corresponding provider blocks in configuration, with the constraint strings
+        suggested below.
 
-    * provider.aws: version = "~> 2.60"
+        * provider.aws: version = "~> 2.60"
 
-    Terraform has been successfully initialized!
+        Terraform has been successfully initialized!
 
-    You may now begin working with Terraform. Try running "terraform plan" to see
-    any changes that are required for your infrastructure. All Terraform commands
-    should now work.
+        You may now begin working with Terraform. Try running "terraform plan" to see
+        any changes that are required for your infrastructure. All Terraform commands
+        should now work.
 
-    If you ever set or change modules or backend configuration for Terraform,
-    rerun this command to reinitialize your working directory. If you forget, other
-    commands will detect it and remind you to do so if necessary.
-    ```
+        If you ever set or change modules or backend configuration for Terraform,
+        rerun this command to reinitialize your working directory. If you forget, other
+        commands will detect it and remind you to do so if necessary.
+        ```
 
-### 3.2 Create EC2 Instance
-
-Creating the EC2 instance is done in two steps, a planning phase and an apply phase.
-
-* The planning phase will validate the Terraform scripts and check what changes it will make to your AWS environment.
-* The apply phase will actually create the instance.
-
-First, you need to create environment variables for your AWS access keys.
-
-=== "Input"
-
-    ```bash hl_lines="1 2" 
-    export AWS_ACCESS_KEY_ID="[YOUR_AWS_ACCESS_KEY_ID]"
-    export AWS_SECRET_ACCESS_KEY="[YOUR_AWS_SECRET_ACCESS_KEY]"
-    echo $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
-    ```
-
-=== "Output"
-
-    ```text
-    ID: Axxxxxxxxxxxxxxxxy, KEY: Axxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxb
-    ```
-
-Once you have confirmed that you have set you `AWS_SECRET_ACCESS_KEY_ID` & `AWS_SECRET_ACCESS_KEY` correctly, you can start with the planning phase.
-
-!!! important Required input for Terraform
-    **Instance Count**: (Type **1** to create a single Instance)
-
-    **Desired AWS Region**: (Any AWS region by name, for example **us-west-2**) 
+    ---
     
-    **Instance Type**:      (Type **1** for Hot R.O.D. instance type or **2** for the Sock Shop instance type)
+    **Create EC2 Instance**
 
-    Please remember these values as you will need them again for the planning phase and when you use Terraform to destroy your EC2 instance.
+    Creating the EC2 instance is done in two steps, a planning phase and an apply phase.
 
-As we only wish to provide the input once, we are going to capture the output in a `.out` file that we can use for the apply step. Please provide your initials for the output file as indicated.
+    * The planning phase will validate the Terraform scripts and check what changes it will make to your AWS environment.
+    * The apply phase will actually create the instance.
 
-=== "Input"
+    First, you need to create environment variables for your AWS access keys.
 
-    ```bash hl_lines="1"
-    terraform plan -out=[YOUR_INITIALS].out
-    ```
+    === "Input"
 
-Next enter 1 to to create a single EC2 instance.
+        ```bash hl_lines="1 2" 
+        export AWS_ACCESS_KEY_ID="[YOUR_AWS_ACCESS_KEY_ID]"
+        export AWS_SECRET_ACCESS_KEY="[YOUR_AWS_SECRET_ACCESS_KEY]"
+        echo $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
+        ```
 
-=== "Example"
+    === "Output"
 
-    ```bash hl_lines="4"
-    var.aws_instance_count
-    Instance Count
+        ```text
+        ID: Axxxxxxxxxxxxxxxxy, KEY: Axxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxb
+        ```
 
-    Enter a value: 1
-    ```
+    Once you have confirmed that you have set you `AWS_SECRET_ACCESS_KEY_ID` & `AWS_SECRET_ACCESS_KEY` correctly, you can start with the planning phase.
 
-Enter your desired AWS Region where you wish to run the EC2 instance e.g. **us-west-2**
+    !!! important Required input for Terraform
+        **Instance Count**: (Type **1** to create a single Instance)
 
-=== "Example"
+        **Desired AWS Region**: (Any AWS region by name, for example **us-west-2**) 
+        
+        **Instance Type**:      (Type **1** for Hot R.O.D. instance type or **2** for the Sock Shop instance type)
 
-    ```text hl_lines="4"
-    var.aws_region
-    Provide the desired region
+        Please remember these values as you will need them again for the planning phase and when you use Terraform to destroy your EC2 instance.
 
-    Enter a value: us-west-2
-    ```
+    As we only wish to provide the input once, we are going to capture the output in a `.out` file that we can use for the apply step. Please provide your initials for the output file as indicated.
 
-Next, enter **1** for Hot R.O.D. instance size (_t2.micro_) or **2** for Sock Shop instance size (_t2.large_)
+    === "Input"
 
-=== "Example"
+        ```bash hl_lines="1"
+        terraform plan -out=[YOUR_INITIALS].out
+        ```
 
-    ```bash  hl_lines="4"
-    var.instance_type
-    Select instance type required (1 = Hot R.O.D. 2 = Sock Shop)
-     
-    Enter a value: 1
-    ```
+    Next enter 1 to to create a single EC2 instance.
 
-=== "Output"
+    === "Example"
 
-    ```text
-    Refreshing Terraform state in-memory prior to plan...
-    The refreshed state will be used to calculate this plan, but will not be
-    persisted to local or remote state storage.
+        ```bash hl_lines="4"
+        var.aws_instance_count
+        Instance Count
 
-    data.aws_ami.latest-ubuntu: Refreshing state...
+        Enter a value: 1
+        ```
 
-    ------------------------------------------------------------------------
+    Enter your desired AWS Region where you wish to run the EC2 instance e.g. **us-west-2**
 
-    An execution plan has been generated and is shown below.
-    Resource actions are indicated with the following symbols:
-    + create
+    === "Example"
 
-    Terraform will perform the following actions:
+        ```text hl_lines="4"
+        var.aws_region
+        Provide the desired region
 
-    **(BIG WALL OF AWS RELATED TEXT REMOVED)**
-    
-    Plan: 2 to add, 0 to change, 0 to destroy.
+        Enter a value: us-west-2
+        ```
 
-    ------------------------------------------------------------------------
+    Next, enter **1** for Hot R.O.D. instance size (_t2.micro_) or **2** for Sock Shop instance size (_t2.large_)
 
-    This plan was saved to: [YOUR_INITIALS].out
+    === "Example"
 
-    To perform exactly these actions, run the following command to apply:
-    terraform apply "[YOUR_INITIALS].out"
-    ```
+        ```bash  hl_lines="4"
+        var.instance_type
+        Select instance type required (1 = Hot R.O.D. 2 = Sock Shop)
+        
+        Enter a value: 1
+        ```
 
-If there are no errors in the output and terraform has created your output file, you can start the apply phase of Terraform. This will create the instance in AWS EC2.
+    === "Output"
 
-=== "Input"
+        ```text
+        Refreshing Terraform state in-memory prior to plan...
+        The refreshed state will be used to calculate this plan, but will not be
+        persisted to local or remote state storage.
 
-    ```bash hl_lines="1"
-    terraform apply "[YOUR_INITIALS].out"
-    ```
+        data.aws_ami.latest-ubuntu: Refreshing state...
 
-=== "Output"
+        ------------------------------------------------------------------------
 
-    ```text
-    ws_security_group.instance: Creating...
-    aws_security_group.instance: Creation complete after 2s [id=sg-0459afecae5953b51]
-    aws_instance.app-dev-instance[0]: Creating...
-    aws_instance.app-dev-instance[0]: Still creating... [10s elapsed]
-    aws_instance.app-dev-instance[0]: Still creating... [20s elapsed]
-    aws_instance.app-dev-instance[0]: Creation complete after 23s [id=i-095a12cd39f8e2283]
+        An execution plan has been generated and is shown below.
+        Resource actions are indicated with the following symbols:
+        + create
 
-    Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+        Terraform will perform the following actions:
 
-    The state of your infrastructure has been saved to the path
-    below. This state is required to modify and destroy your
-    infrastructure, so keep it safe. To inspect the complete state
-    use the `terraform show` command.
+        **(BIG WALL OF AWS RELATED TEXT REMOVED)**
+        
+        Plan: 2 to add, 0 to change, 0 to destroy.
 
-    State path: terraform.tfstate
+        ------------------------------------------------------------------------
 
-    Outputs:
+        This plan was saved to: [YOUR_INITIALS].out
 
-    ip = [
-    "YOUR_IP-ADDRESS",
-    ] 
-    ```
+        To perform exactly these actions, run the following command to apply:
+        terraform apply "[YOUR_INITIALS].out"
+        ```
 
-Verify there are no errors and copy the ip address that you see in the green output.  
+    If there are no errors in the output and terraform has created your output file, you can start the apply phase of Terraform. This will create the instance in AWS EC2.
 
-### 3.3 SSH into EC2 Instance
+    === "Input"
 
-Once the instance has been successfully created (this can take several minutes), ssh into it.
-In most cases your ssh client will ask you to verify the connection.
+        ```bash hl_lines="1"
+        terraform apply "[YOUR_INITIALS].out"
+        ```
 
-=== "Input"
+    === "Output"
 
-    ```bash hl_lines="1"
-    ssh ubuntu@[YOUR_IP-ADDRESS]
-    ```
+        ```text
+        ws_security_group.instance: Creating...
+        aws_security_group.instance: Creation complete after 2s [id=sg-0459afecae5953b51]
+        aws_instance.app-dev-instance[0]: Creating...
+        aws_instance.app-dev-instance[0]: Still creating... [10s elapsed]
+        aws_instance.app-dev-instance[0]: Still creating... [20s elapsed]
+        aws_instance.app-dev-instance[0]: Creation complete after 23s [id=i-095a12cd39f8e2283]
 
-=== "Output"
+        Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
 
-    ```text
-    The authenticity of host '[YOUR_IP-ADDRESS] ([YOUR_IP-ADDRESS])' can't be established.
-    ECDSA key fingerprint is SHA256:XdqN55g0z/ER660PARM+mGqtpYpwM3333YS9Ac8Y9hLY.
-    Are you sure you want to continue connecting (yes/no/[fingerprint])?  
-    ```
+        The state of your infrastructure has been saved to the path
+        below. This state is required to modify and destroy your
+        infrastructure, so keep it safe. To inspect the complete state
+        use the `terraform show` command.
 
-Please confirm that you wish to continue by replying to the prompt with `yes`
+        State path: terraform.tfstate
 
-=== "Input"
+        Outputs:
 
-    ```bash hl_lines="1"
-    Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-    ```
+        ip = [
+        "YOUR_IP-ADDRESS",
+        ] 
+        ```
 
-=== "Output"
-    ```text
-    Warning: Permanently added 'YOUR_IP-ADDRESS' (ECDSA) to the list of known hosts.
+    Verify there are no errors and copy the ip address that you see in the green output.  
 
-    ubuntu@YOUR_IP-ADDRESS's password:
-    ```
+    ---
 
-To login to your instance please use the password provided by the Workshop host.
+    **SSH into EC2 Instance**
 
-=== "Input"
+    Once the instance has been successfully created (this can take several minutes), ssh into it.
+    In most cases your ssh client will ask you to verify the connection.
 
-    ```bash hl_lines="1"
-    ubuntu@[YOUR_IP-ADDRESS]'s password: [PASSWORD]
-    ```
+    === "Input"
 
-=== "Output"
-    ```text
-     █████╗ ██████╗ ██████╗     ██████╗ ███████╗██╗   ██╗
-    ██╔══██╗██╔══██╗██╔══██╗    ██╔══██╗██╔════╝██║   ██║
-    ███████║██████╔╝██████╔╝    ██║  ██║█████╗  ██║   ██║
-    ██╔══██║██╔═══╝ ██╔═══╝     ██║  ██║██╔══╝  ╚██╗ ██╔╝
-    ██║  ██║██║     ██║         ██████╔╝███████╗ ╚████╔╝
-    ╚═╝  ╚═╝╚═╝     ╚═╝         ╚═════╝ ╚══════╝  ╚═══╝  
+        ```bash hl_lines="1"
+        ssh ubuntu@[YOUR_IP-ADDRESS]
+        ```
 
-    To run a command as administrator (user "root"), use "sudo <command>".
-    See "man sudo_root" for details
+    === "Output"
 
-    ubuntu@ip-172-31-41-196:~$
-    ```
+        ```text
+        The authenticity of host '[YOUR_IP-ADDRESS] ([YOUR_IP-ADDRESS])' can't be established.
+        ECDSA key fingerprint is SHA256:XdqN55g0z/ER660PARM+mGqtpYpwM3333YS9Ac8Y9hLY.
+        Are you sure you want to continue connecting (yes/no/[fingerprint])?  
+        ```
 
-Once your instance presents you with the App Dev logo, you have completed the preparation for your EC2 instance and can go directly to  the next lab [Deploying the Smart Agent in K3s](../../module4/k3s).
+    Please confirm that you wish to continue by replying to the prompt with `yes`
+
+    === "Input"
+
+        ```bash hl_lines="1"
+        Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+        ```
+
+    === "Output"
+        ```text
+        Warning: Permanently added 'YOUR_IP-ADDRESS' (ECDSA) to the list of known hosts.
+
+        ubuntu@YOUR_IP-ADDRESS's password:
+        ```
+
+    To login to your instance please use the password provided by the Workshop host.
+
+    === "Input"
+
+        ```bash hl_lines="1"
+        ubuntu@[YOUR_IP-ADDRESS]'s password: [PASSWORD]
+        ```
+
+    === "Output"
+        ```text
+        █████╗ ██████╗ ██████╗     ██████╗ ███████╗██╗   ██╗
+        ██╔══██╗██╔══██╗██╔══██╗    ██╔══██╗██╔════╝██║   ██║
+        ███████║██████╔╝██████╔╝    ██║  ██║█████╗  ██║   ██║
+        ██╔══██║██╔═══╝ ██╔═══╝     ██║  ██║██╔══╝  ╚██╗ ██╔╝
+        ██║  ██║██║     ██║         ██████╔╝███████╗ ╚████╔╝
+        ╚═╝  ╚═╝╚═╝     ╚═╝         ╚═════╝ ╚══════╝  ╚═══╝  
+
+        To run a command as administrator (user "root"), use "sudo <command>".
+        See "man sudo_root" for details
+
+        ubuntu@ip-172-31-41-196:~$
+        ```
+
+    Once your instance presents you with the App Dev logo, you have completed the preparation for your EC2 instance and can go directly to  the next lab [Deploying the Smart Agent in K3s](../../module4/k3s).
