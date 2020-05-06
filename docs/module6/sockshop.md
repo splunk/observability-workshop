@@ -175,13 +175,13 @@ Navigate to µAPM (*not* µAPM PG) and select Monitoring, then ensure you have s
 
 ![µAPM Monitoring](../images/module6/sockshop-monitoring.png)
 
-### Explore the User Interface
+### 6.1. Explore the User Interface
 
 Review an automatically generated Service Dashboard. How do you correlate Service performance with Infrastructure?
 
 ![µAPM Service Dashboard](../images/module6/sockshop-service-dash.png)
 
-### Troubleshoot a service
+### 6.2. Troubleshoot a service
 
 Let's stress the sock shop a bit. Increase the amount of clients running for the load test to something ludicrous, e.g.:
 
