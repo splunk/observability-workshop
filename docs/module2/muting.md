@@ -12,11 +12,11 @@ Hover over **ALERTS** in the menu and from the drop down click on **Detectors**.
 
 ![Detectors](../images/module2/detectors-menu.png){: .zoom}
 
-You will see a list of active Detectors.
+You will see a list of active detectors.
 
 ![Detectors](../images/module2/detector-list.png){: .zoom}
 
-If you created an Detector in **Working with Detectors** you can click on the three dots **`...`** on the far right for that detector; if not, do that for another Detector.  
+If you created an detector in **Working with Detectors** you can click on the three dots **`...`** on the far right for that detector; if not, do that for another detector.  
 
 From the drop-down click on **Create Muting Rule...**.
 
@@ -25,7 +25,7 @@ From the drop-down click on **Create Muting Rule...**.
 In the **Muting Rule** window check **Mute Indefinitely** and enter a reason.
 
 !!! note
-    This will mute the nofications permanently until you come back here and un-check this box or resume notifications for this Detector.
+    This will mute the nofications permanently until you come back here and un-check this box or resume notifications for this detector.
 
 ![Mute Indefinitely](../images/module2/mute-indefinitely.png){: .shadow .center}
 
@@ -37,7 +37,7 @@ Click on **Mute Indefinitely** button to confirm.
 
 ![List muted rule](../images/module2/alert-muted.png){: .zoom}
 
-You won't be receiving any email notifications from you Detector until you resume notifications again. Let's now see how to do that!
+You won't be receiving any email notifications from you detector until you resume notifications again. Let's now see how to do that!
 
 ---
 
@@ -56,7 +56,7 @@ Click on **Resume Notifications**.
 
 ![Resume](../images/module2/resume-notifications.png){: .zoom}
 
-Click on **Resume** to confirm and resume notifications for this Detector.
+Click on **Resume** to confirm and resume notifications for this detector.
 
 ![Resume](../images/module2/resume.png){: .shadow .center}
 
