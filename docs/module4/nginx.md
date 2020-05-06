@@ -61,11 +61,11 @@ If you have the SignalFx UI open you should see new Pods being started and conta
 
 It should only take around 20 seconds for the pods to transition into a Running state. In the SignalFx UI you should have a cluster that looks like below:
 
-![back to Cluster](../images/module4/cluster.jpg){: .zoom}
+![back to Cluster](../images/module4/cluster.png){: .zoom}
 
 If you select the **WORKLOADS** tab again you should now see that there is a new replica set and a deployment added for NGINX:
 
-![NGINX loaded](../images/module4/k8s-workloads-nginx.jpg){: .zoom}
+![NGINX loaded](../images/module4/k8s-workloads-nginx.png){: .zoom}
 
 ---
 
