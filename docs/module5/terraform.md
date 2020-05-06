@@ -4,17 +4,11 @@
 * Run Terraform to create SignalFx detectors and dashboards from code using the SignalFx Terraform Provider.
 * See how Terraform can also delete detectors and dashboards.
 
-{==
-
-Minimum recommended time to complete - **10 minutes**
-
-==}
-
 ---
 
 ## 1. Initial setup
 
-Remaining in your Multipass or EC2 instance from the **Smart Agent** module, change into the `signalfx-jumpstart` directory
+Remaining in your Multipass or AWS/EC2 instance from the **Smart Agent** module, change into the `signalfx-jumpstart` directory
 
 === "Input"
 

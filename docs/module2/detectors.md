@@ -5,12 +5,6 @@
 * Running a pre-flight check
 * Working with muting rules
 
-{==
-
-Minimum recommended time to complete - **15 minutes**
-
-==}
-
 ---
 
 ## 1. Create a detector from one of your charts

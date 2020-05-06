@@ -1,20 +1,14 @@
 # SignalFx Smart Agent - Lab Summary
 
 * Download the Workshop
-* Start a Multipass or AWS EC2 instance
+* Start a Multipass or AWS/EC2 instance
 * Deploy the SignalFx Smart Agent in K3s
 * Validate K3s cluster is visible in Kubernetes Navigator
 * Deploy a NGINX ReplicaSet in K3s
 * Validate NGNIX metrics are flowing
 
-{==
-
-Minimum recommended time to complete - **20 minutes**
-
-==}
-
 !!! note
-    If you have been give access to a pre-provisioned EC2 instance, you can ignore the rest of this preparation lab and go straight to the next lab [Deploying the Smart Agent in Kubernetes (K3s)](../../module4/k3s).
+    If you have been give access to a pre-provisioned AWS/EC2 instance, you can ignore the rest of this preparation lab and go straight to the next lab [Deploying the Smart Agent in Kubernetes (K3s)](../../module4/k3s).
 
 ---
 
@@ -29,7 +23,7 @@ Minimum recommended time to complete - **20 minutes**
 
 === "Running in AWS"
 
-    !!! abstract "EC2 Instance"
+    !!! abstract "AWS/EC2 Instance"
         Install [Terraform](https://www.terraform.io/downloads.html) for your operating system. Please make sure it is version `0.12.18` or above.
 
         On a Mac you can also install via [Homebrew](https://brew.sh/) e.g. `brew install terraform`. This will get around Mac OS Catalina security.
@@ -55,7 +49,7 @@ Regardless if you are running this lab locally or if you are going to create you
 
         Once downloaded, unzip the the file and rename it to `workshop`. Then, from the command prompt change into that directory.
 
-If you are using your own EC2 instance please skip to [3. Launch Instance](../../module4/prep/#3-launch-instance) and select the **Launch EC2 instance** tab
+If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](../../module4/prep/#3-launch-instance) and select the **Launch AWS/EC2 instance** tab
 
 ---
 
@@ -118,9 +112,9 @@ If you are using your own EC2 instance please skip to [3. Launch Instance](../..
 
     Once your instance presents you with the App Dev logo, you have completed the preparation for your Multipass instance and can go directly to  the next lab [Deploying the Smart Agent in K3s](../../module4/k3s).
 
-=== "Launch EC2 instance"
+=== "Launch AWS/EC2 instance"
 
-    In this section you will use terraform to build an EC2 instance in your favorite AWS region and will automatically deploy the Kubernetes (K3s) environment that you will use in this Workshop.
+    In this section you will use terraform to build an AWS/EC2 instance in your favorite AWS region and will automatically deploy the Kubernetes (K3s) environment that you will use in this Workshop.
 
     !!! important "AWS Access Keys"
         You will need access to an AWS account to obtain both `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
@@ -128,9 +122,9 @@ If you are using your own EC2 instance please skip to [3. Launch Instance](../..
     !!! warning "Minimum requirements"
         In the [µAPM](../../module6/) module there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
 
-        **Hot R.O.D EC2 Instance min. requirements:** _t2.micro_ 1 vCPU, 8Gb Disk, 1Gb Memory
+        **Hot R.O.D AWS/EC2 Instance min. requirements:** _t2.micro_ 1 vCPU, 8Gb Disk, 1Gb Memory
 
-        **Sock Shop EC2 Instance min. requirements:** _t2.large_ 2 vCPU, 15Gb Disk, 8Gb Memory
+        **Sock Shop AWS/EC2 Instance min. requirements:** _t2.large_ 2 vCPU, 15Gb Disk, 8Gb Memory
 
     Ask which version is going to be used as part of this Workshop, then select either the Hot R.O.D or Sock Shop option when using terraform to launch your instance.
 
@@ -177,9 +171,9 @@ If you are using your own EC2 instance please skip to [3. Launch Instance](../..
 
     ---
 
-    **Create EC2 Instance**
+    **Create AWS/EC2 Instance**
 
-    Creating the EC2 instance is done in two steps, a planning phase and an apply phase.
+    Creating the AWS/EC2 instance is done in two steps, a planning phase and an apply phase.
 
     * The planning phase will validate the Terraform scripts and check what changes it will make to your AWS environment.
     * The apply phase will actually create the instance.
@@ -209,7 +203,7 @@ If you are using your own EC2 instance please skip to [3. Launch Instance](../..
         
         **Instance Type**:      (Type **1** for Hot R.O.D. instance type or **2** for the Sock Shop instance type)
 
-        Please remember these values as you will need them again for the planning phase and when you use Terraform to destroy your EC2 instance.
+        Please remember these values as you will need them again for the planning phase and when you use Terraform to destroy your AWS/EC2 instance.
 
     As we only wish to provide the input once, we are going to capture the output in a `.out` file that we can use for the apply step. Please provide your initials for the output file as indicated.
 
@@ -219,7 +213,7 @@ If you are using your own EC2 instance please skip to [3. Launch Instance](../..
         terraform plan -out=[YOUR_INITIALS].out
         ```
 
-    Next enter 1 to to create a single EC2 instance.
+    Next enter 1 to to create a single AWS/EC2 instance.
 
     === "Example"
 
@@ -230,7 +224,7 @@ If you are using your own EC2 instance please skip to [3. Launch Instance](../..
         Enter a value: 1
         ```
 
-    Enter your desired AWS Region where you wish to run the EC2 instance e.g. **us-west-2**
+    Enter your desired AWS Region where you wish to run the AWS/EC2 instance e.g. **us-west-2**
 
     === "Example"
 
@@ -281,7 +275,7 @@ If you are using your own EC2 instance please skip to [3. Launch Instance](../..
         terraform apply "[YOUR_INITIALS].out"
         ```
 
-    If there are no errors in the output and terraform has created your output file, you can start the apply phase of Terraform. This will create the instance in AWS EC2.
+    If there are no errors in the output and terraform has created your output file, you can start the apply phase of Terraform. This will create the AWS/EC2 instance.
 
     === "Input"
 
@@ -319,7 +313,7 @@ If you are using your own EC2 instance please skip to [3. Launch Instance](../..
 
     ---
 
-    **SSH into EC2 Instance**
+    **SSH into AWS/EC2 Instance**
 
     Once the instance has been successfully created (this can take several minutes), ssh into it.
     In most cases your ssh client will ask you to verify the connection.
@@ -376,4 +370,4 @@ If you are using your own EC2 instance please skip to [3. Launch Instance](../..
         ubuntu@ip-172-31-41-196:~$
         ```
 
-    Once your instance presents you with the App Dev logo, you have completed the preparation for your EC2 instance and can go directly to  the next lab [Deploying the Smart Agent in K3s](../../module4/k3s).
+    Once your instance presents you with the App Dev logo, you have completed the preparation for your AWS/EC2 instance and can go directly to  the next lab [Deploying the Smart Agent in K3s](../../module4/k3s).

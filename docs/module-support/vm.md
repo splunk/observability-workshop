@@ -81,7 +81,7 @@ To see the Metrics that the Smart Agent is sending to SignalFx, please goto the 
 
 ![Goto host](../images/module4/M3-hosts.png)
 
-Here you see a list of the Nodes that have an Smart Agent installed and are reporting into SignalFx. Make sure you see your Multipass/EC2 instance in the list of hosts. (The hostname from the previous section)
+Here you see a list of the Nodes that have an Smart Agent installed and are reporting into SignalFx. Make sure you see your Multipass or AWS/EC2 instance in the list of hosts. (The hostname from the previous section)
 
 You can also set a filter for just your instance by selecting the _host:_ attribute, followed by picking the name of your host from the drop down list.
 

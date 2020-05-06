@@ -1,17 +1,5 @@
 # Deploying Sock Shop in K3s
 
-{==
-
-Minimum recommended time to complete - **45 minutes**
-
-==}
-
-!!! important "Enabling µAPM"
-
-    An Organization needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already.
-
-    To check if you have an Organization with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards.
-
 !!! note
     The setup part is already documented in the [Preparation](../../module4/prep/) and [Deploy the Smart Agent in K3s](../../module4/k3s/) steps. Please ensure this instance is available and running before continuing.
 
@@ -29,10 +17,10 @@ Minimum recommended time to complete - **45 minutes**
         ```
 
 !!! Warning
-    The Sock Shop application requires some horse power to run it, please ensure you are running a Multipass or EC2 instance that can handle it.
+    The Sock Shop application requires some horse power to run it, please ensure you are running a Multipass or AWS/EC2 instance that can handle it.
 
     **Sock Shop Multipass min. requirements:** 4 vCPU, 15Gb Disk, 8Gb Memory 
-    **Sock Shop EC2 Instance min. requirements:** _t2.large_ 2 vCPU, 15Gb Disk, 8Gb Memory
+    **Sock Shop AWS/EC2 min. requirements:** _t2.large_ 2 vCPU, 15Gb Disk, 8Gb Memory
 
 ---
 
@@ -130,7 +118,7 @@ Then confirm the `SOCKS_ENDPOINT` environment variable has been set:
 
 ## 4. Viewing the SockShop application in your browser
 
-(If you are using an EC2 instance, please skip to this section.)
+(If you are using an AWS/EC2 instance, please skip to this section.)
 
 To view the application in your web browser we need to find the LoadBalancer IP address and the port the application is listening on.
 

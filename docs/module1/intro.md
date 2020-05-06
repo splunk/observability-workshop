@@ -6,12 +6,6 @@
 * Using formulas
 * Introduction to SignalFlow
 
-{==
-
-Minimum recommended time to complete - **30 minutes**
-
-==}
-
 ---
 
 ## 1. Introduction to the SignalFx UI

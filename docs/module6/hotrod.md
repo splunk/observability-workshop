@@ -5,20 +5,8 @@
 * Generate some artificial traffic
 * Validate traces in the UI
 
-{==
-
-Minimum recommended time to complete - **25 minutes**
-
-==}
-
-!!! important "Enabling µAPM"
-
-    An Organization needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already.
-
-    To check if you have an Organization with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards.
-
-!!! note
-    The setup part is already documented in the [Preparation](../../module4/prep/) and [Deploy the Smart Agent in K3s](../../module4/k3s/) steps. If you are using an EC2 instance, make sure it is available and skip to [Step 1](../../module6/hotrod/#1-deploy-the-hot-rod-application-into-k3s), otherwise ensure your Multipass instance is available and running before continuing.
+!!! note "Ensure you have a running instance"
+    The setup part is already documented in the [Preparation](../../module4/prep/) and [Deploy the Smart Agent in K3s](../../module4/k3s/) steps. If you are using an AWS/EC2 instance, make sure it is available and skip to [Step 1](../../module6/hotrod/#1-deploy-the-hot-rod-application-into-k3s), otherwise ensure your Multipass instance is available and running before continuing.
 
     === "Input"
 
@@ -37,7 +25,7 @@ Minimum recommended time to complete - **25 minutes**
 
 ## 1. Deploy the Hot R.O.D. application into K3s
 
-To deploy the Hot R.O.D. application into K3s apply the deployment
+To deploy the Hot R.O.D. application into K3s apply the deployment.
   
 === "Input"
 
@@ -72,8 +60,8 @@ To ensure the Hot R.O.D. application is running:
 
 ## 2. Viewing the Hot R.O.D. application in your browser
 
-!!! note
-    If you are using an EC2 instance, please skip to the next section [Generate Traffic](../../module6/hotrod/#4-generate-some-traffic-to-the-application-using-apache-benchmark).
+!!! note "AWC/EC2 Users@
+    If you are using an AWS/EC2 instance, please skip to the next section [Generate Traffic](../../module6/hotrod/#4-generate-some-traffic-to-the-application-using-apache-benchmark).
 
 In order to view the application in your web browser we need to find the `LoadBalancer` IP address and the port the application is listening on.
 

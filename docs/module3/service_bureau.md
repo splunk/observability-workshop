@@ -6,12 +6,6 @@
 * Adding notification rules to Teams
 * Controlling Team usage
 
-{==
-
-Minimum recommended time to complete - **20 minutes**
-
-==}
-
 ---
 
 ## 1. Understanding SignalFx engagement

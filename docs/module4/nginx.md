@@ -7,7 +7,7 @@
 
 ## 1. Start your NGINX
 
-Remain in the Multipass  or EC2 shell session and change into the `nginx` directory:
+Remain in the Multipass or AWS/EC2 shell session and change into the `nginx` directory:
 
 === "Input"
 
