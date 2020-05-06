@@ -6,17 +6,17 @@
 
 ## 1. Learn how to configure muting your alerts
 
-There are times when you, for a period of time, don't want to be disturbed by notifications for some non-critical alerts. For that you can use muting rules in SignalFx. Let's create one!
+There will be times when you might want to mute certain notifications. For example, if you want to schedule downtime for maintenance on a server or set of servers, or if you are testing new code or settings etc. For that you can use muting rules in SignalFx. Let's create one!
 
 Hover over **ALERTS** in the menu and from the drop down click on **Detectors**.
 
-![Detectors](../images/module2/M1-l2-10.png)
+![Detectors](../images/module2/detectors-menu.png){: .zoom}
 
-You will see a list of active alert detectors.
+You will see a list of active Detectors.
 
 ![Detectors](../images/module2/detector-list.png){: .zoom}
 
-If you created an alert detector in **Working with Detectors** you can click on the three dots **`...`** on the far right for that detector; if not, do that for another detector.  
+If you created an Detector in **Working with Detectors** you can click on the three dots **`...`** on the far right for that detector; if not, do that for another Detector.  
 
 From the drop-down click on **Create Muting Rule...**.
 
@@ -25,19 +25,19 @@ From the drop-down click on **Create Muting Rule...**.
 In the **Muting Rule** window check **Mute Indefinitely** and enter a reason.
 
 !!! note
-    This will mute the rule permanently until you come back here and un-check this box or resume notifications for this alert - we will see below how.
+    This will mute the nofications permanently until you come back here and un-check this box or resume notifications for this Detector.
 
-![Mute Indefinitely](../images/module2/mute-indefinitely.png){: .shadow}
+![Mute Indefinitely](../images/module2/mute-indefinitely.png){: .shadow .center}
 
 Click **Next** and in the new modal window confirm the muting rule setup.
 
-![Confirm Rule](../images/module2/confirm-rule.png){: .shadow}
+![Confirm Rule](../images/module2/confirm-rule.png){: .shadow .center}
 
-Click on **Mute Indefinitely** to confirm.
+Click on **Mute Indefinitely** button to confirm.
 
 ![List muted rule](../images/module2/alert-muted.png){: .zoom}
 
-You won't be receiving any email notifications from you alert detector until you resume notifications again. Let's now see how to do that.
+You won't be receiving any email notifications from you Detector until you resume notifications again. Let's now see how to do that!
 
 ---
 
@@ -45,7 +45,7 @@ You won't be receiving any email notifications from you alert detector until you
 
 To Resume notifications, hover over **ALERTS** in the top menu and click on **Muting Rules**. You will see the name of the detector you muted notifications for under **Detector**.
 
-![Resume](../images/module2/M1-l3-6.png)
+![Resume](../images/module2/muting-rules-menu.png){: .zoom}
 ![Resume](../images/module2/muting-list.png){: .zoom}
 
 ---
@@ -56,8 +56,8 @@ Click on **Resume Notifications**.
 
 ![Resume](../images/module2/resume-notifications.png){: .zoom}
 
-Click on **Resume** to confirm and resume notifications for this detector.
+Click on **Resume** to confirm and resume notifications for this Detector.
 
-![Resume](../images/module2/resume.png){: .shadow}
+![Resume](../images/module2/resume.png){: .shadow .center}
 
 **Congratulations!** You have now resumed your alert notifications!
