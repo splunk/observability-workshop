@@ -5,6 +5,7 @@ RESULT=$(curl -s -w "\n%{http_code}\n" \
   -H "Authorization: token $api_key"  \
   -d @- <<EOF
 {
+  "name": "Release $TRAVIS_TAG",
   "tag_name": "$TRAVIS_TAG",
   "tag_commitish": "master"
 }
