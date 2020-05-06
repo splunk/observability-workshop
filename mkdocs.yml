@@ -28,7 +28,7 @@ theme:
   logo: images/logo.png
   font:
     text: Roboto
-    code: Roboto Mono
+    code: Ubuntu Mono
   include_search_page: false
   search_index_only: true
   language: en
