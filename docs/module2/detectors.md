@@ -113,6 +113,6 @@ Hover over **ALERTS** in the top menu and then click on **Detectors**.
 
 You will see you alert detector listed here.
 
-![Detector List](../images/module2/M1-l2-11.png){: .zoom}
+![Detector List](../images/module2/active-alerts.png){: .zoom}
 
 Congrats! You have created your first alert detector and activated it!
