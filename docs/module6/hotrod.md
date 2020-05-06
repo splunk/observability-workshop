@@ -1,4 +1,9 @@
-# Deploying Hot R.O.D. in K3s
+# Deploying Hot R.O.D. in K3s - Lab Summary
+
+* Deploy application into K3s
+* Verify the application is running
+* Generate some artificial traffic
+* Validate traces in the UI
 
 {==
 
@@ -128,15 +133,14 @@ Create some errors with an invalid customer number
 
 ---
 
-## 4. Verify that APM traffic is reaching SignalFx
+## 4. Verify that µAPM traces are reaching SignalFx
 
-Open SignalFx in your browser and select the APM tab to open the APM UI.
+Open SignalFx in your browser and select the **µAPM** tab.
 
 ![select APM](../images/module6/select-apm.png){: .zoom}
 
-Select the troubleshooting tab, and select your environment and set the time to 15 minutes.
-This  should show you the dependency map for the hotrod app
+Select the **Troubleshooting** tab, and select your environment and set the time to 15 minutes. This will show you the Dependency Map for the Hot R.O.D. application.
 
 ![Hot R.O.D. in APM](../images/module6/hotrod-troubleshooting.png)
 
-If you did create some errors, they show up as the big red dot in the Redis service.
+If you did create some errors, they will show up as the big red dot in the Redis service.
