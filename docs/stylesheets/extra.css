@@ -45,7 +45,8 @@ a.md-logo img {
 }
 
 .md-nav__link:focus,
-.md-nav__link:hover {
+.md-nav__link:hover,
+.md-tabs__link--active {
     color: #E20082;
 }
 
