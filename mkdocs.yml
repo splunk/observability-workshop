@@ -87,7 +87,7 @@ nav:
       - 'Preparation': module4/prep.md
       - 'Deploy the Smart Agent in K3s': module4/k3s.md
       - 'Deploy NGINX in K3s' : module4/nginx.md
-    - '<b>Monitoring as Code</b><br />10minutes':
+    - '<b>Monitoring as Code</b><br />10 minutes':
       - 'Using Terraform': module5/terraform.md
     - '<b>µAPM</b><br />25-45 minutes':
       - 'µAPM Architecture Overview': module6/index.md
