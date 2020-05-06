@@ -26,8 +26,8 @@ data "aws_ami" "latest-ubuntu" {
 }
 variable "instance_type_aws" {
   default = {
-    "1" = "t2.micro"
-    "2" = "t2.large"
+    "1" = "t2.small"
+    "2" = "t2.xlarge"
   }
 }
 
