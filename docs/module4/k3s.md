@@ -60,10 +60,10 @@ Install the Smart Agent Helm chart with the following commands:
 === "Input"
 
     ```
-    : ${ACCESS_TOKEN? needs to be set}
-    : ${REALM? needs to be set}
-    : ${INITIALS? needs to be set}
-    : ${VERSION? needs to be set}
+    : ${ACCESS_TOKEN:? needs to be set}
+    : ${REALM:? needs to be set}
+    : ${INITIALS:? needs to be set}
+    : ${VERSION:? needs to be set}
     sed -i -e 's/\[INITIALS\]/'"$INITIALS"'/' ~/workshop/k3s/values.yaml
     helm install \
     --set signalFxAccessToken=$ACCESS_TOKEN \
