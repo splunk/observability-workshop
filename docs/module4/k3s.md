@@ -25,7 +25,7 @@ The Realm can be found in the middle of the page within the Organizations sectio
 
 ## 2. Use Helm to deploy agent
 
-Create the following variables to use in the proceeding helm install command:
+Create the following variables to use in the proceeding helm install command, replacing `[VARIABLE]` with the appropriate values. For instance, if your realm is `us1`, you would `export REALM=us1`.
 
 === "Input"
 
