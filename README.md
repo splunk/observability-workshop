@@ -3,6 +3,7 @@
 To get started, please proceed to [The Workshop Homepage](https://signalfx.github.io/app-dev-workshop/latest/).
 
 Previous versions of the workshop are also available:
+- [v1.13](https://signalfx.github.io/app-dev-workshop/v1.13/)
 - [v1.12](https://signalfx.github.io/app-dev-workshop/v1.12/)
 - [v1.11](https://signalfx.github.io/app-dev-workshop/v1.11/)
 - [v1.10](https://signalfx.github.io/app-dev-workshop/v1.10/)
