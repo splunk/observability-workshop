@@ -11,13 +11,13 @@
 
 In **DASHBOARDS** click on your dashboard group (the one with your email address) and then on the dashboard name where the chart you created in the previous lab resides or search for your previously created dashboard's name, and click on that dashboard's name in the results.
 
-![Dashboards](../images/module2/M1-l2-1.png){: .zoom}
+![Dashboards](../images/detectors/M1-l2-1.png){: .zoom}
 
 We are now going to create a new detector from this chart.
 
 Once you see the chart, click on the bell icon on your chart and then on **New Detector From Chart**.
 
-![Chart](../images/module2/M1-l2-2.png){: .zoom}
+![Chart](../images/detectors/M1-l2-2.png){: .zoom}
 
 In the text field next to **Detector Name**, **ADD YOUR INITIALS** before the proposed detector name.
 
@@ -27,13 +27,13 @@ In the text field next to **Detector Name**, **ADD YOUR INITIALS** before the pr
 
 Click on **Create Alert Rule**.
 
-![New Detector](../images/module2/M1-l2-3.png){: .zoom}
+![New Detector](../images/detectors/M1-l2-3.png){: .zoom}
 
 In the Detector window, inside **Alert signal**, the Signal we will alert on is marked with a (blue) bell in the **Alert on** column. The bell indicates which Signal is being used to generate the alert.
 
 Click on **Proceed to Alert Condition**.
 
-![Alert Signal](../images/module2/M1-l2-4.png){: .zoom}
+![Alert Signal](../images/detectors/M1-l2-4.png){: .zoom}
 
 ---
 
@@ -41,7 +41,7 @@ Click on **Proceed to Alert Condition**.
 
 In **Alert condition**, click on **Static Threshold** and then on **Proceed to Alert Settings**.
 
-![Alert Condition](../images/module2/M1-l2-5.png){: .zoom}
+![Alert Condition](../images/detectors/M1-l2-5.png){: .zoom}
 
 In **Alert Settings**, enter the value **`290`** in the **Threshold** field. In the same window change **Time** on top right to past day (**-1d**).
 
@@ -51,7 +51,7 @@ In **Alert Settings**, enter the value **`290`** in the **Threshold** field. In 
 
 SignalFx will now perform a pre-flight check after 5 seconds. See the **Estimated alert count**. Based on the current alert settings, the amount of alerts we would’ve received in 1 day would have been approx. **18**.
 
-![Threshold](../images/module2/M1-l2-6.png){: .zoom}
+![Threshold](../images/detectors/M1-l2-6.png){: .zoom}
 
 !!! note "About pre-flight checks"
     Once you set an alert condition, SignalFx shows how many alerts you would get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.
@@ -69,13 +69,13 @@ In **Alert Setting** click on **Proceed to Alert Message**.
 
 In **Alert message**, under **Severity** choose **Major**.
 
-![Alert Message](../images/module2/M1-l2-7.png){: .zoom}
+![Alert Message](../images/detectors/M1-l2-7.png){: .zoom}
 
 Click on **Proceed to Alert Recipients**.
 
 Click on **Add Recipient** and then on your email address displayed as the first option.
 
-![Add Recipient](../images/module2/M1-l2-8.png){: .zoom}
+![Add Recipient](../images/detectors/M1-l2-8.png){: .zoom}
 
 !!! note "Notification Services"
     That's the same as entering that email address OR you can enter another email address by clicking on **E-mail...**.
@@ -90,17 +90,17 @@ Click on **Proceed to Alert Activation**.
 
 In **Activate...** click on **Activate Alert Rule**.
 
-![Activate](../images/module2/M1-l2-9.png){: .zoom}
+![Activate](../images/detectors/M1-l2-9.png){: .zoom}
 
 If you want to get alerts quicker you can click back on **Alert Settings** and lower the value from **`290`** to say **`280`**.
 If you change the **Time** to **-1h** you can see how many alerts you might get with the threshold you have chosen based on the metics from the last 1 hour.
 
 Hover over **ALERTS** in the top menu and then click on **Detectors**.
 
-![Detectors](../images/module2/detectors-menu.png)
+![Detectors](../images/detectors/detectors-menu.png)
 
 You will see you detector listed here.
 
-![Detector List](../images/module2/active-alerts.png){: .zoom}
+![Detector List](../images/detectors/active-alerts.png){: .zoom}
 
 **Congratulations**! You have created your first detector and activated it!

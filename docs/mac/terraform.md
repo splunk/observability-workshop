@@ -16,7 +16,7 @@ Remaining in your Multipass or AWS/EC2 instance from the **Smart Agent** module,
     cd ~/signalfx-jumpstart
     ```
 
-The environment variables needed should already be set from [Deploy the Smart Agent in K3s](../../module4/k3s/#2-use-helm-to-deploy-agent). If not, create the following environment variables to use in the Terraform steps below
+The environment variables needed should already be set from [Deploy the Smart Agent in K3s](../../smartagent/k3s/#2-use-helm-to-deploy-agent). If not, create the following environment variables to use in the Terraform steps below
 
 === "Input"
 
@@ -122,7 +122,7 @@ If the plan executes successfully, we can go ahead and apply:
 
 Validate that the detectors were created, under the _**ALERTS → Detectors**_, you should see a list of new detectors with the a prefix of your initials:
 
-![Detectors](../images/module5/detectors.png)
+![Detectors](../images/mac/detectors.png)
 
 ---
 
@@ -150,4 +150,4 @@ Destroy all Detectors and Dashboards that were previously applied.
 
 Validate all the detectors have been removed by navigating to _**ALERTS → Detectors**_
 
-![Destroyed](../images/module5/destroy.png)
+![Destroyed](../images/mac/destroy.png)

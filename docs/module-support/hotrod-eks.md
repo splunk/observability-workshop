@@ -8,7 +8,7 @@
 
 ## 1. Launch the Multipass instance
 
-If you have not already completed the [Smart Agent Preparation](../../module4/prep/), then please do so, otherwise jump to [Step #2](../../module8/hotrod-eks/#2-create-environment-variables)
+If you have not already completed the [Smart Agent Preparation](../../smartagent/prep/), then please do so, otherwise jump to [Step #2](../../module8/hotrod-eks/#2-create-environment-variables)
 
 ## 2. Create environment variables
 

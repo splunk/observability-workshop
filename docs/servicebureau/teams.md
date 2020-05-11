@@ -20,7 +20,7 @@ This Dashboard has specific Dashboard Groups for NGINX, Infra and K8s assigned b
 
 They can use the menu along the top left to quickly navigate between their allocated teams, or they can use the **ALL TEAMS** dropdown on the right to select specific Team Dashboards, as well as quickly accessing **ALL DASHBOARDS** using the adjacent link.
 
-![Teams](../images/module3/m5-team-homepage.png){: .zoom}
+![Teams](../images/servicebureau/m5-team-homepage.png){: .zoom}
 
 Alerts can be linked to specific Teams so the Team can monitor only the Alerts they are interested in, and in the above example they currently have 1 active Critical Alert.
 
@@ -32,21 +32,21 @@ The Description for the Team Dashboard can be customized and can include links t
 
 To work with to SignalFx's Team UI click on the **Settings** icon on the top right of the SignalFx UI.
 
-![Settings Icon](../images/module3/M5-l1-1.png){: .zoom}
+![Settings Icon](../images/servicebureau/M5-l1-1.png){: .zoom}
 
-It may also look like this ![gray user icon](../images/module3/M5-l1-2.png). Select the **Organizations Settings → Teams** tab, or select the **Teams** tab from the left pane.
+It may also look like this ![gray user icon](../images/servicebureau/M5-l1-2.png). Select the **Organizations Settings → Teams** tab, or select the **Teams** tab from the left pane.
 
-![location of settings](../images/module3/M1-l7-7.jpg)
+![location of settings](../images/servicebureau/M1-l7-7.jpg)
 
 When the **Team** UI is selected you will be presented with the list of current Teams.
 
-To add a new **Team** click on the green ![Create team](../images/module3/M1-l7-15.jpg) button. This will present you with the **Create New Team** dialog.
+To add a new **Team** click on the green ![Create team](../images/servicebureau/M1-l7-15.jpg) button. This will present you with the **Create New Team** dialog.
 
-![Add Team](../images/module3/M1-l7-16.jpg){: .shadow}
+![Add Team](../images/servicebureau/M1-l7-16.jpg){: .shadow}
 
 Create your own team by naming it `[YOUR-INITIALS]-Team and` add yourself by searching for your name and selecting the **Add** link next to your name. This should result in a dialog similar to the one below:
 
-![Add Team complete](../images/module3/M1-l7-17.jpg)
+![Add Team complete](../images/servicebureau/M1-l7-17.jpg)
 
 You can remove selected users by pressing  **Remove** or the small **x**.
 
@@ -69,7 +69,7 @@ The **...** menu gives you the option to Edit, Join, Leave or Delete a Team (lea
 
 You can set up specific Notification rules per team, click on the **NOTIFICATION POLICY** tab, this will open the notification edit menu.
 
-![Base notification menu](../images/module3/M1-l7-18.jpg)
+![Base notification menu](../images/servicebureau/M1-l7-18.jpg)
 
 By default the system offers you the ability to set up a general notification rule for your team.
 
@@ -78,11 +78,11 @@ By default the system offers you the ability to set up a general notification ru
 
 ### 3.1 Adding recipients
 
-You can add other recipients, by clicking ![add recipient](../images/module3/M1-l7-19.jpg). These recipients do not need to be SignalFx users.
+You can add other recipients, by clicking ![add recipient](../images/servicebureau/M1-l7-19.jpg). These recipients do not need to be SignalFx users.
 
 However if you click on the link **Configure separate notification tiers for different severity alerts** you can configure every alert level independently.
 
-![Multiple Notifications](../images/module3/M1-l7-10.jpg)
+![Multiple Notifications](../images/servicebureau/M1-l7-10.jpg)
 
 Different alert rules for the different alert levels can be configured, as shown in the above image.
 
@@ -92,7 +92,7 @@ Critical and Major are using [Splunk's VictorOps](https://victorops.com/) Incide
 
 In addition to sending alert notifications via email, you can configure SignalFx to send alert notifications to the services shown below.
 
-![Notifications options](../images/module3/integrations.png){: .zoom}
+![Notifications options](../images/servicebureau/integrations.png){: .zoom}
 
 Take a moment to create some notification rules for you Team.
 
@@ -104,9 +104,9 @@ If you wish to control the consumption of Hosts, Containers, Custom Metrics and 
 
 Assuming you are still within the Organization Overview section, simply select the **Access Tokens** tab from the left pane.
 
-![Select Token](../images/module3/M1-l7-13.jpg)
+![Select Token](../images/servicebureau/M1-l7-13.jpg)
 
-However to get to this section from anywhere click on the settings ![gray user icon](../images/module3/M5-l1-2.png) icon at the top right top of the page and select **Organizations Settings → Access tokens**
+However to get to this section from anywhere click on the settings ![gray user icon](../images/servicebureau/M5-l1-2.png) icon at the top right top of the page and select **Organizations Settings → Access tokens**
 
 The **Access Tokens** Interface provides an overview of your Allotments in the form of a list of Access Tokens that have been generated. Every Organization will have a **Default** token generated when they are first setup, but there will typically be multiple Tokens configured.
 
@@ -114,23 +114,23 @@ Each Token is unique and can be assigned limits for the amount of Hosts, Contain
 
 The **Usage Status** Column quickly shows if a token is above or below its assigned limits.
 
-![New token](../images/module3/M1-l7-21.jpg)
+![New token](../images/servicebureau/M1-l7-21.jpg)
 
 ### 4.1 Creating a new token
 
-Let create a new token by clicking on  the ![new token button](../images/module3/M1-l7-22.jpg) button. This will provide you with the **Name Your Access Token** dialog.
+Let create a new token by clicking on  the ![new token button](../images/servicebureau/M1-l7-22.jpg) button. This will provide you with the **Name Your Access Token** dialog.
 
 Enter the new name of the new Token by using your Initials e.g. PH-Token
 
-![Name Your token](../images/module3/M1-l7-23.jpg){: .shadow}
+![Name Your token](../images/servicebureau/M1-l7-23.jpg){: .shadow}
 
 After you press Ok,  you will be taken back to the **Access Token** UI, here your new token should be present, among the ones created by others.
 
-![full tokenlist](../images/module3/M1-l7-24.jpg)
+![full tokenlist](../images/servicebureau/M1-l7-24.jpg)
 
 If you have made an error in your naming, want to disable/enable a token or set a Token limit, click on the 3 **...** menu button behind a token limit to open the manage token menu.
 
-![Show Menu](../images/module3/M1-l7-25.jpg)
+![Show Menu](../images/servicebureau/M1-l7-25.jpg)
 
 If you made a typo you can use the Rename Token option to correct the name of your token.
 
@@ -142,7 +142,7 @@ Click on the Disable button to Disable the token, this means the token cannot be
 
 The line with Your Token should become greyed out to indicate that is has been Disabled as you can see in the screenshot below.
 
-![Token disabled](../images/module3/M1-l7-26.jpg)
+![Token disabled](../images/servicebureau/M1-l7-26.jpg)
 
 Go ahead and click on the 3 **...** menu button to Disable and Enable your token.
 
@@ -152,7 +152,7 @@ Now Lets start limiting usage by clicking on Manage Token Limit in the 3 **...**
 
 This will show the Manage Token Limit Dialog:
 
-![Set Limits on token](../images/module3/M1-l7-12.jpg){: .shadow}
+![Set Limits on token](../images/servicebureau/M1-l7-12.jpg){: .shadow}
 
 In this Dialog you can set the limits per category.
 

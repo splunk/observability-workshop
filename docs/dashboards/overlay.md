@@ -8,13 +8,13 @@ In the **METRICS** sidebar on the right, enter **`demo`** and click on the searc
 
 Observe that the **Find Metrics** option is pre-selected.
 
-![Find metrics](../images/module1/M1-l1-25.png){: .zoom}
+![Find metrics](../images/dashboards/M1-l1-25.png){: .zoom}
 
 The metrics search is showing 3 metrics with **`demo`** in the name.
 
 Select **`demo.trans.count`** and click on the **Add Plot** green button.
 
-![Add Plot](../images/module1/M1-l1-26.png)
+![Add Plot](../images/dashboards/M1-l1-26.png)
 
 Click on the blue eye icon next to **C** to hide that Signal, and on the greyed eye icon for Signal **A** to show it.
 
@@ -22,7 +22,7 @@ On plot **D**, apply the **Percentile:Aggregation** function and set to **`95`**
 
 Enter **`-1h`** in the **Time** frame for the entire chart.
 
-![Aggregation](../images/module1/M1-l1-27.png){: .zoom}
+![Aggregation](../images/dashboards/M1-l1-27.png){: .zoom}
 
 We see that there is a correlation between latency and number of transactions.
 
@@ -31,4 +31,4 @@ We see that there is a correlation between latency and number of transactions.
 
 Click on the the greater than sign icon to collapse the **METRICS** sidebar.
 
-![Collapse Sidebar](../images/module1/M1-l1-28.png)
+![Collapse Sidebar](../images/dashboards/M1-l1-28.png)

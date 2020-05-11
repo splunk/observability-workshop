@@ -35,18 +35,18 @@ Login to your SignalFx account and navigate to Integrations and use the search f
 
 However the process of creating a new Integration is simply to click on `Create New Integration` like in the image below, or if there are existing integrations and you want to add another one you would click `New Integration`.
 
-![VictorOps Integration](../images/module7/m7-sfx-new-vo-integration.png)
+![VictorOps Integration](../images/victorops/m7-sfx-new-vo-integration.png)
 
 ...give it a descriptive `Name` then paste the `Service_API_Endpoint` value you copied in the previous step into the `Post URL` field, then save it.
 
-![VictorOps Integration](../images/module7/m7-sfx-vo-integration-url.png)
+![VictorOps Integration](../images/victorops/m7-sfx-vo-integration-url.png)
 
 !!! important
     SignalFx can integrate with multiple VictorOps accounts so it is important when creating one to use a descriptive name and to not simply call it VictorOps.  This name will be used within the SignalFx UI when selecting this integration, so ensure it is unambiguous
 
 Once saved you need to copy the ID and save it in your `values document` using the `SFXVOPSID` parameter for use later in the module.
 
-![VictorOps Integration](../images/module7/m7-sfx-vo-integration-id.png)
+![VictorOps Integration](../images/victorops/m7-sfx-vo-integration-id.png)
 
 !!! warning
     Please do not create additional VictorOps integrations if one already exists, it will not break anything but simply creates extra clean up work after the workshop has completed.  The aim of this part of the lab was to show you how you would go about configuring the Integration if it was not already enabled.
@@ -71,11 +71,11 @@ We will use cloud-init to install the SignalFx Agent into the VMs but we first n
 
 You can find your Access Token by clicking on the `settings` icon on the top right of the SignalFx UI, select `Organization Settings` → `Access Tokens`, expand the Default token, then click on `Show Token` to expose your token, click the `Copy` button to copy it to your clipboard, then paste it into your `values document` using the `ACCESS_TOKEN` parameter.
 
-![Access Token](../images/module7/m7-access-token.png)
+![Access Token](../images/victorops/m7-access-token.png)
 
 You will also need to obtain the name of the Realm for your SignalFx account.  Click on the `account` icon again, but this time select `My Profile`.  The Ream can be found in the middle of the page within the Organizations section.  In this example it is `us1`. Again, make a note of this in your `values document` using the `REALM` parameter.
 
-![Realm](../images/module7/m7-realm.png)
+![Realm](../images/victorops/m7-realm.png)
 
 ### 2.3. Local VMs using Multipass
 
@@ -265,7 +265,7 @@ Create a new Terraform Workspace which will track the state for this environment
     for this configuration.
     ```
 
-It is considered best practice to run a `terraform plan` to see what changes may get made and check for potential errors before running an apply as we did in [Monitoring as Code](../../module5/terraform/), however as the first stage of apply is to plan we can safely skip that step and just run apply.  Check the plan output for errors before typing _**yes**_ to commit the apply.
+It is considered best practice to run a `terraform plan` to see what changes may get made and check for potential errors before running an apply as we did in [Monitoring as Code](../../mac/terraform/), however as the first stage of apply is to plan we can safely skip that step and just run apply.  Check the plan output for errors before typing _**yes**_ to commit the apply.
 
 === "Input"
 

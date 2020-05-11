@@ -8,7 +8,7 @@
 * Validate NGNIX metrics are flowing
 
 !!! note
-    If you have been give access to a pre-provisioned AWS/EC2 instance, you can ignore the rest of this preparation lab and go straight to the next lab [Deploying the Smart Agent in Kubernetes (K3s)](../../module4/k3s).
+    If you have been give access to a pre-provisioned AWS/EC2 instance, you can ignore the rest of this preparation lab and go straight to the next lab [Deploying the Smart Agent in Kubernetes (K3s)](../../smartagent/k3s).
 
 ---
 
@@ -49,7 +49,7 @@ Regardless if you are running this lab locally or if you are going to create you
 
         Once downloaded, unzip the the file and rename it to `workshop`. Then, from the command prompt change into that directory.
 
-If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](../../module4/prep/#3-launch-instance) and select the **Launch AWS/EC2 instance** tab
+If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](../../smartagent/prep/#3-launch-instance) and select the **Launch AWS/EC2 instance** tab
 
 ---
 
@@ -63,7 +63,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
         During the build of your Multipass instance you need to provide a name, please use your initials `[YOUR_INITIALS]-k3s` so that the value of the instance hostname is unique e.g. `rwc-k3s`
 
     !!! Warning
-        In the [µAPM](../../module6/) module there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
+        In the [µAPM](../../apm/) module there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
 
         **Hot R.O.D Multipass min. requirements:** 1 vCPU, 5Gb Disk, 1Gb Memory
 
@@ -110,7 +110,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
         ubuntu@rwc-k3s:~$
         ```
 
-    Once your instance presents you with the App Dev logo, you have completed the preparation for your Multipass instance and can go directly to  the next lab [Deploying the Smart Agent in K3s](../../module4/k3s).
+    Once your instance presents you with the App Dev logo, you have completed the preparation for your Multipass instance and can go directly to  the next lab [Deploying the Smart Agent in K3s](../../smartagent/k3s).
 
 === "Launch AWS/EC2 instance"
 
@@ -120,7 +120,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
         You will need access to an AWS account to obtain both `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
 
     !!! warning "Minimum requirements"
-        In the [µAPM](../../module6/) module there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
+        In the [µAPM](../../apm/) module there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
 
         **Hot R.O.D AWS/EC2 Instance min. requirements:** _t2.micro_ 1 vCPU, 8Gb Disk, 1Gb Memory
 
@@ -370,4 +370,4 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
         ubuntu@ip-172-31-41-196:~$
         ```
 
-    Once your instance presents you with the App Dev logo, you have completed the preparation for your AWS/EC2 instance and can go directly to  the next lab [Deploying the Smart Agent in K3s](../../module4/k3s).
+    Once your instance presents you with the App Dev logo, you have completed the preparation for your AWS/EC2 instance and can go directly to  the next lab [Deploying the Smart Agent in K3s](../../smartagent/k3s).

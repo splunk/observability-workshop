@@ -72,34 +72,34 @@ nav:
   - 'Home': index.md
   - '<b>SignalFx</b>':
     - '<b>Smart Agent</b><br /><small>20 minutes</small>':
-      - 'Preparation': module4/prep.md
-      - 'Deploy the Smart Agent in K3s': module4/k3s.md
-      - 'Deploy NGINX in K3s' : module4/nginx.md
+      - 'Preparation': smartagent/prep.md
+      - 'Deploy the Smart Agent in K3s': smartagent/k3s.md
+      - 'Deploy NGINX in K3s' : smartagent/nginx.md
     - '<b>Dashboards</b><br /><small>30 minutes</small>':
-      - 'Introduction': module1/intro.md
-      - 'Editing Charts': module1/editing.md
-      - 'Using filters': module1/filtering.md
-      - 'Using formulas': module1/formulas.md
-      - 'Using overlays': module1/overlay.md
-      - 'SignalFlow': module1/signalflow.md
-      - 'Adding charts': module1/adding-charts.md
+      - 'Introduction': dashboards/intro.md
+      - 'Editing Charts': dashboards/editing.md
+      - 'Using filters': dashboards/filtering.md
+      - 'Using formulas': dashboards/formulas.md
+      - 'Using overlays': dashboards/overlay.md
+      - 'SignalFlow': dashboards/signalflow.md
+      - 'Adding charts': dashboards/adding-charts.md
     - '<b>Detectors</b><br /><small>15 minutes</small>':
-      - 'Working with Detectors': module2/detectors.md
-      - 'Working with Muting Rules': module2/muting.md
+      - 'Working with Detectors': detectors/detectors.md
+      - 'Working with Muting Rules': detectors/muting.md
     - '<b>Monitoring as Code</b><br /><small>10 minutes</small>':
-      - 'Using Terraform': module5/terraform.md
+      - 'Using Terraform': mac/terraform.md
     - '<b>µAPM</b><br /><small>25-45 minutes</small>':
-      - 'µAPM Architecture Overview': module6/index.md
-      - 'Deploying Hot R.O.D. in K3s': module6/hotrod.md
-      - 'Deploying Sock Shop in K3s': module6/sockshop.md
+      - 'µAPM Architecture Overview': apm/index.md
+      - 'Deploying Hot R.O.D. in K3s': apm/hotrod.md
+      - 'Deploying Sock Shop in K3s': apm/sockshop.md
     - '<b>Service Bureau</b><br /><small>20 minutes</small>':
-        - 'Billing and Usage' : module3/service_bureau.md
-        - 'Teams' : module3/teams.md
+        - 'Billing and Usage' : servicebureau/service_bureau.md
+        - 'Teams' : servicebureau/teams.md
     - '<b>Post Workshop Clean Up</b>': module-support/cleanup.md
     - '<b>Optional Modules</b>':
       - 'Deploying Hot R.O.D. in EKS': module-support/hotrod-eks.md
       - 'Deploy Smart Agent on a VM': module-support/vm.md
   - '<b>VictorOps</b>':
-    - 'Getting Started': module7/vo_getting_started.md
-    - 'Integrations': module7/vo_integrations.md
-    - 'Incident Lifecycle': module7/vo_incident_lifecycle.md
+    - 'Getting Started': victorops/vo_getting_started.md
+    - 'Integrations': victorops/vo_integrations.md
+    - 'Incident Lifecycle': victorops/vo_incident_lifecycle.md

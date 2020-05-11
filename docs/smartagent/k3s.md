@@ -13,13 +13,13 @@ You can find your Access Token by clicking on your profile icon on the top right
 
 Expand the Default token, then click on **Show Token** to expose your token. Click the **Copy** button to copy to clipboard.
 
-![Access Token](../images/module4/m3-access-token.png){: .zoom}
+![Access Token](../images/smartagent/m3-access-token.png){: .zoom}
 
 You will also need to obtain the name of the Realm for your SignalFx account.  Click on the profile icon again, but this time select **My Profile**.
 
 The Realm can be found in the middle of the page within the Organizations section.  In this example it is `us1`.
 
-![Realm](../images/module4/m3-realm.png)
+![Realm](../images/smartagent/m3-realm.png)
 
 ---
 
@@ -135,18 +135,18 @@ Use the label set by the `helm` install to tail logs (You will need to press ++c
 
 In the SignalFx UI, goto **INFRASTRUCTURE → Kubernetes Navigator → Cluster Map** and open the Kubernetes Navigator Cluster Map to ensure metrics are being sent.
 
-![Selecting the Kubernetes Navigator Map](../images/module4/clustermap-nav.png)
+![Selecting the Kubernetes Navigator Map](../images/smartagent/clustermap-nav.png)
 
 ---
 
 Validate that your cluster is discovered and reporting by finding your cluster by searching for `[YOUR_INITIALS]-SFX-WORKSHOP` (in the workshop you will see many other clusters).
 
-![K8S Clusters Filter](../images/module4/M3-l1-selecting-k3-cluster.png)
+![K8S Clusters Filter](../images/smartagent/M3-l1-selecting-k3-cluster.png)
 
-To examine the health of your node, first click on the blue cross ![blue cross](../images/module4/M3-l1-blue-cross.png) on your cluster.
+To examine the health of your node, first click on the blue cross ![blue cross](../images/smartagent/M3-l1-blue-cross.png) on your cluster.
 
 This will drill down to the node level.  Next, open the side bar by clicking on the side bar button to open the Metrics side bar.
 
 Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: CPU, Memory, Network, Events etc.
 
-![Sidebar metrics](../images/module4/M3-l1-explore-metrics.png)
+![Sidebar metrics](../images/smartagent/M3-l1-explore-metrics.png)

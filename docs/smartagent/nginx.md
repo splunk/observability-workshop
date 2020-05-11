@@ -17,7 +17,7 @@ Remain in the Multipass or AWS/EC2 shell session and change into the `nginx` dir
 
 Verify the number of pods running in the SignalFx UI by selecting the **WORKLOADS** tab. This should give you an overview of the workloads on your cluster.
 
-![Workload Agent](../images/module4/k8s-workloads.png){: .zoom}
+![Workload Agent](../images/smartagent/k8s-workloads.png){: .zoom}
 
 Note the single agent container running per node among the default Kubernetes pods. This single container will monitor all the pods and services being deployed on this node!
 
@@ -61,11 +61,11 @@ If you have the SignalFx UI open you should see new Pods being started and conta
 
 It should only take around 20 seconds for the pods to transition into a Running state. In the SignalFx UI you should have a cluster that looks like below:
 
-![back to Cluster](../images/module4/cluster.png){: .zoom}
+![back to Cluster](../images/smartagent/cluster.png){: .zoom}
 
 If you select the **WORKLOADS** tab again you should now see that there is a new replica set and a deployment added for NGINX:
 
-![NGINX loaded](../images/module4/k8s-workloads-nginx.png){: .zoom}
+![NGINX loaded](../images/smartagent/k8s-workloads-nginx.png){: .zoom}
 
 ---
 
@@ -154,4 +154,4 @@ Validate you are seeing metrics in the UI by going to **Dashboards → NGINX →
 !!! tip
     You can again apply the filter `kubernetes_cluster: [YOUR_INITIALS]-SFX-WORKSHOP` to focus on only your metrics.
 
-![NGINX Dashboard](../images/module4/nginx-dashboard.png){: .zoom}
+![NGINX Dashboard](../images/smartagent/nginx-dashboard.png){: .zoom}

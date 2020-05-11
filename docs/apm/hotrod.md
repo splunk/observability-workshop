@@ -6,7 +6,7 @@
 * Validate traces in the UI
 
 !!! note "Ensure you have a running instance"
-    The setup part is already documented in the [Preparation](../../module4/prep/) and [Deploy the Smart Agent in K3s](../../module4/k3s/) steps. If you are using an AWS/EC2 instance, make sure it is available and skip to [Step 1](../../module6/hotrod/#1-deploy-the-hot-rod-application-into-k3s), otherwise ensure your Multipass instance is available and running before continuing.
+    The setup part is already documented in the [Preparation](../../smartagent/prep/) and [Deploy the Smart Agent in K3s](../../smartagent/k3s/) steps. If you are using an AWS/EC2 instance, make sure it is available and skip to [Step 1](../../apm/hotrod/#1-deploy-the-hot-rod-application-into-k3s), otherwise ensure your Multipass instance is available and running before continuing.
 
     === "Input"
 
@@ -61,7 +61,7 @@ To ensure the Hot R.O.D. application is running:
 ## 2. Viewing the Hot R.O.D. application in your browser
 
 !!! note "AWC/EC2 Users@
-    If you are using an AWS/EC2 instance, please skip to the next section [Generate Traffic](../../module6/hotrod/#4-generate-some-traffic-to-the-application-using-apache-benchmark).
+    If you are using an AWS/EC2 instance, please skip to the next section [Generate Traffic](../../apm/hotrod/#4-generate-some-traffic-to-the-application-using-apache-benchmark).
 
 In order to view the application in your web browser we need to find the `LoadBalancer` IP address and the port the application is listening on.
 
@@ -81,7 +81,7 @@ In order to view the application in your web browser we need to find the `LoadBa
 
 Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). Open your web browser and type in `http://[EXTERNAL-IP]:8080`, you will then be able to see the application running. Click on customer name to order a car:
 
-![Hot R.O.D. Application](../images/module6/hotrod-app.png)
+![Hot R.O.D. Application](../images/apm/hotrod-app.png)
 
 ---
 
@@ -125,10 +125,10 @@ Create some errors with an invalid customer number
 
 Open SignalFx in your browser and select the **µAPM** tab.
 
-![select APM](../images/module6/select-apm.png){: .zoom}
+![select APM](../images/apm/select-apm.png){: .zoom}
 
 Select the **Troubleshooting** tab, and select your environment and set the time to 15 minutes. This will show you the Dependency Map for the Hot R.O.D. application.
 
-![Hot R.O.D. in APM](../images/module6/hotrod-troubleshooting.png)
+![Hot R.O.D. in APM](../images/apm/hotrod-troubleshooting.png)
 
 If you did create some errors, they will show up as the big red dot in the Redis service.

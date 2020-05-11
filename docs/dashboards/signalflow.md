@@ -4,11 +4,11 @@ Let's take a look at **SignalFlow** - the analytics language of SignalFx that ca
 
 Click on **View SignalFlow**.
 
-![SignalFlow](../images/module1/M1-l1-29.png)
+![SignalFlow](../images/dashboards/M1-l1-29.png)
 
 You will see the **SignalFlow** code that composes the chart we were working on.
 
-![Code](../images/module1/M1-l1-30.png){: .zoom}
+![Code](../images/dashboards/M1-l1-30.png){: .zoom}
 
 === "SignalFlow"
 
@@ -25,4 +25,4 @@ For more info on SignalFlow see [Getting started with SignalFlow](https://docs.s
 
 Click on **View Builder** to go back to the Chart **Builder** UI.
 
-![View Builder](../images/module1/M1-l1-31.png)
+![View Builder](../images/dashboards/M1-l1-31.png)

@@ -4,7 +4,7 @@
 
     Once you have finished with this Workshop `exit` from the AWS/EC2 instance to get back to your system command prompt.
     
-    Enter the following to delete the Multipass instance, replace `[YOUR_INITIALS]` with the ones you used in [Smart Agent](../../module4/prep/) module:
+    Enter the following to delete the Multipass instance, replace `[YOUR_INITIALS]` with the ones you used in [Smart Agent](../../smartagent/prep/) module:
 
     ```bash
     multipass delete --purge [YOUR_INITIALS]-k3s
@@ -14,7 +14,7 @@
 
     Once you have finished with this Workshop `exit` from the AWS/EC2 instance to get back to your system command prompt.
     
-    We will use Terraform to destroy the instance with the parameters you used in [Smart Agent](../../module4/prep/) module:
+    We will use Terraform to destroy the instance with the parameters you used in [Smart Agent](../../smartagent/prep/) module:
 
     ```bash
     cd ~/workshop/ec2
