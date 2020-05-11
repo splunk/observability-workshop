@@ -70,6 +70,10 @@ plugins:
 nav:
   - 'Home': index.md
   - '<b>SignalFx</b>':
+    - '<b>Smart Agent</b><br /><small>20 minutes</small>':
+      - 'Preparation': module4/prep.md
+      - 'Deploy the Smart Agent in K3s': module4/k3s.md
+      - 'Deploy NGINX in K3s' : module4/nginx.md
     - '<b>Dashboards</b><br /><small>30 minutes</small>':
       - 'Introduction': module1/intro.md
       - 'Editing Charts': module1/editing.md
@@ -81,19 +85,15 @@ nav:
     - '<b>Detectors</b><br /><small>15 minutes</small>':
       - 'Working with Detectors': module2/detectors.md
       - 'Working with Muting Rules': module2/muting.md
-    - '<b>Service Bureau</b><br /><small>20 minutes</small>':
-        - 'Billing and Usage' : module3/service_bureau.md
-        - 'Teams' : module3/teams.md
-    - '<b>Smart Agent</b><br /><small>20 minutes</small>':
-      - 'Preparation': module4/prep.md
-      - 'Deploy the Smart Agent in K3s': module4/k3s.md
-      - 'Deploy NGINX in K3s' : module4/nginx.md
     - '<b>Monitoring as Code</b><br /><small>10 minutes</small>':
       - 'Using Terraform': module5/terraform.md
     - '<b>µAPM</b><br /><small>25-45 minutes</small>':
       - 'µAPM Architecture Overview': module6/index.md
       - 'Deploying Hot R.O.D. in K3s': module6/hotrod.md
       - 'Deploying Sock Shop in K3s': module6/sockshop.md
+    - '<b>Service Bureau</b><br /><small>20 minutes</small>':
+        - 'Billing and Usage' : module3/service_bureau.md
+        - 'Teams' : module3/teams.md
     - '<b>Post Workshop Clean Up</b>': module-support/cleanup.md
     - '<b>Optional Modules</b>':
       - 'Deploying Hot R.O.D. in EKS': module-support/hotrod-eks.md
