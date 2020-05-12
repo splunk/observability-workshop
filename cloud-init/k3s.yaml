@@ -30,7 +30,7 @@ write_files:
        if [ -z ${REALM+x} ]; then echo "REALM is unset. Please export REALM=YOURREALM"; return; fi
        if [ -z ${VERSION+x} ]; then echo "VERSION is unset. Please export VERSION=5.1.6"; return; fi
      command helm "$@"
-}
+     }
    append: true
 
 runcmd:
