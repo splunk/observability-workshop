@@ -72,7 +72,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
     Ask which version is going to be used as part of this Workshop, then select either the Hot R.O.D or Sock Shop Multipass launch parameters. Lines highlighted in yellow need to be edited:
     === "Hot R.O.D"
 
-        ```text hl_lines="2"
+        ```text
         export INSTANCE=$(openssl rand -hex 12 | sed 's/^[0-9]*//g'| cut -c 1-4)-k3s
         multipass launch \
         --name $INSTANCE \
@@ -81,7 +81,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     === "Sock Shop"
 
-        ```text hl_lines="2"
+        ```text
         export INSTANCE=$(openssl rand -hex 12 | sed 's/^[0-9]*//g'| cut -c 1-4)-k3s
         multipass launch \
         --name $INSTANCE \
@@ -93,7 +93,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     === "Input"
 
-        ```bash hl_lines="1"
+        ```bash
         multipass shell $INSTANCE
         ```
 
