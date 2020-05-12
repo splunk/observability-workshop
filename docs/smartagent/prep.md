@@ -73,16 +73,18 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
     === "Hot R.O.D"
 
         ```text hl_lines="2"
+        export INSTANCE=$(openssl rand -hex 12 | sed 's/^[0-9]*//g'| cut -c 1-4)-k3s
         multipass launch \
-        --name [YOUR_INITIALS]-k3s \
+        --name $INSTANCE \
         --cloud-init cloud-init/k3s.yaml
         ```
 
     === "Sock Shop"
 
         ```text hl_lines="2"
+        export INSTANCE=$(openssl rand -hex 12 | sed 's/^[0-9]*//g'| cut -c 1-4)-k3s
         multipass launch \
-        --name [YOUR_INITIALS]-k3s \
+        --name $INSTANCE \
         --cloud-init cloud-init/k3s.yaml \
         --cpus 4 --disk 15G --mem 8G
         ```
@@ -92,7 +94,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
     === "Input"
 
         ```bash hl_lines="1"
-        multipass shell [YOUR_INITIALS]-k3s
+        multipass shell $INSTANCE
         ```
 
     === "Output"
