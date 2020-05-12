@@ -87,8 +87,7 @@ nav:
     - '<b>Detectors</b><br /><small>15 minutes</small>':
       - 'Working with Detectors': detectors/detectors.md
       - 'Working with Muting Rules': detectors/muting.md
-    - '<b>Monitoring as Code</b><br /><small>10 minutes</small>':
-      - 'Using Terraform': mac/terraform.md
+    - '<b>Monitoring as Code</b><br /><small>10 minutes</small>': mac/terraform.md
     - '<b>µAPM</b><br /><small>25-45 minutes</small>':
       - 'µAPM Architecture Overview': apm/index.md
       - 'Deploying Hot R.O.D. in K3s': apm/hotrod.md
@@ -101,6 +100,6 @@ nav:
       - 'Deploying Hot R.O.D. in EKS': module-support/hotrod-eks.md
       - 'Deploy Smart Agent on a VM': module-support/vm.md
   - '<b>VictorOps</b>':
-    - 'Getting Started': victorops/vo_getting_started.md
-    - 'Integrations': victorops/vo_integrations.md
-    - 'Incident Lifecycle': victorops/vo_incident_lifecycle.md
+    - '<b>Getting Started</b><br /><small>30 minutes</small>': victorops/vo_getting_started.md
+    - '<b>Integrations</b><br /><small>30 minutes</small>': victorops/vo_integrations.md
+    - '<b>Incident Lifecycle</b><br /><small>30 minutes</small>': victorops/vo_incident_lifecycle.md
