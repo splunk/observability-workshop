@@ -91,13 +91,13 @@ nav:
     - '<b>µAPM</b><br /><small>25-45 minutes</small>':
       - 'µAPM Architecture Overview': apm/index.md
       - 'Deploying Hot R.O.D. in K3s': apm/hotrod.md
-      - 'Deploying Sock Shop in K3s': apm/sockshop.md
     - '<b>Service Bureau</b><br /><small>20 minutes</small>':
         - 'Billing and Usage' : servicebureau/service_bureau.md
         - 'Teams' : servicebureau/teams.md
     - '<b>Post Workshop Clean Up</b>': module-support/cleanup.md
     - '<b>Optional Modules</b>':
       - 'Deploying Hot R.O.D. in EKS': module-support/hotrod-eks.md
+      - 'Deploying Sock Shop in K3s': apm/sockshop.md
       - 'Deploy Smart Agent on a VM': module-support/vm.md
   - '<b>VictorOps</b>':
     - '<b>Getting Started</b><br /><small>30 minutes</small>': victorops/vo_getting_started.md
