@@ -78,7 +78,7 @@ nav:
       - 'Deploy NGINX in K3s' : smartagent/nginx.md
     - '<b>Dashboards</b><br /><small>30 minutes</small>':
       - 'Introduction': dashboards/intro.md
-      - 'Editing Charts': dashboards/editing.md
+      - 'Editing charts': dashboards/editing.md
       - 'Using filters': dashboards/filtering.md
       - 'Using formulas': dashboards/formulas.md
       - 'Using overlays': dashboards/overlay.md
