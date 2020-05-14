@@ -128,7 +128,7 @@ Validate that the detectors were created, under the _**ALERTS → Detectors**_, 
 
 ## 4. Destroy all your hard work
 
-You will first need to ensure you are in the correct workspace, replace `[WORKSPACE_NAME]` with the name created in the initial setup)
+You will first need to ensure you are in the the workspace you created in **Step #1**:
 
 === "Input"
 
