@@ -25,15 +25,15 @@ The Realm can be found in the middle of the page within the Organizations sectio
 
 ## 2. Use Helm to deploy agent
 
-Create the following variables to use in the proceeding helm install command, replacing `[VARIABLE]` with the appropriate values. For instance, if your realm is `us1`, you would `export REALM=us1`.
+Create the following variables to use in the proceeding helm install command, replacing the highlighted `{==VARIABLE==}` with the appropriate values. For instance, if your realm is `us1`, you would `export REALM=us1`.
 
 === "Input"
 
     ```
-    export ACCESS_TOKEN=[ACCESS_TOKEN]
-    export REALM=[REALM e.g. us1]
-    export INITIALS=[YOUR_INITIALS e.g. RWC]
-    export VERSION=[VERSION e.g. 5.1.2]
+    export ACCESS_TOKEN={==ACCESS_TOKEN==}
+    export REALM={==REALM e.g. us1==}
+    export INITIALS={==YOUR_INITIALS e.g. RWC==}
+    export VERSION={==VERSION e.g. 5.1.6==}
     ```
 
 !!! note
@@ -55,7 +55,7 @@ Ensure the latest version of the SignalFx Helm repository
     helm repo update
     ```
 
-Install the Smart Agent Helm chart with the following commands:
+Install the Smart Agent Helm chart with the following commands, do **not** edit this:
 
 === "Input"
 

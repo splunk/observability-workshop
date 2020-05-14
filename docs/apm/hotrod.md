@@ -17,8 +17,8 @@
     === "Output"
 
         ```
-        Name                    State             IPv4             Image
-        rwc-k3s                 Running           192.168.64.17    Ubuntu 18.04 LTS
+        Name                     State             IPv4             Image
+        d823-k3s                 Running           192.168.64.17    Ubuntu 18.04 LTS
         ```
 
 ---
@@ -30,7 +30,8 @@ To deploy the Hot R.O.D. application into K3s apply the deployment.
 === "Input"
 
     ```bash
-    kubectl apply -f ~/workshop/apm/hotrod/k8s/deployment.yaml 
+    cd ~/workshop
+    kubectl apply -f apm/hotrod/k8s/deployment.yaml 
     ```
 
 === "Output"
@@ -74,12 +75,12 @@ In order to view the application in your web browser we need to find the `LoadBa
 === "Output"
 
     ```text
-    NAME         TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)          AGE
-    kubernetes   ClusterIP      10.43.0.1     <none>          443/TCP          43m
-    hotrod       LoadBalancer   10.43.32.97   192.168.64.35   8080:31521/TCP   40m
+    NAME         TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)          AGE
+    kubernetes   ClusterIP      10.43.0.1      <none>          443/TCP          43m
+    hotrod       LoadBalancer   10.43.32.97   {==192.168.64.35==}   8080:31521/TCP   40m
     ```
 
-Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). Open your web browser and type in `http://[EXTERNAL-IP]:8080`, you will then be able to see the application running. Click on customer name to order a car:
+Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). Open your web browser and type in `http://{==EXTERNAL-IP==}:8080`, you will then be able to see the application running. Click on customer name to order a car:
 
 ![Hot R.O.D. Application](../images/apm/hotrod-app.png)
 

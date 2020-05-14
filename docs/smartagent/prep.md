@@ -109,7 +109,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
         To run a command as administrator (user "root"), use "sudo <command>".
         See "man sudo_root" for details
 
-        ubuntu@rwc-k3s:~$
+        ubuntu@d823-k3s:~$
         ```
 
     Once your instance presents you with the App Dev logo, you have completed the preparation for your Multipass instance and can go directly to  the next lab [Deploying the Smart Agent in K3s](../../smartagent/k3s).
@@ -184,9 +184,9 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     === "Input"
 
-        ```bash hl_lines="1 2" 
-        export AWS_ACCESS_KEY_ID="[YOUR_AWS_ACCESS_KEY_ID]"
-        export AWS_SECRET_ACCESS_KEY="[YOUR_AWS_SECRET_ACCESS_KEY]"
+        ```bash 
+        export AWS_ACCESS_KEY_ID="{==[YOUR_AWS_ACCESS_KEY_ID]==}"
+        export AWS_SECRET_ACCESS_KEY="{==<YOUR_AWS_SECRET_ACCESS_KEY>==}"
         echo $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
         ```
 

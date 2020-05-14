@@ -21,9 +21,9 @@ The environment variables needed should already be set from [Deploy the Smart Ag
 === "Input"
 
     ```
-    export ACCESS_TOKEN=[ACCESS_TOKEN]
-    export REALM=[REALM e.g. us1]
-    export INITIALS=[YOUR_INITIALS e.g. RWC]
+    export ACCESS_TOKEN={==ACCESS_TOKEN==}
+    export REALM={==REALM e.g. us1==}
+    export INITIALS={==YOUR_INITIALS e.g. RWC==}
     ```
 
 Initialize Terraform and upgrade to the latest version of the SignalFx Terraform Provider
@@ -78,18 +78,18 @@ Initialize Terraform and upgrade to the latest version of the SignalFx Terraform
     commands will detect it and remind you to do so if necessary.
     ```
 
-Create a new workspace, replace `[WORKSPACE_NAME]` with what you want your workspace to be called:
+Create a new workspace:
 
 === "Input"
 
     ``` bash
-    terraform workspace new [WORKSPACE_NAME]
+    terraform workspace new workshop
     ```
 
 === "Output"
 
     ```text
-    Created and switched to workspace "my_workspace"!
+    Created and switched to workspace "workspace"!
 
     You're now on a new, empty workspace. Workspaces isolate their state,
     so if you run "terraform plan" Terraform will not see any existing state
@@ -133,12 +133,12 @@ You will first need to ensure you are in the correct workspace, replace `[WORKSP
 === "Input"
 
     ```text
-    terraform workspace select [WORKSPACE_NAME]
+    terraform workspace select workshop
     ```
 
 Destroy all Detectors and Dashboards that were previously applied.
 
-!!! info
+!!! note
 
     The `var=”sfx_prefix=$INITIALS”` is not required!
 

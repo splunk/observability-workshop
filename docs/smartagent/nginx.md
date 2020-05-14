@@ -113,21 +113,21 @@ Run `kubectl get svc` then make a note of the `CLUSTER-IP` address that is alloc
 === "Output"
 
     ```text
-    NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
-    kubernetes   ClusterIP   10.96.0.1      <none>        443/TCP        9m3s
-    nginx        NodePort    10.110.36.62   <none>        80:30995/TCP   8s
+    NAME         TYPE         CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+    kubernetes   ClusterIP    10.96.0.1      <none>        443/TCP        9m3s
+    nginx        NodePort    {==10.110.36.62==}   <none>        80:30995/TCP   8s
     ```
 
 ---
 
 ## 3. Run Apache Benchmark
 
-Using the NGINX `CLUSTER-IP` address reported from above, use Apache Benchmark command (`ab`) to generate some traffic to light up your SignalFx NGINX dashboard. Run this a couple of times!
+Using the NGINX `{==CLUSTER-IP==}` address reported from above, use Apache Benchmark command (`ab`) to generate some traffic to light up your SignalFx NGINX dashboard. Run this a couple of times!
 
 === "Input"
 
     ```text
-    ab -n1000 -c20 http://[INSERT_NGINX_IP_ADDRESS]/
+    ab -n1000 -c20 http://{==CLUSTER-IP ADDRESS==}/
     ```
 
 === "Output"
