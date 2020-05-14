@@ -40,6 +40,7 @@ Regardless if you are running this lab locally or if you are going to create you
     unzip v$WSVERSION.zip
     mv app-dev-workshop-$WSVERSION workshop
     cd workshop
+    export INSTANCE=$(openssl rand -hex 12 | sed 's/^[0-9]*//g'| cut -c 1-4)-k3s
     ```
 
 === "Windows"
@@ -47,7 +48,12 @@ Regardless if you are running this lab locally or if you are going to create you
     !!! info
         Download the zip by clicking on the following URL <https://github.com/signalfx/app-dev-workshop/archive/v1.14.zip>.
 
-        Once downloaded, unzip the the file and rename it to `workshop`. Then, from the command prompt change into that directory.
+        Once downloaded, unzip the the file and rename it to `workshop`. Then, from the command prompt change into that directory
+        and run
+
+    ```
+    $INITIALS = ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".tochararray() | sort {Get-Random})[0..3] -join ''
+    ```
 
 If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](../../smartagent/prep/#3-launch-instance) and select the **Launch AWS/EC2 instance** tab
 
