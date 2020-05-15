@@ -23,6 +23,7 @@ write_files:
    content: | 
      KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
    append: true
+
  - path: /etc/skel/.profile
    content: | 
      helm() {
@@ -37,28 +38,38 @@ write_files:
    append: true
 
 runcmd:
- - 'curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.17.5+k3s1 K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server" sh -s -'
+ # Install K3s
+ - curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.17.5+k3s1 K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server" sh -s -
  - chmod 644 /etc/rancher/k3s/k3s.yaml
+ # Download Workshop
  - export WSVERSION=1.14
  - curl -s -OL https://github.com/signalfx/app-dev-workshop/archive/v$WSVERSION.zip
  - unzip -qq v$WSVERSION.zip -d /home/ubuntu/
  - mv /home/ubuntu/app-dev-workshop-$WSVERSION /home/ubuntu/workshop
  - 'sed -i -e ''s/\[HOSTNAME\]/''"$(hostname)"''/'' /home/ubuntu/workshop/k3s/values.yaml'
+ # Download SignalFx Jumpstart
  - curl -s -L https://github.com/signalfx/signalfx-jumpstart/archive/master.zip -o jumpstart.zip
  - unzip -qq jumpstart.zip -d /home/ubuntu/
  - mv /home/ubuntu/signalfx-jumpstart-master /home/ubuntu/signalfx-jumpstart
- - curl -s https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd -o /etc/motd
- - 'curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash'
+ # Install Helm
+ - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+ # Install K9s (Kubernetes UI)
  - curl -s -OL https://github.com/derailed/k9s/releases/download/v0.19.3/k9s_Linux_x86_64.tar.gz
  - tar xfz k9s_Linux_x86_64.tar.gz
  - mv k9s /usr/local/bin/
+ # Configure motd
+ - curl -s https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd -o /etc/motd
  - chmod -x /etc/update-motd.d/*
- - 'curl -s https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip'
+ # Install AWS CLI
+ - curl -s https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip
  - unzip -qq awscliv2.zip
  - ./aws/install
- - 'curl -s --silent --location https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz | tar xz -C /tmp'
+ # Install eksctl for AWS/EKS
+ - curl -s --silent --location https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz | tar xz -C /tmp
  - mv /tmp/eksctl /usr/local/bin/
- - curl -s -OL https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip
- - unzip -qq terraform_0.12.24_linux_amd64.zip
+ # Install Terraform
+ - curl -s -OL https://releases.hashicorp.com/terraform/0.12.25/terraform_0.12.25_linux_amd64.zip
+ - unzip -qq terraform_0.12.25_linux_amd64.zip
  - mv terraform /usr/local/bin/
+ # Set correct permissions on ubuntu user home directory
  - chown -R ubuntu:ubuntu /home/ubuntu
