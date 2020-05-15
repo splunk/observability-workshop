@@ -20,7 +20,6 @@ Create the following environment variables for **SignalFx** and **AWS** to use i
     export ACCESS_TOKEN=[ACCESS_TOKEN]
     export REALM=[REALM e.g. us1]
     export INITIALS=[YOUR_INITIALS e.g. RWC]
-    export VERSION=[VERSION e.g. 5.1.2]
     ```
 
 === "AWS"
@@ -159,7 +158,6 @@ Install the Smart Agent Helm chart with the following commands:
     --set signalFxAccessToken=$ACCESS_TOKEN \
     --set clusterName=$EKS_CLUSTER_NAME \
     --set signalFxRealm=$REALM \
-    --set agentVersion=$VERSION \
     --set kubeletAPI.url=https://localhost:10250 \
     --set traceEndpointUrl=https://ingest.$REALM.signalfx.com/v2/trace \
     signalfx-agent signalfx/signalfx-agent \
