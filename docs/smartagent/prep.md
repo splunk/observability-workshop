@@ -348,7 +348,14 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
         To run a command as administrator (user "root"), use "sudo <command>".
         See "man sudo_root" for details
 
+
+        Waiting for cloud-init status...
+        Your instance is ready!
+
         ubuntu@ip-172-31-41-196:~$
         ```
 
-    Once your instance presents you with the App Dev logo, you have completed the preparation for your AWS/EC2 instance and can go directly to  the next lab [Deploying the Smart Agent in K3s](../../smartagent/k3s).
+    Once your instance presents you with the App Dev logo, make sure you see `Your instance is ready!` in the output.
+    You have now completed the preparation for your AWS/EC2 instance.
+
+    and can go directly to  the next lab [Deploying the Smart Agent in K3s](../../smartagent/k3s).
