@@ -52,7 +52,7 @@ Regardless if you are running this lab locally or if you are going to create you
         and run
 
     ```
-    $INITIALS = ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".tochararray() | sort {Get-Random})[0..3] -join ''
+    $INSTANCE = ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".tochararray() | sort {Get-Random})[0..3] -join ''
     ```
 
 If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](../../smartagent/prep/#3-launch-instance) and select the **Launch AWS/EC2 instance** tab
@@ -66,7 +66,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
     In this section you will  build and launch the Multipass instance which will run the Kubernetes (K3s) environment that you will use in multiple labs.
 
     !!! important "Make sure to use your initials"
-        During the build of your Multipass instance you need to provide a name, please use your initials `[YOUR_INITIALS]-k3s` so that the value of the instance hostname is unique e.g. `rwc-k3s`
+        During the build of your Multipass instance you need to provide a name, please use the `INSTANCE` variable generated above so that the value of the instance hostname is unique.
 
     !!! Warning
         In the [µAPM](../../apm/) module there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
@@ -87,7 +87,6 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
     === "Sock Shop"
 
         ```text
-        export INSTANCE=$(openssl rand -hex 12 | sed 's/^[0-9]*//g'| cut -c 1-4)-k3s
         multipass launch \
         --name $INSTANCE \
         --cloud-init cloud-init/k3s.yaml \
