@@ -19,7 +19,6 @@ Create the following environment variables for **SignalFx** and **AWS** to use i
     ```
     export ACCESS_TOKEN=[ACCESS_TOKEN]
     export REALM=[REALM e.g. us1]
-    export INITIALS=[YOUR_INITIALS e.g. RWC]
     ```
 
 === "AWS"
@@ -29,7 +28,7 @@ Create the following environment variables for **SignalFx** and **AWS** to use i
     export AWS_SECRET_ACCESS_KEY=[AWS Secret Access Key]
     export AWS_DEFAULT_REGION=[e.g. us-east-1]
     export AWS_DEFAULT_OUTPUT=json
-    export EKS_CLUSTER_NAME=$INITIALS-APP-DEV
+    export EKS_CLUSTER_NAME=$(hostname)-APP-DEV
     ```
 
 You can check for the latest SignalFx Smart Agent release on [Github](https://github.com/signalfx/signalfx-agent/releases).
@@ -153,7 +152,6 @@ Install the Smart Agent Helm chart with the following commands:
 === "Input"
 
     ```
-    sed -i -e 's/\[INITIALS\]/'"$INITIALS"'/' ~/workshop/k3s/values.yaml
     helm install \
     --set signalFxAccessToken=$ACCESS_TOKEN \
     --set clusterName=$EKS_CLUSTER_NAME \
