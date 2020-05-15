@@ -4,13 +4,13 @@ password: AppDev2020!
 chpasswd:
   expire: false
 
-package_update: true
+#package_update: true
 
 apt:
   sources_list: | 
     deb mirror://mirrors.ubuntu.com/mirrors.txt bionic main restricted universe multiverse
-    deb mirror://mirrors.ubuntu.com/mirrors.txt bionic-updates main restricted universe multiverse
     deb mirror://mirrors.ubuntu.com/mirrors.txt bionic-backports main restricted universe multiverse
+    deb mirror://mirrors.ubuntu.com/mirrors.txt bionic-updates main restricted universe multiverse
     deb mirror://mirrors.ubuntu.com/mirrors.txt bionic-security main restricted universe multiverse
 
 packages:
@@ -34,7 +34,7 @@ write_files:
    append: true
 
 runcmd:
- - 'curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server" sh -s -'
+ - 'curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.17.5+k3s1 K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server" sh -s -'
  - chmod 644 /etc/rancher/k3s/k3s.yaml
  - export WSVERSION=1.14
  - curl -s -OL https://github.com/signalfx/app-dev-workshop/archive/v$WSVERSION.zip
