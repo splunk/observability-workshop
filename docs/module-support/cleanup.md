@@ -18,7 +18,7 @@
 
     ```bash
     cd ~/workshop/ec2
-    terraform destroy
+    terraform destroy -var="aws_instance_count=1" -var="instance_type=1"
     ```
 
     Enter `Instance Count`, `Provide the desired region` and `Select instance type required`.
