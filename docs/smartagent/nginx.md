@@ -152,6 +152,6 @@ Using the NGINX `{==CLUSTER-IP==}` address reported from above, use Apache Bench
 Validate you are seeing metrics in the UI by going to **Dashboards → NGINX → NGINX Servers**
 
 !!! tip
-    You can again apply the filter `kubernetes_cluster: [YOUR_INITIALS]-SFX-WORKSHOP` to focus on only your metrics.
+    You can again apply the filter `kubernetes_cluster: HOSTNAME-app-dev-workshop` to focus on only your metrics. Replace HOSTNAME with the actual hostname of your instance.
 
 ![NGINX Dashboard](../images/smartagent/nginx-dashboard.png){: .zoom}

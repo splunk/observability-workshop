@@ -79,7 +79,6 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
     === "Hot R.O.D"
 
         ```text
-        export INSTANCE=$(openssl rand -hex 12 | sed 's/^[0-9]*//g'| cut -c 1-4)-k3s
         multipass launch \
         --name $INSTANCE \
         --cloud-init cloud-init/k3s.yaml
