@@ -65,9 +65,6 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     In this section you will  build and launch the Multipass instance which will run the Kubernetes (K3s) environment that you will use in multiple labs.
 
-    !!! important "Make sure to use your initials"
-        During the build of your Multipass instance you need to provide a name, please use the `INSTANCE` variable generated above so that the value of the instance hostname is unique.
-
     !!! Warning
         In the [µAPM](../../apm/) module there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
 
