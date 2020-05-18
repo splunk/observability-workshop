@@ -39,11 +39,12 @@ theme:
     - tabs
 
 markdown_extensions:
-  - markdown.extensions.admonition
-  - markdown.extensions.attr_list
-  - markdown.extensions.codehilite:
+  - footnotes
+  - admonition
+  - attr_list
+  - codehilite:
       guess_lang: false
-  - markdown.extensions.toc:
+  - toc:
       permalink: true
   - pymdownx.tabbed
   - pymdownx.superfences

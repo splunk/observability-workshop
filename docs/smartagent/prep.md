@@ -1,10 +1,10 @@
 # SignalFx Smart Agent - Lab Summary
 
 * Download the Workshop
-* Start a Multipass or AWS/EC2 instance
-* Deploy the SignalFx Smart Agent in K3s
-* Validate K3s cluster is visible in Kubernetes Navigator
-* Deploy a NGINX ReplicaSet in K3s
+* Start a Multipass[^1] or AWS/EC2 instance
+* Deploy the SignalFx Smart Agent[^2] in K3s
+* Validate Kubernetes[^3] K3s cluster is visible in Kubernetes Navigator
+* Deploy a NGINX[^4] ReplicaSet in K3s
 * Validate NGNIX metrics are flowing
 
 !!! note
@@ -359,3 +359,8 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
     You have now completed the preparation for your AWS/EC2 instance.
 
     and can go directly to  the next lab [Deploying the Smart Agent in K3s](../../smartagent/k3s).
+
+[^1]: Multipass is a lightweight VM manager for Linux, Windows and macOS. It's designed for developers who want a fresh Ubuntu environment with a single command. It uses KVM on Linux, Hyper-V on Windows and HyperKit on macOS to run the VM with minimal overhead. It can also use VirtualBox on Windows and macOS. Multipass will fetch images for you and keep them up to date.
+[^2]: [What is the SignalFx Smart Agent?](https://docs.signalfx.com/en/latest/integrations/agent/)
+[^3]: [What is Kubernetes?](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/)
+[^4]: [What is NGINX?](https://www.nginx.com/resources/glossary/nginx/)
