@@ -88,7 +88,8 @@ nav:
     - '<b>Detectors</b><br /><small>15 minutes</small>':
       - 'Creating a Detector': detectors/detectors.md
       - 'Creating a Muting Rule': detectors/muting.md
-    - '<b>Monitoring as Code</b><br /><small>10 minutes</small>': mac/terraform.md
+    - '<b>Monitoring as Code</b><br /><small>10 minutes</small>':
+      - 'Using Terraform': mac/terraform.md
     - '<b>µAPM</b><br /><small>25-45 minutes</small>':
       - 'µAPM Architecture Overview': apm/index.md
       - 'Deploying Hot R.O.D. in K3s': apm/hotrod.md
