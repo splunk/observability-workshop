@@ -73,8 +73,8 @@ plugins:
 nav:
   - 'Home': index.md
   - '<b>SignalFx</b>':
-    - '<b>Smart Agent</b><br /><small>20 minutes</small>':
-      - 'Preparation': smartagent/prep.md
+    - '<b>Get Data In</b><br /><small>20 minutes</small>':
+      - 'Workshop Preparation': smartagent/prep.md
       - 'Deploy the Smart Agent in K3s': smartagent/k3s.md
       - 'Deploy NGINX in K3s' : smartagent/nginx.md
     - '<b>Dashboards</b><br /><small>30 minutes</small>':
@@ -86,8 +86,8 @@ nav:
       - 'SignalFlow': dashboards/signalflow.md
       - 'Adding charts': dashboards/adding-charts.md
     - '<b>Detectors</b><br /><small>15 minutes</small>':
-      - 'Working with Detectors': detectors/detectors.md
-      - 'Working with Muting Rules': detectors/muting.md
+      - 'Creating a Detector': detectors/detectors.md
+      - 'Creating a Muting Rule': detectors/muting.md
     - '<b>Monitoring as Code</b><br /><small>10 minutes</small>': mac/terraform.md
     - '<b>µAPM</b><br /><small>25-45 minutes</small>':
       - 'µAPM Architecture Overview': apm/index.md
