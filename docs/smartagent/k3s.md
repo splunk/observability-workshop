@@ -33,7 +33,6 @@ Create the following variables to use in the proceeding helm install command, re
     export ACCESS_TOKEN={==ACCESS_TOKEN==}
     export REALM={==REALM e.g. us1==}
     export INITIALS={==YOUR_INITIALS e.g. RWC==}
-    export VERSION={==VERSION e.g. 5.1.6==}
     ```
 
 !!! note
