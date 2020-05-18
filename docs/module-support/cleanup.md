@@ -2,12 +2,12 @@
 
 === "Multipass"
 
-    Once you have finished with this Workshop `exit` from the AWS/EC2 instance to get back to your system command prompt.
+    Once you have finished with this Workshop `exit` from the Multipass instance to get back to your system command prompt.
     
-    Enter the following to delete the Multipass instance, replace `INSTANCE` with the value of INSTANCE used in [Smart Agent](../../smartagent/prep/).
+    Enter the following to delete and purge the Multipass instance:
 
     ```bash
-    multipass delete --purge INSTANCE
+    multipass delete --purge $INSTANCE
     ```
 
 === "AWS/EC2"
