@@ -66,13 +66,14 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
     In this section you will  build and launch the Multipass instance which will run the Kubernetes (K3s) environment that you will use in multiple labs.
 
     !!! Warning
-        In the [µAPM](../../apm/) module there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
+        For [µAPM](../../apm/) module there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
 
         **Hot R.O.D Multipass min. requirements:** 1 vCPU, 5Gb Disk, 1Gb Memory
 
         **Sock Shop Multipass min. requirements:** 4 vCPU, 15Gb Disk, 8Gb Memory
 
-    Ask which version is going to be used as part of this Workshop, then select either the Hot R.O.D or Sock Shop Multipass launch parameters. Lines highlighted in yellow need to be edited:
+    Ask which version is going to be used as part of this Workshop, then select either the Hot R.O.D[^5] or Sock Shop Multipass launch parameters. Lines highlighted in yellow need to be edited:
+
     === "Hot R.O.D"
 
         ```text
@@ -113,7 +114,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
         ubuntu@d823-k3s:~$
         ```
 
-    Once your instance presents you with the App Dev logo, you have completed the preparation for your Multipass instance and can go directly to  the next lab [Deploying the Smart Agent in K3s](../../smartagent/k3s).
+    Once your instance presents you with the App Dev logo, you have completed the preparation for your Multipass instance and can go directly to  the next lab [Deploy the Smart Agent in K3s](../../smartagent/k3s).
 
 === "Launch AWS/EC2 instance"
 
@@ -123,7 +124,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
         You will need access to an AWS account to obtain both `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
 
     !!! warning "Minimum requirements"
-        In the [µAPM](../../apm/) module there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
+        For the [µAPM](../../apm/) module there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
 
         **Hot R.O.D AWS/EC2 Instance min. requirements:** _t2.micro_ 1 vCPU, 8Gb Disk, 1Gb Memory
 
@@ -353,11 +354,11 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
         ```
 
     Once your instance presents you with the App Dev logo, make sure you see `Your instance is ready!` in the output.
-    You have now completed the preparation for your AWS/EC2 instance.
 
-    and can go directly to  the next lab [Deploying the Smart Agent in K3s](../../smartagent/k3s).
+    You have now completed the preparation for your AWS/EC2 instance and can go directly to  the next lab [Deploy the Smart Agent in K3s](../../smartagent/k3s).
 
 [^1]: Multipass is a lightweight VM manager for Linux, Windows and macOS. It's designed for developers who want a fresh Ubuntu environment with a single command. It uses KVM on Linux, Hyper-V on Windows and HyperKit on macOS to run the VM with minimal overhead. It can also use VirtualBox on Windows and macOS. Multipass will fetch images for you and keep them up to date.
 [^2]: [What is the SignalFx Smart Agent?](https://docs.signalfx.com/en/latest/integrations/agent/)
 [^3]: [What is Kubernetes?](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/)
 [^4]: [What is NGINX?](https://www.nginx.com/resources/glossary/nginx/)
+[^5]: [What is Hot R.O.D.?](https://github.com/jaegertracing/jaeger/tree/master/examples/hotrod)
