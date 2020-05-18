@@ -7,7 +7,7 @@
 
 ## 1. Obtain SignalFx Access Token
 
-You will need to obtain your Access Token from the SignalFx UI once Kubernetes is running.
+You will need to obtain your Access Token[^1] from the SignalFx UI once Kubernetes is running.
 
 You can find your Access Token by clicking on your profile icon on the top right of the SignalFx UI. Then select **Organization Settings → Access Tokens**.
 
@@ -144,3 +144,5 @@ This will drill down to the node level.  Next, open the side bar by clicking on 
 Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: CPU, Memory, Network, Events etc.
 
 ![Sidebar metrics](../images/smartagent/M3-l1-explore-metrics.png)
+
+[^1]: Access tokens (sometimes called org tokens) are long-lived organization-level tokens. By default, these tokens persist for 5 years, and thus are suitable for embedding into emitters that send data points over long periods of time, or for any long-running scripts that call the SignalFx API.
