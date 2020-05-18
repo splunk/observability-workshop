@@ -34,7 +34,7 @@ Regardless if you are running this lab locally or if you are going to create you
 
 === "Linux/Mac OS"
 
-    ```bash
+    ```text
     WSVERSION=1.14
     curl -OL https://github.com/signalfx/app-dev-workshop/archive/v$WSVERSION.zip
     unzip v$WSVERSION.zip
@@ -55,7 +55,7 @@ Regardless if you are running this lab locally or if you are going to create you
     $INSTANCE = ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".tochararray() | sort {Get-Random})[0..3] -join ''
     ```
 
-If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](../../smartagent/prep/#3-launch-instance) and select the **Launch AWS/EC2 instance** tab
+If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](../../smartagent/prep/#3-launch-instance) section and select the **Launch AWS/EC2 instance** tab
 
 ---
 
@@ -72,7 +72,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
         **Sock Shop Multipass min. requirements:** 4 vCPU, 15Gb Disk, 8Gb Memory
 
-    Ask which version is going to be used as part of this Workshop, then select either the Hot R.O.D[^5] or Sock Shop Multipass launch parameters. Lines highlighted in yellow need to be edited:
+    Ask which version is going to be used as part of this Workshop, then select either the Hot R.O.D[^5] or Sock Shop Multipass launch parameters:
 
     === "Hot R.O.D"
 
@@ -358,7 +358,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
     You have now completed the preparation for your AWS/EC2 instance and can go directly to  the next lab [Deploy the Smart Agent in K3s](../../smartagent/k3s).
 
 [^1]: Multipass is a lightweight VM manager for Linux, Windows and macOS. It's designed for developers who want a fresh Ubuntu environment with a single command. It uses KVM on Linux, Hyper-V on Windows and HyperKit on macOS to run the VM with minimal overhead. It can also use VirtualBox on Windows and macOS. Multipass will fetch images for you and keep them up to date.
-[^2]: [What is the SignalFx Smart Agent?](https://docs.signalfx.com/en/latest/integrations/agent/)
+[^2]: The SignalFx Smart Agent gathers host performance, application, and service-level metrics from both containerized and non-container environments. The Smart Agent installs with more than 100 bundled monitors for gathering data, including Python-based plug-ins such as Mongo, Redis, and Docker.
 [^3]: [What is Kubernetes?](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/)
 [^4]: [What is NGINX?](https://www.nginx.com/resources/glossary/nginx/)
 [^5]: [What is Hot R.O.D.?](https://github.com/jaegertracing/jaeger/tree/master/examples/hotrod)
