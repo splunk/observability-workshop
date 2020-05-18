@@ -86,11 +86,10 @@ The next step is to create a cloud-init file that will automatically install the
     ``` bash
     #cloud-config
     package_update: true
-    package_upgrade: true
 
     runcmd:
     - curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
-    - sudo sh /tmp/signalfx-agent.sh --realm [YOUR REALM] -- [YOUR TOKEN]
+    - sudo sh /tmp/signalfx-agent.sh --realm {==SIGNALFX_REALM==} -- {==SIGNALFX_ACCESS_TOKEN==}
     ```
 
 With the `victorops.yaml` file created, from the same directory where you created it run the following commands to create two VMs.  As in other modules prefix the name of each VM with your initials to make them unique within your SignalFx account. You may also want to first shutdown any other VMs you still have running from previous modules to free up resources.
@@ -103,16 +102,17 @@ With the `victorops.yaml` file created, from the same directory where you create
 === "Input"
 
     ``` bash
+    export INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'A-Z' | head -c4)
     multipass launch \
-    --name [YOUR INITIALS]-vo1 \
+    --name $INSTANCE-vo1 \
     --cloud-init victorops.yaml
     ```
 
-=== "Output"
+=== "Example Output"
 
-    ```
+    ```bash
     multipass launch \
-    --name gh-vo1 \
+    --name IXMY-vo1 \
     --cloud-init victorops.yaml
     Launched: gh-vo1
     ```
@@ -122,16 +122,17 @@ With the `victorops.yaml` file created, from the same directory where you create
 === "Input"
 
     ``` bash
+    export INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'A-Z' | head -c4)
     multipass launch \
-    --name [YOUR INITIALS]-vo2 \
+    --name $INSTANCE-vo2 \
     --cloud-init victorops.yaml
     ```
 
-=== "Output"
+=== "Example Output"
 
     ```
     multipass launch \
-    --name gh-vo2 \
+    --name HWJL-vo2 \
     --cloud-init victorops.yaml
     Launched: gh-vo2
     ```
@@ -189,8 +190,8 @@ Create the following environment variables to use in the Terraform steps below. 
     export SFXVOPSID=[VictorOps Integration ID from Step 2]
     export ACCESS_TOKEN=[SignalFx Access Token from Step 2]
     export REALM=[SignalFx Realm from Step 2]
-    export ROUTINGKEY=[YOUR_INITIALS]_PRI
-    export INITIALS=[YOUR_INITIALS]
+    export ROUTINGKEY={==YOUR_INITIALS==}_PRI
+    export INITIALS={==YOUR_INITIALS==}
     ```
 
 === "Example"
@@ -252,13 +253,13 @@ Create a new Terraform Workspace which will track the state for this environment
 === "Input"
 
     ```text
-    terraform workspace new Workshop
+    terraform workspace new VictorOps
     ```
 
 === "Output"
 
     ```text
-    Created and switched to workspace "Workshop"!
+    Created and switched to workspace "VictorOps"!
 
     You're now on a new, empty workspace. Workspaces isolate their state,
     so if you run "terraform plan" Terraform will not see any existing state
