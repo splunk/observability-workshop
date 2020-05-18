@@ -1,6 +1,7 @@
 # Monitoring as Code - Lab Summary
 
-* Initialize the Terraform[^1] SignalFx Provider.
+* Use Terraform[^1] to manage SignalFx Dashboards and Detectors
+* Initialize the Terraform SignalFx Provider[^2].
 * Run Terraform to create SignalFx detectors and dashboards from code using the SignalFx Terraform Provider.
 * See how Terraform can also delete detectors and dashboards.
 
@@ -154,3 +155,5 @@ Validate all the detectors have been removed by navigating to _**ALERTS → Dete
     Configuration files describe to Terraform the components needed to run a single application or your entire datacenter. Terraform generates an execution plan describing what it will do to reach the desired state, and then executes it to build the described infrastructure. As the configuration changes, Terraform is able to determine what changed and create incremental execution plans which can be applied.
 
     The infrastructure Terraform can manage includes low-level components such as compute instances, storage, and networking, as well as high-level components such as DNS entries, SaaS features, etc.
+[^2]:
+    A provider is responsible for understanding API interactions and exposing resources. Providers generally are an IaaS (e.g. Alibaba Cloud, AWS, GCP, Microsoft Azure, OpenStack), PaaS (e.g. Heroku), or SaaS services (e.g. SignalFx, Terraform Cloud, DNSimple, Cloudflare).
