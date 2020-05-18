@@ -1,4 +1,4 @@
-# SignalFx Smart Agent - Lab Summary
+# Get Data In - Lab Summary
 
 * Download the Workshop
 * Start a Multipass[^1] or AWS/EC2 instance
@@ -7,19 +7,19 @@
 * Deploy a NGINX[^4] ReplicaSet in K3s
 * Validate NGNIX metrics are flowing
 
-!!! note
-    If you have been give access to a pre-provisioned AWS/EC2 instance, you can ignore the rest of this preparation lab and go straight to the next lab [Deploying the Smart Agent in Kubernetes (K3s)](../../smartagent/k3s).
-
 ---
 
 ## 1. Module Pre-requisites
 
 === "Running Locally"
 
-    !!! abstract "Multipass"
+    !!! note "Multipass"
         Install [Multipass](https://multipass.run/) for your operating system. Make sure you are using at least version `1.2.0`.
         
         On a Mac you can also install via [Homebrew](https://brew.sh/) e.g. `brew cask install multipass`
+
+    !!! info "Struggling with Multipass?"
+        Ask your instructor(s) for access to a pre-provisioned AWS/EC2 instance, you can then ignore the rest of this preparation lab and go straight to the next lab [Deploying the Smart Agent in Kubernetes (K3s)](../../smartagent/k3s).
 
 === "Running in AWS"
 
@@ -27,6 +27,8 @@
         Install [Terraform](https://www.terraform.io/downloads.html) for your operating system. Please make sure it is version `0.12.18` or above.
 
         On a Mac you can also install via [Homebrew](https://brew.sh/) e.g. `brew install terraform`. This will get around Mac OS Catalina security.
+
+---
 
 ## 2. Download App Dev Workshop
 
