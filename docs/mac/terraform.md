@@ -21,9 +21,9 @@ The environment variables needed should already be set from [Deploy the Smart Ag
 === "Input"
 
     ```
-    export ACCESS_TOKEN={==ACCESS_TOKEN==}
+    export ACCESS_TOKEN={==SIGNALFX_ACCESS_TOKEN==}
     export REALM={==REALM e.g. us1==}
-    export INITIALS={==YOUR_INITIALS e.g. RWC==}
+    export PREFIX=$(cat /dev/urandom | base64 | tr -dc 'A-Z' | head -c4)
     ```
 
 Initialize Terraform and upgrade to the latest version of the SignalFx Terraform Provider
@@ -105,7 +105,7 @@ Review the execution plan.
 === "Input"
 
     ``` bash
-    terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$INITIALS"
+    terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$PREFIX"
     ```
 
 If the plan executes successfully, we can go ahead and apply:
@@ -117,7 +117,7 @@ If the plan executes successfully, we can go ahead and apply:
 === "Input"
 
     ``` bash
-    terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$INITIALS"
+    terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$PREFIX"
     ```
 
 Validate that the detectors were created, under the _**ALERTS → Detectors**_, you should see a list of new detectors with the a prefix of your initials:
@@ -137,10 +137,6 @@ You will first need to ensure you are in the the workspace you created in **Step
     ```
 
 Destroy all Detectors and Dashboards that were previously applied.
-
-!!! note
-
-    The `var=”sfx_prefix=$INITIALS”` is not required!
 
 === "Input"
 
