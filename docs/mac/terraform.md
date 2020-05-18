@@ -1,6 +1,6 @@
-# Using Terraform - Lab Summary
+# Monitoring as Code - Lab Summary
 
-* Initialize the SignalFx Provider.
+* Initialize the Terraform[^1] SignalFx Provider.
 * Run Terraform to create SignalFx detectors and dashboards from code using the SignalFx Terraform Provider.
 * See how Terraform can also delete detectors and dashboards.
 
@@ -151,3 +151,5 @@ Destroy all Detectors and Dashboards that were previously applied.
 Validate all the detectors have been removed by navigating to _**ALERTS → Detectors**_
 
 ![Destroyed](../images/mac/destroy.png)
+
+[^1]: [What is Terraform?](https://www.terraform.io/intro/index.html)
