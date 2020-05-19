@@ -16,6 +16,7 @@ apt:
 packages:
  - apache2-utils
  - unzip
+ - siege
 
 write_files:
  - path: /etc/environment
