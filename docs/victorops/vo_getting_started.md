@@ -39,7 +39,7 @@ Install the App and login, then refresh the Profile page and your device should 
 
 ### 2.3. Personal Calendar
 
-This link will enable you to sync your VictorOps on-call schedule with your calendar, however as you do not have any allocated shifts yet this will currently be empty. You can add it to you calendar by copying the link into your preferred application and setting it up as a new subscription.
+This link will enable you to sync your VictorOps on-call schedule with your calendar, however as you do not have any allocated shifts yet this will currently be empty. You can add it to your calendar by copying the link into your preferred application and setting it up as a new subscription.
 
 ### 2.4. Paging Polices
 
