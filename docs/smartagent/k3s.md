@@ -30,9 +30,8 @@ Create the following variables to use in the proceeding helm install command, re
 === "Input"
 
     ```
-    export ACCESS_TOKEN={==ACCESS_TOKEN==}
+    export ACCESS_TOKEN={==ACCESS TOKEN==}
     export REALM={==REALM e.g. us1==}
-    export INITIALS={==YOUR_INITIALS e.g. RWC==}
     ```
 
 !!! note
@@ -61,10 +60,9 @@ Install the Smart Agent Helm chart with the following commands, do **not** edit 
     ```
     helm install \
     --set signalFxAccessToken=$ACCESS_TOKEN \
-    --set clusterName=$INITIALS-SFX-WORKSHOP \
+    --set clusterName=$(hostname)-SFX-WORKSHOP \
     --set kubeletAPI.url=https://localhost:10250  \
     --set signalFxRealm=$REALM  \
-    --set agentVersion=$VERSION \
     --set traceEndpointUrl=https://ingest.$REALM.signalfx.com/v2/trace \
     --set gatherDockerMetrics=false \
     signalfx-agent signalfx/signalfx-agent \
