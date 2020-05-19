@@ -102,9 +102,9 @@ With the `victorops.yaml` file created, from the same directory where you create
 === "Input"
 
     ``` bash
-    export INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'A-Z' | head -c4)
+    export INSTANCE1=$(cat /dev/urandom | base64 | tr -dc 'A-Z' | head -c4)
     multipass launch \
-    --name $INSTANCE-vo1 \
+    --name $INSTANCE1-vo1 \
     --cloud-init victorops.yaml
     ```
 
@@ -114,7 +114,7 @@ With the `victorops.yaml` file created, from the same directory where you create
     multipass launch \
     --name IXMY-vo1 \
     --cloud-init victorops.yaml
-    Launched: gh-vo1
+    Launched: IXMY-vo1
     ```
 
 2nd VictorOps VM
@@ -122,9 +122,9 @@ With the `victorops.yaml` file created, from the same directory where you create
 === "Input"
 
     ``` bash
-    export INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'A-Z' | head -c4)
+    export INSTANCE2=$(cat /dev/urandom | base64 | tr -dc 'A-Z' | head -c4)
     multipass launch \
-    --name $INSTANCE-vo2 \
+    --name $INSTANCE2-vo2 \
     --cloud-init victorops.yaml
     ```
 
@@ -134,7 +134,7 @@ With the `victorops.yaml` file created, from the same directory where you create
     multipass launch \
     --name HWJL-vo2 \
     --cloud-init victorops.yaml
-    Launched: gh-vo2
+    Launched: HWJL-vo2
     ```
 
 Once your two VMs have been created check within the SignalFx UI, Infrastructure Tab, and confirm they are reporting in correctly.  Allow a couple or minutes for the VMs to spin up, install updates and then install the SignalFx Agent etc.
@@ -191,7 +191,6 @@ Create the following environment variables to use in the Terraform steps below. 
     export ACCESS_TOKEN=[SignalFx Access Token from Step 2]
     export REALM=[SignalFx Realm from Step 2]
     export ROUTINGKEY={==YOUR_INITIALS==}_PRI
-    export INITIALS={==YOUR_INITIALS==}
     ```
 
 === "Example"
@@ -201,7 +200,6 @@ Create the following environment variables to use in the Terraform steps below. 
     export ACCESS_TOKEN=xxxxxxxxxxxxxxx
     export REALM=us1
     export ROUTINGKEY=GH_PRI
-    export INITIALS=GH
     ```
 
 Initialize Terraform.
@@ -271,7 +269,7 @@ It is considered best practice to run a `terraform plan` to see what changes may
 === "Input"
 
     ```text
-    terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$INITIALS" -var="sfx_vo_id=$SFXVOPSID" -var="routing_key=$ROUTINGKEY"
+    terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$INSTANCE1" -var="sfx_vo_id=$SFXVOPSID" -var="routing_key=$ROUTINGKEY"
     ```
 
 === "Output"
@@ -288,7 +286,7 @@ It is considered best practice to run a `terraform plan` to see what changes may
           + description       = "Alerts when CPU usage is greater than 90%"
           + id                = (known after apply)
           + max_delay         = 0
-          + name              = "GH CPU greater than 90%"
+          + name              = "IXMY CPU greater than 90%"
           + program_text      = <<~EOT
                 from signalfx.detectors.against_recent import against_recent
                 A = data('cpu.utilization').publish(label='A')
