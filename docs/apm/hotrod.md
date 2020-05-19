@@ -86,7 +86,7 @@ Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). O
 
 ---
 
-## 3. Generate some traffic to the application using Apache Benchmark
+## 3. Generate some traffic to the application using Siege Benchmark
 
 Return to your shell and create an environment variable for the IP address and port that the Hot R.O.D. application is exposed on:
 
@@ -109,7 +109,7 @@ Then run the following command(s) to create load on the service:
 === "Input"
 
     ```bash
-    ab -n10 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
+    siege -r1 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
     ```
 
 Create some errors with an invalid customer number
@@ -117,7 +117,7 @@ Create some errors with an invalid customer number
 === "Input"
 
     ```bash
-    ab -n10 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=391&nonse=0.17041229755366172"
+    siege -r1 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=391&nonse=0.17041229755366172"
     ```
 
 ---

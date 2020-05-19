@@ -247,12 +247,12 @@ You can view / exercise Hot R.O.D. yourself in a browser by opening the `EXTERNA
 
 ---
 
-## 7. Generate some traffic to the application using Apache Benchmark
+## 7. Generate some traffic to the application using Siege Benchmark
 
 === "Input"
 
     ```bash
-    ab -n100 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
+    siege -r10 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
     ```
 
 Create some errors with an invalid customer number
@@ -260,7 +260,7 @@ Create some errors with an invalid customer number
 === "Input"
 
     ```bash
-    ab -n100 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=391&nonse=0.17041229755366172"
+    siege -r10 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=391&nonse=0.17041229755366172"
     ```
 
 You should now be able to exercise SignalFx APM dashboards.

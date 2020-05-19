@@ -120,33 +120,35 @@ Run `kubectl get svc` then make a note of the `CLUSTER-IP` address that is alloc
 
 ---
 
-## 3. Run Apache Benchmark
+## 3. Run Siege Benchmark
 
-Using the NGINX `{==CLUSTER-IP==}` address reported from above, use Apache Benchmark command (`ab`) to generate some traffic to light up your SignalFx NGINX dashboard. Run this a couple of times!
+Using the NGINX `{==CLUSTER-IP==}` address reported from above, use the Siege Load Testing command (`siege`) to generate some traffic to light up your SignalFx NGINX dashboard. Run this a couple of times!
 
 === "Input"
 
     ```text
-    ab -n1000 -c20 http://{==CLUSTER-IP ADDRESS==}/
+    siege -b -r 50 -c 20 --no-parser http://{==CLUSTER-IP ADDRESS==}/ 1>/dev/null
     ```
 
 === "Output"
 
     ```text
-    This is ApacheBench, Version 2.3 <$Revision: 1826891 $>
-    Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
-    Licensed to The Apache Software Foundation, http://www.apache.org/
- 
-    Benchmarking localhost (be patient)
-    Completed 100 requests
-    ...
-    Completed 1000 requests
-    Finished 1000 requests
- 
-    Server Software:        nginx/1.17.5
-    Server Hostname:        localhost
-    Server Port:            30995
-    ...
+    ** SIEGE 4.0.5
+    ** Preparing 20 concurrent users for battle.
+    The server is now under siege...
+
+    Transactions:		        1000 hits
+    Availability:		      100.00 %
+    Elapsed time:		        1.17 secs
+    Data transferred:	       20.05 MB
+    Response time:		        0.02 secs
+    Transaction rate:	      854.70 trans/sec
+    Throughput:		       17.14 MB/sec
+    Concurrency:		       19.77
+    Successful transactions:        1000
+    Failed transactions:	           0
+    Longest transaction:	        0.16
+    Shortest transaction:	        0.01
     ```
 
 Validate you are seeing metrics in the UI by going to **Dashboards → NGINX → NGINX Servers**
