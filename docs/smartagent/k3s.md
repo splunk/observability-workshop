@@ -30,7 +30,7 @@ Create the following variables to use in the proceeding helm install command, re
 === "Input"
 
     ```
-    export ACCESS_TOKEN={==ACCESS TOKEN==}
+    export ACCESS_TOKEN={==ACCESS TOKEN, from organisation page==}
     export REALM={==REALM e.g. us1==}
     ```
 
