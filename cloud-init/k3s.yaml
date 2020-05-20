@@ -50,7 +50,7 @@ write_files:
      if [ -z ${INSTANCE+x} ]; then
        if curl -s -m 3 http://169.254.169.254/latest/dynamic/instance-identity/document | grep -q availabilityZone ; then
          # on AWS, grab instance id and use that
-         AWSTOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+         AWSTOKEN=$(curl -qs -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
          INSTANCE=$(curl -qs -H "X-aws-ec2-metadata-token: $AWSTOKEN" http://169.254.169.254/latest/meta-data/instance-id)
        else
          # not AWS, use hostname set via multipass OR create own id here
