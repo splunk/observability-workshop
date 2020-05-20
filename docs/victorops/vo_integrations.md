@@ -87,6 +87,9 @@ The next step is to create a cloud-init file that will automatically install the
     #cloud-config
     package_update: true
 
+    packages:
+     - unzip
+
     runcmd:
     - curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
     - sudo sh /tmp/signalfx-agent.sh --realm {==SIGNALFX_REALM==} -- {==SIGNALFX_ACCESS_TOKEN==}
