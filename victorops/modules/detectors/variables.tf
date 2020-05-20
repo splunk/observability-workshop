@@ -3,9 +3,9 @@ variable "message_body" {
 
   default = <<-EOF
     {{#if anomalous}}
-	    Rule "{{{ruleName}}}" in detector "{{{detectorName}}}" triggered at {{timestamp}}.
+        Rule "{{{ruleName}}}" in detector "{{{detectorName}}}" triggered at {{timestamp}}.
     {{else}}
-	    Rule "{{{ruleName}}}" in detector "{{{detectorName}}}" cleared at {{timestamp}}.
+        Rule "{{{ruleName}}}" in detector "{{{detectorName}}}" cleared at {{timestamp}}.
     {{/if}}
 
     {{#if anomalous}}
@@ -35,7 +35,7 @@ variable "message_body" {
 
 variable "sfx_prefix" {
   type        = string
-  description = "Detector Prefix"
+  description = "Detector Prefix - must match your hostname/instance id!"
 }
 
 variable "sfx_vo_id" {
