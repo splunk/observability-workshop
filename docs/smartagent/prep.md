@@ -96,6 +96,9 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
         To run a command as administrator (user "root"), use "sudo <command>".
         See "man sudo_root" for details
 
+        Waiting for cloud-init status...
+        Your instance is ready!
+
         ubuntu@d823-k3s:~$
         ```
 
