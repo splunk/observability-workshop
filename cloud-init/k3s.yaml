@@ -37,24 +37,6 @@ write_files:
        command helm "$@"
      }
 
-     tunnelme() {
-       if curl -s -m 3 http://169.254.169.254/latest/dynamic/instance-identity/document | grep -q availabilityZone ; then
-         localIp=$(curl -qs -H "X-aws-ec2-metadata-token: $AWSTOKEN" http://169.254.169.254/latest/meta-data/local-ipv4)
-         publicIp=$(curl -qs -H "X-aws-ec2-metadata-token: $AWSTOKEN" http://169.254.169.254/latest/meta-data/public-ipv4)
-         ingressIp=$(kubectl get svc hotrod -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-         nodePort=$(kubectl get svc hotrod -o jsonpath='{.spec.ports[0].nodePort}')
-
-         echo "Please run the following in another terminal, enter your password for ssh access to the EC2 instance and keep it running:"
-         echo ""
-         echo "    ssh -NL9123:$ingressIp:$nodePort ubuntu@$publicIp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
-         echo ""
-         echo "Then point your browser to http://127.0.0.1:9123/."
-       else
-         ingressIp=$(kubectl get svc hotrod -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-         echo "You do not seem to be running on AWS. Point your browser directly to http://$ingressIp:8080/"
-       fi
-     }
-
      echo "Waiting for cloud-init status..."
      if ! /usr/bin/timeout 180 grep -q 'Cloud-init .*finished at' <(tail -f /var/log/cloud-init-output.log); then
        echo "Instance setup did not complete after 3 minutes. Please try again.";
