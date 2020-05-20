@@ -44,7 +44,7 @@ Regardless if you are running this lab locally or if you are going to create you
     unzip v$WSVERSION.zip
     mv app-dev-workshop-$WSVERSION workshop
     cd workshop
-    export INSTANCE=$(openssl rand -hex 12 | sed 's/^[0-9]*//g'| cut -c 1-4)-k3s
+    export INSTANCE=$(cat /dev/urandom | tr -dc 'a-z' | head -c4)
     ```
 
 === "Windows"

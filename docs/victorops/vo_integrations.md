@@ -105,9 +105,9 @@ With the `victorops.yaml` file created, from the same directory where you create
 === "Input"
 
     ``` bash
-    export INSTANCE1=$(cat /dev/urandom | base64 | tr -dc 'A-Z' | head -c4)
+    export INSTANCE=$(cat/dev/urandom | tr -dc 'a-z' | head -c4)
     multipass launch \
-    --name $INSTANCE1-vo1 \
+    --name ${INSTANCE}-vo1 \
     --cloud-init victorops.yaml
     ```
 
@@ -115,9 +115,9 @@ With the `victorops.yaml` file created, from the same directory where you create
 
     ```bash
     multipass launch \
-    --name IXMY-vo1 \
+    --name ixmy-vo1 \
     --cloud-init victorops.yaml
-    Launched: IXMY-vo1
+    Launched: ixmy-vo1
     ```
 
 2nd VictorOps VM
@@ -125,9 +125,8 @@ With the `victorops.yaml` file created, from the same directory where you create
 === "Input"
 
     ``` bash
-    export INSTANCE2=$(cat /dev/urandom | base64 | tr -dc 'A-Z' | head -c4)
     multipass launch \
-    --name $INSTANCE2-vo2 \
+    --name ${INSTANCE}-vo2 \
     --cloud-init victorops.yaml
     ```
 
@@ -135,9 +134,9 @@ With the `victorops.yaml` file created, from the same directory where you create
 
     ```
     multipass launch \
-    --name HWJL-vo2 \
+    --name ixmy-vo2 \
     --cloud-init victorops.yaml
-    Launched: HWJL-vo2
+    Launched: ixmy-vo2
     ```
 
 Once your two VMs have been created check within the SignalFx UI, Infrastructure Tab, and confirm they are reporting in correctly.  Allow a couple or minutes for the VMs to spin up, install updates and then install the SignalFx Agent etc.
@@ -160,7 +159,6 @@ Also grab a copy of the App Dev workshop if you haven't already and change into 
     unzip $WSVERSION.zip
     mv app-dev-workshop-${WSVERSION#v} workshop
     cd workshop/victorops
-    export INSTANCE=$(openssl rand -hex 12 | sed 's/^[0-9]*//g'| cut -c 1-4)-k3s
     ```
 
 === "Output"
@@ -255,7 +253,7 @@ It is considered best practice to run a `terraform plan` to see what changes may
 === "Input"
 
     ```text
-    terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$INSTANCE1" -var="sfx_vo_id=$SFXVOPSID" -var="routing_key=$ROUTINGKEY"
+    terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$INSTANCE" -var="sfx_vo_id=$SFXVOPSID" -var="routing_key=$ROUTINGKEY"
     ```
 
 === "Output"
