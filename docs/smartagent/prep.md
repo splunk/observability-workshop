@@ -67,31 +67,14 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     In this section you will  build and launch the Multipass instance which will run the Kubernetes (K3s) environment that you will use in multiple labs.
 
-    !!! Warning
-        For [µAPM](../../apm/) module there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
+    For [µAPM](../../apm/) module we use the Hot R.O.D[^5] application to emit Traces/Spans for SignalFx µAPM. Launch your instance with:
 
-        **Hot R.O.D Multipass min. requirements:** 1 vCPU, 5Gb Disk, 1Gb Memory
 
-        **Sock Shop Multipass min. requirements:** 4 vCPU, 15Gb Disk, 8Gb Memory
-
-    Ask which version is going to be used as part of this Workshop, then select either the Hot R.O.D[^5] or Sock Shop Multipass launch parameters:
-
-    === "Hot R.O.D"
-
-        ```text
-        multipass launch \
-        --name $INSTANCE \
-        --cloud-init cloud-init/k3s.yaml
-        ```
-
-    === "Sock Shop"
-
-        ```text
-        multipass launch \
-        --name $INSTANCE \
-        --cloud-init cloud-init/k3s.yaml \
-        --cpus 4 --disk 15G --mem 8G
-        ```
+    ```text
+    multipass launch \
+    --name $INSTANCE \
+    --cloud-init cloud-init/k3s.yaml
+    ```
 
     Once the instance has been successfully created (this can take several minutes), shell into it.
 
@@ -126,13 +109,9 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
         You will need access to an AWS account to obtain both `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
 
     !!! warning "Minimum requirements"
-        For the [µAPM](../../apm/) module there are two applications available for deployment to emit Traces/Spans for SignalFx µAPM.
+        For the [µAPM](../../apm/) module we are using the Hot R.O.D. application.  The minimum requirements are:
 
         **Hot R.O.D AWS/EC2 Instance min. requirements:** _t2.micro_ 1 vCPU, 8Gb Disk, 1Gb Memory
-
-        **Sock Shop AWS/EC2 Instance min. requirements:** _t2.large_ 2 vCPU, 15Gb Disk, 8Gb Memory
-
-    Ask which version is going to be used as part of this Workshop, then select either the Hot R.O.D or Sock Shop option when using terraform to launch your instance.
 
     **Prepare Terraform**
 
