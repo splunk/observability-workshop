@@ -62,7 +62,15 @@ To ensure the Hot R.O.D. application is running:
 ## 2. Viewing the Hot R.O.D. application in your browser
 
 !!! note "AWC/EC2 Users"
-    If you are using an AWS/EC2 instance, please skip to the next section [Generate Traffic](../../apm/hotrod/#3-generate-some-traffic-to-the-application-using-siege-benchmark).
+    If you are using an AWS/EC2 instance and have access to an SSH client on your local machine, we have prepared a little helper to allow you to view the application in your browser. Run
+
+    ```bash
+    tunnelme
+    ```
+
+    and follow the instructions. This will guide you to set up a SSH tunnel from your local machine port 9123 and forward the requests to the k3s ingress load balancer on AWS.
+
+    Then continue with the next section on how to [Generate Traffic](../../apm/hotrod/#3-generate-some-traffic-to-the-application-using-siege-benchmark).
 
 In order to view the application in your web browser we need to find the `LoadBalancer` IP address and the port the application is listening on.
 
