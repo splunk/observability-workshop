@@ -128,7 +128,7 @@ Create some errors with an invalid customer number
 
 Open the SignalFx UI, and go to you cluster in the Kubernetes Navigator. You should see the new Pod being started and containers being deployed.
 
-It should only take around 20 seconds for the pod to transition into a Running state. When you click on the new pod in the SignalFx UI you should have a cluster that looks like below:
+Usually it should only take around 20 seconds for the pod to transition into a Running state. When you click on the new pod in the SignalFx UI you should have a cluster that looks like below:
 
 ![back to Cluster](../images/apm/hotrod-k8-navigator.png){: .zoom}
 
@@ -136,7 +136,28 @@ If you select the **WORKLOADS** tab again you should now see that there is a new
 
 ![HOTROD loaded](../images/apm/hotrod-workload.png){: .zoom}
 
-Next, validate that you are seeing the APM metrics in the UI by going to **Dashboards → µAPM → NGINX Service**.  Please select your environment, select the front end service and set time to -15m
+Next, we want to validate that you are seeing the APM metrics in the UI.
+
+For this we need to know the name of your application environment.
+In this workshop all the environments use your hostname + "-SFX-WORKSHOP
+
+To find the hostname, check the prompt of you instance, please go to your
+instance (multipass or EC2) and run the following command.
+
+=== "Input"
+
+    ```bash
+    echo "Your µAPM environment is: $(hostname)-app-dev-workshop"
+    ```
+ 
+=== "Output"
+
+    ```text
+    Your µAPM environment is: ip-172-31-30-133-app-dev-workshop
+    ```
+---
+ 
+ Now go to **Dashboards → µAPM → Service**.  Please select your environment you found in the previous task then select the front end service and set time to -15m
 
 ![µAPM Dashboard](../images/apm/tmp.png){: .zoom}
 
@@ -147,6 +168,11 @@ To load the dashboard with more data run the following command a few times to cr
     ```bash
     siege -r2 -c20 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
     ```
+
+With this automatically generated dashboard you can keep an eye out for the health of you service, it provides various performance related charts as well as relevant information on the underlying host and kubernetes platform if applicable.
+ 
+Take some time to explore the various charts in this dashboard
+
 ---
 
 ## 5. Verify that µAPM traces are reaching SignalFx
@@ -158,5 +184,3 @@ Open SignalFx in your browser and select the **µAPM** tab.
 Select the **Troubleshooting** tab, and select your environment and set the time to 15 minutes. This will show you the Dependency Map for the Hot R.O.D. application.
 
 ![Hot R.O.D. in APM](../images/apm/hotrod-troubleshooting.png)
-
-If you did create some errors, they will show up as the big red dot in the Redis service.
