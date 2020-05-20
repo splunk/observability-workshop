@@ -3,8 +3,8 @@
 * Deploy application into K3s
 * Verify the application is running
 * Generate some artificial traffic
-* run troubleshooting using uAPM
 * See APM traces in the UI
+* Run a troubleshooting exercise with uAPM
 
 !!! note "Ensure you have a running instance"
     The setup part is already documented in the [Preparation](../../smartagent/prep/) and [Deploy the Smart Agent in K3s](../../smartagent/k3s/) steps. If you are using an AWS/EC2 instance, make sure it is available and skip to [Step 1](../../apm/hotrod/#1-deploy-the-hot-rod-application-into-k3s), otherwise ensure your Multipass instance is available and running before continuing.
@@ -112,7 +112,7 @@ Then run the following command(s) to create load on the service:
 === "Input"
 
     ```bash
-    siege -r1 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
+    siege -r2 -c20 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
     ```
 
 Create some errors with an invalid customer number
@@ -122,10 +122,34 @@ Create some errors with an invalid customer number
     ```bash
     siege -r1 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=391&nonse=0.17041229755366172"
     ```
-
 ---
 
-## 4. Verify that µAPM traces are reaching SignalFx
+## 4. Validating the Hot R.O.D. application in SignalFx
+
+Open the SignalFx UI, and go to you cluster in the Kubernetes Navigator. You should see the new Pod being started and containers being deployed.
+
+It should only take around 20 seconds for the pod to transition into a Running state. When you click on the new pod in the SignalFx UI you should have a cluster that looks like below:
+
+![back to Cluster](../images/apm/hotrod-k8-navigator.png){: .zoom}
+
+If you select the **WORKLOADS** tab again you should now see that there is a new replica set and a deployment added for hotrod:
+
+![HOTROD loaded](../images/apm/hotrod-workload.png){: .zoom}
+
+Next, validate that you are seeing the APM metrics in the UI by going to **Dashboards → µAPM → NGINX Service**.  Please select your environment, select the front end service and set time to -15m
+
+![µAPM Dashboard](../images/apm/tmp.png){: .zoom}
+
+To load the dashboard with more data run the following command a few times to create load on the service:
+
+=== "Input"
+
+    ```bash
+    siege -r2 -c20 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
+    ```
+---
+
+## 5. Verify that µAPM traces are reaching SignalFx
 
 Open SignalFx in your browser and select the **µAPM** tab.
 
