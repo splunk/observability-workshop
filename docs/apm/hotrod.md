@@ -125,59 +125,6 @@ Create some errors with an invalid customer number
 
 ---
 
-## 3. Generate some traffic to the application using Apache Benchmark
-
-Return to your shell and create an environment variable for the IP address and port that the Hot R.O.D. application is exposed on:
-
-=== "Input"
-
-    ```
-    HOTROD_ENDPOINT=$(kubectl get svc hotrod -n default -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
-    ```
-
-Confirm the environment variable is set
-
-=== "Input"
-
-    ```
-    curl $HOTROD_ENDPOINT
-    ```
-
-Then run the following command(s) to create load on the service:
-
-=== "Input"
-
-    ```bash
-    ab -n10 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
-    ```
----
-
-## 4. Validating the Hot R.O.D. application in SignalFx
-
-Open the SignalFx UI, and go to you cluster in the Kubernetes Navigator. You should see the new Pod being started and containers being deployed.
-
-It should only take around 20 seconds for the pod to transition into a Running state. When you click on the new pod in the SignalFx UI you should have a cluster that looks like below:
-
-![back to Cluster](../images/module6/hotrod-k8-navigator.png){: .zoom}
-
-If you select the **WORKLOADS** tab again you should now see that there is a new replica set and a deployment added for hotrod:
-
-![HOTROD loaded](../images/module6/hotrod-workload.png){: .zoom}
-
-Next, validate that you are seeing the APM metrics in the UI by going to **Dashboards → µAPM → NGINX Service**.  Please select your environment, select the front end service and set time to -15m
-
-![µAPM Dashboard](../images/module6/tmp.png){: .zoom}
-
-To load the dashboard with more data run the following command a few times to create load on the service:
-
-=== "Input"
-
-    ```bash
-    ab -n10 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
-    ```
-
----
-
 ## 4. Verify that µAPM traces are reaching SignalFx
 
 Open SignalFx in your browser and select the **µAPM** tab.
