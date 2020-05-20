@@ -1,0 +1,32 @@
+#cloud-config
+ssh_pwauth: yes
+password: AppDev2020!
+chpasswd:
+  expire: false
+
+package_update: true
+package_upgrade: true
+
+packages:
+  - apache2-utils
+  - unzip
+
+runcmd:
+# Download signalfx agent
+- curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
+- sudo sh /tmp/signalfx-agent.sh --realm [REALM] -- [ACCESS_TOKEN]
+# Download Workshop
+- export WSVERSION=1.14
+- curl -s -OL https://github.com/signalfx/app-dev-workshop/archive/v$WSVERSION.zip
+- unzip -qq v$WSVERSION.zip -d /home/ubuntu/
+- mv /home/ubuntu/app-dev-workshop-$WSVERSION /home/ubuntu/workshop
+- 'sed -i -e ''s/\[HOSTNAME\]/''"$(hostname)"''/'' /home/ubuntu/workshop/k3s/values.yaml'
+# Configure motd
+- curl -s https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd -o /etc/motd
+- chmod -x /etc/update-motd.d/*
+# Install Terraform
+- curl -s -OL https://releases.hashicorp.com/terraform/0.12.25/terraform_0.12.25_linux_amd64.zip
+- unzip -qq terraform_0.12.25_linux_amd64.zip
+- mv terraform /usr/local/bin/
+# Set correct permissions on ubuntu user home directory
+- chown -R ubuntu:ubuntu /home/ubuntu

@@ -3,7 +3,8 @@
 * Deploy application into K3s
 * Verify the application is running
 * Generate some artificial traffic
-* Validate traces in the UI
+* run troubleshooting using uAPM
+* See APM traces in the UI
 
 !!! note "Ensure you have a running instance"
     The setup part is already documented in the [Preparation](../../smartagent/prep/) and [Deploy the Smart Agent in K3s](../../smartagent/k3s/) steps. If you are using an AWS/EC2 instance, make sure it is available and skip to [Step 1](../../apm/hotrod/#1-deploy-the-hot-rod-application-into-k3s), otherwise ensure your Multipass instance is available and running before continuing.
