@@ -16,10 +16,10 @@ runcmd:
 - curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
 - sudo sh /tmp/signalfx-agent.sh --realm [REALM] -- [ACCESS_TOKEN]
 # Download Workshop
-- export WSVERSION=1.14
-- curl -s -OL https://github.com/signalfx/app-dev-workshop/archive/v$WSVERSION.zip
-- unzip -qq v$WSVERSION.zip -d /home/ubuntu/
-- mv /home/ubuntu/app-dev-workshop-$WSVERSION /home/ubuntu/workshop
+- export WSVERSION=v1.14
+- curl -s -OL https://github.com/signalfx/app-dev-workshop/archive/$WSVERSION.zip
+- unzip -qq $WSVERSION.zip -d /home/ubuntu/
+- mv /home/ubuntu/app-dev-workshop-${WSVERSION#v} /home/ubuntu/workshop
 - 'sed -i -e ''s/\[HOSTNAME\]/''"$(hostname)"''/'' /home/ubuntu/workshop/k3s/values.yaml'
 # Configure motd
 - curl -s https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd -o /etc/motd
