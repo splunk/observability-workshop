@@ -38,7 +38,7 @@ Regardless if you are running this lab locally or if you are going to create you
 
 === "Linux/Mac OS"
 
-    ```text
+    ```bash
     WSVERSION=1.14
     curl -OL https://github.com/signalfx/app-dev-workshop/archive/v$WSVERSION.zip
     unzip v$WSVERSION.zip
