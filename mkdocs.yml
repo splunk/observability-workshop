@@ -25,6 +25,7 @@ versions:
 theme:
   name: material
   palette:
+    scheme: slate
     primary: 'black'
   favicon: images/favicon.ico
   logo: images/logo.png
@@ -58,6 +59,15 @@ extra_css:
 
 extra_javascript:
   - "javascripts/extra.js"
+
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/signalfx/app-dev-workshop
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/splunk
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/splunk/
 
 plugins:
   - git-revision-date-localized:
