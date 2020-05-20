@@ -15,7 +15,7 @@
 
     !!! note "Multipass"
         Install [Multipass](https://multipass.run/) for your operating system. Make sure you are using at least version `1.2.0`.
-        
+
         On a Mac you can also install via [Homebrew](https://brew.sh/) e.g. `brew cask install multipass`
 
     !!! info "Struggling with Multipass?"
