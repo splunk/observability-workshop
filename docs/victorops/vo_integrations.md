@@ -148,41 +148,24 @@ If they fail to appear, double check your Token and Realm settings within your v
 
 We now need to create a new Detector within SignalFx which will use VictorOps as the target to send alerts to.  We will use Terraform to create the detector in a similar way to the 'Monitoring as Code' module.
 
-If you have not completed the **Monitoring as Code** module, and do not have Terraform already installed, download and install it for your platform - `https://www.terraform.io/downloads.html` (min. requirement v. 0.12.18)
+If you have not completed the **Monitoring as Code** module, and do not have Terraform already installed, install [Terraform](https://www.terraform.io/downloads.html) for your operating system. Please make sure it is version `0.12.18` or above. On a Mac you can also install via [Homebrew](https://brew.sh/) e.g. `brew install terraform`. This will get around Mac OS Catalina security. If you are running on an instructor-provided EC2 image `terraform` is already installed for you.
 
-Copy and run the following code to download the VictorOps Workshop Detectors master zip file, unzip the file, then change into the `victorops-workshop-detectors-master` directory.
+Also grab a copy of the App Dev workshop if you haven't already and change into the `victorops` directory.
 
 === "Input"
 
     ```bash
-    curl -LO https://github.com/signalfx/victorops-workshop-detectors/archive/master.zip
-    unzip master.zip
-    mv victorops-workshop-detectors-master victorops
-    cd victorops
+    WSVERSION=v1.14
+    curl -OL https://github.com/signalfx/app-dev-workshop/archive/$WSVERSION.zip
+    unzip $WSVERSION.zip
+    mv app-dev-workshop-${WSVERSION#v} workshop
+    cd workshop/victorops
+    export INSTANCE=$(openssl rand -hex 12 | sed 's/^[0-9]*//g'| cut -c 1-4)-k3s
     ```
 
 === "Output"
 
     ```text
-    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100   142  100   142    0     0    459      0 --:--:-- --:--:-- --:--:--   459
-    100  4007    0  4007    0     0   5466      0 --:--:-- --:--:-- --:--:-- 17197
-    Archive:  master.zip
-    fcc95b101225ddb876d16106b5d7ece74a41f6c1
-       creating: victorops-workshop-detectors-master/
-      inflating: victorops-workshop-detectors-master/.DS_Store
-      inflating: victorops-workshop-detectors-master/.gitignore
-      inflating: victorops-workshop-detectors-master/README.md
-      inflating: victorops-workshop-detectors-master/main.tf
-       creating: victorops-workshop-detectors-master/modules/
-      inflating: victorops-workshop-detectors-master/modules/.DS_Store
-       creating: victorops-workshop-detectors-master/modules/host/
-      inflating: victorops-workshop-detectors-master/modules/host/cpu.tf
-      inflating: victorops-workshop-detectors-master/modules/host/variables.tf
-      inflating: victorops-workshop-detectors-master/variables.tf
-     extracting: victorops-workshop-detectors-master/versions.tf
-    ➜  victorops-workshop-detectors-master
     ```
 
 Create the following environment variables to use in the Terraform steps below.  The 1st three variables should be stored in your `values document` if you have been populating it as you have worked through this module.  You can populate the final two now then simply copy all five lines into your terminal window where you downloaded the terraform files in the previous step.
