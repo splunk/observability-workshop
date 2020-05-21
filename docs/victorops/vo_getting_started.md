@@ -11,7 +11,15 @@
 
 ## Activate your login
 
-You will have received an invitation to Activate your VictorOps account via e-mail, click the 'Activate Account' link and follow the prompts.
+You should have received an invitation to Activate your VictorOps account via e-mail, click the 'Activate Account' link and follow the prompts.
+
+If you did not receive an invitation it is probably because you already have a VictorOps login, liked to a different organisation.  If so login to to that Org, then use the organisation dropdown next to your username in the top left to switch to the AppDev-EMEA Org.
+
+![Switch Org](../images/victorops/switch-org.png)
+
+If you have forgotten your password go to the sign-in page and use the forgotten password link to reset your password.
+
+![Reset Pwd](../images/victorops/reset-password.png)
 
 ---
 
