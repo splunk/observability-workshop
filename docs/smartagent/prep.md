@@ -11,8 +11,6 @@
 
 ## 1. Module Pre-requisites
 
-![SFx Architecture](../images/smartagent/architecture.png){: .zoom}
-
 === "Running Locally"
 
     !!! note "Multipass"

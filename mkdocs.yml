@@ -84,6 +84,7 @@ nav:
   - 'Home': index.md
   - '<b>SignalFx</b>':
     - '<b>Get Data In</b><br /><small>20 minutes</small>':
+      - 'Workshop Introduction': smartagent/intro.md
       - 'Workshop Preparation': smartagent/prep.md
       - 'Deploy the Smart Agent in K3s': smartagent/k3s.md
       - 'Deploy NGINX in K3s' : smartagent/nginx.md
