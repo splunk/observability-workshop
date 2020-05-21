@@ -65,6 +65,7 @@ You will now have three different Shift patterns, that provide cover 24hr hours,
 We will now add another Rotation for our Senior SRE Escalation cover.
 
 ---
+
 ## Senior SRE Escalation
 
 * Click `Add Rotation`

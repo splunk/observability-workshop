@@ -1,10 +1,14 @@
-# Create your team
+# Create your teams for VictorOps
 
-Navigate to the Teams Tab on the main toolbar, you should find you have had a team created for you as part of the workshop setup, however if this did not happen, you may need to create a new one.
+Navigate to the **Teams** tab on the main toolbar, you should find you have had a team created for you as part of the workshop setup, however if this did not happen, you may need to create a new one.
 
-Select `Add Team`, then enter your team name using the format described by your workshop presenter, this will tpyically be in the format of "StudentID_Workshop" and then save by clicking the `Add Team` button.
+Select **Add Team**, then enter your team name using the format described by your workshop presenter, this will tpyically be in the format of "StudentID_Workshop" and then save by clicking the **Add Team** button.
 
-You now need to add other users to your team.  If you are running this workshop using the Splunk provided environment, the following accounts are available for testing.  If you are running this lab in your own environment, you will have been provided a list of usernames you can use in place of the table below.  These users are dummy accounts who will receive notifications when they are on call.
+You now need to add other users to your team.  If you are running this workshop using the Splunk provided environment, the following accounts are available for testing.
+
+If you are running this lab in your own environment, you will have been provided a list of usernames you can use in place of the table below.
+
+These users are dummy accounts who will receive notifications when they are on call.
 
 | Name | Username | Shift |
 | --- | --- | --- |
@@ -21,13 +25,15 @@ You now need to add other users to your team.  If you are running this workshop 
 | Hank Schrader | hankschrader | 24/7 |
 | Pam Beesly | pambeesly | 24/7 |
 
-Add the users to your team, using either the above list or the alternate one provided to you. The value in the `Shift` column can be ignored for now, but will be required for a later step.
+Add the users to your team, using either the above list or the alternate one provided to you. The value in the **Shift** column can be ignored for now, but will be required for a later step.
 
-Click the `Invite User` button on the right hand side, then either start typing the usernames (this will filter the list), or copy and paste them into the dialogue box. Once all users are added click the `Add User` button.
+Click the **Invite User** button on the right hand side, then either start typing the usernames (this will filter the list), or copy and paste them into the dialogue box.
 
-![Add Team Members](../images/victorops/add-team-members.png)
+Once all users are added click the **Add User** button.
 
-To make a team member a Team Admin, simply click the `Pencil` icon in the right hand column, pick any user and make them an Admin.
+![Add Team Members](../images/victorops/add-team-members.png){: .zoom}
+
+To make a team member a Team Admin, simply click the :fontawesome-regular-edit: icon in the right hand column, pick any user and make them an Admin.
 
 ![Add Admin](../images/victorops/team-admin.png)
 
