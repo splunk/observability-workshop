@@ -37,6 +37,9 @@ Navigate to the Escalation Polices tab on the Teams sub menu, you should have no
     * `Execute Policy` → `[Your Team Name] : Primary`
 * Click `Save`
 
-You may have noticed that when we created each policy there was the warning message `There are no routing keys for this policy - it will only receive incidents via manual reroute or when on another escalation policy`
+You may have noticed that when we created each policy there was the warning message `
+
+!!! warning
+    There are no routing keys for this policy - it will only receive incidents via manual reroute or when on another escalation policy
 
 This is because there are no Routing Keys linked to these Escalation Polices, so now that we have these polices configured we can go and create the Routing Keys.
