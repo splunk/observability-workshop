@@ -4,39 +4,67 @@ Navigate to the `Rotations` tab on the `Teams` sub menu, you should have no exis
 
 ## Follow the Sun Support - Business Hours
 
-* Click `Add Rotation`
-* Enter a name of "*Follow the Sun Support - Business Hours*"
-* Select `Partial day` from the three available shift templates
-  * Enter a Shift name of "*Asia*"
-    * Time Zone set to "*Asia/Tokyo*"
-    * Each user is on duty from "*Monday through Friday from 9.00am to 5.00pm*"
-    * Handoff happens every "*7 days*"
-    * The next handoff happens - Select the next Monday using the calendar
-    * Click `Save Rotation`
-* Now add an 2nd shift for Europe by clicking `+Add a shift` - `Partial Day`
-  * Enter a Shift name of "*Europe*"
-    * Time Zone set to "*Europe/London*"
-    * Each user is on duty from "*Monday through Friday from 9.00am to 5.00pm*"
-    * Handoff happens every "*7 days*"
-    * The next handoff happens - Select the next Monday using the calendar
-    * Click `Save Shift`
-* Now add a 3rd shift for West Coast USA by clicking `+Add a shift` - `Partial Day`
-  * Enter a Shift name of "*West Coast*"
-    * Time Zone set to "*US/Pacific*"
-    * Each user is on duty from "*Monday through Friday from 9.00am to 5.00pm*"
-    * Handoff happens every "*7 days*"
-    * The next handoff happens - Select the next Monday using the calendar
-    * Click `Save Shift`
-* You new need to add the users into their allocated shift patterns using either the table above, or the list of users provided to you separately
-  * For each Shift, click on the `Manage Members` icon which is the left of the three icons and resembles the image of three heads
-    * Add the users to each Shift (note how you have to use their Username and not their real names)
-    * The first user added will be the 'current' user for that shift
-    * You can re-order the shifts by simply dragging the users up and down, and you can change the current user by clicking `Set Current` on an alternate user
+Click `Add Rotation`
+
+![Add Rotation](../images/victorops/add-rotation.png){: .center}
+
+Enter a name of "*Follow the Sun Support - Business Hours*" and Select `Partial day` from the three available shift templates
+![Follow the Sun](../images/victorops/follow-the-sun.png){: .zoom}
+
+* Enter a Shift name of "*Asia*"
+* Time Zone set to "*Asia/Tokyo*"
+* Each user is on duty from "*Monday through Friday from 9.00am to 5.00pm*"
+* Handoff happens every "*7 days*"
+* The next handoff happens - Select the next Monday using the calendar
+* Click `Save Rotation`
+
+![Asia Shift](../images/victorops/asia-shift.png){: .zoom}
+
+You will now be prompted to add Members to this shift; add the Asia members who are Jim, Lydia and Maria, but only if you're using the AppDev-EMEA Organisation for this workshop, if you're using your own Organisation refer to the specific list provided separately.
+
+![Asia Members](../images/victorops/asia-members.png){: .zoom}
+
+Now add an 2nd shift for Europe by again clicking `+Add a shift` - `Partial Day`
+
+![Add Shift](../images/victorops/add-new-shift.png)
+
+* Enter a Shift name of "*Europe*"
+* Time Zone set to "*Europe/London*"
+* Each user is on duty from "*Monday through Friday from 9.00am to 5.00pm*"
+* Handoff happens every "*7 days*"
+* The next handoff happens - Select the next Monday using the calendar
+* Click `Save Shift`
+
+![Europe Shift](../images/victorops/europe-shift.png){: .zoom}
+
+You will again be prompted to add Members to this shift; add the Europe members who are Duane, Gomez and Heisenberg, but only if you're using the AppDev-EMEA Organisation for this workshop, if you're using your own Organisation refer to the specific list provided separately.
+
+![Europe Members](../images/victorops/europe-members.png){: .zoom}
+
+Now add a 3rd shift for West Coast USA by again clicking `+Add a shift` - `Partial Day`
+
+* Enter a Shift name of "*West Coast*"
+* Time Zone set to "*US/Pacific*"
+* Each user is on duty from "*Monday through Friday from 9.00am to 5.00pm*"
+* Handoff happens every "*7 days*"
+* The next handoff happens - Select the next Monday using the calendar
+* Click `Save Shift`
+
+![West Coast Shift](../images/victorops/west-coast-shift.png){: .zoom}
+
+You will again be prompted to add Members to this shift; add the West Coast members who are Maximo, Michaelscott and Tuco, but only if you're using the AppDev-EMEA Organisation for this workshop, if you're using your own Organisation refer to the specific list provided separately.
+
+![West Coast Members](../images/victorops/west-coast-members.png){: .zoom}
+
+The first user added will be the 'current' user for that shift.
+
+You can re-order the shifts by simply dragging the users up and down, and you can change the current user by clicking `Set Current` on an alternate user
 
 You will now have three different Shift patterns, that provide cover 24hr hours, Mon - Fri, but with no cover at weekends.
 
-We will now add the 2nd Rotation for our Senior SRE Escalation cover.
+We will now add another Rotation for our Senior SRE Escalation cover.
 
+---
 ## Senior SRE Escalation
 
 * Click `Add Rotation`
