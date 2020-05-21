@@ -5,10 +5,8 @@ chpasswd:
   expire: false
 
 package_update: true
-package_upgrade: true
 
 packages:
-  - siege
   - unzip
 
 runcmd:
@@ -20,7 +18,6 @@ runcmd:
 - curl -s -OL https://github.com/signalfx/app-dev-workshop/archive/$WSVERSION.zip
 - unzip -qq $WSVERSION.zip -d /home/ubuntu/
 - mv /home/ubuntu/app-dev-workshop-${WSVERSION#v} /home/ubuntu/workshop
-- 'sed -i -e ''s/\[HOSTNAME\]/''"$(hostname)"''/'' /home/ubuntu/workshop/k3s/values.yaml'
 # Configure motd
 - curl -s https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd -o /etc/motd
 - chmod -x /etc/update-motd.d/*
