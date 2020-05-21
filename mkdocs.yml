@@ -113,6 +113,12 @@ nav:
       - 'Deploying Sock Shop in K3s': apm/sockshop.md
       - 'Deploy Smart Agent on a VM': module-support/vm.md
   - '<b>VictorOps</b>':
-    - '<b>Getting Started</b><br /><small>30 minutes</small>': victorops/vo_getting_started.md
+    - '<b>Getting Started</b><br /><small>30 minutes</small>':
+      - 'Initial Setup': victorops/vo_getting_started.md
+      - 'Paging polices': victorops/paging.md
+      - 'Creating a team': victorops/team.md
+      - 'Configure Rotations': victorops/rotations.md
+      - 'Configure Escalation Policies': victorops/escalation.md
+      - 'Creating Routing keys': victorops/routing.md
     - '<b>Integrations</b><br /><small>30 minutes</small>': victorops/vo_integrations.md
     - '<b>Incident Lifecycle</b><br /><small>30 minutes</small>': victorops/vo_incident_lifecycle.md
