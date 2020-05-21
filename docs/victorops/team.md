@@ -1,8 +1,10 @@
 # Create your team
 
-Navigate to the Teams Tab on the main toolbar, select `Add Team`, then enter your team name using the format "[Your Initials] Workshop" and then save by clicking the `Add Team` button.
+Navigate to the Teams Tab on the main toolbar, you should find you have had a team created for you as part of the workshop setup, however if this did not happen, you may need to create a new one.
 
-You now need to add other users to your team.  If you are running this workshop using the Splunk provided environment, the following accounts are available for testing.  If you are running this lab in your own environment, you will have been provided a list of usernames you can use in place of the table below.
+Select `Add Team`, then enter your team name using the format described by your workshop presenter, this will tpyically be in the format of "StudentID_Workshop" and then save by clicking the `Add Team` button.
+
+You now need to add other users to your team.  If you are running this workshop using the Splunk provided environment, the following accounts are available for testing.  If you are running this lab in your own environment, you will have been provided a list of usernames you can use in place of the table below.  These users are dummy accounts who will receive notifications when they are on call.
 
 | Name | Username | Shift |
 | --- | --- | --- |
@@ -21,9 +23,13 @@ You now need to add other users to your team.  If you are running this workshop 
 
 Add the users to your team, using either the above list or the alternate one provided to you. The value in the `Shift` column can be ignored for now, but will be required for a later step.
 
-Click the `Invite User` button then either start typing the usernames (this will filter the list), or copy and paste them into the dialogue box. Once all users are added click the `Add User` button.
+Click the `Invite User` button on the right hand side, then either start typing the usernames (this will filter the list), or copy and paste them into the dialogue box. Once all users are added click the `Add User` button.
+
+![Add Team Members](../images/victorops/add-team-members.png)
 
 To make a team member a Team Admin, simply click the `Pencil` icon in the right hand column, pick any user and make them an Admin.
 
+![Add Admin](../images/victorops/team-admin.png)
+
 !!! tip
-    For large team management you could use the API to streamline this process, and we will look at that in a later module
+    For large team management you can use the APIs to streamline this process
