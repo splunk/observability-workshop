@@ -1,4 +1,4 @@
-# Create your teams for VictorOps
+# Create Your Team for VictorOps
 
 Navigate to the **Teams** tab on the main toolbar, you should find you have had a team created for you as part of the workshop setup, however if this did not happen, you may need to create a new one.
 
