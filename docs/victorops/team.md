@@ -22,7 +22,7 @@ These users are dummy accounts who will not receive notifications when they are 
 | Michael Scott | michaelscott | West Coast |
 | Tuco Salamanca | tuco | West Coast |
 | Jack Welker | jackwelker | 24/7 |
-| Hank Schrader | hankschrader | 24/7 |
+| Hank Schrader | hank | 24/7 |
 | Pam Beesly | pambeesly | 24/7 |
 
 Add the users to your team, using either the above list or the alternate one provided to you. The value in the **Shift** column can be ignored for now, but will be required for a later step.
