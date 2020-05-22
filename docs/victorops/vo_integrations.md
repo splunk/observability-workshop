@@ -6,9 +6,7 @@
 
 ---
 
-## 1. Configuring the Integration between VictorOps and SignalFx
-
-### 1.1. VictorOps Service API Endpoint
+## VictorOps Service API Endpoint
 
 !!! warning
     The SignalFx Integration only needs to be enabled once per VictorOps instance, so you will probably find it has already been enabled, please **DO NOT** disable an already active integration when completing this lab.
@@ -21,7 +19,7 @@ You simply need to copy the Service API Endpoint, including the `$routing_key` i
 
 This will be used when configuring the VictorOps Integration within the SignalFx UI.
 
-### 1.2. Enable VictorOps Integration within SignalFx
+## Enable VictorOps Integration within SignalFx
 
 Login to your SignalFx account and navigate to **INTEGRATIONS** and use the search feature to find the VictorOps integration.
 
@@ -45,29 +43,18 @@ Once saved you need to copy the ID and save it in your `values document` using t
 
 ![VictorOps Integration](../images/victorops/m7-sfx-vo-integration-id.png)
 
-### 2.4. SignalFx Detector
+## Create a SignalFx Detector
 
 We now need to create a new Detector within SignalFx which will use VictorOps as the target to send alerts to.
 
 We will use Terraform to create the detector in a similar way to the 'Monitoring as Code' module.
 
-If you have not completed the **Monitoring as Code** module, and do not have Terraform already installed, install [Terraform](https://www.terraform.io/downloads.html) for your operating system. Please make sure it is version `0.12.18` or above. On a Mac you can also install via [Homebrew](https://brew.sh/) e.g. `brew install terraform`. This will get around Mac OS Catalina security. If you are running on an instructor-provided EC2 image `terraform` is already installed for you.
-
-Also grab a copy of the App Dev workshop if you haven't already and change into the `victorops` directory.
+Shell into your 1st Multipass instance you created in the **Getting Started** module:
 
 === "Input"
 
-    ```bash
-    WSVERSION=v1.14
-    curl -OL https://github.com/signalfx/app-dev-workshop/archive/$WSVERSION.zip
-    unzip $WSVERSION.zip
-    mv app-dev-workshop-${WSVERSION#v} workshop
-    cd workshop/victorops
     ```
-
-=== "Output"
-
-    ```text
+    multipass shell ${INSTANCE}
     ```
 
 Create the following environment variables to use in the Terraform steps below.  The 1st three variables should be stored in your `values document` if you have been populating it as you have worked through this module.  You can populate the final two now then simply copy all five lines into your terminal window where you downloaded the terraform files in the previous step.
@@ -78,7 +65,6 @@ Create the following environment variables to use in the Terraform steps below. 
     export SFXVOPSID=[VictorOps Integration ID from Step 2]
     export ACCESS_TOKEN=[SignalFx Access Token from Step 2]
     export REALM=[SignalFx Realm from Step 2]
-    export ROUTINGKEY=${HOSTNAME}_PRI
     ```
 
 === "Example"
@@ -87,13 +73,17 @@ Create the following environment variables to use in the Terraform steps below. 
     export SFXVOPSID=xxxxxxxxxxxx
     export ACCESS_TOKEN=xxxxxxxxxxxxxxx
     export REALM=us1
-    export ROUTINGKEY=ixmy_PRI
     ```
 
-Initialize Terraform.
+Next you need to export an environment vairable for your Routing Key, as this uses the hostname of the VM, run the following command:
 
-!!! note
-    You will need to run this command each time a new version of the Terraform Provider is released. You can track the releases on [GitHub](https://github.com/terraform-providers/terraform-provider-signalfx/releases).
+=== "Input"
+
+    ```bash
+    export ROUTINGKEY=${HOSTNAME}_PRI
+    ```
+
+### Initialize Terraform
 
 === "Input"
 
