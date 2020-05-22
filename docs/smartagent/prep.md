@@ -42,7 +42,7 @@ Regardless if you are running this lab locally or if you are going to create you
     unzip v$WSVERSION.zip
     mv app-dev-workshop-$WSVERSION workshop
     cd workshop
-    export INSTANCE=$(cat /dev/urandom | tr -dc 'a-z' | head -c4)
+    export INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)
     ```
 
 === "Windows"
