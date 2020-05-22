@@ -28,11 +28,11 @@ Login to your SignalFx account and navigate to **INTEGRATIONS** and use the sear
 
 Assuming you are using the AppDev EMEA instance of VictorOps you will find the VictorOps Integration has already been configured so there is no need to create a new one.
 
-However the process of creating a new Integration is simply to click on `Create New Integration` like in the image below, or if there are existing integrations and you want to add another one you would click `New Integration`.
+However the process of creating a new Integration is simply to click on **Create New Integration** like in the image below, or if there are existing integrations and you want to add another one you would click **New Integration**.
 
 ![VictorOps Integration](../../images/victorops/m7-sfx-new-vo-integration.png)
 
-Enter a descriptive `Name` then paste the `Service_API_Endpoint` value you copied in the previous step into the `Post URL` field, then save it.
+Enter a descriptive **Name** then paste the **Service_API_Endpoint** value you copied in the previous step into the **Post URL** field, then save it.
 
 ![VictorOps Integration](../../images/victorops/m7-sfx-vo-integration-url.png)
 
