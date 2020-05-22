@@ -128,3 +128,4 @@ nav:
       - 'Overview': victorops/incident_lifecycle/index.md
       - 'Create incidents': victorops/incident_lifecycle/create_incidents.md
       - 'Manage incidents': victorops/incident_lifecycle/manage_incidents.md
+    - '<b>Workshop Clean-up</b><br /><small>2 minutes</small>': victorops/cleanup.md
