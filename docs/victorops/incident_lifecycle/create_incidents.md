@@ -14,63 +14,33 @@ Before generating any incidents you should assign yourself to the current Shift 
 
 ![On Duty](../../images/victorops/m7-on-duty.png){: .center}
 
-### 2.2 Trigger Alert
+## Trigger Alert
 
 Log into your first VM you created during step [2. Creating a Test Environment](../../vo_integrations/#2-creating-a-test-environment) in VictorOps Integrations
 
 === "Input"
 
     ```
-    multipass shell [YOUR INITIALS]-vo1
-    ```
-
-=== "Example"
-
-    ```
-    multipass shell gh-vo1
+    multipass shell ${INSTANCE}-vo1
     ```
 
 === "Output"
+    
+    ```text
+    █████╗ ██████╗ ██████╗     ██████╗ ███████╗██╗   ██╗
+    ██╔══██╗██╔══██╗██╔══██╗    ██╔══██╗██╔════╝██║   ██║
+    ███████║██████╔╝██████╔╝    ██║  ██║█████╗  ██║   ██║
+    ██╔══██║██╔═══╝ ██╔═══╝     ██║  ██║██╔══╝  ╚██╗ ██╔╝
+    ██║  ██║██║     ██║         ██████╔╝███████╗ ╚████╔╝
+    ╚═╝  ╚═╝╚═╝     ╚═╝         ╚═════╝ ╚══════╝  ╚═══╝  
 
-    ```
-    Welcome to Ubuntu 18.04.4 LTS (GNU/Linux 4.15.0-96-generic x86_64)
-    
-     * Documentation:  https://help.ubuntu.com
-     * Management:     https://landscape.canonical.com
-     * Support:        https://ubuntu.com/advantage
-    
-      System information as of Wed Apr 22 11:13:48 BST 2020
-    
-      System load:  0.0               Processes:             105
-      Usage of /:   88.7% of 1.96GB   Users logged in:       0
-      Memory usage: 19%               IP address for enp0s2: 192.168.64.13
-      Swap usage:   0%
-    
-      => / is using 88.7% of 1.96GB
-    
-     * Kubernetes 1.18 GA is now available! See https://microk8s.io for docs or
-       install it with:
-    
-         sudo snap install microk8s --channel=1.18 --classic
-    
-     * Multipass 1.1 adds proxy support for developers behind enterprise
-       firewalls. Rapid prototyping for cloud operations just got easier.
-    
-         https://multipass.run/
-    
-     * Canonical Livepatch is available for installation.
-       - Reduce system reboots and improve kernel security. Activate at:
-         https://ubuntu.com/livepatch
-    
-    0 packages can be updated.
-    0 updates are security updates.
-    
-    
-    Last login: Tue Apr 21 17:29:23 2020 from 192.168.64.1
     To run a command as administrator (user "root"), use "sudo <command>".
-    See "man sudo_root" for details.
-    
-    ubuntu@gh-vo1:~$
+    See "man sudo_root" for details
+
+    Waiting for cloud-init status...
+    Your instance is ready!
+
+    ubuntu@ixmy-vo1:~$
     ```
 
 Force the CPU to spike to 100% by running the following command:

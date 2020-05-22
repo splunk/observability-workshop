@@ -6,7 +6,7 @@ The Primary Paging Policy will have defaulted to sending you an SMS assuming you
 
 We will now configure this policy into a three tier multi-stage policy similar to the image below.
 
-![Paging Policy](../../../images/victorops/primary-paging-policy.png)
+![Paging Policy](../../images/victorops/primary-paging-policy.png)
 
 ## Send a push notification
 
