@@ -80,7 +80,7 @@ Next you need to export an environment vairable for your Routing Key, as this us
 === "Input"
 
     ```bash
-    export ROUTINGKEY=${HOSTNAME}_PRI
+    export ROUTINGKEY=${HOSTNAME:0:4}_PRI
     ```
 
 ### Initialize Terraform
@@ -155,7 +155,7 @@ Check the plan output for errors before typing _**yes**_ to commit the apply.
 === "Input"
 
     ```text
-    terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$INSTANCE" -var="sfx_vo_id=$SFXVOPSID" -var="routing_key=$ROUTINGKEY"
+    terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=${HOSTNAME:0:4}" -var="sfx_vo_id=$SFXVOPSID" -var="routing_key=$ROUTINGKEY"
     ```
 
 === "Output"
