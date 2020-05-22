@@ -1,14 +1,13 @@
 # Creating a Test Environment
 
-You are going to need to record a number of values during this module which we will export as variables in a later step so I suggest you create a `values document` to store the following values as you work through it.
+You are going to need to record a number of values during this Workshop which we will export as variables in later steps so create `values.txt` locally to store the following values as you work through the Workshop.
 
-=== "Values"
-    ```bash
+=== "values.txt"
+    ```text
     export SFXVOPSID=
     export ACCESS_TOKEN=
     export REALM=
     export ROUTINGKEY=
-    export INITIALS=
 
     Service_API_Endpoint=
     ```
@@ -21,7 +20,7 @@ The easiest way to test VictorOps is to use Multipass to run some local test VMs
 
 If you do not already have Multipass installed you can download the installer from [here](https://multipass.run/).
 
-Mac OS users can install it using Homebrew by running:
+Mac OS users can install it using [Homebrew](https://brew.sh/) by running:
 
 === "Code"
 
