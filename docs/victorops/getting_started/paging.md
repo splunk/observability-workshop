@@ -6,7 +6,7 @@ The Primary Paging Policy will have defaulted to sending you an SMS assuming you
 
 We will now configure this policy into a three tier multi-stage policy similar to the image below.
 
-![Paging Policy](../images/victorops/primary-paging-policy.png)
+![Paging Policy](../../../images/victorops/primary-paging-policy.png)
 
 ## Send a push notification
 
@@ -15,7 +15,7 @@ Click the edit policy button in the top right corner for the Primary Paging Poli
 * Send a push notification to all my devices
 * Execute the next step if I have not responded within 5 minutes
 
-![Step 1](../images/victorops/pri-page-step1.png)
+![Step 1](../../images/victorops/pri-page-step1.png)
 
 Click **Add a Step**
 
@@ -24,7 +24,7 @@ Click **Add a Step**
 * Send an e-mail to [your email address]
 * Execute the next step if I have not responded within 5 minutes
 
-![Step 2](../images/victorops/pri-page-step2.png)
+![Step 2](../../images/victorops/pri-page-step2.png)
 
 Click **Add a Step**
 
@@ -33,7 +33,7 @@ Click **Add a Step**
 * Every 5 minutes until we have reached you
 * Make a phone call to [your phone number]
 
-![Step 3](../images/victorops/pri-page-step3.png)
+![Step 3](../../images/victorops/pri-page-step3.png)
 
 Then save the policy.
 
@@ -68,7 +68,7 @@ Policy Name: Evening
   * Timezone
     * Between 7pm and 9am
 
-![Evening](../images/victorops/evening.png)
+![Evening](../../images/victorops/evening.png)
 
 Save the policy then add one more
 
@@ -82,7 +82,7 @@ Policy Name: Weekend
   * Timezone
     * Between 9am and 7pm
 
-![Weekends](../images/victorops/weekends.png)
+![Weekends](../../images/victorops/weekends.png)
 
 These custom paging policies will be used during the specified times in place of the Primary Policy.
 

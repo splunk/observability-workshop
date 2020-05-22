@@ -31,11 +31,11 @@ Click the **Invite User** button on the right hand side, then either start typin
 
 Once all users are added click the **Add User** button.
 
-![Add Team Members](../images/victorops/add-team-members.png){: .zoom}
+![Add Team Members](../../images/victorops/add-team-members.png){: .zoom}
 
 To make a team member a Team Admin, simply click the :fontawesome-regular-edit: icon in the right hand column, pick any user and make them an Admin.
 
-![Add Admin](../images/victorops/team-admin.png)
+![Add Admin](../../images/victorops/team-admin.png)
 
 !!! tip
     For large team management you can use the APIs to streamline this process

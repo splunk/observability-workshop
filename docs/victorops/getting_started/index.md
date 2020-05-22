@@ -17,11 +17,11 @@ If you did not receive an invitation it is probably because you already have a V
 
 If so login to to that Org, then use the organisation dropdown next to your username in the top left to switch to the AppDev-EMEA Org.
 
-![Switch Org](../images/victorops/switch-org.png)
+![Switch Org](../../images/victorops/switch-org.png)
 
 If you have forgotten your password go to the sign-in page and use the forgotten password link to reset your password.
 
-![Reset Pwd](../images/victorops/reset-password.png){: .center}
+![Reset Pwd](../../images/victorops/reset-password.png){: .center}
 
 ---
 
@@ -41,7 +41,7 @@ To install the VictorOps app for your smartphone search your phones App Store fo
 
 The publisher should be listed as VictorOps Inc.
 
-[![iPhone](../images/victorops/app-store.svg){: .appstore}](ttps://apps.apple.com/us/app/victorops/id696974262) [![Android](../images/victorops/play-store.svg){: .appstore}](https://play.google.com/store/apps/details?id=com.victorops.androidclient&hl=en)
+[![iPhone](../../images/victorops/app-store.svg){: .appstore}](ttps://apps.apple.com/us/app/victorops/id696974262) [![Android](../../images/victorops/play-store.svg){: .appstore}](https://play.google.com/store/apps/details?id=com.victorops.androidclient&hl=en)
 
 Configuration help guides are available:
 

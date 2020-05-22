@@ -10,9 +10,6 @@ packages:
   - unzip
 
 runcmd:
-# Download signalfx agent
-- curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
-- sh /tmp/signalfx-agent.sh --realm [REALM] -- [ACCESS_TOKEN]
 # Download Workshop
 - export WSVERSION=v1.14
 - curl -s -OL https://github.com/signalfx/app-dev-workshop/archive/$WSVERSION.zip
