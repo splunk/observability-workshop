@@ -8,7 +8,7 @@ You now need to add other users to your team.  If you are running this workshop 
 
 If you are running this lab in your own environment, you will have been provided a list of usernames you can use in place of the table below.
 
-These users are dummy accounts who will receive notifications when they are on call.
+These users are dummy accounts who will not receive notifications when they are on call.
 
 | Name | Username | Shift |
 | --- | --- | --- |
