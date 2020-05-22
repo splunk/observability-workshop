@@ -101,7 +101,12 @@ Check the plan output for errors before typing _**yes**_ to commit the apply.
 === "Input"
 
     ```text
-    terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=${HOSTNAME:0:4}" -var="sfx_vo_id=$SFXVOPSID" -var="routing_key=$ROUTINGKEY"
+    terraform apply \
+    -var="access_token=$ACCESS_TOKEN" \
+    -var="realm=$REALM" \
+    -var="sfx_prefix=${HOSTNAME:0:4}" \
+    -var="sfx_vo_id=$SFXVOPSID" \
+    -var="routing_key=$ROUTINGKEY"
     ```
 
 === "Output"
