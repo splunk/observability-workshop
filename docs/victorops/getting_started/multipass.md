@@ -34,7 +34,7 @@ We will use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) to install
 
 You can find your Access Token by clicking on the **Settings** icon on the top right of the SignalFx UI, select **Organization Settings → Access Tokens**, expand the Default token, then click on **Show Token** to expose your token.
 
-Click the **Copy** button to copy it to your clipboard, then paste it into your `values document` using the `ACCESS_TOKEN` parameter.
+Click the **Copy** button to copy it to your clipboard, then paste it into your `values.txt` using the `ACCESS_TOKEN` parameter.
 
 ![Access Token](../../images/victorops/m7-access-token.png)
 
@@ -42,7 +42,7 @@ You will also need to obtain the name of the Realm for your SignalFx account.
 
 Click on the **Settings** icon again, but this time select **My Profile**.
 
-The Ream can be found in the middle of the page within the Organizations section.  In this example it is `us1`, make a note of this in your `values document` using the `REALM` parameter.
+The Ream can be found in the middle of the page within the Organizations section.  In this example it is `us1`, make a note of this in your `values.txt` using the `REALM` parameter.
 
 ![Realm](../../images/victorops/m7-realm.png)
 
@@ -56,7 +56,7 @@ The next step is to pull down the `cloud-init` file to launch a pre-configure VM
     curl -s https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/cloud-init/victorops-ec2.yaml -o victorops.yaml
     ```
 
-Open `victorops.yaml` in your preferred editor and replace {==SIGNALFX_REALM==} & {==SIGNALFX_ACCESS_TOKEN==} with the values stored in your `values document`.
+Open `victorops.yaml` in your preferred editor and replace {==SIGNALFX_REALM==} & {==SIGNALFX_ACCESS_TOKEN==} with the values stored in your `values.txt`.
 
 === "victorops.yaml"
 

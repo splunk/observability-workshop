@@ -1,8 +1,6 @@
 # VictorOps Integrations - Lab Summary
 
 1. Configuring the Integration between VictorOps and SignalFx
-2. Creating a test environment using Multipass
-
 
 ---
 
@@ -15,7 +13,9 @@ In order to integrate SignalFx with VictorOps we need to first obtain the Servic
 
 If it is not already enabled, click the Enable Integration button to activate it.
 
-You simply need to copy the Service API Endpoint, including the `$routing_key` into your `values document` using the `Service_API_Endpoint` parameter.
+You simply need to copy the Service API Endpoint, including the `$routing_key` into your `values.txt` using the `Service_API_Endpoint` parameter.
+
+![Endpoint](../../images/victorops/endpoint.png){: .zoom}
 
 This will be used when configuring the VictorOps Integration within the SignalFx UI.
 
@@ -39,6 +39,6 @@ Enter a descriptive `Name` then paste the `Service_API_Endpoint` value you copie
 !!! important "Handling multiple VictorOps integrations"
     SignalFx can integrate with multiple VictorOps accounts so it is important when creating one to use a descriptive name and to not simply call it VictorOps.  This name will be used within the SignalFx UI when selecting this integration, so ensure it is unambiguous
 
-Once saved you need to copy the ID and save it in your `values document` using the `SFXVOPSID` parameter for use later in the module.
+Once saved you need to copy the ID and save it in your `values.txt` using the `SFXVOPSID` parameter for use later in the module.
 
 ![VictorOps Integration](../../images/victorops/m7-sfx-vo-integration-id.png)
