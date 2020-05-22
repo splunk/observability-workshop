@@ -67,7 +67,7 @@ runcmd:
  - curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.17.5+k3s1 K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server" sh -s -
  - chmod 644 /etc/rancher/k3s/k3s.yaml
  # Download Workshop
- #- export WSVERSION=1.15
+ #- export WSVERSION=1.16
  - export WSVERSION=master
  - curl -s -OL https://github.com/signalfx/app-dev-workshop/archive/$WSVERSION.zip
  - unzip -qq $WSVERSION.zip -d /home/ubuntu/
