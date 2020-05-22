@@ -2,8 +2,6 @@
 
 We now need to create a new Detector within SignalFx which will use VictorOps as the target to send alerts to.
 
-We will use Terraform to create the detector in a similar way to the 'Monitoring as Code' module.
-
 Shell into your 1st Multipass instance you created in the **Getting Started** module:
 
 === "Input"
@@ -12,7 +10,7 @@ Shell into your 1st Multipass instance you created in the **Getting Started** mo
     multipass shell ${INSTANCE}
     ```
 
-Create the following environment variables to use in the Terraform steps below.  The 1st three variables should be stored in your `values document` if you have been populating it as you have worked through this module.  You can populate the final two now then simply copy all five lines into your terminal window where you downloaded the terraform files in the previous step.
+The three required variables should be stored in your `values.txt` if you have been populating it as you have worked through this module.
 
 === "Variables"
 
@@ -49,41 +47,34 @@ Next you need to export an environment vairable for your Routing Key, as this us
 === "Output"
 
     ```text
-    Upgrading modules...
-    - host in modules/host
-
     Initializing the backend...
-    
+
     Initializing provider plugins...
     - Checking for available provider plugins...
-    - Downloading plugin for provider "signalfx" (terraform-providers/signalfx) 4.19.1...
-    
+    - Downloading plugin for provider "signalfx" (terraform-providers/signalfx) 4.21.0...
+
     The following providers do not have any version constraints in configuration,
     so the latest version was installed.
-    
+
     To prevent automatic upgrades to new major versions that may contain breaking
     changes, it is recommended to add version = "..." constraints to the
     corresponding provider blocks in configuration, with the constraint strings
     suggested below.
-    
-    * provider.signalfx: version = "~> 4.19"
-    
+
+    * provider.signalfx: version = "~> 4.21"
+
     Terraform has been successfully initialized!
-    
+
     You may now begin working with Terraform. Try running "terraform plan" to see
     any changes that are required for your infrastructure. All Terraform commands
     should now work.
-    
+
     If you ever set or change modules or backend configuration for Terraform,
     rerun this command to reinitialize your working directory. If you forget, other
     commands will detect it and remind you to do so if necessary.
     ```
 
-Create a new Terraform Workspace which will track the state for this environment.
-
-Workspaces allow you to run Terraform against different environments each with their own state data stored in the workspace.
-
-In the following example we create a workspace called 'Workshop' but feel free to use whatever name you like.
+Create a new Terraform workspace[^1] which will track the state for this environment.
 
 === "Input"
 
@@ -121,49 +112,49 @@ Check the plan output for errors before typing _**yes**_ to commit the apply.
       + create
 
     Terraform will perform the following actions:
-    
-      # module.host.signalfx_detector.cpu_greater_90 will be created
+
+      # signalfx_detector.cpu_greater_90 will be created
       + resource "signalfx_detector" "cpu_greater_90" {
           + description       = "Alerts when CPU usage is greater than 90%"
           + id                = (known after apply)
           + max_delay         = 0
-          + name              = "IXMY CPU greater than 90%"
+          + name              = "ixmy CPU greater than 90%"
           + program_text      = <<~EOT
                 from signalfx.detectors.against_recent import against_recent
-                A = data('cpu.utilization').publish(label='A')
+                A = data('cpu.utilization', filter=filter('host', 'ixmy*')).publish(label='A')
                 detect(when(A > threshold(90))).publish('CPU utilization is greater than 90%')
             EOT
           + show_data_markers = true
           + time_range        = 3600
           + url               = (known after apply)
-    
+
           + rule {
               + detect_label          = "CPU utilization is greater than 90%"
               + disabled              = false
               + notifications         = [
-                  + "VictorOps,ERI0R2GAIAA,GH_PRI",
+                  + "VictorOps,xxx,ixmy_pri",
                 ]
               + parameterized_body    = <<~EOT
                     {{#if anomalous}}
-                     Rule "{{{ruleName}}}" in detector "{{{detectorName}}}" triggered at {{timestamp}}.
+                        Rule "{{{ruleName}}}" in detector "{{{detectorName}}}" triggered at {{timestamp}}.
                     {{else}}
-                     Rule "{{{ruleName}}}" in detector "{{{detectorName}}}" cleared at {{timestamp}}.
+                        Rule "{{{ruleName}}}" in detector "{{{detectorName}}}" cleared at {{timestamp}}.
                     {{/if}}
-    
+                    
                     {{#if anomalous}}
                       Triggering condition: {{{readableRule}}}
                     {{/if}}
-    
+                    
                     {{#if anomalous}}
                       Signal value: {{inputs.A.value}}
                     {{else}}
                       Current signal value: {{inputs.A.value}}
                     {{/if}}
-    
+                    
                     {{#notEmpty dimensions}}
                       Signal details: {{{dimensions}}}
                     {{/notEmpty}}
-    
+                    
                     {{#if anomalous}}
                       {{#if runbookUrl}}
                         Runbook: {{{runbookUrl}}}
@@ -174,10 +165,10 @@ Check the plan output for errors before typing _**yes**_ to commit the apply.
                     {{/if}}
                 EOT
               + parameterized_subject = "{{ruleSeverity}} Alert: {{{ruleName}}} ({{{detectorName}}})"
-              + severity              = "Warning"
+              + severity              = "Critical"
             }
         }
-    
+
     Plan: 1 to add, 0 to change, 0 to destroy.
     
     Do you want to perform these actions in workspace "Workshop"?
@@ -186,8 +177,8 @@ Check the plan output for errors before typing _**yes**_ to commit the apply.
     
       Enter a value: yes
     
-    module.host.signalfx_detector.cpu_greater_90: Creating...
-    module.host.signalfx_detector.cpu_greater_90: Creation complete after 2s [id=EWHU-YAAAAA]
+    signalfx_detector.cpu_greater_90: Creating...
+    signalfx_detector.cpu_greater_90: Creation complete after 2s [id=EWHU-YAAAAA]
     
     Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
     ```
@@ -197,3 +188,5 @@ Check the plan output for errors before typing _**yes**_ to commit the apply.
 You have now configured the Integrations between VictorOps and SignalFx!
 
 The final part of this module is to test the flow of alerts from SignalFx into VictorOps and see how you can manage the incident with both the VictorOps UI and Mobile App.
+
+[^1]:Workspaces allow you to run Terraform against different environments each with their own state data stored in the workspace.
