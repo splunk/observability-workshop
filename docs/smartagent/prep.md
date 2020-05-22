@@ -85,6 +85,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
         ```
 
     === "Output"
+    
         ```text
         █████╗ ██████╗ ██████╗     ██████╗ ███████╗██╗   ██╗
         ██╔══██╗██╔══██╗██╔══██╗    ██╔══██╗██╔════╝██║   ██║
