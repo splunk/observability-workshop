@@ -1,13 +1,12 @@
-# Deploying Hot R.O.D. in K3s - Lab Summary
+# Exploring uAPM troubleshooting features Hot R.O.D.- Lab Summary
 
-* Deploy application into K3s
-* Verify the application is running
-* Generate some artificial traffic
-* See APM traces in the UI
+* Find APM Traces for a specific time period or by tag
+* Examine a trace in waterfall mode
+* Explore troubleshooting and dependencies interface in uAPM
+* Use the Breakdown feature to enrich the troubleshooting info 
 
-
-!!! note "Ensure you have a running instance"
-    The setup part is already documented in the [Preparation](../../smartagent/prep/) and [Deploy the Smart Agent in K3s](../../smartagent/k3s/) steps. If you are using an AWS/EC2 instance, make sure it is available and skip to [Step 1](../../apm/hotrod/#1-deploy-the-hot-rod-application-into-k3s), otherwise ensure your Multipass instance is available and running before continuing.
+!!! note "Ensure you have a running instance that has the hot R.O.D app running"
+    The setup part is already documented in the [Preparation](../../smartagent/prep/), [Deploy the Smart Agent in K3s](../../smartagent/k3s/) and [Deploying hot-rod in K3s](../../apm/hotrod/) steps. If you are using an AWS/EC2 instance, make sure it is available and skip to [Step 1](../../apm/hotrod/#1-find-a-specific-trace-using-time-slots-andor-tags), otherwise ensure your Multipass instance is available and running before continuing.
 
     === "Input"
 
@@ -24,7 +23,7 @@
 
 ---
 
-## 1. Deploy the Hot R.O.D. application into K3s
+## 1. Find a specific trace using time slots and/or tags
 
 To deploy the Hot R.O.D. application into K3s apply the deployment.
   
@@ -60,7 +59,7 @@ To ensure the Hot R.O.D. application is running:
 
 ---
 
-## 2. Viewing the Hot R.O.D. application in your browser
+## 2. Examine traces in the waterfall view
 
 !!! note "AWC/EC2 Users"
     If you are using an AWS/EC2 instance, the application will be available on port 8080 of the EC2 instance's IP address. Open your web browser and go to `http://{==EC2-IP==}:8080/`, you will then be able to see the application running.
@@ -89,7 +88,7 @@ Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). O
 
 ---
 
-## 3. Generate some traffic to the application using Siege Benchmark
+## 3. Explore the troubleshooting and dependencies view
 
 Return to your shell and create an environment variable for the IP address and port that the Hot R.O.D. application is exposed on:
 
@@ -124,7 +123,7 @@ Create some errors with an invalid customer number
     ```
 ---
 
-## 4. Validating the Hot R.O.D. application in SignalFx
+## 4. Use the breakdown feature to enrich troubleshooting info 
 
 Open the SignalFx UI, and go to you cluster in the Kubernetes Navigator. You should see the new Pod being started and containers being deployed.
 
@@ -144,65 +143,3 @@ In this workshop all the environments use your hostname + "-SFX-WORKSHOP
 To find the hostname, check the prompt of you instance, please go to your
 instance (multipass or EC2) and run the following command.
 
-=== "Input"
-
-    ```bash
-    echo "Your µAPM environment is: $(hostname)-app-dev-workshop"
-    ```
- 
-=== "Output"
-
-    ```text
-    Your µAPM environment is: ip-172-31-30-133-app-dev-workshop
-    ```
----
- 
- Now go to **Dashboards → µAPM → Service**.  Please select your environment you found in the previous task then select the frontend service and set time to -15m ()
- 
-![µAPM Dashboard](../images/apm/hotrod-FE-Service-dashboard.png){: .zoom}
-
-!!! note  "No Data in charts"
-    if no data is visible, check that you have the right service **frontend**, and not front-end.
-
-To load the dashboard with more data run the following command a few times to create load on the service:
-
-=== "Input"
-
-    ```bash
-    siege -r2 -c20 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
-    ```
-
-With this automatically generated dashboard you can keep an eye out for the health of your service, it provides various performance related charts as well as relevant information on the underlying host and kubernetes platform if applicable.
- 
-Take some time to explore the various charts in this dashboard
-
-
----
-
-## 5. Verify that µAPM traces are reaching SignalFx
-
-Open SignalFx in your browser and select the **µAPM** tab. 
-
-![select APM](../images/apm/select-apm.png){: .zoom}
-
-Select the **Troubleshooting** tab, and select your environment you found before and set the time to 15 minutes. This will show you the automatically generated Dependency Map for the Hot R.O.D. application.
-It should look similar to the screenshot below:
-
-![Hot R.O.D. in APM](../images/apm/hotrod-find-env.png){: .zoom}
-
-If the screen looks very different you may by accident have selected the Previous Generation of APM (**µAPM PG**) from the menu bar.
-To rectify this, go back and select the **µAPM** tab. 
-
-The at legend the bottom of the page explains the meaning of the graphics
-![APM Legenda](../images/apm/apm-legend.png){: : .shadow .zoom}
-
- * The size of a circle indicates the number of request that have gone though a service (relative to others)
- * The higher the average latency number of a request on average will create thicker lines
- * THh size of the Red dots indicate the number of errors  on that service (relative to others)
- * Light red dots indicate that the errors for that service are inherited from an underlying service. 
- * Deep red dots mean the service is the originator of the errorE
-
-
-Also in this view you can see the overall Error and Latency rates over time charts. 
-
-Take some time to explore the charts in this view.

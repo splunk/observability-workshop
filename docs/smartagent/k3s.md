@@ -34,9 +34,6 @@ Create the following variables to use in the proceeding helm install command, re
     export REALM={==REALM e.g. us1==}
     ```
 
-!!! note
-    The latest version of the Smart Agent can be found on [GitHub](https://github.com/signalfx/signalfx-agent/releases)
-
 Install the agent using the SignalFx Helm chart. Firstly, add the SignalFx Helm chart repository to Helm.
 
 === "Input"
@@ -53,7 +50,7 @@ Ensure the latest version of the SignalFx Helm repository
     helm repo update
     ```
 
-Install the Smart Agent Helm chart with the following commands, do **not** edit this:
+Install the Smart Agent Helm chart with the following commands, do **NOT** edit this:
 
 === "Input"
 
