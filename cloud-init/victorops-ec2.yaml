@@ -11,7 +11,7 @@ packages:
 
 runcmd:
 # Download Workshop
-- export WSVERSION=vWSVERSION=1.16
+- export WSVERSION=1.16
 - curl -s -OL https://github.com/signalfx/app-dev-workshop/archive/$WSVERSION.zip
 - unzip -qq $WSVERSION.zip -d /home/ubuntu/
 - mv /home/ubuntu/app-dev-workshop-${WSVERSION#v} /home/ubuntu/workshop
