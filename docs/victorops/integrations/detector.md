@@ -123,10 +123,10 @@ Check the plan output for errors before typing _**yes**_ to commit the apply.
           + description       = "Alerts when CPU usage is greater than 90%"
           + id                = (known after apply)
           + max_delay         = 0
-          + name              = "ixmy CPU greater than 90%"
+          + name              = "vmpe CPU greater than 90%"
           + program_text      = <<~EOT
                 from signalfx.detectors.against_recent import against_recent
-                A = data('cpu.utilization', filter=filter('host', 'ixmy*')).publish(label='A')
+                A = data('cpu.utilization', filter=filter('host', 'vmpe*')).publish(label='A')
                 detect(when(A > threshold(90))).publish('CPU utilization is greater than 90%')
             EOT
           + show_data_markers = true
@@ -137,7 +137,7 @@ Check the plan output for errors before typing _**yes**_ to commit the apply.
               + detect_label          = "CPU utilization is greater than 90%"
               + disabled              = false
               + notifications         = [
-                  + "VictorOps,xxx,ixmy_pri",
+                  + "VictorOps,xxx,vmpe_pri",
                 ]
               + parameterized_body    = <<~EOT
                     {{#if anomalous}}

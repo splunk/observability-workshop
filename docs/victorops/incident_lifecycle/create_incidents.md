@@ -40,7 +40,7 @@ Log into your first VM you created during step [2. Creating a Test Environment](
     Waiting for cloud-init status...
     Your instance is ready!
 
-    ubuntu@ixmy-vo1:~$
+    ubuntu@vmpe-vo1:~$
     ```
 
 Force the CPU to spike to 100% by running the following command:

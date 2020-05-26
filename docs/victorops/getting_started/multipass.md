@@ -112,10 +112,7 @@ Create the 1st VictorOps VM:
 === "Example Output"
 
     ```bash
-    multipass launch \
-    --name ixmy-vo1 \
-    --cloud-init victorops.yaml
-    Launched: ixmy-vo1
+    Launched: vpme-vo1
     ```
 
 Create the 2nd VictorOps VM:
@@ -131,10 +128,7 @@ Create the 2nd VictorOps VM:
 === "Example Output"
 
     ```
-    multipass launch \
-    --name ixmy-vo2 \
-    --cloud-init victorops.yaml
-    Launched: ixmy-vo2
+    Launched: vmpe-vo2
     ```
 
 Once your two VMs have been created check within the SignalFx UI, **INFRASTRUCTURE** tab, and confirm they are reporting in correctly.
