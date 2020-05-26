@@ -53,7 +53,7 @@ The next step is to pull down the `cloud-init` file to launch a pre-configure VM
 === "Input"
 
     ```bash
-    curl -s https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/cloud-init/victorops-ec2.yaml -o victorops.yaml
+    curl -s https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/cloud-init/victorops.yaml -o victorops.yaml
     ```
 
 Open `victorops.yaml` in your preferred editor and replace {==SIGNALFX_REALM==} & {==SIGNALFX_ACCESS_TOKEN==} with the values stored in your `values.txt`.
