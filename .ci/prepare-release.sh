@@ -19,4 +19,7 @@ git fetch --tags origin
 git add README.md  mkdocs.yml
 git commit --amend -m "Releasing v$TAG"
 git tag -a "v$TAG" -m "Version $TAG"
-git push --follow-tags origin master
+# separate push and push tag to allow the push to fail in which case we will not push the tag
+# git push --follow-tags origin master
+git push origin master || { echo 'Push failed. git pull --rebase from upstream and attempt another release.'; exit 1; }
+git push --tags
