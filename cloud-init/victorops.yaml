@@ -12,9 +12,10 @@ packages:
 runcmd:
 # Download Workshop
 - export WSVERSION=1.17
-- curl -s -OL https://github.com/signalfx/app-dev-workshop/archive/$WSVERSION.zip
-- unzip -qq $WSVERSION.zip -d /home/ubuntu/
-- mv /home/ubuntu/app-dev-workshop-${WSVERSION#v} /home/ubuntu/workshop
+- 'export WSARCHIVE=$([ "$WSVERSION" = "master" ] && echo "master" || echo "v$WSVERSION")'
+- curl -s -OL https://github.com/signalfx/app-dev-workshop/archive/$WSARCHIVE.zip
+- unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
+- mv /home/ubuntu/app-dev-workshop-$WSVERSION /home/ubuntu/workshop
 # Configure motd
 - curl -s https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd -o /etc/motd
 - chmod -x /etc/update-motd.d/*

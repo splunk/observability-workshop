@@ -68,8 +68,9 @@ runcmd:
  - chmod 644 /etc/rancher/k3s/k3s.yaml
  # Download Workshop
  - export WSVERSION=1.17
- - curl -s -OL https://github.com/signalfx/app-dev-workshop/archive/$WSVERSION.zip
- - unzip -qq $WSVERSION.zip -d /home/ubuntu/
+ - 'export WSARCHIVE=$([ "$WSVERSION" = "master" ] && echo "master" || echo "v$WSVERSION")'
+ - curl -s -OL https://github.com/signalfx/app-dev-workshop/archive/$WSARCHIVE.zip
+ - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
  - mv /home/ubuntu/app-dev-workshop-$WSVERSION /home/ubuntu/workshop
  - 'sed -i -e ''s/\[HOSTNAME\]/''"$(hostname)"''/'' /home/ubuntu/workshop/k3s/values.yaml'
  # Download SignalFx Jumpstart
