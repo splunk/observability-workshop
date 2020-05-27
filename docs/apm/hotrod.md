@@ -3,7 +3,7 @@
 * Deploy application into K3s
 * Verify the application is running
 * Generate some artificial traffic
-* See APM traces in the UI
+* See APM data in the UI
 
 !!! note "Ensure you have a running instance"
     The setup part is already documented in the [Preparation](../../smartagent/prep/) and [Deploy the Smart Agent in K3s](../../smartagent/k3s/) steps. If you are using an AWS/EC2 instance, make sure it is available and skip to [Step 1](../../apm/hotrod/#1-deploy-the-hot-rod-application-into-k3s), otherwise ensure your Multipass instance is available and running before continuing.
@@ -114,7 +114,10 @@ Then run the following command(s) to create load on the service:
     siege -r2 -c20 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
     ```
 
-Create some errors with an invalid customer number
+Create some errors with an invalid customer number.
+
+!!! note "Preparation" 
+    For a follow up lab, make note of the current time.
 
 === "Input"
 
@@ -161,7 +164,7 @@ Now go to **Dashboards → µAPM → Service**.  Please select your environment 
 
 ![µAPM Dashboard](../images/apm/hotrod-FE-Service-dashboard.png){: .zoom}
 
-!!! note  "No Data in charts"
+!!! warning  "No Data in charts"
     if no data is visible, check that you have the right service **frontend**, and not front-end.
 
 To load the dashboard with more data run the following command a few times to create load on the service:
@@ -189,11 +192,19 @@ It should look similar to the screenshot below:
 
 ![Hot R.O.D. in APM](../images/apm/hotrod-find-env.png){: .zoom}
 
-If the screen looks very different you may by accident have selected the Previous Generation of APM (**µAPM PG**) from the menu bar.
-To rectify this, go back and select the **µAPM** tab.
+!!! warning
+    If the screen looks very different you may by accident have selected the Previous Generation of APM (**µAPM PG**) from the menu bar.
+    To rectify this, go back and select the **µAPM** tab. 
 
-The at legend the bottom of the page explains the meaning of the graphics
-![APM Legend](../images/apm/apm-legend.png){: : .shadow .zoom}
+The legend at the bottom of the page explains the meaning of the graphics
+![APM Legenda](../images/apm/apm-legend.png){: : .shadow .zoom}
+
+ * The size of a circle indicates the number of request that have gone though a service 
+   (relative to others).
+ * The higher the average latency number of a request on average will create thicker lines.
+ * The size of the Red dots indicate the number of errors on that service (relative to others).
+ * Light red dots indicate that the errors for that service are inherited from an underlying service. 
+ * Deep red dots mean the service is the originator of the error.
 
 * The size of a circle indicates the number of request that have gone though a service (relative to others)
 * The higher the average latency number of a request on average will create thicker lines
