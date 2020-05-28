@@ -1,9 +1,7 @@
-# Explore uAPM troubleshooting with Hot R.O.D.- Lab Summary
+# uAPM Time based troubleshooting - Hot R.O.D.- Lab Summary
 
 * Find APM Traces for a specific time period or by service
 * Examine a trace in waterfall mode
-* Explore troubleshooting and dependencies interface in uAPM
-* Use the Breakdown feature to enrich the troubleshooting info
 
 !!! note "Ensure you have a running instance that has the hot R.O.D app running"
     The setup part is already documented in the [Preparation](../../smartagent/prep/), [Deploy the Smart Agent in K3s](../../smartagent/k3s/) and [Deploying hot-rod in K3s](../../apm/hotrod/) steps. If you are using an AWS/EC2 instance, make sure it is available and skip to [Step 1](../../apm/hotrod/#1-find-a-specific-trace-using-time-slots-andor-tags), otherwise ensure your Multipass instance is available and running before continuing.
@@ -112,10 +110,58 @@ This will bring you to the Trace Waterfall view, allowing you to inspect the tra
 
 ## 2. Examine traces in the waterfall view
 
----
+You should now be in the Trace Waterfall view and your screen should like the view below:
 
-## 3. Explore the troubleshooting and dependencies view
+![root error traces](../images/apm/hotrod-waterfall-closed.png){: .zoom}
 
----
+The waterfall shows you the trace or route a request/interaction has taken though your application.
 
-## 4. Use the breakdown feature to enrich troubleshooting info
+### 2.1 Traces and Spans explained
+
+A trace is a collection of spans that share the same trace ID, representing a unique transaction handled by your application and its constituent services.
+
+![APTrace and spam](../images/apm/µAPM-trace-spans.png){: .zoom}
+
+Each span has a name, representing the operation captured by this span, and a service name, representing within which service the operation took place. Additionally, spans may reference another span as their parent, defining the relationships between the operations captured in the trace that were performed to process that transaction.
+
+Each span contains a lot of information about the method, operation, or block of code that it captures, including:
+
+the operation name
+the start time of the operation with microsecond precision
+how long the operation took to execute, also with microsecond precision
+the logical name of the service on which the operation took place
+the IP address of the service instance on which the operation took place
+
+### 2.2 Exploring the waterfall view
+
+As you can see from this trace, we have 3 front end span, a customer span and a mysql span.
+The top **frontend** service has a deep red icon ![apm root error](../images/apm/apm-root-error-code.png). This indicates that this service has returned with an error.
+The light red icon![apm error](../images/apm/apm-error-code.png)on the last frontend span, indicates  that the  it has received an error from an underlying service.
+
+The deep red icon ![apm root error](../images/apm/apm-root-error-code.png) on teh customer  service indicates that an error originates from that service.
+
+Now lets explore the waterfall view.
+
+First open the **mysql** span by clicking on the operation in the span label (SQL SELECT) to see what information is available in the tags that are part of this span.
+
+![mySql span](../images/apm/hotrod-span-1.png){: .zoom}
+
+The TAGS section will help you to identify or search further for specific problems.
+
+There is information on your environment, your host and kubernetes related information, you can use to validate the health of theses platforms.
+You also see information about the actual SQL query being performed.
+
+In this case "SELECT * FROM customer WHERE customer_id=391"
+
+Close the mysql spn by clicking on the Operation in the span label again.
+
+Now click on the **customer** span. , this is the span with a deep red icon ![apm root error](../images/apm/apm-root-error-code.png) and lets see if we can find the core of the problem.
+
+This should open the span info and look like this:
+
+![customer span](../images/apm/hotrod-span-2.png){: .zoom}
+
+you can see teh various actions that are done by this service in the LOGS section.
+It is trying to load customer 391, and as we can see the request failed due an invalid customer number.
+
+![customer error](../images/apm/hotrod-error.png){: .zoom}

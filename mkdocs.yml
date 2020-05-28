@@ -116,6 +116,8 @@ nav:
         - 'Teams' : servicebureau/teams.md
     - '<b>Post Workshop Clean Up</b>': module-support/cleanup.md
     - '<b>Optional Modules</b>':
+      - 'uAPm Troubleshooting - dependencies based': apm/hotrod-trouble-depend.md
+      - 'uAPm Troubleshooting - time based': apm/hotrod-trouble-timebased.md
       - 'Deploying Hot R.O.D. in EKS': module-support/hotrod-eks.md
       - 'Deploying Sock Shop in K3s': apm/sockshop.md
       - 'Deploy Smart Agent on a VM': module-support/vm.md
