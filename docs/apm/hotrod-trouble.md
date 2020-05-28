@@ -106,7 +106,7 @@ If you have set your time range correctly you should now see a change, an extra 
 
 To see the actual trace with the error, click on the blue linked TraceID in the **TraceID** column
 
-this will bring You to the Trace Waterfall view.
+This will bring you to the Trace Waterfall view, allowing you to inspect the trace in detail.
 
 ---
 
