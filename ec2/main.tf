@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 resource "aws_security_group" "instance" {
-  name = "App-Dev-Workshop-SG"
+  name = "DevOps-Workshop-SG"
 
   ingress {
     from_port   = 22
@@ -28,7 +28,7 @@ resource "aws_security_group" "instance" {
   }
 }
 
-resource "aws_instance" "app-dev-instance" {
+resource "aws_instance" "devops-instance" {
   count                  = var.aws_instance_count
   ami                    = data.aws_ami.latest-ubuntu.id
   instance_type          = lookup(var.instance_type_aws, var.instance_type)
@@ -40,11 +40,11 @@ resource "aws_instance" "app-dev-instance" {
   }
 
   tags = {
-    Name = "app-dev-${count.index + 1}"
+    Name = "devops-${count.index + 1}"
   }
 
 }
 
 output "ip" {
-  value = aws_instance.app-dev-instance.*.public_ip
+  value = aws_instance.devops-instance.*.public_ip
 }
