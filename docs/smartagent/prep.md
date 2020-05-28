@@ -38,9 +38,9 @@ Regardless if you are running this lab locally or if you are going to create you
 
     ```bash
     WSVERSION=1.18
-    curl -OL https://github.com/signalfx/app-dev-workshop/archive/v$WSVERSION.zip
+    curl -OL https://github.com/signalfx/devops-workshop/archive/v$WSVERSION.zip
     unzip v$WSVERSION.zip
-    mv app-dev-workshop-$WSVERSION workshop
+    mv devops-workshop-$WSVERSION workshop
     cd workshop
     export INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)
     ```
@@ -48,7 +48,7 @@ Regardless if you are running this lab locally or if you are going to create you
 === "Windows"
 
     !!! info
-        Download the zip by clicking on the following URL <https://github.com/signalfx/app-dev-workshop/archive/v1.18.zip>.
+        Download the zip by clicking on the following URL <https://github.com/signalfx/devops-workshop/archive/v1.18.zip>.
 
         Once downloaded, unzip the the file and rename it to `workshop`. Then, from the command prompt change into that directory
         and run

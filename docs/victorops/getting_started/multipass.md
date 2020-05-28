@@ -53,7 +53,7 @@ The next step is to pull down the `cloud-init` file to launch a pre-configure VM
 === "Input"
 
     ```bash
-    curl -s https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/cloud-init/victorops.yaml -o victorops.yaml
+    curl -s https://raw.githubusercontent.com/signalfx/devops-workshop/master/cloud-init/victorops.yaml -o victorops.yaml
     ```
 
 Open `victorops.yaml` in your preferred editor and replace {==SIGNALFX_REALM==} & {==SIGNALFX_ACCESS_TOKEN==} with the values stored in your `values.txt`.
@@ -75,11 +75,11 @@ Open `victorops.yaml` in your preferred editor and replace {==SIGNALFX_REALM==} 
     runcmd:
     # Download Workshop
     - export WSVERSION=v1.14
-    - curl -s -OL https://github.com/signalfx/app-dev-workshop/archive/$WSVERSION.zip
+    - curl -s -OL https://github.com/signalfx/devops-workshop/archive/$WSVERSION.zip
     - unzip -qq $WSVERSION.zip -d /home/ubuntu/
-    - mv /home/ubuntu/app-dev-workshop-${WSVERSION#v} /home/ubuntu/workshop
+    - mv /home/ubuntu/devops-workshop-${WSVERSION#v} /home/ubuntu/workshop
     # Configure motd
-    - curl -s https://raw.githubusercontent.com/signalfx/app-dev-workshop/master/etc/motd -o /etc/motd
+    - curl -s https://raw.githubusercontent.com/signalfx/devops-workshop/master/etc/motd -o /etc/motd
     - chmod -x /etc/update-motd.d/*
     # Install Terraform
     - curl -s -OL https://releases.hashicorp.com/terraform/0.12.25/terraform_0.12.25_linux_amd64.zip
