@@ -14,11 +14,11 @@
         multipass list
         ```
 
-    === "Output"
+    === "Example Output"
 
         ```
         Name                     State             IPv4             Image
-        d823-k3s                 Running           192.168.64.17    Ubuntu 18.04 LTS
+        vmpe-k3s                 Running           192.168.64.17    Ubuntu 18.04 LTS
         ```
 
 ---
@@ -33,24 +33,31 @@ Using the **All Traces** functionality, combined with using tags and/or services
 ### 1.1 Select Application Environment
 
 First, we need to know the name of your application environment.
-In this workshop all the environments use your hostname + "-SFX-WORKSHOP
+In this workshop all the environments use your `{==hostname==}-apm-env`
 
 To find the hostname, check the prompt of you instance, please go to your
-instance (multipass or EC2) and run the following command.
+instance (Multipass or EC2) and run the following command.
 
 === "Input"
 
     ```bash
-    echo "Your µAPM environment is: $(hostname)-app-dev-workshop"
+    echo "Your µAPM environment is: $(hostname)-apm-env"
     ```
 
-=== "Output"
+=== "Example Multipass Output"
 
     ```text
-    Your µAPM environment is: ip-172-31-30-133-app-dev-workshop
+    Your µAPM environment is: vmpe-apm-env
     ```
 
-Open SignalFx in your browser and select the **µAPM** tab. 
+=== "Example AWS/EC2 Output"
+
+    ```text
+    Your µAPM environment is: ip-172-31-30-133-apm-env
+
+    ```
+
+Open SignalFx in your browser and select the **µAPM** tab.
 
 ![select APM](../images/apm/select-apm.png){: .zoom}
 
@@ -105,12 +112,10 @@ this will bring You to the Trace Waterfall view.
 
 ## 2. Examine traces in the waterfall view
 
-
 ---
 
 ## 3. Explore the troubleshooting and dependencies view
 
-
 ---
 
-## 4. Use the breakdown feature to enrich troubleshooting info 
+## 4. Use the breakdown feature to enrich troubleshooting info

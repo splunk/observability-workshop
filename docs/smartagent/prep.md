@@ -30,9 +30,9 @@
 
 ---
 
-## 2. Download App Dev Workshop
+## 2. Download DevOps Workshop
 
-Regardless if you are running this lab locally or if you are going to create your own AWS/EC2 Instance you need to download the App Dev Workshop zip file locally, unzip the file, rename it and `cd` into the directory.
+Regardless if you are running this lab locally or if you are going to create your own AWS/EC2 Instance you need to download the DevOps Workshop zip file locally, unzip the file, rename it and `cd` into the directory.
 
 === "Linux/Mac OS"
 
@@ -87,12 +87,12 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
     === "Output"
     
         ```text
-        █████╗ ██████╗ ██████╗     ██████╗ ███████╗██╗   ██╗
-        ██╔══██╗██╔══██╗██╔══██╗    ██╔══██╗██╔════╝██║   ██║
-        ███████║██████╔╝██████╔╝    ██║  ██║█████╗  ██║   ██║
-        ██╔══██║██╔═══╝ ██╔═══╝     ██║  ██║██╔══╝  ╚██╗ ██╔╝
-        ██║  ██║██║     ██║         ██████╔╝███████╗ ╚████╔╝
-        ╚═╝  ╚═╝╚═╝     ╚═╝         ╚═════╝ ╚══════╝  ╚═══╝  
+        ██████╗ ███████╗██╗   ██╗ ██████╗ ██████╗ ███████╗
+        ██╔══██╗██╔════╝██║   ██║██╔═══██╗██╔══██╗██╔════╝
+        ██║  ██║█████╗  ██║   ██║██║   ██║██████╔╝███████╗
+        ██║  ██║██╔══╝  ╚██╗ ██╔╝██║   ██║██╔═══╝ ╚════██║
+        ██████╔╝███████╗ ╚████╔╝ ╚██████╔╝██║     ███████║
+        ╚═════╝ ╚══════╝  ╚═══╝   ╚═════╝ ╚═╝     ╚══════╝
 
         To run a command as administrator (user "root"), use "sudo <command>".
         See "man sudo_root" for details
@@ -100,10 +100,10 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
         Waiting for cloud-init status...
         Your instance is ready!
 
-        ubuntu@d823-k3s:~$
+        ubuntu@vmpe-k3s:~$
         ```
 
-    Once your instance presents you with the App Dev logo, you have completed the preparation for your Multipass instance and can go directly to  the next lab [Deploy the Smart Agent in K3s](../../smartagent/k3s).
+    Once your instance presents you with the DevOps logo, you have completed the preparation for your Multipass instance and can go directly to  the next lab [Deploy the Smart Agent in K3s](../../smartagent/k3s).
 
 === "Launch AWS/EC2 instance"
 
@@ -196,7 +196,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
     === "Input"
 
         ```bash
-        terraform plan -var="aws_instance_count=1" -var="instance_type=1" -out=app-dev-plan.out
+        terraform plan -var="aws_instance_count=1" -var="instance_type=1" -out=devops-plan.out
         ```
 
     Enter your desired AWS Region where you wish to run the AWS/EC2 instance e.g. **us-west-2**
@@ -233,10 +233,10 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
         ------------------------------------------------------------------------
 
-        This plan was saved to: app-dev-plan.out
+        This plan was saved to: devops-plan.out
 
         To perform exactly these actions, run the following command to apply:
-        terraform apply "app-dev-plan.out"
+        terraform apply "devops-plan.out"
         ```
 
     If there are no errors in the output and terraform has created your output file, you can start the apply phase of Terraform. This will create the AWS/EC2 instance.
@@ -244,7 +244,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
     === "Input"
 
         ```bash
-        terraform apply "app-dev-plan.out"
+        terraform apply "devops-plan.out"
         ```
 
     === "Output"
@@ -321,12 +321,12 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     === "Output"
         ```text
-        █████╗ ██████╗ ██████╗     ██████╗ ███████╗██╗   ██╗
-        ██╔══██╗██╔══██╗██╔══██╗    ██╔══██╗██╔════╝██║   ██║
-        ███████║██████╔╝██████╔╝    ██║  ██║█████╗  ██║   ██║
-        ██╔══██║██╔═══╝ ██╔═══╝     ██║  ██║██╔══╝  ╚██╗ ██╔╝
-        ██║  ██║██║     ██║         ██████╔╝███████╗ ╚████╔╝
-        ╚═╝  ╚═╝╚═╝     ╚═╝         ╚═════╝ ╚══════╝  ╚═══╝  
+        ██████╗ ███████╗██╗   ██╗ ██████╗ ██████╗ ███████╗
+        ██╔══██╗██╔════╝██║   ██║██╔═══██╗██╔══██╗██╔════╝
+        ██║  ██║█████╗  ██║   ██║██║   ██║██████╔╝███████╗
+        ██║  ██║██╔══╝  ╚██╗ ██╔╝██║   ██║██╔═══╝ ╚════██║
+        ██████╔╝███████╗ ╚████╔╝ ╚██████╔╝██║     ███████║
+        ╚═════╝ ╚══════╝  ╚═══╝   ╚═════╝ ╚═╝     ╚══════╝
 
         To run a command as administrator (user "root"), use "sudo <command>".
         See "man sudo_root" for details
@@ -338,7 +338,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
         ubuntu@ip-172-31-41-196:~$
         ```
 
-    Once your instance presents you with the App Dev logo, make sure you see `Your instance is ready!` in the output.
+    Once your instance presents you with the DevOps logo, make sure you see `Your instance is ready!` in the output.
 
     You have now completed the preparation for your AWS/EC2 instance and can go directly to  the next lab [Deploy the Smart Agent in K3s](../../smartagent/k3s).
 

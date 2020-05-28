@@ -25,7 +25,7 @@ From the drop-down click on **Create Muting Rule...**.
 In the **Muting Rule** window check **Mute Indefinitely** and enter a reason.
 
 !!! note
-    This will mute the nofications permanently until you come back here and un-check this box or resume notifications for this detector.
+    This will mute the notifications permanently until you come back here and un-check this box or resume notifications for this detector.
 
 ![Mute Indefinitely](../images/detectors/mute-indefinitely.png){: .shadow .center}
 

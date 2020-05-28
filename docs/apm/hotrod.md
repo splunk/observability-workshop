@@ -18,7 +18,7 @@
 
         ```
         Name                     State             IPv4             Image
-        d823-k3s                 Running           192.168.64.17    Ubuntu 18.04 LTS
+        vmpe-k3s                 Running           192.168.64.17    Ubuntu 18.04 LTS
         ```
 
 ---
@@ -116,7 +116,7 @@ Then run the following command(s) to create load on the service:
 
 Create some errors with an invalid customer number.
 
-!!! note "Preparation" 
+!!! note "Preparation"
     For a follow up lab, make note of the current time.
 
 === "Input"
@@ -142,7 +142,8 @@ If you select the **WORKLOADS** tab again you should now see that there is a new
 Next, we want to validate that you are seeing the APM metrics in the UI.
 
 For this we need to know the name of your application environment.
-In this workshop all the environments use your hostname + "-SFX-WORKSHOP
+
+In this workshop all the environments use your `{==hostname==}-apm-env`.
 
 To find the hostname, check the prompt of you instance, please go to your
 instance (multipass or EC2) and run the following command.
@@ -150,13 +151,13 @@ instance (multipass or EC2) and run the following command.
 === "Input"
 
     ```bash
-    echo "Your µAPM environment is: $(hostname)-app-dev-workshop"
+    echo "Your µAPM environment is: $(hostname)-apm-env"
     ```
 
 === "Example Output"
 
     ```text
-    Your µAPM environment is: ip-172-31-30-133-app-dev-workshop
+    Your µAPM environment is: ip-172-31-30-133-apm-env
     ```
 ---
 
@@ -194,17 +195,17 @@ It should look similar to the screenshot below:
 
 !!! warning
     If the screen looks very different you may by accident have selected the Previous Generation of APM (**µAPM PG**) from the menu bar.
-    To rectify this, go back and select the **µAPM** tab. 
+    To rectify this, go back and select the **µAPM** tab.
 
 The legend at the bottom of the page explains the meaning of the graphics
-![APM Legenda](../images/apm/apm-legend.png){: : .shadow .zoom}
+![APM Legend](../images/apm/apm-legend.png){: : .shadow .zoom}
 
- * The size of a circle indicates the number of request that have gone though a service 
+* The size of a circle indicates the number of request that have gone though a service
    (relative to others).
- * The higher the average latency number of a request on average will create thicker lines.
- * The size of the Red dots indicate the number of errors on that service (relative to others).
- * Light red dots indicate that the errors for that service are inherited from an underlying service. 
- * Deep red dots mean the service is the originator of the error.
+* The higher the average latency number of a request on average will create thicker lines.
+* The size of the Red dots indicate the number of errors on that service (relative to others).
+* Light red dots indicate that the errors for that service are inherited from an underlying service.
+* Deep red dots mean the service is the originator of the error.
 
 * The size of a circle indicates the number of request that have gone though a service (relative to others)
 * The higher the average latency number of a request on average will create thicker lines

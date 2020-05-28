@@ -137,23 +137,20 @@ Using the NGINX `{==CLUSTER-IP==}` address reported from above, use the Siege Lo
     ** Preparing 20 concurrent users for battle.
     The server is now under siege...
 
-    Transactions:		        1000 hits
-    Availability:		      100.00 %
-    Elapsed time:		        1.17 secs
-    Data transferred:	       20.05 MB
-    Response time:		        0.02 secs
-    Transaction rate:	      854.70 trans/sec
-    Throughput:		       17.14 MB/sec
-    Concurrency:		       19.77
-    Successful transactions:        1000
-    Failed transactions:	           0
-    Longest transaction:	        0.16
-    Shortest transaction:	        0.01
+    Transactions:               1000 hits
+    Availability:               100.00 %
+    Elapsed time:               1.17 secs
+    Data transferred:           20.05 MB
+    Response time:              0.02 secs
+    Transaction rate:           854.70 trans/sec
+    Throughput:                 17.14 MB/sec
+    Concurrency:                19.77
+    Successful transactions:    1000
+    Failed transactions:        0
+    Longest transaction:        0.16
+    Shortest transaction:       0.01
     ```
 
 Validate you are seeing metrics in the UI by going to **Dashboards → NGINX → NGINX Servers**
-
-!!! tip
-    You can again apply the filter `kubernetes_cluster: HOSTNAME-app-dev-workshop` to focus on only your metrics. Replace HOSTNAME with the actual hostname of your instance.
 
 ![NGINX Dashboard](../images/smartagent/nginx-dashboard.png){: .zoom}

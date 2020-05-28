@@ -63,7 +63,7 @@ Open `victorops.yaml` in your preferred editor and replace {==SIGNALFX_REALM==} 
     ```yaml
     #cloud-config
     ssh_pwauth: yes
-    password: AppDev2020!
+    password: DevOps2020!
     chpasswd:
     expire: false
 

@@ -1,6 +1,6 @@
 #cloud-config
 ssh_pwauth: yes
-password: AppDev2020!
+password: DevOps2020!
 chpasswd:
   expire: false
 
