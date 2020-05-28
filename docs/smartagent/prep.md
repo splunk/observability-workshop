@@ -252,10 +252,10 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
         ```text
         ws_security_group.instance: Creating...
         aws_security_group.instance: Creation complete after 2s [id=sg-0459afecae5953b51]
-        aws_instance.app-dev-instance[0]: Creating...
-        aws_instance.app-dev-instance[0]: Still creating... [10s elapsed]
-        aws_instance.app-dev-instance[0]: Still creating... [20s elapsed]
-        aws_instance.app-dev-instance[0]: Creation complete after 23s [id=i-095a12cd39f8e2283]
+        aws_instance.devops-instance[0]: Creating...
+        aws_instance.devops-instance[0]: Still creating... [10s elapsed]
+        aws_instance.devops-instance[0]: Still creating... [20s elapsed]
+        aws_instance.devops-instance[0]: Creation complete after 23s [id=i-095a12cd39f8e2283]
 
         Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
 
