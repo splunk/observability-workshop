@@ -1,5 +1,5 @@
-site_name: 'Splunk App Dev Workshop'
-site_description: 'This workshop is going to take you through the exciting journey of App Dev, what this is, why this is important, and how to get started right away!'
+site_name: 'Splunk DevOps Workshop'
+site_description: 'This workshop is going to take you through the best-in-class observability solution for ingesting, monitoring, visualizing and analyzing data'
 site_author: 'Sales Engineering'
 site_url: 'https://signalfx.github.io/devops-workshop/'
 repo_url: 'https://github.com/signalfx/devops-workshop/'
