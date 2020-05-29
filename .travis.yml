@@ -20,5 +20,5 @@ deploy:
   skip_cleanup: true
   script: ./.ci/deploy.sh
   on:
-    repo: signalfx/app-dev-workshop
+    repo: signalfx/devops-workshop
     tags: true
