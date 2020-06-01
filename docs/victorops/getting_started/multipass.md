@@ -16,11 +16,11 @@ You are going to need to record a number of values during this Workshop which we
 
 ## 1. Multipass
 
-The easiest way to test VictorOps is to use Multipass to run some local test VMs which will be monitored by SignalFx.
+The easiest way to test VictorOps is to use Multipass to a local test VM which will be monitored by SignalFx.
 
 If you do not already have Multipass installed you can download the installer from [here](https://multipass.run/).
 
-Mac OS users can install it using [Homebrew](https://brew.sh/) by running:
+MacOS users can install it using [Homebrew](https://brew.sh/) by running:
 
 === "Code"
 
@@ -48,7 +48,7 @@ The Ream can be found in the middle of the page within the Organizations section
 
 ## 3. Local VMs using Multipass
 
-The next step is to pull down the `cloud-init` file to launch a pre-configure VM.
+The next step is to pull down the `cloud-init` file to launch a pre-configured VM.
 
 === "Input"
 
@@ -91,14 +91,19 @@ Open `victorops.yaml` in your preferred editor and replace {==SIGNALFX_REALM==} 
     - sh /tmp/signalfx-agent.sh --realm {==SIGNALFX_REALM==} -- {==SIGNALFX_ACCESS_TOKEN==}
     ```
 
-Remaining in the same directory where you created the `victorops.yaml`, run the following commands to create two VMs.
+!!! note "Correct Spacing"
+    There should be a space between -- and the SIGNALFX_ACCESS_TOKEN value on the last line.
+
+    e.g. - sh /tmp/signalfx-agent.sh --realm us1 -- 9jGYH.....
+
+Remaining in the same directory where you created the `victorops.yaml`, run the following commands to create your VM.
 
 The first command will generate a random unique 4 character string. This will prevent clashes in the SignalFx UI.
 
 !!! note "Free up resources"
     You may also want to first shutdown any other VMs you still have running from previous modules to free up resources.
 
-Create the 1st VictorOps VM:
+Create the VM:
 
 === "Input"
 
@@ -115,28 +120,10 @@ Create the 1st VictorOps VM:
     Launched: vpme-vo1
     ```
 
-Create the 2nd VictorOps VM:
+Once your VM has been created check within the SignalFx UI, **INFRASTRUCTURE** tab, and confirm it is reporting in correctly; allow 30-60 secs for it to appear.
 
-=== "Input"
-
-    ``` bash
-    multipass launch \
-    --name ${INSTANCE}-vo2 \
-    --cloud-init victorops.yaml
-    ```
-
-=== "Example Output"
-
-    ```
-    Launched: vmpe-vo2
-    ```
-
-Once your two VMs have been created check within the SignalFx UI, **INFRASTRUCTURE** tab, and confirm they are reporting in correctly.
-
-Allow a couple or minutes for the VMs to spin up, install updates and then install the SignalFx Agent etc.
-
-If they fail to appear, double check your {==SIGNALFX_REALM==} and{==SIGNALFX_ACCESS_TOKEN==} settings within your `victorops.yaml` file.
+If it fails to appear, double check your {==SIGNALFX_REALM==} and{==SIGNALFX_ACCESS_TOKEN==} settings within your `victorops.yaml` file.
 
 If errors are found these can easily be updated directly within the VM.
 
-Simply update the `token` or `api_url` and `ingest_url` files located within `/etc/signalfx` within the VM
+You may need to manually update the `token`, `api_url` or `ingest_url` files located within `/etc/signalfx` within the VM depending on which value you had incorrect - please reach out to the instructor for advice and assistance.
