@@ -8,6 +8,8 @@ We are going to create the following Polices to cover off three typical use case
 
 ![Escalation Policies](../../images/victorops/escalation-policies.png){: .zoom}
 
+## 1. 24/7 Policy
+
 Click **Add Escalation Policy**
 
 * Policy Name: 24/7
@@ -17,6 +19,8 @@ Click **Add Escalation Policy**
   * Click **Save**
 
 ![24/7 Escalation Policy ](../../images/victorops/24-7-escalation-policy.png){: .zoom}
+
+## 2. Primary Policy
 
 Click **Add Escalation Policy**
 
@@ -41,6 +45,8 @@ Click **Add Escalation Policy**
 * Click **Save**
 
 ![Pri Escalation Policy Step 3](../../images/victorops/pri-escalation-policy-step-3.png){: .zoom}
+
+## 3. Waiting Room Policy
 
 Click **Add Escalation Policy**
 
