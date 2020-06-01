@@ -4,7 +4,7 @@
 
 ---
 
-## VictorOps Service API Endpoint
+## 1. VictorOps Service API Endpoint
 
 !!! warning
     The SignalFx Integration only needs to be enabled once per VictorOps instance, so you will probably find it has already been enabled, please **DO NOT** disable an already active integration when completing this lab.
@@ -19,7 +19,7 @@ You simply need to copy the Service API Endpoint, including the `$routing_key` i
 
 This will be used when configuring the VictorOps Integration within the SignalFx UI.
 
-## Enable VictorOps Integration within SignalFx
+## 2. Enable VictorOps Integration within SignalFx
 
 Login to your SignalFx account and navigate to **INTEGRATIONS** and use the search feature to find the VictorOps integration.
 

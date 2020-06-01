@@ -6,7 +6,7 @@ The 1st Rotation you will create is for a follow the sun support pattern where t
 
 The 2nd will be a Rotation used to provide escalation support by more experienced senior members of the team, based on a 24/7, 1 week shift pattern.
 
-## Follow the Sun Support - Business Hours
+## 1. Follow the Sun Support - Business Hours
 
 Click **Add Rotation**
 
@@ -75,7 +75,7 @@ We will now add another Rotation for our Senior SRE Escalation cover.
 
 ---
 
-## Senior SRE Escalation
+## 2. Senior SRE Escalation
 
 * Click **Add Rotation**
 * Enter a name of "*Senior SRE Escalation*"

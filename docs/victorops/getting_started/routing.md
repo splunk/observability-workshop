@@ -13,7 +13,7 @@ In order to get your unique Routing Key run the following command:
 === "Example Output"
 
     ```text
-    rnje
+    vmpe
     ```
 
 Copy this 4 character string to your clipboard.

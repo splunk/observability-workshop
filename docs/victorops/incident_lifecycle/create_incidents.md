@@ -1,6 +1,6 @@
 # Generate Incidents
 
-## On-Call
+## 1. On-Call
 
 Before generating any incidents you should assign yourself to the current Shift within your **Follow the Sun Support - Business Hours** Rotation and also place yourself **On-Call**.
 
@@ -14,7 +14,7 @@ Before generating any incidents you should assign yourself to the current Shift 
 
 ![On Duty](../../images/victorops/m7-on-duty.png){: .center}
 
-## Trigger Alert
+## 2. Trigger Alert
 
 Log into your first VM you created during step [2. Creating a Test Environment](../../vo_integrations/#2-creating-a-test-environment) in VictorOps Integrations
 
@@ -25,14 +25,14 @@ Log into your first VM you created during step [2. Creating a Test Environment](
     ```
 
 === "Output"
-    
+
     ```text
-    █████╗ ██████╗ ██████╗     ██████╗ ███████╗██╗   ██╗
-    ██╔══██╗██╔══██╗██╔══██╗    ██╔══██╗██╔════╝██║   ██║
-    ███████║██████╔╝██████╔╝    ██║  ██║█████╗  ██║   ██║
-    ██╔══██║██╔═══╝ ██╔═══╝     ██║  ██║██╔══╝  ╚██╗ ██╔╝
-    ██║  ██║██║     ██║         ██████╔╝███████╗ ╚████╔╝
-    ╚═╝  ╚═╝╚═╝     ╚═╝         ╚═════╝ ╚══════╝  ╚═══╝  
+    ██████╗ ███████╗██╗   ██╗ ██████╗ ██████╗ ███████╗
+    ██╔══██╗██╔════╝██║   ██║██╔═══██╗██╔══██╗██╔════╝
+    ██║  ██║█████╗  ██║   ██║██║   ██║██████╔╝███████╗
+    ██║  ██║██╔══╝  ╚██╗ ██╔╝██║   ██║██╔═══╝ ╚════██║
+    ██████╔╝███████╗ ╚████╔╝ ╚██████╔╝██║     ███████║
+    ╚═════╝ ╚══════╝  ╚═══╝   ╚═════╝ ╚═╝     ╚══════╝
 
     To run a command as administrator (user "root"), use "sudo <command>".
     See "man sudo_root" for details

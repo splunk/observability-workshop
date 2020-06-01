@@ -14,7 +14,7 @@ You are going to need to record a number of values during this Workshop which we
 
 ---
 
-## Multipass
+## 1. Multipass
 
 The easiest way to test VictorOps is to use Multipass to run some local test VMs which will be monitored by SignalFx.
 
@@ -28,7 +28,7 @@ Mac OS users can install it using [Homebrew](https://brew.sh/) by running:
     brew cask install multipass
     ```
 
-## SignalFx Details
+## 2. SignalFx Details
 
 We will use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) to install the SignalFx Agent into the VMs but we first need to obtain the **Access Token** and **Realm** from your SignalFx account.
 
@@ -46,7 +46,7 @@ The Ream can be found in the middle of the page within the Organizations section
 
 ![Realm](../../images/victorops/m7-realm.png)
 
-## Local VMs using Multipass
+## 3. Local VMs using Multipass
 
 The next step is to pull down the `cloud-init` file to launch a pre-configure VM.
 

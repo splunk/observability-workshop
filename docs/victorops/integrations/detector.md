@@ -1,5 +1,7 @@
 # Create a SignalFx Detector
 
+## 1. Shell into Multipass instance
+
 We now need to create a new Detector within SignalFx which will use VictorOps as the target to send alerts to.
 
 Shell into your 1st Multipass instance you created in the **Getting Started** module:
@@ -12,14 +14,6 @@ Shell into your 1st Multipass instance you created in the **Getting Started** mo
 
 The three required variables should be stored in your `values.txt` if you have been populating it as you have worked through this module.
 
-=== "Variables"
-
-    ```bash
-    export SFXVOPSID=[VictorOps Integration ID from Step 2]
-    export ACCESS_TOKEN=[SignalFx Access Token from Step 2]
-    export REALM=[SignalFx Realm from Step 2]
-    ```
-
 === "Example"
 
     ```bash
@@ -28,7 +22,9 @@ The three required variables should be stored in your `values.txt` if you have b
     export REALM=us1
     ```
 
-Next you need to export an environment vairable for your Routing Key, as this uses the hostname of the VM, run the following command:
+Next you need to export an environment vairable for your Routing Key, as this uses the hostname of the Multipass instance.
+
+Run the following command:
 
 === "Input"
 
@@ -36,7 +32,7 @@ Next you need to export an environment vairable for your Routing Key, as this us
     export ROUTINGKEY=${HOSTNAME:0:4}_PRI
     ```
 
-# Initialize Terraform
+## 2. Initialize Terraform
 
 === "Input"
 

@@ -9,7 +9,7 @@
 
 ---
 
-## Activate your login
+## 1. Activate your login
 
 You should have received an invitation to Activate your VictorOps account via e-mail, click the _Activate Account_ link and follow the prompts.
 
@@ -25,17 +25,17 @@ If you have forgotten your password go to the sign-in page and use the forgotten
 
 ---
 
-## Configure Your Profile
+## 2. Configure Your Profile
 
 Once you are logged in to VictorOps you now need to set up your profile.
 
 Click on your login name in the top right hand corner and chose **Profile** from the drop down.
 
-### Contact Methods
+### 2.1 Contact Methods
 
 Confirm your contact methods are listed correctly and add any additional phone numbers and e-mail address you wish to use.
 
-### Mobile Devices
+### 2.2 Mobile Devices
 
 To install the VictorOps app for your smartphone search your phones App Store for VictorOps to find the appropriate version of the app.
 
@@ -52,7 +52,7 @@ Install the App and login, then refresh the Profile page and your device should 
 
 Click the **Test push notification** button and confirm you receive the test message.
 
-### Personal Calendar
+### 2.3 Personal Calendar
 
 This link will enable you to sync your VictorOps on-call schedule with your calendar, however as you do not have any allocated shifts yet this will currently be empty.
 

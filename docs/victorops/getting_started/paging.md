@@ -8,7 +8,7 @@ We will now configure this policy into a three tier multi-stage policy similar t
 
 ![Paging Policy](../../images/victorops/primary-paging-policy.png)
 
-## Send a push notification
+## 1. Send a push notification
 
 Click the edit policy button in the top right corner for the Primary Paging Policy.  
 
@@ -19,7 +19,7 @@ Click the edit policy button in the top right corner for the Primary Paging Poli
 
 Click **Add a Step**
 
-## Send an e-mail
+## 2. Send an e-mail
 
 * Send an e-mail to [your email address]
 * Execute the next step if I have not responded within 5 minutes
@@ -39,7 +39,7 @@ Then save the policy.
 
 ---
 
-## Custom Paging Policies
+## 3. Custom Paging Policies
 
 When you are on-call or in the escalation path of an incident, you will receive notifications in this order following these time delays.
 
@@ -58,7 +58,7 @@ A good example would be get the system to immediately phone you whenever you get
 
 Create a new Custom Policy by clicking **Add a Policy** and configure with the following settings:
 
-### Custom evening policy
+### 3.1 Custom evening policy
 
 Policy Name: Evening
 
@@ -72,7 +72,7 @@ Policy Name: Evening
 
 Save the policy then add one more
 
-### Custom weekend policy
+### 3.2 Custom weekend policy
 
 Policy Name: Weekend
 

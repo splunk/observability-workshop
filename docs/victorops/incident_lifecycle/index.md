@@ -6,7 +6,7 @@
 
 ---
 
-## UI Overview
+## 1. UI Overview
 
 The aim of VictorOps is to _**"Make On Call Suck Less"**_, and it does this by getting the critical data, to the right people, at the right time.
 
@@ -16,7 +16,7 @@ Login to the VictorOps UI and select the **Timeline** tab on the main menu bar, 
 
 ![VictorOps UI](../../images/victorops/m7-vo-ui.png){: .zoom}
 
-## People
+## 2. People
 
 On the left we have the **People** section with the **Teams** and **Users** sub tabs.
 
@@ -32,7 +32,7 @@ It shows which Rotation they are on call for, when their current Shift ends and 
 
 ![User Detail](../../images/victorops/m7-user-detail.png){: .center}
 
-## Timeline
+## 3. Timeline
 
 In the centre **Timeline** section you get a realtime view of what is happening within your environment with the newest messages at the top.
 
@@ -58,7 +58,7 @@ For example, deselect **On-call Changes** and **Escalations**, this will reduce 
 
 ![Timeline Filters Message Types](../../images/victorops/m7-timeline-filters-message-types.png)
 
-## Incidents
+## 4. Incidents
 
 On the right we have the **Incidents** section.
 
