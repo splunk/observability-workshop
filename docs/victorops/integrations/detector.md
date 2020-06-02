@@ -1,10 +1,16 @@
-# Create a SignalFx Detector
+# Create a SignalFx Detector - Lab Summary
+
+1. Shell into Multipass instance
+2. Initialize Terraform
+3. What have we just done?
+
+---
 
 ## 1. Shell into Multipass instance
 
 We now need to create a new Detector within SignalFx which will use VictorOps as the target to send alerts to.
 
-Shell into your 1st Multipass instance you created in the **Getting Started** module:
+Shell into your 1st Multipass instance you created in the **Getting Started** module, all of the following commands will be executed within the instance:
 
 === "Input"
 
@@ -12,7 +18,7 @@ Shell into your 1st Multipass instance you created in the **Getting Started** mo
     multipass shell ${INSTANCE}
     ```
 
-The three required variables should be stored in your `values.txt` if you have been populating it as you have worked through this module.
+The three required variables should be stored in your **values.txt** if you have been populating it as you have worked through this module.
 
 === "Example"
 
@@ -22,9 +28,7 @@ The three required variables should be stored in your `values.txt` if you have b
     export REALM=us1
     ```
 
-Next you need to export an environment vairable for your Routing Key, as this uses the hostname of the Multipass instance.
-
-Run the following command:
+Next you need to export an environment variable for your Routing Key, as this uses the hostname of the Multipass instance you simply need to run the following command to create it:
 
 === "Input"
 
@@ -33,6 +37,16 @@ Run the following command:
     ```
 
 ## 2. Initialize Terraform
+
+Still within the Multipass Instance, switch to the victorops folder where the Terraform config files are located
+
+=== "Change Directory"
+
+    ```bash
+    cd ~/workshop/victorops
+    ```
+
+Now we can initialize Terraform
 
 === "Input"
 
@@ -87,10 +101,6 @@ Create a new Terraform workspace[^1] which will track the state for this environ
     so if you run "terraform plan" Terraform will not see any existing state
     for this configuration.
     ```
-
-It is considered best practice to run a `terraform plan` to see what changes may get made and check for potential errors before running an apply as we did in [Monitoring as Code](../../mac/terraform/).
-
-However, as the first stage of apply is to plan we can safely skip that step and just run apply.
 
 Check the plan output for errors before typing _**yes**_ to commit the apply.
 
@@ -183,6 +193,17 @@ Check the plan output for errors before typing _**yes**_ to commit the apply.
     
     Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
     ```
+
+---
+## 3. What have we just done?
+
+By running Terraform within the VM you have just created a new Detector within SignalFx which will send alerts to VictorOps if the CPU utilization of your specific VM goes above 90%.
+
+![Detector](../../images/victorops/detector.png){: .zoom}
+
+A filter has been used to specifically monitor your Instance using the 1st 4 characters of its name, which were randomly assigned when you created the Instance.
+
+![Detector Filter](../../images/victorops/detector-filter.png){: .zoom}
 
 ---
 
