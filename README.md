@@ -1,9 +1,6 @@
 [![Build Status][build-button]][build]
 [![Coverage Status][codecov-button]][codecov]
 [![Latest Version][mdversion-button]][md-pypi]
-[![Python Versions][pyversion-button]][md-pypi]
-[![BSD License][bsdlicense-button]][bsdlicense]
-[![Code of Conduct][codeofconduct-button]][Code of Conduct]
 
 [build-button]: https://github.com/Python-Markdown/markdown/workflows/CI/badge.svg?event=push
 [build]: https://github.com/Python-Markdown/markdown/actions?query=workflow%3ACI+event%3Apush
