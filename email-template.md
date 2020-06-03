@@ -2,8 +2,6 @@
 
 ## Splunk DevOps Workshop - 11th July 2020
 
----
-
 Hi,
 
 Thank you for registering for the Splunk DevOps Workshop.
@@ -15,7 +13,7 @@ The workshop relies on using Virtual Machines (VM):
 * **SignalFx Workshop** - Deploying SignalFx Smart Agent, running Kubernetes and deploying an instrumented microservice application.
 * **VictorOps Workshop** - Deploying the SignalFx Smart Agent
 
-In order to run these VMs, you will need to download and install Multipass [https://multipass.run](https://mutlipass.run). Multipass is available for Windows, Linux and MacOS.
+In order to run these VMs, you will need to download and install Multipass ([https://multipass.run](https://mutlipass.run)). Multipass is available for Windows, Linux and MacOS.
 
 Once installed, please create a VM to ensure all is working correctly:
 
