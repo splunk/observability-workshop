@@ -1,6 +1,6 @@
 ![Travis (.org)](https://img.shields.io/travis/signalfx/devops-workshop)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/signalfx/devops-workshop)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/signalfx/devops-workshop)
+![GitHub commits since latest release (by SemVer)](https://img.shields.io/github/commits-since/signalfx/devops-workshop/latest)
 ![GitHub repo size](https://img.shields.io/github/repo-size/signalfx/devops-workshop)
 ![GitHub issues](https://img.shields.io/github/issues/signalfx/devops-workshop)
 
