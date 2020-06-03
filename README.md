@@ -1,5 +1,7 @@
 [![Build Status][build-button]][build]
 
+[build-button]: https://travis-ci.org/signalfx/devops-workshop.svg?branch=master
+
 # Welcome to the Splunk DevOps Workshop
 
 To get started, please proceed to [The DevOps Workshop Homepage](https://signalfx.github.io/devops-workshop/latest/).
