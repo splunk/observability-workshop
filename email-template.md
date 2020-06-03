@@ -1,4 +1,4 @@
-![Splunk Logo](/images/splunk-logo.png)
+![Splunk Logo](images/splunk-logo.png)
 
 # Subject: Splunk DevOps Workshop - 11th July 2020
 
