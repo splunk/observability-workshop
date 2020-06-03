@@ -1,6 +1,8 @@
 ![Splunk Logo](docs/images/splunk-logo.png)
 
-Splunk DevOps Workshop - 11th July 2020
+## Splunk DevOps Workshop - 11th July 2020
+
+---
 
 Hi,
 
@@ -15,10 +17,14 @@ The workshop relies on using Virtual Machines (VM):
 
 In order to run these VMs, you will need to download and install Multipass [https://multipass.run](https://mutlipass.run). Multipass is available for Windows, Linux and MacOS.
 
-Once installed, please create a VM to ensure all is working correctly.
+Once installed, please create a VM to ensure all is working correctly:
 
 `multipass launch --name ubuntu`
 
-However, some people might not be able to install/run Multipass so AWS/EC2 instances will be made available upon request at the beginning of the Workshop.
+Some people might not be able to install/run Multipass due to restrictions or resource limitations on their laptop/desktop, so AWS/EC2 instances will be made available upon request at the beginning of the Workshop.
 
 We look forward to taking you through the Workshop to see how Splunk, SignalFx and VictorOps can provide Observability for modern applications!
+
+Regards,
+
+**Splunk DevOps Team**
