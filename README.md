@@ -1,6 +1,4 @@
-[![Build Status][build-button]][build]
-
-[build-button]: https://travis-ci.org/signalfx/devops-workshop.svg?branch=master
+[![Build Status](https://travis-ci.org/signalfx/devops-workshop.svg?branch=master)](https://travis-ci.org/signalfx/devops-workshop)
 
 # Welcome to the Splunk DevOps Workshop
 
