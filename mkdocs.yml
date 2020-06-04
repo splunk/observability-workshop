@@ -90,8 +90,6 @@ plugins:
         
 nav:
   - 'Home': index.md
-  - '<b>Resources</b>':
-    - "Links": resources/index.md
   - '<b>SignalFx</b>':
     - '<b>Get Data In</b><br /><small>20 minutes</small>':
       - 'Workshop Introduction': smartagent/intro.md
@@ -141,3 +139,5 @@ nav:
       - 'Create incidents': victorops/incident_lifecycle/create_incidents.md
       - 'Manage incidents': victorops/incident_lifecycle/manage_incidents.md
     - '<b>Workshop Clean-up</b><br /><small>2 minutes</small>': victorops/cleanup.md
+  - '<b>Resources</b>':
+    - "Links": resources/index.md
