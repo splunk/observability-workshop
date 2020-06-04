@@ -92,12 +92,12 @@ nav:
   - 'Home': index.md
   - '<b>SignalFx</b>':
     - '<b>Get Data In</b><br /><small>20 minutes</small>':
-      - 'Workshop Introduction': smartagent/intro.md
+      - 'Workshop Introduction': smartagent/index.md
       - 'Workshop Preparation': smartagent/prep.md
       - 'Deploy the Smart Agent in K3s': smartagent/k3s.md
       - 'Deploy NGINX in K3s' : smartagent/nginx.md
     - '<b>Dashboards</b><br /><small>30 minutes</small>':
-      - 'Introduction': dashboards/intro.md
+      - 'Introduction': dashboards/index.md
       - 'Editing charts': dashboards/editing.md
       - 'Using filters': dashboards/filtering.md
       - 'Using formulas': dashboards/formulas.md
@@ -108,12 +108,14 @@ nav:
       - 'Creating a Detector': detectors/detectors.md
       - 'Creating a Muting Rule': detectors/muting.md
     - '<b>Monitoring as Code</b><br /><small>10 minutes</small>':
-      - 'Using Terraform': mac/terraform.md
+      - 'Initial Setup': monitoring-as-code/index.md
+      - 'Plan and Apply Terraform': monitoring-as-code/plan-and-apply.md
+      - 'Destroy Terraform': monitoring-as-code/destroy.md
     - '<b>µAPM</b><br /><small>25-45 minutes</small>':
       - 'µAPM Architecture Overview': apm/index.md
       - 'Deploying Hot R.O.D. in K3s': apm/hotrod.md
     - '<b>Service Bureau</b><br /><small>20 minutes</small>':
-        - 'Billing and Usage' : servicebureau/service_bureau.md
+        - 'Billing and Usage' : servicebureau/billing-and-usage.md
         - 'Teams' : servicebureau/teams.md
     - '<b>Post Workshop Clean Up</b>': module-support/cleanup.md
     - '<b>Optional Modules</b>':

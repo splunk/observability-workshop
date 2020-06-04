@@ -1,6 +1,6 @@
-![Splunk Logo](docs/images/splunk-logo.png)
+# Splunk DevOps Workshop - 11th July 2020
 
-## Splunk DevOps Workshop - 11th July 2020
+![Splunk Logo](docs/images/splunk-logo.png)
 
 Hi,
 
@@ -25,4 +25,4 @@ We look forward to taking you through the Workshop to see how Splunk, SignalFx a
 
 Regards,
 
-**Splunk DevOps Team**
+## Splunk DevOps Team

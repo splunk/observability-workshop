@@ -97,58 +97,6 @@ Create a new workspace:
     for this configuration.
     ```
 
----
-
-## 2. Create an execution plan
-
-Review the execution plan.
-
-=== "Input"
-
-    ``` bash
-    terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$PREFIX"
-    ```
-
-If the plan executes successfully, we can go ahead and apply:
-
----
-
-## 3. Apply actions from execution plan
-
-=== "Input"
-
-    ``` bash
-    terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$PREFIX"
-    ```
-
-Validate that the detectors were created, under the _**ALERTS → Detectors**_, you should see a list of new detectors with the a prefix of your initials:
-
-![Detectors](../images/mac/detectors.png)
-
----
-
-## 4. Destroy all your hard work
-
-You will first need to ensure you are in the the workspace you created in **Step #1**:
-
-=== "Input"
-
-    ```text
-    terraform workspace select workshop
-    ```
-
-Destroy all Detectors and Dashboards that were previously applied.
-
-=== "Input"
-
-    ```bash
-    terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
-    ```
-
-Validate all the detectors have been removed by navigating to _**ALERTS → Detectors**_
-
-![Destroyed](../images/mac/destroy.png)
-
 [^1]:
     Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.
 
