@@ -3,6 +3,7 @@
 Below are helpful resources about Splunk and the DevOps use case.
 
 ## Documentation
+
 * [SignalFX Platform Docs](https://docs.signalfx.com/en/latest/)
 * [SignalFX API Docs](https://developers.signalfx.com/)
 * [VictorOps Platform Docs](https://help.victorops.com/)
