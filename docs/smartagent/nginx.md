@@ -7,6 +7,16 @@
 
 ## 1. Start your NGINX
 
+This deployment of NGINX has been configured to use Kubernetes pod annotations to tell the Smart Agent how to monitor the service.
+
+This is achieved by defining the `port` and `monitor type` to use for monitoring the NGINX service e.g.
+
+=== "Example Annotation"
+
+    ```
+    agent.signalfx.com/monitorType.80: "collectd/nginx"
+    ```
+
 Remain in the Multipass or AWS/EC2 shell session and change into the `nginx` directory:
 
 === "Input"
