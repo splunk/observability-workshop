@@ -1,12 +1,14 @@
 # Deploying Hot R.O.D. in K3s - Lab Summary
 
-* Deploy application into K3s
+* Deploy the Hot R.O.D. application into Kubernetes (K3s)
 * Verify the application is running
 * Generate some artificial traffic
-* See APM data in the UI
+* See µAPM data in the UI
 
-!!! note "Ensure you have a running instance"
-    The setup part is already documented in the [Preparation](../../smartagent/prep/) and [Deploy the Smart Agent in K3s](../../smartagent/k3s/) steps. If you are using an AWS/EC2 instance, make sure it is available and skip to [Step 1](../../apm/hotrod/#1-deploy-the-hot-rod-application-into-k3s), otherwise ensure your Multipass instance is available and running before continuing.
+!!! warning "Ensure you have a running instance"
+    The setup part is already documented in the [Preparation](../../smartagent/prep/) and [Deploy the Smart Agent in K3s](../../smartagent/k3s/) steps.
+
+    If you are using an AWS/EC2 instance, make sure it is available and skip to [Step 1](../../apm/hotrod/#1-deploy-the-hot-rod-application-into-k3s), otherwise ensure your Multipass instance is available and running before continuing.
 
     === "Input"
 
@@ -141,12 +143,9 @@ If you select the **WORKLOADS** tab again you should now see that there is a new
 
 Next, we want to validate that you are seeing the APM metrics in the UI.
 
-For this we need to know the name of your application environment.
+For this we need to know the name of your application environment. In this workshop all the environments use your `{==hostname==}-apm-env`.
 
-In this workshop all the environments use your `{==hostname==}-apm-env`.
-
-To find the hostname, check the prompt of you instance, please go to your
-instance (multipass or EC2) and run the following command.
+To find the hostname, check the prompt of you instance, please go to your instance (Multipass or AWS/EC2) and run the following command.
 
 === "Input"
 
@@ -197,22 +196,11 @@ It should look similar to the screenshot below:
     If the screen looks very different you may by accident have selected the Previous Generation of APM (**µAPM PG**) from the menu bar.
     To rectify this, go back and select the **µAPM** tab.
 
-The legend at the bottom of the page explains the meaning of the graphics
+The legend at the bottom of the page explains the different visualizations in the Dependency Map.
+
 ![APM Legend](../images/apm/apm-legend.png){: : .shadow .zoom}
 
-* The size of a circle indicates the number of request that have gone though a service
-   (relative to others).
-* The higher the average latency number of a request on average will create thicker lines.
-* The size of the Red dots indicate the number of errors on that service (relative to others).
-* Light red dots indicate that the errors for that service are inherited from an underlying service.
-* Deep red dots mean the service is the originator of the error.
-
-* The size of a circle indicates the number of request that have gone though a service (relative to others)
-* The higher the average latency number of a request on average will create thicker lines
-* THh size of the Red dots indicate the number of errors  on that service (relative to others)
-* Light red dots indicate that the errors for that service are inherited from an underlying service.
-* Deep red dots mean the service is the originator of the errorE
+* Service requests, error rate and root error rate.
+* Request rate, latency and error rate
 
 Also in this view you can see the overall Error and Latency rates over time charts.
-
-Take some time to explore the charts in this view.
