@@ -9,5 +9,5 @@
 To get started, please proceed to [The DevOps Workshop Homepage](https://signalfx.github.io/devops-workshop/latest/).
 
 Previous versions of the workshop are also available:
+- [v1.21](https://signalfx.github.io/devops-workshop/v1.21/)
 - [v1.20](https://signalfx.github.io/devops-workshop/v1.20/)
-- [v1.19](https://signalfx.github.io/devops-workshop/v1.19/)
