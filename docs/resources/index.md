@@ -1,17 +1,17 @@
 # Additional Splunk for DevOps Resources
 
-Below are helpful resources about Splunk and the DevOps use case. Topics covered are SignalFX, VictorOps, OpenTelemetry, Observability and Incident Response.
+Below are helpful resources about Splunk and the DevOps use case. Topics covered are SignalFx, VictorOps, OpenTelemetry, Observability and Incident Response.
 
 ## Documentation
 
-* [SignalFX Platform Docs](https://docs.signalfx.com/en/latest/){: target=_blank}
-* [SignalFX API Docs](https://developers.signalfx.com/){: target=_blank}
+* [SignalFx Platform Docs](https://docs.signalfx.com/en/latest/){: target=_blank}
+* [SignalFx API Docs](https://developers.signalfx.com/){: target=_blank}
 * [VictorOps Platform Docs](https://help.victorops.com/){: target=_blank}
 * [VictorOps API Docs](https://portal.victorops.com/public/api-docs.html){: target=_blank}
 
 ## Blog Posts
 
-* ["How SignalFX Does Site Reliability Engineering (SRE)"](https://splk.it/3eKyy46)
+* ["How SignalFx Does Site Reliability Engineering (SRE)"](https://splk.it/3eKyy46)
 * ["OpenTelemetry for Business Continuity"](https://bit.ly/3cyGzHM){: target=_blank}
 * ["In Observability RED is the new Black"](https://splk.it/2XSoL5e){: target=_blank}
 * ["Alerts to Incident Response in Three Easy Steps"](https://splk.it/307jQjI){: target=_blank}
