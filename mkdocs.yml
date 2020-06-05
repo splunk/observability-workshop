@@ -111,7 +111,7 @@ nav:
       - 'Initial Setup': monitoring-as-code/index.md
       - 'Plan and Apply Terraform': monitoring-as-code/plan-and-apply.md
       - 'Destroy Terraform': monitoring-as-code/destroy.md
-    - '<b>µAPM</b><br /><small>25-45 minutes</small>':
+    - '<b>µAPM</b><br /><small>45 minutes</small>':
       - 'µAPM Architecture Overview': apm/index.md
       - 'Deploying Hot R.O.D. in K3s': apm/hotrod.md
       - 'Troubleshooting Hot R.O.D.': apm/hotrod-trouble-timebased.md
