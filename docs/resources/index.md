@@ -11,7 +11,7 @@ Below are helpful resources about Splunk and the DevOps use case. Topics covered
 
 ## Blog Posts
 
-* ["How SignalFx Does Site Reliability Engineering (SRE)"](https://splk.it/3eKyy46)
+* ["How SignalFX Does Site Reliability Engineering (SRE)"](https://splk.it/3eKyy46)
 * ["OpenTelemetry for Business Continuity"](https://bit.ly/3cyGzHM){: target=_blank}
 * ["In Observability RED is the new Black"](https://splk.it/2XSoL5e){: target=_blank}
 * ["Alerts to Incident Response in Three Easy Steps"](https://splk.it/307jQjI){: target=_blank}
