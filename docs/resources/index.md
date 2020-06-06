@@ -12,8 +12,8 @@ Below are helpful resources about Splunk and the DevOps use case. Topics covered
 ## Blog Posts
 
 * [SignalFx](#){: .label-button .signalfx}["How SignalFx Does Site Reliability Engineering (SRE)"](https://splk.it/3eKyy46)
-* [Splunk](#){: .label-button .splunk}["OpenTelemetry for Business Continuity"](https://bit.ly/3cyGzHM){: target=_blank}
-* [Splunk](#){: .label-button .splunk}["In Observability RED is the new Black"](https://splk.it/2XSoL5e){: target=_blank}
+* [OTEL](#){: .label-button}["OpenTelemetry for Business Continuity"](https://bit.ly/3cyGzHM){: target=_blank}
+* [SignalFx](#){: .label-button .signalfx}["In Observability RED is the new Black"](https://splk.it/2XSoL5e){: target=_blank}
 * [VictorOps](#){: .label-button .victorops}["Alerts to Incident Response in Three Easy Steps"](https://splk.it/307jQjI){: target=_blank}
 * [SignalFx](#){: .label-button .signalfx}["Application Performance Redefined: Meet the New SignalFx Microservices APM"](https://www.splunk.com/en_us/blog/it/application-performance-redefined-meet-the-new-signalfx-microservices-apm.html){: target=_blank}
 * [Splunk](#){: .label-button .splunk}["Splunk is Lambda Ready: Announcing a New Partnership with AWS"](https://www.splunk.com/en_us/blog/it/splunk-is-lambda-ready.html){: target=_blank}
