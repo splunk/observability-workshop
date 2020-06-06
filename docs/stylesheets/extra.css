@@ -40,9 +40,9 @@ a.md-logo img {
     background-color: transparent;
 }
 
-.label-button {
-    padding: 0 4px 0 4px;
-    margin: 6px 6px 6px 6px;
+strong.label-button {
+    padding: 2px 4px;
+    margin: 6px 0px;
     min-width: 88px;
     border-radius: 3px;
     text-align: center;
@@ -51,23 +51,21 @@ a.md-logo img {
     border: none;
     outline: none;
     font-size: 13px;
+    font-weight: 600;
     background-color: #333;
+    color: #fff;
 }
 
-.splunk {
+.label-button.splunk {
     background-color: #E20082;
 }
 
-.victorops {
+.label-button.victorops {
     background-color: #0cb9a8;
 }
 
-.signalfx {
+.label-button.signalfx {
     background-color: #58a245;
-}
-
-a.label-button, a.label-button:hover {
-    color: #fff;
 }
 
 .md-nav__link:focus,
