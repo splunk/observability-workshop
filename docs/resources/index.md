@@ -12,7 +12,7 @@ Below are helpful resources about Splunk and the DevOps use case. Topics covered
 ## Blog Posts
 
 * **SignalFx**{: .label-button .signalfx} ["How SignalFx Does Site Reliability Engineering (SRE)"](https://splk.it/3eKyy46)
-* **OTEL**{: .label-button} ["OpenTelemetry for Business Continuity"](https://bit.ly/3cyGzHM){: target=_blank}
+* **OTEL**{: .label-button .otel} ["OpenTelemetry for Business Continuity"](https://bit.ly/3cyGzHM){: target=_blank}
 * **SignalFx**{: .label-button .signalfx} ["In Observability RED is the new Black"](https://splk.it/2XSoL5e){: target=_blank}
 * **VictorOps**{: .label-button .victorops} ["Alerts to Incident Response in Three Easy Steps"](https://splk.it/307jQjI){: target=_blank}
 * **SignalFx**{: .label-button .signalfx} ["Application Performance Redefined: Meet the New SignalFx Microservices APM"](https://www.splunk.com/en_us/blog/it/application-performance-redefined-meet-the-new-signalfx-microservices-apm.html){: target=_blank}
@@ -21,6 +21,6 @@ Below are helpful resources about Splunk and the DevOps use case. Topics covered
 
 ## Webinars & Podcast
 
-* **APM**{: .label-button} ["Future of Microservices and APM"](https://bit.ly/3cpdbUs){: target=_blank}
-* **DevOps**{: .label-button} ["DevOps from the Top Podcast"](https://www.buzzsprout.com/1102754){: target=_blank}
-* **Observability**{: .label-button} ["Oh my! SRE, AIOps and Observe-a-what?"](https://www.thecloudpod.net/podcast/tcp-talks-oh-my-sre-aiops-and-observe-a-what/){: target=_blank}
+* **APM**{: .label-button .apm} ["Future of Microservices and APM"](https://bit.ly/3cpdbUs){: target=_blank}
+* **DevOps**{: .label-button .devops} ["DevOps from the Top Podcast"](https://www.buzzsprout.com/1102754){: target=_blank}
+* **Observability**{: .label-button .observability} ["Oh my! SRE, AIOps and Observe-a-what?"](https://www.thecloudpod.net/podcast/tcp-talks-oh-my-sre-aiops-and-observe-a-what/){: target=_blank}

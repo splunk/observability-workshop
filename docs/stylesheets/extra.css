@@ -40,14 +40,14 @@ a.md-logo img {
     background-color: transparent;
 }
 
-strong.label-button {
+strong.label-button, mark.critic {
     padding: 2px 4px;
     margin: 6px 0px;
     min-width: 88px;
     border-radius: 3px;
     text-align: center;
-    text-transform: uppercase;
-    text-decoration:none;
+    /*text-transform: uppercase;*/
+    /*text-decoration:none;*/
     border: none;
     outline: none;
     font-size: 13px;
@@ -66,6 +66,22 @@ strong.label-button {
 
 .label-button.signalfx {
     background-color: #58a245;
+}
+
+.label-button.apm {
+    background-color: #BF1942;
+}
+
+.label-button.devops {
+    background-color: #0064b7;
+}
+
+.label-button.otel {
+    background-color: #f5a800 ;
+}
+
+.label-button.observability {
+    background-color: #4a0072;
 }
 
 .md-nav__link:focus,
