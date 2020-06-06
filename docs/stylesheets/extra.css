@@ -51,6 +51,7 @@ a.md-logo img {
     border: none;
     outline: none;
     font-size: 13px;
+    background-color: #333;
 }
 
 .splunk {

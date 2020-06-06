@@ -21,6 +21,6 @@ Below are helpful resources about Splunk and the DevOps use case. Topics covered
 
 ## Webinars & Podcast
 
-* ["Future of Microservices and APM"](https://bit.ly/3cpdbUs){: target=_blank}
-* ["DevOps from the Top Podcast"](https://www.buzzsprout.com/1102754){: target=_blank}
-* ["Oh my! SRE, AIOps and Observe-a-what?"](https://www.thecloudpod.net/podcast/tcp-talks-oh-my-sre-aiops-and-observe-a-what/){: target=_blank}
+* [APM](#){: .label-button}["Future of Microservices and APM"](https://bit.ly/3cpdbUs){: target=_blank}
+* [DevOps](#){: .label-button}["DevOps from the Top Podcast"](https://www.buzzsprout.com/1102754){: target=_blank}
+* [Observability](#){: .label-button}["Oh my! SRE, AIOps and Observe-a-what?"](https://www.thecloudpod.net/podcast/tcp-talks-oh-my-sre-aiops-and-observe-a-what/){: target=_blank}
