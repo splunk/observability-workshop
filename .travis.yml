@@ -21,6 +21,6 @@ deploy:
   skip_cleanup: true
   script: "./.ci/deploy.sh"
   on:
-    repo: signalfx/devops-workshop
+    repo: signalfx/observability-workshop
     tags: true
 

@@ -30,17 +30,17 @@
 
 ---
 
-## 2. Download DevOps Workshop
+## 2. Download Observability Workshop
 
-Regardless if you are running this lab locally or if you are going to create your own AWS/EC2 Instance you need to download the DevOps Workshop zip file locally, unzip the file, rename it and `cd` into the directory.
+Regardless if you are running this lab locally or if you are going to create your own AWS/EC2 Instance you need to download the Observability Workshop zip file locally, unzip the file, rename it and `cd` into the directory.
 
 === "Linux/Mac OS"
 
     ```bash
     WSVERSION=1.21
-    curl -OL https://github.com/signalfx/devops-workshop/archive/v$WSVERSION.zip
+    curl -OL https://github.com/signalfx/observability-workshop/archive/v$WSVERSION.zip
     unzip v$WSVERSION.zip
-    mv devops-workshop-$WSVERSION workshop
+    mv observability-workshop-$WSVERSION workshop
     cd workshop
     export INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)
     ```
@@ -48,7 +48,7 @@ Regardless if you are running this lab locally or if you are going to create you
 === "Windows"
 
     !!! info
-        Download the zip by clicking on the following URL <https://github.com/signalfx/devops-workshop/archive/v1.21.zip>.
+        Download the zip by clicking on the following URL <https://github.com/signalfx/observability-workshop/archive/v1.21.zip>.
 
         Once downloaded, unzip the the file and rename it to `workshop`. Then, from the command prompt change into that directory
         and run
@@ -103,7 +103,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
         ubuntu@vmpe-k3s:~$
         ```
 
-    Once your instance presents you with the DevOps logo, you have completed the preparation for your Multipass instance and can go directly to  the next lab [Deploy the Smart Agent in K3s](../../smartagent/k3s).
+    Once your instance presents you with the Splunk logo, you have completed the preparation for your Multipass instance and can go directly to  the next lab [Deploy the Smart Agent in K3s](../../smartagent/k3s).
 
 === "Launch AWS/EC2 instance"
 
@@ -196,7 +196,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
     === "Input"
 
         ```bash
-        terraform plan -var="aws_instance_count=1" -var="instance_type=1" -out=devops-plan.out
+        terraform plan -var="aws_instance_count=1" -var="instance_type=1" -out=observability-plan.out
         ```
 
     Enter your desired AWS Region where you wish to run the AWS/EC2 instance e.g. **us-west-2**
@@ -233,10 +233,10 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
         ------------------------------------------------------------------------
 
-        This plan was saved to: devops-plan.out
+        This plan was saved to: observability-plan.out
 
         To perform exactly these actions, run the following command to apply:
-        terraform apply "devops-plan.out"
+        terraform apply "observability-plan.out"
         ```
 
     If there are no errors in the output and terraform has created your output file, you can start the apply phase of Terraform. This will create the AWS/EC2 instance.
@@ -244,7 +244,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
     === "Input"
 
         ```bash
-        terraform apply "devops-plan.out"
+        terraform apply "observability-plan.out"
         ```
 
     === "Output"
@@ -252,10 +252,10 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
         ```text
         ws_security_group.instance: Creating...
         aws_security_group.instance: Creation complete after 2s [id=sg-0459afecae5953b51]
-        aws_instance.devops-instance[0]: Creating...
-        aws_instance.devops-instance[0]: Still creating... [10s elapsed]
-        aws_instance.devops-instance[0]: Still creating... [20s elapsed]
-        aws_instance.devops-instance[0]: Creation complete after 23s [id=i-095a12cd39f8e2283]
+        aws_instance.observability-instance[0]: Creating...
+        aws_instance.observability-instance[0]: Still creating... [10s elapsed]
+        aws_instance.observability-instance[0]: Still creating... [20s elapsed]
+        aws_instance.observability-instance[0]: Creation complete after 23s [id=i-095a12cd39f8e2283]
 
         Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
 
@@ -338,7 +338,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
         ubuntu@ip-172-31-41-196:~$
         ```
 
-    Once your instance presents you with the DevOps logo, make sure you see `Your instance is ready!` in the output.
+    Once your instance presents you with the Splunk logo, make sure you see `Your instance is ready!` in the output.
 
     You have now completed the preparation for your AWS/EC2 instance and can go directly to  the next lab [Deploy the Smart Agent in K3s](../../smartagent/k3s).
 

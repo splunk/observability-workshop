@@ -1,6 +1,6 @@
 #cloud-config
 ssh_pwauth: yes
-password: DevOps2020!
+password: Observability2020!
 chpasswd:
   expire: false
 
@@ -70,9 +70,9 @@ runcmd:
  # Download Workshop
  - export WSVERSION=1.21
  - 'export WSARCHIVE=$([ "$WSVERSION" = "master" ] && echo "master" || echo "v$WSVERSION")'
- - curl -s -OL https://github.com/signalfx/devops-workshop/archive/$WSARCHIVE.zip
+ - curl -s -OL https://github.com/signalfx/observability-workshop/archive/$WSARCHIVE.zip
  - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
- - mv /home/ubuntu/devops-workshop-$WSVERSION /home/ubuntu/workshop
+ - mv /home/ubuntu/observability-workshop-$WSVERSION /home/ubuntu/workshop
  - 'sed -i -e ''s/\[HOSTNAME\]/''"$(hostname)"''/'' /home/ubuntu/workshop/k3s/values.yaml'
  # Download SignalFx Jumpstart
  - curl -s -L https://github.com/signalfx/signalfx-jumpstart/archive/master.zip -o jumpstart.zip
@@ -85,7 +85,7 @@ runcmd:
  - tar xfz k9s_Linux_x86_64.tar.gz
  - mv k9s /usr/local/bin/
  # Configure motd
- - curl -s https://raw.githubusercontent.com/signalfx/devops-workshop/master/etc/motd -o /etc/motd
+ - curl -s https://raw.githubusercontent.com/signalfx/observability-workshop/master/etc/motd -o /etc/motd
  - chmod -x /etc/update-motd.d/*
  # Install AWS CLI
  - curl -s https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip

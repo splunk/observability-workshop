@@ -5,8 +5,8 @@ When working on the workshop, we advise that you review your changes locally bef
 ## Cloning the repo and installing dependencies
 
 ```bash
-git clone https://github.com/signalfx/devops-workshop.git
-cd ~/devops-workshop
+git clone https://github.com/signalfx/observability-workshop.git
+cd ~/observability-workshop
 ```
 
 We recommend that you set up a virtualenv and install dependencies into it:

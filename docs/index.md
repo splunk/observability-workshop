@@ -1,4 +1,4 @@
 ---
 template: overrides/home.html
-title: Splunk DevOps Workshop
+title: Splunk Observability Workshop
 ---

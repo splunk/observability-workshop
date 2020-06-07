@@ -1,8 +1,8 @@
-site_name: 'Splunk DevOps Workshop'
+site_name: 'Splunk Observability Workshop'
 site_description: 'This workshop is going to take you through the best-in-class observability solution for ingesting, monitoring, visualizing and analyzing data'
 site_author: 'Sales Engineering'
-site_url: 'https://signalfx.github.io/devops-workshop/'
-repo_url: 'https://github.com/signalfx/devops-workshop/'
+site_url: 'https://signalfx.github.io/observability-workshop/'
+repo_url: 'https://github.com/signalfx/observability-workshop/'
 edit_uri: ''
 copyright: Copyright &copy; 2020 Splunk Inc. All rights reserved.
 remote_branch: gh-pages
@@ -73,7 +73,7 @@ extra_javascript:
 extra:
   social:
     - icon: fontawesome/brands/github-alt
-      link: https://github.com/signalfx/devops-workshop
+      link: https://github.com/signalfx/observability-workshop
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/splunk
     - icon: fontawesome/brands/linkedin

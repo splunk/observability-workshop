@@ -1,10 +1,10 @@
-# Splunk DevOps Workshop - 11th July 2020
+# Splunk Observability Workshop - 11th July 2020
 
 ![Splunk Logo](docs/images/splunk-logo.png)
 
 Hi,
 
-Thank you for registering for the Splunk DevOps Workshop.
+Thank you for registering for the Splunk Observability Workshop.
 
 In order to ensure a smooth and enjoyable workshop there are a few prerequisites that need to be completed beforehand.
 
@@ -25,4 +25,4 @@ We look forward to taking you through the Workshop to see how Splunk, SignalFx a
 
 Regards,
 
-## Splunk DevOps Team
+## Splunk Observability Team

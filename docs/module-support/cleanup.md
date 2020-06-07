@@ -26,13 +26,13 @@
     When prompted type `yes` to confirm you want to destroy, this will take a while to complete.
 
     ```text
-    aws_instance.devops-instance[0]: Destroying... [id=i-088560a5f6e2bbdbb]
-    aws_instance.devops-instance[0]: Still destroying... [id=i-088560a5f6e2bbdbb, 10s elapsed]
-    aws_instance.devops-instance[0]: Still destroying... [id=i-088560a5f6e2bbdbb, 20s elapsed]
-    aws_instance.devops-instance[0]: Still destroying... [id=i-088560a5f6e2bbdbb, 30s elapsed]
-    aws_instance.devops-instance[0]: Still destroying... [id=i-088560a5f6e2bbdbb, 40s elapsed]
-    aws_instance.devops-instance[0]: Still destroying... [id=i-088560a5f6e2bbdbb, 50s elapsed]
-    aws_instance.devops-instance[0]: Destruction complete after 56s
+    aws_instance.observability-instance[0]: Destroying... [id=i-088560a5f6e2bbdbb]
+    aws_instance.observability-instance[0]: Still destroying... [id=i-088560a5f6e2bbdbb, 10s elapsed]
+    aws_instance.observability-instance[0]: Still destroying... [id=i-088560a5f6e2bbdbb, 20s elapsed]
+    aws_instance.observability-instance[0]: Still destroying... [id=i-088560a5f6e2bbdbb, 30s elapsed]
+    aws_instance.observability-instance[0]: Still destroying... [id=i-088560a5f6e2bbdbb, 40s elapsed]
+    aws_instance.observability-instance[0]: Still destroying... [id=i-088560a5f6e2bbdbb, 50s elapsed]
+    aws_instance.observability-instance[0]: Destruction complete after 56s
     aws_security_group.instance: Destroying... [id=sg-0d6841fbeef022a9f]
     aws_security_group.instance: Destruction complete after 2s
     ```
