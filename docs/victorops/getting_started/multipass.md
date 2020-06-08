@@ -36,7 +36,7 @@ You can find your Access Token by clicking on the **Settings** icon on the top r
 
 Click the **Copy** button to copy it to your clipboard, then paste it into your `values.txt` using the `ACCESS_TOKEN` parameter.
 
-![Access Token](../../images/victorops/m7-access-token.png)
+![Access Token](../../images/victorops/m7-access-token.png){: .zoom}
 
 You will also need to obtain the name of the Realm for your SignalFx account.
 
@@ -44,7 +44,7 @@ Click on the **Settings** icon again, but this time select **My Profile**.
 
 The Ream can be found in the middle of the page within the Organizations section.  In this example it is `us1`, make a note of this in your `values.txt` using the `REALM` parameter.
 
-![Realm](../../images/victorops/m7-realm.png)
+![Realm](../../images/victorops/m7-realm.png){: .zoom}
 
 ## 3. Local VMs using Multipass
 
@@ -101,7 +101,7 @@ Remaining in the same directory where you created the `victorops.yaml`, run the 
 The first command will generate a random unique 4 character string. This will prevent clashes in the SignalFx UI.
 
 !!! note "Free up resources"
-    You may also want to first shutdown any other VMs you still have running from previous modules to free up resources.
+    You may also want to first shutdown any other VMs you  have running to free up resources.
 
 Create the VM:
 
@@ -120,9 +120,13 @@ Create the VM:
     Launched: vpme-vo1
     ```
 
-Once your VM has been created check within the SignalFx UI, **INFRASTRUCTURE** tab, and confirm it is reporting in correctly; allow 30-60 secs for it to appear.
+Once your VM has been created it will perform some updates and install the SignalFx Agent, all of which will take a few minutes. Make a note of your VM name so you can find it in the next step.
 
-If it fails to appear, double check your {==SIGNALFX_REALM==} and{==SIGNALFX_ACCESS_TOKEN==} settings within your `victorops.yaml` file.
+Navigate to the SignalFx UI, this [link](https://app.us1.signalfx.com/#/navigator/EPNXccRAwAA/collectd%20hosts?colorBy=collectd.cpu.utilization&outlierStrategy=off)  will take you straight to the **INFRASTRUCTURE** tab, find your VM and confirm it is reporting in correctly; allow a few minutes for it to appear.
+
+![Infrastructure](../../images/victorops/sfx-infrastructure.png){: .zoom}
+
+If it fails to appear after 5 mins, double check your {==SIGNALFX_REALM==} and {==SIGNALFX_ACCESS_TOKEN==} settings within your `victorops.yaml` file.
 
 If errors are found these can easily be updated directly within the VM.
 
