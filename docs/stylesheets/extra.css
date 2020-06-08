@@ -84,6 +84,10 @@ strong.label-button, mark.critic {
     background-color: #4a0072;
 }
 
+.label-button.sfx-ui-button {
+    background-color: #19855c;
+}
+
 .md-nav__link:focus,
 .md-tabs__link--active,
 .md-nav__item .md-nav__link--active,
