@@ -130,19 +130,19 @@ nav:
   - '<b>VictorOps</b>':
     - '<b>Getting Started</b><br /><small>60 minutes</small>':
       - 'Initial Setup': victorops/getting_started/index.md
-      - 'Create test environment': victorops/getting_started/multipass.md
-      - 'Paging polices': victorops/getting_started/paging.md
-      - 'Creating a team': victorops/getting_started/team.md
+      - 'Create a Test Environment': victorops/getting_started/multipass.md
+      - 'Paging Polices': victorops/getting_started/paging.md
+      - 'Creating a Team': victorops/getting_started/team.md
       - 'Configure Rotations': victorops/getting_started/rotations.md
       - 'Configure Escalation Policies': victorops/getting_started/escalation.md
       - 'Creating Routing keys': victorops/getting_started/routing.md
     - '<b>Integrations</b><br /><small>20 minutes</small>':
-      - 'Enabled integration in SignalFx': victorops/integrations/index.md
-      - 'Create a detector': victorops/integrations/detector.md
+      - 'Enable Integration in SignalFx': victorops/integrations/index.md
+      - 'Create a Detector': victorops/integrations/detector.md
     - '<b>Incident Lifecycle</b><br /><small>45 minutes</small>':
       - 'Overview': victorops/incident_lifecycle/index.md
-      - 'Create incidents': victorops/incident_lifecycle/create_incidents.md
-      - 'Manage incidents': victorops/incident_lifecycle/manage_incidents.md
+      - 'Create Incidents': victorops/incident_lifecycle/create_incidents.md
+      - 'Manage Incidents': victorops/incident_lifecycle/manage_incidents.md
     - '<b>Workshop Clean-up</b><br /><small>2 minutes</small>': victorops/cleanup.md
   - '<b>Resources</b>':
     - "Links": resources/index.md
