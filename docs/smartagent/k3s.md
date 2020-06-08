@@ -11,7 +11,7 @@ You will need to obtain your Access Token[^1] from the SignalFx UI once Kubernet
 
 You can find your Access Token by clicking on your profile icon on the top right of the SignalFx UI. Then select **Organization Settings → Access Tokens**.
 
-Expand the Default token, then click on **Show Token** to expose your token. Click the **Copy** button to copy to clipboard.
+Expand the Default token, then click on **Show Token** to expose your token. Click the **Copy**{: .label-button  .sfx-ui-button} button to copy to clipboard.
 
 ![Access Token](../images/smartagent/m3-access-token.png){: .zoom}
 

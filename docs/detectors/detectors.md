@@ -25,13 +25,13 @@ In the text field next to **Detector Name**, **ADD YOUR INITIALS** before the pr
     It's important that you add your initials in front of the proposed detector name.
     It should be something like this: **LI's Latency Chart Detector**.
 
-Click on **Create Alert Rule**.
+Click on **Create Alert Rule**{: .label-button .sfx-ui-button}.
 
 ![New Detector](../images/detectors/M1-l2-3.png){: .zoom}
 
 In the Detector window, inside **Alert signal**, the Signal we will alert on is marked with a (blue) bell in the **Alert on** column. The bell indicates which Signal is being used to generate the alert.
 
-Click on **Proceed to Alert Condition**.
+Click on **Proceed to Alert Condition**{: .label-button .sfx-ui-button}.
 
 ![Alert Signal](../images/detectors/M1-l2-4.png){: .zoom}
 
@@ -39,7 +39,7 @@ Click on **Proceed to Alert Condition**.
 
 ## 2. Setting Alert condition
 
-In **Alert condition**, click on **Static Threshold** and then on **Proceed to Alert Settings**.
+In **Alert condition**, click on **Static Threshold** and then on **Proceed to Alert Settings**{: .label-button .sfx-ui-button}.
 
 ![Alert Condition](../images/detectors/M1-l2-5.png){: .zoom}
 
@@ -61,17 +61,17 @@ SignalFx will now perform a pre-flight check after 5 seconds. See the **Estimate
     To read more about detector previewing, please visit this link
     [Setting up detectors](https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#previewing-the-results-of-a-detector).
 
+Click on **Proceed to Alert Message**{: .label-button .sfx-ui-button}.
+
 ---
 
 ## 4. Configuring the alert message
-
-In **Alert Setting** click on **Proceed to Alert Message**.
 
 In **Alert message**, under **Severity** choose **Major**.
 
 ![Alert Message](../images/detectors/M1-l2-7.png){: .zoom}
 
-Click on **Proceed to Alert Recipients**.
+Click on **Proceed to Alert Recipients**{: .label-button .sfx-ui-button}.
 
 Click on **Add Recipient** and then on your email address displayed as the first option.
 
@@ -86,13 +86,14 @@ Click on **Add Recipient** and then on your email address displayed as the first
 
 ## 5. Activating the alert
 
-Click on **Proceed to Alert Activation**.
+Click on **Proceed to Alert Activation**{: .label-button .sfx-ui-button}.
 
-In **Activate...** click on **Activate Alert Rule**.
+In **Activate...** click on **Activate Alert Rule**{: .label-button .sfx-ui-button}.
 
 ![Activate](../images/detectors/M1-l2-9.png){: .zoom}
 
 If you want to get alerts quicker you can click back on **Alert Settings** and lower the value from **`290`** to say **`280`**.
+
 If you change the **Time** to **-1h** you can see how many alerts you might get with the threshold you have chosen based on the metics from the last 1 hour.
 
 Hover over **ALERTS** in the top menu and then click on **Detectors**.

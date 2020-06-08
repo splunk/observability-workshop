@@ -4,7 +4,7 @@
 
 Let's now select the **Paris** datacenter to do some analytics - for that we will use a filter.
 
-Let's go back to the **PLOT EDITOR** tab and click on **Add filter**, wait until it automatically populates, choose **`demo_datacenter`**, and then **`Paris`**.
+Let's go back to the **PLOT EDITOR** tab and click on **Add filter**{: .label-button .sfx-ui-button}, wait until it automatically populates, choose **`demo_datacenter`**, and then **`Paris`**.
 
 ![Filter](../images/dashboards/M1-l1-13.png){: .zoom}
 
