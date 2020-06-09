@@ -92,28 +92,28 @@ Now switch back to you local shell session and confirm the VM has finished deplo
 === "Shell Result"
 
     ``` bash
-    Launched: kzxy-vo1
+    Launched: vpme-vo1
     ```
 
-Once the VM has deployed successfully, in a {==NEW==} shell session connect to the VM using the following command, replacing {==XXXX==} with the name of your VM.
+Once the VM has deployed successfully, in a **new** shell session connect to the VM using the following command, replacing {==xxxx==} with the name of your VM.
 
 === "Shell Command"
 
     ``` bash
-    multipass shell XXXX
+    multipass shell {==xxxx==}-vo1
     ```
 
 === "Example Input"
 
     ``` bash
-    multipass shell kzxy-vo1
+    multipass shell vpme-vo1
     ```
 
 === "Example Output"
 
     ``` bash
     Last login: Tue Jun  9 15:10:19 2020 from 192.168.64.1
-    ubuntu@kzxy-vo1:~$
+    ubuntu@vpme-vo1:~$
     ```
 
 ### 3.3 Install Agent
