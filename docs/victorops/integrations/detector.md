@@ -1,16 +1,54 @@
 # Create a SignalFx Detector - Lab Summary
 
-1. Shell into Multipass instance
-2. Initialize Terraform
-3. What have we just done?
+We now need to create a new Detector within SignalFx which will use VictorOps as the target to send alerts to.  We will use Terraform installed within your VM to create the Detector for us, but first we need to obtain some values required for Terraform to run.
 
----
+## 1. Obtain Variables
 
-## 1. Shell into Multipass instance
+The presenter will typically share these values with you at the start of the module to save time, but the following instructions explain how to get them for yourself.
 
-We now need to create a new Detector within SignalFx which will use VictorOps as the target to send alerts to.
+### 1.1 Access Token
 
-Shell into your 1st Multipass instance you created in the **Getting Started** module, all of the following commands will be executed within the instance:
+In the SignalFx UI you can find your Access Token by clicking on the **Settings** icon on the top right of the SignalFx UI, select **Organization Settings → Access Tokens**, expand the Default token, then click on **Show Token** to expose your token.
+
+Click the **Copy** button to copy it to the notepad document you created in the previous step.
+
+![Access Token](../../images/victorops/m7-access-token.png){: .zoom}
+
+### 1.2 Realm
+
+Still in the SignalFx UI, click on the **Settings** icon again, but this time select **My Profile**.
+
+The Realm can be found in the middle of the page within the Organizations section. In this example it is **us1**, make a note of this in your notepad document.
+
+![Realm](../../images/victorops/m7-realm.png){: .zoom}
+
+### 1.3 Create Variable Commands
+
+With all the required values now safely copied into your notepad document you can use them to compile the commands which we will run in your VM in the next step.
+
+Add the following lines to your notepad document, and then add the three values you have collected over the previous steps
+
+=== "Template"
+
+    ``` bash
+    export SFXVOPSID={==xxxx==}
+    export ACCESS_TOKEN={==xxxx==}
+    export REALM={==xxxx==}
+    ```
+
+=== "Example"
+
+    ``` bash
+    export SFXVOPSID=EYierbGA4AA
+    export ACCESS_TOKEN=by78voyt7b.....
+    export REALM=us1
+    ```
+
+## 2. Connect to VM Shell
+
+Switch back to your shell session connected to the VM you created in the **Getting Started/Create a Test Environment** module, all of the following commands will be executed within this instance:
+
+If you no longer have this session active you can reconnect to it by running the following command from your original shell session:
 
 === "Input"
 
@@ -18,17 +56,17 @@ Shell into your 1st Multipass instance you created in the **Getting Started** mo
     multipass shell ${INSTANCE}
     ```
 
-The three required variables should be stored in your **values.txt** if you have been populating it as you have worked through this module.
+Copy the three commands you just constructed in step 3.1
 
 === "Example"
 
     ```bash
-    export SFXVOPSID=xxxxxxxxxxxx
-    export ACCESS_TOKEN=xxxxxxxxxxxxxxx
-    export REALM=us1
+    export SFXVOPSID={==xxxx==}
+    export ACCESS_TOKEN={==xxxx==}
+    export REALM={==xxxx==}
     ```
 
-Next you need to export an environment variable for your Routing Key, as this uses the hostname of the Multipass instance you simply need to run the following command to create it:
+Next you need to export an environment variable for your Routing Key, as this uses the hostname of the VM you simply need to run the following command to create it:
 
 === "Input"
 
@@ -36,9 +74,9 @@ Next you need to export an environment variable for your Routing Key, as this us
     export ROUTINGKEY=${HOSTNAME:0:4}_PRI
     ```
 
-## 2. Initialize Terraform
+## 3. Initialize Terraform
 
-Still within the Multipass Instance, switch to the victorops folder where the Terraform config files are located
+Still within your VM, switch to the victorops folder where the Terraform config files are located (you should be logged in as Ubuntu and should not have elevated to root)
 
 === "Change Directory"
 
@@ -195,7 +233,7 @@ Check the plan output for errors before typing _**yes**_ to commit the apply.
     ```
 
 ---
-## 3. What have we just done?
+## 4. What have we just done?
 
 By running Terraform within the VM you have just created a new Detector within SignalFx which will send alerts to VictorOps if the CPU utilization of your specific VM goes above 90%.
 
