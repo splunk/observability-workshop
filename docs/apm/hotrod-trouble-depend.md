@@ -22,10 +22,10 @@
 
 ---
 
-## 1. Find a problomatic traces using dependencies and/or tags
+## 1. Find a problematic traces using dependencies and/or tags
 
 For this use case we assume there is an intermittent problem but we do not have a clear time frame for the occurrence. This is the very the case when a working on a performance problem. or edge cases,
-Using the Analytic engine of Signalfx, combined with using tags and/or services selections, we can find relevant traces, and dive into them to explore.
+Using the Analytic engine of SignalFx, combined with using tags and/or services selections, we can find relevant traces, and dive into them to explore.
 
 ### 1.1 Select Application Environment
 

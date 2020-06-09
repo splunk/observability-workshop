@@ -162,7 +162,7 @@ First open the **mysql** span by clicking on the operation in the span label (SQ
 
 The **TAGS** section will help you to identify or search further for specific problems.
 
-There is information on your environment, your host and kubernetes related information, you can use to validate the health of theses platforms.
+There is information on your environment, your host and Kubernetes related information, you can use to validate the health of theses platforms.
 
 You can also see information about the actual SQL query being performed.
 
