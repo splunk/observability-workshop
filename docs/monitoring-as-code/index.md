@@ -11,7 +11,7 @@
 
 Remaining in your Multipass or AWS/EC2 instance from the **Smart Agent** module, change into the `signalfx-jumpstart` directory
 
-=== "Input"
+=== "Shell Command"
 
     ``` bash
     cd ~/signalfx-jumpstart
@@ -19,7 +19,7 @@ Remaining in your Multipass or AWS/EC2 instance from the **Smart Agent** module,
 
 The environment variables needed should already be set from [Deploy the Smart Agent in K3s](../../smartagent/k3s/#2-use-helm-to-deploy-agent). If not, create the following environment variables to use in the Terraform steps below
 
-=== "Input"
+=== "Shell Command"
 
     ```
     export ACCESS_TOKEN={==SIGNALFX_ACCESS_TOKEN==}
@@ -32,7 +32,7 @@ Initialize Terraform and upgrade to the latest version of the SignalFx Terraform
 !!! note "Upgrading the SignalFx Terraform Provider"
     You will need to run this command each time a new version of the SignalFx Terraform Provider is released. You can track the releases on [GitHub](https://github.com/terraform-providers/terraform-provider-signalfx/releases).
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     terraform init -upgrade
@@ -81,7 +81,7 @@ Initialize Terraform and upgrade to the latest version of the SignalFx Terraform
 
 Create a new workspace:
 
-=== "Input"
+=== "Shell Command"
 
     ``` bash
     terraform workspace new workshop

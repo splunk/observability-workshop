@@ -78,7 +78,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     Once the instance has been successfully created (this can take several minutes), shell into it.
 
-    === "Input"
+    === "Shell Command"
 
         ```bash
         multipass shell $INSTANCE
@@ -121,7 +121,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     The first step is to go into the sub-directory where the Terraform files are located and initialise Terraform and upgrade the AWS Terraform Provider.
 
-    === "Input"
+    === "Shell Command"
 
         ```bash
         cd ec2
@@ -169,7 +169,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     First, you need to create environment variables for your AWS access keys.
 
-    === "Input"
+    === "Shell Command"
 
         ```bash
         export AWS_ACCESS_KEY_ID="{==YOUR_AWS_ACCESS_KEY_ID==}"
@@ -193,7 +193,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     As we only wish to provide the input once, we are going to capture the output in a `.out` file that we can use for the apply step. Please provide your initials for the output file as indicated.
 
-    === "Input"
+    === "Shell Command"
 
         ```bash
         terraform plan -var="aws_instance_count=1" -var="instance_type=1" -out=observability-plan.out
@@ -241,7 +241,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     If there are no errors in the output and terraform has created your output file, you can start the apply phase of Terraform. This will create the AWS/EC2 instance.
 
-    === "Input"
+    === "Shell Command"
 
         ```bash
         terraform apply "observability-plan.out"
@@ -282,7 +282,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
     Once the instance has been successfully created (this can take several minutes), ssh into it.
     In most cases your ssh client will ask you to verify the connection.
 
-    === "Input"
+    === "Shell Command"
 
         ```bash hl_lines="1"
         ssh ubuntu@YOUR IP ADDRESS
@@ -298,7 +298,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     Please confirm that you wish to continue by replying to the prompt with `yes`
 
-    === "Input"
+    === "Shell Command"
 
         ```bash hl_lines="1"
         Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
@@ -313,7 +313,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     To login to your instance please use the password provided by the Workshop host.
 
-    === "Input"
+    === "Shell Command"
 
         ```bash hl_lines="1"
         ubuntu@YOUR IP ADDRESS's password: PASSWORD

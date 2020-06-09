@@ -10,7 +10,7 @@
 
     If you are using an AWS/EC2 instance, make sure it is available and skip to [Step 1](../../apm/hotrod/#1-deploy-the-hot-rod-application-into-k3s), otherwise ensure your Multipass instance is available and running before continuing.
 
-    === "Input"
+    === "Shell Command"
 
         ```
         multipass list
@@ -29,7 +29,7 @@
 
 To deploy the Hot R.O.D. application into K3s apply the deployment.
   
-=== "Input"
+=== "Shell Command"
 
     ```bash
     cd ~/workshop
@@ -45,7 +45,7 @@ To deploy the Hot R.O.D. application into K3s apply the deployment.
 
 To ensure the Hot R.O.D. application is running:
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     kubectl get pods
@@ -70,7 +70,7 @@ To ensure the Hot R.O.D. application is running:
 
 In order to view the application in your web browser we need to find the `LoadBalancer` IP address and the port the application is listening on.
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     kubectl get svc
@@ -94,7 +94,7 @@ Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). O
 
 Return to your shell and create an environment variable for the IP address and port that the Hot R.O.D. application is exposed on:
 
-=== "Input"
+=== "Shell Command"
 
     ```
     HOTROD_ENDPOINT=$(kubectl get svc hotrod -n default -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
@@ -102,7 +102,7 @@ Return to your shell and create an environment variable for the IP address and p
 
 Confirm the environment variable is set
 
-=== "Input"
+=== "Shell Command"
 
     ```
     curl $HOTROD_ENDPOINT
@@ -110,7 +110,7 @@ Confirm the environment variable is set
 
 Then run the following command(s) to create load on the service:
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     siege -r2 -c20 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
@@ -121,7 +121,7 @@ Create some errors with an invalid customer number.
 !!! note "Preparation"
     For a follow up lab, make note of the current time.
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     siege -r1 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=391&nonse=0.17041229755366172"
@@ -147,7 +147,7 @@ For this we need to know the name of your application environment. In this works
 
 To find the hostname, check the prompt of you instance, please go to your instance (Multipass or AWS/EC2) and run the following command.
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     echo "Your µAPM environment is: $(hostname)-apm-env"
@@ -169,7 +169,7 @@ Now go to **Dashboards → µAPM → Service**.  Please select your environment 
 
 To load the dashboard with more data run the following command a few times to create load on the service:
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     siege -r2 -c20 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"

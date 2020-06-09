@@ -27,7 +27,7 @@ The Realm can be found in the middle of the page within the Organizations sectio
 
 Create the following variables to use in the proceeding helm install command, replacing the highlighted `{==VARIABLE==}` with the appropriate values. For instance, if your realm is `us1`, you would `export REALM=us1`.
 
-=== "Input"
+=== "Shell Command"
 
     ```
     export ACCESS_TOKEN={==ACCESS TOKEN, from organisation page==}
@@ -36,7 +36,7 @@ Create the following variables to use in the proceeding helm install command, re
 
 Install the agent using the SignalFx Helm chart. Firstly, add the SignalFx Helm chart repository to Helm.
 
-=== "Input"
+=== "Shell Command"
 
     ```
     helm repo add signalfx https://dl.signalfx.com/helm-repo
@@ -44,7 +44,7 @@ Install the agent using the SignalFx Helm chart. Firstly, add the SignalFx Helm 
 
 Ensure the latest version of the SignalFx Helm repository
 
-=== "Input"
+=== "Shell Command"
 
     ```
     helm repo update
@@ -52,7 +52,7 @@ Ensure the latest version of the SignalFx Helm repository
 
 Install the Smart Agent Helm chart with the following commands, do **NOT** edit this:
 
-=== "Input"
+=== "Shell Command"
 
     ```
     helm install \
@@ -70,7 +70,7 @@ You can monitor the progress of the deployment by running `kubectl get pods` whi
 
 Ensure the status is reported as Running before continuing.
 
-=== "Input"
+=== "Shell Command"
 
     ``` bash
     kubectl get pods
@@ -87,7 +87,7 @@ Ensure there are no errors by tailing the logs from the Smart Agent Pod. Output 
 
 Use the label set by the `helm` install to tail logs (You will need to press ++ctrl+c++ to exit). Or use the installed `k9s` terminal UI for bonus points!
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     kubectl logs -l app=signalfx-agent -f
@@ -142,7 +142,7 @@ In the SignalFx UI, goto **INFRASTRUCTURE → Kubernetes Navigator → Cluster M
 
 Validate that your cluster is discovered and reporting by finding your cluster (in the workshop you will see many other clusters). To find your cluster name run the following command and copy the output to your clipboard:
 
-=== "Input"
+=== "Shell Command"
   
     ```bash
     echo $(hostname)-k3s-cluster

@@ -50,7 +50,7 @@ Switch back to your shell session connected to the VM you created in the **Getti
 
 If you no longer have this session active you can reconnect to it by running the following command from your original shell session:
 
-=== "Input"
+=== "Shell Command"
 
     ```
     multipass shell ${INSTANCE}
@@ -68,7 +68,7 @@ Copy the three commands you just constructed in step 3.1
 
 Next you need to export an environment variable for your Routing Key, as this uses the hostname of the VM you simply need to run the following command to create it:
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     export ROUTINGKEY=${HOSTNAME:0:4}_PRI
@@ -86,7 +86,7 @@ Still within your VM, switch to the victorops folder where the Terraform config 
 
 Now we can initialize Terraform
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     terraform init -upgrade
@@ -124,7 +124,7 @@ Now we can initialize Terraform
 
 Create a new Terraform workspace[^1] which will track the state for this environment.
 
-=== "Input"
+=== "Shell Command"
 
     ```text
     terraform workspace new VictorOps
@@ -142,7 +142,7 @@ Create a new Terraform workspace[^1] which will track the state for this environ
 
 Check the plan output for errors before typing _**yes**_ to commit the apply.
 
-=== "Input"
+=== "Shell Command"
 
     ```text
     terraform apply \
@@ -233,7 +233,8 @@ Check the plan output for errors before typing _**yes**_ to commit the apply.
     ```
 
 ---
-## 4. What have we just done?
+
+## 4. Summary
 
 By running Terraform within the VM you have just created a new Detector within SignalFx which will send alerts to VictorOps if the CPU utilization of your specific VM goes above 90%.
 

@@ -7,7 +7,7 @@
 
 Use `multipass` to create a vanilla Ubuntu VM and shell into it. You can also use a Linux-based VM with your cloud provider of choice. Replace `[INITIALS]` with your actual initials.
 
-=== "Input"
+=== "Shell Command"
 
     ```bash hl_lines="1 2"
     multipass launch [INITIALS]-vm
@@ -28,7 +28,7 @@ You will also need to obtain the name of the Realm for your SignalFx account. Cl
 
 SignalFx maintains a shell script to install on supported distributions. Copy the script below and replace $REALM and $ACCESS_TOKEN with the values found in previous screen:
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
@@ -37,7 +37,7 @@ SignalFx maintains a shell script to install on supported distributions. Copy th
 
 Once the installation is complete check the status of the agent.
 
-=== "Input"
+=== "Shell Command"
 
     ```text
     signalfx-agent status

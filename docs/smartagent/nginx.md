@@ -19,7 +19,7 @@ This is achieved by defining the `port` and `monitor type` to use for monitoring
 
 Remain in the Multipass or AWS/EC2 shell session and change into the `nginx` directory:
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     cd ~/workshop/k3s/nginx
@@ -39,7 +39,7 @@ Now switch back to the default cluster node view by selecting  the **MAP** tab a
 
 Create the NGINX `configmap` using the `nginx.conf` file:
 
-=== "Input"
+=== "Shell Command"
 
     ```text
     kubectl create configmap nginxconfig --from-file=nginx.conf
@@ -53,7 +53,7 @@ Create the NGINX `configmap` using the `nginx.conf` file:
 
 Then create the deployment:
 
-=== "Input"
+=== "Shell Command"
 
     ```
     kubectl create -f nginx-deployment.yaml
@@ -81,7 +81,7 @@ If you select the **WORKLOADS** tab again you should now see that there is a new
 
 Let's validate this in your shell as well:
 
-=== "Input"
+=== "Shell Command"
 
     ```text
     kubectl get pods
@@ -100,7 +100,7 @@ Let's validate this in your shell as well:
 
 Before running a benchmark against NGINX (to generate metrics) we need to expose port 80 (HTTP)
 
-=== "Input"
+=== "Shell Command"
 
     ```text
     kubectl create service nodeport nginx --tcp=80:80
@@ -114,7 +114,7 @@ Before running a benchmark against NGINX (to generate metrics) we need to expose
 
 Run `kubectl get svc` then make a note of the `CLUSTER-IP` address that is allocated to the NGINX service.
 
-=== "Input"
+=== "Shell Command"
 
     ```text
     kubectl get svc
@@ -134,7 +134,7 @@ Run `kubectl get svc` then make a note of the `CLUSTER-IP` address that is alloc
 
 Using the NGINX `{==CLUSTER-IP==}` address reported from above, use the Siege Load Testing command (`siege`) to generate some traffic to light up your SignalFx NGINX dashboard. Run this a couple of times!
 
-=== "Input"
+=== "Shell Command"
 
     ```text
     siege -b -r 50 -c 20 --no-parser http://{==CLUSTER-IP ADDRESS==}/ 1>/dev/null

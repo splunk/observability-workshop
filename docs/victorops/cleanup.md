@@ -4,7 +4,7 @@ Once you have finished with this workshop `exit` from the Multipass instance(s) 
 
 You can use `multipass list` to get the names of any current running instances:
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     multipass list
@@ -20,7 +20,7 @@ You can use `multipass list` to get the names of any current running instances:
 
 Ensure the `INSTANCE` environment variable is still set:
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     echo $INSTANCE
@@ -30,7 +30,7 @@ If the environment varilable is not set, then you will have to replace `${INSTAN
 
 Run the following commands to delete the Multipass instance(s):
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     multipass delete --purge ${INSTANCE}-vo1

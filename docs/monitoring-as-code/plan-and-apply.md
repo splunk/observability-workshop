@@ -4,7 +4,7 @@
 
 Review the execution plan.
 
-=== "Input"
+=== "Shell Command"
 
     ``` bash
     terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$PREFIX"
@@ -16,7 +16,7 @@ If the plan executes successfully, we can go ahead and apply:
 
 ## 2. Apply actions from execution plan
 
-=== "Input"
+=== "Shell Command"
 
     ``` bash
     terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$PREFIX"

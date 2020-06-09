@@ -8,7 +8,7 @@ If you do not already have Multipass installed as per the pre-joining instructio
 
 MacOS users can install it using [Homebrew](https://brew.sh/) by running:
 
-=== "Code"
+=== "Shell Command"
 
     ```bash
     brew cask install multipass
@@ -22,7 +22,7 @@ MacOS users can install it using [Homebrew](https://brew.sh/) by running:
 
 The first step is to pull down the `cloud-init` file to launch a pre-configured VM.
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     curl -s https://raw.githubusercontent.com/signalfx/observability-workshop/master/cloud-init/victorops.yaml -o victorops.yaml
@@ -39,7 +39,7 @@ The first command will generate a random unique 4 character string. This will pr
 
 Create the VM:
 
-=== "Input"
+=== "Shell Command"
 
     ``` bash
     export INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)
@@ -82,7 +82,7 @@ Click on the SmartAgent tile to open it...
 
 Now switch back to you local shell session and confirm the VM has finished deploying.  
 
-=== "Shell Result"
+=== "Example Output"
 
     ``` bash
     Launched: vpme-vo1
@@ -138,7 +138,7 @@ Now copy the linux install commands from the new tab/window you left open with t
 
 Once the agent has completed installing run the following command to check the status
 
-=== "Code"
+=== "Shell Command"
 
     ```bash
     sudo signalfx-agent status

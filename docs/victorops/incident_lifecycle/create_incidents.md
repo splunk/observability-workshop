@@ -18,7 +18,7 @@ Before generating any incidents you should assign yourself to the current Shift 
 
 Log into your first VM you created during step [2. Creating a Test Environment](../../vo_integrations/#2-creating-a-test-environment) in VictorOps Integrations
 
-=== "Input"
+=== "Shell Command"
 
     ```
     multipass shell ${INSTANCE}-vo1
@@ -45,7 +45,7 @@ Log into your first VM you created during step [2. Creating a Test Environment](
 
 Force the CPU to spike to 100% by running the following command:
 
-=== "Input"
+=== "Shell Command"
 
     ```
     openssl speed -multi $(grep -ci processor /proc/cpuinfo)

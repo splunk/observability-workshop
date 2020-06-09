@@ -3,7 +3,7 @@
 !!! note
     The setup part is already documented in the [Preparation](../../smartagent/prep/) and [Deploy the Smart Agent in K3s](../../smartagent/k3s/) steps. Please ensure this instance is available and running before continuing.
 
-    === "Input"
+    === "Shell Command"
 
         ```
         multipass list
@@ -28,7 +28,7 @@
 
 To deploy the Sock Shop application into K3s apply the deployment
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     cd ~/workshop/apm/sockshop
@@ -74,7 +74,7 @@ To deploy the Sock Shop application into K3s apply the deployment
 
 To monitor the deployment of Sock Shop using `k9s` to monitor:
 
-=== "Input"
+=== "Shell Command"
 
     ```
     k9s
@@ -90,7 +90,7 @@ Once in `k9s` press `0` to show all namespaces:
 
 Sock Shop should be running in your cluster and exposes services via cluster IP and port. Obtain the ip address for the front-end service.
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     export SOCKS_ENDPOINT=$(kubectl get svc front-end -n sock-shop -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
@@ -98,7 +98,7 @@ Sock Shop should be running in your cluster and exposes services via cluster IP 
 
 Then confirm the `SOCKS_ENDPOINT` environment variable has been set:
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     curl http://$SOCKS_ENDPOINT
@@ -122,7 +122,7 @@ Then confirm the `SOCKS_ENDPOINT` environment variable has been set:
 
 To view the application in your web browser we need to find the LoadBalancer IP address and the port the application is listening on.
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     kubectl get svc -n sock-shop front-end
@@ -145,7 +145,7 @@ Make note of the `EXTERNAL-IP` (in the example above this is `192.168.64.35`). T
 
 A load testing scenario is available for the Sock Shop application. To generate some load run the following command:
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     ./loadgen.sh -c 50 -r 3m
@@ -153,7 +153,7 @@ A load testing scenario is available for the Sock Shop application. To generate 
 
 The parameter `-c` controls the amount of concurrent clients and `-r` the runtime of the load test. To apply continuous load set `-r` to the desired runtime. The load test runs as a job in the K8S cluster. Observe the progress:
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     kubectl -n sock-shop logs -f jobs/loadgen
@@ -161,7 +161,7 @@ The parameter `-c` controls the amount of concurrent clients and `-r` the runtim
 
 If you want to abort a load test, delete the job:
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     kubectl -n sock-shop delete jobs/loadgen
@@ -185,7 +185,7 @@ Review an automatically generated Service Dashboard. How do you correlate Servic
 
 Let's stress the sock shop a bit. Increase the amount of clients running for the load test to something ludicrous, e.g.:
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     ./loadgen.sh -c 1000 -a 100 -r 5m

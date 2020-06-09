@@ -4,7 +4,7 @@
 
 You will first need to ensure you are in the the workspace you created in **Step #1**:
 
-=== "Input"
+=== "Shell Command"
 
     ```text
     terraform workspace select workshop
@@ -12,7 +12,7 @@ You will first need to ensure you are in the the workspace you created in **Step
 
 Destroy all Detectors and Dashboards that were previously applied.
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"

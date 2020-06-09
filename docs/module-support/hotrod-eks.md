@@ -37,7 +37,7 @@ You can check for the latest SignalFx Smart Agent release on [Github](https://gi
 
 Use the `AWS CLI` to configure access to your AWS environment. The environment variables configured above mean you can just hit enter on each of the prompts to accept the values:
 
-=== "Input"
+=== "Shell Command"
 
     ```
     aws configure
@@ -56,7 +56,7 @@ Use the `AWS CLI` to configure access to your AWS environment. The environment v
 
 ## 4. Create a cluster running Amazon Elastic Kubernetes Service (EKS)
 
-=== "Input"
+=== "Shell Command"
 
     ```
     eksctl create cluster \
@@ -108,7 +108,7 @@ This may take some time (10-15 minutes). Ensure you see your cluster active in A
 
 Once complete update your `kubeconfig` to allow `kubectl` access to the cluster:
 
-=== "Input"
+=== "Shell Command"
 
     ```
     sudo eksctl utils write-kubeconfig -n $EKS_CLUSTER_NAME
@@ -120,7 +120,7 @@ Once complete update your `kubeconfig` to allow `kubectl` access to the cluster:
 
 Add the SignalFx Helm chart repository to Helm:
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     helm repo add signalfx https://dl.signalfx.com/helm-repo
@@ -134,7 +134,7 @@ Add the SignalFx Helm chart repository to Helm:
 
 Ensure the latest state of the SignalFx Helm repository:
 
-=== "Input"
+=== "Shell Command"
 
     ```text
     helm repo update
@@ -149,7 +149,7 @@ Ensure the latest state of the SignalFx Helm repository:
 
 Install the Smart Agent Helm chart with the following commands:
 
-=== "Input"
+=== "Shell Command"
 
     ```
     helm install \
@@ -189,7 +189,7 @@ Validate cluster looks healthy in SignalFx Kubernetes Navigator dashboard
 
 ## 6. Deploy Hot R.O.D. Application to EKS
 
-=== "Input"
+=== "Shell Command"
 
     ```
     kubectl apply -f ~/workshop/apm/hotrod/k8s/deployment.yaml
@@ -197,7 +197,7 @@ Validate cluster looks healthy in SignalFx Kubernetes Navigator dashboard
 
 To ensure the Hot R.O.D. application is running see examples below:
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     kubectl get pods
@@ -215,7 +215,7 @@ To ensure the Hot R.O.D. application is running see examples below:
 
 You then need find the IP address assigned to the Hot R.O.D. service:
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     kubectl get svc
@@ -231,7 +231,7 @@ You then need find the IP address assigned to the Hot R.O.D. service:
 
 Create an environment variable for the IP address and port that the Hot R.O.D. application is exposed on:
 
-=== "Input"
+=== "Shell Command"
 
     ```
     HOTROD_ENDPOINT=$(kubectl get svc hotrod -n default -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
@@ -249,7 +249,7 @@ You can view / exercise Hot R.O.D. yourself in a browser by opening the `EXTERNA
 
 ## 7. Generate some traffic to the application using Siege Benchmark
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     siege -r10 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
@@ -257,7 +257,7 @@ You can view / exercise Hot R.O.D. yourself in a browser by opening the `EXTERNA
 
 Create some errors with an invalid customer number
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     siege -r10 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=391&nonse=0.17041229755366172"
@@ -271,7 +271,7 @@ You should now be able to exercise SignalFx APM dashboards.
 
 To delete entire EKS cluster:
 
-=== "Input"
+=== "Shell Command"
 
     ```
     eksctl delete cluster $EKS_CLUSTER_NAME
@@ -294,7 +294,7 @@ To delete entire EKS cluster:
 
 Or to delete individual components:
 
-=== "Input"
+=== "Shell Command"
 
     ```
     kubectl delete deploy/hotrod svc/hotrod
@@ -303,7 +303,7 @@ Or to delete individual components:
 
 To switch back to using the local K3s cluster:
 
-=== "Input"
+=== "Shell Command"
 
     ```
     sudo kubectl config use-context default

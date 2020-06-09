@@ -9,7 +9,7 @@
 
     If you are using an AWS/EC2 instance, make sure it is available and skip to [Step 1](../../apm/hotrod/#1-find-a-specific-trace-using-time-slots-andor-tags), otherwise ensure your Multipass instance is available and running before continuing.
 
-    === "Input"
+    === "Shell Command"
 
         ```
         multipass list
@@ -57,7 +57,7 @@ First, we need to know the name of your application environment. In this worksho
 To find the hostname, check the prompt of you instance, please go to your
 instance (Multipass or EC2) and run the following command.
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     echo "Your µAPM environment is: $(hostname)-apm-env"
