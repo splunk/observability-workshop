@@ -62,20 +62,12 @@ Select the **Troubleshooting** tab, and select your environment you found and se
 
 In the scenario we are working with, we have been told that we get intermittent errors in the front end service, but not much more , so we need to discover what is going on.
 
-So the first activity for identifying the issue, is to pre-select both the  front -end service and follow the dependencies.
-
-### 1.3 Following the dependencies
-
-@@@@This will bring you to the Trace Waterfall view, allowing you to inspect the trace in detail.
+So the first activity for identifying the issue, is to pre-select both the  front-end service and follow the dependencies.
 
 ---
 
-## 2. Examine traces in the waterfall view
+## 2. Explore the troubleshooting and dependencies view
 
 ---
 
-## 3. Explore the troubleshooting and dependencies view
-
----
-
-## 4. Use the breakdown feature to enrich troubleshooting info
+## 3. Use the breakdown feature to enrich troubleshooting info
