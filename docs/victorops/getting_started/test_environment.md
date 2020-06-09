@@ -1,12 +1,5 @@
 # Creating a Test Environment
 
-1. Install Multipass
-2. Create VM using Multipass
-3. Install SignalFx UI
-4. Check SignalFx Agent
-
----
-
 ## 1. Install Multipass
 
 The easiest way to test VictorOps is to use Multipass to create a local test VM which will be monitored by SignalFx.

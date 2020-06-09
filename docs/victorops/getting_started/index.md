@@ -1,10 +1,5 @@
 # Initial Setup
 
-1. Activate your login
-2. Configure your Profile
-
----
-
 ## 1. Activate your login
 
 You should have received an invitation to Activate your VictorOps account via e-mail, click the _Activate Account_ link and follow the prompts.
