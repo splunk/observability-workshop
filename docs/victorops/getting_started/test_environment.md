@@ -177,6 +177,7 @@ Once the agent has completed installing run the following command to check the s
     signalfx-agent status monitors - show active monitors
     signalfx-agent status all - show everything
     ```
+
 ### 4.2 Check the SignalFx UI
 
 Navigate to the SignalFx UI, [this link](https://app.us1.signalfx.com/#/navigator/EPNXccRAwAA/collectd%20hosts?colorBy=collectd.cpu.utilization&outlierStrategy=off)  will take you straight to the **INFRASTRUCTURE** tab, find your VM and confirm it is reporting in correctly; allow a few minutes for it to appear.
