@@ -131,7 +131,7 @@ nav:
   - '<b>VictorOps</b>':
     - '<b>Getting Started</b><br /><small>60 minutes</small>':
       - 'Initial Setup': victorops/getting_started/index.md
-      - 'Create a Test Environment': victorops/getting_started/multipass.md
+      - 'Create a Test Environment': victorops/getting_started/test_environment.md
       - 'Paging Polices': victorops/getting_started/paging.md
       - 'Creating a Team': victorops/getting_started/team.md
       - 'Configure Rotations': victorops/getting_started/rotations.md
