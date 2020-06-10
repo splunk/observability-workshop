@@ -342,6 +342,14 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     You have now completed the preparation for your AWS/EC2 instance and can go directly to  the next lab [Deploy the Smart Agent in K3s](../../smartagent/k3s).
 
+## 4. About SignalFx Realms
+
+A realm is a self-contained deployment of SignalFx in which your organization is hosted. Different realms have different API endpoints (e.g. the endpoint for sending data is `ingest.us1.signalfx.com` for the **`us1`** realm, and `ingest.eu0.signalfx.com` for the **`eu0`** realm).
+
+Various statements in this Workshop below include a {==REALM==} placeholder that need to replace with the actual name of your realm.
+
+This realm name is shown on your profile page in SignalFx. If you do not include the realm name when specifying an endpoint, SignalFx will interpret it as pointing to the **`us0`** realm.
+
 [^1]: Multipass is a lightweight VM manager for Linux, Windows and macOS. It's designed for developers who want a fresh Ubuntu environment with a single command. It uses KVM on Linux, Hyper-V on Windows and HyperKit on macOS to run the VM with minimal overhead. It can also use VirtualBox on Windows and macOS. Multipass will fetch images for you and keep them up to date.
 [^2]: The SignalFx Smart Agent gathers host performance, application, and service-level metrics from both containerized and non-container environments. The Smart Agent installs with more than 100 bundled monitors for gathering data, including Python-based plug-ins such as Mongo, Redis, and Docker.
 [^3]: [What is Kubernetes?](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/)
