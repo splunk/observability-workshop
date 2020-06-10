@@ -2,9 +2,9 @@
 
 ## 1. Acknowledge
 
-Use your VictorOps App on your phone to acknowledge the Incident by clicking on the **push notification**...
+Use your VictorOps App on your phone to acknowledge the Incident by clicking on the **push notification** ...
 
-![Push Notification](../../images/victorops/push-notification.png){: .center}
+![Push Notification](../../images/victorops/mobile-notification.png){: .center}
 
 ...to open the alert in the VictorOps mobile app, then clicking on either the **single tick** in the top right hand corner, or the **Acknowledge** link to acknowledge the incident and stop the escalation process.  
 
