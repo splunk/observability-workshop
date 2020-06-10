@@ -1,12 +1,6 @@
-# Lab Summary
+# UI Overview
 
-1. UI Overview
-2. Generate Incidents
-3. Manage Incidents
-
----
-
-## 1. UI Overview
+## 1. VictorOps UI
 
 The aim of VictorOps is to _**"Make On Call Suck Less"**_, and it does this by getting the critical data, to the right people, at the right time.
 
