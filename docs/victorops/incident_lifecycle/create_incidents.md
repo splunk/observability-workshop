@@ -1,4 +1,4 @@
-# Generate Incidents
+# Create Incidents
 
 ## 1. On-Call
 
@@ -8,11 +8,11 @@ Before generating any incidents you should assign yourself to the current Shift 
 * Or navigate to **Teams → [Your Team] → Rotations**
 * Expand the **Follow the Sun Support - Business Hours** Rotation
 * Click on the **Manage members** icon (the figures) for the current active shift depending on your timezone
+![Manage Members](../../images/victorops/manage-members.png){: .zoom}
 * Use the **Select a user to add...** dropdown to add yourself to the shift
 * Then click on **Set Current** to make yourself the current **on-call** user within the shift
 * You should now get a **Push Notification** to your phone informing you that **You Are Now On-Call**
-
-![On Duty](../../images/victorops/m7-on-duty.png){: .center}
+![On Duty](../../images/victorops/on-duty.png){: .center}
 
 ## 2. Trigger Alert
 
