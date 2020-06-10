@@ -7,7 +7,7 @@
 !!! note "Ensure you have a running instance that has the hot R.O.D app running"
     The setup part is already documented in the [Preparation](../../smartagent/prep/), [Deploy the Smart Agent in K3s](../../smartagent/k3s/) and [Deploying hot-rod in K3s](../../apm/hotrod/) steps. If you are using an AWS/EC2 instance, make sure it is available and skip to [Step 1](../../apm/hotrod/#1-find-a-specific-trace-using-time-slots-andor-tags), otherwise ensure your Multipass instance is available and running before continuing.
 
-    === "Input"
+    === "Shell Command"
 
         ```
         multipass list
@@ -35,7 +35,7 @@ In this workshop all the environments use your `{==hostname==}-apm-env`
 To find the hostname, check the prompt of you instance, please go to your
 instance (Multipass or EC2) and run the following command.
 
-=== "Input"
+=== "Shell Command"
 
     ```bash
     echo "Your µAPM environment is: $(hostname)-apm-env"

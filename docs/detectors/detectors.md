@@ -7,7 +7,15 @@
 
 ---
 
-## 1. Create a detector from one of your charts
+## 1. Introduction
+
+A detector monitors a signal for conditions or issues that you care about.
+
+Those conditions or issues are expressed as one or more rules that trigger an alert when the conditions in the rules are met. Individual rules in a detector are labeled according to criticality: Info, Warning, Minor, Major, and Critical.
+
+For example, a detector that monitors the latency of an API call may go into a critical state when the latency is significantly higher than normal, as defined in the detector rules.
+
+## 2. Create a detector from one of your charts
 
 In **DASHBOARDS** click on your dashboard group (the one with your email address) and then on the dashboard name where the chart you created in the previous lab resides or search for your previously created dashboard's name, and click on that dashboard's name in the results.
 
@@ -25,21 +33,21 @@ In the text field next to **Detector Name**, **ADD YOUR INITIALS** before the pr
     It's important that you add your initials in front of the proposed detector name.
     It should be something like this: **LI's Latency Chart Detector**.
 
-Click on **Create Alert Rule**{: .label-button .sfx-ui-button}.
+Click on **Create Alert Rule**{: .label-button .sfx-ui-button}
 
 ![New Detector](../images/detectors/M1-l2-3.png){: .zoom}
 
 In the Detector window, inside **Alert signal**, the Signal we will alert on is marked with a (blue) bell in the **Alert on** column. The bell indicates which Signal is being used to generate the alert.
 
-Click on **Proceed to Alert Condition**{: .label-button .sfx-ui-button}.
+Click on **Proceed to Alert Condition**{: .label-button .sfx-ui-button}
 
 ![Alert Signal](../images/detectors/M1-l2-4.png){: .zoom}
 
 ---
 
-## 2. Setting Alert condition
+## 3. Setting Alert condition
 
-In **Alert condition**, click on **Static Threshold** and then on **Proceed to Alert Settings**{: .label-button .sfx-ui-button}.
+In **Alert condition**, click on **Static Threshold** and then on **Proceed to Alert Settings**{: .label-button .sfx-ui-button}
 
 ![Alert Condition](../images/detectors/M1-l2-5.png){: .zoom}
 
@@ -47,7 +55,7 @@ In **Alert Settings**, enter the value **`290`** in the **Threshold** field. In 
 
 ---
 
-## 3. Alert pre-flight check
+## 4. Alert pre-flight check
 
 SignalFx will now perform a pre-flight check after 5 seconds. See the **Estimated alert count**. Based on the current alert settings, the amount of alerts we would’ve received in 1 day would have been approx. **18**.
 
@@ -61,17 +69,17 @@ SignalFx will now perform a pre-flight check after 5 seconds. See the **Estimate
     To read more about detector previewing, please visit this link
     [Setting up detectors](https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#previewing-the-results-of-a-detector).
 
-Click on **Proceed to Alert Message**{: .label-button .sfx-ui-button}.
+Click on **Proceed to Alert Message**{: .label-button .sfx-ui-button}
 
 ---
 
-## 4. Configuring the alert message
+## 5. Configuring the alert message
 
 In **Alert message**, under **Severity** choose **Major**.
 
 ![Alert Message](../images/detectors/M1-l2-7.png){: .zoom}
 
-Click on **Proceed to Alert Recipients**{: .label-button .sfx-ui-button}.
+Click on **Proceed to Alert Recipients**{: .label-button .sfx-ui-button}
 
 Click on **Add Recipient** and then on your email address displayed as the first option.
 
@@ -84,11 +92,11 @@ Click on **Add Recipient** and then on your email address displayed as the first
 
 ---
 
-## 5. Activating the alert
+## 6. Activating the alert
 
-Click on **Proceed to Alert Activation**{: .label-button .sfx-ui-button}.
+Click on **Proceed to Alert Activation**{: .label-button .sfx-ui-button}
 
-In **Activate...** click on **Activate Alert Rule**{: .label-button .sfx-ui-button}.
+In **Activate...** click on **Activate Alert Rule**{: .label-button .sfx-ui-button}
 
 ![Activate](../images/detectors/M1-l2-9.png){: .zoom}
 
