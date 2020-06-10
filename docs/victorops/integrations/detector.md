@@ -44,19 +44,11 @@ Add the following lines to your notepad document, and then add the three values 
     export REALM=us1
     ```
 
-## 2. Connect to VM Shell
+## 2. Set Variables
 
 Switch back to your shell session connected to the VM you created in the **Getting Started/Create a Test Environment** module, all of the following commands will be executed within this instance:
 
-If you no longer have this session active you can reconnect to it by running the following command from your original shell session:
-
-=== "Shell Command"
-
-    ```
-    multipass shell ${INSTANCE}
-    ```
-
-Copy the three commands you just constructed in step 3.1
+Copy the three commands you just constructed in step 1.3
 
 === "Example"
 
@@ -238,11 +230,19 @@ Check the plan output for errors before typing _**yes**_ to commit the apply.
 
 By running Terraform within the VM you have just created a new Detector within SignalFx which will send alerts to VictorOps if the CPU utilization of your specific VM goes above 90%.
 
+Switch to the SignalFx UI, then select **Detectors** from the **ALERTS** menu to show all the Detectors, and find the one matching your **$INSTANCE** value (the first four letters of the name of your VM).
+
+Optionally - Click on **CPU Utilization is greater than 90%** to open the Alert Rule Editor to view its settings.
+
 ![Detector](../../images/victorops/detector.png){: .zoom}
 
-A filter has been used to specifically monitor your Instance using the 1st 4 characters of its name, which were randomly assigned when you created the Instance.
+A filter has been used to specifically monitor your VM using the 1st 4 characters of its name, which were randomly assigned when you created the VM.
 
 ![Detector Filter](../../images/victorops/detector-filter.png){: .zoom}
+
+A **Recipient** has been configured using the VictorOps Integration and your **Routing Key** has been specified.  This is how a monitoring system such as SignalFx knows to route Alerts into VictorOps, and ensure they get routed to the correct team.
+
+![Detector Recipients](../../images/victorops/detector-recipients.png){: .zoom}
 
 ---
 
