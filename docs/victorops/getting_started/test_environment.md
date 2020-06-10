@@ -51,7 +51,7 @@ Create the VM:
 === "Example Output"
 
     ``` bash
-    Launched: vpme-vo1
+    Launched: zevn-vo1
     ```
 
 Whilst your VM is being created you can proceed with the next step...
@@ -85,7 +85,7 @@ Now switch back to you local shell session and confirm the VM has finished deplo
 === "Example Output"
 
     ``` bash
-    Launched: vpme-vo1
+    Launched: zevn-vo1
     ```
 
 Once the VM has deployed successfully, in a **new** shell session connect to the VM using the following command, replacing {==xxxx==} with the name of your VM.
@@ -99,14 +99,14 @@ Once the VM has deployed successfully, in a **new** shell session connect to the
 === "Example Input"
 
     ``` bash
-    multipass shell vpme-vo1
+    multipass shell zevn-vo1
     ```
 
 === "Example Output"
 
     ``` bash
     Last login: Tue Jun  9 15:10:19 2020 from 192.168.64.1
-    ubuntu@vpme-vo1:~$
+    ubuntu@zevn-vo1:~$
     ```
 
 ### 3.3 Install Agent
