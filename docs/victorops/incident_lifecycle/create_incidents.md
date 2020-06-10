@@ -16,32 +16,7 @@ Before generating any incidents you should assign yourself to the current Shift 
 
 ## 2. Trigger Alert
 
-Log into your first VM you created during step [2. Creating a Test Environment](../../vo_integrations/#2-creating-a-test-environment) in VictorOps Integrations
-
-=== "Shell Command"
-
-    ```
-    multipass shell ${INSTANCE}-vo1
-    ```
-
-=== "Output"
-
-    ```text
-    ███████╗██████╗ ██╗     ██╗   ██╗███╗   ██╗██╗  ██╗    ██╗  
-    ██╔════╝██╔══██╗██║     ██║   ██║████╗  ██║██║ ██╔╝    ╚██╗ 
-    ███████╗██████╔╝██║     ██║   ██║██╔██╗ ██║█████╔╝      ╚██╗
-    ╚════██║██╔═══╝ ██║     ██║   ██║██║╚██╗██║██╔═██╗      ██╔╝
-    ███████║██║     ███████╗╚██████╔╝██║ ╚████║██║  ██╗    ██╔╝ 
-    ╚══════╝╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝    ╚═╝  
-                                                            
-    To run a command as administrator (user "root"), use "sudo <command>".
-    See "man sudo_root" for details
-
-    Waiting for cloud-init status...
-    Your instance is ready!
-
-    ubuntu@vmpe-vo1:~$
-    ```
+Switch back to your shell session connected to the VM you created in the **Getting Started/Create a Test Environment** module, all of the following commands will be executed within this instance:
 
 Force the CPU to spike to 100% by running the following command:
 
