@@ -47,7 +47,7 @@ Click on **Proceed to Alert Condition**{: .label-button .sfx-ui-button}
 
 ## 3. Setting Alert condition
 
-In **Alert condition**, click on **Static Threshold** and then on **Proceed to Alert Settings**{: .label-button .sfx-ui-button}.
+In **Alert condition**, click on **Static Threshold** and then on **Proceed to Alert Settings**{: .label-button .sfx-ui-button}
 
 ![Alert Condition](../images/detectors/M1-l2-5.png){: .zoom}
 
