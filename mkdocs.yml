@@ -108,6 +108,7 @@ nav:
       - 'Using overlays': dashboards/overlay.md
       - 'SignalFlow': dashboards/signalflow.md
       - 'Adding charts': dashboards/adding-charts.md
+      - 'Integration to Splunk': dashboards/datalinks.md
     - '<b>Detectors</b><br /><small>15 minutes</small>':
       - 'Creating a Detector': detectors/detectors.md
       - 'Creating a Muting Rule': detectors/muting.md
