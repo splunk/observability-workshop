@@ -133,3 +133,7 @@ That completes this introduction to VictorOps, but feel free to checkout the mor
 * Webhooks
 * Alert Rules Engine
 * Maintenance Mode
+
+---
+
+Once you have finished with the workshop, please complete the **Workshop Clean-up** module to remove your VM from your system and free up our resources.
