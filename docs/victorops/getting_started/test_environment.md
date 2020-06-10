@@ -64,7 +64,7 @@ An easy way to install the SignalFx Agent into your VM is to copy the install co
 
 ### 3.1 SignalFx UI
 
-Navigate to the SignalFx UI, open [this link](https://app.us1.signalfx.com/#/integrations) in a new tab/window, it will take you straight to the **INTEGRATIONS** tab, where we will find the SignalFx SmartAgent tile on the top row.
+Navigate to the SignalFx UI, open [us1](https://app.us1.signalfx.com/#/integrations) or [eu0](https://app.eu0.signalfx.com/#/integrations) depending on which realm you are using, in a new tab/window. This will take you straight to the **INTEGRATIONS** tab, where we will find the SignalFx SmartAgent tile on the top row.
 
 Click on the SmartAgent tile to open it...
 
@@ -146,7 +146,7 @@ Once the agent has completed installing run the following command to check the s
 
 === "Example Output"
 
-    ```bash
+    ```text
     SignalFx Agent version:           5.3.0
     Agent uptime:                     2m7s
     Observers active:                 host
@@ -173,8 +173,10 @@ Once the agent has completed installing run the following command to check the s
 
 ### 4.2 Check the SignalFx UI
 
-Navigate to the SignalFx UI, [this link](https://app.us1.signalfx.com/#/navigator/EPNXccRAwAA/collectd%20hosts?colorBy=collectd.cpu.utilization&outlierStrategy=off)  will take you straight to the **INFRASTRUCTURE** tab, find your VM and confirm it is reporting in correctly; allow a few minutes for it to appear.
+Navigate to the SignalFx UI and click on the **INFRASTRUCTURE** tab. The click on **Hosts (Smart Agent / collectd)** under the **Hosts** section.
+
+Find your VM and confirm it is reporting in correctly; allow a few minutes for it to appear.
 
 ![Infrastructure](../../images/victorops/sfx-infrastructure.png){: .zoom}
 
-If it fails to appear after 3 mins, please let the Splunk Team know so they can help trouble shoot
+If it fails to appear after 3 mins, please let the Splunk Team know so they can help troubleshoot
