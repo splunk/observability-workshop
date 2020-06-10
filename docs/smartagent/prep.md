@@ -346,7 +346,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
 A realm is a self-contained deployment of SignalFx in which your organization is hosted. Different realms have different API endpoints (e.g. the endpoint for sending data is `ingest.us1.signalfx.com` for the **`us1`** realm, and `ingest.eu0.signalfx.com` for the **`eu0`** realm).
 
-Various statements in this Workshop below include a {==REALM==} placeholder that need to replace with the actual name of your realm.
+Various instructions in this Workshop include a {==REALM==} placeholder that will need to be replaced with the actual name of your realm.
 
 This realm name is shown on your profile page in SignalFx. If you do not include the realm name when specifying an endpoint, SignalFx will interpret it as pointing to the **`us0`** realm.
 
