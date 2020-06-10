@@ -41,16 +41,16 @@ a.md-logo img {
 }
 
 strong.label-button, mark.critic {
-    padding: 2px 4px;
-    margin: 2px 2px;
+    padding: 4px 6px;
+    /*margin: 0px 2px 0px 2px;*/
     min-width: 88px;
     border-radius: 3px;
     text-align: center;
     /*text-transform: uppercase;*/
-    /*text-decoration:none;*/
+    text-decoration:none;
     border: none;
     outline: none;
-    font-size: 13px;
+    font-size: 0.85em;
     font-weight: 600;
     background-color: #333;
     color: #fff;
