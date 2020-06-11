@@ -1,40 +1,88 @@
-# Create a SignalFx Detector - Lab Summary
+# Create a SignalFx Detector
 
-We now need to create a new Detector within SignalFx which will use VictorOps as the target to send alerts to.  We will use Terraform installed within your VM to create the Detector for us, but first we need to obtain some values required for Terraform to run.
+## Aim
+
+We need to create a new Detector within SignalFx which will use VictorOps as the target to send alerts to.  We will use Terraform installed within your VM to create the Detector for us, but first we need to obtain some values required for Terraform to run.
+
+---
 
 ## 1. Obtain Variables
 
 The presenter will typically share these values with you at the start of the module to save time, but the following instructions explain how to get them for yourself.
 
-### 1.1 Access Token
+### 1.1 Variables Document
 
-In the SignalFx UI you can find your Access Token by clicking on the **Settings** icon on the top right of the SignalFx UI, select **Organization Settings → Access Tokens**, expand the Default token, then click on **Show Token** to expose your token.
+We suggest you create a variables document using your preferred text editor as you will be gathering various values in the next steps which you need to use in the last step of this module.
 
-Click the **Copy** button to copy it to the notepad document you created in the previous step.
+Add the following lines to your variables document, then as you gather the values you can add them to the appropriate lines:
+
+=== "variables.txt"
+
+    ``` text
+    export ACCESS_TOKEN=
+    export REALM=
+    export SFXVOPSID=
+    ```
+
+### 1.2 Access Token
+
+In the SignalFx UI you can find your **Access Token** by clicking on the **Settings** icon on the top right of the SignalFx UI, select **Organization Settings → Access Tokens**, expand the Default token, then click on **Show Token** to expose your token.
 
 ![Access Token](../../images/victorops/m7-access-token.png){: .zoom}
 
-### 1.2 Realm
+Click the **Copy**{: .label-button .sfx-ui-button} button to copy it you your clipboard, then paste it into the ACCESS_TOKEN line of your variables document.
+
+=== "variables.txt"
+
+    ``` bash
+    export ACCESS_TOKEN={==xxxx==}
+    export REALM=
+    export SFXVOPSID=
+    ```
+
+### 1.3 Realm
 
 Still in the SignalFx UI, click on the **Settings** icon again, but this time select **My Profile**.
 
-The Realm can be found in the middle of the page within the Organizations section. In this example it is **us1**, make a note of this in your notepad document.
+The Realm can be found in the middle of the page within the Organizations section. In this example it is **us1**, but yours may be **eu0** or one of the many other SignalFx Realms. 
 
 ![Realm](../../images/victorops/m7-realm.png){: .zoom}
 
-### 1.3 Create Variable Commands
+Copy it to the REALM line of your variables document.
 
-With all the required values now safely copied into your notepad document you can use them to compile the commands which we will run in your VM in the next step.
-
-Add the following lines to your notepad document, and then add the three values you have collected over the previous steps
-
-=== "Template"
+=== "variables.txt"
 
     ``` bash
-    export SFXVOPSID={==xxxx==}
     export ACCESS_TOKEN={==xxxx==}
     export REALM={==xxxx==}
+    export SFXVOPSID=
     ```
+
+### 1.4. VictorOps Integration ID
+
+In SignalFx UI navigate to **INTEGRATIONS** and use the search feature to find the VictorOps Integration.
+
+Expand the **VictorOps-{==xxxx==} configuration; if there are more than one you will be informed which one to copy by the presenter.
+
+![VictorOps Integration](../../images/victorops/m7-sfx-vo-integration-id.png)
+
+Copy it to the SFXVOPSID line of your variables document.
+
+=== "variables.txt"
+
+    ``` bash
+    export ACCESS_TOKEN={==xxxx==}
+    export REALM={==xxxx==}
+    export SFXVOPSID={==xxxx==}
+    ```
+
+---
+
+## 2. Populate Variables
+
+### 2.1 Current Variables
+
+With all the required values now safely copied into your variables document you can use them to compile the commands which we will run in your VM in the next step.
 
 === "Example"
 
@@ -44,11 +92,9 @@ Add the following lines to your notepad document, and then add the three values 
     export REALM=us1
     ```
 
-## 2. Set Variables
-
 Switch back to your shell session connected to the VM you created in the **Getting Started/Create a Test Environment** module, all of the following commands will be executed within this instance:
 
-Copy the three commands you just constructed in step 1.3
+Past the three commands from your variables document into the shell session of your VM.
 
 === "Example"
 
@@ -58,7 +104,9 @@ Copy the three commands you just constructed in step 1.3
     export REALM={==xxxx==}
     ```
 
-Next you need to export an environment variable for your Routing Key, as this uses a pre-configured unique instance name for the VM you simply need to run the following command to create it:
+### 2.2 Routing Key Variable
+
+Next you need to generate a variable for your Routing Key. As this uses the first part of the hostname from the VM you simply need to run the following command to create it:
 
 === "Shell Command"
 
@@ -66,9 +114,11 @@ Next you need to export an environment variable for your Routing Key, as this us
     export ROUTINGKEY=${INSTANCE:0:4}_PRI
     ```
 
+---
+
 ## 3. Initialize Terraform
 
-Still within your VM, switch to the victorops folder where the Terraform config files are located (you should be logged in as Ubuntu and should not have elevated to root)
+Still within your VM, switch to the victorops folder where the Terraform config files are located (you should still be logged in as Ubuntu and should not have elevated to root)
 
 === "Change Directory"
 

@@ -139,13 +139,14 @@ nav:
       - 'Configure Rotations': victorops/getting_started/rotations.md
       - 'Configure Escalation Policies': victorops/getting_started/escalation.md
       - 'Creating Routing keys': victorops/getting_started/routing.md
-    - '<b>Integrations</b><br /><small>20 minutes</small>':
-      - 'Enable Integration in SignalFx': victorops/integrations/index.md
-      - 'Create a Detector': victorops/integrations/detector.md
+    - '<b>SignalFx Detector</b><br /><small>20 minutes</small>':
+      - 'Create a Detector': victorops/detector/index.md
     - '<b>Incident Lifecycle</b><br /><small>45 minutes</small>':
       - 'Overview': victorops/incident_lifecycle/index.md
       - 'Create Incidents': victorops/incident_lifecycle/create_incidents.md
       - 'Manage Incidents': victorops/incident_lifecycle/manage_incidents.md
     - '<b>Workshop Clean-up</b><br /><small>2 minutes</small>': victorops/cleanup.md
+    - '<b>Optional Modules</b>':
+      - 'SignalFx Integration': victorops/optional/sfx_integrations.md
   - '<b>Resources</b>':
     - "Links": resources/index.md
