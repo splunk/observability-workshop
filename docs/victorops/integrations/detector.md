@@ -58,12 +58,12 @@ Copy the three commands you just constructed in step 1.3
     export REALM={==xxxx==}
     ```
 
-Next you need to export an environment variable for your Routing Key, as this uses the hostname of the VM you simply need to run the following command to create it:
+Next you need to export an environment variable for your Routing Key, as this uses a pre-configured unique instance name for the VM you simply need to run the following command to create it:
 
 === "Shell Command"
 
     ```bash
-    export ROUTINGKEY=${HOSTNAME:0:4}_PRI
+    export ROUTINGKEY=${INSTANCE:0:4}_PRI
     ```
 
 ## 3. Initialize Terraform
@@ -140,7 +140,7 @@ Check the plan output for errors before typing _**yes**_ to commit the apply.
     terraform apply \
     -var="access_token=$ACCESS_TOKEN" \
     -var="realm=$REALM" \
-    -var="sfx_prefix=${HOSTNAME:0:4}" \
+    -var="sfx_prefix=${INSTANCE:0:4}" \
     -var="sfx_vo_id=$SFXVOPSID" \
     -var="routing_key=$ROUTINGKEY"
     ```
