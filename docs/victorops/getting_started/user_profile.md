@@ -1,4 +1,47 @@
-# Paging Polices
+# User Profile
+
+## Aim
+
+The aim of this module is for you to configure your personal profile within VictorOps.  Your profile controls how you will be notified by VictorOps whenever you get paged.
+
+---
+
+## 1. Contact Methods
+
+Switch to the VictorOps UI and click on your login name in the top right hand corner and chose **Profile** from the drop down.
+
+Confirm your contact methods are listed correctly and add any additional phone numbers and e-mail address you wish to use.
+
+---
+
+## 2. Mobile Devices
+
+To install the VictorOps app for your smartphone search your phones App Store for VictorOps to find the appropriate version of the app.
+
+The publisher should be listed as VictorOps Inc.
+
+[![iPhone](../../images/victorops/app-store.svg){: .appstore}](ttps://apps.apple.com/us/app/victorops/id696974262) [![Android](../../images/victorops/play-store.svg){: .appstore}](https://play.google.com/store/apps/details?id=com.victorops.androidclient&hl=en)
+
+Configuration help guides are available:
+
+* [Apple](https://help.victorops.com/knowledge-base/ios-application/)
+* [Android](https://help.victorops.com/knowledge-base/android-devices-victorops/)
+
+Install the App and login, then refresh the Profile page and your device should now be listed under the devices section.
+
+Click the **Test push notification** button and confirm you receive the test message.
+
+---
+
+## 3. Personal Calendar
+
+This link will enable you to sync your VictorOps on-call schedule with your calendar, however as you do not have any allocated shifts yet this will currently be empty.
+
+You can add it to your calendar by copying the link into your preferred application and setting it up as a new subscription.
+
+---
+
+## 4. Paging Policies
 
 Paging Polices specify how you will be contacted by VictorOps when on-call.
 
@@ -8,7 +51,7 @@ We will now configure this policy into a three tier multi-stage policy similar t
 
 ![Paging Policy](../../images/victorops/primary-paging-policy.png)
 
-## 1. Send a push notification
+### Step 1: Send a push notification
 
 Click the edit policy button in the top right corner for the Primary Paging Policy.  
 
@@ -19,7 +62,7 @@ Click the edit policy button in the top right corner for the Primary Paging Poli
 
 Click **Add a Step**
 
-## 2. Send an e-mail
+### Step 2: Send an e-mail
 
 * Send an e-mail to [your email address]
 * Execute the next step if I have not responded within 5 minutes
@@ -28,7 +71,7 @@ Click **Add a Step**
 
 Click **Add a Step**
 
-## Call your number
+### Step 3: Call your number
 
 * Every 5 minutes until we have reached you
 * Make a phone call to [your phone number]
@@ -36,10 +79,6 @@ Click **Add a Step**
 ![Step 3](../../images/victorops/pri-page-step3.png)
 
 Then save the policy.
-
----
-
-## 3. Custom Paging Policies
 
 When you are on-call or in the escalation path of an incident, you will receive notifications in this order following these time delays.
 
@@ -52,13 +91,17 @@ To cease the paging you must acknowledge the incident. Acknowledgements can occu
 
 For more information on Notification Types, see [here](https://help.victorops.com/knowledge-base/notification-types/).
 
+---
+
+## 5. Custom Paging Policies
+
 Custom paging polices enable you to override the primary policy based on the time and day of the week.
 
 A good example would be get the system to immediately phone you whenever you get a page during the evening or weekends as this is more likely to get your attention than a push notification.
 
 Create a new Custom Policy by clicking **Add a Policy** and configure with the following settings:
 
-### 3.1 Custom evening policy
+### 5.1 Custom evening policy
 
 Policy Name: Evening
 
@@ -72,7 +115,7 @@ Policy Name: Evening
 
 Save the policy then add one more
 
-### 3.2 Custom weekend policy
+### 5.2 Custom weekend policy
 
 Policy Name: Weekend
 
