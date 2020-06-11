@@ -4,9 +4,9 @@
 
 The easiest way to test VictorOps is to use Multipass to create a local test VM which will be monitored by SignalFx.
 
-If you do not already have Multipass installed as per the pre-joining instructions you can download the installer from [here](https://multipass.run/).
+If you do not already have Multipass installed as per the pre-joining instructions you can download the installer from [here](https://multipass.run/){: target=_blank}.
 
-MacOS users can install it using [Homebrew](https://brew.sh/) by running:
+MacOS users can install it using [Homebrew](https://brew.sh/){: target=_blank} by running:
 
 === "Shell Command"
 
@@ -25,7 +25,9 @@ The first step is to pull down the `cloud-init` file to launch a pre-configured 
 === "Shell Command"
 
     ```bash
-    curl -s https://raw.githubusercontent.com/signalfx/observability-workshop/master/cloud-init/victorops.yaml -o victorops.yaml
+    curl -s \
+    https://raw.githubusercontent.com/signalfx/observability-workshop/master/cloud-init/victorops.yaml \
+    -o victorops.yaml
     ```
 
 ### 2.2 Launch VM
@@ -36,6 +38,8 @@ The first command will generate a random unique 4 character string. This will pr
 
 !!! note "Free up resources"
     You may also want to first shutdown any other VMs you have running to free up resources.
+
+### 2.1 Create VM
 
 Create the VM:
 
@@ -54,31 +58,9 @@ Create the VM:
     Launched: zevn-vo1
     ```
 
-Whilst your VM is being created you can proceed with the next step...
+Make a note of your VMs Hostname as you will need it in later steps.
 
----
-
-## 3. Install SignalFx Agent
-
-An easy way to install the SignalFx Agent into your VM is to copy the install commands from the SignalFx UI, then run them directly within your VM.
-
-### 3.1 SignalFx UI
-
-Navigate to the SignalFx UI, open [us1](https://app.us1.signalfx.com/#/integrations) or [eu0](https://app.eu0.signalfx.com/#/integrations) depending on which realm you are using, in a new tab/window. This will take you straight to the **INTEGRATIONS** tab, where we will find the SignalFx SmartAgent tile on the top row.
-
-Click on the SmartAgent tile to open it...
-
-![Integrations](../../images/victorops/integrations-tab.png){: .zoom}
-
-...then select the **Setup** tab...
-
-![SmartAgent](../../images/victorops/smartagent-tile.png){: .zoom}
-
-...then scroll down to 'Step 1' where you will find the commands for installing the agent. Keep this tab/window open as you will come back here in a couple of minutes to copy the commands.
-
-![SmartAgent Install](../../images/victorops/smartagent-install.png){: .zoom}
-
-### 3.2 Connect to VM
+### 2.2 Connect to VM
 
 Now switch back to you local shell session and confirm the VM has finished deploying.  
 
@@ -109,20 +91,35 @@ Once the VM has deployed successfully, in a **new** shell session connect to the
     ubuntu@zevn-vo1:~$
     ```
 
-### 3.3 Install Agent
+---
 
-Now copy the linux install commands from the new tab/window you left open with the SignalFx UI and paste them into the VM shell session that you just created.
+## 3. Install SignalFx Agent
 
-=== "Example Input"
+An easy way to install the SignalFx Agent into your VM is to copy the install commands from the SignalFx UI, then run them directly within your VM.
 
-    ``` bash
-    curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
-    sudo sh /tmp/signalfx-agent.sh --realm us1 -- xxxxyyyyzzzzz
-    ```
+### 3.1 SignalFx UI
+
+Navigate to the **INTEGRATIONS** tab within the SignalFx UI, where you will find the SignalFx SmartAgent tile on the top row.
+
+Click on the SmartAgent tile to open it...
+
+![Integrations](../../images/victorops/integrations-tab.png){: .zoom}
+
+...then select the **Setup** tab...
+
+![SmartAgent](../../images/victorops/smartagent-tile.png){: .zoom}
+
+...then scroll down to 'Step 1' where you will find the commands for installing the agent. Keep this tab/window open as you will come back here in a couple of minutes to **copy**{: .label-button .sfx-ui-button} the commands.
+
+![SmartAgent Install](../../images/victorops/smartagent-install.png){: .zoom}
+
+### 3.2 Install Agent
+
+Now paste the linux install commands into your VM Shell, the SignalFx Agent will install and after approx 1 min you should have the following result.
 
 === "Example Output"
 
-    ```bash
+    ```text
     The SignalFx Agent has been successfully installed.
 
     Make sure that your system's time is relatively accurate or else datapoints may not be accepted.
@@ -179,4 +176,4 @@ Find your VM and confirm it is reporting in correctly; allow a few minutes for i
 
 ![Infrastructure](../../images/victorops/sfx-infrastructure.png){: .zoom}
 
-If it fails to appear after 3 mins, please let the Splunk Team know so they can help troubleshoot
+If it fails to appear after 3 mins, please let the Splunk Team know so they can help troubleshoot.
