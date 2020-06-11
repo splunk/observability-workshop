@@ -1,5 +1,17 @@
 # Creating a Test Environment
 
+## Aim
+
+The aim of this module is to guide you through the process of creating a VM which will be monitored by SignalFx. Once the configuration of VictorOps is complete you will use this VM to trigger an Alert from SignalFx which in turn will create an Incident within VictorOps, resulting in you getting paged.
+
+There are two options for creating the VM, running it locally using Multipass, or using an ec2 instance.  
+
+You will have received instructions for installing Multipass via e-mail prior to the start of the workshop. If you were unable to create a local VM using Multipass let the Splunk Workshop Team know now so they can provide you with an ec2 instance that you can use for the workshop.
+
+If you have not yet installed Multipass and wish to try this method first, proceed with step **[1. Install Multipass](../test_environment/#1-install-multipass)**.  If you have already successfully installed Multipass proceed to step **[2. Create VM using Multipass](../test_environment/#2-create-vm-using-multipass)**.
+
+---
+
 ## 1. Install Multipass
 
 The easiest way to test VictorOps is to use Multipass to create a local test VM which will be monitored by SignalFx.
@@ -13,7 +25,6 @@ MacOS users can install it using [Homebrew](https://brew.sh/){: target=_blank} b
     ```bash
     brew cask install multipass
     ```
-
 ---
 
 ## 2. Create VM using Multipass
@@ -32,16 +43,9 @@ The first step is to pull down the `cloud-init` file to launch a pre-configured 
 
 ### 2.2 Launch VM
 
-Remaining in the same directory where you downloaded the `victorops.yaml`, run the following commands to create your VM.
+Remaining in the same directory where you downloaded `victorops.yaml`, run the following commands to create your VM.
 
 The first command will generate a random unique 4 character string. This will prevent clashes in the SignalFx UI.
-
-!!! note "Free up resources"
-    You may also want to first shutdown any other VMs you have running to free up resources.
-
-### 2.1 Create VM
-
-Create the VM:
 
 === "Shell Command"
 
@@ -60,15 +64,7 @@ Create the VM:
 
 Make a note of your VMs Hostname as you will need it in later steps.
 
-### 2.2 Connect to VM
-
-Now switch back to you local shell session and confirm the VM has finished deploying.  
-
-=== "Example Output"
-
-    ``` bash
-    Launched: zevn-vo1
-    ```
+### 2.3 Connect to VM
 
 Once the VM has deployed successfully, in a **new** shell session connect to the VM using the following command, replacing {==xxxx==} with the name of your VM.
 
@@ -109,7 +105,7 @@ Click on the SmartAgent tile to open it...
 
 ![SmartAgent](../../images/victorops/smartagent-tile.png){: .zoom}
 
-...then scroll down to 'Step 1' where you will find the commands for installing the agent. Keep this tab/window open as you will come back here in a couple of minutes to **copy**{: .label-button .sfx-ui-button} the commands.
+...then scroll down to 'Step 1' where you will find the commands for installing the agent for both Linux and Windows. You need to copy the commands for Linux, so click the top **copy**{: .label-button .sfx-ui-button} button to place these commands on your clipboard ready for the next step.
 
 ![SmartAgent Install](../../images/victorops/smartagent-install.png){: .zoom}
 
