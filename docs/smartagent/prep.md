@@ -14,9 +14,9 @@
 === "Running Locally"
 
     !!! note "Multipass"
-        Install [Multipass](https://multipass.run/) for your operating system. Make sure you are using at least version `1.2.0`.
+        Install [Multipass](https://multipass.run/){: target=_blank} for your operating system. Make sure you are using at least version `1.2.0`.
 
-        On a Mac you can also install via [Homebrew](https://brew.sh/) e.g. `brew cask install multipass`
+        On a Mac you can also install via [Homebrew](https://brew.sh/){: target=_blank} e.g. `brew cask install multipass`
 
     !!! info "Struggling with Multipass?"
         Ask your instructor(s) for access to a pre-provisioned AWS/EC2 instance, you can then ignore the rest of this preparation lab and go straight to the next lab [Deploying the Smart Agent in Kubernetes (K3s)](../../smartagent/k3s).
@@ -24,9 +24,9 @@
 === "Running in AWS"
 
     !!! abstract "AWS/EC2 Instance"
-        Install [Terraform](https://www.terraform.io/downloads.html) for your operating system. Please make sure it is version `0.12.18` or above.
+        Install [Terraform](https://www.terraform.io/downloads.html){: target=_blank} for your operating system. Please make sure it is version `0.12.18` or above.
 
-        On a Mac you can also install via [Homebrew](https://brew.sh/) e.g. `brew install terraform`. This will get around Mac OS Catalina security.
+        On a Mac you can also install via [Homebrew](https://brew.sh/){: target=_blank} e.g. `brew install terraform`. This will get around Mac OS Catalina security.
 
 ---
 
@@ -352,6 +352,6 @@ This realm name is shown on your profile page in SignalFx. If you do not include
 
 [^1]: Multipass is a lightweight VM manager for Linux, Windows and macOS. It's designed for developers who want a fresh Ubuntu environment with a single command. It uses KVM on Linux, Hyper-V on Windows and HyperKit on macOS to run the VM with minimal overhead. It can also use VirtualBox on Windows and macOS. Multipass will fetch images for you and keep them up to date.
 [^2]: The SignalFx Smart Agent gathers host performance, application, and service-level metrics from both containerized and non-container environments. The Smart Agent installs with more than 100 bundled monitors for gathering data, including Python-based plug-ins such as Mongo, Redis, and Docker.
-[^3]: [What is Kubernetes?](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/)
-[^4]: [What is NGINX?](https://www.nginx.com/resources/glossary/nginx/)
-[^5]: [What is Hot R.O.D.?](https://github.com/jaegertracing/jaeger/tree/master/examples/hotrod)
+[^3]: [What is Kubernetes?](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/){: target=_blank}
+[^4]: [What is NGINX?](https://www.nginx.com/resources/glossary/nginx/){: target=_blank}
+[^5]: [What is Hot R.O.D.?](https://github.com/jaegertracing/jaeger/tree/master/examples/hotrod){: target=_blank}

@@ -86,7 +86,7 @@ However if you click on the link **Configure a single policy for alerts of any s
 
 Different alert rules for the different alert levels can be configured, as shown in the above image.
 
-Critical and Major are using [Splunk's VictorOps](https://victorops.com/) Incident Management solution. For the Minor alerts we send it to the Teams Slack channel and for Warning and Info we send an email.
+Critical and Major are using [Splunk's VictorOps](https://victorops.com/){: target=_blank} Incident Management solution. For the Minor alerts we send it to the Teams Slack channel and for Warning and Info we send an email.
 
 ### 3.2 Notification Integrations
 

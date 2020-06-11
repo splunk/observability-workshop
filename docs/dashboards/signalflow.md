@@ -21,7 +21,7 @@ You will see the **SignalFlow** code that composes the chart we were working on.
 
 **SignalFlow** is the analytics language of SignalFx. Among other benefits, it can be used to setup monitoring as code.
 
-For more info on SignalFlow see [Getting started with SignalFlow](https://docs.signalfx.com/en/latest/getting-started/concepts/analytics-signalflow.html#signalflow-analytics-language).
+For more info on SignalFlow see [Getting started with SignalFlow](https://docs.signalfx.com/en/latest/getting-started/concepts/analytics-signalflow.html#signalflow-analytics-language){: target=_blank}.
 
 Click on **View Builder** to go back to the Chart **Builder** UI.
 

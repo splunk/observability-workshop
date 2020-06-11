@@ -30,7 +30,7 @@ The environment variables needed should already be set from [Deploy the Smart Ag
 Initialize Terraform and upgrade to the latest version of the SignalFx Terraform Provider
 
 !!! note "Upgrading the SignalFx Terraform Provider"
-    You will need to run this command each time a new version of the SignalFx Terraform Provider is released. You can track the releases on [GitHub](https://github.com/terraform-providers/terraform-provider-signalfx/releases).
+    You will need to run this command each time a new version of the SignalFx Terraform Provider is released. You can track the releases on [GitHub](https://github.com/terraform-providers/terraform-provider-signalfx/releases){: target=_blank}.
 
 === "Shell Command"
 

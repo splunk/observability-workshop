@@ -67,7 +67,7 @@ SignalFx will now perform a pre-flight check after 5 seconds. See the **Estimate
     Immediately, the platform will start analyzing the signals with the current settings, and perform something we call a Pre-flight Check. This enables you to test the alert conditions using the historical data in the platform, to ensure the settings are logical and will not inadvertently generate an alert storm, removing the guess work from configuring alerts in a simple but very powerful way, only available using SignalFx.
 
     To read more about detector previewing, please visit this link
-    [Setting up detectors](https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#previewing-the-results-of-a-detector).
+    [Setting up detectors](https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#previewing-the-results-of-a-detector){: target=_blank}.
 
 Click on **Proceed to Alert Message**{: .label-button .sfx-ui-button}
 

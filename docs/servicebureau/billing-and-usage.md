@@ -46,7 +46,7 @@ This screen may take a few seconds to load whilst it calculates and pulls in the
 
 You will see a screen similar like the one below that will give you an overview of the current usage, the average usage and your entitlement per category : Hosts, Containers, Custom Metrics and High Resolution Metrics.  
 
-For more information about about these categories please refer to [Billing and Usage information](https://docs.signalfx.com/en/latest/admin-guide/usage.html#viewing-billing-and-usage-information)
+For more information about about these categories please refer to [Billing and Usage information](https://docs.signalfx.com/en/latest/admin-guide/usage.html#viewing-billing-and-usage-information){: target=_blank}.
 
 ![Billing and Usage](../images/servicebureau/M5-l1-5.png)
 

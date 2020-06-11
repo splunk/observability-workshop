@@ -31,7 +31,7 @@ Create the following environment variables for **SignalFx** and **AWS** to use i
     export EKS_CLUSTER_NAME=$(hostname)-APP-DEV
     ```
 
-You can check for the latest SignalFx Smart Agent release on [Github](https://github.com/signalfx/signalfx-agent/releases).
+You can check for the latest SignalFx Smart Agent release on [Github](https://github.com/signalfx/signalfx-agent/releases){: target=_blank}.
 
 ## 3. Configure AWS CLI for your account
 

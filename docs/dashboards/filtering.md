@@ -12,7 +12,7 @@ In the **F(x)** column, add the analytic function **`Percentile:Aggregation`**, 
 
 ![Analytics](../images/dashboards/M1-l1-14.png){: .zoom}
 
-For info on the **Percentile** function and the other functions see [Analytics reference](https://docs.signalfx.com/en/latest/reference/analytics-docs/analytics-reference.html).
+For info on the **Percentile** function and the other functions see [Analytics reference](https://docs.signalfx.com/en/latest/reference/analytics-docs/analytics-reference.html){: target=_blank}.
 
 ---
 

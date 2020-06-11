@@ -19,7 +19,7 @@ See how the chart changes.
 !!! note
     You can use different ways to visualize your metrics - you choose which chart type fits best for the visualization you want to have.
 
-    For more info on the different chart types see [Choosing a chart type](https://docs.signalfx.com/en/latest/charts/chart-planning-creating.html#choosing-a-chart-type).
+    For more info on the different chart types see [Choosing a chart type](https://docs.signalfx.com/en/latest/charts/chart-planning-creating.html#choosing-a-chart-type){: target=_blank}.
 
 Click on the **Line** chart type and you will see the line plot.
 
