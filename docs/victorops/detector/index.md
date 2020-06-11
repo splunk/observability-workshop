@@ -2,17 +2,19 @@
 
 ## Aim
 
-We need to create a new Detector within SignalFx which will use VictorOps as the target to send alerts to.  We will use Terraform installed within your VM to create the Detector for us, but first we need to obtain some values required for Terraform to run.
+We need to create a new Detector within SignalFx which will use VictorOps as the target to send alerts to.
+
+We will use Terraform installed within the VM to create the Detector, but first we need to obtain some values required for Terraform to run.
 
 ---
 
-## 1. Obtain Variables
+## 1. Preparation
 
 The presenter will typically share these values with you at the start of the module to save time, but the following instructions explain how to get them for yourself.
 
-### 1.1 Variables Document
+### 1.1 Create a variables document
 
-We suggest you create a variables document using your preferred text editor as you will be gathering various values in the next steps which you need to use in the last step of this module.
+We suggest you create a variables document using your preferred text editor as you will be gathering three different values in the next few steps which you need to use in the last step of this module.
 
 Add the following lines to your variables document, then as you gather the values you can add them to the appropriate lines:
 
@@ -24,13 +26,13 @@ Add the following lines to your variables document, then as you gather the value
     export SFXVOPSID=
     ```
 
-### 1.2 Access Token
+### 1.2 Obtain SignalFx Access Token
 
-In the SignalFx UI you can find your **Access Token** by clicking on the **Settings** icon on the top right of the SignalFx UI, select **Organization Settings → Access Tokens**, expand the Default token, then click on **Show Token** to expose your token.
+In the SignalFx UI you can find your **Access Token** by clicking on the **Settings** icon on the top right of the SignalFx UI, select **Organization Settings → Access Tokens**, expand the **Default** token, then click on **Show Token** to expose your token.
 
 ![Access Token](../../images/victorops/m7-access-token.png){: .zoom}
 
-Click the **Copy**{: .label-button .sfx-ui-button} button to copy it you your clipboard, then paste it into the ACCESS_TOKEN line of your variables document.
+Click the **Copy**{: .label-button .sfx-ui-button} button to copy it you your clipboard, then paste it into the `ACCESS_TOKEN` line of your variables document.
 
 === "variables.txt"
 
@@ -40,15 +42,15 @@ Click the **Copy**{: .label-button .sfx-ui-button} button to copy it you your cl
     export SFXVOPSID=
     ```
 
-### 1.3 Realm
+### 1.3 Obtain SignalFx Realm
 
 Still in the SignalFx UI, click on the **Settings** icon again, but this time select **My Profile**.
 
-The Realm can be found in the middle of the page within the Organizations section. In this example it is **us1**, but yours may be **eu0** or one of the many other SignalFx Realms. 
+The Realm can be found in the middle of the page within the Organizations section. In this example it is **us1**, but yours may be **eu0** or one of the many other SignalFx Realms.
 
 ![Realm](../../images/victorops/m7-realm.png){: .zoom}
 
-Copy it to the REALM line of your variables document.
+Copy it to the `REALM` line of your variables document.
 
 === "variables.txt"
 
@@ -58,15 +60,15 @@ Copy it to the REALM line of your variables document.
     export SFXVOPSID=
     ```
 
-### 1.4. VictorOps Integration ID
+### 1.4. Obtain VictorOps Integration ID
 
 In SignalFx UI navigate to **INTEGRATIONS** and use the search feature to find the VictorOps Integration.
 
-Expand the **VictorOps-{==xxxx==} configuration; if there are more than one you will be informed which one to copy by the presenter.
+Expand the **VictorOps-xxxx configuration; if there are more than one you will be informed which one to copy by the presenter.
 
 ![VictorOps Integration](../../images/victorops/m7-sfx-vo-integration-id.png)
 
-Copy it to the SFXVOPSID line of your variables document.
+Copy it to the `SFXVOPSID` line of your variables document.
 
 === "variables.txt"
 
@@ -78,9 +80,9 @@ Copy it to the SFXVOPSID line of your variables document.
 
 ---
 
-## 2. Populate Variables
+## 2. Create environment variables
 
-### 2.1 Current Variables
+### 2.1 Copy variables to VM
 
 With all the required values now safely copied into your variables document you can use them to compile the commands which we will run in your VM in the next step.
 
@@ -96,15 +98,7 @@ Switch back to your shell session connected to the VM you created in the **Getti
 
 Past the three commands from your variables document into the shell session of your VM.
 
-=== "Example"
-
-    ```bash
-    export SFXVOPSID={==xxxx==}
-    export ACCESS_TOKEN={==xxxx==}
-    export REALM={==xxxx==}
-    ```
-
-### 2.2 Routing Key Variable
+### 2.2 Create a Routing Key variable
 
 Next you need to generate a variable for your Routing Key. As this uses the first part of the hostname from the VM you simply need to run the following command to create it:
 
@@ -116,7 +110,7 @@ Next you need to generate a variable for your Routing Key. As this uses the firs
 
 ---
 
-## 3. Initialize Terraform
+## 3. Initialize and apply Terraform
 
 Still within your VM, switch to the victorops folder where the Terraform config files are located (you should still be logged in as Ubuntu and should not have elevated to root)
 
@@ -126,7 +120,7 @@ Still within your VM, switch to the victorops folder where the Terraform config 
     cd ~/workshop/victorops
     ```
 
-Now we can initialize Terraform
+Now we can initialize Terraform:
 
 === "Shell Command"
 
@@ -134,7 +128,7 @@ Now we can initialize Terraform
     terraform init -upgrade
     ```
 
-=== "Output"
+=== "Example Output"
 
     ```text
     Initializing the backend...
@@ -164,7 +158,7 @@ Now we can initialize Terraform
     commands will detect it and remind you to do so if necessary.
     ```
 
-Create a new Terraform workspace[^1] which will track the state for this environment.
+Create a new Terraform workspace[^1] which will track the state for this environment:
 
 === "Shell Command"
 
@@ -195,7 +189,7 @@ Check the plan output for errors before typing _**yes**_ to commit the apply.
     -var="routing_key=$ROUTINGKEY"
     ```
 
-=== "Output"
+=== "Example Output"
 
     ```
     An execution plan has been generated and is shown below.
@@ -280,7 +274,7 @@ Check the plan output for errors before typing _**yes**_ to commit the apply.
 
 By running Terraform within the VM you have just created a new Detector within SignalFx which will send alerts to VictorOps if the CPU utilization of your specific VM goes above 90%.
 
-Switch to the SignalFx UI, then select **Detectors** from the **ALERTS** menu to show all the Detectors, and find the one matching your **$INSTANCE** value (the first four letters of the name of your VM).
+Switch to the SignalFx UI got **ALERTS → Detectors** to show all the Detectors and find the one matching your `INSTANCE` value (the first four letters of the name of your VM).
 
 Optionally - Click on **CPU Utilization is greater than 90%** to open the Alert Rule Editor to view its settings.
 
