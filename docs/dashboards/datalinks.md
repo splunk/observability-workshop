@@ -11,6 +11,8 @@ Data Links allow you to create dynamic links on properties that appear in a char
 
 Goto **Settings → Organizations Settings → Global Data Links** and click on **New Link**{: .label-button .sfx-ui-button}
 
+![Global Datalinks](../images/dashboards/datalinks.png){: .zoom}
+
 Here you will need to provide a **Link Label** e.g. Splunk. For the **Link to** use the dropdown and select **Splunk**.
 
 For **Trigger** there are 3 possible options:
