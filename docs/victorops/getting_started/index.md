@@ -1,8 +1,14 @@
 # Initial Setup
 
-## 1. Activate your login
+## Aim
 
-You should have received an invitation to Activate your VictorOps account via e-mail, click the _Activate Account_ link and follow the prompts.
+This module is simply to ensure you have access to both the VictorOps and SignalFx UIs which we will be using throughout this workshop.
+
+Once you have access to each platform, keep them open for the duration of the workshop as you will be switching between them and the workshop instructions.
+
+## 1. Activate your VictorOps Login
+
+You should have received an invitation to Activate your VictorOps account via e-mail, if you have not already done so, click the _Activate Account_ link and follow the prompts.
 
 If you did not receive an invitation it is probably because you already have a VictorOps login, linked to a different organisation.
 
@@ -16,35 +22,6 @@ If you have forgotten your password go to the sign-in page and use the forgotten
 
 ---
 
-## 2. Configure Your Profile
+## 2. Activate your SignalFx Login
 
-Once you are logged in to VictorOps you now need to set up your profile.
-
-Click on your login name in the top right hand corner and chose **Profile** from the drop down.
-
-### 2.1 Contact Methods
-
-Confirm your contact methods are listed correctly and add any additional phone numbers and e-mail address you wish to use.
-
-### 2.2 Mobile Devices
-
-To install the VictorOps app for your smartphone search your phones App Store for VictorOps to find the appropriate version of the app.
-
-The publisher should be listed as VictorOps Inc.
-
-[![iPhone](../../images/victorops/app-store.svg){: .appstore}](ttps://apps.apple.com/us/app/victorops/id696974262) [![Android](../../images/victorops/play-store.svg){: .appstore}](https://play.google.com/store/apps/details?id=com.victorops.androidclient&hl=en)
-
-Configuration help guides are available:
-
-* [Apple](https://help.victorops.com/knowledge-base/ios-application/)
-* [Android](https://help.victorops.com/knowledge-base/android-devices-victorops/)
-
-Install the App and login, then refresh the Profile page and your device should now be listed under the devices section.
-
-Click the **Test push notification** button and confirm you receive the test message.
-
-### 2.3 Personal Calendar
-
-This link will enable you to sync your VictorOps on-call schedule with your calendar, however as you do not have any allocated shifts yet this will currently be empty.
-
-You can add it to your calendar by copying the link into your preferred application and setting it up as a new subscription.
+You should have received an invitation to join the Observability Workshop on SignalFx.  If you have not already done so click the **JOIN NOW**{: .label-button .sfx-ui-button} button and follow the prompts to set a password and activate your login.
