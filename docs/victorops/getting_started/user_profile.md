@@ -76,9 +76,11 @@ Click **Add a Step**
 * Every 5 minutes until we have reached you
 * Make a phone call to [your phone number]
 
+Click **Save**{: .label-button .vo-ui-button} to save the policy.
+
 ![Step 3](../../images/victorops/pri-page-step3.png)
 
-Then save the policy.
+---
 
 When you are on-call or in the escalation path of an incident, you will receive notifications in this order following these time delays.
 
@@ -113,7 +115,7 @@ Policy Name: Evening
 
 ![Evening](../../images/victorops/evening.png)
 
-Save the policy then add one more
+Click **Save**{: .label-button .vo-ui-button} to save the policy then add one more.
 
 ### 5.2 Custom weekend policy
 
@@ -125,7 +127,11 @@ Policy Name: Weekend
   * Timezone
     * Between 9am and 7pm
 
+Click **Save**{: .label-button .vo-ui-button} to save the policy.
+
 ![Weekends](../../images/victorops/weekends.png)
+
+---
 
 These custom paging policies will be used during the specified times in place of the Primary Policy.
 
