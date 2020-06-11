@@ -52,7 +52,7 @@ write_files:
          # on AWS, grab instance id and use that
          #AWSTOKEN=$(curl -qs -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
          #INSTANCE=$(curl -qs -H "X-aws-ec2-metadata-token: $AWSTOKEN" http://169.254.169.254/latest/meta-data/instance-id)
-         INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)-EC2
+         INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)-ec2
        else
          # not AWS, use hostname set via multipass OR create own id here
          # INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)
