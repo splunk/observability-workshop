@@ -21,6 +21,8 @@ Once installed, please create a VM to ensure all is working correctly:
 
 Some people might not be able to install/run Multipass due to restrictions or resource limitations on their laptop/desktop, so AWS/EC2 instances will be made available upon request at the beginning of the Workshop.
 
+To use the AWS/EC2 instances this requires SSH (Secure Shell). For Mac OS/Linux users this should already be available from the command line. For Windows 10 users you might need to install [OpenSSH](https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse)
+
 We look forward to taking you through the Workshop to see how Splunk, SignalFx and VictorOps can provide Observability for modern applications!
 
 Regards,
