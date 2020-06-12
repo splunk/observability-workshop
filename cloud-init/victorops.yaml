@@ -9,6 +9,19 @@ package_update: true
 packages:
   - unzip
 
+
+write_files:
+  - path: /etc/skel/.profile
+    content: | 
+      echo "Waiting for cloud-init status..."
+      if ! /usr/bin/timeout 180 grep -q 'Cloud-init .*finished at' <(tail -f /var/log/cloud-init-output.log); then
+        echo "Instance setup did not complete after 3 minutes. Please try again.";
+      else
+        echo "Your instance is ready!";
+      fi
+      export INSTANCE=${HOSTNAME:0:4}
+    append: true
+
 runcmd:
 # Download Workshop
 - export WSVERSION=1.24

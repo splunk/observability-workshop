@@ -172,9 +172,9 @@ Check the plan output for errors before typing _**yes**_ to commit the apply.
     terraform apply \
     -var="access_token=$ACCESS_TOKEN" \
     -var="realm=$REALM" \
-    -var="sfx_prefix=${HOSTNAME:0:4}" \
+    -var="sfx_prefix=${INSTANCE}" \
     -var="sfx_vo_id=$SFXVOPSID" \
-    -var="routing_key=${HOSTNAME:0:4}_PRI"
+    -var="routing_key=${INSTANCE}_PRI"
     ```
 
 === "Example Output"
