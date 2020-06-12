@@ -64,7 +64,7 @@ Copy it to the `REALM` line of your variables document.
 
 In SignalFx UI navigate to **INTEGRATIONS** and use the search feature to find the VictorOps Integration.
 
-Expand the **VictorOps-xxxx configuration; if there are more than one you will be informed which one to copy by the presenter.
+Expand the **VictorOps-xxxx** configuration; if there are more than one you will be informed which one to copy by the presenter.
 
 ![VictorOps Integration](../../images/victorops/m7-sfx-vo-integration-id.png)
 
@@ -97,18 +97,6 @@ With all the required values now safely copied into your variables document you 
 Switch back to your shell session connected to the VM you created in the **Getting Started/Create a Test Environment** module, all of the following commands will be executed within this instance:
 
 Past the three commands from your variables document into the shell session of your VM.
-
-### 2.2 Create a Routing Key variable
-
-Next you need to generate a variable for your Routing Key. As this uses the first part of the hostname from the VM you simply need to run the following command to create it:
-
-=== "Shell Command"
-
-    ```bash
-    export ROUTINGKEY=${INSTANCE:0:4}_PRI
-    ```
-
----
 
 ## 3. Initialize and apply Terraform
 
@@ -184,9 +172,9 @@ Check the plan output for errors before typing _**yes**_ to commit the apply.
     terraform apply \
     -var="access_token=$ACCESS_TOKEN" \
     -var="realm=$REALM" \
-    -var="sfx_prefix=${INSTANCE:0:4}" \
+    -var="sfx_prefix=${HOSTNAME:0:4}" \
     -var="sfx_vo_id=$SFXVOPSID" \
-    -var="routing_key=$ROUTINGKEY"
+    -var="routing_key=${HOSTNAME:0:4}_PRI"
     ```
 
 === "Example Output"
@@ -274,7 +262,7 @@ Check the plan output for errors before typing _**yes**_ to commit the apply.
 
 By running Terraform within the VM you have just created a new Detector within SignalFx which will send alerts to VictorOps if the CPU utilization of your specific VM goes above 90%.
 
-Switch to the SignalFx UI got **ALERTS → Detectors** to show all the Detectors and find the one matching your `INSTANCE` value (the first four letters of the name of your VM).
+In the SignalFx UI go to **ALERTS → Detectors** to show all the Detectors and find the one matching your `INSTANCE` value (the first four letters of the name of your VM).
 
 Optionally - Click on **CPU Utilization is greater than 90%** to open the Alert Rule Editor to view its settings.
 
