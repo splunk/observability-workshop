@@ -150,4 +150,5 @@ nav:
     - '<b>Optional Modules</b>':
       - 'SignalFx Integration': victorops/optional/sfx_integrations.md
   - '<b>Resources</b>':
-    - "Links": resources/index.md
+    - 'Links': resources/index.md
+    - 'FAQ': resources/faq.md
