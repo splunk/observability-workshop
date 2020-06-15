@@ -18,8 +18,30 @@ write_files:
         echo "Instance setup did not complete after 3 minutes. Please try again.";
       else
         echo "Your instance is ready!";
+      fi 
+      #export INSTANCE=${HOSTNAME:0:4}
+      if [ -e ~/.instance ]; then
+         INSTANCE=$(cat ~/.instance)
       fi
-      export INSTANCE=${HOSTNAME:0:4}
+      if [ -z ${INSTANCE+x} ]; then
+        if curl -s -m 3 http://169.254.169.254/latest/dynamic/instance-identity/document | grep -q availabilityZone ; then
+          # on AWS, grab instance id and use that
+          #AWSTOKEN=$(curl -qs -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+          #INSTANCE=$(curl -qs -H "X-aws-ec2-metadata-token: $AWSTOKEN" http://169.254.169.254/latest/meta-data/instance-id)
+          INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)-ec2
+          # Do two seds to edit the files for persistent hostname change:
+          sudo sed -i "s/127.0.0.1.*/127.0.0.1 $INSTANCE.local $INSTANCE localhost/" /etc/hosts
+          sudo hostnamectl set-hostname $INSTANCE
+          # Set color prompt
+          export PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@$INSTANCE [\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+        else
+          # not AWS, use hostname set via multipass OR create own id here
+          # INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)
+          INSTANCE=${HOSTNAME:0:4}
+        fi
+      echo $INSTANCE > ~/.instance
+    fi
+    export INSTANCE
     append: true
 
 runcmd:
