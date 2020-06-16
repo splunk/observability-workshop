@@ -79,24 +79,6 @@ Initialize Terraform and upgrade to the latest version of the SignalFx Terraform
     commands will detect it and remind you to do so if necessary.
     ```
 
-Create a new workspace:
-
-=== "Shell Command"
-
-    ``` bash
-    terraform workspace new workshop
-    ```
-
-=== "Output"
-
-    ```text
-    Created and switched to workspace "workspace"!
-
-    You're now on a new, empty workspace. Workspaces isolate their state,
-    so if you run "terraform plan" Terraform will not see any existing state
-    for this configuration.
-    ```
-
 [^1]:
     Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.
 
