@@ -39,15 +39,7 @@ Install the agent using the SignalFx Helm chart. Firstly, add the SignalFx Helm 
 === "Shell Command"
 
     ```
-    helm repo add signalfx https://dl.signalfx.com/helm-repo
-    ```
-
-Ensure the latest version of the SignalFx Helm repository
-
-=== "Shell Command"
-
-    ```
-    helm repo update
+    helm repo add signalfx https://dl.signalfx.com/helm-repo && helm repo update
     ```
 
 Install the Smart Agent Helm chart with the following commands, do **NOT** edit this:
