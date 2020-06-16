@@ -2,14 +2,6 @@
 
 ## 1. Destroy all your hard work
 
-You will first need to ensure you are in the the workspace you created in **Step #1**:
-
-=== "Shell Command"
-
-    ```text
-    terraform workspace select workshop
-    ```
-
 Destroy all Detectors and Dashboards that were previously applied.
 
 === "Shell Command"
