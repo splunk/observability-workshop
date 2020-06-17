@@ -14,24 +14,24 @@ spec:
         stdin: true
         stdinOnce: true
         env:
-          - name: LOCUSTFILE_PATH
-            value: /mnt/locustfile.py
-          - name: LOCUST_OPTS
-            valueFrom:
-              configMapKeyRef:
-                name: locust-config
-                key: locustOpts
-          - name: TARGET_URL
-            valueFrom:
-              configMapKeyRef:
-                name: locust-config
-                key: targetUrl
+        - name: LOCUSTFILE_PATH
+          value: /mnt/locustfile.py
+        - name: LOCUST_OPTS
+          valueFrom:
+            configMapKeyRef:
+              name: locust-config
+              key: locustOpts
+        - name: TARGET_URL
+          valueFrom:
+            configMapKeyRef:
+              name: locust-config
+              key: targetUrl
         volumeMounts:
-          - name: locust-file-vol
-            mountPath: /mnt/locustfile.py
-            subPath: locustfile.py
-      volumes:
         - name: locust-file-vol
-          configMap:
-            name: locust-file
+          mountPath: /mnt/locustfile.py
+          subPath: locustfile.py
+      volumes:
+      - name: locust-file-vol
+        configMap:
+          name: locust-file
       restartPolicy: Never
