@@ -9,7 +9,7 @@ When you created your VM you generated a random Instance ID, and we will used th
 === "Shell Command"
 
     ```bash
-    echo $INSTANCE
+    echo ${INSTANCE}
     ```
 
 === "Example Output"

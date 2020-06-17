@@ -7,7 +7,7 @@
     Enter the following to delete and purge the Multipass instance:
 
     ```bash
-    multipass delete --purge $INSTANCE
+    multipass delete --purge ${INSTANCE}
     ```
 
 === "AWS/EC2"

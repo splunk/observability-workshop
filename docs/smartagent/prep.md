@@ -69,9 +69,9 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
     For [µAPM](../../apm/) module we use the Hot R.O.D[^5] application to emit Traces/Spans for SignalFx µAPM. Launch your instance with:
 
 
-    ```text
+    ```bash
     multipass launch \
-    --name $INSTANCE \
+    --name ${INSTANCE} \
     --cloud-init cloud-init/k3s.yaml
     ```
 
@@ -80,7 +80,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
     === "Shell Command"
 
         ```bash
-        multipass shell $INSTANCE
+        multipass shell ${INSTANCE}
         ```
 
     === "Output"

@@ -22,7 +22,7 @@ Ensure the `INSTANCE` environment variable is still set:
 === "Shell Command"
 
     ```bash
-    echo $INSTANCE
+    echo ${INSTANCE}
     ```
 
 If the environment variable is not set, then you will have to replace `${INSTANCE}` below with the prefix of the instance name from the `multipass list` above.
