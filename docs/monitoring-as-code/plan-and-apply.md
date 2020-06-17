@@ -22,7 +22,15 @@ If the plan executes successfully, we can go ahead and apply:
     terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$PREFIX"
     ```
 
-Validate that the detectors were created, under the _**ALERTS → Detectors**_, you should see a list of new detectors with the a prefix of your initials:
+Validate that the detectors were created, under the _**ALERTS → Detectors**_. They will be prefixed by a unique string that was initialized in the setup. To check the prefix value run:
+
+=== "Shell Command"
+
+    ```bash
+    echo ${PREFIX}
+    ```
+
+ You will see a list of the new detectors and you can search for the prefix that was output from above.
 
 ![Detectors](../images/monitoring-as-code/detectors.png)
 
