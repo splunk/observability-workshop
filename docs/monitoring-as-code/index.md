@@ -24,7 +24,7 @@ The environment variables needed should already be set from [Deploy the Smart Ag
     ```
     export ACCESS_TOKEN={==SIGNALFX_ACCESS_TOKEN==}
     export REALM={==REALM e.g. us1==}
-    export PREFIX=$(cat /dev/urandom | base64 | tr -dc 'A-Z' | head -c4)
+    export PREFIX=[$(cat /dev/urandom | base64 | tr -dc 'A-Z' | head -c4)]
     ```
 
 Initialize Terraform and upgrade to the latest version of the SignalFx Terraform Provider
