@@ -1,6 +1,6 @@
 import base64
 
-from locust import HttpLocust, TaskSet, task, between
+from locust import HttpUser, TaskSet, task, between
 from random import randint, choice
 from io import BytesIO
 
@@ -27,6 +27,6 @@ class WebTasks(TaskSet):
         self.client.post("/orders")
 
 
-class Web(HttpLocust):
-    task_set = WebTasks
+class Web(HttpUser):
+    tasks = [WebTasks]
     wait_time = between(0, 0)
