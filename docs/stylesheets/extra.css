@@ -2,7 +2,7 @@ img {
     height: auto;
     width: auto;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 6px;
     padding: 4px;
     background-color: #fff;
 }
@@ -97,7 +97,7 @@ strong.label-button, mark.critic {
 .md-nav__item .md-nav__link--active,
 .md-nav__link--active,
 .md-nav__link:active {
-    color: #E20082;
+    color: fff;
 }
 
 .md-nav__link:hover {

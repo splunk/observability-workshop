@@ -36,8 +36,7 @@ versions:
 theme:
   name: material
   palette:
-    scheme: default
-    primary: black
+    scheme: preference
   favicon: images/favicon.ico
   logo: images/logo.png
   font:
