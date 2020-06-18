@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# shellcheck disable=SC2154
 RESULT=$(curl -s -w "\n%{http_code}\n" \
   "https://api.github.com/repos/$TRAVIS_REPO_SLUG/releases" \
   -H "Authorization: token $api_key"  \
