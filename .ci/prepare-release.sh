@@ -8,9 +8,12 @@ set -o pipefail  # Use last non-zero exit code in a pipeline
 FLAVOUR=${1:-minor}
 TAG=$(bumpversion --list "$FLAVOUR" | awk -F= '/new_version=/ { print $2 }')
 
+# add new version to mkdocs yaml
 awk "/versions:/ { print; print \"  - v$TAG\";next }1" mkdocs.yml > mkdocs.new.yml
 mv mkdocs.new.yml mkdocs.yml
+# add new version to README
 awk "/Previous versions of the workshop are also available:/ { print; print \"- [v$TAG](https://signalfx.github.io/observability-workshop/v$TAG/)\";next }1" README.md |
+# limit list of version in README to last two
 awk "NR==1,/Previous versions of the workshop are also available:/{c=3} c&&c-- " > README.new.md
 
 mv README.new.md README.md
@@ -19,7 +22,7 @@ git fetch --tags origin
 git add README.md  mkdocs.yml
 git commit --amend -m "Releasing v$TAG"
 git tag -a "v$TAG" -m "Version $TAG"
-# separate push and push tag to allow the push to fail in which case we will not push the tag
+# separate push and push tag to allow the push to fail. we will not push the tag, allowing to fix the release before it happens
 # git push --follow-tags origin master
 git push origin master || { echo 'Push failed. git pull --rebase from upstream and attempt another release.'; exit 1; }
 git push --tags
