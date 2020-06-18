@@ -7,12 +7,18 @@ spec:
     metadata:
       name: loadgen
     spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
       containers:
       - name: locust
-        image: locustio/locust
+        image: locustio/locust:1.0.3
         tty: true
         stdin: true
         stdinOnce: true
+        command: [ "/bin/sh", "-c" ]
+        args: [ "/usr/local/bin/locust $(LOCUST_OPTS) -f $(LOCUSTFILE_PATH) --host $(TARGET_URL)" ]
         env:
         - name: LOCUSTFILE_PATH
           value: /mnt/locustfile.py

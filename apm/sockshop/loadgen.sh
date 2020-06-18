@@ -26,7 +26,7 @@ run_test() {
   kubectl create configmap -n sock-shop locust-file --from-file loadgen/locustfile.py
   kubectl create configmap -n sock-shop locust-config \
       --from-literal=targetUrl="$TARGET_HOST" \
-      --from-literal=locustOpts="--clients $CLIENTS --hatch-rate $HATCH_RATE --run-time $RUNTIME --no-web"
+      --from-literal=locustOpts="--users $CLIENTS --hatch-rate $HATCH_RATE --run-time $RUNTIME --headless"
   kubectl apply -n sock-shop -f loadgen/loadgen.yaml
 }
 
