@@ -50,7 +50,8 @@ Install the Smart Agent Helm chart with the following commands, do **NOT** edit 
     helm install \
     --set signalFxAccessToken=$ACCESS_TOKEN \
     --set clusterName=$(hostname)-k3s-cluster \
-    --set kubeletAPI.url=https://localhost:10250  \
+    --set kubeletAPI.url=https://localhost:10250 \
+    --set agentVersion=5.2.1 \
     --set signalFxRealm=$REALM  \
     --set traceEndpointUrl=https://ingest.$REALM.signalfx.com/v2/trace \
     --set gatherDockerMetrics=false \
