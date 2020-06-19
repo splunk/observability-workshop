@@ -8,6 +8,7 @@ copyright: Copyright &copy; 2020 Splunk Inc. All rights reserved.
 remote_branch: gh-pages
 
 versions:
+  - v1.26
   - v1.25
   - v1.24
   - v1.23
