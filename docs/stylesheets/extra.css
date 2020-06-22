@@ -4,7 +4,7 @@ img {
     border: 1px solid #ddd;
     border-radius: 6px;
     padding: 4px;
-    background-color: #fff;
+    /*background-color: #fff;*/
 }
 
 .shadow {
@@ -90,6 +90,10 @@ strong.label-button, mark.critic {
 
 .label-button.vo-ui-button {
     background-color: #00bce4;
+}
+
+header.md-header {
+    background-color: #333;
 }
 
 .md-nav__link:focus,
