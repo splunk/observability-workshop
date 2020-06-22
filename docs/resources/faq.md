@@ -34,6 +34,14 @@ These practices and technologies combined give the operator the ability to under
 
 A: Traces and spans, combined with metrics and logs, make up the core types of data that feed modern Observability tools. They all have specific elements and functions, but work well together.
 
-Because microservices based architectures are distributed, transactions in the system touch multiple services before completing. This makes accurately pinpointing the location of an issue difficult. Traces are a method for tracking the full path of a request through all the services in a distributed system. Spans are the timed operations in each service. Traces are the connective tissue for the spans and together they give more detail on individual service processes. While metrics give good snapshot visibility into the system, and logs give depth when investigating issues, traces and spans navigate operators to the source of issues with greater context. This saves time when investigating incidents, and supports the increasing complexity of modern architectures.
+Because microservices based architectures are distributed, transactions in the system touch multiple services before completing. This makes accurately pinpointing the location of an issue difficult. Traces are a method for tracking the full path of a request through all the services in a distributed system. Spans are the timed operations in each service. Traces are the connective tissue for the spans and together they give more detail on individual service processes. While metrics give a good snapshot of the health of a system, and logs give depth when investigating issues, traces and spans help navigate operators to the source of issues with greater context. This saves time when investigating incidents, and supports the increasing complexity of modern architectures.
+
+**SignalFx**{: .label-button .signalfx}
+
+## Q: What is the Sidecar Pattern
+
+A: The sidecar pattern is a design pattern for having related services contected directly by infrastructure. Related services can be adding functionality or supporting the application logic they are connected to. It is used heavily as a method for deploying agents asscoiated with the management plan along with the application service they support. 
+
+In Observability the sidecare serices are the application logic, and the agent collecting data from that service. The setup requires two containers one with the application service, and one running the agent. The containers share a pod, and resources such as disk, network, and namespace. They are also deployed together and share the same lifecycle.
 
 **SignalFx**{: .label-button .signalfx}
