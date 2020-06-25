@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 resource "aws_security_group" "instance" {
-  name = "Obervability-Workshop-SG"
+  name = "Observability-Workshop-SG"
 
   ingress {
     from_port   = 22
@@ -16,6 +16,20 @@ resource "aws_security_group" "instance" {
   ingress {
     from_port   = 8080
     to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 8081
+    to_port     = 8081
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+ingress {
+    from_port   = 6501
+    to_port     = 6501
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
