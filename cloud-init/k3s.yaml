@@ -66,6 +66,7 @@ write_files:
        echo $INSTANCE > ~/.instance
      fi
      export INSTANCE
+     sed -i 's/\[HOSTNAME\]/'"$INSTANCE"'/' /home/ubuntu/workshop/k3s/values.yaml
    append: true
 
 runcmd:
@@ -78,7 +79,6 @@ runcmd:
  - curl -s -OL https://github.com/signalfx/observability-workshop/archive/$WSARCHIVE.zip
  - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
  - mv /home/ubuntu/observability-workshop-$WSVERSION /home/ubuntu/workshop
- - 'sed -i -e ''s/\[HOSTNAME\]/''"$(hostname)"''/'' /home/ubuntu/workshop/k3s/values.yaml'
  # Download SignalFx Jumpstart
  - curl -s -L https://github.com/signalfx/signalfx-jumpstart/archive/master.zip -o jumpstart.zip
  - unzip -qq jumpstart.zip -d /home/ubuntu/
