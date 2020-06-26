@@ -2,7 +2,7 @@
 
 Let's overlay metrics and events to our initial plot to see if there is any correlation with high latency.
 
-To discover and add new metrics to the chart from the ones that are being sent to SignalFx already, click on **Browse** on the bottom of the screen.
+To discover and add new metrics to the chart from the ones that are being sent to SignalFx already, click on **Browse** as highlighted in the screenshot below.
 
 In the **METRICS** sidebar on the right, enter **`demo`** and click on the search icon to search.
 
