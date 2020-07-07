@@ -40,8 +40,8 @@ write_files:
           INSTANCE=${HOSTNAME:0:4}
         fi
       echo $INSTANCE > ~/.instance
-    fi
-    export INSTANCE
+      fi
+      export INSTANCE
     append: true
 
 runcmd:
