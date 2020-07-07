@@ -4,7 +4,7 @@ Routing Keys map the incoming alert messages from your monitoring system to an E
 
 ## 1. Instance ID
 
-When you created your VM you generated a random Instance ID, and we will used this same ID when creating your Routing Key.  To get your Instance ID, return to the 1st command shell where you created your VM and run the following command:
+When you created your VM you generated a random Instance ID, and we will use this same ID when creating your Routing Key.  To get your Instance ID, return to the command shell where you created your VM, or from within the shell session connected to your VM, and run the following command:
 
 === "Shell Command"
 
