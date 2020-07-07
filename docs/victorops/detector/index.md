@@ -146,25 +146,7 @@ Now we can initialize Terraform:
     commands will detect it and remind you to do so if necessary.
     ```
 
-Create a new Terraform workspace[^1] which will track the state for this environment:
-
-=== "Shell Command"
-
-    ```text
-    terraform workspace new VictorOps
-    ```
-
-=== "Output"
-
-    ```text
-    Created and switched to workspace "VictorOps"!
-
-    You're now on a new, empty workspace. Workspaces isolate their state,
-    so if you run "terraform plan" Terraform will not see any existing state
-    for this configuration.
-    ```
-
-Check the plan output for errors before typing _**yes**_ to commit the apply.
+You can now copy and the paste the following code block to run Terraform using the Variables you created in the VM.  Check the plan output for errors before typing _**yes**_ to commit the apply.
 
 === "Shell Command"
 
