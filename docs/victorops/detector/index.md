@@ -263,5 +263,3 @@ A **Recipient** has been configured using the VictorOps Integration and your **R
 You have now configured the Integrations between VictorOps and SignalFx!
 
 The final part of this module is to test the flow of alerts from SignalFx into VictorOps and see how you can manage the incident with both the VictorOps UI and Mobile App.
-
-[^1]:Workspaces allow you to run Terraform against different environments each with their own state data stored in the workspace.
