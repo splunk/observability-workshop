@@ -19,7 +19,7 @@ Enter a name of "*Follow the Sun Support - Business Hours*" and Select **Partial
 * Enter a Shift name of "*Asia*"
 * Time Zone set to "*Asia/Tokyo*"
 * Each user is on duty from "*Monday through Friday from 9.00am to 5.00pm*"
-* Handoff happens every "*7 days*"
+* Handoff happens every "*5 days*"
 * The next handoff happens - Select the next Monday using the calendar
 * Click **Save Rotation**
 
@@ -36,7 +36,7 @@ Now add an 2nd shift for Europe by again clicking **+Add a shift → Partial Day
 * Enter a Shift name of "*Europe*"
 * Time Zone set to "*Europe/London*"
 * Each user is on duty from "*Monday through Friday from 9.00am to 5.00pm*"
-* Handoff happens every "*7 days*"
+* Handoff happens every "*5 days*"
 * The next handoff happens - Select the next Monday using the calendar
 * Click **Save Shift**
 
@@ -53,7 +53,7 @@ Now add a 3rd shift for West Coast USA by again clicking `+Add a shift` - `Parti
 * Enter a Shift name of "*West Coast*"
 * Time Zone set to "*US/Pacific*"
 * Each user is on duty from "*Monday through Friday from 9.00am to 5.00pm*"
-* Handoff happens every "*7 days*"
+* Handoff happens every "*5 days*"
 * The next handoff happens - Select the next Monday using the calendar
 * Click **Save Shift**
 
