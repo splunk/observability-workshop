@@ -38,9 +38,10 @@ Regardless if you are running this lab locally or if you are going to create you
 
     ```bash
     WSVERSION=1.28
+    mkdir cloud-init
     curl -s \
     https://raw.githubusercontent.com/signalfx/observability-workshop/v$WSVERSION/cloud-init/k3s.yaml \
-    -o k3s.yaml
+    -o cloud-init/k3s.yaml
     export INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)
     ```
 
