@@ -134,16 +134,13 @@ nav:
       - 'Deploying Sock Shop in K3s': apm/sockshop.md
       - 'Deploy Smart Agent on a VM': module-support/vm.md
   - '<b>VictorOps</b>':
-    - '<b>Getting Started</b><br /><small>60 minutes</small>':
+    - '<b>Getting Started</b><br /><small>45 minutes</small>':
       - 'Initial Setup': victorops/getting_started/index.md
-      - 'Create a Test Environment': victorops/getting_started/test_environment.md
       - 'User Profile': victorops/getting_started/user_profile.md
-      - 'Creating a Team': victorops/getting_started/team.md
+      - 'Teams': victorops/getting_started/team.md
       - 'Configure Rotations': victorops/getting_started/rotations.md
       - 'Configure Escalation Policies': victorops/getting_started/escalation.md
       - 'Creating Routing keys': victorops/getting_started/routing.md
-    - '<b>SignalFx Detector</b><br /><small>20 minutes</small>':
-      - 'Create a Detector': victorops/detector/index.md
     - '<b>Incident Lifecycle</b><br /><small>45 minutes</small>':
       - 'Overview': victorops/incident_lifecycle/index.md
       - 'Create Incidents': victorops/incident_lifecycle/create_incidents.md
@@ -151,6 +148,8 @@ nav:
     - '<b>Workshop Clean-up</b><br /><small>2 minutes</small>': victorops/cleanup.md
     - '<b>Optional Modules</b>':
       - 'SignalFx Integration': victorops/optional/sfx_integrations.md
+      - 'Using Multipass VM': victorops/optional/multipass.md
+      - 'Create a Detector': victorops/optional/detector.md
   - '<b>Resources</b>':
     - 'Links': resources/index.md
     - 'FAQ': resources/faq.md

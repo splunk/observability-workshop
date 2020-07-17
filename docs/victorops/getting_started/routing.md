@@ -4,12 +4,16 @@ Routing Keys map the incoming alert messages from your monitoring system to an E
 
 ## 1. Instance ID
 
-When you created your VM you generated a random Instance ID, and we will use this same ID when creating your Routing Key.  To get your Instance ID, return to the command shell where you created your VM, or from within the shell session connected to your VM, and run the following command:
+Each participant requires a unique Routing Key so we use the Hostname of the EC2 Intance you were allocated, or the Hostname of the VM you created using Multipass.  We are only doing this to ensure your Routing Key is unique and we know all Hostnames are unique.  In a production deployment the Routing Key would typically reflect the name of a System or Service being monitored.
+
+When you created your VM you generated a random Instance ID, and we will use this same ID when creating your Routing Key.  
+
+To get your Hostname from within the shell session connected to your VM run the following command:
 
 === "Shell Command"
 
     ```bash
-    echo ${INSTANCE}
+    echo ${HOSTNAME}
     ```
 
 === "Example Output"
@@ -18,21 +22,18 @@ When you created your VM you generated a random Instance ID, and we will use thi
     vmpe
     ```
 
-!!! Tip "Closed session"
-    If you have inadvertently closed the session down, open a new session and run `multipass list` to show the name of your VM, the 1st 4 letters are the values we are looking for.
-
-Make a note of this 4 character string or copy to your clipboard.
+Make a note of this Hostname or copy to your clipboard.
 
 ## 2 Create Routing Keys
 
 Navigate to **Settings** on the main menu bar, you should now be at the **Routing Keys** page.
 
-You are going to create the following two Routing Keys using the naming conventions listed in the following table, but replacing {==INSTANCE==} with the 4 characters from above and replace {==TEAM_NAME==} with the team you were allocated or created earlier.
+You are going to create the following two Routing Keys using the naming conventions listed in the following table, but replacing {==HOSTNAME==} with the value from above and replace {==TEAM_NAME==} with the team you were allocated or created earlier.
 
 | Routing Key | Escalation Policies |
 | --- | --- |
-| {==INSTANCE==}_PRI | {==TEAM_NAME==} : Primary |
-| {==INSTANCE==}_WR | {==TEAM_NAME==} : Waiting Room |
+| {==HOSTNAME==}_PRI | {==TEAM_NAME==} : Primary |
+| {==HOSTNAME==}_WR | {==TEAM_NAME==} : Waiting Room |
 
 There will probably already be a number of Routing Keys configured, but to add a new one simply scroll to the bottom of the page and then click **Add Key**
 

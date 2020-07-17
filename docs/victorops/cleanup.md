@@ -2,6 +2,10 @@
 
 Once you have finished with this workshop can you please perform the following steps to clean up the environment.
 
+---
+
+## Delete Detector
+
 Copy and the paste the following code block into the command shell for your VM. This will use Terraform to destroy your detector. Check the plan output for errors before typing yes to commit the destroy.
 
 === "Shell Command"
@@ -10,9 +14,9 @@ Copy and the paste the following code block into the command shell for your VM. 
     terraform destroy \
     -var="access_token=$ACCESS_TOKEN" \
     -var="realm=$REALM" \
-    -var="sfx_prefix=${INSTANCE}" \
+    -var="sfx_prefix=${HOSTNAME}" \
     -var="sfx_vo_id=$SFXVOPSID" \
-    -var="routing_key=${INSTANCE}_PRI"
+    -var="routing_key=${HOSTNAME}_PRI"
     ```
 
 === "Example Output"
@@ -93,8 +97,11 @@ Copy and the paste the following code block into the command shell for your VM. 
 
     Enter a value: yes
     ```
+---
 
-Now `exit` from the Multipass instance(s) you are in and get back to your system command prompt.
+## Optional - Mulitpass VMs Only
+
+If you are using a Multipass VM instead of an Splunk provided EC2 Instance you can now delete this instance. You will need to `exit` from the Multipass instance you are in to get back to your system command prompt.
 
 You can use `multipass list` to get the names of any current running instances:
 
@@ -108,10 +115,10 @@ You can use `multipass list` to get the names of any current running instances:
 
     ```
     Name                State             IPv4             Image
-    zevn-vo1            Running           192.168.64.13    Ubuntu 18.04 LTS
+    zevn            Running           192.168.64.13    Ubuntu 18.04 LTS
     ```
 
-Ensure the `INSTANCE` environment variable is still set:
+If the `INSTANCE` environment variable is still set you can use this to delete the Multipass VM, to check run the following command:
 
 === "Shell Command"
 
@@ -126,5 +133,5 @@ Run the following command to delete the Multipass instance:
 === "Shell Command"
 
     ```bash
-    multipass delete --purge ${INSTANCE}-vo1
+    multipass delete --purge ${INSTANCE}
     ```

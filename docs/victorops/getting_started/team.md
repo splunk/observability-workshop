@@ -4,7 +4,7 @@
 
 Navigate to the **Teams** tab on the main toolbar, you should find you have had a Team created for you as part of the workshop pre-setup and you would have been informed of your Team Name via e-mail.
 
-If you have found your pre-confgured Team, **skip Step 2.** and proceed to **Step 3. Configure Your Team**
+If you have found your pre-configured Team, **skip Step 2.** and proceed to **Step 3. Configure Your Team**
 
 However if you cannot find you allocated Team, you will need to create a new one, so proceed with **Step 2. Create Team**
 
@@ -12,13 +12,13 @@ However if you cannot find you allocated Team, you will need to create a new one
 
 Only complete this step if you **cannot** find your pre-allocated Team as detailed in your workshop e-mail.
 
-Select **Add Team**, then enter your allocated team name, this will typically be in the format of "AttendeeID_Workshop" and then save by clicking the **Add Team** button.
+Select **Add Team**, then enter your allocated team name, this will typically be in the format of "AttendeeID Workshop" and then save by clicking the **Add Team** button.
 
 ## 3. Configure Your Team
 
-You now need to add other users to your team.  If you are running this workshop using the Splunk provided environment, the following accounts are available for testing.
+You now need to add other users to your team.  If you are running this workshop using the Splunk provided VictorOps environment, the following accounts are available for testing.
 
-If you are running this lab in your own environment, you will have been provided a list of usernames you can use in place of the table below.
+If you are running this lab in your own VictorOps environment, you will have been provided a list of usernames you can use in place of the table below.
 
 These users are dummy accounts who will not receive notifications when they are on call.
 

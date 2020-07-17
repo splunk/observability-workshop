@@ -154,9 +154,9 @@ You can now copy and the paste the following code block to run Terraform using t
     terraform apply \
     -var="access_token=$ACCESS_TOKEN" \
     -var="realm=$REALM" \
-    -var="sfx_prefix=${INSTANCE}" \
+    -var="sfx_prefix=${HOSTNAME}" \
     -var="sfx_vo_id=$SFXVOPSID" \
-    -var="routing_key=${INSTANCE}_PRI"
+    -var="routing_key=${HOSTNAME}_PRI"
     ```
 
 === "Example Output"
