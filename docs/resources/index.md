@@ -20,7 +20,7 @@ Below are helpful resources about Splunk and the DevOps use case. Topics covered
 * **VictorOps**{: .label-button .victorops} ["Extended Hands and Extended Trials for Incident Response"](https://victorops.com/blog/extended-hands-and-extended-trials-for-incident-response){: target=_blank}
 * **SignalFx**{: .label-button .signalfx} ["Supporting APM for .NET Applications"](https://www.splunk.com/en_us/blog/cloud/supporting-apm-for-net-applications.html){: target=_blank}
 * **OTEL**{: .label-button .otel} ["OpenTelemetry Consolidates Data for Observability"](https://thenewstack.io/opentelemetry-consolidates-data-for-observability/){: target=_blank}
-* **Observability**{: .label-button .observability} ["Useing Observability as a Proxy for User Happiness"](https://www.splunk.com/en_us/blog/cloud/using-observability-as-a-proxy-for-customer-happiness.html){: target=_blank}
+* **Observability**{: .label-button .observability} ["Using Observability as a Proxy for User Happiness"](https://www.splunk.com/en_us/blog/cloud/using-observability-as-a-proxy-for-customer-happiness.html){: target=_blank}
 
 ## Webinars & Podcast
 
@@ -28,3 +28,4 @@ Below are helpful resources about Splunk and the DevOps use case. Topics covered
 * **DevOps**{: .label-button .devops} ["DevOps from the Top Podcast"](https://www.buzzsprout.com/1102754){: target=_blank}
 * **Observability**{: .label-button .observability} ["Oh my! SRE, AIOps and Observe-a-what?"](https://www.thecloudpod.net/podcast/tcp-talks-oh-my-sre-aiops-and-observe-a-what/){: target=_blank}
 * **Observability**{: .label-button .observability} ["On-Demand Observability Demo"](https://events.splunk.com/Observability-Demo){: target=_blank}
+* **DevOps**{: .label-button .devops} ["Dissecting DevOps PlayList"](https://www.youtube.com/playlist?list=PLxkFdMSHYh3QOOQ7D1YyPYOlavuVBRmNm){: target=_blank}
