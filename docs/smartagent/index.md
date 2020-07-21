@@ -2,7 +2,7 @@
 
 During this _**technical**_ workshop you will build out an environment based on a lightweight [Kubernetes](https://k3s.io/){: target=_blank} deployment.
 
-In order to simplify the workshop modules, a pre-configure VM is provided either via [Multipass](https://multipass.run){: target=_blank} or a AWS/EC2 instance.
+In order to simplify the workshop modules, a pre-configured VM is provided either via [Multipass](https://multipass.run){: target=_blank} or a AWS/EC2 instance.
 
 The instance is pre-configured with all the software required to install the Smart Agent in Kubernetes, deploy a NGINX ReplicaSet[^1] and finally deploy a microservices application which has been instrumented to send Traces and Spans using Jaeger[^2].
 
