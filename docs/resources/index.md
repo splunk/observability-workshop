@@ -18,9 +18,13 @@ Below are helpful resources about Splunk and the DevOps use case. Topics covered
 * **SignalFx**{: .label-button .signalfx} ["Application Performance Redefined: Meet the New SignalFx Microservices APM"](https://www.splunk.com/en_us/blog/it/application-performance-redefined-meet-the-new-signalfx-microservices-apm.html){: target=_blank}
 * **Splunk**{: .label-button .splunk} ["Splunk is Lambda Ready: Announcing a New Partnership with AWS"](https://www.splunk.com/en_us/blog/it/splunk-is-lambda-ready.html){: target=_blank}
 * **VictorOps**{: .label-button .victorops} ["Extended Hands and Extended Trials for Incident Response"](https://victorops.com/blog/extended-hands-and-extended-trials-for-incident-response){: target=_blank}
+* **SignalFx**{: .label-button .signalfx} ["Supporting APM for .NET Applications"](https://www.splunk.com/en_us/blog/cloud/supporting-apm-for-net-applications.html){: target=_blank}
+* **OTEL**{: .label-button .otel} ["OpenTelemetry Consolidates Data for Observability"](https://thenewstack.io/opentelemetry-consolidates-data-for-observability/){: target=_blank}
+* **Observability**{: .label-button .observability} ["Useing Observability as a Proxy for User Happiness"](https://www.splunk.com/en_us/blog/cloud/using-observability-as-a-proxy-for-customer-happiness.html){: target=_blank}
 
 ## Webinars & Podcast
 
 * **APM**{: .label-button .apm} ["Future of Microservices and APM"](https://bit.ly/3cpdbUs){: target=_blank}
 * **DevOps**{: .label-button .devops} ["DevOps from the Top Podcast"](https://www.buzzsprout.com/1102754){: target=_blank}
 * **Observability**{: .label-button .observability} ["Oh my! SRE, AIOps and Observe-a-what?"](https://www.thecloudpod.net/podcast/tcp-talks-oh-my-sre-aiops-and-observe-a-what/){: target=_blank}
+* **Observability**{: .label-button .observability} ["On-Demand Observability Demo"](https://events.splunk.com/Observability-Demo){: target=_blank}
