@@ -104,7 +104,7 @@ nav:
   - '<b>SignalFx</b>':
     - '<b>Get Data In</b><br /><small>20 minutes</small>':
       - 'Workshop Introduction': smartagent/index.md
-      - 'Workshop Preparation': smartagent/prep.md
+#      - 'Workshop Preparation': smartagent/prep.md
       - 'Deploy the Smart Agent in K3s': smartagent/k3s.md
       - 'Deploy NGINX in K3s' : smartagent/nginx.md
     - '<b>Dashboards</b><br /><small>30 minutes</small>':
@@ -122,7 +122,7 @@ nav:
     - '<b>Monitoring as Code</b><br /><small>10 minutes</small>':
       - 'Initial Setup': monitoring-as-code/index.md
       - 'Plan, Apply and Destroy': monitoring-as-code/plan-and-apply.md
-    - '<b>µAPM</b><br /><small>45 minutes</small>':
+    - '<b>µAPM</b><br /><small>30 minutes</small>':
       - 'µAPM Architecture Overview': apm/index.md
       - 'Deploying Hot R.O.D. in K3s': apm/hotrod.md
       - 'Troubleshooting Hot R.O.D.': apm/hotrod-trouble-timebased.md
