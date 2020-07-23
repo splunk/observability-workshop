@@ -2,11 +2,11 @@
 
 During this _**technical**_ workshop you will build out an environment based on a lightweight [Kubernetes](https://k3s.io/){: target=_blank} deployment.
 
-In order to simplify the workshop modules, a pre-configured VM is provided either via [Multipass](https://multipass.run){: target=_blank} or a AWS/EC2 instance.
+In order to simplify the workshop modules, a pre-configured AWS/EC2 instance is provided.
 
-The instance is pre-configured with all the software required to install the Smart Agent in Kubernetes, deploy a NGINX ReplicaSet[^1] and finally deploy a microservices application which has been instrumented to send Traces and Spans using Jaeger[^2].
+The instance is pre-configured with all the software required to install the SignalFx Smart Agent in Kubernetes, deploy a NGINX ReplicaSet[^1] and finally deploy a microservices application which has been instrumented to send Traces and Spans using Jaeger[^2].
 
-The workshop also introduces you to dashboarding, editing and creating charts, creating detectors to fire alerts, Monitoring as Code[^3] and the SignalFx Service Bureau[^3]
+The workshop also introduces you to dashboards, editing and creating charts, creating detectors to fire alerts, Monitoring as Code[^3] and the SignalFx Service Bureau[^3]
 
 ![SFx Architecture](../images/smartagent/architecture.png){: .zoom}
 
