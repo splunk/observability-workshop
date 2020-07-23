@@ -4,24 +4,6 @@
 * Examine traces in the waterfall
 * Discover the cause of the errors
 
-!!! note "Ensure you have a running instance that has the Hot R.O.D. app running"
-    The setup part is already documented in the [Preparation](../../smartagent/prep/), [Deploy the Smart Agent in K3s](../../smartagent/k3s/) and [Deploying Hot R.O.D. in K3s](../../apm/hotrod/) steps.
-
-    If you are using an AWS/EC2 instance, make sure it is available and skip to [Step 1](../../apm/hotrod/#1-find-a-specific-trace-using-time-slots-andor-tags), otherwise ensure your Multipass instance is available and running before continuing.
-
-    === "Shell Command"
-
-        ```
-        multipass list
-        ```
-
-    === "Example Output"
-
-        ```
-        Name                     State             IPv4             Image
-        vmpe-k3s                 Running           192.168.64.17    Ubuntu 18.04 LTS
-        ```
-
 ---
 
 ## 1. Traces and Spans explained
@@ -55,7 +37,7 @@ Using the **All Traces** functionality, combined with using tags and/or services
 First, we need to know the name of your application environment. In this workshop all the environments use your `{==hostname==}-apm-env`
 
 To find the hostname, check the prompt of you instance, please go to your
-instance (Multipass or EC2) and run the following command.
+instance and run the following command:
 
 === "Shell Command"
 
@@ -63,16 +45,10 @@ instance (Multipass or EC2) and run the following command.
     echo "Your µAPM environment is: $(hostname)-apm-env"
     ```
 
-=== "Example Multipass Output"
-
-    ```text
-    Your µAPM environment is: vmpe-apm-env
-    ```
-
 === "Example AWS/EC2 Output"
 
     ```text
-    Your µAPM environment is: ip-172-31-30-133-apm-env
+    Your µAPM environment is: whul-ec2-apm-env
 
     ```
 
