@@ -106,7 +106,8 @@ runcmd:
  - mv terraform /usr/local/bin/
  # Set correct permissions on ubuntu user home directory
  - chown -R ubuntu:ubuntu /home/ubuntu
- # fix shellinabox port and ssl then restart
- - sed -i 's/SHELLINABOX_PORT=4200/SHELLINABOX_PORT=6501/'  /etc/default/shellinabox
+ # fix shellinabox port and ssl then restartß
+
+ - sed -i 's/SHELLINABOX_PORT=4200/SHELLINABOX_PORT=8080/'  /etc/default/shellinabox
  - sed -i "s/\"--no-beep\"/\"--no-beep --disable-ssl\"/" /etc/default/shellinabox
  - sudo service shellinabox restart
