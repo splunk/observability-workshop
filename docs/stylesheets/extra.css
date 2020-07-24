@@ -111,4 +111,6 @@ header.md-header {
 :root {
     --md-primary-fg-color: #E20082;
     --md-accent-fg-color: #E20082;
+    --md-primary-fg-color--light: #E20082;
+    --md-primary-fg-color--dark: #E20082;
 }
