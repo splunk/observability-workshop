@@ -53,7 +53,7 @@ theme:
   include_search_page: false
   search_index_only: true
   language: en
-  custom_dir: docs/material
+  custom_dir: material
   features:
     - tabs
 
