@@ -14,100 +14,100 @@ apt:
     deb mirror://mirrors.ubuntu.com/mirrors.txt bionic-security main restricted universe multiverse
 
 packages:
- - apache2-utils
- - unzip
- - siege
- - shellinabox
+  - apache2-utils
+  - unzip
+  - siege
+  - shellinabox
 
 write_files:  
- - path: /etc/environment
-   permissions: 0644
-   content: | 
-     KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
-   append: true  
+  - path: /etc/environment
+    permissions: 0644
+    content: | 
+      KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
+    append: true  
 
- - path: /etc/skel/.profile
-   content: | 
-     helm() {
-       if [ -z ${ACCESS_TOKEN+x} ]; then echo "ACCESS_TOKEN is unset. Please export ACCESS_TOKEN=YOURTOKEN"; return; fi
-       if [ -z ${REALM+x} ]; then echo "REALM is unset. Please export REALM=YOURREALM"; return; fi
+  - path: /etc/skel/.profile
+    content: | 
+      helm() {
+        if [ -z ${ACCESS_TOKEN+x} ]; then echo "ACCESS_TOKEN is unset. Please export ACCESS_TOKEN=YOURTOKEN"; return; fi
+        if [ -z ${REALM+x} ]; then echo "REALM is unset. Please export REALM=YOURREALM"; return; fi
 
-       echo "Using ACCESS_TOKEN=$ACCESS_TOKEN"
-       echo "Using REALM=$REALM"
+        echo "Using ACCESS_TOKEN=$ACCESS_TOKEN"
+        echo "Using REALM=$REALM"
 
-       command helm "$@"
-     }
+        command helm "$@"
+      }
 
-     echo "Waiting for cloud-init status..."
-     if ! /usr/bin/timeout 180 grep -q 'Cloud-init .*finished at' <(tail -f /var/log/cloud-init-output.log); then
-       echo "Instance setup did not complete after 3 minutes. Please try again.";
-     else
-       echo "Your instance is ready!";
-     fi
+      echo "Waiting for cloud-init status..."
+      if ! /usr/bin/timeout 180 grep -q 'Cloud-init .*finished at' <(tail -f /var/log/cloud-init-output.log); then
+        echo "Instance setup did not complete after 3 minutes. Please try again.";
+      else
+        echo "Your instance is ready!";
+      fi
 
-     if [ -e ~/.instance ]; then
-       INSTANCE=$(cat ~/.instance)
-     fi
-     if [ -z ${INSTANCE+x} ]; then
-       if curl -s -m 3 http://169.254.169.254/latest/dynamic/instance-identity/document | grep -q availabilityZone ; then
-         # on AWS, grab instance id and use that
-         #AWSTOKEN=$(curl -qs -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
-         #INSTANCE=$(curl -qs -H "X-aws-ec2-metadata-token: $AWSTOKEN" http://169.254.169.254/latest/meta-data/instance-id)
-         INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)-ec2
-         # Do two seds to edit the files for persistent hostname change:
-         sudo sed -i "s/127.0.0.1.*/127.0.0.1 $INSTANCE.local $INSTANCE localhost/" /etc/hosts
-         sudo hostnamectl set-hostname $INSTANCE
-         # Set color prompt
-         export PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\$INSTANCE\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
-        else
-         # not AWS, use hostname set via multipass OR create own id here
-         # INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)
-         INSTANCE=$(hostname)
-       fi
-       echo $INSTANCE > ~/.instance
-     fi
-     export INSTANCE
-     sed -i 's/\[HOSTNAME\]/'"$INSTANCE"'/' /home/ubuntu/workshop/k3s/values.yaml
-   append: true
+      if [ -e ~/.instance ]; then
+        INSTANCE=$(cat ~/.instance)
+      fi
+      if [ -z ${INSTANCE+x} ]; then
+        if curl -s -m 3 http://169.254.169.254/latest/dynamic/instance-identity/document | grep -q availabilityZone ; then
+          # on AWS, grab instance id and use that
+          #AWSTOKEN=$(curl -qs -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+          #INSTANCE=$(curl -qs -H "X-aws-ec2-metadata-token: $AWSTOKEN" http://169.254.169.254/latest/meta-data/instance-id)
+          INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)-ec2
+          # Do two seds to edit the files for persistent hostname change:
+          sudo sed -i "s/127.0.0.1.*/127.0.0.1 $INSTANCE.local $INSTANCE localhost/" /etc/hosts
+          sudo hostnamectl set-hostname $INSTANCE
+          # Set color prompt
+          export PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\$INSTANCE\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+          else
+          # not AWS, use hostname set via multipass OR create own id here
+          # INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)
+          INSTANCE=$(hostname)
+        fi
+        echo $INSTANCE > ~/.instance
+      fi
+      export INSTANCE
+      sed -i 's/\[HOSTNAME\]/'"$INSTANCE"'/' /home/ubuntu/workshop/k3s/values.yaml
+    append: true
 
 runcmd:
- # Install K3s
- - curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.17.5+k3s1 K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server" sh -s -
- - chmod 644 /etc/rancher/k3s/k3s.yaml
- # Download Workshop
- - export WSVERSION=1.33
- - 'export WSARCHIVE=$([ "$WSVERSION" = "master" ] && echo "master" || echo "v$WSVERSION")'
- - curl -s -OL https://github.com/signalfx/observability-workshop/archive/$WSARCHIVE.zip
- - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
- - mv /home/ubuntu/observability-workshop-$WSVERSION /home/ubuntu/workshop
- # Download SignalFx Jumpstart
- - curl -s -L https://github.com/signalfx/signalfx-jumpstart/archive/master.zip -o jumpstart.zip
- - unzip -qq jumpstart.zip -d /home/ubuntu/
- - mv /home/ubuntu/signalfx-jumpstart-master /home/ubuntu/signalfx-jumpstart
- # Install Helm
- - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
- # Install K9s (Kubernetes UI)
- - curl -s -OL https://github.com/derailed/k9s/releases/download/v0.21.4/k9s_Linux_x86_64.tar.gz
- - tar xfz k9s_Linux_x86_64.tar.gz
- - mv k9s /usr/local/bin/
- # Configure motd
- - curl -s https://raw.githubusercontent.com/signalfx/observability-workshop/master/etc/motd -o /etc/motd
- - chmod -x /etc/update-motd.d/*
- # Install AWS CLI
- - curl -s https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip
- - unzip -qq awscliv2.zip
- - ./aws/install
- # Install eksctl for AWS/EKS
- - curl -s --silent --location https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz | tar xz -C /tmp
- - mv /tmp/eksctl /usr/local/bin/
- # Install Terraform
- - curl -s -OL https://releases.hashicorp.com/terraform/0.12.29/terraform_0.12.29_linux_amd64.zip
- - unzip -qq terraform_0.12.29_linux_amd64.zip
- - mv terraform /usr/local/bin/
- # Set correct permissions on ubuntu user home directory
- - chown -R ubuntu:ubuntu /home/ubuntu
- # fix shellinabox port and ssl then restartß
+  # Install K3s
+  - curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.17.5+k3s1 K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server" sh -s -
+  - chmod 644 /etc/rancher/k3s/k3s.yaml
+  # Download Workshop
+  - export WSVERSION=1.33
+  - 'export WSARCHIVE=$([ "$WSVERSION" = "master" ] && echo "master" || echo "v$WSVERSION")'
+  - curl -s -OL https://github.com/signalfx/observability-workshop/archive/$WSARCHIVE.zip
+  - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
+  - mv /home/ubuntu/observability-workshop-$WSVERSION /home/ubuntu/workshop
+  # Download SignalFx Jumpstart
+  - curl -s -L https://github.com/signalfx/signalfx-jumpstart/archive/master.zip -o jumpstart.zip
+  - unzip -qq jumpstart.zip -d /home/ubuntu/
+  - mv /home/ubuntu/signalfx-jumpstart-master /home/ubuntu/signalfx-jumpstart
+  # Install Helm
+  - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+  # Install K9s (Kubernetes UI)
+  - curl -s -OL https://github.com/derailed/k9s/releases/download/v0.21.4/k9s_Linux_x86_64.tar.gz
+  - tar xfz k9s_Linux_x86_64.tar.gz
+  - mv k9s /usr/local/bin/
+  # Configure motd
+  - curl -s https://raw.githubusercontent.com/signalfx/observability-workshop/master/etc/motd -o /etc/motd
+  - chmod -x /etc/update-motd.d/*
+  # Install AWS CLI
+  - curl -s https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip
+  - unzip -qq awscliv2.zip
+  - ./aws/install
+  # Install eksctl for AWS/EKS
+  - curl -s --silent --location https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz | tar xz -C /tmp
+  - mv /tmp/eksctl /usr/local/bin/
+  # Install Terraform
+  - curl -s -OL https://releases.hashicorp.com/terraform/0.12.29/terraform_0.12.29_linux_amd64.zip
+  - unzip -qq terraform_0.12.29_linux_amd64.zip
+  - mv terraform /usr/local/bin/
+  # Set correct permissions on ubuntu user home directory
+  - chown -R ubuntu:ubuntu /home/ubuntu
+  # fix shellinabox port and ssl then restartß
 
- - sed -i 's/SHELLINABOX_PORT=4200/SHELLINABOX_PORT=8080/'  /etc/default/shellinabox
- - sed -i "s/\"--no-beep\"/\"--no-beep --disable-ssl\"/" /etc/default/shellinabox
- - sudo service shellinabox restart
+  - sed -i 's/SHELLINABOX_PORT=4200/SHELLINABOX_PORT=8080/'  /etc/default/shellinabox
+  - sed -i "s/\"--no-beep\"/\"--no-beep --disable-ssl\"/" /etc/default/shellinabox
+  - sudo service shellinabox restart
