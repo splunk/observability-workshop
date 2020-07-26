@@ -87,7 +87,7 @@ runcmd:
  # Install Helm
  - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
  # Install K9s (Kubernetes UI)
- - curl -s -OL https://github.com/derailed/k9s/releases/download/v0.20.5/k9s_Linux_x86_64.tar.gz
+ - curl -s -OL https://github.com/derailed/k9s/releases/download/v0.21.4/k9s_Linux_x86_64.tar.gz
  - tar xfz k9s_Linux_x86_64.tar.gz
  - mv k9s /usr/local/bin/
  # Configure motd
@@ -101,8 +101,8 @@ runcmd:
  - curl -s --silent --location https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz | tar xz -C /tmp
  - mv /tmp/eksctl /usr/local/bin/
  # Install Terraform
- - curl -s -OL https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip
- - unzip -qq terraform_0.12.28_linux_amd64.zip
+ - curl -s -OL https://releases.hashicorp.com/terraform/0.12.29/terraform_0.12.29_linux_amd64.zip
+ - unzip -qq terraform_0.12.29_linux_amd64.zip
  - mv terraform /usr/local/bin/
  # Set correct permissions on ubuntu user home directory
  - chown -R ubuntu:ubuntu /home/ubuntu
