@@ -7,7 +7,7 @@ chpasswd:
 #package_update: true
 
 apt:
-  sources_list: | 
+  sources_list: |
     deb mirror://mirrors.ubuntu.com/mirrors.txt bionic main restricted universe multiverse
     deb mirror://mirrors.ubuntu.com/mirrors.txt bionic-backports main restricted universe multiverse
     deb mirror://mirrors.ubuntu.com/mirrors.txt bionic-updates main restricted universe multiverse
@@ -19,15 +19,15 @@ packages:
   - siege
   - shellinabox
 
-write_files:  
+write_files:
   - path: /etc/environment
     permissions: 0644
-    content: | 
+    content: |
       KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
-    append: true  
+    append: true
 
   - path: /etc/skel/.profile
-    content: | 
+    content: |
       helm() {
         if [ -z ${ACCESS_TOKEN+x} ]; then echo "ACCESS_TOKEN is unset. Please export ACCESS_TOKEN=YOURTOKEN"; return; fi
         if [ -z ${REALM+x} ]; then echo "REALM is unset. Please export REALM=YOURREALM"; return; fi
