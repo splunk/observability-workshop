@@ -38,6 +38,14 @@ write_files:
         command helm "$@"
       }
 
+      terraform() {
+        if [ -z ${ACCESS_TOKEN+x} ]; then echo "ACCESS_TOKEN is unset. Please export ACCESS_TOKEN=YOURTOKEN"; return; fi
+        if [ -z ${REALM+x} ]; then echo "REALM is unset. Please export REALM=YOURREALM"; return; fi
+
+        echo "Using ACCESS_TOKEN=$ACCESS_TOKEN"
+        echo "Using REALM=$REALM"
+      }
+
       echo "Waiting for cloud-init status..."
       if ! /usr/bin/timeout 180 grep -q 'Cloud-init .*finished at' <(tail -f /var/log/cloud-init-output.log); then
         echo "Instance setup did not complete after 3 minutes. Please try again.";

@@ -22,7 +22,7 @@ The environment variables needed should already be set from [Deploy the Smart Ag
 === "Shell Command"
 
     ```
-    export ACCESS_TOKEN={==SIGNALFX_ACCESS_TOKEN==}
+    export ACCESS_TOKEN={==ACCESS TOKEN, from organisation page==}
     export REALM={==REALM e.g. us1==}
     export PREFIX=[$(cat /dev/urandom | base64 | tr -dc 'A-Z' | head -c4)]
     ```
