@@ -45,13 +45,40 @@ At this point you are ready to continue and [start the workshop](https://signalf
 
 ## 3. Connect to your instance using Putty (Windows users only)
 
+If you do not have ssh preinstalled or if you are on a Windows system,  the best option is to install putty, you can find [here](https://www.putty.org/){: target=_blank}.
+
+If you **cannot** install putty, please go to section 4 Connect to your instance using a browser. This may offer an alternative way of [access the workshop](../connect-info/#4-connect-to-your-instance-using-a-browser).
+
+Find the putty app, (on your desktop or your app library) and click on it to start it.
+
+![putty-1](../images/intro/putty-desktop.png){: .zoom}
+
+This will bring up the setting page, here you will enter the ip address you found in the spreadsheet in section 1.
+In the example below it is **3.127.80.222**
+You can save you settings by giving it a name and press **Save**  (in the example we gave it a name workshop)  
+
+![putty-2](../images/intro/putty-settings.png){: .zoom}
+
+To log in to you instance click on the **Open** button as shown above.
+If this is teh first time connecting to your cloud workshop instance, you may be  presented with a security dialog, please hit  **Yes**  to continue
+
+![putty-3](../images/intro/putty-security.png){: .zoom}
+
+This will bring you to the login screen, the user name for the login is **ubuntu**, and the password is the password you found in the spreadsheet in section 1.
+
+Once you are connected successfully you should see a screen similar to the one below:
+
+![putty-4](../images/intro/putty-loggedin.png){: .zoom}
+
+At this point you are ready to continue and [start the workshop](https://signalfx.github.io/observability-workshop/latest/smartagent/k3s/)
+
 ---
 
 ## 4. Connect to your instance using your web browser
 
 If you are restricted and you cannot instal an ssh application like putty on your system,  you may be able to connect to the workshop instance by using a browser.   This assumes that access to port 6501 is nor restricted by your companies fire wall.
 
-Open you favorite modern browser and type HTTP//X.X.X.X:6501  (where X.X.X.X is the ip address you found in section 1.)
+Open you favorite modern browser and type HTTP//X.X.X.X:6501  (where X.X.X.X is the ip address you found in the spreadsheet used in section 1.)
 
 ![http-6501](../images/intro/shellinabox-url.png){: .zoom}
 
@@ -59,7 +86,7 @@ Once you have connected correctly  you should receive an login in prompt similar
 
 ![http-connect](../images/intro/shellinabox-connect.png){: .zoom}
 
-To connect please enter the user name **ubuntu** followed by the password found in section 1.
+To connect please enter the user name **ubuntu** followed by the password found in the spreadsheet used in section 1.
 This should result in the welcome page of the workshop as show below:
 
 ![web login](../images/intro/shellinabox-login.png){: .zoom}
@@ -70,14 +97,14 @@ Due to additional security requirements of browser technology please read the ne
 
 ## 5. Use of copy and paste when connected via a browser
 
-Unlike whe you are using regular ssh,  copy and page as is used during the workshop does require a few extra steps to complete when using a browser to connect.
+Unlike when you are using regular ssh, *copy and paste* as is used during the workshop, does require a few extra steps to complete when using a browser to connect.
 
 !!! Note
-    The reason for this is that regular paste option  cannot accept data from outside the browser, due to cross browser restrictions)
+    The reason for this is that regular paste option cannot accept data from outside the browser, due to cross browser restrictions)
 
-When the workshop ask you to type or copy some instructions please do the following:
+When the workshop ask you to type or copy some instructions in your terminal, please do the following:
 
-*Copy the instruction as normal, but when  ready to paste it in the web terminal, choose **Paste from browser**  as show below:*
+*Copy the instruction as normal, but when ready to paste it in the web terminal, choose **Paste from browser** as show below:*
 
 ![web paste 1](../images/intro/shellinabox-paste-browser.png){: .zoom}
 
