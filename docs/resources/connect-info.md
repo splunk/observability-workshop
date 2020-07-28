@@ -1,38 +1,41 @@
 # How to connect to your workshop environment
 
-1. How to retrieve the IP address of the EC@ instance assigned to you.
-2. Connect to your instance using ssh, putty or browser.
-3. Verify Your connection to your AWS cloud instance.
+1. How to retrieve the IP address of the AWS/EC2 instance assigned to you.
+2. Connect to your instance using SSH, Putty[^1] or your web browser.
+3. Verify Your connection to your AWS/EC2 cloud instance.
 
 ---
 
-## 1. How to retrieve the IP address of the EC2 instance assigned to you
+## 1. How to retrieve the IP address of the AWS/EC2 instance assigned to you
 
-In preparation for the workshop, signalFX has prepared a Linux Instance on AWS for you.
-To get access to the instance that you will be using in the workshop please visit the URl provided by the workshop leader and search for your name by entering your first name as you have provided it with your registration for the workshop.
+In preparation for the workshop, SignalFx has prepared an Ubuntu Linux instance in AWS/EC2.
+
+To get access to the instance that you will be using in the workshop please visit the URL provided by the workshop leader.
+
+Search for your AWS/EC2 instance by entering your first name as provided during registration for this workshop.
 
 ![attendee spreadsheet](../images/intro/search-spreadsheet.png){: .zoom}
 
-This should give you a list as shown above,  it will provide you with the  ip address, the SSH command and the password to use to connect to the workshop instance.
+The search result will provide you with the IP address, the SSH command and the password to use to connect to the workshop instance.
 
 !!! important
-    Please make a note of the IP address as you will need this during the workshop
+    Please make a note of the IP address as you will need this during the workshop.
 
-## 2. Connect to your instance using regular ssh
+## 2. Connect to your instance using SSH
 
-Most attendees should be able to connect to the workshop by using ssh directly.
-ssh is a commonly used tool to connect to cloud instances.
-To use ssh, open a command prompt on your system and type ssh ubuntu@x.x.x.x  (Where you replace x.x.x.x with the Ip address found in step 1. In this case below ssh ubuntu@3.127.80.222)
+Most attendees will be able to connect to the workshop by using SSH from their Mac or Linux device.
+
+To use SSH, open a terminal on your system and type `ssh ubuntu@x.x.x.x` (replacing x.x.x.x with the IP address found in Step #1. In the example above this is `ssh ubuntu@3.127.80.222`)
 
 ![ssh login](../images/intro/ssh-1.png){: .zoom}
 
-Due to ssh security it is possible that you need to a on time confirmation that you wish to connect to this cloud instance,, please type **yes**
+When prompted **Are you sure you want to continue connecting (yes/no/[fingerprint])?** please type **yes**
 
 ![ssh password](../images/intro/ssh-2.png){: .zoom}
 
-You then will be presented with a request for a password, this is the password found in the spreadsheet in section 1.
+When prompted to enter a password please use the once provided in the spreadsheet in Step #1.
 
-Once you have successfully logged in you should be represented with a screen similar to the one below.
+Upon successful login you will be represented with the Splunk logo and Linux prompt.
 
 ![ssh connected](../images/intro/ssh-3.png){: .zoom}
 
@@ -40,11 +43,11 @@ At this point you are ready to continue and [start the workshop](https://signalf
 
 ---
 
-## 3. Connect to your instance using putty (Windows)
+## 3. Connect to your instance using Putty (Windows users only)
 
 ---
 
-## 4. Connect to your instance using a browser
+## 4. Connect to your instance using your web browser
 
 If you are restricted and you cannot instal an ssh application like putty on your system,  you may be able to connect to the workshop instance by using a browser.   This assumes that access to port 6501 is nor restricted by your companies fire wall.
 
@@ -65,7 +68,7 @@ Due to additional security requirements of browser technology please read the ne
 
 ---
 
-## 5. Use of copy and page when connected via a browser
+## 5. Use of copy and paste when connected via a browser
 
 Unlike whe you are using regular ssh,  copy and page as is used during the workshop does require a few extra steps to complete when using a browser to connect.
 
@@ -90,3 +93,5 @@ Simply hit the connect button and you will be reconnected and you will be able t
  ![web reconnect](../images/intro/shellinabox-reconnect.png){: .zoom}
 
 At this point you are ready to continue and [start the workshop](https://signalfx.github.io/observability-workshop/latest/smartagent/k3s/)
+
+[^1]: [Download Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/)
