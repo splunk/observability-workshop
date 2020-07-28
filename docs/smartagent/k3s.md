@@ -30,8 +30,8 @@ Create the following variables to use in the proceeding helm install command, re
 === "Shell Command"
 
     ```
-    export ACCESS_TOKEN={==ACCESS TOKEN, from organisation page==}
-    export REALM={==REALM e.g. us1==}
+    export ACCESS_TOKEN={==Replace with your ACCESS_TOKEN==}
+    export REALM={==Replace with your REALM==}
     ```
 
 Install the agent using the SignalFx Helm chart. Firstly, add the SignalFx Helm chart repository to Helm.

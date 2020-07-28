@@ -114,3 +114,9 @@ header.md-header {
     --md-primary-fg-color--light: #E20082;
     --md-primary-fg-color--dark: #E20082;
 }
+
+[data-md-color-scheme="slate"] {
+    --md-code-bg-color: #F5F5F5;
+    --md-code-fg-color: #333;
+}
+  
