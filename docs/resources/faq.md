@@ -40,8 +40,7 @@ Because microservices based architectures are distributed, transactions in the s
 
 ## Q: What is the Sidecar Pattern
 
-A: The sidecar pattern is a design pattern for having related services contected directly by infrastructure. Related services can be adding functionality or supporting the application logic they are connected to. It is used heavily as a method for deploying agents asscoiated with the management plan along with the application service they support. 
-
-In Observability the sidecare serices are the application logic, and the agent collecting data from that service. The setup requires two containers one with the application service, and one running the agent. The containers share a pod, and resources such as disk, network, and namespace. They are also deployed together and share the same lifecycle.
+A: The sidecar pattern is a design pattern for having related services contected directly by infrastructure. Related services can be adding functionality or supporting the application logic they are connected to. It is used heavily as a method for deploying agents associated with the management plan along with the application service they support. 
+In Observability the sidecar services are the application logic, and the agent collecting data from that service. The setup requires two containers one with the application service, and one running the agent. The containers share a pod, and resources such as disk, network, and namespace. They are also deployed together and share the same lifecycle.
 
 **SignalFx**{: .label-button .signalfx}
