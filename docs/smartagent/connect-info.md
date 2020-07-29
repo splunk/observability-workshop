@@ -2,11 +2,11 @@
 
 1. How to retrieve the IP address of the AWS/EC2 instance assigned to you.
 2. Connect to your instance using SSH, Putty[^1] or your web browser.
-3. Verify Your connection to your AWS/EC2 cloud instance.
+3. Verify your connection to your AWS/EC2 cloud instance.
 
 ---
 
-## 1. How to retrieve the IP address of the AWS/EC2 instance assigned to you
+## Find your AWS/EC2 IP Address
 
 In preparation for the workshop, SignalFx has prepared an Ubuntu Linux instance in AWS/EC2.
 
@@ -21,7 +21,7 @@ The search result will provide you with the IP address, the SSH command and the 
 !!! important
     Please make a note of the IP address as you will need this during the workshop.
 
-## 2. Connect to your instance using SSH
+## SSH (Mac OS/Linux)
 
 Most attendees will be able to connect to the workshop by using SSH from their Mac or Linux device.
 
@@ -43,7 +43,7 @@ At this point you are ready to continue and [start the workshop](https://signalf
 
 ---
 
-## 3. Connect to your instance using Putty (Windows users only)
+## Putty (Windows users only)
 
 If you do not have ssh preinstalled or if you are on a Windows system,  the best option is to install putty, you can find [here](https://www.putty.org/){: target=_blank}.
 
@@ -74,7 +74,7 @@ At this point you are ready to continue and [start the workshop](https://signalf
 
 ---
 
-## 4. Connect to your instance using your web browser
+## Web Browser (All)
 
 If you are restricted and you cannot instal an ssh application like putty on your system,  you may be able to connect to the workshop instance by using a browser.   This assumes that access to port 6501 is nor restricted by your companies fire wall.
 
@@ -95,14 +95,11 @@ Due to additional security requirements of browser technology please read the ne
 
 ---
 
-## 5. Use of copy and paste when connected via a browser
+### Copy & Paste in browser
 
-Unlike when you are using regular ssh, *copy and paste* as is used during the workshop, does require a few extra steps to complete when using a browser to connect.
+Unlike when you are using regular SSH, *copy and paste* does require a few extra steps to complete when using a browser session. This is due to cross browser restrictions.
 
-!!! Note
-    The reason for this is that regular paste option cannot accept data from outside the browser, due to cross browser restrictions)
-
-When the workshop ask you to type or copy some instructions in your terminal, please do the following:
+When the workshop ask you to copy instructions into your terminal, please do the following:
 
 *Copy the instruction as normal, but when ready to paste it in the web terminal, choose **Paste from browser** as show below:*
 
@@ -114,8 +111,10 @@ This will open a dialog box asking for the text to be pasted into the web termin
 
 Paste the text in the text box as show, then press **OK** to complete the copy and paste process.
 
-Unlike regular ssh connection, the web browser has a 60 second time out, and  you will be disconnected, and a **Connect** button will be show in the center of the web terminal.
-Simply hit the connect button and you will be reconnected and you will be able to continue
+!!! note
+    Unlike regular SSH connection, the web browser has a 60 second time out, and you will be disconnected, and a **Connect** button will be shown in the center of the web terminal.
+
+    Simply click the **Connect** button and you will be reconnected and will be able to continue.
 
  ![web reconnect](../images/intro/shellinabox-reconnect.png){: .zoom}
 
