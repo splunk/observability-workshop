@@ -99,32 +99,62 @@ Let's validate this in your shell as well:
     nginx-7554f6c668-mjtsh   1/1     Running   0          65s
     ```
 
-Run `kubectl get svc` and make note of the `CLUSTER-IP` address that is allocated to the NGINX service.
+Next create an environment variable containing the `CLUSTER_IP` of NGINX:
 
 === "Shell Command"
 
-    ```text
-    kubectl get svc
+    ```bash
+    CLUSTER_IP=$(kubectl get svc nginx -n default -o jsonpath='{.spec.clusterIP}')
+    ```
+
+Confirm the environment variable has been set correctly:
+
+=== "Shell Command"
+
+    ```bash
+    curl ${CLUSTER_IP}
     ```
 
 === "Output"
 
-    ```text
-    NAME         TYPE         CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
-    kubernetes   ClusterIP    10.96.0.1      <none>        443/TCP        9m3s
-    nginx        NodePort    {==10.110.36.62==}    <none>        80:30995/TCP   8s
+    ```html
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>Welcome to nginx!</title>
+    <style>
+        body {
+            width: 35em;
+            margin: 0 auto;
+            font-family: Tahoma, Verdana, Arial, sans-serif;
+        }
+    </style>
+    </head>
+    <body>
+    <h1>Welcome to nginx!</h1>
+    <p>If you see this page, the nginx web server is successfully installed and
+    working. Further configuration is required.</p>
+
+    <p>For online documentation and support please refer to
+    <a href="http://nginx.org/">nginx.org</a>.<br/>
+    Commercial support is available at
+    <a href="http://nginx.com/">nginx.com</a>.</p>
+
+    <p><em>Thank you for using nginx.</em></p>
+    </body>
+    </html>
     ```
 
 ---
 
 ## 3. Run Siege Benchmark
 
-Using the NGINX `{==CLUSTER-IP==}` address reported from above, use the Siege[^2] Load Testing command to generate some traffic to light up your SignalFx NGINX dashboards. Run this a couple of times!
+Use the Siege[^2] Load Testing command to generate some traffic to light up your SignalFx NGINX dashboards. Run this a couple of times!
 
 === "Shell Command"
 
-    ```text
-    siege -b -r 50 -c 20 --no-parser http://{==CLUSTER-IP==}/ 1>/dev/null
+    ```base
+    siege -b -r 50 -c 20 --no-parser http://${CLUSTER_IP}/ 1>/dev/null
     ```
 
 === "Output"
