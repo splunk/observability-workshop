@@ -116,7 +116,7 @@ To find the hostname, on the AWS/EC2 instance run the following command:
 === "Example Output"
 
     ```text
-    Your µAPM environment is: whul-ec2-apm-env
+    Your µAPM environment is: whul-apm-env
     ```
 ---
 
