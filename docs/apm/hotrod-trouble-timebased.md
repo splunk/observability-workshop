@@ -48,7 +48,7 @@ instance and run the following command:
 === "Example AWS/EC2 Output"
 
     ```text
-    Your µAPM environment is: whul-ec2-apm-env
+    Your µAPM environment is: whul-apm-env
 
     ```
 
