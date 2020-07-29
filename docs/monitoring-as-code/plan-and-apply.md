@@ -7,7 +7,7 @@ Review the execution plan.
 === "Shell Command"
 
     ``` bash
-    terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$PREFIX"
+    terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$(hostname)"
     ```
 
 If the plan executes successfully, we can go ahead and apply:
@@ -19,15 +19,15 @@ If the plan executes successfully, we can go ahead and apply:
 === "Shell Command"
 
     ``` bash
-    terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$PREFIX"
+    terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=$(hostname)"
     ```
 
-Validate that the detectors were created, under the _**ALERTS → Detectors**_. They will be prefixed by a unique string that was initialized in the setup. To check the prefix value run:
+Validate that the detectors were created, under the _**ALERTS → Detectors**_. They will be prefixed by the hostname of your instance. To check the prefix value run:
 
 === "Shell Command"
 
     ```bash
-    echo ${PREFIX}
+    echo ${hostname}
     ```
 
  You will see a list of the new detectors and you can search for the prefix that was output from above.
