@@ -108,10 +108,6 @@ header.md-header {
     font-weight: 700;
 }
 
-.md-typeset code, .md-typeset pre, .md-typeset kbd {
-    color: blue;
-}
-
 :root {
     --md-primary-fg-color: #E20082;
     --md-accent-fg-color: #E20082;
