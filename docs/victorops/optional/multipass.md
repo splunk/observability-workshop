@@ -16,7 +16,7 @@ Users running macOS can install it using [Homebrew](https://brew.sh/){: target=_
 
 === "Shell Command"
 
-    ```bash
+    ```text
     brew cask install multipass
     ```
 ---
@@ -29,7 +29,7 @@ The first step is to pull down the `cloud-init` file to launch a pre-configured 
 
 === "Shell Command"
 
-    ```bash
+    ```text
     WSVERSION=1.35
     curl -s \
     https://raw.githubusercontent.com/signalfx/observability-workshop/v$WSVERSION/cloud-init/victorops.yaml \
@@ -44,7 +44,7 @@ The first command will generate a random unique 4 character string. This will pr
 
 === "Shell Command"
 
-    ``` bash
+    ```text
     export INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)
     multipass launch \
     --name ${INSTANCE} \
@@ -53,7 +53,7 @@ The first command will generate a random unique 4 character string. This will pr
 
 === "Example Output"
 
-    ``` bash
+    ```text
     Launched: zevn
     ```
 
@@ -65,19 +65,19 @@ Once the VM has deployed successfully, in a **new** shell session connect to the
 
 === "Shell Command"
 
-    ``` bash
+    ```text
     multipass shell ${INSTANCE}
     ```
 
 === "Example Input"
 
-    ``` bash
+    ```text
     multipass shell zevn
     ```
 
 === "Example Output"
 
-    ``` bash
+    ```text
     Last login: Tue Jun  9 15:10:19 2020 from 192.168.64.1
     ubuntu@zevn:~$
     ```
@@ -128,7 +128,7 @@ Once the agent has completed installing run the following command to check the s
 
 === "Shell Command"
 
-    ```bash
+    ```text
     sudo signalfx-agent status
     ```
 

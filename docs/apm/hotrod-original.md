@@ -31,7 +31,7 @@ To deploy the Hot R.O.D. application into K3s apply the deployment.
   
 === "Shell Command"
 
-    ```bash
+    ```text
     cd ~/workshop
     kubectl apply -f apm/hotrod/k8s/deployment.yaml 
     ```
@@ -47,7 +47,7 @@ To ensure the Hot R.O.D. application is running:
 
 === "Shell Command"
 
-    ```bash
+    ```text
     kubectl get pods
     ```
 
@@ -72,7 +72,7 @@ In order to view the application in your web browser we need to find the `LoadBa
 
 === "Shell Command"
 
-    ```bash
+    ```text
     kubectl get svc
     ```
 
@@ -112,7 +112,7 @@ Then run the following command(s) to create load on the service:
 
 === "Shell Command"
 
-    ```bash
+    ```text
     siege -r2 -c20 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
     ```
 
@@ -123,7 +123,7 @@ Create some errors with an invalid customer number.
 
 === "Shell Command"
 
-    ```bash
+    ```text
     siege -r1 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=391&nonse=0.17041229755366172"
     ```
 
@@ -149,7 +149,7 @@ To find the hostname, check the prompt of you instance, please go to your instan
 
 === "Shell Command"
 
-    ```bash
+    ```text
     echo "Your µAPM environment is: $(hostname)-apm-env"
     ```
 
@@ -171,7 +171,7 @@ To load the dashboard with more data run the following command a few times to cr
 
 === "Shell Command"
 
-    ```bash
+    ```text
     siege -r2 -c20 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
     ```
 

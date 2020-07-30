@@ -107,7 +107,7 @@ You can use `multipass list` to get the names of any current running instances:
 
 === "Shell Command"
 
-    ```bash
+    ```text
     multipass list
     ```
 
@@ -122,7 +122,7 @@ If the `INSTANCE` environment variable is still set you can use this to delete t
 
 === "Shell Command"
 
-    ```bash
+    ```text
     echo ${INSTANCE}
     ```
 
@@ -132,6 +132,6 @@ Run the following command to delete the Multipass instance:
 
 === "Shell Command"
 
-    ```bash
+    ```text
     multipass delete --purge ${INSTANCE}
     ```

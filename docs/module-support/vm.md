@@ -9,7 +9,7 @@ Use `multipass` to create a vanilla Ubuntu VM and shell into it. You can also us
 
 === "Shell Command"
 
-    ```bash hl_lines="1 2"
+    ```text hl_lines="1 2"
     multipass launch [INITIALS]-vm
     multipass shell [INITIALs]-vm
     ```
@@ -30,7 +30,7 @@ SignalFx maintains a shell script to install on supported distributions. Copy th
 
 === "Shell Command"
 
-    ```bash
+    ```text
     curl -sSL https://dl.signalfx.com/signalfx-agent.sh > /tmp/signalfx-agent.sh
     sudo sh /tmp/signalfx-agent.sh --realm $REALM -- $ACCESS_TOKEN
     ```

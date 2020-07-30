@@ -36,7 +36,7 @@ Regardless if you are running this lab locally or if you are going to create you
 
 === "Linux/Mac OS"
 
-    ```bash
+    ```text
     WSVERSION=1.35
     mkdir cloud-init
     curl -s \
@@ -70,7 +70,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
     For [µAPM](../../apm/) module we use the Hot R.O.D[^5] application to emit Traces/Spans for SignalFx µAPM. Launch your instance with:
 
 
-    ```bash
+    ```text
     multipass launch \
     --name ${INSTANCE} \
     --cloud-init cloud-init/k3s.yaml
@@ -80,7 +80,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     === "Shell Command"
 
-        ```bash
+        ```text
         multipass shell ${INSTANCE}
         ```
 
@@ -123,7 +123,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     === "Shell Command"
 
-        ```bash
+        ```text
         cd ec2
         terraform init -upgrade
         ```
@@ -171,7 +171,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     === "Shell Command"
 
-        ```bash
+        ```text
         export AWS_ACCESS_KEY_ID="{==YOUR_AWS_ACCESS_KEY_ID==}"
         export AWS_SECRET_ACCESS_KEY="{==YOUR_AWS_SECRET_ACCESS_KEY==}"
         echo $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
@@ -195,7 +195,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     === "Shell Command"
 
-        ```bash
+        ```text
         terraform plan -var="aws_instance_count=1" -var="instance_type=1" -out=observability-plan.out
         ```
 
@@ -243,7 +243,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     === "Shell Command"
 
-        ```bash
+        ```text
         terraform apply "observability-plan.out"
         ```
 
@@ -284,7 +284,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     === "Shell Command"
 
-        ```bash hl_lines="1"
+        ```text hl_lines="1"
         ssh ubuntu@YOUR IP ADDRESS
         ```
 
@@ -300,7 +300,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     === "Shell Command"
 
-        ```bash hl_lines="1"
+        ```text hl_lines="1"
         Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
         ```
 
@@ -315,7 +315,7 @@ If you are using your own AWS/EC2 instance please skip to [3. Launch Instance](.
 
     === "Shell Command"
 
-        ```bash hl_lines="1"
+        ```text hl_lines="1"
         ubuntu@YOUR IP ADDRESS's password: PASSWORD
         ```
 

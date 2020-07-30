@@ -12,7 +12,7 @@ To get your Hostname from within the shell session connected to your VM run the 
 
 === "Shell Command"
 
-    ```bash
+    ```text
     echo ${HOSTNAME}
     ```
 

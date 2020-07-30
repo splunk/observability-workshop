@@ -6,7 +6,7 @@ Review the execution plan.
 
 === "Shell Command"
 
-    ``` bash
+    ```text
     terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
     ```
 
@@ -18,7 +18,7 @@ If the plan executes successfully, we can go ahead and apply:
 
 === "Shell Command"
 
-    ``` bash
+    ```text
     terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
     ```
 
@@ -26,7 +26,7 @@ Validate that the detectors were created, under the _**ALERTS → Detectors**_. 
 
 === "Shell Command"
 
-    ```bash
+    ```text
     echo ${hostname}
     ```
 
@@ -40,7 +40,7 @@ Destroy all Detectors and Dashboards that were previously applied.
 
 === "Shell Command"
 
-    ```bash
+    ```text
     terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
     ```
 

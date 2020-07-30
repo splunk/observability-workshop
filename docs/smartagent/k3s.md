@@ -65,7 +65,7 @@ Ensure the status is reported as Running before continuing.
 
 === "Shell Command"
 
-    ``` bash
+    ```text
     kubectl get pods
     ```
 
@@ -82,7 +82,7 @@ Use the label set by the `helm` install to tail logs (You will need to press ++c
 
 === "Shell Command"
 
-    ```bash
+    ```text
     kubectl logs -l app=signalfx-agent -f
     ```
 
@@ -137,7 +137,7 @@ Validate that your cluster is discovered and reporting by finding your cluster (
 
 === "Shell Command"
   
-    ```bash
+    ```text
     echo $(hostname)-k3s-cluster
     ```
 

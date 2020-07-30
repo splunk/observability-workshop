@@ -29,7 +29,7 @@ In the Multipass or AWS/EC2 shell session and change into the `nginx` directory:
 
 === "Shell Command"
 
-    ```bash
+    ```text
     cd ~/workshop/k3s/nginx
     ```
   
@@ -103,7 +103,7 @@ Next create an environment variable containing the `CLUSTER_IP` of NGINX:
 
 === "Shell Command"
 
-    ```bash
+    ```text
     CLUSTER_IP=$(kubectl get svc nginx -n default -o jsonpath='{.spec.clusterIP}')
     ```
 
@@ -111,7 +111,7 @@ Confirm the environment variable has been set correctly:
 
 === "Shell Command"
 
-    ```bash
+    ```text
     curl ${CLUSTER_IP}
     ```
 

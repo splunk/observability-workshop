@@ -30,7 +30,7 @@ To deploy the Sock Shop application into K3s apply the deployment
 
 === "Shell Command"
 
-    ```bash
+    ```text
     cd ~/workshop/apm/sockshop
     kubectl create namespace sock-shop
     kubectl apply -f k8s/deployment.yaml
@@ -92,7 +92,7 @@ Sock Shop should be running in your cluster and exposes services via cluster IP 
 
 === "Shell Command"
 
-    ```bash
+    ```text
     export SOCKS_ENDPOINT=$(kubectl get svc front-end -n sock-shop -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
     ```
 
@@ -100,7 +100,7 @@ Then confirm the `SOCKS_ENDPOINT` environment variable has been set:
 
 === "Shell Command"
 
-    ```bash
+    ```text
     curl http://$SOCKS_ENDPOINT
     ```
 
@@ -124,7 +124,7 @@ To view the application in your web browser we need to find the LoadBalancer IP 
 
 === "Shell Command"
 
-    ```bash
+    ```text
     kubectl get svc -n sock-shop front-end
     ```
 
@@ -147,7 +147,7 @@ A load testing scenario is available for the Sock Shop application. To generate 
 
 === "Shell Command"
 
-    ```bash
+    ```text
     ./loadgen.sh -c 50 -r 3m
     ```
 
@@ -155,7 +155,7 @@ The parameter `-c` controls the amount of concurrent clients and `-r` the runtim
 
 === "Shell Command"
 
-    ```bash
+    ```text
     kubectl -n sock-shop logs -f jobs/loadgen
     ```
 
@@ -163,7 +163,7 @@ If you want to abort a load test, delete the job:
 
 === "Shell Command"
 
-    ```bash
+    ```text
     kubectl -n sock-shop delete jobs/loadgen
     ```
 
@@ -187,7 +187,7 @@ Let's stress the sock shop a bit. Increase the amount of clients running for the
 
 === "Shell Command"
 
-    ```bash
+    ```text
     ./loadgen.sh -c 1000 -a 100 -r 5m
     ```
 

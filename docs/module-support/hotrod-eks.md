@@ -122,7 +122,7 @@ Add the SignalFx Helm chart repository to Helm:
 
 === "Shell Command"
 
-    ```bash
+    ```text
     helm repo add signalfx https://dl.signalfx.com/helm-repo
     ```
 
@@ -199,7 +199,7 @@ To ensure the Hot R.O.D. application is running see examples below:
 
 === "Shell Command"
 
-    ```bash
+    ```text
     kubectl get pods
     ```
 
@@ -217,7 +217,7 @@ You then need find the IP address assigned to the Hot R.O.D. service:
 
 === "Shell Command"
 
-    ```bash
+    ```text
     kubectl get svc
     ```
 
@@ -251,7 +251,7 @@ You can view / exercise Hot R.O.D. yourself in a browser by opening the `EXTERNA
 
 === "Shell Command"
 
-    ```bash
+    ```text
     siege -r10 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=392&nonse=0.17041229755366172"
     ```
 
@@ -259,7 +259,7 @@ Create some errors with an invalid customer number
 
 === "Shell Command"
 
-    ```bash
+    ```text
     siege -r10 -c10 "http://$HOTROD_ENDPOINT/dispatch?customer=391&nonse=0.17041229755366172"
     ```
 

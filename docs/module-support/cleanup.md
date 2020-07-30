@@ -6,7 +6,7 @@
     
     Enter the following to delete and purge the Multipass instance:
 
-    ```bash
+    ```text
     multipass delete --purge ${INSTANCE}
     ```
 
@@ -16,7 +16,7 @@
     
     We will use Terraform to destroy the instance with the parameters you used in [Smart Agent](../../smartagent/prep/) module:
 
-    ```bash
+    ```text
     cd ~/workshop/ec2
     terraform destroy -var="aws_instance_count=1" -var="instance_type=1"
     ```

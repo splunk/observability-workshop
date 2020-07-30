@@ -13,7 +13,7 @@ Remaining in your Multipass or AWS/EC2 instance from the **Smart Agent** module,
 
 === "Shell Command"
 
-    ``` bash
+    ```text
     cd ~/signalfx-jumpstart
     ```
 
@@ -33,7 +33,7 @@ Initialize Terraform and upgrade to the latest version of the SignalFx Terraform
 
 === "Shell Command"
 
-    ```bash
+    ```text
     terraform init -upgrade
     ```
 

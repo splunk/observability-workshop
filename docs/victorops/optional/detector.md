@@ -36,7 +36,7 @@ Click the **Copy**{: .label-button .sfx-ui-button} button to copy it you your cl
 
 === "variables.txt"
 
-    ``` bash
+    ```text
     export ACCESS_TOKEN={==xxxx==}
     export REALM=
     export SFXVOPSID=
@@ -54,7 +54,7 @@ Copy it to the `REALM` line of your variables document.
 
 === "variables.txt"
 
-    ``` bash
+    ```text
     export ACCESS_TOKEN={==xxxx==}
     export REALM={==xxxx==}
     export SFXVOPSID=
@@ -72,7 +72,7 @@ Copy it to the `SFXVOPSID` line of your variables document.
 
 === "variables.txt"
 
-    ``` bash
+    ```text
     export ACCESS_TOKEN={==xxxx==}
     export REALM={==xxxx==}
     export SFXVOPSID={==xxxx==}
@@ -88,7 +88,7 @@ With all the required values now safely copied into your variables document you 
 
 === "Example"
 
-    ``` bash
+    ```text
     export SFXVOPSID=EYierbGA4AA
     export ACCESS_TOKEN=by78voyt7b.....
     export REALM=us1
@@ -104,7 +104,7 @@ Still within your VM, switch to the victorops folder where the Terraform config 
 
 === "Change Directory"
 
-    ```bash
+    ```text
     cd ~/workshop/victorops
     ```
 
@@ -112,7 +112,7 @@ Now we can initialize Terraform:
 
 === "Shell Command"
 
-    ```bash
+    ```text
     terraform init -upgrade
     ```
 

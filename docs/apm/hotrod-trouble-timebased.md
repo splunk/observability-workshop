@@ -41,7 +41,7 @@ instance and run the following command:
 
 === "Shell Command"
 
-    ```bash
+    ```text
     echo "Your µAPM environment is: $(hostname)-apm-env"
     ```
 
