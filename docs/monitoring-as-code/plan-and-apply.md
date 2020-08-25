@@ -27,7 +27,7 @@ Validate that the detectors were created, under the _**ALERTS → Detectors**_. 
 === "Shell Command"
 
     ```text
-    echo ${hostname}
+    echo $(hostname)
     ```
 
  You will see a list of the new detectors and you can search for the prefix that was output from above.
