@@ -12,7 +12,7 @@ The workshop also introduces you to dashboards, editing and creating charts, cre
 
 By the end of this technical workshop you will have a good understanding of some of the key features and capabilities of the SignalFx platform.
 
-Here are the instructions how to access you pre-configured [AWS/EC2 instance](../../resources/connect-info/)
+Here are the instructions how to access you pre-configured [AWS/EC2 instance](../../smartagent/connect-info/)
 
 [^1]: [Kubernetes ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/){: target=_blank}
 [^2]: Jaeger, inspired by Dapper and OpenZipkin, is a distributed tracing system released as open source by Uber Technologies. It is used for monitoring and troubleshooting microservices-based distributed systems
