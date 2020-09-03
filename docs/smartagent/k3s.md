@@ -76,7 +76,7 @@ Ensure the status is reported as Running before continuing.
     signalfx-agent-66tvr   1/1     Running   0          7s
     ```
 
-Ensure there are no errors by tailing the logs from the Smart Agent Pod. Output should look similar to the log output shown below.
+Ensure there are no errors by tailing the logs from the Smart Agent Pod. Output should look similar to the log output shown in the Output tab below.
 
 Use the label set by the `helm` install to tail logs (You will need to press ++ctrl+c++ to exit). Or use the installed `k9s` terminal UI for bonus points!
 
