@@ -40,7 +40,7 @@ It may also look like this ![gray user icon](../images/servicebureau/M5-l1-2.png
 
 When the **Team** UI is selected you will be presented with the list of current Teams.
 
-To add a new **Team** click on the **Create New Team**{: .label-button .sfx-ui-button} button. This will present you with the **Create New Team** dialog.
+To add a new **Team** click on the **Create New Team**{: .label-button .sfx-ui-button-blue} button. This will present you with the **Create New Team** dialog.
 
 ![Add Team](../images/servicebureau/create-new-team.png){: .shadow}
 
@@ -78,7 +78,7 @@ By default the system offers you the ability to set up a general notification ru
 
 ### 3.1 Adding recipients
 
-You can add other recipients, by clicking **Add Recipient**{: .label-button .sfx-ui-button}. These recipients do not need to be SignalFx users.
+You can add other recipients, by clicking **Add Recipient**{: .label-button .sfx-ui-button-blue}. These recipients do not need to be SignalFx users.
 
 However if you click on the link **Configure a single policy for alerts of any severity** you can configure every alert level independently.
 
@@ -118,7 +118,7 @@ The **Usage Status** Column quickly shows if a token is above or below its assig
 
 ### 4.1 Creating a new token
 
-Let create a new token by clicking on  the **New Token**{: .label-button .sfx-ui-button} button. This will provide you with the **Name Your Access Token** dialog.
+Let create a new token by clicking on  the **New Token**{: .label-button .sfx-ui-button-blue} button. This will provide you with the **Name Your Access Token** dialog.
 
 Enter the new name of the new Token by using your Initials e.g. RWC-Token
 
@@ -169,11 +169,11 @@ For our lab use your own email address, and double check that you have the corre
 
 Token limits are used to trigger an alert that notify one or more recipients when the usage has been above 90% of the limit for 5 minutes.
 
-To specify the recipients, click **Add Recipient**{: .label-button .sfx-ui-button}, then select the recipient or notification method you want to use (specifying recipients is optional but highly recommended).
+To specify the recipients, click **Add Recipient**{: .label-button .sfx-ui-button-blue}, then select the recipient or notification method you want to use (specifying recipients is optional but highly recommended).
 
 The severity for token alerts is always Critical.
 
-Click on **Update**{: .label-button .sfx-ui-button} to save your Access Tokens limits and The Alert Settings.
+Click on **Update**{: .label-button .sfx-ui-button-blue} to save your Access Tokens limits and The Alert Settings.
 
 !!! note "Going above token limit"
     When a token is at or above its limit in a usage category, new metrics for that usage category will not be stored and processed by SignalFx. This will make sure you there  will be no unexpected cost due to a team sending in data without restriction.

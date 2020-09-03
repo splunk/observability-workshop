@@ -9,7 +9,7 @@ Data Links allow you to create dynamic links on properties that appear in a char
 !!! note "Informational exercise only"
     This module is purely informational and serves only to educate how to link from SignalFx into Splunk
 
-Goto **Settings → Organizations Settings → Global Data Links** and click on **New Link**{: .label-button .sfx-ui-button}
+Goto **Settings → Organizations Settings → Global Data Links** and click on **New Link**{: .label-button .sfx-ui-button-blue}
 
 ![Global Datalinks](../images/dashboards/datalinks.png){: .zoom}
 

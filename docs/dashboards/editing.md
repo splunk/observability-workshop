@@ -25,7 +25,7 @@ Click on the **Line** chart type and you will see the line plot.
 
 ![Line Chart](../images/dashboards/M1-l1-6.png)
 
-In the **PLOT EDITOR** tab under **Signal** you see the metric **`demo.trans.latency`** we are currently plotting.
+In the **Plot Editor** tab under **Signal** you see the metric **`demo.trans.latency`** we are currently plotting.
 
 ![Plot Editor](../images/dashboards/M1-l1-7.png){: .zoom}
 
@@ -45,7 +45,7 @@ You will now see a chart template like the following.
 
 Let's enter a metric to plot. We are going to use the metric **`demo.trans.latency`**.
 
-In the **PLOT EDITOR** tab under **Signal** enter **`demo.trans.latency`**.
+In the **Plot Editor** tab under **Signal** enter **`demo.trans.latency`**.
 
 ![Signal](../images/dashboards/M1-l1-10.png)
 

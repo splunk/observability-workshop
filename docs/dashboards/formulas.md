@@ -4,7 +4,7 @@
 
 Let's now plot the difference of all metric values for a day with 7 days in between.
 
-Click on **Enter Formula**{: .label-button .sfx-ui-button} then enter **`A-B`** (A minus B) and hide (deselect) all Signals using the eye, except **C**.
+Click on **Enter Formula**{: .label-button .sfx-ui-button-blue} then enter **`A-B`** (A minus B) and hide (deselect) all Signals using the eye, except **C**.
 
 ![Formulas](../images/dashboards/M1-l1-22.png){: .zoom}
 
@@ -14,7 +14,7 @@ Click on **DATA TABLE** and in that view swipe horizontally along the X axis to 
 
 ## 2. Using Absolute Value
 
-Click on **PLOT EDITOR** to get back to the Plot Editor view.
+Click on **Plot Editor** to get back to the Plot Editor view.
 
 Let's apply another function to get the values of **C** to positive values.
 
@@ -23,7 +23,7 @@ Let's apply another function to get the values of **C** to positive values.
 
     This difference can be used to see an alarming trend if we consider last week to be a baseline (the bigger the number - the more we deviate from the baseline) - but mainly we do this for you to get a bit more training on using analytical functions!
 
-In the **PLOT EDITOR** for **C**, under **F(x)**, click on **Add Analytics**{: .label-button .sfx-ui-button} and choose **`Absolute Value`**.
+In the **Plot Editor** for **C**, under **F(x)**, click on **Add Analytics**{: .label-button .sfx-ui-button-blue} and choose **`Absolute Value`**.
 
 ![Absolute Value](../images/dashboards/M1-l1-23.png){: .zoom}
 

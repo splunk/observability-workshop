@@ -33,7 +33,7 @@ Click **Next** and in the new modal window confirm the muting rule setup.
 
 ![Confirm Rule](../images/detectors/confirm-rule.png){: .shadow .center}
 
-Click on **Mute Indefinitely**{: .label-button .sfx-ui-button} to confirm.
+Click on **Mute Indefinitely**{: .label-button .sfx-ui-button-blue} to confirm.
 
 ![List muted rule](../images/detectors/alert-muted.png){: .zoom}
 
@@ -56,7 +56,7 @@ Click on **Resume Notifications**.
 
 ![Resume](../images/detectors/resume-notifications.png){: .zoom}
 
-Click on **Resume**{: .label-button .sfx-ui-button} to confirm and resume notifications for this detector.
+Click on **Resume**{: .label-button .sfx-ui-button-blue} to confirm and resume notifications for this detector.
 
 ![Resume](../images/detectors/resume.png){: .shadow .center}
 

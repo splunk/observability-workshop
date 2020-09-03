@@ -33,13 +33,13 @@ In the text field next to **Detector Name**, **ADD YOUR INITIALS** before the pr
     It's important that you add your initials in front of the proposed detector name.
     It should be something like this: **LI's Latency Chart Detector**.
 
-Click on **Create Alert Rule**{: .label-button .sfx-ui-button}
+Click on **Create Alert Rule**{: .label-button .sfx-ui-button-blue}
 
 ![New Detector](../images/detectors/M1-l2-3.png){: .zoom}
 
 In the Detector window, inside **Alert signal**, the Signal we will alert on is marked with a (blue) bell in the **Alert on** column. The bell indicates which Signal is being used to generate the alert.
 
-Click on **Proceed to Alert Condition**{: .label-button .sfx-ui-button}
+Click on **Proceed to Alert Condition**{: .label-button .sfx-ui-button-blue}
 
 ![Alert Signal](../images/detectors/M1-l2-4.png){: .zoom}
 
@@ -47,7 +47,7 @@ Click on **Proceed to Alert Condition**{: .label-button .sfx-ui-button}
 
 ## 3. Setting Alert condition
 
-In **Alert condition**, click on **Static Threshold** and then on **Proceed to Alert Settings**{: .label-button .sfx-ui-button}
+In **Alert condition**, click on **Static Threshold** and then on **Proceed to Alert Settings**{: .label-button .sfx-ui-button-blue}
 
 ![Alert Condition](../images/detectors/M1-l2-5.png){: .zoom}
 
@@ -69,7 +69,7 @@ SignalFx will now perform a pre-flight check after 5 seconds. See the **Estimate
     To read more about detector previewing, please visit this link
     [Setting up detectors](https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#previewing-the-results-of-a-detector){: target=_blank}.
 
-Click on **Proceed to Alert Message**{: .label-button .sfx-ui-button}
+Click on **Proceed to Alert Message**{: .label-button .sfx-ui-button-blue}
 
 ---
 
@@ -79,7 +79,7 @@ In **Alert message**, under **Severity** choose **Major**.
 
 ![Alert Message](../images/detectors/M1-l2-7.png){: .zoom}
 
-Click on **Proceed to Alert Recipients**{: .label-button .sfx-ui-button}
+Click on **Proceed to Alert Recipients**{: .label-button .sfx-ui-button-blue}
 
 Click on **Add Recipient** and then on your email address displayed as the first option.
 
@@ -94,9 +94,9 @@ Click on **Add Recipient** and then on your email address displayed as the first
 
 ## 6. Activating the alert
 
-Click on **Proceed to Alert Activation**{: .label-button .sfx-ui-button}
+Click on **Proceed to Alert Activation**{: .label-button .sfx-ui-button-blue}
 
-In **Activate...** click on **Activate Alert Rule**{: .label-button .sfx-ui-button}
+In **Activate...** click on **Activate Alert Rule**{: .label-button .sfx-ui-button-blue}
 
 ![Activate](../images/detectors/M1-l2-9.png){: .zoom}
 

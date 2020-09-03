@@ -24,4 +24,4 @@ If you have forgotten your password go to the sign-in page and use the forgotten
 
 ## 2. Activate your SignalFx Login
 
-You should have received an invitation to join the Observability Workshop on SignalFx.  If you have not already done so click the **JOIN NOW**{: .label-button .sfx-ui-button} button and follow the prompts to set a password and activate your login.
+You should have received an invitation to join the Observability Workshop on SignalFx.  If you have not already done so click the **JOIN NOW**{: .label-button .sfx-ui-button-blue} button and follow the prompts to set a password and activate your login.

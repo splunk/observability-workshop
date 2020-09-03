@@ -12,7 +12,7 @@ Observe that the **Find Metrics** option is pre-selected.
 
 The metrics search is showing 3 metrics with **`demo`** in the name.
 
-Select **`demo.trans.count`** and click on the **Add Plot**{: .label-button .sfx-ui-button} button.
+Select **`demo.trans.count`** and click on the **Add Plot**{: .label-button .sfx-ui-button-blue} button.
 
 ![Add Plot](../images/dashboards/M1-l1-26.png)
 

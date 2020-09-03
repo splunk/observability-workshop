@@ -32,7 +32,7 @@ In the SignalFx UI you can find your **Access Token** by clicking on the **Setti
 
 ![Access Token](../../images/victorops/m7-access-token.png){: .zoom}
 
-Click the **Copy**{: .label-button .sfx-ui-button} button to copy it you your clipboard, then paste it into the `ACCESS_TOKEN` line of your variables document.
+Click the **Copy**{: .label-button .sfx-ui-button-blue} button to copy it you your clipboard, then paste it into the `ACCESS_TOKEN` line of your variables document.
 
 === "variables.txt"
 
