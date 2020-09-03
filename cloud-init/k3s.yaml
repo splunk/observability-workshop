@@ -31,7 +31,7 @@ write_files:
       helm() {
         if [ -z ${ACCESS_TOKEN+x} ]; then echo "ACCESS_TOKEN is unset. Please export ACCESS_TOKEN=YOUR_TOKEN"; return; fi
         if [ -z ${REALM+x} ]; then echo "REALM is unset. Please export REALM=YOUR_REALM"; return; fi
-        if [[ ! $REALM  =~ ^(us0|us1|us2|eu0)$ ]]; then echo "REALM is not one of the supported realms. Check that it is one of us0, us1, us2 or eu0." fi
+        if [[ ! $REALM  =~ ^(us0|us1|us2|eu0)$ ]]; then echo "REALM is not one of the supported realms. Check that it is one of us0, us1, us2 or eu0."; return; fi
 
         echo "Using ACCESS_TOKEN=$ACCESS_TOKEN"
         echo "Using REALM=$REALM"
