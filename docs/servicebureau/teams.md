@@ -32,9 +32,9 @@ The Description for the Team Dashboard can be customized and can include links t
 
 To work with to SignalFx's Team UI click on the **Settings** icon on the top right of the SignalFx UI.
 
-![Settings Icon](../images/servicebureau/M5-l1-1.png){: .zoom}
+![Settings Icon](../images/servicebureau/settings.png){: .zoom}
 
-It may also look like this ![gray user icon](../images/servicebureau/M5-l1-2.png). Select the **Organizations Settings → Teams** tab, or select the **Teams** tab from the left pane.
+Select the **Organizations Settings → Teams** tab, or select the **Teams** tab from the left pane.
 
 ![location of settings](../images/servicebureau/teams-menu.png)
 
@@ -106,7 +106,7 @@ Assuming you are still within the Organization Overview section, simply select t
 
 ![Select Token](../images/servicebureau/access-tokens-menu.png)
 
-However to get to this section from anywhere click on the settings ![gray user icon](../images/servicebureau/M5-l1-2.png) icon at the top right top of the page and select **Organizations Settings → Access tokens**
+However to get to this section from anywhere click on **Settings** (icon at the top right top of the page) and select **Organizations Settings → Access tokens**
 
 The **Access Tokens** Interface provides an overview of your Allotments in the form of a list of Access Tokens that have been generated. Every Organization will have a **Default** token generated when they are first setup, but there will typically be multiple Tokens configured.
 

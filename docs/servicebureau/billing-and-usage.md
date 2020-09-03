@@ -12,9 +12,7 @@
 
 To fully understand SignalFx engagement inside your organization, click on the **Settings** icon on the top right of the SignalFx UI.
 
-![Settings Icon](../images/servicebureau/M5-l1-1.png)
-
-It may also look like this ![gray user icon](../images/servicebureau/M5-l1-2.png)
+![Settings Icon](../images/servicebureau/settings.png){: .zoom}
 
 From the drop down, select the **Organizations Settings → Organization Overview**, this will provide you with the following dashboard that shows you how your SignalFx organization is being used:
 
@@ -32,11 +30,11 @@ Take a minute to explore the various charts in the Organization Overview of this
 
 If you want to see what your usage is against your contract you can select the **Organizations Settings → Billing and Usage** from your profile icon top right of the SignalFx UI.
 
-![Settings Icon](../images/servicebureau/M5-l1-1.png)
+![Settings Icon](../images/servicebureau/settings.png)
 
 Or the faster way is to select the **Billing and Usage** item from the left hand pane.
 
-![Left pane](../images/servicebureau/M5-l1-4.png)
+![Left pane](../images/servicebureau/billing-and-usage-menu.png)
 
 This screen may take a few seconds to load whilst it calculates and pulls in the usage.
 
