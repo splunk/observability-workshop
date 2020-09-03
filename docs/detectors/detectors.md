@@ -108,8 +108,8 @@ Hover over **ALERTS** in the top menu and then click on **Detectors**.
 
 ![Detectors](../images/detectors/detectors-menu.png)
 
-You will see you detector listed here.
+You will see you detector listed here. If you don't then please refresh your browser.
 
-![Detector List](../images/detectors/active-alerts.png){: .zoom}
+![Detector List](../images/detectors/detectors.png){: .zoom}
 
 **Congratulations**! You have created your first detector and activated it!
