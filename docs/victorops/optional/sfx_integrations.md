@@ -19,7 +19,7 @@ This would be used when configuring the VictorOps Integration within the SignalF
 
 ## 2. Enable VictorOps Integration within SignalFx
 
-In the SignalFx UI navigate to **INTEGRATIONS** and use the search feature to find the VictorOps integration.
+In the SignalFx UI navigate to **Integrations** and use the search feature to find the VictorOps integration.
 
 !!! danger "Do not create a new integration!"
     Please do not create additional VictorOps integrations if one already exists, it will not break anything but simply creates extra clean up work after the workshop has completed.  The aim of this part of the lab was to show you how you would go about configuring the Integration if it was not already enabled.
@@ -39,7 +39,7 @@ Enter a descriptive **Name** then paste the **Service_API_Endpoint** value you c
 
 ## 3. Copy ID
 
-In SignalFx UI navigate to **INTEGRATIONS** and use the search feature to find the VictorOps Integration.
+In SignalFx UI navigate to **Integrations** and use the search feature to find the VictorOps Integration.
 
 Copy the ID field and save it for use in the next steps.  We suggest you create a notepad document or similar as you will be gathering some additional values in the next steps.
 

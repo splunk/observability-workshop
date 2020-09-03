@@ -18,7 +18,7 @@ In the example below, the user is a member of the Development, Operations and Pr
 
 This Dashboard has specific Dashboard Groups for NGINX, Infra and K8s assigned but any Dashboard Group can be linked to a Teams Dashboard.
 
-They can use the menu along the top left to quickly navigate between their allocated teams, or they can use the **ALL TEAMS** dropdown on the right to select specific Team Dashboards, as well as quickly accessing **ALL DASHBOARDS** using the adjacent link.
+They can use the menu along the top left to quickly navigate between their allocated teams, or they can use the **ALL TEAMS** dropdown on the right to select specific Team Dashboards, as well as quickly accessing **ALL Dashboards** using the adjacent link.
 
 ![Teams](../images/servicebureau/teams-homepage.png){: .zoom}
 

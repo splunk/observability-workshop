@@ -12,7 +12,7 @@
 
 Logon to the SignalFx organization you have been invited to.
 
-Hover over **DASHBOARDS** in the top menu, and then click on **All Dashboards**. A number of prebuilt dashboards are provided for you in your default view.
+Hover over **Dashboards** in the top menu, and then click on **All Dashboards**. A number of prebuilt dashboards are provided for you in your default view.
 
 ![Dashboards](../images/dashboards/M1-l1-1.png){: .zoom}
 

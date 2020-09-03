@@ -8,7 +8,7 @@
 
 There will be times when you might want to mute certain notifications. For example, if you want to schedule downtime for maintenance on a server or set of servers, or if you are testing new code or settings etc. For that you can use muting rules in SignalFx. Let's create one!
 
-Hover over **ALERTS** in the menu and from the drop down click on **Detectors**.
+Hover over **Alerts** in the menu and from the drop down click on **Detectors**.
 
 ![Detectors](../images/detectors/detectors-menu.png){: .zoom}
 
@@ -43,7 +43,7 @@ You won't be receiving any email notifications from you detector until you resum
 
 ## 2. Resuming notifications
 
-To Resume notifications, hover over **ALERTS** in the top menu and click on **Muting Rules**. You will see the name of the detector you muted notifications for under **Detector**.
+To Resume notifications, hover over **Alerts** in the top menu and click on **Muting Rules**. You will see the name of the detector you muted notifications for under **Detector**.
 
 ![Resume](../images/detectors/muting-rules-menu.png){: .zoom}
 ![Resume](../images/detectors/muting-list.png){: .zoom}

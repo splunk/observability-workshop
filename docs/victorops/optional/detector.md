@@ -62,7 +62,7 @@ Copy it to the `REALM` line of your variables document.
 
 ### 1.4. Obtain VictorOps Integration ID
 
-In SignalFx UI navigate to **INTEGRATIONS** and use the search feature to find the VictorOps Integration.
+In SignalFx UI navigate to **Integrations** and use the search feature to find the VictorOps Integration.
 
 Expand the **VictorOps-xxxx** configuration; if there are more than one you will be informed which one to copy by the presenter.
 
@@ -244,7 +244,7 @@ You can now copy and the paste the following code block to run Terraform using t
 
 By running Terraform within the VM you have just created a new Detector within SignalFx which will send alerts to VictorOps if the CPU utilization of your specific VM goes above 90%.
 
-In the SignalFx UI go to **ALERTS → Detectors** to show all the Detectors and find the one matching your `INSTANCE` value (the first four letters of the name of your VM).
+In the SignalFx UI go to **Alerts → Detectors** to show all the Detectors and find the one matching your `INSTANCE` value (the first four letters of the name of your VM).
 
 Optionally - Click on **CPU Utilization is greater than 90%** to open the Alert Rule Editor to view its settings.
 

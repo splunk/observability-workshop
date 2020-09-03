@@ -22,7 +22,7 @@ If the plan executes successfully, we can go ahead and apply:
     terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
     ```
 
-Validate that the detectors were created, under the _**ALERTS → Detectors**_. They will be prefixed by the hostname of your instance. To check the prefix value run:
+Validate that the detectors were created, under the _**Alerts → Detectors**_. They will be prefixed by the hostname of your instance. To check the prefix value run:
 
 === "Shell Command"
 
@@ -44,6 +44,6 @@ Destroy all Detectors and Dashboards that were previously applied.
     terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
     ```
 
-Validate all the detectors have been removed by navigating to _**ALERTS → Detectors**_
+Validate all the detectors have been removed by navigating to _**Alerts → Detectors**_
 
 ![Destroyed](../images/monitoring-as-code/destroy.png)

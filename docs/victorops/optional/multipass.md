@@ -90,7 +90,7 @@ An easy way to install the SignalFx Agent into your VM is to copy the install co
 
 ### 3.1 SignalFx UI
 
-Navigate to the **INTEGRATIONS** tab within the SignalFx UI, where you will find the SignalFx SmartAgent tile on the top row.
+Navigate to the **Integrations** tab within the SignalFx UI, where you will find the SignalFx SmartAgent tile on the top row.
 
 Click on the SmartAgent tile to open it...
 
@@ -161,7 +161,7 @@ Once the agent has completed installing run the following command to check the s
 
 ### 4.2 Check the SignalFx UI
 
-Navigate to the SignalFx UI and click on the **INFRASTRUCTURE** tab. The click on **Hosts (Smart Agent / collectd)** under the **Hosts** section.
+Navigate to the SignalFx UI and click on the **Infrastructure** tab. The click on **Hosts (Smart Agent / collectd)** under the **Hosts** section.
 
 Find your VM and confirm it is reporting in correctly; allow a few minutes for it to appear.
 

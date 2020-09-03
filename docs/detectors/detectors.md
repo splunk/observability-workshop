@@ -17,7 +17,7 @@ For example, a detector that monitors the latency of an API call may go into a c
 
 ## 2. Create a detector from one of your charts
 
-In **DASHBOARDS** click on your dashboard group (the one with your email address) and then on the dashboard name where the chart you created in the previous lab resides or search for your previously created dashboard's name, and click on that dashboard's name in the results.
+In **Dashboards** click on your dashboard group (the one with your email address) and then on the dashboard name where the chart you created in the previous lab resides or search for your previously created dashboard's name, and click on that dashboard's name in the results.
 
 ![Dashboards](../images/detectors/M1-l2-1.png){: .zoom}
 
@@ -88,7 +88,7 @@ Click on **Add Recipient** and then on your email address displayed as the first
 !!! note "Notification Services"
     That's the same as entering that email address OR you can enter another email address by clicking on **E-mail...**.
 
-    That's just one example of the many **Notification Services** SignalFx has available. You can check this out by going to the **INTEGRATIONS** tab of the top menu, and see **Notification Services**.
+    That's just one example of the many **Notification Services** SignalFx has available. You can check this out by going to the **Integrations** tab of the top menu, and see **Notification Services**.
 
 ---
 
@@ -104,7 +104,7 @@ If you want to get alerts quicker you can click back on **Alert Settings** and l
 
 If you change the **Time** to **-1h** you can see how many alerts you might get with the threshold you have chosen based on the metics from the last 1 hour.
 
-Hover over **ALERTS** in the top menu and then click on **Detectors**.
+Hover over **Alerts** in the top menu and then click on **Detectors**.
 
 ![Detectors](../images/detectors/detectors-menu.png)
 
