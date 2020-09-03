@@ -63,6 +63,13 @@ You can monitor the progress of the deployment by running `kubectl get pods` whi
 
 Ensure the status is reported as Running before continuing.
 
+!!! info
+    If you make an error installing the Smart Agent you can start over by deleting the erroneous install using:
+
+    ```
+    helm delete signalfx-agent
+    ```
+
 === "Shell Command"
 
     ```text
