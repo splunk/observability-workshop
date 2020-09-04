@@ -18,7 +18,7 @@ Select **`demo.trans.count`** and click on the **Add Plot**{: .label-button .sfx
 
 Click on the blue eye icon next to **C** to hide that Signal, and on the greyed eye icon for Signal **A** to show it.
 
-On plot **D**, apply the **Percentile:Aggregation** function and set to **`95`**.
+On plot **D**, apply the **Percentile:Aggregation** function and set to **`95`**. Click on **Delta Rollup** and from the **Rollup** dropdown select **Rate/Sec**.
 
 Enter **`-1h`** in the **Time** frame for the entire chart.
 
