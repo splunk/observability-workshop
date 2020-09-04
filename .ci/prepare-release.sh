@@ -40,7 +40,7 @@ fi
 # add new version to README
 awk "/Previous versions of the workshop are also available:/ { print; print \"- [v$TAG](https://signalfx.github.io/observability-workshop/v$TAG/)\";next }1" README.md |
 # limit list of version in README to last two
-awk "NR==1,/Previous versions of the workshop are also available:/{c=3} c&&c-- " > README.md
+awk "NR==1,/Previous versions of the workshop are also available:/{c=3} c&&c-- " > README.new.md
 
 if [ $dry_run == 0 ]; then
   git fetch --tags origin
