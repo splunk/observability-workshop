@@ -74,9 +74,9 @@ plugins:
 nav:
   - 'Home': index.md
   - '<b>SignalFx</b>':
+    - 'Workshop Introduction': smartagent/index.md
+    - 'Access AWS/EC2 instance': smartagent/connect-info.md
     - '<b>Get Data In</b><br /><small>20 minutes</small>':
-      - 'Workshop Introduction': smartagent/index.md
-      - 'Access AWS/EC2 instance': smartagent/connect-info.md
       - 'Deploy the Smart Agent in K3s': smartagent/k3s.md
       - 'Deploy NGINX in K3s' : smartagent/nginx.md
     - '<b>Dashboards</b><br /><small>30 minutes</small>':
