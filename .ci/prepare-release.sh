@@ -37,14 +37,18 @@ awk '(s==0) { print } (s==1) { if (c&&c--) print; } /versions:/ {s=1;c=2} /^$/ {
 if [ $dry_run == 0 ]; then
   mv mkdocs.new.yml mkdocs.yml
 fi
+
 # add new version to README
 awk "/Previous versions of the workshop are also available:/ { print; print \"- [v$TAG](https://signalfx.github.io/observability-workshop/v$TAG/)\";next }1" README.md |
 # limit list of version in README to last two
 awk "NR==1,/Previous versions of the workshop are also available:/{c=3} c&&c-- " > README.new.md
+if [ $dry_run == 0 ]; then
+  mv README.new.md README.md
+fi
 
 if [ $dry_run == 0 ]; then
   git fetch --tags origin
-  git add README.md  mkdocs.yml
+  git add README.md mkdocs.yml
   git commit --amend -m "Releasing v$TAG"
   git tag -a "v$TAG" -m "Version $TAG"
   # separate push and push tag to allow the push to fail. we will not push the tag, allowing to fix the release before it happens
