@@ -136,7 +136,7 @@ Use the label set by the `helm` install to tail logs (You will need to press ++c
 
 In the SignalFx UI, goto **Infrastructure → Kubernetes Navigator → Cluster Map** and open the Kubernetes Navigator Cluster Map to ensure metrics are being sent.
 
-![Selecting the Kubernetes Navigator Map](../images/smartagent/clustermap-nav.png)
+![Selecting the Kubernetes Navigator Map](../images/smartagent/clustermap-nav.png){: .zoom}
 
 ---
 
