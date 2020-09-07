@@ -13,13 +13,13 @@ You can find your Access Token by clicking on your profile icon on the top right
 
 Expand the Default token, then click on **Show Token** to expose your token. Click the **Copy**{: .label-button  .sfx-ui-button-grey} button to copy to clipboard.
 
-![Access Token](../images/smartagent/m3-access-token.png){: .zoom}
+![Access Token](../images/smartagent/access-token.png){: .zoom}
 
 You will also need to obtain the name of the Realm for your SignalFx account.  Click on the profile icon again, but this time select **My Profile**.
 
 The Realm can be found in the middle of the page within the Organizations section.  In this example it is `us1`.
 
-![Realm](../images/smartagent/m3-realm.png)
+![Realm](../images/smartagent/realm.png)
 
 ---
 
@@ -150,9 +150,9 @@ Validate that your cluster is discovered and reporting by finding your cluster (
 
 !!! note "replace screenshot"
 
-![K8S Clusters Filter](../images/smartagent/M3-l1-selecting-k3-cluster.png)
+![K8S Clusters Filter](../images/smartagent/selecting-k3-cluster.png)
 
-To examine the health of your node, first click on the blue cross ![blue cross](../images/smartagent/M3-l1-blue-cross.png) on your cluster.
+To examine the health of your node, first click on the blue cross ![blue cross](../images/smartagent/blue-cross.png) on your cluster.
 
 This will drill down to the node level.  Next, open the side bar by clicking on the side bar button to open the Metrics side bar.
 
@@ -160,6 +160,6 @@ Once it is open, you can use the slider on the side to explore the various chart
 
 !!! note "replace screenshot"
 
-![Sidebar metrics](../images/smartagent/M3-l1-explore-metrics.png)
+![Sidebar metrics](../images/smartagent/explore-metrics.png)
 
 [^1]: Access tokens (sometimes called org tokens) are long-lived organization-level tokens. By default, these tokens persist for 5 years, and thus are suitable for embedding into emitters that send data points over long periods of time, or for any long-running scripts that call the SignalFx API.
