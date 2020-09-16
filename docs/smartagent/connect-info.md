@@ -79,7 +79,7 @@ If you are blocked from using SSH (Port 22) or unable to install Putty you may b
 !!! note
     This assumes that access to port 6501 is not restricted by your company's firewall.
 
-Open your web browser and type **http//X.X.X.X:6501** (where X.X.X.X is the IP address from the Google Sheet).
+Open your web browser and type **http://X.X.X.X:6501** (where X.X.X.X is the IP address from the Google Sheet).
 
 ![http-6501](../images/intro/shellinabox-url.png){: .zoom}
 
