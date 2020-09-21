@@ -12,9 +12,12 @@ You should have received an invitation to Activate your VictorOps account via e-
 
 If you did not receive an invitation it is probably because you already have a VictorOps login, linked to a different organisation.
 
-If so login to to that Org, then use the organisation dropdown next to your username in the top left to switch to the AppDev-EMEA Org.
+If so login to to that Org, then use the organisation dropdown next to your username in the top left to switch to the Observability Workshop EMEA Org.
 
 ![Switch Org](../../images/victorops/switch-org.png){: .center}
+
+!!! Note
+If you do not see the Organisation dropdown menu item next to your name with Observability Workshop EMEA that is OK, it simply means you only have access to a single Org so that menu is not visible to you.
 
 If you have forgotten your password go to the sign-in page and use the forgotten password link to reset your password.
 
