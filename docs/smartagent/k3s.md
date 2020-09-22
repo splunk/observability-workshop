@@ -59,7 +59,7 @@ Install the Smart Agent Helm chart with the following commands, do **NOT** edit 
     -f ~/workshop/k3s/values.yaml
     ```
 
-You can monitor the progress of the deployment by running `kubectl get pods` which should typically report a new pod is up and running after about 30 seconds.
+You can monitor the progress of the deployment by running `sudo kubectl get pods` which should typically report a new pod is up and running after about 30 seconds.
 
 Ensure the status is reported as Running before continuing.
 
@@ -73,7 +73,7 @@ Ensure the status is reported as Running before continuing.
 === "Shell Command"
 
     ```text
-    kubectl get pods
+    sudo kubectl get pods
     ```
 
 === "Output"
@@ -90,7 +90,7 @@ Use the label set by the `helm` install to tail logs (You will need to press ++c
 === "Shell Command"
 
     ```text
-    kubectl logs -l app=signalfx-agent -f
+    sudo kubectl logs -l app=signalfx-agent -f
     ```
 
 === "Output"

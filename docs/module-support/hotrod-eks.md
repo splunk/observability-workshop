@@ -106,7 +106,7 @@ This may take some time (10-15 minutes). Ensure you see your cluster active in A
 !!! note
     You can ignore the error about `unable to write kubeconfig` as we address this below.
 
-Once complete update your `kubeconfig` to allow `kubectl` access to the cluster:
+Once complete update your `kubeconfig` to allow `sudo kubectl` access to the cluster:
 
 === "Shell Command"
 
@@ -192,7 +192,7 @@ Validate cluster looks healthy in SignalFx Kubernetes Navigator dashboard
 === "Shell Command"
 
     ```
-    kubectl apply -f ~/workshop/apm/hotrod/k8s/deployment.yaml
+    sudo kubectl apply -f ~/workshop/apm/hotrod/k8s/deployment.yaml
     ```
 
 To ensure the Hot R.O.D. application is running see examples below:
@@ -200,7 +200,7 @@ To ensure the Hot R.O.D. application is running see examples below:
 === "Shell Command"
 
     ```text
-    kubectl get pods
+    sudo kubectl get pods
     ```
 
 === "Output"
@@ -218,7 +218,7 @@ You then need find the IP address assigned to the Hot R.O.D. service:
 === "Shell Command"
 
     ```text
-    kubectl get svc
+    sudo kubectl get svc
     ```
 
 === "Output"
@@ -234,7 +234,7 @@ Create an environment variable for the IP address and port that the Hot R.O.D. a
 === "Shell Command"
 
     ```
-    HOTROD_ENDPOINT=$(kubectl get svc hotrod -n default -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
+    HOTROD_ENDPOINT=$(sudo kubectl get svc hotrod -n default -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
     ```
 
 You can view / exercise Hot R.O.D. yourself in a browser by opening the `EXTERNAL-IP:PORT` as shown above e.g.
@@ -297,7 +297,7 @@ Or to delete individual components:
 === "Shell Command"
 
     ```
-    kubectl delete deploy/hotrod svc/hotrod
+    sudo kubectl delete deploy/hotrod svc/hotrod
     helm delete signalfx-agent
     ```
 
@@ -306,5 +306,5 @@ To switch back to using the local K3s cluster:
 === "Shell Command"
 
     ```
-    sudo kubectl config use-context default
+    sudo sudo kubectl config use-context default
     ```

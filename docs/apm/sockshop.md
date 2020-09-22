@@ -32,8 +32,8 @@ To deploy the Sock Shop application into K3s apply the deployment
 
     ```text
     cd ~/workshop/apm/sockshop
-    kubectl create namespace sock-shop
-    kubectl apply -f k8s/deployment.yaml
+    sudo kubectl create namespace sock-shop
+    sudo kubectl apply -f k8s/deployment.yaml
     ```
 
 === "Output"
@@ -93,7 +93,7 @@ Sock Shop should be running in your cluster and exposes services via cluster IP 
 === "Shell Command"
 
     ```text
-    export SOCKS_ENDPOINT=$(kubectl get svc front-end -n sock-shop -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
+    export SOCKS_ENDPOINT=$(sudo kubectl get svc front-end -n sock-shop -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
     ```
 
 Then confirm the `SOCKS_ENDPOINT` environment variable has been set:
@@ -125,7 +125,7 @@ To view the application in your web browser we need to find the LoadBalancer IP 
 === "Shell Command"
 
     ```text
-    kubectl get svc -n sock-shop front-end
+    sudo kubectl get svc -n sock-shop front-end
     ```
 
 === "Output"
@@ -156,7 +156,7 @@ The parameter `-c` controls the amount of concurrent clients and `-r` the runtim
 === "Shell Command"
 
     ```text
-    kubectl -n sock-shop logs -f jobs/loadgen
+    sudo kubectl -n sock-shop logs -f jobs/loadgen
     ```
 
 If you want to abort a load test, delete the job:
@@ -164,7 +164,7 @@ If you want to abort a load test, delete the job:
 === "Shell Command"
 
     ```text
-    kubectl -n sock-shop delete jobs/loadgen
+    sudo kubectl -n sock-shop delete jobs/loadgen
     ```
 
 ---
