@@ -42,7 +42,7 @@ Create the NGINX `configmap`[^1] using the `nginx.conf` file:
 === "Shell Command"
 
     ```text
-    kubectl create configmap nginxconfig --from-file=nginx.conf
+    sudo kubectl create configmap nginxconfig --from-file=nginx.conf
     ```
 
 === "Output"
@@ -56,7 +56,7 @@ Then create the deployment:
 === "Shell Command"
 
     ```
-    kubectl create -f nginx-deployment.yaml
+    sudo kubectl create -f nginx-deployment.yaml
     ```
 
 === "Output"
@@ -85,7 +85,7 @@ Let's validate this in your shell as well:
 === "Shell Command"
 
     ```text
-    kubectl get pods
+    sudo kubectl get pods
     ```
 
 === "Output"
@@ -104,7 +104,7 @@ Next create an environment variable containing the `CLUSTER_IP` of NGINX:
 === "Shell Command"
 
     ```text
-    CLUSTER_IP=$(kubectl get svc nginx -n default -o jsonpath='{.spec.clusterIP}')
+    CLUSTER_IP=$(sudo kubectl get svc nginx -n default -o jsonpath='{.spec.clusterIP}')
     ```
 
 Confirm the environment variable has been set correctly:

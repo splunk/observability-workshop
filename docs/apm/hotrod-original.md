@@ -33,7 +33,7 @@ To deploy the Hot R.O.D. application into K3s apply the deployment.
 
     ```text
     cd ~/workshop
-    kubectl apply -f apm/hotrod/k8s/deployment.yaml 
+    sudo kubectl apply -f apm/hotrod/k8s/deployment.yaml 
     ```
 
 === "Output"
@@ -48,7 +48,7 @@ To ensure the Hot R.O.D. application is running:
 === "Shell Command"
 
     ```text
-    kubectl get pods
+    sudo kubectl get pods
     ```
 
 === "Example Output"
@@ -73,7 +73,7 @@ In order to view the application in your web browser we need to find the `LoadBa
 === "Shell Command"
 
     ```text
-    kubectl get svc
+    sudo kubectl get svc
     ```
 
 === "Example Output"
@@ -97,7 +97,7 @@ Return to your shell and create an environment variable for the IP address and p
 === "Shell Command"
 
     ```
-    HOTROD_ENDPOINT=$(kubectl get svc hotrod -n default -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
+    HOTROD_ENDPOINT=$(sudo kubectl get svc hotrod -n default -o jsonpath='{.spec.clusterIP}:{.spec.ports[0].port}')
     ```
 
 Confirm the environment variable is set

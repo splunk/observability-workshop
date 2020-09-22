@@ -19,15 +19,15 @@ exit_usage() {
 }
 
 run_test() {
-  kubectl delete -n sock-shop -f loadgen/loadgen.yaml 2>/dev/null
-  kubectl delete configmap -n sock-shop locust-file
-  kubectl delete configmap -n sock-shop locust-config
+  sudo kubectl delete -n sock-shop -f loadgen/loadgen.yaml 2>/dev/null
+  sudo kubectl delete configmap -n sock-shop locust-file
+  sudo kubectl delete configmap -n sock-shop locust-config
 
-  kubectl create configmap -n sock-shop locust-file --from-file loadgen/locustfile.py
-  kubectl create configmap -n sock-shop locust-config \
+  sudo kubectl create configmap -n sock-shop locust-file --from-file loadgen/locustfile.py
+  sudo kubectl create configmap -n sock-shop locust-config \
       --from-literal=targetUrl="$TARGET_HOST" \
       --from-literal=locustOpts="--users $CLIENTS --hatch-rate $HATCH_RATE --run-time $RUNTIME --headless"
-  kubectl apply -n sock-shop -f loadgen/loadgen.yaml
+  sudo kubectl apply -n sock-shop -f loadgen/loadgen.yaml
 }
 
 validate() {
