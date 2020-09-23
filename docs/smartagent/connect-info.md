@@ -68,7 +68,7 @@ Once you are connected successfully you should see a screen similar to the one b
 
 ![putty-4](../images/intro/putty-loggedin.png){: .zoom}
 
-At this point you are ready to continue and [start the workshop](../../smartagent/k3s/)
+At this point you are ready to continue and [start the workshop](../../smartagent/)
 
 ---
 
@@ -116,6 +116,6 @@ Paste the text in the text box as show, then press **OK** to complete the copy a
 
  ![web reconnect](../images/intro/shellinabox-reconnect.png){: .zoom}
 
-At this point you are ready to continue and [start the workshop](../../smartagent/k3s/)
+At this point you are ready to continue and [start the workshop](../../smartagent/)
 
 [^1]: [Download Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/)
