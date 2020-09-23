@@ -39,7 +39,7 @@ Upon successful login you will be presented with the Splunk logo and the Linux p
 
 ![ssh connected](../images/intro/ssh-3.png){: .zoom}
 
-At this point you are ready to continue and [start the workshop](../../smartagent/)
+At this point you are ready to continue and [start the workshop](../../smartagent/k3s/)
 
 ---
 
@@ -68,7 +68,7 @@ Once you are connected successfully you should see a screen similar to the one b
 
 ![putty-4](../images/intro/putty-loggedin.png){: .zoom}
 
-At this point you are ready to continue and [start the workshop](../../smartagent/)
+At this point you are ready to continue and [start the workshop](../../smartagent/k3s/)
 
 ---
 
