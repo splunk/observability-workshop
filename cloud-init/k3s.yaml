@@ -94,7 +94,7 @@ runcmd:
   - tar xfz k9s_Linux_x86_64.tar.gz
   - mv k9s /usr/local/bin/
   # Configure motd
-  - curl -s https://raw.githubusercontent.com/signalfx/observability-workshop/master/etc/motd -o /etc/motd
+  - curl -s https://raw.githubusercontent.com/signalfx/observability-workshop/master/cloud-init/motd -o /etc/motd
   - chmod -x /etc/update-motd.d/*
   # Install AWS CLI
   #- curl -s https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip

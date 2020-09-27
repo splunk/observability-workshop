@@ -58,7 +58,7 @@ runcmd:
   - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
   - mv /home/ubuntu/observability-workshop-$WSVERSION /home/ubuntu/workshop
   # Configure motd
-  - curl -s https://raw.githubusercontent.com/signalfx/observability-workshop/master/etc/motd -o /etc/motd
+  - curl -s https://raw.githubusercontent.com/signalfx/observability-workshop/master/cloud-init/motd -o /etc/motd
   - chmod -x /etc/update-motd.d/*
   # Install Terraform
   - curl -s -OL https://releases.hashicorp.com/terraform/0.12.29/terraform_0.12.29_linux_amd64.zip
