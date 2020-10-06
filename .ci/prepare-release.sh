@@ -31,9 +31,9 @@ else
 fi
 
 # add new version to mkdocs yaml
-awk "/version:/ { print; print \"  - v$TAG\";next }1" mkdocs.yml |
+awk "/  version:/ { print; print \"  - v$TAG\";next }1" mkdocs.yml |
 # limit list of version in mkdocs.yaml to last two
-awk '(s==0) { print } (s==1) { if (c&&c--) print; } /version:/ {s=1;c=2} /^$/ { if (c <= 0 && s==1) { c=1;s=0;print; } }' > mkdocs.new.yml
+awk '(s==0) { print } (s==1) { if (c&&c--) print; } /  version:/ {s=1;c=2} /^$/ { if (c <= 0 && s==1) { c=1;s=0;print; } }' > mkdocs.new.yml
 if [ $dry_run == 0 ]; then
   mv mkdocs.new.yml mkdocs.yml
 fi
