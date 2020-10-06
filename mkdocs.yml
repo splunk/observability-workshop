@@ -1,4 +1,4 @@
-site_name: 'Splunk Observability Workshop'
+site_name: 'Splunk Observability Suite Workshop'
 site_description: 'This workshop is going to take you through the best-in-class observability solution for ingesting, monitoring, visualizing and analyzing data'
 site_author: 'Sales Engineering'
 site_url: 'https://signalfx.github.io/observability-workshop/'
@@ -26,6 +26,7 @@ theme:
   custom_dir: material
   features:
     - tabs
+    - navigation.tabs
 
 markdown_extensions:
   - footnotes
@@ -59,6 +60,7 @@ extra:
       link: https://twitter.com/splunk
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/company/splunk/
+  version: 1.48
 
 plugins:
   - git-revision-date-localized:
@@ -73,7 +75,7 @@ plugins:
         
 nav:
   - 'Home': index.md
-  - '<b>SignalFx</b>':
+  - '<b>Infrastructure & µAPM</b>':
     - 'Workshop Introduction': smartagent/index.md
     - 'Access AWS/EC2 instance': smartagent/connect-info.md
     - '<b>Get Data In</b><br /><small>20 minutes</small>':
@@ -101,7 +103,7 @@ nav:
     - '<b>Service Bureau</b><br /><small>20 minutes</small>':
         - 'Billing and Usage' : servicebureau/billing-and-usage.md
         - 'Teams' : servicebureau/teams.md
-  - '<b>VictorOps</b>':
+  - '<b>On-Call</b>':
     - '<b>Getting Started</b><br /><small>45 minutes</small>':
       - 'Initial Setup': victorops/getting_started/index.md
       - 'User Profile': victorops/getting_started/user_profile.md
