@@ -78,7 +78,7 @@ runcmd:
   - curl -sfL https://get.k3s.io | sh -
   #- chmod 644 /etc/rancher/k3s/k3s.yaml
   # Download Workshop
-  - export WSVERSION=1.49
+  - export WSVERSION=1.50
   - 'export WSARCHIVE=$([ "$WSVERSION" = "master" ] && echo "master" || echo "v$WSVERSION")'
   - curl -s -OL https://github.com/signalfx/observability-workshop/archive/$WSARCHIVE.zip
   - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
