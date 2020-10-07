@@ -9,5 +9,5 @@
 To get started, please proceed to [The Observability Workshop Homepage](https://signalfx.github.io/observability-workshop/latest/).
 
 Previous versions of the workshop are also available:
-- [v1.51](https://signalfx.github.io/observability-workshop/v1.51/)
-- [v1.50](https://signalfx.github.io/observability-workshop/v1.50/)
+- [v1.48](https://signalfx.github.io/observability-workshop/v1.48/)
+- [v1.47](https://signalfx.github.io/observability-workshop/v1.47/)
