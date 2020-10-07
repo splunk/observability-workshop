@@ -61,6 +61,8 @@ extra:
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/company/splunk/
   version: v1.48
+  - v1.51
+
 
 plugins:
   - git-revision-date-localized:
