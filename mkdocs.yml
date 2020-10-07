@@ -8,8 +8,8 @@ copyright: Copyright &copy; 2020 Splunk Inc. All rights reserved.
 remote_branch: gh-pages
 
 versions:
+  - v1.49
   - v1.48
-  - v1.47
 
 theme:
   name: material
