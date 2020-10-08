@@ -7,10 +7,6 @@ edit_uri: ''
 copyright: Copyright &copy; 2020 Splunk Inc. All rights reserved.
 remote_branch: gh-pages
 
-versions:
-  - v1.49
-  - v1.48
-
 theme:
   name: material
   palette:
@@ -60,6 +56,7 @@ extra:
       link: https://twitter.com/splunk
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/company/splunk/
+  version: 1.49
 
 plugins:
   - git-revision-date-localized:
@@ -71,7 +68,7 @@ plugins:
       minify_js: true
       htmlmin_opts:
         remove_comments: true
-        
+
 nav:
   - 'Home': index.md
   - '<b>Infrastructure & µAPM</b>':
