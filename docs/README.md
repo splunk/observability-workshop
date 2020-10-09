@@ -29,7 +29,13 @@ The documentation built from your current branch is then accessible through your
 
 ## How to create a new tagged release
 
-Use the script `./ci/prepare-release.sh`. It takes a single optional argument, the type of release. It defaults to a minor release. To issue a major release:
+Use the script
+
+```
+./ci/prepare-release.sh
+```
+
+It takes a single optional argument, the type of release. It defaults to a minor release. To issue a major release:
 
 ```bash
 ./.ci/prepare-release.sh major
@@ -39,16 +45,16 @@ This will automatically perform the following changes (DO NOT MANUALLY PERFORM T
 
 1. Determine the new version by bumping the major or minor version.
 
-1. Update the `version` list in `mkdocs.yml` with the name of the release tag, e.g. `v4.2`.
+1. Use `bumpversion --list minor` (by default, or `bumpversion --list major` if requested, see above) to update the version number in various places and commit the changes.
 
-1. Update [README.md](../README.md) and prepend the version to the list of available versions.
+1. Update [README.md](../README.md) and prepend the version to the list of available versions. The list has the two latest versions.
 
 1. Retrieve all remote tags. This will spot tag conflicts early and prevent accidentially pushing tags deleted on the remote.
 
-1. Commit these change with a message like `Releasing v4.2`:
+1. Amend the commit created by `bumpversion` with these change and a message like "`Releasing v4.2`":
 
     ```bash
-    git add mkdocs.yml README.md && git commit -m 'Releasing v4.2'
+    git add README.md && git commit -amend -m 'Releasing v4.2'
     ```
 
 1. Tag the release:
