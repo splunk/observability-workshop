@@ -37,7 +37,7 @@ Regardless if you are running this lab locally or if you are going to create you
 === "Linux/Mac OS"
 
     ```text
-    WSVERSION=1.50
+    WSVERSION=1.51
     mkdir cloud-init
     curl -s \
     https://raw.githubusercontent.com/signalfx/observability-workshop/v$WSVERSION/cloud-init/k3s.yaml \
@@ -48,7 +48,7 @@ Regardless if you are running this lab locally or if you are going to create you
 === "Windows"
 
     !!! info
-        Download the zip by clicking on the following URL <https://github.com/signalfx/observability-workshop/archive/v1.50.zip>.
+        Download the zip by clicking on the following URL <https://github.com/signalfx/observability-workshop/archive/v1.51.zip>.
 
         Once downloaded, unzip the the file and rename it to `workshop`. Then, from the command prompt change into that directory
         and run
