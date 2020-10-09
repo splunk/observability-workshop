@@ -31,9 +31,9 @@ else
 fi
 
 # add new version to README
-awk "/Previous versions of the workshop are also available:/ { print; print \"- [v$TAG](https://signalfx.github.io/observability-workshop/v$TAG/)\";next }1" README.md |
+awk "/Latest versions of the workshop are:/ { print; print \"- [v$TAG](https://signalfx.github.io/observability-workshop/v$TAG/)\";next }1" README.md |
 # limit list of version in README to last two
-awk "NR==1,/Previous versions of the workshop are also available:/{c=3} c&&c-- " > README.new.md
+awk "NR==1,/Latest versions of the workshop are:/{c=3} c&&c-- " > README.new.md
 if [ $dry_run == 0 ]; then
   mv README.new.md README.md
 fi

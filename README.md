@@ -8,6 +8,6 @@
 
 To get started, please proceed to [The Observability Workshop Homepage](https://signalfx.github.io/observability-workshop/latest/).
 
-Previous versions of the workshop are also available:
+Latest versions of the workshop are:
 - [v1.51](https://signalfx.github.io/observability-workshop/v1.51/)
 - [v1.50](https://signalfx.github.io/observability-workshop/v1.50/)
