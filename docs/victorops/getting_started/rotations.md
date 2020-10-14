@@ -25,7 +25,7 @@ Enter a name of "*Follow the Sun Support - Business Hours*" and Select **Partial
 
 ![Asia Shift](../../images/victorops/asia-shift.png){: .zoom}
 
-You will now be prompted to add Members to this shift; add the Asia members who are **jimhalpert, lydia and marie**, but only if you're using the AppDev-EMEA Organisation for this workshop.
+You will now be prompted to add Members to this shift; add the Asia members who are **jimhalpert, lydia and marie**, but only if you're using the Splunk provided VictorOps environment for this workshop.
 
 If you're using your own Organisation refer to the specific list provided separately.
 
