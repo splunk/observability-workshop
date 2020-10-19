@@ -1,0 +1,36 @@
+# disable agent
+agentCollector:
+  enabled: false
+# use contrib image
+image:
+  repository: otel/opentelemetry-collector-contrib
+command:
+  name: otelcontribcol
+ports:
+  sapm:
+    enabled: true
+    containerPort: 7276
+    servicePort: 7276
+    hostPort: 7276
+# enable standalone collector, and setup config for signalfx backend
+standaloneCollector:
+  enabled: true
+  configOverride:
+    receivers:
+      sapm: {}
+      signalfx: {}
+    exporters:
+      signalfx:
+        access_token:
+        realm:
+      sapm:
+        access_token:
+        endpoint:
+    service:
+      pipelines:
+        traces:
+          receivers: [sapm, otlp, jaeger, zipkin]
+          exporters: [sapm]
+        metrics:
+          receivers: [signalfx, prometheus]
+          exporters: [signalfx]
