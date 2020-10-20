@@ -29,3 +29,5 @@ Below are helpful resources about Splunk and the DevOps use case. Topics covered
 * **Observability**{: .label-button .observability} ["Oh my! SRE, AIOps and Observe-a-what?"](https://www.thecloudpod.net/podcast/tcp-talks-oh-my-sre-aiops-and-observe-a-what/){: target=_blank}
 * **Observability**{: .label-button .observability} ["On-Demand Observability Demo"](https://events.splunk.com/Observability-Demo){: target=_blank}
 * **DevOps**{: .label-button .devops} ["Dissecting DevOps PlayList"](https://www.youtube.com/playlist?list=PLxkFdMSHYh3QOOQ7D1YyPYOlavuVBRmNm){: target=_blank}
+* **DevOps**{: .label-button .devops} ["DevOps Open Source Innovation and Insights On-Demand Virtual Event"](https://events.splunk.com/OpenSource22072020){: target=_blank}
+* **DevOps**{: .label-button .devops} ["Observability to Enable Your Digital Initiatives On-Demand Virtual Event"](https://events.splunk.com/Devops-and-Observability-Enable-Your-Digital_Initiatives){: target=_blank}
