@@ -26,6 +26,12 @@ ports:
     servicePort: 55679
     hostPort: 55679
     protocol: TCP
+  healthcheck:
+    enabled: true
+    containerPort: 13133
+    servicePort: 13133
+    hostPort: 13133
+    protocol: TCP
 # enable standalone collector, and setup config for signalfx backend
 standaloneCollector:
   enabled: true
@@ -46,6 +52,7 @@ standaloneCollector:
         access_token:
         endpoint:
     extensions:
+      health_check:
       zpages:
         endpoint: ":55679"
     service:
