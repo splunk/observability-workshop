@@ -46,12 +46,19 @@ To use it:
     NAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                                           AGE
     opentelemetry-collector   ClusterIP   10.43.119.140   <none>        14250/TCP,14268/TCP,55680/TCP,7276/TCP,9411/TCP   13m
     ```
+    Use the healthcheck endpoint to confirm:
 
-    TODO: use health check!
+    ```
+    OTEL_ENDPOINT=$(sudo kubectl get svc opentelemetry-collector -n default -o jsonpath='{.spec.clusterIP}')
+    curl http://$OTEL_ENDPOINT:13133/; echo
+
+    {"status":"Server available","upSince":"2020-10-22T08:07:33.656859114Z","uptime":"8m33.548333561s"}
+    ```
 
 1. Reconfigure the agent to send traces in `sapm` format and point it to ingest.
 
     Add to the top of `~/workshop/k3s/values.yaml`:
+
     ```
     writer:
       traceExportFormat: sapm
