@@ -4,13 +4,13 @@ During this _**technical**_ workshop you will build out an environment based on 
 
 In order to simplify the workshop modules, a pre-configured AWS/EC2 instance is provided.
 
-The instance is pre-configured with all the software required to install the SignalFx Smart Agent in Kubernetes, deploy a NGINX[^2] ReplicaSet[^3] and finally deploy a microservices application which has been instrumented to send Traces and Spans using Jaeger[^4].
+The instance is pre-configured with all the software required to install the Smart Agent in Kubernetes, deploy a NGINX[^2] ReplicaSet[^3] and finally deploy a microservices application which has been instrumented to send Traces and Spans using Jaeger[^4].
 
-The workshop also introduces you to dashboards, editing and creating charts, creating detectors to fire alerts, Monitoring as Code[^5] and the SignalFx Service Bureau[^5]
+The workshop also introduces you to dashboards, editing and creating charts, creating detectors to fire alerts, Monitoring as Code[^5] and the Service Bureau[^5]
 
 ![SFx Architecture](../images/smartagent/architecture.png){: .zoom}
 
-By the end of this technical workshop you will have a good understanding of some of the key features and capabilities of the SignalFx platform.
+By the end of this technical workshop you will have a good understanding of some of the key features and capabilities of the Observability Suite.
 
 Here are the instructions how to access you pre-configured [AWS/EC2 instance](../smartagent/connect-info/)
 

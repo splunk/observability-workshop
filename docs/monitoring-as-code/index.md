@@ -1,8 +1,8 @@
 # Monitoring as Code - Lab Summary
 
-* Use Terraform[^1] to manage SignalFx Dashboards and Detectors
+* Use Terraform[^1] to manage Observability Suite Dashboards and Detectors
 * Initialize the Terraform SignalFx Provider[^2].
-* Run Terraform to create SignalFx detectors and dashboards from code using the SignalFx Terraform Provider.
+* Run Terraform to create detectors and dashboards from code using the SignalFx Terraform Provider.
 * See how Terraform can also delete detectors and dashboards.
 
 ---

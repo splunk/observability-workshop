@@ -1,6 +1,6 @@
 # Working with Dashboards, Charts and Metrics
 
-* Introduction to the SignalFx Dashboards and charts
+* Introduction to the Dashboards and charts
 * Editing and creating charts
 * Filtering and analytical functions
 * Using formulas
@@ -8,17 +8,17 @@
 
 ---
 
-## 1. Introduction to the SignalFx UI
+## 1. Introduction to the Observability Suite UI
 
-Logon to the SignalFx organization you have been invited to.
+Logon to the Organization you have been invited to.
 
 Hover over **Dashboards** in the top menu, and then click on **All Dashboards**. A number of prebuilt dashboards are provided for you in your default view.
 
 ![Dashboards](../images/dashboards/M1-l1-1.png){: .zoom}
 
-If you are already receiving metrics through a Cloud API integration or the Smart Agent you will see relevant dashboards for these services in SignalFx.
+If you are already receiving metrics through a Cloud API integration or the Smart Agent you will see relevant dashboards for these services.
 
-Among the dashboards you will see a Dashboard group called **Sample Data**. This group exists by default in all SignalFx accounts. Let's take a closer look at it.
+Among the dashboards you will see a Dashboard group called **Sample Data**. Let's take a closer look at it!
 
 ---
 

@@ -8,7 +8,7 @@
 
 ## Find your AWS/EC2 IP Address
 
-In preparation for the workshop, SignalFx has prepared an Ubuntu Linux instance in AWS/EC2.
+In preparation for the workshop, Splunk has prepared an Ubuntu Linux instance in AWS/EC2.
 
 To get access to the instance that you will be using in the workshop please visit the URL to access the Google Sheet provided by the workshop leader.
 

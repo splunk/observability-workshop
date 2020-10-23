@@ -129,7 +129,7 @@ Create some errors with an invalid customer number.
 
 ---
 
-## 4. Validating the Hot R.O.D. application in SignalFx
+## 4. Validating the Hot R.O.D. application in Splunk Observability Suite
 
 Open the SignalFx UI, and go to you cluster in the Kubernetes Navigator. You should see the new Pod being started and containers being deployed.
 

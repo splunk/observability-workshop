@@ -57,14 +57,14 @@ In **Alert Settings**, enter the value **`290`** in the **Threshold** field. In 
 
 ## 4. Alert pre-flight check
 
-SignalFx will now perform a pre-flight check after 5 seconds. See the **Estimated alert count**. Based on the current alert settings, the amount of alerts we would’ve received in 1 day would have been approx. **18**.
+A pre-flight check will take place after 5 seconds. See the **Estimated alert count**. Based on the current alert settings, the amount of alerts we would’ve received in 1 day would have been approx. **18**.
 
 ![Threshold](../images/detectors/M1-l2-6.png){: .zoom}
 
 !!! note "About pre-flight checks"
-    Once you set an alert condition, SignalFx shows how many alerts you would get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.
+    Once you set an alert condition, the UI estimates how many alerts you might get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.
 
-    Immediately, the platform will start analyzing the signals with the current settings, and perform something we call a Pre-flight Check. This enables you to test the alert conditions using the historical data in the platform, to ensure the settings are logical and will not inadvertently generate an alert storm, removing the guess work from configuring alerts in a simple but very powerful way, only available using SignalFx.
+    Immediately, the platform will start analyzing the signals with the current settings, and perform something we call a Pre-flight Check. This enables you to test the alert conditions using the historical data in the platform, to ensure the settings are logical and will not inadvertently generate an alert storm, removing the guess work from configuring alerts in a simple but very powerful way, only available using the Splunk Observability Suite.
 
     To read more about detector previewing, please visit this link
     [Setting up detectors](https://docs.signalfx.com/en/latest/detect-alert/set-up-detectors.html#previewing-the-results-of-a-detector){: target=_blank}.
@@ -88,7 +88,7 @@ Click on **Add Recipient** and then on your email address displayed as the first
 !!! note "Notification Services"
     That's the same as entering that email address OR you can enter another email address by clicking on **E-mail...**.
 
-    That's just one example of the many **Notification Services** SignalFx has available. You can check this out by going to the **Integrations** tab of the top menu, and see **Notification Services**.
+    This is just one example of the many **Notification Services** the suite has available. You can check this out by going to the **Integrations** tab of the top menu, and see **Notification Services**.
 
 ---
 
