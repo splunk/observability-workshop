@@ -1,8 +1,8 @@
 markdown>=3.2.2
 mkdocs>=1.1.2
 mkdocs-git-revision-date-localized-plugin>=0.5.0
-mkdocs-material>=6.0.2
+mkdocs-material>=6.1.0
 mkdocs-minify-plugin>=0.3.0
-pymdown-extensions>=7.1
+pymdown-extensions>=8.0.1
 Pygments>=2.6.1
 bump2version>=1.0.0
