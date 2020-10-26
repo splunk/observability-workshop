@@ -2,11 +2,11 @@
 
 Set the following variables:
 
-aws_instance_count: - how many instances?
-aws_instance_type:  - what kind of instance?
-aws_region:         - which region do you want the instances in?
-signalFxApiAccessToken: a SignalFx user API access token. *Not* an org token. The user needs to be an admin.
-signalFxAWSIntegrationName: this name shows up in the SignalFx integrations UI. We suggest you use your first name or initials.
+- `aws_instance_count`: how many instances?
+- `aws_instance_type`: what kind of instance?
+- `aws_region`: which region do you want the instances in?
+- `signalFxApiAccessToken`: a SignalFx user API access token. *Not* an org token. The user needs to be an admin.
+- `signalFxAWSIntegrationName`: this name shows up in the SignalFx integrations UI. We suggest you use your first name or initials.
 
 Sample command:
 
