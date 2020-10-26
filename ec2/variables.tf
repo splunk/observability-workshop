@@ -37,3 +37,16 @@ variable "instance_disk_aws" {
     "2" = "15"
   }
 }
+
+variable "signalFxApiAccessToken" {
+  description = "SignalFx User API access token."
+}
+
+variable "signalFxRealm" {
+  description = "SignalFx realm."
+  default = "eu0"
+}
+
+variable "signalFxAWSIntegrationName" {
+  description = "Name of the AWS integration that shows up in SignalFx integrations UI."
+}
