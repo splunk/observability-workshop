@@ -49,3 +49,8 @@ variable "signalFxRealm" {
 variable "signalFxAWSIntegrationName" {
   description = "Name of the AWS integration that shows up in SignalFx integrations UI."
 }
+
+variable "signalFxAWSIntegrationEnabled" {
+  description = "Fake boolean to control rollout of AWS integration. Set to 0 to disable"
+  default     = 1
+}
