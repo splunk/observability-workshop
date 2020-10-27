@@ -38,8 +38,8 @@ standaloneCollector:
   replicaCount: 1
   resources:
     limits:
-      cpu: 1
-      memory: 2Gi
+      cpu: 256m
+      memory: 256Mi
   configOverride:
     receivers:
       sapm: {}
