@@ -110,7 +110,7 @@ resource "signalfx_aws_integration" "aws_sfx" {
   integration_id     = signalfx_aws_external_integration.aws_myteam_extern.id
   external_id        = signalfx_aws_external_integration.aws_myteam_extern.external_id
   role_arn           = aws_iam_role.aws_sfx_role.arn
-  regions            = [ var.aws_region ]
+  regions            = [var.aws_region]
   poll_rate          = 60
   import_cloud_watch = true
   enable_aws_usage   = false

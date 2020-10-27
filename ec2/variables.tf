@@ -44,7 +44,7 @@ variable "signalFxApiAccessToken" {
 
 variable "signalFxRealm" {
   description = "SignalFx realm."
-  default = "eu0"
+  default     = "eu0"
 }
 
 variable "signalFxAWSIntegrationName" {
