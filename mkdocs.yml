@@ -101,21 +101,21 @@ nav:
         - 'Teams' : servicebureau/teams.md
   - '<b>On-Call</b>':
     - '<b>Getting Started</b><br /><small>45 minutes</small>':
-      - 'Initial Setup': victorops/getting_started/index.md
-      - 'User Profile': victorops/getting_started/user_profile.md
-      - 'Teams': victorops/getting_started/team.md
-      - 'Configure Rotations': victorops/getting_started/rotations.md
-      - 'Configure Escalation Policies': victorops/getting_started/escalation.md
-      - 'Creating Routing keys': victorops/getting_started/routing.md
+      - 'Initial Setup': oncall/getting_started/index.md
+      - 'User Profile': oncall/getting_started/user_profile.md
+      - 'Teams': oncall/getting_started/team.md
+      - 'Configure Rotations': oncall/getting_started/rotations.md
+      - 'Configure Escalation Policies': oncall/getting_started/escalation.md
+      - 'Creating Routing keys': oncall/getting_started/routing.md
     - '<b>Incident Lifecycle</b><br /><small>45 minutes</small>':
-      - 'Overview': victorops/incident_lifecycle/index.md
-      - 'Create Incidents': victorops/incident_lifecycle/create_incidents.md
-      - 'Manage Incidents': victorops/incident_lifecycle/manage_incidents.md
-    - '<b>Workshop Clean-up</b><br /><small>2 minutes</small>': victorops/cleanup.md
+      - 'Overview': oncall/incident_lifecycle/index.md
+      - 'Create Incidents': oncall/incident_lifecycle/create_incidents.md
+      - 'Manage Incidents': oncall/incident_lifecycle/manage_incidents.md
+    - '<b>Workshop Clean-up</b><br /><small>2 minutes</small>': oncall/cleanup.md
     - '<b>Optional Modules</b>':
-      - 'SignalFx Integration': victorops/optional/sfx_integrations.md
-      - 'Using Multipass VM': victorops/optional/multipass.md
-      - 'Create a Detector': victorops/optional/detector.md
+      - 'SignalFx Integration': oncall/optional/sfx_integrations.md
+      - 'Using Multipass VM': oncall/optional/multipass.md
+      - 'Create a Detector': oncall/optional/detector.md
   - '<b>Resources</b>':
     - 'Links': resources/index.md
     - 'FAQ': resources/faq.md
