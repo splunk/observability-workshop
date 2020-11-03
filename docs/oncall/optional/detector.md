@@ -30,7 +30,7 @@ Add the following lines to your variables document, then as you gather the value
 
 In the SignalFx UI you can find your **Access Token** by clicking on the **Settings** icon on the top right of the SignalFx UI, select **Organization Settings → Access Tokens**, expand the **Default** token, then click on **Show Token** to expose your token.
 
-![Access Token](../../images/victorops/m7-access-token.png){: .zoom}
+![Access Token](../../images/oncall/m7-access-token.png){: .zoom}
 
 Click the **Copy**{: .label-button .sfx-ui-button-blue} button to copy it you your clipboard, then paste it into the `ACCESS_TOKEN` line of your variables document.
 
@@ -48,7 +48,7 @@ Still in the SignalFx UI, click on the **Settings** icon again, but this time se
 
 The Realm can be found in the middle of the page within the Organizations section. In this example it is **us1**, but yours may be **eu0** or one of the many other SignalFx Realms.
 
-![Realm](../../images/victorops/m7-realm.png){: .zoom}
+![Realm](../../images/oncall/m7-realm.png){: .zoom}
 
 Copy it to the `REALM` line of your variables document.
 
@@ -66,7 +66,7 @@ In SignalFx UI navigate to **Integrations** and use the search feature to find t
 
 Expand the **VictorOps-xxxx** configuration; if there are more than one you will be informed which one to copy by the presenter.
 
-![VictorOps Integration](../../images/victorops/m7-sfx-vo-integration-id.png)
+![VictorOps Integration](../../images/oncall/m7-sfx-vo-integration-id.png)
 
 Copy it to the `SFXVOPSID` line of your variables document.
 
@@ -248,15 +248,15 @@ In the SignalFx UI go to **Alerts → Detectors** to show all the Detectors and 
 
 Optionally - Click on **CPU Utilization is greater than 90%** to open the Alert Rule Editor to view its settings.
 
-![Detector](../../images/victorops/detector.png){: .zoom}
+![Detector](../../images/oncall/detector.png){: .zoom}
 
 A filter has been used to specifically monitor your VM using the 1st 4 characters of its name, which were randomly assigned when you created the VM.
 
-![Detector Filter](../../images/victorops/detector-filter.png){: .zoom}
+![Detector Filter](../../images/oncall/detector-filter.png){: .zoom}
 
 A **Recipient** has been configured using the VictorOps Integration and your **Routing Key** has been specified.  This is how a monitoring system such as SignalFx knows to route Alerts into VictorOps, and ensure they get routed to the correct team.
 
-![Detector Recipients](../../images/victorops/detector-recipients.png){: .zoom}
+![Detector Recipients](../../images/oncall/detector-recipients.png){: .zoom}
 
 ---
 

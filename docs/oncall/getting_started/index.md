@@ -2,29 +2,134 @@
 
 ## Aim
 
-This module is simply to ensure you have access to both the VictorOps and SignalFx UIs which we will be using throughout this workshop.
+This module is simply to ensure you have access to the Splunk On-Call UI (formerly known as VictorOps), Splunk Infrastructure Monitoring UI (formerly known as SignalFx) and the EC2 Instance which has been allocated to you.
 
 Once you have access to each platform, keep them open for the duration of the workshop as you will be switching between them and the workshop instructions.
 
-## 1. Activate your VictorOps Login
+## 1. Activate your Splunk On-Call Login
 
-You should have received an invitation to Activate your VictorOps account via e-mail, if you have not already done so, click the _Activate Account_ link and follow the prompts.
+You should have received an invitation to Activate your Splunk On-Call account via e-mail, if you have not already done so, click the _Activate Account_ link and follow the prompts.
 
-If you did not receive an invitation it is probably because you already have a VictorOps login, linked to a different organisation.
+If you did not receive an invitation it is probably because you already have a Splunk On-Call login, linked to a different organisation.
 
-If so login to to that Org, then use the organisation dropdown next to your username in the top left to switch to the Observability Workshop EMEA Org.
+If so login to to that Org, then use the organisation dropdown next to your username in the top left to switch to the Observability Workshop Org.
 
-![Switch Org](../../images/victorops/switch-org.png){: .center}
+![Switch Org](../../images/oncall/switch-org.png){: .center}
 
 !!! Note
 If you do not see the Organisation dropdown menu item next to your name with Observability Workshop EMEA that is OK, it simply means you only have access to a single Org so that menu is not visible to you.
 
-If you have forgotten your password go to the sign-in page and use the forgotten password link to reset your password.
+If you have forgotten your password go to the [sign-in](https://portal.victorops.com/membership/#/){: target=_blank} page and use the forgotten password link to reset your password.
 
-![Reset Pwd](../../images/victorops/reset-password.png){: .center}
+![Reset Pwd](../../images/oncall/reset-password.png){: .center}
 
 ---
 
-## 2. Activate your SignalFx Login
+## 2. Activate your Splunk Infrastructure Monitoring Login
 
-You should have received an invitation to join the Observability Workshop on SignalFx.  If you have not already done so click the **JOIN NOW**{: .label-button .sfx-ui-button-blue} button and follow the prompts to set a password and activate your login.
+You should have received an invitation to join the Splunk Infrastructure Monitoring - Observability Workshop.  If you have not already done so click the **JOIN NOW**{: .label-button .sfx-ui-button-black} button and follow the prompts to set a password and activate your login.
+
+## 3. Access your EC2 Instance
+
+Splunk has provided you with a dedicated EC2 Instance which you can use during this workshop for triggering Incidents the same way the instructor did during the introductory demo. This VM has Splunk Infrastructure Monitoring deployed and has an associated Detector configured. The Detector will pass Alerts to Splunk On-Call which will then create Incidents and page the on-call user.
+
+The welcome e-mail you received providing you all the details for this Workshop contain the instructions for accessing your allocated EC2 Instance.
+
+### SSH (Mac OS/Linux)
+
+Most attendees will be able to connect to the workshop by using SSH from their Mac or Linux device.
+
+To use SSH, open a terminal on your system and type `ssh ubuntu@x.x.x.x` (replacing x.x.x.x with the IP address found in your welcome e-mail).
+
+![ssh login](../../images/intro/ssh-1.png){: .zoom}
+
+When prompted **`Are you sure you want to continue connecting (yes/no/[fingerprint])?`** please type **`yes`**.
+
+![ssh password](../../images/intro/ssh-2.png){: .zoom}
+
+Enter the password provided in the welcome e-mail.
+
+Upon successful login you will be presented with the Splunk logo and the Linux prompt.
+
+![ssh connected](../../images/intro/ssh-3.png){: .zoom}
+
+At this point you are ready to [continue with the workshop](../../oncall/getting_started/user_profile) when instructed to do so by the instructor
+
+---
+
+### Putty (Windows users only)
+
+If you do not have ssh preinstalled or if you are on a Windows system,  the best option is to install putty, you can find the downloads [here](https://www.putty.org/){: target=_blank}.
+
+!!! important
+    If you **cannot** install Putty, please go to [Web Browser (All)](../getting_started/#web-browser-all).
+
+Open Putty and in the **Host Name (or IP address)** field enter the IP address provided in the welcome e-mail.
+
+You can optionally save your settings by providing a name and pressing **Save**.
+
+![putty-2](../../images/intro/putty-settings.png){: .zoom}
+
+To then login to your instance click on the **Open** button as shown above.
+
+If this is the first time connecting to your EC2 instance, you will be presented with a security dialog, please click **Yes**.
+
+![putty-3](../../images/intro/putty-security.png){: .zoom}
+
+Once connected, login in as **ubuntu** using the password provided in the welcome e-mail.
+
+Once you are connected successfully you should see a screen similar to the one below:
+
+![putty-4](../../images/intro/putty-loggedin.png){: .zoom}
+
+At this point you are ready to [continue with the workshop](../../oncall/getting_started/user_profile) when instructed to do so by the instructor
+
+---
+
+### Web Browser (All)
+
+If you are blocked from using SSH (Port 22) or unable to install Putty you may be able to connect to the workshop instance by using a web browser.
+
+!!! note
+    This assumes that access to port 6501 is not restricted by your company's firewall.
+
+Open your web browser and type **http://X.X.X.X:6501** (where X.X.X.X is the IP address from the welcome e-mail).
+
+![http-6501](../../images/intro/shellinabox-url.png){: .zoom}
+
+Once connected, login in as **ubuntu** and the password is the one provided in the welcome e-mail.
+
+![http-connect](../../images/intro/shellinabox-connect.png){: .zoom}
+
+Once you are connected successfully you should see a screen similar to the one below:
+
+![web login](../../images/intro/shellinabox-login.png){: .zoom}
+
+---
+
+### Copy & Paste in browser
+
+Unlike when you are using regular SSH, *copy and paste* does require a few extra steps to complete when using a browser session. This is due to cross browser restrictions.
+
+When the workshop asks you to copy instructions into your terminal, please do the following:
+
+*Copy the instruction as normal, but when ready to paste it in the web terminal, choose **Paste from browser** as show below:*
+
+![web paste 1](../../images/intro/shellinabox-paste-browser.png){: .zoom}
+
+This will open a dialog box asking for the text to be pasted into the web terminal:
+
+![web paste 3](../../images/intro/shellinabox-example-1.png){: .zoom}
+
+Paste the text in the text box as show, then press **OK** to complete the copy and paste process.
+
+!!! note
+    Unlike regular SSH connection, the web browser has a 60 second time out, and you will be disconnected, and a **Connect** button will be shown in the center of the web terminal.
+
+    Simply click the **Connect** button and you will be reconnected and will be able to continue.
+
+ ![web reconnect](../../images/intro/shellinabox-reconnect.png){: .zoom}
+
+At this point you are ready to [continue with the workshop](../../oncall/getting_started/user_profile) when instructed to do so by the instructor
+
+[^1]: [Download Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/){: target=_blank}

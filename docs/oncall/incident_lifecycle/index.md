@@ -1,14 +1,20 @@
 # UI Overview
 
-## 1. VictorOps UI
+## Aim
 
-The aim of VictorOps is to _**"Make On Call Suck Less"**_, and it does this by getting the critical data, to the right people, at the right time.
+The aim of this module is for you to get more familiar with the Timeline Tab and the filtering features.
 
-The key to making VictorOps work for you is to centralize all your alerting sources, sending them all to the VictorOps platform, then you have a single pane of glass in which to manage all of your alerting.
+---
 
-Login to the VictorOps UI and select the **Timeline** tab on the main menu bar, you should have a screen similar to the following image:
+## 1. Timeline
 
-![VictorOps UI](../../images/victorops/m7-vo-ui.png){: .zoom}
+The aim of Splunk On-Call is to _**"Make On Call Suck Less"**_, and it does this by getting the critical data, to the right people, at the right time.
+
+The key to making it work for you is to centralize all your alerting sources, sending them all to the Splunk On-Call platform, then you have a single pane of glass in which to manage all of your alerting.
+
+Login to the Splunk On-Call UI and select the **Timeline** tab on the main menu bar, you should have a screen similar to the following image:
+
+![Splunk On-Call UI](../../images/oncall/m7-vo-ui.png){: .zoom}
 
 ## 2. People
 
@@ -16,7 +22,7 @@ On the left we have the **People** section with the **Teams** and **Users** sub 
 
 On the **Teams** tab, click on **All Teams** then expand _**[Your Teamname]**_.
 
-Users with the VictorOps Logo against their name are currently on call.
+Users with the Splunk On-Call Logo against their name are currently on call.
 
 Here you can see who is on call within a particular Team, or across all Teams via **Users → On-Call**.
 
@@ -24,7 +30,7 @@ If you click into one of the currently on call users, you can see their status.
 
 It shows which Rotation they are on call for, when their current Shift ends and their next Shift starts (times are displayed in your timezone), what contact methods they have and which Teams they belong to (dummy users such as Hank do not have Contact Methods configured).
 
-![User Detail](../../images/victorops/m7-user-detail.png){: .center}
+![User Detail](../../images/oncall/m7-user-detail.png){: .center}
 
 ## 3. Timeline
 
@@ -40,7 +46,7 @@ Change the **My Keys** value to **all** and the **Other Keys** value to **select
 
 Click anywhere outside of the dialogue box to close it.
 
-![Timeline Filters](../../images/victorops/m7-timeline-filters.png)
+![Timeline Filters](../../images/oncall/m7-timeline-filters.png)
 
 You will probably now have a much simpler view as you will not currently have Incidents created using your Routing Keys, so you are left with the other types of messages that the Timeline can display.
 
@@ -50,7 +56,7 @@ Here you control the types of messages that are displayed.
 
 For example, deselect **On-call Changes** and **Escalations**, this will reduce the amount of messages displayed.
 
-![Timeline Filters Message Types](../../images/victorops/m7-timeline-filters-message-types.png)
+![Timeline Filters Message Types](../../images/oncall/m7-timeline-filters-message-types.png)
 
 ## 4. Incidents
 
@@ -61,3 +67,6 @@ Here we get a list of all the incidents within the platform, or we view a more s
 Select the **Team Incidents** tab you should find that the **Triggered**, **Acknowledged** & **Resolved** tabs are currently all empty as you have had no incidents logged.
 
 Let's change that by generating your first incident!
+
+---
+Continue with the [Create Incidents](../incident_lifecycle/create_incidents/) module.

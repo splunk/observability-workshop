@@ -2,13 +2,13 @@
 
 ## Aim
 
-The aim of this module is for you to configure your personal profile within VictorOps.  Your profile controls how you will be notified by VictorOps whenever you get paged.
+The aim of this module is for you to configure your personal profile which controls how you will be notified by Splunk On-Call whenever you get paged.
 
 ---
 
 ## 1. Contact Methods
 
-Switch to the VictorOps UI and click on your login name in the top right hand corner and chose **Profile** from the drop down.
+Switch to the Splunk On-Call UI and click on your login name in the top right hand corner and chose **Profile** from the drop down.
 
 Confirm your contact methods are listed correctly and add any additional phone numbers and e-mail address you wish to use.
 
@@ -16,16 +16,16 @@ Confirm your contact methods are listed correctly and add any additional phone n
 
 ## 2. Mobile Devices
 
-To install the VictorOps app for your smartphone search your phones App Store for VictorOps to find the appropriate version of the app.
+To install the Splunk On-Call app for your smartphone search your phones App Store for Splunk On-Call to find the appropriate version of the app.
 
 The publisher should be listed as VictorOps Inc.
 
-[![iPhone](../../images/victorops/app-store.svg){: .appstore}](ttps://apps.apple.com/us/app/victorops/id696974262) [![Android](../../images/victorops/play-store.svg){: .appstore}](https://play.google.com/store/apps/details?id=com.victorops.androidclient&hl=en)
+[![iPhone](../../images/oncall/app-store.svg){: .appstore}](https://apps.apple.com/us/app/victorops/id696974262){: target=_blank} [![Android](../../images/oncall/play-store.svg){: .appstore}](https://play.google.com/store/apps/details?id=com.victorops.androidclient&hl=en){: target=_blank}
 
 Configuration help guides are available:
 
-* [Apple](https://help.victorops.com/knowledge-base/ios-application/)
-* [Android](https://help.victorops.com/knowledge-base/android-devices-victorops/)
+* [Apple](https://help.victorops.com/knowledge-base/ios-application/){: target=_blank}
+* [Android](https://help.victorops.com/knowledge-base/android-devices-victorops/){: target=_blank}
 
 Install the App and login, then refresh the Profile page and your device should now be listed under the devices section.
 
@@ -35,7 +35,7 @@ Click the **Test push notification** button and confirm you receive the test mes
 
 ## 3. Personal Calendar
 
-This link will enable you to sync your VictorOps on-call schedule with your calendar, however as you do not have any allocated shifts yet this will currently be empty.
+This link will enable you to sync your on-call schedule with your calendar, however as you do not have any allocated shifts yet this will currently be empty.
 
 You can add it to your calendar by copying the link into your preferred application and setting it up as a new subscription.
 
@@ -43,13 +43,13 @@ You can add it to your calendar by copying the link into your preferred applicat
 
 ## 4. Paging Policies
 
-Paging Polices specify how you will be contacted by VictorOps when on-call.
+Paging Polices specify how you will be contacted when on-call.
 
 The Primary Paging Policy will have defaulted to sending you an SMS assuming you added your phone number when activating your account.
 
 We will now configure this policy into a three tier multi-stage policy similar to the image below.
 
-![Paging Policy](../../images/victorops/primary-paging-policy.png)
+![Paging Policy](../../images/oncall/primary-paging-policy.png)
 
 ### Step 1: Send a push notification
 
@@ -58,7 +58,7 @@ Click the edit policy button in the top right corner for the Primary Paging Poli
 * Send a push notification to all my devices
 * Execute the next step if I have not responded within 5 minutes
 
-![Step 1](../../images/victorops/pri-page-step1.png)
+![Step 1](../../images/oncall/pri-page-step1.png)
 
 Click **Add a Step**
 
@@ -67,7 +67,7 @@ Click **Add a Step**
 * Send an e-mail to [your email address]
 * Execute the next step if I have not responded within 5 minutes
 
-![Step 2](../../images/victorops/pri-page-step2.png)
+![Step 2](../../images/oncall/pri-page-step2.png)
 
 Click **Add a Step**
 
@@ -78,7 +78,7 @@ Click **Add a Step**
 
 Click **Save**{: .label-button .vo-ui-button} to save the policy.
 
-![Step 3](../../images/victorops/pri-page-step3.png)
+![Step 3](../../images/oncall/pri-page-step3.png)
 
 ---
 
@@ -91,7 +91,7 @@ To cease the paging you must acknowledge the incident. Acknowledgements can occu
 * Pressing 4 during the Phone Call
 * Slack Button
 
-For more information on Notification Types, see [here](https://help.victorops.com/knowledge-base/notification-types/).
+For more information on Notification Types, see [here](https://help.victorops.com/knowledge-base/notification-types/){: target=_blank}.
 
 ---
 
@@ -113,7 +113,7 @@ Policy Name: Evening
   * Timezone
     * Between 7pm and 9am
 
-![Evening](../../images/victorops/evening.png)
+![Evening](../../images/oncall/evening.png)
 
 Click **Save**{: .label-button .vo-ui-button} to save the policy then add one more.
 
@@ -129,7 +129,7 @@ Policy Name: Weekend
 
 Click **Save**{: .label-button .vo-ui-button} to save the policy.
 
-![Weekends](../../images/victorops/weekends.png)
+![Weekends](../../images/oncall/weekends.png)
 
 ---
 
@@ -144,3 +144,7 @@ As these are typically low priority simply sending you an email or a push notifi
 Your profile is now fully configured using these example configurations.
 
 Organizations will have different views on how profiles should be configured and will typically issue guidelines for paging policies and times between escalations etc.
+
+---
+
+Please wait for the instructor before proceeding to the Teams module.
