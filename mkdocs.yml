@@ -111,7 +111,6 @@ nav:
       - 'Overview': oncall/incident_lifecycle/index.md
       - 'Create Incidents': oncall/incident_lifecycle/create_incidents.md
       - 'Manage Incidents': oncall/incident_lifecycle/manage_incidents.md
-    - '<b>Workshop Clean-up</b><br /><small>2 minutes</small>': oncall/cleanup.md
     - '<b>Optional Modules</b>':
       - 'SignalFx Integration': oncall/optional/sfx_integrations.md
       - 'Using Multipass VM': oncall/optional/multipass.md
