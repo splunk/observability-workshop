@@ -1,15 +1,15 @@
 provider "signalfx" {
-  auth_token = var.signalFxApiAccessToken
-  api_url    = "https://api.${var.signalFxRealm}.signalfx.com"
+  auth_token = var.signalfx_api_access_token
+  api_url    = "https://api.${var.signalfxRealm}.signalfx.com"
 }
 
 resource "signalfx_aws_external_integration" "aws_myteam_extern" {
-  name  = var.signalFxAWSIntegrationName
-  count = var.signalFxAWSIntegrationEnabled
+  name  = var.signalfx_aws_integration_name
+  count = var.signalfx_aws_integration_enabled
 }
 
 data "aws_iam_policy_document" "signalfx_assume_policy" {
-  count = var.signalFxAWSIntegrationEnabled
+  count = var.signalfx_aws_integration_enabled
   statement {
     actions = ["sts:AssumeRole"]
 
@@ -28,14 +28,14 @@ data "aws_iam_policy_document" "signalfx_assume_policy" {
 
 resource "aws_iam_role" "aws_sfx_role" {
   name               = "signalfx-reads-from-cloudwatch2"
-  count              = var.signalFxAWSIntegrationEnabled
+  count              = var.signalfx_aws_integration_enabled
   description        = "SignalFx integration to read out data and send it to SignalFx's AWS aws account"
   assume_role_policy = data.aws_iam_policy_document.signalfx_assume_policy[0].json
 }
 
 resource "aws_iam_policy" "aws_read_permissions" {
   name        = "SignalFxReadPermissionsPolicy"
-  count       = var.signalFxAWSIntegrationEnabled
+  count       = var.signalfx_aws_integration_enabled
   description = "SignalFx IAM Policy"
   policy      = <<EOF
 {
@@ -104,13 +104,13 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "sfx-read-attach" {
-  count       = var.signalFxAWSIntegrationEnabled
+  count       = var.signalfx_aws_integration_enabled
   role        = aws_iam_role.aws_sfx_role[0].name
   policy_arn  = aws_iam_policy.aws_read_permissions[0].arn
 }
 
 resource "signalfx_aws_integration" "aws_sfx" {
-  count       = var.signalFxAWSIntegrationEnabled
+  count       = var.signalfx_aws_integration_enabled
   enabled     = true
 
   integration_id     = signalfx_aws_external_integration.aws_myteam_extern[0].id
