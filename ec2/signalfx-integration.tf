@@ -1,6 +1,6 @@
 provider "signalfx" {
   auth_token = var.signalfx_api_access_token
-  api_url    = "https://api.${var.signalfxRealm}.signalfx.com"
+  api_url    = "https://api.${var.signalfx_realm}.signalfx.com"
 }
 
 resource "signalfx_aws_external_integration" "aws_myteam_extern" {
