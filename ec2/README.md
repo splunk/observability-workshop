@@ -23,3 +23,7 @@ terraform apply \
 ```
 
 To disable rollout of the AWS integration, set `-var="signalfx_aws_integration_enabled=0"`.
+
+Instance access vi ssh:
+user: ubuntu
+pw: Observability2020!
