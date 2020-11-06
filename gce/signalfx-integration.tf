@@ -8,7 +8,7 @@ resource "random_id" "random_suffix" {
 }
 
 resource "google_project_iam_custom_role" "signalfx_role" {
-  provider = google-beta
+  provider    = google-beta
   role_id     = "signalfxRole_${random_id.random_suffix.hex}"
   title       = "SignalFx Role"
   description = "Role used for monitoring with SignalFx"
@@ -25,24 +25,24 @@ resource "google_project_iam_custom_role" "signalfx_role" {
 }
 
 resource "google_service_account" "signalfx_sa" {
-  provider = google-beta
+  provider     = google-beta
   account_id   = "signalfx-${var.gcp_project}-sa"
   display_name = "SignalFx Service Account for ${var.gcp_project} managed by terraform"
 }
 
 resource "google_service_account_key" "signalfx_sa_key" {
-  provider = google-beta
+  provider           = google-beta
   service_account_id = google_service_account.signalfx_sa.name
 }
 
 resource "google_project_iam_member" "signalfx_sa_has_signalfx_role" {
   provider = google-beta
-  role   = "projects/${var.gcp_project}/roles/${google_project_iam_custom_role.signalfx_role.role_id}"
-  member = "serviceAccount:${google_service_account.signalfx_sa.email}"
+  role     = "projects/${var.gcp_project}/roles/${google_project_iam_custom_role.signalfx_role.role_id}"
+  member   = "serviceAccount:${google_service_account.signalfx_sa.email}"
 }
 
 resource "signalfx_gcp_integration" "signalfx_o11y4gcp" {
-  count = var.signalfx_gcp_integration_enabled
+  count     = var.signalfx_gcp_integration_enabled
   name      = var.signalfx_gcp_integration_name
   enabled   = true
   poll_rate = 60

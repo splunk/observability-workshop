@@ -22,8 +22,8 @@ resource "google_project_service" "cloudresourcemanager_svc" {
 
 resource "google_compute_firewall" "allow_ingress_traffic" {
   provider = google-beta
-  name    = "allow-ingress-traffic"
-  network = "default"
+  name     = "allow-ingress-traffic"
+  network  = "default"
 
   allow {
     protocol = "tcp"
@@ -35,9 +35,9 @@ resource "google_compute_firewall" "allow_ingress_traffic" {
 }
 
 resource "google_compute_firewall" "allow_egress_traffic" {
-  provider = google-beta
-  name    = "allow-egress-traffic"
-  network = "default"
+  provider  = google-beta
+  name      = "allow-egress-traffic"
+  network   = "default"
   direction = "EGRESS"
 
   allow {
@@ -53,11 +53,11 @@ resource "google_compute_firewall" "allow_egress_traffic" {
   }
 
   destination_ranges = ["0.0.0.0/0"]
-  target_tags = ["o11y-instance"]
+  target_tags        = ["o11y-instance"]
 }
 
 resource "google_compute_instance" "o11y-instance" {
-  provider = google-beta
+  provider     = google-beta
   count        = var.gcp_instance_count
   name         = "o11y-${count.index + 1}"
   machine_type = var.gcp_instance_type
