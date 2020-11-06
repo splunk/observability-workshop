@@ -104,14 +104,14 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "sfx-read-attach" {
-  count       = var.signalfx_aws_integration_enabled
-  role        = aws_iam_role.aws_sfx_role[0].name
-  policy_arn  = aws_iam_policy.aws_read_permissions[0].arn
+  count      = var.signalfx_aws_integration_enabled
+  role       = aws_iam_role.aws_sfx_role[0].name
+  policy_arn = aws_iam_policy.aws_read_permissions[0].arn
 }
 
 resource "signalfx_aws_integration" "aws_sfx" {
-  count       = var.signalfx_aws_integration_enabled
-  enabled     = true
+  count   = var.signalfx_aws_integration_enabled
+  enabled = true
 
   integration_id     = signalfx_aws_external_integration.aws_myteam_extern[0].id
   external_id        = signalfx_aws_external_integration.aws_myteam_extern[0].external_id
