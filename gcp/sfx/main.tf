@@ -42,7 +42,6 @@ resource "google_project_iam_member" "signalfx_sa_has_signalfx_role" {
 }
 
 resource "signalfx_gcp_integration" "signalfx_o11y4gcp" {
-  count     = var.signalfx_gcp_integration_enabled
   name      = var.signalfx_gcp_integration_name
   enabled   = true
   poll_rate = 60

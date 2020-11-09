@@ -4,38 +4,34 @@ provider "signalfx" {
 }
 
 resource "signalfx_aws_external_integration" "aws_myteam_extern" {
-  name  = var.signalfx_aws_integration_name
-  count = var.signalfx_aws_integration_enabled
+  name = var.signalfx_aws_integration_name
 }
 
 data "aws_iam_policy_document" "signalfx_assume_policy" {
-  count = var.signalfx_aws_integration_enabled
   statement {
     actions = ["sts:AssumeRole"]
 
     principals {
       type        = "AWS"
-      identifiers = [signalfx_aws_external_integration.aws_myteam_extern[0].signalfx_aws_account]
+      identifiers = [signalfx_aws_external_integration.aws_myteam_extern.signalfx_aws_account]
     }
 
     condition {
       test     = "StringEquals"
       variable = "sts:ExternalId"
-      values   = [signalfx_aws_external_integration.aws_myteam_extern[0].external_id]
+      values   = [signalfx_aws_external_integration.aws_myteam_extern.external_id]
     }
   }
 }
 
 resource "aws_iam_role" "aws_sfx_role" {
   name               = "signalfx-reads-from-cloudwatch2"
-  count              = var.signalfx_aws_integration_enabled
   description        = "SignalFx integration to read out data and send it to SignalFx's AWS aws account"
-  assume_role_policy = data.aws_iam_policy_document.signalfx_assume_policy[0].json
+  assume_role_policy = data.aws_iam_policy_document.signalfx_assume_policy.json
 }
 
 resource "aws_iam_policy" "aws_read_permissions" {
   name        = "SignalFxReadPermissionsPolicy"
-  count       = var.signalfx_aws_integration_enabled
   description = "SignalFx IAM Policy"
   policy      = <<EOF
 {
@@ -104,18 +100,16 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "sfx-read-attach" {
-  count      = var.signalfx_aws_integration_enabled
-  role       = aws_iam_role.aws_sfx_role[0].name
-  policy_arn = aws_iam_policy.aws_read_permissions[0].arn
+  role       = aws_iam_role.aws_sfx_role.name
+  policy_arn = aws_iam_policy.aws_read_permissions.arn
 }
 
 resource "signalfx_aws_integration" "aws_sfx" {
-  count   = var.signalfx_aws_integration_enabled
   enabled = true
 
-  integration_id     = signalfx_aws_external_integration.aws_myteam_extern[0].id
-  external_id        = signalfx_aws_external_integration.aws_myteam_extern[0].external_id
-  role_arn           = aws_iam_role.aws_sfx_role[0].arn
+  integration_id     = signalfx_aws_external_integration.aws_myteam_extern.id
+  external_id        = signalfx_aws_external_integration.aws_myteam_extern.external_id
+  role_arn           = aws_iam_role.aws_sfx_role.arn
   regions            = [var.aws_region]
   poll_rate          = 60
   import_cloud_watch = true

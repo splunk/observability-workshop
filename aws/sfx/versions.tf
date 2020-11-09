@@ -1,14 +1,12 @@
 terraform {
   required_providers {
+    aws = {
+      source = "hashicorp/aws"
+    }
     signalfx = {
       source = "splunk-terraform/signalfx"
-    }
-    google = {
-      source = "hashicorp/google"
-    }
-    random = {
-      source = "hashicorp/random"
     }
   }
   required_version = ">= 0.13"
 }
+

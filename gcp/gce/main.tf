@@ -66,7 +66,7 @@ resource "google_compute_instance" "o11y-instance" {
   tags = ["o11y-instance"]
 
   metadata = {
-    user-data = file("../cloud-init/k3s.yaml")
+    user-data = file("../../cloud-init/k3s.yaml")
   }
 
   labels = {
