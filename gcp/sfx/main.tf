@@ -1,3 +1,19 @@
+provider "google-beta" {
+  project = var.gcp_project
+  region  = var.gcp_region
+
+  scopes = [
+    # Default scopes
+    "https://www.googleapis.com/auth/compute",
+    "https://www.googleapis.com/auth/cloud-platform",
+    "https://www.googleapis.com/auth/ndev.clouddns.readwrite",
+    "https://www.googleapis.com/auth/devstorage.full_control",
+
+    # Required for google_client_openid_userinfo
+    "https://www.googleapis.com/auth/userinfo.email",
+  ]
+}
+
 provider "signalfx" {
   auth_token = var.signalfx_api_access_token
   api_url    = "https://api.${var.signalfx_realm}.signalfx.com"
