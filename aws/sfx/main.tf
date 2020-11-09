@@ -1,3 +1,8 @@
+provider "aws" {
+  profile = "default"
+  region  = var.aws_region
+}
+
 provider "signalfx" {
   auth_token = var.signalfx_api_access_token
   api_url    = "https://api.${var.signalfx_realm}.signalfx.com"
@@ -104,8 +109,14 @@ resource "aws_iam_role_policy_attachment" "sfx-read-attach" {
   policy_arn = aws_iam_policy.aws_read_permissions.arn
 }
 
+resource "time_sleep" "iam_policy_available" {
+  depends_on = [aws_iam_role_policy_attachment.sfx-read-attach]
+  create_duration = "13s"
+}
+
 resource "signalfx_aws_integration" "aws_sfx" {
-  enabled = true
+  enabled    = true
+  depends_on = [time_sleep.iam_policy_available]
 
   integration_id     = signalfx_aws_external_integration.aws_myteam_extern.id
   external_id        = signalfx_aws_external_integration.aws_myteam_extern.external_id
