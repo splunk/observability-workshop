@@ -14,6 +14,7 @@ Sample command:
 terraform apply \
 -auto-approve \
 -var="gcp_project=o11y-goes-gcp" \
+-var="gcp_region=europe-west-3a" \
 -var="signalfx_realm=eu0" \
 -var="signalfx_api_access_token=YOURTOKENHERE" \
 -var="signalfx_gcp_integration_name=GCP-$USER"
