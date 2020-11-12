@@ -15,6 +15,7 @@ provider "google-beta" {
 }
 
 resource "google_project_service" "cloudresourcemanager_svc" {
+  provider = google-beta
   project            = "projects/${var.gcp_project}"
   service            = "cloudresourcemanager.googleapis.com"
   disable_on_destroy = false
