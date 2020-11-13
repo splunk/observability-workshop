@@ -6,8 +6,8 @@ variable "gcp_instance_count" {
   description = "Instance Count (usually 1)"
 }
 
-variable "gcp_region" {
-  description = "Provide the desired region (for example: us-west-2)"
+variable "gcp_zone" {
+  description = "Provide the desired zone (for example: europe-west3-a)"
 }
 
 variable "gcp_instance_type" {

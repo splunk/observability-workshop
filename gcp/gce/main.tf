@@ -1,6 +1,6 @@
 provider "google-beta" {
   project = var.gcp_project
-  region  = var.gcp_region
+  region  = var.gcp_zone
 
   scopes = [
     # Default scopes
@@ -62,7 +62,7 @@ resource "google_compute_instance" "o11y-instance" {
   count        = var.gcp_instance_count
   name         = "o11y-${count.index + 1}"
   machine_type = var.gcp_instance_type
-  zone         = var.gcp_region
+  zone         = var.gcp_zone
 
   tags = ["o11y-instance"]
 
