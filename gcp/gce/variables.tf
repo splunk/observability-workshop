@@ -12,6 +12,6 @@ variable "gcp_zone" {
 
 variable "gcp_instance_type" {
   description = "Select instance type required"
-  default     = "f1-micro"
+  default     = "n1-standard-1"
 }
 
