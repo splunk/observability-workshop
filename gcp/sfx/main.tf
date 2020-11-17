@@ -36,7 +36,16 @@ resource "google_project_iam_custom_role" "signalfx_role" {
     "compute.instances.list",
     "compute.machineTypes.list",
     "spanner.instances.list",
-    "storage.buckets.list"
+    "storage.buckets.list",
+    /* for GKE  */
+    "container.clusters.get",
+    "container.clusters.list",
+    "container.pods.get",
+    "container.pods.getStatus",
+    "container.pods.list",
+    "container.nodes.get",
+    "container.nodes.getStatus",
+    "container.nodes.list"
   ]
 }
 

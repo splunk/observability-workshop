@@ -14,11 +14,6 @@ provider "google-beta" {
   ]
 }
 
-/* resource "google_project" "o11y-goes-gcp" { */
-/*   name = "O11Y goes GCP" */
-/*   project_id = var.gcp_project */
-/* } */
-
 resource "google_project_service" "container_svc" {
   provider = google-beta
   project            = "projects/${var.gcp_project}"
