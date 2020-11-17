@@ -66,8 +66,14 @@ resource "google_project_iam_member" "signalfx_sa_has_signalfx_role" {
   member   = "serviceAccount:${google_service_account.signalfx_sa.email}"
 }
 
+resource "time_sleep" "iam_available" {
+  depends_on = [google_project_iam_member.signalfx_sa_has_signalfx_role]
+  create_duration = "4s"
+}
+
 resource "signalfx_gcp_integration" "signalfx_o11y4gcp" {
   name      = var.signalfx_gcp_integration_name
+  depends_on = [time_sleep.iam_available]
   enabled   = true
   poll_rate = 60
   project_service_keys {
