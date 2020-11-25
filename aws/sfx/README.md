@@ -1,4 +1,4 @@
-# Instructions on how to set up cloud instances for participants
+# Instructions on how to set up AWS cloud integration
 
 Set the following variables:
 
