@@ -47,7 +47,7 @@ resource "aws_instance" "observability-instance" {
   ami                    = data.aws_ami.latest-ubuntu.id
   instance_type          = lookup(var.instance_type_aws, var.instance_type)
   vpc_security_group_ids = [aws_security_group.instance.id]
-  user_data              = file("../cloud-init/k3s.yaml")
+  user_data              = file("../../cloud-init/k3s.yaml")
 
   root_block_device {
     volume_size = lookup(var.instance_disk_aws, var.instance_type)

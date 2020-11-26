@@ -178,7 +178,7 @@ Use the Siege[^2] Load Testing command to generate some traffic to light up your
     Shortest transaction:       0.01
     ```
 
-Validate you are seeing metrics in the UI by going to **Dashboards → NGINX → NGINX Servers**
+Validate you are seeing metrics in the UI by going to **Dashboards → NGINX → NGINX Servers**. Using the **Overrides** filter on `kubernetes_cluster:`, find the name of your cluster as returned by `echo $(hostname)-k3s-cluster` in the terminal.
 
 ![NGINX Dashboard](../images/smartagent/nginx-dashboard.png){: .zoom}
 

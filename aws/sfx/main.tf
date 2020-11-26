@@ -1,41 +1,42 @@
+provider "aws" {
+  profile = "default"
+  region  = var.aws_region
+}
+
 provider "signalfx" {
-  auth_token = var.signalFxApiAccessToken
-  api_url    = "https://api.${var.signalFxRealm}.signalfx.com"
+  auth_token = var.signalfx_api_access_token
+  api_url    = "https://api.${var.signalfx_realm}.signalfx.com"
 }
 
 resource "signalfx_aws_external_integration" "aws_myteam_extern" {
-  name  = var.signalFxAWSIntegrationName
-  count = var.signalFxAWSIntegrationEnabled
+  name = var.signalfx_aws_integration_name
 }
 
 data "aws_iam_policy_document" "signalfx_assume_policy" {
-  count = var.signalFxAWSIntegrationEnabled
   statement {
     actions = ["sts:AssumeRole"]
 
     principals {
       type        = "AWS"
-      identifiers = [signalfx_aws_external_integration.aws_myteam_extern[0].signalfx_aws_account]
+      identifiers = [signalfx_aws_external_integration.aws_myteam_extern.signalfx_aws_account]
     }
 
     condition {
       test     = "StringEquals"
       variable = "sts:ExternalId"
-      values   = [signalfx_aws_external_integration.aws_myteam_extern[0].external_id]
+      values   = [signalfx_aws_external_integration.aws_myteam_extern.external_id]
     }
   }
 }
 
 resource "aws_iam_role" "aws_sfx_role" {
   name               = "signalfx-reads-from-cloudwatch2"
-  count              = var.signalFxAWSIntegrationEnabled
   description        = "SignalFx integration to read out data and send it to SignalFx's AWS aws account"
-  assume_role_policy = data.aws_iam_policy_document.signalfx_assume_policy[0].json
+  assume_role_policy = data.aws_iam_policy_document.signalfx_assume_policy.json
 }
 
 resource "aws_iam_policy" "aws_read_permissions" {
   name        = "SignalFxReadPermissionsPolicy"
-  count       = var.signalFxAWSIntegrationEnabled
   description = "SignalFx IAM Policy"
   policy      = <<EOF
 {
@@ -104,18 +105,22 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "sfx-read-attach" {
-  count       = var.signalFxAWSIntegrationEnabled
-  role        = aws_iam_role.aws_sfx_role[0].name
-  policy_arn  = aws_iam_policy.aws_read_permissions[0].arn
+  role       = aws_iam_role.aws_sfx_role.name
+  policy_arn = aws_iam_policy.aws_read_permissions.arn
+}
+
+resource "time_sleep" "iam_policy_available" {
+  depends_on = [aws_iam_role_policy_attachment.sfx-read-attach]
+  create_duration = "13s"
 }
 
 resource "signalfx_aws_integration" "aws_sfx" {
-  count       = var.signalFxAWSIntegrationEnabled
-  enabled     = true
+  enabled    = true
+  depends_on = [time_sleep.iam_policy_available]
 
-  integration_id     = signalfx_aws_external_integration.aws_myteam_extern[0].id
-  external_id        = signalfx_aws_external_integration.aws_myteam_extern[0].external_id
-  role_arn           = aws_iam_role.aws_sfx_role[0].arn
+  integration_id     = signalfx_aws_external_integration.aws_myteam_extern.id
+  external_id        = signalfx_aws_external_integration.aws_myteam_extern.external_id
+  role_arn           = aws_iam_role.aws_sfx_role.arn
   regions            = [var.aws_region]
   poll_rate          = 60
   import_cloud_watch = true

@@ -13,7 +13,7 @@ In order to integrate SignalFx with VictorOps we need to first obtain the Servic
 
 If it is not already enabled, click the Enable Integration button to activate it.
 
-![Endpoint](../../images/victorops/endpoint.png){: .zoom}
+![Endpoint](../../images/oncall/endpoint.png){: .zoom}
 
 This would be used when configuring the VictorOps Integration within the SignalFx UI if it had not already been enabled.
 
@@ -28,11 +28,11 @@ Assuming you are using the AppDev EMEA instance of VictorOps you will find the V
 
 However the process of creating a new Integration is simply to click on **Create New Integration** like in the image below, or if there are existing integrations and you want to add another one you would click **New Integration**.
 
-![VictorOps Integration](../../images/victorops/m7-sfx-new-vo-integration.png)
+![VictorOps Integration](../../images/oncall/m7-sfx-new-vo-integration.png)
 
 Enter a descriptive **Name** then paste the **Service_API_Endpoint** value you copied in the previous step into the **Post URL** field, then save it.
 
-![VictorOps Integration](../../images/victorops/m7-sfx-vo-integration-url.png)
+![VictorOps Integration](../../images/oncall/m7-sfx-vo-integration-url.png)
 
 !!! important "Handling multiple VictorOps integrations"
     SignalFx can integrate with multiple VictorOps accounts so it is important when creating one to use a descriptive name and to not simply call it VictorOps.  This name will be used within the SignalFx UI when selecting this integration, so ensure it is unambiguous
@@ -43,4 +43,4 @@ In SignalFx UI navigate to **Integrations** and use the search feature to find t
 
 Copy the ID field and save it for use in the next steps.  We suggest you create a notepad document or similar as you will be gathering some additional values in the next steps.
 
-![VictorOps Integration](../../images/victorops/m7-sfx-vo-integration-id.png)
+![VictorOps Integration](../../images/oncall/m7-sfx-vo-integration-id.png)
