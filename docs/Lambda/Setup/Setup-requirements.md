@@ -52,7 +52,7 @@ In the first screen select **AWS Service**  and **Lambda** use case as shown bel
 ![IAM-roles-services](../../images/lambda/Setup/IAM-Role-Service.png){: .zoom}
 At the bottom of the page press the ** Next:Permissions **{: .label-button  .AWS-blue}  button.
 
-This brings us **Attach permission policies** section.
+This brings us **Attach permission policies** section. 
 
 ![IAM-Policies-I](../../images/lambda/Setup/IAM-Attach-Policy-1.png){: .zoom}
 In the **Filter policies** search box type the following policy :
@@ -75,7 +75,7 @@ On the optional Add Tags page press the press the ** Next: Review **{: .label-bu
 On the review page name the role **SPLUNKRETAILORDERLAMBDA** (or your preferred name, jusrt remeber to replace when needed)
 
 Verify the Policies are set like below:
-![IAM-Policies-IV](../../images/lambda/Setup/IAM-Attach-Policy4.png){: .zoom}
+![IAM-Policies-IV](../../images/lambda/Setup/IAM-Attach-Policy-4.png){: .zoom}
 If satisfied its correct press the ** Create Role **{: .label-button  .AWS-blue}  button to create thr role.
 
 In the next session we will create our first lambda and test it!
