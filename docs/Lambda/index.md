@@ -4,27 +4,27 @@
 
     **If you recently signed up for the 14 day free trial then this section of the workshop cannot be completed!**
     
-    An Organization needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with µAPM enabled if you don’t have one already.
+    An Organization needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from Splunk's Observability team to get a trial instance with µAPM enabled if you don’t have one already.
 
-    To check if you have an Organization with µAPM enabled, just login to SignalFx and check that you have the µAPM tab on the top navbar next to Dashboards.
+    To check if you have an Organization with µAPM enabled, just login to Splunk's observability suite and check that you have the µAPM tab on the top navbar next to Dashboards.
 
 ---
 ## 1. AWS Lambda exercise & µAPM overview
-This workshop section is focused on developer of serverless/Lambda application/functions and is going to guide them through the steps to add Tracing to Python and Node-Js Lambda Functions, and see traces flow from an on-prem Java application though the various Python and Node-Js Lambda Functions Based on SignalFx µAPM.
+This workshop section is focused on developer's of serverless/Lambda application/functions and is going to guide them through the steps to add Tracing to Python and Node-Js Lambda Functions, and see traces flow from an on-prem Java application though the various Python and Node-Js Lambda Functions Based on Splunk µAPM.
 
-SignalFx µAPM captures end-to-end distributed transactions from your applications, including serverless apps (Lambda's) with trace spans sent directly to SignalFx or via an optional  OpenTelemetry Collector that  act as a central aggregation point prior to sending trace spans to SignalFx. (recommended).
+Splunk µAPM captures end-to-end distributed transactions from your applications, including serverless apps (Lambda's) with trace spans sent directly to Splunk or via an optional OpenTelemetry Collector that  act as a central aggregation point prior to sending trace spans to Splunk. (recommended, and show in the workshop).
 
 In addition to proxying spans and infrastructure metrics, the OpenTelemetry Collector can also perform other functions, such as redacting sensitive tags prior to spans leaving your environment.
 
-The following illustration shows the recommended deployment model: SignalFx auto-instrumentation libraries send spans to the OpenTelemetry Collector; the OpenTelemetry Collector forwards the spans to SignalFx.
+The following illustration shows the recommended deployment model: Splunk's auto-instrumentation libraries send spans to the OpenTelemetry Collector; the OpenTelemetry Collector forwards the spans to SignalFx.
 
-![Lambda Architecture](../images/lambda/lambda architecture.png){: .zoom}
+![Lambda Architecture](../images/lambda/Lambda Architecture.png){: .zoom}
 
 ---
 ## 2. AWS Lambda exercise requirements flow
 During this workshop you will perform the following activities:
 
-* Clone the repository to you local platform
+* Connect to the ec2 instance assigned to you. ( You should ha)
 * Create 4 AWS Functions(2 Python & 2 Node-js)  based of the code in the repository
 * Create API-Gateway Triggers for the above Lambda's.
 * Validate and test the application by running test cases

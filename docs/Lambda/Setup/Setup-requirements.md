@@ -54,14 +54,14 @@ At the bottom of the page press the ** Next:Permissions **{: .label-button  .AWS
 
 This brings us **Attach permission policies** section.
 
-![IAM-Policies-I](../../images/lambda/Setup/IAM-Attach-Policy1.png){: .zoom}
+![IAM-Policies-I](../../images/lambda/Setup/IAM-Attach-Policy-1.png){: .zoom}
 In the **Filter policies** search box type the following policy :
 
 === "Policy"
     ```text
     AWSLambdaBasicExecutionRole
     ```
-![IAM-Policies-II](../../images/lambda/Setup/IAM-Attach-Policy2.png){: .zoom}
+![IAM-Policies-II](../../images/lambda/Setup/IAM-Attach-Policy-2.png){: .zoom}
 Tick the  box in front of the *AWSLambdaBasicExecutionRole* policy then replace the text in the 
 **Filter policies** search box with:
 
@@ -69,7 +69,7 @@ Tick the  box in front of the *AWSLambdaBasicExecutionRole* policy then replace 
     ```text
     AWSLambdaRole
     ```
-![IAM-Policies-III](../../images/lambda/Setup/IAM-Attach-Policy3.png){: .zoom}
+![IAM-Policies-III](../../images/lambda/Setup/IAM-Attach-Policy-3.png){: .zoom}
 Tick the  box in front of the *AWSLambdaRole* then press the ** Next: Tags **{: .label-button  .AWS-blue}  button.
 On the optional Add Tags page press the press the ** Next: Review **{: .label-button  .AWS-blue}  button.
 On the review page name the role **SPLUNKRETAILORDERLAMBDA** (or your preferred name, jusrt remeber to replace when needed)
