@@ -69,6 +69,7 @@ plugins:
       htmlmin_opts:
         remove_comments: true
 
+
 nav:
   - 'Home': index.md
   - '<b>Infrastructure & µAPM</b>':
@@ -116,6 +117,12 @@ nav:
       - 'SignalFx Integration': oncall/optional/sfx_integrations.md
       - 'Using Multipass VM': oncall/optional/multipass.md
       - 'Create a Detector': oncall/optional/detector.md
+  - '<b>Lambda & µAPM</b>':
+    - 'Intro': Lambda/index.md
+    - 'Setup': 
+      - '<b>Prepare Local Environment</b><br><small>15 minutes</small>': Lambda/Setup/Setup-requirements.md
+      - '<b>Create Initial Lambda</b><br><small>5 minutes</small>': Lambda/Setup/Setup-Lambda.md
   - '<b>Resources</b>':
     - 'Links': resources/index.md
     - 'FAQ': resources/faq.md
+    

@@ -81,6 +81,22 @@ strong.label-button, mark.critic {
     background-color: #f5a800 ;
 }
 
+.label-button.AWS-yellow {
+    background-color:#ec7211;
+    color: #fff;
+    font-weight: 400;
+}
+.label-button.AWS-blue {
+    background-color: #0073bb;
+    color: #fff;
+    font-weight: 400;
+}
+.label-button.AWS-gray {
+    background-color:#879596;
+    color: #fff;
+    font-weight: 400;
+}
+
 .label-button.observability {
     background-color: #4a0072;
 }
