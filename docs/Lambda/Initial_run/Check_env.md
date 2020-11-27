@@ -104,13 +104,13 @@ To test enter the following information:
 
 And hit submit to run a test
 
-The result should be simulair to this :
+The result should be similar to this :
 ![ec2-shop2](../../images/lambda/Initial_run/Shop-result.png){: .zoom} 
     
 ---
 ## 4. Verify logs in Cloudwatch
 
-Even if there are no errors and you ahve the above result  check the Cloudwatch logs:
+Even if there are no errors and you ha.///÷,.≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥..........≥≥.1`ve the above result  check the Cloudwatch logs:
 Go to CloudWatch Browser tab  hit the refresh button and check if all four logs have been generated.
 
 ![ec2-shop3](../../images/lambda/Initial_run/ClouwdWatchLogs-created.png){: .zoom} 
