@@ -110,8 +110,8 @@ The result should be similar to this :
 ---
 ## 4. Verify logs in Cloudwatch
 
-Even if there are no errors and you ha.///÷,.≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥≥..........≥≥.1`ve the above result  check the Cloudwatch logs:
-Go to CloudWatch Browser tab  hit the refresh button and check if all four logs have been generated.
+Even if there are no errors and you have the above result, check the Cloudwatch logs to verify they have been created.
+Go to CloudWatch Browser tab hit the refresh button and check if all four logs have been generated.
 
 ![ec2-shop3](../../images/lambda/Initial_run/ClouwdWatchLogs-created.png){: .zoom} 
 
