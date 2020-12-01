@@ -118,6 +118,7 @@ nav:
       - 'Create a Detector': oncall/optional/detector.md
   - '<b>Lambda & µAPM</b>':
     - 'Intro': lambda/index.md
+    - 'Setup': lambda/setup.md
     - '<b>Getting to know the app</b><br><small>10 minutes</small>': lambda/initial_run/test_run_env.md
     - 'Enable APM for On-prem App': lambda/wip.md
     - 'Enable APM on RetailOrder Function': lambda/wip.md
