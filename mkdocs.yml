@@ -117,17 +117,16 @@ nav:
       - 'Using Multipass VM': oncall/optional/multipass.md
       - 'Create a Detector': oncall/optional/detector.md
   - '<b>Lambda & µAPM</b>':
-    - 'Intro': Lambda/index.md
-    - '<b>Getting to know the app</b><br><small>10 minutes</small>': 
-      - 'Validate Environment' : Lambda/Initial_run/Check_env.md
-    - 'Enable APM for On-prem App': Lambda/wip.md
-    - 'Enable APM on RetailOrder Function': Lambda/wip.md
-    - 'Enable APM on RetailOrderPrice Function': Lambda/wip.md
-    - 'Enable APM on RetailOrderDiscount Function': Lambda/wip.md
-    - 'Enable APM on RetailOrderLine Function': Lambda/wip.md
+    - 'Intro': lambda/index.md
+    - '<b>Getting to know the app</b><br><small>10 minutes</small>': lambda/initial_run/test_run_env.md
+    - 'Enable APM for On-prem App': lambda/wip.md
+    - 'Enable APM on RetailOrder Function': lambda/wip.md
+    - 'Enable APM on RetailOrderPrice Function': lambda/wip.md
+    - 'Enable APM on RetailOrderDiscount Function': lambda/wip.md
+    - 'Enable APM on RetailOrderLine Function': lambda/wip.md
     - 'Setup': 
-      - '<b>Prepare Local Environment</b><br><small>15 minutes</small>': Lambda/Setup/Setup-requirements.md
-      - '<b>Create Initial Lambda</b><br><small>5 minutes</small>': Lambda/Setup/Setup-Lambda.md
+      - '<b>Prepare Local Environment</b><br><small>15 minutes</small>': lambda/setup/setup-requirements.md
+      - '<b>Create Initial Lambda</b><br><small>5 minutes</small>': lambda/setup/setup-Lambda.md
   - '<b>Resources</b>':
     - 'Links': resources/index.md
     - 'FAQ': resources/faq.md
