@@ -27,7 +27,7 @@ You should have:
 ![AWS-Lambda-filtered](../../images/lambda/initial_run/Functions - Lambda filtered.png){: .zoom}
 
 ---
-## 2. Verify CloudWatch logs location
+## 2. Verify CloudWatch logs location 
 
 To verify issues that may occur during the run, we need to check the CloudWatch logs.
 Please open or clone a second Browser window to the same AWS account. The service to select is CloudWatch this time.
