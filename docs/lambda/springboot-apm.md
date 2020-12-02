@@ -5,7 +5,7 @@
 The first activity we are going to do is validate that we have access to the Splunk APM environment and establish our starting point.
 To do this please login to Splunk Infrastructure & APM and select APM. 
 
-![APM-MENU](../../images/lambda/springboot-apm/IsAPMAvailable.png){: .zoom}
+![APM-MENU](../images/lambda/springboot-apm/IsAPMAvailable.png){: .zoom}
 
 This will bring you to the APM monitoring page, here you may see zero or a list of services, depending how many services you are currently monitoring with Splunk APM.
 
@@ -13,7 +13,7 @@ To verify your environment is clear, filter the environment by entering your uni
 
 This should show just your APM environment. It should be empty. (If its not, double check no one is using the same id in your group and warn the workshop leader to have a look)
 
-![APM-MENU](../../images/lambda/springboot-apm/APM-monitor.png){: .zoom}
+![APM-MENU](../images/lambda/springboot-apm/APM-monitor.png){: .zoom}
 
 We are now ready to start enabling APM.
 
@@ -33,10 +33,10 @@ Once the application is stopped, open an editor and edit the pom.xml file
     ```
 
 Scroll down until you find the following section
-![pom-1](../../images/lambda/springboot-apm/pom_xml-1.png){: .zoom}
+![pom-1](../images/lambda/springboot-apm/pom_xml-1.png){: .zoom}
 
 and remove the comment marks so the section will look like this:
-![pom-2](../../images/lambda/springboot-apm/pom_xml-2.png){: .zoom}
+![pom-2](../images/lambda/springboot-apm/pom_xml-2.png){: .zoom}
 
 Make sure the lines are properly aligned and save the file by pressing ++ctrl+o++ followed by enter to write the file pom.xml to disk.
 You can now leave the nano editor by pressing ++ctrl+x++. This should bring you back to the command line.
@@ -50,11 +50,12 @@ Edit the application property file of the springboot application in the nano edi
     nano src/main/resources/application.properties
     ```
 
-Remove the comment marks /## on the following line:
+Remove the comment marks /## on the following 2 lines:
+**\#\#spring.sleuth.sampler.probability=1.0**
+**\#\#spring.zipkin.baseUrl=http://localhost:9080**
 
-**\##spring.zipkin.baseUrl=http://localhost:9080 
 
-This tells the springboot app to send the traces and spans to the local smart-agent that will forward them to splunk APM
+The first line tells the springboot app to send 100% of the traces to Splunk APM  en the second line direct the traces and spans to the local smart-agent that will forward them to splunk APM
 
 You file should look like this:
 === "application.properties File"
@@ -69,8 +70,8 @@ You file should look like this:
         spring.application.name=ACME-Mobile-Web-Shop-Base
 
         # For Sleuth 2.1+ use this property
-
-        ##spring.sleuth.sampler.probability=1  ## Enable this for full fidelity tracing
+        ## Enable this for full fidelity tracing   
+        spring.sleuth.sampler.probability=1.0  
 
         # The base url with the endpoint (/api/v2/spans) excluded
         # OpenTelemetry Collector deployed in your TKE namespace
@@ -154,6 +155,16 @@ Run the application by issuing the following command again:
     ```
 When you have updated the files correctly you should see the SpringBoot logo again with no errors .
 
-![ec2-loaded](../../images/lambda/initial_run/Springboot.png){: .zoom}
+![ec2-loaded](../images/lambda/initial_run/Springboot.png){: .zoom}
 
-We are now ready to test the app and send our first trace
+We are now ready to test the app and send our first Trace.
+!!! info
+    If you get errors: 
+    
+    Please make sure that all the files are properly aligned and replace any leading spaces with Tabs
+
+---
+## 3. 
+
+
+
