@@ -124,7 +124,7 @@ nav:
     - 'Enable APM on RetailOrderPrice Function': lambda/wip.md
     - 'Enable APM on RetailOrderDiscount Function': lambda/wip.md
     - 'Enable APM on RetailOrderLine Function': lambda/wip.md
-      - 'Setup': lambda/setup.md
+    - 'Setup': lambda/setup.md
   - '<b>Resources</b>':
     - 'Links': resources/index.md
     - 'FAQ': resources/faq.md
