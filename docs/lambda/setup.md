@@ -85,11 +85,11 @@ Then update the newly created `terraform.tfvars`starting with the AWS Variables 
 
 #### 2.2.1 AWS Variables Section
 
-* `profile` value should match the profile name used in your aws `authentication` file which Terraform will use to authenticate with AWS
+* `profile` should match the profile name used in your aws `authentication` file which Terraform will use to authenticate with AWS
 
-* `key_name` value is the name of the ssh_key you wish to use to access the EC2 instances (note password login is also enabled on the Instances)
+* `key_name` is the name of the ssh_key you wish to use to access the EC2 instances (note password login is also enabled on the Instances)
 
-* `private_key_path` value is the path to your private ssh key, such as `~/.ssh/xxx.pem` or `~/.ssh/id_rsa`
+* `private_key_path` is the path to your private ssh key, such as `~/.ssh/xxx.pem` or `~/.ssh/id_rsa`
 
 * `instance_type` is the AWS Instance Type used for the EC2 Instances - this defaults to the free tier "t2.micro"
 
@@ -115,7 +115,7 @@ Then update the newly created `terraform.tfvars`starting with the AWS Variables 
 
 * `access_token` is the token you wish to use to authenticate with the Splunk Monitoring backend
 
-* `realm` species which Realm your Splunk Monitoring backend is deployed in
+* `realm` specifies which Realm your Splunk Monitoring backend is deployed in
 
 * `collector_image` specifies the contributor version of the otel collector, and the latest version can be found [here](https://github.com/open-telemetry/opentelemetry-collector-contrib/releases){: target=_blank} and will need updating as new versions are released
 
@@ -229,7 +229,7 @@ Once you have finished creating and updating `xxx` and `yyy` you now need to ini
 
 ### 4.1 Terraform Plan
 
-You can now deploy the workshop using Terraform.  It is always best practice to run a `plan` so you can check what changes Terraform is going to make.  When executing Terraform will prompt you to select a version of the workshop (select B for base), and also an AWS Region (choose an appropriate one from the list)
+You can now deploy the workshop using Terraform.  It is always best practice to run a `plan` so you can check what changes Terraform is going to make.  When executing Terraform will prompt you to select a version of the workshop (select `b` for base), and also an AWS Region (choose an appropriate one from the list)
 
 === "Terraform plan"
     ```
@@ -333,12 +333,60 @@ After checking the plan output looks OK, you can now `apply` the deployment, usi
 
 === "Example output"
     ```
-    xxx
+    Apply complete! Resources: 106 added, 0 changed, 0 destroyed.
+
+    Outputs:
+
+    OTC_Instances = [
+    "john_otc, 52.47.138.166",
+    "sarah_otc, 15.188.51.119",
+    "amir_otc, 35.180.230.215",
+    ]
+    retaildiscount_invoke_url = [
+    "John_RetailOrderDiscount_api_gateway, o91dr4o3c6.execute-api.eu-west-3.amazonaws.com",
+    "Sarah_RetailOrderDiscount_api_gateway, leelg1e0y9.execute-api.eu-west-3.amazonaws.com",
+    "Amir_RetailOrderDiscount_api_gateway, 0gdlkj8ceb.execute-api.eu-west-3.amazonaws.com",
+    ]
+    retailorder_arns = [
+    "John_RetailOrder, arn:aws:lambda:eu-west-3:527477237977:function:John_RetailOrder",
+    "Sarah_RetailOrder, arn:aws:lambda:eu-west-3:527477237977:function:Sarah_RetailOrder",
+    "Amir_RetailOrder, arn:aws:lambda:eu-west-3:527477237977:function:Amir_RetailOrder",
+    ]
+    retailorder_invoke_url = [
+    "John_RetailOrder_api_gateway, https://286kkhj9k1.execute-api.eu-west-3.amazonaws.com/default",
+    "Sarah_RetailOrder_api_gateway, https://rgv6lwdf81.execute-api.eu-west-3.amazonaws.com/default",
+    "Amir_RetailOrder_api_gateway, https://5lnuuesqz3.execute-api.eu-west-3.amazonaws.com/default",
+    ]
+    retailorderdiscount_arns = [
+    "John_RetailOrderDiscount, arn:aws:lambda:eu-west-3:527477237977:function:John_RetailOrderDiscount",
+    "Sarah_RetailOrderDiscount, arn:aws:lambda:eu-west-3:527477237977:function:Sarah_RetailOrderDiscount",
+    "Amir_RetailOrderDiscount, arn:aws:lambda:eu-west-3:527477237977:function:Amir_RetailOrderDiscount",
+    ]
+    retailorderdiscount_path = [
+    "John_RetailOrderDiscount, /default/John_RetailOrderDiscount",
+    "Sarah_RetailOrderDiscount, /default/Sarah_RetailOrderDiscount",
+    "Amir_RetailOrderDiscount, /default/Amir_RetailOrderDiscount",
+    ]
+    retailorderline_arns = [
+    "John_RetailOrderLine, arn:aws:lambda:eu-west-3:527477237977:function:John_RetailOrderLine",
+    "Sarah_RetailOrderLine, arn:aws:lambda:eu-west-3:527477237977:function:Sarah_RetailOrderLine",
+    "Amir_RetailOrderLine, arn:aws:lambda:eu-west-3:527477237977:function:Amir_RetailOrderLine",
+    ]
+    retailorderprice_arns = [
+    "John_RetailOrderPrice, arn:aws:lambda:eu-west-3:527477237977:function:John_RetailOrderPrice",
+    "Sarah_RetailOrderPrice, arn:aws:lambda:eu-west-3:527477237977:function:Sarah_RetailOrderPrice",
+    "Amir_RetailOrderPrice, arn:aws:lambda:eu-west-3:527477237977:function:Amir_RetailOrderPrice",
+    ]
+    retailorderprice_invoke_url = [
+    "John_RetailOrderPrice_api_gateway, https://gohem8pwib.execute-api.eu-west-3.amazonaws.com/default",
+    "Sarah_RetailOrderPrice_api_gateway, https://dv23py0xo0.execute-api.eu-west-3.amazonaws.com/default",
+    "Amir_RetailOrderPrice_api_gateway, https://dv1rn91g83.execute-api.eu-west-3.amazonaws.com/default",
+    ]
     ```
 
 ## 4.3 What Did We Deploy?
 
-Assuming a successful deployment, uf you check in your AWS Console you should find the following (with multiple versions where UID matches the user names from `quantity.auto.tfvars`):
+Assuming a successful deployment, if you check in your AWS Console you should find the following (with multiple versions where UID matches the user names from `quantity.auto.tfvars`):
 
  * Lambda Functions
     * UID_RetailOrder
