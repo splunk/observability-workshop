@@ -33,7 +33,7 @@ From the Environment Drop down box select ***Preset_*Retail_Demo**, from the Ser
 
 This wil give you the automatically generated service dashboard for ***Preset_*-mobile-web-shop-base**. 
 
-If you set the time to 15 minutes you can see the single invocation, the averages over time will be filled in as well.
+If you set the time to -15 minutes you can see the single invocation, the averages over time will be filled in as well.
 ![apm-dashboard-3](../images/lambda/springboot-apm/Dashboard-Service 3.png){: .zoom} 
 
 If you can, open a new ssh terminal to the EC2 instance you have been assigned and log in.
@@ -45,6 +45,15 @@ From the prompt run the following command to add some load on you service.
     siege -H 'Content-Type:application/json' /
      "http://localhost:8080/order POST &lt; ./test/test.json" -c 10 -r 10
     ```
+The dashboard should now start to fill
 
+## 3.1 Look at trace info in splunk APM
+Please find the browser tab with Splunk infrastructure & APM  and select APM or login to Splunk Infrastructure & APM and select APM. 
+
+![APM-MENU](../images/lambda/springboot-apm/IsAPMAvailable.png){: .zoom}
+
+At the APM monitoring page, Your service, If you see multiple, you can filter to you onw by , depending how many services you are currently monitoring with Splunk APM.
+
+To verify your environment is clear, filter the environment by entering your unique id you have been provided
 
  
