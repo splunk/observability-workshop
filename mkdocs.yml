@@ -119,7 +119,9 @@ nav:
   - '<b>Lambda & µAPM</b>':
     - 'Intro': lambda/index.md
     - '<b>Getting to know the app</b><br><small>10 minutes</small>': lambda/initial_run_env.md
-    - 'Enable APM for On-prem Spring boot App': lambda/springboot-apm.md
+    - '<b>Enable APM for On-prem Spring boot App</b><br><small>20 minutes</small>':
+      - 'Setting up the code' : lambda/springboot-apm.md 
+      - 'Validating the result' : lambda/springboot-apm-II.md
     - 'Enable APM on RetailOrder Function': lambda/wip.md
     - 'Enable APM on RetailOrderPrice Function': lambda/wip.md
     - 'Enable APM on RetailOrderDiscount Function': lambda/wip.md

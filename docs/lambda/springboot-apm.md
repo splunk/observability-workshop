@@ -15,7 +15,7 @@ This should show just your APM environment. It should be empty. (If its not, dou
 
 ![APM-MENU](../images/lambda/springboot-apm/APM-monitor.png){: .zoom}
 
-We are now ready to start enabling APM.
+We are now ready to start enabling APM in our environment.
 
 ---
 ## 2. Update the settings in the spring boot app
@@ -50,8 +50,9 @@ Edit the application property file of the springboot application in the nano edi
     nano src/main/resources/application.properties
     ```
 
-Remove the comment marks /## on the following 2 lines:
+Remove the comment marks \#\# on the following 2 lines:
 **\#\#spring.sleuth.sampler.probability=1.0**
+
 **\#\#spring.zipkin.baseUrl=http://localhost:9080**
 
 
@@ -71,12 +72,12 @@ You file should look like this:
 
         # For Sleuth 2.1+ use this property
         ## Enable this for full fidelity tracing   
-        spring.sleuth.sampler.probability=1.0  
+        spring.sleuth.sampler.probability=1.0
 
         # The base url with the endpoint (/api/v2/spans) excluded
         # OpenTelemetry Collector deployed in your TKE namespace
         ## Enable this to send Traces to SignalFX
-        spring.zipkin.baseUrl=http://localhost:9080 
+        spring.zipkin.baseUrl=http://localhost:9080
     ```
 Now save the file by pressing ++ctrl+o++ followed by enter to write the file applications.properties file to disk.
 You can now leave the nano editor by pressing ++ctrl+x++. This should bring you back to the command line.
@@ -162,9 +163,5 @@ We are now ready to test the app and send our first Trace.
     If you get errors: 
     
     Please make sure that all the files are properly aligned and replace any leading spaces with Tabs
-
----
-## 3. 
-
-
-
+ 
+ Continue to the next section.

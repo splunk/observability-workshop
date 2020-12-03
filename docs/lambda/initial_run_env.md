@@ -1,5 +1,7 @@
 # Initial run of Splunk Mobile Phone Shop Application 
 
+The goal of this session is to make you familiar with the various components that  re used in the workshop.
+
 !!! important "Required information"
     **You should have the following information at hand as you will need this in various places throughout the workshop**
 
