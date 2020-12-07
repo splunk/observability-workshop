@@ -120,7 +120,7 @@ Paste the text in the text box as show, then press **OK** to complete the copy a
 
 ## Multipass (All)
 
-If you are unable to access AWS, but you can install software locally, follow the instructions for [using Multipass](prep).
+If you are unable to access AWS, but you can install software locally, follow the instructions for [using Multipass](../../smartage/prep).
 
 ---
 
