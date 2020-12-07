@@ -116,6 +116,14 @@ Paste the text in the text box as show, then press **OK** to complete the copy a
 
  ![web reconnect](../images/intro/shellinabox-reconnect.png){: .zoom}
 
+---
+
+## Multipass (All)
+
+If you are unable to access AWS, but you can install software locally, follow the instructions for [using Multipass](prep).
+
+---
+
 At this point you are ready to continue and [start the workshop](../../smartagent/k3s/)
 
 [^1]: [Download Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/)
