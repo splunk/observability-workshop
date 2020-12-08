@@ -1,9 +1,8 @@
 # Enable APM for On-prem Spring boot App
 
-
 ## 1. Validate APM Environment
-The first activity we are going to do is validate that we have access to the Splunk APM environment and establish our starting point.
-To do this please login to Splunk Infrastructure & APM and select APM. 
+
+The first activity we are going to do is validate that we have access to the Splunk APM environment and establish our starting point. To do this please login to Splunk Infrastructure & APM and select **APM**.
 
 ![APM-MENU](../images/lambda/springboot-apm/IsAPMAvailable.png){: .zoom}
 
