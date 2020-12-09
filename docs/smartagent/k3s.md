@@ -15,7 +15,7 @@ Expand the Default token, then click on **Show Token** to expose your token. Cli
 
 ![Access Token](../images/smartagent/access-token.png){: .zoom}
 
-You will also need to obtain the name of the Realm for your SignalFx account.  Click on the profile icon again, but this time select **My Profile**.
+You will also need to obtain the name of the Realm[^2] for your SignalFx account.  Click on the profile icon again, but this time select **My Profile**.
 
 The Realm can be found in the middle of the page within the Organizations section.  In this example it is `us1`.
 
@@ -158,3 +158,9 @@ Once it is open, you can use the slider on the side to explore the various chart
 ![Sidebar metrics](../images/smartagent/explore-metrics.png)
 
 [^1]: Access Tokens (sometimes called Org Tokens) are long-lived organization-level tokens. By default, these tokens persist for 5 years, and thus are suitable for embedding into emitters that send data points over long periods of time, or for any long-running scripts that call the SignalFx API.
+
+[^2]: A realm is a self-contained deployment of SignalFx in which your Organization is hosted. Different realms have different API endpoints (e.g. the endpoint for sending data is `ingest.us1.signalfx.com` for the **`us1`** realm, and `ingest.eu0.signalfx.com` for the **`eu0`** realm).
+
+Various instructions in this Workshop include a {==REALM==} placeholder that will need to be replaced with the actual name of your realm.
+
+This realm name is shown on your profile page in SignalFx. If you do not include the realm name when specifying an endpoint, SignalFx will interpret it as pointing to the **`us0`** realm.
