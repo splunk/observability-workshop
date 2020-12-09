@@ -1,20 +1,17 @@
-# Enable APM for On-prem Spring boot App
-
+# Enable APM for Mobile Shop Springboot App
 ## 1. Validate APM Environment
 
 The first activity we are going to do is validate that we have access to the Splunk APM environment and establish our starting point. To do this please login to Splunk Infrastructure & APM and select **APM**.
 
 ![APM-MENU](../images/lambda/springboot-apm/IsAPMAvailable.png){: .zoom}
 
-This will bring you to the APM monitoring page, here you may see zero or a list of services, depending how many services you are currently monitoring with Splunk APM.
+This will bring you to the APM monitoring page, depending how many services you are currently monitoring with Splunk APM, you may or may not see a list of services.
 
-To verify your environment is clear, filter the environment by entering your unique id you have been provided
-
-This should show just your APM environment. It should be empty. (If its not, double check no one is using the same id in your group and warn the workshop leader to have a look)
+Once you have run the applications with APM enabled, you can filter the environment by entering your unique id you have been provided. This should then show just your APM environment. 
 
 ![APM-MENU](../images/lambda/springboot-apm/APM-monitor.png){: .zoom}
 
-We are now ready to start enabling APM in our environment.
+So lets start enabling APM in our environment.
 
 ---
 
@@ -34,10 +31,12 @@ Once the application is stopped, open an editor and edit the pom.xml file
     ```
 
 Scroll down until you find the following section
-![pom-1](../images/lambda/springboot-apm/pom_xml-1.png){: .zoom}
+![pom-1](../images/lambda/springboot-apm/POM_xml-1.png){: .zoom}
 
-and remove the comment marks so the section will look like this:
-![pom-2](../images/lambda/springboot-apm/pom_xml-2.png){: .zoom}
+and remove the comment marks lines *(<-- & -->)* by placing the cursor on the line with the remark and press ++ctrl+k++
+
+Afterwards the section will look like this:
+![pom-2](../images/lambda/springboot-apm/POM_xml-2.png){: .zoom}
 
 Make sure the lines are properly aligned and save the file by pressing ++ctrl+o++ followed by ++enter++ to write the file pom.xml to disk.
 
@@ -57,7 +56,7 @@ Remove the comment marks \#\# on the following 2 lines:
 
 **\#\#spring.zipkin.baseUrl=http://localhost:9080**
 
-The first line tells the springboot app to send 100% of the traces to Splunk APM and the second line directs the traces and spans to the local SmartAgent that will forward them to splunk APM.
+The first line tells the springboot app to send 100% of the traces to Splunk APM and the second line directs the traces and spans to the local local OpenTelemetry Collector that will forward them to splunk APM.
 
 Your file should now look like this:
 

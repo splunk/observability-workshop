@@ -118,14 +118,14 @@ nav:
       - 'Create a Detector': oncall/optional/detector.md
   - '<b>Lambda & µAPM</b>':
     - 'Intro': lambda/index.md
-    - '<b>Getting to know the app</b><br><small>10 minutes</small>': lambda/initial_run_env.md
-    - '<b>Enable APM for On-prem Spring boot App</b><br><small>20 minutes</small>':
-      - 'Setting up the code' : lambda/springboot-apm.md 
+    - '<b>Getting to know the Mobile Shop</b>': lambda/initial_run_env.md
+    - '<b>Enable APM in the Mobile Shop</b>':
+      - 'Setting up the Springboot App' : lambda/springboot-apm.md 
       - 'Validating the result' : lambda/springboot-apm-II.md
-    - 'Enable APM on RetailOrder Function': lambda/wip.md
-    - 'Enable APM on RetailOrderPrice Function': lambda/wip.md
-    - 'Enable APM on RetailOrderDiscount Function': lambda/wip.md
-    - 'Enable APM on RetailOrderLine Function': lambda/wip.md
+    - 'Enable APM in the RetailOrder Function': lambda/wip.md
+    - 'Enable APM in the RetailOrderPrice Function': lambda/wip.md
+    - 'Enable APM in the RetailOrderDiscount Function': lambda/wip.md
+    - 'Enable APM in the RetailOrderLine Function': lambda/wip.md
     - 'Setup': lambda/setup.md
   - '<b>Resources</b>':
     - 'Links': resources/index.md

@@ -1,14 +1,6 @@
-# Enable APM for On-prem Spring boot App (Cont.)
-
-## 3. Run a case and find both the Service Dashboard and your trace
-
+# # Enable APM for Mobile Shop Springboot App (Cont.)
+## 3. Run a case and find both the Service Dashboard and your trace 
 Go back to the browser tab with your Phone App running that you opened earlier, if you have closed it you can open a new one by navigating to *http://**[ec2_ip]**:8080/order* (where **[ec2_ip]** is the public ip address of your EC2 instance)
-
-=== "URL"
-
-    ```
-    http://[ec2_ip]:8080/order
-    ```
 
 ![ec2-shop1](../images/lambda/initial_run/Shop.png){: .zoom}
 
@@ -32,7 +24,7 @@ Return to the APM Tab you opened in Step 1 of this section which should be displ
 
 Hover over **Dashboards** in the top menu, and then click on **All Dashboards**. A number of pre-built dashboards are provided for you in your default view.
 
-![apm-dashboard](../images/lambda/springboot-apm/gotoapmservices.png){: .zoom}
+![apm-dashboard](../images/lambda/springboot-apm/gotoAPMservices.png){: .zoom} 
 
 Here you should have a Dashboard Group called **APM Services** (If it is not present, wait for a minute or two and refresh the screen, If it has not appeared after a couple of minutes, reach out the the workshop leader)
 
@@ -59,7 +51,8 @@ From the prompt run the following command to add some load on you service. (Do n
     siege -H 'Content-Type:application/json' \
     "http://localhost:8080/order POST &lt; ./test/test.json" -c 10 -r 10
     ```
-The dashboard should now start to populate with data.
+
+This will fire off several order request and the dashboard should now start to populate with data.
 
 ## 3.1 Look at trace info in splunk APM
 
@@ -67,7 +60,7 @@ Now navigate back to the APM Tab:
 
 ![APM-MENU](../images/lambda/springboot-apm/IsAPMAvailable.png){: .zoom}
 
-If **All** is selected in the filter drop down you may now see a number of different services, select your own service which should be listed as UID_Retail_Demo.
+At the APM monitoring page, your service, If you see multiple, you can filter to you onw by , depending how many services you are currently monitoring with Splunk APM.
 
 You should now have a single circle in the centre of the dashboard, this represents the UID_Retail_Demo Service.  Over the next modules you will enable APM on additional services which will then also appear in this view.
 

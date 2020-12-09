@@ -1,4 +1,4 @@
-# Initial run of Splunk Mobile Phone Shop Application
+# Initial run of Splunk Mobile Shop Application 
 
 The goal of this session is to make you familiar with the various components that are used in the workshop.
 
@@ -41,9 +41,9 @@ The activity to pick in CloudWatch is the Log Group section.
 
 ![AWS-Cloudwatch-logGroups](../images/lambda/initial_run/CloudWatch_LogGroups.png){: .zoom}
 
-If there are already logs present, filter on your UID like we did for the Lambda Functions. The result should be that there are no logs visible (see below). If there are logs, even after filtering on your UID, make sure they are not be related to the 4 service above, or delete them if possible).
+If there logs present, you can filter on your preset like before. The result should be that there are no logs visible (see below). If there are logs, even after filtering on your preset, make sure they are not be related to the 4 service above, or delete them if possible). Once you deleted the logs, the filter option will be disabled till there are new logs.  
 
-![AWS-Cloudwatch-no-logs](../images/lambda/initial_run/CloudWatch_No_logs.png){: .zoom}
+![AWS-Cloudwatch-no-logs](../images/lambda/initial_run/CloudWatch-logs deleted.png){: .zoom}
 
 ---
 
@@ -51,11 +51,15 @@ If there are already logs present, filter on your UID like we did for the Lambda
 
 Next open a Terminal window and log into the EC2 instance you have been assigned.
 
-( Note! for now double check you use the prefix_jc version).
+!!! Note 
+    If you need help with this, here are the instructions how to access you pre-configured [AWS/EC2 instance](../../../smartagent/connect-info/). 
 
-If you need help with this, here are the instructions on how to access you pre-configured [AWS/EC2 instance](../../../smartagent/connect-info/){: target=_blank}. Please return here after you have successfully connected to your instance.
+If you need help with this, here are the instructions on how to access you pre-configured [AWS/EC2 instance](../../../smartagent/connect-info/){: target=_blank}.  (If you can, open a second ssh window to you EC2 instance, as this will be useful later in the workshop)
+
+Please return here after you have successfully connected to your instance.
 
 Once connected move into the correct directory to run the Java SpringBoot application by running the following command within your instances shell session:
+
 
 === "Shell Command"
 
@@ -72,12 +76,12 @@ Run the application by issuing the following command:
     mvn spring-boot:run 
     ```
 
-On the first run SpringBoot will download a lot of packages, be patient!
+On the first run SpringBoot will download a lot of packages like in the image below, be patience!
 
 The next runs will be much faster.
 ![ec2-download](../images/lambda/initial_run/downloading.png){: .zoom}
 
-but if everything is loaded you should see the SpringBoot logo.
+but as soon as everything is loaded, you should see the SpringBoot logo.
 
 ![ec2-loaded](../images/lambda/initial_run/Springboot.png){: .zoom}
 
@@ -106,7 +110,9 @@ To test your environment enter the following information:
 And hit submit to run a test though your system.
 
 The result should be similar to this :
-![ec2-shop2](../images/lambda/initial_run/Shop-result.png){: .zoom}
+![ec2-shop2](../images/lambda/initial_run/Shop-result.png){: .zoom} 
+    
+ You can use The ***Submit another order***  to go back and reorder a new phone!    
 
 ---
 

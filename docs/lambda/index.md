@@ -23,6 +23,7 @@ The following illustration shows the recommended deployment model: Splunk's auto
 ---
 ## 2. AWS Lambda exercise requirements flow
 During this workshop you will perform the following activities:
+
 * Perform a test run of the Splunk Mobile Phone Web shop and its services
 * Enable Tracing on local SpringBoot App
 * Enable Tracing on First Python & Node-js Lambda Functions
