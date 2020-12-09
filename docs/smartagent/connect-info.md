@@ -118,4 +118,10 @@ Paste the text in the text box as show, then press **OK** to complete the copy a
 
 At this point you are ready to continue and [start the workshop](../../smartagent/k3s/)
 
+---
+
+## Multipass (final option)
+
+If you are unable to access AWS, but you can install software locally, follow the instructions for [using Multipass](../../smartagent/multipass).
+
 [^1]: [Download Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/)
