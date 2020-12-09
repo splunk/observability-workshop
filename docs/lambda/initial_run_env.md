@@ -60,7 +60,7 @@ Once connected move into the correct directory to run the Java SpringBoot applic
 === "Shell Command"
 
     ```text
-    cd ~/SplunkLambdaAPM/LocalLambdaCallers/JavaLambdaBase
+    cd ~/SplunkLambdaAPM/MobileShop/Base
     ```
 
 From here we will start the Java SpringBoot application that contains our simple web shop application.
