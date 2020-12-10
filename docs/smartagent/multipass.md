@@ -1,13 +1,10 @@
-# Building a Multipass instance
-
-* Download the Workshop
-* Start a Multipass[^1]
+# Launch a Multipass instance
 
 ---
 
 ## 1. Pre-requisites
 
-Install [Multipass](https://multipass.run/){: target=_blank} for your operating system. Make sure you are using at least version `1.5.0`.
+Install [Multipass](https://multipass.run/){: target=_blank}[^1] for your operating system. Make sure you are using at least version `1.5.0`.
 
 On a Mac you can also install via [Homebrew](https://brew.sh/){: target=_blank} e.g. `brew cask install multipass`
 
@@ -82,5 +79,3 @@ In this section you will build and launch the Multipass instance which will run 
     Once your instance presents you with the Splunk logo, you have completed the preparation for your Multipass instance and can go directly to  the next lab [Deploy the Smart Agent in K3s](../../smartagent/k3s).
 
 [^1]: Multipass is a lightweight VM manager for Linux, Windows and macOS. It's designed for developers who want a fresh Ubuntu environment with a single command. It uses KVM on Linux, Hyper-V on Windows and HyperKit on macOS to run the VM with minimal overhead. It can also use VirtualBox on Windows and macOS. Multipass will fetch images for you and keep them up to date.
-[^2]: The SignalFx Smart Agent gathers host performance, application, and service-level metrics from both containerized and non-container environments. The Smart Agent installs with more than 100 bundled monitors for gathering data, including Python-based plug-ins such as Mongo, Redis, and Docker.
-[^3]: [What is Kubernetes?](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/){: target=_blank}
