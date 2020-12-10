@@ -55,11 +55,19 @@ If you see more services please filter it down by selecting your environment ***
 ![APM-First_service](../images/lambda/springboot-apm/our_first_service.png){: .zoom}
 You can also see the two endpoints used by the service.
 
-Now click on **Troubleshooting** to go to the Troubleshooting view
-You should see you single service with on the right on 
+Now click on **Troubleshooting** to go to the Troubleshooting view.
 
+You should see your single service with on the right, two dashboards with a spike indicating the single invocation. 
 
+Select the top of the spike of the top dashboard as shown.
+![APM-troubleshoot](../images/lambda/springboot-apm/Troubleshootingourfirsttrace.png){: .zoom}
 
+This will expand and show a list of traces matching the time frame selected. (In our case it should be our single trace.)
 
+Click on the blue **Trace-id** to see the waterfall view of the trace. (Clicking on the Span name ***uid*-mobile-web-shop-base**  will expand it as shown.)
 
-Lets start enable APM in our first Lambda function!
+![APM-waterfall](../images/lambda/springboot-apm/waterfallview.png){: .zoom}
+
+In the expanded view you can see the default tags send by the application.
+
+Lets start enable APM in our first Lambda function to enrich this view!
