@@ -91,6 +91,9 @@ strong.label-button, mark.critic {
     color: #fff;
     font-weight: 400;
 }
+.label-button.AWS-orange {
+    background-color: #eb5f07;
+}
 .label-button.AWS-gray {
     background-color:#879596;
     color: #fff;
