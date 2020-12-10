@@ -38,7 +38,7 @@ From the Environment Drop down box select ***UID_*Retail_Demo**, from the Servic
 
 This wil give you the automatically generated service dashboard for ***uid*-mobile-web-shop-base**.
 
-If you set the time to -15 minutes you can see the single invocation, the averages over time will be filled in as well.
+If you set the time to -5 minutes you can see the single invocation, the averages over time on the left side will become active after a few minutes.
 
 ![apm-dashboard-3](../images/lambda/springboot-apm/Dashboard-Service 3.png){: .zoom}
 
