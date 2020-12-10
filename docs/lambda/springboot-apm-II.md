@@ -65,3 +65,5 @@ At the APM monitoring page, you should now have a single circle in the centre of
 If you see more services please filter it down by selecting your environment ***UID_*Retail_Demo** from the drop down list.
 
 ![APM-First_service](../images/lambda/springboot-apm/Our_First_Service.png){: .zoom}
+
+Lets start enable APM in our first Lambda  function! 
