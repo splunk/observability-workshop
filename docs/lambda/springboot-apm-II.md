@@ -18,13 +18,13 @@ The result should be similar to this:
 
 ### 3.1 Find your Service Dashboard for the Springboot app in Splunk APM
 
-Right now your trace is being processed by the splunk APM back end, and the service dashboard for the Springboot App will be generated.
+Right now your trace is being processed by the splunk APM back end, and since this is the first time this service is seen by Splunk APM, the corresponding service dashboard for the Springboot App will be generated.
 
 Return to the APM Tab you opened in Step 1 of this section which should be displaying the Splunk APM Monitoring Dashboard.
 
 Hover over **Dashboards** in the top menu, and then click on **All Dashboards**. A number of pre-built dashboards are provided for you in your default view.
 
-![apm-dashboard](../images/lambda/springboot-apm/gotoAPMservices.png){: .zoom} 
+![apm-dashboard](../images/lambda/springboot-apm/gotoAPMServices.png){: .zoom} 
 
 Here you should have a Dashboard Group called **APM Services** (If it is not present, wait for a minute or two and refresh the screen, If it has not appeared after a couple of minutes, reach out the the workshop leader)
 
@@ -32,7 +32,7 @@ Select the **Services** Dashboard.
 
 ![apm-dashboard-1](../images/lambda/springboot-apm/Dashboard-Service 1.png){: .zoom}
 
-From the Environment Drop down box select ***UID_*Retail_Demo**, from the Service drop down box select ***uid*-mobile-web-shop-base** (where [UID] is your unique UID allocated to you for this Workshop.  The following examples have a UID of acme).
+From the Environment Drop down box select ***UID_*Retail_Demo**, from the Service drop down box select ***uid*-mobile-web-shop-base** (where [UID] is your unique UID allocated to you for this Workshop.  The following examples have a UID of ACME).
 
 ![apm-dashboard-2](../images/lambda/springboot-apm/Dashboard-Service 2.png){: .zoom}
 
@@ -42,17 +42,17 @@ If you set the time to -15 minutes you can see the single invocation, the averag
 
 ![apm-dashboard-3](../images/lambda/springboot-apm/Dashboard-Service 3.png){: .zoom}
 
-If you can, open a new ssh terminal to the EC2 instance you have been assigned and log in.
+If you can,  go to the second ssh terminal or open a new ssh terminal to the EC2 instance you have been assigned and log in.
 From the prompt run the following command to add some load on you service. (Do not use the existing session which is being used to run the app).
 
 === "Shell Command"
 
     ```text
     siege -H 'Content-Type:application/json' \
-    "http://localhost:8080/order POST &lt; ./test/test.json" -c 10 -r 10
+    "http://localhost:8080/order POST &lt; ./test/test.json" -c 2 -r 2
     ```
 
-This will fire off several order request and the dashboard should now start to populate with data.
+This will fire off several order request and the dashboard should now start to populate with some data.
 
 ## 3.1 Look at trace info in splunk APM
 
@@ -60,8 +60,8 @@ Now navigate back to the APM Tab:
 
 ![APM-MENU](../images/lambda/springboot-apm/IsAPMAvailable.png){: .zoom}
 
-At the APM monitoring page, your service, If you see multiple, you can filter to you onw by , depending how many services you are currently monitoring with Splunk APM.
+At the APM monitoring page, you should now have a single circle in the centre of the dashboard, this represents the UID_Retail_Demo Service.  Over the next modules you will enable APM on additional services which will then also appear in this view.
 
-You should now have a single circle in the centre of the dashboard, this represents the UID_Retail_Demo Service.  Over the next modules you will enable APM on additional services which will then also appear in this view.
+If you see more services please filter it down by selecting your environment ***UID_*Retail_Demo** from the drop down list.
 
-**NEED TO ADD SCREEN SHOT WITH ACME_RETAIL_DEMO**
+![APM-First_service](../images/lambda/springboot-apm/Our_First_Service.png){: .zoom}
