@@ -7,7 +7,7 @@ The first activity we are going to do is validate that we have access to the Spl
 
 This will bring you to the APM monitoring page, depending how many services you are currently monitoring with Splunk APM, you may or may not see a list of services.
 
-Once you have run the applications with APM enabled, you can filter the environment by entering your unique id you have been provided. This should then show just your APM environment. 
+Once you have run the applications with APM enabled, you can filter the environment by entering your unique id you have been provided. This should then show just your APM environment.
 
 ![APM-MENU](../images/lambda/springboot-apm/APM-monitor.png){: .zoom}
 
@@ -162,8 +162,8 @@ When you have updated the files correctly you should see the SpringBoot logo aga
 
 We are now ready to test the app and send our first Trace.
 !!! info
-    If you get errors: 
-    
+    If you get errors:
+
     Please make sure that all the files are properly aligned and replace any leading spaces with Tabs
- 
- Continue to the next section.
+
+Continue to the next section.

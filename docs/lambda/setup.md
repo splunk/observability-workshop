@@ -33,12 +33,14 @@ The `config` file details different profiles, and  works in conjunction with the
 
 === "authentication"
     ```
+
     [default]
-    aws_access_key_id = aaaaaaaaaa
-    aws_secret_access_key = bbbbbbbbb
+    aws_access_key_id = {your access key}
+    aws_secret_access_key = {your secret key}
     [splunk]
-    aws_access_key_id = ccccccccc
-    aws_secret_access_key = dddddddddd
+    aws_access_key_id = {your access key}
+    aws_secret_access_key = {your secret key}
+
     ```
 
 ---
@@ -53,11 +55,14 @@ Git Clone
 
 === "git clone"
     ```
+
     git clone https://github.com/geoffhigginbottom/tflambdatestv2.git
+
     ```
 
 === "example result"
     ```
+
     Workshop git clone https://github.com/geoffhigginbottom/tflambdatestv2.git
     cloning into 'tflambdatestv2'...
     remote: Enumerating objects: 276, done.
@@ -66,19 +71,22 @@ Git Clone
     remote: Total 276 (delta 159), reused 206 (delta 89), pack-reused 0
     Receiving objects: 100% (276/276), 269.48 KiB | 1.13 MiB/s, done.
     Resolving deltas: 100% (159/159), done.
+
     ```
 
 ---
 
 ### 2.2 Create terraform.tfvars
 
-A file called terraform.tfvars needs to be created and populated with your specific settings.  This file contains all of the settings required to enable Terraform to connect to both your AWS and Splunk Environments. 
+A file called terraform.tfvars needs to be created and populated with your specific settings.  This file contains all of the settings required to enable Terraform to connect to both your AWS and Splunk Environments.
 
 An example version of the file is included in the repo named `terraform.tfvars.example`, which you should copy and rename to `terraform.tfvars`. Run the following command from within the directory where the workshop content was download.
 
 === "crete terraform.tfvars"
     ```
+
     cp terraform.tfvars.example terraform.tfvars
+
     ```
 
 Then update the newly created `terraform.tfvars`starting with the AWS Variables Section.
@@ -150,19 +158,23 @@ There is an example file in the repo called `quantity.auto.tfvars.example` which
 
 === "crete quantity.auto.tfvars"
     ```
+
     cp quantity.auto.tfvars.example quantity.auto.tfvars
+
     ```
 
 Edit `quantity.auto.tfvars` and populate the list of participants, ensuring each value is unique and has no spaces.  Ensure the `function_count` value equals the total number of names, and that each entry ends with a comma, apart from the last one, as per the example below.
 
 === "quantity.auto.tfvars"
     ```
+
     function_count = "3"
     function_ids = [
         "John",
         "Sarah",
         "Amir"
         ]
+        
     ```
 
 ---
@@ -234,7 +246,7 @@ You can now deploy the workshop using Terraform.  It is always best practice to 
 === "Terraform plan"
     ```
     terraform plan
-    
+
     var.function_version
         Select Function Version (a:apm, b:base)
 
@@ -329,8 +341,6 @@ After checking the plan output looks OK, you can now `apply` the deployment, usi
         Enter a value: yes
     ```
 
-
-
 === "Example output"
     ```
     Apply complete! Resources: 106 added, 0 changed, 0 destroyed.
@@ -388,27 +398,25 @@ After checking the plan output looks OK, you can now `apply` the deployment, usi
 
 Assuming a successful deployment, if you check in your AWS Console you should find the following (with multiple versions where UID matches the user names from `quantity.auto.tfvars`):
 
- * Lambda Functions
-    * UID_RetailOrder
-    * UID_RetailOrderDiscount
-    * UID_RetailOrderLine
-    * UID_RetailOrderPrice
+* Lambda Functions
+  * UID_RetailOrder
+  * UID_RetailOrderDiscount
+  * UID_RetailOrderLine
+  * UID_RetailOrderPrice
 
 * Lambda Layers
-    * request-opentracing_2_0
+  * request-opentracing_2_0
 
 * Instances
-    * UID_otc
+  * UID_otc
 
 * API Gateways
-    * UID_RetailOrder_api_gateway
-    * UID_RetailOrderDiscount_api_gateway
-    * UID_RetailOrderPrice_api_gateway
+  * UID_RetailOrder_api_gateway
+  * UID_RetailOrderDiscount_api_gateway
+  * UID_RetailOrderPrice_api_gateway
 
 * IAM Roles
-    * splunk_lambda_role_xxxxxxxxxx
+  * splunk_lambda_role_xxxxxxxxxx
 
 * IAM Policies
-    * lambda_initiate_lambda_policy_xxxxxxxxxxx
-
-
+  * lambda_initiate_lambda_policy_xxxxxxxxxxx

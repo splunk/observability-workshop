@@ -41,7 +41,7 @@ The activity to pick in CloudWatch is the Log Group section.
 
 ![AWS-Cloudwatch-logGroups](../images/lambda/initial_run/CloudWatch_LogGroups.png){: .zoom}
 
-If there logs present, you can filter on your preset like before. The result should be that there are no logs visible (see below). If there are logs, even after filtering on your preset, make sure they are not be related to the 4 service above, or delete them if possible). Once you deleted the logs, the filter option will be disabled till there are new logs.  
+If there are logs present, you can filter on your preset like before. The result should be that there are no logs visible (see below). If there are logs, even after filtering on your preset, make sure they are not related to the 4 service above, or delete them if possible). Once you have deleted the logs, the filter option will be disabled until there are new logs.  
 
 ![AWS-Cloudwatch-no-logs](../images/lambda/initial_run/CloudWatch-logs deleted.png){: .zoom}
 

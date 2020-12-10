@@ -24,7 +24,7 @@ Return to the APM Tab you opened in Step 1 of this section which should be displ
 
 Hover over **Dashboards** in the top menu, and then click on **All Dashboards**. A number of pre-built dashboards are provided for you in your default view.
 
-![apm-dashboard](../images/lambda/springboot-apm/gotoAPMServices.png){: .zoom} 
+![apm-dashboard](../images/lambda/springboot-apm/gotoAPMServices.png){: .zoom}
 
 Here you should have a Dashboard Group called **APM Services** (If it is not present, wait for a minute or two and refresh the screen, If it has not appeared after a couple of minutes, reach out the the workshop leader)
 
@@ -43,6 +43,7 @@ If you set the time to -15 minutes you can see the single invocation, the averag
 ![apm-dashboard-3](../images/lambda/springboot-apm/Dashboard-Service 3.png){: .zoom}
 
 If you can,  go to the second ssh terminal or open a new ssh terminal to the EC2 instance you have been assigned and log in.
+
 From the prompt run the following command to add some load on you service. (Do not use the existing session which is being used to run the app).
 
 === "Shell Command"
@@ -66,4 +67,4 @@ If you see more services please filter it down by selecting your environment ***
 
 ![APM-First_service](../images/lambda/springboot-apm/Our_First_Service.png){: .zoom}
 
-Lets start enable APM in our first Lambda  function! 
+Lets start enable APM in our first Lambda function!
