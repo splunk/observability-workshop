@@ -122,7 +122,7 @@ nav:
     - '<b>Enable APM in the Mobile Shop</b>':
       - 'Setting up the Springboot App' : lambda/springboot-apm.md 
       - 'Validating the result' : lambda/springboot-apm-II.md
-    - 'Enable APM in the RetailOrder Function': lambda/wip.md
+    - 'Enable APM in the RetailOrder Function': lambda/retail-order-I.md
     - 'Enable APM in the RetailOrderPrice Function': lambda/wip.md
     - 'Enable APM in the RetailOrderDiscount Function': lambda/wip.md
     - 'Enable APM in the RetailOrderLine Function': lambda/wip.md

@@ -42,19 +42,6 @@ If you set the time to -15 minutes you can see the single invocation, the averag
 
 ![apm-dashboard-3](../images/lambda/springboot-apm/Dashboard-Service 3.png){: .zoom}
 
-If you can,  go to the second ssh terminal or open a new ssh terminal to the EC2 instance you have been assigned and log in.
-
-From the prompt run the following command to add some load on you service. (Do not use the existing session which is being used to run the app).
-
-=== "Shell Command"
-
-    ```text
-    siege -H 'Content-Type:application/json' \
-    "http://localhost:8080/order POST &lt; ./test/test.json" -c 2 -r 2
-    ```
-
-This will fire off several order request and the dashboard should now start to populate with some data.
-
 ## 3.1 Look at trace info in splunk APM
 
 Now navigate back to the APM Tab:
@@ -65,6 +52,14 @@ At the APM monitoring page, you should now have a single circle in the centre of
 
 If you see more services please filter it down by selecting your environment ***UID_*Retail_Demo** from the drop down list.
 
-![APM-First_service](../images/lambda/springboot-apm/Our_First_Service.png){: .zoom}
+![APM-First_service](../images/lambda/springboot-apm/our_first_service.png){: .zoom}
+You can also see the two endpoints used by the service.
+
+Now click on **Troubleshooting** to go to the Troubleshooting view
+You should see you single service with on the right on 
+
+
+
+
 
 Lets start enable APM in our first Lambda function!
