@@ -2,8 +2,7 @@
 
 ## 1. Edit UID_RetailOrder Lambda in your AWS environment
 
-To add APM to our lambda function, we need to got to the browser Tab with your lambda functions seclected in  the first excercise. or follow the original [Validate Lambda Functions](..//initial_run_env/#1-validate-availability-of-lambda-functions) instructions.
-Once filtered with your **UID** you should have something like this:
+To add APM to our lambda function, you need to got to the browser tab with your lambda functions selected in  the first exercise, or follow the original [Validate Lambda Functions](../initial_run_env/#1-validate-availability-of-lambda-functions) instructions. Once filtered with your **UID** you should have something like this:
 
 ![AWS-Lambda-filtered](../images/lambda/retailorder/functions-lambda-selected.png){: .zoom}
 
@@ -15,11 +14,11 @@ Now scroll down so you have the full editor visible.
 
 ![AWS-Lambda-editor-2](../images/lambda/retailorder/retailorderedit-2.png){: .zoom}
 
-To enable APM, we need to import the Splunk SignalFx Lambda wrapper.
-We already included this for you, but if you  can find the detaisl on how to set this up  yourself [here](https://github.com/signalfx/lambda-python){: target=_blank}
-Secondly we also import the opentracing library, we will use this later to customize the span information we send to splunk's APM
+To enable APM, we need to import the Splunk SignalFx Lambda wrapper. We already included this for you, but you can find the details on how to set this up yourself [here](https://github.com/signalfx/lambda-python){: target=_blank}
 
-Add the follow two line at the top of the file and add an empty line.
+Secondly we also import the opentracing library, we will use this later to customize the span information we send to Splunk's APM.
+
+Add the follow two lines at the top of the file and add an empty line.
 
 === "RetailOrder Updates"
 
@@ -29,8 +28,7 @@ Add the follow two line at the top of the file and add an empty line.
 
     ```
 
-Add the following two lines above the line stating ***def lambda_handler(event,context):***
-This will enable the wrapper.
+Add the following two lines above the line stating ***def lambda_handler(event,context):*** This will enable the wrapper.
 
 === "RetailOrder Updates"
 
@@ -39,7 +37,7 @@ This will enable the wrapper.
     @signalfx_lambda.is_traced()
     ```
 
- Verify that he top of the file look like this now:
+Verify that the top of the file now looks like this:
 
 === "RetailOrder Updates"
 
