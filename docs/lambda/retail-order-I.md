@@ -1,4 +1,5 @@
 # Enable APM in the RetailOrder Function
+
 ## 1. Edit UID_RetailOrder Lambda in your AWS environment
 
 To add APM to our lambda function, we need to got to the browser Tab with your lambda functions seclected in  the first excercise. or follow the original [Validate Lambda Functions](..//initial_run_env/#1-validate-availability-of-lambda-functions) instructions.
@@ -39,8 +40,7 @@ This will enable the wrapper.
     ```
 
  Verify that he top of the file look like this now:
- 
- 
+
 === "RetailOrder Updates"
 
     ```text
@@ -142,4 +142,3 @@ Click on the blue **Trace-id** to see the waterfall view of the trace. (Clicking
 ![APM-waterfall](../images/lambda/springboot-apm/waterfallview.png){: .zoom}
 
 In the expanded view you can see the default tags send by the application.
-
