@@ -4,21 +4,21 @@ Below are helpful resources about Splunk and the DevOps use case. Topics covered
 
 ## Documentation
 
-* **SignalFx**{: .label-button .signalfx} [SignalFx Platform Docs](https://docs.signalfx.com/en/latest/){: target=_blank}
-* **SignalFx**{: .label-button .signalfx} [SignalFx API Docs](https://developers.signalfx.com/){: target=_blank}
-* **VictorOps**{: .label-button .victorops} [VictorOps Platform Docs](https://help.victorops.com/){: target=_blank}
-* **VictorOps**{: .label-button .victorops} [VictorOps API Docs](https://portal.victorops.com/public/api-docs.html){: target=_blank}
+* **APM**{: .label-button .signalfx} [Platform Docs](https://docs.signalfx.com/en/latest/){: target=_blank}
+* **APM**{: .label-button .signalfx} [API Docs](https://developers.signalfx.com/){: target=_blank}
+* **On-Call**{: .label-button .victorops} [Platform Docs](https://help.victorops.com/){: target=_blank}
+* **On-Call**{: .label-button .victorops} [API Docs](https://portal.victorops.com/public/api-docs.html){: target=_blank}
 
 ## Blog Posts
 
-* **SignalFx**{: .label-button .signalfx} ["How SignalFx Does Site Reliability Engineering (SRE)"](https://splk.it/3eKyy46)
+* **Observability**{: .label-button .observability} ["Observability Microsite"](http://observability.splunk.com/)
+* **APM**{: .label-button .signalfx} ["How Splunk Does Site Reliability Engineering (SRE)"](https://splk.it/3eKyy46)
 * **OTEL**{: .label-button .otel} ["OpenTelemetry for Business Continuity"](https://bit.ly/3cyGzHM){: target=_blank}
-* **SignalFx**{: .label-button .signalfx} ["In Observability RED is the new Black"](https://splk.it/2XSoL5e){: target=_blank}
-* **VictorOps**{: .label-button .victorops} ["Alerts to Incident Response in Three Easy Steps"](https://splk.it/307jQjI){: target=_blank}
-* **SignalFx**{: .label-button .signalfx} ["Application Performance Redefined: Meet the New SignalFx Microservices APM"](https://www.splunk.com/en_us/blog/it/application-performance-redefined-meet-the-new-signalfx-microservices-apm.html){: target=_blank}
+* **APM**{: .label-button .signalfx} ["In Observability RED is the new Black"](https://splk.it/2XSoL5e){: target=_blank}
+* **On-Call**{: .label-button .victorops} ["Alerts to Incident Response in Three Easy Steps"](https://splk.it/307jQjI){: target=_blank}
+* **APM**{: .label-button .signalfx} ["Application Performance Redefined: Meet the New Splunk's Microservices APM"](https://www.splunk.com/en_us/blog/it/application-performance-redefined-meet-the-new-signalfx-microservices-apm.html){: target=_blank}
 * **Splunk**{: .label-button .splunk} ["Splunk is Lambda Ready: Announcing a New Partnership with AWS"](https://www.splunk.com/en_us/blog/it/splunk-is-lambda-ready.html){: target=_blank}
-* **VictorOps**{: .label-button .victorops} ["Extended Hands and Extended Trials for Incident Response"](https://victorops.com/blog/extended-hands-and-extended-trials-for-incident-response){: target=_blank}
-* **SignalFx**{: .label-button .signalfx} ["Supporting APM for .NET Applications"](https://www.splunk.com/en_us/blog/cloud/supporting-apm-for-net-applications.html){: target=_blank}
+* **APM**{: .label-button .signalfx} ["Supporting APM for .NET Applications"](https://www.splunk.com/en_us/blog/cloud/supporting-apm-for-net-applications.html){: target=_blank}
 * **OTEL**{: .label-button .otel} ["OpenTelemetry Consolidates Data for Observability"](https://thenewstack.io/opentelemetry-consolidates-data-for-observability/){: target=_blank}
 * **Observability**{: .label-button .observability} ["Using Observability as a Proxy for User Happiness"](https://www.splunk.com/en_us/blog/cloud/using-observability-as-a-proxy-for-customer-happiness.html){: target=_blank}
 
