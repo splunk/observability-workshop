@@ -144,7 +144,10 @@ header.md-header {
 }
 
 [data-md-color-scheme="slate"] {
-    --md-code-bg-color: #F5F5F5;
-    --md-code-fg-color: #333;
+/*   --md-code-bg-color: #F5F5F5; */
+    --md-code-fg-color: #fff;
 }
-  
+
+.md-typeset code {
+    font-size: .8rem;
+}

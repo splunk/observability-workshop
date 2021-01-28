@@ -9,13 +9,7 @@
 
 This deployment of NGINX has been configured to use Kubernetes pod annotations to tell the Smart Agent how to monitor the service.
 
-This is achieved by defining the `port` and `monitor type` to use for monitoring the NGINX service e.g.
-
-=== "Example Annotation"
-
-    ```
-    agent.signalfx.com/monitorType.80: "collectd/nginx"
-    ```
+This is achieved by defining the `port` and `monitor type` to use for monitoring the NGINX service e.g. `agent.signalfx.com/monitorType.80: "collectd/nginx"`
 
 Verify the number of pods running in the SignalFx UI by selecting the **WORKLOADS** tab. This should give you an overview of the workloads on your cluster.
 

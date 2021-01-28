@@ -64,10 +64,8 @@ Ensure the status is reported as Running before continuing.
 
 !!! info
     If you make an error installing the Smart Agent you can start over by deleting the erroneous install using:
-
-    ```
-    helm delete signalfx-agent
-    ```
+    
+    `helm delete signalfx-agent`
 
 === "Shell Command"
 
