@@ -10,7 +10,7 @@
 
 A trace is a collection of spans that share the same trace ID, representing a unique transaction handled by your application and its constituent services.
 
-![APTrace and spam](../images/apm/µAPM-trace-spans.png){: .zoom}
+![APTrace and spam](../images/apm/APM-trace-spans.png){: .zoom}
 
 Each span has a name, representing the operation captured by this span, and a service name, representing within which service the operation took place.
 
@@ -42,17 +42,17 @@ instance and run the following command:
 === "Shell Command"
 
     ```text
-    echo "Your µAPM environment is: $(hostname)-apm-env"
+    echo "Your APM environment is: $(hostname)-apm-env"
     ```
 
 === "Example AWS/EC2 Output"
 
     ```text
-    Your µAPM environment is: whul-apm-env
+    Your APM environment is: whul-apm-env
 
     ```
 
-Open SignalFx in your browser and select the **µAPM** tab.
+Open SignalFx in your browser and select the **APM** tab.
 
 ![select APM](../images/apm/select-apm.png){: .zoom}
 

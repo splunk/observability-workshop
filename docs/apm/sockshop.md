@@ -171,15 +171,15 @@ If you want to abort a load test, delete the job:
 
 ## 6. Visualize and analyze trace data
 
-Navigate to µAPM (*not* µAPM PG) and select Monitoring, then ensure you have selected your environment from the dropdown at the top, you should see something like this:
+Navigate to APM (*not* APM PG) and select Monitoring, then ensure you have selected your environment from the dropdown at the top, you should see something like this:
 
-![µAPM Monitoring](../images/apm/sockshop-monitoring.png)
+![APM Monitoring](../images/apm/sockshop-monitoring.png)
 
 ### 6.1. Explore the User Interface
 
 Review an automatically generated Service Dashboard. How do you correlate Service performance with Infrastructure?
 
-![µAPM Service Dashboard](../images/apm/sockshop-service-dash.png)
+![APM Service Dashboard](../images/apm/sockshop-service-dash.png)
 
 ### 6.2. Troubleshoot a service
 
@@ -193,12 +193,12 @@ Let's stress the sock shop a bit. Increase the amount of clients running for the
 
 While the load test is running observe in SignalFx what happens with the services. Troubleshoot a service with a higher error rate. Also review the service dependencies.
 
-![µAPM Service Dashboard](../images/apm/sockshop-troubleshoot.png)
+![APM Service Dashboard](../images/apm/sockshop-troubleshoot.png)
 
-![µAPM Service Dashboard](../images/apm/sockshop-deps.png)
+![APM Service Dashboard](../images/apm/sockshop-deps.png)
 
 Look at individual traces and span performance.
 
-![µAPM Service Dashboard](../images/apm/sockshop-waterfall.png)
+![APM Service Dashboard](../images/apm/sockshop-waterfall.png)
 
-![µAPM Service Dashboard](../images/apm/sockshop-spanperf.png)
+![APM Service Dashboard](../images/apm/sockshop-spanperf.png)

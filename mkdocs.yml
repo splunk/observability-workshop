@@ -72,7 +72,7 @@ plugins:
 
 nav:
   - 'Home': index.md
-  - '<b>Infrastructure & µAPM</b>':
+  - '<b>Infrastructure & APM</b>':
     - 'Workshop Introduction': smartagent/index.md
     - 'Access AWS/EC2 instance': smartagent/connect-info.md
     - '<b>Get Data In</b><br /><small>20 minutes</small>':
@@ -93,8 +93,8 @@ nav:
     - '<b>Monitoring as Code</b><br /><small>10 minutes</small>':
       - 'Initial Setup': monitoring-as-code/index.md
       - 'Plan, Apply and Destroy': monitoring-as-code/plan-and-apply.md
-    - '<b>µAPM</b><br /><small>30 minutes</small>':
-      - 'µAPM Architecture Overview': apm/index.md
+    - '<b>APM</b><br /><small>30 minutes</small>':
+      - 'APM Architecture Overview': apm/index.md
       - 'Deploying Hot R.O.D. in K3s': apm/hotrod.md
       - 'Troubleshooting Hot R.O.D.': apm/hotrod-trouble-timebased.md
     - '<b>Service Bureau</b><br /><small>20 minutes</small>':
@@ -116,7 +116,7 @@ nav:
       - 'SignalFx Integration': oncall/optional/sfx_integrations.md
       - 'Using Multipass VM': oncall/optional/multipass.md
       - 'Create a Detector': oncall/optional/detector.md
-  - '<b>Lambda & µAPM</b>':
+  - '<b>Lambda & APM</b>':
     - 'Intro': lambda/index.md
     - '<b>Getting to know the Mobile Shop</b>': lambda/initial_run_env.md
     - '<b>Enable APM in the Mobile Shop</b>':
