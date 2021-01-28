@@ -3,7 +3,7 @@
 * Deploy the Hot R.O.D. application into Kubernetes (K3s)
 * Verify the application is running
 * Generate some artificial traffic
-* See µAPM data in the UI
+* See APM data in the UI
 
 !!! warning "Ensure you have a running instance"
     The setup part is already documented in the [Preparation](../../smartagent/prep/) and [Deploy the Smart Agent in K3s](../../smartagent/k3s/) steps.
@@ -150,19 +150,19 @@ To find the hostname, check the prompt of you instance, please go to your instan
 === "Shell Command"
 
     ```text
-    echo "Your µAPM environment is: $(hostname)-apm-env"
+    echo "Your APM environment is: $(hostname)-apm-env"
     ```
 
 === "Example Output"
 
     ```text
-    Your µAPM environment is: ip-172-31-30-133-apm-env
+    Your APM environment is: ip-172-31-30-133-apm-env
     ```
 ---
 
-Now go to **Dashboards → µAPM → Service**.  Please select your environment you found in the previous task then select the frontend service and set time to -15m ()
+Now go to **Dashboards → APM → Service**.  Please select your environment you found in the previous task then select the frontend service and set time to -15m ()
 
-![µAPM Dashboard](../images/apm/hotrod-FE-Service-dashboard.png){: .zoom}
+![APM Dashboard](../images/apm/hotrod-FE-Service-dashboard.png){: .zoom}
 
 !!! warning  "No Data in charts"
     if no data is visible, check that you have the right service **frontend**, and not front-end.
@@ -181,9 +181,9 @@ Take some time to explore the various charts in this dashboard
 
 ---
 
-## 5. Verify that µAPM traces are reaching SignalFx
+## 5. Verify that APM traces are reaching SignalFx
 
-Open SignalFx in your browser and select the **µAPM** tab.
+Open SignalFx in your browser and select the **APM** tab.
 
 ![select APM](../images/apm/select-apm.png){: .zoom}
 
@@ -193,8 +193,8 @@ It should look similar to the screenshot below:
 ![Hot R.O.D. in APM](../images/apm/hotrod-find-env.png){: .zoom}
 
 !!! warning
-    If the screen looks very different you may by accident have selected the Previous Generation of APM (**µAPM PG**) from the menu bar.
-    To rectify this, go back and select the **µAPM** tab.
+    If the screen looks very different you may by accident have selected the Previous Generation of APM (**APM PG**) from the menu bar.
+    To rectify this, go back and select the **APM** tab.
 
 The legend at the bottom of the page explains the different visualizations in the Dependency Map.
 

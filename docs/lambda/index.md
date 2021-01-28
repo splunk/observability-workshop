@@ -1,18 +1,18 @@
-# µAPM with AWS Lambda (Developer Focused) 
+# APM with AWS Lambda (Developer Focused) 
 
-!!! important "Enabling µAPM"
+!!! important "Enabling APM"
 
     **If you recently signed up for the 14 day free trial then this section of the workshop cannot be completed!**
     
-    An Organization needs to be pre-provisioned as a µAPM entitlement is required for the purposes of this module. Please contact someone from Splunk's Observability team to get a trial instance with µAPM enabled if you don’t have one already.
+    An Organization needs to be pre-provisioned as a APM entitlement is required for the purposes of this module. Please contact someone from Splunk's Observability team to get a trial instance with APM enabled if you don’t have one already.
 
-    To check if you have an Organization with µAPM enabled, just login to Splunk's observability suite and check that you have the µAPM tab on the top navbar next to Dashboards.
+    To check if you have an Organization with APM enabled, just login to Splunk's observability suite and check that you have the APM tab on the top navbar next to Dashboards.
 
 ---
-## 1. AWS Lambda exercise & µAPM overview
-This workshop section is focused on developer's of serverless/Lambda application/functions. This workshop is going to guide them through the steps to add Tracing to Python and Node-Js Lambda Functions, and see traces flow from an on-prem Java application though the various Python and Node-Js Lambda Functions in Splunk µAPM.
+## 1. AWS Lambda exercise & APM overview
+This workshop section is focused on developer's of serverless/Lambda application/functions. This workshop is going to guide them through the steps to add Tracing to Python and Node-Js Lambda Functions, and see traces flow from an on-prem Java application though the various Python and Node-Js Lambda Functions in Splunk APM.
 
-Splunk µAPM captures end-to-end distributed transactions from your applications, including serverless apps (Lambda's) with trace spans sent directly to Splunk or via an optional OpenTelemetry Collector that  act as a central aggregation point prior to sending trace spans to Splunk. (recommended, and show in the workshop).
+Splunk APM captures end-to-end distributed transactions from your applications, including serverless apps (Lambda's) with trace spans sent directly to Splunk or via an optional OpenTelemetry Collector that  act as a central aggregation point prior to sending trace spans to Splunk. (recommended, and show in the workshop).
 
 In addition to proxying spans and infrastructure metrics, the OpenTelemetry Collector can also perform other functions, such as redacting sensitive tags prior to spans leaving your environment.
 
