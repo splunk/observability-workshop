@@ -4,7 +4,7 @@
 * Learn how to keep track of spend by exploring the Billing and Usage interface
 * Creating Teams
 * Adding notification rules to Teams
-* Controlling Team usage
+* Controlling usage
 
 ---
 
