@@ -15,7 +15,7 @@ On a Mac you can also install via [Homebrew](https://brew.sh/){: target=_blank} 
 === "Linux/Mac OS"
 
     ```text
-    WSVERSION=1.53
+    WSVERSION=1.54
     mkdir cloud-init
     curl -s \
     https://raw.githubusercontent.com/signalfx/observability-workshop/v$WSVERSION/cloud-init/k3s.yaml \
@@ -26,7 +26,7 @@ On a Mac you can also install via [Homebrew](https://brew.sh/){: target=_blank} 
 === "Windows"
 
     !!! info
-        Download the zip by clicking on the following URL <https://github.com/signalfx/observability-workshop/archive/v1.53.zip>.
+        Download the zip by clicking on the following URL <https://github.com/signalfx/observability-workshop/archive/v1.54.zip>.
 
         Once downloaded, unzip the the file and rename it to `workshop`. Then, from the command prompt change into that directory
         and run
