@@ -4,13 +4,14 @@ Below are helpful resources about Splunk and the DevOps use case. Topics covered
 
 ## Documentation
 
-* **APM**{: .label-button .signalfx} [Platform Docs](https://docs.signalfx.com/en/latest/){: target=_blank}
-* **APM**{: .label-button .signalfx} [API Docs](https://developers.signalfx.com/){: target=_blank}
-* **On-Call**{: .label-button .victorops} [Platform Docs](https://help.victorops.com/){: target=_blank}
-* **On-Call**{: .label-button .victorops} [API Docs](https://portal.victorops.com/public/api-docs.html){: target=_blank}
+* **APM**{: .label-button .signalfx} [O11y Platform Docs](https://docs.signalfx.com/en/latest/){: target=_blank}
+* **APM**{: .label-button .signalfx} [O11y API Docs](https://dev.splunk.com/observability/docs/){: target=_blank}
+* **On-Call**{: .label-button .victorops} [On-Call Platform Docs](https://help.victorops.com/){: target=_blank}
+* **On-Call**{: .label-button .victorops} [On-Call API Docs](https://portal.victorops.com/public/api-docs.html){: target=_blank}
 
 ## Blog Posts
 
+* **Observability**{: .label-button .observability} ["TraceInvaders - an OpenTelemetry Video Game"](https://www.linkedin.com/pulse/traceinvaders-opentelemetry-video-game-steve-lerner/)
 * **Observability**{: .label-button .observability} ["Observability Microsite"](http://observability.splunk.com/)
 * **APM**{: .label-button .signalfx} ["How Splunk Does Site Reliability Engineering (SRE)"](https://splk.it/3eKyy46)
 * **OTEL**{: .label-button .otel} ["OpenTelemetry for Business Continuity"](https://bit.ly/3cyGzHM){: target=_blank}
