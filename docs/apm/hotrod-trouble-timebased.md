@@ -100,11 +100,7 @@ In the **From** field you can either enter a date and time stamp or you can set 
 
 Keep the range as short as possible for the best result then click the **Apply**{: .label-button .sfx-ui-button-blue} to search for traces matching the filter in this time frame.
 
-If you have set your time range correctly you should now see a change, an extra column appears called **Root Error**. indicating that the trace contains the original error.
-
-![root error traces](../images/apm/hotrod-root-errors.png){: .zoom}
-
-To see the actual trace with the error, click on the blue linked TraceID in the **TraceID** column
+To view a trace with an error, click on the blue linked TraceID in the **TraceID** column
 
 This will bring you to the Trace Waterfall view, allowing you to inspect the trace in detail.
 
