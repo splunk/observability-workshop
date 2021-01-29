@@ -56,7 +56,9 @@ Open SignalFx in your browser and select the **APM** tab.
 
 ![select APM](../images/apm/select-apm.png){: .zoom}
 
-Select the **Troubleshooting** tab, and select your environment you found and set the time to 15 minutes.
+Select the **Troubleshooting** tab, and select your environment you found and set the time to `-15m`.
+
+![select APM](../images/apm/select-apm-env.png){: .zoom}
 
 This will show you the automatically generated Dependency Map for the Hot R.O.D. application.
 
@@ -66,11 +68,11 @@ Please note the **Show Traces** button at the bottom of the page:
 
 ### 2.2 View traces in the Trace List
 
-Now click  the **Show Traces** button at the bottom of the page.
+Now click the **Show Traces** button at the bottom of the page.
 
 This will start loading all the traces view, and if there are more then 25 it will show a selection.
 
-You can always hit the **Search all traces** link at the bottom of the page to fetch all traces for the time period.
+Enable `Errors Only` in the table header as indicated in the screenshot below.
 
 ![show all traces](../images/apm/hotrod-list-of-traces.png){: .zoom}
 
@@ -88,19 +90,15 @@ To do this, click on the services drop down at the top of the page and first sel
 
 On first review this step has not brought any visual changes, but there was a 3rd item we can use, we can filter on a specific time frame.
 
-In the previous lab, you should have noted down a time, we are going to use that to filter the traces to that specific time slot.
+### 2.4 Filtering traces by time
 
-### 2.4 Filtering traces in the Trace List
-
-To do this, click on the duration drop down, (It should show -15m) and create a custom time slot.
-
-You can set the current time by clicking on the little clock icon behind the time entry slot.
+To do this, click on the duration drop down (it should show `-15m`) and create a Custom Time slot.
 
 ![filter traces](../images/apm/hotrod-custom-time-slot.png){: .zoom}
 
-Make sure the time you noted down is in the range you set in the **FROM** and **TO** boxes.
+In the **From** field you can either enter a date and time stamp or you can set minutes or hours to look back e.g. `-10m` or `-1d`
 
-Keep the range as short as possible for the best result then hot the apply button to search for traces matching the filter in this time frame.
+Keep the range as short as possible for the best result then click the **Apply**{: .label-button .sfx-ui-button-blue} to search for traces matching the filter in this time frame.
 
 If you have set your time range correctly you should now see a change, an extra column appears called **Root Error**. indicating that the trace contains the original error.
 
