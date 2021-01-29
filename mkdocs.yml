@@ -100,6 +100,7 @@ nav:
     - '<b>Service Bureau</b><br /><small>20 minutes</small>':
         - 'Billing and Usage' : servicebureau/billing-and-usage.md
         - 'Teams' : servicebureau/teams.md
+        - 'Token Limits': servicebureau/tokens.md
   - '<b>On-Call</b>':
     - '<b>Getting Started</b><br /><small>45 minutes</small>':
       - 'Initial Setup': oncall/getting_started/index.md
