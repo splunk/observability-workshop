@@ -1,8 +1,8 @@
-# Access Token Limits - Lab Summary
+# Controlling Usage - Lab Summary
 
 * Discover how you can restrict usage by creating separate access tokens and set limits.
 
-## 1. Controlling usage
+## 1. Access Tokens
 
 If you wish to control the consumption of Hosts, Containers, Custom Metrics and High Resolution Metrics, you can create multiple Access Tokens and allocate them to different parts of your organization.
 
