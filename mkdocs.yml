@@ -128,7 +128,7 @@ nav:
 #    - 'Enable APM in the RetailOrderDiscount Function': lambda/wip.md
 #    - 'Enable APM in the RetailOrderLine Function': lambda/retail-orderline-I.md
 #    - 'Setup': lambda/setup.md
-#  - '<b>Resources</b>':
-#    - 'Links': resources/index.md
-#    - 'FAQ': resources/faq.md
+  - '<b>Resources</b>':
+    - 'Links': resources/index.md
+    - 'FAQ': resources/faq.md
     
