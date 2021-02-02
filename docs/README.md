@@ -49,7 +49,7 @@ This will automatically perform the following changes (DO NOT MANUALLY PERFORM T
 
 1. Update [README.md](../README.md) and prepend the version to the list of available versions. The list has the two latest versions.
 
-1. Retrieve all remote tags. This will spot tag conflicts early and prevent accidentially pushing tags deleted on the remote.
+1. Retrieve all remote tags. This will spot tag conflicts early and prevent accidentally pushing tags deleted on the remote.
 
 1. Amend the commit created by `bumpversion` with these change and a message like "`Releasing v4.2`":
 
