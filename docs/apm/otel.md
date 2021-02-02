@@ -77,7 +77,6 @@ Use the healthcheck endpoint to confirm:
 
 We want to send traces in `sapm` format and point it to the OpenTelemetry Collector trace endpoint.
 
-
 Uninstall the agent:
 
 === "Shell Command"
