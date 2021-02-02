@@ -23,4 +23,3 @@ deploy:
   on:
     repo: signalfx/observability-workshop
     tags: true
-
