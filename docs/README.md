@@ -31,7 +31,7 @@ The documentation built from your current branch is then accessible through your
 
 Use the script
 
-```
+```bash
 ./ci/prepare-release.sh
 ```
 
