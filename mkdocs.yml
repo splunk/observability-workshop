@@ -119,14 +119,18 @@ nav:
       - 'Create a Detector': oncall/optional/detector.md
   - '<b>Lambda & APM</b>':
     - 'Intro': lambda/index.md
-    - '<b>Getting to know the Mobile Shop</b>': lambda/initial_run_env.md
-    - '<b>Enable APM in the Mobile Shop</b>':
-      - 'Setting up the Springboot App' : lambda/springboot-apm.md 
-      - 'Validating the result' : lambda/springboot-apm-II.md
-    - 'Enable APM in the RetailOrder Function': lambda/retail-order-I.md
-    - 'Enable APM in the RetailOrderPrice Function': lambda/wip.md
-    - 'Enable APM in the RetailOrderDiscount Function': lambda/wip.md
-    - 'Enable APM in the RetailOrderLine Function': lambda/retail-orderline-I.md
+    - 'Getting to know the Mobile Shop': lambda/initial_run_env.md
+    - '<b>APM for Mobile Shop</b>':
+      - 'Setting up Springboot App' : lambda/springboot-apm.md 
+      - 'Getting the first Trace': lambda/springboot-apm-II.md
+    - '<b>APM for RetailOrder</b>':
+      - 'Basic Instrumentation': lambda/retail-order-I.md
+    - '<b>APM for RetailOrderPrice</b>':
+      - 'Work in progress': lambda/wip.md
+    - '<b>APM for RetailOrderDiscount</b>': 
+      - 'Work in progress': lambda/wip.md
+    - '<b>APM for RetailOrderLine</b>':
+      - 'Basic Instrumentation': lambda/retail-orderline-I.md
     - 'Setup': lambda/setup.md
 #  - '<b>Resources</b>':
 #    - 'Links': resources/index.md
