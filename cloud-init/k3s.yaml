@@ -1,10 +1,10 @@
 #cloud-config
 ssh_pwauth: yes
-password: Observability2020!
+password: Observability2021!
 chpasswd:
   expire: false
 
-#package_update: true
+package_update: true
 
 apt:
   sources_list: |
@@ -74,9 +74,7 @@ write_files:
 
 runcmd:
   # Install K3s
-  #- curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.17.5+k3s1 K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="server" sh -s -
   - curl -sfL https://get.k3s.io | sh -
-  #- chmod 644 /etc/rancher/k3s/k3s.yaml
   # Download Workshop
   - export WSVERSION=1.56
   - 'export WSARCHIVE=$([ "$WSVERSION" = "master" ] && echo "master" || echo "v$WSVERSION")'
@@ -90,7 +88,7 @@ runcmd:
   # Install Helm
   - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
   # Install K9s (Kubernetes UI)
-  - curl -s -OL https://github.com/derailed/k9s/releases/download/v0.22.1/k9s_Linux_x86_64.tar.gz
+  - curl -S -OL https://github.com/derailed/k9s/releases/download/v0.24.2/k9s_Linux_x86_64.tar.gz
   - tar xfz k9s_Linux_x86_64.tar.gz
   - mv k9s /usr/local/bin/
   # Configure motd
@@ -104,14 +102,14 @@ runcmd:
   #- curl -s --silent --location https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz | tar xz -C /tmp
   #- mv /tmp/eksctl /usr/local/bin/
   # Install Terraform
-  - curl -S -OL https://releases.hashicorp.com/terraform/0.13.3/terraform_0.13.3_linux_amd64.zip
-  - unzip -qq terraform_0.13.3_linux_amd64.zip
+  - curl -S -OL https://releases.hashicorp.com/terraform/0.14.5/terraform_0.14.5_linux_amd64.zip
+  - unzip -qq terraform_0.14.5_linux_amd64.zip
   - mv terraform /usr/local/bin/
   # Set correct permissions on ubuntu user home directory
   - mkdir /home/ubuntu/.kube && sudo kubectl config view --raw > /home/ubuntu/.kube/config
   - chmod 400 /home/ubuntu/.kube/config
   - chown -R ubuntu:ubuntu /home/ubuntu
-  # fix shellinabox port and ssl then restart
+  # Configure shellinabox port and disable ssl then restart
   - sed -i 's/SHELLINABOX_PORT=4200/SHELLINABOX_PORT=6501/'  /etc/default/shellinabox
   - sed -i "s/\"--no-beep\"/\"--no-beep --disable-ssl\"/" /etc/default/shellinabox
   - sudo service shellinabox restart
