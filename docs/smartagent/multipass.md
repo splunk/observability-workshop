@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation # Hide navigation
+  - toc        # Hide table of contents
+---
 # Launch a Multipass instance
 
 ---
