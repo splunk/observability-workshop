@@ -4,7 +4,7 @@ site_author: 'Sales Engineering'
 site_url: 'https://signalfx.github.io/observability-workshop/'
 repo_url: 'https://github.com/signalfx/observability-workshop/'
 edit_uri: ''
-copyright: Copyright &copy; 2020 Splunk Inc. All rights reserved.
+copyright: Copyright &copy; 2021 Splunk Inc. All rights reserved.
 remote_branch: gh-pages
 
 theme:
@@ -21,8 +21,9 @@ theme:
   language: en
   custom_dir: material
   features:
-    - tabs
     - navigation.tabs
+    - navigation.instant
+    - toc.integrate
 
 markdown_extensions:
   - footnotes
@@ -132,6 +133,6 @@ nav:
     - '<b>APM for RetailOrderLine</b>':
       - 'Basic Instrumentation': lambda/retail-orderline-I.md
     - 'Setup': lambda/setup.md
-#  - '<b>Resources</b>':
-#    - 'Links': resources/index.md
-#    - 'FAQ': resources/faq.md
+  - '<b>Resources</b>':
+    - 'Links': resources/index.md
+    - 'FAQ': resources/faq.md
