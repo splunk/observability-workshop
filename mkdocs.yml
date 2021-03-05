@@ -71,7 +71,6 @@ plugins:
       htmlmin_opts:
         remove_comments: true
 
-
 nav:
   - 'Home': index.md
   - '<b>Infrastructure & APM</b>':
