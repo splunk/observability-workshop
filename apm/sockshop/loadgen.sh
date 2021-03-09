@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+KC="sudo kubectl"
+
 usage() {
   cat <<USAGE
 
@@ -19,15 +21,15 @@ exit_usage() {
 }
 
 run_test() {
-  sudo kubectl delete -n sock-shop -f loadgen/loadgen.yaml 2>/dev/null
-  sudo kubectl delete configmap -n sock-shop locust-file
-  sudo kubectl delete configmap -n sock-shop locust-config
+  $KC delete -n sock-shop -f loadgen/loadgen.yaml 2>/dev/null
+  $KC delete configmap -n sock-shop locust-file 2> /dev/null
+  $KC delete configmap -n sock-shop locust-config 2> /dev/null
 
-  sudo kubectl create configmap -n sock-shop locust-file --from-file loadgen/locustfile.py
-  sudo kubectl create configmap -n sock-shop locust-config \
+  $KC create configmap -n sock-shop locust-file --from-file loadgen/locustfile.py
+  $KC create configmap -n sock-shop locust-config \
       --from-literal=targetUrl="$TARGET_HOST" \
       --from-literal=locustOpts="--users $CLIENTS --hatch-rate $HATCH_RATE --run-time $RUNTIME --headless"
-  sudo kubectl apply -n sock-shop -f loadgen/loadgen.yaml
+  $KC apply -n sock-shop -f loadgen/loadgen.yaml
 }
 
 validate() {
