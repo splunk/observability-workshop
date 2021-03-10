@@ -8,6 +8,7 @@ variable "aws_region" {
 
 variable "instance_type" {
   description = "Select instance type required (1 = Hot R.O.D. 2 = Sock Shop)"
+  default     = 1 # Added to set default to Hot ROD as we no longer use Sock Shop
 }
 
 data "aws_ami" "latest-ubuntu" {
