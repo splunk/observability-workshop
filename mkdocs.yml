@@ -118,21 +118,21 @@ nav:
       - 'SignalFx Integration': oncall/optional/sfx_integrations.md
       - 'Using Multipass VM': oncall/optional/multipass.md
       - 'Create a Detector': oncall/optional/detector.md
-  - '<b>Lambda & APM</b>':
-    - 'Intro': lambda/index.md
-    - 'Getting to know the Mobile Shop': lambda/initial_run_env.md
-    - '<b>APM for Mobile Shop</b>':
-      - 'Setting up Springboot App' : lambda/springboot-apm.md 
-      - 'Getting the first Trace': lambda/springboot-apm-II.md
-    - '<b>APM for RetailOrder</b>':
-      - 'Basic Instrumentation': lambda/retail-order-I.md
-    - '<b>APM for RetailOrderPrice</b>':
-      - 'Work in progress': lambda/wip.md
-    - '<b>APM for RetailOrderDiscount</b>': 
-      - 'Work in progress': lambda/wip.md
-    - '<b>APM for RetailOrderLine</b>':
-      - 'Basic Instrumentation': lambda/retail-orderline-I.md
-    - 'Setup': lambda/setup.md
+#  - '<b>Lambda & APM</b>':
+#    - 'Intro': lambda/index.md
+#    - 'Getting to know the Mobile Shop': lambda/initial_run_env.md
+#    - '<b>APM for Mobile Shop</b>':
+#      - 'Setting up Springboot App' : lambda/springboot-apm.md 
+#      - 'Getting the first Trace': lambda/springboot-apm-II.md
+#    - '<b>APM for RetailOrder</b>':
+#      - 'Basic Instrumentation': lambda/retail-order-I.md
+#    - '<b>APM for RetailOrderPrice</b>':
+#      - 'Work in progress': lambda/wip.md
+#    - '<b>APM for RetailOrderDiscount</b>': 
+#      - 'Work in progress': lambda/wip.md
+#    - '<b>APM for RetailOrderLine</b>':
+#      - 'Basic Instrumentation': lambda/retail-orderline-I.md
+#    - 'Setup': lambda/setup.md
   - '<b>Resources</b>':
     - 'Links': resources/index.md
     - 'FAQ': resources/faq.md
