@@ -169,11 +169,11 @@ Use the label set by the `helm` install to tail logs (You will need to press ++c
     ```
 
 !!! info "Deleting installation"
-    If you make an error installing the Smart Agent you can start over by deleting the erroneous install using:
+    If you make an error installing the Smart Agent you can start over by deleting the installation using:
     
     `helm delete signalfx-agent`
 
-    For the OpenTelemetry Collector you can delete in the install using:
+    For the OpenTelemetry Collector you can delete the installation using:
 
     `helm delete splunk-otel-collector`
 ---
