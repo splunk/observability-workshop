@@ -7,6 +7,9 @@
 
 ## 1. Start your NGINX
 
+!!! Info
+    **If you have deployed the OpenTelemetry Collector then this module of the workshop is not applicable and can be skipped!**
+
 This deployment of NGINX has been configured to use Kubernetes pod annotations to tell the Smart Agent how to monitor the service.
 
 This is achieved by defining the `port` and `monitor type` to use for monitoring the NGINX service e.g. `agent.signalfx.com/monitorType.80: "collectd/nginx"`

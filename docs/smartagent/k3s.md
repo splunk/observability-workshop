@@ -1,21 +1,21 @@
-# Deploying the Smart Agent in Kubernetes (K3s)
+# Deploying the Smart Agent/OpenTelemetry Collector in Kubernetes
 
-* Use the SignalFx Helm chart to install the Smart Agent in K3s
+* Use the Splunk Helm chart to install the Smart Agent or OpenTelemetry Collector in K3s
 * Explore your cluster in the Kubernetes Navigator
 
 ---
 
-## 1. Obtain SignalFx Access Token
+## 1. Obtain Splunk Access Token
 
-You will need to obtain your Access Token[^1] from the SignalFx UI once Kubernetes is running.
+You will need to obtain your Access Token[^1] from the Splunk UI once Kubernetes is running.
 
-You can find your Access Token by clicking on your profile icon on the top right of the SignalFx UI. Then select **Organization Settings → Access Tokens**.
+You can find your Access Token by clicking on your profile icon on the top right of the Splunk. Then select **Organization Settings → Access Tokens**.
 
 Expand the Default token, then click on **Show Token** to expose your token. Click the **Copy**{: .label-button  .sfx-ui-button-grey} button to copy to clipboard.
 
 ![Access Token](../images/smartagent/access-token.png){: .zoom}
 
-You will also need to obtain the name of the Realm[^2] for your SignalFx account.  Click on the profile icon again, but this time select **My Profile**.
+You will also need to obtain the name of the Realm[^2] for your Splunk account.  Click on the profile icon again, but this time select **My Profile**.
 
 The Realm can be found in the middle of the page within the Organizations section.  In this example it is `us1`.
 
@@ -23,28 +23,34 @@ The Realm can be found in the middle of the page within the Organizations sectio
 
 ---
 
-## 2. Use Helm to deploy agent
+## 2. Installation using Helm
 
-Create the following variables to use in the proceeding helm install command, replacing the highlighted `{==VARIABLE==}` with the appropriate values. For instance, if your realm is `us1`, you would run `export REALM=us1` and for `eu0` run `export REALM=eu0`.
+Create the `ACCESS_TOKEN` and `REALM` environment variables to use in the proceeding Helm install command. For instance, if your realm is `us1`, you would type `export REALM=us1` and for `eu0` type `export REALM=eu0`.
 
 === "Shell Command"
 
     ```
-    export ACCESS_TOKEN={==Replace with your ACCESS_TOKEN==}
-    export REALM={==Replace with your REALM==}
+    export ACCESS_TOKEN=<replace_with_your_access_token>
+    export REALM=<replace_with_splunk_realm>
     ```
 
-Install the agent using the SignalFx Helm chart. Firstly, add the SignalFx Helm chart repository to Helm.
+Install the Smart Agent or OpenTelemetry Collector using the Splunk Helm chart. Firstly, add the Splunk Helm chart repository to Helm and update.
 
-=== "Shell Command"
+=== "Smart Agent"
 
     ```
     helm repo add signalfx https://dl.signalfx.com/helm-repo && helm repo update
     ```
 
+=== "OpenTelemetry Collector"
+
+    ```
+    helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update
+    ```
+
 Install the Smart Agent Helm chart with the following commands, do **NOT** edit this:
 
-=== "Shell Command"
+=== "Smart Agent"
 
     ```
     helm install \
@@ -58,39 +64,53 @@ Install the Smart Agent Helm chart with the following commands, do **NOT** edit 
     -f ~/workshop/k3s/values.yaml
     ```
 
+=== "OpenTelemetry Collector"
+
+    ```
+    helm install splunk-otel-collector \
+    --set="splunkRealm=$REALM" \
+    --set="splunkAccessToken=$ACCESS_TOKEN" \
+    --set="clusterName=$(hostname)-k3s-cluster" \
+    --set="logsEnabled=false" \
+    splunk-otel-collector-chart/splunk-otel-collector
+    ```
+
 You can monitor the progress of the deployment by running `sudo kubectl get pods` which should typically report a new pod is up and running after about 30 seconds.
 
 Ensure the status is reported as Running before continuing.
 
-!!! info
-    If you make an error installing the Smart Agent you can start over by deleting the erroneous install using:
-    
-    `helm delete signalfx-agent`
-
-=== "Shell Command"
+=== "Get Pods"
 
     ```text
     sudo kubectl get pods
     ```
 
-=== "Output"
+=== "Smart Agent Output"
 
     ```
     NAME                   READY   STATUS    RESTARTS   AGE
     signalfx-agent-66tvr   1/1     Running   0          7s
     ```
 
+=== "OpenTelemetry Collector Output"
+
+    ```
+    NAME                                                          READY   STATUS    RESTARTS   AGE
+    splunk-otel-collector-agent-2sk6k                             0/1     Running   0          10s
+    splunk-otel-collector-k8s-cluster-receiver-6956d4446f-gwnd7   0/1     Running   0          10s
+    ```
+
 Ensure there are no errors by tailing the logs from the Smart Agent Pod. Output should look similar to the log output shown in the Output tab below.
 
 Use the label set by the `helm` install to tail logs (You will need to press ++ctrl+c++ to exit). Or use the installed `k9s` terminal UI for bonus points!
 
-=== "Shell Command"
+=== "Smart Agent Log"
 
     ```text
     sudo kubectl logs -l app=signalfx-agent -f
     ```
 
-=== "Output"
+=== "Smart Agent Output"
 
     ```text
     signalfx-agent time="2020-05-27T20:52:10Z" level=info msg="Starting up agent version 5.2.1"                                                                                                     │
@@ -127,6 +147,35 @@ Use the label set by the `helm` install to tail logs (You will need to press ++c
     signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Starting K8s API resource sync"                                                                                                      │
     ```
 
+=== "Open Telemetry Collector Log"
+
+    ```
+    sudo kubectl logs -l app=splunk-otel-collector -f
+    ```
+
+=== "Open Telemetry Collector Output"
+
+    ```
+    2021-03-21T16:11:10.900Z        INFO    service/service.go:364  Starting receivers...
+    2021-03-21T16:11:10.900Z        INFO    builder/receivers_builder.go:70 Receiver is starting... {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
+    2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:75 Receiver started.       {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
+    2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:70 Receiver is starting... {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
+    2021-03-21T16:11:11.009Z        INFO    k8sclusterreceiver@v0.21.0/watcher.go:195       Configured Kubernetes MetadataExporter  {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster", "exporter_name": "signalfx"}
+    2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:75 Receiver started.       {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
+    2021-03-21T16:11:11.009Z        INFO    healthcheck/handler.go:128      Health Check state change       {"component_kind": "extension", "component_type": "health_check", "component_name": "health_check", "status": "ready"}
+    2021-03-21T16:11:11.009Z        INFO    service/service.go:267  Everything is ready. Begin running and processing data.
+    2021-03-21T16:11:11.009Z        INFO    k8sclusterreceiver@v0.21.0/receiver.go:59       Starting shared informers and wait for initial cache sync.      {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
+    2021-03-21T16:11:11.281Z        INFO    k8sclusterreceiver@v0.21.0/receiver.go:75       Completed syncing shared informer caches.       {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
+    ```
+
+!!! info "Deleting installation"
+    If you make an error installing the Smart Agent you can start over by deleting the erroneous install using:
+    
+    `helm delete signalfx-agent`
+
+    For the OpenTelemetry Collector you can delete in the install using:
+
+    `helm delete splunk-otel-collector`
 ---
 
 ## 3. Validate metrics in the UI
@@ -155,10 +204,6 @@ Once it is open, you can use the slider on the side to explore the various chart
 
 ![Sidebar metrics](../images/smartagent/explore-metrics.png)
 
-[^1]: Access Tokens (sometimes called Org Tokens) are long-lived organization-level tokens. By default, these tokens persist for 5 years, and thus are suitable for embedding into emitters that send data points over long periods of time, or for any long-running scripts that call the SignalFx API.
+[^1]: Access Tokens (sometimes called Org Tokens) are long-lived organization-level tokens. By default, these tokens persist for 5 years, and thus are suitable for embedding into emitters that send data points over long periods of time, or for any long-running scripts that call the Splunk API.
 
-[^2]: A realm is a self-contained deployment of SignalFx in which your Organization is hosted. Different realms have different API endpoints (e.g. the endpoint for sending data is `ingest.us1.signalfx.com` for the **`us1`** realm, and `ingest.eu0.signalfx.com` for the **`eu0`** realm).
-
-Various instructions in this Workshop include a {==REALM==} placeholder that will need to be replaced with the actual name of your realm.
-
-This realm name is shown on your profile page in SignalFx. If you do not include the realm name when specifying an endpoint, SignalFx will interpret it as pointing to the **`us0`** realm.
+[^2]: A realm is a self-contained deployment of Spunk in which your Organization is hosted. Different realms have different API endpoints (e.g. the endpoint for sending data is `ingest.us1.signalfx.com` for the **`us1`** realm, and `ingest.eu0.signalfx.com` for the **`eu0`** realm). This realm name is shown on your profile page in the Splunk UI. If you do not include the realm name when specifying an endpoint, Splunk will interpret it as pointing to the **`us0`** realm.

@@ -11,11 +11,18 @@
 
 To deploy the Hot R.O.D. application into K3s apply the deployment.
   
-=== "Shell Command"
+=== "Using Smart Agent"
 
     ```text
     cd ~/workshop
     sudo kubectl apply -f apm/hotrod/k8s/deployment.yaml 
+    ```
+
+=== "Using OpenTelemetry Collector"
+
+    ```text
+    cd ~/workshop
+    sudo kubectl apply -f apm/hotrod/k8s/deployment-otel.yaml 
     ```
 
 === "Output"
@@ -27,18 +34,28 @@ To deploy the Hot R.O.D. application into K3s apply the deployment.
 
 To ensure the Hot R.O.D. application is running:
 
-=== "Shell Command"
+=== "Get Pods"
 
     ```text
     sudo kubectl get pods
     ```
 
-=== "Example Output"
+=== "Smart Agent Output"
 
     ```text
     NAME                      READY   STATUS    RESTARTS   AGE
     signalfx-agent-mmzxk      1/1     Running   0          110s
     hotrod-7cc9fc85b7-n765r   1/1     Running   0          41s
+    ```
+
+=== "Open Telemetry Collector Output"
+
+    ```text
+    NAME                                                          READY   STATUS    RESTARTS   AGE
+    splunk-otel-collector-agent-2sk6k                             1/1     Running   0          11m
+    splunk-otel-collector-k8s-cluster-receiver-6956d4446f-gwnd7   1/1     Running   0          11m
+    svclb-hotrod-6pbd2                                            1/1     Running   0          81s
+    hotrod-6855f67d9f-zjhpk                                       1/1     Running   0          33s
     ```
 
 ---
@@ -107,17 +124,30 @@ For this we need to know the name of your application environment. In this works
 
 To find the hostname, on the AWS/EC2 instance run the following command:
 
-=== "Shell Command"
+=== "Smart Agent"
 
     ```text
     echo "Your APM environment is: $(hostname)-apm-env"
     ```
 
-=== "Example Output"
+=== "Smart Agent Output"
 
     ```text
     Your APM environment is: whul-apm-env
     ```
+
+=== "Open Telemetry Collector"
+
+    ```text
+    echo "Your APM environment is: $(hostname)-otel-env"
+    ```
+
+=== "Open Telemetry Collector"
+
+    ```text
+    Your APM environment is: whul-otel-env
+    ```
+
 ---
 
 Now go to **Dashboards → APM → Service**.  Please select your environment you found in the previous task then select the frontend service and set time to -15m ()
