@@ -90,8 +90,7 @@ runcmd:
   - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
   # Install K9s (Kubernetes UI)
   - curl -S -OL https://github.com/derailed/k9s/releases/download/v0.24.3/k9s_Linux_x86_64.tar.gz
-  - tar xfz k9s_Linux_x86_64.tar.gz
-  - mv k9s /usr/local/bin/
+  - tar xfz k9s_Linux_x86_64.tar.gz -C /usr/local/bin/ k9s
   # Configure motd
   - curl -s https://raw.githubusercontent.com/signalfx/observability-workshop/master/cloud-init/motd -o /etc/motd
   - chmod -x /etc/update-motd.d/*
@@ -104,8 +103,7 @@ runcmd:
   #- mv /tmp/eksctl /usr/local/bin/
   # Install Terraform
   - curl -S -OL https://releases.hashicorp.com/terraform/0.14.8/terraform_0.14.8_linux_amd64.zip
-  - unzip -qq terraform_0.14.8_linux_amd64.zip
-  - mv terraform /usr/local/bin/
+  - unzip -qq terraform_0.14.8_linux_amd64.zip -d /usr/local/bin
   # Set correct permissions on ubuntu user home directory
   - mkdir /home/ubuntu/.kube && sudo kubectl config view --raw > /home/ubuntu/.kube/config
   - chmod 400 /home/ubuntu/.kube/config
