@@ -107,8 +107,8 @@ runcmd:
   - unzip -qq terraform_0.14.8_linux_amd64.zip
   - mv terraform /usr/local/bin/
   # Set correct permissions on ubuntu user home directory
-  #- mkdir /home/ubuntu/.kube && sudo kubectl config view --raw > /home/ubuntu/.kube/config
-  #- chmod 400 /home/ubuntu/.kube/config
+  - mkdir /home/ubuntu/.kube && sudo kubectl config view --raw > /home/ubuntu/.kube/config
+  - chmod 400 /home/ubuntu/.kube/config
   - chown -R ubuntu:ubuntu /home/ubuntu
   # Configure shellinabox port and disable ssl then restart
   - sed -i 's/SHELLINABOX_PORT=4200/SHELLINABOX_PORT=6501/'  /etc/default/shellinabox
