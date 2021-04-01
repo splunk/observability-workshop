@@ -77,7 +77,7 @@ runcmd:
   # Install K3s
   - curl -sfL https://get.k3s.io | sh -
   # Download Workshop
-  - export WSVERSION=1.57
+  - export WSVERSION=1.58
   - 'export WSARCHIVE=$([ "$WSVERSION" = "master" ] && echo "master" || echo "v$WSVERSION")'
   - curl -s -OL https://github.com/signalfx/observability-workshop/archive/$WSARCHIVE.zip
   - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
