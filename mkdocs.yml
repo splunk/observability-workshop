@@ -24,6 +24,7 @@ theme:
     - navigation.tabs
     - navigation.instant
     - toc.integrate
+    - navigation.top
 
 markdown_extensions:
   - footnotes
