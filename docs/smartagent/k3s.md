@@ -53,6 +53,7 @@ Install the Smart Agent Helm chart with the following commands, do **NOT** edit 
 === "Smart Agent"
 
     ```
+    export EXTERNAL_IP=$(curl -s http://checkip.amazonaws.com)
     helm install \
     --set signalFxAccessToken=$ACCESS_TOKEN \
     --set clusterName=$(hostname)-k3s-cluster \
@@ -60,6 +61,7 @@ Install the Smart Agent Helm chart with the following commands, do **NOT** edit 
     --set signalFxRealm=$REALM  \
     --set traceEndpointUrl=https://ingest.$REALM.signalfx.com/v2/trace \
     --set gatherDockerMetrics=false \
+    --set globalDimensions.workshop_external_ip=$EXTERNAL_IP \
     signalfx-agent signalfx/signalfx-agent \
     -f ~/workshop/k3s/values.yaml
     ```
