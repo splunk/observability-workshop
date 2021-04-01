@@ -36,27 +36,26 @@ theme:
   features:
     - navigation.tabs
     - navigation.instant
-    - toc.integrate
     - navigation.top
+    - toc.integrate
 
 markdown_extensions:
   - footnotes
   - admonition
   - attr_list
-  - codehilite:
-      guess_lang: false
-  - toc:
-      permalink: true
   - pymdownx.tabbed
   - pymdownx.superfences
-  - pymdownx.mark
+  - pymdownx.highlight
   - pymdownx.inlinehilite
+  - pymdownx.mark
   - pymdownx.critic
   - pymdownx.keys
+  - meta
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
-  - meta
+  - toc:
+      permalink: true
 
 extra_css:
   - "stylesheets/extra.css"
