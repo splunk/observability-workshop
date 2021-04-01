@@ -96,7 +96,11 @@ Let's validate this in your shell as well:
     nginx-7554f6c668-mjtsh   1/1     Running   0          65s
     ```
 
-Next create an environment variable containing the `CLUSTER_IP` of NGINX:
+---
+
+## 3. Run Siege Benchmark
+
+Use the Siege[^2] Load Testing command to generate some traffic to light up your SignalFx NGINX dashboards. First, we need to get the IP address of the cluster and assign to an environment variable:
 
 === "Shell Command"
 
@@ -106,59 +110,21 @@ Next create an environment variable containing the `CLUSTER_IP` of NGINX:
 
 Confirm the environment variable has been set correctly:
 
-=== "Shell Command"
 
-    ```text
-    curl ${CLUSTER_IP}
-    ```
-
-=== "Output"
-
-    ```html
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <title>Welcome to nginx!</title>
-    <style>
-        body {
-            width: 35em;
-            margin: 0 auto;
-            font-family: Tahoma, Verdana, Arial, sans-serif;
-        }
-    </style>
-    </head>
-    <body>
-    <h1>Welcome to nginx!</h1>
-    <p>If you see this page, the nginx web server is successfully installed and
-    working. Further configuration is required.</p>
-
-    <p>For online documentation and support please refer to
-    <a href="http://nginx.org/">nginx.org</a>.<br/>
-    Commercial support is available at
-    <a href="http://nginx.com/">nginx.com</a>.</p>
-
-    <p><em>Thank you for using nginx.</em></p>
-    </body>
-    </html>
-    ```
-
----
-
-## 3. Run Siege Benchmark
-
-Use the Siege[^2] Load Testing command to generate some traffic to light up your SignalFx NGINX dashboards. Run this a couple of times!
+Now we can run the load test:
 
 === "Shell Command"
 
     ```base
-    siege -b -r 50 -c 20 --no-parser http://${CLUSTER_IP}/ 1>/dev/null
+    CLUSTER_IP=$(sudo kubectl get svc nginx -n default -o jsonpath='{.spec.clusterIP}') \
+    siege -b -r 200 -c 50 --no-parser http://${CLUSTER_IP}/ 1>/dev/null
     ```
 
 === "Output"
 
     ```text
     ** SIEGE 4.0.5
-    ** Preparing 20 concurrent users for battle.
+    ** Preparing 50 concurrent users for battle.
     The server is now under siege...
 
     Transactions:               1000 hits
@@ -169,7 +135,7 @@ Use the Siege[^2] Load Testing command to generate some traffic to light up your
     Transaction rate:           854.70 trans/sec
     Throughput:                 17.14 MB/sec
     Concurrency:                19.77
-    Successful transactions:    1000
+    Successful transactions:    10000
     Failed transactions:        0
     Longest transaction:        0.16
     Shortest transaction:       0.01
