@@ -28,10 +28,6 @@ img {
     position: absolute;
 }
 
-.md-content{
-    z-index: -1;
-}
-
 .center {
     display: block;
     margin-left: auto;
