@@ -74,7 +74,8 @@ Install the Smart Agent Helm chart with the following commands, do **NOT** edit 
     --set="splunkAccessToken=$ACCESS_TOKEN" \
     --set="clusterName=$(hostname)-k3s-cluster" \
     --set="logsEnabled=false" \
-    splunk-otel-collector-chart/splunk-otel-collector
+    splunk-otel-collector-chart/splunk-otel-collector \
+    -f ~/workshop/k3s/otel-collector.yaml
     ```
 
 You can monitor the progress of the deployment by running `sudo kubectl get pods` which should typically report a new pod is up and running after about 30 seconds.
