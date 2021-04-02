@@ -1,16 +1,19 @@
-site_name: 'Splunk Observability Suite Workshop'
-site_description: 'This workshop is going to take you through the best-in-class observability solution for ingesting, monitoring, visualizing and analyzing data'
-site_author: 'Sales Engineering'
-site_url: 'https://signalfx.github.io/observability-workshop/'
-repo_url: 'https://github.com/signalfx/observability-workshop/'
-edit_uri: ''
+site_name: Splunk Observability Suite Workshop
+site_url: https://signalfx.github.io/observability-workshop/
+site_author: Sales Engineering EMEA
+site_description: >-
+  This workshop is going to take you through the best-in-class observability solution
+  for ingesting, monitoring, visualizing and analyzing data
+
+repo_url: https://github.com/signalfx/observability-workshop/
+edit_uri: ""
 copyright: Copyright &copy; 2021 Splunk Inc. All rights reserved.
 remote_branch: gh-pages
 
 theme:
   name: material
   palette:
-        # Light mode
+    # Light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
       toggle:
@@ -28,7 +31,7 @@ theme:
   logo: images/logo.png
   font:
     text: Roboto
-    code: Ubuntu Mono
+    code: Roboto Mono
   include_search_page: false
   search_index_only: true
   language: en
@@ -36,6 +39,7 @@ theme:
   features:
     - navigation.tabs
     - navigation.instant
+    - navigation.sections
     - navigation.top
     - toc.integrate
 
@@ -80,72 +84,69 @@ plugins:
   - search
   - minify:
       minify_html: true
-      minify_js: true
-      htmlmin_opts:
-        remove_comments: true
 
 nav:
-  - 'Home': index.md
-  - '<b>Infrastructure & APM</b>':
-    - 'Workshop Introduction': smartagent/index.md
-    - 'Access AWS/EC2 instance': smartagent/connect-info.md
-    - '<b>Get Data In</b><br /><small>20 minutes</small>':
-      - 'Deploy the Smart Agent in K3s': smartagent/k3s.md
-      - 'Deploy NGINX in K3s' : smartagent/nginx.md
-    - '<b>Dashboards</b><br /><small>30 minutes</small>':
-      - 'Introduction': dashboards/index.md
-      - 'Editing charts': dashboards/editing.md
-      - 'Using filters': dashboards/filtering.md
-      - 'Using formulas': dashboards/formulas.md
-      - 'Using overlays': dashboards/overlay.md
-      - 'SignalFlow': dashboards/signalflow.md
-      - 'Adding charts': dashboards/adding-charts.md
-      - 'Integration to Splunk': dashboards/datalinks.md
-    - '<b>Detectors</b><br /><small>15 minutes</small>':
-      - 'Creating a Detector': detectors/detectors.md
-      - 'Creating a Muting Rule': detectors/muting.md
-    - '<b>Monitoring as Code</b><br /><small>10 minutes</small>':
-      - 'Initial Setup': monitoring-as-code/index.md
-      - 'Plan, Apply and Destroy': monitoring-as-code/plan-and-apply.md
-    - '<b>APM</b><br /><small>30 minutes</small>':
-      - 'APM Architecture Overview': apm/index.md
-      - 'Deploying Hot R.O.D. in K3s': apm/hotrod.md
-      - 'Troubleshooting Hot R.O.D.': apm/hotrod-trouble-timebased.md
-    - '<b>Service Bureau</b><br /><small>20 minutes</small>':
-        - 'Billing and Usage' : servicebureau/billing-and-usage.md
-        - 'Teams' : servicebureau/teams.md
-        - 'Control Usage': servicebureau/tokens.md
-  - '<b>On-Call</b>':
-    - '<b>Getting Started</b><br /><small>45 minutes</small>':
-      - 'Initial Setup': oncall/getting_started/index.md
-      - 'User Profile': oncall/getting_started/user_profile.md
-      - 'Teams': oncall/getting_started/team.md
-      - 'Configure Rotations': oncall/getting_started/rotations.md
-      - 'Configure Escalation Policies': oncall/getting_started/escalation.md
-      - 'Creating Routing keys': oncall/getting_started/routing.md
-    - '<b>Incident Lifecycle</b><br /><small>45 minutes</small>':
-      - 'Overview': oncall/incident_lifecycle/index.md
-      - 'Create Incidents': oncall/incident_lifecycle/create_incidents.md
-      - 'Manage Incidents': oncall/incident_lifecycle/manage_incidents.md
-    - '<b>Optional Modules</b>':
-      - 'SignalFx Integration': oncall/optional/sfx_integrations.md
-      - 'Using Multipass VM': oncall/optional/multipass.md
-      - 'Create a Detector': oncall/optional/detector.md
-  - '<b>Lambda & APM</b>':
-    - 'Intro': lambda/index.md
-    - 'Getting to know the Mobile Shop': lambda/initial_run_env.md
-    - '<b>APM for Mobile Shop</b>':
-      - 'Setting up Springboot App' : lambda/springboot-apm.md 
-      - 'Getting the first Trace': lambda/springboot-apm-II.md
-    - '<b>APM for RetailOrder</b>':
-      - 'Basic Instrumentation': lambda/retail-order-I.md
-    - '<b>APM for RetailOrderPrice</b>':
-      - 'Work in progress': lambda/wip.md
-    - '<b>APM for RetailOrderDiscount</b>': 
-      - 'Work in progress': lambda/wip.md
-    - '<b>APM for RetailOrderLine</b>':
-      - 'Basic Instrumentation': lambda/retail-orderline-I.md
-    - 'Setup': lambda/setup.md
-  - '<b>Resources</b>':
-    - 'Links': resources/index.md
-    - 'FAQ': resources/faq.md
+  - Home: index.md
+  - Infrastructure & APM:
+    - Workshop Introduction: smartagent/index.md
+    - Access AWS/EC2 instance: smartagent/connect-info.md
+    - Get Data In<br /><small>20 minutes</small>:
+      - Deploy the Smart Agent in K3s: smartagent/k3s.md
+      - Deploy NGINX in K3s : smartagent/nginx.md
+    - Dashboards<br /><small>30 minutes</small>:
+      - Introduction: dashboards/index.md
+      - Editing charts: dashboards/editing.md
+      - Using filters: dashboards/filtering.md
+      - Using formulas: dashboards/formulas.md
+      - Using overlays: dashboards/overlay.md
+      - SignalFlow: dashboards/signalflow.md
+      - Adding charts: dashboards/adding-charts.md
+      - Integration to Splunk: dashboards/datalinks.md
+    - Detectors<br /><small>15 minutes</small>:
+      - Creating a Detector: detectors/detectors.md
+      - Creating a Muting Rule: detectors/muting.md
+    - Monitoring as Code<br /><small>10 minutes</small>:
+      - Initial Setup: monitoring-as-code/index.md
+      - Plan, Apply and Destroy: monitoring-as-code/plan-and-apply.md
+    - APM<br /><small>30 minutes</small>:
+      - APM Architecture Overview: apm/index.md
+      - Deploying Hot R.O.D. in K3s: apm/hotrod.md
+      - Troubleshooting Hot R.O.D.: apm/hotrod-trouble-timebased.md
+    - Service Bureau<br /><small>20 minutes</small>:
+        - Billing and Usage : servicebureau/billing-and-usage.md
+        - Teams : servicebureau/teams.md
+        - Control Usage: servicebureau/tokens.md
+  - On-Call:
+    - Getting Started<br /><small>45 minutes</small>:
+      - Initial Setup: oncall/getting_started/index.md
+      - User Profile: oncall/getting_started/user_profile.md
+      - Teams: oncall/getting_started/team.md
+      - Configure Rotations: oncall/getting_started/rotations.md
+      - Configure Escalation Policies: oncall/getting_started/escalation.md
+      - Creating Routing keys: oncall/getting_started/routing.md
+    - Incident Lifecycle<br /><small>45 minutes</small>:
+      - Overview: oncall/incident_lifecycle/index.md
+      - Create Incidents: oncall/incident_lifecycle/create_incidents.md
+      - Manage Incidents: oncall/incident_lifecycle/manage_incidents.md
+    - Optional Modules:
+      - SignalFx Integration: oncall/optional/sfx_integrations.md
+      - Using Multipass VM: oncall/optional/multipass.md
+      - Create a Detector: oncall/optional/detector.md
+  - Lambda & APM:
+    - Intro: lambda/index.md
+    - Getting to know the Mobile Shop: lambda/initial_run_env.md
+    - APM for Mobile Shop:
+      - Setting up Springboot App : lambda/springboot-apm.md 
+      - Getting the first Trace: lambda/springboot-apm-II.md
+    - APM for RetailOrder:
+      - Basic Instrumentation: lambda/retail-order-I.md
+    - APM for RetailOrderPrice:
+      - Work in progress: lambda/wip.md
+    - APM for RetailOrderDiscount: 
+      - Work in progress: lambda/wip.md
+    - APM for RetailOrderLine:
+      - Basic Instrumentation: lambda/retail-orderline-I.md
+    - Setup: lambda/setup.md
+  - Resources:
+    - Links: resources/index.md
+    - FAQ: resources/faq.md
