@@ -17,11 +17,11 @@ If so login to to that Org, then use the organisation dropdown next to your user
 ![Switch Org](../../images/oncall/switch-org.png){: .center}
 
 !!! Note
-If you do not see the Organisation dropdown menu item next to your name with Observability Workshop EMEA that is OK, it simply means you only have access to a single Org so that menu is not visible to you.
+    If you do not see the Organisation dropdown menu item next to your name with Observability Workshop EMEA that is OK, it simply means you only have access to a single Org so that menu is not visible to you.
 
-If you have forgotten your password go to the [sign-in](https://portal.victorops.com/membership/#/){: target=_blank} page and use the forgotten password link to reset your password.
+    If you have forgotten your password go to the [sign-in](https://portal.victorops.com/membership/#/){: target=_blank} page and use the forgotten password link to reset your password.
 
-![Reset Pwd](../../images/oncall/reset-password.png){: .center}
+    ![Reset Pwd](../../images/oncall/reset-password.png){: .center}
 
 ---
 
