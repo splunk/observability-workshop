@@ -5,15 +5,16 @@ When working on the workshop, we advise that you review your changes locally bef
 ## Cloning the repo and installing dependencies
 
 ```bash
+cd ~
 git clone https://github.com/signalfx/observability-workshop.git
-cd ~/observability-workshop
+cd observability-workshop
 ```
 
 We recommend that you set up a virtualenv and install dependencies into it:
 
 ```bash
 python -m venv venv
-source venv/bin/activate
+. venv/bin/activate
 pip3 install -r requirements.txt
 ```
 
