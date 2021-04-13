@@ -74,6 +74,8 @@ Install the Smart Agent Helm chart with the following commands, do **NOT** edit 
     --set="splunkAccessToken=$ACCESS_TOKEN" \
     --set="clusterName=$(hostname)-k3s-cluster" \
     --set="logsEnabled=false" \
+    --set="image.otelcol.repository=quay.io/signalfx/splunk-otel-collector-dev" \
+    --set="image.otelcol.tag=latest" \
     splunk-otel-collector-chart/splunk-otel-collector \
     -f ~/workshop/k3s/otel-collector.yaml
     ```
@@ -103,6 +105,13 @@ Ensure the status is reported as Running before continuing.
     splunk-otel-collector-k8s-cluster-receiver-6956d4446f-gwnd7   0/1     Running   0          10s
     ```
 
+!!! info
+    Use `sudo kubectl port-forward splunk-otel-collector-agent-t8hnt --address 0.0.0.0 :55679` to see `zpages` on desktop e.g.
+    ```
+    Forwarding from 0.0.0.0:36143 -> 55679
+    ```
+    Use the port reported to connect from desktop e.g. http://node_ip:36143/debug/tracez
+    
 Ensure there are no errors by tailing the logs from the Smart Agent Pod. Output should look similar to the log output shown in the Output tab below.
 
 Use the label set by the `helm` install to tail logs (You will need to press ++ctrl+c++ to exit). Or use the installed `k9s` terminal UI for bonus points!
