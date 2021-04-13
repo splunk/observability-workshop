@@ -100,18 +100,7 @@ Let's validate this in your shell as well:
 
 ## 3. Run Siege Benchmark
 
-Use the Siege[^2] Load Testing command to generate some traffic to light up your SignalFx NGINX dashboards. First, we need to get the IP address of the cluster and assign to an environment variable:
-
-=== "Shell Command"
-
-    ```text
-    CLUSTER_IP=$(sudo kubectl get svc nginx -n default -o jsonpath='{.spec.clusterIP}')
-    ```
-
-Confirm the environment variable has been set correctly:
-
-
-Now we can run the load test:
+Use the Siege[^2] Load Testing command to generate some traffic to light up your SignalFx NGINX dashboards. First, we need to get the IP address of the cluster and assign to an environment variable and then run the load test:
 
 === "Shell Command"
 

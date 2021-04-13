@@ -105,12 +105,12 @@ Ensure the status is reported as Running before continuing.
     splunk-otel-collector-k8s-cluster-receiver-6956d4446f-gwnd7   0/1     Running   0          10s
     ```
 
-!!! info
+!!! info "OpenTelemetry Collector Only"
     Use `sudo kubectl port-forward splunk-otel-collector-agent-t8hnt --address 0.0.0.0 :55679` to see `zpages` on desktop e.g.
     ```
     Forwarding from 0.0.0.0:36143 -> 55679
     ```
-    Use the port reported to connect from desktop e.g. http://node_ip:36143/debug/tracez
+    Use the port reported to connect from desktop e.g. `http://node_ip:36143/debug/tracez`
     
 Ensure there are no errors by tailing the logs from the Smart Agent Pod. Output should look similar to the log output shown in the Output tab below.
 
