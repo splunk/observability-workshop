@@ -105,7 +105,7 @@ Use the Siege[^2] Load Testing command to generate some traffic to light up your
 === "Shell Command"
 
     ```base
-    CLUSTER_IP=$(sudo kubectl get svc nginx -n default -o jsonpath='{.spec.clusterIP}') \
+    CLUSTER_IP=$(sudo kubectl get svc nginx -n default -o jsonpath='{.spec.clusterIP}')
     siege -b -r 200 -c 50 --no-parser http://${CLUSTER_IP}/ 1>/dev/null
     ```
 
