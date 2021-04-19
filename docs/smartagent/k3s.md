@@ -9,15 +9,15 @@
 
 You will need to obtain your Access Token[^1] from the Splunk UI once Kubernetes is running.
 
-You can find your Access Token by clicking on your profile icon on the top right of the Splunk. Then select **Organization Settings → Access Tokens**.
+You can find your Access Token from the top left hamburger menu then selecting **Organization Settings → Access Tokens**.
 
 Expand the Default token, then click on **Show Token** to expose your token. Click the **Copy**{: .label-button  .sfx-ui-button-grey} button to copy to clipboard.
 
 ![Access Token](../images/smartagent/access-token.png)
 
-You will also need to obtain the name of the Realm[^2] for your Splunk account.  Click on the profile icon again, but this time select **My Profile**.
+You will also need to obtain the name of the Realm[^2] for your Splunk account.  From the hamburger menu, click on your name and select **Account Settings**.
 
-The Realm can be found in the middle of the page within the Organizations section.  In this example it is `us1`.
+The Realm can be found in the middle of the page within the Organizations section.  In this example it is `us0`.
 
 ![Realm](../images/smartagent/realm.png)
 
@@ -34,7 +34,7 @@ Create the `ACCESS_TOKEN` and `REALM` environment variables to use in the procee
     export REALM=<replace_with_splunk_realm>
     ```
 
-Install the Smart Agent or OpenTelemetry Collector using the Splunk Helm chart. Firstly, add the Splunk Helm chart repository to Helm and update.
+Install the Smart Agent or OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository to Helm and update.
 
 === "Smart Agent"
 
