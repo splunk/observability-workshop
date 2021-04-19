@@ -10,17 +10,17 @@ There will be times when you might want to mute certain notifications. For examp
 
 Hover over **Alerts** in the menu and from the drop down click on **Detectors**.
 
-![Detectors](../images/detectors/detectors-menu.png){: .zoom}
+![Detectors](../images/detectors/detectors-menu.png)
 
 You will see a list of active detectors.
 
-![Detectors](../images/detectors/detector-list.png){: .zoom}
+![Detectors](../images/detectors/detector-list.png)
 
 If you created an detector in **Working with Detectors** you can click on the three dots **`...`** on the far right for that detector; if not, do that for another detector.  
 
 From the drop-down click on **Create Muting Rule...**.
 
-![Create Muting Rule](../images/detectors/create-muting-rule.png){: .zoom}
+![Create Muting Rule](../images/detectors/create-muting-rule.png)
 
 In the **Muting Rule** window check **Mute Indefinitely** and enter a reason.
 
@@ -35,7 +35,7 @@ Click **Next** and in the new modal window confirm the muting rule setup.
 
 Click on **Mute Indefinitely**{: .label-button .sfx-ui-button-blue} to confirm.
 
-![List muted rule](../images/detectors/alert-muted.png){: .zoom}
+![List muted rule](../images/detectors/alert-muted.png)
 
 You won't be receiving any email notifications from you detector until you resume notifications again. Let's now see how to do that!
 
@@ -45,8 +45,8 @@ You won't be receiving any email notifications from you detector until you resum
 
 To Resume notifications, hover over **Alerts** in the top menu and click on **Muting Rules**. You will see the name of the detector you muted notifications for under **Detector**.
 
-![Resume](../images/detectors/muting-rules-menu.png){: .zoom}
-![Resume](../images/detectors/muting-list.png){: .zoom}
+![Resume](../images/detectors/muting-rules-menu.png)
+![Resume](../images/detectors/muting-list.png)
 
 ---
 
@@ -54,7 +54,7 @@ Click on the thee dots **`...`** on the far right.
 
 Click on **Resume Notifications**.
 
-![Resume](../images/detectors/resume-notifications.png){: .zoom}
+![Resume](../images/detectors/resume-notifications.png)
 
 Click on **Resume**{: .label-button .sfx-ui-button-blue} to confirm and resume notifications for this detector.
 

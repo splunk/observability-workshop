@@ -8,7 +8,7 @@ The instance is pre-configured with all the software required to install the Sma
 
 The workshop also introduces you to dashboards, editing and creating charts, creating detectors to fire alerts, Monitoring as Code[^6] and the Service Bureau[^6]
 
-![SFx Architecture](../images/smartagent/architecture.png){: .zoom}
+![SFx Architecture](../images/smartagent/architecture.png)
 
 By the end of this technical workshop you will have a good understanding of some of the key features and capabilities of the Observability Suite.
 

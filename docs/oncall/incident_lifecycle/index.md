@@ -14,7 +14,7 @@ The key to making it work for you is to centralize all your alerting sources, se
 
 Login to the Splunk On-Call UI and select the **Timeline** tab on the main menu bar, you should have a screen similar to the following image:
 
-![Splunk On-Call UI](../../images/oncall/m7-vo-ui.png){: .zoom}
+![Splunk On-Call UI](../../images/oncall/m7-vo-ui.png)
 
 ## 2. People
 

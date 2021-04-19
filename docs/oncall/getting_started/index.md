@@ -41,17 +41,17 @@ Most attendees will be able to connect to the workshop by using SSH from their M
 
 To use SSH, open a terminal on your system and type `ssh ubuntu@x.x.x.x` (replacing x.x.x.x with the IP address found in your welcome e-mail).
 
-![ssh login](../../images/intro/ssh-1.png){: .zoom}
+![ssh login](../../images/intro/ssh-1.png)
 
 When prompted **`Are you sure you want to continue connecting (yes/no/[fingerprint])?`** please type **`yes`**.
 
-![ssh password](../../images/intro/ssh-2.png){: .zoom}
+![ssh password](../../images/intro/ssh-2.png)
 
 Enter the password provided in the welcome e-mail.
 
 Upon successful login you will be presented with the Splunk logo and the Linux prompt.
 
-![ssh connected](../../images/intro/ssh-3.png){: .zoom}
+![ssh connected](../../images/intro/ssh-3.png)
 
 At this point you are ready to [continue with the workshop](../../oncall/getting_started/user_profile) when instructed to do so by the instructor
 
@@ -68,19 +68,19 @@ Open Putty and in the **Host Name (or IP address)** field enter the IP address p
 
 You can optionally save your settings by providing a name and pressing **Save**.
 
-![putty-2](../../images/intro/putty-settings.png){: .zoom}
+![putty-2](../../images/intro/putty-settings.png)
 
 To then login to your instance click on the **Open** button as shown above.
 
 If this is the first time connecting to your EC2 instance, you will be presented with a security dialog, please click **Yes**.
 
-![putty-3](../../images/intro/putty-security.png){: .zoom}
+![putty-3](../../images/intro/putty-security.png)
 
 Once connected, login in as **ubuntu** using the password provided in the welcome e-mail.
 
 Once you are connected successfully you should see a screen similar to the one below:
 
-![putty-4](../../images/intro/putty-loggedin.png){: .zoom}
+![putty-4](../../images/intro/putty-loggedin.png)
 
 At this point you are ready to [continue with the workshop](../../oncall/getting_started/user_profile) when instructed to do so by the instructor
 
@@ -95,15 +95,15 @@ If you are blocked from using SSH (Port 22) or unable to install Putty you may b
 
 Open your web browser and type **http://X.X.X.X:6501** (where X.X.X.X is the IP address from the welcome e-mail).
 
-![http-6501](../../images/intro/shellinabox-url.png){: .zoom}
+![http-6501](../../images/intro/shellinabox-url.png)
 
 Once connected, login in as **ubuntu** and the password is the one provided in the welcome e-mail.
 
-![http-connect](../../images/intro/shellinabox-connect.png){: .zoom}
+![http-connect](../../images/intro/shellinabox-connect.png)
 
 Once you are connected successfully you should see a screen similar to the one below:
 
-![web login](../../images/intro/shellinabox-login.png){: .zoom}
+![web login](../../images/intro/shellinabox-login.png)
 
 ---
 
@@ -115,11 +115,11 @@ When the workshop asks you to copy instructions into your terminal, please do th
 
 *Copy the instruction as normal, but when ready to paste it in the web terminal, choose **Paste from browser** as show below:*
 
-![web paste 1](../../images/intro/shellinabox-paste-browser.png){: .zoom}
+![web paste 1](../../images/intro/shellinabox-paste-browser.png)
 
 This will open a dialog box asking for the text to be pasted into the web terminal:
 
-![web paste 3](../../images/intro/shellinabox-example-1.png){: .zoom}
+![web paste 3](../../images/intro/shellinabox-example-1.png)
 
 Paste the text in the text box as show, then press **OK** to complete the copy and paste process.
 
@@ -128,7 +128,7 @@ Paste the text in the text box as show, then press **OK** to complete the copy a
 
     Simply click the **Connect** button and you will be reconnected and will be able to continue.
 
- ![web reconnect](../../images/intro/shellinabox-reconnect.png){: .zoom}
+ ![web reconnect](../../images/intro/shellinabox-reconnect.png)
 
 At this point you are ready to [continue with the workshop](../../oncall/getting_started/user_profile) when instructed to do so by the instructor
 

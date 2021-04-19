@@ -8,7 +8,7 @@ In the **METRICS** sidebar on the right, enter **`demo`** and click on the searc
 
 Observe that the **Find Metrics** option is pre-selected.
 
-![Find metrics](../images/dashboards/M1-l1-25.png){: .zoom}
+![Find metrics](../images/dashboards/M1-l1-25.png)
 
 The metrics search is showing 3 metrics with **`demo`** in the name.
 
@@ -22,7 +22,7 @@ On plot **D**, apply the **Percentile:Aggregation** function and set to **`95`**
 
 Enter **`-1h`** in the **Time** frame for the entire chart.
 
-![Aggregation](../images/dashboards/M1-l1-27.png){: .zoom}
+![Aggregation](../images/dashboards/M1-l1-27.png)
 
 We see that there is a correlation between latency and number of transactions.
 

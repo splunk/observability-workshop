@@ -94,15 +94,15 @@ Navigate to the **Integrations** tab within the SignalFx UI, where you will find
 
 Click on the SmartAgent tile to open it...
 
-![Integrations](../../images/oncall/integrations-tab.png){: .zoom}
+![Integrations](../../images/oncall/integrations-tab.png)
 
 ...then select the **Setup** tab...
 
-![SmartAgent](../../images/oncall/smartagent-tile.png){: .zoom}
+![SmartAgent](../../images/oncall/smartagent-tile.png)
 
 ...then scroll down to 'Step 1' where you will find the commands for installing the agent for both Linux and Windows. You need to copy the commands for Linux, so click the top **copy**{: .label-button .sfx-ui-button-blue} button to place these commands on your clipboard ready for the next step.
 
-![SmartAgent Install](../../images/oncall/smartagent-install.png){: .zoom}
+![SmartAgent Install](../../images/oncall/smartagent-install.png)
 
 ### 3.2 Install Agent
 
@@ -165,7 +165,7 @@ Navigate to the SignalFx UI and click on the **Infrastructure** tab. The click o
 
 Find your VM and confirm it is reporting in correctly; allow a few minutes for it to appear.
 
-![Infrastructure](../../images/oncall/sfx-infrastructure.png){: .zoom}
+![Infrastructure](../../images/oncall/sfx-infrastructure.png)
 
 If it fails to appear after 3 mins, please let the Splunk Team know so they can help troubleshoot.
 

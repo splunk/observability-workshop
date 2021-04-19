@@ -19,7 +19,7 @@ This Dashboard has specific Dashboard Groups for NGINX, Infra and K8s assigned b
 
 They can use the menu along the top left to quickly navigate between their allocated teams, or they can use the **ALL TEAMS** dropdown on the right to select specific Team Dashboards, as well as quickly accessing **ALL Dashboards** using the adjacent link.
 
-![Teams](../images/servicebureau/teams-homepage.png){: .zoom}
+![Teams](../images/servicebureau/teams-homepage.png)
 
 Alerts can be linked to specific Teams so the Team can monitor only the Alerts they are interested in, and in the above example they currently have 1 active Critical Alert.
 
@@ -31,7 +31,7 @@ The Description for the Team Dashboard can be customized and can include links t
 
 To work with to SignalFx's Team UI click on the **Settings** icon on the top right of the SignalFx UI.
 
-![Settings Icon](../images/servicebureau/settings.png){: .zoom}
+![Settings Icon](../images/servicebureau/settings.png)
 
 Select the **Organizations Settings → Teams** tab, or select the **Teams** tab from the left pane.
 
@@ -68,7 +68,7 @@ The **...** menu gives you the option to Edit, Join, Leave or Delete a Team (lea
 
 You can set up specific Notification rules per team, click on the **NOTIFICATION POLICY** tab, this will open the notification edit menu.
 
-![Base notification menu](../images/servicebureau/notification-policy.png){: .zoom}
+![Base notification menu](../images/servicebureau/notification-policy.png)
 
 By default the system offers you the ability to set up a general notification rule for your team.
 
@@ -81,7 +81,7 @@ You can add other recipients, by clicking **Add Recipient**{: .label-button .sfx
 
 However if you click on the link **Configure a single policy for alerts of any severity** you can configure every alert level independently.
 
-![Multiple Notifications](../images/servicebureau/single-policy.png){: .zoom}
+![Multiple Notifications](../images/servicebureau/single-policy.png)
 
 Different alert rules for the different alert levels can be configured, as shown in the above image.
 
@@ -91,6 +91,6 @@ Critical and Major are using [Splunk's VictorOps](https://victorops.com/){: targ
 
 In addition to sending alert notifications via email, you can configure SignalFx to send alert notifications to the services shown below.
 
-![Notifications options](../images/servicebureau/integrations.png){: .zoom}
+![Notifications options](../images/servicebureau/integrations.png)
 
 Take a moment to create some notification rules for you Team.

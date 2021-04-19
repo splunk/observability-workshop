@@ -40,7 +40,7 @@ Sticking with the Web UI, click the **2. Alert Details in SignalFx** link.
 
 This will open a new browser tab and take you directly to the Alert within Splunk Infrastructure Monitoring where you could then progress your troubleshooting using the powerful tools built into its UI.
 
-![SFX Alert Details](../../images/oncall/sfx-alert-details.png){: .zoom}
+![SFX Alert Details](../../images/oncall/sfx-alert-details.png)
 
 However, we are focussing on Splunk On-Call so close this tab and return to the Splunk On-Call UI.
 
@@ -62,7 +62,7 @@ At the top right in the UI are a number of icons that allow quick access to vari
 
 With the Incident expanded, you can see on the right we have a Time Line view where you can add messages and see the history of previous alerts and interactions.
 
-![Incident View](../../images/oncall/war-room-dashboard.png){: .zoom}
+![Incident View](../../images/oncall/war-room-dashboard.png)
 
 ### 5.2 Add Responders
 

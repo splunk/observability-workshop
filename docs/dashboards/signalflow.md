@@ -8,7 +8,7 @@ Click on **View SignalFlow**.
 
 You will see the **SignalFlow** code that composes the chart we were working on.
 
-![Code](../images/dashboards/M1-l1-30.png){: .zoom}
+![Code](../images/dashboards/M1-l1-30.png)
 
 === "SignalFlow"
 

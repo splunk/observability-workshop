@@ -56,7 +56,7 @@ instance (Multipass or EC2) and run the following command.
 
 Open SignalFx in your browser and select the **APM** tab.
 
-![select APM](../images/apm/select-apm.png){: .zoom}
+![select APM](../images/apm/select-apm.png)
 
 Select the **Troubleshooting** tab, and select your environment you found and set the time to 1 hour. This will show you the automatically generated Dependency Map for the Hot R.O.D. application.
 

@@ -13,7 +13,7 @@ In order to integrate SignalFx with VictorOps we need to first obtain the Servic
 
 If it is not already enabled, click the Enable Integration button to activate it.
 
-![Endpoint](../../images/oncall/endpoint.png){: .zoom}
+![Endpoint](../../images/oncall/endpoint.png)
 
 This would be used when configuring the VictorOps Integration within the SignalFx UI if it had not already been enabled.
 

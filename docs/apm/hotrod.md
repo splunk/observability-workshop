@@ -112,11 +112,11 @@ Open the SignalFx UI, and go to you cluster in the Kubernetes Navigator. You sho
 
 Usually it should only take around 20 seconds for the pod to transition into a Running state. When you click on the new pod in the SignalFx UI you should have a cluster that looks like below:
 
-![back to Cluster](../images/apm/hotrod-k8-navigator.png){: .zoom}
+![back to Cluster](../images/apm/hotrod-k8-navigator.png)
 
 If you select the **WORKLOADS** tab again you should now see that there is a new replica set and a deployment added for hotrod:
 
-![HOTROD loaded](../images/apm/hotrod-workload.png){: .zoom}
+![HOTROD loaded](../images/apm/hotrod-workload.png)
 
 Next, we want to validate that you are seeing the APM metrics in the UI.
 
@@ -152,7 +152,7 @@ To find the hostname, on the AWS/EC2 instance run the following command:
 
 Now go to **Dashboards → APM → Service**.  Please select your environment you found in the previous task then select the frontend service and set time to -15m ()
 
-![APM Dashboard](../images/apm/hotrod-FE-Service-dashboard.png){: .zoom}
+![APM Dashboard](../images/apm/hotrod-FE-Service-dashboard.png)
 
 !!! warning  "No Data in charts"
     If no data is visible, check that you have the right service **frontend**, and not front-end.
@@ -175,12 +175,12 @@ Take some time to explore the various charts in this dashboard
 
 Open SignalFx in your browser and select the **APM** tab.
 
-![select APM](../images/apm/select-apm.png){: .zoom}
+![select APM](../images/apm/select-apm.png)
 
 Select the **Troubleshooting** tab, and select your environment you found before and set the time to 15 minutes. This will show you the automatically generated Dependency Map for the Hot R.O.D. application.
 It should look similar to the screenshot below:
 
-![Hot R.O.D. in APM](../images/apm/hotrod-find-env.png){: .zoom}
+![Hot R.O.D. in APM](../images/apm/hotrod-find-env.png)
 
 The legend at the bottom of the page explains the different visualizations in the Dependency Map.
 

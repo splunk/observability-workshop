@@ -11,7 +11,7 @@ Data Links allow you to create dynamic links on properties that appear in a char
 
 Goto **Settings → Organizations Settings → Global Data Links** and click on **New Link**{: .label-button .sfx-ui-button-blue}
 
-![Global Datalinks](../images/dashboards/datalinks.png){: .zoom}
+![Global Datalinks](../images/dashboards/datalinks.png)
 
 Here you will need to provide a **Link Label** e.g. Splunk. For the **Link to** use the dropdown and select **Splunk**.
 
@@ -29,15 +29,15 @@ The **Minimum Time Window** will be the time interval between values assigned to
 
 For **Property mapping** this allows you define mappings between terms found in SignalFx and the external system. So, for example, SignalFx might have a property set called `container_id` but the external system uses `container`.
 
-![Configure Datalink](../images/dashboards/configure-datalink.png){: .zoom}
+![Configure Datalink](../images/dashboards/configure-datalink.png)
 
 ## 3. Using Data Links
 
 Once the Data Link is configured any Data Table, List Chart or from Kubernetes Navigator will provide an ellipsis (***...***) allowing you to **Examine in Splunk**.
 
-![Examine in Splunk](../images/dashboards/examine-in-splunk.png){: .zoom}
+![Examine in Splunk](../images/dashboards/examine-in-splunk.png)
 
 !!! note
     Please note that because we configured **Any Metadata value** not all Data Links will yield results as there might not be corresponding logs for the property value.
 
-![Splunk Enterprise](../images/dashboards/splunk-enterprise.png){: .zoom}
+![Splunk Enterprise](../images/dashboards/splunk-enterprise.png)

@@ -10,7 +10,7 @@
 
 A trace is a collection of spans that share the same trace ID, representing a unique transaction handled by your application and its constituent services.
 
-![APTrace and spam](../images/apm/APM-trace-spans.png){: .zoom}
+![APTrace and spam](../images/apm/APM-trace-spans.png)
 
 Each span has a name, representing the operation captured by this span, and a service name, representing within which service the operation took place.
 
@@ -54,17 +54,17 @@ instance and run the following command:
 
 Open SignalFx in your browser and select the **APM** tab.
 
-![select APM](../images/apm/select-apm.png){: .zoom}
+![select APM](../images/apm/select-apm.png)
 
 Select the **Troubleshooting** tab, and select your environment you found and set the time to `-15m`.
 
-![select APM](../images/apm/select-apm-env.png){: .zoom}
+![select APM](../images/apm/select-apm-env.png)
 
 This will show you the automatically generated Dependency Map for the Hot R.O.D. application.
 
 Please note the **Show Traces** button at the bottom of the page:
 
-![select all traces](../images/apm/hotrod-show-traces.png){: .zoom}
+![select all traces](../images/apm/hotrod-show-traces.png)
 
 ### 2.2 View traces in the Trace List
 
@@ -74,7 +74,7 @@ This will start loading all the traces view, and if there are more then 25 it wi
 
 Enable `Errors Only` in the table header as indicated in the screenshot below.
 
-![show all traces](../images/apm/hotrod-list-of-traces.png){: .zoom}
+![show all traces](../images/apm/hotrod-list-of-traces.png)
 
 In the scenario we are working with, the reported error that we are looking for is seen in the frontend service, when trying to call to the customer service to update customer details.
 
@@ -86,7 +86,7 @@ This will just show the traces that have both these services in the trace.
 
 To do this, click on the services drop down at the top of the page and first select the **frontend** service. Then click on the ![show all traces](../images/apm/apm-add-rowbutton.png) button to add a new line, then select the **customer** service.
 
-![filter traces](../images/apm/hotrod-select-service.png){: .zoom}
+![filter traces](../images/apm/hotrod-select-service.png)
 
 On first review this step has not brought any visual changes, but there was a 3rd item we can use, we can filter on a specific time frame.
 
@@ -94,7 +94,7 @@ On first review this step has not brought any visual changes, but there was a 3r
 
 To do this, click on the duration drop down (it should show `-15m`) and create a Custom Time slot.
 
-![filter traces](../images/apm/hotrod-custom-time-slot.png){: .zoom}
+![filter traces](../images/apm/hotrod-custom-time-slot.png)
 
 In the **From** field you can either enter a date and time stamp or you can set minutes or hours to look back e.g. `-10m` or `-1d`
 
@@ -110,7 +110,7 @@ This will bring you to the Trace Waterfall view, allowing you to inspect the tra
 
 You should now be in the Trace Waterfall view and your screen should like the view below:
 
-![root error traces](../images/apm/hotrod-waterfall-closed.png){: .zoom}
+![root error traces](../images/apm/hotrod-waterfall-closed.png)
 
 The waterfall shows you the trace or route a request/interaction has taken though your application.
 
@@ -128,7 +128,7 @@ Now lets explore the waterfall view.
 
 First open the **mysql** span by clicking on the operation in the span label (SQL SELECT) to see what information is available in the tags that are part of this span.
 
-![mySql span](../images/apm/hotrod-span-1.png){: .zoom}
+![mySql span](../images/apm/hotrod-span-1.png)
 
 The **TAGS** section will help you to identify or search further for specific problems.
 
@@ -144,10 +144,10 @@ Now click on the **customer** span, this is the span with a deep red icon ![apm 
 
 This will open the span info and look like this:
 
-![customer span](../images/apm/hotrod-span-2.png){: .zoom}
+![customer span](../images/apm/hotrod-span-2.png)
 
 You can see the various actions that are done by this service in the LOGS section.
 
 It is trying to load customer 391, and as we can see the request failed due an invalid customer ID.
 
-![customer error](../images/apm/hotrod-error.png){: .zoom}
+![customer error](../images/apm/hotrod-error.png)

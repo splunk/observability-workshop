@@ -6,7 +6,7 @@ Let's now plot the difference of all metric values for a day with 7 days in betw
 
 Click on **Enter Formula**{: .label-button .sfx-ui-button-blue} then enter **`A-B`** (A minus B) and hide (deselect) all Signals using the eye, except **C**.
 
-![Formulas](../images/dashboards/M1-l1-22.png){: .zoom}
+![Formulas](../images/dashboards/M1-l1-22.png)
 
 We now see only the difference of all metric values of **A** and **B** being plotted. We see that we have some negative values on the plot because a metric value of **B** has some times larger value than the metric value of **A** at that time.
 
@@ -25,8 +25,8 @@ Let's apply another function to get the values of **C** to positive values.
 
 In the **Plot Editor** for **C**, under **F(x)**, click on **Add Analytics**{: .label-button .sfx-ui-button-blue} and choose **`Absolute Value`**.
 
-![Absolute Value](../images/dashboards/M1-l1-23.png){: .zoom}
+![Absolute Value](../images/dashboards/M1-l1-23.png)
 
 You will see the **C** plot now having only positive values.
 
-![Chart](../images/dashboards/M1-l1-24.png){: .zoom}
+![Chart](../images/dashboards/M1-l1-24.png)

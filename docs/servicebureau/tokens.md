@@ -18,7 +18,7 @@ Each Token is unique and can be assigned limits for the amount of Hosts, Contain
 
 The **Usage Status** Column quickly shows if a token is above or below its assigned limits.
 
-![New token](../images/servicebureau/access-tokens.png){: .zoom}
+![New token](../images/servicebureau/access-tokens.png)
 
 ### 1.1 Creating a new token
 
@@ -30,11 +30,11 @@ Enter the new name of the new Token by using your Initials e.g. RWC-Token
 
 After you press Ok,  you will be taken back to the **Access Token** UI, here your new token should be present, among the ones created by others.
 
-![full tokenlist](../images/servicebureau/access-token-created.png){: .zoom}
+![full tokenlist](../images/servicebureau/access-token-created.png)
 
 If you have made an error in your naming, want to disable/enable a token or set a Token limit, click on the ellipsis (**...**) menu button behind a token limit to open the manage token menu.
 
-![Show Menu](../images/servicebureau/manage-access-token.png){: .zoom}
+![Show Menu](../images/servicebureau/manage-access-token.png)
 
 If you made a typo you can use the Rename Token option to correct the name of your token.
 
@@ -46,7 +46,7 @@ Click on the Disable button to Disable the token, this means the token cannot be
 
 The line with Your Token should become greyed out to indicate that is has been Disabled as you can see in the screenshot below.
 
-![Token disabled](../images/servicebureau/disable-access-token.png){: .zoom}
+![Token disabled](../images/servicebureau/disable-access-token.png)
 
 Go ahead and click on the ellipsis (**...**) menu button to Disable and Enable your token.
 

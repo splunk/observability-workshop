@@ -12,7 +12,7 @@
 
 To fully understand SignalFx engagement inside your organization, click on the **Settings** icon on the top right of the SignalFx UI.
 
-![Settings Icon](../images/servicebureau/settings.png){: .zoom}
+![Settings Icon](../images/servicebureau/settings.png)
 
 From the drop down, select the **Organizations Settings → Organization Overview**, this will provide you with the following dashboard that shows you how your SignalFx organization is being used:
 

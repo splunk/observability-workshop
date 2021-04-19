@@ -3,13 +3,13 @@
 
 The first activity we are going to do is validate that we have access to the Splunk APM environment and establish our starting point. To do this please login to Splunk Infrastructure & APM and select **APM**.
 
-![APM-MENU](../images/lambda/springboot-apm/IsAPMAvailable.png){: .zoom}
+![APM-MENU](../images/lambda/springboot-apm/IsAPMAvailable.png)
 
 This will bring you to the APM monitoring page, depending how many services you are currently monitoring with Splunk APM, you may or may not see a list of services.
 
 Once you have run the applications with APM enabled, you can filter the environment by entering your unique id you have been provided. This should then show just your APM environment.
 
-![APM-MENU](../images/lambda/springboot-apm/APM-monitor.png){: .zoom}
+![APM-MENU](../images/lambda/springboot-apm/APM-monitor.png)
 
 So lets start enabling APM in our environment.
 
@@ -31,12 +31,12 @@ Once the application is stopped, open an editor and edit the pom.xml file
     ```
 
 Scroll down until you find the following section
-![pom-1](../images/lambda/springboot-apm/POM_xml-1.png){: .zoom}
+![pom-1](../images/lambda/springboot-apm/POM_xml-1.png)
 
 and remove the comment marks lines *(<-- & -->)* by placing the cursor on the line with the remark and press ++ctrl+k++
 
 Afterwards the section will look like this:
-![pom-2](../images/lambda/springboot-apm/POM_xml-2.png){: .zoom}
+![pom-2](../images/lambda/springboot-apm/POM_xml-2.png)
 
 Make sure the lines are properly aligned and save the file by pressing ++ctrl+o++ followed by ++enter++ to write the file pom.xml to disk.
 
@@ -158,7 +158,7 @@ Run the application by issuing the following command again:
     ```
 When you have updated the files correctly you should see the SpringBoot logo again with no errors .
 
-![ec2-loaded](../images/lambda/initial_run/Springboot.png){: .zoom}
+![ec2-loaded](../images/lambda/initial_run/Springboot.png)
 
 We are now ready to test the app and send our first Trace.
 !!! info

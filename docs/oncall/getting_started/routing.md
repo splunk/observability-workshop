@@ -47,7 +47,7 @@ There will probably already be a number of Routing Keys configured, but to add a
 
 In the left hand box, enter the name for the key as per the table above.  In the **Routing Key** column, select your Teams **Primary** policy from the drop down in the **Escalation Polices** column.  You can start typing your Team Name to filter the results.
 
-![Add Routing Key](../../images/oncall/routing-key-add.png){: .zoom}
+![Add Routing Key](../../images/oncall/routing-key-add.png)
 
 !!! note
     If there are a large number of participants on the workshop, resulting in an unusually large number of Escalation Policies sometimes the search filter does not list all the Policies under your Team Name.  If this happens instead of using the search feature, simply scroll down to your team name, all the policies will then be listed.
@@ -56,14 +56,14 @@ Repeat the above steps for both Keys, {==xxxx_PRI==} and {==xxxx_WR==}, mapping 
 
 You should now have two Routing Keys configured, similar to the following:
 
-![Routing Keys](../../images/oncall/routing-keys.png){: .zoom}
+![Routing Keys](../../images/oncall/routing-keys.png)
 
 !!! tip
     You can assign a Routing Key to multiple Escalation Policies if required by simply selecting more from the list
 
 If you now navigate back to **Teams → [Your Team Name] → Escalation Policies** and look at the settings for your **Primary** and **Waiting Room** polices you will see that these now have **Routes** assigned to them.
 
-![Routing Keys Assigned](../../images/oncall/routing-keys-assigned.png){: .zoom}
+![Routing Keys Assigned](../../images/oncall/routing-keys-assigned.png)
 
 The **24/7** policy does not have a Route assigned as this will only be triggered via an **Execute Policy** escalation from the **Primary** policy.
 

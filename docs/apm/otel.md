@@ -104,4 +104,4 @@ Then reinstall it with `traceEndpointUrl` set to point to OpenTelemetry Collecto
 
 Check the OpenTelemetry Collector dashboards and validate metrics and spans are being sent.
 
-![OpenTelemetry Collector dashboard](../images/apm/otel-dashboard.png){: .zoom}
+![OpenTelemetry Collector dashboard](../images/apm/otel-dashboard.png)

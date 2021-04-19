@@ -13,7 +13,7 @@ You can find your Access Token by clicking on your profile icon on the top right
 
 Expand the Default token, then click on **Show Token** to expose your token. Click the **Copy**{: .label-button  .sfx-ui-button-grey} button to copy to clipboard.
 
-![Access Token](../images/smartagent/access-token.png){: .zoom}
+![Access Token](../images/smartagent/access-token.png)
 
 You will also need to obtain the name of the Realm[^2] for your Splunk account.  Click on the profile icon again, but this time select **My Profile**.
 
@@ -195,7 +195,7 @@ Use the label set by the `helm` install to tail logs (You will need to press ++c
 
 In the SignalFx UI, goto **Infrastructure → Kubernetes Navigator → Cluster Map** and open the Kubernetes Navigator Cluster Map to ensure metrics are being sent.
 
-![Selecting the Kubernetes Navigator Map](../images/smartagent/clustermap-nav.png){: .zoom}
+![Selecting the Kubernetes Navigator Map](../images/smartagent/clustermap-nav.png)
 
 ---
 
