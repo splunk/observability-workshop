@@ -15,11 +15,11 @@ If it is not already enabled, click the Enable Integration button to activate it
 
 ![Endpoint](../../images/oncall/endpoint.png)
 
-This would be used when configuring the VictorOps Integration within the SignalFx UI if it had not already been enabled.
+This would be used when configuring the VictorOps Integration within the Splunk UI if it had not already been enabled.
 
 ## 2. Enable VictorOps Integration within SignalFx
 
-In the SignalFx UI navigate to **Integrations** and use the search feature to find the VictorOps integration.
+In the Splunk UI navigate to **Integrations** and use the search feature to find the VictorOps integration.
 
 !!! danger "Do not create a new integration!"
     Please do not create additional VictorOps integrations if one already exists, it will not break anything but simply creates extra clean up work after the workshop has completed.  The aim of this part of the lab was to show you how you would go about configuring the Integration if it was not already enabled.
@@ -35,11 +35,11 @@ Enter a descriptive **Name** then paste the **Service_API_Endpoint** value you c
 ![VictorOps Integration](../../images/oncall/m7-sfx-vo-integration-url.png)
 
 !!! important "Handling multiple VictorOps integrations"
-    SignalFx can integrate with multiple VictorOps accounts so it is important when creating one to use a descriptive name and to not simply call it VictorOps.  This name will be used within the SignalFx UI when selecting this integration, so ensure it is unambiguous
+    SignalFx can integrate with multiple VictorOps accounts so it is important when creating one to use a descriptive name and to not simply call it VictorOps.  This name will be used within the Splunk UI when selecting this integration, so ensure it is unambiguous
 
 ## 3. Copy ID
 
-In SignalFx UI navigate to **Integrations** and use the search feature to find the VictorOps Integration.
+In Splunk UI navigate to **Integrations** and use the search feature to find the VictorOps Integration.
 
 Copy the ID field and save it for use in the next steps.  We suggest you create a notepad document or similar as you will be gathering some additional values in the next steps.
 

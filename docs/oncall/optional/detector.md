@@ -28,7 +28,7 @@ Add the following lines to your variables document, then as you gather the value
 
 ### 1.2 Obtain SignalFx Access Token
 
-In the SignalFx UI you can find your **Access Token** by clicking on the **Settings** icon on the top right of the SignalFx UI, select **Organization Settings → Access Tokens**, expand the **Default** token, then click on **Show Token** to expose your token.
+In the Splunk UI you can find your **Access Token** by clicking on the **Settings** icon on the top right of the Splunk UI, select **Organization Settings → Access Tokens**, expand the **Default** token, then click on **Show Token** to expose your token.
 
 ![Access Token](../../images/oncall/m7-access-token.png)
 
@@ -44,7 +44,7 @@ Click the **Copy**{: .label-button .sfx-ui-button-blue} button to copy it you yo
 
 ### 1.3 Obtain SignalFx Realm
 
-Still in the SignalFx UI, click on the **Settings** icon again, but this time select **My Profile**.
+Still in the Splunk UI, click on the **Settings** icon again, but this time select **My Profile**.
 
 The Realm can be found in the middle of the page within the Organizations section. In this example it is **us1**, but yours may be **eu0** or one of the many other SignalFx Realms.
 
@@ -62,7 +62,7 @@ Copy it to the `REALM` line of your variables document.
 
 ### 1.4. Obtain VictorOps Integration ID
 
-In SignalFx UI navigate to **Integrations** and use the search feature to find the VictorOps Integration.
+In Splunk UI navigate to **Integrations** and use the search feature to find the VictorOps Integration.
 
 Expand the **VictorOps-xxxx** configuration; if there are more than one you will be informed which one to copy by the presenter.
 
@@ -244,7 +244,7 @@ You can now copy and the paste the following code block to run Terraform using t
 
 By running Terraform within the VM you have just created a new Detector within SignalFx which will send alerts to VictorOps if the CPU utilization of your specific VM goes above 90%.
 
-In the SignalFx UI go to **Alerts → Detectors** to show all the Detectors and find the one matching your `INSTANCE` value (the first four letters of the name of your VM).
+In the Splunk UI go to **Alerts → Detectors** to show all the Detectors and find the one matching your `INSTANCE` value (the first four letters of the name of your VM).
 
 Optionally - Click on **CPU Utilization is greater than 90%** to open the Alert Rule Editor to view its settings.
 

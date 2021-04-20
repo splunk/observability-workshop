@@ -108,9 +108,9 @@ Create some errors with an invalid customer number:
 
 ## 4. Validating the Hot R.O.D. application in SignalFx
 
-Open the SignalFx UI, and go to you cluster in the Kubernetes Navigator. You should see the new Pod being started and container being deployed.
+Open the Splunk UI, and go to you cluster in the Kubernetes Navigator. You should see the new Pod being started and container being deployed.
 
-Usually it should only take around 20 seconds for the pod to transition into a Running state. When you click on the new pod in the SignalFx UI you should have a cluster that looks like below:
+Usually it should only take around 20 seconds for the pod to transition into a Running state. When you click on the new pod in the Splunk UI you should have a cluster that looks like below:
 
 ![back to Cluster](../images/apm/hotrod-k8-navigator.png)
 

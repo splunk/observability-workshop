@@ -29,7 +29,7 @@ The Description for the Team Dashboard can be customized and can include links t
 
 ## 2. Creating a new Team
 
-To work with to SignalFx's Team UI click on the **Settings** icon on the top right of the SignalFx UI.
+To work with to SignalFx's Team UI click on the **Settings** icon on the top right of the Splunk UI.
 
 ![Settings Icon](../images/servicebureau/settings.png)
 

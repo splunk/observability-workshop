@@ -16,7 +16,7 @@ Use `multipass` to create a vanilla Ubuntu VM and shell into it. You can also us
 
 ## 1. Deploy SignalFx Smart Agent via install script on a VM
 
-You will need to obtain your Access Token from the SignalFx UI. You can find your Access Token by clicking on your profile icon on the top right of the SignalFx UI. Then select _**Organization Settings → Access Tokens**_. Expand the Default token, then click on _**Show Token**_ to expose your token. Later in the lab you can come back here and click the _**Copy**_ button which will copy it to your clipboard so you can paste it when you need to provide an access token in the lab.
+You will need to obtain your Access Token from the Splunk UI. You can find your Access Token by clicking on your profile icon on the top right of the Splunk UI. Then select _**Organization Settings → Access Tokens**_. Expand the Default token, then click on _**Show Token**_ to expose your token. Later in the lab you can come back here and click the _**Copy**_ button which will copy it to your clipboard so you can paste it when you need to provide an access token in the lab.
 
 ![Access Token](../images/smartagent/access-token.png)
 
@@ -77,7 +77,7 @@ Once the installation is complete check the status of the agent.
 
 ## 2. Confirm the Smart Agent is working and sending data
 
-To see the Metrics that the Smart Agent is sending to SignalFx, please goto the SignalFX UI, and select **Infrastructure → Hosts** to see the lists of hosts.
+To see the Metrics that the Smart Agent is sending to SignalFx, please goto the Splunk UI, and select **Infrastructure → Hosts** to see the lists of hosts.
 
 ![Goto host](../images/smartagent/M3-hosts.png)
 

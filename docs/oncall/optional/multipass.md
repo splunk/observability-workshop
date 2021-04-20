@@ -40,7 +40,7 @@ The first step is to pull down the `cloud-init` file to launch a pre-configured 
 
 Remaining in the same directory where you downloaded `victorops.yaml`, run the following commands to create your VM.
 
-The first command will generate a random unique 4 character string. This will prevent clashes in the SignalFx UI.
+The first command will generate a random unique 4 character string. This will prevent clashes in the Splunk UI.
 
 === "Shell Command"
 
@@ -86,11 +86,11 @@ Once the VM has deployed successfully, in a **new** shell session connect to the
 
 ## 3. Install SignalFx Agent
 
-An easy way to install the SignalFx Agent into your VM is to copy the install commands from the SignalFx UI, then run them directly within your VM.
+An easy way to install the SignalFx Agent into your VM is to copy the install commands from the Splunk UI, then run them directly within your VM.
 
-### 3.1 SignalFx UI
+### 3.1 Splunk UI
 
-Navigate to the **Integrations** tab within the SignalFx UI, where you will find the SignalFx SmartAgent tile on the top row.
+Navigate to the **Integrations** tab within the Splunk UI, where you will find the SignalFx SmartAgent tile on the top row.
 
 Click on the SmartAgent tile to open it...
 
@@ -159,9 +159,9 @@ Once the agent has completed installing run the following command to check the s
     signalfx-agent status all - show everything
     ```
 
-### 4.2 Check the SignalFx UI
+### 4.2 Check the Splunk UI
 
-Navigate to the SignalFx UI and click on the **Infrastructure** tab. The click on **Hosts (Smart Agent / collectd)** under the **Hosts** section.
+Navigate to the Splunk UI and click on the **Infrastructure** tab. The click on **Hosts (Smart Agent / collectd)** under the **Hosts** section.
 
 Find your VM and confirm it is reporting in correctly; allow a few minutes for it to appear.
 

@@ -10,7 +10,7 @@
 
 ## 1. Understanding SignalFx engagement
 
-To fully understand SignalFx engagement inside your organization, click on the **Settings** icon on the top right of the SignalFx UI.
+To fully understand SignalFx engagement inside your organization, click on the **Settings** icon on the top right of the Splunk UI.
 
 ![Settings Icon](../images/servicebureau/settings.png)
 
@@ -28,7 +28,7 @@ Take a minute to explore the various charts in the Organization Overview of this
 
 ## 2. Usage and Billing
 
-If you want to see what your usage is against your contract you can select the **Organizations Settings → Billing and Usage** from your profile icon top right of the SignalFx UI.
+If you want to see what your usage is against your contract you can select the **Organizations Settings → Billing and Usage** from your profile icon top right of the Splunk UI.
 
 ![Settings Icon](../images/servicebureau/settings.png)
 
