@@ -12,7 +12,8 @@ otelAgent:
         metrics:
           receivers:
             - receiver_creator
+            - hostmetrics
+            - kubeletstats
     extensions:
       zpages:
         endpoint: 0.0.0.0:55679
-    
