@@ -1,4 +1,4 @@
-site_name: Splunk Observability Suite Workshop
+site_name: Splunk Observability Cloud Workshop
 site_url: https://signalfx.github.io/observability-workshop/
 site_author: Sales Engineering EMEA
 site_description: >-
@@ -91,7 +91,7 @@ nav:
     - Workshop Introduction: smartagent/index.md
     - Access AWS/EC2 instance: smartagent/connect-info.md
     - Get Data In<br /><small>20 minutes</small>:
-      - Deploy the Smart Agent in K3s: smartagent/k3s.md
+      - Deploy the agent in K3s: smartagent/k3s.md
       - Deploy NGINX in K3s : smartagent/nginx.md
     - Dashboards<br /><small>30 minutes</small>:
       - Introduction: dashboards/index.md
@@ -132,21 +132,21 @@ nav:
       - SignalFx Integration: oncall/optional/sfx_integrations.md
       - Using Multipass VM: oncall/optional/multipass.md
       - Create a Detector: oncall/optional/detector.md
-  - Lambda & APM:
-    - Intro: lambda/index.md
-    - Getting to know the Mobile Shop: lambda/initial_run_env.md
-    - APM for Mobile Shop:
-      - Setting up Springboot App : lambda/springboot-apm.md 
-      - Getting the first Trace: lambda/springboot-apm-II.md
-    - APM for RetailOrder:
-      - Basic Instrumentation: lambda/retail-order-I.md
-    - APM for RetailOrderPrice:
-      - Work in progress: lambda/wip.md
-    - APM for RetailOrderDiscount: 
-      - Work in progress: lambda/wip.md
-    - APM for RetailOrderLine:
-      - Basic Instrumentation: lambda/retail-orderline-I.md
-    - Setup: lambda/setup.md
+  #- Lambda & APM:
+  #  - Intro: lambda/index.md
+  #  - Getting to know the Mobile Shop: lambda/initial_run_env.md
+  #  - APM for Mobile Shop:
+  #    - Setting up Springboot App : lambda/springboot-apm.md 
+  #    - Getting the first Trace: lambda/springboot-apm-II.md
+  #  - APM for RetailOrder:
+  #    - Basic Instrumentation: lambda/retail-order-I.md
+  #  - APM for RetailOrderPrice:
+  #    - Work in progress: lambda/wip.md
+  #  - APM for RetailOrderDiscount: 
+  #    - Work in progress: lambda/wip.md
+  #  - APM for RetailOrderLine:
+  #    - Basic Instrumentation: lambda/retail-orderline-I.md
+  #  - Setup: lambda/setup.md
   - Resources:
     - Links: resources/index.md
     - FAQ: resources/faq.md

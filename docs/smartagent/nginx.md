@@ -1,20 +1,13 @@
 # Deploying NGINX in K3s - Lab Summary
 
 * Deploy a NGINX ReplicaSet into your K3s cluster and confirm the auto discovery of your NGINX deployment.
-* Run a benchmark test to create metrics and confirm them streaming into SignalFX!
+* Run a benchmark test to create metrics and confirm them streaming into Splunk Observability Cloud!
 
 ---
 
 ## 1. Start your NGINX
 
-!!! Info
-    **If you have deployed the OpenTelemetry Collector then this module of the workshop is not applicable and can be skipped!**
-
-This deployment of NGINX has been configured to use Kubernetes pod annotations to tell the Smart Agent how to monitor the service.
-
-This is achieved by defining the `port` and `monitor type` to use for monitoring the NGINX service e.g. `agent.signalfx.com/monitorType.80: "collectd/nginx"`
-
-Verify the number of pods running in the SignalFx UI by selecting the **WORKLOADS** tab. This should give you an overview of the workloads on your cluster.
+Verify the number of pods running in the Splunk UI by selecting the **WORKLOADS** tab. This should give you an overview of the workloads on your cluster.
 
 ![Workload Agent](../images/smartagent/k8s-workloads.png)
 
@@ -65,9 +58,9 @@ Then create the deployment:
 
 Validate the deployment has been successful and that the NGINX pods are running.
 
-If you have the SignalFx UI open you should see new Pods being started and containers being deployed.
+If you have the Splunk UI open you should see new Pods being started and containers being deployed.
 
-It should only take around 20 seconds for the pods to transition into a Running state. In the SignalFx UI you will have a cluster that looks like below:
+It should only take around 20 seconds for the pods to transition into a Running state. In the Splunk UI you will have a cluster that looks like below:
 
 ![back to Cluster](../images/smartagent/cluster.png)
 
@@ -100,7 +93,7 @@ Let's validate this in your shell as well:
 
 ## 3. Run Siege Benchmark
 
-Use the Siege[^2] Load Testing command to generate some traffic to light up your SignalFx NGINX dashboards. First, we need to get the IP address of the cluster and assign to an environment variable and then run the load test:
+Use the Siege[^2] Load Testing command to generate some traffic to light up your Splunk NGINX dashboards. First, we need to get the IP address of the cluster and assign to an environment variable and then run the load test:
 
 === "Shell Command"
 

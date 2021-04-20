@@ -4,9 +4,9 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/signalfx/observability-workshop)
 ![GitHub issues](https://img.shields.io/github/issues/signalfx/observability-workshop)
 
-# Welcome to the Splunk Observability Workshop
+# Welcome to the Splunk Observability Cloud Workshop
 
-To get started, please proceed to [The Observability Workshop Homepage](https://signalfx.github.io/observability-workshop/latest/).
+To get started, please proceed to [The Splunk Observability Cloud Workshop Homepage](https://signalfx.github.io/observability-workshop/latest/).
 
 Latest versions of the workshop are:
 - [v1.60](https://signalfx.github.io/observability-workshop/v1.60/)
