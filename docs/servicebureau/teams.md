@@ -29,13 +29,7 @@ The Description for the Team Dashboard can be customized and can include links t
 
 ## 2. Creating a new Team
 
-To work with to SignalFx's Team UI click on the **Settings** icon on the top right of the Splunk UI.
-
-![Settings Icon](../images/servicebureau/settings.png)
-
-Select the **Organizations Settings → Teams** tab, or select the **Teams** tab from the left pane.
-
-![location of settings](../images/servicebureau/teams-menu.png)
+To work with to Splunk's Team UI click on the hamburger icon top left and select the **Organizations Settings → Teams**.
 
 When the **Team** UI is selected you will be presented with the list of current Teams.
 
@@ -49,7 +43,7 @@ Create your own team by naming it `[YOUR-INITIALS]-Team and` add yourself by sea
 
 You can remove selected users by pressing  **Remove** or the small **x**.
 
-Make sure you have your group created with your initials and with yourself added as a member, then click **Done**.
+Make sure you have your group created with your initials and with yourself added as a member, then click **Done**{: .label-button .sfx-ui-button-blue}
 
 This will bring you back to the **Teams** list that will now show your Team and the one's created by others.
 
@@ -66,7 +60,7 @@ The **...** menu gives you the option to Edit, Join, Leave or Delete a Team (lea
 
 ## 3. Adding Notification Rules
 
-You can set up specific Notification rules per team, click on the **NOTIFICATION POLICY** tab, this will open the notification edit menu.
+You can set up specific Notification rules per team, click on the **Notification Policy** tab, this will open the notification edit menu.
 
 ![Base notification menu](../images/servicebureau/notification-policy.png)
 
@@ -79,7 +73,7 @@ By default the system offers you the ability to set up a general notification ru
 
 You can add other recipients, by clicking **Add Recipient**{: .label-button .sfx-ui-button-blue}. These recipients do not need to be SignalFx users.
 
-However if you click on the link **Configure a single policy for alerts of any severity** you can configure every alert level independently.
+However if you click on the link **Configure separate notification tiers for different severity alerts** you can configure every alert level independently.
 
 ![Multiple Notifications](../images/servicebureau/single-policy.png)
 
