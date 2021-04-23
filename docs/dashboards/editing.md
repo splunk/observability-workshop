@@ -6,15 +6,19 @@ Click on the three dots **`...`** on the **Latency histogram** chart in the **Sa
 
 ![Sample Data](../images/dashboards/M-Dashboards-4.png)
 
-You will see the plot options, current plot and signal (metric) for the **Latency histogram** chart.
+You will see the plot options, current plot and signal (metric) for the **Latency histogram** chart in the chart edit UI.
 
 ![Heatmap Chart](../images/dashboards/M-Editing-1.png)
 
-Click on the different chart type icons to explore each of the visualizations. Notice their name while you click on or swipe over them.
+Click on the different chart type icons to explore each of the visualizations. Notice their name while you swipe over them.
+
+For Example click on the Heat Map icon
 
 ![Chart Types](../images/dashboards/M-Editing-2.png)
 
-See how the chart changes.
+See how the chart changes to a heat map.
+
+![Chart Types](../images/dashboards/M-Editing-3a.png)
 
 !!! note
     You can use different ways to visualize your metrics - you choose which chart type fits best for the visualization you want to have.
@@ -23,46 +27,26 @@ See how the chart changes.
 
 Click on the **Line** chart type and you will see the line plot.
 
-![Line Chart](../images/dashboards/M-Editing-3.png)
+![Line Chart](../images/dashboards/M-Editing-3b.png)
+
+You will see a number of **Line** plots. The number **`18 ts`** indicates that we are plotting 18 metric time series in the chart.
+
+You also want to increase the time window of the chart by changing the **Time** to *-15m* by selecting it from the **Time** dropdown in the upper right corner
+
+![Chart](../images/dashboards/M-Editing-8.png)
 
 In the **Plot Editor** tab under **Signal** you see the metric **`demo.trans.latency`** we are currently plotting.
 
-![Plot Editor](../images/dashboards/M-Editing-4.png)
-
----
-
-## 3 Creating a new chart
-
-Let's now create a new chart and save it in a new dashboard!
-
-Click on the plus icon (top right of the UI) and from the drop down, click on **Chart**.
-
-![Create new chart](../images/dashboards/M-Editing-5.png)
-
-You will now see a chart template like the following.
-
-![Empty Chart](../images/dashboards/M-Editing-6.png)
-
-Let's enter a metric to plot. We are going to use the metric **`demo.trans.latency`**.
-
-In the **Plot Editor** tab under **Signal** enter **`demo.trans.latency`**.
-
 ![Signal](../images/dashboards/M-Editing-7.png)
-
-You will instantly see a number of **Line** plots, like below. The number **`18 ts`** indicates that we are plotting 18 metric time series in the chart.
-
-You also want to increase the time window of the chart by changing the **Time** to *-15m* by seleciting it from the **Time** dropdown in the upper right corner
-
-![Chart](../images/dashboards/M-Editing-8.png)
 
 Click on the **DATA TABLE** tab.
 
 ![Data Table](../images/dashboards/M-Editing-9.png)
 
-You see now 18 rows, each representing a metics time series with a number of columns. If you swipe over the plot horizontally you will see the metrics in these columns at different times.
+You see now all 18 rows, each representing a metics time series with a number of columns. If you swipe over the plot horizontally you will see the metrics in these columns at different times.
 
 In the **`demo_datacenter`** column you see that there are two data centers, **Paris** and **Tokyo**, for which we are getting metrics.
 
-
-Let's save this chart into a dashboard for later use!
+---
+Now click on **Plot editor** again to close the Data Table and let's save this chart into a dashboard for later use!
 

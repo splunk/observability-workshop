@@ -1,82 +1,72 @@
-# Editing charts
+# Saving charts
 
-## 1. Edit Histogram Chart
+## 1 Creating your own dashboard
 
-Click on the three dots **`...`** on the **Latency histogram** chart in the **Sample Data** dashboard and then on **Open** (or you can click on the name of the chart which here is **Latency histogram**).
+To start saving your chart, lets give it a name and description.
 
-![Sample Data](../images/dashboards/M-Dashboards-4.png)
+Change the name of the Dashboard from "*Copy of Latency histogram*" to **"Active Latency"**.
 
-You will see the plot options, current plot and signal (metric) for the **Latency histogram** chart.
+Change the description from "*Spread of latency values across time.*" to **"Overview of latency values in realtime."** .
 
-![Heatmap Chart](../images/dashboards/M-Editing-1.png)
-
-Click on the different chart type icons to explore each of the visualizations. Notice their name while you click on or swipe over them.
-
-![Chart Types](../images/dashboards/M-Editing-2.png)
-
-See how the chart changes.
-
-!!! note
-    You can use different ways to visualize your metrics - you choose which chart type fits best for the visualization you want to have.
-
-    For more info on the different chart types see [Choosing a chart type](https://docs.signalfx.com/en/latest/charts/chart-planning-creating.html#choosing-a-chart-type){: target=_blank}.
-
-Click on the **Line** chart type and you will see the line plot.
-
-![Line Chart](../images/dashboards/M-Editing-3.png)
-
-In the **Plot Editor** tab under **Signal** you see the metric **`demo.trans.latency`** we are currently plotting.
-
-![Plot Editor](../images/dashboards/M-Editing-4.png)
-
----
-
-## 2 Creating your own dashboard
-
-Let's save this chart into a dashboard for later use!
-
-
-Change the name of the Dashboard from ."*Copy of Latency histogram*" to **"Active Latency"**.
-Change the description from "*Spread of latency values across time.*" to **"Overview of latency values in realtime"** ** 
-Press the Save As Button to begin saving your chart.
+Press the **Save As Button**{: .label-button .sfx-ui-button-blue} to begin saving your chart.
 
 ![Save Chart 1](../images/dashboards/M-Save-1.png)
 
-Make sure your chart has a name, it will use he name you have given it in the previous step, but you can editi it here if needed.
+Make sure your chart has a name, it will use he name you have given it in the previous step, but you can edit it here if needed.
 
-Press the Ok button to continue.
+Press the **Ok**{: .label-button .sfx-ui-button-blue} button to continue.
 
 ![Save Chart 2](../images/dashboards/M-Save-2.png)
+
+This will show you the **Choose dashboard** dialog. As we are going to create a new dashboard, click on the **New Dashboard**{: .label-button .sfx-ui-button-blue} button.
+
+![Save Chart 3](../images/dashboards/M-Save-3.png)
+
+You will now see the **New DashBoard** Dialog. In here you can give you dashboard a Name and Desciption, and set some edit priviliges.
+
+Please use your own name in the following format to give your dashboard a name: **YOUR_NAME-Dashboard**. 
+
+Please replace YOUR_NAME with your name and then remove the tick from the *Anyone in this organization can edit* tick box to set up edit permissions.
+
+![Save Chart 4](../images/dashboards/M-Save-4.png)
+
+You should see you own login information displayed, meaning you are now the only one who can edit this dashboard. Of course you have the option to add other users or teams from the drop box below that may edit your dashboard and charts, but for now just press the **Create**{: .label-button .sfx-ui-button-blue} Button to continue.
+
+Your new dashboard is now availble and selected so you can save your chart in your new dashboard.
+
+![Save Chart 5](../images/dashboards/M-Save-5.png)
+
+Make sure you have your dashboard selected and press the **Ok**{: .label-button .sfx-ui-button-blue} button.
+
+You will now be taken to your dashboard like below. You can see at the top right, that your  **YOUR_NAME-Dashboard** is part of a Dashboard Group **YOUR_NAME-DASHBOARD**. You can add other dashboards to this Dashboard group, 
+
+![Save Chart 6](../images/dashboards/M-Save-6.png)
+
 ---
 
-## 3 Creating a new chart
+## 2 Adding your dashboard to the team page
 
-Let's now create a new chart and save it in a new dashboard!
+It is common practice to link dashboards that are relevant to a Team to a teams page. So lets add your dashboard to the team page for easy acess later.
 
-Click on the plus icon (top right of the UI) and from the drop down, click on **Chart**.
+Use the top left hamburger menu  ![Hamburger-menu](../images/dashboards/Hamburgermenu.png) to selecting **Dashboards** from the side menu again. 
 
-![Create new chart](../images/dashboards/M-Editing-5.png)
+![Team Dashboard0](../images/dashboards/M-Dashboards-0.png)
 
-You will now see a chart template like the following.
+This will bring you to your teams dashboard, We use the team **Observability** as an example here, the workshop one will be different.  
 
-![Empty Chart](../images/dashboards/M-Editing-6.png)
+![Team Dashboard1](../images/dashboards/M-Dashboards-1.png)
 
-Let's enter a metric to plot. We are going to use the metric **`demo.trans.latency`**.
+Press the **+**{: .label-button .sfx-ui-button-blue} *Add Dashboard Group* button to add you dashboard to the team page.
 
-In the **Plot Editor** tab under **Signal** enter **`demo.trans.latency`**.
+This will bring you to the *Select a dashboard group to link to this team* Dialog.
+Type *[Your Name] in the search box and you should be able to find  your Dashboard. Select it so its highlighted, then press the **Ok** button to add your dashboard.
 
-![Signal](../images/dashboards/M-Editing-7.png)
+![Save Chart 7](../images/dashboards/M-Save-7.png)
 
-You will instantly see a number of **Line** plots, like below. The number **`18 ts`** indicates that we are plotting 18 metric time series in the chart.
+Your dashboard group will appear as part of the team page, of course in a workshop many more will appear here.
 
-You also want to increase the time window of the chart by changing the **Time** to *-15m* by seleciting it from the **Time** dropdown in the upper right corner
+![Save Chart 8](../images/dashboards/M-Save-8.png)
 
-![Chart](../images/dashboards/M-Editing-8.png)
+---
 
-Click on the **DATA TABLE** tab.
-
-![Data Table](../images/dashboards/M-Editing-9.png)
-
-You see now 18 rows, each representing a metics time series with a number of columns. If you swipe over the plot horizontally you will see the metrics in these columns at different times.
-
-In the **`demo_datacenter`** column you see that there are two data centers, **Paris** and **Tokyo**, for which we are getting metrics.
+Now click on the link for your Dashboard to add more charts to our dashboard!

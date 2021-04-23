@@ -1,6 +1,29 @@
 # Using Filters
 
-## 1. Filtering and Analytics
+---
+
+## 1 Creating a new chart
+
+Let's now create a new chart and save it in our dashboard!
+
+Select the plus icon (top right of the UI) and from the drop down, choose the option **Chart**.
+or click on the **+ New Chart**{: .label-button .sfx-ui-button-blue} Button to create a new chart.
+
+![Create new chart](../images/dashboards/M-Filter-0.png)
+
+You will now see a chart template like the following.
+
+![Empty Chart](../images/dashboards/M-Editing-6.png)
+
+Let's enter a metric to plot. We are still going to use the metric **`demo.trans.latency`**.
+
+In the **Plot Editor** tab under **Signal** enter **`demo.trans.latency`**.
+
+![Signal](../images/dashboards/M-Editing-7.png)
+
+You should now have a familair line chart.
+
+## 2. Filtering and Analytics
 
 Let's now select the **Paris** datacenter to do some analytics - for that we will use a filter.
 
@@ -36,13 +59,13 @@ Click on the cog on the far right, and choose a **Plot Color** e.g. pink, to cha
 
 Click on **Close**.
 
-Next, click into the field next to **Time** on the Override bar and choose **`Past Day`** from the dropdown.
+Next, click into the field next to **Time** on the Override bar and choose **`Past Hour`** from the dropdown.
 
 ![Timeframe](../images/dashboards/M-Filter-7.png)
 
-We now see plots for Signal **A** (the last day) as a blue plot, and the plots from a week ago in pink.
+We now see plots for Signal **A** (the past hour) as a blue plot, and the plots from a week ago in pink.
 
-![Chart](../images/dashboards/MM-Filter-8.png)
+![Chart](../images/dashboards/M-Filter-8.png)
 
 In order to make this clearer we can click on the **Area chart** icon to change the visualization.
 
