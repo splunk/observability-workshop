@@ -63,6 +63,7 @@ You see now 18 rows, each representing a metics time series with a number of col
 
 In the **`demo_datacenter`** column you see that there are two data centers, **Paris** and **Tokyo**, for which we are getting metrics.
 
+---
 
 Let's save this chart into a dashboard for later use!
 
