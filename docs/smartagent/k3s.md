@@ -76,6 +76,7 @@ Install the Smart Agent Helm chart with the following commands, do **NOT** edit 
     --set="logsEnabled=false" \
     --set="image.otelcol.repository=quay.io/signalfx/splunk-otel-collector" \
     --set="image.otelcol.tag=0.24.3" \
+    --set="environment=$(hostname)-apm-env" \
     splunk-otel-collector-chart/splunk-otel-collector \
     -f ~/workshop/k3s/otel-collector.yaml
     ```
