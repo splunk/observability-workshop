@@ -229,7 +229,7 @@ spec:
         image: quay.io/signalfuse/microservices-demo-loadgenerator:latest
         env:
         - name: FRONTEND_ADDR
-          value: "$(NODE_IP):80"
+          value: "frontend:81"
         - name: USERS
           value: "10"
         resources:
