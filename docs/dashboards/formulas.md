@@ -12,7 +12,7 @@ We now see only the difference of all metric values of **A** and **B** being plo
 
 Click on **DATA TABLE** and in that view swipe horizontally along the X axis to see the metric values at different times.
 
-## 2. Using Absolute Value
+## 2. Saving our chart
 
 Click on **Plot Editor** to get back to the Plot Editor view.
 
