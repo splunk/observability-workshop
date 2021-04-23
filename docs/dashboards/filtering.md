@@ -21,7 +21,9 @@ In the **Plot Editor** tab under **Signal** enter **`demo.trans.latency`**.
 
 ![Signal](../images/dashboards/M-Editing-7.png)
 
-You should now have a familair line chart.
+You should now have a familair line chart. please switch the time to 15 mins.
+
+![Signal](../images/dashboards/M-Filter-10.png)
 
 ## 2. Filtering and Analytics
 
@@ -59,16 +61,16 @@ Click on the cog on the far right, and choose a **Plot Color** e.g. pink, to cha
 
 Click on **Close**.
 
-Next, click into the field next to **Time** on the Override bar and choose **`Past Hour`** from the dropdown.
+We now see plots for Signal **A** (the past 15 minutes) as a blue plot, and the plots from a week ago in pink.
 
-![Timeframe](../images/dashboards/M-Filter-7.png)
-
-We now see plots for Signal **A** (the past hour) as a blue plot, and the plots from a week ago in pink.
-
-![Chart](../images/dashboards/M-Filter-8.png)
+![Chart](../images/dashboards/M-Filter-7.png)
 
 In order to make this clearer we can click on the **Area chart** icon to change the visualization.
 
-![Area Chart](../images/dashboards/M-Filter-9.png)
+![Area Chart](../images/dashboards/M-Filter-8.png)
 
 We now have a better view of our two plots!
+
+Next, click into the field next to **Time** on the Override bar and choose **`Past Hour`** from the dropdown.
+
+![Timeframe](../images/dashboards/M-Filter-9.png)
