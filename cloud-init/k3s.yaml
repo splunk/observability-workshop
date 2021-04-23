@@ -76,6 +76,11 @@ write_files:
 runcmd:
   # Install K3s
   - curl -sfL https://get.k3s.io | sh -
+  # Install Helm
+  - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+  # Install K9s (Kubernetes UI)
+  - curl -S -OL https://github.com/derailed/k9s/releases/download/v0.24.7/k9s_Linux_x86_64.tar.gz
+  - tar xfz k9s_Linux_x86_64.tar.gz -C /usr/local/bin/ k9s
   # Download Workshop
   - export WSVERSION=1.60
   - 'export WSARCHIVE=$([ "$WSVERSION" = "master" ] && echo "master" || echo "v$WSVERSION")'
@@ -86,14 +91,24 @@ runcmd:
   - curl -s -L https://github.com/signalfx/signalfx-jumpstart/archive/master.zip -o jumpstart.zip
   - unzip -qq jumpstart.zip -d /home/ubuntu/
   - mv /home/ubuntu/signalfx-jumpstart-master /home/ubuntu/signalfx-jumpstart
-  # Install Helm
-  - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-  # Install K9s (Kubernetes UI)
-  - curl -S -OL https://github.com/derailed/k9s/releases/download/v0.24.3/k9s_Linux_x86_64.tar.gz
-  - tar xfz k9s_Linux_x86_64.tar.gz -C /usr/local/bin/ k9s
+  # Download Microservices Demo
+  - curl -s -L https://github.com/signalfx/microservices-demo/archive/master.zip -o microservices-demo.zip
+  - unzip -qq microservices-demo.zip -d /home/ubuntu/
+  - mv /home/ubuntu/microservices-demo-master /home/ubuntu/microservices-demo
   # Configure motd
   - curl -s https://raw.githubusercontent.com/signalfx/observability-workshop/master/cloud-init/motd -o /etc/motd
   - chmod -x /etc/update-motd.d/*
+  # Install Terraform
+  - curl -S -OL https://releases.hashicorp.com/terraform/0.15.0/terraform_0.15.0_linux_amd64.zip
+  - unzip -qq terraform_0.15.0_linux_amd64.zip -d /usr/local/bin
+  # Create kube config and set correct permissions on ubuntu user home directory
+  - mkdir /home/ubuntu/.kube && sudo kubectl config view --raw > /home/ubuntu/.kube/config
+  - chmod 400 /home/ubuntu/.kube/config
+  - chown -R ubuntu:ubuntu /home/ubuntu
+  # Configure shellinabox port and disable ssl then restart
+  - sed -i 's/SHELLINABOX_PORT=4200/SHELLINABOX_PORT=6501/'  /etc/default/shellinabox
+  - sed -i "s/\"--no-beep\"/\"--no-beep --disable-ssl\"/" /etc/default/shellinabox
+  - sudo service shellinabox restart
   # Install AWS CLI
   #- curl -s https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip
   #- unzip -qq awscliv2.zip
@@ -102,13 +117,3 @@ runcmd:
   #- curl -s --silent --location https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz | tar xz -C /tmp
   #- mv /tmp/eksctl /usr/local/bin/
   # Install Terraform
-  - curl -S -OL https://releases.hashicorp.com/terraform/0.14.8/terraform_0.14.8_linux_amd64.zip
-  - unzip -qq terraform_0.14.8_linux_amd64.zip -d /usr/local/bin
-  # Set correct permissions on ubuntu user home directory
-  - mkdir /home/ubuntu/.kube && sudo kubectl config view --raw > /home/ubuntu/.kube/config
-  - chmod 400 /home/ubuntu/.kube/config
-  - chown -R ubuntu:ubuntu /home/ubuntu
-  # Configure shellinabox port and disable ssl then restart
-  - sed -i 's/SHELLINABOX_PORT=4200/SHELLINABOX_PORT=6501/'  /etc/default/shellinabox
-  - sed -i "s/\"--no-beep\"/\"--no-beep --disable-ssl\"/" /etc/default/shellinabox
-  - sudo service shellinabox restart
