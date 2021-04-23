@@ -31,6 +31,24 @@ In the **Plot Editor** tab under **Signal** you see the metric **`demo.trans.lat
 
 ---
 
+## 2 Creating your own dashboard
+
+Let's save this chart into a dashboard for later use!
+
+
+Change the name of the Dashboard from ."*Copy of Latency histogram*" to **"Active Latency"**.
+Change the description from "*Spread of latency values across time.*" to **"Overview of latency values in realtime"** ** 
+Press the Save As Button to begin saving your chart.
+
+![Save Chart 1](../images/dashboards/M-Save-1.png)
+
+Make sure your chart has a name, it will use he name you have given it in the previous step, but you can editi it here if needed.
+
+Press the Ok button to continue.
+
+![Save Chart 2](../images/dashboards/M-Save-2.png)
+---
+
 ## 3 Creating a new chart
 
 Let's now create a new chart and save it in a new dashboard!
@@ -62,7 +80,3 @@ Click on the **DATA TABLE** tab.
 You see now 18 rows, each representing a metics time series with a number of columns. If you swipe over the plot horizontally you will see the metrics in these columns at different times.
 
 In the **`demo_datacenter`** column you see that there are two data centers, **Paris** and **Tokyo**, for which we are getting metrics.
-
-
-Let's save this chart into a dashboard for later use!
-
