@@ -228,8 +228,12 @@ spec:
         - containerPort: 8089
         image: quay.io/signalfuse/microservices-demo-loadgenerator:latest
         env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP        
         - name: FRONTEND_ADDR
-          value: "frontend:81"
+          value: "$(NODE_IP):81"
         - name: USERS
           value: "10"
         resources:
