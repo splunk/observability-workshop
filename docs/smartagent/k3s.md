@@ -11,7 +11,7 @@ You will need to obtain your Access Token[^1] from the Splunk UI once Kubernetes
 
 You can find your Access Token from the top left hamburger menu then selecting **Organization Settings → Access Tokens**.
 
-Expand the Default token, then click on **Show Token** to expose your token. Click the **Copy**{: .label-button  .sfx-ui-button-grey} button to copy to clipboard.
+Expand the **Default** token, then click on **Show Token** to expose your token. Click the **Copy**{: .label-button  .sfx-ui-button-grey} button to copy to clipboard.
 
 ![Access Token](../images/smartagent/access-token.png)
 
@@ -30,17 +30,11 @@ Create the `ACCESS_TOKEN` and `REALM` environment variables to use in the procee
 === "Shell Command"
 
     ```
-    export ACCESS_TOKEN=<replace_with_your_access_token>
+    export ACCESS_TOKEN=<replace_with_default_access_token>
     export REALM=<replace_with_splunk_realm>
     ```
 
 Install the Smart Agent or OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository to Helm and update.
-
-=== "Smart Agent"
-
-    ```
-    helm repo add signalfx https://dl.signalfx.com/helm-repo && helm repo update
-    ```
 
 === "OpenTelemetry Collector"
 
@@ -48,7 +42,28 @@ Install the Smart Agent or OpenTelemetry Collector using the Splunk Helm chart. 
     helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update
     ```
 
+=== "Smart Agent"
+
+    ```
+    helm repo add signalfx https://dl.signalfx.com/helm-repo && helm repo update
+    ```
+
 Install the Smart Agent Helm chart with the following commands, do **NOT** edit this:
+
+=== "OpenTelemetry Collector"
+
+    ```
+    helm install splunk-otel-collector \
+    --set="splunkRealm=$REALM" \
+    --set="splunkAccessToken=$ACCESS_TOKEN" \
+    --set="clusterName=$(hostname)-k3s-cluster" \
+    --set="logsEnabled=false" \
+    --set="image.otelcol.repository=quay.io/signalfx/splunk-otel-collector" \
+    --set="image.otelcol.tag=0.24.3" \
+    --set="environment=$(hostname)-apm-env" \
+    splunk-otel-collector-chart/splunk-otel-collector \
+    -f ~/workshop/k3s/otel-collector.yaml
+    ```
 
 === "Smart Agent"
 
@@ -66,21 +81,6 @@ Install the Smart Agent Helm chart with the following commands, do **NOT** edit 
     -f ~/workshop/k3s/values.yaml
     ```
 
-=== "OpenTelemetry Collector"
-
-    ```
-    helm install splunk-otel-collector \
-    --set="splunkRealm=$REALM" \
-    --set="splunkAccessToken=$ACCESS_TOKEN" \
-    --set="clusterName=$(hostname)-k3s-cluster" \
-    --set="logsEnabled=false" \
-    --set="image.otelcol.repository=quay.io/signalfx/splunk-otel-collector" \
-    --set="image.otelcol.tag=0.24.3" \
-    --set="environment=$(hostname)-apm-env" \
-    splunk-otel-collector-chart/splunk-otel-collector \
-    -f ~/workshop/k3s/otel-collector.yaml
-    ```
-
 You can monitor the progress of the deployment by running `sudo kubectl get pods` which should typically report a new pod is up and running after about 30 seconds.
 
 Ensure the status is reported as Running before continuing.
@@ -91,19 +91,19 @@ Ensure the status is reported as Running before continuing.
     sudo kubectl get pods
     ```
 
-=== "Smart Agent Output"
-
-    ```
-    NAME                   READY   STATUS    RESTARTS   AGE
-    signalfx-agent-66tvr   1/1     Running   0          7s
-    ```
-
 === "OpenTelemetry Collector Output"
 
     ```
     NAME                                                          READY   STATUS    RESTARTS   AGE
     splunk-otel-collector-agent-2sk6k                             0/1     Running   0          10s
     splunk-otel-collector-k8s-cluster-receiver-6956d4446f-gwnd7   0/1     Running   0          10s
+    ```
+
+=== "Smart Agent Output"
+
+    ```
+    NAME                   READY   STATUS    RESTARTS   AGE
+    signalfx-agent-66tvr   1/1     Running   0          7s
     ```
 
 !!! info "OpenTelemetry Collector Only"
@@ -113,9 +113,30 @@ Ensure the status is reported as Running before continuing.
     ```
     Use the port reported to connect from desktop e.g. `http://node_ip:36143/debug/tracez`
     
-Ensure there are no errors by tailing the logs from the Smart Agent Pod. Output should look similar to the log output shown in the Output tab below.
+Ensure there are no errors by tailing the logs from the OpenTelemetry Collector/Smart Agent Pod. Output should look similar to the log output shown in the Output tabs below.
 
 Use the label set by the `helm` install to tail logs (You will need to press ++ctrl+c++ to exit). Or use the installed `k9s` terminal UI for bonus points!
+
+=== "Open Telemetry Collector Log"
+
+    ```
+    sudo kubectl logs -l app=splunk-otel-collector -f
+    ```
+
+=== "Open Telemetry Collector Output"
+
+    ```
+    2021-03-21T16:11:10.900Z        INFO    service/service.go:364  Starting receivers...
+    2021-03-21T16:11:10.900Z        INFO    builder/receivers_builder.go:70 Receiver is starting... {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
+    2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:75 Receiver started.       {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
+    2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:70 Receiver is starting... {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
+    2021-03-21T16:11:11.009Z        INFO    k8sclusterreceiver@v0.21.0/watcher.go:195       Configured Kubernetes MetadataExporter  {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster", "exporter_name": "signalfx"}
+    2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:75 Receiver started.       {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
+    2021-03-21T16:11:11.009Z        INFO    healthcheck/handler.go:128      Health Check state change       {"component_kind": "extension", "component_type": "health_check", "component_name": "health_check", "status": "ready"}
+    2021-03-21T16:11:11.009Z        INFO    service/service.go:267  Everything is ready. Begin running and processing data.
+    2021-03-21T16:11:11.009Z        INFO    k8sclusterreceiver@v0.21.0/receiver.go:59       Starting shared informers and wait for initial cache sync.      {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
+    2021-03-21T16:11:11.281Z        INFO    k8sclusterreceiver@v0.21.0/receiver.go:75       Completed syncing shared informer caches.       {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
+    ```
 
 === "Smart Agent Log"
 
@@ -160,27 +181,6 @@ Use the label set by the `helm` install to tail logs (You will need to press ++c
     signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Starting K8s API resource sync"                                                                                                      │
     ```
 
-=== "Open Telemetry Collector Log"
-
-    ```
-    sudo kubectl logs -l app=splunk-otel-collector -f
-    ```
-
-=== "Open Telemetry Collector Output"
-
-    ```
-    2021-03-21T16:11:10.900Z        INFO    service/service.go:364  Starting receivers...
-    2021-03-21T16:11:10.900Z        INFO    builder/receivers_builder.go:70 Receiver is starting... {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
-    2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:75 Receiver started.       {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
-    2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:70 Receiver is starting... {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
-    2021-03-21T16:11:11.009Z        INFO    k8sclusterreceiver@v0.21.0/watcher.go:195       Configured Kubernetes MetadataExporter  {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster", "exporter_name": "signalfx"}
-    2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:75 Receiver started.       {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
-    2021-03-21T16:11:11.009Z        INFO    healthcheck/handler.go:128      Health Check state change       {"component_kind": "extension", "component_type": "health_check", "component_name": "health_check", "status": "ready"}
-    2021-03-21T16:11:11.009Z        INFO    service/service.go:267  Everything is ready. Begin running and processing data.
-    2021-03-21T16:11:11.009Z        INFO    k8sclusterreceiver@v0.21.0/receiver.go:59       Starting shared informers and wait for initial cache sync.      {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
-    2021-03-21T16:11:11.281Z        INFO    k8sclusterreceiver@v0.21.0/receiver.go:75       Completed syncing shared informer caches.       {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
-    ```
-
 !!! info "Deleting installation"
     If you make an error installing the Smart Agent you can start over by deleting the installation using:
     
@@ -194,7 +194,7 @@ Use the label set by the `helm` install to tail logs (You will need to press ++c
 
 ## 3. Validate metrics in the UI
 
-In the Splunk UI, goto **Infrastructure → Kubernetes** to open the Kubernetes Navigator Cluster Map to ensure metrics are being sent.
+In the Splunk UI, goto **Infrastructure → Kubernetes** to open the Kubernetes Navigator Cluster Map to ensure metrics are being sent in.
 
 ![Selecting the Kubernetes Navigator Map](../images/smartagent/clustermap-nav.png)
 
@@ -220,4 +220,4 @@ Once it is open, you can use the slider on the side to explore the various chart
 
 [^1]: Access Tokens (sometimes called Org Tokens) are long-lived organization-level tokens. By default, these tokens persist for 5 years, and thus are suitable for embedding into emitters that send data points over long periods of time, or for any long-running scripts that call the Splunk API.
 
-[^2]: A realm is a self-contained deployment of Spunk in which your Organization is hosted. Different realms have different API endpoints (e.g. the endpoint for sending data is `ingest.us1.signalfx.com` for the **`us1`** realm, and `ingest.eu0.signalfx.com` for the **`eu0`** realm). This realm name is shown on your profile page in the Splunk UI. If you do not include the realm name when specifying an endpoint, Splunk will interpret it as pointing to the **`us0`** realm.
+[^2]: A realm is a self-contained deployment of Splunk in which your Organization is hosted. Different realms have different API endpoints (e.g. the endpoint for sending data is `ingest.us1.signalfx.com` for the **`us1`** realm, and `ingest.eu0.signalfx.com` for the **`eu0`** realm). This realm name is shown on your profile page in the Splunk UI. If you do not include the realm name when specifying an endpoint, Splunk will interpret it as pointing to the **`us0`** realm.
