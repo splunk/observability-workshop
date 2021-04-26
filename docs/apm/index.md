@@ -1,19 +1,9 @@
 # APM Architecture Overview
 
-!!! important "Enabling APM"
+Splunk APM is an application performance monitoring and troubleshooting solution for cloud-native, microservices-based applications. APM monitors applications by collecting traces. A trace is a collection of actions that occur to complete a transaction. Each action in a trace is known as a span.
 
-    **If you recently signed up for the 14 day free trial then this section of the workshop cannot be completed!**
-    
-    An Organization needs to be pre-provisioned as a APM entitlement is required for the purposes of this module. Please contact someone from SignalFx to get a trial instance with APM enabled if you don’t have one already.
+APM collects and analyzes every span and trace that an application’s instrumentation generates. This provides full-fidelity, infinite cardinality exploration of trace data an application generates, enabling you to break down and analyze application performance along any dimension.
 
-    To check if you have an Organization with APM enabled, just login to SignalFx and check that you have the APM tab on the top navbar next to Dashboards.
-
-SignalFx APM captures end-to-end distributed transactions from your applications, with trace spans sent directly to SignalFx or via the SignalFx Smart Agent deployed on each host (recommended).
-
-Optionally, you can deploy an OpenTelemetry Collector to act as a central aggregation point prior to sending trace spans to SignalFx.
-
-In addition to proxying spans and infrastructure metrics, the OpenTelemetry Collector can also perform other functions, such as redacting sensitive tags prior to spans leaving your environment.
-
-The following illustration shows the recommended deployment model: SignalFx auto-instrumentation libraries send spans to the Smart Agent; the Smart Agent can send the spans to SignalFx directly or via an optional OpenTelemetry Collector.
+The following illustration shows the recommended deployment model: Splunk OpenTelemetry auto-instrumentation libraries send spans to the Splunk OpenTelemetry Collector which in turn forwards on to Splunk APM.
 
 ![Architecture Overview](../images/apm/arch-overview.png)
