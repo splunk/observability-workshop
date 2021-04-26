@@ -87,7 +87,7 @@ runcmd:
   - curl -s -OL https://github.com/signalfx/observability-workshop/archive/$WSARCHIVE.zip
   - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
   - mv /home/ubuntu/observability-workshop-$WSVERSION /home/ubuntu/workshop
-  # Download SignalFx Jumpstart
+  # Download Splunk Observability Cloud Jumpstart
   - curl -s -L https://github.com/signalfx/signalfx-jumpstart/archive/master.zip -o jumpstart.zip
   - unzip -qq jumpstart.zip -d /home/ubuntu/
   - mv /home/ubuntu/signalfx-jumpstart-master /home/ubuntu/signalfx-jumpstart
