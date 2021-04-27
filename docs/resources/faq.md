@@ -1,6 +1,6 @@
 # Frequently Asked Questions
 
-A collection of the common questions and their answers associated with Observability, DevOps, Incident Response, SignalFx and VictorOps.
+A collection of the common questions and their answers associated with Observability, DevOps, Incident Response and Splunk On-Call.
 
 ## Q: Alerts v. Incident Response v. Incident Management
 

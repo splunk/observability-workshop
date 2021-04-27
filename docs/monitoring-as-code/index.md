@@ -1,8 +1,8 @@
 # Monitoring as Code - Lab Summary
 
 * Use Terraform[^1] to manage Observability Suite Dashboards and Detectors
-* Initialize the Terraform SignalFx Provider[^2].
-* Run Terraform to create detectors and dashboards from code using the SignalFx Terraform Provider.
+* Initialize the Terraform Splunk Provider[^2].
+* Run Terraform to create detectors and dashboards from code using the Splunk Terraform Provider.
 * See how Terraform can also delete detectors and dashboards.
 
 ---
@@ -26,7 +26,7 @@ The environment variables needed should already be set from [Deploy the Smart Ag
     export REALM={==REALM e.g. us1==}
     ```
 
-Initialize Terraform and upgrade to the latest version of the SignalFx Terraform Provider
+Initialize Terraform and upgrade to the latest version of the Splunk Terraform Provider
 
 !!! note "Upgrading the SignalFx Terraform Provider"
     You will need to run this command each time a new version of the SignalFx Terraform Provider is released. You can track the releases on [GitHub](https://github.com/terraform-providers/terraform-provider-signalfx/releases){: target=_blank}.

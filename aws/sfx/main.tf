@@ -31,7 +31,7 @@ data "aws_iam_policy_document" "signalfx_assume_policy" {
 
 resource "aws_iam_role" "aws_sfx_role" {
   name               = "signalfx-reads-from-cloudwatch2"
-  description        = "SignalFx integration to read out data and send it to SignalFx's AWS aws account"
+  description        = "Observability Cloud integration to read out data and send it to Observability Cloud's AWS aws account"
   assume_role_policy = data.aws_iam_policy_document.signalfx_assume_policy.json
 }
 

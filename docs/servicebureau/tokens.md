@@ -80,13 +80,13 @@ The severity for token alerts is always Critical.
 Click on **Update**{: .label-button .sfx-ui-button-blue} to save your Access Tokens limits and The Alert Settings.
 
 !!! note "Going above token limit"
-    When a token is at or above its limit in a usage category, new metrics for that usage category will not be stored and processed by SignalFx. This will make sure you there  will be no unexpected cost due to a team sending in data without restriction.
+    When a token is at or above its limit in a usage category, new metrics for that usage category will not be stored and processed by Observability Cloud. This will make sure you there  will be no unexpected cost due to a team sending in data without restriction.
 
 !!! note "Advanced alerting"
     If you wish to get alerts before you hit 90%, you can create additional detectors using whatever values you want. These detectors could target the Teams consuming the specific Access Tokens so they can take action before the admins need to get involved.
 
-In your company you would distribute these new Access Tokens to various teams, controlling how much information/data they can send to SignalFx.
+In your company you would distribute these new Access Tokens to various teams, controlling how much information/data they can send to Observability Cloud.
 
-This will allow you to fine tune the way you consume your SignalFx allotment and prevent overages from happening.
+This will allow you to fine tune the way you consume your Observability Cloud allotment and prevent overages from happening.
 
 **Congratulations!** You have now have completed the Service Bureau module.

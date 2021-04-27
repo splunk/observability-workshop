@@ -130,7 +130,7 @@ nav:
       - Create Incidents: oncall/incident_lifecycle/create_incidents.md
       - Manage Incidents: oncall/incident_lifecycle/manage_incidents.md
     - Optional Modules:
-      - SignalFx Integration: oncall/optional/sfx_integrations.md
+      - Observability Cloud Integration: oncall/optional/sfx_integrations.md
       - Using Multipass VM: oncall/optional/multipass.md
       - Create a Detector: oncall/optional/detector.md
   #- Lambda & APM:

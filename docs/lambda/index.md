@@ -16,7 +16,7 @@ Splunk APM captures end-to-end distributed transactions from your applications, 
 
 In addition to proxying spans and infrastructure metrics, the OpenTelemetry Collector can also perform other functions, such as redacting sensitive tags prior to spans leaving your environment.
 
-The following illustration shows the recommended deployment model: Splunk's auto-instrumentation libraries send spans to the OpenTelemetry Collector; the OpenTelemetry Collector forwards the spans to SignalFx.
+The following illustration shows the recommended deployment model: Splunk's auto-instrumentation libraries send spans to the OpenTelemetry Collector; the OpenTelemetry Collector forwards the spans to Observability Cloud.
 
 ![Lambda-Architecture](../images/lambda/Lambda Architecture.png)
 

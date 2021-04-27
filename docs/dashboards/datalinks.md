@@ -2,12 +2,12 @@
 
 ## 1. Introduction to Data links
 
-Data Links allow you to create dynamic links on properties that appear in a chart’s data table and in list charts. Once enable this allows you to swiftly jump into external systems or SignalFx dashboards.
+Data Links allow you to create dynamic links on properties that appear in a chart’s data table and in list charts. Once enable this allows you to swiftly jump into external systems or Observability Cloud dashboards.
 
 ## 2. Configuring an integration with Splunk
 
 !!! note "Informational exercise only"
-    This module is purely informational and serves only to educate how to link from SignalFx into Splunk
+    This module is purely informational and serves only to educate how to link from Observability Cloud into Splunk
 
 Goto **Settings → Organizations Settings → Global Data Links** and click on **New Link**{: .label-button .sfx-ui-button-blue}
 
@@ -27,7 +27,7 @@ The **URL** value will be the your Splunk instance.
 
 The **Minimum Time Window** will be the time interval between values assigned to `start_time` and `end_time` variables and is equal to either this window or, when linking from a data table, the chart resolution if that is wider.
 
-For **Property mapping** this allows you define mappings between terms found in SignalFx and the external system. So, for example, SignalFx might have a property set called `container_id` but the external system uses `container`.
+For **Property mapping** this allows you define mappings between terms found in Observability Cloud and the external system. So, for example, Observability Cloud might have a property set called `container_id` but the external system uses `container`.
 
 ![Configure Datalink](../images/dashboards/configure-datalink.png)
 

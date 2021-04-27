@@ -7,11 +7,11 @@
 
 ## 1. Introduction to Teams
 
-To make sure that users see the dashboards and alerts that are relevant to them when using SignalFX, most organizations will use SignalFx's Teams feature to assign a member to one or more Teams.
+To make sure that users see the dashboards and alerts that are relevant to them when using Observability Cloud, most organizations will use Observability Cloud's Teams feature to assign a member to one or more Teams.
 
-Ideally, this matches work related roles, for example, members of a Dev-Ops or Product Management group would be assigned to the corresponding Teams in SignalFx.
+Ideally, this matches work related roles, for example, members of a Dev-Ops or Product Management group would be assigned to the corresponding Teams in Observability Cloud.
 
-When a user logs into SignalFx, they can choose which Team Dashboard will be their home page and they will typically select the page for their primary role.
+When a user logs into Observability Cloud, they can choose which Team Dashboard will be their home page and they will typically select the page for their primary role.
 
 In the example below, the user is a member of the Development, Operations and Product Management Teams, and is currently viewing the Dashboard for the Operations Team.
 
@@ -71,7 +71,7 @@ By default the system offers you the ability to set up a general notification ru
 
 ### 3.1 Adding recipients
 
-You can add other recipients, by clicking **Add Recipient**{: .label-button .sfx-ui-button-blue}. These recipients do not need to be SignalFx users.
+You can add other recipients, by clicking **Add Recipient**{: .label-button .sfx-ui-button-blue}. These recipients do not need to be Observability Cloud users.
 
 However if you click on the link **Configure separate notification tiers for different severity alerts** you can configure every alert level independently.
 
@@ -83,7 +83,7 @@ Critical and Major are using [Splunk's VictorOps](https://victorops.com/){: targ
 
 ### 3.2 Notification Integrations
 
-In addition to sending alert notifications via email, you can configure SignalFx to send alert notifications to the services shown below.
+In addition to sending alert notifications via email, you can configure Observability Cloud to send alert notifications to the services shown below.
 
 ![Notifications options](../images/servicebureau/integrations.png)
 
