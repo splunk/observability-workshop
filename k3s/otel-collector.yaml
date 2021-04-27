@@ -1,26 +1,6 @@
 otelAgent:
   config:
-    receivers:
-      receiver_creator:
-        receivers:
-          smartagent/nginx:
-            rule: type == "port" && pod.name matches "nginx" && port == 80
-            config:
-              type: collectd/nginx
-    service:
-      extensions:
-        health_check:
-        k8s_observer:
-        zpages:
-      pipelines:
-        metrics:
-          receivers:
-            - hostmetrics
-            - kubeletstats
-            - receiver_creator
     extensions:
       zpages:
         endpoint: 0.0.0.0:55679
-      health_check:
-      k8s_observer: 
-    
+            
