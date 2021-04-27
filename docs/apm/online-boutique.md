@@ -3,11 +3,11 @@
 * Deploy the Online Boutique application into Kubernetes (K3s)
 * Verify the application is running
 * Generate some artificial traffic using Locust
-* See APM traces, spans and metrics in the UI
+* See APM metrics in the UI
 
 ---
 
-## 1. Deploy the Online Boutique application into K3s
+## 1. Deploy the Online Boutique
 
 To deploy the Online Boutique application into K3s apply the deployment:
   
@@ -78,21 +78,40 @@ To ensure the Online Boutique application is running:
     loadgenerator-57c8b84966-7nr4f                                1/1     Running   3          53s
     ```
 
+!!! info
+    Usually it should only take around 1min 30secs for the pods to transition into a Running state.
+
 ---
 
-## 2. Viewing the Online Boutique application in your browser
+## 3. Validating in the UI
+
+From the top left hamburger menu, click **Infrastructure → Kubernetes**.
+
+Use the **Cluster** dropdown so select your cluster, you should see the new pods started and containers deployed.
+
+When you click on your cluster in the Splunk UI you should have a view that looks like below:
+
+![back to Cluster](../images/apm/online-boutique-k8s.png)
+
+If you select the **WORKLOADS** tab again you should now see that there are a number of Deployments and ReplicaSets:
+
+![HOTROD loaded](../images/apm/online-boutique-workload.png)
+
+---
+
+## 4. Viewing the Online Boutique
 
 The Online Boutique is viewable on port 81 of the EC2 instance's IP address. The IP address is the one you used to SSH into the instance at the beginning of the workshop.
 
-Open your web browser and go to `http://{==EC2-IP==}:81/`, you will then be able to see the Online Boutique running.
+Open your web browser and go to `http://{==EC2-IP==}:81/` where you will then be able to see the Online Boutique running.
 
 ![Online Boutique](../images/apm/online-boutique.png)
 
 ---
 
-## 3. Generate some traffic to the application using Locust
+## 5. Generate traffic
 
-The Online Boutique deployment contains a container running Locust that we can use to generate load traffic against the website to generate traces and spans.
+The Online Boutique deployment contains a container running Locust that we can use to generate load traffic against the website to generate metrics, traces and spans.
 
 Locust is available on port 82 of the EC2 instance's IP address. Open a new tab in your web browser and go to `http://{==EC2-IP==}:82/`, you will then be able to see the Locust running.
 
@@ -103,24 +122,6 @@ Set the **Spawn rate** to be 2 and click **Start Swarming**, this will start a g
 ![Spawn Rate](../images/apm/spawn-rate.png)
 
 ![Statistics](../images/apm/statistics.png)
-
----
-
-## 4. Validating the Online Boutique in Splunk APM
-
-From the top left hamburger menu, click **Infrastructure → Kubernetes**.
-
-Use the **Cluster** dropdown so select your cluster, you should see the new pods being started and containers being deployed.
-
-Usually it should only take around 1min 30secs for the pods to transition into a Running state. When you click on the your cluster in the Splunk UI you should have a view that looks like below:
-
-![back to Cluster](../images/apm/online-boutique-k8s.png)
-
-If you select the **WORKLOADS** tab again you should now see that there are a number of Deployments and ReplicaSets:
-
-![HOTROD loaded](../images/apm/online-boutique-workload.png)
-
-Next, we want to validate that you are seeing the APM metrics in the UI.
 
 ---
 
@@ -152,7 +153,7 @@ Take some time to explore the various charts in this dashboard
 
 ---
 
-## 5. Verify that APM traces are reaching Splunk APM
+## 6. Verify Splunk APM metrics
 
 From the top left hamburger menu, click APM, this will bring you to the APM Overview dashboard:
 
@@ -172,3 +173,7 @@ The legend at the bottom of the page explains the different visualizations in th
 * Request rate, latency and error rate
 
 Also in this view you can see the overall Error and Latency rates over time charts.
+
+**Bonus Step:** Check the OpenTelemetry Collector dashboards and validate metrics and spans are being sent:
+
+![OpenTelemetry Collector dashboard](../images/apm/otel-dashboard.png)
