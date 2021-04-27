@@ -6,9 +6,9 @@
 
 ## 1. Learn how to configure muting your alerts
 
-There will be times when you might want to mute certain notifications. For example, if you want to schedule downtime for maintenance on a server or set of servers, or if you are testing new code or settings etc. For that you can use muting rules in SignalFx. Let's create one!
+There will be times when you might want to mute certain notifications. For example, if you want to schedule downtime for maintenance on a server or set of servers, or if you are testing new code or settings etc. For that you can use muting rules in Splunk Observability Cloud. Let's create one!
 
-Hover over **Alerts** in the menu and from the drop down click on **Detectors**.
+From the top left hamburger menu icon click **Alerts** in the menu and then select **Detectors**.
 
 ![Detectors](../images/detectors/detectors-menu.png)
 
@@ -43,18 +43,15 @@ You won't be receiving any email notifications from you detector until you resum
 
 ## 2. Resuming notifications
 
-To Resume notifications, hover over **Alerts** in the top menu and click on **Muting Rules**. You will see the name of the detector you muted notifications for under **Detector**.
+To Resume notifications, click on **Muting Rules**. You will see the name of the detector you muted notifications for under **Detector** heading.
 
 ![Resume](../images/detectors/muting-rules-menu.png)
-![Resume](../images/detectors/muting-list.png)
-
----
 
 Click on the thee dots **`...`** on the far right.
 
 Click on **Resume Notifications**.
 
-![Resume](../images/detectors/resume-notifications.png)
+![Resume](../images/detectors/muting-list.png)
 
 Click on **Resume**{: .label-button .sfx-ui-button-blue} to confirm and resume notifications for this detector.
 
