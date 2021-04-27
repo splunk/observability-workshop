@@ -110,27 +110,11 @@ Set the **Spawn rate** to be 2 and click **Start Swarming**, this will start a g
 
 From the top left hamburger menu, click **Infrastructure → Kubernetes**.
 
-For this we need to know the name of your application environment. In this workshop all the environments use your `{==hostname==}-apm-env`.
-
-To find the hostname, on the AWS/EC2 instance run the following command:
-
-=== "Shell Command"
-
-    ```text
-    echo "Your APM environment is: $(hostname)-apm-env"
-    ```
-
-=== "Output"
-
-    ```text
-    Your APM environment is: whul-apm-env
-    ```
-
 Use the **Cluster** dropdown so select your cluster, you should see the new pods being started and containers being deployed.
 
-Usually it should only take around 1min 30secs for the pods to transition into a Running state. When you click on the new pod in the Splunk UI you should have a cluster that looks like below:
+Usually it should only take around 1min 30secs for the pods to transition into a Running state. When you click on the your cluster in the Splunk UI you should have a view that looks like below:
 
-![back to Cluster](../images/apm/hotrod-k8-navigator.png)
+![back to Cluster](../images/apm/online-boutique-k8s.png)
 
 If you select the **WORKLOADS** tab again you should now see that there are a number of Deployments and ReplicaSets:
 
@@ -140,7 +124,25 @@ Next, we want to validate that you are seeing the APM metrics in the UI.
 
 ---
 
-Now go to **Dashboards → APM Services → Service**.  Please select your environment you found in the previous task then select the frontend service and set time to -15m ()
+Now go to **Dashboards → APM Services → Service**.
+
+For this we need to know the name of your application environment. In this workshop all the environments use: `{==hostname==}-apm-env`.
+
+To find the hostname, on the AWS/EC2 instance run the following command:
+
+=== "Shell Command"
+
+    ```text
+    echo "Your APM environment is: $(hostname)-apm-env"
+    ```
+
+=== "Output Example"
+
+    ```text
+    Your APM environment is: whul-apm-env
+    ```
+
+Please select your environment you found in the previous step then select the frontend service and set time to -15m ()
 
 ![APM Dashboard](../images/apm/online-boutique-service-dashboard.png)
 
@@ -156,13 +158,13 @@ From the top left hamburger menu, click APM, this will bring you to the APM Over
 
 ![select APM](../images/apm/online-boutique-apm.png)
 
-Select the **Explore** on the right hand side and select your environment you found before and set the time to 15 minutes. This will show you the automatically generated Dependency Map for the Online Boutique application.
+Select the **Explore** on the right hand side and select your environment you found before and set the time to 15 minutes. This will show you the automatically generated Dependency/Service Map for the Online Boutique application.
 
 It should look similar to the screenshot below:
 
-![Hot R.O.D. in APM](../images/apm/online-boutique-map.png)
+![Online Boutique in APM](../images/apm/online-boutique-map.png)
 
-The legend at the bottom of the page explains the different visualizations in the Dependency Map.
+The legend at the bottom of the page explains the different visualizations in the Dependency/Service Map.
 
 ![APM Legend](../images/apm/apm-legend.png){: : .shadow .zoom}
 
