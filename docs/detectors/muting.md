@@ -1,10 +1,11 @@
 # Working with Muting Rules - Lab Summary
 
-* Learn how to configure how to mute Alerts
+* Learn how to configure Muting Rules
+* Learn how to resume notifications
   
 ---
 
-## 1. Learn how to configure muting your alerts
+## 1. Configuring Muting Rules
 
 There will be times when you might want to mute certain notifications. For example, if you want to schedule downtime for maintenance on a server or set of servers, or if you are testing new code or settings etc. For that you can use muting rules in Splunk Observability Cloud. Let's create one!
 
