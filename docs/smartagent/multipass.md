@@ -51,7 +51,10 @@ In this section you will build and launch the Multipass instance which will run 
     ```text
     multipass launch \
     --name ${INSTANCE} \
-    --cloud-init cloud-init/k3s.yaml
+    --cloud-init cloud-init/k3s.yaml \
+    --cpus 4 \
+    --mem 4Gb \
+    --disk 20Gb
     ```
 
     Once the instance has been successfully created (this can take several minutes), shell into it.
@@ -78,7 +81,7 @@ In this section you will build and launch the Multipass instance which will run 
         Waiting for cloud-init status...
         Your instance is ready!
 
-        ubuntu@vmpe-k3s:~$
+        ubuntu@vmpe:~$
         ```
 
     Once your instance presents you with the Splunk logo, you have completed the preparation for your Multipass instance and can go directly to  the next lab [Deploy the Smart Agent in K3s](../../smartagent/k3s).
