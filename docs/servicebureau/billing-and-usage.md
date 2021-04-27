@@ -1,6 +1,6 @@
 # Service Bureau - Lab Summary
 
-* How to keep track of the usage of SignalFx in your organization
+* How to keep track of the usage of Observability Cloud in your organization
 * Learn how to keep track of spend by exploring the Billing and Usage interface
 * Creating Teams
 * Adding notification rules to Teams
@@ -8,9 +8,9 @@
 
 ---
 
-## 1. Understanding SignalFx engagement
+## 1. Understanding engagement
 
-To fully understand Observability Cloud engagement inside your organization, click on the hamburger top left and select the **Organizations Settings → Organization Overview**, this will provide you with the following dashboard that shows you how your SignalFx organization is being used:
+To fully understand Observability Cloud engagement inside your organization, click on the hamburger top left and select the **Organizations Settings → Organization Overview**, this will provide you with the following dashboard that shows you how your Observability Cloud organization is being used:
 
 ![Organization overview](../images/servicebureau/engagement.png)
 
@@ -56,13 +56,13 @@ In this example you can see that there are 25 Hosts, 0 Containers and 100 Custom
 
 In the bottom chart, you can see the usage per category for the current period (shown in the drop-down box on the top right of the chart).
 
-The blue line marked **Average Usage** indicates what SignalFx will use to calculate your average usage for the current billing period.
+The blue line marked **Average Usage** indicates what Observability Cloud will use to calculate your average usage for the current billing period.
 
 ![Billing and Usage-Bottom](../images/servicebureau/usage-trends.png)
 
 !!! info
 
-    As you can see from the screenshot, SignalFx does not use High Watermark or P95% for cost calculation but the actual average hourly usage, allowing you to do performance testing or Blue/Green style deployments etc. without the risk of overage charges.
+    As you can see from the screenshot, Observability Cloud does not use High Watermark or P95% for cost calculation but the actual average hourly usage, allowing you to do performance testing or Blue/Green style deployments etc. without the risk of overage charges.
 
 To get a feel for the options you can change the metric displayed by selecting the different options from the **Usage Metric** drop down on the left, or change the the **Billing Period** with the drop down on the right.
 
