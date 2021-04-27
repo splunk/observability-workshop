@@ -69,8 +69,6 @@ write_files:
         echo $INSTANCE > ~/.instance
       fi
       export INSTANCE
-      sed -i 's/\[HOSTNAME\]/'"$INSTANCE"'/' /home/ubuntu/workshop/k3s/values.yaml
-      sed -i 's/\[HOSTNAME\]/'"$INSTANCE"'/' /home/ubuntu/workshop/apm/hotrod/k8s/deployment-otel.yaml
     append: true
 
 runcmd:
