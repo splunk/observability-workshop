@@ -112,8 +112,6 @@ nav:
     - APM<br /><small>30 minutes</small>:
       - APM Architecture Overview: apm/index.md
       - Deploying the Online Boutique: apm/online-boutique.md
-      - Deploying Hot R.O.D. in K3s: apm/hotrod.md
-      - Troubleshooting Hot R.O.D.: apm/hotrod-trouble-timebased.md
     - Service Bureau<br /><small>20 minutes</small>:
         - Billing and Usage : servicebureau/billing-and-usage.md
         - Teams : servicebureau/teams.md
