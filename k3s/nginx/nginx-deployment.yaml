@@ -9,8 +9,6 @@ spec:
   replicas: 4
   template:
     metadata:
-      annotations:
-        agent.signalfx.com/monitorType.80: "collectd/nginx"
       labels:
         app: nginx
     spec:
@@ -18,7 +16,7 @@ spec:
       - name: nginx
         image: nginx:1.17.9
         ports:
-        - containerPort: 80
+        - containerPort: 8082
         volumeMounts:
           - name: config
             mountPath: /etc/nginx/nginx.conf
@@ -35,12 +33,11 @@ metadata:
     app: nginx
   name: nginx
 spec:
-  externalTrafficPolicy: Cluster
+  type: LoadBalancer
   ports:
-  - name: 80-80
-    port: 80
+  - name: http
+    port: 8082
     protocol: TCP
-    targetPort: 80
+    targetPort: 8082
   selector:
     app: nginx
-  type: NodePort
