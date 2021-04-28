@@ -89,8 +89,8 @@ nav:
   - Home: index.md
   - Splunk IMT:
     - Workshop Introduction: smartagent/index.md
-    - Access AWS/EC2 instance: smartagent/connect-info.md
     - Get Data In<br /><small>20 minutes</small>:
+      - Access AWS/EC2 instance: smartagent/connect-info.md 
       - Deploying the OTel Collector: smartagent/k3s.md
       - Deploying and monitoring NGINX : smartagent/nginx.md
     - Dashboards<br /><small>30 minutes</small>:
@@ -110,10 +110,11 @@ nav:
       - Initial Setup: monitoring-as-code/index.md
       - Plan, Apply and Destroy: monitoring-as-code/plan-and-apply.md
   - Splunk APM:
-    - APM<br /><small>30 minutes</small>:
-      - APM Architecture Overview: apm/index.md
+    - Introduction: apm/index.md
+    - Get Traces In<br /><small>15 minutes</small>:
       - Deploying the Online Boutique: apm/online-boutique.md
-      - Using Splunk APM: apm/using-apm.md
+    - Using Splunk APM<br /><small>15 minutes</small>:
+      - Something: apm/using-apm.md
   - Service Bureau:
     - Billing and Usage : servicebureau/billing-and-usage.md
     - Teams : servicebureau/teams.md
