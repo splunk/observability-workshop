@@ -6,11 +6,6 @@ variable "aws_region" {
   description = "Provide the desired region (for example: us-west-2)"
 }
 
-variable "instance_type" {
-  description = "Select instance type required (1 = Hot R.O.D. 2 = Sock Shop)"
-  default     = 1 # Added to set default to Hot ROD as we no longer use Sock Shop
-}
-
 data "aws_ami" "latest-ubuntu" {
   most_recent = true
   owners      = ["099720109477"] # This is the owner id of Canonical who owns the official aws ubuntu images
@@ -25,17 +20,12 @@ data "aws_ami" "latest-ubuntu" {
     values = ["hvm"]
   }
 }
+
 variable "instance_type_aws" {
-  default = {
-    "1" = "t2.xlarge"
-    "2" = "m5.xlarge"
-  }
+  default = "t2.xlarge"
 }
 
 variable "instance_disk_aws" {
-  default = {
-    "1" = "8"
-    "2" = "15"
-  }
+  default = "8"
 }
 
