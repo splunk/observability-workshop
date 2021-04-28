@@ -1,7 +1,7 @@
 # Deploying NGINX in K3s - Lab Summary
 
-* Deploy a NGINX ReplicaSet into your K3s cluster and confirm the auto discovery of your NGINX deployment.
-* Run a benchmark test to create metrics and confirm them streaming into Splunk Observability Cloud!
+* Deploy a NGINX ReplicaSet into your K3s cluster and confirm the discovery of your NGINX deployment.
+* Run a load test to create metrics and confirm them streaming into Splunk Observability Cloud!
 
 ---
 
@@ -71,7 +71,7 @@ Next we will deploy Locust[^2] which is used for creating a load test against NG
     service/nginx-loadgenerator created
     ```
 
-Validate the deployment has been successful and that the NGINX pods are running.
+Validate the deployment has been successful and that the Locust and NGINX pods are running.
 
 If you have the Splunk UI open you should see new Pods being started and containers being deployed.
 
@@ -96,49 +96,31 @@ Let's validate this in your shell as well:
 === "Output"
 
     ```text
-    NAME                     READY   STATUS    RESTARTS   AGE
-    signalfx-agent-7mljv     1/1     Running   0          87m
-    nginx-7554f6c668-pdjkp   1/1     Running   0          65s
-    nginx-7554f6c668-pddfj   1/1     Running   0          65s
-    nginx-7554f6c668-ggblg   1/1     Running   0          65s
-    nginx-7554f6c668-mjtsh   1/1     Running   0          65s
+    NAME                                                          READY   STATUS    RESTARTS   AGE
+    splunk-otel-collector-k8s-cluster-receiver-77784c659c-ttmpk   1/1     Running   0          9m19s
+    splunk-otel-collector-agent-249rd                             1/1     Running   0          9m19s
+    svclb-nginx-vtnzg                                             1/1     Running   0          5m57s
+    nginx-7b95fb6b6b-7sb9x                                        1/1     Running   0          5m57s
+    nginx-7b95fb6b6b-lnzsq                                        1/1     Running   0          5m57s
+    nginx-7b95fb6b6b-hlx27                                        1/1     Running   0          5m57s
+    nginx-7b95fb6b6b-zwns9                                        1/1     Running   0          5m57s
+    svclb-nginx-loadgenerator-nscx4                               1/1     Running   0          2m20s
+    nginx-loadgenerator-755c8f7ff6-x957q                          1/1     Running   0          2m20s
     ```
 
 ---
 
-## 3. Run Siege Benchmark
+## 3. Run Locust load test
 
-Use the Siege[^2] Load Testing command to generate some traffic to light up your Splunk NGINX dashboards. First, we need to get the IP address of the cluster and assign to an environment variable and then run the load test:
+Locust is available on port 8080 of the EC2 instance's IP address. Open a new tab in your web browser and go to `http://{==EC2-IP==}:8080/`, you will then be able to see the Locust running.
 
-=== "Shell Command"
+![Locust](../images/smartagent/nginx-locust.png)
 
-    ```base
-    CLUSTER_IP=$(sudo kubectl get svc nginx -n default -o jsonpath='{.spec.clusterIP}')
-    siege -b -r 200 -c 50 --no-parser http://${CLUSTER_IP}/ 1>/dev/null
-    ```
+Set the **Spawn rate** to be 2 and click **Start Swarming**, this will start a gentle continous load on the application.
 
-=== "Output"
+![Locust Statistics](../images/smartagent/nginx-locust-statistics.png)
 
-    ```text
-    ** SIEGE 4.0.5
-    ** Preparing 50 concurrent users for battle.
-    The server is now under siege...
-
-    Transactions:               1000 hits
-    Availability:               100.00 %
-    Elapsed time:               1.17 secs
-    Data transferred:           20.05 MB
-    Response time:              0.02 secs
-    Transaction rate:           854.70 trans/sec
-    Throughput:                 17.14 MB/sec
-    Concurrency:                19.77
-    Successful transactions:    10000
-    Failed transactions:        0
-    Longest transaction:        0.16
-    Shortest transaction:       0.01
-    ```
-
-Validate you are seeing metrics in the UI by going to **Dashboards → NGINX → NGINX Servers**. Using the **Overrides** filter on `kubernetes_cluster:`, find the name of your cluster as returned by `echo $(hostname)-k3s-cluster` in the terminal.
+Validate you are seeing metrics in the UI by going to hamburger icon, top let and select **Dashboards → NGINX → NGINX Servers**. Using the **Overrides** filter on `kubernetes_cluster:`, find the name of your cluster as returned by `echo $(hostname)-k3s-cluster` in the terminal.
 
 ![NGINX Dashboard](../images/smartagent/nginx-dashboard.png)
 
