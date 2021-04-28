@@ -8,23 +8,33 @@
 * Introduction to SignalFlow
 
 ---
+## 1. Goal of the Chart & Dashboard section
 
-## 1. Introduction to the Observability Suite UI
+ During this section we are going to create the following charts and dashoard and connect it to your Teams page.. 
 
-Logon to the Organization you have been invited to.
+![Example Dashboard](../images/dashboards/M-Dashboard-Example.png)
 
-You can find all the dashboards from the top left hamburger menu  ![Hamburger-menu](../images/dashboards/Hamburgermenu.png)   then selecting **Dashboards** from the side menu. 
+---
+## 2. Getting to your Teams' Page
+
+Logon to the Organization you have been invited to. and visit your teams landing page.
+You can find this by going to the top left hamburger menu ![Hamburger-menu](../images/dashboards/Hamburgermenu.png) then selecting **Dashboards** from the side menu. 
 
 ![Team Dashboard0](../images/dashboards/M-Dashboards-0.png)
 
-This will bring you to your teams dashboard, We use the team Observability as an example here . 
+This will bring you to your teams dashboard, we use the team ***Observability*** as an example here. The one  in your workshop will likely be different.
 
 ![Team Dashboard1](../images/dashboards/M-Dashboards-1.png)
 
-It shows the total number of team members, how many alerts are there for your team and all dashboards that are assigned to your team.
+This page shows the total number of team members, how many alerts are there outstanding for your team and all dashboards that are assigned to your team.
+
+Right now they are no dashboards assigned but as stated before, we will add the new dashboard that you will create to your Teams's Page later.
+
+---
+## 3.  Taking a quick tour though the dahboards & charts Samples
 
 To continue, click on **All Dashboards** on the top right corner of the screen.
-This brings you to the a view that shows  all the available  dashboards, included the prebuilt ones 
+This brings you to the a view that shows all the available dashboards, included the prebuilt ones 
 
 ![Dashboards2](../images/dashboards/M-Dashboards-2.png)
 
@@ -34,19 +44,13 @@ Among the dashboards you will see a Dashboard group called **Sample Data**. Let'
 
 ---
 
-## 2. Inspecting the Sample Data
+## 4. Inspecting the Sample Data
 
-In this dashboard view expand the **Sample Data** dashboard group by clicking on it, and then click on the **Intro to SignalFx** dashboard.
+In this dashboard view expand the **Sample Data** dashboard group by clicking on it, and then click on the **Sample Charts** dashboard.
 
-![Sample Data-1](../images/dashboards/M-Dashboards-3.png)
-
-You will see a selection of sample charts. To learn more about charts you can click on the other sample dashboards (**PART 1**, **PART 2** and **PART 3**).
-
-Let's take a look at the Sample charts.
-
-Click on the **SAMPLE CHARTS** dashboard name.
-
-![Sample Data-2](../images/dashboards/M-Dashboards-4.png)
+![Sample Data-2](../images/dashboards/M-Dashboards-3.png)
 
 In the Sample Charts dashboard you can see a selection of charts that show a sample of the various styles, colors and formats you can apply to your charts in the dashboards.
+
+![Sample Data-2](../images/dashboards/M-Dashboards-4.png)
 
