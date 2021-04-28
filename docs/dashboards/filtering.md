@@ -1,4 +1,4 @@
-# Using Filters
+# Using Filters & Formula's
 
 ---
 
@@ -41,7 +41,7 @@ For info on the **Percentile** function and the other functions see [Analytics r
 
 ---
 
-## 2. Using Timeshift analytical function
+## 3. Using Timeshift analytical function
 
 Let's now compare with older metrics. Click on **`...`** and then on **Clone** in the dropdown to clone Signal **A**.
 
@@ -63,14 +63,25 @@ Click on **Close**.
 
 We now see plots for Signal **A** (the past 15 minutes) as a blue plot, and the plots from a week ago in pink.
 
-![Chart](../images/dashboards/M-Filter-7.png)
-
 In order to make this clearer we can click on the **Area chart** icon to change the visualization.
 
 ![Area Chart](../images/dashboards/M-Filter-8.png)
 
-We now have a better view of our two plots!
+We now can see when last weeks latency was higher!
 
 Next, click into the field next to **Time** on the Override bar and choose **`Past Hour`** from the dropdown.
 
 ![Timeframe](../images/dashboards/M-Filter-9.png)
+
+---
+
+## 4. Using Formulas
+Let's now plot the difference of all metric values for a day with 7 days in between.
+
+Click on **Enter Formula**{: .label-button .sfx-ui-button-blue} then enter **`A-B`** (A minus B) and hide (deselect) all Signals using the eye, except **C**.
+
+![Formulas](../images/dashboards/M-Filter-11.png)
+
+We now see only the difference of all metric values of **A** and **B** being plotted. We see that we have some negative values on the plot because a metric value of **B** has some times larger value than the metric value of **A** at that time.
+
+Lets Save this chart to our Dashboard!

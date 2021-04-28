@@ -97,12 +97,9 @@ nav:
       - Introduction: dashboards/index.md
       - Editing charts: dashboards/editing.md
       - Saving charts: dashboards/savingcharts.md
-      - Using filters: dashboards/filtering.md
-      - Using formulas: dashboards/formulas.md
-      - Using overlays: dashboards/overlay.md
+      - Using filters & formulas: dashboards/filtering.md
+      - Add more charts: dashboards/dashboarding.md
       - SignalFlow: dashboards/signalflow.md
-      - Adding charts: dashboards/adding-charts.md
-      - Integration to Splunk: dashboards/datalinks.md
     - Detectors<br /><small>15 minutes</small>:
       - Creating a Detector: detectors/detectors.md
       - Creating a Muting Rule: detectors/muting.md
