@@ -87,12 +87,12 @@ plugins:
 
 nav:
   - Home: index.md
-  - Infrastructure & APM:
+  - Splunk IMT:
     - Workshop Introduction: smartagent/index.md
     - Access AWS/EC2 instance: smartagent/connect-info.md
     - Get Data In<br /><small>20 minutes</small>:
-      - Deploy the agent in K3s: smartagent/k3s.md
-      - Deploy NGINX in K3s : smartagent/nginx.md
+      - Deploying the OTel Collector: smartagent/k3s.md
+      - Deploying and monitoring NGINX : smartagent/nginx.md
     - Dashboards<br /><small>30 minutes</small>:
       - Introduction: dashboards/index.md
       - Editing charts: dashboards/editing.md
@@ -109,15 +109,16 @@ nav:
     - Monitoring as Code<br /><small>10 minutes</small>:
       - Initial Setup: monitoring-as-code/index.md
       - Plan, Apply and Destroy: monitoring-as-code/plan-and-apply.md
+  - Splunk APM:
     - APM<br /><small>30 minutes</small>:
       - APM Architecture Overview: apm/index.md
       - Deploying the Online Boutique: apm/online-boutique.md
       - Using Splunk APM: apm/using-apm.md
-    - Service Bureau<br /><small>20 minutes</small>:
-        - Billing and Usage : servicebureau/billing-and-usage.md
-        - Teams : servicebureau/teams.md
-        - Control Usage: servicebureau/tokens.md
-  - On-Call:
+  - Service Bureau:
+    - Billing and Usage : servicebureau/billing-and-usage.md
+    - Teams : servicebureau/teams.md
+    - Control Usage: servicebureau/tokens.md
+  - Splunk On-Call:
     - Getting Started<br /><small>45 minutes</small>:
       - Initial Setup: oncall/getting_started/index.md
       - User Profile: oncall/getting_started/user_profile.md
