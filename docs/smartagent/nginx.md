@@ -56,6 +56,21 @@ Then create the deployment:
     service/nginx created
     ```
 
+Next we will deploy Locust[^2] which is used for creating a load test against NGINX:
+
+=== "Shell Command"
+
+    ```
+    sudo kubectl create -f locust-deployment.yaml
+    ```
+
+=== "Output"
+
+    ```
+    deployment.apps/nginx-loadgenerator created
+    service/nginx-loadgenerator created
+    ```
+
 Validate the deployment has been successful and that the NGINX pods are running.
 
 If you have the Splunk UI open you should see new Pods being started and containers being deployed.
@@ -129,4 +144,4 @@ Validate you are seeing metrics in the UI by going to **Dashboards → NGINX →
 
 [^1]: A ConfigMap is an API object used to store non-confidential data in key-value pairs. Pods can consume ConfigMaps as environment variables, command-line arguments, or as configuration files in a volume. A ConfigMap allows you to decouple environment-specific configuration from your container images, so that your applications are easily portable.
 
-[^2]: [What is Siege?](https://github.com/JoeDog/siege){: target=_blank}
+[^2]: [What is Locust?](https://locust.io/){: target=_blank}
