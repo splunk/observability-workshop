@@ -12,7 +12,7 @@ By the end of this technical workshop you will have a good understanding of some
 
 Here are the instructions on how to access you pre-configured [AWS/EC2 instance](../smartagent/connect-info/)
 
-![Splunk Architecture](../images/smartagent/architecture.png)
+![Splunk Architecture](../images/otel/architecture.png)
 
 [^1]: [Kubernetes](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/) is a portable, extensible, open-source platform for managing containerized workloads and services, that facilitates both declarative configuration and automation.
 [^2]: The OpenTelemetry Collector offers a vendor-agnostic implementation on how to receive, process and export telemetry data. In addition, it removes the need to run, operate and maintain multiple agents/collectors in order to support open-source telemetry data formats (e.g. Jaeger, Prometheus, etc.) sending to multiple open-source or commercial back-ends.

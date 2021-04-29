@@ -19,7 +19,7 @@ Search for your AWS/EC2 instance by looking for your first  and last name name, 
 You find the IP address, the SSH command (for Mac OS, Linux and the latest Windows versions) and the password to use to connect to the workshop instance.
 
 
-It also has the Browser Access URL that you can use in case you cannot connect via ssh or putty - see [EC2 access via Web browser](../../smartagent//smartagent/connect-info/#web-browser-all)
+It also has the Browser Access URL that you can use in case you cannot connect via ssh or putty - see [EC2 access via Web browser](../connect-info/#web-browser-all)
 
 !!! important
     Please use SSH or Putty  to gain acess to your EC2 instance if possible and
@@ -43,7 +43,7 @@ Upon successful login you will be presented with the Splunk logo and the Linux p
 
 ![ssh connected](../images/intro/ssh-3.png)
 
-At this point you are ready to continue and [start the workshop](../../smartagent/k3s/)
+At this point you are ready to continue and [start the workshop](../../otel/k3s/)
 
 ---
 
@@ -72,7 +72,7 @@ Once you are connected successfully you should see a screen similar to the one b
 
 ![putty-4](../images/intro/putty-loggedin.png)
 
-At this point you are ready to continue and [start the workshop](../../smartagent/k3s/)
+At this point you are ready to continue and [start the workshop](../../otel/k3s/)
 
 ---
 
@@ -120,12 +120,12 @@ Paste the text in the text box as show, then press **OK** to complete the copy a
 
  ![web reconnect](../images/intro/shellinabox-reconnect.png)
 
-At this point you are ready to continue and [start the workshop](../../smartagent/k3s/)
+At this point you are ready to continue and [start the workshop](../../otel/k3s/)
 
 ---
 
 ## Multipass (final option)
 
-If you are unable to access AWS, but you can install software locally, follow the instructions for [using Multipass](../../smartagent/multipass).
+If you are unable to access AWS, but you can install software locally, follow the instructions for [using Multipass](../../otel/multipass).
 
 [^1]: [Download Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/)

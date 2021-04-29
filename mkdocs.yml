@@ -88,11 +88,11 @@ plugins:
 nav:
   - Home: index.md
   - Splunk IMT:
-    - Workshop Introduction: smartagent/index.md
+    - Workshop Introduction: otel/index.md
     - Get Data In<br /><small>20 minutes</small>:
-      - Access AWS/EC2 instance: smartagent/connect-info.md 
-      - Deploying the OTel Collector: smartagent/k3s.md
-      - Deploying and monitoring NGINX : smartagent/nginx.md
+      - Access AWS/EC2 instance: otel/connect-info.md 
+      - Deploying the OTel Collector: otel/k3s.md
+      - Deploying and monitoring NGINX : otel/nginx.md
     - Dashboards<br /><small>30 minutes</small>:
       - Introduction: dashboards/index.md
       - Editing charts: dashboards/editing.md

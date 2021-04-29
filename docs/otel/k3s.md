@@ -13,13 +13,13 @@ You can find your Access Token from the top left hamburger menu then selecting *
 
 Expand the **Default** token, then click on **Show Token** to expose your token. Click the **Copy**{: .label-button  .sfx-ui-button-grey} button to copy to clipboard.
 
-![Access Token](../images/smartagent/access-token.png)
+![Access Token](../images/otel/access-token.png)
 
 You will also need to obtain the name of the Realm[^2] for your Splunk account.  From the hamburger menu, click on your name and select **Account Settings**.
 
 The Realm can be found in the middle of the page within the Organizations section.  In this example it is `us0`.
 
-![Realm](../images/smartagent/realm.png)
+![Realm](../images/otel/realm.png)
 
 ---
 
@@ -53,16 +53,7 @@ Install the Smart Agent Helm chart with the following commands, do **NOT** edit 
 === "OpenTelemetry Collector"
 
     ```
-    helm install splunk-otel-collector \
-    --set="splunkRealm=$REALM" \
-    --set="splunkAccessToken=$ACCESS_TOKEN" \
-    --set="clusterName=$(hostname)-k3s-cluster" \
-    --set="logsEnabled=false" \
-    --set="image.otelcol.repository=quay.io/signalfx/splunk-otel-collector" \
-    --set="image.otelcol.tag=0.24.3" \
-    --set="environment=$(hostname)-apm-env" \
-    splunk-otel-collector-chart/splunk-otel-collector \
-    -f ~/workshop/k3s/otel-collector.yaml
+    n
     ```
 
 === "Smart Agent"
@@ -137,7 +128,7 @@ Ensure the status is reported as Running before continuing.
         
     Use the port reported to connect from desktop e.g. `http://node_ip:36143/debug/tracez`
 
-    ![zpages](../images/smartagent/zpages.png)
+    ![zpages](../images/otel/zpages.png)
     
 Ensure there are no errors by tailing the logs from the OpenTelemetry Collector/Smart Agent Pod. Output should look similar to the log output shown in the Output tabs below.
 
@@ -222,7 +213,7 @@ Use the label set by the `helm` install to tail logs (You will need to press ++c
 
 In the Splunk UI, goto **Infrastructure → Kubernetes** to open the Kubernetes Navigator Cluster Map to ensure metrics are being sent in.
 
-![Selecting the Kubernetes Navigator Map](../images/smartagent/clustermap-nav.png)
+![Selecting the Kubernetes Navigator Map](../images/otel/clustermap-nav.png)
 
 ---
 
@@ -234,15 +225,15 @@ Validate that your cluster is discovered and reporting by finding your cluster (
     echo $(hostname)-k3s-cluster
     ```
 
-![K8S Clusters Filter](../images/smartagent/selecting-k3s-cluster.png)
+![K8S Clusters Filter](../images/otel/selecting-k3s-cluster.png)
 
-To examine the health of your node, first click on the blue cross ![blue cross](../images/smartagent/blue-cross.png) on your cluster.
+To examine the health of your node, first click on the blue cross ![blue cross](../images/otel/blue-cross.png) on your cluster.
 
 This will drill down to the node level.  Next, open the side bar by clicking on the side bar button to open the Metrics side bar.
 
 Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: CPU, Memory, Network, Events etc.
 
-![Sidebar metrics](../images/smartagent/explore-metrics.png)
+![Sidebar metrics](../images/otel/explore-metrics.png)
 
 [^1]: Access Tokens (sometimes called Org Tokens) are long-lived organization-level tokens. By default, these tokens persist for 5 years, and thus are suitable for embedding into emitters that send data points over long periods of time, or for any long-running scripts that call the Splunk API.
 

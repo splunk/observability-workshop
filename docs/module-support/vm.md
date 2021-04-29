@@ -18,11 +18,11 @@ Use `multipass` to create a vanilla Ubuntu VM and shell into it. You can also us
 
 You will need to obtain your Access Token from the Splunk UI. You can find your Access Token by clicking on your profile icon on the top right of the Splunk UI. Then select _**Organization Settings → Access Tokens**_. Expand the Default token, then click on _**Show Token**_ to expose your token. Later in the lab you can come back here and click the _**Copy**_ button which will copy it to your clipboard so you can paste it when you need to provide an access token in the lab.
 
-![Access Token](../images/smartagent/access-token.png)
+![Access Token](../images/otel/access-token.png)
 
 You will also need to obtain the name of the Realm for your SignalFx account. Click on the profile icon again, but this time select 'My Profile'. The Ream can be found in the middle of the page within the Organizations section. In this example it is `us1`.
 
-![Realm](../images/smartagent/realm.png)
+![Realm](../images/otel/realm.png)
 
 ---
 
@@ -79,19 +79,19 @@ Once the installation is complete check the status of the agent.
 
 To see the Metrics that the Smart Agent is sending to SignalFx, please goto the Splunk UI, and select **Infrastructure → Hosts** to see the lists of hosts.
 
-![Goto host](../images/smartagent/M3-hosts.png)
+![Goto host](../images/otel/M3-hosts.png)
 
 Here you see a list of the Nodes that have an Smart Agent installed and are reporting into SignalFx. Make sure you see your Multipass or AWS/EC2 instance in the list of hosts. (The hostname from the previous section)
 
 You can also set a filter for just your instance by selecting the _host:_ attribute, followed by picking the name of your host from the drop down list.
 
-![Filter host ](../images/smartagent/M3-list-of-hosts.png)
+![Filter host ](../images/otel/M3-list-of-hosts.png)
 
 Click on the link to your host from the list, this wil take you to the overview page of your host.
 
 Make sure you have the **SYSTEM METRIC** tab selected. Here you can see various charts that relate to the health of your host, like CPU & Memory Used%, Disk I/O and many more.
 You can also see the list of services running on your host by selecting the **PROCESSES** tab.
 
-![Host Selected](../images/smartagent/M3-host-selected.png)
+![Host Selected](../images/otel/M3-host-selected.png)
 
 Take a moment to explore the various charts and the Processes list.
