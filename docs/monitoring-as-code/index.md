@@ -17,7 +17,7 @@ Remaining in your Multipass or AWS/EC2 instance from the **Smart Agent** module,
     cd ~/signalfx-jumpstart
     ```
 
-The environment variables needed should already be set from [Deploy the Smart Agent in K3s](../../smartagent/k3s/#2-use-helm-to-deploy-agent). If not, create the following environment variables to use in the Terraform steps below
+The environment variables needed should already be set from [Deploy the Smart Agent in K3s](../../otel/k3s/#2-use-helm-to-deploy-agent). If not, create the following environment variables to use in the Terraform steps below
 
 === "Shell Command"
 
