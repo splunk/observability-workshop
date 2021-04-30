@@ -1,15 +1,67 @@
-# Using Formulas
+# Adding Notes and Dashboard Layout
+## 1. Adding Notes
+Often on dashboards it makes sense to place a short "instruction" pane that 
+helps users of a dashboard.
 
-## 1. Plotting differences
+Lets add on now by clicking on the **New Text Note** Button.
 
-Let's now plot the difference of all metric values for a day with 7 days in between.
+![three charts](../images/dashboards/M-MoreCharts-10.png)
+ 
+ This will 
+Splunk is using  Makrdown for this.
+Markdown is a lightweight markup language for creating formatted text using plain-text  often used in Webpages. Splunk uses this to allow you to create Nnformation Notes in dashboards.  
 
-Click on **Enter Formula**{: .label-button .sfx-ui-button-blue} then enter **`A-B`** (A minus B) and hide (deselect) all Signals using the eye, except **C**.
+This includes:
+* Headers. (in various sizes)
+* Emphasis styles
+ lists and Tables
+* Links. Thi can be to other external webpages (documentation for example) or directly to Splunk IMT Dashboards
 
-![Formulas](../images/dashboards/M1-l1-22.png)
+Below is an example of  above Markdown options you can use in your note.
 
-We now see only the difference of all metric values of **A** and **B** being plotted. We see that we have some negative values on the plot because a metric value of **B** has some times larger value than the metric value of **A** at that time.
+=== "Sample Markdown text"
 
-Click on **DATA TABLE** and in that view swipe horizontally along the X axis to see the metric values at different times.
+    ```text
+
+    # h1 Big headings  
+    ###### h6  To small headings
+
+    ##### Emphasis
+
+    **This is bold text**, *This is italic text* , ~~Strikethrough~~
+
+    ##### Lists
+
+    Unordered
+
+    + Create a list by starting a line with `+`, `-`, or `*`
+    - Sub-lists are made by indenting 2 spaces:
+    - Marker character change forces new list start:
+        * Ac tristique libero volutpat at
+        + Facilisis in pretium nisl aliquet
+    * Very easy!
+
+    Ordered
+
+    1. Lorem ipsum dolor sit amet
+    2. Consectetur adipiscing elit
+    3. Integer molestie lorem at massa
+
+    ##### Tables
+
+    | Option | Description |
+    | ------ | ----------- |
+    | data   | path to data files to supply the data that will be passed into templates. |
+    | engine | engine to be used for processing templates. Handlebars is the default. |
+    | ext    | extension to be used for dest files. |
+
+    #### Links
+
+    [link to webpage](https://www.splunk.com)
+
+    [link to dashboard with title](https://app.eu0.signalfx.com/#/dashboard/EaJHrbPAEAA?groupId=EaJHgrsAIAA&configId=EaJHsHzAEAA"Link to the Sample chart Dashboard!")
+    ```
+Copy the above by using the copy button and paste it in the  *Edit* box.
+the preview will show you how it will look. 
 
 ## 2. Saving our chart

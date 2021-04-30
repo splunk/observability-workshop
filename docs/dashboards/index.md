@@ -31,7 +31,7 @@ This page shows the total number of team members, how many alerts are there outs
 Right now they are no dashboards assigned but as stated before, we will add the new dashboard that you will create to your Teams's Page later.
 
 ---
-## 3.  Taking a quick tour though the dahboards & charts Samples
+## 3.  Taking a quick tour though the Dashboards & Charts Samples
 
 To continue, click on **All Dashboards** on the top right corner of the screen.
 This brings you to the a view that shows all the available dashboards, included the prebuilt ones 
@@ -40,15 +40,11 @@ This brings you to the a view that shows all the available dashboards, included 
 
 If you are already receiving metrics from a Cloud API integration or another service through the Splunk Agent you will see relevant dashboards for these services.
 
-Among the dashboards you will see a Dashboard group called **Sample Data**. Let's take a closer look at it!
-
 ---
 
 ## 4. Inspecting the Sample Data
 
-In this dashboard view expand the **Sample Data** dashboard group by clicking on it, and then click on the **Sample Charts** dashboard.
-
-![Sample Data-2](../images/dashboards/M-Dashboards-3.png)
+Among the dashboards you will see a Dashboard group called **Sample Data**. Expand the **Sample Data** dashboard group by clicking on it, and then click on the **Sample Charts** dashboard.
 
 In the Sample Charts dashboard you can see a selection of charts that show a sample of the various styles, colors and formats you can apply to your charts in the dashboards.
 

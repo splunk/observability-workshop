@@ -1,23 +1,60 @@
 # Adding charts to dashboards
 
-Let's now save our chart. Click on **Save as...**{: .label-button .sfx-ui-button-blue} and enter a name for your chart; use your initials like **`[YOUR INITIALS] Latency Chart`** and click **OK**.
+Let's now save our chart.
 
-![Save Chart](../images/dashboards/M1-l1-32.png)
+---
+## 1. Saving an open chart to a dashboard
+Check that you have **YOUR_NAME-Dashboard: YOUR_NAME-Dashboard** in the top right corner. 
 
-In the next window, find your email address in the list and select it, then click **Ok**{: .label-button .sfx-ui-button-blue}.
+This means you chart will be saved in this Dashboard.
 
-![Choose Dashboard](../images/dashboards/M1-l1-33.png)
+Name the Chart **Latency History**  and add a Chart Description if you wish.
 
-You will immediately be transported to the dashboard created under your selected group (make sure the group name on the top left is your email address).
+![Save Chart 1](../images/dashboards/M-MoreCharts-1.png)
 
-Last but not least, change the dashboard's name, by clicking the `...` icon on the top right and selecting **Rename**.
+Click on **Save And Close**{: .label-button .sfx-ui-button-blue}. This returns you to your dashboard that now has two charts!
 
-![Rename Dashboard](../images/dashboards/M1-l1-34.png)
+![Save Chart 2](../images/dashboards/M-MoreCharts-2.png)
+Now lets quickly add an other Chart based on the previous one.
 
-Enter a new name for your dashboard and click on **Done**{: .label-button .sfx-ui-button-blue}.
+---
 
-![Dashboard Info](../images/dashboards/M1-l1-35.png)
+## 2. Copy and Paste an existing chart
+Click on the three dots **`...`** on the **Latency History** chart in your dashboard and then on **Copy** 
+![Copy chart](../images/dashboards/M-MoreCharts-3.png)
 
-Congratulations! You have created your first chart and dashboard!
+You  see the chart being copied, and  you should now have a red circle with a white 1 next to the **+** on the top left of the page. 
 
-![Chart](../images/dashboards/M1-l1-36.png)
+Click on the ![red one](../images/dashboards/M-MoreCharts-4.png) at the top of the page, and then in the menu on *Paste Charts* (There should also be a red dot with a 1 visible at the end of the line).
+
+![Past charts](../images/dashboards/M-MoreCharts-5.png)
+
+This will place a copy of the previous chart in your dashboard.
+
+![Three Dashboard](../images/dashboards/M-MoreCharts-6.png)
+
+---
+
+## 3. Edit the pasted chart
+Click on the three dots **`...`** on on of the **Latency History** charts in your dashboard and then on **Open** (or you can click on the name of the chart which here is **Latency History**).
+
+This will bring you to the editor environement again.
+
+First set the time for the chart to -1 hour in the Time box at the top right of the chart. Then to make this a different chart, click on the eye icon in front of signal "*A*" to make it visible again, and then hide signal "*C*" via the eye icon nd  change the name for *Latency history* to **Latency vs Load**. 
+
+![Set Visibility](../images/dashboards/M-MoreCharts-7.png)
+
+Click on the **Add Metric Or Event**{: .label-button .sfx-ui-button-blue} button.  this will bring up the box  for a new signal. Type and select ***demo.trans.count***  for Signal **D**.
+
+![Dashboard Info](../images/dashboards/M-MoreCharts-8.png)
+
+This will add a new Signal **D** to your chart, It shows the number of active request active. Add the filter for the *demo_datacenter:Paris*.
+then change the Rollup type by clicking on **Delta Rollup** (or clicking on the cog icon) 
+
+![rollup change](../images/dashboards/M-MoreCharts-9.png)
+
+When the visualisation pane opens. change the  Rollup  dropdown to  **Rollup:Rate/sec*** then when it changes to the chart below, make sure you have changed the name to **Latency vs load**  and press  the  **Save And Close**{: .label-button .sfx-ui-button-blue} button. This returns you to your dashboard that now has three different charts!
+
+![three charts](../images/dashboards/M-MoreCharts-10.png)
+
+Lets add an "instruction" note  and arrange the charts!

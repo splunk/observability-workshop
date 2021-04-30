@@ -98,8 +98,9 @@ nav:
       - Editing charts: dashboards/editing.md
       - Saving charts: dashboards/savingcharts.md
       - Using filters & formulas: dashboards/filtering.md
-      - Add more charts: dashboards/dashboarding.md
       - SignalFlow: dashboards/signalflow.md
+      - Adding more charts: dashboards/adding-charts.md
+      - Notes and layout: dashboards/dashboarding.md
     - Detectors<br /><small>15 minutes</small>:
       - Creating a Detector: detectors/detectors.md
       - Creating a Muting Rule: detectors/muting.md

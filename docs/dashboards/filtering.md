@@ -84,4 +84,4 @@ Click on **Enter Formula**{: .label-button .sfx-ui-button-blue} then enter **`A-
 
 We now see only the difference of all metric values of **A** and **B** being plotted. We see that we have some negative values on the plot because a metric value of **B** has some times larger value than the metric value of **A** at that time.
 
-Lets Save this chart to our Dashboard!
+Lets look at the Signalflow that drives our Charts and Detectors!
