@@ -53,7 +53,16 @@ Install the Smart Agent Helm chart with the following commands, do **NOT** edit 
 === "OpenTelemetry Collector"
 
     ```
-    n
+    helm install splunk-otel-collector \
+    --set="splunkRealm=$REALM" \
+    --set="splunkAccessToken=$ACCESS_TOKEN" \
+    --set="clusterName=$(hostname)-k3s-cluster" \
+    --set="logsEnabled=false" \
+    --set="image.otelcol.repository=quay.io/signalfx/splunk-otel-collector" \
+    --set="image.otelcol.tag=0.24.3" \
+    --set="environment=$(hostname)-apm-env" \
+    splunk-otel-collector-chart/splunk-otel-collector \
+    -f ~/workshop/k3s/otel-collector.yaml
     ```
 
 === "Smart Agent"
