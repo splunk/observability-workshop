@@ -69,10 +69,6 @@ strong.label-button, mark.critic {
     background-color: #0cb9a8;
 }
 
-.label-button.signalfx {
-    background-color: #58a245;
-}
-
 .label-button.apm {
     background-color: #BF1942;
 }

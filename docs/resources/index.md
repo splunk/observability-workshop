@@ -4,8 +4,8 @@ Below are helpful resources about Splunk and the DevOps use case. Topics covered
 
 ## Documentation
 
-* **APM**{: .label-button .signalfx} [O11y Platform Docs](https://docs.signalfx.com/en/latest/){: target=_blank}
-* **APM**{: .label-button .signalfx} [O11y API Docs](https://dev.splunk.com/observability/docs/){: target=_blank}
+* **Observability**{: .label-button .observability} [O11y Platform Docs](https://docs.signalfx.com/en/latest/){: target=_blank}
+* **Observability**{: .label-button .observability} [O11y API Docs](https://dev.splunk.com/observability/docs/){: target=_blank}
 * **On-Call**{: .label-button .victorops} [On-Call Platform Docs](https://help.victorops.com/){: target=_blank}
 * **On-Call**{: .label-button .victorops} [On-Call API Docs](https://portal.victorops.com/public/api-docs.html){: target=_blank}
 
@@ -13,13 +13,13 @@ Below are helpful resources about Splunk and the DevOps use case. Topics covered
 
 * **Observability**{: .label-button .observability} ["TraceInvaders - an OpenTelemetry Video Game"](https://www.linkedin.com/pulse/traceinvaders-opentelemetry-video-game-steve-lerner/)
 * **Observability**{: .label-button .observability} ["Observability Microsite"](http://observability.splunk.com/)
-* **APM**{: .label-button .signalfx} ["How Splunk Does Site Reliability Engineering (SRE)"](https://splk.it/3eKyy46)
+* **APM**{: .label-button .splunk} ["How Splunk Does Site Reliability Engineering (SRE)"](https://splk.it/3eKyy46)
 * **OTEL**{: .label-button .otel} ["OpenTelemetry for Business Continuity"](https://bit.ly/3cyGzHM){: target=_blank}
-* **APM**{: .label-button .signalfx} ["In Observability RED is the new Black"](https://splk.it/2XSoL5e){: target=_blank}
+* **APM**{: .label-button .splunk} ["In Observability RED is the new Black"](https://splk.it/2XSoL5e){: target=_blank}
 * **On-Call**{: .label-button .victorops} ["Alerts to Incident Response in Three Easy Steps"](https://splk.it/307jQjI){: target=_blank}
-* **APM**{: .label-button .signalfx} ["Application Performance Redefined: Meet the New Splunk's Microservices APM"](https://www.splunk.com/en_us/blog/it/application-performance-redefined-meet-the-new-signalfx-microservices-apm.html){: target=_blank}
+* **APM**{: .label-button .splunk} ["Application Performance Redefined: Meet the New Splunk's Microservices APM"](https://www.splunk.com/en_us/blog/it/application-performance-redefined-meet-the-new-signalfx-microservices-apm.html){: target=_blank}
 * **Splunk**{: .label-button .splunk} ["Splunk is Lambda Ready: Announcing a New Partnership with AWS"](https://www.splunk.com/en_us/blog/it/splunk-is-lambda-ready.html){: target=_blank}
-* **APM**{: .label-button .signalfx} ["Supporting APM for .NET Applications"](https://www.splunk.com/en_us/blog/cloud/supporting-apm-for-net-applications.html){: target=_blank}
+* **APM**{: .label-button .splunk} ["Supporting APM for .NET Applications"](https://www.splunk.com/en_us/blog/cloud/supporting-apm-for-net-applications.html){: target=_blank}
 * **OTEL**{: .label-button .otel} ["OpenTelemetry Consolidates Data for Observability"](https://thenewstack.io/opentelemetry-consolidates-data-for-observability/){: target=_blank}
 * **Observability**{: .label-button .observability} ["Using Observability as a Proxy for User Happiness"](https://www.splunk.com/en_us/blog/cloud/using-observability-as-a-proxy-for-customer-happiness.html){: target=_blank}
 
