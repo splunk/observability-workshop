@@ -10,7 +10,7 @@
 ---
 ## 1. Goal of the Chart & Dashboard section
 
- During this section we are going to create the following charts and dashoard and connect it to your Teams page.. 
+ During this section we are going to create the following charts and dashboard and connect it to your Teams page.. 
 
 ![Example Dashboard](../images/dashboards/M-Dashboard-Example.png)
 
@@ -28,7 +28,7 @@ This will bring you to your teams dashboard, we use the team ***Observability***
 
 This page shows the total number of team members, how many alerts are there outstanding for your team and all dashboards that are assigned to your team.
 
-Right now they are no dashboards assigned but as stated before, we will add the new dashboard that you will create to your Teams's Page later.
+Right now they are no dashboards assigned but as stated before, we will add the new dashboard that you will create to your Teams Page later.
 
 ---
 ## 3.  Taking a quick tour though the Dashboards & Charts Samples
