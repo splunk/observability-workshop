@@ -12,6 +12,6 @@ variable "gcp_zone" {
 
 variable "gcp_instance_type" {
   description = "Select instance type required"
-  default     = "n1-standard-1"
+  default     = "n2-highcpu-4"
 }
 
