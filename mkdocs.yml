@@ -2,8 +2,8 @@ site_name: Splunk Observability Cloud Workshop
 site_url: https://signalfx.github.io/observability-workshop/
 site_author: Sales Engineering EMEA
 site_description: >-
-  This workshop is going to take you through the best-in-class observability solution
-  for ingesting, monitoring, visualizing and analyzing data
+  This workshop is going to take you through the best-in-class observability platform
+  for ingesting, monitoring, visualizing and analyzing metrics, traces and spans
 
 repo_url: https://github.com/signalfx/observability-workshop/
 edit_uri: ""
