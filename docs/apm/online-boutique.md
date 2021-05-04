@@ -7,7 +7,7 @@
 
 ---
 
-## 1. Deploy the Online Boutique
+## 1. Deploy Online Boutique
 
 To deploy the Online Boutique application into K3s apply the deployment:
   
@@ -83,7 +83,7 @@ To ensure the Online Boutique application is running:
 
 ---
 
-## 3. Validating in the UI
+## 3. Validate in the UI
 
 From the top left hamburger menu, click **Infrastructure → Kubernetes**.
 
@@ -99,7 +99,7 @@ If you select the **WORKLOADS** tab again you should now see that there are a nu
 
 ---
 
-## 4. Viewing the Online Boutique
+## 4. View Online Boutique
 
 The Online Boutique is viewable on port 81 of the EC2 instance's IP address. The IP address is the one you used to SSH into the instance at the beginning of the workshop.
 
@@ -174,6 +174,8 @@ The legend at the bottom of the page explains the different visualizations in th
 
 Also in this view you can see the overall Error and Latency rates over time charts.
 
-**Bonus Step:** Check the OpenTelemetry Collector dashboards and validate metrics and spans are being sent:
+## 7. Bonus Round
+
+Check the OpenTelemetry Collector dashboards and validate metrics and spans are being sent:
 
 ![OpenTelemetry Collector dashboard](../images/apm/otel-dashboard.png)
