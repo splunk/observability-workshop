@@ -6,7 +6,7 @@
 
 ---
 
-## Find your AWS/EC2 IP Address
+## 1. AWS/EC2 IP Address
 
 In preparation for the workshop, Splunk has prepared an Ubuntu Linux instance in AWS/EC2.
 
@@ -25,7 +25,7 @@ It also has the Browser Access URL that you can use in case you cannot connect v
     Please use SSH or Putty  to gain acess to your EC2 instance if possible and
     make a note of the IP address as you will need this during the workshop.
 
-## SSH (Mac OS/Linux)
+## 2. SSH (Mac OS/Linux)
 
 Most attendees will be able to connect to the workshop by using SSH from their Mac or Linux device.
 
@@ -47,7 +47,7 @@ At this point you are ready to continue and [start the workshop](../../otel/k3s/
 
 ---
 
-## Putty (Windows users only)
+## 3. Putty (Windows)
 
 If you do not have ssh preinstalled or if you are on a Windows system,  the best option is to install putty, you can find [here](https://www.putty.org/){: target=_blank}.
 
@@ -76,7 +76,7 @@ At this point you are ready to continue and [start the workshop](../../otel/k3s/
 
 ---
 
-## Web Browser (All)
+## 4. Web Browser (All)
 
 If you are blocked from using SSH (Port 22) or unable to install Putty you may be able to connect to the workshop instance by using a web browser.
 
@@ -94,10 +94,6 @@ Once connected, login in as **ubuntu** and the password is the one provided in t
 Once you are connected successfully you should see a screen similar to the one below:
 
 ![web login](../images/intro/shellinabox-login.png)
-
----
-
-### Copy & Paste in browser
 
 Unlike when you are using regular SSH, *copy and paste* does require a few extra steps to complete when using a browser session. This is due to cross browser restrictions.
 
@@ -124,7 +120,7 @@ At this point you are ready to continue and [start the workshop](../../otel/k3s/
 
 ---
 
-## Multipass (final option)
+## 5. Multipass (All)
 
 If you are unable to access AWS, but you can install software locally, follow the instructions for [using Multipass](../../otel/multipass).
 

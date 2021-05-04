@@ -39,7 +39,6 @@ theme:
   features:
     - navigation.tabs
     - navigation.instant
-    - navigation.sections
     - navigation.top
     - toc.integrate
 
@@ -86,8 +85,9 @@ nav:
   - Home: index.md
   - Splunk IMT:
     - Workshop Introduction: otel/index.md
-    - Get Data In<br /><small>20 minutes</small>:
+    - Initial Setup<br /><small>5 minutes</small>:
       - Access AWS/EC2 instance: otel/connect-info.md 
+    - Get Data In<br /><small>20 minutes</small>:
       - Deploying the OTel Collector: otel/k3s.md
       - Deploying and monitoring NGINX : otel/nginx.md
     - Dashboards<br /><small>30 minutes</small>:
@@ -103,7 +103,6 @@ nav:
       - Creating a Muting Rule: detectors/muting.md
     - Monitoring as Code<br /><small>10 minutes</small>:
       - Plan, Apply and Destroy: monitoring-as-code/index.md
-      #- Plan, Apply and Destroy: monitoring-as-code/plan-and-apply.md
   - Splunk APM:
     - Introduction: apm/index.md
     - Get Traces In<br /><small>15 minutes</small>:
