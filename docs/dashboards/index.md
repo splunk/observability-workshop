@@ -8,14 +8,16 @@
 * Introduction to SignalFlow
 
 ---
-## 1. Goal of the Chart & Dashboard section
+## 1. Dashboards
 
- During this section we are going to create the following charts and dashboard and connect it to your Teams page.. 
+Dashboards are groupings of charts and visualizations of metrics. Well-designed dashboards can provide useful and actionable insight into your system at a glance. Dashboards can be complex or contain just a few charts that drill down only into the data you want to see.
+
+During this module we are going to create the following charts and dashboard and connect it to your Team page.
 
 ![Example Dashboard](../images/dashboards/M-Dashboard-Example.png)
 
 ---
-## 2. Getting to your Teams' Page
+## 2. Your Teams' Page
 
 Logon to the Organization you have been invited to. and visit your teams landing page.
 You can find this by going to the top left hamburger menu ![Hamburger-menu](../images/dashboards/Hamburgermenu.png) then selecting **Dashboards** from the side menu. 
@@ -31,7 +33,7 @@ This page shows the total number of team members, how many alerts are there outs
 Right now they are no dashboards assigned but as stated before, we will add the new dashboard that you will create to your Teams Page later.
 
 ---
-## 3.  Taking a quick tour though the Dashboards & Charts Samples
+## 3. Sample Charts
 
 To continue, click on **All Dashboards** on the top right corner of the screen.
 This brings you to the a view that shows all the available dashboards, included the prebuilt ones 
