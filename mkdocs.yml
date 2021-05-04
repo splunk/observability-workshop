@@ -99,11 +99,11 @@ nav:
       - Adding more charts: dashboards/adding-charts.md
       - Notes and layout: dashboards/dashboarding.md
     - Detectors<br /><small>15 minutes</small>:
-      - Creating a Detector: detectors/detectors.md
+      - Creating a Detector: detectors/index.md
       - Creating a Muting Rule: detectors/muting.md
     - Monitoring as Code<br /><small>10 minutes</small>:
-      - Initial Setup: monitoring-as-code/index.md
-      - Plan, Apply and Destroy: monitoring-as-code/plan-and-apply.md
+      - Plan, Apply and Destroy: monitoring-as-code/index.md
+      #- Plan, Apply and Destroy: monitoring-as-code/plan-and-apply.md
   - Splunk APM:
     - Introduction: apm/index.md
     - Get Traces In<br /><small>15 minutes</small>:

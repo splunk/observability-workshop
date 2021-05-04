@@ -17,7 +17,7 @@ Remaining in your Multipass or AWS/EC2 instance from the **Smart Agent** module,
     cd ~/signalfx-jumpstart
     ```
 
-The environment variables needed should already be set from [Deploy the Smart Agent in K3s](../../otel/k3s/#2-use-helm-to-deploy-agent). If not, create the following environment variables to use in the Terraform steps below
+The environment variables needed should already be set from [Installation using Helm](../../otel/k3s/#2-installation-using-helm). If not, create the following environment variables to use in the Terraform steps below
 
 === "Shell Command"
 
@@ -77,6 +77,54 @@ Initialize Terraform and upgrade to the latest version of the Splunk Terraform P
     rerun this command to reinitialize your working directory. If you forget, other
     commands will detect it and remind you to do so if necessary.
     ```
+
+## 2. Create an execution plan
+
+Review the execution plan.
+
+=== "Shell Command"
+
+    ```text
+    terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
+    ```
+
+If the plan executes successfully, we can go ahead and apply:
+
+---
+
+## 3. Apply execution plan
+
+=== "Shell Command"
+
+    ```text
+    terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
+    ```
+
+Validate that the detectors were created, under the **Alerts → Detectors**. They will be prefixed by the hostname of your instance. To check the prefix value run:
+
+=== "Shell Command"
+
+    ```text
+    echo $(hostname)
+    ```
+
+ You will see a list of the new detectors and you can search for the prefix that was output from above.
+
+![Detectors](../images/monitoring-as-code/detectors.png)
+
+## 3. Destroy all your hard work
+
+Destroy all Detectors and Dashboards that were previously applied.
+
+=== "Shell Command"
+
+    ```text
+    terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
+    ```
+
+Validate all the detectors have been removed by navigating to _**Alerts → Detectors**_
+
+![Destroyed](../images/monitoring-as-code/destroy.png)
 
 [^1]:
     Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.

@@ -9,13 +9,11 @@
 
 ## 1. Introduction
 
-A detector monitors a signal for conditions or issues that you care about.
+Splunk Observability Cloud uses detectors, events, alerts, and notifications to keep you informed when certain criteria are met. For example, you might want a message sent to a Slack channel or to an email address for the Ops team when CPU Utilization has reached the 95th percentile, or when the number of concurrent users is approaching a limit that might require you to spin up an additional AWS instance.
 
-Those conditions or issues are expressed as one or more rules that trigger an alert when the conditions in the rules are met. Individual rules in a detector are labeled according to criticality: Info, Warning, Minor, Major, and Critical.
+These conditions are expressed as one or more rules that trigger an alert when the conditions in the rules are met. Individual rules in a detector are labeled according to criticality: Info, Warning, Minor, Major, and Critical.
 
-For example, a detector that monitors the latency of an API call may go into a critical state when the latency is significantly higher than normal, as defined in the detector rules.
-
-## 2. Create a detector from one of your charts
+## 2. Creating a Detector
 
 In **Dashboards** click on your dashboard group (the one with your email address) and then on the dashboard name where the chart you created in the previous lab resides or search for your previously created dashboard's name, and click on that dashboard's name in the results.
 
@@ -73,7 +71,7 @@ Click on **Proceed to Alert Message**{: .label-button .sfx-ui-button-blue}
 
 ---
 
-## 5. Configuring the alert message
+## 5. Alert message
 
 In **Alert message**, under **Severity** choose **Major**.
 
@@ -92,7 +90,7 @@ Click on **Add Recipient** and then on your email address displayed as the first
 
 ---
 
-## 6. Activating the alert
+## 6. Alert Activation
 
 Click on **Proceed to Alert Activation**{: .label-button .sfx-ui-button-blue}
 
