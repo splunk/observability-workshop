@@ -1,4 +1,5 @@
 # Adding Notes and Dashboard Layout
+
 ## 1. Adding Notes
 Often on dashboards it makes sense to place a short "instruction" pane that 
 helps users of a dashboard.

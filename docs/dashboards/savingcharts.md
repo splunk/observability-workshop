@@ -1,6 +1,6 @@
 # Saving charts
 
-## 1 Creating your own dashboard
+## 1. Creating your own dashboard
 
 To start saving your chart, lets give it a name and description.
 
@@ -44,7 +44,7 @@ You will now be taken to your dashboard like below. You can see at the top right
 
 ---
 
-## 2 Adding your dashboard to the team page
+## 2. Adding dashboards to Team page
 
 It is common practice to link dashboards that are relevant to a Team to a teams page. So lets add your dashboard to the team page for easy acess later.
 
