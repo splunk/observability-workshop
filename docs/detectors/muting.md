@@ -17,15 +17,15 @@ You will see a list of active detectors.
 
 ![Detectors](../images/detectors/detector-list.png)
 
-If you created an detector in **Working with Detectors** you can click on the three dots **`...`** on the far right for that detector; if not, do that for another detector.  
+If you created an detector in **Creating a Detector** you can click on the three dots **`...`** on the far right for that detector; if not, do that for another detector.  
 
-From the drop-down click on **Create Muting Rule...**.
+From the drop-down click on **Create Muting Rule...**
 
 ![Create Muting Rule](../images/detectors/create-muting-rule.png)
 
 In the **Muting Rule** window check **Mute Indefinitely** and enter a reason.
 
-!!! note
+!!! important
     This will mute the notifications permanently until you come back here and un-check this box or resume notifications for this detector.
 
 ![Mute Indefinitely](../images/detectors/mute-indefinitely.png){: .shadow .center}
@@ -38,13 +38,13 @@ Click on **Mute Indefinitely**{: .label-button .sfx-ui-button-blue} to confirm.
 
 ![List muted rule](../images/detectors/alert-muted.png)
 
-You won't be receiving any email notifications from you detector until you resume notifications again. Let's now see how to do that!
+You won't be receiving any email notifications from your detector until you resume notifications again. Let's now see how to do that!
 
 ---
 
 ## 2. Resuming notifications
 
-To Resume notifications, click on **Muting Rules**. You will see the name of the detector you muted notifications for under **Detector** heading.
+To Resume notifications, click on **Muting Rules**, you will see the name of the detector you muted notifications for under **Detector** heading.
 
 ![Resume](../images/detectors/muting-rules-menu.png)
 
