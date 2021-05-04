@@ -6,19 +6,13 @@
 {% block tabs %}
 {{ super() }}
 <style>
-  .md-header {
-    position: initial
-  }
-  .md-main {
-    height: 0px !important;
-  }
   .md-main__inner {
-    margin: 0;
+    margin: 0
   }
   .md-content {
     display: none
   }
-  .tx-container {
+  .mdx-container {
     padding-top: 1rem;
     background: url("../images/background.svg") no-repeat;
     background-position: center bottom;
@@ -29,60 +23,49 @@
     background-color: var(--md-primary-bg-color);
     color: #E20082;
     border-color: var(--md-primary-bg-color);
-    border-radius: .25rem;
+    border-radius: .25rem
   }
   [data-md-color-scheme=light] .tx-hero .md-button--primary {
     background-color: #E20082;
     color: #E20082;
     border-color: var(--md-primary-bg-color);
-    border-radius: .25rem;
+    border-radius: .25rem
   }
-  .tx-hero{
-    margin:0 .8rem;color:var(--md-primary-bg-color)
-  } 
-  .tx-hero h1{
-    margin-bottom:1rem
-  }
-  .tx-hero {
+  .mdx-hero {
     margin: 0 .8rem;
     color: currentColor
   }
-  .tx-hero h1 {
+  .mdx-hero h1 {
     margin-bottom: 1rem;
     color: currentColor;
     font-weight: 700
   }
-  .tx-hero__content {
+  .mdx-hero__content {
     padding-bottom: 6rem
   }
-  .tx-hero .md-button {
+  .mdx-hero .md-button {
     margin-top: .5rem;
     margin-right: .5rem;
     color: var(--md-primary-bg-color);
-    border-radius: .25rem;
+    border-radius: .25rem
   }
-  .tx-hero .md-button:focus,
-  .tx-hero .md-button:hover {
+  .mdx-hero .md-button:focus,
+  .mdx-hero .md-button:hover {
     background-color: #E20082;
     color: #fff;
     border-color: #E20082;
-    border-radius: .25rem;
-  }
-  @media screen and (max-width:30em) {
-    .tx-hero h1 {
-      font-size: 1.4rem
-    }
+    border-radius: .25rem
   }
   @media screen and (min-width:60em) {
     .md-sidebar--secondary {
       display: none
     }
-    .tx-hero {
+    .mdx-hero {
       display: flex;
       align-items: stretch;
       justify-items: space-between
     }
-    .tx-hero__content {
+    .mdx-hero__content {
       max-width: 19rem;
       margin-top: 3.5rem;
       padding-bottom: 14vw
@@ -95,18 +78,19 @@
   }
   .release-tag {
     font-weight: 700;
-    font-size: small;
+    font-size: small
   }
 </style>
-<section class="tx-container">
+<section class="mdx-container">
   <div class="md-grid md-typeset">
-    <div class="tx-hero">
-      <div class="tx-hero__content">
+    <div class="mdx-hero">
+      <div class="mdx-hero__content">
         <h1>End-to-End Observability</h1>
         <h2>Get insights into your applications and infrastructure in real-time with the help of the monitoring, analytics and response tools of the Splunk Observability Cloud</h2>
         <p>{{ config.site_description }}.</p>
-        <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | striptags }}"
-          class="md-button md-button--primary">Get started</a>
+        <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | striptags }}" class="md-button md-button--primary">
+          Get started
+        </a>
         <br />
         <p class="release-tag">Version v{{ config.extra.version }}</p>
       </div>
