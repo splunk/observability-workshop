@@ -1,18 +1,14 @@
 # Controlling Usage - Lab Summary
 
-* Discover how you can restrict usage by creating separate access tokens and set limits.
+* Discover how you can restrict usage by creating separate Access Tokens and set limits.
 
 ## 1. Access Tokens
 
 If you wish to control the consumption of Hosts, Containers, Custom Metrics and High Resolution Metrics, you can create multiple Access Tokens and allocate them to different parts of your organization.
 
-Assuming you are still within the Organization Overview section, simply select the **Access Tokens** tab from the left pane.
+In the UI click on the hamburger top left and select the **Organizations Settings → Access Tokens**
 
-![Select Token](../images/servicebureau/access-tokens-menu.png)
-
-However to get to this section from anywhere click on **Settings** (icon at the top right top of the page) and select **Organizations Settings → Access tokens**
-
-The **Access Tokens** Interface provides an overview of your Allotments in the form of a list of Access Tokens that have been generated. Every Organization will have a **Default** token generated when they are first setup, but there will typically be multiple Tokens configured.
+The **Access Tokens** Interface provides an overview of your allotments in the form of a list of Access Tokens that have been generated. Every Organization will have a **Default** token generated when they are first setup, but there will typically be multiple Tokens configured.
 
 Each Token is unique and can be assigned limits for the amount of Hosts, Containers, Custom Metrics and High Resolution Metrics it can consume.
 
@@ -20,15 +16,15 @@ The **Usage Status** Column quickly shows if a token is above or below its assig
 
 ![New token](../images/servicebureau/access-tokens.png)
 
-### 1.1 Creating a new token
+## 2. Creating a new token
 
 Let create a new token by clicking on  the **New Token**{: .label-button .sfx-ui-button-blue} button. This will provide you with the **Name Your Access Token** dialog.
 
-Enter the new name of the new Token by using your Initials e.g. RWC-Token
+Enter the new name of the new Token by using your Initials e.g. RWC-Token and make sure to tick both **Ingest Token** and **API Token** checkboxes!
 
 ![Name Your token](../images/servicebureau/new-access-token.png){: .shadow}
 
-After you press Ok,  you will be taken back to the **Access Token** UI, here your new token should be present, among the ones created by others.
+After you press **OK**{: .label-button .sfx-ui-button-blue}, you will be taken back to the **Access Token** UI, here your new token should be present, among the ones created by others.
 
 ![full tokenlist](../images/servicebureau/access-token-created.png)
 
@@ -36,21 +32,21 @@ If you have made an error in your naming, want to disable/enable a token or set 
 
 ![Show Menu](../images/servicebureau/manage-access-token.png)
 
-If you made a typo you can use the Rename Token option to correct the name of your token.
+If you made a typo you can use the **Rename Token** option to correct the name of your token.
 
-### 1.2 Disabling a token
+## 3. Disabling a token
 
-If you need to make sure a token cannot be used to send Metrics in you can Disable a token.
+If you need to make sure a token cannot be used to send Metrics in you can disable a token.
 
-Click on the Disable button to Disable the token, this means the token cannot be used for sending in data to SignalFX.
+Click on **Disable** to disable the token, this means the token cannot be used for sending in data to Splunk Observability Cloud.
 
-The line with Your Token should become greyed out to indicate that is has been Disabled as you can see in the screenshot below.
+The line with your token should have become greyed out to indicate that is has been disabled as you can see in the screenshot below.
 
 ![Token disabled](../images/servicebureau/disable-access-token.png)
 
 Go ahead and click on the ellipsis (**...**) menu button to Disable and Enable your token.
 
-### 1.3 Manage token usage limits
+## 4. Manage token usage limits
 
 Now Lets start limiting usage by clicking on Manage Token Limit in the 3 **...** menu.
 
