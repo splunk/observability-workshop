@@ -119,9 +119,9 @@ Locust is available on port 82 of the EC2 instance's IP address. Open a new tab 
 
 Set the **Spawn rate** to be 2 and click **Start Swarming**, this will start a gentle continous load on the application.
 
-![Spawn Rate](../images/apm/spawn-rate.png)
+![Spawn Rate](../images/apm/locust-spawn-rate.png)
 
-![Statistics](../images/apm/statistics.png)
+![Statistics](../images/apm/locust-statistics.png)
 
 ---
 
