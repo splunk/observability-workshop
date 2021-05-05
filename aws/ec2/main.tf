@@ -48,6 +48,13 @@ resource "aws_security_group" "instance" {
   }
 
   ingress {
+    from_port   = 55679
+    to_port     = 55679
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
     from_port   = 6501
     to_port     = 6501
     protocol    = "tcp"
