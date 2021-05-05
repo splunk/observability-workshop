@@ -5,7 +5,7 @@
 
 ---
 
-## 1. Obtain Splunk Access Token
+## 1. Obtain Access Token
 
 You will need to obtain your Access Token[^1] from the Splunk UI once Kubernetes is running.
 
