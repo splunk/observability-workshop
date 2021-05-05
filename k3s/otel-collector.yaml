@@ -11,6 +11,8 @@ otelAgent:
       pipelines:
         metrics:
           receivers:
+            - hostmetrics
+            - kubeletstats
             - receiver_creator
     extensions:
       zpages:
