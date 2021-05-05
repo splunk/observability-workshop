@@ -39,6 +39,8 @@ theme:
   features:
     - navigation.tabs
     - navigation.instant
+    - navigation.sections
+    - navigation.expand
     - navigation.top
     - toc.integrate
 
@@ -88,8 +90,8 @@ nav:
     - Initial Setup<br /><small>5 minutes</small>:
       - Access AWS/EC2 instance: otel/connect-info.md 
     - Get Data In<br /><small>20 minutes</small>:
-      - Deploying the OTel Collector: otel/k3s.md
-      - Deploying and monitoring NGINX : otel/nginx.md
+      - Deploy the OTel Collector: otel/k3s.md
+      - Deploy and monitor NGINX : otel/nginx.md
     - Dashboards<br /><small>30 minutes</small>:
       - Introduction: dashboards/index.md
       - Editing charts: dashboards/editing.md
