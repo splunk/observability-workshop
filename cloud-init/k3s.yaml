@@ -18,6 +18,7 @@ packages:
   - unzip
   - siege
   - shellinabox
+  - lynx
 
 write_files:
  # - path: /etc/environment
