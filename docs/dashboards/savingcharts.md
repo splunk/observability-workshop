@@ -20,7 +20,7 @@ In the **Choose dashboard** dialog, we need to create a new dashboard, click on 
 
 ![Create Dashboard](../images/dashboards/create-dashboard.png)
 
-You will now see the **New DashBoard** Dialog. In here you can give you dashboard a name and desciption, and set **Write Permissions**.
+You will now see the **New Dashboard** Dialog. In here you can give you dashboard a name and desciption, and set **Write Permissions**.
 
 Please use your own name in the following format to give your dashboard a name e.g. **YOUR_NAME-Dashboard**. 
 
