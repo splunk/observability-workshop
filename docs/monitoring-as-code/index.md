@@ -9,7 +9,13 @@
 
 ## 1. Initial setup
 
-Remaining in your Multipass or AWS/EC2 instance from the **Smart Agent** module, change into the `signalfx-jumpstart` directory
+Monitoring as code adopts the same approach as infrastructure as code. You can manage monitoring the same way you do applications, servers, or other infrastructure components.
+
+You can monitoring as code to build out your visualisations, what to monitor, and when to alert, among other things. This means your monitoring setup, processes, and rules can be versioned, shared, and reused.
+
+Full documentation for the Splunk Terraform Provider is available [here](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs).
+
+Remaining in your AWS/EC2 instance, change into the `signalfx-jumpstart` directory
 
 === "Shell Command"
 
@@ -22,14 +28,14 @@ The environment variables needed should already be set from [Installation using 
 === "Shell Command"
 
     ```
-    export ACCESS_TOKEN={==ACCESS TOKEN, from organisation page==}
-    export REALM={==REALM e.g. us1==}
+    export ACCESS_TOKEN=<replace_with_default_access_token>
+    export REALM=<replace_with_splunk_realm>
     ```
 
 Initialize Terraform and upgrade to the latest version of the Splunk Terraform Provider
 
 !!! note "Upgrading the SignalFx Terraform Provider"
-    You will need to run this command each time a new version of the SignalFx Terraform Provider is released. You can track the releases on [GitHub](https://github.com/splunk-terraform/terraform-provider-signalfx/releases){: target=_blank}.
+    You will need to run the command below each time a new version of the Splunk Terraform Provider is released. You can track the releases on [GitHub](https://github.com/splunk-terraform/terraform-provider-signalfx/releases){: target=_blank}.
 
 === "Shell Command"
 
@@ -46,6 +52,7 @@ Initialize Terraform and upgrade to the latest version of the Splunk Terraform P
     - docker in modules/docker
     - gcp in modules/gcp
     - host in modules/host
+    - kafka in modules/kafka
     - kubernetes in modules/kubernetes
     - parent_child_dashboard in modules/dashboards/parent
     - pivotal in modules/pivotal
@@ -54,18 +61,18 @@ Initialize Terraform and upgrade to the latest version of the Splunk Terraform P
     Initializing the backend...
 
     Initializing provider plugins...
-    - Checking for available provider plugins...
-    - Downloading plugin for provider "signalfx" (terraform-providers/signalfx) 4.18.6...
+    - Finding latest version of splunk-terraform/signalfx...
+    - Installing splunk-terraform/signalfx v6.7.3...
+    - Installed splunk-terraform/signalfx v6.7.3 (signed by a HashiCorp partner, key ID 8B5755E223754FC9)
 
-    The following providers do not have any version constraints in configuration,
-    so the latest version was installed.
+    Partner and community providers are signed by their developers.
+    If you'd like to know more about provider signing, you can read about it here:
+    https://www.terraform.io/docs/cli/plugins/signing.html
 
-    To prevent automatic upgrades to new major versions that may contain breaking
-    changes, it is recommended to add version = "..." constraints to the
-    corresponding provider blocks in configuration, with the constraint strings
-    suggested below.
-
-    * provider.signalfx: version = "~> 4.18"
+    Terraform has created a lock file .terraform.lock.hcl to record the provider
+    selections it made above. Include this file in your version control repository
+    so that Terraform can guarantee to make the same selections by default when
+    you run "terraform init" in the future.
 
     Terraform has been successfully initialized!
 
@@ -80,12 +87,24 @@ Initialize Terraform and upgrade to the latest version of the Splunk Terraform P
 
 ## 2. Create an execution plan
 
-Review the execution plan.
+The `terraform plan` command creates an execution plan. By default, creating a plan consists of:
+
+ - Reading the current state of any already-existing remote objects to make sure that the Terraform state is up-to-date.
+ - Comparing the current configuration to the prior state and noting any differences.
+ - Proposing a set of change actions that should, if applied, make the remote objects match the configuration.
+
+The plan command alone will not actually carry out the proposed changes, and so you can use this command to check whether the proposed changes match what you expected before you apply the changes
 
 === "Shell Command"
 
     ```text
     terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
+    ```
+
+=== "Example Output"
+
+    ```
+    Plan: 92 to add, 0 to change, 0 to destroy.
     ```
 
 If the plan executes successfully, we can go ahead and apply:
@@ -94,13 +113,25 @@ If the plan executes successfully, we can go ahead and apply:
 
 ## 3. Apply execution plan
 
+The `terraform apply` command executes the actions proposed in the Terraform plan above.
+
+The most straightforward way to use `terraform apply` is to run it without any arguments at all, in which case it will automatically create a new execution plan (as if you had run terraform plan) and then prompt you to provide the Access Token, Realm (the prefix defaults to `Splunk`) and approve the plan, before taking the indicated actions. 
+
+Due to this being a workshop it is required that the prefix is to be unique so you need to run the `terraform apply` below.
+
 === "Shell Command"
 
     ```text
     terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
     ```
 
-Validate that the detectors were created, under the **Alerts → Detectors**. They will be prefixed by the hostname of your instance. To check the prefix value run:
+=== "Example Output"
+
+    ```
+    Apply complete! Resources: 92 added, 0 changed, 0 destroyed.
+    ```
+
+Once the apply has completed, validate that the detectors were created, under the **Alerts → Detectors**. They will be prefixed by the hostname of your instance. To check the prefix value run:
 
 === "Shell Command"
 
@@ -114,7 +145,11 @@ Validate that the detectors were created, under the **Alerts → Detectors**. Th
 
 ## 3. Destroy all your hard work
 
-Destroy all Detectors and Dashboards that were previously applied.
+The `terraform destroy` command is a convenient way to destroy all remote objects managed by your Terraform configuration.
+
+While you will typically not want to destroy long-lived objects in a production environment, Terraform is sometimes used to manage ephemeral infrastructure for development purposes, in which case you can use `terraform destroy` to conveniently clean up all of those temporary objects once you are finished with your work.
+
+Now go and destroy all the Detectors and Dashboards that were previously applied!
 
 === "Shell Command"
 
@@ -122,6 +157,12 @@ Destroy all Detectors and Dashboards that were previously applied.
     terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
     ```
 
+=== "Example Output"
+
+    ```
+    Destroy complete! Resources: 92 destroyed.
+    ```
+    
 Validate all the detectors have been removed by navigating to _**Alerts → Detectors**_
 
 ![Destroyed](../images/monitoring-as-code/destroy.png)
