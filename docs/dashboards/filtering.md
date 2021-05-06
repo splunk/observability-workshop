@@ -76,6 +76,7 @@ Next, click into the field next to **Time** on the Override bar and choose **`Pa
 ---
 
 ## 4. Using Formulas
+
 Let's now plot the difference of all metric values for a day with 7 days in between.
 
 Click on **Enter Formula**{: .label-button .sfx-ui-button-blue} then enter **`A-B`** (A minus B) and hide (deselect) all Signals using the eye, except **C**.

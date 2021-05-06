@@ -33,7 +33,7 @@ Click on the **Line** chart type and you will see the line plot.
 
 ![Line Chart](../images/dashboards/M-Editing-3b.png)
 
-## 2. Changing the time window
+## 2. Changing the time window
 
 You can also increase the time window of the chart by changing the time to **Past 15 minutes** by selecting from the **Time** dropdown.
 
@@ -58,4 +58,3 @@ If you move your cursor over the lines in the chart horizontally you will see th
 ---
 
 Now click on **Plot editor** again to close the Data Table and let's save this chart into a dashboard for later use!
-

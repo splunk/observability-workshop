@@ -8,6 +8,7 @@
 * Introduction to SignalFlow
 
 ---
+
 ## 1. Dashboards
 
 Dashboards are groupings of charts and visualizations of metrics. Well-designed dashboards can provide useful and actionable insight into your system at a glance. Dashboards can be complex or contain just a few charts that drill down only into the data you want to see.
@@ -33,7 +34,7 @@ This page shows the total number of team members, how many active alerts for you
 ## 3. Sample Charts
 
 To continue, click on **All Dashboards** on the top right corner of the screen.
-This brings you to the a view that shows all the available dashboards, included the prebuilt ones 
+This brings you to the a view that shows all the available dashboards, included the prebuilt ones.
 
 ![Sample Data](../images/dashboards/sample-data.png)
 

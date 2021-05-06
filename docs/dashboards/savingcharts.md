@@ -8,7 +8,7 @@ To change the description click on **Spread of latency values across time.** and
 
 ![Save Chart](../images/dashboards/save-chart.png)
 
-Click the **Save As**{: .label-button .sfx-ui-button-blue} button. Make sure your chart has a name, it will use the name ** Active Latency** the you defined in the previous step, but you can edit it here if needed.
+Click the **Save As**{: .label-button .sfx-ui-button-blue} button. Make sure your chart has a name, it will use the name **Active Latency** the you defined in the previous step, but you can edit it here if needed.
 
 Press the **Ok**{: .label-button .sfx-ui-button-blue} button to continue.
 
@@ -22,7 +22,7 @@ In the **Choose dashboard** dialog, we need to create a new dashboard, click on 
 
 You will now see the **New Dashboard** Dialog. In here you can give you dashboard a name and desciption, and set **Write Permissions**.
 
-Please use your own name in the following format to give your dashboard a name e.g. **YOUR_NAME-Dashboard**. 
+Please use your own name in the following format to give your dashboard a name e.g. **YOUR_NAME-Dashboard**.
 
 Please replace **YOUR_NAME** with your own name and then remove the tick from the *Anyone in this organization can edit* tick box to set up edit permissions.
 
@@ -36,7 +36,7 @@ Your new dashboard is now availble and selected so you can save your chart in yo
 
 Make sure you have your dashboard selected and press the **Ok**{: .label-button .sfx-ui-button-blue} button.
 
-You will now be taken to your dashboard like below. You can see at the top left that your **YOUR_NAME-DASHBOARD** is part of a Dashboard Group **YOUR_NAME-Dashboard**. You can add other dashboards to this dashboard group, 
+You will now be taken to your dashboard like below. You can see at the top left that your **YOUR_NAME-DASHBOARD** is part of a Dashboard Group **YOUR_NAME-Dashboard**. You can add other dashboards to this dashboard group.
 
 ![New Dashboard Group](../images/dashboards/new-dashboard-group.png)
 
@@ -44,7 +44,7 @@ You will now be taken to your dashboard like below. You can see at the top left 
 
 ## 3. Add to Team page
 
-It is common practice to link dashboards that are relevant to a Team to a teams page. So lets add your dashboard to the team page for easy acess later. Use the top left hamburger menu select **Dashboards** from the side menu again. 
+It is common practice to link dashboards that are relevant to a Team to a teams page. So lets add your dashboard to the team page for easy acess later. Use the top left hamburger menu select **Dashboards** from the side menu again.
 
 This will bring you to your teams dashboard, We use the team ***Observability*** as an example here, the workshop one will be different.  
 

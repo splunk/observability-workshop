@@ -3,8 +3,10 @@
 Let's now save our chart.
 
 ---
+
 ## 1. Save to existing dashboard
-Check that you have **YOUR_NAME-Dashboard: YOUR_NAME-Dashboard** in the top right corner. 
+
+Check that you have **YOUR_NAME-Dashboard: YOUR_NAME-Dashboard** in the top right corner.
 
 This means you chart will be saved in this Dashboard.
 
@@ -20,10 +22,12 @@ Now lets quickly add an other Chart based on the previous one.
 ---
 
 ## 2. Copy and Paste a chart
-Click on the three dots **`...`** on the **Latency History** chart in your dashboard and then on **Copy** 
+
+Click on the three dots **`...`** on the **Latency History** chart in your dashboard and then on **Copy**
+
 ![Copy chart](../images/dashboards/M-MoreCharts-3.png)
 
-You  see the chart being copied, and  you should now have a red circle with a white 1 next to the **+** on the top left of the page. 
+You  see the chart being copied, and  you should now have a red circle with a white 1 next to the **+** on the top left of the page.
 
 Click on the ![red one](../images/dashboards/M-MoreCharts-4.png) at the top of the page, and then in the menu on *Paste Charts* (There should also be a red dot with a 1 visible at the end of the line).
 
@@ -36,11 +40,12 @@ This will place a copy of the previous chart in your dashboard.
 ---
 
 ## 3. Edit the pasted chart
+
 Click on the three dots **`...`** on on of the **Latency History** charts in your dashboard and then on **Open** (or you can click on the name of the chart which here is **Latency History**).
 
 This will bring you to the editor environement again.
 
-First set the time for the chart to -1 hour in the Time box at the top right of the chart. Then to make this a different chart, click on the eye icon in front of signal "*A*" to make it visible again, and then hide signal "*C*" via the eye icon nd  change the name for *Latency history* to **Latency vs Load**. 
+First set the time for the chart to -1 hour in the Time box at the top right of the chart. Then to make this a different chart, click on the eye icon in front of signal "*A*" to make it visible again, and then hide signal "*C*" via the eye icon and change the name for *Latency history* to **Latency vs Load**.
 
 ![Set Visibility](../images/dashboards/M-MoreCharts-7.png)
 
@@ -48,8 +53,7 @@ Click on the **Add Metric Or Event**{: .label-button .sfx-ui-button-blue} button
 
 ![Dashboard Info](../images/dashboards/M-MoreCharts-8.png)
 
-This will add a new Signal **D** to your chart, It shows the number of active request active. Add the filter for the *demo_datacenter:Paris*.
-then change the Rollup type by clicking on **Delta Rollup** (or clicking on the cog icon) 
+This will add a new Signal **D** to your chart, It shows the number of active request active. Add the filter for the *demo_datacenter:Paris* then change the Rollup type by clicking on **Delta Rollup** (or clicking on the cog icon).
 
 ![rollup change](../images/dashboards/M-MoreCharts-9.png)
 
