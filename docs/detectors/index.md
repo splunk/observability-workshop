@@ -15,10 +15,9 @@ These conditions are expressed as one or more rules that trigger an alert when t
 
 ## 2. Creating a Detector
 
-In **Dashboards** click on your dashboard group (the one with your email address) and then on the dashboard name where the chart you created in the previous lab resides or search for your previously created dashboard's name, and click on that dashboard's name in the results.
+In **Dashboards** click on your **Custom Dashboard Group** (that you created in the previous module) and then click on the dashboard name.
 
-![Dashboards](../images/detectors/M1-l2-1.png)
-
+![Custom Dashboard Group](../images/detectors/custom-dashboard-group.png)
 We are now going to create a new detector from this chart.
 
 Once you see the chart, click on the bell icon on your chart and then on **New Detector From Chart**.
@@ -29,7 +28,7 @@ In the text field next to **Detector Name**, **ADD YOUR INITIALS** before the pr
 
 !!! important "Naming the detector"
     It's important that you add your initials in front of the proposed detector name.
-    It should be something like this: **LI's Latency Chart Detector**.
+    It should be something like this: **XYZ's Latency Chart Detector**.
 
 Click on **Create Alert Rule**{: .label-button .sfx-ui-button-blue}
 
