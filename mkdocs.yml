@@ -19,14 +19,12 @@ theme:
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
-
     # Dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
-    #scheme: preference
   favicon: images/favicon.ico
   logo: images/logo.png
   font:
@@ -76,10 +74,8 @@ extra:
   version: 1.60
 
 plugins:
-  - git-revision-date-localized:
-      type: datetime
-      locale: en
   - search
+  - git-revision-date-localized
   - minify:
       minify_html: true
 
