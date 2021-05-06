@@ -4,7 +4,7 @@
 
 To start saving your chart, lets give it a name and description. Click the name of the chart **Copy of Latency Histogram** and rename it to **"Active Latency"**.
 
-To change the description click on **Spread of latency values across time.** and change this to **"Overview of latency values in realtime."** .
+To change the description click on **Spread of latency values across time.** and change this to **Overview of latency values in realtime.**
 
 ![Save Chart](../images/dashboards/save-chart.png)
 
