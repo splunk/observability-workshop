@@ -54,7 +54,7 @@ Use the top left hamburger menu  ![Hamburger-menu](../images/dashboards/Hamburge
 
 This will bring you to your teams dashboard, We use the team **Observability** as an example here, the workshop one will be different.  
 
-![Team Dashboard1](../images/dashboards/M-Dashboards-1.png)
+![Team Dashboard](../images/dashboards/team-dashboard.png)
 
 Press the **+**{: .label-button .sfx-ui-button-blue} *Add Dashboard Group* button to add you dashboard to the team page.
 
