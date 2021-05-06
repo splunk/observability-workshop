@@ -1,6 +1,6 @@
 # Monitoring as Code - Lab Summary
 
-* Use Terraform[^1] to manage Observability Suite Dashboards and Detectors
+* Use Terraform[^1] to manage Observability Cloud Dashboards and Detectors
 * Initialize the Terraform Splunk Provider[^2].
 * Run Terraform to create detectors and dashboards from code using the Splunk Terraform Provider.
 * See how Terraform can also delete detectors and dashboards.
