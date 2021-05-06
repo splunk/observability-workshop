@@ -19,7 +19,7 @@ Let's enter a metric to plot. We are still going to use the metric **`demo.trans
 
 In the **Plot Editor** tab under **Signal** enter **`demo.trans.latency`**.
 
-![Signal](../images/dashboards/M-Editing-7.png)
+![Signal](../images/dashboards/plot-editor.png)
 
 You should now have a familair line chart. please switch the time to 15 mins.
 
