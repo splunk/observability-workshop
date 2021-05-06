@@ -3,7 +3,7 @@
 Let's now save our chart.
 
 ---
-## 1. Saving an open chart to a dashboard
+## 1. Save to existing dashboard
 Check that you have **YOUR_NAME-Dashboard: YOUR_NAME-Dashboard** in the top right corner. 
 
 This means you chart will be saved in this Dashboard.
@@ -19,7 +19,7 @@ Now lets quickly add an other Chart based on the previous one.
 
 ---
 
-## 2. Copy and Paste an existing chart
+## 2. Copy and Paste a chart
 Click on the three dots **`...`** on the **Latency History** chart in your dashboard and then on **Copy** 
 ![Copy chart](../images/dashboards/M-MoreCharts-3.png)
 
