@@ -85,7 +85,7 @@ Initialize Terraform and upgrade to the latest version of the Splunk Terraform P
     commands will detect it and remind you to do so if necessary.
     ```
 
-## 2. Create an execution plan
+## 2. Create execution plan
 
 The `terraform plan` command creates an execution plan. By default, creating a plan consists of:
 
@@ -143,7 +143,7 @@ Once the apply has completed, validate that the detectors were created, under th
 
 ![Detectors](../images/monitoring-as-code/detectors.png)
 
-## 3. Destroy all your hard work
+## 3. Destroy all your hard work!
 
 The `terraform destroy` command is a convenient way to destroy all remote objects managed by your Terraform configuration.
 
