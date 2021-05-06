@@ -105,7 +105,7 @@ Ensure the status is reported as Running before continuing.
     NAME                   READY   STATUS    RESTARTS   AGE
     signalfx-agent-66tvr   1/1     Running   0          7s
     ```
-    
+
 Ensure there are no errors by tailing the logs from the OpenTelemetry Collector/Smart Agent Pod. Output should look similar to the log output shown in the Output tabs below.
 
 Use the label set by the `helm` install to tail logs (You will need to press ++ctrl+c++ to exit). Or use the installed `k9s` terminal UI for bonus points!
@@ -176,7 +176,7 @@ Use the label set by the `helm` install to tail logs (You will need to press ++c
 
 !!! info "Deleting a failed installation"
     If you make an error installing the Smart Agent you can start over by deleting the installation using:
-    
+
     `helm delete signalfx-agent`
 
     For the OpenTelemetry Collector you can delete the installation using:

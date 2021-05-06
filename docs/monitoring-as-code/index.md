@@ -89,9 +89,9 @@ Initialize Terraform and upgrade to the latest version of the Splunk Terraform P
 
 The `terraform plan` command creates an execution plan. By default, creating a plan consists of:
 
- - Reading the current state of any already-existing remote objects to make sure that the Terraform state is up-to-date.
- - Comparing the current configuration to the prior state and noting any differences.
- - Proposing a set of change actions that should, if applied, make the remote objects match the configuration.
+* Reading the current state of any already-existing remote objects to make sure that the Terraform state is up-to-date.
+* Comparing the current configuration to the prior state and noting any differences.
+* Proposing a set of change actions that should, if applied, make the remote objects match the configuration.
 
 The plan command alone will not actually carry out the proposed changes, and so you can use this command to check whether the proposed changes match what you expected before you apply the changes
 
@@ -115,7 +115,7 @@ If the plan executes successfully, we can go ahead and apply:
 
 The `terraform apply` command executes the actions proposed in the Terraform plan above.
 
-The most straightforward way to use `terraform apply` is to run it without any arguments at all, in which case it will automatically create a new execution plan (as if you had run terraform plan) and then prompt you to provide the Access Token, Realm (the prefix defaults to `Splunk`) and approve the plan, before taking the indicated actions. 
+The most straightforward way to use `terraform apply` is to run it without any arguments at all, in which case it will automatically create a new execution plan (as if you had run terraform plan) and then prompt you to provide the Access Token, Realm (the prefix defaults to `Splunk`) and approve the plan, before taking the indicated actions.
 
 Due to this being a workshop it is required that the prefix is to be unique so you need to run the `terraform apply` below.
 
@@ -143,7 +143,7 @@ Once the apply has completed, validate that the detectors were created, under th
 
 ![Detectors](../images/monitoring-as-code/detectors.png)
 
-## 3. Destroy all your hard work!
+## 3. Destroy all your hard work
 
 The `terraform destroy` command is a convenient way to destroy all remote objects managed by your Terraform configuration.
 

@@ -18,7 +18,6 @@ Search for your AWS/EC2 instance by looking for your first  and last name name, 
 
 You find the IP address, the SSH command (for Mac OS, Linux and the latest Windows versions) and the password to use to connect to the workshop instance.
 
-
 It also has the Browser Access URL that you can use in case you cannot connect via ssh or putty - see [EC2 access via Web browser](../connect-info/#web-browser-all)
 
 !!! important
@@ -83,7 +82,7 @@ If you are blocked from using SSH (Port 22) or unable to install Putty you may b
 !!! note
     This assumes that access to port 6501 is not restricted by your company's firewall.
 
-Open your web browser and type **http://X.X.X.X:6501** (where X.X.X.X is the IP address from the Google Sheet).
+Open your web browser and type **http:/x.x.x.x:6501** (where X.X.X.X is the IP address from the Google Sheet).
 
 ![http-6501](../images/intro/shellinabox-url.png)
 
