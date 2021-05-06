@@ -162,7 +162,7 @@ Now go and destroy all the Detectors and Dashboards that were previously applied
     ```
     Destroy complete! Resources: 92 destroyed.
     ```
-    
+
 Validate all the detectors have been removed by navigating to _**Alerts → Detectors**_
 
 ![Destroyed](../images/monitoring-as-code/destroy.png)
@@ -174,4 +174,4 @@ Validate all the detectors have been removed by navigating to _**Alerts → Dete
 
     The infrastructure Terraform can manage includes low-level components such as compute instances, storage, and networking, as well as high-level components such as DNS entries, SaaS features, etc.
 [^2]:
-    A provider is responsible for understanding API interactions and exposing resources. Providers generally are an IaaS (e.g. Alibaba Cloud, AWS, GCP, Microsoft Azure, OpenStack), PaaS (e.g. Heroku), or SaaS services (e.g. SignalFx, Terraform Cloud, DNSimple, Cloudflare).
+    A provider is responsible for understanding API interactions and exposing resources. Providers generally are an IaaS (e.g. Alibaba Cloud, AWS, GCP, Microsoft Azure, OpenStack), PaaS (e.g. Heroku), or SaaS services (e.g. Splunk, Terraform Cloud, DNSimple, Cloudflare).
