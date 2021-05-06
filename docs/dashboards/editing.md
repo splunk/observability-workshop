@@ -45,7 +45,7 @@ Click on the **Data Table** tab.
 
 ![Data Table](../images/dashboards/data-table.png)
 
-You see now all 18 rows, each representing a metics time series with a number of columns. These columns represent the dimensions of the metric. The dimensions for `demo.trans.latency` are:
+You now see 18 rows, each representing a metric time series with a number of columns. These columns represent the dimensions of the metric. The dimensions for `demo.trans.latency` are:
 
 - `demo_datacenter`
 - `demo_customer`
