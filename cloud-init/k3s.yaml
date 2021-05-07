@@ -19,6 +19,7 @@ packages:
   - siege
   - shellinabox
   - lynx
+  - w3m
 
 write_files:
  # - path: /etc/environment
