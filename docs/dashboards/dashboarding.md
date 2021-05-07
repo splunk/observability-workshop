@@ -95,8 +95,7 @@ You can also resize a chart, simply by draggin the side or the bottom.
 
 ![sizing](../images/dashboards/M-Notes-5.png)
 
-As a last excersize  reduce the width of the note chart to about a thirth of the other charts. The chart will automaticly snap to one of the sizes it supports. Widen the 3  other charts to about a third of the Dashboard.
-Drag ythe notes to the left of the others and rezise it to match it to the 23 others.
+As a last exercise reduce the width of the note chart to about a third of the other charts. The chart will automatically snap to one of the sizes it supports. Widen the 3 other charts to about a third of the Dashboard. Drag the notes to the left of the others and resize it to match it to the 23 others.
 
 Set the time to -1 h hour and you should have  the following dahsboard!
 
