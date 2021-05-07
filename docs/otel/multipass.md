@@ -84,6 +84,6 @@ In this section you will build and launch the Multipass instance which will run 
         ubuntu@vmpe:~$
         ```
 
-    Once your instance presents you with the Splunk logo, you have completed the preparation for your Multipass instance and can go directly to  the next lab [Deploy the agent in K3s](../../otel/k3s).
+    Once your instance presents you with the Splunk logo, you have completed the preparation for your Multipass instance and can at this point you are ready to continue and [start the workshop](../../otel/k3s/).
 
 [^1]: Multipass is a lightweight VM manager for Linux, Windows and macOS. It's designed for developers who want a fresh Ubuntu environment with a single command. It uses KVM on Linux, Hyper-V on Windows and HyperKit on macOS to run the VM with minimal overhead. It can also use VirtualBox on Windows and macOS. Multipass will fetch images for you and keep them up to date.

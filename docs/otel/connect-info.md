@@ -115,7 +115,7 @@ Paste the text in the text box as show, then press **OK** to complete the copy a
 
  ![web reconnect](../images/intro/shellinabox-reconnect.png)
 
-At this point you are ready to continue and [start the workshop](../../otel/k3s/)
+At this point you are ready to continue and [start the workshop](../../otel/k3s/).
 
 ---
 
