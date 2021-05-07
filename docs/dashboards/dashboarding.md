@@ -83,7 +83,7 @@ This will bring you back to you Dashboard, that now includes the note
 
 ## 3. Ordering & sizing of charts
 
-If you do not like the default order and sizes of your charts you can simply use windo dragging technique  to move and size them to the desired location
+If you do not like the default order and sizes of your charts you can simply use window dragging technique  to move and size them to the desired location
 
 Grab the **top** border of a chart and you should see the mouse pointer change to a drag icon. You can now simply drag you chart to the desired location.
 
