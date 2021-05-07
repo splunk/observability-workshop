@@ -57,7 +57,7 @@ This will add a new Signal **D** to your chart, It shows the number of active re
 
 ![rollup change](../images/dashboards/M-MoreCharts-9.png)
 
-When the visualisation pane opens. change the  Rollup  dropdown to  **Rollup:Rate/sec*** then when it changes to the chart below, make sure you have changed the name to **Latency vs load**  and press  the  **Save And Close**{: .label-button .sfx-ui-button-blue} button. This returns you to your dashboard that now has three different charts!
+When the visualisation pane opens, change the Rollup dropdown to **Rollup:Rate/sec**, then click into the name field in the top left hand corner and it to **Latency vs load**  and press  the  **Save And Close**{: .label-button .sfx-ui-button-blue} button. This returns you to your dashboard that now has three different charts!
 
 ![three charts](../images/dashboards/M-MoreCharts-10.png)
 
