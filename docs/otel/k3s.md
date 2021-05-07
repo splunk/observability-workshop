@@ -34,23 +34,30 @@ Create the `ACCESS_TOKEN` and `REALM` environment variables to use in the procee
     export REALM=<replace_with_splunk_realm>
     ```
 
-Install the Smart Agent or OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository to Helm and update.
+Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository to Helm and update.
 
-=== "OpenTelemetry Collector"
+=== "Shell Command"
 
     ```
     helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update
     ```
 
-=== "Smart Agent"
+=== "Example Output"
 
     ```
-    helm repo add signalfx https://dl.signalfx.com/helm-repo && helm repo update
+    Using ACCESS_TOKEN=<redacted>
+    Using REALM=eu0
+    "splunk-otel-collector-chart" has been added to your repositories
+    Using ACCESS_TOKEN=<redacted>
+    Using REALM=eu0
+    Hang tight while we grab the latest from your chart repositories...
+    ...Successfully got an update from the "splunk-otel-collector-chart" chart repository
+    Update Complete. ⎈Happy Helming!⎈
     ```
 
-Install the Smart Agent Helm chart with the following commands, do **NOT** edit this:
+Install the OpenTelemetry Collector Helm chart with the following commands, do **NOT** edit this:
 
-=== "OpenTelemetry Collector"
+=== "Shell Command"
 
     ```
     helm install splunk-otel-collector \
@@ -65,33 +72,30 @@ Install the Smart Agent Helm chart with the following commands, do **NOT** edit 
     -f ~/workshop/k3s/otel-collector.yaml
     ```
 
-=== "Smart Agent"
+=== "Example Output"
 
     ```
-    export EXTERNAL_IP=$(curl -s http://checkip.amazonaws.com)
-    helm install \
-    --set signalFxAccessToken=$ACCESS_TOKEN \
-    --set clusterName=$(hostname)-k3s-cluster \
-    --set kubeletAPI.url=https://localhost:10250 \
-    --set signalFxRealm=$REALM  \
-    --set traceEndpointUrl=https://ingest.$REALM.signalfx.com/v2/trace \
-    --set gatherDockerMetrics=false \
-    --set globalDimensions.workshop_external_ip=$EXTERNAL_IP \
-    signalfx-agent signalfx/signalfx-agent \
-    -f ~/workshop/k3s/values.yaml
+    Using ACCESS_TOKEN=<redacted>
+    Using REALM=eu0
+    NAME: splunk-otel-collector
+    LAST DEPLOYED: Fri May  7 11:19:01 2021
+    NAMESPACE: default
+    STATUS: deployed
+    REVISION: 1
+    TEST SUITE: None
     ```
 
 You can monitor the progress of the deployment by running `sudo kubectl get pods` which should typically report a new pod is up and running after about 30 seconds.
 
 Ensure the status is reported as Running before continuing.
 
-=== "Get Pods"
+=== "Shell Command"
 
     ```text
     sudo kubectl get pods
     ```
 
-=== "OpenTelemetry Collector Output"
+=== "Example Output"
 
     ```
     NAME                                                          READY   STATUS    RESTARTS   AGE
@@ -99,24 +103,17 @@ Ensure the status is reported as Running before continuing.
     splunk-otel-collector-k8s-cluster-receiver-6956d4446f-gwnd7   0/1     Running   0          10s
     ```
 
-=== "Smart Agent Output"
-
-    ```
-    NAME                   READY   STATUS    RESTARTS   AGE
-    signalfx-agent-66tvr   1/1     Running   0          7s
-    ```
-
-Ensure there are no errors by tailing the logs from the OpenTelemetry Collector/Smart Agent Pod. Output should look similar to the log output shown in the Output tabs below.
+Ensure there are no errors by tailing the logs from the OpenTelemetry Collector pod. Output should look similar to the log output shown in the Output tab below.
 
 Use the label set by the `helm` install to tail logs (You will need to press ++ctrl+c++ to exit). Or use the installed `k9s` terminal UI for bonus points!
 
-=== "Open Telemetry Collector Log"
+=== "Shell Command"
 
     ```
     sudo kubectl logs -l app=splunk-otel-collector -f
     ```
 
-=== "Open Telemetry Collector Output"
+=== "Example Output"
 
     ```
     2021-03-21T16:11:10.900Z        INFO    service/service.go:364  Starting receivers...
@@ -131,55 +128,8 @@ Use the label set by the `helm` install to tail logs (You will need to press ++c
     2021-03-21T16:11:11.281Z        INFO    k8sclusterreceiver@v0.21.0/receiver.go:75       Completed syncing shared informer caches.       {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
     ```
 
-=== "Smart Agent Log"
-
-    ```text
-    sudo kubectl logs -l app=signalfx-agent -f
-    ```
-
-=== "Smart Agent Output"
-
-    ```text
-    signalfx-agent time="2020-05-27T20:52:10Z" level=info msg="Starting up agent version 5.2.1"                                                                                                     │
-    signalfx-agent time="2020-05-27T20:52:10Z" level=info msg="Watching for config file changes"                                                                                                    │
-    signalfx-agent time="2020-05-27T20:52:10Z" level=info msg="New config loaded"                                                                                                                   │
-    signalfx-agent time="2020-05-27T20:52:10Z" level=info msg="Using log level info"                                                                                                                │
-    signalfx-agent time="2020-05-27T20:52:10Z" level=info msg="Fetching host id dimensions"                                                                                                         │
-    signalfx-agent time="2020-05-27T20:52:10Z" level=info msg="Trying to get fully qualified hostname"                                                                                              │
-    signalfx-agent time="2020-05-27T20:52:10Z" level=info msg="Using hostname sedj"                                                                                                                 │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Using host id dimensions map[host:sedj kubernetes_node_uid:ea3bf9ff-3f04-4485-9702-6e7097b261dd]"                                    │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Sending datapoints to https://ingest.us0.signalfx.com/v2/datapoint"                                                                  │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Sending events to https://ingest.us0.signalfx.com/v2/event"                                                                          │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Sending trace spans to https://ingest.us0.signalfx.com/v2/trace"                                                                     │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Setting cluster:sedj-k3s-cluster property on host:sedj dimension"                                                                    │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Creating new monitor" discoveryRule= monitorID=1 monitorType=cpu                                                                     │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Creating new monitor" discoveryRule= monitorID=2 monitorType=filesystems                                                             │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Creating new monitor" discoveryRule= monitorID=3 monitorType=disk-io                                                                 │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Creating new monitor" discoveryRule= monitorID=4 monitorType=net-io                                                                  │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Creating new monitor" discoveryRule= monitorID=5 monitorType=load                                                                    │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Creating new monitor" discoveryRule= monitorID=6 monitorType=memory                                                                  │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Creating new monitor" discoveryRule= monitorID=7 monitorType=host-metadata                                                           │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Creating new monitor" discoveryRule= monitorID=8 monitorType=processlist                                                             │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Creating new monitor" discoveryRule= monitorID=9 monitorType=vmem                                                                    │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Creating new monitor" discoveryRule= monitorID=10 monitorType=kubelet-stats                                                          │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Creating new monitor" discoveryRule= monitorID=11 monitorType=kubernetes-cluster                                                     │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Creating new monitor" discoveryRule= monitorID=12 monitorType=signalfx-forwarder                                                     │
-    signalfx-agent I0527 20:52:12.796150       1 leaderelection.go:242] attempting to acquire leader lease  default/signalfx-agent-leader...                                                        │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Creating new monitor" discoveryRule= monitorID=13 monitorType=kubernetes-events                                                      │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Done configuring agent"                                                                                                              │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Serving internal metrics at localhost:8095"                                                                                          │
-    signalfx-agent I0527 20:52:12.813288       1 leaderelection.go:252] successfully acquired lease default/signalfx-agent-leader                                                                   │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="K8s leader is now node sedj"                                                                                                         │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="This instance is now the leader and will send events" monitorType=kubernetes-events                                                  │
-    signalfx-agent time="2020-05-27T20:52:12Z" level=info msg="Starting K8s API resource sync"                                                                                                      │
-    ```
-
 !!! info "Deleting a failed installation"
-    If you make an error installing the Smart Agent you can start over by deleting the installation using:
-
-    `helm delete signalfx-agent`
-
-    For the OpenTelemetry Collector you can delete the installation using:
+    If you make an error installing the OpenTelemetry Collector you can start over by deleting the installation using:
 
     `helm delete splunk-otel-collector`
 
