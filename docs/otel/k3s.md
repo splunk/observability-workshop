@@ -159,7 +159,7 @@ Then in the UI, click on the "Cluster: - " menu just below the Splunk Logo, and 
 
 ![Filtered K8S Cluster](../images/otel/filtered-k3s-cluster.png)
 
-To examine the health of your node, first click on the blue cross ![blue cross](../images/otel/blue-cross.png) on your cluster.
+To examine the health of your node, hover over the pale blue background of your cluster, then click on the blue magnifying glass ![Magnifying Glass](../images/otel/blue-cross.png) that appears in the top left hand corner.
 
 This will drill down to the node level.  Next, open the side bar by clicking on the side bar button to open the Metrics side bar.
 
