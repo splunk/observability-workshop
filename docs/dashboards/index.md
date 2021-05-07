@@ -48,6 +48,6 @@ Among the dashboards you will see a Dashboard group called **Sample Data**. Expa
 
 In the Sample Charts dashboard you can see a selection of charts that show a sample of the various styles, colors and formats you can apply to your charts in the dashboards.
 
-Have a look through all the dashboards in this dashboard group (**PART 1**, **PART 2**, **PART 2** and **INTRO TO SIGNALFX**)
+Have a look through all the dashboards in this dashboard group (**PART 1**, **PART 2**, **PART 3** and **INTRO TO SIGNALFX**)
 
 ![Sample Charts](../images/dashboards/sample-charts.png)
