@@ -187,11 +187,11 @@ Use the label set by the `helm` install to tail logs (You will need to press ++c
 
 ## 3. Validate metrics in the UI
 
-In the Splunk UI, goto **Infrastructure → Kubernetes** to open the Kubernetes Navigator Cluster Map to ensure metrics are being sent in.
+In the Splunk UI, from the hamburger menu top left click on **Infrastructure**.
 
 ![Selecting the Kubernetes Navigator Map](../images/otel/clustermap-nav.png)
 
----
+Under **Containers** click on **Kubernetes** to open the Kubernetes Navigator Cluster Map to ensure metrics are being sent in.
 
 Validate that your cluster is discovered and reporting by finding your cluster (in the workshop you will see many other clusters). To find your cluster name run the following command and copy the output to your clipboard:
 
