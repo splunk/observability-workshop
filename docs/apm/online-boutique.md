@@ -174,8 +174,44 @@ The legend at the bottom of the page explains the different visualizations in th
 
 Also in this view you can see the overall Error and Latency rates over time charts.
 
-## 7. Bonus Round
+## 7. OpenTelemetry Dashboard
 
 Check the OpenTelemetry Collector dashboards and validate metrics and spans are being sent:
 
 ![OpenTelemetry Collector dashboard](../images/apm/otel-dashboard.png)
+
+## 8. OpenTelemetry zpages
+
+To debug the traces being sent you can use the `zpages` extension. In order to view this first find the pod name of the OpenTelemetry Collector agent:
+
+=== "Shell Command"
+
+    ```
+    sudo kubectl get pods
+    ```
+
+=== "Output"
+
+    ```   
+    NAME                                                          READY   STATUS    RESTARTS   AGE
+    splunk-otel-collector-agent-gdr48                             1/1     Running   0          33m
+    splunk-otel-collector-k8s-cluster-receiver-56585564cc-wghdn   1/1     Running   0          33m
+    ```
+
+Copy the agent pod name and then run e.g.:
+
+=== "Shell Command"
+
+    ```
+    sudo kubectl port-forward <replace_with_agent_pod_name> --address 0.0.0.0 :55679
+    ```
+
+=== "Output"
+
+    ```
+    Forwarding from 0.0.0.0:36143 -> 55679
+    ```
+
+zpages is available on port reported in the output above e.g. `35143` of the EC2 instance's IP address. Open a new tab in your web browser and enter in `http://{==EC2-IP==}:{==port==}/debug/tracez`, you will then be able to see the zpages output.
+
+![zpages](../images/apm/zpages.png)

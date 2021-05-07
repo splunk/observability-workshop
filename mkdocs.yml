@@ -106,8 +106,8 @@ nav:
     - Introduction: apm/index.md
     - Get Traces In<br /><small>15 minutes</small>:
       - Deploying the Online Boutique: apm/online-boutique.md
-    - Using Splunk APM<br /><small>15 minutes</small>:
-      - Something: apm/using-apm.md
+    - Troubleshooting APM<br /><small>15 minutes</small>:
+      - TBD: apm/using-apm.md
   - Service Bureau:
     - Billing and Usage : servicebureau/billing-and-usage.md
     - Teams : servicebureau/teams.md
