@@ -116,7 +116,11 @@ Locust is available on port 8080 of the EC2 instance's IP address. Open a new ta
 
 ![Locust](../images/otel/nginx-locust.png)
 
-Set the **Spawn rate** to be 2 and click **Start Swarming**, this will start a gentle continous load on the application.
+Set the **Spawn rate** to be 2 and click **Start Swarming**.
+
+![Locust Spawn Rate](../images/otel/nginx-locust-spawn-rate.png)
+
+This will start a gentle continous load on the application.
 
 ![Locust Statistics](../images/otel/nginx-locust-statistics.png)
 
