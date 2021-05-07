@@ -151,7 +151,13 @@ Validate that your cluster is discovered and reporting by finding your cluster (
     echo $(hostname)-k3s-cluster
     ```
 
-![K8S Clusters Filter](../images/otel/selecting-k3s-cluster.png)
+Then in the UI, click on the "Cluster: - " menu just below the Splunk Logo, and paste the Cluster name you just copied into the search box, click the box to select your cluster, and finally click off the menu into white space to apply the filter.
+
+![K8S Clusters Filter](../images/otel/search-k3s-cluster.png)
+
+![Select K8S Cluster](../images/otel/selecting-k3s-cluster.png)
+
+![Filtered K8S Cluster](../images/otel/filtered-k3s-cluster.png)
 
 To examine the health of your node, first click on the blue cross ![blue cross](../images/otel/blue-cross.png) on your cluster.
 
