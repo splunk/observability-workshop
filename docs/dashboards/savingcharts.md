@@ -44,7 +44,7 @@ You will now be taken to your dashboard like below. You can see at the top left 
 
 ## 3. Add to Team page
 
-It is common practice to link dashboards that are relevant to a Team to a teams page. So lets add your dashboard to the team page for easy acess later. Use the top left hamburger menu select **Dashboards** from the side menu again.
+It is common practice to link dashboards that are relevant to a Team to a teams page. So let's add your dashboard to the team page for easy access later. Use the top left hamburger menu select **Dashboards** from the side menu again.
 
 This will bring you to your teams dashboard, We use the team ***Observability*** as an example here, the workshop one will be different.  
 
