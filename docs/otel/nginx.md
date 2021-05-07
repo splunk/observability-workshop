@@ -120,7 +120,7 @@ Set the **Spawn rate** to be 2 and click **Start Swarming**.
 
 ![Locust Spawn Rate](../images/otel/nginx-locust-spawn-rate.png)
 
-This will start a gentle continous load on the application.
+This will start a gentle continuous load on the application.
 
 ![Locust Statistics](../images/otel/nginx-locust-statistics.png)
 
