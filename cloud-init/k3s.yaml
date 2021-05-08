@@ -79,7 +79,7 @@ runcmd:
   # Install Helm
   - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
   # Install K9s (Kubernetes UI)
-  - curl -S -OL https://github.com/derailed/k9s/releases/download/v0.24.7/k9s_Linux_x86_64.tar.gz
+  - curl -S -OL https://github.com/derailed/k9s/releases/download/v0.24.9/k9s_Linux_x86_64.tar.gz
   - tar xfz k9s_Linux_x86_64.tar.gz -C /usr/local/bin/ k9s
   # Download Workshop
   - export WSVERSION=1.60
