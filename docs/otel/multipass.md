@@ -54,7 +54,7 @@ In this section you will build and launch the Multipass instance which will run 
     --cloud-init cloud-init/k3s.yaml \
     --cpus 4 \
     --mem 4Gb \
-    --disk 20Gb
+    --disk 32Gb
     ```
 
     Once the instance has been successfully created (this can take several minutes), shell into it.
