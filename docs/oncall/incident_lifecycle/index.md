@@ -62,7 +62,7 @@ For example, deselect **On-call Changes** and **Escalations**, this will reduce 
 
 On the right we have the **Incidents** section.
 
-Here we get a list of all the incidents within the platform, or we view a more specific list such as incidents you are specifically assigned to, or for any of the Teams you are a member of.
+Here we get a list of all the incidents within the platform, or we can view a more specific list such as incidents you are specifically assigned to, or for any of the Teams you are a member of.
 
 Select the **Team Incidents** tab you should find that the **Triggered**, **Acknowledged** & **Resolved** tabs are currently all empty as you have had no incidents logged.
 
