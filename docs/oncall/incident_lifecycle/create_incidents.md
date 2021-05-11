@@ -10,13 +10,12 @@ The aim of this module is for you to place yourself 'On-Call' then generate an I
 
 Before generating any incidents you should assign yourself to the current Shift within your **Follow the Sun Support - Business Hours** Rotation and also place yourself **On-Call**.
 
-* Click on the **Schedule** link within your **Team** in the **People** section on the left
-* Or navigate to **Teams → [Your Team] → Rotations**
+* Click on the **Schedule** link within your **Team** in the **People** section on the left, or navigate to **Teams → [Your Team] → Rotations**
 * Expand the **Follow the Sun Support - Business Hours** Rotation
 * Click on the **Manage members** icon (the figures) for the current active shift depending on your timezone
 ![Manage Members](../../images/oncall/manage-members.png)
 * Use the **Select a user to add...** dropdown to add yourself to the shift
-* Then click on **Set Current** to make yourself the current **on-call** user within the shift
+* Then click on **Set Current** next to your name to make yourself the current **on-call** user within the shift
 * You should now get a **Push Notification** to your phone informing you that **You Are Now On-Call**
 ![On Duty](../../images/oncall/on-duty.png){: .center}
 
