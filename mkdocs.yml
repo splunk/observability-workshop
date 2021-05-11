@@ -71,7 +71,7 @@ extra:
       link: https://twitter.com/splunk
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/company/splunk/
-  version: 1.61
+  version: 2.0
 
 plugins:
   - search
