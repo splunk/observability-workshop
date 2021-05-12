@@ -9,5 +9,5 @@
 To get started, please proceed to [The Splunk Observability Cloud Workshop Homepage](https://signalfx.github.io/observability-workshop/latest/).
 
 Latest versions of the workshop are:
+- [v2.12](https://signalfx.github.io/observability-workshop/v2.12/)
 - [v2.11](https://signalfx.github.io/observability-workshop/v2.11/)
-- [v2.10](https://signalfx.github.io/observability-workshop/v2.10/)
