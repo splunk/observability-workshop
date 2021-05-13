@@ -1,6 +1,6 @@
-# Deploying the Smart Agent/OpenTelemetry Collector in Kubernetes
+# Deploying the OpenTelemetry Collector in Kubernetes
 
-* Use the Splunk Helm chart to install the Smart Agent or OpenTelemetry Collector in K3s
+* Use the Splunk Helm chart to install the OpenTelemetry Collector in K3s
 * Explore your cluster in the Kubernetes Navigator
 
 ---
