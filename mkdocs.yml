@@ -86,10 +86,10 @@ nav:
     - Workshop Introduction: otel/index.md
     - Initial Setup<br /><small>5 minutes</small>:
       - Access AWS/EC2 instance: otel/connect-info.md 
-    - Get Data In<br /><small>20 minutes</small>:
+    - Get Data In<br /><small>15 minutes</small>:
       - Deploy the OTel Collector: otel/k3s.md
       - Deploy and monitor NGINX : otel/nginx.md
-    - Dashboards<br /><small>30 minutes</small>:
+    - Dashboards<br /><small>20 minutes</small>:
       - Introduction: dashboards/index.md
       - Editing charts: dashboards/editing.md
       - Saving charts: dashboards/savingcharts.md
@@ -97,18 +97,18 @@ nav:
       - SignalFlow: dashboards/signalflow.md
       - Adding more charts: dashboards/adding-charts.md
       - Notes and layout: dashboards/dashboarding.md
-    - Detectors<br /><small>15 minutes</small>:
+    - Detectors<br /><small>10 minutes</small>:
       - Creating a Detector: detectors/index.md
       - Creating a Muting Rule: detectors/muting.md
     - Monitoring as Code<br /><small>10 minutes</small>:
       - Plan, Apply and Destroy: monitoring-as-code/index.md
   - Splunk APM:
     - Introduction: apm/index.md
-    - Get Traces In<br /><small>15 minutes</small>:
+    - Get Traces In<br /><small>10 minutes</small>:
       - Deploying the Online Boutique: apm/online-boutique.md
     - Troubleshooting APM<br /><small>15 minutes</small>:
       - Using Splunk APM: apm/using-apm.md
-  - Service Bureau:
+  - Service Bureau<br /><small>10 minutes</small>:
     - Billing and Usage : servicebureau/billing-and-usage.md
     - Teams : servicebureau/teams.md
     - Control Usage: servicebureau/tokens.md
