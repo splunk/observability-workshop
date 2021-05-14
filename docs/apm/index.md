@@ -1,9 +1,9 @@
-# APM Architecture Overview
+# Introduction
 
-Splunk APM is an application performance monitoring and troubleshooting solution for cloud-native, microservices-based applications. APM monitors applications by collecting traces. A trace is a collection of actions that occur to complete a transaction. Each action in a trace is known as a span.
+Splunk APM is a NoSample™ Full-fidelity application performance monitoring and troubleshooting solution for cloud-native, microservices-based applications.
 
-APM collects and analyzes every span and trace that an application’s instrumentation generates. This provides full-fidelity, infinite cardinality exploration of trace data an application generates, enabling you to break down and analyze application performance along any dimension.
+By collecting all traces, instead of a sampled subset, no anomaly goes undetected. Whether a user experiences an error or longer-than-usual latency, you’ll be able to know and act on it within seconds. Furthermore, not all bad behavior results in errors — as your developers create new applications they need to know whether their canary releases provide the expected results. Only by collecting all trace data will you ensure that your cloud-native applications behave the way they are supposed to.
 
-The following illustration shows the recommended deployment model: Splunk OpenTelemetry auto-instrumentation libraries send spans to the Splunk OpenTelemetry Collector which in turn forwards on to Splunk APM.
+Infrastructure and application performance are interdependent. To see the full picture, Splunk APM provides seamless correlation between cloud infrastructure and the microservices running on top of it. If your application acts out because of memory leakage, a noisy neighbor container or any other infrastructure-related issue, Splunk will let you know. To complete the picture, in-context access to Splunk logs and events enable deeper troubleshooting and root-cause analysis.
 
 ![Architecture Overview](../images/apm/arch-overview.png)
