@@ -1,4 +1,4 @@
-# Troubleshooting APM
+# Using Splunk APM
 
 * APM Overview - RED metrics
 * Using the Service Map
@@ -9,6 +9,8 @@
 ## 1. Traces and Spans explained
 
 A trace is a collection of spans that share the same trace ID, representing a unique transaction handled by your application and its constituent services.
+
+![Traces and Spans](../images/apm/trace-spans.png)
 
 Each span has a name, representing the operation captured by this span, and a service name, representing within which service the operation took place.
 

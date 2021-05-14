@@ -107,7 +107,7 @@ nav:
     - Get Traces In<br /><small>15 minutes</small>:
       - Deploying the Online Boutique: apm/online-boutique.md
     - Troubleshooting APM<br /><small>15 minutes</small>:
-      - TBD: apm/using-apm.md
+      - Using Splunk APM: apm/using-apm.md
   - Service Bureau:
     - Billing and Usage : servicebureau/billing-and-usage.md
     - Teams : servicebureau/teams.md
