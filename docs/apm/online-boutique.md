@@ -134,20 +134,20 @@ To find the hostname, on the AWS/EC2 instance run the following command:
 === "Shell Command"
 
     ```text
-    echo "Your APM environment is: $(hostname)-apm-env"
+    echo $(hostname)-apm-env
     ```
 
 === "Output Example"
 
     ```text
-    Your APM environment is: whul-apm-env
+    bdzx-apm-env
     ```
 
-Please select your environment you found in the previous step then select the frontend service and set time to -15m ()
+Select your environment you found in the previous step then select the `frontend` service and set time to Past 15 minutes.
 
 ![APM Dashboard](../images/apm/online-boutique-service-dashboard.png)
 
-With this automatically generated dashboard you can keep an eye out for the health of your service, it provides various performance related charts as well as relevant information on the underlying host and Kubernetes platform if applicable.
+With this automatically generated dashboard you can keep an eye out for the health of your service(s) using RED (Rate, Error & Duration) metrics. It provides various performance related charts as well as correlated information on the underlying host and Kubernetes pods (if applicable).
 
 Take some time to explore the various charts in this dashboard
 
@@ -176,13 +176,15 @@ Also in this view you can see the overall Error and Latency rates over time char
 
 ## 7. OpenTelemetry Dashboard
 
-Check the OpenTelemetry Collector dashboards and validate metrics and spans are being sent:
+Once the Open Telemetery Collector is deployed the platform will automatically provide a built in dashboard display OpenTelemetry Collector metrics.
+
+From the top left hamburger menu, select **Dashboards → OpenTelemetry Collector** and validate metrics and spans are being sent:
 
 ![OpenTelemetry Collector dashboard](../images/apm/otel-dashboard.png)
 
 ## 8. OpenTelemetry zpages
 
-To debug the traces being sent you can use the `zpages` extension. In order to view this first find the pod name of the OpenTelemetry Collector agent:
+To debug the traces being sent you can use the zpages extension. In order to view this first find the pod name of the OpenTelemetry Collector agent:
 
 === "Shell Command"
 
@@ -212,6 +214,14 @@ Copy the agent pod name and then run e.g.:
     Forwarding from 0.0.0.0:36143 -> 55679
     ```
 
-zpages is available on port reported in the output above e.g. `36143` of the EC2 instance's IP address. Open a new tab in your web browser and enter in `http://{==EC2-IP==}:{==port==}/debug/tracez`, you will then be able to see the zpages output.
+zpages is available on port reported in the output above e.g. `36143` of the EC2 instance's IP address. Open a new tab in your web browser and enter in `http://{==EC2-IP==}:{==port==}/debug/tracez`, you will then be able to see the zpages output. 
 
 ![zpages](../images/apm/zpages.png)
+
+Alternatively, from your shell prompt you can run a text based browser:
+
+=== "Shell Command"
+
+    ```
+    lynx http://localhost:55679/debug/tracez
+    ```
