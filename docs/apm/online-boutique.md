@@ -214,7 +214,7 @@ Copy the agent pod name and then run e.g.:
     Forwarding from 0.0.0.0:36143 -> 55679
     ```
 
-zpages is available on port reported in the output above e.g. `36143` of the EC2 instance's IP address. Open a new tab in your web browser and enter in `http://{==EC2-IP==}:{==port==}/debug/tracez`, you will then be able to see the zpages output. 
+zpages is available on port reported in the output above e.g. `36143` of the EC2 instance's IP address. Open a new tab in your web browser and enter in `http://{==EC2-IP==}:{==port==}/debug/tracez`, you will then be able to see the zpages output.
 
 ![zpages](../images/apm/zpages.png)
 
