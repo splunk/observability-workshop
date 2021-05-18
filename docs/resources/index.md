@@ -4,8 +4,8 @@ Below are helpful resources about Splunk and the DevOps use case. Topics covered
 
 ## Documentation
 
-* **Observability**{: .label-button .observability} [O11y Platform Docs](https://docs.signalfx.com/en/latest/){: target=_blank}
-* **Observability**{: .label-button .observability} [O11y API Docs](https://dev.splunk.com/observability/docs/){: target=_blank}
+* **Observability**{: .label-button .observability} [O11y Cloud Docs](https://docs.splunk.com/Observability/){: target=_blank}
+* **Observability**{: .label-button .observability} [O11y Cloud Docs](https://dev.splunk.com/observability/docs/){: target=_blank}
 * **On-Call**{: .label-button .victorops} [On-Call Platform Docs](https://help.victorops.com/){: target=_blank}
 * **On-Call**{: .label-button .victorops} [On-Call API Docs](https://portal.victorops.com/public/api-docs.html){: target=_blank}
 
