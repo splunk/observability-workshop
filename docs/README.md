@@ -13,7 +13,7 @@ cd observability-workshop
 We recommend that you set up a virtualenv and install dependencies into it:
 
 ```bash
-python -m venv venv
+python3 -m venv venv
 . venv/bin/activate
 pip3 install -r requirements.txt
 ```
