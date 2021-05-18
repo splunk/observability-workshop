@@ -124,7 +124,7 @@ This will start a gentle continuous load on the application.
 
 ![Locust Statistics](../images/otel/nginx-locust-statistics.png)
 
-Validate you are seeing metrics in the UI by going to hamburger icon, top let and select **Dashboards → NGINX → NGINX Servers**. Using the **Overrides** filter on `kubernetes_cluster:`, find the name of your cluster as returned by `echo $(hostname)-k3s-cluster` in the terminal.
+Validate you are seeing metrics in the UI by going to hamburger icon, top let and select **Dashboards → NGINX → NGINX Servers**. Using the **Overrides** filter on `k8s.cluster.name:`, find the name of your cluster as returned by `echo $(hostname)-k3s-cluster` in the terminal.
 
 ![NGINX Dashboard](../images/otel/nginx-dashboard.png)
 
