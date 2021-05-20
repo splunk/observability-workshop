@@ -77,7 +77,7 @@ Then the release will run through the Travis CI/CD pipeline and be available sho
 1. Create a personal access token on [GitHub][GHToken] with the [following scopes: read:org, repo, user:email, write:repo_hook][1]. Use this token to login:
 
     ```bash
-    travis login -u a-staebler --com --github-token TOKEN
+    travis login -u a-staebler --org --github-token TOKEN
     ```
 
 1. Generate a deploy key pair without passphrase:
@@ -91,13 +91,13 @@ Then the release will run through the Travis CI/CD pipeline and be available sho
 1. Encrypt the private key:
 
     ```bash
-    travis encrypt-file --no-interactive -f -R signalfx/observability-workshop --com o11y-workshop-deploy-key --add after_success
+    travis encrypt-file --no-interactive -f -R signalfx/observability-workshop --org o11y-workshop-deploy-key --add after_success
     ```
 
     Typical output:
 
     ```bash
-    ❯ travis encrypt-file --no-interactive -f -R signalfx/observability-workshop --com o11y-workshop-deploy-key --add after_success
+    ❯ travis encrypt-file --no-interactive -f -R signalfx/observability-workshop --org o11y-workshop-deploy-key --add after_success
 
     encrypting o11y-workshop-deploy-key for signalfx/observability-workshop
     storing result as o11y-workshop-deploy-key.enc
@@ -130,5 +130,5 @@ Then the release will run through the Travis CI/CD pipeline and be available sho
 
 [1]: https://docs.travis-ci.com/user/github-oauth-scopes/#travis-ci-for-private-projects
 [2]: https://github.com/signalfx/observability-workshop/settings/keys
-[3]: https://travis-ci.com/github/signalfx/observability-workshop/settings
+[3]: https://travis-ci.org/github/signalfx/observability-workshop/settings
 [GHToken]: https://github.com/settings/tokens
