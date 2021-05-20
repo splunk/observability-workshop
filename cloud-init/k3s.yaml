@@ -97,7 +97,7 @@ runcmd:
   - curl -S -OL https://releases.hashicorp.com/terraform/0.15.4/terraform_0.15.4_linux_amd64.zip
   - unzip -qq terraform_0.15.4_linux_amd64.zip -d /usr/local/bin
   # Create kube config and set correct permissions on ubuntu user home directory
-  - mkdir /home/ubuntu/.kube && sudo kubectl config view --raw > /home/ubuntu/.kube/config
+  - mkdir /home/ubuntu/.kube && kubectl config view --raw > /home/ubuntu/.kube/config
   - chmod 400 /home/ubuntu/.kube/config
   - chown -R ubuntu:ubuntu /home/ubuntu
   # Configure shellinabox port and disable ssl then restart
