@@ -10,14 +10,14 @@ Check that you have **YOUR_NAME-Dashboard: YOUR_NAME-Dashboard** in the top righ
 
 This means you chart will be saved in this Dashboard.
 
-Name the Chart **Latency History**  and add a Chart Description if you wish.
+Name the Chart **Latency History** and add a Chart Description if you wish.
 
 ![Save Chart 1](../images/dashboards/M-MoreCharts-1.png)
 
 Click on **Save And Close**{: .label-button .sfx-ui-button-blue}. This returns you to your dashboard that now has two charts!
 
 ![Save Chart 2](../images/dashboards/M-MoreCharts-2.png)
-Now lets quickly add an other Chart based on the previous one.
+Now let's quickly add another Chart based on the previous one.
 
 ---
 
@@ -27,7 +27,7 @@ Click on the three dots **`...`** on the **Latency History** chart in your dashb
 
 ![Copy chart](../images/dashboards/M-MoreCharts-3.png)
 
-You  see the chart being copied, and  you should now have a red circle with a white 1 next to the **+** on the top left of the page.
+You see the chart being copied, and you should now have a red circle with a white 1 next to the **+** on the top left of the page.
 
 Click on the ![red one](../images/dashboards/M-MoreCharts-4.png) at the top of the page, and then in the menu on *Paste Charts* (There should also be a red dot with a 1 visible at the end of the line).
 
@@ -49,7 +49,7 @@ First set the time for the chart to -1 hour in the Time box at the top right of 
 
 ![Set Visibility](../images/dashboards/M-MoreCharts-7.png)
 
-Click on the **Add Metric Or Event**{: .label-button .sfx-ui-button-blue} button.  this will bring up the box  for a new signal. Type and select `demo.trans.count`  for Signal **D**.
+Click on the **Add Metric Or Event**{: .label-button .sfx-ui-button-blue} button. This will bring up the box for a new signal. Type and select `demo.trans.count` for Signal **D**.
 
 ![Dashboard Info](../images/dashboards/M-MoreCharts-8.png)
 
@@ -57,8 +57,8 @@ This will add a new Signal **D** to your chart, It shows the number of active re
 
 ![rollup change](../images/dashboards/M-MoreCharts-9.png)
 
-When the visualisation pane opens, change the Rollup dropdown to **Rollup:Rate/sec**, then click into the name field in the top left hand corner and it to **Latency vs load**  and press  the  **Save And Close**{: .label-button .sfx-ui-button-blue} button. This returns you to your dashboard that now has three different charts!
+When the visualisation pane opens, change the Rollup dropdown to **Rollup:Rate/sec**, then click into the name field in the top left hand corner and it to **Latency vs load** and press the **Save And Close**{: .label-button .sfx-ui-button-blue} button. This returns you to your dashboard that now has three different charts!
 
 ![three charts](../images/dashboards/M-MoreCharts-10.png)
 
-Lets add an "instruction" note  and arrange the charts!
+Let's add an "instruction" note and arrange the charts!
