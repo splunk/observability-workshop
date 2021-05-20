@@ -14,9 +14,7 @@ apt:
     deb mirror://mirrors.ubuntu.com/mirrors.txt bionic-security main restricted universe multiverse
 
 packages:
-  - apache2-utils
   - unzip
-  - siege
   - shellinabox
   - lynx
   - w3m
