@@ -54,7 +54,7 @@ In **Alert Settings**, enter the value **`290`** in the **Threshold** field. In 
 
 ## 4. Alert pre-flight check
 
-A pre-flight check will take place after 5 seconds. See the **Estimated alert count**. Based on the current alert settings, the amount of alerts we would’ve received in 1 day would have been approx. **18**.
+A pre-flight check will take place after 5 seconds. See the **Estimated alert count**. Based on the current alert settings, the amount of alerts we would have received in 1 day would have been approx. **18**.
 
 ![Alert Threshold](../images/detectors/alert-threshold.png)
 
@@ -99,7 +99,7 @@ In **Activate...** click on **Activate Alert Rule**{: .label-button .sfx-ui-butt
 
 If you want to get alerts quicker you can click back on **Alert Settings** and lower the value from **`290`** to say **`280`**.
 
-If you change the **Time** to **-1h** you can see how many alerts you might get with the threshold you have chosen based on the metics from the last 1 hour.
+If you change the **Time** to **-1h** you can see how many alerts you might get with the threshold you have chosen based on the metrics from the last 1 hour.
 
 Hover over **Alerts** in the top menu and then click on **Detectors**.
 

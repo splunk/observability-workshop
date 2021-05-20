@@ -7,7 +7,7 @@
 Let's now create a new chart and save it in our dashboard!
 
 Select the plus icon (top right of the UI) and from the drop down, choose the option **Chart**.
-or click on the **+ New Chart**{: .label-button .sfx-ui-button-blue} Button to create a new chart.
+Or click on the **+ New Chart**{: .label-button .sfx-ui-button-blue} Button to create a new chart.
 
 ![Create new chart](../images/dashboards/M-Filter-0.png)
 
@@ -21,7 +21,7 @@ In the **Plot Editor** tab under **Signal** enter **`demo.trans.latency`**.
 
 ![Signal](../images/dashboards/plot-editor.png)
 
-You should now have a familair line chart. please switch the time to 15 mins.
+You should now have a familiar line chart. Please switch the time to 15 mins.
 
 ![Signal](../images/dashboards/M-Filter-10.png)
 
@@ -51,7 +51,7 @@ You will see a new row identical to **A**, called **B**, both visible and plotte
 
 ![Plot Editor](../images/dashboards/M-Filter-4.png)
 
-For Signal **B**, in the **F(x)** column add the analytic function **Timeshift** and enter **`1w`** (or  7d for 7 days), and click outside to confirm.
+For Signal **B**, in the **F(x)** column add the analytic function **Timeshift** and enter **`1w`** (or 7d for 7 days), and click outside to confirm.
 
 ![Timeshift](../images/dashboards/M-Filter-5.png)
 

@@ -23,7 +23,7 @@ Now let's quickly add another Chart based on the previous one.
 
 ## 2. Copy and Paste a chart
 
-Click on the three dots **`...`** on the **Latency History** chart in your dashboard and then on **Copy**
+Click on the three dots **`...`** on the **Latency History** chart in your dashboard and then on **Copy**.
 
 ![Copy chart](../images/dashboards/M-MoreCharts-3.png)
 
@@ -43,7 +43,7 @@ This will place a copy of the previous chart in your dashboard.
 
 Click on the three dots **`...`** on on of the **Latency History** charts in your dashboard and then on **Open** (or you can click on the name of the chart which here is **Latency History**).
 
-This will bring you to the editor environement again.
+This will bring you to the editor environment again.
 
 First set the time for the chart to -1 hour in the Time box at the top right of the chart. Then to make this a different chart, click on the eye icon in front of signal "*A*" to make it visible again, and then hide signal "*C*" via the eye icon and change the name for *Latency history* to **Latency vs Load**.
 

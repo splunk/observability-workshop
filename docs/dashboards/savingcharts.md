@@ -4,7 +4,7 @@
 
 To start saving your chart, lets give it a name and description. Click the name of the chart **Copy of Latency Histogram** and rename it to **"Active Latency"**.
 
-To change the description click on **Spread of latency values across time.** and change this to **Overview of latency values in realtime.**
+To change the description click on **Spread of latency values across time.** and change this to **Overview of latency values in real-time.**
 
 ![Save Chart](../images/dashboards/save-chart.png)
 
@@ -20,7 +20,7 @@ In the **Choose dashboard** dialog, we need to create a new dashboard, click on 
 
 ![Create Dashboard](../images/dashboards/create-dashboard.png)
 
-You will now see the **New Dashboard** Dialog. In here you can give you dashboard a name and desciption, and set **Write Permissions**.
+You will now see the **New Dashboard** Dialog. In here you can give you dashboard a name and description, and set **Write Permissions**.
 
 Please use your own name in the following format to give your dashboard a name e.g. **YOUR_NAME-Dashboard**.
 
@@ -57,7 +57,7 @@ Type your name (that you used above) in the search box to find your Dashboard. S
 
 ![Select Dashboard Group](../images/dashboards/select-dashboard-group.png)
 
-Your dashboard group will appear as part of the team page. Pleasue note during the course of the workshop many more will appear here.
+Your dashboard group will appear as part of the team page. Pleasu note during the course of the workshop many more will appear here.
 
 ![New Team Dashboard](../images/dashboards/new-team-dashboard.png)
 

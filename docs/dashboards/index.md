@@ -34,7 +34,7 @@ This page shows the total number of team members, how many active alerts for you
 ## 3. Sample Charts
 
 To continue, click on **All Dashboards** on the top right corner of the screen.
-This brings you to the a view that shows all the available dashboards, included the prebuilt ones.
+This brings you to the view that shows all the available dashboards, included the pre-built ones.
 
 ![Sample Data](../images/dashboards/sample-data.png)
 
