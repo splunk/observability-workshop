@@ -30,7 +30,7 @@ Please replace **YOUR_NAME** with your own name and then remove the tick from th
 
 You should see you own login information displayed, meaning you are now the only one who can edit this dashboard. Of course you have the option to add other users or teams from the drop box below that may edit your dashboard and charts, but for now just press the **Create**{: .label-button .sfx-ui-button-blue} Button to continue.
 
-Your new dashboard is now availble and selected so you can save your chart in your new dashboard.
+Your new dashboard is now available and selected so you can save your chart in your new dashboard.
 
 ![Choose Dashboard](../images/dashboards/choose-dashboard.png)
 
@@ -46,7 +46,7 @@ You will now be taken to your dashboard like below. You can see at the top left 
 
 It is common practice to link dashboards that are relevant to a Team to a teams page. So let's add your dashboard to the team page for easy access later. Use the top left hamburger menu select **Dashboards** from the side menu again.
 
-This will bring you to your teams dashboard, We use the team ***Observability*** as an example here, the workshop one will be different.  
+This will bring you to your teams dashboard, We use the team ***Observability*** as an example here, the workshop one will be different.
 
 ![Team Dashboard](../images/dashboards/team-dashboard.png)
 
