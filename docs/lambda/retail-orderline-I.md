@@ -41,5 +41,3 @@ Add the following line above the line stating ***def lambda_handler(event,contex
  Verify that the file now looks like this:
 
  INSERT SCREENSHOT
-
- 

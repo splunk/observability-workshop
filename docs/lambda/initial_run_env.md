@@ -1,4 +1,4 @@
-# Initial run of Splunk Mobile Shop Application 
+# Initial run of Splunk Mobile Shop Application
 
 The goal of this session is to make you familiar with the various components that are used in the workshop.
 
@@ -51,15 +51,14 @@ If there are logs present, you can filter on your preset like before. The result
 
 Next open a Terminal window and log into the EC2 instance you have been assigned.
 
-!!! Note 
-    If you need help with this, here are the instructions how to access you pre-configured [AWS/EC2 instance](../../../otel/connect-info/). 
+!!! Note
+    If you need help with this, here are the instructions how to access you pre-configured [AWS/EC2 instance](../../../otel/connect-info/).
 
 If you need help with this, here are the instructions on how to access you pre-configured [AWS/EC2 instance](../../../otel/connect-info/){: target=_blank}.  (If you can, open a second ssh window to you EC2 instance, as this will be useful later in the workshop)
 
 Please return here after you have successfully connected to your instance.
 
 Once connected move into the correct directory to run the Java SpringBoot application by running the following command within your instances shell session:
-
 
 === "Shell Command"
 
@@ -110,9 +109,10 @@ To test your environment enter the following information:
 And hit submit to run a test though your system.
 
 The result should be similar to this :
-![ec2-shop2](../images/lambda/initial_run/Shop-result.png) 
-    
- You can use The ***Submit another order***  to go back and reorder a new phone!    
+
+![ec2-shop2](../images/lambda/initial_run/Shop-result.png)
+
+You can use The ***Submit another order***  to go back and reorder a new phone!
 
 ---
 

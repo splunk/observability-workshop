@@ -1,4 +1,5 @@
 # Enable APM for Mobile Shop Springboot App
+
 ## 1. Validate APM Environment
 
 The first activity we are going to do is validate that we have access to the Splunk APM environment and establish our starting point. To do this please login to Splunk Infrastructure & APM and select **APM**.
@@ -21,7 +22,7 @@ To enable APM on the Spring boot application we need to update the FrameWork (po
 
 ### 2.1 Update the FrameWork by updating POM.XML
 
-Connect back into your EC2 instance and stop the running Spring boot application by pressing ++ctrl+c++. 
+Connect back into your EC2 instance and stop the running Spring boot application by pressing ++ctrl+c++.
 
 Once the application is stopped, open an editor and edit the pom.xml file
 === "Shell Command"
@@ -45,16 +46,20 @@ You can now leave the nano editor by pressing ++ctrl+x++. This should bring you 
 ### 2.2 Update the application property file
 
 Edit the application property file of the springboot application in the nano editor by enter in the following command:
+
 === "Shell Command"
 
     ```text
     nano src/main/resources/application.properties
     ```
 
-Remove the comment marks \#\# on the following 2 lines:
-**\#\#spring.sleuth.sampler.probability=1.0**
+Remove the comment marks `##` on the following 2 lines:
 
-**\#\#spring.zipkin.baseUrl=http://localhost:9080**
+    ```java
+    ##spring.sleuth.sampler.probability=1.0
+
+    ##spring.zipkin.baseUrl=http://localhost:9080
+    ```
 
 The first line tells the springboot app to send 100% of the traces to Splunk APM and the second line directs the traces and spans to the local local OpenTelemetry Collector that will forward them to splunk APM.
 

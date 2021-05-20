@@ -1,5 +1,7 @@
 # Enable APM for Mobile Shop Springboot App (Cont.)
-## 3. Run a case and find both the Service Dashboard and your trace 
+
+## 3. Run a case and find both the Service Dashboard and your trace
+
 Go back to the browser tab with your Phone App running that you opened earlier, if you have closed it you can open a new one by navigating to *http://**[ec2_ip]**:8080/order* (where **[ec2_ip]** is the public ip address of your EC2 instance)
 
 ![ec2-shop1](../images/lambda/initial_run/Shop.png)
@@ -57,7 +59,7 @@ You can also see the two endpoints used by the service.
 
 Now click on **Troubleshooting** to go to the Troubleshooting view.
 
-You should see your single service with on the right, two dashboards with a spike indicating the single invocation. 
+You should see your single service with on the right, two dashboards with a spike indicating the single invocation.
 
 Select the top of the spike of the top dashboard as shown.
 ![APM-troubleshoot](../images/lambda/springboot-apm/Troubleshootingourfirsttrace.png)

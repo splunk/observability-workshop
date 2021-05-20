@@ -184,6 +184,7 @@ Edit `quantity.auto.tfvars` and populate the list of participants, ensuring each
 Once you have finished creating and updating `xxx` and `yyy` you now need to initialize terraform, so run the following command:
 
 === "Terraform init"
+
     ```
     teraform init
     ```
