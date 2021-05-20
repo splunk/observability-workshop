@@ -32,7 +32,7 @@ Create the NGINX `configmap`[^1] using the `nginx.conf` file:
 === "Shell Command"
 
     ```text
-    sudo kubectl create configmap nginxconfig --from-file=nginx.conf
+    kubectl create configmap nginxconfig --from-file=nginx.conf
     ```
 
 === "Output"
@@ -46,7 +46,7 @@ Then create the deployment:
 === "Shell Command"
 
     ```
-    sudo kubectl create -f nginx-deployment.yaml
+    kubectl create -f nginx-deployment.yaml
     ```
 
 === "Output"
@@ -61,7 +61,7 @@ Next we will deploy Locust[^2] which is used for creating a load test against NG
 === "Shell Command"
 
     ```
-    sudo kubectl create -f locust-deployment.yaml
+    kubectl create -f locust-deployment.yaml
     ```
 
 === "Output"
@@ -90,7 +90,7 @@ Let's validate this in your shell as well:
 === "Shell Command"
 
     ```text
-    sudo kubectl get pods
+    kubectl get pods
     ```
 
 === "Output"

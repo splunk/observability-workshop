@@ -83,14 +83,14 @@ Install the OpenTelemetry Collector Helm chart with the following commands, do *
     TEST SUITE: None
     ```
 
-You can monitor the progress of the deployment by running `sudo kubectl get pods` which should typically report a new pod is up and running after about 30 seconds.
+You can monitor the progress of the deployment by running `kubectl get pods` which should typically report a new pod is up and running after about 30 seconds.
 
 Ensure the status is reported as Running before continuing.
 
 === "Shell Command"
 
     ```text
-    sudo kubectl get pods
+    kubectl get pods
     ```
 
 === "Example Output"
@@ -108,7 +108,7 @@ Use the label set by the `helm` install to tail logs (You will need to press ++c
 === "Shell Command"
 
     ```
-    sudo kubectl logs -l app=splunk-otel-collector -f
+    kubectl logs -l app=splunk-otel-collector -f
     ```
 
 === "Example Output"

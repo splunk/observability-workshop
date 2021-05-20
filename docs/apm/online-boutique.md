@@ -15,7 +15,7 @@ To deploy the Online Boutique application into K3s apply the deployment:
 
     ```text
     cd ~/workshop
-    sudo kubectl apply -f apm/microservices-demo/k8s/deployment.yaml
+    kubectl apply -f apm/microservices-demo/k8s/deployment.yaml
     ```
 
 === "Output"
@@ -53,7 +53,7 @@ To ensure the Online Boutique application is running:
 === "Get Pods"
 
     ```text
-    sudo kubectl get pods
+    kubectl get pods
     ```
 
 === "Output"

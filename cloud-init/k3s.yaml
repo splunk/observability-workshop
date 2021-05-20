@@ -22,12 +22,6 @@ packages:
   - w3m
 
 write_files:
- # - path: /etc/environment
- #   permissions: 0644
- #   content: |
- #     KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
- #   append: true
-
   - path: /etc/skel/.profile
     content: |
       helm() {
@@ -71,6 +65,7 @@ write_files:
         echo $INSTANCE > ~/.instance
       fi
       export INSTANCE
+      export KUBECONFIG=/home/ubuntu/.kube/config
     append: true
 
 runcmd:
@@ -79,8 +74,8 @@ runcmd:
   # Install Helm
   - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
   # Install K9s (Kubernetes UI)
-  - curl -S -OL https://github.com/derailed/k9s/releases/download/v0.24.10/k9s_Linux_x86_64.tar.gz
-  - tar xfz k9s_Linux_x86_64.tar.gz -C /usr/local/bin/ k9s
+  - curl -S -OL https://github.com/derailed/k9s/releases/download/v0.24.10/k9s_v0.24.10_Linux_x86_64.tar.gz
+  - tar xfz k9s_v0.24.10_Linux_x86_64.tar.gz -C /usr/local/bin/ k9s
   # Download Workshop
   - export WSVERSION=2.26
   - 'export WSARCHIVE=$([ "$WSVERSION" = "master" ] && echo "master" || echo "v$WSVERSION")'
@@ -99,8 +94,8 @@ runcmd:
   - curl -s https://raw.githubusercontent.com/signalfx/observability-workshop/master/cloud-init/motd -o /etc/motd
   - chmod -x /etc/update-motd.d/*
   # Install Terraform
-  - curl -S -OL https://releases.hashicorp.com/terraform/0.15.0/terraform_0.15.0_linux_amd64.zip
-  - unzip -qq terraform_0.15.0_linux_amd64.zip -d /usr/local/bin
+  - curl -S -OL https://releases.hashicorp.com/terraform/0.15.4/terraform_0.15.4_linux_amd64.zip
+  - unzip -qq terraform_0.15.4_linux_amd64.zip -d /usr/local/bin
   # Create kube config and set correct permissions on ubuntu user home directory
   - mkdir /home/ubuntu/.kube && sudo kubectl config view --raw > /home/ubuntu/.kube/config
   - chmod 400 /home/ubuntu/.kube/config

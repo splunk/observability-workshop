@@ -33,7 +33,7 @@ Review the OpenTelemetry Collector logs:
 === "Shell Command"
 
     ```bash
-    sudo kubectl logs -l app.kubernetes.io/name=opentelemetry-collector
+    kubectl logs -l app.kubernetes.io/name=opentelemetry-collector
     ```
 
 Look for a log entry with
@@ -63,7 +63,7 @@ Use the healthcheck endpoint to confirm:
 === "Shell Command"
 
     ```
-    OTEL_ENDPOINT=$(sudo kubectl get svc opentelemetry-collector -n default -o jsonpath='{.spec.clusterIP}')
+    OTEL_ENDPOINT=$(kubectl get svc opentelemetry-collector -n default -o jsonpath='{.spec.clusterIP}')
     curl http://$OTEL_ENDPOINT:13133/; echo
     ```
 
