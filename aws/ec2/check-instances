@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+STATUS_LOG=/run/cloud-init/status.json
+
+if [[ "$#" -ne 0 ]]; then
+	echo "Usage: check-instances"
+	exit 1
+fi
+
+COMMANDS="jq terraform pssh"
+
+for cmd in $COMMANDS; do
+	if ! command -v jq &> /dev/null; then
+		echo "$cmd not found. Please install with your package manager, e.g. brew install $cmd."
+		exit 1
+	fi
+done
+
+pssh -o sanity-check --par 60 -l ubuntu -A --hosts <(terraform output --json ip|jq -r '.[]') -x "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o PreferredAuthentications=password -o PubkeyAuthentication=no" -- "cat ${STATUS_LOG}"
+
+ERR_COUNT=$(jq ' .v1 | .[] | values | select(.errors? | length > 0) | .errors[] ' sanity-check/* | jq -rs '. | length')
+
+if [[ $ERR_COUNT -eq 0 ]]; then
+	echo "All instances completed cloud-init without errors."
+else
+	echo "Errors found in cloud-init status for some instances."
+	jq -r '.v1 | .[] | values | select(.errors? | length > 0) | input_filename' sanity-check/* |
+		sed -e 's,sanity-check/,,' |
+		{ TF_STATE=$(terraform show --json); while read -r IP; do \
+			RNAME=$(jq -r ' .values.root_module.resources[] | select (.values.public_ip == "'"$IP"'") | .address' <<< "$TF_STATE")
+			echo "Error found in cloud-init status for instance: $RNAME"
+		done }
+fi
