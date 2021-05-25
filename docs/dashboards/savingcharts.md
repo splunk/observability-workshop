@@ -28,7 +28,7 @@ Please replace **YOUR_NAME** with your own name and then remove the tick from th
 
 ![Name Dashboard](../images/dashboards/name-dashboard.png)
 
-You should see you own login information displayed, meaning you are now the only one who can edit this dashboard. Of course you have the option to add other users or teams from the drop box below that may edit your dashboard and charts, but for now just press the **Create**{: .label-button .sfx-ui-button-blue} Button to continue.
+You should see you own login information displayed, meaning you are now the only one who can edit this dashboard. Of course you have the option to add other users or teams from the drop box below that may edit your dashboard and charts, but for now make sure you **re-tick** the *Anyone in this organization can edit* box to remove any restrictions and press the **Create**{: .label-button .sfx-ui-button-blue} Button to continue.
 
 Your new dashboard is now available and selected so you can save your chart in your new dashboard.
 
