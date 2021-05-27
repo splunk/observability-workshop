@@ -39,4 +39,4 @@ jobs:
           git tag -a "v$TAG" -m "Version $TAG"
           git push origin master || { echo 'Push failed. git pull --rebase from upstream and attempt another release.'; exit 1; }
           git push --tags          
-          mike deploy --push "v$TAG" latest -u
+          mike deploy --push --update-aliases "v$TAG" latest
