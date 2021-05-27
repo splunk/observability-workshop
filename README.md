@@ -1,5 +1,4 @@
-![Travis (.org)](https://img.shields.io/travis/signalfx/observability-workshop)
-[![Deploy Workshop](https://github.com/signalfx/observability-workshop/actions/workflows/main.yml/badge.svg)](https://github.com/signalfx/observability-workshop/actions/workflows/main.yml)
+[![Deploy](https://github.com/signalfx/observability-workshop/actions/workflows/main.yml/badge.svg)](https://github.com/signalfx/observability-workshop/actions/workflows/main.yml)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/signalfx/observability-workshop)
 ![GitHub commits since latest release (by SemVer)](https://img.shields.io/github/commits-since/signalfx/observability-workshop/latest)
 ![GitHub repo size](https://img.shields.io/github/repo-size/signalfx/observability-workshop)
