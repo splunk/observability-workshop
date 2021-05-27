@@ -1,36 +1,42 @@
-# This is a basic workflow to help you get started with Actions
+name: Build and Deploy O11y Cloud Workshop
 
-name: CI
+# Controls when the action will run. Triggers manually
+on: workflow_dispatch
 
-# Controls when the action will run. 
-on:
-  # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
+    name: Build and Deploy Workshop
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Checkout master
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Install dependencies
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+        
+      - name: Bumpversion and deploy using mike
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git pull
+          FLAVOUR=minor
+          TAG=$(bumpversion --list "$FLAVOUR" | awk -F= '/new_version=/ { print $2 }')
+          awk "/Latest versions of the workshop are:/ { print; print \"- [v$TAG](https://signalfx.github.io/observability-workshop/v$TAG/)\";next }1" README.md |
+          awk "NR==1,/Latest versions of the workshop are:/{c=3} c&&c-- " > README.new.md
+          mv README.new.md README.md          
+          git fetch --tags origin
+          git add README.md
+          git commit --amend -m "Releasing v$TAG"
+          git tag -a "v$TAG" -m "Version $TAG"
+          git push origin master || { echo 'Push failed. git pull --rebase from upstream and attempt another release.'; exit 1; }
+          git push --tags          
+          mike deploy --push "v$TAG" latest -u
