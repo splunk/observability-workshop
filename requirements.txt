@@ -6,3 +6,4 @@ mkdocs-minify-plugin>=0.4.0
 pymdown-extensions>=8.1.1
 Pygments>=2.8.1
 bump2version>=1.0.1
+mike>=0.6.0
