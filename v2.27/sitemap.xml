@@ -1,142 +1,142 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/otel/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/otel/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/otel/connect-info/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/otel/connect-info/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/otel/k3s/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/otel/k3s/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/otel/nginx/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/otel/nginx/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/dashboards/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/dashboards/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/dashboards/editing/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/dashboards/editing/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/dashboards/savingcharts/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/dashboards/savingcharts/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/dashboards/filtering/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/dashboards/filtering/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/dashboards/signalflow/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/dashboards/signalflow/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/dashboards/adding-charts/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/dashboards/adding-charts/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/dashboards/dashboarding/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/dashboards/dashboarding/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/detectors/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/detectors/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/detectors/muting/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/detectors/muting/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/monitoring-as-code/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/monitoring-as-code/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/servicebureau/billing-and-usage/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/servicebureau/billing-and-usage/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/servicebureau/teams/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/servicebureau/teams/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/servicebureau/tokens/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/servicebureau/tokens/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/apm/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/apm/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/apm/online-boutique/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/apm/online-boutique/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/apm/using-apm/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/apm/using-apm/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/oncall/getting_started/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/oncall/getting_started/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/oncall/getting_started/user_profile/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/oncall/getting_started/user_profile/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/oncall/getting_started/team/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/oncall/getting_started/team/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/oncall/getting_started/rotations/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/oncall/getting_started/rotations/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/oncall/getting_started/escalation/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/oncall/getting_started/escalation/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/oncall/getting_started/routing/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/oncall/getting_started/routing/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/oncall/incident_lifecycle/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/oncall/incident_lifecycle/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/oncall/incident_lifecycle/create_incidents/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/oncall/incident_lifecycle/create_incidents/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/oncall/incident_lifecycle/manage_incidents/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/oncall/incident_lifecycle/manage_incidents/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/oncall/optional/sfx_integrations/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/oncall/optional/sfx_integrations/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/oncall/optional/multipass/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/oncall/optional/multipass/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/oncall/optional/detector/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/oncall/optional/detector/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/resources/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/resources/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://signalfx.github.io/observability-workshop/v2.27/resources/faq/</loc>
+     <loc>https://signalfx.github.io/observability-workshop/resources/faq/</loc>
      <lastmod>2021-05-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
