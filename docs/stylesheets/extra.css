@@ -2,6 +2,10 @@
     max-width: 1920px;
 }
 
+.md-version__current {
+    top: .7rem;
+}
+
 img {
     height: auto;
     width: auto;
