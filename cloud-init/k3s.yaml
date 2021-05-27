@@ -75,7 +75,7 @@ runcmd:
   - curl -S -OL https://github.com/derailed/k9s/releases/download/v0.24.10/k9s_v0.24.10_Linux_x86_64.tar.gz
   - tar xfz k9s_v0.24.10_Linux_x86_64.tar.gz -C /usr/local/bin/ k9s
   # Download Workshop
-  - export WSVERSION=2.29
+  - export WSVERSION=2.30
   - 'export WSARCHIVE=$([ "$WSVERSION" = "master" ] && echo "master" || echo "v$WSVERSION")'
   - curl -s -OL https://github.com/signalfx/observability-workshop/archive/$WSARCHIVE.zip
   - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
