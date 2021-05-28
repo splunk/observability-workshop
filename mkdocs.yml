@@ -12,6 +12,7 @@ remote_branch: gh-pages
 
 theme:
   name: material
+  custom_dir: overrides
   palette:
     # Light mode
     - media: "(prefers-color-scheme: light)"
@@ -33,7 +34,6 @@ theme:
   include_search_page: false
   search_index_only: true
   language: en
-  custom_dir: material
   features:
     - navigation.tabs
     - navigation.instant
@@ -61,7 +61,7 @@ markdown_extensions:
       permalink: true
 
 extra_css:
-  - "stylesheets/extra.css"
+  - stylesheets/extra.css
 
 extra:
   social:
@@ -75,7 +75,6 @@ extra:
     provider: mike
 
 plugins:
-  - search
   - git-revision-date-localized:
       #enable_creation_date: true
       type: date

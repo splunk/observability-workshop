@@ -1,4 +1,4 @@
 ---
-template: overrides/home.html
+template: home.html
 title: Splunk Observability Cloud Workshop
 ---
