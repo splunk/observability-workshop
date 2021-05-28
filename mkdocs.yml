@@ -76,10 +76,9 @@ extra:
 
 plugins:
   - git-revision-date-localized:
-      #enable_creation_date: true
       type: date
   - minify:
-      minify_html: true
+      minify_html: false
 
 nav:
   - Home: index.md
