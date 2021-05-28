@@ -11,5 +11,5 @@ To get started, please proceed to [The Splunk Observability Cloud Workshop Homep
 If you require the latest Smart Agent version of the workshop then please use [v1.60](https://signalfx.github.io/observability-workshop/v1.60/).
 
 Latest versions of the workshop are:
+- [v2.32](https://signalfx.github.io/observability-workshop/v2.32/)
 - [v2.31](https://signalfx.github.io/observability-workshop/v2.31/)
-- [v2.30](https://signalfx.github.io/observability-workshop/v2.30/)
