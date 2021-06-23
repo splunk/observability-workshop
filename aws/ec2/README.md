@@ -23,7 +23,7 @@ echo $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
 Set the following variables:
 
 - `aws_region`: Which region do you want the instances in?
-- `instance_type`: What kind of instance?
+- `instance_type_aws`: What kind of instance?
 - `aws_instance_count`: How many instances?
 
 Sample command:
@@ -32,7 +32,7 @@ Sample command:
 terraform apply \
 -auto-approve \
 -var="aws_region=eu-central-1" \
--var="instance_type=1" \
+-var="instance_type_aws=t2.xlarge" \
 -var="aws_instance_count=1"
 ```
 
