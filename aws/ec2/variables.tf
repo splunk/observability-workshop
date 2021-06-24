@@ -21,7 +21,7 @@ data "aws_ami" "latest-ubuntu" {
   }
 }
 
-variable "instance_type_aws" {
+variable "aws_instance_type" {
   default = "t2.xlarge"
 }
 
