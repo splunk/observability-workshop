@@ -112,6 +112,8 @@ nav:
       - Deploying the Online Boutique: apm/online-boutique.md
     - Get Data Out<br /><small>15 minutes</small>:
       - Using Splunk APM: apm/using-apm.md
+  - Splunk RUM:
+    - Introduction: rum/index.md 
   - Splunk On-Call:
     - Getting Started<br /><small>45 minutes</small>:
       - Initial Setup: oncall/getting_started/index.md
