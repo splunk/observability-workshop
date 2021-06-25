@@ -114,6 +114,7 @@ nav:
       - Using Splunk APM: apm/using-apm.md
   - Splunk RUM:
     - Introduction: rum/index.md 
+    - Create RUM Traffic: rum/RUM-online-boutique.md
   - Splunk On-Call:
     - Getting Started<br /><small>45 minutes</small>:
       - Initial Setup: oncall/getting_started/index.md
