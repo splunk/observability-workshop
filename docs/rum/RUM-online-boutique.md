@@ -1,13 +1,13 @@
 #  Showcase of RUM with the Online Boutique 
 
 * Find the Web address of your workshop hosts Online Boutique
-* Generate traffic by shopping for bargains on your workshop host Online Boutique webshop
-* See RUM Metrics and Session information in teh Ui
-* See correlated APM traces in the UI
+* Generate traffic by shopping for bargains on your workshop host Online Boutique web shop.
+* See RUM Metrics and Session information in the  RUM UI
+* See correlated APM traces in the RUm & APM UI
 
 ---
 
-## 1. Find the web adress of your Workshop Host Online Boutique
+## 1. Find the web  (URL) of your Workshop Host's Online Boutique
 
 The Online Boutique  we are going to use is viewable on port 81 of the Workshop host EC2 instance's IP address and will be provide to you at this point.<br>
 We are all connecting to the Online Boutique of the workshops host for this RUM session as this will create more traffic from multiple locations, making the data more realistic.
