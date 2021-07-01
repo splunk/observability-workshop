@@ -10,27 +10,23 @@
 
 2. Edit your Rigor account personal information and adjust your timezone and email notifications. Rigor will start sending you notifications, you can turn them off at the monitoring level.
 
- ![placeholder](../images/synthetics/image5.png)
+   ![placeholder](../images/synthetics/image5.png)
+
 3. Add the [Selenium IDE](https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd?hl=en-US) extension to your **Chrome** Browser
 
 4. Click on the extension and you should see the following screen:
 
-![placeholder](../images/synthetics/image17.png)
+   ![placeholder](../images/synthetics/image17.png)
+
 5. Test your access to the Splunk instance for this Lab
 
-**Synthetic Monitoring Lab 1 Instances (example)**
-
-**Test your username/password provided and login to your instance.**
-
-# Task 2 - Splunk Real Browser Checks (RBC)
+## Task 2 - Splunk Real Browser Checks (RBC)
 
 **Estimated duration:**30 Minutes
 
-## 
-
 ## **2.1 Create NEW Selenium IDE Recording**
 
-**What is Selenium IDE**
+### What is Selenium IDE
 
 - Selenium IDE is an open source record and playback test automation for the web.
 
@@ -48,33 +44,31 @@
 
 1. Record a web transaction using Selenium to check on broomstogo.com
 
-Name the project "**AP - Brooms to Go - Task 2**"
->
-![placeholder](../images/synthetics/image29.png)
+   Name the project "**AP - Brooms to Go - Task 2**"
+
+   ![placeholder](../images/synthetics/image29.png)
 
 2. Enter [https://www.broomstogo.com](https://www.broomstogo.com) as your Base URL.
 
-![placeholder](../images/synthetics/image11.png)
+   ![placeholder](../images/synthetics/image11.png)
 
 3. Press "Start Recording" A new window should open up with broomstogo.com - Press "Catalog", Pick a product, and then add it to the cart, and then press "checkout"
 
 4. Close the window and then stop the recording by navigating back to Selenium IDE and name the test: "**AP - Checkout Flow (Desktop)**"
 
-![placeholder](../images/synthetics/image10.png)
+   ![placeholder](../images/synthetics/image10.png)
 
-**Your Selenium IDE Project will look something like this:**
+   **Your Selenium IDE Project will look something like this:**
 
-![placeholder](../images/synthetics/image19.png)
+   ![placeholder](../images/synthetics/image19.png)
 
 5. Test your recording by pressing on the play button, make sure your recording is successfully completing the transaction
 
-![placeholder](../images/synthetics/image26.png)
+   ![placeholder](../images/synthetics/image26.png)
 
 6. Save your Selenium IDE Project to your Downloads folder
 
-![placeholder](../images/synthetics/image30.png)
-
-## 
+   ![placeholder](../images/synthetics/image30.png)
 
 ## **2.2 Create NEW Rigor Desktop RBC for Splunk**
 
@@ -82,91 +76,85 @@ Name the project "**AP - Brooms to Go - Task 2**"
 
 2. Click on Real Browse, create a new RBC and Adjust the **New RBC** name to your **initials** followed by **initial - Checkout Flow (Desktop)** for example: **initial - Checkout Flow (Desktop)**
 
-![placeholder](../images/synthetics/image3.png)
->
-Click on "**From File**" and select your recording then click on Import
->
-![placeholder](../images/synthetics/image1.png)
+   ![placeholder](../images/synthetics/image3.png)
+
+   Click on "**From File**" and select your recording then click on Import
+
+   ![placeholder](../images/synthetics/image1.png)
 
 3. Set the **Frequency** to **5 Minutes**
 
-![placeholder](../images/synthetics/image15.png)
+   ![placeholder](../images/synthetics/image15.png)
 
-4. Click on Steps and make the following adjustments to your recording
+4. Click on Steps and make the following adjustments to your recording provide a friendly name to Steps 1, 2, 3 & 4
 
-provide a friendly name to Steps 1, 2, 3 & 4
+   ![placeholder](../images/synthetics/image6.png)
 
-![placeholder](../images/synthetics/image6.png)
+   Adjust Step 3 to use a JSPath Selector, in order to retrieve the selector this can be accomplished using Chrome developer tools. Follow the numbered UI clicks in the screenshot and use a right mouse click operation to "**Copy selector**", paste it into Step 3 as shown in the above screenshot.
 
-Adjust Step 3 to use a JSPath Selector, in order to retrieve the selector this can be accomplished using Chrome developer tools. Follow the numbered UI clicks in the screenshot and use a right mouse click operation to "**Copy selector**", paste it into Step 3 as shown in the above screenshot.
+   Here is the actual selector you need to Login into Splunk
 
-Here is the actual selector you need to Login into Splunk
+   ```javascript
+   document.querySelector(\"#AddToCart\--product-template\")
+   ```
 
- ```javascript
- document.querySelector(\"#AddToCart\--product-template\")
- ```
+   ![placeholder](../images/synthetics/image2.png)
 
-![placeholder](../images/synthetics/image2.png)
+   **Tip 1:** use \'**command + f**\' in inspector to ensure that there is only one instance of the selector you are using. ![placeholder](../images/synthetics/image32.png)
 
-**Tip 1:** use \'**command + f**\' in inspector to ensure that there is only one instance of the selector you are using. ![placeholder](../images/synthetics/image32.png)
-
-**Tip 2:** As you are creating the steps think about how to go about using the "[Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions)" feature in Rigor which is very powerful. *"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
+   **Tip 2:** As you are creating the steps think about how to go about using the "[Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions)" feature in Rigor which is very powerful. *"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
 
 5. Click on "**Test**" to test your recording, make sure to click on "**After**" in Step 4 to validate the monitor was able to get to the checkout screen.
 
-![placeholder](../images/synthetics/image22.png)
+   ![placeholder](../images/synthetics/image22.png)
 
 6. Add a **"Return to Cart"** Step 5 to your recording
 
-Use the "**CSS**" Selector, here is the actual selector you need to return to the cart
+   Use the "**CSS**" Selector, here is the actual selector you need to return to the cart
 
- ```html
- body \div \div \div \main \div.step \form \div.step\_\_footer \a \span
- ```
+   ```html
+   body \div \div \div \main \div.step \form \div.step\_\_footer \a \span
+   ```
 
-![placeholder](../images/synthetics/image28.png)
+   ![placeholder](../images/synthetics/image28.png)
 
 7. Save your Real Browser Monitor and validate your monitor is working i.e. producing successful checks
 
-![placeholder](../images/synthetics/image27.png)
->
-![placeholder](../images/synthetics/image32.png)
->
-**Tip:** you can force to run your monitor now using **Run Now**
->
-![placeholder](../images/synthetics/image8.png)
+   ![placeholder](../images/synthetics/image27.png)
+
+   ![placeholder](../images/synthetics/image32.png)
+
+   **Tip:** you can force to run your monitor now using **Run Now**
+
+   ![placeholder](../images/synthetics/image8.png)
 
 8. Change your view to **Segment by location** and observe the difference. You can turn off/on locations by clicking on them.
 
-**Question:** Which Location has the poorest **Response Time**?
->
-![placeholder](../images/synthetics/image9.png)
+   **Question:** Which Location has the poorest **Response Time**?
+
+   ![placeholder](../images/synthetics/image9.png)
 
 9. Click on one of the successful circles to drilldown into that Run:
 
-![placeholder](../images/synthetics/image33.png)
+   ![placeholder](../images/synthetics/image33.png)
 
 10. Take a moment to explore the metrics with the "Configure Metrics" dropdown
 
- ![placeholder](../images/synthetics/image14.png)
+    ![placeholder](../images/synthetics/image14.png)
 
 11. Click "Page 2" in the dropdown, and scroll down to view the **Filmstrip** and the **Waterfall Chart.**
 
- ![placeholder](../images/synthetics/image16.png)
+    ![placeholder](../images/synthetics/image16.png)
 
-12. Click on **Click Here to Analyze with Optimization** which will prompt to login to your Rigor Optimization Account. If you **don't have this option**, navigate to this page: https://optimization.rigor.com/s/2194959?tid=ov&sh=3AF8C48AADD6D3E5F5DAA8B4B7BB7F45
+12. Click on **Click Here to Analyze with Optimization** which will prompt to login to your Rigor Optimization Account. If you **don't have this option**, navigate to this page: [](https://optimization.rigor.com/s/2194959?tid=ov&sh=3AF8C48AADD6D3E5F5DAA8B4B7BB7F45)
 
-![placeholder](../images/synthetics/image31.png)
+    ![placeholder](../images/synthetics/image31.png)
 
 13. Click the "**Best Practices Score**" tab. Scroll down, and review all the findings
 
-![placeholder](../images/synthetics/image23.png)
->
+    ![placeholder](../images/synthetics/image23.png)
+
 Spend some time to review the findings. Click into any line item
-
-### 
-
-## 
 
 ## **2.5 Create NEW Rigor Mobile RBC for Splunk**
 
@@ -174,7 +162,7 @@ Clone the RBC you created above and name it, for example: **AP - Checkout Flow (
 
 Update the following three settings and create your new RBC.
 
-##  ![placeholder](../images/synthetics/image18.png) 
+![placeholder](../images/synthetics/image18.png)
 
 Test & Validate the new monitor
 
@@ -192,7 +180,7 @@ Test & Validate the new monitor
 
 - [Selenium IDE](https://www.selenium.dev/selenium-ide/)
 
-# Task 3 - Splunk REST API Checks 
+## Task 3 - Splunk REST API Checks
 
 **Estimated duration:**20 Minutes
 
@@ -226,7 +214,7 @@ View the global variable that we'll use to make the spotify API transaction
 
 - A Request Step makes an HTTP request to some endpoint and collects data from that interaction. Unlike other check types, API Checks do not require an initial URL to start the check. All HTTP requests are configured within Request Steps.
 
-[**[Extract Step]**](https://help.rigor.com/hc/en-us/articles/115004582607-API-Check-Extract-Step)
+[**Extract Step**](https://help.rigor.com/hc/en-us/articles/115004582607-API-Check-Extract-Step)
 
 - An Extract Step extracts data out of JSON, XML, or HTML formatted data.
 
@@ -240,7 +228,7 @@ View the global variable that we'll use to make the spotify API transaction
 
 - The source can be any JSON, but most likely will come from the response body. The source could also come from a response header or can be a custom value. The source must be well-formed JSON.
 
-[**[Save Step]**](https://help.rigor.com/hc/en-us/articles/115004743868-API-Check-Save-Step)
+[**Save Step**](https://help.rigor.com/hc/en-us/articles/115004743868-API-Check-Save-Step)
 
 - A Save Step stores some data to be reused later in the check. To save data, supply the source and the name of the custom variable to save to. The source can be selected from the presets, including response headers, or by providing a custom value.
 
@@ -248,11 +236,11 @@ View the global variable that we'll use to make the spotify API transaction
 
 - It is important to remember that request variables are only available after a request is made. If you try to save a value from a request but haven't made a request yet, then an empty string will be saved.
 
-[**[Assert Step]**](https://help.rigor.com/hc/en-us/articles/115004742408-API-Check-Assert-Step)
+[**Assert Step**](https://help.rigor.com/hc/en-us/articles/115004742408-API-Check-Assert-Step)
 
 - An Assert Step makes an assertion on two values. To make an assertion, supply two parameters along with the comparison that you would like to perform between the two.
 
-**Comparisons**
+[**Comparisons**]()
 
 - We currently support 3 types of comparisons: **string**, **numeric**, and **regular expression**.
 
@@ -260,9 +248,9 @@ View the global variable that we'll use to make the spotify API transaction
 
 - For a **regular expression** comparison, the first parameter is a string and the second parameter is a regular expression.
 
-4. Tag your API Check with Splunk and API and SAVE it
+Tag your API Check with Splunk and API and SAVE it
 
- ![placeholder](../images/synthetics/image4.png)
+![placeholder](../images/synthetics/image4.png)
 
 ## **3.3 Test your REST API Check**
 
