@@ -131,6 +131,8 @@ nav:
       - Observability Cloud Integration: oncall/optional/sfx_integrations.md
       - Using Multipass VM: oncall/optional/multipass.md
       - Create a Detector: oncall/optional/detector.md
+  - Splunk Synthetics:
+    - Introduction: synthetics/index.md
   #- Lambda & APM:
   #  - Intro: lambda/index.md
   #  - Getting to know the Mobile Shop: lambda/initial_run_env.md
