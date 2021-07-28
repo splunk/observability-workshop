@@ -72,8 +72,8 @@ runcmd:
   # Install Helm
   - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
   # Install K9s (Kubernetes UI)
-  - curl -S -OL https://github.com/derailed/k9s/releases/download/v0.24.10/k9s_v0.24.10_Linux_x86_64.tar.gz
-  - tar xfz k9s_v0.24.10_Linux_x86_64.tar.gz -C /usr/local/bin/ k9s
+  - curl -S -OL https://github.com/derailed/k9s/releases/download/v0.24.14/k9s_Linux_x86_64.tar.gz
+  - tar xfz k9s_Linux_x86_64.tar.gz -C /usr/local/bin/ k9s
   # Download Workshop
   - export WSVERSION=2.32
   - 'export WSARCHIVE=$([ "$WSVERSION" = "master" ] && echo "master" || echo "v$WSVERSION")'
@@ -92,8 +92,8 @@ runcmd:
   - curl -s https://raw.githubusercontent.com/signalfx/observability-workshop/master/cloud-init/motd -o /etc/motd
   - chmod -x /etc/update-motd.d/*
   # Install Terraform
-  - curl -S -OL https://releases.hashicorp.com/terraform/0.15.4/terraform_0.15.4_linux_amd64.zip
-  - unzip -qq terraform_0.15.4_linux_amd64.zip -d /usr/local/bin
+  - curl -S -OL https://releases.hashicorp.com/terraform/1.0.3/terraform_1.0.3_linux_amd64.zip
+  - unzip -qq terraform_1.0.3_linux_amd64.zip -d /usr/local/bin
   # Create kube config and set correct permissions on ubuntu user home directory
   - mkdir /home/ubuntu/.kube && kubectl config view --raw > /home/ubuntu/.kube/config
   - chmod 400 /home/ubuntu/.kube/config
