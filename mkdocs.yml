@@ -79,6 +79,11 @@ plugins:
       type: date
   - minify:
       minify_html: false
+  - i18n:
+      default_language: en
+      languages:
+        en: English
+        ja: 日本語
 
 nav:
   - Home: index.md
