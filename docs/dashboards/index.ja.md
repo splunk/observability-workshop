@@ -15,7 +15,7 @@
 
 このモジュールでは、次のようなチャートとダッシュボードを作成し、それをチームページに接続します。
 
-![ダッシュボードの例](.../images/dashboards/example-dashboard.png)
+![Example Dashboard](../images/dashboards/example-dashboard.png)
 
 ---
 
