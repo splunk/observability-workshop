@@ -1,49 +1,49 @@
-# Monitoring as Code - Lab Summary
+# Monitoring as Code - ラボ概要
 
-* Use Terraform[^1] to manage Observability Cloud Dashboards and Detectors
-* Initialize the Terraform Splunk Provider[^2].
-* Run Terraform to create detectors and dashboards from code using the Splunk Terraform Provider.
-* See how Terraform can also delete detectors and dashboards.
+* Terraform[^1] を使用して Observability Cloud のダッシュボードとディテクターを管理します。
+* Terraform のSplunk Provider[^2] を初期化します
+* Terraformを実行して、Splunk Terraform Provider を使用してコードからディテクターとダッシュボードを作成します。
+* Terraformでディテクターやダッシュボードを削除する方法を確認します。
 
 ---
 
-## 1. Initial setup
+## 1. 初期設定
 
-Monitoring as code adopts the same approach as infrastructure as code. You can manage monitoring the same way you do applications, servers, or other infrastructure components.
+Monitoring as Codeは、infrastructure as Codeと同じアプローチを採用しています。アプリケーション、サーバー、その他のインフラコンポーネントと同じようにモニタリングを管理できます。
 
-You can monitoring as code to build out your visualisations, what to monitor, and when to alert, among other things. This means your monitoring setup, processes, and rules can be versioned, shared, and reused.
+Monitoring as Codeでは、可視化したり、何を監視するか定義したり、いつアラートを出すかなどを管理します。つまり、監視設定、プロセス、ルールをバージョン管理、共有、再利用することができます。
 
-Full documentation for the Splunk Terraform Provider is available [here](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs).
+Splunk Terraform Providerの完全なドキュメントは[こちら](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs)にあります。
 
-Remaining in your AWS/EC2 instance, change into the `signalfx-jumpstart` directory
+AWS/EC2 インスタンスにログインして、`signalfx-jumpstart` ディレクトリに移動します
 
-=== "Shell Command"
+=== "シェルコマンド"
 
     ```text
     cd ~/signalfx-jumpstart
     ```
 
-The environment variables needed should already be set from [Installation using Helm](../../otel/k3s/#2-installation-using-helm). If not, create the following environment variables to use in the Terraform steps below
+必要な環境変数は、[Installation using Helm](../../otel/k3s/#2-installation-using-helm) ですでに設定されているはずです。そうでない場合は、以下の Terraform のステップで使用するために、以下の環境変数を作成してください。
 
-=== "Shell Command"
+=== "シェルコマンド"
 
     ```
     export ACCESS_TOKEN=<replace_with_default_access_token>
     export REALM=<replace_with_splunk_realm>
     ```
 
-Initialize Terraform and upgrade to the latest version of the Splunk Terraform Provider
+Terraform を初期化し、Splunk Terraform Provider を最新版にアップグレードします。
 
-!!! note "Upgrading the SignalFx Terraform Provider"
-    You will need to run the command below each time a new version of the Splunk Terraform Provider is released. You can track the releases on [GitHub](https://github.com/splunk-terraform/terraform-provider-signalfx/releases){: target=_blank}.
+!!! 注意 「SignalFx Terraform Provider のアップグレード」
+    Splunk Terraform Provider の新バージョンがリリースされるたびに、以下のコマンドを実行する必要があります。リリース情報は[GitHub](https://github.com/splunk-terraform/terraform-provider-signalfx/releases){: target=_blank}で確認できます。
 
-=== "Shell Command"
+=== "シェルコマンド"
 
     ```text
     terraform init -upgrade
     ```
 
-=== "Output"
+=== "出力"
 
     ```
     Upgrading modules...
@@ -85,93 +85,93 @@ Initialize Terraform and upgrade to the latest version of the Splunk Terraform P
     commands will detect it and remind you to do so if necessary.
     ```
 
-## 2. Create execution plan
+## 2. プランの作成
 
-The `terraform plan` command creates an execution plan. By default, creating a plan consists of:
+`terraform plan` コマンドは、実行計画を作成します。デフォルトでは、プランの作成は以下のように構成されています。
 
-* Reading the current state of any already-existing remote objects to make sure that the Terraform state is up-to-date.
-* Comparing the current configuration to the prior state and noting any differences.
-* Proposing a set of change actions that should, if applied, make the remote objects match the configuration.
+* 既に存在するリモートオブジェクトの現在の状態を読み込み、Terraform の状態が最新であることを確認します
+* 現在の設定を以前の状態と比較し、相違点を抽出します
+* 適用された場合にリモートオブジェクトと設定とを一致させるための、一連の変更アクションを提案します
 
-The plan command alone will not actually carry out the proposed changes, and so you can use this command to check whether the proposed changes match what you expected before you apply the changes
+plan コマンドだけでは、提案された変更を実際に実行はされなません。変更を適用する前に、以下のコマンドを実行して、提案された変更が期待したものと一致するかどうかを確認しましょう。
 
-=== "Shell Command"
+=== "シェルコマンド"
 
     ```text
     terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
     ```
 
-=== "Example Output"
+=== "出力例"
 
     ```
     Plan: 92 to add, 0 to change, 0 to destroy.
     ```
 
-If the plan executes successfully, we can go ahead and apply:
+プランが正常に実行されれば、そのまま適用することができます。
 
 ---
 
-## 3. Apply execution plan
+## 3. プランの適用
 
-The `terraform apply` command executes the actions proposed in the Terraform plan above.
+`terraform apply` コマンドは、上記の Terraform プランで提案されたアクションを実行します。
 
-The most straightforward way to use `terraform apply` is to run it without any arguments at all, in which case it will automatically create a new execution plan (as if you had run terraform plan) and then prompt you to provide the Access Token, Realm (the prefix defaults to `Splunk`) and approve the plan, before taking the indicated actions.
+この場合、新しい実行プランが自動的に作成され（`terraform plan`を実行したときと同様です）、指示されたアクションを実行する前にAccess Token、Realm（プレフィックスのデフォルトは`Splunk`）の提供とプランの承認を求められます。
 
-Due to this being a workshop it is required that the prefix is to be unique so you need to run the `terraform apply` below.
+このワークショップでは、プレフィックスがユニークである必要があります。以下の `terraform apply` を実行してください。
 
-=== "Shell Command"
+=== "シェルコマンド"
 
     ```text
     terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
     ```
 
-=== "Example Output"
+=== "出力例"
 
     ```
     Apply complete! Resources: 92 added, 0 changed, 0 destroyed.
     ```
 
-Once the apply has completed, validate that the detectors were created, under the **Alerts → Detectors**. They will be prefixed by the hostname of your instance. To check the prefix value run:
+適用が完了したら、 **Alerts → Detectors** でディテクターが作成されたことを確認してください。ディテクターのプレフィックスには、インスタンスのホスト名が入ります。プレフィックスの値を確認するには以下を実行してください。
 
-=== "Shell Command"
+=== "シェルコマンド"
 
     ```text
     echo $(hostname)
     ```
 
- You will see a list of the new detectors and you can search for the prefix that was output from above.
+ 新しいディテクターのリストが表示され、上から出力されたプレフィックスを検索することができます。
 
 ![Detectors](../images/monitoring-as-code/detectors.png)
 
-## 3. Destroy all your hard work
+## 3. 苦労して作ったもの全てを壊す
 
-The `terraform destroy` command is a convenient way to destroy all remote objects managed by your Terraform configuration.
+`terraform destroy` コマンドは、Terraform の設定で管理されているすべてのリモートオブジェクトを破壊する便利な方法です。
 
-While you will typically not want to destroy long-lived objects in a production environment, Terraform is sometimes used to manage ephemeral infrastructure for development purposes, in which case you can use `terraform destroy` to conveniently clean up all of those temporary objects once you are finished with your work.
+通常、本番環境では長期保存可能なオブジェクトを破棄することはありませんが、Terraformでは開発目的で一時的なインフラを管理するために使用されることがあり、その場合は作業が終わった後に `terraform destroy` を実行して、一時的なオブジェクトをすべてクリーンアップすることができます。
 
-Now go and destroy all the Detectors and Dashboards that were previously applied!
+それでは、ここまでで適用したダッシュボードとディテクターを全て破壊しましょう！
 
-=== "Shell Command"
+=== "シェルコマンド"
 
     ```text
     terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
     ```
 
-=== "Example Output"
+=== "出力例"
 
     ```
     Destroy complete! Resources: 92 destroyed.
     ```
 
-Validate all the detectors have been removed by navigating to _**Alerts → Detectors**_
+_**Alerts → Detectors**_ に移動して、すべてのディテクターが削除されたことを確認してください。
 
 ![Destroyed](../images/monitoring-as-code/destroy.png)
 
 [^1]:
-    Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.
+    Terraform は、インフラを安全かつ効率的に構築、変更、バージョン管理するためのツールです。Terraform は、既存の一般的なサービスプロバイダーだけでなく、様々なカスタムソリューションも管理できます。
 
-    Configuration files describe to Terraform the components needed to run a single application or your entire datacenter. Terraform generates an execution plan describing what it will do to reach the desired state, and then executes it to build the described infrastructure. As the configuration changes, Terraform is able to determine what changed and create incremental execution plans which can be applied.
+    Terraform の設定ファイルには、単一のアプリケーションまたはデータセンター全体を実行するために必要なコンポーネントをに記述します。Terraform はそれを受けて、望ましい状態に到達するために何をするかを記述した実行プランを生成し、記述されたインフラを構築するために実行します。設定が変更されても、Terraform は何が変更されたかを判断し、差分の実行プランを作成して適用することができます。
 
-    The infrastructure Terraform can manage includes low-level components such as compute instances, storage, and networking, as well as high-level components such as DNS entries, SaaS features, etc.
+    Terraform が管理できるインフラには、計算機インスタンス、ストレージ、ネットワークなどのローレベルのコンポーネントや、DNSエントリ、SaaS機能などのハイレベルのコンポーネントが含まれます。
 [^2]:
-    A provider is responsible for understanding API interactions and exposing resources. Providers generally are an IaaS (e.g. Alibaba Cloud, AWS, GCP, Microsoft Azure, OpenStack), PaaS (e.g. Heroku), or SaaS services (e.g. Splunk, Terraform Cloud, DNSimple, Cloudflare).
+    プロバイダーは、APIのインタラクションを理解し、リソースを公開する責務があります。一般的にプロバイダーは、IaaS（Alibaba Cloud、AWS、GCP、Microsoft Azure、OpenStackなど）、PaaS（Herokuなど）、またはSaaSサービス（Splunk、Terraform Cloud、DNSimple、Cloudflareなど）があります。

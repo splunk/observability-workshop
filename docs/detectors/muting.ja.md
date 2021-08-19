@@ -17,7 +17,7 @@
 
 ![Detectors](../images/detectors/detector-list.png)
 
-**Creating a Detector** でディテクターを作成した場合は、右端の3つの点 **`...`** をクリックすると、そのディテクターが表示されます。 
+**Creating a Detector** でディテクターを作成した場合は、右端の3つの点 **`...`** をクリックすると、そのディテクターが表示されます。
 
 ドロップダウンから **Create Muting Rule...** をクリックします。
 
