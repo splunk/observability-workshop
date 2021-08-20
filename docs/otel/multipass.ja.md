@@ -30,7 +30,7 @@ Mac の場合は [Homebrew](https://brew.sh/){: target=_blank} でインスト�
 
 === "Windows"
 
-    !!!情報
+    !!! info
         このURL <https://github.com/signalfx/observability-workshop/archive/v2.32.zip> をから、zipファイルをダウンロードしてください。
 
         ダウンロードしたファイルを解凍し、ファイル名を「workshop」に変更します。次に、コマンドプロンプトから、そのディレクトリに入り、次のコマンドを実行してください。

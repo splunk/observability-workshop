@@ -11,7 +11,7 @@
 
 左上のハンバーガーメニューアイコンから、メニューの **Alerts** をクリックし、**Detectors** を選択します。
 
-![Detectors](.../images/detectors/detectors-menu.png)
+![Detectors](../images/detectors/detectors-menu.png)
 
 アクティブなディテクターのリストが表示されます。
 
@@ -25,7 +25,7 @@
 
 **Muting Rule** ウィンドウで、 **Mute Indefinitely** をチェックし、理由を入力します。
 
-!!! 重要
+!!! important
     これにより、ここに戻ってきてこのボックスのチェックを外すか、このディテクターの通知を再開するまで、通知が永久的にミュートされます。
 
 ![Mute Indefinitely](../images/detectors/mute-indefinitely.png){: .shadow .center}
