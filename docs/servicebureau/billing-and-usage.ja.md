@@ -1,73 +1,73 @@
-# Service Bureau - Lab Summary
+# サービスビューロー - ラボの概要
 
-* How to keep track of the usage of Observability Cloud in your organization
-* Learn how to keep track of spend by exploring the Billing and Usage interface
-* Creating Teams
-* Adding notification rules to Teams
-* Controlling usage
+* 組織におけるObservability Cloudの利用状況を把握する
+* Billing and Usage（課金と使用量）インターフェースを使って、使用量を追跡する
+* チームを作成する
+* チームへの通知ルールを管理する
+* 使用量をコントロールする
 
 ---
 
-## 1. Understanding engagement
+## 1. エンゲージメントの理解
 
-To fully understand Observability Cloud engagement inside your organization, click on the hamburger top left and select the **Organizations Settings → Organization Overview**, this will provide you with the following dashboard that shows you how your Observability Cloud organization is being used:
+組織内のObservability Cloudのエンゲージメントを完全に理解するには、左上のハンバーガーをクリックして、**Organizations Settings → Organization Overview**　を選択すると、Observability Cloud の組織がどのように使用されているかを示す以下のダッシュボードが表示されます。
 
 ![Organization overview](../images/servicebureau/engagement.png)
 
-On the left hand menu you will see a list of members, and on the right, various charts that show you the number of users, teams, charts, dashboards, and dashboard groups created, as well as various growth trends.
+左側のメニューには、メンバーのリストが表示され、右側には、ユーザー数、チーム数、チャート数、ダッシュボード数、ダッシュボードグループの作成数、様々な成長傾向を示すチャートが表示されます。
 
-The workshop organization you're using now may have less data to work with as this is cleared down after each workshop.
+現在お使いのワークショップ組織では、ワークショップごとにデータが消去されるため、作業できるデータが少ないかもしれません。
 
-Take a minute to explore the various charts in the Organization Overview of this workshop instance.
+このワークショップインスタンスの  Organization Overview にある様々なチャートをじっくりとご覧ください。
 
 ---
 
-## 2. Usage and Billing
+## 2. 使用状況と請求情報
 
-If you want to see what your usage is against your contract you can select the **Organizations Settings → Billing and Usage**.
+契約に対する使用量を確認したい場合は、 **Organizations Settings → Billing and Usage** を選択します。
 
-Or the faster way is to select the **Billing and Usage** item from the left hand pane.
+もしくは、左側のペインから **Billing and Usage** の項目を選択してもするのが早い方法です。
 
 ![Left pane](../images/servicebureau/billing-and-usage-menu.png)
 
-This screen may take a few seconds to load whilst it calculates and pulls in the usage.
+この画面では、使用量を計算して取り込むため、読み込みに数秒かかることがあります。
 
 ---
 
-## 3. Understanding usage
+## 3. 使用量の把握
 
-You will see a screen similar like the one below that will give you an overview of the current usage, the average usage and your entitlement per category : Hosts, Containers, Custom Metrics and High Resolution Metrics.  
+下図のような画面が表示され、現在の使用量、平均使用量、およびホスト、コンテナ、カスタムメトリクス、高解像度メトリクスの各カテゴリごとの権利の概要が表示されます。 
 
-For more information about about these categories please refer to [Billing and Usage information](https://docs.splunk.com/Observability/admin/monitor-imm-billing-usage.html){: target=_blank}.
+これらのカテゴリの詳細については、[Billing and Usage information](https://docs.splunk.com/Observability/admin/monitor-imm-billing-usage.html){: target=_blank} を参照してください。
 
 ![Billing and Usage](../images/servicebureau/usage-charts.png)
 
 ---
 
-## 4. Examine usage in detail
+## 4. 使用状況を詳しく調べる
 
-The top chart shows you the current subscription levels per category (shown by the red arrows at the top in the screenshot below).
+一番上のチャートには、カテゴリーごとの現在のサブスクリプションレベルが表示されます（下のスクリーンショットでは、上部の赤い矢印で表示されています）。
 
-Also, your current usage of the four catagories is displayed (shown at the red lines at the bottom of the chart).
+また、4つのカテゴリーの現在の使用状況も表示されます（チャート下部の赤い線で示されています）。
 
-In this example you can see that there are 25 Hosts, 0 Containers and 100 Custom Metrics and 0 High Resolution Metrics.
+この例では、「ホスト」が25個、「コンテナ」が0個、「カスタムメトリクス」が100個、「高解像度メトリクス」が0個であることがわかります。
 
 ![Billing and Usage-top](../images/servicebureau/usage-detail.png)
 
-In the bottom chart, you can see the usage per category for the current period (shown in the drop-down box on the top right of the chart).
+下のグラフでは、現在の期間のカテゴリごとの使用量が表示されています（グラフの右上のドロップダウンボックスに表示されています）。
 
-The blue line marked **Average Usage** indicates what Observability Cloud will use to calculate your average usage for the current billing period.
+**Average Usage** と書かれた青い線は、Observability Cloudが現在の請求期間の平均使用量を計算するために使用するものを示しています。
 
 ![Billing and Usage-Bottom](../images/servicebureau/usage-trends.png)
 
 !!! info
 
-    As you can see from the screenshot, Observability Cloud does not use High Watermark or P95% for cost calculation but the actual average hourly usage, allowing you to do performance testing or Blue/Green style deployments etc. without the risk of overage charges.
+    スクリーンショットからわかるように、Observability Cloudはコスト計算にHigh Watermarkや95パーセンタイルを使用せず、実際の平均時間使用量を使用しています。これにより、超過料金のリスクなしに、パフォーマンステストやBlue/Greenスタイルのデプロイメントなどを行うことができます。
 
-To get a feel for the options you can change the metric displayed by selecting the different options from the **Usage Metric** drop down on the left, or change the the **Billing Period** with the drop down on the right.
+オプションを確認するには、左の **Usage Metric** ドロップダウンから異なるオプションを選択して表示するメトリックを変更するか、右のドロップダウンで **Billing Period** を変更します。
 
-Please take a minute to explore the different time periods & categories and their views.
+また、右側のドロップダウンで請求期間を変更することもできます。
 
-Finally, the pane on the right shows you information about your Subscription.
+最後に、右側のペインには、お客様のサブスクリプションに関する情報が表示されます。
 
 ![Billing and Usage-Pane](../images/servicebureau/subscription.png)

@@ -1,90 +1,90 @@
-# Teams - Lab Summary
+# チーム - ラボの概要
 
-* Introduction to Teams
-* Create a Team and add members to Team
+* チームの管理
+* チームの作成とメンバーの追加
 
 ---
 
-## 1. Introduction to Teams
+## 1. チームの管理
 
-To make sure that users see the dashboards and alerts that are relevant to them when using Observability Cloud, most organizations will use Observability Cloud's Teams feature to assign a member to one or more Teams.
+Observability Cloudを使用する際に、ユーザーに関連するダッシュボードやアラートが表示されるようにするために、ほとんどの組織ではObservability Cloudのチーム機能を使用して、メンバーを1つまたは複数のチームに割り当てます。
 
-Ideally, this matches work related roles, for example, members of a Dev-Ops or Product Management group would be assigned to the corresponding Teams in Observability Cloud.
+これは、仕事に関連した役割と一致するのが理想的で、たとえば、DevOpsグループやプロダクトマネジメントグループのメンバーは、Observability Cloudの対応するチームに割り当てられます。
 
-When a user logs into Observability Cloud, they can choose which Team Dashboard will be their home page and they will typically select the page for their primary role.
+ユーザーがObservability Cloudにログインすると、どのチームダッシュボードをホームページにするかを選択することができ、通常は自分の主な役割に応じたページを選択します。
 
-In the example below, the user is a member of the Development, Operations and Product Management Teams, and is currently viewing the Dashboard for the Operations Team.
+以下の例では、ユーザーは開発、運用、プロダクトマネジメントの各チームのメンバーであり、現在は運用チームのダッシュボードを表示しています。
 
-This Dashboard has specific Dashboard Groups for NGINX, Infra and K8s assigned but any Dashboard Group can be linked to a Teams Dashboard.
+このダッシュボードには、NGINX、Infra、K8s用の特定のダッシュボード・グループが割り当てられていますが、どのダッシュボード・グループもチーム・ダッシュボードにリンクすることができます。
 
-They can use the menu along the top left to quickly navigate between their allocated teams, or they can use the **ALL TEAMS** dropdown on the right to select specific Team Dashboards, as well as quickly accessing **ALL Dashboards** using the adjacent link.
+左上のメニューを使って割り当てられたチーム間を素早く移動したり、右側の **ALL TEAMS** ドロップダウンを使って特定のチームのダッシュボードを選択したり、隣のリンクを使って **ALL Dashboards** に素早くアクセスしたりすることができます。
 
 ![Teams](../images/servicebureau/teams-homepage.png)
 
-Alerts can be linked to specific Teams so the Team can monitor only the Alerts they are interested in, and in the above example they currently have 1 active Critical Alert.
+アラートを特定のチームにリンクすることで、チームは関心のあるアラートだけをモニターすることができます。上記の例では、現在1つのアクティブなクリティカルアラートがあります。
 
-The Description for the Team Dashboard can be customized and can include links to team specific resources (using Markdown).
+チームダッシュボードの説明文はカスタマイズ可能で、チーム固有のリソースへのリンクを含むことができます（Markdownを使用します）。
 
 ---
 
-## 2. Creating a new Team
+## 2. 新しいチームの作成
 
-To work with to Splunk's Team UI click on the hamburger icon top left and select the **Organizations Settings → Teams**.
+Splunk のチーム UI を使用するには、左上のハンバーガーアイコンをクリックし、 **Organizations Settings → Teams** を選択します。
 
-When the **Team** UI is selected you will be presented with the list of current Teams.
+**Team** を選択すると、現在のチームのリストが表示されます。
 
-To add a new **Team** click on the **Create New Team**{: .label-button .sfx-ui-button-blue} button. This will present you with the **Create New Team** dialog.
+新しいチームを追加するには、**Create New Team**{: .label-button .sfx-ui-button-blue} ボタンをクリックします。これにより、**Create New Team** ダイアログが表示されます。
 
 ![Add Team](../images/servicebureau/create-new-team.png){: .shadow}
 
-Create your own team by naming it `[YOUR-INITIALS]-Team and` add yourself by searching for your name and selecting the **Add** link next to your name. This should result in a dialog similar to the one below:
+自分の名前を検索して、名前の横にある **Add** リンクを選択して、自分自身を追加します。その結果、以下のようなダイアログが表示されるはずです。
 
 ![Add Team complete](../images/servicebureau/add-to-team.png){: .shadow}
 
-You can remove selected users by pressing  **Remove** or the small **x**.
+選択したユーザーを削除するには、**Remove** または **x** を押します。
 
-Make sure you have your group created with your initials and with yourself added as a member, then click **Done**{: .label-button .sfx-ui-button-blue}
+自分のイニシャルでグループを作成し、自分がメンバーとして追加されていることを確認して、**Done**{: .label-button .sfx-ui-button-blue} をクリックします。
 
-This will bring you back to the **Teams** list that will now show your Team and the one's created by others.
+これでチームリストに戻り、自分のチームと他の人が作成したチームが表示されます。
 
 !!! note
-    The Teams(s) you are a member of have a grey **Member** icon in front of it.
+    自分がメンバーになっているチームには、グレーの **Member** アイコンが前に表示されています。
 
-If no members are assigned to your Team, you should see a blue **Add Members** link instead of the member count, clicking on that link will get you to the **Edit Team** dialog where you can add yourself.
+自分のチームにメンバーが割り当てられていない場合は、メンバー数の代わりに青い **Add Members** のリンクが表示されます。このリンクをクリックすると、**Edit Team** ダイアログが表示され、自分を追加することができます。
 
-This is the same dialog you get when pressing the 3 dots **...** at the end of the line with your Team and selecting **Edit Team**
+自分のチームの行末にある3つのドット **...** を押しても、同じダイアログが表示されます。
 
-The **...** menu gives you the option to Edit, Join, Leave or Delete a Team (leave and join will depend on if you are currently a member).
+**...** メニューでは、チームの編集、参加、離脱、削除を行うことができます（離脱と参加は、あなたが現在メンバーであるかどうかによって異なります）。
 
 ---
 
-## 3. Adding Notification Rules
+## 3. 通知ルールの追加
 
-You can set up specific Notification rules per team, click on the **Notification Policy** tab, this will open the notification edit menu.
+チームごとに特定の通知ルールを設定することができます。**Notification Policy** タブをクリックすると、通知編集メニューが表示されます。
 
 ![Base notification menu](../images/servicebureau/notification-policy.png)
 
-By default the system offers you the ability to set up a general notification rule for your team.
+デフォルトでは、システムはチームの一般的な通知ルールを設定する機能を提供します。
 
 !!! note
-    The **Email all team members** option means all members of this Team will receive an email with the Alert information, regardless of the alert type.
+    **Email all team members** オプションは、アラートの種類に関わらず、このチームのすべてのメンバーにアラート情報のメールが送信されることを意味します。
 
-### 3.1 Adding recipients
+### 3.1 受信者の追加
 
-You can add other recipients, by clicking **Add Recipient**{: .label-button .sfx-ui-button-blue}. These recipients do not need to be Observability Cloud users.
+**Add Recipient**{: .label-button .sfx-ui-button-blue} をクリックすると、他の受信者を追加することができます。これらの受信者は Observability Cloud のユーザーである必要はありません。
 
-However if you click on the link **Configure separate notification tiers for different severity alerts** you can configure every alert level independently.
+**Configure separate notification tiers for different severity alerts** をクリックすると、各アラートレベルを個別に設定できます。
 
 ![Multiple Notifications](../images/servicebureau/single-policy.png)
 
-Different alert rules for the different alert levels can be configured, as shown in the above image.
+上の画像のように、異なるアラートレベルに対して異なるアラートルールを設定することができます。
 
-Critical and Major are using [Splunk's VictorOps](https://victorops.com/){: target=_blank} Incident Management solution. For the Minor alerts we send it to the Teams Slack channel and for Warning and Info we send an email.
+Critical と Major は [Splunk On-Call](https://victorops.com/){: target=_blank} インシデント管理ソリューションを使用しています。Minor のアラートはチームの Slack チャンネルに送信し、Warning と Info はメールで送信しています。
 
-### 3.2 Notification Integrations
+## 3.2 通知機能の統合
 
-In addition to sending alert notifications via email, you can configure Observability Cloud to send alert notifications to the services shown below.
+Observability Cloud では、アラート通知をメールで送信するだけでなく、以下のようなサービスにアラート通知を送信するように設定することができます。
 
 ![Notifications options](../images/servicebureau/integrations.png)
 
-Take a moment to create some notification rules for you Team.
+チームの事情に合わせて、通知ルールを作成してください。

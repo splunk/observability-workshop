@@ -1,88 +1,88 @@
-# Controlling Usage - Lab Summary
+# 使用量をコントロールする - ラボの概要
 
-* Discover how you can restrict usage by creating separate Access Tokens and set limits.
+* 個別のアクセストークンを作成し、制限を設けることで利用を制限する方法を紹介します
 
-## 1. Access Tokens
+## 1. アクセストークン
 
-If you wish to control the consumption of Hosts, Containers, Custom Metrics and High Resolution Metrics, you can create multiple Access Tokens and allocate them to different parts of your organization.
+ホスト、コンテナ、カスタムメトリクス、高解像度メトリクスの使用量をコントロールしたい場合は、複数のアクセストークンを作成し、組織内の異なる部分に割り当てることができます。
 
-In the UI click on the hamburger top left and select the **Organizations Settings → Access Tokens**
+UIの左上のハンバーガーをクリックして、**Organizations Settings → Access Tokens** を選択します。
 
-The **Access Tokens** Interface provides an overview of your allotments in the form of a list of Access Tokens that have been generated. Every Organization will have a **Default** token generated when they are first setup, but there will typically be multiple Tokens configured.
+**Access Tokens** インターフェースでは、生成されたアクセストークンのリストで概要が表示されます。すべての組織では、最初のセットアップ時に **Default** のトークンが生成され、その他のトークンを追加・削除できるようになっています。
 
-Each Token is unique and can be assigned limits for the amount of Hosts, Containers, Custom Metrics and High Resolution Metrics it can consume.
+各トークンは一意であり、消費できるホスト、コンテナ、カスタムメトリクス、高解像度メトリクスの量に制限を設けることができます。
 
-The **Usage Status** Column quickly shows if a token is above or below its assigned limits.
+**Usage Status** 欄は、トークンが割り当てられた制限値を上回っているか下回っているかを素早く表示します。
 
 ![New token](../images/servicebureau/access-tokens.png)
 
-## 2. Creating a new token
+## 2. 新しいトークンの作成
 
-Let create a new token by clicking on  the **New Token**{: .label-button .sfx-ui-button-blue} button. This will provide you with the **Name Your Access Token** dialog.
+**New Token**{: .label-button .sfx-ui-button-blue} ボタンをクリックして、新しいトークンを作成しましょう。**Name Your Access Token** ダイアログが表示されます。
 
-Enter the new name of the new Token by using your Initials e.g. RWC-Token and make sure to tick both **Ingest Token** and **API Token** checkboxes!
+ここでは、**Ingest Token** と **API Token** の両方のチェックボックスにチェックを入れてください。
 
 ![Name Your token](../images/servicebureau/new-access-token.png){: .shadow}
 
-After you press **OK**{: .label-button .sfx-ui-button-blue}, you will be taken back to the **Access Token** UI, here your new token should be present, among the ones created by others.
+**OK**{: .label-button .sfx-ui-button-blue} を押すと、**Access Token** のUIに戻ります。ここでは、他の人が作成したトークンの中に、あなたの新しいトークンが表示されているはずです。
 
 ![full tokenlist](../images/servicebureau/access-token-created.png)
 
-If you have made an error in your naming, want to disable/enable a token or set a Token limit, click on the ellipsis (**...**) menu button behind a token limit to open the manage token menu.
+名前を間違えたり、トークンを無効/有効にしたり、トークンの制限を設定したい場合は、トークンの制限の後ろにある省略記号(**...**)のメニューボタンをクリックして、トークンの管理メニューを開きます。
 
 ![Show Menu](../images/servicebureau/manage-access-token.png)
 
-If you made a typo you can use the **Rename Token** option to correct the name of your token.
+タイプミスがあった場合は、**Rename Token** オプションを使用して、トークンの名前を修正することができます。
 
-## 3. Disabling a token
+## 3. トークンの無効化
 
-If you need to make sure a token cannot be used to send Metrics in you can disable a token.
+トークンがメトリクスの送信に使用できないようにする必要がある場合は、トークンを無効にすることができます。
 
-Click on **Disable** to disable the token, this means the token cannot be used for sending in data to Splunk Observability Cloud.
+**Disable** ボタンを押すことで、トークンを無効化できます。これにより、トークンがSplunk Observability Cloudへのデータ送信に使用できなくなります。
 
-The line with your token should have become greyed out to indicate that is has been disabled as you can see in the screenshot below.
+以下のスクリーンショットのように、トークンの行がグレーになり、無効化されたことを示しています。
 
 ![Token disabled](../images/servicebureau/disable-access-token.png)
 
-Go ahead and click on the ellipsis (**...**) menu button to Disable and Enable your token.
+省略記号(**...**)のメニューボタンをクリックして、トークンの無効化と有効化を行ってください。
 
-## 4. Manage token usage limits
+## 4. トークンの使用制限の管理
 
-Now Lets start limiting usage by clicking on Manage Token Limit in the 3 **...** menu.
+**...** メニューの **Manage Token Limit** をクリックして、使用量を制限してみましょう。
 
-This will show the Manage Token Limit Dialog:
+トークン制限管理ダイアログが表示されます。
 
 ![Set Limits on token](../images/servicebureau/manage-token-limit.png){: .shadow}
 
-In this Dialog you can set the limits per category.
+このダイアログでは、カテゴリごとに制限を設定することができます。
 
-Please go ahead and specify the limits as follows for each usage metric:
+先に進み、各使用指標に対して以下のように制限を指定してください。
 
-| Limit | Value |
-| ----- | ----- |
-| Host Limit | 5 |
-| Container Limit | 15 |
-| Custom Metric Limit | 20 |
-| High Resolution Metric Limit | 0 |
+| リミット              | 値  |
+| -------------------- | -- |
+| ホストの制限           |  5 |
+| コンテナ制限           | 15 |
+| カスタムメトリクスの制限 | 20 |
+| 高解像度メトリックの制限 |  0 |
 
-For our lab use your own email address, and double check that you have the correct numbers in your dialog box as shown in the table above.
+また、上の表に示すように、ダイアログボックスに正しい数字が表示されていることを再確認してください。
 
-Token limits are used to trigger an alert that notify one or more recipients when the usage has been above 90% of the limit for 5 minutes.
+トークンリミットは、5分間の使用量がリミットの90％を超えたときに、1人または複数の受信者に通知するアラートのトリガーとして使用されます。
 
-To specify the recipients, click **Add Recipient**{: .label-button .sfx-ui-button-blue}, then select the recipient or notification method you want to use (specifying recipients is optional but highly recommended).
+受信者を指定するには、**Add Recipient**{: .label-button .sfx-ui-button-blue} をクリックして、使用する受信者または通知方法を選択します（受信者の指定は任意ですが、強くお勧めします）。
 
-The severity for token alerts is always Critical.
+トークンアラートの重大度は常に「Critical」です。
 
-Click on **Update**{: .label-button .sfx-ui-button-blue} to save your Access Tokens limits and The Alert Settings.
+**Update**{: .label-button .sfx-ui-button-blue} をクリックすると、アクセストークンの制限とアラートの設定が保存されます。
 
-!!! note "Going above token limit"
-    When a token is at or above its limit in a usage category, new metrics for that usage category will not be stored and processed by Observability Cloud. This will make sure you there  will be no unexpected cost due to a team sending in data without restriction.
+!!! note "トークンの上限を超えた場合"
+    トークンが使用カテゴリの上限に達したとき、または上限を超えたとき、その使用カテゴリの新しいメトリクスはObservability Cloudに保存されず、処理されません。これにより、チームが無制限にデータを送信することによる予期せぬコストが発生しないようになります。
 
-!!! note "Advanced alerting"
-    If you wish to get alerts before you hit 90%, you can create additional detectors using whatever values you want. These detectors could target the Teams consuming the specific Access Tokens so they can take action before the admins need to get involved.
+!!! note "高度なアラート"
+    90%に達する前にアラートを取得したい場合は、必要な値を使用して追加のディテクターを作成できます。これらのディテクターは、特定のアクセストークンを消費しているチームをターゲットにすることができ、管理者が関与する必要がある前に行動を起こすことができます。
 
-In your company you would distribute these new Access Tokens to various teams, controlling how much information/data they can send to Observability Cloud.
+これらの新しいアクセストークンを様々なチームに配布し、Observability Cloudに送信できる情報やデータの量をコントロールできるようになります。
 
-This will allow you to fine tune the way you consume your Observability Cloud allotment and prevent overages from happening.
+これにより、Observability Cloudの使用量を微調整することができ、過剰な使用を防ぐことができます。
 
-**Congratulations!** You have now have completed the Service Bureau module.
+**おめでとうございます！** これで、サービスビューローモジュールを完了しました。
