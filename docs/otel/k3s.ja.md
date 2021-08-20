@@ -153,9 +153,9 @@ Splunk の UI で左上のハンバーガーメニューから **Infrastructure*
 
 ![K8S Clusters Filter](../images/otel/search-k3s-cluster.png)
 
-![Select K8S Cluster](.../images/otel/selecting-k3s-cluster.png)
+![Select K8S Cluster](../images/otel/selecting-k3s-cluster.png)
 
-![Filtered K8S Cluster](.../images/otel/filtered-k3s-cluster.png)
+![Filtered K8S Cluster](../images/otel/filtered-k3s-cluster.png)
 
 ノードの状態を確認するには、クラスターの淡いブルーの背景にカーソルを置き、左上に表示される青い虫眼鏡をクリックしてください ![Magnifying Glass](../images/otel/blue-cross.png)。
 
