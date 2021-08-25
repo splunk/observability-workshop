@@ -79,6 +79,36 @@ plugins:
       type: date
   - minify:
       minify_html: false
+  - i18n:
+      default_language: en
+      languages:
+        en: English
+        ja: 日本語
+      nav_translations:
+        ja:
+          Workshop Introduction: ワークショップの概要
+          Initial Setup<br /><small>5 minutes</small>: 初期セットアップ<br /><small>5分</small>
+          Access AWS/EC2 instance: AWS/EC2インスタンスに接続する
+          Get Data In<br /><small>15 minutes</small>: データを取り込む<br /><small>15分</small>
+          Deploy the OTel Collector: OTel Collectorをデプロイする
+          Deploy and monitor NGINX : NGINXをデプロイしてモニタリングする
+          Dashboards<br /><small>20 minutes</small>: ダッシュボード<br /><small>20分</small>
+          Introduction: はじめに
+          Editing charts: チャートを編集する
+          Saving charts: チャートを保存する
+          Using filters & formulas: フィルターと数式を使用する
+          SignalFlow: SignalFlow
+          Adding more charts: チャートを追加する
+          Notes and layout: ノートの追加とレイアウト
+          Detectors<br /><small>10 minutes</small>: ディテクター<br /><small>10分</small>
+          Creating a Detector: ディテクターを作成する
+          Creating a Muting Rule: ミューティングルールを作成する
+          Monitoring as Code<br /><small>10 minutes</small>: Monitoring as Code<br /><small>10分</small>
+          Plan, Apply and Destroy: Plan, Apply, Destroy
+          Service Bureau<br /><small>10 minutes</small>: サービスビューロー<br /><small>10分</small>
+          Billing and Usage : 使用量と料金の管理
+          Teams : チームの管理
+          Control Usage: 使用量を制御する
 
 nav:
   - Home: index.md
