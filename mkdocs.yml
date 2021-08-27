@@ -109,6 +109,11 @@ plugins:
           Billing and Usage : 使用量と料金の管理
           Teams : チームの管理
           Control Usage: 使用量を制御する
+          Introduction: はじめに
+          Get Traces In<br /><small>10 minutes</small>: トレースを取り込む<br /><small>10 minutes</small>
+          Deploying the Online Boutique: Online Boutiqueをデプロイする
+          Get Data Out<br /><small>15 minutes</small>: データを取り出す<br /><small>15 minutes</small>
+          Using Splunk APM: Splunk APMを使ってみる
 
 nav:
   - Home: index.md
