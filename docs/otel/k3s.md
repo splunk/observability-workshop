@@ -108,7 +108,7 @@ Use the label set by the `helm` install to tail logs (You will need to press ++c
 === "Shell Command"
 
     ```
-    kubectl logs -l app=splunk-otel-collector -f
+    kubectl logs -l app=splunk-otel-collector -f --container otel-collector
     ```
 
 === "Example Output"
