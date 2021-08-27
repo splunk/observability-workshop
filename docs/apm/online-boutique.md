@@ -178,7 +178,7 @@ Also in this view you can see the overall Error and Latency rates over time char
 
 Once the Open Telemetery Collector is deployed the platform will automatically provide a built in dashboard display OpenTelemetry Collector metrics.
 
-From the top left hamburger menu, select **Dashboards → OpenTelemetry Collector** and validate metrics and spans are being sent:
+From the top left hamburger menu, select **Dashboards → OpenTelemetry Collector**, scroll all the way to the bottom of the page and validate metrics and spans are being sent:
 
 ![OpenTelemetry Collector dashboard](../images/apm/otel-dashboard.png)
 
