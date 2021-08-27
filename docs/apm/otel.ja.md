@@ -1,20 +1,20 @@
-# Open Telemetry Collector
+# OpenTelemetry Collector
 
-The collector is an optional component between the smart agent and SaaS ingest. In this configuration we are using the `sapm` endpoint to receive traces.
+OpenTelemetry Collectorは、スマートエージェントとSaaSインジェストの間にあるオプションのコンポーネントです。この構成では、トレースを受信するために `sapm` エンドポイントを使用しています。
 
-## 1. Install OpenTelemetry Collector with helm
+## 1. helm で OpenTelemetry Collector をインストールする
 
-Add the repository with
+まず、リポジトリを追加します。
 
-=== "Shell Command"
+=== "シェルコマンド"
 
     ```
     helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
     ```
 
-Then
+つづいて、インストールします。
 
-=== "Shell Command"
+=== シェルコマンド
 
     ```
     helm install \
@@ -26,68 +26,69 @@ Then
     -f ~/workshop/otel/collector.yaml
     ```
 
-## 2. Validate the OpenTelemetry Collector installation
+## 2. OpenTelemetry Collectorのインストールを確認する
 
-Review the OpenTelemetry Collector logs:
+OpenTelemetry Collectorのログを確認します。
 
-=== "Shell Command"
+=== "シェルコマンド"
 
     ```bash
     kubectl logs -l app.kubernetes.io/name=opentelemetry-collector
     ```
 
-Look for a log entry with
-=== "Example Output"
+その中から、次のようなログエントリを探します。
+
+=== "出力例"
 
     ```text
     ... "msg":"Everything is ready. Begin running and processing data."}
     ```
 
-Validate that the service is running and has a `sapm` endpoint on port 7276.
+サービスが実行されていて、ポート7276に`sapm`のエンドポイントがあることを検証します。
 
-=== "Shell Command"
+=== "シェルコマンド"
 
     ```
     kubectl get svc opentelemetry-collector
     ```
 
-=== "Example Output"
+=== "出力例"
 
     ```
     NAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                                           AGE
     opentelemetry-collector   ClusterIP   10.43.119.140   <none>        14250/TCP,14268/TCP,55680/TCP,{==7276==}/TCP,9411/TCP   13m
     ```
 
-Use the healthcheck endpoint to confirm:
+healthcheckエンドポイントを使用して確認します。
 
-=== "Shell Command"
+=== "シェルコマンド"
 
     ```
     OTEL_ENDPOINT=$(kubectl get svc opentelemetry-collector -n default -o jsonpath='{.spec.clusterIP}')
     curl http://$OTEL_ENDPOINT:13133/; echo
     ```
 
-=== "Example Output"
+=== "出力例"
 
     ```
     {"status":"Server available","upSince":"2020-10-22T08:07:33.656859114Z","uptime":"8m33.548333561s"}
     ```
 
-## 3. Reconfigure the agent to use OpenTelemetry Collector
+## 3. OpenTelemetry Collector を使用するようにエージェントを再設定する
 
-We want to send traces in `sapm` format and point it to the OpenTelemetry Collector trace endpoint.
+トレースを `sapm` 形式で送信し、OpenTelemetry Collector のトレースエンドポイントを指定していきましょう。
 
-Uninstall the agent:
+一旦、エージェントをアンインストールします。
 
-=== "Shell Command"
+=== "シェルコマンド"
 
     ```
     helm uninstall signalfx-agent
     ```
 
-Then reinstall it with `traceEndpointUrl` set to point to OpenTelemetry Collector and using `sapm` as trace format:
+次に、`traceEndpointUrl` を OpenTelemetry Collector を指すように設定し、トレースフォーマットとして `sapm` を使用して、エージェントを再インストールします。
 
-=== "Shell Command"
+=== "シェルコマンド"
 
     ```
     helm install \
@@ -102,6 +103,6 @@ Then reinstall it with `traceEndpointUrl` set to point to OpenTelemetry Collecto
     -f ~/workshop/k3s/values.yaml
     ```
 
-Check the OpenTelemetry Collector dashboards and validate metrics and spans are being sent.
+OpenTelemetry Collector のダッシュボードを確認し、メトリクスとスパンが送信されていることを確認します。
 
 ![OpenTelemetry Collector dashboard](../images/apm/otel-dashboard.png)
