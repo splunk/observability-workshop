@@ -73,6 +73,15 @@ extra:
       link: https://www.linkedin.com/company/splunk/
   version:
     provider: mike
+  alternate:
+    # Switch to English
+    - name: English
+      link: https://signalfx.github.io/observability-workshop/latest/en/
+      lang: en
+    # Switch to Japanese
+    - name: 日本語
+      link: https://signalfx.github.io/observability-workshop/latest/ja/
+      lang: ja
 
 plugins:
   - git-revision-date-localized:
