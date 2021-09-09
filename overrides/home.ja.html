@@ -1,0 +1,66 @@
+{#-
+  This file was automatically generated - do not edit
+-#}
+{% extends "main.html" %}
+
+{% block tabs %}
+  {{ super() }}
+  <style>
+    .md-header {position: initial}
+
+    .md-main__inner {margin: 0}
+    
+    .md-content {display: none}
+    
+    body {
+      background: url("images/background.svg") no-repeat;
+      background-size: cover;
+      background-color: var(--md-default-bg-color);
+      background-position: 0 80px;
+      height: 100%;
+    }
+    .mdx-hero {
+      margin: 0 .8rem;
+    }
+    .mdx-hero h1 {
+      margin-bottom: 1rem;
+      font-weight: 700
+    }
+    @media screen and (min-width:60em) {
+      .md-sidebar--secondary {
+        display: none
+      }
+      .mdx-hero {
+        display: flex;
+        align-items: stretch;
+        justify-items: space-between
+      }
+      .mdx-hero__content {
+        max-width: 20rem;
+        margin-top: 3.5rem;
+        padding-bottom: 14vw
+      }
+    }
+    @media screen and (min-width:76.25em) {
+      .md-sidebar--primary {
+        display: none
+      }
+    }
+  </style>
+<section class="mdx-container">
+  <div class="md-grid md-typeset">
+    <div class="mdx-hero">
+      <div class="mdx-hero__content">
+        <h1>End-to-Endのオブザーバビリティ（可観測性）</h1>
+        <h2>Splunk Observability Cloud の監視、分析、オンコールツールを使って、アプリケーションやインフラをリアルタイムに把握しましょう！</h2>
+        <p style="font-size: 0.9em">このワークショップでは、メトリクス、トレース、スパンをインジェスト、モニタリング、ビジュアル化、分析するためのクラス最高のオブザーバビリティ・プラットフォームをご紹介します。</p>
+        <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | striptags }}" class="md-button md-button--primary">
+          始める
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block content %}{% endblock %}
+{% block footer %}{% endblock %}
