@@ -34,7 +34,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: quay.io/signalfuse/microservices-demo-recommendationservice:latest
+        image: quay.io/signalfuse/microservices-demo-recommendationservice:433c23881a
         ports:
         - containerPort: 8080
         readinessProbe:
@@ -96,7 +96,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: quay.io/signalfuse/microservices-demo-productcatalogservice:latest
+        image: quay.io/signalfuse/microservices-demo-productcatalogservice:433c23881a
         ports:
         - containerPort: 3550
         env:
@@ -154,7 +154,7 @@ spec:
       nodeSelector:
       containers:
       - name: server
-        image: quay.io/signalfuse/microservices-demo-cartservice:latest
+        image: quay.io/signalfuse/microservices-demo-cartservice:433c23881a
         ports:
         - containerPort: 7070
         env:
@@ -235,7 +235,7 @@ spec:
       nodeSelector:
       initContainers:
         - name: sfx-instrumentation
-          image: quay.io/signalfuse/sfx-zero-config-agent:latest
+          image: quay.io/signalfuse/sfx-zero-config-agent:433c23881a
           # image: sfx-zero-config-agent
           # imagePullPolicy: Never
           volumeMounts:
@@ -243,7 +243,7 @@ spec:
               name: sfx-instrumentation
       containers:
         - name: server
-          image: quay.io/signalfuse/microservices-demo-adservice:latest
+          image: quay.io/signalfuse/microservices-demo-adservice:433c23881a
           ports:
             - containerPort: 9555
           env:
@@ -316,7 +316,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: quay.io/signalfuse/microservices-demo-paymentservice:latest
+        image: quay.io/signalfuse/microservices-demo-paymentservice:433c23881a
         ports:
         - containerPort: 50051
         env:
@@ -388,7 +388,7 @@ spec:
       - name: main
         ports:
         - containerPort: 8089
-        image: quay.io/signalfuse/microservices-demo-loadgenerator:latest
+        image: quay.io/signalfuse/microservices-demo-loadgenerator:433c23881a
         env:
         - name: FRONTEND_ADDR
           value: "frontend:80"
@@ -438,7 +438,7 @@ spec:
       nodeSelector:
       containers:
       - name: server
-        image: quay.io/signalfuse/microservices-demo-shippingservice:latest
+        image: quay.io/signalfuse/microservices-demo-shippingservice:433c23881a
         ports:
         - containerPort: 50051
         env:
@@ -497,7 +497,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: quay.io/signalfuse/microservices-demo-currencyservice:latest
+        image: quay.io/signalfuse/microservices-demo-currencyservice:433c23881a
         ports:
         - name: grpc
           containerPort: 7000
@@ -610,7 +610,7 @@ spec:
       nodeSelector:
       containers:
         - name: server
-          image: quay.io/signalfuse/microservices-demo-checkoutservice:latest
+          image: quay.io/signalfuse/microservices-demo-checkoutservice:433c23881a
           ports:
           - containerPort: 5050
           readinessProbe:
@@ -685,7 +685,7 @@ spec:
       nodeSelector:
       containers:
         - name: server
-          image: quay.io/signalfuse/microservices-demo-frontend:latest
+          image: quay.io/signalfuse/microservices-demo-frontend:433c23881a
           ports:
           - containerPort: 8080
           readinessProbe:
@@ -795,7 +795,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: quay.io/signalfuse/microservices-demo-emailservice:latest
+        image: quay.io/signalfuse/microservices-demo-emailservice:433c23881a
         ports:
         - containerPort: 8080
         env:
