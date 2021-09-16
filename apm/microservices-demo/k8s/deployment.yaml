@@ -235,7 +235,7 @@ spec:
       nodeSelector:
       initContainers:
         - name: sfx-instrumentation
-          image: quay.io/signalfuse/sfx-zero-config-agent:433c23881a
+          image: quay.io/signalfuse/sfx-zero-config-agent:latest
           # image: sfx-zero-config-agent
           # imagePullPolicy: Never
           volumeMounts:
