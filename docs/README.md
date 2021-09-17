@@ -34,11 +34,9 @@ The documentation built from your current branch is then accessible through your
 
 2. Under your repository name, click Actions.
 
-3. Actions tab in the main repository navigation
-4. 
-5. In the left sidebar, click the workflow you want to run.
+3. In the left sidebar, click Deploy Workshop.
 
-5. Above the list of workflow runs, select Run workflow.
+5. Above the list of workflow runs, select Run workflow dropdown and click Run workflow
 
 Then the release will run through the CI/CD pipeline and be available shortly after.
 
