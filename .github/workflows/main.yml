@@ -40,3 +40,4 @@ jobs:
           git push --follow-tags origin master || { echo 'Push failed. git pull --rebase from upstream and attempt another release.'; exit 1; }
           mike deploy --push --update-aliases "v$TAG" latest
           mike set-default --push latest
+

@@ -30,53 +30,61 @@ The documentation built from your current branch is then accessible through your
 
 ## How to create a new tagged release
 
-Use the script
+1. On GitHub, navigate to the main page of the repository.
 
-```bash
-./ci/prepare-release.sh
-```
+2. Under your repository name, click Actions.
 
-It takes a single optional argument, the type of release. It defaults to a minor release. To issue a major release:
+3. In the left sidebar, click Deploy Workshop.
 
-```bash
-./.ci/prepare-release.sh major
-```
+5. Above the list of workflow runs, select Run workflow dropdown and click Run workflow
 
-This will automatically perform the following changes (DO NOT MANUALLY PERFORM THESE STEPS):
-
-1. Determine the new version by bumping the major or minor version.
-
-1. Use `bumpversion --list minor` (by default, or `bumpversion --list major` if requested, see above) to update the version number in various places and commit the changes.
-
-1. Update [README.md](../README.md) and prepend the version to the list of available versions. The list has the two latest versions.
-
-1. Retrieve all remote tags. This will spot tag conflicts early and prevent accidentally pushing tags deleted on the remote.
-
-1. Amend the commit created by `bumpversion` with these change and a message like "`Releasing v4.2`":
-
-    ```bash
-    git add README.md && git commit -amend -m 'Releasing v4.2'
-    ```
-
-1. Tag the release:
-
-    ```bash
-    git tag -a v4.2 -m "Version 4.2"
-    ```
-
-1. Push the branch and the tag
-
-    ```bash
-    git push --follow-tags origin master
-    ```
-
-Then the release will run through the Travis CI/CD pipeline and be available shortly after.
+Then the release will run through the CI/CD pipeline and be available shortly after.
 
 ## How to set up CI/CD with GitHub Actions
 
-TODO @Rob Castley
+1. Create a Workflow file called `main.yml` in `.github/workflows`
 
-[1]: https://docs.travis-ci.com/user/github-oauth-scopes/#travis-ci-for-private-projects
-[2]: https://github.com/signalfx/observability-workshop/settings/keys
-[3]: https://travis-ci.org/github/signalfx/observability-workshop/settings
-[GHToken]: https://github.com/settings/tokens
+```
+name: Deploy Workshop
+
+# Controls when the action will run. Triggers manually
+on: workflow_dispatch
+
+jobs:
+  build:
+    name: Deploy O11y Workshop
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+        
+      - name: Bumpversion and deploy using mike
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git pull
+          FLAVOUR=minor
+          TAG=$(bumpversion --list "$FLAVOUR" | awk -F= '/new_version=/ { print $2 }')
+          awk "/Latest versions of the workshop are:/ { print; print \"- [v$TAG](https://signalfx.github.io/observability-workshop/v$TAG/)\";next }1" README.md |
+          awk "NR==1,/Latest versions of the workshop are:/{c=3} c&&c-- " > README.new.md
+          mv README.new.md README.md          
+          git fetch --tags origin
+          git add README.md
+          git commit --amend -m "Releasing v$TAG"
+          git tag -a "v$TAG" -m "Version $TAG"
+          git push --follow-tags origin master || { echo 'Push failed. git pull --rebase from upstream and attempt another release.'; exit 1; }
+          mike deploy --push --update-aliases "v$TAG" latest
+          mike set-default --push latest
+```
