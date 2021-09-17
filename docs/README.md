@@ -30,53 +30,18 @@ The documentation built from your current branch is then accessible through your
 
 ## How to create a new tagged release
 
-Use the script
+1. On GitHub, navigate to the main page of the repository.
 
-```bash
-./ci/prepare-release.sh
-```
+2. Under your repository name, click Actions.
 
-It takes a single optional argument, the type of release. It defaults to a minor release. To issue a major release:
+3. Actions tab in the main repository navigation
+4. 
+5. In the left sidebar, click the workflow you want to run.
 
-```bash
-./.ci/prepare-release.sh major
-```
+5. Above the list of workflow runs, select Run workflow.
 
-This will automatically perform the following changes (DO NOT MANUALLY PERFORM THESE STEPS):
-
-1. Determine the new version by bumping the major or minor version.
-
-1. Use `bumpversion --list minor` (by default, or `bumpversion --list major` if requested, see above) to update the version number in various places and commit the changes.
-
-1. Update [README.md](../README.md) and prepend the version to the list of available versions. The list has the two latest versions.
-
-1. Retrieve all remote tags. This will spot tag conflicts early and prevent accidentally pushing tags deleted on the remote.
-
-1. Amend the commit created by `bumpversion` with these change and a message like "`Releasing v4.2`":
-
-    ```bash
-    git add README.md && git commit -amend -m 'Releasing v4.2'
-    ```
-
-1. Tag the release:
-
-    ```bash
-    git tag -a v4.2 -m "Version 4.2"
-    ```
-
-1. Push the branch and the tag
-
-    ```bash
-    git push --follow-tags origin master
-    ```
-
-Then the release will run through the Travis CI/CD pipeline and be available shortly after.
+Then the release will run through the CI/CD pipeline and be available shortly after.
 
 ## How to set up CI/CD with GitHub Actions
 
 TODO @Rob Castley
-
-[1]: https://docs.travis-ci.com/user/github-oauth-scopes/#travis-ci-for-private-projects
-[2]: https://github.com/signalfx/observability-workshop/settings/keys
-[3]: https://travis-ci.org/github/signalfx/observability-workshop/settings
-[GHToken]: https://github.com/settings/tokens
