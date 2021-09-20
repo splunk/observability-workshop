@@ -726,9 +726,9 @@ spec:
           - name: RUM_AUTH
             value: ${RUM_TOKEN}
           - name: RUM_APP_NAME
-	    value: ${INSTANCE}-rum-app
+          value: ${INSTANCE}-rum-app
           - name: RUM_ENVIRONMENT
-	    value: ${INSTANCE}-rum-env
+	        value: ${INSTANCE}-rum-env
           - name: RUM_DEBUG
           - name: ENV_PLATFORM
             value: "gcp"
