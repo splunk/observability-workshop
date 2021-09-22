@@ -1,24 +1,34 @@
 # Lab Overview
 
-- **Splunk Synthetic Monitoring** formally [Rigor](https://rigor.com/) is a powerful monitoring service that monitors the availability of any website, mobile app, API, or system on the Internet with Uptime Checks and sends real-time alerts.
+**Splunk Synthetic Monitoring** offers the most comprehensive and in-depth capabilities for uptime and web performance optimization as part of the only complete observability suite, Splunk Observability Cloud.
 
-- This Lab walks your through using Chrome Selenium IDE extension to create a synthetic transaction against a Splunk demo instance and creating a Splunk Synthetic Monitoring Real Browser Check (RBC). In addition you get to learn other Splunk Synthetic Monitoring checks like REST API checks and Uptime Checks.
+Easily set up monitoring for APIs, service endpoints and end-user-experience. With Splunk Synthetic monitoring, go beyond basic uptime and performance monitoring and focus on proactively finding and fixing issues, optimizing web performance, and ensuring customers get the best user experience.
+
+With Splunk Synthetic Monitoring you can:
+
+- Detect and resolve issues fast across critical user flows, business transactions and API endpoints
+- Prevent web performance issues from affecting customers with an intelligence web optimization engine
+- And improve performance of all page resources and third-party dependencies
+
+This Lab walks your through using the [Chrome Selenium IDE](https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd?hl=en) extension to create a synthetic transaction against a Splunk demo instance and creating a Splunk Synthetic Monitoring Real Browser Check (RBC). In addition you also get to learn other Splunk Synthetic Monitoring checks like REST API checks and Uptime Checks.
 
 ## Prerequisites
 
-Login with your username and password to [https://monitoring.rigor.com](https://monitoring.rigor.com) & [https://optimization.rigor.com](https://optimization.rigor.com) and make sure you are assigned to your own account for example: **O11y Workshop**.
+Ensure you can login with your username and password at [https://monitoring.rigor.com](https://monitoring.rigor.com) and [https://optimization.rigor.com](https://optimization.rigor.com). Also, make sure you are assigned to your own account for example: **O11y Workshop**.
 
-Edit your Splunk Synthetic Monitoring account personal information and adjust your timezone and email notifications. Splunk Synthetic Monitoring will start sending you notifications, you can turn them off at the monitoring level.
+Edit your Splunk Synthetic Monitoring account personal information and adjust your timezone and email notifications. Splunk Synthetic Monitoring will default to start sending you notifications, you can turn them off at the monitor configuration level.
 
-![placeholder](../images/synthetics/image5.png)
+![Edit Personal Information](../images/synthetics/image5.png)
 
-Add the [Selenium IDE](https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd?hl=en-US) extension to your **Chrome** Browser. Click on the extension and you should see the following screen:
+Add the [Chrome Selenium IDE](https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd?hl=en-US) extension to your **Chrome** Browser. Once installed click on the extension and you will see the following screen:
 
-![placeholder](../images/synthetics/image17.png)
+![Selenium IDE](../images/synthetics/image17.png)
 
 ## Using Selenium IDE
 
-Record a web transaction using Selenium IDE to check on [http://splunk.o11ystore.com](http://splunk.o11ystore.com), name the project "**[YOUR_INITIALS] - O11y Store**"
+You can now go ahead and record a web transaction using Selenium IDE to check on [http://splunk.o11ystore.com](http://splunk.o11ystore.com).
+
+Click on **Record a new test in a new project**, name the project **[YOUR_INITIALS] - O11y Store** e.g. RWC - O11y Store.
 
 !!! question "What is Selenium IDE?"
     - Selenium IDE is an open source record and playback test automation for the web.
@@ -35,9 +45,9 @@ Enter [http://splunk.o11ystore.com](http://splunk.o11ystore.com) as your base UR
 
 ![placeholder](../images/synthetics/image11.png)
 
-Click **Start Recording**, a new window should open up with splunk.o11ystore.com - click **Vintage Camera Lens**, click **Add To Cart**, and then click **Place Order**
+Click Start Recording{: .label-button .sfx-ui-button-grey}, a new window should open up with [splunk.o11ystore.com](http://splunk.o11ystore.com). Click **Vintage Camera Lens**, click **Add To Cart** and then click **Place Order**.
 
-Close the window and then stop the recording by navigating back to Selenium IDE and name the test: "**[YOUR_INITIALS] - Checkout Flow (Desktop)**"
+Close the window and then stop the recording by navigating back to Selenium IDE. Finally name the test: **[YOUR_INITIALS] - Checkout Flow (Desktop)** e.g. RWC - Checkout Flow (Desktop).
 
 ![placeholder](../images/synthetics/image10.png)
 
