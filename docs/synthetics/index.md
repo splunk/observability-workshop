@@ -108,15 +108,19 @@ Click on one of the successful circles to drilldown into that Run:
 
 ![placeholder](../images/synthetics/image33.png)
 
-Take a moment to explore the metrics with the "Configure Metrics" dropdown
+Take a moment to explore the metrics with the **CONFIGURE METRICS/HIDE METRICS** dropdown.
 
 ![placeholder](../images/synthetics/image14.png)
 
-Click "Page 2" in the dropdown, and scroll down to view the **Filmstrip** and the **Waterfall Chart.**
+Click **Page 2** in the dropdown, and scroll down to view the **Filmstrip** and the **Waterfall Chart.**
 
 ![placeholder](../images/synthetics/image16.png)
 
-Click on **Click Here to Analyze with Optimization** which will prompt to login to your Splunk Synthetic Monitoring Optimization Account. If you **don't have this option**, navigate to this page: [](https://optimization.rigor.com/s/2194959?tid=ov&sh=3AF8C48AADD6D3E5F5DAA8B4B7BB7F45)
+![Filmstrip](../images/synthetics/filmstrip.png)
+
+![Waterfall](../images/synthetics/waterfall.png)
+
+Click on **Click Here to Analyze with Optimization** which will prompt you to login to your Splunk Synthetic Monitoring Optimization Account. If you **don't have this option**, navigate to this [page](https://optimization.rigor.com/s/2373818/?sh=3AF8C48AADD6D3E5F5DAA8B4B7BB7F45).
 
 ![placeholder](../images/synthetics/image31.png)
 
@@ -124,20 +128,28 @@ Click the "**Best Practices Score**" tab. Scroll down, and review all the findin
 
 ![placeholder](../images/synthetics/image23.png)
 
+![Best Practices](../images/synthetics/best-practices.png)
+
 Spend some time to review the findings. Click into any line item
 
 ## Create Mobile RBC
 
-Clone the RBC you created above and name it, for example: **AP - Checkout Flow (Tablet)**
+Copy the RBC you created above:
 
-Update the following three settings and create your new RBC.
+![Copy Check](../images/synthetics/copy-check.png)
+
+Rename it, for example: **RWC - Checkout Flow (Tablet)**
+
+![Copy Check](../images/synthetics/rename-check.png)
+
+Under the **Advanced** tab, update the following three settings and create your new mobile RBC.
 
 ![placeholder](../images/synthetics/image18.png)
 
 Test & Validate the new monitor
 
-!!! info
-    **Tip:** As you are creating the steps try using the "[Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions)" feature in Splunk Synthetic Monitoring. *"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
+!!! info "Tip"
+    As you are creating the steps try using the "[Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions)" feature in Splunk Synthetic Monitoring. *"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
 
 ## Resources
 
