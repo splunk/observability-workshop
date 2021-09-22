@@ -79,26 +79,28 @@ Set the **Frequency** to **5 Minutes**
 
 ![placeholder](../images/synthetics/image15.png)
 
-Click on Steps and make the following adjustments to your recording provide a friendly name to Steps 1, 2 & 3.
+Click on Steps and make the following adjustments to your recording provide a friendly name to Steps 1 (Click Camera), 2 (Add to Cart) & 3 (Place Order).
 
 ![placeholder](../images/synthetics/image6.png)
 
-Next, click **+ Add Step**, this new step will add some validation to the test. This is to ensure the checkout completed successfully. Enter **Confirm Order** for the **Name** and change the **Action** to **Wait for text present**. Enter **Your order is complete!** for the **Value**. You will now have a **Start Url** and 4 steps in your test configuration.
+Next, click **+ Add Step**, with this new step we will add some validation to the monitor. This is to ensure the checkout completed successfully.
+
+Enter **Confirm Order** for the **Name** and change the **Action** to **Wait for text present** and finally enter **Your order is complete!** for the **Value**. You will now have a **Start Url** and 4 steps in your monitor configuration.
 
 ![placeholder](../images/synthetics/image2.png)
 
 !!! info "Tip"
-    As you are creating the steps think about how to go about using the "[Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions)" feature in Splunk Synthetic Monitoring which is very powerful. *"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
+    As you are creating the steps think about how to go about using the [Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions) feature in Splunk Synthetic Monitoring which is very powerful. *"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
 
 Click on **Advanced** and make sure the **Viewport Size** is set to **Default desktop: 1366 x 768**
 
 ![Viewport Size](../images/synthetics/viewport-size.png)
 
-Click on "**Test**" to test your recording. Once the test has successfully completed make sure to click on "**AFTER**" in Step 4 to validate the monitor was able to get to the order complete screen.
+Click on "**Test**" to test your monitor. Once the test has successfully completed make sure to click on "**AFTER**" in Step 4 to validate the monitor was able to get to the order complete screenshot.
 
 ![placeholder](../images/synthetics/image22.png)
 
-Click on **Create**{: .label-button .sfx-ui-button-blue} to save your Real Browser Monitor. After 5-10 minutes validate your monitor is working i.e. producing successful checks e.g.
+Click on **Create**{: .label-button .sfx-ui-button-blue} to save your Real Browser Monitor. After 5-10 minutes validate your monitor is working and producing successful checks e.g.
 
 ![placeholder](../images/synthetics/image27.png)
 
@@ -142,7 +144,7 @@ Click the "**Best Practices Score**" tab. Scroll down, and review all the findin
 
 Spend some time to review the findings. Click into any line item
 
-## Create Mobile RBC
+## Create Mobile Check
 
 Copy the RBC you created above:
 
@@ -159,7 +161,7 @@ Under the **Advanced** tab, update the following three settings and create your 
 Test & Validate the new monitor
 
 !!! info "Tip"
-    As you are creating the steps try using the "[Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions)" feature in Splunk Synthetic Monitoring. *"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
+    As you are creating the steps try using the [Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions) feature in Splunk Synthetic Monitoring. *"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
 
 ## Resources
 
