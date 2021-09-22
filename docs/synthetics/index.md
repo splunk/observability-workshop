@@ -18,7 +18,7 @@ Add the [Selenium IDE](https://chrome.google.com/webstore/detail/selenium-ide/mo
 
 ## Using Selenium IDE
 
-Record a web transaction using Selenium IDE to check on broomstogo.com. Name the project "**[YOUR_INITIALS] - Brooms to Go**"
+Record a web transaction using Selenium IDE to check on [http://splunk.o11ystore.com](http://splunk.o11ystore.com), name the project "**[YOUR_INITIALS] - O11y Store**"
 
 !!! question "What is Selenium IDE?"
     - Selenium IDE is an open source record and playback test automation for the web.
@@ -31,11 +31,11 @@ Record a web transaction using Selenium IDE to check on broomstogo.com. Name the
 
 ![placeholder](../images/synthetics/image29.png)
 
-Enter [https://www.broomstogo.com](https://www.broomstogo.com) as your Base URL.
+Enter [http://splunk.o11ystore.com](http://splunk.o11ystore.com) as your base URL.
 
 ![placeholder](../images/synthetics/image11.png)
 
-Click **Start Recording**, a new window should open up with broomstogo.com - click **Catalog**, select a product, and then add it to the cart, and then click **Checkout**
+Click **Start Recording**, a new window should open up with splunk.o11ystore.com - click **Vintage Camera Lens**, click **Add To Cart**, and then click **Place Order**
 
 Close the window and then stop the recording by navigating back to Selenium IDE and name the test: "**[YOUR_INITIALS] - Checkout Flow (Desktop)**"
 
@@ -47,15 +47,17 @@ Your Selenium IDE Project will look something like this:
 
 Test your recording by pressing on the play button, make sure your recording successfully completes the transaction:
 
-![placeholder](../images/synthetics/image26.png)
+![Run](../images/synthetics/image26.png)
 
-Save your Selenium IDE Project to your Downloads folder
+Save your Selenium IDE Project to your Downloads folder as `Workshop.side`
 
-![placeholder](../images/synthetics/image30.png)
+![Save](../images/synthetics/image30.png)
+
+![Save SIDE Project](../images/synthetics/save-side-project.png)
 
 ## Create Real Browser Check
 
-Login to Splunk Synthetic Monitoring using [https://monitoring.rigor.com](https://monitoring.rigor.com). Click on Real Browse, create a new RBC and Adjust the **New RBC** name to your **[YOUR_INIITIALS]** followed by **[YOUR_INITIALS] - Checkout Flow (Desktop)**
+Login to Splunk Synthetic Monitoring using [https://monitoring.rigor.com](https://monitoring.rigor.com). Click on **REAL BROWSER** and click **+New**{: .label-button .sfx-ui-button-blue}.
 
 ![placeholder](../images/synthetics/image3.png)
 
@@ -67,47 +69,31 @@ Set the **Frequency** to **5 Minutes**
 
 ![placeholder](../images/synthetics/image15.png)
 
-Click on Steps and make the following adjustments to your recording provide a friendly name to Steps 1, 2, 3 & 4
+Click on Steps and make the following adjustments to your recording provide a friendly name to Steps 1, 2 & 3.
 
 ![placeholder](../images/synthetics/image6.png)
 
-Adjust Step 3 to use a JSPath Selector, in order to retrieve the selector this can be accomplished using Chrome developer tools. Follow the numbered UI clicks in the screenshot and use a right mouse click operation to "**Copy selector**", paste it into Step 3 as shown in the above screenshot.
-
-Here is the actual selector you need to Login into Splunk
-
-=== "Javascript"
-  
-    ```javascript
-    document.querySelector("#AddToCart--product-template")
-    ```
+Next, click **+ Add Step**, this new step will add some validation to the test. This is to ensure the checkout completed successfully. Enter **Confirm Order** for the **Name** and change the **Action** to **Wait for text present**. Enter **Your order is complete!** for the **Value**. You will now have a **Start Url** and 4 steps in your test configuration.
 
 ![placeholder](../images/synthetics/image2.png)
 
-!!! info
-    **Tip 1:** Use \'**command + f**\' in inspector to ensure that there is only one instance of the selector you are using.
+!!! info "Tip"
+    As you are creating the steps think about how to go about using the "[Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions)" feature in Splunk Synthetic Monitoring which is very powerful. *"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
 
-    **Tip 2:** As you are creating the steps think about how to go about using the "[Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions)" feature in Splunk Synthetic Monitoring which is very powerful. *"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
+Click on **Advanced** and make sure the **Viewport Size** is set to **Default desktop: 1366 x 768**
 
-Click on "**Test**" to test your recording, make sure to click on "**After**" in Step 4 to validate the monitor was able to get to the checkout screen.
+![Viewport Size](../images/synthetics/viewport-size.png)
+
+Click on "**Test**" to test your recording. Once the test has successfully completed make sure to click on "**AFTER**" in Step 4 to validate the monitor was able to get to the order complete screen.
 
 ![placeholder](../images/synthetics/image22.png)
 
-Add a **"Return to Cart"** Step 5 to your recording. Use the "**CSS**" Selector, here is the actual selector you need to return to the cart
-
-=== "HTML"
-
-   ```text
-   body > div > div > div > main > div.step > form > div.step__footer > a > span
-   ```
-
-![placeholder](../images/synthetics/image28.png)
-
-Save your Real Browser Monitor and validate your monitor is working i.e. producing successful checks
+Click on **Create**{: .label-button .sfx-ui-button-blue} to save your Real Browser Monitor. After 5-10 minutes validate your monitor is working i.e. producing successful checks e.g.
 
 ![placeholder](../images/synthetics/image27.png)
 
-!!! info
-    **Tip:** You can force to run your monitor now using **Run Now**
+!!! info "Tip"
+    You can force to run your monitor now using **Run Now**
 
     ![placeholder](../images/synthetics/image8.png)
 
