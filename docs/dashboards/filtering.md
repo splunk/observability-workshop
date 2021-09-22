@@ -37,7 +37,7 @@ In the **F(x)** column, add the analytic function **`Percentile:Aggregation`**, 
 
 ![Analytics](../images/dashboards/M-Filter-2.png)
 
-For info on the **Percentile** function and the other functions see [Analytics reference](https://docs.signalfx.com/en/latest/reference/analytics-docs/analytics-reference.html){: target=_blank}.
+For info on the **Percentile** function and the other functions see [Chart Analytics](https://docs.splunk.com/Observability/data-visualization/charts/gain-insights-through-chart-analytics.html#gain-insights-through-chart-analytics){: target=_blank}.
 
 ---
 

@@ -37,7 +37,7 @@ UIの右上にある + アイコンを選択し、ドロップダウンから **
 
 ![Analytics](../images/dashboards/M-Filter-2.png)
 
-**Percentile** 関数やその他の関数の情報は、[Analytics reference](https://docs.signalfx.com/en/latest/reference/analytics-docs/analytics-reference.html){: target=_blank} を参照してください。
+**Percentile** 関数やその他の関数の情報は、[Chart Analytics](https://docs.splunk.com/Observability/data-visualization/charts/gain-insights-through-chart-analytics.html#gain-insights-through-chart-analytics){: target=_blank} を参照してください。
 
 ---
 
