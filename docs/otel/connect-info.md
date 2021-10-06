@@ -21,7 +21,7 @@ You find the IP address, the SSH command (for Mac OS, Linux and the latest Windo
 It also has the Browser Access URL that you can use in case you cannot connect via ssh or putty - see [EC2 access via Web browser](../connect-info/#web-browser-all)
 
 !!! important
-    Please use SSH or Putty  to gain acess to your EC2 instance if possible and
+    Please use SSH or Putty  to gain access to your EC2 instance if possible and
     make a note of the IP address as you will need this during the workshop.
 
 ## 2. SSH (Mac OS/Linux)

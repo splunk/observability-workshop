@@ -56,14 +56,14 @@ spec:
               fieldPath: status.hostIP
         - name: SIGNALFX_ENDPOINT_URL
           value: "http://$(NODE_IP):9411/api/v2/spans"
-          # value: "http://zipkin.default:9411/api/v2/spans"
+          #value: "http://zipkin.default:9411/api/v2/spans"
         resources:
-          requests:
-            cpu: 100m
-            memory: 220Mi
-          limits:
-            cpu: 200m
-            memory: 450Mi
+        - requests:
+          - cpu: 100m
+          - memory: 220Mi
+          - limits:
+            - cpu: 200m
+            - memory: 450Mi
 ---
 apiVersion: v1
 kind: Service
@@ -722,10 +722,13 @@ spec:
           - name: AD_SERVICE_ADDR
             value: "adservice:9555"
           - name: RUM_REALM
+            value: "eu0"
           - name: RUM_AUTH
+            value: "1wCqZVUWIP5XSdNjPoQRFg"
           - name: RUM_APP_NAME
+            value: "vjyu-rum-app"
           - name: RUM_ENVIRONMENT
-          - name: RUM_DEBUG
+	          value: "vjyu-rum-env"
           - name: ENV_PLATFORM
             value: "gcp"
           - name: NODE_IP
