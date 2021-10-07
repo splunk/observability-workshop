@@ -724,11 +724,8 @@ spec:
           - name: RUM_REALM
             value: "eu0"
           - name: RUM_AUTH
-            value: "1wCqZVUWIP5XSdNjPoQRFg"
           - name: RUM_APP_NAME
-            value: "vjyu-rum-app"
           - name: RUM_ENVIRONMENT
-	          value: "vjyu-rum-env"
           - name: ENV_PLATFORM
             value: "gcp"
           - name: NODE_IP
