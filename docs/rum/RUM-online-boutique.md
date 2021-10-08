@@ -29,7 +29,7 @@ Doesn't that HOME BARISTA KIT look tempting?...   Your time for shopping start n
 ![Clock](../images/rum/Clock.gif)
 
 ---
-## 3. Check the RUM Traces Splunk RUM
+## 3. Visit the RUM overview page
 Visit and login into your Splunk IMT/APM/RAM Website.</br> 
 From the top left hamburger menu ![Hamburger-menu](../images/dashboards/Hamburgermenu.png) select **RUM** from the side menu.</br>
 This will bring you to the RUM user interface.
