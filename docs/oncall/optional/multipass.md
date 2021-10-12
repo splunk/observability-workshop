@@ -30,7 +30,7 @@ The first step is to pull down the `cloud-init` file to launch a pre-configured 
 === "Shell Command"
 
     ```text
-    WSVERSION=2.38
+    WSVERSION=2.39
     curl -s \
     https://raw.githubusercontent.com/signalfx/observability-workshop/v$WSVERSION/cloud-init/victorops.yaml \
     -o victorops.yaml
