@@ -54,7 +54,7 @@ Available Variables to choose from:
 
 - An Assert Step makes an assertion on two values. To make an assertion, supply two parameters along with the comparison that you would like to perform between the two.
 
-[**Comparisons**]()
+[**Comparisons**](https://help.rigor.com/hc/en-us/articles/115004742408-API-Check-Assert-Step)
 
 - We currently support 3 types of comparisons: **string**, **numeric**, and **regular expression**.
 

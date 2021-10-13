@@ -12,7 +12,7 @@ You should have received an invitation to Activate your Splunk On-Call account v
 
 If you did not receive an invitation it is probably because you already have a Splunk On-Call login, linked to a different organisation.
 
-If so login to to that Org, then use the organisation dropdown next to your username in the top left to switch to the Observability Workshop Org.
+If so login to that Org, then use the organisation dropdown next to your username in the top left to switch to the Observability Workshop Org.
 
 ![Switch Org](../../images/oncall/switch-org.png){: .center}
 
@@ -29,7 +29,7 @@ If so login to to that Org, then use the organisation dropdown next to your user
 
 You should have received an invitation to join the Splunk Infrastructure Monitoring - Observability Workshop.  If you have not already done so click the **JOIN NOW**{: .label-button .sfx-ui-button-black} button and follow the prompts to set a password and activate your login.
 
-## 3. Access your EC2 Instance
+## 3. Access your EC2 Instance
 
 Splunk has provided you with a dedicated EC2 Instance which you can use during this workshop for triggering Incidents the same way the instructor did during the introductory demo. This VM has Splunk Infrastructure Monitoring deployed and has an associated Detector configured. The Detector will pass Alerts to Splunk On-Call which will then create Incidents and page the on-call user.
 
