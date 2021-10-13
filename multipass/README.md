@@ -8,9 +8,10 @@ Install [Multipass](https://multipass.run/)[^1] for your operating system. On a 
 
 ```
 mkdir cloud-init
-curl -s \
-https://raw.githubusercontent.com/signalfx/observability-workshop/master/cloud-init/k3s.yaml \
--o cloud-init/k3s.yaml
+```
+
+```
+curl -sL https://git.io/JKYEQ -o cloud-init/k3s.yaml
 ```
 
 For Linux/Mac OS set the instance name environment variable:
@@ -32,9 +33,7 @@ $INSTANCE = ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".tochararray(
 Build and launch a Multipass instance which will run the Kubernetes (K3s) environment that you will use in the workshop.
 
 ```text
-multipass launch --name ${INSTANCE} \
---cloud-init cloud-init/k3s.yaml \
---cpus 4 --mem 8Gb --disk 32Gb
+multipass launch --name ${INSTANCE} --cloud-init cloud-init/k3s.yaml --cpus 4 --mem 8Gb --disk 32Gb
 ```
 
 Once the instance has been successfully created (this can take several minutes), shell into it:
