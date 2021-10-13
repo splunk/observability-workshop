@@ -36,7 +36,7 @@ The documentation built from your current branch is then accessible through your
 
 3. In the left sidebar, click Deploy Workshop.
 
-5. Above the list of workflow runs, select Run workflow dropdown and click Run workflow
+4. Above the list of workflow runs, select Run workflow dropdown and click Run workflow
 
 Then the release will run through the CI/CD pipeline and be available shortly after.
 
@@ -44,7 +44,7 @@ Then the release will run through the CI/CD pipeline and be available shortly af
 
 1. Create a Workflow file called `main.yml` in `.github/workflows`
 
-```
+```yaml
 name: Deploy Workshop
 
 # Controls when the action will run. Triggers manually
@@ -59,7 +59,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          
+
       - name: Set up Python 3.7
         uses: actions/setup-python@v2
         with:
@@ -69,7 +69,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-        
+
       - name: Bumpversion and deploy using mike
         run: |
           git config user.name "${GITHUB_ACTOR}"
@@ -79,7 +79,7 @@ jobs:
           TAG=$(bumpversion --list "$FLAVOUR" | awk -F= '/new_version=/ { print $2 }')
           awk "/Latest versions of the workshop are:/ { print; print \"- [v$TAG](https://signalfx.github.io/observability-workshop/v$TAG/)\";next }1" README.md |
           awk "NR==1,/Latest versions of the workshop are:/{c=3} c&&c-- " > README.new.md
-          mv README.new.md README.md          
+          mv README.new.md README.md
           git fetch --tags origin
           git add README.md
           git commit --amend -m "Releasing v$TAG"

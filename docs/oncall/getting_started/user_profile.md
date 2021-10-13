@@ -53,7 +53,7 @@ We will now configure this policy into a three tier multi-stage policy similar t
 
 ### Step 1: Send a push notification
 
-Click the edit policy button in the top right corner for the Primary Paging Policy.  
+Click the edit policy button in the top right corner for the Primary Paging Policy.
 
 * Send a push notification to all my devices
 * Execute the next step if I have not responded within 5 minutes
@@ -71,7 +71,7 @@ Click **Add a Step**
 
 Click **Add a Step**
 
-### Step 3: Call your number
+### Step 3: Call your number
 
 * Every 5 minutes until we have reached you
 * Make a phone call to [your phone number]

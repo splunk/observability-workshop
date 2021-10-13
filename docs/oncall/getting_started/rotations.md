@@ -2,7 +2,7 @@
 
 ## Aim
 
-A rotation is a recurring schedule, that consists of one or more shifts, with members who rotate through a shift. 
+A rotation is a recurring schedule, that consists of one or more shifts, with members who rotate through a shift.
 
 The aim of this module is for you to configure two example Rotations, and assign Team Members to the Rotations.
 
