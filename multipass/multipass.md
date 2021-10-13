@@ -1,50 +1,39 @@
----
-hide:
-  - navigation # Hide navigation
-  - toc        # Hide table of contents
----
 # Launch a Multipass instance
-
----
 
 ## 1. Pre-requisites
 
-Install [Multipass](https://multipass.run/){: target=_blank}[^1] for your operating system. Make sure you are using at least version `1.6.0`.
+Install [Multipass](https://multipass.run/){: target=_blank}[^1] for your operating system.
 
 On a Mac you can also install via [Homebrew](https://brew.sh/){: target=_blank} e.g. `brew install multipass`
 
----
-
 ## 2. Download cloud-init YAML
 
-=== "Linux/Mac OS"
+    **Linux/Mac OS**
 
-    ```text
-    WSVERSION=2.39
+    ```
     mkdir cloud-init
     curl -s \
-    https://raw.githubusercontent.com/signalfx/observability-workshop/v$WSVERSION/cloud-init/k3s.yaml \
+    https://raw.githubusercontent.com/signalfx/observability-workshop/master/cloud-init/k3s.yaml \
     -o cloud-init/k3s.yaml
+    ```
+
+For Linux/Mac OS set the instance name environment variable:
+
+    ```
     export INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)
     ```
 
-=== "Windows"
+For Windows download the latest version of the workshop from [GitHub](https://github.com/signalfx/observability-workshop/archive/refs/heads/master.zip).
 
-    !!! info
-        Download the zip by clicking on the following URL <https://github.com/signalfx/observability-workshop/archive/v2.39.zip>.
-
-        Once downloaded, unzip the the file and rename it to `workshop`. Then, from the command prompt change into that directory
-        and run
+Once downloaded, unzip the the file and rename it to `workshop`. Then, from the command prompt change into the `workshop\cloud-init` directory and set the instance name environment variable:
 
     ```
     $INSTANCE = ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".tochararray() | sort {Get-Random})[0..3] -join ''
     ```
 
----
-
 ## 3. Launch Multipass instance
 
-In this section you will build and launch the Multipass instance which will run the Kubernetes (K3s) environment that you will use in the workshop.
+Build and launch a Multipass instance which will run the Kubernetes (K3s) environment that you will use in the workshop.
 
 === "Shell Command"
 
