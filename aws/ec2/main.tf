@@ -86,6 +86,3 @@ resource "aws_instance" "observability-instance" {
 
 }
 
-output "ip" {
-  value = aws_instance.observability-instance.*.public_ip
-}

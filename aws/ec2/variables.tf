@@ -1,9 +1,11 @@
 variable "aws_instance_count" {
   description = "Instance Count (Usually 1)"
+  default = 1
 }
 
 variable "aws_region" {
   description = "Provide the desired region (for example: us-west-2)"
+  # suggest putting a default region here
 }
 
 data "aws_ami" "latest-ubuntu" {

@@ -26,7 +26,7 @@ Set the following variables:
 - `aws_instance_type`: What kind of instance?
 - `aws_instance_count`: How many instances?
 
-Sample command:
+You can also explicitly set variables as command line flags. Sample command:
 
 ```
 terraform apply \
