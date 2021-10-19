@@ -38,6 +38,6 @@ jobs:
           git commit --amend -m "Releasing v$TAG"
           git tag -a "v$TAG" -m "Version $TAG"
           git push --follow-tags origin master || { echo 'Push failed. git pull --rebase from upstream and attempt another release.'; exit 1; }
-          mike deploy --push --update-aliases "v$TAG" latest
+          mike deploy --push --update-aliases v{$TAG} latest
           mike set-default --push latest
 
