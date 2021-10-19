@@ -29,7 +29,7 @@ theme:
   favicon: images/favicon.ico
   logo: images/logo.png
   font:
-    text: Roboto
+    text: "Century Gothic"
     code: Roboto Mono
   include_search_page: false
   search_index_only: true
