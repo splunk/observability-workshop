@@ -52,7 +52,7 @@ write_files:
 
 runcmd:
   # Download Workshop
-  - export WSVERSION=2.40
+  - export WSVERSION=2.41
   - 'export WSARCHIVE=$([ "$WSVERSION" = "master" ] && echo "master" || echo "v$WSVERSION")'
   - curl -s -OL https://github.com/signalfx/observability-workshop/archive/$WSARCHIVE.zip
   - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
