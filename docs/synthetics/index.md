@@ -1,4 +1,4 @@
-# Lab Overview
+# Splunk Synthetics, an Introduction
 
 **Splunk Synthetic Monitoring** offers the most comprehensive and in-depth capabilities for uptime and web performance optimization as part of the only complete observability suite, Splunk Observability Cloud.
 
@@ -9,6 +9,9 @@ With Splunk Synthetic Monitoring you can:
 - Detect and resolve issues fast across critical user flows, business transactions and API endpoints
 - Prevent web performance issues from affecting customers with an intelligence web optimization engine
 - And improve performance of all page resources and third-party dependencies
+
+
+## Lab Overview
 
 This Lab walks your through using the [Chrome Selenium IDE](https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd?hl=en) extension to create a synthetic transaction against a Splunk demo instance and creating a Splunk Synthetic Monitoring Real Browser Check (RBC). In addition you also get to learn other Splunk Synthetic Monitoring checks like REST API checks and Uptime Checks.
 

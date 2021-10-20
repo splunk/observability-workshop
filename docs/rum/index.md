@@ -1,4 +1,4 @@
-# Introduction
+# Splunk RUM, an introduction
 
 Splunk RUM is the industry’s only end to end, full fidelity Real User Monitoring solution, built to optimize performance and troubleshoot faster,giving you full visibility into end-user experiences.</br></br>What this means is that you can view the latency for all interactions from your app running in clients web browsers, through your database calls and everything in between. Identify performance problems in your page loads, and measure how slow backend service performance impacts your customer experience.
 </br></br>

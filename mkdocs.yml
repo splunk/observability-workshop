@@ -151,18 +151,24 @@ nav:
       - Teams : servicebureau/teams.md
       - Control Usage: servicebureau/tokens.md
   - Splunk APM:
-    - Introduction: apm/index.md
+    - APM, an introduction: apm/index.md
     - Get Traces In<br /><small>10 minutes</small>:
       - Deploying the Online Boutique: apm/online-boutique.md
     - Get Data Out<br /><small>15 minutes</small>:
       - Using Splunk APM: apm/using-apm.md
-  #- Splunk RUM:
-  #  - Introduction: rum/index.md
-  #  - Enablement of RUM Beacon in your Website: rum/RUM-Setup.md 
-  #  - Create RUM Traffic: rum/RUM-online-boutique.md
+  - Splunk RUM:
+    - RUM, an introduction: rum/index.md
+    - Enablement of RUM in your Website: rum/RUM-Setup.md 
+    - Create RUM Traffic: rum/RUM-online-boutique.md
+    - Analyzing RUM Metrics: rum/RUM-Metrics.md
+  - Splunk Synthetics:
+    - Real Browser Checks<br /><small>40 minutes</small>:
+      - Synthetics, an introduction: synthetics/index.md
+    - API Checks<br /><small>20 minutes</small>:
+      - Introduction: synthetics/api.md
   - Splunk On-Call:
     - Getting Started<br /><small>45 minutes</small>:
-      - Initial Setup: oncall/getting_started/index.md
+      - On- Call, the initial Setup: oncall/getting_started/index.md
       - User Profile: oncall/getting_started/user_profile.md
       - Teams: oncall/getting_started/team.md
       - Configure Rotations: oncall/getting_started/rotations.md
@@ -176,11 +182,6 @@ nav:
       - Observability Cloud Integration: oncall/optional/sfx_integrations.md
       - Using Multipass VM: oncall/optional/multipass.md
       - Create a Detector: oncall/optional/detector.md
-  - Splunk Synthetics:
-    - Real Browser Checks<br /><small>40 minutes</small>:
-      - Introduction: synthetics/index.md
-    - API Checks<br /><small>20 minutes</small>:
-      - Introduction: synthetics/api.md
   #- Lambda & APM:
   #  - Intro: lambda/index.md
   #  - Getting to know the Mobile Shop: lambda/initial_run_env.md
