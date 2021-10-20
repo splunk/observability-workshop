@@ -1,4 +1,4 @@
-# Example of RUM Beacon enablement in your Website
+# Example of RUM enablement in your Website
 
 * Check the original HEAD section of your Online-boutique webpage (or use the examples here) in your browser
 * Find the Web address of your workshop hosts Online Boutique
@@ -72,7 +72,7 @@ The changes for RUM will be placed in the HEAD section of your Web page, Below a
 
 ![Online Boutique](../images/rum/ViewBase-HEAD-html.png)
 
-There is no reference of the Splunk or Open Telemetry Beacon (The function that is used to send RUM traces )
+There is no reference of the Splunk or Open Telemetry Beacon (The function that is used to send RUM Metrics and Traces )
 
 ---
 

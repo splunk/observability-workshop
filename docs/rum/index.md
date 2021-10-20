@@ -13,11 +13,11 @@ Similar to Splunk APM, the frontend and back end application performance are int
 
 ## Setup of your Instance (Optional)
 
-If you are running this session as part of an IMT/APM/RUM Workshop or if you haven't been assigned an EC2 instance as part of a RUM workshop you can continue to to next section: [Example of RUM Beacon enablement in your Website](../rum/RUM-Setup/)
+If you are running this session as part of an IMT/APM/RUM Workshop or if you haven't been assigned an EC2 instance as part of a RUM workshop you can continue to to next section: [Example of RUM enablement in your Website](../rum/RUM-Setup/)
 
 Please verify with your Host if the below steps are required:
 
 * To configure the Open Telemetry collector/agent on your instance please visit: [Installing the Open Telemetry Collector/agent](../otel/k3s/)
 * To Install the Online-Boutique website and services we use for APM and RUM visit: [Install the Online-Boutique](../apm/online-boutique/)
 
-Continue to the next section once you have configured your environment: [Example of RUM Beacon enablement in your Website](../rum/RUM-Setup/)
+Continue to the next section once you have configured your environment: [Example of RUM enablement in your Website](../rum/RUM-Setup/)

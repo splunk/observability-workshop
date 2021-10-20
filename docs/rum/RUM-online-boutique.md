@@ -2,8 +2,6 @@
 
 * Find the Web address of your workshop hosts Online Boutique
 * Generate traffic by shopping for bargains on your workshop host Online Boutique web shop.
-* See RUM Metrics and Session information in the  RUM UI
-* See correlated APM traces in the RUm & APM UI
 
 ---
 
@@ -32,13 +30,3 @@ Doesn't that HOME BARISTA KIT look tempting?...   Your time for shopping start n
 ![Clock](../images/rum/Clock.gif)
 
 ---
-
-## 3. Visit the RUM overview page
-
-Visit and login into your Splunk IMT/APM/RAM Website.
-
-From the top left hamburger menu ![Hamburger-menu](../images/dashboards/Hamburgermenu.png) select **RUM** from the side menu.
-
-This will bring you to the RUM user interface.
-
-![RUM-1](../images/rum/RUM-1.png)
