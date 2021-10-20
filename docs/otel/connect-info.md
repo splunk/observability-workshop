@@ -121,6 +121,6 @@ At this point you are ready to continue and [start the workshop](../../otel/k3s/
 
 ## 5. Multipass (All)
 
-If you are unable to access AWS, but you can install software locally, follow the instructions for [using Multipass](../../otel/multipass).
+If you are unable to access AWS, but you want to install software locally, follow the instructions for [using Multipass](https://github.com/signalfx/observability-workshop/tree/master/multipass/README.md).
 
 [^1]: [Download Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/)
