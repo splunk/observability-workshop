@@ -17,6 +17,8 @@ Expand the **Default** token, then click on **Show Token** to expose your token.
 
 You will also need to obtain the name of the Realm[^2] for your Splunk account.  From the hamburger menu, click on your name and select **Account Settings**.
 
+![Account Settings](../images/otel/account-settings.png)
+
 The Realm can be found in the middle of the page within the Organizations section.  In this example it is `us0`.
 
 ![Realm](../images/otel/realm.png)
