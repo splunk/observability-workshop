@@ -49,11 +49,10 @@ Once they are in a running state open a separate terminal  and start the script 
     node touchwebsite.js  > B.log &
     node touchwebsite.js  > C.log & 
 ```
-You can verify if the application runs correctly  as it should start running across and interacting with the ONline Boutique
+You can verify if the application runs correctly as it should start running across and interacting with the Online Boutique
 You can run more of the above load scripts to generate more sessions.
-![RUM-OTHER](../../../../docs/images/rum/RUM Cold.png)
 
-The result  in the logs should be a number of actions towards the website to pre-load the workshop:
+The result  in the logs should be a number of actions in the various logs indicatin actions towards the website to pre-load the workshop:
 
 ```text
 
