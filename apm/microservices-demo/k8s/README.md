@@ -40,21 +40,18 @@ Wait till all the pods have loaded, to ensure the Online Boutique application is
 !!! info
     Usually it should only take around 1min 30secs for the pods to transition into a Running state.
 
-Once they are in a running state start the script to get the initial load in the ssystem
+Once they are in a running state open a separate terminal  and start the script to get the initial load in the system
 
 
 ```bash
-
-    node touchwebsite.js > RUM.log
+     cd ~/workshop/apm/microservices-demo/k8s
+    node touchwebsite.js  > A.log
+    node touchwebsite.js  > B.log
+    node touchwebsite.js  > C.log
 ```
-You can verify if the application ran correctly by running tail
+You can verify if the application runs correctly  as it should start running across and interacting with the ONline Boutique
 
-```bash
-
-    tail -f RUM.log
-```
-
-The result should be a number of actions towards the website to preload the workshop:
+The result  in the logs should be a number of actions towards the website to preload the workshop:
 
 ```text
 
@@ -71,3 +68,5 @@ The result should be a number of actions towards the website to preload the work
     After:  shop_session-id
 
 ```    
+
+Wait until you see the url in the RUM overview for localhost appear,  before starting with the RUM Workshop
