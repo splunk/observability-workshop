@@ -72,9 +72,9 @@ The result  in the logs should be a number of actions in the various logs indica
 If you verify the RUM  overview pag and it show only urls for ***other*** as shown below,
 keep the above scripts running for approximately 10 minutes 
 
-![RUM-OTHER]images/RUM Cold.png)
+![RUM-OTHER](images/RUM Cold.png)
 
  !!!!! 
 Wait until you see the urls for localhost  as shown below appear in the RUM overview ,  before starting with the RUM Workshop
 
-![RUM-OTHER]images/RUM Cold.png)
+![RUM-OTHER](images/RUM-Preload.png)

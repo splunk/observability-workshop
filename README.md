@@ -10,6 +10,8 @@ To get started, please proceed to [The Splunk Observability Cloud Workshop Homep
 
 If you require the latest Smart Agent version of the workshop then please use [v1.60](https://signalfx.github.io/observability-workshop/v1.60/).
 
+If you are the host for the RUM workshop, please check https://github.com/signalfx/observability-workshop/blob/master/apm/microservices-demo/k8s/README.md
+
 Latest versions of the workshop are:
 - [v2.42](https://signalfx.github.io/observability-workshop/v2.42/)
 - [v2.41](https://signalfx.github.io/observability-workshop/v2.41/)
