@@ -116,3 +116,4 @@ runcmd:
   - sudo apt-get install -y nodejs
   - cd /home/ubuntu/workshop/apm/microservices-demo/k8s
   - npm install -s puppeteer
+  

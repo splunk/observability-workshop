@@ -45,13 +45,15 @@ Once they are in a running state open a separate terminal  and start the script 
 
 ```bash
      cd ~/workshop/apm/microservices-demo/k8s
-    node touchwebsite.js  > A.log
-    node touchwebsite.js  > B.log
-    node touchwebsite.js  > C.log
+    node touchwebsite.js  > A.log &
+    node touchwebsite.js  > B.log &
+    node touchwebsite.js  > C.log & 
 ```
 You can verify if the application runs correctly  as it should start running across and interacting with the ONline Boutique
+You can run more of the above load scripts to generate more sessions.
+![RUM-OTHER](../../../../docs/images/rum/RUM Cold.png)
 
-The result  in the logs should be a number of actions towards the website to preload the workshop:
+The result  in the logs should be a number of actions towards the website to pre-load the workshop:
 
 ```text
 
@@ -68,5 +70,10 @@ The result  in the logs should be a number of actions towards the website to pre
     After:  shop_session-id
 
 ```    
+If you verify the RUM  overview pag and it show only urls for ***other*** as shown below,
+keep the above scripts running for approximately 10 minutes 
 
-Wait until you see the url in the RUM overview for localhost appear,  before starting with the RUM Workshop
+![RUM-OTHER](../../../../docs/images/rum/RUM Cold.png)
+
+ !!!!! 
+Wait until you see the urls for local host in the RUM overview for localhost appear,  before starting with the RUM Workshop
