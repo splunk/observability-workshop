@@ -28,46 +28,46 @@ If all looks correct, run the deployment:
 ```bash
 kubectl apply -f deployment.yaml
 
+```
+
 Wait till all the pods have loaded, to ensure the Online Boutique application is running:
 
-=== "Get Pods"
+```bash
 
-    ```text
     kubectl get pods
-    ```
-
-=== "Output"
-
-    ```text
-    NAME                                                          READY   STATUS    RESTARTS   AGE
-    splunk-otel-collector-k8s-cluster-receiver-56585564cc-xclzj   1/1     Running   0          84s
-    splunk-otel-collector-agent-hkshj                             1/1     Running   0          84s
-    svclb-frontend-external-c74n6                                 1/1     Running   0          53s
-    currencyservice-747b74467f-xxrl9                              1/1     Running   0          52s
-    redis-cart-74594bd569-2jb6c                                   1/1     Running   0          54s
-    adservice-6fb948b8c6-2xlrc                                    0/1     Running   0          53s
-    recommendationservice-b5df8776c-sbt4h                         1/1     Running   0          53s
-    shippingservice-6d6f7b8d87-5lg9g                              1/1     Running   0          53s
-    svclb-loadgenerator-jxwct                                     1/1     Running   0          53s
-    emailservice-9dd74d87c-wjdqr                                  1/1     Running   0          53s
-    checkoutservice-8bcd56b46-bfj7d                               1/1     Running   0          54s
-    productcatalogservice-796cdcc5f5-vhspz                        1/1     Running   0          53s
-    paymentservice-6c875bf647-dklzb                               1/1     Running   0          53s
-    frontend-b8f747b87-4tkxn                                      1/1     Running   0          53s
-    cartservice-59d5979db7-bqf64                                  1/1     Running   1          53s
-    loadgenerator-57c8b84966-7nr4f                                1/1     Running   3          53s
-    ```
+```
 
 !!! info
     Usually it should only take around 1min 30secs for the pods to transition into a Running state.
 
-once they are in a running state start the script to get the initial load in the ssystem
-=== "Get Pods"
-
-    ```text
-    node touchwebsite.js
-    ```
-===
+Once they are in a running state start the script to get the initial load in the ssystem
 
 
+```bash
+
+    node touchwebsite.js > RUM.log
 ```
+You can verify if the application ran correctly by running tail
+
+```bash
+
+    tail -f RUM.log
+```
+
+The result should be a number of actions towards the website to preload the workshop:
+
+```text
+
+    Product found in the shop: Vintage Typewriter
+    Product found in the shop: City Bike
+    Product found in the shop: Home Barista Kit
+    Product found in the shop: Metal Camping Mug
+    Total Price: USD 1017.03
+     checkout clicked
+    order: e15f5ce7-34c3-11ec-9543-16134fe48367
+    cookies was
+    Before:  shop_session-id
+    Before:  _splunk_rum_sid
+    After:  shop_session-id
+
+```    
