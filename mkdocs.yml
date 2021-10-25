@@ -161,6 +161,8 @@ nav:
     - Enablement of RUM in your Website: rum/RUM-Setup.md 
     - Create RUM Traffic: rum/RUM-online-boutique.md
     - Analyzing RUM Metrics: rum/RUM-Metrics.md
+    - Use of the TAG overview: rum/RUM-TAG.md
+    - Discover RUM sessions: rum/RUM-Sessions.md
   - Splunk Synthetics:
     - Real Browser Checks<br /><small>40 minutes</small>:
       - Synthetics, an introduction: synthetics/index.md
