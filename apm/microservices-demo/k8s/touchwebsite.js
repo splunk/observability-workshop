@@ -3,7 +3,7 @@ function run () {
     return new Promise(async (resolve, reject) => {
         try {
             const wait_time = 1500;  //Set up delay between page interactions 
-            for (let loop=0; loop < 30;loop++) {
+            for (let loop=0; loop < 30;loop++) {  // as part of the load we run multiple of this script to generate multiple session
                const browser = await puppeteer.launch({
                     headless: true,
                     defaultViewport: null
