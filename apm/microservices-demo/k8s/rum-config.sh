@@ -3,5 +3,5 @@ if [ -z ${RUM_TOKEN+x} ]; then echo "RUM_TOKEN is unset. Please export RUM_TOKEN
 envsubst '${REALM},${RUM_TOKEN},${INSTANCE}' < deployment-host.yaml > deployment.yaml
 
 #temporary add for Cold start RUM
-#npm install -s puppeteer
+npm install -s puppeteer
   
