@@ -163,6 +163,7 @@ nav:
     - Analyzing RUM Metrics: rum/RUM-Metrics.md
     - Use of the TAG overview: rum/RUM-TAG.md
     - Discover RUM sessions: rum/RUM-Sessions.md
+    - Correlate Splunk RUM with APM: rum/RUM-APM.md
   - Splunk Synthetics:
     - Real Browser Checks<br /><small>40 minutes</small>:
       - Synthetics, an introduction: synthetics/index.md

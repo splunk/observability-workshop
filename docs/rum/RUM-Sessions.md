@@ -1,14 +1,15 @@
 # Analyzing RUM Sessions
 
 * Dive into RUM Session information in the  RUM UI
-* See correlated APM traces and logs in the APM & Log Observer UI
-
+* Identify Java script errors in the Span of an user interaction
 ---
 ## 1. Again select the cart URL
 
 After you have focussed the time slot with the time selector, you need to reselect the *cart* url from **Url Name** view, as shown below:
 
 ![RUM-Cart-3](../images/rum/RUM-Cart-All.png)
+
+In the example above we selected ***http://34.246.124.162:81/cart***.
 
 ---
 ## 2. Drill down in the Sessions
@@ -25,11 +26,20 @@ Select one  by clicking on the session ID, It is a good idea to select one that 
 
 ![RUM-Header](../images/rum/RUM-Session-Selected.png)
 
-Once you have selected the session, you will be taken to the session details page. you will see an overview of the Tags used in this session
+Once you have selected the session, you will be taken to the session details page. As you are selecting a specific action that is part of the session, you will likely arrive somewhere in the middle of the session, at the moment of the interaction.
+
+You can see the url ***http://34.246.124.162:81/cart***, the one you selected earlier, is where we are focusing on in the session stream.
 
 ![RUM-Session-Tag](../images/rum/Session-Tag.png)
 
-Scroll to the top of the Page, the first part of this page will give you an over view of the duration  events and other relevant information about the session
- 
-[RUM-Session-info](../images/rum/Session-info.png)
+Scroll down a little bit on the page, so you see the end of the operation as shown below. 
 
+![RUM-Session-info](../images/rum/Session-Tag-2.png)
+
+You can see that we have received a few Java Script Console errors that may not have been detected or visible to the end users. To examine these in more detail click on the middle one  that says: ***Cannot read properties of undefined (reading 'Prcie')**
+
+![RUM-Session-info](../images/rum/Session-Tag-3.png)
+
+This will cause the page to expand and show the Span detail for this interaction, It will contain a detailed *error.stack* you can pass on the developer to solve the issue you may have noticed when buying in the Online Boutique  that  final total always was $0.00.
+
+![RUM-Session-info](../images/rum/Session-Tag-4.png)
