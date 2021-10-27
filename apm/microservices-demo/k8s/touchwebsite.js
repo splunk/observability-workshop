@@ -1,19 +1,21 @@
 const puppeteer = require('puppeteer');
 function run () {
     return new Promise(async (resolve, reject) => {
+        const browser = await puppeteer.launch({
+            headless: true,
+            defaultViewport: null
+        });
         try {
-            const wait_time = 1500;  //Set up delay between page interactions 
-            for (let loop=0; loop < 30;loop++) {  // as part of the load we run multiple of this script to generate multiple session
-               const browser = await puppeteer.launch({
-                    headless: true,
-                    defaultViewport: null
-                });
-               const page = await browser.newPage();
-               const urls= ["http://localhost:81/product/OLJCESPC7Z",
+            const wait_time = 1000;  //Set up delay between page interactions 
+            for (let loop=0; loop < 1;loop++) {  // as part of the load we run multiple of this script to generate multiple session
+                const context = await browser.createIncognitoBrowserContext();
+                const page = await context.newPage();
+                await page.setUserAgent('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36');
+                const urls= ["http://localhost:81/product/OLJCESPC7Z",
                             "http://localhost:81/product/9SIQT8TOJO",
                             "http://localhost:81/product/1YMWWN1N4O",
                             "http://localhost:81/product/LS4PSXUNUM"];
-               for (let i=0; i < urls.length;i++) {
+                for (let i=0; i < urls.length;i++) {
                    const url = urls[i];
                    await page.goto(`${url}`);
                    const text = await page.$eval('h2', element => element.textContent)
@@ -27,16 +29,13 @@ function run () {
                let element = await page.waitForSelector('body > main > div > div > div.row.pt-2.my-3 > div > strong'); // select the element
                let spanValue = await element.evaluate(el => el.textContent); // grab the textContent from the element, by evaluating this function in the browser context
                console.log('Total Price: ' + spanValue);
-              
-               page.setDefaultTimeout(0) // disable timeout for the following call
+               //page.setDefaultTimeout(0); // disable timeout for the following call
              
                const elements = await page.$x('//*[contains (text(), "Place order")]');
                await elements[0].click();
-               page.setDefaultTimeout(0) // disable timeout for the following call
-              
-               console.log(" checkout clicked")
-               await delay(wait_time);
+               console.log("- Checkout Clicked")
                element = await page.waitForSelector('body > main > div > div:nth-child(1) > div > div > p:nth-child(4) > strong'); // select the element
+               //page.setDefaultTimeout(30000);
                spanValue = await element.evaluate(el => el.textContent); // grab the textContent from the element, by evaluating this function in the browser context
                console.log('order: ' + spanValue);
                await delay(wait_time);
@@ -55,10 +54,12 @@ function run () {
               })
               await browser.close()
       }
-      process.exit();
+        process.exit();
       } catch (e) {
-            return reject(e);
-        }
+        console.log (e)
+      } finally {
+        await browser.close();
+      }
     })
 }
 run().then(console.log).catch(console.error);
