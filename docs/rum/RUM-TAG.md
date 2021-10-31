@@ -54,7 +54,8 @@ By selecting the various Tag you build up a filter, you can see the current sele
 
 To clear the filter and see every trace click on **Clear All** at the top right of the page.
 
-If the over view page  is empty or shows ![RUM-Adam](../images/rum/RUM-NoTime.png), no traces have been recieved in the selected times lot. You need to increase the time window at the top left.  You can start with  the *Last 12 hours* for example.
+If the over view page  is empty or shows ![RUM-Adam](../images/rum/RUM-NoTime.png), no traces have been received in the selected times lot.</br> 
+You need to increase the time window at the top left.  You can start with the *Last 12 hours* for example.
 
 You can then use you mouse to select a the time slot you want like show in the view below and  active that time filter by clicking on the little spy glass icon
 

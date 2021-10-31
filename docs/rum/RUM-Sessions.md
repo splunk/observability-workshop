@@ -22,7 +22,7 @@ You do this by clicking on the link **Example Sessions** as shown below:
 
 This will give you a list of sessions that matched both the time filter and the subset selected in the Tag Profile.
 
-Select one  by clicking on the session ID, It is a good idea to select one that has the longes duration.
+Select one  by clicking on the session ID, It is a good idea to select one that has the longest duration (preferable over 700 ms).
 
 ![RUM-Header](../images/rum/RUM-Session-Selected.png)
 
