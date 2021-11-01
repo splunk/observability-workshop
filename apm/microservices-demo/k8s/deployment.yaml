@@ -182,7 +182,7 @@ spec:
         - name: EXTERNAL_DB_NAME
           value: "Galactus.Postgres"
         - name: EXTERNAL_DB_ACCESS_RATE
-          value: "0.75"
+          value: "0.76"
         - name: EXTERNAL_DB_MAX_DURATION_MILLIS
           value: "750"
         - name: EXTERNAL_DB_ERROR_RATE

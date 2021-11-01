@@ -29,13 +29,14 @@ function run () {
                let element = await page.waitForSelector('body > main > div > div > div.row.pt-2.my-3 > div > strong'); // select the element
                let spanValue = await element.evaluate(el => el.textContent); // grab the textContent from the element, by evaluating this function in the browser context
                console.log('Total Price: ' + spanValue);
-               //page.setDefaultTimeout(0); // disable timeout for the following call
-             
+               
+               page.setDefaultTimeout(60000); // double timeout for the following call
                const elements = await page.$x('//*[contains (text(), "Place order")]');
                await elements[0].click();
                console.log("- Checkout Clicked")
                element = await page.waitForSelector('body > main > div > div:nth-child(1) > div > div > p:nth-child(4) > strong'); // select the element
-               //page.setDefaultTimeout(30000);
+               
+               page.setDefaultTimeout(30000);// back to normal timeout
                spanValue = await element.evaluate(el => el.textContent); // grab the textContent from the element, by evaluating this function in the browser context
                console.log('order: ' + spanValue);
                await delay(wait_time);
