@@ -11,13 +11,14 @@ Similar to Splunk APM, the frontend and back end application performance are int
 </br>
 ![Architecture Overview](../images/rum/rum-architecture.png)
 
-## Setup of your Instance (Optional)
+## Overview of the Rum Workshop
 
-If you are running this session as part of an IMT/APM/RUM Workshop or if you haven't been assigned an EC2 instance as part of a RUM workshop you can continue to to next section: [Example of RUM enablement in your Website](../rum/RUM-Setup/)
+In this RUM workshop you are  going to see what is needed to add RUM to your website.</br>
+and then examine performance of your website with  RUM metrics, followed by investigating issues with your website.</br?>
 
-Please verify with your Host if the below steps are required:
+To show you the difference between a RUM and a Non RUM Website we are using a separate RUM Host</br>
+An other reason for using a separate RUM Website is that we can increase the amount of traffic to this website,</br> 
+making the data we  will be looking at, more realistic.</br>
 
-* To configure the Open Telemetry collector/agent on your instance please visit: [Installing the Open Telemetry Collector/agent](../otel/k3s/)
-* To Install the Online-Boutique website and services we use for APM and RUM visit: [Install the Online-Boutique](../apm/online-boutique/)
-
-Continue to the next section once you have configured your environment: [Example of RUM enablement in your Website](../rum/RUM-Setup/)
+The Workshop Host will provide you the URL for the RUM Host and the URL of the Non RUM Host if this is standalone session</br>
+If you are running this session as part of an IMT/APM/RUM Workshop, you will use your current ec2 instance as the NON-RUM website during the workshop. 

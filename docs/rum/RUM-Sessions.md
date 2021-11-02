@@ -40,6 +40,6 @@ You can see that we have received a few Java Script Console errors that may not 
 
 ![RUM-Session-info](../images/rum/Session-Tag-3.png)
 
-This will cause the page to expand and show the Span detail for this interaction, It will contain a detailed *error.stack* you can pass on the developer to solve the issue you may have noticed when buying in the Online Boutique  that  final total always was $0.00.
+This will cause the page to expand and show the Span detail for this interaction, It will contain a detailed *error.stack* you can pass on the developer to solve the issue you may have noticed when buying in the Online Boutique that final total always was $0.00.
 
 ![RUM-Session-info](../images/rum/Session-Tag-4.png)

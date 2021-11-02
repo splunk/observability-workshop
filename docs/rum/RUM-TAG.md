@@ -1,19 +1,19 @@
 # Analyzing RUM Tags in the Tag Spotlight view
 
-* Look into the Metrics views for the various endpoints and use the Tags send for deeper analysis
+* Look into the Metrics views for the various endpoints and use the Tags send via the Tag spotlight for deeper analysis
 
 ---
 ## 1. Find an url for the Cart endpoint
 
-Form the RUm Overview page, please select the url for the cart endpoint to dive deeper into the information available for this end point.</br>
+Form the RUm Overview page, please select the url for the **cart** endpoint to dive deeper into the information available for this end point.</br>
 
 ![RUM-Cart2](../images/rum/RUM-select-cart.png)
 
-Once you have selected the url and clicked on the blue url, you will find yourself in the Tag spotlight overview</br>
+Once you have selected the url and clicked on the blue url, you will find yourself in the Tag Spotlight overview</br>
 
 ![RUM-Tag](../images/rum/RUM-TAG-Overview.png)
 
-Here you see all the tags that have been send to Splunk Rum as part of the RUM traces relevant to the overview you have selected. These are generic TAG created automatically when the the Trace was send, and Tags you have added to the  trace as part of the config of your website.
+Here you see all the tags that have been send to Splunk RUM as part of the RUM traces, relevant to the overview you have selected. These are generic TAG created automatically when the the Trace was send, and Tags you have added to the trace as part of the config of your website.
 
 In our example the we have selected the **Document Load Latency** view as show here:
 
@@ -26,7 +26,6 @@ You can select any of the follow Tag views, each focused on a specific metric.
 ---
 ## 2. Explore the information in the Tag Spotlight view.
 The Tag spotlight is designed to help you identify  problems, either though the chart view,, where you may quickly identify outliers or via the TAGs.
-
 
 In the **Document Load Latency** view, if you look at the **Browser**, **Browser Version** & **OS Name** Tag views,you can see the various browser types and  versions. as well as the underlying OS.
 

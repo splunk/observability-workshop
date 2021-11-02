@@ -19,8 +19,8 @@ This will bring you to the RUM user interface.
 
 ### 2.1. Header
 
-The RUM UI Consist of 6 major sections,starting with the selection header,
-here you can set/filter a number of options:</br></br>
+The RUM UI Consist of 6 major sections, starting with the selection header. </br>
+Here you can set/filter a number of options:</br>
 
 * A drop down for the time window your reviewing (You are looking to the last 30 minutes in this case)</br>
 * A drop down to select the Comparison window (You are comparing current performance on a rolling window</br>   - in this case compared to 1 hour ago)</br>
@@ -69,4 +69,18 @@ Web Vitals is an initiative by Google to provide unified guidance for quality si
 ![RUM-Other](../images/rum/RUM-Other.png)
 ---
 ## 2. Explore the RUM Mobile Overview Page
+
+Splunk RUM support Native Mobile RUM, for Apple iphone's and Android Phones. </br>
+You can use this to see the End-user experience of your native Smart phone app.</br>
+
 ![RUM-Header](../images/rum/RUM-Mobile.png)
+
+The above screen is to show you the various metrics and data Splunk Mobile RUM can track. For example:</br>
+* **Custom events**, similar to the Browser version.</br>
+* **App Errors** , with *App Errors* & *Crashes* per minute.</br>
+* **App Lifecycle Performance**, with *Cold Startup Time*, *Hot Startup Time* per OS.</br>
+* **Request/Response**, similar to the Browser version.</br>
+
+As this point we will not go deeper into Mobile RUM, due to the need to run either a native app on a phone, or run an emulation.</br>
+We can provide more information in a deep dive demo if needed.
+

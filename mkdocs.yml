@@ -159,11 +159,11 @@ nav:
   - Splunk RUM:
     - RUM, an introduction: rum/index.md
     - Enablement of RUM in your Website: rum/RUM-Setup.md 
-    - Create RUM Traffic: rum/RUM-online-boutique.md
+    - Showcase of RUM with the Online Boutique: rum/RUM-online-boutique.md
     - Analyzing RUM Metrics: rum/RUM-Metrics.md
-    - Use of the TAG overview: rum/RUM-TAG.md
+    - Use of the TAG Spotlight: rum/RUM-TAG.md
     - Discover RUM sessions: rum/RUM-Sessions.md
-    - Correlate Splunk RUM with APM: rum/RUM-APM.md
+    - Correlate between Splunk RUM and APM backend services: rum/RUM-APM.md
   - Splunk Synthetics:
     - Real Browser Checks<br /><small>40 minutes</small>:
       - Synthetics, an introduction: synthetics/index.md
