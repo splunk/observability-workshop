@@ -1,4 +1,4 @@
 ---
 template: home.html
-title: Splunk Observability Cloud Workshop
+title: Splunk Observability Cloud Workshops
 ---

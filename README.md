@@ -4,14 +4,15 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/signalfx/observability-workshop)
 ![GitHub issues](https://img.shields.io/github/issues/signalfx/observability-workshop)
 
-# Welcome to the Splunk Observability Cloud Workshop
+# Welcome to the Splunk Observability Cloud Workshops
 
-To get started, please proceed to [The Splunk Observability Cloud Workshop Homepage](https://signalfx.github.io/observability-workshop/latest/).
+To get started, please proceed to [The Splunk Observability Cloud Workshops Homepage](https://signalfx.github.io/observability-workshop/latest/).
 
-If you require the latest Smart Agent version of the workshop then please use [v1.60](https://signalfx.github.io/observability-workshop/v1.60/).
+If you require the latest Smart Agent version of the Infrastructure Monitoring and APM workshop then please use [v1.60](https://signalfx.github.io/observability-workshop/v1.60/).
 
-If you are the host for the RUM workshop, please check https://github.com/signalfx/observability-workshop/blob/master/apm/microservices-demo/k8s/README.md
+If you are the host for the RUM workshop, please check this [README](https://github.com/signalfx/observability-workshop/blob/master/apm/microservices-demo/k8s/README.md)
 
 Latest versions of the workshop are:
+
 - [v2.42](https://signalfx.github.io/observability-workshop/v2.42/)
 - [v2.41](https://signalfx.github.io/observability-workshop/v2.41/)
