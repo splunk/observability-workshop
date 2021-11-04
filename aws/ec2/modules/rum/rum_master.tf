@@ -8,7 +8,7 @@ resource "aws_instance" "rum_master" {
   # ami                    = data.aws_ami.latest-ubuntu.id
   ami                    = var.ami
   instance_type          = var.rum_master_type
-  key_name               = var.key_name
+  # key_name               = var.key_name
   vpc_security_group_ids = var.security_group_id
 
   root_block_device {
