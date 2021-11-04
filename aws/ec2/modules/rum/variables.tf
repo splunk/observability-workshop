@@ -31,5 +31,5 @@ variable "rum_worker_type" {
 }
 
 variable "rum_workers" {
-  default = "1"
+  default = "3"
 }
