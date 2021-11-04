@@ -1,0 +1,18 @@
+[Unit]
+Description=Splunk RUM Worker
+After=user.target
+
+[Service]
+ExecStart=/home/ubuntu/workshop/apm/microservices-demo/k8s/go.sh
+KillMode=mixed
+Restart=on-failure
+Type=simple
+User=ubuntu
+Group=ubuntu
+
+TimeoutStartSec=0
+Restart=on-failure
+RestartSec=20s
+
+[Install]
+WantedBy=multi-user.target

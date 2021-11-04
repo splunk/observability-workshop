@@ -1,5 +1,5 @@
 variable "aws_instance_count" {
-  description = "Instance Count (Usually 1)"
+  description = "Instance Count"
 }
 
 variable "aws_region" {
@@ -29,3 +29,28 @@ variable "instance_disk_aws" {
   default = "16"
 }
 
+
+## RUM Variables
+variable "rum_instances_enabled" {
+  description = "Deploy RUM Instances? 0=No, 1=Yes"
+}
+variable "rum_prefix" {
+  description = "Enter a prefix for the RUM Master to ensure it is unique in the event there are multiple workshops running"
+}
+variable "access_token" {}
+variable "rum_token" {}
+variable "realm" {}
+variable "key_name" {}
+
+### Workshop Variables ###
+variable "wsversion" {
+  default = "master" # only set to master for testing should normally be a specific version such as 2.42
+}
+
+variable "k9sversion" {
+  default = "v0.24.14"
+}
+
+variable "tfversion" {
+  default = "1.0.3"
+}
