@@ -25,7 +25,7 @@ module "rum" {
   access_token            = var.access_token
   rum_token               = var.rum_token
   realm                   = var.realm
-  key_name                = var.key_name
+  # key_name                = var.key_name
   rum_prefix              = var.rum_prefix
   ami                     = data.aws_ami.latest-ubuntu.id
   instance_disk_aws       = var.instance_disk_aws

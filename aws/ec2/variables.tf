@@ -40,7 +40,7 @@ variable "rum_prefix" {
 variable "access_token" {}
 variable "rum_token" {}
 variable "realm" {}
-variable "key_name" {}
+# variable "key_name" {}
 
 ### Workshop Variables ###
 variable "wsversion" {
