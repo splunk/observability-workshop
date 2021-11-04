@@ -10,7 +10,8 @@ variable "tfversion" {}
 variable "access_token" {}
 variable "rum_token" {}
 variable "realm" {}
-# variable "key_name" {}
+variable "key_name" {}
+variable "private_key_path"{}
 variable "instance_disk_aws" {}
 variable "rum_prefix" {}
 

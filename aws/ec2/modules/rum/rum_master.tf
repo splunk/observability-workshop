@@ -4,11 +4,9 @@ resource "random_string" "rum_master_password" {
 }
 
 resource "aws_instance" "rum_master" {
-  # count                  = lookup(var.rum_instances_master, var.rum_instances) # There will only ever be 1, just using this as an on/off mechanism
-  # ami                    = data.aws_ami.latest-ubuntu.id
   ami                    = var.ami
   instance_type          = var.rum_master_type
-  # key_name               = var.key_name
+  key_name               = var.key_name
   vpc_security_group_ids = var.security_group_id
 
   root_block_device {
@@ -105,7 +103,7 @@ resource "aws_instance" "rum_master" {
     host = self.public_ip
     type = "ssh"
     user = "ubuntu"
-    private_key = file("~/.ssh/id_rsa")
+    private_key = file(var.private_key_path)
     agent = "true"
   }
 }
