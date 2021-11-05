@@ -28,10 +28,12 @@ module "rum" {
   key_name                = var.key_name
   private_key_path        = var.private_key_path
   ami                     = data.aws_ami.latest-ubuntu.id
+  rum_master_type         = var.rum_master_type
+  rum_worker_type         = var.rum_worker_type
+  rum_workers             = var.rum_workers
   instance_disk_aws       = var.instance_disk_aws
   wsversion               = var.wsversion
   k9sversion              = var.k9sversion
-  tfversion               = var.tfversion
   security_group_id       = [aws_security_group.instance.id]
 }
 
