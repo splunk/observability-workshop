@@ -99,7 +99,7 @@ Assuming you have setup your AWS Access Variables (step2), Terraform Variables o
 
 If you only want to deploy Instances for the workshop and `no` RUM Instances enter the desired value e.g. `20` for the first question `Instance Count`, then for `Deploy Rum Instances` enter `0` for No.
 
-If you only want to deploy Instances for the workshop `and` RUM Instances enter the desired value e.g. `20` for the first question `Instance Count`, then for `Deploy Rum Instances` enter `1` for Yes.
+If you want to deploy Instances for the workshop `and` RUM enter the desired value e.g. `20` for the first question `Instance Count`, then for `Deploy Rum Instances` enter `1` for Yes.
 
 If you only want to only deploy RUM Instances enter `0` for the first question `Instance Count`, then for `Deploy Rum Instances` enter `1` for Yes.
 
