@@ -3,6 +3,14 @@ resource "random_string" "rum_master_password" {
   special          = false #not using special characters to allow double click copy and paste from g-sheet
 }
 
+resource "random_string" "rum_prefix" {
+  length    = 4
+  lower     = true
+  upper     = false
+  number    = false
+  special   = false
+}
+
 resource "aws_instance" "rum_master" {
   ami                    = var.ami
   instance_type          = var.rum_master_type
@@ -80,13 +88,13 @@ resource "aws_instance" "rum_master" {
 
       # Deploy Agent using Helm
       "helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update",
-      "helm install splunk-otel-collector --set=splunkObservability.realm=${var.realm} --set=splunkObservability.accessToken=${var.access_token} --set=clusterName=${var.rum_prefix}-rum-master --set=splunkObservability.logsEnabled=true --set=environment=${var.rum_prefix}-rum-master splunk-otel-collector-chart/splunk-otel-collector -f ~/workshop/k3s/otel-collector.yaml",
+      "helm install splunk-otel-collector --set=splunkObservability.realm=${var.realm} --set=splunkObservability.accessToken=${var.access_token} --set=clusterName=${random_string.rum_prefix.result}-rum-master --set=splunkObservability.logsEnabled=true --set=environment=${random_string.rum_prefix.result}-rum-master splunk-otel-collector-chart/splunk-otel-collector -f ~/workshop/k3s/otel-collector.yaml",
 
       # Deploy RUM version of Online Boutique
       "sed -i '/^          - name: RUM_REALM/a\\            value: \"${var.realm}\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
       "sed -i '/^          - name: RUM_AUTH/a\\            value: \"${var.rum_token}\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
-      "sed -i '/^          - name: RUM_APP_NAME/a\\            value: \"${var.rum_prefix}-rum-master-app\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
-      "sed -i '/^          - name: RUM_ENVIRONMENT/a\\            value: \"${var.rum_prefix}-rum-master\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
+      "sed -i '/^          - name: RUM_APP_NAME/a\\            value: \"${random_string.rum_prefix.result}-rum-master-app\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
+      "sed -i '/^          - name: RUM_ENVIRONMENT/a\\            value: \"${random_string.rum_prefix.result}-rum-master\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
       "sed -i 's/value: \"0.75\"/value: \"0.99\"/' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
       "sudo kubectl apply -f /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
       
@@ -111,7 +119,7 @@ resource "aws_instance" "rum_master" {
   output "rum_master_details" {
     value =  formatlist(
       "%s, %s, %s, %s", 
-      var.rum_prefix,
+      random_string.rum_prefix.result,
       aws_instance.rum_master.*.tags.Name,
       aws_instance.rum_master.*.public_ip,
       random_string.rum_master_password.*.result,

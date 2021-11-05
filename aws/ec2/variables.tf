@@ -34,9 +34,6 @@ variable "instance_disk_aws" {
 variable "rum_instances_enabled" {
   description = "Deploy RUM Instances? 0=No, 1=Yes"
 }
-variable "rum_prefix" {
-  description = "Enter a prefix for the RUM Master to ensure it is unique in the event there are multiple workshops running"
-}
 variable "access_token" {}
 variable "rum_token" {}
 variable "realm" {}

@@ -13,7 +13,6 @@ variable "realm" {}
 variable "key_name" {}
 variable "private_key_path"{}
 variable "instance_disk_aws" {}
-variable "rum_prefix" {}
 
 variable "ami" {
   default = []
