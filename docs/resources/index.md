@@ -4,31 +4,34 @@ Below are helpful resources about Splunk and the DevOps use case. Topics covered
 
 ## Documentation
 
-* **Observability**{: .label-button .observability} [O11y Cloud Docs](https://docs.splunk.com/Observability/){: target=_blank}
-* **Observability**{: .label-button .observability} [O11y Cloud Docs](https://dev.splunk.com/observability/docs/){: target=_blank}
-* **On-Call**{: .label-button .victorops} [On-Call Platform Docs](https://help.victorops.com/){: target=_blank}
-* **On-Call**{: .label-button .victorops} [On-Call API Docs](https://portal.victorops.com/public/api-docs.html){: target=_blank}
+* **Observability**{: .label-button .observability} [Splunk Infrastructure Monitoring](https://docs.splunk.com/Observability/infrastructure/intro-to-infrastructure.html#nav-Introduction-to-Splunk-Infrastructure-Monitoring){: target=_blank}
+* **Observability**{: .label-button .observability} [Splunk Application Performance Monitoring (APM)](https://docs.splunk.com/Observability/apm/intro-to-apm.html#nav-Introduction-to-Splunk-APM){: target=_blank}
+* **Observability**{: .label-button .observability} [Splunk Log Observer](https://docs.splunk.com/Observability/logs/intro-to-logs.html#nav-Introduction-to-Splunk-Log-Observer){: target=_blank}
+* **Observability**{: .label-button .observability} [Splunk Real User Monitoring (RUM)](https://docs.splunk.com/Observability/rum/intro-to-rum.html#nav-Introduction-to-Splunk-RUM){: target=_blank}
+* **Observability**{: .label-button .observability} [Splunk Synthetics Monitoring](https://help.rigor.com/hc/en-us){: target=_blank}
+* **Observability**{: .label-button .observability} [Splunk On-Call Platform Docs](https://help.victorops.com/){: target=_blank}
+* **Observability**{: .label-button .observability} [Splunk On-Call API Docs](https://portal.victorops.com/public/api-docs.html){: target=_blank}
+* **Observability**{: .label-button .observability} [O11y Cloud API Docs](https://dev.splunk.com/observability/docs/){: target=_blank}
 
 ## Blog Posts
 
-* **Observability**{: .label-button .observability} ["TraceInvaders - an OpenTelemetry Video Game"](https://www.linkedin.com/pulse/traceinvaders-opentelemetry-video-game-steve-lerner/)
-* **Observability**{: .label-button .observability} ["Observability Microsite"](http://observability.splunk.com/)
-* **APM**{: .label-button .splunk} ["How Splunk Does Site Reliability Engineering (SRE)"](https://splk.it/3eKyy46)
-* **OTEL**{: .label-button .otel} ["OpenTelemetry for Business Continuity"](https://bit.ly/3cyGzHM){: target=_blank}
-* **APM**{: .label-button .splunk} ["In Observability RED is the new Black"](https://splk.it/2XSoL5e){: target=_blank}
-* **On-Call**{: .label-button .victorops} ["Alerts to Incident Response in Three Easy Steps"](https://splk.it/307jQjI){: target=_blank}
-* **APM**{: .label-button .splunk} ["Application Performance Redefined: Meet the New Splunk's Microservices APM"](https://www.splunk.com/en_us/blog/it/application-performance-redefined-meet-the-new-signalfx-microservices-apm.html){: target=_blank}
+* **APM**{: .label-button .apm} ["How Splunk Does Site Reliability Engineering (SRE)"](https://splk.it/3eKyy46){: target=_blank}
+* **APM**{: .label-button .apm} ["Application Performance Redefined: Meet the New Splunk's Microservices APM"](https://www.splunk.com/en_us/blog/it/application-performance-redefined-meet-the-new-signalfx-microservices-apm.html){: target=_blank}
 * **Splunk**{: .label-button .splunk} ["Splunk is Lambda Ready: Announcing a New Partnership with AWS"](https://www.splunk.com/en_us/blog/it/splunk-is-lambda-ready.html){: target=_blank}
-* **APM**{: .label-button .splunk} ["Supporting APM for .NET Applications"](https://www.splunk.com/en_us/blog/cloud/supporting-apm-for-net-applications.html){: target=_blank}
+* **APM**{: .label-button .apm} ["Supporting APM for .NET Applications"](https://www.splunk.com/en_us/blog/cloud/supporting-apm-for-net-applications.html){: target=_blank}
 * **OTEL**{: .label-button .otel} ["OpenTelemetry Consolidates Data for Observability"](https://thenewstack.io/opentelemetry-consolidates-data-for-observability/){: target=_blank}
 * **Observability**{: .label-button .observability} ["Using Observability as a Proxy for User Happiness"](https://www.splunk.com/en_us/blog/cloud/using-observability-as-a-proxy-for-customer-happiness.html){: target=_blank}
+* **Observability**{: .label-button .observability} ["Observability is key to the future of software (and your DevOps career)"](https://stackoverflow.blog/2021/09/08/observability-is-key-to-the-future-of-software-and-your-devops-career/){: target=_blank}
+* **OTEL**{: .label-button .otel} ["Why to Use OpenTelemetry Processors to Change Collected Backend Data"](https://www.splunk.com/en_us/blog/devops/why-to-use-opentelemetry-processors-to-change-collected-backend-data.html){: target=_blank}
+* **APM**{: .label-button .apm} ["What Is Distributed Tracing and Why You Need It"](https://www.splunk.com/en_us/blog/devops/what-is-distributed-tracing-and-why-you-need-it.html){: target=_blank}
+* **APM**{: .label-button .apm} ["Understanding Cardinality in a Monitoring System and Why It's Important"](https://www.splunk.com/en_us/blog/devops/understanding-cardinality-in-a-monitoring-system-and-why-it-s-important.html){: target=_blank}
+* **Observability**{: .label-button .observability} ["How to Monitor Your AWS Workloads"](https://www.splunk.com/en_us/blog/devops/how-to-monitor-your-aws-workloads.html){: target=_blank}
+* **Observability**{: .label-button .observability} ["How to Maximize the Performance of Your Kubernetes Deployment"](https://www.splunk.com/en_us/blog/devops/how-to-maximize-the-performance-of-your-kubernetes-deployment.html){: target=_blank}
 
-## Webinars & Podcast
+## Webinars & Podcasts
 
+* **Splunk**{: .label-button .splunk} [".conf Online"](https://conf.splunk.com/watch/conf-online.html#/){: target=_blank}
+* **OTEL**{: .label-button .otel} ["OpenTelemetry Agent and Collector: Telemetry Built-in Into All Software"](https://www.youtube.com/watch?v=cHiFSprUqa0){: target=_blank}
 * **APM**{: .label-button .apm} ["Future of Microservices and APM"](https://bit.ly/3cpdbUs){: target=_blank}
-* **DevOps**{: .label-button .devops} ["DevOps from the Top Podcast"](https://www.buzzsprout.com/1102754){: target=_blank}
-* **Observability**{: .label-button .observability} ["Oh my! SRE, AIOps and Observe-a-what?"](https://www.thecloudpod.net/podcast/tcp-talks-oh-my-sre-aiops-and-observe-a-what/){: target=_blank}
-* **Observability**{: .label-button .observability} ["On-Demand Observability Demo"](https://events.splunk.com/Observability-Demo){: target=_blank}
 * **DevOps**{: .label-button .devops} ["Dissecting DevOps PlayList"](https://www.youtube.com/playlist?list=PLxkFdMSHYh3QOOQ7D1YyPYOlavuVBRmNm){: target=_blank}
-* **DevOps**{: .label-button .devops} ["DevOps Open Source Innovation and Insights On-Demand Virtual Event"](https://events.splunk.com/OpenSource22072020){: target=_blank}
-* **DevOps**{: .label-button .devops} ["Observability to Enable Your Digital Initiatives On-Demand Virtual Event"](https://events.splunk.com/Devops-and-Observability-Enable-Your-Digital_Initiatives){: target=_blank}
+* **Observability**{: .label-button .observability} ["A murder mystery: who killed our user experience?"](https://stackoverflow.blog/2021/10/27/observability-thrives-when-vendor-lock-in-dies/){: target=_blank}
