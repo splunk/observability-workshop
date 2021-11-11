@@ -75,7 +75,7 @@ There is no reference to the Splunk or Open Telemetry Beacon (The function that 
 
 The Online Boutique we are going to use for RUM is viewable on port 81 of the RUM Enabled instance's IP address and will be provided to you at this point.
 
-We are all connecting to the extra RUM Enabled Online Boutique provided by workshops hosted for this RUM session. Open a new web browser and go to `http://{==RUM-HOST-EC2-IP==}:81/` where you will then be able to see the RUM enabled Online Boutique running. Again, view the source of the HTML Page as described in the previous section:
+We are all connecting to the extra RUM Enabled Online Boutique provided by this workshop's host for this RUM session. Open a new web browser and go to `http://{==RUM-HOST-EC2-IP==}:81/` where you will then be able to see the RUM enabled Online Boutique running. Again, view the source of the HTML Page as described in the previous section:
 
 ---
 ## 4.  Review the Changes made to enable RUM in the HEAD section of the RUM enabled Online-Boutique
@@ -90,7 +90,7 @@ The following two lines have been added to the HEAD section of the host Web page
 
     ```html
     <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" type="text/javascript"></script>
-    <script>window.SplunkRum && window.SplunkRum.init({beaconUrl: "https://rum-ingest.eu0.signalfx.com/v1/rum", 
+    <script>window.SplunkRum && window.SplunkRum.init({beaconUrl: "https://rum-ingest.eu0.signalfx.com/v1/rum",
             rumAuth: "1wCqZVUWIP5XSdNjPoQRFg", app: "ksnq-rum-app", environment: "ksnq-rum-env"});</script>
 
     ```

@@ -129,7 +129,7 @@ nav:
   - Splunk IMT:
     - Workshop Introduction: otel/index.md
     - Initial Setup<br /><small>5 minutes</small>:
-      - Access AWS/EC2 instance: otel/connect-info.md 
+      - Access AWS/EC2 instance: otel/connect-info.md
     - Get Data In<br /><small>15 minutes</small>:
       - Deploy the OTel Collector: otel/k3s.md
       - Deploy and monitor NGINX : otel/nginx.md
@@ -158,8 +158,8 @@ nav:
       - Using Splunk APM: apm/using-apm.md
   - Splunk RUM:
     - RUM, an introduction: rum/index.md
-    - Enablement of RUM in your Website: rum/RUM-Setup.md 
-    - Showcase of RUM with the Online Boutique: rum/RUM-online-boutique.md
+    - Use RUM on your Website: rum/RUM-Setup.md
+    - RUM Showcase with the Online Boutique: rum/RUM-online-boutique.md
     - Analyzing RUM Metrics: rum/RUM-Metrics.md
     - Use of the TAG Spotlight: rum/RUM-TAG.md
     - Discover RUM sessions: rum/RUM-Sessions.md
@@ -171,7 +171,7 @@ nav:
       - Introduction: synthetics/api.md
   - Splunk On-Call:
     - Getting Started<br /><small>45 minutes</small>:
-      - On- Call, the initial Setup: oncall/getting_started/index.md
+      - On-Call, the initial Setup: oncall/getting_started/index.md
       - User Profile: oncall/getting_started/user_profile.md
       - Teams: oncall/getting_started/team.md
       - Configure Rotations: oncall/getting_started/rotations.md
@@ -189,13 +189,13 @@ nav:
   #  - Intro: lambda/index.md
   #  - Getting to know the Mobile Shop: lambda/initial_run_env.md
   #  - APM for Mobile Shop:
-  #    - Setting up Springboot App : lambda/springboot-apm.md 
+  #    - Setting up Springboot App : lambda/springboot-apm.md
   #    - Getting the first Trace: lambda/springboot-apm-II.md
   #  - APM for RetailOrder:
   #    - Basic Instrumentation: lambda/retail-order-I.md
   #  - APM for RetailOrderPrice:
   #    - Work in progress: lambda/wip.md
-  #  - APM for RetailOrderDiscount: 
+  #  - APM for RetailOrderDiscount:
   #    - Work in progress: lambda/wip.md
   #  - APM for RetailOrderLine:
   #    - Basic Instrumentation: lambda/retail-orderline-I.md
