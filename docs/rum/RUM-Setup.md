@@ -8,9 +8,11 @@
 
 ## 1. Review the original code of your NON RUM Online-Boutique
 
-If you have access to an EC2 instance and have previously installed the Online Boutique as part of the APM session, you can view it  on port 81 of the EC2 instance's IP address.
+If you have access to an EC2 instance and have previously installed the Online Boutique as part of the APM session, you can view it on port 81 of the EC2 instance's IP address.
 
-The IP address is the one you used to SSH into the instance at the beginning of the workshop, otherwise if this is a standalone RUM workshop you will use the NON RUM host ip address provided by the workshop host as your **EC2-IP** address. Open your web browser and go to `http://{==EC2-IP==}:81/`. You will see the Non RUM Online Boutique running.
+If you have not got access to an EC2 instance with the Online Boutique installed then your workshop instructor will provide you with an Online Boutique URL that does not have RUM installed so that you can complete the next steps.
+
+Open your web browser and go to the Online Boutique.  (The one you previously used, or the one provided by the Workshop instructor). You will see the Non RUM Online Boutique running.
 
 ![Online Boutique](../images/apm/online-boutique.png)
 
@@ -99,4 +101,4 @@ The following two lines have been added to the HEAD section of the host Web page
 !!! Info ""
     In this example the app name is **ksnq-rum-app**, this will be different in the Workshop. Check with your host what the app name and environment to use in the RUM session will be and make a note of it!
 
-The above two lines are all that is required to enable RUM on your web site!
+The above two lines are all that is required to enable RUM on your website!

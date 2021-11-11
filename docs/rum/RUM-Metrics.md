@@ -1,6 +1,6 @@
 # Analyzing RUM Metrics
 
-* See RUM Metrics and Session information in the  RUM UI
+* See RUM Metrics and Session information in the RUM UI
 * See correlated APM traces in the RUM & APM UI
 
 ---
@@ -19,10 +19,10 @@ This will bring you to the RUM user interface.
 
 ### 2.1. Header
 
-The RUM UI Consist of 6 major sections, starting with the selection header.
-Here you can set/filter a number of options:
+The RUM UI consists of 6 major sections.</br>
+The first is the selection header, where you can set/filter a number of options:
 
-* A drop down for the time window you're reviewing (You are looking at the last 30 minutes in this case)
+* A drop down for the time window you're reviewing (You are looking at the past hour in this case)
 * A drop down to select the Comparison window (You are comparing current performance on a rolling window   - in this case compared to 1 hour ago)
 * A drop down with the available Environments to view:  (Choose the one provided by the workshop host or *All* like in the example)
 * A drop down list with the Various Web apps (You can use the one provided by the workshop host or use *All*)
@@ -34,15 +34,15 @@ Here you can set/filter a number of options:
 
 The next section is the overview pane:
 This pane will give you a quick indication to the pages with highest increase in load times (75 percentile or higher)  
-The **Highest P75 Page Load Times** window will show you in a quick view if the load time of  your top pages has increased or has an error.
+The **Highest P75 Page Load Times** window will show you in a quick view if the load time of your top pages has increased or has an error.
 
-In the example here you can see that the first page has an error due to the red square, and you can see that the load time has drastically increased with more than 8 seconds.
+In the example here you can see that the first page has an error due to the red square, and you can see that the load time has drastically increased by more than 8 seconds.
 
 ![RUM-Top](../images/rum/RUM-TOP.png)
 
 You also see an overview of the number of Front end Error and Backend Errors  per minute.
 
-The last two panes show you the top page view  and the top providers
+The last two panes show you the **Top Page Views** and the **Top Providers**.
 
 ### 2.3. Custom Event Pane
 
@@ -62,7 +62,7 @@ These Metrics are very useful to guide you to the location of an issue if you ar
 
 ### 2.5. Web Vitals Pane
 
-The Web Vitals view is the location where you got if you wish to get insight in the experience you are delivering to your End users based on Web Vitals metrics.
+The Web Vitals view is the location where you go if you wish to get insight into the experience you are delivering to your End users based on Web Vitals metrics.
 Web Vitals is an initiative by Google to provide unified guidance for quality signals that are essential to delivering a great user experience on the web and focuses on three key parameters:
 
 * Largest Contentful Paint (LCP): measures loading performance. To provide a good user experience, LCP should occur within 2.5 seconds of when the page first starts loading.
@@ -72,6 +72,11 @@ Web Vitals is an initiative by Google to provide unified guidance for quality si
 ![RUM-WebVitals](../images/rum/RUM-Web-Vitals.png)
 
 ### 2.6. Other Metrics Pane
+ The Other Metrics Pane is the location where you find an other set of performance metrics, with a focus on initial load time of you page or showing you task that are longer then others. 
+
+* **Time To First Byte (TTFB)**, Time to First Byte (TTFB) measures how long it takes for a client's browser to receive the first byte of the response from the server. The longer it takes for the server to process the request and send a response, the slower your visitors' browsers start displaying your page.
+* **Long Task Length**, a performance metric that can be used help developers to understand the bad user experience on the website, or can be an indication of a problem.
+* **Long Task Count**, A metric to indicate how often a long task occurs, again used for exploring user experiences or problem detection. 
 
 ![RUM-Other](../images/rum/RUM-Other.png)
 
@@ -90,4 +95,5 @@ The above screen is to show you the various metrics and data Splunk Mobile RUM c
 * **Request/Response**, similar to the Browser version.
 
 At this point we will not go deeper into Mobile RUM, due to the need to run either a native app on a phone, or run an emulation.
+</br>
 We can provide more information in a deep dive demo if needed.

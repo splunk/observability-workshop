@@ -6,15 +6,15 @@
 
 ## 1. Find an url for the Cart endpoint
 
-Form the RUm Overview page, please select the url for the **cart** endpoint to dive deeper into the information available for this endpoint.
+From the RUM Overview page, please select the url for the **Cart** endpoint to dive deeper into the information available for this endpoint.
 
 ![RUM-Cart2](../images/rum/RUM-select-cart.png)
 
-Once you have selected the url and clicked on the blue url, you will find yourself in the Tag Spotlight overview
+Once you have selected and clicked on the blue url, you will find yourself in the **Tag Spotlight** overview
 
 ![RUM-Tag](../images/rum/RUM-TAG-Overview.png)
 
-Here you see all the tags that have been sent to Splunk RUM as part of the RUM traces, relevant to the overview you have selected. These are generic TAGs created automatically when the Trace was sent, and Tags you have added to the trace as part of the configuration of your website.
+Here you will see all of the tags that have been sent to Splunk RUM as part of the RUM traces. The tags displayed will be relevant to the overview that you have selected.  These are generic TAG's created automatically when the Trace was sent, and additional Tags you have added to the trace as part of the configuration of your website.
 
 In our example we have selected the **Document Load Latency** view as shown here:
 
