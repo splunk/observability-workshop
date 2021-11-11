@@ -41,81 +41,26 @@ output "RUM_Master" {
   value = var.rum_instances_enabled ? module.rum.*.rum_master_details : null
 }
 
+output "No_RUM" {
+  value = var.rum_instances_enabled ? module.rum.*.no_rum_details : null
+}
+
 output "Online_Boutique_URL" {
   value = var.rum_instances_enabled ? module.rum.*.online_boutique_details : null
+}
+
+output "RUM_Online_Boutique_URL" {
+  value = var.rum_instances_enabled ? module.rum.*.online_boutique_details : null
+}
+
+output "No_RUM_Online_Boutique_URL" {
+  value = var.rum_instances_enabled ? module.rum.*.no_rum_online_boutique_details : null
 }
 
 output "RUM_Workers" {
   value = var.rum_instances_enabled ? module.rum.*.rum_worker_details : null
 }
 
-output "ip" {
+output "Instance_IPs" {
   value = aws_instance.observability-instance.*.public_ip
 }
-
-# resource "aws_security_group" "instance" {
-#   name = "Observability-Workshop-SG"
-
-#   ingress {
-#     from_port   = 22
-#     to_port     = 22
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-#   ingress {
-#     from_port   = 81
-#     to_port     = 81
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   ingress {
-#     from_port   = 82
-#     to_port     = 82
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   ingress {
-#     from_port   = 8080
-#     to_port     = 8080
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   ingress {
-#     from_port   = 8081
-#     to_port     = 8081
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   ingress {
-#     from_port   = 8082
-#     to_port     = 8082
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   ingress {
-#     from_port   = 55679
-#     to_port     = 55679
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   ingress {
-#     from_port   = 6501
-#     to_port     = 6501
-#     protocol    = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-
-#   egress {
-#     from_port   = 0
-#     to_port     = 0
-#     protocol    = "-1"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
-# }
-
