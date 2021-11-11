@@ -32,9 +32,9 @@ You can select any of the following Tag views, each focused on a specific metric
 
 The Tag spotlight is designed to help you identify  problems, either through the chart view,, where you may quickly identify outliers or via the TAGs.
 
-In the **Document Load Latency** view, if you look at the **Browser**, **Browser Version** & **OS Name** Tag views,you can see the various browser types and  versions. as well as the underlying OS.
+In the **Document Load Latency** view, if you look at the **Browser**, **Browser Version** & **OS Name** Tag views,you can see the various browser types and versions, as well as for the underlying OS.
 
-This makes it easy to identify problems related to specific browser versions, as they would show.
+This makes it easy to identify problems related to specific browser or OS versions, as they would be highlighted.
 
 ![RUM-Tag2](../images/rum/RUMBrowserTags.png)
 
