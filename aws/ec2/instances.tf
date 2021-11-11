@@ -1,29 +1,32 @@
-resource "random_string" "rum_master_password" {
-  length           = 12
-  special          = false #not using special characters to allow double click copy and paste from g-sheet
+resource "random_string" "o11y_instance_password" {
+  count   = var.aws_instance_count
+  length  = 12
+  special = false #not using special characters to allow double click copy and paste from g-sheet
 }
 
-resource "random_string" "rum_prefix" {
-  length    = 4
-  lower     = true
-  upper     = false
-  number    = false
-  special   = false
+resource "random_string" "o11y_instance_prefix" {
+  count   = var.aws_instance_count
+  length  = 4
+  lower   = true
+  upper   = false
+  number  = false
+  special = false
 }
 
-resource "aws_instance" "rum_master" {
-  ami                    = var.ami
-  instance_type          = var.rum_master_type
+resource "aws_instance" "observability-instance" {
+  count                  = var.aws_instance_count
+  ami                    = data.aws_ami.latest-ubuntu.id
+  instance_type          = var.aws_instance_type
   key_name               = var.key_name
-  vpc_security_group_ids = var.security_group_id
+  vpc_security_group_ids = [aws_security_group.instance.id]
 
   root_block_device {
     volume_size = var.instance_disk_aws
   }
 
   tags = {
-    Name  = "rum-master"
-    Role  = "RUM Master"
+    Name  = "${random_string.o11y_instance_prefix[count.index].result}"
+    Role  = "O11Y Instance"
   }
 
   provisioner "file" {
@@ -71,6 +74,11 @@ resource "aws_instance" "rum_master" {
       "unzip -qq $WSARCHIVE.zip -d /home/ubuntu/",
       "mv /home/ubuntu/observability-workshop-${var.wsversion} /home/ubuntu/workshop",
 
+      # Install Terraform
+      "curl -s -OL https://releases.hashicorp.com/terraform/${var.tfversion}/terraform_${var.tfversion}_linux_amd64.zip",
+      "unzip -qq terraform_${var.tfversion}_linux_amd64.zip",
+      "sudo mv terraform /usr/local/bin/",
+
       # fix shellinabox port and ssl then restart
       "mv /tmp/shellinabox /etc/default/shellinabox",
       "sudo chown root:root /etc/default/shellinabox",
@@ -85,26 +93,13 @@ resource "aws_instance" "rum_master" {
       "mv /tmp/shellinabox /etc/default/shellinabox",
       "sudo chown root:root /etc/default/shellinabox",
       "sudo service shellinabox restart",
-
-      # Deploy Agent using Helm
-      "helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update",
-      "helm install splunk-otel-collector --set=splunkObservability.realm=${var.realm} --set=splunkObservability.accessToken=${var.access_token} --set=clusterName=${random_string.rum_prefix.result}-rum-master --set=splunkObservability.logsEnabled=true --set=environment=${random_string.rum_prefix.result}-rum-master splunk-otel-collector-chart/splunk-otel-collector -f ~/workshop/k3s/otel-collector.yaml",
-
-      # Deploy RUM version of Online Boutique
-      "sed -i '/^          - name: RUM_REALM/a\\            value: \"${var.realm}\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
-      "sed -i '/^          - name: RUM_AUTH/a\\            value: \"${var.rum_token}\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
-      "sed -i '/^          - name: RUM_APP_NAME/a\\            value: \"${random_string.rum_prefix.result}-rum-master-app\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
-      "sed -i '/^          - name: RUM_ENVIRONMENT/a\\            value: \"${random_string.rum_prefix.result}-rum-master\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
-      "sed -i '/^        - name: API_TOKEN_FAILURE_RATE/a\\          value: \"0.90\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
-      "sed -i '/^        - name: ERROR_PAYMENT_SERVICE_DURATION_MILLIS/a\\          value: \"500\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
-      "sudo kubectl apply -f /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
-      
+     
       ## Move and set permissions on message of the day
       "sudo mv /tmp/motd /etc/motd",
       "sudo chmod -x /etc/update-motd.d/*",
 
       ## Set Password for Ubuntu
-      "echo ubuntu:${random_string.rum_master_password.result} | sudo chpasswd",
+      "echo ubuntu:${random_string.o11y_instance_password[count.index].result} | sudo chpasswd",
     ]
   }
 
@@ -117,21 +112,11 @@ resource "aws_instance" "rum_master" {
   }
 }
 
-  output "rum_master_details" {
-    value =  formatlist(
-      "%s, %s, %s, %s", 
-      random_string.rum_prefix.result,
-      aws_instance.rum_master.*.tags.Name,
-      aws_instance.rum_master.*.public_ip,
-      random_string.rum_master_password.*.result,
-    )
-  }
-
-  output "online_boutique_details" {
-    value = formatlist(
-      "%s%s:%s", 
-      "http://",
-      aws_instance.rum_master.*.public_ip,
-      "81",
-    )
-  }
+output "Instance_Details" {
+  value =  formatlist(
+    "%s, %s, %s", 
+    aws_instance.observability-instance.*.tags.Name,
+    aws_instance.observability-instance.*.public_ip,
+    random_string.o11y_instance_password.*.result,
+  )
+}

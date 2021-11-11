@@ -23,7 +23,7 @@ resource "aws_instance" "no_rum" {
 
   tags = {
     Name  = "no-rum"
-    Role  = "Workshop"
+    Role  = "No Rum Example"
   }
 
   provisioner "file" {

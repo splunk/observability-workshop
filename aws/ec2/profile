@@ -1,0 +1,49 @@
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+helm() {
+  if [ -z ${ACCESS_TOKEN+x} ]; then echo "ACCESS_TOKEN is unset. Please export ACCESS_TOKEN=YOURTOKEN"; return; fi
+  if [[ ${#ACCESS_TOKEN} < 22 ]]; then echo "ACCESS_TOKEN looks too short. It should be a string of at least 22 characters."; return; fi
+  if [ -z ${REALM+x} ]; then echo "REALM is unset. Please export REALM=YOURREALM"; return; fi
+  if [[ ! $REALM  =~ ^(us0|us1|us2|eu0)$ ]]; then echo "REALM is not one of the supported realms. Check that it is one of us0, us1, us2 or eu0."; return; fi
+
+  echo "Using ACCESS_TOKEN=$ACCESS_TOKEN"
+  echo "Using REALM=$REALM"
+
+  command helm "$@"
+}
+
+terraform() {
+  if [ -z ${ACCESS_TOKEN+x} ]; then echo "ACCESS_TOKEN is unset. Please export ACCESS_TOKEN=YOUR_TOKEN"; return; fi
+  if [ -z ${REALM+x} ]; then echo "REALM is unset. Please export REALM=YOUR_REALM"; return; fi
+
+  echo "Using ACCESS_TOKEN=$ACCESS_TOKEN"
+  echo "Using REALM=$REALM"
+
+  command terraform "$@"
+}
