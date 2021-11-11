@@ -4,7 +4,6 @@
 * See correlated APM traces in the RUM & APM UI
 
 ---
-
 ## 1. Visit the RUM overview pages
 
 Visit and login into your Splunk IMT/APM/RUM Website.
@@ -15,8 +14,8 @@ This will bring you to the RUM user interface.
 
 ![RUM-1](../images/rum/RUM-1.png)
 
+---
 ## 2. Explore the RUM Browser Overview Page
-
 ### 2.1. Header
 
 The RUM UI consists of 6 major sections.</br>
@@ -80,7 +79,8 @@ Web Vitals is an initiative by Google to provide unified guidance for quality si
 
 ![RUM-Other](../images/rum/RUM-Other.png)
 
-## 2. Explore the RUM Mobile Overview Page
+---
+## 3. Explore the RUM Mobile Overview Page
 
 Splunk RUM supports Native Mobile RUM, for Apple iPhone and Android Phones.
 You can use this to see the End-user experience of your native Smartphone app.

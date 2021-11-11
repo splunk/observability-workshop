@@ -3,7 +3,6 @@
 * Look into the Metrics views for the various endpoints and use the Tags sent via the Tag spotlight for deeper analysis
 
 ---
-
 ## 1. Find an url for the Cart endpoint
 
 From the RUM Overview page, please select the url for the **Cart** endpoint to dive deeper into the information available for this endpoint.
@@ -14,7 +13,11 @@ Once you have selected and clicked on the blue url, you will find yourself in th
 
 ![RUM-Tag](../images/rum/RUM-TAG-Overview.png)
 
-Here you will see all of the tags that have been sent to Splunk RUM as part of the RUM traces. The tags displayed will be relevant to the overview that you have selected.  These are generic TAG's created automatically when the Trace was sent, and additional Tags you have added to the trace as part of the configuration of your website.
+Here you will see all of the tags that have been sent to Splunk RUM as part of the RUM traces. The tags displayed will be relevant to the overview that you have selected.  These are generic Tags created automatically when the Trace was sent, and additional Tags you have added to the trace as part of the configuration of your website.
+
+!!! Additional Tags
+    We are already sending two additional tags, you have seen them defined in the *Beacon url* that was added to your website:  *app: "[nodename]-rum-app", environment: "[nodename]-rum-env"* in the first section of this workshop!
+    You can add additional tag in a similar way.
 
 In our example we have selected the **Document Load Latency** view as shown here:
 
@@ -24,6 +27,7 @@ You can select any of the following Tag views, each focused on a specific metric
 
 ![RUM-views](../images/rum/RUM-Tag-views.png)
 
+---
 ## 2. Explore the information in the Tag Spotlight view
 
 The Tag spotlight is designed to help you identify  problems, either through the chart view,, where you may quickly identify outliers or via the TAGs.
