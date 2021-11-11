@@ -1,9 +1,9 @@
-resource "random_string" "no_rum_password" {
+resource "random_string" "rum_master_password" {
   length           = 12
   special          = false #not using special characters to allow double click copy and paste from g-sheet
 }
 
-resource "random_string" "no_rum_prefix" {
+resource "random_string" "rum_prefix" {
   length    = 4
   lower     = true
   upper     = false
@@ -11,7 +11,7 @@ resource "random_string" "no_rum_prefix" {
   special   = false
 }
 
-resource "aws_instance" "no_rum" {
+resource "aws_instance" "rum_master" {
   ami                    = data.aws_ami.latest-ubuntu.id
   instance_type          = var.rum_master_type
   key_name               = var.key_name
@@ -22,7 +22,7 @@ resource "aws_instance" "no_rum" {
   }
 
   tags = {
-    Name  = "no-rum"
+    Name  = "rum-master"
     Role  = "Workshop"
   }
 
@@ -88,9 +88,17 @@ resource "aws_instance" "no_rum" {
 
       # Deploy Agent using Helm
       "helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update",
-      "helm install splunk-otel-collector --set=splunkObservability.realm=${var.realm} --set=splunkObservability.accessToken=${var.access_token} --set=clusterName=${random_string.no_rum_prefix.result}-no-rum --set=splunkObservability.logsEnabled=true --set=environment=${random_string.no_rum_prefix.result}-no-rum splunk-otel-collector-chart/splunk-otel-collector -f ~/workshop/k3s/otel-collector.yaml",
+      "helm install splunk-otel-collector --set=splunkObservability.realm=${var.realm} --set=splunkObservability.accessToken=${var.access_token} --set=clusterName=${random_string.rum_prefix.result}-rum-master --set=splunkObservability.logsEnabled=true --set=environment=${random_string.rum_prefix.result}-rum-master splunk-otel-collector-chart/splunk-otel-collector -f ~/workshop/k3s/otel-collector.yaml",
 
-      # Deploy No RUM version of Online Boutique
+      # Deploy RUM version of Online Boutique
+      "sed -i '/^          - name: RUM_REALM/a\\            value: \"${var.realm}\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
+      "sed -i '/^          - name: RUM_AUTH/a\\            value: \"${var.rum_token}\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
+      "sed -i '/^          - name: RUM_APP_NAME/a\\            value: \"${random_string.rum_prefix.result}-rum-master-app\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
+      "sed -i '/^          - name: RUM_ENVIRONMENT/a\\            value: \"${random_string.rum_prefix.result}-rum-master\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
+      "sed -i '/^        - name: API_TOKEN_FAILURE_RATE/a\\          value: \"0.90\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
+      "sed -i '/^        - name: ERROR_PAYMENT_SERVICE_DURATION_MILLIS/a\\          value: \"500\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
+      # "sed -i 's/value: \"0.75\"/value: \"0.90\"/' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
+      # "sed -i 's/value: \"500\"/value: \"300\"/' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
       "sudo kubectl apply -f /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
       
       ## Move and set permissions on message of the day
@@ -98,7 +106,7 @@ resource "aws_instance" "no_rum" {
       "sudo chmod -x /etc/update-motd.d/*",
 
       ## Set Password for Ubuntu
-      "echo ubuntu:${random_string.no_rum_password.result} | sudo chpasswd",
+      "echo ubuntu:${random_string.rum_master_password.result} | sudo chpasswd",
     ]
   }
 
@@ -111,21 +119,21 @@ resource "aws_instance" "no_rum" {
   }
 }
 
-  output "no_rum_details" {
+  output "rum_master_details" {
     value =  formatlist(
       "%s, %s, %s, %s", 
-      random_string.no_rum_prefix.result,
-      aws_instance.no_rum.*.tags.Name,
-      aws_instance.no_rum.*.public_ip,
-      random_string.no_rum_password.*.result,
+      random_string.rum_prefix.result,
+      aws_instance.rum_master.*.tags.Name,
+      aws_instance.rum_master.*.public_ip,
+      random_string.rum_master_password.*.result,
     )
   }
 
-  output "no_rum_online_boutique_details" {
+  output "rum_online_boutique_details" {
     value = formatlist(
       "%s%s:%s", 
       "http://",
-      aws_instance.no_rum.*.public_ip,
+      aws_instance.rum_master.*.public_ip,
       "81",
     )
   }
