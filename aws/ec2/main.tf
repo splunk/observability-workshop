@@ -45,10 +45,6 @@ output "No_RUM" {
   value = var.rum_instances_enabled ? module.rum.*.no_rum_details : null
 }
 
-output "Online_Boutique_URL" {
-  value = var.rum_instances_enabled ? module.rum.*.online_boutique_details : null
-}
-
 output "RUM_Online_Boutique_URL" {
   value = var.rum_instances_enabled ? module.rum.*.online_boutique_details : null
 }
