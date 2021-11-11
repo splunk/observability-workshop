@@ -95,7 +95,10 @@ resource "aws_instance" "rum_master" {
       "sed -i '/^          - name: RUM_AUTH/a\\            value: \"${var.rum_token}\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
       "sed -i '/^          - name: RUM_APP_NAME/a\\            value: \"${random_string.rum_prefix.result}-rum-master-app\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
       "sed -i '/^          - name: RUM_ENVIRONMENT/a\\            value: \"${random_string.rum_prefix.result}-rum-master\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
-      "sed -i 's/value: \"0.75\"/value: \"0.99\"/' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
+      "sed -i '/^        - name: API_TOKEN_FAILURE_RATE/a\\          value: \"0.90\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
+      "sed -i '/^        - name: ERROR_PAYMENT_SERVICE_DURATION_MILLIS/a\\          value: \"500\"' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
+      # "sed -i 's/value: \"0.75\"/value: \"0.90\"/' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
+      # "sed -i 's/value: \"500\"/value: \"300\"/' /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
       "sudo kubectl apply -f /home/ubuntu/workshop/apm/microservices-demo/k8s/deployment.yaml",
       
       ## Move and set permissions on message of the day
