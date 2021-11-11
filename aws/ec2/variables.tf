@@ -1,14 +1,3 @@
-### Workshop Variables ###
-variable "wsversion" {
-  default = "2.42" # only set to master for testing should normally be a specific version such as 2.42
-}
-variable "k9sversion" {
-  default = "v0.24.14"
-}
-variable "tfversion" {
-  default = "1.0.3"
-}
-
 variable "aws_instance_count" {
   description = "Instance Count (Usually 1)"
 }
