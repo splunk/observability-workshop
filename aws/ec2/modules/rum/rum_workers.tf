@@ -18,7 +18,7 @@ resource "aws_instance" "rum_worker" {
 
   tags = {
     Name = "${format("rum-worker-%01d", count.index + 1)}"
-    Role  = "RUM Worker Instance"
+    Role  = "Workshop"
   }
 
   provisioner "file" {

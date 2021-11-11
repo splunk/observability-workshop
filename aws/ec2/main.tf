@@ -3,6 +3,22 @@ provider "aws" {
   region  = var.aws_region
 }
 
+resource "aws_instance" "observability-instance" {
+  count                  = var.aws_instance_count
+  ami                    = data.aws_ami.latest-ubuntu.id
+  instance_type          = var.aws_instance_type
+  vpc_security_group_ids = [aws_security_group.instance.id]
+  user_data              = file("../../cloud-init/k3s.yaml")
+
+  root_block_device {
+    volume_size = var.instance_disk_aws
+  }
+
+  tags = {
+    Name = "observability-${count.index + 1}"
+  }
+}
+
 module "rum" {
   source                  = "./modules/rum"
   count                   = var.rum_instances_enabled ? 1 : 0
@@ -39,4 +55,8 @@ output "No_RUM_Online_Boutique_URL" {
 
 output "RUM_Workers" {
   value = var.rum_instances_enabled ? module.rum.*.rum_worker_details : null
+}
+
+output "Instance_IPs" {
+  value = aws_instance.observability-instance.*.public_ip
 }
