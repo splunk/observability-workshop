@@ -9,7 +9,7 @@
 
 If you have access to an EC2 instance and have previously installed the Online Boutique as part of the APM session, you can view it on port 81 of the EC2 instance's IP address.
 
-If you have not got access to an EC2 instance with the Online Boutique installed then your workshop instructor will provide you with an Online Boutique URL that does not have RUM installed so that you can complete the next steps.
+If you have not got access to an EC2 instance with the Online Boutique installed then your workshop instructor will provide you with the Online Boutique URL that does not have RUM installed so that you can complete the next steps.
 
 Open your web browser and go to the Online Boutique.  (The one you previously used, or the one provided by the Workshop instructor). You will see the Non RUM Online Boutique running.
 
@@ -73,9 +73,9 @@ There is no reference to the Splunk or Open Telemetry Beacon (The function that 
 ---
 ## 3. Find the web (URL) of the RUM enabled Online Boutique
 
-The Online Boutique we are going to use for RUM is viewable on port 81 of the RUM Enabled instance's IP address and will be provided to you at this point.
+The Online Boutique we are going to use for RUM is viewable on port 81 of the RUM Enabled instance's IP address and the url will be provided to you by the workshop instructor at this point.
 
-We are all connecting to the extra RUM Enabled Online Boutique provided by this workshop's host for this RUM session. Open a new web browser and go to `http://{==RUM-HOST-EC2-IP==}:81/` where you will then be able to see the RUM enabled Online Boutique running. Again, view the source of the HTML Page as described in the previous section:
+We are all connecting to the extra RUM Enabled Online Boutique provided by the workshops instructor for this RUM session. Open a new web browser and go to `http://{==RUM-HOST-EC2-IP==}:81/` where you will then be able to see the RUM enabled Online Boutique running. Again, view the source of the HTML Page as described in the previous section:
 
 ---
 ## 4.  Review the Changes made to enable RUM in the HEAD section of the RUM enabled Online-Boutique

@@ -4,8 +4,13 @@
 * Create a Custom Chart based on RUM Metrics
 
 ---
-## 1.  Create an alert on one of the RUM Metrics 
-From the RUM Overview page, please select the url for the **Cart** endpoint to dive deeper into the information available for this endpoint.
+## 1.  Overview 
+Creating charts or alerts for RUM Metrics are done in the same way as we do for Infrastructure Metrics.
+In this section we will create a simple chart, detector and alert</br>
+If you previously done the Splunk IMT Part of the Workshop, you will find this section very familiar, 
+
+
+
 
 ![RUM-Cart2](../images/rum/RUM-select-cart.png)
 
@@ -16,5 +21,7 @@ u have added to the trace as part of the configuration of your website.
     You can add additional tag in a similar way.
 
 ---
-## 2. Create a Chart based on Rum Metrics
- 
+## 2. Create an alert on one of the RUM Metrics 
+
+---
+## 3. Create a Chart based on Rum Metrics
