@@ -161,7 +161,7 @@ nav:
     - Using RUM on your Website: rum/RUM-Setup.md
     - RUM Showcase: rum/RUM-online-boutique.md
     - Analyzing RUM Metrics: rum/RUM-Metrics.md
-    - Using Tag Spotlight: rum/RUM-TAG.md
+    - Using Tag Spotlight: rum/RUM-Tag.md
     - Discovering RUM sessions: rum/RUM-Sessions.md
     - Correlation of RUM & APM: rum/RUM-APM.md
   - Splunk Synthetics:
@@ -169,37 +169,37 @@ nav:
       - Synthetics, an introduction: synthetics/index.md
     - API Checks<br /><small>20 minutes</small>:
       - Introduction: synthetics/api.md
-  - Splunk On-Call:
-    - Getting Started<br /><small>45 minutes</small>:
-      - On-Call, the initial Setup: oncall/getting_started/index.md
-      - User Profile: oncall/getting_started/user_profile.md
-      - Teams: oncall/getting_started/team.md
-      - Configure Rotations: oncall/getting_started/rotations.md
-      - Configure Escalation Policies: oncall/getting_started/escalation.md
-      - Creating Routing keys: oncall/getting_started/routing.md
-    - Incident Lifecycle<br /><small>45 minutes</small>:
-      - Overview: oncall/incident_lifecycle/index.md
-      - Create Incidents: oncall/incident_lifecycle/create_incidents.md
-      - Manage Incidents: oncall/incident_lifecycle/manage_incidents.md
-    - Optional Modules:
-      - Observability Cloud Integration: oncall/optional/sfx_integrations.md
-      - Using Multipass VM: oncall/optional/multipass.md
-      - Create a Detector: oncall/optional/detector.md
-  #- Lambda & APM:
-  #  - Intro: lambda/index.md
-  #  - Getting to know the Mobile Shop: lambda/initial_run_env.md
-  #  - APM for Mobile Shop:
-  #    - Setting up Springboot App : lambda/springboot-apm.md
-  #    - Getting the first Trace: lambda/springboot-apm-II.md
-  #  - APM for RetailOrder:
-  #    - Basic Instrumentation: lambda/retail-order-I.md
-  #  - APM for RetailOrderPrice:
-  #    - Work in progress: lambda/wip.md
-  #  - APM for RetailOrderDiscount:
-  #    - Work in progress: lambda/wip.md
-  #  - APM for RetailOrderLine:
-  #    - Basic Instrumentation: lambda/retail-orderline-I.md
-  #  - Setup: lambda/setup.md
+#  - Splunk On-Call:
+#    - Getting Started<br /><small>45 minutes</small>:
+#      - On-Call, the initial Setup: oncall/getting_started/index.md
+#      - User Profile: oncall/getting_started/user_profile.md
+#      - Teams: oncall/getting_started/team.md
+#      - Configure Rotations: oncall/getting_started/rotations.md
+#      - Configure Escalation Policies: oncall/getting_started/escalation.md
+#      - Creating Routing keys: oncall/getting_started/routing.md
+#    - Incident Lifecycle<br /><small>45 minutes</small>:
+#      - Overview: oncall/incident_lifecycle/index.md
+#      - Create Incidents: oncall/incident_lifecycle/create_incidents.md
+#      - Manage Incidents: oncall/incident_lifecycle/manage_incidents.md
+#    - Optional Modules:
+#      - Observability Cloud Integration: oncall/optional/sfx_integrations.md
+#      - Using Multipass VM: oncall/optional/multipass.md
+#      - Create a Detector: oncall/optional/detector.md
+#- Lambda & APM:
+#  - Intro: lambda/index.md
+#  - Getting to know the Mobile Shop: lambda/initial_run_env.md
+#  - APM for Mobile Shop:
+#    - Setting up Springboot App : lambda/springboot-apm.md
+#    - Getting the first Trace: lambda/springboot-apm-II.md
+#  - APM for RetailOrder:
+#    - Basic Instrumentation: lambda/retail-order-I.md
+#  - APM for RetailOrderPrice:
+#    - Work in progress: lambda/wip.md
+#  - APM for RetailOrderDiscount:
+#    - Work in progress: lambda/wip.md
+#  - APM for RetailOrderLine:
+#    - Basic Instrumentation: lambda/retail-orderline-I.md
+#  - Setup: lambda/setup.md
   - Resources:
     - Links: resources/index.md
     - FAQ: resources/faq.md
