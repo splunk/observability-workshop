@@ -5,7 +5,7 @@
 
 ---
 
-## 1. Find the Backend service with an issue
+## 1. Finding backend service issues
 
 Click on the ![RUM-JS](../images/rum/RUM-JS-Error.png) to close the Span view.
 Now continue to scroll down and find the **POST /cart/checkout** line.

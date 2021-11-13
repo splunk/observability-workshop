@@ -3,6 +3,7 @@
 * Look into the Metrics views for the various endpoints and use the Tags sent via the Tag spotlight for deeper analysis
 
 ---
+
 ## 1. Find an url for the Cart endpoint
 
 From the RUM Overview page, please select the url for the **Cart** endpoint to dive deeper into the information available for this endpoint.
@@ -28,6 +29,7 @@ You can select any of the following Tag views, each focused on a specific metric
 ![RUM-views](../images/rum/RUM-Tag-views.png)
 
 ---
+
 ## 2. Explore the information in the Tag Spotlight view
 
 The Tag spotlight is designed to help you identify  problems, either through the chart view,, where you may quickly identify outliers or via the TAGs.

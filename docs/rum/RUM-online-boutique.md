@@ -5,7 +5,7 @@
 
 ---
 
-## 1. Find the web (URL) of the RUM Enabled Online Boutique
+## 1. URL of RUM enabled Online Boutique
 
 As discussed in the previous section we are going to use the Online Boutique running on the separate RUM host.
 
@@ -16,19 +16,15 @@ Open a new web browser and go to `http://{==RUM-HOST-EC2-IP==}:81/` where you wi
 
 ![Online Boutique](../images/apm/online-boutique.png)
 
----
-
 ## 2. Generate traffic
 
 The goal of this exercise is for you to browse the RUM enabled Online Boutique and buy different products and different quantities.
 For extra credit, you may even use the url from different browsers or from your smartphone.
 
-This will create  multiple sessions to investigate.
-
-Take your time to examine and buy the various products and put them in your cart:
+This will create  multiple sessions to investigate. Take your time to examine and buy the various products and put them in your cart:
 
 ![Cart Online Boutique](../images/rum/cart.png)
 
-Doesn't that HOME BARISTA KIT look tempting?...   Your time for shopping start now....
+Doesn't that HOME BARISTA KIT look tempting?...   Your time to start shopping now!
 
 ![Clock](../images/rum/Clock.gif)

@@ -158,12 +158,12 @@ nav:
       - Using Splunk APM: apm/using-apm.md
   - Splunk RUM:
     - RUM, an introduction: rum/index.md
-    - Use RUM on your Website: rum/RUM-Setup.md
-    - RUM Showcase with the Online Boutique: rum/RUM-online-boutique.md
+    - Using RUM on your Website: rum/RUM-Setup.md
+    - RUM Showcase: rum/RUM-online-boutique.md
     - Analyzing RUM Metrics: rum/RUM-Metrics.md
-    - Use of the TAG Spotlight: rum/RUM-TAG.md
-    - Discover RUM sessions: rum/RUM-Sessions.md
-    - Correlate between Splunk RUM and APM backend services: rum/RUM-APM.md
+    - Using Tag Spotlight: rum/RUM-TAG.md
+    - Discovering RUM sessions: rum/RUM-Sessions.md
+    - Correlation of RUM & APM: rum/RUM-APM.md
   - Splunk Synthetics:
     - Real Browser Checks<br /><small>40 minutes</small>:
       - Synthetics, an introduction: synthetics/index.md

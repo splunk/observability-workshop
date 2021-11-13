@@ -4,22 +4,18 @@
 * See correlated APM traces in the RUM & APM UI
 
 ---
-## 1. Visit the RUM overview pages
 
-Visit and login into your Splunk IMT/APM/RUM Website.
+## 1. RUM Overview Pages
 
-From the top left hamburger menu ![Hamburger-menu](../images/dashboards/Hamburgermenu.png) select **RUM** from the side menu.
-
-This will bring you to the RUM user interface.
+Visit and login into your Splunk IMT/APM/RUM Website. From the top left hamburger menu ![Hamburger-menu](../images/dashboards/Hamburgermenu.png) select **RUM** from the side menu. This will bring you to the RUM user interface.
 
 ![RUM-1](../images/rum/RUM-1.png)
 
----
-## 2. Explore the RUM Browser Overview Page
+## 2. RUM Browser Overview
+
 ### 2.1. Header
 
-The RUM UI consists of 6 major sections.</br>
-The first is the selection header, where you can set/filter a number of options:
+The RUM UI consists of 6 major sections. The first is the selection header, where you can set/filter a number of options:
 
 * A drop down for the time window you're reviewing (You are looking at the past hour in this case)
 * A drop down to select the Comparison window (You are comparing current performance on a rolling window   - in this case compared to 1 hour ago)
@@ -71,19 +67,18 @@ Web Vitals is an initiative by Google to provide unified guidance for quality si
 ![RUM-WebVitals](../images/rum/RUM-Web-Vitals.png)
 
 ### 2.6. Other Metrics Pane
- The Other Metrics Pane is the location where you find an other set of performance metrics, with a focus on initial load time of you page or showing you task that are longer then others. 
+
+The Other Metrics Pane is the location where you find an other set of performance metrics, with a focus on initial load time of you page or showing you task that are longer then others.
 
 * **Time To First Byte (TTFB)**, Time to First Byte (TTFB) measures how long it takes for a client's browser to receive the first byte of the response from the server. The longer it takes for the server to process the request and send a response, the slower your visitors' browsers start displaying your page.
 * **Long Task Length**, a performance metric that can be used help developers to understand the bad user experience on the website, or can be an indication of a problem.
-* **Long Task Count**, A metric to indicate how often a long task occurs, again used for exploring user experiences or problem detection. 
+* **Long Task Count**, A metric to indicate how often a long task occurs, again used for exploring user experiences or problem detection.
 
 ![RUM-Other](../images/rum/RUM-Other.png)
 
----
-## 3. Explore the RUM Mobile Overview Page
+## 3. RUM Mobile Overview
 
-Splunk RUM supports Native Mobile RUM, for Apple iPhone and Android Phones.
-You can use this to see the End-user experience of your native Smartphone app.
+Splunk RUM supports Native Mobile RUM, for Apple iPhone and Android Phones. You can use this to see the End-user experience of your native Smartphone app.
 
 ![RUM-Header](../images/rum/RUM-Mobile.png)
 
@@ -94,6 +89,4 @@ The above screen is to show you the various metrics and data Splunk Mobile RUM c
 * **App Lifecycle Performance**, with *Cold Startup Time*, *Hot Startup Time* per OS.
 * **Request/Response**, similar to the Browser version.
 
-At this point we will not go deeper into Mobile RUM, due to the need to run either a native app on a phone, or run an emulation.
-</br>
-We can provide more information in a deep dive demo if needed.
+At this point we will not go deeper into Mobile RUM, due to the need to run either a native app on a phone, or run an emulation. We can provide more information in a deep dive demo if needed.
