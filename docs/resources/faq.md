@@ -14,7 +14,7 @@ Incidents consist of the alert payload, all activity associated with the inciden
 
 All these components are necessary for successful incident response and management practices.
 
-**On-Call**{: .label-button .victorops}
+**On-Call**{: .label-button .oncall}
 
 ## Q: Is Observability Monitoring
 

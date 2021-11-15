@@ -11,11 +11,11 @@ variable "sfx_prefix" {
 }
 
 variable "sfx_vo_id" {
-  description = "SignalFx VictorOps Integration ID"
+  description = "SignalFx On-Call Integration ID"
 }
 
 variable "routing_key" {
-  description = "VictorOps Routing Key"
+  description = "Splunk On-Call Routing Key"
 }
 
 variable "message_body" {

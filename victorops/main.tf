@@ -13,7 +13,7 @@ resource "signalfx_detector" "cpu_greater_90" {
   EOF
   rule {
     detect_label          = "CPU utilization is greater than 90%"
-    notifications         = ["VictorOps,${var.sfx_vo_id},${var.routing_key}"]
+    notifications         = ["Splunk On-Call,${var.sfx_vo_id},${var.routing_key}"]
     parameterized_subject = "{{ruleSeverity}} Alert: {{{ruleName}}} ({{{detectorName}}})"
     severity              = "Critical"
     parameterized_body    = var.message_body

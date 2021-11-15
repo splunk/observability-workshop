@@ -1,6 +1,6 @@
 # Additional Splunk for DevOps Resources
 
-Below are helpful resources about Splunk and the DevOps use case. Topics covered are Observability Cloud, VictorOps, OpenTelemetry, Observability and Incident Response.
+Below are helpful resources about Splunk and the DevOps use case. Topics covered are Observability Cloud, Splunk On-Call, OpenTelemetry, Observability and Incident Response.
 
 ## Documentation
 
