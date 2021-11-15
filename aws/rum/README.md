@@ -23,7 +23,9 @@ export AWS_SECRET_ACCESS_KEY="YOUR_AWS_SECRET_ACCESS_KEY"
 echo $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
 ```
 
-NOTE: If you have AWS config and credentials files configured on your laptop and do not set the above Env Vars, your 'default' profile will be used, so ensure it is pointing at the correct AWS Account such as you Splunk Account.
+NOTE 1: If you have AWS config and credentials files configured on your laptop and do not set the above Env Vars, your 'default' profile will be used, so ensure it is pointing at the correct AWS Account such as you Splunk Account.
+
+NOTE 2: If you wish to run this RUM workshop next to the original Workshop to give a full stack workshop, please make sure you install this to a **different** AWS realm to make sure they do not conflict!
 
 ## Step 3 - Configure Terraform Variables
 

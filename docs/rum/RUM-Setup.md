@@ -78,11 +78,11 @@ We are all connecting to the extra RUM Enabled Online Boutique provided by the w
 
 ## 4.  Review the Changes made to enable RUM in the HEAD section of the RUM enabled Online-Boutique
 
-The changes for RUM are placed in the HEAD section of the hosts Web page, Below is the hosts updated HEAD section with the changes required to enable RUM:
+The changes needed for RUM are placed in the HEAD section of the hosts Web page, Below is the hosts updated HEAD section with the changes required to enable RUM:
 
 ![Online Boutique](../images/rum/ViewRUM-HEAD-html.png)
 
-The following two lines have been added to the HEAD section of the host Web page,
+The first three lines  (marked in red) have been added to the HEAD section of the host Web page to enable RUM Tracing, the last three (marked in blue) are optional and used to enable Custom RUM events.
 
 === "RUM addition to HEAD section"
 
@@ -90,7 +90,10 @@ The following two lines have been added to the HEAD section of the host Web page
     <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" type="text/javascript"></script>
     <script>window.SplunkRum && window.SplunkRum.init({beaconUrl: "https://rum-ingest.eu0.signalfx.com/v1/rum",
             rumAuth: "1wCqZVUWIP5XSdNjPoQRFg", app: "ksnq-rum-app", environment: "ksnq-rum-env"});</script>
-
+     <script>
+        const Provider = SplunkRum.provider; 
+        var tracer=Provider.getTracer('appModuleLoader');
+    </script>
     ```
 
 * The first part is to indicate where to download the Splunk Open Telemetry Javascript file from: *<https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js>* (This can also be loaded locally if so required)
@@ -102,3 +105,5 @@ The following two lines have been added to the HEAD section of the host Web page
     In this example the app name is **ksnq-rum-app**, this will be different in the Workshop. Check with your host what the app name and environment to use in the RUM session will be and make a note of it!
 
 The above two lines are all that is required to enable RUM on your website!
+
+The (blue) optional section that uses *var tracer=Provider.getTracer('appModuleLoader');* will add a custom event for every page change allow you to better track your website conversions and usage.  

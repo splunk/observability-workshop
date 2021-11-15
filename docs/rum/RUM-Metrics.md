@@ -41,9 +41,16 @@ The last two panes show you the **Top Page Views** and the **Top Providers**.
 
 ### 2.3. Custom Event Pane
 
-The Custom Event View is the location where you will find the metrics for any event you may have added yourself to the web pages you are monitoring.
-These are often added to pieces of custom code that are not part of a framework or an event you created so you can better understand the flow though your application.
+The Custom Event View is the location where you will find the metrics for any event you may have added yourself to the web pages you are monitoring. 
+
+As we have seen in the RUM enabled website, we have added the follwoing two lines:</br>
+  *const Provider = SplunkRum.provider; </br>
+  var tracer=Provider.getTracer('appModuleLoader');*</br>
+
+These lines  will automatically create custom Events for every new Page, and you can also add these to pieces of custom code that are not part of a framework or an event you created so you can better understand the flow though your application.
 We support **Event Request rate**, **Event Error Rates** and **Event Latency** metrics.
+
+These will help better understand the flow of your website and allows you increase conversions.
 
 ![RUM-CustomMetrics](../images/rum/RUM-Custom-Events.png)
 
