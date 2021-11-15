@@ -11,9 +11,14 @@ You will need to obtain your Access Token[^1] from the Splunk UI once Kubernetes
 
 You can find your Access Token from the top left hamburger menu then selecting **Organization Settings → Access Tokens**.
 
-Expand the **Default** token, then click on **Show Token** to expose your token. Click the **Copy**{: .label-button  .sfx-ui-button-grey} button to copy to clipboard.
+Expand the **Default** token, then click on **Show Token** to expose your token. Click the **Copy**{: .label-button  .sfx-ui-button-grey} button to copy to clipboard. 
 
 ![Access Token](../images/otel/access-token.png)
+
+!!! info "Please do not attempt to create your own token"
+    This will complicate our clean process after the workshop.
+    However if you do, please make sure it has only **INGEST** & **API** as scope!!
+
 
 You will also need to obtain the name of the Realm[^2] for your Splunk account.  From the hamburger menu, click on your name and select **Account Settings**.
 

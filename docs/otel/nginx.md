@@ -56,7 +56,7 @@ Then create the deployment:
     service/nginx created
     ```
 
-Next we will deploy Locust[^2] which is used for creating a load test against NGINX:
+Next we will deploy Locust[^2] which is an open source tool used for creating a load test against NGINX:
 
 === "Shell Command"
 
@@ -112,7 +112,7 @@ Let's validate this in your shell as well:
 
 ## 3. Run Locust load test
 
-Locust is available on port 8080 of the EC2 instance's IP address. Open a new tab in your web browser and go to `http://{==EC2-IP==}:8080/`, you will then be able to see the Locust running.
+Locust, an open source load generator, is available on port 8080 of the EC2 instance's IP address. Open a new tab in your web browser and go to `http://{==EC2-IP==}:8080/`, you will then be able to see the Locust running.
 
 ![Locust](../images/otel/nginx-locust.png)
 
@@ -124,7 +124,9 @@ This will start a gentle continuous load on the application.
 
 ![Locust Statistics](../images/otel/nginx-locust-statistics.png)
 
-Validate you are seeing metrics in the UI by going to hamburger icon, top let and select **Dashboards → All Dashboards → NGINX → NGINX Servers**. Using the **Overrides** filter on `k8s.cluster.name:`, find the name of your cluster as returned by `echo $(hostname)-k3s-cluster` in the terminal.
+As you can see from the above screenshot, most of the calls will report a fail, this is expected, as we have not yet deployed the application behind it, however NGINX is reporting on your attempts and you should be able to see those metrics.  
+
+Validate you are seeing those metrics in the UI by going to hamburger icon, top let and select **Dashboards → All Dashboards → NGINX → NGINX Servers**. Using the **Overrides** filter on `k8s.cluster.name:`, find the name of your cluster as returned by `echo $(hostname)-k3s-cluster` in the terminal.
 
 ![NGINX Dashboard](../images/otel/nginx-dashboard.png)
 
