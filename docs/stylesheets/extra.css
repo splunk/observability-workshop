@@ -72,6 +72,14 @@ strong.label-button, mark.critic {
     background-color: #f5a800 ;
 }
 
+.label-button.rum {
+    background-color: #7753a0 ;
+}
+
+.label-button.synthetics {
+    background-color: #00f5d4 ;
+}
+
 .label-button.AWS-yellow {
     background-color:#ec7211;
     color: #fff;
