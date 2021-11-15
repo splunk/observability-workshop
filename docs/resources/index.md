@@ -7,8 +7,8 @@ Below are helpful resources about Splunk and the DevOps use case. Topics covered
 * **IMT**{: .label-button .observability} [Splunk Infrastructure Monitoring](https://docs.splunk.com/Observability/infrastructure/intro-to-infrastructure.html#nav-Introduction-to-Splunk-Infrastructure-Monitoring){: target=_blank}
 * **APM**{: .label-button .apm} [Splunk Application Performance Monitoring (APM)](https://docs.splunk.com/Observability/apm/intro-to-apm.html#nav-Introduction-to-Splunk-APM){: target=_blank}
 * **LO**{: .label-button .observability} [Splunk Log Observer](https://docs.splunk.com/Observability/logs/intro-to-logs.html#nav-Introduction-to-Splunk-Log-Observer){: target=_blank}
-* **RUM**{: .label-button .observability} [Splunk Real User Monitoring (RUM)](https://docs.splunk.com/Observability/rum/intro-to-rum.html#nav-Introduction-to-Splunk-RUM){: target=_blank}
-* **Synthetics**{: .label-button .observability} [Splunk Synthetics Monitoring](https://help.rigor.com/hc/en-us){: target=_blank}
+* **RUM**{: .label-button .rum} [Splunk Real User Monitoring (RUM)](https://docs.splunk.com/Observability/rum/intro-to-rum.html#nav-Introduction-to-Splunk-RUM){: target=_blank}
+* **Synthetics**{: .label-button .synthetics} [Splunk Synthetics Monitoring](https://help.rigor.com/hc/en-us){: target=_blank}
 * **API**{: .label-button .observability} [Splunk Observability Cloud API Docs](https://dev.splunk.com/observability/docs/){: target=_blank}
 
 ## Blog Posts
