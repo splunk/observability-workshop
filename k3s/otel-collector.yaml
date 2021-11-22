@@ -1,4 +1,4 @@
-otelAgent:
+agent:
   config:
     receivers:
       receiver_creator:
