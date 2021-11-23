@@ -6,7 +6,7 @@ Let's now save our chart.
 
 ## 1. Save to existing dashboard
 
-Check that you have **YOUR_NAME-Dashboard: YOUR_NAME-Dashboard** in the top right corner.
+Check that you have **YOUR_NAME-Dashboard: YOUR_NAME-Dashboard** in the top left corner.
 
 This means you chart will be saved in this Dashboard.
 
