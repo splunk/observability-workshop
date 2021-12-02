@@ -18,6 +18,13 @@
   <meta property="og:image:height" content="568">
 {% endblock %}
 
+{% block outdated %}
+  You're not viewing the latest version.
+  <a href="{{ '../' ~ base_url }}">
+    <strong>Click here to go to latest.</strong>
+  </a>
+{% endblock %}
+
 {% block announce %}
   <a href="https://twitter.com/splunk" style="color: #fff;">
     For Observability updates follow <strong>@splunk</strong> on
