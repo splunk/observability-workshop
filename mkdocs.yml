@@ -5,6 +5,7 @@ site_description: >-
   This workshop is going to take you through the best-in-class observability platform
   for ingesting, monitoring, visualizing and analyzing metrics, traces and spans
 
+repo_name: signalfx/observability-workshop
 repo_url: https://github.com/signalfx/observability-workshop/
 edit_uri: ""
 copyright: Copyright &copy; 2021 Splunk Inc. All rights reserved.
@@ -12,7 +13,7 @@ remote_branch: gh-pages
 
 theme:
   name: material
-  custom_dir: overrides
+  custom_dir: !ENV [THEME_DIR, "overrides"]
   palette:
     # Light mode
     - media: "(prefers-color-scheme: light)"
@@ -35,8 +36,9 @@ theme:
   search_index_only: true
   language: en
   features:
+    - content.code.annotate
+    - navigation.indexes
     - navigation.tabs
-    - navigation.instant
     - navigation.sections
     - navigation.expand
     - navigation.top
@@ -46,8 +48,13 @@ markdown_extensions:
   - footnotes
   - admonition
   - attr_list
-  - pymdownx.tabbed
-  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.highlight
   - pymdownx.inlinehilite
   - pymdownx.mark
@@ -76,18 +83,16 @@ extra:
   alternate:
     # Switch to English
     - name: English
-      link: https://signalfx.github.io/observability-workshop/latest/en/
+      link: ./latest/en/
       lang: en
     # Switch to Japanese
     - name: 日本語
-      link: https://signalfx.github.io/observability-workshop/latest/ja/
+      link: ./latest/ja/
       lang: ja
 
 plugins:
   - git-revision-date-localized:
       type: date
-  - minify:
-      minify_html: false
   - i18n:
       default_language: en
       languages:
