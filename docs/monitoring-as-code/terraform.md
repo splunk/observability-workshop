@@ -13,9 +13,7 @@ Monitoring as code adopts the same approach as infrastructure as code. You can m
 
 You can monitoring as code to build out your visualisations, what to monitor, and when to alert, among other things. This means your monitoring setup, processes, and rules can be versioned, shared, and reused.
 
-Full documentation for the Splunk Terraform Provider is available [here](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs).
-
-Remaining in your AWS/EC2 instance, change into the `signalfx-jumpstart` directory
+Full documentation for the Splunk Terraform Provider is available [here](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs). Remaining in your AWS/EC2 instance, change into the `signalfx-jumpstart` directory
 
 === "Shell Command"
 
@@ -62,8 +60,8 @@ Initialize Terraform and upgrade to the latest version of the Splunk Terraform P
 
     Initializing provider plugins...
     - Finding latest version of splunk-terraform/signalfx...
-    - Installing splunk-terraform/signalfx v6.7.3...
-    - Installed splunk-terraform/signalfx v6.7.3 (signed by a HashiCorp partner, key ID 8B5755E223754FC9)
+    - Installing splunk-terraform/signalfx v6.7.10...
+    - Installed splunk-terraform/signalfx v6.7.10 (signed by a HashiCorp partner, key ID 8B5755E223754FC9)
 
     Partner and community providers are signed by their developers.
     If you'd like to know more about provider signing, you can read about it here:
@@ -131,7 +129,7 @@ Due to this being a workshop it is required that the prefix is to be unique so y
     Apply complete! Resources: 92 added, 0 changed, 0 destroyed.
     ```
 
-Once the apply has completed, validate that the detectors were created, under the **Alerts → Detectors**. They will be prefixed by the hostname of your instance. To check the prefix value run:
+Once the apply has completed, validate that the detectors were created, under the **Alerts & Detectors** and click on the **Detectors** tab. They will be prefixed by the hostname of your instance. To check the prefix value run:
 
 === "Shell Command"
 
