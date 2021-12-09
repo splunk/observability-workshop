@@ -15,7 +15,7 @@ When a user logs into Observability Cloud, they can choose which Team Dashboard 
 
 In the example below, the user is a member of the Development, Operations and Product Management Teams, and is currently viewing the Dashboard for the Operations Team.
 
-This Dashboard has specific Dashboard Groups for NGINX, Infra and K8s assigned but any Dashboard Group can be linked to a Teams Dashboard.
+This Dashboard has specific Dashboard Groups for Usage, SaaS and APM Business Workflows assigned but any Dashboard Group can be linked to a Teams Dashboard.
 
 They can use the menu along the top left to quickly navigate between their allocated teams, or they can use the **ALL TEAMS** dropdown on the right to select specific Team Dashboards, as well as quickly accessing **ALL Dashboards** using the adjacent link.
 

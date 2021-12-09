@@ -139,7 +139,7 @@ nav:
       - Deploy the OTel Collector: otel/k3s.md
       - Deploy and monitor NGINX : otel/nginx.md
     - Dashboards<br /><small>20 minutes</small>:
-      - Introduction: dashboards/index.md
+      - Introduction: dashboards/intro.md
       - Editing charts: dashboards/editing.md
       - Saving charts: dashboards/savingcharts.md
       - Using filters & formulas: dashboards/filtering.md
@@ -147,10 +147,10 @@ nav:
       - Adding more charts: dashboards/adding-charts.md
       - Notes and layout: dashboards/dashboarding.md
     - Detectors<br /><small>10 minutes</small>:
-      - Creating a Detector: detectors/index.md
+      - Creating a Detector: detectors/intro.md
       - Creating a Muting Rule: detectors/muting.md
-    - Monitoring as Code<br /><small>10 minutes</small>:
-      - Plan, Apply and Destroy: monitoring-as-code/index.md
+    - Monitoring as Code<br><small>10 minutes</small>:
+      - Plan, Apply and Destroy: monitoring-as-code/terraform.md
     - Service Bureau<br /><small>10 minutes</small>:
       - Billing and Usage : servicebureau/billing-and-usage.md
       - Teams : servicebureau/teams.md
@@ -162,7 +162,7 @@ nav:
     - Get Data Out<br /><small>15 minutes</small>:
       - Using Splunk APM: apm/using-apm.md
   - Splunk RUM:
-    - RUM, an introduction: rum/index.md
+    - RUM, an introduction: rum/intro.md
     - Using RUM on your Website: rum/RUM-Setup.md
     - RUM Showcase: rum/RUM-online-boutique.md
     - Analyzing RUM Metrics: rum/RUM-Metrics.md
@@ -171,7 +171,7 @@ nav:
     - Correlation of RUM & APM: rum/RUM-APM.md
   - Splunk Synthetics:
     - Real Browser Checks<br /><small>40 minutes</small>:
-      - Synthetics, an introduction: synthetics/index.md
+      - Synthetics, an introduction: synthetics/intro.md
     - API Checks<br /><small>20 minutes</small>:
       - Introduction: synthetics/api.md
 #  - Splunk On-Call:
