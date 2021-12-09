@@ -7,27 +7,19 @@
 
 ## 1. Obtain Access Token
 
-You will need to obtain your Access Token[^1] from the Splunk UI once Kubernetes is running.
-
-You can find your Access Token from the top left hamburger menu then selecting **Organization Settings → Access Tokens**.
+You will need to obtain your Access Token[^1] from the Splunk UI. You can find the workshop Access Token by clicking **>>** bottom left and then selecting **Settings → Access Tokens**.
 
 Expand the workshop token that your host has instructed you to use e.g. **O11y-Workshop-ACCESS**, then click on **Show Token** to expose your token. Click the **Copy**{: .label-button  .sfx-ui-button-grey} button to copy to clipboard. Please do not use the **Default** token!
 
 ![Access Token](../images/otel/access-token.png)
 
-!!! info "Please do not attempt to create your own token"
+!!! warn "Please do not attempt to create your own token"
     This will complicate our clean process after the workshop.
     However if you do, please make sure it has only **INGEST** & **API** as scope!!
 
-You will also need to obtain the name of the Realm[^2] for your Splunk account.  From the hamburger menu, click on your name and select **Account Settings**.
+You will also need to obtain the name of the Realm[^2] for your Splunk account.  At the top of the side menu, click on your name and select **Account Settings**. The Realm can be found in the middle of the page within the Organizations section.  In this example it is `us0`.
 
 ![Account Settings](../images/otel/account-settings.png)
-
-The Realm can be found in the middle of the page within the Organizations section.  In this example it is `us0`.
-
-![Realm](../images/otel/realm.png)
-
----
 
 ## 2. Installation using Helm
 
@@ -141,7 +133,7 @@ Use the label set by the `helm` install to tail logs (You will need to press ++c
 
 ## 3. Validate metrics in the UI
 
-In the Splunk UI, from the hamburger menu top left click on **Infrastructure**.
+In the Splunk UI, click the **>>** bottom left and click on **Infrastructure**.
 
 ![Selecting the Kubernetes Navigator Map](../images/otel/clustermap-nav.png)
 
