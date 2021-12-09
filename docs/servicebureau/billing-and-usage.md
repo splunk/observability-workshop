@@ -10,29 +10,21 @@
 
 ## 1. Understanding engagement
 
-To fully understand Observability Cloud engagement inside your organization, click on the hamburger top left and select the **Organizations Settings → Organization Overview**, this will provide you with the following dashboard that shows you how your Observability Cloud organization is being used:
+To fully understand Observability Cloud engagement inside your organization, click on the **>>** bottom left and select the **Settings → Organization Overview**, this will provide you with the following dashboard that shows you how your Observability Cloud organization is being used:
 
 ![Organization overview](../images/servicebureau/engagement.png)
 
-On the left hand menu you will see a list of members, and on the right, various charts that show you the number of users, teams, charts, dashboards, and dashboard groups created, as well as various growth trends.
-
-The workshop organization you're using now may have less data to work with as this is cleared down after each workshop.
+You will see various charts that show you the number of users, teams, charts, dashboards, and dashboard groups created, as well as various growth trends. The workshop organization you're using now may have less data to work with as this is cleared down after each workshop.
 
 Take a minute to explore the various charts in the Organization Overview of this workshop instance.
 
----
-
 ## 2. Usage and Billing
 
-If you want to see what your usage is against your contract you can select the **Organizations Settings → Billing and Usage**.
-
-Or the faster way is to select the **Billing and Usage** item from the left hand pane.
+If you want to see what your usage is against your contract you can select **Billing and Usage**.
 
 ![Left pane](../images/servicebureau/billing-and-usage-menu.png)
 
 This screen may take a few seconds to load whilst it calculates and pulls in the usage.
-
----
 
 ## 3. Understanding usage
 
