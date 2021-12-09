@@ -6,7 +6,7 @@
 
 If you wish to control the consumption of Hosts, Containers, Custom Metrics and High Resolution Metrics, you can create multiple Access Tokens and allocate them to different parts of your organization.
 
-In the UI click on the hamburger top left and select the **Organizations Settings → Access Tokens**
+In the UI click on the **>>** bottom left and select the **Settings → Access Tokens** under **General Settings**.
 
 The **Access Tokens** Interface provides an overview of your allotments in the form of a list of Access Tokens that have been generated. Every Organization will have a **Default** token generated when they are first setup, but there will typically be multiple Tokens configured.
 
