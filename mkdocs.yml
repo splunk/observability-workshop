@@ -133,6 +133,7 @@ nav:
   - Home: index.md
   - Splunk IMT:
     - Workshop Introduction: otel/intro.md
+    - User Interface Overview: otel/ui.md
     - Initial Setup<br /><small>5 minutes</small>:
       - Access AWS/EC2 instance: otel/connect-info.md
     - Get Data In<br /><small>15 minutes</small>:
