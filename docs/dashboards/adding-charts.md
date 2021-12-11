@@ -53,11 +53,11 @@ Click on the **Add Metric Or Event**{: .label-button .sfx-ui-button-blue} button
 
 ![Dashboard Info](../images/dashboards/M-MoreCharts-8.png)
 
-This will add a new Signal **D** to your chart, It shows the number of active request active. Add the filter for the *demo_datacenter:Paris* then change the Rollup type by clicking on **Delta Rollup** (or clicking on the cog icon).
+This will add a new Signal **D** to your chart, It shows the number of active request active. Add the filter for the *demo_datacenter:Paris*, then change the Rollup type by clicking on the **Configure Plot** button and changing the roll-up from **Auto (Delta)** to **Rate/sec**. Change the name from **demo.trans.count** to **Latency vs Load**.
 
 ![rollup change](../images/dashboards/M-MoreCharts-9.png)
 
-When the visualisation pane opens, change the Rollup dropdown to **Rollup:Rate/sec**, then click into the name field in the top left hand corner and it to **Latency vs load** and press the **Save And Close**{: .label-button .sfx-ui-button-blue} button. This returns you to your dashboard that now has three different charts!
+Finally press the **Save And Close**{: .label-button .sfx-ui-button-blue} button. This returns you to your dashboard that now has three different charts!
 
 ![three charts](../images/dashboards/M-MoreCharts-10.png)
 

@@ -9,15 +9,11 @@
 
 There will be times when you might want to mute certain notifications. For example, if you want to schedule downtime for maintenance on a server or set of servers, or if you are testing new code or settings etc. For that you can use muting rules in Splunk Observability Cloud. Let's create one!
 
-From the top left hamburger menu icon click **Alerts** in the menu and then select **Detectors**.
+Click on the ![alerts and detectors button](../images/navbar/alerts-and-detectors.png) from the navbar and then click **Detectors** to see your list of active detectors. You can filter for yours if you want.
 
-![Detectors](../images/detectors/detectors-menu.png)
+![detectors list](../images/detectors/detectors.png) 
 
-You will see a list of active detectors.
-
-![Detectors](../images/detectors/detector-list.png)
-
-If you created an detector in **Creating a Detector** you can click on the three dots **`...`** on the far right for that detector; if not, do that for another detector.  
+If you created an detector in **Creating a Detector** you can click on the three dots **`...`** on the far right for that detector; if not, do that for another detector.
 
 From the drop-down click on **Create Muting Rule...**
 
@@ -46,11 +42,7 @@ You won't be receiving any email notifications from your detector until you resu
 
 To Resume notifications, click on **Muting Rules**, you will see the name of the detector you muted notifications for under **Detector** heading.
 
-![Resume](../images/detectors/muting-rules-menu.png)
-
-Click on the thee dots **`...`** on the far right.
-
-Click on **Resume Notifications**.
+Click on the thee dots **`...`** on the far right, and click on **Resume Notifications**.
 
 ![Resume](../images/detectors/muting-list.png)
 

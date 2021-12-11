@@ -18,9 +18,8 @@ These conditions are expressed as one or more rules that trigger an alert when t
 In **Dashboards** click on your **Custom Dashboard Group** (that you created in the previous module) and then click on the dashboard name.
 
 ![Custom Dashboard Group](../images/detectors/custom-dashboard-group.png)
-We are now going to create a new detector from this chart.
 
-Once you see the chart, click on the bell icon on your chart and then on **New Detector From Chart**.
+We are now going to create a new detector from a chart on this dashboard. Click on the bell icon on the **Latency vs Load** chart, and then click **New Detector From Chart**.
 
 ![New Detector](../images/detectors/new-detector.png)
 
@@ -54,7 +53,7 @@ In **Alert Settings**, enter the value **`290`** in the **Threshold** field. In 
 
 ## 4. Alert pre-flight check
 
-A pre-flight check will take place after 5 seconds. See the **Estimated alert count**. Based on the current alert settings, the amount of alerts we would have received in 1 day would have been approx. **18**.
+A pre-flight check will take place after 5 seconds. See the **Estimated alert count**. Based on the current alert settings, the amount of alerts we would have received in 1 day would have been **3**.
 
 ![Alert Threshold](../images/detectors/alert-threshold.png)
 
@@ -97,13 +96,11 @@ In **Activate...** click on **Activate Alert Rule**{: .label-button .sfx-ui-butt
 
 ![Activate Alert](../images/detectors/activate-alert.png)
 
-If you want to get alerts quicker you can click back on **Alert Settings** and lower the value from **`290`** to say **`280`**.
+If you want to get alerts quicker you edit the rule and lower the value from **`290`** to say **`280`**.
 
 If you change the **Time** to **-1h** you can see how many alerts you might get with the threshold you have chosen based on the metrics from the last 1 hour.
 
-Hover over **Alerts** in the top menu and then click on **Detectors**.
-
-![Detectors](../images/detectors/detectors-menu.png)
+Click on the ![alerts and detectors button](../images/navbar/alerts-and-detectors.png) in the navbar and then click on **Detectors**. You can optionally filter for your initials.
 
 You will see you detector listed here. If you don't then please refresh your browser.
 

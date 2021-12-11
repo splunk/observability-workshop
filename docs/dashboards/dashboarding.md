@@ -6,7 +6,7 @@ Often on dashboards it makes sense to place a short "instruction" pane that help
 
 Lets add one now by clicking on the **New Text Note**{: .label-button.sfx-ui-button-grey} Button.
 
-![three charts](../images/dashboards/M-MoreCharts-10.png)
+![three charts](../images/dashboards/M-Notes-0.png)
 
 This will open the notes editor.
 
@@ -75,31 +75,29 @@ the preview will show you how it will look.
 
 Give the Note chart a name, in our example we used *Example text chart*, then press the **Save And Close**{: .label-button .sfx-ui-button-blue} Button.
 
-This will bring you back to you Dashboard, that now includes the note
+![saving note](../images/dashboards/M-Notes-2.png)
 
-![three charts and note](../images/dashboards/M-Notes-2.png)
+This will bring you back to you Dashboard, that now includes the note.
+
+![three charts and note](../images/dashboards/M-Notes-3.png)
 
 ---
 
 ## 3. Ordering & sizing of charts
 
-If you do not like the default order and sizes of your charts you can simply use window dragging technique to move and size them to the desired location
+If you do not like the default order and sizes of your charts you can simply use window dragging technique to move and size them to the desired location.
 
-Grab the **top** border of a chart and you should see the mouse pointer change to a drag icon. You can now simply drag you chart to the desired location. 
+Grab the **top** border of a chart and you should see the mouse pointer change to a drag icon (see picture below).
 
-![Dragging](../images/dashboards/M-Notes-4.png)
+![dragging charts](../images/dashboards/M-Notes-4.png)
 
-Now drag the **Latency History** Chart to site below the **Latency vs Load** Chart.
-
-!!! info "On the Move"
-    The screenshot above is taken in the middle of the Move/Drag action as described above. </br>
-    It is **not** meant as the location where you need to save this chart, for that see the screenshot below)
-
-You can also resize a chart, simply by dragging the side or the bottom.
+Now drag the **Latency vs Load** chart to sit between the **Latency History** Chart and the **Example text chart**.
 
 ![sizing](../images/dashboards/M-Notes-5.png)
 
-As a last exercise reduce the width of the note chart to about a third of the other charts. The chart will automatically snap to one of the sizes it supports. Widen the 3 other charts to about a third of the Dashboard. Drag the notes to the left of the others and resize it to match it to the 23 others.
+You can also resize windows by dragging from the left, right and bottom edges.
+
+As a last exercise reduce the width of the note chart to about a third of the other charts. The chart will automatically snap to one of the sizes it supports. Widen the 3 other charts to about a third of the Dashboard. Drag the notes to the right of the others and resize it to match it to the 3 others.
 
 Set the time to -1 h hour and you should have the following dashboard!
 
