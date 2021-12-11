@@ -4,7 +4,7 @@
 
 Click on the three dots **`...`** on the **Latency histogram** chart in the **Sample Data** dashboard and then on **Open** (or you can click on the name of the chart which here is **Latency histogram**).
 
-![Sample Charts](../images/dashboards/sample-charts.png)
+![Sample Charts](../images/dashboards/latency-histogram-open.png)
 
 You will see the plot options, current plot and signal (metric) for the **Latency histogram** chart in the chart editor UI.
 

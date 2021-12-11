@@ -21,9 +21,9 @@ During this module we are going to create the following charts and dashboard and
 
 ## 2. Your Teams' Page
 
-From the top left hamburger menu ![Hamburger-menu](../images/dashboards/Hamburgermenu.png) select **Dashboards** from the side menu. As you have already been assigned to a team, you will land on the team dashboard.
+Click on the ![dashboards button](../images/navbar/dashboards.png) from the navbar. As you have already been assigned to a team, you will land on the team dashboard.
 
-We use the team ***Observability*** as an example here. The one in your workshop will be different!
+We use the ***Example Team*** as an example here. The one in your workshop will be different!
 
 ![Team Dashboard1](../images/dashboards/team-dashboard.png)
 
@@ -34,7 +34,7 @@ This page shows the total number of team members, how many active alerts for you
 ## 3. Sample Charts
 
 To continue, click on **All Dashboards** on the top right corner of the screen.
-This brings you to the view that shows all the available dashboards, included the pre-built ones.
+This brings you to the view that shows all the available dashboards, including the pre-built ones.
 
 ![Sample Data](../images/dashboards/sample-data.png)
 

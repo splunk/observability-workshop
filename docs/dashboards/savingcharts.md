@@ -20,15 +20,15 @@ In the **Choose dashboard** dialog, we need to create a new dashboard, click on 
 
 ![Create Dashboard](../images/dashboards/create-dashboard.png)
 
-You will now see the **New Dashboard** Dialog. In here you can give you dashboard a name and description, and set **Write Permissions**.
+You will now see the **New Dashboard** Dialog. In here you can give you dashboard a name and description, and set **Read and Write Permissions**.
 
 Please use your own name in the following format to give your dashboard a name e.g. **YOUR_NAME-Dashboard**.
 
-Please replace **YOUR_NAME** with your own name and then remove the tick from the *Anyone in this organization can edit* tick box to set up edit permissions.
+Please replace **YOUR_NAME** with your own name, change the dashboard permissions to *Restricted Read and Write access*, and verify your user can read/write.
 
 ![Name Dashboard](../images/dashboards/name-dashboard.png)
 
-You should see you own login information displayed, meaning you are now the only one who can edit this dashboard. Of course you have the option to add other users or teams from the drop box below that may edit your dashboard and charts, but for now make sure you **re-tick** the *Anyone in this organization can edit* box to remove any restrictions and press the **Create**{: .label-button .sfx-ui-button-blue} Button to continue.
+You should see you own login information displayed, meaning you are now the only one who can edit this dashboard. Of course you have the option to add other users or teams from the drop box below that may edit your dashboard and charts, but for now make sure you change it back to *Everyone can Read or Write* to remove any restrictions and press the **Save**{: .label-button .sfx-ui-button-blue} Button to continue.
 
 Your new dashboard is now available and selected so you can save your chart in your new dashboard.
 
@@ -44,9 +44,9 @@ You will now be taken to your dashboard like below. You can see at the top left 
 
 ## 3. Add to Team page
 
-It is common practice to link dashboards that are relevant to a Team to a teams page. So let's add your dashboard to the team page for easy access later. Use the top left hamburger menu select **Dashboards** from the side menu again.
+It is common practice to link dashboards that are relevant to a Team to a teams page. So let's add your dashboard to the team page for easy access later. Use the ![dashboards button](../images/navbar/dashboards.png) from the navbar again.
 
-This will bring you to your teams dashboard, We use the team ***Observability*** as an example here, the workshop one will be different.
+This will bring you to your teams dashboard, We use the team ***Example Team*** as an example here, the workshop one will be different.
 
 ![Team Dashboard](../images/dashboards/team-dashboard.png)
 
