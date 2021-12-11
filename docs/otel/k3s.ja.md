@@ -19,7 +19,7 @@ Access Token は、左上のハンバーガーメニューから「**Organizatio
 
 Realm はページの中央にある Organizations セクションにあります。 この例では「us0」となっています。
 
-![Realm](../images/otel/realm.png)
+![Account Settings](../images/otel/account-settings.png)
 
 ---
 
