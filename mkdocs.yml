@@ -8,7 +8,7 @@ site_description: >-
 repo_name: signalfx/observability-workshop
 repo_url: https://github.com/signalfx/observability-workshop/
 edit_uri: ""
-copyright: Copyright &copy; 2021 Splunk Inc. All rights reserved.
+copyright: Copyright &copy; 2022 Splunk Inc. All rights reserved.
 remote_branch: gh-pages
 
 theme:
