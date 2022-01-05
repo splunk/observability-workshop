@@ -13,7 +13,5 @@ If you require the latest Smart Agent version of the Infrastructure Monitoring a
 If you are the host for the RUM workshop, please check this [README](https://github.com/signalfx/observability-workshop/blob/master/apm/microservices-demo/k8s/README.md)
 
 Latest versions of the workshop are:
+- [v3.12](https://signalfx.github.io/observability-workshop/v3.12/)
 - [v3.11](https://signalfx.github.io/observability-workshop/v3.11/)
-- [v3.10](https://signalfx.github.io/observability-workshop/v3.10/)
-
->ℹ️&nbsp;&nbsp;SignalFx was acquired by Splunk in October 2019. See [Splunk SignalFx](https://www.splunk.com/en_us/investor-relations/acquisitions/signalfx.html) for more information.
