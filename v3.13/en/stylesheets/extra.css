@@ -1,0 +1,154 @@
+.md-grid {
+    max-width: 1920px;
+}
+
+.md-typeset .twitter {
+    color: #00acee;
+}
+
+img {
+    height: auto;
+    width: auto;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 4px;
+    background-color: #fff;
+}
+
+.shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.appstore {
+    border: 0px;
+    width: 200px;
+}
+
+a.md-logo img {
+    border: 0px;
+    padding: 0px;
+    background-color: transparent;
+}
+
+strong.label-button, mark.critic {
+    padding: 4px 6px;
+    /*margin: 0px 2px 0px 2px;*/
+    min-width: 88px;
+    border-radius: 3px;
+    text-align: center;
+    /*text-transform: uppercase;*/
+    text-decoration:none;
+    border: none;
+    outline: none;
+    font-size: 0.84em;
+    font-weight: 600;
+    background-color: #333;
+    color: #fff;
+}
+
+.label-button.splunk {
+    background-color: #E20082;
+}
+
+.label-button.oncall {
+    background-color: #0cb9a8;
+}
+
+.label-button.apm {
+    background-color: #BF1942;
+}
+
+.label-button.devops {
+    background-color: #0064b7;
+}
+
+.label-button.otel {
+    background-color: #f5a800 ;
+}
+
+.label-button.rum {
+    background-color: #7753a0 ;
+}
+
+.label-button.synthetics {
+    background-color: #00f5d4 ;
+}
+
+.label-button.AWS-yellow {
+    background-color:#ec7211;
+    color: #fff;
+    font-weight: 400;
+}
+.label-button.AWS-blue {
+    background-color: #0073bb;
+    color: #fff;
+    font-weight: 400;
+}
+.label-button.AWS-orange {
+    background-color: #eb5f07;
+}
+.label-button.AWS-gray {
+    background-color:#879596;
+    color: #fff;
+    font-weight: 400;
+}
+
+.label-button.observability {
+    background-color: #4a0072;
+}
+
+.label-button.sfx-ui-button-grey {
+    background-color: #eee;
+    color: rgba(0,0,0,.65);
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.label-button.sfx-ui-button-blue {
+    background-color: #0264d7;
+    color: #fff;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.label-button.vo-ui-button {
+    background-color: #00bce4;
+}
+
+header.md-header {
+    background-color: #000;
+}
+
+.md-nav__link:focus,
+.md-tabs__link--active,
+.md-nav__item .md-nav__link--active,
+.md-nav__link--active,
+.md-nav__link:active {
+    color: --md-typeset-color;
+}
+
+.md-nav__link:hover {
+    font-weight: 700;
+}
+
+:root {
+    --md-primary-fg-color: #E20082;
+    --md-accent-fg-color: #E20082;
+    --md-primary-fg-color--light: #E20082;
+    --md-primary-fg-color--dark: #E20082;
+}
+
+[data-md-color-scheme="slate"] {
+/*   --md-code-bg-color: #F5F5F5; */
+    --md-code-fg-color: #fff;
+}
+
+.md-typeset code {
+    font-size: .6.5rem;
+}
