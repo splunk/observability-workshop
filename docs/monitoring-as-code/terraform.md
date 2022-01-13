@@ -26,7 +26,7 @@ The environment variables needed should already be set from [Installation using 
 === "Shell Command"
 
     ```
-    export ACCESS_TOKEN=<replace_with_default_access_token>
+    export ACCESS_TOKEN=<replace_with_O11y-Workshop-ACCESS_token>
     export REALM=<replace_with_splunk_realm>
     ```
 
