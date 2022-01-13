@@ -28,7 +28,7 @@ Create the `ACCESS_TOKEN` and `REALM` environment variables to use in the procee
 === "Shell Command"
 
     ```
-    export ACCESS_TOKEN=<replace_with_default_access_token>
+    export ACCESS_TOKEN=<replace_with_O11y-Workshop-ACCESS_token>
     export REALM=<replace_with_splunk_realm>
     ```
 
