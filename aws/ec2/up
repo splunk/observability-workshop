@@ -10,7 +10,7 @@ fi
 COMMANDS="jq terraform pssh"
 
 for cmd in $COMMANDS; do
-	if ! command -v jq &> /dev/null; then
+	if ! command -v "$cmd" &> /dev/null; then
 		echo "$cmd not found. Please install with your package manager, e.g. brew install $cmd."
 		exit 1
 	fi
