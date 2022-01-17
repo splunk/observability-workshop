@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
+set -Eeuo pipefail
+
 STATUS_LOG=/run/cloud-init/status.json
 
-if [[ "$#" -ne 2 ]]; then
-	echo "Usage: up COUNT REGION"
+if [[ "$#" -ne 3 ]]; then
+	echo "Usage: up SLUG COUNT REGION"
 	exit 1
 fi
 
@@ -16,11 +18,15 @@ for cmd in $COMMANDS; do
 	fi
 done
 
-COUNT=$1
-REGION=$2
+SLUG=$1
+COUNT=$2
+REGION=$3
 
+terraform workspace select "o11y-for-$SLUG" || terraform workspace new "o11y-for-$SLUG"
+terraform plan -var="slug=$SLUG" -var="aws_instance_count=$COUNT" -var="aws_region=$REGION" -input=false -out=tfplan
 while :; do
-	terraform apply -var="aws_instance_count=$COUNT" -var="aws_region=$REGION"
+	terraform apply -input=false tfplan
+	# terraform apply -var="aws_instance_count=$COUNT" -var="aws_region=$REGION" -input=false
 
 	pssh -o sanity-check --par 60 -l ubuntu -A --hosts <(terraform output --json ip|jq -r '.[]') -x "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o PreferredAuthentications=password -o PubkeyAuthentication=no" -- "cat ${STATUS_LOG}"
 
