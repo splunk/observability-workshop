@@ -6,13 +6,6 @@ chpasswd:
 
 package_update: true
 
-apt:
-  sources_list: |
-    deb mirror://mirrors.ubuntu.com/mirrors.txt bionic main restricted universe multiverse
-    deb mirror://mirrors.ubuntu.com/mirrors.txt bionic-backports main restricted universe multiverse
-    deb mirror://mirrors.ubuntu.com/mirrors.txt bionic-updates main restricted universe multiverse
-    deb mirror://mirrors.ubuntu.com/mirrors.txt bionic-security main restricted universe multiverse
-
 packages:
   - unzip
   - shellinabox
@@ -21,6 +14,7 @@ packages:
 
 write_files:
   - path: /etc/skel/.profile
+    append: true
     content: |
       helm() {
         if [ -z ${ACCESS_TOKEN+x} ]; then echo "ACCESS_TOKEN is unset. Please export ACCESS_TOKEN=YOUR_TOKEN"; return; fi
@@ -51,24 +45,34 @@ write_files:
         echo "Your instance is ready!";
       fi
 
-      if [ -e ~/.instance ]; then
-        INSTANCE=$(cat ~/.instance)
+      if [ -e /etc/.instance ]; then
+        INSTANCE=$(cat /etc/.instance)
+        CLUSTER_NAME="$INSTANCE-cluster"
+      fi
+      export INSTANCE CLUSTER_NAME
+
+      # Set color prompt
+      export PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\$INSTANCE\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+      export KUBECONFIG=/home/ubuntu/.kube/config
+      alias kc='sudo kubectl'
+      alias gs='git status'
+      alias ..='cd ..'
+  - path: /usr/local/bin/local-setup.sh
+    permissions: "0744"
+    content: |
+      if [ -e /etc/.instance ]; then
+        INSTANCE=$(cat /etc/.instance)
       fi
       if [ -z ${INSTANCE+x} ]; then
         INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)
-        sudo sed -i "s/127.0.0.1.*/127.0.0.1 $INSTANCE.local $INSTANCE localhost/" /etc/hosts
+        sed -i "s/127.0.0.1.*/127.0.0.1 $INSTANCE.local $INSTANCE localhost/" /etc/hosts
+        sed -i "s/127.0.0.1.*/127.0.0.1 $INSTANCE.local $INSTANCE localhost/" /etc/cloud/templates/hosts.debian.tmpl
         sudo hostnamectl set-hostname $INSTANCE
-        # Set color prompt
-        export PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\$INSTANCE\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
-        echo $INSTANCE > ~/.instance
+        echo $INSTANCE > /etc/.instance
       fi
       export INSTANCE
-      export KUBECONFIG=/home/ubuntu/.kube/config
-    append: true
 
 runcmd:
-  # Install K3s
-  - curl -sfL https://get.k3s.io | sh -
   # Install Helm
   - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
   # Install K9s (Kubernetes UI)
@@ -94,6 +98,9 @@ runcmd:
   # Install Terraform
   - curl -S -OL https://releases.hashicorp.com/terraform/1.0.11/terraform_1.0.11_linux_amd64.zip
   - unzip -qq terraform_1.0.11_linux_amd64.zip -d /usr/local/bin
+  - bash /usr/local/bin/local-setup.sh
+  # Install K3s
+  - curl -sfL https://get.k3s.io | sh -
   # Create kube config and set correct permissions on ubuntu user home directory
   - mkdir /home/ubuntu/.kube && kubectl config view --raw > /home/ubuntu/.kube/config
   - chmod 400 /home/ubuntu/.kube/config
@@ -108,5 +115,4 @@ runcmd:
   #- ./aws/install
   # Install eksctl for AWS/EKS
   #- curl -s --silent --location https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz | tar xz -C /tmp
-  #- mv /tmp/eksctl /usr/local/bin/ 
-  
+  #- mv /tmp/eksctl /usr/local/bin/
