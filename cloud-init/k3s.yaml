@@ -74,6 +74,29 @@ write_files:
       alias gb='git branch'
       alias gco='git checkout'
       alias ..='cd ..'
+  - path: /etc/rancher/k3s/registries.yaml
+    permissions: '0600'
+    owner: root:root
+    content: |
+      mirrors:
+        docker.registry:
+          endpoint:
+            - "http://docker.registry:9999"
+  - path: /etc/docker/daemon.json
+    content: |
+      {
+        "insecure-registries" : ["docker.registry:9999"]
+      }
+  - path: /usr/local/bin/setup-docker-registry.sh
+    permissions: '0744'
+    content: |
+      #!/usr/bin/env bash
+      REGISTRY_NAME=docker.registry
+      REGISTRY_PORT=9999
+      NODE_IP=$(ip -o -4 addr | awk '$2 != "lo" { print $4}' | sed -e 's,/[[:digit:]]\+$,,')
+      echo "$NODE_IP $REGISTRY_NAME" | tee -a /etc/hosts
+      echo "$NODE_IP $REGISTRY_NAME" | tee -a /etc/cloud/templates/hosts.debian.tmpl
+      systemctl restart docker
   - path: /usr/local/bin/local-setup.sh
     permissions: "0744"
     content: |
@@ -115,6 +138,7 @@ runcmd:
   # Install Terraform
   - curl -S -OL https://releases.hashicorp.com/terraform/1.0.11/terraform_1.0.11_linux_amd64.zip
   - unzip -qq terraform_1.0.11_linux_amd64.zip -d /usr/local/bin
+  - bash /usr/local/bin/setup-docker-registry.sh
   - bash /usr/local/bin/local-setup.sh
   # Install K3s
   - curl -sfL https://get.k3s.io | sh -
@@ -122,6 +146,8 @@ runcmd:
   - mkdir /home/ubuntu/.kube && kubectl config view --raw > /home/ubuntu/.kube/config
   - chmod 400 /home/ubuntu/.kube/config
   - chown -R ubuntu:ubuntu /home/ubuntu
+  # Deploy private registry
+  - /usr/local/bin/kubectl apply -f /home/ubuntu/workshop/k3s/registry/registry.yaml
   # Configure shellinabox port and disable ssl then restart
   - sed -i 's/SHELLINABOX_PORT=4200/SHELLINABOX_PORT=6501/'  /etc/default/shellinabox
   - sed -i "s/\"--no-beep\"/\"--no-beep --disable-ssl\"/" /etc/default/shellinabox
