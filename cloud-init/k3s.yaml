@@ -51,7 +51,7 @@ write_files:
       }
 
       echo "Waiting for cloud-init status..."
-      if ! /usr/bin/timeout 180 grep -q 'Cloud-init .*finished at' <(tail -f /var/log/cloud-init-output.log); then
+      if ! /usr/bin/timeout 180 grep -q 'Cloud-init .*finished at' <(sudo tail -f /var/log/cloud-init-output.log); then
         echo "Instance setup did not complete after 3 minutes. Please try again.";
       else
         echo "Your instance is ready!";
