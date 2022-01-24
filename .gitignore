@@ -11,4 +11,5 @@ terraform.tfstate.backup
 secret.tfvars
 terraform.tfvars
 .terraform.lock.hcl
+tfplan
 venv/
