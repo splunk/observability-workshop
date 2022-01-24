@@ -17,6 +17,12 @@ packages:
   - python3.9-venv
   - jq
 
+groups:
+  - docker
+
+system_info:
+  default_user:
+    groups: [docker]
 
 write_files:
   - path: /etc/skel/.profile
