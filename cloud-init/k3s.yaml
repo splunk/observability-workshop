@@ -63,8 +63,7 @@ write_files:
       fi
       export INSTANCE CLUSTER_NAME
 
-      # Set color prompt
-      export PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\$INSTANCE\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+      # Set prompt
       export PS1='\u@\h:\w$ '
       export KUBECONFIG=/home/ubuntu/.kube/config
       alias kc='kubectl'
