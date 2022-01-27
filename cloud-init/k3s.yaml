@@ -14,6 +14,7 @@ packages:
   - w3m
   - gnupg2
   - docker-compose
+  - podman
   - python3.9-venv
   - jq
 
@@ -73,6 +74,7 @@ write_files:
       alias gb='git branch'
       alias gco='git checkout'
       alias ..='cd ..'
+      alias docker='podman'
   - path: /etc/rancher/k3s/registries.yaml
     permissions: '0600'
     owner: root:root
@@ -81,6 +83,13 @@ write_files:
         docker.registry:
           endpoint:
             - "http://docker.registry:9999"
+  - path: /etc/containers/registries.conf.d/docker.registry.conf
+    permissions: '0644'
+    owner: root:root
+    content: |
+      [[registry]]
+      location="docker.registry:9999"
+      insecure=true
   - path: /etc/docker/daemon.json
     content: |
       {
