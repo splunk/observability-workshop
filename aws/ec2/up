@@ -28,16 +28,17 @@ while :; do
 	terraform apply -input=false tfplan
 	# terraform apply -var="aws_instance_count=$COUNT" -var="aws_region=$REGION" -input=false
 
-	pssh -o sanity-check --par 60 -l ubuntu -A --hosts <(terraform output --json ip|jq -r '.[]') -x "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o PreferredAuthentications=password -o PubkeyAuthentication=no" -- "cat ${STATUS_LOG}"
+	sanity_check_tmp=$(mktemp -d)
+	pssh -o "${sanity_check_tmp}" --par 60 -l ubuntu -A --hosts <(terraform output --json ip|jq -r '.[]') -x "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o PreferredAuthentications=password -o PubkeyAuthentication=no" -- "cat ${STATUS_LOG}"
 
-	ERR_COUNT=$(jq ' .v1 | .[] | values | select(.errors? | length > 0) | .errors[] ' sanity-check/* | jq -rs '. | length')
+	ERR_COUNT=$(jq ' .v1 | .[] | values | select(.errors? | length > 0) | .errors[] ' "${sanity_check_tmp}"/* | jq -rs '. | length')
 
 	if [[ $ERR_COUNT -eq 0 ]]; then
 		echo "All instances completed cloud-init without errors."
 		break;
 	else
 		echo "Errors found in cloud-init status for some instances."
-		jq -r '.v1 | .[] | values | select(.errors? | length > 0) | input_filename' sanity-check/* |
+		jq -r '.v1 | .[] | values | select(.errors? | length > 0) | input_filename' "${sanity_check_tmp}"/* |
 			sed -e 's,sanity-check/,,' |
 			{ TF_STATE=$(terraform show --json); while read -r IP; do \
 				RNAME=$(jq -r ' .values.root_module.resources[] | select (.values.public_ip == "'"$IP"'") | .address' <<< "$TF_STATE")
