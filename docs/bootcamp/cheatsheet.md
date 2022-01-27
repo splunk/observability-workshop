@@ -8,8 +8,16 @@ curl https://ingest.us1.signalfx.com/healthz
 
 ## INGEST CHECK
 
+### Metrics
+
 ```bash
 curl -qs -H'X-SF-Token:XXXXXX' https://ingest.us1.signalfx.com/v2/datapoint -X POST -v -d '{}' -H "Content-Type: application/json"
+```
+
+### Traces
+
+```bash
+curl -H "Content-Type: application/json" -H "X-SF-Token: YOURTOKENHERE" -d '[]' -i https://ingest.eu0.signalfx.com/v2/trace
 ```
 
 ## SMART AGENT TO OTEL COLLECTOR MIGRATION REFERENCE
