@@ -39,6 +39,9 @@ terraform apply \
 
 Or you use the provided script `up` to request instances:
 
+Install the prerequisites, e.g. on Mac: `brew install terraform jq pssh`
+
+Then use the script:
 ```
 ./up 12 myproject eu-central-1
 ```
