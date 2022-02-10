@@ -6,6 +6,9 @@ STATUS_LOG=/run/cloud-init/status.json
 
 if [[ "$#" -ne 3 ]]; then
 	echo "Usage: up SLUG COUNT REGION"
+	echo "  SLUG   Short name/tag, e.g. acme. Will used to derive project name, aws tags and terraform workspace."
+	echo "  COUNT  Amount of instances, e.g. 12."
+	echo "  REGION AWS region for instances, e.g. eu-central-1."
 	exit 1
 fi
 

@@ -2,25 +2,26 @@
 
 You will need access to an AWS account to obtain both **AWS_ACCESS_KEY_ID** and **AWS_SECRET_ACCESS_KEY**.
 
-Initialize Terraform
+1. Initialize Terraform
 
-```
-terraform init -upgrade
-```
-Create environment variables for **AWS_ACCESS_KEY_ID** and **AWS_SECRET_ACCESS_KEY**
+    ```
+    terraform init -upgrade
+    ```
 
-```
-export AWS_ACCESS_KEY_ID="YOUR_AWS_ACCESS_KEY_ID"
-export AWS_SECRET_ACCESS_KEY="YOUR_AWS_SECRET_ACCESS_KEY"
-```
+1. Create environment variables for **AWS_ACCESS_KEY_ID** and **AWS_SECRET_ACCESS_KEY**
 
-Validate the environment variables are set
+    ```
+    export AWS_ACCESS_KEY_ID="YOUR_AWS_ACCESS_KEY_ID"
+    export AWS_SECRET_ACCESS_KEY="YOUR_AWS_SECRET_ACCESS_KEY"
+    ```
 
-```
-echo $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
-```
+1. Validate the environment variables are set
 
-Set the following variables:
+    ```
+    echo $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
+    ```
+
+Use the following terraform variables:
 
 - `aws_region`: Which region do you want the instances in?
 - `aws_instance_type`: What kind of instance?
@@ -36,3 +37,10 @@ terraform apply \
 -var="aws_instance_count=1"
 ```
 
+Or you use the provided script `up` to request instances:
+
+```
+./up 12 myproject eu-central-1
+```
+
+This will create a terraform workspace `o11y-for-myproject`, request 12 instances and ensure all instances have completed provisioning.
