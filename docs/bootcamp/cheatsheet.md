@@ -1,4 +1,26 @@
-# SMART AGENT and OTEL COLLECTOR COMMANDS
+# OTEL COLLECTOR and SMART AGENT COMMANDS
+
+1. The snippets assume a Splunk Observability Cloud Access Token is set as an environment variable named `ACCESS_TOKEN`.
+
+1. To run checks in a Kubernetes cluster, we recommend you use a "swiss-army knife" container like [netshoot][netshoot]:
+
+    ```bash
+    kubectl run tshoot -i --rm --restart=Never --image nicolaka/netshoot --  ACTUAL COMMAND HERE
+    ```
+
+    e.g. for a Trace connectivity check:
+
+    ```bash
+    kubectl run tshoot -i --rm --restart=Never --image nicolaka/netshoot -- curl -v -d'[]' -H'Content-Type:application/json' https://ingest.us1.signalfx.com/v2/trace
+    ```
+
+    If you already have Splunk OpenTelemetry collector installed, you can use its container and the bundled `curl`:
+
+    ```
+    kubectl exec -it $(kubectl get po -A -l 'app=splunk-otel-collector,!component' -o name) --container otel-collector -- /usr/lib/splunk-otel-collector/agent-bundle/bin/curl -v -d'[]' -H'Content-Type:application/json' https://ingest.us1.signalfx.com/v2/trace
+    ```
+
+[netshoot]: https://github.com/nicolaka/netshoot
 
 ## CONNECTIVITY CHECK
 
@@ -11,18 +33,14 @@ curl https://ingest.us1.signalfx.com/healthz
 ### Metrics
 
 ```bash
-curl -qs -H'X-SF-Token:XXXXXX' https://ingest.us1.signalfx.com/v2/datapoint -X POST -v -d '{}' -H "Content-Type: application/json"
+curl -qs -H"X-SF-Token:$ACCESS_TOKEN" https://ingest.us1.signalfx.com/v2/datapoint -X POST -v -d '{}' -H "Content-Type: application/json"
 ```
 
 ### Traces
 
 ```bash
-curl -H "Content-Type: application/json" -H "X-SF-Token: YOURTOKENHERE" -d '[]' -i https://ingest.eu0.signalfx.com/v2/trace
+curl -H "Content-Type: application/json" -H "X-SF-Token: $ACCESS_TOKEN" -d '[]' -i https://ingest.eu0.signalfx.com/v2/trace
 ```
-
-## SMART AGENT TO OTEL COLLECTOR MIGRATION REFERENCE
-
-https://github.com/signalfx/splunk-otel-collector/blob/main/docs/signalfx-smart-agent-migration.md
 
 ## SMART AGENT CHECK AGENT STATUS
 
@@ -349,9 +367,9 @@ kubectl logs deployment/nginx -c nginx-1
 ## log ingest test
 
 ```bash
-curl -v -X POST -H "Content-Type: application/json" -H "Authorization: Splunk {INGEST_TOKEN}" https://ingest.us1.signalfx.com/v1/log -d '{"event": "hello world", "fields": {"foo": "bar"}}'
+curl -v -X POST -H "Content-Type: application/json" -H "Authorization: Splunk ${ACCESS_TOKEN}" https://ingest.us1.signalfx.com/v1/log -d '{"event": "hello world", "fields": {"foo": "bar"}}'
 ```
 
 ```bash
-curl -H "Authorization: Splunk <ACCESS_TOKEN>" -H "Content-Type: application/json" https://ingest.eu0.signalfx.com/v1/log -d '{"sourcetype": "iracing", "event": "Cory into the Pits, lap 12"}'
+curl -H "Authorization: Splunk ${ACCESS_TOKEN}" -H "Content-Type: application/json" https://ingest.eu0.signalfx.com/v1/log -d '{"sourcetype": "iracing", "event": "Cory into the Pits, lap 12"}'
 ```
