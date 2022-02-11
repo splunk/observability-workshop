@@ -207,8 +207,9 @@ nav:
 #    - Basic Instrumentation: lambda/retail-orderline-I.md
 #  - Setup: lambda/setup.md
   - Observability Bootcamp:
+    - Introduction: bootcamp/index.md
     - OpenTelemetry & Get Data In:
-      - Introduction: bootcamp/lab-otel-gdi.md
+      - Introduction: bootcamp/gdi/lab-otel-gdi.md
       - Create a monolith Service: bootcamp/gdi/monolith.md
       - Add Prometheus metrics: bootcamp/gdi/prometheus.md
       - Deploy OpenTelemetry Collector in Docker: bootcamp/gdi/otel.md
@@ -219,7 +220,7 @@ nav:
       - Monitor containerized services: bootcamp/gdi/otel-container-svc.md
       - Kubernetes: bootcamp/gdi/k8s.md
     - Microservices APM:
-      - Introduction: bootcamp/lab-otel-apm.md
+      - Introduction: bootcamp/apm/lab-otel-apm.md
       - Microservices auto-instrumentation: bootcamp/apm/autoi.md
       - Instrumentation in Kubernetes: bootcamp/apm/k8s.md
       - Using OpenTelemetry instrumentation: bootcamp/apm/api.md
