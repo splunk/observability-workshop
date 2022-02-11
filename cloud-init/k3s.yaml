@@ -120,6 +120,22 @@ write_files:
       fi
       export INSTANCE
 
+      # Checkout all lab branches
+      git clone https://github.com/signalfx/observability-bootcamp /home/ubuntu/bootcamp
+      export GIT_DIR=/home/ubuntu/bootcamp/.git
+      export GIT_WORK_DIR=/home/ubuntu/bootcamp
+      git branch -a --format '%(refname:lstrip=-1)' | grep -Evi 'main|head|gh-pages' | xargs -n1 git checkout
+      # Switch to main
+      git checkout main
+      # setup milestones for diff
+      for branch in $(git branch --all | grep '^\s*remotes' | grep -v -E '(:?HEAD|master|main|gh-pages)$'); do
+          br="${branch##*/}"
+          mkdir -p /home/ubuntu/milestones/"$br"
+          git archive --format tar "$br"| tar xf - -C /home/ubuntu/milestones/"$br"/
+      done
+      unset GIT_DIR
+      unset GIT_WORK_DIR
+
 runcmd:
   # Install Helm
   - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
