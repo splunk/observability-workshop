@@ -210,21 +210,20 @@ nav:
     - Introduction: bootcamp/index.md
     - OpenTelemetry & Get Data In:
       - Introduction: bootcamp/gdi/lab-otel-gdi.md
-      - Create a monolith Service: bootcamp/gdi/monolith.md
+      - Create a Monolith Service: bootcamp/gdi/monolith.md
       - Add Prometheus metrics: bootcamp/gdi/prometheus.md
       - Deploy OpenTelemetry Collector in Docker: bootcamp/gdi/otel.md
       - Capture Prometheus metrics: bootcamp/gdi/otel-prometheus.md
       - Dockerize the Service: bootcamp/gdi/docker.md
-      - Container orchestration: bootcamp/gdi/docker-compose.md
+      - Container Orchestration: bootcamp/gdi/docker-compose.md
       - Deploy OpenTelemetry in Docker Compose: bootcamp/gdi/otel-docker-compose.md
-      - Monitor containerized services: bootcamp/gdi/otel-container-svc.md
+      - Monitor Containerized Services: bootcamp/gdi/otel-container-svc.md
       - Kubernetes: bootcamp/gdi/k8s.md
     - Microservices APM:
       - Introduction: bootcamp/apm/lab-otel-apm.md
-      - Microservices auto-instrumentation: bootcamp/apm/autoi.md
+      - Microservices Auto-instrumentation: bootcamp/apm/autoi.md
       - Instrumentation in Kubernetes: bootcamp/apm/k8s.md
-      - Using OpenTelemetry instrumentation: bootcamp/apm/api.md
-
+      - Using OpenTelemetry Instrumentation: bootcamp/apm/api.md
   - Resources:
     - Cheatsheet: resources/cheatsheet.md
     - Links: resources/index.md
