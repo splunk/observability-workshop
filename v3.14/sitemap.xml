@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/i18n/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/i18n/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/i18n/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/apm/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/apm/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/apm/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/apm/online-boutique/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/apm/online-boutique/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/apm/online-boutique/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/apm/using-apm/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/apm/using-apm/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/apm/using-apm/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/bootcamp/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/bootcamp/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/bootcamp/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/bootcamp/cheatsheet/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/bootcamp/cheatsheet/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/bootcamp/cheatsheet/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/bootcamp/apm/api/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/bootcamp/apm/api/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/bootcamp/apm/api/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/bootcamp/apm/autoi/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/bootcamp/apm/autoi/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/bootcamp/apm/autoi/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/bootcamp/apm/k8s/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/bootcamp/apm/k8s/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/bootcamp/apm/k8s/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/bootcamp/apm/lab-otel-apm/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/bootcamp/apm/lab-otel-apm/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/bootcamp/apm/lab-otel-apm/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/bootcamp/gdi/docker-compose/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/bootcamp/gdi/docker-compose/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/bootcamp/gdi/docker-compose/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/bootcamp/gdi/docker/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/bootcamp/gdi/docker/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/bootcamp/gdi/docker/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/bootcamp/gdi/k8s/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/bootcamp/gdi/k8s/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/bootcamp/gdi/k8s/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/bootcamp/gdi/lab-otel-gdi/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/bootcamp/gdi/lab-otel-gdi/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/bootcamp/gdi/lab-otel-gdi/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/bootcamp/gdi/monolith/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/bootcamp/gdi/monolith/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/bootcamp/gdi/monolith/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/bootcamp/gdi/otel-container-svc/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/bootcamp/gdi/otel-container-svc/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/bootcamp/gdi/otel-container-svc/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/bootcamp/gdi/otel-docker-compose/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/bootcamp/gdi/otel-docker-compose/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/bootcamp/gdi/otel-docker-compose/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/bootcamp/gdi/otel-prometheus/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/bootcamp/gdi/otel-prometheus/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/bootcamp/gdi/otel-prometheus/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/bootcamp/gdi/otel/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/bootcamp/gdi/otel/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/bootcamp/gdi/otel/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/bootcamp/gdi/prometheus/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/bootcamp/gdi/prometheus/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/bootcamp/gdi/prometheus/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/dashboards/adding-charts/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/dashboards/adding-charts/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/dashboards/adding-charts/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/dashboards/dashboarding/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/dashboards/dashboarding/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/dashboards/dashboarding/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/dashboards/editing/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/dashboards/editing/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/dashboards/editing/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/dashboards/filtering/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/dashboards/filtering/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/dashboards/filtering/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/dashboards/intro/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/dashboards/intro/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/dashboards/intro/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/dashboards/savingcharts/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/dashboards/savingcharts/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/dashboards/savingcharts/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/dashboards/signalflow/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/dashboards/signalflow/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/dashboards/signalflow/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/detectors/intro/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/detectors/intro/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/detectors/intro/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/detectors/muting/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/detectors/muting/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/detectors/muting/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/lambda/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/lambda/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/lambda/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/lambda/initial_run_env/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/lambda/initial_run_env/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/lambda/initial_run_env/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/lambda/retail-order-I/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/lambda/retail-order-I/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/lambda/retail-order-I/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/lambda/retail-orderline-I/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/lambda/retail-orderline-I/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/lambda/retail-orderline-I/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/lambda/setup/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/lambda/setup/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/lambda/setup/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/lambda/springboot-apm-II/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/lambda/springboot-apm-II/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/lambda/springboot-apm-II/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/lambda/springboot-apm/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/lambda/springboot-apm/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/lambda/springboot-apm/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/lambda/wip/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/lambda/wip/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/lambda/wip/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/monitoring-as-code/terraform/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/monitoring-as-code/terraform/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/monitoring-as-code/terraform/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/oncall/getting_started/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/oncall/getting_started/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/oncall/getting_started/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/oncall/getting_started/escalation/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/oncall/getting_started/escalation/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/oncall/getting_started/escalation/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/oncall/getting_started/rotations/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/oncall/getting_started/rotations/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/oncall/getting_started/rotations/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/oncall/getting_started/routing/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/oncall/getting_started/routing/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/oncall/getting_started/routing/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/oncall/getting_started/team/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/oncall/getting_started/team/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/oncall/getting_started/team/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/oncall/getting_started/user_profile/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/oncall/getting_started/user_profile/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/oncall/getting_started/user_profile/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/oncall/incident_lifecycle/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/oncall/incident_lifecycle/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/oncall/incident_lifecycle/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/oncall/incident_lifecycle/create_incidents/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/oncall/incident_lifecycle/create_incidents/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/oncall/incident_lifecycle/create_incidents/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/oncall/incident_lifecycle/manage_incidents/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/oncall/incident_lifecycle/manage_incidents/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/oncall/incident_lifecycle/manage_incidents/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/oncall/optional/detector/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/oncall/optional/detector/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/oncall/optional/detector/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/oncall/optional/multipass/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/oncall/optional/multipass/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/oncall/optional/multipass/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/oncall/optional/sfx_integrations/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/oncall/optional/sfx_integrations/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/oncall/optional/sfx_integrations/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/otel/connect-info/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/otel/connect-info/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/otel/connect-info/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/otel/intro/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/otel/intro/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/otel/intro/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/otel/k3s/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/otel/k3s/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/otel/k3s/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/otel/nginx/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/otel/nginx/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/otel/nginx/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/otel/ui/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/otel/ui/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/otel/ui/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/resources/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/resources/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/resources/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/resources/cheatsheet/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/resources/cheatsheet/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/resources/cheatsheet/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/resources/faq/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/resources/faq/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/resources/faq/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/rum/RUM-APM/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/rum/RUM-APM/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/rum/RUM-APM/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/rum/RUM-Alert/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/rum/RUM-Alert/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/rum/RUM-Alert/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/rum/RUM-Metrics/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/rum/RUM-Metrics/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/rum/RUM-Metrics/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/rum/RUM-Sessions/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/rum/RUM-Sessions/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/rum/RUM-Sessions/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/rum/RUM-Setup/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/rum/RUM-Setup/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/rum/RUM-Setup/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/rum/RUM-Tag/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/rum/RUM-Tag/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/rum/RUM-Tag/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/rum/RUM-online-boutique/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/rum/RUM-online-boutique/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/rum/RUM-online-boutique/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/rum/intro/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/rum/intro/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/rum/intro/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/servicebureau/billing-and-usage/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/servicebureau/billing-and-usage/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/servicebureau/billing-and-usage/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/servicebureau/teams/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/servicebureau/teams/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/servicebureau/teams/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/servicebureau/tokens/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/servicebureau/tokens/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/servicebureau/tokens/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/synthetics/api/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/synthetics/api/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/synthetics/api/"/>
+         
+    </url>
+    <url>
+         <loc>https://signalfx.github.io/observability-workshop/v3.14/synthetics/intro/</loc>
+         <lastmod>2022-02-16</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://signalfx.github.io/observability-workshop/v3.14/en/synthetics/intro/"/>
+         <xhtml:link rel="alternate" hreflang="ja" href="https://signalfx.github.io/observability-workshop/v3.14/ja/synthetics/intro/"/>
+         
+    </url>
+</urlset>
