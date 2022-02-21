@@ -1,4 +1,0 @@
-baseURL = 'http://example.org/'
-languageCode = 'en-us'
-title = 'Splunk Observability Workshops'
-theme = "docsy"
