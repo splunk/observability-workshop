@@ -1,0 +1,80 @@
+baseURL: 'https://signalfx.github.io/observability-workshop'
+languageCode: 'en-us'
+title: 'Splunk Observability Cloud Workshops'
+theme: docsy
+params:
+  github_repo: "https://signalfx.github.io/observability-workshop"
+  version_menu: "Releases"
+  versions:
+    - version: latest
+      url: 'https://signalfx.github.io/observability-workshop/latest/'
+    - version: v3.14
+      url: 'https://signalfx.github.io/observability-workshop/v3.14/'
+    - version: v3.12
+      url: 'https://signalfx.github.io/observability-workshop/v3.12/'
+  ui:
+    breadcrumb_disable: false
+    navbar_logo: true
+    readingtime:
+      enable: true
+  copyright: "Splunk 2022"
+
+markup:
+  highlight:
+    style: 'tango'
+  goldmark:
+    renderer:
+      unsafe: true
+
+enableGitInfo: true
+
+# contentDir: content/en
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: false
+
+languages:
+  en:
+    title: 'Splunk Observability Cloud Workshops'
+    description: Docsy does docs
+    languageName: English
+    weight: 1
+  ja:
+    title: 'Splunk Observability Cloud Workshops'
+    description: Docsy er operativsystem for skyen
+    languageName: 日本語
+    # contentDir: content/ja
+
+menu:
+  main:
+    - identifier: Home
+      name: Home
+      #pre: <i class='fa fa-heart'></i>
+      url: /
+      weight: 1
+    - identifier: SplunkIMT
+      name: Splunk IMT
+      #pre: <i class='fa fa-heart'></i>
+      url: /imt/
+      manualLinkRelref: intro.md
+      weight: 10
+    - identifier: SplunkAPM
+      name: Splunk APM
+      #pre: <i class='fa fa-heart'></i>
+      url: /apm/
+      weight: 30
+    - identifier: SplunkRUM
+      name: Splunk RUM
+      #pre: <i class='fa fa-heart'></i>
+      url: /imt/
+      weight: 40
+    - identifier: Synthetics
+      name: Synthetics
+      #pre: <i class='fa fa-heart'></i>
+      url: /imt/
+      weight: 50
+    - identifier: Resources
+      name: Resources
+      #pre: <i class='fa fa-heart'></i>
+      url: /imt/
+      weight: 60
+
