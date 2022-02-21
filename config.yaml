@@ -1,4 +1,4 @@
-baseURL: 'https://signalfx.github.io/observability-workshop'
+baseURL: '/'
 languageCode: 'en-us'
 title: 'Splunk Observability Cloud Workshops'
 theme: docsy
@@ -54,7 +54,7 @@ menu:
     - identifier: SplunkIMT
       name: Splunk IMT
       #pre: <i class='fa fa-heart'></i>
-      url: /imt/
+      url: /otel/
       manualLinkRelref: intro.md
       weight: 10
     - identifier: SplunkAPM
@@ -65,16 +65,16 @@ menu:
     - identifier: SplunkRUM
       name: Splunk RUM
       #pre: <i class='fa fa-heart'></i>
-      url: /imt/
+      url: /rum/
       weight: 40
     - identifier: Synthetics
       name: Synthetics
       #pre: <i class='fa fa-heart'></i>
-      url: /imt/
+      url: /synthetics/
       weight: 50
     - identifier: Resources
       name: Resources
       #pre: <i class='fa fa-heart'></i>
-      url: /imt/
+      url: /resources/
       weight: 60
 
