@@ -13,3 +13,4 @@ terraform.tfvars
 .terraform.lock.hcl
 tfplan
 venv/
+resources/
