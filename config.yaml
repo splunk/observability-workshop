@@ -1,6 +1,7 @@
 baseURL: '/'
 languageCode: 'en-us'
 theme: docsy
+
 params:
   github_repo: "https://signalfx.github.io/observability-workshop"
   version_menu: "Releases"
