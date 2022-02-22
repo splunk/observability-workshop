@@ -1,5 +1,9 @@
 ---
+linkTitle: Splunk IMT
 type: docs
+menu:
+  main:
+    weight: 10
 ---
 # Introduction
 
@@ -15,7 +19,7 @@ By the end of these technical workshops you will have a good understanding of so
 
 Here are the instructions on how to access you pre-configured [AWS/EC2 instance](../otel/connect-info/)
 
-![Splunk Architecture](../images/otel/architecture.png)
+![Splunk Architecture](/images/otel/architecture.png)
 
 [^1]: [Kubernetes](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/) is a portable, extensible, open-source platform for managing containerized workloads and services, that facilitates both declarative configuration and automation.
 [^2]: The OpenTelemetry Collector offers a vendor-agnostic implementation on how to receive, process and export telemetry data. In addition, it removes the need to run, operate and maintain multiple agents/collectors in order to support open-source telemetry data formats (e.g. Jaeger, Prometheus, etc.) sending to multiple open-source or commercial back-ends.

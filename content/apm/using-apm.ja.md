@@ -10,7 +10,7 @@
 
 トレースは、同じトレースIDを共有するスパンの集合体であり、アプリケーションとその構成サービスが処理する固有のトランザクションを表します。
 
-![Traces and Spans](../images/apm/trace-spans.png)
+![Traces and Spans](/images/apm/trace-spans.png)
 
 各スパンには、そのスパンでキャプチャされた操作を表す名前と、その操作がどのサービス内で行われたかを表すサービス名があります。
 
@@ -30,23 +30,23 @@
 
 これで、サービスマップが以下のスクリーンショットのように更新され、**paymentservice** の異なるバージョンが表示されていることがわかります。
 
-![Payment Service](../images/apm/paymentservice.png)
+![Payment Service](/images/apm/paymentservice.png)
 
 ## 3. タグスポットライト
 
 画面の右側にある **Tag Spotlight** をスクロールダウンし、ドロップダウンから **Top Across All Indexed Tags** を選択します。選択したら、下のスクリーンショットにあるように矢印をクリックします。
 
-![Tag Spotlight](../images/apm/tag-spotlight.png)
+![Tag Spotlight](/images/apm/tag-spotlight.png)
 
 タグスポットライトのページが表示されます。このページでは、アプリケーションの上位のタグと、それに対応するエラー率や秒間リクエスト数を確認できます。
 
 **version** スパンタグでは、バージョン `350.10` のエラー率が100%であることがわかります。また、**tenant.level** スパンタグでは、3つのテナント（Gold、Silver、Bronze）すべてにエラーがあることがわかります。
 
-![Tag Spotlight Dashboard](../images/apm/tag-spotlight-dashboard.png)
+![Tag Spotlight Dashboard](/images/apm/tag-spotlight-dashboard.png)
 
 タグスポットライトのページはインタラクティブに、目的のタグをクリックするだけでフィルタとしてタグを追加することができます。**tenant.level** の下の **gold** をクリックして、フィルターとして追加します。これを行うと、ページには **tenant.level** が **gold** のデータのみが表示されます。
 
-![Gold Tenant](../images/apm/gold-tenant.png)
+![Gold Tenant](/images/apm/gold-tenant.png)
 
 タグスポットライトは、データを分析して傾向を見極めるのに非常に便利です。Gold Tenantでは、リクエストの総数のうち55件がエラーであることがわかります。
 
@@ -54,15 +54,15 @@
 
 **paymentservice** のバージョン `350.10` からのすべてのリクエストがエラーになるというこの理論をさらに検証するために、タグセレクタを使用して、フィルタを別のテナントに変更することができます。フィルターを **gold** テナントから **silver** テナントに変更します。
 
-![Silver Tag Filter](../images/apm/silver-tag-filter.png)
+![Silver Tag Filter](/images/apm/silver-tag-filter.png)
 
 ここで、**silver** テナントのエラーのあるリクエスト数を見て、バージョン番号と相関させることで、同様の分析を行うことができます。**silver** テナントのエラー数は、バージョン `350.10` のリクエスト数と一致していることに注目してください。
 
-![Silver Tenant](../images/apm/silver-tenant.png)
+![Silver Tenant](/images/apm/silver-tenant.png)
 
 タグスポットライトでは、秒間リクエスト数やエラー率だけでなく、サービスごとのレイテンシーも見ることができます。これを行うには、レイテンシーボタンを選択し、silver テナントタグを削除することで、すべての paymentservice のレイテンシーを確認することができます。
 
-![Latency](../images/apm/latency.png)
+![Latency](/images/apm/latency.png)
 
 右端の **Clear All** の下にある X ボタンを押して、サービスマップに戻りましょう。
 
@@ -70,12 +70,12 @@
 
 「Service Requests & Errors」グラフのピンク色の線上をクリックします。選択すると、サンプルトレースのリストが表示されます。サンプルトレースの1つをクリックしてください
 
-![Example Trace](../images/apm/example-trace.png)
+![Example Trace](/images/apm/example-trace.png)
 
 スパンとともに、選択したトレースの全体が表示されます。エラーが発生したスパンは、その横に赤い！マークが表示されます。
 
-![Example Trace](../images/apm/trace-span.png)
+![Example Trace](/images/apm/trace-span.png)
 
 これらをクリックすると、そのスパンが展開され、関連するメタデータやエラーの詳細が表示されます。このエラーが401エラーによるものであることがわかります。また、「テナント」や「バージョン」などの有用な情報も表示されています。
 
-![Traces and Spans](../images/apm/trace-metadata.png)
+![Traces and Spans](/images/apm/trace-metadata.png)

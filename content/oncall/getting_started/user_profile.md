@@ -20,7 +20,7 @@ To install the Splunk On-Call app for your smartphone search your phones App Sto
 
 The publisher should be listed as VictorOps Inc.
 
-[![iPhone](../../images/oncall/app-store.svg){: .appstore}](https://apps.apple.com/us/app/victorops/id696974262){: target=_blank} [![Android](../../images/oncall/play-store.svg){: .appstore}](https://play.google.com/store/apps/details?id=com.victorops.androidclient&hl=en){: target=_blank}
+[![iPhone](..//images/oncall/app-store.svg){: .appstore}](https://apps.apple.com/us/app/victorops/id696974262){: target=_blank} [![Android](..//images/oncall/play-store.svg){: .appstore}](https://play.google.com/store/apps/details?id=com.victorops.androidclient&hl=en){: target=_blank}
 
 Configuration help guides are available:
 
@@ -49,7 +49,7 @@ The Primary Paging Policy will have defaulted to sending you an SMS assuming you
 
 We will now configure this policy into a three tier multi-stage policy similar to the image below.
 
-![Paging Policy](../../images/oncall/primary-paging-policy.png)
+![Paging Policy](..//images/oncall/primary-paging-policy.png)
 
 ### Step 1: Send a push notification
 
@@ -58,7 +58,7 @@ Click the edit policy button in the top right corner for the Primary Paging Poli
 * Send a push notification to all my devices
 * Execute the next step if I have not responded within 5 minutes
 
-![Step 1](../../images/oncall/pri-page-step1.png)
+![Step 1](..//images/oncall/pri-page-step1.png)
 
 Click **Add a Step**
 
@@ -67,7 +67,7 @@ Click **Add a Step**
 * Send an e-mail to [your email address]
 * Execute the next step if I have not responded within 5 minutes
 
-![Step 2](../../images/oncall/pri-page-step2.png)
+![Step 2](..//images/oncall/pri-page-step2.png)
 
 Click **Add a Step**
 
@@ -78,7 +78,7 @@ Click **Add a Step**
 
 Click **Save**{: .label-button .vo-ui-button} to save the policy.
 
-![Step 3](../../images/oncall/pri-page-step3.png)
+![Step 3](..//images/oncall/pri-page-step3.png)
 
 ---
 
@@ -113,7 +113,7 @@ Policy Name: Evening
   * Timezone
     * Between 7pm and 9am
 
-![Evening](../../images/oncall/evening.png)
+![Evening](..//images/oncall/evening.png)
 
 Click **Save**{: .label-button .vo-ui-button} to save the policy then add one more.
 
@@ -129,7 +129,7 @@ Policy Name: Weekend
 
 Click **Save**{: .label-button .vo-ui-button} to save the policy.
 
-![Weekends](../../images/oncall/weekends.png)
+![Weekends](..//images/oncall/weekends.png)
 
 ---
 

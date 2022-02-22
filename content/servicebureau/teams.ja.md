@@ -19,7 +19,7 @@ Observability Cloudを使用する際に、ユーザーに関連するダッシ�
 
 左上のメニューを使って割り当てられたチーム間を素早く移動したり、右側の **ALL TEAMS** ドロップダウンを使って特定のチームのダッシュボードを選択したり、隣のリンクを使って **ALL Dashboards** に素早くアクセスしたりすることができます。
 
-![Teams](../images/servicebureau/teams-homepage.png)
+![Teams](/images/servicebureau/teams-homepage.png)
 
 アラートを特定のチームにリンクすることで、チームは関心のあるアラートだけをモニターすることができます。上記の例では、現在1つのアクティブなクリティカルアラートがあります。
 
@@ -35,11 +35,11 @@ Splunk のチーム UI を使用するには、左上のハンバーガーアイ
 
 新しいチームを追加するには、**Create New Team**{: .label-button .sfx-ui-button-blue} ボタンをクリックします。これにより、**Create New Team** ダイアログが表示されます。
 
-![Add Team](../images/servicebureau/create-new-team.png){: .shadow}
+![Add Team](/images/servicebureau/create-new-team.png){: .shadow}
 
 自分の名前を検索して、名前の横にある **Add** リンクを選択して、自分自身を追加します。その結果、以下のようなダイアログが表示されるはずです。
 
-![Add Team complete](../images/servicebureau/add-to-team.png){: .shadow}
+![Add Team complete](/images/servicebureau/add-to-team.png){: .shadow}
 
 選択したユーザーを削除するには、**Remove** または **x** を押します。
 
@@ -62,7 +62,7 @@ Splunk のチーム UI を使用するには、左上のハンバーガーアイ
 
 チームごとに特定の通知ルールを設定することができます。**Notification Policy** タブをクリックすると、通知編集メニューが表示されます。
 
-![Base notification menu](../images/servicebureau/notification-policy.png)
+![Base notification menu](/images/servicebureau/notification-policy.png)
 
 デフォルトでは、システムはチームの一般的な通知ルールを設定する機能を提供します。
 
@@ -75,7 +75,7 @@ Splunk のチーム UI を使用するには、左上のハンバーガーアイ
 
 **Configure separate notification tiers for different severity alerts** をクリックすると、各アラートレベルを個別に設定できます。
 
-![Multiple Notifications](../images/servicebureau/single-policy.png)
+![Multiple Notifications](/images/servicebureau/single-policy.png)
 
 上の画像のように、異なるアラートレベルに対して異なるアラートルールを設定することができます。
 
@@ -85,6 +85,6 @@ Critical と Major は [Splunk On-Call](https://www.splunk.com/en_us/observabili
 
 Observability Cloud では、アラート通知をメールで送信するだけでなく、以下のようなサービスにアラート通知を送信するように設定することができます。
 
-![Notifications options](../images/servicebureau/integrations.png)
+![Notifications options](/images/servicebureau/integrations.png)
 
 チームの事情に合わせて、通知ルールを作成してください。

@@ -12,7 +12,7 @@
 
 事前に設定された [AWS/EC2 インスタンス](../otel/connect-info/) へのアクセス方法をご紹介します。
 
-![Splunk Architecture](../images/otel/architecture.png)
+![Splunk Architecture](/images/otel/architecture.png)
 
 [^1]: [Kubernetes](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/) は、コンテナ化されたワークロードやサービスを管理するためのポータブルで拡張可能なオープンソースのプラットフォームで、宣言的な構成と自動化の両方を促進します。
 [^2]: OpenTelemetry Collector は、遠隔測定データの受信、処理、およびエクスポートの方法について、ベンダーに依存しない実装を提供します。さらに、複数のオープンソースまたは商用バックエンドに送信するオープンソースの遠隔測定データ形式（Jaeger、Prometheusなど）をサポートするために、複数のエージェント/コレクターを実行、運用、保守する必要性を排除します。

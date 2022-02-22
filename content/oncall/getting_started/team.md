@@ -49,11 +49,11 @@ Click the **Invite User**{: .label-button .vo-ui-button} button on the right han
 
 Once all users are added to the list click the **Add User** button.
 
-![Add Team Members](../../images/oncall/add-team-members.png)
+![Add Team Members](..//images/oncall/add-team-members.png)
 
 To make a team member a Team Admin, simply click the :fontawesome-regular-edit: icon in the right hand column, pick any user and make them an Admin.
 
-![Add Admin](../../images/oncall/team-admin.png)
+![Add Admin](..//images/oncall/team-admin.png)
 
 !!! tip
     For large team management you can use the APIs to streamline this process

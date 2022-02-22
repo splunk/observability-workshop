@@ -22,13 +22,13 @@ SignalFlow には、時系列メトリックを入力とし、そのデータポ
 
 チャートビルダーで **View SignalFlow** をクリックします。
 
-![SignalFlow](../images/dashboards/view-signalflow.png)
+![SignalFlow](/images/dashboards/view-signalflow.png)
 
 作業していたチャートを構成する SignalFlow のコードが表示されます。UI内で直接 SignalFlow を編集できます。ドキュメントには、SignalFlow の関数やメソッドの[全てのリスト](https://dev.splunk.com/observability/docs/signalflow/function_method_list)が掲載されています。
 
 また、SignalFlow をコピーして、API や Terraform とやり取りする際に使用して、[Monitoring as Code](../../monitoring-as-code/) を実現することもできます。
 
-![Code](../images/dashboards/show-signalflow.png)
+![Code](/images/dashboards/show-signalflow.png)
 
 === "SignalFlow"
 
@@ -40,6 +40,6 @@ SignalFlow には、時系列メトリックを入力とし、そのデータポ
 
 **View Builder** をクリックすると、Chart **Builder** の UI に戻ります。
 
-![View Builder](../images/dashboards/view-builder.png)
+![View Builder](/images/dashboards/view-builder.png)
 
 この新しいチャートをダッシュボードに保存してみましょう!

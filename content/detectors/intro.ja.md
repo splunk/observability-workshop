@@ -17,12 +17,12 @@ Splunk Observability Cloud では、ディテクター、イベント、アラ�
 
 **Dashboards** で、前のモジュールで作成した **カスタムダッシュボードグループ** をクリックし、ダッシュボードの名前をクリックします。
 
-![Custom Dashboard Group](../images/detectors/custom-dashboard-group.png)
+![Custom Dashboard Group](/images/detectors/custom-dashboard-group.png)
 このチャートから、新しいディテクターを作成していきます。
 
 チャートが表示されたら、チャート上のベルのアイコンをクリックし、 **New Detector From Chart** をクリックします。
 
-![New Detector](../images/detectors/new-detector.png)
+![New Detector](/images/detectors/new-detector.png)
 
 **Detector Name** の横にあるテキストフィールドで、提案されたディテクター名の最初に、**あなたののイニシャル** を追加してください。
 
@@ -32,13 +32,13 @@ Splunk Observability Cloud では、ディテクター、イベント、アラ�
 
 **Create Alert Rule**{: .label-button .sfx-ui-button-blue} をクリックします。
 
-![Create Alert Rule](../images/detectors/create-alert-rule.png)
+![Create Alert Rule](/images/detectors/create-alert-rule.png)
 
 Detector ウィンドウの **Alert signal** の中で、アラートするシグナルは **Alert on** 欄に青のベルが表示されています。このベルは、どの信号がアラートの生成に使用されているかを示しています。
 
 **Proceed to Alert Condition**{: .label-button .sfx-ui-button-blue} をクリックします。
 
-![Alert Signal](../images/detectors/alert-signal.png)
+![Alert Signal](/images/detectors/alert-signal.png)
 
 ---
 
@@ -46,7 +46,7 @@ Detector ウィンドウの **Alert signal** の中で、アラートするシ�
 
 **Alert condition** で、**Static Threshold** をクリックし、**Proceed to Alert Settings**{: .label-button .sfx-ui-button-blue} をクリックしてください。
 
-![Alert Condition](../images/detectors/alert-condition.png)
+![Alert Condition](/images/detectors/alert-condition.png)
 
 **Alert Settings** で、 **Threshold** フィールドに値 **`290`** を入力します。同じウィンドウで、右上の **Time** を過去1日（**-1d**）に変更します。
 
@@ -56,7 +56,7 @@ Detector ウィンドウの **Alert signal** の中で、アラートするシ�
 
 5秒後にプレフライトチェックが開始されます。**Estimated alert count** を参照してください。現在のアラート設定に基づくと、1日に受け取るアラートの量は約 **18** でした。
 
-![Alert Threshold](../images/detectors/alert-threshold.png)
+![Alert Threshold](/images/detectors/alert-threshold.png)
 
 !!! note "プリフライトチェックについて"
     アラート条件を設定すると、UIは現在の設定に基づいて、右上に設定された時間枠（ここでは過去1日）の中で、どのくらいのアラートが発生するかを予測します。
@@ -74,13 +74,13 @@ Detector ウィンドウの **Alert signal** の中で、アラートするシ�
 
 **Alert message** の **Severity** で **Major** を選択します。
 
-![Alert Message](../images/detectors/alert-message.png)
+![Alert Message](/images/detectors/alert-message.png)
 
 **Proceed to Alert Recipients**{: .label-button .sfx-ui-button-blue} をクリックします。
 
 **Add Recipient**（受信者の追加）をクリックし、最初の選択肢として表示されているメールアドレスをクリックします。
 
-![Add Recipient](../images/detectors/add-recipient.png)
+![Add Recipient](/images/detectors/add-recipient.png)
 
 !!! note "通知先のサービス"
     これは、そのメールアドレスを入力したときと同じです。または、**E-mail...** をクリックして別のメールアドレスを入力することもできます。
@@ -95,7 +95,7 @@ Detector ウィンドウの **Alert signal** の中で、アラートするシ�
 
 **Activivate...** で **Activate Alert Rule**{: .label-button .sfx-ui-button-blue} をクリックします。
 
-![Activate Alert](../images/detectors/activate-alert.png)
+![Activate Alert](/images/detectors/activate-alert.png)
 
 アラートをより早く取得したい場合は、**Alert Settings** をクリックして、値を **`290`** から **`280`**に 下げてください。
 
@@ -103,10 +103,10 @@ Detector ウィンドウの **Alert signal** の中で、アラートするシ�
 
 トップメニューの **Alerts** にカーソルを合わせて、**Detectors** をクリックします。
 
-![Detectors](../images/detectors/detectors-menu.png)
+![Detectors](/images/detectors/detectors-menu.png)
 
 ディテクターのリストが表示されます。表示されない場合は、ブラウザを更新してください。
 
-![Detector List](../images/detectors/detectors.png)
+![Detector List](/images/detectors/detectors.png)
 
 **おめでとうございます**。最初のディテクターが作成され、起動されました。

@@ -141,7 +141,7 @@ plan コマンドだけでは、提案された変更を実際に実行はされ
 
  新しいディテクターのリストが表示され、上から出力されたプレフィックスを検索することができます。
 
-![Detectors](../images/monitoring-as-code/detectors.png)
+![Detectors](/images/monitoring-as-code/detectors.png)
 
 ## 3. 苦労して作ったもの全てを壊す
 
@@ -165,7 +165,7 @@ plan コマンドだけでは、提案された変更を実際に実行はされ
 
 _**Alerts → Detectors**_ に移動して、すべてのディテクターが削除されたことを確認してください。
 
-![Destroyed](../images/monitoring-as-code/destroy.png)
+![Destroyed](/images/monitoring-as-code/destroy.png)
 
 [^1]:
     Terraform は、インフラを安全かつ効率的に構築、変更、バージョン管理するためのツールです。Terraform は、既存の一般的なサービスプロバイダーだけでなく、様々なカスタムソリューションも管理できます。

@@ -14,7 +14,7 @@ If you have not got access to an EC2 instance with the Online Boutique installed
 
 Open your web browser and go to the Online Boutique.  (The one you previously used, or the one provided by the Workshop instructor). You will see the Non RUM Online Boutique running.
 
-![Online Boutique](../images/apm/online-boutique.png)
+![Online Boutique](/images/apm/online-boutique.png)
 
 Follow the instructions for your preferred browser below:
 
@@ -22,11 +22,11 @@ Follow the instructions for your preferred browser below:
 
 In Chrome & Firefox or Microsoft Edge you can right click on the Online-Boutique site, you will have an option to **"View Page Source"**
 
-![Chrome-see-source](../images/rum/Chrome-1.png)
+![Chrome-see-source](/images/rum/Chrome-1.png)
 
 Selecting it will show you the HTML page source code in a separate Tab.
 
-![Chrome-see-html](../images/rum/Chrome-html.png)
+![Chrome-see-html](/images/rum/Chrome-html.png)
 
 If successful you can skip to [2 -  Review the unchanged HEAD section.](../RUM-Setup/#2-review-the-unchanged-head-section)
 
@@ -34,19 +34,19 @@ If successful you can skip to [2 -  Review the unchanged HEAD section.](../RUM-S
 
 For Safari users, you may have to enable the extra menu in Safari by selecting **'Preferences'** under *Safari* in the OS X menu bar.
 
-![Safari-1](../images/rum/Safari-1.png)
+![Safari-1](/images/rum/Safari-1.png)
 
 Then in the dialog that pops up, under the **'Advanced'** pane select the checkbox that says **'Show Develop menu in menu bar. '**  and close the Dialog box.
 
-![Safari-2](../images/rum/Safari-2.png)
+![Safari-2](/images/rum/Safari-2.png)
 
 You can now right click on the Online-Boutique and you now will have an option **'Show Page Source'**.
 
-![Safari-3](../images/rum/Safari-3.png)
+![Safari-3](/images/rum/Safari-3.png)
 
 If you select that option on the Online-Boutique you will see the HTML source code as shown below:
 
-![Safari-html](../images/rum/Safari-html.png)
+![Safari-html](/images/rum/Safari-html.png)
 
 If successful you can skip to [2 -  Review the unchanged HEAD section.](../RUM-Setup/#2-review-the-unchanged-head-section)
 
@@ -56,17 +56,17 @@ For Internet Explorer 11 Users, you may have trouble with this exercise as it wi
 
 However you will be able to see the changes required by right clicking on the Online-Boutique site, you see an option to **"View Source"**
 
-![IE-1](../images/rum/IE-1.png)
+![IE-1](/images/rum/IE-1.png)
 
 If you select that option on the Online-Boutique you will see the HTML source code as shown below:
 
-![IE-2](../images/rum/IE-2.png)
+![IE-2](/images/rum/IE-2.png)
 
 ## 2 -  Review the unchanged HEAD section
 
 The changes for RUM will be placed in the HEAD section of your Web page, Below are the original lines as you should have it in your local Base version.
 
-![Online Boutique](../images/rum/ViewBase-HEAD-html.png)
+![Online Boutique](/images/rum/ViewBase-HEAD-html.png)
 
 There is no reference to the Splunk or Open Telemetry Beacon (The function that is used to send RUM Metrics and Traces )
 
@@ -80,7 +80,7 @@ We are all connecting to the extra RUM Enabled Online Boutique provided by the w
 
 The changes needed for RUM are placed in the HEAD section of the hosts Web page, Below is the hosts updated HEAD section with the changes required to enable RUM:
 
-![Online Boutique](../images/rum/ViewRUM-HEAD-html.png)
+![Online Boutique](/images/rum/ViewRUM-HEAD-html.png)
 
 The first three lines  (marked in red) have been added to the HEAD section of the host Web page to enable RUM Tracing, the last three (marked in blue) are optional and used to enable Custom RUM events.
 

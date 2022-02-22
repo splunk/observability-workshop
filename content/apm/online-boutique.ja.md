@@ -92,11 +92,11 @@ Online Boutique アプリケーションが起動していることを確認す�
 
 Splunk UI で Cluster をクリックすると、次のような画面が表示されているはずです。
 
-![back to Cluster](../images/apm/online-boutique-k8s.png)
+![back to Cluster](/images/apm/online-boutique-k8s.png)
 
 もう一度 **WORKLOADS** タブを選択すると、いくつかのデプロイメントとレプリカセットがあることがわかるはずです。
 
-![HOTROD loaded](../images/apm/online-boutique-workload.png)
+![HOTROD loaded](/images/apm/online-boutique-workload.png)
 
 ---
 
@@ -106,7 +106,7 @@ Online Boutique は、EC2インスタンスのIPアドレスの81番ポートで
 
 ウェブブラウザを開き、 `http://{==EC2-IP==}:81/` にアクセスすると、Online Boutique が起動しているのが確認できます。
 
-![Online Boutique](../images/apm/online-boutique.png)
+![Online Boutique](/images/apm/online-boutique.png)
 
 ---
 
@@ -116,13 +116,13 @@ Online Boutique のデプロイメントには、Locust が動作するコンテ
 
 Locust は、EC2インスタンスのIPアドレスの82番ポートで利用できます。ウェブブラウザで新しいタブを開き、 `http://{==EC2-IP==}:82/` にアクセスすると、Locust が動作しているのが確認できます。
 
-![Locust](../images/apm/locust.png)
+![Locust](/images/apm/locust.png)
 
 **Spawn rate** を 2 に設定し、**Start Swarming** をクリックすると、アプリケーションに緩やかな負荷がかかり続けます。
 
-![Spawn Rate](../images/apm/locust-spawn-rate.png)
+![Spawn Rate](/images/apm/locust-spawn-rate.png)
 
-![Statistics](../images/apm/locust-statistics.png)
+![Statistics](/images/apm/locust-statistics.png)
 
 ---
 
@@ -147,7 +147,7 @@ Locust は、EC2インスタンスのIPアドレスの82番ポートで利用で
 
 前のステップで見つけた Environment を選択し、「frontend」サービスを選択し、時間を「Past 15 minutes」に設定します。
 
-![APM Dashboard](../images/apm/online-boutique-service-dashboard.png)
+![APM Dashboard](/images/apm/online-boutique-service-dashboard.png)
 
 この自動生成されたダッシュボードでは、RED (Rate, Error & Duration) メトリクスを使用して、サービスの状態を監視することができます。このダッシュボードでは、パフォーマンスに関連したさまざまなチャートのほか、基盤となるホストやKubernetesポッド（該当する場合）の相関情報も提供されます。
 
@@ -159,17 +159,17 @@ Locust は、EC2インスタンスのIPアドレスの82番ポートで利用で
 
 左上のハンバーガーメニューから「APM」をクリックすると、APM Overview ダッシュボードが表示されます。
 
-![select APM](../images/apm/online-boutique-apm.png)
+![select APM](/images/apm/online-boutique-apm.png)
 
 右側の **Explore** を選択し、先ほど見つけた Environment を選択し、時間を15分に設定します。これにより、自動的に生成されたOnline BoutiqueアプリケーションのDependency/Service Mapが表示されます。
 
 以下のスクリーンショットのように表示されます:
 
-![Online Boutique in APM](../images/apm/online-boutique-map.png)
+![Online Boutique in APM](/images/apm/online-boutique-map.png)
 
 ページの下部にある凡例では、依存関係/サービスマップでの表記について説明しています。
 
-![APM Legend](../images/apm/apm-legend.png){: : .shadow .zoom}
+![APM Legend](/images/apm/apm-legend.png){: : .shadow .zoom}
 
 * サービスリクエスト、エラーレート、ルートエラーレート。
 * リクエストレート、レイテンシー、エラーレート
@@ -182,7 +182,7 @@ Open Telemetery Collector がデプロイされると、プラットフォーム
 
 左上のハンバーガーメニューから、 **Dashboards → OpenTelemetry Collector** を選択し、メトリクスとスパンが送信されていることを確認しましょう。
 
-![OpenTelemetry Collector dashboard](../images/apm/otel-dashboard.png)
+![OpenTelemetry Collector dashboard](/images/apm/otel-dashboard.png)
 
 ## 8. OpenTelemetry zpages
 
@@ -190,7 +190,7 @@ Open Telemetery Collector がデプロイされると、プラットフォーム
 
 [zpages]: https://github.com/open-telemetry/opentelemetry-specification/blob/main/experimental/trace/zpages.md#tracez
 
-![zpages](../images/apm/zpages.png)
+![zpages](/images/apm/zpages.png)
 
 また、シェルプロンプトから、テキストベースのブラウザを実行することもできます。
 

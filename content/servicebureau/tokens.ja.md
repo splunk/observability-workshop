@@ -14,7 +14,7 @@ UIの左上のハンバーガーをクリックして、**Organizations Settings
 
 **Usage Status** 欄は、トークンが割り当てられた制限値を上回っているか下回っているかを素早く表示します。
 
-![New token](../images/servicebureau/access-tokens.png)
+![New token](/images/servicebureau/access-tokens.png)
 
 ## 2. 新しいトークンの作成
 
@@ -22,15 +22,15 @@ UIの左上のハンバーガーをクリックして、**Organizations Settings
 
 ここでは、**Ingest Token** と **API Token** の両方のチェックボックスにチェックを入れてください。
 
-![Name Your token](../images/servicebureau/new-access-token.png){: .shadow}
+![Name Your token](/images/servicebureau/new-access-token.png){: .shadow}
 
 **OK**{: .label-button .sfx-ui-button-blue} を押すと、**Access Token** のUIに戻ります。ここでは、他の人が作成したトークンの中に、あなたの新しいトークンが表示されているはずです。
 
-![full tokenlist](../images/servicebureau/access-token-created.png)
+![full tokenlist](/images/servicebureau/access-token-created.png)
 
 名前を間違えたり、トークンを無効/有効にしたり、トークンの制限を設定したい場合は、トークンの制限の後ろにある省略記号(**...**)のメニューボタンをクリックして、トークンの管理メニューを開きます。
 
-![Show Menu](../images/servicebureau/manage-access-token.png)
+![Show Menu](/images/servicebureau/manage-access-token.png)
 
 タイプミスがあった場合は、**Rename Token** オプションを使用して、トークンの名前を修正することができます。
 
@@ -42,7 +42,7 @@ UIの左上のハンバーガーをクリックして、**Organizations Settings
 
 以下のスクリーンショットのように、トークンの行がグレーになり、無効化されたことを示しています。
 
-![Token disabled](../images/servicebureau/disable-access-token.png)
+![Token disabled](/images/servicebureau/disable-access-token.png)
 
 省略記号(**...**)のメニューボタンをクリックして、トークンの無効化と有効化を行ってください。
 
@@ -52,7 +52,7 @@ UIの左上のハンバーガーをクリックして、**Organizations Settings
 
 トークン制限管理ダイアログが表示されます。
 
-![Set Limits on token](../images/servicebureau/manage-token-limit.png){: .shadow}
+![Set Limits on token](/images/servicebureau/manage-token-limit.png){: .shadow}
 
 このダイアログでは、カテゴリごとに制限を設定することができます。
 

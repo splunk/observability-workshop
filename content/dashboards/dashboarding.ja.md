@@ -6,11 +6,11 @@
 
 ここでは、**New Text Note**{: .label-button.sfx-ui-button-grey} ボタンをクリックして、ノートを追加してみましょう。
 
-![three charts](../images/dashboards/M-MoreCharts-10.png)
+![three charts](/images/dashboards/M-MoreCharts-10.png)
 
 ノートエディターが開きます。
 
-![Notes 1](../images/dashboards/M-Notes-1.png)
+![Notes 1](/images/dashboards/M-Notes-1.png)
 
 ノートに単なるテキスト以外のものを追加できるように、Splunk ではこれらのノート/ペインで Markdown を使用できるようにしています。
 Markdown は、ウェブページでよく使われるプレーンテキストを使ってフォーマットされたテキストを作成するための軽量なマークアップ言語です。
@@ -73,11 +73,11 @@ Markdown は、ウェブページでよく使われるプレーンテキスト�
 
 ## 2. チャートの保存
 
-ノートチャートに名前を付けます。この例では、*Example text chart* としました。そして、**Save And Close**{: .label-button .sfx-ui-button-blue} ボタンを押します。
+ノートチャートに名前を付けます。この例では、*Example text chart* としました。そして、{{< labelbutton  >}}Save And Close{{< /labelbutton >}} ボタンを押します。
 
 これでダッシュボードに戻ると、メモが追加されました。
 
-![three charts and note](../images/dashboards/M-Notes-2.png)
+![three charts and note](/images/dashboards/M-Notes-2.png)
 
 ---
 
@@ -87,18 +87,18 @@ Markdown は、ウェブページでよく使われるプレーンテキスト�
 
 チャートの **上側の枠** にマウスポインタを移動すると、マウスポインタがドラッグアイコンに変わります。これで、チャートを任意の場所にドラッグすることができます。
 
-![Dragging](../images/dashboards/M-Notes-4.png)
+![Dragging](/images/dashboards/M-Notes-4.png)
 
 ここでは、**Latency History**　チャートを　**Latency vs Load**　チャートの下に移動してください。
 
 チャートのサイズを変更するには、側面または底面をドラッグします。
 
-![sizing](../images/dashboards/M-Notes-5.png)
+![sizing](/images/dashboards/M-Notes-5.png)
 
 最後の練習として、ノートチャートの幅を他のチャートの3分の1程度にしてみましょう。チャートは自動的に、サポートしているサイズの1つにスナップします。他の3つのチャートの幅を、ダッシュボードの約3分の1にします。ノートを他のチャートの左側にドラッグして、他の23個のチャートに合わせてサイズを変更します。
 
 最後に、時間を -1h に設定すると、以下のようなダッシュボードになります。
 
-![TaDA!](../images/dashboards/M-Notes-6.png)
+![TaDA!](/images/dashboards/M-Notes-6.png)
 
 次は、ディテクターの登場です！

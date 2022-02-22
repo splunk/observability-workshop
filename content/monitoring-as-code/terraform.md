@@ -139,7 +139,7 @@ Once the apply has completed, validate that the detectors were created, under th
 
  You will see a list of the new detectors and you can search for the prefix that was output from above.
 
-![Detectors](../images/monitoring-as-code/detectors.png)
+![Detectors](/images/monitoring-as-code/detectors.png)
 
 ## 3. Destroy all your hard work
 
@@ -163,7 +163,7 @@ Now go and destroy all the Detectors and Dashboards that were previously applied
 
 Validate all the detectors have been removed by navigating to _**Alerts → Detectors**_
 
-![Destroyed](../images/monitoring-as-code/destroy.png)
+![Destroyed](/images/monitoring-as-code/destroy.png)
 
 [^1]:
     Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.

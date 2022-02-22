@@ -20,7 +20,7 @@ In addition to proxying spans and infrastructure metrics, the OpenTelemetry Coll
 
 The following illustration shows the recommended deployment model: Splunk's auto-instrumentation libraries send spans to the OpenTelemetry Collector; the OpenTelemetry Collector forwards the spans to Observability Cloud.
 
-![Lambda-Architecture](../images/lambda/Lambda Architecture.png)
+![Lambda-Architecture](/images/lambda/Lambda Architecture.png)
 
 ---
 

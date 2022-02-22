@@ -12,7 +12,7 @@
 
 組織内のObservability Cloudのエンゲージメントを完全に理解するには、左上のハンバーガーをクリックして、**Organizations Settings → Organization Overview**　を選択すると、Observability Cloud の組織がどのように使用されているかを示す以下のダッシュボードが表示されます。
 
-![Organization overview](../images/servicebureau/engagement.png)
+![Organization overview](/images/servicebureau/engagement.png)
 
 左側のメニューには、メンバーのリストが表示され、右側には、ユーザー数、チーム数、チャート数、ダッシュボード数、ダッシュボードグループの作成数、様々な成長傾向を示すチャートが表示されます。
 
@@ -28,7 +28,7 @@
 
 もしくは、左側のペインから **Billing and Usage** の項目を選択してもするのが早い方法です。
 
-![Left pane](../images/servicebureau/billing-and-usage-menu.png)
+![Left pane](/images/servicebureau/billing-and-usage-menu.png)
 
 この画面では、使用量を計算して取り込むため、読み込みに数秒かかることがあります。
 
@@ -40,7 +40,7 @@
 
 これらのカテゴリの詳細については、[Billing and Usage information](https://docs.splunk.com/Observability/admin/monitor-imm-billing-usage.html){: target=_blank} を参照してください。
 
-![Billing and Usage](../images/servicebureau/usage-charts.png)
+![Billing and Usage](/images/servicebureau/usage-charts.png)
 
 ---
 
@@ -52,13 +52,13 @@
 
 この例では、「ホスト」が25個、「コンテナ」が0個、「カスタムメトリクス」が100個、「高解像度メトリクス」が0個であることがわかります。
 
-![Billing and Usage-top](../images/servicebureau/usage-detail.png)
+![Billing and Usage-top](/images/servicebureau/usage-detail.png)
 
 下のグラフでは、現在の期間のカテゴリごとの使用量が表示されています（グラフの右上のドロップダウンボックスに表示されています）。
 
 **Average Usage** と書かれた青い線は、Observability Cloudが現在の請求期間の平均使用量を計算するために使用するものを示しています。
 
-![Billing and Usage-Bottom](../images/servicebureau/usage-trends.png)
+![Billing and Usage-Bottom](/images/servicebureau/usage-trends.png)
 
 !!! info
 
@@ -70,4 +70,4 @@
 
 最後に、右側のペインには、お客様のサブスクリプションに関する情報が表示されます。
 
-![Billing and Usage-Pane](../images/servicebureau/subscription.png)
+![Billing and Usage-Pane](/images/servicebureau/subscription.png)

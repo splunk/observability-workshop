@@ -12,7 +12,7 @@
 
 To fully understand Observability Cloud engagement inside your organization, click on the **>>** bottom left and select the **Settings → Organization Overview**, this will provide you with the following dashboard that shows you how your Observability Cloud organization is being used:
 
-![Organization overview](../images/servicebureau/engagement.png)
+![Organization overview](/images/servicebureau/engagement.png)
 
 You will see various charts that show you the number of users, teams, charts, dashboards, and dashboard groups created, as well as various growth trends. The workshop organization you're using now may have less data to work with as this is cleared down after each workshop.
 
@@ -22,7 +22,7 @@ Take a minute to explore the various charts in the Organization Overview of this
 
 If you want to see what your usage is against your contract you can select **Billing and Usage**.
 
-![Left pane](../images/servicebureau/billing-and-usage-menu.png)
+![Left pane](/images/servicebureau/billing-and-usage-menu.png)
 
 This screen may take a few seconds to load whilst it calculates and pulls in the usage.
 
@@ -32,7 +32,7 @@ You will see a screen similar like the one below that will give you an overview 
 
 For more information about about these categories please refer to [Billing and Usage information](https://docs.splunk.com/Observability/admin/monitor-imm-billing-usage.html){: target=_blank}.
 
-![Billing and Usage](../images/servicebureau/usage-charts.png)
+![Billing and Usage](/images/servicebureau/usage-charts.png)
 
 ---
 
@@ -44,13 +44,13 @@ Also, your current usage of the four catagories is displayed (shown at the red l
 
 In this example you can see that there are 25 Hosts, 0 Containers and 100 Custom Metrics and 0 High Resolution Metrics.
 
-![Billing and Usage-top](../images/servicebureau/usage-detail.png)
+![Billing and Usage-top](/images/servicebureau/usage-detail.png)
 
 In the bottom chart, you can see the usage per category for the current period (shown in the drop-down box on the top right of the chart).
 
 The blue line marked **Average Usage** indicates what Observability Cloud will use to calculate your average usage for the current billing period.
 
-![Billing and Usage-Bottom](../images/servicebureau/usage-trends.png)
+![Billing and Usage-Bottom](/images/servicebureau/usage-trends.png)
 
 !!! info
 
@@ -62,4 +62,4 @@ Please take a minute to explore the different time periods & categories and thei
 
 Finally, the pane on the right shows you information about your Subscription.
 
-![Billing and Usage-Pane](../images/servicebureau/subscription.png)
+![Billing and Usage-Pane](/images/servicebureau/subscription.png)

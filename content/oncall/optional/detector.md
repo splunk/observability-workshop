@@ -30,7 +30,7 @@ Add the following lines to your variables document, then as you gather the value
 
 In the Splunk UI you can find your **Access Token** by clicking on the **Settings** icon on the top right of the Splunk UI, select **Organization Settings → Access Tokens**, expand the **Default** token, then click on **Show Token** to expose your token.
 
-![Access Token](../../images/oncall/m7-access-token.png)
+![Access Token](..//images/oncall/m7-access-token.png)
 
 Click the **Copy**{: .label-button .sfx-ui-button-blue} button to copy it you your clipboard, then paste it into the `ACCESS_TOKEN` line of your variables document.
 
@@ -48,7 +48,7 @@ Still in the Splunk UI, click on the **Settings** icon again, but this time sele
 
 The Realm can be found in the middle of the page within the Organizations section. In this example it is **us1**, but yours may be **eu0** or one of the many other SignalFx Realms.
 
-![Realm](../../images/oncall/m7-realm.png)
+![Realm](..//images/oncall/m7-realm.png)
 
 Copy it to the `REALM` line of your variables document.
 
@@ -66,7 +66,7 @@ In Splunk UI navigate to **Integrations** and use the search feature to find the
 
 Expand the **VictorOps-xxxx** configuration; if there are more than one you will be informed which one to copy by the presenter.
 
-![VictorOps Integration](../../images/oncall/m7-sfx-vo-integration-id.png)
+![VictorOps Integration](..//images/oncall/m7-sfx-vo-integration-id.png)
 
 Copy it to the `SFXVOPSID` line of your variables document.
 
@@ -248,15 +248,15 @@ In the Splunk UI go to **Alerts → Detectors** to show all the Detectors and fi
 
 Optionally - Click on **CPU Utilization is greater than 90%** to open the Alert Rule Editor to view its settings.
 
-![Detector](../../images/oncall/detector.png)
+![Detector](..//images/oncall/detector.png)
 
 A filter has been used to specifically monitor your VM using the 1st 4 characters of its name, which were randomly assigned when you created the VM.
 
-![Detector Filter](../../images/oncall/detector-filter.png)
+![Detector Filter](..//images/oncall/detector-filter.png)
 
 A **Recipient** has been configured using the VictorOps Integration and your **Routing Key** has been specified.  This is how a monitoring system such as SignalFx knows to route Alerts into VictorOps, and ensure they get routed to the correct team.
 
-![Detector Recipients](../../images/oncall/detector-recipients.png)
+![Detector Recipients](..//images/oncall/detector-recipients.png)
 
 ---
 

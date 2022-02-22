@@ -15,17 +15,17 @@
 
 このモジュールでは、次のようなチャートとダッシュボードを作成し、それをチームページに接続します。
 
-![Example Dashboard](../images/dashboards/example-dashboard.png)
+![Example Dashboard](/images/dashboards/example-dashboard.png)
 
 ---
 
 ## 2. あなたのチームのページ
 
-左上のハンバーガーメニュー ![Hamburger-menu](../images/dashboards/Hamburgermenu.png) を開き、サイドメニューから **Dashboards** を選択します。あなたはすでにチームに割り当てられているので、チームダッシュボードが表示されます。
+左上のハンバーガーメニュー ![Hamburger-menu](/images/dashboards/Hamburgermenu.png) を開き、サイドメニューから **Dashboards** を選択します。あなたはすでにチームに割り当てられているので、チームダッシュボードが表示されます。
 
 ここでは、チーム ***Observability*** を例に挙げています。実際のワークショップでは、別のチーム名かも知れません。
 
-![Team Dashboard1](../images/dashboards/team-dashboard.png)
+![Team Dashboard1](/images/dashboards/team-dashboard.png)
 
 このページには、チームメンバーの総数、チームのアクティブなアラートの数、チームに割り当てられているすべてのダッシュボードが表示されます。現在、ダッシュボードは割り当てられていませんが、この後で、あなたが作成する新しいダッシュボードをチームページに追加していきます。
 
@@ -35,7 +35,7 @@
 
 続けて、画面右上の **All Dashboards** をクリックします。事前に作成されたものも含め、利用可能なすべてのダッシュボードが表示されます。
 
-![Sample Data](../images/dashboards/sample-data.png)
+![Sample Data](/images/dashboards/sample-data.png)
 
 すでにSplunk Agentを介してCloud APIインテグレーションや他のサービスからメトリクスを受信している場合は、これらのサービスに関連するダッシュボードが表示されます。
 
@@ -49,4 +49,4 @@ Sample Charts ダッシュボードでは、ダッシュボードでチャート
 
 このダッシュボードグループのすべてのダッシュボード（**PART 1**、**PART 2**、**PART 3**、**INTRO TO SPLUNK OBSERVABILITY CLOUD**）に目を通してみてください。
 
-![Sample Charts](../images/dashboards/sample-charts.png)
+![Sample Charts](/images/dashboards/sample-charts.png)

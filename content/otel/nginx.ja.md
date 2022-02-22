@@ -9,7 +9,7 @@
 
 Splunk UI で **WORKLOADS** タブを選択して、実行中の Pod の数を確認します。これにより、クラスタ上のワークロードの概要がわかるはずです。
 
-![ワークロードエージェント](../images/otel/k8s-workloads.png)
+![ワークロードエージェント](/images/otel/k8s-workloads.png)
 
 デフォルトの Kubernetes Pod のうち、ノードごとに実行されている単一のエージェントコンテナに注目してください。この1つのコンテナが、このノードにデプロイされているすべての Pod とサービスを監視します！
 
@@ -77,11 +77,11 @@ Splunk UI を開いていれば、新しい Pod が起動し、コンテナが�
 
 Pod が実行状態に移行するまでには 20 秒程度しかかかりません。Splunk UIでは、以下のようなクラスタが表示されます。
 
-![Back to Cluster](../images/otel/cluster.png)
+![Back to Cluster](/images/otel/cluster.png)
 
 もう一度 **WORKLOADS** タブを選択すると、新しい ReplicaSet と NGINX 用のデプロイメントが追加されていることがわかります。
 
-![NGINX loaded](../images/otel/k8s-workloads-nginx.png)
+![NGINX loaded](/images/otel/k8s-workloads-nginx.png)
 
 ---
 
@@ -114,19 +114,19 @@ Pod が実行状態に移行するまでには 20 秒程度しかかかりませ
 
 EC2 インスタンスの IP アドレスの8080番ポートで Locust が利用できます。Webブラウザで新しいタブを開き、`http://{==EC2-IP==}:8080/`にアクセスすると、Locust が動作しているのが確認できます。
 
-![Locust](../images/otel/nginx-locust.png)
+![Locust](/images/otel/nginx-locust.png)
 
 **Spawn rate** を 2 に設定し、**Start Swarming** をクリックします。
 
-![Locust Spawn Rate](../images/otel/nginx-locust-spawn-rate.png)
+![Locust Spawn Rate](/images/otel/nginx-locust-spawn-rate.png)
 
 これにより、アプリケーションに緩やかな連続した負荷がかかるようになります。
 
-![Locust Statistics](../images/otel/nginx-locust-statistics.png)
+![Locust Statistics](/images/otel/nginx-locust-statistics.png)
 
 ハンバーガーメニューから **Dashboards → NGINX → NGINX Servers** を選択して、UIにメトリクスが表示されていることを確認します。**Overrides** フィルターを適用して、 `k8s.cluster.name:` に、ターミナルの　`echo $(hostname)-k3s-cluster` で返されるクラスタの名前を見つけます。
 
-![NGINXダッシュボード](../images/otel/nginx-dashboard.png)
+![NGINXダッシュボード](/images/otel/nginx-dashboard.png)
 
 [^1]: ConfigMap とは、キーと値のペアで非機密データを保存するために使用される API オブジェクトです。Pod は、環境変数、コマンドライン引数、またはボリューム内の構成ファイルとして ConfigMap を利用することができます。ConfigMap を使用すると、環境固有の構成をコンテナイメージから切り離すことができるため、アプリケーションの移植が容易になります。
 

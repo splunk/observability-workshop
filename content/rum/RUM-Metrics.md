@@ -7,9 +7,9 @@
 
 ## 1. RUM Overview Pages
 
-Visit and login into your Splunk IMT/APM/RUM Website. From the top left hamburger menu ![Hamburger-menu](../images/dashboards/Hamburgermenu.png) select **RUM** from the side menu. This will bring you to the RUM user interface.
+Visit and login into your Splunk IMT/APM/RUM Website. From the top left hamburger menu ![Hamburger-menu](/images/dashboards/Hamburgermenu.png) select **RUM** from the side menu. This will bring you to the RUM user interface.
 
-![RUM-1](../images/rum/RUM-1.png)
+![RUM-1](/images/rum/RUM-1.png)
 
 ## 2. RUM Browser Overview
 
@@ -23,7 +23,7 @@ The RUM UI consists of 6 major sections. The first is the selection header, wher
 * A drop down list with the Various Web apps (You can use the one provided by the workshop host or use *All*)
 * ***Optionally*** a drop down to select Browser or Mobile metrics (*Might not be available in your workshop*)
 
-![RUM-Header](../images/rum/RUM-Header.png)
+![RUM-Header](/images/rum/RUM-Header.png)
 
 ### 2.2. Overview Pane
 
@@ -33,7 +33,7 @@ The **Highest P75 Page Load Times** window will show you in a quick view if the 
 
 In the example here you can see that the first page has an error due to the red square, and you can see that the load time has drastically increased by more than 8 seconds.
 
-![RUM-Top](../images/rum/RUM-TOP.png)
+![RUM-Top](/images/rum/RUM-TOP.png)
 
 You also see an overview of the number of Front end Error and Backend Errors  per minute.
 
@@ -52,7 +52,7 @@ We support **Event Request rate**, **Event Error Rates** and **Event Latency** m
 
 These will help better understand the flow of your website and allows you increase conversions.
 
-![RUM-CustomMetrics](../images/rum/RUM-Custom-Events.png)
+![RUM-CustomMetrics](/images/rum/RUM-Custom-Events.png)
 
 ### 2.4. Key Metrics Pane
 
@@ -60,7 +60,7 @@ The Key Metrics View is the location where you will find the metrics for the num
 **Frontend Errors** per second, **Endpoint Errors** per second an the **Endpoint Latency**.
 These Metrics are very useful to guide you to the location of an issue if you are experiencing problems with your site.
 
-![RUM-KeyMetrics](../images/rum/RUM-Key-Metrics.png)
+![RUM-KeyMetrics](/images/rum/RUM-Key-Metrics.png)
 
 ### 2.5. Web Vitals Pane
 
@@ -71,7 +71,7 @@ Web Vitals is an initiative by Google to provide unified guidance for quality si
 * First Input Delay (FID): measures interactivity. To provide a good user experience, pages should have a FID of 100 milliseconds or less.
 * Cumulative Layout Shift (CLS): measures visual stability. To provide a good user experience, pages should maintain a CLS of 0.1. or less.
 
-![RUM-WebVitals](../images/rum/RUM-Web-Vitals.png)
+![RUM-WebVitals](/images/rum/RUM-Web-Vitals.png)
 
 ### 2.6. Other Metrics Pane
 
@@ -81,13 +81,13 @@ The Other Metrics Pane is the location where you find an other set of performanc
 * **Long Task Length**, a performance metric that can be used help developers to understand the bad user experience on the website, or can be an indication of a problem.
 * **Long Task Count**, A metric to indicate how often a long task occurs, again used for exploring user experiences or problem detection.
 
-![RUM-Other](../images/rum/RUM-Other.png)
+![RUM-Other](/images/rum/RUM-Other.png)
 
 ## 3. RUM Mobile Overview
 
 Splunk RUM supports Native Mobile RUM, for Apple iPhone and Android Phones. You can use this to see the End-user experience of your native Smartphone app.
 
-![RUM-Header](../images/rum/RUM-Mobile.png)
+![RUM-Header](/images/rum/RUM-Mobile.png)
 
 The above screen is to show you the various metrics and data Splunk Mobile RUM can track. For example:
 
