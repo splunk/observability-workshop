@@ -17,7 +17,17 @@ params:
     navbar_logo: true
     readingtime:
       enable: true
-  copyright: "Splunk 2022"
+  copyright: "Splunk Inc."
+  links:
+    developer:
+      - name: "GitHub"
+        url: "https://github.com/signalfx/observability-workshop"
+        icon: "fab fa-github"
+    user:
+      - name: Twitter
+        url: 'https://twitter.com/splunk'
+        icon: fab fa-twitter
+        desc: Follow us on Twitter to get the latest news!
 
 markup:
   highlight:
