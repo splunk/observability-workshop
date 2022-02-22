@@ -14,3 +14,4 @@ terraform.tfvars
 tfplan
 venv/
 resources/
+public/
