@@ -1,6 +1,6 @@
 baseURL: '/'
 languageCode: 'en-us'
-title: 'Splunk Observability Cloud Workshops'
+title: 'Splunk'
 theme: docsy
 params:
   github_repo: "https://signalfx.github.io/observability-workshop"
@@ -17,6 +17,7 @@ params:
     navbar_logo: true
     readingtime:
       enable: true
+    
   copyright: "Splunk Inc."
   links:
     developer:
@@ -44,12 +45,12 @@ defaultContentLanguageInSubdir: false
 
 languages:
   en:
-    title: 'Splunk Observability Cloud Workshops'
+    title: 'Splunk'
     description: Docsy does docs
     languageName: English
     weight: 1
   ja:
-    title: 'Splunk Observability Cloud Workshops'
+    title: 'Splunk'
     description: Docsy er operativsystem for skyen
     languageName: 日本語
     # contentDir: content/ja
@@ -61,12 +62,12 @@ menu:
       #pre: <i class='fa fa-heart'></i>
       url: /
       weight: 1
-    - identifier: SplunkIMT
-      name: Splunk IMT
-      #pre: <i class='fa fa-heart'></i>
-      url: /otel/
-      manualLinkRelref: intro.md
-      weight: 10
+#    - identifier: SplunkIMT
+#      name: Splunk IMT
+#      #pre: <i class='fa fa-heart'></i>
+#      url: /otel/
+#      manualLinkRelref: intro.md
+#      weight: 10
     - identifier: SplunkAPM
       name: Splunk APM
       #pre: <i class='fa fa-heart'></i>
@@ -82,9 +83,9 @@ menu:
       #pre: <i class='fa fa-heart'></i>
       url: /synthetics/
       weight: 50
-    - identifier: Resources
-      name: Resources
-      #pre: <i class='fa fa-heart'></i>
-      url: /resources/
-      weight: 60
+#    - identifier: Resources
+#      name: Resources
+#      #pre: <i class='fa fa-heart'></i>
+#      url: /resources/
+#      weight: 60
 
