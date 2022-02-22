@@ -1,4 +1,9 @@
-# How to connect to your workshop environment
+---
+title: How to connect to your workshop environment
+linkTitle: Initial Setup
+type: docs
+weight: 9
+---
 
 1. How to retrieve the IP address of the AWS/EC2 instance assigned to you.
 2. Connect to your instance using SSH, Putty[^1] or your web browser.

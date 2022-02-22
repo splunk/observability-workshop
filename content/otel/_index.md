@@ -1,11 +1,11 @@
 ---
+title: Introduction
 linkTitle: Splunk IMT
 type: docs
 menu:
   main:
     weight: 10
 ---
-# Introduction
 
 During this _**technical**_ Splunk Observability Cloud Infrastructure Monitoring and APM Workshop you will build out an environment based on a [lightweight](https://k3s.io/){: target=_blank} Kubernetes[^1] cluster.
 
