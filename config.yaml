@@ -1,6 +1,5 @@
 baseURL: '/'
 languageCode: 'en-us'
-title: 'Splunk'
 theme: docsy
 params:
   github_repo: "https://signalfx.github.io/observability-workshop"
@@ -45,13 +44,11 @@ defaultContentLanguageInSubdir: false
 
 languages:
   en:
-    title: 'Splunk'
-    description: Docsy does docs
+    description: Splunk Observability Workshops
     languageName: English
     weight: 1
   ja:
-    title: 'Splunk'
-    description: Docsy er operativsystem for skyen
+    description: Splunk Observability Workshops
     languageName: 日本語
     # contentDir: content/ja
 
