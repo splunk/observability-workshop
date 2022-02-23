@@ -1,5 +1,8 @@
-# Analyzing RUM Tags in the Tag Spotlight view
-
+---
+title: Analyzing RUM Tags in the Tag Spotlight view
+linkTitle: Using Tag Spotlight
+weight: 9
+---
 * Look into the Metrics views for the various endpoints and use the Tags sent via the Tag spotlight for deeper analysis
 
 ---

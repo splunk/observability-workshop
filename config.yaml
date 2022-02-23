@@ -17,6 +17,7 @@ params:
     navbar_logo: true
     readingtime:
       enable: true
+    sidebar_menu_compact: false
 
   copyright: "Splunk Inc."
   links:
@@ -75,11 +76,15 @@ menu:
       url: apm/
       manualLinkRelref: _index.md
       weight: 20
-    # - identifier: SplunkRUM
-    #   name: Splunk RUM
-    #   #pre: <i class='fa fa-heart'></i>
-    #   url: /rum/
-    #   weight: 40
+    - identifier: SplunkRUM
+      name: Splunk RUM
+      #pre: <i class='fa fa-heart'></i>
+      url: /rum/
+      weight: 40
+      manualLinkRelref: _index.md
+      cascade:
+        - _target:
+          type: docs
     # - identifier: Synthetics
     #   name: Synthetics
     #   #pre: <i class='fa fa-heart'></i>

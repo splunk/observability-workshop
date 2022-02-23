@@ -1,5 +1,8 @@
-# Showcase of RUM with the Online Boutique
-
+---
+title: Showcase of RUM with the Online Boutique
+linkTitle:  RUM Showcase
+weight: 5
+---
 * Find the Web address of your workshop hosts Online Boutique
 * Generate traffic by shopping for bargains on your workshop hosted Online Boutique web shop.
 

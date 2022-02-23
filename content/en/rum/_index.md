@@ -1,5 +1,11 @@
-# Splunk RUM, an introduction
-
+---
+title: Splunk RUM, an introduction
+linkTitle:  Splunk RUM
+weight: 1
+cascade:
+  - _target:
+    type: docs
+---
 Splunk RUM is the industry’s only end to end, full fidelity Real User Monitoring solution. It is built to optimize performance and aid in faster troubleshooting, giving you full visibility into end-user experiences.
 
 Splunk RUM allows you to identify performance problems in your web applications that impact the customer experience. We support benchmarking and measuring page performance with core web vitals. This includes but not limited to: W3C timings, the ability to identify long running tasks, along with everything that can impact your page load.

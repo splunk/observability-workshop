@@ -1,5 +1,9 @@
-# Custom Charts and Alerts based on RUM Metrics
-
+<!-- ---
+title: Custom Charts and Alerts based on RUM Metrics
+linkTitle: Alerts
+weight: 15
+hide: true
+--- -->
 * Use RUM Metrics to set up Alerts to be warned in case of an issue
 * Create a Custom Chart based on RUM Metrics
 

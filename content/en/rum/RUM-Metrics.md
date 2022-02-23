@@ -1,4 +1,7 @@
-# Analyzing RUM Metrics
+---
+title: Analyzing RUM Metrics
+weight: 7
+---
 
 * See RUM Metrics and Session information in the RUM UI
 * See correlated APM traces in the RUM & APM UI
