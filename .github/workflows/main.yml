@@ -11,7 +11,7 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v2
         with:
-          submodules: true  # Fetch Hugo themes (true OR recursive)
+          submodules: recursive # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
       - name: Setup Hugo
@@ -70,12 +70,11 @@ jobs:
           git tag -a "v$TAG" -m "Version $TAG"
           git push --follow-tags origin master || { echo 'Push failed. git pull --rebase from upstream and attempt another release.'; exit 1; }
 
-      - name: Get Submodules
-        #run: hugo --minify --destination site/v${{ steps.bumpversion.outputs.tag_name }}
-        run: cd themes/docsy && git submodule update -f --init && cd ../..
-        
+      # - name: Get Submodules
+      #   run: cd themes/docsy && git submodule update -f --init && cd ../..
+
       - name: Build
-        run: hugo --minify --destination site/v${{ steps.bumpversion.outputs.tag_name }}
+        run: hugo --minify --destination site/v${{ steps.bumpversion.outputs.tag_name }} --baseURL "$(yq .baseURL config.yaml)/observability-workshop/v${{ steps.bumpversion.outputs.tag_name }}/"
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
