@@ -11,32 +11,20 @@ jobs:
       - name: Checkout master
         uses: actions/checkout@v2
         with:
+          submodules: true
           fetch-depth: 0
           
-      - name: Set up Python 3.7
-        uses: actions/setup-python@v2
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
         with:
-          python-version: '3.x'
+          hugo-version: 'latest'
+          extended: true
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+      - name: Build
+        run: hugo --minify
         
-      - name: Bumpversion and deploy using mike
-        run: |
-          git config user.name "${GITHUB_ACTOR}"
-          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          git pull --rebase
-          FLAVOUR=minor
-          TAG=$(bumpversion --list "$FLAVOUR" | awk -F= '/new_version=/ { print $2 }')
-          awk "/Latest versions of the workshop are:/ { print; print \"- [v$TAG](https://signalfx.github.io/observability-workshop/v$TAG/)\";next }1" README.md |
-          awk "NR==1,/Latest versions of the workshop are:/{c=3} c&&c-- " > README.new.md
-          mv README.new.md README.md          
-          git fetch --tags origin
-          git add README.md
-          git commit --amend -m "Releasing v$TAG"
-          git tag -a "v$TAG" -m "Version $TAG"
-          git push --follow-tags origin master || { echo 'Push failed. git pull --rebase from upstream and attempt another release.'; exit 1; }
-          mike deploy --push --update-aliases v${TAG} latest
-          mike set-default --push latest
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
