@@ -1,4 +1,10 @@
-# Service Bureau - Lab Summary
+---
+title: Service Bureau - Lab Summary
+linkTitle: Billing and Usage
+type: docs
+weight: 1
+---
+
 
 * How to keep track of the usage of Observability Cloud in your organization
 * Learn how to keep track of spend by exploring the Billing and Usage interface

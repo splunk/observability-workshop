@@ -53,6 +53,7 @@ languages:
     #description: Splunk Observability Workshops
     languageName: 日本語
     contentDir: content/ja
+    weight: 1
 
 menu:
   main:
