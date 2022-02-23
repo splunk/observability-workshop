@@ -25,6 +25,10 @@ jobs:
         
       - name: Install autoprefixer
         run: npm install autoprefixer
+        
+      - name: npm audit fix
+        run: npm audit fix --force
+        
       - name: Build
         run: hugo
         
