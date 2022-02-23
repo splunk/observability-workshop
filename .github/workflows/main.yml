@@ -20,9 +20,11 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
-      - name: Install prereqs
-        run: npm install -g postcss-cli autoprefixer
+      - name: Install postcss
+        run: npm install postcss-cli
         
+      - name: Install autoprefixer
+        run: npm install autoprefixer
       - name: Build
         run: hugo
         
