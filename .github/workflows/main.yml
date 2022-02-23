@@ -71,7 +71,7 @@ jobs:
           git push --follow-tags origin master || { echo 'Push failed. git pull --rebase from upstream and attempt another release.'; exit 1; }
 
       - name: Build
-        run: hugo --minify --destination site/v{{ steps.bumpversion.outputs.tag_name }}
+        run: 'hugo --minify --destination site/v{{ steps.bumpversion.outputs.tag_name }}'
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
