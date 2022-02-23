@@ -8,8 +8,9 @@ assets/scss/_variables_project.scss
 
 $primary: #E20082;
 
+
 $google_font_name: "Century Gothic";
-$google_font_family: "Century+Gothic:300,300i,400,400i,700,700i";
+$google_font_family: "Century+Gothic:300,400,400i,700" !default;
 
 $enable-gradients: false;
 $enable-rounded: true;
