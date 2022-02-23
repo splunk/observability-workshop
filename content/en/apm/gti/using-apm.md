@@ -2,7 +2,7 @@
 title: Using Splunk APM
 linkTitle: Using Splunk APM
 type: docs
-weight: 2
+weight: 3
 ---
 
 * APM Overview - RED metrics
