@@ -1,5 +1,8 @@
-# Example of RUM enablement in your Website
-
+---
+title: Example of RUM enablement in your Website
+linkTitle:  Using RUM on your Website
+weight: 3
+---
 * Check the original HEAD section of your Online-boutique webpage (or use the examples here) in your browser
 * Find the Web address of your workshop hosts Online Boutique
 * Compare the changes made to the hosts Online-Boutique and compare with the base one.
