@@ -1,4 +1,4 @@
-#baseURL: 'https://rcastley.github.io/observability-workshop/'
+baseURL: 'https://rcastley.github.io/observability-workshop/'
 languageCode: 'en-us'
 theme: docsy
 
