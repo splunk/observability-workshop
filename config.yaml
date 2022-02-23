@@ -17,7 +17,7 @@ params:
     navbar_logo: true
     readingtime:
       enable: true
-    
+
   copyright: "Splunk Inc."
   links:
     developer:
@@ -60,7 +60,7 @@ menu:
     - identifier: Home
       name: Home
       #pre: <i class='fa fa-heart'></i>
-      #url: 
+      #url:
       weight: 1
       #manualLinkRelref: _index.html
     - identifier: SplunkIMT
