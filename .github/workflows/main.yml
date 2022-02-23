@@ -4,37 +4,80 @@ name: Deploy Workshop
 on: workflow_dispatch
 
 jobs:
-  build:
+  deploy:
     name: Deploy O11y Workshop
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
-      - name: Checkout master
+      - name: Checkout sources
         uses: actions/checkout@v2
         with:
-          submodules: true
-          fetch-depth: 0
-          
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: 'latest'
+          hugo-version: '0.92.2'
           extended: true
 
-      - name: Install postcss
-        run: npm install postcss-cli
-        
-      - name: Install autoprefixer
-        run: npm install autoprefixer
-        
-      - name: npm audit fix
-        run: npm audit fix --force
-        
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v2
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Cache Node dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Cache go dependencies
+        uses: actions/cache@v2
+        with:
+          path: /tmp/hugo_cache
+          key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-hugomod-
+
+      - name: Setup Docsy
+        run: npm ci
+
+      - name: Bumpversion and commit
+        id: bumpversion
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git pull --rebase
+          FLAVOUR=minor
+          TAG=$(bumpversion --list "$FLAVOUR" | awk -F= '/new_version=/ { print $2 }')
+          echo "::set-output name=tag_name::${TAG}"
+          awk "/Latest versions of the workshop are:/ { print; print \"- [v$TAG](https://signalfx.github.io/observability-workshop/v$TAG/)\";next }1" README.md |
+          awk "NR==1,/Latest versions of the workshop are:/{c=3} c&&c-- " > README.new.md
+          mv README.new.md README.md
+          git fetch --tags origin
+          git add README.md
+          git commit --amend -m "Releasing v$TAG"
+          git tag -a "v$TAG" -m "Version $TAG"
+          git push --follow-tags origin master || { echo 'Push failed. git pull --rebase from upstream and attempt another release.'; exit 1; }
+
       - name: Build
-        run: hugo
-        
+        run: hugo --minify --destination site/v${TAG}
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.ref == 'refs/heads/main' }}
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: './site{{ steps.bumpversion.outputs.tag_name }}'
+          destination_dir: 'v{{ steps.bumpversion.outputs.tag_name }}'
+          commit_message: 'Docs: Releasing {{ steps.bumpversion.outputs.tag_name }}'
