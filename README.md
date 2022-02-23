@@ -13,5 +13,5 @@ If you require the latest Smart Agent version of the Infrastructure Monitoring a
 If you are the host for the RUM workshop, please check this [README](https://github.com/signalfx/observability-workshop/blob/master/apm/microservices-demo/k8s/README.md)
 
 Latest versions of the workshop are:
+- [v3.21](https://signalfx.github.io/observability-workshop/v3.21/)
 - [v3.20](https://signalfx.github.io/observability-workshop/v3.20/)
-- [v3.19](https://signalfx.github.io/observability-workshop/v3.19/)
