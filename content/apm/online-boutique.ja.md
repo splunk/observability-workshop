@@ -7,7 +7,6 @@
 
 ---
 
-
 ## 1. Online Boutiqueをデプロイする
 
 Online BoutiqueアプリケーションをK3sにデプロイするには、以下のデプロイメントを適用します。
@@ -143,7 +142,6 @@ Locust は、EC2インスタンスのIPアドレスの82番ポートで利用で
     ```text
     bdzx-apm-env
     ```
-
 
 前のステップで見つけた Environment を選択し、「frontend」サービスを選択し、時間を「Past 15 minutes」に設定します。
 

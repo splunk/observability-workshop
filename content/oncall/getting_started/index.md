@@ -109,11 +109,11 @@ Once you are connected successfully you should see a screen similar to the one b
 
 ### Copy & Paste in browser
 
-Unlike when you are using regular SSH, *copy and paste* does require a few extra steps to complete when using a browser session. This is due to cross browser restrictions.
+Unlike when you are using regular SSH, _copy and paste_ does require a few extra steps to complete when using a browser session. This is due to cross browser restrictions.
 
 When the workshop asks you to copy instructions into your terminal, please do the following:
 
-*Copy the instruction as normal, but when ready to paste it in the web terminal, choose **Paste from browser** as show below:*
+_Copy the instruction as normal, but when ready to paste it in the web terminal, choose **Paste from browser** as show below:_
 
 ![web paste 1](..//images/intro/shellinabox-paste-browser.png)
 
