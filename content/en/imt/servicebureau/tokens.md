@@ -1,5 +1,9 @@
-# Controlling Usage - Lab Summary
-
+---
+title: Controlling Usage - Lab Summary
+linkTitle: Control Usage
+type: docs
+weight: 3
+---
 * Discover how you can restrict usage by creating separate Access Tokens and set limits.
 
 ## 1. Access Tokens

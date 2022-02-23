@@ -1,4 +1,9 @@
-# Teams - Lab Summary
+---
+title: Teams - Lab Summary
+linkTitle: Teams
+type: docs
+weight: 3
+---
 
 * Introduction to Teams
 * Create a Team and add members to Team

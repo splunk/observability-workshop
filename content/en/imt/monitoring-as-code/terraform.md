@@ -1,4 +1,9 @@
-# Monitoring as Code - Lab Summary
+---
+title: Monitoring as Code - Lab Summary
+linkTitle: Plan, Apply, Destroy
+type: docs
+weight: 1
+---
 
 * Use Terraform[^1] to manage Observability Cloud Dashboards and Detectors
 * Initialize the Terraform Splunk Provider[^2].
