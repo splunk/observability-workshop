@@ -16,3 +16,4 @@ resources/
 public/
 site/
 node_modules/
+package-lock.json
