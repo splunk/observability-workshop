@@ -30,7 +30,7 @@ This screen may take a few seconds to load whilst it calculates and pulls in the
 
 You will see a screen similar like the one below that will give you an overview of the current usage, the average usage and your entitlement per category : Hosts, Containers, Custom Metrics and High Resolution Metrics.  
 
-For more information about about these categories please refer to [Billing and Usage information](https://docs.splunk.com/Observability/admin/monitor-imm-billing-usage.html){: target=_blank}.
+For more information about about these categories please refer to [Billing and Usage information](https://docs.splunk.com/Observability/admin/monitor-imm-billing-usage.html).
 
 ![Billing and Usage](/images/servicebureau/usage-charts.png)
 

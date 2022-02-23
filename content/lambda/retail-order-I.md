@@ -14,7 +14,7 @@ Now scroll down so you have the full editor visible.
 
 ![AWS-Lambda-editor-2](/images/lambda/retailorder/retailorderedit-2.png)
 
-To enable APM, we need to import the Splunk SignalFx Lambda wrapper. We already included this for you, but you can find the details on how to set this up yourself [here](https://github.com/signalfx/lambda-python){: target=_blank}
+To enable APM, we need to import the Splunk SignalFx Lambda wrapper. We already included this for you, but you can find the details on how to set this up yourself [here](https://github.com/signalfx/lambda-python)
 
 Secondly we also import the opentracing library, we will use this later to customize the span information we send to Splunk's APM.
 

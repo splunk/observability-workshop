@@ -54,7 +54,7 @@ Next open a Terminal window and log into the EC2 instance you have been assigned
 !!! Note
     If you need help with this, here are the instructions how to access you pre-configured [AWS/EC2 instance](../../../otel/connect-info/).
 
-If you need help with this, here are the instructions on how to access you pre-configured [AWS/EC2 instance](../../../otel/connect-info/){: target=_blank}.  (If you can, open a second ssh window to you EC2 instance, as this will be useful later in the workshop)
+If you need help with this, here are the instructions on how to access you pre-configured [AWS/EC2 instance](../../../otel/connect-info/).  (If you can, open a second ssh window to you EC2 instance, as this will be useful later in the workshop)
 
 Please return here after you have successfully connected to your instance.
 

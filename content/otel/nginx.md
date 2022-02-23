@@ -132,4 +132,4 @@ Validate you are seeing those metrics in the UI by going to hamburger icon, top 
 
 [^1]: A ConfigMap is an API object used to store non-confidential data in key-value pairs. Pods can consume ConfigMaps as environment variables, command-line arguments, or as configuration files in a volume. A ConfigMap allows you to decouple environment-specific configuration from your container images, so that your applications are easily portable.
 
-[^2]: [What is Locust?](https://locust.io/){: target=_blank}
+[^2]: [What is Locust?](https://locust.io/)

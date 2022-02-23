@@ -20,12 +20,12 @@ To install the Splunk On-Call app for your smartphone search your phones App Sto
 
 The publisher should be listed as VictorOps Inc.
 
-[![iPhone](..//images/oncall/app-store.svg){: .appstore}](https://apps.apple.com/us/app/victorops/id696974262){: target=_blank} [![Android](..//images/oncall/play-store.svg){: .appstore}](https://play.google.com/store/apps/details?id=com.victorops.androidclient&hl=en){: target=_blank}
+[![iPhone](..//images/oncall/app-store.svg){: .appstore}](https://apps.apple.com/us/app/victorops/id696974262) [![Android](..//images/oncall/play-store.svg){: .appstore}](https://play.google.com/store/apps/details?id=com.victorops.androidclient&hl=en)
 
 Configuration help guides are available:
 
-* [Apple](https://help.victorops.com/knowledge-base/ios-application/){: target=_blank}
-* [Android](https://help.victorops.com/knowledge-base/android-devices-victorops/){: target=_blank}
+* [Apple](https://help.victorops.com/knowledge-base/ios-application/)
+* [Android](https://help.victorops.com/knowledge-base/android-devices-victorops/)
 
 Install the App and login, then refresh the Profile page and your device should now be listed under the devices section.
 
@@ -91,7 +91,7 @@ To cease the paging you must acknowledge the incident. Acknowledgements can occu
 * Pressing 4 during the Phone Call
 * Slack Button
 
-For more information on Notification Types, see [here](https://help.victorops.com/knowledge-base/notification-types/){: target=_blank}.
+For more information on Notification Types, see [here](https://help.victorops.com/knowledge-base/notification-types/).
 
 ---
 

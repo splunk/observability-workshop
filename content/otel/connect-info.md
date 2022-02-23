@@ -53,7 +53,7 @@ At this point you are ready to continue and [start the workshop](../../otel/k3s/
 
 ## 3. Putty (Windows)
 
-If you do not have ssh preinstalled or if you are on a Windows system,  the best option is to install putty, you can find [here](https://www.putty.org/){: target=_blank}.
+If you do not have ssh preinstalled or if you are on a Windows system,  the best option is to install putty, you can find [here](https://www.putty.org/).
 
 !!! important
     If you **cannot** install Putty, please go to [Web Browser (All)](../connect-info/#web-browser-all).

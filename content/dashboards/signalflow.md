@@ -16,7 +16,7 @@ Infrastructure Monitoring creates these computations in the Chart Builder user i
 SignalFlow includes a large library of built-in analytical functions that take a metrics time series as an input, perform computations on its datapoints, and output time series that are the result of the computation.
 
 !!! info
-    For more information on SignalFlow see [Analyze incoming data using SignalFlow](https://docs.splunk.com/Observability/references/signalflow.html){: target=_blank}.
+    For more information on SignalFlow see [Analyze incoming data using SignalFlow](https://docs.splunk.com/Observability/references/signalflow.html).
 
 ## 2. View SignalFlow
 

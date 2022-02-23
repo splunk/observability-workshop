@@ -64,7 +64,7 @@ Detector ウィンドウの **Alert signal** の中で、アラートするシ�
     すぐに、プラットフォームは現在の設定でシグナルの分析を開始し、「プリフライトチェック」と呼ばれる作業を行います。これにより、プラットフォーム内の過去のデータを使用してアラート条件をテストし、設定が妥当であり、誤って大量のアラートを発生させないようにすることができます。Splunk Observability Cloud を使用してのみ利用できるシンプルかつ非常に強力な方法で、アラートの設定から推測作業を取り除くことができます。
 
     ディテクターのプレビューについての詳細は、以下のリンクをご覧ください。
-    [Preview detector alerts](https://docs.splunk.com/Observability/alerts-detectors-notifications/preview-detector-alerts.html#nav-Preview-detector-alerts){: target=_blank}
+    [Preview detector alerts](https://docs.splunk.com/Observability/alerts-detectors-notifications/preview-detector-alerts.html#nav-Preview-detector-alerts)
 
 **Proceed to Alert Message**{: .label-button .sfx-ui-button-blue} をクリックし、次に進みます。
 

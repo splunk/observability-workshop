@@ -79,7 +79,7 @@ Splunk のチーム UI を使用するには、左上のハンバーガーアイ
 
 上の画像のように、異なるアラートレベルに対して異なるアラートルールを設定することができます。
 
-Critical と Major は [Splunk On-Call](https://www.splunk.com/en_us/observability/on-call.html){: target=_blank} インシデント管理ソリューションを使用しています。Minor のアラートはチームの Slack チャンネルに送信し、Warning と Info はメールで送信しています。
+Critical と Major は [Splunk On-Call](https://www.splunk.com/en_us/observability/on-call.html) インシデント管理ソリューションを使用しています。Minor のアラートはチームの Slack チャンネルに送信し、Warning と Info はメールで送信しています。
 
 ## 3.2 通知機能の統合
 

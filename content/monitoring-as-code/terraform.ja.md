@@ -35,7 +35,7 @@ AWS/EC2 インスタンスにログインして、`signalfx-jumpstart` ディレ
 Terraform を初期化し、Splunk Terraform Provider を最新版にアップグレードします。
 
 !!! note "SignalFx Terraform Provider のアップグレード"
-    Splunk Terraform Provider の新バージョンがリリースされるたびに、以下のコマンドを実行する必要があります。リリース情報は[GitHub](https://github.com/splunk-terraform/terraform-provider-signalfx/releases){: target=_blank}で確認できます。
+    Splunk Terraform Provider の新バージョンがリリースされるたびに、以下のコマンドを実行する必要があります。リリース情報は[GitHub](https://github.com/splunk-terraform/terraform-provider-signalfx/releases)で確認できます。
 
 === "シェルコマンド"
 

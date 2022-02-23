@@ -186,7 +186,7 @@ Open Telemetery Collector がデプロイされると、プラットフォーム
 
 ## 8. OpenTelemetry zpages
 
-送信されたトレースをデバッグするには、zpages 拡張機能を使用できます。[zpages][zpages]{: target=_blank} は OpenTelemetry Collector の一種で、トラブルシューティングや統計用のライブデータを提供します。これらは、EC2インスタンスのIPアドレスのポート `55679` で利用できます。Webブラウザで新しいタブを開き、 `http://{==EC2-IP==}:55679/debug/tracez` と入力すると、zpages の出力を見ることができます。
+送信されたトレースをデバッグするには、zpages 拡張機能を使用できます。[zpages][zpages] は OpenTelemetry Collector の一種で、トラブルシューティングや統計用のライブデータを提供します。これらは、EC2インスタンスのIPアドレスのポート `55679` で利用できます。Webブラウザで新しいタブを開き、 `http://{==EC2-IP==}:55679/debug/tracez` と入力すると、zpages の出力を見ることができます。
 
 [zpages]: https://github.com/open-telemetry/opentelemetry-specification/blob/main/experimental/trace/zpages.md#tracez
 

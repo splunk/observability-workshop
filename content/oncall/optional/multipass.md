@@ -10,9 +10,9 @@ Once the configuration of VictorOps is complete you will use this VM to trigger 
 
 ## 1. Install Multipass
 
-If you do not already have Multipass installed you can download the installer from [here](https://multipass.run/){: target=_blank}.
+If you do not already have Multipass installed you can download the installer from [here](https://multipass.run/).
 
-Users running macOS can install it using [Homebrew](https://brew.sh/){: target=_blank} by running:
+Users running macOS can install it using [Homebrew](https://brew.sh/) by running:
 
 === "Shell Command"
 

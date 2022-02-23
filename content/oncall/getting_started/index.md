@@ -19,7 +19,7 @@ If so login to that Org, then use the organisation dropdown next to your usernam
 !!! Note
     If you do not see the Organisation dropdown menu item next to your name with Observability Workshop EMEA that is OK, it simply means you only have access to a single Org so that menu is not visible to you.
 
-    If you have forgotten your password go to the [sign-in](https://portal.victorops.com/membership/#/){: target=_blank} page and use the forgotten password link to reset your password.
+    If you have forgotten your password go to the [sign-in](https://portal.victorops.com/membership/#/) page and use the forgotten password link to reset your password.
 
     ![Reset Pwd](..//images/oncall/reset-password.png){: .center}
 
@@ -59,7 +59,7 @@ At this point you are ready to [continue with the workshop](../../oncall/getting
 
 ### Putty (Windows users only)
 
-If you do not have ssh preinstalled or if you are on a Windows system,  the best option is to install putty, you can find the downloads [here](https://www.putty.org/){: target=_blank}.
+If you do not have ssh preinstalled or if you are on a Windows system,  the best option is to install putty, you can find the downloads [here](https://www.putty.org/).
 
 !!! important
     If you **cannot** install Putty, please go to [Web Browser (All)](../getting_started/#web-browser-all).
@@ -132,4 +132,4 @@ Paste the text in the text box as show, then press **OK** to complete the copy a
 
 At this point you are ready to [continue with the workshop](../../oncall/getting_started/user_profile) when instructed to do so by the instructor
 
-[^1]: [Download Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/){: target=_blank}
+[^1]: [Download Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/)

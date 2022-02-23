@@ -10,11 +10,11 @@ Terraform is used to deploy all of the resources and this module details the ste
 
 ## 1. Install Terraform
 
-Terraform is used to deploy all of the AWS infrastructure for the workshop, so needs to be installed on your machine. Instructions on how to install Terraform can be found [here](https://learn.hashicorp.com/tutorials/terraform/install-cli){: target=_blank}.
+Terraform is used to deploy all of the AWS infrastructure for the workshop, so needs to be installed on your machine. Instructions on how to install Terraform can be found [here](https://learn.hashicorp.com/tutorials/terraform/install-cli).
 
 ### Terraform AWS Authentication
 
-Once Terraform is installed, you need to configure it to authenticate with your AWS Account.  Details on AWS Authentication can be found [here](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication){: target=_blank}.
+Once Terraform is installed, you need to configure it to authenticate with your AWS Account.  Details on AWS Authentication can be found [here](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication).
 
 The AWS Authentication consists of two files, `config` and `credentials` which are typically located in the `~/.ssh` folder.
 
@@ -125,7 +125,7 @@ Then update the newly created `terraform.tfvars`starting with the AWS Variables 
 
 * `realm` specifies which Realm your Splunk Monitoring backend is deployed in
 
-* `collector_image` specifies the contributor version of the otel collector, and the latest version can be found [here](https://github.com/open-telemetry/opentelemetry-collector-contrib/releases){: target=_blank} and will need updating as new versions are released
+* `collector_image` specifies the contributor version of the otel collector, and the latest version can be found [here](https://github.com/open-telemetry/opentelemetry-collector-contrib/releases) and will need updating as new versions are released
 
 === "terraform.tfvars - Splunk Variables"
     ```

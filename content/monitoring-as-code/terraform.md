@@ -33,7 +33,7 @@ The environment variables needed should already be set from [Installation using 
 Initialize Terraform and upgrade to the latest version of the Splunk Terraform Provider
 
 !!! note "Upgrading the SignalFx Terraform Provider"
-    You will need to run the command below each time a new version of the Splunk Terraform Provider is released. You can track the releases on [GitHub](https://github.com/splunk-terraform/terraform-provider-signalfx/releases){: target=_blank}.
+    You will need to run the command below each time a new version of the Splunk Terraform Provider is released. You can track the releases on [GitHub](https://github.com/splunk-terraform/terraform-provider-signalfx/releases).
 
 === "Shell Command"
 
