@@ -69,11 +69,12 @@ menu:
       url: imt/
       manualLinkRelref: _index.md
       weight: 10
-#    - identifier: SplunkAPM
-#      name: Splunk APM
-#      #pre: <i class='fa fa-heart'></i>
-#      url: /apm/
-#      weight: 30
+    - identifier: SplunkAPM
+      name: Splunk APM
+      #pre: <i class='fa fa-heart'></i>
+      url: apm/
+      manualLinkRelref: _index.md
+      weight: 20
     # - identifier: SplunkRUM
     #   name: Splunk RUM
     #   #pre: <i class='fa fa-heart'></i>

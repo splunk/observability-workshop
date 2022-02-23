@@ -2,7 +2,7 @@
 title: Deploying the Online Boutique in K3s
 linkTitle: Deploying the Online Boutique
 type: docs
-weight: 2
+weight: 3
 ---
 
 * Deploy the Online Boutique application into Kubernetes (K3s)
