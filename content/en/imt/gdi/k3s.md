@@ -2,7 +2,7 @@
 title: Deploying the OpenTelemetry Collector in Kubernetes
 linkTitle: Deploy the OTel Collector
 type: docs
-weight: 132
+weight: 1
 ---
 
 * Use the Splunk Helm chart to install the OpenTelemetry Collector in K3s

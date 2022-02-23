@@ -1,5 +1,8 @@
-# Editing charts
-
+---
+linkTitle: Editing charts
+type: docs
+weight: 3
+---
 ## 1. Editing a chart
 
 Click on the three dots **`...`** on the **Latency histogram** chart in the **Sample Data** dashboard and then on **Open** (or you can click on the name of the chart which here is **Latency histogram**).

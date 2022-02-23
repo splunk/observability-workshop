@@ -2,7 +2,7 @@
 title: Deploying NGINX in K3s - Lab Summary
 linkTitle: Deploy and Monitor NGIX
 type: docs
-weight: 134
+weight: 3
 ---
 * Deploy a NGINX ReplicaSet into your K3s cluster and confirm the discovery of your NGINX deployment.
 * Run a load test to create metrics and confirm them streaming into Splunk Observability Cloud!

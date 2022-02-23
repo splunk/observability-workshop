@@ -67,7 +67,7 @@ menu:
       #pre: <i class='fa fa-heart'></i>
       url: imt/
       manualLinkRelref: _index.md
-      weight: 100
+      weight: 10
 #    - identifier: SplunkAPM
 #      name: Splunk APM
 #      #pre: <i class='fa fa-heart'></i>

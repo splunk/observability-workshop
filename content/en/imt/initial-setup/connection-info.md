@@ -2,7 +2,7 @@
 title: How to connect to your workshop environment
 linkTitle: Access AWS/EC2 Instance
 type: docs
-weight: 122
+weight: 1
 ---
 
 1. How to retrieve the IP address of the AWS/EC2 instance assigned to you.

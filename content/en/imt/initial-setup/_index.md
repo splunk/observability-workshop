@@ -1,6 +1,6 @@
 ---
 linkTitle: Initial Setup
 type: docs
-weight: 120
+weight: 10
 manualLinkRelref: connection-info.md
 ---

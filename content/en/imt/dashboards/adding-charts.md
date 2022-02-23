@@ -1,4 +1,9 @@
-# Adding charts to dashboards
+---
+title: Adding charts to dashboards
+linkTitle: Adding more charts
+type: docs
+weight: 11
+---
 
 Let's now save our chart.
 
