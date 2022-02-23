@@ -2,7 +2,7 @@
 title: User Interface Overview
 linkTitle: User Interface Overview
 type: docs
-weight: 104
+weight: 5
 ---
 This is the UI of Splunk Observability Cloud:
 

@@ -1,4 +1,10 @@
-# Adding Notes and Dashboard Layout
+---
+title: Adding Notes and Dashboard Layout
+linkTitle: Notes and layout
+type: docs
+weight: 13
+---
+
 
 ## 1. Adding Notes
 

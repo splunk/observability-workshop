@@ -1,7 +1,7 @@
 ---
-title: Using Filters & Formula's
-linkTitle: Filtering
+title: Using Filters & Formulas
 type: docs
+weight: 7
 ---
 
 ## 1 Creating a new chart
