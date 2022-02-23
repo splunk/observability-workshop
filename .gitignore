@@ -2,7 +2,6 @@
 .DS_Store
 site
 nohup.out
-.github
 terraform.tfstate
 terraform.tfstate.d/
 terraform.tfstate.backup
@@ -15,3 +14,5 @@ tfplan
 venv/
 resources/
 public/
+site/
+node_modules/
