@@ -66,11 +66,11 @@ menu:
 #      url: /otel/
 #      manualLinkRelref: intro.md
 #      weight: 10
-    - identifier: SplunkAPM
-      name: Splunk APM
-      #pre: <i class='fa fa-heart'></i>
-      url: /apm/
-      weight: 30
+#    - identifier: SplunkAPM
+#      name: Splunk APM
+#      #pre: <i class='fa fa-heart'></i>
+#      url: /apm/
+#      weight: 30
     - identifier: SplunkRUM
       name: Splunk RUM
       #pre: <i class='fa fa-heart'></i>

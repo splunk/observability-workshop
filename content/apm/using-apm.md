@@ -1,4 +1,9 @@
-# Using Splunk APM
+---
+title: Using Splunk APM
+linkTitle: Using Splunk APM
+type: docs
+weight: 2
+---
 
 * APM Overview - RED metrics
 * Using the Service Map

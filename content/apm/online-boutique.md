@@ -1,4 +1,9 @@
-# Deploying the Online Boutique in K3s - Lab Summary
+---
+title: Deploying the Online Boutique in K3s
+linkTitle: Deploying the Online Boutique
+type: docs
+weight: 2
+---
 
 * Deploy the Online Boutique application into Kubernetes (K3s)
 * Verify the application is running
@@ -11,16 +16,12 @@
 
 To deploy the Online Boutique application into K3s apply the deployment:
 
-=== "Using OpenTelemetry Collector"
-
-    ```text
+{{< tabpane >}}
+  {{< tab header="Deploy Online Boutique" lang="bash" >}}
     cd ~/workshop
-    kubectl apply -f apm/microservices-demo/k8s/deployment.yaml
-    ```
-
-=== "Output"
-
-    ```text
+    kubectl apply -f apm/microservices-demo/k8s/deployment.yam
+  {{< /tab >}}
+  {{< tab header="Deployment Output" lang= "bash" >}}
     deployment.apps/checkoutservice created
     service/checkoutservice created
     deployment.apps/redis-cart created
@@ -46,19 +47,16 @@ To deploy the Online Boutique application into K3s apply the deployment:
     service/shippingservice created
     deployment.apps/currencyservice created
     service/currencyservice created
-    ```
+  {{< /tab >}}
+{{< /tabpane >}}
 
 To ensure the Online Boutique application is running:
 
-=== "Get Pods"
-
-    ```text
+{{< tabpane >}}
+  {{< tab header="Get Pods" lang="bash" >}}
     kubectl get pods
-    ```
-
-=== "Output"
-
-    ```text
+  {{< /tab >}}
+  {{< tab header="Get Pods Output" lang= "bash" >}}
     NAME                                                          READY   STATUS    RESTARTS   AGE
     splunk-otel-collector-k8s-cluster-receiver-56585564cc-xclzj   1/1     Running   0          84s
     splunk-otel-collector-agent-hkshj                             1/1     Running   0          84s
@@ -76,10 +74,12 @@ To ensure the Online Boutique application is running:
     frontend-b8f747b87-4tkxn                                      1/1     Running   0          53s
     cartservice-59d5979db7-bqf64                                  1/1     Running   1          53s
     loadgenerator-57c8b84966-7nr4f                                1/1     Running   3          53s
-    ```
+  {{< /tab >}}
+{{< /tabpane >}}
 
-!!! info
-    Usually it should only take around 1min 30secs for the pods to transition into a Running state.
+{{% alert title="Info" color="info" %}}
+Usually it should only take around 1min 30secs for the pods to transition into a Running state.
+{{% /alert %}}
 
 ---
 
@@ -131,17 +131,14 @@ For this we need to know the name of your application environment. In this works
 
 To find the hostname, on the AWS/EC2 instance run the following command:
 
-=== "Shell Command"
-
-    ```text
+{{< tabpane >}}
+  {{< tab header="Echo Hostname" lang="bash" >}}
     echo $(hostname)-apm-env
-    ```
-
-=== "Output Example"
-
-    ```text
+  {{< /tab >}}
+  {{< tab header="Output Example" lang= "bash" >}}
     bdzx-apm-env
-    ```
+  {{< /tab >}}
+{{< /tabpane >}}
 
 Select your environment you found in the previous step then select the `frontend` service and set time to Past 15 minutes.
 
@@ -192,8 +189,8 @@ To debug the traces being sent you can use the zpages extension. [zpages][zpages
 
 Alternatively, from your shell prompt you can run a text based browser:
 
-=== "Shell Command"
-
-    ```
+{{< tabpane >}}
+  {{< tab header="Lynx Command" lang="bash" >}}
     lynx http://localhost:55679/debug/tracez
-    ```
+  {{< /tab >}}
+{{< /tabpane >}}
