@@ -93,13 +93,51 @@ assets/scss/_styles_project.scss
 }
 
 .td-sidebar-nav .td-sidebar-link.tree-root {
-    font-weight: 400;
-    color: #E20082;
-    border-bottom: 1px #E20082 solid;
-    margin-bottom: 1rem;
+    font-weight: 600;
+    color: #36464e;
+    border-bottom: 0px #E20082 solid;
+    margin-bottom: 0rem;
 }
 
 .td-navbar .nav-link {
     text-transform: none;
     font-weight: 400;
+}
+
+.td-sidebar-nav a:hover, a:active, a:focus {
+    color: #E20082;
+    text-decoration: none;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    font-size: 0.9rem;
+}
+
+.td-max-width-on-larger-screens {
+    @include media-breakpoint-up(lg) {
+        max-width: 95%;
+    }
+
+}
+
+.td-sidebar {
+    @include media-breakpoint-up(md) {
+        padding-top: 4rem;
+        background-color: #fff;
+        padding-right: 1rem;
+        border-right: 0px solid $td-sidebar-border-color;
+    }
+}
+
+.td-content > h1 {
+    font-weight: 300;
+    letter-spacing: -.01em;
+    color: rgba(0,0,0,.54);
+}
+
+.td-content > h2 {
+    font-weight: 300;
+    letter-spacing: -.01em;
+    font-size: 1.5625em;
 }
