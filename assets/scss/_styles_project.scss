@@ -52,6 +52,7 @@ assets/scss/_styles_project.scss
     color: #fff;
     font-weight: 400;
 }
+
 .label-button.AWS-blue {
     background-color: #0073bb;
     color: #fff;
@@ -60,6 +61,7 @@ assets/scss/_styles_project.scss
 .label-button.AWS-orange {
     background-color: #eb5f07;
 }
+
 .label-button.AWS-gray {
     background-color:#879596;
     color: #fff;
@@ -89,14 +91,21 @@ assets/scss/_styles_project.scss
 }
 
 .td-sidebar-nav a.active {
-    font-weight: 400;
+    color: #E20082;
 }
 
 .td-sidebar-nav .td-sidebar-link.tree-root {
     font-weight: 600;
-    color: #36464e;
     border-bottom: 0px #E20082 solid;
     margin-bottom: 0rem;
+}
+
+.td-sidebar-nav {
+    border-right: 1px #dee2e6 solid;
+}
+
+.td-navbar {
+    min-height: 2rem;
 }
 
 .td-navbar .nav-link {
