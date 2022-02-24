@@ -76,8 +76,7 @@ jobs:
 
       - name: Build Site
         run: |
-          BASE_URL="$(yq .baseURL config.yaml)/observability-workshop/v${{ steps.bumpversion.outputs.tag_name }}/"
-          hugo --minify --destination site/v${{ steps.bumpversion.outputs.tag_name }} --baseURL ${BASE_URL}
+          hugo --minify --destination site/v${{ steps.bumpversion.outputs.tag_name }} --baseURL https://rcastley.github.io/observability-workshop/v${{ steps.bumpversion.outputs.tag_name }}/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
