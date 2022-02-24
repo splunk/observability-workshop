@@ -1,5 +1,12 @@
-# Welcome to the Observability Bootcamp
-
+---
+title: Welcome to the Observability Bootcamp
+linkTitle: Observability Bootcamp
+weight: 1
+cascade:
+  - _target:
+    type: docs
+    hide_summary: true
+---
 We are going to work in the directory `bootcamp/service/src`.
 Your first task: Write a python app to count words in a text file.
 

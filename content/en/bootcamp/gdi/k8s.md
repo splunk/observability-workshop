@@ -1,3 +1,7 @@
+---
+title: Kubernetes
+weight: 21
+---
 The development team has started using [Kubernetes][kubernetes] for container orchestration. Switch to the provided milestone `09k8s` with the instructions from "Getting Started".
 
 Rebuild the container images for the private registry:

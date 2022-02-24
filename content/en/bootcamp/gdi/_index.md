@@ -1,5 +1,8 @@
-# Lab: OpenTelemetry & Get Data In (GDI)
-
+---
+title: 'Lab: OpenTelemetry & Get Data In (GDI)'
+linkTitle: 'OpenTelemetry & Get Data In'
+weight: 5
+---
 ## Goals
 
 1. Understand components involved for GDI, e.g.:

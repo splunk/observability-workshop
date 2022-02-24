@@ -1,3 +1,7 @@
+---
+title: Capture Prometheus metrics
+weight: 11
+---
 Add a [prometheus receiver][prom-recv] to the OpenTelemetry Collector configuration so that it captures the metrics introduced in Task 2 from the application.
 
 Hint: The hostname `host.docker.internal` allows you to access the host from within a docker container. Add

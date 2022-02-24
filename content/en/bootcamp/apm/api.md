@@ -1,3 +1,7 @@
+---
+title: Using OpenTelementry in Instrumentation
+weight: 9
+---
 The business teams want to add the service version, the customer profile that is defined by a color and the name of the analyzed file.
 
 Switch to the provided milestone `12microservices-k8s-autoi` with the instructions from "Getting Started".

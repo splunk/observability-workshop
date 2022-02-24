@@ -1,3 +1,7 @@
+---
+title: Container Orchestration
+weight: 15
+---
 The development team wants to use a containerized [redis][redis] cache to improve performance of the service.
 
 Stop any other running containers from this app or the OpenTelemetry Collector.

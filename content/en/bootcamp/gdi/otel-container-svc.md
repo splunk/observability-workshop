@@ -1,3 +1,7 @@
+---
+title: Monitor Containerized Services
+weight: 19
+---
 The development team has started using other containerized services with docker compose. Switch to the provided milestone `08docker-compose-redis` with the instructions from "Getting Started".
 
 Add the [redis monitor][redis-mon] to the OpenTelemetry Collector configuration in `collector.yaml` to get metrics from the [redis cache].
