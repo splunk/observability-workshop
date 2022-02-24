@@ -80,7 +80,7 @@ menu:
       name: Splunk RUM
       #pre: <i class='fa fa-heart'></i>
       url: /rum/
-      weight: 40
+      weight: 30
       manualLinkRelref: _index.md
       cascade:
         - _target:
