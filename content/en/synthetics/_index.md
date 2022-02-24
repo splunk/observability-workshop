@@ -17,12 +17,11 @@ With Splunk Synthetic Monitoring you can:
 - Prevent web performance issues from affecting customers with an intelligence web optimization engine
 - And improve performance of all page resources and third-party dependencies
 
-
-## Lab Overview
+## 1. Lab Overview
 
 This Lab walks your through using the [Chrome Selenium IDE](https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd?hl=en) extension to create a synthetic transaction against a Splunk demo instance and creating a Splunk Synthetic Monitoring Real Browser Check (RBC). In addition you also get to learn other Splunk Synthetic Monitoring checks like REST API checks and Uptime Checks.
 
-## Prerequisites
+## 2. Prerequisites
 
 Ensure you can login with your username and password at [https://monitoring.rigor.com](https://monitoring.rigor.com) and [https://optimization.rigor.com](https://optimization.rigor.com). Also, make sure you are assigned to your own account for example: **O11y Workshop**.
 
@@ -34,7 +33,7 @@ Add the [Chrome Selenium IDE](https://chrome.google.com/webstore/detail/selenium
 
 ![Selenium IDE](/images/synthetics/image17.png)
 
-## Using Selenium IDE
+## 3. Using Selenium IDE
 
 You can now go ahead and record a web transaction using Selenium IDE to check on [http://splunk.o11ystore.com](http://splunk.o11ystore.com).
 
@@ -75,7 +74,7 @@ Save your Selenium IDE Project to your Downloads folder as `Workshop.side`
 
 ![Save SIDE Project](/images/synthetics/save-side-project.png)
 
-## Create Real Browser Check
+## 4. Create Real Browser Check
 
 Login to Splunk Synthetic Monitoring using [https://monitoring.rigor.com](https://monitoring.rigor.com). Click on **REAL BROWSER** and click **+New**{: .label-button .sfx-ui-button-blue}.
 
@@ -154,7 +153,7 @@ Click the "**Best Practices Score**" tab. Scroll down, and review all the findin
 
 Spend some time to review the findings. Click into any line item
 
-## Create Mobile Check
+## 5. Create Mobile Check
 
 Copy the RBC you created above:
 
@@ -173,7 +172,7 @@ Test & Validate the new monitor
 !!! info "Tip"
     As you are creating the steps try using the [Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions) feature in Splunk Synthetic Monitoring. *"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
 
-## Resources
+## 6. Resources
 
 - [Getting Started With Selenium IDE](https://help.rigor.com/hc/en-us/articles/115004652007?flash_digest=b1ef7d1a07b68d5279ee5fef8adb87fb878cf010)
 
