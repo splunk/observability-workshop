@@ -74,9 +74,7 @@ jobs:
       - name: Get Submodules
         run: cd themes/docsy && git submodule update -f --init && cd ../..
 
-      - name: Set baseURL
-
-      - name: Build
+      - name: Build Site
         run: |
           BASE_URL="$(yq .baseURL config.yaml)/observability-workshop/v${{ steps.bumpversion.outputs.tag_name }}/"
           hugo --minify --destination site/v${{ steps.bumpversion.outputs.tag_name }} --baseURL ${BASE_URL}
