@@ -74,9 +74,15 @@ jobs:
       - name: Get Submodules
         run: cd themes/docsy && git submodule update -f --init && cd ../..
 
+      - name: Set baseURL
+        id: base
+        run:
+          BASE_URL="$(yq .baseURL config.yaml)/observability-workshop/v${{ steps.bumpversion.outputs.tag_name }}/"
+          echo "::set-output name=base_url::${BASE_URL}"
+
       - name: Build Site
         run: |
-          hugo --minify --destination site/v${{ steps.bumpversion.outputs.tag_name }} --baseURL https://rcastley.github.io/observability-workshop/v${{ steps.bumpversion.outputs.tag_name }}/
+          hugo --minify --destination site/v${{ steps.bumpversion.outputs.tag_name }} --baseURL ${{ steps.base.outputs.base_url }}/observability-workshop/v${{ steps.bumpversion.outputs.tag_name }}/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
