@@ -19,7 +19,7 @@ params:
   version_menu: Releases
   versions:
     - version: latest
-      url: 'https://signalfx.github.io/observability-workshop/latest/'
+      url: 'https://rcastley.github.io/observability-workshop/v3.33/'
     - version: v3.14
       url: 'https://signalfx.github.io/observability-workshop/v3.14/'
     - version: v3.12
