@@ -1,3 +1,7 @@
+---
+title: Deploy OpenTelemetry in Docker Compose
+weight: 17
+---
 Add the [OpenTelemetry Collector service definition][otel-compose] to the docker-compose setup.
 
 Rebuild the docker-compose stack and run it.

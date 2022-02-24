@@ -1,3 +1,7 @@
+---
+title: Add Prometheus metrics
+weight: 7
+---
 We need visibility into performance - let us add metrics with [Prometheus][prometheus].
 
 Install the [Python Prometheus client][py-prom] as a dependency:

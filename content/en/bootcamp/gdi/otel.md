@@ -1,3 +1,7 @@
+---
+title: Deploy OpenTelemetry in Docker
+weight: 9
+---
 You will need an access token for Splunk Observability Cloud. Set them up as environment variables:
 
 ```bash

@@ -1,3 +1,7 @@
+---
+title: Create a Monolith Service
+weight: 5
+---
 Checkout the milestone for this task. See the introduction for a brief howto.
 
 === "Shell Command"

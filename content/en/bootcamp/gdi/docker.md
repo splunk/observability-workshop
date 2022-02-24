@@ -1,3 +1,7 @@
+---
+title: Dockerize the Service
+weight: 13
+---
 Dockerize the service. Use this `Dockerfile` as a skeleton:
 
 ```docker

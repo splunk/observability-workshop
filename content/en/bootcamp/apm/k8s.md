@@ -1,3 +1,7 @@
+---
+title: Instrumentation in Kubernetes
+weight: 7
+---
 TODO Note on .env being overwritten
 
 TODO change name of environment from YOURENV to something else.

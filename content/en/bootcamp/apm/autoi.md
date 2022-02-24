@@ -1,3 +1,7 @@
+---
+title: Microservices Auto-instrumentation
+weight: 5
+---
 The development team has broken up the monolithic service into microservices baesd on the `docker-compose` setup. Switch to the provided milestone `10microservices` with the instructions from "Getting Started".
 
 Test the service with:
