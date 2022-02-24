@@ -74,7 +74,8 @@ jobs:
       #   run: cd themes/docsy && git submodule update -f --init && cd ../..
 
       - name: Build
-        run: hugo --minify --destination site/v${{ steps.bumpversion.outputs.tag_name }} --baseURL "$(yq .baseURL config.yaml)/observability-workshop/v${{ steps.bumpversion.outputs.tag_name }}/"
+        run: |
+          hugo --minify --destination site/v${{ steps.bumpversion.outputs.tag_name }} --baseURL "$(yq .baseURL config.yaml)/observability-workshop/v${{ steps.bumpversion.outputs.tag_name }}/"
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
