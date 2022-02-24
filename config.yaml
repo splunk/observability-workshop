@@ -97,3 +97,8 @@ menu:
       cascade:
         - _target:
           type: docs
+    - identifier: SplunkRUM
+      name: Splunk Synthetics
+      url: /synthetics/
+      weight: 40
+      manualLinkRelref: _index.md

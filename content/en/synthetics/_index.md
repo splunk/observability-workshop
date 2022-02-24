@@ -1,5 +1,12 @@
-# Splunk Synthetics, an Introduction
-
+---
+title: Splunk Synthetics, an Introduction
+linkTitle: Splunk Synthetics
+weight: 1
+cascade:
+  - _target:
+    type: docs
+    hide_summary: true
+---
 **Splunk Synthetic Monitoring** offers the most comprehensive and in-depth capabilities for uptime and web performance optimization as part of the only complete observability suite, Splunk Observability Cloud.
 
 Easily set up monitoring for APIs, service endpoints and end-user-experience. With Splunk Synthetic monitoring, go beyond basic uptime and performance monitoring and focus on proactively finding and fixing issues, optimizing web performance, and ensuring customers get the best user experience.
