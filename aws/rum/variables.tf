@@ -1,6 +1,6 @@
 ### Workshop Variables ###
 variable "wsversion" {
-  default = "3.32" # only set to master for testing should normally be a specific version such as 2.42
+  default = "3.33" # only set to master for testing should normally be a specific version such as 2.42
 }
 variable "k9sversion" {
   default = "v0.24.14"
