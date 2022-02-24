@@ -1,10 +1,22 @@
-baseURL: 'https://rcastley.github.io/'
-languageCode: 'en-us'
-theme: docsy
-
+baseURL: https://rcastley.github.io/
+title: ''
+contentDir: content/en
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: false
+enableMissingTranslationPlaceholders: true
+enableRobotsTXT: true
+theme:
+  - docsy
+enableGitInfo: true
 params:
-  github_repo: "https://signalfx.github.io/observability-workshop"
-  version_menu: "Releases"
+  taxonomy:
+    pygmentsCodeFences: true
+    pygmentsUseClasses: false
+    pygmentsUseClassic: false
+    pygmentsStyle: tango
+  copyright: Splunk Inc.
+  privacy_policy: ''
+  version_menu: Releases
   versions:
     - version: latest
       url: 'https://signalfx.github.io/observability-workshop/latest/'
@@ -12,14 +24,18 @@ params:
       url: 'https://signalfx.github.io/observability-workshop/v3.14/'
     - version: v3.12
       url: 'https://signalfx.github.io/observability-workshop/v3.12/'
+  url_latest_version: 'https://signalfx.github.io/observability-workshop/'
+  github_repo: 'https://github.com/signalfx/observability-workshop'
+  github_project_repo: 'https://github.com/signalfx/observability-workshop'
   ui:
     breadcrumb_disable: false
+    footer_about_disable: false
     navbar_logo: true
+    navbar_translucent_over_cover_disable: false
+    sidebar_menu_compact: false
+    sidebar_search_disable: false
     readingtime:
       enable: true
-    sidebar_menu_compact: false
-
-  copyright: "Splunk Inc."
   links:
     developer:
       - name: "GitHub"
@@ -30,69 +46,54 @@ params:
         url: 'https://twitter.com/splunk'
         icon: fab fa-twitter
         desc: Follow us on Twitter to get the latest news!
-
+permalinks:
+  blog: '/:section/:year/:month/:day/:slug/'
+imaging:
+  resampleFilter: CatmullRom
+  quality: 75
+  anchor: smart
+languages:
+  en:
+    title: ''
+    description: Splunk Observability Workshops
+    languageName: English
+    weight: 1
+  ja:
+    title: ''
+    description: Splunk の観察力ワークショップ
+    languageName: 日本語
+    weight: 2
 markup:
-  highlight:
-    style: 'tango'
   goldmark:
     renderer:
       unsafe: true
-
-enableGitInfo: true
-
-# contentDir: content/en
-defaultContentLanguage: en
-defaultContentLanguageInSubdir: false
-
-languages:
-  en:
-    #description: Splunk Observability Workshops
-    languageName: English
-    contentDir:  content/en
-    weight: 1
-  ja:
-    #description: Splunk Observability Workshops
-    languageName: 日本語
-    contentDir: content/ja
-    weight: 1
-
+  highlight:
+    style: tango
+outputs:
+  section:
+    - HTML
+    - print
+    - RSS
 menu:
   main:
     - identifier: Home
       name: Home
-      #pre: <i class='fa fa-heart'></i>
-      #url:
       weight: 1
-      #manualLinkRelref: _index.html
     - identifier: SplunkIMT
       name: Splunk IMT
-      #pre: <i class='fa fa-heart'></i>
       url: imt/
       manualLinkRelref: _index.md
       weight: 10
     - identifier: SplunkAPM
       name: Splunk APM
-      #pre: <i class='fa fa-heart'></i>
       url: apm/
       manualLinkRelref: _index.md
       weight: 20
     - identifier: SplunkRUM
       name: Splunk RUM
-      #pre: <i class='fa fa-heart'></i>
       url: /rum/
       weight: 30
       manualLinkRelref: _index.md
       cascade:
         - _target:
           type: docs
-    # - identifier: Synthetics
-    #   name: Synthetics
-    #   #pre: <i class='fa fa-heart'></i>
-    #   url: /synthetics/
-    #   weight: 50
-#    - identifier: Resources
-#      name: Resources
-#      #pre: <i class='fa fa-heart'></i>
-#      url: /resources/
-#      weight: 60
-
