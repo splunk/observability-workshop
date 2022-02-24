@@ -5,13 +5,13 @@ weight: 5
 ---
 The API Check provides a flexible way to check the functionality and performance of API endpoints. The shift toward API-first development has magnified the necessity to monitor the back-end services that provide your core front-end functionality. Whether you're interested in testing the multi-step API interactions or you want to gain visibility into the performance of your endpoints, the API Check can help you accomplish your goals.
 
-## Create a Global Variable
+## 1. Create a Global Variable
 
 View the global variable that we'll use to perform our API check. Click on **Global Variables** under **Admin Tools**. View the global variable that we'll use to make the spotify API transaction
 
 ![placeholder](/images/synthetics/image21.png)
 
-## Create an API Check
+## 2. Create an API Check
 
 Create a new API Check and name it `<your initials>` followed by Splunk REST API Check for example: **AP - Spotify API**
 
@@ -27,11 +27,11 @@ Available Variables to choose from:
 
 ![placeholder](/images/synthetics/image13.png)
 
-[**Request Step**](https://help.rigor.com/hc/en-us/articles/115004583747-API-Check-Request-Step)
+**[Request Step](https://help.rigor.com/hc/en-us/articles/115004583747-API-Check-Request-Step)**
 
 - A Request Step makes an HTTP request to some endpoint and collects data from that interaction. Unlike other check types, API Checks do not require an initial URL to start the check. All HTTP requests are configured within Request Steps.
 
-[**Extract Step**](https://help.rigor.com/hc/en-us/articles/115004582607-API-Check-Extract-Step)
+**[Extract Step](https://help.rigor.com/hc/en-us/articles/115004582607-API-Check-Extract-Step)**
 
 - An Extract Step extracts data out of JSON, XML, or HTML formatted data.
 
@@ -45,7 +45,7 @@ Available Variables to choose from:
 
 - The source can be any JSON, but most likely will come from the response body. The source could also come from a response header or can be a custom value. The source must be well-formed JSON.
 
-[**Save Step**](https://help.rigor.com/hc/en-us/articles/115004743868-API-Check-Save-Step)
+**[Save Step](https://help.rigor.com/hc/en-us/articles/115004743868-API-Check-Save-Step)**
 
 - A Save Step stores some data to be reused later in the check. To save data, supply the source and the name of the custom variable to save to. The source can be selected from the presets, including response headers, or by providing a custom value.
 
@@ -53,11 +53,11 @@ Available Variables to choose from:
 
 - It is important to remember that request variables are only available after a request is made. If you try to save a value from a request but haven't made a request yet, then an empty string will be saved.
 
-[**Assert Step**](https://help.rigor.com/hc/en-us/articles/115004742408-API-Check-Assert-Step)
+**[Assert Step](https://help.rigor.com/hc/en-us/articles/115004742408-API-Check-Assert-Step)**
 
 - An Assert Step makes an assertion on two values. To make an assertion, supply two parameters along with the comparison that you would like to perform between the two.
 
-[**Comparisons**](https://help.rigor.com/hc/en-us/articles/115004742408-API-Check-Assert-Step)
+**[Comparisons](https://help.rigor.com/hc/en-us/articles/115004742408-API-Check-Assert-Step)**
 
 - We currently support 3 types of comparisons: **string**, **numeric**, and **regular expression**.
 
@@ -69,7 +69,7 @@ Tag your API Check with Splunk and API and SAVE it
 
 ![placeholder](/images/synthetics/image4.png)
 
-## Test your REST API Check
+## 3. Test your REST API Check
 
 Press got back into the edit configuration and press 'test' at the bottom of the page to ensure there are no errors
 
@@ -87,7 +87,7 @@ Now, let's add some more functionality to the monitor. Slide the detailed window
 
 Once the steps are added, test & save the monitor.
 
-## Resources
+## 4. Resources
 
 - [How to Create an API Check](https://help.rigor.com/hc/en-us/articles/115004817308-How-to-Create-an-API-Check)
 
