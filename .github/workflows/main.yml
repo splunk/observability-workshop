@@ -77,7 +77,7 @@ jobs:
           NEW_VERSIONS=$(yq '.params.versions[] | select (.version != "latest")    | [ . ]' config.yaml | yq -o=json -I=0 '. += [{ "version": "v'"$VER"'", "url": "'${BASE_URL}/observability-workshop/v${VER}'"}] | sort_by(.version)' | jq -c --arg latest_url "$LATEST_URL" '.[-2:] | [{ version: "latest", url: $latest_url}] + .')
 
           # set new versions
-          yq -i ".params.versions=${NEW_VERSIONS}" config.yaml
+          yq -y ".params.versions=${NEW_VERSIONS}" -i config.yaml
           git add config.yaml
 
           git commit --amend -m "Releasing v$TAG"
