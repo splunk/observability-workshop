@@ -63,8 +63,8 @@ jobs:
           TAG=$(bumpversion --list "$FLAVOUR" | awk -F= '/new_version=/ { print $2 }')
           echo "::set-output name=tag_name::${TAG}"
 
-          BASE_URL="$(yq .baseURL config.yaml)/observability-workshop/v${{ steps.bumpversion.outputs.tag_name }}/"
-          echo "::set-output name=base_url::${BASE_URL}"
+          BASE_URL=$(yq .baseURL config.yaml)/observability-workshop/v${{ steps.bumpversion.outputs.tag_name }}/"
+          echo "::set-output name=base_url::${BASE_URL}
 
           awk "/Latest versions of the workshop are:/ { print; print \"- [v$TAG](https://signalfx.github.io/observability-workshop/v$TAG/)\";next }1" README.md |
           awk "NR==1,/Latest versions of the workshop are:/{c=3} c&&c-- " > README.new.md
@@ -76,8 +76,8 @@ jobs:
           # TODO BASE_URL/repo name/ver = url to version?
           # filter versions, remove latest entry, add new version, sort, limit to last two, add latest
           NEW_VERSIONS=$(yq '.params.versions[] | select (.version != "latest") | [ . ]' config.yaml \
-             | yq -o=json -I=0 ' . += [{ "version": "v'"$VER"'", "url": "'$BASE_URL/observability-workshop/v$VER'"}] | sort_by(.version)' \
-             | jq -c '.[-2:] | [{"version": "latest", "url": "'$LATEST_URL'"}] + .')
+             | yq -o=json -I=0 ' . += [{ "version": "v'"$VER"'", "url": "'"$BASE_URL/observability-workshop/v$VER"'"}] | sort_by(.version)' \
+             | jq -c '.[-2:] | [{"version": "latest", "url": "'"$LATEST_URL"'"}] + .')
 
           # set new versions
           yq e ".params.versions=$NEW_VERSIONS" -i config.yaml
@@ -90,7 +90,7 @@ jobs:
           git push --follow-tags origin master || { echo 'Push failed. git pull --rebase from upstream and attempt another release.'; exit 1; }
 
       - name: Get Submodules
-        run: cd themes/docsy && git submodule update -f --init && cd ../..
+        run: cd themes/docsy && git submodule update -f --init --jobs=6 && cd ../..
 
       - name: Build Site
         run: |
