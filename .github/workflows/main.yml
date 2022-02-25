@@ -24,6 +24,7 @@ jobs:
         uses: chrisdickinson/setup-yq@latest
         with:
           yq-version: '4.20.2'
+          yq-url: 'https://github.com/mikefarah/yq/releases/download/v{version}/yq_{platform}_{arch}'
 
       - name: Set up Python 3.7
         uses: actions/setup-python@v2
