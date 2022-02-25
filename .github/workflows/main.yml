@@ -76,8 +76,8 @@ jobs:
           # TODO BASE_URL/repo name/ver = url to version?
           # filter versions, remove latest entry, add new version, sort, limit to last two, add latest
           NEW_VERSIONS=$(yq '.params.versions[] | select (.version != "latest") | [ . ]' config.yaml \
-             | yq -o=json -I=0 ' . += [{ "version": "v'"$VER"'", "url": "'"$BASE_URL/observability-workshop/v$VER"'"}] | sort_by(.version)' \
-             | jq -c '.[-2:] | [{"version": "latest", "url": "'"$LATEST_URL"'"}] + .')
+             | yq -o=json -I=0 ' . += [{ "version": "v'"$VER"'", "url": "'$BASE_URL/observability-workshop/v$VER'"}] | sort_by(.version)' \
+             | jq -c '.[-2:] | [{"version": "latest", "url": "'$LATEST_URL'"}] + .')
 
           # set new versions
           yq e ".params.versions=$NEW_VERSIONS" -i config.yaml
