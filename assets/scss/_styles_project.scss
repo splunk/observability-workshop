@@ -120,14 +120,12 @@ assets/scss/_styles_project.scss
 
 body {
     -webkit-font-smoothing: antialiased;
-    font-size: 0.9rem;
 }
 
 .td-max-width-on-larger-screens {
     @include media-breakpoint-up(lg) {
         max-width: 95%;
     }
-
 }
 
 .td-sidebar {
