@@ -32,8 +32,9 @@ params:
     footer_about_disable: false
     navbar_logo: true
     navbar_translucent_over_cover_disable: false
-    sidebar_menu_compact: false
+    sidebar_menu_compact: true
     sidebar_search_disable: false
+    sidebar_menu_foldable: true
     readingtime:
       enable: true
   links:
@@ -76,31 +77,18 @@ outputs:
     - RSS
 menu:
   main:
-    - identifier: Home
-      name: Home
-      weight: 1
-    - identifier: imt
-      name: Splunk IMT
+    - name: Splunk IMT
       url: /imt/
-      manualLinkRelref: _index.md
       weight: 10
-    - identifier: apm
-      name: Splunk APM
+    - name: Splunk APM
       url: /apm/
-      manualLinkRelref: _index.md
       weight: 20
-    - identifier: rum
-      name: Splunk RUM
+    - name: Splunk RUM
       url: /rum/
       weight: 30
-      manualLinkRelref: _index.md
-    - identifier: synthetics
-      name: Splunk Synthetics
+    - name: Splunk Synthetics
       url: /synthetics/
       weight: 40
-      manualLinkRelref: _index.md
-    - identifier: bootcamp
-      name: Observability Bootcamp
+    - name: Observability Bootcamp
       url: /bootcamp/
       weight: 50
-      manualLinkRelref: _index.md
