@@ -22,6 +22,8 @@ jobs:
 
       - name: Setup yq
         uses: chrisdickinson/setup-yq@latest
+        with:
+          yq-version: '4.20.2'
 
       - name: Set up Python 3.7
         uses: actions/setup-python@v2
