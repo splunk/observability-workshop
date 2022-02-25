@@ -5,7 +5,7 @@ on: workflow_dispatch
 
 jobs:
   deploy:
-    name: Deploy O11y Workshop
+    name: Release new minor version
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout sources
@@ -51,16 +51,7 @@ jobs:
             ${{ runner.os }}-hugomod-
 
       - name: Setup Docsy
-        run: npm ci
-
-      - name: Dump variable
-        run: echo '${{ github.event.repository.name }}'
-
-      - name: Dump github context
-        run:   echo "$GITHUB_CONTEXT"
-        shell: bash
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: npm ci --cache .npm --prefer-offline
 
       - name: Bumpversion and commit
         id: bumpversion
@@ -85,8 +76,8 @@ jobs:
           # TODO BASE_URL/repo name/ver = url to version?
           # filter versions, remove latest entry, add new version, sort, limit to last two, add latest
           NEW_VERSIONS=$(yq '.params.versions[] | select (.version != "latest") | [ . ]' config.yaml \
-             | yq -o=json -I=0 ' . += [{ "version": "v'"$VER"'", "url": "'"$BASE_URL/observability-workshop/v$VER"'"}] | sort_by(.version)' \
-             | jq -c '.[-2:] | [{"version": "latest", "url": "'"$LATEST_URL"'"}] + .')
+             | yq -o=json -I=0 ' . += [{ "version": "v'"$VER"'", "url": "'$BASE_URL/observability-workshop/v$VER'"}] | sort_by(.version)' \
+             | jq -c '.[-2:] | [{"version": "latest", "url": "'$LATEST_URL'"}] + .')
 
           # set new versions
           yq e ".params.versions=$NEW_VERSIONS" -i config.yaml
