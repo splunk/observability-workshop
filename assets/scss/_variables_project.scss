@@ -7,7 +7,9 @@ assets/scss/_variables_project.scss
 */
 
 $primary: #E20082;
-
+$secondary: #fff;
+$info: #adb5bd;
+$light: #dee2e6;
 
 $google_font_name: "Century Gothic";
 $google_font_family: "Century+Gothic:300,400,400i,700" !default;
@@ -17,3 +19,9 @@ $enable-rounded: true;
 $enable-shadows: false;
 
 $link-color: #E20082;
+
+// Nav bar colors
+$white: #fff;
+$navbar-dark-color: rgba($white, 1);
+$navbar-dark-hover-color: rgba($white, 0.75);
+$navbar-dark-active-color: $navbar-dark-color;
