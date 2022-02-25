@@ -20,6 +20,9 @@ jobs:
           hugo-version: '0.92.2'
           extended: true
 
+      - name: Setup yq
+        uses: chrisdickinson/setup-yq@latest
+
       - name: Set up Python 3.7
         uses: actions/setup-python@v2
         with:
@@ -77,7 +80,7 @@ jobs:
           NEW_VERSIONS=$(yq '.params.versions[] | select (.version != "latest")    | [ . ]' config.yaml | yq -o=json -I=0 '. += [{ "version": "v'"$VER"'", "url": "'${BASE_URL}/observability-workshop/v${VER}'"}] | sort_by(.version)' | jq -c --arg latest_url "$LATEST_URL" '.[-2:] | [{ version: "latest", url: $latest_url}] + .')
 
           # set new versions
-          yq -y ".params.versions=${NEW_VERSIONS}" -i config.yaml
+          yq e ".params.versions=${NEW_VERSIONS}" -i config.yaml
           git add config.yaml
 
           git commit --amend -m "Releasing v$TAG"
