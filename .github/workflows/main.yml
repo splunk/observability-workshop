@@ -71,7 +71,7 @@ jobs:
 
           BASE_URL="$(yq .baseURL config.yaml)/observability-workshop/v${{ steps.bumpversion.outputs.tag_name }}/"
           
-          BASE_URL2="$(yq .baseURL config.yaml)/observability-workshop/""
+          BASE_URL2="$(yq .baseURL config.yaml)/observability-workshop/"
           echo "::set-output name=base_url::${BASE_URL2}"
           
           awk "/Latest versions of the workshop are:/ { print; print \"- [v${TAG}](https://signalfx.github.io/observability-workshop/v${TAG}/)\";next }1" README.md |
