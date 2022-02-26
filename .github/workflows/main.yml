@@ -70,8 +70,10 @@ jobs:
           echo "::set-output name=tag_name::${TAG}"
 
           BASE_URL="$(yq .baseURL config.yaml)/observability-workshop/v${{ steps.bumpversion.outputs.tag_name }}/"
-          echo "::set-output name=base_url::${BASE_URL}"
-
+          
+          BASE_URL2="$(yq .baseURL config.yaml)/observability-workshop/""
+          echo "::set-output name=base_url::${BASE_URL2}"
+          
           awk "/Latest versions of the workshop are:/ { print; print \"- [v${TAG}](https://signalfx.github.io/observability-workshop/v${TAG}/)\";next }1" README.md |
           awk "NR==1,/Latest versions of the workshop are:/{c=3} c&&c-- " > README.new.md
           mv README.new.md README.md
@@ -97,7 +99,7 @@ jobs:
 
       - name: Build Site
         run: |
-          hugo --minify --destination site/v${{ steps.bumpversion.outputs.tag_name }} --baseURL ${{ steps.bumpversion.outputs.base_url }}${{ steps.bumpversion.outputs.tag_name }}/
+          hugo --minify --destination site/v${{ steps.bumpversion.outputs.tag_name }} --baseURL ${{ steps.bumpversion.outputs.base_url }}v${{ steps.bumpversion.outputs.tag_name }}/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
