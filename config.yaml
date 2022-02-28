@@ -8,7 +8,6 @@ enableRobotsTXT: true
 theme:
   - docsy
 enableGitInfo: true
-relativeURLs: true
 params:
   taxonomy:
     pygmentsCodeFences: true
