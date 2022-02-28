@@ -20,35 +20,31 @@ You can monitoring as code to build out your visualisations, what to monitor, an
 
 Full documentation for the Splunk Terraform Provider is available [here](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs). Remaining in your AWS/EC2 instance, change into the `signalfx-jumpstart` directory
 
-=== "Shell Command"
-
-    ```text
+{{< tabpane >}}
+  {{< tab header="Change directory" lang="bash" >}}
     cd ~/signalfx-jumpstart
-    ```
+  {{< /tab >}}
+{{< /tabpane >}}
 
 The environment variables needed should already be set from [Installation using Helm](../../otel/k3s/#2-installation-using-helm). If not, create the following environment variables to use in the Terraform steps below
 
-=== "Shell Command"
-
-    ```
+{{< tabpane >}}
+  {{< tab header="Environment Variables" lang="bash" >}}
     export ACCESS_TOKEN=<replace_with_O11y-Workshop-ACCESS_token>
     export REALM=<replace_with_splunk_realm>
-    ```
+  {{< /tab >}}
+{{< /tabpane >}}
 
 Initialize Terraform and upgrade to the latest version of the Splunk Terraform Provider
 
 !!! note "Upgrading the SignalFx Terraform Provider"
     You will need to run the command below each time a new version of the Splunk Terraform Provider is released. You can track the releases on [GitHub](https://github.com/splunk-terraform/terraform-provider-signalfx/releases).
 
-=== "Shell Command"
-
-    ```text
+{{< tabpane >}}
+  {{< tab header="Initialise Terraform" lang="bash" >}}
     terraform init -upgrade
-    ```
-
-=== "Output"
-
-    ```
+  {{< /tab >}}
+  {{< tab header="Initialise Output" lang="bash" >}}
     Upgrading modules...
     - aws in modules/aws
     - azure in modules/azure
@@ -86,7 +82,8 @@ Initialize Terraform and upgrade to the latest version of the Splunk Terraform P
     If you ever set or change modules or backend configuration for Terraform,
     rerun this command to reinitialize your working directory. If you forget, other
     commands will detect it and remind you to do so if necessary.
-    ```
+  {{< /tab >}}
+{{< /tabpane >}}
 
 ## 2. Create execution plan
 
@@ -98,17 +95,14 @@ The `terraform plan` command creates an execution plan. By default, creating a p
 
 The plan command alone will not actually carry out the proposed changes, and so you can use this command to check whether the proposed changes match what you expected before you apply the changes
 
-=== "Shell Command"
-
-    ```text
+{{< tabpane >}}
+  {{< tab header="Execution Plan" lang="bash" >}}
     terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
-    ```
-
-=== "Example Output"
-
-    ```
+  {{< /tab >}}
+  {{< tab header="Execution Plan Output" lang="bash" >}}
     Plan: 92 to add, 0 to change, 0 to destroy.
-    ```
+  {{< /tab >}}
+{{< /tabpane >}}
 
 If the plan executes successfully, we can go ahead and apply:
 
@@ -122,25 +116,22 @@ The most straightforward way to use `terraform apply` is to run it without any a
 
 Due to this being a workshop it is required that the prefix is to be unique so you need to run the `terraform apply` below.
 
-=== "Shell Command"
-
-    ```text
+{{< tabpane >}}
+  {{< tab header="Apply Plan" lang="bash" >}}
     terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
-    ```
-
-=== "Example Output"
-
-    ```
+  {{< /tab >}}
+  {{< tab header="Apply Plan Output" lang="bash" >}}
     Apply complete! Resources: 92 added, 0 changed, 0 destroyed.
-    ```
+  {{< /tab >}}
+{{< /tabpane >}}
 
 Once the apply has completed, validate that the detectors were created, under the **Alerts & Detectors** and click on the **Detectors** tab. They will be prefixed by the hostname of your instance. To check the prefix value run:
 
-=== "Shell Command"
-
-    ```text
+{{< tabpane >}}
+  {{< tab header="Echo Hostname" lang="bash" >}}
     echo $(hostname)
-    ```
+  {{< /tab >}}
+{{< /tabpane >}}
 
  You will see a list of the new detectors and you can search for the prefix that was output from above.
 
@@ -154,17 +145,14 @@ While you will typically not want to destroy long-lived objects in a production 
 
 Now go and destroy all the Detectors and Dashboards that were previously applied!
 
-=== "Shell Command"
-
-    ```text
+{{< tabpane >}}
+  {{< tab header="Destroy" lang="bash" >}}
     terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
-    ```
-
-=== "Example Output"
-
-    ```
+  {{< /tab >}}
+  {{< tab header="Destroy Output" lang="bash" >}}
     Destroy complete! Resources: 92 destroyed.
-    ```
+  {{< /tab >}}
+{{< /tabpane >}}
 
 Validate all the detectors have been removed by navigating to _**Alerts → Detectors**_
 
