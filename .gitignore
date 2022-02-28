@@ -1,6 +1,6 @@
 .vscode
 .DS_Store
-site
+/site
 nohup.out
 terraform.tfstate
 terraform.tfstate.d/
@@ -11,11 +11,11 @@ secret.tfvars
 terraform.tfvars
 .terraform.lock.hcl
 tfplan
-venv/
-resources/
-public/
-site/
-node_modules/
+/venv/
+/resources/
+/public/
+/site/
+/node_modules/
 package-lock.json
 # Temporary lock file while building
 .hugo_build.lock
