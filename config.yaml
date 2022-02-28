@@ -5,6 +5,7 @@ defaultContentLanguage: en
 defaultContentLanguageInSubdir: false
 enableMissingTranslationPlaceholders: true
 enableRobotsTXT: true
+canonifyURLs: true
 theme:
   - docsy
 enableGitInfo: true
