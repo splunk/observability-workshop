@@ -19,7 +19,7 @@ To get access to the instance that you will be using in the workshop please visi
 
 Search for your AWS/EC2 instance by looking for your first  and last name name, as provided during registration for this workshop.
 
-![attendee spreadsheet](/images/intro/spreadsheet-info.png)
+![attendee spreadsheet](../images/intro/spreadsheet-info.png)
 
 You find the IP address, the SSH command (for Mac OS, Linux and the latest Windows versions) and the password to use to connect to the workshop instance.
 
@@ -35,17 +35,17 @@ Most attendees will be able to connect to the workshop by using SSH from their M
 
 To use SSH, open a terminal on your system and type `ssh ubuntu@x.x.x.x` (replacing x.x.x.x with the IP address found in Step #1).
 
-![ssh login](/images/intro/ssh-1.png)
+![ssh login](../images/intro/ssh-1.png)
 
 When prompted **`Are you sure you want to continue connecting (yes/no/[fingerprint])?`** please type **`yes`**.
 
-![ssh password](/images/intro/ssh-2.png)
+![ssh password](../images/intro/ssh-2.png)
 
 Enter the password provided in the Google Sheet from Step #1.
 
 Upon successful login you will be presented with the Splunk logo and the Linux prompt.
 
-![ssh connected](/images/intro/ssh-3.png)
+![ssh connected](../images/intro/ssh-3.png)
 
 At this point you are ready to continue and [start the workshop](../../otel/k3s/)
 
@@ -62,19 +62,19 @@ Open Putty and enter the in **Host Name (or IP address)** field the IP address p
 
 You can optionally save your settings by providing a name and pressing **Save**.
 
-![putty-2](/images/intro/putty-settings.png)
+![putty-2](../images/intro/putty-settings.png)
 
 To then login to your instance click on the **Open** button as shown above.
 
 If this is the first time connecting to your AWS/EC2 workshop instance, you will be presented with a security dialog, please click **Yes**.
 
-![putty-3](/images/intro/putty-security.png)
+![putty-3](../images/intro/putty-security.png)
 
 Once connected, login in as **ubuntu** and the password is the one provided in the Google Sheet.
 
 Once you are connected successfully you should see a screen similar to the one below:
 
-![putty-4](/images/intro/putty-loggedin.png)
+![putty-4](../images/intro/putty-loggedin.png)
 
 At this point you are ready to continue and [start the workshop](../../otel/k3s/)
 
@@ -89,15 +89,15 @@ If you are blocked from using SSH (Port 22) or unable to install Putty you may b
 
 Open your web browser and type **[http://x.x.x.x:6501](http://x.x.x.x:6501)** (where X.X.X.X is the IP address from the Google Sheet).
 
-![http-6501](/images/intro/shellinabox-url.png)
+![http-6501](../images/intro/shellinabox-url.png)
 
 Once connected, login in as **ubuntu** and the password is the one provided in the Google Sheet.
 
-![http-connect](/images/intro/shellinabox-connect.png)
+![http-connect](../images/intro/shellinabox-connect.png)
 
 Once you are connected successfully you should see a screen similar to the one below:
 
-![web login](/images/intro/shellinabox-login.png)
+![web login](../images/intro/shellinabox-login.png)
 
 Unlike when you are using regular SSH, *copy and paste* does require a few extra steps to complete when using a browser session. This is due to cross browser restrictions.
 
@@ -105,11 +105,11 @@ When the workshop ask you to copy instructions into your terminal, please do the
 
 *Copy the instruction as normal, but when ready to paste it in the web terminal, choose **Paste from browser** as show below:*
 
-![web paste 1](/images/intro/shellinabox-paste-browser.png)
+![web paste 1](../images/intro/shellinabox-paste-browser.png)
 
 This will open a dialog box asking for the text to be pasted into the web terminal:
 
-![web paste 3](/images/intro/shellinabox-example-1.png)
+![web paste 3](../images/intro/shellinabox-example-1.png)
 
 Paste the text in the text box as show, then press **OK** to complete the copy and paste process.
 
@@ -118,7 +118,7 @@ Paste the text in the text box as show, then press **OK** to complete the copy a
 
     Simply click the **Connect** button and you will be reconnected and will be able to continue.
 
- ![web reconnect](/images/intro/shellinabox-reconnect.png)
+ ![web reconnect](../images/intro/shellinabox-reconnect.png)
 
 At this point you are ready to continue and [start the workshop](../../otel/k3s/).
 
