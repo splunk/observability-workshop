@@ -97,7 +97,7 @@ jobs:
 
       - name: Build Site
         run: |
-          hugo --minify --destination site/v${{ steps.bumpversion.outputs.tag_name }} --baseURL ${{ steps.bumpversion.outputs.base_url }}
+          hugo --minify --destination site/v${{ steps.bumpversion.outputs.tag_name }} --baseURL https://rcastley.github.io/observability-workshop/v3.41/
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/master'
