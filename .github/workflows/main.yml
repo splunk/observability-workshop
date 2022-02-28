@@ -8,11 +8,21 @@ jobs:
     name: Release new minor version
     runs-on: ubuntu-20.04
     steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          fetch-depth: 0
       - uses: ./.github/actions/deploy
   devbuild:
     name: Build dev version
     runs-on: ubuntu-20.04
     steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          fetch-depth: 0
       - uses: ./.github/actions/deploy
         with:
           flavour: dev
