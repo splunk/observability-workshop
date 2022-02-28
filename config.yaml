@@ -79,17 +79,17 @@ outputs:
 menu:
   main:
     - name: Splunk IMT
-      url: /imt/
+      url: imt/
       weight: 10
     - name: Splunk APM
-      url: /apm/
+      url: apm/
       weight: 20
     - name: Splunk RUM
-      url: /rum/
+      url: rum/
       weight: 30
     - name: Splunk Synthetics
-      url: /synthetics/
+      url: synthetics/
       weight: 40
     - name: Observability Bootcamp
-      url: /bootcamp/
+      url: bootcamp/
       weight: 50
