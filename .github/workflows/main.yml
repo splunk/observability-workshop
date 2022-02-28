@@ -69,7 +69,7 @@ jobs:
           TAG=$(bumpversion --list "$FLAVOUR" | awk -F= '/new_version=/ { print $2 }')
           echo "::set-output name=tag_name::${TAG}"
 
-          BASE_URL="$(yq .baseURL config.yaml)observability-workshop/"
+          BASE_URL="$(yq .baseURL config.yaml)"
           echo "::set-output name=base_url::${BASE_URL}"
 
           awk "/Latest versions of the workshop are:/ { print; print \"- [v${TAG}](https://signalfx.github.io/observability-workshop/v${TAG}/)\";next }1" README.md |
@@ -81,7 +81,7 @@ jobs:
           LATEST_URL=$(yq '.params.versions[]|select(.version == "latest").url' config.yaml)
           # filter versions, remove latest entry, add new version, sort, limit to last two, add latest
           NEW_VERSIONS=$(yq '.params.versions[] | select (.version != "latest") | [ . ]' config.yaml |
-            yq -o=json -I=0 '. += [{ "version": "v'"${VER}"'", "url": "'"${BASE_URL}/v${VER}"'"}] | sort_by(.version)' |
+            yq -o=json -I=0 '. += [{ "version": "v'"${VER}"'", "url": "'"${BASE_URL}/observability-workshop/v${VER}"'"}] | sort_by(.version)' |
             jq -c --arg latest_url "${LATEST_URL}" '.[-2:] | [{ version: "latest", url: $latest_url}] + .')
 
           # set new versions
@@ -97,8 +97,7 @@ jobs:
 
       - name: Build Site
         run: |
-          hugo --minify --destination site/v${{ steps.bumpversion.outputs.tag_name }} --baseURL ${{ steps.bumpversion.outputs.base_url }}v${{ steps.bumpversion.outputs.tag_name }}/
-
+          hugo --minify --destination site/v${{ steps.bumpversion.outputs.tag_name }} --baseURL ${{ steps.bumpversion.outputs.base_url }}
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/master'
