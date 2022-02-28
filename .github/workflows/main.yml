@@ -69,10 +69,8 @@ jobs:
           TAG=$(bumpversion --list "$FLAVOUR" | awk -F= '/new_version=/ { print $2 }')
           echo "::set-output name=tag_name::${TAG}"
 
-          BASE_URL="$(yq -r .baseURL config.yaml)/observability-workshop/v${{ steps.bumpversion.outputs.tag_name }}/"
-
-          BASE_URL2="$(yq -r .baseURL config.yaml)/observability-workshop/"
-          echo "::set-output name=base_url::${BASE_URL2}"
+          BASE_URL="$(yq -r .baseURL config.yaml)/observability-workshop/"
+          echo "::set-output name=base_url::${BASE_URL}"
 
           awk "/Latest versions of the workshop are:/ { print; print \"- [v${TAG}](https://signalfx.github.io/observability-workshop/v${TAG}/)\";next }1" README.md |
           awk "NR==1,/Latest versions of the workshop are:/{c=3} c&&c-- " > README.new.md
@@ -83,7 +81,7 @@ jobs:
           LATEST_URL=$(yq '.params.versions[]|select(.version == "latest").url' config.yaml)
           # filter versions, remove latest entry, add new version, sort, limit to last two, add latest
           NEW_VERSIONS=$(yq '.params.versions[] | select (.version != "latest") | [ . ]' config.yaml |
-            yq -o=json -I=0 '. += [{ "version": "v'"${VER}"'", "url": "'"${BASE_URL}/observability-workshop/v${VER}"'"}] | sort_by(.version)' |
+            yq -o=json -I=0 '. += [{ "version": "v'"${VER}"'", "url": "'"${BASE_URL}/v${VER}"'"}] | sort_by(.version)' |
             jq -c --arg latest_url "${LATEST_URL}" '.[-2:] | [{ version: "latest", url: $latest_url}] + .')
 
           # set new versions
