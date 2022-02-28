@@ -97,7 +97,7 @@ jobs:
 
       - name: Build Site
         run: |
-          hugo --minify --destination site/v${{ steps.bumpversion.outputs.tag_name }} --baseURL ${{ steps.bumpversion.outputs.base_url }}observability-workshop/${{ steps.bumpversion.outputs.tag_name }}
+          hugo --minify --destination site/v${{ steps.bumpversion.outputs.tag_name }} --baseURL ${{ steps.bumpversion.outputs.base_url }}observability-workshop/v${{ steps.bumpversion.outputs.tag_name }}
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/master'
