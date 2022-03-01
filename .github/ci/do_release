@@ -15,12 +15,12 @@ while getopts 'nt:' opt; do
       ;;
     t)
       FLAVOUR=${OPTARG}
-      [[ $FLAVOUR == "minor" ]] || [[ $FLAVOUR == "major" ]] || [[ $FLAVOUR == "dev" ]] || { echo 'Use one of major,minor or dev as the release type.'; exit 1; }
+      [[ $FLAVOUR == "minor" ]] || [[ $FLAVOUR == "major" ]] || [[ $FLAVOUR == "dev" ]] || { echo 'Use one of major, minor as the release type.'; exit 1; }
       ;;
     *)
       echo 'Usage: do_release [ -n ] [ -t major|minor ]' >&2
-      echo '  -n    do not perform any changes, dry-run'
-      echo '  -t    type of release, one of major, minor (default)'
+      echo '  -n    do not perform any changes, dry-run' >&2
+      echo '  -t    type of release, one of major, minor (default)' >&2
       exit 1
   esac
 done
@@ -50,7 +50,7 @@ if [[ $DRY_RUN == 0 ]]; then
   LATEST_URL=$(yq '.params.versions[]|select(.version == "latest").url' config.yaml)
   # filter versions, remove latest entry, add new version, sort, limit to last two, add latest
   NEW_VERSIONS=$(yq '.params.versions[] | select (.version != "latest") | [ . ]' config.yaml |
-    yq -o=json -I=0 '. += [{ "version": "v'"${VER}"'", "url": "'"${BASE_URL}observability-workshop/v${VER}"'"}] | sort_by(.version)' |
+    yq -o=json -I=0 '. += [{ "version": "v'"${TAG}"'", "url": "'"${BASE_URL}observability-workshop/v${TAG}"'"}] | sort_by(.version)' |
     jq -c --arg latest_url "${LATEST_URL}" '.[-2:] | [{ version: "latest", url: $latest_url}] + .')
 
   # set new versions
