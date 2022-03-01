@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+set -o errexit  # Exit on most errors
+set -o errtrace # Make sure any error trap is inherited
+set -o nounset  # Disallow expansion of unset variables
+set -o pipefail # Use last non-zero exit code in a pipeline
+
+TAG_NAME=dev
+BASE_URL=$(yq .baseURL config.yaml)
+SERVE=0
+
+while getopts 'b:st:' opt; do
+  case "$opt" in
+    b)
+      BASE_URL=${OPTARG}
+      ;;
+    s)
+      SERVE=1
+      ;;
+    t)
+      TAG_NAME=${OPTARG}
+      ;;
+    *)
+      echo 'Usage: build_site [ -n ] [ -t major|minor ]' >&2
+      echo '  -b    baseURL for the hugo build'
+      echo '  -t    tag name without the "v" prefix'
+      echo '  -s    serve web content from built site with devd'
+      exit 1
+  esac
+done
+
+hugo --minify --destination "site/v${TAG_NAME}" --baseURL "${BASE_URL}observability-workshop/v$TAG_NAME"
+
+if [[ $SERVE == 1 ]]; then
+    if ! command -v "devd" &> /dev/null; then
+        echo "devd not found. Please install with your package manager, e.g. brew install devd."
+        exit 1
+    fi
+
+    devd /observability-workshop/vdev/=./site/vdev /=./site/vdev
+fi

@@ -25,6 +25,28 @@ Install `optipng` e.g. `brew install optipng` and then run the following command
 find . -type f -iname "*.png" -exec optipng -nb -nc {} \;
 ```
 
+## Test release build locally
+
+Build a release with
+
+```bash
+./.github/ci/build_site
+```
+
+The output will be in `./site/vdev`.
+
+To run a webserver that mimics GitHub Pages, install [devd][devd], e.g. with `brew install devd`.
+
+Then run
+
+```bash
+devd /observability-workshop/vdev/=./site/vdev /=./site/vdev
+```
+
+and visit [http://localhost:8000/](http://localhost:8000/) to inspect the site.
+
+[devd]: https://github.com/cortesi/devd
+
 ## How to create a new tagged release
 
 1. On GitHub, navigate to the main page of the repository.
