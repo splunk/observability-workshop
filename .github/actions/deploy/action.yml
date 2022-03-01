@@ -58,7 +58,7 @@ runs:
       uses: peaceiris/actions-gh-pages@v3
       if: github.ref == 'refs/heads/master' && github.event.inputs.flavour == 'minor'
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ github.token }}
         publish_dir: './site/v${{ steps.bumpversion.outputs.tag_name }}'
         destination_dir: 'v${{ steps.bumpversion.outputs.tag_name }}'
         commit_message: 'Docs: Releasing ${{ steps.bumpversion.outputs.tag_name }}'
