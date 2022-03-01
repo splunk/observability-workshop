@@ -10,57 +10,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Checkout sources
-      uses: actions/checkout@v2
-      with:
-        submodules: recursive # Fetch Hugo themes (true OR recursive)
-        fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
-
-    - name: Setup Hugo
-      uses: peaceiris/actions-hugo@v2
-      with:
-        hugo-version: '0.92.2'
-        extended: true
-
-    - name: Setup yq
-      uses: chrisdickinson/setup-yq@latest
-      with:
-        yq-version: '4.20.2'
-        yq-url: 'https://github.com/mikefarah/yq/releases/download/v{version}/yq_{platform}_{arch}'
-
-    - name: Set up Python 3.7
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.7'
-        cache: 'pip'
-
-    - name: Install dependencies
-      run: pip install -r requirements.txt
-
-    - name: Setup Node
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
-    - name: Cache Node dependencies
-      uses: actions/cache@v2
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-
-    - name: Cache go dependencies
-      uses: actions/cache@v2
-      with:
-        path: /tmp/hugo_cache
-        key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
-        restore-keys: |
-          ${{ runner.os }}-hugomod-
-
-    - name: Setup Docsy
-      run: npm ci --cache .npm --prefer-offline
-
     - name: Bumpversion and commit
       id: bumpversion
       run: |
@@ -99,10 +48,6 @@ runs:
           git tag -a "v${TAG}" -m "Version ${TAG}"
           git push --follow-tags origin master || { echo 'Push failed. git pull --rebase from upstream and attempt another release.'; exit 1; }
         fi
-
-
-    - name: Get Submodules
-      run: cd themes/docsy && git submodule update -f --init --jobs=6 && cd ../..
 
     - name: Build Site
       run: |
