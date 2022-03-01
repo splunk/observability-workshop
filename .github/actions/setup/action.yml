@@ -23,6 +23,7 @@ runs:
         cache: 'pip'
 
     - name: Install dependencies
+      shell: bash
       run: pip install -r requirements.txt
 
     - name: Setup Node
@@ -47,8 +48,10 @@ runs:
           ${{ runner.os }}-hugomod-
 
     - name: Setup Docsy
+      shell: bash
       run: npm ci --cache .npm --prefer-offline
 
     - name: Get Submodules
+      shell: bash
       run: cd themes/docsy && git submodule update -f --init --jobs=6 && cd ../..
 
