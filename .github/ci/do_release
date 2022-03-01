@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+set -o errexit  # Exit on most errors
+set -o errtrace # Make sure any error trap is inherited
+set -o nounset  # Disallow expansion of unset variables
+set -o pipefail # Use last non-zero exit code in a pipeline
+
+DRY_RUN=0
+FLAVOUR=minor
+
+while getopts 'nt:' opt; do
+  case "$opt" in
+    n)
+      DRY_RUN=1
+      ;;
+    t)
+      FLAVOUR=${OPTARG}
+      [[ $FLAVOUR == "minor" ]] || [[ $FLAVOUR == "major" ]] || [[ $FLAVOUR == "dev" ]] || { echo 'Use one of major,minor or dev as the release type.'; exit 1; }
+      ;;
+    *)
+      echo 'Usage: do_release [ -n ] [ -t major|minor ]' >&2
+      echo '  -n    do not perform any changes, dry-run'
+      echo '  -t    type of release, one of major, minor (default)'
+      exit 1
+  esac
+done
+
+if [[ $DRY_RUN == 0 ]]; then
+  git config user.name "${GITHUB_ACTOR}"
+  git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+  git pull --rebase
+
+  TAG=$(bumpversion --list "$FLAVOUR" | awk -F= '/new_version=/ { print $2 }')
+else
+  TAG=dev
+fi
+
+echo "::set-output name=tag_name::${TAG}"
+
+BASE_URL="$(yq .baseURL config.yaml)"
+echo "::set-output name=base_url::${BASE_URL}"
+
+if [[ $DRY_RUN == 0 ]]; then
+  awk "/Latest versions of the workshop are:/ { print; print \"- [v${TAG}](https://signalfx.github.io/observability-workshop/v${TAG}/)\";next }1" README.md |
+  awk "NR==1,/Latest versions of the workshop are:/{c=3} c&&c-- " > README.new.md
+  mv README.new.md README.md
+  git fetch --tags origin
+  git add README.md
+
+  LATEST_URL=$(yq '.params.versions[]|select(.version == "latest").url' config.yaml)
+  # filter versions, remove latest entry, add new version, sort, limit to last two, add latest
+  NEW_VERSIONS=$(yq '.params.versions[] | select (.version != "latest") | [ . ]' config.yaml |
+    yq -o=json -I=0 '. += [{ "version": "v'"${VER}"'", "url": "'"${BASE_URL}observability-workshop/v${VER}"'"}] | sort_by(.version)' |
+    jq -c --arg latest_url "${LATEST_URL}" '.[-2:] | [{ version: "latest", url: $latest_url}] + .')
+
+  # set new versions
+  yq e ".params.versions=${NEW_VERSIONS}" -i config.yaml
+  git add config.yaml
+
+  git commit --amend -m "Releasing v${TAG}"
+  git tag -a "v${TAG}" -m "Version ${TAG}"
+  git push --follow-tags origin master || { echo 'Push failed. git pull --rebase from upstream and attempt another release.'; exit 1; }
+fi

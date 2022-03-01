@@ -1,6 +1,5 @@
 name: Deploy Workshop
 
-# Controls when the action will run. Triggers manually
 on: workflow_dispatch
 
 jobs:

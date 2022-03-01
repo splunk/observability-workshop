@@ -13,49 +13,12 @@ runs:
     - name: Bumpversion and commit
       id: bumpversion
       shell: bash
-      env:
-        FLAVOUR: ${{ inputs.flavour }}
-      run: |
-        git config user.name "${GITHUB_ACTOR}"
-        git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-        git pull --rebase
-
-        BUMP_ARGS="--dry-run --allow-dirty"
-        if [[ $FLAVOUR == "minor" ]]; then
-          BUMP_ARGS=""
-        fi
-        TAG=$(bumpversion --list "$FLAVOUR" $BUMP_ARGS | awk -F= '/new_version=/ { print $2 }')
-        echo "::set-output name=tag_name::${TAG}"
-
-        BASE_URL="$(yq .baseURL config.yaml)"
-        echo "::set-output name=base_url::${BASE_URL}"
-
-        if [[ $FLAVOUR == "minor" ]]; then
-          awk "/Latest versions of the workshop are:/ { print; print \"- [v${TAG}](https://signalfx.github.io/observability-workshop/v${TAG}/)\";next }1" README.md |
-          awk "NR==1,/Latest versions of the workshop are:/{c=3} c&&c-- " > README.new.md
-          mv README.new.md README.md
-          git fetch --tags origin
-          git add README.md
-
-          LATEST_URL=$(yq '.params.versions[]|select(.version == "latest").url' config.yaml)
-          # filter versions, remove latest entry, add new version, sort, limit to last two, add latest
-          NEW_VERSIONS=$(yq '.params.versions[] | select (.version != "latest") | [ . ]' config.yaml |
-            yq -o=json -I=0 '. += [{ "version": "v'"${VER}"'", "url": "'"${BASE_URL}observability-workshop/v${VER}"'"}] | sort_by(.version)' |
-            jq -c --arg latest_url "${LATEST_URL}" '.[-2:] | [{ version: "latest", url: $latest_url}] + .')
-
-          # set new versions
-            yq e ".params.versions=${NEW_VERSIONS}" -i config.yaml
-            git add config.yaml
-
-          git commit --amend -m "Releasing v${TAG}"
-          git tag -a "v${TAG}" -m "Version ${TAG}"
-          git push --follow-tags origin master || { echo 'Push failed. git pull --rebase from upstream and attempt another release.'; exit 1; }
-        fi
+      run: ./.github/ci/do_release -t ${{ inputs.flavour }}
 
     - name: Build Site
       shell: bash
-      run: |
-        hugo --minify --destination site/v${{ steps.bumpversion.outputs.tag_name }} --baseURL ${{ steps.bumpversion.outputs.base_url }}observability-workshop/v${{ steps.bumpversion.outputs.tag_name }}
+      run: ./.github/ci/build_site -b ${{ steps.bumpversion.outputs.base_url }} -t ${{ steps.bumpversion.outputs.tag_name }}
+
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       if: github.ref == 'refs/heads/master' && inputs.flavour == 'minor'
