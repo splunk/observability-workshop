@@ -14,7 +14,7 @@ runs:
       id: bumpversion
       shell: bash
       env:
-        FLAVOUR: ${{ github.event.inputs.flavour }}
+        FLAVOUR: ${{ on.workflow_call.inputs.flavour }}
       run: |
         git config user.name "${GITHUB_ACTOR}"
         git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
