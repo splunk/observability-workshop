@@ -24,7 +24,7 @@ runs:
         if [[ $FLAVOUR == "minor" ]]; then
           BUMP_ARGS=""
         fi
-        TAG=$(bumpversion --list "$FLAVOUR" "$BUMP_ARGS" | awk -F= '/new_version=/ { print $2 }')
+        TAG=$(bumpversion --list "$FLAVOUR" $BUMP_ARGS | awk -F= '/new_version=/ { print $2 }')
         echo "::set-output name=tag_name::${TAG}"
 
         BASE_URL="$(yq .baseURL config.yaml)"
