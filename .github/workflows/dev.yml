@@ -1,4 +1,4 @@
-name: Deploy Workshop
+name: Devbuild
 
 # Controls when the action will run. Triggers manually
 on: workflow_dispatch
@@ -17,4 +17,3 @@ jobs:
       - uses: ./.github/actions/deploy
         with:
           flavour: dev
-
