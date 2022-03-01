@@ -12,6 +12,7 @@ runs:
   steps:
     - name: Bumpversion and commit
       id: bumpversion
+      shell: bash
       run: |
         git config user.name "${GITHUB_ACTOR}"
         git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
@@ -50,6 +51,7 @@ runs:
         fi
 
     - name: Build Site
+      shell: bash
       run: |
         hugo --minify --destination site/v${{ steps.bumpversion.outputs.tag_name }} --baseURL ${{ steps.bumpversion.outputs.base_url }}observability-workshop/v${{ steps.bumpversion.outputs.tag_name }}
     - name: Deploy
