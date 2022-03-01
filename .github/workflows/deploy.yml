@@ -1,4 +1,4 @@
-name: Deploy Workshop
+name: Release new minor version
 
 on: workflow_dispatch
 
