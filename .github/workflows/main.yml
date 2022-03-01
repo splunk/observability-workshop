@@ -13,6 +13,7 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
+      - uses: ./.github/actions/setup
       - uses: ./.github/actions/deploy
   devbuild:
     name: Build dev version
@@ -23,6 +24,7 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
+      - uses: ./.github/actions/setup
       - uses: ./.github/actions/deploy
         with:
           flavour: dev
