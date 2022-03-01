@@ -13,6 +13,8 @@ runs:
     - name: Bumpversion and commit
       id: bumpversion
       shell: bash
+      env:
+        FLAVOUR: ${{ github.event.inputs.flavour }}
       run: |
         git config user.name "${GITHUB_ACTOR}"
         git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
