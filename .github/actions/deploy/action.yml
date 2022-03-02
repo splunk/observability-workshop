@@ -21,7 +21,7 @@ runs:
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/master' && inputs.flavour == 'minor'
+      if: github.ref == 'refs/heads/master' && (inputs.flavour == 'minor' || inputs.flavour == 'major')
       with:
         github_token: ${{ github.token }}
         publish_dir: './site/v${{ steps.bumpversion.outputs.tag_name }}'
