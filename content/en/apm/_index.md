@@ -1,8 +1,12 @@
 ---
-title: Splunk APM Introduction
+title: Introduction
 linkTitle: Splunk APM
-type: docs
-weight: 1
+weight: 2
+cascade:
+  type: docs
+menu:
+  main:
+    weight: 2
 ---
 
 Splunk APM is a NoSample™ Full-fidelity application performance monitoring and troubleshooting solution for cloud-native, microservices-based applications.
@@ -11,4 +15,4 @@ By collecting all traces, instead of a sampled subset, no anomaly goes undetecte
 
 Infrastructure and application performance are interdependent. To see the full picture, Splunk APM provides seamless correlation between cloud infrastructure and the microservices running on top of it. If your application acts out because of memory leakage, a noisy neighbor container or any other infrastructure-related issue, Splunk will let you know. To complete the picture, in-context access to Splunk logs and events enable deeper troubleshooting and root-cause analysis.
 
-![Architecture Overview](../images/apm/arch-overview.png)
+![Architecture Overview](arch-overview.png)
