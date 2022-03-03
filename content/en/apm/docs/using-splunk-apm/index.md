@@ -2,10 +2,8 @@
 title: Using Splunk APM
 linkTitle: Using Splunk APM
 weight: 3
-menu:
-  docs:
-    parent: "deploy"
-    weight: 1
+description: >
+  An overview of how to use Splunk APM
 ---
 
 * APM Overview - RED metrics
