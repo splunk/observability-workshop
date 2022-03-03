@@ -20,10 +20,10 @@ params:
   versions:
     - version: latest
       url: https://rcastley.github.io/observability-workshop/v3.33/
-    - version: v3.51
-      url: https://rcastley.github.io/observability-workshop/v3.51
     - version: v4.0
       url: https://rcastley.github.io/observability-workshop/v4.0
+    - version: v4.1
+      url: https://rcastley.github.io/observability-workshop/v4.1
   url_latest_version: 'https://signalfx.github.io/observability-workshop/'
   github_repo: 'https://github.com/signalfx/observability-workshop'
   github_project_repo: 'https://github.com/signalfx/observability-workshop'
@@ -80,15 +80,15 @@ menu:
     - name: Splunk IMT
       url: imt/
       weight: 10
-#    - name: Splunk APM
-#      url: apm/
-#      weight: 20
+      #    - name: Splunk APM
+      #      url: apm/
+      #      weight: 20
     - name: Splunk RUM
       url: rum/
       weight: 30
-#    - name: Splunk Synthetics
-#      url: synthetics/
-#      weight: 40
+      #    - name: Splunk Synthetics
+      #      url: synthetics/
+      #      weight: 40
     - name: Observability Bootcamp
       url: bootcamp/
       weight: 50
