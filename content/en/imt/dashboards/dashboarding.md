@@ -4,8 +4,6 @@ linkTitle: Notes and layout
 type: docs
 weight: 13
 ---
-
-
 ## 1. Adding Notes
 
 Often on dashboards it makes sense to place a short "instruction" pane that helps users of a dashboard.
@@ -30,48 +28,48 @@ This includes (but not limited to):
 
 Below is an example of above Markdown options you can use in your note.
 
-=== "Sample Markdown text"
+{{<tabpane>}}
+{{<tab header="Sample Markdown text" lang="markdown" >}}
+# h1 Big headings
+###### h6 To small headings
 
-    ```text
+##### Emphasis
 
-    # h1 Big headings
-    ###### h6 To small headings
+**This is bold text**, *This is italic text* , ~~Strikethrough~~
 
-    ##### Emphasis
+##### Lists
 
-    **This is bold text**, *This is italic text* , ~~Strikethrough~~
+Unordered
 
-    ##### Lists
++ Create a list by starting a line with `+`, `-`, or `*`
+- Sub-lists are made by indenting 2 spaces:
+- Marker character change forces new list start:
+    * Ac tristique libero volutpat at
+    + Facilisis in pretium nisl aliquet
+* Very easy!
 
-    Unordered
+Ordered
 
-    + Create a list by starting a line with `+`, `-`, or `*`
-    - Sub-lists are made by indenting 2 spaces:
-    - Marker character change forces new list start:
-        * Ac tristique libero volutpat at
-        + Facilisis in pretium nisl aliquet
-    * Very easy!
+1. Lorem ipsum dolor sit amet
+2. Consectetur adipiscing elit
+3. Integer molestie lorem at massa
 
-    Ordered
+##### Tables
 
-    1. Lorem ipsum dolor sit amet
-    2. Consectetur adipiscing elit
-    3. Integer molestie lorem at massa
+| Option | Description |
+| ------ | ----------- |
+| chart  | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
 
-    ##### Tables
+#### Links
 
-    | Option | Description |
-    | ------ | ----------- |
-    | chart  | path to data files to supply the data that will be passed into templates. |
-    | engine | engine to be used for processing templates. Handlebars is the default. |
-    | ext    | extension to be used for dest files. |
+[link to webpage](https://www.splunk.com)
 
-    #### Links
+[link to dashboard with title](https://app.eu0.signalfx.com/#/dashboard/EaJHrbPAEAA?groupId=EaJHgrsAIAA&configId=EaJHsHzAEAA "Link to the Sample chart Dashboard!")
+{{</tab>}}
+{{</tabpane>}}
 
-    [link to webpage](https://www.splunk.com)
-
-    [link to dashboard with title](https://app.eu0.signalfx.com/#/dashboard/EaJHrbPAEAA?groupId=EaJHgrsAIAA&configId=EaJHsHzAEAA "Link to the Sample chart Dashboard!")
-    ```
 Copy the above by using the copy button and paste it in the *Edit* box.
 the preview will show you how it will look.
 
