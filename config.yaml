@@ -80,9 +80,9 @@ menu:
     - name: Splunk IMT
       url: imt/
       weight: 10
-    - name: Splunk APM
-      url: apm/
-      weight: 20
+#    - name: Splunk APM
+#      url: apm/
+#      weight: 20
     - name: Splunk RUM
       url: rum/
       weight: 30
