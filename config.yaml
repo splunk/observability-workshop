@@ -86,9 +86,9 @@ menu:
     - name: Splunk RUM
       url: rum/
       weight: 30
-    - name: Splunk Synthetics
-      url: synthetics/
-      weight: 40
+#    - name: Splunk Synthetics
+#      url: synthetics/
+#      weight: 40
     - name: Observability Bootcamp
       url: bootcamp/
       weight: 50
