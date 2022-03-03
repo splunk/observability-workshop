@@ -14,13 +14,14 @@ weight: 1
 
 You will need to obtain your Access Token[^1] from the Splunk UI. You can find the workshop Access Token by clicking **>>** bottom left and then selecting **Settings → Access Tokens**.
 
-Expand the workshop token that your host has instructed you to use e.g. **O11y-Workshop-ACCESS**, then click on **Show Token** to expose your token. Click the **Copy**{: .label-button  .sfx-ui-button-grey} button to copy to clipboard. Please do not use the **Default** token!
+Expand the workshop token that your host has instructed you to use e.g. **O11y-Workshop-ACCESS**, then click on **Show Token** to expose your token. Click the {{% labelbutton color="ui-button-grey" %}}Copy{{% /labelbutton %}} button to copy to clipboard. Please do not use the **Default** token!
 
 ![Access Token](../../images/access-token.png)
 
-!!! warn "Please do not attempt to create your own token"
-    This will complicate our clean process after the workshop.
-    However if you do, please make sure it has only **INGEST** & **API** as scope!!
+{{% alert title="Please do not attempt to create your own token" color="warning" %}}
+This will complicate our clean process after the workshop.
+However if you do, please make sure it has only **INGEST** & **API** as scope!!
+{{% /alert %}}
 
 You will also need to obtain the name of the Realm[^2] for your Splunk account.  At the top of the side menu, click on your name and select **Account Settings**. The Realm can be found in the middle of the page within the Organizations section.  In this example it is `us0`.
 

@@ -22,13 +22,15 @@ The **Usage Status** Column quickly shows if a token is above or below its assig
 
 ## 2. Creating a new token
 
-Let create a new token by clicking on  the **New Token**{: .label-button .sfx-ui-button-blue} button. This will provide you with the **Name Your Access Token** dialog.
+Let create a new token by clicking on  the {{% labelbutton color="ui-button-blue" %}}**New Token**{{% /labelbutton %}}
+ button. This will provide you with the **Name Your Access Token** dialog.
 
 Enter the new name of the new Token by using your Initials e.g. RWC-Token and make sure to tick both **Ingest Token** and **API Token** checkboxes!
 
-![Name Your token](../../images/new-access-token.png){: .shadow}
+![Name Your token](../../images/new-access-token.png)
 
-After you press **OK**{: .label-button .sfx-ui-button-blue}, you will be taken back to the **Access Token** UI, here your new token should be present, among the ones created by others.
+After you press {{% labelbutton color="ui-button-blue" %}}**OK**{{% /labelbutton %}}
+, you will be taken back to the **Access Token** UI, here your new token should be present, among the ones created by others.
 
 ![full tokenlist](../../images/access-token-created.png)
 
@@ -56,7 +58,7 @@ Now Lets start limiting usage by clicking on Manage Token Limit in the 3 **...**
 
 This will show the Manage Token Limit Dialog:
 
-![Set Limits on token](../../images/manage-token-limit.png){: .shadow}
+![Set Limits on token](../../images/manage-token-limit.png)
 
 In this Dialog you can set the limits per category.
 
@@ -73,11 +75,11 @@ For our lab use your own email address, and double check that you have the corre
 
 Token limits are used to trigger an alert that notify one or more recipients when the usage has been above 90% of the limit for 5 minutes.
 
-To specify the recipients, click **Add Recipient**{: .label-button .sfx-ui-button-blue}, then select the recipient or notification method you want to use (specifying recipients is optional but highly recommended).
+To specify the recipients, click {{% labelbutton color="ui-button-blue" %}}**Add Recipient**{{% /labelbutton %}}, then select the recipient or notification method you want to use (specifying recipients is optional but highly recommended).
 
 The severity for token alerts is always Critical.
 
-Click on **Update**{: .label-button .sfx-ui-button-blue} to save your Access Tokens limits and The Alert Settings.
+Click on {{% labelbutton color="ui-button-blue" %}}**Update**{{% /labelbutton %}} to save your Access Tokens limits and The Alert Settings.
 
 !!! note "Going above token limit"
     When a token is at or above its limit in a usage category, new metrics for that usage category will not be stored and processed by Observability Cloud. This will make sure you there  will be no unexpected cost due to a team sending in data without restriction.

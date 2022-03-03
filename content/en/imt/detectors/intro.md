@@ -30,25 +30,25 @@ We are now going to create a new detector from a chart on this dashboard. Click 
 
 In the text field next to **Detector Name**, **ADD YOUR INITIALS** before the proposed detector name.
 
-!!! important "Naming the detector"
-    It's important that you add your initials in front of the proposed detector name.
-    It should be something like this: **XYZ's Latency Chart Detector**.
+{{% alert title="Naming the detector" color="primary" %}}
+It's important that you add your initials in front of the proposed detector name.<br>
+It should be something like this: **XYZ's Latency Chart Detector**.
+{{% /alert %}}
 
-Click on **Create Alert Rule**{: .label-button .sfx-ui-button-blue}
+Click on {{% labelbutton color="ui-button-blue" %}}Create Alert Rule{{% /labelbutton %}}
 
 ![Create Alert Rule](../../images//create-alert-rule.png)
 
 In the Detector window, inside **Alert signal**, the Signal we will alert on is marked with a (blue) bell in the **Alert on** column. The bell indicates which Signal is being used to generate the alert.
 
-Click on **Proceed to Alert Condition**{: .label-button .sfx-ui-button-blue}
+Click on {{% labelbutton color="ui-button-blue" %}}Proceed to Alert Condition{{% /labelbutton %}}
 
 ![Alert Signal](../../images//alert-signal.png)
 
 ---
-
 ## 3. Setting Alert condition
 
-In **Alert condition**, click on **Static Threshold** and then on **Proceed to Alert Settings**{: .label-button .sfx-ui-button-blue}
+In **Alert condition**, click on **Static Threshold** and then on {{% labelbutton color="ui-button-blue" %}}Proceed to Alert Settings{{% /labelbutton %}}
 
 ![Alert Condition](../../images//alert-condition.png)
 
@@ -62,15 +62,16 @@ A pre-flight check will take place after 5 seconds. See the **Estimated alert co
 
 ![Alert Threshold](../../images//alert-threshold.png)
 
-!!! note "About pre-flight checks"
-    Once you set an alert condition, the UI estimates how many alerts you might get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.
+{{% alert title="About pre-flight checks" color="primary" %}}
+Once you set an alert condition, the UI estimates how many alerts you might get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.
 
-    Immediately, the platform will start analyzing the signals with the current settings, and perform something we call a Pre-flight Check. This enables you to test the alert conditions using the historical data in the platform, to ensure the settings are logical and will not inadvertently generate an alert storm, removing the guess work from configuring alerts in a simple but very powerful way, only available using the Splunk Observability Cloud.
+Immediately, the platform will start analyzing the signals with the current settings, and perform something we call a Pre-flight Check. This enables you to test the alert conditions using the historical data in the platform, to ensure the settings are logical and will not inadvertently generate an alert storm, removing the guess work from configuring alerts in a simple but very powerful way, only available using the Splunk Observability Cloud.
 
-    To read more about detector previewing, please visit this link
-    [Preview detector alerts](https://docs.splunk.com/Observability/alerts-detectors-notifications/preview-detector-alerts.html#nav-Preview-detector-alerts).
+To read more about detector previewing, please visit this link
+[Preview detector alerts.](https://docs.splunk.com/Observability/alerts-detectors-notifications/preview-detector-alerts.html#nav-Preview-detector-alerts)
+{{% /alert %}}
 
-Click on **Proceed to Alert Message**{: .label-button .sfx-ui-button-blue}
+Click on {{% labelbutton color="ui-button-blue" %}}Proceed to Alert Message{{% /labelbutton %}}
 
 ---
 
@@ -80,24 +81,25 @@ In **Alert message**, under **Severity** choose **Major**.
 
 ![Alert Message](../../images//alert-message.png)
 
-Click on **Proceed to Alert Recipients**{: .label-button .sfx-ui-button-blue}
+Click on {{% labelbutton color="ui-button-blue" %}}Proceed to Alert Recipients{{% /labelbutton %}}
 
 Click on **Add Recipient** and then on your email address displayed as the first option.
 
 ![Add Recipient](../../images//add-recipient.png)
 
-!!! note "Notification Services"
-    That's the same as entering that email address OR you can enter another email address by clicking on **E-mail...**.
+{{% alert title="Notification Services" color="primary" %}}
+That's the same as entering that email address OR you can enter another email address by clicking on **E-mail...**.
 
-    This is just one example of the many **Notification Services** the suite has available. You can check this out by going to the **Integrations** tab of the top menu, and see **Notification Services**.
+This is just one example of the many **Notification Services** the suite has available. You can check this out by going to the **Integrations** tab of the top menu, and see **Notification Services**.
+{{% /alert %}}
 
 ---
 
 ## 6. Alert Activation
 
-Click on **Proceed to Alert Activation**{: .label-button .sfx-ui-button-blue}
+Click on {{% labelbutton color="ui-button-blue" %}}Proceed to Alert Activation{{% /labelbutton %}}
 
-In **Activate...** click on **Activate Alert Rule**{: .label-button .sfx-ui-button-blue}
+In **Activate...** click on {{% labelbutton color="ui-button-blue" %}}Activate Alert Rule{{% /labelbutton %}}
 
 ![Activate Alert](../../images//activate-alert.png)
 
@@ -105,7 +107,7 @@ If you want to get alerts quicker you edit the rule and lower the value from **`
 
 If you change the **Time** to **-1h** you can see how many alerts you might get with the threshold you have chosen based on the metrics from the last 1 hour.
 
-Click on the ![alerts and detectors button](../images/navbar/alerts-and-detectors.png) in the navbar and then click on **Detectors**. You can optionally filter for your initials.
+Click on the ![alerts and detectors button](../../images/alerts-and-detectors.png) in the navbar and then click on **Detectors**. You can optionally filter for your initials.
 
 You will see you detector listed here. If you don't then please refresh your browser.
 

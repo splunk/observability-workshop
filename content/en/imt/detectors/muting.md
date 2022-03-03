@@ -28,13 +28,13 @@ In the **Muting Rule** window check **Mute Indefinitely** and enter a reason.
 !!! important
     This will mute the notifications permanently until you come back here and un-check this box or resume notifications for this detector.
 
-![Mute Indefinitely](../../images//mute-indefinitely.png){: .shadow .center}
+![Mute Indefinitely](../../images//mute-indefinitely.png)
 
 Click **Next** and in the new modal window confirm the muting rule setup.
 
-![Confirm Rule](../../images//confirm-rule.png){: .shadow .center}
+![Confirm Rule](../../images//confirm-rule.png)
 
-Click on **Mute Indefinitely**{: .label-button .sfx-ui-button-blue} to confirm.
+Click on {{% labelbutton color="ui-button-blue" %}}**Mute Indefinitely**{{% /labelbutton %}} to confirm.
 
 ![List muted rule](../../images//alert-muted.png)
 
@@ -50,8 +50,8 @@ Click on the thee dots **`...`** on the far right, and click on **Resume Notific
 
 ![Resume](../../images//muting-list.png)
 
-Click on **Resume**{: .label-button .sfx-ui-button-blue} to confirm and resume notifications for this detector.
+Click on {{% labelbutton color="ui-button-blue" %}}**Resume**{{% /labelbutton %}} to confirm and resume notifications for this detector.
 
-![Resume](../../images//resume.png){: .shadow .center}
+![Resume](../../images//resume.png)
 
 **Congratulations!** You have now resumed your alert notifications!
