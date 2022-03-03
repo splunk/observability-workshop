@@ -38,17 +38,17 @@ To work with to Splunk's Team UI click on the hamburger icon top left and select
 
 When the **Team** UI is selected you will be presented with the list of current Teams.
 
-To add a new **Team** click on the **Create New Team**{: .label-button .sfx-ui-button-blue} button. This will present you with the **Create New Team** dialog.
+To add a new **Team** click on the {{% labelbutton color="ui-button-blue" %}}**Create New Team**{{% /labelbutton %}} button. This will present you with the **Create New Team** dialog.
 
-![Add Team](../../images/create-new-team.png){: .shadow}
+![Add Team](../../images/create-new-team.png)
 
 Create your own team by naming it `[YOUR-INITIALS]-Team and` add yourself by searching for your name and selecting the **Add** link next to your name. This should result in a dialog similar to the one below:
 
-![Add Team complete](../../images/add-to-team.png){: .shadow}
+![Add Team complete](../../images/add-to-team.png)
 
 You can remove selected users by pressing  **Remove** or the small **x**.
 
-Make sure you have your group created with your initials and with yourself added as a member, then click **Done**{: .label-button .sfx-ui-button-blue}
+Make sure you have your group created with your initials and with yourself added as a member, then click {{% labelbutton color="ui-button-blue" %}}**Done**{{% /labelbutton %}}
 
 This will bring you back to the **Teams** list that will now show your Team and the one's created by others.
 
@@ -76,7 +76,7 @@ By default the system offers you the ability to set up a general notification ru
 
 ### 3.1 Adding recipients
 
-You can add other recipients, by clicking **Add Recipient**{: .label-button .sfx-ui-button-blue}. These recipients do not need to be Observability Cloud users.
+You can add other recipients, by clicking {{% labelbutton color="ui-button-blue" %}}**Add Recipient**{{% /labelbutton %}}. These recipients do not need to be Observability Cloud users.
 
 However if you click on the link **Configure separate notification tiers for different severity alerts** you can configure every alert level independently.
 

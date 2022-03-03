@@ -9,7 +9,7 @@ weight: 7
 Let's now create a new chart and save it in our dashboard!
 
 Select the plus icon (top right of the UI) and from the drop down, choose the option **Chart**.
-Or click on the {{< labelbutton  >}}+ New Chart{{< /labelbutton >}} Button to create a new chart.
+Or click on the {{< labelbutton >}}+ New Chart{{< /labelbutton >}} Button to create a new chart.
 
 ![Create new chart](../../images/M-Filter-0.png)
 
@@ -31,7 +31,8 @@ You should now have a familiar line chart. Please switch the time to 15 mins.
 
 Let's now select the **Paris** datacenter to do some analytics - for that we will use a filter.
 
-Let's go back to the **Plot Editor** tab and click on **Add Filter**{: .label-button .sfx-ui-button-blue}, wait until it automatically populates, choose **`demo_datacenter`**, and then **`Paris`**.
+Let's go back to the **Plot Editor** tab and click on {{% labelbutton color="ui-button-blue" %}}Add Filter{{% /labelbutton %}}
+, wait until it automatically populates, choose **`demo_datacenter`**, and then **`Paris`**.
 
 ![Filter](../../images/M-Filter-1.png)
 
@@ -81,7 +82,8 @@ Next, click into the field next to **Time** on the Override bar and choose **`Pa
 
 Let's now plot the difference of all metric values for a day with 7 days in between.
 
-Click on **Enter Formula**{: .label-button .sfx-ui-button-blue} then enter **`A-B`** (A minus B) and hide (deselect) all Signals using the eye, except **C**.
+Click on {{% labelbutton color="ui-button-blue" %}}Enter Formula{{% /labelbutton %}}
+ then enter **`A-B`** (A minus B) and hide (deselect) all Signals using the eye, except **C**.
 
 ![Formulas](../../images/M-Filter-11.png)
 

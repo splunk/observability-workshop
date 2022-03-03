@@ -54,7 +54,7 @@ First set the time for the chart to -1 hour in the Time box at the top right of 
 
 ![Set Visibility](../../images/M-MoreCharts-7.png)
 
-Click on the **Add Metric Or Event**{: .label-button .sfx-ui-button-blue} button. This will bring up the box for a new signal. Type and select `demo.trans.count` for Signal **D**.
+Click on the {{% labelbutton color="ui-button-blue" %}}Add Metric Or Event{{% /labelbutton %}} button. This will bring up the box for a new signal. Type and select `demo.trans.count` for Signal **D**.
 
 ![Dashboard Info](../../images/M-MoreCharts-8.png)
 

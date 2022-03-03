@@ -8,7 +8,8 @@ weight: 13
 
 Often on dashboards it makes sense to place a short "instruction" pane that helps users of a dashboard.
 
-Lets add one now by clicking on the **New Text Note**{: .label-button.sfx-ui-button-grey} Button.
+Lets add one now by clicking on the {{% labelbutton color="ui-button-blue" %}}New Text Note{{% /labelbutton %}}
+ Button.
 
 ![three charts](../../images/M-Notes-0.png)
 
