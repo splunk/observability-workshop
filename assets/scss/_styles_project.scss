@@ -5,6 +5,37 @@ Nothing defined here. The Hugo project that uses this theme can override Bootstr
 assets/scss/_styles_project.scss
 
 */
+
+.alert {
+    font-weight: $font-weight-bold;
+    background: $white;
+    color: inherit;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+
+    @each $color, $value in $theme-colors {
+        &-#{$color} {
+            & .alert-heading {
+                font-weight: $font-weight-bold;
+                background: lighten($value, 40%);
+                margin: 0;
+                padding: 15px;
+                
+            }
+            
+            border-style: solid;
+            border-color: $value;
+            border-width: 0 0 0 4px;
+        }
+    }
+}
+
+.alert-body {
+    background: $white;
+    padding: 15px;
+}
+
 .label-button {
 	padding: 4px 6px;
 	min-width: 88px;

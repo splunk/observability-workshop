@@ -1,0 +1,12 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+{{ $color := .Get "color" | default "primary" }}
+<div class="alert alert-{{ $color }}" role="alert">
+{{ with .Get "title" }}<p class="alert-heading">{{ . | safeHTML }}</p>{{ end }}
+<p class="alert-body">
+{{ if eq .Page.File.Ext "md" }}
+    {{ .Inner | markdownify }}
+{{ else }}
+    {{ .Inner | htmlUnescape | safeHTML }}
+{{ end }}
+</p>
+</div>
