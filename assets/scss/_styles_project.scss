@@ -135,10 +135,28 @@ assets/scss/_styles_project.scss
     border-right: 1px #dee2e6 solid;
 }
 
-.td-navbar {
-    min-height: 2rem;
+.td-sidebar__inner {
+    padding-top: 2rem;
 }
 
+.td-page-meta {
+    padding-top: 3rem !important;
+}
+
+#navbar1 {
+    position: fixed;
+    background-color: rgb(26, 26, 26);
+}
+#navbar2 {
+    min-height: 2rem;
+    margin-top: 3.5rem;
+    position: fixed;
+    box-shadow: 0 0 0.2rem #0000001a, 0 0.2rem 0.4rem #00000033;
+}
+
+.td-main main {
+    padding-top: 4.5rem;
+}
 .td-navbar .nav-link {
     text-transform: none;
     font-weight: 400;
@@ -161,7 +179,7 @@ body {
 
 .td-sidebar {
     @include media-breakpoint-up(md) {
-        padding-top: 4rem;
+        padding-top: 0rem;
         background-color: #fff;
         padding-right: 1rem;
         border-right: 0px solid $td-sidebar-border-color;
