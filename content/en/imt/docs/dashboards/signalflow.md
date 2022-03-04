@@ -1,6 +1,5 @@
 ---
 title: SignalFlow
-type: docs
 weight: 9
 ---
 ## 1. Introduction
@@ -18,31 +17,32 @@ Infrastructure Monitoring creates these computations in the Chart Builder user i
 
 SignalFlow includes a large library of built-in analytical functions that take a metrics time series as an input, perform computations on its datapoints, and output time series that are the result of the computation.
 
-!!! info
-    For more information on SignalFlow see [Analyze incoming data using SignalFlow](https://docs.splunk.com/Observability/references/signalflow.html).
+{{% alert title="Info" color="primary" %}}
+For more information on SignalFlow see [Analyze incoming data using SignalFlow.](https://docs.splunk.com/Observability/references/signalflow.html)
+{{% /alert %}}
 
 ## 2. View SignalFlow
 
 In the chart builder, click on **View SignalFlow**.
 
-![SignalFlow](../../images/view-signalflow.png)
+![SignalFlow](../../../images/view-signalflow.png)
 
 You will see the SignalFlow code that composes the chart we were working on. You can now edit the SignalFlow directly within the UI. Our documentation has the [full list](https://dev.splunk.com/observability/docs/signalflow/function_method_list) of SignalFlow functions and methods.
 
-Also, you can copy the SignalFlow and use it when interacting with the API or with Terraform to enable [Monitoring as Code](../../monitoring-as-code/)
+Also, you can copy the SignalFlow and use it when interacting with the API or with Terraform to enable [Monitoring as Code](../../monitoring-as-code/terraform/)
 
-![Code](../../images/show-signalflow.png)
+![Code](../../../images/show-signalflow.png)
 
-=== "SignalFlow"
-
-    ```Python
-    A = data('demo.trans.latency', filter=filter('demo_datacenter', 'Paris')).percentile(pct=95).publish(label='A', enable=False)
-    B = data('demo.trans.latency', filter=filter('demo_datacenter', 'Paris')).percentile(pct=95).timeshift('1w').publish(label='B', enable=False)
-    C = (A-B).publish(label='C')
-    ```
+{{<tabpane>}}
+{{<tab header="SignalFlow" lang="python" >}}
+A = data('demo.trans.latency', filter=filter('demo_datacenter', 'Paris')).percentile(pct=95).publish(label='A', enable=False)
+B = data('demo.trans.latency', filter=filter('demo_datacenter', 'Paris')).percentile(pct=95).timeshift('1w').publish(label='B', enable=False)
+C = (A-B).publish(label='C')
+{{</tab>}}
+{{</tabpane>}}
 
 Click on **View Builder** to go back to the Chart **Builder** UI.
 
-![View Builder](../../images/view-builder.png)
+![View Builder](../../../images/view-builder.png)
 
 Let's save this new chart to our Dashboard!

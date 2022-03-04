@@ -1,7 +1,6 @@
 ---
 title: Teams - Lab Summary
 linkTitle: Teams
-type: docs
 weight: 3
 ---
 
@@ -24,7 +23,7 @@ This Dashboard has specific Dashboard Groups for Usage, SaaS and APM Business Wo
 
 They can use the menu along the top left to quickly navigate between their allocated teams, or they can use the **ALL TEAMS** dropdown on the right to select specific Team Dashboards, as well as quickly accessing **ALL Dashboards** using the adjacent link.
 
-![Teams](../../images/teams-homepage.png)
+![Teams](../../../images/teams-homepage.png)
 
 Alerts can be linked to specific Teams so the Team can monitor only the Alerts they are interested in, and in the above example they currently have 1 active Critical Alert.
 
@@ -40,11 +39,11 @@ When the **Team** UI is selected you will be presented with the list of current 
 
 To add a new **Team** click on the {{% labelbutton color="ui-button-blue" %}}**Create New Team**{{% /labelbutton %}} button. This will present you with the **Create New Team** dialog.
 
-![Add Team](../../images/create-new-team.png)
+![Add Team](../../../images/create-new-team.png)
 
 Create your own team by naming it `[YOUR-INITIALS]-Team and` add yourself by searching for your name and selecting the **Add** link next to your name. This should result in a dialog similar to the one below:
 
-![Add Team complete](../../images/add-to-team.png)
+![Add Team complete](../../../images/add-to-team.png)
 
 You can remove selected users by pressing  **Remove** or the small **x**.
 
@@ -52,8 +51,9 @@ Make sure you have your group created with your initials and with yourself added
 
 This will bring you back to the **Teams** list that will now show your Team and the one's created by others.
 
-!!! note
-    The Teams(s) you are a member of have a grey **Member** icon in front of it.
+{{% alert title="Note" color="primary" %}}
+The Teams(s) you are a member of have a grey **Member** icon in front of it.
+{{% /alert %}}
 
 If no members are assigned to your Team, you should see a blue **Add Members** link instead of the member count, clicking on that link will get you to the **Edit Team** dialog where you can add yourself.
 
@@ -67,12 +67,13 @@ The **...** menu gives you the option to Edit, Join, Leave or Delete a Team (lea
 
 You can set up specific Notification rules per team, click on the **Notification Policy** tab, this will open the notification edit menu.
 
-![Base notification menu](../../images/notification-policy.png)
+![Base notification menu](../../../images/notification-policy.png)
 
 By default the system offers you the ability to set up a general notification rule for your team.
 
-!!! note
-    The **Email all team members** option means all members of this Team will receive an email with the Alert information, regardless of the alert type.
+{{% alert title="Note" color="primary" %}}
+The **Email all team members** option means all members of this Team will receive an email with the Alert information, regardless of the alert type.
+{{% /alert %}}
 
 ### 3.1 Adding recipients
 
@@ -80,16 +81,16 @@ You can add other recipients, by clicking {{% labelbutton color="ui-button-blue"
 
 However if you click on the link **Configure separate notification tiers for different severity alerts** you can configure every alert level independently.
 
-![Multiple Notifications](../../images/single-policy.png)
+![Multiple Notifications](../../../images/single-policy.png)
 
 Different alert rules for the different alert levels can be configured, as shown in the above image.
 
-Critical and Major are using [Splunk's On-Call](https://www.splunk.com/en_us/observability/on-call.html) Incident Management solution. For the Minor alerts we send it to the Teams Slack channel and for Warning and Info we send an email.
+Critical and Major are using [Splunk\'s On-Call](https://www.splunk.com/en_us/observability/on-call.html) Incident Management solution. For the Minor alerts we send it to the Teams Slack channel and for Warning and Info we send an email.
 
 ### 3.2 Notification Integrations
 
 In addition to sending alert notifications via email, you can configure Observability Cloud to send alert notifications to the services shown below.
 
-![Notifications options](../../images/integrations.png)
+![Notifications options](../../../images/integrations.png)
 
 Take a moment to create some notification rules for you Team.
