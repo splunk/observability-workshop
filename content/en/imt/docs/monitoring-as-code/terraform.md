@@ -1,7 +1,6 @@
 ---
 title: Monitoring as Code - Lab Summary
 linkTitle: Plan, Apply, Destroy
-type: docs
 weight: 1
 ---
 
@@ -26,7 +25,7 @@ cd ~/signalfx-jumpstart
 {{</tab >}}
 {{</tabpane >}}
 
-The environment variables needed should already be set from [Installation using Helm](../../otel/k3s/#2-installation-using-helm). If not, create the following environment variables to use in the Terraform steps below
+The environment variables needed should already be set from [Installation using Helm](../../../otel/k3s/#2-installation-using-helm). If not, create the following environment variables to use in the Terraform steps below
 
 {{<tabpane >}}
 {{<tab header="Environment Variables" lang="bash" >}}
@@ -37,8 +36,9 @@ export REALM=<replace_with_splunk_realm>
 
 Initialize Terraform and upgrade to the latest version of the Splunk Terraform Provider
 
-!!! note "Upgrading the SignalFx Terraform Provider"
-    You will need to run the command below each time a new version of the Splunk Terraform Provider is released. You can track the releases on [GitHub](https://github.com/splunk-terraform/terraform-provider-signalfx/releases).
+{{% alert title="Note: Upgrading the SignalFx Terraform Provider" color="primary" %}}
+You will need to run the command below each time a new version of the Splunk Terraform Provider is released. You can track the releases on [GitHub.](https://github.com/splunk-terraform/terraform-provider-signalfx/releases)
+{{% /alert %}}
 
 {{<tabpane >}}
 {{<tab header="Initialise Terraform" lang="bash" >}}
@@ -135,7 +135,7 @@ echo $(hostname)
 
  You will see a list of the new detectors and you can search for the prefix that was output from above.
 
-![Detectors](../../images//detectors.png)
+![Detectors](../../../images//detectors.png)
 
 ## 3. Destroy all your hard work
 
@@ -156,7 +156,7 @@ Destroy complete! Resources: 92 destroyed.
 
 Validate all the detectors have been removed by navigating to _**Alerts → Detectors**_
 
-![Destroyed](../../images/destroy.png)
+![Destroyed](../../../images/destroy.png)
 
 [^1]:
     Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.
