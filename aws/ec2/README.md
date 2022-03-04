@@ -43,7 +43,7 @@ Install the prerequisites, e.g. on Mac: `brew install terraform jq pssh`
 
 Then use the script:
 ```
-./up 12 myproject eu-central-1
+./up myproject 12 eu-central-1
 ```
 
 This will create a terraform workspace `o11y-for-myproject`, request 12 instances and ensure all instances have completed provisioning.
