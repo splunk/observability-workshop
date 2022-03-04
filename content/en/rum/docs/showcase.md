@@ -17,7 +17,7 @@ We are all connected to the Online Boutique running on the specific RUM host for
 You should have received the correct URL from your workshop host at this point.
 Open a new web browser and go to `http://{==RUM-HOST-EC2-IP==}:81/` where you will then be able to see the RUM enabled Online Boutique running.
 
-![Online Boutique](../images/apm/online-boutique.png)
+![Online Boutique](../../images/online-boutique.png)
 
 ## 2. Generate traffic
 
@@ -26,8 +26,8 @@ For extra credit, you may even use the url from different browsers or from your 
 
 This will create  multiple sessions to investigate. Take your time to examine and buy the various products and put them in your cart:
 
-![Cart Online Boutique](../images/rum/cart.png)
+![Cart Online Boutique](../../images/cart.png)
 
 Doesn't that HOME BARISTA KIT look tempting?...   Your time to start shopping now!
 
-![Clock](../images/rum/Clock.gif)
+![Clock](../../images/Clock.gif)
