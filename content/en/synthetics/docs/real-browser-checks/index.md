@@ -1,8 +1,9 @@
 ---
-title: Lab Overview
+title: Real Browser Check 
 linkTitle: Real Browser Check 
 weight: 1
-description: Scripting and configuring a Real Browswer Check
+description: >
+  Scripting and configuring a Real Browswer Check
 ---
 
 This Lab walks your through using the [Chrome Selenium IDE](https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd?hl=en) extension to create a synthetic transaction against a Splunk demo instance and creating a Splunk Synthetic Monitoring Real Browser Check (RBC). In addition you also get to learn other Splunk Synthetic Monitoring checks like REST API checks and Uptime Checks.
