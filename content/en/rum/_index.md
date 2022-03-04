@@ -1,12 +1,14 @@
 ---
 title: Splunk RUM, an introduction
 linkTitle:  Splunk RUM
-weight: 1
+weight: 4 
 cascade:
-  - _target:
-    type: docs
-    hide_summary: true
+  type: docs
+menu:
+  main:
+    weight: 4
 ---
+
 Splunk RUM is the industry’s only end to end, full fidelity Real User Monitoring solution. It is built to optimize performance and aid in faster troubleshooting, giving you full visibility into end-user experiences.
 
 Splunk RUM allows you to identify performance problems in your web applications that impact the customer experience. We support benchmarking and measuring page performance with core web vitals. This includes but not limited to: W3C timings, the ability to identify long running tasks, along with everything that can impact your page load.
@@ -21,21 +23,3 @@ To see the full picture, Splunk RUM provides seamless correlation between our fr
 To complete the picture and offer full visibility, Splunk is also able to show in-context logs and events to enable deeper troubleshooting and root-cause analysis.
 
 ![Architecture Overview](../images/rum/rum-architecture.png)
-
----
-
-## Overview of the RUM Workshop
-
-The aim of this Splunk Real User Monitoring (RUM) workshop is to:
-
-* See how to add RUM to your website.
-
-* Examine the performance of your website with RUM metrics.
-
-* Investigate issues with your website.
-
- In order to reach this goal, we will use an online boutique to order various products. Whilst shopping on the online boutique you may encounter some issues with this web site, and you will use Splunk RUM to identify the issues, so they can be resolved by the developers.
-
-The workshop host will provide you with the URL for an online boutique store that has RUM enabled. This will allow us to generate live data to be analysed later.
-
-If you are running this session as part of the IMT/APM workshop you will be able to compare your current online boutique store which is not RUM enabled to the RUM enabled URL that your workshop host will provide.  If this an standalone RUM workshop, you will be provided with two URL, one for a shop that no RUM, and one that is RUM enabled.
