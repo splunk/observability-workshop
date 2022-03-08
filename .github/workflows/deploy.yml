@@ -14,12 +14,10 @@ jobs:
           fetch-depth: 0
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/deploy
-        id: deploy
+        id: deploy_act
         with:
           flavour: minor
       - name: Publish release
         uses: softprops/action-gh-release@v1
         with:
-          github_token: ${{ github.token }}
-          tag_name: ${{ steps.deploy.outputs.tag_name }}
-          tag_commitish: refs/tags/${{ steps.deploy.outputs.tag_name }}
+          tag_name: ${{ steps.deploy_act.outputs.tag_name }}
