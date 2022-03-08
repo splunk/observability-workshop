@@ -7,6 +7,10 @@ inputs:
     required: true
     default: 'minor'
 
+outputs:
+  tag_name:
+    description: name of tag created by bumpversion
+
 runs:
   using: "composite"
   steps:
@@ -18,6 +22,10 @@ runs:
     - name: Build Site
       shell: bash
       run: ./.github/ci/build_site -b ${{ steps.bumpversion.outputs.base_url }} -t ${{ steps.bumpversion.outputs.tag_name }}
+
+    - name: Set tag_name output
+      shell: bash
+      run: echo "::set-output name=tag_name::${{ steps.bumpversion.outputs.tag_name }}"
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
