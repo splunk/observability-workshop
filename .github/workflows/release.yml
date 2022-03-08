@@ -1,0 +1,13 @@
+name: Publish release assets
+
+on:
+  push:
+    tags:
+      - "v*.*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish release
+        uses: softprops/action-gh-release@v1
