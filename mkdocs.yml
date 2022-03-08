@@ -126,6 +126,7 @@ plugins:
           Deploying the Online Boutique: Online Boutiqueをデプロイする
           Get Data Out<br /><small>15 minutes</small>: データを取り出す<br /><small>15 minutes</small>
           Using Splunk APM: Splunk APMを使ってみる
+          Synthetics, an introduction: Syntheticsをはじめる
   - git-revision-date-localized:
       type: date
 
