@@ -20,4 +20,6 @@ jobs:
       - name: Publish release
         uses: softprops/action-gh-release@v1
         with:
+          github_token: ${{ github.token }}
           tag_name: ${{ steps.deploy.outputs.tag_name }}
+          tag_commitish: refs/tags/${{ steps.deploy.outputs.tag_name }}
