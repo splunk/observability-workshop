@@ -14,12 +14,11 @@ jobs:
           fetch-depth: 0
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/deploy
-        id: deploy_act
+        id: deploy
         with:
           flavour: minor
-      - run: echo ${{ steps.deploy_act.outputs.tag_name }}
-      - run: echo ${{ steps.bumpversion.outputs.tag_name }}
+      - run: echo ${{ steps.deploy.outputs.tag_name }}
       - name: Publish release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ steps.bumpversion.outputs.tag_name }}
+          tag_name: ${{ steps.deploy.outputs.tag_name }}
