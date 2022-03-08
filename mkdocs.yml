@@ -91,8 +91,6 @@ extra:
       lang: ja
 
 plugins:
-  - git-revision-date-localized:
-      type: date
   - i18n:
       default_language: en
       languages:
@@ -128,6 +126,8 @@ plugins:
           Deploying the Online Boutique: Online Boutiqueをデプロイする
           Get Data Out<br /><small>15 minutes</small>: データを取り出す<br /><small>15 minutes</small>
           Using Splunk APM: Splunk APMを使ってみる
+  - git-revision-date-localized:
+      type: date
 
 nav:
   - Home: index.md
