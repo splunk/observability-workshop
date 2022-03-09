@@ -10,7 +10,7 @@ terraform.tfstate.backup
 secret.tfvars
 terraform.tfvars
 .terraform.lock.hcl
-tfplan
+tfplan*
 /venv/
 /public/
 /site/
