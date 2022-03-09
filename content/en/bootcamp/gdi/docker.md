@@ -22,26 +22,26 @@ COPY app.py .
 ENV PATH="/app/.venv/bin:$PATH"
 ```
 
-Add the [appropriate `CMD`][docker-cmd] at the end to launch the app.
+Add the [appropriate CMD][docker-cmd] at the end to launch the app.
 
 Stop other instances of the app if you had any running.
 
 Then build and run the image:
 
-=== "Shell Command"
-
-    ```bash
-    docker build . -t wordcount
-    docker run -p 5000:5000 wordcount:latest
-    ```
+{{<tabpane>}}
+{{<tab header="Shell Command" lang="bash" >}}
+docker build . -t wordcount
+docker run -p 5000:5000 wordcount:latest
+{{</tab>}}
+{{</tabpane>}}
 
 Test the service in another shell:
 
-=== "Shell Command"
+{{<tabpane>}}
+{{<tab header="Shell Command" lang="bash" >}}
+curl -X POST http://127.0.0.1:5000/wordcount -F text=@hamlet.txt{{</tab>}}
+{{</tabpane>}}
 
-    ```bash
-    curl -X POST http://127.0.0.1:5000/wordcount -F text=@hamlet.txt
-    ```
 
 The milestone for this task is `05docker`.
 
