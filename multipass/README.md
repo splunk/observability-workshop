@@ -33,7 +33,7 @@ $INSTANCE = ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".tochararray(
 Build and launch a Multipass instance which will run the Kubernetes (K3s) environment that you will use in the workshop.
 
 ```text
-multipass launch 21.04 --name ${INSTANCE} --cloud-init cloud-init/k3s.yaml --cpus 4 --mem 8Gb --disk 32Gb
+multipass launch --name ${INSTANCE} --cloud-init cloud-init/k3s.yaml --cpus 4 --mem 8Gb --disk 32Gb
 ```
 
 Once the instance has been successfully created (this can take several minutes), shell into it:
