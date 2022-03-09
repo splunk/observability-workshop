@@ -1,4 +1,5 @@
 ---
+title: Editing charts
 linkTitle: Editing charts
 weight: 3
 ---
