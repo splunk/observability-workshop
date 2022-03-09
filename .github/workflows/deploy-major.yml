@@ -14,5 +14,11 @@ jobs:
           fetch-depth: 0
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/deploy
+        id: deploy
         with:
           flavour: major
+      - name: Publish release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: v${{ steps.deploy.outputs.tag_name }}
+          tag_name: v${{ steps.deploy.outputs.tag_name }}
