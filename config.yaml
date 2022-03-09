@@ -25,16 +25,16 @@ params:
     - version: v3.12
       url: 'https://signalfx.github.io/observability-workshop/v3.12/'
   url_latest_version: 'https://signalfx.github.io/observability-workshop/'
-  github_repo: 'https://github.com/signalfx/observability-workshop'
-  github_project_repo: 'https://github.com/signalfx/observability-workshop'
+#  github_repo: 'https://github.com/signalfx/observability-workshop'
+#  github_project_repo: 'https://github.com/signalfx/observability-workshop'
   ui:
     breadcrumb_disable: false
     footer_about_disable: false
     navbar_logo: true
     navbar_translucent_over_cover_disable: false
-    sidebar_menu_compact: true
-    sidebar_search_disable: false
-    sidebar_menu_foldable: true
+    sidebar_menu_compact: false
+    sidebar_search_disable: true
+    sidebar_menu_foldable: false
     readingtime:
       enable: true
   links:
@@ -73,5 +73,5 @@ markup:
 outputs:
   section:
     - HTML
-    - print
+#    - print
     - RSS
