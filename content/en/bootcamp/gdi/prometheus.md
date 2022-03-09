@@ -6,14 +6,14 @@ We need visibility into performance - let us add metrics with [Prometheus][prome
 
 Install the [Python Prometheus client][py-prom] as a dependency:
 
-=== "Shell Command"
-
-    ```bash
-    echo "prometheus-client" >> requirements.txt
-    python3 -m venv .venv
-    source .venv/bin/activate
-    .venv/bin/pip install -r requirements.txt
-    ```
+{{<tabpane>}}
+{{<tab header="Shell Command" lang="bash" >}}
+echo "prometheus-client" >> requirements.txt
+python3 -m venv .venv
+source .venv/bin/activate
+.venv/bin/pip install -r requirements.txt
+{{</tab>}}
+{{</tabpane>}}
 
 Import the modules by editing `app.py`. These imports go towards the top of the file:
 
@@ -45,11 +45,10 @@ c_recv.inc(len(data))
 
 Test that the application exposes metrics by hitting the endpoint while the app is running:
 
-=== "Shell Command"
-
-    ```bash
-     curl http://127.0.0.1:5000/metrics
-    ```
+{{<tabpane>}}
+{{<tab header="Shell Command" lang="bash" >}}
+curl http://127.0.0.1:5000/metrics{{</tab>}}
+{{</tabpane>}}
 
 The milestone for this task is `02service-metrics`.
 
