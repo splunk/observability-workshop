@@ -1,4 +1,5 @@
 ---
+title: Saving charts
 linkTitle: Saving charts
 weight: 5
 ---
