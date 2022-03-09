@@ -127,16 +127,31 @@ assets/scss/_styles_project.scss
 
 .td-sidebar-nav .td-sidebar-link.tree-root {
     font-weight: 600;
-    border-bottom: 0px #E20082 solid;
-    margin-bottom: 0rem;
+    border-bottom: 1px #E20082 solid;
 }
 
 .td-sidebar-nav {
     border-right: 1px #dee2e6 solid;
 }
 
+.td-sidebar-link__section {
+    font-weight: 700;
+}
 .td-sidebar__inner {
-    padding-top: 2rem;
+    padding-top: 3.5rem;
+}
+
+.td-sidebar-nav a:hover, a:active, a:focus {
+    color: #E20082;
+    text-decoration: none;
+}
+
+.td-sidebar {
+    @include media-breakpoint-up(md) {
+        background-color: #fff;
+        padding-right: 1rem;
+        border-right: 0px solid $td-sidebar-border-color;
+    }
 }
 
 .td-page-meta {
@@ -157,14 +172,10 @@ assets/scss/_styles_project.scss
 .td-main main {
     padding-top: 4.5rem;
 }
+
 .td-navbar .nav-link {
     text-transform: none;
     font-weight: 400;
-}
-
-.td-sidebar-nav a:hover, a:active, a:focus {
-    color: #E20082;
-    text-decoration: none;
 }
 
 body {
@@ -174,15 +185,6 @@ body {
 .td-max-width-on-larger-screens {
     @include media-breakpoint-up(lg) {
         max-width: 95%;
-    }
-}
-
-.td-sidebar {
-    @include media-breakpoint-up(md) {
-        padding-top: 0rem;
-        background-color: #fff;
-        padding-right: 1rem;
-        border-right: 0px solid $td-sidebar-border-color;
     }
 }
 
