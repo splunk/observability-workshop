@@ -85,7 +85,7 @@ Runボタンを押して記録をテストし、正常に完了することを�
 
 Steps をクリックし、それぞれのステップにわかりやすい名前を付けます（例: Step1（Click Camera）、Step2（Add to Cart）、Step3（Place Order））。
 
-!!! note "名前の日本語"
+!!! note "名前欄の日本語の利用"
     技術的な制約により、ステップ名などはアルファベットのみお使いいただけます。
 
 ![placeholder](../images/synthetics/image6.png)
@@ -97,13 +97,13 @@ Steps をクリックし、それぞれのステップにわかりやすい名�
 ![placeholder](../images/synthetics/image2.png)
 
 !!! info "Tip"
-    ステップを作成する際に、Splunk Synthetic Monitoring の [Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions) 機能をどのように利用するか考えてみてください。この機能は非常に強力です。*ビジネストランザクションは、全体として測定されるリアルブラウザスクリプトの連続するステップの結合されたグループです。これらのトランザクションは、フローの類似部分を論理的にグループ化し、ユーザーは複数のステップとページを1つのビジネストランザクションにグループ化してパフォーマンスを表示することができます。
+    ステップを作成する際に、Splunk Synthetic Monitoring の [Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions) 機能をどのように利用するか考えてみてください。この機能は非常に強力です。 *「ビジネストランザクションは、全体として測定されるリアルブラウザスクリプトの連続するステップの結合されたグループです。これらのトランザクションは、フローの類似部分を論理的にグループ化し、ユーザーは複数のステップとページを1つのビジネストランザクションにグループ化してパフォーマンスを表示することができます。」*
 
 **Advanced** をクリックし、 **Viewport Size** が **Default desktop: 1366 x 768** に設定されていることを確認します。
 
 ![Viewport Size](../images/synthetics/viewport-size.png)
 
-"**Test**" "をクリックし、モニターをテストします。テストが正常に終了したら、ステップ4の "**AFTER**" をクリックして、モニターが注文完了のスクリーンショットに到達できたことを確認してください。
+"**Test**" をクリックし、モニターをテストします。テストが正常に終了したら、ステップ4の "**AFTER**" をクリックして、モニターが注文完了のスクリーンショットに到達できたことを確認してください。
 
 ![placeholder](../images/synthetics/image22.png)
 
@@ -165,10 +165,7 @@ Steps をクリックし、それぞれのステップにわかりやすい名�
 
 ![placeholder](../images/synthetics/image18.png)
 
-新しいモニターのテストと検証をしましょう
-
-!!! info "Tip"
-    ステップを作成する際に、Splunk Synthetic Monitoring の [Business Transaction] (https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions) 機能を使用してみてください。 *「ビジネストランザクションは、Real Browser スクリプトの連続するステップを結合したグループで、全体として測定するものです。これらのトランザクションはフローの類似部分を論理的にグループ化し、ユーザーは複数のステップとページを1つのビジネストランザクションにグループ化してパフォーマンスを見ることができます」*。
+新しいモニターのテストして、動作を確かめましょう。
 
 ## リソース
 
