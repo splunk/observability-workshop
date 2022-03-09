@@ -1,6 +1,7 @@
 ---
 title: Welcome to the Observability Bootcamp
 linkTitle: Observability Bootcamp
+weight: 5
 cascade:
   type: docs
 menu:
