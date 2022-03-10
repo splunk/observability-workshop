@@ -28,39 +28,39 @@ Note 2: Make sure to import modules.
 
 Rebuild the container images for the private registry:
 
-{{<tabpane>}}
+{{< tabpane >}}
 {{< tab header="Shell Command" lang="bash" >}}
-docker-compose build{{</tab>}}
-{{</tabpane>}}
+docker-compose build{{< /tab >}}
+{{< /tabpane >}}
 
 Push the images to the private registry:
 
-{{<tabpane>}}
+{{< tabpane >}}
 {{< tab header="Shell Command" lang="bash" >}}
-docker-compose push{{</tab>}}
-{{</tabpane>}}
+docker-compose push{{< /tab >}}
+{{< /tabpane >}}
 
 Delete the `public-api` deployment:
 
-{{<tabpane>}}
+{{< tabpane >}}
 {{< tab header="Shell Command" lang="bash" >}}
-kubectl delete deploy public-api{{</tab>}}
-{{</tabpane>}}
+kubectl delete deploy public-api{{< /tab >}}
+{{< /tabpane >}}
 
 Redeploy to the cluster with
 
-{{<tabpane>}}
+{{< tabpane >}}
 {{< tab header="Shell Command" lang="bash" >}}
-kubectl apply -f k8s{{</tab>}}
-{{</tabpane>}}
+kubectl apply -f k8s{{< /tab >}}
+{{< /tabpane >}}
 
 Test the service with
 
-{{<tabpane>}}
+{{< tabpane >}}
 {{< tab header="Shell Command" lang="bash" >}}
 ENDPOINT=$(kubectl get service/public-api -o jsonpath='{.spec.clusterIP}')
-curl http://$ENDPOINT:8000/api -F text=@hamlet.txt{{</tab>}}
-{{</tabpane>}}
+curl http://$ENDPOINT:8000/api -F text=@hamlet.txt{{< /tab >}}
+{{< /tabpane >}}
 
 Verify in Splunk APM that traces contain the desired informations: TODO screenshot
 

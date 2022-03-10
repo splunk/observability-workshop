@@ -21,11 +21,11 @@ Now switch back to the default cluster node view by selecting the **MAP** tab an
 
 In the Multipass or AWS/EC2 shell session and change into the `nginx` directory:
 
-{{<tabpane>}}
+{{< tabpane >}}
 {{< tab header="Change Directory" lang="bash" >}}
 cd ~/workshop/k3s/nginx
-{{</tab>}}
-{{</tabpane>}}
+{{< /tab >}}
+{{< /tabpane >}}
   
 ---
 
@@ -33,39 +33,38 @@ cd ~/workshop/k3s/nginx
 
 Create the NGINX `configmap`[^1] using the `nginx.conf` file:
 
-{{<tabpane>}}
+{{< tabpane >}}
 {{< tab header="Kubectl Configmap Create" lang="bash" >}}
 kubectl create configmap nginxconfig --from-file=nginx.conf
-{{</tab>}}
+{{< /tab >}}
 {{< tab header="Kubectl Create Configmap Output" lang="text" >}}
 configmap/nginxconfig created
-{{</tab>}}
-{{</tabpane>}}
+{{< /tab >}}
+{{< /tabpane >}}
 
 Then create the deployment:
 
-{{<tabpane>}}
+{{< tabpane >}}
 {{< tab header="Kubectl Create Deployment" lang="bash" >}}
 kubectl create -f nginx-deployment.yaml
-{{</tab>}}
+{{< /tab >}}
 {{< tab header="Kubectl Create Deployment Output" lang="text" >}}
 deployment.apps/nginx created
 service/nginx created
-{{</tab>}}
-{{</tabpane>}}
-
+{{< /tab >}}
+{{< /tabpane >}}
 
 Next we will deploy Locust[^2] which is an open source tool used for creating a load test against NGINX:
 
-{{<tabpane>}}
+{{< tabpane >}}
 {{< tab header="Kubectl Create Deployment" lang="bash" >}}
 kubectl create -f locust-deployment.yaml
-{{</tab>}}
+{{< /tab >}}
 {{< tab header="Kubectl Create Deployment Output" lang="text" >}}
 deployment.apps/nginx-loadgenerator created
 service/nginx-loadgenerator created
-{{</tab>}}
-{{</tabpane>}}
+{{< /tab >}}
+{{< /tabpane >}}
 
 Validate the deployment has been successful and that the Locust and NGINX pods are running.
 
@@ -83,10 +82,10 @@ If you select the **WORKLOADS** tab again you will now see that there is a new R
 
 Let's validate this in your shell as well:
 
-{{<tabpane>}}
+{{< tabpane >}}
 {{< tab header="Kubectl Get Pods" lang="bash" >}}
 kubectl get pods
-{{</tab>}}
+{{< /tab >}}
 {{< tab header="Kubectl Get Pods Output" lang="text" >}}
 NAME                                                          READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-k8s-cluster-receiver-77784c659c-ttmpk   1/1     Running   0          9m19s
@@ -98,8 +97,8 @@ nginx-7b95fb6b6b-hlx27                                        1/1     Running   
 nginx-7b95fb6b6b-zwns9                                        1/1     Running   0          5m57s
 svclb-nginx-loadgenerator-nscx4                               1/1     Running   0          2m20s
 nginx-loadgenerator-755c8f7ff6-x957q                          1/1     Running   0          2m20s
-{{</tab>}}
-{{</tabpane>}}
+{{< /tab >}}
+{{< /tabpane >}}
 
 ---
 

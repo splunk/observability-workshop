@@ -6,32 +6,35 @@ The development team has started using [Kubernetes][kubernetes] for container or
 
 Rebuild the container images for the private registry:
 
-{{<tabpane>}}
+{{< tabpane >}}
 {{< tab header="Shell Command" lang="bash" >}}
-docker-compose build{{</tab>}}
-{{</tabpane>}}
+docker-compose build{{< /tab >}}
+{{< /tabpane >}}
 
 Push the images to the private registry:
 
-{{<tabpane>}}
+{{< tabpane >}}
 {{< tab header="Shell Command" lang="bash" >}}
-docker-compose push{{</tab>}}
-{{</tabpane>}}
+docker-compose push
+{{< /tab >}}
+{{< /tabpane >}}
 
 Then deploy the services into the cluster:
 
-{{<tabpane>}}
+{{< tabpane >}}
 {{< tab header="Shell Command" lang="bash" >}}
-kubectl apply -f k8s{{</tab>}}
-{{</tabpane>}}
+kubectl apply -f k8s
+{{< /tab >}}
+{{< /tabpane >}}
 
 Test the service with
 
-{{<tabpane>}}
+{{< tabpane >}}
 {{< tab header="Shell Command" lang="bash" >}}
 ENDPOINT=$(kubectl get service/wordcount -o jsonpath='{.spec.clusterIP}')
-curl http://$ENDPOINT:8000/wordcount -F text=@hamlet.txt{{</tab>}}
-{{</tabpane>}}
+curl http://$ENDPOINT:8000/wordcount -F text=@hamlet.txt
+{{< /tab >}}
+{{< /tabpane >}}
 
 Configure and install an OpenTelemetry Collector using [Splunk\'s helm chart][splunk-otel-helm]:
 

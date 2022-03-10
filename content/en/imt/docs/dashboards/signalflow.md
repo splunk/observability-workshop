@@ -33,13 +33,13 @@ Also, you can copy the SignalFlow and use it when interacting with the API or wi
 
 ![Code](../../../images/show-signalflow.png)
 
-{{<tabpane>}}
+{{< tabpane >}}
 {{< tab header="SignalFlow" lang="python" >}}
 A = data('demo.trans.latency', filter=filter('demo_datacenter', 'Paris')).percentile(pct=95).publish(label='A', enable=False)
 B = data('demo.trans.latency', filter=filter('demo_datacenter', 'Paris')).percentile(pct=95).timeshift('1w').publish(label='B', enable=False)
 C = (A-B).publish(label='C')
-{{</tab>}}
-{{</tabpane>}}
+{{< /tab >}}
+{{< /tabpane >}}
 
 Click on **View Builder** to go back to the Chart **Builder** UI.
 

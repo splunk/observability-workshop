@@ -28,9 +28,11 @@ This includes (but not limited to):
 
 Below is an example of above Markdown options you can use in your note.
 
-{{<tabpane>}}
+{{< tabpane >}}
 {{< tab header="Sample Markdown text" lang="markdown" >}}
+
 # h1 Big headings
+
 ###### h6 To small headings
 
 ##### Emphasis
@@ -67,8 +69,8 @@ Ordered
 [link to webpage](https://www.splunk.com)
 
 [link to dashboard with title](https://app.eu0.signalfx.com/#/dashboard/EaJHrbPAEAA?groupId=EaJHgrsAIAA&configId=EaJHsHzAEAA "Link to the Sample chart Dashboard!")
-{{</tab>}}
-{{</tabpane>}}
+{{< /tab >}}
+{{< /tabpane >}}
 
 Copy the above by using the copy button and paste it in the *Edit* box.
 the preview will show you how it will look.
