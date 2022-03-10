@@ -10,10 +10,6 @@ menu:
 ---
 During this _**technical**_ Splunk Observability Cloud Infrastructure Monitoring and APM Workshop you will build out an environment based on a [lightweight](https://k3s.io/) Kubernetes[^1] cluster.
 
-```bash
-Some code here
-```
-
 In order to simplify the workshop modules, a pre-configured AWS/EC2 instance is provided.
 
 The instance is pre-configured with all the software required to deploy the Splunk OpenTelemetery Connector[^2] in Kubernetes, deploy a NGINX[^3] ReplicaSet[^4] and finally deploy a microservices based application which has been instrumented using OpenTelemetry to send metrics, traces, spans and logs[^5].
