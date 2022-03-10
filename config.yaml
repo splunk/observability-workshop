@@ -26,8 +26,8 @@ params:
     - version: v4.9
       url: https://rcastley.github.io/observability-workshop/v4.9
   url_latest_version: 'https://signalfx.github.io/observability-workshop/'
-#  github_repo: 'https://github.com/signalfx/observability-workshop'
-#  github_project_repo: 'https://github.com/signalfx/observability-workshop'
+  #  github_repo: 'https://github.com/signalfx/observability-workshop'
+  #  github_project_repo: 'https://github.com/signalfx/observability-workshop'
   ui:
     breadcrumb_disable: false
     footer_about_disable: false
@@ -74,5 +74,5 @@ markup:
 outputs:
   section:
     - HTML
-#    - print
+    #    - print
     - RSS
