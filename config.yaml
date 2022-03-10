@@ -28,6 +28,7 @@ params:
     pygmentsStyle: tango
   copyright: Splunk Inc.
   privacy_policy: ''
+  archived_version: true
   version_menu: Releases
   versions:
     - version: v4.14
@@ -36,7 +37,7 @@ params:
       url: https://rcastley.github.io/observability-workshop/v4.15
     - version: v4.16
       url: https://rcastley.github.io/observability-workshop/v4.16
-  url_latest_version: 'https://signalfx.github.io/observability-workshop/'
+  url_latest_version: https://rcastley.github.io/observability-workshop/v4.16
   #  github_repo: 'https://github.com/signalfx/observability-workshop'
   #  github_project_repo: 'https://github.com/signalfx/observability-workshop'
   #gcs_engine_id: d72aa9b2712488cc3
