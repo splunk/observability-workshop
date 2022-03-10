@@ -1,11 +1,10 @@
 baseURL: https://rcastley.github.io/
-title: 'Splunk Observability Cloud Workshops'
+title: Splunk Observability Cloud Workshops
 contentDir: content/en
 defaultContentLanguage: en
 defaultContentLanguageInSubdir: false
 enableMissingTranslationPlaceholders: true
 enableRobotsTXT: true
-offlineSearch: true
 theme:
   - docsy
 enableGitInfo: true
@@ -28,6 +27,9 @@ params:
   url_latest_version: 'https://signalfx.github.io/observability-workshop/'
   #  github_repo: 'https://github.com/signalfx/observability-workshop'
   #  github_project_repo: 'https://github.com/signalfx/observability-workshop'
+  #gcs_engine_id: d72aa9b2712488cc3
+  algolia_docsearch: false
+  offlineSearch: true
   ui:
     breadcrumb_disable: false
     footer_about_disable: false
