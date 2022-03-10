@@ -38,7 +38,7 @@ This will put you on the first milestone.
 In case you have already worked on a milestone, you might see an error like:
 
 {{<tabpane>}}
-{{< tab header="Example Output" >}}
+{{< tab header="Example Output" lang="bash" >}}
 error: Your local changes to the following files would be overwritten by checkout:
     app.py
 Please commit your changes or stash them before you switch branches.
