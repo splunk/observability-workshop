@@ -8,8 +8,20 @@ enableRobotsTXT: true
 theme:
   - docsy
 enableGitInfo: true
+taxonomies:
+  tag: tags
+  category: categories
 params:
   taxonomy:
+    taxonomyCloud:
+      - tags
+      - categories
+    taxonomyCloudTitle:
+      - Tag Cloud
+      - Categories
+    taxonomyPageHeader:
+      - tags
+      - categories
     pygmentsCodeFences: true
     pygmentsUseClasses: false
     pygmentsUseClassic: false
