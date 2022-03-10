@@ -7,7 +7,7 @@ We need visibility into performance - let us add metrics with [Prometheus][prome
 Install the [Python Prometheus client][py-prom] as a dependency:
 
 {{<tabpane>}}
-{{<tab header="Shell Command" lang="bash" >}}
+{{< tab header="Shell Command" lang="bash" >}}
 echo "prometheus-client" >> requirements.txt
 python3 -m venv .venv
 source .venv/bin/activate
@@ -46,7 +46,7 @@ c_recv.inc(len(data))
 Test that the application exposes metrics by hitting the endpoint while the app is running:
 
 {{<tabpane>}}
-{{<tab header="Shell Command" lang="bash" >}}
+{{< tab header="Shell Command" lang="bash" >}}
 curl http://127.0.0.1:5000/metrics{{</tab>}}
 {{</tabpane>}}
 

@@ -29,7 +29,7 @@ This includes (but not limited to):
 Below is an example of above Markdown options you can use in your note.
 
 {{<tabpane>}}
-{{<tab header="Sample Markdown text" lang="markdown" >}}
+{{< tab header="Sample Markdown text" lang="markdown" >}}
 # h1 Big headings
 ###### h6 To small headings
 

@@ -16,7 +16,7 @@ You can also start with a blank configuration, which is what the milestone does 
 Then run OpenTelemetry Collector with this configuration in a docker container:
 
 {{<tabpane>}}
-{{<tab header="Shell Command" lang="bash" >}}
+{{< tab header="Shell Command" lang="bash" >}}
 docker run --rm \
     -e SPLUNK_ACCESS_TOKEN=${SPLUNK_ACCESS_TOKEN} \
     -e SPLUNK_REALM=${SPLUNK_REALM} \

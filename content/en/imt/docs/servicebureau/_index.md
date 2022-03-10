@@ -1,5 +1,7 @@
 ---
+title: Service Bureau
 linkTitle: Service Bureau
-manualLinkRelref: billing-and-usage.md
-weight: 60
+weight: 6
+description: >
+  **10 minutes**
 ---

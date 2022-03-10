@@ -1,7 +1,7 @@
 ---
-title: Teams - Lab Summary
+title: Teams
 linkTitle: Teams
-weight: 3
+weight: 60
 ---
 
 * Introduction to Teams
