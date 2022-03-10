@@ -37,6 +37,8 @@ params:
       url: https://rcastley.github.io/observability-workshop/v4.15
     - version: v4.16
       url: https://rcastley.github.io/observability-workshop/v4.16
+    - version: v4.17
+      url: https://rcastley.github.io/observability-workshop/v4.17
   url_latest_version: https://rcastley.github.io/observability-workshop/v4.16
   #  github_repo: 'https://github.com/signalfx/observability-workshop'
   #  github_project_repo: 'https://github.com/signalfx/observability-workshop'
