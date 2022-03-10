@@ -21,7 +21,9 @@ This section will introduce the format for this workshop.
 
 1. We will timebox self-paced content during a live workshop.
 
-1. We use `git` branches to provide important milestones after a task is complete. If you did not complete a specific task, you can use these milestones to proceed to the next task or review the solution.
+1. We provide copies of solutions for the tasks in the workshop. They are called milestones and live in their own directory at `~/milestones`.
+
+If you did not complete a specific task, you can use these milestones to proceed to the next task or review the solution. Some tasks also instruct you to use a specific milestone as a basis. Let's look at how this works, and remember: milestones are just directories on the file system and you can copy over content into your working directory as needed.
 
 ## Getting started
 
