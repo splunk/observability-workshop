@@ -28,46 +28,46 @@ This section will introduce the format for this workshop.
 The task is to write a python app to count words in a text file.
 Here is how to get to the milestone that completes this step:
 
-{{<tabpane>}}
+{{< tabpane >}}
 {{< tab header="Shell Command" lang="text" >}}
-git checkout 01service{{</tab>}}
-{{</tabpane>}}
+git checkout 01service{{< /tab >}}
+{{< /tabpane >}}
 
 This will put you on the first milestone.
 
 In case you have already worked on a milestone, you might see an error like:
 
-{{<tabpane>}}
+{{< tabpane >}}
 {{< tab header="Example Output" lang="bash" >}}
 error: Your local changes to the following files would be overwritten by checkout:
     app.py
 Please commit your changes or stash them before you switch branches.
-Aborting{{</tab>}}
-{{</tabpane>}}
+Aborting{{< /tab >}}
+{{< /tabpane >}}
 
 This is because your work conflicts with changes on the milestone. You have the following options:
 
 1. If you have worked on a task and want to progress to the next one *and DROP all your changes*:
-    {{<tabpane>}}
+    {{< tabpane >}}
     {{< tab header="Shell Command: Git Reset" lang="text" >}}
-    git reset --hard && git clean -fdx && git checkout service{{</tab>}}
-    {{</tabpane>}}
+    git reset --hard && git clean -fdx && git checkout service{{< /tab >}}
+    {{< /tabpane >}}
 
     You will have to re-apply any local changes like settings tokens or names.
 
 1. To preserve your work but move it out of the way, you can use
 
-    {{<tabpane>}}
+    {{< tabpane >}}
     {{< tab header="Shell Command: Git Stash" lang="text" >}}
-    git stash && git checkout service{{</tab>}}
-    {{</tabpane>}}
+    git stash && git checkout service{{< /tab >}}
+    {{< /tabpane >}}
 
     To restore your work, switch to the previous milestone (`main` in this case) and retrieve the stashed changes:
 
-    {{<tabpane>}}
+    {{< tabpane >}}
     {{< tab header="Shell Command: Git Checkout" lang="text" >}}
-    git checkout main && git stash pop{{</tab>}}
-    {{</tabpane>}}
+    git checkout main && git stash pop{{< /tab >}}
+    {{< /tabpane >}}
     Sometimes you run into conflicting changes with this approach. We recommend you use the first option in this case.
 
 1. During development changes are recorded by adding and commiting to the repository. This is not necessary for this workshop.
@@ -76,16 +76,16 @@ Use the first option and proceed.
 
 To compare two milestones, use
 
-{{<tabpane>}}
+{{< tabpane >}}
 {{< tab header="Shell Command: Git Checkout" lang="text" >}}
-git diff main..01service{{</tab>}}
-{{</tabpane>}}
+git diff main..01service{{< /tab >}}
+{{< /tabpane >}}
 
 To compare what you have with a milestone, , e.g. the milestone `service` use
 
-{{<tabpane>}}
+{{< tabpane >}}
 {{< tab header="Shell Command: Git Checkout" lang="text" >}}
-git diff ..01service{{</tab>}}
+git diff ..01service{{< /tab >}}
 {{< tab header="Example Output (excerpt)" >}}
 ...
 diff --git a/bootcamp/service/src/app.py b/bootcamp/service/src/app.py
@@ -98,8 +98,9 @@ index 9bcae83..b7fc141 100644
 -from unicodedata import category
 +from flask import Flask, request, Response
 ...
-{{</tab>}}
-{{</tabpane>}}
+{{< /tab >}}
+{{< /tabpane >}}
+
 ## Future Tasks
 
 TODO YOUR Idea here? Let us know!
