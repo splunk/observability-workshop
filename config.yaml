@@ -30,12 +30,12 @@ params:
   privacy_policy: ''
   version_menu: Releases
   versions:
-    - version: latest
-      url: https://rcastley.github.io/observability-workshop/v3.33/
-    - version: v4.8
-      url: https://rcastley.github.io/observability-workshop/v4.8
-    - version: v4.9
-      url: https://rcastley.github.io/observability-workshop/v4.9
+    - version: v4.14
+      url: https://rcastley.github.io/observability-workshop/v4.14
+    - version: v4.15
+      url: https://rcastley.github.io/observability-workshop/v4.15
+    - version: v4.16
+      url: https://rcastley.github.io/observability-workshop/v4.16
   url_latest_version: 'https://signalfx.github.io/observability-workshop/'
   #  github_repo: 'https://github.com/signalfx/observability-workshop'
   #  github_project_repo: 'https://github.com/signalfx/observability-workshop'
