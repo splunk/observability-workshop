@@ -1,5 +1,5 @@
 baseURL: https://rcastley.github.io/
-title: ''
+title: 'Splunk Observability Cloud Workshops'
 contentDir: content/en
 defaultContentLanguage: en
 defaultContentLanguageInSubdir: false
@@ -56,12 +56,12 @@ imaging:
   anchor: smart
 languages:
   en:
-    title: ''
+    title: 'Splunk Observability Cloud Workshops'
     description: Splunk Observability Workshops
     languageName: English
     weight: 1
   ja:
-    title: ''
+    title: 'Splunk Observability Cloud Workshops'
     description: Splunk の観察力ワークショップ
     languageName: 日本語
     weight: 2
