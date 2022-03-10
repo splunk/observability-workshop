@@ -28,7 +28,7 @@ params:
     pygmentsStyle: tango
   copyright: Splunk Inc.
   privacy_policy: ''
-  archived_version: true
+  archived_version: false
   version_menu: Releases
   versions:
     - version: v4.14
