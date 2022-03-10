@@ -5,6 +5,7 @@ defaultContentLanguage: en
 defaultContentLanguageInSubdir: false
 enableMissingTranslationPlaceholders: true
 enableRobotsTXT: true
+offlineSearch: true
 theme:
   - docsy
 enableGitInfo: true
@@ -33,7 +34,7 @@ params:
     navbar_logo: true
     navbar_translucent_over_cover_disable: false
     sidebar_menu_compact: false
-    sidebar_search_disable: true
+    sidebar_search_disable: false
     sidebar_menu_foldable: false
     readingtime:
       enable: true

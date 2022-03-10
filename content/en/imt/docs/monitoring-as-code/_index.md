@@ -1,5 +1,7 @@
 ---
+title: Monitoring as Code
 linkTitle: Monitoring as Code
-manualLinkRelref: terraform.md
-weight: 50
+weight: 6
+description: >
+  **10 minutes**
 ---

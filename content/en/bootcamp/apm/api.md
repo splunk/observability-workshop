@@ -29,35 +29,35 @@ Note 2: Make sure to import modules.
 Rebuild the container images for the private registry:
 
 {{<tabpane>}}
-{{<tab header="Shell Command" lang="bash" >}}
+{{< tab header="Shell Command" lang="bash" >}}
 docker-compose build{{</tab>}}
 {{</tabpane>}}
 
 Push the images to the private registry:
 
 {{<tabpane>}}
-{{<tab header="Shell Command" lang="bash" >}}
+{{< tab header="Shell Command" lang="bash" >}}
 docker-compose push{{</tab>}}
 {{</tabpane>}}
 
 Delete the `public-api` deployment:
 
 {{<tabpane>}}
-{{<tab header="Shell Command" lang="bash" >}}
+{{< tab header="Shell Command" lang="bash" >}}
 kubectl delete deploy public-api{{</tab>}}
 {{</tabpane>}}
 
 Redeploy to the cluster with
 
 {{<tabpane>}}
-{{<tab header="Shell Command" lang="bash" >}}
+{{< tab header="Shell Command" lang="bash" >}}
 kubectl apply -f k8s{{</tab>}}
 {{</tabpane>}}
 
 Test the service with
 
 {{<tabpane>}}
-{{<tab header="Shell Command" lang="bash" >}}
+{{< tab header="Shell Command" lang="bash" >}}
 ENDPOINT=$(kubectl get service/public-api -o jsonpath='{.spec.clusterIP}')
 curl http://$ENDPOINT:8000/api -F text=@hamlet.txt{{</tab>}}
 {{</tabpane>}}

@@ -25,14 +25,14 @@ services:
 Build the service:
 
 {{<tabpane>}}
-{{<tab header="Shell Command" lang="bash" >}}
+{{< tab header="Shell Command" lang="bash" >}}
 docker-compose build{{</tab>}}
 {{</tabpane>}}
 
 Then run the whole stack:
 
 {{<tabpane>}}
-{{<tab header="Shell Command" lang="bash" >}}
+{{< tab header="Shell Command" lang="bash" >}}
 docker-compose up{{</tab>}}
 {{</tabpane>}}
 

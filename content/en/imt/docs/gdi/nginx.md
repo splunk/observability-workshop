@@ -1,8 +1,9 @@
 ---
-title: Deploying NGINX in K3s - Lab Summary
+title: Deploying NGINX in K3s
 linkTitle: Deploy and Monitor NGIX
-weight: 3
+weight: 2
 ---
+
 * Deploy a NGINX ReplicaSet into your K3s cluster and confirm the discovery of your NGINX deployment.
 * Run a load test to create metrics and confirm them streaming into Splunk Observability Cloud!
 
@@ -21,7 +22,7 @@ Now switch back to the default cluster node view by selecting the **MAP** tab an
 In the Multipass or AWS/EC2 shell session and change into the `nginx` directory:
 
 {{<tabpane>}}
-{{<tab header="Change Directory" lang="bash" >}}
+{{< tab header="Change Directory" lang="bash" >}}
 cd ~/workshop/k3s/nginx
 {{</tab>}}
 {{</tabpane>}}
@@ -33,10 +34,10 @@ cd ~/workshop/k3s/nginx
 Create the NGINX `configmap`[^1] using the `nginx.conf` file:
 
 {{<tabpane>}}
-{{<tab header="Kubectl Configmap Create" lang="bash" >}}
+{{< tab header="Kubectl Configmap Create" lang="bash" >}}
 kubectl create configmap nginxconfig --from-file=nginx.conf
 {{</tab>}}
-{{<tab header="Kubectl Create Configmap Output" lang="text" >}}
+{{< tab header="Kubectl Create Configmap Output" lang="text" >}}
 configmap/nginxconfig created
 {{</tab>}}
 {{</tabpane>}}
@@ -44,10 +45,10 @@ configmap/nginxconfig created
 Then create the deployment:
 
 {{<tabpane>}}
-{{<tab header="Kubectl Create Deployment" lang="bash" >}}
+{{< tab header="Kubectl Create Deployment" lang="bash" >}}
 kubectl create -f nginx-deployment.yaml
 {{</tab>}}
-{{<tab header="Kubectl Create Deployment Output" lang="text" >}}
+{{< tab header="Kubectl Create Deployment Output" lang="text" >}}
 deployment.apps/nginx created
 service/nginx created
 {{</tab>}}
@@ -57,10 +58,10 @@ service/nginx created
 Next we will deploy Locust[^2] which is an open source tool used for creating a load test against NGINX:
 
 {{<tabpane>}}
-{{<tab header="Kubectl Create Deployment" lang="bash" >}}
+{{< tab header="Kubectl Create Deployment" lang="bash" >}}
 kubectl create -f locust-deployment.yaml
 {{</tab>}}
-{{<tab header="Kubectl Create Deployment Output" lang="text" >}}
+{{< tab header="Kubectl Create Deployment Output" lang="text" >}}
 deployment.apps/nginx-loadgenerator created
 service/nginx-loadgenerator created
 {{</tab>}}
@@ -83,10 +84,10 @@ If you select the **WORKLOADS** tab again you will now see that there is a new R
 Let's validate this in your shell as well:
 
 {{<tabpane>}}
-{{<tab header="Kubectl Get Pods" lang="bash" >}}
+{{< tab header="Kubectl Get Pods" lang="bash" >}}
 kubectl get pods
 {{</tab>}}
-{{<tab header="Kubectl Get Pods Output" lang="text" >}}
+{{< tab header="Kubectl Get Pods Output" lang="text" >}}
 NAME                                                          READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-k8s-cluster-receiver-77784c659c-ttmpk   1/1     Running   0          9m19s
 splunk-otel-collector-agent-249rd                             1/1     Running   0          9m19s
