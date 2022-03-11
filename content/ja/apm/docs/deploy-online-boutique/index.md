@@ -1,3 +1,11 @@
+---
+title: Deploying the Online Boutique in K3s
+linkTitle: Deploying the Online Boutique
+weight: 2
+description: >
+  Deploy the instrumented Online Boutique microservice application into Kubernetes
+---
+
 # Online BoutiqueをK3sにデプロイする - ラボの概要
 
 * Online BoutiqueアプリケーションをKubernetes(K3s)にデプロイします
