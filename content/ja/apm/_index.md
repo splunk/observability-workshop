@@ -1,10 +1,13 @@
 ---
-title: Splunk APM Introduction
+title: Introduction
 linkTitle: Splunk APM
-type: docs
-weight: 1
+weight: 2
+cascade:
+  type: docs
+menu:
+  main:
+    weight: 2
 ---
-# はじめに
 
 Splunk APM は、クラウドネイティブなマイクロサービスベースのアプリケーション向けの NoSample™ で Full-fidelity なアプリケーションパフォーマンスモニタリングおよびトラブルシューティングソリューションです。
 
