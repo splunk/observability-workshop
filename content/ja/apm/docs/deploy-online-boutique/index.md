@@ -6,8 +6,6 @@ description: >
   Deploy the instrumented Online Boutique microservice application into Kubernetes
 ---
 
-# Online BoutiqueをK3sにデプロイする - ラボの概要
-
 * Online BoutiqueアプリケーションをKubernetes(K3s)にデプロイします
 * アプリケーションが動作していることを確認します
 * Locustを使って人工的なトラフィックを生成します
@@ -19,16 +17,12 @@ description: >
 
 Online BoutiqueアプリケーションをK3sにデプロイするには、以下のデプロイメントを適用します。
 
-=== "OpenTelemetry Collectorを使用する"
-
-    ```text
+{{< tabpane >}}
+  {{< tab header="Deploy Online Boutique" lang="bash" >}}
     cd ~/workshop
-    kubectl apply -f apm/microservices-demo/k8s/deployment.yaml
-    ```
-
-=== "出力結果"
-
-    ```text
+    kubectl apply -f apm/microservices-demo/k8s/deployment.yam
+  {{< /tab >}}
+  {{< tab header="Deployment Output" lang= "bash" >}}
     deployment.apps/checkoutservice created
     service/checkoutservice created
     deployment.apps/redis-cart created
@@ -54,19 +48,16 @@ Online BoutiqueアプリケーションをK3sにデプロイするには、以�
     service/shippingservice created
     deployment.apps/currencyservice created
     service/currencyservice created
-    ```
+  {{< /tab >}}
+{{< /tabpane >}}
 
 Online Boutique アプリケーションが起動していることを確認するには:
 
-=== "Get Podsする"
-
-    ```text
+{{< tabpane >}}
+  {{< tab header="Get Pods" lang="bash" >}}
     kubectl get pods
-    ```
-
-=== "出力結果"
-
-    ```text
+  {{< /tab >}}
+  {{< tab header="Get Pods Output" lang= "bash" >}}
     NAME                                                          READY   STATUS    RESTARTS   AGE
     splunk-otel-collector-k8s-cluster-receiver-56585564cc-xclzj   1/1     Running   0          84s
     splunk-otel-collector-agent-hkshj                             1/1     Running   0          84s
@@ -84,10 +75,12 @@ Online Boutique アプリケーションが起動していることを確認す�
     frontend-b8f747b87-4tkxn                                      1/1     Running   0          53s
     cartservice-59d5979db7-bqf64                                  1/1     Running   1          53s
     loadgenerator-57c8b84966-7nr4f                                1/1     Running   3          53s
-    ```
+  {{< /tab >}}
+{{< /tabpane >}}
 
-!!! 情報
-    通常、ポッドが Running 状態にポッドが走行状態に移行するまでには、1分30秒程度かかります。
+{{% alert title="Info" color="info" %}}
+Usually it should only take around 1min 30secs for the pods to transition into a Running state.
+{{% /alert %}}
 
 ---
 
@@ -99,11 +92,11 @@ Online Boutique アプリケーションが起動していることを確認す�
 
 Splunk UI で Cluster をクリックすると、次のような画面が表示されているはずです。
 
-![back to Cluster](/images/apm/online-boutique-k8s.png)
+![back to Cluster](../../images/online-boutique-k8s.png)
 
 もう一度 **WORKLOADS** タブを選択すると、いくつかのデプロイメントとレプリカセットがあることがわかるはずです。
 
-![HOTROD loaded](/images/apm/online-boutique-workload.png)
+![HOTROD loaded](../../images/online-boutique-workload.png)
 
 ---
 
@@ -113,7 +106,7 @@ Online Boutique は、EC2インスタンスのIPアドレスの81番ポートで
 
 ウェブブラウザを開き、 `http://{==EC2-IP==}:81/` にアクセスすると、Online Boutique が起動しているのが確認できます。
 
-![Online Boutique](/images/apm/online-boutique.png)
+![Online Boutique](../../images/online-boutique.png)
 
 ---
 
@@ -123,13 +116,13 @@ Online Boutique のデプロイメントには、Locust が動作するコンテ
 
 Locust は、EC2インスタンスのIPアドレスの82番ポートで利用できます。ウェブブラウザで新しいタブを開き、 `http://{==EC2-IP==}:82/` にアクセスすると、Locust が動作しているのが確認できます。
 
-![Locust](/images/apm/locust.png)
+![Locust](../../images/locust.png)
 
 **Spawn rate** を 2 に設定し、**Start Swarming** をクリックすると、アプリケーションに緩やかな負荷がかかり続けます。
 
-![Spawn Rate](/images/apm/locust-spawn-rate.png)
+![Spawn Rate](../../images/locust-spawn-rate.png)
 
-![Statistics](/images/apm/locust-statistics.png)
+![Statistics](../../images/locust-statistics.png)
 
 ---
 
@@ -139,21 +132,18 @@ Locust は、EC2インスタンスのIPアドレスの82番ポートで利用で
 
 ホスト名を調べるには、AWS/EC2インスタンス上で以下のコマンドを実行します:
 
-=== "Shell コマンド"
-
-    ```text
+{{< tabpane >}}
+  {{< tab header="Echo Hostname" lang="bash" >}}
     echo $(hostname)-apm-env
-    ```
-
-=== "出力結果（例）"
-
-    ```text
+  {{< /tab >}}
+  {{< tab header="Output Example" lang= "bash" >}}
     bdzx-apm-env
-    ```
+  {{< /tab >}}
+{{< /tabpane >}}
 
 前のステップで見つけた Environment を選択し、「frontend」サービスを選択し、時間を「Past 15 minutes」に設定します。
 
-![APM Dashboard](/images/apm/online-boutique-service-dashboard.png)
+![APM Dashboard](../../images/online-boutique-service-dashboard.png)
 
 この自動生成されたダッシュボードでは、RED (Rate, Error & Duration) メトリクスを使用して、サービスの状態を監視することができます。このダッシュボードでは、パフォーマンスに関連したさまざまなチャートのほか、基盤となるホストやKubernetesポッド（該当する場合）の相関情報も提供されます。
 
@@ -165,17 +155,17 @@ Locust は、EC2インスタンスのIPアドレスの82番ポートで利用で
 
 左上のハンバーガーメニューから「APM」をクリックすると、APM Overview ダッシュボードが表示されます。
 
-![select APM](/images/apm/online-boutique-apm.png)
+![select APM](../../images/online-boutique-apm.png)
 
 右側の **Explore** を選択し、先ほど見つけた Environment を選択し、時間を15分に設定します。これにより、自動的に生成されたOnline BoutiqueアプリケーションのDependency/Service Mapが表示されます。
 
 以下のスクリーンショットのように表示されます:
 
-![Online Boutique in APM](/images/apm/online-boutique-map.png)
+![Online Boutique in APM](../../images/online-boutique-map.png)
 
 ページの下部にある凡例では、依存関係/サービスマップでの表記について説明しています。
 
-![APM Legend](/images/apm/apm-legend.png){: : .shadow .zoom}
+![APM Legend](../../images/apm-legend.png){: : .shadow .zoom}
 
 * サービスリクエスト、エラーレート、ルートエラーレート。
 * リクエストレート、レイテンシー、エラーレート
@@ -188,7 +178,7 @@ Open Telemetery Collector がデプロイされると、プラットフォーム
 
 左上のハンバーガーメニューから、 **Dashboards → OpenTelemetry Collector** を選択し、メトリクスとスパンが送信されていることを確認しましょう。
 
-![OpenTelemetry Collector dashboard](/images/apm/otel-dashboard.png)
+![OpenTelemetry Collector dashboard](../../images/otel-dashboard.png)
 
 ## 8. OpenTelemetry zpages
 
@@ -196,12 +186,12 @@ Open Telemetery Collector がデプロイされると、プラットフォーム
 
 [zpages]: https://github.com/open-telemetry/opentelemetry-specification/blob/main/experimental/trace/zpages.md#tracez
 
-![zpages](/images/apm/zpages.png)
+![zpages](../../images/zpages.png)
 
 また、シェルプロンプトから、テキストベースのブラウザを実行することもできます。
 
-=== "Shell コマンド"
-
-    ```
+{{< tabpane >}}
+  {{< tab header="Lynx Command" lang="text" >}}
     lynx http://localhost:55679/debug/tracez
-    ```
+  {{< /tab >}}
+{{< /tabpane >}}
