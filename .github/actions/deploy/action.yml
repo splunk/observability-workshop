@@ -35,6 +35,8 @@ runs:
         commit_message="Docs: Releasing $TAG"
         prep_dir=$(mktemp -d)
 
+        version_filter=$(yq '.params.versions[] | select (.version != "latest") | [ "! /^" + .version + "/" ]' config.yaml | yq 'join(" && ")')
+
         git clone --depth=1 --single-branch --branch gh-pages "${remote}" "${prep_dir}"
         cd "${prep_dir}"
         git config user.name "${GITHUB_ACTOR}"
@@ -48,7 +50,6 @@ runs:
         git add latest
 
         # remove old versions
-        version_filter=$(yq '.params.versions[] | select (.version != "latest") | [ "! /^" + .version + "/" ]' config.yaml | yq 'join(" && ")')
         git ls-files | awk $version_filter | grep -Ev '^latest|.nojekyll|index.html' | xargs rm
 
         git remote rm origin || true
