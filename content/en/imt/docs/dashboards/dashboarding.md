@@ -3,6 +3,7 @@ title: Adding Notes and Dashboard Layout
 linkTitle: Notes and layout
 weight: 13
 ---
+
 ## 1. Adding Notes
 
 Often on dashboards it makes sense to place a short "instruction" pane that helps users of a dashboard.
