@@ -47,9 +47,9 @@ runs:
         git add --all "v${TAG}"
         git add latest
 
-        # TODO: remove old versions
-        current_versions=$(yq '.params.versions[] | select (.version != "latest") | .version' config.yaml)
-
+        # remove old versions
+        version_filter=$(yq '.params.versions[] | select (.version != "latest") | [ "! /^" + .version + "/" ]' config.yaml | yq 'join(" && ")')
+        git ls-files | awk $version_filter | grep -Ev '^latest|.nojekyll|index.html' | xargs rm
 
         git remote rm origin || true
         git remote add origin "${push_remote}"
