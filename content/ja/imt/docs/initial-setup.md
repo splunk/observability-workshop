@@ -20,7 +20,7 @@ description: >
 
 AWS/EC2 インスタンスの検索には、本ワークショップの登録時にご記入いただいたお名前（姓名）を入力してください。
 
-![参加者のスプレッドシート](../../../images/spreadsheet-info.png)
+![参加者のスプレッドシート](../../images/spreadsheet-info.png)
 
 ワークショップのインスタンスに接続するためのIPアドレス、SSHコマンド（Mac OS、Linux、最新のWindowsバージョン用）、パスワードが表示されています。
 
@@ -36,17 +36,17 @@ Mac や Linux の端末から SSH を使ってワークショップに接続す�
 
 SSH を使用するには、お使いのシステムでターミナルを開き、`ssh ubuntu@x.x.x.x`と入力してください（x.x.x.xをステップ1で見つけたIPアドレスに置き換えてください）。
 
-![ssh を使ったログイン](../../../images/ssh-1.png)
+![ssh を使ったログイン](../../images/ssh-1.png)
 
 **Are you sure you want to continue connecting (yes/no/[fingerprint])?`** というプロンプトが表示されたら **`yes`** と入力してください。
 
-![ssh パスワードの入力](../../../images/ssh-2.png)
+![ssh パスワードの入力](../../images/ssh-2.png)
 
 ステップ1の Google Sheets に記載されているパスワードを入力してください。
 
 ログインに成功すると、Splunk のロゴと Linux のプロンプトが表示されます。
 
-![ssh 接続完了](../../../images/ssh-3.png)
+![ssh 接続完了](../../images/ssh-3.png)
 
 これで [ワークショップを開始する](../../otel/k3s/) に進む準備が整いました。
 
@@ -63,19 +63,19 @@ Putty を開き、**Host Name (or IP address)** の欄に、Google Sheets に記
 
 名前を入力して **Save** を押すと、設定を保存することができます。
 
-![putty-2](../../../images/putty-settings.png)
+![putty-2](../../images/putty-settings.png)
 
 インスタンスにログインするには、**Open** ボタンをクリックします。
 
 初めて AWS/EC2 ワークショップインスタンスに接続する場合は、セキュリティダイアログが表示されますので、**Yes** をクリックしてください。
 
-![putty-3](../../../images/putty-security.png)
+![putty-3](../../images/putty-security.png)
 
 接続されたら、**ubuntu** としてログインし、パスワードは Google Sheets に記載されているものを使用します。
 
 接続に成功すると、以下のような画面が表示されます。
 
-![putty-4](../../../images/putty-loggedin.png)
+![putty-4](../../images/putty-loggedin.png)
 
 これで [ワークショップを開始する](../../otel/k3s/) に進む準備が整いました。
 
@@ -90,15 +90,15 @@ SSH（ポート22） の使用が禁止されている場合や、Putty がイ�
 
 Webブラウザを開き、**http:/x.x.x.x:6501** （X.X.X.Xは Google SheetsのIPアドレス）と入力します。
 
-![http-6501](../../../images/shellinabox-url.png)
+![http-6501](../../images/shellinabox-url.png)
 
 接続されたら、**ubuntu** としてログインし、パスワードは Google Sheets に記載されているものを使用します。
 
-![http-connect](../../../images/shellinabox-connect.png)
+![http-connect](../../images/shellinabox-connect.png)
 
 接続に成功すると、以下のような画面が表示されます。
 
-![web login](../../../images/shellinabox-login.png)
+![web login](../../images/shellinabox-login.png)
 
 通常のSSHを使用しているときとは異なり、ブラウザセッションを使用しているときは、*コピー＆ペースト* を使うための手順が必要です。これは、クロスブラウザの制限によるものです。
 
@@ -106,11 +106,11 @@ Webブラウザを開き、**http:/x.x.x.x:6501** （X.X.X.Xは Google Sheetsの
 
 *通常通り指示をコピーし、ウェブターミナルにペーストする準備ができたら、以下のように **Paste from browser** を選択します*。
 
-![webでのペースト](../../../images/shellinabox-paste-browser.png)
+![webでのペースト](../../images/shellinabox-paste-browser.png)
 
 すると、ウェブターミナルに貼り付けるテキストを入力するダイアログボックスが表示されます。
 
-![webでのペースト3](../../../images/shellinabox-example-1.png)
+![webでのペースト3](../../images/shellinabox-example-1.png)
 
 表示されているテキストボックスにテキストを貼り付け、**OK** を押すと、コピー＆ペーストができます。
 
@@ -119,7 +119,7 @@ Webブラウザを開き、**http:/x.x.x.x:6501** （X.X.X.Xは Google Sheetsの
 
     この **Connect** ボタンをクリックするだけで、再接続され、次の操作が可能になります。
 
- ![webでの再接続](../../../images/shellinabox-reconnect.png)
+ ![webでの再接続](../../images/shellinabox-reconnect.png)
 
 これで [ワークショップを開始する](../../otel/k3s/) に進む準備が整いました。
 
