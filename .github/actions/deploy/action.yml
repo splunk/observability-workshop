@@ -35,10 +35,9 @@ runs:
         prep_dir=$(mktemp -d)
 
         git clone --depth=1 --single-branch --branch gh-pages "${remote}" "${prep_dir}"
+        cd "${prep_dir}"
         git config user.name "${GITHUB_ACTOR}"
         git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-
-        cd "${prep_dir}"
 
         mkdir "v${TAG}"
         rm -f latest || true
