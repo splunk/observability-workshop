@@ -20,7 +20,7 @@ To deploy the Online Boutique application into K3s apply the deployment:
 {{< tabpane >}}
   {{< tab header="Deploy Online Boutique" lang="bash" >}}
     cd ~/workshop
-    kubectl apply -f apm/microservices-demo/k8s/deployment.yam
+    kubectl apply -f apm/microservices-demo/k8s/deployment.yaml
   {{< /tab >}}
   {{< tab header="Deployment Output" lang= "bash" >}}
     deployment.apps/checkoutservice created
