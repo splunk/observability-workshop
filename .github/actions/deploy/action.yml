@@ -32,6 +32,7 @@ runs:
         publish_dir="$(pwd)/site/v${{ steps.bumpversion.outputs.tag_name }}"
         remote=${{ github.repositoryUrl }}
         push_remote=https://${GITHUB_ACTOR}:${{ github.token }}@github.com/${GITHUB_REPOSITORY}.git
+        commit_message="Docs: Releasing $TAG"
         prep_dir=$(mktemp -d)
 
         git clone --depth=1 --single-branch --branch gh-pages "${remote}" "${prep_dir}"
@@ -40,22 +41,17 @@ runs:
         git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
         rm -f latest || true
+        rsync -a "${publish_dir}" "${prep_dir}"
         ln -s "v${TAG}" latest
+
+        git add --all "v${TAG}"
         git add latest
 
-        rsync -a "${publish_dir}" "${prep_dir}"
-        git add --all "v${TAG}"
+        # TODO: remove old versions
+        current_versions=$(yq '.params.versions[] | select (.version != "latest") | .version' config.yaml)
+
 
         git remote rm origin || true
         git remote add origin "${push_remote}"
-        git commit -m "Docs: Releasing $TAG"
+        git commit -m "${commit_message}"
         git push origin gh-pages
-
-    # - name: Deploy
-    #   uses: peaceiris/actions-gh-pages@v3
-    #   if: github.ref == 'refs/heads/master' && (inputs.flavour == 'minor' || inputs.flavour == 'major')
-    #   with:
-    #     github_token: ${{ github.token }}
-    #     publish_dir: './site/v${{ steps.bumpversion.outputs.tag_name }}'
-    #     destination_dir: 'v${{ steps.bumpversion.outputs.tag_name }}'
-    #     commit_message: 'Docs: Releasing ${{ steps.bumpversion.outputs.tag_name }}'
