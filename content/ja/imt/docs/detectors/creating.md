@@ -1,4 +1,8 @@
-# ディテクターを使ってみよう - ラボ概要
+---
+title: Working with Detectors - Lab Summary
+linkTitle: Creating a Detector
+weight: 6
+---
 
 * チャートからディテクターを作成する
 * アラート条件を設定する

@@ -1,6 +1,8 @@
 ---
+title: Get Data In 
 linkTitle: Get Data In
-type: docs
-weight: 20
-manualLinkRelref: k3s.md
+weight: 3
+description: >
+  **15 minutes**
 ---
+

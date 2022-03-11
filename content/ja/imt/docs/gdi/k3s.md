@@ -1,4 +1,9 @@
-# Kubernetes 環境で OpenTelemetry Collector をデプロイする
+---
+title: Deploying the OpenTelemetry Collector in Kubernetes
+linkTitle: Deploy the OTel Collector
+weight: 1
+---
+
 
 * Splunk Helm chartを使用して、K3s に OpenTelemetry Collector をインストールします
 * Kubernetes Navigatorでクラスタを探索します

@@ -1,4 +1,8 @@
-# サービスビューロー - ラボの概要
+---
+title: Billing and Usage 
+linkTitle: Billing and Usage
+weight: 50
+---
 
 * 組織におけるObservability Cloudの利用状況を把握する
 * Billing and Usage（課金と使用量）インターフェースを使って、使用量を追跡する
