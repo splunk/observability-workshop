@@ -13,13 +13,13 @@ Access Token は、左上のハンバーガーメニューから「**Organizatio
 
 **Default** トークンを開き、**Show Token** をクリックしてトークンを公開します。**Copy**{: .label-button .sfx-ui-button-grey} ボタンをクリックして、クリップボードにコピーします。
 
-![Access Token](/images/otel/access-token.png)
+![Access Token](../../../images/access-token.png)
 
 また、Splunk アカウントの Realm[^2] の名前を取得する必要があります。 ハンバーガーメニューから自分の名前をクリックし、**Account Settings** を選択します。
 
 Realm はページの中央にある Organizations セクションにあります。 この例では「us0」となっています。
 
-![Account Settings](/images/otel/account-settings.png)
+![Account Settings](../../../images/account-settings.png)
 
 ---
 
@@ -137,7 +137,7 @@ OpenTelemetry Collector podのログを確認して、エラーがないこと�
 
 Splunk の UI で左上のハンバーガーメニューから **Infrastructure** をクリックします。
 
-![Kubernetes Navigator Mapの選択](/images/otel/clustermap-nav.png)
+![Kubernetes Navigator Mapの選択](../../../images/clustermap-nav.png)
 
 **Containers** の下にある **Kubernetes** をクリックしてKubernetes Navigator Cluster Map を開き、メトリクスが送信されていることを確認します。
 
@@ -151,19 +151,19 @@ Splunk の UI で左上のハンバーガーメニューから **Infrastructure*
 
 次にUIで、Splunkロゴのすぐ下にある「Cluster: - 」メニューをクリックし、コピーしたばかりのクラスタ名を検索ボックスに貼り付け、ボックスをクリックしてクラスタを選択し、最後にメニューから空白をクリックしてフィルタを適用します。
 
-![K8S Clusters Filter](/images/otel/search-k3s-cluster.png)
+![K8S Clusters Filter](../../../images/search-k3s-cluster.png)
 
-![Select K8S Cluster](/images/otel/selecting-k3s-cluster.png)
+![Select K8S Cluster](../../../images/selecting-k3s-cluster.png)
 
-![Filtered K8S Cluster](/images/otel/filtered-k3s-cluster.png)
+![Filtered K8S Cluster](../../../images/filtered-k3s-cluster.png)
 
-ノードの状態を確認するには、クラスターの淡いブルーの背景にカーソルを置き、左上に表示される青い虫眼鏡をクリックしてください ![Magnifying Glass](/images/otel/blue-cross.png)。
+ノードの状態を確認するには、クラスターの淡いブルーの背景にカーソルを置き、左上に表示される青い虫眼鏡をクリックしてください ![Magnifying Glass](../../../images/blue-cross.png)。
 
 これで、ノードレベルまでドリルダウンできます。 次に、サイドバーボタンをクリックしてサイドバーを開き、Metricsサイドバーを開きます。
 
 サイドのスライダーを使って、CPU、メモリ、ネットワーク、イベントなど、クラスタ/ノードに関連する様々なチャートを見ることができます。
 
-![Sidebar metrics](/images/otel/explore-metrics.png)
+![Sidebar metrics](../../../images/explore-metrics.png)
 
 [^1]: Access Tokens (Org Tokensと呼ばれることもあります)は、長期間利用を前提とした組織レベルのトークンです。デフォルトでは、これらのトークンは 5 年間保存されます。そのため、長期間にわたってデータポイントを送信するエミッターに組み込んだり、Splunk API を呼び出す長期的なスクリプトに使用したりするのに適しています。
 
