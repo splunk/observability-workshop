@@ -24,6 +24,35 @@ runs:
       shell: bash
       run: ./.github/ci/build_site -b ${{ steps.bumpversion.outputs.base_url }} -t ${{ steps.bumpversion.outputs.tag_name }}
 
+    - name: Build Site
+      shell: bash
+      env:
+        TAG: ${{ steps.bumpversion.outputs.base_url }}
+      run: |
+        publish_dir=$(realpath './site/v${{ steps.bumpversion.outputs.tag_name }}')
+        remote=${{ github.repositoryUrl }}
+        prepDir=$(mktemp -d)
+
+        git clone --depth=1 --single-branch --branch gh-pages ${remote} ${prepDir}
+        git config user.name "${GITHUB_ACTOR}"
+        git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+
+        cd $prepDir
+        git rm -r --ignore-unmatch '*'
+
+        mkdir $TAG
+        ln -s $TAG latest
+        git add latest
+
+        cd $TAG
+        cp -RfL "${publish_dir}/*" "${publish_dir}/.*" "${prep_dir}/${TAG}"
+        git add --all .
+
+        git remote rm origin || true
+        git remote add origin ${pages_remote}
+        git commit -m "Docs: Releasing $TAG"
+        git push origin gh-pages
+
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       if: github.ref == 'refs/heads/master' && (inputs.flavour == 'minor' || inputs.flavour == 'major')
