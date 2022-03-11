@@ -39,14 +39,12 @@ runs:
         git config user.name "${GITHUB_ACTOR}"
         git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
-        mkdir "v${TAG}"
         rm -f latest || true
         ln -s "v${TAG}" latest
         git add latest
 
-        cd "v${TAG}"
-        rsync -a "${publish_dir}" .
-        git add --all .
+        rsync -a "${publish_dir}" "${prep_dir}"
+        git add --all "v${TAG}"
 
         git remote rm origin || true
         git remote add origin "${push_remote}"
