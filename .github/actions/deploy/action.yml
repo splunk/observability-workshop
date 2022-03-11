@@ -29,8 +29,9 @@ runs:
       env:
         TAG: ${{ steps.bumpversion.outputs.tag_name }}
       run: |
-        publish_dir=$(realpath './site/v${{ steps.bumpversion.outputs.tag_name }}')
+        publish_dir="$(pwd)/site/v${{ steps.bumpversion.outputs.tag_name }}')"
         remote=${{ github.repositoryUrl }}
+        push_remote=https://${GITHUB_ACTOR}:${{ github.token }}@github.com/${REPOSITORY}.git
         prep_dir=$(mktemp -d)
 
         git clone --depth=1 --single-branch --branch gh-pages "${remote}" "${prep_dir}"
@@ -38,7 +39,6 @@ runs:
         git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
         cd "${prep_dir}"
-        git rm -r --ignore-unmatch '*'
 
         mkdir "v${TAG}"
         rm -f latest || true
@@ -46,11 +46,10 @@ runs:
         git add latest
 
         cd "v${TAG}"
-        cp -RfL "${publish_dir}/*" "${publish_dir}/.*" "${prep_dir}/v${TAG}"
+        cp -RfL "${publish_dir}/*" "${publish_dir}/.*" .
         git add --all .
 
         git remote rm origin || true
-        push_remote=https://${GITHUB_ACTOR}:${{ github.token }}@github.com/${REPOSITORY}.git
         git remote add origin "${push_remote}"
         git commit -m "Docs: Releasing $TAG"
         git push origin gh-pages
