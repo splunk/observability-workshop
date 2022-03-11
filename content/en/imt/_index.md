@@ -8,6 +8,7 @@ menu:
   main:
     weight: 1
 ---
+
 During this _**technical**_ Splunk Observability Cloud Infrastructure Monitoring and APM Workshop you will build out an environment based on a [lightweight](https://k3s.io/) Kubernetes[^1] cluster.
 
 In order to simplify the workshop modules, a pre-configured AWS/EC2 instance is provided.

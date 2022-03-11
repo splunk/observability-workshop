@@ -1,5 +1,7 @@
 ---
+title: Working with Detectors
 linkTitle: Detectors
-manualLinkRelref: intro.md
-weight: 40
+weight: 5
+description: >
+  **10 minutes**
 ---

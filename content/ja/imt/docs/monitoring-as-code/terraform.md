@@ -1,4 +1,8 @@
-# Monitoring as Code - ラボ概要
+---
+title: Monitoring as Code 
+linkTitle: Plan, Apply, Destroy
+weight: 6
+---
 
 * Terraform[^1] を使用して Observability Cloud のダッシュボードとディテクターを管理します。
 * Terraform のSplunk Provider[^2] を初期化します

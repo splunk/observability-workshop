@@ -1,4 +1,8 @@
-# チーム - ラボの概要
+---
+title: Teams
+linkTitle: Teams
+weight: 60
+---
 
 * チームの管理
 * チームの作成とメンバーの追加

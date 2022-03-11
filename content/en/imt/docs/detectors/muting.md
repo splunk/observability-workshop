@@ -3,6 +3,7 @@ title: Working with Muting Rules - Lab Summary
 linkTitle: Creating a Muting Rule
 weight: 3
 ---
+
 * Learn how to configure Muting Rules
 * Learn how to resume notifications
   

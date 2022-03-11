@@ -1,4 +1,8 @@
-# K3s に NGINX をデプロイする - 概要
+---
+title: Deploying NGINX in K3s
+linkTitle: Deploy and Monitor NGIX
+weight: 2
+---
 
 * NGINX ReplicaSet を K3s クラスタにデプロイし、NGINX デプロイメントのディスカバリーを確認します。
 * 負荷テストを実行してメトリクスを作成し、Splunk Observability Cloudにストリーミングすることを確認します！

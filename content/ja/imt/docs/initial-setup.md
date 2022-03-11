@@ -1,4 +1,10 @@
-# ワークショップの環境に接続する
+---
+title: How to connect to your workshop environment
+linkTitle: Access AWS/EC2 Instance
+weight: 2
+description: > 
+  **5 minutes**
+---
 
 1. 自分に割り当てられたAWS/EC2インスタンスのIPアドレスを取得します
 2. SSH、Putty[^1]、またはWebブラウザを使ってインスタンスに接続します

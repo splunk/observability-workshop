@@ -1,4 +1,8 @@
-# 使用量をコントロールする - ラボの概要
+---
+title: Controlling Usage
+linkTitle: Control Usage
+weight: 70
+---
 
 * 個別のアクセストークンを作成し、制限を設けることで利用を制限する方法を紹介します
 
