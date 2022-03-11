@@ -32,7 +32,7 @@ params:
   version_menu: Releases
   versions:
     - version: latest
-      url: ""
+      url: https://rcastley.github.io/observability-workshop/
     - version: v4.26
       url: https://rcastley.github.io/observability-workshop/v4.26
     - version: v4.27
