@@ -27,37 +27,39 @@ runs:
     - name: Build Site
       shell: bash
       env:
-        TAG: ${{ steps.bumpversion.outputs.base_url }}
+        TAG: ${{ steps.bumpversion.outputs.tag_name }}
       run: |
         publish_dir=$(realpath './site/v${{ steps.bumpversion.outputs.tag_name }}')
         remote=${{ github.repositoryUrl }}
-        prepDir=$(mktemp -d)
+        prep_dir=$(mktemp -d)
 
-        git clone --depth=1 --single-branch --branch gh-pages ${remote} ${prepDir}
+        git clone --depth=1 --single-branch --branch gh-pages "${remote}" "${prep_dir}"
         git config user.name "${GITHUB_ACTOR}"
         git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
-        cd $prepDir
+        cd "${prep_dir}"
         git rm -r --ignore-unmatch '*'
 
-        mkdir $TAG
-        ln -s $TAG latest
+        mkdir "v${TAG}"
+        rm -f latest || true
+        ln -s "v${TAG}" latest
         git add latest
 
-        cd $TAG
-        cp -RfL "${publish_dir}/*" "${publish_dir}/.*" "${prep_dir}/${TAG}"
+        cd "v${TAG}"
+        cp -RfL "${publish_dir}/*" "${publish_dir}/.*" "${prep_dir}/v${TAG}"
         git add --all .
 
         git remote rm origin || true
-        git remote add origin ${pages_remote}
+        push_remote=https://${GITHUB_ACTOR}:${{ github.token }}@github.com/${REPOSITORY}.git
+        git remote add origin "${push_remote}"
         git commit -m "Docs: Releasing $TAG"
         git push origin gh-pages
 
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/master' && (inputs.flavour == 'minor' || inputs.flavour == 'major')
-      with:
-        github_token: ${{ github.token }}
-        publish_dir: './site/v${{ steps.bumpversion.outputs.tag_name }}'
-        destination_dir: 'v${{ steps.bumpversion.outputs.tag_name }}'
-        commit_message: 'Docs: Releasing ${{ steps.bumpversion.outputs.tag_name }}'
+    # - name: Deploy
+    #   uses: peaceiris/actions-gh-pages@v3
+    #   if: github.ref == 'refs/heads/master' && (inputs.flavour == 'minor' || inputs.flavour == 'major')
+    #   with:
+    #     github_token: ${{ github.token }}
+    #     publish_dir: './site/v${{ steps.bumpversion.outputs.tag_name }}'
+    #     destination_dir: 'v${{ steps.bumpversion.outputs.tag_name }}'
+    #     commit_message: 'Docs: Releasing ${{ steps.bumpversion.outputs.tag_name }}'
