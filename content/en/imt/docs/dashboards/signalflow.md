@@ -2,6 +2,7 @@
 title: SignalFlow
 weight: 9
 ---
+
 ## 1. Introduction
 
 Let's take a look at SignalFlow - the analytics language of Observability Cloud that can be used to setup monitoring as code.

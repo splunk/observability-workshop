@@ -1,12 +1,14 @@
 ---
 title: はじめに
 linkTitle: Splunk IMT
-type: docs
-weight: 100
-# menu:
-#   main:
-#     weight: 10
+cascade:
+ type: docs
+weight: 1
+menu:
+  main:
+    weight: 1
 ---
+
 この _**テクニカル**_ Splunk Observability Cloud Workshops では、 [lightweight](https://k3s.io/) Kubernetes[^1] クラスタをベースにした環境を構築します。
 
 ワークショップのモジュールを簡素化するために、あらかじめ設定されたAWS/EC2インスタンスが提供されます。

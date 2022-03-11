@@ -1,3 +1,9 @@
+---
+title: Adding charts to dashboards
+linkTitle: Adding more charts
+weight: 11
+---
+
 # ダッシュボードにチャートを追加する
 
 それでは、チャートを保存してみましょう。
@@ -12,11 +18,11 @@
 
 チャートの名前を **Latency History** とし、必要に応じてチャートの説明を追加します。
 
-![Save Chart 1](/images/dashboards/M-MoreCharts-1.png)
+![Save Chart 1](../../../images/M-MoreCharts-1.png)
 
 {{< labelbutton  >}}Save And Close{{< /labelbutton >}} をクリックします。これで、ダッシュボードに戻ると2つのチャートが表示されているはずです！
 
-![Save Chart 2](/images/dashboards/M-MoreCharts-2.png)
+![Save Chart 2](../../../images/M-MoreCharts-2.png)
 では、先ほどのチャートを元に、もう一つのチャートをさくっと追加してみましょう。
 
 ---
@@ -25,17 +31,17 @@
 
 ダッシュボードの **Latency History** チャート上の3つのドット **`...`** をクリックし、 **Copy** をクリックします。
 
-![Copy chart](/images/dashboards/M-MoreCharts-3.png)
+![Copy chart](../../../images/M-MoreCharts-3.png)
 
 ページ左上の **+** の横に赤い円と白い1が表示されていれば、チャートがコピーされているということになります。
 
-ページ上部の ![red one](/images/dashboards/M-MoreCharts-4.png) をクリックし、メニューの *Paste Charts* をクリックしてください (また、行の最後に 1 が見える赤い点があるはずです)。
+ページ上部の ![red one](../../../images/M-MoreCharts-4.png) をクリックし、メニューの *Paste Charts* をクリックしてください (また、行の最後に 1 が見える赤い点があるはずです)。
 
-![Past charts](/images/dashboards/M-MoreCharts-5.png)
+![Past charts](../../../images/M-MoreCharts-5.png)
 
 これにより、先程のチャートのコピーがダッシュボードに配置されます。
 
-![Three Dashboard](/images/dashboards/M-MoreCharts-6.png)
+![Three Dashboard](../../../images/M-MoreCharts-6.png)
 
 ---
 
@@ -47,18 +53,18 @@
 
 まず、チャートの右上にあるタイムボックスで、チャートの時間を -1h（1時間前から現在まで） に設定します。そして、シグナル「*A*」の前にある目のアイコンをクリックして再び表示させ、「*C*」 を非表示にし、*Latency history* の名前を **Latency vs Load** に変更します。
 
-![Set Visibility](/images/dashboards/M-MoreCharts-7.png)
+![Set Visibility](../../../images/M-MoreCharts-7.png)
 
 **Add Metric Or Event**{: .label-button .sfx-ui-button-blue} ボタンをクリックします。これにより、新しいシグナルのボックスが表示されます。シグナル **D** に `demo.trans.count` と入力・選択します。
 
-![Dashboard Info](/images/dashboards/M-MoreCharts-8.png)
+![Dashboard Info](../../../images/M-MoreCharts-8.png)
 
 これにより、チャートに新しいシグナル **D** が追加され、アクティブなリクエストの数が表示されます。*demo_datacenter:Paris* のフィルタを追加してから、**Delta Rollup** をクリック（または歯車のアイコンをクリック）し、ロールアップタイプを変更します。
 
-![rollup change](/images/dashboards/M-MoreCharts-9.png)
+![rollup change](../../../images/M-MoreCharts-9.png)
 
 ビジュアライゼーションのパネルが開いたら、Rollup ドロップダウンを **Rollup:Rate/sec** に変更し、左上の名前フィールドをクリックして **Latency vs load** に変更し、{{< labelbutton  >}}Save And Close{{< /labelbutton >}} ボタンを押します。これでダッシュボードに戻り、3つの異なるチャートが表示されます。
 
-![three charts](/images/dashboards/M-MoreCharts-10.png)
+![three charts](../../../images/M-MoreCharts-10.png)
 
 次のモジュールでは、「説明」のメモを追加して、チャートを並べてみましょう!
