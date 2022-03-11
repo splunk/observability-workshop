@@ -29,6 +29,7 @@ runs:
       env:
         TAG: ${{ steps.bumpversion.outputs.tag_name }}
       run: |
+        set -x
         publish_dir="$(pwd)/site/v${{ steps.bumpversion.outputs.tag_name }}"
         remote=${{ github.repositoryUrl }}
         push_remote=https://${GITHUB_ACTOR}:${{ github.token }}@github.com/${GITHUB_REPOSITORY}.git
@@ -50,9 +51,9 @@ runs:
         git add latest
 
         # remove old versions
-        git ls-files | awk $version_filter | grep -Ev '^latest|.nojekyll|index.html' | xargs rm
+        git ls-files | awk "${version_filter}" | grep -Ev '^latest|.nojekyll|index.html' | xargs git rm
+        git commit -m "${commit_message}"
 
         git remote rm origin || true
         git remote add origin "${push_remote}"
-        git commit -m "${commit_message}"
         git push origin gh-pages
