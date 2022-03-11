@@ -24,7 +24,7 @@ runs:
       shell: bash
       run: ./.github/ci/build_site -b ${{ steps.bumpversion.outputs.base_url }} -t ${{ steps.bumpversion.outputs.tag_name }}
 
-    - name: Build Site
+    - name: Prepare and publish to GitHub pages
       shell: bash
       env:
         TAG: ${{ steps.bumpversion.outputs.tag_name }}
@@ -46,7 +46,7 @@ runs:
         git add latest
 
         cd "v${TAG}"
-        cp -RfL "${publish_dir}/*" "${publish_dir}/.*" .
+        rsync -a "${publish_dir}" .
         git add --all .
 
         git remote rm origin || true
