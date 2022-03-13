@@ -3,6 +3,7 @@ title: Controlling Usage
 linkTitle: Control Usage
 weight: 70
 ---
+
 * Discover how you can restrict usage by creating separate Access Tokens and set limits.
 
 ## 1. Access Tokens

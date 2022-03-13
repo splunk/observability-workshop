@@ -3,6 +3,7 @@ title: Saving charts
 linkTitle: Saving charts
 weight: 5
 ---
+
 ## 1. Saving a chart
 
 To start saving your chart, lets give it a name and description. Click the name of the chart **Copy of Latency Histogram** and rename it to **"Active Latency"**.
