@@ -2,7 +2,9 @@
 title: Deploying the Online Boutique in K3s
 linkTitle: Deploying the Online Boutique
 weight: 2
-description: >
+description: | 
+  **10 minutes**
+  
   Deploy the instrumented Online Boutique microservice application into Kubernetes
 ---
 
