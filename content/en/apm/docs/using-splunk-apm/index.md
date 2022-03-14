@@ -2,7 +2,9 @@
 title: Using Splunk APM
 linkTitle: Using Splunk APM
 weight: 3
-description: >
+description: |
+  **15 minutes**
+
   An overview of how to use Splunk APM
 ---
 
