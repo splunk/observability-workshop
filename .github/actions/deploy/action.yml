@@ -36,7 +36,7 @@ runs:
         commit_message="Docs: Releasing $TAG"
         prep_dir=$(mktemp -d)
 
-        version_filter=$(yq '.params.versions[] | select (.version != "latest") | [ "! /^" + .version + "/" ]' config.yaml | yq 'join(" && ")')
+        version_filter=$(yq '.params.versions[] | select (.version != "latest") | [ "! /^" + .version + "\//" ]' config.yaml | yq 'join(" && ")')
 
         git clone --depth=1 --single-branch --branch gh-pages "${remote}" "${prep_dir}"
         cd "${prep_dir}"
