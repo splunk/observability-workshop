@@ -10,7 +10,7 @@ Rebuild the docker-compose stack and run it.
 
 Check that you are getting data in the Redis dashboard:
 
-![Redis dashboard](../../../images/bootcamp/redis-dashboard.png)
+![Redis dashboard](../../../images/redis-dashboard.png)
 
 The milestone for this task is `08docker-compose-redis-otel`.
 
