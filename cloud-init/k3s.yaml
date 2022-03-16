@@ -176,7 +176,7 @@ runcmd:
   # Download Workshop
   - export WSVERSION=4.7
   - 'export WSARCHIVE=$([ "$WSVERSION" = "master" ] && echo "master" || echo "v$WSVERSION")'
-  - curl -s -OL https://github.com/rcastley/observability-workshop/archive/$WSARCHIVE.zip
+  - curl -s -OL https://github.com/signalfx/observability-workshop/archive/$WSARCHIVE.zip
   - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
   - mv /home/ubuntu/observability-workshop-$WSVERSION /home/ubuntu/workshop
   # Download Splunk Observability Cloud Jumpstart
