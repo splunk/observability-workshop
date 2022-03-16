@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+git ls | grep -i "\.png" | parallel optipng -nb -nc {}

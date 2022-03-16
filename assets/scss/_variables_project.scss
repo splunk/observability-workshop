@@ -1,0 +1,37 @@
+/*
+
+Nothing defined here. The Hugo project that uses this theme can override theme variables by adding a file to:
+
+assets/scss/_variables_project.scss
+
+*/
+
+$primary: #E20082;
+$secondary: #fff;
+$info: #adb5bd;
+$light: #dee2e6;
+
+$google_font_name: "Century Gothic" !default;
+/*$google_font_family: "Century+Gothic:400,400i,700,700i" !default;*/
+
+$enable-gradients: false;
+$enable-rounded: true;
+$enable-shadows: false;
+
+$link-color: #E20082;
+
+// Nav bar colors
+$white: #fff;
+$navbar-dark-color: rgba($white, 1);
+$navbar-dark-hover-color: rgba($white, 0.75);
+$navbar-dark-active-color: $navbar-dark-color;
+
+$primary: #30638E !default;
+$primary-light: lighten($primary, 75%) !default;
+$secondary: #FFA630 !default;
+$success: #00c853;
+$info: #00b8d4;
+$warning: #ff9100;
+$danger: #ff1744;
+$white: #fff !default;
+$light: #D3F3EE !default;

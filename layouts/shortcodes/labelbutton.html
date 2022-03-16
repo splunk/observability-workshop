@@ -1,0 +1,6 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+{{ $color := .Get "color" | default "ui-button-blue" }}
+<strong class="label-button {{ $color }}" role="label-button">
+{{ .Inner }}
+</strong>
+&nbsp;

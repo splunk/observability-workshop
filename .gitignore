@@ -1,8 +1,7 @@
 .vscode
 .DS_Store
-site
+/site
 nohup.out
-.github
 terraform.tfstate
 terraform.tfstate.d/
 terraform.tfstate.backup
@@ -11,5 +10,13 @@ terraform.tfstate.backup
 secret.tfvars
 terraform.tfvars
 .terraform.lock.hcl
-tfplan
-venv/
+tfplan*
+/venv/
+/public/
+/site/
+/node_modules/
+package-lock.json
+# Temporary lock file while building
+.hugo_build.lock
+/resources
+!*/resources/
