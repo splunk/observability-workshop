@@ -51,7 +51,7 @@ runs:
         git add latest
 
         # remove old versions
-        git ls-files | awk "${version_filter} && ! /^(latest|\.nojekyll|index\.html)/" | xargs -I% git rm "%"
+        git ls-files | awk "${version_filter} && ! /^(latest|\.nojekyll|index\.html)/" | parallel -m git rm "%"
         git commit -m "${commit_message}"
 
         git remote rm origin || true
