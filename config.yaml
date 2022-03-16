@@ -1,4 +1,4 @@
-baseURL: https://rcastley.github.io/
+baseURL: https://signalfx.github.io/
 title: Splunk Observability Cloud Workshops
 contentDir: content/en
 defaultContentLanguage: en
@@ -32,11 +32,11 @@ params:
   version_menu: Releases
   versions:
     - version: latest
-      url: https://rcastley.github.io/observability-workshop/latest/
+      url: https://signalfx.github.io/observability-workshop/latest/
     - version: v4.4
-      url: https://rcastley.github.io/observability-workshop/v4.4
+      url: https://signalfx.github.io/observability-workshop/v4.4
     - version: v4.5
-      url: https://rcastley.github.io/observability-workshop/v4.5
+      url: https://signalfx.github.io/observability-workshop/v4.5
   url_latest_version: 'https://signalfx.github.io/observability-workshop/'
   #  github_repo: 'https://github.com/signalfx/observability-workshop'
   #  github_project_repo: 'https://github.com/signalfx/observability-workshop'
