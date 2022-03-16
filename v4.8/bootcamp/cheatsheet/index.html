@@ -1,0 +1,474 @@
+<!doctype html><html lang=en class=no-js>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.92.2">
+<meta name=robots content="index, follow">
+<link rel="shortcut icon" href=/observability-workshop/v4.8/favicons/favicon.ico>
+<link rel=apple-touch-icon href=/observability-workshop/v4.8/favicons/apple-touch-icon-180x180.png sizes=180x180>
+<link rel=icon type=image/png href=/observability-workshop/v4.8/favicons/favicon-16x16.png sizes=16x16>
+<link rel=icon type=image/png href=/observability-workshop/v4.8/favicons/favicon-32x32.png sizes=32x32>
+<link rel=icon type=image/png href=/observability-workshop/v4.8/favicons/android-36x36.png sizes=36x36>
+<link rel=icon type=image/png href=/observability-workshop/v4.8/favicons/android-48x48.png sizes=48x48>
+<link rel=icon type=image/png href=/observability-workshop/v4.8/favicons/android-72x72.png sizes=72x72>
+<link rel=icon type=image/png href=/observability-workshop/v4.8/favicons/android-96x96.png sizes=96x96>
+<link rel=icon type=image/png href=/observability-workshop/v4.8/favicons/android-144x144.png sizes=144x144>
+<link rel=icon type=image/png href=/observability-workshop/v4.8/favicons/android-192x192.png sizes=192x192>
+<title>Splunk Observability Cloud Workshops</title>
+<meta name=description content="OTEL COLLECTOR and SMART AGENT COMMANDS
+
+
+The snippets assume a Splunk Observability Cloud Access Token is set as an environment variable named …">
+<meta property="og:title" content>
+<meta property="og:description" content="OTEL COLLECTOR and SMART AGENT COMMANDS   The snippets assume a Splunk Observability Cloud Access Token is set as an environment variable named ACCESS_TOKEN.
+  To run checks in a Kubernetes cluster, we recommend you use a &ldquo;swiss-army knife&rdquo; container like netshoot :
+kubectl run tshoot -i --rm --restart=Never --image nicolaka/netshoot -- ACTUAL COMMAND HERE e.g. for a Trace connectivity check:
+kubectl run tshoot -i --rm --restart=Never --image nicolaka/netshoot -- curl -v -d'[]' -H'Content-Type:application/json' https://ingest.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://signalfx.github.io/observability-workshop/v4.8/bootcamp/cheatsheet/"><meta property="article:section" content="bootcamp">
+<meta property="article:modified_time" content="2022-02-24T16:43:25+01:00"><meta property="og:site_name" content="Splunk Observability Cloud Workshops">
+<meta itemprop=name content>
+<meta itemprop=description content="OTEL COLLECTOR and SMART AGENT COMMANDS   The snippets assume a Splunk Observability Cloud Access Token is set as an environment variable named ACCESS_TOKEN.
+  To run checks in a Kubernetes cluster, we recommend you use a &ldquo;swiss-army knife&rdquo; container like netshoot :
+kubectl run tshoot -i --rm --restart=Never --image nicolaka/netshoot -- ACTUAL COMMAND HERE e.g. for a Trace connectivity check:
+kubectl run tshoot -i --rm --restart=Never --image nicolaka/netshoot -- curl -v -d'[]' -H'Content-Type:application/json' https://ingest.">
+<meta itemprop=dateModified content="2022-02-24T16:43:25+01:00">
+<meta itemprop=wordCount content="875">
+<meta itemprop=keywords content><meta name=twitter:card content="summary">
+<meta name=twitter:title content>
+<meta name=twitter:description content="OTEL COLLECTOR and SMART AGENT COMMANDS   The snippets assume a Splunk Observability Cloud Access Token is set as an environment variable named ACCESS_TOKEN.
+  To run checks in a Kubernetes cluster, we recommend you use a &ldquo;swiss-army knife&rdquo; container like netshoot :
+kubectl run tshoot -i --rm --restart=Never --image nicolaka/netshoot -- ACTUAL COMMAND HERE e.g. for a Trace connectivity check:
+kubectl run tshoot -i --rm --restart=Never --image nicolaka/netshoot -- curl -v -d'[]' -H'Content-Type:application/json' https://ingest.">
+<link rel=preload href=/observability-workshop/v4.8/scss/main.min.5f8c3c6125570efd6840d5ae69619240bb33adb38c2ed5a72ddf29890e66afcb.css as=style>
+<link href=/observability-workshop/v4.8/scss/main.min.5f8c3c6125570efd6840d5ae69619240bb33adb38c2ed5a72ddf29890e66afcb.css rel=stylesheet integrity>
+<script src=https://code.jquery.com/jquery-3.6.0.min.js integrity=sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK crossorigin=anonymous></script>
+<script src=https://unpkg.com/lunr@2.3.9/lunr.min.js integrity=sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli crossorigin=anonymous></script>
+</head>
+<body class=td-page>
+<header>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" id=navbar1>
+<a class=navbar-brand href=/observability-workshop/v4.8/>
+<span class=navbar-logo><img class=navbar-logo src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAAvCAIAAAD8RQT7AAACwklEQVRYw+2YW2jTYBTHu4l4F1ERVMQL+qKgMBUU9EEfRAURUUFfBEUEBRGfdC+CrVt3cdbNSZ1zXqar024yp9MJKzh3FScyO+q8MDW3pvc2TZqkudSvtD4J66fkWyL0kNeQH8mX8/+dY8JMZuNcpjzNX9JQK64ZiEZlk9zDEe/aOmPQ8FIKlJpKtH+mNzUYg+Z38a7vvu2NRqHJlDhABPY0G4UmU8lhOnioFSu0GIImU9KXUOhYOz75kiFoMiVjsfDpl/i0UrQ0oePPkp5ACq5kHxs978JnlaHsxQVm/24H3zUGyaRE+Jj5DTGvEm0yeNfVsfeGVVGGYQJtk6kaIBfZ0OYUufBKrKRHCSWgmAQ5fmOIWl6DNjXx6dbwqRfgh4L6eJLC3v/oXW1HnOGFlsDeR0L3TygmEC+tn+j19ciNgt5Qzznc4B3AUPGd33xb7yL3G3LJVaaiX4kKMExCD+bf2YTctvCZZZEzndJYBIZJfE8F9jtBE0HsfpMswQNOoR+HYWIbPkyQiQIr4pyelKyOQ5No8UyoF1PLahjboMqIhqABl3/HA6EX05kGyEboSBuQIZ2/FDGnInKuSyaZnKcYLU32lMTF3P05ITHVb8nFNiQ09MZbXPPI+H9QliMuMuV9xIIqBN2vwAy8HTKw0gJ0sZuYW6l9MuBTS8MnnkujQSgOPxctdhGzy7VPTWL+5eiF1+ABUJJKMpGzr4CHaG8U1KrauH0IHEAot/kRDZ/swKeUaG9bvi13Em2jKUWF4gDDzdGn/zbcmHJE4MEWcZCAFPWk2xc8/ATcpbGl4zOsYFCC1IOsIex7/KchaEMj0ywkh9CH+3c59J8104uLbY36T758x1d68229twIZ+y+6qffGRFa5Jrd3jR3Td5ukJhVgr9TKWp03benp9fo7cmm1/lvImLUXDN757XWe5v+g+QU6sNkgKUPrgwAAAABJRU5ErkJggg=="></span><span class=font-weight-bold>Splunk Observability Cloud Workshops</span>
+</a>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+</ul>
+</div>
+</nav>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" id=navbar2>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.8/imt/><span>Splunk IMT</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.8/apm/><span>Splunk APM</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.8/synthetics/><span>Splunk Synthetics</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.8/rum/><span>Splunk RUM</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class="nav-link active" href=/observability-workshop/v4.8/bootcamp/><span class=active>Observability Bootcamp</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.8/resources/><span>Resources</span></a>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+Releases
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/latest/>latest</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/v4.7>v4.7</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/v4.8>v4.8</a>
+</div>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+English
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.8/ja/>日本語</a>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="container-fluid td-outer">
+<div class=td-main>
+<div class="row flex-xl-nowrap">
+<aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+<div id=td-sidebar-menu class=td-sidebar__inner>
+<form class="td-sidebar__search d-flex align-items-center">
+<input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/observability-workshop/v4.8/offline-search-index.93ee933224d9f6f4a9c84c84fecdd8af.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type=button data-toggle=collapse data-target=#td-section-nav aria-controls=td-docs-nav aria-expanded=false aria-label="Toggle section navigation">
+</button>
+</form>
+<nav class="collapse td-sidebar-nav" id=td-section-nav>
+<div class="nav-item dropdown d-block d-lg-none">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+English
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.8/ja/>日本語</a>
+</div>
+</div>
+<ul class="td-sidebar-nav__section pr-md-3 ul-0">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv48bootcamp-li>
+<a href=/observability-workshop/v4.8/bootcamp/ title="Welcome to the Observability Bootcamp" class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id=m-observability-workshopv48bootcamp><span>Observability Bootcamp</span></a>
+<ul class=ul-1>
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-observability-workshopv48bootcampcheatsheet-li>
+<a href=/observability-workshop/v4.8/bootcamp/cheatsheet/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48bootcampcheatsheet><span class=td-sidebar-nav-active-item></span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-observability-workshopv48bootcampdocs-li>
+<a href=/observability-workshop/v4.8/bootcamp/docs/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv48bootcampdocs><span>Bootcamp Labs</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-observability-workshopv48bootcampdocsgdi-li>
+<a href=/observability-workshop/v4.8/bootcamp/docs/gdi/ title="Lab: OpenTelemetry & Get Data In (GDI)" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv48bootcampdocsgdi><span>OpenTelemetry & Get Data In</span></a>
+<ul class="ul-3 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48bootcampdocsgdimonolith-li>
+<a href=/observability-workshop/v4.8/bootcamp/docs/gdi/monolith/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48bootcampdocsgdimonolith><span>Create a Monolith Service</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48bootcampdocsgdiprometheus-li>
+<a href=/observability-workshop/v4.8/bootcamp/docs/gdi/prometheus/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48bootcampdocsgdiprometheus><span>Add Prometheus metrics</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48bootcampdocsgdiotel-li>
+<a href=/observability-workshop/v4.8/bootcamp/docs/gdi/otel/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48bootcampdocsgdiotel><span>Deploy OpenTelemetry in Docker</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48bootcampdocsgdiotel-prometheus-li>
+<a href=/observability-workshop/v4.8/bootcamp/docs/gdi/otel-prometheus/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48bootcampdocsgdiotel-prometheus><span>Capture Prometheus metrics</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48bootcampdocsgdidocker-li>
+<a href=/observability-workshop/v4.8/bootcamp/docs/gdi/docker/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48bootcampdocsgdidocker><span>Dockerize the Service</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48bootcampdocsgdidocker-compose-li>
+<a href=/observability-workshop/v4.8/bootcamp/docs/gdi/docker-compose/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48bootcampdocsgdidocker-compose><span>Container Orchestration</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48bootcampdocsgdiotel-docker-compose-li>
+<a href=/observability-workshop/v4.8/bootcamp/docs/gdi/otel-docker-compose/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48bootcampdocsgdiotel-docker-compose><span>Deploy OpenTelemetry in Docker Compose</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48bootcampdocsgdiotel-container-svc-li>
+<a href=/observability-workshop/v4.8/bootcamp/docs/gdi/otel-container-svc/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48bootcampdocsgdiotel-container-svc><span>Monitor Containerized Services</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48bootcampdocsgdik8s-li>
+<a href=/observability-workshop/v4.8/bootcamp/docs/gdi/k8s/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48bootcampdocsgdik8s><span>Kubernetes</span></a>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-observability-workshopv48bootcampdocsapm-li>
+<a href=/observability-workshop/v4.8/bootcamp/docs/apm/ title="Lab: Application Performance Monitoring" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv48bootcampdocsapm><span>Microserverices APM</span></a>
+<ul class="ul-3 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48bootcampdocsapmautoi-li>
+<a href=/observability-workshop/v4.8/bootcamp/docs/apm/autoi/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48bootcampdocsapmautoi><span>Microservices Auto-instrumentation</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48bootcampdocsapmk8s-li>
+<a href=/observability-workshop/v4.8/bootcamp/docs/apm/k8s/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48bootcampdocsapmk8s><span>Instrumentation in Kubernetes</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48bootcampdocsapmapi-li>
+<a href=/observability-workshop/v4.8/bootcamp/docs/apm/api/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48bootcampdocsapmapi><span>Using OpenTelementry in Instrumentation</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+<aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+</div>
+<div class=td-toc><nav id=TableOfContents>
+<ul>
+<li><a href=#connectivity-check>CONNECTIVITY CHECK</a></li>
+<li><a href=#ingest-check>INGEST CHECK</a>
+<ul>
+<li><a href=#metrics>Metrics</a></li>
+<li><a href=#traces>Traces</a></li>
+</ul>
+</li>
+<li><a href=#smart-agent-check-agent-status>SMART AGENT CHECK AGENT STATUS</a></li>
+<li><a href=#smart-agent-check-agent-logs>SMART AGENT CHECK AGENT LOGS</a></li>
+<li><a href=#splk-otel-coll-check-agent-logs>SPLK-OTEL-COLL CHECK AGENT LOGS</a></li>
+<li><a href=#smart-agent-startstoprestart>SMART AGENT START/STOP/RESTART</a></li>
+<li><a href=#splk-otel-coll-startstoprestart>SPLK-OTEL-COLL START/STOP/RESTART</a></li>
+<li><a href=#splk-otel-coll-fluentd-startstoprestart>SPLK-OTEL-COLL FLUENTD START/STOP/RESTART</a></li>
+<li><a href=#smart-agent-default-config>SMART AGENT DEFAULT CONFIG</a></li>
+<li><a href=#splk-otel-coll-default-config>SPLK-OTEL-COLL DEFAULT CONFIG</a></li>
+<li><a href=#splk-otel-coll-environment-file-with-required-variablesvalues-for-service>SPLK-OTEL-COLL ENVIRONMENT FILE WITH REQUIRED VARIABLES/VALUES FOR SERVICE</a></li>
+<li><a href=#splk-otel-coll-fluentd-config>SPLK-OTEL-COLL FLUENTD CONFIG</a></li>
+<li><a href=#splk-otel-coll-fluentd-config-directory-for-adding-files-with-conf-ext>SPLK-OTEL-COLL FLUENTD CONFIG DIRECTORY FOR ADDING FILES WITH .CONF EXT</a></li>
+<li><a href=#smart-agent-tail-metric-datapoints-being-sent>SMART AGENT TAIL METRIC DATAPOINTS BEING SENT</a></li>
+<li><a href=#smart-agent-endpoints-set>SMART AGENT ENDPOINTS SET</a></li>
+<li><a href=#selinux-setting>SELINUX SETTING</a></li>
+</ul>
+<ul>
+<li><a href=#smart-agent-check-agent-status-1>SMART AGENT CHECK AGENT STATUS</a></li>
+<li><a href=#otel-agent-check-agent-status>OTEL AGENT CHECK AGENT STATUS</a></li>
+<li><a href=#otel-initial-config>OTEL INITIAL CONFIG</a></li>
+<li><a href=#otel-effective-config>OTEL effective CONFIG</a></li>
+<li><a href=#smart-agent-check-agent-logs-1>SMART AGENT CHECK AGENT LOGS</a></li>
+<li><a href=#splk-otel-coll-check-agent-logs-1>SPLK-OTEL-COLL CHECK AGENT LOGS</a></li>
+<li><a href=#modify-either-agent-configmap>MODIFY EITHER AGENT CONFIGMAP</a></li>
+<li><a href=#smart-agent-configmap-reference>SMART AGENT CONFIGMAP REFERENCE</a></li>
+<li><a href=#modify-either-agent-daemonset>MODIFY EITHER AGENT DAEMONSET</a></li>
+<li><a href=#smart-agent-daemonset-reference>SMART AGENT DAEMONSET REFERENCE</a></li>
+<li><a href=#smart-agent-helm>SMART AGENT HELM</a></li>
+<li><a href=#splk-otel-coll-helm>SPLK-OTEL-COLL HELM</a></li>
+<li><a href=#createdelete-deployment-from-file>CREATE/DELETE DEPLOYMENT FROM FILE</a></li>
+<li><a href=#check-system-configs>CHECK SYSTEM CONFIGS</a></li>
+<li><a href=#show-kubeconfig-settings>SHOW KUBECONFIG SETTINGS</a></li>
+<li><a href=#save-namespace-for-all-subsequent-kubectl-commands-in-context>SAVE NAMESPACE FOR ALL SUBSEQUENT KUBECTL COMMANDS IN CONTEXT</a></li>
+<li><a href=#use-multiple-kubeconfig-files>USE MULTIPLE KUBECONFIG FILES</a></li>
+<li><a href=#get-the-password-for-the-e2e-user>get the password for the e2e user</a></li>
+<li><a href=#add-a-new-user-to-your-kubeconf-that-supports-basic-auth>add a new user to your kubeconf that supports basic auth</a></li>
+<li><a href=#set-a-context-utilizing-a-specific-username-and-namespace>set a context utilizing a specific username and namespace</a></li>
+<li><a href=#return-snapshot-logs-from-pod-nginx-with-only-one-container>Return snapshot logs from pod nginx with only one container</a></li>
+<li><a href=#return-snapshot-logs-from-pod-nginx-with-multi-containers>Return snapshot logs from pod nginx with multi containers</a></li>
+<li><a href=#return-snapshot-logs-from-all-containers-in-pods-defined-by-label-appnginx>Return snapshot logs from all containers in pods defined by label app=nginx</a></li>
+<li><a href=#return-snapshot-of-previous-terminated-ruby-container-logs-from-pod-web-1>Return snapshot of previous terminated ruby container logs from pod web-1</a></li>
+<li><a href=#begin-streaming-the-logs-of-the-ruby-container-in-pod-web-1>Begin streaming the logs of the ruby container in pod web-1</a></li>
+<li><a href=#begin-streaming-the-logs-from-all-containers-in-pods-defined-by-label-appnginx>Begin streaming the logs from all containers in pods defined by label app=nginx</a></li>
+<li><a href=#display-only-the-most-recent-20-lines-of-output-in-pod-nginx>Display only the most recent 20 lines of output in pod nginx</a></li>
+<li><a href=#show-all-logs-from-pod-nginx-written-in-the-last-hour>Show all logs from pod nginx written in the last hour</a></li>
+<li><a href=#show-logs-from-a-kubelet-with-an-expired-serving-certificate>Show logs from a kubelet with an expired serving certificate</a></li>
+<li><a href=#return-snapshot-logs-from-first-container-of-a-job-named-hello>Return snapshot logs from first container of a job named hello</a></li>
+<li><a href=#return-snapshot-logs-from-container-nginx-1-of-a-deployment-named-nginx>Return snapshot logs from container nginx-1 of a deployment named nginx</a></li>
+</ul>
+</nav></div>
+<div class="taxonomy taxonomy-terms-cloud taxo-tags">
+<h5 class=taxonomy-title>Tag Cloud</h5>
+<ul class=taxonomy-terms>
+<li><a class=taxonomy-term href=https://signalfx.github.io/observability-workshop/v4.8/tags/k3s/ data-taxonomy-term=k3s><span class=taxonomy-label>k3s</span><span class=taxonomy-count>1</span></a></li>
+<li><a class=taxonomy-term href=https://signalfx.github.io/observability-workshop/v4.8/tags/ngnix/ data-taxonomy-term=ngnix><span class=taxonomy-label>NGNIX</span><span class=taxonomy-count>1</span></a></li>
+</ul>
+</div>
+<div class="taxonomy taxonomy-terms-cloud taxo-categories">
+<h5 class=taxonomy-title>Categories</h5>
+<ul class=taxonomy-terms>
+<li><a class=taxonomy-term href=https://signalfx.github.io/observability-workshop/v4.8/categories/imt/ data-taxonomy-term=imt><span class=taxonomy-label>IMT</span><span class=taxonomy-count>2</span></a></li>
+</ul>
+</div>
+</aside>
+<main class="col-12 col-md-9 col-xl-8 pl-md-5" role=main>
+<nav aria-label=breadcrumb class=td-breadcrumbs>
+<ol class=breadcrumb>
+<li class=breadcrumb-item>
+<a href=https://signalfx.github.io/observability-workshop/v4.8/bootcamp/>Observability Bootcamp</a>
+</li>
+<li class="breadcrumb-item active" aria-current=page>
+<a href=https://signalfx.github.io/observability-workshop/v4.8/bootcamp/cheatsheet/></a>
+</li>
+</ol>
+</nav>
+<div class=td-content>
+<h1></h1>
+<header class=article-meta>
+<p class=reading-time><i class="fa fa-clock" aria-hidden=true></i>&nbsp; 5 minute read &nbsp;</p>
+</header>
+<h1 id=otel-collector-and-smart-agent-commands>OTEL COLLECTOR and SMART AGENT COMMANDS</h1>
+<ol>
+<li>
+<p>The snippets assume a Splunk Observability Cloud Access Token is set as an environment variable named <code>ACCESS_TOKEN</code>.</p>
+</li>
+<li>
+<p>To run checks in a Kubernetes cluster, we recommend you use a &ldquo;swiss-army knife&rdquo; container like <a href=https://github.com/nicolaka/netshoot target=_blank>netshoot</a>
+:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl run tshoot -i --rm --restart<span style=color:#ce5c00;font-weight:700>=</span>Never --image nicolaka/netshoot --  ACTUAL COMMAND HERE
+</code></pre></div><p>e.g. for a Trace connectivity check:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl run tshoot -i --rm --restart<span style=color:#ce5c00;font-weight:700>=</span>Never --image nicolaka/netshoot -- curl -v -d<span style=color:#4e9a06>&#39;[]&#39;</span> -H<span style=color:#4e9a06>&#39;Content-Type:application/json&#39;</span> https://ingest.us1.signalfx.com/v2/trace
+</code></pre></div><p>If you already have Splunk OpenTelemetry collector installed, you can use its container and the bundled <code>curl</code>:</p>
+<pre tabindex=0><code>kubectl exec -it $(kubectl get po -A -l 'app=splunk-otel-collector,!component' -o name) --container otel-collector -- /usr/lib/splunk-otel-collector/agent-bundle/bin/curl -v -d'[]' -H'Content-Type:application/json' https://ingest.us1.signalfx.com/v2/trace
+</code></pre></li>
+</ol>
+<h2 id=connectivity-check>CONNECTIVITY CHECK</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>curl https://ingest.us1.signalfx.com/healthz
+</code></pre></div><h2 id=ingest-check>INGEST CHECK</h2>
+<h3 id=metrics>Metrics</h3>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>curl -qs -H<span style=color:#4e9a06>&#34;X-SF-Token:</span><span style=color:#000>$ACCESS_TOKEN</span><span style=color:#4e9a06>&#34;</span> https://ingest.us1.signalfx.com/v2/datapoint -X POST -v -d <span style=color:#4e9a06>&#39;{}&#39;</span> -H <span style=color:#4e9a06>&#34;Content-Type: application/json&#34;</span>
+</code></pre></div><h3 id=traces>Traces</h3>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>curl -H <span style=color:#4e9a06>&#34;Content-Type: application/json&#34;</span> -H <span style=color:#4e9a06>&#34;X-SF-Token: </span><span style=color:#000>$ACCESS_TOKEN</span><span style=color:#4e9a06>&#34;</span> -d <span style=color:#4e9a06>&#39;[]&#39;</span> -i https://ingest.eu0.signalfx.com/v2/trace
+</code></pre></div><h2 id=smart-agent-check-agent-status>SMART AGENT CHECK AGENT STATUS</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo signalfx-agent status
+service signalfx-agent status
+systemctl signalfx-agent status
+</code></pre></div><h2 id=smart-agent-check-agent-logs>SMART AGENT CHECK AGENT LOGS</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>journalctl -u signalfx-agent <span style=color:#000;font-weight:700>|</span> tail -f
+tail -f /var/log/signalfx-agent.log
+</code></pre></div><h2 id=splk-otel-coll-check-agent-logs>SPLK-OTEL-COLL CHECK AGENT LOGS</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>journalctl -u splunk-otel-collector -f
+tail -100 /var/log/messages
+</code></pre></div><h2 id=smart-agent-startstoprestart>SMART AGENT START/STOP/RESTART</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo systemctl restart signalfx-agent
+sudo systemctl start signalfx-agent
+sudo systemctl stop signalfx-agent
+</code></pre></div><h2 id=splk-otel-coll-startstoprestart>SPLK-OTEL-COLL START/STOP/RESTART</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo systemctl restart splunk-otel-collector
+sudo systemctl start splunk-otel-collector
+sudo systemctl stop splunk-otel-collector
+</code></pre></div><h2 id=splk-otel-coll-fluentd-startstoprestart>SPLK-OTEL-COLL FLUENTD START/STOP/RESTART</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo systemctl restart td-agent
+sudo systemctl start td-agent
+sudo systemctl stop td-agent
+</code></pre></div><h2 id=smart-agent-default-config>SMART AGENT DEFAULT CONFIG</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>/etc/signalfx/agent.yaml
+</code></pre></div><h2 id=splk-otel-coll-default-config>SPLK-OTEL-COLL DEFAULT CONFIG</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>/etc/otel/collector/agent_config.yaml
+</code></pre></div><h2 id=splk-otel-coll-environment-file-with-required-variablesvalues-for-service>SPLK-OTEL-COLL ENVIRONMENT FILE WITH REQUIRED VARIABLES/VALUES FOR SERVICE</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>/etc/otel/collector/splunk-otel-collector.conf
+</code></pre></div><h2 id=splk-otel-coll-fluentd-config>SPLK-OTEL-COLL FLUENTD CONFIG</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>/etc/otel/collector/fluentd/fluent.conf
+</code></pre></div><h2 id=splk-otel-coll-fluentd-config-directory-for-adding-files-with-conf-ext>SPLK-OTEL-COLL FLUENTD CONFIG DIRECTORY FOR ADDING FILES WITH .CONF EXT</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>/etc/otel/collector/fluentd/conf.d
+</code></pre></div><h2 id=smart-agent-tail-metric-datapoints-being-sent>SMART AGENT TAIL METRIC DATAPOINTS BEING SENT</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>signalfx-agent tap-dps -h
+signalfx-agent tap-dps -metric <span style=color:#a40000>&#39;</span>jenkins_*’
+</code></pre></div><h2 id=smart-agent-endpoints-set>SMART AGENT ENDPOINTS SET</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>signalfx-agent status endpoints
+</code></pre></div><h2 id=selinux-setting>SELINUX SETTING</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>chcon -t bin_t /usr/lib/signalfx-agent/bin/signalfx-agent
+</code></pre></div><p>SMART AGENT STANDARD PORTS ARE 9080 and 8095</p>
+<h1 id=kubernetes>KUBERNETES</h1>
+<h2 id=smart-agent-check-agent-status-1>SMART AGENT CHECK AGENT STATUS</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl get pods
+kubectl <span style=color:#204a87>exec</span> &lt;signalfx-agent-PODNAME&gt; -- signalfx-agent status
+</code></pre></div><h2 id=otel-agent-check-agent-status>OTEL AGENT CHECK AGENT STATUS</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl <span style=color:#204a87>exec</span> -it YOURAGENTPODHERE -- curl localhost:55679/debug/tracez <span style=color:#000;font-weight:700>|</span> lynx -stdin
+kubectl <span style=color:#204a87>exec</span> -it splunk-otel-collector-agent-f4gwg -- curl localhost:55679/debug/tracez <span style=color:#000;font-weight:700>|</span> lynx -stdin
+</code></pre></div><h2 id=otel-initial-config>OTEL INITIAL CONFIG</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl <span style=color:#204a87>exec</span> -it my-splunk-otel-collector-agent-hg4gk -- curl http://localhost:55554/debug/configz/initial
+</code></pre></div><h2 id=otel-effective-config>OTEL effective CONFIG</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl <span style=color:#204a87>exec</span> -it my-splunk-otel-collector-agent-hg4gk -- curl http://localhost:55554/debug/effective
+</code></pre></div><h2 id=smart-agent-check-agent-logs-1>SMART AGENT CHECK AGENT LOGS</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl logs -l <span style=color:#000>app</span><span style=color:#ce5c00;font-weight:700>=</span>signalfx-agent -f
+</code></pre></div><h2 id=splk-otel-coll-check-agent-logs-1>SPLK-OTEL-COLL CHECK AGENT LOGS</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo kubectl logs -l <span style=color:#000>app</span><span style=color:#ce5c00;font-weight:700>=</span>splunk-otel-collector -f
+sudo kubectl logs -l <span style=color:#000>app</span><span style=color:#ce5c00;font-weight:700>=</span>splunk-otel-collector -f -c otel-collector
+</code></pre></div><h2 id=modify-either-agent-configmap>MODIFY EITHER AGENT CONFIGMAP</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl get configmap
+kubectl edit cm splunk-otel-collector-otel-agent
+sudo kubectl create configmap &lt;nginxconfig&gt; --from-file<span style=color:#ce5c00;font-weight:700>=</span>workshop/k3s/nginx/nginx.conf
+</code></pre></div><h2 id=smart-agent-configmap-reference>SMART AGENT CONFIGMAP REFERENCE</h2>
+<p><a href=https://github.com/signalfx/signalfx-agent/blob/main/deployments/k8s/configmap.yaml target=_blank>https://github.com/signalfx/signalfx-agent/blob/main/deployments/k8s/configmap.yaml</a>
+</p>
+<h2 id=modify-either-agent-daemonset>MODIFY EITHER AGENT DAEMONSET</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl get ds
+kubectl edit ds splunk-otel-collector-agent
+</code></pre></div><h2 id=smart-agent-daemonset-reference>SMART AGENT DAEMONSET REFERENCE</h2>
+<p><a href=https://github.com/signalfx/signalfx-agent/blob/main/deployments/k8s/daemonset.yaml target=_blank>https://github.com/signalfx/signalfx-agent/blob/main/deployments/k8s/daemonset.yaml</a>
+</p>
+<h2 id=smart-agent-helm>SMART AGENT HELM</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>helm repo add signalfx https://dl.signalfx.com/helm-repo <span style=color:#ce5c00;font-weight:700>&amp;&amp;</span> helm repo update
+helm delete signalfx-agent
+helm install <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>--set <span style=color:#000>signalFxAccessToken</span><span style=color:#ce5c00;font-weight:700>=</span><span style=color:#000>$ACCESS_TOKEN</span> <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>--set <span style=color:#000>clusterName</span><span style=color:#ce5c00;font-weight:700>=</span>&lt;MY-CLUSTER&gt; <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>--set kubeletAPI.url<span style=color:#ce5c00;font-weight:700>=</span>https://localhost:10250 <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>--set <span style=color:#000>signalFxRealm</span><span style=color:#ce5c00;font-weight:700>=</span><span style=color:#000>$REALM</span>  <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>--set <span style=color:#000>traceEndpointUrl</span><span style=color:#ce5c00;font-weight:700>=</span>https://ingest.<span style=color:#000>$REALM</span>.signalfx.com/v2/trace <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>--set <span style=color:#000>gatherDockerMetrics</span><span style=color:#ce5c00;font-weight:700>=</span><span style=color:#204a87>false</span> <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>signalfx-agent signalfx/signalfx-agent <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>-f ~/workshop/k3s/values.yaml
+</code></pre></div><h2 id=splk-otel-coll-helm>SPLK-OTEL-COLL HELM</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart <span style=color:#ce5c00;font-weight:700>&amp;&amp;</span> helm repo update
+helm delete splunk-otel-collector
+helm uninstall splunk-otel-collector
+helm install splunk-otel-collector <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>--set<span style=color:#ce5c00;font-weight:700>=</span><span style=color:#4e9a06>&#34;splunkRealm=</span><span style=color:#000>$REALM</span><span style=color:#4e9a06>&#34;</span> <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>--set<span style=color:#ce5c00;font-weight:700>=</span><span style=color:#4e9a06>&#34;splunkAccessToken=</span><span style=color:#000>$ACCESS_TOKEN</span><span style=color:#4e9a06>&#34;</span> <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>--set<span style=color:#ce5c00;font-weight:700>=</span><span style=color:#4e9a06>&#34;clusterName=&lt;MY-CLUSTER&gt;&#34;</span> <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>--set<span style=color:#ce5c00;font-weight:700>=</span><span style=color:#4e9a06>&#34;logsEnabled=false&#34;</span> <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>--set<span style=color:#ce5c00;font-weight:700>=</span><span style=color:#4e9a06>&#34;environment=</span>$<span style=color:#4e9a06>&lt;MY-ENV&gt;&#34;</span> <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>splunk-otel-collector-chart/splunk-otel-collector <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>-f ~/workshop/k3s/otel-collector.yaml
+kubectl get pods
+kubectl get pods -n kube-system
+kubectl get svc
+kubectl describe pod signalfx-agent-86zg4
+kubectl delete pod,service baz foo
+</code></pre></div><h2 id=createdelete-deployment-from-file>CREATE/DELETE DEPLOYMENT FROM FILE</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo kubectl create -f nginx-deployment.yaml
+sudo kubectl delete -f nginx-deployment.yaml
+</code></pre></div><h2 id=check-system-configs>CHECK SYSTEM CONFIGS</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl describe -n kube-system pod &lt;metrics-server-6d684c7b5-gm778&gt;
+</code></pre></div><h2 id=show-kubeconfig-settings>SHOW KUBECONFIG SETTINGS</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl config view
+</code></pre></div><h2 id=save-namespace-for-all-subsequent-kubectl-commands-in-context>SAVE NAMESPACE FOR ALL SUBSEQUENT KUBECTL COMMANDS IN CONTEXT</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl config set-context --current --namespace<span style=color:#ce5c00;font-weight:700>=</span>ggckad-s2
+</code></pre></div><h2 id=use-multiple-kubeconfig-files>USE MULTIPLE KUBECONFIG FILES</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#000>KUBECONFIG</span><span style=color:#ce5c00;font-weight:700>=</span>~/.kube/config:~/.kube/kubconfig2
+</code></pre></div><h2 id=get-the-password-for-the-e2e-user>get the password for the e2e user</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl config view -o <span style=color:#000>jsonpath</span><span style=color:#ce5c00;font-weight:700>=</span><span style=color:#4e9a06>&#39;{.users[?(@.name == &#34;e2e&#34;)].user.password}&#39;</span>
+kubectl config view -o <span style=color:#000>jsonpath</span><span style=color:#ce5c00;font-weight:700>=</span><span style=color:#4e9a06>&#39;{.users[].name}&#39;</span>    <span style=color:#8f5902;font-style:italic># display the first user</span>
+kubectl config view -o <span style=color:#000>jsonpath</span><span style=color:#ce5c00;font-weight:700>=</span><span style=color:#4e9a06>&#39;{.users[*].name}&#39;</span>   <span style=color:#8f5902;font-style:italic># get a list of users</span>
+kubectl config get-contexts                          <span style=color:#8f5902;font-style:italic># display list of contexts</span>
+kubectl config current-context                       <span style=color:#8f5902;font-style:italic># display the current-context</span>
+kubectl config use-context my-cluster-name           <span style=color:#8f5902;font-style:italic># set the default context to my-cluster-name</span>
+</code></pre></div><h2 id=add-a-new-user-to-your-kubeconf-that-supports-basic-auth>add a new user to your kubeconf that supports basic auth</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl config set-credentials kubeuser/foo.kubernetes.com --username<span style=color:#ce5c00;font-weight:700>=</span>kubeuser --password<span style=color:#ce5c00;font-weight:700>=</span>kubepassword
+</code></pre></div><h2 id=set-a-context-utilizing-a-specific-username-and-namespace>set a context utilizing a specific username and namespace</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl config set-context gce --user<span style=color:#ce5c00;font-weight:700>=</span>cluster-admin --namespace<span style=color:#ce5c00;font-weight:700>=</span>foo <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>  <span style=color:#ce5c00;font-weight:700>&amp;&amp;</span> kubectl config use-context gce
+</code></pre></div><h2 id=return-snapshot-logs-from-pod-nginx-with-only-one-container>Return snapshot logs from pod nginx with only one container</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl logs nginx
+</code></pre></div><h2 id=return-snapshot-logs-from-pod-nginx-with-multi-containers>Return snapshot logs from pod nginx with multi containers</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl logs nginx --all-containers<span style=color:#ce5c00;font-weight:700>=</span><span style=color:#204a87>true</span>
+</code></pre></div><h2 id=return-snapshot-logs-from-all-containers-in-pods-defined-by-label-appnginx>Return snapshot logs from all containers in pods defined by label app=nginx</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl logs -l <span style=color:#000>app</span><span style=color:#ce5c00;font-weight:700>=</span>nginx --all-containers<span style=color:#ce5c00;font-weight:700>=</span><span style=color:#204a87>true</span>
+</code></pre></div><h2 id=return-snapshot-of-previous-terminated-ruby-container-logs-from-pod-web-1>Return snapshot of previous terminated ruby container logs from pod web-1</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl logs -p -c ruby web-1
+</code></pre></div><h2 id=begin-streaming-the-logs-of-the-ruby-container-in-pod-web-1>Begin streaming the logs of the ruby container in pod web-1</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl logs -f -c ruby web-1
+</code></pre></div><h2 id=begin-streaming-the-logs-from-all-containers-in-pods-defined-by-label-appnginx>Begin streaming the logs from all containers in pods defined by label app=nginx</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl logs -f -lapp<span style=color:#ce5c00;font-weight:700>=</span>nginx --all-containers<span style=color:#ce5c00;font-weight:700>=</span><span style=color:#204a87>true</span>
+</code></pre></div><h2 id=display-only-the-most-recent-20-lines-of-output-in-pod-nginx>Display only the most recent 20 lines of output in pod nginx</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl logs --tail<span style=color:#ce5c00;font-weight:700>=</span><span style=color:#0000cf;font-weight:700>20</span> nginx
+</code></pre></div><h2 id=show-all-logs-from-pod-nginx-written-in-the-last-hour>Show all logs from pod nginx written in the last hour</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl logs --since<span style=color:#ce5c00;font-weight:700>=</span>1h nginx
+</code></pre></div><h2 id=show-logs-from-a-kubelet-with-an-expired-serving-certificate>Show logs from a kubelet with an expired serving certificate</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl logs --insecure-skip-tls-verify-backend nginx
+</code></pre></div><h2 id=return-snapshot-logs-from-first-container-of-a-job-named-hello>Return snapshot logs from first container of a job named hello</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl logs job/hello
+</code></pre></div><h2 id=return-snapshot-logs-from-container-nginx-1-of-a-deployment-named-nginx>Return snapshot logs from container nginx-1 of a deployment named nginx</h2>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl logs deployment/nginx -c nginx-1
+</code></pre></div><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#8f5902;font-style:italic># LOGS</span>
+
+<span style=color:#8f5902;font-style:italic>## log ingest test</span>
+
+<span style=color:#4e9a06>```</span>bash
+curl -v -X POST -H <span style=color:#4e9a06>&#34;Content-Type: application/json&#34;</span> -H <span style=color:#4e9a06>&#34;Authorization: Splunk </span><span style=color:#4e9a06>${</span><span style=color:#000>ACCESS_TOKEN</span><span style=color:#4e9a06>}</span><span style=color:#4e9a06>&#34;</span> https://ingest.us1.signalfx.com/v1/log -d <span style=color:#4e9a06>&#39;{&#34;event&#34;: &#34;hello world&#34;, &#34;fields&#34;: {&#34;foo&#34;: &#34;bar&#34;}}&#39;</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>curl -H <span style=color:#4e9a06>&#34;Authorization: Splunk </span><span style=color:#4e9a06>${</span><span style=color:#000>ACCESS_TOKEN</span><span style=color:#4e9a06>}</span><span style=color:#4e9a06>&#34;</span> -H <span style=color:#4e9a06>&#34;Content-Type: application/json&#34;</span> https://ingest.eu0.signalfx.com/v1/log -d <span style=color:#4e9a06>&#39;{&#34;sourcetype&#34;: &#34;iracing&#34;, &#34;event&#34;: &#34;Cory into the Pits, lap 12&#34;}&#39;</span>
+</code></pre></div>
+</div>
+</main>
+</div>
+</div>
+<footer class="bg-dark py-5 row d-print-none">
+<div class="container-fluid mx-sm-5">
+<div class=row>
+<div class="col-6 col-sm-4 text-xs-center order-sm-2">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=Twitter aria-label=Twitter>
+<a class=text-white target=_blank rel=noopener href=https://twitter.com/splunk aria-label=Twitter>
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=GitHub aria-label=GitHub>
+<a class=text-white target=_blank rel=noopener href=https://github.com/signalfx/observability-workshop aria-label=GitHub>
+<i class="fab fa-github"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-12 col-sm-4 text-center py-2 order-sm-2">
+<small class=text-white>&copy; 2022 Splunk Inc. All Rights Reserved</small>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js integrity=sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin=anonymous></script>
+<script src=/observability-workshop/v4.8/js/tabpane-persist.js></script>
+<script src=/observability-workshop/v4.8/js/main.min.8ab8f81ff7e1454d30024cd6f956d4d341c3a97e2a673f988065f2ee4e147922.js integrity="sha256-irj4H/fhRU0wAkzW+VbU00HDqX4qZz+YgGXy7k4UeSI=" crossorigin=anonymous></script>
+</body>
+</html>

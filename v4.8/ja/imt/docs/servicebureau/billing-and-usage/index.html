@@ -1,0 +1,340 @@
+<!doctype html><html lang=ja class=no-js>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.92.2">
+<meta name=robots content="index, follow">
+<link rel="shortcut icon" href=/observability-workshop/v4.8/favicons/favicon.ico>
+<link rel=apple-touch-icon href=/observability-workshop/v4.8/favicons/apple-touch-icon-180x180.png sizes=180x180>
+<link rel=icon type=image/png href=/observability-workshop/v4.8/favicons/favicon-16x16.png sizes=16x16>
+<link rel=icon type=image/png href=/observability-workshop/v4.8/favicons/favicon-32x32.png sizes=32x32>
+<link rel=icon type=image/png href=/observability-workshop/v4.8/favicons/android-36x36.png sizes=36x36>
+<link rel=icon type=image/png href=/observability-workshop/v4.8/favicons/android-48x48.png sizes=48x48>
+<link rel=icon type=image/png href=/observability-workshop/v4.8/favicons/android-72x72.png sizes=72x72>
+<link rel=icon type=image/png href=/observability-workshop/v4.8/favicons/android-96x96.png sizes=96x96>
+<link rel=icon type=image/png href=/observability-workshop/v4.8/favicons/android-144x144.png sizes=144x144>
+<link rel=icon type=image/png href=/observability-workshop/v4.8/favicons/android-192x192.png sizes=192x192>
+<title>Billing and Usage | Splunk Observability Cloud Workshops</title>
+<meta name=description content="
+組織におけるObservability Cloudの利用状況を把握する
+Billing and Usage（課金と使用量）インターフェースを使って、使用量を追跡する
+チームを作成する
+チームへの通知ルールを管理する
+使用量をコントロールする
+
+
+1. エンゲージメントの理解
+組織内 …">
+<meta property="og:title" content="Billing and Usage">
+<meta property="og:description" content="組織におけるObservability Cloudの利用状況を把握する Billing and Usage（課金と使用量）インターフェースを使って、使用量を追跡する チームを作成する チームへの通知ルールを管理する 使用量をコントロールする   1. エンゲージメントの理解 組織内のObservability Cloudのエンゲージメントを完全に理解するには、左上のハンバーガーをクリックして、Organizations Settings → Organization Overview　を選択すると、Observability Cloud の組織がどのように使用されているかを示す以下のダッシュボードが表示されます。
+左側のメニューには、メンバーのリストが表示され、右側には、ユーザー数、チーム数、チャート数、ダッシュボード数、ダッシュボードグループの作成数、様々な成長傾向を示すチャートが表示されます。
+現在お使いのワークショップ組織では、ワークショップごとにデータが消去されるため、作業できるデータが少ないかもしれません。
+このワークショップインスタンスの Organization Overview にある様々なチャートをじっくりとご覧ください。
+ 2. 使用状況と請求情報 契約に対する使用量を確認したい場合は、 Organizations Settings → Billing and Usage を選択します。
+もしくは、左側のペインから Billing and Usage の項目を選択してもするのが早い方法です。
+この画面では、使用量を計算して取り込むため、読み込みに数秒かかることがあります。
+ 3. 使用量の把握 下図のような画面が表示され、現在の使用量、平均使用量、およびホスト、コンテナ、カスタムメトリクス、高解像度メトリクスの各カテゴリごとの権利の概要が表示されます。
+これらのカテゴリの詳細については、Billing and Usage information {: target=_blank} を参照してください。
+ 4. 使用状況を詳しく調べる 一番上のチャートには、カテゴリーごとの現在のサブスクリプションレベルが表示されます（下のスクリーンショットでは、上部の赤い矢印で表示されています）。
+また、4つのカテゴリーの現在の使用状況も表示されます（チャート下部の赤い線で示されています）。
+この例では、「ホスト」が25個、「コンテナ」が0個、「カスタムメトリクス」が100個、「高解像度メトリクス」が0個であることがわかります。
+下のグラフでは、現在の期間のカテゴリごとの使用量が表示されています（グラフの右上のドロップダウンボックスに表示されています）。
+Average Usage と書かれた青い線は、Observability Cloudが現在の請求期間の平均使用量を計算するために使用するものを示しています。
+!!! info
+スクリーンショットからわかるように、Observability Cloudはコスト計算にHigh Watermarkや95パーセンタイルを使用せず、実際の平均時間使用量を使用しています。これにより、超過料金のリスクなしに、パフォーマンステストやBlue/Greenスタイルのデプロイメントなどを行うことができます。  オプションを確認するには、左の Usage Metric ドロップダウンから異なるオプションを選択して表示するメトリックを変更するか、右のドロップダウンで Billing Period を変更します。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://signalfx.github.io/observability-workshop/v4.8/ja/imt/docs/servicebureau/billing-and-usage/"><meta property="article:section" content="imt">
+<meta property="article:modified_time" content="2022-03-11T12:45:21+00:00"><meta property="og:site_name" content="Splunk Observability Cloud Workshops">
+<meta itemprop=name content="Billing and Usage">
+<meta itemprop=description content="組織におけるObservability Cloudの利用状況を把握する Billing and Usage（課金と使用量）インターフェースを使って、使用量を追跡する チームを作成する チームへの通知ルールを管理する 使用量をコントロールする   1. エンゲージメントの理解 組織内のObservability Cloudのエンゲージメントを完全に理解するには、左上のハンバーガーをクリックして、Organizations Settings → Organization Overview　を選択すると、Observability Cloud の組織がどのように使用されているかを示す以下のダッシュボードが表示されます。
+左側のメニューには、メンバーのリストが表示され、右側には、ユーザー数、チーム数、チャート数、ダッシュボード数、ダッシュボードグループの作成数、様々な成長傾向を示すチャートが表示されます。
+現在お使いのワークショップ組織では、ワークショップごとにデータが消去されるため、作業できるデータが少ないかもしれません。
+このワークショップインスタンスの Organization Overview にある様々なチャートをじっくりとご覧ください。
+ 2. 使用状況と請求情報 契約に対する使用量を確認したい場合は、 Organizations Settings → Billing and Usage を選択します。
+もしくは、左側のペインから Billing and Usage の項目を選択してもするのが早い方法です。
+この画面では、使用量を計算して取り込むため、読み込みに数秒かかることがあります。
+ 3. 使用量の把握 下図のような画面が表示され、現在の使用量、平均使用量、およびホスト、コンテナ、カスタムメトリクス、高解像度メトリクスの各カテゴリごとの権利の概要が表示されます。
+これらのカテゴリの詳細については、Billing and Usage information {: target=_blank} を参照してください。
+ 4. 使用状況を詳しく調べる 一番上のチャートには、カテゴリーごとの現在のサブスクリプションレベルが表示されます（下のスクリーンショットでは、上部の赤い矢印で表示されています）。
+また、4つのカテゴリーの現在の使用状況も表示されます（チャート下部の赤い線で示されています）。
+この例では、「ホスト」が25個、「コンテナ」が0個、「カスタムメトリクス」が100個、「高解像度メトリクス」が0個であることがわかります。
+下のグラフでは、現在の期間のカテゴリごとの使用量が表示されています（グラフの右上のドロップダウンボックスに表示されています）。
+Average Usage と書かれた青い線は、Observability Cloudが現在の請求期間の平均使用量を計算するために使用するものを示しています。
+!!! info
+スクリーンショットからわかるように、Observability Cloudはコスト計算にHigh Watermarkや95パーセンタイルを使用せず、実際の平均時間使用量を使用しています。これにより、超過料金のリスクなしに、パフォーマンステストやBlue/Greenスタイルのデプロイメントなどを行うことができます。  オプションを確認するには、左の Usage Metric ドロップダウンから異なるオプションを選択して表示するメトリックを変更するか、右のドロップダウンで Billing Period を変更します。">
+<meta itemprop=dateModified content="2022-03-11T12:45:21+00:00">
+<meta itemprop=wordCount content="75">
+<meta itemprop=keywords content><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Billing and Usage">
+<meta name=twitter:description content="組織におけるObservability Cloudの利用状況を把握する Billing and Usage（課金と使用量）インターフェースを使って、使用量を追跡する チームを作成する チームへの通知ルールを管理する 使用量をコントロールする   1. エンゲージメントの理解 組織内のObservability Cloudのエンゲージメントを完全に理解するには、左上のハンバーガーをクリックして、Organizations Settings → Organization Overview　を選択すると、Observability Cloud の組織がどのように使用されているかを示す以下のダッシュボードが表示されます。
+左側のメニューには、メンバーのリストが表示され、右側には、ユーザー数、チーム数、チャート数、ダッシュボード数、ダッシュボードグループの作成数、様々な成長傾向を示すチャートが表示されます。
+現在お使いのワークショップ組織では、ワークショップごとにデータが消去されるため、作業できるデータが少ないかもしれません。
+このワークショップインスタンスの Organization Overview にある様々なチャートをじっくりとご覧ください。
+ 2. 使用状況と請求情報 契約に対する使用量を確認したい場合は、 Organizations Settings → Billing and Usage を選択します。
+もしくは、左側のペインから Billing and Usage の項目を選択してもするのが早い方法です。
+この画面では、使用量を計算して取り込むため、読み込みに数秒かかることがあります。
+ 3. 使用量の把握 下図のような画面が表示され、現在の使用量、平均使用量、およびホスト、コンテナ、カスタムメトリクス、高解像度メトリクスの各カテゴリごとの権利の概要が表示されます。
+これらのカテゴリの詳細については、Billing and Usage information {: target=_blank} を参照してください。
+ 4. 使用状況を詳しく調べる 一番上のチャートには、カテゴリーごとの現在のサブスクリプションレベルが表示されます（下のスクリーンショットでは、上部の赤い矢印で表示されています）。
+また、4つのカテゴリーの現在の使用状況も表示されます（チャート下部の赤い線で示されています）。
+この例では、「ホスト」が25個、「コンテナ」が0個、「カスタムメトリクス」が100個、「高解像度メトリクス」が0個であることがわかります。
+下のグラフでは、現在の期間のカテゴリごとの使用量が表示されています（グラフの右上のドロップダウンボックスに表示されています）。
+Average Usage と書かれた青い線は、Observability Cloudが現在の請求期間の平均使用量を計算するために使用するものを示しています。
+!!! info
+スクリーンショットからわかるように、Observability Cloudはコスト計算にHigh Watermarkや95パーセンタイルを使用せず、実際の平均時間使用量を使用しています。これにより、超過料金のリスクなしに、パフォーマンステストやBlue/Greenスタイルのデプロイメントなどを行うことができます。  オプションを確認するには、左の Usage Metric ドロップダウンから異なるオプションを選択して表示するメトリックを変更するか、右のドロップダウンで Billing Period を変更します。">
+<link rel=preload href=/observability-workshop/v4.8/scss/main.min.5f8c3c6125570efd6840d5ae69619240bb33adb38c2ed5a72ddf29890e66afcb.css as=style>
+<link href=/observability-workshop/v4.8/scss/main.min.5f8c3c6125570efd6840d5ae69619240bb33adb38c2ed5a72ddf29890e66afcb.css rel=stylesheet integrity>
+<script src=https://code.jquery.com/jquery-3.6.0.min.js integrity=sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK crossorigin=anonymous></script>
+<script src=https://unpkg.com/lunr@2.3.9/lunr.min.js integrity=sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli crossorigin=anonymous></script>
+</head>
+<body class=td-page>
+<header>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" id=navbar1>
+<a class=navbar-brand href=/observability-workshop/v4.8/ja/>
+<span class=navbar-logo><img class=navbar-logo src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAAvCAIAAAD8RQT7AAACwklEQVRYw+2YW2jTYBTHu4l4F1ERVMQL+qKgMBUU9EEfRAURUUFfBEUEBRGfdC+CrVt3cdbNSZ1zXqar024yp9MJKzh3FScyO+q8MDW3pvc2TZqkudSvtD4J66fkWyL0kNeQH8mX8/+dY8JMZuNcpjzNX9JQK64ZiEZlk9zDEe/aOmPQ8FIKlJpKtH+mNzUYg+Z38a7vvu2NRqHJlDhABPY0G4UmU8lhOnioFSu0GIImU9KXUOhYOz75kiFoMiVjsfDpl/i0UrQ0oePPkp5ACq5kHxs978JnlaHsxQVm/24H3zUGyaRE+Jj5DTGvEm0yeNfVsfeGVVGGYQJtk6kaIBfZ0OYUufBKrKRHCSWgmAQ5fmOIWl6DNjXx6dbwqRfgh4L6eJLC3v/oXW1HnOGFlsDeR0L3TygmEC+tn+j19ciNgt5Qzznc4B3AUPGd33xb7yL3G3LJVaaiX4kKMExCD+bf2YTctvCZZZEzndJYBIZJfE8F9jtBE0HsfpMswQNOoR+HYWIbPkyQiQIr4pyelKyOQ5No8UyoF1PLahjboMqIhqABl3/HA6EX05kGyEboSBuQIZ2/FDGnInKuSyaZnKcYLU32lMTF3P05ITHVb8nFNiQ09MZbXPPI+H9QliMuMuV9xIIqBN2vwAy8HTKw0gJ0sZuYW6l9MuBTS8MnnkujQSgOPxctdhGzy7VPTWL+5eiF1+ABUJJKMpGzr4CHaG8U1KrauH0IHEAot/kRDZ/swKeUaG9bvi13Em2jKUWF4gDDzdGn/zbcmHJE4MEWcZCAFPWk2xc8/ATcpbGl4zOsYFCC1IOsIex7/KchaEMj0ywkh9CH+3c59J8104uLbY36T758x1d68229twIZ+y+6qffGRFa5Jrd3jR3Td5ukJhVgr9TKWp03benp9fo7cmm1/lvImLUXDN757XWe5v+g+QU6sNkgKUPrgwAAAABJRU5ErkJggg=="></span><span class=font-weight-bold>Splunk Observability Cloud Workshops</span>
+</a>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+</ul>
+</div>
+</nav>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" id=navbar2>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class="nav-link active" href=/observability-workshop/v4.8/ja/imt/><span class=active>Splunk IMT</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.8/ja/apm/><span>Splunk APM</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.8/ja/synthetics/><span>Splunk Synthetics</span></a>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+Releases
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/latest/>latest</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/v4.7>v4.7</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/v4.8>v4.8</a>
+</div>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+日本語
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.8/imt/docs/servicebureau/billing-and-usage/>English</a>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="container-fluid td-outer">
+<div class=td-main>
+<div class="row flex-xl-nowrap">
+<aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+<div id=td-sidebar-menu class=td-sidebar__inner>
+<form class="td-sidebar__search d-flex align-items-center">
+<input type=search class="form-control td-search-input" placeholder="&#xf002; サイトを検索..." aria-label=サイトを検索... autocomplete=off data-offline-search-index-json-src=/observability-workshop/v4.8/offline-search-index.93ee933224d9f6f4a9c84c84fecdd8af.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type=button data-toggle=collapse data-target=#td-section-nav aria-controls=td-docs-nav aria-expanded=false aria-label="Toggle section navigation">
+</button>
+</form>
+<nav class="collapse td-sidebar-nav" id=td-section-nav>
+<div class="nav-item dropdown d-block d-lg-none">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+日本語
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.8/imt/docs/servicebureau/billing-and-usage/>English</a>
+</div>
+</div>
+<ul class="td-sidebar-nav__section pr-md-3 ul-0">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv48jaimt-li>
+<a href=/observability-workshop/v4.8/ja/imt/ title=はじめに class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id=m-observability-workshopv48jaimt><span>Splunk IMT</span></a>
+<ul class=ul-1>
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv48jaimtdocs-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv48jaimtdocs><span>Setup and Exercises</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48jaimtdocsinitial-setup-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/initial-setup/ title="How to connect to your workshop environment" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48jaimtdocsinitial-setup><span>Access AWS/EC2 Instance</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-observability-workshopv48jaimtdocsgdi-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/gdi/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv48jaimtdocsgdi><span>Get Data In</span></a>
+<ul class="ul-3 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48jaimtdocsgdik3s-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/gdi/k3s/ title="Deploying the OpenTelemetry Collector in Kubernetes" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48jaimtdocsgdik3s><span>Deploy the OTel Collector</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48jaimtdocsgdinginx-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/gdi/nginx/ title="Deploying NGINX in K3s" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48jaimtdocsgdinginx><span>Deploy and Monitor NGIX</span></a>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-observability-workshopv48jaimtdocsdashboards-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/dashboards/ title="Working with Dashboards" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv48jaimtdocsdashboards><span>Dashboards</span></a>
+<ul class="ul-3 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48jaimtdocsdashboardsintro-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/dashboards/intro/ title="Working with Dashboards, Charts and Metrics" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48jaimtdocsdashboardsintro><span>Introduction</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48jaimtdocsdashboardsediting-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/dashboards/editing/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48jaimtdocsdashboardsediting><span>Editing charts</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48jaimtdocsdashboardssavingcharts-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/dashboards/savingcharts/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48jaimtdocsdashboardssavingcharts><span>Saving charts</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48jaimtdocsdashboardsfiltering-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/dashboards/filtering/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48jaimtdocsdashboardsfiltering><span>Using Filters & Formulas</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48jaimtdocsdashboardssignalflow-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/dashboards/signalflow/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48jaimtdocsdashboardssignalflow><span>SignalFlow</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48jaimtdocsdashboardsadding-charts-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/dashboards/adding-charts/ title="Adding charts to dashboards" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48jaimtdocsdashboardsadding-charts><span>Adding more charts</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48jaimtdocsdashboardsdashboarding-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/dashboards/dashboarding/ title="Adding Notes and Dashboard Layout" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48jaimtdocsdashboardsdashboarding><span>Notes and layout</span></a>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-observability-workshopv48jaimtdocsdetectors-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/detectors/ title="Working with Detectors" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv48jaimtdocsdetectors><span>Detectors</span></a>
+<ul class="ul-3 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48jaimtdocsdetectorsmuting-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/detectors/muting/ title="Working with Muting Rules - Lab Summary" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48jaimtdocsdetectorsmuting><span>Creating a Muting Rule</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48jaimtdocsdetectorscreating-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/detectors/creating/ title="Working with Detectors - Lab Summary" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48jaimtdocsdetectorscreating><span>Creating a Detector</span></a>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-observability-workshopv48jaimtdocsmonitoring-as-code-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/monitoring-as-code/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv48jaimtdocsmonitoring-as-code><span>Monitoring as Code</span></a>
+<ul class="ul-3 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48jaimtdocsmonitoring-as-codeterraform-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/monitoring-as-code/terraform/ title="Monitoring as Code" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48jaimtdocsmonitoring-as-codeterraform><span>Plan, Apply, Destroy</span></a>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv48jaimtdocsservicebureau-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/servicebureau/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv48jaimtdocsservicebureau><span>Service Bureau</span></a>
+<ul class="ul-3 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-observability-workshopv48jaimtdocsservicebureaubilling-and-usage-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/servicebureau/billing-and-usage/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48jaimtdocsservicebureaubilling-and-usage><span class=td-sidebar-nav-active-item>Billing and Usage</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48jaimtdocsservicebureauteams-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/servicebureau/teams/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48jaimtdocsservicebureauteams><span>Teams</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv48jaimtdocsservicebureautokens-li>
+<a href=/observability-workshop/v4.8/ja/imt/docs/servicebureau/tokens/ title="Controlling Usage" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv48jaimtdocsservicebureautokens><span>Control Usage</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+<aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+</div>
+<div class=td-toc><nav id=TableOfContents>
+<ul>
+<li><a href=#1-エンゲージメントの理解>1. エンゲージメントの理解</a></li>
+<li><a href=#2-使用状況と請求情報>2. 使用状況と請求情報</a></li>
+<li><a href=#3-使用量の把握>3. 使用量の把握</a></li>
+<li><a href=#4-使用状況を詳しく調べる>4. 使用状況を詳しく調べる</a></li>
+</ul>
+</nav></div>
+</aside>
+<main class="col-12 col-md-9 col-xl-8 pl-md-5" role=main>
+<nav aria-label=breadcrumb class=td-breadcrumbs>
+<ol class=breadcrumb>
+<li class=breadcrumb-item>
+<a href=https://signalfx.github.io/observability-workshop/v4.8/ja/imt/>Splunk IMT</a>
+</li>
+<li class=breadcrumb-item>
+<a href=https://signalfx.github.io/observability-workshop/v4.8/ja/imt/docs/>Setup and Exercises</a>
+</li>
+<li class=breadcrumb-item>
+<a href=https://signalfx.github.io/observability-workshop/v4.8/ja/imt/docs/servicebureau/>Service Bureau</a>
+</li>
+<li class="breadcrumb-item active" aria-current=page>
+<a href=https://signalfx.github.io/observability-workshop/v4.8/ja/imt/docs/servicebureau/billing-and-usage/>Billing and Usage</a>
+</li>
+</ol>
+</nav>
+<div class=td-content>
+<h1>Billing and Usage</h1>
+<header class=article-meta>
+<p class=reading-time><i class="fa fa-clock" aria-hidden=true></i>&nbsp; less than a minute &nbsp;</p>
+</header>
+<ul>
+<li>組織におけるObservability Cloudの利用状況を把握する</li>
+<li>Billing and Usage（課金と使用量）インターフェースを使って、使用量を追跡する</li>
+<li>チームを作成する</li>
+<li>チームへの通知ルールを管理する</li>
+<li>使用量をコントロールする</li>
+</ul>
+<hr>
+<h2 id=1-エンゲージメントの理解>1. エンゲージメントの理解</h2>
+<p>組織内のObservability Cloudのエンゲージメントを完全に理解するには、左上のハンバーガーをクリックして、<strong>Organizations Settings → Organization Overview</strong>　を選択すると、Observability Cloud の組織がどのように使用されているかを示す以下のダッシュボードが表示されます。</p>
+<p><img src=../../../images/engagement.png alt="Organization overview"></p>
+<p>左側のメニューには、メンバーのリストが表示され、右側には、ユーザー数、チーム数、チャート数、ダッシュボード数、ダッシュボードグループの作成数、様々な成長傾向を示すチャートが表示されます。</p>
+<p>現在お使いのワークショップ組織では、ワークショップごとにデータが消去されるため、作業できるデータが少ないかもしれません。</p>
+<p>このワークショップインスタンスの Organization Overview にある様々なチャートをじっくりとご覧ください。</p>
+<hr>
+<h2 id=2-使用状況と請求情報>2. 使用状況と請求情報</h2>
+<p>契約に対する使用量を確認したい場合は、 <strong>Organizations Settings → Billing and Usage</strong> を選択します。</p>
+<p>もしくは、左側のペインから <strong>Billing and Usage</strong> の項目を選択してもするのが早い方法です。</p>
+<p><img src=../../../images/billing-and-usage-menu.png alt="Left pane"></p>
+<p>この画面では、使用量を計算して取り込むため、読み込みに数秒かかることがあります。</p>
+<hr>
+<h2 id=3-使用量の把握>3. 使用量の把握</h2>
+<p>下図のような画面が表示され、現在の使用量、平均使用量、およびホスト、コンテナ、カスタムメトリクス、高解像度メトリクスの各カテゴリごとの権利の概要が表示されます。</p>
+<p>これらのカテゴリの詳細については、<a href=https://docs.splunk.com/Observability/admin/monitor-imm-billing-usage.html target=_blank>Billing and Usage information</a>
+{: target=_blank} を参照してください。</p>
+<p><img src=../../../images/usage-charts.png alt="Billing and Usage"></p>
+<hr>
+<h2 id=4-使用状況を詳しく調べる>4. 使用状況を詳しく調べる</h2>
+<p>一番上のチャートには、カテゴリーごとの現在のサブスクリプションレベルが表示されます（下のスクリーンショットでは、上部の赤い矢印で表示されています）。</p>
+<p>また、4つのカテゴリーの現在の使用状況も表示されます（チャート下部の赤い線で示されています）。</p>
+<p>この例では、「ホスト」が25個、「コンテナ」が0個、「カスタムメトリクス」が100個、「高解像度メトリクス」が0個であることがわかります。</p>
+<p><img src=../../../images/usage-detail.png alt="Billing and Usage-top"></p>
+<p>下のグラフでは、現在の期間のカテゴリごとの使用量が表示されています（グラフの右上のドロップダウンボックスに表示されています）。</p>
+<p><strong>Average Usage</strong> と書かれた青い線は、Observability Cloudが現在の請求期間の平均使用量を計算するために使用するものを示しています。</p>
+<p><img src=../../../images/usage-trends.png alt="Billing and Usage-Bottom"></p>
+<p>!!! info</p>
+<pre><code>スクリーンショットからわかるように、Observability Cloudはコスト計算にHigh Watermarkや95パーセンタイルを使用せず、実際の平均時間使用量を使用しています。これにより、超過料金のリスクなしに、パフォーマンステストやBlue/Greenスタイルのデプロイメントなどを行うことができます。
+</code></pre>
+<p>オプションを確認するには、左の <strong>Usage Metric</strong> ドロップダウンから異なるオプションを選択して表示するメトリックを変更するか、右のドロップダウンで <strong>Billing Period</strong> を変更します。</p>
+<p>また、右側のドロップダウンで請求期間を変更することもできます。</p>
+<p>最後に、右側のペインには、お客様のサブスクリプションに関する情報が表示されます。</p>
+<p><img src=../../../images/subscription.png alt="Billing and Usage-Pane"></p>
+</div>
+</main>
+</div>
+</div>
+<footer class="bg-dark py-5 row d-print-none">
+<div class="container-fluid mx-sm-5">
+<div class=row>
+<div class="col-6 col-sm-4 text-xs-center order-sm-2">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=Twitter aria-label=Twitter>
+<a class=text-white target=_blank rel=noopener href=https://twitter.com/splunk aria-label=Twitter>
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=GitHub aria-label=GitHub>
+<a class=text-white target=_blank rel=noopener href=https://github.com/signalfx/observability-workshop aria-label=GitHub>
+<i class="fab fa-github"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-12 col-sm-4 text-center py-2 order-sm-2">
+<small class=text-white>&copy; 2022 Splunk Inc. All Rights Reserved</small>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js integrity=sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin=anonymous></script>
+<script src=/observability-workshop/v4.8/js/tabpane-persist.js></script>
+<script src=/observability-workshop/v4.8/js/main.min.8ab8f81ff7e1454d30024cd6f956d4d341c3a97e2a673f988065f2ee4e147922.js integrity="sha256-irj4H/fhRU0wAkzW+VbU00HDqX4qZz+YgGXy7k4UeSI=" crossorigin=anonymous></script>
+</body>
+</html>
