@@ -1,7 +1,7 @@
 ---
 title: Working with Detectors - Lab Summary
 linkTitle: Creating a Detector
-weight: 6
+weight: 2
 ---
 
 * Create a Detector from one of your charts
