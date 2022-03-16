@@ -27,33 +27,5 @@ runs:
     - name: Prepare and publish to GitHub pages
       shell: bash
       env:
-        TAG: ${{ steps.bumpversion.outputs.tag_name }}
-      run: |
-        set -x
-        publish_dir="$(pwd)/site/v${{ steps.bumpversion.outputs.tag_name }}"
-        remote=https://github.com/${GITHUB_REPOSITORY}.git
-        push_remote=https://${GITHUB_ACTOR}:${{ github.token }}@github.com/${GITHUB_REPOSITORY}.git
-        commit_message="Docs: Releasing $TAG"
-        prep_dir=$(mktemp -d)
-
-        version_filter=$(yq '.params.versions[] | select (.version != "latest") | [ "! /^" + .version + "\//" ]' config.yaml | yq 'join(" && ")')
-
-        git clone --depth=1 --single-branch --branch gh-pages "${remote}" "${prep_dir}"
-        cd "${prep_dir}"
-        git config user.name "${GITHUB_ACTOR}"
-        git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-
-        rm -f latest || true
-        rsync -a "${publish_dir}" "${prep_dir}"
-        ln -s "v${TAG}" latest
-
-        git add --all "v${TAG}"
-        git add latest
-
-        # remove old versions
-        git ls-files | awk "${version_filter} && ! /^(latest|\.nojekyll|index\.html)/" | parallel --xargs -j1 git rm "{}"
-        git commit -m "${commit_message}"
-
-        git remote rm origin || true
-        git remote add origin "${push_remote}"
-        git push origin gh-pages
+        TOKEN: ${{ github.token }}
+      run: ./.github/ci/publish_release -t ${{ steps.bumpversion.outputs.tag_name }}
