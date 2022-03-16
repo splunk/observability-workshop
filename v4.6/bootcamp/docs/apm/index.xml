@@ -1,0 +1,153 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Observability Cloud Workshops – Lab: Application Performance Monitoring</title><link>https://signalfx.github.io/observability-workshop/v4.6/bootcamp/docs/apm/</link><description>Recent content in Lab: Application Performance Monitoring on Splunk Observability Cloud Workshops</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://signalfx.github.io/observability-workshop/v4.6/bootcamp/docs/apm/index.xml" rel="self" type="application/rss+xml"/><item><title>Bootcamp: Microservices Auto-instrumentation</title><link>https://signalfx.github.io/observability-workshop/v4.6/bootcamp/docs/apm/autoi/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://signalfx.github.io/observability-workshop/v4.6/bootcamp/docs/apm/autoi/</guid><description>
+&lt;p>The development team has broken up the monolithic service into microservices baesd on the &lt;code>docker-compose&lt;/code> setup. Switch to the provided milestone &lt;code>10microservices&lt;/code> with the instructions from &amp;ldquo;Getting Started&amp;rdquo;.&lt;/p>
+&lt;p>Test the service with:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Shell-Command"
+id="tabs-0-0-tab" data-toggle="tab" href="#tabs-0-0" role="tab" onclick="handleClick(&amp;#34;Shell-Command&amp;#34;);"
+aria-controls="tabs-0-0" aria-selected="true">
+Shell Command
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-0-content">&lt;div class="tab-pane fade show active"
+id="tabs-0-0" role="tabpanel" aria-labelled-by="tabs-0-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">curl -X POST http://127.0.0.1:8000/api -F &lt;span style="color:#000">text&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>@hamlet.txt&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>Add auto-instrumentation to the &lt;code>public_api&lt;/code> microservice using the &lt;a href="https://github.com/signalfx/splunk-otel-python" target="_blank">Splunk distribution of OpenTelemetry Python&lt;/a>
+. Review the &lt;a href="https://docs.splunk.com/Observability/gdi/get-data-in/application/python/get-started.html#nav-Instrument-a-Python-application" target="_blank">documentation&lt;/a>
+and the &lt;a href="https://docs.splunk.com/Observability/gdi/get-data-in/application/python/get-started.html#nav-Instrument-a-Python-application" target="_blank">getting Started&lt;/a>
+steps and apply it to &lt;code>Dockerfile&lt;/code>.&lt;/p>
+&lt;p>Take into account the &lt;a href="https://github.com/signalfx/splunk-otel-python/blob/main/docs/advanced-config.md#trace-exporters" target="_blank">trace exporter&lt;/a>
+settings and add the required environment variables to the &lt;code>.env&lt;/code> file for &lt;code>docker-compose&lt;/code>. Use the configuration to send traces directly to Splunk Observability Cloud.&lt;/p>
+&lt;p>The milestone for this task is &lt;code>10microservices-autoi&lt;/code>. It has auto-instrumentation applied for &lt;em>all&lt;/em> microservices.&lt;/p></description></item><item><title>Bootcamp: Instrumentation in Kubernetes</title><link>https://signalfx.github.io/observability-workshop/v4.6/bootcamp/docs/apm/k8s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://signalfx.github.io/observability-workshop/v4.6/bootcamp/docs/apm/k8s/</guid><description>
+&lt;p>TODO Note on .env being overwritten&lt;/p>
+&lt;p>TODO change name of environment from YOURENV to something else.&lt;/p>
+&lt;p>The development team has started using Kubernetes for container orchestration. Switch to the provided milestone &lt;code>12microservices-k8s&lt;/code> with the instructions from &amp;ldquo;Getting Started&amp;rdquo;.&lt;/p>
+&lt;p>The Kubernetes manifests are located in the &lt;code>k8s&lt;/code> folder. Add auto-instrumentation to the &lt;code>public_api&lt;/code> microservice &lt;code>deployment&lt;/code> by configuring the [Splunk distribution of OpenTelemetry Python][splunk-otel-python]. The &lt;code>Dockerfile&lt;/code> has already been prepared.&lt;/p>
+&lt;p>Install the OpenTelemetry Collector to the environment using &lt;a href="https://github.com/signalfx/splunk-otel-collector-chart" target="_blank">Splunk&amp;amp;rsquo;s helm chart&lt;/a>
+and use the provided &lt;code>values.yaml&lt;/code>:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Shell-Command"
+id="tabs-0-0-tab" data-toggle="tab" href="#tabs-0-0" role="tab" onclick="handleClick(&amp;#34;Shell-Command&amp;#34;);"
+aria-controls="tabs-0-0" aria-selected="true">
+Shell Command
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-0-content">&lt;div class="tab-pane fade show active"
+id="tabs-0-0" role="tabpanel" aria-labelled-by="tabs-0-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
+helm install my-splunk-otel-collector --set&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;splunkObservability.realm=&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">SPLUNK_REALM&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">,splunkObservability.accessToken=&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">SPLUNK_ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">,clusterName=&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">CLUSTER_NAME&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> splunk-otel-collector-chart/splunk-otel-collector -f values.yaml&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>Rebuild the container images for the private registry:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-1" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Shell-Command"
+id="tabs-1-0-tab" data-toggle="tab" href="#tabs-1-0" role="tab" onclick="handleClick(&amp;#34;Shell-Command&amp;#34;);"
+aria-controls="tabs-1-0" aria-selected="true">
+Shell Command
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-1-content">&lt;div class="tab-pane fade show active"
+id="tabs-1-0" role="tabpanel" aria-labelled-by="tabs-1-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">docker-compose build&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>Push the images to the private registry:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-2" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Shell-Command"
+id="tabs-2-0-tab" data-toggle="tab" href="#tabs-2-0" role="tab" onclick="handleClick(&amp;#34;Shell-Command&amp;#34;);"
+aria-controls="tabs-2-0" aria-selected="true">
+Shell Command
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-2-content">&lt;div class="tab-pane fade show active"
+id="tabs-2-0" role="tabpanel" aria-labelled-by="tabs-2-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">docker-compose push&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>Deploy to the cluster with&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-3" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Shell-Command"
+id="tabs-3-0-tab" data-toggle="tab" href="#tabs-3-0" role="tab" onclick="handleClick(&amp;#34;Shell-Command&amp;#34;);"
+aria-controls="tabs-3-0" aria-selected="true">
+Shell Command
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-3-content">&lt;div class="tab-pane fade show active"
+id="tabs-3-0" role="tabpanel" aria-labelled-by="tabs-3-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl apply -f k8s&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>Test the service with&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-4" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Shell-Command"
+id="tabs-4-0-tab" data-toggle="tab" href="#tabs-4-0" role="tab" onclick="handleClick(&amp;#34;Shell-Command&amp;#34;);"
+aria-controls="tabs-4-0" aria-selected="true">
+Shell Command
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-4-content">&lt;div class="tab-pane fade show active"
+id="tabs-4-0" role="tabpanel" aria-labelled-by="tabs-4-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#000">ENDPOINT&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>kubectl get service/public-api -o &lt;span style="color:#000">jsonpath&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;{.spec.clusterIP}&amp;#39;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
+curl http://&lt;span style="color:#000">$ENDPOINT&lt;/span>:8000/api -F &lt;span style="color:#000">text&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>@hamlet.txt&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>The milestone for this task is &lt;code>12microservices-k8s-autoi&lt;/code>. It has auto-instrumentation applied for &lt;em>all&lt;/em> microservices.&lt;/p></description></item><item><title>Bootcamp: Using OpenTelementry in Instrumentation</title><link>https://signalfx.github.io/observability-workshop/v4.6/bootcamp/docs/apm/api/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://signalfx.github.io/observability-workshop/v4.6/bootcamp/docs/apm/api/</guid><description>
+&lt;p>The business teams want to add the service version, the customer profile that is defined by a color and the name of the analyzed file.&lt;/p>
+&lt;p>Switch to the provided milestone &lt;code>12microservices-k8s-autoi&lt;/code> with the instructions from &amp;ldquo;Getting Started&amp;rdquo;.&lt;/p>
+&lt;p>Implement the requested changes to the &lt;code>public-api&lt;/code> microservice.&lt;/p>
+&lt;p>The Kubernetes manifests are located in the &lt;code>k8s&lt;/code> folder. Add the service version by &lt;a href="https://github.com/signalfx/splunk-otel-python/blob/main/docs/advanced-config.md#trace-configuration" target="_blank">configuring the OpenTelemetry resource attributes&lt;/a>
+.&lt;/p>
+&lt;p>The customer profile and the file name vary by request. Create attributes and assign them to the current span with the &lt;a href="https://opentelemetry-python.readthedocs.io/en/stable/faq-and-cookbook.html" target="_blank">OpenTelemetry Python API&lt;/a>
+.&lt;/p>
+&lt;p>You can use a random function to generate the customer profile (e.g. red, blue, green) with this snippet:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#000">color&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">random&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">choice&lt;/span>&lt;span style="color:#000;font-weight:bold">([&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;red&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;blue&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;green&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">])&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Note 1: Do not use a temporary variable to retrieve the current span. Use the &lt;code>trace&lt;/code> directly.&lt;/p>
+&lt;p>Note 2: Make sure to import modules.&lt;/p>
+&lt;p>Rebuild the container images for the private registry:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Shell-Command"
+id="tabs-0-0-tab" data-toggle="tab" href="#tabs-0-0" role="tab" onclick="handleClick(&amp;#34;Shell-Command&amp;#34;);"
+aria-controls="tabs-0-0" aria-selected="true">
+Shell Command
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-0-content">&lt;div class="tab-pane fade show active"
+id="tabs-0-0" role="tabpanel" aria-labelled-by="tabs-0-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">docker-compose build&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>Push the images to the private registry:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-1" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Shell-Command"
+id="tabs-1-0-tab" data-toggle="tab" href="#tabs-1-0" role="tab" onclick="handleClick(&amp;#34;Shell-Command&amp;#34;);"
+aria-controls="tabs-1-0" aria-selected="true">
+Shell Command
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-1-content">&lt;div class="tab-pane fade show active"
+id="tabs-1-0" role="tabpanel" aria-labelled-by="tabs-1-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">docker-compose push&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>Delete the &lt;code>public-api&lt;/code> deployment:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-2" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Shell-Command"
+id="tabs-2-0-tab" data-toggle="tab" href="#tabs-2-0" role="tab" onclick="handleClick(&amp;#34;Shell-Command&amp;#34;);"
+aria-controls="tabs-2-0" aria-selected="true">
+Shell Command
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-2-content">&lt;div class="tab-pane fade show active"
+id="tabs-2-0" role="tabpanel" aria-labelled-by="tabs-2-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl delete deploy public-api&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>Redeploy to the cluster with&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-3" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Shell-Command"
+id="tabs-3-0-tab" data-toggle="tab" href="#tabs-3-0" role="tab" onclick="handleClick(&amp;#34;Shell-Command&amp;#34;);"
+aria-controls="tabs-3-0" aria-selected="true">
+Shell Command
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-3-content">&lt;div class="tab-pane fade show active"
+id="tabs-3-0" role="tabpanel" aria-labelled-by="tabs-3-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl apply -f k8s&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>Test the service with&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-4" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Shell-Command"
+id="tabs-4-0-tab" data-toggle="tab" href="#tabs-4-0" role="tab" onclick="handleClick(&amp;#34;Shell-Command&amp;#34;);"
+aria-controls="tabs-4-0" aria-selected="true">
+Shell Command
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-4-content">&lt;div class="tab-pane fade show active"
+id="tabs-4-0" role="tabpanel" aria-labelled-by="tabs-4-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#000">ENDPOINT&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>kubectl get service/public-api -o &lt;span style="color:#000">jsonpath&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;{.spec.clusterIP}&amp;#39;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
+curl http://&lt;span style="color:#000">$ENDPOINT&lt;/span>:8000/api -F &lt;span style="color:#000">text&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>@hamlet.txt&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>Verify in Splunk APM that traces contain the desired informations: TODO screenshot&lt;/p>
+&lt;p>[Create a new indexed span tag][index-span-tag] so that the business team is able to breakdown performance per customer profile.&lt;/p>
+&lt;p>The milestone for this task is &lt;code>13custom-instr&lt;/code>. It adds the described custom instrumentation.&lt;/p></description></item></channel></rss>
