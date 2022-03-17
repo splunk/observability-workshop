@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paymentservice
+spec:
+  selector:
+    matchLabels:
+      app: paymentservice
+  template:
+    metadata:
+      labels:
+        app: paymentservice
+    spec:
+      tolerations:
+      nodeSelector:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - name: server
+        image: quay.io/signalfuse/microservices-demo-paymentservice:433c23881a
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 50051
+        env:
+        - name: PORT
+          value: "50051"
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: SIGNALFX_ENDPOINT_URL
+          # value: "http://zipkin.default:9411/api/v2/spans"
+          value: "http://$(NODE_IP):9411/api/v2/spans"
+        - name: API_TOKEN_FAILURE_RATE
+          value: "0.00"
+        - name: SERIALIZATION_FAILURE_RATE
+          value: "0.0"
+        - name: SUCCESS_PAYMENT_SERVICE_DURATION_MILLIS
+          value: "200"
+        - name: ERROR_PAYMENT_SERVICE_DURATION_MILLIS
+          value: "500"
+        readinessProbe:
+          exec:
+            command: ["/bin/grpc_health_probe", "-addr=:50051"]
+        livenessProbe:
+          exec:
+            command: ["/bin/grpc_health_probe", "-addr=:50051"]
+        resources:
+          requests:
+            cpu: 100m
+            memory: 64Mi
+          limits:
+            cpu: 100m
+            memory: 72Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: paymentservice
+spec:
+  type: ClusterIP
+  selector:
+    app: paymentservice
+  ports:
+  - name: grpc
+    port: 50051
+    targetPort: 50051
+---
