@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adservice
+spec:
+  selector:
+    matchLabels:
+      app: adservice
+  template:
+    metadata:
+      labels:
+        app: adservice
+    spec:
+      terminationGracePeriodSeconds: 5
+      tolerations:
+      nodeSelector:
+      containers:
+        - name: server
+          image: quay.io/phagen/adserviceprofiling:1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9555
+          env:
+            - name: PORT
+              value: '9555'
+            - name: OTEL_SERVICE_NAME
+              value: adservice
+            - name:  OTEL_PROPAGATORS
+              value: "b3multi" 
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: SPLUNK_PROFILER_ENABLED
+              value: "true"      
+            - name: ENABLE_COPYRIGHT_CERTIFICATION
+              value: "true"
+            - name: OTEL_TRACE_EXPORTER
+              value: otlp
+            - name: JAVA_TOOL_OPTIONS
+              value: -javaagent:/opt/sfx/splunk-otel-javaagent-all.jar
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: 'http://$(NODE_IP):4317' 
+          resources:
+            requests:
+              cpu: 200m
+              memory: 180Mi
+            limits:
+              cpu: 300m
+              memory: 300Mi
+          readinessProbe:
+            initialDelaySeconds: 60
+            periodSeconds: 25
+            exec:
+              command: ['/bin/grpc_health_probe', '-addr=:9555']
+          livenessProbe:
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            exec:
+              command: ['/bin/grpc_health_probe', '-addr=:9555']
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: adservice
+spec:
+  type: ClusterIP
+  selector:
+    app: adservice
+  ports:
+    - name: grpc
+      port: 9555
+      targetPort: 9555
+---
