@@ -62,8 +62,8 @@ spec:
             cpu: 100m
             memory: 220Mi
           limits:
-            cpu: 100m
-            memory: 250Mi
+            cpu: 200m
+            memory: 450Mi
 ---
 apiVersion: v1
 kind: Service
@@ -120,8 +120,8 @@ spec:
             cpu: 100m
             memory: 64Mi
           limits:
-            cpu: 100m
-            memory: 72Mi
+            cpu: 200m
+            memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
@@ -182,7 +182,7 @@ spec:
         - name: EXTERNAL_DB_NAME
           value: "Galactus.Postgres"
         - name: EXTERNAL_DB_ACCESS_RATE
-          value: "0.76"
+          value: "0.75"
         - name: EXTERNAL_DB_MAX_DURATION_MILLIS
           value: "750"
         - name: EXTERNAL_DB_ERROR_RATE
@@ -192,8 +192,8 @@ spec:
             cpu: 200m
             memory: 64Mi
           limits:
-            cpu: 200m
-            memory: 72Mi
+            cpu: 300m
+            memory: 128Mi
         readinessProbe:
           initialDelaySeconds: 15
           exec:
@@ -233,40 +233,44 @@ spec:
       terminationGracePeriodSeconds: 5
       tolerations:
       nodeSelector:
-  
+      initContainers:
+        - name: sfx-instrumentation
+          image: quay.io/signalfuse/sfx-zero-config-agent:latest
+          # image: sfx-zero-config-agent
+          # imagePullPolicy: Never
+          volumeMounts:
+            - mountPath: /opt/sfx/
+              name: sfx-instrumentation
       containers:
         - name: server
-          image: quay.io/phagen/adserviceprofiling:1
+          image: quay.io/signalfuse/microservices-demo-adservice:433c23881a
           ports:
             - containerPort: 9555
           env:
             - name: PORT
               value: '9555'
-            - name: OTEL_SERVICE_NAME
+            - name: OTEL_EXPORTER_ZIPKIN_SERVICE_NAME
               value: adservice
-            - name:  OTEL_PROPAGATORS
-              value: "b3multi" 
             - name: NODE_IP
               valueFrom:
                 fieldRef:
                   fieldPath: status.hostIP
-            - name: SPLUNK_PROFILER_ENABLED
-              value: "true"
-            - name: ENABLE_COPYRIGHT_CERTIFICATION
-              value: "false"      
-            - name: OTEL_TRACE_EXPORTER
-              value: otlp
+            - name: OTEL_EXPORTER
+              value: zipkin
             - name: JAVA_TOOL_OPTIONS
               value: -javaagent:/opt/sfx/splunk-otel-javaagent-all.jar
-            - name: OTEL_EXPORTER_OTLP_ENDPOINT
-              value: 'http://$(NODE_IP):4317'
+            - name: OTEL_EXPORTER_ZIPKIN_ENDPOINT
+              value: 'http://$(NODE_IP):9411/v1/trace'
+          volumeMounts:
+            - mountPath: /opt/sfx
+              name: sfx-instrumentation
           resources:
             requests:
               cpu: 200m
               memory: 180Mi
             limits:
-              cpu: 200m
-              memory: 200Mi
+              cpu: 300m
+              memory: 300Mi
           readinessProbe:
             initialDelaySeconds: 60
             periodSeconds: 25
@@ -277,6 +281,9 @@ spec:
             periodSeconds: 30
             exec:
               command: ['/bin/grpc_health_probe', '-addr=:9555']
+      volumes:
+        - emptyDir: {}
+          name: sfx-instrumentation
 ---
 apiVersion: v1
 kind: Service
@@ -323,7 +330,7 @@ spec:
           # value: "http://zipkin.default:9411/api/v2/spans"
           value: "http://$(NODE_IP):9411/api/v2/spans"
         - name: API_TOKEN_FAILURE_RATE
-          value: "0.90"
+          value: "0.75"
         - name: SERIALIZATION_FAILURE_RATE
           value: "0.0"
         - name: SUCCESS_PAYMENT_SERVICE_DURATION_MILLIS
@@ -341,8 +348,8 @@ spec:
             cpu: 100m
             memory: 64Mi
           limits:
-            cpu: 100m
-            memory: 72Mi
+            cpu: 200m
+            memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
@@ -392,8 +399,8 @@ spec:
             cpu: 300m
             memory: 256Mi
           limits:
-            cpu: 300m
-            memory: 270Mi
+            cpu: 500m
+            memory: 512Mi
 ---
 apiVersion: v1
 kind: Service
@@ -456,8 +463,8 @@ spec:
             cpu: 100m
             memory: 64Mi
           limits:
-            cpu: 100m
-            memory: 72Mi
+            cpu: 200m
+            memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
@@ -515,8 +522,8 @@ spec:
             cpu: 100m
             memory: 64Mi
           limits:
-            cpu: 100m
-            memory: 72Mi
+            cpu: 200m
+            memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
@@ -565,7 +572,7 @@ spec:
         resources:
           limits:
             memory: 256Mi
-            cpu: 70m
+            cpu: 125m
           requests:
             cpu: 70m
             memory: 200Mi
@@ -643,8 +650,8 @@ spec:
               cpu: 100m
               memory: 64Mi
             limits:
-              cpu: 100m
-              memory: 72Mi
+              cpu: 200m
+              memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
@@ -678,7 +685,7 @@ spec:
       nodeSelector:
       containers:
         - name: server
-          image: docker.io/harnit/shopdemo-frontend:2.1-customevents
+          image: quay.io/signalfuse/microservices-demo-frontend:433c23881a
           ports:
           - containerPort: 8080
           readinessProbe:
@@ -730,7 +737,7 @@ spec:
               fieldRef:
                 fieldPath: status.hostIP
           - name: SIGNALFX_ENDPOINT_URL
-            # value: "http://zipkin.default:9411/api/v2/spans"
+            #  value: "http://zipkin.default:9411/api/v2/spans"
             value: "http://$(NODE_IP):9411/api/v2/spans"
           - name: SIGNALFX_SERVER_TIMING_CONTEXT
             value: "true"
@@ -739,8 +746,8 @@ spec:
               cpu: 100m
               memory: 64Mi
             limits:
-              cpu: 100m
-              memory: 72Mi
+              cpu: 200m
+              memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
@@ -818,7 +825,7 @@ spec:
             cpu: 100m
             memory: 64Mi
           limits:
-            cpu: 100m
+            cpu: 200m
             memory: 128Mi
 ---
 apiVersion: v1
@@ -833,25 +840,4 @@ spec:
   - name: grpc
     port: 5000
     targetPort: 8080
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: rum-loadgen-deployment
-  labels:
-    app: rum-loadgen
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: rum-loadgen
-  template:
-    metadata:
-      labels:
-        app: rum-loadgen
-    spec:
-      containers:
-      - name: rum-loadgen
-        image:  quay.io/phagen/rumloadgen:3
-        imagePullPolicy: Always
 ---
