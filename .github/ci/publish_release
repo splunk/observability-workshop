@@ -5,34 +5,50 @@ set -o errtrace # Make sure any error trap is inherited
 set -o nounset  # Disallow expansion of unset variables
 set -o pipefail # Use last non-zero exit code in a pipeline
 
+DRY_RUN=0
 TAG_NAME=dev
 
-while getopts 't:' opt; do
+while getopts 'nt:' opt; do
   case "$opt" in
+    n)
+      DRY_RUN=1
+      ;;
     t)
       TAG_NAME=${OPTARG}
       ;;
     *)
       echo 'Usage: publish_release -t name' >&2
+      echo '  -n    do not push any changes, dry-run' >&2
       echo '  -t    tag name without the "v" prefix' >&2
       exit 1
   esac
 done
 
 publish_dir="$(pwd)/site/v${TAG_NAME}"
-remote=https://github.com/${GITHUB_REPOSITORY}.git
-push_remote=https://${GITHUB_ACTOR}:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git
 commit_message="Docs: Releasing ${TAG_NAME}"
-prep_dir=$(mktemp -d)
+version_filter=$(yq '[.params.versions[].version | select (. != "latest")] | . + ["'"v${TAG_NAME}"'"] | "! /^" + .[] + "\//"|[.]' config.yaml | yq 'join(" && ")')
 
-version_filter=$(yq '.params.versions[] | select (.version != "latest") | [ "! /^" + .version + "\//" ]' config.yaml | yq 'join(" && ")')
+if [[ -z "${GITHUB_ACTOR+x}" ]]; then
+	# running outside github action
+	remote=$(git remote get-url origin)
+	push_remote=$remote
+	GITHUB_ACTOR=$(git config user.name)
+	user_email=$(git config user.email)
+else
+	remote=https://github.com/${GITHUB_REPOSITORY}.git
+	push_remote=https://${GITHUB_ACTOR}:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+	user_email="${GITHUB_ACTOR}@users.noreply.github.com"
+fi
+
+prep_dir=$(mktemp -d)
 
 git clone --depth=1 --single-branch --branch gh-pages "${remote}" "${prep_dir}"
 cd "${prep_dir}"
 git config user.name "${GITHUB_ACTOR}"
-git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+git config user.email "${user_email}"
 
 rm -f latest || true
+[[ ! -d "${publish_dir}" ]] && { echo "${publish_dir} does not exist." >&2; exit 1; }
 [[ ! -f "${publish_dir}/index.html" ]] && { echo "${publish_dir} is missing index.html." >&2; exit 1; }
 rsync -a "${publish_dir}" "${prep_dir}"
 ln -s "v${TAG_NAME}" latest
@@ -42,8 +58,13 @@ git add latest
 
 # remove old versions
 git ls-files | awk "${version_filter} && ! /^(latest|\.nojekyll|index\.html)/" | parallel --xargs -j1 git rm "{}"
-git commit -m "${commit_message}"
 
-git remote rm origin || true
-git remote add origin "${push_remote}"
-git push origin gh-pages
+git commit -m "${commit_message}"
+if [[ $DRY_RUN == 0 ]]; then
+
+	git remote rm origin || true
+	git remote add origin "${push_remote}"
+	git push origin gh-pages
+else
+	echo "Release content ready at ${prep_dir}"
+fi
