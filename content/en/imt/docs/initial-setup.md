@@ -124,7 +124,7 @@ Simply click the **Connect** button and you will be reconnected and will be able
 {{% /alert %}}
 ![web reconnect](../../images//shellinabox-reconnect.png)
 
-At this point you are ready to continue and [start the workshop](../../gdi/k3s/).
+At this point you are ready to continue and [start the workshop](../gdi/k3s/).
 
 ---
 

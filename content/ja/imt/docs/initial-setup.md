@@ -121,7 +121,7 @@ Webブラウザを開き、**http:/x.x.x.x:6501** （X.X.X.Xは Google Sheetsの
 
  ![webでの再接続](../../images/shellinabox-reconnect.png)
 
-これで [ワークショップを開始する](../../otel/k3s/) に進む準備が整いました。
+これで [ワークショップを開始する](../gdi/k3s/) に進む準備が整いました。
 
 ---
 
