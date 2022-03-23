@@ -854,4 +854,10 @@ spec:
       - name: rum-loadgen
         image:  quay.io/phagen/rumloadgen:3
         imagePullPolicy: Always
+        # If you are NOT running this from AWS, but from multipass for example set the below env variable
+        # set RUM_FRONTEND_IP to the IP adress where you can reach your local Online Boutique
+        #env:
+        #  - name: RUM_FRONTEND_IP
+        #    value: "192.168.1.99"
+               
 ---
