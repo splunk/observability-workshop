@@ -11,7 +11,7 @@ mkdir cloud-init
 ```
 
 ```
-curl -sL https://git.io/JKYEQ -o cloud-init/k3s.yaml
+curl -sL https://github.com/signalfx/observability-workshop/blob/master/workshop/cloud-init/k3s.yaml -o cloud-init/k3s.yaml
 ```
 
 For Linux/Mac OS set the instance name environment variable:

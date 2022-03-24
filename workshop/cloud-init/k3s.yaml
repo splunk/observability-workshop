@@ -178,15 +178,12 @@ runcmd:
   - 'export WSARCHIVE=$([ "$WSVERSION" = "master" ] && echo "master" || echo "v$WSVERSION")'
   - curl -s -OL https://github.com/signalfx/observability-workshop/archive/$WSARCHIVE.zip
   - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
-  - mv /home/ubuntu/observability-workshop-$WSVERSION /home/ubuntu/workshop
+  - mkdir /home/ubuntu/workshop
+  - mv /home/ubuntu/observability-workshop-$WSVERSION/workshop/* /home/ubuntu/workshop
   # Download Splunk Observability Cloud Jumpstart
   - curl -s -L https://github.com/signalfx/signalfx-jumpstart/archive/master.zip -o jumpstart.zip
   - unzip -qq jumpstart.zip -d /home/ubuntu/
   - mv /home/ubuntu/signalfx-jumpstart-master /home/ubuntu/signalfx-jumpstart
-  # Download Microservices Demo
-  #- curl -s -L https://github.com/signalfx/microservices-demo/archive/master.zip -o microservices-demo.zip
-  #- unzip -qq microservices-demo.zip -d /home/ubuntu/
-  #- mv /home/ubuntu/microservices-demo-master /home/ubuntu/microservices-demo
   # Configure motd
   - curl -s https://raw.githubusercontent.com/signalfx/observability-workshop/master/cloud-init/motd -o /etc/motd
   - chmod -x /etc/update-motd.d/*
