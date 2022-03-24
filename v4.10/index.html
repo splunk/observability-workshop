@@ -1,0 +1,192 @@
+<!doctype html><html lang=en class=no-js>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.92.2">
+<link rel=alternate type=application/rss+xml href=https://signalfx.github.io/observability-workshop/v4.10/index.xml>
+<meta name=robots content="index, follow">
+<link rel="shortcut icon" href=/observability-workshop/v4.10/favicons/favicon.ico>
+<link rel=apple-touch-icon href=/observability-workshop/v4.10/favicons/apple-touch-icon-180x180.png sizes=180x180>
+<link rel=icon type=image/png href=/observability-workshop/v4.10/favicons/favicon-16x16.png sizes=16x16>
+<link rel=icon type=image/png href=/observability-workshop/v4.10/favicons/favicon-32x32.png sizes=32x32>
+<link rel=icon type=image/png href=/observability-workshop/v4.10/favicons/android-36x36.png sizes=36x36>
+<link rel=icon type=image/png href=/observability-workshop/v4.10/favicons/android-48x48.png sizes=48x48>
+<link rel=icon type=image/png href=/observability-workshop/v4.10/favicons/android-72x72.png sizes=72x72>
+<link rel=icon type=image/png href=/observability-workshop/v4.10/favicons/android-96x96.png sizes=96x96>
+<link rel=icon type=image/png href=/observability-workshop/v4.10/favicons/android-144x144.png sizes=144x144>
+<link rel=icon type=image/png href=/observability-workshop/v4.10/favicons/android-192x192.png sizes=192x192>
+<title>Splunk Observability Cloud Workshops</title>
+<meta name=description content="Learn how to build observability solutions with Splunk">
+<meta property="og:title" content="Splunk">
+<meta property="og:description" content="Learn how to build observability solutions with Splunk">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://signalfx.github.io/observability-workshop/v4.10/"><meta property="og:site_name" content="Splunk Observability Cloud Workshops">
+<meta itemprop=name content="Splunk">
+<meta itemprop=description content="Learn how to build observability solutions with Splunk"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Splunk">
+<meta name=twitter:description content="Learn how to build observability solutions with Splunk">
+<link rel=preload href=/observability-workshop/v4.10/scss/main.min.deddc9b57e65de2e36e0a7912039ccf70079af844257489a558c52de37f7ad90.css as=style>
+<link href=/observability-workshop/v4.10/scss/main.min.deddc9b57e65de2e36e0a7912039ccf70079af844257489a558c52de37f7ad90.css rel=stylesheet integrity>
+<script src=https://code.jquery.com/jquery-3.6.0.min.js integrity=sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK crossorigin=anonymous></script>
+<script src=https://unpkg.com/lunr@2.3.9/lunr.min.js integrity=sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli crossorigin=anonymous></script>
+</head>
+<body class=td-home>
+<header>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark td-navbar-cover flex-column flex-md-row td-navbar" id=navbar1>
+<a class=navbar-brand href=/observability-workshop/v4.10/>
+<span class=navbar-logo><img class=navbar-logo src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAAvCAIAAAD8RQT7AAACwklEQVRYw+2YW2jTYBTHu4l4F1ERVMQL+qKgMBUU9EEfRAURUUFfBEUEBRGfdC+CrVt3cdbNSZ1zXqar024yp9MJKzh3FScyO+q8MDW3pvc2TZqkudSvtD4J66fkWyL0kNeQH8mX8/+dY8JMZuNcpjzNX9JQK64ZiEZlk9zDEe/aOmPQ8FIKlJpKtH+mNzUYg+Z38a7vvu2NRqHJlDhABPY0G4UmU8lhOnioFSu0GIImU9KXUOhYOz75kiFoMiVjsfDpl/i0UrQ0oePPkp5ACq5kHxs978JnlaHsxQVm/24H3zUGyaRE+Jj5DTGvEm0yeNfVsfeGVVGGYQJtk6kaIBfZ0OYUufBKrKRHCSWgmAQ5fmOIWl6DNjXx6dbwqRfgh4L6eJLC3v/oXW1HnOGFlsDeR0L3TygmEC+tn+j19ciNgt5Qzznc4B3AUPGd33xb7yL3G3LJVaaiX4kKMExCD+bf2YTctvCZZZEzndJYBIZJfE8F9jtBE0HsfpMswQNOoR+HYWIbPkyQiQIr4pyelKyOQ5No8UyoF1PLahjboMqIhqABl3/HA6EX05kGyEboSBuQIZ2/FDGnInKuSyaZnKcYLU32lMTF3P05ITHVb8nFNiQ09MZbXPPI+H9QliMuMuV9xIIqBN2vwAy8HTKw0gJ0sZuYW6l9MuBTS8MnnkujQSgOPxctdhGzy7VPTWL+5eiF1+ABUJJKMpGzr4CHaG8U1KrauH0IHEAot/kRDZ/swKeUaG9bvi13Em2jKUWF4gDDzdGn/zbcmHJE4MEWcZCAFPWk2xc8/ATcpbGl4zOsYFCC1IOsIex7/KchaEMj0ywkh9CH+3c59J8104uLbY36T758x1d68229twIZ+y+6qffGRFa5Jrd3jR3Td5ukJhVgr9TKWp03benp9fo7cmm1/lvImLUXDN757XWe5v+g+QU6sNkgKUPrgwAAAABJRU5ErkJggg=="></span><span class=font-weight-bold>Splunk Observability Cloud Workshops</span>
+</a>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+</ul>
+</div>
+</nav>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark td-navbar-cover flex-column flex-md-row td-navbar" id=navbar2>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.10/imt/><span>Splunk IMT</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.10/apm/><span>Splunk APM</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.10/synthetics/><span>Splunk Synthetics</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.10/rum/><span>Splunk RUM</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.10/bootcamp/><span>Observability Bootcamp</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.10/resources/><span>Resources</span></a>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+Releases
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/latest/>latest</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/v4.9>v4.9</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/v4.10>v4.10</a>
+</div>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+English
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.10/ja/>日本語</a>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="container-fluid td-default td-outer">
+<main role=main class=td-main>
+<link rel=preload as=image href=/observability-workshop/v4.10/background_hucef8ecfb8c929753b37f58ee610ed71c_306261_960x540_fill_q75_catmullrom_top.jpeg media="(max-width: 1200px)">
+<link rel=preload as=image href=/observability-workshop/v4.10/background_hucef8ecfb8c929753b37f58ee610ed71c_306261_1920x1080_fill_q75_catmullrom_top.jpeg media="(min-width: 1200px)">
+<style>#td-cover-block-0{background-image:url(/observability-workshop/v4.10/background_hucef8ecfb8c929753b37f58ee610ed71c_306261_960x540_fill_q75_catmullrom_top.jpeg)}@media only screen and (min-width:1200px){#td-cover-block-0{background-image:url(/observability-workshop/v4.10/background_hucef8ecfb8c929753b37f58ee610ed71c_306261_1920x1080_fill_q75_catmullrom_top.jpeg)}}</style>
+<section id=td-cover-block-0 class="row td-cover-block td-cover-block--height-auto js-td-cover td-overlay td-overlay--dark -bg-orange">
+<div class="container td-overlay__inner">
+<div class=row>
+<div class=col-12>
+<div class=text-center>
+<h1 class="display-1 mt-0 mt-md-5 pb-4">Welcome to the Splunk Observability Workshops!</h1>
+<div class="pt-3 lead">
+<div class=mx-auto>
+<a class="btn btn-lg btn-primary mr-3 mb-4" href=imt/>
+Get Started <i class="fas fa-arrow-alt-circle-right ml-2"></i>
+</a>
+<p class="lead mt-5">
+Get insights into your applications and infrastructure in real-time with the help of the monitoring, analytics and response tools of the Splunk Observability Cloud
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<a id=td-block-1 class=td-offset-anchor></a>
+<section class="row td-box td-box--primary position-relative td-box--gradient td-box--height-auto">
+<div class="container text-center td-arrow-down">
+<span class="h4 mb-0">
+This workshop is going to take you through the best-in-class observability platform for ingesting, monitoring, visualizing and analyzing metrics, traces and spans.
+</span>
+</div>
+</section>
+<a id=td-block-2 class=td-offset-anchor></a>
+<section class="row td-box td-box--dark td-box--gradient td-box--height-auto">
+<div class=col>
+<div class="row features">
+<div class="col-lg-4 mb-5 mb-lg-0 text-center">
+<div class="mb-4 h1">
+<i class="fab fa-wpexplorer"></i>
+</div>
+<h4 class=h3>OpenTelemetry</h4>
+<div class=mb-0>
+<p>OpenTelemetry is used in this workshop to instrument, generate, collect and export telemetry data (metrics, traces and logs) to help you analyze your application and infrastructure.</p>
+</div>
+<p><a href=https://opentelemetry.io/>Read more …</a></p>
+</div>
+<div class="col-lg-4 mb-5 mb-lg-0 text-center">
+<div class="mb-4 h1">
+<i class="fab fa-github"></i>
+</div>
+<h4 class=h3>Contributions welcome!</h4>
+<div class=mb-0>
+<p>You can contribute to this documentation via issues and pull requests. Please don’t hesitate to help to make the workshops better.</p>
+</div>
+<p><a href=https://github.com/signalfx/observability-workshop>Read more …</a></p>
+</div>
+<div class="col-lg-4 mb-5 mb-lg-0 text-center">
+<div class="mb-4 h1">
+<i class="fab fa-twitter"></i>
+</div>
+<h4 class=h3>Follow us on Twitter!</h4>
+<div class=mb-0>
+<p>You can find information about updates and interesting reads in the Twitter channel of Splunk.</p>
+</div>
+<p><a href=https://twitter.com/splunk>Read more …</a></p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-dark py-5 row d-print-none">
+<div class="container-fluid mx-sm-5">
+<div class=row>
+<div class="col-6 col-sm-4 text-xs-center order-sm-2">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=Twitter aria-label=Twitter>
+<a class=text-white target=_blank rel=noopener href=https://twitter.com/splunk aria-label=Twitter>
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=GitHub aria-label=GitHub>
+<a class=text-white target=_blank rel=noopener href=https://github.com/signalfx/observability-workshop aria-label=GitHub>
+<i class="fab fa-github"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-12 col-sm-4 text-center py-2 order-sm-2">
+<small class=text-white>&copy; 2022 Splunk Inc. All Rights Reserved</small>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js integrity=sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin=anonymous></script>
+<script src=/observability-workshop/v4.10/js/tabpane-persist.js></script>
+<script src=/observability-workshop/v4.10/js/main.min.8ab8f81ff7e1454d30024cd6f956d4d341c3a97e2a673f988065f2ee4e147922.js integrity="sha256-irj4H/fhRU0wAkzW+VbU00HDqX4qZz+YgGXy7k4UeSI=" crossorigin=anonymous></script>
+</body>
+</html>
