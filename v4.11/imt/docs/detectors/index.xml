@@ -1,0 +1,143 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Observability Cloud Workshops – Working with Detectors</title><link>https://signalfx.github.io/observability-workshop/v4.11/imt/docs/detectors/</link><description>Recent content in Working with Detectors on Splunk Observability Cloud Workshops</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://signalfx.github.io/observability-workshop/v4.11/imt/docs/detectors/index.xml" rel="self" type="application/rss+xml"/><item><title>Imt: Working with Detectors - Lab Summary</title><link>https://signalfx.github.io/observability-workshop/v4.11/imt/docs/detectors/creating/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://signalfx.github.io/observability-workshop/v4.11/imt/docs/detectors/creating/</guid><description>
+&lt;ul>
+&lt;li>Create a Detector from one of your charts&lt;/li>
+&lt;li>Setting Alert conditions&lt;/li>
+&lt;li>Running a pre-flight check&lt;/li>
+&lt;li>Working with muting rules&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="1-introduction">1. Introduction&lt;/h2>
+&lt;p>Splunk Observability Cloud uses detectors, events, alerts, and notifications to keep you informed when certain criteria are met. For example, you might want a message sent to a Slack channel or to an email address for the Ops team when CPU Utilization has reached 95%, or when the number of concurrent users is approaching a limit that might require you to spin up an additional AWS instance.&lt;/p>
+&lt;p>These conditions are expressed as one or more rules that trigger an alert when the conditions in the rules are met. Individual rules in a detector are labeled according to criticality: Info, Warning, Minor, Major, and Critical.&lt;/p>
+&lt;h2 id="2-creating-a-detector">2. Creating a Detector&lt;/h2>
+&lt;p>In &lt;strong>Dashboards&lt;/strong> click on your &lt;strong>Custom Dashboard Group&lt;/strong> (that you created in the previous module) and then click on the dashboard name.&lt;/p>
+&lt;p>&lt;img src="../../../images//custom-dashboard-group.png" alt="Custom Dashboard Group">&lt;/p>
+&lt;p>We are now going to create a new detector from a chart on this dashboard. Click on the bell icon on the &lt;strong>Latency vs Load&lt;/strong> chart, and then click &lt;strong>New Detector From Chart&lt;/strong>.&lt;/p>
+&lt;p>&lt;img src="../../../images//new-detector.png" alt="New Detector">&lt;/p>
+&lt;p>In the text field next to &lt;strong>Detector Name&lt;/strong>, &lt;strong>ADD YOUR INITIALS&lt;/strong> before the proposed detector name.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;p class="alert-heading">Naming the detector&lt;/p>
+&lt;p class="alert-body">
+It&amp;rsquo;s important that you add your initials in front of the proposed detector name.&lt;br>
+It should be something like this: &lt;strong>XYZ&amp;rsquo;s Latency Chart Detector&lt;/strong>.
+&lt;/p>
+&lt;/div>
+&lt;p>Click on
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Create Alert Rule
+&lt;/strong>
+&amp;nbsp;&lt;/p>
+&lt;p>&lt;img src="../../../images//create-alert-rule.png" alt="Create Alert Rule">&lt;/p>
+&lt;p>In the Detector window, inside &lt;strong>Alert signal&lt;/strong>, the Signal we will alert on is marked with a (blue) bell in the &lt;strong>Alert on&lt;/strong> column. The bell indicates which Signal is being used to generate the alert.&lt;/p>
+&lt;p>Click on
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Proceed to Alert Condition
+&lt;/strong>
+&amp;nbsp;&lt;/p>
+&lt;p>&lt;img src="../../../images//alert-signal.png" alt="Alert Signal">&lt;/p>
+&lt;hr>
+&lt;h2 id="3-setting-alert-condition">3. Setting Alert condition&lt;/h2>
+&lt;p>In &lt;strong>Alert condition&lt;/strong>, click on &lt;strong>Static Threshold&lt;/strong> and then on
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Proceed to Alert Settings
+&lt;/strong>
+&amp;nbsp;&lt;/p>
+&lt;p>&lt;img src="../../../images//alert-condition.png" alt="Alert Condition">&lt;/p>
+&lt;p>In &lt;strong>Alert Settings&lt;/strong>, enter the value &lt;strong>&lt;code>290&lt;/code>&lt;/strong> in the &lt;strong>Threshold&lt;/strong> field. In the same window change &lt;strong>Time&lt;/strong> on top right to past day (&lt;strong>-1d&lt;/strong>).&lt;/p>
+&lt;hr>
+&lt;h2 id="4-alert-pre-flight-check">4. Alert pre-flight check&lt;/h2>
+&lt;p>A pre-flight check will take place after 5 seconds. See the &lt;strong>Estimated alert count&lt;/strong>. Based on the current alert settings, the amount of alerts we would have received in 1 day would have been &lt;strong>3&lt;/strong>.&lt;/p>
+&lt;p>&lt;img src="../../../images//alert-threshold.png" alt="Alert Threshold">&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;p class="alert-heading">About pre-flight checks&lt;/p>
+&lt;p class="alert-body">
+&lt;p>Once you set an alert condition, the UI estimates how many alerts you might get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.&lt;/p>
+&lt;p>Immediately, the platform will start analyzing the signals with the current settings, and perform something we call a Pre-flight Check. This enables you to test the alert conditions using the historical data in the platform, to ensure the settings are logical and will not inadvertently generate an alert storm, removing the guess work from configuring alerts in a simple but very powerful way, only available using the Splunk Observability Cloud.&lt;/p>
+&lt;p>To read more about detector previewing, please visit this link
+&lt;a href="https://docs.splunk.com/Observability/alerts-detectors-notifications/preview-detector-alerts.html#nav-Preview-detector-alerts" target="_blank">Preview detector alerts.&lt;/a>
+&lt;/p>
+&lt;/p>
+&lt;/div>
+&lt;p>Click on
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Proceed to Alert Message
+&lt;/strong>
+&amp;nbsp;&lt;/p>
+&lt;hr>
+&lt;h2 id="5-alert-message">5. Alert message&lt;/h2>
+&lt;p>In &lt;strong>Alert message&lt;/strong>, under &lt;strong>Severity&lt;/strong> choose &lt;strong>Major&lt;/strong>.&lt;/p>
+&lt;p>&lt;img src="../../../images//alert-message.png" alt="Alert Message">&lt;/p>
+&lt;p>Click on
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Proceed to Alert Recipients
+&lt;/strong>
+&amp;nbsp;&lt;/p>
+&lt;p>Click on &lt;strong>Add Recipient&lt;/strong> and then on your email address displayed as the first option.&lt;/p>
+&lt;p>&lt;img src="../../../images//add-recipient.png" alt="Add Recipient">&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;p class="alert-heading">Notification Services&lt;/p>
+&lt;p class="alert-body">
+&lt;p>That&amp;rsquo;s the same as entering that email address OR you can enter another email address by clicking on &lt;strong>E-mail&amp;hellip;&lt;/strong>.&lt;/p>
+&lt;p>This is just one example of the many &lt;strong>Notification Services&lt;/strong> the suite has available. You can check this out by going to the &lt;strong>Integrations&lt;/strong> tab of the top menu, and see &lt;strong>Notification Services&lt;/strong>.&lt;/p>
+&lt;/p>
+&lt;/div>
+&lt;hr>
+&lt;h2 id="6-alert-activation">6. Alert Activation&lt;/h2>
+&lt;p>Click on
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Proceed to Alert Activation
+&lt;/strong>
+&amp;nbsp;&lt;/p>
+&lt;p>In &lt;strong>Activate&amp;hellip;&lt;/strong> click on
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Activate Alert Rule
+&lt;/strong>
+&amp;nbsp;&lt;/p>
+&lt;p>&lt;img src="../../../images//activate-alert.png" alt="Activate Alert">&lt;/p>
+&lt;p>If you want to get alerts quicker you edit the rule and lower the value from &lt;strong>&lt;code>290&lt;/code>&lt;/strong> to say &lt;strong>&lt;code>280&lt;/code>&lt;/strong>.&lt;/p>
+&lt;p>If you change the &lt;strong>Time&lt;/strong> to &lt;strong>-1h&lt;/strong> you can see how many alerts you might get with the threshold you have chosen based on the metrics from the last 1 hour.&lt;/p>
+&lt;p>Click on the &lt;img src="../../../images/alerts-and-detectors.png" alt="alerts and detectors button"> in the navbar and then click on &lt;strong>Detectors&lt;/strong>. You can optionally filter for your initials.&lt;/p>
+&lt;p>You will see you detector listed here. If you don&amp;rsquo;t then please refresh your browser.&lt;/p>
+&lt;p>&lt;img src="../../../images//detectors.png" alt="Detector List">&lt;/p>
+&lt;p>&lt;strong>Congratulations&lt;/strong>! You have created your first detector and activated it!&lt;/p></description></item><item><title>Imt: Working with Muting Rules - Lab Summary</title><link>https://signalfx.github.io/observability-workshop/v4.11/imt/docs/detectors/muting/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://signalfx.github.io/observability-workshop/v4.11/imt/docs/detectors/muting/</guid><description>
+&lt;ul>
+&lt;li>Learn how to configure Muting Rules&lt;/li>
+&lt;li>Learn how to resume notifications&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="1-configuring-muting-rules">1. Configuring Muting Rules&lt;/h2>
+&lt;p>There will be times when you might want to mute certain notifications. For example, if you want to schedule downtime for maintenance on a server or set of servers, or if you are testing new code or settings etc. For that you can use muting rules in Splunk Observability Cloud. Let&amp;rsquo;s create one!&lt;/p>
+&lt;p>Click on the &lt;img src="../../../images/alerts-and-detectors.png" alt="alerts and detectors button"> from the navbar and then click &lt;strong>Detectors&lt;/strong> to see your list of active detectors. You can filter for yours if you want.&lt;/p>
+&lt;p>&lt;img src="../../../images//detectors.png" alt="detectors list">&lt;/p>
+&lt;p>If you created an detector in &lt;strong>Creating a Detector&lt;/strong> you can click on the three dots &lt;strong>&lt;code>...&lt;/code>&lt;/strong> on the far right for that detector; if not, do that for another detector.&lt;/p>
+&lt;p>From the drop-down click on &lt;strong>Create Muting Rule&amp;hellip;&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="../../../images//create-muting-rule.png" alt="Create Muting Rule">&lt;/p>
+&lt;p>In the &lt;strong>Muting Rule&lt;/strong> window check &lt;strong>Mute Indefinitely&lt;/strong> and enter a reason.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;p class="alert-heading">Important&lt;/p>
+&lt;p class="alert-body">
+This will mute the notifications permanently until you come back here and un-check this box or resume notifications for this detector.
+&lt;/p>
+&lt;/div>
+&lt;p>&lt;img src="../../../images//mute-indefinitely.png" alt="Mute Indefinitely">&lt;/p>
+&lt;p>Click &lt;strong>Next&lt;/strong> and in the new modal window confirm the muting rule setup.&lt;/p>
+&lt;p>&lt;img src="../../../images//confirm-rule.png" alt="Confirm Rule">&lt;/p>
+&lt;p>Click on
+&lt;strong class="label-button ui-button-blue" role="label-button">
+&lt;strong>Mute Indefinitely&lt;/strong>
+&lt;/strong>
+&amp;nbsp; to confirm.&lt;/p>
+&lt;p>&lt;img src="../../../images//alert-muted.png" alt="List muted rule">&lt;/p>
+&lt;p>You won&amp;rsquo;t be receiving any email notifications from your detector until you resume notifications again. Let&amp;rsquo;s now see how to do that!&lt;/p>
+&lt;hr>
+&lt;h2 id="2-resuming-notifications">2. Resuming notifications&lt;/h2>
+&lt;p>To Resume notifications, click on &lt;strong>Muting Rules&lt;/strong>, you will see the name of the detector you muted notifications for under &lt;strong>Detector&lt;/strong> heading.&lt;/p>
+&lt;p>Click on the thee dots &lt;strong>&lt;code>...&lt;/code>&lt;/strong> on the far right, and click on &lt;strong>Resume Notifications&lt;/strong>.&lt;/p>
+&lt;p>&lt;img src="../../../images//muting-list.png" alt="Resume">&lt;/p>
+&lt;p>Click on
+&lt;strong class="label-button ui-button-blue" role="label-button">
+&lt;strong>Resume&lt;/strong>
+&lt;/strong>
+&amp;nbsp; to confirm and resume notifications for this detector.&lt;/p>
+&lt;p>&lt;img src="../../../images//resume.png" alt="Resume">&lt;/p>
+&lt;p>&lt;strong>Congratulations!&lt;/strong> You have now resumed your alert notifications!&lt;/p></description></item></channel></rss>
