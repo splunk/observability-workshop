@@ -1,0 +1,226 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Observability Cloud Workshops – Creating checks</title><link>https://signalfx.github.io/observability-workshop/v4.12/ja/synthetics/docs/</link><description>Recent content in Creating checks on Splunk Observability Cloud Workshops</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://signalfx.github.io/observability-workshop/v4.12/ja/synthetics/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Synthetics: Real Browser Check</title><link>https://signalfx.github.io/observability-workshop/v4.12/ja/synthetics/docs/real-browser-checks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://signalfx.github.io/observability-workshop/v4.12/ja/synthetics/docs/real-browser-checks/</guid><description>
+&lt;p>This Lab walks your through using the &lt;a href="https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd?hl=en" target="_blank">Chrome Selenium IDE&lt;/a>
+extension to create a synthetic transaction against a Splunk demo instance and creating a Splunk Synthetic Monitoring Real Browser Check (RBC). In addition you also get to learn other Splunk Synthetic Monitoring checks like REST API checks and Uptime Checks.&lt;/p>
+&lt;h2 id="1-prerequisites">1. Prerequisites&lt;/h2>
+&lt;p>Ensure you can login with your username and password at &lt;a href="https://monitoring.rigor.com" target="_blank">https://monitoring.rigor.com&lt;/a>
+and &lt;a href="https://optimization.rigor.com" target="_blank">https://optimization.rigor.com&lt;/a>
+. Also, make sure you are assigned to your own account for example: &lt;strong>O11y Workshop&lt;/strong>.&lt;/p>
+&lt;p>Edit your Splunk Synthetic Monitoring account personal information and adjust your timezone and email notifications. Splunk Synthetic Monitoring will default to start sending you notifications, you can turn them off at the monitor configuration level.&lt;/p>
+&lt;p>&lt;img src="../../images/image5.png" alt="Edit Personal Information">&lt;/p>
+&lt;p>Add the &lt;a href="https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd?hl=en-US" target="_blank">Chrome Selenium IDE&lt;/a>
+extension to your &lt;strong>Chrome&lt;/strong> Browser. Once installed click on the extension and you will see the following screen:&lt;/p>
+&lt;p>&lt;img src="../../images/image17.png" alt="Selenium IDE">&lt;/p>
+&lt;h2 id="2-using-selenium-ide">2. Using Selenium IDE&lt;/h2>
+&lt;p>You can now go ahead and record a web transaction using Selenium IDE to check on &lt;a href="http://splunk.o11ystore.com" target="_blank">http://splunk.o11ystore.com&lt;/a>
+.&lt;/p>
+&lt;p>Click on &lt;strong>Record a new test in a new project&lt;/strong>, name the project &lt;strong>[YOUR_INITIALS] - O11y Store&lt;/strong> e.g. RWC - O11y Store.&lt;/p>
+&lt;p>!!! question &amp;ldquo;What is Selenium IDE?&amp;rdquo;
+- Selenium IDE is an open source record and playback test automation for the web.
+- Selenium is a portable framework for testing web applications.
+- Selenium provides a playback tool for authoring functional tests without the need to learn a test scripting language (Selenium IDE).
+- It also provides a test domain-specific language (Selenese) to write tests in a number of popular programming languages, including C#, Groovy, Java, Perl, PHP, Python, Ruby and Scala.
+- The tests can then run against most modern web browsers.
+- Selenium runs on Windows, Linux, and macOS.
+- It is open-source software released under the Apache License 2.0.&lt;/p>
+&lt;p>&lt;img src="../../images/image29.png" alt="placeholder">&lt;/p>
+&lt;p>Enter &lt;a href="http://splunk.o11ystore.com" target="_blank">http://splunk.o11ystore.com&lt;/a>
+as your base URL.&lt;/p>
+&lt;p>&lt;img src="../../images/image11.png" alt="placeholder">&lt;/p>
+&lt;p>Click Start Recording{: .label-button .sfx-ui-button-grey}, a new window should open up with &lt;a href="http://splunk.o11ystore.com" target="_blank">splunk.o11ystore.com&lt;/a>
+. Click &lt;strong>Vintage Camera Lens&lt;/strong>, click &lt;strong>Add To Cart&lt;/strong> and then click &lt;strong>Place Order&lt;/strong>.&lt;/p>
+&lt;p>Close the window and then stop the recording by navigating back to Selenium IDE. Finally name the test: &lt;strong>[YOUR_INITIALS] - Checkout Flow (Desktop)&lt;/strong> e.g. RWC - Checkout Flow (Desktop).&lt;/p>
+&lt;p>&lt;img src="../../images/image10.png" alt="placeholder">&lt;/p>
+&lt;p>Your Selenium IDE Project will look something like this:&lt;/p>
+&lt;p>&lt;img src="../../images/image19.png" alt="placeholder">&lt;/p>
+&lt;p>Test your recording by pressing on the play button, make sure your recording successfully completes the transaction:&lt;/p>
+&lt;p>&lt;img src="../../images/image26.png" alt="Run">&lt;/p>
+&lt;p>Save your Selenium IDE Project to your Downloads folder as &lt;code>Workshop.side&lt;/code>&lt;/p>
+&lt;p>&lt;img src="../../images/image30.png" alt="Save">&lt;/p>
+&lt;p>&lt;img src="../../images/save-side-project.png" alt="Save SIDE Project">&lt;/p>
+&lt;h2 id="3-create-real-browser-check">3. Create Real Browser Check&lt;/h2>
+&lt;p>Login to Splunk Synthetic Monitoring using &lt;a href="https://monitoring.rigor.com" target="_blank">https://monitoring.rigor.com&lt;/a>
+. Click on &lt;strong>REAL BROWSER&lt;/strong> and click &lt;strong>+New&lt;/strong>{: .label-button .sfx-ui-button-blue}.&lt;/p>
+&lt;p>&lt;img src="../../images/image3.png" alt="placeholder">&lt;/p>
+&lt;p>Click on &amp;ldquo;&lt;strong>From File&lt;/strong>&amp;rdquo; and select your recording then click on Import&lt;/p>
+&lt;p>&lt;img src="../../images/image1.png" alt="placeholder">&lt;/p>
+&lt;p>Set the &lt;strong>Frequency&lt;/strong> to &lt;strong>5 Minutes&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="../../images/image15.png" alt="placeholder">&lt;/p>
+&lt;p>Click on Steps and make the following adjustments to your recording provide a friendly name to Steps 1 (Click Camera), 2 (Add to Cart) &amp;amp; 3 (Place Order).&lt;/p>
+&lt;p>&lt;img src="../../images/image6.png" alt="placeholder">&lt;/p>
+&lt;p>Next, click &lt;strong>+ Add Step&lt;/strong>, with this new step we will add some validation to the monitor. This is to ensure the checkout completed successfully.&lt;/p>
+&lt;p>Enter &lt;strong>Confirm Order&lt;/strong> for the &lt;strong>Name&lt;/strong> and change the &lt;strong>Action&lt;/strong> to &lt;strong>Wait for text present&lt;/strong> and finally enter &lt;strong>Your order is complete!&lt;/strong> for the &lt;strong>Value&lt;/strong>. You will now have a &lt;strong>Start Url&lt;/strong> and 4 steps in your monitor configuration.&lt;/p>
+&lt;p>&lt;img src="../../images/image2.png" alt="placeholder">&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;p class="alert-heading">Tip&lt;/p>
+&lt;p class="alert-body">
+&lt;p>As you are creating the steps think about how to go about using the &lt;a href="https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions" target="_blank">Business Transaction&lt;/a>
+&lt;p>feature in Splunk Synthetic Monitoring which is very powerful. &lt;em>“Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction.&amp;quot;&lt;/em>&lt;/p>&lt;/p>
+&lt;/p>
+&lt;/div>
+&lt;p>Click on &lt;strong>Advanced&lt;/strong> and make sure the &lt;strong>Viewport Size&lt;/strong> is set to &lt;strong>Default desktop: 1366 x 768&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="../../images/viewport-size.png" alt="Viewport Size">&lt;/p>
+&lt;p>Click on &amp;ldquo;&lt;strong>Test&lt;/strong>&amp;rdquo; to test your monitor. Once the test has successfully completed make sure to click on &amp;ldquo;&lt;strong>AFTER&lt;/strong>&amp;rdquo; in Step 4 to validate the monitor was able to get to the order complete screenshot.&lt;/p>
+&lt;p>&lt;img src="../../images/image22.png" alt="placeholder">&lt;/p>
+&lt;p>Click on &lt;strong>Create&lt;/strong>{: .label-button .sfx-ui-button-blue} to save your Real Browser Monitor. After 5-10 minutes validate your monitor is working and producing successful checks e.g.&lt;/p>
+&lt;p>&lt;img src="../../images/image27.png" alt="placeholder">&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;p class="alert-heading">Tip&lt;/p>
+&lt;p class="alert-body">
+&lt;p>You can force to run your monitor now using &lt;strong>Run Now&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="../../images/image8.png" alt="placeholder">&lt;/p>
+&lt;/p>
+&lt;/div>
+&lt;p>Change your view to &lt;strong>Segment by location&lt;/strong> and observe the difference. You can turn off/on locations by clicking on them.&lt;/p>
+&lt;p>!!! question &amp;ldquo;Question?&amp;rdquo;
+Which Location has the poorest &lt;strong>Response Time&lt;/strong>?&lt;/p>
+&lt;p>&lt;img src="../../images/image9.png" alt="placeholder">&lt;/p>
+&lt;p>Click on one of the successful circles to drilldown into that Run:&lt;/p>
+&lt;p>&lt;img src="../../images/image33.png" alt="placeholder">&lt;/p>
+&lt;p>Take a moment to explore the metrics with the &lt;strong>CONFIGURE METRICS/HIDE METRICS&lt;/strong> dropdown.&lt;/p>
+&lt;p>&lt;img src="../../images/image14.png" alt="placeholder">&lt;/p>
+&lt;p>Click &lt;strong>Page 2&lt;/strong> in the dropdown, and scroll down to view the &lt;strong>Filmstrip&lt;/strong> and the &lt;strong>Waterfall Chart.&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="../../images/image16.png" alt="placeholder">&lt;/p>
+&lt;p>&lt;img src="../../images/filmstrip.png" alt="Filmstrip">&lt;/p>
+&lt;p>&lt;img src="../../images/waterfall.png" alt="Waterfall">&lt;/p>
+&lt;p>Click on &lt;strong>Click Here to Analyze with Optimization&lt;/strong> which will prompt you to login to your Splunk Synthetic Monitoring Optimization Account. If you &lt;strong>don&amp;rsquo;t have this option&lt;/strong>, navigate to this &lt;a href="https://optimization.rigor.com/s/2373818/?sh=3AF8C48AADD6D3E5F5DAA8B4B7BB7F45" target="_blank">page&lt;/a>
+.&lt;/p>
+&lt;p>&lt;img src="../../images/image31.png" alt="placeholder">&lt;/p>
+&lt;p>Click the &amp;ldquo;&lt;strong>Best Practices Score&lt;/strong>&amp;rdquo; tab. Scroll down, and review all the findings&lt;/p>
+&lt;p>&lt;img src="../../images/image23.png" alt="placeholder">&lt;/p>
+&lt;p>&lt;img src="../../images/best-practices.png" alt="Best Practices">&lt;/p>
+&lt;p>Spend some time to review the findings. Click into any line item&lt;/p>
+&lt;h2 id="4-create-mobile-check">4. Create Mobile Check&lt;/h2>
+&lt;p>Copy the RBC you created above:&lt;/p>
+&lt;p>&lt;img src="../../images/copy-check.png" alt="Copy Check">&lt;/p>
+&lt;p>Rename it, for example: &lt;strong>RWC - Checkout Flow (Tablet)&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="../../images/rename-check.png" alt="Copy Check">&lt;/p>
+&lt;p>Under the &lt;strong>Advanced&lt;/strong> tab, update the following three settings and create your new mobile RBC.&lt;/p>
+&lt;p>&lt;img src="../../images/image18.png" alt="placeholder">&lt;/p>
+&lt;p>Test &amp;amp; Validate the new monitor&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;p class="alert-heading">Tip&lt;/p>
+&lt;p class="alert-body">
+&lt;p>As you are creating the steps try using the &lt;a href="https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions" target="_blank">Business Transaction&lt;/a>
+&lt;p>feature in Splunk Synthetic Monitoring. &lt;em>“Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction.&amp;quot;&lt;/em>&lt;/p>&lt;/p>
+&lt;/p>
+&lt;/div>
+&lt;h2 id="5-resources">5. Resources&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;a href="https://help.rigor.com/hc/en-us/articles/115004652007?flash_digest=b1ef7d1a07b68d5279ee5fef8adb87fb878cf010" target="_blank">Getting Started With Selenium IDE&lt;/a>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="http://www2.rigor.com/scripting-guide" target="_blank">Splunk Synthetic Monitoring Scripting Guide&lt;/a>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://help.rigor.com/hc/en-us/articles/115004443988-How-Can-I-Fix-A-Broken-Script" target="_blank">How Can I Fix A Broken Script?&lt;/a>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction" target="_blank">Introduction to the DOM&lt;/a>
+(Document Object Model (DOM)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://www.selenium.dev/selenium-ide/" target="_blank">Selenium IDE&lt;/a>
+&lt;/p>
+&lt;/li>
+&lt;/ul></description></item><item><title>Synthetics: API Checks</title><link>https://signalfx.github.io/observability-workshop/v4.12/ja/synthetics/docs/api-checks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://signalfx.github.io/observability-workshop/v4.12/ja/synthetics/docs/api-checks/</guid><description>
+&lt;p>API Checkは、APIエンドポイントの機能およびパフォーマンスをチェックする柔軟な方法を提供します。APIファーストの開発へのシフトにより、フロントエンドのコア機能を提供するバックエンドサービスを監視する必要性が高まっています。複数ステップのAPIインタラクションのテストに興味がある場合でも、エンドポイントのパフォーマンスを可視化したい場合でも、API Checkは目標の達成に役立ちます。&lt;/p>
+&lt;h2 id="グローバル変数の作成">グローバル変数の作成&lt;/h2>
+&lt;p>API Checkを行うために使用するグローバル変数を表示します。 &lt;strong>Admin Tools&lt;/strong> の下にある &lt;strong>Global Variables&lt;/strong> をクリックします。 spotifyのAPIトランザクションを行うために使用するグローバル変数を確認してください。&lt;/p>
+&lt;p>&lt;img src="../../images/global-variable.png" alt="placeholder">&lt;/p>
+&lt;h2 id="api-check-の作成">API Check の作成&lt;/h2>
+&lt;p>新しい API Check を作成し、&lt;code>&amp;lt;あなたのイニシャル&amp;gt;&lt;/code> の後に Splunk REST API Check をつけた名前にします （例: &lt;strong>AP - Spotify API&lt;/strong>）&lt;/p>
+&lt;p>&lt;img src="../../images/new-api-check.png" alt="placeholder">&lt;/p>
+&lt;p>チェックに名前を付けたら、notificationタブを開いて、どのような設定があるか眺めてみましょう。&lt;/p>
+&lt;p>次に、以下のAPI Check Stepsを追加します。&lt;/p>
+&lt;p>&lt;img src="../../images/api-check-steps.png" alt="placeholder">&lt;/p>
+&lt;p>変数はこちらから選ぶことができます:&lt;/p>
+&lt;p>&lt;img src="../../images/available-variables.png" alt="placeholder">&lt;/p>
+&lt;p>&lt;strong>&lt;a href="https://help.rigor.com/hc/en-us/articles/115004583747-API-Check-Request-Step" target="_blank">Request Step&lt;/a>
+&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>リクエストステップは、あるエンドポイントにHTTPリクエストを行い、そのレスポンスからデータを取得します。他のチェックタイプとは異なり、APIチェックでは、チェックを開始するための初期URLは必要ありません。すべてのHTTPリクエストは、リクエストステップ内で設定されます。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>&lt;a href="https://help.rigor.com/hc/en-us/articles/115004582607-API-Check-Extract-Step" target="_blank">Extract Step&lt;/a>
+&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Extractステップでは、JSON、XML、HTML形式のデータからデータを抽出します。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>JSONからデータを抽出するには、次の3つを用意します:&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>JSONを含むソース&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>データを抽出するためのJSONPath式&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>保存先のカスタム変数名&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>ソースはどのようなJSONでもかまいませんが、たいていはレスポンスのBodyから取得するでしょう。レスポンスヘッダから取得することもできますし、また、カスタムの値も可能です。ソースは、整形されたJSONでなければなりません。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>&lt;a href="https://help.rigor.com/hc/en-us/articles/115004743868-API-Check-Save-Step" target="_blank">Save Step&lt;/a>
+&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Saveステップでは、チェックの後で再利用するためのデータを保存します。データを保存するには、ソースと保存先のカスタム変数名を指定します。ソースは、応答ヘッダを含むプリセットから選択するか、カスタム値を指定します。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>その他の使用例としては、他のステップで簡単に再利用できるように情報を追加したり、リクエストの結果を保存して別のリクエストで再利用できるようにするなどがあります。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>リクエスト変数は、リクエストが作成された後にのみ使用可能であることを覚えておくことが重要です。もし、リクエストから値を保存しようとしても、まだリクエストを行っていない場合は、空の文字列が保存されます。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>&lt;a href="https://help.rigor.com/hc/en-us/articles/115004742408-API-Check-Assert-Step" target="_blank">Assert Step&lt;/a>
+&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Assertステップは、2つの値に対してアサーションを行います。アサーションを行うには、2つのパラメータと、その2つの比較方法を指定します。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>&lt;a href="https://help.rigor.com/hc/en-us/articles/115004742408-API-Check-Assert-Step" target="_blank">Comparisons&lt;/a>
+&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>現在、&lt;strong>string（文字列）&lt;/strong>、 &lt;strong>numeric（数値）&lt;/strong>、＊＊regular expression（正規表現）** の3種類の比較をサポートしています。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>string&lt;/strong> と &lt;strong>numeric&lt;/strong> では、値が比較タイプに強制されます。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>reqular expression&lt;/strong> での比較の場合、最初のパラメータは文字列で、2番目のパラメータは正規表現になります。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>API Check に Splunk と API のタグを付けて SAVE します。&lt;/p>
+&lt;p>&lt;img src="../../images/tags.png" alt="placeholder">&lt;/p>
+&lt;h2 id="rest-api-checkのテスト">REST API Checkのテスト&lt;/h2>
+&lt;p>edit configuration に戻り、ページの下にある &amp;lsquo;test&amp;rsquo; を押して、エラーがないことを確認します。&lt;/p>
+&lt;p>&lt;img src="../../images/test-api-check.png" alt="placeholder">&lt;/p>
+&lt;p>ウィンドウを上にスライドさせると、正常に実行された場合の詳細が表示されます&lt;/p>
+&lt;p>&lt;img src="../../images/successful-run.png" alt="placeholder">&lt;/p>
+&lt;p>&lt;img src="../../images/request-step.png" alt="placeholder">&lt;/p>
+&lt;p>さて、モニターにもう少し機能を追加してみましょう。詳細ウィンドウを下にスライドさせ、手順5～8を追加します。&lt;/p>
+&lt;p>&lt;strong>BONUS&lt;/strong>：ステップ6を使用して、以下のレスポンスがタイムリーに戻ってきたことをアサートします（1000 ms)&lt;/p>
+&lt;p>&lt;img src="../../images/additional-steps.png" alt="placeholder">&lt;/p>
+&lt;p>ステップを追加したら、モニターをテストして保存します。&lt;/p>
+&lt;h2 id="リソース">リソース&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;a href="https://help.rigor.com/hc/en-us/articles/115004817308-How-to-Create-an-API-Check" target="_blank">How to Create an API Check&lt;/a>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://help.rigor.com/hc/en-us/articles/115004952508-API-Check-Overview" target="_blank">API Check Overview&lt;/a>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions" target="_blank">How Do I Use Business Transactions?&lt;/a>
+&lt;/p>
+&lt;/li>
+&lt;/ul></description></item></channel></rss>
