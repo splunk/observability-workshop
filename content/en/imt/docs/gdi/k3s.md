@@ -21,7 +21,7 @@ Expand the workshop token that your host has instructed you to use e.g. **O11y-W
 
 {{% alert title="Please do not attempt to create your own token" color="warning" %}}
 This will complicate our clean process after the workshop.
-However if you do, please make sure it has only **INGEST** & **API** as scope!!
+However if you do, please make sure it has only **INGEST** as scope!!
 {{% /alert %}}
 
 You will also need to obtain the name of the Realm[^2] for your Splunk account.  At the top of the side menu, click on your name and select **Account Settings**. The Realm can be found in the middle of the page within the Organizations section.  In this example it is `us0`.
@@ -67,7 +67,7 @@ Install the OpenTelemetry Collector Helm chart with the following commands, do *
     --set="splunkObservability.logsEnabled=true" \
     --set="environment=$(hostname)-apm-env" \
     splunk-otel-collector-chart/splunk-otel-collector \
-    -f ~/workshop/k3s/otel-collector.yaml
+    -f ~/workshop/workshop/otel/collector.yaml
 {{< /tab >}}
 {{< tab header="Helm Install Output" lang="text" >}}
 Using ACCESS_TOKEN=<redacted>
