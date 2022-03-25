@@ -67,7 +67,7 @@ Install the OpenTelemetry Collector Helm chart with the following commands, do *
     --set="splunkObservability.logsEnabled=true" \
     --set="environment=$(hostname)-apm-env" \
     splunk-otel-collector-chart/splunk-otel-collector \
-    -f ~/workshop/workshop/otel/collector.yaml
+    -f ~/workshop/k3s/otel-collector.yaml
 {{< /tab >}}
 {{< tab header="Helm Install Output" lang="text" >}}
 Using ACCESS_TOKEN=<redacted>
