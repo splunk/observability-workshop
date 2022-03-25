@@ -6,17 +6,17 @@ Install [Multipass](https://multipass.run/)[^1] for your operating system. On a 
 
 ## 2. Download cloud-init YAML
 
-```
+```bash
 mkdir cloud-init
 ```
 
-```
+```bash
 curl -sL https://raw.githubusercontent.com/signalfx/observability-workshop/master/workshop/cloud-init/k3s.yaml -o cloud-init/k3s.yaml
 ```
 
 For Linux/Mac OS set the instance name environment variable:
 
-```
+```bash
 export INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)
 ```
 
@@ -24,7 +24,7 @@ For Windows download the latest version of the workshop from [GitHub](https://gi
 
 Once downloaded, unzip the the file and rename it to `workshop`. Then, from the command prompt change into the `workshop\cloud-init` directory and set the instance name environment variable:
 
-```
+```bash
 $INSTANCE = ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".tochararray() | sort {Get-Random})[0..3] -join ''
 ```
 
@@ -38,11 +38,11 @@ multipass launch --name ${INSTANCE} --cloud-init cloud-init/k3s.yaml --cpus 4 --
 
 Once the instance has been successfully created (this can take several minutes), shell into it:
 
-```
+```bash
 multipass shell ${INSTANCE}
 ```
 
-```
+```bash
 ███████╗██████╗ ██╗     ██╗   ██╗███╗   ██╗██╗  ██╗    ██╗
 ██╔════╝██╔══██╗██║     ██║   ██║████╗  ██║██║ ██╔╝    ╚██╗
 ███████╗██████╔╝██║     ██║   ██║██╔██╗ ██║█████╔╝      ╚██╗
