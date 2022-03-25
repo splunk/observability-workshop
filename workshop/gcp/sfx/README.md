@@ -10,7 +10,7 @@ Set the following variables:
 
 Sample command:
 
-```
+```bash
 terraform apply \
 -auto-approve \
 -var="gcp_project=o11y-goes-gcp" \
@@ -19,4 +19,3 @@ terraform apply \
 -var="signalfx_api_access_token=YOURTOKENHERE" \
 -var="signalfx_gcp_integration_name=GCP-$USER"
 ```
-

@@ -9,7 +9,7 @@ Set the following variables:
 
 Sample command:
 
-```
+```bash
 terraform apply \
 -auto-approve \
 -var="aws_region=eu-central-1" \
@@ -17,4 +17,3 @@ terraform apply \
 -var="signalfx_api_access_token=YOURTOKENHERE" \
 -var="signalfx_aws_integration_name=AWS-$USER"
 ```
-

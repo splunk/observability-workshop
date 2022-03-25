@@ -8,11 +8,10 @@ Set the following variables:
 
 Sample command:
 
-```
+```bash
 terraform apply \
 -auto-approve \
 -var="gcp_project=o11y-goes-gcp" \
 -var="gcp_zone=europe-west3-a" \
 -var="gcp_instance_count=1"
 ```
-
