@@ -23,6 +23,8 @@ packages:
   - podman
   - python3.9-venv
   - jq
+  - maven
+  - openjdk-11-jdk
 
 groups:
   - docker

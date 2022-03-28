@@ -45,10 +45,10 @@ Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the 
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update
 {{< /tab >}}
 {{< tab header="Helm Repo Add Output" lang="text" >}}
-Using ACCESS_TOKEN=<redacted>
+Using ACCESS_TOKEN={REDACTED}
 Using REALM=eu0
 "splunk-otel-collector-chart" has been added to your repositories
-Using ACCESS_TOKEN=<redacted>
+Using ACCESS_TOKEN={REDACTED}
 Using REALM=eu0
 Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "splunk-otel-collector-chart" chart repository
@@ -70,7 +70,7 @@ Install the OpenTelemetry Collector Helm chart with the following commands, do *
     -f ~/workshop/k3s/otel-collector.yaml
 {{< /tab >}}
 {{< tab header="Helm Install Output" lang="text" >}}
-Using ACCESS_TOKEN=<redacted>
+Using ACCESS_TOKEN={REDACTED}
 Using REALM=eu0
 NAME: splunk-otel-collector
 LAST DEPLOYED: Fri May  7 11:19:01 2021
@@ -120,7 +120,7 @@ kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 
 {{% alert title="Deleting a failed installation" color="info" %}}
 If you make an error installing the OpenTelemetry Collector you can start over by deleting the installation using:
-<b> helm delete splunk-otel-collector</b>
+**helm delete splunk-otel-collector**
 {{% /alert %}}
 
 ---
