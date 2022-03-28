@@ -1,7 +1,7 @@
 ---
 title: Deploying the Online Boutique in K3s
 linkTitle: Deploying the Online Boutique
-weight: 2
+weight: 1 
 description: | 
   **10 minutes**
   
