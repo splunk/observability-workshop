@@ -66,8 +66,8 @@ curl -L https://github.com/signalfx/splunk-otel-java/releases/latest/download/sp
 ```
 
 ```bash
-export OTEL_SERVICE_NAME='petclinic'
-export OTEL_RESOURCE_ATTRIBUTES='deployment.environment=conf21,version=0.314'
+export OTEL_SERVICE_NAME=$(hostname)-petclinic-service
+export OTEL_RESOURCE_ATTRIBUTES=deployment.environment=$(hostname)-petclinic-env,version=0.314
 export OTEL_EXPORTER_OTLP_ENDPOINT='http://localhost:4317'
 ```
 

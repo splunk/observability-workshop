@@ -13,20 +13,23 @@ The OpenTelemetry Collector is the core component of instrumenting infrastructur
 
 Splunk Observability Cloud offers wizards to walk you through the setup of the Collector on both your infrastrucutre and applications. To get to the wizard, click in the top left corner icon (the hamburger menu), then click on **Data Setup**
 
-![enter image description here](https://github.com/asomensari-splunk/spring-petclinic/blob/main/src/main/resources/static/resources/images/o11y-landingpage-hamburguer.png?raw=true)
-
-![enter image description here](https://github.com/asomensari-splunk/spring-petclinic/blob/main/src/main/resources/static/resources/images/side-menu-data-setup.png?raw=true)
-
 You'll be taken to a short wizard where you will select some options. The default settings should work, no need to make changes. The wizard will output a few commands that need to be executed in the shell.
 
-Here's an example:
+However, if you have already completed the **Splunk IMT** workshop you can take advantage of the existing environment variables. Othwewise, create the `ACCESS_TOKEN` and `REALM` environment variables to use in the proceeding OpenTelemetry Collector install command. For instance, if your realm is `us1`, you would type `export REALM=us1` and for `eu0` type `export REALM=eu0`.
+
+{{< tabpane >}}
+{{< tab header="Export Variables" lang="bash" >}}
+export ACCESS_TOKEN=<replace_with_O11y-Workshop-ACCESS_token>
+export REALM=<replace_with_splunk_realm>
+{{< /tab >}}
+{{< /tabpane >}}
+
+We can then go ahead and install the Collector:
 
 ```bash
 curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-collector.sh && \
-sudo sh /tmp/splunk-otel-collector.sh --realm us1 -- <API TOKEN REDACTED> --mode agent
+sudo sh /tmp/splunk-otel-collector.sh --realm $REALM -- $ACCESS_TOKEN --mode agent
 ```
-
-*(Please do not copy and paste this command verbatim during your exercise as it will not work. You should copy the command from your Splunk Observability Wizard page. The command above has the **API TOKEN REDACTED** and we need the real API TOKEN associated with your account)*
 
 This command will download and setup the OpenTelemetry Collector. Once the install is completed, you can navigate to the Infrastructure page to see the data from your Host
 
