@@ -11,17 +11,17 @@ Data Setup >> RUM Instrumentation >> Browser Instrumentation >> Add Connection
 
 Then you'll need to select the RUM token and define the application and environment names. The wizard will then show a snipped of HTML code that needs to be place at the top at the pages (preferably in the < HEAD > section). In this example we are using:
 
-- Application Name: petclinic
-- Environment: conf21
+- Application Name: `<hostname>-petclinic-service`
+- Environment: `<hostname>-petclinic-env`
 
 ```html
     <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous"></script>
     <script>
     SplunkRum.init({
-        beaconUrl: "https://rum-ingest.us1.signalfx.com/v1/rum",
-        rumAuth: "XXXXXXXXXXXXXXXXXXXX",
-        app: "petclinic",
-        environment: "conf21"
+        beaconUrl: "https://rum-ingest.<REALM>.signalfx.com/v1/rum",
+        rumAuth: "<ACCESS_TOKEN>",
+        app: "<hostname>-petclinic-service",
+        environment: "<hostname>-petclinic-env"
         });
     </script>
 ```
@@ -51,4 +51,4 @@ Let's visit RUM and see some of the traces and metrics.
 
 Hamburger Menu >> RUM
 
-You should see some of the Spring PetClinic urls showing up in the UI
+You should see some of the Spring PetClinic URLs showing up in the UI

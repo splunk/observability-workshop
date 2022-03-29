@@ -54,8 +54,8 @@ APM Instrumentation >> Java >> Add Connection
 
 The APM Instrumentation Wizard will show a few options for you to select, things like application name, environment, etc. In this scenario we are using:
 
-- Application Name: petclinic
-- Environment: conf21
+- Application Name: `<hostname>-petclinic-service`
+- Environment: `<hostname>-petclinic-env`
 
 At the end of the wizard, you'll be given a set of commands to run (similar to the Splunk IM instructions) **make sure you are in the spring-petclinic directory!**
 
@@ -72,7 +72,7 @@ export OTEL_EXPORTER_OTLP_ENDPOINT='http://localhost:4317'
 ```
 
 {{% alert title="Optional AlwaysOn Profiling" color="info" %}}
-If you want to enable and test the AlwaysOn Profiling feature, you can find details here: https://github.com/signalfx/splunk-otel-java/blob/main/profiler/README.md
+ If you want to enable and test the AlwaysOn Profiling feature, you can find details [here](https://github.com/signalfx/splunk-otel-java/blob/main/profiler/README.md)
 {{% /alert %}}
 
 To use the Splunk AlwaysOn Profiler you need:
