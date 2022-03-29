@@ -1,6 +1,6 @@
 ---
 title: Pet Clinic Java Workshop
-weight: 4
+weight: 3
 description: >
   Environment Configuration and Hands-On Exercises
 ---

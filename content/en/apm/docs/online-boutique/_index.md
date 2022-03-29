@@ -1,6 +1,6 @@
 ---
 title: Online Boutique K8s Workshop 
-weight: 2
+weight: 1
 description: | 
   **10 minutes**
   

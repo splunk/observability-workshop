@@ -3,9 +3,7 @@ title: Auto-instrument Java app
 weight: 3
 ---
 
-## Splunk Application Performance Monitoring (APM)
-
-### Download and Build the Spring PetClinic App
+## Download and Build the Spring PetClinic App
 
 First thing we need to setup APM is... well, an application. For this exercise, we will use the Spring Pet Clinic application. This is a very popular sample java application built with Spring framework (Springboot).
 
@@ -39,7 +37,7 @@ You can validate if the application is running by visiting `http://<VM_IP_ADDRES
 
 (feel free to navigate and click around )
 
-### Instrument the Application With Splunk OpenTelemetry Java Libraries
+## Instrument the Application With Splunk OpenTelemetry Java Libraries
 
 Now that the application is running, it is time to setup the APM instrumentation. The Splunk APM product uses Open Telemetry libraries to instrument the applications ([https://github.com/signalfx/splunk-otel-java](https://github.com/signalfx/splunk-otel-java)).
 The Otel-Java library will instrument code to generate metrics and spans/traces that are reported to the OpenTelemetry Collector.
