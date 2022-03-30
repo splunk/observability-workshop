@@ -20,4 +20,4 @@ Lastly, we will configure the Spring PetClinic application to write application 
 
 Here's a diagram of the final state of this exercise:
 
-![PetClinic Exercise](../../../images/petclinic-exercise.png)
+![PetClinic Exercise](../../images/petclinic-exercise.png)

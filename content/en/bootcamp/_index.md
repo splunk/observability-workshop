@@ -4,9 +4,6 @@ linkTitle: Observability Bootcamp
 weight: 5
 cascade:
   type: docs
-menu:
-  main:
-    weight: 5
 ---
 We are going to work in the directory `bootcamp/service/src`.
 Your first task: Write a python app to count words in a text file.

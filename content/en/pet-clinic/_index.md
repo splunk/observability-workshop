@@ -1,6 +1,7 @@
 ---
 title: Pet Clinic Java Workshop
-weight: 3
+cascade:
+  type: docs
 description: >
   Environment Configuration and Hands-On Exercises
 ---

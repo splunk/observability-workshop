@@ -4,9 +4,6 @@ linkTitle: Resources
 weight: 6
 cascade:
   type: docs
-menu:
-  main:
-    weight: 6
 ---
 
 Below are helpful resources about Splunk and the DevOps use case. Topics covered are Observability Cloud, Splunk On-Call, OpenTelemetry, Observability and Incident Response.
