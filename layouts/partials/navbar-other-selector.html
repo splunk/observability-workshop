@@ -1,8 +1,8 @@
 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	{{ .Site.Params.other_menu }}
+	{{ .Site.Params.workshop_menu }}
 </a>
 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-	{{ range .Site.Params.other_urls }}
+	{{ range .Site.Params.workshop_menu_urls }}
 	<a class="dropdown-item" href="{{ .url }}">{{ .name }}</a>
 	{{ end }}
 </div>

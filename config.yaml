@@ -41,11 +41,11 @@ params:
   #  github_repo: 'https://github.com/signalfx/observability-workshop'
   #  github_project_repo: 'https://github.com/signalfx/observability-workshop'
   #gcs_engine_id: d72aa9b2712488cc3
-  other_menu: More Workshops
-  other_urls:
-    - name: Pet Clinic
+  workshop_menu: More Workshops
+  workshop_menu_urls:
+    - name: Pet Clinic Java Workshop
       url: /pet-clinic/
-    - name: Bootcamp
+    - name: O11y Bootcamp
       url: /bootcamp/
     - name: Resources
       url: /resources/
