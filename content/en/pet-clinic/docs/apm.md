@@ -75,20 +75,8 @@ curl -L https://github.com/signalfx/splunk-otel-java/releases/latest/download/sp
 export OTEL_SERVICE_NAME=$(hostname)-petclinic-service
 export OTEL_RESOURCE_ATTRIBUTES=deployment.environment=$(hostname)-petclinic-env,version=0.314
 export OTEL_EXPORTER_OTLP_ENDPOINT='http://localhost:4317'
+export SPLUNK_PROFILER_ENABLED='true'
 ```
-
-{{% alert title="Optional AlwaysOn Profiling" color="info" %}}
- If you want to enable and test the AlwaysOn Profiling feature, you can find details [here](https://github.com/signalfx/splunk-otel-java/blob/main/profiler/README.md)
-{{% /alert %}}
-
-To use the Splunk AlwaysOn Profiler you need:
-
-1. Profiler needs to be enabled for your account (at least while the feature is under beta), contact your Splunk Observability Sales Rep/Engineer to get it configured.
-2. Enable the profiler via environment property, this command defines the setting required by the instrumentation library:
-
-    ```bash
-    export SPLUNK_PROFILER_ENABLED='true'
-    ```
 
 Lastly, we will run our application adding the -javaagent tag in front of the command
 
