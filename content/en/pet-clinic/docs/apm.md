@@ -19,18 +19,26 @@ then we change into the directory:
 cd spring-petclinic
 ```
 
-and run the maven command to compile/build/package
+Start a MySQL database for Pet Clinic to use:
+
+```bash
+docker run -d -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=petclinic -p 3306:3306 mysql:5.7.8
+```
+
+Next, run the maven command to compile/build/package Pet Clinic:
 
 ```bash
 ./mvnw package -Dmaven.test.skip=true
 ```
 
-(this might take a few minutes the first time you run, maven will download a lot of dependencies before it actually compiles the app. Future executions will be a lot shorter)
+{{% alert title="Information" %}}
+This will take a few minutes the first time you run, maven will download a lot of dependencies before it actually compiles the app. Future executions will be a lot shorter.
+{{% /alert %}}
 
 Once the compilation is complete, you can run the application with the following command:
 
 ```bash
-java -jar target/spring-petclinic-*.jar
+java -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
 You can validate if the application is running by visiting `http://<VM_IP_ADDRESS>:8080`
@@ -85,7 +93,7 @@ To use the Splunk AlwaysOn Profiler you need:
 Lastly, we will run our application adding the -javaagent tag in front of the command
 
 ```bash
-java  -javaagent:./splunk-otel-javaagent.jar -jar target/spring-petclinic-*-SNAPSHOT.jar
+java  -javaagent:./splunk-otel-javaagent.jar -jar target/spring-petclinic-*-SNAPSHOT.jar --spring.profiles.active=mysql
 ```
 
 Let's go visit our application again to generate some traffic `http://<VM_IP_ADDRESS>:8080`
