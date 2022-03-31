@@ -26,7 +26,7 @@ The documentation built from your current branch is then accessible through your
 
 ## Optimising images
 
-Install `optipng` e.g. `brew install optipng` and then run the following command in the `static/images` directory:
+Install `optipng` e.g. `brew install optipng` and then run the following command in the `content` directory:
 
 ```bash
 find . -type f -iname "*.png" -exec optipng -nb -nc {} \;
