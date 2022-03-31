@@ -3,11 +3,11 @@ title: Log Observer
 weight: 5
 ---
 
-## Splunk Log Observer (LO)
+## Splunk Log Observer
 
 For the Splunk Log Observer component, we will configure the Spring PetClinic application to write logs to a file in the filesystem and configure the Splunk OpenTelemetry Collect to read (tail) that log file and report the information to the Splunk Observability Platform.
 
-### Splunk Open Telemetry Collector (FluentD) Configuration
+### FluentD Configuration
 
 We need to configure the Splunk OpenTelemetry Collector to tail the Spring Pet Clinic log file and report the data to the Splunk Observability Cloud endpoint.
 
@@ -48,7 +48,7 @@ And paste the contents from the snippet above. Once the file is created, we need
 sudo systemctl restart td-agent
 ```
 
-### Spring Pet Clinic Logback Setting
+### PetClinic Logback Settings
 
 The Spring PetClinic application can be configure to use a number of different java logging libraries. In this scenario, we are using logback. Here's a sample logback configuration file:
 
@@ -99,9 +99,9 @@ Hamburger Menu > Log Observer
 
 And you can add a filter to select only log messages from your host and the Spring PetClinic Application:
 
-1. Add Filter > Fields > host.name > your host name
-2. Add Filter > Fields > service.name > your application name
+1. Add Filter → Fields → `host.name` → `<your host name>`
+2. Add Filter → Fields → `service.name` → `<your application name>`
 
 ### Summary
 
-This the end of the exercise and we certainly covered a lot of ground. At this point you should have metrics, traces and logs being reported into your Splunk Observability account.
+This the end of the exercise and we have certainly covered a lot of ground. At this point you should have metrics, traces, logs, database query performance and code profiling being reported into Splunk Observability Cloud. **Congratulations**!

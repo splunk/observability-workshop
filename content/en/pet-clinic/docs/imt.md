@@ -24,6 +24,10 @@ export REALM=<replace_with_splunk_realm>
 {{< /tab >}}
 {{< /tabpane >}}
 
+{{% alert title="Delete any existing OpenTelemtry Collectors" color="warning" %}}
+If you have completed the Splunk IMT workshop, please ensure you have deleted the collector running in Kubernetes before continuing. This can be done by running the following command: `helm delete splunk-otel-collector`.
+{{% /alert %}}
+
 We can then go ahead and install the Collector:
 
 ```bash
@@ -31,10 +35,6 @@ curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-co
 sudo sh /tmp/splunk-otel-collector.sh --realm $REALM -- $ACCESS_TOKEN --mode agent
 ```
 
-This command will download and setup the OpenTelemetry Collector. Once the install is completed, you can navigate to the Infrastructure page to see the data from your Host
+This command will download and setup the OpenTelemetry Collector. Once the install is completed, you can navigate to the Infrastructure page to see the data from your host, **Infrastructure → My Data Center → Hosts**.
 
-`>> Infrastructure >> My Data Center >> Hosts`
-
-Add Filter >> `host.name` >> (type or select the hostname of your virtual machine)
-
-Once you see data flowing for your host, we are then ready to get started with the APM component
+Click {{% labelbutton color="ui-button-grey" %}}**Add Filter**{{% /labelbutton %}} select `host.name` and type or select the hostname of your virtual machine. Once you see data flowing for your host, we are then ready to get started with the APM component.
