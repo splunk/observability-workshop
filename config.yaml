@@ -1,4 +1,4 @@
-baseURL: https://signalfx.github.io/
+baseURL: https://signalfx.github.io/observability-workshop/latest/
 title: Splunk Observability Cloud Workshops
 contentDir: content/en
 defaultContentLanguage: en
@@ -44,11 +44,11 @@ params:
   workshop_menu: More Workshops
   workshop_menu_urls:
     - name: Pet Clinic Java Workshop
-      url: https://signalfx.github.io/observability-workshop/latest/pet-clinic/
+      url: /pet-clinic/
     - name: O11y Bootcamp
-      url: https://signalfx.github.io/observability-workshop/latest/bootcamp/
+      url: /bootcamp/
     - name: Resources
-      url: https://signalfx.github.io/observability-workshop/latest/resources/
+      url: /resources/
   algolia_docsearch: false
   offlineSearch: true
   ui:
