@@ -37,9 +37,9 @@ params:
       url: https://signalfx.github.io/observability-workshop/latest/observability-workshop/v4.16
     - version: v4.17
       url: https://signalfx.github.io/observability-workshop/v4.17
-  url_latest_version: 'https://signalfx.github.io/observability-workshop/'
-  #  github_repo: 'https://github.com/signalfx/observability-workshop'
-  #  github_project_repo: 'https://github.com/signalfx/observability-workshop'
+  url_latest_version: https://signalfx.github.io/observability-workshop/
+  #github_repo: https://github.com/signalfx/observability-workshop
+  #github_project_repo: https://github.com/signalfx/observability-workshop
   #gcs_engine_id: d72aa9b2712488cc3
   workshop_menu: More Workshops
   workshop_menu_urls:
