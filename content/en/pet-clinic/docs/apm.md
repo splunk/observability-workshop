@@ -41,7 +41,9 @@ Once the compilation is complete, you can run the application with the following
 java -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
-You can validate if the application is running by visiting `http://<VM_IP_ADDRESS>:8080`
+You can validate if the application is running by visiting `http://<VM_IP_ADDRESS>:8080`.
+
+**Once your validation is complete you need to stop the application by pressing** `Ctrl-c` **so that we can auto-instrument the application with Splunk OpenTelemetry.**
 
 ## Auto-Instrument with Splunk OpenTelemetry
 
