@@ -89,7 +89,14 @@ and paste the XML content from the snippet above. After that, we need to rebuild
 
 ```bash
 ./mvnw package -Dmaven.test.skip=true
-java  -javaagent:./splunk-otel-javaagent.jar -jar target/spring-petclinic-*-SNAPSHOT.jar
+```
+
+```bash
+java -javaagent:./splunk-otel-javaagent.jar \
+-Dsplunk.profiler.enabled=true \
+-Dsplunk.metrics.enabled=true \
+-jar target/spring-petclinic-*-SNAPSHOT.jar \
+--spring.profiles.active=mysql
 ```
 
 Then let's visit the application again to generate more traffic, now we should see log messages being reported `http://<VM_IP_ADDRESS>:8080` (feel free to navigate and click around).
