@@ -1,5 +1,5 @@
 ---
-title: Get Trace In, Get Data Out
+title: トレースを取り込み、データを取り出す
 description: >
-  How to get traces into Observability Cloud and how to use Splunk APM
+  Observability Cloudへのトレース取り込み方法とSplunk APMの活用方法
 ---

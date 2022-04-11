@@ -1,11 +1,11 @@
 ---
-title: Using Splunk APM
-linkTitle: Using Splunk APM
+title: Splunk APMを利用する
+linkTitle: Splunk APMを利用する
 weight: 2
 description: |
-  **15 minutes**
+  **15 分**
 
-  An overview of how to use Splunk APM
+  Splunk APMの使い方概要
 ---
 
 * APM の概要 - RED メトリクス
