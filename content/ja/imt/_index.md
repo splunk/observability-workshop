@@ -7,9 +7,10 @@ weight: 1
 menu:
   main:
     weight: 1
+isCJKLanguage: true
 ---
 
-この _**テクニカル**_ Splunk Observability Cloud Workshops では、 [lightweight](https://k3s.io/) Kubernetes[^1] クラスタをベースにした環境を構築します。
+この _**テクニカル**_ Splunk Observability Cloud ワークショップでは、 [lightweight](https://k3s.io/) Kubernetes[^1] クラスタをベースにした環境を構築します。
 
 ワークショップのモジュールを簡素化するために、あらかじめ設定されたAWS/EC2インスタンスが提供されます。
 

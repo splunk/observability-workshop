@@ -2,6 +2,7 @@
 title: Monitoring as Code 
 linkTitle: Plan, Apply, Destroy
 weight: 6
+isCJKLanguage: true
 ---
 
 * Terraform[^1] を使用して Observability Cloud のダッシュボードとディテクターを管理します。

@@ -2,6 +2,7 @@
 title: Adding Notes and Dashboard Layout
 linkTitle: Notes and layout
 weight: 13
+isCJKLanguage: true
 ---
 
 # ノートの追加とダッシュボードのレイアウト

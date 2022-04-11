@@ -1,6 +1,7 @@
 ---
 title: SignalFlow
 weight: 9
+isCJKLanguage: true
 ---
 
 ## 1. はじめに

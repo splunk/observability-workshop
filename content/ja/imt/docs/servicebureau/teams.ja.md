@@ -2,6 +2,7 @@
 title: Teams
 linkTitle: Teams
 weight: 60
+isCJKLanguage: true
 ---
 
 * チームの管理

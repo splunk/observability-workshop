@@ -2,6 +2,7 @@
 title: Controlling Usage
 linkTitle: Control Usage
 weight: 70
+isCJKLanguage: true
 ---
 
 * 個別のアクセストークンを作成し、制限を設けることで利用を制限する方法を紹介します

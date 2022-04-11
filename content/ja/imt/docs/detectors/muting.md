@@ -2,6 +2,7 @@
 title: Working with Muting Rules - Lab Summary
 linkTitle: Creating a Muting Rule
 weight: 3
+isCJKLanguage: true
 ---
 
 * ミューティングルールを設定する

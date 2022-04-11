@@ -2,6 +2,7 @@
 title: Adding charts to dashboards
 linkTitle: Adding more charts
 weight: 11
+isCJKLanguage: true
 ---
 
 # ダッシュボードにチャートを追加する

@@ -1,6 +1,7 @@
 ---
-title: Setup and Exercises
+title: セットアップと演習
 weight: 1
 description: >
-  Environment Configuration and Hands-On Excercises
+  ここでは、環境設定とハンズオン演習を行います
+isCJKLanguage: true
 ---

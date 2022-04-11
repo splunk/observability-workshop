@@ -2,6 +2,7 @@
 title: Saving charts
 linkTitle: Saving charts
 weight: 5
+isCJKLanguage: true
 ---
 
 # チャートを保存する

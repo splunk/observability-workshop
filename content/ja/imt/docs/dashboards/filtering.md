@@ -1,6 +1,7 @@
 ---
 title: Using Filters & Formulas
 weight: 7
+isCJKLanguage: true
 ---
 
 # フィルターと数式の使い方

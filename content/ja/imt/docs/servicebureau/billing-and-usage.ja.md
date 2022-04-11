@@ -2,6 +2,7 @@
 title: Billing and Usage 
 linkTitle: Billing and Usage
 weight: 50
+isCJKLanguage: true
 ---
 
 * 組織におけるObservability Cloudの利用状況を把握する

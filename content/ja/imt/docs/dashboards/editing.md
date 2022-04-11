@@ -2,6 +2,7 @@
 title: Editing charts
 linkTitle: Editing charts
 weight: 3
+isCJKLanguage: true
 ---
 
 # チャートを編集する

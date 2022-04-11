@@ -2,6 +2,7 @@
 title: Working with Detectors - Lab Summary
 linkTitle: Creating a Detector
 weight: 6
+isCJKLanguage: true
 ---
 
 * チャートからディテクターを作成する

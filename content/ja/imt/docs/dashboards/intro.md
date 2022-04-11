@@ -2,6 +2,7 @@
 title: Working with Dashboards, Charts and Metrics
 linkTitle: Introduction
 weight: 1
+isCJKLanguage: true
 ---
 
 # ダッシュボード、チャート、メトリクスを使った作業
