@@ -34,13 +34,13 @@ SignalFlow には、時系列メトリックを入力とし、そのデータポ
 
 ![Code](../../../images/show-signalflow.png)
 
-=== "SignalFlow"
-
-    ```Python
-    A = data('demo.trans.latency', filter=filter('demo_datacenter', 'Paris')).percentile(pct=95).publish(label='A', enable=False)
-    B = data('demo.trans.latency', filter=filter('demo_datacenter', 'Paris')).percentile(pct=95).timeshift('1w').publish(label='B', enable=False)
-    C = (A-B).publish(label='C')
-    ```
+{{< tabpane >}}
+{{< tab header="SignalFlow" lang="python" >}}
+A = data('demo.trans.latency', filter=filter('demo_datacenter', 'Paris')).percentile(pct=95).publish(label='A', enable=False)
+B = data('demo.trans.latency', filter=filter('demo_datacenter', 'Paris')).percentile(pct=95).timeshift('1w').publish(label='B', enable=False)
+C = (A-B).publish(label='C')
+{{< /tab >}}
+{{< /tabpane >}}
 
 **View Builder** をクリックすると、Chart **Builder** の UI に戻ります。
 

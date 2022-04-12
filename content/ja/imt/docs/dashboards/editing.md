@@ -1,17 +1,15 @@
 ---
-title: Editing charts
-linkTitle: Editing charts
+title: チャートを編集する
+linkTitle: チャートの編集
 weight: 3
 isCJKLanguage: true
 ---
-
-# チャートを編集する
 
 ## 1. チャートの編集
 
 **Sample Data** ダッシュボードにある **Latency histogram** チャートの3点 **`...`** をクリックして、**Open** をクリックします（または、チャートの名前をクリックしてください、ここでは **Latency histogram** です）。
 
-![Sample Charts](../../../images/sample-charts.png)
+![Sample Charts](../../../images/latency-histogram-open.png)
 
 チャートエディターのUIには、**Latency histogram** チャートのプロットオプション、カレントプロット、シグナル（メトリック）が表示されます。
 
@@ -27,14 +25,15 @@ isCJKLanguage: true
 
 ![Chart Types](../../../images/M-Editing-2.png)
 
-チャートがヒートマップに変わります。。
+チャートがヒートマップに変わります。
 
 ![Change to Heatmap](../../../images/change-to-heatmap.png)
 
-!!! note
-    様々なチャートを使用してメトリクスを視覚化することができます。自分が望む視覚化に最も適したチャートタイプを選択してください。
+{{% alert title="Note" color="primary" %}}
+様々なチャートを使用してメトリクスを視覚化することができます。自分が望む視覚化に最も適したチャートタイプを選択してください。
 
-    各チャートタイプの詳細については、[Choosing a chart type](https://docs.splunk.com/Observability/data-visualization/charts/chart-types.html#chart-types) を参照してください。
+各チャートタイプの詳細については、[Choosing a chart type](https://docs.splunk.com/Observability/data-visualization/charts/chart-types.html#chart-types) を参照してください。
+{{% /alert %}}
 
 チャートタイプの **Line** をクリックすると、線グラフが表示されます。
 

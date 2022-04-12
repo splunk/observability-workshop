@@ -1,28 +1,26 @@
 ---
-title: Adding Notes and Dashboard Layout
-linkTitle: Notes and layout
+title: ノートの追加とダッシュボードのレイアウト
+linkTitle: ノートとレイアウト
 weight: 13
 isCJKLanguage: true
 ---
-
-# ノートの追加とダッシュボードのレイアウト
 
 ## 1. メモの追加
 
 ダッシュボードには、ダッシュボードの利用者を支援するための短い「説明」ペインを配置することがよくあります。
 
-ここでは、**New Text Note**{: .label-button.sfx-ui-button-grey} ボタンをクリックして、ノートを追加してみましょう。
+ここでは、{{% labelbutton color="ui-button-blue" %}}New Text Note{{% /labelbutton %}} ボタンをクリックして、ノートを追加してみましょう。
 
-![three charts](../../../images/M-MoreCharts-10.png)
+![three charts](../../../images/M-Notes-0.png)
 
-ノートエディターが開きます。
+すると、ノートエディターが開きます。
 
 ![Notes 1](../../../images/M-Notes-1.png)
 
 ノートに単なるテキスト以外のものを追加できるように、Splunk ではこれらのノート/ペインで Markdown を使用できるようにしています。
 Markdown は、ウェブページでよく使われるプレーンテキストを使ってフォーマットされたテキストを作成するための軽量なマークアップ言語です。
 
-これには以下が含まれます (ただし、これらに限定されません)。
+たとえば、以下のようなことができます (もちろん、それ以外にもいろいろあります)。
 
 * ヘッダー (様々なサイズで)
 * 強調スタイル
@@ -31,50 +29,52 @@ Markdown は、ウェブページでよく使われるプレーンテキスト�
 
 以下は、ノートで使用できる上記のMarkdownオプションの例です。
 
-=== "Markdown テキストのサンプル"
+{{< tabpane >}}
+{{< tab header="Sample Markdown text" lang="markdown" >}}
 
-    ```text
+# h1 Big headings
 
-    # h1 Big headings
-    ###### h6 To small headings
+###### h6 To small headings
 
-    ##### Emphasis
+##### Emphasis
 
-    **This is bold text**, *This is italic text* , ~~Strikethrough~~
+**This is bold text**, *This is italic text* , ~~Strikethrough~~
 
-    ##### Lists
+##### Lists
 
-    Unordered
+Unordered
 
-    + Create a list by starting a line with `+`, `-`, or `*`
-    - Sub-lists are made by indenting 2 spaces:
-    - Marker character change forces new list start:
-        * Ac tristique libero volutpat at
-        + Facilisis in pretium nisl aliquet
-    * Very easy!
++ Create a list by starting a line with `+`, `-`, or `*`
+- Sub-lists are made by indenting 2 spaces:
+- Marker character change forces new list start:
+    * Ac tristique libero volutpat at
+    + Facilisis in pretium nisl aliquet
+* Very easy!
 
-    Ordered
+Ordered
 
-    1. Lorem ipsum dolor sit amet
-    2. Consectetur adipiscing elit
-    3. Integer molestie lorem at massa
+1. Lorem ipsum dolor sit amet
+2. Consectetur adipiscing elit
+3. Integer molestie lorem at massa
 
-    ##### Tables
+##### Tables
 
-    | Option | Description |
-    | ------ | ----------- |
-    | chart  | path to data files to supply the data that will be passed into templates. |
-    | engine | engine to be used for processing templates. Handlebars is the default. |
-    | ext    | extension to be used for dest files. |
+| Option | Description |
+| ------ | ----------- |
+| chart  | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
 
-    #### Links
+#### Links
 
-    [link to webpage](https://www.splunk.com)
+[link to webpage](https://www.splunk.com)
 
-    [link to dashboard with title](https://app.eu0.signalfx.com/#/dashboard/EaJHrbPAEAA?groupId=EaJHgrsAIAA&configId=EaJHsHzAEAA "Link to the Sample chart Dashboard!")
-    ```
-上記をコピーボタンでコピーして、*Edit* ボックスにペーストしてください。
-プレビューでどのように表示されるか確認できます。
+[link to dashboard with title](https://app.eu0.signalfx.com/#/dashboard/EaJHrbPAEAA?groupId=EaJHgrsAIAA&configId=EaJHsHzAEAA "Link to the Sample chart Dashboard!")
+{{< /tab >}}
+{{< /tabpane >}}
+
+上記をコピーボタンでコピーして、*Edit* ボックスにペーストしてみてください。
+プレビューで、どのように表示されるか確認できます。
 
 ---
 
@@ -82,13 +82,15 @@ Markdown は、ウェブページでよく使われるプレーンテキスト�
 
 ノートチャートに名前を付けます。この例では、*Example text chart* としました。そして、{{< labelbutton  >}}Save And Close{{< /labelbutton >}} ボタンを押します。
 
+![saving note](../../../images/M-Notes-2.png)
+
 これでダッシュボードに戻ると、メモが追加されました。
 
-![three charts and note](../../../images/M-Notes-2.png)
+![three charts and note](../../../images/M-Notes-3.png)
 
 ---
 
-## 3. チャートの順序とサイズ
+## 3. チャートの順序や大きさを変更
 
 デフォルトのチャートの順番やサイズを変更したい場合は、ウィンドウをドラッグして、チャートを好きな場所に移動したり、サイズを変更したりすることができます。
 
@@ -98,9 +100,9 @@ Markdown は、ウェブページでよく使われるプレーンテキスト�
 
 ここでは、**Latency History**　チャートを　**Latency vs Load**　チャートの下に移動してください。
 
-チャートのサイズを変更するには、側面または底面をドラッグします。
-
 ![sizing](../../../images/M-Notes-5.png)
+
+チャートのサイズを変更するには、側面または底面をドラッグします。
 
 最後の練習として、ノートチャートの幅を他のチャートの3分の1程度にしてみましょう。チャートは自動的に、サポートしているサイズの1つにスナップします。他の3つのチャートの幅を、ダッシュボードの約3分の1にします。ノートを他のチャートの左側にドラッグして、他の23個のチャートに合わせてサイズを変更します。
 

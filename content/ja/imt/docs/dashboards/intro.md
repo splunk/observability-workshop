@@ -1,11 +1,9 @@
 ---
-title: Working with Dashboards, Charts and Metrics
-linkTitle: Introduction
+title: ダッシュボード、チャート、メトリクスを使う
+linkTitle: はじめに
 weight: 1
 isCJKLanguage: true
 ---
-
-# ダッシュボード、チャート、メトリクスを使った作業
 
 * ダッシュボードとチャートの紹介
 * チャートの編集と作成
@@ -28,7 +26,7 @@ isCJKLanguage: true
 
 ## 2. あなたのチームのページ
 
-左上のハンバーガーメニュー ![Hamburger-menu](../../../images/Hamburgermenu.png) を開き、サイドメニューから **Dashboards** を選択します。あなたはすでにチームに割り当てられているので、チームダッシュボードが表示されます。
+左のナビゲーションから ![dashboards ボタン](../../../images/dashboards.png) を開きます。あなたはすでにチームに割り当てられているので、チームダッシュボードが表示されます。
 
 ここでは、チーム ***Observability*** を例に挙げています。実際のワークショップでは、別のチーム名かも知れません。
 

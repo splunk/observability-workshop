@@ -1,11 +1,7 @@
 ---
-title: Using Filters & Formulas
+title: フィルタと数式の使い方
 weight: 7
 isCJKLanguage: true
----
-
-# フィルターと数式の使い方
-
 ---
 
 ## 1 新しいチャートの作成
@@ -35,11 +31,11 @@ UIの右上にある + アイコンを選択し、ドロップダウンから **
 
 次に、**Paris** データセンターを選択して分析を行ってみましょう。そのためにはフィルタを使用します。
 
-**Plot Editor** タブに戻り、**Add Filter**{: .label-button .sfx-ui-button-blue} をクリックして、入力補助として選択肢が出てくるので、そこから **`demo_datacenter`** を選択し、**`Paris`** を選択します。
+**Plot Editor** タブに戻り、{{% labelbutton color="ui-button-blue" %}}Add Filter{{% /labelbutton %}} をクリックして、入力補助として選択肢が出てくるので、そこから **`demo_datacenter`** を選択し、**`Paris`** を選択します。
 
 ![Filter](../../../images/M-Filter-1.png)
 
-**F(x)** 列に、分析関数 **`Percentile:Aggregation`** を追加し、値を **`95`** にします（枠外をクリックすると設定が反映されます）。
+**F(x)** 欄に分析関数 **`Percentile:Aggregation`** を追加し、値を **`95`** にします（枠外をクリックすると設定が反映されます）。
 
 ![Analytics](../../../images/M-Filter-2.png)
 
@@ -47,7 +43,7 @@ UIの右上にある + アイコンを選択し、ドロップダウンから **
 
 ---
 
-## 3. タイムシフト分析機能の使用
+## 3. タイムシフト分析を追加
 
 それでは、以前のメトリックと比較してみましょう。**`...`** をクリックして、ドロップダウンから **Clone** をクリックし、Signal **A** をクローンします。
 
@@ -85,7 +81,7 @@ UIの右上にある + アイコンを選択し、ドロップダウンから **
 
 ここでは、1日と7日の間のすべてのメトリック値の差をプロットしてみましょう。
 
-**Enter Formula**{: .label-button .sfx-ui-button-blue} をクリックして、**`A-B`** （AからBを引いた値）を入力し、**C** を除くすべてのシグナルを隠します（目アイコンの選択を解除します）。
+{{% labelbutton color="ui-button-blue" %}}Enter Formula{{% /labelbutton %}} をクリックして、**`A-B`** （AからBを引いた値）を入力し、**C** を除くすべてのシグナルを隠します（目アイコンの選択を解除します）。
 
 ![Formulas](../../../images/M-Filter-11.png)
 
