@@ -1,7 +1,8 @@
 ---
-title: Teams
-linkTitle: Teams
+title: チーム
+linkTitle: チーム
 weight: 60
+isCJKLanguage: true
 ---
 
 * チームの管理
@@ -33,30 +34,31 @@ Observability Cloudを使用する際に、ユーザーに関連するダッシ�
 
 ## 2. 新しいチームの作成
 
-Splunk のチーム UI を使用するには、左上のハンバーガーアイコンをクリックし、 **Organizations Settings → Teams** を選択します。
+Splunk のチーム UI を使用するには、左下の **>>** を開き、 **Settings → Teams** を選択します。
 
 **Team** を選択すると、現在のチームのリストが表示されます。
 
-新しいチームを追加するには、**Create New Team**{: .label-button .sfx-ui-button-blue} ボタンをクリックします。これにより、**Create New Team** ダイアログが表示されます。
+新しいチームを追加するには、{{% labelbutton color="ui-button-blue" %}}**Create New Team**{{% /labelbutton %}} ボタンをクリックします。これにより、**Create New Team** ダイアログが表示されます。
 
-![Add Team](../../../images/create-new-team.png){: .shadow}
+![Add Team](../../../images/create-new-team.png)
 
-自分の名前を検索して、名前の横にある **Add** リンクを選択して、自分自身を追加します。その結果、以下のようなダイアログが表示されるはずです。
+独自のチームを作ってみましょう。チーム名を `[あなたのイニシャル]-Team` のように入力し、あなた自身のユーザー選んで、**Add** リンクからチームに追加してみましょう。上手くいくと、次のような表示になるはずです。
 
-![Add Team complete](../../../images/add-to-team.png){: .shadow}
+![Add Team complete](../../../images/add-to-team.png)
 
 選択したユーザーを削除するには、**Remove** または **x** を押します。
 
-自分のイニシャルでグループを作成し、自分がメンバーとして追加されていることを確認して、**Done**{: .label-button .sfx-ui-button-blue} をクリックします。
+自分のイニシャルでグループを作成し、自分がメンバーとして追加されていることを確認して、{{% labelbutton color="ui-button-blue" %}}**Done**{{% /labelbutton %}} をクリックします。
 
 これでチームリストに戻り、自分のチームと他の人が作成したチームが表示されます。
 
-!!! note
-    自分がメンバーになっているチームには、グレーの **Member** アイコンが前に表示されています。
+{{% alert title="Note" color="primary" %}}
+自分がメンバーになっているチームには、グレーの **Member** アイコンが前に表示されています。
+{{% /alert %}}
 
 自分のチームにメンバーが割り当てられていない場合は、メンバー数の代わりに青い **Add Members** のリンクが表示されます。このリンクをクリックすると、**Edit Team** ダイアログが表示され、自分を追加することができます。
 
-自分のチームの行末にある3つのドット **...** を押しても、同じダイアログが表示されます。
+自分のチームの行末にある3つのドット **...** を押しても、**Edit Team** と同じダイアログが表示されます。
 
 **...** メニューでは、チームの編集、参加、離脱、削除を行うことができます（離脱と参加は、あなたが現在メンバーであるかどうかによって異なります）。
 
@@ -70,12 +72,13 @@ Splunk のチーム UI を使用するには、左上のハンバーガーアイ
 
 デフォルトでは、システムはチームの一般的な通知ルールを設定する機能を提供します。
 
-!!! note
-    **Email all team members** オプションは、アラートの種類に関わらず、このチームのすべてのメンバーにアラート情報のメールが送信されることを意味します。
+{{% alert title="Note" color="primary" %}}
+**Email all team members** オプションは、アラートの種類に関わらず、このチームのすべてのメンバーにアラート情報のメールが送信されることを意味します。
+{{% /alert %}}
 
 ### 3.1 受信者の追加
 
-**Add Recipient**{: .label-button .sfx-ui-button-blue} をクリックすると、他の受信者を追加することができます。これらの受信者は Observability Cloud のユーザーである必要はありません。
+{{% labelbutton color="ui-button-blue" %}}**Add Recipient**{{% /labelbutton %}} をクリックすると、他の受信者を追加することができます。これらの受信者は Observability Cloud のユーザーである必要はありません。
 
 **Configure separate notification tiers for different severity alerts** をクリックすると、各アラートレベルを個別に設定できます。
 
@@ -83,7 +86,7 @@ Splunk のチーム UI を使用するには、左上のハンバーガーアイ
 
 上の画像のように、異なるアラートレベルに対して異なるアラートルールを設定することができます。
 
-Critical と Major は [Splunk On-Call](https://www.splunk.com/en_us/observability/on-call.html){: target=_blank} インシデント管理ソリューションを使用しています。Minor のアラートはチームの Slack チャンネルに送信し、Warning と Info はメールで送信しています。
+Critical と Major は [Splunk On-Call](https://www.splunk.com/ja_jp/observability/on-call.html) インシデント管理ソリューションを使用しています。Minor のアラートはチームの Slack チャンネルに送信し、Warning と Info はメールで送信する、という管理もできるようになります。
 
 ## 3.2 通知機能の統合
 

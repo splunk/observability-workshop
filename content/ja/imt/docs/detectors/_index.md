@@ -1,7 +1,8 @@
 ---
-title: Working with Detectors
-linkTitle: Detectors
+title: ディテクターを利用する
+linkTitle: ディテクター
 weight: 5
 description: >
-  **10 minutes**
+  **10 分**
+isCJKLanguage: true
 ---

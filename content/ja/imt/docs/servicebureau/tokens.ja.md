@@ -1,7 +1,8 @@
 ---
-title: Controlling Usage
-linkTitle: Control Usage
+title: 使用量を管理する
+linkTitle: 使用量の管理
 weight: 70
+isCJKLanguage: true
 ---
 
 * 個別のアクセストークンを作成し、制限を設けることで利用を制限する方法を紹介します
@@ -10,7 +11,7 @@ weight: 70
 
 ホスト、コンテナ、カスタムメトリクス、高解像度メトリクスの使用量をコントロールしたい場合は、複数のアクセストークンを作成し、組織内の異なる部分に割り当てることができます。
 
-UIの左上のハンバーガーをクリックして、**Organizations Settings → Access Tokens** を選択します。
+左下の **>>** を開いて、**Settings → Access Tokens** を選択します。
 
 **Access Tokens** インターフェースでは、生成されたアクセストークンのリストで概要が表示されます。すべての組織では、最初のセットアップ時に **Default** のトークンが生成され、その他のトークンを追加・削除できるようになっています。
 
@@ -22,13 +23,13 @@ UIの左上のハンバーガーをクリックして、**Organizations Settings
 
 ## 2. 新しいトークンの作成
 
-**New Token**{: .label-button .sfx-ui-button-blue} ボタンをクリックして、新しいトークンを作成しましょう。**Name Your Access Token** ダイアログが表示されます。
+{{% labelbutton color="ui-button-blue" %}}**New Token**{{% /labelbutton %}} ボタンをクリックして、新しいトークンを作成しましょう。**Name Your Access Token** ダイアログが表示されます。
 
 ここでは、**Ingest Token** と **API Token** の両方のチェックボックスにチェックを入れてください。
 
-![Name Your token](../../../images/new-access-token.png){: .shadow}
+![Name Your token](../../../images/new-access-token.png)
 
-**OK**{: .label-button .sfx-ui-button-blue} を押すと、**Access Token** のUIに戻ります。ここでは、他の人が作成したトークンの中に、あなたの新しいトークンが表示されているはずです。
+{{% labelbutton color="ui-button-blue" %}}**OK**{{% /labelbutton %}} を押すと、**Access Token** のUIに戻ります。ここでは、既存のトークンの中に、あなたの新しいトークンが表示されているはずです。
 
 ![full tokenlist](../../../images/access-token-created.png)
 
@@ -56,7 +57,7 @@ UIの左上のハンバーガーをクリックして、**Organizations Settings
 
 トークン制限管理ダイアログが表示されます。
 
-![Set Limits on token](../../../images/manage-token-limit.png){: .shadow}
+![Set Limits on token](../../../images/manage-token-limit.png)
 
 このダイアログでは、カテゴリごとに制限を設定することができます。
 
@@ -73,20 +74,22 @@ UIの左上のハンバーガーをクリックして、**Organizations Settings
 
 トークンリミットは、5分間の使用量がリミットの90％を超えたときに、1人または複数の受信者に通知するアラートのトリガーとして使用されます。
 
-受信者を指定するには、**Add Recipient**{: .label-button .sfx-ui-button-blue} をクリックして、使用する受信者または通知方法を選択します（受信者の指定は任意ですが、強くお勧めします）。
+受信者を指定するには、{{% labelbutton color="ui-button-blue" %}}**Add Recipient**{{% /labelbutton %}} をクリックして、使用する受信者または通知方法を選択します（受信者の指定は任意ですが、強くお勧めします）。
 
-トークンアラートの重大度は常に「Critical」です。
+トークンアラートの重要度は常に「Critical」です。
 
-**Update**{: .label-button .sfx-ui-button-blue} をクリックすると、アクセストークンの制限とアラートの設定が保存されます。
+{{% labelbutton color="ui-button-blue" %}}**Update**{{% /labelbutton %}} をクリックすると、アクセストークンの制限とアラートの設定が保存されます。
 
-!!! note "トークンの上限を超えた場合"
-    トークンが使用カテゴリの上限に達したとき、または上限を超えたとき、その使用カテゴリの新しいメトリクスはObservability Cloudに保存されず、処理されません。これにより、チームが無制限にデータを送信することによる予期せぬコストが発生しないようになります。
+{{% alert title="Note: トークンの上限を超えると、何が起こるのか" color="primary" %}}
+トークンが使用カテゴリの上限に達したとき、または上限を超えたとき、その使用カテゴリの新しいメトリクスはObservability Cloudに保存されず、処理されません。これにより、チームが無制限にデータを送信することによる予期せぬコストが発生しないようになります。
+{{% /alert %}}
 
-!!! note "高度なアラート"
-    90%に達する前にアラートを取得したい場合は、必要な値を使用して追加のディテクターを作成できます。これらのディテクターは、特定のアクセストークンを消費しているチームをターゲットにすることができ、管理者が関与する必要がある前に行動を起こすことができます。
+{{% alert title="Note: 高度なアラート通知" color="primary" %}}
+90%に達する前にアラートを取得したい場合は、必要な値を使用して追加のディテクターを作成できます。これらのディテクターは、特定のアクセストークンを消費しているチームをターゲットにすることができ、管理者が関与する必要がある前に行動を起こすことができます。
+{{% /alert %}}
 
 これらの新しいアクセストークンを様々なチームに配布し、Observability Cloudに送信できる情報やデータの量をコントロールできるようになります。
 
-これにより、Observability Cloudの使用量を微調整することができ、過剰な使用を防ぐことができます。
+これにより、Observability Cloudの使用量を調整することができ、過剰な使用を防ぐことができます。
 
-**おめでとうございます！** これで、サービスビューローモジュールを完了しました。
+**おめでとうございます！** これで、管理機能のモジュールは終わりです！

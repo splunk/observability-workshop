@@ -85,7 +85,7 @@ languages:
     weight: 1
   ja:
     title: 'Splunk Observability Cloud Workshops'
-    description: Splunk の観察力ワークショップ
+    description: Splunk Observability ワークショップ
     languageName: 日本語
     contentDir: content/ja
 markup:

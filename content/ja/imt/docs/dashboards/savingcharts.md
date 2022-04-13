@@ -1,10 +1,9 @@
 ---
-title: Saving charts
-linkTitle: Saving charts
+title: チャートを保存する
+linkTitle: チャートの保存
 weight: 5
+isCJKLanguage: true
 ---
-
-# チャートを保存する
 
 ## 1. チャートの保存
 
@@ -14,15 +13,15 @@ weight: 5
 
 ![Save Chart](../../../images/save-chart.png)
 
-**Save As**{: .label-button .sfx-ui-button-blue} ボタンをクリックします。チャートに名前が付いていることを確認します。前のステップで定義した **現在のレイテンシー** という名前が使用されますが、必要に応じてここで編集することができます。
+{{% labelbutton color="ui-button-blue" %}}Save As{{% /labelbutton %}} ボタンをクリックします。チャートに名前が付いていることを確認します。前のステップで定義した **現在のレイテンシー** という名前が使用されますが、必要に応じてここで編集することができます。
 
-**OK**{: .label-button .sfx-ui-button-blue} ボタンを押して続行します。
+{{% labelbutton color="ui-button-blue" %}}**Ok**{{% /labelbutton %}} ボタンを押して続行します。
 
 ![Name Chart](../../../images/name-chart.png)
 
 ## 2. ダッシュボードの作成
 
-**Choose dashboard** ダイアログでは、新しいダッシュボードを作成する必要があります。**New Dashboard**{: .label-button .sfx-ui-button-blue} ボタンをクリックしてください。
+**Choose dashboard** ダイアログでは、新しいダッシュボードを作成する必要があります。{{% labelbutton color="ui-button-blue" %}}New Dashboard{{% /labelbutton %}} ボタンをクリックしてください。
 
 ![Create Dashboard](../../../images/create-dashboard.png)
 
@@ -34,7 +33,7 @@ weight: 5
 
 ![Name Dashboard](../../../images/name-dashboard.png)
 
-ここには、自分のログイン情報が表示されます。つまり、このダッシュボードを編集できるのは自分だけということになります。もちろん、ダッシュボードやチャートを編集できる他のユーザーやチームを下のドロップボックスから追加することもできますが、ここでは、*Anyone in this organization can edit* ボックスを **re-tick** して制限を解除し、**Create**{: .label-button .sfx-ui-button-blue}ボタンを押して続行してください。
+ここには、自分のログイン情報が表示されます。つまり、このダッシュボードを編集できるのは自分だけということになります。もちろん、ダッシュボードやチャートを編集できる他のユーザーやチームを下のドロップボックスから追加することもできますが、ここでは、*Anyone in this organization can edit* ボックスを **re-tick** して制限を解除し、{{% labelbutton color="ui-button-blue" %}}Save{{% /labelbutton %}} ボタンを押して続行してください。
 
 新しいダッシュボードが利用可能になり、選択されましたので、チャートを新しいダッシュボードに保存することができます。
 
@@ -56,14 +55,14 @@ weight: 5
 
 ![Team Dashboard](../../../images/team-dashboard.png)
 
-**+**{: .label-button .sfx-ui-button-blue} を押し、 *Add Dashboard Group* ボタンを押して、チームページにダッシュボードを追加します。
+{{% labelbutton color="ui-button-blue" %}}**+**{{% /labelbutton %}} を押し、 *Add Dashboard Group* ボタンを押して、チームページにダッシュボードを追加します。
 
 すると、 **Select a dashboard group to link to this team** ダイアログが表示されます。
 検索ボックスにご自身のお名前（上記で使用したお名前）を入力して、ダッシュボードを探します。ダッシュボードがハイライトされるように選択し、**Ok** ボタンをクリックしてダッシュボードを追加します。
 
 ![Select Dashboard Group](../../../images/select-dashboard-group.png)
 
-ダッシュボードグループがチームページの一部として表示されます。ワークショップの過程で、さらに多くのダッシュボードがここに表示されていきます。
+ダッシュボードグループがチームページの一部として表示されます。ワークショップを進めていくと、さらに多くのダッシュボードがここに表示されていくはずです。
 
 ![New Team Dashboard](../../../images/new-team-dashboard.png)
 

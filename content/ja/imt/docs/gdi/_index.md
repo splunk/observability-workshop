@@ -1,8 +1,9 @@
 ---
-title: Get Data In 
-linkTitle: Get Data In
+title: データを取り込む
+linkTitle: データを取り込む
 weight: 3
 description: >
-  **15 minutes**
+  **15 分**
+isCJKLanguage: true
 ---
 

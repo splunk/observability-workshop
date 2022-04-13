@@ -2,6 +2,7 @@
 title: Monitoring as Code 
 linkTitle: Plan, Apply, Destroy
 weight: 6
+isCJKLanguage: true
 ---
 
 * Terraform[^1] を使用して Observability Cloud のダッシュボードとディテクターを管理します。
@@ -21,77 +22,76 @@ Splunk Terraform Providerの完全なドキュメントは[こちら](https://re
 
 AWS/EC2 インスタンスにログインして、`signalfx-jumpstart` ディレクトリに移動します
 
-=== "シェルコマンド"
+{{< tabpane >}}
+{{< tab header="Change directory" lang="bash" >}}
+cd ~/signalfx-jumpstart
+{{</tab >}}
+{{< /tabpane >}}
 
-    ```text
-    cd ~/signalfx-jumpstart
-    ```
 
-必要な環境変数は、[Installation using Helm](../../otel/k3s/#2-installation-using-helm) ですでに設定されているはずです。そうでない場合は、以下の Terraform のステップで使用するために、以下の環境変数を作成してください。
+必要な環境変数は、[Helmによるインストール](../../gdi/k3s/#2-helm%E3%81%AB%E3%82%88%E3%82%8B%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB) ですでに設定されているはずです。そうでない場合は、以下の Terraform のステップで使用するために、以下の環境変数を作成してください。
 
-=== "シェルコマンド"
-
-    ```
-    export ACCESS_TOKEN=<replace_with_default_access_token>
-    export REALM=<replace_with_splunk_realm>
-    ```
+{{< tabpane >}}
+{{< tab header="Environment Variables" lang="bash" >}}
+export ACCESS_TOKEN=<replace_with_O11y-Workshop-ACCESS_token>
+export REALM=<replace_with_splunk_realm>
+{{</tab >}}
+{{< /tabpane >}}
 
 Terraform を初期化し、Splunk Terraform Provider を最新版にアップグレードします。
 
-!!! note "SignalFx Terraform Provider のアップグレード"
-    Splunk Terraform Provider の新バージョンがリリースされるたびに、以下のコマンドを実行する必要があります。リリース情報は[GitHub](https://github.com/splunk-terraform/terraform-provider-signalfx/releases){: target=_blank}で確認できます。
+{{% alert title="Note: SignalFx Terraform Provider のアップグレード" color="primary" %}}
+Splunk Terraform Provider の新バージョンがリリースされるたびに、以下のコマンドを実行する必要があります。リリース情報は [GitHub](https://github.com/splunk-terraform/terraform-provider-signalfx/releases) で確認できます。
+{{% /alert %}}
 
-=== "シェルコマンド"
+{{< tabpane >}}
+{{< tab header="Initialise Terraform" lang="bash" >}}
+terraform init -upgrade
+{{</tab >}}
+{{< tab header="Initialise Output" lang="text" >}}
+Upgrading modules...
+- aws in modules/aws
+- azure in modules/azure
+- docker in modules/docker
+- gcp in modules/gcp
+- host in modules/host
+- kafka in modules/kafka
+- kubernetes in modules/kubernetes
+- parent_child_dashboard in modules/dashboards/parent
+- pivotal in modules/pivotal
+- usage_dashboard in modules/dashboards/usage
 
-    ```text
-    terraform init -upgrade
-    ```
+Initializing the backend...
 
-=== "出力"
+Initializing provider plugins...
+- Finding latest version of splunk-terraform/signalfx...
+- Installing splunk-terraform/signalfx v6.7.10...
+- Installed splunk-terraform/signalfx v6.7.10 (signed by a HashiCorp partner, key ID 8B5755E223754FC9)
 
-    ```
-    Upgrading modules...
-    - aws in modules/aws
-    - azure in modules/azure
-    - docker in modules/docker
-    - gcp in modules/gcp
-    - host in modules/host
-    - kafka in modules/kafka
-    - kubernetes in modules/kubernetes
-    - parent_child_dashboard in modules/dashboards/parent
-    - pivotal in modules/pivotal
-    - usage_dashboard in modules/dashboards/usage
+Partner and community providers are signed by their developers.
+If you'd like to know more about provider signing, you can read about it here:
+https://www.terraform.io/docs/cli/plugins/signing.html
 
-    Initializing the backend...
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
 
-    Initializing provider plugins...
-    - Finding latest version of splunk-terraform/signalfx...
-    - Installing splunk-terraform/signalfx v6.7.3...
-    - Installed splunk-terraform/signalfx v6.7.3 (signed by a HashiCorp partner, key ID 8B5755E223754FC9)
+Terraform has been successfully initialized!
 
-    Partner and community providers are signed by their developers.
-    If you'd like to know more about provider signing, you can read about it here:
-    https://www.terraform.io/docs/cli/plugins/signing.html
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
 
-    Terraform has created a lock file .terraform.lock.hcl to record the provider
-    selections it made above. Include this file in your version control repository
-    so that Terraform can guarantee to make the same selections by default when
-    you run "terraform init" in the future.
-
-    Terraform has been successfully initialized!
-
-    You may now begin working with Terraform. Try running "terraform plan" to see
-    any changes that are required for your infrastructure. All Terraform commands
-    should now work.
-
-    If you ever set or change modules or backend configuration for Terraform,
-    rerun this command to reinitialize your working directory. If you forget, other
-    commands will detect it and remind you to do so if necessary.
-    ```
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+{{</tab >}}
+{{< /tabpane >}}
 
 ## 2. プランの作成
 
-`terraform plan` コマンドは、実行計画を作成します。デフォルトでは、プランの作成は以下のように構成されています。
+`terraform plan` コマンドで、実行計画を作成します。デフォルトでは、プランの作成は以下のように構成されています。
 
 * 既に存在するリモートオブジェクトの現在の状態を読み込み、Terraform の状態が最新であることを確認します
 * 現在の設定を以前の状態と比較し、相違点を抽出します
@@ -99,19 +99,16 @@ Terraform を初期化し、Splunk Terraform Provider を最新版にアップ�
 
 plan コマンドだけでは、提案された変更を実際に実行はされなません。変更を適用する前に、以下のコマンドを実行して、提案された変更が期待したものと一致するかどうかを確認しましょう。
 
-=== "シェルコマンド"
+{{< tabpane >}}
+{{< tab header="Execution Plan" lang="bash" >}}
+terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
+{{</tab >}}
+{{< tab header="Execution Plan Output" lang="bash" >}}
+Plan: 92 to add, 0 to change, 0 to destroy.
+{{</tab >}}
+{{< /tabpane >}}
 
-    ```text
-    terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
-    ```
-
-=== "出力例"
-
-    ```
-    Plan: 92 to add, 0 to change, 0 to destroy.
-    ```
-
-プランが正常に実行されれば、そのまま適用することができます。
+プランが正常に実行されれば、そのまま apply することができます。
 
 ---
 
@@ -123,27 +120,24 @@ plan コマンドだけでは、提案された変更を実際に実行はされ
 
 このワークショップでは、プレフィックスがユニークである必要があります。以下の `terraform apply` を実行してください。
 
-=== "シェルコマンド"
-
-    ```text
-    terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
-    ```
-
-=== "出力例"
-
-    ```
-    Apply complete! Resources: 92 added, 0 changed, 0 destroyed.
-    ```
+{{< tabpane >}}
+{{< tab header="Apply Plan" lang="bash" >}}
+terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
+{{</tab >}}
+{{< tab header="Apply Plan Output" lang="bash" >}}
+Apply complete! Resources: 92 added, 0 changed, 0 destroyed.
+{{</tab >}}
+{{< /tabpane >}}
 
 適用が完了したら、 **Alerts → Detectors** でディテクターが作成されたことを確認してください。ディテクターのプレフィックスには、インスタンスのホスト名が入ります。プレフィックスの値を確認するには以下を実行してください。
 
-=== "シェルコマンド"
+{{< tabpane >}}
+{{< tab header="Echo Hostname" lang="bash" >}}
+echo $(hostname)
+{{</tab >}}
+{{< /tabpane >}}
 
-    ```text
-    echo $(hostname)
-    ```
-
- 新しいディテクターのリストが表示され、上から出力されたプレフィックスを検索することができます。
+新しいディテクターのリストが表示され、上から出力されたプレフィックスを検索することができます。
 
 ![Detectors](../../../images/detectors.png)
 
@@ -155,17 +149,14 @@ plan コマンドだけでは、提案された変更を実際に実行はされ
 
 それでは、ここまでで適用したダッシュボードとディテクターを全て破壊しましょう！
 
-=== "シェルコマンド"
-
-    ```text
-    terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
-    ```
-
-=== "出力例"
-
-    ```
-    Destroy complete! Resources: 92 destroyed.
-    ```
+{{< tabpane >}}
+{{< tab header="Destroy" lang="bash" >}}
+terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
+{{</tab >}}
+{{< tab header="Destroy Output" lang="bash" >}}
+Destroy complete! Resources: 92 destroyed.
+{{</tab >}}
+{{< /tabpane >}}
 
 _**Alerts → Detectors**_ に移動して、すべてのディテクターが削除されたことを確認してください。
 

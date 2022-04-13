@@ -1,12 +1,13 @@
 ---
-title: How to connect to your workshop environment
-linkTitle: Access AWS/EC2 Instance
+title: ワークショップ環境へのアクセス
+linkTitle: AWS/EC2 インスタンスにアクセスする
 weight: 2
 description: > 
-  **5 minutes**
+  **5 分**
+isCJKLanguage: true
 ---
 
-1. 自分に割り当てられたAWS/EC2インスタンスのIPアドレスを取得します
+1. 各自に割り当てられたAWS/EC2インスタンスのIPアドレスを確認します
 2. SSH、Putty[^1]、またはWebブラウザを使ってインスタンスに接続します
 3. クラウド上にある AWS/EC2 インスタンスへの接続を確認します
 
@@ -24,11 +25,12 @@ AWS/EC2 インスタンスの検索には、本ワークショップの登録時
 
 ワークショップのインスタンスに接続するためのIPアドレス、SSHコマンド（Mac OS、Linux、最新のWindowsバージョン用）、パスワードが表示されています。
 
-また、ssh や putty で接続できない場合に使用するブラウザアクセスのURLも記載されています。「[ブラウザ経由でEC2に接続する](../connect-info/#web-browser-all)」を参照してください。
+また、ssh や putty で接続できない場合に使用するブラウザアクセスのURLも記載されています。「[ブラウザ経由でEC2に接続する](./#4-ブラウザ経由でec2に接続する)」を参照してください。
 
-!!! important
-    可能であれば、SSH または Putty を使用してEC2インスタンスにアクセスしてください。
-    ワークショップで必要になるので、IPアドレスをメモしておいてください。
+{{% alert title="Important" color="primary" %}}
+可能であれば、SSH または Putty を使用してEC2インスタンスにアクセスしてください。
+ワークショップで必要になるので、IPアドレスをメモしておいてください。
+{{% /alert %}}
 
 ## 2. SSH (Mac OS/Linux)
 
@@ -38,7 +40,7 @@ SSH を使用するには、お使いのシステムでターミナルを開き�
 
 ![ssh を使ったログイン](../../images/ssh-1.png)
 
-**Are you sure you want to continue connecting (yes/no/[fingerprint])?`** というプロンプトが表示されたら **`yes`** と入力してください。
+**`Are you sure you want to continue connecting (yes/no/[fingerprint])?`** というプロンプトが表示されたら **`yes`** と入力してください。
 
 ![ssh パスワードの入力](../../images/ssh-2.png)
 
@@ -56,8 +58,9 @@ SSH を使用するには、お使いのシステムでターミナルを開き�
 
 ssh がプリインストールされていない場合や、Windows システムを使用している場合、putty がおすすめです。Putty は [こちら](https://www.putty.org/) からダウンロードできます。
 
-!!! important
-    Putty がインストールできない場合は、[ブラウザ経由でEC2に接続する](../connect-info/#web-browser-all)で進めてください。
+{{% alert title="Important" color="primary" %}}
+Putty がインストールできない場合は、[ブラウザ経由でEC2に接続する](./#4-ブラウザ経由でec2に接続する)で進めてください。
+{{% /alert %}}
 
 Putty を開き、**Host Name (or IP address)** の欄に、Google Sheets に記載されているIPアドレスを入力してください。
 
@@ -77,7 +80,7 @@ Putty を開き、**Host Name (or IP address)** の欄に、Google Sheets に記
 
 ![putty-4](../../images/putty-loggedin.png)
 
-これで [ワークショップを開始する](../../otel/k3s/) に進む準備が整いました。
+これで [ワークショップを開始する](../gdi/k3s/) 準備が整いました。
 
 ---
 
@@ -85,10 +88,11 @@ Putty を開き、**Host Name (or IP address)** の欄に、Google Sheets に記
 
 SSH（ポート22） の使用が禁止されている場合や、Putty がインストールできない場合は、Webブラウザを使用してワークショップのインスタンスに接続することができます。
 
-!!! note
-    ここでは、6501番ポートへのアクセスが会社のファイアウォールによって制限されていないことを前提としています。
+{{% alert title="Note" color="primary" %}}
+ここでは、6501番ポートへのアクセスが、ご利用のネットワークのファイアウォールによって制限されていないことを前提としています。
+{{% /alert %}}
 
-Webブラウザを開き、**http:/x.x.x.x:6501** （X.X.X.Xは Google SheetsのIPアドレス）と入力します。
+Webブラウザを開き、**http:/x.x.x.x:6501** （X.X.X.Xは Google Sheetsに記載されたIPアドレス）と入力します。
 
 ![http-6501](../../images/shellinabox-url.png)
 
@@ -114,19 +118,21 @@ Webブラウザを開き、**http:/x.x.x.x:6501** （X.X.X.Xは Google Sheetsの
 
 表示されているテキストボックスにテキストを貼り付け、**OK** を押すと、コピー＆ペーストができます。
 
-!!! note
-    通常のSSH接続とは異なり、Webブラウザには60秒のタイムアウトがあり、接続が解除されると、Webターミナルの中央に **Connect** ボタンが表示されます。
+{{% alert title="Note" color="primary" %}}
+通常のSSH接続とは異なり、Webブラウザには60秒のタイムアウトがあり、接続が解除されると、Webターミナルの中央に **Connect** ボタンが表示されます。
 
-    この **Connect** ボタンをクリックするだけで、再接続され、次の操作が可能になります。
+この **Connect** ボタンをクリックするだけで、再接続され、次の操作が可能になります。
+{{% /alert %}}
+
 
  ![webでの再接続](../../images/shellinabox-reconnect.png)
 
-これで [ワークショップを開始する](../gdi/k3s/) に進む準備が整いました。
+これで [ワークショップを開始する](../gdi/k3s/) 準備が整いました。
 
 ---
 
 ## 5. Multipass (全員)
 
-AWSへはアクセスできないが、ローカルにソフトウェアをインストールできる場合は、[multipassの使用](../../otel/multipass)の手順に従ってください。
+AWSへはアクセスできないが、ローカルにソフトウェアをインストールできる場合は、「[Multipassを使用する](https://github.com/signalfx/observability-workshop/tree/master/multipass/README.md)」の手順に従ってください。
 
 [^1]: [Putty のダウンロード](https://www.chiark.greenend.org.uk/~sgtatham/putty/)

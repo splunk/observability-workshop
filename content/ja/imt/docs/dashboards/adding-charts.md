@@ -1,10 +1,9 @@
 ---
-title: Adding charts to dashboards
-linkTitle: Adding more charts
+title: ダッシュボードにチャートを追加する
+linkTitle: さらにチャートを追加
 weight: 11
+isCJKLanguage: true
 ---
-
-# ダッシュボードにチャートを追加する
 
 それでは、チャートを保存してみましょう。
 
@@ -35,7 +34,7 @@ weight: 11
 
 ページ左上の **+** の横に赤い円と白い1が表示されていれば、チャートがコピーされているということになります。
 
-ページ上部の ![red one](../../../images/M-MoreCharts-4.png) をクリックし、メニューの *Paste Charts* をクリックしてください (また、行の最後に 1 が見える赤い点があるはずです)。
+ページ上部の ![red one](../../../images/M-MoreCharts-4.png) をクリックし、メニューの *Paste Charts* をクリックしてください (また、右側に 1 が見える赤い点があるはずです)。
 
 ![Past charts](../../../images/M-MoreCharts-5.png)
 
@@ -55,7 +54,7 @@ weight: 11
 
 ![Set Visibility](../../../images/M-MoreCharts-7.png)
 
-**Add Metric Or Event**{: .label-button .sfx-ui-button-blue} ボタンをクリックします。これにより、新しいシグナルのボックスが表示されます。シグナル **D** に `demo.trans.count` と入力・選択します。
+{{% labelbutton color="ui-button-blue" %}}Add Metric Or Event{{% /labelbutton %}} ボタンをクリックします。これにより、新しいシグナルのボックスが表示されます。シグナル **D** に `demo.trans.count` と入力・選択します。
 
 ![Dashboard Info](../../../images/M-MoreCharts-8.png)
 

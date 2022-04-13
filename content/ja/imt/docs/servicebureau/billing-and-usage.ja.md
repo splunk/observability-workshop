@@ -2,6 +2,7 @@
 title: Billing and Usage 
 linkTitle: Billing and Usage
 weight: 50
+isCJKLanguage: true
 ---
 
 * 組織におけるObservability Cloudの利用状況を把握する
@@ -12,9 +13,9 @@ weight: 50
 
 ---
 
-## 1. エンゲージメントの理解
+## 1. 利用状況を把握する
 
-組織内のObservability Cloudのエンゲージメントを完全に理解するには、左上のハンバーガーをクリックして、**Organizations Settings → Organization Overview**　を選択すると、Observability Cloud の組織がどのように使用されているかを示す以下のダッシュボードが表示されます。
+組織内のObservability Cloudのエンゲージメントを完全に把握するには、左下 **>>** を開き、**Settings → Organization Overview** を選択すると、Observability Cloud の組織がどのように使用されているかを示す以下のダッシュボードが表示されます。
 
 ![Organization overview](../../../images/engagement.png)
 
@@ -24,25 +25,19 @@ weight: 50
 
 このワークショップインスタンスの  Organization Overview にある様々なチャートをじっくりとご覧ください。
 
----
+## 2. Billing and Usage
 
-## 2. 使用状況と請求情報
-
-契約に対する使用量を確認したい場合は、 **Organizations Settings → Billing and Usage** を選択します。
-
-もしくは、左側のペインから **Billing and Usage** の項目を選択してもするのが早い方法です。
+契約に対する使用量を確認したい場合は、 **Billing and Usage** を選択します。
 
 ![Left pane](../../../images/billing-and-usage-menu.png)
 
 この画面では、使用量を計算して取り込むため、読み込みに数秒かかることがあります。
 
----
-
-## 3. 使用量の把握
+## 3. 使用量を理解する
 
 下図のような画面が表示され、現在の使用量、平均使用量、およびホスト、コンテナ、カスタムメトリクス、高解像度メトリクスの各カテゴリごとの権利の概要が表示されます。
 
-これらのカテゴリの詳細については、[Billing and Usage information](https://docs.splunk.com/Observability/admin/monitor-imm-billing-usage.html){: target=_blank} を参照してください。
+これらのカテゴリの詳細については、[Billing and Usage information](https://docs.splunk.com/Observability/admin/monitor-imm-billing-usage.html) を参照してください。
 
 ![Billing and Usage](../../../images/usage-charts.png)
 
@@ -64,9 +59,9 @@ weight: 50
 
 ![Billing and Usage-Bottom](../../../images/usage-trends.png)
 
-!!! info
-
-    スクリーンショットからわかるように、Observability Cloudはコスト計算にHigh Watermarkや95パーセンタイルを使用せず、実際の平均時間使用量を使用しています。これにより、超過料金のリスクなしに、パフォーマンステストやBlue/Greenスタイルのデプロイメントなどを行うことができます。
+{{% alert title="Info" color="primary" %}}
+スクリーンショットからわかるように、Observability Cloudはコスト計算には最大値や95パーセンタイル値ではなく、実際の平均時間使用量を使用しています。これにより、超過料金のリスクなしに、パフォーマンステストやBlue/Greenスタイルのデプロイメントなどを行うことができます。
+{{% /alert %}}
 
 オプションを確認するには、左の **Usage Metric** ドロップダウンから異なるオプションを選択して表示するメトリックを変更するか、右のドロップダウンで **Billing Period** を変更します。
 

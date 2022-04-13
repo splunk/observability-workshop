@@ -1,7 +1,10 @@
 ---
-title: Deploying NGINX in K3s
-linkTitle: Deploy and Monitor NGIX
+tags: ["NGNIX"]
+categories: ["IMT"]
+title: K3s に NGINX をデプロイする
+linkTitle: NGINX をデプロイして監視する
 weight: 2
+isCJKLanguage: true
 ---
 
 * NGINX ReplicaSet を K3s クラスタにデプロイし、NGINX デプロイメントのディスカバリーを確認します。
@@ -13,7 +16,7 @@ weight: 2
 
 Splunk UI で **WORKLOADS** タブを選択して、実行中の Pod の数を確認します。これにより、クラスタ上のワークロードの概要がわかるはずです。
 
-![ワークロードエージェント](../../../images/k8s-workloads.png)
+![Workload Agent](../../../images/k8s-workloads.png)
 
 デフォルトの Kubernetes Pod のうち、ノードごとに実行されている単一のエージェントコンテナに注目してください。この1つのコンテナが、このノードにデプロイされているすべての Pod とサービスを監視します！
 
@@ -21,11 +24,11 @@ Splunk UI で **WORKLOADS** タブを選択して、実行中の Pod の数を�
 
 Multipass または AWS/EC2 のシェルセッションで、`nginx` ディレクトリに移動します。
 
-=== "シェルコマンド"
-
-    ```text
-    cd ~/workshop/k3s/nginx
-    ```
+{{< tabpane >}}
+{{< tab header="Change Directory" lang="bash" >}}
+cd ~/workshop/k3s/nginx
+{{< /tab >}}
+{{< /tabpane >}}
   
 ---
 
@@ -33,49 +36,40 @@ Multipass または AWS/EC2 のシェルセッションで、`nginx` ディレ�
 
 NGINX の `configmap`[^1] を `nginx.conf` ファイルを使って作成します。
 
-=== "シェルコマンド"
-
-    ```text
-    kubectl create configmap nginxconfig --from-file=nginx.conf
-    ```
-
-=== "出力"
-
-    ```
-    configmap/nginxconfig created
-    ```
+{{< tabpane >}}
+{{< tab header="Kubectl Configmap Create" lang="bash" >}}
+kubectl create configmap nginxconfig --from-file=nginx.conf
+{{< /tab >}}
+{{< tab header="Kubectl Create Configmap Output" lang="text" >}}
+configmap/nginxconfig created
+{{< /tab >}}
+{{< /tabpane >}}
 
 続いて、デプロイメントを作成します。
 
-=== "シェルコマンド"
+{{< tabpane >}}
+{{< tab header="Kubectl Create Deployment" lang="bash" >}}
+kubectl create -f nginx-deployment.yaml
+{{< /tab >}}
+{{< tab header="Kubectl Create Deployment Output" lang="text" >}}
+deployment.apps/nginx created
+service/nginx created
+{{< /tab >}}
+{{< /tabpane >}}
 
-    ```
-    kubectl create -f nginx-deployment.yaml
-    ```
+次に、NGINXに対する負荷テストを作成するため、 Locust[^2] をデプロイします。
 
-=== "出力"
+{{< tabpane >}}
+{{< tab header="Kubectl Create Deployment" lang="bash" >}}
+kubectl create -f locust-deployment.yaml
+{{< /tab >}}
+{{< tab header="Kubectl Create Deployment Output" lang="text" >}}
+deployment.apps/nginx-loadgenerator created
+service/nginx-loadgenerator created
+{{< /tab >}}
+{{< /tabpane >}}
 
-    ```
-    deployment.apps/nginx created
-    service/nginx created
-    ```
-
-次に、NGINXに対するロードテストを作成するための Locust[^2] をデプロイします。
-
-=== "シェルコマンド"
-
-    ```
-    kubectl create -f locust-deployment.yaml
-    ```
-
-=== "出力"
-
-    ```
-    deployment.apps/nginx-loadgenerator created
-    service/nginx-loadgenerator created
-    ```
-
-デプロイメントが成功し、Locust と NGINX Podが動作していることを確認します。
+デプロイメントが成功し、Locust と NGINX Pod が動作していることを確認しましょう。
 
 Splunk UI を開いていれば、新しい Pod が起動し、コンテナがデプロイされているのがわかるはずです。
 
@@ -91,32 +85,29 @@ Pod が実行状態に移行するまでには 20 秒程度しかかかりませ
 
 これをシェルでも検証してみましょう。
 
-=== "シェルコマンド"
-
-    ```text
-    kubectl get pods
-    ```
-
-=== "出力"
-
-    ```text
-    NAME                                                          READY   STATUS    RESTARTS   AGE
-    splunk-otel-collector-k8s-cluster-receiver-77784c659c-ttmpk   1/1     Running   0          9m19s
-    splunk-otel-collector-agent-249rd                             1/1     Running   0          9m19s
-    svclb-nginx-vtnzg                                             1/1     Running   0          5m57s
-    nginx-7b95fb6b6b-7sb9x                                        1/1     Running   0          5m57s
-    nginx-7b95fb6b6b-lnzsq                                        1/1     Running   0          5m57s
-    nginx-7b95fb6b6b-hlx27                                        1/1     Running   0          5m57s
-    nginx-7b95fb6b6b-zwns9                                        1/1     Running   0          5m57s
-    svclb-nginx-loadgenerator-nscx4                               1/1     Running   0          2m20s
-    nginx-loadgenerator-755c8f7ff6-x957q                          1/1     Running   0          2m20s
-    ```
+{{< tabpane >}}
+{{< tab header="Kubectl Get Pods" lang="bash" >}}
+kubectl get pods
+{{< /tab >}}
+{{< tab header="Kubectl Get Pods Output" lang="text" >}}
+NAME                                                          READY   STATUS    RESTARTS   AGE
+splunk-otel-collector-k8s-cluster-receiver-77784c659c-ttmpk   1/1     Running   0          9m19s
+splunk-otel-collector-agent-249rd                             1/1     Running   0          9m19s
+svclb-nginx-vtnzg                                             1/1     Running   0          5m57s
+nginx-7b95fb6b6b-7sb9x                                        1/1     Running   0          5m57s
+nginx-7b95fb6b6b-lnzsq                                        1/1     Running   0          5m57s
+nginx-7b95fb6b6b-hlx27                                        1/1     Running   0          5m57s
+nginx-7b95fb6b6b-zwns9                                        1/1     Running   0          5m57s
+svclb-nginx-loadgenerator-nscx4                               1/1     Running   0          2m20s
+nginx-loadgenerator-755c8f7ff6-x957q                          1/1     Running   0          2m20s
+{{< /tab >}}
+{{< /tabpane >}}
 
 ---
 
-## 3. Locustの負荷テストの実行
+## 3. Locust の負荷テストの実行
 
-EC2 インスタンスの IP アドレスの8080番ポートで Locust が利用できます。Webブラウザで新しいタブを開き、`http://{==EC2-IP==}:8080/`にアクセスすると、Locust が動作しているのが確認できます。
+Locust はオープンソースの負荷テストツールで、EC2 インスタンスの IP アドレスの8080番ポートで Locust が利用できるようになりました。Webブラウザで新しいタブを開き、`http://{==EC2-IP==}:8080/`にアクセスすると、Locust が動作しているのが確認できます。
 
 ![Locust](../../../images/nginx-locust.png)
 
@@ -128,7 +119,7 @@ EC2 インスタンスの IP アドレスの8080番ポートで Locust が利用
 
 ![Locust Statistics](../../../images/nginx-locust-statistics.png)
 
-ハンバーガーメニューから **Dashboards → NGINX → NGINX Servers** を選択して、UIにメトリクスが表示されていることを確認します。**Overrides** フィルターを適用して、 `k8s.cluster.name:` に、ターミナルの　`echo $(hostname)-k3s-cluster` で返されるクラスタの名前を見つけます。
+サイドメニューから **Dashboards → NGINX → NGINX Servers** を選択して、UIにメトリクスが表示されていることを確認します。さらに **Overrides** フィルターを適用して、 `k8s.cluster.name:` に、ターミナルの　`echo $(hostname)-k3s-cluster` で返されるクラスタの名前を見つけます。
 
 ![NGINXダッシュボード](../../../images/nginx-dashboard.png)
 
