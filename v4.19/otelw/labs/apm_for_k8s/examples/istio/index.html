@@ -1,0 +1,376 @@
+<!doctype html><html lang=en class=no-js>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.92.2">
+<meta name=robots content="index, follow">
+<link rel="shortcut icon" href=/observability-workshop/v4.19/favicons/favicon.ico>
+<link rel=apple-touch-icon href=/observability-workshop/v4.19/favicons/apple-touch-icon-180x180.png sizes=180x180>
+<link rel=icon type=image/png href=/observability-workshop/v4.19/favicons/favicon-16x16.png sizes=16x16>
+<link rel=icon type=image/png href=/observability-workshop/v4.19/favicons/favicon-32x32.png sizes=32x32>
+<link rel=icon type=image/png href=/observability-workshop/v4.19/favicons/android-36x36.png sizes=36x36>
+<link rel=icon type=image/png href=/observability-workshop/v4.19/favicons/android-48x48.png sizes=48x48>
+<link rel=icon type=image/png href=/observability-workshop/v4.19/favicons/android-72x72.png sizes=72x72>
+<link rel=icon type=image/png href=/observability-workshop/v4.19/favicons/android-96x96.png sizes=96x96>
+<link rel=icon type=image/png href=/observability-workshop/v4.19/favicons/android-144x144.png sizes=144x144>
+<link rel=icon type=image/png href=/observability-workshop/v4.19/favicons/android-192x192.png sizes=192x192>
+<title>Istio Setup | Splunk Observability Cloud Workshops</title>
+<meta name=description content="CAVEAT: THIS LAB IS DESIGNED FOR THE UBUNTU SANDBOX CREATED AT THE START OF THE APM WORKSHOP AND IS TESTED IN THAT ENVIRONMENT ONLY
+THIS LAB IS A WORK …">
+<meta property="og:title" content="Istio Setup">
+<meta property="og:description" content="CAVEAT: THIS LAB IS DESIGNED FOR THE UBUNTU SANDBOX CREATED AT THE START OF THE APM WORKSHOP AND IS TESTED IN THAT ENVIRONMENT ONLY THIS LAB IS A WORK IN PROCESS AND YOUR RESULTS MAY VARY
+This exercise will install an Istio service mesh on a Kubernetes cluster that directs external requests to a Python Flask server. Both the service mesh and the Flask server will emit spans. The result will show tracing of the external request to the node and through the mesh to the Flask server.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://signalfx.github.io/observability-workshop/v4.19/otelw/labs/apm_for_k8s/examples/istio/"><meta property="article:section" content="otelw">
+<meta property="article:modified_time" content="2022-04-01T17:47:51+02:00"><meta property="og:site_name" content="Splunk Observability Cloud Workshops">
+<meta itemprop=name content="Istio Setup">
+<meta itemprop=description content="CAVEAT: THIS LAB IS DESIGNED FOR THE UBUNTU SANDBOX CREATED AT THE START OF THE APM WORKSHOP AND IS TESTED IN THAT ENVIRONMENT ONLY THIS LAB IS A WORK IN PROCESS AND YOUR RESULTS MAY VARY
+This exercise will install an Istio service mesh on a Kubernetes cluster that directs external requests to a Python Flask server. Both the service mesh and the Flask server will emit spans. The result will show tracing of the external request to the node and through the mesh to the Flask server.">
+<meta itemprop=dateModified content="2022-04-01T17:47:51+02:00">
+<meta itemprop=wordCount content="467">
+<meta itemprop=keywords content><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Istio Setup">
+<meta name=twitter:description content="CAVEAT: THIS LAB IS DESIGNED FOR THE UBUNTU SANDBOX CREATED AT THE START OF THE APM WORKSHOP AND IS TESTED IN THAT ENVIRONMENT ONLY THIS LAB IS A WORK IN PROCESS AND YOUR RESULTS MAY VARY
+This exercise will install an Istio service mesh on a Kubernetes cluster that directs external requests to a Python Flask server. Both the service mesh and the Flask server will emit spans. The result will show tracing of the external request to the node and through the mesh to the Flask server.">
+<link rel=preload href=/observability-workshop/v4.19/scss/main.min.deddc9b57e65de2e36e0a7912039ccf70079af844257489a558c52de37f7ad90.css as=style>
+<link href=/observability-workshop/v4.19/scss/main.min.deddc9b57e65de2e36e0a7912039ccf70079af844257489a558c52de37f7ad90.css rel=stylesheet integrity>
+<script src=https://code.jquery.com/jquery-3.6.0.min.js integrity=sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK crossorigin=anonymous></script>
+<script src=https://unpkg.com/lunr@2.3.9/lunr.min.js integrity=sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli crossorigin=anonymous></script>
+</head>
+<body class=td-page>
+<header>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" id=navbar1>
+<a class=navbar-brand href=/observability-workshop/v4.19/>
+<span class=navbar-logo><img class=navbar-logo src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAAvCAIAAAD8RQT7AAACwklEQVRYw+2YW2jTYBTHu4l4F1ERVMQL+qKgMBUU9EEfRAURUUFfBEUEBRGfdC+CrVt3cdbNSZ1zXqar024yp9MJKzh3FScyO+q8MDW3pvc2TZqkudSvtD4J66fkWyL0kNeQH8mX8/+dY8JMZuNcpjzNX9JQK64ZiEZlk9zDEe/aOmPQ8FIKlJpKtH+mNzUYg+Z38a7vvu2NRqHJlDhABPY0G4UmU8lhOnioFSu0GIImU9KXUOhYOz75kiFoMiVjsfDpl/i0UrQ0oePPkp5ACq5kHxs978JnlaHsxQVm/24H3zUGyaRE+Jj5DTGvEm0yeNfVsfeGVVGGYQJtk6kaIBfZ0OYUufBKrKRHCSWgmAQ5fmOIWl6DNjXx6dbwqRfgh4L6eJLC3v/oXW1HnOGFlsDeR0L3TygmEC+tn+j19ciNgt5Qzznc4B3AUPGd33xb7yL3G3LJVaaiX4kKMExCD+bf2YTctvCZZZEzndJYBIZJfE8F9jtBE0HsfpMswQNOoR+HYWIbPkyQiQIr4pyelKyOQ5No8UyoF1PLahjboMqIhqABl3/HA6EX05kGyEboSBuQIZ2/FDGnInKuSyaZnKcYLU32lMTF3P05ITHVb8nFNiQ09MZbXPPI+H9QliMuMuV9xIIqBN2vwAy8HTKw0gJ0sZuYW6l9MuBTS8MnnkujQSgOPxctdhGzy7VPTWL+5eiF1+ABUJJKMpGzr4CHaG8U1KrauH0IHEAot/kRDZ/swKeUaG9bvi13Em2jKUWF4gDDzdGn/zbcmHJE4MEWcZCAFPWk2xc8/ATcpbGl4zOsYFCC1IOsIex7/KchaEMj0ywkh9CH+3c59J8104uLbY36T758x1d68229twIZ+y+6qffGRFa5Jrd3jR3Td5ukJhVgr9TKWp03benp9fo7cmm1/lvImLUXDN757XWe5v+g+QU6sNkgKUPrgwAAAABJRU5ErkJggg=="></span><span class=font-weight-bold>Splunk Observability Cloud Workshops</span>
+</a>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+</ul>
+</div>
+</nav>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" id=navbar2>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.19/imt/><span>Splunk IMT</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.19/apm/><span>Splunk APM</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.19/synthetics/><span>Splunk Synthetics</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.19/rum/><span>Splunk RUM</span></a>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+More Workshops
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/latest/pet-clinic/>Pet Clinic Java Workshop</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/latest/bootcamp/>O11y Bootcamp</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/latest/resources/>Resources</a>
+</div>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+Releases
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/latest/>latest</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/v4.18>v4.18</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/v4.19>v4.19</a>
+</div>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+English
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.19/ja/>日本語</a>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="container-fluid td-outer">
+<div class=td-main>
+<div class="row flex-xl-nowrap">
+<aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+<div id=td-sidebar-menu class=td-sidebar__inner>
+<form class="td-sidebar__search d-flex align-items-center">
+<input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/observability-workshop/v4.19/offline-search-index.cdbccfc7bdf17a9c23b6c744d6b2d336.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type=button data-toggle=collapse data-target=#td-section-nav aria-controls=td-docs-nav aria-expanded=false aria-label="Toggle section navigation">
+</button>
+</form>
+<nav class="collapse td-sidebar-nav" id=td-section-nav>
+<div class="nav-item dropdown d-block d-lg-none">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+English
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.19/ja/>日本語</a>
+</div>
+</div>
+<ul class="td-sidebar-nav__section pr-md-3 ul-0">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv419otelw-li>
+<a href=/observability-workshop/v4.19/otelw/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id=m-observability-workshopv419otelw><span>OpenTelemetry</span></a>
+<ul class=ul-1>
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv419otelwintroduction-li>
+<a href=/observability-workshop/v4.19/otelw/introduction/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv419otelwintroduction><span>Introduction</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv419otelwsetup-li>
+<a href=/observability-workshop/v4.19/otelw/setup/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv419otelwsetup><span>Preparation</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv419otelwlabs-li>
+<a href=/observability-workshop/v4.19/otelw/labs/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv419otelwlabs><span>Labs</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-observability-workshopv419otelwlabsapm_for_single_host-li>
+<a href=/observability-workshop/v4.19/otelw/labs/apm_for_single_host/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv419otelwlabsapm_for_single_host><span>APM for a Single Host</span></a>
+<ul class="ul-3 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv419otelwlabsapm_for_single_hosthost-li>
+<a href=/observability-workshop/v4.19/otelw/labs/apm_for_single_host/host/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv419otelwlabsapm_for_single_hosthost><span>Install Otel Collector On Host</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv419otelwlabsapm_for_single_hostpython-li>
+<a href=/observability-workshop/v4.19/otelw/labs/apm_for_single_host/python/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv419otelwlabsapm_for_single_hostpython><span>Python- Deploy HTTP Server and Client</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv419otelwlabsapm_for_single_hostjava-li>
+<a href=/observability-workshop/v4.19/otelw/labs/apm_for_single_host/java/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv419otelwlabsapm_for_single_hostjava><span>Java- Deploy HTTP Client</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv419otelwlabsapm_for_single_hostnode-li>
+<a href=/observability-workshop/v4.19/otelw/labs/apm_for_single_host/node/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv419otelwlabsapm_for_single_hostnode><span>Node.js- Deploy HTTP Client</span></a>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv419otelwlabsapm_for_k8s-li>
+<a href=/observability-workshop/v4.19/otelw/labs/apm_for_k8s/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv419otelwlabsapm_for_k8s><span>APM for Kubernetes</span></a>
+<ul class="ul-3 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv419otelwlabsapm_for_k8sk8s-li>
+<a href=/observability-workshop/v4.19/otelw/labs/apm_for_k8s/k8s/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv419otelwlabsapm_for_k8sk8s><span>APM for K8s</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv419otelwlabsapm_for_k8sprep-li>
+<a href=/observability-workshop/v4.19/otelw/labs/apm_for_k8s/prep/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv419otelwlabsapm_for_k8sprep><span></span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv419otelwlabsapm_for_k8sexamples-li>
+<a href=/observability-workshop/v4.19/otelw/labs/apm_for_k8s/examples/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv419otelwlabsapm_for_k8sexamples><span>Instrumentation Examples</span></a>
+<ul class="ul-4 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-observability-workshopv419otelwlabsapm_for_k8sexamplesistio-li>
+<a href=/observability-workshop/v4.19/otelw/labs/apm_for_k8s/examples/istio/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv419otelwlabsapm_for_k8sexamplesistio><span class=td-sidebar-nav-active-item>Istio Setup</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv419otelwlabsapm_for_k8sexamplesdotnet-li>
+<a href=/observability-workshop/v4.19/otelw/labs/apm_for_k8s/examples/dotnet/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv419otelwlabsapm_for_k8sexamplesdotnet><span>.Net Setup</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv419otelwlabsapm_for_k8sexamplesdotnet21-li>
+<a href=/observability-workshop/v4.19/otelw/labs/apm_for_k8s/examples/dotnet21/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv419otelwlabsapm_for_k8sexamplesdotnet21><span>.Net Core 2.1</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-observability-workshopv419otelwlabsoptional-li>
+<a href=/observability-workshop/v4.19/otelw/labs/optional/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv419otelwlabsoptional><span>Optional/Advanced</span></a>
+<ul class="ul-3 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv419otelwlabsoptionaldocker-li>
+<a href=/observability-workshop/v4.19/otelw/labs/optional/docker/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv419otelwlabsoptionaldocker><span>OTel Collector and APM for Docker</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-observability-workshopv419otelwapm_ecs_demos-li>
+<a href=/observability-workshop/v4.19/otelw/apm_ecs_demos/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv419otelwapm_ecs_demos><span>ECS Demos</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv419otelwapm_ecs_demosindex-ec2-li>
+<a href=/observability-workshop/v4.19/otelw/apm_ecs_demos/index-ec2/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv419otelwapm_ecs_demosindex-ec2><span>ECS-EC2</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv419otelwapm_ecs_demosindex-fargate-li>
+<a href=/observability-workshop/v4.19/otelw/apm_ecs_demos/index-fargate/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv419otelwapm_ecs_demosindex-fargate><span>ECS-Fargate</span></a>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-observability-workshopv419otelwappendix-li>
+<a href=/observability-workshop/v4.19/otelw/appendix/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv419otelwappendix><span>Appendix</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv419otelwappendixappendix-li>
+<a href=/observability-workshop/v4.19/otelw/appendix/appendix/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv419otelwappendixappendix><span>Helpful Tips</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv419otelwappendixecs-cli-commands-li>
+<a href=/observability-workshop/v4.19/otelw/appendix/ecs-cli-commands/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv419otelwappendixecs-cli-commands><span>ECS-CLI Commands</span></a>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv419otelwdashboardsservicedashboard-li>
+<a href=/observability-workshop/v4.19/otelw/dashboards/servicedashboard/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv419otelwdashboardsservicedashboard><span></span></a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+<aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+</div>
+<div class=td-toc><nav id=TableOfContents>
+<ul>
+<li><a href=#1-install-opentelemetry-collector>1: Install OpenTelemetry Collector</a></li>
+<li><a href=#2-set-up-istio>2: Set Up Istio</a></li>
+<li><a href=#3-deploy-istio-configurations-and-example-flask-microservice>3: Deploy Istio configurations and example Flask microservice</a></li>
+</ul>
+</nav></div>
+<div class="taxonomy taxonomy-terms-cloud taxo-tags">
+<h5 class=taxonomy-title>Tag Cloud</h5>
+<ul class=taxonomy-terms>
+<li><a class=taxonomy-term href=https://signalfx.github.io/observability-workshop/v4.19/tags/k3s/ data-taxonomy-term=k3s><span class=taxonomy-label>k3s</span><span class=taxonomy-count>1</span></a></li>
+<li><a class=taxonomy-term href=https://signalfx.github.io/observability-workshop/v4.19/tags/ngnix/ data-taxonomy-term=ngnix><span class=taxonomy-label>NGNIX</span><span class=taxonomy-count>1</span></a></li>
+</ul>
+</div>
+<div class="taxonomy taxonomy-terms-cloud taxo-categories">
+<h5 class=taxonomy-title>Categories</h5>
+<ul class=taxonomy-terms>
+<li><a class=taxonomy-term href=https://signalfx.github.io/observability-workshop/v4.19/categories/imt/ data-taxonomy-term=imt><span class=taxonomy-label>IMT</span><span class=taxonomy-count>2</span></a></li>
+</ul>
+</div>
+</aside>
+<main class="col-12 col-md-9 col-xl-8 pl-md-5" role=main>
+<nav aria-label=breadcrumb class=td-breadcrumbs>
+<ol class=breadcrumb>
+<li class=breadcrumb-item>
+<a href=https://signalfx.github.io/observability-workshop/v4.19/otelw/>OpenTelemetry</a>
+</li>
+<li class=breadcrumb-item>
+<a href=https://signalfx.github.io/observability-workshop/v4.19/otelw/labs/>Labs</a>
+</li>
+<li class=breadcrumb-item>
+<a href=https://signalfx.github.io/observability-workshop/v4.19/otelw/labs/apm_for_k8s/>APM for Kubernetes</a>
+</li>
+<li class=breadcrumb-item>
+<a href=https://signalfx.github.io/observability-workshop/v4.19/otelw/labs/apm_for_k8s/examples/>Instrumentation Examples</a>
+</li>
+<li class="breadcrumb-item active" aria-current=page>
+<a href=https://signalfx.github.io/observability-workshop/v4.19/otelw/labs/apm_for_k8s/examples/istio/>Istio Setup</a>
+</li>
+</ol>
+</nav>
+<div class=td-content>
+<h1>Istio Setup</h1>
+<header class=article-meta>
+<p class=reading-time><i class="fa fa-clock" aria-hidden=true></i>&nbsp; 3 minute read &nbsp;</p>
+</header>
+<p>CAVEAT: THIS LAB IS DESIGNED FOR THE UBUNTU SANDBOX CREATED AT THE START OF THE APM WORKSHOP AND IS TESTED IN THAT ENVIRONMENT ONLY
+THIS LAB IS A WORK IN PROCESS AND YOUR RESULTS MAY VARY</p>
+<p>This exercise will install an Istio service mesh on a Kubernetes cluster that directs external requests to a Python Flask server.
+Both the service mesh and the Flask server will emit spans.
+The result will show tracing of the external request to the node and through the mesh to the Flask server.</p>
+<h2 id=1-install-opentelemetry-collector>1: Install OpenTelemetry Collector</h2>
+<p>If you have an existing collector running remove it.</p>
+<p>Follow Data Setup wizard but add:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>--set autodetect.istio=true`
+</code></pre></div><p>i.e.</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>helm install <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>--set <span style=color:#000>splunkAccessToken</span><span style=color:#ce5c00;font-weight:700>=</span><span style=color:#4e9a06>&#39;YOURTOKENHERE&#39;</span> <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>--set <span style=color:#000>clusterName</span><span style=color:#ce5c00;font-weight:700>=</span><span style=color:#4e9a06>&#39;YOURCLUSTERNAMEHERE&#39;</span> <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>--set <span style=color:#000>splunkRealm</span><span style=color:#ce5c00;font-weight:700>=</span><span style=color:#4e9a06>&#39;YOURREALMHERE&#39;</span> <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>--set autodetect.istio<span style=color:#ce5c00;font-weight:700>=</span><span style=color:#204a87>true</span> <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>--set <span style=color:#000>provider</span><span style=color:#ce5c00;font-weight:700>=</span><span style=color:#4e9a06>&#39; &#39;</span> <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>--set <span style=color:#000>distro</span><span style=color:#ce5c00;font-weight:700>=</span><span style=color:#4e9a06>&#39; &#39;</span> <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>--set otelCollector.enabled<span style=color:#ce5c00;font-weight:700>=</span><span style=color:#4e9a06>&#39;false&#39;</span> <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>--generate-name <span style=color:#4e9a06>\
+</span><span style=color:#4e9a06></span>splunk-otel-collector-chart/splunk-otel-collector
+</code></pre></div><h2 id=2-set-up-istio>2: Set Up Istio</h2>
+<p>Download Istio:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#204a87>cd</span> ~
+curl -L https://istio.io/downloadIstio <span style=color:#000;font-weight:700>|</span> sh -
+</code></pre></div><p>Follow instructions from the installer script that are now in your terminal to add Istio&rsquo;s bin path to your env then:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>istioctl install
+</code></pre></div><h2 id=3-deploy-istio-configurations-and-example-flask-microservice>3: Deploy Istio configurations and example Flask microservice</h2>
+<p>Enable automatic Istio proxy injection. <a href=https://istio.io/latest/docs/setup/additional-setup/sidecar-injection/#automatic-sidecar-injection target=_blank>More info here</a>
+</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl label namespace default istio-injection<span style=color:#ce5c00;font-weight:700>=</span>enabled
+</code></pre></div><p>Change to the APM Workshop Istio directory:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#204a87>cd</span> ~/otelworkshop/k8s/istio
+</code></pre></div><p>Install the Splunk tracing profile for Istio:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>istioctl install -f tracing.yaml
+</code></pre></div><p>Set and validate ingress ports for Nodeport example and configure ingress host for local k3s workshop example:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#204a87>source</span> setup-envs.sh
+</code></pre></div><p>You should see a result that looks like:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>TCP_INGRESS_PORT=
+INGRESS_PORT=30785
+INGRESS_HOST=172.31.19.248
+SECURE_INGRESS_PORT=32071
+</code></pre></div><p>Deploy Flask service configured for Istio:</p>
+<p>!!! important
+If you are doing this workshop as part of a group, before the next step, add your initials do the APM environment:
+edit the <code>flask-deployment-istio.yaml</code> below and add your initials to the environment i.e. change all instances:<br>
+<code>deployment.environment=apm-workshop</code><br>
+to <br>
+<code>deployment.environment=sjl-apm-workshop</code></p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl apply -f flask-deployment-istio.yaml
+</code></pre></div><p>Single test Flask service:<br>
+<code>source test-flask.sh</code></p>
+<p>Results should show a direct request to the Flask server:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>You getted: b<span style=color:#4e9a06>&#39;&#39;</span> Request headers: Host: localhost:30001
+User-Agent: curl/7.68.0
+Accept: */*
+Server: <span style=color:#0000cf;font-weight:700>1</span>
+</code></pre></div><p>Single test Istio:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#204a87>source</span> test-istio.sh
+</code></pre></div><p>When hitting the service mesh from outside the cluster, you&rsquo;ll receive the mesh diagnostic data plus the B3 Trace/Span ID:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>You getted: b<span style=color:#4e9a06>&#39;&#39;</span> Request headers: Host: 172.31.19.248:31177
+User-Agent: curl/7.68.0
+Accept: */*
+Server: <span style=color:#0000cf;font-weight:700>1</span>
+X-Forwarded-For: 10.42.0.1
+X-Forwarded-Proto: http
+X-Envoy-Internal: <span style=color:#204a87>true</span>
+X-Request-Id: 447af547-7b8f-96db-a0b5-08efce526a8d
+X-Envoy-Decorator-Operation: server-flask-otel-k8s.default.svc.cluster.local:5000/echo
+X-Envoy-Peer-Metadata: ChQKDkFQUF9DT05UQUlORVJTEgIaAAoaCgpDTFVTVEVSX0lEEgwaCkt...
+3NnYXRld2F5
+X-Envoy-Peer-Metadata-Id: router~10.42.0.11~istio-ingressgateway-7d97f78f5-dg5zc.istio-system~istio-system.svc.cluster.local
+X-Envoy-Attempt-Count: <span style=color:#0000cf;font-weight:700>1</span>
+X-B3-Traceid: 5035304e854aa834e990df295b1d98e9
+X-B3-Spanid: e990df295b1d98e9
+X-B3-Sampled: <span style=color:#0000cf;font-weight:700>1</span>
+</code></pre></div><p>To generate many requests so that the example appears in the APM service map, use the load generator:</p>
+<p>Load gen Istio for two minutes:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#204a87>source</span> loadgen.sh
+</code></pre></div><p>You will see a service map with the Istio mesh and the Flask server:</p>
+<p><img src=../../../../images/istio1.png alt=Istio></p>
+<p>Traces will show the request hitting the service mesh and the mesh hitting the service itself:</p>
+<p><a href=../../../../images/istio2.png>Istio2</a>
+</p>
+<p>Stop loadgen:</p>
+<p>++ctrl+c++</p>
+<p>Cleanup:<br>
+remove k8s examples:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#204a87>source</span> delete-all.sh
+</code></pre></div><p>Remove Istio:<br>
+From the Istio bin directory:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>istioctl x uninstall --purge
+</code></pre></div>
+</div>
+</main>
+</div>
+</div>
+<footer class="bg-dark py-5 row d-print-none">
+<div class="container-fluid mx-sm-5">
+<div class=row>
+<div class="col-6 col-sm-4 text-xs-center order-sm-2">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=Twitter aria-label=Twitter>
+<a class=text-white target=_blank rel=noopener href=https://twitter.com/splunk aria-label=Twitter>
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=GitHub aria-label=GitHub>
+<a class=text-white target=_blank rel=noopener href=https://github.com/signalfx/observability-workshop aria-label=GitHub>
+<i class="fab fa-github"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-12 col-sm-4 text-center py-2 order-sm-2">
+<small class=text-white>&copy; 2022 Splunk Inc. All Rights Reserved</small>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js integrity=sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin=anonymous></script>
+<script src=/observability-workshop/v4.19/js/tabpane-persist.js></script>
+<script src=/observability-workshop/v4.19/js/main.min.8ab8f81ff7e1454d30024cd6f956d4d341c3a97e2a673f988065f2ee4e147922.js integrity="sha256-irj4H/fhRU0wAkzW+VbU00HDqX4qZz+YgGXy7k4UeSI=" crossorigin=anonymous></script>
+<script>const svgCopy='<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg>',svgCheck='<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"><path fill-rule="evenodd" fill="rgb(63, 185, 80)" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>',addCopyButtons=a=>{document.querySelectorAll("pre > code").forEach(c=>{const b=document.createElement("button");b.className="clipboard-button",b.type="button",b.innerHTML=svgCopy,b.addEventListener("click",()=>{a.writeText(c.innerText).then(()=>{b.blur(),b.innerHTML=svgCheck,setTimeout(()=>b.innerHTML=svgCopy,2e3)},a=>b.innerHTML="Error")});const d=c.parentNode;d.parentNode.insertBefore(b,d)})};if(navigator&&navigator.clipboard)addCopyButtons(navigator.clipboard);else{const a=document.createElement("script");a.src="https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/2.7.0/clipboard-polyfill.promise.js",a.integrity="sha256-waClS2re9NUbXRsryKoof+F9qc1gjjIhc2eT7ZbIv94=",a.crossOrigin="anonymous",a.onload=()=>addCopyButtons(clipboard),document.body.appendChild(a)}</script>
+</body>
+</html>

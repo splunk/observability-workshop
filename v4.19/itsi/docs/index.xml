@@ -1,0 +1,171 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Observability Cloud Workshops – ITSI Content Pack Workshop</title><link>https://signalfx.github.io/observability-workshop/v4.19/itsi/docs/</link><description>Recent content in ITSI Content Pack Workshop on Splunk Observability Cloud Workshops</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://signalfx.github.io/observability-workshop/v4.19/itsi/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Itsi: Connect to ITSI instance</title><link>https://signalfx.github.io/observability-workshop/v4.19/itsi/docs/connect/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://signalfx.github.io/observability-workshop/v4.19/itsi/docs/connect/</guid><description>
+&lt;!-- ## Login to your Splunk Instance -->
+&lt;p>We deeply believe that the best way for you to familiarize yourself with the Splunk IT Service Intelligence (ITSI) Add-On is to get your hands dirty. Therefore, we provide individual sandbox environments in the form of Splunk instances for you. The first task of this workshop for you is to connect to those instances.&lt;/p>
+&lt;p>&lt;strong>A successful connection to your instance can be established via executing the following steps:&lt;/strong>&lt;/p>
+&lt;p>Access the Instance List by clicking &lt;a href="https://docs.google.com/spreadsheets/d/1hc8tPm1xNGq_KkoPlV6BTmJbG0DJQWto_Jb1jAoKuOI/edit?usp=sharing" target="_blank">HERE&lt;/a>
+.
+You should be able to see a Google spreadsheet that looks similar to the screenshotted example below:&lt;/p>
+&lt;!-- ![Access Sheet](../../images/access_aws_instance/access_sheet.png) -->
+&lt;img src="../../images/access_aws_instance/access_sheet.png" alt="Access Sheet" style="width: 65%;"/>
+&lt;p>In the first column with the title &lt;em>Name of Attendee&lt;/em> locate your name. &lt;strong>Find your personal access link to the instance on the right of your name&lt;/strong> and use it to reach the login page of Splunk Enterprise. It looks like this:&lt;/p>
+&lt;p>&lt;img src="../../images/access_aws_instance/login.png" alt="Login">&lt;/p>
+&lt;p>To log in, use the username &lt;strong>admin&lt;/strong>. Use the password is provided for you in the &lt;a href="https://docs.google.com/spreadsheets/d/1hc8tPm1xNGq_KkoPlV6BTmJbG0DJQWto_Jb1jAoKuOI/edit?usp=sharing" target="_blank">Instance List&lt;/a>
+. Click the &lt;em>Sign In&lt;/em>-Button.&lt;/p>
+&lt;p>On a successful login, you might get greeted by pop-up windows showing tips, tutorials, and/or recommendations. These are not important for us right now. Feel free to ignore them by clicking the &lt;em>Got it!&lt;/em>-Button, or respectively, the &lt;em>Don&amp;rsquo;t show me this again&lt;/em>-Button. Other than that, you should be able now to see Splunk Enterprise Home view, which initially looks like this:&lt;/p>
+&lt;p>&lt;img src="../../images/access_aws_instance/home_view.png" alt="Home View">&lt;/p>
+&lt;p>If you fail to see this home view, most likely something went wrong. Please do not hesitate to raise your hand in Zoom, or shoot us a short message in the Zoom channel. An assistent will be with you shortly.&lt;/p>
+&lt;p>If that is not the case, we want to congratulate you! You successfully connected to your instance, and thus completed the first task!&lt;/p></description></item><item><title>Itsi: Configuration</title><link>https://signalfx.github.io/observability-workshop/v4.19/itsi/docs/configuration/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://signalfx.github.io/observability-workshop/v4.19/itsi/docs/configuration/</guid><description>
+&lt;h2 id="configure-the-infrastructure-add-on-and-the-observability-content-pack">Configure the Infrastructure Add-on and the Observability Content Pack&lt;/h2>
+&lt;p>Now that we have access to our instances, which bear the pre-installed Infrastructure Monitoring Add-On and the Observability Content Pack, we need to configure those two by follwoing the steps below.&lt;/p>
+&lt;h3 id="configuration-of-the-infrastructure-monitoring-add-on">Configuration of the Infrastructure Monitoring Add-on&lt;/h3>
+&lt;p>After you accessed your instance, navigate to the &lt;strong>Splunk Infrastructure Monitoring Add-On&lt;/strong> listed on the left under &lt;strong>Apps&lt;/strong>. We want to set up an account, and we can do so by navigating to the &lt;strong>Configuration Tab&lt;/strong> and clicking on the &amp;lsquo;&lt;strong>Connect an Account&lt;/strong>'-Button.&lt;/p>
+&lt;p>&lt;img src="../../images/im_configure/account.png" alt="Connect Account">&lt;/p>
+&lt;p>Once you clicked the &amp;lsquo;Connect an Account&amp;rsquo;-Button, a dialogue appears, prompting you for the user credentials of your Observability Cloud account. These are the &lt;strong>Access Token&lt;/strong> and the &lt;strong>Realm&lt;/strong>, with which the Add-On can access the Oberservability Cloud. In the next steps, we are going to locate our Realm inside our individual Observability Cloud account and create a new Access Token.&lt;/p>
+&lt;p>Locate your &lt;strong>Realm&lt;/strong>: Log in to your Splunk Observability account. In the menu on the left on the bottom click on the little gear icon (Settings). On the very top of this menu, you should see your &lt;strong>username&lt;/strong> right next to a profile picture. Click on it. You are now in the Account Settings, where you can find the Realm &lt;em>(see screenshot below)&lt;/em>.&lt;/p>
+&lt;p>&lt;img src="../../images/im_configure/account_settings.png" alt="Account Settings">&lt;/p>
+&lt;p>Copy and paste the Realm into the input field of of the dialogue in the IM Add-On.&lt;/p>
+&lt;p>Locate your &lt;strong>Access Token&lt;/strong>: Being still in your Account Settings, click on &lt;strong>Generate User API Access Token&lt;/strong> to generate an access token, and subsequently on &lt;strong>Show User API Access Token&lt;/strong> to show the associated string. Copy and paste that string into the input field of of the dialogue in the IM Add-On.&lt;/p>
+&lt;p>Once the Realm and Access Token have been inserted into the input dialogue, make sure to verify whether or not a connection to the Observability Cloud could be established by clicking on the &lt;strong>Check Connection&lt;/strong>-button. If so, click submit. You can enable data collection for the account by selecting the &lt;em>Data Collection&lt;/em> toggle.&lt;/p>
+&lt;p>&lt;em>For additional information on this topic, see &lt;a href="https://docs.splunk.com/Documentation/SIMAddon/1.2.1/Install/Configure" target="_blank">Configure the Splunk Infrastructure Monitoring Add-on&lt;/a>
+.&lt;/em>&lt;/p>
+&lt;p>*Watch this video introducing the content pack concepts.&lt;/p>
+&lt;iframe class="vidyard_iframe" src="//play.vidyard.com/cB6Wq1dEy7hZGm7CjdSZm6.html?" width="640" height="360" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen>&lt;/iframe>
+&lt;h3 id="configure-the-content-pack-for-observability">Configure the Content Pack for Observability&lt;/h3>
+&lt;p>As soon as we have successfully configured the Infrastructure Monitoring Add-On, we will continue by installing and configuring the Content Pack for Observability. The first step to accomplish that is to select the &lt;strong>IT Service Intelligence&lt;/strong> app. Inside the app, click on the &lt;strong>Configuration&lt;/strong> tab and select &lt;strong>Data Integrations&lt;/strong> from the dopdown menu.&lt;/p>
+&lt;p>&lt;img src="../../images/im_configure/data_integrations.png" alt="Data Integrations">&lt;/p>
+&lt;p>On the next screen, select &lt;em>Add content packs&lt;/em> and choose &lt;em>Splunk Observability Cloud&lt;/em>.&lt;/p>
+&lt;p>&lt;img src="../../images/cp_configure/add.png" alt="Add">&lt;/p>
+&lt;p>Upon clicking on the &lt;em>Splunk Observability Cloud&lt;/em>-tile, you are presented with an overview of what is included in the Content Pack. Review it, and finally click on&lt;/p>
+&lt;p>&lt;img src="../../images/cp_configure/proceed_button.png" alt="Proceed Button">&lt;/p>
+&lt;p>Next, you are presented with a settings menu to configure the content pack. &lt;strong>The following is important:&lt;/strong> Please disable the &lt;em>Import as enable&lt;/em>-option, leave the &lt;em>Enter a prefix&lt;/em> input field blank, and disable the &lt;em>Backfill service KPIs&lt;/em> option.&lt;/p>
+&lt;p>&lt;img src="../../images/cp_configure/settings.png" alt="Settings">&lt;/p>
+&lt;p>Finally, click on the [Install selected] button.&lt;/p>
+&lt;p>The &lt;em>Splunk Observability Cloud&lt;/em> tile on the &lt;em>Data Integrations&lt;/em> page should now have a little green checkmark on the upper right corner. This means that we are all set. Perfect!&lt;/p>
+&lt;p>&lt;img src="../../images/cp_configure/checkmark.png" alt="Checkmark">&lt;/p>
+&lt;p>&lt;em>For additional information on this topic, see &lt;a href="https://docs.splunk.com/Documentation/CPObservability/1.0.0/CP/Install#Install_the_Content_Pack_for_Splunk_Observability_Cloud" target="_blank">Install the Content Pack for Splunk Observability Cloud&lt;/a>
+.&lt;/em>&lt;/p></description></item><item><title>Itsi: Custom Service</title><link>https://signalfx.github.io/observability-workshop/v4.19/itsi/docs/custom-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://signalfx.github.io/observability-workshop/v4.19/itsi/docs/custom-service/</guid><description>
+&lt;p>In this section, we will create a custom Service in Splunk ITSI based on observations in the Splunk Observability Cloud Platform.&lt;/p>
+&lt;h2 id="access-the-splunk-observability-cloud-platform">Access the Splunk Observability Cloud Platform&lt;/h2>
+&lt;ol>
+&lt;li>Visit the &lt;a href="https://app.eu0.signalfx.com/#/home" target="_blank">Splunk Observability Cloud Platform&lt;/a>
+and log in with the credentials that have been provided to you.
+(In case of trouble, please don&amp;rsquo;t hesitate to reach out to us!) If everything went well, you can see the Home screen which looks like this:&lt;/li>
+&lt;/ol>
+&lt;img src="../../images/custom_service/o11y_home.png" alt="O11y Home Screen" style="width: 70%;"/>
+&lt;ol start="2">
+&lt;li>On the menu on the left (you might have to expand it by clicking on the double arrow on the bottom left), choose &lt;strong>Dashboards&lt;/strong>, locate the pre-build &lt;strong>AWS EBS&lt;/strong> Dashboard,
+and select &lt;strong>EBS Volumes&lt;/strong>.&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="../../images/custom_service/ebs_dashboard.png" alt="EBS Dashboards" style="width: 50%;"/>&lt;br>
+Open the dashboard with the title &lt;strong>Total Ops/Reporting Interval&lt;/strong> by locating the relating tile, clicking on the three little dots on the upper right of the tile, and then &lt;strong>Open&lt;/strong>.
+&lt;img src="../../images/custom_service/open_dashboard.png" alt="Open Dashboard" style="width: 90%;"/>&lt;br>
+Click on &lt;strong>View SignalFlow&lt;/strong>.
+&lt;img src="../../images/custom_service/view_sf.png" alt="View Signal Flow" style="width: 90%;"/>&lt;br>
+You should see the following:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">A = data(&amp;#39;VolumeReadOps&amp;#39;, filter=filter(&amp;#39;namespace&amp;#39;, &amp;#39;AWS/EBS&amp;#39;) and filter(&amp;#39;stat&amp;#39;, &amp;#39;sum&amp;#39;), rollup=&amp;#39;rate&amp;#39;, extrapolation=&amp;#39;zero&amp;#39;).scale(60).sum().publish(label=&amp;#39;A&amp;#39;)
+B = data(&amp;#39;VolumeWriteOps&amp;#39;, filter=filter(&amp;#39;namespace&amp;#39;, &amp;#39;AWS/EBS&amp;#39;) and filter(&amp;#39;stat&amp;#39;, &amp;#39;sum&amp;#39;), rollup=&amp;#39;rate&amp;#39;, extrapolation=&amp;#39;zero&amp;#39;).scale(60).sum().publish(label=&amp;#39;B&amp;#39;)
+&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>Let&amp;rsquo;s change the SignalFlow to create our query in Splunk Enterprise :&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">data(&amp;#39;VolumeReadOps&amp;#39;, filter=filter(&amp;#39;namespace&amp;#39;, &amp;#39;AWS/EBS&amp;#39;) and filter(&amp;#39;stat&amp;#39;, &amp;#39;sum&amp;#39;), rollup=&amp;#39;rate&amp;#39;, extrapolation=&amp;#39;zero&amp;#39;).scale(60).sum().publish(label=&amp;#39;A&amp;#39;);
+data(&amp;#39;VolumeWriteOps&amp;#39;, filter=filter(&amp;#39;namespace&amp;#39;, &amp;#39;AWS/EBS&amp;#39;) and filter(&amp;#39;stat&amp;#39;, &amp;#39;sum&amp;#39;), rollup=&amp;#39;rate&amp;#39;, extrapolation=&amp;#39;zero&amp;#39;).scale(60).sum().publish(label=&amp;#39;B&amp;#39;)
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Now go to Splunk Enterprise and open the &lt;strong>Search &amp;amp; Reporting&lt;/strong> default app. Based on the SignalFlow statement, we can craft the following SPL Search Term:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">| sim flow query=&amp;#34;data(&amp;#39;VolumeReadOps&amp;#39;, filter=filter(&amp;#39;namespace&amp;#39;, &amp;#39;AWS/EBS&amp;#39;) and filter(&amp;#39;stat&amp;#39;, &amp;#39;sum&amp;#39;), rollup=&amp;#39;rate&amp;#39;, extrapolation=&amp;#39;zero&amp;#39;).scale(60).sum().publish(label=&amp;#39;A&amp;#39;);
+data(&amp;#39;VolumeWriteOps&amp;#39;, filter=filter(&amp;#39;namespace&amp;#39;, &amp;#39;AWS/EBS&amp;#39;) and filter(&amp;#39;stat&amp;#39;, &amp;#39;sum&amp;#39;), rollup=&amp;#39;rate&amp;#39;, extrapolation=&amp;#39;zero&amp;#39;).scale(60).sum().publish(label=&amp;#39;B&amp;#39;)&amp;#34;
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Execute this search.&lt;/p>
+&lt;p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;p class="alert-heading">Caution&lt;/p>
+&lt;p class="alert-body">
+Internal note: If I run the below search, my line chart is empty. Is this supposed to be like this?
+&lt;/p>
+&lt;/div>
+If you would like to see the results in a visualisation, you can append a &lt;em>timechart&lt;/em> command to the search term with a &amp;ldquo;|&amp;rdquo;. The complete search term would then look something like this:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">| sim flow query=&amp;#34;data(&amp;#39;VolumeReadOps&amp;#39;, filter=filter(&amp;#39;namespace&amp;#39;, &amp;#39;AWS/EBS&amp;#39;) and filter(&amp;#39;stat&amp;#39;, &amp;#39;sum&amp;#39;), rollup=&amp;#39;rate&amp;#39;, extrapolation=&amp;#39;zero&amp;#39;).scale(60).sum().publish(label=&amp;#39;A&amp;#39;);
+data(&amp;#39;VolumeWriteOps&amp;#39;, filter=filter(&amp;#39;namespace&amp;#39;, &amp;#39;AWS/EBS&amp;#39;) and filter(&amp;#39;stat&amp;#39;, &amp;#39;sum&amp;#39;), rollup=&amp;#39;rate&amp;#39;, extrapolation=&amp;#39;zero&amp;#39;).scale(60).sum().publish(label=&amp;#39;B&amp;#39;)&amp;#34;
+| timechart max(VolumeReadOps) max(VolumeWriteOps)
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="lets-create-our-ebs-service">Let&amp;rsquo;s create our EBS service&lt;/h3>
+&lt;p>In order to create our own custom create our EBS service, let&amp;rsquo;s navigate to the Splunk IT Service Intelligence Add-On. Click on &lt;strong>Configuration&lt;/strong> and select &lt;strong>Service&lt;/strong> from the dropdown menu.
+Next, click on the green &lt;strong>Create Service&lt;/strong> button and select the &lt;strong>Create Service&lt;/strong> option from the dropdown menu.&lt;/p>
+&lt;img src="../../images/custom_service/create_service_dd.png" alt="Create Service" style="width: 15%;"/>
+&lt;p>In the following input form, provide a meaningful title (we choose &lt;em>EBS Volumes&lt;/em> on the screenshot below), tick the &lt;em>Manually add service content&lt;/em> radio button, and click on the &lt;strong>Create&lt;/strong> button.&lt;/p>
+&lt;img src="../../images/custom_service/title.png" alt="Create Service" style="width: 40%;"/>
+&lt;p>In the following view, select the &lt;strong>KPIs&lt;/strong> tab, click the &lt;strong>New&lt;/strong> dropdown menu, and select &lt;strong>Generic KPI&lt;/strong>.&lt;/p>
+&lt;img src="../../images/custom_service/generic_kpi.png" alt="Creation of Generic KPI" style="width: 40%;"/>
+&lt;p>What follows now is a Step-by-Step walkthrough. Please click the &lt;strong>Next&lt;/strong> button which brings you to the &lt;em>Step 2 of 7: Source&lt;/em> screen.
+Paste the command we just created in the textbox with the lable &lt;em>Search&lt;/em>.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">| sim flow query=&amp;#34;data(&amp;#39;VolumeReadOps&amp;#39;, filter=filter(&amp;#39;namespace&amp;#39;, &amp;#39;AWS/EBS&amp;#39;) and filter(&amp;#39;stat&amp;#39;, &amp;#39;sum&amp;#39;), rollup=&amp;#39;rate&amp;#39;, extrapolation=&amp;#39;zero&amp;#39;).publish()&amp;#34;
+| rename _value as VolumeReadOps
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>In the field with the &lt;em>Threshold&lt;/em> label, enter &amp;ldquo;VolumeReadOps&amp;rdquo;.&lt;/p>
+&lt;img src="../../images/custom_service/step2.png" alt="Pasting search string" style="width: 60%;"/>
+&lt;p>Navigate to &lt;em>Step 7 of 7&lt;/em> by clicking on the &lt;em>Next&lt;/em> buttons. You can leave everything between the first and seventh step as default.
+On the &lt;em>Step 7 of 7&lt;/em> dialog, manually add a threshold by clicking &lt;strong>+ Add Threshhold&lt;/strong>. (if nothing is happening on the Disk it might show close to 0 as a number)&lt;/p>
+&lt;img src="../../images/custom_service/add_threshold.png" alt="Manually add Threshold" style="width: 61%;"/>
+&lt;p>Click on the &lt;strong>Finish&lt;/strong> button, and subsequently, when the dialog is closed, on the &lt;strong>Save&lt;/strong> button on the lower right.&lt;/p>
+&lt;img src="../../images/custom_service/save_enable.png" alt="Click the 'Save and Enable' button" style="width: 50%;"/>
+&lt;p>Let&amp;rsquo;s attach our standalone to the AWS service. To do that, click on the &lt;strong>Configurations&lt;/strong> dropdown menu and select the &lt;strong>Services&lt;/strong> option.
+Locate the &lt;em>AWS&lt;/em> service in the list of available services and open it by clicking on it. Click on the &lt;em>Service Dependencies&lt;/em> tab, and click on the
+&lt;strong>Add dependencies&lt;/strong> button.&lt;/p>
+&lt;p>Locate our custom &lt;em>EBS Volume&lt;/em> service by using the filter, select it, and select the &lt;em>ServiceHealthScore&lt;/em> KPI.&lt;/p>
+&lt;img src="../../images/custom_service/ebs.png" alt="Add dependencies" style="width: 50%;"/>
+&lt;p>Click on the &lt;strong>Done&lt;/strong> button. Verify that the service got added to the list of available serives and click the &lt;strong>Save&lt;/strong> button on the lower right.
+In the pop-up dialogue, click &lt;strong>Save and Enable&lt;/strong>.&lt;/p>
+&lt;p>go to Service open AWS serv
+go to Service Analyzer -&amp;gt; Default Analyzer
+review what you built&lt;/p>
+&lt;p>Finally, view the result of your work by clicking on the &lt;em>Service Analyzer&lt;/em> tab and choose the &lt;em>Default Analyzer&lt;/em> option. In the &lt;em>Service Analyzer&lt;/em> view, click the &lt;strong>Tree view&lt;/strong> button. You should see the Tree view with our newly created service:&lt;/p>
+&lt;img src="../../images/custom_service/tree_view.png" alt="How to navigate to the Tree View" style="width: 100%;"/>
+&lt;img src="../../images/custom_service/result.png" alt="Service Analzyer" style="width: 100%;"/></description></item><item><title>Itsi: APM Entity types</title><link>https://signalfx.github.io/observability-workshop/v4.19/itsi/docs/entity-types/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://signalfx.github.io/observability-workshop/v4.19/itsi/docs/entity-types/</guid><description>
+&lt;h3 id="splunk-apm-entity-type">Splunk APM Entity type&lt;/h3>
+&lt;p>The Splunk APM Entity Type comes with the Splunk observability content pack. In this section we will enable the APM entity and add a vital metric and a Navigation Suggestion to the APM Entity Type.&lt;/p>
+&lt;h2 id="get-to-know-entity-types">Get to know Entity types&lt;/h2>
+&lt;p>Splunk IT Service Intelligence (ITSI) visualizes entity data using entity types, analysis data filters, and navigations. ITSI has default configurations for supported integrations. Analysis data filters and navigations are components of entity types. You can create custom entity types, analysis data filters, and navigations.&lt;/p>
+&lt;p>*Watch this video introducing the custom entity type concept.&lt;/p>
+&lt;iframe class="vidyard_iframe" src="//play.vidyard.com/u7PHjSYgeB9Gh8JotCeL6K.html?" width="640" height="360" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen>&lt;/iframe>
+&lt;h3 id="enable-modular-input-for-apm-error-rate-and-apm-thruput">Enable Modular Input for APM error rate and APM thruput&lt;/h3>
+&lt;h3 id="enable-the-splunk-apm-services">Enable the Splunk APM Services&lt;/h3>
+&lt;p>Enable APM Service (4 service to enable)&lt;/p>
+&lt;ol>
+&lt;li>Application Duration&lt;/li>
+&lt;li>Application Error Rate&lt;/li>
+&lt;li>Application Performance Monitoring&lt;/li>
+&lt;li>Application Rate (Throughput)&lt;/li>
+&lt;/ol>
+&lt;h3 id="enable-cloud-entity-search-for-apm">Enable Cloud Entity Search for APM&lt;/h3>
+&lt;p>Go to Settings -&amp;gt; Searches, Reports, and Alerts&lt;/p>
+&lt;p>Select App Splunk Observability Cloud | Owner All&lt;br>
+Find the line ITSI Import Objects - Splunk-APM Application Entity Search -&amp;gt; (Actions) Edit -&amp;gt; Enable&lt;br>
+NOTE those searches are called Cloud Entity Searches&lt;br>
+Open ITSI -&amp;gt; Infrastructure Overview&lt;br>
+Verify that you have your entities are showing up
+Note: there isn&amp;rsquo;t any out of the box Key vital metrics so the visualisation will look like this&lt;/p>
+&lt;p>&lt;img src="../..//images/custom_service/SplunkAPM.png" alt="Splunk APM">&lt;/p>
+&lt;h3 id="task-45-add-a-dashboard-navigation">Task 4.5: Add a dashboard Navigation&lt;/h3>
+&lt;ul>
+&lt;li>Configuration -&amp;gt; Entity management -&amp;gt; Entity Types&lt;/li>
+&lt;li>Find SplunkAPM -&amp;gt; Edit&lt;/li>
+&lt;li>Open Navigations type&lt;/li>
+&lt;li>Navigation Name: Traces View&lt;/li>
+&lt;li>URL : &lt;a href="https://app.$%7bsf_realm%7d.signalfx.com/#/apm/traces" target="_blank">https://app.${sf_realm}.signalfx.com/#/apm/traces&lt;/a>
+&lt;/li>
+&lt;li>Save navigation!!&lt;/li>
+&lt;li>Save Entity type&lt;/li>
+&lt;/ul>
+&lt;p>In Service Analyzer open a Splunk APM entity and test your new navigation suggestion&lt;/p>
+&lt;p>&lt;img src="../../images/custom_service/navigation_suggestion.png" alt="Navigation Suggestion">&lt;/p>
+&lt;h3 id="add-key-vital-metrics-for-splunk-apm">Add Key Vital metrics for Splunk APM&lt;/h3>
+&lt;p>Configuration -&amp;gt; Entity management -&amp;gt; Entity Types
+Find SplunkAPM -&amp;gt; Edit
+Open Vital Metrics
+Enter a name
+Add a metric
+Enter the search below and click run search&lt;/p>
+&lt;pre tabindex="0">&lt;code class="language-splunk" data-lang="splunk">| mstats avg(*) span=5m WHERE &amp;quot;index&amp;quot;=&amp;quot;sim_metrics&amp;quot; AND sf_streamLabel=&amp;quot;thruput_avg_rate&amp;quot; GROUPBY sf_service sf_environment | rename avg(service.request.count) as &amp;quot;val&amp;quot;
+&lt;/code>&lt;/pre>&lt;p>Entity matching field sf_service&lt;br>
+(note: verify that you are matching entities 10 entities matched in last hour)&lt;br>
+Unit of Display Percent (%)&lt;br>
+Choose a Key Metric Select Application Rate Thruput&lt;br>
+Save Application Rate&lt;br>
+Save Entity Type&lt;/p>
+&lt;p>Your UI should look like this should look like this:&lt;/p>
+&lt;p>&lt;img src="../../images/custom_service/vital_metric.png" alt="Vital Metric">&lt;/p></description></item></channel></rss>
