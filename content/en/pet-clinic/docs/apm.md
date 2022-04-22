@@ -7,7 +7,7 @@ weight: 3
 
 {{% alert title="Prerequisites" %}}
 
-Splunk run workshop where instance is provided  **OR** 
+Splunk run workshop where instance is provided  **OR**
 Self led workshop on own system  / [multipass instance.](https://github.com/signalfx/observability-workshop/tree/master/multipass)  
 
 For own system you will need the following on your machine:
