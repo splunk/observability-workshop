@@ -6,15 +6,13 @@ weight: 3
 ## Spring PetClinic Application
 
 {{% alert title="Prerequisites" %}}
-
 Splunk run workshop where instance is provided  **OR**
-Self led workshop on own system  / [multipass instance.](https://github.com/signalfx/observability-workshop/tree/master/multipass)  
+Self led workshop on own system  / [multipass instance](https://github.com/signalfx/observability-workshop/tree/master/multipass)
 
 For own system you will need the following on your machine:
 
 1. Java installed
 2. Port 8080 open inbound/outbound
-
 {{% /alert %}}
 
 First thing we need to setup APM is... well, an application. For this exercise, we will use the Spring Pet Clinic application. This is a very popular sample java application built with Spring framework (Springboot).
