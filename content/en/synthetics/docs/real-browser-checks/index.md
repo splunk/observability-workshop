@@ -41,7 +41,7 @@ Enter [http://splunk.o11ystore.com](http://splunk.o11ystore.com) as your base UR
 
 ![placeholder](../../images/image11.png)
 
-Click Start Recording{: .label-button .sfx-ui-button-grey}, a new window should open up with [splunk.o11ystore.com](http://splunk.o11ystore.com). Click **Vintage Camera Lens**, click **Add To Cart** and then click **Place Order**.
+ Click {{% labelbutton color="ui-button-grey" %}}Start Recording{{% /labelbutton %}}, a new window should open up with [splunk.o11ystore.com](http://splunk.o11ystore.com). Click **Vintage Camera Lens**, click **Add To Cart** and then click **Place Order**.
 
 Close the window and then stop the recording by navigating back to Selenium IDE. Finally name the test: **[YOUR_INITIALS] - Checkout Flow (Desktop)** e.g. RWC - Checkout Flow (Desktop).
 
