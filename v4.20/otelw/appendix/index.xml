@@ -1,0 +1,63 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Observability Cloud Workshops – Appendix</title><link>https://signalfx.github.io/observability-workshop/v4.20/otelw/appendix/</link><description>Recent content in Appendix on Splunk Observability Cloud Workshops</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://signalfx.github.io/observability-workshop/v4.20/otelw/appendix/index.xml" rel="self" type="application/rss+xml"/><item><title>Otelw: Helpful Tips</title><link>https://signalfx.github.io/observability-workshop/v4.20/otelw/appendix/appendix/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://signalfx.github.io/observability-workshop/v4.20/otelw/appendix/appendix/</guid><description>
+&lt;h2 id="ubuntu-virtual-machine">Ubuntu Virtual Machine&lt;/h2>
+&lt;p>&lt;a href="http://multipass.run" target="_blank">Multipass&lt;/a>
+deploys and runs Ubuntu virtual machines easily on Mac and Windows.&lt;/p>
+&lt;p>Make sure multipass is the CURRENT version:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">brew upgrade multipass
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Workshop examples have been tested on this configuration:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">multipass launch -n primary -d 16G -m 6G
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Make sure to always run &lt;code>sudo apt-get -y update&lt;/code> before executing any step in the workshop.&lt;/p>
+&lt;h2 id="k8s-cluster-setup-hints">K8s Cluster Setup Hints&lt;/h2>
+&lt;p>K3s is a lightweight Kubernetes deployment from Rancher: &lt;a href="https://k3s.io/" target="_blank">https://k3s.io/&lt;/a>
+&lt;/p>
+&lt;p>To K3s install on Linux:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">curl -sfL https://get.k3s.io &lt;span style="color:#000;font-weight:bold">|&lt;/span> sh -
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Make a &lt;code>.kube&lt;/code> directory in your home directory and create the &lt;code>config&lt;/code> file e.g.:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">mkdir /home/ubuntu/.kube &lt;span style="color:#ce5c00;font-weight:bold">&amp;amp;&amp;amp;&lt;/span> kubectl config view --raw &amp;gt; /home/ubuntu/.kube/config
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Set the correct permissions and owndership on the newly created &lt;code>config&lt;/code> file e.g.:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">chmod &lt;span style="color:#0000cf;font-weight:bold">400&lt;/span> /home/ubuntu/.kube/config
+chown -R ubuntu:ubuntu /home/ubuntu
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>The stock configuration of K3s and this workshop&amp;rsquo;s K8s examples have been tested on the following configurations:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="http://k3s.io" target="_blank">K3s&lt;/a>
+cluster (default settings) on Ubuntu VM:
+&lt;ol>
+&lt;li>Macbook Pro 32GB RAM, Windows 10 Laptop 12GB RAM: &lt;a href="http://multipass.run" target="_blank">Multipass&lt;/a>
+started with &lt;code>multipass launch -n primary -d 8G -m 4G&lt;/code>&lt;/li>
+&lt;li>AWS EC2&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;p>The Kubernetes lab has also been tested on:&lt;/p>
+&lt;ul>
+&lt;li>Azure: Kubernetes 1.17.9 Azure Kubernetes Service&lt;/li>
+&lt;li>EKS / GKE: Not tested yet but 99.9% chance will have no issues&lt;/li>
+&lt;li>Workshop will NOT work on: Macbook Pro Docker Desktop Kubernetes&lt;/li>
+&lt;/ul>
+&lt;p>To tear down a Multipass VM:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">multipass delete primary --purge
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="using-tmux">Using tmux&lt;/h2>
+&lt;p>&lt;code>tmux&lt;/code> is recommended to split your terminal into several panes so that you can run an application in each pane without having to containerize applications- and you can keep a separate pane open for checking status of spans, the host, etc.&lt;/p>
+&lt;p>&lt;strong>Important: each pane runs as its own bash shell so environment variables must be set in each pane. The workshop includes setup shell scripts to make it easy to do this.&lt;/strong>&lt;/p>
+&lt;p>To install tmux:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo apt-get install tmux
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Tmux works by using ++ctrl+b++ as a command key followed by:
+&lt;code>&amp;quot;&lt;/code> make a new horizontal pane
+&lt;code>%&lt;/code> make a new vertical pane
+Arrow keys: move between panes.&lt;/p></description></item><item><title>Otelw: ECS-CLI Commands</title><link>https://signalfx.github.io/observability-workshop/v4.20/otelw/appendix/ecs-cli-commands/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://signalfx.github.io/observability-workshop/v4.20/otelw/appendix/ecs-cli-commands/</guid><description>
+&lt;h4 id="create">Create&lt;/h4>
+&lt;p>&lt;code>aws ecs create-cluster --cluster-name YOURCLUSTERNAMEHERE&lt;/code>&lt;br>
+&lt;code>aws ecs register-task-definition --cli-input-json file://YOURTASKDEFINITIONHERE.json&lt;/code>&lt;/p>
+&lt;p>&lt;code>aws ecs create-service --cluster test-cluster --service-name signalfx-demo --task-definition signalfx-demo:1 \&lt;/code>&lt;br>
+&lt;code>--desired-count 1 --launch-type &amp;quot;FARGATE&amp;quot; \&lt;/code>&lt;br>
+&lt;code>--network-configuration &amp;quot;awsvpcConfiguration={subnets=[subnet-YOURSUBNETIDHERE],securityGroups=[sg-YOURSECURITYGROUPIDHERE],assignPublicIp=ENABLED}&amp;quot;&lt;/code>&lt;/p>
+&lt;h4 id="monitor">Monitor&lt;/h4>
+&lt;p>&lt;code>aws ecs list-task-definitions&lt;/code>&lt;br>
+&lt;code>aws ecs list-clusters&lt;/code>&lt;br>
+&lt;code>aws ecs list-services --cluster YOURCLUSTERNAMEHERE&lt;/code>&lt;br>
+&lt;code>aws ecs describe-services --cluster YOURCLUSTERNAMEHERE --services YOURSERVICENAMEHERE&lt;/code>&lt;/p>
+&lt;h4 id="cleanup">Cleanup&lt;/h4>
+&lt;p>&lt;code>aws ecs deregister-task-definition --task-definition FAMILYNAMEHERE:VERSIONHERE&lt;/code>&lt;br>
+&lt;code>aws ecs delete-service --cluster YOURCLUSTERNAMEHERE --service YOURSERVICENAMEHERE --force&lt;/code>&lt;br>
+&lt;code>aws ecs delete-cluster --cluster YOURCLUSTERNAMEHERE&lt;/code>&lt;br>
+&lt;code>ecs-cli down --cluster YOURCLUSTERNAMEHERE --region YOURREGIONHERE&lt;/code>&lt;/p></description></item></channel></rss>
