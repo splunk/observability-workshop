@@ -38,7 +38,7 @@ resource "aws_instance" "no_rum" {
 
   provisioner "file" {
     source      = "${path.module}/shellinabox"
-    destination = "~/.shellinabox"
+    destination = "/tmp/shellinabox"
   }
 
   provisioner "remote-exec" {
@@ -69,10 +69,11 @@ resource "aws_instance" "no_rum" {
       "export WSARCHIVE=$([ ${var.wsversion} = \"master\" ] && echo \"master\" || echo v${var.wsversion})",
       "curl -s -OL https://github.com/signalfx/observability-workshop/archive/$WSARCHIVE.zip",
       "unzip -qq $WSARCHIVE.zip -d /home/ubuntu/",
-      "mv /home/ubuntu/observability-workshop-${var.wsversion} /home/ubuntu/workshop",
+      "mkdir /home/ubuntu/workshop",
+      "mv /home/ubuntu/observability-workshop-${var.wsversion}/workshop/* /home/ubuntu/workshop",
 
       # fix shellinabox port and ssl then restart
-      "mv /tmp/shellinabox /etc/default/shellinabox",
+      "sudo -f mv /tmp/shellinabox /etc/default/shellinabox",
       "sudo chown root:root /etc/default/shellinabox",
       "sudo service shellinabox restart",
 
@@ -80,11 +81,6 @@ resource "aws_instance" "no_rum" {
       "mkdir /home/ubuntu/.kube && sudo kubectl config view --raw > /home/ubuntu/.kube/config",
       "chmod 400 /home/ubuntu/.kube/config",
       "chown -R ubuntu:ubuntu /home/ubuntu",
-
-      # fix shellinabox port and ssl then restart
-      "mv /tmp/shellinabox /etc/default/shellinabox",
-      "sudo chown root:root /etc/default/shellinabox",
-      "sudo service shellinabox restart",
 
       # Deploy Agent using Helm
       "helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update",

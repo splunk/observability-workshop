@@ -33,7 +33,7 @@ resource "aws_instance" "rum_worker" {
   
   provisioner "file" {
     source      = "${path.module}/shellinabox"
-    destination = "~/.shellinabox"
+    destination = "/tmp/shellinabox"
   }
 
   provisioner "file" {
@@ -44,6 +44,11 @@ resource "aws_instance" "rum_worker" {
   provisioner "file" {
     source      = "${path.module}/go.sh"
     destination = "/tmp/go.sh"
+  }
+
+    provisioner "file" {
+    source      = "${path.module}/touchwebsite.js"
+    destination = "/tmp/touchwebsite.js"
   }
 
   provisioner "remote-exec" {
@@ -62,10 +67,11 @@ resource "aws_instance" "rum_worker" {
       "export WSARCHIVE=$([ ${var.wsversion} = \"master\" ] && echo \"master\" || echo v${var.wsversion})",
       "curl -s -OL https://github.com/signalfx/observability-workshop/archive/$WSARCHIVE.zip",
       "unzip -qq $WSARCHIVE.zip -d /home/ubuntu/",
-      "mv /home/ubuntu/observability-workshop-${var.wsversion} /home/ubuntu/workshop",
+      "mkdir /home/ubuntu/workshop",
+      "mv /home/ubuntu/observability-workshop-${var.wsversion}/workshop/* /home/ubuntu/workshop",
 
       # fix shellinabox port and ssl then restart
-      "mv /tmp/shellinabox /etc/default/shellinabox",
+      "sudo -f mv /tmp/shellinabox /etc/default/shellinabox",
       "sudo chown root:root /etc/default/shellinabox",
       "sudo service shellinabox restart",
 
@@ -76,6 +82,7 @@ resource "aws_instance" "rum_worker" {
       "npm install -s puppeteer",
 
       ## Update touchwesite.js and go.sh
+      "sudo mv /tmp/touchwebsite.js /home/ubuntu/workshop/apm/microservices-demo/k8s/touchwebsite.js",
       "sed -i -e 's/localhost/${aws_instance.rum_master.public_ip}/g' /home/ubuntu/workshop/apm/microservices-demo/k8s/touchwebsite.js",
       "sudo mv /tmp/go.sh /home/ubuntu/workshop/apm/microservices-demo/k8s/go.sh",
       "sudo chmod +x /home/ubuntu/workshop/apm/microservices-demo/k8s/go.sh",
