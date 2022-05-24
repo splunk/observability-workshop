@@ -11,18 +11,17 @@ package_update: true
 #  sources:
 #    podman.list:
 #      source: |
-#        deb [signed-by="/usr/share/keyrings/podman.asc"] http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_20.04/ /
+#        deb [signed-by="/usr/share/keyrings/podman.asc"] https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_20.04/
 
 packages:
-  - zip
-  - git
+  - unzip
   - shellinabox
   - lynx
   - w3m
-  - gnupg2
+#  - gnupg2
   - docker-compose
-  - podman
- # - python3.9-venv
+#  - podman
+  - python3.9-venv
   - jq
   - maven
   - openjdk-11-jdk
