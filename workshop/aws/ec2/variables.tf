@@ -30,5 +30,5 @@ variable "aws_instance_type" {
 }
 
 variable "instance_disk_aws" {
-  default = "16"
+  default = "40"
 }
