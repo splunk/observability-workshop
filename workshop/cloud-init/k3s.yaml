@@ -6,14 +6,15 @@ chpasswd:
 
 package_update: true
 
-apt:
-  sources:
-    podman.list:
-      source: |
-        deb [signed-by="/usr/share/keyrings/podman.asc"] http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_20.04/ /
+# lines below commented out as podman should be supported by a  groovy 20.10 ubuntu build
+#apt:
+#  sources:
+#    podman.list:
+#      source: |
+#        deb [signed-by="/usr/share/keyrings/podman.asc"] http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_20.04/ /
 
 packages:
-  - unzip
+  - zip
   - git
   - shellinabox
   - lynx
@@ -21,7 +22,7 @@ packages:
   - gnupg2
   - docker-compose
   - podman
-  - python3.9-venv
+ # - python3.9-venv
   - jq
   - maven
   - openjdk-11-jdk
