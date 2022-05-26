@@ -25,6 +25,7 @@ packages:
   - jq
   - maven
   - openjdk-11-jdk
+  - python3-pip
 
 groups:
   - docker
