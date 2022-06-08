@@ -1,0 +1,141 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Observability Cloud Workshops – NGNIX</title><link>https://signalfx.github.io/observability-workshop/v4.21/tags/ngnix/</link><description>Recent content in NGNIX on Splunk Observability Cloud Workshops</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://signalfx.github.io/observability-workshop/v4.21/tags/ngnix/index.xml" rel="self" type="application/rss+xml"/><item><title>Imt: Deploying NGINX in K3s</title><link>https://signalfx.github.io/observability-workshop/v4.21/imt/docs/gdi/nginx/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://signalfx.github.io/observability-workshop/v4.21/imt/docs/gdi/nginx/</guid><description>
+&lt;ul>
+&lt;li>Deploy a NGINX ReplicaSet into your K3s cluster and confirm the discovery of your NGINX deployment.&lt;/li>
+&lt;li>Run a load test to create metrics and confirm them streaming into Splunk Observability Cloud!&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="1-start-your-nginx">1. Start your NGINX&lt;/h2>
+&lt;p>Verify the number of pods running in the Splunk UI by selecting the &lt;strong>WORKLOADS&lt;/strong> tab. This should give you an overview of the workloads on your cluster.&lt;/p>
+&lt;p>&lt;img src="../../../images/k8s-workloads.png" alt="Workload Agent">&lt;/p>
+&lt;p>Note the single agent container running per node among the default Kubernetes pods. This single container will monitor all the pods and services being deployed on this node!&lt;/p>
+&lt;p>Now switch back to the default cluster node view by selecting the &lt;strong>MAP&lt;/strong> tab and select your cluster again.&lt;/p>
+&lt;p>In the Multipass or AWS/EC2 shell session and change into the &lt;code>nginx&lt;/code> directory:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Change-Directory"
+id="tabs-0-0-tab" data-toggle="tab" href="#tabs-0-0" role="tab" onclick="handleClick(&amp;#34;Change-Directory&amp;#34;);"
+aria-controls="tabs-0-0" aria-selected="true">
+Change Directory
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-0-content">&lt;div class="tab-pane fade show active"
+id="tabs-0-0" role="tabpanel" aria-labelled-by="tabs-0-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#204a87">cd&lt;/span> ~/workshop/k3s/nginx&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;hr>
+&lt;h2 id="2-create-nginx-deployment">2. Create NGINX deployment&lt;/h2>
+&lt;p>Create the NGINX &lt;code>configmap&lt;/code>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup> using the &lt;code>nginx.conf&lt;/code> file:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-1" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Kubectl-Configmap-Create"
+id="tabs-1-0-tab" data-toggle="tab" href="#tabs-1-0" role="tab" onclick="handleClick(&amp;#34;Kubectl-Configmap-Create&amp;#34;);"
+aria-controls="tabs-1-0" aria-selected="true">
+Kubectl Configmap Create
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-Kubectl-Create-Configmap-Output"
+id="tabs-1-1-tab" data-toggle="tab" href="#tabs-1-1" role="tab" onclick="handleClick(&amp;#34;Kubectl-Create-Configmap-Output&amp;#34;);"
+aria-controls="tabs-1-1" aria-selected="false">
+Kubectl Create Configmap Output
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-1-content">&lt;div class="tab-pane fade show active"
+id="tabs-1-0" role="tabpanel" aria-labelled-by="tabs-1-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl create configmap nginxconfig --from-file&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>nginx.conf&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-1-1" role="tabpanel" aria-labelled-by="tabs-1-1-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">configmap/nginxconfig created&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>Then create the deployment:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-2" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Kubectl-Create-Deployment"
+id="tabs-2-0-tab" data-toggle="tab" href="#tabs-2-0" role="tab" onclick="handleClick(&amp;#34;Kubectl-Create-Deployment&amp;#34;);"
+aria-controls="tabs-2-0" aria-selected="true">
+Kubectl Create Deployment
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-Kubectl-Create-Deployment-Output"
+id="tabs-2-1-tab" data-toggle="tab" href="#tabs-2-1" role="tab" onclick="handleClick(&amp;#34;Kubectl-Create-Deployment-Output&amp;#34;);"
+aria-controls="tabs-2-1" aria-selected="false">
+Kubectl Create Deployment Output
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-2-content">&lt;div class="tab-pane fade show active"
+id="tabs-2-0" role="tabpanel" aria-labelled-by="tabs-2-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl create -f nginx-deployment.yaml&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-2-1" role="tabpanel" aria-labelled-by="tabs-2-1-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">deployment.apps/nginx created
+service/nginx created&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>Next we will deploy Locust&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup> which is an open source tool used for creating a load test against NGINX:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-3" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Kubectl-Create-Deployment"
+id="tabs-3-0-tab" data-toggle="tab" href="#tabs-3-0" role="tab" onclick="handleClick(&amp;#34;Kubectl-Create-Deployment&amp;#34;);"
+aria-controls="tabs-3-0" aria-selected="true">
+Kubectl Create Deployment
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-Kubectl-Create-Deployment-Output"
+id="tabs-3-1-tab" data-toggle="tab" href="#tabs-3-1" role="tab" onclick="handleClick(&amp;#34;Kubectl-Create-Deployment-Output&amp;#34;);"
+aria-controls="tabs-3-1" aria-selected="false">
+Kubectl Create Deployment Output
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-3-content">&lt;div class="tab-pane fade show active"
+id="tabs-3-0" role="tabpanel" aria-labelled-by="tabs-3-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl create -f locust-deployment.yaml&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-3-1" role="tabpanel" aria-labelled-by="tabs-3-1-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">deployment.apps/nginx-loadgenerator created
+service/nginx-loadgenerator created&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>Validate the deployment has been successful and that the Locust and NGINX pods are running.&lt;/p>
+&lt;p>If you have the Splunk UI open you should see new Pods being started and containers being deployed.&lt;/p>
+&lt;p>It should only take around 20 seconds for the pods to transition into a Running state. In the Splunk UI you will have a cluster that looks like below:&lt;/p>
+&lt;p>&lt;img src="../../../images/cluster.png" alt="back to Cluster">&lt;/p>
+&lt;p>If you select the &lt;strong>WORKLOADS&lt;/strong> tab again you will now see that there is a new ReplicaSet and a deployment added for NGINX:&lt;/p>
+&lt;p>&lt;img src="../../../images/k8s-workloads-nginx.png" alt="NGINX loaded">&lt;/p>
+&lt;hr>
+&lt;p>Let&amp;rsquo;s validate this in your shell as well:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-4" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Kubectl-Get-Pods"
+id="tabs-4-0-tab" data-toggle="tab" href="#tabs-4-0" role="tab" onclick="handleClick(&amp;#34;Kubectl-Get-Pods&amp;#34;);"
+aria-controls="tabs-4-0" aria-selected="true">
+Kubectl Get Pods
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-Kubectl-Get-Pods-Output"
+id="tabs-4-1-tab" data-toggle="tab" href="#tabs-4-1" role="tab" onclick="handleClick(&amp;#34;Kubectl-Get-Pods-Output&amp;#34;);"
+aria-controls="tabs-4-1" aria-selected="false">
+Kubectl Get Pods Output
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-4-content">&lt;div class="tab-pane fade show active"
+id="tabs-4-0" role="tabpanel" aria-labelled-by="tabs-4-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl get pods&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-4-1" role="tabpanel" aria-labelled-by="tabs-4-1-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">NAME READY STATUS RESTARTS AGE
+splunk-otel-collector-k8s-cluster-receiver-77784c659c-ttmpk 1/1 Running 0 9m19s
+splunk-otel-collector-agent-249rd 1/1 Running 0 9m19s
+svclb-nginx-vtnzg 1/1 Running 0 5m57s
+nginx-7b95fb6b6b-7sb9x 1/1 Running 0 5m57s
+nginx-7b95fb6b6b-lnzsq 1/1 Running 0 5m57s
+nginx-7b95fb6b6b-hlx27 1/1 Running 0 5m57s
+nginx-7b95fb6b6b-zwns9 1/1 Running 0 5m57s
+svclb-nginx-loadgenerator-nscx4 1/1 Running 0 2m20s
+nginx-loadgenerator-755c8f7ff6-x957q 1/1 Running 0 2m20s&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;hr>
+&lt;h2 id="3-run-locust-load-test">3. Run Locust load test&lt;/h2>
+&lt;p>Locust, an open source load generator, is available on port 8080 of the EC2 instance&amp;rsquo;s IP address. Open a new tab in your web browser and go to &lt;code>http://{==EC2-IP==}:8080/&lt;/code>, you will then be able to see the Locust running.&lt;/p>
+&lt;p>&lt;img src="../../../images/nginx-locust.png" alt="Locust">&lt;/p>
+&lt;p>Set the &lt;strong>Spawn rate&lt;/strong> to be 2 and click &lt;strong>Start Swarming&lt;/strong>.&lt;/p>
+&lt;p>&lt;img src="../../../images/nginx-locust-spawn-rate.png" alt="Locust Spawn Rate">&lt;/p>
+&lt;p>This will start a gentle continuous load on the application.&lt;/p>
+&lt;p>&lt;img src="../../../images/nginx-locust-statistics.png" alt="Locust Statistics">&lt;/p>
+&lt;p>As you can see from the above screenshot, most of the calls will report a fail, this is expected, as we have not yet deployed the application behind it, however NGINX is reporting on your attempts and you should be able to see those metrics.&lt;/p>
+&lt;p>Validate you are seeing those metrics in the UI by going to hamburger icon, top let and select &lt;strong>Dashboards → All Dashboards → NGINX → NGINX Servers&lt;/strong>. Using the &lt;strong>Overrides&lt;/strong> filter on &lt;code>k8s.cluster.name:&lt;/code>, find the name of your cluster as returned by &lt;code>echo $(hostname)-k3s-cluster&lt;/code> in the terminal.&lt;/p>
+&lt;p>&lt;img src="../../../images/nginx-dashboard.png" alt="NGINX Dashboard">&lt;/p>
+&lt;section class="footnotes" role="doc-endnotes">
+&lt;hr>
+&lt;ol>
+&lt;li id="fn:1" role="doc-endnote">
+&lt;p>A ConfigMap is an API object used to store non-confidential data in key-value pairs. Pods can consume ConfigMaps as environment variables, command-line arguments, or as configuration files in a volume. A ConfigMap allows you to decouple environment-specific configuration from your container images, so that your applications are easily portable.&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:2" role="doc-endnote">
+&lt;p>&lt;a href="https://locust.io/" target="_blank">What is Locust?&lt;/a>
+&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/section></description></item></channel></rss>

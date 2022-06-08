@@ -1,0 +1,188 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Observability Cloud Workshops – k3s</title><link>https://signalfx.github.io/observability-workshop/v4.21/ja/tags/k3s/</link><description>Recent content in k3s on Splunk Observability Cloud Workshops</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://signalfx.github.io/observability-workshop/v4.21/ja/tags/k3s/index.xml" rel="self" type="application/rss+xml"/><item><title>Imt: Kubernetes環境にOpenTelemetry Collectorをデプロイする</title><link>https://signalfx.github.io/observability-workshop/v4.21/ja/imt/docs/gdi/k3s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://signalfx.github.io/observability-workshop/v4.21/ja/imt/docs/gdi/k3s/</guid><description>
+&lt;ul>
+&lt;li>Splunk Helm chartを使用して、K3s に OpenTelemetry Collector をインストールします&lt;/li>
+&lt;li>Kubernetes Navigatorでクラスタを探索します&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="1-access-tokenの取得">1. Access Tokenの取得&lt;/h2>
+&lt;p>Kubernetes が起動したら、Splunk の UI から Access Token&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup> を取得する必要があります。Access Token は、左下にある &lt;strong>&amp;raquo;&lt;/strong> を開き、 &lt;strong>Settings → Access Tokens&lt;/strong> を選択すると表示されます。&lt;/p>
+&lt;p>主催者が指示したワークショップトークン（例： &lt;strong>O11y-Workshop-ACCESS&lt;/strong> 等）を開き、 &lt;strong>Show Token&lt;/strong> をクリックしてトークンを公開します。
+&lt;strong class="label-button ui-button-grey" role="label-button">
+Copy
+&lt;/strong>
+&amp;nbsp; ボタンをクリックし、クリップボードにコピーしてください。 &lt;strong>Default&lt;/strong> のトークンは使用しないでください。&lt;/p>
+&lt;p>&lt;img src="../../../images/access-token.png" alt="Access Token">&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+&lt;p class="alert-heading">独自のトークを新たに作成しないようにしてください&lt;/p>
+&lt;div class="alert-body">
+ワークショップ環境の削除の際に、すこし手間が必要になってしまいます。
+もし作成する場合は、スコープのチェックで &lt;strong>INGEST&lt;/strong> のみが有効になっていることを確認してください!!
+&lt;/div>
+&lt;/div>
+&lt;p>また、Splunk アカウントの Realm&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup> の名前を取得する必要があります。 サイドメニューの最上部の名前をクリックし、&lt;strong>Account Settings&lt;/strong> を選択します。Realm はページの中央にある Organizations セクションにあります。 この例では「us0」となっています。&lt;/p>
+&lt;p>&lt;img src="../../../images/account-settings.png" alt="Account Settings">&lt;/p>
+&lt;h2 id="2-helmによるインストール">2. Helmによるインストール&lt;/h2>
+&lt;p>環境変数 &lt;code>ACCESS_TOKEN&lt;/code> と &lt;code>REALM&lt;/code> を作成して、進行中の Helm のインストールコマンドで使用します。例えば、Realm が &lt;code>us1&lt;/code> の場合は、&lt;code>export REALM=us1&lt;/code> と入力し、&lt;code>eu0&lt;/code> の場合は、&lt;code>export REALM=eu0&lt;/code> と入力します。&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-2" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Export-Variables"
+id="tabs-2-0-tab" data-toggle="tab" href="#tabs-2-0" role="tab" onclick="handleClick(&amp;#34;Export-Variables&amp;#34;);"
+aria-controls="tabs-2-0" aria-selected="true">
+Export Variables
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-2-content">&lt;div class="tab-pane fade show active"
+id="tabs-2-0" role="tabpanel" aria-labelled-by="tabs-2-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">ACCESS_TOKEN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;replace_with_O11y-Workshop-ACCESS_token&amp;gt;
+&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">REALM&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;replace_with_splunk_realm&amp;gt;&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>Splunk Helm チャートを使って OpenTelemetry Collector をインストールします。まず、Splunk Helm chart のリポジトリを Helm に追加してアップデートします。&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-3" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Helm-Repo-Add"
+id="tabs-3-0-tab" data-toggle="tab" href="#tabs-3-0" role="tab" onclick="handleClick(&amp;#34;Helm-Repo-Add&amp;#34;);"
+aria-controls="tabs-3-0" aria-selected="true">
+Helm Repo Add
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-Helm-Repo-Add-Output"
+id="tabs-3-1-tab" data-toggle="tab" href="#tabs-3-1" role="tab" onclick="handleClick(&amp;#34;Helm-Repo-Add-Output&amp;#34;);"
+aria-controls="tabs-3-1" aria-selected="false">
+Helm Repo Add Output
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-3-content">&lt;div class="tab-pane fade show active"
+id="tabs-3-0" role="tabpanel" aria-labelled-by="tabs-3-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart &lt;span style="color:#ce5c00;font-weight:bold">&amp;amp;&amp;amp;&lt;/span> helm repo update&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-3-1" role="tabpanel" aria-labelled-by="tabs-3-1-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">Using ACCESS_TOKEN={REDACTED}
+Using REALM=eu0
+&amp;#34;splunk-otel-collector-chart&amp;#34; has been added to your repositories
+Using ACCESS_TOKEN={REDACTED}
+Using REALM=eu0
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the &amp;#34;splunk-otel-collector-chart&amp;#34; chart repository
+Update Complete. ⎈Happy Helming!⎈&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>以下のコマンドでOpenTelemetry Collector Helmチャートをインストールします。これは &lt;strong>変更しないでください&lt;/strong>。&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-4" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Helm-Install"
+id="tabs-4-0-tab" data-toggle="tab" href="#tabs-4-0" role="tab" onclick="handleClick(&amp;#34;Helm-Install&amp;#34;);"
+aria-controls="tabs-4-0" aria-selected="true">
+Helm Install
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-Helm-Install-Output"
+id="tabs-4-1-tab" data-toggle="tab" href="#tabs-4-1" role="tab" onclick="handleClick(&amp;#34;Helm-Install-Output&amp;#34;);"
+aria-controls="tabs-4-1" aria-selected="false">
+Helm Install Output
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-4-content">&lt;div class="tab-pane fade show active"
+id="tabs-4-0" role="tabpanel" aria-labelled-by="tabs-4-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash"> helm install splunk-otel-collector &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --set&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;splunkObservability.realm=&lt;/span>&lt;span style="color:#000">$REALM&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --set&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;splunkObservability.accessToken=&lt;/span>&lt;span style="color:#000">$ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --set&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;clusterName=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>hostname&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>&lt;span style="color:#4e9a06">-k3s-cluster&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --set&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;splunkObservability.logsEnabled=true&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --set&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;environment=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>hostname&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>&lt;span style="color:#4e9a06">-apm-env&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> splunk-otel-collector-chart/splunk-otel-collector &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> -f ~/workshop/k3s/otel-collector.yaml&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-4-1" role="tabpanel" aria-labelled-by="tabs-4-1-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">Using ACCESS_TOKEN={REDACTED}
+Using REALM=eu0
+NAME: splunk-otel-collector
+LAST DEPLOYED: Fri May 7 11:19:01 2021
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>&lt;code>kubectl get pods&lt;/code> を実行すると、約30秒程度待つと新しいポッドが稼働していることが報告され、デプロイメントの進捗を監視することができます。&lt;/p>
+&lt;p>続行する前に、ステータスがRunningと報告されていることを確認してください。&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-5" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Kubectl-Get-Pods"
+id="tabs-5-0-tab" data-toggle="tab" href="#tabs-5-0" role="tab" onclick="handleClick(&amp;#34;Kubectl-Get-Pods&amp;#34;);"
+aria-controls="tabs-5-0" aria-selected="true">
+Kubectl Get Pods
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-Kubectl-Get-Pods-Output"
+id="tabs-5-1-tab" data-toggle="tab" href="#tabs-5-1" role="tab" onclick="handleClick(&amp;#34;Kubectl-Get-Pods-Output&amp;#34;);"
+aria-controls="tabs-5-1" aria-selected="false">
+Kubectl Get Pods Output
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-5-content">&lt;div class="tab-pane fade show active"
+id="tabs-5-0" role="tabpanel" aria-labelled-by="tabs-5-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl get pods&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-5-1" role="tabpanel" aria-labelled-by="tabs-5-1-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">NAME READY STATUS RESTARTS AGE
+splunk-otel-collector-agent-2sk6k 0/1 Running 0 10s
+splunk-otel-collector-k8s-cluster-receiver-6956d4446f-gwnd7 0/1 Running 0 10s&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>OpenTelemetry Collector podのログを確認して、エラーがないことを確認します。出力は、以下の出力例にあるログに似ているはずです。&lt;/p>
+&lt;p>ログを確認するには、&lt;code>helm&lt;/code> のインストールで設定したラベルを使用してください（終了するには &lt;strong>ctrl+c&lt;/strong> を押します）。もしくは、インストールされている &lt;code>k9s&lt;/code> ターミナル UI を使うとボーナスポイントがもらえます！&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-6" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Kubectl-Logs"
+id="tabs-6-0-tab" data-toggle="tab" href="#tabs-6-0" role="tab" onclick="handleClick(&amp;#34;Kubectl-Logs&amp;#34;);"
+aria-controls="tabs-6-0" aria-selected="true">
+Kubectl Logs
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-Kubectl-Logs-Output"
+id="tabs-6-1-tab" data-toggle="tab" href="#tabs-6-1" role="tab" onclick="handleClick(&amp;#34;Kubectl-Logs-Output&amp;#34;);"
+aria-controls="tabs-6-1" aria-selected="false">
+Kubectl Logs Output
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-6-content">&lt;div class="tab-pane fade show active"
+id="tabs-6-0" role="tabpanel" aria-labelled-by="tabs-6-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl logs -l &lt;span style="color:#000">app&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>splunk-otel-collector -f --container otel-collector&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-6-1" role="tabpanel" aria-labelled-by="tabs-6-1-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">2021-03-21T16:11:10.900Z INFO service/service.go:364 Starting receivers...
+2021-03-21T16:11:10.900Z INFO builder/receivers_builder.go:70 Receiver is starting... {&amp;#34;component_kind&amp;#34;: &amp;#34;receiver&amp;#34;, &amp;#34;component_type&amp;#34;: &amp;#34;prometheus&amp;#34;, &amp;#34;component_name&amp;#34;: &amp;#34;prometheus&amp;#34;}
+2021-03-21T16:11:11.009Z INFO builder/receivers_builder.go:75 Receiver started. {&amp;#34;component_kind&amp;#34;: &amp;#34;receiver&amp;#34;, &amp;#34;component_type&amp;#34;: &amp;#34;prometheus&amp;#34;, &amp;#34;component_name&amp;#34;: &amp;#34;prometheus&amp;#34;}
+2021-03-21T16:11:11.009Z INFO builder/receivers_builder.go:70 Receiver is starting... {&amp;#34;component_kind&amp;#34;: &amp;#34;receiver&amp;#34;, &amp;#34;component_type&amp;#34;: &amp;#34;k8s_cluster&amp;#34;, &amp;#34;component_name&amp;#34;: &amp;#34;k8s_cluster&amp;#34;}
+2021-03-21T16:11:11.009Z INFO k8sclusterreceiver@v0.21.0/watcher.go:195 Configured Kubernetes MetadataExporter {&amp;#34;component_kind&amp;#34;: &amp;#34;receiver&amp;#34;, &amp;#34;component_type&amp;#34;: &amp;#34;k8s_cluster&amp;#34;, &amp;#34;component_name&amp;#34;: &amp;#34;k8s_cluster&amp;#34;, &amp;#34;exporter_name&amp;#34;: &amp;#34;signalfx&amp;#34;}
+2021-03-21T16:11:11.009Z INFO builder/receivers_builder.go:75 Receiver started. {&amp;#34;component_kind&amp;#34;: &amp;#34;receiver&amp;#34;, &amp;#34;component_type&amp;#34;: &amp;#34;k8s_cluster&amp;#34;, &amp;#34;component_name&amp;#34;: &amp;#34;k8s_cluster&amp;#34;}
+2021-03-21T16:11:11.009Z INFO healthcheck/handler.go:128 Health Check state change {&amp;#34;component_kind&amp;#34;: &amp;#34;extension&amp;#34;, &amp;#34;component_type&amp;#34;: &amp;#34;health_check&amp;#34;, &amp;#34;component_name&amp;#34;: &amp;#34;health_check&amp;#34;, &amp;#34;status&amp;#34;: &amp;#34;ready&amp;#34;}
+2021-03-21T16:11:11.009Z INFO service/service.go:267 Everything is ready. Begin running and processing data.
+2021-03-21T16:11:11.009Z INFO k8sclusterreceiver@v0.21.0/receiver.go:59 Starting shared informers and wait for initial cache sync. {&amp;#34;component_kind&amp;#34;: &amp;#34;receiver&amp;#34;, &amp;#34;component_type&amp;#34;: &amp;#34;k8s_cluster&amp;#34;, &amp;#34;component_name&amp;#34;: &amp;#34;k8s_cluster&amp;#34;}
+2021-03-21T16:11:11.281Z INFO k8sclusterreceiver@v0.21.0/receiver.go:75 Completed syncing shared informer caches. {&amp;#34;component_kind&amp;#34;: &amp;#34;receiver&amp;#34;, &amp;#34;component_type&amp;#34;: &amp;#34;k8s_cluster&amp;#34;, &amp;#34;component_name&amp;#34;: &amp;#34;k8s_cluster&amp;#34;}&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;div class="alert alert-info" role="alert">
+&lt;p class="alert-heading">インストールに失敗した場合に削除する&lt;/p>
+&lt;div class="alert-body">
+OpenTelemetry Collectorのインストールに失敗した場合は、次のようにしてインストールを削除することで、最初からやり直すことができます。
+&lt;strong>helm delete splunk-otel-collector&lt;/strong>
+&lt;/div>
+&lt;/div>
+&lt;hr>
+&lt;h2 id="3-ui-でメトリクスを確認する">3. UI でメトリクスを確認する&lt;/h2>
+&lt;p>Splunk の UI で左下の &lt;strong>&amp;raquo;&lt;/strong> を開いて &lt;strong>Infrastructure&lt;/strong> をクリックします。&lt;/p>
+&lt;p>&lt;img src="../../../images/clustermap-nav.png" alt="Kubernetes Navigator Mapの選択">&lt;/p>
+&lt;p>&lt;strong>Containers&lt;/strong> の下にある &lt;strong>Kubernetes&lt;/strong> をクリックして Kubernetes Navigator Cluster Map を開き、メトリクスが送信されていることを確認します。&lt;/p>
+&lt;p>クラスタが検出され、レポートされていることを確認するには、自分のクラスタを探します（ワークショップでは、他の多くのクラスタが表示されます）。クラスタ名を見つけるには、以下のコマンドを実行し、出力をクリップボードにコピーしてください。&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-8" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Echo-Cluster-Name"
+id="tabs-8-0-tab" data-toggle="tab" href="#tabs-8-0" role="tab" onclick="handleClick(&amp;#34;Echo-Cluster-Name&amp;#34;);"
+aria-controls="tabs-8-0" aria-selected="true">
+Echo Cluster Name
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-8-content">&lt;div class="tab-pane fade show active"
+id="tabs-8-0" role="tabpanel" aria-labelled-by="tabs-8-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>hostname&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>-k3s-cluster&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>次に、UIで、Splunkロゴのすぐ下にある「Cluster: - 」メニューをクリックし、先程コピーしたクラスタ名を検索ボックスに貼り付け、チェックボックスをクリックしてクラスタを選択し、最後にメニューのその他の部分をクリックしてフィルタを適用します。&lt;/p>
+&lt;p>&lt;img src="../../../images/search-k3s-cluster.png" alt="K8S Clusters Filter">&lt;/p>
+&lt;p>&lt;img src="../../../images/selecting-k3s-cluster.png" alt="Select K8S Cluster">&lt;/p>
+&lt;p>&lt;img src="../../../images/filtered-k3s-cluster.png" alt="Filtered K8S Cluster">&lt;/p>
+&lt;p>ノードの状態を確認するには、クラスターの淡いブルーの背景にカーソルを置き、左上に表示される青い虫眼鏡 &lt;img src="../../../images/blue-cross.png" alt="Magnifying Glass"> をクリックしてください 。&lt;/p>
+&lt;p>これで、ノードレベルまでドリルダウンできます。 次に、サイドバーボタンをクリックしてサイドバーを開き、Metricsサイドバーを開きます。&lt;/p>
+&lt;p>サイドのスライダーを使って、CPU、メモリ、ネットワーク、イベントなど、クラスタ/ノードに関連する様々なチャートを見ることができます。&lt;/p>
+&lt;p>&lt;img src="../../../images/explore-metrics.png" alt="Sidebar metrics">&lt;/p>
+&lt;section class="footnotes" role="doc-endnotes">
+&lt;hr>
+&lt;ol>
+&lt;li id="fn:1" role="doc-endnote">
+&lt;p>Access Tokens (Org Tokensと呼ばれることもあります)は、長期間利用を前提とした組織レベルのトークンです。デフォルトでは、これらのトークンは 5 年間保存されます。そのため、長期間にわたってデータポイントを送信するエミッターに組み込んだり、Splunk API を呼び出す長期的なスクリプトに使用したりするのに適しています。&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:2" role="doc-endnote">
+&lt;p>Realm とは、Splunk内部の管理単位ので、その中で組織がホストされます。異なる Realm には異なる API エンドポイントがあります (たとえば、データを送信するためのエンドポイントは、&lt;strong>&lt;code>us1&lt;/code>&lt;/strong> realm では &lt;code>ingest.us1.signalfx.com&lt;/code> 、&lt;strong>&lt;code>eu0&lt;/code>&lt;/strong> レルムでは &lt;code>ingest.eu0.signalfx.com&lt;/code> となります)。このrealm名は、Splunk UI のプロファイルページに表示されます。エンドポイントを指定する際にレルム名を含めない場合、Splunk は &lt;strong>&lt;code>us0&lt;/code>&lt;/strong> レルムを指していると解釈します。&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/section></description></item></channel></rss>
