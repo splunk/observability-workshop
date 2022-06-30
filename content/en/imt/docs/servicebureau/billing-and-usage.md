@@ -18,9 +18,9 @@ To fully understand Observability Cloud engagement inside your organization, cli
 
 ![Organization overview](../../../images/engagement.png)
 
-You will see various charts that show you the number of users, teams, charts, dashboards, and dashboard groups created, as well as various growth trends. The workshop organization you're using now may have less data to work with as this is cleared down after each workshop.
+You will see various dashboards such as Throttling, System Limits, Entitlements & Engagement. The workshop organization you're using now may have less data to work with as this is cleared down after each workshop.
 
-Take a minute to explore the various charts in the Organization Overview of this workshop instance.
+Take a minute to explore the various dashboards and charts in the Organization Overview of this workshop instance.
 
 ## 2. Usage and Billing
 
@@ -32,9 +32,9 @@ This screen may take a few seconds to load whilst it calculates and pulls in the
 
 ## 3. Understanding usage
 
-You will see a screen similar like the one below that will give you an overview of the current usage, the average usage and your entitlement per category : Hosts, Containers, Custom Metrics and High Resolution Metrics.  
+You will see a screen similar to the one below that will give you an overview of the current usage, the average usage and your entitlement per category: Hosts, Containers, Custom Metrics and High Resolution Metrics.  
 
-For more information about about these categories please refer to [Billing and Usage information](https://docs.splunk.com/Observability/admin/monitor-imm-billing-usage.html).
+For more information about these categories please refer to [Billing and Usage information](https://docs.splunk.com/Observability/admin/monitor-imm-billing-usage.html).
 
 ![Billing and Usage](../../../images/usage-charts.png)
 
@@ -46,7 +46,7 @@ The top chart shows you the current subscription levels per category (shown by t
 
 Also, your current usage of the four catagories is displayed (shown at the red lines at the bottom of the chart).
 
-In this example you can see that there are 25 Hosts, 0 Containers and 100 Custom Metrics and 0 High Resolution Metrics.
+In this example you can see that there are 25 Hosts, 0 Containers, 100 Custom Metrics and 0 High Resolution Metrics.
 
 ![Billing and Usage-top](../../../images/usage-detail.png)
 

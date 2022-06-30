@@ -17,7 +17,7 @@ Click on the ![alerts and detectors button](../../../images/alerts-and-detectors
 
 ![detectors list](../../../images//detectors.png) 
 
-If you created an detector in **Creating a Detector** you can click on the three dots **`...`** on the far right for that detector; if not, do that for another detector.
+If you created a detector in **Creating a Detector** you can click on the three dots **`...`** on the far right for that detector; if not, do that for another detector.
 
 From the drop-down click on **Create Muting Rule...**
 

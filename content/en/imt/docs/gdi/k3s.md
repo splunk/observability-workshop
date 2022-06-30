@@ -98,7 +98,7 @@ splunk-otel-collector-k8s-cluster-receiver-6956d4446f-gwnd7   0/1     Running   
 
 Ensure there are no errors by tailing the logs from the OpenTelemetry Collector pod. Output should look similar to the log output shown in the Output tab below.
 
-Use the label set by the `helm` install to tail logs (You will need to press ++ctrl+c++ to exit). Or use the installed `k9s` terminal UI for bonus points!
+Use the label set by the `helm` install to tail logs (You will need to press `ctrl+c` to exit). Or use the installed `k9s` terminal UI for bonus points!
 
 {{< tabpane >}}
 {{< tab header="Kubectl Logs" lang="bash" >}}
