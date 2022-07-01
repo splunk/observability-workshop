@@ -9,6 +9,25 @@ cd ~
 brew install hugo
 ```
 
+## Install yq
+
+You will also need to install `yq` if it is not already installed on your system.
+
+```bash
+cd ~
+brew install yq
+```
+
+## Install node
+
+You will also need to install `node` if it is not already installed on your system, then add the PostCSS CLI package
+
+```bash
+cd ~
+brew install node
+npm install postcss-cli
+```
+
 ## Cloning the repo and installing dependencies
 
 ```bash
