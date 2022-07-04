@@ -7,7 +7,7 @@ weight: 9
 
 Let's take a look at SignalFlow - the analytics language of Observability Cloud that can be used to setup monitoring as code.
 
-The heart of Splunk Infrastructure Monitoring is the SignalFlow analytics engine that runs computations written in a Python-like language. SignalFlow programs accept streaming input and produce output in real time. SignalFlow provides built-in analytical functions that take metric time series (MTS) as input, perform computations, and output a result MTS.
+The heart of Splunk Infrastructure Monitoring is the SignalFlow analytics engine that runs computations written in a Python-like language. SignalFlow programs accept streaming input and produce output in real time. SignalFlow provides built-in analytical functions that take metric time series (MTS) as input, perform computations, and output a resulting MTS.
 
 - Comparisons with historical norms, e.g. on a week-over-week basis
 - Population overviews using a distributed percentile chart
@@ -16,7 +16,7 @@ The heart of Splunk Infrastructure Monitoring is the SignalFlow analytics engine
 
 Infrastructure Monitoring creates these computations in the Chart Builder user interface, which lets you specify the input MTS to use and the analytical functions you want to apply to them. You can also run SignalFlow programs directly by using the [SignalFlow API](https://dev.splunk.com/observability/docs/).
 
-SignalFlow includes a large library of built-in analytical functions that take a metrics time series as an input, perform computations on its datapoints, and output time series that are the result of the computation.
+SignalFlow includes a large library of built-in analytical functions that take a metric time series as an input, performs computations on its datapoints, and outputs time series that are the result of the computation.
 
 {{% alert title="Info" color="primary" %}}
 For more information on SignalFlow see [Analyze incoming data using SignalFlow.](https://docs.splunk.com/Observability/infrastructure/analytics/signalflow.html)

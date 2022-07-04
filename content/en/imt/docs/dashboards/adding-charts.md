@@ -57,7 +57,7 @@ Click on the {{% labelbutton color="ui-button-blue" %}}Add Metric Or Event{{% /l
 
 ![Dashboard Info](../../../images/M-MoreCharts-8.png)
 
-This will add a new Signal **D** to your chart, It shows the number of active request active. Add the filter for the *demo_datacenter:Paris*, then change the Rollup type by clicking on the **Configure Plot** button and changing the roll-up from **Auto (Delta)** to **Rate/sec**. Change the name from **demo.trans.count** to **Latency vs Load**.
+This will add a new Signal **D** to your chart, It shows the number of active requests. Add the filter for the *demo_datacenter:Paris*, then change the Rollup type by clicking on the **Configure Plot** button and changing the roll-up from **Auto (Delta)** to **Rate/sec**. Change the name from **demo.trans.count** to **Latency vs Load**.
 
 ![rollup change](../../../images/M-MoreCharts-9.png)
 
