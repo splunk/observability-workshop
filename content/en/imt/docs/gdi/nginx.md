@@ -21,7 +21,7 @@ Note the single agent container running per node among the default Kubernetes po
 
 Now switch back to the default cluster node view by selecting the **MAP** tab and select your cluster again.
 
-In the Multipass or AWS/EC2 shell session and change into the `nginx` directory:
+In your AWS/EC2 or Multipass shell session change into the `nginx` directory:
 
 {{< tabpane >}}
 {{< tab header="Change Directory" lang="bash" >}}
