@@ -1,11 +1,11 @@
 ---
-title: Billing and Usage 
-linkTitle: Billing and Usage
+title: Subscription Usage
+linkTitle: Subscription Usage
 weight: 50
 ---
 
 * How to keep track of the usage of Observability Cloud in your organization
-* Learn how to keep track of spend by exploring the Billing and Usage interface
+* Learn how to keep track of spend by exploring the Subscription Usage interface
 * Creating Teams
 * Adding notification rules to Teams
 * Controlling usage
@@ -14,7 +14,7 @@ weight: 50
 
 ## 1. Understanding engagement
 
-To fully understand Observability Cloud engagement inside your organization, click on the **>>** bottom left and select the **Settings → Organization Overview**, this will provide you with the following dashboard that shows you how your Observability Cloud organization is being used:
+To fully understand Observability Cloud engagement inside your organization, click on the **>>** bottom left and select the **Settings → Organization Overview**, this will provide you with the following dashboards that shows you how your Observability Cloud organization is being used:
 
 ![Organization overview](../../../images/engagement.png)
 
@@ -22,9 +22,9 @@ You will see various dashboards such as Throttling, System Limits, Entitlements 
 
 Take a minute to explore the various dashboards and charts in the Organization Overview of this workshop instance.
 
-## 2. Usage and Billing
+## 2. Subscription Usage
 
-If you want to see what your usage is against your contract you can select **Billing and Usage**.
+If you want to see what your usage is against your subscription you can select **Subscription Usage**.
 
 ![Left pane](../../../images/billing-and-usage-menu.png)
 
@@ -34,7 +34,7 @@ This screen may take a few seconds to load whilst it calculates and pulls in the
 
 You will see a screen similar to the one below that will give you an overview of the current usage, the average usage and your entitlement per category: Hosts, Containers, Custom Metrics and High Resolution Metrics.  
 
-For more information about these categories please refer to [Billing and Usage information](https://docs.splunk.com/Observability/admin/monitor-imm-billing-usage.html).
+For more information about these categories please refer to [Monitor Splunk Infrastructure Monitoring subscription usage](https://docs.splunk.com/Observability/admin/monitor-imm-billing-usage.html).
 
 ![Billing and Usage](../../../images/usage-charts.png)
 
@@ -52,7 +52,7 @@ In this example you can see that there are 25 Hosts, 0 Containers, 100 Custom Me
 
 In the bottom chart, you can see the usage per category for the current period (shown in the drop-down box on the top right of the chart).
 
-The blue line marked **Average Usage** indicates what Observability Cloud will use to calculate your average usage for the current billing period.
+The blue line marked **Average Usage** indicates what Observability Cloud will use to calculate your average usage for the current Subscription Usage Period.
 
 ![Billing and Usage-Bottom](../../../images/usage-trends.png)
 
@@ -60,7 +60,7 @@ The blue line marked **Average Usage** indicates what Observability Cloud will u
 As you can see from the screenshot, Observability Cloud does not use High Watermark or P95% for cost calculation but the actual average hourly usage, allowing you to do performance testing or Blue/Green style deployments etc. without the risk of overage charges.
 {{% /alert %}}
 
-To get a feel for the options you can change the metric displayed by selecting the different options from the **Usage Metric** drop down on the left, or change the **Billing Period** with the drop down on the right.
+To get a feel for the options you can change the metric displayed by selecting the different options from the **Usage Metric** drop down on the left, or change the **Subscription Usage Period** with the drop down on the right.
 
 Please take a minute to explore the different time periods & categories and their views.
 
