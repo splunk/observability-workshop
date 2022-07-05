@@ -45,7 +45,7 @@ This will place a copy of the previous chart in your dashboard.
 
 ## 3. Edit the pasted chart
 
-Click on the three dots **`...`** on on of the **Latency History** charts in your dashboard and then on **Open** (or you can click on the name of the chart which here is **Latency History**).
+Click on the three dots **`...`** on one of the **Latency History** charts in your dashboard and then on **Open** (or you can click on the name of the chart which here is **Latency History**).
 
 This will bring you to the editor environment again.
 
