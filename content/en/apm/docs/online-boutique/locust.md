@@ -19,7 +19,7 @@ Set the **Spawn rate** to be 2 and click **Start Swarming**, this will start a g
 
 ---
 
-Now go to **Dashboards → APM Services → Service**.
+Now go to **![dashboards button](../../../images/dashboards.png) Dashboards → All Dashboards → APM Services → Service**.
 
 For this we need to know the name of your application environment. In this workshop all the environments use: `{==hostname==}-apm-env`.
 
@@ -46,7 +46,7 @@ Take some time to explore the various charts in this dashboard
 
 ## 2. Verify Splunk APM metrics
 
-From the top left hamburger menu, click APM, this will bring you to the APM Overview dashboard:
+In the left hand menu card click on APM ![apm button](../../../images/apm.png) this will bring you to the APM Overview dashboard:
 
 ![select APM](../../../images/online-boutique-apm.png)
 
@@ -58,7 +58,7 @@ It should look similar to the screenshot below:
 
 The legend at the bottom of the page explains the different visualizations in the Dependency/Service Map.
 
-![APM Legend](../../../images/apm-legend.png){: : .shadow .zoom}
+![APM Legend](../../../images/apm-legend.png)
 
 * Service requests, error rate and root error rate.
 * Request rate, latency and error rate
@@ -69,7 +69,7 @@ Also in this view you can see the overall Error and Latency rates over time char
 
 Once the Open Telemetery Collector is deployed the platform will automatically provide a built in dashboard display OpenTelemetry Collector metrics.
 
-From the top left hamburger menu, select **Dashboards → OpenTelemetry Collector**, scroll all the way to the bottom of the page and validate metrics and spans are being sent:
+From the top left hamburger menu, select ![dashboards button](../../../images/dashboards.png) **Dashboards → OpenTelemetry Collector**, scroll all the way to the bottom of the page and validate metrics and spans are being sent:
 
 ![OpenTelemetry Collector dashboard](../../../images/otel-dashboard.png)
 
