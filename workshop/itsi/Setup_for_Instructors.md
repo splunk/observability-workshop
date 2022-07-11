@@ -7,13 +7,17 @@ Terraform installed
 AWS credentials (AWS console ?) AWS Account aws_access_key_id | aws_secret_access_key
 SSH Key 
 
-An observability cloud organisation ID. 
+An observability cloud suite organisation ID. 
 
-Have data ingested in the environmment for this workshop:
-we have deploy the online boutique of the observability workshop on a aws instance available here https://signalfx.github.io/observability-workshop/v3.13/
-we have connected our AWS instance to the observability suite
+Either the observability cloud suite environmment from the IM/APM workshop
+Or an observability cloud suite you create for the ITSI workshop.
 
-Open sfx-tf-demo in your preferred code editor.
+Data need to be ingested in the observability cloud for this workshop:
+-Follow the steps to deploy the online boutique on a aws instance here 
+https://github.com/signalfx/observability-workshop/tree/master/workshop/aws/ec2
+-Follow the steps to connect the AWS instance to the observability suite here https://signalfx.github.io/observability-workshop/latest/
+
+Open observability-workshop in your preferred code editor.
 
 ```
 cp terraform.tfvars.example terraform.tfvars
@@ -49,17 +53,24 @@ environment              = "<ENVIRONMENT>"
 
 ### Splunk ITSI Variables
 
-The Splunk ITSI Module requires various files that cannot be included in this repo and need to be downloaded from https://splunkbase.splunk.com/ then their locations specified in this section
+The Splunk ITSI Module requires various splunk apps files that cannot be included in this repo and are downloaded as part of the script. 
 
+The versions of ITSI and other apps are defined in the variables don't change it.
 
-### Download the files via the link provided by the instructor and install it locally 
+current versions are :
 
-on MAC in ~Downloads 
-on Windows in ...
+itsi version = 4.9.3
+splunk enterprise version = splunk-8.2.3
+splunk app for content packs = 140 
+splunk synthetic monitoring add on  = 1.0.7
+splunk infrastructure monitoring add on   = 1.2.1
+
 
 ### Deploy the instance
 
-go into sfx-tf-demo
+navigate on your terminal into the itsi folder
+
+```cd ../observability-workshop/workshop/itsi```
 
 run
 
