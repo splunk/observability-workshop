@@ -3,7 +3,8 @@ Prerequisites to perform this lab :
 - Terraform installed 
 - AWS Account  
 - AWS access keys aws_access_key_id aws_secret_access_key
-- SSH Key (the Private SSH Key file one you use for AWS Instances follow https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html
+- SSH Key (the Private SSH Key file one you use for AWS Instances follow
+[create a key pair for AWS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html) if you don't have one already)
 
 An observability cloud suite organisation ID.
 
@@ -11,9 +12,9 @@ Either use the observability cloud suite environmment from the IM/APM workshop
 Or you use/create an observability cloud suite environment to run the ITSI workshop to run it on its own.
 
 Data need to be ingested in the observability cloud for this workshop:
--Follow the steps to deploy the online boutique on a aws instance here 
-https://github.com/signalfx/observability-workshop/tree/master/workshop/aws/ec2
--Follow the steps to connect the AWS instance to the observability suite here https://signalfx.github.io/observability-workshop/latest/
+-Follow the steps to deploy the online boutique on a aws instance  
+[here](https://github.com/signalfx/observability-workshop/tree/master/workshop/aws/ec2)
+-Follow the steps to connect the AWS instance to the observability suite [here](https://signalfx.github.io/observability-workshop/latest/) 
 
 Open observability-workshop/workshop/itsi in your preferred code editor.
 
