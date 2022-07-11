@@ -12,9 +12,10 @@ Either use the observability cloud suite environmment from the IM/APM workshop
 Or you use/create an observability cloud suite environment to run the ITSI workshop to run it on its own.
 
 Data need to be ingested in the observability cloud for this workshop:
--Follow the steps to deploy the online boutique on a aws instance  
+- Follow the steps to deploy the online boutique on a aws instance  
 [here](https://github.com/signalfx/observability-workshop/tree/master/workshop/aws/ec2)
--Follow the steps to connect the AWS instance to the observability suite [here](https://signalfx.github.io/observability-workshop/latest/) 
+
+- Follow the steps to connect the AWS instance to the observability suite [here](https://signalfx.github.io/observability-workshop/latest/) 
 
 Open observability-workshop/workshop/itsi in your preferred code editor.
 
