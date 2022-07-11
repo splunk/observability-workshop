@@ -18,11 +18,11 @@ In preparation for the workshop, Splunk has prepared an Ubuntu Linux instance in
 
 To get access to the instance that you will be using in the workshop please visit the URL to access the Google Sheet provided by the workshop leader.
 
-Search for your AWS/EC2 instance by looking for your first  and last name name, as provided during registration for this workshop.
+Search for your AWS/EC2 instance by looking for your first  and last name, as provided during registration for this workshop.
 
 ![attendee spreadsheet](../../images/spreadsheet-info.png)
 
-You find the IP address, the SSH command (for Mac OS, Linux and the latest Windows versions) and the password to use to connect to the workshop instance.
+Find your allocated IP address, SSH command (for Mac OS, Linux and the latest Windows versions) and password to enable you to connect to your workshop instance.
 
 It also has the Browser Access URL that you can use in case you cannot connect via ssh or putty - see [EC2 access via Web browser](#4-web-browser-all)
 
