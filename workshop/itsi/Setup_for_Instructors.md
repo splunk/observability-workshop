@@ -1,23 +1,21 @@
-Prerequisites:
+Prerequisites to perform this lab :
 
-to perform this lab you need :
+- Terraform installed 
+- AWS Account  
+- AWS access keys aws_access_key_id aws_secret_access_key
+- SSH Key (the Private SSH Key file one you use for AWS Instances follow https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html
 
-Terraform installed 
+An observability cloud suite organisation ID.
 
-AWS credentials (AWS console ?) AWS Account aws_access_key_id | aws_secret_access_key
-SSH Key 
-
-An observability cloud suite organisation ID. 
-
-Either the observability cloud suite environmment from the IM/APM workshop
-Or an observability cloud suite you create for the ITSI workshop.
+Either use the observability cloud suite environmment from the IM/APM workshop
+Or you use/create an observability cloud suite environment to run the ITSI workshop to run it on its own.
 
 Data need to be ingested in the observability cloud for this workshop:
 -Follow the steps to deploy the online boutique on a aws instance here 
 https://github.com/signalfx/observability-workshop/tree/master/workshop/aws/ec2
 -Follow the steps to connect the AWS instance to the observability suite here https://signalfx.github.io/observability-workshop/latest/
 
-Open observability-workshop in your preferred code editor.
+Open observability-workshop/workshop/itsi in your preferred code editor.
 
 ```
 cp terraform.tfvars.example terraform.tfvars
@@ -25,7 +23,7 @@ cp terraform.tfvars.example terraform.tfvars
 
 Lab 
 ## 1 Modify terraform.tfvars file ##
-In section Enable / Disable Modules
+In section Enable / Disable Modules  
 ```
 ## Enable / Disable Modules ##
 itsi_o11y_cp_enabled        = true
@@ -61,16 +59,14 @@ current versions are :
 
 itsi version = 4.9.3
 splunk enterprise version = splunk-8.2.3
-splunk app for content packs = 140 
+splunk app for content packs = 1.4.0 
 splunk synthetic monitoring add on  = 1.0.7
 splunk infrastructure monitoring add on   = 1.2.1
 
 
 ### Deploy the instance
 
-navigate on your terminal into the itsi folder
-
-```cd ../observability-workshop/workshop/itsi```
+navigate on your terminal ```observability-workshop/workshop/itsi``` the itsi folder
 
 run
 
