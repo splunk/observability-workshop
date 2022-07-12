@@ -33,8 +33,8 @@ itsi_o11y_cp_enabled        = true
 In section Auth Settings
 ```
 ## Auth Settings ##
-key_name                = "<NAME>"
-private_key_path        = "~/.ssh/id_rsa"
+key_name                = "<NAME>" #enter key name without the extension
+private_key_path        = "~/.ssh/id_rsa" #enter key path with the key name with the extension
 instance_type           = "t2.micro"
 aws_access_key_id       = "<ACCCESS_KEY_ID>>"
 aws_secret_access_key   = "<SECRET_ACCESS_KEY>>"
@@ -45,7 +45,7 @@ In section Splunk IM/APM Variables
 access_token             = "<ACCESS_TOKEN>"
 api_url                  = "https://api.<REALM>.signalfx.com"
 realm                    = "<REALM>"
-environment              = "<ENVIRONMENT>"
+environment              = "<ENVIRONMENT>" #prefix for your AWS objects
 ```
 
 ## 2 review the variable for ITSI ##
@@ -68,7 +68,8 @@ splunk infrastructure monitoring add on   = 1.2.1
 
 ### Deploy the instance
 
-navigate on your terminal ```observability-workshop/workshop/itsi``` the itsi folder
+Navigate on your terminal ```observability-workshop/workshop/itsi``` the itsi folder. 
+You should expect the environment to take between 5 and 10 minute to spin up.
 
 run
 
@@ -161,6 +162,14 @@ Do you really want to destroy all resources?
 ```
 
 Enter yes
+
+health check of the environment 
+
+you should be seeing x,y,z
+
+screenshot 
+
+
 
 
 
