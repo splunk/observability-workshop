@@ -19,8 +19,9 @@ Infrastructure Monitoring は、Chart Builder ユーザーインターフェイ�
 
 SignalFlow には、時系列メトリックを入力とし、そのデータポイントに対して計算を行い、計算結果である時系列メトリックを出力する、分析関数の大規模なライブラリが組み込まれています。
 
-!!! info
-    SignalFlow の詳細については、[Analyze incoming data using SignalFlow](https://docs.splunk.com/Observability/references/signalflow.html) を参照してください。
+{{% alert title="Info" color="primary" %}}
+SignalFlow の詳細については、[Analyze incoming data using SignalFlow](https://docs.splunk.com/Observability/infrastructure/analytics/signalflow.html) を参照してください。
+{{% /alert %}}
 
 ## 2. SignalFlow の表示
 
