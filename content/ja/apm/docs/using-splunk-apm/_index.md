@@ -34,7 +34,7 @@ description: |
 
 ## 2. サービスマップ
 
-サービスマップの **paymentservice** をクリックし、**paymentservice** の下にある内訳のドロップダウンフィルタから **version** を選択します。これにより、カスタムスパンタグの **version** でサービスマップがフィルタリングされます。
+サービスマップの **paymentservice** をクリックし、**paymentservice** の下にある`breakdown`のドロップダウンフィルタから **version** を選択します。これにより、カスタムスパンタグの **version** でサービスマップがフィルタリングされます。
 
 これで、サービスマップが以下のスクリーンショットのように更新され、**paymentservice** の異なるバージョンが表示されていることがわかります。
 
@@ -42,7 +42,7 @@ description: |
 
 ## 3. タグスポットライト
 
-画面の右側にある **Tag Spotlight** をスクロールダウンし、ドロップダウンから **Top Across All Indexed Tags** を選択します。選択したら、下のスクリーンショットにあるように矢印をクリックします。
+画面の右側にある **Tag Spotlight** をスクロールダウンし、ドロップダウンから **Top Across All Indexed Tags** を選択します。選択したら、下のスクリーンショットにあるように![full_screen button](../../images/full_screen.png) をクリックします。
 
 ![Tag Spotlight](../../images/tag-spotlight.png)
 
@@ -56,7 +56,7 @@ description: |
 
 ![Gold Tenant](../../images/gold-tenant.png)
 
-タグスポットライトは、データを分析して傾向を見極めるのに非常に便利です。Gold Tenantでは、リクエストの総数のうち55件がエラーであることがわかります。
+タグスポットライトは、データを分析して傾向を見極めるのに非常に便利です。Gold Tenantでは、リクエストの総数のうち55件がエラーであることがわかります。（この数字はワークショップの実施時刻により異なります）
 
 これをバージョンタグと関連付けると、バージョン `350.10` が55件、バージョン `350.9` が17件のリクエストに対応していることがわかります。つまり、バージョン `350.10` を経由したリクエストは、すべてエラー状態になったということになります。
 
@@ -76,14 +76,39 @@ description: |
 
 ## 4. サンプルトレース
 
-「Service Requests & Errors」グラフのピンク色の線上をクリックします。選択すると、サンプルトレースのリストが表示されます。サンプルトレースの1つをクリックしてください
+右上にある「Services by Error Rate」グラフのピンク色の線上をクリックします。選択すると、サンプルトレースのリストが表示されます。`Initiating Operation of`が**frontend: POST /cart/checkout** であるサンプルトレースの1つをクリックしてください。
 
 ![Example Trace](../../images/example-trace.png)
 
-スパンとともに、選択したトレースの全体が表示されます。エラーが発生したスパンは、その横に赤い！マークが表示されます。
+スパンとともに、選択したトレースの全体が表示されます。エラーが発生したスパンは、その横に赤い！マークが表示されます。グレーのボックスに**x6**などの数字が表示されている場合は、それをクリックすると`paymentservice` スパンを展開することができます。
 
 ![Example Trace](../../images/trace-span.png)
 
-これらをクリックすると、そのスパンが展開され、関連するメタデータやエラーの詳細が表示されます。このエラーが401エラーによるものであることがわかります。また、「テナント」や「バージョン」などの有用な情報も表示されています。
+赤い！マークが表示された`paymentservice` スパンの一つをクリックすると展開され、関連するメタデータやエラーの詳細が表示されます。このエラーが401エラーによるものであることがわかります。また、「テナント」や「バージョン」などの有用な情報も表示されています。
 
 ![Traces and Spans](../../images/trace-metadata.png)
+
+エラーの原因が**無効なリクエスト**であることがわかりましたが、正確なリクエストが何であるかはわかりません。ページの下部に、ログへのコンテキストリンクが表示されます。このリンクをクリックすると、このスパンに関連付けられているログが表示されます。
+
+![Logs Link](../../images/logs_link.png)
+
+下の画像と同様の**Log Observer** ダッシュボードが表示されます。
+
+![Log Observer](../../images/log_observer.png)
+
+フィルタを使用して、エラーログのみを表示できます。右上にある`ERROR`をクリックしてから、`Add to filter`をクリックします。
+
+![Error Filter](../../images/error_filter.png)
+
+You should now have a shorter list of log entries which have a `severity` of `ERROR`
+`severity`が`ERROR`であるログエントリに絞り込まれます。
+
+
+![Filtered Results](../../images/filtered_results.png)
+
+いずれかのエントリを選択して詳細を表示します。これで、開発者が誤って本番環境にプッシュした**無効なAPIトークン**の使用によってエラーがどのように発生したかを確認できます。
+
+![Error Details](../../images/error_details.png)
+
+おめでとうございます。これで、このAPMワークショップは完了です。
+
