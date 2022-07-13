@@ -20,7 +20,7 @@ Locust は、EC2インスタンスのIPアドレスの82番ポートで利用で
 
 ---
 
-それでは、**Dashboards → APM Services → Service** を開きましょう。
+それでは、**![dashboards button](../../../images/dashboards.png) Dashboards → All Dashboards → APM Services → Service** を開きましょう。
 
 このためには、アプリケーションの Environment 名を知る必要があります。このワークショップでは、`{==hostname==}-apm-env` のような Environment 名で定義されています。
 
@@ -47,7 +47,7 @@ Locust は、EC2インスタンスのIPアドレスの82番ポートで利用で
 
 ## 2. Splunk APM のメトリクスを確認する
 
-左上のハンバーガーメニューから「APM」をクリックすると、APM Overview ダッシュボードが表示されます。
+画面左のメニューから「APM」 ![apm button](../../../images/apm.png) をクリックするとAPM Overviewダッシュボードが表示されます。
 
 ![select APM](../../../images/online-boutique-apm.png)
 
@@ -59,7 +59,7 @@ Locust は、EC2インスタンスのIPアドレスの82番ポートで利用で
 
 ページの下部にある凡例では、依存関係/サービスマップでの表記について説明しています。
 
-![APM Legend](../../../images/apm-legend.png){: : .shadow .zoom}
+![APM Legend](../../../images/apm-legend.png)
 
 * サービスリクエスト、エラーレート、ルートエラーレート。
 * リクエストレート、レイテンシー、エラーレート
@@ -70,7 +70,7 @@ Locust は、EC2インスタンスのIPアドレスの82番ポートで利用で
 
 Open Telemetery Collector がデプロイされると、プラットフォームは自動的に OpenTelemetry Collector のメトリクスを表示するダッシュボードを作成します。
 
-左上のハンバーガーメニューから、 **Dashboards → OpenTelemetry Collector** を選択し、メトリクスとスパンが送信されていることを確認しましょう。
+左上のハンバーガーメニューから、 ![dashboards button](../../../images/dashboards.png) **Dashboards → OpenTelemetry Collector** を選択し、メトリクスとスパンが送信されていることを確認しましょう。
 
 ![OpenTelemetry Collector dashboard](../../../images/otel-dashboard.png)
 

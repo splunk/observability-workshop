@@ -29,17 +29,17 @@ isCJKLanguage: true
 
 ダッシュボードの名前には、自分のお名前を使って **YOUR_NAME-Dashboard** の形式で設定してください。
 
-**YOUR_NAME** を自分の名前に置き換えてから、*Anyone in this organization can edit* のチェックボックスのチェックを外し、編集権限を設定してください。
+**YOUR_NAME** を自分の名前に置き換えてから、編集権限を*Everyone can Read or Write* から*Restricted Read and Write access* に変更してみてください。
 
 ![Name Dashboard](../../../images/name-dashboard.png)
 
-ここには、自分のログイン情報が表示されます。つまり、このダッシュボードを編集できるのは自分だけということになります。もちろん、ダッシュボードやチャートを編集できる他のユーザーやチームを下のドロップボックスから追加することもできますが、ここでは、*Anyone in this organization can edit* ボックスを **re-tick** して制限を解除し、{{% labelbutton color="ui-button-blue" %}}Save{{% /labelbutton %}} ボタンを押して続行してください。
+ここには、自分のログイン情報が表示されます。つまり、このダッシュボードを編集できるのは自分だけということになります。もちろん、ダッシュボードやチャートを編集できる他のユーザーやチームを下のドロップボックスから追加することもできますが、今回は、*Everyone can Read or Write* に **再設定** して制限を解除し、{{% labelbutton color="ui-button-blue" %}}Save{{% /labelbutton %}} ボタンを押して続行してください。
 
 新しいダッシュボードが利用可能になり、選択されましたので、チャートを新しいダッシュボードに保存することができます。
 
 ![Choose Dashboard](../../../images/choose-dashboard.png)
 
-ダッシュボードが選択されていることを確認して、**Ok**{: .label-button .sfx-ui-button-blue} ボタンを押します。
+ダッシュボードが選択されていることを確認して、{{% labelbutton color="ui-button-blue" %}}**Ok**{{% /labelbutton %}} ボタンを押します。
 
 すると、下図のようにダッシュボードが表示されます。左上に、**YOUR_NAME-DASHBOARD** がダッシュボードグループ **YOUR_NAME-Dashboard** の一部であることがわかります。このダッシュボードグループに他のダッシュボードを追加することができます。
 

@@ -1,12 +1,12 @@
 ---
-title: Billing and Usage 
-linkTitle: Billing and Usage
+title: サブスクリプション使用量
+linkTitle: サブスクリプション使用量
 weight: 50
 isCJKLanguage: true
 ---
 
 * 組織におけるObservability Cloudの利用状況を把握する
-* Billing and Usage（課金と使用量）インターフェースを使って、使用量を追跡する
+* Subscription Usage（サブスクリプション使用量）インターフェースを使って、使用量を追跡する
 * チームを作成する
 * チームへの通知ルールを管理する
 * 使用量をコントロールする
@@ -25,9 +25,9 @@ isCJKLanguage: true
 
 このワークショップインスタンスの  Organization Overview にある様々なチャートをじっくりとご覧ください。
 
-## 2. Billing and Usage
+## 2. Subscription Usage
 
-契約に対する使用量を確認したい場合は、 **Billing and Usage** を選択します。
+契約に対する使用量を確認したい場合は、 **Subscription Usage** を選択します。
 
 ![Left pane](../../../images/billing-and-usage-menu.png)
 
@@ -37,7 +37,7 @@ isCJKLanguage: true
 
 下図のような画面が表示され、現在の使用量、平均使用量、およびホスト、コンテナ、カスタムメトリクス、高解像度メトリクスの各カテゴリごとの権利の概要が表示されます。
 
-これらのカテゴリの詳細については、[Billing and Usage information](https://docs.splunk.com/Observability/admin/monitor-imm-billing-usage.html) を参照してください。
+これらのカテゴリの詳細については、[Monitor Splunk Infrastructure Monitoring subscription usage](https://docs.splunk.com/Observability/admin/imm-billing-usage/monitor-imm-billing-usage.html) を参照してください。
 
 ![Billing and Usage](../../../images/usage-charts.png)
 
@@ -55,7 +55,7 @@ isCJKLanguage: true
 
 下のグラフでは、現在の期間のカテゴリごとの使用量が表示されています（グラフの右上のドロップダウンボックスに表示されています）。
 
-**Average Usage** と書かれた青い線は、Observability Cloudが現在の請求期間の平均使用量を計算するために使用するものを示しています。
+**Average Usage** と書かれた青い線は、Observability Cloudが現在のサブスクリプション期間の平均使用量を計算するために使用するものを示しています。
 
 ![Billing and Usage-Bottom](../../../images/usage-trends.png)
 
@@ -65,7 +65,7 @@ isCJKLanguage: true
 
 オプションを確認するには、左の **Usage Metric** ドロップダウンから異なるオプションを選択して表示するメトリックを変更するか、右のドロップダウンで **Billing Period** を変更します。
 
-また、右側のドロップダウンで請求期間を変更することもできます。
+また、右側のドロップダウンでサブスクリプション期間を変更することもできます。
 
 最後に、右側のペインには、お客様のサブスクリプションに関する情報が表示されます。
 
