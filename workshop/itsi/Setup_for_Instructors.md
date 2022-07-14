@@ -167,7 +167,7 @@ health check of the environment
 
 you should be seeing this view once you log into your ITSI instance:
 
-[Connect Account](/content/en/itsi/images/itsi_login_view.png) 
+![](/content/en/itsi/images/itsi_login_view.png) 
 
 
 
