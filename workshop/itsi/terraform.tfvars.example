@@ -3,28 +3,15 @@
 # If values commented out, you will be prompted for them at run time, this way you 
 # can choose to store the information in here, or enter it at run time.
 
-## Enable / Disable Modules ##
-## o11y workshop is not yet part of the set up ##
-itsi_o11y_cp_enabled        = false
-
-## ITSI Quantities ##
-
-splunk_itsi_count = "1" # min 0 : max = 1 as only one is required, used as a yes/no parameter
-splunk_itsi_ids = [
-  "splunk-itsi"
-  ]
-
 ### AWS Variables###
 #region = "<REGION>"
 
 ## VPC Settings ##
-vpc_cidr_block          = "172.32.0.0/16"
-subnet_count            = "2" 
+vpc_cidr_block          = "172.33.0.0/16"
 
 ## Auth Settings ##
 key_name                = "<NAME>"
 private_key_path        = "~/.ssh/id_rsa"
-instance_type           = "t2.micro"
 aws_access_key_id       = "<ACCCESS_KEY_ID>>"
 aws_secret_access_key   = "<SECRET_ACCESS_KEY>>"
 
@@ -32,15 +19,8 @@ aws_secret_access_key   = "<SECRET_ACCESS_KEY>>"
 access_token             = "<ACCESS_TOKEN>"
 api_url                  = "https://api.<REALM>.signalfx.com"
 realm                    = "<REALM>"
-environment              = "<ENVIRONMENT>"
+environment              = "o11y"
 
 ### Splunk ITSI Variables ###
-splunk_itsi_inst_type                             = "t3.xlarge"
-splunk_itsi_version                               = "8.2.3"
-splunk_itsi_filename                              = "splunk-8.2.3-cd0848707637-linux-2.6-amd64.deb"
-splunk_itsi_files_local_path                      = "~/Downloads" # path where itsi files resides on your local machine | on Windows %USERPROFILE%\Downloads
-splunk_itsi_license_filename                      = "Splunk_ITSI_NFR_FY23_2H.xml" # this file should NOT be included in the repo, and shoule be located in the itsi_files_local_path location
-splunk_app_for_content_packs_filename             = "splunk-app-for-content-packs_140.spl" # this file should NOT be included in the repo, and shoule be located in the itsi_files_local_path location
-splunk_it_service_intelligence_filename           = "splunk-it-service-intelligence_493.spl" # this file should NOT be included in the repo, and shoule be located in the itsi_files_local_path location
-splunk_synthetic_monitoring_add_on_filename       = "splunk-synthetic-monitoring-add-on_107.tgz" # this file should NOT be included in the repo, and shoule be located in the itsi_files_local_path location
-splunk_infrastructure_monitoring_add_on_filename  = "splunk-infrastructure-monitoring-add-on_121.tgz" # this file should NOT be included in the repo, and shoule be located in the itsi_files_local_path location
+splunk_itsi_files_local_path  = "~/Downloads" # path where itsi files resides on your local machine | on Windows %USERPROFILE%\Downloads
+splunk_itsi_license_filename  = "Splunk_ITSI_NFR_FY23_2H.xml" # this file should NOT be included in the repo, and shoule be located in the itsi_files_local_path location
