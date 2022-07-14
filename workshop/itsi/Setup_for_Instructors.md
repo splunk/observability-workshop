@@ -1,19 +1,23 @@
-Prerequisites:
+Prerequisites to perform this lab :
 
-to perform this lab you need :
+- Terraform installed 
+- AWS Account  
+- AWS access keys aws_access_key_id aws_secret_access_key
+- SSH Key (the Private SSH Key file one you use for AWS Instances follow
+[create a key pair for AWS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-key-pairs.html) if you don't have one already)
 
-Terraform installed 
+An observability cloud suite organisation ID.
 
-AWS credentials (AWS console ?) AWS Account aws_access_key_id | aws_secret_access_key
-SSH Key 
+Either use the observability cloud suite environmment from the IM/APM workshop
+Or you use/create an observability cloud suite environment to run the ITSI workshop to run it on its own.
 
-An observability cloud organisation ID. 
+Data need to be ingested in the observability cloud for this workshop:
+- Follow the steps to deploy the online boutique on a aws instance  
+[here](https://github.com/signalfx/observability-workshop/tree/master/workshop/aws/ec2)
 
-Have data ingested in the environmment for this workshop:
-we have deploy the online boutique of the observability workshop on a aws instance available here https://signalfx.github.io/observability-workshop/v3.13/
-we have connected our AWS instance to the observability suite
+- Follow the steps to connect the AWS instance to the observability suite [here](https://signalfx.github.io/observability-workshop/latest/) 
 
-Open sfx-tf-demo in your preferred code editor.
+Open observability-workshop/workshop/itsi in your preferred code editor.
 
 ```
 cp terraform.tfvars.example terraform.tfvars
@@ -21,7 +25,7 @@ cp terraform.tfvars.example terraform.tfvars
 
 Lab 
 ## 1 Modify terraform.tfvars file ##
-In section Enable / Disable Modules
+In section Enable / Disable Modules  
 ```
 ## Enable / Disable Modules ##
 itsi_o11y_cp_enabled        = true
@@ -29,8 +33,8 @@ itsi_o11y_cp_enabled        = true
 In section Auth Settings
 ```
 ## Auth Settings ##
-key_name                = "<NAME>"
-private_key_path        = "~/.ssh/id_rsa"
+key_name                = "<NAME>" #enter key name without the extension
+private_key_path        = "~/.ssh/id_rsa" #enter key path with the key name with the extension
 instance_type           = "t2.micro"
 aws_access_key_id       = "<ACCCESS_KEY_ID>>"
 aws_secret_access_key   = "<SECRET_ACCESS_KEY>>"
@@ -41,7 +45,7 @@ In section Splunk IM/APM Variables
 access_token             = "<ACCESS_TOKEN>"
 api_url                  = "https://api.<REALM>.signalfx.com"
 realm                    = "<REALM>"
-environment              = "<ENVIRONMENT>"
+environment              = "<ENVIRONMENT>" #prefix for your AWS objects
 ```
 
 ## 2 review the variable for ITSI ##
@@ -49,17 +53,23 @@ environment              = "<ENVIRONMENT>"
 
 ### Splunk ITSI Variables
 
-The Splunk ITSI Module requires various files that cannot be included in this repo and need to be downloaded from https://splunkbase.splunk.com/ then their locations specified in this section
+The Splunk ITSI Module requires various splunk apps files that cannot be included in this repo and are downloaded as part of the script. 
 
+The versions of ITSI and other apps are defined in the variables don't change it.
 
-### Download the files via the link provided by the instructor and install it locally 
+current versions are :
 
-on MAC in ~Downloads 
-on Windows in ...
+itsi version = 4.9.3
+splunk enterprise version = splunk-8.2.3
+splunk app for content packs = 1.4.0 
+splunk synthetic monitoring add on  = 1.0.7
+splunk infrastructure monitoring add on   = 1.2.1
+
 
 ### Deploy the instance
 
-go into sfx-tf-demo
+Navigate on your terminal ```observability-workshop/workshop/itsi``` the itsi folder. 
+You should expect the environment to take between 5 and 10 minute to spin up.
 
 run
 
@@ -152,6 +162,14 @@ Do you really want to destroy all resources?
 ```
 
 Enter yes
+
+health check of the environment 
+
+you should be seeing this view once you log into your ITSI instance:
+
+![](/content/en/itsi/images/itsi_login_view.png) 
+
+
 
 
 
