@@ -1,8 +1,3 @@
-## Enable/Disable Modules - Values are set in quantity.auto.tfvars ###
-variable "itsi_o11y_cp_enabled" {
-  default = []
-}
-
 ### AWS Variables ###
 variable "profile" {
   default = []
@@ -13,34 +8,13 @@ variable "aws_access_key_id" {
 variable "aws_secret_access_key" {
   default = []
 }
-variable "vpc_id" {
-  default = []
-}
-variable "vpc_name" {
-  default = []
-}
 variable "vpc_cidr_block" {
   default = []
-}
-variable "public_subnet_ids" {
-  default = {}
-}
-variable "private_subnet_ids" {
-  default = {}
-}
-variable "subnet_count" {
-  default = {}
 }
 variable "key_name" {
   default = []
 }
 variable "private_key_path" {
-  default = []
-}
-variable "instance_type" {
-  default = []
-}
-variable "collector_instance_type" {
   default = []
 }
 
@@ -68,13 +42,6 @@ variable "splunk_itsi_count" {
 variable "splunk_itsi_ids" {
   default = []
 }
-# variable "xxx _count" {
-#   default = {}
-# }
-# variable "xxx _ids" {
-#   type = list(string)
-#   default = []
-# }
 
 variable "region" {
   description = "Select region (1:eu-west-1, 2:eu-west-3, 3:eu-central-1, 4:us-east-1, 5:us-east-2, 6:us-west-1, 7:us-west-2, 8:ap-southeast-1, 9:ap-southeast-2, 10:sa-east-1 )"
@@ -112,29 +79,30 @@ variable "environment" {
 
 ### Splunk ITSI Variables ###
 variable "splunk_itsi_filename" {
-  default = {}
+  default = "splunk-8.2.3-cd0848707637-linux-2.6-amd64.deb"
 }
 variable "splunk_itsi_version" {
-  default = {}
+  default = "8.2.3"
 }
 variable "splunk_itsi_inst_type" {
-  default = {}
+  default = "t3.xlarge"
 }
+variable "splunk_app_for_content_packs_filename" {
+  default = "splunk-app-for-content-packs_140.spl"
+}
+variable "splunk_it_service_intelligence_filename" {
+  default = "splunk-it-service-intelligence_4113.spl"
+}
+variable "splunk_synthetic_monitoring_add_on_filename" {
+  default = "splunk-synthetic-monitoring-add-on_107.tgz"
+}
+variable "splunk_infrastructure_monitoring_add_on_filename" {
+  default = "splunk-infrastructure-monitoring-add-on_121.tgz"
+}
+
 variable "splunk_itsi_files_local_path" {
   default = {}
 }
 variable "splunk_itsi_license_filename" {
-  default = {}
-}
-variable "splunk_app_for_content_packs_filename" {
-  default = {}
-}
-variable "splunk_it_service_intelligence_filename" {
-  default = {}
-}
-variable "splunk_synthetic_monitoring_add_on_filename" {
-  default = {}
-}
-variable "splunk_infrastructure_monitoring_add_on_filename" {
   default = {}
 }

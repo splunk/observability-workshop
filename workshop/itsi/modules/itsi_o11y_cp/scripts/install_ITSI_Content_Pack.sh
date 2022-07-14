@@ -12,8 +12,7 @@ INFRASTRUCTURE_MONITORING_ADD_ON_FILE=$8
 INPUTS_DOT_CONF="inputs.conf"
 
 sudo apt update
-# download package and license from s3 bucket
-wget -O /tmp/$LICENSE_FILE "https://o11yitsicpbuckettestisma.s3.eu-west-1.amazonaws.com/$LICENSE_FILE" --output-file=logfile
+# download packages from s3 bucket
 wget -O /tmp/$APP_FOR_CONTENT_PACKS_FILE "https://o11yitsicpbuckettestisma.s3.eu-west-1.amazonaws.com/$APP_FOR_CONTENT_PACKS_FILE" --append-output=logfile
 wget -O /tmp/$IT_SERVICE_INTELLIGENCE_FILE "https://o11yitsicpbuckettestisma.s3.eu-west-1.amazonaws.com/$IT_SERVICE_INTELLIGENCE_FILE" --append-output=logfile
 wget -O /tmp/$SYNTHETIC_MONITORING_ADD_ON_FILE "https://o11yitsicpbuckettestisma.s3.eu-west-1.amazonaws.com/$SYNTHETIC_MONITORING_ADD_ON_FILE" --append-output=logfile

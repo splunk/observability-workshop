@@ -5,10 +5,9 @@ resource "random_string" "splunk_itsi_password" {
 }
 
 resource "aws_instance" "splunk_itsi" {
-  count                     = var.splunk_itsi_count
   ami                       = var.ami
   instance_type             = var.splunk_itsi_inst_type
-  subnet_id                 = element(var.public_subnet_ids, count.index)
+  subnet_id                 = element(var.public_subnet_ids, 1)
     root_block_device {
     volume_size = 32
     volume_type = "gp3"
@@ -19,14 +18,17 @@ resource "aws_instance" "splunk_itsi" {
   ]
 
   tags = {
-    Name = lower(join("_",[var.environment,element(var.splunk_itsi_ids, count.index)]))
+    Name = lower(join("-",[var.environment,"splunk-itsi"]))
   }
-
- 
 
   provisioner "file" {
      source      = "${path.module}/scripts/install_ITSI_Content_Pack.sh"
      destination = "/tmp/install_ITSI_Content_Pack.sh"
+   }
+
+  provisioner "file" {
+     source      = join("/",[var.splunk_itsi_files_local_path,var.splunk_itsi_license_filename])
+     destination = join("/",["/tmp",var.splunk_itsi_license_filename])
    }
 
   provisioner "remote-exec" {
