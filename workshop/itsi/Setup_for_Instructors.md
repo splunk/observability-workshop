@@ -165,9 +165,9 @@ Enter yes
 
 health check of the environment 
 
-you should be seeing x,y,z
+you should be seeing this view once you log into your ITSI instance:
 
-screenshot 
+[Connect Account](/content/en/itsi/images/itsi_login_view.png) 
 
 
 
