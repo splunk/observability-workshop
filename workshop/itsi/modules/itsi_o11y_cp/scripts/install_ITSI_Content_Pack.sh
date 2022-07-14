@@ -6,7 +6,7 @@ VERSION=$2
 FILENAME=$3
 LICENSE_FILE=$4
 APP_FOR_CONTENT_PACKS_FILE=$5
-IT_SERVICE_INTELLIGENCE_FILE =$6
+IT_SERVICE_INTELLIGENCE_FILE=$6
 SYNTHETIC_MONITORING_ADD_ON_FILE=$7 
 INFRASTRUCTURE_MONITORING_ADD_ON_FILE=$8
 INPUTS_DOT_CONF="inputs.conf"
@@ -15,7 +15,7 @@ sudo apt update
 # download package and license from s3 bucket
 wget -O /tmp/$LICENSE_FILE "https://o11yitsicpbuckettestisma.s3.eu-west-1.amazonaws.com/$LICENSE_FILE" --output-file=logfile
 wget -O /tmp/$APP_FOR_CONTENT_PACKS_FILE "https://o11yitsicpbuckettestisma.s3.eu-west-1.amazonaws.com/$APP_FOR_CONTENT_PACKS_FILE" --append-output=logfile
-wget -O /tmp/splunk-it-service-intelligence_4113.spl "https://o11yitsicpbuckettestisma.s3.eu-west-1.amazonaws.com/splunk-it-service-intelligence_4113.spl" --append-output=logfile
+wget -O /tmp/$IT_SERVICE_INTELLIGENCE_FILE "https://o11yitsicpbuckettestisma.s3.eu-west-1.amazonaws.com/$IT_SERVICE_INTELLIGENCE_FILE" --append-output=logfile
 wget -O /tmp/$SYNTHETIC_MONITORING_ADD_ON_FILE "https://o11yitsicpbuckettestisma.s3.eu-west-1.amazonaws.com/$SYNTHETIC_MONITORING_ADD_ON_FILE" --append-output=logfile
 wget -O /tmp/$INFRASTRUCTURE_MONITORING_ADD_ON_FILE "https://o11yitsicpbuckettestisma.s3.eu-west-1.amazonaws.com/$INFRASTRUCTURE_MONITORING_ADD_ON_FILE" --append-output=logfile
 wget -O /tmp/$INPUTS_DOT_CONF "https://o11yitsicpbuckettestisma.s3.eu-west-1.amazonaws.com/$INPUTS_DOT_CONF" --append-output=logfile
@@ -34,7 +34,7 @@ JAVA_HOME=$(realpath /usr/bin/java)
 sudo /opt/splunk/bin/splunk stop
 
 # install apps
-tar -xvf /tmp/splunk-it-service-intelligence_4113.spl -C /opt/splunk/etc/apps
+tar -xvf /tmp/$IT_SERVICE_INTELLIGENCE_FILE -C /opt/splunk/etc/apps
 tar -xvf /tmp/$INFRASTRUCTURE_MONITORING_ADD_ON_FILE -C /opt/splunk/etc/apps
 tar -xvf /tmp/$SYNTHETIC_MONITORING_ADD_ON_FILE -C /opt/splunk/etc/apps
 tar -xvf /tmp/$APP_FOR_CONTENT_PACKS_FILE -C /opt/splunk/etc/apps
@@ -54,6 +54,9 @@ curl -k -u admin:$PASSWORD https://localhost:8089/services/licenser/licenses -d 
 
 # Add Modular Input
 sudo cat /tmp/inputs.conf >> /opt/splunk/etc/apps/itsi/local/inputs.conf
+
+# ensure rights are applied to all folders
+sudo chown splunk:splunk -R /opt/splunk/etc/apps
 
 # restart splunk
 /opt/splunk/bin/splunk restart
