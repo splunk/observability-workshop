@@ -41,6 +41,6 @@ splunk_itsi_filename                              = "splunk-8.2.3-cd0848707637-l
 splunk_itsi_files_local_path                      = "~/Downloads" # path where itsi files resides on your local machine | on Windows %USERPROFILE%\Downloads
 splunk_itsi_license_filename                      = "Splunk_ITSI_NFR_FY23_2H.xml" # this file should NOT be included in the repo, and shoule be located in the itsi_files_local_path location
 splunk_app_for_content_packs_filename             = "splunk-app-for-content-packs_140.spl" # this file should NOT be included in the repo, and shoule be located in the itsi_files_local_path location
-splunk_it_service_intelligence_filename           = "splunk-it-service-intelligence_493.spl" # this file should NOT be included in the repo, and shoule be located in the itsi_files_local_path location
+splunk_it_service_intelligence_filename           = "splunk-it-service-intelligence_4113.spl" # this file should NOT be included in the repo, and shoule be located in the itsi_files_local_path location
 splunk_synthetic_monitoring_add_on_filename       = "splunk-synthetic-monitoring-add-on_107.tgz" # this file should NOT be included in the repo, and shoule be located in the itsi_files_local_path location
 splunk_infrastructure_monitoring_add_on_filename  = "splunk-infrastructure-monitoring-add-on_121.tgz" # this file should NOT be included in the repo, and shoule be located in the itsi_files_local_path location
