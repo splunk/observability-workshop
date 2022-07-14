@@ -1,7 +1,6 @@
 resource "random_string" "splunk_itsi_password" {
   length           = 12
   special          = false
-  # override_special = "@£$"
 }
 
 resource "aws_instance" "splunk_itsi" {
@@ -37,11 +36,7 @@ resource "aws_instance" "splunk_itsi" {
       "sudo hostnamectl set-hostname ${self.tags.Name}",
       "sudo apt-get update",
       "sudo apt-get upgrade -y",
-
-      "TOKEN=${var.access_token}",
-      "REALM=${var.realm}",
-      "HOSTNAME=${self.tags.Name}",
-      
+     
     ## Create Splunk Ent Vars
       "SPLUNK_ITSI_PASSWORD=${random_string.splunk_itsi_password.result}",
       "SPLUNK_ITSI_VERSION=${var.splunk_itsi_version}",

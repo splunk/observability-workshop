@@ -15,12 +15,7 @@ private_key_path        = "~/.ssh/id_rsa"
 aws_access_key_id       = "<ACCCESS_KEY_ID>>"
 aws_secret_access_key   = "<SECRET_ACCESS_KEY>>"
 
-### Splunk IM/APM Variables ###
-access_token             = "<ACCESS_TOKEN>"
-api_url                  = "https://api.<REALM>.signalfx.com"
-realm                    = "<REALM>"
-environment              = "o11y"
-
 ### Splunk ITSI Variables ###
 splunk_itsi_files_local_path  = "~/Downloads" # path where itsi files resides on your local machine | on Windows %USERPROFILE%\Downloads
 splunk_itsi_license_filename  = "Splunk_ITSI_NFR_FY23_2H.xml" # this file should NOT be included in the repo, and shoule be located in the itsi_files_local_path location
+environment                   = "o11y"

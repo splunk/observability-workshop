@@ -17,34 +17,8 @@ variable "key_name" {
 variable "private_key_path"{
   default = []
 }
-variable "instance_type" {
-  default = []
-}
-variable "collector_instance_type" {
-  default = []
-}
 variable "ami" {
   default = {}
-}
-
-### SignalFX Variables ###
-variable "access_token" {
-  default = []
-}
-variable "api_url" {
-  default = []
-}
-variable "realm" {
-  default = []
-}
-variable "otelcol_version" {
-  default = []
-}
-variable "ballast" {
-  default = []
-}
-variable "environment" {
-  default = []
 }
 
 ### Splunk ITSI Variables ###
@@ -80,4 +54,7 @@ variable "splunk_synthetic_monitoring_add_on_filename" {
 }
 variable "splunk_infrastructure_monitoring_add_on_filename" {
   default = {}
+}
+variable "environment" {
+  default = []
 }

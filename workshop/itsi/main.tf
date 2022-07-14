@@ -5,10 +5,10 @@ provider "aws" {
   secret_key = var.aws_secret_access_key
 }
 
-provider "signalfx" {
-  auth_token = var.access_token
-  api_url    = var.api_url
-}
+# provider "signalfx" {
+#   auth_token = var.access_token
+#   # api_url    = var.api_url
+# }
 
 provider "helm" {
   kubernetes {
@@ -25,9 +25,6 @@ module "vpc" {
 
 module "itsi_o11y_cp" {
   source                                           = "./modules/itsi_o11y_cp"
-  access_token                                     = var.access_token
-  # api_url                                          = var.api_url
-  realm                                            = var.realm
   environment                                      = var.environment
   region                                           = lookup(var.aws_region, var.region)
   vpc_id                                           = module.vpc.vpc_id
@@ -36,8 +33,6 @@ module "itsi_o11y_cp" {
   key_name                                         = var.key_name
   private_key_path                                 = var.private_key_path
   ami                                              = data.aws_ami.latest-ubuntu.id
-  splunk_itsi_count                                = var.splunk_itsi_count
-  splunk_itsi_ids                                  = var.splunk_itsi_ids
   splunk_itsi_inst_type                            = var.splunk_itsi_inst_type
   splunk_itsi_version                              = var.splunk_itsi_version
   splunk_itsi_filename                             = var.splunk_itsi_filename

@@ -25,7 +25,6 @@ data "aws_ami" "latest-ubuntu" {
 
   filter {
     name = "name"
-    # values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
     values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
   }
 
@@ -33,14 +32,6 @@ data "aws_ami" "latest-ubuntu" {
     name   = "virtualization-type"
     values = ["hvm"]
   }
-}
-
-### Instance Count Variables ###
-variable "splunk_itsi_count" {
-  default = {}
-}
-variable "splunk_itsi_ids" {
-  default = []
 }
 
 variable "region" {
@@ -63,19 +54,6 @@ variable "aws_region" {
   }
 }
 
-### SignalFX Variables ###
-variable "access_token" {
-  default = []
-}
-variable "api_url" {
-  default = []
-}
-variable "realm" {
-  default = []
-}
-variable "environment" {
-  default = []
-}
 
 ### Splunk ITSI Variables ###
 variable "splunk_itsi_filename" {
@@ -105,4 +83,7 @@ variable "splunk_itsi_files_local_path" {
 }
 variable "splunk_itsi_license_filename" {
   default = {}
+}
+variable "environment" {
+  default = []
 }
