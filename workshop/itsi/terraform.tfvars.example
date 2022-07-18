@@ -6,6 +6,9 @@
 ### AWS Variables###
 #region = "<REGION>"
 
+## ITSI Quantity ##
+splunk_itsi_count = "2" # How many ITSI Instances to deploy - if left commented out you will be prompted for this value at run time
+
 ## VPC Settings ##
 vpc_cidr_block          = "172.33.0.0/16"
 

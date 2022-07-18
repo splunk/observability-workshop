@@ -4,9 +4,10 @@ resource "random_string" "splunk_itsi_password" {
 }
 
 resource "aws_instance" "splunk_itsi" {
+  count                     = var.splunk_itsi_count
   ami                       = var.ami
   instance_type             = var.splunk_itsi_inst_type
-  subnet_id                 = element(var.public_subnet_ids, 1)
+  subnet_id                 = var.itsi_public_subnet_id
     root_block_device {
     volume_size = 32
     volume_type = "gp3"
@@ -17,7 +18,7 @@ resource "aws_instance" "splunk_itsi" {
   ]
 
   tags = {
-    Name = lower(join("-",[var.environment,"splunk-itsi"]))
+    Name = "itsi-${count.index + 1}"
   }
 
   provisioner "file" {

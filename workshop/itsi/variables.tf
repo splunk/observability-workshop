@@ -56,6 +56,7 @@ variable "aws_region" {
 
 
 ### Splunk ITSI Variables ###
+
 variable "splunk_itsi_filename" {
   default = "splunk-8.2.3-cd0848707637-linux-2.6-amd64.deb"
 }
@@ -78,6 +79,9 @@ variable "splunk_infrastructure_monitoring_add_on_filename" {
   default = "splunk-infrastructure-monitoring-add-on_121.tgz"
 }
 
+variable "splunk_itsi_count" {
+  default = []
+}
 variable "splunk_itsi_files_local_path" {
   default = {}
 }

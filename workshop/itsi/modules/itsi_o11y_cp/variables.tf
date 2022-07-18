@@ -8,7 +8,7 @@ variable "vpc_id" {
 variable "vpc_cidr_block" {
   default = []
 }
-variable "public_subnet_ids" {
+variable "itsi_public_subnet_id" {
   default = {}
 }
 variable "key_name" {
@@ -22,9 +22,6 @@ variable "ami" {
 }
 
 ### Splunk ITSI Variables ###
-variable "splunk_itsi_count" {
-  default = {}
-}
 variable "splunk_itsi_ids" {
   default = []
 }
@@ -53,6 +50,9 @@ variable "splunk_synthetic_monitoring_add_on_filename" {
   default = {}
 }
 variable "splunk_infrastructure_monitoring_add_on_filename" {
+  default = {}
+}
+variable "splunk_itsi_count" {
   default = {}
 }
 variable "environment" {
