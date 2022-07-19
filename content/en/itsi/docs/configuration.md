@@ -5,15 +5,15 @@ weight: 2
 
 ## Configure the Infrastructure Add-on and the Observability Content Pack
 
-Now that we have access to our instances, which bear the pre-installed Infrastructure Monitoring Add-On and the Observability Content Pack, we need to configure those two by follwoing the steps below.
+Now that we have access to our instances, which have the Infrastructure Monitoring Add-On and the Observability Content Pack pre-installed, we need to configure them by following the steps below.
 
 ### Configuration of the Infrastructure Monitoring Add-on
 
-After you accessed your instance, navigate to the **Splunk Infrastructure Monitoring Add-On** listed on the left under **Apps**. We want to set up an account, and we can do so by navigating to the **Configuration Tab** and clicking on the '**Connect an Account**'-Button.
+After you have accessed your instance, navigate to the **Splunk Infrastructure Monitoring Add-On** listed on the left under **Apps**. We want to set up an account, and we can do so by navigating to the **Configuration Tab** and clicking on the '**Connect an Account**'-Button.
 
 ![Connect Account](../../images/im_configure/account.png)
 
-Once you clicked the 'Connect an Account'-Button, a dialogue appears, prompting you for the user credentials of your Observability Cloud account. These are the **Access Token** and the **Realm**, with which the Add-On can access the Oberservability Cloud. In the next steps, we are going to locate our Realm inside our individual Observability Cloud account and create a new Access Token.
+Once you clicked the 'Connect an Account' button, a dialogue appears, prompting you for the user credentials of your Observability Cloud account. These are the **Access Token** and the **Realm**, with which the Add-On can access the Oberservability Cloud. In the next steps, we are going to locate our Realm inside our individual Observability Cloud account and create a new Access Token.
 
 Locate your **Realm**: Log in to your Splunk Observability account. In the menu on the left on the bottom click on the little gear icon (Settings). On the very top of this menu, you should see your **username** right next to a profile picture. Click on it. You are now in the Account Settings, where you can find the Realm *(see screenshot below)*.
 
