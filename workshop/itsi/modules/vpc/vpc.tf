@@ -5,6 +5,6 @@ resource "aws_vpc" "itsi_vpc" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "${var.environment}-itsi-vpc"
+    Name = "${var.workshop_name}-itsi-vpc"
   }
 }

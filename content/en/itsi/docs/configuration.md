@@ -5,7 +5,7 @@ weight: 2
 
 ## Configure the Infrastructure Add-on and the Observability Content Pack
 
-Now that we have access to our instances, which bear the pre-installed Infrastructure Monitoring Add-On and the Observability Content Pack, we need to configure those two by follwoing the steps below.
+Now that we have access to our instances, have the Infrastructure Monitoring Add-On and the Observability Content Pack pre-installed, we need to configure them by following the steps below.
 
 ### Configuration of the Infrastructure Monitoring Add-on
 
