@@ -15,12 +15,12 @@ module "vpc" {
   source         = "./modules/vpc"
   vpc_cidr_block = var.vpc_cidr_block
   region         = lookup(var.aws_region, var.region)
-  environment    = var.environment
+  workshop_name  = var.workshop_name
 }
 
 module "itsi_o11y_cp" {
   source                                           = "./modules/itsi_o11y_cp"
-  environment                                      = var.environment
+  workshop_name                                    = var.workshop_name
   region                                           = lookup(var.aws_region, var.region)
   vpc_id                                           = module.vpc.vpc_id
   vpc_cidr_block                                   = var.vpc_cidr_block

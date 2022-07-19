@@ -2,7 +2,7 @@
 variable "region" {
   default = {}
 }
-variable "environment" {
+variable "workshop_name" {
   default = []
 }
 variable "vpc_cidr_block" {

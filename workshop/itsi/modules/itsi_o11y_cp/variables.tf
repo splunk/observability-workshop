@@ -55,6 +55,6 @@ variable "splunk_infrastructure_monitoring_add_on_filename" {
 variable "splunk_itsi_count" {
   default = {}
 }
-variable "environment" {
+variable "workshop_name" {
   default = []
 }

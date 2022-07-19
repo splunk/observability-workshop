@@ -18,7 +18,9 @@ resource "aws_instance" "splunk_itsi" {
   ]
 
   tags = {
-    Name = "itsi-${count.index + 1}"
+    Component = "itsi-for-${var.workshop_name}"
+    Name = lower(join("-",[var.workshop_name,"itsi",count.index + 1]))
+    Role = "ITSI Server"
   }
 
   provisioner "file" {
