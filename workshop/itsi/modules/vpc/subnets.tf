@@ -9,6 +9,6 @@ resource "aws_subnet" "itsi_public_subnet" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name  =        join("-", [var.workshop_name, "itsi-public"])
+    Name  =        join("-", [var.environment, "itsi-public"])
   }
 }

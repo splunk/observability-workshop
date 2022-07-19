@@ -1,5 +1,5 @@
 resource "aws_security_group" "itsi_sg" {
-  name          = "${var.workshop_name} Splunk ITSI SG"
+  name          = "${var.environment}_Splunk ITSI SG"
   description   = "Allow ingress traffic to ITSI and Egress to Internet"
   vpc_id        = var.vpc_id
 

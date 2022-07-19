@@ -88,6 +88,6 @@ variable "splunk_itsi_files_local_path" {
 variable "splunk_itsi_license_filename" {
   default = {}
 }
-variable "workshop_name" {
-  default = {}
+variable "environment" {
+  default = []
 }
