@@ -20,3 +20,5 @@ package-lock.json
 .hugo_build.lock
 /resources
 !*/resources/
+workshop/Lambda/Java/MobileShop/target/*
+
