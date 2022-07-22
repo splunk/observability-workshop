@@ -13,16 +13,15 @@ def print(*args, **kwargs):
       # grab the current span , then grab the span contect for related content
     current_span = trace.get_current_span()
     ctx = current_span.get_span_context()
-    #o11yEnv = os.environ['OTEL_RESOURCE_ATTRIBUTES'].partition ('deployment.environment=')[2]
     otelSpanID = format(ctx.span_id, "016x")
     otelTraceID = format(ctx.trace_id, "032x")
     logline = {'trace_id'     :  otelTraceID,
                 'span_id'     :  otelSpanID,
                 'service.name' : os.environ['OTEL_SERVICE_NAME'],
-                'deployment.environment' : 'Otel-Lambda'
+                'deployment.environment' : os.environ['OTEL_ENVIRONMENT']
             }
     arguments = list(args)        
-    arguments.insert(0,json.dumps(logline) + " ") 
+    arguments.append(json.dumps(logline)) 
     return builtins.print(arguments)
 
 
@@ -89,9 +88,9 @@ def lambda_handler(event,context):
         "Quantity"      : Quantity,
         "UnitPrice"     : newPrice
     }
-    Aproval = "Atomatic Disaproved"
+    Approval = "Aromatic Disapproved"
     LocalAdminjs = 'arn:aws:lambda:eu-west-1:966218269769:function:RetailOrderCheck'
-    print("Invokeing: " + LocalAdminjs)
+    print("Invoking: " + LocalAdminjs)
     response = client.invoke(
         FunctionName = LocalAdminjs,
         InvocationType = 'RequestResponse',
@@ -99,12 +98,13 @@ def lambda_handler(event,context):
     )
     responseCode = 200 #assume all is well here (need better handling for other branches)
     responseFromCheck = json.load(response['Payload'])
-    print ("Recieved: "+  str(responseFromCheck))
-
-    Aproval = responseFromCheck.get('aproval')
+    print ("Received: "+  str(responseFromCheck))
+    #responseCode = json.load(responseFromCheck['statusCode'])
     responseCode = responseFromCheck.get('statusCode')
-    Aproval = responseFromCheck.get('aproval')
-
+    print('R: '+ str(responseCode))
+    
+    Approval = responseFromCheck.get('approval')
+    print('A: '+ str(Approval))
     if responseCode != 200:
         responseCode=500
         current_span.set_status(StatusCode.ERROR) 
@@ -129,7 +129,7 @@ def lambda_handler(event,context):
     current_span.set_attribute("reply.customerType" , CustomerType )
     current_span.set_attribute("reply.price" , newPrice )
     current_span.set_attribute("reply.transaction" , transactionID )
-    current_span.set_attribute("reply.aproval" , Aproval )
+    current_span.set_attribute("reply.approval" , Approval )
     
     
 
@@ -138,7 +138,7 @@ def lambda_handler(event,context):
             'customerType'  : CustomerType,
             'price'         : newPrice,
             'transaction'   : transactionID,
-            'aproval'       : Aproval
+            'approval'      : Approval
             }
     return {
             'statusCode': responseCode,

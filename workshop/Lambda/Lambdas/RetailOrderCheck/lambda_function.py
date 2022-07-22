@@ -8,19 +8,18 @@ from opentelemetry import trace
 from opentelemetry.trace.status import StatusCode
 
 def print(*args, **kwargs):
-      # grab the current span , then grab the span contect for related content
+      # grab the current span , then grab the span context for related content
     current_span = trace.get_current_span()
     ctx = current_span.get_span_context()
-    #11yEnv = os.environ['OTEL_RESOURCE_ATTRIBUTES'].partition ('deployment.environment=')[2]
     otelSpanID = format(ctx.span_id, "016x")
     otelTraceID = format(ctx.trace_id, "032x")
     logline = {'trace_id'     :  otelTraceID,
                 'span_id'     :  otelSpanID,
                 'service.name' : os.environ['OTEL_SERVICE_NAME'],
-                'deployment.environment' : 'Otel-Lambda'
+                'deployment.environment' : os.environ['OTEL_ENVIRONMENT']
             }
     arguments = list(args)        
-    arguments.insert(0,json.dumps(logline) + " ") 
+    arguments.append(json.dumps(logline)) 
     return builtins.print(arguments)
 
 def lambda_handler(event,context):
@@ -36,7 +35,7 @@ def lambda_handler(event,context):
 
     assumed_role_object = sts_client.assume_role(
     RoleArn="arn:aws:iam::527477237977:role/PH-remote-role",
-    RoleSessionName="PHWASHere")
+    RoleSessionName="RemoteSession")
     sts_connection = boto3.client('sts')
     
     credentials=assumed_role_object['Credentials']
@@ -67,8 +66,8 @@ def lambda_handler(event,context):
         
         # SET DECLINE AS DEFAULT
      
-        Aproval = "Check Declined"
-        print ("inputparams :",inputParams)
+        Approval = "Check Declined"
+        print ("InputParams :",inputParams)
         # Invoking Lambda directly
     
         response = client.invoke( 
@@ -80,25 +79,23 @@ def lambda_handler(event,context):
         
         responseFromCheck= json.load(response['Payload'])
         print ("response: "+ str(responseFromCheck))
-        #responseCode = responseFromCheck.get('statusCode')
-        Aproval = responseFromCheck.get('aproval')
+        responseCode = responseFromCheck.get('statusCode')
+        Approval = responseFromCheck.get('approval')
+        print ("aproval: "+ str(Approval))
         if responseCode == 418:
             responseCode=500
             current_span.set_status(StatusCode.ERROR) 
     else:
-        Aproval = "Check Failed"
+        Approval = "Check Failed"
         responseCode = 400
         current_span.set_status(StatusCode.ERROR) 
-        
-    print("Retval: "+ str(responseCode) + " Aproval: " + str(Aproval))   
  
-    retval={'phoneType'     : Name,
-            'quantity'      : Quantity,
-            'price'         : Price,
-            'Aproval'       : Aproval
+    retval={ 'statusCode'   : responseCode,
+             'phoneType'    : Name,
+             'quantity'     : Quantity,
+             'price'        : Price,
+             'approval'     : Approval
             }
-    return {
-            'statusCode': responseCode,
-            'body': json.dumps(retval)
-        }
+    print ('Sending: ' +  str(retval))   
+    return retval
         

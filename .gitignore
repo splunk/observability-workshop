@@ -21,4 +21,7 @@ package-lock.json
 /resources
 !*/resources/
 workshop/Lambda/Java/MobileShop/target/*
-
+workshop/Lambda/Java/MobileShop/.classpath
+workshop/Lambda/Java/MobileShop/.factorypath
+workshop/Lambda/Java/MobileShop/.project
+workshop/Lambda/Java/MobileShop/.settings/*

@@ -17,24 +17,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import java.util.*;
 import java.io.IOException;
+import java.rmi.server.UID;
 
-
-/*
-import brave.sampler.Sampler;
-import brave.SpanCustomizer;
-import brave.Tracer;
-*/
 
 @Controller
 public class JavaLambdaController {
 
-	// set up AutoWired sleuth for APM
-	//@Autowired Tracer tracer;
-	//@Autowired SpanCustomizer span;
-
+	
 	// setting up some fields for span.tags
-	//private String shopId  = "notmyshop";  //replace this with the identifier assigned to you ie. like ACME in workshop; 
-	//private String version = "1.1"; // example fields that will be passed as tags
+	private UID orderNumber = new UID();
+	private String version = "1.1"; // example fields that will be passed as tags
 
 	private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 
@@ -57,18 +49,18 @@ public class JavaLambdaController {
 	public String orderSubmit(@ModelAttribute Order Order, Model model) throws IOException  {
 		LOG.info("Inside OrderSubmit");
 		//span.tag("Version", version); // sending tag along in the span. useful for development
-		//span.tag("ShopId", shopId);
+		//span.tag("orderNumber", orderNumber.toString());
 	
 		LOG.info("Order:");
-		LOG.info("phone   : " + Order.getPhoneType());
-		LOG.info("Quantity : " + Order.getQuantity());
-		LOG.info("Customer:"  + Order.getCustomerType());
+		LOG.info("phoneType : " + Order.getPhoneType());
+		LOG.info("Quantity  : " + Order.getQuantity());
+		LOG.info("Customer  : " + Order.getCustomerType());
          // More tags	
 		//span.tag("phone",    Order.getPhoneType());
 		//span.tag("Quantity",  String.valueOf(Order.getQuantity()));
 		//span.tag("Customer", Order.getCustomerType());
 		
-		String url = "https://ckfnajft3i.execute-api.eu-west-1.amazonaws.com/default/RetailOrder";
+		String url = "REPLACE WITH RETAILORDER URL";
 		if (url.startsWith("http")) {
 			// create headers
 			HttpHeaders headers = new HttpHeaders();
@@ -81,6 +73,7 @@ public class JavaLambdaController {
 			map.put("ProductName", Order.getPhoneType());
 			map.put("Quantity",  Order.getQuantity());
 			map.put("CustomerType", Order.getCustomerType());
+			map.put("orderNumber",orderNumber.toString());
 			// build the request
 			HttpEntity<Map<String, Object>> orderRequest = new HttpEntity<>(map, headers);
 			// send POST request

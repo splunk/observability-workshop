@@ -7,15 +7,15 @@ public class Order {
     private String customerType;
     private double price;
 	private String transaction;
-    private String aproval;
+    private String approval;
 
-    public void setOrder(String phoneType, int quantity, String customerType, double price, String transaction, String aproval) {
+    public void setOrder(String phoneType, int quantity, String customerType, double price, String transaction, String approval) {
 		this.phoneType = phoneType;
 		this.quantity = quantity;
         this.customerType = customerType;
         this.price=price;
 		this.transaction = transaction;
-        this.aproval = aproval;
+        this.approval = approval;
 	}
     
     /**
@@ -90,17 +90,17 @@ public class Order {
 
  
     /**
-     * @return String return the aproval
+     * @return String return the approval
      */
-    public String getAproval() {
-        return aproval;
+    public String getApproval() {
+        return approval;
     }
 
     /**
-     * @param aproval the Aproval to set
+     * @param approval the Approval to set
      */
-    public void setAproval(String aproval) {
-        this.aproval = aproval;
+    public void setApproval(String approval) {
+        this.approval = approval;
     }   
 
 }
