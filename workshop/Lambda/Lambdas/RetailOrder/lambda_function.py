@@ -24,9 +24,10 @@ def print(*args, **kwargs):
     arguments.append(json.dumps(logline)) 
     return builtins.print(arguments)
 
-
+#Try and fetch the urls/arns for the other functions to be called 
 PRICE_URL       = os.environ.get('PRICE_URL')
 ORDER_LINE      = os.environ.get('ORDER_LINE')
+ADMIN_CHECK     = os.environ.get('ADMIN_CHECK')
 
 # Define the client to interact with AWS Lambda
 client = boto3.client('lambda')
@@ -38,9 +39,10 @@ def lambda_handler(event,context):
     Name         =  json.loads(event ['body']).get("ProductName")  # Value passed in from test case
     Quantity     =  json.loads(event ['body']).get("Quantity")     # Value passed in from test case
     CustomerType =  json.loads(event ['body']).get("CustomerType") # Value passed in from test case
+    OrderNumber  =  json.loads(event ['body']).get("orderNumber")
     
     current_span.set_attribute("request.ProductName", Name)
-    current_span.set_attribute("request.Quantity", Quantity)
+    current_span.set_attribute("request.OrderNumber", OrderNumber)
     current_span.set_attribute("request.CustomerType", CustomerType)
     
     # Call Node-JS lambda via Api Gateway to get the Price
@@ -88,27 +90,27 @@ def lambda_handler(event,context):
         "Quantity"      : Quantity,
         "UnitPrice"     : newPrice
     }
-    Approval = "Aromatic Disapproved"
-    LocalAdminjs = 'arn:aws:lambda:eu-west-1:966218269769:function:RetailOrderCheck'
-    print("Invoking: " + LocalAdminjs)
-    response = client.invoke(
-        FunctionName = LocalAdminjs,
-        InvocationType = 'RequestResponse',
-        Payload = json.dumps(inputParams)
-    )
-    responseCode = 200 #assume all is well here (need better handling for other branches)
-    responseFromCheck = json.load(response['Payload'])
-    print ("Received: "+  str(responseFromCheck))
-    #responseCode = json.load(responseFromCheck['statusCode'])
-    responseCode = responseFromCheck.get('statusCode')
-    print('R: '+ str(responseCode))
-    
-    Approval = responseFromCheck.get('approval')
-    print('A: '+ str(Approval))
-    if responseCode != 200:
-        responseCode=500
-        current_span.set_status(StatusCode.ERROR) 
-    
+    Approval = "Admin Check not Available"
+    responseCode = 200 
+    if ADMIN_CHECK:
+        print("Invoking: " + ADMIN_CHECK)
+        response = client.invoke(
+            FunctionName = ADMIN_CHECK,
+            InvocationType = 'RequestResponse',
+            Payload = json.dumps(inputParams)
+        )
+        responseCode = 200 #assume all is well here (need better handling for other branches)
+        responseFromCheck = json.load(response['Payload'])
+        print ("Received: "+  str(responseFromCheck))
+        #responseCode = json.load(responseFromCheck['statusCode'])
+        responseCode = responseFromCheck.get('statusCode')
+        print('R: '+ str(responseCode))
+        Approval = responseFromCheck.get('approval')
+        print('A: '+ str(Approval))
+        if responseCode != 200:
+            responseCode=500
+            current_span.set_status(StatusCode.ERROR) 
+        
     # sqs_client = boto3.client('sqs')
     # sqs_queue_url = sqs_client.get_queue_url(QueueName="RetailOrder")['QueueUrl']
     # msg_body = message = {"key": "value"}

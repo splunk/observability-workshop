@@ -23,7 +23,9 @@ import java.rmi.server.UID;
 @Controller
 public class JavaLambdaController {
 
-	
+	// setting up the URL top call - (replace it with proper call once that is deployed)
+	String url = "REPLACE WITH RETAILORDER URL";
+		
 	// setting up some fields for span.tags
 	private UID orderNumber = new UID();
 	private String version = "1.1"; // example fields that will be passed as tags
@@ -59,8 +61,8 @@ public class JavaLambdaController {
 		//span.tag("phone",    Order.getPhoneType());
 		//span.tag("Quantity",  String.valueOf(Order.getQuantity()));
 		//span.tag("Customer", Order.getCustomerType());
-		
-		String url = "REPLACE WITH RETAILORDER URL";
+
+		//going to check if the url is valid otherwise error
 		if (url.startsWith("http")) {
 			// create headers
 			HttpHeaders headers = new HttpHeaders();
@@ -94,7 +96,7 @@ public class JavaLambdaController {
 			}
 		else
 		{	
-			LOG.error("url not replaced with valid url to reatail order Lambda!");
+			LOG.error("url not replaced with valid url to the RetailOrder Lambda!");
 			return "error";
 		}	
 	}
