@@ -7,35 +7,47 @@ In this section, we will create a custom Service in Splunk ITSI based on observa
 
 ## Access the Splunk Observability Cloud Platform
 
-1. Visit the [Splunk Observability Cloud Platform](https://app.eu0.signalfx.com/#/home) and log in with the credentials that have been provided to you. 
-(In case of trouble, please don't hesitate to reach out to us!) If everything went well, you can see the Home screen which looks like this:
+Visit the [Splunk Observability Cloud Platform](https://app.eu0.signalfx.com/#/home) and log in with the credentials that have been provided to you.  If everything went well you should see the Home screen which looks like this:
 
-<img src="../../images/custom_service/o11y_home.png" alt="O11y Home Screen" style="width: 70%;"/>
+<!-- <img src="../../images/custom_service/o11y_home.png" alt="O11y Home Screen" style="width: 70%;"/> -->
+![O11y Home Screen](../../images/custom_service/o11y_home.png)
 
-2. On the menu on the left (you might have to expand it by clicking on the double arrow on the bottom left), choose **Dashboards**, locate the pre-build **AWS EBS** Dashboard, 
-and select **EBS Volumes**. 
+On the menu on the left (you might have to expand it by clicking on the double arrow on the bottom left), choose **Dashboards**, locate the pre-built **AWS EBS** Dashboard, and select **EBS Volumes**.
 
-<img src="../../images/custom_service/ebs_dashboard.png" alt="EBS Dashboards" style="width: 50%;"/><br>
+<!-- <img src="../../images/custom_service/ebs_dashboard.png" alt="EBS Dashboards" style="width: 50%;"/><br> -->
+![EBS Dashboards](../../images/custom_service/ebs_dashboard.png)
+
 Open the dashboard with the title **Total Ops/Reporting Interval** by locating the relating tile, clicking on the three little dots on the upper right of the tile, and then **Open**.
-<img src="../../images/custom_service/open_dashboard.png" alt="Open Dashboard" style="width: 90%;"/><br>
+
+<!-- <img src="../../images/custom_service/open_dashboard.png" alt="Open Dashboard" style="width: 90%;"/><br> -->
+![Open Dashboard](../../images/custom_service/open_dashboard.png)
+
 Click on **View SignalFlow**.
-<img src="../../images/custom_service/view_sf.png" alt="View Signal Flow" style="width: 90%;"/><br>
+
+<!-- <img src="../../images/custom_service/view_sf.png" alt="View Signal Flow" style="width: 90%;"/><br> -->
+![View Signal Flow](../../images/custom_service/view_sf.png)
+
 You should see the following:
+
 ```text
 A = data('VolumeReadOps', filter=filter('namespace', 'AWS/EBS') and filter('stat', 'sum'), rollup='rate', extrapolation='zero').scale(60).sum().publish(label='A')
 B = data('VolumeWriteOps', filter=filter('namespace', 'AWS/EBS') and filter('stat', 'sum'), rollup='rate', extrapolation='zero').scale(60).sum().publish(label='B')
 ```
 
-3. Let's change the SignalFlow to create our query in Splunk Enterprise :
+Let's modify the SignalFlow so we can use it to create our query in Splunk Enterprise - We have to remove the `A =`, `B =`, and add a `semicolon` `;` to the end of the first line so we end up with the following:
+
 ```text
 data('VolumeReadOps', filter=filter('namespace', 'AWS/EBS') and filter('stat', 'sum'), rollup='rate', extrapolation='zero').scale(60).sum().publish(label='A');
 data('VolumeWriteOps', filter=filter('namespace', 'AWS/EBS') and filter('stat', 'sum'), rollup='rate', extrapolation='zero').scale(60).sum().publish(label='B')
-``` 
-Now go to Splunk Enterprise and open the **Search & Reporting** default app. Based on the SignalFlow statement, we can craft the following SPL Search Term:
+```
+
+Now go to your Splunk Enterprise UI and open the **Search & Reporting** app. We can craft the following SPL Search Term by adding `| sim flow query=` and including the modified SignalFlow statement wrapped in double quotes:
+
 ```text
 | sim flow query="data('VolumeReadOps', filter=filter('namespace', 'AWS/EBS') and filter('stat', 'sum'), rollup='rate', extrapolation='zero').scale(60).sum().publish(label='A');
 data('VolumeWriteOps', filter=filter('namespace', 'AWS/EBS') and filter('stat', 'sum'), rollup='rate', extrapolation='zero').scale(60).sum().publish(label='B')"
 ```
+
 Execute this search.
 
 {{% alert title="Caution" %}}

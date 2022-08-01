@@ -1,14 +1,13 @@
 resource "random_string" "splunk_itsi_password" {
   length           = 12
   special          = false
-  # override_special = "@£$"
 }
 
 resource "aws_instance" "splunk_itsi" {
   count                     = var.splunk_itsi_count
   ami                       = var.ami
   instance_type             = var.splunk_itsi_inst_type
-  subnet_id                 = element(var.public_subnet_ids, count.index)
+  subnet_id                 = var.itsi_public_subnet_id
     root_block_device {
     volume_size = 32
     volume_type = "gp3"
@@ -19,14 +18,19 @@ resource "aws_instance" "splunk_itsi" {
   ]
 
   tags = {
-    Name = lower(join("_",[var.environment,element(var.splunk_itsi_ids, count.index)]))
+    Component = "itsi-for-${var.workshop_name}"
+    Name = lower(join("-",[var.workshop_name,"itsi",count.index + 1]))
+    Role = "ITSI Server"
   }
-
- 
 
   provisioner "file" {
      source      = "${path.module}/scripts/install_ITSI_Content_Pack.sh"
      destination = "/tmp/install_ITSI_Content_Pack.sh"
+   }
+
+  provisioner "file" {
+     source      = join("/",[var.splunk_itsi_files_local_path,var.splunk_itsi_license_filename])
+     destination = join("/",["/tmp",var.splunk_itsi_license_filename])
    }
 
   provisioner "remote-exec" {
@@ -35,11 +39,7 @@ resource "aws_instance" "splunk_itsi" {
       "sudo hostnamectl set-hostname ${self.tags.Name}",
       "sudo apt-get update",
       "sudo apt-get upgrade -y",
-
-      "TOKEN=${var.access_token}",
-      "REALM=${var.realm}",
-      "HOSTNAME=${self.tags.Name}",
-      
+     
     ## Create Splunk Ent Vars
       "SPLUNK_ITSI_PASSWORD=${random_string.splunk_itsi_password.result}",
       "SPLUNK_ITSI_VERSION=${var.splunk_itsi_version}",

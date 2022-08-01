@@ -8,7 +8,7 @@ variable "vpc_id" {
 variable "vpc_cidr_block" {
   default = []
 }
-variable "public_subnet_ids" {
+variable "itsi_public_subnet_id" {
   default = {}
 }
 variable "key_name" {
@@ -17,40 +17,11 @@ variable "key_name" {
 variable "private_key_path"{
   default = []
 }
-variable "instance_type" {
-  default = []
-}
-variable "collector_instance_type" {
-  default = []
-}
 variable "ami" {
   default = {}
 }
 
-### SignalFX Variables ###
-variable "access_token" {
-  default = []
-}
-variable "api_url" {
-  default = []
-}
-variable "realm" {
-  default = []
-}
-variable "otelcol_version" {
-  default = []
-}
-variable "ballast" {
-  default = []
-}
-variable "environment" {
-  default = []
-}
-
 ### Splunk ITSI Variables ###
-variable "splunk_itsi_count" {
-  default = {}
-}
 variable "splunk_itsi_ids" {
   default = []
 }
@@ -80,4 +51,10 @@ variable "splunk_synthetic_monitoring_add_on_filename" {
 }
 variable "splunk_infrastructure_monitoring_add_on_filename" {
   default = {}
+}
+variable "splunk_itsi_count" {
+  default = {}
+}
+variable "workshop_name" {
+  default = []
 }
