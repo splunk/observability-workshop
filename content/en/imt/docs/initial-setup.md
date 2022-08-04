@@ -33,7 +33,7 @@ make a note of the IP address as you will need this during the workshop.
 
 ## 2. SSH (Mac OS/Linux)
 
-Most attendees will be able to connect to the workshop by using SSH from their Mac or Linux device.
+Most attendees will be able to connect to the workshop by using SSH from their Mac or Linux device, or on Windows 10 and above.
 
 To use SSH, open a terminal on your system and type `ssh ubuntu@x.x.x.x` (replacing x.x.x.x with the IP address found in Step #1).
 
@@ -49,11 +49,38 @@ Upon successful login you will be presented with the Splunk logo and the Linux p
 
 ![ssh connected](../../images/ssh-3.png)
 
+## 3. SSH (Windows 10 and above)
+
+The procedure described above is the same on Windows 10, and the commands can be executed either in the Windows Command Prompt or PowerShell.
+However, Windows regards its SSH Client as an "optional feature", which might need to be enabled.
+
+You can verify if SSH is enabled by simply executing `ssh`
+
+If you are shown a help text on how to use the ssh-command (like shown on the screenshot below), you are all set.
+
+![Windows SSH enabled](../../images/windows-ssh-enabled-feedback.png)
+
+If the result of executing the command looks something like on the screenshot below, you want to enable the "OpenSSH Client" feature manually. 
+
+![Windows SSH disabled](../../images/windows-ssh-disabled-feedback.png)
+
+To do that, open the "Settings" menu, and click on "Apps". While being in the "Apps & features" section, click on "Optional features".
+
+![Windows Apps Settings](../../images/windows-gui-optionalfeatures.png)
+
+Here, you are presented a list of installed features. On the top, you see a button with a plus icon to "Add a feature". Click it. 
+In the search input field, type "OpenSSH", and find a feature called "OpenSSH Client",  or respectively, "OpenSSH Client (Beta)", click on it, and click the "Install"-button.
+
+![Windows Enable OpenSSH Client](../../images/windows-enable-openssh-client.png)
+
+Now you are set! In case you are not able to access the provided instance in spite of enabling the OpenSSH feature, please do not shy away from reaching
+out to the course instructor, either via chat or directly.
+
 At this point you are ready to continue and [start the workshop](../../gdi/k3s/)
 
 ---
 
-## 3. Putty (Windows)
+## 4. Putty (For Windows Versions prior to Windows 10)
 
 If you do not have ssh preinstalled or if you are on a Windows system,  the best option is to install putty, you can find [here.](https://www.putty.org/)
 
