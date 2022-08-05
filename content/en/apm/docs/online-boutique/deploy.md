@@ -10,14 +10,35 @@ weight: 2
 
 ---
 
-## 1. Deploy Online Boutique
+## 1. Obtain Access Token
 
-To deploy the Online Boutique application into K3s apply the deployment:
+As this Deployment we are about to do is also used as part of the RUM workshop section, you will need to obtain your RUM Access Token from the Splunk UI. You can find the workshop Access Token by clicking **>>** bottom left and then selecting **Settings → Access Tokens**.
+
+Expand the RUM workshop token that your host has instructed you to use e.g. **O11y-Workshop-RUM-TOKEN**, then click on **Show Token** to expose your token. Click the {{% labelbutton color="ui-button-grey" %}}Copy{{% /labelbutton %}} button to copy to clipboard. Please do not use the **Default** token!
+
+![Access Token](../../../../imt/images/access-token.png)
+
+{{% alert title="Please do not attempt to create your own token" color="warning" %}}
+We have created a RUM Token specifically for this workshop with the appropriate settings for the exercises you will be performing
+{{% /alert %}}
+
+## 2. Deploy Online Boutique
+
+Create the `RUM_TOKEN` environment variable to use in the proceeding shell script to personalize your deployment.
+
+{{< tabpane >}}
+{{< tab header="Export Variables" lang="bash" >}}
+export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
+{{< /tab >}}
+{{< /tabpane >}}
+
+To deploy the Online Boutique application into K3s, run the apm config script, then apply the deployment:
 
 {{< tabpane >}}
 {{< tab header="Deploy Online Boutique" lang="bash" >}}
-cd ~/workshop
-kubectl apply -f apm/microservices-demo/k8s/deployment.yaml
+cd ~/workshop/apm
+./apm_config
+kubectl apply -f deployment.yaml
 {{< /tab >}}
 {{< tab header="Deployment Output" lang= "bash" >}}
 deployment.apps/checkoutservice created
