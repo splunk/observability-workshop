@@ -37,8 +37,8 @@ To deploy the Online Boutique application into K3s, run the apm config script, t
 {{< tabpane >}}
 {{< tab header="Deploy Online Boutique" lang="bash" >}}
 cd ~/workshop/apm
-./apm_config
-kubectl apply -f deployment.yaml
+./apm-config
+kubectl apply -f deploymentRUM.yaml
 {{< /tab >}}
 {{< tab header="Deployment Output" lang= "bash" >}}
 deployment.apps/checkoutservice created
