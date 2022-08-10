@@ -10,19 +10,25 @@ weight: 2
 
 ---
 
-## 1. Obtain Access Token
+## 1. Check your EC2 server
+
+This assumes you are running this after you have run the IMT workshop, and still have access to your ec2 instance.
+If this is the case, continue with paragraph 2. *Obtain RUM Access Token*,
+otherwise if you have received a fresh instance,  please run the first two (2) sections of [Deploying the OpenTelemetry Collector in Kubernetes](../../../imt/docs/gdi/k3s.md) to get the system ready for the APM workshop, then continue with the next section.
+
+## 2. Obtain RUM Access Token
 
 As this Deployment we are about to do is also used as part of the RUM workshop section, you will need to obtain your RUM Access Token from the Splunk UI. You can find the workshop Access Token by clicking **>>** bottom left and then selecting **Settings → Access Tokens**.
 
-Expand the RUM workshop token that your host has instructed you to use e.g. **O11y-Workshop-RUM-TOKEN**, then click on **Show Token** to expose your token. Click the {{% labelbutton color="ui-button-grey" %}}Copy{{% /labelbutton %}} button to copy to clipboard. Please do not use the **Default** token!
+Expand the RUM workshop token that your host has instructed you to use e.g. **O11y-Workshop-RUM-TOKEN**, then click on **Show Token** to expose your token. Click the {{% labelbutton color="ui-button-grey" %}}Copy{{% /labelbutton %}} button to copy to clipboard. Please do not use the **Default** token! Make sure the token has RUM as its Authorization Scope.
 
-![Access Token](../../../../imt/images/access-token.png)
+![Access Token](../../../images/RUM-Access-Token.png)
 
 {{% alert title="Please do not attempt to create your own token" color="warning" %}}
 We have created a RUM Token specifically for this workshop with the appropriate settings for the exercises you will be performing
 {{% /alert %}}
 
-## 2. Deploy Online Boutique
+## 3. Deploy Online Boutique
 
 Create the `RUM_TOKEN` environment variable to use in the proceeding shell script to personalize your deployment.
 
@@ -37,7 +43,7 @@ To deploy the Online Boutique application into K3s, run the apm config script, t
 {{< tabpane >}}
 {{< tab header="Deploy Online Boutique" lang="bash" >}}
 cd ~/workshop/apm
-./apm-config
+./apm-config.sh
 kubectl apply -f deploymentRUM.yaml
 {{< /tab >}}
 {{< tab header="Deployment Output" lang= "bash" >}}
@@ -102,7 +108,7 @@ Usually it should only take around 1min 30secs for the pods to transition into a
 
 ---
 
-## 3. Validate in the UI
+## 4. Validate in the UI
 
 In the Splunk UI click on Infrastructure ![infrastructure button](../../../images/infrastructure.png) this will bring you to the Infrastructure Overview dashboard, then click on **Kubernetes**.
 
@@ -118,7 +124,7 @@ If you select the **WORKLOADS** tab again you should now see that there are a nu
 
 ---
 
-## 4. View Online Boutique
+## 5. View Online Boutique
 
 The Online Boutique is viewable on port 81 of the EC2 instance's IP address. The IP address is the one you used to SSH into the instance at the beginning of the workshop.
 
