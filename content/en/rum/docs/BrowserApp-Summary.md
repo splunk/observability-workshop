@@ -4,7 +4,7 @@ weight: 2
 ---
 
 * Get familiar with the UI and options available from this landing page
-* Identify Page Views/Errors and Request/Errors and Java Script Errors in a single view <br>
+* Identify Page Views/Errors and Request/Errors and Java Script Errors in a single view </br>
   Check the Web Vitals metrics and any Detector that has fired for in relation to your Browser Application
 
 ---
