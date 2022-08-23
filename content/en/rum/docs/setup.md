@@ -15,6 +15,80 @@ If you have access to an EC2 instance and have previously installed the Online B
 
 If you have not got access to an EC2 instance with the Online Boutique installed then your workshop instructor will provide you with the Online Boutique URL that does not have RUM installed so that you can complete the next steps.
 
+
+
+
+## 2. Obtain RUM Access Token
+
+As this Deployment we are about to do is also used as part of the RUM workshop section, you will need to obtain your RUM Access Token from the Splunk UI. You can find the workshop Access Token by clicking **>>** bottom left and then selecting **Settings → Access Tokens**.
+
+Expand the RUM workshop token that your host has instructed you to use e.g. **O11y-Workshop-RUM-TOKEN**, then click on **Show Token** to expose your token. Click the {{% labelbutton color="ui-button-grey" %}}Copy{{% /labelbutton %}} button to copy to clipboard. Please do not use the **Default** token! Make sure the token has RUM as its Authorization Scope.
+
+![Access Token](../../../images/RUM-Access-Token.png)
+
+{{% alert title="Please do not attempt to create your own token" color="warning" %}}
+We have created a RUM Token specifically for this workshop with the appropriate settings for the exercises you will be performing
+{{% /alert %}}
+
+Create the `RUM_TOKEN` environment variable to use in the proceeding shell script to personalize your deployment.
+
+{{< tabpane >}}
+{{< tab header="Export Variables" lang="bash" >}}
+export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
+{{< /tab >}}
+{{< /tabpane >}}
+
+## 2. Deploy Online Boutique
+
+To deploy the Online Boutique application into K3s, run the apm config script, then apply the deployment:
+
+{{< tabpane >}}
+{{< tab header="Deploy Online Boutique" lang="bash" >}}
+cd ~/workshop/apm
+./apm-config.sh -r
+kubectl apply -f deploymentRUM.yaml
+{{< /tab >}}
+{{< tab header="Deployment Output" lang= "bash" >}}
+deployment.apps/checkoutservice created
+service/checkoutservice created
+deployment.apps/redis-cart created
+service/redis-cart created
+deployment.apps/productcatalogservice created
+service/productcatalogservice created
+deployment.apps/loadgenerator created
+service/loadgenerator created
+deployment.apps/frontend created
+service/frontend created
+service/frontend-external created
+deployment.apps/paymentservice created
+service/paymentservice created
+deployment.apps/emailservice created
+service/emailservice created
+deployment.apps/adservice created
+service/adservice created
+deployment.apps/cartservice created
+service/cartservice created
+deployment.apps/recommendationservice created
+service/recommendationservice created
+deployment.apps/shippingservice created
+service/shippingservice created
+deployment.apps/currencyservice created
+service/currencyservice created
+{{< /tab >}}
+{{< /tabpane >}}
+
+{{% alert title="In case of a message about a VARIABLE being unset" color="warning" %}}
+Please undeploy the APM environment by running **kubectl delete -f deployment.yaml**</br>
+Before exporting the variable as described in the guide and rerunning the deployment script above.
+{{% /alert %}}
+
+
+
+
+
+
+
+
 Open your web browser and go to the Online Boutique.  (The one you previously used, or the one provided by the Workshop instructor). You will see the Non RUM Online Boutique running.
 
 ![Online Boutique](../../images/online-boutique.png)

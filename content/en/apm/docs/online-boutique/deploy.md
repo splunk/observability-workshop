@@ -13,40 +13,21 @@ weight: 2
 ## 1. Check your EC2 server
 
 This assumes you are running this after you have run the IMT workshop, and still have access to your ec2 instance.
-If this is the case, continue with paragraph 2. *Obtain RUM Access Token*,
+If this is the case, continue with paragraph 3. *Deploy Online Boutique*,
 otherwise if you have received a fresh instance,  please run the first two (2) sections of [Deploying the OpenTelemetry Collector in Kubernetes](../../../imt/docs/gdi/k3s.md) to get the system ready for the APM workshop, then continue with the next section.
 
-## 2. Obtain RUM Access Token
+## 2. Deploy Online Boutique
 
-As this Deployment we are about to do is also used as part of the RUM workshop section, you will need to obtain your RUM Access Token from the Splunk UI. You can find the workshop Access Token by clicking **>>** bottom left and then selecting **Settings → Access Tokens**.
-
-Expand the RUM workshop token that your host has instructed you to use e.g. **O11y-Workshop-RUM-TOKEN**, then click on **Show Token** to expose your token. Click the {{% labelbutton color="ui-button-grey" %}}Copy{{% /labelbutton %}} button to copy to clipboard. Please do not use the **Default** token! Make sure the token has RUM as its Authorization Scope.
-
-![Access Token](../../../images/RUM-Access-Token.png)
-
-{{% alert title="Please do not attempt to create your own token" color="warning" %}}
-We have created a RUM Token specifically for this workshop with the appropriate settings for the exercises you will be performing
-{{% /alert %}}
-
-## 3. Deploy Online Boutique
-
-Create the `RUM_TOKEN` environment variable to use in the proceeding shell script to personalize your deployment.
-
-{{< tabpane >}}
-{{< tab header="Export Variables" lang="bash" >}}
-export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
-{{< /tab >}}
-{{< /tabpane >}}
-
-To deploy the Online Boutique application into K3s, run the apm config script, then apply the deployment:
+To deploy the Online Boutique application into K3s, run the apm-config script, then apply the deployment:
 
 {{< tabpane >}}
 {{< tab header="Deploy Online Boutique" lang="bash" >}}
 cd ~/workshop/apm
 ./apm-config.sh
-kubectl apply -f deploymentRUM.yaml
+kubectl apply -f deployment.yaml
 {{< /tab >}}
 {{< tab header="Deployment Output" lang= "bash" >}}
+APM Only Deployment
 deployment.apps/checkoutservice created
 service/checkoutservice created
 deployment.apps/redis-cart created
@@ -74,6 +55,11 @@ deployment.apps/currencyservice created
 service/currencyservice created
 {{< /tab >}}
 {{< /tabpane >}}
+
+{{% alert title="In case of a message about a VARIABLE being unset" color="warning" %}}
+Please undeploy the APM environment first by running **kubectl delete -f deployment.yaml**</br>
+THen export the variable as described in the guide/message. Followed by rerunning the deployment script above.
+{{% /alert %}}
 
 To ensure the Online Boutique application is running:
 
