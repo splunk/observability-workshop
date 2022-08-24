@@ -162,8 +162,8 @@ runcmd:
   - curl -s https://raw.githubusercontent.com/signalfx/observability-workshop/master/workshop/cloud-init/motd -o /etc/motd
   - chmod -x /etc/update-motd.d/*
   # Install Terraform
-  - curl -S -OL https://releases.hashicorp.com/terraform/1.2.6/terraform_1.2.6_darwin_amd64.zip
-  - unzip -qq terraform_1.2.6_darwin_amd64.zip -d /usr/local/bin
+  - curl -S -OL https://releases.hashicorp.com/terraform/1.2.8/terraform_1.2.8_linux_amd64.zip 
+  - unzip -qq terraform_1.2.8_linux_amd64.zip -d /usr/local/bin
   - bash /usr/local/bin/setup-docker-registry.sh
   - bash /usr/local/bin/local-setup.sh
   # Install K3s
