@@ -58,7 +58,7 @@ service/currencyservice created
 
 {{% alert title="In case of a message about a VARIABLE being unset" color="warning" %}}
 Please undeploy the APM environment first by running **kubectl delete -f deployment.yaml**</br>
-THen export the variable as described in the guide/message. Followed by rerunning the deployment script above.
+Then export the variable as described in the guide/message, followed by rerunning the deployment script above.
 {{% /alert %}}
 
 To ensure the Online Boutique application is running:

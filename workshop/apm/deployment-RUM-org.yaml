@@ -152,7 +152,7 @@ spec:
       nodeSelector:
       containers:
       - name: cartservice
-        image: quay.io/signalfuse/microservices-demo-cartservice:326dd022cd      
+        image: quay.io/signalfuse/microservices-demo-cartservice:1e0032cffb
         imagePullPolicy: Always
         ports:
         - containerPort: 7070
@@ -191,6 +191,14 @@ spec:
           value: "750"
         - name: EXTERNAL_DB_ERROR_RATE
           value: "0.0"
+        - name: FIX_EXCESSIVE_ALLOCATION
+          value: "true"
+        - name: FIX_SLOW_LEAK
+          value: "true"
+        - name: OPTIMIZE_CPU
+          value: "true"
+        - name: OPTIMIZE_BLOCKING
+          value: "true"
         resources:
           requests:
             cpu: 200m
@@ -696,8 +704,8 @@ spec:
       nodeSelector:
       containers:
         - name: frontend
-          image: quay.io/phagen/frontend-rum-profile:1
-          #image: docker.io/harnit/shopdemo-frontend:2.1-customevents
+          #image: quay.io/phagen/frontend-rum-profile:1
+          image: docker.io/harnit/shopdemo-frontend:2.1-customevents
           ports:
           - containerPort: 8080
           readinessProbe:
