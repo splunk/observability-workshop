@@ -23,7 +23,7 @@ Expand the workshop token that your host has instructed you to use e.g. **O11y-W
 We have created a Token specifically for this workshop with the appropriate settings for the exercises you will be performing so have allocated it both Ingest and API Permissions.  Best practice in production is to only allocate a single permission to a Token such as Ingest OR API OR RUM and use multiple Tokens where required.
 {{% /alert %}}
 
-You will also need to obtain the name of the Realm[^2] for your Splunk account.  At the top of the side menu, click on your name and select **Account Settings**. The Realm can be found in the middle of the page within the Organizations section.  In this example it is `us0`.
+You will also need to obtain the name of the Realm[^2] for your Splunk account.  At the top of the side menu, click on your name. This will direct you to the **Account Settings** Page. Click the **Organizations**-tab. The Realm can be found at the top of the displayed information in the tab.  In this example it is `eu0`.
 
 ![Account Settings](../../../images/account-settings.png)
 
