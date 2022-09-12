@@ -32,7 +32,7 @@ cd spring-petclinic
 Start a MySQL database for Pet Clinic to use:
 
 ```bash
-docker run -d -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=petclinic -p 3306:3306 mysql:5.7.8
+docker run -d -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=petclinic -p 3306:3306 docker.io/ßmysql:5.7.8
 ```
 
 Next, run the maven command to compile/build/package Pet Clinic:

@@ -246,7 +246,7 @@ spec:
       tolerations:
       nodeSelector:
       containers:
-        - name: server
+        - name: adservice
           image: quay.io/phagen/adserviceprofiling:4.0
           imagePullPolicy: Always
           ports:
