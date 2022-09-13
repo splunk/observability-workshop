@@ -705,7 +705,8 @@ spec:
       containers:
         - name: frontend
           #image: quay.io/phagen/frontend-rum-profile:1
-          image: docker.io/harnit/shopdemo-frontend:2.1-customevents
+          # image: docker.io/harnit/shopdemo-frontend:2.1-customevents
+          image: quay.io/signalfuse/microservices-demo-frontend:b9b84e1dd6
           ports:
           - containerPort: 8080
           readinessProbe:
