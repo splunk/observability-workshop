@@ -1,0 +1,346 @@
+<!doctype html><html lang=ja class=no-js>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.92.2">
+<meta name=robots content="index, follow">
+<link rel="shortcut icon" href=/observability-workshop/v4.26/favicons/favicon.ico>
+<link rel=apple-touch-icon href=/observability-workshop/v4.26/favicons/apple-touch-icon-180x180.png sizes=180x180>
+<link rel=icon type=image/png href=/observability-workshop/v4.26/favicons/favicon-16x16.png sizes=16x16>
+<link rel=icon type=image/png href=/observability-workshop/v4.26/favicons/favicon-32x32.png sizes=32x32>
+<link rel=icon type=image/png href=/observability-workshop/v4.26/favicons/android-36x36.png sizes=36x36>
+<link rel=icon type=image/png href=/observability-workshop/v4.26/favicons/android-48x48.png sizes=48x48>
+<link rel=icon type=image/png href=/observability-workshop/v4.26/favicons/android-72x72.png sizes=72x72>
+<link rel=icon type=image/png href=/observability-workshop/v4.26/favicons/android-96x96.png sizes=96x96>
+<link rel=icon type=image/png href=/observability-workshop/v4.26/favicons/android-144x144.png sizes=144x144>
+<link rel=icon type=image/png href=/observability-workshop/v4.26/favicons/android-192x192.png sizes=192x192>
+<title>Real Browser Check | Splunk Observability Cloud Workshops</title>
+<meta name=description content="Scripting and configuring a Real Browswer Check
+">
+<meta property="og:title" content="Real Browser Check">
+<meta property="og:description" content="Scripting and configuring a Real Browswer Check
+">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://signalfx.github.io/observability-workshop/v4.26/ja/synthetics/docs/real-browser-checks/"><meta property="article:section" content="synthetics">
+<meta property="article:modified_time" content="2022-03-14T09:31:25+00:00"><meta property="og:site_name" content="Splunk Observability Cloud Workshops">
+<meta itemprop=name content="Real Browser Check">
+<meta itemprop=description content="Scripting and configuring a Real Browswer Check
+">
+<meta itemprop=dateModified content="2022-03-14T09:31:25+00:00">
+<meta itemprop=wordCount content="951">
+<meta itemprop=keywords content><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Real Browser Check">
+<meta name=twitter:description content="Scripting and configuring a Real Browswer Check
+">
+<link rel=preload href=/observability-workshop/v4.26/scss/main.min.39785c4da9cb0cfe16de8f72aadcf06fb29187963dcb8220bb9935bd52331915.css as=style>
+<link href=/observability-workshop/v4.26/scss/main.min.39785c4da9cb0cfe16de8f72aadcf06fb29187963dcb8220bb9935bd52331915.css rel=stylesheet integrity>
+<script src=https://code.jquery.com/jquery-3.6.0.min.js integrity=sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK crossorigin=anonymous></script>
+<script src=https://unpkg.com/lunr@2.3.9/lunr.min.js integrity=sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli crossorigin=anonymous></script>
+</head>
+<body class=td-page>
+<header>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" id=navbar1>
+<a class=navbar-brand href=/observability-workshop/v4.26/ja/>
+<span class=navbar-logo><img class=navbar-logo src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAAvCAIAAAD8RQT7AAACwklEQVRYw+2YW2jTYBTHu4l4F1ERVMQL+qKgMBUU9EEfRAURUUFfBEUEBRGfdC+CrVt3cdbNSZ1zXqar024yp9MJKzh3FScyO+q8MDW3pvc2TZqkudSvtD4J66fkWyL0kNeQH8mX8/+dY8JMZuNcpjzNX9JQK64ZiEZlk9zDEe/aOmPQ8FIKlJpKtH+mNzUYg+Z38a7vvu2NRqHJlDhABPY0G4UmU8lhOnioFSu0GIImU9KXUOhYOz75kiFoMiVjsfDpl/i0UrQ0oePPkp5ACq5kHxs978JnlaHsxQVm/24H3zUGyaRE+Jj5DTGvEm0yeNfVsfeGVVGGYQJtk6kaIBfZ0OYUufBKrKRHCSWgmAQ5fmOIWl6DNjXx6dbwqRfgh4L6eJLC3v/oXW1HnOGFlsDeR0L3TygmEC+tn+j19ciNgt5Qzznc4B3AUPGd33xb7yL3G3LJVaaiX4kKMExCD+bf2YTctvCZZZEzndJYBIZJfE8F9jtBE0HsfpMswQNOoR+HYWIbPkyQiQIr4pyelKyOQ5No8UyoF1PLahjboMqIhqABl3/HA6EX05kGyEboSBuQIZ2/FDGnInKuSyaZnKcYLU32lMTF3P05ITHVb8nFNiQ09MZbXPPI+H9QliMuMuV9xIIqBN2vwAy8HTKw0gJ0sZuYW6l9MuBTS8MnnkujQSgOPxctdhGzy7VPTWL+5eiF1+ABUJJKMpGzr4CHaG8U1KrauH0IHEAot/kRDZ/swKeUaG9bvi13Em2jKUWF4gDDzdGn/zbcmHJE4MEWcZCAFPWk2xc8/ATcpbGl4zOsYFCC1IOsIex7/KchaEMj0ywkh9CH+3c59J8104uLbY36T758x1d68229twIZ+y+6qffGRFa5Jrd3jR3Td5ukJhVgr9TKWp03benp9fo7cmm1/lvImLUXDN757XWe5v+g+QU6sNkgKUPrgwAAAABJRU5ErkJggg=="></span><span class=font-weight-bold>Splunk Observability Cloud Workshops</span>
+</a>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+</ul>
+</div>
+</nav>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" id=navbar2>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.26/ja/imt/><span>Splunk IMT</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.26/ja/apm/><span>Splunk APM</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class="nav-link active" href=/observability-workshop/v4.26/ja/synthetics/><span class=active>Splunk Synthetics</span></a>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+More Workshops
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/latest/pet-clinic/>Pet Clinic Java Workshop</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/latest/bootcamp/>O11y Bootcamp</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/latest/resources/>Resources</a>
+</div>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+Releases
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/latest/>latest</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/v4.25>v4.25</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/v4.26>v4.26</a>
+</div>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+日本語
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.26/synthetics/docs/real-browser-checks/>English</a>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="container-fluid td-outer">
+<div class=td-main>
+<div class="row flex-xl-nowrap">
+<aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+<div id=td-sidebar-menu class=td-sidebar__inner>
+<form class="td-sidebar__search d-flex align-items-center">
+<input type=search class="form-control td-search-input" placeholder="&#xf002; サイトを検索..." aria-label=サイトを検索... autocomplete=off data-offline-search-index-json-src=/observability-workshop/v4.26/offline-search-index.bfc3537d028e1a7831e502d9859cf9a6.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type=button data-toggle=collapse data-target=#td-section-nav aria-controls=td-docs-nav aria-expanded=false aria-label="Toggle section navigation">
+</button>
+</form>
+<nav class="collapse td-sidebar-nav" id=td-section-nav>
+<div class="nav-item dropdown d-block d-lg-none">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+日本語
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.26/synthetics/docs/real-browser-checks/>English</a>
+</div>
+</div>
+<ul class="td-sidebar-nav__section pr-md-3 ul-0">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv426jasynthetics-li>
+<a href=/observability-workshop/v4.26/ja/synthetics/ title=Introduction class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id=m-observability-workshopv426jasynthetics><span>Splunk Synthetics</span></a>
+<ul class=ul-1>
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv426jasyntheticsdocs-li>
+<a href=/observability-workshop/v4.26/ja/synthetics/docs/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv426jasyntheticsdocs><span>Creating checks</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-observability-workshopv426jasyntheticsdocsreal-browser-checks-li>
+<a href=/observability-workshop/v4.26/ja/synthetics/docs/real-browser-checks/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv426jasyntheticsdocsreal-browser-checks><span class=td-sidebar-nav-active-item>Real Browser Check</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv426jasyntheticsdocsapi-checks-li>
+<a href=/observability-workshop/v4.26/ja/synthetics/docs/api-checks/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv426jasyntheticsdocsapi-checks><span>API Checks</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+<aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+</div>
+<div class=td-toc><nav id=TableOfContents>
+<ul>
+<li><a href=#1-prerequisites>1. Prerequisites</a></li>
+<li><a href=#2-using-selenium-ide>2. Using Selenium IDE</a></li>
+<li><a href=#3-create-real-browser-check>3. Create Real Browser Check</a></li>
+<li><a href=#4-create-mobile-check>4. Create Mobile Check</a></li>
+<li><a href=#5-resources>5. Resources</a></li>
+</ul>
+</nav></div>
+<div class="taxonomy taxonomy-terms-cloud taxo-tags">
+<h5 class=taxonomy-title>Tag Cloud</h5>
+<ul class=taxonomy-terms>
+<li><a class=taxonomy-term href=https://signalfx.github.io/observability-workshop/v4.26/ja/tags/k3s/ data-taxonomy-term=k3s><span class=taxonomy-label>k3s</span><span class=taxonomy-count>1</span></a></li>
+<li><a class=taxonomy-term href=https://signalfx.github.io/observability-workshop/v4.26/ja/tags/ngnix/ data-taxonomy-term=ngnix><span class=taxonomy-label>NGNIX</span><span class=taxonomy-count>1</span></a></li>
+</ul>
+</div>
+<div class="taxonomy taxonomy-terms-cloud taxo-categories">
+<h5 class=taxonomy-title>Categories</h5>
+<ul class=taxonomy-terms>
+<li><a class=taxonomy-term href=https://signalfx.github.io/observability-workshop/v4.26/ja/categories/imt/ data-taxonomy-term=imt><span class=taxonomy-label>IMT</span><span class=taxonomy-count>2</span></a></li>
+</ul>
+</div>
+</aside>
+<main class="col-12 col-md-9 col-xl-8 pl-md-5" role=main>
+<nav aria-label=breadcrumb class=td-breadcrumbs>
+<ol class=breadcrumb>
+<li class=breadcrumb-item>
+<a href=https://signalfx.github.io/observability-workshop/v4.26/ja/synthetics/>Splunk Synthetics</a>
+</li>
+<li class=breadcrumb-item>
+<a href=https://signalfx.github.io/observability-workshop/v4.26/ja/synthetics/docs/>Creating checks</a>
+</li>
+<li class="breadcrumb-item active" aria-current=page>
+<a href=https://signalfx.github.io/observability-workshop/v4.26/ja/synthetics/docs/real-browser-checks/>Real Browser Check</a>
+</li>
+</ol>
+</nav>
+<div class=td-content>
+<h1>Real Browser Check</h1>
+<div class=lead>Scripting and configuring a Real Browswer Check</div>
+<header class=article-meta>
+<p class=reading-time><i class="fa fa-clock" aria-hidden=true></i>&nbsp; 5 minute read &nbsp;</p>
+</header>
+<p>This Lab walks your through using the <a href="https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd?hl=en" target=_blank>Chrome Selenium IDE</a>
+extension to create a synthetic transaction against a Splunk demo instance and creating a Splunk Synthetic Monitoring Real Browser Check (RBC). In addition you also get to learn other Splunk Synthetic Monitoring checks like REST API checks and Uptime Checks.</p>
+<h2 id=1-prerequisites>1. Prerequisites</h2>
+<p>Ensure you can login with your username and password at <a href=https://monitoring.rigor.com target=_blank>https://monitoring.rigor.com</a>
+and <a href=https://optimization.rigor.com target=_blank>https://optimization.rigor.com</a>
+. Also, make sure you are assigned to your own account for example: <strong>O11y Workshop</strong>.</p>
+<p>Edit your Splunk Synthetic Monitoring account personal information and adjust your timezone and email notifications. Splunk Synthetic Monitoring will default to start sending you notifications, you can turn them off at the monitor configuration level.</p>
+<p><img src=../../images/image5.png alt="Edit Personal Information"></p>
+<p>Add the <a href="https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd?hl=en-US" target=_blank>Chrome Selenium IDE</a>
+extension to your <strong>Chrome</strong> Browser. Once installed click on the extension and you will see the following screen:</p>
+<p><img src=../../images/image17.png alt="Selenium IDE"></p>
+<h2 id=2-using-selenium-ide>2. Using Selenium IDE</h2>
+<p>You can now go ahead and record a web transaction using Selenium IDE to check on <a href=http://splunk.o11ystore.com target=_blank>http://splunk.o11ystore.com</a>
+.</p>
+<p>Click on <strong>Record a new test in a new project</strong>, name the project <strong>[YOUR_INITIALS] - O11y Store</strong> e.g. RWC - O11y Store.</p>
+<p>!!! question &ldquo;What is Selenium IDE?&rdquo;
+- Selenium IDE is an open source record and playback test automation for the web.
+- Selenium is a portable framework for testing web applications.
+- Selenium provides a playback tool for authoring functional tests without the need to learn a test scripting language (Selenium IDE).
+- It also provides a test domain-specific language (Selenese) to write tests in a number of popular programming languages, including C#, Groovy, Java, Perl, PHP, Python, Ruby and Scala.
+- The tests can then run against most modern web browsers.
+- Selenium runs on Windows, Linux, and macOS.
+- It is open-source software released under the Apache License 2.0.</p>
+<p><img src=../../images/image29.png alt=placeholder></p>
+<p>Enter <a href=http://splunk.o11ystore.com target=_blank>http://splunk.o11ystore.com</a>
+as your base URL.</p>
+<p><img src=../../images/image11.png alt=placeholder></p>
+<p>Click Start Recording{: .label-button .sfx-ui-button-grey}, a new window should open up with <a href=http://splunk.o11ystore.com target=_blank>splunk.o11ystore.com</a>
+. Click <strong>Vintage Camera Lens</strong>, click <strong>Add To Cart</strong> and then click <strong>Place Order</strong>.</p>
+<p>Close the window and then stop the recording by navigating back to Selenium IDE. Finally name the test: <strong>[YOUR_INITIALS] - Checkout Flow (Desktop)</strong> e.g. RWC - Checkout Flow (Desktop).</p>
+<p><img src=../../images/image10.png alt=placeholder></p>
+<p>Your Selenium IDE Project will look something like this:</p>
+<p><img src=../../images/image19.png alt=placeholder></p>
+<p>Test your recording by pressing on the play button, make sure your recording successfully completes the transaction:</p>
+<p><img src=../../images/image26.png alt=Run></p>
+<p>Save your Selenium IDE Project to your Downloads folder as <code>Workshop.side</code></p>
+<p><img src=../../images/image30.png alt=Save></p>
+<p><img src=../../images/save-side-project.png alt="Save SIDE Project"></p>
+<h2 id=3-create-real-browser-check>3. Create Real Browser Check</h2>
+<p>Login to Splunk Synthetic Monitoring using <a href=https://monitoring.rigor.com target=_blank>https://monitoring.rigor.com</a>
+. Click on <strong>REAL BROWSER</strong> and click <strong>+New</strong>{: .label-button .sfx-ui-button-blue}.</p>
+<p><img src=../../images/image3.png alt=placeholder></p>
+<p>Click on &ldquo;<strong>From File</strong>&rdquo; and select your recording then click on Import</p>
+<p><img src=../../images/image1.png alt=placeholder></p>
+<p>Set the <strong>Frequency</strong> to <strong>5 Minutes</strong></p>
+<p><img src=../../images/image15.png alt=placeholder></p>
+<p>Click on Steps and make the following adjustments to your recording provide a friendly name to Steps 1 (Click Camera), 2 (Add to Cart) & 3 (Place Order).</p>
+<p><img src=../../images/image6.png alt=placeholder></p>
+<p>Next, click <strong>+ Add Step</strong>, with this new step we will add some validation to the monitor. This is to ensure the checkout completed successfully.</p>
+<p>Enter <strong>Confirm Order</strong> for the <strong>Name</strong> and change the <strong>Action</strong> to <strong>Wait for text present</strong> and finally enter <strong>Your order is complete!</strong> for the <strong>Value</strong>. You will now have a <strong>Start Url</strong> and 4 steps in your monitor configuration.</p>
+<p><img src=../../images/image2.png alt=placeholder></p>
+<div class="alert alert-info" role=alert>
+<p class=alert-heading>Tip</p>
+<div class=alert-body>
+<p>As you are creating the steps think about how to go about using the <a href=https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions target=_blank>Business Transaction</a>
+<p>feature in Splunk Synthetic Monitoring which is very powerful. <em>“Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."</em></p></p>
+</div>
+</div>
+<p>Click on <strong>Advanced</strong> and make sure the <strong>Viewport Size</strong> is set to <strong>Default desktop: 1366 x 768</strong></p>
+<p><img src=../../images/viewport-size.png alt="Viewport Size"></p>
+<p>Click on &ldquo;<strong>Test</strong>&rdquo; to test your monitor. Once the test has successfully completed make sure to click on &ldquo;<strong>AFTER</strong>&rdquo; in Step 4 to validate the monitor was able to get to the order complete screenshot.</p>
+<p><img src=../../images/image22.png alt=placeholder></p>
+<p>Click on <strong>Create</strong>{: .label-button .sfx-ui-button-blue} to save your Real Browser Monitor. After 5-10 minutes validate your monitor is working and producing successful checks e.g.</p>
+<p><img src=../../images/image27.png alt=placeholder></p>
+<div class="alert alert-info" role=alert>
+<p class=alert-heading>Tip</p>
+<div class=alert-body>
+<p>You can force to run your monitor now using <strong>Run Now</strong></p>
+<p><img src=../../images/image8.png alt=placeholder></p>
+</div>
+</div>
+<p>Change your view to <strong>Segment by location</strong> and observe the difference. You can turn off/on locations by clicking on them.</p>
+<p>!!! question &ldquo;Question?&rdquo;
+Which Location has the poorest <strong>Response Time</strong>?</p>
+<p><img src=../../images/image9.png alt=placeholder></p>
+<p>Click on one of the successful circles to drilldown into that Run:</p>
+<p><img src=../../images/image33.png alt=placeholder></p>
+<p>Take a moment to explore the metrics with the <strong>CONFIGURE METRICS/HIDE METRICS</strong> dropdown.</p>
+<p><img src=../../images/image14.png alt=placeholder></p>
+<p>Click <strong>Page 2</strong> in the dropdown, and scroll down to view the <strong>Filmstrip</strong> and the <strong>Waterfall Chart.</strong></p>
+<p><img src=../../images/image16.png alt=placeholder></p>
+<p><img src=../../images/filmstrip.png alt=Filmstrip></p>
+<p><img src=../../images/waterfall.png alt=Waterfall></p>
+<p>Click on <strong>Click Here to Analyze with Optimization</strong> which will prompt you to login to your Splunk Synthetic Monitoring Optimization Account. If you <strong>don&rsquo;t have this option</strong>, navigate to this <a href="https://optimization.rigor.com/s/2373818/?sh=3AF8C48AADD6D3E5F5DAA8B4B7BB7F45" target=_blank>page</a>
+.</p>
+<p><img src=../../images/image31.png alt=placeholder></p>
+<p>Click the &ldquo;<strong>Best Practices Score</strong>&rdquo; tab. Scroll down, and review all the findings</p>
+<p><img src=../../images/image23.png alt=placeholder></p>
+<p><img src=../../images/best-practices.png alt="Best Practices"></p>
+<p>Spend some time to review the findings. Click into any line item</p>
+<h2 id=4-create-mobile-check>4. Create Mobile Check</h2>
+<p>Copy the RBC you created above:</p>
+<p><img src=../../images/copy-check.png alt="Copy Check"></p>
+<p>Rename it, for example: <strong>RWC - Checkout Flow (Tablet)</strong></p>
+<p><img src=../../images/rename-check.png alt="Copy Check"></p>
+<p>Under the <strong>Advanced</strong> tab, update the following three settings and create your new mobile RBC.</p>
+<p><img src=../../images/image18.png alt=placeholder></p>
+<p>Test & Validate the new monitor</p>
+<div class="alert alert-info" role=alert>
+<p class=alert-heading>Tip</p>
+<div class=alert-body>
+<p>As you are creating the steps try using the <a href=https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions target=_blank>Business Transaction</a>
+<p>feature in Splunk Synthetic Monitoring. <em>“Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."</em></p></p>
+</div>
+</div>
+<h2 id=5-resources>5. Resources</h2>
+<ul>
+<li>
+<p><a href="https://help.rigor.com/hc/en-us/articles/115004652007?flash_digest=b1ef7d1a07b68d5279ee5fef8adb87fb878cf010" target=_blank>Getting Started With Selenium IDE</a>
+</p>
+</li>
+<li>
+<p><a href=http://www2.rigor.com/scripting-guide target=_blank>Splunk Synthetic Monitoring Scripting Guide</a>
+</p>
+</li>
+<li>
+<p><a href=https://help.rigor.com/hc/en-us/articles/115004443988-How-Can-I-Fix-A-Broken-Script target=_blank>How Can I Fix A Broken Script?</a>
+</p>
+</li>
+<li>
+<p><a href=https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction target=_blank>Introduction to the DOM</a>
+(Document Object Model (DOM)</p>
+</li>
+<li>
+<p><a href=https://www.selenium.dev/selenium-ide/ target=_blank>Selenium IDE</a>
+</p>
+</li>
+</ul>
+</div>
+</main>
+</div>
+</div>
+<footer class="bg-dark py-5 row d-print-none">
+<div class="container-fluid mx-sm-5">
+<div class=row>
+<div class="col-6 col-sm-4 text-xs-center order-sm-2">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=Twitter aria-label=Twitter>
+<a class=text-white target=_blank rel=noopener href=https://twitter.com/splunk aria-label=Twitter>
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=GitHub aria-label=GitHub>
+<a class=text-white target=_blank rel=noopener href=https://github.com/signalfx/observability-workshop aria-label=GitHub>
+<i class="fab fa-github"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-12 col-sm-4 text-center py-2 order-sm-2">
+<small class=text-white>&copy; 2022 Splunk Inc. All Rights Reserved</small>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js integrity=sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin=anonymous></script>
+<script src=/observability-workshop/v4.26/js/tabpane-persist.js></script>
+<script src=/observability-workshop/v4.26/js/main.min.8ab8f81ff7e1454d30024cd6f956d4d341c3a97e2a673f988065f2ee4e147922.js integrity="sha256-irj4H/fhRU0wAkzW+VbU00HDqX4qZz+YgGXy7k4UeSI=" crossorigin=anonymous></script>
+<script>const svgCopy='<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg>',svgCheck='<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"><path fill-rule="evenodd" fill="rgb(63, 185, 80)" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>',addCopyButtons=a=>{document.querySelectorAll("pre > code").forEach(c=>{const b=document.createElement("button");b.className="clipboard-button",b.type="button",b.innerHTML=svgCopy,b.addEventListener("click",()=>{a.writeText(c.innerText).then(()=>{b.blur(),b.innerHTML=svgCheck,setTimeout(()=>b.innerHTML=svgCopy,2e3)},a=>b.innerHTML="Error")});const d=c.parentNode;d.parentNode.insertBefore(b,d)})};if(navigator&&navigator.clipboard)addCopyButtons(navigator.clipboard);else{const a=document.createElement("script");a.src="https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/2.7.0/clipboard-polyfill.promise.js",a.integrity="sha256-waClS2re9NUbXRsryKoof+F9qc1gjjIhc2eT7ZbIv94=",a.crossOrigin="anonymous",a.onload=()=>addCopyButtons(clipboard),document.body.appendChild(a)}</script>
+</body>
+</html>
