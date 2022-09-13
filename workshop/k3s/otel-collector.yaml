@@ -7,13 +7,6 @@ agent:
             rule: type == "port" && pod.name matches "nginx" && port == 8082
             config:
               type: collectd/nginx
-    service:
-      pipelines:
-        metrics:
-          receivers:
-            - hostmetrics
-            - kubeletstats
-            - receiver_creator
     extensions:
       zpages:
         endpoint: 0.0.0.0:55679
