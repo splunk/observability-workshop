@@ -13,7 +13,7 @@ menu:
 ## 1. URL of RUM enabled Online Boutique
 
 As discussed in the previous section we are going to use an Online Boutique running on the a RUM host.
-If you're participating in a RUM only workshop after you recieved the RUM instance URL, you can continue to Section 4: [Using the Online Botique to generate load on your system](../showcase/#2-using-the-online-boutique-to-generate-load-on-your-system) as the system your going to use is already prepared. 
+If you're participating in a RUM only workshop after you recieved the RUM instance URL, you can continue to Section 4: [Using the Online Boutique to generate load on your system](../showcase/#4-using-the-online-boutique-to-generate-load-on-your-system) as the system your going to use is already prepared. 
 
 ## 2. Obtain RUM Access Token
 
@@ -43,13 +43,13 @@ export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
 To deploy the Online Boutique application into your EC2 instance  kubernetes (K3s) installation delete the  original deployment, then run the apm config script for RUM, then apply the RUM deployment:
 
 {{< tabpane >}}
-{{< tab header="Deploy Online Boutique" lang="bash" >}}
+{{< tab header="Deploy Online Boutique with RUM" lang="bash" >}}
 cd ~/workshop/apm
 kubectl delete -f deployment.yaml
 ./apm-config.sh -r
 kubectl apply -f deployment.yaml
 {{< /tab >}}
-{{< tab header="Deployment Output" lang= "bash" >}}
+{{< tab header="Partial Deployment Output" lang= "bash" >}}
 ......
 Adding RUM_TOKEN to deployment
 deployment.apps/recommendationservice created

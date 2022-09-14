@@ -10,7 +10,11 @@ weight: 7
 
 ## 1. RUM Overview Pages
 
-Visit and login into your Splunk IMT/APM/RUM Website. From the top left hamburger menu ![Hamburger-menu](../images/dashboards/Hamburgermenu.png) select **RUM** from the side menu. This will bring you to the RUM user interface.
+From your RUM Application Summary Dashboard you can see detailed information by opening the Application Overview Page via the hamburger ![trippleburger](../../images/trippleburger.png) menu on the right by selecting *View Dashboard* or by clicking the link with your application name which is *jmcj-rum-app* in the example below. 
+
+![RUM-SummaryHeader](../../images/summaryHeader.png)
+
+This will take you to the RUM Application Overview Page screen as shown below.
 
 ![RUM-1](../../images/RUM-1.png)
 
@@ -89,17 +93,3 @@ The Other Metrics Pane is the location where you find an other set of performanc
 
 ![RUM-Other](../../images/RUM-Other.png)
 
-## 3. RUM Mobile Overview
-
-Splunk RUM supports Native Mobile RUM, for Apple iPhone and Android Phones. You can use this to see the End-user experience of your native Smartphone app.
-
-![RUM-Header](../../images/RUM-Mobile.png)
-
-The above screen is to show you the various metrics and data Splunk Mobile RUM can track. For example:
-
-* **Custom events**, similar to the Browser version.
-* **App Errors** , with *App Errors* & *Crashes* per minute.
-* **App Lifecycle Performance**, with *Cold Startup Time*, *Hot Startup Time* per OS.
-* **Request/Response**, similar to the Browser version.
-
-At this point we will not go deeper into Mobile RUM, due to the need to run either a native app on a phone, or run an emulation. We can provide more information in a deep dive demo if needed.
