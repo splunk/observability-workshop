@@ -1,0 +1,263 @@
+<!doctype html><html lang=en class=no-js>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.92.2">
+<meta name=robots content="index, follow">
+<link rel="shortcut icon" href=/observability-workshop/v4.27/favicons/favicon.ico>
+<link rel=apple-touch-icon href=/observability-workshop/v4.27/favicons/apple-touch-icon-180x180.png sizes=180x180>
+<link rel=icon type=image/png href=/observability-workshop/v4.27/favicons/favicon-16x16.png sizes=16x16>
+<link rel=icon type=image/png href=/observability-workshop/v4.27/favicons/favicon-32x32.png sizes=32x32>
+<link rel=icon type=image/png href=/observability-workshop/v4.27/favicons/android-36x36.png sizes=36x36>
+<link rel=icon type=image/png href=/observability-workshop/v4.27/favicons/android-48x48.png sizes=48x48>
+<link rel=icon type=image/png href=/observability-workshop/v4.27/favicons/android-72x72.png sizes=72x72>
+<link rel=icon type=image/png href=/observability-workshop/v4.27/favicons/android-96x96.png sizes=96x96>
+<link rel=icon type=image/png href=/observability-workshop/v4.27/favicons/android-144x144.png sizes=144x144>
+<link rel=icon type=image/png href=/observability-workshop/v4.27/favicons/android-192x192.png sizes=192x192>
+<title>Dimension, Properties and Tags | Splunk Observability Cloud Workshops</title>
+<meta name=description content="Applying context to your metrics
+One conversation that frequently comes up is Dimensions vs Properties and when you should use one verus the other. …">
+<meta property="og:title" content="Dimension, Properties and Tags">
+<meta property="og:description" content="Applying context to your metrics One conversation that frequently comes up is Dimensions vs Properties and when you should use one verus the other. Instead of starting off with their descriptions it makes sense to understand how we use them and how they are similar, before diving into their differences and examples of why you would use one or the other.
+How are Dimensions and Properties similar? The simplest answer is that they are both metadata key:value pairs that add context to our metrics.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://signalfx.github.io/observability-workshop/v4.27/resources/dimensions_properties_tags/"><meta property="article:section" content="resources">
+<meta property="article:modified_time" content="2022-08-04T15:08:49+01:00"><meta property="og:site_name" content="Splunk Observability Cloud Workshops">
+<meta itemprop=name content="Dimension, Properties and Tags">
+<meta itemprop=description content="Applying context to your metrics One conversation that frequently comes up is Dimensions vs Properties and when you should use one verus the other. Instead of starting off with their descriptions it makes sense to understand how we use them and how they are similar, before diving into their differences and examples of why you would use one or the other.
+How are Dimensions and Properties similar? The simplest answer is that they are both metadata key:value pairs that add context to our metrics.">
+<meta itemprop=dateModified content="2022-08-04T15:08:49+01:00">
+<meta itemprop=wordCount content="1828">
+<meta itemprop=keywords content><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Dimension, Properties and Tags">
+<meta name=twitter:description content="Applying context to your metrics One conversation that frequently comes up is Dimensions vs Properties and when you should use one verus the other. Instead of starting off with their descriptions it makes sense to understand how we use them and how they are similar, before diving into their differences and examples of why you would use one or the other.
+How are Dimensions and Properties similar? The simplest answer is that they are both metadata key:value pairs that add context to our metrics.">
+<link rel=preload href=/observability-workshop/v4.27/scss/main.min.39785c4da9cb0cfe16de8f72aadcf06fb29187963dcb8220bb9935bd52331915.css as=style>
+<link href=/observability-workshop/v4.27/scss/main.min.39785c4da9cb0cfe16de8f72aadcf06fb29187963dcb8220bb9935bd52331915.css rel=stylesheet integrity>
+<script src=https://code.jquery.com/jquery-3.6.0.min.js integrity=sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK crossorigin=anonymous></script>
+<script src=https://unpkg.com/lunr@2.3.9/lunr.min.js integrity=sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli crossorigin=anonymous></script>
+</head>
+<body class=td-page>
+<header>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" id=navbar1>
+<a class=navbar-brand href=/observability-workshop/v4.27/>
+<span class=navbar-logo><img class=navbar-logo src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAAvCAIAAAD8RQT7AAACwklEQVRYw+2YW2jTYBTHu4l4F1ERVMQL+qKgMBUU9EEfRAURUUFfBEUEBRGfdC+CrVt3cdbNSZ1zXqar024yp9MJKzh3FScyO+q8MDW3pvc2TZqkudSvtD4J66fkWyL0kNeQH8mX8/+dY8JMZuNcpjzNX9JQK64ZiEZlk9zDEe/aOmPQ8FIKlJpKtH+mNzUYg+Z38a7vvu2NRqHJlDhABPY0G4UmU8lhOnioFSu0GIImU9KXUOhYOz75kiFoMiVjsfDpl/i0UrQ0oePPkp5ACq5kHxs978JnlaHsxQVm/24H3zUGyaRE+Jj5DTGvEm0yeNfVsfeGVVGGYQJtk6kaIBfZ0OYUufBKrKRHCSWgmAQ5fmOIWl6DNjXx6dbwqRfgh4L6eJLC3v/oXW1HnOGFlsDeR0L3TygmEC+tn+j19ciNgt5Qzznc4B3AUPGd33xb7yL3G3LJVaaiX4kKMExCD+bf2YTctvCZZZEzndJYBIZJfE8F9jtBE0HsfpMswQNOoR+HYWIbPkyQiQIr4pyelKyOQ5No8UyoF1PLahjboMqIhqABl3/HA6EX05kGyEboSBuQIZ2/FDGnInKuSyaZnKcYLU32lMTF3P05ITHVb8nFNiQ09MZbXPPI+H9QliMuMuV9xIIqBN2vwAy8HTKw0gJ0sZuYW6l9MuBTS8MnnkujQSgOPxctdhGzy7VPTWL+5eiF1+ABUJJKMpGzr4CHaG8U1KrauH0IHEAot/kRDZ/swKeUaG9bvi13Em2jKUWF4gDDzdGn/zbcmHJE4MEWcZCAFPWk2xc8/ATcpbGl4zOsYFCC1IOsIex7/KchaEMj0ywkh9CH+3c59J8104uLbY36T758x1d68229twIZ+y+6qffGRFa5Jrd3jR3Td5ukJhVgr9TKWp03benp9fo7cmm1/lvImLUXDN757XWe5v+g+QU6sNkgKUPrgwAAAABJRU5ErkJggg=="></span><span class=font-weight-bold>Splunk Observability Cloud Workshops</span>
+</a>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+</ul>
+</div>
+</nav>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" id=navbar2>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.27/imt/><span>Splunk IMT</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.27/apm/><span>Splunk APM</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.27/synthetics/><span>Splunk Synthetics</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.27/rum/><span>Splunk RUM</span></a>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+More Workshops
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/latest/pet-clinic/>Pet Clinic Java Workshop</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/latest/bootcamp/>O11y Bootcamp</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/latest/resources/>Resources</a>
+</div>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+Releases
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/latest/>latest</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/v4.26>v4.26</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/v4.27>v4.27</a>
+</div>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+English
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.27/ja/>日本語</a>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="container-fluid td-outer">
+<div class=td-main>
+<div class="row flex-xl-nowrap">
+<aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+<div id=td-sidebar-menu class=td-sidebar__inner>
+<form class="td-sidebar__search d-flex align-items-center">
+<input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/observability-workshop/v4.27/offline-search-index.d52382e90495da0b8f7dc22847a441e0.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type=button data-toggle=collapse data-target=#td-section-nav aria-controls=td-docs-nav aria-expanded=false aria-label="Toggle section navigation">
+</button>
+</form>
+<nav class="collapse td-sidebar-nav" id=td-section-nav>
+<div class="nav-item dropdown d-block d-lg-none">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+English
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.27/ja/>日本語</a>
+</div>
+</div>
+<ul class="td-sidebar-nav__section pr-md-3 ul-0">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv427resources-li>
+<a href=/observability-workshop/v4.27/resources/ title="Additional Splunk for DevOps Resources" class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id=m-observability-workshopv427resources><span>Resources</span></a>
+<ul class=ul-1>
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv427resourcesfaq-li>
+<a href=/observability-workshop/v4.27/resources/faq/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv427resourcesfaq><span>Frequently Asked Questions</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-observability-workshopv427resourcesdimensions_properties_tags-li>
+<a href=/observability-workshop/v4.27/resources/dimensions_properties_tags/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv427resourcesdimensions_properties_tags><span class=td-sidebar-nav-active-item>Dimension, Properties and Tags</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+<aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+</div>
+<div class=td-toc><nav id=TableOfContents>
+<ul>
+<li><a href=#applying-context-to-your-metrics>Applying context to your metrics</a>
+<ul>
+<li><a href=#how-are-dimensions-and-properties-similar>How are Dimensions and Properties similar?</a></li>
+<li><a href=#so-how-are-dimensions-and-properties-different>So how are Dimensions and Properties different?</a></li>
+<li><a href=#dimensions-are-immutable-while-properties-are-mutable>Dimensions are immutable while properties are mutable</a></li>
+<li><a href=#so-when-should-something-be-a-property-instead-of-a-dimension>So when should something be a Property instead of a dimension?</a></li>
+<li><a href=#what-about-tags>What about Tags?</a></li>
+<li><a href=#where-would-i-use-tags>Where would I use Tags?</a></li>
+<li><a href=#additional-information>Additional information</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+<div class="taxonomy taxonomy-terms-cloud taxo-tags">
+<h5 class=taxonomy-title>Tag Cloud</h5>
+<ul class=taxonomy-terms>
+<li><a class=taxonomy-term href=https://signalfx.github.io/observability-workshop/v4.27/tags/k3s/ data-taxonomy-term=k3s><span class=taxonomy-label>k3s</span><span class=taxonomy-count>1</span></a></li>
+<li><a class=taxonomy-term href=https://signalfx.github.io/observability-workshop/v4.27/tags/ngnix/ data-taxonomy-term=ngnix><span class=taxonomy-label>NGNIX</span><span class=taxonomy-count>1</span></a></li>
+</ul>
+</div>
+<div class="taxonomy taxonomy-terms-cloud taxo-categories">
+<h5 class=taxonomy-title>Categories</h5>
+<ul class=taxonomy-terms>
+<li><a class=taxonomy-term href=https://signalfx.github.io/observability-workshop/v4.27/categories/imt/ data-taxonomy-term=imt><span class=taxonomy-label>IMT</span><span class=taxonomy-count>2</span></a></li>
+</ul>
+</div>
+</aside>
+<main class="col-12 col-md-9 col-xl-8 pl-md-5" role=main>
+<nav aria-label=breadcrumb class=td-breadcrumbs>
+<ol class=breadcrumb>
+<li class=breadcrumb-item>
+<a href=https://signalfx.github.io/observability-workshop/v4.27/resources/>Resources</a>
+</li>
+<li class="breadcrumb-item active" aria-current=page>
+<a href=https://signalfx.github.io/observability-workshop/v4.27/resources/dimensions_properties_tags/>Dimension, Properties and Tags</a>
+</li>
+</ol>
+</nav>
+<div class=td-content>
+<h1>Dimension, Properties and Tags</h1>
+<header class=article-meta>
+<p class=reading-time><i class="fa fa-clock" aria-hidden=true></i>&nbsp; 9 minute read &nbsp;</p>
+</header>
+<h2 id=applying-context-to-your-metrics>Applying context to your metrics</h2>
+<p>One conversation that frequently comes up is Dimensions vs Properties and when you should use one verus the other. Instead of starting off with their descriptions it makes sense to understand how we use them and how they are similar, before diving into their differences and examples of why you would use one or the other.</p>
+<h3 id=how-are-dimensions-and-properties-similar>How are Dimensions and Properties similar?</h3>
+<p>The simplest answer is that they are both metadata <code>key:value</code> pairs that add context to our metrics. Metrics themselves are what we actually want to measure, whether it’s a standard infrastructure metric like​ ​<code>cpu.utilization</code> or a custom metric like number of API calls received.</p>
+<p>If we receive a value of 50% for th​e ​<code>cpu.utilization</code> metric without knowing where it came from or any other context it is just a number and not useful to us. We would need at least to know what host it comes from.</p>
+<p>These days it is likely we care more about the performance or utilization of a cluster or data center as a whole then that of an individual host and therefore more interested in things like the average <code>cpu.utilization</code> across a cluster of hosts, when a​ host’s <code>​cpu.utilization</code> is a outlier when compared to other hosts running the same service or maybe compare the ​average ​<code>cpu.utilization</code> of one environment to another.</p>
+<p>To be able to slice, aggregate or g​roup our ​<code>cpu.utilization</code> metrics in this way we will need additional metad​ata for the <code>​cpu.utilization</code> metrics we receive to include what cluster a host belongs to, what service is running on the host and what environment it is a part of. This metadata can be in the form of either dimension or property <code>key:value</code> pairs.</p>
+<p>For example, if I go to apply a filter to a dashboard or use the Group by function when running analytics, I can use a property or a dimension.</p>
+<p>In the following screenshot where I am picking a filter for my dashboard, I can pick either aws_tag_​service and ​aws_tag_service_id. One is a dimension and one is a property, but from here we can’t tell that.</p>
+<p>In the following screenshot I am using the Group By function when creating an alerting rule on a detector and ag​ain both ​aws_tag_service and ​aws_tag_service_id are options I can choose and again I can’t tell which is a dimension and which is property.</p>
+<p>NOTE: If you are interested in knowing if an existing key:value pair is a dimension or a property you can look at the Catalog. In the following screenshot I went to the Catalog then searched for ​aws_tag_service and selected one of the possible values for it from the list, in this case metabase-es. You will notice it says it is a Dimension.</p>
+<p>In the screenshot below I instead searched for ​aws_tag_service_id and selected one of the possible values for it, 6, from the list. You can see the Plugins that report that key:value pair and the metrics that have that key:value pair, but it is not labeled as a dimension</p>
+<h3 id=so-how-are-dimensions-and-properties-different>So how are Dimensions and Properties different?</h3>
+<p>Dimensions are sent in with metrics at the time of ingest while properties are applied to metrics or dimensions after ingest
+This means that any metadata you need to make a datapoint (​a single reported value of a metric) ​unique, like what host a value of cpu.utilization is coming from needs to be a dimension. Metric names + dimensions uniquely define an MTS (metric time series).
+Example: the ​cpu.utilization metric sent by a particular host (​server1) with a dimension ​host:server1 would be considered a unique time series. If you have 10 servers, each sending that metric, then you would have 10 time series, with each time series sharing the metric name (​cpu.utilization) and uniquely identified by the dimension key-value pair (​host:server1, host:server2&mldr;host:server10).</p>
+<p>However, if your server names are only unique within a datacenter vs your whole environment you would need to add a 2n​ d​ dimension ​dc. You could now have double the number of possible MTSs. cpu.utilization metrics received would now be uniquely identified by 2 sets of dimension key-value pairs.
+cpu.utilization plus ​dc:east &​ host:server1 would create a different time series then ​cpu.utilization plus dc:west & ​host:server1.</p>
+<h3 id=dimensions-are-immutable-while-properties-are-mutable>Dimensions are immutable while properties are mutable</h3>
+<p>As we mentioned above, Metric name + dimensions make a unique MTS. Therefore, if the dimension value changes we will have a new unique combination of metric name + dimension value and create a new MTS.</p>
+<p>Properties on the other hand are applied to metrics (or dimensions) after they are ingested. If you apply a property to a metric, it propagates and applies to all MTS that the metric is a part of. Or if you apply a property to a dimension, say ​host:server1 then all metrics from that host will have those properties attached. If you change the value of a property it will propagate and update the value of the property to all MTSs with that property attached. Why is this important? It means that if you care about the historical value of a property you need to make it a dimension.</p>
+<p>Example we are collecting custom metrics on our application. One metric is ​latency which counts the latency of requests made to our application. We have a dimension ​customer, so we can sort and compare latency by customer. We decide we want to track the ​application version as well so we can sort and compare our application ​latency by the version customers are using. We create a property ​version that we attach to the customer dimension. Initially all customers are using application version 1, so ​version:1. We now have some customers using version 2 of our application, for those customers we update the property to ​version:2. When we update the value of the ​version property for those customers it will propagate down to all MTS for that customer. We lose the history that those customers at some point used ​version 1, so if we wanted to compare ​latency of ​version 1 and ​version 2 over a historical period we would not get accurate data. In this case even though we don’t need application ​version to make out metric time series unique we need to make ​version a dimension, because we care about the historical value.</p>
+<h3 id=so-when-should-something-be-a-property-instead-of-a-dimension>So when should something be a Property instead of a dimension?</h3>
+<p>The first reason would be if there is any metadata you want attached to metrics, but you don’t know it at the time of ingest.
+The second reason is best practice is if it doesn’t need to be a dimension, make it a property. Why?
+One reason is that today there is a limit of 5K MTSs per analytics job or chart rendering and the more dimensions you have the more MTS you will create. Properties are completely free-form and let you add as much information as you want or need to metrics or dimensions without adding to MTS counts.</p>
+<p>As dimensions are sent in with every datapoint, the more dimensions you have the more data you send to us, which could mean higher costs to you if your cloud provider charges for data transfer.</p>
+<p>A good example of some things that should be properties would be additional host information. You want to be able to see things like machine_type, processor, or os, but instead of making these things dimensions and sending them with every metric from a host you could make them properties and attach the properties to the host dimension.</p>
+<p>Example where ​host:server1 you would set properties ​machine_type:ucs, processor:xeon-5560, os:rhel71. Anytime a metric comes in with the dimension ​host:server1 all the above properties will be applied to it automatically.</p>
+<p>Some other examples of use cases for properties would be if you want to know who is the escalation contact for each service or SLA level for every customer. You do not need these items to make metrics uniquely identifiable and you don’t care about the historical values, so they can be properties. The properties could be added to the service dimension and customer dimensions and would then apply to all metrics and MTSs with those dimensions.</p>
+<h3 id=what-about-tags>What about Tags?</h3>
+<p>Tags are the 3r​d​ type of metadata that can be used to give context to or help organize your metrics. Unlike dimensions and properties, tags are NOT key:value pairs. ​Tags can be thought of as labels or keywords. Similar to Properties, Tags are applied to your data after ingest via the Catalog in the UI or programmatically via the API.​ Tags can be applied to Metrics, Dimensions or other objects such as Detectors.</p>
+<h3 id=where-would-i-use-tags>Where would I use Tags?</h3>
+<p>Tags are used when there is a need for a many-to-one relationship of tags to an object or a one-to-many relationship between the tag and the objects you are applying them to. They are useful for grouping together metrics that may not be intrinsically associated.</p>
+<p>One example is you have hosts that run multiple applications. You can create tags (labels) for each application and then apply multiple tags to each host to label the applications that are running on it.</p>
+<p>Example: Server1 runs 3 applications. You create tags ​app1, app2 and app3 and apply all 3 tags to the dimension ​host:server1</p>
+<p>To expand on the example above let us say you also collect metrics from your applications.​ You could apply the tags you created to any metrics coming in from the applications themselves. You can filter based on a tag allowing you to filter based on an application, but get the full picture including both application and the relevant host metrics.</p>
+<p>Example: App1 sends in metrics with the dimension ​service:application1. You would apply tag ​app1 to the dimension ​service:application1. You can then filter on the tag ​app1 in charts and dashboards.</p>
+<p>Another use case for tags for binary states where there is just one possible value. An example is you do canary testing and when you do a canary deployment you want to be able to mark the hosts that received the new code, so you can easily identify their metrics and compare their performance to those hosts that did not receive the new code. There is no need for a key:value pair as there is just a single value “canary”.</p>
+<p>Be aware that while you can filter on tags you cannot use the groupBy function on them. The groupBy function is run by supplying the key part of a key:value pair and the results are then grouped by values of that key pair.</p>
+<h3 id=additional-information>Additional information</h3>
+<p>For information on sending dimensions for custom metrics please review the ​Client Libraries documentation for your library of choice.</p>
+<p>For information on how to apply properties & tags to metrics or dimensions via the API please see the API documentation for ​/metric/:name​ ​/dimension/:key/:value</p>
+<p>For information on how to add or edit properties & tags via the Catalog in the UI please reference the section “​Adding or editing metadata (descriptions, tags or properties)” in <a href=https://docs.splunk.com/Observability/metrics-and-metadata/metrics-finder-metadata-catalog.html#use-the-metadata-catalog target=_blank>Metadata Catalog​ documentation</a>
+.</p>
+</div>
+</main>
+</div>
+</div>
+<footer class="bg-dark py-5 row d-print-none">
+<div class="container-fluid mx-sm-5">
+<div class=row>
+<div class="col-6 col-sm-4 text-xs-center order-sm-2">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=Twitter aria-label=Twitter>
+<a class=text-white target=_blank rel=noopener href=https://twitter.com/splunk aria-label=Twitter>
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=GitHub aria-label=GitHub>
+<a class=text-white target=_blank rel=noopener href=https://github.com/signalfx/observability-workshop aria-label=GitHub>
+<i class="fab fa-github"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-12 col-sm-4 text-center py-2 order-sm-2">
+<small class=text-white>&copy; 2022 Splunk Inc. All Rights Reserved</small>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js integrity=sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin=anonymous></script>
+<script src=/observability-workshop/v4.27/js/tabpane-persist.js></script>
+<script src=/observability-workshop/v4.27/js/main.min.8ab8f81ff7e1454d30024cd6f956d4d341c3a97e2a673f988065f2ee4e147922.js integrity="sha256-irj4H/fhRU0wAkzW+VbU00HDqX4qZz+YgGXy7k4UeSI=" crossorigin=anonymous></script>
+<script>const svgCopy='<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg>',svgCheck='<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"><path fill-rule="evenodd" fill="rgb(63, 185, 80)" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>',addCopyButtons=a=>{document.querySelectorAll("pre > code").forEach(c=>{const b=document.createElement("button");b.className="clipboard-button",b.type="button",b.innerHTML=svgCopy,b.addEventListener("click",()=>{a.writeText(c.innerText).then(()=>{b.blur(),b.innerHTML=svgCheck,setTimeout(()=>b.innerHTML=svgCopy,2e3)},a=>b.innerHTML="Error")});const d=c.parentNode;d.parentNode.insertBefore(b,d)})};if(navigator&&navigator.clipboard)addCopyButtons(navigator.clipboard);else{const a=document.createElement("script");a.src="https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/2.7.0/clipboard-polyfill.promise.js",a.integrity="sha256-waClS2re9NUbXRsryKoof+F9qc1gjjIhc2eT7ZbIv94=",a.crossOrigin="anonymous",a.onload=()=>addCopyButtons(clipboard),document.body.appendChild(a)}</script>
+</body>
+</html>
