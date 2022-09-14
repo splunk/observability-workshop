@@ -27,7 +27,7 @@ The aim of this Splunk Real User Monitoring (RUM) workshop is to let you:
 
 If this an standalone RUM workshop, the workshop host will provide you with an URL for an online boutique store that has RUM enabled.
 
-If you are running this session as part of the IMT/APM workshop you will be able to use your current online boutique store which is RUM enabled.
+If you are running this session as part of the IMT/APM workshop you will be able to use your current online boutique store after we enable RUM.
 
 Each of these Online Boutique's are also being visited by few synthetic users, this will allow us to generate more live data to be analyzed later.
 

@@ -15,12 +15,9 @@ If you have access to an EC2 instance and have previously installed the Online B
 
 If you have not got access to an EC2 instance with the Online Boutique installed then your workshop instructor will provide you with the Online Boutique URL that does not have RUM installed so that you can complete the next steps.
 
-
-
-
 ## 2. Obtain RUM Access Token
 
-As this Deployment we are about to do is also used as part of the RUM workshop section, you will need to obtain your RUM Access Token from the Splunk UI. You can find the workshop Access Token by clicking **>>** bottom left and then selecting **Settings → Access Tokens**.
+As this Deployment we are about to do is also used as part of the RUM workshop section, you will need to obtain your RUM Access Token from the Splunk UI. You can find the workshop Access Token by clicking **>>** bottom left or the ![settings](../../images/setting.png) menu option and then selecting **Settings → Access Tokens**.
 
 Expand the RUM workshop token that your host has instructed you to use e.g. **O11y-Workshop-RUM-TOKEN**, then click on **Show Token** to expose your token. Click the {{% labelbutton color="ui-button-grey" %}}Copy{{% /labelbutton %}} button to copy to clipboard. Please do not use the **Default** token! Make sure the token has RUM as its Authorization Scope.
 
@@ -46,7 +43,7 @@ To deploy the Online Boutique application into K3s, run the apm config script, t
 {{< tab header="Deploy Online Boutique" lang="bash" >}}
 cd ~/workshop/apm
 ./apm-config.sh -r
-kubectl apply -f deploymentRUM.yaml
+kubectl apply -f deployment.yaml
 {{< /tab >}}
 {{< tab header="Deployment Output" lang= "bash" >}}
 deployment.apps/checkoutservice created

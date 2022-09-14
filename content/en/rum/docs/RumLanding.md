@@ -16,15 +16,18 @@ You will have a pane for each of your active RUM applications. (The view below i
 
 ![RUM-App-sum](../../images/Applicationsummarydashboard.png)
 
-If you have multiple applications, the pane view may be automatically reduced by collapsing the panes as shown below:
+If you have multiple applications,(wich will be the case when  every attendee is using their own ec2 instance for the RUM workshop), the pane view may be automatically reduced by collapsing the panes as shown below:
 
 ![RUM-App-sum-collapsed](../../images/multiple_apps_collapsed.png)
 
 You can expanded a condensed RUM Application Summary View to the full dashboard by clicking on the small browser ![RUM-browser](../../images/browser.png) or Mobile ![RUM-mobile](../../images/mobile.png)icon. (Depending on the type of application: *Mobile* or *Browser* based) on the left in front of the applications name, highlighted by the red arrow.
 
+First find the right application to use for the workshop.</br> 
+If you are participating in a stand alone RUM workhop, the Workshop leader will tell you the name of the application to use, otherwhise  in the case of a combined workshop, it will follow the naming convention we used for IMT and APMand use the ec2 node name as a unique id like *jmcj-rum-app* as  shown as the last app in the screenshot above.)
+
 ## 2. Configure the RUM Application Summary Dashboard Header Section
 
- RUM Application Summary Dashboard consists of 6 major sections. The first is the selection header, where you can set/filter a number of options:
+RUM Application Summary Dashboard consists of 6 major sections. The first is the selection header, where you can set/filter a number of options:
 
 * A drop down for the time window you're reviewing (You are looking at the past 15 minutes by default)
 * A drop down to select the Environment[^1] you want to look at.</br>
@@ -38,7 +41,7 @@ For the workshop make sure you can use the one provided by the workshop host or 
 
 ![RUM-SummaryHeader](../../images/RUM_SummaryHeader.png)
 
-For the workshop lets investigate your application in the next section: [Check Health Browser Application](../browserapp-summary/)
+For the workshop lets do a deeper dive into the Application Summary screen in the next section: [Check Health Browser Application](../browserapp-summary/)
 
 ---
 
