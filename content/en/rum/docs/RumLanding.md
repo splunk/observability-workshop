@@ -9,35 +9,31 @@ weight: 1
 
 ## 1. Visit the RUM Landing Page
 
-Visit and login into your Splunk IMT/APM/RUM Website. From the left side menu bar select **RUM** ![RUM-ico](../../images/RUM_ico.png). This will bring you to your the RUM Landing Page .
+Login into your Splunk IMT/APM/RUM Website. From the left side menu bar select **RUM** ![RUM-ico](../../images/RUM_ico.png). This will bring you to your the RUM Landing Page.
 
-The goal of this page is to give you in a single page, a clear indication of the health, performance and potential errors found in your application(s) and allow you dive deeper into the information about your User Session collected from your web page/App.  
-You will have a pane for each of your active RUM applications. (The view below is the default expanded view)
+The goal of this page is to give you in a single page, a clear indication of the health, performance and potential errors found in your application(s) and allow you to dive deeper into the information about your User Sessions collected from your web page/App. You will have a pane for each of your active RUM applications. (The view below is the default expanded view)
 
 ![RUM-App-sum](../../images/Applicationsummarydashboard.png)
 
-If you have multiple applications,(wich will be the case when  every attendee is using their own ec2 instance for the RUM workshop), the pane view may be automatically reduced by collapsing the panes as shown below:
+If you have multiple applications, (which will be the case when every attendee is using their own ec2 instance for the RUM workshop), the pane view may be automatically reduced by collapsing the panes as shown below:
 
 ![RUM-App-sum-collapsed](../../images/multiple_apps_collapsed.png)
 
 You can expanded a condensed RUM Application Summary View to the full dashboard by clicking on the small browser ![RUM-browser](../../images/browser.png) or Mobile ![RUM-mobile](../../images/mobile.png)icon. (Depending on the type of application: *Mobile* or *Browser* based) on the left in front of the applications name, highlighted by the red arrow.
 
-First find the right application to use for the workshop.</br> 
-If you are participating in a stand alone RUM workhop, the Workshop leader will tell you the name of the application to use, otherwhise  in the case of a combined workshop, it will follow the naming convention we used for IMT and APMand use the ec2 node name as a unique id like *jmcj-rum-app* as  shown as the last app in the screenshot above.)
+First find the right application to use for the workshop:
+
+If you are participating in a stand alone RUM workshop, the workshop leader will tell you the name of the application to use, in the case of a combined workshop, it will follow the naming convention we used for IMT and APM and use the ec2 node name as a unique id like **jmcj-rum-app** as shown as the last app in the screenshot above.
 
 ## 2. Configure the RUM Application Summary Dashboard Header Section
 
 RUM Application Summary Dashboard consists of 6 major sections. The first is the selection header, where you can set/filter a number of options:
 
-* A drop down for the time window you're reviewing (You are looking at the past 15 minutes by default)
-* A drop down to select the Environment[^1] you want to look at.</br>
-  (This allows you to focus on just the subset of application belonging to that environment).
-* A drop down with the available Environments to view:  (Choose the one provided by the workshop host or *Select all* for the workshop)
-* A drop down list with the various web apps being monitored (You    can use the one provided by the workshop host or use *Select all*)</br>
-This will focus you on just 1 (One) application.</br>
-For the workshop make sure you can use the one provided by the workshop host or or *Select all*.  
-* A drop down to select the source type  *Browser* or *Mobile* applications to view</br> For the Workshop  select *All* as the source.
-* A hamburger menu located at the right of the header allowing to configure some settings of your Splunk RUM application. (we will visit this in a later section).
+* A drop down for the **Time Window** you're reviewing (You are looking at the past 15 minutes by default)
+* A drop down to select the **Environment**[^1] you want to look at. This allows you to focus on just the subset of applications belonging to that environment, or Select all to view all available.
+* A drop down list with the various **Apps** being monitored. You can use the one provided by the workshop host or select your own. This will focus you on just one application.
+* A drop down to select the **Source**, *Browser* or *Mobile* applications to view. For the Workshop leave *All* selected.
+* A hamburger menu located at the right of the header allowing you to configure some settings of your Splunk RUM application. (We will visit this in a later section).
 
 ![RUM-SummaryHeader](../../images/RUM_SummaryHeader.png)
 
