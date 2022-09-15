@@ -12,15 +12,14 @@ menu:
 
 ## 1. URL of RUM enabled Online Boutique
 
-As discussed in the previous section we are going to use an Online Boutique running on the a RUM host.
-If you're participating in a RUM only workshop after you recieved the RUM instance URL, you can continue to Section 4: [Using the Online Boutique to generate load on your system](../showcase/#4-using-the-online-boutique-to-generate-load-on-your-system) as the system your going to use is already prepared. 
+As discussed in the previous section we are going to use an Online Boutique running on a RUM host.
+If you're participating in a RUM only workshop, after you have received the RUM instance URL, you can continue to Section 4: [Using the Online Boutique to generate load on your system](../showcase/#4-using-the-online-boutique-to-generate-load-on-your-system) as the system your going to use is already prepared.
 
 ## 2. Obtain RUM Access Token
 
-As part of the overall workshop you have installed services for the APM Workshop.</br>
-We are now going to add the RUM capability to the deployment as wel.</br>
-As the first Step we need to obtain an RUM_ACCESS_TOKEN with a RUM Authorization scope.</br>
-You can find the workshop RUM Access Token by clicking on **>>** in the bottom left or the ![settings](../images/setting.png) menu button and then selecting **Settings → Access Tokens**.
+As part of the overall workshop you have installed services for the APM Workshop. We are now going to add the RUM capability to the deployment as well.
+
+The first thing we need to do is obtain a RUM_ACCESS_TOKEN with a RUM Authorization scope.  You can find the workshop RUM Access Token by clicking on the **settings** ![settings](../images/setting.png) menu button and then selecting **Access Tokens**.
 
 Expand the RUM workshop token that your host has instructed you to use e.g. **O11y-Workshop-RUM-TOKEN**, then click on **Show Token** to expose your token. Click the {{% labelbutton color="ui-button-grey" %}}Copy{{% /labelbutton %}} button to copy to clipboard. Please do not use the **Default** token! Make sure the token has RUM as its Authorization Scope.
 
