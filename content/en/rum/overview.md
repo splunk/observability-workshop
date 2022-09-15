@@ -22,13 +22,14 @@ The aim of this Splunk Real User Monitoring (RUM) workshop is to let you:
 
 * (Optionally) See how to add RUM to your website.
 
- In order to reach this goal, we will use an online boutique to order various products. Whilst shopping on the online boutique you will create what is called a User Session[^1].</br>
- You may encounter some issues with this web site, and you will use Splunk RUM to identify the issues, so they can be resolved by the developers.
+In order to reach this goal, we will use an online boutique to order various products. Whilst shopping on the online boutique you will create what is called a User Session[^1].
 
-If this an standalone RUM workshop, the workshop host will provide you with an URL for an online boutique store that has RUM enabled.
+You may encounter some issues with this web site, and you will use Splunk RUM to identify the issues, so they can be resolved by the developers.
+
+If this a standalone RUM workshop, the workshop host will provide you with a URL for an online boutique store that has RUM enabled.
 
 If you are running this session as part of the IMT/APM workshop you will be able to use your current online boutique store after we enable RUM.
 
-Each of these Online Boutique's are also being visited by few synthetic users, this will allow us to generate more live data to be analyzed later.
+Each of these Online Boutiques are also being visited by a few synthetic users, this will allow us to generate more live data to be analyzed later.
 
 [^1]: A RUM Users session is a "recording" of a collection of user interactions on an application, basically collecting a website or app’s performance measured straight from the browser or Mobile App of the end user. To do this a small amount of JavaScript is embedded in each page. This script then collects data from each user as he or she explores the page, and transfers that data back for analysis.
