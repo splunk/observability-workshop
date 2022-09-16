@@ -26,7 +26,7 @@ We will looking at the *Application Overview* and *Browser App Health* Dashboard
 
 ## 2. Application Overview
 
-The RUM Application Overview Dashboard is focused on providing you with *at a glance* overview of the status of your application. 
+The RUM Application Overview Dashboard is focused on providing you with *at a glance* overview of the status of your application.
 
 ### 2.1. Page Views / Errors & Network Requests / Errors
 
@@ -54,7 +54,7 @@ If you click on one of the errors a pop-out opens that will show a summary (belo
 
 ### 2.3. Web Vitals
 
-The third section of the RUM Application Summary Dashboard is showing you the crucial (google) Web Vitals, three metrics, that are used by Google in its ranking system, and give a very good indication of the speed  of your site for your end users. 
+The third section of the RUM Application Summary Dashboard is showing you the crucial (google) Web Vitals, three metrics, that are used by Google in its ranking system, and give a very good indication of the speed  of your site for your end users.
 
 ![WEB-vitals](../../images/RUM-QuickWebVitals.png)
 
