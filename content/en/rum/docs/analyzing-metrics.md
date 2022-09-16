@@ -10,7 +10,7 @@ weight: 7
 
 ## 1. RUM Overview Pages
 
-From your RUM Application Summary Dashboard you can see detailed information by opening the Application Overview Page via the hamburger ![trippleburger](../../images/trippleburger.png) menu on the right by selecting *View Dashboard* or by clicking the link with your application name which is *jmcj-rum-app* in the example below. 
+From your RUM Application Summary Dashboard you can see detailed information by opening the Application Overview Page via the tripple dot ![trippleburger](../../images/trippleburger.png) menu on the right by selecting *Open Application Overview* or by clicking the link with your application name which is *jmcj-rum-app* in the example below. 
 
 ![RUM-SummaryHeader](../../images/summaryHeader.png)
 
@@ -34,62 +34,62 @@ The RUM UI consists of 6 major sections. The first is the selection header, wher
 
 ### 2.2. Overview Pane
 
-The next section is the overview pane:
-This pane will give you a quick indication to the pages with highest increase in load times (75 percentile or higher)  
-The **Highest P75 Page Load Times** window will show you in a quick view if the load time of your top pages has increased or has an error.
+The Overview Panes, down the left hand side of the page, give you a summary of the pages which have increased load times.
 
-In the example here you can see that the first page has an error due to the red square, and you can see that the load time has drastically increased by more than 8 seconds.
+In the example here you can see that the **checkout** and **cart** pages have errors due to the yellow triangles, and you can see that the load time has increased by 2.38 to 5.50 seconds.
 
-![RUM-Top](../../images/RUM-TOP.png)
+<!-- ![RUM-Top](../../images/RUM-TOP.png) -->
 
-You also see an overview of the number of Front end Error and Backend Errors  per minute.
+![RUM-Top](../../images/RUM-Page-Load-Times.png)
 
-The last two panes show you the **Top Page Views** and the **Top Providers**.
+You also see an overview of the number of Front end Error and Backend Errors per minute, and we appear to have three JavaScript errors on our site.
 
-### 2.3. Custom Event Pane
+![RUM-Top](../../images/RUM-JS-Errors.png)
+
+The last two panes show you the **Top Page Views** and the **Top Network Requests**.
+
+![RUM-Top](../../images/RUM-Page-Views-Network.png)
+
+### 2.3. Key Metrics Pane
+
+The Key Metrics View is the location where you will find the metrics for the number of
+**JavaScript Errors** per second, **Network Errors** per second an the **Backend/Resource Request Duration**.
+These Metrics are very useful to guide you to the location of an issue if you are experiencing problems with your site.
+
+![RUM-KeyMetrics](../../images/RUM-Key-Metrics.png)
+
+### 2.4. Web Vitals Pane
+
+The Web Vitals view is the location where you go if you wish to get insight into the experience you are delivering to your End users based on Web Vitals metrics.
+Web Vitals is an initiative by Google to provide unified guidance for quality signals that are essential to delivering a great user experience on the web and focuses on three key parameters:
+
+* **Largest Contentful Paint (LCP)**, measures loading performance. To provide a good user experience, LCP should occur within 2.5 seconds of when the page first starts loading.
+* **First Input Delay (FID)**, measures interactivity. To provide a good user experience, pages should have a FID of 100 milliseconds or less.
+* **Cumulative Layout Shift (CLS)**, measures visual stability. To provide a good user experience, pages should maintain a CLS of 0.1. or less.
+
+![RUM-WebVitals](../../images/RUM-Web-Vitals.png)
+
+### 2.5. Other Metrics Pane
+
+The Other Metrics Pane is the location where you find other performance metrics, with a focus on initial load time of your page or tasks that are taking too long to complete.
+
+* **Time To First Byte (TTFB)**, measures how long it takes for a client's browser to receive the first byte of the response from the server. The longer it takes for the server to process the request and send a response, the slower your visitors' browser is at displaying your page.
+* **Long Task Duration**, a performance metric that can be used help developers to understand the bad user experience on the website, or can be an indication of a problem.
+* **Long Task Count**, a metric to indicate how often a long task occurs, again used for exploring user experiences or problem detection.
+
+![RUM-Other](../../images/RUM-Other.png)
+
+### 2.6. Custom Event Pane
 
 The Custom Event View is the location where you will find the metrics for any event you may have added yourself to the web pages you are monitoring.
 
-As we have seen in the RUM enabled website, we have added the follwoing two lines:
+As we have seen in the RUM enabled website, we have added the following two lines:
 
 ```javascript
 const Provider = SplunkRum.provider;
 var tracer=Provider.getTracer('appModuleLoader');
 ```
 
-These lines  will automatically create custom Events for every new Page, and you can also add these to pieces of custom code that are not part of a framework or an event you created so you can better understand the flow though your application.
-We support **Event Request rate**, **Event Error Rates** and **Event Latency** metrics.
-
-These will help better understand the flow of your website and allows you increase conversions.
+These lines  will automatically create custom Events for every new Page, and you can also add these to pieces of custom code that are not part of a framework or an event you created so you can better understand the flow though your application. We support **Custom Event Requests**, **Custom Event Error Rates** and **Custom Event Latency** metrics.
 
 ![RUM-CustomMetrics](../../images/RUM-Custom-Events.png)
-
-### 2.4. Key Metrics Pane
-
-The Key Metrics View is the location where you will find the metrics for the number of
-**Frontend Errors** per second, **Endpoint Errors** per second an the **Endpoint Latency**.
-These Metrics are very useful to guide you to the location of an issue if you are experiencing problems with your site.
-
-![RUM-KeyMetrics](../../images/RUM-Key-Metrics.png)
-
-### 2.5. Web Vitals Pane
-
-The Web Vitals view is the location where you go if you wish to get insight into the experience you are delivering to your End users based on Web Vitals metrics.
-Web Vitals is an initiative by Google to provide unified guidance for quality signals that are essential to delivering a great user experience on the web and focuses on three key parameters:
-
-* Largest Contentful Paint (LCP): measures loading performance. To provide a good user experience, LCP should occur within 2.5 seconds of when the page first starts loading.
-* First Input Delay (FID): measures interactivity. To provide a good user experience, pages should have a FID of 100 milliseconds or less.
-* Cumulative Layout Shift (CLS): measures visual stability. To provide a good user experience, pages should maintain a CLS of 0.1. or less.
-
-![RUM-WebVitals](../../images/RUM-Web-Vitals.png)
-
-### 2.6. Other Metrics Pane
-
-The Other Metrics Pane is the location where you find an other set of performance metrics, with a focus on initial load time of you page or showing you task that are longer then others.
-
-* **Time To First Byte (TTFB)**, Time to First Byte (TTFB) measures how long it takes for a client's browser to receive the first byte of the response from the server. The longer it takes for the server to process the request and send a response, the slower your visitors' browsers start displaying your page.
-* **Long Task Length**, a performance metric that can be used help developers to understand the bad user experience on the website, or can be an indication of a problem.
-* **Long Task Count**, A metric to indicate how often a long task occurs, again used for exploring user experiences or problem detection.
-
-![RUM-Other](../../images/RUM-Other.png)
-
