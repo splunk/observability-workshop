@@ -14,7 +14,7 @@ weight: 2
 
 This assumes you are running this after you have run the IMT workshop, and still have access to your ec2 instance.
 If this is the case, continue with paragraph 3. *Deploy Online Boutique*,
-otherwise if you have received a fresh instance, please run the first two (2) sections of [Deploying the OpenTelemetry Collector in Kubernetes](../../../imt/docs/gdi/k3s.md) to get the system ready for the APM workshop, then continue with the next section.
+otherwise if you have received a fresh instance, please run the first two (2) sections of [Deploying the OpenTelemetry Collector in Kubernetes](../../../../imt/docs/gdi/k3s) to get the system ready for the APM workshop, then continue with the next section.
 
 ## 2. Deploy Online Boutique
 
