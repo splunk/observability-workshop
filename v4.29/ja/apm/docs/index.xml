@@ -1,0 +1,61 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Observability Cloud Workshops – トレースを取り込み、データを取り出す</title><link>https://signalfx.github.io/observability-workshop/v4.29/ja/apm/docs/</link><description>Recent content in トレースを取り込み、データを取り出す on Splunk Observability Cloud Workshops</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://signalfx.github.io/observability-workshop/v4.29/ja/apm/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Apm: Online Boutique K8s Workshop</title><link>https://signalfx.github.io/observability-workshop/v4.29/ja/apm/docs/online-boutique/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://signalfx.github.io/observability-workshop/v4.29/ja/apm/docs/online-boutique/</guid><description/></item><item><title>Apm: Splunk APMを利用する</title><link>https://signalfx.github.io/observability-workshop/v4.29/ja/apm/docs/using-splunk-apm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://signalfx.github.io/observability-workshop/v4.29/ja/apm/docs/using-splunk-apm/</guid><description>
+&lt;ul>
+&lt;li>APM の概要 - RED メトリクス&lt;/li>
+&lt;li>サービスマップを利用する&lt;/li>
+&lt;li>タグスポットライトの紹介&lt;/li>
+&lt;li>トレースの例&lt;/li>
+&lt;li>Infrastructure Monitoringとのリンク&lt;/li>
+&lt;/ul>
+&lt;h2 id="1-トレースとスパンについて">1. トレースとスパンについて&lt;/h2>
+&lt;p>トレースは、同じトレースIDを共有するスパンの集合体であり、アプリケーションとその構成サービスが処理する固有のトランザクションを表します。&lt;/p>
+&lt;p>&lt;img src="../../images/trace-spans.png" alt="Traces and Spans">&lt;/p>
+&lt;p>各スパンには、そのスパンでキャプチャされた操作を表す名前と、その操作がどのサービス内で行われたかを表すサービス名があります。&lt;/p>
+&lt;p>さらにスパンは、その親として別のスパンを参照することができ、そのトランザクションを処理するために実行されたトレースでキャプチャされた処理の関係を定義します。&lt;/p>
+&lt;p>各スパンには、キャプチャされたメソッド、オペレーション、コードブロックに関する以下のような多くの情報が含まれています。例えば:&lt;/p>
+&lt;ul>
+&lt;li>処理名&lt;/li>
+&lt;li>処理の開始時間（マイクロ秒単位の精度）&lt;/li>
+&lt;li>処理の実行時間（マイクロ秒単位の精度）&lt;/li>
+&lt;li>処理が行われたサービスの論理名&lt;/li>
+&lt;li>処理が行われたサービスインスタンスのIPアドレス&lt;/li>
+&lt;/ul>
+&lt;h2 id="2-サービスマップ">2. サービスマップ&lt;/h2>
+&lt;p>サービスマップの &lt;strong>paymentservice&lt;/strong> をクリックし、&lt;strong>paymentservice&lt;/strong> の下にある&lt;code>breakdown&lt;/code>のドロップダウンフィルタから &lt;strong>version&lt;/strong> を選択します。これにより、カスタムスパンタグの &lt;strong>version&lt;/strong> でサービスマップがフィルタリングされます。&lt;/p>
+&lt;p>これで、サービスマップが以下のスクリーンショットのように更新され、&lt;strong>paymentservice&lt;/strong> の異なるバージョンが表示されていることがわかります。&lt;/p>
+&lt;p>&lt;img src="../../images/paymentservice.png" alt="Payment Service">&lt;/p>
+&lt;h2 id="3-タグスポットライト">3. タグスポットライト&lt;/h2>
+&lt;p>画面の右側にある &lt;strong>Tag Spotlight&lt;/strong> をスクロールダウンし、ドロップダウンから &lt;strong>Top Across All Indexed Tags&lt;/strong> を選択します。選択したら、下のスクリーンショットにあるように&lt;img src="../../images/full_screen.png" alt="full_screen button"> をクリックします。&lt;/p>
+&lt;p>&lt;img src="../../images/tag-spotlight.png" alt="Tag Spotlight">&lt;/p>
+&lt;p>タグスポットライトのページが表示されます。このページでは、アプリケーションの上位のタグと、それに対応するエラー率や秒間リクエスト数を確認できます。&lt;/p>
+&lt;p>&lt;strong>version&lt;/strong> スパンタグでは、バージョン &lt;code>350.10&lt;/code> のエラー率が100%であることがわかります。また、&lt;strong>tenant.level&lt;/strong> スパンタグでは、3つのテナント（Gold、Silver、Bronze）すべてにエラーがあることがわかります。&lt;/p>
+&lt;p>&lt;img src="../../images/tag-spotlight-dashboard.png" alt="Tag Spotlight Dashboard">&lt;/p>
+&lt;p>タグスポットライトのページはインタラクティブに、目的のタグをクリックするだけでフィルタとしてタグを追加することができます。&lt;strong>tenant.level&lt;/strong> の下の &lt;strong>gold&lt;/strong> をクリックして、フィルターとして追加します。これを行うと、ページには &lt;strong>tenant.level&lt;/strong> が &lt;strong>gold&lt;/strong> のデータのみが表示されます。&lt;/p>
+&lt;p>&lt;img src="../../images/gold-tenant.png" alt="Gold Tenant">&lt;/p>
+&lt;p>タグスポットライトは、データを分析して傾向を見極めるのに非常に便利です。Gold Tenantでは、リクエストの総数のうち55件がエラーであることがわかります。（この数字はワークショップの実施時刻により異なります）&lt;/p>
+&lt;p>これをバージョンタグと関連付けると、バージョン &lt;code>350.10&lt;/code> が55件、バージョン &lt;code>350.9&lt;/code> が17件のリクエストに対応していることがわかります。つまり、バージョン &lt;code>350.10&lt;/code> を経由したリクエストは、すべてエラー状態になったということになります。&lt;/p>
+&lt;p>&lt;strong>paymentservice&lt;/strong> のバージョン &lt;code>350.10&lt;/code> からのすべてのリクエストがエラーになるというこの理論をさらに検証するために、タグセレクタを使用して、フィルタを別のテナントに変更することができます。フィルターを &lt;strong>gold&lt;/strong> テナントから &lt;strong>silver&lt;/strong> テナントに変更します。&lt;/p>
+&lt;p>&lt;img src="../../images/silver-tag-filter.png" alt="Silver Tag Filter">&lt;/p>
+&lt;p>ここで、&lt;strong>silver&lt;/strong> テナントのエラーのあるリクエスト数を見て、バージョン番号と相関させることで、同様の分析を行うことができます。&lt;strong>silver&lt;/strong> テナントのエラー数は、バージョン &lt;code>350.10&lt;/code> のリクエスト数と一致していることに注目してください。&lt;/p>
+&lt;p>&lt;img src="../../images/silver-tenant.png" alt="Silver Tenant">&lt;/p>
+&lt;p>タグスポットライトでは、秒間リクエスト数やエラー率だけでなく、サービスごとのレイテンシーも見ることができます。これを行うには、レイテンシーボタンを選択し、silver テナントタグを削除することで、すべての paymentservice のレイテンシーを確認することができます。&lt;/p>
+&lt;p>&lt;img src="../../images/latency.png" alt="Latency">&lt;/p>
+&lt;p>右端の &lt;strong>Clear All&lt;/strong> の下にある X ボタンを押して、サービスマップに戻りましょう。&lt;/p>
+&lt;h2 id="4-サンプルトレース">4. サンプルトレース&lt;/h2>
+&lt;p>右上にある「Services by Error Rate」グラフのピンク色の線上をクリックします。選択すると、サンプルトレースのリストが表示されます。&lt;code>Initiating Operation of&lt;/code>が&lt;strong>frontend: POST /cart/checkout&lt;/strong> であるサンプルトレースの1つをクリックしてください。&lt;/p>
+&lt;p>&lt;img src="../../images/example-trace.png" alt="Example Trace">&lt;/p>
+&lt;p>スパンとともに、選択したトレースの全体が表示されます。エラーが発生したスパンは、その横に赤い！マークが表示されます。グレーのボックスに&lt;strong>x6&lt;/strong>などの数字が表示されている場合は、それをクリックすると&lt;code>paymentservice&lt;/code> スパンを展開することができます。&lt;/p>
+&lt;p>&lt;img src="../../images/trace-span.png" alt="Example Trace">&lt;/p>
+&lt;p>赤い！マークが表示された&lt;code>paymentservice&lt;/code> スパンの一つをクリックすると展開され、関連するメタデータやエラーの詳細が表示されます。このエラーが401エラーによるものであることがわかります。また、「テナント」や「バージョン」などの有用な情報も表示されています。&lt;/p>
+&lt;p>&lt;img src="../../images/trace-metadata.png" alt="Traces and Spans">&lt;/p>
+&lt;p>エラーの原因が&lt;strong>無効なリクエスト&lt;/strong>であることがわかりましたが、正確なリクエストが何であるかはわかりません。ページの下部に、ログへのコンテキストリンクが表示されます。このリンクをクリックすると、このスパンに関連付けられているログが表示されます。&lt;/p>
+&lt;p>&lt;img src="../../images/logs_link.png" alt="Logs Link">&lt;/p>
+&lt;p>下の画像と同様の&lt;strong>Log Observer&lt;/strong> ダッシュボードが表示されます。&lt;/p>
+&lt;p>&lt;img src="../../images/log_observer.png" alt="Log Observer">&lt;/p>
+&lt;p>フィルタを使用して、エラーログのみを表示できます。右上にある&lt;code>ERROR&lt;/code>をクリックしてから、&lt;code>Add to filter&lt;/code>をクリックします。&lt;/p>
+&lt;p>&lt;img src="../../images/error_filter.png" alt="Error Filter">&lt;/p>
+&lt;p>You should now have a shorter list of log entries which have a &lt;code>severity&lt;/code> of &lt;code>ERROR&lt;/code>
+&lt;code>severity&lt;/code>が&lt;code>ERROR&lt;/code>であるログエントリに絞り込まれます。&lt;/p>
+&lt;p>&lt;img src="../../images/filtered_results.png" alt="Filtered Results">&lt;/p>
+&lt;p>いずれかのエントリを選択して詳細を表示します。これで、開発者が誤って本番環境にプッシュした&lt;strong>無効なAPIトークン&lt;/strong>の使用によってエラーがどのように発生したかを確認できます。&lt;/p>
+&lt;p>&lt;img src="../../images/error_details.png" alt="Error Details">&lt;/p>
+&lt;p>おめでとうございます。これで、このAPMワークショップは完了です。&lt;/p></description></item></channel></rss>
