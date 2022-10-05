@@ -33,10 +33,10 @@ params:
   versions:
     - version: latest
       url: https://signalfx.github.io/observability-workshop/latest/
-    - version: v4.28
-      url: https://signalfx.github.io/observability-workshop/v4.28
     - version: v4.29
       url: https://signalfx.github.io/observability-workshop/v4.29
+    - version: v4.30
+      url: https://signalfx.github.io/observability-workshop/v4.30
   url_latest_version: https://signalfx.github.io/observability-workshop/
   #github_repo: https://github.com/signalfx/observability-workshop
   #github_project_repo: https://github.com/signalfx/observability-workshop

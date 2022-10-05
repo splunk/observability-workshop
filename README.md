@@ -11,5 +11,5 @@ To get started, please proceed to [The Splunk Observability Cloud Workshops Home
 If you are the host for the RUM workshop, please check this [README](https://github.com/signalfx/observability-workshop/blob/master/apm/README.md)
 
 Latest versions of the workshop are:
+- [v4.30](https://signalfx.github.io/observability-workshop/v4.30/)
 - [v4.29](https://signalfx.github.io/observability-workshop/v4.29/)
-- [v4.28](https://signalfx.github.io/observability-workshop/v4.28/)
