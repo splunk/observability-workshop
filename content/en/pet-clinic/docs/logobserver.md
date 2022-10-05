@@ -92,11 +92,9 @@ and paste the XML content from the snippet above. After that, we need to rebuild
 ```
 
 ```bash
-java -javaagent:./splunk-otel-javaagent.jar \
--Dsplunk.profiler.enabled=true \
+java -Dsplunk.profiler.enabled=true \
 -Dsplunk.metrics.enabled=true \
--jar target/spring-petclinic-*-SNAPSHOT.jar \
---spring.profiles.active=mysql
+-jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
 Then let's visit the application again to generate more traffic, now we should see log messages being reported `http://<VM_IP_ADDRESS>:8080` (feel free to navigate and click around).
@@ -107,7 +105,7 @@ Hamburger Menu > Log Observer
 And you can add a filter to select only log messages from your host and the Spring PetClinic Application:
 
 1. Add Filter → Fields → `host.name` → `<your host name>`
-2. Add Filter → Fields → `service.name` → `<your application name>`
+2. Add Filter → Fields → `service.name` → `petclinic.service`
 
 ### Summary
 

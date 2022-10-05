@@ -45,11 +45,9 @@ run the maven command to compile/build/package PetClinic:
 ```
 
 ```bash
-java -javaagent:./splunk-otel-javaagent.jar \
--Dsplunk.profiler.enabled=true \
+java -Dsplunk.profiler.enabled=true \
 -Dsplunk.metrics.enabled=true \
--jar target/spring-petclinic-*-SNAPSHOT.jar \
---spring.profiles.active=mysql
+-jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
 Then let's visit the application again to generate more traffic `http://<VM_IP_ADDRESS>:8080`, now we should see RUM traces being reported
