@@ -45,7 +45,9 @@ run the maven command to compile/build/package PetClinic:
 ```
 
 ```bash
-java -Dsplunk.profiler.enabled=true \
+java \
+-Dotel.service.name=$(hostname)-petclinic.service
+-Dsplunk.profiler.enabled=true \
 -Dsplunk.metrics.enabled=true \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```

@@ -34,24 +34,6 @@ curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-co
 sudo sh /tmp/splunk-otel-collector.sh --with-instrumentation --deployment-environment $(hostname)-pet-clinic, version 0.314 --realm $REALM -- $ACCESS_TOKEN
 ```
 
-After a successfull installation we need to make a small configuration change to the Zero Configuration. Open the file for editing:
-
-```bash
-sudo vi /usr/lib/splunk-instrumentation/instrumentation.conf
-```
-
-Uncomment the first line and change it to read:
-
-```text
-service_name=petclinic.service
-```
-
-Save the file and restart the collector:
-
-```bash
-sudo systemctl restart splunk-otel-collector
-```
-
 This command will download and setup the OpenTelemetry Collector. Once the install is completed, you can navigate to the Infrastructure page to see the data from your host, **Infrastructure → My Data Center → Hosts**.
 
 Click {{% labelbutton color="ui-button-grey" %}}**Add Filter**{{% /labelbutton %}} select `host.name` and type or select the hostname of your virtual machine. Once you see data flowing for your host, we are then ready to get started with the APM component.

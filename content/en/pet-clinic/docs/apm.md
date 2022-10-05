@@ -38,7 +38,9 @@ This will take a few minutes the first time you run, maven will download a lot o
 Once the compilation is complete, you can run the application with the following command:
 
 ```bash
-java -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
+java \
+-Dotel.service.name=$(hostname).service \
+-jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
 If you check the logs of the Splunk OpenTelemetry collector you will see that the collector automatically detected the application running and auto-instrumented it. You can view the logs using the following command:
@@ -54,7 +56,9 @@ You can validate if the application is running by visiting `http://<VM_IP_ADDRES
 To enable CPU and Memory Profiling on the application we can start the application by passing `splunk.profiler.enabled=true` and for metrics pass `splunk.metrics.enabled=true`. Make sure the application is stopped and run the following command to enable metrics and profiling.
 
 ```bash
-java -Dsplunk.profiler.enabled=true \
+java \
+-Dotel.service.name=$(hostname)-petclinic.service
+-Dsplunk.profiler.enabled=true \
 -Dsplunk.metrics.enabled=true \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```

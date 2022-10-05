@@ -92,7 +92,9 @@ and paste the XML content from the snippet above. After that, we need to rebuild
 ```
 
 ```bash
-java -Dsplunk.profiler.enabled=true \
+java \
+-Dotel.service.name=$(hostname)-petclinic.service
+-Dsplunk.profiler.enabled=true \
 -Dsplunk.metrics.enabled=true \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
