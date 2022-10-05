@@ -31,7 +31,7 @@ We can then go ahead and install the Collector. There are two additional paramet
 
 ```bash
 curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-collector.sh && \
-sudo sh /tmp/splunk-otel-collector.sh --with-instrumentation --deployment-environment $(hostname)-pet-clinic, version 0.314 --realm $REALM -- $ACCESS_TOKEN
+sudo sh /tmp/splunk-otel-collector.sh --with-instrumentation --deployment-environment $(hostname)-petclinic --realm $REALM -- $ACCESS_TOKEN
 ```
 
 This command will download and setup the OpenTelemetry Collector. Once the install is completed, you can navigate to the Infrastructure page to see the data from your host, **Infrastructure → My Data Center → Hosts**.

@@ -39,7 +39,7 @@ Once the compilation is complete, you can run the application with the following
 
 ```bash
 java \
--Dotel.service.name=$(hostname).service \
+-Dotel.service.name=$(hostname)-petclinic.service \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
