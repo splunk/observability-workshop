@@ -93,7 +93,7 @@ and paste the XML content from the snippet above. After that, we need to rebuild
 
 ```bash
 java \
--Dotel.service.name=$(hostname)-petclinic.service
+-Dotel.service.name=$(hostname)-petclinic.service \
 -Dsplunk.profiler.enabled=true \
 -Dsplunk.metrics.enabled=true \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
@@ -107,7 +107,7 @@ Hamburger Menu > Log Observer
 And you can add a filter to select only log messages from your host and the Spring PetClinic Application:
 
 1. Add Filter → Fields → `host.name` → `<your host name>`
-2. Add Filter → Fields → `service.name` → `petclinic.service`
+2. Add Filter → Fields → `service.name` → `<your host name>-petclinic.service`
 
 ### Summary
 

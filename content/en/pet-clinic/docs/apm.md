@@ -53,11 +53,12 @@ You can validate if the application is running by visiting `http://<VM_IP_ADDRES
 
 **Once your validation is complete you can stop the application by pressing** `Ctrl-c` **.**
 
+---
 To enable CPU and Memory Profiling on the application we can start the application by passing `splunk.profiler.enabled=true` and for metrics pass `splunk.metrics.enabled=true`. Make sure the application is stopped and run the following command to enable metrics and profiling.
 
 ```bash
 java \
--Dotel.service.name=$(hostname)-petclinic.service
+-Dotel.service.name=$(hostname)-petclinic.service \
 -Dsplunk.profiler.enabled=true \
 -Dsplunk.metrics.enabled=true \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
