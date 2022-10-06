@@ -1,0 +1,131 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Observability Cloud Workshops – ECS Demos</title><link>https://signalfx.github.io/observability-workshop/v4.31/otelw/apm_ecs_demos/</link><description>Recent content in ECS Demos on Splunk Observability Cloud Workshops</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://signalfx.github.io/observability-workshop/v4.31/otelw/apm_ecs_demos/index.xml" rel="self" type="application/rss+xml"/><item><title>Otelw: ECS-EC2</title><link>https://signalfx.github.io/observability-workshop/v4.31/otelw/apm_ecs_demos/index-ec2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://signalfx.github.io/observability-workshop/v4.31/otelw/apm_ecs_demos/index-ec2/</guid><description>
+&lt;h3 id="splunk-apm-trace-generator-demo-for-aws-ecs-ec2">Splunk APM Trace Generator Demo For AWS ECS EC2&lt;/h3>
+&lt;p>This repo demonstrates a reference implemenation for a single AWS ECS EC2 task example of Splunk APM that will send spans directly to Splunk Observability Cloud.&lt;/p>
+&lt;p>ECS works very simply: just add the environment variables required by the Otel APM Instrumentation and the Instrumentation will do the rest.&lt;/p>
+&lt;p>To deploy this example, you must have an ECS environment ready to go with VPC, task roles for logs, etc. Instructions are below:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Install ECS CLI: &lt;a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_AWSCLI_Fargate.html" target="_blank">ECS CLI Setup&lt;/a>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Pay critical attention to setting up VPC in advance: &lt;a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html" target="_blank">Task Definition Guide&lt;/a>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Set up log environment here: &lt;a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_cloudwatch_logs.html" target="_blank">Cloudwatch&lt;/a>
+&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="setup">Setup&lt;/h3>
+&lt;p>Configure ECS CLI Profile:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">ecs-cli &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>configure profile &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--access-key YOURAWSKEYHERE &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--secret-key YOURAWSSECRETKEYHERE &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--profile-name ecs-ec2-profile
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Configure ECS EC2 Cluster:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">configure ECS Cluster Config:
+ecs-cli configure &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--cluster test-cluster &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--config-name test-cluster &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--region YOURREGIONHEREi.e.:us-east-1
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Deploy ECS EC2 Cluster:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">ecs-cli up &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--cluster test-cluster &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--region YOURREGIONHEREi.e.:us-east-1&lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--size &lt;span style="color:#0000cf;font-weight:bold">1&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--capability-iam &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--instance-type t2.xlarge &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--launch-type EC2 &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--ecs-profile test-profile &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--force
+&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;h3 id="deploy-task">Deploy Task&lt;/h3>
+&lt;p>Deploy with the following commands- &lt;em>you must change the variables in caps in these task .json files to suit your environment:&lt;/em>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">aws ecs register-task-definition &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--cli-input-json file://tracegen-java-otel-ecs-ec2.json
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Note that the task definition will increment each time you try it- from 1 to 2 etc. To check which version is current use:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">aws ecs list-task-definitions
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Deploy trace generator task to cluster:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">aws ecs create-service &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--cluster test-cluster &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--launch-type EC2 &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--scheduling-strategy DAEMON &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--service-name tracegen-java-otel-ecs-ec2 &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--task-definition tracegen-java-otel-ecs-ec2:VERSIONHEREi.e.1
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>After a few seconds check Splunk APM to see the trace generator service.&lt;/p>
+&lt;hr>
+&lt;h3 id="cleanup">Cleanup&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">aws ecs delete-service --cluster test-cluster --service tracegen-java-otel-ecs-ec2 --force
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">ecs-cli down &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--cluster test-cluster &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--region us-east-1
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">aws ecs delete-cluster --cluster test-cluster
+&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;h3 id="extras">Extras&lt;/h3>
+&lt;p>The &lt;a href="../../appendix/ecs-cli-commands/">ecs-cli-commands.md&lt;/a>
+file offers helpful commands for ECS Fargate management for the AWS CLI.&lt;/p></description></item><item><title>Otelw: ECS-Fargate</title><link>https://signalfx.github.io/observability-workshop/v4.31/otelw/apm_ecs_demos/index-fargate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://signalfx.github.io/observability-workshop/v4.31/otelw/apm_ecs_demos/index-fargate/</guid><description>
+&lt;h3 id="splunk-apm-trace-generator-demo-for-aws-ecs-fargate">Splunk APM Trace Generator Demo For AWS ECS Fargate&lt;/h3>
+&lt;p>This repo demonstrates reference implemenations for a single AWS ECS Fargate task example of Splunk APM that will send spans to a sidecar OpenTelemetry container.&lt;/p>
+&lt;p>ECS works very simply: just add the environment variables required by the Otel APM Instrumentation and the Instrumentation will do the rest.&lt;/p>
+&lt;p>To deploy this example, you must have an ECS environment ready to go with VPC, task roles for logs, etc. Instructions are below:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Install ECS CLI: &lt;a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_AWSCLI_Fargate.html" target="_blank">ECS CLI Setup&lt;/a>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Pay critical attention to setting up VPC in advance: &lt;a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html" target="_blank">Task Definition Guide&lt;/a>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Set up log environment here: &lt;a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_cloudwatch_logs.html" target="_blank">Cloudwatch&lt;/a>
+&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="setup">Setup&lt;/h3>
+&lt;p>Configure ECS CLI Profile:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">ecs-cli &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>configure profile &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--access-key YOURAWSKEYHERE &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--secret-key YOURAWSSECRETKEYHERE &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--profile-name ecs-ec2-profile
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Configure ECS Cluster:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">configure ECS Cluster Config:
+ecs-cli configure &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--cluster test-cluster &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--config-name test-cluster &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--region YOURREGIONHEREi.e.:us-east-1
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Create ECS Cluster:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">aws ecs create-cluster --cluster-name test-cluster
+&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;h3 id="deploy-task">Deploy Task&lt;/h3>
+&lt;p>The task spins up two ECS Fargate containers:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>splunk-otel-collector&lt;/code> - sidecar to observe ECS host metrics and relay application traces to Splunk APM&lt;/li>
+&lt;li>&lt;code>tracegen-fargate&lt;/code> - generates traces using a manually instrumented Java app and sends them to the Otel Collector&lt;/li>
+&lt;/ul>
+&lt;p>Deploy with the following commands- &lt;em>you must change the variables in caps in&lt;/em> &lt;code>tracegen-java-otel-fargate-otelcolfargate.json&lt;/code> &lt;em>to suit your environment:&lt;/em>&lt;/p>
+&lt;p>Create cluster&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">aws ecs create-cluster --cluster-name test-cluster
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Note that the task definition will increment each time you try it- from 1 to 2 etc. To check which version is current use:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">aws ecs list-task-definitions
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Identify your Security Group and Subnet and change them in the deploy script below and then deploy trace generator / otelcollector task to cluster:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">aws ecs create-service &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--cluster test-cluster &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--service-name tracegen-fargate &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--desired-count &lt;span style="color:#0000cf;font-weight:bold">1&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--launch-type &lt;span style="color:#4e9a06">&amp;#34;FARGATE&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--network-configuration &lt;span style="color:#4e9a06">&amp;#34;awsvpcConfiguration={subnets=[subnet-YOURSUBNETHERE],securityGroups=[sg-YOURSECURITYGROUPHERE],assignPublicIp=ENABLED}&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>--task-definition tracegen-java-otel-fargate-otelcol:1
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>After a few seconds check Splunk APM and Dashboards-&amp;gt;ECS-Fargate to see the trace generator service and Otel collector&lt;/p>
+&lt;hr>
+&lt;h3 id="cleanup">Cleanup&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">aws ecs delete-service --cluster test-cluster --service tracegen-java-otel-fargate-otelcol --force
+&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;h3 id="extras">Extras&lt;/h3>
+&lt;p>The &lt;a href="../../appendix/ecs-cli-commands/">ecs-cli-commands.md&lt;/a>
+file offers helpful commands for ECS Fargate management for the AWS CLI.&lt;/p></description></item></channel></rss>

@@ -1,0 +1,293 @@
+<!doctype html><html lang=ja class=no-js>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.92.2">
+<link rel=alternate type=application/rss+xml href=https://signalfx.github.io/observability-workshop/v4.31/ja/apm/docs/using-splunk-apm/index.xml>
+<meta name=robots content="index, follow">
+<link rel="shortcut icon" href=/observability-workshop/v4.31/favicons/favicon.ico>
+<link rel=apple-touch-icon href=/observability-workshop/v4.31/favicons/apple-touch-icon-180x180.png sizes=180x180>
+<link rel=icon type=image/png href=/observability-workshop/v4.31/favicons/favicon-16x16.png sizes=16x16>
+<link rel=icon type=image/png href=/observability-workshop/v4.31/favicons/favicon-32x32.png sizes=32x32>
+<link rel=icon type=image/png href=/observability-workshop/v4.31/favicons/android-36x36.png sizes=36x36>
+<link rel=icon type=image/png href=/observability-workshop/v4.31/favicons/android-48x48.png sizes=48x48>
+<link rel=icon type=image/png href=/observability-workshop/v4.31/favicons/android-72x72.png sizes=72x72>
+<link rel=icon type=image/png href=/observability-workshop/v4.31/favicons/android-96x96.png sizes=96x96>
+<link rel=icon type=image/png href=/observability-workshop/v4.31/favicons/android-144x144.png sizes=144x144>
+<link rel=icon type=image/png href=/observability-workshop/v4.31/favicons/android-192x192.png sizes=192x192>
+<title>Splunk APMを利用する | Splunk Observability Cloud Workshops</title>
+<meta name=description content="**15 分**
+
+Splunk APMの使い方概要
+">
+<meta property="og:title" content="Splunk APMを利用する">
+<meta property="og:description" content="**15 分**
+
+Splunk APMの使い方概要
+">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://signalfx.github.io/observability-workshop/v4.31/ja/apm/docs/using-splunk-apm/"><meta property="og:site_name" content="Splunk Observability Cloud Workshops">
+<meta itemprop=name content="Splunk APMを利用する">
+<meta itemprop=description content="**15 分**
+
+Splunk APMの使い方概要
+"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Splunk APMを利用する">
+<meta name=twitter:description content="**15 分**
+
+Splunk APMの使い方概要
+">
+<link rel=preload href=/observability-workshop/v4.31/scss/main.min.39785c4da9cb0cfe16de8f72aadcf06fb29187963dcb8220bb9935bd52331915.css as=style>
+<link href=/observability-workshop/v4.31/scss/main.min.39785c4da9cb0cfe16de8f72aadcf06fb29187963dcb8220bb9935bd52331915.css rel=stylesheet integrity>
+<script src=https://code.jquery.com/jquery-3.6.0.min.js integrity=sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK crossorigin=anonymous></script>
+<script src=https://unpkg.com/lunr@2.3.9/lunr.min.js integrity=sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli crossorigin=anonymous></script>
+</head>
+<body class=td-section>
+<header>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" id=navbar1>
+<a class=navbar-brand href=/observability-workshop/v4.31/ja/>
+<span class=navbar-logo><img class=navbar-logo src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAAvCAIAAAD8RQT7AAACwklEQVRYw+2YW2jTYBTHu4l4F1ERVMQL+qKgMBUU9EEfRAURUUFfBEUEBRGfdC+CrVt3cdbNSZ1zXqar024yp9MJKzh3FScyO+q8MDW3pvc2TZqkudSvtD4J66fkWyL0kNeQH8mX8/+dY8JMZuNcpjzNX9JQK64ZiEZlk9zDEe/aOmPQ8FIKlJpKtH+mNzUYg+Z38a7vvu2NRqHJlDhABPY0G4UmU8lhOnioFSu0GIImU9KXUOhYOz75kiFoMiVjsfDpl/i0UrQ0oePPkp5ACq5kHxs978JnlaHsxQVm/24H3zUGyaRE+Jj5DTGvEm0yeNfVsfeGVVGGYQJtk6kaIBfZ0OYUufBKrKRHCSWgmAQ5fmOIWl6DNjXx6dbwqRfgh4L6eJLC3v/oXW1HnOGFlsDeR0L3TygmEC+tn+j19ciNgt5Qzznc4B3AUPGd33xb7yL3G3LJVaaiX4kKMExCD+bf2YTctvCZZZEzndJYBIZJfE8F9jtBE0HsfpMswQNOoR+HYWIbPkyQiQIr4pyelKyOQ5No8UyoF1PLahjboMqIhqABl3/HA6EX05kGyEboSBuQIZ2/FDGnInKuSyaZnKcYLU32lMTF3P05ITHVb8nFNiQ09MZbXPPI+H9QliMuMuV9xIIqBN2vwAy8HTKw0gJ0sZuYW6l9MuBTS8MnnkujQSgOPxctdhGzy7VPTWL+5eiF1+ABUJJKMpGzr4CHaG8U1KrauH0IHEAot/kRDZ/swKeUaG9bvi13Em2jKUWF4gDDzdGn/zbcmHJE4MEWcZCAFPWk2xc8/ATcpbGl4zOsYFCC1IOsIex7/KchaEMj0ywkh9CH+3c59J8104uLbY36T758x1d68229twIZ+y+6qffGRFa5Jrd3jR3Td5ukJhVgr9TKWp03benp9fo7cmm1/lvImLUXDN757XWe5v+g+QU6sNkgKUPrgwAAAABJRU5ErkJggg=="></span><span class=font-weight-bold>Splunk Observability Cloud Workshops</span>
+</a>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+</ul>
+</div>
+</nav>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" id=navbar2>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.31/ja/imt/><span>Splunk IMT</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class="nav-link active" href=/observability-workshop/v4.31/ja/apm/><span class=active>Splunk APM</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.31/ja/synthetics/><span>Splunk Synthetics</span></a>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+More Workshops
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/latest/pet-clinic/>Pet Clinic Java Workshop</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/latest/bootcamp/>O11y Bootcamp</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/latest/resources/>Resources</a>
+</div>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+Releases
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/latest/>latest</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/v4.30>v4.30</a>
+<a class=dropdown-item href=https://signalfx.github.io/observability-workshop/v4.31>v4.31</a>
+</div>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+日本語
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.31/apm/docs/using-splunk-apm/>English</a>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="container-fluid td-outer">
+<div class=td-main>
+<div class="row flex-xl-nowrap">
+<aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+<div id=td-sidebar-menu class=td-sidebar__inner>
+<form class="td-sidebar__search d-flex align-items-center">
+<input type=search class="form-control td-search-input" placeholder="&#xf002; サイトを検索..." aria-label=サイトを検索... autocomplete=off data-offline-search-index-json-src=/observability-workshop/v4.31/offline-search-index.b603391094d875fddcdbf9522fdda014.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type=button data-toggle=collapse data-target=#td-section-nav aria-controls=td-docs-nav aria-expanded=false aria-label="Toggle section navigation">
+</button>
+</form>
+<nav class="collapse td-sidebar-nav" id=td-section-nav>
+<div class="nav-item dropdown d-block d-lg-none">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+日本語
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.31/apm/docs/using-splunk-apm/>English</a>
+</div>
+</div>
+<ul class="td-sidebar-nav__section pr-md-3 ul-0">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv431jaapm-li>
+<a href=/observability-workshop/v4.31/ja/apm/ title=はじめに class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id=m-observability-workshopv431jaapm><span>Splunk APM</span></a>
+<ul class=ul-1>
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv431jaapmdocs-li>
+<a href=/observability-workshop/v4.31/ja/apm/docs/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv431jaapmdocs><span>トレースを取り込み、データを取り出す</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-observability-workshopv431jaapmdocsonline-boutique-li>
+<a href=/observability-workshop/v4.31/ja/apm/docs/online-boutique/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv431jaapmdocsonline-boutique><span>Online Boutique K8s Workshop</span></a>
+<ul class="ul-3 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv431jaapmdocsonline-boutiquedeploy-li>
+<a href=/observability-workshop/v4.31/ja/apm/docs/online-boutique/deploy/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv431jaapmdocsonline-boutiquedeploy><span>K3s環境にOnline Boutiqueをデプロイする</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv431jaapmdocsonline-boutiquelocust-li>
+<a href=/observability-workshop/v4.31/ja/apm/docs/online-boutique/locust/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv431jaapmdocsonline-boutiquelocust><span>Locustでトラフィックを発生させる</span></a>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-observability-workshopv431jaapmdocsusing-splunk-apm-li>
+<a href=/observability-workshop/v4.31/ja/apm/docs/using-splunk-apm/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv431jaapmdocsusing-splunk-apm><span class=td-sidebar-nav-active-item>Splunk APMを利用する</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+<aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+</div>
+<div class=td-toc><nav id=TableOfContents>
+<ul>
+<li><a href=#1-トレースとスパンについて>1. トレースとスパンについて</a></li>
+<li><a href=#2-サービスマップ>2. サービスマップ</a></li>
+<li><a href=#3-タグスポットライト>3. タグスポットライト</a></li>
+<li><a href=#4-サンプルトレース>4. サンプルトレース</a></li>
+</ul>
+</nav></div>
+<div class="taxonomy taxonomy-terms-cloud taxo-tags">
+<h5 class=taxonomy-title>Tag Cloud</h5>
+<ul class=taxonomy-terms>
+<li><a class=taxonomy-term href=https://signalfx.github.io/observability-workshop/v4.31/ja/tags/k3s/ data-taxonomy-term=k3s><span class=taxonomy-label>k3s</span><span class=taxonomy-count>1</span></a></li>
+<li><a class=taxonomy-term href=https://signalfx.github.io/observability-workshop/v4.31/ja/tags/ngnix/ data-taxonomy-term=ngnix><span class=taxonomy-label>NGNIX</span><span class=taxonomy-count>1</span></a></li>
+</ul>
+</div>
+<div class="taxonomy taxonomy-terms-cloud taxo-categories">
+<h5 class=taxonomy-title>Categories</h5>
+<ul class=taxonomy-terms>
+<li><a class=taxonomy-term href=https://signalfx.github.io/observability-workshop/v4.31/ja/categories/imt/ data-taxonomy-term=imt><span class=taxonomy-label>IMT</span><span class=taxonomy-count>2</span></a></li>
+</ul>
+</div>
+</aside>
+<main class="col-12 col-md-9 col-xl-8 pl-md-5" role=main>
+<nav aria-label=breadcrumb class=td-breadcrumbs>
+<ol class=breadcrumb>
+<li class=breadcrumb-item>
+<a href=https://signalfx.github.io/observability-workshop/v4.31/ja/apm/>Splunk APM</a>
+</li>
+<li class=breadcrumb-item>
+<a href=https://signalfx.github.io/observability-workshop/v4.31/ja/apm/docs/>トレースを取り込み、データを取り出す</a>
+</li>
+<li class="breadcrumb-item active" aria-current=page>
+<a href=https://signalfx.github.io/observability-workshop/v4.31/ja/apm/docs/using-splunk-apm/>Splunk APMを利用する</a>
+</li>
+</ol>
+</nav>
+<div class=td-content>
+<h1>Splunk APMを利用する</h1>
+<div class=lead><p><strong>15 分</strong></p>
+<p>Splunk APMの使い方概要</p>
+</div>
+<header class=article-meta>
+<p class=reading-time><i class="fa fa-clock" aria-hidden=true></i>&nbsp; less than a minute &nbsp;</p>
+</header>
+<ul>
+<li>APM の概要 - RED メトリクス</li>
+<li>サービスマップを利用する</li>
+<li>タグスポットライトの紹介</li>
+<li>トレースの例</li>
+<li>Infrastructure Monitoringとのリンク</li>
+</ul>
+<h2 id=1-トレースとスパンについて>1. トレースとスパンについて</h2>
+<p>トレースは、同じトレースIDを共有するスパンの集合体であり、アプリケーションとその構成サービスが処理する固有のトランザクションを表します。</p>
+<p><img src=../../images/trace-spans.png alt="Traces and Spans"></p>
+<p>各スパンには、そのスパンでキャプチャされた操作を表す名前と、その操作がどのサービス内で行われたかを表すサービス名があります。</p>
+<p>さらにスパンは、その親として別のスパンを参照することができ、そのトランザクションを処理するために実行されたトレースでキャプチャされた処理の関係を定義します。</p>
+<p>各スパンには、キャプチャされたメソッド、オペレーション、コードブロックに関する以下のような多くの情報が含まれています。例えば:</p>
+<ul>
+<li>処理名</li>
+<li>処理の開始時間（マイクロ秒単位の精度）</li>
+<li>処理の実行時間（マイクロ秒単位の精度）</li>
+<li>処理が行われたサービスの論理名</li>
+<li>処理が行われたサービスインスタンスのIPアドレス</li>
+</ul>
+<h2 id=2-サービスマップ>2. サービスマップ</h2>
+<p>サービスマップの <strong>paymentservice</strong> をクリックし、<strong>paymentservice</strong> の下にある<code>breakdown</code>のドロップダウンフィルタから <strong>version</strong> を選択します。これにより、カスタムスパンタグの <strong>version</strong> でサービスマップがフィルタリングされます。</p>
+<p>これで、サービスマップが以下のスクリーンショットのように更新され、<strong>paymentservice</strong> の異なるバージョンが表示されていることがわかります。</p>
+<p><img src=../../images/paymentservice.png alt="Payment Service"></p>
+<h2 id=3-タグスポットライト>3. タグスポットライト</h2>
+<p>画面の右側にある <strong>Tag Spotlight</strong> をスクロールダウンし、ドロップダウンから <strong>Top Across All Indexed Tags</strong> を選択します。選択したら、下のスクリーンショットにあるように<img src=../../images/full_screen.png alt="full_screen button"> をクリックします。</p>
+<p><img src=../../images/tag-spotlight.png alt="Tag Spotlight"></p>
+<p>タグスポットライトのページが表示されます。このページでは、アプリケーションの上位のタグと、それに対応するエラー率や秒間リクエスト数を確認できます。</p>
+<p><strong>version</strong> スパンタグでは、バージョン <code>350.10</code> のエラー率が100%であることがわかります。また、<strong>tenant.level</strong> スパンタグでは、3つのテナント（Gold、Silver、Bronze）すべてにエラーがあることがわかります。</p>
+<p><img src=../../images/tag-spotlight-dashboard.png alt="Tag Spotlight Dashboard"></p>
+<p>タグスポットライトのページはインタラクティブに、目的のタグをクリックするだけでフィルタとしてタグを追加することができます。<strong>tenant.level</strong> の下の <strong>gold</strong> をクリックして、フィルターとして追加します。これを行うと、ページには <strong>tenant.level</strong> が <strong>gold</strong> のデータのみが表示されます。</p>
+<p><img src=../../images/gold-tenant.png alt="Gold Tenant"></p>
+<p>タグスポットライトは、データを分析して傾向を見極めるのに非常に便利です。Gold Tenantでは、リクエストの総数のうち55件がエラーであることがわかります。（この数字はワークショップの実施時刻により異なります）</p>
+<p>これをバージョンタグと関連付けると、バージョン <code>350.10</code> が55件、バージョン <code>350.9</code> が17件のリクエストに対応していることがわかります。つまり、バージョン <code>350.10</code> を経由したリクエストは、すべてエラー状態になったということになります。</p>
+<p><strong>paymentservice</strong> のバージョン <code>350.10</code> からのすべてのリクエストがエラーになるというこの理論をさらに検証するために、タグセレクタを使用して、フィルタを別のテナントに変更することができます。フィルターを <strong>gold</strong> テナントから <strong>silver</strong> テナントに変更します。</p>
+<p><img src=../../images/silver-tag-filter.png alt="Silver Tag Filter"></p>
+<p>ここで、<strong>silver</strong> テナントのエラーのあるリクエスト数を見て、バージョン番号と相関させることで、同様の分析を行うことができます。<strong>silver</strong> テナントのエラー数は、バージョン <code>350.10</code> のリクエスト数と一致していることに注目してください。</p>
+<p><img src=../../images/silver-tenant.png alt="Silver Tenant"></p>
+<p>タグスポットライトでは、秒間リクエスト数やエラー率だけでなく、サービスごとのレイテンシーも見ることができます。これを行うには、レイテンシーボタンを選択し、silver テナントタグを削除することで、すべての paymentservice のレイテンシーを確認することができます。</p>
+<p><img src=../../images/latency.png alt=Latency></p>
+<p>右端の <strong>Clear All</strong> の下にある X ボタンを押して、サービスマップに戻りましょう。</p>
+<h2 id=4-サンプルトレース>4. サンプルトレース</h2>
+<p>右上にある「Services by Error Rate」グラフのピンク色の線上をクリックします。選択すると、サンプルトレースのリストが表示されます。<code>Initiating Operation of</code>が<strong>frontend: POST /cart/checkout</strong> であるサンプルトレースの1つをクリックしてください。</p>
+<p><img src=../../images/example-trace.png alt="Example Trace"></p>
+<p>スパンとともに、選択したトレースの全体が表示されます。エラーが発生したスパンは、その横に赤い！マークが表示されます。グレーのボックスに<strong>x6</strong>などの数字が表示されている場合は、それをクリックすると<code>paymentservice</code> スパンを展開することができます。</p>
+<p><img src=../../images/trace-span.png alt="Example Trace"></p>
+<p>赤い！マークが表示された<code>paymentservice</code> スパンの一つをクリックすると展開され、関連するメタデータやエラーの詳細が表示されます。このエラーが401エラーによるものであることがわかります。また、「テナント」や「バージョン」などの有用な情報も表示されています。</p>
+<p><img src=../../images/trace-metadata.png alt="Traces and Spans"></p>
+<p>エラーの原因が<strong>無効なリクエスト</strong>であることがわかりましたが、正確なリクエストが何であるかはわかりません。ページの下部に、ログへのコンテキストリンクが表示されます。このリンクをクリックすると、このスパンに関連付けられているログが表示されます。</p>
+<p><img src=../../images/logs_link.png alt="Logs Link"></p>
+<p>下の画像と同様の<strong>Log Observer</strong> ダッシュボードが表示されます。</p>
+<p><img src=../../images/log_observer.png alt="Log Observer"></p>
+<p>フィルタを使用して、エラーログのみを表示できます。右上にある<code>ERROR</code>をクリックしてから、<code>Add to filter</code>をクリックします。</p>
+<p><img src=../../images/error_filter.png alt="Error Filter"></p>
+<p>You should now have a shorter list of log entries which have a <code>severity</code> of <code>ERROR</code>
+<code>severity</code>が<code>ERROR</code>であるログエントリに絞り込まれます。</p>
+<p><img src=../../images/filtered_results.png alt="Filtered Results"></p>
+<p>いずれかのエントリを選択して詳細を表示します。これで、開発者が誤って本番環境にプッシュした<strong>無効なAPIトークン</strong>の使用によってエラーがどのように発生したかを確認できます。</p>
+<p><img src=../../images/error_details.png alt="Error Details"></p>
+<p>おめでとうございます。これで、このAPMワークショップは完了です。</p>
+<div class=section-index>
+</div>
+</div>
+</main>
+</div>
+</div>
+<footer class="bg-dark py-5 row d-print-none">
+<div class="container-fluid mx-sm-5">
+<div class=row>
+<div class="col-6 col-sm-4 text-xs-center order-sm-2">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=Twitter aria-label=Twitter>
+<a class=text-white target=_blank rel=noopener href=https://twitter.com/splunk aria-label=Twitter>
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=GitHub aria-label=GitHub>
+<a class=text-white target=_blank rel=noopener href=https://github.com/signalfx/observability-workshop aria-label=GitHub>
+<i class="fab fa-github"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-12 col-sm-4 text-center py-2 order-sm-2">
+<small class=text-white>&copy; 2022 Splunk Inc. All Rights Reserved</small>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js integrity=sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin=anonymous></script>
+<script src=/observability-workshop/v4.31/js/tabpane-persist.js></script>
+<script src=/observability-workshop/v4.31/js/main.min.8ab8f81ff7e1454d30024cd6f956d4d341c3a97e2a673f988065f2ee4e147922.js integrity="sha256-irj4H/fhRU0wAkzW+VbU00HDqX4qZz+YgGXy7k4UeSI=" crossorigin=anonymous></script>
+<script>const svgCopy='<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg>',svgCheck='<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"><path fill-rule="evenodd" fill="rgb(63, 185, 80)" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>',addCopyButtons=a=>{document.querySelectorAll("pre > code").forEach(c=>{const b=document.createElement("button");b.className="clipboard-button",b.type="button",b.innerHTML=svgCopy,b.addEventListener("click",()=>{a.writeText(c.innerText).then(()=>{b.blur(),b.innerHTML=svgCheck,setTimeout(()=>b.innerHTML=svgCopy,2e3)},a=>b.innerHTML="Error")});const d=c.parentNode;d.parentNode.insertBefore(b,d)})};if(navigator&&navigator.clipboard)addCopyButtons(navigator.clipboard);else{const a=document.createElement("script");a.src="https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/2.7.0/clipboard-polyfill.promise.js",a.integrity="sha256-waClS2re9NUbXRsryKoof+F9qc1gjjIhc2eT7ZbIv94=",a.crossOrigin="anonymous",a.onload=()=>addCopyButtons(clipboard),document.body.appendChild(a)}</script>
+</body>
+</html>
