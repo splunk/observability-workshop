@@ -53,7 +53,6 @@ You can validate if the application is running by visiting `http://<VM_IP_ADDRES
 
 **Once your validation is complete you can stop the application by pressing** `Ctrl-c` **.**
 
----
 To enable CPU and Memory Profiling on the application we can start the application by passing `splunk.profiler.enabled=true` and for metrics pass `splunk.metrics.enabled=true`. Make sure the application is stopped and run the following command to enable metrics and profiling.
 
 ```bash
@@ -65,3 +64,22 @@ java \
 ```
 
 Let's go visit our application again to generate some traffic `http://<VM_IP_ADDRESS>:8080`. Click around, generate errors, add visits, etc. Then you can visit the Splunk APM UI and examine the application components, traces, profiling, DB Query performance and metrics **Hamburguer Menu → APM → Explore**.
+
+**Once your validation is complete you can stop the application by pressing** `Ctrl-c` **.**
+
+## Adding Resource Attributes to Spans
+
+Resource attributes can be added to every reported span. For example `version=0.314`. A comma separated list of resource attributes can also be defined e.g. `key1=val1,key2=val2`.
+
+Let's launch the Pet Clinic again using a new resource attribute. Note, that adding resource attributes to the run command will override what was defined when we installed the collector. So, we also need to specify our `deployment.environment` resource attribute along with our new resource attribute. Below you will see we are setting `deployment.environment=$(hostname)-petclinic` and `version=0.314`.
+
+```bash
+java \
+-Dotel.service.name=$(hostname).service \
+-Dsplunk.profiler.enabled=true \
+-Dsplunk.metrics.enabled=true \
+-Dotel.resource.attributes=deployment.environment=$(hostname)-petclinic,version=0.314 \
+-jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
+```
+
+Go back to the application and generate some more traffic. Then, back in the Splunk APM UI we can drill down on a recent trace and see the new `version` attribute in a span.
