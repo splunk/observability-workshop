@@ -1,5 +1,11 @@
 # Readme
 
+For APM just as part of a regular workshop  follow the instructions in the apm workshop guide
+
+For rum please follow the instructions in the rum workshop guide
+
+It will follow what is described below:
+
 In order to generate RUM data in Splunk RUM the attendees need to deploy a RUM instrumented version of the Online Boutique instead of the regular APM one.</br>
 
 
@@ -8,10 +14,10 @@ In order to generate RUM data in Splunk RUM the attendees need to deploy a RUM i
 ```bash
 cd ~/workshop/apm/microservices-demo/k8s
 export RUM_TOKEN=<SPLUNK_RUM_TOKEN>
-./rum-config.sh
+./apm-config.sh -r
 ```
 
-This will create a separate deployment Kubernetes Manifest called `deploymentRUM.yaml`. Check that the created `deploymentRUM.yaml` contains the correct RUM settings (the `RUM_APP_NAME` and `RUM_ENVIRONMENT` will be prefixed with your EC2 instance hostname) e.g.
+This will create a deployment Kubernetes Manifest called `deployment.yaml`. Check that the created `deployment.yaml` contains the correct RUM settings (the `RUM_APP_NAME` and `RUM_ENVIRONMENT` will be prefixed with your EC2 instance hostname) e.g.
 
 ```yaml
 - name: RUM_REALM
@@ -27,7 +33,7 @@ This will create a separate deployment Kubernetes Manifest called `deploymentRUM
 If all looks correct, run the deployment:
 
 ```bash
-kubectl apply -f deploymentRUM.yaml
+kubectl apply -f deployment.yaml
 ```
 
 Wait till all the pods have loaded, to ensure the Online Boutique application is running:
