@@ -49,7 +49,7 @@ If you check the logs of the Splunk OpenTelemetry collector you will see that th
 sudo tail -f /var/log/syslog
 ```
 
-You can validate if the application is running by visiting `http://<VM_IP_ADDRESS>:8080`. Now generate some traffic, click around, generate errors, add visits, etc. Then you can visit the Splunk APM UI and examine the application components, traces, etc. **Hamburguer Menu → APM → Explore**.
+You can validate if the application is running by visiting `http://<VM_IP_ADDRESS>:8080`. Now generate some traffic, click around, generate errors, add visits, etc. Then you can visit the Splunk APM UI and examine the application components, traces, etc. **Hamburger Menu → APM → Explore**.
 
 **Once your validation is complete you can stop the application by pressing** `Ctrl-c` **.**
 
@@ -63,7 +63,7 @@ java \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
-Let's go visit our application again to generate some traffic `http://<VM_IP_ADDRESS>:8080`. Click around, generate errors, add visits, etc. Then you can visit the Splunk APM UI and examine the application components, traces, profiling, DB Query performance and metrics **Hamburguer Menu → APM → Explore**.
+Let's go visit our application again to generate some traffic `http://<VM_IP_ADDRESS>:8080`. Click around, generate errors, add visits, etc. Then you can visit the Splunk APM UI and examine the application components, traces, profiling, DB Query performance and metrics **Hamburger Menu → APM → Explore**.
 
 **Once your validation is complete you can stop the application by pressing** `Ctrl-c` **.**
 
