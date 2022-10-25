@@ -66,12 +66,13 @@ write_files:
       fi
       export INSTANCE CLUSTER_NAME
 
-      # Setup o11y REALM and ACCESS_TOKEN for the tools to use. REPLACE the [REALM] with REALM and the [YOUR_ACCESS_TOKEN] witha proper access token to use 
-      # uncomment the following block before running  Terraform
-      
-      #export PRESETUP="Yes"
+      # IF you wish an auto setup to happen  uncomment the following 3 lines before running  Terraform 
+      # and make sure is set to PRESETUP="Yes". You need to define the o11y REALM and ACCESS_TOKEN for the tools to use. 
+      # REPLACE the [REALM] with REALM and the [YOUR_ACCESS_TOKEN] with a proper access token to use 
+        
+      #export PRESETUP="Yes"   
       #export REALM=[REALM]
-      #export ACCESS_TOKEN=[ACCESS_TOKEN]
+      #export ACCESS_TOKEN=[YOUR_ACCESS_TOKEN]
       if [ "$PRESETUP" == "Yes" ]; then
         echo " Do you wish to Pre-install ? [Y/n]"
         read userresponse
