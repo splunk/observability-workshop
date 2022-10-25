@@ -69,14 +69,21 @@ write_files:
       # Setup o11y REALM and ACCESS_TOKEN for the tools to use. REPLACE the [REALM] with REALM and the [YOUR_ACCESS_TOKEN] witha proper access token to use 
       # uncomment the following block before running  Terraform
       
+      #export PRESETUP="Yes"
       #export REALM=[REALM]
-      #export ACCESS_TOKEN=[YOUR_ACCESS_TOKEN]
-      #if [ ! -f ~/.helmok} ]; then
-      #         helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart 
-      #  helm repo update
-      #  helm install splunk-otel-collector --set="splunkObservability.realm=$REALM" --set="splunkObservability.accessToken=$ACCESS_TOKEN" --set="clusterName=$INSTANCE-k3s-cluster" --set="splunkObservability.logsEnabled=true" --set="splunkObservability.profilingEnabled=true" --set="environment=$INSTANCE-apm-env" splunk-otel-collector-chart/splunk-otel-collector -f ~/workshop/k3s/otel-collector.yaml
-      #  echo $INSTANCE > ~/.helmok
-      #fi
+      #export ACCESS_TOKEN=[ACCESS_TOKEN]
+      if [ "$PRESETUP" == "Yes" ]; then
+        echo " Do you wish to Pre-install ? [Y/n]"
+        read userresponse
+        if [ "$userresponse" == "Y" ]; then
+          if [ ! -f ~/.helmok} ]; then
+            helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart 
+            helm repo update
+            helm install splunk-otel-collector --set="splunkObservability.realm=$REALM" --set="splunkObservability.accessToken=$ACCESS_TOKEN" --set="clusterName=$INSTANCE-k3s-cluster" --set="splunkObservability.logsEnabled=true" --set="splunkObservability.profilingEnabled=true" --set="environment=$INSTANCE-apm-env" splunk-otel-collector-chart/splunk-otel-collector -f ~/workshop/k3s/otel-collector.yaml
+            echo $INSTANCE > ~/.helmok
+          fi
+        fi  
+      fi  
 
       # Set prompt
       export PS1='\u@\h:\w$ '
