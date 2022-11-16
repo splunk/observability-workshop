@@ -6,6 +6,7 @@ description: |
   **15 分**
 
   Splunk APMの使い方概要
+isCJKLanguage: true
 ---
 
 * APM の概要 - RED メトリクス
@@ -42,7 +43,7 @@ description: |
 
 ## 3. タグスポットライト
 
-画面の右側にある **Tag Spotlight** をスクロールダウンし、ドロップダウンから **Top Across All Indexed Tags** を選択します。選択したら、下のスクリーンショットにあるように![full_screen button](../../images/full_screen.png) をクリックします。
+画面の右側にある **Tag Spotlight** をスクロールダウンし、ドロップダウンから **Top Across All Indexed Tags** を選択します。選択したら、下のスクリーンショットにあるように ![full_screen button](../../images/full_screen.png) をクリックします。
 
 ![Tag Spotlight](../../images/tag-spotlight.png)
 
@@ -74,9 +75,9 @@ description: |
 
 右端の **Clear All** の下にある X ボタンを押して、サービスマップに戻りましょう。
 
-## 4. サンプルトレース
+右上にある「Services by Error Rate」グラフのピンク色の線上をクリックします。選択すると、サンプルトレースのリストが表示されます。`Initiating Operation of`が **frontend: POST /cart/checkout** であるサンプルトレースの1つをクリックしてください。
 
-右上にある「Services by Error Rate」グラフのピンク色の線上をクリックします。選択すると、サンプルトレースのリストが表示されます。`Initiating Operation of`が**frontend: POST /cart/checkout** であるサンプルトレースの1つをクリックしてください。
+## 4. サンプルトレース
 
 ![Example Trace](../../images/example-trace.png)
 
@@ -88,11 +89,11 @@ description: |
 
 ![Traces and Spans](../../images/trace-metadata.png)
 
-エラーの原因が**無効なリクエスト**であることがわかりましたが、正確なリクエストが何であるかはわかりません。ページの下部に、ログへのコンテキストリンクが表示されます。このリンクをクリックすると、このスパンに関連付けられているログが表示されます。
+エラーの原因が **無効なリクエスト** であることがわかりましたが、正確なリクエストが何であるかはわかりません。ページの下部に、ログへのコンテキストリンクが表示されます。このリンクをクリックすると、このスパンに関連付けられているログが表示されます。
 
 ![Logs Link](../../images/logs_link.png)
 
-下の画像と同様の**Log Observer** ダッシュボードが表示されます。
+下の画像と同様の **Log Observer** ダッシュボードが表示されます。
 
 ![Log Observer](../../images/log_observer.png)
 
@@ -106,7 +107,7 @@ You should now have a shorter list of log entries which have a `severity` of `ER
 
 ![Filtered Results](../../images/filtered_results.png)
 
-いずれかのエントリを選択して詳細を表示します。これで、開発者が誤って本番環境にプッシュした**無効なAPIトークン**の使用によってエラーがどのように発生したかを確認できます。
+いずれかのエントリを選択して詳細を表示します。これで、開発者が誤って本番環境にプッシュした **無効なAPIトークン** の使用によってエラーがどのように発生したかを確認できます。
 
 ![Error Details](../../images/error_details.png)
 
