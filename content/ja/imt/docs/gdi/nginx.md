@@ -119,7 +119,9 @@ Locust はオープンソースの負荷テストツールで、EC2 インスタ
 
 ![Locust Statistics](../../../images/nginx-locust-statistics.png)
 
-サイドメニューから **Dashboards → NGINX → NGINX Servers** を選択して、UIにメトリクスが表示されていることを確認します。さらに **Overrides** フィルターを適用して、 `k8s.cluster.name:` に、ターミナルの　`echo $(hostname)-k3s-cluster` で返されるクラスタの名前を見つけます。
+上記のスクリーンショットからわかるように、ほとんどのコールは失敗を報告しています。これはアプリケーションをまだデプロイしていないため予想されることですが、NGINXはアクセス試行を報告しており、これらのメトリックも見ることができます。
+
+サイドメニューから **Dashboards → Built-in Dashboard Groups → NGINX → NGINX Servers** を選択して、UIにメトリクスが表示されていることを確認します。さらに **Overrides** フィルターを適用して、 `k8s.cluster.name:` に、ターミナルの `echo $(hostname)-k3s-cluster` で返されるクラスタの名前を見つけます。
 
 ![NGINXダッシュボード](../../../images/nginx-dashboard.png)
 
