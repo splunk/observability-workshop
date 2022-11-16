@@ -1,5 +1,6 @@
 ---
-title: Creating checks
+title: Check‚Ìì¬
 description: >
-  How to create both Real Browser and API checks in Splunk Synthetics 
+  Splunk Synthetics‚Å‚ÌReal Browser Check ‚Æ API Check ‚Ìì¬•û–@
+isCJKLanguage: true
 ---
