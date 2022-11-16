@@ -1,20 +1,21 @@
 ---
-title: API Checks
-linkTitle:  API Checks
+title: API Check
+linkTitle:  API Check
 weight: 2
 description: >
-  Scripting and configuring an API Check
+  API Check のスクリプトと設定
+isCJKLanguage: true
 ---
 
 API Checkは、APIエンドポイントの機能およびパフォーマンスをチェックする柔軟な方法を提供します。APIファーストの開発へのシフトにより、フロントエンドのコア機能を提供するバックエンドサービスを監視する必要性が高まっています。複数ステップのAPIインタラクションのテストに興味がある場合でも、エンドポイントのパフォーマンスを可視化したい場合でも、API Checkは目標の達成に役立ちます。
 
-## グローバル変数の作成
+## 1. グローバル変数の作成
 
 API Checkを行うために使用するグローバル変数を表示します。 **Admin Tools** の下にある **Global Variables** をクリックします。 spotifyのAPIトランザクションを行うために使用するグローバル変数を確認してください。
 
 ![placeholder](../../images/global-variable.png)
 
-## API Check の作成
+## 2. API Check の作成
 
 新しい API Check を作成し、`<あなたのイニシャル>` の後に Splunk REST API Check をつけた名前にします （例: **AP - Spotify API**）
 
@@ -62,7 +63,7 @@ API Checkを行うために使用するグローバル変数を表示します�
 
 **[Comparisons](https://help.rigor.com/hc/en-us/articles/115004742408-API-Check-Assert-Step)**
 
-- 現在、**string（文字列）**、 **numeric（数値）**、＊＊regular expression（正規表現）** の3種類の比較をサポートしています。
+- 現在、**string（文字列）**、 **numeric（数値）**、**regular expression（正規表現）** の3種類の比較をサポートしています。
 
 - **string** と **numeric** では、値が比較タイプに強制されます。
 
@@ -72,7 +73,7 @@ API Check に Splunk と API のタグを付けて SAVE します。
 
 ![placeholder](../../images/tags.png)
 
-## REST API Checkのテスト
+## 3. REST API Checkのテスト
 
 edit configuration に戻り、ページの下にある 'test' を押して、エラーがないことを確認します。
 
@@ -92,7 +93,7 @@ edit configuration に戻り、ページの下にある 'test' を押して、�
 
 ステップを追加したら、モニターをテストして保存します。
 
-## リソース
+## 4. リソース
 
 - [How to Create an API Check](https://help.rigor.com/hc/en-us/articles/115004817308-How-to-Create-an-API-Check)
 
