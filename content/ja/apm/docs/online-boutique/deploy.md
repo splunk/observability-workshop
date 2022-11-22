@@ -11,59 +11,43 @@ isCJKLanguage: true
 
 ---
 
-## 1. EC2サーバーを確認
-
-これからの操作は、IMTワークショップを実行した後で、まだEC2インスタンスにアクセスできる状態であることを想定しています。
-もしアクセスできる場合は、3. *オンラインブティック* に進みます。
-新しいインスタンスを受け取った場合は、 [Deploying the OpenTelemetry Collector in Kubernetes](../../../../imt/docs/gdi/k3s) の最初の2つのセクションを実行して、システムをAPMワークショップのために準備し、次のセクションを続行してください。
-
-
-## 2. Online Boutiqueをデプロイする
+## 1. Online Boutiqueをデプロイする
 
 Online BoutiqueアプリケーションをK3sにデプロイするには、以下のデプロイメントを適用します。
 
 {{< tabpane >}}
 {{< tab header="Deploy Online Boutique" lang="bash" >}}
-cd ~/workshop/apm
-./apm-config.sh
-kubectl apply -f deployment.yaml
+cd ~/workshop
+kubectl apply -f apm/microservices-demo/k8s/deployment.yaml
 {{< /tab >}}
 {{< tab header="Deployment Output" lang= "bash" >}}
-APM Only Deployment
-deployment.apps/recommendationservice created
-service/recommendationservice created
+deployment.apps/checkoutservice created
+service/checkoutservice created
+deployment.apps/redis-cart created
+service/redis-cart created
 deployment.apps/productcatalogservice created
 service/productcatalogservice created
-deployment.apps/cartservice created
-service/cartservice created
-deployment.apps/adservice created
-service/adservice created
-deployment.apps/paymentservice created
-service/paymentservice created
 deployment.apps/loadgenerator created
 service/loadgenerator created
+deployment.apps/frontend created
+service/frontend created
+service/frontend-external created
+deployment.apps/paymentservice created
+service/paymentservice created
+deployment.apps/emailservice created
+service/emailservice created
+deployment.apps/adservice created
+service/adservice created
+deployment.apps/cartservice created
+service/cartservice created
+deployment.apps/recommendationservice created
+service/recommendationservice created
 deployment.apps/shippingservice created
 service/shippingservice created
 deployment.apps/currencyservice created
 service/currencyservice created
-deployment.apps/redis-cart created
-service/redis-cart created
-deployment.apps/checkoutservice created
-service/checkoutservice created
-deployment.apps/frontend created
-service/frontend created
-service/frontend-external created
-deployment.apps/emailservice created
-service/emailservice created
-deployment.apps/rum-loadgen-deployment created
 {{< /tab >}}
 {{< /tabpane >}}
-
-{{% alert title="変数未セットに関するメッセージが表示された場合" color="warning" %}}
-**kubectl delete -f deployment.yaml** コマンドを実行しAPM環境のデプロイ削除します。
-次にガイド、メッセージに表示されていた変数をexportし上記のデプロイスクリプトを再実行します。
-{{% /alert %}}
-
 
 Online Boutique アプリケーションが起動していることを確認するには:
 
@@ -100,9 +84,9 @@ loadgenerator-57c8b84966-7nr4f                                1/1     Running   
 
 ## 3. UIで検証する
 
-Splunk UIでInfrastructure ![infrastructure button](../../../images/infrastructure.png) をクリックします。Infrastructure Overviewダッシュボードに遷移しますので、 **Kubernetes** をクリックします。
+Splunk UIでInfrastructure ![infrastructure button](../../../images/infrastructure.png) をクリックします。Infrastructure Overviewダッシュボードに遷移しますので、**Kubernetes**をクリックします。
 
-**Cluster** のドロップダウンを使用してクラスタを選択すると、新しいポッドが開始され、コンテナがデプロイされていることが確認できます。
+**Cluster**のドロップダウンを使用してクラスタを選択すると、新しいポッドが開始され、コンテナがデプロイされていることが確認できます。
 
 Splunk UI で Cluster をクリックすると、次のような画面が表示されているはずです。
 

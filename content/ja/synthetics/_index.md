@@ -1,5 +1,5 @@
 ---
-title: はじめに
+title: Introduction
 linkTitle: Splunk Synthetics
 weight: 3
 cascade:
@@ -7,15 +7,14 @@ cascade:
 menu:
   main:
     weight: 3
-isCJKLanguage: true
 ---
 
-**Splunk Synthetic Monitoring** は、完全なオブザーバビリティスイートである Splunk Observability Cloud の一部として、アップタイムと Webパフォーマンスの最適化のための最も包括的で詳細な機能を提供します。
+**Splunk Synthetic Monitoring** offers the most comprehensive and in-depth capabilities for uptime and web performance optimization as part of the only complete observability suite, Splunk Observability Cloud.
 
-API、サービスエンドポイント、エンドユーザーエクスペリエンスの監視を簡単に設定できます。Splunk Synthetic Monitoringを使用すれば、基本的な稼働時間やパフォーマンスの監視にとどまらず、問題の発見と修正、Web パフォーマンスの最適化、顧客が最高のユーザーエクスペリエンスを得られるようにすることに注力することができます。
+Easily set up monitoring for APIs, service endpoints and end-user-experience. With Splunk Synthetic monitoring, go beyond basic uptime and performance monitoring and focus on proactively finding and fixing issues, optimizing web performance, and ensuring customers get the best user experience.
 
-Splunk Synthetic Monitoringによって得られるもの:
+With Splunk Synthetic Monitoring you can:
 
-- 重要なユーザーフロー、ビジネストランザクション、APIエンドポイントにおける問題を迅速に検出し解決
-- インテリジェンスなWeb最適化エンジンで、Webパフォーマンスの問題が顧客に影響を与えることを防止
-- すべてのページリソースとサードパーティの依存関係のパフォーマンスを向上
+- Detect and resolve issues fast across critical user flows, business transactions and API endpoints
+- Prevent web performance issues from affecting customers with an intelligence web optimization engine
+- And improve performance of all page resources and third-party dependencies

@@ -32,7 +32,7 @@ isCJKLanguage: true
 {{% alert title="Note" color="primary" %}}
 様々なチャートを使用してメトリクスを視覚化することができます。自分が望む視覚化に最も適したチャートタイプを選択してください。
 
-各チャートタイプの詳細については、 [Choosing a chart type](https://docs.splunk.com/Observability/data-visualization/charts/chart-types.html#chart-types) を参照してください。
+各チャートタイプの詳細については、[Choosing a chart type](https://docs.splunk.com/Observability/data-visualization/charts/chart-types.html#chart-types) を参照してください。
 {{% /alert %}}
 
 チャートタイプの **Line** をクリックすると、線グラフが表示されます。
