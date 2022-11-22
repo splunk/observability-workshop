@@ -3,126 +3,134 @@ title: Real Browser Check
 linkTitle: Real Browser Check 
 weight: 1
 description: >
-  Scripting and configuring a Real Browswer Check
+  Real Browswer Check のスクリプトと設定
+isCJKLanguage: true
 ---
 
-This Lab walks your through using the [Chrome Selenium IDE](https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd?hl=en) extension to create a synthetic transaction against a Splunk demo instance and creating a Splunk Synthetic Monitoring Real Browser Check (RBC). In addition you also get to learn other Splunk Synthetic Monitoring checks like REST API checks and Uptime Checks.
+このラボでは [Chrome Selenium IDE](https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd?hl=en) エクステンションを使用したSplunkデモインスタンスに対する合成トランザクションと、Splunk Synthetic Monitoring Real Browser Check (RBC)を作成します。
 
-## 1. Prerequisites
+## 1. 前提
 
-Ensure you can login with your username and password at [https://monitoring.rigor.com](https://monitoring.rigor.com) and [https://optimization.rigor.com](https://optimization.rigor.com). Also, make sure you are assigned to your own account for example: **O11y Workshop**.
+[https://monitoring.rigor.com](https://monitoring.rigor.com) と [https://optimization.rigor.com](https://optimization.rigor.com) にログインできることを確認します。また、 **O11y Workshop** のようなアカウントにアサインされていることを確認します。
 
-Edit your Splunk Synthetic Monitoring account personal information and adjust your timezone and email notifications. Splunk Synthetic Monitoring will default to start sending you notifications, you can turn them off at the monitor configuration level.
+Splunk Synthetic Monitoring アカウントの個人情報を編集し、タイムゾーンとメール通知を編集します。Splunk Synthetic Monitoring はデフォルトで通知しますが、モニターの設定で通知をオフにすることができます。
 
 ![Edit Personal Information](../../images/image5.png)
 
-Add the [Chrome Selenium IDE](https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd?hl=en-US) extension to your **Chrome** Browser. Once installed click on the extension and you will see the following screen:
+[Chrome Selenium IDE](https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd?hl=en-US) エクステンションをあなたの **Chrome** ブラウザーに追加します。インストールした後、エクステンションをクリックすることで次の画面が表示されます。
 
 ![Selenium IDE](../../images/image17.png)
 
-## 2. Using Selenium IDE
+## 2. Selenium IDE の使用
 
-You can now go ahead and record a web transaction using Selenium IDE to check on [http://splunk.o11ystore.com](http://splunk.o11ystore.com).
+[http://splunk.o11ystore.com](http://splunk.o11ystore.com) にアクセスし、Selenium IDEを使いウェブトランザクションを記録する準備が整いました。
 
-Click on **Record a new test in a new project**, name the project **[YOUR_INITIALS] - O11y Store** e.g. RWC - O11y Store.
+**Record a new test in a new project** をクリックしプロジェクト名に **[あなたのイニシャル] - O11y Store** （例：RWC - O11y Store）と入力します。
 
-!!! question "What is Selenium IDE?"
-    - Selenium IDE is an open source record and playback test automation for the web.
-    - Selenium is a portable framework for testing web applications.
-    - Selenium provides a playback tool for authoring functional tests without the need to learn a test scripting language (Selenium IDE).
-    - It also provides a test domain-specific language (Selenese) to write tests in a number of popular programming languages, including C#, Groovy, Java, Perl, PHP, Python, Ruby and Scala.
-    - The tests can then run against most modern web browsers.
-    - Selenium runs on Windows, Linux, and macOS.
-    - It is open-source software released under the Apache License 2.0.
+!!! 質問 「Selenium IDEとは何ですか？」
+    - Selenium IDE は、オープンソースの Web 用の記録と再生のテスト自動化ツールです。
+    - SeleniumはWebアプリケーションをテストするためのポータブルなフレームワークです。
+    - Selenium はテストスクリプト言語 (Selenium IDE) を学ぶ必要なしに機能テストを作成するための再生ツールを提供します。
+    - C#、Groovy、Java、Perl、PHP、Python、Ruby、Scalaなどの多くの一般的なプログラミング言語でテストを記述するためのテストドメイン固有の言語（Selenese）を提供します。
+    - テストはほとんどの最新のWebブラウザで実行できます。
+    - Seleniumは、Windows、Linux、macOS上で動作します。
+    - Apache License 2.0の下で公開されているオープンソースソフトウェアです。
+
 
 ![placeholder](../../images/image29.png)
 
-Enter [http://splunk.o11ystore.com](http://splunk.o11ystore.com) as your base URL.
+Base URLに [http://splunk.o11ystore.com](http://splunk.o11ystore.com) と入力します。
 
 ![placeholder](../../images/image11.png)
 
-Click Start Recording{: .label-button .sfx-ui-button-grey}, a new window should open up with [splunk.o11ystore.com](http://splunk.o11ystore.com). Click **Vintage Camera Lens**, click **Add To Cart** and then click **Place Order**.
+Start Recording{: .label-button .sfx-ui-button-grey} をクリックすると [splunk.o11ystore.com](http://splunk.o11ystore.com)  が開かれた新しいウインドウが立ち上がります。 **Vintage Camera Lens** をクリックし、 **Add To Cart** をクリックし、次に **Place Order** をクリックします。
 
-Close the window and then stop the recording by navigating back to Selenium IDE. Finally name the test: **[YOUR_INITIALS] - Checkout Flow (Desktop)** e.g. RWC - Checkout Flow (Desktop).
+ウインドウを閉じ、Selenium IDEに戻りレコーディングを停止します。最後にテストケースに名前を付けます。 **[あなたのイニシャル] - Checkout Flow (Desktop)** （例：RWC - Checkout Flow (Desktop)）
 
 ![placeholder](../../images/image10.png)
 
-Your Selenium IDE Project will look something like this:
+あなたのSelenium IDEプロジェクトは、このようになります。
 
 ![placeholder](../../images/image19.png)
 
-Test your recording by pressing on the play button, make sure your recording successfully completes the transaction:
+再生ボタンを押してレコーディングをテストし、レコーディングがトランザクションを正常に完了することを確認してください。
 
 ![Run](../../images/image26.png)
 
-Save your Selenium IDE Project to your Downloads folder as `Workshop.side`
+Selenium IDE プロジェクトをダウンロードフォルダに `Workshop.side` という名前で保存します。
 
 ![Save](../../images/image30.png)
 
 ![Save SIDE Project](../../images/save-side-project.png)
 
-## 3. Create Real Browser Check
+## 3. Real Browser Check の作成
 
-Login to Splunk Synthetic Monitoring using [https://monitoring.rigor.com](https://monitoring.rigor.com). Click on **REAL BROWSER** and click **+New**{: .label-button .sfx-ui-button-blue}.
+[https://monitoring.rigor.com](https://monitoring.rigor.com) からSplunk Synthetic Monitoringにログインします。 **REAL BROWSER** をクリックし、 **+New**{: .label-button .sfx-ui-button-blue} をクリックします。
 
 ![placeholder](../../images/image3.png)
 
-Click on "**From File**" and select your recording then click on Import
+「**From File**」をクリックしレコーディングファイルを選択し、Importをクリックします。
 
 ![placeholder](../../images/image1.png)
 
-Set the **Frequency** to **5 Minutes**
+**Frequency** を **5 Minutes** にセットします。
 
 ![placeholder](../../images/image15.png)
 
-Click on Steps and make the following adjustments to your recording provide a friendly name to Steps 1 (Click Camera), 2 (Add to Cart) & 3 (Place Order).
+各Stepをクリックし、次のように分かりやすい名前を付けてあげます。
+Step 1 (Click Camera)
+
+Step 2 (Add to Cart)
+
+Step 3 (Place Order)
+
 
 ![placeholder](../../images/image6.png)
 
-Next, click **+ Add Step**, with this new step we will add some validation to the monitor. This is to ensure the checkout completed successfully.
+次に **+ Add Step** をクリックし、バリデーション用のステップを追加します。これはチェックアウトが成功したかどうかを確かめるものです。
 
-Enter **Confirm Order** for the **Name** and change the **Action** to **Wait for text present** and finally enter **Your order is complete!** for the **Value**. You will now have a **Start Url** and 4 steps in your monitor configuration.
+**Name** に **Confirm Order** と入力し、 **Action** を **Wait for text present** に変更し、 **Value** に **Your order is complete!** と入力します。ここまでで **Start Url** と4つのステップが作られました。
 
 ![placeholder](../../images/image2.png)
 
 {{% alert title="Tip" color="info" %}}
-As you are creating the steps think about how to go about using the [Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions) feature in Splunk Synthetic Monitoring which is very powerful. *"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
+Step作成時には非常に強力な [Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions) 機能の利用もご検討ください。*「Business Transactionとは、Real Browserスクリプト内の連続したステップをまとめたものです。これらのトランザクションは、フローの類似部分を論理的にグループ化し、ユーザーは複数のステップとページ（複数可）のパフォーマンスを1つのビジネストランザクションにまとめて表示できるようにします。"*
 {{% /alert %}}
 
-Click on **Advanced** and make sure the **Viewport Size** is set to **Default desktop: 1366 x 768**
+**Advanced** をクリックし、 **Viewport Size** が **Default desktop: 1366 x 768** であることを確認します。
 
 ![Viewport Size](../../images/viewport-size.png)
 
-Click on "**Test**" to test your monitor. Once the test has successfully completed make sure to click on "**AFTER**" in Step 4 to validate the monitor was able to get to the order complete screenshot.
+「**Test**」をクリックしモニター設定をテストします。テストが正常に完了した後、Step 4の「**AFTER**」をクリックし、注文完了のスクリーンショットを取得できたことを確認してください。
 
 ![placeholder](../../images/image22.png)
 
-Click on **Create**{: .label-button .sfx-ui-button-blue} to save your Real Browser Monitor. After 5-10 minutes validate your monitor is working and producing successful checks e.g.
+**Create**{: .label-button .sfx-ui-button-blue} をクリックし、Real Browser Monitorを保存します。5から10分後にモニターが動作し、以下のようなチェック成功が表示されることを確認します。
 
 ![placeholder](../../images/image27.png)
 
 {{% alert title="Tip" color="info" %}}
-You can force to run your monitor now using **Run Now**
+**Run Now** を実行することでモニターを即座に実行できます。
 
 ![placeholder](../../images/image8.png)
 {{% /alert %}}
 
-Change your view to **Segment by location** and observe the difference. You can turn off/on locations by clicking on them.
+**Segment by location** をクリックし、見た目の変化を確認してください。クリックすることで各ロケーションのon/offが可能です。
 
-!!! question "Question?"
-    Which Location has the poorest **Response Time**?
+!!! 問題です！
+    **Response Time** が一番低いロケーションはどこでしょうか？
 
 ![placeholder](../../images/image9.png)
 
-Click on one of the successful circles to drilldown into that Run:
+成功した円のうちどれかをクリックし、実行結果にドリルダウンします。
 
 ![placeholder](../../images/image33.png)
 
-Take a moment to explore the metrics with the **CONFIGURE METRICS/HIDE METRICS** dropdown.
+**CONFIGURE METRICS/HIDE METRICS** ドロップダウンで、取得しているメトリクスを確認してみてください。
 
 ![placeholder](../../images/image14.png)
 
-Click **Page 2** in the dropdown, and scroll down to view the **Filmstrip** and the **Waterfall Chart.**
+ドロップダウンの **Page 2** をクリックし、 **Filmstrip** と **Waterfall Chart** までスクロールダウンして結果を確認してください。
 
 ![placeholder](../../images/image16.png)
 
@@ -130,39 +138,39 @@ Click **Page 2** in the dropdown, and scroll down to view the **Filmstrip** and 
 
 ![Waterfall](../../images/waterfall.png)
 
-Click on **Click Here to Analyze with Optimization** which will prompt you to login to your Splunk Synthetic Monitoring Optimization Account. If you **don't have this option**, navigate to this [page](https://optimization.rigor.com/s/2373818/?sh=3AF8C48AADD6D3E5F5DAA8B4B7BB7F45).
+**Click Here to Analyze with Optimization** をクリックするとSplunk Synthetic Monitoring Optimizationへのログインができます。もし **このオプションが表示されない場合** 、この [ページ](https://optimization.rigor.com/s/2373818/?sh=3AF8C48AADD6D3E5F5DAA8B4B7BB7F45) にアクセスしてください。
 
 ![placeholder](../../images/image31.png)
 
-Click the "**Best Practices Score**" tab. Scroll down, and review all the findings
+「**Best Practices Score**」タブをクリックします。スクロールダウンし、結果を確認します。
 
 ![placeholder](../../images/image23.png)
 
 ![Best Practices](../../images/best-practices.png)
 
-Spend some time to review the findings. Click into any line item
+時間をとって、結果をレビューしてみてください。他の項目もクリックしてみてください。
 
-## 4. Create Mobile Check
+## 4. Mobile Check の作成
 
-Copy the RBC you created above:
+作成したRBC (Real Browser Check）をコピーします。
 
 ![Copy Check](../../images/copy-check.png)
 
-Rename it, for example: **RWC - Checkout Flow (Tablet)**
+名前を **RWC - Checkout Flow (Tablet)** のように変更します。
 
 ![Copy Check](../../images/rename-check.png)
 
-Under the **Advanced** tab, update the following three settings and create your new mobile RBC.
+**Advanced** タブ配下で以下の3つの設定を変更し、新しいモバイル用のRBCを作成します。
 
 ![placeholder](../../images/image18.png)
 
-Test & Validate the new monitor
+新しいモニター設定をテスト＆確認します。
 
 {{% alert title="Tip" color="info" %}}
-As you are creating the steps try using the [Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions) feature in Splunk Synthetic Monitoring. *"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
+Step作成時には非常に強力な [Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions) 機能の利用もご検討ください。*「Business Transactionとは、Real Browserスクリプト内の連続したステップをまとめたものです。これらのトランザクションは、フローの類似部分を論理的にグループ化し、ユーザーは複数のステップとページ（複数可）のパフォーマンスを1つのビジネストランザクションにまとめて表示できるようにします。"*
 {{% /alert %}}
 
-## 5. Resources
+## 5. リソース
 
 - [Getting Started With Selenium IDE](https://help.rigor.com/hc/en-us/articles/115004652007?flash_digest=b1ef7d1a07b68d5279ee5fef8adb87fb878cf010)
 

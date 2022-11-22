@@ -58,11 +58,11 @@ isCJKLanguage: true
 
 ![Dashboard Info](../../../images/M-MoreCharts-8.png)
 
-これにより、チャートに新しいシグナル **D** が追加され、アクティブなリクエストの数が表示されます。*demo_datacenter:Paris* のフィルタを追加してから、**Delta Rollup** をクリック（または歯車のアイコンをクリック）し、ロールアップタイプを変更します。
+これにより、チャートに新しいシグナル **D** が追加され、アクティブなリクエストの数が表示されます。*demo_datacenter:Paris* のフィルタを追加してから、 **Configure Plot** ボタンをクリックしロールアップを **Auto (Delta)** から **Rate/sec** に変更します。名前を **demo.trans.count** から **Latency vs Load** に変更します。
 
 ![rollup change](../../../images/M-MoreCharts-9.png)
 
-ビジュアライゼーションのパネルが開いたら、Rollup ドロップダウンを **Rollup:Rate/sec** に変更し、左上の名前フィールドをクリックして **Latency vs load** に変更し、{{< labelbutton  >}}Save And Close{{< /labelbutton >}} ボタンを押します。これでダッシュボードに戻り、3つの異なるチャートが表示されます。
+最後に {{< labelbutton  >}}Save And Close{{< /labelbutton >}} ボタンを押します。これでダッシュボードに戻り、3つの異なるチャートが表示されます。
 
 ![three charts](../../../images/M-MoreCharts-10.png)
 
