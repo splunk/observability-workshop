@@ -1,6 +1,6 @@
 ---
 title:  Mobile Applications (Introduction)
-weight: 25
+weight: 9
 ---
 
 * Short introduction to Mobile RUm

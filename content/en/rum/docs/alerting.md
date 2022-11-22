@@ -1,7 +1,7 @@
 ---
 title: Custom Charts and Alerts based on RUM Metrics
 linkTitle: Alerts
-weight: 15
+weight: 8
 ---
 
 * Use RUM Metrics to set up Alerts to be warned in case of an issue
