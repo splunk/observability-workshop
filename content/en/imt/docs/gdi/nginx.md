@@ -1,6 +1,4 @@
 ---
-tags: ["NGNIX"]
-categories: ["IMT"]
 title: Deploying NGINX in K3s
 linkTitle: Deploy and Monitor NGIX
 weight: 2

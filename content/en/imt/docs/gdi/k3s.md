@@ -1,6 +1,4 @@
 ---
-tags: ["k3s"]
-categories: ["IMT"]
 title: Deploying the OpenTelemetry Collector in Kubernetes
 linkTitle: Deploy the OTel Collector
 weight: 1

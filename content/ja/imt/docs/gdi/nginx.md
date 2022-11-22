@@ -1,6 +1,4 @@
 ---
-tags: ["NGNIX"]
-categories: ["IMT"]
 title: K3s に NGINX をデプロイする
 linkTitle: NGINX をデプロイして監視する
 weight: 2

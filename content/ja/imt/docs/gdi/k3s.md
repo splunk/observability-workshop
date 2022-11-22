@@ -1,6 +1,4 @@
 ---
-tags: ["k3s"]
-categories: ["IMT"]
 title: Kubernetes環境にOpenTelemetry Collectorをデプロイする
 linkTitle: OTel Collectorをデプロイする
 weight: 1
