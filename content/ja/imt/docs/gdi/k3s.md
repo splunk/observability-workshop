@@ -56,7 +56,6 @@ Update Complete. ⎈Happy Helming!⎈
 {{< /tab >}}
 {{< /tabpane >}}
 
-
 以下のコマンドでOpenTelemetry Collector Helmチャートをインストールします。これは **変更しないでください**。
 
 {{< tabpane >}}

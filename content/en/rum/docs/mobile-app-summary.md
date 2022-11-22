@@ -3,9 +3,8 @@ title:  Mobile Applications (Introduction)
 weight: 9
 ---
 
-* Short introduction to Mobile RUm
-* See an overview of the performance of your Mobile Application(s)<br>
-  in the Application Summary Dashboard 
+* Short introduction to Mobile RUM
+* See an overview of the performance of your Mobile Application(s) in the Application Summary Dashboard
 
 ---
 

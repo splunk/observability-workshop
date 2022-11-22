@@ -11,7 +11,7 @@ mkdir cloud-init
 ```
 
 ```bash
-curl -sL https://raw.githubusercontent.com/signalfx/observability-workshop/master/workshop/cloud-init/k3s.yaml -o cloud-init/k3s.yaml
+curl -sL https://raw.githubusercontent.com/signalfx/observability-workshop/main/workshop/cloud-init/k3s.yaml -o cloud-init/k3s.yaml
 ```
 
 For Linux/Mac OS set the instance name environment variable:
@@ -20,7 +20,7 @@ For Linux/Mac OS set the instance name environment variable:
 export INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)
 ```
 
-For Windows download the latest version of the workshop from [GitHub](https://github.com/signalfx/observability-workshop/archive/refs/heads/master.zip).
+For Windows download the latest version of the workshop from [GitHub](https://github.com/signalfx/observability-workshop/archive/refs/heads/main.zip).
 
 Once downloaded, unzip the the file and rename it to `workshop`. Then, from the command prompt change into the `workshop\cloud-init` directory and set the instance name environment variable:
 

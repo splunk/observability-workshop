@@ -66,7 +66,7 @@ resource "aws_instance" "rum_master" {
       "sudo mv k9s /usr/local/bin/",
 
       # Download Workshop
-      "export WSARCHIVE=$([ ${var.wsversion} = \"master\" ] && echo \"master\" || echo v${var.wsversion})",
+      "export WSARCHIVE=$([ ${var.wsversion} = \"main\" ] && echo \"main\" || echo v${var.wsversion})",
       "curl -s -OL https://github.com/signalfx/observability-workshop/archive/$WSARCHIVE.zip",
       "unzip -qq $WSARCHIVE.zip -d /home/ubuntu/",
       "mkdir /home/ubuntu/workshop",

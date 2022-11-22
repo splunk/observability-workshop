@@ -79,13 +79,6 @@ Please undeploy the APM environment by running **kubectl delete -f deployment.ya
 Before exporting the variable as described in the guide and rerunning the deployment script above.
 {{% /alert %}}
 
-
-
-
-
-
-
-
 Open your web browser and go to the Online Boutique.  (The one you previously used, or the one provided by the Workshop instructor). You will see the Non RUM Online Boutique running.
 
 ![Online Boutique](../../images/online-boutique.png)
