@@ -1,5 +1,6 @@
 ---
-title: Creating checks
+title: Checkの作成
 description: >
-  How to create both Real Browser and API checks in Splunk Synthetics 
+  Splunk SyntheticsでのReal Browser Check と API Check の作成方法
+isCJKLanguage: true
 ---

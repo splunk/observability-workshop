@@ -98,7 +98,7 @@ Ordered
 
 ![Dragging](../../../images/M-Notes-4.png)
 
-ここでは、**Latency History**　チャートを　**Latency vs Load**　チャートの下に移動してください。
+ここでは、 **Latency vs Load** チャートを **Latency History** と **Example text chart** の間に移動してください。
 
 ![sizing](../../../images/M-Notes-5.png)
 
