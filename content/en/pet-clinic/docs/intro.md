@@ -22,7 +22,7 @@ Lastly, we will configure the Spring PetClinic application to write application 
 
 {{% alert title="Prerequisites" %}}
 A Splunk run workshop where an host/instance is provided  **OR** a
-self led workshop on own host / [multipass instance](https://github.com/signalfx/observability-workshop/tree/master/multipass)
+self led workshop on own host / [multipass instance](https://github.com/signalfx/observability-workshop/tree/main/multipass)
 
 For your own system you will need the following installed and enabled:
 

@@ -60,7 +60,7 @@ If you are shown a help text on how to use the ssh-command (like shown on the sc
 
 ![Windows SSH enabled](../../images/windows-ssh-enabled-feedback.png)
 
-If the result of executing the command looks something like on the screenshot below, you want to enable the "OpenSSH Client" feature manually. 
+If the result of executing the command looks something like on the screenshot below, you want to enable the "OpenSSH Client" feature manually.
 
 ![Windows SSH disabled](../../images/windows-ssh-disabled-feedback.png)
 
@@ -68,7 +68,7 @@ To do that, open the "Settings" menu, and click on "Apps". While being in the "A
 
 ![Windows Apps Settings](../../images/windows-gui-optionalfeatures.png)
 
-Here, you are presented a list of installed features. On the top, you see a button with a plus icon to "Add a feature". Click it. 
+Here, you are presented a list of installed features. On the top, you see a button with a plus icon to "Add a feature". Click it.
 In the search input field, type "OpenSSH", and find a feature called "OpenSSH Client",  or respectively, "OpenSSH Client (Beta)", click on it, and click the "Install"-button.
 
 ![Windows Enable OpenSSH Client](../../images/windows-enable-openssh-client.png)
@@ -157,6 +157,6 @@ At this point you are ready to continue and [start the workshop](../gdi/k3s/).
 
 ## 5. Multipass (All)
 
-If you are unable to access AWS, but you want to install software locally, follow the instructions for [using Multipass](https://github.com/signalfx/observability-workshop/tree/master/multipass/README.md).
+If you are unable to access AWS, but you want to install software locally, follow the instructions for [using Multipass](https://github.com/signalfx/observability-workshop/blob/main/multipass/README.md).
 
 [^1]: [Download Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/)

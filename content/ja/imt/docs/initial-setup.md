@@ -154,7 +154,6 @@ Webブラウザを開き、**http:/x.x.x.x:6501** （X.X.X.Xは Google Sheetsに
 この **Connect** ボタンをクリックするだけで、再接続され、次の操作が可能になります。
 {{% /alert %}}
 
-
  ![webでの再接続](../../images/shellinabox-reconnect.png)
 
 これで [ワークショップを開始する](../gdi/k3s/) 準備が整いました。
@@ -163,6 +162,6 @@ Webブラウザを開き、**http:/x.x.x.x:6501** （X.X.X.Xは Google Sheetsに
 
 ## 6. Multipass (全員)
 
-AWSへはアクセスできないが、ローカルにソフトウェアをインストールできる場合は、「 [Multipassを使用する](https://github.com/signalfx/observability-workshop/tree/master/multipass/README.md) 」の手順に従ってください。
+AWSへはアクセスできないが、ローカルにソフトウェアをインストールできる場合は、「[Multipassを使用する](https://github.com/signalfx/observability-workshop/tree/main/multipass)」の手順に従ってください。
 
 [^1]: [Putty のダウンロード](https://www.chiark.greenend.org.uk/~sgtatham/putty/)

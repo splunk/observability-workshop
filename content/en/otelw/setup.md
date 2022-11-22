@@ -3,6 +3,7 @@ title: Preparation
 weight: 3
 ---
 ## Log in to your Splunk Observability account to identify token/realm
+
 For individuals and groups- allow 30-45 minutes of prep time to identify account credentials and prepare a lab environment. When running as a group we recommend doing a separate prep meeting before running the workshop together.
 
 Check your [Splunk Observability Account](https://app.us1.signalfx.com/o11y/#/home) (your welcome email has this link) and identify your **TOKEN** and **REALM** - these are available in the profile menu in your Splunk Observability account. Note that the realm component i.e. `us1` may be different for your account based on how you signed up.
@@ -24,7 +25,7 @@ Splunk Observability is for **server environments**. This workshop uses **Ubuntu
 
 For optimal learning we recommend that you use a fresh cloud VM running Ubuntu with minimum 12GB RAM and 20GB disk space.  
 
-Splunk provdes AWS EC2 [setup/bootstrap scripts via Terraform](https://github.com/signalfx/observability-workshop/tree/master/aws/ec2). Also, [`cloud-init`](https://github.com/signalfx/observability-workshop/blob/master/cloud-init/k3s.yaml) YAML files are available for Multipass.
+Splunk provdes AWS EC2 [setup/bootstrap scripts via Terraform](https://github.com/signalfx/observability-workshop/tree/main/workshop/aws/ec2). Also, [`cloud-init`](https://github.com/signalfx/observability-workshop/blob/main/workshop/cloud-init/k3s.yaml) YAML files are available for Multipass.
 
 If you chose your own Ubuntu machine, you can set it up with the Workshop software with this command:
 
@@ -120,3 +121,4 @@ Moving parts that make APM happen in OpenTelemetry:
   - **Endpoint**: destination to send spans  
   - **Service name**: the name of the application as you want it to appear in a service map  
   - **Environment**: a value for segmenting betwen dev/prod etc. Can be set with instrumentation and not necessarily as part of an ENV variable.
+  

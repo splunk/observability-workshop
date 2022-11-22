@@ -165,8 +165,8 @@ runcmd:
   - curl -S -OL https://github.com/derailed/k9s/releases/download/v0.26.3/k9s_Linux_x86_64.tar.gz
   - tar xfz k9s_Linux_x86_64.tar.gz -C /usr/local/bin/ k9s
   # Download Workshop
-  - export WSVERSION=4.32
-  - 'export WSARCHIVE=$([ "$WSVERSION" = "master" ] && echo "master" || echo "v$WSVERSION")'
+  - export WSVERSION=4.33
+  - 'export WSARCHIVE=$([ "$WSVERSION" = "main" ] && echo "main" || echo "v$WSVERSION")'
   - curl -s -OL https://github.com/signalfx/observability-workshop/archive/$WSARCHIVE.zip
   - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
   - mkdir /home/ubuntu/workshop
@@ -175,11 +175,11 @@ runcmd:
   # Set apm-config.sh executable
   - chmod +x /home/ubuntu/workshop/apm/apm-config.sh
   # Download Splunk Observability Cloud Jumpstart
-  - curl -s -L https://github.com/signalfx/signalfx-jumpstart/archive/master.zip -o jumpstart.zip
+  - curl -s -L https://github.com/signalfx/signalfx-jumpstart/archive/main.zip -o jumpstart.zip
   - unzip -qq jumpstart.zip -d /home/ubuntu/
-  - mv /home/ubuntu/signalfx-jumpstart-master /home/ubuntu/signalfx-jumpstart
+  - mv /home/ubuntu/signalfx-jumpstart-main /home/ubuntu/signalfx-jumpstart
   # Configure motd
-  - curl -s https://raw.githubusercontent.com/signalfx/observability-workshop/master/workshop/cloud-init/motd -o /etc/motd
+  - curl -s https://raw.githubusercontent.com/signalfx/observability-workshop/main/workshop/cloud-init/motd -o /etc/motd
   - chmod -x /etc/update-motd.d/*
   # Install Terraform
   - curl -S -OL https://releases.hashicorp.com/terraform/1.2.8/terraform_1.2.8_linux_amd64.zip 
