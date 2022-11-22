@@ -28,7 +28,7 @@ isCJKLanguage: true
 
 左のナビゲーションから ![dashboards ボタン](../../../images/dashboards.png) を開きます。あなたはすでにチームに割り当てられているので、チームダッシュボードが表示されます。
 
-ここでは、チーム ***Example Team*** を例に挙げています。実際のワークショップでは、別のチーム名かも知れません。
+ここでは、チーム ***Observability*** を例に挙げています。実際のワークショップでは、別のチーム名かも知れません。
 
 ![Team Dashboard1](../../../images/team-dashboard.png)
 

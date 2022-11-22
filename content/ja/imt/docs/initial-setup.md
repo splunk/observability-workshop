@@ -17,7 +17,7 @@ isCJKLanguage: true
 
 ワークショップの準備として、Splunk は AWS/EC2 に Ubuntu Linux インスタンスを用意しています。
 
-ワークショップで使用するインスタンスにアクセスするには、ワークショップの講師が提供する Google Sheets のURLにアクセスしてください。
+ワークショップで使用するインスタンスにアクセスするには、ワークショップのリーダーが提供する Google Sheets のURLにアクセスしてください。
 
 AWS/EC2 インスタンスの検索には、本ワークショップの登録時にご記入いただいたお名前（姓名）を入力してください。
 
@@ -25,16 +25,16 @@ AWS/EC2 インスタンスの検索には、本ワークショップの登録時
 
 ワークショップのインスタンスに接続するためのIPアドレス、SSHコマンド（Mac OS、Linux、最新のWindowsバージョン用）、パスワードが表示されています。
 
-また、ssh や putty で接続できない場合に使用するブラウザアクセスのURLも記載されています。「[ブラウザ経由でEC2に接続する](./#5-ブラウザ経由でec2に接続する)」を参照してください。
+また、ssh や putty で接続できない場合に使用するブラウザアクセスのURLも記載されています。「[ブラウザ経由でEC2に接続する](./#4-ブラウザ経由でec2に接続する)」を参照してください。
 
 {{% alert title="Important" color="primary" %}}
 可能であれば、SSH または Putty を使用してEC2インスタンスにアクセスしてください。
 ワークショップで必要になるので、IPアドレスをメモしておいてください。
 {{% /alert %}}
 
-## 2. SSH (Mac OS/Linux/Windows 10)
+## 2. SSH (Mac OS/Linux)
 
-Mac や Linux、または Windows10 以上の端末から SSH を使ってワークショップに接続することができます。
+Mac や Linux の端末から SSH を使ってワークショップに接続することができます。
 
 SSH を使用するには、お使いのシステムでターミナルを開き、`ssh ubuntu@x.x.x.x`と入力してください（x.x.x.xをステップ1で見つけたIPアドレスに置き換えてください）。
 
@@ -54,42 +54,12 @@ SSH を使用するには、お使いのシステムでターミナルを開き�
 
 ---
 
-## 3. SSH (Windows 10以上)
-
-上記の手順はWindows 10でも同様で、コマンドはコマンドプロンプトかPowerShellで実行できます。
-しかしWindowsはSSHを「オプション機能」として用意しているため、場合によっては有効化が必要です。
-
-SSHが有効化されているかどうか確認するには単純に `ssh` を実行してください。
-
-sshコマンドに関するヘルプテキスト（下のスクリーンショット）が表示されれば、実行可能です。
-
-![Windows SSH enabled](../../images/windows-ssh-enabled-feedback.png)
-
-もしこのスクリーンショットとは異なる結果が表示された場合は「OpenSSH クライアント」機能の有効化が必要です。
-
-![Windows SSH disabled](../../images/windows-ssh-disabled-feedback.png)
-
-「設定」メニューを開き「アプリ」をクリックします。「アプリと機能」セクションの「オプション機能」をクリックします。
-
-![Windows Apps Settings](../../images/windows-gui-optionalfeatures.png)
-
-ここでインストール済みの機能の一覧が表示されます。上部にプラスアイコンが付いた「機能の追加」ボタンがあるためクリックします。 
-検索欄で「OpenSSH」と入力し「OpenSSH クライアント」を探し、チェックし、インストールボタンをクリックします。
-
-![Windows Enable OpenSSH Client](../../images/windows-enable-openssh-client.png)
-
-これで設定作業完了です。もしOpenSSH機能を有効にしてもインスタンスにアクセスできない場合、講師までご連絡ください
-
-これで [ワークショップを開始する](../gdi/k3s/) 準備が整いました。
-
----
-
-## 4. Putty (Windows 10以前の場合)
+## 3. Putty (Windows)
 
 ssh がプリインストールされていない場合や、Windows システムを使用している場合、putty がおすすめです。Putty は [こちら](https://www.putty.org/) からダウンロードできます。
 
 {{% alert title="Important" color="primary" %}}
-Putty がインストールできない場合は、 [ブラウザ経由でEC2に接続する](./#4-ブラウザ経由でec2に接続する) で進めてください。
+Putty がインストールできない場合は、[ブラウザ経由でEC2に接続する](./#4-ブラウザ経由でec2に接続する)で進めてください。
 {{% /alert %}}
 
 Putty を開き、**Host Name (or IP address)** の欄に、Google Sheets に記載されているIPアドレスを入力してください。
@@ -114,7 +84,7 @@ Putty を開き、**Host Name (or IP address)** の欄に、Google Sheets に記
 
 ---
 
-## 5. ブラウザ経由でEC2に接続する
+## 4. ブラウザ経由でEC2に接続する
 
 SSH（ポート22） の使用が禁止されている場合や、Putty がインストールできない場合は、Webブラウザを使用してワークショップのインスタンスに接続することができます。
 
@@ -161,8 +131,8 @@ Webブラウザを開き、**http:/x.x.x.x:6501** （X.X.X.Xは Google Sheetsに
 
 ---
 
-## 6. Multipass (全員)
+## 5. Multipass (全員)
 
-AWSへはアクセスできないが、ローカルにソフトウェアをインストールできる場合は、「 [Multipassを使用する](https://github.com/signalfx/observability-workshop/tree/master/multipass/README.md) 」の手順に従ってください。
+AWSへはアクセスできないが、ローカルにソフトウェアをインストールできる場合は、「[Multipassを使用する](https://github.com/signalfx/observability-workshop/tree/master/multipass/README.md)」の手順に従ってください。
 
 [^1]: [Putty のダウンロード](https://www.chiark.greenend.org.uk/~sgtatham/putty/)
