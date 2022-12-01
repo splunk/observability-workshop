@@ -361,7 +361,6 @@ kubectl logs job/hello
 kubectl logs deployment/nginx -c nginx-1
 ```
 
-```bash
 # LOGS
 
 ## log ingest test
