@@ -27,6 +27,7 @@ REGION=$3
 
 WORKSPACE=o11y-for-$SLUG
 CREATE_PLAN=tfplan-$SLUG-create
+CLOUD_INIT=../cloud-init/k3s.yaml
 
 terraform workspace select "$WORKSPACE" || terraform workspace new "$WORKSPACE"
 terraform plan -var="slug=$SLUG" -var="aws_instance_count=$COUNT" -var="aws_region=$REGION" -input=false -out="$CREATE_PLAN"
@@ -35,7 +36,7 @@ while :; do
 	# terraform apply -var="aws_instance_count=$COUNT" -var="aws_region=$REGION" -input=false
 
 	sanity_check_tmp=$(mktemp -d)
-	pssh -o "${sanity_check_tmp}" --par 60 -l ubuntu -A --hosts <(terraform output --json ip|jq -r '.[]') -x "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o PreferredAuthentications=password -o PubkeyAuthentication=no" -- "cat ${STATUS_LOG}"
+	yq '.password' "$CLOUD_INIT" | pssh -o "${sanity_check_tmp}" --par 60 -l ubuntu -A --hosts <(terraform output --json ip|jq -r '.[]') -x "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o PreferredAuthentications=password -o PubkeyAuthentication=no" -- "cat ${STATUS_LOG}"
 
 	ERR_COUNT=$(jq ' .v1 | .[] | values | select(.errors? | length > 0) | .errors[] ' "${sanity_check_tmp}"/* | jq -rs '. | length')
 
