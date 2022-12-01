@@ -25,10 +25,13 @@ SLUG=$1
 COUNT=$2
 REGION=$3
 
-terraform workspace select "o11y-for-$SLUG" || terraform workspace new "o11y-for-$SLUG"
-terraform plan -var="slug=$SLUG" -var="aws_instance_count=$COUNT" -var="aws_region=$REGION" -input=false -out=tfplan
+WORKSPACE=o11y-for-$SLUG
+CREATE_PLAN=tfplan-$SLUG-create
+
+terraform workspace select "$WORKSPACE" || terraform workspace new "$WORKSPACE"
+terraform plan -var="slug=$SLUG" -var="aws_instance_count=$COUNT" -var="aws_region=$REGION" -input=false -out="$CREATE_PLAN"
 while :; do
-	terraform apply -input=false tfplan
+	terraform apply -input=false "$CREATE_PLAN"
 	# terraform apply -var="aws_instance_count=$COUNT" -var="aws_region=$REGION" -input=false
 
 	sanity_check_tmp=$(mktemp -d)
