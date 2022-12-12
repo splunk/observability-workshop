@@ -5,14 +5,19 @@ weight: 4
 
 ## Splunk Real User Monitoring
 
-For the Real User Monitoring (RUM) instrumentation, we will add the Open Telemetry Javascript [https://github.com/signalfx/splunk-otel-js-web](https://github.com/signalfx/splunk-otel-js-web) snippet in the pages, we will use the wizard again **Data Setup → RUM Instrumentation → Monitor user experience → Browser Instrumentation → Add Integration**.
+For the Real User Monitoring (RUM) instrumentation, we will add the Open Telemetry Javascript [https://github.com/signalfx/splunk-otel-js-web](https://github.com/signalfx/splunk-otel-js-web) snippet in the pages, we will use the wizard again **Data Management → Add Integration → RUM Instrumentation → Browser Instrumentation**.
+
+Select the preconfigured **RUM ACCESS TOKEN** from the dropdown, click **Next**. Enter **App name** and **Environment** using the following syntax:
+
+- `<hostname>-petclinic-service` - replacing <hostname> with your actual hostname.
+- `<hostname>-petclinic-env` - replacing <hostname> with your actual hostname.
 
 Then you'll need to select the workshop RUM token and define the application and environment names. The wizard will then show a snipped of HTML code that needs to be place at the top at the pages in the `<head>` section. In this example we are using:
 
 - Application Name: `<hostname>-petclinic-service`
 - Environment: `<hostname>-petclinic-env`
 
-Copy the following code snippet and update the value for `app` and `environment` accordingly:
+Copy the generated code snippet in the wizard or copy and edit the snippet below accordingly:
 
 ```html
     <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous"></script>
