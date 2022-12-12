@@ -19,7 +19,7 @@ Copy the following code snippet and update the value for `app` and `environment`
     <script>
     SplunkRum.init({
         beaconUrl: "https://rum-ingest.<REALM>.signalfx.com/v1/rum",
-        rumAuth: "<ACCESS_TOKEN>",
+        rumAuth: "<RUM_ACCESS_TOKEN>",
         app: "<hostname>-petclinic-service",
         environment: "<hostname>-petclinic-env"
         });
