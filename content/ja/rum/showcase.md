@@ -14,7 +14,7 @@ isCJKLanguage: true
 ## 1. RUMが有効化されたOnline BoutiqueのURL
 
 前のセクションで説明したように、RUMホスト上で動作するOnline Boutiqueを使用します。
-RUMのみのワークショップに参加される方は、使用するシステムは既に準備されていますので、RUMインスタンスのURLを受け取った後、セクション4 [Online Boutiqueを使ってシステムに負荷を与える](./#4-Online Boutiqueを使ってシステムに負荷を与える) まで進むことができます。
+RUMのみのワークショップに参加される方は、使用するシステムは既に準備されていますので、RUMインスタンスのURLを受け取った後、セクション4 [Online Boutiqueを使ってシステムに負荷を与える](./#4-online-boutiqueを使ってシステムに負荷を与える) まで進むことができます。
 
 
 ## 2. RUM Access Token の入手

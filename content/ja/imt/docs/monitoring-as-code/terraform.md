@@ -141,7 +141,7 @@ echo $(hostname)
 
 ![Detectors](../../../images/detectors.png)
 
-## 3. 苦労して作ったもの全てを壊す
+## 4. 苦労して作ったもの全てを壊す
 
 `terraform destroy` コマンドは、Terraform の設定で管理されているすべてのリモートオブジェクトを破壊する便利な方法です。
 

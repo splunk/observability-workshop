@@ -78,11 +78,12 @@ Selenium IDE プロジェクトをダウンロードフォルダに `Workshop.si
 ![placeholder](../../images/image15.png)
 
 各Stepをクリックし、次のように分かりやすい名前を付けてあげます。
-Step 1 (Click Camera)
 
-Step 2 (Add to Cart)
+Step 1: Click Camera
 
-Step 3 (Place Order)
+Step 2: Add to Cart
+
+Step 3: Place Order
 
 
 ![placeholder](../../images/image6.png)
