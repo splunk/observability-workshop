@@ -88,7 +88,7 @@ Splunk のチーム UI を使用するには、左下の **>>** を開き、 **S
 
 Critical と Major は [Splunk On-Call](https://www.splunk.com/ja_jp/observability/on-call.html) インシデント管理ソリューションを使用しています。Minor のアラートはチームの Slack チャンネルに送信し、Warning と Info はメールで送信する、という管理もできるようになります。
 
-## 3.2 通知機能の統合
+### 3.2 通知機能の統合
 
 Observability Cloud では、アラート通知をメールで送信するだけでなく、以下のようなサービスにアラート通知を送信するように設定することができます。
 
