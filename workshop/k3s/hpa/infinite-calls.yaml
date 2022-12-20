@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: infinite-calls
+  labels:
+    app: infinite-calls
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: infinite-calls
+  template:
+    metadata:
+      name: infinite-calls
+      labels:
+        app: infinite-calls
+    spec:
+      containers:
+      - name: infinite-calls
+        image: busybox
+        command:
+        - /bin/sh
+        - -c
+        - "while true; do wget -q -O- http://php-apache; done"
