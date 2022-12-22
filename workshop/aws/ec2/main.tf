@@ -146,7 +146,7 @@ resource "aws_instance" "observability-instance" {
   instance_type          = var.aws_instance_type
   subnet_id              = aws_subnet.o11y-ws-subnet.id
   vpc_security_group_ids = [aws_security_group.o11y-ws-sg.id]
-  user_data              = file("../../cloud-init/k3s.yaml")
+  user_data              = data.template_cloudinit_config.config.rendered
 
   root_block_device {
     volume_size = var.instance_disk_aws
@@ -160,6 +160,3 @@ resource "aws_instance" "observability-instance" {
   )
 }
 
-output "ip" {
-  value = aws_instance.observability-instance.*.public_ip
-}

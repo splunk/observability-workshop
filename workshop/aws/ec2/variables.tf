@@ -1,13 +1,32 @@
 variable "aws_instance_count" {
   description = "Instance Count (Usually 1)"
+  nullable = false
 }
 
 variable "aws_region" {
-  description = "Provide the desired region (for example: us-west-2)"
+  description = "AWS Region (for example: us-west-2)"
+  nullable = false
 }
 
 variable "slug" {
-  description = "Project name slug. Will be used to tag aws resources"
+  description = "Project name slug that will be used to tag aws resources"
+}
+
+variable "splunk_access_token" {
+  description = "Splunk Oberservability Cloud Access Token"
+}
+
+variable "splunk_rum_token" {
+  description = "Splunk Oberservability Cloud RUM Token"
+}
+
+variable "splunk_realm" {
+  description = "Splunk Oberservability Cloud Realm (us0, us1, us2, eu0, jp0, au0)"
+}
+
+variable "splunk_presetup" {
+  description = "Presetup the instance? (true/false)"
+  type = bool
 }
 
 data "aws_ami" "latest-ubuntu" {

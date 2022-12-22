@@ -26,6 +26,9 @@ Use the following terraform variables:
 - `aws_region`: Which region do you want the instances in?
 - `aws_instance_type`: What kind of instance?
 - `aws_instance_count`: How many instances?
+- `splunk_access_token`: Observability Access Token
+- `splunk_realm`: Observability Realm
+- `splunk_presetup`: Provide a preconfigured instance (OTel Collector and Online Boutique deployed)
 
 Sample command:
 
@@ -34,7 +37,10 @@ terraform apply \
 -auto-approve \
 -var="aws_region=eu-central-1" \
 -var="aws_instance_type=t2.xlarge" \
--var="aws_instance_count=1"
+-var="aws_instance_count=1" \
+-var="splunk_access_token=123xxx456xxx789" \
+-var="splunk_realm=eu0" \
+-var="splink_presetup=true"
 ```
 
 Or you use the provided script `up` to request instances:
