@@ -27,6 +27,30 @@ cd observability-workshop/multipass
 terraform init
 ```
 
+```
+Initializing the backend...
+
+Initializing provider plugins...
+- Reusing previous version of hashicorp/template from the dependency lock file
+- Reusing previous version of larstobi/multipass from the dependency lock file
+- Reusing previous version of hashicorp/local from the dependency lock file
+- Reusing previous version of hashicorp/random from the dependency lock file
+- Using previously-installed hashicorp/random v3.4.3
+- Using previously-installed hashicorp/template v2.2.0
+- Using previously-installed larstobi/multipass v1.4.1
+- Using previously-installed hashicorp/local v2.2.3
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+```
+
 ## 5. Terraform plan
 
 ```bash
@@ -291,7 +315,7 @@ Once the instance has been successfully created (this can take several minutes),
 multipass shell lsvt
 ```
 
-```bash
+```text
 ███████╗██████╗ ██╗     ██╗   ██╗███╗   ██╗██╗  ██╗    ██╗
 ██╔════╝██╔══██╗██║     ██║   ██║████╗  ██║██║ ██╔╝    ╚██╗
 ███████╗██████╔╝██║     ██║   ██║██╔██╗ ██║█████╔╝      ╚██╗
