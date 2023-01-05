@@ -97,7 +97,7 @@ spec:
         command:
         - /bin/sh
         - -c
-        - "while true; do wget -q -O- http://php-apache; done"
+        - "while true; do wget -q -O- http://php-apache.default.svc.cluster.local; done"
 ```
 
 ## 5. Create infinite-calls pod
@@ -110,7 +110,7 @@ kubectl apply -f infinite-calls.yaml --namespace loadgen
 ## 6. Scale infinite-calls
 
 ``` bash
-kubectl scale deployment/infinite-calls --replicas 4 --namespace loadgen
+kubectl scale deployment/infinite-calls --replicas 8 --namespace loadgen
 ```
 
 ## 7. Setup HPA
@@ -156,5 +156,5 @@ kubectl edit hpa php-apache
 ## 11. Stop the load test
 
 ``` bash
-kubectl delete -f infinite-calls.yaml
+kubectl delete -f infinite-calls.yaml --namespace loadgen
 ```
