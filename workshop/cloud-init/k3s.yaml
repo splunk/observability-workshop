@@ -19,6 +19,7 @@ packages:
   - maven
   - openjdk-11-jdk
   - python3-pip
+  - zsh
 
 groups:
   - docker
@@ -66,28 +67,9 @@ write_files:
       fi
       export INSTANCE CLUSTER_NAME
 
-      # IF you wish an auto setup to happen  uncomment the following 3 lines before running  Terraform 
-      # and make sure is set to PRESETUP="Yes". You need to define the o11y REALM and ACCESS_TOKEN for the tools to use. 
-      # REPLACE the [REALM] with REALM and the [YOUR_ACCESS_TOKEN] with a proper access token to use 
-        
-      #export PRESETUP="Yes"   
-      #export REALM=[REALM]
-      #export ACCESS_TOKEN=[YOUR_ACCESS_TOKEN]
-      if [ "$PRESETUP" == "Yes" ]; then
-        echo " Do you wish to Pre-install ? [Y/n]"
-        read userresponse
-        if [ "$userresponse" == "Y" ]; then
-          if [ ! -f ~/.helmok} ]; then
-            helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart 
-            helm repo update
-            helm install splunk-otel-collector --set="splunkObservability.realm=$REALM" --set="splunkObservability.accessToken=$ACCESS_TOKEN" --set="clusterName=$INSTANCE-k3s-cluster" --set="splunkObservability.logsEnabled=true" --set="splunkObservability.profilingEnabled=true" --set="environment=$INSTANCE-apm-env" splunk-otel-collector-chart/splunk-otel-collector -f ~/workshop/k3s/otel-collector.yaml
-            echo $INSTANCE > ~/.helmok
-          fi
-        fi  
-      fi  
-
       # Set prompt
-      export PS1='\u@\h:\w$ '
+      #export PS1='\u@\h:\w$ '
+      export PS1="$fg[cyan]%}$USER@%{$fg[blue]%}%m ${PROMPT}"
       export KUBECONFIG=/home/ubuntu/.kube/config
       alias kc='kubectl'
       alias dc='docker-compose'
@@ -159,6 +141,9 @@ write_files:
       unset GIT_WORK_DIR
 
 runcmd:
+  - chsh -s $(which zsh) ubuntu
+  - su ubuntu -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+  - echo "source /etc/skel/.profile" >> /home/ubuntu/.zshrc
   # Install Helm
   - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
   # Install K9s (Kubernetes UI)
