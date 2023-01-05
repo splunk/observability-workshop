@@ -103,13 +103,14 @@ spec:
 ## 5. Create infinite-calls pod
 
 ``` bash
-kubectl apply -f infinite-calls.yaml
+kubectl create namespace loadgen
+kubectl apply -f infinite-calls.yaml --namespace loadgen
 ```
 
 ## 6. Scale infinite-calls
 
 ``` bash
-kubectl scale deployment/infinite-calls --replicas 4
+kubectl scale deployment/infinite-calls --replicas 4 --namespace loadgen
 ```
 
 ## 7. Setup HPA
@@ -126,7 +127,7 @@ kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=4
 kubectl get hpa
 ```
 
-## 8. Autoscaling not working
+## 9. Autoscaling not working
 
 Edit PHP/Apache YAML and reduce CPU resources further
 
@@ -144,7 +145,7 @@ Edit PHP/Apache YAML and reduce CPU resources further
 kubectl apply -f php-apache.yaml
 ```
 
-## Increase the HPA replica count
+## 10. Increase the HPA replica count
 
 Increase the replica count to 8
 
@@ -152,7 +153,7 @@ Increase the replica count to 8
 kubectl edit hpa php-apache
 ```
 
-## 9. Stop the load test
+## 11. Stop the load test
 
 ``` bash
 kubectl delete -f infinite-calls.yaml
