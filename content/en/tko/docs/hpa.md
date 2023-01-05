@@ -4,7 +4,7 @@ linkTitle: Deploy PHP/Apache
 weight: 2
 ---
 
-## Create PHP/Apache Deployment YAML
+## 1. Create PHP/Apache Deployment YAML
 
 ``` yaml
 apiVersion: apps/v1
@@ -47,13 +47,31 @@ spec:
     run: php-apache
 ```
 
-## Deploy PHP/Apache
+## 2. Deploy PHP/Apache
 
 ``` bash
 kubectl apply -f php-apache.yaml
 ```
 
-## Create infinite-calls YAML
+## 3. Fix PHP/Apache Deployment
+
+Edit the YAML file
+
+``` yaml
+        resources:
+          limits:
+            memory: 32Mi
+            cpu: "2"
+          requests:
+            memory: 16Mi
+            cpu: "1"
+```
+
+``` bash
+kubectl apply -f php-apache.yaml
+```
+
+## 4. Create infinite-calls YAML
 
 ``` yaml
 apiVersion: apps/v1
@@ -82,19 +100,19 @@ spec:
         - "while true; do wget -q -O- http://php-apache; done"
 ```
 
-## Create infinite-calls pod
+## 5. Create infinite-calls pod
 
 ``` bash
 kubectl apply -f infinite-calls.yaml
 ```
 
-## Scale infinite-calls
+## 6. Scale infinite-calls
 
 ``` bash
 kubectl scale deployment/infinite-calls --replicas 4
 ```
 
-## Setup HPA
+## 7. Setup HPA
 
 Create an autoscaling deployment for CPU
 
@@ -102,7 +120,39 @@ Create an autoscaling deployment for CPU
 kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=4
 ```
 
-## Stop the load test
+## 8. Validate HPA
+
+``` bash
+kubectl get hpa
+```
+
+## 8. Autoscaling not working
+
+Edit PHP/Apache YAML and reduce CPU resources further
+
+``` yaml
+        resources:
+          limits:
+            memory: 32Mi
+            cpu: "1"
+          requests:
+            memory: 16Mi
+            cpu: "0.5"
+```
+
+``` bash
+kubectl apply -f php-apache.yaml
+```
+
+## Increase the HPA replica count
+
+Increase the replica count to 8
+
+``` bash
+kubectl edit hpa php-apache
+```
+
+## 9. Stop the load test
 
 ``` bash
 kubectl delete -f infinite-calls.yaml
