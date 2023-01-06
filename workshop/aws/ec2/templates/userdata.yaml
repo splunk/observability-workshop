@@ -65,13 +65,15 @@ write_files:
       export REALM=${realm}
       export ACCESS_TOKEN=${access_token}
       export RUM_TOKEN=${rum_token}
-      helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart 
-      helm repo update
-      helm install splunk-otel-collector --set="splunkObservability.realm=$REALM" --set="splunkObservability.accessToken=$ACCESS_TOKEN" --set="clusterName=$INSTANCE-k3s-cluster" --set="splunkObservability.logsEnabled=true" --set="splunkObservability.profilingEnabled=true" --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" --set="environment=$INSTANCE-apm-env" splunk-otel-collector-chart/splunk-otel-collector -f ~/workshop/k3s/otel-collector.yaml
-      cd ~/workshop/apm/
-      ./apm-config.sh -r
-      sudo kubectl apply -f deployment.yaml
-      echo $INSTANCE > ~/.helmok
+      if [ ! -f ~/.helmok ]; then
+        helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart 
+        helm repo update
+        helm install splunk-otel-collector --set="splunkObservability.realm=$REALM" --set="splunkObservability.accessToken=$ACCESS_TOKEN" --set="clusterName=$INSTANCE-k3s-cluster" --set="splunkObservability.logsEnabled=true" --set="splunkObservability.profilingEnabled=true" --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" --set="environment=$INSTANCE-apm-env" splunk-otel-collector-chart/splunk-otel-collector -f ~/workshop/k3s/otel-collector.yaml
+        cd ~/workshop/apm/
+        ./apm-config.sh -r
+        sudo kubectl apply -f deployment.yaml
+        echo $INSTANCE > ~/.helmok
+      fi
 %{ endif }
       export PS1="$fg_bold[cyan]%}$USER@%%{$fg_bold[blue]%}%m $${PROMPT}"
       export KUBECONFIG=/home/ubuntu/.kube/config
