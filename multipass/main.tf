@@ -11,19 +11,23 @@ terraform {
 
 variable "splunk_access_token" {
   description = "Splunk Oberservability Cloud Access Token"
+  type = string
 }
 
 variable "splunk_rum_token" {
   description = "Splunk Oberservability Cloud RUM Token"
+  type = string
 }
 
 variable "splunk_realm" {
   description = "Splunk Oberservability Cloud Realm (us0, us1, us2, eu0, jp0, au0)"
+  type = string
 }
 
 variable "splunk_presetup" {
   description = "Presetup the instance? (true/false)"
   type = bool
+  nullable = false
 }
 
 data "template_file" "user_data" {
