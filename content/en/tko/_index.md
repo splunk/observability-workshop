@@ -1,12 +1,9 @@
 ---
-title: Introduction
-linkTitle: How Platform Engineers Observe Kubernetes - Workshop
-weight: 2
+title: How Platform Engineers Observe Kubernetes - Workshop
+linkTitle: Workshop
+weight: 1
 cascade:
   type: docs
-menu:
-  main:
-    weight: 2
 ---
 
 This workshop will equip you with the basic understanding of monitoring Kubernetes using the Splunk OpenTelemetry Collector. During the workhop you will deploy PHP/Apache and a load generator.

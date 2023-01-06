@@ -1,6 +1,6 @@
 ---
-title: Deploy PHP/Apache
-linkTitle: Deploy PHP/Apache
+title: Deploying PHP/Apache
+linkTitle: Deploying PHP/Apache
 weight: 2
 ---
 
