@@ -10,22 +10,22 @@ terraform {
 }
 
 variable "splunk_access_token" {
-  description = "Splunk Oberservability Cloud Access Token"
+  description = "Splunk Observability Cloud Access Token"
   type = string
 }
 
 variable "splunk_rum_token" {
-  description = "Splunk Oberservability Cloud RUM Token"
+  description = "Splunk Observability Cloud RUM Token"
   type = string
 }
 
 variable "splunk_realm" {
-  description = "Splunk Oberservability Cloud Realm (us0, us1, us2, eu0, jp0, au0)"
+  description = "Splunk Observability Cloud Realm (us0, us1, us2, eu0, jp0, au0)"
   type = string
 }
 
 variable "splunk_presetup" {
-  description = "Presetup the instance? (true/false)"
+  description = "Pre configure the instance? (true/false)"
   type = bool
   nullable = false
 }
@@ -46,7 +46,7 @@ resource "local_file" "user_data" {
 }
 
 resource "random_string" "hostname" {
-  length = 4
+  length = 6
   lower  = true
   upper  = false
   special = false
