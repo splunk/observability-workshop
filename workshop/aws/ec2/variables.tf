@@ -1,3 +1,7 @@
+variable "splunk_presetup" {
+  description = "Presetup the instance? (true/false)"
+  type = bool
+}
 variable "aws_instance_count" {
   description = "Instance Count (Usually 1)"
   nullable = false
@@ -24,10 +28,7 @@ variable "splunk_realm" {
   description = "Splunk Oberservability Cloud Realm (us0, us1, us2, eu0, jp0, au0)"
 }
 
-variable "splunk_presetup" {
-  description = "Presetup the instance? (true/false)"
-  type = bool
-}
+
 
 data "aws_ami" "latest-ubuntu" {
   most_recent = true

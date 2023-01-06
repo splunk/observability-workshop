@@ -146,8 +146,14 @@ resource "aws_instance" "observability-instance" {
   instance_type          = var.aws_instance_type
   subnet_id              = aws_subnet.o11y-ws-subnet.id
   vpc_security_group_ids = [aws_security_group.o11y-ws-sg.id]
-  user_data              = data.template_cloudinit_config.config.rendered
-
+  user_data              = templatefile("${path.module}/templates/userdata.yaml",
+    {
+     access_token = "${var.splunk_access_token}" 
+     rum_token = "${var.splunk_rum_token}" 
+     realm = "${var.splunk_realm}" 
+     presetup = "${var.splunk_presetup}"
+    } )
+ 
   root_block_device {
     volume_size = var.instance_disk_aws
   }
