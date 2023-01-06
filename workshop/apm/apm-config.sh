@@ -1,4 +1,4 @@
-##!/bin/bash
+#!/bin/bash
 norum="True"  #no RUM is default
 while getopts "r" option
 do
