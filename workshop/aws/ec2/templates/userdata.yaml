@@ -10,7 +10,6 @@ packages:
   - unzip
   - shellinabox
   - lynx
-  - w3m
   - gnupg2
   - docker-compose
   - podman
@@ -80,6 +79,7 @@ write_files:
       alias kc='kubectl'
       alias dc='docker-compose'
       alias docker='podman'
+
   - path: /etc/rancher/k3s/registries.yaml
     permissions: '0600'
     owner: root:root
@@ -88,6 +88,7 @@ write_files:
         docker.registry:
           endpoint:
             - "http://docker.registry:9999"
+
   - path: /etc/containers/registries.conf.d/docker.registry.conf
     permissions: '0644'
     owner: root:root
@@ -95,11 +96,13 @@ write_files:
       [[registry]]
       location="docker.registry:9999"
       insecure=true
+
   - path: /etc/docker/daemon.json
     content: |
       {
         "insecure-registries" : ["docker.registry:9999"]
       }
+
   - path: /usr/local/bin/setup-docker-registry.sh
     permissions: '0744'
     content: |
@@ -110,8 +113,9 @@ write_files:
       echo "$NODE_IP $REGISTRY_NAME" | tee -a /etc/hosts
       echo "$NODE_IP $REGISTRY_NAME" | tee -a /etc/cloud/templates/hosts.debian.tmpl
       systemctl restart docker
+      
   - path: /usr/local/bin/local-setup.sh
-    permissions: "0744"
+    permissions: '0744'
     content: |
       if [ -e /etc/.instance ]; then
         INSTANCE=$(cat /etc/.instance)
