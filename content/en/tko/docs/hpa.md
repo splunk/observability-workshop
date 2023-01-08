@@ -112,7 +112,7 @@ kubectl apply -f infinite-calls.yaml --namespace loadgen
 ## 6. Scale infinite-calls
 
 ``` bash
-kubectl scale deployment/infinite-calls --replicas 8 --namespace loadgen
+kubectl scale deployment/infinite-calls --replicas 4 --namespace loadgen
 ```
 
 ## 7. Setup HPA
