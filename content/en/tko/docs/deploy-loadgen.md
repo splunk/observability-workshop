@@ -4,7 +4,9 @@ linkTitle: Deploy Load Generator
 weight: 4
 ---
 
-## 4. Create infinite-calls YAML
+## 1. Create infinite-calls YAML
+
+In the terminal window create a new file using (`vim` or `nano`) called `infinite-calls.yaml` and copy the following YAML into the file.
 
 ``` yaml
 apiVersion: apps/v1
@@ -33,15 +35,20 @@ spec:
         - "while true; do wget -q -O- http://php-apache.default.svc.cluster.local; done"
 ```
 
-## 5. Create infinite-calls pod
+## 2. Create a new namespace
 
-``` bash
+``` text
 kubectl create namespace loadgen
+```
+
+## 3. Deploy infinite-calls
+
+``` text
 kubectl apply -f infinite-calls.yaml --namespace loadgen
 ```
 
-## 6. Scale infinite-calls
+## 4. Scale infinite-calls
 
-``` bash
-kubectl scale deployment/infinite-calls --replicas 4 --namespace loadgen
+``` text
+kubectl scale deployment/infinite-calls --replicas 4 -n loadgen
 ```

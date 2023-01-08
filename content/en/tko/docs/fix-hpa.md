@@ -4,18 +4,22 @@ linkTitle: Fix HPA Issue
 weight: 6
 ---
 
-## 9. Autoscaling not working
+## 1. Autoscaling not working
 
 Edit PHP/Apache YAML and reduce CPU resources further
 
+``` text
+kubectl edit deployment php-apache
+```
+
 ``` yaml
-        resources:
-          limits:
-            memory: 32Mi
-            cpu: "1"
-          requests:
-            memory: 16Mi
-            cpu: "0.5"
+resources:
+  limits:
+    memory: 32Mi
+    cpu: "1"
+  requests:
+    memory: 16Mi
+    cpu: "0.5"
 ```
 
 ``` bash

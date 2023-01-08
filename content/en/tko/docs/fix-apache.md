@@ -4,7 +4,7 @@ linkTitle: Fix PHP/Apache Issue
 weight: 3
 ---
 
-## 3. Fix PHP/Apache Deployment
+## 1. Fix PHP/Apache Deployment
 
 To fix the PHP/Apache deployment, edit the deployment and reduce the CPU resources further.
 
@@ -12,7 +12,7 @@ To fix the PHP/Apache deployment, edit the deployment and reduce the CPU resourc
 kubectl edit deployment php-apache
 ```
 
-Find the resources section and reduce the CPU limit to **2** and the CPU request to **1** e.g.
+Find the resources section and reduce the CPU limits to **2** and the CPU requests to **1** e.g.
 
 ``` yaml
 resources:
@@ -26,6 +26,10 @@ resources:
 
 Save the above changes. The deployment will be updated and the pods will be restarted. You can validate the changes have been applied by running the following command:
 
+## 2. Validate the changes
+
 ``` bash
 kubectl describe deployment php-apache
 ```
+
+Validate the pod is now running in Splunk Observability Cloud.
