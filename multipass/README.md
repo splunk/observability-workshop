@@ -4,7 +4,7 @@
 
 Install [Multipass](https://multipass.run/)[^1] and Terraform for your operating system. On a Mac you can also install via [Homebrew](https://brew.sh/) e.g.
 
-```
+```text
 brew install multipass
 brew install terraform
 ```
@@ -27,7 +27,7 @@ cd observability-workshop/multipass
 terraform init
 ```
 
-```
+```text
 Initializing the backend...
 
 Initializing provider plugins...
@@ -59,7 +59,7 @@ terraform plan
 
 You will see similar output to this:
 
-```
+```terraform
 var.splunk_access_token
   Splunk Oberservability Cloud Access Token
 
