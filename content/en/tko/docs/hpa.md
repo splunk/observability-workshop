@@ -53,6 +53,8 @@ spec:
 kubectl apply -f php-apache.yaml
 ```
 
+After the deployment is complete verify PHP/Apache is running on the cluster. If it isn't, why isn't it? Use Splunk Observability to troubleshoot the issue.
+
 ## 3. Fix PHP/Apache Deployment
 
 Edit the YAML file

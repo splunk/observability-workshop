@@ -50,6 +50,7 @@ helm install splunk-otel-collector \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
 --set="clusterName=$(hostname)-k3s-cluster" \
 --set="splunkObservability.logsEnabled=true" \
+--set="clusterReceiver.eventsEnabled=true" \
 --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
 splunk-otel-collector-chart/splunk-otel-collector \
 --namespace splunk \
