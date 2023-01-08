@@ -2,6 +2,7 @@
 title: Deploying PHP/Apache
 linkTitle: Deploying PHP/Apache
 weight: 2
+draft: true
 ---
 
 ## 1. Create PHP/Apache Deployment YAML

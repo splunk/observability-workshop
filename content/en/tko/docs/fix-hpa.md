@@ -1,0 +1,23 @@
+---
+title: Fix Horizontal Pod Autoscaler Issue
+linkTitle: Fix HPA Issue
+weight: 6
+---
+
+## 9. Autoscaling not working
+
+Edit PHP/Apache YAML and reduce CPU resources further
+
+``` yaml
+        resources:
+          limits:
+            memory: 32Mi
+            cpu: "1"
+          requests:
+            memory: 16Mi
+            cpu: "0.5"
+```
+
+``` bash
+kubectl apply -f php-apache.yaml
+```
