@@ -14,6 +14,8 @@ You will also need to obtain the name of the Realm for your Splunk account.  At 
 
 ## 2. PHP/Apache custom YAML
 
+Create a new file called `otel-apache.yaml` with the following contents:
+
 ``` yaml
 agent:
   config:
@@ -72,7 +74,8 @@ helm install splunk-otel-collector \
 --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
 splunk-otel-collector-chart/splunk-otel-collector \
 --namespace splunk \
---create-namespace
+--create-namespace \
+-f otel-apache.yaml
 {{< /tab >}}
 {{< /tabpane >}}
 
