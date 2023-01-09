@@ -3,8 +3,10 @@ title: Fix PHP/Apache Issue
 linkTitle: Fix PHP/Apache Issue
 weight: 3
 ---
+## 1. Kubernetes resources
 
-## 1. Fix PHP/Apache Deployment
+
+## 2. Fix PHP/Apache Deployment
 
 To fix the PHP/Apache deployment, edit the deployment and reduce the CPU resources further.
 
@@ -26,7 +28,7 @@ resources:
 
 Save the above changes. The deployment will be updated and the pods will be restarted. You can validate the changes have been applied by running the following command:
 
-## 2. Validate the changes
+## 3. Validate the changes
 
 ``` bash
 kubectl describe deployment php-apache

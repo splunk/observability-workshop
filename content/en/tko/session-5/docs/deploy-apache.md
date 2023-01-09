@@ -21,7 +21,7 @@ agent:
               url: http://php-apache.default.svc.cluster.local/server-status?auto
 ```
 
-## 2.  Observation Rules in the Opetelemetry config
+## 2.  Observation Rules in the OpenTelemetry config
 
 The above file contains an observation rule for Apache using the OTel receiver_creator
 This receiver can instantiate other receivers at runtime based on whether observed endpoints match a configured rule.
@@ -30,7 +30,7 @@ The configured rules will be evaluated for each endpoint discovered. If the rule
 In the file above we tell the OpenTelemetry agent to look for Pods that matches the name "apache"  and have port 80 open.
 Once found  the agent will configure a Apache receiver to read Apache metrics from the configured url.
 
-To use this  the above configuration upgrade the existing Splunk OpenTelemetry Collector Helm chart with the following command:
+To use this the new apache configuration, you can upgrade the existing Splunk OpenTelemetry Collector Helm chart with the following command:
 
 ``` bash
 helm upgrade splunk-otel-collector \
