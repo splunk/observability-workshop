@@ -41,7 +41,7 @@ splunk-otel-collector-chart/splunk-otel-collector \
 
 ## 2. Create PHP/Apache Deployment YAML
 
-In the terminal window create a new file using (`vim` or `nano`) called `php-apache.yaml` and copy the following YAML into the file.
+In the terminal window create a new file called `php-apache.yaml` and copy the following YAML into the file.
 
 ``` yaml
 apiVersion: apps/v1

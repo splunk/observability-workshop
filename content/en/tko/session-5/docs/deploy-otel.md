@@ -54,8 +54,7 @@ helm install splunk-otel-collector \
 --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
 splunk-otel-collector-chart/splunk-otel-collector \
 --namespace splunk \
---create-namespace \
--f otel-apache.yaml
+--create-namespace
 {{< /tab >}}
 {{< /tabpane >}}
 
