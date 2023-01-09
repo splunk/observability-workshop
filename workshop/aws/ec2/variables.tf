@@ -1,3 +1,9 @@
+variable "cloud_init_print" {
+  description = "Show rendered cloud_init output"
+  type  = bool
+  default = false
+}
+
 variable "splunk_presetup" {
   description = "Presetup the instance? (true/false)"
   type = bool
