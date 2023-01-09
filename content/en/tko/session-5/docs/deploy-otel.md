@@ -12,6 +12,24 @@ Expand the workshop token that your host has instructed you to use e.g. **O11y-W
 
 You will also need to obtain the name of the Realm for your Splunk account.  At the top of the side menu, click on your name. This will direct you to the **Account Settings** Page. Click the **Organizations**-tab. The Realm can be found at the top of the displayed information in the tab.
 
+## 2. PHP/Apache custom YAML
+
+``` yaml
+agent:
+  config:
+    receivers:
+      receiver_creator:
+        receivers:
+          smartagent/apache:
+            rule: type == "port" && pod.name matches "apache" && port == 80
+            config:
+              type: collectd/apache
+              url: http://php-apache.default.svc.cluster.local/server-status?auto
+    extensions:
+      zpages:
+        endpoint: 0.0.0.0:55679
+```
+
 ## 2. Installation using Helm
 
 Create the `ACCESS_TOKEN` and `REALM` environment variables to use in the proceeding Helm install command.

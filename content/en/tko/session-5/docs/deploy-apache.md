@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: php-apache
-        image: registry.k8s.io/hpa-example
+        image: rcastley/php-apache:latest
         ports:
         - containerPort: 80
         resources:
