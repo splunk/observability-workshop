@@ -46,23 +46,26 @@ splunk-otel-collector-chart/splunk-otel-collector \
 ```
 
 ## 3. Kubernetes ConfigMaps
+
 A ConfigMap is an object in Kubernetes consisting of key-value pairs which can be injected into your application.
 With a ConfigMap you can separate configuration from your Pods. This way, you can prevent hardcoding configuration data.
-ConfigMaps are useful for storing and sharing non-sensitive, unencrypted configuration information. 
+ConfigMaps are useful for storing and sharing non-sensitive, unencrypted configuration information.
 The OpenTelemetry collector/agent uses ConfigMaps to store the configuration of the agent and the K8s Cluster receiver.
 You can/will always verify the current configuration of an agent after a change by running the following commands:
 
 ``` bash
 kubectl get cm -n splunk
 ```
-Then when you have list of Configmaps from the namespace , select the one for the Splunk Otel collector otel-agent and/or K8s-cluster-receiver and view it with the following command:
-**Note** the extra flag *-o yaml*  This will print the content of the ConfigMap in a yaml format.  
+
+Then when you have list of Configmaps from the namespace, select the one for the `splunk-otel-collector-otel-agent` and view it with the following command:
+
+**Note** the extra flag `-o yaml`, this will print the content of the ConfigMap in a YAML format.  
 
 ``` bash
 kubectl get cm splunk-otel-collector-otel-agent -n splunk -o yaml
 ```
 
-Validate that content of otel-apache.yaml exist in the Config Map for the Agent.
+Validate that content of `otel-apache.yaml` exists in the ConfigMap for the collector.
 
 ## 4. Create PHP/Apache Deployment YAML
 
