@@ -25,9 +25,9 @@ More information can be found here : [Resource Management for Pods and Container
 
 If your application or pod will go over the limits set in your deployment, Kubernetes will kill and restart your Pod to protect the other applications on the Cluster.
 
-An other scenario the you will run into is when there is not enough Memory or Cpu on a Nod. In that case, the cluster will try to reschedule your pod(s) on a different node with more space.
+An other scenario that you will run into is when there is not enough Memory or CPU on a Node. In that case, the cluster will try to reschedule your pod(s) on a different node with more space.
 
-If that fails, or if there is not enough space when you deploy your application, the Cluster will put your workload/deployment in schedule mode until there are enoughhRoom on any of the available nodes to deploy the pods according their limits.
+If that fails, or if there is not enough space when you deploy your application, the Cluster will put your workload/deployment in schedule mode until there are enough room on any of the available nodes to deploy the pods according their limits.
 
 ## 2. Fix PHP/Apache Deployment
 
@@ -43,10 +43,10 @@ Find the resources section and reduce the CPU limits to **2** and the CPU reques
 resources:
   limits:
     memory: "16Mi"
-    cpu: "2"
+    cpu: "1"
   requests:
     memory: "4Mi"
-    cpu: "1"
+    cpu: "0.5"
 ```
 
 Save the above changes. The deployment will be updated and the pods will be restarted. You can validate the changes have been applied by running the following command:

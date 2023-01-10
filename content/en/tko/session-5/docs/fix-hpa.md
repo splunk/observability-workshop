@@ -2,6 +2,7 @@
 title: Fix Horizontal Pod Autoscaler Issue
 linkTitle: Fix HPA Issue
 weight: 6
+draft: true
 ---
 
 ## 1. Autoscaling not working
