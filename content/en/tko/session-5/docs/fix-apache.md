@@ -11,7 +11,7 @@ You do this by placing a  Resource section in the deployment of you application/
 
 **Example:**
 
-```example
+``` yaml
 resources:
       requests:         # Request are the expected amount of cpu & memory for normal use 
         memory: "10Mi"  # Requesting 16 Megabyte of Memory
