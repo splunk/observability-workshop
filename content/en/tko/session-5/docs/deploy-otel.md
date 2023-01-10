@@ -56,6 +56,9 @@ splunk-otel-collector-chart/splunk-otel-collector \
 --namespace splunk \
 --create-namespace
 {{< /tab >}}
+{{< tab header="Helm Install Single Line" lang="bash" >}}
+helm install splunk-otel-collector --set="splunkObservability.realm=$REALM" --set="splunkObservability.accessToken=$ACCESS_TOKEN" --set="clusterName=$(hostname)-k3s-cluster" --set="splunkObservability.logsEnabled=true" --set="clusterReceiver.eventsEnabled=true" --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" splunk-otel-collector-chart/splunk-otel-collector --namespace splunk --create-namespace
+{{< /tab >}}
 {{< /tabpane >}}
 
 ## 3. Verify Deployment
