@@ -13,12 +13,12 @@ You do this by placing a  Resource section in the deployment of you application/
 
 ``` yaml
 resources:
-      requests:         # Request are the expected amount of cpu & memory for normal use 
-        memory: "10Mi"  # Requesting 16 Megabyte of Memory
+      requests:         # Request are the expected amount of CPU & memory for normal use 
+        memory: "10Mi"  # Requesting 10 Megabyte of memory
         cpu: "0.5"      # Requesting half of Core of a CPU
-      limits:           # Maximum amount of cpu & memory for peek use 
-        memory: "100Mi" # Maximum allowed 16 Megabyte of meory
-        cpu: "1"        # Maximum a full Core of CPU allowed at for peek use
+      limits:           # Maximum amount of CPU & memory for peek use 
+        memory: "16Mi"  # Maximum allowed 16 Megabyte of memory
+        cpu: "1"        # Maximum of 1 core of CPU allowed at for peek use
 ```
 
 More information can be found here : [Resource Management for Pods and Containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
@@ -37,7 +37,7 @@ To fix the PHP/Apache deployment, edit the deployment and reduce the CPU resourc
 kubectl edit deployment php-apache -n apache
 ```
 
-Find the resources section and reduce the CPU limits to **2** and the CPU requests to **1** e.g.
+Find the resources section and reduce the CPU limits to **1** and the CPU requests to **0.5** e.g.
 
 ``` yaml
 resources:
@@ -45,7 +45,7 @@ resources:
     memory: "16Mi"
     cpu: "1"
   requests:
-    memory: "4Mi"
+    memory: "10Mi"
     cpu: "0.5"
 ```
 
