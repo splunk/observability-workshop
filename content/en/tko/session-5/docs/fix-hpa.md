@@ -9,7 +9,7 @@ weight: 6
 Edit PHP/Apache YAML and reduce CPU resources further
 
 ``` text
-kubectl edit deployment php-apache
+kubectl edit deployment php-apache -n apache
 ```
 
 ``` yaml
@@ -23,5 +23,5 @@ resources:
 ```
 
 ``` bash
-kubectl apply -f php-apache.yaml
+kubectl apply -f php-apache.yaml -n apache
 ```

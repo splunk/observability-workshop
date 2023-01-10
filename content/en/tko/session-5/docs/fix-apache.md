@@ -6,9 +6,10 @@ weight: 3
 ## 1. Kubernetes Resources
 
 Especially in Production Kubernetes Cluster CPU and Memory are considered precious resources.And  the Cluster operators will normally require you to specify in the deployment the amount of CPU and Memory your Pod or service will require, so they can have the cluster automatically manage on which Node(s) your solution will be placed.
-</br>
+
 You do this by placing a  Resource section in the deployment of you application/Pod
-</br>**Example:**</br>
+
+**Example:**
 
 ```example
 resources:
@@ -22,8 +23,10 @@ resources:
 
 More information can be found here : [Resource Management for Pods and Containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 
-</br>If your application or pod will go over the limits set in your deployment, Kubernetes will kill and restart your Pod to protect the other applications on the Cluster.</br> An other scenario the you will run into is when there is not enough Memory or Cpu on a Nod. In that case, the cluster will try to reschedule your pod(s) on a different node with more space.
-</br>
+If your application or pod will go over the limits set in your deployment, Kubernetes will kill and restart your Pod to protect the other applications on the Cluster.
+
+An other scenario the you will run into is when there is not enough Memory or Cpu on a Nod. In that case, the cluster will try to reschedule your pod(s) on a different node with more space.
+
 If that fails, or if there is not enough space when you deploy your application, the Cluster will put your workload/deployment in schedule mode until there are enoughhRoom on any of the available nodes to deploy the pods according their limits.
 
 ## 2. Fix PHP/Apache Deployment
@@ -31,7 +34,7 @@ If that fails, or if there is not enough space when you deploy your application,
 To fix the PHP/Apache deployment, edit the deployment and reduce the CPU resources further.
 
 ```bash
-kubectl edit deployment php-apache
+kubectl edit deployment php-apache -n apache
 ```
 
 Find the resources section and reduce the CPU limits to **2** and the CPU requests to **1** e.g.
@@ -51,7 +54,7 @@ Save the above changes. The deployment will be updated and the pods will be rest
 ## 3. Validate the changes
 
 ``` bash
-kubectl describe deployment php-apache
+kubectl describe deployment php-apache -n apache
 ```
 
 Validate the pod is now running in Splunk Observability Cloud.

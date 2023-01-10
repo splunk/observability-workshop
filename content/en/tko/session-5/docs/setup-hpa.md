@@ -9,11 +9,11 @@ weight: 5
 Create an autoscaling deployment for CPU
 
 ``` text
-kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=4
+kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=4 -n apache
 ```
 
 ## 2. Validate HPA
 
 ``` text
-kubectl get hpa
+kubectl get hpa -n apache
 ```

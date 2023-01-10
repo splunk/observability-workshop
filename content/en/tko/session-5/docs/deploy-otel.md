@@ -6,7 +6,10 @@ weight: 1
 
 ## 1. Namespaces in Kubernetes
 
-Namespaces are a way to organize kubernetes clusters into virtual sub-clusters. They can be helpful when different teams or projects share a Kubernetes cluster. Any number of namespaces are supported within a cluster, each logically separated from others but with the ability to communicate with each other.
+Namespaces are a way to organize kubernetes clusters into virtual sub-clusters. They can be helpful when different teams or projects share a Kubernetes cluster.
+
+Any number of namespaces are supported within a cluster, each logically separated from others but with the ability to communicate with each other.
+
 Most customers will want to install the Splunk OpenTelemetry Collector in a NameSpace.  This workshop will follow that practice.
 
 ## 2. Obtain Access Token

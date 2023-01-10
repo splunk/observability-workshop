@@ -44,7 +44,7 @@ agent:
             rule: type == "port" && pod.name matches "apache" && port == 80
             config:
               type: collectd/apache
-              url: http://php-apache.default.svc.cluster.local/server-status?auto
+              url: http://php-apache.apache.svc.cluster.local/server-status?auto
 ```
 
 ## 3.  Observation Rules in the OpenTelemetry config
@@ -146,8 +146,16 @@ spec:
 
 Save the above file and deploy the PHP/Apache application to the cluster.
 
+Create the `apache` namespace:
+
 ``` bash
-kubectl apply -f php-apache.yaml
+kubectl create namespace apache
+```
+
+Deploy the PHP/Apache application:
+
+``` bash
+kubectl apply -f php-apache.yaml -n apache
 ```
 
 After the deployment is complete verify PHP/Apache is running on the cluster. If it isn't, why isn't it? Use Splunk Observability to troubleshoot the issue.

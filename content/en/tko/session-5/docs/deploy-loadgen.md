@@ -32,7 +32,7 @@ spec:
         command:
         - /bin/sh
         - -c
-        - "while true; do wget -q -O- http://php-apache.default.svc.cluster.local; done"
+        - "while true; do wget -q -O- http://php-apache.apache.svc.cluster.local; done"
 ```
 
 ## 2. Create a new namespace
@@ -41,14 +41,14 @@ spec:
 kubectl create namespace loadgen
 ```
 
-## 3. Deploy infinite-calls
+## 3. Deploy the load generator
 
 ``` text
-kubectl apply -f infinite-calls.yaml --namespace loadgen
+kubectl apply -f loadgen.yaml --namespace loadgen
 ```
 
-## 4. Scale infinite-calls
+## 4. Scale the load generator
 
 ``` text
-kubectl scale deployment/infinite-calls --replicas 4 -n loadgen
+kubectl scale deployment/loadgen --replicas 4 -n loadgen
 ```
