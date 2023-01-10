@@ -82,7 +82,42 @@ write_files:
       alias kc='kubectl'
       alias dc='docker-compose'
       alias docker='podman'
-
+  - path: /home/ubuntu/splunk-defaults.yaml
+    permissions: '0600'
+    owner: ubuntu:ubuntu
+    content: |
+    clusterReceiver:
+    config:
+        receivers:
+          smartagent/kubernetes-events:
+            type: kubernetes-events
+            alwaysClusterReporter: true
+            whitelistedEvents:
+            - reason: Created
+              involvedObjectKind: Pod
+            - reason: Unhealthy
+              involvedObjectKind: Pod
+            - reason: Failed
+              involvedObjectKind: Pod
+            - reason: FailedCreate
+              involvedObjectKind: Job
+            - reason: Scheduling
+              involvedObjectKind: Pod
+            - reason: FailedScheduling
+              involvedObjectKind: Pod
+            - reason: ScalingReplicaSet
+              involvedObjectKind: Deployment
+            - reason: SuccessfulCreate
+              involvedObjectKind: ReplicaSet
+            - reason: MinimumReplicasUnavailable
+              involvedObjectKind: Pod
+            - reason: Pulling
+              involvedObjectKind: Pod
+            - reason: Pulled
+              involvedObjectKind: Pod
+            - reason: FailedScheduling
+              involvedObjectKind: Scheduler
+              
   - path: /etc/rancher/k3s/registries.yaml
     permissions: '0600'
     owner: root:root
