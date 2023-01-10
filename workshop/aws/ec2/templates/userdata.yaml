@@ -77,7 +77,7 @@ write_files:
         echo $INSTANCE > ~/.helmok
       fi
 %{ endif }
-      export PS1="$fg_bold[cyan]%}$USER@%%{$fg_bold[blue]%}%m $${PROMPT}"
+      sed -i 's/_THEME=\"robbyrussell\"/_THEME=\"maran\"/g' ~/.zshrc
       export KUBECONFIG=/home/ubuntu/.kube/config
       alias kc='kubectl'
       alias dc='docker-compose'
