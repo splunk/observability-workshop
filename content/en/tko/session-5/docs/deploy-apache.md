@@ -4,7 +4,27 @@ linkTitle: Deploying PHP/Apache
 weight: 2
 ---
 
-## 1. Create OpenTelemetry Collector receiver for PHP/Apache
+## 1.  DNS and Services in Kubernetes
+
+The Domain Name System (DNS) is a mechanism for linking various sorts of information with easy-to-remember names, such as IP addresses. Using a DNS system to translate request names into IP addresses makes it easy for end-users to reach their target domain name effortlessly. Most Kubernetes clusters include an internal DNS service configured by default to offer a lightweight approach for service discovery. Even when pods and services are created, deleted, or shifted between nodes, built-in service discovery simplifies applications to identify and communicate with services on the Kubernetes clusters.
+</br>
+In short the DNS system for kubernetes will make create a DNS entry for each pod and services.</br>
+In general a Pod has the following DNS resolution:
+
+pod-name.my-namespace.pod.cluster-domain.example.
+
+For example, if a Pod in the default namespace has the Pod name My_pod, and the domain name for your cluster is cluster.local, then the Pod has a DNS name:
+
+My_pod.default.pod.cluster.local.
+
+Any Pods exposed by a Service have the following DNS resolution available:
+
+My_pod.service-name.my-namespace.svc.cluster-domain.example.
+
+</br>
+More information can be found here : [DNS for Service and Pods](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
+
+## 2. Create OpenTelemetry Collector receiver for PHP/Apache
 
 Create a new file called `otel-apache.yaml` with the following contents:
 
@@ -21,11 +41,11 @@ agent:
               url: http://php-apache.default.svc.cluster.local/server-status?auto
 ```
 
-## 2.  Observation Rules in the OpenTelemetry config
+## 3.  Observation Rules in the OpenTelemetry config
 
 The above file contains an observation rule for Apache using the OTel receiver_creator. This receiver can instantiate other receivers at runtime based on whether observed endpoints match a configured rule. The configured rules will be evaluated for each endpoint discovered. If the rule evaluates to true then the receiver for that rule will be started as configured against the matched endpoint.
 
-In the file above we tell the OpenTelemetry agent to look for Pods that match the name "apache" and have port 80 open. Once found the agent will configure a Apache receiver to read Apache metrics from the configured url.
+In the file above we tell the OpenTelemetry agent to look for Pods that match the name "apache" and have port 80 open. Once found the agent will configure a Apache receiver to read Apache metrics from the configured url ( **Note** the K8s DNS based URL for the service).
 
 To use this the new apache configuration, you can upgrade the existing Splunk OpenTelemetry Collector Helm chart with the following command:
 
@@ -47,9 +67,10 @@ helm upgrade splunk-otel-collector --set="splunkObservability.realm=$REALM" --se
 {{< /tab >}}
 {{< /tabpane >}}
 
-## 3. Kubernetes ConfigMaps
+## 4. Kubernetes ConfigMaps
 
-A ConfigMap is an object in Kubernetes consisting of key-value pairs which can be injected into your application. With a ConfigMap you can separate configuration from your Pods. This way, you can prevent hardcoding configuration data. ConfigMaps are useful for storing and sharing non-sensitive, unencrypted configuration information. The OpenTelemetry collector/agent uses ConfigMaps to store the configuration of the agent and the K8s Cluster receiver. You can/will always verify the current configuration of an agent after a change by running the following commands:
+A ConfigMap is an object in Kubernetes consisting of key-value pairs which can be injected into your application. With a ConfigMap you can separate configuration from your Pods. This way, you can prevent hardcoding configuration data. ConfigMaps are useful for storing and sharing non-sensitive, unencrypted configuration information. The OpenTelemetry collector/agent uses ConfigMaps to store the configuration of the agent and the K8s Cluster receiver. 
+You can/will always verify the current configuration of an agent after a change by running the following commands:
 
 ``` bash
 kubectl get cm -n splunk
@@ -65,7 +86,7 @@ kubectl get cm splunk-otel-collector-otel-agent -n splunk -o yaml
 
 Validate that content of `otel-apache.yaml` exists in the ConfigMap for the collector.
 
-## 4. Create PHP/Apache Deployment YAML
+## 5. Create PHP/Apache Deployment YAML
 
 In the terminal window create a new file called `php-apache.yaml` and copy the following YAML into the file.
 
@@ -110,7 +131,7 @@ spec:
     run: php-apache
 ```
 
-## 3. Deploy PHP/Apache
+## 6. Deploy PHP/Apache
 
 Save the above file and deploy the PHP/Apache application to the cluster.
 
