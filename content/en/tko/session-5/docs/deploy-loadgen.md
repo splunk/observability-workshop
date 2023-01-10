@@ -4,27 +4,27 @@ linkTitle: Deploy Load Generator
 weight: 4
 ---
 
-## 1. Create infinite-calls YAML
+## 1. Create loadgen YAML
 
-In the terminal window create a new file using (`vim` or `nano`) called `infinite-calls.yaml` and copy the following YAML into the file.
+In the terminal window create a new file using (`vim` or `nano`) called `loadgen.yaml` and copy the following YAML into the file.
 
 ``` yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: infinite-calls
+  name: loadgen
   labels:
-    app: infinite-calls
+    app: loadgen
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: infinite-calls
+      app: loadgen
   template:
     metadata:
-      name: infinite-calls
+      name: loadgen
       labels:
-        app: infinite-calls
+        app: loadgen
     spec:
       containers:
       - name: infinite-calls

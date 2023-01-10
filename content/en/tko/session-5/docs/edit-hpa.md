@@ -15,5 +15,5 @@ kubectl edit hpa php-apache
 ## 2. Stop the load test
 
 ``` bash
-kubectl delete -f infinite-calls.yaml --namespace loadgen
+kubectl delete -f loadgen.yaml --namespace loadgen
 ```
