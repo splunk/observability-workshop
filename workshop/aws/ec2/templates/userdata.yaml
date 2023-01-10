@@ -60,6 +60,9 @@ write_files:
       fi
       export INSTANCE CLUSTER_NAME
         
+      export ACCESS_TOKEN=${access_token}
+      export REALM=${realm}
+
 %{ if presetup == "true" }
       export REALM=${realm}
       export ACCESS_TOKEN=${access_token}
