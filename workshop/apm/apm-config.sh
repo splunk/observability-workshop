@@ -1,7 +1,6 @@
-#!/bin/bash
+#!/usr/bin/bash
 norum="True"  #no RUM is default
-while getopts "r" option
-do
+while getopts "r" option; do
   case "${option}" in
    r)  norum="False";;
    \?) #For invalid option
