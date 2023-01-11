@@ -63,7 +63,7 @@ write_files:
       export ACCESS_TOKEN=${access_token}
       export REALM=${realm}
 
-%{ if presetup == "true" }
+%{ if presetup == true ~}
       export REALM=${realm}
       export ACCESS_TOKEN=${access_token}
       export RUM_TOKEN=${rum_token}
@@ -75,9 +75,9 @@ write_files:
         bash apm-config.sh -r
         sudo kubectl apply -f deployment.yaml
         echo $INSTANCE > ~/.helmok
+        cd /home/ubuntu
       fi
-%{ endif }
-      sed -i 's/_THEME=\"robbyrussell\"/_THEME=\"maran\"/g' ~/.zshrc
+%{ endif ~}
       export KUBECONFIG=/home/ubuntu/.kube/config
       alias kc='kubectl'
       alias dc='docker-compose'
@@ -210,3 +210,4 @@ runcmd:
   - sed -i 's/SHELLINABOX_PORT=4200/SHELLINABOX_PORT=6501/'  /etc/default/shellinabox
   - sed -i "s/\"--no-beep\"/\"--no-beep --disable-ssl\"/" /etc/default/shellinabox
   - sudo service shellinabox restart
+  - sed -i 's/_THEME=\"robbyrussell\"/_THEME=\"maran\"/g' home/ubuntu/.zshrc

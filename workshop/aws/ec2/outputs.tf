@@ -1,12 +1,12 @@
-output "user_data" {
-  value = var.cloud_init_print ? templatefile("${path.module}/templates/userdata.yaml",
+/*output "user_data" {
+  value = templatefile("${path.module}/templates/userdata.yaml",
     {
      access_token = "${var.splunk_access_token}" 
      rum_token = "${var.splunk_rum_token}" 
      realm = "${var.splunk_realm}" 
      presetup = "${var.splunk_presetup}"
-    } ): "not shown " 
-}
+    } )
+}*/
 
 output "ip-addresses" {
   value = aws_instance.observability-instance.*.public_ip
