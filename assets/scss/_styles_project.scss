@@ -10,7 +10,7 @@ assets/scss/_styles_project.scss
     font-weight: $font-weight-bold;
     background: $white;
     color: inherit;
-    border-radius: 0;
+    border-radius: 5px;
     margin: 0;
     padding: 0;
 
@@ -24,17 +24,23 @@ assets/scss/_styles_project.scss
                 
             }
             
-            border-style: solid;
+            /*border-style: 1px solid;*/
             border-color: $value;
-            border-width: 0 0 0 4px;
+            border-width: 0.5px 0.5px 0.5px 5px;
+            border-radius: 5px;
         }
     }
+}
+
+.alert-heading {
+    border-radius: 0 5px 0 0;
 }
 
 .alert-body {
     background: $white;
     padding: 15px;
     font-weight: 400;
+    border-radius: 5px;
 }
 
 .label-button {

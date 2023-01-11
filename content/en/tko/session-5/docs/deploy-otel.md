@@ -108,7 +108,7 @@ kubectl logs -l app=splunk-otel-collector -f --container otel-collector -n splun
 {{< /tab >}}
 {{< /tabpane >}}
 
-{{% alert title="Deleting a failed installation" color="danger" %}}
+{{% alert title="Deleting a failed installation" color="info" %}}
 If you make an error installing the Splunk OpenTelemetry Collector you can start over by deleting the installation using:
 
 ``` bash
