@@ -1,0 +1,352 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Observability Cloud Workshops – ダッシュボードを利用する</title><link>https://splunk.github.io/observability-workshop/v4.41/ja/imt/docs/dashboards/</link><description>Recent content in ダッシュボードを利用する on Splunk Observability Cloud Workshops</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://splunk.github.io/observability-workshop/v4.41/ja/imt/docs/dashboards/index.xml" rel="self" type="application/rss+xml"/><item><title>Imt: ダッシュボード、チャート、メトリクスを使う</title><link>https://splunk.github.io/observability-workshop/v4.41/ja/imt/docs/dashboards/intro/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.41/ja/imt/docs/dashboards/intro/</guid><description>
+&lt;ul>
+&lt;li>ダッシュボードとチャートの紹介&lt;/li>
+&lt;li>チャートの編集と作成&lt;/li>
+&lt;li>フィルタリングと分析関数&lt;/li>
+&lt;li>数式の使用&lt;/li>
+&lt;li>ダッシュボードでのチャートの保存&lt;/li>
+&lt;li>SignalFlowの紹介&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="1-ダッシュボード">1. ダッシュボード&lt;/h2>
+&lt;p>ダッシュボードとは、チャートをグループ化し、メトリクスを視覚化したものです。適切に設計されたダッシュボードは、システムに関する有益で実用的な洞察を一目で提供します。ダッシュボードは複雑なものもあれば、見たいデータだけを掘り下げたいくつかのチャートだけのものもあります。&lt;/p>
+&lt;p>このモジュールでは、次のようなチャートとダッシュボードを作成し、それをチームページに接続します。&lt;/p>
+&lt;p>&lt;img src="../../../images/example-dashboard.png" alt="Example Dashboard">&lt;/p>
+&lt;hr>
+&lt;h2 id="2-あなたのチームのページ">2. あなたのチームのページ&lt;/h2>
+&lt;p>左のナビゲーションから &lt;img src="../../../images/dashboards.png" alt="dashboards ボタン"> を開きます。あなたはすでにチームに割り当てられているので、チームダッシュボードが表示されます。&lt;/p>
+&lt;p>ここでは、チーム &lt;em>&lt;strong>Example Team&lt;/strong>&lt;/em> を例に挙げています。実際のワークショップでは、別のチーム名かも知れません。&lt;/p>
+&lt;p>&lt;img src="../../../images/team-dashboard.png" alt="Team Dashboard1">&lt;/p>
+&lt;p>このページには、チームメンバーの総数、チームのアクティブなアラートの数、チームに割り当てられているすべてのダッシュボードが表示されます。現在、ダッシュボードは割り当てられていませんが、この後で、あなたが作成する新しいダッシュボードをチームページに追加していきます。&lt;/p>
+&lt;hr>
+&lt;h2 id="3-サンプルチャート">3. サンプルチャート&lt;/h2>
+&lt;p>続けて、画面右上の &lt;strong>All Dashboards&lt;/strong> をクリックします。事前に作成されたものも含め、利用可能なすべてのダッシュボードが表示されます。&lt;/p>
+&lt;p>&lt;img src="../../../images/sample-data.png" alt="Sample Data">&lt;/p>
+&lt;p>すでにSplunk Agentを介してCloud APIインテグレーションや他のサービスからメトリクスを受信している場合は、これらのサービスに関連するダッシュボードが表示されます。&lt;/p>
+&lt;hr>
+&lt;h2 id="4-サンプルデータの確認">4. サンプルデータの確認&lt;/h2>
+&lt;p>ダッシュボードの中に、 &lt;strong>Sample Data&lt;/strong> というダッシュボードグループがあります。&lt;strong>Sample Data&lt;/strong> ダッシュボードグループをクリックして展開し、&lt;strong>Sample Charts&lt;/strong> ダッシュボードをクリックします。&lt;/p>
+&lt;p>Sample Charts ダッシュボードでは、ダッシュボードでチャートに適用できる様々なスタイル、色、フォーマットのサンプルを示すチャートが表示されます。&lt;/p>
+&lt;p>このダッシュボードグループのすべてのダッシュボード（&lt;strong>PART 1&lt;/strong>、&lt;strong>PART 2&lt;/strong>、&lt;strong>PART 3&lt;/strong>、&lt;strong>INTRO TO SPLUNK OBSERVABILITY CLOUD&lt;/strong>）に目を通してみてください。&lt;/p>
+&lt;p>&lt;img src="../../../images/sample-charts.png" alt="Sample Charts">&lt;/p></description></item><item><title>Imt: チャートを編集する</title><link>https://splunk.github.io/observability-workshop/v4.41/ja/imt/docs/dashboards/editing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.41/ja/imt/docs/dashboards/editing/</guid><description>
+&lt;h2 id="1-チャートの編集">1. チャートの編集&lt;/h2>
+&lt;p>&lt;strong>Sample Data&lt;/strong> ダッシュボードにある &lt;strong>Latency histogram&lt;/strong> チャートの3点 &lt;strong>&lt;code>...&lt;/code>&lt;/strong> をクリックして、&lt;strong>Open&lt;/strong> をクリックします（または、チャートの名前をクリックしてください、ここでは &lt;strong>Latency histogram&lt;/strong> です）。&lt;/p>
+&lt;p>&lt;img src="../../../images/latency-histogram-open.png" alt="Sample Charts">&lt;/p>
+&lt;p>チャートエディターのUIには、&lt;strong>Latency histogram&lt;/strong> チャートのプロットオプション、カレントプロット、シグナル（メトリック）が表示されます。&lt;/p>
+&lt;p>&lt;img src="../../../images/latency-histogram.png" alt="Latency Histogram">&lt;/p>
+&lt;p>&lt;strong>Plot Editor&lt;/strong> タブの &lt;strong>Signal&lt;/strong> には、現在プロットしている &lt;strong>&lt;code>demo.trans.latency&lt;/code>&lt;/strong> というメトリックが表示されます。&lt;/p>
+&lt;p>&lt;img src="../../../images/plot-editor.png" alt="Plot Editor">&lt;/p>
+&lt;p>いくつかの &lt;strong>Line&lt;/strong> プロットが表示されます。&lt;strong>&lt;code>18 ts&lt;/code>&lt;/strong> という数字は、18個の時系列メトリックをチャートにプロットしていることを示しています。&lt;/p>
+&lt;p>異なるチャートタイプのアイコンをクリックして、それぞれの表示を確認してください。スワイプしながらその名前を確認してください。例えば、ヒートマップのアイコンをクリックします。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Editing-2.png" alt="Chart Types">&lt;/p>
+&lt;p>チャートがヒートマップに変わります。&lt;/p>
+&lt;p>&lt;img src="../../../images/change-to-heatmap.png" alt="Change to Heatmap">&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;p class="alert-heading">Note&lt;/p>
+&lt;div class="alert-body">
+&lt;p>様々なチャートを使用してメトリクスを視覚化することができます。自分が望む視覚化に最も適したチャートタイプを選択してください。&lt;/p>
+&lt;p>各チャートタイプの詳細については、 &lt;a href="https://docs.splunk.com/Observability/data-visualization/charts/chart-types.html#chart-types" target="_blank">Choosing a chart type&lt;/a>
+&lt;p>を参照してください。&lt;/p>&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;p>チャートタイプの &lt;strong>Line&lt;/strong> をクリックすると、線グラフが表示されます。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Editing-3b.png" alt="Line Chart">&lt;/p>
+&lt;h2 id="2-タイムウィンドウの変更">2. タイムウィンドウの変更&lt;/h2>
+&lt;p>また、&lt;strong>Time&lt;/strong> ドロップダウンから &lt;strong>Past 15 minutes&lt;/strong> に変更することで、チャートの時間枠を変更することができます。&lt;/p>
+&lt;p>&lt;img src="../../../images/line-chart.png" alt="Line Chart">&lt;/p>
+&lt;h2 id="3-データテーブルの表示">3. データテーブルの表示&lt;/h2>
+&lt;p>&lt;strong>Data Table&lt;/strong> タブをクリックします。&lt;/p>
+&lt;p>&lt;img src="../../../images/data-table.png" alt="Data Table">&lt;/p>
+&lt;p>18行が表示され、それぞれがいくつかの列を持つ時系列メトリックを表しています。これらの列は、メトリックのディメンションを表しています。&lt;code>demo.trans.latency&lt;/code> のディメンジョンは次のとおりです。&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>demo_datacenter&lt;/code>&lt;/li>
+&lt;li>&lt;code>demo_customer&lt;/code>&lt;/li>
+&lt;li>&lt;code>demo_host&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>&lt;code>demo_datacenter&lt;/code>&lt;/strong> 列では、メトリクスを取得している2つのデータセンター、&lt;strong>Paris&lt;/strong> と &lt;strong>Tokyo&lt;/strong> があることがわかります。&lt;/p>
+&lt;p>グラフの線上にカーソルを横に移動させると、それに応じてデータテーブルが更新されるのがわかります。チャートのラインの1つをクリックすると、データテーブルに固定された値が表示されます。&lt;/p>
+&lt;hr>
+&lt;p>ここでもう一度 &lt;strong>Plot editor&lt;/strong> をクリックしてデータテーブルを閉じ、このチャートをダッシュボードに保存して、後で使用しましょう。&lt;/p></description></item><item><title>Imt: チャートを保存する</title><link>https://splunk.github.io/observability-workshop/v4.41/ja/imt/docs/dashboards/savingcharts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.41/ja/imt/docs/dashboards/savingcharts/</guid><description>
+&lt;h2 id="1-チャートの保存">1. チャートの保存&lt;/h2>
+&lt;p>チャートの保存するために、名前と説明をつけましょう。チャートの名前 &lt;strong>Copy of Latency Histogram&lt;/strong> をクリックして、名前を &lt;strong>&amp;ldquo;現在のレイテンシー&amp;rdquo;&lt;/strong> に変更します。&lt;/p>
+&lt;p>説明を変更するには、 &lt;strong>Spread of latency values across time.&lt;/strong> をクリックし、 &lt;strong>リアルタイムでのレイテンシー値&lt;/strong> に変更します。&lt;/p>
+&lt;p>&lt;img src="../../../images/save-chart.png" alt="Save Chart">&lt;/p>
+&lt;p>
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Save As
+&lt;/strong>
+&amp;nbsp; ボタンをクリックします。チャートに名前が付いていることを確認します。前のステップで定義した &lt;strong>現在のレイテンシー&lt;/strong> という名前が使用されますが、必要に応じてここで編集することができます。&lt;/p>
+&lt;p>
+&lt;strong class="label-button ui-button-blue" role="label-button">
+&lt;strong>Ok&lt;/strong>
+&lt;/strong>
+&amp;nbsp; ボタンを押して続行します。&lt;/p>
+&lt;p>&lt;img src="../../../images/name-chart.png" alt="Name Chart">&lt;/p>
+&lt;h2 id="2-ダッシュボードの作成">2. ダッシュボードの作成&lt;/h2>
+&lt;p>&lt;strong>Choose dashboard&lt;/strong> ダイアログでは、新しいダッシュボードを作成する必要があります。
+&lt;strong class="label-button ui-button-blue" role="label-button">
+New Dashboard
+&lt;/strong>
+&amp;nbsp; ボタンをクリックしてください。&lt;/p>
+&lt;p>&lt;img src="../../../images/create-dashboard.png" alt="Create Dashboard">&lt;/p>
+&lt;p>これで、&lt;strong>New Dashboard&lt;/strong> ダイアログが表示されます。ここでは、ダッシュボードの名前と説明を付け、&lt;strong>Write Permissions&lt;/strong> で書き込み権限を設定します。&lt;/p>
+&lt;p>ダッシュボードの名前には、自分のお名前を使って &lt;strong>YOUR_NAME-Dashboard&lt;/strong> の形式で設定してください。&lt;/p>
+&lt;p>&lt;strong>YOUR_NAME&lt;/strong> を自分の名前に置き換えてから、編集権限を&lt;em>Everyone can Read or Write&lt;/em> から&lt;em>Restricted Read and Write access&lt;/em> に変更してみてください。&lt;/p>
+&lt;p>&lt;img src="../../../images/name-dashboard.png" alt="Name Dashboard">&lt;/p>
+&lt;p>ここには、自分のログイン情報が表示されます。つまり、このダッシュボードを編集できるのは自分だけということになります。もちろん、ダッシュボードやチャートを編集できる他のユーザーやチームを下のドロップボックスから追加することもできますが、今回は、&lt;em>Everyone can Read or Write&lt;/em> に &lt;strong>再設定&lt;/strong> して制限を解除し、
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Save
+&lt;/strong>
+&amp;nbsp; ボタンを押して続行してください。&lt;/p>
+&lt;p>新しいダッシュボードが利用可能になり、選択されましたので、チャートを新しいダッシュボードに保存することができます。&lt;/p>
+&lt;p>&lt;img src="../../../images/choose-dashboard.png" alt="Choose Dashboard">&lt;/p>
+&lt;p>ダッシュボードが選択されていることを確認して、
+&lt;strong class="label-button ui-button-blue" role="label-button">
+&lt;strong>Ok&lt;/strong>
+&lt;/strong>
+&amp;nbsp; ボタンを押します。&lt;/p>
+&lt;p>すると、下図のようにダッシュボードが表示されます。左上に、&lt;strong>YOUR_NAME-DASHBOARD&lt;/strong> がダッシュボードグループ &lt;strong>YOUR_NAME-Dashboard&lt;/strong> の一部であることがわかります。このダッシュボードグループに他のダッシュボードを追加することができます。&lt;/p>
+&lt;p>&lt;img src="../../../images/new-dashboard-group.png" alt="New Dashboard Group">&lt;/p>
+&lt;hr>
+&lt;h2 id="3-チームページへの追加">3. チームページへの追加&lt;/h2>
+&lt;p>チームに関連するダッシュボードは、チームページにリンクさせるのが一般的です。そこで、後で簡単にアクセスできるように、ダッシュボードをチームページに追加してみましょう。左上のハンバーガーメニューを使い、サイドメニューから &lt;strong>Dashboards&lt;/strong> を選択します。&lt;/p>
+&lt;p>ここでは、チーム &lt;em>&lt;strong>Example Team&lt;/strong>&lt;/em> を例にしていますが、ワークショップのものは異なります。&lt;/p>
+&lt;p>&lt;img src="../../../images/team-dashboard.png" alt="Team Dashboard">&lt;/p>
+&lt;p>
+&lt;strong class="label-button ui-button-blue" role="label-button">
+&lt;strong>+&lt;/strong>
+&lt;/strong>
+&amp;nbsp; を押し、 &lt;em>Add Dashboard Group&lt;/em> ボタンを押して、チームページにダッシュボードを追加します。&lt;/p>
+&lt;p>すると、 &lt;strong>Select a dashboard group to link to this team&lt;/strong> ダイアログが表示されます。
+検索ボックスにご自身のお名前（上記で使用したお名前）を入力して、ダッシュボードを探します。ダッシュボードがハイライトされるように選択し、&lt;strong>Ok&lt;/strong> ボタンをクリックしてダッシュボードを追加します。&lt;/p>
+&lt;p>&lt;img src="../../../images/select-dashboard-group.png" alt="Select Dashboard Group">&lt;/p>
+&lt;p>ダッシュボードグループがチームページの一部として表示されます。ワークショップを進めていくと、さらに多くのダッシュボードがここに表示されていくはずです。&lt;/p>
+&lt;p>&lt;img src="../../../images/new-team-dashboard.png" alt="New Team Dashboard">&lt;/p>
+&lt;hr>
+&lt;p>次のモジュールでは、ダッシュボードのリンクをクリックして、チャートをさらに追加していきます！&lt;/p></description></item><item><title>Imt: フィルタと数式の使い方</title><link>https://splunk.github.io/observability-workshop/v4.41/ja/imt/docs/dashboards/filtering/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.41/ja/imt/docs/dashboards/filtering/</guid><description>
+&lt;h2 id="1-新しいチャートの作成">1 新しいチャートの作成&lt;/h2>
+&lt;p>それでは、新しいチャートを作成し、ダッシュボードに保存してみましょう。&lt;/p>
+&lt;p>UIの右上にある + アイコンを選択し、ドロップダウンから &lt;strong>Chart&lt;/strong> を選択します。
+または、
+&lt;strong class="label-button ui-button-blue" role="label-button">
++ New Chart
+&lt;/strong>
+&amp;nbsp; ボタンをクリックすると、新しいチャートが作成されます。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Filter-0.png" alt="Create new chart">&lt;/p>
+&lt;p>これで、以下のようなチャートのテンプレートが表示されます。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Editing-6.png" alt="Empty Chart">&lt;/p>
+&lt;p>プロットするメトリックを入力してみましょう。ここでは、&lt;strong>&lt;code>demo.trans.latency&lt;/code>&lt;/strong> というメトリックを使用します。&lt;/p>
+&lt;p>&lt;strong>Plot Editor&lt;/strong> タブの &lt;strong>Signal&lt;/strong> に &lt;strong>&lt;code>demo.trans.latency&lt;/code>&lt;/strong> を入力します。&lt;/p>
+&lt;p>&lt;img src="../../../images/plot-editor.png" alt="Signal">&lt;/p>
+&lt;p>すると、折れ線グラフが表示されるはずです。時間を15分に切り替えてみてください。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Filter-10.png" alt="Signal">&lt;/p>
+&lt;h2 id="2-フィルタリングと分析">2. フィルタリングと分析&lt;/h2>
+&lt;p>次に、&lt;strong>Paris&lt;/strong> データセンターを選択して分析を行ってみましょう。そのためにはフィルタを使用します。&lt;/p>
+&lt;p>&lt;strong>Plot Editor&lt;/strong> タブに戻り、
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Add Filter
+&lt;/strong>
+&amp;nbsp; をクリックして、入力補助として選択肢が出てくるので、そこから &lt;strong>&lt;code>demo_datacenter&lt;/code>&lt;/strong> を選択し、&lt;strong>&lt;code>Paris&lt;/code>&lt;/strong> を選択します。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Filter-1.png" alt="Filter">&lt;/p>
+&lt;p>&lt;strong>F(x)&lt;/strong> 欄に分析関数 &lt;strong>&lt;code>Percentile:Aggregation&lt;/code>&lt;/strong> を追加し、値を &lt;strong>&lt;code>95&lt;/code>&lt;/strong> にします（枠外をクリックすると設定が反映されます）。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Filter-2.png" alt="Analytics">&lt;/p>
+&lt;p>&lt;strong>Percentile&lt;/strong> 関数やその他の関数の情報は、&lt;a href="https://docs.splunk.com/Observability/data-visualization/charts/gain-insights-through-chart-analytics.html#gain-insights-through-chart-analytics" target="_blank">Chart Analytics&lt;/a>
+を参照してください。&lt;/p>
+&lt;hr>
+&lt;h2 id="3-タイムシフト分析を追加">3. タイムシフト分析を追加&lt;/h2>
+&lt;p>それでは、以前のメトリックと比較してみましょう。&lt;strong>&lt;code>...&lt;/code>&lt;/strong> をクリックして、ドロップダウンから &lt;strong>Clone&lt;/strong> をクリックし、Signal &lt;strong>A&lt;/strong> をクローンします。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Filter-3.png" alt="Clone Signal">&lt;/p>
+&lt;p>&lt;strong>A&lt;/strong> と同じような新しい行が &lt;strong>B&lt;/strong> という名前で表示され、プロットされているのがわかります。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Filter-4.png" alt="Plot Editor">&lt;/p>
+&lt;p>シグナル &lt;strong>B&lt;/strong> に対して、&lt;strong>F(x)&lt;/strong> 列に分析関数 &lt;strong>Timeshift&lt;/strong> を追加し、&lt;strong>&lt;code>1w&lt;/code>&lt;/strong>（もしくは &lt;code>7d&lt;/code> でも同じ意味です）と入力し、外側をクリックして反映させます。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Filter-5.png" alt="Timeshift">&lt;/p>
+&lt;p>右端の歯車をクリックして、&lt;strong>Plot Color&lt;/strong> を選択（例：ピンク）すると、 &lt;strong>B&lt;/strong> のプロットの色を変更できます。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Filter-6.png" alt="Change Plot Colour">&lt;/p>
+&lt;p>&lt;strong>Close&lt;/strong> をクリックして、設定を終えます。&lt;/p>
+&lt;p>シグナル &lt;strong>A&lt;/strong> （過去15分）のプロットが青、1週間前のプロットがピンクで表示されています。&lt;/p>
+&lt;p>より見やすくするために、&lt;strong>Area chart&lt;/strong> アイコンをクリックして表示方法を変更してみましょう。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Filter-8.png" alt="Area Chart">&lt;/p>
+&lt;p>これで、前週にレイテンシーが高かった時期を確認することができます。&lt;/p>
+&lt;p>次に、Override バーの &lt;strong>Time&lt;/strong> の隣にあるフィールドをクリックし、ドロップダウンから **&lt;code>Past Hour&lt;/code>**を 選択してみましょう。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Filter-9.png" alt="Timeframe">&lt;/p>
+&lt;hr>
+&lt;h2 id="4-計算式を使う">4. 計算式を使う&lt;/h2>
+&lt;p>ここでは、1日と7日の間のすべてのメトリック値の差をプロットしてみましょう。&lt;/p>
+&lt;p>
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Enter Formula
+&lt;/strong>
+&amp;nbsp; をクリックして、&lt;strong>&lt;code>A-B&lt;/code>&lt;/strong> （AからBを引いた値）を入力し、&lt;strong>C&lt;/strong> を除くすべてのシグナルを隠します（目アイコンの選択を解除します）。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Filter-11.png" alt="Formulas">&lt;/p>
+&lt;p>これで、 &lt;strong>A&lt;/strong> と &lt;strong>B&lt;/strong> のすべてのメトリック値の差だけがプロットされているのがわかります。&lt;strong>B&lt;/strong> のメトリック値が、その時点での &lt;strong>A&lt;/strong> のメトリック値よりも何倍か大きな値を持っているためです。&lt;/p>
+&lt;p>次のモジュールで、チャートとディテクターを動かすための SignalFlow を見てみましょう。&lt;/p></description></item><item><title>Imt: SignalFlow</title><link>https://splunk.github.io/observability-workshop/v4.41/ja/imt/docs/dashboards/signalflow/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.41/ja/imt/docs/dashboards/signalflow/</guid><description>
+&lt;h2 id="1-はじめに">1. はじめに&lt;/h2>
+&lt;p>ここでは、Observability Cloud の分析言語であり、Monitoring as Codeを実現するために利用する SignalFlow について見てみましょう。&lt;/p>
+&lt;p>Splunk Infrastructure Monitoring の中心となるのは、Python ライクな、計算を実行する SignalFlow 分析エンジンです。SignalFlow のプログラムは、ストリーミング入力を受け取り、リアルタイムで出力します。SignalFlow には、時系列メトリック（MTS）を入力として受け取り、計算を実行し、結果の MTS を出力する分析関数が組み込まれています。&lt;/p>
+&lt;ul>
+&lt;li>過去の基準との比較する（例：前週との比較）&lt;/li>
+&lt;li>分布したパーセンタイルチャートを使った母集団の概要を表示する&lt;/li>
+&lt;li>変化率（またはサービスレベル目標など、比率で表されるその他の指標）が重要な閾値を超えたかどうか検出する&lt;/li>
+&lt;li>相関関係にあるディメンジョンの発見する（例：どのサービスの挙動がディスク容量不足の警告と最も相関関係にあるかの判断する）&lt;/li>
+&lt;/ul>
+&lt;p>Infrastructure Monitoring は、Chart Builder ユーザーインターフェイスでこれらの計算を行い、使用する入力 MTS とそれらに適用する分析関数を指定できます。また、&lt;a href="https://dev.splunk.com/observability/docs/" target="_blank">SignalFlow API&lt;/a>
+を使って、SignalFlow のプログラムを直接実行することもできます。&lt;/p>
+&lt;p>SignalFlow には、時系列メトリックを入力とし、そのデータポイントに対して計算を行い、計算結果である時系列メトリックを出力する、分析関数の大規模なライブラリが組み込まれています。&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;p class="alert-heading">Info&lt;/p>
+&lt;div class="alert-body">
+&lt;p>SignalFlow の詳細については、 &lt;a href="https://docs.splunk.com/Observability/infrastructure/analytics/signalflow.html" target="_blank">Analyze incoming data using SignalFlow&lt;/a>
+&lt;p>を参照してください。&lt;/p>&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;h2 id="2-signalflow-の表示">2. SignalFlow の表示&lt;/h2>
+&lt;p>チャートビルダーで &lt;strong>View SignalFlow&lt;/strong> をクリックします。&lt;/p>
+&lt;p>&lt;img src="../../../images/view-signalflow.png" alt="SignalFlow">&lt;/p>
+&lt;p>作業していたチャートを構成する SignalFlow のコードが表示されます。UI内で直接 SignalFlow を編集できます。ドキュメントには、SignalFlow の関数やメソッドの &lt;a href="https://dev.splunk.com/observability/docs/signalflow/function_method_list" target="_blank">全てのリスト&lt;/a>
+が掲載されています。&lt;/p>
+&lt;p>また、SignalFlow をコピーして、API や Terraform とやり取りする際に使用して、&lt;a href="../../monitoring-as-code/">Monitoring as Code&lt;/a>
+を実現することもできます。&lt;/p>
+&lt;p>&lt;img src="../../../images/show-signalflow.png" alt="Code">&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-1" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-SignalFlow"
+id="tabs-1-0-tab" data-toggle="tab" href="#tabs-1-0" role="tab" onclick="handleClick(&amp;#34;SignalFlow&amp;#34;);"
+aria-controls="tabs-1-0" aria-selected="true">
+SignalFlow
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-1-content">&lt;div class="tab-pane fade show active"
+id="tabs-1-0" role="tabpanel" aria-labelled-by="tabs-1-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#000">A&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">data&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;demo.trans.latency&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#204a87">filter&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87">filter&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;demo_datacenter&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;Paris&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">))&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">percentile&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">pct&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">95&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">publish&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">label&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;A&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">enable&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">False&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">B&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">data&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;demo.trans.latency&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#204a87">filter&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87">filter&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;demo_datacenter&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;Paris&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">))&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">percentile&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">pct&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">95&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">timeshift&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;1w&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">publish&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">label&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;B&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">enable&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">False&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">C&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">A&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">B&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">publish&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">label&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;C&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>&lt;strong>View Builder&lt;/strong> をクリックすると、Chart &lt;strong>Builder&lt;/strong> の UI に戻ります。&lt;/p>
+&lt;p>&lt;img src="../../../images/view-builder.png" alt="View Builder">&lt;/p>
+&lt;p>この新しいチャートをダッシュボードに保存してみましょう!&lt;/p></description></item><item><title>Imt: ダッシュボードにチャートを追加する</title><link>https://splunk.github.io/observability-workshop/v4.41/ja/imt/docs/dashboards/adding-charts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.41/ja/imt/docs/dashboards/adding-charts/</guid><description>
+&lt;p>それでは、チャートを保存してみましょう。&lt;/p>
+&lt;hr>
+&lt;h2 id="1-既存のダッシュボードに保存する">1. 既存のダッシュボードに保存する&lt;/h2>
+&lt;p>右上に &lt;strong>YOUR_NAME-Dashboard&lt;/strong> と表示されていることを確認しましょう&lt;/p>
+&lt;p>これは、あなたのチャートがこのダッシュボードに保存されることを意味します。&lt;/p>
+&lt;p>チャートの名前を &lt;strong>Latency History&lt;/strong> とし、必要に応じてチャートの説明を追加します。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-MoreCharts-1.png" alt="Save Chart 1">&lt;/p>
+&lt;p>
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Save And Close
+&lt;/strong>
+&amp;nbsp; をクリックします。これで、ダッシュボードに戻ると2つのチャートが表示されているはずです！&lt;/p>
+&lt;p>&lt;img src="../../../images/M-MoreCharts-2.png" alt="Save Chart 2">
+では、先ほどのチャートを元に、もう一つのチャートをさくっと追加してみましょう。&lt;/p>
+&lt;hr>
+&lt;h2 id="2-チャートのコピーペースト">2. チャートのコピー＆ペースト&lt;/h2>
+&lt;p>ダッシュボードの &lt;strong>Latency History&lt;/strong> チャート上の3つのドット &lt;strong>&lt;code>...&lt;/code>&lt;/strong> をクリックし、 &lt;strong>Copy&lt;/strong> をクリックします。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-MoreCharts-3.png" alt="Copy chart">&lt;/p>
+&lt;p>ページ左上の &lt;strong>+&lt;/strong> の横に赤い円と白い1が表示されていれば、チャートがコピーされているということになります。&lt;/p>
+&lt;p>ページ上部の &lt;img src="../../../images/M-MoreCharts-4.png" alt="red one"> をクリックし、メニューの &lt;em>Paste Charts&lt;/em> をクリックしてください (また、右側に 1 が見える赤い点があるはずです)。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-MoreCharts-5.png" alt="Past charts">&lt;/p>
+&lt;p>これにより、先程のチャートのコピーがダッシュボードに配置されます。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-MoreCharts-6.png" alt="Three Dashboard">&lt;/p>
+&lt;hr>
+&lt;h2 id="3-貼り付けたチャートを編集する">3. 貼り付けたチャートを編集する&lt;/h2>
+&lt;p>ダッシュボードの &lt;strong>Latency History&lt;/strong> チャートの3つの点 &lt;strong>&lt;code>...&lt;/code>&lt;/strong> をクリックし、&lt;strong>Open&lt;/strong> をクリックします（または、チャートの名前（ここでは &lt;strong>Latency History&lt;/strong>）をクリックすることもできます）。&lt;/p>
+&lt;p>すると、再び編集できる環境になります。&lt;/p>
+&lt;p>まず、チャートの右上にあるタイムボックスで、チャートの時間を -1h（1時間前から現在まで） に設定します。そして、シグナル「&lt;em>A&lt;/em>」の前にある目のアイコンをクリックして再び表示させ、「&lt;em>C&lt;/em>」 を非表示にし、&lt;em>Latency history&lt;/em> の名前を &lt;strong>Latency vs Load&lt;/strong> に変更します。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-MoreCharts-7.png" alt="Set Visibility">&lt;/p>
+&lt;p>
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Add Metric Or Event
+&lt;/strong>
+&amp;nbsp; ボタンをクリックします。これにより、新しいシグナルのボックスが表示されます。シグナル &lt;strong>D&lt;/strong> に &lt;code>demo.trans.count&lt;/code> と入力・選択します。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-MoreCharts-8.png" alt="Dashboard Info">&lt;/p>
+&lt;p>これにより、チャートに新しいシグナル &lt;strong>D&lt;/strong> が追加され、アクティブなリクエストの数が表示されます。&lt;em>demo_datacenter:Paris&lt;/em> のフィルタを追加してから、 &lt;strong>Configure Plot&lt;/strong> ボタンをクリックしロールアップを &lt;strong>Auto (Delta)&lt;/strong> から &lt;strong>Rate/sec&lt;/strong> に変更します。名前を &lt;strong>demo.trans.count&lt;/strong> から &lt;strong>Latency vs Load&lt;/strong> に変更します。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-MoreCharts-9.png" alt="rollup change">&lt;/p>
+&lt;p>最後に
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Save And Close
+&lt;/strong>
+&amp;nbsp; ボタンを押します。これでダッシュボードに戻り、3つの異なるチャートが表示されます。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-MoreCharts-10.png" alt="three charts">&lt;/p>
+&lt;p>次のモジュールでは、「説明」のメモを追加して、チャートを並べてみましょう!&lt;/p></description></item><item><title>Imt: ノートの追加とダッシュボードのレイアウト</title><link>https://splunk.github.io/observability-workshop/v4.41/ja/imt/docs/dashboards/dashboarding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.41/ja/imt/docs/dashboards/dashboarding/</guid><description>
+&lt;h2 id="1-メモの追加">1. メモの追加&lt;/h2>
+&lt;p>ダッシュボードには、ダッシュボードの利用者を支援するための短い「説明」ペインを配置することがよくあります。&lt;/p>
+&lt;p>ここでは、
+&lt;strong class="label-button ui-button-blue" role="label-button">
+New Text Note
+&lt;/strong>
+&amp;nbsp; ボタンをクリックして、ノートを追加してみましょう。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Notes-0.png" alt="three charts">&lt;/p>
+&lt;p>すると、ノートエディターが開きます。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Notes-1.png" alt="Notes 1">&lt;/p>
+&lt;p>ノートに単なるテキスト以外のものを追加できるように、Splunk ではこれらのノート/ペインで Markdown を使用できるようにしています。
+Markdown は、ウェブページでよく使われるプレーンテキストを使ってフォーマットされたテキストを作成するための軽量なマークアップ言語です。&lt;/p>
+&lt;p>たとえば、以下のようなことができます (もちろん、それ以外にもいろいろあります)。&lt;/p>
+&lt;ul>
+&lt;li>ヘッダー (様々なサイズで)&lt;/li>
+&lt;li>強調スタイル&lt;/li>
+&lt;li>リストとテーブル&lt;/li>
+&lt;li>リンク: 外部の Web ページ (ドキュメントなど) や他の Splunk IMT ダッシュボードへの直接リンクできます&lt;/li>
+&lt;/ul>
+&lt;p>以下は、ノートで使用できる上記のMarkdownオプションの例です。&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-1" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Sample-Markdown-text"
+id="tabs-1-0-tab" data-toggle="tab" href="#tabs-1-0" role="tab" onclick="handleClick(&amp;#34;Sample-Markdown-text&amp;#34;);"
+aria-controls="tabs-1-0" aria-selected="true">
+Sample Markdown text
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-1-content">&lt;div class="tab-pane fade show active"
+id="tabs-1-0" role="tabpanel" aria-labelled-by="tabs-1-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-markdown" data-lang="markdown">&lt;span style="color:#000080;font-weight:bold"># h1 Big headings
+&lt;/span>&lt;span style="color:#000080;font-weight:bold">&lt;/span>
+&lt;span style="color:#800080;font-weight:bold">###### h6 To small headings
+&lt;/span>&lt;span style="color:#800080;font-weight:bold">&lt;/span>
+&lt;span style="color:#800080;font-weight:bold">##### Emphasis
+&lt;/span>&lt;span style="color:#800080;font-weight:bold">&lt;/span>
+&lt;span style="color:#000;font-weight:bold">**This is bold text**&lt;/span>, &lt;span style="color:#000;font-style:italic">*This is italic text*&lt;/span> , &lt;span style="color:#a40000">~~Strikethrough~~&lt;/span>
+&lt;span style="color:#800080;font-weight:bold">##### Lists
+&lt;/span>&lt;span style="color:#800080;font-weight:bold">&lt;/span>
+Unordered
++ Create a list by starting a line with &lt;span style="color:#4e9a06">`+`&lt;/span>, &lt;span style="color:#4e9a06">`-`&lt;/span>, or &lt;span style="color:#4e9a06">`*`&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">-&lt;/span> Sub-lists are made by indenting 2 spaces:
+&lt;span style="color:#204a87;font-weight:bold">-&lt;/span> Marker character change forces new list start:
+&lt;span style="color:#204a87;font-weight:bold">*&lt;/span> Ac tristique libero volutpat at
++ Facilisis in pretium nisl aliquet
+&lt;span style="color:#204a87;font-weight:bold">*&lt;/span> Very easy!
+Ordered
+&lt;span style="color:#204a87;font-weight:bold">1.&lt;/span> Lorem ipsum dolor sit amet
+&lt;span style="color:#204a87;font-weight:bold">2.&lt;/span> Consectetur adipiscing elit
+&lt;span style="color:#204a87;font-weight:bold">3.&lt;/span> Integer molestie lorem at massa
+&lt;span style="color:#800080;font-weight:bold">##### Tables
+&lt;/span>&lt;span style="color:#800080;font-weight:bold">&lt;/span>
+| Option | Description |
+| ------ | ----------- |
+| chart | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext | extension to be used for dest files. |
+&lt;span style="color:#800080;font-weight:bold">#### Links
+&lt;/span>&lt;span style="color:#800080;font-weight:bold">&lt;/span>
+[&lt;span style="color:#204a87;font-weight:bold">link to webpage&lt;/span>](&lt;span style="color:#c4a000">https://www.splunk.com&lt;/span>)
+[&lt;span style="color:#204a87;font-weight:bold">link to dashboard with title&lt;/span>](&lt;span style="color:#c4a000">https://app.eu0.signalfx.com/#/dashboard/EaJHrbPAEAA?groupId=EaJHgrsAIAA&amp;amp;configId=EaJHsHzAEAA &amp;#34;Link to the Sample chart Dashboard!&amp;#34;&lt;/span>)&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>上記をコピーボタンでコピーして、&lt;em>Edit&lt;/em> ボックスにペーストしてみてください。
+プレビューで、どのように表示されるか確認できます。&lt;/p>
+&lt;hr>
+&lt;h2 id="2-チャートの保存">2. チャートの保存&lt;/h2>
+&lt;p>ノートチャートに名前を付けます。この例では、&lt;em>Example text chart&lt;/em> としました。そして、
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Save And Close
+&lt;/strong>
+&amp;nbsp; ボタンを押します。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Notes-2.png" alt="saving note">&lt;/p>
+&lt;p>これでダッシュボードに戻ると、メモが追加されました。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Notes-3.png" alt="three charts and note">&lt;/p>
+&lt;hr>
+&lt;h2 id="3-チャートの順序や大きさを変更">3. チャートの順序や大きさを変更&lt;/h2>
+&lt;p>デフォルトのチャートの順番やサイズを変更したい場合は、ウィンドウをドラッグして、チャートを好きな場所に移動したり、サイズを変更したりすることができます。&lt;/p>
+&lt;p>チャートの &lt;strong>上側の枠&lt;/strong> にマウスポインタを移動すると、マウスポインタがドラッグアイコンに変わります。これで、チャートを任意の場所にドラッグすることができます。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Notes-4.png" alt="Dragging">&lt;/p>
+&lt;p>ここでは、 &lt;strong>Latency vs Load&lt;/strong> チャートを &lt;strong>Latency History&lt;/strong> と &lt;strong>Example text chart&lt;/strong> の間に移動してください。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Notes-5.png" alt="sizing">&lt;/p>
+&lt;p>チャートのサイズを変更するには、側面または底面をドラッグします。&lt;/p>
+&lt;p>最後の練習として、ノートチャートの幅を他のチャートの3分の1程度にしてみましょう。チャートは自動的に、サポートしているサイズの1つにスナップします。他の3つのチャートの幅を、ダッシュボードの約3分の1にします。ノートを他のチャートの左側にドラッグして、他の23個のチャートに合わせてサイズを変更します。&lt;/p>
+&lt;p>最後に、時間を -1h に設定すると、以下のようなダッシュボードになります。&lt;/p>
+&lt;p>&lt;img src="../../../images/M-Notes-6.png" alt="TaDA!">&lt;/p>
+&lt;p>次は、ディテクターの登場です！&lt;/p></description></item></channel></rss>

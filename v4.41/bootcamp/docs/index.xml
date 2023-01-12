@@ -1,0 +1,41 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Observability Cloud Workshops – Bootcamp Labs</title><link>https://splunk.github.io/observability-workshop/v4.41/bootcamp/docs/</link><description>Recent content in Bootcamp Labs on Splunk Observability Cloud Workshops</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://splunk.github.io/observability-workshop/v4.41/bootcamp/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Bootcamp: Microservices Auto-instrumentation</title><link>https://splunk.github.io/observability-workshop/v4.41/bootcamp/docs/apm/autoi/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.41/bootcamp/docs/apm/autoi/</guid><description>
+&lt;p>The development team has broken up the monolithic service into microservices baesd on the &lt;code>docker-compose&lt;/code> setup. Switch to the provided milestone &lt;code>10microservices&lt;/code> with the instructions from &amp;ldquo;Getting Started&amp;rdquo;.&lt;/p>
+&lt;p>Test the service with:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Shell-Command"
+id="tabs-0-0-tab" data-toggle="tab" href="#tabs-0-0" role="tab" onclick="handleClick(&amp;#34;Shell-Command&amp;#34;);"
+aria-controls="tabs-0-0" aria-selected="true">
+Shell Command
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-0-content">&lt;div class="tab-pane fade show active"
+id="tabs-0-0" role="tabpanel" aria-labelled-by="tabs-0-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">curl -X POST http://127.0.0.1:8000/api -F &lt;span style="color:#000">text&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>@hamlet.txt&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>Add auto-instrumentation to the &lt;code>public_api&lt;/code> microservice using the &lt;a href="https://github.com/splunk/splunk-otel-python" target="_blank">Splunk distribution of OpenTelemetry Python&lt;/a>
+. Review the &lt;a href="https://docs.splunk.com/Observability/gdi/get-data-in/application/python/get-started.html#nav-Instrument-a-Python-application" target="_blank">documentation&lt;/a>
+and the &lt;a href="https://docs.splunk.com/Observability/gdi/get-data-in/application/python/get-started.html#nav-Instrument-a-Python-application" target="_blank">getting Started&lt;/a>
+steps and apply it to &lt;code>Dockerfile&lt;/code>.&lt;/p>
+&lt;p>Take into account the &lt;a href="https://github.com/splunk/splunk-otel-python/blob/main/docs/advanced-config.md#trace-exporters" target="_blank">trace exporter&lt;/a>
+settings and add the required environment variables to the &lt;code>.env&lt;/code> file for &lt;code>docker-compose&lt;/code>. Use the configuration to send traces directly to Splunk Observability Cloud.&lt;/p>
+&lt;p>The milestone for this task is &lt;code>10microservices-autoi&lt;/code>. It has auto-instrumentation applied for &lt;em>all&lt;/em> microservices.&lt;/p></description></item><item><title>Bootcamp: Lab: OpenTelemetry &amp; Get Data In (GDI)</title><link>https://splunk.github.io/observability-workshop/v4.41/bootcamp/docs/gdi/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.41/bootcamp/docs/gdi/</guid><description>
+&lt;h2 id="goals">Goals&lt;/h2>
+&lt;ol>
+&lt;li>Understand components involved for GDI, e.g.:
+&lt;ol>
+&lt;li>OpenTelemetry Collector&lt;/li>
+&lt;li>Prometheus exporters&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>Understand how Developers, DevOps and SREs work with infrastructure and microservices&lt;/li>
+&lt;li>Ability to ingest data from common stacks:
+&lt;ol>
+&lt;li>Virtual Machines&lt;/li>
+&lt;li>Containers and Container Orchestration (e.g. Docker, Docker Compose)&lt;/li>
+&lt;li>Container Orchestration Platforms (e.g. Kubernetes)&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>Understand troubleshooting 101 for components (commands)&lt;/li>
+&lt;/ol>
+&lt;p>We are going to work in the directory &lt;code>o11y-bootcamp/bootcamp/service/src&lt;/code>.
+Your first task: Write a python app to count words in a text file.&lt;/p>
+&lt;p>&lt;em>No, wait - we&amp;rsquo;ve already done that for you&lt;/em>.&lt;/p></description></item></channel></rss>

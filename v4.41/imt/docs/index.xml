@@ -1,0 +1,258 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Observability Cloud Workshops – Setup and Exercises</title><link>https://splunk.github.io/observability-workshop/v4.41/imt/docs/</link><description>Recent content in Setup and Exercises on Splunk Observability Cloud Workshops</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://splunk.github.io/observability-workshop/v4.41/imt/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Imt: How to connect to your workshop environment</title><link>https://splunk.github.io/observability-workshop/v4.41/imt/docs/initial-setup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.41/imt/docs/initial-setup/</guid><description>
+&lt;ol>
+&lt;li>How to retrieve the IP address of the AWS/EC2 instance assigned to you.&lt;/li>
+&lt;li>Connect to your instance using SSH, Putty&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup> or your web browser.&lt;/li>
+&lt;li>Verify your connection to your AWS/EC2 cloud instance.&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h2 id="1-awsec2-ip-address">1. AWS/EC2 IP Address&lt;/h2>
+&lt;p>In preparation for the workshop, Splunk has prepared an Ubuntu Linux instance in AWS/EC2.&lt;/p>
+&lt;p>To get access to the instance that you will be using in the workshop please visit the URL to access the Google Sheet provided by the workshop leader.&lt;/p>
+&lt;p>Search for your AWS/EC2 instance by looking for your first and last name, as provided during registration for this workshop.&lt;/p>
+&lt;p>&lt;img src="../../images/spreadsheet-info.png" alt="attendee spreadsheet">&lt;/p>
+&lt;p>Find your allocated IP address, SSH command (for Mac OS, Linux and the latest Windows versions) and password to enable you to connect to your workshop instance.&lt;/p>
+&lt;p>It also has the Browser Access URL that you can use in case you cannot connect via ssh or putty - see &lt;a href="#4-web-browser-all">EC2 access via Web browser&lt;/a>
+&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;p class="alert-heading">Important&lt;/p>
+&lt;div class="alert-body">
+Please use SSH or Putty to gain access to your EC2 instance if possible and
+make a note of the IP address as you will need this during the workshop.
+&lt;/div>
+&lt;/div>
+&lt;h2 id="2-ssh-mac-oslinux">2. SSH (Mac OS/Linux)&lt;/h2>
+&lt;p>Most attendees will be able to connect to the workshop by using SSH from their Mac or Linux device, or on Windows 10 and above.&lt;/p>
+&lt;p>To use SSH, open a terminal on your system and type &lt;code>ssh ubuntu@x.x.x.x&lt;/code> (replacing x.x.x.x with the IP address found in Step #1).&lt;/p>
+&lt;p>&lt;img src="../../images/ssh-1.png" alt="ssh login">&lt;/p>
+&lt;p>When prompted &lt;strong>&lt;code>Are you sure you want to continue connecting (yes/no/[fingerprint])?&lt;/code>&lt;/strong> please type &lt;strong>&lt;code>yes&lt;/code>&lt;/strong>.&lt;/p>
+&lt;p>&lt;img src="../../images/ssh-2.png" alt="ssh password">&lt;/p>
+&lt;p>Enter the password provided in the Google Sheet from Step #1.&lt;/p>
+&lt;p>Upon successful login you will be presented with the Splunk logo and the Linux prompt.&lt;/p>
+&lt;p>&lt;img src="../../images/ssh-3.png" alt="ssh connected">&lt;/p>
+&lt;h2 id="3-ssh-windows-10-and-above">3. SSH (Windows 10 and above)&lt;/h2>
+&lt;p>The procedure described above is the same on Windows 10, and the commands can be executed either in the Windows Command Prompt or PowerShell.
+However, Windows regards its SSH Client as an &amp;ldquo;optional feature&amp;rdquo;, which might need to be enabled.&lt;/p>
+&lt;p>You can verify if SSH is enabled by simply executing &lt;code>ssh&lt;/code>&lt;/p>
+&lt;p>If you are shown a help text on how to use the ssh-command (like shown on the screenshot below), you are all set.&lt;/p>
+&lt;p>&lt;img src="../../images/windows-ssh-enabled-feedback.png" alt="Windows SSH enabled">&lt;/p>
+&lt;p>If the result of executing the command looks something like on the screenshot below, you want to enable the &amp;ldquo;OpenSSH Client&amp;rdquo; feature manually.&lt;/p>
+&lt;p>&lt;img src="../../images/windows-ssh-disabled-feedback.png" alt="Windows SSH disabled">&lt;/p>
+&lt;p>To do that, open the &amp;ldquo;Settings&amp;rdquo; menu, and click on &amp;ldquo;Apps&amp;rdquo;. While being in the &amp;ldquo;Apps &amp;amp; features&amp;rdquo; section, click on &amp;ldquo;Optional features&amp;rdquo;.&lt;/p>
+&lt;p>&lt;img src="../../images/windows-gui-optionalfeatures.png" alt="Windows Apps Settings">&lt;/p>
+&lt;p>Here, you are presented a list of installed features. On the top, you see a button with a plus icon to &amp;ldquo;Add a feature&amp;rdquo;. Click it.
+In the search input field, type &amp;ldquo;OpenSSH&amp;rdquo;, and find a feature called &amp;ldquo;OpenSSH Client&amp;rdquo;, or respectively, &amp;ldquo;OpenSSH Client (Beta)&amp;rdquo;, click on it, and click the &amp;ldquo;Install&amp;rdquo;-button.&lt;/p>
+&lt;p>&lt;img src="../../images/windows-enable-openssh-client.png" alt="Windows Enable OpenSSH Client">&lt;/p>
+&lt;p>Now you are set! In case you are not able to access the provided instance in spite of enabling the OpenSSH feature, please do not shy away from reaching
+out to the course instructor, either via chat or directly.&lt;/p>
+&lt;p>At this point you are ready to continue and &lt;a href="../../gdi/k3s/">start the workshop&lt;/a>
+&lt;/p>
+&lt;hr>
+&lt;h2 id="4-putty-for-windows-versions-prior-to-windows-10">4. Putty (For Windows Versions prior to Windows 10)&lt;/h2>
+&lt;p>If you do not have ssh preinstalled or if you are on a Windows system, the best option is to install putty, you can find &lt;a href="https://www.putty.org/" target="_blank">here.&lt;/a>
+&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;p class="alert-heading">Important&lt;/p>
+&lt;div class="alert-body">
+If you &lt;strong>cannot&lt;/strong> install Putty, please go to &lt;a href="./#4-web-browser-all">Web Browser (All).&lt;/a>
+&lt;/div>
+&lt;/div>
+&lt;p>Open Putty and enter the in &lt;strong>Host Name (or IP address)&lt;/strong> field the IP address provided in the Google Sheet.&lt;/p>
+&lt;p>You can optionally save your settings by providing a name and pressing &lt;strong>Save&lt;/strong>.&lt;/p>
+&lt;p>&lt;img src="../../images//putty-settings.png" alt="putty-2">&lt;/p>
+&lt;p>To then login to your instance click on the &lt;strong>Open&lt;/strong> button as shown above.&lt;/p>
+&lt;p>If this is the first time connecting to your AWS/EC2 workshop instance, you will be presented with a security dialog, please click &lt;strong>Yes&lt;/strong>.&lt;/p>
+&lt;p>&lt;img src="../../images//putty-security.png" alt="putty-3">&lt;/p>
+&lt;p>Once connected, login in as &lt;strong>ubuntu&lt;/strong> and the password is the one provided in the Google Sheet.&lt;/p>
+&lt;p>Once you are connected successfully you should see a screen similar to the one below:&lt;/p>
+&lt;p>&lt;img src="../../images//putty-loggedin.png" alt="putty-4">&lt;/p>
+&lt;p>At this point you are ready to continue and &lt;a href="../../gdi/k3s/">start the workshop&lt;/a>
+&lt;/p>
+&lt;hr>
+&lt;h2 id="4-web-browser-all">4. Web Browser (All)&lt;/h2>
+&lt;p>If you are blocked from using SSH (Port 22) or unable to install Putty you may be able to connect to the workshop instance by using a web browser.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;p class="alert-heading">Note&lt;/p>
+&lt;div class="alert-body">
+This assumes that access to port 6501 is not restricted by your company&amp;rsquo;s firewall.
+&lt;/div>
+&lt;/div>
+&lt;p>Open your web browser and type &lt;strong>&lt;a href="http://x.x.x.x:6501" target="_blank">http://x.x.x.x:6501&lt;/a>
+&lt;/strong> (where X.X.X.X is the IP address from the Google Sheet).&lt;/p>
+&lt;p>&lt;img src="../../images//shellinabox-url.png" alt="http-6501">&lt;/p>
+&lt;p>Once connected, login in as &lt;strong>ubuntu&lt;/strong> and the password is the one provided in the Google Sheet.&lt;/p>
+&lt;p>&lt;img src="../../images//shellinabox-connect.png" alt="http-connect">&lt;/p>
+&lt;p>Once you are connected successfully you should see a screen similar to the one below:&lt;/p>
+&lt;p>&lt;img src="../../images//shellinabox-login.png" alt="web login">&lt;/p>
+&lt;p>Unlike when you are using regular SSH, &lt;em>copy and paste&lt;/em> does require a few extra steps to complete when using a browser session. This is due to cross browser restrictions.&lt;/p>
+&lt;p>When the workshop ask you to copy instructions into your terminal, please do the following:&lt;/p>
+&lt;p>&lt;em>Copy the instruction as normal, but when ready to paste it in the web terminal, choose &lt;strong>Paste from browser&lt;/strong> as show below:&lt;/em>&lt;/p>
+&lt;p>&lt;img src="../../images//shellinabox-paste-browser.png" alt="web paste 1">&lt;/p>
+&lt;p>This will open a dialog box asking for the text to be pasted into the web terminal:&lt;/p>
+&lt;p>&lt;img src="../../images//shellinabox-example-1.png" alt="web paste 3">&lt;/p>
+&lt;p>Paste the text in the text box as show, then press &lt;strong>OK&lt;/strong> to complete the copy and paste process.&lt;/p>
+&lt;p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;p class="alert-heading">Note&lt;/p>
+&lt;div class="alert-body">
+&lt;p>Unlike regular SSH connection, the web browser has a 60 second time out, and you will be disconnected, and a &lt;strong>Connect&lt;/strong> button will be shown in the center of the web terminal.&lt;/p>
+&lt;p>Simply click the &lt;strong>Connect&lt;/strong> button and you will be reconnected and will be able to continue.&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;img src="../../images//shellinabox-reconnect.png" alt="web reconnect">&lt;/p>
+&lt;p>At this point you are ready to continue and &lt;a href="../gdi/k3s/">start the workshop&lt;/a>
+.&lt;/p>
+&lt;hr>
+&lt;h2 id="5-multipass-all">5. Multipass (All)&lt;/h2>
+&lt;p>If you are unable to access AWS, but you want to install software locally, follow the instructions for &lt;a href="https://github.com/splunk/observability-workshop/blob/main/multipass/README.md" target="_blank">using Multipass&lt;/a>
+.&lt;/p>
+&lt;section class="footnotes" role="doc-endnotes">
+&lt;hr>
+&lt;ol>
+&lt;li id="fn:1" role="doc-endnote">
+&lt;p>&lt;a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/" target="_blank">Download Putty&lt;/a>
+&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/section></description></item><item><title>Imt: Working with Detectors - Lab Summary</title><link>https://splunk.github.io/observability-workshop/v4.41/imt/docs/detectors/creating/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.41/imt/docs/detectors/creating/</guid><description>
+&lt;ul>
+&lt;li>Create a Detector from one of your charts&lt;/li>
+&lt;li>Setting Alert conditions&lt;/li>
+&lt;li>Running a pre-flight check&lt;/li>
+&lt;li>Working with muting rules&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="1-introduction">1. Introduction&lt;/h2>
+&lt;p>Splunk Observability Cloud uses detectors, events, alerts, and notifications to keep you informed when certain criteria are met. For example, you might want a message sent to a Slack channel or to an email address for the Ops team when CPU Utilization has reached 95%, or when the number of concurrent users is approaching a limit that might require you to spin up an additional AWS instance.&lt;/p>
+&lt;p>These conditions are expressed as one or more rules that trigger an alert when the conditions in the rules are met. Individual rules in a detector are labeled according to criticality: Info, Warning, Minor, Major, and Critical.&lt;/p>
+&lt;h2 id="2-creating-a-detector">2. Creating a Detector&lt;/h2>
+&lt;p>In &lt;strong>Dashboards&lt;/strong> click on your &lt;strong>Custom Dashboard Group&lt;/strong> (that you created in the previous module) and then click on the dashboard name.&lt;/p>
+&lt;p>&lt;img src="../../../images//custom-dashboard-group.png" alt="Custom Dashboard Group">&lt;/p>
+&lt;p>We are now going to create a new detector from a chart on this dashboard. Click on the bell icon on the &lt;strong>Latency vs Load&lt;/strong> chart, and then click &lt;strong>New Detector From Chart&lt;/strong>.&lt;/p>
+&lt;p>&lt;img src="../../../images//new-detector.png" alt="New Detector">&lt;/p>
+&lt;p>In the text field next to &lt;strong>Detector Name&lt;/strong>, &lt;strong>ADD YOUR INITIALS&lt;/strong> before the proposed detector name.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;p class="alert-heading">Naming the detector&lt;/p>
+&lt;div class="alert-body">
+It&amp;rsquo;s important that you add your initials in front of the proposed detector name.&lt;br>
+It should be something like this: &lt;strong>XYZ&amp;rsquo;s Latency Chart Detector&lt;/strong>.
+&lt;/div>
+&lt;/div>
+&lt;p>Click on
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Create Alert Rule
+&lt;/strong>
+&amp;nbsp;&lt;/p>
+&lt;p>&lt;img src="../../../images//create-alert-rule.png" alt="Create Alert Rule">&lt;/p>
+&lt;p>In the Detector window, inside &lt;strong>Alert signal&lt;/strong>, the Signal we will alert on is marked with a (blue) bell in the &lt;strong>Alert on&lt;/strong> column. The bell indicates which Signal is being used to generate the alert.&lt;/p>
+&lt;p>Click on
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Proceed to Alert Condition
+&lt;/strong>
+&amp;nbsp;&lt;/p>
+&lt;p>&lt;img src="../../../images//alert-signal.png" alt="Alert Signal">&lt;/p>
+&lt;hr>
+&lt;h2 id="3-setting-alert-condition">3. Setting Alert condition&lt;/h2>
+&lt;p>In &lt;strong>Alert condition&lt;/strong>, click on &lt;strong>Static Threshold&lt;/strong> and then on
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Proceed to Alert Settings
+&lt;/strong>
+&amp;nbsp;&lt;/p>
+&lt;p>&lt;img src="../../../images//alert-condition.png" alt="Alert Condition">&lt;/p>
+&lt;p>In &lt;strong>Alert Settings&lt;/strong>, enter the value &lt;strong>&lt;code>290&lt;/code>&lt;/strong> in the &lt;strong>Threshold&lt;/strong> field. In the same window change &lt;strong>Time&lt;/strong> on top right to past day (&lt;strong>-1d&lt;/strong>).&lt;/p>
+&lt;hr>
+&lt;h2 id="4-alert-pre-flight-check">4. Alert pre-flight check&lt;/h2>
+&lt;p>A pre-flight check will take place after 5 seconds. See the &lt;strong>Estimated alert count&lt;/strong>. Based on the current alert settings, the amount of alerts we would have received in 1 day would have been &lt;strong>3&lt;/strong>.&lt;/p>
+&lt;p>&lt;img src="../../../images//alert-threshold.png" alt="Alert Threshold">&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;p class="alert-heading">About pre-flight checks&lt;/p>
+&lt;div class="alert-body">
+&lt;p>Once you set an alert condition, the UI estimates how many alerts you might get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.&lt;/p>
+&lt;p>Immediately, the platform will start analyzing the signals with the current settings, and perform something we call a Pre-flight Check. This enables you to test the alert conditions using the historical data in the platform, to ensure the settings are logical and will not inadvertently generate an alert storm, removing the guess work from configuring alerts in a simple but very powerful way, only available using the Splunk Observability Cloud.&lt;/p>
+&lt;p>To read more about detector previewing, please visit this link
+&lt;a href="https://docs.splunk.com/Observability/alerts-detectors-notifications/preview-detector-alerts.html#nav-Preview-detector-alerts" target="_blank">Preview detector alerts.&lt;/a>
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;p>Click on
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Proceed to Alert Message
+&lt;/strong>
+&amp;nbsp;&lt;/p>
+&lt;hr>
+&lt;h2 id="5-alert-message">5. Alert message&lt;/h2>
+&lt;p>In &lt;strong>Alert message&lt;/strong>, under &lt;strong>Severity&lt;/strong> choose &lt;strong>Major&lt;/strong>.&lt;/p>
+&lt;p>&lt;img src="../../../images//alert-message.png" alt="Alert Message">&lt;/p>
+&lt;p>Click on
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Proceed to Alert Recipients
+&lt;/strong>
+&amp;nbsp;&lt;/p>
+&lt;p>Click on &lt;strong>Add Recipient&lt;/strong> and then on your email address displayed as the first option.&lt;/p>
+&lt;p>&lt;img src="../../../images//add-recipient.png" alt="Add Recipient">&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;p class="alert-heading">Notification Services&lt;/p>
+&lt;div class="alert-body">
+&lt;p>That&amp;rsquo;s the same as entering that email address OR you can enter another email address by clicking on &lt;strong>E-mail&amp;hellip;&lt;/strong>.&lt;/p>
+&lt;p>This is just one example of the many &lt;strong>Notification Services&lt;/strong> the suite has available. You can check this out by going to the &lt;strong>Integrations&lt;/strong> tab of the top menu, and see &lt;strong>Notification Services&lt;/strong>.&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;hr>
+&lt;h2 id="6-alert-activation">6. Alert Activation&lt;/h2>
+&lt;p>Click on
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Proceed to Alert Activation
+&lt;/strong>
+&amp;nbsp;&lt;/p>
+&lt;p>In &lt;strong>Activate&amp;hellip;&lt;/strong> click on
+&lt;strong class="label-button ui-button-blue" role="label-button">
+Activate Alert Rule
+&lt;/strong>
+&amp;nbsp;&lt;/p>
+&lt;p>&lt;img src="../../../images//activate-alert.png" alt="Activate Alert">&lt;/p>
+&lt;p>If you want to get alerts quicker you edit the rule and lower the value from &lt;strong>&lt;code>290&lt;/code>&lt;/strong> to say &lt;strong>&lt;code>280&lt;/code>&lt;/strong>.&lt;/p>
+&lt;p>If you change the &lt;strong>Time&lt;/strong> to &lt;strong>-1h&lt;/strong> you can see how many alerts you might get with the threshold you have chosen based on the metrics from the last 1 hour.&lt;/p>
+&lt;p>Click on the &lt;img src="../../../images/alerts-and-detectors.png" alt="alerts and detectors button"> in the navbar and then click on &lt;strong>Detectors&lt;/strong>. You can optionally filter for your initials.&lt;/p>
+&lt;p>You will see you detector listed here. If you don&amp;rsquo;t then please refresh your browser.&lt;/p>
+&lt;p>&lt;img src="../../../images//detectors.png" alt="Detector List">&lt;/p>
+&lt;p>&lt;strong>Congratulations&lt;/strong>! You have created your first detector and activated it!&lt;/p></description></item><item><title>Imt: Get Data In</title><link>https://splunk.github.io/observability-workshop/v4.41/imt/docs/gdi/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.41/imt/docs/gdi/</guid><description/></item><item><title>Imt: Working with Dashboards</title><link>https://splunk.github.io/observability-workshop/v4.41/imt/docs/dashboards/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.41/imt/docs/dashboards/</guid><description/></item><item><title>Imt: Monitoring as Code</title><link>https://splunk.github.io/observability-workshop/v4.41/imt/docs/monitoring-as-code/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.41/imt/docs/monitoring-as-code/</guid><description/></item><item><title>Imt: Subscription Usage</title><link>https://splunk.github.io/observability-workshop/v4.41/imt/docs/servicebureau/billing-and-usage/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.41/imt/docs/servicebureau/billing-and-usage/</guid><description>
+&lt;ul>
+&lt;li>How to keep track of the usage of Observability Cloud in your organization&lt;/li>
+&lt;li>Learn how to keep track of spend by exploring the Subscription Usage interface&lt;/li>
+&lt;li>Creating Teams&lt;/li>
+&lt;li>Adding notification rules to Teams&lt;/li>
+&lt;li>Controlling usage&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="1-understanding-engagement">1. Understanding engagement&lt;/h2>
+&lt;p>To fully understand Observability Cloud engagement inside your organization, click on the &lt;strong>&amp;raquo;&lt;/strong> bottom left and select the &lt;strong>Settings → Organization Overview&lt;/strong>, this will provide you with the following dashboards that shows you how your Observability Cloud organization is being used:&lt;/p>
+&lt;p>&lt;img src="../../../images/engagement.png" alt="Organization overview">&lt;/p>
+&lt;p>You will see various dashboards such as Throttling, System Limits, Entitlements &amp;amp; Engagement. The workshop organization you&amp;rsquo;re using now may have less data to work with as this is cleared down after each workshop.&lt;/p>
+&lt;p>Take a minute to explore the various dashboards and charts in the Organization Overview of this workshop instance.&lt;/p>
+&lt;h2 id="2-subscription-usage">2. Subscription Usage&lt;/h2>
+&lt;p>If you want to see what your usage is against your subscription you can select &lt;strong>Subscription Usage&lt;/strong>.&lt;/p>
+&lt;p>&lt;img src="../../../images/billing-and-usage-menu.png" alt="Left pane">&lt;/p>
+&lt;p>This screen may take a few seconds to load whilst it calculates and pulls in the usage.&lt;/p>
+&lt;h2 id="3-understanding-usage">3. Understanding usage&lt;/h2>
+&lt;p>You will see a screen similar to the one below that will give you an overview of the current usage, the average usage and your entitlement per category: Hosts, Containers, Custom Metrics and High Resolution Metrics.&lt;/p>
+&lt;p>For more information about these categories please refer to &lt;a href="https://docs.splunk.com/Observability/admin/monitor-imm-billing-usage.html" target="_blank">Monitor Splunk Infrastructure Monitoring subscription usage&lt;/a>
+.&lt;/p>
+&lt;p>&lt;img src="../../../images/usage-charts.png" alt="Billing and Usage">&lt;/p>
+&lt;hr>
+&lt;h2 id="4-examine-usage-in-detail">4. Examine usage in detail&lt;/h2>
+&lt;p>The top chart shows you the current subscription levels per category (shown by the red arrows at the top in the screenshot below).&lt;/p>
+&lt;p>Also, your current usage of the four catagories is displayed (shown at the red lines at the bottom of the chart).&lt;/p>
+&lt;p>In this example you can see that there are 25 Hosts, 0 Containers, 100 Custom Metrics and 0 High Resolution Metrics.&lt;/p>
+&lt;p>&lt;img src="../../../images/usage-detail.png" alt="Billing and Usage-top">&lt;/p>
+&lt;p>In the bottom chart, you can see the usage per category for the current period (shown in the drop-down box on the top right of the chart).&lt;/p>
+&lt;p>The blue line marked &lt;strong>Average Usage&lt;/strong> indicates what Observability Cloud will use to calculate your average usage for the current Subscription Usage Period.&lt;/p>
+&lt;p>&lt;img src="../../../images/usage-trends.png" alt="Billing and Usage-Bottom">&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;p class="alert-heading">Info&lt;/p>
+&lt;div class="alert-body">
+As you can see from the screenshot, Observability Cloud does not use High Watermark or P95% for cost calculation but the actual average hourly usage, allowing you to do performance testing or Blue/Green style deployments etc. without the risk of overage charges.
+&lt;/div>
+&lt;/div>
+&lt;p>To get a feel for the options you can change the metric displayed by selecting the different options from the &lt;strong>Usage Metric&lt;/strong> drop down on the left, or change the &lt;strong>Subscription Usage Period&lt;/strong> with the drop down on the right.&lt;/p>
+&lt;p>Please take a minute to explore the different time periods &amp;amp; categories and their views.&lt;/p>
+&lt;p>Finally, the pane on the right shows you information about your Subscription.&lt;/p>
+&lt;p>&lt;img src="../../../images/subscription.png" alt="Billing and Usage-Pane">&lt;/p></description></item></channel></rss>

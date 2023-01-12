@@ -1,0 +1,291 @@
+<!doctype html><html lang=en class=no-js>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.92.2">
+<meta name=robots content="index, follow">
+<link rel="shortcut icon" href=/observability-workshop/v4.41/favicons/favicon.ico>
+<link rel=apple-touch-icon href=/observability-workshop/v4.41/favicons/apple-touch-icon-180x180.png sizes=180x180>
+<link rel=icon type=image/png href=/observability-workshop/v4.41/favicons/favicon-16x16.png sizes=16x16>
+<link rel=icon type=image/png href=/observability-workshop/v4.41/favicons/favicon-32x32.png sizes=32x32>
+<link rel=icon type=image/png href=/observability-workshop/v4.41/favicons/android-36x36.png sizes=36x36>
+<link rel=icon type=image/png href=/observability-workshop/v4.41/favicons/android-48x48.png sizes=48x48>
+<link rel=icon type=image/png href=/observability-workshop/v4.41/favicons/android-72x72.png sizes=72x72>
+<link rel=icon type=image/png href=/observability-workshop/v4.41/favicons/android-96x96.png sizes=96x96>
+<link rel=icon type=image/png href=/observability-workshop/v4.41/favicons/android-144x144.png sizes=144x144>
+<link rel=icon type=image/png href=/observability-workshop/v4.41/favicons/android-192x192.png sizes=192x192>
+<title>Analyzing RUM Metrics | Splunk Observability Cloud Workshops</title>
+<meta name=description content="
+See RUM Metrics and Session information in the RUM UI
+See correlated APM traces in the RUM & APM UI
+
+
+1. RUM Overview Pages
+From your RUM …">
+<meta property="og:title" content="Analyzing RUM Metrics">
+<meta property="og:description" content="See RUM Metrics and Session information in the RUM UI See correlated APM traces in the RUM & APM UI   1. RUM Overview Pages From your RUM Application Summary Dashboard you can see detailed information by opening the Application Overview Page via the tripple dot menu on the right by selecting Open Application Overview or by clicking the link with your application name which is jmcj-rum-app in the example below.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://splunk.github.io/observability-workshop/v4.41/rum/docs/analyzing-metrics/"><meta property="article:section" content="rum">
+<meta property="article:modified_time" content="2022-11-22T10:46:04+00:00"><meta property="og:site_name" content="Splunk Observability Cloud Workshops">
+<meta itemprop=name content="Analyzing RUM Metrics">
+<meta itemprop=description content="See RUM Metrics and Session information in the RUM UI See correlated APM traces in the RUM & APM UI   1. RUM Overview Pages From your RUM Application Summary Dashboard you can see detailed information by opening the Application Overview Page via the tripple dot menu on the right by selecting Open Application Overview or by clicking the link with your application name which is jmcj-rum-app in the example below.">
+<meta itemprop=dateModified content="2022-11-22T10:46:04+00:00">
+<meta itemprop=wordCount content="765">
+<meta itemprop=keywords content><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Analyzing RUM Metrics">
+<meta name=twitter:description content="See RUM Metrics and Session information in the RUM UI See correlated APM traces in the RUM & APM UI   1. RUM Overview Pages From your RUM Application Summary Dashboard you can see detailed information by opening the Application Overview Page via the tripple dot menu on the right by selecting Open Application Overview or by clicking the link with your application name which is jmcj-rum-app in the example below.">
+<link rel=preload href=/observability-workshop/v4.41/scss/main.min.2b48eb5fa776a217809f1a512635eca9a87ccee4071e65d6eb2ab469f7ce4f83.css as=style>
+<link href=/observability-workshop/v4.41/scss/main.min.2b48eb5fa776a217809f1a512635eca9a87ccee4071e65d6eb2ab469f7ce4f83.css rel=stylesheet integrity>
+<script src=https://code.jquery.com/jquery-3.6.0.min.js integrity=sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK crossorigin=anonymous></script>
+<script src=https://unpkg.com/lunr@2.3.9/lunr.min.js integrity=sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli crossorigin=anonymous></script>
+</head>
+<body class=td-page>
+<header>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" id=navbar1>
+<a class=navbar-brand href=/observability-workshop/v4.41/>
+<span class=navbar-logo><img class=navbar-logo src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAAvCAIAAAD8RQT7AAACwklEQVRYw+2YW2jTYBTHu4l4F1ERVMQL+qKgMBUU9EEfRAURUUFfBEUEBRGfdC+CrVt3cdbNSZ1zXqar024yp9MJKzh3FScyO+q8MDW3pvc2TZqkudSvtD4J66fkWyL0kNeQH8mX8/+dY8JMZuNcpjzNX9JQK64ZiEZlk9zDEe/aOmPQ8FIKlJpKtH+mNzUYg+Z38a7vvu2NRqHJlDhABPY0G4UmU8lhOnioFSu0GIImU9KXUOhYOz75kiFoMiVjsfDpl/i0UrQ0oePPkp5ACq5kHxs978JnlaHsxQVm/24H3zUGyaRE+Jj5DTGvEm0yeNfVsfeGVVGGYQJtk6kaIBfZ0OYUufBKrKRHCSWgmAQ5fmOIWl6DNjXx6dbwqRfgh4L6eJLC3v/oXW1HnOGFlsDeR0L3TygmEC+tn+j19ciNgt5Qzznc4B3AUPGd33xb7yL3G3LJVaaiX4kKMExCD+bf2YTctvCZZZEzndJYBIZJfE8F9jtBE0HsfpMswQNOoR+HYWIbPkyQiQIr4pyelKyOQ5No8UyoF1PLahjboMqIhqABl3/HA6EX05kGyEboSBuQIZ2/FDGnInKuSyaZnKcYLU32lMTF3P05ITHVb8nFNiQ09MZbXPPI+H9QliMuMuV9xIIqBN2vwAy8HTKw0gJ0sZuYW6l9MuBTS8MnnkujQSgOPxctdhGzy7VPTWL+5eiF1+ABUJJKMpGzr4CHaG8U1KrauH0IHEAot/kRDZ/swKeUaG9bvi13Em2jKUWF4gDDzdGn/zbcmHJE4MEWcZCAFPWk2xc8/ATcpbGl4zOsYFCC1IOsIex7/KchaEMj0ywkh9CH+3c59J8104uLbY36T758x1d68229twIZ+y+6qffGRFa5Jrd3jR3Td5ukJhVgr9TKWp03benp9fo7cmm1/lvImLUXDN757XWe5v+g+QU6sNkgKUPrgwAAAABJRU5ErkJggg=="></span><span class=font-weight-bold>Splunk Observability Cloud Workshops</span>
+</a>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+</ul>
+</div>
+</nav>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" id=navbar2>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.41/imt/><span>Splunk IMT</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.41/apm/><span>Splunk APM</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.41/synthetics/><span>Splunk Synthetics</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class="nav-link active" href=/observability-workshop/v4.41/rum/><span class=active>Splunk RUM</span></a>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+More Workshops
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/latest/pet-clinic/>Pet Clinic Java Workshop</a>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/latest/bootcamp/>O11y Bootcamp</a>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/latest/resources/>Resources</a>
+</div>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+Releases
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/latest/>latest</a>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/v4.40>v4.40</a>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/v4.41>v4.41</a>
+</div>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+English
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.41/ja/rum/docs/analyzing-metrics/>日本語</a>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="container-fluid td-outer">
+<div class=td-main>
+<div class="row flex-xl-nowrap">
+<aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+<div id=td-sidebar-menu class=td-sidebar__inner>
+<form class="td-sidebar__search d-flex align-items-center">
+<input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/observability-workshop/v4.41/offline-search-index.f6a3deb28e2d3901d5db52f01afbb6c2.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type=button data-toggle=collapse data-target=#td-section-nav aria-controls=td-docs-nav aria-expanded=false aria-label="Toggle section navigation">
+</button>
+</form>
+<nav class="collapse td-sidebar-nav" id=td-section-nav>
+<div class="nav-item dropdown d-block d-lg-none">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+English
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.41/ja/rum/docs/analyzing-metrics/>日本語</a>
+</div>
+</div>
+<ul class="td-sidebar-nav__section pr-md-3 ul-0">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv441rum-li>
+<a href=/observability-workshop/v4.41/rum/ title="Splunk RUM, an introduction" class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id=m-observability-workshopv441rum><span>Splunk RUM</span></a>
+<ul class=ul-1>
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv441rumoverview-li>
+<a href=/observability-workshop/v4.41/rum/overview/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv441rumoverview><span>Overview</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv441rumshowcase-li>
+<a href=/observability-workshop/v4.41/rum/showcase/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv441rumshowcase><span>Showcase of RUM with the Online Boutique</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv441rumdocs-li>
+<a href=/observability-workshop/v4.41/rum/docs/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv441rumdocs><span>RUM Workshop</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv441rumdocssetup-li>
+<a href=/observability-workshop/v4.41/rum/docs/setup/ title="Example of RUM enablement in your Website" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv441rumdocssetup><span>Using RUM on your Website</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv441rumdocsrum-landing-li>
+<a href=/observability-workshop/v4.41/rum/docs/rum-landing/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv441rumdocsrum-landing><span>Reviewing the RUM Landing Page</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv441rumdocsbrowser-app-summary-li>
+<a href=/observability-workshop/v4.41/rum/docs/browser-app-summary/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv441rumdocsbrowser-app-summary><span>Check Browser Applications health at a glance</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-observability-workshopv441rumdocsanalyzing-metrics-li>
+<a href=/observability-workshop/v4.41/rum/docs/analyzing-metrics/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv441rumdocsanalyzing-metrics><span class=td-sidebar-nav-active-item>Analyzing RUM Metrics</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv441rumdocstag-spotlight-li>
+<a href=/observability-workshop/v4.41/rum/docs/tag-spotlight/ title="Analyzing RUM Tags in the Tag Spotlight view" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv441rumdocstag-spotlight><span>Using Tag Spotlight</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv441rumdocsrum-sessions-li>
+<a href=/observability-workshop/v4.41/rum/docs/rum-sessions/ title="Analyzing RUM Sessions" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv441rumdocsrum-sessions><span>Discover RUM Sessions</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv441rumdocsapm-correlation-li>
+<a href=/observability-workshop/v4.41/rum/docs/apm-correlation/ title="Correlate between Splunk RUM and APM backend services" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv441rumdocsapm-correlation><span>Correlation of RUM and APM</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv441rumdocsalerting-li>
+<a href=/observability-workshop/v4.41/rum/docs/alerting/ title="Custom Charts and Alerts based on RUM Metrics" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv441rumdocsalerting><span>Alerts</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv441rumdocsmobile-app-summary-li>
+<a href=/observability-workshop/v4.41/rum/docs/mobile-app-summary/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv441rumdocsmobile-app-summary><span>Mobile Applications (Introduction)</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+<aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+</div>
+<div class=td-toc><nav id=TableOfContents>
+<ul>
+<li><a href=#1-rum-overview-pages>1. RUM Overview Pages</a></li>
+<li><a href=#2-rum-browser-overview>2. RUM Browser Overview</a>
+<ul>
+<li><a href=#21-header>2.1. Header</a></li>
+<li><a href=#22-overview-pane>2.2. Overview Pane</a></li>
+<li><a href=#23-key-metrics-pane>2.3. Key Metrics Pane</a></li>
+<li><a href=#24-web-vitals-pane>2.4. Web Vitals Pane</a></li>
+<li><a href=#25-other-metrics-pane>2.5. Other Metrics Pane</a></li>
+<li><a href=#26-custom-event-pane>2.6. Custom Event Pane</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</aside>
+<main class="col-12 col-md-9 col-xl-8 pl-md-5" role=main>
+<nav aria-label=breadcrumb class=td-breadcrumbs>
+<ol class=breadcrumb>
+<li class=breadcrumb-item>
+<a href=https://splunk.github.io/observability-workshop/v4.41/rum/>Splunk RUM</a>
+</li>
+<li class=breadcrumb-item>
+<a href=https://splunk.github.io/observability-workshop/v4.41/rum/docs/>RUM Workshop</a>
+</li>
+<li class="breadcrumb-item active" aria-current=page>
+<a href=https://splunk.github.io/observability-workshop/v4.41/rum/docs/analyzing-metrics/>Analyzing RUM Metrics</a>
+</li>
+</ol>
+</nav>
+<div class=td-content>
+<h1>Analyzing RUM Metrics</h1>
+<header class=article-meta>
+<p class=reading-time><i class="fa fa-clock" aria-hidden=true></i>&nbsp; 4 minute read &nbsp;</p>
+</header>
+<ul>
+<li>See RUM Metrics and Session information in the RUM UI</li>
+<li>See correlated APM traces in the RUM & APM UI</li>
+</ul>
+<hr>
+<h2 id=1-rum-overview-pages>1. RUM Overview Pages</h2>
+<p>From your RUM Application Summary Dashboard you can see detailed information by opening the Application Overview Page via the tripple dot <img src=../../images/trippleburger.png alt=trippleburger> menu on the right by selecting <em>Open Application Overview</em> or by clicking the link with your application name which is <em>jmcj-rum-app</em> in the example below.</p>
+<p><img src=../../images/summaryHeader.png alt=RUM-SummaryHeader></p>
+<p>This will take you to the RUM Application Overview Page screen as shown below.</p>
+<p><img src=../../images/RUM-1.png alt=RUM-1></p>
+<h2 id=2-rum-browser-overview>2. RUM Browser Overview</h2>
+<h3 id=21-header>2.1. Header</h3>
+<p>The RUM UI consists of 6 major sections. The first is the selection header, where you can set/filter a number of options:</p>
+<ul>
+<li>A drop down for the time window you&rsquo;re reviewing (You are looking at the past hour in this case)</li>
+<li>A drop down to select the Comparison window (You are comparing current performance on a rolling window - in this case compared to 1 hour ago)</li>
+<li>A drop down with the available Environments to view: (Choose the one provided by the workshop host or <em>All</em> like in the example)</li>
+<li>A drop down list with the Various Web apps (You can use the one provided by the workshop host or use <em>All</em>)</li>
+<li><em><strong>Optionally</strong></em> a drop down to select Browser or Mobile metrics (<em>Might not be available in your workshop</em>)</li>
+</ul>
+<p><img src=../../images/RUM-Header.png alt=RUM-Header></p>
+<h3 id=22-overview-pane>2.2. Overview Pane</h3>
+<p>The Overview Panes, down the left hand side of the page, give you a summary of the pages which have increased load times.</p>
+<p>In the example here you can see that the <strong>checkout</strong> and <strong>cart</strong> pages have errors due to the yellow triangles, and you can see that the load time has increased by 2.38 to 5.50 seconds.</p>
+<p><img src=../../images/RUM-Page-Load-Times.png alt=RUM-Top></p>
+<p>You also see an overview of the number of Front end Error and Backend Errors per minute, and we appear to have three JavaScript errors on our site.</p>
+<p><img src=../../images/RUM-JS-Errors.png alt=RUM-Top></p>
+<p>The last two panes show you the <strong>Top Page Views</strong> and the <strong>Top Network Requests</strong>.</p>
+<p><img src=../../images/RUM-Page-Views-Network.png alt=RUM-Top></p>
+<h3 id=23-key-metrics-pane>2.3. Key Metrics Pane</h3>
+<p>The Key Metrics View is the location where you will find the metrics for the number of
+<strong>JavaScript Errors</strong> per second, <strong>Network Errors</strong> per second an the <strong>Backend/Resource Request Duration</strong>.
+These Metrics are very useful to guide you to the location of an issue if you are experiencing problems with your site.</p>
+<p><img src=../../images/RUM-Key-Metrics.png alt=RUM-KeyMetrics></p>
+<h3 id=24-web-vitals-pane>2.4. Web Vitals Pane</h3>
+<p>The Web Vitals view is the location where you go if you wish to get insight into the experience you are delivering to your End users based on Web Vitals metrics.
+Web Vitals is an initiative by Google to provide unified guidance for quality signals that are essential to delivering a great user experience on the web and focuses on three key parameters:</p>
+<ul>
+<li><strong>Largest Contentful Paint (LCP)</strong>, measures loading performance. To provide a good user experience, LCP should occur within 2.5 seconds of when the page first starts loading.</li>
+<li><strong>First Input Delay (FID)</strong>, measures interactivity. To provide a good user experience, pages should have a FID of 100 milliseconds or less.</li>
+<li><strong>Cumulative Layout Shift (CLS)</strong>, measures visual stability. To provide a good user experience, pages should maintain a CLS of 0.1. or less.</li>
+</ul>
+<p><img src=../../images/RUM-Web-Vitals.png alt=RUM-WebVitals></p>
+<h3 id=25-other-metrics-pane>2.5. Other Metrics Pane</h3>
+<p>The Other Metrics Pane is the location where you find other performance metrics, with a focus on initial load time of your page or tasks that are taking too long to complete.</p>
+<ul>
+<li><strong>Time To First Byte (TTFB)</strong>, measures how long it takes for a client&rsquo;s browser to receive the first byte of the response from the server. The longer it takes for the server to process the request and send a response, the slower your visitors' browser is at displaying your page.</li>
+<li><strong>Long Task Duration</strong>, a performance metric that can be used help developers to understand the bad user experience on the website, or can be an indication of a problem.</li>
+<li><strong>Long Task Count</strong>, a metric to indicate how often a long task occurs, again used for exploring user experiences or problem detection.</li>
+</ul>
+<p><img src=../../images/RUM-Other.png alt=RUM-Other></p>
+<h3 id=26-custom-event-pane>2.6. Custom Event Pane</h3>
+<p>The Custom Event View is the location where you will find the metrics for any event you may have added yourself to the web pages you are monitoring.</p>
+<p>As we have seen in the RUM enabled website, we have added the following two lines:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#204a87;font-weight:700>const</span> <span style=color:#000>Provider</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>SplunkRum</span><span style=color:#000;font-weight:700>.</span><span style=color:#000>provider</span><span style=color:#000;font-weight:700>;</span>
+<span style=color:#204a87;font-weight:700>var</span> <span style=color:#000>tracer</span><span style=color:#ce5c00;font-weight:700>=</span><span style=color:#000>Provider</span><span style=color:#000;font-weight:700>.</span><span style=color:#000>getTracer</span><span style=color:#000;font-weight:700>(</span><span style=color:#4e9a06>&#39;appModuleLoader&#39;</span><span style=color:#000;font-weight:700>);</span>
+</code></pre></div><p>These lines will automatically create custom Events for every new Page, and you can also add these to pieces of custom code that are not part of a framework or an event you created so you can better understand the flow though your application. We support <strong>Custom Event Requests</strong>, <strong>Custom Event Error Rates</strong> and <strong>Custom Event Latency</strong> metrics.</p>
+<p><img src=../../images/RUM-Custom-Events.png alt=RUM-CustomMetrics></p>
+</div>
+</main>
+</div>
+</div>
+<footer class="bg-dark py-5 row d-print-none">
+<div class="container-fluid mx-sm-5">
+<div class=row>
+<div class="col-6 col-sm-4 text-xs-center order-sm-2">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=Twitter aria-label=Twitter>
+<a class=text-white target=_blank rel=noopener href=https://twitter.com/splunk aria-label=Twitter>
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=GitHub aria-label=GitHub>
+<a class=text-white target=_blank rel=noopener href=https://github.com/splunk/observability-workshop aria-label=GitHub>
+<i class="fab fa-github"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-12 col-sm-4 text-center py-2 order-sm-2">
+<small class=text-white>&copy; 2023 Splunk Inc. All Rights Reserved</small>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js integrity=sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin=anonymous></script>
+<script src=/observability-workshop/v4.41/js/tabpane-persist.js></script>
+<script src=/observability-workshop/v4.41/js/main.min.8ab8f81ff7e1454d30024cd6f956d4d341c3a97e2a673f988065f2ee4e147922.js integrity="sha256-irj4H/fhRU0wAkzW+VbU00HDqX4qZz+YgGXy7k4UeSI=" crossorigin=anonymous></script>
+<script>const svgCopy='<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg>',svgCheck='<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"><path fill-rule="evenodd" fill="rgb(63, 185, 80)" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>',addCopyButtons=a=>{document.querySelectorAll("pre > code").forEach(c=>{const b=document.createElement("button");b.className="clipboard-button",b.type="button",b.innerHTML=svgCopy,b.addEventListener("click",()=>{a.writeText(c.innerText).then(()=>{b.blur(),b.innerHTML=svgCheck,setTimeout(()=>b.innerHTML=svgCopy,2e3)},a=>b.innerHTML="Error")});const d=c.parentNode;d.parentNode.insertBefore(b,d)})};if(navigator&&navigator.clipboard)addCopyButtons(navigator.clipboard);else{const a=document.createElement("script");a.src="https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/2.7.0/clipboard-polyfill.promise.js",a.integrity="sha256-waClS2re9NUbXRsryKoof+F9qc1gjjIhc2eT7ZbIv94=",a.crossOrigin="anonymous",a.onload=()=>addCopyButtons(clipboard),document.body.appendChild(a)}</script>
+</body>
+</html>
