@@ -101,10 +101,11 @@ Validate that content of `otel-apache.yaml` exists in the ConfigMap for the coll
 
 ## 5. Create PHP/Apache Deployment YAML
 
-In the terminal window create a new file called `php-apache.yaml` and copy the following YAML into the file.
+In the terminal window create a new file called `php-apache.yaml` and copy the following YAML into the file:
 
 {{< tabpane >}}
-{{< tab header="php-apache.yaml" lang="yaml" >}}apiVersion: apps/v1
+{{< tab header="php-apache.yaml" lang="yaml" >}}
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: php-apache

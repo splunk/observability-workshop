@@ -8,9 +8,10 @@ Now to see how the autoscaler reacts to increased load. To do this, you'll start
 
 ## 1. Create loadgen YAML
 
-In the terminal window create a new file using (`vim` or `nano`) called `loadgen.yaml` and copy the following YAML into the file.
+In the terminal window create a new called `loadgen.yaml` and copy the following YAML into the file:
 
-``` yaml
+{{< tabpane >}}
+{{< tab header="loadgen.yaml" lang="yaml" >}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -35,7 +36,8 @@ spec:
         - /bin/sh
         - -c
         - "while true; do wget -q -O- http://php-apache.apache.svc.cluster.local; done"
-```
+{{< /tab >}}
+{{< /tabpane >}}
 
 ## 2. Create a new namespace
 
