@@ -22,4 +22,4 @@ If you are the host for the RUM workshop, please check this [README](https://git
 
 Latest versions of the workshop are:
 - [v4.39](https://signalfx.github.io/observability-workshop/v4.39/)
-
+- [v4.38](https://signalfx.github.io/observability-workshop/v4.38/)
