@@ -5,7 +5,7 @@ weight: 4
 
 ## Splunk Real User Monitoring
 
-For the Real User Monitoring (RUM) instrumentation, we will add the Open Telemetry Javascript [https://github.com/signalfx/splunk-otel-js-web](https://github.com/signalfx/splunk-otel-js-web) snippet in the pages, we will use the wizard again **Data Management → Add Integration → RUM Instrumentation → Browser Instrumentation**.
+For the Real User Monitoring (RUM) instrumentation, we will add the Open Telemetry Javascript [https://github.com/splunk/splunk-otel-js-web](https://github.com/splunk/splunk-otel-js-web) snippet in the pages, we will use the wizard again **Data Management → Add Integration → RUM Instrumentation → Browser Instrumentation**.
 
 Select the preconfigured **RUM ACCESS TOKEN** from the dropdown, click **Next**. Enter **App name** and **Environment** using the following syntax:
 

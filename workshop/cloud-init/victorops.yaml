@@ -54,7 +54,7 @@ runcmd:
   # Download Workshop
   - export WSVERSION=4.39
   - 'export WSARCHIVE=$([ "$WSVERSION" = "main" ] && echo "main" || echo "v$WSVERSION")'
-  - curl -s -OL https://github.com/signalfx/observability-workshop/archive/$WSARCHIVE.zip
+  - curl -s -OL https://github.com/splunk/observability-workshop/archive/$WSARCHIVE.zip
   - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
   - mv /home/ubuntu/observability-workshop-$WSVERSION /home/ubuntu/workshop
   # Configure motd

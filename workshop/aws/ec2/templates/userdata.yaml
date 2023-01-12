@@ -68,7 +68,7 @@ write_files:
       export ACCESS_TOKEN=${access_token}
       export RUM_TOKEN=${rum_token}
       if [ ! -f ~/.helmok ]; then
-        helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart 
+        helm repo add splunk-otel-collector-chart https://splunk.github.io/splunk-otel-collector-chart 
         helm repo update
         helm install splunk-otel-collector --set="splunkObservability.realm=$REALM" --set="splunkObservability.accessToken=$ACCESS_TOKEN" --set="clusterName=$INSTANCE-k3s-cluster" --set="splunkObservability.logsEnabled=true" --set="splunkObservability.profilingEnabled=true" --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" --set="environment=$INSTANCE-apm-env" splunk-otel-collector-chart/splunk-otel-collector -f ~/workshop/k3s/otel-collector.yaml
         cd ~/workshop/apm/
@@ -179,7 +179,7 @@ runcmd:
   # Download Workshop
   - export WSVERSION=4.39
   - 'export WSARCHIVE=$([ "$WSVERSION" = "main" ] && echo "main" || echo "v$WSVERSION")'
-  - curl -s -OL https://github.com/signalfx/observability-workshop/archive/$WSARCHIVE.zip
+  - curl -s -OL https://github.com/splunk/observability-workshop/archive/$WSARCHIVE.zip
   - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
   - mkdir /home/ubuntu/workshop
   - mv /home/ubuntu/observability-workshop-$WSVERSION/workshop/* /home/ubuntu/workshop
@@ -187,7 +187,7 @@ runcmd:
   # Set apm-config.sh executable
   - chmod +x /home/ubuntu/workshop/apm/apm-config.sh
   # Download Splunk Observability Cloud Jumpstart
-  - curl -s -L https://github.com/signalfx/signalfx-jumpstart/archive/main.zip -o jumpstart.zip
+  - curl -s -L https://github.com/splunk/signalfx-jumpstart/archive/main.zip -o jumpstart.zip
   - unzip -qq jumpstart.zip -d /home/ubuntu/
   - mv /home/ubuntu/signalfx-jumpstart-main /home/ubuntu/signalfx-jumpstart
   # Configure motd

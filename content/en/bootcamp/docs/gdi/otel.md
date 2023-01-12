@@ -29,6 +29,6 @@ docker run --rm \
 
 The milestone for this task is `03service-metrics-otel`.
 
-[otel-config]: https://github.com/signalfx/splunk-otel-collector/blob/main/cmd/otelcol/config/collector/agent_config.yaml
-[otel-col]: https://github.com/signalfx/splunk-otel-collector
-[otel-docker]: https://github.com/signalfx/splunk-otel-collector/blob/main/docs/getting-started/linux-manual.md#docker
+[otel-config]: https://github.com/splunk/splunk-otel-collector/blob/main/cmd/otelcol/config/collector/agent_config.yaml
+[otel-col]: https://github.com/splunk/splunk-otel-collector
+[otel-docker]: https://github.com/splunk/splunk-otel-collector/blob/main/docs/getting-started/linux-manual.md#docker

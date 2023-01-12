@@ -12,7 +12,7 @@ brew install terraform
 ## 2. Clone workshop repository
 
 ```bash
-git clone https://github.com/signalfx/observability-workshop
+git clone https://github.com/splunk/observability-workshop
 ```
 
 ## 3. Change into multipass directory
@@ -257,7 +257,7 @@ Terraform will perform the following actions:
               # Download Workshop
               - export WSVERSION=4.38
               - 'export WSARCHIVE=$([ "$WSVERSION" = "main" ] && echo "main" || echo "v$WSVERSION")'
-              - curl -s -OL https://github.com/signalfx/observability-workshop/archive/$WSARCHIVE.zip
+              - curl -s -OL https://github.com/splunk/observability-workshop/archive/$WSARCHIVE.zip
               - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
               - mkdir /home/ubuntu/workshop
               - mv /home/ubuntu/observability-workshop-$WSVERSION/workshop/* /home/ubuntu/workshop
@@ -265,7 +265,7 @@ Terraform will perform the following actions:
               # Set apm-config.sh executable
               - chmod +x /home/ubuntu/workshop/apm/apm-config.sh
               # Download Splunk Observability Cloud Jumpstart
-              - curl -s -L https://github.com/signalfx/signalfx-jumpstart/archive/main.zip -o jumpstart.zip
+              - curl -s -L https://github.com/splunk/signalfx-jumpstart/archive/main.zip -o jumpstart.zip
               - unzip -qq jumpstart.zip -d /home/ubuntu/
               - mv /home/ubuntu/signalfx-jumpstart-main /home/ubuntu/signalfx-jumpstart
               # Configure motd
@@ -363,6 +363,6 @@ Your instance is ready!
 ubuntu@lsvtwe:/home/ubuntu $
 ```
 
-Once your instance presents you with the Splunk logo, you have completed the preparation for your Multipass instance and can at this point you are ready to continue and [start the workshop](https://signalfx.github.io/observability-workshop/latest/).
+Once your instance presents you with the Splunk logo, you have completed the preparation for your Multipass instance and can at this point you are ready to continue and [start the workshop](https://splunk.github.io/observability-workshop/latest/).
 
 [^1]: Multipass is a lightweight VM manager for Linux, Windows and macOS. It's designed for developers who want a fresh Ubuntu environment with a single command. It uses KVM on Linux, Hyper-V on Windows and HyperKit on macOS to run the VM with minimal overhead. It can also use VirtualBox on Windows and macOS. Multipass will fetch images for you and keep them up to date.

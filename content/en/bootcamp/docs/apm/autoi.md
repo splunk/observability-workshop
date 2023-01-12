@@ -18,7 +18,7 @@ Take into account the [trace exporter][otel-py-exporter] settings and add the re
 
 The milestone for this task is `10microservices-autoi`. It has auto-instrumentation applied for *all* microservices.
 
-[splunk-otel-python]: https://github.com/signalfx/splunk-otel-python
-[getting-started]: https://github.com/signalfx/splunk-otel-python
-[otel-py-exporter]: https://github.com/signalfx/splunk-otel-python/blob/main/docs/advanced-config.md#trace-exporters
+[splunk-otel-python]: https://github.com/splunk/splunk-otel-python
+[getting-started]: https://github.com/splunk/splunk-otel-python
+[otel-py-exporter]: https://github.com/splunk/splunk-otel-python/blob/main/docs/advanced-config.md#trace-exporters
 [splunk-py-instrument]: https://docs.splunk.com/Observability/gdi/get-data-in/application/python/get-started.html#nav-Instrument-a-Python-application

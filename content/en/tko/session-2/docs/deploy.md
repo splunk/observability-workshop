@@ -140,7 +140,7 @@ A prospect uses Kafka and MongoDB in their environment. Since there are integrat
     export clusterName=<your cluster name>
 
     cd ../otel_yamls
-    helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
+    helm repo add splunk-otel-collector-chart https://splunk.github.io/splunk-otel-collector-chart
     helm repo update
 
     helm install --set provider=' ' --set distro=' ' --set splunkObservability.accessToken=$SPLUNK_ACCESS_TOKEN --set clusterName=$clusterName --set splunkObservability.realm=$SPLUNK_REALM --set otelCollector.enabled='false' --set splunkObservability.logsEnabled='true' --set gateway.enabled='false' --values kafka.values.yaml --values mongodb.values.yaml --values zookeeper.values.yaml --values alwayson.values.yaml --values k3slogs.yaml --generate-name splunk-otel-collector-chart/splunk-otel-collector

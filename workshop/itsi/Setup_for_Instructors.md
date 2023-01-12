@@ -15,9 +15,9 @@ Data need to be ingested in the observability cloud for this workshop:
 
 - Follow the steps to deploy the online boutique on a aws instance:
 
-[here](https://github.com/signalfx/observability-workshop/tree/main/workshop/aws/ec2)
+[here](https://github.com/splunk/observability-workshop/tree/main/workshop/aws/ec2)
 
-- Follow the steps to connect the AWS instance to the observability suite [here](https://signalfx.github.io/observability-workshop/latest/)
+- Follow the steps to connect the AWS instance to the observability suite [here](https://splunk.github.io/observability-workshop/latest/)
 
 Open observability-workshop/workshop/itsi in your preferred code editor.
 

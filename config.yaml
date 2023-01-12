@@ -1,4 +1,4 @@
-baseURL: https://signalfx.github.io/
+baseURL: https://splunk.github.io/
 title: Splunk Observability Cloud Workshops
 contentDir: content/en
 defaultContentLanguage: en
@@ -32,23 +32,23 @@ params:
   version_menu: Releases
   versions:
     - version: latest
-      url: https://signalfx.github.io/observability-workshop/latest/
+      url: https://splunk.github.io/observability-workshop/latest/
     - version: v4.38
-      url: https://signalfx.github.io/observability-workshop/v4.38
+      url: https://splunk.github.io/observability-workshop/v4.38
     - version: v4.39
-      url: https://signalfx.github.io/observability-workshop/v4.39
-  url_latest_version: https://signalfx.github.io/observability-workshop/
-  #github_repo: https://github.com/signalfx/observability-workshop
-  #github_project_repo: https://github.com/signalfx/observability-workshop
+      url: https://splunk.github.io/observability-workshop/v4.39
+  url_latest_version: https://splunk.github.io/observability-workshop/
+  #github_repo: https://github.com/splunk/observability-workshop
+  #github_project_repo: https://github.com/splunk/observability-workshop
   #gcs_engine_id: d72aa9b2712488cc3
   workshop_menu: More Workshops
   workshop_menu_urls:
     - name: Pet Clinic Java Workshop
-      url: https://signalfx.github.io/observability-workshop/latest/pet-clinic/
+      url: https://splunk.github.io/observability-workshop/latest/pet-clinic/
     - name: O11y Bootcamp
-      url: https://signalfx.github.io/observability-workshop/latest/bootcamp/
+      url: https://splunk.github.io/observability-workshop/latest/bootcamp/
     - name: Resources
-      url: https://signalfx.github.io/observability-workshop/latest/resources/
+      url: https://splunk.github.io/observability-workshop/latest/resources/
   algolia_docsearch: false
   offlineSearch: true
   ui:
@@ -64,7 +64,7 @@ params:
   links:
     developer:
       - name: "GitHub"
-        url: "https://github.com/signalfx/observability-workshop"
+        url: "https://github.com/splunk/observability-workshop"
         icon: "fab fa-github"
     user:
       - name: Twitter

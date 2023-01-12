@@ -125,7 +125,7 @@ write_files:
       export INSTANCE
 
       # Checkout all lab branches
-      git clone https://github.com/signalfx/observability-bootcamp /home/ubuntu/bootcamp
+      git clone https://github.com/splunk/observability-bootcamp /home/ubuntu/bootcamp
       export GIT_DIR=/home/ubuntu/bootcamp/.git
       export GIT_WORK_DIR=/home/ubuntu/bootcamp
       git branch -a --format '%(refname:lstrip=-1)' | grep -Evi 'main|head|gh-pages' | xargs -n1 git checkout
@@ -152,7 +152,7 @@ runcmd:
   # Download Workshop
   - export WSVERSION=4.39
   - 'export WSARCHIVE=$([ "$WSVERSION" = "main" ] && echo "main" || echo "v$WSVERSION")'
-  - curl -s -OL https://github.com/signalfx/observability-workshop/archive/$WSARCHIVE.zip
+  - curl -s -OL https://github.com/splunk/observability-workshop/archive/$WSARCHIVE.zip
   - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
   - mkdir /home/ubuntu/workshop
   - mv /home/ubuntu/observability-workshop-$WSVERSION/workshop/* /home/ubuntu/workshop
@@ -160,7 +160,7 @@ runcmd:
   # Set apm-config.sh executable
   - chmod +x /home/ubuntu/workshop/apm/apm-config.sh
   # Download Splunk Observability Cloud Jumpstart
-  - curl -s -L https://github.com/signalfx/signalfx-jumpstart/archive/main.zip -o jumpstart.zip
+  - curl -s -L https://github.com/splunk/signalfx-jumpstart/archive/main.zip -o jumpstart.zip
   - unzip -qq jumpstart.zip -d /home/ubuntu/
   - mv /home/ubuntu/signalfx-jumpstart-main /home/ubuntu/signalfx-jumpstart
   # Configure motd

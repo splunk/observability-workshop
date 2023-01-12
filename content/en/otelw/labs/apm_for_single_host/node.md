@@ -55,4 +55,4 @@ Additionally span IDs will print in the terminal where flask-server.py is runnin
 
 You can see in the `run-client.sh` how the environment has been set up for OpenTelemtry and where the autoinstrumentation takes place as the node app runs.
 
-Splunk's Otel autoinstrumentation for node.js is [here](https://github.com/signalfx/splunk-otel-js)
+Splunk's Otel autoinstrumentation for node.js is [here](https://github.com/splunk/splunk-otel-js)

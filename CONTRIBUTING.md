@@ -48,7 +48,7 @@ npm install postcss-cli
 
 ```bash
 cd ~
-git clone https://github.com/signalfx/observability-workshop.git
+git clone https://github.com/splunk/observability-workshop.git
 cd observability-workshop
 git submodule update --init --recursive
 ```

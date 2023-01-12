@@ -90,7 +90,7 @@ The `run-server.sh` and `run-client.sh` scripts set up the environment variables
 
 `spluk-py-trace` is the auto instrumenting function that runs Python3 with the instrumentation that automatically emits spans from the Python app. No code changes are necessary. Splunk Observability Cloud has a `Data Setup` Wizard to guide through instrumentation setup.
 
-OpenTelemetry repo for Python is [here](https://github.com/signalfx/splunk-otel-python).
+OpenTelemetry repo for Python is [here](https://github.com/splunk/splunk-otel-python).
 
 !!! important
     Leave the Flask server running you'll need need this process for the next client examples in the workshop.

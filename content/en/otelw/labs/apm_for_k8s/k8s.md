@@ -198,7 +198,7 @@ Filter by Application by adding `service:SERVICENAMEHERE`
 
 <img src="../../../images/28-jvm-filter.png" width="360">    
 
-Complete JVM metrics available [at this link](https://github.com/signalfx/splunk-otel-java/blob/main/docs/metrics.md#jvm)
+Complete JVM metrics available [at this link](https://github.com/splunk/splunk-otel-java/blob/main/docs/metrics.md#jvm)
 
 ---
 ### 4:  Manually instrument a Java App And Add Custom Attributres (Tags)
@@ -243,7 +243,7 @@ This could be a transaction ID, user ID, or any custom value that you want to co
 
 <img src="../../../images/23-k8s-m-span3.png" width="360">  
 
-Study the [manual instrumentation code example here.](https://github.com/signalfx/otelworkshop/blob/master/k8s/java/manual-inst/src/main/java/sf/main/GetExample.java)
+Study the [manual instrumentation code example here.](https://github.com/splunk/otelworkshop/blob/master/k8s/java/manual-inst/src/main/java/sf/main/GetExample.java)
 
 There are two methods shown- the decorator @WithSpan method (easiest), and using the GlobalTracer method (more complicated/powerful)...
 
@@ -256,9 +256,9 @@ The Otel Collector has many powerful configuration options ranging from splittin
 
 [Processor documentation](https://github.com/open-telemetry/opentelemetry-collector/tree/main/processor)  
 
-[Collector config examples](https://github.com/signalfx/splunk-otel-collector-chart/tree/main/examples)  
+[Collector config examples](https://github.com/splunk/splunk-otel-collector-chart/tree/main/examples)  
 
-[Full documentation](https://github.com/signalfx/splunk-otel-collector)  
+[Full documentation](https://github.com/splunk/splunk-otel-collector)  
 
 #### Prepare values for Collector update
 

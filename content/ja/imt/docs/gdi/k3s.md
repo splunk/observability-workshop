@@ -49,7 +49,7 @@ Splunk Helm チャートを使って OpenTelemetry Collector をインストー�
 
 {{< tabpane >}}
 {{< tab header="Helm Repo Add" lang="bash" >}}
-helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update
+helm repo add splunk-otel-collector-chart https://splunk.github.io/splunk-otel-collector-chart && helm repo update
 {{< /tab >}}
 {{< tab header="Helm Repo Add Output" lang="text" >}}
 Using ACCESS_TOKEN={REDACTED}
