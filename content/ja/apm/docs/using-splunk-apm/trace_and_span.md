@@ -17,7 +17,7 @@ isCJKLanguage: true
 
 トレースは、同じトレースIDを共有するスパンの集合体であり、アプリケーションとその構成サービスが処理する固有のトランザクションを表します。
 
-![Traces and Spans](../../images/trace-spans.png)
+![Traces and Spans](../../../images/trace-spans.png)
 
 各スパンには、そのスパンでキャプチャされた操作を表す名前と、その操作がどのサービス内で行われたかを表すサービス名があります。
 
