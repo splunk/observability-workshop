@@ -11,4 +11,4 @@ isCJKLanguage: true
 
 これで、サービスマップが以下のスクリーンショットのように更新され、**paymentservice** の異なるバージョンが表示されていることがわかります。
 
-![Payment Service](../../images/paymentservice.png)
+![Payment Service](../../../images/paymentservice.png)
