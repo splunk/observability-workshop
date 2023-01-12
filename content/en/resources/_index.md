@@ -20,7 +20,7 @@ Below are helpful resources about Splunk and the DevOps use case. Topics covered
 ## Blog Posts
 
 * {{% labelbutton color="apm" %}}APM{{% /labelbutton %}} [How Splunk Does Site Reliability Engineering (SRE)](https://splk.it/3eKyy46)
-* {{% labelbutton color="apm" %}}APM{{% /labelbutton %}} [Application Performance Redefined: Meet the New Splunk's Microservices APM](https://www.splunk.com/en_us/blog/it/application-performance-redefined-meet-the-new-signalfx-microservices-apm.html)
+* {{% labelbutton color="apm" %}}APM{{% /labelbutton %}} [Application Performance Redefined: Meet the New Splunk&rsquo;s Microservices APM](https://www.splunk.com/en_us/blog/it/application-performance-redefined-meet-the-new-signalfx-microservices-apm.html)
 * {{% labelbutton color="splunk" %}}Splunk{{% /labelbutton %}} [Splunk is Lambda Ready: Announcing a New Partnership with AWS](https://www.splunk.com/en_us/blog/it/splunk-is-lambda-ready.html)
 * {{% labelbutton color="apm" %}}APM{{% /labelbutton %}} [Supporting APM for .NET Applications](https://www.splunk.com/en_us/blog/cloud/supporting-apm-for-net-applications.html)
 * {{% labelbutton color="otel" %}}OpenTelemetry{{% /labelbutton %}} [OpenTelemetry Consolidates Data for Observability](https://thenewstack.io/opentelemetry-consolidates-data-for-observability/)
@@ -28,7 +28,7 @@ Below are helpful resources about Splunk and the DevOps use case. Topics covered
 * {{% labelbutton color="observability" %}}Observability{{% /labelbutton %}} [Observability is key to the future of software (and your DevOps career)](https://stackoverflow.blog/2021/09/08/observability-is-key-to-the-future-of-software-and-your-devops-career/)
 * {{% labelbutton color="otel" %}}OpenTelemetry{{% /labelbutton %}} [Why to Use OpenTelemetry Processors to Change Collected Backend Data](https://www.splunk.com/en_us/blog/devops/why-to-use-opentelemetry-processors-to-change-collected-backend-data.html)
 * {{% labelbutton color="apm" %}}APM{{% /labelbutton %}} [What Is Distributed Tracing and Why You Need It](https://www.splunk.com/en_us/blog/devops/what-is-distributed-tracing-and-why-you-need-it.html)
-* {{% labelbutton color="apm" %}}APM{{% /labelbutton %}} [Understanding Cardinality in a Monitoring System and Why It's Important](https://www.splunk.com/en_us/blog/devops/understanding-cardinality-in-a-monitoring-system-and-why-it-s-important.html)
+* {{% labelbutton color="apm" %}}APM{{% /labelbutton %}} [Understanding Cardinality in a Monitoring System and Why It&rsquo;s Important](https://www.splunk.com/en_us/blog/devops/understanding-cardinality-in-a-monitoring-system-and-why-it-s-important.html)
 * {{% labelbutton color="observability" %}}Observability{{% /labelbutton %}} [How to Monitor Your AWS Workloads](https://www.splunk.com/en_us/blog/devops/how-to-monitor-your-aws-workloads.html)
 * {{% labelbutton color="observability" %}}Observability{{% /labelbutton %}} [How to Maximize the Performance of Your Kubernetes Deployment](https://www.splunk.com/en_us/blog/devops/how-to-maximize-the-performance-of-your-kubernetes-deployment.html)
 

@@ -1,6 +1,7 @@
 ---
 title: Dimension, Properties and Tags
 weight: 2
+draft: true
 ---
 
 ## Applying context to your metrics
@@ -30,7 +31,7 @@ In the screenshot below I instead searched for ​aws_tag_service_id and selecte
 ### So how are Dimensions and Properties different?
 
 Dimensions are sent in with metrics at the time of ingest while properties are applied to metrics or dimensions after ingest
-This means that any metadata you need to make a datapoint (​a single reported value of a metric) ​unique, like what host a value of cpu.utilization is coming from needs to be a dimension. Metric names + dimensions uniquely define an MTS (metric time series).	
+This means that any metadata you need to make a datapoint (​a single reported value of a metric) ​unique, like what host a value of cpu.utilization is coming from needs to be a dimension. Metric names + dimensions uniquely define an MTS (metric time series).
 Example: the ​cpu.utilization metric sent by a particular host (​server1) with a dimension ​host:server1 would be considered a unique time series. If you have 10 servers, each sending that metric, then you would have 10 time series, with each time series sharing the metric name (​cpu.utilization) and uniquely identified by the dimension key-value pair (​host:server1, host:server2...host:server10).
 
 However, if your server names are only unique within a datacenter vs your whole environment you would need to add a 2n​ d​ dimension ​dc. You could now have double the number of possible MTSs. cpu.utilization metrics received would now be uniquely identified by 2 sets of dimension key-value pairs.
@@ -42,25 +43,25 @@ As we mentioned above, Metric name + dimensions make a unique MTS. Therefore, if
 
 Properties on the other hand are applied to metrics (or dimensions) after they are ingested. If you apply a property to a metric, it propagates and applies to all MTS that the metric is a part of. Or if you apply a property to a dimension, say ​host:server1 then all metrics from that host will have those properties attached. If you change the value of a property it will propagate and update the value of the property to all MTSs with that property attached. Why is this important? It means that if you care about the historical value of a property you need to make it a dimension.
 
-Example we are collecting custom metrics on our application. One metric is ​latency which counts the latency of requests made to our application. We have a dimension ​customer, so we can sort and compare latency by customer. We decide we want to track the ​application version as well so we can sort and compare our application ​latency by the version customers are using. We create a property ​version that we attach to the customer dimension. Initially all customers are using application version 1, so ​version:1. We now have some customers using version 2 of our application, for those customers we update the property to ​version:2. When we update the value of the ​version property for those customers it will propagate down to all MTS for that customer. We lose the history that those customers at some point used ​version 1, so if we wanted to compare ​latency of ​version 1 and ​version 2 over a historical period we would not get accurate data. In this case even though we don’t need application ​version to make out metric time series unique we need to make ​version a dimension, because we care about the historical value.		
+Example we are collecting custom metrics on our application. One metric is ​latency which counts the latency of requests made to our application. We have a dimension ​customer, so we can sort and compare latency by customer. We decide we want to track the ​application version as well so we can sort and compare our application ​latency by the version customers are using. We create a property ​version that we attach to the customer dimension. Initially all customers are using application version 1, so ​version:1. We now have some customers using version 2 of our application, for those customers we update the property to ​version:2. When we update the value of the ​version property for those customers it will propagate down to all MTS for that customer. We lose the history that those customers at some point used ​version 1, so if we wanted to compare ​latency of ​version 1 and ​version 2 over a historical period we would not get accurate data. In this case even though we don’t need application ​version to make out metric time series unique we need to make ​version a dimension, because we care about the historical value.
 
 ### So when should something be a Property instead of a dimension?
 
-The first reason would be if there is any metadata you want attached to metrics, but you don’t know it at the time of ingest.				
-The second reason is best practice is if it doesn’t need to be a dimension, make it a property. Why?	
-One reason is that today there is a limit of 5K MTSs per analytics job or chart rendering and the more dimensions you have the more MTS you will create. Properties are completely free-form and let you add as much information as you want or need to metrics or dimensions without adding to MTS counts.		
+The first reason would be if there is any metadata you want attached to metrics, but you don’t know it at the time of ingest.
+The second reason is best practice is if it doesn’t need to be a dimension, make it a property. Why?
+One reason is that today there is a limit of 5K MTSs per analytics job or chart rendering and the more dimensions you have the more MTS you will create. Properties are completely free-form and let you add as much information as you want or need to metrics or dimensions without adding to MTS counts.
 
-As dimensions are sent in with every datapoint, the more dimensions you have the more data you send to us, which could mean higher costs to you if your cloud provider charges for data transfer.		
+As dimensions are sent in with every datapoint, the more dimensions you have the more data you send to us, which could mean higher costs to you if your cloud provider charges for data transfer.
 
 A good example of some things that should be properties would be additional host information. You want to be able to see things like machine_type, processor, or os, but instead of making these things dimensions and sending them with every metric from a host you could make them properties and attach the properties to the host dimension.
 
-Example where ​host:server1 you would set properties ​machine_type:ucs, processor:xeon-5560, os:rhel71. Anytime a metric comes in with the dimension ​host:server1 all the above properties will be applied to it automatically.			
+Example where ​host:server1 you would set properties ​machine_type:ucs, processor:xeon-5560, os:rhel71. Anytime a metric comes in with the dimension ​host:server1 all the above properties will be applied to it automatically.
 
-Some other examples of use cases for properties would be if you want to know who is the escalation contact for each service or SLA level for every customer. You do not need these items to make metrics uniquely identifiable and you don’t care about the historical values, so they can be properties. The properties could be added to the service dimension and customer dimensions and would then apply to all metrics and MTSs with those dimensions.				
+Some other examples of use cases for properties would be if you want to know who is the escalation contact for each service or SLA level for every customer. You do not need these items to make metrics uniquely identifiable and you don’t care about the historical values, so they can be properties. The properties could be added to the service dimension and customer dimensions and would then apply to all metrics and MTSs with those dimensions.
 
 ### What about Tags?
 
-Tags are the 3r​d​ type of metadata that can be used to give context to or help organize your metrics. Unlike dimensions and properties, tags are NOT key:value pairs. ​Tags can be thought of as labels or keywords. Similar to Properties, Tags are applied to your data after ingest via the Catalog in the UI or programmatically via the API.​ Tags can be applied to Metrics, Dimensions or other objects such as Detectors.			
+Tags are the 3r​d​ type of metadata that can be used to give context to or help organize your metrics. Unlike dimensions and properties, tags are NOT key:value pairs. ​Tags can be thought of as labels or keywords. Similar to Properties, Tags are applied to your data after ingest via the Catalog in the UI or programmatically via the API.​ Tags can be applied to Metrics, Dimensions or other objects such as Detectors.
 
 ### Where would I use Tags?
 
@@ -85,4 +86,3 @@ For information on sending dimensions for custom metrics please review the ​Cl
 For information on how to apply properties & tags to metrics or dimensions via the API please see the API documentation for ​/metric/:name​ ​/dimension/:key/:value
 
 For information on how to add or edit properties & tags via the Catalog in the UI please reference the section “​Adding or editing metadata (descriptions, tags or properties)” in [Metadata Catalog​ documentation](https://docs.splunk.com/Observability/metrics-and-metadata/metrics-finder-metadata-catalog.html#use-the-metadata-catalog).
-
