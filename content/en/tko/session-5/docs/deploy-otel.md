@@ -116,3 +116,11 @@ helm delete splunk-otel-collector -n splunk
 ```
 
 {{% /alert %}}
+
+{{% alert title="Workshop Question" color="danger" %}}
+
+Find your Cluster in the Observability Kubernetes Navigator, and identify the nasmespace for the collector and its workload.
+
+**Tip:**  you may need to refresh the screen a few time to allow the cluster data to correlated in the back ground data.
+
+{{% /alert %}}

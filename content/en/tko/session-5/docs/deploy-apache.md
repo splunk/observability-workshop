@@ -89,7 +89,13 @@ The OpenTelemetry collector/agent uses ConfigMaps to store the configuration of 
 kubectl get cm -n splunk
 ```
 
-Then when you have list of Configmaps from the namespace, select the one for the `splunk-otel-collector-otel-agent` and view it with the following command:
+{{% alert title="Workshop Question" color="danger" %}}
+
+Can you identify the ConfigMap(s) used by the collector??
+
+{{% /alert %}}
+
+When you have list of Configmaps from the namespace, select the one for the `otel-agent` and view it with the following command:
 
 **Note:** The option `-o yaml` will print the content of the ConfigMap in a YAML format.  
 
@@ -97,7 +103,11 @@ Then when you have list of Configmaps from the namespace, select the one for the
 kubectl get cm splunk-otel-collector-otel-agent -n splunk -o yaml
 ```
 
-Validate that content of `otel-apache.yaml` exists in the ConfigMap for the collector.
+{{% alert title="Workshop Question" color="danger" %}}
+
+Is the content of **otel-apache.yaml** saved in the ConfigMap for the collector agent?
+
+{{% /alert %}}
 
 ## 5. Create PHP/Apache Deployment YAML
 
@@ -161,3 +171,9 @@ Deploy the PHP/Apache application:
 ``` bash
 kubectl apply -f php-apache.yaml -n apache
 ```
+
+{{% alert title="Workshop Question" color="danger" %}}
+
+Using the Observability Kubernetes Navigator, can you find the status of the php-apache workload?
+
+{{% /alert %}}
