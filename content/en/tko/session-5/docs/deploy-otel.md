@@ -63,7 +63,7 @@ helm install splunk-otel-collector \
 splunk-otel-collector-chart/splunk-otel-collector \
 --namespace splunk \
 --create-namespace \
--f \home\ubuntu\splunk-defaults.yaml
+-f ~/splunk-defaults.yaml
 
 {{< /tab >}}
 {{< tab header="Helm Install Single Line" lang="bash" >}}

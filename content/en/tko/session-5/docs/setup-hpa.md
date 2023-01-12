@@ -1,7 +1,7 @@
 ---
 title: Setup Horizontal Pod Autoscaler
 linkTitle: Setup HPA
-weight: 4
+weight: 5
 ---
 
 In Kubernetes, a HorizontalPodAutoscaler automatically updates a workload resource (such as a Deployment or StatefulSet), with the aim of automatically scaling the workload to match demand.
@@ -18,8 +18,20 @@ Create an autoscaling deployment for when the CPU usage for `php-apache` deploym
 kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=4 -n apache
 ```
 
+{{% alert title="Workshop Question" color="danger" %}}
+
+How many additional **php-apache** pods are created?
+
+{{% /alert %}}
+
 ## 2. Validate HPA
 
 ``` text
 kubectl get hpa -n apache
 ```
+
+{{% alert title="Workshop Question" color="danger" %}}
+
+Which metrics in the Apache Dashboards have significantly increased?
+
+{{% /alert %}}

@@ -34,7 +34,8 @@ More information can be found here : [DNS for Service and Pods](https://kubernet
 
 Create a new file called `otel-apache.yaml` with the following contents:
 
-``` yaml
+{{< tabpane >}}
+{{< tab header="otel-apache.yaml" lang="yaml" >}}
 agent:
   config:
     receivers:
@@ -45,7 +46,8 @@ agent:
             config:
               type: collectd/apache
               url: http://php-apache.apache.svc.cluster.local/server-status?auto
-```
+{{< /tab >}}
+{{< /tabpane >}}
 
 ## 3.  Observation Rules in the OpenTelemetry config
 
@@ -53,7 +55,7 @@ The above file contains an observation rule for Apache using the OTel `receiver_
 
 The configured rules will be evaluated for each endpoint discovered. If the rule evaluates to true then the receiver for that rule will be started as configured against the matched endpoint.
 
-In the file above we tell the OpenTelemetry agent to look for Pods that match the name `apache` and have port 80 open. Once found the agent will configure a Apache receiver to read Apache metrics from the configured url. Note the K8s DNS based URL in the above YAML for the service.
+In the file above we tell the OpenTelemetry agent to look for Pods that match the name `apache` and have port 80 open. Once found, the agent will configure an Apache receiver to read Apache metrics from the configured URL. Note, the K8s DNS based URL in the above YAML for the service.
 
 To use this the new apache configuration, you can upgrade the existing Splunk OpenTelemetry Collector Helm chart with the following command:
 
@@ -89,7 +91,7 @@ kubectl get cm -n splunk
 
 Then when you have list of Configmaps from the namespace, select the one for the `splunk-otel-collector-otel-agent` and view it with the following command:
 
-**Note** the extra flag `-o yaml`, this will print the content of the ConfigMap in a YAML format.  
+**Note:** The option `-o yaml` will print the content of the ConfigMap in a YAML format.  
 
 ``` bash
 kubectl get cm splunk-otel-collector-otel-agent -n splunk -o yaml
@@ -101,8 +103,8 @@ Validate that content of `otel-apache.yaml` exists in the ConfigMap for the coll
 
 In the terminal window create a new file called `php-apache.yaml` and copy the following YAML into the file.
 
-``` yaml
-apiVersion: apps/v1
+{{< tabpane >}}
+{{< tab header="php-apache.yaml" lang="yaml" >}}apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: php-apache
@@ -140,7 +142,8 @@ spec:
   - port: 80
   selector:
     run: php-apache
-```
+{{< /tab >}}
+{{< /tabpane >}}
 
 ## 6. Deploy PHP/Apache
 
@@ -157,5 +160,3 @@ Deploy the PHP/Apache application:
 ``` bash
 kubectl apply -f php-apache.yaml -n apache
 ```
-
-After the deployment is complete verify PHP/Apache is running on the cluster. If it isn't, why isn't it? Use Splunk Observability to troubleshoot the issue.

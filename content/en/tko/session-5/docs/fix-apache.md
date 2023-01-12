@@ -31,7 +31,13 @@ If that fails, or if there is not enough space when you deploy your application,
 
 ## 2. Fix PHP/Apache Deployment
 
-To fix the PHP/Apache deployment, edit the deployment and reduce the CPU resources further.
+{{% alert title="Workshop Question" color="danger" %}}
+
+Before we start, let's check the current status of the PHP/Apache deployment. Which Auto-Detect detector has fired?
+
+{{% /alert %}}
+
+To fix the PHP/Apache deployment, edit the deployment and reduce the CPU resources further:
 
 ```bash
 kubectl edit deployment php-apache -n apache
@@ -58,3 +64,11 @@ kubectl describe deployment php-apache -n apache
 ```
 
 Validate the pod is now running in Splunk Observability Cloud.
+
+{{% alert title="Workshop Question" color="danger" %}}
+
+Is the **Apache Web Servers** dashboard showing any data?
+
+**Tip:** Don't forget to use filters and timeframes to narrow down your data.
+
+{{% /alert %}}

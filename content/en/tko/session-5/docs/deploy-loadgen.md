@@ -1,7 +1,7 @@
 ---
 title: Deploy Load Generator
 linkTitle: Deploy Load Generator
-weight: 5
+weight: 4
 ---
 
 Now to see how the autoscaler reacts to increased load. To do this, you'll start a different Pod to act as a client. The container within the client Pod runs in an infinite loop, sending queries to the php-apache service.
@@ -49,6 +49,12 @@ kubectl create namespace loadgen
 kubectl apply -f loadgen.yaml --namespace loadgen
 ```
 
+{{% alert title="Workshop Question" color="danger" %}}
+
+Which metrics in the Kubernetes Navigator and the Apache dashboard have been instantly impacted by the deployment of the load generator?
+
+{{% /alert %}}
+
 ## 4. Scale the load generator
 
 A ReplicaSet is a process that runs multiple instances of a Pod and keeps the specified number of Pods constant. Its purpose is to maintain the specified number of Pod instances running in a cluster at any given time to prevent users from losing access to their application when a Pod fails or is inaccessible.
@@ -58,3 +64,11 @@ ReplicaSet helps bring up a new instance of a Pod when the existing one fails, s
 ``` text
 kubectl scale deployment/loadgen --replicas 4 -n loadgen
 ```
+
+Let the load generator run for around 5 minutes and keep observing the metrics in the Kubernetes Navigator and the Apache dashboard.
+
+{{% alert title="Workshop Question" color="danger" %}}
+
+Another Auto-Detect Detector has fired, which one is it this time?
+
+{{% /alert %}}
