@@ -26,6 +26,6 @@ kubectl delete -f loadgen.yaml --namespace loadgen
 
 {{% alert title="Workshop Question" color="danger" %}}
 
-What happens to the php-apache pods when the load test is stopped?
+What eventually happens to the php-apache pods when the load test is stopped?
 
 {{% /alert %}}
