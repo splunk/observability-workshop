@@ -190,7 +190,7 @@ sudo kubectl create configmap <nginxconfig> --from-file=workshop/k3s/nginx/nginx
 
 ## SMART AGENT CONFIGMAP REFERENCE
 
-https://github.com/splunk/signalfx-agent/blob/main/deployments/k8s/configmap.yaml
+https://github.com/signalfx/signalfx-agent/blob/main/deployments/k8s/configmap.yaml
 
 ## MODIFY EITHER AGENT DAEMONSET
 
@@ -201,7 +201,7 @@ kubectl edit ds splunk-otel-collector-agent
 
 ## SMART AGENT DAEMONSET REFERENCE
 
-https://github.com/splunk/signalfx-agent/blob/main/deployments/k8s/daemonset.yaml
+https://github.com/signalfx/signalfx-agent/blob/main/deployments/k8s/daemonset.yaml
 
 ## SMART AGENT HELM
 
@@ -222,7 +222,7 @@ signalfx-agent signalfx/signalfx-agent \
 ## SPLK-OTEL-COLL HELM
 
 ```bash
-helm repo add splunk-otel-collector-chart https://splunk.github.io/splunk-otel-collector-chart && helm repo update
+helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update
 helm delete splunk-otel-collector
 helm uninstall splunk-otel-collector
 helm install splunk-otel-collector \

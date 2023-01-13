@@ -5,7 +5,7 @@ weight: 2
 
 The Splunk OpenTelemetry Workshop will teach you how to level up your Observability practice by using the OpenTelemetry Collector and APM Instrumentation to emit industry standard telemetry from your infrastructure and applications.
 
-Source repo is here: [https://github.com/splunk/otelworkshop](https://github.com/splunk/otelworkshop)
+Source repo is here: [https://github.com/signalfx/otelworkshop](https://github.com/signalfx/otelworkshop)
 
 ## Requirements
 
@@ -17,7 +17,7 @@ Source repo is here: [https://github.com/splunk/otelworkshop](https://github.com
 
 ### Prerequisites
 
-- Completion of [Splunk Observability Workshop](https://splunk.github.io/observability-workshop/latest/) which trains on using metrics/APM and charts/dashboards/alerts or equivalent devops/SRE skills
+- Completion of [Splunk Observability Workshop](https://signalfx.github.io/observability-workshop/latest/) which trains on using metrics/APM and charts/dashboards/alerts or equivalent devops/SRE skills
 - Splunk Observability Cloud Account
 - Ability to use a multi-terminal IDE i.e. Microsoft Visual Studio Code or equivalent
 - Ability to spin up a VM or access a host with a Debian Linux environment with the following specs: Debian (i.e. Ubuntu) Linux environment with minimum 12G RAM and 20G disk w/ lightweight Kubernetes (Rancher k3s) installed OR your own k8s cluster. The Prep section has some tools to help build a local or AWS environment.

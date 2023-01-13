@@ -12,7 +12,7 @@ Make sure you've stopped your previous workshop examples and stopped all instanc
 
 Docker must be installed and current for this lab. 
 
-Repo location: [https://github.com/splunk/otelworkshop/tree/main/misc/docker](https://github.com/splunk/otelworkshop/tree/main/misc/docker)
+Repo location: [https://github.com/signalfx/otelworkshop/tree/main/misc/docker](https://github.com/signalfx/otelworkshop/tree/main/misc/docker)
 
 Start in k8s directory:
 ```bash
@@ -58,7 +58,7 @@ source run-python-autgen.sh
 
 Wait a about 60 seconds and check APM Explore map to see the microservices.
 
-Study the run scripts to understand how OpenTelemetry environment variables are configured, and the source code for the microservice example is [here](https://github.com/splunk/otelworkshop/tree/main/k8s/python/tools/autogen)  
+Study the run scripts to understand how OpenTelemetry environment variables are configured, and the source code for the microservice example is [here](https://github.com/signalfx/otelworkshop/tree/main/k8s/python/tools/autogen)  
 
 `ctrl-c` in each terminal will stop things and containers can be removed via standard Docker commands.
 
@@ -82,7 +82,7 @@ Wait a about 60 seconds and check APM Explore map to see the microservices.
 
 ### Misc
 
-Docker container instructions for OpenTelemetry Collector are [here](https://github.com/splunk/splunk-otel-collector/blob/main/docs/getting-started/linux-manual.md)
+Docker container instructions for OpenTelemetry Collector are [here](https://github.com/signalfx/splunk-otel-collector/blob/main/docs/getting-started/linux-manual.md)
 
 View Otel Collector trace stats (requires Lynx ascii browser):
 ```bash

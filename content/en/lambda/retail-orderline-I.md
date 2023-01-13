@@ -14,7 +14,7 @@ Enable the Full Screen Editor and then close the 'Execution Result' tab to give 
 
 INSERT SCREENSHOT
 
-To enable APM, we need to import the Splunk SignalFx Lambda wrapper. We already included this for you, but you can find the details on how to set this up yourself [here](https://github.com/splunk/lambda-python)
+To enable APM, we need to import the Splunk SignalFx Lambda wrapper. We already included this for you, but you can find the details on how to set this up yourself [here](https://github.com/signalfx/lambda-python)
 
 Secondly we also import the opentracing library, we will use this later to customize the span information we send to Splunk's APM.
 
