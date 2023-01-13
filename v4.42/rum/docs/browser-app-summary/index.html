@@ -1,0 +1,272 @@
+<!doctype html><html lang=en class=no-js>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.92.2">
+<meta name=robots content="index, follow">
+<link rel="shortcut icon" href=/observability-workshop/v4.42/favicons/favicon.ico>
+<link rel=apple-touch-icon href=/observability-workshop/v4.42/favicons/apple-touch-icon-180x180.png sizes=180x180>
+<link rel=icon type=image/png href=/observability-workshop/v4.42/favicons/favicon-16x16.png sizes=16x16>
+<link rel=icon type=image/png href=/observability-workshop/v4.42/favicons/favicon-32x32.png sizes=32x32>
+<link rel=icon type=image/png href=/observability-workshop/v4.42/favicons/android-36x36.png sizes=36x36>
+<link rel=icon type=image/png href=/observability-workshop/v4.42/favicons/android-48x48.png sizes=48x48>
+<link rel=icon type=image/png href=/observability-workshop/v4.42/favicons/android-72x72.png sizes=72x72>
+<link rel=icon type=image/png href=/observability-workshop/v4.42/favicons/android-96x96.png sizes=96x96>
+<link rel=icon type=image/png href=/observability-workshop/v4.42/favicons/android-144x144.png sizes=144x144>
+<link rel=icon type=image/png href=/observability-workshop/v4.42/favicons/android-192x192.png sizes=192x192>
+<title>Check Browser Applications health at a glance | Splunk Observability Cloud Workshops</title>
+<meta name=description content="
+Get familiar with the UI and options available from this landing page
+Identify Page Views/Errors and Request/Errors and Java Script Errors in a …">
+<meta property="og:title" content="Check Browser Applications health at a glance">
+<meta property="og:description" content="Get familiar with the UI and options available from this landing page Identify Page Views/Errors and Request/Errors and Java Script Errors in a single view  Check the Web Vitals metrics and any Detector that has fired for in relation to your Browser Application   1. Application Summary Dashboard Overview 1.1. Header Bar As seen in the previous section the RUM Application Summary Dashboard consists of 5 major sections.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://splunk.github.io/observability-workshop/v4.42/rum/docs/browser-app-summary/"><meta property="article:section" content="rum">
+<meta property="article:modified_time" content="2022-11-22T10:46:04+00:00"><meta property="og:site_name" content="Splunk Observability Cloud Workshops">
+<meta itemprop=name content="Check Browser Applications health at a glance">
+<meta itemprop=description content="Get familiar with the UI and options available from this landing page Identify Page Views/Errors and Request/Errors and Java Script Errors in a single view  Check the Web Vitals metrics and any Detector that has fired for in relation to your Browser Application   1. Application Summary Dashboard Overview 1.1. Header Bar As seen in the previous section the RUM Application Summary Dashboard consists of 5 major sections.">
+<meta itemprop=dateModified content="2022-11-22T10:46:04+00:00">
+<meta itemprop=wordCount content="834">
+<meta itemprop=keywords content><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Check Browser Applications health at a glance">
+<meta name=twitter:description content="Get familiar with the UI and options available from this landing page Identify Page Views/Errors and Request/Errors and Java Script Errors in a single view  Check the Web Vitals metrics and any Detector that has fired for in relation to your Browser Application   1. Application Summary Dashboard Overview 1.1. Header Bar As seen in the previous section the RUM Application Summary Dashboard consists of 5 major sections.">
+<link rel=preload href=/observability-workshop/v4.42/scss/main.min.2b48eb5fa776a217809f1a512635eca9a87ccee4071e65d6eb2ab469f7ce4f83.css as=style>
+<link href=/observability-workshop/v4.42/scss/main.min.2b48eb5fa776a217809f1a512635eca9a87ccee4071e65d6eb2ab469f7ce4f83.css rel=stylesheet integrity>
+<script src=https://code.jquery.com/jquery-3.6.0.min.js integrity=sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK crossorigin=anonymous></script>
+<script src=https://unpkg.com/lunr@2.3.9/lunr.min.js integrity=sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli crossorigin=anonymous></script>
+</head>
+<body class=td-page>
+<header>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" id=navbar1>
+<a class=navbar-brand href=/observability-workshop/v4.42/>
+<span class=navbar-logo><img class=navbar-logo src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAAvCAIAAAD8RQT7AAACwklEQVRYw+2YW2jTYBTHu4l4F1ERVMQL+qKgMBUU9EEfRAURUUFfBEUEBRGfdC+CrVt3cdbNSZ1zXqar024yp9MJKzh3FScyO+q8MDW3pvc2TZqkudSvtD4J66fkWyL0kNeQH8mX8/+dY8JMZuNcpjzNX9JQK64ZiEZlk9zDEe/aOmPQ8FIKlJpKtH+mNzUYg+Z38a7vvu2NRqHJlDhABPY0G4UmU8lhOnioFSu0GIImU9KXUOhYOz75kiFoMiVjsfDpl/i0UrQ0oePPkp5ACq5kHxs978JnlaHsxQVm/24H3zUGyaRE+Jj5DTGvEm0yeNfVsfeGVVGGYQJtk6kaIBfZ0OYUufBKrKRHCSWgmAQ5fmOIWl6DNjXx6dbwqRfgh4L6eJLC3v/oXW1HnOGFlsDeR0L3TygmEC+tn+j19ciNgt5Qzznc4B3AUPGd33xb7yL3G3LJVaaiX4kKMExCD+bf2YTctvCZZZEzndJYBIZJfE8F9jtBE0HsfpMswQNOoR+HYWIbPkyQiQIr4pyelKyOQ5No8UyoF1PLahjboMqIhqABl3/HA6EX05kGyEboSBuQIZ2/FDGnInKuSyaZnKcYLU32lMTF3P05ITHVb8nFNiQ09MZbXPPI+H9QliMuMuV9xIIqBN2vwAy8HTKw0gJ0sZuYW6l9MuBTS8MnnkujQSgOPxctdhGzy7VPTWL+5eiF1+ABUJJKMpGzr4CHaG8U1KrauH0IHEAot/kRDZ/swKeUaG9bvi13Em2jKUWF4gDDzdGn/zbcmHJE4MEWcZCAFPWk2xc8/ATcpbGl4zOsYFCC1IOsIex7/KchaEMj0ywkh9CH+3c59J8104uLbY36T758x1d68229twIZ+y+6qffGRFa5Jrd3jR3Td5ukJhVgr9TKWp03benp9fo7cmm1/lvImLUXDN757XWe5v+g+QU6sNkgKUPrgwAAAABJRU5ErkJggg=="></span><span class=font-weight-bold>Splunk Observability Cloud Workshops</span>
+</a>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+</ul>
+</div>
+</nav>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" id=navbar2>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.42/imt/><span>Splunk IMT</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.42/apm/><span>Splunk APM</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.42/synthetics/><span>Splunk Synthetics</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class="nav-link active" href=/observability-workshop/v4.42/rum/><span class=active>Splunk RUM</span></a>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+More Workshops
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/latest/pet-clinic/>Pet Clinic Java Workshop</a>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/latest/bootcamp/>O11y Bootcamp</a>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/latest/resources/>Resources</a>
+</div>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+Releases
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/latest/>latest</a>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/v4.41>v4.41</a>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/v4.42>v4.42</a>
+</div>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+English
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.42/ja/>日本語</a>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="container-fluid td-outer">
+<div class=td-main>
+<div class="row flex-xl-nowrap">
+<aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+<div id=td-sidebar-menu class=td-sidebar__inner>
+<form class="td-sidebar__search d-flex align-items-center">
+<input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/observability-workshop/v4.42/offline-search-index.5c7f27ff2db182efde9b897ba0b91913.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type=button data-toggle=collapse data-target=#td-section-nav aria-controls=td-docs-nav aria-expanded=false aria-label="Toggle section navigation">
+</button>
+</form>
+<nav class="collapse td-sidebar-nav" id=td-section-nav>
+<div class="nav-item dropdown d-block d-lg-none">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+English
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.42/ja/>日本語</a>
+</div>
+</div>
+<ul class="td-sidebar-nav__section pr-md-3 ul-0">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv442rum-li>
+<a href=/observability-workshop/v4.42/rum/ title="Splunk RUM, an introduction" class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id=m-observability-workshopv442rum><span>Splunk RUM</span></a>
+<ul class=ul-1>
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv442rumoverview-li>
+<a href=/observability-workshop/v4.42/rum/overview/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv442rumoverview><span>Overview</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv442rumshowcase-li>
+<a href=/observability-workshop/v4.42/rum/showcase/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv442rumshowcase><span>Showcase of RUM with the Online Boutique</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv442rumdocs-li>
+<a href=/observability-workshop/v4.42/rum/docs/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv442rumdocs><span>RUM Workshop</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv442rumdocssetup-li>
+<a href=/observability-workshop/v4.42/rum/docs/setup/ title="Example of RUM enablement in your Website" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv442rumdocssetup><span>Using RUM on your Website</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv442rumdocsrum-landing-li>
+<a href=/observability-workshop/v4.42/rum/docs/rum-landing/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv442rumdocsrum-landing><span>Reviewing the RUM Landing Page</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-observability-workshopv442rumdocsbrowser-app-summary-li>
+<a href=/observability-workshop/v4.42/rum/docs/browser-app-summary/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv442rumdocsbrowser-app-summary><span class=td-sidebar-nav-active-item>Check Browser Applications health at a glance</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv442rumdocsanalyzing-metrics-li>
+<a href=/observability-workshop/v4.42/rum/docs/analyzing-metrics/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv442rumdocsanalyzing-metrics><span>Analyzing RUM Metrics</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv442rumdocstag-spotlight-li>
+<a href=/observability-workshop/v4.42/rum/docs/tag-spotlight/ title="Analyzing RUM Tags in the Tag Spotlight view" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv442rumdocstag-spotlight><span>Using Tag Spotlight</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv442rumdocsrum-sessions-li>
+<a href=/observability-workshop/v4.42/rum/docs/rum-sessions/ title="Analyzing RUM Sessions" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv442rumdocsrum-sessions><span>Discover RUM Sessions</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv442rumdocsapm-correlation-li>
+<a href=/observability-workshop/v4.42/rum/docs/apm-correlation/ title="Correlate between Splunk RUM and APM backend services" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv442rumdocsapm-correlation><span>Correlation of RUM and APM</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv442rumdocsalerting-li>
+<a href=/observability-workshop/v4.42/rum/docs/alerting/ title="Custom Charts and Alerts based on RUM Metrics" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv442rumdocsalerting><span>Alerts</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv442rumdocsmobile-app-summary-li>
+<a href=/observability-workshop/v4.42/rum/docs/mobile-app-summary/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv442rumdocsmobile-app-summary><span>Mobile Applications (Introduction)</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+<aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+</div>
+<div class=td-toc><nav id=TableOfContents>
+<ul>
+<li><a href=#1-application-summary-dashboard-overview>1. Application Summary Dashboard Overview</a>
+<ul>
+<li><a href=#11-header-bar>1.1. Header Bar</a></li>
+</ul>
+</li>
+<li><a href=#2-application-overview>2. Application Overview</a>
+<ul>
+<li><a href=#21-page-views--errors--network-requests--errors>2.1. Page Views / Errors & Network Requests / Errors</a></li>
+<li><a href=#22-javascript-errors>2.2. JavaScript Errors</a></li>
+<li><a href=#23-web-vitals>2.3. Web Vitals</a></li>
+<li><a href=#24-most-recent-detectors>2.4. Most Recent Detectors</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</aside>
+<main class="col-12 col-md-9 col-xl-8 pl-md-5" role=main>
+<nav aria-label=breadcrumb class=td-breadcrumbs>
+<ol class=breadcrumb>
+<li class=breadcrumb-item>
+<a href=https://splunk.github.io/observability-workshop/v4.42/rum/>Splunk RUM</a>
+</li>
+<li class=breadcrumb-item>
+<a href=https://splunk.github.io/observability-workshop/v4.42/rum/docs/>RUM Workshop</a>
+</li>
+<li class="breadcrumb-item active" aria-current=page>
+<a href=https://splunk.github.io/observability-workshop/v4.42/rum/docs/browser-app-summary/>Check Browser Applications health at a glance</a>
+</li>
+</ol>
+</nav>
+<div class=td-content>
+<h1>Check Browser Applications health at a glance</h1>
+<header class=article-meta>
+<p class=reading-time><i class="fa fa-clock" aria-hidden=true></i>&nbsp; 4 minute read &nbsp;</p>
+</header>
+<ul>
+<li>Get familiar with the UI and options available from this landing page</li>
+<li>Identify Page Views/Errors and Request/Errors and Java Script Errors in a single view </br>
+Check the Web Vitals metrics and any Detector that has fired for in relation to your Browser Application</li>
+</ul>
+<hr>
+<h2 id=1-application-summary-dashboard-overview>1. Application Summary Dashboard Overview</h2>
+<h3 id=11-header-bar>1.1. Header Bar</h3>
+<p>As seen in the previous section the RUM Application Summary Dashboard consists of 5 major sections.</br>
+The first section is the selection header, where you can collapse the Pane via the <img src=../../images/browser.png alt=RUM-browser> Browser icon or the <strong>></strong> in front of the application name, which is <em>jmcj-rum-app</em> in the example below. It also provides access to the <em>Application Overview</em> page if you click the link with your application name which is <em>jmcj-rum-app</em> in the example below.</p>
+<p>Further, you can also open the <em>Application Overview</em> or <em>App Health Dashboard</em> via the triple dot <img src=../../images/trippleburger.png alt=trippleburger> menu on the right.</p>
+<p><img src=../../images/summaryHeader.png alt=RUM-SummaryHeader></p>
+<p>First use the <em>View Dashboard</em> link to open the Browser App Health Dashboard which should open in a new tab. Then switch back to original RUM tab, and then use the <em>Open Application Overview</em> link, or click on the name of the app to launch the Application Overview dashboard.</p>
+<p>We will looking at the <em>Application Overview</em> and <em>Browser App Health</em> Dashboards in detail in the following sections.</p>
+<h2 id=2-application-overview>2. Application Overview</h2>
+<p>The RUM Application Overview Dashboard is focused on providing you with <em>at a glance</em> overview of the status of your application.</p>
+<h3 id=21-page-views--errors--network-requests--errors>2.1. Page Views / Errors & Network Requests / Errors</h3>
+<p>The first section shows <em>Page Views / Errors</em>, & <em>Network Requests and Errors</em> charts show the quantity and trend of these issues in your application. This could be Javascript errors, or failed network calls to back end services.</p>
+<p><img src=../../images/RUM-Chart.png alt=RUM-chart></p>
+<p>In the example above you can see that there are no failed network calls in the Network chart, but in the Page View chart you can see that a number of pages do experience some errors. These are often not visible for regular users, but can seriously impact the performance of your web site.</p>
+<p>You can see the count of the Page Views / Network Requests / Errors by hovering over the charts.</p>
+<p><img src=../../images/RUM-Chart-Clicked.png alt=RUM-chart-clicked></p>
+<h3 id=22-javascript-errors>2.2. JavaScript Errors</h3>
+<p>With the second section of the RUM Application Summary Dashboard we are showing you an overview of the JavaScript errors occurring in your application, along with a count of each error.</p>
+<p><img src=../../images/RUM-Javascripterrors.png alt=RUM-javascript></p>
+<p>In the example above you can see there are three JavaScript errors, one that appears 29 times in the selected time slot, and the other two each appear 12 times.</p>
+<p>If you click on one of the errors a pop-out opens that will show a summary (below) of the errors over time, along with a Stack Trace of the JavaScript error, giving you an indication of where the problems occurred. (We will see this in more detail in one of the following sections)</p>
+<p><img src=../../images/expandedRUmJAVAscript-error.png alt=RUM-javascript-chart></p>
+<h3 id=23-web-vitals>2.3. Web Vitals</h3>
+<p>The third section of the RUM Application Summary Dashboard is showing you the crucial (google) Web Vitals, three metrics, that are used by Google in its ranking system, and give a very good indication of the speed of your site for your end users.</p>
+<p><img src=../../images/RUM-QuickWebVitals.png alt=WEB-vitals></p>
+<p>As you can see our site is well behaved and scores <em>Good</em> for all three Metrics. These metrics can be used to identify the effect changes to your application have, and help you improve the performance of your site.</p>
+<p>If you click on any of the Metrics shown in the Web Vitals pane you will be taken to the corresponding Tag Spotlight Dashboard. e.g. clicking on the <strong>Largest Contentful Paint (LCP)</strong> chartlet, you will be taken to a dashboard similar to the screen shot below, that gives you timeline and table views for how this metric has performed. This should allow you to spot trends and identify where the problem may be more common, such as an OS or browser version, .</p>
+<p><img src=../../images/RUM-Tag-Spotlight.png alt=WEB-vitals-tag></p>
+<h3 id=24-most-recent-detectors>2.4. Most Recent Detectors</h3>
+<p>The fourth and final section of the RUM Application Summary Dashboard is focused on providing you an overview of any detector that has triggered for your application. We have created a detector for this screen shot but your pane will be empty for now, but we will add some detectors to your site and make sure they are triggered in one of the next sections.</p>
+<p><img src=../../images/rum-detector.png alt=detectors></p>
+<p>In the screen shot you can see we have a critical alert for the <em>RUM Aggregated View Detector</em>, and a Count, how often this alert has triggered in the selected time window. If you happen to have an alert listed, you can click on the name of the Alert (that is shown as a blue link) and you will be taken to the Alert Overview page showing the details of the alert (Note: this will move you away from the current page, Please use the <strong>Back</strong> option of your browser to return to the overview page).</p>
+<p><img src=../../images/click-alert.png alt=alert></p>
+<hr>
+<p>Please take a few minutes to experiment with the RUM Application Summary Dashboard and the underlying chart and dashboards before going on to the next section.</p>
+</div>
+</main>
+</div>
+</div>
+<footer class="bg-dark py-5 row d-print-none">
+<div class="container-fluid mx-sm-5">
+<div class=row>
+<div class="col-6 col-sm-4 text-xs-center order-sm-2">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=Twitter aria-label=Twitter>
+<a class=text-white target=_blank rel=noopener href=https://twitter.com/splunk aria-label=Twitter>
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=GitHub aria-label=GitHub>
+<a class=text-white target=_blank rel=noopener href=https://github.com/splunk/observability-workshop aria-label=GitHub>
+<i class="fab fa-github"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-12 col-sm-4 text-center py-2 order-sm-2">
+<small class=text-white>&copy; 2023 Splunk Inc. All Rights Reserved</small>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js integrity=sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin=anonymous></script>
+<script src=/observability-workshop/v4.42/js/tabpane-persist.js></script>
+<script src=/observability-workshop/v4.42/js/main.min.8ab8f81ff7e1454d30024cd6f956d4d341c3a97e2a673f988065f2ee4e147922.js integrity="sha256-irj4H/fhRU0wAkzW+VbU00HDqX4qZz+YgGXy7k4UeSI=" crossorigin=anonymous></script>
+<script>const svgCopy='<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg>',svgCheck='<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"><path fill-rule="evenodd" fill="rgb(63, 185, 80)" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>',addCopyButtons=a=>{document.querySelectorAll("pre > code").forEach(c=>{const b=document.createElement("button");b.className="clipboard-button",b.type="button",b.innerHTML=svgCopy,b.addEventListener("click",()=>{a.writeText(c.innerText).then(()=>{b.blur(),b.innerHTML=svgCheck,setTimeout(()=>b.innerHTML=svgCopy,2e3)},a=>b.innerHTML="Error")});const d=c.parentNode;d.parentNode.insertBefore(b,d)})};if(navigator&&navigator.clipboard)addCopyButtons(navigator.clipboard);else{const a=document.createElement("script");a.src="https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/2.7.0/clipboard-polyfill.promise.js",a.integrity="sha256-waClS2re9NUbXRsryKoof+F9qc1gjjIhc2eT7ZbIv94=",a.crossOrigin="anonymous",a.onload=()=>addCopyButtons(clipboard),document.body.appendChild(a)}</script>
+</body>
+</html>
