@@ -269,7 +269,7 @@ Terraform will perform the following actions:
               - unzip -qq jumpstart.zip -d /home/ubuntu/
               - mv /home/ubuntu/signalfx-jumpstart-main /home/ubuntu/signalfx-jumpstart
               # Configure motd
-              - curl -s https://raw.githubusercontent.com/signalfx/observability-workshop/main/workshop/cloud-init/motd -o /etc/motd
+              - curl -s https://raw.githubusercontent.com/splunk/observability-workshop/main/workshop/cloud-init/motd -o /etc/motd
               - chmod -x /etc/update-motd.d/*
               # Install Terraform
               - curl -S -OL https://releases.hashicorp.com/terraform/1.2.8/terraform_1.2.8_linux_amd64.zip

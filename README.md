@@ -1,8 +1,8 @@
 [![Deploy](https://github.com/splunk/observability-workshop/actions/workflows/deploy.yml/badge.svg)](https://github.com/splunk/observability-workshop/actions/workflows/deploy.yml)
-![GitHub release (latest by date)](https://img.shields.io/github/v/tag/signalfx/observability-workshop)
-![GitHub commits since latest release (by SemVer)](https://img.shields.io/github/commits-since/signalfx/observability-workshop/latest)
-![GitHub repo size](https://img.shields.io/github/repo-size/signalfx/observability-workshop)
-![GitHub issues](https://img.shields.io/github/issues/signalfx/observability-workshop)
+![GitHub release (latest by date)](https://img.shields.io/github/v/tag/splunk/observability-workshop)
+![GitHub commits since latest release (by SemVer)](https://img.shields.io/github/commits-since/splunk/observability-workshop/latest)
+![GitHub repo size](https://img.shields.io/github/repo-size/splunk/observability-workshop)
+![GitHub issues](https://img.shields.io/github/issues/splunk/observability-workshop)
 
 # Splunk Observability Cloud Workshops
 
