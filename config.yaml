@@ -33,10 +33,10 @@ params:
   versions:
     - version: latest
       url: https://splunk.github.io/observability-workshop/latest/
-    - version: v4.41
-      url: https://splunk.github.io/observability-workshop/v4.41
     - version: v4.42
       url: https://splunk.github.io/observability-workshop/v4.42
+    - version: v4.43
+      url: https://splunk.github.io/observability-workshop/v4.43
   url_latest_version: https://splunk.github.io/observability-workshop/
   #github_repo: https://github.com/splunk/observability-workshop
   #github_project_repo: https://github.com/splunk/observability-workshop
