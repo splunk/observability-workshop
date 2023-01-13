@@ -1,0 +1,373 @@
+<!doctype html><html lang=en class=no-js>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.92.2">
+<meta name=robots content="index, follow">
+<link rel="shortcut icon" href=/observability-workshop/v4.43/favicons/favicon.ico>
+<link rel=apple-touch-icon href=/observability-workshop/v4.43/favicons/apple-touch-icon-180x180.png sizes=180x180>
+<link rel=icon type=image/png href=/observability-workshop/v4.43/favicons/favicon-16x16.png sizes=16x16>
+<link rel=icon type=image/png href=/observability-workshop/v4.43/favicons/favicon-32x32.png sizes=32x32>
+<link rel=icon type=image/png href=/observability-workshop/v4.43/favicons/android-36x36.png sizes=36x36>
+<link rel=icon type=image/png href=/observability-workshop/v4.43/favicons/android-48x48.png sizes=48x48>
+<link rel=icon type=image/png href=/observability-workshop/v4.43/favicons/android-72x72.png sizes=72x72>
+<link rel=icon type=image/png href=/observability-workshop/v4.43/favicons/android-96x96.png sizes=96x96>
+<link rel=icon type=image/png href=/observability-workshop/v4.43/favicons/android-144x144.png sizes=144x144>
+<link rel=icon type=image/png href=/observability-workshop/v4.43/favicons/android-192x192.png sizes=192x192>
+<title>Deploying PHP/Apache | Splunk Observability Cloud Workshops</title>
+<meta name=description content="1.  DNS and Services in Kubernetes
+The Domain Name System (DNS) is a mechanism for linking various sorts of information with easy-to-remember names, …">
+<meta property="og:title" content="Deploying PHP/Apache">
+<meta property="og:description" content="1. DNS and Services in Kubernetes The Domain Name System (DNS) is a mechanism for linking various sorts of information with easy-to-remember names, such as IP addresses. Using a DNS system to translate request names into IP addresses makes it easy for end-users to reach their target domain name effortlessly.
+Most Kubernetes clusters include an internal DNS service configured by default to offer a lightweight approach for service discovery. Even when pods and services are created, deleted, or shifted between nodes, built-in service discovery simplifies applications to identify and communicate with services on the Kubernetes clusters.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://splunk.github.io/observability-workshop/v4.43/tko/session-5/docs/deploy-apache/"><meta property="article:section" content="tko">
+<meta property="article:modified_time" content="2023-01-12T14:11:24+01:00"><meta property="og:site_name" content="Splunk Observability Cloud Workshops">
+<meta itemprop=name content="Deploying PHP/Apache">
+<meta itemprop=description content="1. DNS and Services in Kubernetes The Domain Name System (DNS) is a mechanism for linking various sorts of information with easy-to-remember names, such as IP addresses. Using a DNS system to translate request names into IP addresses makes it easy for end-users to reach their target domain name effortlessly.
+Most Kubernetes clusters include an internal DNS service configured by default to offer a lightweight approach for service discovery. Even when pods and services are created, deleted, or shifted between nodes, built-in service discovery simplifies applications to identify and communicate with services on the Kubernetes clusters.">
+<meta itemprop=dateModified content="2023-01-12T14:11:24+01:00">
+<meta itemprop=wordCount content="633">
+<meta itemprop=keywords content><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Deploying PHP/Apache">
+<meta name=twitter:description content="1. DNS and Services in Kubernetes The Domain Name System (DNS) is a mechanism for linking various sorts of information with easy-to-remember names, such as IP addresses. Using a DNS system to translate request names into IP addresses makes it easy for end-users to reach their target domain name effortlessly.
+Most Kubernetes clusters include an internal DNS service configured by default to offer a lightweight approach for service discovery. Even when pods and services are created, deleted, or shifted between nodes, built-in service discovery simplifies applications to identify and communicate with services on the Kubernetes clusters.">
+<link rel=preload href=/observability-workshop/v4.43/scss/main.min.2b48eb5fa776a217809f1a512635eca9a87ccee4071e65d6eb2ab469f7ce4f83.css as=style>
+<link href=/observability-workshop/v4.43/scss/main.min.2b48eb5fa776a217809f1a512635eca9a87ccee4071e65d6eb2ab469f7ce4f83.css rel=stylesheet integrity>
+<script src=https://code.jquery.com/jquery-3.6.0.min.js integrity=sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK crossorigin=anonymous></script>
+<script src=https://unpkg.com/lunr@2.3.9/lunr.min.js integrity=sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli crossorigin=anonymous></script>
+</head>
+<body class=td-page>
+<header>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" id=navbar1>
+<a class=navbar-brand href=/observability-workshop/v4.43/>
+<span class=navbar-logo><img class=navbar-logo src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAAvCAIAAAD8RQT7AAACwklEQVRYw+2YW2jTYBTHu4l4F1ERVMQL+qKgMBUU9EEfRAURUUFfBEUEBRGfdC+CrVt3cdbNSZ1zXqar024yp9MJKzh3FScyO+q8MDW3pvc2TZqkudSvtD4J66fkWyL0kNeQH8mX8/+dY8JMZuNcpjzNX9JQK64ZiEZlk9zDEe/aOmPQ8FIKlJpKtH+mNzUYg+Z38a7vvu2NRqHJlDhABPY0G4UmU8lhOnioFSu0GIImU9KXUOhYOz75kiFoMiVjsfDpl/i0UrQ0oePPkp5ACq5kHxs978JnlaHsxQVm/24H3zUGyaRE+Jj5DTGvEm0yeNfVsfeGVVGGYQJtk6kaIBfZ0OYUufBKrKRHCSWgmAQ5fmOIWl6DNjXx6dbwqRfgh4L6eJLC3v/oXW1HnOGFlsDeR0L3TygmEC+tn+j19ciNgt5Qzznc4B3AUPGd33xb7yL3G3LJVaaiX4kKMExCD+bf2YTctvCZZZEzndJYBIZJfE8F9jtBE0HsfpMswQNOoR+HYWIbPkyQiQIr4pyelKyOQ5No8UyoF1PLahjboMqIhqABl3/HA6EX05kGyEboSBuQIZ2/FDGnInKuSyaZnKcYLU32lMTF3P05ITHVb8nFNiQ09MZbXPPI+H9QliMuMuV9xIIqBN2vwAy8HTKw0gJ0sZuYW6l9MuBTS8MnnkujQSgOPxctdhGzy7VPTWL+5eiF1+ABUJJKMpGzr4CHaG8U1KrauH0IHEAot/kRDZ/swKeUaG9bvi13Em2jKUWF4gDDzdGn/zbcmHJE4MEWcZCAFPWk2xc8/ATcpbGl4zOsYFCC1IOsIex7/KchaEMj0ywkh9CH+3c59J8104uLbY36T758x1d68229twIZ+y+6qffGRFa5Jrd3jR3Td5ukJhVgr9TKWp03benp9fo7cmm1/lvImLUXDN757XWe5v+g+QU6sNkgKUPrgwAAAABJRU5ErkJggg=="></span><span class=font-weight-bold>Splunk Observability Cloud Workshops</span>
+</a>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+</ul>
+</div>
+</nav>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" id=navbar2>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.43/imt/><span>Splunk IMT</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.43/apm/><span>Splunk APM</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.43/synthetics/><span>Splunk Synthetics</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.43/rum/><span>Splunk RUM</span></a>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+More Workshops
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/latest/pet-clinic/>Pet Clinic Java Workshop</a>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/latest/bootcamp/>O11y Bootcamp</a>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/latest/resources/>Resources</a>
+</div>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+Releases
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/latest/>latest</a>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/v4.42>v4.42</a>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/v4.43>v4.43</a>
+</div>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+English
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.43/ja/>日本語</a>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="container-fluid td-outer">
+<div class=td-main>
+<div class="row flex-xl-nowrap">
+<aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+<div id=td-sidebar-menu class=td-sidebar__inner>
+<form class="td-sidebar__search d-flex align-items-center">
+<input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/observability-workshop/v4.43/offline-search-index.89c30dca153e9fb8a8dd978f60f4b304.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type=button data-toggle=collapse data-target=#td-section-nav aria-controls=td-docs-nav aria-expanded=false aria-label="Toggle section navigation">
+</button>
+</form>
+<nav class="collapse td-sidebar-nav" id=td-section-nav>
+<div class="nav-item dropdown d-block d-lg-none">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+English
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.43/ja/>日本語</a>
+</div>
+</div>
+<ul class="td-sidebar-nav__section pr-md-3 ul-0">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv443tko-li>
+<a href=/observability-workshop/v4.43/tko/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id=m-observability-workshopv443tko><span>TKO Workshops</span></a>
+<ul class=ul-1>
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv443tkosession-1-li>
+<a href=/observability-workshop/v4.43/tko/session-1/ title="1. Role Play Qualification / Discovery - with SRE and ITOPs" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv443tkosession-1><span>Session 1</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-observability-workshopv443tkosession-2-li>
+<a href=/observability-workshop/v4.43/tko/session-2/ title="2. Getting Data In (GDI) & OTEL" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv443tkosession-2><span>Session 2</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv443tkosession-2docsintro-li>
+<a href=/observability-workshop/v4.43/tko/session-2/docs/intro/ title="GDI - Real Time Enrichment Workshop" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv443tkosession-2docsintro><span>Introduction</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv443tkosession-2docsgetting_started-li>
+<a href=/observability-workshop/v4.43/tko/session-2/docs/getting_started/ title="GDI - Real Time Enrichment Workshop" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv443tkosession-2docsgetting_started><span>Getting started</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv443tkosession-2docsdeploy-li>
+<a href=/observability-workshop/v4.43/tko/session-2/docs/deploy/ title="Deploy complex environments and capture meterics" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv443tkosession-2docsdeploy><span>Deployment</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv443tkosession-2docscode_to_python-li>
+<a href=/observability-workshop/v4.43/tko/session-2/docs/code_to_python/ title="Code to Kubernetes - Python" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv443tkosession-2docscode_to_python><span>Code to Kubernetes</span></a>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv443tkosession-3-li>
+<a href=/observability-workshop/v4.43/tko/session-3/ title="3. ITOps Monitoring Monitoring Monitoring" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv443tkosession-3><span>Session 3</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv443tkosession-4-li>
+<a href=/observability-workshop/v4.43/tko/session-4/ title="4. ITOps - Understanding Event Analytics in Realistic Business Services" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv443tkosession-4><span>Session 4</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv443tkosession-5-li>
+<a href=/observability-workshop/v4.43/tko/session-5/ title="5. How Platform Engineers Observe Kubernetes - Workshop" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv443tkosession-5><span>Session 5</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv443tkosession-5docsdeploy-otel-li>
+<a href=/observability-workshop/v4.43/tko/session-5/docs/deploy-otel/ title="Deploying the OpenTelemetry Collector in Kubernetes using a NameSpace" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv443tkosession-5docsdeploy-otel><span>Deploy the OTel Collector</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-observability-workshopv443tkosession-5docsdeploy-apache-li>
+<a href=/observability-workshop/v4.43/tko/session-5/docs/deploy-apache/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv443tkosession-5docsdeploy-apache><span class=td-sidebar-nav-active-item>Deploying PHP/Apache</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv443tkosession-5docsfix-apache-li>
+<a href=/observability-workshop/v4.43/tko/session-5/docs/fix-apache/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv443tkosession-5docsfix-apache><span>Fix PHP/Apache Issue</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv443tkosession-5docsdeploy-loadgen-li>
+<a href=/observability-workshop/v4.43/tko/session-5/docs/deploy-loadgen/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv443tkosession-5docsdeploy-loadgen><span>Deploy Load Generator</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv443tkosession-5docssetup-hpa-li>
+<a href=/observability-workshop/v4.43/tko/session-5/docs/setup-hpa/ title="Setup Horizontal Pod Autoscaler" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv443tkosession-5docssetup-hpa><span>Setup HPA</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv443tkosession-5docsedit-hpa-li>
+<a href=/observability-workshop/v4.43/tko/session-5/docs/edit-hpa/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv443tkosession-5docsedit-hpa><span>Increase HPA Replicas</span></a>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv443tkosession-6-li>
+<a href=/observability-workshop/v4.43/tko/session-6/ title="6. O11y - Distributed Tracing for modern applications" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv443tkosession-6><span>Session 6</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+<aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+</div>
+<div class=td-toc><nav id=TableOfContents>
+<ul>
+<li><a href=#1--dns-and-services-in-kubernetes>1. DNS and Services in Kubernetes</a></li>
+<li><a href=#2-create-opentelemetry-collector-receiver-for-phpapache>2. Create OpenTelemetry Collector receiver for PHP/Apache</a></li>
+<li><a href=#3--observation-rules-in-the-opentelemetry-config>3. Observation Rules in the OpenTelemetry config</a></li>
+<li><a href=#4-kubernetes-configmaps>4. Kubernetes ConfigMaps</a></li>
+<li><a href=#5-create-phpapache-deployment-yaml>5. Create PHP/Apache Deployment YAML</a></li>
+<li><a href=#6-deploy-phpapache>6. Deploy PHP/Apache</a></li>
+</ul>
+</nav></div>
+</aside>
+<main class="col-12 col-md-9 col-xl-8 pl-md-5" role=main>
+<nav aria-label=breadcrumb class=td-breadcrumbs>
+<ol class=breadcrumb>
+<li class=breadcrumb-item>
+<a href=https://splunk.github.io/observability-workshop/v4.43/tko/>TKO Workshops</a>
+</li>
+<li class=breadcrumb-item>
+<a href=https://splunk.github.io/observability-workshop/v4.43/tko/session-5/>Session 5</a>
+</li>
+<li class="breadcrumb-item active" aria-current=page>
+<a href=https://splunk.github.io/observability-workshop/v4.43/tko/session-5/docs/deploy-apache/>Deploying PHP/Apache</a>
+</li>
+</ol>
+</nav>
+<div class=td-content>
+<h1>Deploying PHP/Apache</h1>
+<header class=article-meta>
+<p class=reading-time><i class="fa fa-clock" aria-hidden=true></i>&nbsp; 3 minute read &nbsp;</p>
+</header>
+<h2 id=1--dns-and-services-in-kubernetes>1. DNS and Services in Kubernetes</h2>
+<p>The Domain Name System (DNS) is a mechanism for linking various sorts of information with easy-to-remember names, such as IP addresses. Using a DNS system to translate request names into IP addresses makes it easy for end-users to reach their target domain name effortlessly.</p>
+<p>Most Kubernetes clusters include an internal DNS service configured by default to offer a lightweight approach for service discovery. Even when pods and services are created, deleted, or shifted between nodes, built-in service discovery simplifies applications to identify and communicate with services on the Kubernetes clusters.</p>
+<p>In short the DNS system for kubernetes will make create a DNS entry for each pod and services. In general a Pod has the following DNS resolution:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>pod-name.my-namespace.pod.cluster-domain.example
+</code></pre></div><p>For example, if a Pod in the default namespace has the Pod name <code>my_pod</code>, and the domain name for your cluster is <code>cluster.local</code>, then the Pod has a DNS name:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>my_pod.default.pod.cluster.local
+</code></pre></div><p>Any Pods exposed by a Service have the following DNS resolution available:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>my_pod.service-name.my-namespace.svc.cluster-domain.example
+</code></pre></div><p>More information can be found here : <a href=https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/ target=_blank>DNS for Service and Pods</a>
+</p>
+<h2 id=2-create-opentelemetry-collector-receiver-for-phpapache>2. Create OpenTelemetry Collector receiver for PHP/Apache</h2>
+<p>Create a new file called <code>otel-apache.yaml</code> with the following contents:</p>
+<ul class="nav nav-tabs" id=tabs-0 role=tablist><li class=nav-item>
+<a class="nav-link active tab-otel-apache.yaml" id=tabs-0-0-tab data-toggle=tab href=#tabs-0-0 role=tab onclick='handleClick("otel-apache.yaml")' aria-controls=tabs-0-0 aria-selected=true>
+otel-apache.yaml
+</a>
+</li></ul>
+<div class=tab-content id=tabs-0-content><div class="tab-pane fade show active" id=tabs-0-0 role=tabpanel aria-labelled-by=tabs-0-0-tab><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#204a87;font-weight:700>agent</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>config</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>receivers</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>receiver_creator</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>        </span><span style=color:#204a87;font-weight:700>receivers</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>          </span><span style=color:#204a87;font-weight:700>smartagent/apache</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>            </span><span style=color:#204a87;font-weight:700>rule</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>type == &#34;port&#34; &amp;&amp; pod.name matches &#34;apache&#34; &amp;&amp; port == 80</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>            </span><span style=color:#204a87;font-weight:700>config</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>              </span><span style=color:#204a87;font-weight:700>type</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>collectd/apache</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>              </span><span style=color:#204a87;font-weight:700>url</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>http://php-apache.apache.svc.cluster.local/server-status?auto</span></code></pre></div></div>
+</div>
+<h2 id=3--observation-rules-in-the-opentelemetry-config>3. Observation Rules in the OpenTelemetry config</h2>
+<p>The above file contains an observation rule for Apache using the OTel <code>receiver_creator</code>. This receiver can instantiate other receivers at runtime based on whether observed endpoints match a configured rule.</p>
+<p>The configured rules will be evaluated for each endpoint discovered. If the rule evaluates to true then the receiver for that rule will be started as configured against the matched endpoint.</p>
+<p>In the file above we tell the OpenTelemetry agent to look for Pods that match the name <code>apache</code> and have port 80 open. Once found, the agent will configure an Apache receiver to read Apache metrics from the configured URL. Note, the K8s DNS based URL in the above YAML for the service.</p>
+<p>To use this the new apache configuration, you can upgrade the existing Splunk OpenTelemetry Collector Helm chart with the following command:</p>
+<ul class="nav nav-tabs" id=tabs-1 role=tablist><li class=nav-item>
+<a class="nav-link active tab-Helm-Upgrade" id=tabs-1-0-tab data-toggle=tab href=#tabs-1-0 role=tab onclick='handleClick("Helm-Upgrade")' aria-controls=tabs-1-0 aria-selected=true>
+Helm Upgrade
+</a>
+</li><li class=nav-item>
+<a class="nav-link tab-Helm-Upgrade-Single-Line" id=tabs-1-1-tab data-toggle=tab href=#tabs-1-1 role=tab onclick='handleClick("Helm-Upgrade-Single-Line")' aria-controls=tabs-1-1 aria-selected=false>
+Helm Upgrade Single Line
+</a>
+</li></ul>
+<div class=tab-content id=tabs-1-content><div class="tab-pane fade show active" id=tabs-1-0 role=tabpanel aria-labelled-by=tabs-1-0-tab><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>helm upgrade splunk-otel-collector \
+--set=&#34;splunkObservability.realm=$REALM&#34; \
+--set=&#34;splunkObservability.accessToken=$ACCESS_TOKEN&#34; \
+--set=&#34;clusterName=$(hostname)-k3s-cluster&#34; \
+--set=&#34;splunkObservability.logsEnabled=true&#34; \
+--set=&#34;clusterReceiver.eventsEnabled=true&#34; \
+--set=&#34;splunkObservability.infrastructureMonitoringEventsEnabled=true&#34; \
+splunk-otel-collector-chart/splunk-otel-collector \
+--namespace splunk \
+-f otel-apache.yaml</code></pre></div></div>
+<div class="tab-pane fade" id=tabs-1-1 role=tabpanel aria-labelled-by=tabs-1-1-tab><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>helm upgrade splunk-otel-collector --set<span style=color:#ce5c00;font-weight:700>=</span><span style=color:#4e9a06>&#34;splunkObservability.realm=</span><span style=color:#000>$REALM</span><span style=color:#4e9a06>&#34;</span> --set<span style=color:#ce5c00;font-weight:700>=</span><span style=color:#4e9a06>&#34;splunkObservability.accessToken=</span><span style=color:#000>$ACCESS_TOKEN</span><span style=color:#4e9a06>&#34;</span> --set<span style=color:#ce5c00;font-weight:700>=</span><span style=color:#4e9a06>&#34;clusterName=</span><span style=color:#204a87;font-weight:700>$(</span>hostname<span style=color:#204a87;font-weight:700>)</span><span style=color:#4e9a06>-k3s-cluster&#34;</span> --set<span style=color:#ce5c00;font-weight:700>=</span><span style=color:#4e9a06>&#34;splunkObservability.logsEnabled=true&#34;</span> --set<span style=color:#ce5c00;font-weight:700>=</span><span style=color:#4e9a06>&#34;clusterReceiver.eventsEnabled=true&#34;</span> --set<span style=color:#ce5c00;font-weight:700>=</span><span style=color:#4e9a06>&#34;splunkObservability.infrastructureMonitoringEventsEnabled=true&#34;</span> splunk-otel-collector-chart/splunk-otel-collector --namespace splunk -f otel-apache.yaml</code></pre></div></div>
+</div>
+<h2 id=4-kubernetes-configmaps>4. Kubernetes ConfigMaps</h2>
+<p>A ConfigMap is an object in Kubernetes consisting of key-value pairs which can be injected into your application. With a ConfigMap you can separate configuration from your Pods.</p>
+<p>This way, you can prevent hardcoding configuration data. ConfigMaps are useful for storing and sharing non-sensitive, unencrypted configuration information.</p>
+<p>The OpenTelemetry collector/agent uses ConfigMaps to store the configuration of the agent and the K8s Cluster receiver. You can/will always verify the current configuration of an agent after a change by running the following commands:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl get cm -n splunk
+</code></pre></div>
+<div class="alert alert-danger" role=alert>
+<p class=alert-heading>Workshop Question</p>
+<div class=alert-body>
+Can you identify the ConfigMap(s) used by the collector??
+</div>
+</div>
+<p>When you have list of Configmaps from the namespace, select the one for the <code>otel-agent</code> and view it with the following command:</p>
+<p><strong>Note:</strong> The option <code>-o yaml</code> will print the content of the ConfigMap in a YAML format.</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl get cm splunk-otel-collector-otel-agent -n splunk -o yaml
+</code></pre></div>
+<div class="alert alert-danger" role=alert>
+<p class=alert-heading>Workshop Question</p>
+<div class=alert-body>
+Is the content of <strong>otel-apache.yaml</strong> saved in the ConfigMap for the collector agent?
+</div>
+</div>
+<h2 id=5-create-phpapache-deployment-yaml>5. Create PHP/Apache Deployment YAML</h2>
+<p>In the terminal window create a new file called <code>php-apache.yaml</code> and copy the following YAML into the file:</p>
+<ul class="nav nav-tabs" id=tabs-4 role=tablist><li class=nav-item>
+<a class="nav-link active tab-php-apache.yaml" id=tabs-4-0-tab data-toggle=tab href=#tabs-4-0 role=tab onclick='handleClick("php-apache.yaml")' aria-controls=tabs-4-0 aria-selected=true>
+php-apache.yaml
+</a>
+</li></ul>
+<div class=tab-content id=tabs-4-content><div class="tab-pane fade show active" id=tabs-4-0 role=tabpanel aria-labelled-by=tabs-4-0-tab><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#204a87;font-weight:700>apiVersion</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>apps/v1</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline></span><span style=color:#204a87;font-weight:700>kind</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>Deployment</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline></span><span style=color:#204a87;font-weight:700>metadata</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>name</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>php-apache</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline></span><span style=color:#204a87;font-weight:700>spec</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>selector</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>matchLabels</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>run</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>php-apache</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>replicas</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#0000cf;font-weight:700>1</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>template</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>metadata</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>labels</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>        </span><span style=color:#204a87;font-weight:700>run</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>php-apache</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>spec</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span><span style=color:#204a87;font-weight:700>containers</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>      </span>- <span style=color:#204a87;font-weight:700>name</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>php-apache</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>        </span><span style=color:#204a87;font-weight:700>image</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>rcastley/php-apache:latest</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>        </span><span style=color:#204a87;font-weight:700>ports</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>        </span>- <span style=color:#204a87;font-weight:700>containerPort</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#0000cf;font-weight:700>80</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>        </span><span style=color:#204a87;font-weight:700>resources</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>          </span><span style=color:#204a87;font-weight:700>limits</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>            </span><span style=color:#204a87;font-weight:700>memory</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;16Mi&#34;</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>            </span><span style=color:#204a87;font-weight:700>cpu</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;8&#34;</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>          </span><span style=color:#204a87;font-weight:700>requests</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>            </span><span style=color:#204a87;font-weight:700>memory</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;10Mi&#34;</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>            </span><span style=color:#204a87;font-weight:700>cpu</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#4e9a06>&#34;6&#34;</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline></span><span style=color:#000>---</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline></span><span style=color:#204a87;font-weight:700>apiVersion</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>v1</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline></span><span style=color:#204a87;font-weight:700>kind</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>Service</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline></span><span style=color:#204a87;font-weight:700>metadata</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>name</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>php-apache</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>labels</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>run</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>php-apache</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline></span><span style=color:#204a87;font-weight:700>spec</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>ports</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>  </span>- <span style=color:#204a87;font-weight:700>port</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#0000cf;font-weight:700>80</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>  </span><span style=color:#204a87;font-weight:700>selector</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline>
+</span><span style=color:#f8f8f8;text-decoration:underline>    </span><span style=color:#204a87;font-weight:700>run</span><span style=color:#000;font-weight:700>:</span><span style=color:#f8f8f8;text-decoration:underline> </span><span style=color:#000>php-apache</span></code></pre></div></div>
+</div>
+<h2 id=6-deploy-phpapache>6. Deploy PHP/Apache</h2>
+<p>Save the above file and deploy the PHP/Apache application to the cluster.</p>
+<p>Create the <code>apache</code> namespace:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl create namespace apache
+</code></pre></div><p>Deploy the PHP/Apache application:</p>
+<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>kubectl apply -f php-apache.yaml -n apache
+</code></pre></div>
+<div class="alert alert-danger" role=alert>
+<p class=alert-heading>Workshop Question</p>
+<div class=alert-body>
+Using the Observability Kubernetes Navigator, can you find the status of the php-apache workload?
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+<footer class="bg-dark py-5 row d-print-none">
+<div class="container-fluid mx-sm-5">
+<div class=row>
+<div class="col-6 col-sm-4 text-xs-center order-sm-2">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=Twitter aria-label=Twitter>
+<a class=text-white target=_blank rel=noopener href=https://twitter.com/splunk aria-label=Twitter>
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=GitHub aria-label=GitHub>
+<a class=text-white target=_blank rel=noopener href=https://github.com/splunk/observability-workshop aria-label=GitHub>
+<i class="fab fa-github"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-12 col-sm-4 text-center py-2 order-sm-2">
+<small class=text-white>&copy; 2023 Splunk Inc. All Rights Reserved</small>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js integrity=sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin=anonymous></script>
+<script src=/observability-workshop/v4.43/js/tabpane-persist.js></script>
+<script src=/observability-workshop/v4.43/js/main.min.8ab8f81ff7e1454d30024cd6f956d4d341c3a97e2a673f988065f2ee4e147922.js integrity="sha256-irj4H/fhRU0wAkzW+VbU00HDqX4qZz+YgGXy7k4UeSI=" crossorigin=anonymous></script>
+<script>const svgCopy='<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg>',svgCheck='<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"><path fill-rule="evenodd" fill="rgb(63, 185, 80)" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>',addCopyButtons=a=>{document.querySelectorAll("pre > code").forEach(c=>{const b=document.createElement("button");b.className="clipboard-button",b.type="button",b.innerHTML=svgCopy,b.addEventListener("click",()=>{a.writeText(c.innerText).then(()=>{b.blur(),b.innerHTML=svgCheck,setTimeout(()=>b.innerHTML=svgCopy,2e3)},a=>b.innerHTML="Error")});const d=c.parentNode;d.parentNode.insertBefore(b,d)})};if(navigator&&navigator.clipboard)addCopyButtons(navigator.clipboard);else{const a=document.createElement("script");a.src="https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/2.7.0/clipboard-polyfill.promise.js",a.integrity="sha256-waClS2re9NUbXRsryKoof+F9qc1gjjIhc2eT7ZbIv94=",a.crossOrigin="anonymous",a.onload=()=>addCopyButtons(clipboard),document.body.appendChild(a)}</script>
+</body>
+</html>

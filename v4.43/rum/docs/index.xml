@@ -1,0 +1,453 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Observability Cloud Workshops – RUM Workshop</title><link>https://splunk.github.io/observability-workshop/v4.43/rum/docs/</link><description>Recent content in RUM Workshop on Splunk Observability Cloud Workshops</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://splunk.github.io/observability-workshop/v4.43/rum/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Rum: Example of RUM enablement in your Website</title><link>https://splunk.github.io/observability-workshop/v4.43/rum/docs/setup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.43/rum/docs/setup/</guid><description>
+&lt;ul>
+&lt;li>Check the original HEAD section of your Online-boutique webpage (or use the examples here) in your browser&lt;/li>
+&lt;li>Find the Web address of your workshop hosts Online Boutique&lt;/li>
+&lt;li>Compare the changes made to the hosts Online-Boutique and compare with the base one.&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="1-review-the-original-code-of-your-non-rum-online-boutique">1. Review the original code of your NON RUM Online-Boutique&lt;/h2>
+&lt;p>If you have access to an EC2 instance and have previously installed the Online Boutique as part of the APM session, you can view it on port 81 of the EC2 instance&amp;rsquo;s IP address.&lt;/p>
+&lt;p>If you have not got access to an EC2 instance with the Online Boutique installed then your workshop instructor will provide you with the Online Boutique URL that does not have RUM installed so that you can complete the next steps.&lt;/p>
+&lt;h2 id="2-obtain-rum-access-token">2. Obtain RUM Access Token&lt;/h2>
+&lt;p>As this Deployment we are about to do is also used as part of the RUM workshop section, you will need to obtain your RUM Access Token from the Splunk UI. You can find the workshop Access Token by clicking &lt;strong>&amp;raquo;&lt;/strong> bottom left or the &lt;img src="../../images/setting.png" alt="settings"> menu option and then selecting &lt;strong>Settings → Access Tokens&lt;/strong>.&lt;/p>
+&lt;p>Expand the RUM workshop token that your host has instructed you to use e.g. &lt;strong>O11y-Workshop-RUM-TOKEN&lt;/strong>, then click on &lt;strong>Show Token&lt;/strong> to expose your token. Click the
+&lt;strong class="label-button ui-button-grey" role="label-button">
+Copy
+&lt;/strong>
+&amp;nbsp; button to copy to clipboard. Please do not use the &lt;strong>Default&lt;/strong> token! Make sure the token has RUM as its Authorization Scope.&lt;/p>
+&lt;p>&lt;img src="../../../images/RUM-Access-Token.png" alt="Access Token">&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+&lt;p class="alert-heading">Please do not attempt to create your own token&lt;/p>
+&lt;div class="alert-body">
+We have created a RUM Token specifically for this workshop with the appropriate settings for the exercises you will be performing
+&lt;/div>
+&lt;/div>
+&lt;p>Create the &lt;code>RUM_TOKEN&lt;/code> environment variable to use in the proceeding shell script to personalize your deployment.&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-2" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Export-Variables"
+id="tabs-2-0-tab" data-toggle="tab" href="#tabs-2-0" role="tab" onclick="handleClick(&amp;#34;Export-Variables&amp;#34;);"
+aria-controls="tabs-2-0" aria-selected="true">
+Export Variables
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-2-content">&lt;div class="tab-pane fade show active"
+id="tabs-2-0" role="tabpanel" aria-labelled-by="tabs-2-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">RUM_TOKEN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;replace_with_O11y-Workshop-RUM-TOKEN&amp;gt;&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;h2 id="2-deploy-online-boutique">2. Deploy Online Boutique&lt;/h2>
+&lt;p>To deploy the Online Boutique application into K3s, run the apm config script, then apply the deployment:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-3" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Deploy-Online-Boutique"
+id="tabs-3-0-tab" data-toggle="tab" href="#tabs-3-0" role="tab" onclick="handleClick(&amp;#34;Deploy-Online-Boutique&amp;#34;);"
+aria-controls="tabs-3-0" aria-selected="true">
+Deploy Online Boutique
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-Deployment-Output"
+id="tabs-3-1-tab" data-toggle="tab" href="#tabs-3-1" role="tab" onclick="handleClick(&amp;#34;Deployment-Output&amp;#34;);"
+aria-controls="tabs-3-1" aria-selected="false">
+Deployment Output
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-3-content">&lt;div class="tab-pane fade show active"
+id="tabs-3-0" role="tabpanel" aria-labelled-by="tabs-3-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#204a87">cd&lt;/span> ~/workshop/apm
+./apm-config.sh -r
+kubectl apply -f deployment.yaml&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-3-1" role="tabpanel" aria-labelled-by="tabs-3-1-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">deployment.apps/checkoutservice created
+service/checkoutservice created
+deployment.apps/redis-cart created
+service/redis-cart created
+deployment.apps/productcatalogservice created
+service/productcatalogservice created
+deployment.apps/loadgenerator created
+service/loadgenerator created
+deployment.apps/frontend created
+service/frontend created
+service/frontend-external created
+deployment.apps/paymentservice created
+service/paymentservice created
+deployment.apps/emailservice created
+service/emailservice created
+deployment.apps/adservice created
+service/adservice created
+deployment.apps/cartservice created
+service/cartservice created
+deployment.apps/recommendationservice created
+service/recommendationservice created
+deployment.apps/shippingservice created
+service/shippingservice created
+deployment.apps/currencyservice created
+service/currencyservice created&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;div class="alert alert-warning" role="alert">
+&lt;p class="alert-heading">In case of a message about a VARIABLE being unset&lt;/p>
+&lt;div class="alert-body">
+Please undeploy the APM environment by running &lt;strong>kubectl delete -f deployment.yaml&lt;/strong>&lt;/br>
+Before exporting the variable as described in the guide and rerunning the deployment script above.
+&lt;/div>
+&lt;/div>
+&lt;p>Open your web browser and go to the Online Boutique. (The one you previously used, or the one provided by the Workshop instructor). You will see the Non RUM Online Boutique running.&lt;/p>
+&lt;p>&lt;img src="../../images/online-boutique.png" alt="Online Boutique">&lt;/p>
+&lt;p>Follow the instructions for your preferred browser below:&lt;/p>
+&lt;h3 id="11-chrome-firefox---microsoft-edge-users---check-the-web-page-source">1.1 Chrome, FireFox &amp;amp; Microsoft Edge Users - Check the Web page source&lt;/h3>
+&lt;p>In Chrome &amp;amp; Firefox or Microsoft Edge you can right click on the Online-Boutique site, you will have an option to &lt;strong>&amp;ldquo;View Page Source&amp;rdquo;&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="../../images/Chrome-1.png" alt="Chrome-see-source">&lt;/p>
+&lt;p>Selecting it will show you the HTML page source code in a separate Tab.&lt;/p>
+&lt;p>&lt;img src="../../images/Chrome-html.png" alt="Chrome-see-html">&lt;/p>
+&lt;p>If successful you can skip to &lt;a href="../RUM-Setup/#2-review-the-unchanged-head-section">2 - Review the unchanged HEAD section.&lt;/a>
+&lt;/p>
+&lt;h3 id="12-safari-users---check-the-web-page-source">1.2 Safari Users - Check the Web page source&lt;/h3>
+&lt;p>For Safari users, you may have to enable the extra menu in Safari by selecting &lt;strong>&amp;lsquo;Preferences&amp;rsquo;&lt;/strong> under &lt;em>Safari&lt;/em> in the OS X menu bar.&lt;/p>
+&lt;p>&lt;img src="../../images/Safari-1.png" alt="Safari-1">&lt;/p>
+&lt;p>Then in the dialog that pops up, under the &lt;strong>&amp;lsquo;Advanced&amp;rsquo;&lt;/strong> pane select the checkbox that says &lt;strong>&amp;lsquo;Show Develop menu in menu bar. &amp;lsquo;&lt;/strong> and close the Dialog box.&lt;/p>
+&lt;p>&lt;img src="../../images/Safari-2.png" alt="Safari-2">&lt;/p>
+&lt;p>You can now right click on the Online-Boutique and you now will have an option &lt;strong>&amp;lsquo;Show Page Source&amp;rsquo;&lt;/strong>.&lt;/p>
+&lt;p>&lt;img src="../../images/Safari-3.png" alt="Safari-3">&lt;/p>
+&lt;p>If you select that option on the Online-Boutique you will see the HTML source code as shown below:&lt;/p>
+&lt;p>&lt;img src="../../images/Safari-html.png" alt="Safari-html">&lt;/p>
+&lt;p>If successful you can skip to &lt;a href="../RUM-Setup/#2-review-the-unchanged-head-section">2 - Review the unchanged HEAD section.&lt;/a>
+&lt;/p>
+&lt;h3 id="13-internet-explorer-users---check-the-web-page-source">1.3 Internet Explorer Users - Check the Web page source&lt;/h3>
+&lt;p>For Internet Explorer 11 Users, you may have trouble with this exercise as it will require a specific version of the Splunk Open Telemetry Javascript for Web/RUM.&lt;/p>
+&lt;p>However you will be able to see the changes required by right clicking on the Online-Boutique site, you see an option to &lt;strong>&amp;ldquo;View Source&amp;rdquo;&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="../../images/IE-1.png" alt="IE-1">&lt;/p>
+&lt;p>If you select that option on the Online-Boutique you will see the HTML source code as shown below:&lt;/p>
+&lt;p>&lt;img src="../../images/IE-2.png" alt="IE-2">&lt;/p>
+&lt;h2 id="2----review-the-unchanged-head-section">2 - Review the unchanged HEAD section&lt;/h2>
+&lt;p>The changes for RUM will be placed in the HEAD section of your Web page, Below are the original lines as you should have it in your local Base version.&lt;/p>
+&lt;p>&lt;img src="../../images/ViewBase-HEAD-html.png" alt="Online Boutique">&lt;/p>
+&lt;p>There is no reference to the Splunk or Open Telemetry Beacon (The function that is used to send RUM Metrics and Traces )&lt;/p>
+&lt;h2 id="3-find-the-web-url-of-the-rum-enabled-online-boutique">3. Find the web (URL) of the RUM enabled Online Boutique&lt;/h2>
+&lt;p>The Online Boutique we are going to use for RUM is viewable on port 81 of the RUM Enabled instance&amp;rsquo;s IP address and the url will be provided to you by the workshop instructor at this point.&lt;/p>
+&lt;p>We are all connecting to the extra RUM Enabled Online Boutique provided by the workshops instructor for this RUM session. Open a new web browser and go to &lt;code>http://{==RUM-HOST-EC2-IP==}:81/&lt;/code> where you will then be able to see the RUM enabled Online Boutique running. Again, view the source of the HTML Page as described in the previous section:&lt;/p>
+&lt;h2 id="4--review-the-changes-made-to-enable-rum-in-the-head-section-of-the-rum-enabled-online-boutique">4. Review the Changes made to enable RUM in the HEAD section of the RUM enabled Online-Boutique&lt;/h2>
+&lt;p>The changes needed for RUM are placed in the HEAD section of the hosts Web page, Below is the hosts updated HEAD section with the changes required to enable RUM:&lt;/p>
+&lt;p>&lt;img src="../../images/ViewRUM-HEAD-html.png" alt="Online Boutique">&lt;/p>
+&lt;p>The first three lines (marked in red) have been added to the HEAD section of the host Web page to enable RUM Tracing, the last three (marked in blue) are optional and used to enable Custom RUM events.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-html" data-lang="html">&lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">script&lt;/span> &lt;span style="color:#c4a000">src&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js&amp;#34;&lt;/span> &lt;span style="color:#c4a000">type&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;text/javascript&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;&amp;lt;/&lt;/span>&lt;span style="color:#204a87;font-weight:bold">script&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">script&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;&lt;/span>&lt;span style="color:#204a87">window&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">SplunkRum&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#204a87">window&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">SplunkRum&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">init&lt;/span>&lt;span style="color:#000;font-weight:bold">({&lt;/span>&lt;span style="color:#000">beaconUrl&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;https://rum-ingest.eu0.signalfx.com/v1/rum&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#000">rumAuth&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1wCqZVUWIP5XSdNjPoQRFg&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">app&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ksnq-rum-app&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">environment&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ksnq-rum-env&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">});&amp;lt;/&lt;/span>&lt;span style="color:#204a87;font-weight:bold">script&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">script&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">const&lt;/span> &lt;span style="color:#000">Provider&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">SplunkRum&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">provider&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">var&lt;/span> &lt;span style="color:#000">tracer&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">Provider&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">getTracer&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;appModuleLoader&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">);&lt;/span>
+&lt;span style="color:#000;font-weight:bold">&amp;lt;/&lt;/span>&lt;span style="color:#204a87;font-weight:bold">script&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>The first part is to indicate where to download the Splunk Open Telemetry Javascript file from: &lt;em>&lt;a href="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" target="_blank">https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js&lt;/a>
+&lt;/em> (This can also be loaded locally if so required)&lt;/li>
+&lt;li>The second line defines the location where to send the traces to in the beacon url: &lt;code>{beaconUrl: &amp;quot;https://rum-ingest.eu0.signalfx.com/v1/rum&amp;quot;&lt;/code>&lt;/li>
+&lt;li>It also adds an Access Token to : &lt;code>rumAuth: &amp;quot;1wCqZVUWIP5XSdNjPoQRFg&amp;quot;&lt;/code> (this of course is an example, you can create multiple RUM Access Tokens for all your applications)&lt;/li>
+&lt;li>And it is used to add identification tags like the application Name and environment to the RUM trace for use in the SPLUNK RUM UI: &lt;code>app: &amp;quot;ksnq-rum-app&amp;quot;, environment: &amp;quot;ksnq-rum-env&amp;quot;}&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;div class="alert alert-info" role="alert">
+&lt;p class="alert-heading">Info&lt;/p>
+&lt;div class="alert-body">
+In this example the app name is &lt;strong>ksnq-rum-app&lt;/strong>, this will be different in the Workshop. Check with your host what the app name and environment to use in the RUM session will be and make a note of it!
+&lt;/div>
+&lt;/div>
+&lt;p>The above two lines are all that is required to enable RUM on your website!&lt;/p>
+&lt;p>The (blue) optional section that uses &lt;code>var tracer=Provider.getTracer('appModuleLoader');&lt;/code> will add a custom event for every page change allow you to better track your website conversions and usage.&lt;/p></description></item><item><title>Rum: Reviewing the RUM Landing Page</title><link>https://splunk.github.io/observability-workshop/v4.43/rum/docs/rum-landing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.43/rum/docs/rum-landing/</guid><description>
+&lt;ul>
+&lt;li>Visit the RUM landing page and and check the overview of the performance of all your RUM enabled applications with the Application Summary Dashboard (Both Mobile and Web based)&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="1-visit-the-rum-landing-page">1. Visit the RUM Landing Page&lt;/h2>
+&lt;p>Login into your Splunk IMT/APM/RUM Website. From the left side menu bar select &lt;strong>RUM&lt;/strong> &lt;img src="../../images/RUM_ico.png" alt="RUM-ico">. This will bring you to your the RUM Landing Page.&lt;/p>
+&lt;p>The goal of this page is to give you in a single page, a clear indication of the health, performance and potential errors found in your application(s) and allow you to dive deeper into the information about your User Sessions collected from your web page/App. You will have a pane for each of your active RUM applications. (The view below is the default expanded view)&lt;/p>
+&lt;p>&lt;img src="../../images/Applicationsummarydashboard.png" alt="RUM-App-sum">&lt;/p>
+&lt;p>If you have multiple applications, (which will be the case when every attendee is using their own ec2 instance for the RUM workshop), the pane view may be automatically reduced by collapsing the panes as shown below:&lt;/p>
+&lt;p>&lt;img src="../../images/multiple_apps_collapsed.png" alt="RUM-App-sum-collapsed">&lt;/p>
+&lt;p>You can expanded a condensed RUM Application Summary View to the full dashboard by clicking on the small browser &lt;img src="../../images/browser.png" alt="RUM-browser"> or Mobile &lt;img src="../../images/mobile.png" alt="RUM-mobile">icon. (Depending on the type of application: &lt;em>Mobile&lt;/em> or &lt;em>Browser&lt;/em> based) on the left in front of the applications name, highlighted by the red arrow.&lt;/p>
+&lt;p>First find the right application to use for the workshop:&lt;/p>
+&lt;p>If you are participating in a stand alone RUM workshop, the workshop leader will tell you the name of the application to use, in the case of a combined workshop, it will follow the naming convention we used for IMT and APM and use the ec2 node name as a unique id like &lt;strong>jmcj-rum-app&lt;/strong> as shown as the last app in the screenshot above.&lt;/p>
+&lt;h2 id="2-configure-the-rum-application-summary-dashboard-header-section">2. Configure the RUM Application Summary Dashboard Header Section&lt;/h2>
+&lt;p>RUM Application Summary Dashboard consists of 6 major sections. The first is the selection header, where you can set/filter a number of options:&lt;/p>
+&lt;ul>
+&lt;li>A drop down for the &lt;strong>Time Window&lt;/strong> you&amp;rsquo;re reviewing (You are looking at the past 15 minutes by default)&lt;/li>
+&lt;li>A drop down to select the &lt;strong>Environment&lt;/strong>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup> you want to look at. This allows you to focus on just the subset of applications belonging to that environment, or Select all to view all available.&lt;/li>
+&lt;li>A drop down list with the various &lt;strong>Apps&lt;/strong> being monitored. You can use the one provided by the workshop host or select your own. This will focus you on just one application.&lt;/li>
+&lt;li>A drop down to select the &lt;strong>Source&lt;/strong>, &lt;em>Browser&lt;/em> or &lt;em>Mobile&lt;/em> applications to view. For the Workshop leave &lt;em>All&lt;/em> selected.&lt;/li>
+&lt;li>A hamburger menu located at the right of the header allowing you to configure some settings of your Splunk RUM application. (We will visit this in a later section).&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="../../images/RUM_SummaryHeader.png" alt="RUM-SummaryHeader">&lt;/p>
+&lt;p>For the workshop lets do a deeper dive into the Application Summary screen in the next section: &lt;a href="../browserapp-summary/">Check Health Browser Application&lt;/a>
+&lt;/p>
+&lt;hr>
+&lt;section class="footnotes" role="doc-endnotes">
+&lt;hr>
+&lt;ol>
+&lt;li id="fn:1" role="doc-endnote">
+&lt;p>A deployment environment is a distinct deployment of your system or application that allows you to set up configurations that don’t overlap with configurations in other deployments of the same application. Separate deployment environments are often used for different stages of the development process, such as development, staging, and production.&lt;/br>&lt;/br>A common application deployment pattern is to have multiple, distinct application environments that don’t interact directly with each other but that are all being monitored by Splunk APM or RUM: for instance, quality assurance (QA) and production environments, or multiple distinct deployments in different datacenters, regions or cloud providers.
+&lt;a href="http://nebezb.com/" target="_blank">&lt;/a>
+&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/section></description></item><item><title>Rum: Check Browser Applications health at a glance</title><link>https://splunk.github.io/observability-workshop/v4.43/rum/docs/browser-app-summary/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.43/rum/docs/browser-app-summary/</guid><description>
+&lt;ul>
+&lt;li>Get familiar with the UI and options available from this landing page&lt;/li>
+&lt;li>Identify Page Views/Errors and Request/Errors and Java Script Errors in a single view &lt;/br>
+Check the Web Vitals metrics and any Detector that has fired for in relation to your Browser Application&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="1-application-summary-dashboard-overview">1. Application Summary Dashboard Overview&lt;/h2>
+&lt;h3 id="11-header-bar">1.1. Header Bar&lt;/h3>
+&lt;p>As seen in the previous section the RUM Application Summary Dashboard consists of 5 major sections.&lt;/br>
+The first section is the selection header, where you can collapse the Pane via the &lt;img src="../../images/browser.png" alt="RUM-browser"> Browser icon or the &lt;strong>&amp;gt;&lt;/strong> in front of the application name, which is &lt;em>jmcj-rum-app&lt;/em> in the example below. It also provides access to the &lt;em>Application Overview&lt;/em> page if you click the link with your application name which is &lt;em>jmcj-rum-app&lt;/em> in the example below.&lt;/p>
+&lt;p>Further, you can also open the &lt;em>Application Overview&lt;/em> or &lt;em>App Health Dashboard&lt;/em> via the triple dot &lt;img src="../../images/trippleburger.png" alt="trippleburger"> menu on the right.&lt;/p>
+&lt;p>&lt;img src="../../images/summaryHeader.png" alt="RUM-SummaryHeader">&lt;/p>
+&lt;p>First use the &lt;em>View Dashboard&lt;/em> link to open the Browser App Health Dashboard which should open in a new tab. Then switch back to original RUM tab, and then use the &lt;em>Open Application Overview&lt;/em> link, or click on the name of the app to launch the Application Overview dashboard.&lt;/p>
+&lt;p>We will looking at the &lt;em>Application Overview&lt;/em> and &lt;em>Browser App Health&lt;/em> Dashboards in detail in the following sections.&lt;/p>
+&lt;h2 id="2-application-overview">2. Application Overview&lt;/h2>
+&lt;p>The RUM Application Overview Dashboard is focused on providing you with &lt;em>at a glance&lt;/em> overview of the status of your application.&lt;/p>
+&lt;h3 id="21-page-views--errors--network-requests--errors">2.1. Page Views / Errors &amp;amp; Network Requests / Errors&lt;/h3>
+&lt;p>The first section shows &lt;em>Page Views / Errors&lt;/em>, &amp;amp; &lt;em>Network Requests and Errors&lt;/em> charts show the quantity and trend of these issues in your application. This could be Javascript errors, or failed network calls to back end services.&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-Chart.png" alt="RUM-chart">&lt;/p>
+&lt;p>In the example above you can see that there are no failed network calls in the Network chart, but in the Page View chart you can see that a number of pages do experience some errors. These are often not visible for regular users, but can seriously impact the performance of your web site.&lt;/p>
+&lt;p>You can see the count of the Page Views / Network Requests / Errors by hovering over the charts.&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-Chart-Clicked.png" alt="RUM-chart-clicked">&lt;/p>
+&lt;h3 id="22-javascript-errors">2.2. JavaScript Errors&lt;/h3>
+&lt;p>With the second section of the RUM Application Summary Dashboard we are showing you an overview of the JavaScript errors occurring in your application, along with a count of each error.&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-Javascripterrors.png" alt="RUM-javascript">&lt;/p>
+&lt;p>In the example above you can see there are three JavaScript errors, one that appears 29 times in the selected time slot, and the other two each appear 12 times.&lt;/p>
+&lt;p>If you click on one of the errors a pop-out opens that will show a summary (below) of the errors over time, along with a Stack Trace of the JavaScript error, giving you an indication of where the problems occurred. (We will see this in more detail in one of the following sections)&lt;/p>
+&lt;p>&lt;img src="../../images/expandedRUmJAVAscript-error.png" alt="RUM-javascript-chart">&lt;/p>
+&lt;h3 id="23-web-vitals">2.3. Web Vitals&lt;/h3>
+&lt;p>The third section of the RUM Application Summary Dashboard is showing you the crucial (google) Web Vitals, three metrics, that are used by Google in its ranking system, and give a very good indication of the speed of your site for your end users.&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-QuickWebVitals.png" alt="WEB-vitals">&lt;/p>
+&lt;p>As you can see our site is well behaved and scores &lt;em>Good&lt;/em> for all three Metrics. These metrics can be used to identify the effect changes to your application have, and help you improve the performance of your site.&lt;/p>
+&lt;p>If you click on any of the Metrics shown in the Web Vitals pane you will be taken to the corresponding Tag Spotlight Dashboard. e.g. clicking on the &lt;strong>Largest Contentful Paint (LCP)&lt;/strong> chartlet, you will be taken to a dashboard similar to the screen shot below, that gives you timeline and table views for how this metric has performed. This should allow you to spot trends and identify where the problem may be more common, such as an OS or browser version, .&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-Tag-Spotlight.png" alt="WEB-vitals-tag">&lt;/p>
+&lt;h3 id="24-most-recent-detectors">2.4. Most Recent Detectors&lt;/h3>
+&lt;p>The fourth and final section of the RUM Application Summary Dashboard is focused on providing you an overview of any detector that has triggered for your application. We have created a detector for this screen shot but your pane will be empty for now, but we will add some detectors to your site and make sure they are triggered in one of the next sections.&lt;/p>
+&lt;p>&lt;img src="../../images/rum-detector.png" alt="detectors">&lt;/p>
+&lt;p>In the screen shot you can see we have a critical alert for the &lt;em>RUM Aggregated View Detector&lt;/em>, and a Count, how often this alert has triggered in the selected time window. If you happen to have an alert listed, you can click on the name of the Alert (that is shown as a blue link) and you will be taken to the Alert Overview page showing the details of the alert (Note: this will move you away from the current page, Please use the &lt;strong>Back&lt;/strong> option of your browser to return to the overview page).&lt;/p>
+&lt;p>&lt;img src="../../images/click-alert.png" alt="alert">&lt;/p>
+&lt;hr>
+&lt;p>Please take a few minutes to experiment with the RUM Application Summary Dashboard and the underlying chart and dashboards before going on to the next section.&lt;/p></description></item><item><title>Rum: Analyzing RUM Metrics</title><link>https://splunk.github.io/observability-workshop/v4.43/rum/docs/analyzing-metrics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.43/rum/docs/analyzing-metrics/</guid><description>
+&lt;ul>
+&lt;li>See RUM Metrics and Session information in the RUM UI&lt;/li>
+&lt;li>See correlated APM traces in the RUM &amp;amp; APM UI&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="1-rum-overview-pages">1. RUM Overview Pages&lt;/h2>
+&lt;p>From your RUM Application Summary Dashboard you can see detailed information by opening the Application Overview Page via the tripple dot &lt;img src="../../images/trippleburger.png" alt="trippleburger"> menu on the right by selecting &lt;em>Open Application Overview&lt;/em> or by clicking the link with your application name which is &lt;em>jmcj-rum-app&lt;/em> in the example below.&lt;/p>
+&lt;p>&lt;img src="../../images/summaryHeader.png" alt="RUM-SummaryHeader">&lt;/p>
+&lt;p>This will take you to the RUM Application Overview Page screen as shown below.&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-1.png" alt="RUM-1">&lt;/p>
+&lt;h2 id="2-rum-browser-overview">2. RUM Browser Overview&lt;/h2>
+&lt;h3 id="21-header">2.1. Header&lt;/h3>
+&lt;p>The RUM UI consists of 6 major sections. The first is the selection header, where you can set/filter a number of options:&lt;/p>
+&lt;ul>
+&lt;li>A drop down for the time window you&amp;rsquo;re reviewing (You are looking at the past hour in this case)&lt;/li>
+&lt;li>A drop down to select the Comparison window (You are comparing current performance on a rolling window - in this case compared to 1 hour ago)&lt;/li>
+&lt;li>A drop down with the available Environments to view: (Choose the one provided by the workshop host or &lt;em>All&lt;/em> like in the example)&lt;/li>
+&lt;li>A drop down list with the Various Web apps (You can use the one provided by the workshop host or use &lt;em>All&lt;/em>)&lt;/li>
+&lt;li>&lt;em>&lt;strong>Optionally&lt;/strong>&lt;/em> a drop down to select Browser or Mobile metrics (&lt;em>Might not be available in your workshop&lt;/em>)&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="../../images/RUM-Header.png" alt="RUM-Header">&lt;/p>
+&lt;h3 id="22-overview-pane">2.2. Overview Pane&lt;/h3>
+&lt;p>The Overview Panes, down the left hand side of the page, give you a summary of the pages which have increased load times.&lt;/p>
+&lt;p>In the example here you can see that the &lt;strong>checkout&lt;/strong> and &lt;strong>cart&lt;/strong> pages have errors due to the yellow triangles, and you can see that the load time has increased by 2.38 to 5.50 seconds.&lt;/p>
+&lt;!-- ![RUM-Top](../../images/RUM-TOP.png) -->
+&lt;p>&lt;img src="../../images/RUM-Page-Load-Times.png" alt="RUM-Top">&lt;/p>
+&lt;p>You also see an overview of the number of Front end Error and Backend Errors per minute, and we appear to have three JavaScript errors on our site.&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-JS-Errors.png" alt="RUM-Top">&lt;/p>
+&lt;p>The last two panes show you the &lt;strong>Top Page Views&lt;/strong> and the &lt;strong>Top Network Requests&lt;/strong>.&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-Page-Views-Network.png" alt="RUM-Top">&lt;/p>
+&lt;h3 id="23-key-metrics-pane">2.3. Key Metrics Pane&lt;/h3>
+&lt;p>The Key Metrics View is the location where you will find the metrics for the number of
+&lt;strong>JavaScript Errors&lt;/strong> per second, &lt;strong>Network Errors&lt;/strong> per second an the &lt;strong>Backend/Resource Request Duration&lt;/strong>.
+These Metrics are very useful to guide you to the location of an issue if you are experiencing problems with your site.&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-Key-Metrics.png" alt="RUM-KeyMetrics">&lt;/p>
+&lt;h3 id="24-web-vitals-pane">2.4. Web Vitals Pane&lt;/h3>
+&lt;p>The Web Vitals view is the location where you go if you wish to get insight into the experience you are delivering to your End users based on Web Vitals metrics.
+Web Vitals is an initiative by Google to provide unified guidance for quality signals that are essential to delivering a great user experience on the web and focuses on three key parameters:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Largest Contentful Paint (LCP)&lt;/strong>, measures loading performance. To provide a good user experience, LCP should occur within 2.5 seconds of when the page first starts loading.&lt;/li>
+&lt;li>&lt;strong>First Input Delay (FID)&lt;/strong>, measures interactivity. To provide a good user experience, pages should have a FID of 100 milliseconds or less.&lt;/li>
+&lt;li>&lt;strong>Cumulative Layout Shift (CLS)&lt;/strong>, measures visual stability. To provide a good user experience, pages should maintain a CLS of 0.1. or less.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="../../images/RUM-Web-Vitals.png" alt="RUM-WebVitals">&lt;/p>
+&lt;h3 id="25-other-metrics-pane">2.5. Other Metrics Pane&lt;/h3>
+&lt;p>The Other Metrics Pane is the location where you find other performance metrics, with a focus on initial load time of your page or tasks that are taking too long to complete.&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Time To First Byte (TTFB)&lt;/strong>, measures how long it takes for a client&amp;rsquo;s browser to receive the first byte of the response from the server. The longer it takes for the server to process the request and send a response, the slower your visitors' browser is at displaying your page.&lt;/li>
+&lt;li>&lt;strong>Long Task Duration&lt;/strong>, a performance metric that can be used help developers to understand the bad user experience on the website, or can be an indication of a problem.&lt;/li>
+&lt;li>&lt;strong>Long Task Count&lt;/strong>, a metric to indicate how often a long task occurs, again used for exploring user experiences or problem detection.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="../../images/RUM-Other.png" alt="RUM-Other">&lt;/p>
+&lt;h3 id="26-custom-event-pane">2.6. Custom Event Pane&lt;/h3>
+&lt;p>The Custom Event View is the location where you will find the metrics for any event you may have added yourself to the web pages you are monitoring.&lt;/p>
+&lt;p>As we have seen in the RUM enabled website, we have added the following two lines:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="color:#204a87;font-weight:bold">const&lt;/span> &lt;span style="color:#000">Provider&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">SplunkRum&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">provider&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">var&lt;/span> &lt;span style="color:#000">tracer&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">Provider&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">getTracer&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;appModuleLoader&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>These lines will automatically create custom Events for every new Page, and you can also add these to pieces of custom code that are not part of a framework or an event you created so you can better understand the flow though your application. We support &lt;strong>Custom Event Requests&lt;/strong>, &lt;strong>Custom Event Error Rates&lt;/strong> and &lt;strong>Custom Event Latency&lt;/strong> metrics.&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-Custom-Events.png" alt="RUM-CustomMetrics">&lt;/p></description></item><item><title>Rum: Analyzing RUM Tags in the Tag Spotlight view</title><link>https://splunk.github.io/observability-workshop/v4.43/rum/docs/tag-spotlight/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.43/rum/docs/tag-spotlight/</guid><description>
+&lt;ul>
+&lt;li>Look into the Metrics views for the various endpoints and use the Tags sent via the Tag spotlight for deeper analysis&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="1-find-an-url-for-the-cart-endpoint">1. Find an url for the Cart endpoint&lt;/h2>
+&lt;p>From the RUM Overview page, please select the url for the &lt;strong>Cart&lt;/strong> endpoint to dive deeper into the information available for this endpoint.&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-select-cart.png" alt="RUM-Cart2">&lt;/p>
+&lt;p>Once you have selected and clicked on the blue url, you will find yourself in the &lt;strong>Tag Spotlight&lt;/strong> overview&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-TAG-Overview.png" alt="RUM-Tag">&lt;/p>
+&lt;p>Here you will see all of the tags that have been sent to Splunk RUM as part of the RUM traces. The tags displayed will be relevant to the overview that you have selected. These are generic Tags created automatically when the Trace was sent, and additional Tags you have added to the trace as part of the configuration of your website.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;p class="alert-heading">Additional Tags&lt;/p>
+&lt;div class="alert-body">
+We are already sending two additional tags, you have seen them defined in the &lt;em>Beacon url&lt;/em> that was added to your website: &lt;em>app: &amp;ldquo;[nodename]-rum-app&amp;rdquo;, environment: &amp;ldquo;[nodename]-rum-env&amp;rdquo;&lt;/em> in the first section of this workshop! You can add additional tags in a similar way.
+&lt;/div>
+&lt;/div>
+&lt;p>In our example we have selected the &lt;strong>Document Load Latency&lt;/strong> view as shown here:&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-Selection.png" alt="RUM-Header">&lt;/p>
+&lt;p>You can select any of the following Tag views, each focused on a specific metric.&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-Tag-views.png" alt="RUM-views">&lt;/p>
+&lt;hr>
+&lt;h2 id="2-explore-the-information-in-the-tag-spotlight-view">2. Explore the information in the Tag Spotlight view&lt;/h2>
+&lt;p>The Tag spotlight is designed to help you identify problems, either through the chart view,, where you may quickly identify outliers or via the TAGs.&lt;/p>
+&lt;p>In the &lt;strong>Document Load Latency&lt;/strong> view, if you look at the &lt;strong>Browser&lt;/strong>, &lt;strong>Browser Version&lt;/strong> &amp;amp; &lt;strong>OS Name&lt;/strong> Tag views,you can see the various browser types and versions, as well as for the underlying OS.&lt;/p>
+&lt;p>This makes it easy to identify problems related to specific browser or OS versions, as they would be highlighted.&lt;/p>
+&lt;p>&lt;img src="../../images/RUMBrowserTags.png" alt="RUM-Tag2">&lt;/p>
+&lt;p>In the above example you can see that Firefox had the slowest response, various Browser versions ( Chrome) that have different response times and the slow response of the Android devices.&lt;/p>
+&lt;p>A further example are the regional Tags that you can use to identify problems related to ISP or locations etc. Here you should be able to find the location you have been using to access the Online Boutique. Drill down by selecting the town or country you are accessing the Online Boutique from by clicking on the name as shown below (City of Amsterdam):&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-Region.png" alt="RUM-click">&lt;/p>
+&lt;p>This will select only the traces relevant to the city selected as shown below:&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-Adam.png" alt="RUM-Adam">&lt;/p>
+&lt;p>By selecting the various Tag you build up a filter, you can see the current selection below&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-Filter.png" alt="RUM-Adam">&lt;/p>
+&lt;p>To clear the filter and see every trace click on &lt;strong>Clear All&lt;/strong> at the top right of the page.&lt;/p>
+&lt;p>If the overview page is empty or shows &lt;img src="../../images/RUM-NoTime.png" alt="RUM-Adam">, no traces have been received in the selected timeslot.
+You need to increase the time window at the top left. You can start with the &lt;em>Last 12 hours&lt;/em> for example.&lt;/p>
+&lt;p>You can then use your mouse to select the time slot you want like show in the view below and activate that time filter by clicking on the little spyglass icon.&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-TimeSelect.png" alt="RUM-time">&lt;/p></description></item><item><title>Rum: Analyzing RUM Sessions</title><link>https://splunk.github.io/observability-workshop/v4.43/rum/docs/rum-sessions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.43/rum/docs/rum-sessions/</guid><description>
+&lt;ul>
+&lt;li>Dive into RUM Session information in the RUM UI&lt;/li>
+&lt;li>Identify Javascript errors in the Span of an user interaction&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="1-again-select-the-cart-url">1. Again select the cart URL&lt;/h2>
+&lt;p>After you have focussed the time slot with the time selector, you need to reselect the &lt;em>cart&lt;/em> url from &lt;strong>Url Name&lt;/strong> view, as shown below:&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-Cart-All.png" alt="RUM-Cart-3">&lt;/p>
+&lt;p>In the example above we selected &lt;code>http://34.246.124.162:81/cart&lt;/code>&lt;/p>
+&lt;h2 id="2-drill-down-in-the-sessions">2. Drill down in the Sessions&lt;/h2>
+&lt;p>After you have analyzed the information and drilled down via the Tag Spotlight to a subset of the traces, you can view the actual session as it was run by the end-user&amp;rsquo;s browser.&lt;/p>
+&lt;p>You do this by clicking on the link &lt;strong>Example Sessions&lt;/strong> as shown below:&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-ExampleSessions.png" alt="RUM-Header">&lt;/p>
+&lt;p>This will give you a list of sessions that matched both the time filter and the subset selected in the Tag Profile.&lt;/p>
+&lt;p>Select one by clicking on the session ID, It is a good idea to select one that has the longest duration (preferably over 700 ms).&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-Session-Selected.png" alt="RUM-Header">&lt;/p>
+&lt;p>Once you have selected the session, you will be taken to the session details page. As you are selecting a specific action that is part of the session, you will likely arrive somewhere in the middle of the session, at the moment of the interaction.&lt;/p>
+&lt;p>You can see the URL &lt;code>http://34.246.124.162:81/cart&lt;/code>, the one you selected earlier, is where we are focusing on in the session stream.&lt;/p>
+&lt;p>&lt;img src="../../images/Session-Tag.png" alt="RUM-Session-Tag">&lt;/p>
+&lt;p>Scroll down a little bit on the page, so you see the end of the operation as shown below.&lt;/p>
+&lt;p>&lt;img src="../../images/Session-Tag-2.png" alt="RUM-Session-info">&lt;/p>
+&lt;p>You can see that we have received a few Javascript Console errors that may not have been detected or visible to the end users. To examine these in more detail click on the middle one that says: *&lt;strong>Cannot read properties of undefined (reading &amp;lsquo;Prcie&amp;rsquo;)&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="../../images/Session-Tag-3.png" alt="RUM-Session-info">&lt;/p>
+&lt;p>This will cause the page to expand and show the Span detail for this interaction, It will contain a detailed &lt;em>error.stack&lt;/em> you can pass on the developer to solve the issue. You may have noticed when buying in the Online Boutique that the final total always was $0.00.&lt;/p>
+&lt;p>&lt;img src="../../images/Session-Tag-4.png" alt="RUM-Session-info">&lt;/p></description></item><item><title>Rum: Correlate between Splunk RUM and APM backend services</title><link>https://splunk.github.io/observability-workshop/v4.43/rum/docs/apm-correlation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.43/rum/docs/apm-correlation/</guid><description>
+&lt;ul>
+&lt;li>Continue with the RUM Session information in the RUM UI&lt;/li>
+&lt;li>See correlated APM traces and logs in the APM &amp;amp; Log Observer UI&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="1-finding-backend-service-issues">1. Finding backend service issues&lt;/h2>
+&lt;p>Click on the &lt;img src="../../images/RUM-JS-Error.png" alt="RUM-JS"> to close the Span view.
+Now continue to scroll down and find the &lt;strong>POST /cart/checkout&lt;/strong> line.&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-APM-Click.png" alt="RUM-APM-Click">&lt;/p>
+&lt;p>Click on the blue &lt;img src="../../images/RUM-APM.png" alt="RUM-APM-BLUE"> link, this should pop up a dialog showing information on the backend services that were part of the checkout action taken by the end user.&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-Trace.png" alt="RUM-APM-Trace">&lt;/p>
+&lt;p>In this popup, there are multiple sections available, providing you with a quick insight in the behavior of your backend services. For example the Performance Summary section will tell you where the time was spent during the backend call.&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-Trace-Performance.png" alt="RUM-APM-Trace-perf">&lt;/p>
+&lt;p>In the above example you can see that more than 77,9% was spent in external services.&lt;/p>
+&lt;p>If you scroll down to the bottom of the dialog, you can see the complete Trace and Services section like shown below:&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-Trace-Services.png" alt="RUM-APM-Trace-services">&lt;/p>
+&lt;p>in the Services map, you can see two services flagged red, the &lt;strong>Checkout&lt;/strong> Service and the &lt;strong>Payment&lt;/strong> Service in both in dark red. Light red means it received an error and dark red means an error originated from that service.&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-Trace-Services-Detail.png" alt="RUM-APM-Trace-services-detail">
+So already it is obvious there is a problem in the back end services.&lt;/p>
+&lt;p>Let&amp;rsquo;s investigate!&lt;/p>
+&lt;h2 id="2--follow-the-trace-to-the-backend-service">2. Follow the Trace to the Backend service&lt;/h2>
+&lt;p>You can now click on the Trace Id link:&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-Trace-url.png" alt="RUM-APM-Trace-link">&lt;/p>
+&lt;p>This will bring you to the Waterfall APM view that will show you what occurred in detail in a call to the backend services.
+On the right you see the Trace Id: and again the Performance Summary, as we saw before.
+In the waterfall, you can identify the various backend services that were part of this call from the frontend.&lt;/p>
+&lt;p>As you can see there are red error indicators &lt;img src="../../images/APM_Error_Flag.png" alt="RUM-APM-error-flag">
+before the &lt;strong>Checkout&lt;/strong> Service and the &lt;strong>Payment&lt;/strong> Service.&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-APM-Waterfall.png" alt="RUM-APM-waterfall">&lt;/p>
+&lt;p>Click on the &lt;img src="../../images/APM_Error_Flag.png" alt="RUM-APM-error-flag"> after the &lt;strong>paymentservice: grpc.hipstershop.PaymentService/Charge&lt;/strong> line.&lt;/p>
+&lt;p>&lt;img src="../../images/payment-click.png" alt="RUM-payment-click">&lt;/p>
+&lt;p>This will open the span detail page to show you the detailed information about this service call.
+You wil see that the call returned a &lt;strong>401&lt;/strong> error code or &lt;em>Invalid Request&lt;/em>.&lt;/p>
+&lt;h2 id="3--use-the-related-content---logs">3. Use the Related Content - Logs&lt;/h2>
+&lt;p>As the Splunk Observability cloud suite correlates trace metrics and logs automatically, the system will show you in the related content bar at the bottom of the page, the corresponding logs for this trace.&lt;/p>
+&lt;p>&lt;img src="../../images/log-corelation.png" alt="RUM-payment-related-content">&lt;/p>
+&lt;p>Click on the Log link to see the logs.&lt;/p>
+&lt;p>When the logs are shown, notice that the filter at the top of the page contains the logs for the trace.
+Next select one of the lines indicating an error for the payment service.
+This should open the log message on the right.&lt;/p>
+&lt;p>It clearly shows the reason why the payment service fails: we are using an invalid token towards the service:&lt;br>
+*&lt;strong>Failed payment processing through ButtercupPayments: Invalid API Token (test-20e26e90-356b-432e-a2c6-956fc03f5609)&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-LogObserver.png" alt="RUM-logs">&lt;/p>
+&lt;h2 id="4--conclusion">4. Conclusion&lt;/h2>
+&lt;p>In the workshop, you have seen how to add RUM functionality to you website.
+We investigate the performance of your Website using RUM Metrics.
+Using the Tag profile, you have searched for your own session, and with the session waterfall, you identified two problems:&lt;/p>
+&lt;ul>
+&lt;li>A Java script error that caused your price calculation to be zero.&lt;/li>
+&lt;li>An issue in the payment backend service that caused payments to fail.&lt;/li>
+&lt;/ul>
+&lt;p>Using the ability to correlate RUM traces with the Backend APM trace and Logs, you have found the reason for the payment failure.&lt;/p>
+&lt;p>This concludes the RUM workshop.&lt;/p></description></item><item><title>Rum: Custom Charts and Alerts based on RUM Metrics</title><link>https://splunk.github.io/observability-workshop/v4.43/rum/docs/alerting/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.43/rum/docs/alerting/</guid><description>
+&lt;ul>
+&lt;li>Use RUM Metrics to set up Alerts to be warned in case of an issue&lt;/li>
+&lt;li>Create a Custom Chart based on RUM Metrics&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="1--overview">1. Overview&lt;/h2>
+&lt;p>The fact that Splunk&amp;rsquo;s RUM is designed as a full fidelity solution, and thus can take 100% of your traces, allows it to detect and alert you to any change to the behavior of your website. It also give you the ability to to give you accurate insight in how your website is behaving by allowing you to creating custom Chart and Dashboards.
+This allows you to combine data from your Website, Backend service and underlying Infrastructure. Allowing you to observe the complete stack that makes up your application/solution.&lt;/p>
+&lt;p>Creating charts or alerts for RUM Metrics are done in the same way as we do for Infrastructure Metrics. In this section we will create a simple chart, detector and alert.&lt;/p>
+&lt;p>If you previously done the Splunk IMT Part of the Workshop, you will find this section very familiar. If you have not done the Splunk IMT workshop before, it is recommended that you run though the &lt;a href="../dashboards/intro.md">Dashboards&lt;/a>
+and &lt;a href="../detectors/intro.md">Detectors&lt;/a>
+modules after completing the RUM workshop to get a better understanding of the capabilities.&lt;/p>
+&lt;h2 id="2-create-an-alert-on-one-of-the-rum-metrics">2. Create an alert on one of the RUM Metrics&lt;/h2>
+&lt;p>From the top left hamburger menu icon click &lt;strong>Alerts&lt;/strong> in the menu and then select &lt;strong>Detectors&lt;/strong>.&lt;/p>
+&lt;h2 id="3-create-a-chart-based-on-rum-metrics">3. Create a Chart based on Rum Metrics&lt;/h2>
+&lt;h3 id="31-overview">3.1 Overview&lt;/h3>
+&lt;p>Creating charts or alerts for RUM Metrics are done in the same way as we do for Infrastructure Metrics.
+In this section we will create a simple chart, detector and alert
+If you previously done the Splunk IMT Part of the Workshop, you will find this section very familiar.&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-select-cart.png" alt="RUM-Cart2">&lt;/p>
+&lt;p>u have added to the trace as part of the configuration of your website.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;p class="alert-heading">Addtional Tags&lt;/p>
+&lt;div class="alert-body">
+&lt;p>We are already sending two additional tags, you have seen them defined in the &lt;em>Beacon url&lt;/em> that was added to your website in the first section of this workshop! You can add additional tag in a similar way.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="color:#000">app&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;[nodename]-rum-app&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">environment&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;[nodename]-rum-env&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;/div></description></item><item><title>Rum: Mobile Applications (Introduction)</title><link>https://splunk.github.io/observability-workshop/v4.43/rum/docs/mobile-app-summary/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.43/rum/docs/mobile-app-summary/</guid><description>
+&lt;ul>
+&lt;li>Short introduction to Mobile RUM&lt;/li>
+&lt;li>See an overview of the performance of your Mobile Application(s) in the Application Summary Dashboard&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="1-visit-your-rum-application-summary-dashboard">1. Visit your RUM Application Summary Dashboard&lt;/h2>
+&lt;p>Visit and login into your Splunk IMT/APM/RUM Website. From the left side menu bar select &lt;strong>RUM&lt;/strong> &lt;img src="../../images/RUM_ico.png" alt="RUM-ico">. This will bring you to your RUM Application Summary Page.&lt;/p>
+&lt;p>The goal of this page is to give you in a single pane/dashboard, a clear indication of the health, performance and potential errors found in your application(s) and allow you dive deeper into the information about your User Session ran against your web site.&lt;br>
+You will have a pane for each of your active RUM applications. (The view below is the default expanded view)&lt;/p>
+&lt;p>&lt;img src="../../images/Applicationsummarydashboard.png" alt="RUM-App-sum">&lt;/p>
+&lt;p>If you have multiple applications, the pane view may be automatically reduced by collapsing the panes as shown below:&lt;/p>
+&lt;p>&lt;img src="../../images/multiple_apps_collapsed.png" alt="RUM-App-sum-collapsed">&lt;/p>
+&lt;p>You can expanded a condensed RUM Application Summary View to the full dashboard by clicking on the small browser &lt;img src="../../images/browser.png" alt="RUM-browser"> or Mobile &lt;img src="../../images/mobile.png" alt="RUM-mobile">icon. (Depending on the type of application: &lt;em>Mobile&lt;/em> or &lt;em>Browser&lt;/em> based) on the left in front of the applications name, highlighted by the red arrow.&lt;/p>
+&lt;h2 id="2-rum-mobile-overview">2. RUM Mobile Overview&lt;/h2>
+&lt;p>Splunk RUM supports Native Mobile RUM, for Apple iPhone and Android Phones. You can use this to see the End-user experience of your native Smartphone app.&lt;/p>
+&lt;p>&lt;img src="../../images/RUM-Mobile.png" alt="RUM-Header">&lt;/p>
+&lt;p>The above screen is to show you the various metrics and data Splunk Mobile RUM can track. For example:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Custom events&lt;/strong>, similar to the Browser version.&lt;/li>
+&lt;li>&lt;strong>App Errors&lt;/strong> , with &lt;em>App Errors&lt;/em> &amp;amp; &lt;em>Crashes&lt;/em> per minute.&lt;/li>
+&lt;li>&lt;strong>App Lifecycle Performance&lt;/strong>, with &lt;em>Cold Startup Time&lt;/em>, &lt;em>Hot Startup Time&lt;/em> per OS.&lt;/li>
+&lt;li>&lt;strong>Request/Response&lt;/strong>, similar to the Browser version.&lt;/li>
+&lt;/ul>
+&lt;p>At this point we will not go deeper into Mobile RUM, due to the need to run either a native app on a phone, or run an emulation. We can provide more information in a deep dive demo if needed.&lt;/p></description></item></channel></rss>

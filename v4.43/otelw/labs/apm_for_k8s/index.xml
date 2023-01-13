@@ -1,0 +1,366 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Observability Cloud Workshops – APM for Kubernetes</title><link>https://splunk.github.io/observability-workshop/v4.43/otelw/labs/apm_for_k8s/</link><description>Recent content in APM for Kubernetes on Splunk Observability Cloud Workshops</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://splunk.github.io/observability-workshop/v4.43/otelw/labs/apm_for_k8s/index.xml" rel="self" type="application/rss+xml"/><item><title>Otelw: APM for K8s</title><link>https://splunk.github.io/observability-workshop/v4.43/otelw/labs/apm_for_k8s/k8s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.43/otelw/labs/apm_for_k8s/k8s/</guid><description>
+&lt;p>Identify your token and realm from the Splunk Observability Cloud Portal:&lt;br>
+&lt;code>Organization Settings-&amp;gt;Access Tokens&lt;/code> and &lt;code>Your Name-&amp;gt;Account Settings&lt;/code>&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;ins>If using your own k8s cluster on an Ubuntu host&lt;/ins>&lt;br>
+Remove the Otel Collector if its running on the same host as your k8s cluster:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">sudo sh /tmp/splunk-otel-collector.sh --uninstall
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Use this setup script to bootstrap your Debian based k8s environment with everything needed for the k8s workshop:&lt;/p>
+&lt;/blockquote>
+&lt;pre tabindex="0">&lt;code>bash &amp;lt;(curl -s https://raw.githubusercontent.com/signalfx/otelworkshop/master/setup-tools/k8s-env-only.sh)
+&lt;/code>&lt;/pre>&lt;blockquote>
+&lt;p>Ensure you have &lt;code>helm&lt;/code> and &lt;code>lynx&lt;/code> installed.&lt;/p>
+&lt;p>Skip to: &lt;strong>2: Deploy APM for containerized apps: Python and Java&lt;/strong>&lt;br>
+If you are using k8s anywhere else you can still do this workshop but will need to ensure &lt;code>helm&lt;/code>, &lt;code>lynx&lt;/code> are available.&lt;/p>
+&lt;/blockquote>
+&lt;hr>
+&lt;h3 id="1-use-data-setup-wizard-for-splunk-otel-collector-pod-on-k3s">1: Use Data Setup Wizard for Splunk Otel Collector Pod on k3s&lt;/h3>
+&lt;blockquote>
+&lt;p>&lt;strong>IMPORTANT: If you have the Otel Collector and prior lab examples running on a host, them at this time:&lt;/strong>&lt;br>
+Stop all the prior labs apps by using &lt;code>ctrl-c&lt;/code> in each terminal window and then closing the window.&lt;br>
+Remove the host based otel collector:
+&lt;code>sudo sh /tmp/splunk-otel-collector.sh --uninstall&lt;/code>&lt;/p>
+&lt;/blockquote>
+&lt;h4 id="1a-splunk-observability-cloud-portal">1a: Splunk Observability Cloud Portal&lt;/h4>
+&lt;p>In Splunk Observability Cloud: &lt;code>Data Setup-&amp;gt;Kubernetes-&amp;gt;Add Connection&lt;/code>&lt;/p>
+&lt;img src="../../../images/17-datasetup-k8s.png" width="360">
+&lt;p>Choose the following:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Key&lt;/th>
+&lt;th>Value&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Access Token&lt;/td>
+&lt;td>Select from list&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Cluster Name&lt;/td>
+&lt;td>Your initials-cluster i.e. SL-cluster&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Provider&lt;/td>
+&lt;td>Other&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Distribution&lt;/td>
+&lt;td>Other&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Add Gateway&lt;/td>
+&lt;td>No&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Log Collection&lt;/td>
+&lt;td>True&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>And then select &lt;code>Next&lt;/code>&lt;/p>
+&lt;p>Follow the steps on the &lt;code>Install Integration&lt;/code> page.&lt;/p>
+&lt;img src="../../../images/18-datasetup-k8sinstall.png" width="360">
+&lt;p>A result will look like this:&lt;/p>
+&lt;pre tabindex="0">&lt;code>NAME: splunk-otel-collector-1620505665
+LAST DEPLOYED: Sat May 8 20:27:46 2021
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+&lt;/code>&lt;/pre>&lt;p>Note the name of the deployment when the install completes i.e.: &lt;code>splunk-otel-collector-1620505665&lt;/code>&lt;/p>
+&lt;h4 id="1b-update-k3s-for-splunk-log-observer-ignore-if-you-are-using-k8s">1b: Update k3s For Splunk Log Observer (Ignore if you are using k8s)&lt;/h4>
+&lt;p>k3s has a different format that standard k8s for logging and we need to update our deployment for this.&lt;/p>
+&lt;p>You&amp;rsquo;ll need the Collector deployment from the Data Setup Wizard install.&lt;/p>
+&lt;p>You can also dervice this from using &lt;code>helm list&lt;/code> i.e.:&lt;/p>
+&lt;pre tabindex="0">&lt;code>NAME NAMESPACE REVISION UPDATED STATUS CHART APP VERSION
+splunk-otel-collector-1620504591 default 1 2021-05-08 20:09:51.625419479 +0000 UTC deployed splunk-otel-collector-0.25.0
+&lt;/code>&lt;/pre>&lt;p>The deployment name would be: &lt;code>splunk-otel-collector-1620504591&lt;/code>&lt;/p>
+&lt;h4 id="prepare-values-for-collector-update">Prepare values for Collector update&lt;/h4>
+&lt;p>If you run into any errors from helm, fix with:&lt;/p>
+&lt;pre tabindex="0">&lt;code>export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+sudo chmod 755 /etc/rancher/k3s/k3s.yaml
+&lt;/code>&lt;/pre>&lt;p>Prep values for collector update:&lt;/p>
+&lt;p>&lt;code>helm list&lt;/code>&lt;br>
+&lt;code>helm get values NAME&lt;/code>&lt;/p>
+&lt;p>i.e. &lt;code>helm get values splunk-otel-collector-1620609739&lt;/code>&lt;/p>
+&lt;p>make note of:&lt;br>
+&lt;code>clusterNAME&lt;/code>&lt;br>
+&lt;code>splunkAccessToken&lt;/code>&lt;br>
+&lt;code>splunkRealm&lt;/code>&lt;/p>
+&lt;h4 id="prepare-valuesyaml-file-for-updating-the-helm-chart">Prepare values.yaml file for updating the Helm chart&lt;/h4>
+&lt;p>Start in k8s directory:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#204a87">cd&lt;/span> ~/otelworkshop/k8s
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Edit &lt;code>k3slogs.yaml&lt;/code> with thes values above.&lt;/p>
+&lt;h4 id="update-the-collector">Update the Collector&lt;/h4>
+&lt;p>Install the Collector configuration chart:&lt;/p>
+&lt;pre tabindex="0">&lt;code>helm upgrade \
+YOURCOLLECTORHERE \
+--values k3slogs.yaml \
+splunk-otel-collector-chart/splunk-otel-collector
+&lt;/code>&lt;/pre>&lt;p>i.e.&lt;/p>
+&lt;pre tabindex="0">&lt;code>helm upgrade \
+splunk-otel-collector-1620609739 \
+--values k3slogs.yaml \
+splunk-otel-collector-chart/splunk-otel-collector
+&lt;/code>&lt;/pre>&lt;hr>
+&lt;h3 id="2-deploy-apm-for-containerized-apps-python-and-java">2: Deploy APM For Containerized Apps: Python and Java&lt;/h3>
+&lt;p>!!! important
+If you are doing this workshop as part of a group, before the next step, add your initials do the APM environment:
+edit the &lt;code>py-deployment.yaml&lt;/code> below and add your initials to the environment i.e. change all instances:&lt;br>
+&lt;code>deployment.environment=apm-workshop&lt;/code>&lt;br>
+to &lt;br>
+&lt;code>deployment.environment=sjl-apm-workshop&lt;/code>&lt;/p>
+&lt;p>Deploy the Flask server deployment/service and the python-requests (makes requests of Flask server) pod:&lt;/p>
+&lt;pre tabindex="0">&lt;code>cd ~/otelworkshop/k8s
+kubectl apply -f py-deployment.yaml
+&lt;/code>&lt;/pre>&lt;p>!!! important
+If you are doing this workshop as part of a group, before the next step, add your initials do the APM environment:
+edit the &lt;code>java-deployment.yaml&lt;/code> below and add your initials to the environment i.e. change all instances:&lt;br>
+&lt;code>deployment.environment=apm-workshop&lt;/code>&lt;br>
+to &lt;br>
+&lt;code>deployment.environment=sjl-apm-workshop&lt;/code>&lt;/p>
+&lt;p>Deploy the Java OKHTTP requests pod (makes requests of Flask server):&lt;/p>
+&lt;pre tabindex="0">&lt;code>kubectl apply -f java-deployment.yaml
+&lt;/code>&lt;/pre>&lt;p>Study the results:&lt;/p>
+&lt;p>The APM Dashboard will show the instrumented Python-Requests and Java OKHTTP clients posting to the Flask Server.&lt;br>
+Make sure you select the &lt;code>apm-workshop&lt;/code> ENVIRONMENT to monitor.&lt;/p>
+&lt;img src="../../../images/19-k8s-apm.png" width="360">
+&lt;p>Study the &lt;code>deployment.yaml&lt;/code> files:&lt;/p>
+&lt;p>Example in Github or:&lt;/p>
+&lt;pre tabindex="0">&lt;code>~/otelworkshop/k8s/py-deployment.yaml
+~/otelworkshop/k8s/java-deployment.yaml
+&lt;/code>&lt;/pre>&lt;p>The .yaml files show the environment variables telling the instrumentation to send spans to the OpenTelemetry Collector.&lt;/p>
+&lt;p>Normally we use an environment variable pointing to &lt;code>localhost&lt;/code> on a single host application where the Collector is running. In k8s we have separate pods in a cluster for apps and the Collector.&lt;/p>
+&lt;p>The Collector pod is running with &lt;ins>node wide visibility&lt;/ins>, so to tell each application pod where to send spans:&lt;/p>
+&lt;pre tabindex="0">&lt;code>- name: SPLUNK_OTEL_AGENT
+valueFrom:
+fieldRef:
+fieldPath: status.hostIP
+- name: OTEL_EXPORTER_OTLP_ENDPOINT
+value: &amp;quot;http://$(SPLUNK_OTEL_AGENT):4317&amp;quot;
+&lt;/code>&lt;/pre>&lt;hr>
+&lt;h3 id="3-monitor-jvm-metrics-for-a-java-container">3: Monitor JVM Metrics For a Java Container&lt;/h3>
+&lt;p>JVM Metrics are emitted by the Splunk OpenTelemetry Java instrumentation and send to the Collector.&lt;/p>
+&lt;p>Download this file to your local machine: &lt;a href="https://raw.githubusercontent.com/signalfx/otelworkshop/master/k8s/dashboard_JVMMetrics.json" target="_blank">JVM Metrics Dashboard Template&lt;/a>
+&lt;/p>
+&lt;p>Select the + Icon on top right and create a new &lt;strong>Dashboard Group&lt;/strong> called &lt;code>test&lt;/code>&lt;/p>
+&lt;p>Click the + Icon again and select &lt;code>Import-&amp;gt;Dahsboard&lt;/code>&lt;br>
+and select the downloaded &lt;code>dashboard_JVMMetrics.json&lt;/code> file.&lt;/p>
+&lt;img src="../../../images/27-jvm.png" width="360">
+&lt;p>Filter by Application by adding &lt;code>service:SERVICENAMEHERE&lt;/code>&lt;/p>
+&lt;img src="../../../images/28-jvm-filter.png" width="360">
+&lt;p>Complete JVM metrics available &lt;a href="https://github.com/splunk/splunk-otel-java/blob/main/docs/metrics.md#jvm" target="_blank">at this link&lt;/a>
+&lt;/p>
+&lt;hr>
+&lt;h3 id="4--manually-instrument-a-java-app-and-add-custom-attributres-tags">4: Manually instrument a Java App And Add Custom Attributres (Tags)&lt;/h3>
+&lt;p>Let&amp;rsquo;s say you have an app that has your own functions and doesn&amp;rsquo;t only use auto-instrumented frameworks- or doesn&amp;rsquo;t have any of them!&lt;/p>
+&lt;p>You can easily manually instrument your functions and have them appear as part of a service, or as an entire service.&lt;/p>
+&lt;p>Example is here:&lt;/p>
+&lt;p>&lt;code>cd ~/otelworkshop/k8s/java/manual-inst&lt;/code>&lt;/p>
+&lt;p>Deploy an app with ONLY manual instrumentation:&lt;/p>
+&lt;p>!!! important
+If you are doing this workshop as part of a group, before the next step, add your initials do the APM environment:
+edit the &lt;code>java-reqs-manual-inst.yaml&lt;/code> below and add your initials to the environment i.e. change all instances:&lt;br>
+&lt;code>deployment.environment=apm-workshop&lt;/code>&lt;br>
+to &lt;br>
+&lt;code>deployment.environment=sjl-apm-workshop&lt;/code>&lt;/p>
+&lt;pre tabindex="0">&lt;code>kubectl apply -f java-reqs-manual-inst.yaml
+&lt;/code>&lt;/pre>&lt;p>When this app deploys, it appears as an isolated bubble in the map. It has all metrics and tracing just like an auto-instrumented app does.&lt;/p>
+&lt;img src="../../../images/20-k8s-manual.png" width="360">
+&lt;p>Take a look at the traces and their spans to see the manually added values of Message, Logs etc.&lt;/p>
+&lt;img src="../../../images/21-k8s-m-trace.png" width="360">
+&lt;p>You will see the function called ExampleSpan with custom &lt;code>Logging&lt;/code> messages and a &lt;code>message:myevent&lt;/code> span/tag.&lt;/p>
+&lt;img src="../../../images/22-k8s-m-span1.png" width="360">
+&lt;img src="../../../images/23-k8s-m-span2.png" width="360">
+&lt;p>See the custom attribute &lt;code>my.key&lt;/code> and value &lt;code>myvalue&lt;/code>.&lt;br>
+This could be a transaction ID, user ID, or any custom value that you want to correlate and even metricize.&lt;/p>
+&lt;img src="../../../images/23-k8s-m-span3.png" width="360">
+&lt;p>Study the &lt;a href="https://github.com/splunk/otelworkshop/blob/master/k8s/java/manual-inst/src/main/java/sf/main/GetExample.java" target="_blank">manual instrumentation code example here.&lt;/a>
+&lt;/p>
+&lt;p>There are two methods shown- the decorator @WithSpan method (easiest), and using the GlobalTracer method (more complicated/powerful)&amp;hellip;&lt;/p>
+&lt;p>Note that this is the most minimal example of manual instrumentation- there is a vast amount of power available in OpenTelemetry- please see &lt;a href="https://github.com/open-telemetry/opentelemetry-java-instrumentation" target="_blank">the documentation&lt;/a>
+and &lt;a href="https://github.com/open-telemetry/opentelemetry-java/blob/master/QUICKSTART.md#tracing" target="_blank">in depth details&lt;/a>
+&lt;/p>
+&lt;hr>
+&lt;h3 id="5-process-spans-with-the-otel-collector">5: Process Spans with the Otel Collector&lt;/h3>
+&lt;p>The Otel Collector has many powerful configuration options ranging from splitting telemetry to multiple destinations to sampling to span processing.&lt;/p>
+&lt;p>&lt;a href="https://github.com/open-telemetry/opentelemetry-collector/tree/main/processor" target="_blank">Processor documentation&lt;/a>
+&lt;/p>
+&lt;p>&lt;a href="https://github.com/splunk/splunk-otel-collector-chart/tree/main/examples" target="_blank">Collector config examples&lt;/a>
+&lt;/p>
+&lt;p>&lt;a href="https://github.com/splunk/splunk-otel-collector" target="_blank">Full documentation&lt;/a>
+&lt;/p>
+&lt;h4 id="prepare-values-for-collector-update-1">Prepare values for Collector update&lt;/h4>
+&lt;pre tabindex="0">&lt;code>helm list
+&lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>helm get values NAME
+&lt;/code>&lt;/pre>&lt;p>i.e. &lt;code>helm get values splunk-otel-collector-1620609739&lt;/code>&lt;/p>
+&lt;p>make note of:&lt;br>
+&lt;code>clusterNAME&lt;/code>&lt;br>
+&lt;code>splunkAccessToken&lt;/code>&lt;br>
+&lt;code>splunkRealm&lt;/code>&lt;/p>
+&lt;h4 id="span-processing-example-redacting-data-from-a-span-attribute">Span Processing Example: Redacting Data from a Span Attribute&lt;/h4>
+&lt;p>Change to the example directory:&lt;/p>
+&lt;pre tabindex="0">&lt;code>cd ~/otelworkshop/k8s/collectorconfig
+&lt;/code>&lt;/pre>&lt;h4 id="prepare-valuesyaml-file-for-updating-the-helm-chart-1">Prepare values.yaml file for updating the Helm chart&lt;/h4>
+&lt;p>Edit &lt;code>spanprocessor.yaml&lt;/code> with thes values from Step 1.&lt;/p>
+&lt;h4 id="update-the-collector-1">Update the Collector&lt;/h4>
+&lt;p>Install the Collector configuration chart:&lt;/p>
+&lt;pre tabindex="0">&lt;code>helm upgrade --install \
+YOURCOLLECTORHERE \
+--values spanprocessor.yaml \
+splunk-otel-collector-chart/splunk-otel-collector
+&lt;/code>&lt;/pre>&lt;p>i.e.&lt;/p>
+&lt;pre tabindex="0">&lt;code>helm upgrade --install \
+splunk-otel-collector-1620609739 \
+--values spanprocessor.yaml \
+splunk-otel-collector-chart/splunk-otel-collector
+&lt;/code>&lt;/pre>&lt;p>Study the results:&lt;/p>
+&lt;p>&lt;code>Splunk Observability Portal -&amp;gt; APM -&amp;gt; Explore -&amp;gt; java-otel-manual-inst -&amp;gt; Traces&lt;/code>&lt;/p>
+&lt;p>Example &lt;code>my.key&lt;/code> and you&amp;rsquo;ll see that the value is &lt;code>redacted&lt;/code> after applying the &lt;code>spanprocessor.yaml&lt;/code> example&lt;/p>
+&lt;img src="../../../images/25-span-redacted.png" width="360">
+&lt;p>If you want to make changes and update the &lt;code>spanprocessor.yaml&lt;/code> or add more configurations, use:&lt;br>
+&lt;code>helm upgrade --reuse-values&lt;/code>&lt;/p>
+&lt;hr>
+&lt;h3 id="6-receive-prometheus-metrics-at-the-otel-collector">6: Receive Prometheus Metrics at the Otel Collector&lt;/h3>
+&lt;h4 id="add-a-prometheus-endpoint-pod">Add a Prometheus endpoint pod&lt;/h4>
+&lt;p>Change to the k8s Collector Config directory:&lt;/p>
+&lt;pre tabindex="0">&lt;code>cd ~/otelworkshop/k8s/collectorconfig
+&lt;/code>&lt;/pre>&lt;p>Add the Prometheus pod (source code is in the &lt;code>k8s/python&lt;/code> directory):&lt;/p>
+&lt;pre tabindex="0">&lt;code>kubectl apply -f prometheus-deployment.yaml
+&lt;/code>&lt;/pre>&lt;h4 id="update-otel-collector-to-scrape-the-prometheus-pod">Update Otel Collector to Scrape the Prometheus Pod&lt;/h4>
+&lt;p>Update realm/token/cluster in the &lt;code>otel-prometheus.yaml&lt;/code>&lt;/p>
+&lt;p>Verify your helm deployment of the collector:&lt;/p>
+&lt;pre tabindex="0">&lt;code>helm list
+&lt;/code>&lt;/pre>&lt;p>Upgrade the Collector deployment with the values required for scraping Prometheus metrics from the Prometheus pod deployed in the previous step:&lt;/p>
+&lt;pre tabindex="0">&lt;code>helm upgrade --reuse-values splunk-otel-collector-YOURCOLLECTORVALUE --values otel-prometheus.yaml splunk-otel-collector-chart/splunk-otel-collector
+&lt;/code>&lt;/pre>&lt;h4 id="find-prometheus-metric-and-generate-chart">Find Prometheus Metric and Generate Chart&lt;/h4>
+&lt;p>&lt;code>Splunk Observabilty -&amp;gt; Menu -&amp;gt; Metrics -&amp;gt; Metric Finder&lt;/code>&lt;/p>
+&lt;p>Search for: &lt;code>customgauge&lt;/code>&lt;/p>
+&lt;p>Click &lt;code>CustomGauge&lt;/code>&lt;/p>
+&lt;p>Chart appears with value &lt;code>17&lt;/code>&lt;/p>
+&lt;p>Examine the collector update &lt;code>otel-prometheus.yaml&lt;/code> to see how this works.&lt;/p>
+&lt;hr>
+&lt;h3 id="7-configure-otel-collector-to-transform-a-metric-name">7: Configure Otel Collector to Transform a Metric Name&lt;/h3>
+&lt;p>This example uses the &lt;a href="https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/metricstransformprocessor" target="_blank">Metrics Transform Processor&lt;/a>
+&lt;/p>
+&lt;p>Change to the k8s Collector Config directory:&lt;/p>
+&lt;pre tabindex="0">&lt;code>cd ~/otelworkshop/k8s/collectorconfig
+&lt;/code>&lt;/pre>&lt;p>Update realm/token/cluster in the &lt;code>metricstransform.yaml&lt;/code> with your token/realm/cluster&lt;/p>
+&lt;p>Upgrade the Collector deployment with the values required for scraping Prometheus metrics from the Prometheus pod deployed in the previous step:&lt;/p>
+&lt;pre tabindex="0">&lt;code>helm upgrade --reuse-values splunk-otel-collector-YOURCOLLECTORVALUE --values metricstransform.yaml splunk-otel-collector-chart/splunk-otel-collector
+&lt;/code>&lt;/pre>&lt;h4 id="find-transformed-prometheus-metric-and-generate-chart">Find Transformed Prometheus Metric and Generate Chart&lt;/h4>
+&lt;p>&lt;code>Splunk Observabilty -&amp;gt; Menu -&amp;gt; Metrics -&amp;gt; Metric Finder&lt;/code>&lt;/p>
+&lt;p>Search for: &lt;code>transformedgauge&lt;/code>&lt;/p>
+&lt;p>Click &lt;code>TransformedGauge&lt;/code>&lt;/p>
+&lt;p>You&amp;rsquo;ll now see the new chart for the metric formerly known as CustomGauge that has been transformed using the metrics transform processor.&lt;/p>
+&lt;p>Examine the collector update &lt;code>metricstransform.yaml&lt;/code> to see how this works.&lt;/p>
+&lt;hr>
+&lt;h3 id="monitoring-and-troubleshooting">Monitoring and Troubleshooting&lt;/h3>
+&lt;h4 id="view-otel-collector-pod-stats">View Otel Collector POD stats&lt;/h4>
+&lt;pre tabindex="0">&lt;code>kubectl get pods
+&lt;/code>&lt;/pre>&lt;p>Note the pod name of the &lt;code>OpenTelemetry Collector&lt;/code> pod i.e.:&lt;br>
+&lt;code>splunk-otel-collector-1620505665-agent-sw45w&lt;/code>&lt;/p>
+&lt;p>Send the Zpages stats to the lynx browser:&lt;/p>
+&lt;pre tabindex="0">&lt;code>kubectl exec -it YOURAGENTPODHERE -- curl localhost:55679/debug/tracez | lynx -stdin
+&lt;/code>&lt;/pre>&lt;p>i.e.&lt;/p>
+&lt;pre tabindex="0">&lt;code>kubectl exec -it splunk-otel-collector-1620505665-agent-sw45w -- curl localhost:55679/debug/tracez | lynx -stdin
+&lt;/code>&lt;/pre>&lt;img src="../../../images/06-zpages.png" width="360">
+&lt;h4 id="examine-otel-collector-config">Examine Otel Collector Config&lt;/h4>
+&lt;p>get your Collector agent pod name via:&lt;/p>
+&lt;pre tabindex="0">&lt;code>kubectl get pods
+&lt;/code>&lt;/pre>&lt;p>i.e.&lt;/p>
+&lt;p>&lt;code>splunk-otel-collector-1626453714-agent-vfr7s&lt;/code>&lt;/p>
+&lt;p>Show current Collector config:&lt;/p>
+&lt;pre tabindex="0">&lt;code>kubectl exec -it YOURAGENTPODHERE -- curl localhost:55554/debug/configz/effective
+&lt;/code>&lt;/pre>&lt;p>Show initial Collector config:&lt;/p>
+&lt;pre tabindex="0">&lt;code>kubectl exec -it YOURAGENTPODHERE -- curl localhost:55554/debug/configz/initial
+&lt;/code>&lt;/pre>&lt;hr>
+&lt;h3 id="bonus-instrumentation-examples-istio-and-net">Bonus Instrumentation Examples: Istio and .NET&lt;/h3>
+&lt;h4 id="net-containerized-example-is-located-hereexamplesdotnet">.NET: containerized example is &lt;a href="../examples/dotnet/">located here&lt;/a>
+&lt;/h4>
+&lt;h4 id="istio-service-mesh-lab-hereexamplesistio">Istio: service mesh &lt;a href="../examples/istio/">lab here&lt;/a>
+&lt;/h4>
+&lt;hr>
+&lt;h3 id="clean-up-deployments-and-services">Clean up deployments and services&lt;/h3>
+&lt;p>To delete all k8s lab work:&lt;br>
+in &lt;code>~/otelworkshop/k8s/&lt;/code>&lt;/p>
+&lt;pre tabindex="0">&lt;code>source delete-all-k8s.sh
+source delete-prometheus.sh
+&lt;/code>&lt;/pre>&lt;p>To delete the Collector from k8s:&lt;/p>
+&lt;pre tabindex="0">&lt;code>helm list
+&lt;/code>&lt;/pre>&lt;p>&lt;code>helm delete YOURCOLLECTORHERE&lt;/code>
+i.e.&lt;/p>
+&lt;pre tabindex="0">&lt;code>helm delete splunk-otel-collector-1620505665
+&lt;/code>&lt;/pre>&lt;p>k3s:&lt;/p>
+&lt;pre tabindex="0">&lt;code>/usr/local/bin/k3s-uninstall.sh
+&lt;/code>&lt;/pre></description></item><item><title>Otelw:</title><link>https://splunk.github.io/observability-workshop/v4.43/otelw/labs/apm_for_k8s/prep/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.43/otelw/labs/apm_for_k8s/prep/</guid><description>
+&lt;h1 id="log-in-to-your-splunk-observability-account-to-identify-tokenrealm">Log in to your Splunk Observability account to identify token/realm&lt;/h1>
+&lt;p>For individuals and groups- allow 30-45 minutes of prep time to identify account credentials and prepare a lab environment. When running as a group we recommend doing a separate prep meeting before running the workshop together.&lt;/p>
+&lt;p>Check your &lt;a href="https://app.us1.signalfx.com/o11y/#/home" target="_blank">Splunk Observability Account&lt;/a>
+(your welcome email has this link) and identify your &lt;strong>TOKEN&lt;/strong> and &lt;strong>REALM&lt;/strong> - these are available in the profile menu in your Splunk Observability account. Note that the realm component i.e. &lt;code>us1&lt;/code> may be different for your account based on how you signed up.&lt;/p>
+&lt;p>How to find realm:&lt;/p>
+&lt;p>&lt;code>Splunk Observability Menu -&amp;gt; Your Name -&amp;gt; Account Settings&lt;/code>&lt;/p>
+&lt;p>&lt;img src="../../images/01-realm.png" alt="Realm">&lt;/p>
+&lt;p>How to find token:&lt;br>
+&lt;img src="../../images/02-token.png" alt="Token">&lt;/p>
+&lt;h2 id="create-lab-environment">Create Lab Environment&lt;/h2>
+&lt;p>Splunk Observability is for &lt;strong>server environments&lt;/strong>. This workshop uses &lt;strong>Ubuntu Linux&lt;/strong> as the lab server environment. You can use any Ubuntu platform - bare metal, VM, or cloud VM.&lt;/p>
+&lt;h3 id="recommended-environment">Recommended Environment&lt;/h3>
+&lt;p>For optimal learning we recommend that you use a fresh cloud VM running Ubuntu with minimum 12GB RAM and 20GB disk space.&lt;/p>
+&lt;p>If you chose your own Ubuntu machine, you can set it up with the Workshop software with this command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">bash &amp;lt;&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>curl -s https://raw.githubusercontent.com/signalfx/otelworkshop/master/setup-tools/ubuntu.sh&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="local-environment">Local Environment&lt;/h3>
+&lt;p>If you cannot procure a cloud VM, you can create an Ubuntu Linux environment on a Mac or PC and install the necessary software components:&lt;/p>
+&lt;h3 id="mac-os">Mac OS&lt;/h3>
+&lt;p>Install &lt;a href="https://brew.sh" target="_blank">Homebrew&lt;/a>
+:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">/bin/bash -c &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Make sure Homebrew is fully upgraded:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">brew upgrade
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Results should be at least 1.5:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">brew --version
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>We will use &lt;a href="https://multipass.run" target="_blank">Multipass&lt;/a>
+as a hypervisor for Mac:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">brew cask install multipass
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>If needed, further instructions are &lt;a href="https://multipass.run/docs/installing-on-macos" target="_blank">here&lt;/a>
+. Do one final brew upgrade before spinning up VM:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">brew upgrade
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="windows">Windows&lt;/h3>
+&lt;p>Follow Multipass Windows installation &lt;a href="https://multipass.run/docs/installing-on-windows" target="_blank">instructions&lt;/a>
+&lt;/p>
+&lt;h3 id="launch-multipass-ubuntu-vm">Launch Multipass Ubuntu VM&lt;/h3>
+&lt;p>Create your VM called &amp;ldquo;primary&amp;rdquo;:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">multipass launch -n primary -d 20G -m 12G
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will download Ubuntu and may take a few minutes the first time.&lt;/p>
+&lt;p>Basic multipass commands:&lt;/p>
+&lt;ul>
+&lt;li>Shell into VM: &lt;code>multipass shell primary&lt;/code>&lt;/li>
+&lt;li>Exit VM: &lt;code>exit&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>To manage multipass VM:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>multipass stop primary&lt;/code> stops the VM&lt;/li>
+&lt;li>&lt;code>multipass delete primary&lt;/code> deletes the VM from the hypervisor&lt;/li>
+&lt;li>&lt;code>multipass purge&lt;/code> purges created images but leaves the ubuntu template intace&lt;/li>
+&lt;/ul>
+&lt;h3 id="install-otel-workshop">Install OTel Workshop&lt;/h3>
+&lt;p>A bootstrap script will install everything needed and clone this repo.&lt;br>
+This will take up to 10 minutes to execute- leave it running until complete.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">multipass shell primary
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Once in your Multipass Ubuntu VM:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">bash &amp;lt;&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>curl -s https://raw.githubusercontent.com/signalfx/otelworkshop/master/setup-tools/ubuntu.sh&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="key-otel-apm-concepts">Key OTel APM concepts&lt;/h2>
+&lt;p>Moving parts that make APM happen in OpenTelemetry:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Application Spans:&lt;/strong> OpenTelemetry instrumentation causes spans to be emitted by your applications OpenTelmetry auto-instrumentation (no code changes) for most languages is availabile but you can use any framework/library that emits spans in formats accepted by the Otel Collector i.e zipkin, OpenTracing, or &lt;a href="https://opentelemtry.io" target="_blank">OpenTelemetry&lt;/a>
+. The spans are received by the OpenTelemetry Collector which both doubles as an infrastructure metrics collection agent and a telemetry processor. The Collector then forwards all telemetry (metrics/traces/logs) to Splunk Observability Cloud.&lt;/li>
+&lt;li>&lt;strong>Instructructure metrics:&lt;/strong> Infrastructure metrics are collected by your OpenTelemetry Collector which is observing the application&amp;rsquo;s host or container cluster. The infrastructure agent is lightweight, open source, real-time, and designed for microservices, containers, and cloud as well as on premise servers or cloud virtual machines.&lt;/li>
+&lt;li>Application spans will be sent to the OpenTelemetry Collector running on a host or k8s pod to correlate APM with host/cluster metrics. The Collector then relays the spans to Splunk Observability Cloud APM where they will be assembled into traces.&lt;/li>
+&lt;li>The APM spans flow in real time and there is no sampling. Pre-made default Service Dashboards with application metrics for each app will appear once spans are received by Splunk APM. The APM view has directed troubleshooting.&lt;/li>
+&lt;li>Environment variables control the setup of APM. These names vary based on instrumentation but they always include:&lt;br>
+- &lt;strong>Endpoint&lt;/strong>: destination to send spans&lt;br>
+- &lt;strong>Service name&lt;/strong>: the name of the application as you want it to appear in a service map&lt;br>
+- &lt;strong>Environment&lt;/strong>: a value for segmenting betwen dev/prod etc. Can be set with instrumentation and not necessarily as part of an ENV variable.&lt;/li>
+&lt;/ul></description></item><item><title>Otelw: Instrumentation Examples</title><link>https://splunk.github.io/observability-workshop/v4.43/otelw/labs/apm_for_k8s/examples/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.43/otelw/labs/apm_for_k8s/examples/</guid><description/></item></channel></rss>
