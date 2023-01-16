@@ -30,6 +30,11 @@ variable "splunk_presetup" {
   nullable = false
 }
 
+variable "splunk_petclinic" {
+  description = "Enabled Java Development environment? (true/false)"
+  type = bool
+}
+
 data "template_file" "user_data" {
   template = "${file("../workshop/aws/ec2/templates/userdata.yaml")}"
   vars = {
@@ -37,6 +42,7 @@ data "template_file" "user_data" {
     rum_token = "${var.splunk_rum_token}"
     realm = "${var.splunk_realm}"
     presetup = "${var.splunk_presetup}"
+    petclinic = "${var.splunk_petclinic}"
   }
 }
 

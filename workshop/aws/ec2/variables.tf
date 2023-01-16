@@ -8,6 +8,12 @@ variable "splunk_presetup" {
   description = "Presetup the instance? (true/false)"
   type = bool
 }
+
+variable "splunk_petclinic" {
+  description = "Enabled Java Development environment? (true/false)"
+  type = bool
+}
+
 variable "aws_instance_count" {
   description = "Instance Count (Usually 1)"
   nullable = false

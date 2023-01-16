@@ -15,8 +15,10 @@ packages:
   - podman
   - python3-venv
   - jq
+%{ if petclinic == true ~}
   - maven
   - openjdk-17-jdk
+%{ endif ~}
   - python3-pip
   - zsh
 

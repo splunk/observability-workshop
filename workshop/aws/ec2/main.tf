@@ -152,6 +152,7 @@ resource "aws_instance" "observability-instance" {
      rum_token = "${var.splunk_rum_token}" 
      realm = "${var.splunk_realm}" 
      presetup = "${var.splunk_presetup}"
+     petclinic = "${var.splunk_petclinic}"
     } )
  
   root_block_device {
