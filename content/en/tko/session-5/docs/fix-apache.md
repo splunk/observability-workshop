@@ -13,12 +13,12 @@ You do this by placing a  Resource section in the deployment of you application/
 
 ``` yaml
 resources:
-      requests:         # Request are the expected amount of CPU & memory for normal use 
-        memory: "10Mi"  # Requesting 10 Megabyte of memory
-        cpu: "0.5"      # Requesting half of Core of a CPU
-      limits:           # Maximum amount of CPU & memory for peek use 
-        memory: "16Mi"  # Maximum allowed 16 Megabyte of memory
+      limits:           # Maximum amount of CPU & memory for peek use
         cpu: "1"        # Maximum of 1 core of CPU allowed at for peek use
+        memory: "16Mi"  # Maximum allowed 16 Megabyte of memory
+      requests:         # Request are the expected amount of CPU & memory for normal use
+        cpu: "0.5"      # Requesting half of Core of a CPU
+        memory: "10Mi"  # Requesting 10 Megabyte of memory
 ```
 
 More information can be found here : [Resource Management for Pods and Containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
@@ -48,11 +48,11 @@ Find the resources section and reduce the CPU limits to **1** and the CPU reques
 ``` yaml
 resources:
   limits:
-    memory: "16Mi"
     cpu: "1"
+    memory: "16Mi"
   requests:
-    memory: "10Mi"
     cpu: "0.5"
+    memory: "10Mi"
 ```
 
 Save the above changes. The deployment will be updated and the pods will be restarted. You can validate the changes have been applied by running the following command:
