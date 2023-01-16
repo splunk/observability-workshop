@@ -131,7 +131,7 @@ spec:
     spec:
       containers:
       - name: php-apache
-        image: rcastley/php-apache:latest
+        image: ghcr.io/splunk/php-apache:latest
         ports:
         - containerPort: 80
         resources:
