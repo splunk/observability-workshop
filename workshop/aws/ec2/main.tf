@@ -147,7 +147,6 @@ locals {
     realm = var.splunk_realm
     presetup = var.splunk_presetup
     jdk = var.splunk_jdk
-
   }
 }
 
@@ -157,7 +156,10 @@ resource "aws_instance" "observability-instance" {
   instance_type          = var.aws_instance_type
   subnet_id              = aws_subnet.o11y-ws-subnet.id
   vpc_security_group_ids = [aws_security_group.o11y-ws-sg.id]
-  user_data              = templatefile("${path.module}/templates/userdata.yaml", local.template_vars)
+  user_data              = templatefile("${path.module}/templates/userdata.yaml", merge(local.template_vars,
+    {
+      instance_name = "${var.slug}-${count.index + 1}"
+    }))
 
   root_block_device {
     volume_size = var.instance_disk_aws
