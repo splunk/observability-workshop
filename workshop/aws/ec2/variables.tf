@@ -27,7 +27,7 @@ variable "aws_region" {
 }
 
 variable "slug" {
-  description = "Project name slug that will be used to tag aws resources"
+  description = "Short name/tag, e.g. acme. Used to derive project and host names, aws tags and terraform workspace."
 }
 
 variable "splunk_access_token" {
