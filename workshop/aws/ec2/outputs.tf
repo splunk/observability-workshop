@@ -1,4 +1,4 @@
-output "ip-addresses" {
+output "ip_addresses" {
   value = aws_instance.observability-instance.*.public_ip
 }
 

@@ -37,7 +37,7 @@ while :; do
 	terraform apply -input=false "$CREATE_PLAN"
 
 	sanity_check_tmp=$(mktemp -d)
-	yq '.password' "$CLOUD_INIT" | pssh -o "${sanity_check_tmp}" --par 60 -l ubuntu -A --hosts <(terraform output --json ip|jq -r '.[]') -x "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o PreferredAuthentications=password -o PubkeyAuthentication=no" -- "cat ${STATUS_LOG}"
+	yq '.password' "$CLOUD_INIT" | pssh -o "${sanity_check_tmp}" --par 60 -l ubuntu -A --hosts <(terraform output --json ip-addresses|jq -r '.[]') -x "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o PreferredAuthentications=password -o PubkeyAuthentication=no" -- "cat ${STATUS_LOG}"
 
 	ERR_COUNT=$(jq ' .v1 | .[] | values | select(.errors? | length > 0) | .errors[] ' "${sanity_check_tmp}"/* | jq -rs '. | length')
 
