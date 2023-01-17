@@ -8,27 +8,42 @@ You will need access to an AWS account to obtain both **AWS_ACCESS_KEY_ID** and 
     terraform init -upgrade
     ```
 
-1. Create environment variables for **AWS_ACCESS_KEY_ID** and **AWS_SECRET_ACCESS_KEY**
+2. Create environment variables for **AWS_ACCESS_KEY_ID** and **AWS_SECRET_ACCESS_KEY**
 
     ```bash
     export AWS_ACCESS_KEY_ID="YOUR_AWS_ACCESS_KEY_ID"
     export AWS_SECRET_ACCESS_KEY="YOUR_AWS_SECRET_ACCESS_KEY"
     ```
 
-1. Validate the environment variables are set
+3. Validate the environment variables are set
 
     ```bash
     echo $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
     ```
 
-Use the following terraform variables:
+4. Use the following terraform variables:
 
-- `aws_region`: Which region do you want the instances in?
-- `aws_instance_type`: What kind of instance?
-- `aws_instance_count`: How many instances?
-- `splunk_access_token`: Observability Access Token
-- `splunk_realm`: Observability Realm
-- `splunk_presetup`: Provide a preconfigured instance (OTel Collector and Online Boutique deployed)
+    - `aws_region`: Which region do you want the instances in?
+    - `aws_instance_count`: How many instances?
+    - `slug`: Project name slug that will be used to tag aws resources
+    - `splunk_access_token`: Observability Access Token
+    - `splunk_rum_token`: Observability RUM Token
+    - `splunk_realm`: Observability Realm
+    - `splunk_presetup`: Provide a preconfigured instance (OTel Collector and Online Boutique deployed)
+    - `splunk_jdk`: Install JDK on the instance
+
+5. Edit the `terraform.tfvars` file and set the variables.
+
+    ```text
+    aws_region = ""
+    aws_instance_count = ""
+    slug = ""
+    splunk_access_token = ""
+    splunk_rum_token = ""
+    splunk_realm = ""
+    splunk_presetup = false
+    splunk_jdk = false
+    ```
 
 Sample command:
 
@@ -36,11 +51,13 @@ Sample command:
 terraform apply \
 -auto-approve \
 -var="aws_region=eu-central-1" \
--var="aws_instance_type=t2.xlarge" \
 -var="aws_instance_count=1" \
+-var= "slug=myproject" \
 -var="splunk_access_token=123xxx456xxx789" \
+-var="splunk_rum_token=123xxx456xxx789" \
 -var="splunk_realm=eu0" \
--var="splunk_presetup=true"
+-var="splunk_presetup=true" \
+-var="splunk_jdk=false"
 ```
 
 Or you use the provided script `up` to request instances:

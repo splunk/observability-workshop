@@ -146,7 +146,7 @@ locals {
     rum_token = var.splunk_rum_token
     realm = var.splunk_realm
     presetup = var.splunk_presetup
-    petclinic = var.splunk_petclinic
+    jdk = var.splunk_jdk
 
   }
 }
@@ -171,11 +171,10 @@ resource "aws_instance" "observability-instance" {
   )
 
   lifecycle {
-    # The AMI ID must refer to an existing AMI that has the tag "nomad-server".
     precondition {
-      # if splunk_presetup=true, token and realm cannot be empty
+      # if splunk_presetup=true, tokens and realm cannot be empty
       condition     = var.splunk_presetup ? try(var.splunk_access_token, "") != "" && try(var.splunk_realm, "") != "" && try(var.splunk_rum_token, "") != "": true
-      error_message = "When requesting a pre-setup instance, realm and access_token are required and cannot be empty"
+      error_message = "When requesting a pre-setup instance, splunk_realm, splunk_access_token and splunk_rum_token are required and cannot be null/empty"
     }
   }
 }

@@ -10,7 +10,7 @@ variable "splunk_presetup" {
   default = false
 }
 
-variable "splunk_petclinic" {
+variable "splunk_jdk" {
   description = "Enabled Java Development environment? (true/false)"
   type = bool
   default = false

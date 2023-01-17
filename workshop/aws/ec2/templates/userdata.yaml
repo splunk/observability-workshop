@@ -15,10 +15,10 @@ packages:
   - podman
   - python3-venv
   - jq
-%{ if petclinic == true ~}
+%{ if jdk == "true" }
   - maven
   - openjdk-17-jdk
-%{ endif ~}
+%{ endif }
   - python3-pip
   - zsh
 
@@ -65,9 +65,7 @@ write_files:
       export ACCESS_TOKEN=${access_token}
       export REALM=${realm}
 
-%{ if presetup == true ~}
-      export REALM=${realm}
-      export ACCESS_TOKEN=${access_token}
+%{ if presetup == "true" }
       export RUM_TOKEN=${rum_token}
       if [ ! -f ~/.helmok ]; then
         helm repo add splunk-otel-collector-chart https://splunk.github.io/splunk-otel-collector-chart
@@ -79,7 +77,7 @@ write_files:
         echo $INSTANCE > ~/.helmok
         cd /home/ubuntu
       fi
-%{ endif ~}
+%{ endif }
       export KUBECONFIG=/home/ubuntu/.kube/config
       alias kc='kubectl'
       alias dc='docker-compose'

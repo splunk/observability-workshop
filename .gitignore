@@ -8,7 +8,6 @@ terraform.tfstate.backup
 .terraform.tfstate.lock.info
 .terraform
 secret.tfvars
-terraform.tfvars
 .terraform.lock.hcl
 tfplan*
 /venv/
