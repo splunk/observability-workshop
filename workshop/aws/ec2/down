@@ -22,10 +22,10 @@ REGION=$3
 
 WORKSPACE=o11y-for-$SLUG
 NUKE_PLAN=tfplan-$SLUG-destroy
-TFVARS="-var=\"slug=$SLUG\" -var=\"aws_instance_count=$COUNT\" -var=\"aws_region=$REGION\" -var=\"splunk_presetup=false\""
+TFVARS=( -var="slug=$SLUG" -var="aws_instance_count=$COUNT" -var="aws_region=$REGION" -var="splunk_presetup=false" )
 
 terraform workspace select "$WORKSPACE"
-terraform plan -destroy "${TFVARS}" -input=false -out="$NUKE_PLAN"
+terraform plan -destroy "${TFVARS[@]}" -input=false -out="$NUKE_PLAN"
 terraform apply -input=false -parallelism=25 "$NUKE_PLAN"
 terraform workspace select default
 terraform workspace delete "$WORKSPACE"
