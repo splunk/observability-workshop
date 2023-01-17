@@ -1,4 +1,4 @@
-aws_region` = ""
+aws_region = ""
 aws_instance_count = ""
 slug = ""
 splunk_access_token = ""
