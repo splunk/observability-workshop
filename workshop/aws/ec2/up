@@ -28,9 +28,10 @@ REGION=$3
 WORKSPACE=o11y-for-$SLUG
 CREATE_PLAN=tfplan-$SLUG-create
 CLOUD_INIT=../cloud-init/k3s.yaml
+TFVARS="-var=\"slug=$SLUG\" -var=\"aws_instance_count=$COUNT\" -var=\"aws_region=$REGION\" -var=\"splunk_presetup=false\""
 
 terraform workspace select "$WORKSPACE" || terraform workspace new "$WORKSPACE"
-terraform plan -var="slug=$SLUG" -var="aws_instance_count=$COUNT" -var="aws_region=$REGION" -input=false -out="$CREATE_PLAN"
+terraform plan "${TFVARS}" -input=false -out="$CREATE_PLAN"
 while :; do
 	terraform apply -input=false "$CREATE_PLAN"
 	# terraform apply -var="aws_instance_count=$COUNT" -var="aws_region=$REGION" -input=false
@@ -50,7 +51,7 @@ while :; do
 			{ TF_STATE=$(terraform show --json); while read -r IP; do \
 				RNAME=$(jq -r ' .values.root_module.resources[] | select (.values.public_ip == "'"$IP"'") | .address' <<< "$TF_STATE")
 				echo "Error found in cloud-init status for instance: $RNAME"
-				terraform destroy -var="aws_instance_count=$COUNT" -var="aws_region=$REGION" -target "'$RNAME'"
+				terraform destroy "${TFVARS}" -target "'$RNAME'"
 			done }
 	fi
 done
