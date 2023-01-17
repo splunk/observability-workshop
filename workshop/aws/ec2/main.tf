@@ -140,21 +140,25 @@ resource "aws_route_table_association" "o11y-ws-rta" {
   route_table_id = aws_route_table.o11y-ws-rt.id
 }
 
+locals {
+  template_vars = {
+    access_token = var.splunk_access_token
+    rum_token = var.splunk_rum_token
+    realm = var.splunk_realm
+    presetup = var.splunk_presetup
+    petclinic = var.splunk_petclinic
+
+  }
+}
+
 resource "aws_instance" "observability-instance" {
   count                  = var.aws_instance_count
   ami                    = data.aws_ami.latest-ubuntu.id
   instance_type          = var.aws_instance_type
   subnet_id              = aws_subnet.o11y-ws-subnet.id
   vpc_security_group_ids = [aws_security_group.o11y-ws-sg.id]
-  user_data              = templatefile("${path.module}/templates/userdata.yaml",
-    {
-     access_token = "${var.splunk_access_token}" 
-     rum_token = "${var.splunk_rum_token}" 
-     realm = "${var.splunk_realm}" 
-     presetup = "${var.splunk_presetup}"
-     petclinic = "${var.splunk_petclinic}"
-    } )
- 
+  user_data              = templatefile("${path.module}/templates/userdata.yaml", local.template_vars)
+
   root_block_device {
     volume_size = var.instance_disk_aws
   }
@@ -165,5 +169,14 @@ resource "aws_instance" "observability-instance" {
       Name = "observability-${count.index + 1}"
     }
   )
+
+  lifecycle {
+    # The AMI ID must refer to an existing AMI that has the tag "nomad-server".
+    precondition {
+      # if splunk_presetup=true, token and realm cannot be empty
+      condition     = var.splunk_presetup ? try(var.splunk_access_token, "") != "" && try(var.splunk_realm, "") != "" && try(var.splunk_rum_token, "") != "": true
+      error_message = "When requesting a pre-setup instance, realm and access_token are required and cannot be empty"
+    }
+  }
 }
 

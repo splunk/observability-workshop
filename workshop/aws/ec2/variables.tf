@@ -7,11 +7,13 @@ variable "cloud_init_print" {
 variable "splunk_presetup" {
   description = "Presetup the instance? (true/false)"
   type = bool
+  default = false
 }
 
 variable "splunk_petclinic" {
   description = "Enabled Java Development environment? (true/false)"
   type = bool
+  default = false
 }
 
 variable "aws_instance_count" {
@@ -30,16 +32,18 @@ variable "slug" {
 
 variable "splunk_access_token" {
   description = "Splunk Oberservability Cloud Access Token"
+  default     = ""
 }
 
 variable "splunk_rum_token" {
   description = "Splunk Oberservability Cloud RUM Token"
+  default     = ""
 }
 
 variable "splunk_realm" {
   description = "Splunk Oberservability Cloud Realm (us0, us1, us2, eu0, jp0, au0)"
+  default     = ""
 }
-
 
 
 data "aws_ami" "latest-ubuntu" {
