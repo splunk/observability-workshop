@@ -6,6 +6,8 @@ chpasswd:
 
 package_update: true
 
+hostname: ${instance_name}
+
 packages:
   - unzip
   - shellinabox
