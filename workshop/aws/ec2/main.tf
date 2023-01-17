@@ -169,7 +169,7 @@ resource "aws_instance" "observability-instance" {
     local.common_tags,
     {
       Name = "observability-${count.index + 1}"
-      Instance = "${var.slug}-${count.index + 1}"
+      Instance = "${var.slug}-${format("%02d", count.index + 1)}"
     }
   )
 
