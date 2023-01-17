@@ -47,6 +47,7 @@ data "template_file" "user_data" {
     realm = "${var.splunk_realm}"
     presetup = "${var.splunk_presetup}"
     jdk = "${var.splunk_jdk}"
+    instance_name = "${random_string.hostname.result}"
   }
 }
 
@@ -56,7 +57,7 @@ resource "local_file" "user_data" {
 }
 
 resource "random_string" "hostname" {
-  length = 6
+  length = 4
   lower  = true
   upper  = false
   special = false
