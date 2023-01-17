@@ -25,7 +25,7 @@ This includes (but not limited to):
 * Headers. (in various sizes)
 * Emphasis styles.
 * Lists and Tables.
-* Links. These can be external webpages (for documentation for example) or directly to other Splunk IMT Dashboards
+* Links. These can be external webpages (for documentation for example) or directly to other Splunk IM Dashboards
 
 Below is an example of above Markdown options you can use in your note.
 

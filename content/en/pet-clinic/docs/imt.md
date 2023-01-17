@@ -14,7 +14,7 @@ The OpenTelemetry Collector is the core component of instrumenting infrastructur
 
 Splunk Observability Cloud offers wizards to walk you through the setup of the Collector on both your infrastructure and applications. By default, the wizard will only provide the commands to only install the collector.
 
-If you have already completed the **Splunk IMT** workshop you can take advantage of the existing environment variables. Otherwise, create the `ACCESS_TOKEN` and `REALM` environment variables to use in the proceeding OpenTelemetry Collector install command. For instance, if your realm is `us1`, you would type `export REALM=us1` and for `eu0` type `export REALM=eu0` etc.
+If you have already completed the **Splunk IM** workshop you can take advantage of the existing environment variables. Otherwise, create the `ACCESS_TOKEN` and `REALM` environment variables to use in the proceeding OpenTelemetry Collector install command. For instance, if your realm is `us1`, you would type `export REALM=us1` and for `eu0` type `export REALM=eu0` etc.
 
 {{< tabpane >}}
 {{< tab header="Export Variables" lang="bash" >}}

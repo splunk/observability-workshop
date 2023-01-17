@@ -1,6 +1,6 @@
 ---
 title: はじめに
-linkTitle: Splunk IMT
+linkTitle: Splunk IM
 cascade:
  type: docs
 weight: 1

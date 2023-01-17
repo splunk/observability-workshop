@@ -10,7 +10,7 @@ Below are helpful resources about Splunk and the DevOps use case. Topics covered
 
 ## Documentation
 
-* {{% labelbutton color="observability" %}}IMT{{% /labelbutton %}} [Splunk Infrastructure Monitoring](https://docs.splunk.com/Observability/infrastructure/intro-to-infrastructure.html#nav-Introduction-to-Splunk-Infrastructure-Monitoring)
+* {{% labelbutton color="observability" %}}IM{{% /labelbutton %}} [Splunk Infrastructure Monitoring](https://docs.splunk.com/Observability/infrastructure/intro-to-infrastructure.html#nav-Introduction-to-Splunk-Infrastructure-Monitoring)
 * {{% labelbutton color="apm" %}}APM{{% /labelbutton %}} [Splunk Application Performance Monitoring (APM)](https://docs.splunk.com/Observability/apm/intro-to-apm.html#nav-Introduction-to-Splunk-APM)
 * {{% labelbutton color="observability" %}}LO{{% /labelbutton %}} [Splunk Log Observer](https://docs.splunk.com/Observability/logs/intro-to-logs.html#nav-Introduction-to-Splunk-Log-Observer)
 * {{% labelbutton color="rum" %}}RUM{{% /labelbutton %}} [Splunk Real User Monitoring (RUM)](https://docs.splunk.com/Observability/rum/intro-to-rum.html#nav-Introduction-to-Splunk-RUM)

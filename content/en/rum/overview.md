@@ -28,7 +28,7 @@ You may encounter some issues with this web site, and you will use Splunk RUM to
 
 If this a standalone RUM workshop, the workshop host will provide you with a URL for an online boutique store that has RUM enabled.
 
-If you are running this session as part of the IMT/APM workshop you will be able to use your current online boutique store after we enable RUM.
+If you are running this session as part of the IM/APM workshop you will be able to use your current online boutique store after we enable RUM.
 
 Each of these Online Boutiques are also being visited by a few synthetic users, this will allow us to generate more live data to be analyzed later.
 

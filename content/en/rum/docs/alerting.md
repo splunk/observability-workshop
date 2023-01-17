@@ -16,7 +16,7 @@ This allows you to combine data from your Website, Backend service and underlyin
 
 Creating charts or alerts for RUM Metrics are done in the same way as we do for Infrastructure Metrics. In this section we will create a simple chart, detector and alert.
 
-If you previously done the Splunk IMT Part of the Workshop, you will find this section very familiar. If you have not done the Splunk IMT workshop before, it is recommended that you run though the [Dashboards](../dashboards/intro.md) and [Detectors](../detectors/intro.md) modules after completing the RUM workshop to get a better understanding of the capabilities.
+If you previously done the Splunk IM Part of the Workshop, you will find this section very familiar. If you have not done the Splunk IM workshop before, it is recommended that you run though the [Dashboards](../dashboards/intro.md) and [Detectors](../detectors/intro.md) modules after completing the RUM workshop to get a better understanding of the capabilities.
 
 ## 2. Create an alert on one of the RUM Metrics
 
@@ -28,7 +28,7 @@ From the top left hamburger menu icon click **Alerts** in the menu and then sele
 
 Creating charts or alerts for RUM Metrics are done in the same way as we do for Infrastructure Metrics.
 In this section we will create a simple chart, detector and alert
-If you previously done the Splunk IMT Part of the Workshop, you will find this section very familiar.
+If you previously done the Splunk IM Part of the Workshop, you will find this section very familiar.
 
 ![RUM-Cart2](../../images/RUM-select-cart.png)
 

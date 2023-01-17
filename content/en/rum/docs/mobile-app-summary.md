@@ -10,7 +10,7 @@ weight: 9
 
 ## 1. Visit your RUM Application Summary Dashboard
 
-Visit and login into your Splunk IMT/APM/RUM Website. From the left side menu bar select **RUM** ![RUM-ico](../../images/RUM_ico.png). This will bring you to your RUM Application Summary Page.
+Visit and login into your Splunk IM/APM/RUM Website. From the left side menu bar select **RUM** ![RUM-ico](../../images/RUM_ico.png). This will bring you to your RUM Application Summary Page.
 
 The goal of this page is to give you in a single pane/dashboard, a clear indication of the  health, performance and potential errors found in your application(s) and allow you dive deeper into  the information about your User Session ran against your web site.  
 You will have a pane for each of your active RUM applications. (The view below is the default  expanded view)
