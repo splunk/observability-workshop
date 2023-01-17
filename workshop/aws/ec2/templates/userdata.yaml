@@ -152,21 +152,6 @@ write_files:
       echo "$NODE_IP $REGISTRY_NAME" | tee -a /etc/cloud/templates/hosts.debian.tmpl
       systemctl restart docker
 
-  - path: /usr/local/bin/local-setup.sh
-    permissions: '0744'
-    content: |
-      if [ -e /etc/.instance ]; then
-        INSTANCE=$(cat /etc/.instance)
-      fi
-      if [ -z $${INSTANCE+x} ]; then
-        INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)
-        sed -i "s/127.0.0.1.*/127.0.0.1 $INSTANCE.local $INSTANCE localhost/" /etc/hosts
-        sed -i "s/127.0.0.1.*/127.0.0.1 $INSTANCE.local $INSTANCE localhost/" /etc/cloud/templates/hosts.debian.tmpl
-        sudo hostnamectl set-hostname $INSTANCE
-        echo $INSTANCE > /etc/.instance
-      fi
-      export INSTANCE
-
 runcmd:
   - chsh -s $(which zsh) ubuntu
   - su ubuntu -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
@@ -197,7 +182,6 @@ runcmd:
   - curl -S -OL https://releases.hashicorp.com/terraform/1.3.7/terraform_1.3.7_linux_amd64.zip
   - unzip -qq terraform_1.3.7_linux_amd64.zip -d /usr/local/bin
   - bash /usr/local/bin/setup-docker-registry.sh
-  - bash /usr/local/bin/local-setup.sh
   # Install K3s
   - curl -sfL https://get.k3s.io | sh -
   # Create kube config and set correct permissions on ubuntu user home directory
