@@ -24,7 +24,7 @@ cd observability-workshop/multipass
 ## 4. Initialise Terraform
 
 ```bash
-terraform init
+terraform init --upgrade
 ```
 
 ```text
@@ -42,290 +42,44 @@ Initializing provider plugins...
 
 Terraform has been successfully initialized!
 
-You may now begin working with Terraform. Try running "terraform plan" to see
-any changes that are required for your infrastructure. All Terraform commands
-should now work.
+You may now begin working with Terraform. Try running "terraform plan" to see any changes that are required for your infrastructure. All Terraform commands should now work.
 
-If you ever set or change modules or backend configuration for Terraform,
-rerun this command to reinitialize your working directory. If you forget, other
+If you ever set or change modules or backend configuration for Terraform, rerun this command to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to do so if necessary.
 ```
 
-## 5. Terraform plan
+## 5. Terraform variables description
+
+- `splunk_access_token`: Observability Access Token
+- `splunk_rum_token`: Observability RUM Token
+- `splunk_realm`: Observability Realm
+- `splunk_presetup`: Provide a preconfigured instance (OTel Collector and Online Boutique deployed with RUM enabled)
+- `splunk_jdk`: Install OpenJDK and Maven on the instance
+
+## 6. Edit the variables file
+
+Edit `terraform.tfvars` and set the variables accordingly to your needs:
+
+```text
+aws_region = ""
+aws_instance_count = ""
+slug = ""
+splunk_access_token = ""
+splunk_rum_token = ""
+splunk_realm = ""
+splunk_presetup = false
+splunk_jdk = false
+```
+
+Then run `terraform plan` to see what will be created. Once happy run `terraform apply` to create the instances.
+
+## 7. Terraform plan
 
 ```bash
 terraform plan
 ```
 
-You will see similar output to this:
-
-```terraform
-var.splunk_access_token
-  Splunk Observability Cloud Access Token
-
-  Enter a value: 1234xxx5678xxx90
-
-var.splunk_presetup
-  Pre configure the instance? (true/false)
-
-  Enter a value: false
-
-var.splunk_realm
-  Splunk Observability Cloud Realm (us0, us1, us2, eu0, jp0, au0)
-
-  Enter a value: eu0
-
-var.splunk_rum_token
-  Splunk Observability Cloud RUM Token
-
-  Enter a value: 1234xxx5678xxx90
-
-data.template_file.user_data: Reading...
-data.template_file.user_data: Read complete after 0s [id=3aecf63cc707c73f4efec64a052b29736f87336388e02b12e736a2fef38fb313]
-
-Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
-  + create
-
-Terraform will perform the following actions:
-
-  # local_file.user_data will be created
-  + resource "local_file" "user_data" {
-      + content              = <<-EOT
-            #cloud-config
-            ssh_pwauth: yes
-            password: Observability2023!
-            chpasswd:
-              expire: false
-
-            package_update: true
-
-            packages:
-              - unzip
-              - shellinabox
-              - lynx
-              - gnupg2
-              - docker-compose
-              - podman
-              - python3-venv
-              - jq
-              - maven
-              - openjdk-17-jdk
-              - python3-pip
-              - zsh
-
-            groups:
-              - docker
-
-            system_info:
-              default_user:
-                groups: [docker]
-
-            write_files:
-              - path: /etc/skel/.profile
-                append: true
-                content: |
-                  helm() {
-
-                    echo >&2 "Using ACCESS_TOKEN=1234xxx5678xxx90"
-                    echo >&2 "Using REALM=eu0"
-
-                    command helm "$@"
-                  }
-
-                  terraform() {
-
-                    echo >&2 "Using ACCESS_TOKEN=1234xxx5678xxx90"
-                    echo >&2 "Using REALM=eu0"
-
-                    command terraform "$@"
-                  }
-
-                  echo "Waiting for cloud-init status..."
-                  if ! /usr/bin/timeout 180 grep -q 'Cloud-init .*finished at' <(sudo tail -f /var/log/cloud-init-output.log); then
-                    echo "Instance setup did not complete after 3 minutes. Please try again.";
-                  else
-                    echo "Your instance is ready!";
-                  fi
-
-                  if [ -e /etc/.instance ]; then
-                    INSTANCE=$(cat /etc/.instance)
-                    CLUSTER_NAME="$INSTANCE-cluster"
-                  fi
-                  export INSTANCE CLUSTER_NAME
-
-                  export ACCESS_TOKEN=1234xxx5678xxx90
-                  export REALM=eu0
-
-                  export KUBECONFIG=/home/ubuntu/.kube/config
-                  alias kc='kubectl'
-                  alias dc='docker-compose'
-                  alias docker='podman'
-
-              - path: /etc/skel/splunk-defaults.yaml
-                permissions: '0744'
-                content: |
-                  clusterReceiver:
-                    config:
-                      receivers:
-                        smartagent/kubernetes-events:
-                          type: kubernetes-events
-                          alwaysClusterReporter: true
-                          whitelistedEvents:
-                          - reason: Created
-                            involvedObjectKind: Pod
-                          - reason: Unhealthy
-                            involvedObjectKind: Pod
-                          - reason: Failed
-                            involvedObjectKind: Pod
-                          - reason: FailedCreate
-                            involvedObjectKind: Job
-                          - reason: Scheduling
-                            involvedObjectKind: Pod
-                          - reason: FailedScheduling
-                            involvedObjectKind: Pod
-                          - reason: ScalingReplicaSet
-                            involvedObjectKind: Deployment
-                          - reason: SuccessfulCreate
-                            involvedObjectKind: ReplicaSet
-                          - reason: MinimumReplicasUnavailable
-                            involvedObjectKind: Pod
-                          - reason: Pulling
-                            involvedObjectKind: Pod
-                          - reason: Pulled
-                            involvedObjectKind: Pod
-                          - reason: FailedScheduling
-                            involvedObjectKind: Scheduler
-
-              - path: /etc/rancher/k3s/registries.yaml
-                permissions: '0600'
-                owner: root:root
-                content: |
-                  mirrors:
-                    docker.registry:
-                      endpoint:
-                        - "http://docker.registry:9999"
-
-              - path: /etc/containers/registries.conf.d/docker.registry.conf
-                permissions: '0644'
-                owner: root:root
-                content: |
-                  [[registry]]
-                  location="docker.registry:9999"
-                  insecure=true
-
-              - path: /etc/docker/daemon.json
-                content: |
-                  {
-                    "insecure-registries" : ["docker.registry:9999"]
-                  }
-
-              - path: /usr/local/bin/setup-docker-registry.sh
-                permissions: '0744'
-                content: |
-                  #!/usr/bin/env bash
-                  REGISTRY_NAME=docker.registry
-                  REGISTRY_PORT=9999
-                  NODE_IP=$(ip -o -4 addr | awk '$2 != "lo" { print $4}' | sed -e 's,/[[:digit:]]\+$,,')
-                  echo "$NODE_IP $REGISTRY_NAME" | tee -a /etc/hosts
-                  echo "$NODE_IP $REGISTRY_NAME" | tee -a /etc/cloud/templates/hosts.debian.tmpl
-                  systemctl restart docker
-
-              - path: /usr/local/bin/local-setup.sh
-                permissions: '0744'
-                content: |
-                  if [ -e /etc/.instance ]; then
-                    INSTANCE=$(cat /etc/.instance)
-                  fi
-                  if [ -z ${INSTANCE+x} ]; then
-                    INSTANCE=$(cat /dev/urandom | base64 | tr -dc 'a-z' | head -c4)
-                    sed -i "s/127.0.0.1.*/127.0.0.1 $INSTANCE.local $INSTANCE localhost/" /etc/hosts
-                    sed -i "s/127.0.0.1.*/127.0.0.1 $INSTANCE.local $INSTANCE localhost/" /etc/cloud/templates/hosts.debian.tmpl
-                    sudo hostnamectl set-hostname $INSTANCE
-                    echo $INSTANCE > /etc/.instance
-                  fi
-                  export INSTANCE
-
-            runcmd:
-              - chsh -s $(which zsh) ubuntu
-              - su ubuntu -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
-              - echo "source /etc/skel/.profile" >> /home/ubuntu/.zshrc
-              # Install Helm
-              - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-              # Install K9s (Kubernetes UI)
-              - curl -S -OL https://github.com/derailed/k9s/releases/download/v0.26.7/k9s_Linux_x86_64.tar.gz
-              - tar xfz k9s_Linux_x86_64.tar.gz -C /usr/local/bin/ k9s
-              # Download Workshop
-              - export WSVERSION=4.38
-              - 'export WSARCHIVE=$([ "$WSVERSION" = "main" ] && echo "main" || echo "v$WSVERSION")'
-              - curl -s -OL https://github.com/splunk/observability-workshop/archive/$WSARCHIVE.zip
-              - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
-              - mkdir /home/ubuntu/workshop
-              - mv /home/ubuntu/observability-workshop-$WSVERSION/workshop/* /home/ubuntu/workshop
-              - rm -rf /home/ubuntu/observability-workshop-$WSVERSION
-              # Set apm-config.sh executable
-              - chmod +x /home/ubuntu/workshop/apm/apm-config.sh
-              # Download Splunk Observability Cloud Jumpstart
-              - curl -s -L https://github.com/splunk/signalfx-jumpstart/archive/main.zip -o jumpstart.zip
-              - unzip -qq jumpstart.zip -d /home/ubuntu/
-              - mv /home/ubuntu/signalfx-jumpstart-main /home/ubuntu/signalfx-jumpstart
-              # Configure motd
-              - curl -s https://raw.githubusercontent.com/splunk/observability-workshop/main/workshop/cloud-init/motd -o /etc/motd
-              - chmod -x /etc/update-motd.d/*
-              # Install Terraform
-              - curl -S -OL https://releases.hashicorp.com/terraform/1.2.8/terraform_1.2.8_linux_amd64.zip
-              - unzip -qq terraform_1.2.8_linux_amd64.zip -d /usr/local/bin
-              - bash /usr/local/bin/setup-docker-registry.sh
-              - bash /usr/local/bin/local-setup.sh
-              # Install K3s
-              - curl -sfL https://get.k3s.io | sh -
-              # Create kube config and set correct permissions on ubuntu user home directory
-              - mkdir /home/ubuntu/.kube && kubectl config view --raw > /home/ubuntu/.kube/config
-              - chmod 400 /home/ubuntu/.kube/config
-              - chown -R ubuntu:ubuntu /home/ubuntu
-              # Deploy private registry
-              - /usr/local/bin/kubectl apply -f /home/ubuntu/workshop/k3s/registry/registry.yaml
-              # Configure shellinabox port and disable ssl then restart
-              - sed -i 's/SHELLINABOX_PORT=4200/SHELLINABOX_PORT=6501/'  /etc/default/shellinabox
-              - sed -i "s/\"--no-beep\"/\"--no-beep --disable-ssl\"/" /etc/default/shellinabox
-              - sudo service shellinabox restart
-              - sed -i 's/_THEME=\"robbyrussell\"/_THEME=\"maran\"/g' home/ubuntu/.zshrc
-        EOT
-      + directory_permission = "0777"
-      + file_permission      = "0777"
-      + filename             = "ubuntu-cloudinit.yml"
-      + id                   = (known after apply)
-    }
-
-  # multipass_instance.ubuntu will be created
-  + resource "multipass_instance" "ubuntu" {
-      + cloudinit_file = "ubuntu-cloudinit.yml"
-      + cpus           = 4
-      + disk           = "32GiB"
-      + image          = "jammy"
-      + memory         = "8096MiB"
-      + name           = (known after apply)
-    }
-
-  # random_string.hostname will be created
-  + resource "random_string" "hostname" {
-      + id          = (known after apply)
-      + length      = 6
-      + lower       = true
-      + min_lower   = 0
-      + min_numeric = 0
-      + min_special = 0
-      + min_upper   = 0
-      + number      = false
-      + numeric     = false
-      + result      = (known after apply)
-      + special     = false
-      + upper       = false
-    }
-
-Plan: 3 to add, 0 to change, 0 to destroy.
-```
-
-## 6. Terraform apply
+## 8. Terraform apply
 
 ```bash
 terraform apply
@@ -337,13 +91,13 @@ multipass_instance.ubuntu: Creating...
 multipass_instance.ubuntu: Still creating... [10s elapsed]
 ...
 multipass_instance.ubuntu: Still creating... [4m30s elapsed]
-multipass_instance.ubuntu: Creation complete after 4m39s [name=lsvtwe]
+multipass_instance.ubuntu: Creation complete after 4m39s [name=lsvt]
 ```
 
 Once the instance has been successfully created (this can take several minutes), shell into it using the `name` output above e.g.
 
 ```bash
-multipass shell lsvtwe
+multipass shell lsvt
 ```
 
 ```text
@@ -360,7 +114,7 @@ See "man sudo_root" for details
 Waiting for cloud-init status...
 Your instance is ready!
 
-ubuntu@lsvtwe:/home/ubuntu $
+ubuntu@lsvt ~ $
 ```
 
 Once your instance presents you with the Splunk logo, you have completed the preparation for your Multipass instance and can at this point you are ready to continue and [start the workshop](https://splunk.github.io/observability-workshop/latest/).
