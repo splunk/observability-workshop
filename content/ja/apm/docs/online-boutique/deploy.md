@@ -17,7 +17,6 @@ isCJKLanguage: true
 もしアクセスできる場合は、3. *オンラインブティック* に進みます。
 新しいインスタンスを受け取った場合は、 [Deploying the OpenTelemetry Collector in Kubernetes](../../../../imt/docs/gdi/k3s) の最初の2つのセクションを実行して、システムをAPMワークショップのために準備し、次のセクションを続行してください。
 
-
 ## 2. Online Boutiqueをデプロイする
 
 Online BoutiqueアプリケーションをK3sにデプロイするには、以下のデプロイメントを適用します。
@@ -63,7 +62,6 @@ deployment.apps/rum-loadgen-deployment created
 **kubectl delete -f deployment.yaml** コマンドを実行しAPM環境のデプロイ削除します。
 次にガイド、メッセージに表示されていた変数をexportし上記のデプロイスクリプトを再実行します。
 {{% /alert %}}
-
 
 Online Boutique アプリケーションが起動していることを確認するには:
 

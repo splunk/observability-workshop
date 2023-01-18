@@ -22,7 +22,7 @@ Splunk IM/APM/RUM ウェブサイトにログインします。左側のメニ�
 ![RUM-App-sum-collapsed](../../images/multiple_apps_collapsed.png)
 
 アプリケーション名の前にある左側の赤い矢印で強調されている ![RUM-browser](../../images/browser.png) または ![RUM-mobile](../../images/mobile.png) アイコン(アプリケーションの種類が *モバイル* か *ブラウザー* かによる）をクリックすると、RUM Application Summryビューをフルダッシュボードに展開することが可能です。
- 
+
 まず、ワークショップに使用する適切なアプリケーションを見つけます。
 
 単独のRUMワークショップに参加する場合、ワークショップ講師が使用するアプリケーションの名前を教えてくれます。複合ワークショップの場合、IMとAPMで使用した命名規則に従い、上のスクリーンショットの一番最後に表示されているように、 **jmcj-rum-app** のようにユニークIDとしてEC2ノードの名前に従います。

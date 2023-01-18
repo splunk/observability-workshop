@@ -44,7 +44,6 @@ export REALM=
 {{< /tab >}}
 {{< /tabpane >}}
 
-
 Splunk Helm チャートを使って OpenTelemetry Collector をインストールします。まず、Splunk Helm chart のリポジトリを Helm に追加してアップデートします。
 
 {{< tabpane >}}
@@ -128,7 +127,6 @@ kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 2021-03-21T16:11:11.281Z        INFO    k8sclusterreceiver@v0.21.0/receiver.go:75       Completed syncing shared informer caches.       {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
 {{< /tab >}}
 {{< /tabpane >}}
-
 
 {{% alert title="インストールに失敗した場合に削除する" color="info" %}}
 OpenTelemetry Collectorのインストールに失敗した場合は、次のようにしてインストールを削除することで、最初からやり直すことができます。

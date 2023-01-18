@@ -24,7 +24,7 @@ export REALM=<replace_with_Splunk_Realm>
 {{< /tabpane >}}
 
 {{% alert title="Delete any existing OpenTelemetry Collectors" color="warning" %}}
-If you have completed the Splunk IMT workshop, please ensure you have deleted the collector running in Kubernetes before continuing. This can be done by running the following command: `helm delete splunk-otel-collector`.
+If you have completed the Splunk IM workshop, please ensure you have deleted the collector running in Kubernetes before continuing. This can be done by running the following command: `helm delete splunk-otel-collector`.
 {{% /alert %}}
 
 We can then go ahead and install the Collector. There are two additional parameters passed to the install script, they are `--with-instrumentation` and `--deployment-environment`. The `--with-instrumentation` option the installer will install the agent from the Splunk distribution of OpenTelemetry Java, which is then loaded automatically when the Pet Clinic Java application starts up. No configuration required!

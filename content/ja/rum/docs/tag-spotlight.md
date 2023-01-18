@@ -37,7 +37,6 @@ RUMの概要ページから、**Cart** エンドポイントのURLを選択し�
 
 ## 2. Tag Spotlight内の情報を探索
 
-
 Tag Spotlightは、チャートビューで異常値を確認したり、タグで問題を特定するのに役立つように設計されています。
 
 **Document Load Latency** ビューで、**Browser** 、 **Browser Version** 、 **OS Name** タグビューを見ると、様々なブラウザーの種類とバージョン、そして基盤となるOSを確認することができます。

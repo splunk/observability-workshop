@@ -73,7 +73,7 @@ sshコマンドに関するヘルプテキスト（下のスクリーンショ�
 
 ![Windows Apps Settings](../../images/windows-gui-optionalfeatures.png)
 
-ここでインストール済みの機能の一覧が表示されます。上部にプラスアイコンが付いた「機能の追加」ボタンがあるためクリックします。 
+ここでインストール済みの機能の一覧が表示されます。上部にプラスアイコンが付いた「機能の追加」ボタンがあるためクリックします。
 検索欄で「OpenSSH」と入力し「OpenSSH クライアント」を探し、チェックし、インストールボタンをクリックします。
 
 ![Windows Enable OpenSSH Client](../../images/windows-enable-openssh-client.png)

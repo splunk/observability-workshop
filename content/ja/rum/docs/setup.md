@@ -41,7 +41,6 @@ export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
 
 Online BoutiqueアプリケーションをK3sにデプロイするには、apm configスクリプトを実行し、デプロイを適用してください。
 
-
 {{< tabpane >}}
 {{< tab header="Deploy Online Boutique" lang="bash" >}}
 cd ~/workshop/apm
@@ -100,11 +99,9 @@ Chrome、Firefox、Microsoft Edgeでは、Online Boutiqueのサイト上で右�
 
 成功すれば、 [2 - 変更前のHEADセクションの確認](./#2-変更前のHEADセクションの確認) へ進みます。
 
-
 ### 1.2 Safari ユーザー - ページのソースを確認
 
 Safariでは機能を有効化する必要がある場合があります。OS Xメニューバーの *Safari* の配下にある **「設定」** をクリックします。
-
 
 ![Safari-1](../../images/Safari-1.png)
 
@@ -167,9 +164,8 @@ RUMに必要な変更は、WebページのHEADセクションに配置されま�
 
 * 最初の行は、Splunk Open Telemetry Javascript ファイルをダウンロードする場所を指定しています。*<https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js>*  (必要であれば、ローカルに読み込むこともできます)
 * 2行目は、Beacon URLでトレースの送信先を定義しています。 `{beaconUrl: "https://rum-ingest.eu0.signalfx.com/v1/rum"`
-* また、Access Tokenを追加しています。 `rumAuth: "1wCqZVUWIP5XSdNjPoQRFg"` (もちろんこれは例です。全てのアプリケーションに対して、複数のRUM Access Tokenを作成することができます。) * 
+* また、Access Tokenを追加しています。 `rumAuth: "1wCqZVUWIP5XSdNjPoQRFg"` (もちろんこれは例です。全てのアプリケーションに対して、複数のRUM Access Tokenを作成することができます。) *
 * また、SPLUNK RUM UIで使用するために、アプリケーション名や環境などの識別タグをRUMトレースに追加するために使用されます。 `app: "ksnq-rum-app", environment: "ksnq-rum-env"}`
-
 
 {{% alert title="Info" color="info" %}}
 この例ではアプリ名は **ksnq-rum-app** ですが、これはワークショップでは異なるでしょう。RUMセッションで使用するアプリ名と環境は講師に確認し、メモしておいてください。
@@ -177,4 +173,4 @@ RUMに必要な変更は、WebページのHEADセクションに配置されま�
 
 上記の2行だけであなたのWebサイトでRUMを有効にすることができます。
 
-(青色の)オプションのセクションでは、 `var tracer=Provider.getTracer('appModuleLoader');` を使用して、すべてのページ変更に対してカスタムイベントを追加し、ウェブサイトのコンバージョンと使用状況をよりよく追跡できるようにします。 
+(青色の)オプションのセクションでは、 `var tracer=Provider.getTracer('appModuleLoader');` を使用して、すべてのページ変更に対してカスタムイベントを追加し、ウェブサイトのコンバージョンと使用状況をよりよく追跡できるようにします。
