@@ -32,3 +32,17 @@ workshop/Lambda/Java/MobileShop/.factorypath
 workshop/Lambda/Java/MobileShop/.project
 workshop/Lambda/Java/MobileShop/.settings/*
 multipass/ubuntu-cloudinit.yml
+workshop/aws/ec2/terraform.tfvars.eu0.1.base.tfvars
+workshop/aws/ec2/terraform.tfvars.eu0.1.pre.tfvars
+.gitignore
+workshop/aws/ec2/pre-eu.sh
+workshop/aws/ec2/base-eu.sh
+workshop/aws/ec2/terraform.tfvars
+workshop/aws/ec2/kill-eu.sh
+workshop/aws/ec2/kill-us1.sh
+workshop/aws/ec2/pre-us1.sh
+workshop/aws/ec2/terraform.tfvars.us1.1.pre.tfvars
+workshop/aws/ec2/terraform.tfars.save
+workshop/aws/ec2/terraform.tfvars
+workshop/aws/ec2/terraform.tfvars.save
+workshop/aws/ec2/terraform.tfvars.us1.1.pre copy.tfvars

@@ -168,8 +168,9 @@ resource "aws_instance" "observability-instance" {
   tags = merge(
     local.common_tags,
     {
-      Name = "observability-${count.index + 1}"
+      #Name = "observability-${count.index + 1}"
       Instance = "${var.slug}-${format("%02d", count.index + 1)}"
+      Name     = "${var.slug}-${format("%02d", count.index + 1)}"
     }
   )
 

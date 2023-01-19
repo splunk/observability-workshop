@@ -1,7 +1,7 @@
 ---
 title: Increase HPA Replicas
 linkTitle: Increase HPA Replicas
-weight: 7
+weight: 8
 ---
 
 ## 1. Increase the HPA replica count

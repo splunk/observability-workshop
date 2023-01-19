@@ -1,7 +1,7 @@
 ---
 title: Deploying PHP/Apache
 linkTitle: Deploying PHP/Apache
-weight: 2
+weight: 3
 ---
 
 ## 1.  DNS and Services in Kubernetes

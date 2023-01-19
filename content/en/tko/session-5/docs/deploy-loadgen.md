@@ -1,7 +1,7 @@
 ---
 title: Deploy Load Generator
 linkTitle: Deploy Load Generator
-weight: 4
+weight: 5
 ---
 
 Now to see how the autoscaler reacts to increased load. To do this, you'll start a different Pod to act as a client. The container within the client Pod runs in an infinite loop, sending queries to the php-apache service.
