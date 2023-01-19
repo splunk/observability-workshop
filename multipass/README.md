@@ -56,9 +56,17 @@ commands will detect it and remind you to do so if necessary.
 - `splunk_presetup`: Provide a preconfigured instance (OTel Collector and Online Boutique deployed with RUM enabled)
 - `splunk_jdk`: Install OpenJDK and Maven on the instance (for PetClinic workshop or other Java based workshops)
 
-## 6. Edit the variables file
+## 6. Create Terraform variables file
 
-Edit `terraform.tfvars` and set the variables accordingly to your needs:
+Variables are kept in file `terrform.tfvars` and we provide a template as `terraform.tfvars.template` to copy and edit:
+
+```bash
+cp terraform.tfvars.template terraform.tfvars
+```
+
+The file `terraform.tfvars` is ignored by git and should not be committed to the repo.
+
+Edit `terraform.tfvars` and set the variables accordingly to your needs e.g.
 
 ```text
 splunk_access_token = "1234xxxx5678yyyy"
