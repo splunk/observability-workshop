@@ -1,0 +1,241 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Observability Cloud Workshops – O11y - Distributed Tracing for modern applications</title><link>https://splunk.github.io/observability-workshop/v4.46/tko/session-6/</link><description>Recent content in O11y - Distributed Tracing for modern applications on Splunk Observability Cloud Workshops</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://splunk.github.io/observability-workshop/v4.46/tko/session-6/index.xml" rel="self" type="application/rss+xml"/><item><title>Tko: Setup</title><link>https://splunk.github.io/observability-workshop/v4.46/tko/session-6/docs/setup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.46/tko/session-6/docs/setup/</guid><description>
+&lt;h2 id="1-set-environment-variables">1. Set Environment Variables&lt;/h2>
+&lt;p>Environment Variables:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">USERNAME&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;Your-UserName&amp;gt;
+&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">SPLUNK_ACCESS_TOKEN&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;Your-Token&amp;gt;
+&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">SPLUNK_REALM&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;Your-Realm&amp;gt;
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="2-implement-auto-instrumentation">2. Implement Auto-Instrumentation&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#204a87">cd&lt;/span> shop
+vi Dockerfile
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Add the Otel Java Agent to Java ENTRYPOINT:&lt;/p>
+&lt;p>Change this:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">ENTRYPOINT java -Dotel.resource.attributes&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>service.name&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>shop,deployment.environment&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">USERNAME&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>_Apm_Instrumentation_Shop -jar app.jar
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>To this:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">ENTRYPOINT java -javaagent:splunk-otel-javaagent-all.jar
+-Dotel.resource.attributes&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>service.name&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>shop,deployment.environment&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">USERNAME&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>_Apm_Instrumentation_Shop
+-jar app.jar
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>See examples at:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">vi ../Dockerfiles_Instrumented
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Repeat for: &lt;code>instruments / products / stock&lt;/code>&lt;/p>
+&lt;h2 id="3-build-and-deploy-application">3. Build and Deploy Application&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#204a87">cd&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;javashop-otel directory&amp;#34;&lt;/span>
+./BuildAndDeploy.sh
+&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Tko: Validate Traces are being collected</title><link>https://splunk.github.io/observability-workshop/v4.46/tko/session-6/docs/validate_traces/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.46/tko/session-6/docs/validate_traces/</guid><description>
+&lt;h2 id="1-users-and-workflows">1. Users and Workflows&lt;/h2>
+&lt;p>As we go through this workshop we will be switching roles from SRE to Developer. First we will start with first responders or SREs who will identify an issue in Splunk Observability UI.&lt;/p>
+&lt;p>Next, we will jump to a Developer Role to see how a Developer will solve a problem using trace data identified by our SRE. Of course, we are not requiring 2 people for this workshop as each participant will play both roles.&lt;/p>
+&lt;h2 id="2-view-service-map">2. View Service Map&lt;/h2>
+&lt;p>If your instrumentation was successful, the service-map will show latency from the shop service to the products service.&lt;/p>
+&lt;p>&lt;img src="https://user-images.githubusercontent.com/32849847/206541846-7f0e6462-7659-44bc-bc48-3621c2872fc4.png" alt="Screen Shot 2022-12-08 at 11 48 58 AM">&lt;/p>
+&lt;p>Click on shop service, click Traces (right side), sort by Duration and select the longest duration trace.&lt;/p>
+&lt;p>&lt;img src="https://user-images.githubusercontent.com/32849847/204347798-4f232b7f-7a7a-483f-9d61-f0b535e9ecf0.png" alt="LongTrace">&lt;/p>
+&lt;p>Now we can see the long latency occurred in the products service and if we click on &lt;code>products: /products&lt;/code> we can see the offending method was &lt;code>products:ProductResource.getAllProducts&lt;/code>.&lt;/p>
+&lt;p>&lt;img src="https://user-images.githubusercontent.com/32849847/204347855-724545bf-c3df-478a-a27d-e4f85f708e15.png" alt="long-trace-detail-GetAllProducts">&lt;/p>
+&lt;p>Our next step here would be to send that trace to a developer by clicking download trace and they will have to debug the method. Before we do that please take note of the Tags available for the developer to leverage to find root cause.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;p class="alert-heading">Note:&lt;/p>
+&lt;div class="alert-body">
+Since they do not have full parameter information it can be a long process.
+&lt;/div>
+&lt;/div></description></item><item><title>Tko: Developer Role</title><link>https://splunk.github.io/observability-workshop/v4.46/tko/session-6/docs/developer_role/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.46/tko/session-6/docs/developer_role/</guid><description>
+&lt;h2 id="1-now-lets-play-the-role-of-the-developer">1. Now let&amp;rsquo;s play the role of the developer&lt;/h2>
+&lt;p>As a developer we must debug the function products:ProductResource.getAllProducts to find the problem.&lt;/p>
+&lt;p>Now find the needle in Haystack !&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">vi products/src/main/java/com/shabushabu/javashop/products/resources/ProductResource.java
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Find getAllProducts &lt;code>/getAllProducts&lt;/code>&lt;/p>
+&lt;p>scroll way&amp;hellip; down!&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-java" data-lang="java">&lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">ProductResource&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">private&lt;/span> &lt;span style="color:#000">ProductService&lt;/span> &lt;span style="color:#000">productService&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
+&lt;span style="color:#5c35cc;font-weight:bold">@Inject&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#000">ProductResource&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">ProductService&lt;/span> &lt;span style="color:#000">productService&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">this&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">productService&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">productService&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;span style="color:#5c35cc;font-weight:bold">@GET&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#000">Response&lt;/span> &lt;span style="color:#000">getAllProducts&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#5c35cc;font-weight:bold">@DefaultValue&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;California&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> &lt;span style="color:#5c35cc;font-weight:bold">@QueryParam&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;location&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> &lt;span style="color:#000">String&lt;/span> &lt;span style="color:#000">location&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">// STEP X: All we know right now is somewhere in this function, latency was introduced.
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>
+&lt;span style="color:#000">myCoolFunction1&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">location&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
+&lt;span style="color:#000">myCoolFunction2&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">location&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
+&lt;span style="color:#000">myCoolFunction10&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">location&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
+&lt;span style="color:#000">myCoolFunction13&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">location&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
+&lt;span style="color:#000">myCoolFunction5&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">location&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
+&lt;span style="color:#000">myCoolFunction6&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">location&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
+&lt;span style="color:#000">myCoolFunction7&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">location&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
+&lt;span style="color:#000">myCoolFunction8&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">location&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
+&lt;span style="color:#000">myCoolFunction9&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">location&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
+&lt;span style="color:#000">myCoolFunction10&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">location&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
+&lt;span style="color:#000">myCoolFunction11&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">location&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
+&lt;span style="color:#000">myCoolFunction12&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">location&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">//something in HAYSTACK
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span> &lt;span style="color:#8f5902;font-style:italic">//something in HAYSTACK
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span> &lt;span style="color:#8f5902;font-style:italic">//something in HAYSTACK
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Exit vi &lt;code>:q!&lt;/code>&lt;/p>
+&lt;p>OK, enough fun&amp;hellip; let&amp;rsquo;s make this easier for our developer.&lt;/p></description></item><item><title>Tko: Custom Attribution</title><link>https://splunk.github.io/observability-workshop/v4.46/tko/session-6/docs/custom_attribution/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.46/tko/session-6/docs/custom_attribution/</guid><description>
+&lt;p>To take a deeper look at this issue, we will implement Custom Attributes via Opentelemetry Manual Instrumentation&lt;/p>
+&lt;p>To speed up manual instrumentation in Java you can leverage &lt;a href="https://opentelemetry.io/docs/instrumentation/java/automatic/annotations/" target="_blank">OpenTelemetry Annotations&lt;/a>
+, which automatically create a span around a method without modifying the actual code inside the method.&lt;/p>
+&lt;p>This can be very valueable if you are working with an SRE that may have limited accesss to source code changes.&lt;/p>
+&lt;p>To add even more information to help our developers find the root cause faster, &lt;a href="https://opentelemetry.io/docs/instrumentation/java/automatic/annotations/" target="_blank">OpenTelemetry Annotations&lt;/a>
+can be used to generate span tags with parameter values for the method in question.&lt;/p>
+&lt;p>It is important to remember that any developer should be able to debug a method with knowledge of parameter values at the time of an issue ( exception or latency).&lt;/p>
+&lt;p>To expedite manual instrumentation implementation for this exercise, we have provided a tool which will annotate the entirety of the &amp;ldquo;shop&amp;rdquo; and &amp;ldquo;products&amp;rdquo; services with OpenTelemetry standard annotations for every method call without having to write any code. This &amp;ldquo;annotator&amp;rdquo; tool will also tag every parameter in every function, which adds a span tag with Parameter=Value.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;p class="alert-heading">Note:&lt;/p>
+&lt;div class="alert-body">
+This Full-fidelity Every-method approach is the Monolith Use Case with Splunk APM for Java.
+&lt;/div>
+&lt;/div>
+&lt;h2 id="1-run-manual-instrumentation-tool">1. Run Manual Instrumentation Tool&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#204a87">cd&lt;/span> javashop-otel directory
+./AutomateManualInstrumentation.sh
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="2-rebuild-and-deploy-application">2. Rebuild and Deploy Application&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">./BuildAndDeploy.sh
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Now that we have rebuilt and deployed our application, traffic is being sent once again.&lt;/p>
+&lt;p>Go back to the Splunk Observability UI and let&amp;rsquo;s see if these annotations help us narrow down the root cause more quickly.&lt;/p>
+&lt;p>Click back on the trace window&lt;/p>
+&lt;p>&lt;img src="https://user-images.githubusercontent.com/32849847/204348366-38b8c82a-02ca-472b-b1aa-feeb746ec1d7.png" alt="Screen Shot 2022-11-28 at 7 29 43 AM">&lt;/p>
+&lt;p>Give the traces a couple minutes to generate &amp;hellip;&lt;/p>
+&lt;h2 id="3-houston-we-have-a-new-problem">3. Houston, we have a new problem&lt;/h2>
+&lt;p>Once traces populate, Select &amp;ldquo;Errors Only&amp;rdquo;&lt;/p>
+&lt;p>&lt;img src="https://user-images.githubusercontent.com/32849847/204348492-84a4ad45-e11c-4e75-a6a9-d6e52e0eb13e.png" alt="Screen Shot 2022-11-28 at 7 36 50 AM">&lt;/p>
+&lt;p>Note: we haven&amp;rsquo;t changed the code at all by adding annotations. Click on a trace with an error present.&lt;/p>
+&lt;p>&lt;img src="https://user-images.githubusercontent.com/32849847/204348687-12241153-b297-4bd7-9ea8-4b410369e82c.png" alt="Screen Shot 2022-11-28 at 7 38 33 AM">&lt;/p>
+&lt;p>We can see our Exception is &lt;code>InvalidLocaleException&lt;/code>!&lt;/p>
+&lt;p>The real problem must be related to the new data associated with SRI LANKA as the Exception says &amp;ldquo;Non English Characters found in Instrument Data.&lt;/p>
+&lt;p>This exception had not surfaced in previous traces because the method where it was thrown was NOT covered with Auto Instrumentation.&lt;/p>
+&lt;p>Once we completed the Manual Instrumentation via the Annotations we added, this method was instrumented and we can now see we had a buried Exception being thrown.&lt;/p></description></item><item><title>Tko: Fix the issue</title><link>https://splunk.github.io/observability-workshop/v4.46/tko/session-6/docs/fix_issue/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.46/tko/session-6/docs/fix_issue/</guid><description>
+&lt;h2 id="1-lets-play-developer-once-again-and-fix-our-issue">1. Let&amp;rsquo;s play Developer once again and fix our issue&lt;/h2>
+&lt;p>We already know exactly what file to look in and what method to look at as it is called out in the trace.&lt;/p>
+&lt;p>&lt;img src="https://user-images.githubusercontent.com/32849847/204349038-3b43a5ba-18e3-4d58-8985-29ee1f7da40a.png" alt="Screen Shot 2022-11-28 at 7 43 58 AM">&lt;/p>
+&lt;p>Edit the file&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">vi shop/src/main/java/com/shabushabu/javashop/shop/model/Instrument.java
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Search for the method buildForLocale &lt;code>/buildForLocale&lt;/code>&lt;/p>
+&lt;p>Look at Code, notice the Annotation &lt;code>@WithSpan()&lt;/code>? &lt;code>@WithSpan()&lt;/code> is an &lt;a href="https://opentelemetry.io/docs/instrumentation/java/automatic/annotations/" target="_blank">OpenTelemetry Annotation&lt;/a>
+for Java that automatically generates a span around a the function that follows.&lt;/p>
+&lt;p>&lt;code>@SpanAttribute()&lt;/code> is another &lt;a href="https://opentelemetry.io/docs/instrumentation/java/automatic/annotations/" target="_blank">OpenTelemetry Annotation&lt;/a>
+that automatically adds a tag to a span with the corresponding parameter it annotates and its value. Using this technique we can tell developers exactly what the values of every parameter of a function the wrote or must repair at the time the problem occurred.&lt;/p>
+&lt;p>&lt;img src="https://user-images.githubusercontent.com/32849847/204349143-1e35b6e4-4059-4c56-8718-76c14d41727c.png" alt="Screen Shot 2022-11-28 at 7 45 13 AM">&lt;/p>
+&lt;p>Now let&amp;rsquo;s fix this code. We are going to simply comment this out for now and see if it fixes our latency issue. Type &lt;code>i&lt;/code> for insert&lt;/p>
+&lt;p>Change this:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-java" data-lang="java">&lt;span style="color:#204a87;font-weight:bold">if&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">(!&lt;/span>&lt;span style="color:#000">isEnglish&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">title&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">))&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">throw&lt;/span> &lt;span style="color:#204a87;font-weight:bold">new&lt;/span> &lt;span style="color:#000">InvalidLocaleException&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Non English Characters found in Instrument Data&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span> &lt;span style="color:#204a87;font-weight:bold">else&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">System&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">out&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">println&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Characters OK &amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>To this:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-java" data-lang="java">&lt;span style="color:#8f5902;font-style:italic">//if (!isEnglish(title)) {
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">// throw new InvalidLocaleException(&amp;#34;Non English Characters found in Instrument Data&amp;#34;);
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">// } else {
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">// System.out.println(&amp;#34;Characters OK &amp;#34;);
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">//}
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To save changes in vi type &lt;code>:wq&lt;/code>&lt;/p>
+&lt;p>Make sure you saved your changes to &lt;code>shop/src/main/java/com/shabushabu/javashop/shop/model/Instrument.java&lt;/code>&lt;/p>
+&lt;h2 id="2-build-and-deploy-application">2. Build and Deploy Application&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">./BuildAndDeploy.sh
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Wait a few minutes&amp;hellip;..&lt;/p></description></item><item><title>Tko: Root Cause Analysis</title><link>https://splunk.github.io/observability-workshop/v4.46/tko/session-6/docs/root_cause/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.46/tko/session-6/docs/root_cause/</guid><description>
+&lt;h2 id="1-latency-root-cause">1. Latency Root Cause&lt;/h2>
+&lt;p>Open Service Map in Splunk Observability UI&lt;/p>
+&lt;p>&lt;img src="https://user-images.githubusercontent.com/32849847/206542093-f97b37ce-7e58-45bc-a281-5a388d60617e.png" alt="Screen Shot 2022-12-08 at 11 48 58 AM">&lt;/p>
+&lt;p>We can see we still have our original Latency issue, however our exception for Invalid Locale should be gone.&lt;/p>
+&lt;p>Let&amp;rsquo;s check to see our InvalidLocale Exception is gone. Click Shop Service, click Traces on the right. We did remove the exception however it seems removing the Exception did not fix the latency&amp;hellip;&lt;/p>
+&lt;p>Lets see if the newly added annotations provide us more relevant information for the next responder once we find the cause.&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+&lt;p class="alert-heading">Note:&lt;/p>
+&lt;div class="alert-body">
+We added additional information Parameter Values at Time of Latency. In this case the &lt;strong>Location&lt;/strong> tag was created due our handy Annotator, that did the &lt;a href="https://opentelemetry.io/docs/instrumentation/java/automatic/annotations/" target="_blank">OpenTelemetry Annotations&lt;/a>
+&lt;/div>
+&lt;/div>
+&lt;p>&lt;img src="https://user-images.githubusercontent.com/32849847/213582624-66466a19-00fa-4dda-acd0-f6970d594ba1.png" alt="image">&lt;/p>
+&lt;p>We can see that the actual function call that has the latency was not &lt;code>ProductResource.getAllProducts&lt;/code> but the function call &lt;code>ProductResource.myCoolFunction234234234&lt;/code>!&lt;/p>
+&lt;p>With this information a Developer can debug very quickly. Consider the case of debugging code, that you may not have written yourself without Parameter Values at the time of the issue? You would have no choice but to go line &amp;hellip;. by line &amp;hellip;.. by line&amp;hellip;.. which can take a very long time.&lt;/p>
+&lt;p>Since we now have the parameter tagged as part of our span metadata the actual root cause is seemingly related to the &amp;ldquo;location&amp;rdquo; Colorado!&lt;/p>
+&lt;p>It appears the one custom attribute that was tagged for function &lt;code>ProductResource.myCoolFunction234234234&lt;/code> was &lt;code>myInt&lt;/code> with a value of &lt;code>999&lt;/code>.&lt;/p>
+&lt;p>Let&amp;rsquo;s see if we can find the code that is causing this latency.&lt;/p>
+&lt;h2 id="2-fix-the-code">2. Fix the code&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">vi products/src/main/java/com/shabushabu/javashop/products/resources/ProductResource.java
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>search for 999 &lt;code>/999&lt;/code>&lt;/p>
+&lt;p>We found and fixed the Needle In Haystack more quickly! Let&amp;rsquo;s fix our code, enter &lt;code>i&lt;/code> for insert.&lt;/p>
+&lt;p>Change this:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-java" data-lang="java">&lt;span style="color:#204a87;font-weight:bold">private&lt;/span> &lt;span style="color:#204a87;font-weight:bold">void&lt;/span> &lt;span style="color:#000">myCoolFunction234234234&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#5c35cc;font-weight:bold">@SpanAttribute&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;myInt&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> &lt;span style="color:#204a87;font-weight:bold">int&lt;/span> &lt;span style="color:#000">myInt&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">// Generate a FAST sleep of 0 time !
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span> &lt;span style="color:#000">Random&lt;/span> &lt;span style="color:#000">sleepy&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">new&lt;/span> &lt;span style="color:#000">Random&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">();&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">try&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">if&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">999&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">==&lt;/span>&lt;span style="color:#000">myInt&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">Thread&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">sleep&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">sleepy&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">nextInt&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">5000&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span> &lt;span style="color:#000">3000&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">+&lt;/span> &lt;span style="color:#000">3000&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span> &lt;span style="color:#204a87;font-weight:bold">catch&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Exception&lt;/span> &lt;span style="color:#000">e&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">){&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>To this:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-java" data-lang="java">&lt;span style="color:#204a87;font-weight:bold">private&lt;/span> &lt;span style="color:#204a87;font-weight:bold">void&lt;/span> &lt;span style="color:#000">myCoolFunction234234234&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#5c35cc;font-weight:bold">@SpanAttribute&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;myInt&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> &lt;span style="color:#204a87;font-weight:bold">int&lt;/span> &lt;span style="color:#000">myInt&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">// Generate a FAST sleep of 0 time !
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span> &lt;span style="color:#000">Random&lt;/span> &lt;span style="color:#000">sleepy&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">new&lt;/span> &lt;span style="color:#000">Random&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">();&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">try&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">// if (999==myInt)
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span> &lt;span style="color:#8f5902;font-style:italic">// Thread.sleep(sleepy.nextInt(5000 - 3000) + 3000);
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span> &lt;span style="color:#204a87;font-weight:bold">catch&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Exception&lt;/span> &lt;span style="color:#000">e&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">){&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Save changes in vi type &lt;code>:wq&lt;/code>&lt;/p>
+&lt;p>Make sure you saved your changes to: &lt;code>products/src/main/java/com/shabushabu/javashop/products/resources/ProductResource.java&lt;/code>&lt;/p></description></item><item><title>Tko: Build and Deploy again</title><link>https://splunk.github.io/observability-workshop/v4.46/tko/session-6/docs/build_again/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.46/tko/session-6/docs/build_again/</guid><description>
+&lt;h2 id="1-build-and-deploy-application-again">1. Build and Deploy Application again&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">./BuildAndDeploy.sh
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Now that we have rebuilt and deployed our application, traffic is being sent once again.&lt;/p>
+&lt;p>We are waiting a few minutes . . .&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;p class="alert-heading">Congratulations&lt;/p>
+&lt;div class="alert-body">
+If you do not see Red in your service map, you have successfully completed our Inventory application review for Shri Lanka and Colorado locations!!
+&lt;/div>
+&lt;/div>
+&lt;p>Now let&amp;rsquo;s ensure Chicago was on-boarded correctly. However, since we have been having so many issues related to &amp;ldquo;location&amp;rdquo; and we have added that custom attribute via Opentelemetry Manual Instrumentation, lets go to the Splunk Observability UI and create an APM metric set around that tag.&lt;/p>
+&lt;p>NOTE: We can do this without concern for Cardinality as we know this tag only has 6 possible values.&lt;/p>
+&lt;p>Index the location Tag.&lt;/p>
+&lt;p>&lt;img src="https://user-images.githubusercontent.com/32849847/213540265-5b0567ab-c9f3-412f-bec0-07277c7e8650.png" alt="image">&lt;/p>
+&lt;h2 id="2-build-and-deploy-application-to-run-traffic-again">2. Build and Deploy Application to run traffic again&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">./BuildAndDeploy.sh
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Open a browser and navigate to &lt;a href="http://localhost:8010" target="_blank">http://localhost:8010&lt;/a>
+&lt;/p>
+&lt;p>&lt;img src="https://user-images.githubusercontent.com/32849847/213541843-30266285-787f-493b-bc90-ffb4ac6e4c77.png" alt="image">&lt;/p>
+&lt;p>Select a few locagtions and hit the login button, remember to select the Chicago Location and Login&lt;/p>
+&lt;p>Uhh ohh ! We received a 500 error, something is wrong there as well. Return to the Splunk Observability UI and lets look once again at our Service Map&lt;/p>
+&lt;p>&lt;img src="https://user-images.githubusercontent.com/32849847/204349595-fca270ad-379e-48c5-b2e1-7f222af82c55.png" alt="Screen Shot 2022-11-28 at 8 11 47 AM">&lt;/p>
+&lt;p>We see there was an un-handled exception thrown in Instruments service and some latency from our database.&lt;/p>
+&lt;p>Select the Instruments Service, click on Traces on the right and select &lt;strong>Errors Only&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="https://user-images.githubusercontent.com/32849847/204349696-dc19d62f-ed82-4533-ad27-138237821b8e.png" alt="Screen Shot 2022-11-28 at 8 14 50 AM">&lt;/p>
+&lt;p>We can see the exception was thrown by Hibernate, however it was thrown in our method &lt;code>instruments: InstrumentRepository.findInstruments&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://user-images.githubusercontent.com/32849847/204351905-03fe632b-b21c-4e8d-8044-dc582fed2253.png" alt="Screen Shot 2022-11-28 at 8 14 37 AM">&lt;/p></description></item><item><title>Tko: The Final Fix!</title><link>https://splunk.github.io/observability-workshop/v4.46/tko/session-6/docs/final_fix/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.46/tko/session-6/docs/final_fix/</guid><description>
+&lt;h2 id="1-lets-play-developer-again">1. Let&amp;rsquo;s play developer again&lt;/h2>
+&lt;p>Edit the file &lt;code>instruments: InstrumentRepository.findInstruments&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">vi instruments/src/main/java/com/shabushabu/javashop/instruments/repositories/FindInstrumentRepositoryImpl.java
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-java" data-lang="java"> &lt;span style="color:#5c35cc;font-weight:bold">@SuppressWarnings&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;unchecked&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;span style="color:#5c35cc;font-weight:bold">@Override&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#000">Object&lt;/span> &lt;span style="color:#000">findInstruments&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">()&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">LOGGER&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">info&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;findInstruments Called (All)&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
+&lt;span style="color:#000">Object&lt;/span> &lt;span style="color:#000">obj&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">entityManager&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">createNativeQuery&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;SELECT * FROM instruments_for_sale, instruments_for_sale_chicago&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">).&lt;/span>&lt;span style="color:#c4a000">getResultList&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">();&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">return&lt;/span> &lt;span style="color:#000">obj&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>We can see the developer accidently added the Instruments database with the Chicago Instruments database! Let&amp;rsquo;s change the query and fix this, remove &lt;code>instruments_for_sale&lt;/code> from our query.&lt;/p>
+&lt;p>Change this:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-java" data-lang="java">&lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#000">Object&lt;/span> &lt;span style="color:#000">findInstruments&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">()&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">LOGGER&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">info&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;findInstruments Called (All)&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
+&lt;span style="color:#000">Object&lt;/span> &lt;span style="color:#000">obj&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">entityManager&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">createNativeQuery&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;SELECT * FROM instruments_for_sale, instruments_for_sale_chicago&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">).&lt;/span>&lt;span style="color:#c4a000">getResultList&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">();&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">return&lt;/span> &lt;span style="color:#000">obj&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>To this:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-java" data-lang="java">&lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#000">Object&lt;/span> &lt;span style="color:#000">findInstruments&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">()&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">LOGGER&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">info&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;findInstruments Called (All)&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">//Object obj = entityManager.createNativeQuery( &amp;#34;SELECT * FROM instruments_for_sale, instruments_for_sale_chicago&amp;#34;).getResultList();
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>
+&lt;span style="color:#000">Object&lt;/span> &lt;span style="color:#000">obj&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">entityManager&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">createNativeQuery&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;SELECT * FROM instruments_for_sale_chicago&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">).&lt;/span>&lt;span style="color:#c4a000">getResultList&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">();&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">return&lt;/span> &lt;span style="color:#000">obj&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="2-build-and-deploy-application-once-more">2. Build and Deploy Application once more&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#204a87">cd&lt;/span> javashop-otel directory
+./BuildAndDeploy.sh
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Now let&amp;rsquo;s test the Chicago location once again, open a browser and navigate to &lt;a href="http://localhost:8010" target="_blank">http://localhost:8010&lt;/a>
+. Select the Chicago Location and Login.&lt;/p>
+&lt;p>We now see the 500 error is gone! Let&amp;rsquo;s confirm a clean Service Map!&lt;/p>
+&lt;p>&lt;img src="https://user-images.githubusercontent.com/32849847/204350088-fca43e3c-42ea-4933-8a61-01eb2083fd23.png" alt="Screen Shot 2022-11-28 at 8 35 11 AM">&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;p class="alert-heading">Congratulations&lt;/p>
+&lt;div class="alert-body">
+If you see a clean service map, free of errors and Latency you have successfully completed the Java Instrumentation Workshop!**
+&lt;/div>
+&lt;/div>
+&lt;p>&lt;strong>Have a lovely day!&lt;/strong>&lt;/p></description></item></channel></rss>
