@@ -173,10 +173,10 @@ runcmd:
   - rm -rf /home/ubuntu/observability-workshop-$WSVERSION
   # Set apm-config.sh executable
   - chmod +x /home/ubuntu/workshop/apm/apm-config.sh
-  # Download Splunk Observability Cloud Jumpstart
-  - curl -s -L https://github.com/signalfx/signalfx-jumpstart/archive/main.zip -o jumpstart.zip
-  - unzip -qq jumpstart.zip -d /home/ubuntu/
-  - mv /home/ubuntu/signalfx-jumpstart-main /home/ubuntu/signalfx-jumpstart
+  # Download Splunk Observability Content Contrib Repo
+  - curl -s -L https://github.com/splunk/observability-content-contrib/archive/main.zip -o content-contrib.zip
+  - unzip -qq content-contrib.zip -d /home/ubuntu/
+  - mv /home/ubuntu/observability-content-contrib-main /home/ubuntu/observability-content-contrib
   # Configure motd
   - curl -s https://raw.githubusercontent.com/splunk/observability-workshop/main/workshop/cloud-init/motd -o /etc/motd
   - chmod -x /etc/update-motd.d/*

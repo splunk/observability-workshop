@@ -15,13 +15,15 @@ weight: 6
 
 Monitoring as code adopts the same approach as infrastructure as code. You can manage monitoring the same way you do applications, servers, or other infrastructure components.
 
-You can monitoring as code to build out your visualisations, what to monitor, and when to alert, among other things. This means your monitoring setup, processes, and rules can be versioned, shared, and reused.
+You can use monitoring as code to build out your visualisations, what to monitor, and when to alert, among other things. This means your monitoring setup, processes, and rules can be versioned, shared, and reused.
 
-Full documentation for the Splunk Terraform Provider is available [here](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs). Remaining in your AWS/EC2 instance, change into the `signalfx-jumpstart` directory
+Full documentation for the Splunk Terraform Provider is available [here](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs).
+
+Remaining in your AWS/EC2 instance, change into the `o11y-cloud-jumpstart` directory
 
 {{< tabpane >}}
 {{< tab header="Change directory" lang="bash" >}}
-cd ~/signalfx-jumpstart
+cd observability-content-contrib/integration-examples/terraform-jumpstart
 {{</tab >}}
 {{< /tabpane >}}
 
@@ -30,7 +32,7 @@ The environment variables needed should already be set from [Installation using 
 {{< tabpane >}}
 {{< tab header="Environment Variables" lang="bash" >}}
 export ACCESS_TOKEN=<replace_with_O11y-Workshop-ACCESS_token>
-export REALM=<replace_with_splunk_realm>
+export REALM=<replace_with_Splunk_Realm>
 {{</tab >}}
 {{< /tabpane >}}
 
@@ -45,43 +47,44 @@ You will need to run the command below each time a new version of the Splunk Ter
 terraform init -upgrade
 {{</tab >}}
 {{< tab header="Initialise Output" lang="text" >}}
-Upgrading modules...
-- aws in modules/aws
-- azure in modules/azure
-- docker in modules/docker
-- gcp in modules/gcp
-- host in modules/host
-- kafka in modules/kafka
-- kubernetes in modules/kubernetes
-- parent_child_dashboard in modules/dashboards/parent
-- pivotal in modules/pivotal
-- usage_dashboard in modules/dashboards/usage
+    Upgrading modules...
+    - aws in modules/aws
+    - azure in modules/azure
+    - docker in modules/docker
+    - gcp in modules/gcp
+    - host in modules/host
+    - kafka in modules/kafka
+    - kubernetes in modules/kubernetes
+    - parent_child_dashboard in modules/dashboards/parent
+    - pivotal in modules/pivotal
+    - rum_and_synthetics_dashboard in modules/dashboards/rum_and_synthetics
+    - usage_dashboard in modules/dashboards/usage
 
-Initializing the backend...
+    Initializing the backend...
 
-Initializing provider plugins...
-- Finding latest version of splunk-terraform/signalfx...
-- Installing splunk-terraform/signalfx v6.7.10...
-- Installed splunk-terraform/signalfx v6.7.10 (signed by a HashiCorp partner, key ID 8B5755E223754FC9)
+    Initializing provider plugins...
+    - Finding latest version of splunk-terraform/signalfx...
+    - Installing splunk-terraform/signalfx v6.20.0...
+    - Installed splunk-terraform/signalfx v6.20.0 (self-signed, key ID CE97B6074989F138)
 
-Partner and community providers are signed by their developers.
-If you'd like to know more about provider signing, you can read about it here:
-https://www.terraform.io/docs/cli/plugins/signing.html
+    Partner and community providers are signed by their developers.
+    If you'd like to know more about provider signing, you can read about it here:
+    https://www.terraform.io/docs/cli/plugins/signing.html
 
-Terraform has created a lock file .terraform.lock.hcl to record the provider
-selections it made above. Include this file in your version control repository
-so that Terraform can guarantee to make the same selections by default when
-you run "terraform init" in the future.
+    Terraform has created a lock file .terraform.lock.hcl to record the provider
+    selections it made above. Include this file in your version control repository
+    so that Terraform can guarantee to make the same selections by default when
+    you run "terraform init" in the future.
 
-Terraform has been successfully initialized!
+    Terraform has been successfully initialized!
 
-You may now begin working with Terraform. Try running "terraform plan" to see
-any changes that are required for your infrastructure. All Terraform commands
-should now work.
+    You may now begin working with Terraform. Try running "terraform plan" to see
+    any changes that are required for your infrastructure. All Terraform commands
+    should now work.
 
-If you ever set or change modules or backend configuration for Terraform,
-rerun this command to reinitialize your working directory. If you forget, other
-commands will detect it and remind you to do so if necessary.
+    If you ever set or change modules or backend configuration for Terraform,
+    rerun this command to reinitialize your working directory. If you forget, other
+    commands will detect it and remind you to do so if necessary.
 {{</tab >}}
 {{< /tabpane >}}
 
@@ -100,7 +103,7 @@ The plan command alone will not actually carry out the proposed changes, and so 
 terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
 {{</tab >}}
 {{< tab header="Execution Plan Output" lang="bash" >}}
-Plan: 92 to add, 0 to change, 0 to destroy.
+Plan: 146 to add, 0 to change, 0 to destroy.
 {{</tab >}}
 {{< /tabpane >}}
 
@@ -121,7 +124,7 @@ Due to this being a workshop it is required that the prefix is to be unique so y
 terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
 {{</tab >}}
 {{< tab header="Apply Plan Output" lang="bash" >}}
-Apply complete! Resources: 92 added, 0 changed, 0 destroyed.
+Apply complete! Resources: 146 added, 0 changed, 0 destroyed.
 {{</tab >}}
 {{< /tabpane >}}
 
@@ -150,7 +153,7 @@ Now go and destroy all the Detectors and Dashboards that were previously applied
 terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
 {{</tab >}}
 {{< tab header="Destroy Output" lang="bash" >}}
-Destroy complete! Resources: 92 destroyed.
+Destroy complete! Resources: 146 destroyed.
 {{</tab >}}
 {{< /tabpane >}}
 

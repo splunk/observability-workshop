@@ -20,11 +20,11 @@ Monitoring as Codeでは、可視化したり、何を監視するか定義し�
 
 Splunk Terraform Providerの完全なドキュメントは[こちら](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs)にあります。
 
-AWS/EC2 インスタンスにログインして、`signalfx-jumpstart` ディレクトリに移動します
+AWS/EC2 インスタンスにログインして、`o11y-cloud-jumpstart` ディレクトリに移動します
 
 {{< tabpane >}}
 {{< tab header="Change directory" lang="bash" >}}
-cd ~/signalfx-jumpstart
+cd observability-content-contrib/integration-examples/terraform-jumpstart
 {{</tab >}}
 {{< /tabpane >}}
 
@@ -48,43 +48,44 @@ Splunk Terraform Provider の新バージョンがリリースされるたびに
 terraform init -upgrade
 {{</tab >}}
 {{< tab header="Initialise Output" lang="text" >}}
-Upgrading modules...
-- aws in modules/aws
-- azure in modules/azure
-- docker in modules/docker
-- gcp in modules/gcp
-- host in modules/host
-- kafka in modules/kafka
-- kubernetes in modules/kubernetes
-- parent_child_dashboard in modules/dashboards/parent
-- pivotal in modules/pivotal
-- usage_dashboard in modules/dashboards/usage
+    Upgrading modules...
+    - aws in modules/aws
+    - azure in modules/azure
+    - docker in modules/docker
+    - gcp in modules/gcp
+    - host in modules/host
+    - kafka in modules/kafka
+    - kubernetes in modules/kubernetes
+    - parent_child_dashboard in modules/dashboards/parent
+    - pivotal in modules/pivotal
+    - rum_and_synthetics_dashboard in modules/dashboards/rum_and_synthetics
+    - usage_dashboard in modules/dashboards/usage
 
-Initializing the backend...
+    Initializing the backend...
 
-Initializing provider plugins...
-- Finding latest version of splunk-terraform/signalfx...
-- Installing splunk-terraform/signalfx v6.7.10...
-- Installed splunk-terraform/signalfx v6.7.10 (signed by a HashiCorp partner, key ID 8B5755E223754FC9)
+    Initializing provider plugins...
+    - Finding latest version of splunk-terraform/signalfx...
+    - Installing splunk-terraform/signalfx v6.20.0...
+    - Installed splunk-terraform/signalfx v6.20.0 (self-signed, key ID CE97B6074989F138)
 
-Partner and community providers are signed by their developers.
-If you'd like to know more about provider signing, you can read about it here:
-https://www.terraform.io/docs/cli/plugins/signing.html
+    Partner and community providers are signed by their developers.
+    If you'd like to know more about provider signing, you can read about it here:
+    https://www.terraform.io/docs/cli/plugins/signing.html
 
-Terraform has created a lock file .terraform.lock.hcl to record the provider
-selections it made above. Include this file in your version control repository
-so that Terraform can guarantee to make the same selections by default when
-you run "terraform init" in the future.
+    Terraform has created a lock file .terraform.lock.hcl to record the provider
+    selections it made above. Include this file in your version control repository
+    so that Terraform can guarantee to make the same selections by default when
+    you run "terraform init" in the future.
 
-Terraform has been successfully initialized!
+    Terraform has been successfully initialized!
 
-You may now begin working with Terraform. Try running "terraform plan" to see
-any changes that are required for your infrastructure. All Terraform commands
-should now work.
+    You may now begin working with Terraform. Try running "terraform plan" to see
+    any changes that are required for your infrastructure. All Terraform commands
+    should now work.
 
-If you ever set or change modules or backend configuration for Terraform,
-rerun this command to reinitialize your working directory. If you forget, other
-commands will detect it and remind you to do so if necessary.
+    If you ever set or change modules or backend configuration for Terraform,
+    rerun this command to reinitialize your working directory. If you forget, other
+    commands will detect it and remind you to do so if necessary.
 {{</tab >}}
 {{< /tabpane >}}
 
@@ -103,7 +104,7 @@ plan コマンドだけでは、提案された変更を実際に実行はされ
 terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
 {{</tab >}}
 {{< tab header="Execution Plan Output" lang="bash" >}}
-Plan: 92 to add, 0 to change, 0 to destroy.
+Plan: 146 to add, 0 to change, 0 to destroy.
 {{</tab >}}
 {{< /tabpane >}}
 
@@ -124,7 +125,7 @@ Plan: 92 to add, 0 to change, 0 to destroy.
 terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
 {{</tab >}}
 {{< tab header="Apply Plan Output" lang="bash" >}}
-Apply complete! Resources: 92 added, 0 changed, 0 destroyed.
+Apply complete! Resources: 146 added, 0 changed, 0 destroyed.
 {{</tab >}}
 {{< /tabpane >}}
 
@@ -153,7 +154,7 @@ echo $(hostname)
 terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
 {{</tab >}}
 {{< tab header="Destroy Output" lang="bash" >}}
-Destroy complete! Resources: 92 destroyed.
+Destroy complete! Resources: 146 destroyed.
 {{</tab >}}
 {{< /tabpane >}}
 
