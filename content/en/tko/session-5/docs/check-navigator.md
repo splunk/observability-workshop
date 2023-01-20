@@ -28,7 +28,7 @@ In the map view you can drill down by selecting either the whole cluster, a node
 
 If you have drilled down into you cluster, reselect you own cluster by removing it from the drop down box, then selecting it again. Now lets investigate the Kubernetes Analyzer the Kubernetes Navigator offers.
 
-You can find it by expanding the right hand pane by clicking on the ![sidebar_button](/tko/session-5/docs/images/sidebar-button.png) button.
+You can find it by expanding the right hand pane by clicking on the ![sidebar_button](../images/sidebar-button.png) button.
 
 This will show a quick view into the health of you cluster via the Kubernetes Analyzer. The Analyzer uses AI-driven insights to examine patterns that nodes, pods, or containers have in common.
 
@@ -58,9 +58,11 @@ How much memory and cores does our one node have?
 
 ---
 
-### Note
+{{% alert title="Note" color="info" %}}
 
-*If you click on a line in any of the table in the navigator you will see that the right pane will change and will provide information for that specific object.*
+If you click on a line in any of the table in the navigator you will see that the right pane will change and will provide information for that specific object.
+
+{{% /alert %}}
 
 ---
 
@@ -68,7 +70,7 @@ Select the Node and get the detailed view of the node in the right hand pane.
 
 The side bar also contains a list of workloads and containers running on the Node. Last but, not least there is a section that will show any node events that have occurred.
 
-You can expand this to a full screen by clicking on the expand ![expand_button](/tko/session-5/docs/images/expand-button.png) button.
+You can expand this to a full screen by clicking on the expand ![expand_button](../images/expand-button.png) button.
 
 If you do this you will switch to the Node Details view which is a full screen representation of the information in the side bar in the Node view.
 
@@ -90,7 +92,7 @@ Here you will get the general info of your workload, the containers CPU and memo
 
 The list of pods allows you to drill deeper into the Pods view.
 
-Again you expand this view to a full screen by clicking on the expand ![expand_button](/tko/session-5/docs/images/expand-button.png) button.
+Again you expand this view to a full screen by clicking on the expand ![expand_button](../images/expand-button.png) button.
 
 Expanding the side bar will bring you to the Workload details view. This provides the same data as the side bar but in full page view with is useful if you try to see what is going on with a specific workload deployment.
 
