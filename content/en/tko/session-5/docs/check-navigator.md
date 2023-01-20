@@ -32,6 +32,12 @@ You can find it by expanding the right hand pane by clicking on the ![sidebar_bu
 
 This will show a quick view into the health of you cluster via the Kubernetes Analyzer. The Analyzer uses AI-driven insights to examine patterns that nodes, pods, or containers have in common.
 
+In our little cluster we have not yet had enough time or data to do more then highlight a condition detected like a pod restart detected. Over time, the system will show relations and patterns between between objects.
+
+For the sake of this workshop, you can still use the detected condition to select the pane to do start an investigation.
+
+Start with the workload pane for pods and container information and use the Nodes pane for conditions related to Node related conditions.
+
 {{% alert title="Workshop Question" color="danger" %}}
 
 How many trouble indicators are there if you are looking at the Cluster?
@@ -40,21 +46,25 @@ How many trouble indicators are there if you are looking at the Cluster?
 
 You find if you drill down into you cluster on the map, you also use  the analyzer views at each level.
 
-## 3. Nodes & Node Details view
+## 3.  Nodes & Node Details view
 
-The next panes are the nodes overview and the Node Details view. The Node view will follow the selection you have made in the Maps overview.
-
-In the Nodes view you will find a list of the hosts that make up your cluster. In the case of our workshop cluster we have the massive number of 1, but at a regular cluster there will be multiple and large production clusters can have multiple pages of hosts. This page will allow you to see at a glance and optional a scroll how your nodes are doing.
+The next panes are the nodes overview and the Node Details view, The Node view will follow the selection you have made in the Maps overview. In the Nodes view you will find a list of the hosts that make up your cluster. In the case  of our workshop cluster we have the massive number of 1, but at a regular cluster there will be multiple  and large production clusters can have multiple pages of hosts. This page will allow you to see at a glance and optional a scroll how your nodes are doing.
 
 {{% alert title="Workshop Question" color="danger" %}}
 
-How much memory and cores does our node have?
+How much memory and cores does our one node have?
 
 {{% /alert %}}
 
-If you click on the line of the node your interested in, you will see that the right pane has changed and is now providing detailed information for that specific node.
+---
 
-You can scroll down to get a quick view of the node condition, CPU%, Memory%, Network In & Out all by pod, which will give you a good idea if there is a misconfiguration of the Pod.
+### Note
+
+*If you click on a line in any of the table in the navigator you will see that the right pane will change and will provide information for that specific object.*
+
+---
+
+Select the Node and get the detailed view of the node in the right hand pane.
 
 The side bar also contains a list of workloads and containers running on the Node. Last but, not least there is a section that will show any node events that have occurred.
 

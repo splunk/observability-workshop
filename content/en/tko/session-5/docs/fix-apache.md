@@ -33,7 +33,8 @@ If that fails, or if there is not enough space when you deploy your application,
 
 {{% alert title="Workshop Question" color="danger" %}}
 
-Before we start, let's check the current status of the PHP/Apache deployment. Which Auto-Detect detector has fired?
+Before we start, let's check the current status of the PHP/Apache deployment.</br>
+Which Auto-Detect detector has fired & is there a change in the Analyzer?
 
 {{% /alert %}}
 
@@ -69,6 +70,6 @@ Validate the pod is now running in Splunk Observability Cloud.
 
 Is the **Apache Web Servers** dashboard showing any data?
 
-**Tip:** Don't forget to use filters and timeframes to narrow down your data.
+**Tip:** Don't forget to use filters and time frames to narrow down your data.
 
 {{% /alert %}}

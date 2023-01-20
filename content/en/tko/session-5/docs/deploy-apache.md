@@ -46,6 +46,7 @@ agent:
             config:
               type: collectd/apache
               url: http://php-apache.apache.svc.cluster.local/server-status?auto
+
 {{< /tab >}}
 {{< /tabpane >}}
 
@@ -154,6 +155,7 @@ spec:
   - port: 80
   selector:
     run: php-apache
+
 {{< /tab >}}
 {{< /tabpane >}}
 
