@@ -1,92 +1,101 @@
 // Code formatting.
 
 .td-content {
-	// Highlighted code.
-    .highlight {
-        @extend .card;
-	
-        margin: 0.5rem 0 1rem 0;
-        padding: 0;
-	    
-        pre {
-            margin: 0;
-            padding: 1rem;
-        }
-    }
 
-    // Inline code
-    p code, li > code, table code {
-        color: inherit;
-        padding: 0.2em 0.4em;
-        margin: 0;
-        font-size: 85%;
-        word-break: normal;
-        background-color: rgba($black, 0.05);
-        border-radius: $border-radius;
+  // Highlighted code.
+  .highlight {
+    @extend .card;
 
-        br {
-            display: none;
-        }
-    }
+    margin: 0.5rem 0 1rem 0;
+    padding: 0;
 
-
-    // Code blocks
     pre {
-        word-wrap: normal;
-        background-color: $gray-100;
-        padding: $spacer;
-     
-
-        > code {
-	    background-color: inherit !important;
-            padding: 0;
-            margin: 0;
-            font-size: 100%;
-            word-break: normal;
-            white-space: pre;
-            border: 0;
-        }
+      margin: 0;
+      padding: 1rem;
     }
+  }
 
-    pre.mermaid {
-        background-color: inherit;
-        font-size: 0;
+  // Inline code
+  p code,
+  li>code,
+  table code {
+    color: inherit;
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    word-break: normal;
+    background-color: rgba($black, 0.05);
+    border-radius: $border-radius;
+
+    br {
+      display: none;
     }
+  }
+
+
+  // Code blocks
+  pre {
+    word-wrap: normal;
+    background-color: $gray-100;
+    padding: $spacer;
+
+
+    >code {
+      background-color: inherit !important;
+      padding: 0;
+      margin: 0;
+      font-size: 100%;
+      word-break: normal;
+      white-space: pre;
+      border: 0;
+    }
+  }
+
+  pre.mermaid {
+    background-color: inherit;
+    font-size: 0;
+  }
 }
 
 .clipboard-button {
-    position: absolute;
-    right: 0;
-    padding: 2px 7px 5px 7px;
-    margin: 5px;
-    color: #767676;
-    border-color: #767676;
-    background-color: #ededed;
-    border: 1px solid;
-    border-radius: 6px;
-    font-size: 0.8em;
-    z-index: 1;
-    opacity: 0;
-    transition: 0.1s;
-  }
-  .clipboard-button > svg {
-    fill: #767676;
-  }
-  .clipboard-button:hover {
-    cursor: pointer;
-    border-color: #696969;
-    background-color: #e0e0e0;
-  }
-  .clipboard-button:hover > svg {
-    fill: #696969;
-  }
-  .clipboard-button:focus {
-    outline: 0;
-  }
-  .highlight {
-    position: relative;
-  }
-  .highlight:hover > .clipboard-button {
-    opacity: 1;
-    transition: 0.2s;
-  }
+  position: absolute;
+  right: 0;
+  padding: 2px 7px 5px 7px;
+  margin: 5px;
+  color: #767676;
+  border-color: #767676;
+  background-color: #ededed;
+  border: 1px solid;
+  border-radius: 6px;
+  font-size: 0.8em;
+  z-index: 1;
+  opacity: 0;
+  transition: 0.1s;
+}
+
+.clipboard-button>svg {
+  fill: #767676;
+}
+
+.clipboard-button:hover {
+  cursor: pointer;
+  border-color: #696969;
+  background-color: #e0e0e0;
+}
+
+.clipboard-button:hover>svg {
+  fill: #696969;
+}
+
+.clipboard-button:focus {
+  outline: 0;
+}
+
+.highlight {
+  position: relative;
+}
+
+.highlight:hover>.clipboard-button {
+  opacity: 1;
+  transition: 0.2s;
+}
