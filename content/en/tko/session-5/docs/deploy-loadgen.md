@@ -36,6 +36,7 @@ spec:
         - /bin/sh
         - -c
         - "while true; do wget -q -O- http://php-apache.apache.svc.cluster.local; done"
+
 {{< /tab >}}
 {{< /tabpane >}}
 
