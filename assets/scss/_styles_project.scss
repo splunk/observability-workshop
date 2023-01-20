@@ -8,7 +8,7 @@ assets/scss/_styles_project.scss
 
 .alert {
     font-weight: $font-weight-bold;
-    background: $white;
+    /*background: $white;*/
     color: inherit;
     border-radius: 5px;
     margin: 0;
@@ -28,18 +28,21 @@ assets/scss/_styles_project.scss
             border-color: $value;
             border-width: 0.5px 0.5px 0.5px 5px;
             border-radius: 5px;
+            box-shadow: 0 0.2rem 0.5rem #0003,0 0 0.05rem #0000001a;
         }
     }
 }
 
 .alert-heading {
     border-radius: 0 5px 0 0;
+    font-weight: 600;
+    font-size: large;
 }
 
 .alert-body {
-    background: $white;
+    /*background: $white;*/
     padding: 15px;
-    font-weight: 400;
+    font-weight: 600;
     border-radius: 5px;
 }
 
