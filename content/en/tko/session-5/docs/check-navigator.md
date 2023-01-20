@@ -3,11 +3,10 @@ title: The Kubernetes Navigator
 linkTitle: Touring the Kubernetes Navigator
 weight: 2
 ---
-### This page is still under construction...  This will be a quick guide though the navigator  
 
 ## 1. The Cluster Map
 
-Goto the **Infrastructure** page and select **Kubernetes**, this will bring you to the Kubernetes Cluster Map.
+Goto the **Infrastructure** page in the Observability UI and select **Kubernetes**, this will bring you to the Kubernetes Cluster Map.
 
 Here you will find all the Kubernetes clusters that are sending data to the Splunk Observability Cloud platform. Your first task is to identify your own cluster.
 
@@ -23,19 +22,23 @@ This means your cluster is named: `tko-5-1-k3s-cluster`
 
 Next, make sure you set/fix the cluster name in the overview bar by selecting the drop down box for clusters and select just your cluster.
 
+In the map view you can drill down by selecting either the whole cluster, a node, a pod or a container in the map to get  a quick view of the selected object on the right.
+
 ## 2. Examine the Kubernetes analyzer (Cluster Map only)
 
-Once you have the selected you cluster, investigate the Kubernetes Analyzer the Kubernetes Navigator offers.
+If you have drilled down into you cluster, reselect you own cluster by removing it from the drop down box, then selecting it again. Now lets investigate the Kubernetes Analyzer the Kubernetes Navigator offers.
 
-You can find it by expanding the right hand pane by clicking on the ![sidebar_button](/tko/session-5/docs/images/sidebar-button.png) button.
+You can find it by expanding the right hand pane by clicking on the ![sidebar_button](/tko/session-5/docs/images/sidebar-button.png) button  ans s.
 
 This will show a quick view into the health of you cluster via the Kubernetes Analyzer. The Analyzer uses AI-driven insights to examine patterns that nodes, pods, or containers have in common.
 
 {{% alert title="Workshop Question" color="danger" %}}
 
-How many trouble indicators are there?
+How many trouble indicators are there if you are looking at the Cluster ?
 
 {{% /alert %}}
+
+You find if you drill down into you cluster on the map, you also use  the analyzer views at each level 
 
 ## 3.  Nodes & Node Details view
 
@@ -87,8 +90,14 @@ The last two panes that make up the Kubernetes navigator are the pod detail and 
 
 The Container detail view is best used by drilling down from either the Pod detail or the workload detail, as you require a container id to single out a specific container. However it provides in a full screen view all the properties and memory and cpu usage in detail for the selected container. This will allow you to go back in time by the slider under each chart to find potential misbehavior for the selected pod (Or you can use the time picker on top ).
 
-The Pod Detail view...
+The Pod Detail view will show you the Pod properties and  CPu, Memory and Network usage along with any events relevant to the pod.
+
+It has a list of all the containers in the selected pod, and here you can see at a glance how healthy you containers are and how they uses its resources like memory and CPU allocations.
+
+{{% alert title="Workshop Question" color="danger" %}}
+
+Select the splunk-otel-collector-agent Pod from the drop down,
+how many containers does it contain ?
 
 
-
-
+{{% /alert %}}
