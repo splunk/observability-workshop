@@ -1,8 +1,3 @@
-# required
-aws_region = ""
-aws_instance_count = ""
-slug = ""
-
 # required if pre-setup is desired, optional otherwise. See variables.tf and README.md
 splunk_access_token = ""
 splunk_rum_token = ""
