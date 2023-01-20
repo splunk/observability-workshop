@@ -27,6 +27,7 @@ package-lock.json
 .hugo_build.lock
 /resources
 !*/resources/
+multipass/terraform.tfvars
 workshop/Lambda/Java/MobileShop/target/*
 workshop/Lambda/Java/MobileShop/.classpath
 workshop/Lambda/Java/MobileShop/.factorypath
