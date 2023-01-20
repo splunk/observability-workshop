@@ -1,0 +1,265 @@
+<!doctype html><html lang=en class=no-js>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.92.2">
+<meta name=robots content="index, follow">
+<link rel="shortcut icon" href=/observability-workshop/v4.45/favicons/favicon.ico>
+<link rel=apple-touch-icon href=/observability-workshop/v4.45/favicons/apple-touch-icon-180x180.png sizes=180x180>
+<link rel=icon type=image/png href=/observability-workshop/v4.45/favicons/favicon-16x16.png sizes=16x16>
+<link rel=icon type=image/png href=/observability-workshop/v4.45/favicons/favicon-32x32.png sizes=32x32>
+<link rel=icon type=image/png href=/observability-workshop/v4.45/favicons/android-36x36.png sizes=36x36>
+<link rel=icon type=image/png href=/observability-workshop/v4.45/favicons/android-48x48.png sizes=48x48>
+<link rel=icon type=image/png href=/observability-workshop/v4.45/favicons/android-72x72.png sizes=72x72>
+<link rel=icon type=image/png href=/observability-workshop/v4.45/favicons/android-96x96.png sizes=96x96>
+<link rel=icon type=image/png href=/observability-workshop/v4.45/favicons/android-144x144.png sizes=144x144>
+<link rel=icon type=image/png href=/observability-workshop/v4.45/favicons/android-192x192.png sizes=192x192>
+<title>GDI - Real Time Enrichment Workshop | Splunk Observability Cloud Workshops</title>
+<meta name=description content="Introduction
+During this technical workshop you will learn how to:
+
+efficiently deploy complex environments
+capture metrics from these environments to …">
+<meta property="og:title" content="GDI - Real Time Enrichment Workshop">
+<meta property="og:description" content="Introduction During this technical workshop you will learn how to:
+ efficiently deploy complex environments capture metrics from these environments to Splunk Observability auto-instrument a python application auto-instrument a java application enable AlwaysOn profiling for a java application  In order to simplify the workshop modules, a pre-configured AWS EC2 instance is provided.
+By the end of this technical workshop you will have an approach to demonstrating metrics collection for complex environments and services and be able to describe, at a high-level, what is required to instrument an application for distributed tracing.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://splunk.github.io/observability-workshop/v4.45/tko/session-2/docs/intro/"><meta property="article:section" content="tko">
+<meta property="article:modified_time" content="2023-01-12T15:53:18+00:00"><meta property="og:site_name" content="Splunk Observability Cloud Workshops">
+<meta itemprop=name content="GDI - Real Time Enrichment Workshop">
+<meta itemprop=description content="Introduction During this technical workshop you will learn how to:
+ efficiently deploy complex environments capture metrics from these environments to Splunk Observability auto-instrument a python application auto-instrument a java application enable AlwaysOn profiling for a java application  In order to simplify the workshop modules, a pre-configured AWS EC2 instance is provided.
+By the end of this technical workshop you will have an approach to demonstrating metrics collection for complex environments and services and be able to describe, at a high-level, what is required to instrument an application for distributed tracing.">
+<meta itemprop=dateModified content="2023-01-12T15:53:18+00:00">
+<meta itemprop=wordCount content="90">
+<meta itemprop=keywords content><meta name=twitter:card content="summary">
+<meta name=twitter:title content="GDI - Real Time Enrichment Workshop">
+<meta name=twitter:description content="Introduction During this technical workshop you will learn how to:
+ efficiently deploy complex environments capture metrics from these environments to Splunk Observability auto-instrument a python application auto-instrument a java application enable AlwaysOn profiling for a java application  In order to simplify the workshop modules, a pre-configured AWS EC2 instance is provided.
+By the end of this technical workshop you will have an approach to demonstrating metrics collection for complex environments and services and be able to describe, at a high-level, what is required to instrument an application for distributed tracing.">
+<link rel=preload href=/observability-workshop/v4.45/scss/main.min.2b48eb5fa776a217809f1a512635eca9a87ccee4071e65d6eb2ab469f7ce4f83.css as=style>
+<link href=/observability-workshop/v4.45/scss/main.min.2b48eb5fa776a217809f1a512635eca9a87ccee4071e65d6eb2ab469f7ce4f83.css rel=stylesheet integrity>
+<script src=https://code.jquery.com/jquery-3.6.0.min.js integrity=sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK crossorigin=anonymous></script>
+<script src=https://unpkg.com/lunr@2.3.9/lunr.min.js integrity=sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli crossorigin=anonymous></script>
+</head>
+<body class=td-page>
+<header>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" id=navbar1>
+<a class=navbar-brand href=/observability-workshop/v4.45/>
+<span class=navbar-logo><img class=navbar-logo src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAAvCAIAAAD8RQT7AAACwklEQVRYw+2YW2jTYBTHu4l4F1ERVMQL+qKgMBUU9EEfRAURUUFfBEUEBRGfdC+CrVt3cdbNSZ1zXqar024yp9MJKzh3FScyO+q8MDW3pvc2TZqkudSvtD4J66fkWyL0kNeQH8mX8/+dY8JMZuNcpjzNX9JQK64ZiEZlk9zDEe/aOmPQ8FIKlJpKtH+mNzUYg+Z38a7vvu2NRqHJlDhABPY0G4UmU8lhOnioFSu0GIImU9KXUOhYOz75kiFoMiVjsfDpl/i0UrQ0oePPkp5ACq5kHxs978JnlaHsxQVm/24H3zUGyaRE+Jj5DTGvEm0yeNfVsfeGVVGGYQJtk6kaIBfZ0OYUufBKrKRHCSWgmAQ5fmOIWl6DNjXx6dbwqRfgh4L6eJLC3v/oXW1HnOGFlsDeR0L3TygmEC+tn+j19ciNgt5Qzznc4B3AUPGd33xb7yL3G3LJVaaiX4kKMExCD+bf2YTctvCZZZEzndJYBIZJfE8F9jtBE0HsfpMswQNOoR+HYWIbPkyQiQIr4pyelKyOQ5No8UyoF1PLahjboMqIhqABl3/HA6EX05kGyEboSBuQIZ2/FDGnInKuSyaZnKcYLU32lMTF3P05ITHVb8nFNiQ09MZbXPPI+H9QliMuMuV9xIIqBN2vwAy8HTKw0gJ0sZuYW6l9MuBTS8MnnkujQSgOPxctdhGzy7VPTWL+5eiF1+ABUJJKMpGzr4CHaG8U1KrauH0IHEAot/kRDZ/swKeUaG9bvi13Em2jKUWF4gDDzdGn/zbcmHJE4MEWcZCAFPWk2xc8/ATcpbGl4zOsYFCC1IOsIex7/KchaEMj0ywkh9CH+3c59J8104uLbY36T758x1d68229twIZ+y+6qffGRFa5Jrd3jR3Td5ukJhVgr9TKWp03benp9fo7cmm1/lvImLUXDN757XWe5v+g+QU6sNkgKUPrgwAAAABJRU5ErkJggg=="></span><span class=font-weight-bold>Splunk Observability Cloud Workshops</span>
+</a>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+</ul>
+</div>
+</nav>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar" id=navbar2>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.45/imt/><span>Splunk IM</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.45/apm/><span>Splunk APM</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.45/synthetics/><span>Splunk Synthetics</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=/observability-workshop/v4.45/rum/><span>Splunk RUM</span></a>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+More Workshops
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/latest/pet-clinic/>Pet Clinic Java Workshop</a>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/latest/bootcamp/>O11y Bootcamp</a>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/latest/resources/>Resources</a>
+</div>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+Releases
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/latest/>latest</a>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/v4.44>v4.44</a>
+<a class=dropdown-item href=https://splunk.github.io/observability-workshop/v4.45>v4.45</a>
+</div>
+</li>
+<li class="nav-item dropdown mr-4 d-none d-lg-block">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+English
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.45/ja/>日本語</a>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="container-fluid td-outer">
+<div class=td-main>
+<div class="row flex-xl-nowrap">
+<aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+<div id=td-sidebar-menu class=td-sidebar__inner>
+<form class="td-sidebar__search d-flex align-items-center">
+<input type=search class="form-control td-search-input" placeholder="&#xf002; Search this site…" aria-label="Search this site…" autocomplete=off data-offline-search-index-json-src=/observability-workshop/v4.45/offline-search-index.d56e0b3303facebc960486cd144aa27d.json data-offline-search-base-href=/ data-offline-search-max-results=10>
+<button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type=button data-toggle=collapse data-target=#td-section-nav aria-controls=td-docs-nav aria-expanded=false aria-label="Toggle section navigation">
+</button>
+</form>
+<nav class="collapse td-sidebar-nav" id=td-section-nav>
+<div class="nav-item dropdown d-block d-lg-none">
+<a class="nav-link dropdown-toggle" href=# id=navbarDropdown role=button data-toggle=dropdown aria-haspopup=true aria-expanded=false>
+English
+</a>
+<div class=dropdown-menu aria-labelledby=navbarDropdownMenuLink>
+<a class=dropdown-item href=/observability-workshop/v4.45/ja/>日本語</a>
+</div>
+</div>
+<ul class="td-sidebar-nav__section pr-md-3 ul-0">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv445tko-li>
+<a href=/observability-workshop/v4.45/tko/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id=m-observability-workshopv445tko><span>TKO Workshops</span></a>
+<ul class=ul-1>
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-1-li>
+<a href=/observability-workshop/v4.45/tko/session-1/ title="1. Role Play Qualification / Discovery - with SRE and ITOPs" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv445tkosession-1><span>Session 1</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-observability-workshopv445tkosession-2-li>
+<a href=/observability-workshop/v4.45/tko/session-2/ title="2. Getting Data In (GDI) & OTEL" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv445tkosession-2><span>Session 2</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-observability-workshopv445tkosession-2docsintro-li>
+<a href=/observability-workshop/v4.45/tko/session-2/docs/intro/ title="GDI - Real Time Enrichment Workshop" class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv445tkosession-2docsintro><span class=td-sidebar-nav-active-item>Introduction</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-2docsgetting_started-li>
+<a href=/observability-workshop/v4.45/tko/session-2/docs/getting_started/ title="GDI - Real Time Enrichment Workshop" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv445tkosession-2docsgetting_started><span>Getting started</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-2docsdeploy-li>
+<a href=/observability-workshop/v4.45/tko/session-2/docs/deploy/ title="Deploy complex environments and capture meterics" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv445tkosession-2docsdeploy><span>Deployment</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-2docscode_to_python-li>
+<a href=/observability-workshop/v4.45/tko/session-2/docs/code_to_python/ title="Code to Kubernetes - Python" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv445tkosession-2docscode_to_python><span>Code to Kubernetes</span></a>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-3-li>
+<a href=/observability-workshop/v4.45/tko/session-3/ title="3. ITOps Monitoring Monitoring Monitoring" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv445tkosession-3><span>Session 3</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-4-li>
+<a href=/observability-workshop/v4.45/tko/session-4/ title="4. ITOps - Understanding Event Analytics in Realistic Business Services" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv445tkosession-4><span>Session 4</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-observability-workshopv445tkosession-5-li>
+<a href=/observability-workshop/v4.45/tko/session-5/ title="5. How Platform Engineers Observe Kubernetes - Workshop" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv445tkosession-5><span>Session 5</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-5docsdeploy-otel-li>
+<a href=/observability-workshop/v4.45/tko/session-5/docs/deploy-otel/ title="Deploying the OpenTelemetry Collector in Kubernetes using a NameSpace" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv445tkosession-5docsdeploy-otel><span>Deploy the OTel Collector</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-5docscheck-navigator-li>
+<a href=/observability-workshop/v4.45/tko/session-5/docs/check-navigator/ title="The Kubernetes Navigator" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv445tkosession-5docscheck-navigator><span>Touring the Kubernetes Navigator</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-5docsdeploy-apache-li>
+<a href=/observability-workshop/v4.45/tko/session-5/docs/deploy-apache/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv445tkosession-5docsdeploy-apache><span>Deploying PHP/Apache</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-5docsfix-apache-li>
+<a href=/observability-workshop/v4.45/tko/session-5/docs/fix-apache/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv445tkosession-5docsfix-apache><span>Fix PHP/Apache Issue</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-5docsdeploy-loadgen-li>
+<a href=/observability-workshop/v4.45/tko/session-5/docs/deploy-loadgen/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv445tkosession-5docsdeploy-loadgen><span>Deploy Load Generator</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-5docssetup-hpa-li>
+<a href=/observability-workshop/v4.45/tko/session-5/docs/setup-hpa/ title="Setup Horizontal Pod Autoscaler" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv445tkosession-5docssetup-hpa><span>Setup HPA</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-5docsedit-hpa-li>
+<a href=/observability-workshop/v4.45/tko/session-5/docs/edit-hpa/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv445tkosession-5docsedit-hpa><span>Increase HPA Replicas</span></a>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-observability-workshopv445tkosession-6-li>
+<a href=/observability-workshop/v4.45/tko/session-6/ title=Scenario class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-observability-workshopv445tkosession-6><span>Session 6</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-6docssetup-li>
+<a href=/observability-workshop/v4.45/tko/session-6/docs/setup/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv445tkosession-6docssetup><span>Setup</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-6docsvalidate_traces-li>
+<a href=/observability-workshop/v4.45/tko/session-6/docs/validate_traces/ title="Validate Traces are being collected" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv445tkosession-6docsvalidate_traces><span>Validate Traces</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-6docsdeveloper_role-li>
+<a href=/observability-workshop/v4.45/tko/session-6/docs/developer_role/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv445tkosession-6docsdeveloper_role><span>Developer Role</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-6docscustom_attribution-li>
+<a href=/observability-workshop/v4.45/tko/session-6/docs/custom_attribution/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv445tkosession-6docscustom_attribution><span>Custom Attribution</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-6docsfix_issue-li>
+<a href=/observability-workshop/v4.45/tko/session-6/docs/fix_issue/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv445tkosession-6docsfix_issue><span>Fix the issue</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-6docsroot_cause-li>
+<a href=/observability-workshop/v4.45/tko/session-6/docs/root_cause/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv445tkosession-6docsroot_cause><span>Root Cause Analysis</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-6docsbuild_again-li>
+<a href=/observability-workshop/v4.45/tko/session-6/docs/build_again/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv445tkosession-6docsbuild_again><span>Build and Deploy again</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-observability-workshopv445tkosession-6docsfinal_fix-li>
+<a href=/observability-workshop/v4.45/tko/session-6/docs/final_fix/ title="The Final Fix!" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-observability-workshopv445tkosession-6docsfinal_fix><span>Developer Role (Part 2)</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+<aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+</div>
+</aside>
+<main class="col-12 col-md-9 col-xl-8 pl-md-5" role=main>
+<nav aria-label=breadcrumb class=td-breadcrumbs>
+<ol class=breadcrumb>
+<li class=breadcrumb-item>
+<a href=https://splunk.github.io/observability-workshop/v4.45/tko/>TKO Workshops</a>
+</li>
+<li class=breadcrumb-item>
+<a href=https://splunk.github.io/observability-workshop/v4.45/tko/session-2/>Session 2</a>
+</li>
+<li class="breadcrumb-item active" aria-current=page>
+<a href=https://splunk.github.io/observability-workshop/v4.45/tko/session-2/docs/intro/>Introduction</a>
+</li>
+</ol>
+</nav>
+<div class=td-content>
+<h1>GDI - Real Time Enrichment Workshop</h1>
+<header class=article-meta>
+<p class=reading-time><i class="fa fa-clock" aria-hidden=true></i>&nbsp; less than a minute &nbsp;</p>
+</header>
+<h2 id=introduction>Introduction</h2>
+<p>During this technical workshop you will learn how to:</p>
+<ul>
+<li>efficiently deploy complex environments</li>
+<li>capture metrics from these environments to Splunk Observability</li>
+<li>auto-instrument a python application</li>
+<li>auto-instrument a java application</li>
+<li>enable AlwaysOn profiling for a java application</li>
+</ul>
+<p>In order to simplify the workshop modules, a pre-configured AWS EC2 instance is provided.</p>
+<p>By the end of this technical workshop you will have an approach to demonstrating metrics collection for complex environments and services and be able to describe, at a high-level, what is required to instrument an application for distributed tracing.</p>
+</div>
+</main>
+</div>
+</div>
+<footer class="bg-dark py-5 row d-print-none">
+<div class="container-fluid mx-sm-5">
+<div class=row>
+<div class="col-6 col-sm-4 text-xs-center order-sm-2">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=Twitter aria-label=Twitter>
+<a class=text-white target=_blank rel=noopener href=https://twitter.com/splunk aria-label=Twitter>
+<i class="fab fa-twitter"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+<ul class="list-inline mb-0">
+<li class="list-inline-item mx-2 h3" data-toggle=tooltip data-placement=top title=GitHub aria-label=GitHub>
+<a class=text-white target=_blank rel=noopener href=https://github.com/splunk/observability-workshop aria-label=GitHub>
+<i class="fab fa-github"></i>
+</a>
+</li>
+</ul>
+</div>
+<div class="col-12 col-sm-4 text-center py-2 order-sm-2">
+<small class=text-white>&copy; 2023 Splunk Inc. All Rights Reserved</small>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js integrity=sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin=anonymous></script>
+<script src=/observability-workshop/v4.45/js/tabpane-persist.js></script>
+<script src=/observability-workshop/v4.45/js/main.min.8ab8f81ff7e1454d30024cd6f956d4d341c3a97e2a673f988065f2ee4e147922.js integrity="sha256-irj4H/fhRU0wAkzW+VbU00HDqX4qZz+YgGXy7k4UeSI=" crossorigin=anonymous></script>
+<script>const svgCopy='<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg>',svgCheck='<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"><path fill-rule="evenodd" fill="rgb(63, 185, 80)" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>',addCopyButtons=a=>{document.querySelectorAll("pre > code").forEach(c=>{const b=document.createElement("button");b.className="clipboard-button",b.type="button",b.innerHTML=svgCopy,b.addEventListener("click",()=>{a.writeText(c.innerText).then(()=>{b.blur(),b.innerHTML=svgCheck,setTimeout(()=>b.innerHTML=svgCopy,2e3)},a=>b.innerHTML="Error")});const d=c.parentNode;d.parentNode.insertBefore(b,d)})};if(navigator&&navigator.clipboard)addCopyButtons(navigator.clipboard);else{const a=document.createElement("script");a.src="https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/2.7.0/clipboard-polyfill.promise.js",a.integrity="sha256-waClS2re9NUbXRsryKoof+F9qc1gjjIhc2eT7ZbIv94=",a.crossOrigin="anonymous",a.onload=()=>addCopyButtons(clipboard),document.body.appendChild(a)}</script>
+</body>
+</html>
