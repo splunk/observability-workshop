@@ -37,26 +37,58 @@ How many trouble indicators are there?
 
 {{% /alert %}}
 
-## 3. Nodes view
+## 3.  Nodes & Node Details view
 
-The next pane is the nodes overview, it will follow the selection you have made in the Maps overview, here you will find the host(s) that make up your cluster. in this case we have the massive number of 1, but at a production cluster ther can be multiple pages of hosts.
-
-{{% alert title="Workshop Question" color="danger" %}}
-
-How much memory and cores does each node have ?
-
-{{% /alert %}}
-
-If you select the line of the node your interested in , you will see that the right pane has change d and is now providing  detailed information for the at specific node.  YOU can expand this to a full screen by clicking on the expand ![expand_button](/tko/session-5/docs/images/expand-button.png) button
-
-``` bash
-kubectl get cm splunk-otel-collector-otel-agent -n splunk -o yaml
-```
+The next panes are the nodes overview and the Node Details view, The Node view will follow the selection you have made in the Maps overview. In the Nodes view you will find a list of the hosts that make up your cluster. In the case  of our workshop cluster we have the massive number of 1, but at a regular cluster there will be multiple  and large production clusters can have multiple pages of hosts. This page will allow you to see at a glance and optional a scroll how your nodes are doing.
 
 {{% alert title="Workshop Question" color="danger" %}}
 
-Is the content of **otel-apache.yaml** saved in the ConfigMap for the collector agent?
+How much memory and cores does our node have?
 
 {{% /alert %}}
 
-More information can be found here : [DNS for Service and Pods](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
+If you click on the line of the node your interested in, you will see that the right pane has changed and is now providing  detailed information for that specific node.
+
+You can scroll down to get a quick view of the node condition,  CPU%, Memory%, Network In & Out all by pod, which will give you a good idea if there is a misconfiguration Pod for example.
+The side bar also contains a list of workloads and containers running on the Node. last but not least there is a section that will show any node events that have occurred.
+
+You can expand this to a full screen by clicking on the expand ![expand_button](/tko/session-5/docs/images/expand-button.png) button
+
+If you do this you will switch to the Node Details view which is a full screen representation of the information in the side bar in the Node view.
+
+This view is useful if you wish to search for workloads and/or specific containers for further examination.
+The side bar will change to a quick view on workloads or container depending if you clicked on a workload or container line in the tables.
+
+## 4. Workloads & Workload Details view
+
+The next panes are the nodes overview and the Node Details view.  The workloads view shows you all teh workloads that are deployed on your cluster. It will show type, name space it it is and  the desired and current Pod configuration  for you work load.
+
+{{% alert title="Workshop Question" color="danger" %}}
+
+What type is the splunk-otel-collector-agent workload, and what is its desired configuration?
+
+{{% /alert %}}
+
+You can select a workload by double clicking on its name, this will expand the right side pane again, this time with the Details of the selected workload.
+
+Here you will get the general info of your workload,  the containers CPU and memory% in use, the number of pods per phase. Again you have a view on the latest Workload events and a list of  pods that make up your workload.
+
+The list of pods allows you to drill deeper into the Pods view.
+
+Again you expand this view to a full screen by clicking on the expand ![expand_button](/tko/session-5/docs/images/expand-button.png) button
+
+Expanding the side bar will bring you to the Workload details view.
+It provides the same data as the side bar but in full page view with is useful if you try to see what is going on with a specific workload deployment. I also give a more detailed view on the behavior of the container(s) in your workload.
+again you can drill down to the container view by clicking on the name of one of you containers from the workload.
+
+## 5. Pod Detail & Container Details view
+
+The last two panes that make up the Kubernetes navigator are the pod detail and the Container details.
+
+The Container detail view is best used by drilling down from either the Pod detail or the workload detail, as you require a container id to single out a specific container. However it provides in a full screen view all the properties and memory and cpu usage in detail for the selected container. This will allow you to go back in time by the slider under each chart to find potential misbehavior for the selected pod (Or you can use the time picker on top ).
+
+The Pod Detail view...
+
+
+
+
