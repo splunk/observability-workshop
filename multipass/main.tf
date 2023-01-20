@@ -66,7 +66,7 @@ resource "random_string" "hostname" {
 
 resource "multipass_instance" "ubuntu" {
   name = random_string.hostname.result
-  memory = "7.9GiB"
+  memory = "8GiB"
   disk = "32GiB"
   cpus = 4
   image  = "jammy"
