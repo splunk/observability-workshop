@@ -7,7 +7,7 @@ assets/scss/_styles_project.scss
 */
 
 .alert {
-    font-weight: $font-weight-bold;
+    /*font-weight: $font-weight-bold;*/
     /*background: $white;*/
     color: inherit;
     border-radius: 5px;
@@ -22,7 +22,7 @@ assets/scss/_styles_project.scss
                 background: lighten($value, 40%);
                 margin: 0;
                 padding: 15px;
-
+                border-radius: 0 5px 0 0;
             }
 
             /*border-style: 1px solid;*/
@@ -35,16 +35,24 @@ assets/scss/_styles_project.scss
     }
 }
 
+/*
 .alert-heading {
     border-radius: 0 5px 0 0;
     font-weight: 600;
     font-size: large;
 }
+*/
 
 .alert-body {
-    /*background: $white;*/
-    padding: 15px;
-    font-weight: 600;
+    background: $white;
+    padding: 15px 15px;
+    font-weight: 400;
+    border-radius: 5px;
+}
+
+.p-alert-body {
+    padding: 0;
+    font-weight: 400;
     border-radius: 5px;
 }
 

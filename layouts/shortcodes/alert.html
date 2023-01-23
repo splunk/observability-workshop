@@ -3,10 +3,12 @@
 <div class="alert alert-{{ $color }}" role="alert">
 {{ with .Get "title" }}<p class="alert-heading">{{ . | safeHTML }}</p>{{ end }}
 <div class="alert-body">
+    <p class="p-alert-body">
 {{ if eq .Page.File.Ext "md" }}
     {{ .Inner | markdownify }}
 {{ else }}
     {{ .Inner | htmlUnescape | safeHTML }}
 {{ end }}
+</p>
 </div>
 </div>
