@@ -81,9 +81,7 @@ This view is useful if you wish to search for workloads and/or specific containe
 The next panes are the nodes overview and the Node Details view.  The workloads view shows you all teh workloads that are deployed on your cluster. It will show type, name space it it is and the desired and current Pod configuration for your workload.
 
 {{% alert title="Workshop Question" color="danger" %}}
-
 What type is the `splunk-otel-collector-agent` workload, and what is its desired configuration?
-
 {{% /alert %}}
 
 You can select a workload by double clicking on its name, this will expand the right side pane again, this time with the Details of the selected workload.
