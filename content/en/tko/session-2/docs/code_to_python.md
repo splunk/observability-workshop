@@ -107,10 +107,10 @@ curl localhost:5000/get_review
 
 To create a container image, you need to create a Dockerfile, run docker build to build the image referencing the Docker file and push it up to a remote repository so it can be pulled by other sources.
 
-- Create a Dockerfile 
+- Create a Dockerfile
 - Creating a Dockerfile typically requires you to consider the following:
   - Identify an appropriate container image
-    - ubuntu vs. python vs. alpine/slim 
+    - ubuntu vs. python vs. alpine/slim
     - ubuntu - overkill, large image size, wasted resources when running in K8
     - this is a python app, so pick an image that is optimized for it
     - avoid alpine for python
@@ -271,9 +271,7 @@ ubuntu@ip-10-0-1-54:/tmp$ curl localhost:30000/get_review
 ```
 
 {{% alert title="Workshop Question" color="danger" %}}
-
-- What changes are required if you need to make an update to your Dockerfile now?
-
+What changes are required if you need to make an update to your Dockerfile now?
 {{% /alert %}}
 
 ## END OF TKO LAB

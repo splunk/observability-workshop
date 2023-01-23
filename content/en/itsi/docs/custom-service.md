@@ -53,7 +53,9 @@ Execute this search.
 {{% alert title="Caution" %}}
 Internal note: If I run the below search, my line chart is empty. Is this supposed to be like this?
 {{% /alert %}}
+
 If you would like to see the results in a visualisation, you can append a *timechart* command to the search term with a "|". The complete search term would then look something like this:
+
 ```text
 | sim flow query="data('VolumeReadOps', filter=filter('namespace', 'AWS/EBS') and filter('stat', 'sum'), rollup='rate', extrapolation='zero').scale(60).sum().publish(label='A');
 data('VolumeWriteOps', filter=filter('namespace', 'AWS/EBS') and filter('stat', 'sum'), rollup='rate', extrapolation='zero').scale(60).sum().publish(label='B')"
@@ -62,12 +64,12 @@ data('VolumeWriteOps', filter=filter('namespace', 'AWS/EBS') and filter('stat', 
 
 ### Let's create our EBS service
 
-In order to create our own custom create our EBS service, let's navigate to the Splunk IT Service Intelligence Add-On. Click on **Configuration** and select **Service** from the dropdown menu. 
+In order to create our own custom create our EBS service, let's navigate to the Splunk IT Service Intelligence Add-On. Click on **Configuration** and select **Service** from the dropdown menu.
 Next, click on the green **Create Service** button and select the **Create Service** option from the dropdown menu.
 
 <img src="../../images/custom_service/create_service_dd.png" alt="Create Service" style="width: 15%;"/>
 
-In the following input form, provide a meaningful title (we choose *EBS Volumes* on the screenshot below), tick the *Manually add service content* radio button, and click on the **Create** button. 
+In the following input form, provide a meaningful title (we choose *EBS Volumes* on the screenshot below), tick the *Manually add service content* radio button, and click on the **Create** button.
 
 <img src="../../images/custom_service/title.png" alt="Create Service" style="width: 40%;"/>
 
@@ -76,7 +78,7 @@ In the following view, select the **KPIs** tab, click the **New** dropdown menu,
 <img src="../../images/custom_service/generic_kpi.png" alt="Creation of Generic KPI" style="width: 40%;"/>
 
 What follows now is a Step-by-Step walkthrough. Please click the **Next** button which brings you to the *Step 2 of 7: Source* screen.
-Paste the command we just created in the textbox with the lable *Search*. 
+Paste the command we just created in the textbox with the lable *Search*.
 
 ```text
 | sim flow query="data('VolumeReadOps', filter=filter('namespace', 'AWS/EBS') and filter('stat', 'sum'), rollup='rate', extrapolation='zero').publish()"
@@ -98,15 +100,14 @@ Click on the **Finish** button, and subsequently, when the dialog is closed, on 
 
 Let's attach our standalone to the AWS service. To do that, click on the **Configurations** dropdown menu and select the **Services** option.
 Locate the *AWS* service in the list of available services and open it by clicking on it. Click on the *Service Dependencies* tab, and click on the
-**Add dependencies** button. 
+**Add dependencies** button.
 
-Locate our custom *EBS Volume* service by using the filter, select it, and select the *ServiceHealthScore* KPI. 
+Locate our custom *EBS Volume* service by using the filter, select it, and select the *ServiceHealthScore* KPI.
 
 <img src="../../images/custom_service/ebs.png" alt="Add dependencies" style="width: 50%;"/>
 
 Click on the **Done** button. Verify that the service got added to the list of available serives and click the **Save** button on the lower right.
 In the pop-up dialogue, click **Save and Enable**.
-
 
 go to Service open AWS serv
 go to Service Analyzer -> Default Analyzer
@@ -115,4 +116,5 @@ review what you built
 Finally, view the result of your work by clicking on the *Service Analyzer* tab and choose the *Default Analyzer* option. In the *Service Analyzer* view, click the **Tree view** button. You should see the Tree view with our newly created service:
 
 <img src="../../images/custom_service/tree_view.png" alt="How to navigate to the Tree View" style="width: 100%;"/>
+
 <img src="../../images/custom_service/result.png" alt="Service Analzyer" style="width: 100%;"/>

@@ -53,9 +53,7 @@ kubectl apply -f loadgen.yaml --namespace loadgen
 ```
 
 {{% alert title="Workshop Question" color="danger" %}}
-
 Which metrics in the Kubernetes Navigator and the Apache dashboard have been instantly impacted by the deployment of the load generator?
-
 {{% /alert %}}
 
 ## 4. Scale the load generator
@@ -71,7 +69,5 @@ kubectl scale deployment/loadgen --replicas 4 -n loadgen
 Let the load generator run for around 5 minutes and keep observing the metrics in the Kubernetes Navigator and the Apache dashboard.
 
 {{% alert title="Workshop Question" color="danger" %}}
-
 Another Auto-Detect Detector has fired, which one is it this time?
-
 {{% /alert %}}

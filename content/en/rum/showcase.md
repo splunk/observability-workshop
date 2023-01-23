@@ -81,11 +81,13 @@ deployment.apps/rum-loadgen-deployment created
 {{< /tabpane >}}
 
 {{% alert title="In case of a message about a VARIABLE being unset" color="warning" %}}
-Please undeploy the APM environment by running **kubectl delete -f deployment.yaml**</br>
+Please undeploy the APM environment by running **kubectl delete -f deployment.yaml**
+
 Before exporting the variable as described in the guide and rerunning the deployment script above.
 {{% /alert %}}
 
-## 4. Using the Online Boutique to generate load on your system,
+## 4. Using the Online Boutique to generate load on your system
+
 We are all connected to an Online Boutique, together with some synthetic users who are also shopping for this session. This will create more traffic from multiple locations, making the data more realistic.
 
 You should have received the correct URL from your workshop host at this point.

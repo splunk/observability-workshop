@@ -21,8 +21,7 @@ After that, we will instrument the PetClinic's end user interface (HTML pages re
 Lastly, we will configure the Spring PetClinic application to write application logs to the filesystem and also configure the Splunk OpenTelemetry Collector to read (tail) the logs and report to Splunk Observability Cloud.
 
 {{% alert title="Prerequisites" %}}
-A Splunk run workshop where an host/instance is provided  **OR** a
-self led workshop on own host / [multipass instance](https://github.com/splunk/observability-workshop/tree/main/multipass)
+A Splunk run workshop where an host/instance is provided  **OR** a self led workshop on own host / [multipass instance](https://github.com/splunk/observability-workshop/tree/main/multipass)
 
 For your own system you will need the following installed and enabled:
 

@@ -30,7 +30,8 @@ We are now going to create a new detector from a chart on this dashboard. Click 
 In the text field next to **Detector Name**, **ADD YOUR INITIALS** before the proposed detector name.
 
 {{% alert title="Naming the detector" color="primary" %}}
-It's important that you add your initials in front of the proposed detector name.<br>
+It's important that you add your initials in front of the proposed detector name.
+
 It should be something like this: **XYZ's Latency Chart Detector**.
 {{% /alert %}}
 
@@ -44,7 +45,6 @@ Click on {{% labelbutton color="ui-button-blue" %}}Proceed to Alert Condition{{%
 
 ![Alert Signal](../../../images//alert-signal.png)
 
----
 ## 3. Setting Alert condition
 
 In **Alert condition**, click on **Static Threshold** and then on {{% labelbutton color="ui-button-blue" %}}Proceed to Alert Settings{{% /labelbutton %}}

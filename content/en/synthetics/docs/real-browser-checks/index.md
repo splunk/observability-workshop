@@ -86,7 +86,9 @@ Enter **Confirm Order** for the **Name** and change the **Action** to **Wait for
 ![placeholder](../../images/image2.png)
 
 {{% alert title="Tip" color="info" %}}
-As you are creating the steps think about how to go about using the [Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions) feature in Splunk Synthetic Monitoring which is very powerful. *"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
+As you are creating the steps think about how to go about using the **Business Transaction** feature in Splunk Synthetic Monitoring which is very powerful.
+
+*"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
 {{% /alert %}}
 
 Click on **Advanced** and make sure the **Viewport Size** is set to **Default desktop: 1366 x 768**

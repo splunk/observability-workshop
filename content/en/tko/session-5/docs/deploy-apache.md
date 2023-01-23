@@ -91,9 +91,7 @@ kubectl get cm -n splunk
 ```
 
 {{% alert title="Workshop Question" color="danger" %}}
-
 Can you identify the ConfigMap(s) used by the collector??
-
 {{% /alert %}}
 
 When you have list of Configmaps from the namespace, select the one for the `otel-agent` and view it with the following command:
@@ -105,9 +103,7 @@ kubectl get cm splunk-otel-collector-otel-agent -n splunk -o yaml
 ```
 
 {{% alert title="Workshop Question" color="danger" %}}
-
 Is the content of `otel-apache.yaml` saved in the ConfigMap for the collector agent?
-
 {{% /alert %}}
 
 ## 5. Create PHP/Apache Deployment YAML
@@ -176,17 +172,13 @@ kubectl apply -f php-apache.yaml -n apache
 ```
 
 {{% alert title="Workshop Question" color="danger" %}}
-
 Using the Observability Kubernetes Navigator, can you find the status of the `php-apache` workload?
 
 **HINT:** Filter by cluster to isolate your instance!
-
 {{% /alert %}}
 
 {{% alert title="Workshop Question" color="danger" %}}
-
 Where else has the issue with `php-apache` been logged? What is being reported?
 
 **HINT:** Use filtering to isolate your instance!
-
 {{% /alert %}}
