@@ -30,10 +30,15 @@ cd observability-content-contrib/integration-examples/terraform-jumpstart
 The environment variables needed should already be set from [Installation using Helm](../../../otel/k3s/#2-installation-using-helm). If not, create the following environment variables to use in the Terraform steps below
 
 {{< tabpane >}}
-{{< tab header="Environment Variables" lang="bash" >}}
-export ACCESS_TOKEN=<replace_with_O11y-Workshop-ACCESS_token>
-export REALM=<replace_with_Splunk_Realm>
-{{</tab >}}
+{{< tab header="Export ACCESS TOKEN" lang="bash" >}}
+export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
+{{< /tab >}}
+{{< /tabpane >}}
+
+{{< tabpane >}}
+{{< tab header="Export REALM" lang="bash" >}}
+export REALM="<replace_with_REALM>"
+{{< /tab >}}
 {{< /tabpane >}}
 
 Initialize Terraform and upgrade to the latest version of the Splunk Terraform Provider

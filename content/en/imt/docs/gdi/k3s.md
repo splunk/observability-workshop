@@ -30,15 +30,14 @@ You will also need to obtain the name of the Realm[^2] for your Splunk account. 
 Create the `ACCESS_TOKEN` and `REALM` environment variables to use in the proceeding Helm install command. For instance, if your realm is `us1`, you would type `export REALM=us1` and for `eu0` type `export REALM=eu0`.
 
 {{< tabpane >}}
-{{< tab header="Export Variables" lang="bash" >}}
-export ACCESS_TOKEN=<replace_with_O11y-Workshop-ACCESS_token>
-export REALM=<replace_with_splunk_realm>
+{{< tab header="Export ACCESS TOKEN" lang="bash" >}}
+export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
 {{< /tab >}}
-{{< tab header="Export Access Token" lang="bash" >}}
-export ACCESS_TOKEN=
-{{< /tab >}}
-{{< tab header="Export Realm" lang="bash" >}}
-export REALM=
+{{< /tabpane >}}
+
+{{< tabpane >}}
+{{< tab header="Export REALM" lang="bash" >}}
+export REALM="<replace_with_REALM>"
 {{< /tab >}}
 {{< /tabpane >}}
 
@@ -62,7 +61,7 @@ Update Complete. ⎈Happy Helming!⎈
 Install the OpenTelemetry Collector Helm chart with the following commands, do **NOT** edit this:
 
 {{< tabpane >}}
-{{< tab header="Helm Install" lang="bash" >}}
+{{< tab header="Helm Install" lang="text" >}}
 helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
@@ -74,7 +73,7 @@ helm install splunk-otel-collector \
 splunk-otel-collector-chart/splunk-otel-collector \
 -f ~/workshop/k3s/otel-collector.yaml
 {{< /tab >}}
-{{< tab header="Helm Install Single Line" lang="bash" >}}
+{{< tab header="Helm Install Single Line" lang="text" >}}
 helm install splunk-otel-collector --set="splunkObservability.realm=$REALM" --set="splunkObservability.accessToken=$ACCESS_TOKEN" --set="clusterName=$(hostname)-k3s-cluster" --set="splunkObservability.logsEnabled=true" --set="splunkObservability.profilingEnabled=true" --set="environment=$(hostname)-apm-env" splunk-otel-collector-chart/splunk-otel-collector -f ~/workshop/k3s/otel-collector.yaml
 {{< /tab >}}
 {{< tab header="Helm Install Output" lang="text" >}}
@@ -94,7 +93,7 @@ You can monitor the progress of the deployment by running `kubectl get pods` whi
 Ensure the status is reported as Running before continuing.
 
 {{< tabpane >}}
-{{< tab header="Kubectl Get Pods" lang="bash" >}}
+{{< tab header="Kubectl Get Pods" lang="text" >}}
 kubectl get pods
 {{< /tab >}}
 {{< tab header="Kubectl Get Pods Output" lang="text" >}}
@@ -109,7 +108,7 @@ Ensure there are no errors by tailing the logs from the OpenTelemetry Collector 
 Use the label set by the `helm` install to tail logs (You will need to press `ctrl+c` to exit). Or use the installed `k9s` terminal UI for bonus points!
 
 {{< tabpane >}}
-{{< tab header="Kubectl Logs" lang="bash" >}}
+{{< tab header="Kubectl Logs" lang="text" >}}
 kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 {{< /tab >}}
 {{< tab header="Kubectl Logs Output" lang="text" >}}
@@ -128,7 +127,7 @@ kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 
 {{% alert title="Deleting a failed installation" color="info" %}}
 If you make an error installing the OpenTelemetry Collector you can start over by deleting the installation using:
-**helm delete splunk-otel-collector**
+`helm delete splunk-otel-collector`
 {{% /alert %}}
 
 ---

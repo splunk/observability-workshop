@@ -3,7 +3,7 @@ title: Real Browser Check
 linkTitle: Real Browser Check 
 weight: 1
 description: >
-  Scripting and configuring a Real Browswer Check
+  Scripting and configuring a Real Browser Check
 ---
 
 This Lab walks your through using the [Chrome Selenium IDE](https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd?hl=en) extension to create a synthetic transaction against a Splunk demo instance and creating a Splunk Synthetic Monitoring Real Browser Check (RBC). In addition you also get to learn other Splunk Synthetic Monitoring checks like REST API checks and Uptime Checks.
@@ -114,7 +114,7 @@ Change your view to **Segment by location** and observe the difference. You can 
 
 ![placeholder](../../images/image9.png)
 
-Click on one of the successful circles to drilldown into that Run:
+Click on one of the successful circles to drill-down into that Run:
 
 ![placeholder](../../images/image33.png)
 
@@ -159,7 +159,9 @@ Under the **Advanced** tab, update the following three settings and create your 
 Test & Validate the new monitor
 
 {{% alert title="Tip" color="info" %}}
-As you are creating the steps try using the [Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions) feature in Splunk Synthetic Monitoring. *"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
+As you are creating the steps try using the **Business Transaction** feature in Splunk Synthetic Monitoring.
+
+*"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
 {{% /alert %}}
 
 ## 5. Resources
