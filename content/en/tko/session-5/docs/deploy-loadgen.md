@@ -13,7 +13,7 @@ In the terminal window create a new called `loadgen.yaml` and copy the following
 {{< tabpane >}}
 {{< tab header="loadgen.yaml" lang="yaml" >}}
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: loadgen
   labels:
@@ -52,10 +52,6 @@ kubectl create namespace loadgen
 kubectl apply -f loadgen.yaml --namespace loadgen
 ```
 
-{{% alert title="Workshop Question" color="danger" %}}
-Which metrics in the Kubernetes Navigator and the Apache dashboard have been instantly impacted by the deployment of the load generator?
-{{% /alert %}}
-
 ## 4. Scale the load generator
 
 A ReplicaSet is a process that runs multiple instances of a Pod and keeps the specified number of Pods constant. Its purpose is to maintain the specified number of Pod instances running in a cluster at any given time to prevent users from losing access to their application when a Pod fails or is inaccessible.
@@ -63,10 +59,20 @@ A ReplicaSet is a process that runs multiple instances of a Pod and keeps the sp
 ReplicaSet helps bring up a new instance of a Pod when the existing one fails, scale it up when the running instances are not up to the specified number, and scale down or delete Pods if another instance with the same label is created. A ReplicaSet ensures that a specified number of Pod replicas are running continuously and helps with load-balancing in case of an increase in resource usage.
 
 ``` text
-kubectl scale deployment/loadgen --replicas 4 -n loadgen
+kubectl scale statefulset/loadgen --replicas 4 -n loadgen
 ```
 
-Let the load generator run for around 5 minutes and keep observing the metrics in the Kubernetes Navigator and the Apache dashboard.
+Validate the replicas are running from both the command line and Splunk Observability Cloud:
+
+``` text
+kubectl get statefulset loadgen -n loadgen
+```
+
+{{% alert title="Workshop Question" color="danger" %}}
+What has happened to the metrics in the Apache Dashboard?
+{{% /alert %}}
+
+Let the load generator run for around 2-3 minutes and keep observing the metrics in the Kubernetes Navigator and the Apache dashboard.
 
 {{% alert title="Workshop Question" color="danger" %}}
 Another Auto-Detect Detector has fired, which one is it this time?
