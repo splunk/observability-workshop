@@ -10,6 +10,10 @@ You will be able to connect to the workshop instance by using SSH from your Mac,
 
 To use SSH, open a terminal on your system and type `ssh ubuntu@x.x.x.x` (replacing x.x.x.x with the IP address assigned to you).
 
+{{% alert title="Note" color="info" %}}
+Your workshop instance has been pre-configured with the correct `ACCESS_TOKEN` and `REALM` for this workshop. There is no need for you to configure these
+{{% /alert %}}
+
 ## 2. Namespaces in Kubernetes
 
 Most of our customers will make sue of some kind of private or public cloud service to run Kubernetes. They often choose to have only a few Large kubernetes Clusters as it is easier to manage centrally.
@@ -21,15 +25,6 @@ Any number of namespaces are supported within a cluster, each logically separate
 Most customers will want to install the Splunk OpenTelemetry Collector in a separate Namespace.  This workshop will follow that practice.
 
 ## 3. Install Splunk OTel using Helm
-
-Create the `ACCESS_TOKEN` and `REALM` environment variables to use in the proceeding Helm install command.
-
-{{< tabpane >}}
-{{< tab header="Export Variables" lang="bash" >}}
-export ACCESS_TOKEN=<replace_with_Workshop_ACCESS_TOKEN>
-export REALM=<replace_with_REALM>
-{{< /tab >}}
-{{< /tabpane >}}
 
 Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository and update.
 
@@ -112,10 +107,11 @@ If you make an error installing the Splunk OpenTelemetry Collector you can start
 ``` bash
 helm delete splunk-otel-collector -n splunk
 ```
+
 {{% /alert %}}
 
 {{% alert title="Workshop Question" color="danger" %}}
 Find your Cluster in the Observability Kubernetes Navigator, and identify the namespace for the collector and its workload.
 
-**Tip:**  you may need to refresh the screen a few time to allow the cluster data to correlated in the back ground data.
+**Tip:** You may need to refresh the screen a few time to until the cluster data is correlated in the background. Also, it is recommended to set the timeframe to be `15m` (down from `3h` which is default).
 {{% /alert %}}

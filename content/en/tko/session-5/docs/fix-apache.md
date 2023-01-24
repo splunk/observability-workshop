@@ -39,11 +39,7 @@ Before we start, let's check the current status of the PHP/Apache deployment. Wh
 
 {{% /alert %}}
 
-To fix the PHP/Apache deployment, edit the deployment and reduce the CPU resources further:
-
-```bash
-kubectl edit statefulset php-apache -n apache
-```
+To fix the PHP/Apache StatefulSet, edit the `YAML` you created and reduce the CPU resources further:
 
 Find the resources section and reduce the CPU limits to **1** and the CPU requests to **0.5**:
 
@@ -57,10 +53,14 @@ resources:
     memory: "4Mi"
 ```
 
-Save the above changes. Now, we must delete the existing pod to force Kubernetes to create a new one with the new resource limits.
+Save the above changes. Now, we must delete the existing StatefulSet and re-create it:
 
 ``` bash
-kubectl delete pod php-apache-0 -n apache
+kubectl delete statefulset php-apache -n apache
+```
+
+``` bash
+kubectl apply -f php-apache.yaml -n apache
 ```
 
 ## 3. Validate the changes
@@ -101,4 +101,10 @@ resources:
 
 ``` bash
 kubectl delete pod php-apache-0 -n apache
+```
+
+Validate the changes have been applied by running the following command:
+
+``` bash
+kubectl describe statefulset php-apache -n apache
 ```
