@@ -15,13 +15,11 @@ If the load decreases, and the number of Pods is above the configured minimum, t
 Create an autoscaling deployment for when the CPU usage for `php-apache` deployment goes above 50% with a minimum of 1 pod and a maximum of 4 pods.
 
 ``` text
-kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=4 -n apache
+kubectl autoscale statefulset php-apache --cpu-percent=50 --min=1 --max=4 -n apache
 ```
 
 {{% alert title="Workshop Question" color="danger" %}}
-
 How many additional **php-apache** pods are created?
-
 {{% /alert %}}
 
 ## 2. Validate HPA
@@ -31,7 +29,5 @@ kubectl get hpa -n apache
 ```
 
 {{% alert title="Workshop Question" color="danger" %}}
-
 Which metrics in the Apache Dashboards have significantly increased?
-
 {{% /alert %}}

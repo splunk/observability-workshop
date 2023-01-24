@@ -42,7 +42,7 @@ Before we start, let's check the current status of the PHP/Apache deployment. Wh
 To fix the PHP/Apache deployment, edit the deployment and reduce the CPU resources further:
 
 ```bash
-kubectl edit deployment php-apache -n apache
+kubectl edit statefulset php-apache -n apache
 ```
 
 Find the resources section and reduce the CPU limits to **1** and the CPU requests to **0.5**:
@@ -57,14 +57,18 @@ resources:
     memory: "4Mi"
 ```
 
-Save the above changes. The deployment will be updated and the pods will be restarted.
+Save the above changes. Now, we must delete the existing pod to force Kubernetes to create a new one with the new resource limits.
+
+``` bash
+kubectl delete pod php-apache-0 -n apache
+```
 
 ## 3. Validate the changes
 
 You can validate the changes have been applied by running the following command:
 
 ``` bash
-kubectl describe deployment php-apache -n apache
+kubectl describe statefulset php-apache -n apache
 ```
 
 Validate the pod is now running in Splunk Observability Cloud.
@@ -74,3 +78,27 @@ Is the **Apache Web Servers** dashboard showing any data now?
 
 **Tip:** Don't forget to use filters and time frames to narrow down your data.
 {{% /alert %}}
+
+{{% alert title="Workshop Question" color="danger" %}}
+Another Auto-Detect Detector has fired, which one is it this time?
+{{% /alert %}}
+
+## 4. Fix memory issue
+
+``` bash
+kubectl edit statefulset php-apache -n apache
+```
+
+``` yaml
+resources:
+  limits:
+    cpu: "1"
+    memory: "16Mi"
+  requests:
+    cpu: "0.5"
+    memory: "12Mi"
+```
+
+``` bash
+kubectl delete pod php-apache-0 -n apache
+```

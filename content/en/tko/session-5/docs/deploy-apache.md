@@ -45,7 +45,7 @@ agent:
             rule: type == "port" && pod.name matches "apache" && port == 80
             config:
               type: collectd/apache
-              url: http://php-apache.apache.svc.cluster.local/server-status?auto
+              url: http://php-apache-svc.apache.svc.cluster.local/server-status?auto
 
 {{< /tab >}}
 {{< /tabpane >}}
@@ -113,10 +113,12 @@ In the terminal window create a new file called `php-apache.yaml` and copy the f
 {{< tabpane >}}
 {{< tab header="php-apache.yaml" lang="yaml" >}}
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: php-apache
 spec:
+  updateStrategy:
+    type: RollingUpdate
   selector:
     matchLabels:
       run: php-apache
@@ -143,7 +145,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: php-apache
+  name: php-apache-svc
   labels:
     run: php-apache
 spec:
@@ -174,7 +176,7 @@ kubectl apply -f php-apache.yaml -n apache
 Ensure the deployment has been created:
 
 ``` bash
-kubectl get deployments -n apache
+kubectl get statefulset -n apache
 ```
 
 {{% alert title="Workshop Question" color="danger" %}}

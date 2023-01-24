@@ -35,7 +35,7 @@ spec:
         command:
         - /bin/sh
         - -c
-        - "while true; do wget -q -O- http://php-apache.apache.svc.cluster.local; done"
+        - "while true; do wget -q -O- http://php-apache-svc.apache.svc.cluster.local; done"
 
 {{< /tab >}}
 {{< /tabpane >}}
@@ -73,7 +73,3 @@ What has happened to the metrics in the Apache Dashboard?
 {{% /alert %}}
 
 Let the load generator run for around 2-3 minutes and keep observing the metrics in the Kubernetes Navigator and the Apache dashboard.
-
-{{% alert title="Workshop Question" color="danger" %}}
-Another Auto-Detect Detector has fired, which one is it this time?
-{{% /alert %}}
