@@ -18,15 +18,17 @@ Create an autoscaling deployment for when the CPU usage for `php-apache` deploym
 kubectl autoscale statefulset php-apache --cpu-percent=50 --min=1 --max=4 -n apache
 ```
 
-{{% alert title="Workshop Question" color="danger" %}}
-How many additional **php-apache** pods are created?
-{{% /alert %}}
-
 ## 2. Validate HPA
 
 ``` text
 kubectl get hpa -n apache
 ```
+
+Go to the Workloads tab in Kubernetes and check the HPA deployment.
+
+{{% alert title="Workshop Question" color="danger" %}}
+How many additional `php-apache-x` pods have been created?
+{{% /alert %}}
 
 {{% alert title="Workshop Question" color="danger" %}}
 Which metrics in the Apache Dashboards have significantly increased?

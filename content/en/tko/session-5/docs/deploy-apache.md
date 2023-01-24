@@ -180,11 +180,11 @@ kubectl get statefulset -n apache
 ```
 
 {{% alert title="Workshop Question" color="danger" %}}
-What metrics are being reported in the Apache Dashboard?
+What metrics for your Apache instance are being reported in the Apache Dashboard?
 {{% /alert %}}
 
 {{% alert title="Workshop Question" color="danger" %}}
-Using the Observability Kubernetes Navigator, can you find the status of the `php-apache` workload?
+Using the Observability Kubernetes Navigator, can you find the status of the `php-apache-0` pod in **Workload Detail**?
 
 **HINT:** Filter by cluster to isolate your instance!
 {{% /alert %}}
@@ -192,5 +192,5 @@ Using the Observability Kubernetes Navigator, can you find the status of the `ph
 {{% alert title="Workshop Question" color="danger" %}}
 Where else has the issue with `php-apache` been logged? What is being reported?
 
-**HINT:** Using `k8s.object.name = php-apache-0` as one of your filters to isolate your instance!
+**HINT:** Using `k8s.object.name = php-apache-0` as **one** of your filters to isolate your instance!
 {{% /alert %}}

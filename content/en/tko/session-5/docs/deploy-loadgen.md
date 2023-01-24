@@ -52,6 +52,12 @@ kubectl create namespace loadgen
 kubectl apply -f loadgen.yaml --namespace loadgen
 ```
 
+Once you have deployed the load generator, you can see the Pod running in the `loadgen` namespace. Use previous similar commands to check the status of the Pod from the command line.
+
+{{% alert title="Workshop Question" color="danger" %}}
+What metrics in the Apache Dashboard have now been significantly increased?
+{{% /alert %}}
+
 ## 4. Scale the load generator
 
 A ReplicaSet is a process that runs multiple instances of a Pod and keeps the specified number of Pods constant. Its purpose is to maintain the specified number of Pod instances running in a cluster at any given time to prevent users from losing access to their application when a Pod fails or is inaccessible.
@@ -69,7 +75,7 @@ kubectl get statefulset loadgen -n loadgen
 ```
 
 {{% alert title="Workshop Question" color="danger" %}}
-What has happened to the metrics in the Apache Dashboard?
+What has happened to the Memory metric for the `php-apache-0` Pod?
 {{% /alert %}}
 
 Let the load generator run for around 2-3 minutes and keep observing the metrics in the Kubernetes Navigator and the Apache dashboard.
