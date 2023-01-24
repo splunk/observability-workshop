@@ -18,7 +18,7 @@ To find your node name look at the prompt of you EC2 instance, assuming you are 
 ubuntu@ws-5-1 ~ $
 ```
 
-This means your cluster is named: `tko-5-1-k3s-cluster`
+This means your cluster is named: `ws-5-1-k3s-cluster`
 
 Next, make sure you set/fix the cluster name in the overview bar by selecting the drop down box for clusters and select just your cluster.
 
