@@ -134,10 +134,10 @@ spec:
         resources:
           limits:
             cpu: "8"
-            memory: "16Mi"
+            memory: "9Mi"
           requests:
             cpu: "6"
-            memory: "10Mi"
+            memory: "4Mi"
 
 ---
 apiVersion: v1
@@ -170,6 +170,16 @@ Deploy the PHP/Apache application:
 ``` bash
 kubectl apply -f php-apache.yaml -n apache
 ```
+
+Ensure the deployment has been created:
+
+``` bash
+kubectl get deployments -n apache
+```
+
+{{% alert title="Workshop Question" color="danger" %}}
+What metrics are being reported in the Apache Dashboard?
+{{% /alert %}}
 
 {{% alert title="Workshop Question" color="danger" %}}
 Using the Observability Kubernetes Navigator, can you find the status of the `php-apache` workload?
