@@ -7,18 +7,18 @@ weight: 4
 
 Especially in Production Kubernetes Cluster CPU and Memory are considered precious resources.And  the Cluster operators will normally require you to specify in the deployment the amount of CPU and Memory your Pod or service will require, so they can have the cluster automatically manage on which Node(s) your solution will be placed.
 
-You do this by placing a  Resource section in the deployment of you application/Pod
+You do this by placing a Resource section in the deployment of you application/Pod
 
 **Example:**
 
 ``` yaml
 resources:
-      limits:           # Maximum amount of CPU & memory for peek use
-        cpu: "1"        # Maximum of 1 core of CPU allowed at for peek use
-        memory: "16Mi"  # Maximum allowed 16 Megabyte of memory
-      requests:         # Request are the expected amount of CPU & memory for normal use
-        cpu: "0.5"      # Requesting half of Core of a CPU
-        memory: "10Mi"  # Requesting 10 Megabyte of memory
+      limits:         # Maximum amount of CPU & memory for peek use
+        cpu: "8"      # Maximum of 8 cores of CPU allowed at for peek use
+        memory: "9Mi" # Maximum allowed 9Mb of memory
+      requests:       # Request are the expected amount of CPU & memory for normal use
+        cpu: "6"      # Requesting 4 cores of a CPU
+        memory: "4Mi" # Requesting 4Mb of memory
 ```
 
 More information can be found here : [Resource Management for Pods and Containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
@@ -45,21 +45,23 @@ To fix the PHP/Apache deployment, edit the deployment and reduce the CPU resourc
 kubectl edit deployment php-apache -n apache
 ```
 
-Find the resources section and reduce the CPU limits to **1** and the CPU requests to **0.5** e.g.
+Find the resources section and reduce the CPU limits to **1** and the CPU requests to **0.5**:
 
 ``` yaml
 resources:
   limits:
     cpu: "1"
-    memory: "16Mi"
+    memory: "9Mi"
   requests:
     cpu: "0.5"
-    memory: "10Mi"
+    memory: "4Mi"
 ```
 
-Save the above changes. The deployment will be updated and the pods will be restarted. You can validate the changes have been applied by running the following command:
+Save the above changes. The deployment will be updated and the pods will be restarted.
 
 ## 3. Validate the changes
+
+You can validate the changes have been applied by running the following command:
 
 ``` bash
 kubectl describe deployment php-apache -n apache
@@ -68,9 +70,7 @@ kubectl describe deployment php-apache -n apache
 Validate the pod is now running in Splunk Observability Cloud.
 
 {{% alert title="Workshop Question" color="danger" %}}
-
-Is the **Apache Web Servers** dashboard showing any data?
+Is the **Apache Web Servers** dashboard showing any data now?
 
 **Tip:** Don't forget to use filters and time frames to narrow down your data.
-
 {{% /alert %}}
