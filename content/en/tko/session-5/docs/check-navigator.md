@@ -10,12 +10,12 @@ Goto the **Infrastructure** page in the Observability UI and select **Kubernetes
 
 Here you will find all the Kubernetes clusters that are sending data to the Splunk Observability Cloud platform. Your first task is to identify your own cluster.
 
-The cluster will be named after your EC2 instance name: `tko-5-X-k3s-cluster` where `X` is the number of the EC2 instance assigned to you.
+The cluster will be named after your EC2 instance name: `ws-5-X-k3s-cluster` where `X` is the number of the EC2 instance assigned to you.
 
 To find your node name look at the prompt of you EC2 instance, assuming you are assigned the first ec2 instance the prompt will show
 
 ``` bash
-ubuntu@tko-5-1 ~ $
+ubuntu@ws-5-1 ~ $
 ```
 
 This means your cluster is named: `tko-5-1-k3s-cluster`
@@ -49,7 +49,7 @@ You find if you drill down into you cluster on the map, you also use  the analyz
 The next panes are the nodes overview and the Node Details view, The Node view will follow the selection you have made in the Maps overview. In the Nodes view you will find a list of the hosts that make up your cluster. In the case  of our workshop cluster we have the massive number of 1, but at a regular cluster there will be multiple  and large production clusters can have multiple pages of hosts. This page will allow you to see at a glance and optional a scroll how your nodes are doing.
 
 {{% alert title="Workshop Question" color="danger" %}}
-How much memory and cores does our one node have?
+How much memory and how many CPU cores does our one node have?
 {{% /alert %}}
 
 ---
