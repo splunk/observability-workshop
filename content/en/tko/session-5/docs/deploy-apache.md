@@ -108,7 +108,7 @@ Is the content of `otel-apache.yaml` saved in the ConfigMap for the collector ag
 
 ## 5. Create PHP/Apache Deployment YAML
 
-In the terminal window create a new file called `php-apache.yaml` and copy the following YAML into the file:
+In the terminal window create a new file called `php-apache.yaml` and copy the following YAML into the file. This will create a new StatefulSet with a single replica of the PHP/Apache image.
 
 {{< tabpane >}}
 {{< tab header="php-apache.yaml" lang="yaml" >}}
