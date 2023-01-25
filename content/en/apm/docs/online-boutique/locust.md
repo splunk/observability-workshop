@@ -7,7 +7,7 @@ weight: 3
 
 The Online Boutique deployment contains a container running Locust that we can use to generate load traffic against the website to generate metrics, traces and spans.
 
-Locust is available on port 82 of the EC2 instance's IP address. Open a new tab in your web browser and go to `http://{==EC2-IP==}:82/`, you will then be able to see the Locust running.
+Locust is available on port 8080 of the EC2 instance's IP address. Open a new tab in your web browser and go to `http://{==EC2-IP==}:8080/`, you will then be able to see the Locust running.
 
 ![Locust](../../../images/locust.png)
 
