@@ -12,94 +12,92 @@ Here you will find all the Kubernetes clusters that are sending data to the Splu
 
 The cluster will be named after your EC2 instance name: `ws-5-X-k3s-cluster` where `X` is the number of the EC2 instance assigned to you.
 
-To find your node name look at the prompt of you EC2 instance, assuming you are assigned the first ec2 instance the prompt will show
+To find your node name look at the prompt of you EC2 instance, assuming you are assigned the 7th ec2 instance the prompt will show
 
 ``` bash
-ubuntu@ws-5-1 ~ $
+ubuntu@ws-5-7 ~ $
 ```
 
-This means your cluster is named: `ws-5-1-k3s-cluster`
+This means your cluster is named: `ws-5-7-k3s-cluster`
 
-Next, make sure you set/fix the cluster name in the overview bar by selecting the drop down box for clusters and select just your cluster.
-
-In the map view you can drill down by selecting either the whole cluster, a node, a pod or a container in the map to get  a quick view of the selected object on the right.
+Use the Cluster drop down on the top toolbar to filter the view to only show your Cluster, you can enter a partial name into the search box such as 'ws-5-7' to quickly find your allocated Cluster.
 
 ## 2. Examine the Kubernetes analyzer (Cluster Map only)
 
-If you have drilled down into you cluster, reselect you own cluster by removing it from the drop down box, then selecting it again. Now lets investigate the Kubernetes Analyzer the Kubernetes Navigator offers.
+With your Cluster selected in the Cluster drop down, open the Kubernetes Cluster Analyzer, you can find it by expanding the right hand pane by clicking on the ![sidebar_button](../images/sidebar-button.png) button in the top right corner. The Analyzer provides a quick view into the health of your cluster.
 
-You can find it by expanding the right hand pane by clicking on the ![sidebar_button](../images/sidebar-button.png) button.
+![cluster-analyzer](../images/cluster-analyzer.png)
 
-This will show a quick view into the health of you cluster via the Kubernetes Analyzer. The Analyzer uses AI-driven insights to examine patterns that nodes, pods, or containers have in common.
-
-In our little cluster we have not yet had enough time or data to do more then highlight a condition detected like a pod restart detected. Over time, the system will show relations and patterns between between objects.
-
-For the sake of this workshop, you can still use the detected condition to select the pane to do start an investigation.
-
-Start with the workload pane for pods and container information and use the Nodes pane for conditions related to Node related conditions.
+In our little cluster we have not yet had enough time or data to do more than highlight a condition detected like a pod restart. Over time, the system will show relationships and patterns between objects. You will find that as you drill down into your Clusters resources, the Analyzer adjusts what it displays depending on the chosen resource.
 
 {{% alert title="Workshop Question" color="success" %}}
-How many trouble indicators are there if you are looking at the Cluster?
+How many trouble indicators are there in your Cluster?
 {{% /alert %}}
 
-You find if you drill down into you cluster on the map, you also use  the analyzer views at each level.
+## 3.  Nodes & Node Details Tabs
 
-## 3.  Nodes & Node Details view
+In a production environment you would expect to see multiple Nodes within a Cluster which would now all be visible and shown as individual pale blue squares, each containing green squares which represent pods, however in our workshop environment you each have a single node within your Cluster, represented by the large single blue square.
 
-The next panes are the nodes overview and the Node Details view, The Node view will follow the selection you have made in the Maps overview. In the Nodes view you will find a list of the hosts that make up your cluster. In the case  of our workshop cluster we have the massive number of 1, but at a regular cluster there will be multiple  and large production clusters can have multiple pages of hosts. This page will allow you to see at a glance and optional a scroll how your nodes are doing.
+Drill down into the single Node by hovering over the pale blue background, then clicking on either the magnifying glass that appears in the top left corner, or double clicking on the pale blue background, this will take you to the Node level view.
+
+![cluster](../images/cluster.png)
+
+You should now be able to see all the Pods and Containers running on your single Node Cluster...
+
+![cluster-detail](../images/cluster-detail.png)
+
+but more importantly, the 'side panel' should have also switched to the Info Tab and is now showing lots of contextual information about the Node.
+
+![side-panel-node.png](../images/side-panel-node.png)
+
+There are various Panes showing details on the Properties of the Node, and all the various Workloads running on it, even though we are still on the 'Map' tab within Kubernetes Navigator.
+
+---
+
+At the top of the side panel, click on the Expand icon ![expand-sidebar.png](../images/expand-sidebar.png) which takes you to the full screen tab of the currently displayed resource, which in this case is a Node, so we end up on the Node Details Tab.
+
+Node Details shows you lots of great detail about what is happening on this Node, with charts for total CPU Usage, Mem Usage, Network traffic etc for all the Pods running on the Node with a list of any Events just to the right of these Charts.
+
+You also have scrollable table views of both the Workloads and Containers running on the Node.  Clicking on any of the names in the tables will reopen the side panel with the appropriate panes for either Workloads or Containers.  Each of these can then also be expanded just like you did with the Node side panel, by clicking the expand button ![expand-sidebar.png](../images/expand-sidebar.png)
 
 {{% alert title="Workshop Question" color="success" %}}
 How much memory and how many CPU cores does our one node have?
 {{% /alert %}}
 
----
+## 4. Workloads & Workload Details Tabs
 
-{{% alert title="Note" color="info" %}}
-If you click on a line in any of the table in the navigator you will see that the right pane will change and will provide information for that specific object.
-{{% /alert %}}
+Assuming you have been able to answer the question about the Node CPU cores, you will now need to switch to the Workloads tab on the top toolbar.  The Workloads tab details all the workloads that are deployed within your cluster.
 
----
+This table provides lots of valuable insights into the state of your workloads, and will show you if any of them are not in their desired state.
 
-Select the Node and get the detailed view of the node in the right hand pane.
-
-The side bar also contains a list of workloads and containers running on the Node. Last but, not least there is a section that will show any node events that have occurred.
-
-You can expand this to a full screen by clicking on the expand ![expand_button](../images/expand-button.png) button.
-
-If you do this you will switch to the Node Details view which is a full screen representation of the information in the side bar in the Node view.
-
-This view is useful if you wish to search for workloads and/or specific containers for further examination. The side bar will change to a quick view on workloads or container depending if you clicked on a workload or container line in the tables.
-
-## 4. Workloads & Workload Details view
-
-The next panes are the nodes overview and the Node Details view.  The workloads view shows you all teh workloads that are deployed on your cluster. It will show type, name space it it is and the desired and current Pod configuration for your workload.
+The default view has no Grouping applied but experiment with the various Group By options to see how the table changes.  Note how you can also use the various fields in the top toolbar to filter the data displayed, this would be essential in a large environment with hundreds or even thousands of different Workloads.
 
 {{% alert title="Workshop Question" color="success" %}}
 What type is the `splunk-otel-collector-agent` workload, and what is its desired configuration?
 {{% /alert %}}
 
-You can select a workload by double clicking on its name, this will expand the right side pane again, this time with the Details of the selected workload.
+To get more detail on a specific Workload, simply click on its name in the Workload column (we assume you have the 'splunk-otel-collector-agent' workload selected), this will open the side panel, then click the expand button ![expand-sidebar.png](../images/expand-sidebar.png) to navigate to the Workload Detail Tab.
 
-Here you will get the general info of your workload, the containers CPU and memory% in use, the number of pods per phase. Again you have a view on the latest Workload events and a list of  pods that make up your workload.
+---
 
-The list of pods allows you to drill deeper into the Pods view.
+### Workload Detail tab
 
-Again you expand this view to a full screen by clicking on the expand ![expand_button](../images/expand-button.png) button.
+Here you will get the general info about your Workload, the CPU and Memory the Containers are consuming, the Pods and their Phase, details of any Events, and finally a list of Pods related to this Workload.
 
-Expanding the side bar will bring you to the Workload details view. This provides the same data as the side bar but in full page view with is useful if you try to see what is going on with a specific workload deployment.
-
-This will also give a more detailed view on the behavior of the container(s) in your workload, again you can drill down to the container view by clicking on the name of one of you containers from the workload.
-
-## 5. Pod Detail & Container Details view
-
-The last two panes that make up the Kubernetes Navigator are the pod detail and the Container details.
-
-The Container detail view is best used by drilling down from either the Pod detail or the workload detail, as you require a container id to single out a specific container. However it provides in a full screen view all the properties and memory and cpu usage in detail for the selected container. This will allow you to go back in time by the slider under each chart to find potential misbehavior for the selected pod (or you can use the time picker on top).
-
-The Pod Detail view will show you the Pod properties and  CPU, Memory and Network usage along with any events relevant to the pod.
-
-It has a list of all the containers in the selected pod, and here you can see at a glance how healthy you containers are and how they uses its resources like memory and CPU allocations.
+As with the other Kubernetes Navigator views clicking on the name of a Pod within the table view will load the Side Panel with details about that resource, allowing you to 'click through' to these resources.  Select any of the listed Pods, then click the expand button ![expand-sidebar.png](../images/expand-sidebar.png) to navigate to the Pod Detail Tab.
 
 {{% alert title="Workshop Question" color="success" %}}
-Select the `splunk-otel-collector-agent` Pod from the drop down, how many containers does it contain?
+How many containers does the `splunk-otel-collector-agent` Pod contain?
 {{% /alert %}}
+
+## 5. Pod Detail & Container Details Tabs
+
+The last two Tabs that make up the Kubernetes Navigator are Pod Detail and Container Detail.
+
+The Pod Detail view will show you the Pod Properties, CPU, Memory and Network usage along with any events relevant to the Pod.
+
+Clicking through to the Container Detail Tab, you should know how to do this by now, but just to play safe, select one of the Containers in the list then click the expand button ![expand-sidebar.png](../images/expand-sidebar.png) to navigate to the Container Detail Tab.  
+
+If you navigated straight to the Container Detail Tab by simply clicking on the Tab, try using the Container ID drop down to select a container, now you will see the benefit of 'clicking through' to get to the desired Container!
+
+You can now see the details for the Selected Container, with the Container Properties pane offering lots of detail on its configuration.
