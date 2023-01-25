@@ -191,6 +191,6 @@ Using the Observability Kubernetes Navigator, can you find the status of the `ph
 {{% alert title="Workshop Question" color="success" %}}
 Where else has the issue with `php-apache` been logged? What is being reported?
 
-**HINT:** Using `k8s.object.name = php-apache-0` as **one** of your filters to isolate your instance!
+**HINT:** Using `event.name = php-apache-*` as **one** of your filters to isolate your instance!
 {{% /alert %}}
 
