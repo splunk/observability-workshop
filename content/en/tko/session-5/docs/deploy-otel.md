@@ -101,7 +101,7 @@ kubectl logs -l app=splunk-otel-collector -f --container otel-collector -n splun
 {{< /tab >}}
 {{< /tabpane >}}
 
-{{% alert title="Deleting a failed installation" color="info" %}}
+{{% alert title="Deleting a failed installation" color="warning" %}}
 If you make an error installing the Splunk OpenTelemetry Collector you can start over by deleting the installation using:
 
 ``` bash
@@ -110,7 +110,7 @@ helm delete splunk-otel-collector -n splunk
 
 {{% /alert %}}
 
-{{% alert title="Workshop Question" color="danger" %}}
+{{% alert title="Workshop Question" color="success" %}}
 Find your Cluster in the Observability Kubernetes Navigator, and identify the namespace for the collector and its workload.
 
 **Tip:** You may need to refresh the screen a few time to until the cluster data is correlated in the background. Also, it is recommended to set the timeframe to be `15m` (down from `3h` which is default).

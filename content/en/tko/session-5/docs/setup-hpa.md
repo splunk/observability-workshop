@@ -24,12 +24,12 @@ kubectl autoscale statefulset php-apache --cpu-percent=50 --min=1 --max=4 -n apa
 kubectl get hpa -n apache
 ```
 
-Go to the Workloads tab in Kubernetes and check the HPA deployment.
+Go to the **Workloads** or **Node Detail** tab in Kubernetes and check the HPA deployment.
 
-{{% alert title="Workshop Question" color="danger" %}}
+{{% alert title="Workshop Question" color="success" %}}
 How many additional `php-apache-x` pods have been created?
 {{% /alert %}}
 
-{{% alert title="Workshop Question" color="danger" %}}
-Which metrics in the Apache Dashboards have significantly increased?
+{{% alert title="Workshop Question" color="success" %}}
+Which metrics in the Apache Dashboards have significantly increased again?
 {{% /alert %}}

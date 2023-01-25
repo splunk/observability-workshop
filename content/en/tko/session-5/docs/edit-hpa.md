@@ -12,7 +12,7 @@ Increase the `maxReplicas` to 8
 kubectl edit hpa php-apache -n apache
 ```
 
-{{% alert title="Workshop Question" color="danger" %}}
+{{% alert title="Workshop Question" color="success" %}}
 How many pods are now in a running state? How many are pending? Why are they pending?
 {{% /alert %}}
 
@@ -22,6 +22,6 @@ How many pods are now in a running state? How many are pending? Why are they pen
 kubectl delete -f loadgen.yaml --namespace loadgen
 ```
 
-{{% alert title="Workshop Question" color="danger" %}}
+{{% alert title="Workshop Question" color="success" %}}
 After about 5 minutes what eventually happens to the `php-apache` pods when the load test is stopped?
 {{% /alert %}}

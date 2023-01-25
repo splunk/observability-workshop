@@ -94,7 +94,7 @@ curl localhost:5000/get_review
 {"review_id":"NjbiESXotcEdsyTc4EM3fg","user_id":"PR9LAM19rCM_HQiEm5OP5w","business_id":"UAtX7xmIfdd1W2Pebf6NWg","stars":3.0,"useful":0,"funny":0,"cool":0,"text":"-If you're into cheap beer (pitcher of bud-light for $7) decent wings and a good time, this is the place for you. Its generally very packed after work hours and weekends. Don't expect cocktails. \n\n-You run into a lot of sketchy characters here sometimes but for the most part if you're chilling with friends its not that bad. \n\n-Friendly bouncer and bartenders.","date":"2016-04-12 20:23:24"}
 ```
 
-{{% alert title="Workshop Question" color="danger" %}}
+{{% alert title="Workshop Question" color="success" %}}
 
 - What does this application do?
 - Do you see the yelp dataset being used?
@@ -270,7 +270,7 @@ ubuntu@ip-10-0-1-54:/tmp$ curl localhost:30000/get_review
 {"review_id":"Vv9rHtfBrFc-1M1DHRKN9Q","user_id":"EaNqIwKkM7p1bkraKotqrg","business_id":"TA1KUSCu8GkWP9w0rmElxw","stars":3.0,"useful":1,"funny":0,"cool":0,"text":"This is the first time I've actually written a review for Flip, but I've probably been here about 10 times.  \n\nThis used to be where I would take out of town guests who wanted a good, casual, and relatively inexpensive meal.  \n\nI hadn't been for a while, so after a long day in midtown, we decided to head to Flip.  \n\nWe had the fried pickles, onion rings, the gyro burger, their special burger, and split a nutella milkshake.  I have tasted all of the items we ordered previously (with the exception of the special) and have been blown away with how good they were.  My guy had the special which was definitely good, so no complaints there.  The onion rings and the fried pickles were greasier than expected.  Though I've thought they were delicious in the past, I probably wouldn't order either again.  The gyro burger was good, but I could have used a little more sauce.  It almost tasted like all of the ingredients didn't entirely fit together.  Something was definitely off. It was a friday night and they weren't insanely busy, so I'm not sure I would attribute it to the staff not being on their A game...\n\nDon't get me wrong.  Flip is still good.  The wait staff is still amazingly good looking.  They still make delicious milk shakes.  It's just not as amazing as it once was, which really is a little sad.","date":"2010-10-11 18:18:35"}
 ```
 
-{{% alert title="Workshop Question" color="danger" %}}
+{{% alert title="Workshop Question" color="success" %}}
 What changes are required if you need to make an update to your Dockerfile now?
 {{% /alert %}}
 

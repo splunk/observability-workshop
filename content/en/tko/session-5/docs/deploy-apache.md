@@ -90,7 +90,7 @@ The OpenTelemetry collector/agent uses ConfigMaps to store the configuration of 
 kubectl get cm -n splunk
 ```
 
-{{% alert title="Workshop Question" color="danger" %}}
+{{% alert title="Workshop Question" color="success" %}}
 Can you identify the ConfigMap(s) used by the collector??
 {{% /alert %}}
 
@@ -102,7 +102,7 @@ When you have list of Configmaps from the namespace, select the one for the `ote
 kubectl get cm splunk-otel-collector-otel-agent -n splunk -o yaml
 ```
 
-{{% alert title="Workshop Question" color="danger" %}}
+{{% alert title="Workshop Question" color="success" %}}
 Is the content of `otel-apache.yaml` saved in the ConfigMap for the collector agent?
 {{% /alert %}}
 
@@ -179,18 +179,19 @@ Ensure the deployment has been created:
 kubectl get statefulset -n apache
 ```
 
-{{% alert title="Workshop Question" color="danger" %}}
+{{% alert title="Workshop Question" color="success" %}}
 What metrics for your Apache instance are being reported in the Apache Dashboard?
 {{% /alert %}}
 
-{{% alert title="Workshop Question" color="danger" %}}
+{{% alert title="Workshop Question" color="question" %}}
 Using the Observability Kubernetes Navigator, can you find the status of the `php-apache-0` pod in **Workload Detail**?
 
 **HINT:** Filter by cluster to isolate your instance!
 {{% /alert %}}
 
-{{% alert title="Workshop Question" color="danger" %}}
+{{% alert title="Workshop Question" color="success" %}}
 Where else has the issue with `php-apache` been logged? What is being reported?
 
 **HINT:** Using `k8s.object.name = php-apache-0` as **one** of your filters to isolate your instance!
 {{% /alert %}}
+

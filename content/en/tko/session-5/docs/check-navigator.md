@@ -38,7 +38,7 @@ For the sake of this workshop, you can still use the detected condition to selec
 
 Start with the workload pane for pods and container information and use the Nodes pane for conditions related to Node related conditions.
 
-{{% alert title="Workshop Question" color="danger" %}}
+{{% alert title="Workshop Question" color="success" %}}
 How many trouble indicators are there if you are looking at the Cluster?
 {{% /alert %}}
 
@@ -48,7 +48,7 @@ You find if you drill down into you cluster on the map, you also use  the analyz
 
 The next panes are the nodes overview and the Node Details view, The Node view will follow the selection you have made in the Maps overview. In the Nodes view you will find a list of the hosts that make up your cluster. In the case  of our workshop cluster we have the massive number of 1, but at a regular cluster there will be multiple  and large production clusters can have multiple pages of hosts. This page will allow you to see at a glance and optional a scroll how your nodes are doing.
 
-{{% alert title="Workshop Question" color="danger" %}}
+{{% alert title="Workshop Question" color="success" %}}
 How much memory and how many CPU cores does our one node have?
 {{% /alert %}}
 
@@ -74,7 +74,7 @@ This view is useful if you wish to search for workloads and/or specific containe
 
 The next panes are the nodes overview and the Node Details view.  The workloads view shows you all teh workloads that are deployed on your cluster. It will show type, name space it it is and the desired and current Pod configuration for your workload.
 
-{{% alert title="Workshop Question" color="danger" %}}
+{{% alert title="Workshop Question" color="success" %}}
 What type is the `splunk-otel-collector-agent` workload, and what is its desired configuration?
 {{% /alert %}}
 
@@ -100,6 +100,6 @@ The Pod Detail view will show you the Pod properties and  CPU, Memory and Networ
 
 It has a list of all the containers in the selected pod, and here you can see at a glance how healthy you containers are and how they uses its resources like memory and CPU allocations.
 
-{{% alert title="Workshop Question" color="danger" %}}
+{{% alert title="Workshop Question" color="success" %}}
 Select the `splunk-otel-collector-agent` Pod from the drop down, how many containers does it contain?
 {{% /alert %}}
