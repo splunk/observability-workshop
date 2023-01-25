@@ -8,15 +8,15 @@ weight: 3
 
 The Domain Name System (DNS) is a mechanism for linking various sorts of information with easy-to-remember names, such as IP addresses. Using a DNS system to translate request names into IP addresses makes it easy for end-users to reach their target domain name effortlessly.
 
-Most Kubernetes clusters include an internal DNS service configured by default to offer a lightweight approach for service discovery. Even when pods and services are created, deleted, or shifted between nodes, built-in service discovery simplifies applications to identify and communicate with services on the Kubernetes clusters.
+Most Kubernetes clusters include an internal DNS service configured by default to offer a lightweight approach for service discovery. Even when Pods and Services are created, deleted, or shifted between nodes, built-in service discovery simplifies applications to identify and communicate with services on the Kubernetes clusters.
 
-In short the DNS system for kubernetes will make create a DNS entry for each pod and services. In general a Pod has the following DNS resolution:
+In short the DNS system for kubernetes will create a DNS entry for each Pod and Service. In general a Pod has the following DNS resolution:
 
 ``` text
 pod-name.my-namespace.pod.cluster-domain.example
 ```
 
-For example, if a Pod in the default namespace has the Pod name `my_pod`, and the domain name for your cluster is `cluster.local`, then the Pod has a DNS name:
+For example, if a Pod in the `default` namespace has the Pod name `my_pod`, and the domain name for your cluster is `cluster.local`, then the Pod has a DNS name:
 
 ``` text
 my_pod.default.pod.cluster.local
@@ -58,7 +58,7 @@ The configured rules will be evaluated for each endpoint discovered. If the rule
 
 In the file above we tell the OpenTelemetry agent to look for Pods that match the name `apache` and have port 80 open. Once found, the agent will configure an Apache receiver to read Apache metrics from the configured URL. Note, the K8s DNS based URL in the above YAML for the service.
 
-To use this the new apache configuration, you can upgrade the existing Splunk OpenTelemetry Collector Helm chart with the following command:
+To use the new apache configuration, you can upgrade the existing Splunk OpenTelemetry Collector Helm chart with the following command:
 
 {{< tabpane >}}
 {{< tab header="Helm Upgrade" lang="text" >}}
@@ -67,7 +67,6 @@ helm upgrade splunk-otel-collector \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
 --set="clusterName=$(hostname)-k3s-cluster" \
 --set="splunkObservability.logsEnabled=true" \
---set="clusterReceiver.eventsEnabled=true" \
 --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
 splunk-otel-collector-chart/splunk-otel-collector \
 --namespace splunk \
@@ -94,9 +93,9 @@ kubectl get cm -n splunk
 Can you identify the ConfigMap(s) used by the collector??
 {{% /alert %}}
 
-When you have list of Configmaps from the namespace, select the one for the `otel-agent` and view it with the following command:
+When you have list of ConfigMaps from the namespace, select the one for the `otel-agent` and view it with the following command:
 
-**Note:** The option `-o yaml` will print the content of the ConfigMap in a YAML format.  
+**Note:** The option `-o yaml` will print the content of the ConfigMap in a YAML format.
 
 ``` bash
 kubectl get cm splunk-otel-collector-otel-agent -n splunk -o yaml
@@ -192,6 +191,6 @@ Using the Observability Kubernetes Navigator, can you find the status of the `ph
 {{% alert title="Workshop Question" color="success" %}}
 Where else has the issue with `php-apache` been logged? What is being reported?
 
-**HINT:** Using `k8s.object.name = php-apache-0` as **one** of your filters to isolate your instance!
+**HINT:** Using `event.name = php-apache-*` as **one** of your filters to isolate your instance!
 {{% /alert %}}
 

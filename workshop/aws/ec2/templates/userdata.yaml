@@ -64,9 +64,6 @@ write_files:
       fi
       export INSTANCE CLUSTER_NAME
 
-      export ACCESS_TOKEN=${access_token}
-      export REALM=${realm}
-
 %{ if presetup == "true" }
       export RUM_TOKEN=${rum_token}
       if [ ! -f ~/.helmok ]; then
@@ -89,6 +86,13 @@ write_files:
     permissions: '0744'
     content: |
       clusterReceiver:
+        k8sObjects:
+          - name: events
+            mode: watch
+            namespaces: [default, apache, loadgen]
+          - name: pods
+            mode: watch
+            namespaces: [default, apache, loadgen]
         config:
           receivers:
             smartagent/kubernetes-events:

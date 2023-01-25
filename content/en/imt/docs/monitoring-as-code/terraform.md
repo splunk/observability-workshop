@@ -105,7 +105,7 @@ The plan command alone will not actually carry out the proposed changes, and so 
 
 {{< tabpane >}}
 {{< tab header="Execution Plan" lang="bash" >}}
-terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
+terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$(hostname)]"
 {{</tab >}}
 {{< tab header="Execution Plan Output" lang="bash" >}}
 Plan: 146 to add, 0 to change, 0 to destroy.
@@ -126,7 +126,7 @@ Due to this being a workshop it is required that the prefix is to be unique so y
 
 {{< tabpane >}}
 {{< tab header="Apply Plan" lang="bash" >}}
-terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
+terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$(hostname)]"
 {{</tab >}}
 {{< tab header="Apply Plan Output" lang="bash" >}}
 Apply complete! Resources: 146 added, 0 changed, 0 destroyed.

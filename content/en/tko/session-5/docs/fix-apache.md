@@ -5,7 +5,7 @@ weight: 4
 ---
 ## 1. Kubernetes Resources
 
-Especially in Production Kubernetes Cluster CPU and Memory are considered precious resources.And  the Cluster operators will normally require you to specify in the deployment the amount of CPU and Memory your Pod or service will require, so they can have the cluster automatically manage on which Node(s) your solution will be placed.
+Especially in Production Kubernetes Clusters, CPU and Memory are considered precious resources. And  the Cluster operators will normally require you to specify in the deployment the amount of CPU and Memory your Pod or Service will require, so they can have the Cluster automatically manage on which Node(s) your solution will be placed.
 
 You do this by placing a Resource section in the deployment of you application/Pod
 
@@ -13,21 +13,21 @@ You do this by placing a Resource section in the deployment of you application/P
 
 ``` yaml
 resources:
-      limits:         # Maximum amount of CPU & memory for peek use
-        cpu: "8"      # Maximum of 8 cores of CPU allowed at for peek use
-        memory: "9Mi" # Maximum allowed 9Mb of memory
-      requests:       # Request are the expected amount of CPU & memory for normal use
-        cpu: "6"      # Requesting 4 cores of a CPU
-        memory: "4Mi" # Requesting 4Mb of memory
+  limits:         # Maximum amount of CPU & memory for peek use
+    cpu: "8"      # Maximum of 8 cores of CPU allowed at for peek use
+    memory: "9Mi" # Maximum allowed 9Mb of memory
+  requests:       # Request are the expected amount of CPU & memory for normal use
+    cpu: "6"      # Requesting 4 cores of a CPU
+    memory: "4Mi" # Requesting 4Mb of memory
 ```
 
 More information can be found here : [Resource Management for Pods and Containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 
-If your application or pod will go over the limits set in your deployment, Kubernetes will kill and restart your Pod to protect the other applications on the Cluster.
+If your application or Pod will go over the limits set in your deployment, Kubernetes will kill and restart your Pod to protect the other applications on the Cluster.
 
-An other scenario that you will run into is when there is not enough Memory or CPU on a Node. In that case, the cluster will try to reschedule your pod(s) on a different node with more space.
+Another scenario that you will run into is when there is not enough Memory or CPU on a Node. In that case, the Cluster will try to reschedule your Pod(s) on a different Node with more space.
 
-If that fails, or if there is not enough space when you deploy your application, the Cluster will put your workload/deployment in schedule mode until there are enough room on any of the available nodes to deploy the pods according their limits.
+If that fails, or if there is not enough space when you deploy your application, the Cluster will put your workload/deployment in schedule mode until there is enough room on any of the available Nodes to deploy the Pods according their limits.
 
 ## 2. Fix PHP/Apache Deployment
 
@@ -69,7 +69,7 @@ You can validate the changes have been applied by running the following command:
 kubectl describe statefulset php-apache -n apache
 ```
 
-Validate the pod is now running in Splunk Observability Cloud.
+Validate the Pod is now running in Splunk Observability Cloud.
 
 {{% alert title="Workshop Question" color="success" %}}
 Is the **Apache Web Servers** dashboard showing any data now?

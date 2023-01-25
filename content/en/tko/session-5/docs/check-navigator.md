@@ -6,7 +6,7 @@ weight: 2
 
 ## 1. The Cluster Map
 
-Goto the **Infrastructure** page in the Observability UI and select **Kubernetes**, this will bring you to the Kubernetes Cluster Map.
+Go to the **Infrastructure** page in the Observability UI and select **Kubernetes**, this will bring you to the Kubernetes Cluster Map.
 
 Here you will find all the Kubernetes clusters that are sending data to the Splunk Observability Cloud platform. Your first task is to identify your own cluster.
 

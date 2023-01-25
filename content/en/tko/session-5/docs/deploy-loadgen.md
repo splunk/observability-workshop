@@ -4,11 +4,11 @@ linkTitle: Deploy Load Generator
 weight: 5
 ---
 
-Now to see how the autoscaler reacts to increased load. To do this, you'll start a different Pod to act as a client. The container within the client Pod runs in an infinite loop, sending queries to the php-apache service.
+Now to see how the autoscaler reacts to increased load. To do this, you'll start a different Pod to act as a client. The container within the client Pod runs in an infinite loop, sending queries to the php-apache Service.
 
 ## 1. Create loadgen YAML
 
-In the terminal window create a new called `loadgen.yaml` and copy the following YAML into the file:
+In the terminal window create a new file called `loadgen.yaml` and copy the following YAML into the file:
 
 {{< tabpane >}}
 {{< tab header="loadgen.yaml" lang="yaml" >}}
@@ -55,7 +55,7 @@ kubectl apply -f loadgen.yaml --namespace loadgen
 Once you have deployed the load generator, you can see the Pod running in the `loadgen` namespace. Use previous similar commands to check the status of the Pod from the command line.
 
 {{% alert title="Workshop Question" color="success" %}}
-What metrics in the Apache Dashboard have now been significantly increased?
+What metrics in the Apache Dashboard have now significantly increased?
 {{% /alert %}}
 
 ## 4. Scale the load generator
