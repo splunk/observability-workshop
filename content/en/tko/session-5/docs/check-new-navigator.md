@@ -50,14 +50,17 @@ This means your cluster is named: `ws-5-7-k3s-cluster`  make a note as you will 
 
 ### 1.2 Using the K8s cluster Selection Pane
 
-The k8s cluster Selection Pane by default will offer a list view of your clusters like shown below.
-Scroll down the k8s cluster list to select your cluster or use the filter on the top toolbar (marked with a blue stripe) to filter on `k8s.cluster.name, you can enter a partial name into the search box such as 'ws-5-7' to quickly find your allocated Cluster.
+The k8s cluster Selection Pane by default, will offer a list view of your clusters like shown below.
 
 ![k8s-cluster-list](../images/k8sclusterselection.png)
 
-You can change the  the list box to a heat map by selecting either Heatmap or List by clicking the relevant icon ![heatmap-toggle](../images/heatmaptoggle.png)(Marked by a purple line).
+You can scroll down the k8s cluster list or by using the filter on the top toolbar, *(marked with a blue stripe)*, with  the field `k8s.cluster.name`, to find your Cluster. </br>
+You can enter a partial name into the search box such as 'ws-5-7', to find quickly find your Cluster.
 
+You can change the  the list box to a heat map by selecting either Heatmap or List by clicking the relevant icon ![heatmap-toggle](../images/heatmaptoggle.png) *(Marked by a purple line).* 
 
+This will result in the follow representation:</br>
+![k8s-heatmap](../images/heatmapview.png)
 
 
 ----
