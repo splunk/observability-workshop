@@ -24,7 +24,7 @@ Scroll down the list of feature and find the option: `newKubernetesNavigators` a
 
 Once its set, you can refresh you page, and reselect kubernetes form the option in the infrastructure navigator menu.
 
-## 1 The k8s cluster Pane
+## 1 The k8s cluster & cluster detail Pane
 
 Go to the **Infrastructure** page in the Observability UI and select **Kubernetes**, this will offer you a number of kubernetes services. For this exercise pick the `K8s cluster` pane.
 
@@ -55,21 +55,14 @@ Scroll down the k8s cluster list to select your cluster or use the filter on the
 
 ![k8s-cluster-list](../images/k8sclusterselection.png)
 
-In the K8s cluster overview pane, you can color 
+You can change the  the list box to a heat map by selecting either Heatmap or List by clicking the relevant icon ![heatmap-toggle](../images/heatmaptoggle.png)(Marked by a purple line).
 
-## 2. Examine the Kubernetes analyzer (Cluster Map only)
 
-With your Cluster selected in the Cluster drop down, open the Kubernetes Cluster Analyzer, you can find it by expanding the right hand pane by clicking on the ç button in the top right corner. The Analyzer provides a quick view into the health of your cluster.
 
-![cluster-analyzer](../images/cluster-analyzer.png)
 
-In our little cluster we have not yet had enough time or data to do more than highlight a condition detected like a pod restart. Over time, the system will show relationships and patterns between objects. You will find that as you drill down into your Clusters resources, the Analyzer adjusts what it displays depending on the chosen resource.
+----
 
-{{% alert title="Workshop Question" color="success" %}}
-How many trouble indicators are there in your Cluster?
-{{% /alert %}}
-
-## 3.  Nodes & Node Details Tabs
+## 3. The Nodes & Node Details Pane
 
 In a production environment you would expect to see multiple Nodes within a Cluster which would now all be visible and shown as individual pale blue squares, each containing green squares which represent pods, however in our workshop environment you each have a single node within your Cluster, represented by the large single blue square.
 
