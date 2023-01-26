@@ -4,7 +4,7 @@ linkTitle: Touring the Kubernetes Navigator v2
 weight: 22
 ---
 
-## 0. Switching  to the new Navigator UI
+## 0. Switching to the new Navigator UI
 
 As we are in the process of switched to the new generation of the Kubernetes Navigator please check if you are already on the new Kubernetes navigator.
 
@@ -30,20 +30,29 @@ Go to the **Infrastructure** page in the Observability UI and select **Kubernete
 
 ![k8s-cluster-pane](../images/k8sclusters.png)
 
+The first thing you notice is that the pane indicates how many clusters are being monitored for you. The pane also shows a tiny graph of the load being handled across those clusters for a birds eye view.  Lastly, if there is a alert for one of the clusters it will be highlighted here too.
 
-Here you will find all the Kubernetes clusters that are sending data to the Splunk Observability Cloud platform. Your first task is to identify your own cluster.
+Click or select on the pane  and you will be taken to the `Infrastructure/Kubernetes/ K8s clusters` overview pane. Here you will find  a list  off all the Kubernetes clusters that are sending data to the Splunk Observability Cloud platform. Your first task is to identify your own cluster.
 
 The cluster will be named after your EC2 instance name: `ws-5-X-k3s-cluster` where `X` is the number of the EC2 instance assigned to you.
 
-To find your node name look at the prompt of you EC2 instance, assuming you are assigned the 7th ec2 instance the prompt will show
+To find your node name look at the prompt of your EC2 instance, assuming you are assigned the 7th ec2 instance the prompt will show
 
 ``` bash
 ubuntu@ws-5-7 ~ $
 ```
 
-This means your cluster is named: `ws-5-7-k3s-cluster`
+This means your cluster is named: `ws-5-7-k3s-cluster`  make a note as you will need this later in the workshop as a filter.
 
-Use the Cluster drop down on the top toolbar to filter the view to only show your Cluster, you can enter a partial name into the search box such as 'ws-5-7' to quickly find your allocated Cluster.
+Scroll down the k8s cluster list to select your cluster or use the filter on the top toolbar to filter on `k8s.cluster.name, you can enter a partial name into the search box such as 'ws-5-7' to quickly find your allocated Cluster.
+
+### 1.1 Using the K8s cluster Selection Pane
+
+The k8s cluster Selection Pane by default will offer a list view of your clusters,
+
+![k8s-cluster-list](../images/k8sclusterselection.png)
+
+In the K8s cluster overview pane, you can color 
 
 ## 2. Examine the Kubernetes analyzer (Cluster Map only)
 
