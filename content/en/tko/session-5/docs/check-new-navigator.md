@@ -57,10 +57,26 @@ The k8s cluster Selection Pane by default, will offer a list view of your cluste
 You can scroll down the k8s cluster list or by using the filter on the top toolbar, *(marked with a blue stripe)*, with  the field `k8s.cluster.name`, to find your Cluster. </br>
 You can enter a partial name into the search box such as 'ws-5-7', to find quickly find your Cluster.
 
-You can change the  the list box to a heat map by selecting either Heatmap or List by clicking the relevant icon ![heatmap-toggle](../images/heatmaptoggle.png) *(Marked by a purple line).* 
+Also its is a good idea to switch the default time from  the default 3 hours back to 15 minutes.
+
+If there are many clusters, you can change the Result per page box *Marked by an orange line*,  to increase the list size.
+
+You will note that each cluster row has a colored mark at the end of each row. These will change according the `color by` option, *Marked by a green line*, you have selected as to indicate its range. 
+
+These are the possible options at this time:</br>
+![k8s-colorby-list](../images/Infk8sColorBy.png)
+
+Next, you can change the the list view to a heat map view by selecting either the Heatmap or List icon ![heatmap-toggle](../images/heatmaptoggle.png) *(Marked by a purple line).*
 
 This will result in the follow representation:</br>
 ![k8s-heatmap](../images/heatmapview.png)
+
+This might be a useful view if you have many cluster as they can be grouped together using the group by option *Marked by the green line* . The colors of each node will follow the color by  choice similar to the list view.
+
+The last option, is the Find outliers option *Also marked by the green line*
+This will show deviation of normal from the selection in the `colored by` box.    This will over you a quick insight wich cluster is behaving differently then normal and may need further investigation.
+
+### 1.3 The K8s cluster detail Pane
 
 
 ----
