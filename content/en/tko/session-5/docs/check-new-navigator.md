@@ -73,21 +73,36 @@ This will result in the follow representation:</br>
 
 This might be a useful view if you have many cluster as they can be grouped together using the group by option *Marked by the green line* . The colors of each node will follow the color by  choice similar to the list view.
 
-The last option, is the Find outliers option *Also marked by the green line*
-This will show deviation of normal from the selection in the `colored by` box.    This will over you a quick insight wich cluster is behaving differently then normal and may need further investigation.
+The last option, is the Find Outliers based on historical analytics of your clusters based on what is selected in the `colored by` box.  
+
+This view is better used when you view all or a selection of you cluster. It will give you a quick insight which of your clusters are behaving differently than  they do normally and may need further investigation.
+You may not see relevant info, The clusters in this workshop are short lived and  have not send enough meaningful data for the historical analytics to detect deviations.
 
 ### 1.3 The K8s cluster detail Pane
 
+Initially,the cluster detail pane will show you the overall performance across all the servers as show below.
+![k8s-allclusters](../images/k8s-allclusters.png)
 
-----
+As soon as you select your own cluster, you can see the overall performance of your luster, in this view you also can see if your cluster is affected by an alert:
+
+![k8s-cluster-alert](../images/single-cluster-alert.png)
+
+You may note that a `single alert` has fired  for this example Cluster
 
 ## 3. The Nodes & Node Details Pane
+
+Go to the **Infrastructure** page in the Observability UI and select **Kubernetes**, this again will offer you a number of kubernetes services. For this exercise pick the `K8s Nodes` pane.
+
+![k8sNode](../images/k8sNodes.png)
+
+When Selected it may show a cluster that you have select4d previously, 
+
+
 
 In a production environment you would expect to see multiple Nodes within a Cluster which would now all be visible and shown as individual pale blue squares, each containing green squares which represent pods, however in our workshop environment you each have a single node within your Cluster, represented by the large single blue square.
 
 Drill down into the single Node by hovering over the pale blue background, then clicking on either the magnifying glass that appears in the top left corner, or double clicking on the pale blue background, this will take you to the Node level view.
 
-![cluster](../images/cluster.png)
 
 You should now be able to see all the Pods and Containers running on your single Node Cluster...
 
@@ -147,4 +162,4 @@ Clicking through to the Container Detail Tab, you should know how to do this by 
 
 If you navigated straight to the Container Detail Tab by simply clicking on the Tab, try using the Container ID drop down to select a container, now you will see the benefit of 'clicking through' to get to the desired Container!
 
-You can now see the details for the Selected Container, with the Container Properties pane offering lots of detail on its configuration.
+You can now see the details for the Selected Container, with the Container Properties pane offering lots of detail on its configuration
