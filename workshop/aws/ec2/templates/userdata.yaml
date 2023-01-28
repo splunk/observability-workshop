@@ -35,6 +35,10 @@ write_files:
   - path: /etc/skel/.profile
     append: true
     content: |
+
+      export ACCESS_TOKEN=${access_token}
+      export REALM=${realm}
+      
       helm() {
 
         echo >&2 "Using ACCESS_TOKEN=${access_token}"

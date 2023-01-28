@@ -25,7 +25,6 @@ echo $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
 
 ## 4. Create Terraform variables file
 
-
 Variables are kept in file `terrform.tfvars` and we provide a template as `terraform.tfvars.template` to copy and edit:
 
 ```bash
