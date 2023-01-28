@@ -95,9 +95,9 @@ Go to the **Infrastructure** page in the Observability UI and select **Kubernete
 
 ![k8sNode](../images/k8sNodes.png)
 
-When Selected it may show a cluster that you have select4d previously, 
+When Selected it may show a cluster that you have select4d previously,
 
-
+-------
 
 In a production environment you would expect to see multiple Nodes within a Cluster which would now all be visible and shown as individual pale blue squares, each containing green squares which represent pods, however in our workshop environment you each have a single node within your Cluster, represented by the large single blue square.
 
