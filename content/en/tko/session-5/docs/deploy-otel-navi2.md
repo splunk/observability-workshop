@@ -3,7 +3,7 @@ title: Deploying the OpenTelemetry Collector in Kubernetes using a NameSpace
 linkTitle: Prep UI & Deploy the OTel Collector 
 weight: 21
 ---
-## 0. Switching to the new Kubernetes Navigator 2.0 UI
+## 1. Switching to the new Kubernetes Navigator 2.0 UI
 
 As we are in the process of switched to the new generation of the Kubernetes Navigator please check if you are already on the new Kubernetes navigator.
 
@@ -13,9 +13,7 @@ When you select `Kubernetes` as you focus, you should see a number of services p
 
 If you taken straight to the Kubernetes Navigator v1 after selecting `Kubernetes` in the right hand menu, you need to set the feature flag for the new Navigator yourself.
 
-To do this, please change the Url in your browser to match the following:
-
-https://app.[REALM].signalfx.com/#/Superpowers
+To do this, please change the Url in your browser to match the following: [https://app.[REALM].signalfx.com/#/superpowers](https://app.[REALM].signalfx.com/#/superpowers)
 
 Were [REALM] needs to match the Realm we are running this workshop in.
 
@@ -37,7 +35,7 @@ You can fix this by pressing the ![new-k8-button](../images/new-k8s-button.png) 
 You may need to do this once per service type (Cluster/Nodes/Workloads).
 {{% /alert %}}
 
-## 1. Connect to EC2 instance
+## 2. Connect to EC2 instance
 
 You will be able to connect to the workshop instance by using SSH from your Mac, Linux or Windows device.
 
@@ -47,7 +45,7 @@ To use SSH, open a terminal on your system and type `ssh ubuntu@x.x.x.x` (replac
 Your workshop instance has been pre-configured with the correct `ACCESS_TOKEN` and `REALM` for this workshop. There is no need for you to configure these.
 {{% /alert %}}
 
-## 2. Namespaces in Kubernetes
+## 3. Namespaces in Kubernetes
 
 Most of our customers will make use of some kind of private or public cloud service to run Kubernetes. They often choose to have only a few large Kubernetes clusters as it is easier to manage centrally.
 
@@ -57,7 +55,7 @@ Any number of namespaces are supported within a cluster, each logically separate
 
 Most customers will want to install the Splunk OpenTelemetry Collector in a separate namespace.  This workshop will follow that practice.
 
-## 3. Install Splunk OTel using Helm
+## 4. Install Splunk OTel using Helm
 
 Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository and update.
 
@@ -99,7 +97,7 @@ helm install splunk-otel-collector --set="splunkObservability.realm=$REALM" --se
 {{< /tab >}}
 {{< /tabpane >}}
 
-## 4. Verify Deployment
+## 5. Verify Deployment
 
 You can monitor the progress of the deployment by running `kubectl get pods` and adding `-n splunk` to the command to see the pods in the `splunk` NameSpace which should typically report that the new pods are up and running after about 30 seconds.
 
@@ -142,5 +140,3 @@ helm delete splunk-otel-collector -n splunk
 ```
 
 {{% /alert %}}
-
-
