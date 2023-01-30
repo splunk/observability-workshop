@@ -5,7 +5,7 @@ weight: 22
 ---
 ## 1. The k8s cluster & cluster detail Pane
 
-Go to the **Infrastructure** page in the Observability UI and select **Kubernetes**, this will offer you a number of kubernetes services. For this exercise pick the `K8s cluster` pane.
+Go to the **Infrastructure** page in the Observability UI and select **Kubernetes**, this will offer you a number of Kubernetes services. For this exercise pick the `K8s cluster` pane.
 
 ![k8s-cluster-pane](../images/k8sclusters.png)
 
@@ -49,11 +49,11 @@ These are the possible options at this time:
 
 ![k8s-colorby-list](../images/Infk8sColorBy.png)
 
-Next, you can change the the list view to a heat map view by selecting either the Heatmap or List icon ![heatmap-toggle](../images/heatmaptoggle.png) *(Marked by a purple line).*
+Next, you can change the the list view to a heat map view by selecting either the Heat map or List icon ![heat-map-toggle](../images/heatmaptoggle.png) *(Marked by a purple line).*
 
 This will result in the follow representation:
 
-![k8s-heatmap](../images/heatmapview.png)
+![k8s-Heat-map](../images/heatmapview.png)
 
 This might be a useful view if you have many cluster as they can be grouped together using the group by option *Marked by the green line* . The colors of each node will follow the color by  choice similar to the list view.
 
@@ -77,7 +77,7 @@ You may note that a `single alert` has fired for this example Cluster.
 
 ## 2. The Nodes & Node Details Pane
 
-Go to the **Infrastructure** page in the Observability UI and select **Kubernetes**, this again will offer you a number of kubernetes services. For this exercise pick the `K8s Nodes` pane. When selected it may show a cluster that you have selected previously.
+Go to the **Infrastructure** page in the Observability UI and select **Kubernetes**, this again will offer you a number of Kubernetes services. For this exercise pick the `K8s Nodes` pane. When selected it may show a cluster that you have selected previously.
 
 ![k8sNode](../images/k8sNodes.png)
 
@@ -97,7 +97,7 @@ There are various Panes showing details on the Properties of the Node, and all t
 
 At the top of the side panel, click on the Expand icon ![expand-sidebar.png](../images/expand-sidebar.png) which takes you to the full screen tab of the currently displayed resource, which in this case is a Node, so we end up on the Node Details Tab.
 
-Node Details shows you lots of great detail about what is happening on this Node, with charts for total CPU Usage, Mem Usage, Network traffic etc for all the Pods running on the Node with a list of any Events just to the right of these Charts.
+Node Details shows you lots of great detail about what is happening on this Node, with charts for total CPU Usage, Memory Usage, Network traffic etc for all the Pods running on the Node with a list of any Events just to the right of these Charts.
 
 You also have scrollable table views of both the Workloads and Containers running on the Node.  Clicking on any of the names in the tables will reopen the side panel with the appropriate panes for either Workloads or Containers.  Each of these can then also be expanded just like you did with the Node side panel, by clicking the expand button ![expand-sidebar.png](../images/expand-sidebar.png)
 

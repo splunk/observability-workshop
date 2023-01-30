@@ -10,7 +10,7 @@ The Domain Name System (DNS) is a mechanism for linking various sorts of informa
 
 Most Kubernetes clusters include an internal DNS service configured by default to offer a lightweight approach for service discovery. Even when Pods and Services are created, deleted, or shifted between nodes, built-in service discovery simplifies applications to identify and communicate with services on the Kubernetes clusters.
 
-In short the DNS system for kubernetes will create a DNS entry for each Pod and Service. In general a Pod has the following DNS resolution:
+In short the DNS system for Kubernetes will create a DNS entry for each Pod and Service. In general a Pod has the following DNS resolution:
 
 ``` text
 pod-name.my-namespace.pod.cluster-domain.example

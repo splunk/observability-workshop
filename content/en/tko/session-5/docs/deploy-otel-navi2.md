@@ -25,10 +25,10 @@ Then scroll down or search the list of features and find the option: `newKuberne
 
 ![Set-New-NAvi](../images/set_new_k8s_navi.png)
 
-Once its set, you can refresh you page, and reselect kubernetes from the infrastructure navigator menu.
+Once its set, you can refresh you page, and reselect Kubernetes from the infrastructure navigator menu.
 
 {{% alert title="Note" color="info" %}}
-Be aware that your login may still be configured internally to use the original navigator on the underlying services.  You will se that even with the new panes you still see parts of the old NAvigator.
+Be aware that your login may still be configured internally to use the original navigator on the underlying services.  You will se that even with the new panes you still see parts of the old Navigator.
 
 You can fix this by pressing the ![new-k8-button](../images/new-k8s-button.png) button that will popup on the top right side of you screen if your still configured to use the old services.
 
@@ -104,10 +104,10 @@ You can monitor the progress of the deployment by running `kubectl get pods` and
 Ensure the status is reported as Running before continuing.
 
 {{< tabpane >}}
-{{< tab header="Kubectl Get Pods" lang="bash" >}}
+{{< tab header="kubectl Get Pods" lang="bash" >}}
 kubectl get pods -n splunk
 {{< /tab >}}
-{{< tab header="Kubectl Get Pods Output" lang="text" >}}
+{{< tab header="kubectl Get Pods Output" lang="text" >}}
 NAME                                                          READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-agent-2sk6k                             0/1     Running   0          10s
 splunk-otel-collector-k8s-cluster-receiver-6956d4446f-gwnd7   0/1     Running   0          10s
