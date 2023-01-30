@@ -17,10 +17,10 @@ packages:
   - podman
   - python3-venv
   - jq
-%{ if jdk == "true" }
+%{ if jdk == true ~}
   - maven
   - openjdk-17-jdk
-%{ endif }
+%{ endif ~}
   - python3-pip
   - zsh
 
@@ -68,7 +68,7 @@ write_files:
       fi
       export INSTANCE CLUSTER_NAME
 
-%{ if presetup == "true" }
+%{ if presetup == true ~}
       export RUM_TOKEN=${rum_token}
       if [ ! -f ~/.helmok ]; then
         helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
@@ -80,7 +80,8 @@ write_files:
         echo $INSTANCE > ~/.helmok
         cd /home/ubuntu
       fi
-%{ endif }
+%{ endif ~}
+
       export KUBECONFIG=/home/ubuntu/.kube/config
       alias kc='kubectl'
       alias dc='docker-compose'
@@ -169,8 +170,8 @@ runcmd:
   # Install Helm
   - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
   # Install K9s (Kubernetes UI)
-  - curl -S -OL https://github.com/derailed/k9s/releases/download/v0.26.7/k9s_Linux_x86_64.tar.gz
-  - tar xfz k9s_Linux_x86_64.tar.gz -C /usr/local/bin/ k9s
+  - curl -S -OL https://github.com/derailed/k9s/releases/download/v0.27.0/k9s_Linux_amd64.tar.gz
+  - tar xfz k9s_Linux_amd64.tar.gz -C /usr/local/bin/ k9s
   # Download Workshop
   - export WSVERSION=4.46
   - 'export WSARCHIVE=$([ "$WSVERSION" = "main" ] && echo "main" || echo "v$WSVERSION")'
