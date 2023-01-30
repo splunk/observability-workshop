@@ -3,27 +3,6 @@ title: The new Kubernetes Navigator
 linkTitle: Touring the Kubernetes Navigator v2
 weight: 22
 ---
-
-## 0. Switching to the new Navigator UI
-
-As we are in the process of switched to the new generation of the Kubernetes Navigator please check if you are already on the new Kubernetes navigator.
-
-When you select `Kubernetes` as you focus, you should see a number of services panes for Kubernetes, similar like the ones below:
-
-![k8s-navi-v-2](../images/k8s-nav2.png)
-
-If you taken straight to the Kubernetes Navigator v1 after selecting `Kubernetes` in the right hand menu,  you need to set the feature flag for the new Navigator yourself.
-
-To do this, please change the Url in your browser to match the following:</br>
-https://app.[REALM].signalfx.com/#/Superpowers </br>
-Were [REALM] needs to match the Realm we are running this workshop in.
-
-Scroll down the list of feature and find the option: `newKubernetesNavigators` and set it like below
-
-![Set-New-NAvi](../images/set_new_k8s_navi.png)
-
-Once its set, you can refresh you page, and reselect kubernetes form the option in the infrastructure navigator menu.
-
 ## 1 The k8s cluster & cluster detail Pane
 
 Go to the **Infrastructure** page in the Observability UI and select **Kubernetes**, this will offer you a number of kubernetes services. For this exercise pick the `K8s cluster` pane.
@@ -32,7 +11,7 @@ Go to the **Infrastructure** page in the Observability UI and select **Kubernete
 
 The first thing you notice is that the pane indicates how many clusters are being monitored for you. The pane also shows a tiny graph of the load being handled across those clusters for a birds eye view.  Lastly, if there is a alert for one of the clusters it will be highlighted here too.
 
-Click or select on the pane  and you will be taken to the `Infrastructure/Kubernetes/ K8s clusters` overview pane. Here you will find  a list  off all the Kubernetes clusters that are sending data to the Splunk Observability Cloud platform. Y
+Click or select on the pane  and you will be taken to the `Infrastructure/Kubernetes/ K8s clusters` overview pane. Here you will find  a list off all the Kubernetes clusters that are sending data to the Splunk Observability Cloud platform.
 
 ### 1.1 Finding your K8s cluster name
 
@@ -47,6 +26,12 @@ ubuntu@ws-5-7 ~ $
 ```
 
 This means your cluster is named: `ws-5-7-k3s-cluster`  make a note as you will need this later in the workshop as a filter.
+
+{{% alert title="Workshop Question" color="success" %}}
+Find your Cluster in the Observability Kubernetes Navigator, and identify the amoutn of containers that are running at this point.
+
+**Tip:** You may need to switch  the Color By option to containers and refresh the screen a few times until the cluster data is correlated in the background. Also, it is recommended to set the timeframe to be `15m` (down from `3h` which is default).
+{{% /alert %}}
 
 ### 1.2 Using the K8s cluster Selection Pane
 
