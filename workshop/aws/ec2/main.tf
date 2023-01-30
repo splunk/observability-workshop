@@ -1,17 +1,17 @@
 provider "aws" {
-#  profile = "default"
-  region  = var.aws_region
+  #  profile = "default"
+  region = var.aws_region
 }
 
 locals {
   common_tags = {
-    Component = "o11y-for-${var.slug}"
+    Component   = "o11y-for-${var.slug}"
     Environment = "production"
   }
 }
 
 resource "aws_vpc" "o11y-ws-vpc" {
-  cidr_block = "10.13.0.0/16"
+  cidr_block           = "10.13.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
   tags = merge(
@@ -36,8 +36,8 @@ resource "aws_subnet" "o11y-ws-subnet" {
 }
 
 resource "aws_security_group" "o11y-ws-sg" {
-  name = "Observability-Workshop-SG"
-  vpc_id      = aws_vpc.o11y-ws-vpc.id
+  name   = "Observability-Workshop-SG"
+  vpc_id = aws_vpc.o11y-ws-vpc.id
 
   ingress {
     from_port   = 22
@@ -143,10 +143,10 @@ resource "aws_route_table_association" "o11y-ws-rta" {
 locals {
   template_vars = {
     access_token = var.splunk_access_token
-    rum_token = var.splunk_rum_token
-    realm = var.splunk_realm
-    presetup = var.splunk_presetup
-    jdk = var.splunk_jdk
+    rum_token    = var.splunk_rum_token
+    realm        = var.splunk_realm
+    presetup     = var.splunk_presetup
+    jdk          = var.splunk_jdk
   }
 }
 
@@ -156,10 +156,10 @@ resource "aws_instance" "observability-instance" {
   instance_type          = var.aws_instance_type
   subnet_id              = aws_subnet.o11y-ws-subnet.id
   vpc_security_group_ids = [aws_security_group.o11y-ws-sg.id]
-  user_data              = templatefile("${path.module}/templates/userdata.yaml", merge(local.template_vars,
+  user_data = templatefile("${path.module}/templates/userdata.yaml", merge(local.template_vars,
     {
       instance_name = "${var.slug}-${count.index + 1}"
-    }))
+  }))
 
   root_block_device {
     volume_size = var.instance_disk_aws
@@ -177,7 +177,7 @@ resource "aws_instance" "observability-instance" {
   lifecycle {
     precondition {
       # if splunk_presetup=true, tokens and realm cannot be empty
-      condition     = var.splunk_presetup ? try(var.splunk_access_token, "") != "" && try(var.splunk_realm, "") != "" && try(var.splunk_rum_token, "") != "": true
+      condition     = var.splunk_presetup ? try(var.splunk_access_token, "") != "" && try(var.splunk_realm, "") != "" && try(var.splunk_rum_token, "") != "" : true
       error_message = "When requesting a pre-setup instance, splunk_realm, splunk_access_token and splunk_rum_token are required and cannot be null/empty"
     }
   }

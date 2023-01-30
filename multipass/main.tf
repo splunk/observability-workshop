@@ -11,44 +11,55 @@ terraform {
 
 variable "splunk_access_token" {
   description = "Splunk Observability Cloud Access Token"
-  type = string
-  default = ""
+  type        = string
+  default     = ""
 }
 
 variable "splunk_rum_token" {
   description = "Splunk Observability Cloud RUM Token"
-  type = string
-  default = ""
+  type        = string
+  default     = ""
 }
 
 variable "splunk_realm" {
   description = "Splunk Observability Cloud Realm (us0, us1, us2, eu0, jp0, au0)"
-  type = string
-  default = ""
+  type        = string
+  default     = ""
 }
 
 variable "splunk_presetup" {
   description = "Pre configure the instance? (true/false)"
-  type = bool
-  default = false
+  type        = bool
+  default     = false
 }
 
 variable "splunk_jdk" {
   description = "Enabled Java Development environment? (true/false)"
-  type = bool
-  default = false
+  type        = bool
+  default     = false
+}
+
+resource "random_string" "hostname" {
+  length  = 4
+  lower   = true
+  upper   = false
+  special = false
+  numeric = false
+}
+
+locals {
+  template_vars = {
+    access_token  = var.splunk_access_token
+    rum_token     = var.splunk_rum_token
+    realm         = var.splunk_realm
+    presetup      = var.splunk_presetup
+    jdk           = var.splunk_jdk
+    instance_name = "${random_string.hostname.result}"
+  }
 }
 
 data "template_file" "user_data" {
-  template = "${file("../workshop/aws/ec2/templates/userdata.yaml")}"
-  vars = {
-    access_token = "${var.splunk_access_token}"
-    rum_token = "${var.splunk_rum_token}"
-    realm = "${var.splunk_realm}"
-    presetup = "${var.splunk_presetup}"
-    jdk = "${var.splunk_jdk}"
-    instance_name = "${random_string.hostname.result}"
-  }
+  template = templatefile("../workshop/aws/ec2/templates/userdata.yaml", merge(local.template_vars))
 }
 
 resource "local_file" "user_data" {
@@ -56,26 +67,18 @@ resource "local_file" "user_data" {
   content  = data.template_file.user_data.rendered
 }
 
-resource "random_string" "hostname" {
-  length = 4
-  lower  = true
-  upper  = false
-  special = false
-  numeric = false
-}
-
 resource "multipass_instance" "ubuntu" {
-  name = random_string.hostname.result
-  memory = "8GiB"
-  disk = "32GiB"
-  cpus = 4
-  image  = "jammy"
+  name           = random_string.hostname.result
+  memory         = "8GiB"
+  disk           = "32GiB"
+  cpus           = 4
+  image          = "jammy"
   cloudinit_file = local_file.user_data.filename
 
   lifecycle {
     precondition {
       # if splunk_presetup=true, tokens and realm cannot be empty
-      condition     = var.splunk_presetup ? try(var.splunk_access_token, "") != "" && try(var.splunk_realm, "") != "" && try(var.splunk_rum_token, "") != "": true
+      condition     = var.splunk_presetup ? try(var.splunk_access_token, "") != "" && try(var.splunk_realm, "") != "" && try(var.splunk_rum_token, "") != "" : true
       error_message = "When requesting a pre-setup instance, splunk_realm, splunk_access_token and splunk_rum_token are required and cannot be null/empty"
     }
   }
