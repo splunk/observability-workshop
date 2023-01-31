@@ -11,8 +11,7 @@ During this technical workshop you will learn how to:
 - efficiently deploy complex environments
 - capture metrics from these environments to Splunk Observability
 - auto-instrument a python application
-- auto-instrument a java application
-- enable AlwaysOn profiling for a java application
+- enabling logging to Splunk Enterprise via Universal Forwarder
 
 In order to simplify the workshop modules, a pre-configured AWS EC2 instance is provided.
 
