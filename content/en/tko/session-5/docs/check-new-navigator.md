@@ -60,8 +60,7 @@ This might be a useful view if you have many cluster as they can be grouped toge
 The last option, is the Find Outliers based on historical analytics of your clusters based on what is selected in the `colored by` box.  
 
 This view is better used when you view all or a selection of you cluster. It will give you a quick insight which of your clusters are behaving differently than  they do normally and may need further investigation.
-
-You may not see relevant info, the clusters in this workshop are short lived and have not send enough meaningful data for the historical analytics to detect deviations.
+You may not see relevant info, the clusters in this workshop are short lived and may haven't send enough meaningful data for the historical analytics to detect deviations.
 
 ### 1.3 The K8s cluster detail Pane
 
@@ -69,19 +68,25 @@ Initially,the cluster detail pane will show you the overall performance across a
 
 ![k8s-allclusters](../images/k8s-allclusters.png)
 
-As soon as you select your own cluster, you can see the overall performance of your luster, in this view you also can see if your cluster is affected by an alert:
+As soon as you select your own cluster, you can see the overall performance of your Cluster, in this view you also can see if your cluster is affected by an alert:
 
 ![k8s-cluster-alert](../images/single-cluster-alert.png)
 
 You may note that a `single alert` has fired for this example Cluster.
 
-## 2. The Nodes & Node Details Pane
+## 3. The Nodes & Workloads Panes
 
 Go to the **Infrastructure** page in the Observability UI and select **Kubernetes**, this again will offer you a number of Kubernetes services. For this exercise pick the `K8s Nodes` pane. When selected it may show a cluster that you have selected previously.
 
 ![k8sNode](../images/k8sNodes.png)
 
-In a production environment you would expect to see multiple Nodes within a Cluster which would now all be visible and shown as individual pale blue squares, each containing green squares which represent pods, however in our workshop environment you each have a single node within your Cluster, represented by the large single blue square.
+{{% alert title="Note" color="info" %}}
+When selected it may show a cluster that you have selected previously using the old UI. 
+
+Check to see if there is a ![new-k8-button](../images/new-k8s-button.png) button on the top right... Press it to switch to the new UI.
+{{% /alert %}}
+
+In a production environment you would expect to see a large number of Clusters which would now all be visible and shown as individual pale blue squares, each containing green squares which represent pods, however in our workshop environment you each have a single node within your Cluster, represented by the large single blue square.
 
 Drill down into the single Node by hovering over the pale blue background, then clicking on either the magnifying glass that appears in the top left corner, or double clicking on the pale blue background, this will take you to the Node level view.
 

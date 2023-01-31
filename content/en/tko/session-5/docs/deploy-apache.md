@@ -77,6 +77,8 @@ helm upgrade splunk-otel-collector --set="splunkObservability.realm=$REALM" --se
 {{< /tab >}}
 {{< /tabpane >}}
 
+Note that the REVISION number of the deployment has changed. (A way to keep track of your changes)
+
 ## 4. Kubernetes ConfigMaps
 
 A ConfigMap is an object in Kubernetes consisting of key-value pairs which can be injected into your application. With a ConfigMap you can separate configuration from your Pods.
