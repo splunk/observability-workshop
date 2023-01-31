@@ -26,18 +26,21 @@ ubuntu@ws-5-7 ~ $
 This means your cluster is named: `ws-5-7-k3s-cluster`  make a note as you will need this later in the workshop as a filter.
 
 {{% alert title="Workshop Question" color="success" %}}
-Find your Cluster in the Observability Kubernetes Navigator, and identify the amount of containers that are running at this point.
+Find your Cluster in the Observability Kubernetes Navigator, and identify the number of containers that are running at this point.
 
 **Tip:** You may need to switch  the Color By option to containers and refresh the screen a few times until the cluster data is correlated in the background. Also, it is recommended to set the timeframe to be `15m` (down from `3h` which is default).
 {{% /alert %}}
 
-### 1.2 Using the K8s cluster Selection Pane
+### 1.2 Using the K8s Selection Pane
 
-The K8s cluster Selection Pane by default, will offer a list view of your clusters like shown below.
+The K8s Selection Pane is a common pane used across most of the Navigator's and will offer you a list view of the  Services you are looking at. In this case it shows a list of all the active K8s Clusters.
+
+
+You will find that for the navigator used in this workshop (Cluster's, Nodes, Workloads&Apache Servers the Selection pane work all very similar. Just the focus and selection criteria will match the current service.
 
 ![k8s-cluster-list](../images/k8sclusterselection.png)
 
-You can scroll down the K8s cluster list or by using the filter on the top toolbar, *(marked with a blue stripe)*, with  the field `k8s.cluster.name`, to find your Cluster.
+Right now, you can find your own Cluster by scrolling down the K8s cluster list or filter by using the field `k8s.cluster.name` in the filter toolbar, *(marked with a blue stripe)*,
 
 You can enter a partial name into the search box such as 'ws-5-7', to find quickly find your Cluster. Also, its is a good idea to switch the default time from  the default 3 hours back to 15 minutes.
 
@@ -45,7 +48,7 @@ If there are many clusters, you can change the Result per page box *Marked by an
 
 You will note that each cluster row has a colored mark at the end of each row. These will change according the `color by` option, *Marked by a green line*, you have selected as to indicate its range.
 
-These are the possible options at this time:
+These are the possible options for the k8s Cluster view:
 
 ![k8s-colorby-list](../images/Infk8sColorBy.png)
 
@@ -59,7 +62,7 @@ This might be a useful view if you have many cluster as they can be grouped toge
 
 The last option, is the Find Outliers based on historical analytics of your clusters based on what is selected in the `colored by` box.  
 
-This view is better used when you view all or a selection of you cluster. It will give you a quick insight which of your clusters are behaving differently than  they do normally and may need further investigation.
+This view is better used when you view all or a selection of you cluster (ar any other navigator view). It will give you a quick insight which of your clusters are behaving differently than  they do normally and may need further investigation.
 You may not see relevant info, the clusters in this workshop are short lived and may haven't send enough meaningful data for the historical analytics to detect deviations.
 
 ### 1.3 The K8s cluster detail Pane
