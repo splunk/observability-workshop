@@ -58,7 +58,7 @@ The configured rules will be evaluated for each endpoint discovered. If the rule
 
 In the file above we tell the OpenTelemetry agent to look for Pods that match the name `apache` and have port 80 open. Once found, the agent will configure an Apache receiver to read Apache metrics from the configured URL. Note, the K8s DNS based URL in the above YAML for the service.
 
-To use the new apache configuration, you can upgrade the existing Splunk OpenTelemetry Collector Helm chart with the following command:
+To use the Apache configuration, you can upgrade the existing Splunk OpenTelemetry Collector Helm chart to use the `otel-apache.yaml` file with the following command:
 
 {{< tabpane >}}
 {{< tab header="Helm Upgrade" lang="text" >}}

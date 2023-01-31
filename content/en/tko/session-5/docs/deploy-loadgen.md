@@ -74,4 +74,8 @@ Validate the replicas are running from both the command line and Splunk Observab
 kubectl get statefulset loadgen -n loadgen
 ```
 
+{{% alert title="Workshop Question" color="success" %}}
+What impact did this have? Where in O11y can you see the increased replica number? Can you identify the point when you scaled?
+{{% /alert %}}
+
 Let the load generator run for around 2-3 minutes and keep observing the metrics in the Kubernetes Navigator and the Apache dashboard.
