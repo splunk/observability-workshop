@@ -35,12 +35,13 @@ Find your Cluster in the Observability Kubernetes Navigator, and identify the nu
 
 The K8s Selection Pane is a common pane used across most of the Navigator's and will offer you a list view of the  Services you are looking at. In this case it shows a list of all the active K8s Clusters.
 
+You will find that this pane is used in all the navigators used in this workshop (Cluster's, Nodes, Workloads & Apache Servers). The way the selection pane works is similar across teh navigators. Just the focus and selection criteria will match the chosen service.
 
-You will find that for the navigator used in this workshop (Cluster's, Nodes, Workloads&Apache Servers the Selection pane work all very similar. Just the focus and selection criteria will match the current service.
+![k8s-cluster-list](../images/navi-selection-pane.png)
 
-![k8s-cluster-list](../images/k8sclusterselection.png)
+First, Select the `Memory usage (bytes)` from the **Color by** drop down box *Marked with a green line*, as shown in the example above.
 
-Right now, you can find your own Cluster by scrolling down the K8s cluster list or filter by using the field `k8s.cluster.name` in the filter toolbar, *(marked with a blue stripe)*,
+Now,you can find your own Cluster by scrolling down the K8s cluster list or filter by using the field `k8s.cluster.name` in the filter toolbar, *(marked with a blue stripe)*.
 
 You can enter a partial name into the search box such as 'ws-5-7', to find quickly find your Cluster. Also, its is a good idea to switch the default time from  the default 3 hours back to 15 minutes.
 
