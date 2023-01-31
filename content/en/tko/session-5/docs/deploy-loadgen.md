@@ -6,7 +6,7 @@ weight: 5
 
 Now to see how the autoscaler reacts to increased load. To do this, you'll start a different Pod to act as a client. The container within the client Pod runs in an infinite loop, sending queries to the php-apache Service.
 
-## 1. Deploy loadgen YAML
+## 1. Review loadgen YAML
 
 Inspect the YAML file `~/workshop/k3s/loadgen.yaml` and validate the contents. This file contains the configuration for the load generator and will create a new StatefulSet with a single replica of the load generator image.
 
@@ -46,7 +46,7 @@ spec:
 kubectl create namespace loadgen
 ```
 
-## 3. Deploy the load generator
+## 3. Deploy the loadgen YAML
 
 ``` text
 kubectl apply -f ~/workshop/k3s/loadgen.yaml --namespace loadgen
