@@ -7,15 +7,15 @@ weight: 21
 
 As we are in the process of switched to the new generation of the Kubernetes Navigator please check if you are already on the new Kubernetes navigator.
 
-When you select `Kubernetes` as you focus, you should see a number of services panes for Kubernetes, similar like the ones below:
+When you select `Infrastructure` from the main menu on the left, followed by selecting `Kubernetes`, you should see a number of services panes for Kubernetes, similar like the ones below:
 
 ![k8s-navi-v-2](../images/k8s-nav2.png)
 
-If you taken straight to the Kubernetes Navigator v1 after selecting `Kubernetes` in the right hand menu, you need to set the feature flag for the new Navigator yourself.
+If you taken straight to the Kubernetes Navigator v1 Map view after selecting `Kubernetes`, you need to set the feature flag for the new Navigator yourself.
 
 To do this, please change the Url in your browser to match the following: [https://app.[REALM].signalfx.com/#/superpowers](https://app.[REALM].signalfx.com/#/superpowers)
 
-Were [REALM] needs to match the Realm we are running this workshop in.
+Where [REALM] needs to match the Realm we are using for this workshop.
 
 First make sure you have the Precognition flag set like the example below, this is one of the first options to set:
 
