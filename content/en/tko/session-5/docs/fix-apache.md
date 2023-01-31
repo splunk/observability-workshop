@@ -33,7 +33,7 @@ If that fails, or if there is not enough space when you deploy your application,
 
 {{% alert title="Workshop Question" color="success" %}}
 
-Before we start, let's check the current status of the PHP/Apache deployment. Which Auto-Detect detector has fired & is there a change in the Analyzer?
+Before we start, let's check the current status of the PHP/Apache deployment. Under **Alerts & Detectors** which detector has fired?
 
 {{% /alert %}}
 
@@ -52,6 +52,8 @@ resources:
 ```
 
 Save the above changes. Now, we must delete the existing StatefulSet and re-create it:
+
+Why do we delete StatefulSet? What is a StatefulSet?
 
 ``` bash
 kubectl delete statefulset php-apache -n apache

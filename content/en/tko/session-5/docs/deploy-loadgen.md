@@ -74,8 +74,4 @@ Validate the replicas are running from both the command line and Splunk Observab
 kubectl get statefulset loadgen -n loadgen
 ```
 
-{{% alert title="Workshop Question" color="success" %}}
-What has happened to the Memory metric for the `php-apache-0` Pod?
-{{% /alert %}}
-
 Let the load generator run for around 2-3 minutes and keep observing the metrics in the Kubernetes Navigator and the Apache dashboard.

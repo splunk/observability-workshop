@@ -92,7 +92,7 @@ kubectl get cm -n splunk
 ```
 
 {{% alert title="Workshop Question" color="success" %}}
-Can you identify the ConfigMap(s) used by the collector??
+How many ConfigMaps are used by the collector?
 {{% /alert %}}
 
 When you have list of ConfigMaps from the namespace, select the one for the `otel-agent` and view it with the following command:
