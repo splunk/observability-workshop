@@ -33,11 +33,11 @@ If that fails, or if there is not enough space when you deploy your application,
 
 {{% alert title="Workshop Question" color="success" %}}
 
-Before we start, let's check the current status of the PHP/Apache deployment. Under **Alerts & Detectors** which detector has fired?
+Before we start, let's check the current status of the PHP/Apache deployment. Under **Alerts & Detectors** which detector has fired? Where else can you find this information?
 
 {{% /alert %}}
 
-To fix the PHP/Apache StatefulSet, edit the `YAML` you created and reduce the CPU resources further:
+To fix the PHP/Apache StatefulSet, edit `~/workshop/k3s/php-apache.yaml` and reduce the CPU resources further:
 
 Find the resources section and reduce the CPU limits to **1** and the CPU requests to **0.5**:
 
@@ -51,9 +51,7 @@ resources:
     memory: "4Mi"
 ```
 
-Save the above changes. Now, we must delete the existing StatefulSet and re-create it:
-
-Why do we delete StatefulSet? What is a StatefulSet?
+Save the above changes. Now, we must delete the existing StatefulSet and re-create it. StatefulSets are immutable, so we must delete the existing one and re-create it with the new changes.
 
 ``` bash
 kubectl delete statefulset php-apache -n apache
@@ -98,6 +96,8 @@ resources:
     cpu: "0.5"
     memory: "12Mi"
 ```
+
+Because the StatefulSet is immutable, we must delete the existing Pod and let the StatefulSet re-create it with the new changes.
 
 ``` bash
 kubectl delete pod php-apache-0 -n apache

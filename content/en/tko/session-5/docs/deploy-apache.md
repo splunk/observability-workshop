@@ -56,7 +56,7 @@ The above file contains an observation rule for Apache using the OTel `receiver_
 
 The configured rules will be evaluated for each endpoint discovered. If the rule evaluates to true then the receiver for that rule will be started as configured against the matched endpoint.
 
-In the file above we tell the OpenTelemetry agent to look for Pods that match the name `apache` and have port 80 open. Once found, the agent will configure an Apache receiver to read Apache metrics from the configured URL. Note, the K8s DNS based URL in the above YAML for the service.
+In the file above we tell the OpenTelemetry agent to look for Pods that match the name `apache` and have port `80` open. Once found, the agent will configure an Apache receiver to read Apache metrics from the configured URL. Note, the K8s DNS based URL in the above YAML for the service.
 
 To use the Apache configuration, you can upgrade the existing Splunk OpenTelemetry Collector Helm chart to use the `otel-apache.yaml` file with the following command:
 
@@ -78,7 +78,20 @@ helm upgrade splunk-otel-collector --set="splunkObservability.realm=$REALM" --se
 {{< /tab >}}
 {{< /tabpane >}}
 
-Note that the REVISION number of the deployment has changed. (A way to keep track of your changes)
+{{% alert title="Note" color="info" %}}
+The **REVISION** number of the deployment has changed (a way to keep track of your changes).
+
+``` text
+Release "splunk-otel-collector" has been upgraded. Happy Helming!
+NAME: splunk-otel-collector
+LAST DEPLOYED: Tue Jan 31 16:57:22 2023
+NAMESPACE: splunk
+STATUS: deployed
+REVISION: 2
+TEST SUITE: None
+```
+
+{{% /alert %}}
 
 ## 4. Kubernetes ConfigMaps
 
@@ -190,11 +203,11 @@ What metrics for your Apache instance are being reported in the Apache Dashboard
 {{% alert title="Workshop Question" color="success" %}}
 Using the Observability Kubernetes Navigator, can you find the status of the `php-apache-0` pod in **Workload Detail**?
 
-**HINT:** Filter by cluster to isolate your instance!
+**HINT:** Filter by `k8s.cluster.name` to isolate your instance!
 {{% /alert %}}
 
 {{% alert title="Workshop Question" color="success" %}}
 Where else has the issue with `php-apache` been logged? What is being reported?
 
-**HINT:** Using `event.name = php-apache*` as **one** of your filters to isolate your instance!
+**HINT:** Use `event.name = php-apache*` as **one** of your filters to isolate your instance!
 {{% /alert %}}
