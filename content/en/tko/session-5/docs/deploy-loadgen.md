@@ -8,10 +8,10 @@ Now to see how the autoscaler reacts to increased load. To do this, you'll start
 
 ## 1. Create loadgen YAML
 
-In the terminal window create a new file called `loadgen.yaml` and copy the following YAML into the file:
+Inspect the YAML file `~/workshop/k3s/loadgen.yaml` and validate the contents. This file contains the configuration for the load generator and will create a new StatefulSet with a single replica of the load generator image.
 
 {{< tabpane >}}
-{{< tab header="loadgen.yaml" lang="yaml" >}}
+{{< tab header="~/workshop/k3s/loadgen.yaml" lang="yaml" >}}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -49,7 +49,7 @@ kubectl create namespace loadgen
 ## 3. Deploy the load generator
 
 ``` text
-kubectl apply -f loadgen.yaml --namespace loadgen
+kubectl apply -f ~/workshop/k3s/loadgen.yaml --namespace loadgen
 ```
 
 Once you have deployed the load generator, you can see the Pod running in the `loadgen` namespace. Use previous similar commands to check the status of the Pod from the command line.

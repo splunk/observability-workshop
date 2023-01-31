@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: php-apache
+spec:
+  updateStrategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      run: php-apache
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: php-apache
+    spec:
+      containers:
+      - name: php-apache
+        image: ghcr.io/splunk/php-apache:latest
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: "8"
+            memory: "9Mi"
+          requests:
+            cpu: "6"
+            memory: "4Mi"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: php-apache-svc
+  labels:
+    run: php-apache
+spec:
+  ports:
+  - port: 80
+  selector:
+    run: php-apache

@@ -32,10 +32,10 @@ More information can be found here : [DNS for Service and Pods](https://kubernet
 
 ## 2. Create OpenTelemetry Collector receiver for PHP/Apache
 
-Create a new file called `otel-apache.yaml` with the following contents:
+Inspect the YAML file `~/workshop/k3s/otel-apache.yaml` and validate the contents. This file contains the configuration for the OpenTelemetry agent to monitor the PHP/Apache deployment.
 
 {{< tabpane >}}
-{{< tab header="otel-apache.yaml" lang="yaml" >}}
+{{< tab header="~/workshop/k3s/otel-apache.yaml" lang="yaml" >}}
 agent:
   config:
     receivers:
@@ -70,10 +70,11 @@ helm upgrade splunk-otel-collector \
 --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
 splunk-otel-collector-chart/splunk-otel-collector \
 --namespace splunk \
--f otel-apache.yaml
+-f ~/workshop/k3s/splunk-defaults.yaml \
+-f ~/workshop/k3s/otel-apache.yaml
 {{< /tab >}}
 {{< tab header="Helm Upgrade Single Line" lang="bash" >}}
-helm upgrade splunk-otel-collector --set="splunkObservability.realm=$REALM" --set="splunkObservability.accessToken=$ACCESS_TOKEN" --set="clusterName=$(hostname)-k3s-cluster" --set="splunkObservability.logsEnabled=true" --set="clusterReceiver.eventsEnabled=true" --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" splunk-otel-collector-chart/splunk-otel-collector --namespace splunk -f otel-apache.yaml
+helm upgrade splunk-otel-collector --set="splunkObservability.realm=$REALM" --set="splunkObservability.accessToken=$ACCESS_TOKEN" --set="clusterName=$(hostname)-k3s-cluster" --set="splunkObservability.logsEnabled=true" --set="clusterReceiver.eventsEnabled=true" --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" splunk-otel-collector-chart/splunk-otel-collector --namespace splunk -f ~/workshop/k3s/splunk-defaults.yaml -f ~/workshop/k3s/otel-apache.yaml
 {{< /tab >}}
 {{< /tabpane >}}
 
@@ -109,10 +110,12 @@ Is the content of `otel-apache.yaml` saved in the ConfigMap for the collector ag
 
 ## 5. Create PHP/Apache Deployment YAML
 
-In the terminal window create a new file called `php-apache.yaml` and copy the following YAML into the file. This will create a new StatefulSet with a single replica of the PHP/Apache image.
+Inspect the YAML file `~/workshop/k3s/php-apache.yaml` and validate the contents. This file contains the configuration for the PHP/Apache deployment and will create a new StatefulSet with a single replica of the PHP/Apache image.
+
+A stateless application is one that does not care which network it is using, and it does not need permanent storage. Examples of stateless apps may include web servers (Apache, Nginx, or Tomcat).
 
 {{< tabpane >}}
-{{< tab header="php-apache.yaml" lang="yaml" >}}
+{{< tab header="~/workshop/k3s/php-apache.yaml" lang="yaml" >}}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -171,7 +174,7 @@ kubectl create namespace apache
 Deploy the PHP/Apache application:
 
 ``` bash
-kubectl apply -f php-apache.yaml -n apache
+kubectl apply -f ~/workshop/k3s/php-apache.yaml -n apache
 ```
 
 Ensure the deployment has been created:
@@ -184,7 +187,7 @@ kubectl get statefulset -n apache
 What metrics for your Apache instance are being reported in the Apache Dashboard?
 {{% /alert %}}
 
-{{% alert title="Workshop Question" color="question" %}}
+{{% alert title="Workshop Question" color="success" %}}
 Using the Observability Kubernetes Navigator, can you find the status of the `php-apache-0` pod in **Workload Detail**?
 
 **HINT:** Filter by cluster to isolate your instance!
@@ -193,6 +196,5 @@ Using the Observability Kubernetes Navigator, can you find the status of the `ph
 {{% alert title="Workshop Question" color="success" %}}
 Where else has the issue with `php-apache` been logged? What is being reported?
 
-**HINT:** Using `event.name = php-apache-*` as **one** of your filters to isolate your instance!
+**HINT:** Using `event.name = php-apache*` as **one** of your filters to isolate your instance!
 {{% /alert %}}
-

@@ -1,0 +1,38 @@
+clusterReceiver:
+  k8sObjects:
+    - name: events
+      mode: watch
+      namespaces: [default, apache, loadgen, splunk]
+    - name: pods
+      mode: watch
+      namespaces: [default, apache, loadgen, splunk]
+  config:
+    receivers:
+      smartagent/kubernetes-events:
+        type: kubernetes-events
+        alwaysClusterReporter: true
+        whitelistedEvents:
+        - reason: Created
+          involvedObjectKind: Pod
+        - reason: Unhealthy
+          involvedObjectKind: Pod
+        - reason: Failed
+          involvedObjectKind: Pod
+        - reason: FailedCreate
+          involvedObjectKind: Job
+        - reason: Scheduling
+          involvedObjectKind: Pod
+        - reason: FailedScheduling
+          involvedObjectKind: Pod
+        - reason: ScalingReplicaSet
+          involvedObjectKind: Deployment
+        - reason: SuccessfulCreate
+          involvedObjectKind: ReplicaSet
+        - reason: MinimumReplicasUnavailable
+          involvedObjectKind: Pod
+        - reason: Pulling
+          involvedObjectKind: Pod
+        - reason: Pulled
+          involvedObjectKind: Pod
+        - reason: FailedScheduling
+          involvedObjectKind: Scheduler

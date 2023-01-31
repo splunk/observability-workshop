@@ -60,7 +60,7 @@ kubectl delete statefulset php-apache -n apache
 ```
 
 ``` bash
-kubectl apply -f php-apache.yaml -n apache
+kubectl apply -f ~/workshop/k3s/php-apache.yaml -n apache
 ```
 
 ## 3. Validate the changes

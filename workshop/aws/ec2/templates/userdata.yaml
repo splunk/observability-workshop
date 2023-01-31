@@ -87,48 +87,6 @@ write_files:
       alias dc='docker-compose'
       alias docker='podman'
 
-  - path: /etc/skel/splunk-defaults.yaml
-    permissions: '0744'
-    content: |
-      clusterReceiver:
-        k8sObjects:
-          - name: events
-            mode: watch
-            namespaces: [default, apache, loadgen]
-          - name: pods
-            mode: watch
-            namespaces: [default, apache, loadgen]
-        config:
-          receivers:
-            smartagent/kubernetes-events:
-              type: kubernetes-events
-              alwaysClusterReporter: true
-              whitelistedEvents:
-              - reason: Created
-                involvedObjectKind: Pod
-              - reason: Unhealthy
-                involvedObjectKind: Pod
-              - reason: Failed
-                involvedObjectKind: Pod
-              - reason: FailedCreate
-                involvedObjectKind: Job
-              - reason: Scheduling
-                involvedObjectKind: Pod
-              - reason: FailedScheduling
-                involvedObjectKind: Pod
-              - reason: ScalingReplicaSet
-                involvedObjectKind: Deployment
-              - reason: SuccessfulCreate
-                involvedObjectKind: ReplicaSet
-              - reason: MinimumReplicasUnavailable
-                involvedObjectKind: Pod
-              - reason: Pulling
-                involvedObjectKind: Pod
-              - reason: Pulled
-                involvedObjectKind: Pod
-              - reason: FailedScheduling
-                involvedObjectKind: Scheduler
-
   - path: /etc/rancher/k3s/registries.yaml
     permissions: '0600'
     owner: root:root

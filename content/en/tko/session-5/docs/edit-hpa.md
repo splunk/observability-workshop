@@ -19,7 +19,7 @@ How many pods are now in a running state? How many are pending? Why are they pen
 ## 2. Stop the load test
 
 ``` bash
-kubectl delete -f loadgen.yaml --namespace loadgen
+kubectl delete -f ~/workshop/k3s/loadgen.yaml --namespace loadgen
 ```
 
 {{% alert title="Workshop Question" color="success" %}}
