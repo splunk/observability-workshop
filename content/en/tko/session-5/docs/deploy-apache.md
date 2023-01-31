@@ -30,7 +30,7 @@ my_pod.service-name.my-namespace.svc.cluster-domain.example
 
 More information can be found here : [DNS for Service and Pods](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
 
-## 2. Create OpenTelemetry Collector receiver for PHP/Apache
+## 2. Deploy OpenTelemetry Collector receiver for PHP/Apache
 
 Inspect the YAML file `~/workshop/k3s/otel-apache.yaml` and validate the contents. This file contains the configuration for the OpenTelemetry agent to monitor the PHP/Apache deployment.
 
@@ -121,7 +121,7 @@ kubectl get cm splunk-otel-collector-otel-agent -n splunk -o yaml
 Is the content of `otel-apache.yaml` saved in the ConfigMap for the collector agent?
 {{% /alert %}}
 
-## 5. Create PHP/Apache Deployment YAML
+## 5. Deploy PHP/Apache Deployment YAML
 
 Inspect the YAML file `~/workshop/k3s/php-apache.yaml` and validate the contents. This file contains the configuration for the PHP/Apache deployment and will create a new StatefulSet with a single replica of the PHP/Apache image.
 
