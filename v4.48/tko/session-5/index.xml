@@ -1,0 +1,815 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Observability Cloud Workshops – 5. How Platform Engineers Observe Kubernetes - Workshop</title><link>https://splunk.github.io/observability-workshop/v4.48/tko/session-5/</link><description>Recent content in 5. How Platform Engineers Observe Kubernetes - Workshop on Splunk Observability Cloud Workshops</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://splunk.github.io/observability-workshop/v4.48/tko/session-5/index.xml" rel="self" type="application/rss+xml"/><item><title>Tko: Deploying the OpenTelemetry Collector in Kubernetes using a NameSpace</title><link>https://splunk.github.io/observability-workshop/v4.48/tko/session-5/docs/deploy-otel/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.48/tko/session-5/docs/deploy-otel/</guid><description>
+&lt;h2 id="1-connect-to-ec2-instance">1. Connect to EC2 instance&lt;/h2>
+&lt;p>You will be able to connect to the workshop instance by using SSH from your Mac, Linux or Windows device.&lt;/p>
+&lt;p>To use SSH, open a terminal on your system and type &lt;code>ssh ubuntu@x.x.x.x&lt;/code> (replacing x.x.x.x with the IP address assigned to you).&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;p class="alert-heading">Note&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+Your workshop instance has been pre-configured with the correct &lt;code>ACCESS_TOKEN&lt;/code> and &lt;code>REALM&lt;/code> for this workshop. There is no need for you to configure these.
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;h2 id="2-namespaces-in-kubernetes">2. Namespaces in Kubernetes&lt;/h2>
+&lt;p>Most of our customers will make use of some kind of private or public cloud service to run Kubernetes. They often choose to have only a few large Kubernetes clusters as it is easier to manage centrally.&lt;/p>
+&lt;p>Namespaces are a way to organize these large Kubernetes clusters into virtual sub-clusters. This can be helpful when different teams or projects share a Kubernetes cluster as this will give them the easy ability to just see and work with their own stuff.&lt;/p>
+&lt;p>Any number of namespaces are supported within a cluster, each logically separated from others but with the ability to communicate with each other. Components are only &amp;ldquo;visible&amp;rdquo; when selecting a namespace or when adding the &lt;code>--all-namespaces&lt;/code> flag to &lt;code>kubectl&lt;/code> instead of allowing you to view just the components relevant to your project by selecting your namespace.&lt;/p>
+&lt;p>Most customers will want to install the Splunk OpenTelemetry Collector in a separate namespace. This workshop will follow that practice.&lt;/p>
+&lt;h2 id="3-install-splunk-otel-using-helm">3. Install Splunk OTel using Helm&lt;/h2>
+&lt;p>Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository and update.&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-1" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Helm-Repo-Add"
+id="tabs-1-0-tab" data-toggle="tab" href="#tabs-1-0" role="tab" onclick="handleClick(&amp;#34;Helm-Repo-Add&amp;#34;);"
+aria-controls="tabs-1-0" aria-selected="true">
+Helm Repo Add
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-Helm-Repo-Add-Output"
+id="tabs-1-1-tab" data-toggle="tab" href="#tabs-1-1" role="tab" onclick="handleClick(&amp;#34;Helm-Repo-Add-Output&amp;#34;);"
+aria-controls="tabs-1-1" aria-selected="false">
+Helm Repo Add Output
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-1-content">&lt;div class="tab-pane fade show active"
+id="tabs-1-0" role="tabpanel" aria-labelled-by="tabs-1-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart &amp;amp;&amp;amp; helm repo update&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-1-1" role="tabpanel" aria-labelled-by="tabs-1-1-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">Using ACCESS_TOKEN={REDACTED}
+Using REALM=eu0
+&amp;#34;splunk-otel-collector-chart&amp;#34; has been added to your repositories
+Using ACCESS_TOKEN={REDACTED}
+Using REALM=eu0
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the &amp;#34;splunk-otel-collector-chart&amp;#34; chart repository
+Update Complete. ⎈Happy Helming!⎈&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>Install the OpenTelemetry Collector Helm chart into the &lt;code>splunk&lt;/code> namespace with the following commands, do &lt;strong>NOT&lt;/strong> edit this:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-2" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Helm-Install"
+id="tabs-2-0-tab" data-toggle="tab" href="#tabs-2-0" role="tab" onclick="handleClick(&amp;#34;Helm-Install&amp;#34;);"
+aria-controls="tabs-2-0" aria-selected="true">
+Helm Install
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-Helm-Install-Single-Line"
+id="tabs-2-1-tab" data-toggle="tab" href="#tabs-2-1" role="tab" onclick="handleClick(&amp;#34;Helm-Install-Single-Line&amp;#34;);"
+aria-controls="tabs-2-1" aria-selected="false">
+Helm Install Single Line
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-2-content">&lt;div class="tab-pane fade show active"
+id="tabs-2-0" role="tabpanel" aria-labelled-by="tabs-2-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">helm install splunk-otel-collector \
+--set=&amp;#34;splunkObservability.realm=$REALM&amp;#34; \
+--set=&amp;#34;splunkObservability.accessToken=$ACCESS_TOKEN&amp;#34; \
+--set=&amp;#34;clusterName=$(hostname)-k3s-cluster&amp;#34; \
+--set=&amp;#34;splunkObservability.logsEnabled=true&amp;#34; \
+--set=&amp;#34;splunkObservability.infrastructureMonitoringEventsEnabled=true&amp;#34; \
+splunk-otel-collector-chart/splunk-otel-collector \
+--namespace splunk \
+--create-namespace \
+-f ~/workshop/k3s/splunk-defaults.yaml&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-2-1" role="tabpanel" aria-labelled-by="tabs-2-1-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">helm install splunk-otel-collector --set=&amp;#34;splunkObservability.realm=$REALM&amp;#34; --set=&amp;#34;splunkObservability.accessToken=$ACCESS_TOKEN&amp;#34; --set=&amp;#34;clusterName=$(hostname)-k3s-cluster&amp;#34; --set=&amp;#34;splunkObservability.logsEnabled=true&amp;#34; --set=&amp;#34;splunkObservability.infrastructureMonitoringEventsEnabled=true&amp;#34; splunk-otel-collector-chart/splunk-otel-collector --namespace splunk --create-namespace -f ~/workshop/k3s/splunk-defaults.yaml&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;h2 id="4-verify-deployment">4. Verify Deployment&lt;/h2>
+&lt;p>You can monitor the progress of the deployment by running &lt;code>kubectl get pods&lt;/code> and adding &lt;code>-n splunk&lt;/code> to the command to see the pods in the &lt;code>splunk&lt;/code> NameSpace which should typically report that the new pods are up and running after about 30 seconds.&lt;/p>
+&lt;p>Ensure the status is reported as Running before continuing.&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-3" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Kubectl-Get-Pods"
+id="tabs-3-0-tab" data-toggle="tab" href="#tabs-3-0" role="tab" onclick="handleClick(&amp;#34;Kubectl-Get-Pods&amp;#34;);"
+aria-controls="tabs-3-0" aria-selected="true">
+Kubectl Get Pods
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-Kubectl-Get-Pods-Output"
+id="tabs-3-1-tab" data-toggle="tab" href="#tabs-3-1" role="tab" onclick="handleClick(&amp;#34;Kubectl-Get-Pods-Output&amp;#34;);"
+aria-controls="tabs-3-1" aria-selected="false">
+Kubectl Get Pods Output
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-3-content">&lt;div class="tab-pane fade show active"
+id="tabs-3-0" role="tabpanel" aria-labelled-by="tabs-3-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl get pods -n splunk&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-3-1" role="tabpanel" aria-labelled-by="tabs-3-1-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">NAME READY STATUS RESTARTS AGE
+splunk-otel-collector-agent-2sk6k 0/1 Running 0 10s
+splunk-otel-collector-k8s-cluster-receiver-6956d4446f-gwnd7 0/1 Running 0 10s&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;div class="alert alert-info" role="alert">
+&lt;p class="alert-heading">Note&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+&lt;p>If you are using the Kubernetes Integration setup from the Data Management page from the O11y UI , you find that the guide will use
+&lt;code>--generate-name splunk-otel-collector-chart/splunk-otel-collector&lt;/code> instead of just &lt;code>splunk-otel-collector-chart/splunk-otel-collector&lt;/code> as we do in the above example.&lt;/p>
+&lt;p>This will generate an unique name/label for the collector install and Pods by adding a unique number at the end of the object name, allowing you to install multiple collectors in your Kubernetes environment with different configurations.&lt;/p>
+&lt;p>Just make sure you use the correct label that is generated by the helm chart if you wish to use the &lt;code>helm&lt;/code> and &lt;code>kubectl&lt;/code> commands from this workshop on an install done with the &lt;code>--generate-name&lt;/code> option.&lt;/p>
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;p>Use the label set by the &lt;code>helm&lt;/code> install to tail logs (You will need to press &lt;code>ctrl + c&lt;/code> to exit). Or use the installed &lt;code>k9s&lt;/code> terminal UI.&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-5" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Kubectl-Logs"
+id="tabs-5-0-tab" data-toggle="tab" href="#tabs-5-0" role="tab" onclick="handleClick(&amp;#34;Kubectl-Logs&amp;#34;);"
+aria-controls="tabs-5-0" aria-selected="true">
+Kubectl Logs
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-5-content">&lt;div class="tab-pane fade show active"
+id="tabs-5-0" role="tabpanel" aria-labelled-by="tabs-5-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl logs -l &lt;span style="color:#000">app&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>splunk-otel-collector -f --container otel-collector -n splunk&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;div class="alert alert-warning" role="alert">
+&lt;p class="alert-heading">Deleting a failed installation&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+&lt;p>If you make an error installing the Splunk OpenTelemetry Collector you can start over by deleting the installation using:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">helm delete splunk-otel-collector -n splunk
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+&lt;p>Find your Cluster in the Observability Kubernetes Navigator, and identify the namespace for the collector and its workload.&lt;/p>
+&lt;p>&lt;strong>Tip:&lt;/strong> You may need to refresh the screen a few time to until the cluster data is correlated in the background. Also, it is recommended to set the timeframe to be &lt;code>15m&lt;/code> (down from &lt;code>3h&lt;/code> which is default).&lt;/p>
+&lt;/p>
+&lt;/div>
+&lt;/div></description></item><item><title>Tko: The Kubernetes Navigator</title><link>https://splunk.github.io/observability-workshop/v4.48/tko/session-5/docs/check-navigator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.48/tko/session-5/docs/check-navigator/</guid><description>
+&lt;h2 id="1-the-cluster-map">1. The Cluster Map&lt;/h2>
+&lt;p>Go to the &lt;strong>Infrastructure&lt;/strong> page in the Observability UI and select &lt;strong>Kubernetes&lt;/strong>, this will bring you to the Kubernetes Cluster Map.&lt;/p>
+&lt;p>Here you will find all the Kubernetes clusters that are sending data to the Splunk Observability Cloud platform. Your first task is to identify your own cluster.&lt;/p>
+&lt;p>The cluster will be named after your EC2 instance name: &lt;code>ws-5-X-k3s-cluster&lt;/code> where &lt;code>X&lt;/code> is the number of the EC2 instance assigned to you.&lt;/p>
+&lt;p>To find your node name look at the prompt of you EC2 instance, assuming you are assigned the 7th EC2 instance the prompt will show&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">ubuntu@ws-5-7 ~ $
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>This means your cluster is named: &lt;code>ws-5-7-k3s-cluster&lt;/code>&lt;/p>
+&lt;p>Use the Cluster drop down on the top toolbar to filter the view to only show your Cluster, you can enter a partial name into the search box such as &amp;lsquo;ws-5-7&amp;rsquo; to quickly find your allocated Cluster.&lt;/p>
+&lt;h2 id="2-examine-the-kubernetes-analyzer-cluster-map-only">2. Examine the Kubernetes analyzer (Cluster Map only)&lt;/h2>
+&lt;p>With your Cluster selected in the Cluster drop down, open the Kubernetes Cluster Analyzer, you can find it by expanding the right hand pane by clicking on the &lt;img src="../images/sidebar-button.png" alt="sidebar_button"> button in the top right corner. The Analyzer provides a quick view into the health of your cluster.&lt;/p>
+&lt;p>&lt;img src="../images/cluster-analyzer.png" alt="cluster-analyzer">&lt;/p>
+&lt;p>In our little cluster we have not yet had enough time or data to do more than highlight a condition detected like a pod restart. Over time, the system will show relationships and patterns between objects. You will find that as you drill down into your Clusters resources, the Analyzer adjusts what it displays depending on the chosen resource.&lt;/p>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+How many trouble indicators are there in your Cluster?
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;h2 id="3--nodes--node-details-tabs">3. Nodes &amp;amp; Node Details Tabs&lt;/h2>
+&lt;p>In a production environment you would expect to see multiple Nodes within a Cluster which would now all be visible and shown as individual pale blue squares, each containing green squares which represent pods, however in our workshop environment you each have a single node within your Cluster, represented by the large single blue square.&lt;/p>
+&lt;p>Drill down into the single Node by hovering over the pale blue background, then clicking on either the magnifying glass that appears in the top left corner, or double clicking on the pale blue background, this will take you to the Node level view.&lt;/p>
+&lt;p>&lt;img src="../images/cluster.png" alt="cluster">&lt;/p>
+&lt;p>You should now be able to see all the Pods and Containers running on your single Node Cluster&amp;hellip;&lt;/p>
+&lt;p>&lt;img src="../images/cluster-detail.png" alt="cluster-detail">&lt;/p>
+&lt;p>but more importantly, the &amp;lsquo;side panel&amp;rsquo; should have also switched to the Info Tab and is now showing lots of contextual information about the Node.&lt;/p>
+&lt;p>&lt;img src="../images/side-panel-node.png" alt="side-panel-node.png">&lt;/p>
+&lt;p>There are various Panes showing details on the Properties of the Node, and all the various Workloads running on it, even though we are still on the &amp;lsquo;Map&amp;rsquo; tab within Kubernetes Navigator.&lt;/p>
+&lt;hr>
+&lt;p>At the top of the side panel, click on the Expand icon &lt;img src="../images/expand-sidebar.png" alt="expand-sidebar.png"> which takes you to the full screen tab of the currently displayed resource, which in this case is a Node, so we end up on the Node Details Tab.&lt;/p>
+&lt;p>Node Details shows you lots of great detail about what is happening on this Node, with charts for total CPU Usage, Memory Usage, Network traffic etc for all the Pods running on the Node with a list of any Events just to the right of these Charts.&lt;/p>
+&lt;p>You also have scrollable table views of both the Workloads and Containers running on the Node. Clicking on any of the names in the tables will reopen the side panel with the appropriate panes for either Workloads or Containers. Each of these can then also be expanded just like you did with the Node side panel, by clicking the expand button &lt;img src="../images/expand-sidebar.png" alt="expand-sidebar.png">&lt;/p>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+How much memory and how many CPU cores does our one node have?
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;h2 id="4-workloads--workload-details-tabs">4. Workloads &amp;amp; Workload Details Tabs&lt;/h2>
+&lt;p>Assuming you have been able to answer the question about the Node CPU cores, you will now need to switch to the Workloads tab on the top toolbar. The Workloads tab details all the workloads that are deployed within your cluster.&lt;/p>
+&lt;p>This table provides lots of valuable insights into the state of your workloads, and will show you if any of them are not in their desired state.&lt;/p>
+&lt;p>The default view has no Grouping applied but experiment with the various Group By options to see how the table changes. Note how you can also use the various fields in the top toolbar to filter the data displayed, this would be essential in a large environment with hundreds or even thousands of different Workloads.&lt;/p>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+What type is the &lt;code>splunk-otel-collector-agent&lt;/code> workload, and what is its desired configuration?
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;p>To get more detail on a specific Workload, simply click on its name in the Workload column (we assume you have the &amp;lsquo;splunk-otel-collector-agent&amp;rsquo; workload selected), this will open the side panel, then click the expand button &lt;img src="../images/expand-sidebar.png" alt="expand-sidebar.png"> to navigate to the Workload Detail Tab.&lt;/p>
+&lt;hr>
+&lt;h3 id="workload-detail-tab">Workload Detail tab&lt;/h3>
+&lt;p>Here you will get the general info about your Workload, the CPU and Memory the Containers are consuming, the Pods and their Phase, details of any Events, and finally a list of Pods related to this Workload.&lt;/p>
+&lt;p>As with the other Kubernetes Navigator views clicking on the name of a Pod within the table view will load the Side Panel with details about that resource, allowing you to &amp;lsquo;click through&amp;rsquo; to these resources. Select any of the listed Pods, then click the expand button &lt;img src="../images/expand-sidebar.png" alt="expand-sidebar.png"> to navigate to the Pod Detail Tab.&lt;/p>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+How many containers does the &lt;code>splunk-otel-collector-agent&lt;/code> Pod contain?
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;h2 id="5-pod-detail--container-details-tabs">5. Pod Detail &amp;amp; Container Details Tabs&lt;/h2>
+&lt;p>The last two Tabs that make up the Kubernetes Navigator are Pod Detail and Container Detail.&lt;/p>
+&lt;p>The Pod Detail view will show you the Pod Properties, CPU, Memory and Network usage along with any events relevant to the Pod.&lt;/p>
+&lt;p>Clicking through to the Container Detail Tab, you should know how to do this by now, but just to play safe, select one of the Containers in the list then click the expand button &lt;img src="../images/expand-sidebar.png" alt="expand-sidebar.png"> to navigate to the Container Detail Tab.&lt;/p>
+&lt;p>If you navigated straight to the Container Detail Tab by simply clicking on the Tab, try using the Container ID drop down to select a container, now you will see the benefit of &amp;lsquo;clicking through&amp;rsquo; to get to the desired Container!&lt;/p>
+&lt;p>You can now see the details for the Selected Container, with the Container Properties pane offering lots of detail on its configuration.&lt;/p></description></item><item><title>Tko: Deploying PHP/Apache</title><link>https://splunk.github.io/observability-workshop/v4.48/tko/session-5/docs/deploy-apache/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.48/tko/session-5/docs/deploy-apache/</guid><description>
+&lt;h2 id="1--dns-and-services-in-kubernetes">1. DNS and Services in Kubernetes&lt;/h2>
+&lt;p>The Domain Name System (DNS) is a mechanism for linking various sorts of information with easy-to-remember names, such as IP addresses. Using a DNS system to translate request names into IP addresses makes it easy for end-users to reach their target domain name effortlessly.&lt;/p>
+&lt;p>Most Kubernetes clusters include an internal DNS service configured by default to offer a lightweight approach for service discovery. Even when Pods and Services are created, deleted, or shifted between nodes, built-in service discovery simplifies applications to identify and communicate with services on the Kubernetes clusters.&lt;/p>
+&lt;p>In short the DNS system for Kubernetes will create a DNS entry for each Pod and Service. In general a Pod has the following DNS resolution:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">pod-name.my-namespace.pod.cluster-domain.example
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>For example, if a Pod in the &lt;code>default&lt;/code> namespace has the Pod name &lt;code>my_pod&lt;/code>, and the domain name for your cluster is &lt;code>cluster.local&lt;/code>, then the Pod has a DNS name:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">my_pod.default.pod.cluster.local
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Any Pods exposed by a Service have the following DNS resolution available:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">my_pod.service-name.my-namespace.svc.cluster-domain.example
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>More information can be found here : &lt;a href="https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/" target="_blank">DNS for Service and Pods&lt;/a>
+&lt;/p>
+&lt;h2 id="2-create-opentelemetry-collector-receiver-for-phpapache">2. Create OpenTelemetry Collector receiver for PHP/Apache&lt;/h2>
+&lt;p>Inspect the YAML file &lt;code>~/workshop/k3s/otel-apache.yaml&lt;/code> and validate the contents. This file contains the configuration for the OpenTelemetry agent to monitor the PHP/Apache deployment.&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-~/workshop/k3s/otel-apache.yaml"
+id="tabs-0-0-tab" data-toggle="tab" href="#tabs-0-0" role="tab" onclick="handleClick(&amp;#34;~/workshop/k3s/otel-apache.yaml&amp;#34;);"
+aria-controls="tabs-0-0" aria-selected="true">
+~/workshop/k3s/otel-apache.yaml
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-0-content">&lt;div class="tab-pane fade show active"
+id="tabs-0-0" role="tabpanel" aria-labelled-by="tabs-0-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">agent&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">config&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">receivers&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">receiver_creator&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">receivers&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">smartagent/apache&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">rule&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">type == &amp;#34;port&amp;#34; &amp;amp;&amp;amp; pod.name matches &amp;#34;apache&amp;#34; &amp;amp;&amp;amp; port == 80&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">config&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">type&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">collectd/apache&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">url&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://php-apache-svc.apache.svc.cluster.local/server-status?auto&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;h2 id="3--observation-rules-in-the-opentelemetry-config">3. Observation Rules in the OpenTelemetry config&lt;/h2>
+&lt;p>The above file contains an observation rule for Apache using the OTel &lt;code>receiver_creator&lt;/code>. This receiver can instantiate other receivers at runtime based on whether observed endpoints match a configured rule.&lt;/p>
+&lt;p>The configured rules will be evaluated for each endpoint discovered. If the rule evaluates to true then the receiver for that rule will be started as configured against the matched endpoint.&lt;/p>
+&lt;p>In the file above we tell the OpenTelemetry agent to look for Pods that match the name &lt;code>apache&lt;/code> and have port 80 open. Once found, the agent will configure an Apache receiver to read Apache metrics from the configured URL. Note, the K8s DNS based URL in the above YAML for the service.&lt;/p>
+&lt;p>To use the new apache configuration, you can upgrade the existing Splunk OpenTelemetry Collector Helm chart with the following command:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-1" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Helm-Upgrade"
+id="tabs-1-0-tab" data-toggle="tab" href="#tabs-1-0" role="tab" onclick="handleClick(&amp;#34;Helm-Upgrade&amp;#34;);"
+aria-controls="tabs-1-0" aria-selected="true">
+Helm Upgrade
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-Helm-Upgrade-Single-Line"
+id="tabs-1-1-tab" data-toggle="tab" href="#tabs-1-1" role="tab" onclick="handleClick(&amp;#34;Helm-Upgrade-Single-Line&amp;#34;);"
+aria-controls="tabs-1-1" aria-selected="false">
+Helm Upgrade Single Line
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-1-content">&lt;div class="tab-pane fade show active"
+id="tabs-1-0" role="tabpanel" aria-labelled-by="tabs-1-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">helm upgrade splunk-otel-collector \
+--set=&amp;#34;splunkObservability.realm=$REALM&amp;#34; \
+--set=&amp;#34;splunkObservability.accessToken=$ACCESS_TOKEN&amp;#34; \
+--set=&amp;#34;clusterName=$(hostname)-k3s-cluster&amp;#34; \
+--set=&amp;#34;splunkObservability.logsEnabled=true&amp;#34; \
+--set=&amp;#34;splunkObservability.infrastructureMonitoringEventsEnabled=true&amp;#34; \
+splunk-otel-collector-chart/splunk-otel-collector \
+--namespace splunk \
+-f ~/workshop/k3s/splunk-defaults.yaml \
+-f ~/workshop/k3s/otel-apache.yaml&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-1-1" role="tabpanel" aria-labelled-by="tabs-1-1-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">helm upgrade splunk-otel-collector --set&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;splunkObservability.realm=&lt;/span>&lt;span style="color:#000">$REALM&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> --set&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;splunkObservability.accessToken=&lt;/span>&lt;span style="color:#000">$ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> --set&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;clusterName=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>hostname&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>&lt;span style="color:#4e9a06">-k3s-cluster&amp;#34;&lt;/span> --set&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;splunkObservability.logsEnabled=true&amp;#34;&lt;/span> --set&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;clusterReceiver.eventsEnabled=true&amp;#34;&lt;/span> --set&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;splunkObservability.infrastructureMonitoringEventsEnabled=true&amp;#34;&lt;/span> splunk-otel-collector-chart/splunk-otel-collector --namespace splunk -f ~/workshop/k3s/splunk-defaults.yaml -f ~/workshop/k3s/otel-apache.yaml&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>Note that the REVISION number of the deployment has changed. (A way to keep track of your changes)&lt;/p>
+&lt;h2 id="4-kubernetes-configmaps">4. Kubernetes ConfigMaps&lt;/h2>
+&lt;p>A ConfigMap is an object in Kubernetes consisting of key-value pairs which can be injected into your application. With a ConfigMap you can separate configuration from your Pods.&lt;/p>
+&lt;p>This way, you can prevent hardcoding configuration data. ConfigMaps are useful for storing and sharing non-sensitive, unencrypted configuration information.&lt;/p>
+&lt;p>The OpenTelemetry collector/agent uses ConfigMaps to store the configuration of the agent and the K8s Cluster receiver. You can/will always verify the current configuration of an agent after a change by running the following commands:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl get cm -n splunk
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+How many ConfigMaps are used by the collector?
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;p>When you have list of ConfigMaps from the namespace, select the one for the &lt;code>otel-agent&lt;/code> and view it with the following command:&lt;/p>
+&lt;p>&lt;strong>Note:&lt;/strong> The option &lt;code>-o yaml&lt;/code> will print the content of the ConfigMap in a YAML format.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl get cm splunk-otel-collector-otel-agent -n splunk -o yaml
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+Is the content of &lt;code>otel-apache.yaml&lt;/code> saved in the ConfigMap for the collector agent?
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;h2 id="5-create-phpapache-deployment-yaml">5. Create PHP/Apache Deployment YAML&lt;/h2>
+&lt;p>Inspect the YAML file &lt;code>~/workshop/k3s/php-apache.yaml&lt;/code> and validate the contents. This file contains the configuration for the PHP/Apache deployment and will create a new StatefulSet with a single replica of the PHP/Apache image.&lt;/p>
+&lt;p>A stateless application is one that does not care which network it is using, and it does not need permanent storage. Examples of stateless apps may include web servers (Apache, Nginx, or Tomcat).&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-4" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-~/workshop/k3s/php-apache.yaml"
+id="tabs-4-0-tab" data-toggle="tab" href="#tabs-4-0" role="tab" onclick="handleClick(&amp;#34;~/workshop/k3s/php-apache.yaml&amp;#34;);"
+aria-controls="tabs-4-0" aria-selected="true">
+~/workshop/k3s/php-apache.yaml
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-4-content">&lt;div class="tab-pane fade show active"
+id="tabs-4-0" role="tabpanel" aria-labelled-by="tabs-4-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">apiVersion&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">apps/v1&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">kind&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">StatefulSet&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">metadata&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">php-apache&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">spec&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">updateStrategy&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">type&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">RollingUpdate&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">selector&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">matchLabels&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">run&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">php-apache&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">replicas&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">template&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">metadata&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">labels&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">run&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">php-apache&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">spec&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">containers&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#204a87;font-weight:bold">name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">php-apache&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">image&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">ghcr.io/splunk/php-apache:latest&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">ports&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#204a87;font-weight:bold">containerPort&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#0000cf;font-weight:bold">80&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">resources&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">limits&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">cpu&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;8&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">memory&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;9Mi&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">requests&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">cpu&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;6&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">memory&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;4Mi&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#000">---&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">apiVersion&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">v1&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">kind&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Service&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">metadata&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">php-apache-svc&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">labels&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">run&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">php-apache&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">spec&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">ports&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#204a87;font-weight:bold">port&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#0000cf;font-weight:bold">80&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">selector&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">run&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">php-apache&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;h2 id="6-deploy-phpapache">6. Deploy PHP/Apache&lt;/h2>
+&lt;p>Save the above file and deploy the PHP/Apache application to the cluster.&lt;/p>
+&lt;p>Create the &lt;code>apache&lt;/code> namespace:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl create namespace apache
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Deploy the PHP/Apache application:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl apply -f ~/workshop/k3s/php-apache.yaml -n apache
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Ensure the deployment has been created:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl get statefulset -n apache
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+What metrics for your Apache instance are being reported in the Apache Dashboard?
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+&lt;p>Using the Observability Kubernetes Navigator, can you find the status of the &lt;code>php-apache-0&lt;/code> pod in &lt;strong>Workload Detail&lt;/strong>?&lt;/p>
+&lt;p>&lt;strong>HINT:&lt;/strong> Filter by cluster to isolate your instance!&lt;/p>
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+&lt;p>Where else has the issue with &lt;code>php-apache&lt;/code> been logged? What is being reported?&lt;/p>
+&lt;p>&lt;strong>HINT:&lt;/strong> Using &lt;code>event.name = php-apache*&lt;/code> as &lt;strong>one&lt;/strong> of your filters to isolate your instance!&lt;/p>
+&lt;/p>
+&lt;/div>
+&lt;/div></description></item><item><title>Tko: Fix PHP/Apache Issue</title><link>https://splunk.github.io/observability-workshop/v4.48/tko/session-5/docs/fix-apache/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.48/tko/session-5/docs/fix-apache/</guid><description>
+&lt;h2 id="1-kubernetes-resources">1. Kubernetes Resources&lt;/h2>
+&lt;p>Especially in Production Kubernetes Clusters, CPU and Memory are considered precious resources. And the Cluster operators will normally require you to specify in the deployment the amount of CPU and Memory your Pod or Service will require, so they can have the Cluster automatically manage on which Node(s) your solution will be placed.&lt;/p>
+&lt;p>You do this by placing a Resource section in the deployment of you application/Pod&lt;/p>
+&lt;p>&lt;strong>Example:&lt;/strong>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">resources&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">limits&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Maximum amount of CPU &amp;amp; memory for peek use&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">cpu&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;8&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Maximum of 8 cores of CPU allowed at for peek use&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">memory&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;9Mi&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Maximum allowed 9Mb of memory&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">requests&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Request are the expected amount of CPU &amp;amp; memory for normal use&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">cpu&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;6&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Requesting 4 cores of a CPU&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">memory&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;4Mi&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Requesting 4Mb of memory&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>More information can be found here : &lt;a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/" target="_blank">Resource Management for Pods and Containers&lt;/a>
+&lt;/p>
+&lt;p>If your application or Pod will go over the limits set in your deployment, Kubernetes will kill and restart your Pod to protect the other applications on the Cluster.&lt;/p>
+&lt;p>Another scenario that you will run into is when there is not enough Memory or CPU on a Node. In that case, the Cluster will try to reschedule your Pod(s) on a different Node with more space.&lt;/p>
+&lt;p>If that fails, or if there is not enough space when you deploy your application, the Cluster will put your workload/deployment in schedule mode until there is enough room on any of the available Nodes to deploy the Pods according their limits.&lt;/p>
+&lt;h2 id="2-fix-phpapache-deployment">2. Fix PHP/Apache Deployment&lt;/h2>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+Before we start, let&amp;rsquo;s check the current status of the PHP/Apache deployment. Under &lt;strong>Alerts &amp;amp; Detectors&lt;/strong> which detector has fired?
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;p>To fix the PHP/Apache StatefulSet, edit the &lt;code>YAML&lt;/code> you created and reduce the CPU resources further:&lt;/p>
+&lt;p>Find the resources section and reduce the CPU limits to &lt;strong>1&lt;/strong> and the CPU requests to &lt;strong>0.5&lt;/strong>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">resources&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">limits&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">cpu&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;1&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">memory&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;9Mi&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">requests&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">cpu&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;0.5&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">memory&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;4Mi&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Save the above changes. Now, we must delete the existing StatefulSet and re-create it:&lt;/p>
+&lt;p>Why do we delete StatefulSet? What is a StatefulSet?&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl delete statefulset php-apache -n apache
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl apply -f ~/workshop/k3s/php-apache.yaml -n apache
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="3-validate-the-changes">3. Validate the changes&lt;/h2>
+&lt;p>You can validate the changes have been applied by running the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl describe statefulset php-apache -n apache
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Validate the Pod is now running in Splunk Observability Cloud.&lt;/p>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+&lt;p>Is the &lt;strong>Apache Web Servers&lt;/strong> dashboard showing any data now?&lt;/p>
+&lt;p>&lt;strong>Tip:&lt;/strong> Don&amp;rsquo;t forget to use filters and time frames to narrow down your data.&lt;/p>
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+Another Auto-Detect Detector has fired, which one is it this time?
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;h2 id="4-fix-memory-issue">4. Fix memory issue&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl edit statefulset php-apache -n apache
+&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">resources&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">limits&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">cpu&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;1&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">memory&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;16Mi&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">requests&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">cpu&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;0.5&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">memory&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;12Mi&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl delete pod php-apache-0 -n apache
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Validate the changes have been applied by running the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl describe statefulset php-apache -n apache
+&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Tko: Deploy Load Generator</title><link>https://splunk.github.io/observability-workshop/v4.48/tko/session-5/docs/deploy-loadgen/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.48/tko/session-5/docs/deploy-loadgen/</guid><description>
+&lt;p>Now to see how the autoscaler reacts to increased load. To do this, you&amp;rsquo;ll start a different Pod to act as a client. The container within the client Pod runs in an infinite loop, sending queries to the php-apache Service.&lt;/p>
+&lt;h2 id="1-create-loadgen-yaml">1. Create loadgen YAML&lt;/h2>
+&lt;p>Inspect the YAML file &lt;code>~/workshop/k3s/loadgen.yaml&lt;/code> and validate the contents. This file contains the configuration for the load generator and will create a new StatefulSet with a single replica of the load generator image.&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-~/workshop/k3s/loadgen.yaml"
+id="tabs-0-0-tab" data-toggle="tab" href="#tabs-0-0" role="tab" onclick="handleClick(&amp;#34;~/workshop/k3s/loadgen.yaml&amp;#34;);"
+aria-controls="tabs-0-0" aria-selected="true">
+~/workshop/k3s/loadgen.yaml
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-0-content">&lt;div class="tab-pane fade show active"
+id="tabs-0-0" role="tabpanel" aria-labelled-by="tabs-0-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">apiVersion&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">apps/v1&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">kind&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">StatefulSet&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">metadata&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">loadgen&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">labels&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">app&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">loadgen&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">spec&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">replicas&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">selector&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">matchLabels&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">app&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">loadgen&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">template&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">metadata&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">loadgen&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">labels&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">app&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">loadgen&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">spec&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">containers&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#204a87;font-weight:bold">name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">infinite-calls&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">image&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">busybox&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">command&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">/bin/sh&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- -&lt;span style="color:#000">c&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;while true; do wget -q -O- http://php-apache-svc.apache.svc.cluster.local; done&amp;#34;&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;h2 id="2-create-a-new-namespace">2. Create a new namespace&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">kubectl create namespace loadgen
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="3-deploy-the-load-generator">3. Deploy the load generator&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">kubectl apply -f ~/workshop/k3s/loadgen.yaml --namespace loadgen
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Once you have deployed the load generator, you can see the Pod running in the &lt;code>loadgen&lt;/code> namespace. Use previous similar commands to check the status of the Pod from the command line.&lt;/p>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+What metrics in the Apache Dashboard have now significantly increased?
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;h2 id="4-scale-the-load-generator">4. Scale the load generator&lt;/h2>
+&lt;p>A ReplicaSet is a process that runs multiple instances of a Pod and keeps the specified number of Pods constant. Its purpose is to maintain the specified number of Pod instances running in a cluster at any given time to prevent users from losing access to their application when a Pod fails or is inaccessible.&lt;/p>
+&lt;p>ReplicaSet helps bring up a new instance of a Pod when the existing one fails, scale it up when the running instances are not up to the specified number, and scale down or delete Pods if another instance with the same label is created. A ReplicaSet ensures that a specified number of Pod replicas are running continuously and helps with load-balancing in case of an increase in resource usage.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">kubectl scale statefulset/loadgen --replicas 4 -n loadgen
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Validate the replicas are running from both the command line and Splunk Observability Cloud:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">kubectl get statefulset loadgen -n loadgen
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Let the load generator run for around 2-3 minutes and keep observing the metrics in the Kubernetes Navigator and the Apache dashboard.&lt;/p></description></item><item><title>Tko: Setup Horizontal Pod Autoscaler</title><link>https://splunk.github.io/observability-workshop/v4.48/tko/session-5/docs/setup-hpa/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.48/tko/session-5/docs/setup-hpa/</guid><description>
+&lt;p>In Kubernetes, a HorizontalPodAutoscaler automatically updates a workload resource (such as a Deployment or StatefulSet), with the aim of automatically scaling the workload to match demand.&lt;/p>
+&lt;p>Horizontal scaling means that the response to increased load is to deploy more Pods. This is different from vertical scaling, which for Kubernetes would mean assigning more resources (for example: memory or CPU) to the Pods that are already running for the workload.&lt;/p>
+&lt;p>If the load decreases, and the number of Pods is above the configured minimum, the HorizontalPodAutoscaler instructs the workload resource (the Deployment, StatefulSet, or other similar resource) to scale back down.&lt;/p>
+&lt;h2 id="1-setup-hpa">1. Setup HPA&lt;/h2>
+&lt;p>Create an autoscaling deployment for when the CPU usage for &lt;code>php-apache&lt;/code> deployment goes above 50% with a minimum of 1 pod and a maximum of 4 pods.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">kubectl autoscale statefulset php-apache --cpu-percent=50 --min=1 --max=4 -n apache
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="2-validate-hpa">2. Validate HPA&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">kubectl get hpa -n apache
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Go to the &lt;strong>Workloads&lt;/strong> or &lt;strong>Node Detail&lt;/strong> tab in Kubernetes and check the HPA deployment.&lt;/p>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+How many additional &lt;code>php-apache-x&lt;/code> pods have been created?
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+Which metrics in the Apache Dashboards have significantly increased again?
+&lt;/p>
+&lt;/div>
+&lt;/div></description></item><item><title>Tko: Increase HPA Replicas</title><link>https://splunk.github.io/observability-workshop/v4.48/tko/session-5/docs/edit-hpa/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.48/tko/session-5/docs/edit-hpa/</guid><description>
+&lt;h2 id="1-increase-the-hpa-replica-count">1. Increase the HPA replica count&lt;/h2>
+&lt;p>Increase the &lt;code>maxReplicas&lt;/code> to 8&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl edit hpa php-apache -n apache
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+How many pods are now in a running state? How many are pending? Why are they pending?
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;h2 id="2-stop-the-load-test">2. Stop the load test&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl delete -f ~/workshop/k3s/loadgen.yaml --namespace loadgen
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+After about 5 minutes what eventually happens to the &lt;code>php-apache&lt;/code> pods when the load test is stopped?
+&lt;/p>
+&lt;/div>
+&lt;/div></description></item><item><title>Tko: Deploying the OpenTelemetry Collector in Kubernetes using a NameSpace</title><link>https://splunk.github.io/observability-workshop/v4.48/tko/session-5/docs/deploy-otel-navi2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.48/tko/session-5/docs/deploy-otel-navi2/</guid><description>
+&lt;h2 id="1-switching-to-the-new-kubernetes-navigator-20-ui">1. Switching to the new Kubernetes Navigator 2.0 UI&lt;/h2>
+&lt;p>As we are in the process of switched to the new generation of the Kubernetes Navigator please check if you are already on the new Kubernetes navigator.&lt;/p>
+&lt;p>When you select &lt;code>Infrastructure&lt;/code> from the main menu on the left, followed by selecting &lt;code>Kubernetes&lt;/code>, you should see a number of services panes for Kubernetes, similar like the ones below:&lt;/p>
+&lt;p>&lt;img src="../images/k8s-nav2.png" alt="k8s-navi-v-2">&lt;/p>
+&lt;p>If you taken straight to the Kubernetes Navigator v1 Map view after selecting &lt;code>Kubernetes&lt;/code>, you need to set the feature flag for the new Navigator yourself.&lt;/p>
+&lt;p>To do this, please change the Url in your browser to match the following: &lt;a href="https://app.[REALM].signalfx.com/#/superpowers" target="_blank">https://app.[REALM].signalfx.com/#/superpowers&lt;/a>
+&lt;/p>
+&lt;p>Where [REALM] needs to match the Realm we are using for this workshop.&lt;/p>
+&lt;p>First make sure you have the Precognition flag set like the example below, this is one of the first options to set:&lt;/p>
+&lt;p>&lt;img src="../images/Precognition.png" alt="Set-Precognition">&lt;/p>
+&lt;p>Then scroll down or search the list of features and find the option: &lt;code>newKubernetesNavigators&lt;/code> and set it like below if it is not set already.&lt;/p>
+&lt;p>&lt;img src="../images/set_new_k8s_navi.png" alt="Set-New-NAvi">&lt;/p>
+&lt;p>Once its set, you can refresh you page, and reselect Kubernetes from the infrastructure navigator menu.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;p class="alert-heading">Note&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+&lt;p>Be aware that your login may still be configured internally to use the original navigator on the underlying services. You will se that even with the new panes you still see parts of the old Navigator.&lt;/p>
+&lt;p>You can fix this by pressing the &lt;img src="../images/new-k8s-button.png" alt="new-k8-button"> button that will popup on the top right side of you screen if your still configured to use the old services.&lt;/p>
+&lt;p>You may need to do this once per service type (Cluster/Nodes/Workloads).&lt;/p>
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;h2 id="2-connect-to-ec2-instance">2. Connect to EC2 instance&lt;/h2>
+&lt;p>You will be able to connect to the workshop instance by using SSH from your Mac, Linux or Windows device.&lt;/p>
+&lt;p>To use SSH, open a terminal on your system and type &lt;code>ssh ubuntu@x.x.x.x&lt;/code> (replacing x.x.x.x with the IP address assigned to you).&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;p class="alert-heading">Note&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+Your workshop instance has been pre-configured with the correct &lt;code>ACCESS_TOKEN&lt;/code> and &lt;code>REALM&lt;/code> for this workshop. There is no need for you to configure these.
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;h2 id="3-namespaces-in-kubernetes">3. Namespaces in Kubernetes&lt;/h2>
+&lt;p>Most of our customers will make use of some kind of private or public cloud service to run Kubernetes. They often choose to have only a few large Kubernetes clusters as it is easier to manage centrally.&lt;/p>
+&lt;p>Namespaces are a way to organize these large Kubernetes clusters into virtual sub-clusters. This can be helpful when different teams or projects share a Kubernetes cluster as this will give them the easy ability to just see and work with their own stuff.&lt;/p>
+&lt;p>Any number of namespaces are supported within a cluster, each logically separated from others but with the ability to communicate with each other. Components are only &amp;ldquo;visible&amp;rdquo; when selecting a namespace or when adding the &lt;code>--all-namespaces&lt;/code> flag to &lt;code>kubectl&lt;/code> instead of allowing you to view just the components relevant to your project by selecting your namespace.&lt;/p>
+&lt;p>Most customers will want to install the Splunk OpenTelemetry Collector in a separate namespace. This workshop will follow that practice.&lt;/p>
+&lt;h2 id="4-install-splunk-otel-using-helm">4. Install Splunk OTel using Helm&lt;/h2>
+&lt;p>Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository and update.&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-2" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Helm-Repo-Add"
+id="tabs-2-0-tab" data-toggle="tab" href="#tabs-2-0" role="tab" onclick="handleClick(&amp;#34;Helm-Repo-Add&amp;#34;);"
+aria-controls="tabs-2-0" aria-selected="true">
+Helm Repo Add
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-Helm-Repo-Add-Output"
+id="tabs-2-1-tab" data-toggle="tab" href="#tabs-2-1" role="tab" onclick="handleClick(&amp;#34;Helm-Repo-Add-Output&amp;#34;);"
+aria-controls="tabs-2-1" aria-selected="false">
+Helm Repo Add Output
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-2-content">&lt;div class="tab-pane fade show active"
+id="tabs-2-0" role="tabpanel" aria-labelled-by="tabs-2-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart &amp;amp;&amp;amp; helm repo update&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-2-1" role="tabpanel" aria-labelled-by="tabs-2-1-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">Using ACCESS_TOKEN={REDACTED}
+Using REALM=eu0
+&amp;#34;splunk-otel-collector-chart&amp;#34; has been added to your repositories
+Using ACCESS_TOKEN={REDACTED}
+Using REALM=eu0
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the &amp;#34;splunk-otel-collector-chart&amp;#34; chart repository
+Update Complete. ⎈Happy Helming!⎈&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>Install the OpenTelemetry Collector Helm chart into the &lt;code>splunk&lt;/code> namespace with the following commands, do &lt;strong>NOT&lt;/strong> edit this:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-3" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Helm-Install"
+id="tabs-3-0-tab" data-toggle="tab" href="#tabs-3-0" role="tab" onclick="handleClick(&amp;#34;Helm-Install&amp;#34;);"
+aria-controls="tabs-3-0" aria-selected="true">
+Helm Install
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-Helm-Install-Single-Line"
+id="tabs-3-1-tab" data-toggle="tab" href="#tabs-3-1" role="tab" onclick="handleClick(&amp;#34;Helm-Install-Single-Line&amp;#34;);"
+aria-controls="tabs-3-1" aria-selected="false">
+Helm Install Single Line
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-3-content">&lt;div class="tab-pane fade show active"
+id="tabs-3-0" role="tabpanel" aria-labelled-by="tabs-3-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">helm install splunk-otel-collector \
+--version &amp;#34;0.68.0&amp;#34; \
+--set=&amp;#34;splunkObservability.realm=$REALM&amp;#34; \
+--set=&amp;#34;splunkObservability.accessToken=$ACCESS_TOKEN&amp;#34; \
+--set=&amp;#34;clusterName=$(hostname)-k3s-cluster&amp;#34; \
+--set=&amp;#34;splunkObservability.logsEnabled=true&amp;#34; \
+--set=&amp;#34;splunkObservability.infrastructureMonitoringEventsEnabled=true&amp;#34; \
+splunk-otel-collector-chart/splunk-otel-collector \
+--namespace splunk \
+--create-namespace \
+-f ~/splunk-defaults.yaml&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-3-1" role="tabpanel" aria-labelled-by="tabs-3-1-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">helm install splunk-otel-collector --set&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;splunkObservability.realm=&lt;/span>&lt;span style="color:#000">$REALM&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> --set&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;splunkObservability.accessToken=&lt;/span>&lt;span style="color:#000">$ACCESS_TOKEN&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> --set&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;clusterName=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>hostname&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>&lt;span style="color:#4e9a06">-k3s-cluster&amp;#34;&lt;/span> --set&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;splunkObservability.logsEnabled=true&amp;#34;&lt;/span> --set&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;clusterReceiver.eventsEnabled=true&amp;#34;&lt;/span> --set&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;splunkObservability.infrastructureMonitoringEventsEnabled=true&amp;#34;&lt;/span> splunk-otel-collector-chart/splunk-otel-collector --namespace splunk --create-namespace&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;h2 id="5-verify-deployment">5. Verify Deployment&lt;/h2>
+&lt;p>You can monitor the progress of the deployment by running &lt;code>kubectl get pods&lt;/code> and adding &lt;code>-n splunk&lt;/code> to the command to see the pods in the &lt;code>splunk&lt;/code> NameSpace which should typically report that the new pods are up and running after about 30 seconds.&lt;/p>
+&lt;p>Ensure the status is reported as Running before continuing.&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-4" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-kubectl-Get-Pods"
+id="tabs-4-0-tab" data-toggle="tab" href="#tabs-4-0" role="tab" onclick="handleClick(&amp;#34;kubectl-Get-Pods&amp;#34;);"
+aria-controls="tabs-4-0" aria-selected="true">
+kubectl Get Pods
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-kubectl-Get-Pods-Output"
+id="tabs-4-1-tab" data-toggle="tab" href="#tabs-4-1" role="tab" onclick="handleClick(&amp;#34;kubectl-Get-Pods-Output&amp;#34;);"
+aria-controls="tabs-4-1" aria-selected="false">
+kubectl Get Pods Output
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-4-content">&lt;div class="tab-pane fade show active"
+id="tabs-4-0" role="tabpanel" aria-labelled-by="tabs-4-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl get pods -n splunk&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-4-1" role="tabpanel" aria-labelled-by="tabs-4-1-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">NAME READY STATUS RESTARTS AGE
+splunk-otel-collector-agent-2sk6k 0/1 Running 0 10s
+splunk-otel-collector-k8s-cluster-receiver-6956d4446f-gwnd7 0/1 Running 0 10s&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;div class="alert alert-info" role="alert">
+&lt;p class="alert-heading">Note&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+&lt;p>If you are using the Kubernetes Integration setup from the Data Management page from the O11y UI , you find that the guide will use
+&lt;code>--generate-name splunk-otel-collector-chart/splunk-otel-collector&lt;/code> instead of just &lt;code>splunk-otel-collector-chart/splunk-otel-collector&lt;/code> as we do in the above example.&lt;/p>
+&lt;p>This will generate an unique name/label for the collector install and Pods by adding a unique number at the end of the object name, allowing you to install multiple collectors in your Kubernetes environment with different configurations.&lt;/p>
+&lt;p>Just make sure you use the correct label that is generated by the helm chart if you wish to use the &lt;code>helm&lt;/code> and &lt;code>kubectl&lt;/code> commands from this workshop on an install done with the &lt;code>--generate-name&lt;/code> option.&lt;/p>
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;p>Use the label set by the &lt;code>helm&lt;/code> install to tail logs (You will need to press &lt;code>ctrl + c&lt;/code> to exit). Or use the installed &lt;code>k9s&lt;/code> terminal UI.&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-6" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Kubectl-Logs"
+id="tabs-6-0-tab" data-toggle="tab" href="#tabs-6-0" role="tab" onclick="handleClick(&amp;#34;Kubectl-Logs&amp;#34;);"
+aria-controls="tabs-6-0" aria-selected="true">
+Kubectl Logs
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-6-content">&lt;div class="tab-pane fade show active"
+id="tabs-6-0" role="tabpanel" aria-labelled-by="tabs-6-0-tab">&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">kubectl logs -l &lt;span style="color:#000">app&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>splunk-otel-collector -f --container otel-collector -n splunk&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;div class="alert alert-warning" role="alert">
+&lt;p class="alert-heading">Deleting a failed installation&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+&lt;p>If you make an error installing the Splunk OpenTelemetry Collector you can start over by deleting the installation using:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">helm delete splunk-otel-collector -n splunk
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;/div>
+&lt;/div></description></item><item><title>Tko: The new Kubernetes Navigator</title><link>https://splunk.github.io/observability-workshop/v4.48/tko/session-5/docs/check-new-navigator/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.48/tko/session-5/docs/check-new-navigator/</guid><description>
+&lt;h2 id="1-the-k8s-cluster--cluster-detail-pane">1. The k8s cluster &amp;amp; cluster detail Pane&lt;/h2>
+&lt;p>Go to the &lt;strong>Infrastructure&lt;/strong> page in the Observability UI and select &lt;strong>Kubernetes&lt;/strong>, this will offer you a number of Kubernetes services. For this exercise pick the &lt;code>K8s cluster&lt;/code> pane.&lt;/p>
+&lt;p>&lt;img src="../images/k8sclusters.png" alt="k8s-cluster-pane">&lt;/p>
+&lt;p>The first thing you notice is that the pane indicates how many clusters are being monitored for you. The pane also shows a tiny graph of the load being handled across those clusters for a birds eye view. Lastly, if there is a alert for one of the clusters it will be highlighted here too.&lt;/p>
+&lt;p>Click or select on the pane and you will be taken to the &lt;code>Infrastructure/Kubernetes/ K8s clusters&lt;/code> overview pane. Here you will find a list off all the Kubernetes clusters that are sending data to the Splunk Observability Cloud platform.&lt;/p>
+&lt;h3 id="11-finding-your-k8s-cluster-name">1.1 Finding your K8s cluster name&lt;/h3>
+&lt;p>Your first task is to identify and find your own cluster. The cluster will be named after your EC2 instance name: &lt;code>ws-5-X-k3s-cluster&lt;/code> where &lt;code>X&lt;/code> is the number of the EC2 instance assigned to you.&lt;/p>
+&lt;p>To find your node name look at the prompt of your EC2 instance, assuming you are assigned the 7th EC2 instance the prompt will show&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">ubuntu@ws-5-7 ~ $
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>This means your cluster is named: &lt;code>ws-5-7-k3s-cluster&lt;/code> make a note as you will need this later in the workshop as a filter.&lt;/p>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+&lt;p>Find your Cluster in the Observability Kubernetes Navigator, and identify the number of containers that are running at this point.&lt;/p>
+&lt;p>&lt;strong>Tip:&lt;/strong> You may need to switch the Color By option to containers and refresh the screen a few times until the cluster data is correlated in the background. Also, it is recommended to set the timeframe to be &lt;code>15m&lt;/code> (down from &lt;code>3h&lt;/code> which is default).&lt;/p>
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;h3 id="12-using-the-k8s-selection-pane">1.2 Using the K8s Selection Pane&lt;/h3>
+&lt;p>The K8s Selection Pane is a common pane used across most of the Navigator&amp;rsquo;s and will offer you a list view of the Services you are looking at. In this case it shows a list of all the active K8s Clusters.&lt;/p>
+&lt;p>You will find that for the navigator used in this workshop (Cluster&amp;rsquo;s, Nodes, Workloads&amp;amp;Apache Servers the Selection pane work all very similar. Just the focus and selection criteria will match the current service.&lt;/p>
+&lt;p>&lt;img src="../images/k8sclusterselection.png" alt="k8s-cluster-list">&lt;/p>
+&lt;p>Right now, you can find your own Cluster by scrolling down the K8s cluster list or filter by using the field &lt;code>k8s.cluster.name&lt;/code> in the filter toolbar, &lt;em>(marked with a blue stripe)&lt;/em>,&lt;/p>
+&lt;p>You can enter a partial name into the search box such as &amp;lsquo;ws-5-7&amp;rsquo;, to find quickly find your Cluster. Also, its is a good idea to switch the default time from the default 3 hours back to 15 minutes.&lt;/p>
+&lt;p>If there are many clusters, you can change the Result per page box &lt;em>Marked by an orange line&lt;/em>, to increase the list size.&lt;/p>
+&lt;p>You will note that each cluster row has a colored mark at the end of each row. These will change according the &lt;code>color by&lt;/code> option, &lt;em>Marked by a green line&lt;/em>, you have selected as to indicate its range.&lt;/p>
+&lt;p>These are the possible options for the k8s Cluster view:&lt;/p>
+&lt;p>&lt;img src="../images/Infk8sColorBy.png" alt="k8s-colorby-list">&lt;/p>
+&lt;p>Next, you can change the the list view to a heat map view by selecting either the Heat map or List icon &lt;img src="../images/heatmaptoggle.png" alt="heat-map-toggle"> &lt;em>(Marked by a purple line).&lt;/em>&lt;/p>
+&lt;p>This will result in the follow representation:&lt;/p>
+&lt;p>&lt;img src="../images/heatmapview.png" alt="k8s-Heat-map">&lt;/p>
+&lt;p>This might be a useful view if you have many cluster as they can be grouped together using the group by option &lt;em>Marked by the green line&lt;/em> . The colors of each node will follow the color by choice similar to the list view.&lt;/p>
+&lt;p>The last option, is the Find Outliers based on historical analytics of your clusters based on what is selected in the &lt;code>colored by&lt;/code> box.&lt;/p>
+&lt;p>This view is better used when you view all or a selection of you cluster (ar any other navigator view). It will give you a quick insight which of your clusters are behaving differently than they do normally and may need further investigation.
+You may not see relevant info, the clusters in this workshop are short lived and may haven&amp;rsquo;t send enough meaningful data for the historical analytics to detect deviations.&lt;/p>
+&lt;h3 id="13-the-k8s-cluster-detail-pane">1.3 The K8s cluster detail Pane&lt;/h3>
+&lt;p>Initially,the cluster detail pane will show you the overall performance across all the servers as show below.&lt;/p>
+&lt;p>&lt;img src="../images/k8s-allclusters.png" alt="k8s-allclusters">&lt;/p>
+&lt;p>As soon as you select your own cluster, you can see the overall performance of your Cluster, in this view you also can see if your cluster is affected by an alert:&lt;/p>
+&lt;p>&lt;img src="../images/single-cluster-alert.png" alt="k8s-cluster-alert">&lt;/p>
+&lt;p>You may note that a &lt;code>single alert&lt;/code> has fired for this example Cluster.&lt;/p>
+&lt;h2 id="3-the-nodes--workloads-panes">3. The Nodes &amp;amp; Workloads Panes&lt;/h2>
+&lt;p>Go to the &lt;strong>Infrastructure&lt;/strong> page in the Observability UI and select &lt;strong>Kubernetes&lt;/strong>, this again will offer you a number of Kubernetes services. For this exercise pick the &lt;code>K8s Nodes&lt;/code> pane. When selected it may show a cluster that you have selected previously.&lt;/p>
+&lt;p>&lt;img src="../images/k8sNodes.png" alt="k8sNode">&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;p class="alert-heading">Note&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+&lt;p>When selected it may show a cluster that you have selected previously using the old UI.&lt;/p>
+&lt;p>Check to see if there is a &lt;img src="../images/new-k8s-button.png" alt="new-k8-button"> button on the top right&amp;hellip; Press it to switch to the new UI.&lt;/p>
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;p>In a production environment you would expect to see a large number of Clusters which would now all be visible and shown as individual pale blue squares, each containing green squares which represent pods, however in our workshop environment you each have a single node within your Cluster, represented by the large single blue square.&lt;/p>
+&lt;p>Drill down into the single Node by hovering over the pale blue background, then clicking on either the magnifying glass that appears in the top left corner, or double clicking on the pale blue background, this will take you to the Node level view.&lt;/p>
+&lt;p>You should now be able to see all the Pods and Containers running on your single Node Cluster&amp;hellip;&lt;/p>
+&lt;p>&lt;img src="../images/cluster-detail.png" alt="cluster-detail">&lt;/p>
+&lt;p>But, more importantly, the &lt;em>side panel&lt;/em> should have also switched to the Info Tab and is now showing lots of contextual information about the Node.&lt;/p>
+&lt;p>&lt;img src="../images/side-panel-node.png" alt="side-panel-node.png">&lt;/p>
+&lt;p>There are various Panes showing details on the Properties of the Node, and all the various Workloads running on it, even though we are still on the &amp;lsquo;Map&amp;rsquo; tab within Kubernetes Navigator.&lt;/p>
+&lt;p>At the top of the side panel, click on the Expand icon &lt;img src="../images/expand-sidebar.png" alt="expand-sidebar.png"> which takes you to the full screen tab of the currently displayed resource, which in this case is a Node, so we end up on the Node Details Tab.&lt;/p>
+&lt;p>Node Details shows you lots of great detail about what is happening on this Node, with charts for total CPU Usage, Memory Usage, Network traffic etc for all the Pods running on the Node with a list of any Events just to the right of these Charts.&lt;/p>
+&lt;p>You also have scrollable table views of both the Workloads and Containers running on the Node. Clicking on any of the names in the tables will reopen the side panel with the appropriate panes for either Workloads or Containers. Each of these can then also be expanded just like you did with the Node side panel, by clicking the expand button &lt;img src="../images/expand-sidebar.png" alt="expand-sidebar.png">&lt;/p>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+How much memory and how many CPU cores does our one node have?
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;h2 id="3-workloads--workload-details-tabs">3. Workloads &amp;amp; Workload Details Tabs&lt;/h2>
+&lt;p>Assuming you have been able to answer the question about the Node CPU cores, you will now need to switch to the Workloads tab on the top toolbar. The Workloads tab details all the workloads that are deployed within your cluster.&lt;/p>
+&lt;p>This table provides lots of valuable insights into the state of your workloads, and will show you if any of them are not in their desired state.&lt;/p>
+&lt;p>The default view has no Grouping applied but experiment with the various Group By options to see how the table changes. Note how you can also use the various fields in the top toolbar to filter the data displayed, this would be essential in a large environment with hundreds or even thousands of different Workloads.&lt;/p>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+What type is the &lt;code>splunk-otel-collector-agent&lt;/code> workload, and what is its desired configuration?
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;p>To get more detail on a specific Workload, simply click on its name in the Workload column (we assume you have the &amp;lsquo;splunk-otel-collector-agent&amp;rsquo; workload selected), this will open the side panel, then click the expand button &lt;img src="../images/expand-sidebar.png" alt="expand-sidebar.png"> to navigate to the Workload Detail Tab.&lt;/p>
+&lt;hr>
+&lt;h3 id="31-workload-detail-tab">3.1 Workload Detail tab&lt;/h3>
+&lt;p>Here you will get the general info about your Workload, the CPU and Memory the Containers are consuming, the Pods and their Phase, details of any Events, and finally a list of Pods related to this Workload.&lt;/p>
+&lt;p>As with the other Kubernetes Navigator views clicking on the name of a Pod within the table view will load the Side Panel with details about that resource, allowing you to &amp;lsquo;click through&amp;rsquo; to these resources. Select any of the listed Pods, then click the expand button &lt;img src="../images/expand-sidebar.png" alt="expand-sidebar.png"> to navigate to the Pod Detail Tab.&lt;/p>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Workshop Question&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+How many containers does the &lt;code>splunk-otel-collector-agent&lt;/code> Pod contain?
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;h2 id="4-pod-detail--container-details-tabs">4. Pod Detail &amp;amp; Container Details Tabs&lt;/h2>
+&lt;p>The last two Tabs that make up the Kubernetes Navigator are Pod Detail and Container Detail. The Pod Detail view will show you the Pod Properties, CPU, Memory and Network usage along with any events relevant to the Pod.&lt;/p>
+&lt;p>Clicking through to the Container Detail Tab, you should know how to do this by now, but just to play safe, select one of the Containers in the list then click the expand button &lt;img src="../images/expand-sidebar.png" alt="expand-sidebar.png"> to navigate to the Container Detail Tab.&lt;/p>
+&lt;p>If you navigated straight to the Container Detail Tab by simply clicking on the Tab, try using the Container ID drop down to select a container, now you will see the benefit of &amp;lsquo;clicking through&amp;rsquo; to get to the desired Container!&lt;/p>
+&lt;p>You can now see the details for the Selected Container, with the Container Properties pane offering lots of detail on its configuration.&lt;/p></description></item></channel></rss>

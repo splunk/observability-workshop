@@ -1,0 +1,28 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Observability Cloud Workshops – Bootcamp Labs</title><link>https://splunk.github.io/observability-workshop/v4.48/bootcamp/docs/</link><description>Recent content in Bootcamp Labs on Splunk Observability Cloud Workshops</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://splunk.github.io/observability-workshop/v4.48/bootcamp/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Bootcamp: Lab: OpenTelemetry &amp; Get Data In (GDI)</title><link>https://splunk.github.io/observability-workshop/v4.48/bootcamp/docs/gdi/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.48/bootcamp/docs/gdi/</guid><description>
+&lt;h2 id="goals">Goals&lt;/h2>
+&lt;ol>
+&lt;li>Understand components involved for GDI, e.g.:
+&lt;ol>
+&lt;li>OpenTelemetry Collector&lt;/li>
+&lt;li>Prometheus exporters&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>Understand how Developers, DevOps and SREs work with infrastructure and microservices&lt;/li>
+&lt;li>Ability to ingest data from common stacks:
+&lt;ol>
+&lt;li>Virtual Machines&lt;/li>
+&lt;li>Containers and Container Orchestration (e.g. Docker, Docker Compose)&lt;/li>
+&lt;li>Container Orchestration Platforms (e.g. Kubernetes)&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>Understand troubleshooting 101 for components (commands)&lt;/li>
+&lt;/ol>
+&lt;p>We are going to work in the directory &lt;code>o11y-bootcamp/bootcamp/service/src&lt;/code>.
+Your first task: Write a python app to count words in a text file.&lt;/p>
+&lt;p>&lt;em>No, wait - we&amp;rsquo;ve already done that for you&lt;/em>.&lt;/p></description></item><item><title>Bootcamp: Lab: Application Performance Monitoring</title><link>https://splunk.github.io/observability-workshop/v4.48/bootcamp/docs/apm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.48/bootcamp/docs/apm/</guid><description>
+&lt;h2 id="goals">Goals&lt;/h2>
+&lt;ol>
+&lt;li>Understand GDI path for APM for common tech stacks (Docker, K8s).&lt;/li>
+&lt;li>Be able to instrument an app from scratch (traces, custom metadata).&lt;/li>
+&lt;li>Understand how distributed tracing works across tech stacks (header propagation, …)&lt;/li>
+&lt;/ol></description></item></channel></rss>
