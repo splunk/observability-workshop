@@ -158,7 +158,7 @@ This will drill down to the node level.  Next, open the side bar by clicking on 
 
 Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: CPU, Memory, Network, Events etc.
 
-![Sidebar metrics](../../../imt/images/explore-metrics.png)
+![Sidebar metrics](../../../imt/images/explore-metrics.gif)
 
 [^1]: Access Tokens (sometimes called Org Tokens) are long-lived organization-level tokens. By default, these tokens persist for 5 years, and thus are suitable for embedding into emitters that send data points over long periods of time, or for any long-running scripts that call the Splunk API.
 
