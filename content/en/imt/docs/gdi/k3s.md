@@ -23,7 +23,7 @@ We have created a Token specifically for this workshop with the appropriate sett
 
 You will also need to obtain the name of the Realm[^2] for your Splunk account.  At the top of the side menu, click on your name. This will direct you to the **Account Settings** Page. Click the **Organizations**-tab. The Realm can be found at the top of the displayed information in the tab.  In this example it is `eu0`.
 
-![Account Settings](../../../images/account-settings.png)
+![Account Settings](../../../imt/images/account-settings.png)
 
 ## 2. Installation using Helm
 
