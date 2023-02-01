@@ -12,22 +12,22 @@ weight: 3
 
 A prospect uses Kafka and MongoDB in their environment. Since there are integrations for these services, you’d like to demonstrate this to the prospect. What is a quick and efficient way to set up a live environment with these services and have metrics collected?
 
-- Where can I find helm charts?
-  - Google “myservice helm chart”
-  - https://artifacthub.io/ (**Note:** Look for charts from trusted organizations, with high star count and frequent updates)
-- Review Apache Kafka packaged by Bitnami. We will deploy the helm chart with these options enabled:
-  - `replicaCount=3`
-  - `metrics.jmx.enabled=true`
-  - `metrics.kafka.enabled=true`
-  - `deleteTopicEnable=true`
-- Review MongoDB(R) packaged by Bitnami. We will deploy the helm chart with these options enabled:
-  - `version 12.1.31`
-  - `metrics.enabled=true`
-  - `global.namespaceOverride=default`
-  - `auth.rootUser=root`
-  - `auth.rootPassword=splunk`
-  - `auth.enabled=false`
-- Install Kafka and MongoDB with helm charts
+1. Where can I find helm charts?
+  a. Google “myservice helm chart”
+  b. https://artifacthub.io/ (**Note:** Look for charts from trusted organizations, with high star count and frequent updates)
+2. Review Apache Kafka packaged by Bitnami. We will deploy the helm chart with these options enabled:
+  a. `replicaCount=3`
+  b. `metrics.jmx.enabled=true`
+  c. `metrics.kafka.enabled=true`
+  d. `deleteTopicEnable=true`
+3. Review MongoDB(R) packaged by Bitnami. We will deploy the helm chart with these options enabled:
+  a. `version 12.1.31`
+  b. `metrics.enabled=true`
+  c. `global.namespaceOverride=default`
+  d. `auth.rootUser=root`
+  e. `auth.rootPassword=splunk`
+  f. `auth.enabled=false`
+4. Install Kafka and MongoDB with helm charts
 
     ``` bash
     helm repo add bitnami https://charts.bitnami.com/bitnami
@@ -55,12 +55,12 @@ A prospect uses Kafka and MongoDB in their environment. Since there are integrat
     kafka-0                           0/2     Pending             0          17s
     ```
 
-- Use information for each Helm chart and Splunk O11y Data Setup to generate values.yaml for capturing metrics from Kafka and MongoDB. **Note:** values.yaml for the different services will be passed to the Splunk Helm Chart at installation time. These will configure the OTEL collector to capture metrics from these services.
+5. Use information for each Helm chart and Splunk O11y Data Setup to generate values.yaml for capturing metrics from Kafka and MongoDB. **Note:** values.yaml for the different services will be passed to the Splunk Helm Chart at installation time. These will configure the OTEL collector to capture metrics from these services.
 
 - References:
-  - Apache Kafka packaged by Bitnami
-  - Configure application receivers for databases » Apache Kafka
-  - Kafkametricsreceiver
+  a. Apache Kafka packaged by Bitnami
+  b. Configure application receivers for databases » Apache Kafka
+  c. Kafkametricsreceiver
 
   - Example kafka.values.yaml:
 
@@ -132,7 +132,7 @@ A prospect uses Kafka and MongoDB in their environment. Since there are integrat
                     port: 2181
     ```
 
-  - Install the Splunk OTEL helm chart:
+  6. Install the Splunk OTEL helm chart:
 
     ``` bash
     export SPLUNK_ACCESS_TOKEN=<your access token>
@@ -146,7 +146,7 @@ A prospect uses Kafka and MongoDB in their environment. Since there are integrat
     helm install --set provider=' ' --set distro=' ' --set splunkObservability.accessToken=$SPLUNK_ACCESS_TOKEN --set clusterName=$clusterName --set splunkObservability.realm=$SPLUNK_REALM --set otelCollector.enabled='false' --set splunkObservability.logsEnabled='true' --set gateway.enabled='false' --values kafka.values.yaml --values mongodb.values.yaml --values zookeeper.values.yaml --values alwayson.values.yaml --values k3slogs.yaml --generate-name splunk-otel-collector-chart/splunk-otel-collector
     ```
 
-  - Verify that the Kafka, MongoDB and Splunk OTEL Collector helm charts are installed. Note that names may differ.
+  7. Verify that the Kafka, MongoDB and Splunk OTEL Collector helm charts are installed. Note that names may differ.
 
     ``` text
     $helm list
@@ -167,7 +167,7 @@ A prospect uses Kafka and MongoDB in their environment. Since there are integrat
     splunk-otel-collector-1638910184-k8s-cluster-receiver-8587qmh9l   1/1     Running   0          17m
     ```
 
-  - Verify that out of the box dashboards for Kafka, MongoDB and Zookeeper are populated in the Infrastructure Monitor landing page. Drill down into each component to view granular details for each service.
+  8. Verify that out of the box dashboards for Kafka, MongoDB and Zookeeper are populated in the Infrastructure Monitor landing page. Drill down into each component to view granular details for each service.
 
     - Infrastructure Monitoring Landing page:
 
