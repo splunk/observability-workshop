@@ -1,4 +1,8 @@
-# Creating a Test VM Using Multipass
+---
+title: Creating a Test VM Using Multipass
+linkTitle: Multipass
+weight: 2
+---
 
 ## Aim
 
@@ -94,15 +98,15 @@ Navigate to the **Integrations** tab within the Splunk UI, where you will find t
 
 Click on the SmartAgent tile to open it...
 
-![Integrations](..//images/oncall/integrations-tab.png)
+![Integrations](../../../images/integrations-tab.png)
 
 ...then select the **Setup** tab...
 
-![SmartAgent](..//images/oncall/smartagent-tile.png)
+![SmartAgent](../../../images/smartagent-tile.png)
 
 ...then scroll down to 'Step 1' where you will find the commands for installing the agent for both Linux and Windows. You need to copy the commands for Linux, so click the top **copy**{: .label-button .sfx-ui-button-blue} button to place these commands on your clipboard ready for the next step.
 
-![SmartAgent Install](..//images/oncall/smartagent-install.png)
+![SmartAgent Install](../../../images/smartagent-install.png)
 
 ### 3.2 Install Agent
 
@@ -165,7 +169,7 @@ Navigate to the Splunk UI and click on the **Infrastructure** tab. The click on 
 
 Find your VM and confirm it is reporting in correctly; allow a few minutes for it to appear.
 
-![Infrastructure](..//images/oncall/sfx-infrastructure.png)
+![Infrastructure](../../../images/sfx-infrastructure.png)
 
 If it fails to appear after 3 mins, please let the Splunk Team know so they can help troubleshoot.
 
