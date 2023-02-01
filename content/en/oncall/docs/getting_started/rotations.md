@@ -22,7 +22,7 @@ The 2nd will be a Rotation used to provide escalation support by more experience
 
 Click **Add Rotation**
 
-![Add Rotation](../../../images/add-rotation.png){: .center}
+![Add Rotation](../../../images/add-rotation.png)
 
 Enter a name of "*Follow the Sun Support - Business Hours*" and Select **Partial day** from the three available shift templates.
 
