@@ -1,4 +1,8 @@
-# UI Overview
+---
+title: UI Overview
+linkTitle: UI Overview
+weight: 1
+---
 
 ## Aim
 

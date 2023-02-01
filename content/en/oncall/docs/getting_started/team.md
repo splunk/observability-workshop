@@ -1,4 +1,8 @@
-# Teams
+---
+title: Teams
+linkTitle: Teams
+weight: 8
+---
 
 ## Aim
 

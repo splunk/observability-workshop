@@ -1,4 +1,8 @@
-# Managing Incidents
+---
+title: Manage Incidents
+linkTitle: Manage Incidents
+weight: 2
+---
 
 ## 1. Acknowledge
 

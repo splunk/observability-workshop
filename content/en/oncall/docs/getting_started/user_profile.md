@@ -1,4 +1,8 @@
-# User Profile
+---
+title: User Profile
+linkTitle: User Profile
+weight: 9
+---
 
 ## Aim
 

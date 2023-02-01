@@ -1,4 +1,8 @@
-# Configure Rotations
+---
+title: Rotations
+linkTitle: Configure Rotations
+weight: 6
+---
 
 ## Aim
 

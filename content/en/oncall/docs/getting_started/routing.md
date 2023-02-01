@@ -1,4 +1,8 @@
-# Create Routing Keys
+---
+title: Routing Keys
+linkTitle: Create Routing Keys
+weight: 7
+---
 
 ## Aim
 

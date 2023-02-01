@@ -1,4 +1,8 @@
-# Create Incidents
+---
+title: Create Incidents
+linkTitle: Create Incidents
+weight: 3
+---
 
 ## Aim
 
