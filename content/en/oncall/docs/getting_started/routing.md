@@ -22,17 +22,14 @@ Your welcome e-mail informed you of the details of your EC2 Instance that has be
 
 The e-mail also contained the Hostname of the Instance, but you can also obtain it from the Instance directly. To get your Hostname from within the shell session connected to your Instance run the following command:
 
-=== "Shell Command"
-
-    ```text
-    echo ${HOSTNAME}
-    ```
-
-=== "Example Output"
-
-    ```text
-    zevn
-    ```
+{{< tabpane >}}
+{{< tab header="Export Hostname" lang="bash" >}}
+echo ${HOSTNAME}
+{{< /tab >}}
+{{< tab header="Example Output" lang="bash" >}}
+zevn
+{{< /tab >}}
+{{< /tabpane >}}
 
 It is very important that when creating the Routing Keys you use the 4 letter hostname allocated to you as a Detector has been configured within Splunk Infrastructure Monitoring using this hostname, so any deviation will cause future exercises to fail.
 
@@ -53,8 +50,9 @@ In the left hand box, enter the name for the key as per the table above.  In the
 
 ![Add Routing Key](../../../images/routing-key-add.png)
 
-!!! note
-    If there are a large number of participants on the workshop, resulting in an unusually large number of Escalation Policies sometimes the search filter does not list all the Policies under your Team Name.  If this happens instead of using the search feature, simply scroll down to your team name, all the policies will then be listed.
+{{% alert title="Note" color="info" %}}
+If there are a large number of participants on the workshop, resulting in an unusually large number of Escalation Policies sometimes the search filter does not list all the Policies under your Team Name.  If this happens instead of using the search feature, simply scroll down to your team name, all the policies will then be listed.
+{{% /alert %}}
 
 Repeat the above steps for both Keys, {==xxxx_PRI==} and {==xxxx_WR==}, mapping them to your Teams Primary and Waiting Room policies.
 
@@ -62,8 +60,9 @@ You should now have two Routing Keys configured, similar to the following:
 
 ![Routing Keys](../../../images/routing-keys.png)
 
-!!! tip
-    You can assign a Routing Key to multiple Escalation Policies if required by simply selecting more from the list
+{{% alert title="Tip" color="success" %}}
+You can assign a Routing Key to multiple Escalation Policies if required by simply selecting more from the list
+{{% /alert %}}
 
 If you now navigate back to **Teams → [Your Team Name] → Escalation Policies** and look at the settings for your **Primary** and **Waiting Room** polices you will see that these now have **Routes** assigned to them.
 
