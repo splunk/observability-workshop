@@ -148,13 +148,9 @@ echo $(hostname)-k3s-cluster
 {{< /tab >}}
 {{< /tabpane >}}
 
-Then in the UI, click on the "Cluster: - " menu just below the Splunk Logo, and paste the Cluster name you just copied into the search box, click the box to select your cluster, and finally click off the menu into white space to apply the filter.
+Then in the UI, click on the "Add Filter" menu and start typing "cluster", the filter will automatically populate matching results and select "k8s.cluster.name", paste the Cluster name you just copied into the search box, click the box to select your cluster, and finally click apply filter.
 
 ![K8S Clusters Filter](../../../imt/images/search-k3s-cluster.gif)
-
-![Select K8S Cluster](../../../imt/images/selecting-k3s-cluster.png)
-
-![Filtered K8S Cluster](../../../imt/images/filtered-k3s-cluster.png)
 
 To examine the health of your node, hover over the pale blue background of your cluster, then click on the blue magnifying glass ![Magnifying Glass](../../../images/blue-cross.png) that appears in the top left hand corner.
 
