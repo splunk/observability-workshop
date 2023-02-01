@@ -37,7 +37,7 @@ Enter a name of "*Follow the Sun Support - Business Hours*" and Select **Partial
 
 ![Asia Shift](../../../images/asia-shift.png)
 
-You will now be prompted to add Members to this shift; add the Asia members who are **jimhalpert, lydia and marie**, but only if you're using the Splunk provided environment for this workshop.
+You will now be prompted to add Members to this shift; add the Asia members who are **Jim Halpert, Lydie Rodarte-Quayle and Marie Schrader**, but only if you're using the Splunk provided environment for this workshop.
 
 If you're using your own Organisation refer to the specific list provided separately.
 
@@ -54,7 +54,7 @@ Now add an 2nd shift for Europe by again clicking **+Add a shift → Partial Day
 
 ![Europe Shift](../../../images/europe-shift.png)
 
-You will again be prompted to add Members to this shift; add the Europe members who are **duanechow, gomez and heisenberg**, but only if you're using the Observability Workshop Org for this workshop.
+You will again be prompted to add Members to this shift; add the Europe members who are **Duane Chow, Steven Gomez and Walter White**, but only if you're using the Observability Workshop Org for this workshop.
 
 If you're using your own Organisation refer to the specific list provided separately.
 
@@ -71,7 +71,7 @@ Now add a 3rd shift for West Coast USA by again clicking `+Add a shift` - `Parti
 
 ![West Coast Shift](../../../images/west-coast-shift.png)
 
-You will again be prompted to add Members to this shift; add the West Coast members who are **maximo, michaelscott and tuco**, but only if you're using the Observability Workshop Org for this workshop.
+You will again be prompted to add Members to this shift; add the West Coast members who are **Maximo Arciniega, Michael Scott and Tuco Salamanca**, but only if you're using the Observability Workshop Org for this workshop.
 
 If you're using your own Organisation refer to the specific list provided separately.
 
