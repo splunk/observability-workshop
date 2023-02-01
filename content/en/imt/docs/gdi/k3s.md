@@ -136,7 +136,7 @@ If you make an error installing the OpenTelemetry Collector you can start over b
 
 In the Splunk UI, click the **>>** bottom left and click on **Infrastructure**.
 
-![Selecting the Kubernetes Navigator Map](../../../imt/images/clustermap-nav.png)
+![Selecting the Kubernetes Navigator Map](../../../imt/images/clustermap-nav.gif)
 
 Under **Containers** click on **Kubernetes** to open the Kubernetes Navigator Cluster Map to ensure metrics are being sent in.
 
@@ -150,7 +150,7 @@ echo $(hostname)-k3s-cluster
 
 Then in the UI, click on the "Cluster: - " menu just below the Splunk Logo, and paste the Cluster name you just copied into the search box, click the box to select your cluster, and finally click off the menu into white space to apply the filter.
 
-![K8S Clusters Filter](../../../imt/images/search-k3s-cluster.png)
+![K8S Clusters Filter](../../../imt/images/search-k3s-cluster.gif)
 
 ![Select K8S Cluster](../../../imt/images/selecting-k3s-cluster.png)
 
