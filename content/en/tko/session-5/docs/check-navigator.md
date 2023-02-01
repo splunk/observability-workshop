@@ -1,7 +1,7 @@
 ---
 title: The Kubernetes Navigator
-linkTitle: Touring the Kubernetes Navigator
-weight: 2
+linkTitle: Touring the Kubernetes Navigator V1
+weight: 22
 ---
 
 ## 1. The Cluster Map

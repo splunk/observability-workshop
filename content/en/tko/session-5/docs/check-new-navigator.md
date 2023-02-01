@@ -1,8 +1,8 @@
 ---
-title: The new Kubernetes Navigator
+title: The New Kubernetes Navigator
 linkTitle: Touring the Kubernetes Navigator v2
-weight: 22
----
+weight: 2
+--- 
 ## 1. The k8s cluster & cluster detail Pane
 
 Go to the **Infrastructure** page in the Observability UI and select **Kubernetes**, this will offer you a number of Kubernetes services. For this exercise pick the `K8s cluster` pane.

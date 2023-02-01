@@ -1,8 +1,31 @@
 ---
 title: Deploying the OpenTelemetry Collector in Kubernetes using a NameSpace
-linkTitle: Deploy the OTel Collector
+linkTitle: Prep & Deploy the OTel Collector
 weight: 1
 ---
+
+## 0. Switching to the new Kubernetes Navigator 2.0 UI
+
+As we are in the process of switched to the new generation of the Kubernetes Navigator, please check if you are already on the new Kubernetes navigator.
+
+When you select `Infrastructure` from the main menu on the left, followed by selecting `Kubernetes`, you should see two services panes for Kubernetes, similar like the ones below:
+
+![k8s-navi-v-2](../images/k8s-nav2-two.png)
+
+If you taken straight to the Kubernetes Navigator v1 Map view after selecting `Kubernetes`, you need to switch to the new Navigator yourself for this workshop by clicking on the big blue ![new-k8-button](../images/new-k8s-button.png). You should now be in the K8s Node view with chart below the cluster map similar like shown below:
+
+![k8s-navi-v-2](../images/new-k8s-view.png)
+
+{{% alert title="Note" color="info" %}}
+If you actually see three services for Kubernetes including one that is named `K8s clusters` you need to turn of Precognition in the Superpowers view.
+To do this, please change the Url in your browser to match the following: [https://app.[REALM].signalfx.com/#/superpowers](https://app.[REALM].signalfx.com/#/superpowers)
+
+Where [REALM] needs to match the Realm we are using for this workshop then remove the Precognition flag like in the example below. This is one of the first options you can set:
+
+![Set-Precognition](../images/Precognition.png)
+
+Once its unset, you can refresh you page, and reselect Kubernetes from the infrastructure navigator menu.
+{{% /alert %}}
 
 ## 1. Connect to EC2 instance
 
@@ -110,11 +133,3 @@ If you make an error installing the Splunk OpenTelemetry Collector you can start
 ``` bash
 helm delete splunk-otel-collector -n splunk
 ```
-
-{{% /alert %}}
-
-{{% alert title="Workshop Question" color="success" %}}
-Find your Cluster in the Observability Kubernetes Navigator, and identify the namespace for the collector and its workload.
-
-**Tip:** You may need to refresh the screen a few times until the cluster data is correlated in the background. Also, it is recommended to set the timeframe to be **15m** (down from **3h**, which is default).
-{{% /alert %}}
