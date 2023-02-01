@@ -2,6 +2,7 @@
 title: Creating a Detector
 linkTitle: Detectors
 weight: 3
+draft: true
 ---
 
 ## Aim

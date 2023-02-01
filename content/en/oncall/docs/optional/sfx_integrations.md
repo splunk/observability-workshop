@@ -2,6 +2,7 @@
 title: Splunk OnCall Integrations
 linkTitle: Integrations
 weight: 4
+draft: true
 ---
 
 This module covers configuring the Integrations between SignalFx and VictorOps. Whilst the detailed steps below walk you through the process, you will find that the intergrations are already active within the Splunk systems being used for this workhop so Steps 1 & 2 are for info only.  **You only need to complete Step 3. Copy ID**

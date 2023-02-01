@@ -2,6 +2,7 @@
 title: Creating a Test VM Using Multipass
 linkTitle: Multipass
 weight: 2
+draft: true
 ---
 
 ## Aim
