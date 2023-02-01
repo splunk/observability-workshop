@@ -18,7 +18,7 @@ The key to making it work for you is to centralize all your alerting sources, se
 
 Login to the Splunk On-Call UI and select the **Timeline** tab on the main menu bar, you should have a screen similar to the following image:
 
-![Splunk On-Call UI](..//images/oncall/m7-vo-ui.png)
+![Splunk On-Call UI](../../../images/m7-vo-ui.png)
 
 ## 2. People
 
@@ -34,7 +34,7 @@ If you click into one of the currently on call users, you can see their status.
 
 It shows which Rotation they are on call for, when their current Shift ends and their next Shift starts (times are displayed in your timezone), what contact methods they have and which Teams they belong to (dummy users such as Hank do not have Contact Methods configured).
 
-![User Detail](..//images/oncall/m7-user-detail.png){: .center}
+![User Detail](../../../images/m7-user-detail.png){: .center}
 
 ## 3. Timeline
 
@@ -50,7 +50,7 @@ Change the **My Keys** value to **all** and the **Other Keys** value to **select
 
 Click anywhere outside of the dialogue box to close it.
 
-![Timeline Filters](..//images/oncall/m7-timeline-filters.png)
+![Timeline Filters](../../../images/m7-timeline-filters.png)
 
 You will probably now have a much simpler view as you will not currently have Incidents created using your Routing Keys, so you are left with the other types of messages that the Timeline can display.
 
@@ -60,7 +60,7 @@ Here you control the types of messages that are displayed.
 
 For example, deselect **On-call Changes** and **Escalations**, this will reduce the amount of messages displayed.
 
-![Timeline Filters Message Types](..//images/oncall/m7-timeline-filters-message-types.png)
+![Timeline Filters Message Types](../../../images/m7-timeline-filters-message-types.png)
 
 ## 4. Incidents
 

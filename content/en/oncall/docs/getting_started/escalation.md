@@ -16,11 +16,11 @@ The instructor will start by explaining the concepts before you proceed with the
 
 Navigate to the Escalation Polices tab on the Teams sub menu, you should have no existing Polices so we need to create some.
 
-![No Escalation Policies](..//images/oncall/no-escalation.png){: .center}
+![No Escalation Policies](../../../images/no-escalation.png){: .center}
 
 We are going to create the following Polices to cover off three typical use cases.
 
-![Escalation Policies](..//images/oncall/escalation-policies.png)
+![Escalation Policies](../../../images/escalation-policies.png)
 
 ## 1. 24/7 Policy
 
@@ -32,7 +32,7 @@ Click **Add Escalation Policy**
   * Notify the on-duty user(s) in rotation → Senior SRE Escalation
   * Click **Save**
 
-![24/7 Escalation Policy ](..//images/oncall/24-7-escalation-policy.png)
+![24/7 Escalation Policy ](../../../images/24-7-escalation-policy.png)
 
 ## 2. Primary Policy
 
@@ -44,21 +44,21 @@ Click **Add Escalation Policy**
 * Notify the on-duty user(s) in rotation → Follow the Sun Support - Business Hours
 * Click **Add Step**
 
-![Pri Escalation Policy Step 1](..//images/oncall/pri-escalation-policy-step-1.png)
+![Pri Escalation Policy Step 1](../../../images/pri-escalation-policy-step-1.png)
 
 * Step 2
 * If still unacked after 15 minutes
 * Notify the next user(s) in the current on-duty shift → Follow the Sun Support - Business Hours
 * Click **Add Step**
 
-![Pri Escalation Policy Step 2](..//images/oncall/pri-escalation-policy-step-2.png)
+![Pri Escalation Policy Step 2](../../../images/pri-escalation-policy-step-2.png)
 
 * Step 3
 * If still unacked after 15 more minutes
 * Execute Policy → [Your Team Name] : 24/7
 * Click **Save**
 
-![Pri Escalation Policy Step 3](..//images/oncall/pri-escalation-policy-step-3.png)
+![Pri Escalation Policy Step 3](../../../images/pri-escalation-policy-step-3.png)
 
 ## 3. Waiting Room Policy
 
@@ -70,11 +70,11 @@ Click **Add Escalation Policy**
 * Execute Policy → [Your Team Name] : Primary
 * Click **Save**
 
-![WR Escalation Policy](..//images/oncall/wr-escalation-policy.png)
+![WR Escalation Policy](../../../images/wr-escalation-policy.png)
 
 You should now have the following three escalation polices:
 
-![Escalation Policies](..//images/oncall/escalation-policies.png)
+![Escalation Policies](../../../images/escalation-policies.png)
 
 You may have noticed that when we created each policy there was the following warning message:
 
