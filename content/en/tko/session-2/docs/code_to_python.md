@@ -16,7 +16,7 @@ weight: 4
 
 **Duration:** 15 Minutes
 
-## Verify the code - Review service
+## 1. Verify the code - Review service
 
 Inspect review.py (workshop/flask_apps_start/review)
 
@@ -81,8 +81,9 @@ python3 review.py
 ```
 
 Verify that the service is working
-- Hit the URL http://localhost:5000 and http://localhost:5000/get_review with a browser
-- Or, use curl in your terminal
+- Use curl in your terminal
+- Or hit the URL http://{Your_EC2_IP_address}:5000 and http://{Your_EC2_IP_address}:5000/get_review with a browser
+
 
 ``` bash
 curl localhost:5000
@@ -103,7 +104,7 @@ curl localhost:5000/get_review
 
 {{% /alert %}}}
 
-## Create a REVIEW container
+## 2. Create a REVIEW container
 
 To create a container image, you need to create a Dockerfile, run docker build to build the image referencing the Docker file and push it up to a remote repository so it can be pulled by other sources.
 
@@ -168,7 +169,7 @@ curl -s http://localhost:8000/v2/_catalog
 {"repositories":["review"]}
 ```
 
-## Run REVIEW in Kubernetes
+## 3. Run REVIEW in Kubernetes
 
 Create K8 deployment yaml file for the REVIEW app
 Reference: Creating a Deployment
@@ -273,11 +274,3 @@ ubuntu@ip-10-0-1-54:/tmp$ curl localhost:30000/get_review
 {{% alert title="Workshop Question" color="success" %}}
 What changes are required if you need to make an update to your Dockerfile now?
 {{% /alert %}}
-
-## END OF TKO LAB
-
-We hope you found this session and lab useful. We have optional exercise you can do if you finish ahead of schedule, or if you would like to run this at home. Remember this resource can be used at customers to show the value / ease of OTEL.
-
-Please be sure to review our session and provide feedback so we may improve your experience.
-
-Happy Splunking!!
