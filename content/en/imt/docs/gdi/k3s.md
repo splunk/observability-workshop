@@ -138,7 +138,7 @@ In the Splunk UI, click the **>>** bottom left and click on **Infrastructure**.
 
 ![Selecting the Kubernetes Navigator Map](../../../imt/images/clustermap-nav.gif)
 
-Under **Containers** click on **Kubernetes** to open the Kubernetes Navigator Cluster Map to ensure metrics are being sent in.
+Under **Containers** click on **Kubernetes** and select in right hand menu **k8s nodes** to open the Kubernetes Navigator Cluster Map and ensure metrics are being sent in.
 
 Validate that your cluster is discovered and reporting by finding your cluster (in the workshop you will see many other clusters). To find your cluster name run the following command and copy the output to your clipboard:
 
@@ -148,7 +148,7 @@ echo $(hostname)-k3s-cluster
 {{< /tab >}}
 {{< /tabpane >}}
 
-Then in the UI, click on the "Add Filter" menu and start typing "cluster", the filter will automatically populate matching results and select "k8s.cluster.name", paste the Cluster name you just copied into the search box, click the box to select your cluster, and finally click apply filter.
+Then in the UI, click on the **Add Filter** menu and start typing **cluster**, the filter will automatically populate matching results and select **k8s.cluster.name**, paste the Cluster name you just copied into the search box, click the box to select your cluster, and finally click apply filter.
 
 ![K8S Clusters Filter](../../../imt/images/search-k3s-cluster.gif)
 
