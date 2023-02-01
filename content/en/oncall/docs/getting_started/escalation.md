@@ -16,7 +16,7 @@ The instructor will start by explaining the concepts before you proceed with the
 
 Navigate to the Escalation Polices tab on the Teams sub menu, you should have no existing Polices so we need to create some.
 
-![No Escalation Policies](../../../images/no-escalation.png){: .center}
+![No Escalation Policies](../../../images/no-escalation.png)
 
 We are going to create the following Polices to cover off three typical use cases.
 
