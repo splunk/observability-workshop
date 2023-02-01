@@ -1,7 +1,7 @@
 ---
 title: User Profile
 linkTitle: User Profile
-weight: 9
+weight: 4
 ---
 
 ## Aim
@@ -24,7 +24,9 @@ To install the Splunk On-Call app for your smartphone search your phones App Sto
 
 The publisher should be listed as VictorOps Inc.
 
-[![iPhone](../../../images/app-store.svg){: .appstore}](https://apps.apple.com/us/app/victorops/id696974262) [![Android](../../../images/play-store.svg){: .appstore}](https://play.google.com/store/apps/details?id=com.victorops.androidclient&hl=en)
+[Apple Store](https://apps.apple.com/us/app/victorops/id696974262)
+
+[Google Play](https://play.google.com/store/apps/details?id=com.victorops.androidclient&hl=en)
 
 Configuration help guides are available:
 

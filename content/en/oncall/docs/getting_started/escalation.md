@@ -1,7 +1,7 @@
 ---
 title: Escalation Policies
 linkTitle: Configure Escalation Policies
-weight: 5
+weight: 7
 ---
 
 ## Aim

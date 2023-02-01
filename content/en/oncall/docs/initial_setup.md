@@ -18,7 +18,7 @@ If you did not receive an invitation it is probably because you already have a S
 
 If so login to that Org, then use the organisation dropdown next to your username in the top left to switch to the Observability Workshop Org.
 
-![Switch Org](../../../images/switch-org.png)
+![Switch Org](../../images/switch-org.png)
 
 !!! Note
     If you do not see the Organisation dropdown menu item next to your name with Observability Workshop EMEA that is OK, it simply means you only have access to a single Org so that menu is not visible to you.
