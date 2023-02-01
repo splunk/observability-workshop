@@ -100,7 +100,7 @@ We will now add another Rotation for our Senior SRE Escalation cover.
 
 ![24/7 Shift](../../../images/24-7-shift.png)
 
-You will again be prompted to add Members to this shift; add the 24/7 members who are **jackwelker, hank and pambeesly**, but only if you're using the Observability Workshop Org for this workshop.
+You will again be prompted to add Members to this shift; add the 24/7 members who are **Jack Welker, Hank Schrader and Pam Beesly**, but only if you're using the Observability Workshop Org for this workshop.
 
 If you're using your own Organisation refer to the specific list provided separately.
 
