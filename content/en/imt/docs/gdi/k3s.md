@@ -86,6 +86,24 @@ STATUS: deployed
 REVISION: 1
 TEST SUITE: None
 {{< /tab >}}
+{{< tab header="Install Network Explorer" lang="text" >}}
+helm install splunk-otel-collector \
+--set="splunkObservability.realm=$REALM" \
+--set="splunkObservability.accessToken=$ACCESS_TOKEN" \
+--set="clusterName=$(hostname)-k3s-cluster" \
+--set="splunkObservability.logsEnabled=true" \
+--set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
+--set="networkExplorer.enabled=true" \
+--set="networkExplorer.podSecurityPolicy.enabled=false" \
+--set="agent.enabled=true" \
+--set="gateway.replicaCount=1" \
+--set="gateway.resources.limits.cpu=500m" \
+--set="gateway.resources.limits.memory=1Gi" \
+--set="clusterReceiver.enabled=true" \
+--set="environment=$(hostname)-apm-env" \
+splunk-otel-collector-chart/splunk-otel-collector \
+-f ~/workshop/k3s/otel-collector.yaml
+{{< /tab >}}
 {{< /tabpane >}}
 
 You can monitor the progress of the deployment by running `kubectl get pods` which should typically report a new pod is up and running after about 30 seconds.
@@ -125,9 +143,13 @@ kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 {{< /tab >}}
 {{< /tabpane >}}
 
-{{% alert title="Deleting a failed installation" color="info" %}}
+{{% alert title="Deleting a failed installation" color="danger" %}}
 If you make an error installing the OpenTelemetry Collector you can start over by deleting the installation using:
-`helm delete splunk-otel-collector`
+
+``` text
+helm delete splunk-otel-collector
+```
+
 {{% /alert %}}
 
 ---
