@@ -15,7 +15,7 @@ You will need to obtain your Access Token[^1] from the Splunk UI. You can find t
 
 Expand the workshop token that your host has instructed you to use e.g. **O11y-Workshop-ACCESS**, then click on **Show Token** to expose your token. Click the {{% labelbutton color="ui-button-grey" %}}Copy{{% /labelbutton %}} button to copy to clipboard. Please do not use the **Default** token!
 
-![Access Token](../../../images/access-token.png)
+![Access Token](../../../imt/images/access-token.png)
 
 {{% alert title="Please do not attempt to create your own token" color="warning" %}}
 We have created a Token specifically for this workshop with the appropriate settings for the exercises you will be performing so have allocated it both Ingest and API Permissions.  Best practice in production is to only allocate a single permission to a Token such as Ingest OR API OR RUM and use multiple Tokens where required.
