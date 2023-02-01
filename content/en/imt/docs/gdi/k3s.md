@@ -136,7 +136,7 @@ If you make an error installing the OpenTelemetry Collector you can start over b
 
 In the Splunk UI, click the **>>** bottom left and click on **Infrastructure**.
 
-![Selecting the Kubernetes Navigator Map](../../../images/clustermap-nav.png)
+![Selecting the Kubernetes Navigator Map](../../../imt/images/clustermap-nav.png)
 
 Under **Containers** click on **Kubernetes** to open the Kubernetes Navigator Cluster Map to ensure metrics are being sent in.
 
@@ -150,11 +150,11 @@ echo $(hostname)-k3s-cluster
 
 Then in the UI, click on the "Cluster: - " menu just below the Splunk Logo, and paste the Cluster name you just copied into the search box, click the box to select your cluster, and finally click off the menu into white space to apply the filter.
 
-![K8S Clusters Filter](../../../images/search-k3s-cluster.png)
+![K8S Clusters Filter](../../../imt/images/search-k3s-cluster.png)
 
-![Select K8S Cluster](../../../images/selecting-k3s-cluster.png)
+![Select K8S Cluster](../../../imt/images/selecting-k3s-cluster.png)
 
-![Filtered K8S Cluster](../../../images/filtered-k3s-cluster.png)
+![Filtered K8S Cluster](../../../imt/images/filtered-k3s-cluster.png)
 
 To examine the health of your node, hover over the pale blue background of your cluster, then click on the blue magnifying glass ![Magnifying Glass](../../../images/blue-cross.png) that appears in the top left hand corner.
 
@@ -162,7 +162,7 @@ This will drill down to the node level.  Next, open the side bar by clicking on 
 
 Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: CPU, Memory, Network, Events etc.
 
-![Sidebar metrics](../../../images/explore-metrics.png)
+![Sidebar metrics](../../../imt/images/explore-metrics.png)
 
 [^1]: Access Tokens (sometimes called Org Tokens) are long-lived organization-level tokens. By default, these tokens persist for 5 years, and thus are suitable for embedding into emitters that send data points over long periods of time, or for any long-running scripts that call the Splunk API.
 
