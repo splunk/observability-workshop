@@ -18,14 +18,14 @@ If you did not receive an invitation it is probably because you already have a S
 
 If so login to that Org, then use the organisation dropdown next to your username in the top left to switch to the Observability Workshop Org.
 
-![Switch Org](../../images/switch-org.png)
+![Switch Org](../../../images/switch-org.png)
 
 !!! Note
     If you do not see the Organisation dropdown menu item next to your name with Observability Workshop EMEA that is OK, it simply means you only have access to a single Org so that menu is not visible to you.
 
     If you have forgotten your password go to the [sign-in](https://portal.victorops.com/membership/#/) page and use the forgotten password link to reset your password.
 
-    ![Reset Pwd](..//images/oncall/reset-password.png){: .center}
+    ![Reset Pwd](../../../images/reset-password.png){: .center}
 
 ---
 
@@ -45,17 +45,17 @@ Most attendees will be able to connect to the workshop by using SSH from their M
 
 To use SSH, open a terminal on your system and type `ssh ubuntu@x.x.x.x` (replacing x.x.x.x with the IP address found in your welcome e-mail).
 
-![ssh login](../images/ssh-1.png)
+![ssh login](../../images/ssh-1.png)
 
 When prompted **`Are you sure you want to continue connecting (yes/no/[fingerprint])?`** please type **`yes`**.
 
-![ssh password](../images/ssh-2.png)
+![ssh password](../../images/ssh-2.png)
 
 Enter the password provided in the welcome e-mail.
 
 Upon successful login you will be presented with the Splunk logo and the Linux prompt.
 
-![ssh connected](../images/ssh-3.png)
+![ssh connected](../../images/ssh-3.png)
 
 At this point you are ready to [continue with the workshop](../../oncall/getting_started/user_profile) when instructed to do so by the instructor
 
@@ -72,19 +72,19 @@ Open Putty and in the **Host Name (or IP address)** field enter the IP address p
 
 You can optionally save your settings by providing a name and pressing **Save**.
 
-![putty-2](../images/putty-settings.png)
+![putty-2](../../images/putty-settings.png)
 
 To then login to your instance click on the **Open** button as shown above.
 
 If this is the first time connecting to your EC2 instance, you will be presented with a security dialog, please click **Yes**.
 
-![putty-3](../images/putty-security.png)
+![putty-3](../../images/putty-security.png)
 
 Once connected, login in as **ubuntu** using the password provided in the welcome e-mail.
 
 Once you are connected successfully you should see a screen similar to the one below:
 
-![putty-4](../images/putty-loggedin.png)
+![putty-4](../../images/putty-loggedin.png)
 
 At this point you are ready to [continue with the workshop](../../oncall/getting_started/user_profile) when instructed to do so by the instructor
 
@@ -99,15 +99,15 @@ If you are blocked from using SSH (Port 22) or unable to install Putty you may b
 
 Open your web browser and type **http://X.X.X.X:6501** (where X.X.X.X is the IP address from the welcome e-mail).
 
-![http-6501](../images/shellinabox-url.png)
+![http-6501](../../images/shellinabox-url.png)
 
 Once connected, login in as **ubuntu** and the password is the one provided in the welcome e-mail.
 
-![http-connect](../images/shellinabox-connect.png)
+![http-connect](../../images/shellinabox-connect.png)
 
 Once you are connected successfully you should see a screen similar to the one below:
 
-![web login](../images/shellinabox-login.png)
+![web login](../../images/shellinabox-login.png)
 
 ---
 
@@ -119,11 +119,11 @@ When the workshop asks you to copy instructions into your terminal, please do th
 
 _Copy the instruction as normal, but when ready to paste it in the web terminal, choose **Paste from browser** as show below:_
 
-![web paste 1](../images/shellinabox-paste-browser.png)
+![web paste 1](../../images/shellinabox-paste-browser.png)
 
 This will open a dialog box asking for the text to be pasted into the web terminal:
 
-![web paste 3](../images/shellinabox-example-1.png)
+![web paste 3](../../images/shellinabox-example-1.png)
 
 Paste the text in the text box as show, then press **OK** to complete the copy and paste process.
 
@@ -132,7 +132,7 @@ Paste the text in the text box as show, then press **OK** to complete the copy a
 
     Simply click the **Connect** button and you will be reconnected and will be able to continue.
 
- ![web reconnect](../images/shellinabox-reconnect.png)
+ ![web reconnect](../../images/shellinabox-reconnect.png)
 
 At this point you are ready to [continue with the workshop](../../oncall/getting_started/user_profile) when instructed to do so by the instructor
 
