@@ -14,7 +14,7 @@ The aim of this module is for you to complete the first step of Team configurati
 
 Navigate to the **Teams** tab on the main toolbar, you should find you that a Team has been created for you as part of the workshop pre-setup and you would have been informed of your Team Name via e-mail.
 
-If you have found your pre-configured Team, **skip Step 2.** and proceed to [**Step 3. Configure Your Team**](../team/#3-configure-your-team)
+If you have found your pre-configured Team, **skip Step 2.** and proceed to **[Step 3. Configure Your Team](../team/#3-configure-your-team)**
 
 However if you cannot find you allocated Team, you will need to create a new one, so proceed with **Step 2. Create Team**
 
