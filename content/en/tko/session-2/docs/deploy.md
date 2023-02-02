@@ -17,7 +17,7 @@ A prospect uses Kafka and MongoDB in their environment. Since there are integrat
 - Google “myservice helm chart”
 - `https://artifacthub.io/` (**Note:** Look for charts from trusted organizations, with high star count and frequent updates)
 
-### 2. Review Apache Kafka packaged by Bitnami
+### 2. Review [Apache Kafka packaged by Bitnami](https://github.com/bitnami/charts/tree/main/bitnami/kafka/#installing-the-chart)
 
 We will deploy the helm chart with these options enabled:
 
@@ -26,7 +26,7 @@ We will deploy the helm chart with these options enabled:
 - `metrics.kafka.enabled=true`
 - `deleteTopicEnable=true`
 
-### 3. Review MongoDB(R) packaged by Bitnami
+### 3. Review [MongoDB(R) packaged by Bitnami](https://github.com/bitnami/charts/tree/master/bitnami/mongodb/#installing-the-chart)
 
 We will deploy the helm chart with these options enabled:
 
