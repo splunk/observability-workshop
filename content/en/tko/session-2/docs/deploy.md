@@ -72,9 +72,9 @@ Use information for each Helm chart and Splunk O11y Data Setup to generate value
 {{% /alert %}}
 
 - References:
-  - Apache Kafka packaged by Bitnami
-  - Configure application receivers for databases » Apache Kafka
-  - Kafkametricsreceiver
+  - [Apache Kafka packaged by Bitnami](https://github.com/bitnami/charts/tree/master/bitnami/spark/#installing-the-chart)
+  - [Configure application receivers for databases » Apache Kafka](https://docs.splunk.com/Observability/gdi/kafka/kafka.html)
+  - [Kafkametricsreceiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/kafkametricsreceiver)
 
 #### 4.1 Example kafka.values.yaml
 
