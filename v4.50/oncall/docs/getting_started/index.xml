@@ -1,0 +1,426 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Splunk Observability Cloud Workshops – Getting Started</title><link>https://splunk.github.io/observability-workshop/v4.50/oncall/docs/getting_started/</link><description>Recent content in Getting Started on Splunk Observability Cloud Workshops</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://splunk.github.io/observability-workshop/v4.50/oncall/docs/getting_started/index.xml" rel="self" type="application/rss+xml"/><item><title>Oncall: User Profile</title><link>https://splunk.github.io/observability-workshop/v4.50/oncall/docs/getting_started/user_profile/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.50/oncall/docs/getting_started/user_profile/</guid><description>
+&lt;h2 id="aim">Aim&lt;/h2>
+&lt;p>The aim of this module is for you to configure your personal profile which controls how you will be notified by Splunk On-Call whenever you get paged.&lt;/p>
+&lt;h2 id="1-contact-methods">1. Contact Methods&lt;/h2>
+&lt;p>Switch to the Splunk On-Call UI and click on your login name in the top right hand corner and chose &lt;strong>Profile&lt;/strong> from the drop down. Confirm your contact methods are listed correctly and add any additional phone numbers and e-mail address you wish to use.&lt;/p>
+&lt;h2 id="2-mobile-devices">2. Mobile Devices&lt;/h2>
+&lt;p>To install the Splunk On-Call app for your smartphone search your phones App Store for Splunk On-Call to find the appropriate version of the app. The publisher should be listed as VictorOps Inc.&lt;/p>
+&lt;p>&lt;a href="https://apps.apple.com/us/app/victorops/id696974262" target="_blank">Apple Store&lt;/a>
+&lt;/p>
+&lt;p>&lt;a href="https://play.google.com/store/apps/details?id=com.victorops.androidclient&amp;amp;hl=en" target="_blank">Google Play&lt;/a>
+&lt;/p>
+&lt;p>Configuration help guides are available:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://help.victorops.com/knowledge-base/ios-application/" target="_blank">Apple&lt;/a>
+&lt;/li>
+&lt;li>&lt;a href="https://help.victorops.com/knowledge-base/android-devices-victorops/" target="_blank">Android&lt;/a>
+&lt;/li>
+&lt;/ul>
+&lt;p>Install the App and login, then refresh the Profile page and your device should now be listed under the devices section. Click the &lt;strong>Test push notification&lt;/strong> button and confirm you receive the test message.&lt;/p>
+&lt;h2 id="3-personal-calendar">3. Personal Calendar&lt;/h2>
+&lt;p>This link will enable you to sync your on-call schedule with your calendar, however as you do not have any allocated shifts yet this will currently be empty. You can add it to your calendar by copying the link into your preferred application and setting it up as a new subscription.&lt;/p>
+&lt;h2 id="4-paging-policies">4. Paging Policies&lt;/h2>
+&lt;p>Paging Polices specify how you will be contacted when on-call. The Primary Paging Policy will have defaulted to sending you an SMS assuming you added your phone number when activating your account. We will now configure this policy into a three tier multi-stage policy similar to the image below.&lt;/p>
+&lt;p>&lt;img src="../../../images/primary-paging-policy.png" alt="Paging Policy">&lt;/p>
+&lt;h3 id="41-send-a-push-notification">4.1 Send a push notification&lt;/h3>
+&lt;p>Click the edit policy button in the top right corner for the Primary Paging Policy.&lt;/p>
+&lt;ul>
+&lt;li>Send a push notification to all my devices&lt;/li>
+&lt;li>Execute the next step if I have not responded within 5 minutes&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="../../../images/pri-page-step1.png" alt="Step 1">&lt;/p>
+&lt;p>Click &lt;strong>Add a Step&lt;/strong>&lt;/p>
+&lt;h3 id="42-send-an-e-mail">4.2 Send an e-mail&lt;/h3>
+&lt;ul>
+&lt;li>Send an e-mail to [your email address]&lt;/li>
+&lt;li>Execute the next step if I have not responded within 5 minutes&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="../../../images/pri-page-step2.png" alt="Step 2">&lt;/p>
+&lt;p>Click &lt;strong>Add a Step&lt;/strong>&lt;/p>
+&lt;h3 id="43-call-your-number">4.3 Call your number&lt;/h3>
+&lt;ul>
+&lt;li>Every 5 minutes until we have reached you&lt;/li>
+&lt;li>Make a phone call to [your phone number]&lt;/li>
+&lt;/ul>
+&lt;p>Click
+&lt;strong class="label-button vo-ui-button" role="label-button">
+&lt;strong>Save&lt;/strong>
+&lt;/strong>
+&amp;nbsp; to save the policy.&lt;/p>
+&lt;p>&lt;img src="../../../images/pri-page-step3.png" alt="Step 3">&lt;/p>
+&lt;p>When you are on-call or in the escalation path of an incident, you will receive notifications in this order following these time delays.&lt;/p>
+&lt;p>To cease the paging you must acknowledge the incident. Acknowledgements can occur in one of the following ways:&lt;/p>
+&lt;ul>
+&lt;li>Expanding the Push Notification on your device and selecting Acknowledge&lt;/li>
+&lt;li>Responding to the SMS with the 5 digit code included&lt;/li>
+&lt;li>Pressing 4 during the Phone Call&lt;/li>
+&lt;li>Slack Button&lt;/li>
+&lt;/ul>
+&lt;p>For more information on Notification Types, see &lt;a href="https://help.victorops.com/knowledge-base/notification-types/" target="_blank">here&lt;/a>
+.&lt;/p>
+&lt;h2 id="5-custom-paging-policies">5. Custom Paging Policies&lt;/h2>
+&lt;p>Custom paging polices enable you to override the primary policy based on the time and day of the week. A good example would be get the system to immediately phone you whenever you get a page during the evening or weekends as this is more likely to get your attention than a push notification.&lt;/p>
+&lt;p>Create a new Custom Policy by clicking &lt;strong>Add a Policy&lt;/strong> and configure with the following settings:&lt;/p>
+&lt;h3 id="51-custom-evening-policy">5.1 Custom evening policy&lt;/h3>
+&lt;p>Policy Name: Evening&lt;/p>
+&lt;ul>
+&lt;li>Every 5 minutes until we have reached you
+&lt;ul>
+&lt;li>Make a phone call to [your phone number]&lt;/li>
+&lt;li>Time Period: All 7 Days&lt;/li>
+&lt;li>Timezone
+&lt;ul>
+&lt;li>Between 7pm and 9am&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="../../../images/evening.png" alt="Evening">&lt;/p>
+&lt;p>Click
+&lt;strong class="label-button vo-ui-button" role="label-button">
+&lt;strong>Save&lt;/strong>
+&lt;/strong>
+&amp;nbsp; to save the policy then add one more.&lt;/p>
+&lt;h3 id="52-custom-weekend-policy">5.2 Custom weekend policy&lt;/h3>
+&lt;p>Policy Name: Weekend&lt;/p>
+&lt;ul>
+&lt;li>Every 5 minutes until we have reached you
+&lt;ul>
+&lt;li>Make a phone call to [your phone number]&lt;/li>
+&lt;li>Time Period: Sat &amp;amp; Sun&lt;/li>
+&lt;li>Timezone
+&lt;ul>
+&lt;li>Between 9am and 7pm&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>Click
+&lt;strong class="label-button vo-ui-button" role="label-button">
+&lt;strong>Save&lt;/strong>
+&lt;/strong>
+&amp;nbsp; to save the policy.&lt;/p>
+&lt;p>&lt;img src="../../../images/weekends.png" alt="Weekends">&lt;/p>
+&lt;p>These custom paging policies will be used during the specified times in place of the Primary Policy. However, admins do have the ability to ignore these custom policies, and we will highlight how this is achieved in a later module.&lt;/p>
+&lt;p>The final option here is the setting for Recovery Notifications. As these are typically low priority simply sending you an email or a push notification are the typical settings used. Your profile is now fully configured using these example configurations.&lt;/p>
+&lt;p>Organizations will have different views on how profiles should be configured and will typically issue guidelines for paging policies and times between escalations etc.&lt;/p>
+&lt;p>Please wait for the instructor before proceeding to the Teams module.&lt;/p></description></item><item><title>Oncall: Teams</title><link>https://splunk.github.io/observability-workshop/v4.50/oncall/docs/getting_started/team/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.50/oncall/docs/getting_started/team/</guid><description>
+&lt;h2 id="aim">Aim&lt;/h2>
+&lt;p>The aim of this module is for you to complete the first step of Team configuration by adding users to your Team.&lt;/p>
+&lt;h2 id="1-find-your-team">1. Find your Team&lt;/h2>
+&lt;p>Navigate to the &lt;strong>Teams&lt;/strong> tab on the main toolbar, you should find you that a Team has been created for you as part of the workshop pre-setup and you would have been informed of your Team Name via e-mail.&lt;/p>
+&lt;p>If you have found your pre-configured Team, &lt;strong>skip Step 2.&lt;/strong> and proceed to &lt;strong>&lt;a href="../team/#3-configure-your-team">Step 3. Configure Your Team&lt;/a>
+&lt;/strong>. However, if you cannot find you allocated Team, you will need to create a new one, so proceed with &lt;strong>Step 2. Create Team&lt;/strong>&lt;/p>
+&lt;h2 id="2-create-team">2. Create Team&lt;/h2>
+&lt;p>Only complete this step if you &lt;strong>cannot&lt;/strong> find your pre-allocated Team as detailed in your workshop e-mail. Select &lt;strong>Add Team&lt;/strong>, then enter your allocated team name, this will typically be in the format of &amp;ldquo;AttendeeID Workshop&amp;rdquo; and then save by clicking the &lt;strong>Add Team&lt;/strong> button.&lt;/p>
+&lt;h2 id="3-configure-your-team">3. Configure Your Team&lt;/h2>
+&lt;p>You now need to add other users to your team. If you are running this workshop using the Splunk provided environment, the following accounts are available for testing. If you are running this lab in your own environment, you will have been provided a list of usernames you can use in place of the table below.&lt;/p>
+&lt;p>These users are dummy accounts who will not receive notifications when they are on call.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Name&lt;/th>
+&lt;th>Username&lt;/th>
+&lt;th>Shift&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Duane Chow&lt;/td>
+&lt;td>duanechow&lt;/td>
+&lt;td>Europe&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Steven Gomez&lt;/td>
+&lt;td>gomez&lt;/td>
+&lt;td>Europe&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Walter White&lt;/td>
+&lt;td>heisenberg&lt;/td>
+&lt;td>Europe&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Jim Halpert&lt;/td>
+&lt;td>jimhalpert&lt;/td>
+&lt;td>Asia&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Lydia Rodarte-Quayle&lt;/td>
+&lt;td>lydia&lt;/td>
+&lt;td>Asia&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Marie Schrader&lt;/td>
+&lt;td>marie&lt;/td>
+&lt;td>Asia&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Maximo Arciniega&lt;/td>
+&lt;td>maximo&lt;/td>
+&lt;td>West Coast&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Michael Scott&lt;/td>
+&lt;td>michaelscott&lt;/td>
+&lt;td>West Coast&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Tuco Salamanca&lt;/td>
+&lt;td>tuco&lt;/td>
+&lt;td>West Coast&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Jack Welker&lt;/td>
+&lt;td>jackwelker&lt;/td>
+&lt;td>24/7&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Hank Schrader&lt;/td>
+&lt;td>hank&lt;/td>
+&lt;td>24/7&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Pam Beesly&lt;/td>
+&lt;td>pambeesly&lt;/td>
+&lt;td>24/7&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Add the users to your team, using either the above list or the alternate one provided to you. The value in the &lt;strong>Shift&lt;/strong> column can be ignored for now, but will be required for a later step.&lt;/p>
+&lt;p>Click the &lt;strong>Invite User&lt;/strong>{: .label-button .vo-ui-button} button on the right hand side, then either start typing the usernames (this will filter the list), or copy and paste them into the dialogue box. Once all users are added to the list click the &lt;strong>Add User&lt;/strong> button.&lt;/p>
+&lt;p>&lt;img src="../../../images/add-team-members.png" alt="Add Team Members">&lt;/p>
+&lt;p>To make a team member a Team Admin, simply click the :fontawesome-regular-edit: icon in the right hand column, pick any user and make them an Admin.&lt;/p>
+&lt;p>&lt;img src="../../../images/team-admin.png" alt="Add Admin">&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;p class="alert-heading">Tip&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+For large team management you can use the APIs to streamline this process.
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;p>Continue and also complete the &lt;a href="../rotations/">Configure Rotations&lt;/a>
+module.&lt;/p></description></item><item><title>Oncall: Rotations</title><link>https://splunk.github.io/observability-workshop/v4.50/oncall/docs/getting_started/rotations/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.50/oncall/docs/getting_started/rotations/</guid><description>
+&lt;h2 id="aim">Aim&lt;/h2>
+&lt;p>A rotation is a recurring schedule, that consists of one or more shifts, with members who rotate through a shift.&lt;/p>
+&lt;p>The aim of this module is for you to configure two example Rotations, and assign Team Members to the Rotations.&lt;/p>
+&lt;hr>
+&lt;p>Navigate to the &lt;strong>Rotations&lt;/strong> tab on the &lt;strong>Teams&lt;/strong> sub menu, you should have no existing Rotations so we need to create some.&lt;/p>
+&lt;p>The 1st Rotation you will create is for a follow the sun support pattern where the members of each shift provide cover during their normal working hours within their time zone.&lt;/p>
+&lt;p>The 2nd will be a Rotation used to provide escalation support by more experienced senior members of the team, based on a 24/7, 1 week shift pattern.&lt;/p>
+&lt;h2 id="1-follow-the-sun-support---business-hours">1. Follow the Sun Support - Business Hours&lt;/h2>
+&lt;p>Click &lt;strong>Add Rotation&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="../../../images/add-rotation.png" alt="Add Rotation">&lt;/p>
+&lt;p>Enter a name of &amp;ldquo;&lt;em>Follow the Sun Support - Business Hours&lt;/em>&amp;rdquo; and Select &lt;strong>Partial day&lt;/strong> from the three available shift templates.&lt;/p>
+&lt;p>&lt;img src="../../../images/follow-the-sun.png" alt="Follow the Sun">&lt;/p>
+&lt;ul>
+&lt;li>Enter a Shift name of &amp;ldquo;&lt;em>Asia&lt;/em>&amp;rdquo;&lt;/li>
+&lt;li>Time Zone set to &amp;ldquo;&lt;em>Asia/Tokyo&lt;/em>&amp;rdquo;&lt;/li>
+&lt;li>Each user is on duty from &amp;ldquo;&lt;em>Monday through Friday from 9.00am to 5.00pm&lt;/em>&amp;rdquo;&lt;/li>
+&lt;li>Handoff happens every &amp;ldquo;&lt;em>5 days&lt;/em>&amp;rdquo;&lt;/li>
+&lt;li>The next handoff happens - Select the next Monday using the calendar&lt;/li>
+&lt;li>Click &lt;strong>Save Rotation&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="../../../images/asia-shift.png" alt="Asia Shift">&lt;/p>
+&lt;p>You will now be prompted to add Members to this shift; add the Asia members who are &lt;strong>Jim Halpert, Lydie Rodarte-Quayle and Marie Schrader&lt;/strong>, but only if you&amp;rsquo;re using the Splunk provided environment for this workshop.&lt;/p>
+&lt;p>If you&amp;rsquo;re using your own Organisation refer to the specific list provided separately.&lt;/p>
+&lt;p>&lt;img src="../../../images/asia-members.png" alt="Asia Members">&lt;/p>
+&lt;p>Now add an 2nd shift for Europe by again clicking &lt;strong>+Add a shift → Partial Day&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Enter a Shift name of &amp;ldquo;&lt;em>Europe&lt;/em>&amp;rdquo;&lt;/li>
+&lt;li>Time Zone set to &amp;ldquo;&lt;em>Europe/London&lt;/em>&amp;rdquo;&lt;/li>
+&lt;li>Each user is on duty from &amp;ldquo;&lt;em>Monday through Friday from 9.00am to 5.00pm&lt;/em>&amp;rdquo;&lt;/li>
+&lt;li>Handoff happens every &amp;ldquo;&lt;em>5 days&lt;/em>&amp;rdquo;&lt;/li>
+&lt;li>The next handoff happens - Select the next Monday using the calendar&lt;/li>
+&lt;li>Click &lt;strong>Save Shift&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="../../../images/europe-shift.png" alt="Europe Shift">&lt;/p>
+&lt;p>You will again be prompted to add Members to this shift; add the Europe members who are &lt;strong>Duane Chow, Steven Gomez and Walter White&lt;/strong>, but only if you&amp;rsquo;re using the Observability Workshop Org for this workshop.&lt;/p>
+&lt;p>If you&amp;rsquo;re using your own Organisation refer to the specific list provided separately.&lt;/p>
+&lt;p>&lt;img src="../../../images/europe-members.png" alt="Europe Members">&lt;/p>
+&lt;p>Now add a 3rd shift for West Coast USA by again clicking &lt;code>+Add a shift&lt;/code> - &lt;code>Partial Day&lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>Enter a Shift name of &amp;ldquo;&lt;em>West Coast&lt;/em>&amp;rdquo;&lt;/li>
+&lt;li>Time Zone set to &amp;ldquo;&lt;em>US/Pacific&lt;/em>&amp;rdquo;&lt;/li>
+&lt;li>Each user is on duty from &amp;ldquo;&lt;em>Monday through Friday from 9.00am to 5.00pm&lt;/em>&amp;rdquo;&lt;/li>
+&lt;li>Handoff happens every &amp;ldquo;&lt;em>5 days&lt;/em>&amp;rdquo;&lt;/li>
+&lt;li>The next handoff happens - Select the next Monday using the calendar&lt;/li>
+&lt;li>Click &lt;strong>Save Shift&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="../../../images/west-coast-shift.png" alt="West Coast Shift">&lt;/p>
+&lt;p>You will again be prompted to add Members to this shift; add the West Coast members who are &lt;strong>Maximo Arciniega, Michael Scott and Tuco Salamanca&lt;/strong>, but only if you&amp;rsquo;re using the Observability Workshop Org for this workshop.&lt;/p>
+&lt;p>If you&amp;rsquo;re using your own Organisation refer to the specific list provided separately.&lt;/p>
+&lt;p>&lt;img src="../../../images/west-coast-members.png" alt="West Coast Members">&lt;/p>
+&lt;p>The first user added will be the &amp;lsquo;current&amp;rsquo; user for that shift.&lt;/p>
+&lt;p>You can re-order the shifts by simply dragging the users up and down, and you can change the current user by clicking &lt;code>Set Current&lt;/code> on an alternate user&lt;/p>
+&lt;p>You will now have three different Shift patterns, that provide cover 24hr hours, Mon - Fri, but with no cover at weekends.&lt;/p>
+&lt;p>We will now add another Rotation for our Senior SRE Escalation cover.&lt;/p>
+&lt;hr>
+&lt;h2 id="2-senior-sre-escalation">2. Senior SRE Escalation&lt;/h2>
+&lt;ul>
+&lt;li>Click &lt;strong>Add Rotation&lt;/strong>&lt;/li>
+&lt;li>Enter a name of &amp;ldquo;&lt;em>Senior SRE Escalation&lt;/em>&amp;rdquo;&lt;/li>
+&lt;li>Select &lt;code>24/7&lt;/code> from the three available shift templates&lt;/li>
+&lt;li>Enter a Shift name of &amp;ldquo;&lt;em>Senior SRE Escalation&lt;/em>&amp;rdquo;&lt;/li>
+&lt;li>Time Zone set to &amp;ldquo;&lt;em>Asia/Tokyo&lt;/em>&amp;rdquo;&lt;/li>
+&lt;li>Handoff happens every &amp;ldquo;&lt;em>7 days at 9.00am&lt;/em>&amp;rdquo;&lt;/li>
+&lt;li>The next handoff happens [select the next Monday from the date picker]&lt;/li>
+&lt;li>Click &lt;strong>Save Rotation&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="../../../images/24-7-shift.png" alt="24/7 Shift">&lt;/p>
+&lt;p>You will again be prompted to add Members to this shift; add the 24/7 members who are &lt;strong>Jack Welker, Hank Schrader and Pam Beesly&lt;/strong>, but only if you&amp;rsquo;re using the Observability Workshop Org for this workshop.&lt;/p>
+&lt;p>If you&amp;rsquo;re using your own Organisation refer to the specific list provided separately.&lt;/p>
+&lt;p>&lt;img src="../../../images/24-7-members.png" alt="24/7 Members">&lt;/p>
+&lt;hr>
+&lt;p>Please wait for the instructor before proceeding to the Configuring Escalation Policies module.&lt;/p></description></item><item><title>Oncall: Escalation Policies</title><link>https://splunk.github.io/observability-workshop/v4.50/oncall/docs/getting_started/escalation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.50/oncall/docs/getting_started/escalation/</guid><description>
+&lt;h2 id="aim">Aim&lt;/h2>
+&lt;p>Escalation policies determine who is actually on-call for a given team and are the link to utilizing any rotations that have been created.&lt;/p>
+&lt;p>The aim of this module is for you to create three different Escalation Policies to demonstrate a number of different features and operating models.&lt;/p>
+&lt;p>The instructor will start by explaining the concepts before you proceed with the configuration.&lt;/p>
+&lt;hr>
+&lt;p>Navigate to the Escalation Polices tab on the Teams sub menu, you should have no existing Polices so we need to create some.&lt;/p>
+&lt;p>&lt;img src="../../../images/no-escalation.png" alt="No Escalation Policies">&lt;/p>
+&lt;p>We are going to create the following Polices to cover off three typical use cases.&lt;/p>
+&lt;p>&lt;img src="../../../images/escalation-policies.png" alt="Escalation Policies">&lt;/p>
+&lt;h2 id="1-247-policy">1. 24/7 Policy&lt;/h2>
+&lt;p>Click &lt;strong>Add Escalation Policy&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Policy Name: 24/7&lt;/li>
+&lt;li>Step 1&lt;/li>
+&lt;li>Immediately
+&lt;ul>
+&lt;li>Notify the on-duty user(s) in rotation → Senior SRE Escalation&lt;/li>
+&lt;li>Click &lt;strong>Save&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="../../../images/24-7-escalation-policy.png" alt="24/7 Escalation Policy ">&lt;/p>
+&lt;h2 id="2-primary-policy">2. Primary Policy&lt;/h2>
+&lt;p>Click &lt;strong>Add Escalation Policy&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Policy Name: Primary&lt;/li>
+&lt;li>Step 1&lt;/li>
+&lt;li>Immediately&lt;/li>
+&lt;li>Notify the on-duty user(s) in rotation → Follow the Sun Support - Business Hours&lt;/li>
+&lt;li>Click &lt;strong>Add Step&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="../../../images/pri-escalation-policy-step-1.png" alt="Pri Escalation Policy Step 1">&lt;/p>
+&lt;ul>
+&lt;li>Step 2&lt;/li>
+&lt;li>If still unacked after 15 minutes&lt;/li>
+&lt;li>Notify the next user(s) in the current on-duty shift → Follow the Sun Support - Business Hours&lt;/li>
+&lt;li>Click &lt;strong>Add Step&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="../../../images/pri-escalation-policy-step-2.png" alt="Pri Escalation Policy Step 2">&lt;/p>
+&lt;ul>
+&lt;li>Step 3&lt;/li>
+&lt;li>If still unacked after 15 more minutes&lt;/li>
+&lt;li>Execute Policy → [Your Team Name] : 24/7&lt;/li>
+&lt;li>Click &lt;strong>Save&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="../../../images/pri-escalation-policy-step-3.png" alt="Pri Escalation Policy Step 3">&lt;/p>
+&lt;h2 id="3-waiting-room-policy">3. Waiting Room Policy&lt;/h2>
+&lt;p>Click &lt;strong>Add Escalation Policy&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Policy Name: Waiting Room&lt;/li>
+&lt;li>Step 1&lt;/li>
+&lt;li>If still unacked after 10 more minutes&lt;/li>
+&lt;li>Execute Policy → [Your Team Name] : Primary&lt;/li>
+&lt;li>Click &lt;strong>Save&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="../../../images/wr-escalation-policy.png" alt="WR Escalation Policy">&lt;/p>
+&lt;p>You should now have the following three escalation polices:&lt;/p>
+&lt;p>&lt;img src="../../../images/escalation-policies.png" alt="Escalation Policies">&lt;/p>
+&lt;p>You may have noticed that when we created each policy there was the following warning message:&lt;/p>
+&lt;p>!!! warning
+There are no routing keys for this policy - it will only receive incidents via manual reroute or when on another escalation policy&lt;/p>
+&lt;p>This is because there are no Routing Keys linked to these Escalation Polices, so now that we have these polices configured we can create the Routing Keys and link them to our Polices..&lt;/p>
+&lt;hr>
+&lt;p>Continue and also complete the &lt;a href="../routing/">Creating Routing Keys&lt;/a>
+module.&lt;/p></description></item><item><title>Oncall: Routing Keys</title><link>https://splunk.github.io/observability-workshop/v4.50/oncall/docs/getting_started/routing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.50/oncall/docs/getting_started/routing/</guid><description>
+&lt;h2 id="aim">Aim&lt;/h2>
+&lt;p>Routing Keys map the incoming alert messages from your monitoring system to an Escalation Policy which in turn sends the notifications to the appropriate team.&lt;/p>
+&lt;p>Note that routing keys are case insensitive and should only be composed of letters, numbers, hyphens, and underscores.&lt;/p>
+&lt;p>The aim of this module is for you to create some routing keys and then link them to your Escalation Policies you have created in the previous exercise.&lt;/p>
+&lt;hr>
+&lt;h2 id="1-instance-id">1. Instance ID&lt;/h2>
+&lt;p>Each participant requires a unique Routing Key so we use the Hostname of the EC2 Instance you were allocated. We are only doing this to ensure your Routing Key is unique and we know all Hostnames are unique. In a production deployment the Routing Key would typically reflect the name of a System or Service being monitored, or a Team such as 1st Line Support etc.&lt;/p>
+&lt;p>Your welcome e-mail informed you of the details of your EC2 Instance that has been provided for you to use during this workshop and you should have logged into this as part of the 1st exercise.&lt;/p>
+&lt;p>The e-mail also contained the Hostname of the Instance, but you can also obtain it from the Instance directly. To get your Hostname from within the shell session connected to your Instance run the following command:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist">
+&lt;li class="nav-item">
+&lt;a class="nav-link active persistLang-sh"
+id="tabs-00-00-tab" data-toggle="tab" href="#tabs-00-00" role="tab"
+onclick="persistLang(&amp;#34;sh&amp;#34;);"aria-controls="tabs-00-00" aria-selected="false">
+Export Hostname
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link persistLang-text"
+id="tabs-00-01-tab" data-toggle="tab" href="#tabs-00-01" role="tab"
+onclick="persistLang(&amp;#34;text&amp;#34;);"aria-controls="tabs-00-01" aria-selected="false">
+Example Output
+&lt;/a>
+&lt;/li>
+&lt;/ul>
+&lt;div class="tab-content" id="tabs-0-content">
+&lt;div class="tab-pane fade show active"
+id="tabs-00-00" role="tabpanel" aria-labelled-by="tabs-00-00-tab">
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">HOSTNAME&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-00-01" role="tabpanel" aria-labelled-by="tabs-00-01-tab">
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>zevn&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;p>It is very important that when creating the Routing Keys you use the 4 letter hostname allocated to you as a Detector has been configured within Splunk Infrastructure Monitoring using this hostname, so any deviation will cause future exercises to fail.&lt;/p>
+&lt;h2 id="2-create-routing-keys">2 Create Routing Keys&lt;/h2>
+&lt;p>Navigate to &lt;strong>Settings&lt;/strong> on the main menu bar, you should now be at the &lt;strong>Routing Keys&lt;/strong> page.&lt;/p>
+&lt;p>You are going to create the following two Routing Keys using the naming conventions listed in the following table, but replacing {==HOSTNAME==} with the value from above and replace &lt;strong>&lt;code>TEAM_NAME&lt;/code>&lt;/strong> with the team you were allocated or created earlier.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Routing Key&lt;/th>
+&lt;th>Escalation Policies&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;strong>&lt;code>HOSTNAME&lt;/code>&lt;/strong>_PRI&lt;/td>
+&lt;td>&lt;strong>&lt;code>TEAM_NAME&lt;/code>&lt;/strong> : Primary&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>&lt;code>HOSTNAME&lt;/code>&lt;/strong>_WR&lt;/td>
+&lt;td>&lt;strong>&lt;code>TEAM_NAME&lt;/code>&lt;/strong> : Waiting Room&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>There will probably already be a number of Routing Keys configured, but to add a new one simply scroll to the bottom of the page and then click &lt;strong>Add Key&lt;/strong>&lt;/p>
+&lt;p>In the left hand box, enter the name for the key as per the table above. In the &lt;strong>Routing Key&lt;/strong> column, select your Teams &lt;strong>Primary&lt;/strong> policy from the drop down in the &lt;strong>Escalation Polices&lt;/strong> column. You can start typing your Team Name to filter the results.&lt;/p>
+&lt;p>&lt;img src="../../../images/routing-key-add.png" alt="Add Routing Key">&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;p class="alert-heading">Note&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+If there are a large number of participants on the workshop, resulting in an unusually large number of Escalation Policies sometimes the search filter does not list all the Policies under your Team Name. If this happens instead of using the search feature, simply scroll down to your team name, all the policies will then be listed.
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;p>Repeat the above steps for both Keys, &lt;strong>&lt;code>xxxx_PRI&lt;/code>&lt;/strong> and &lt;strong>&lt;code>xxxx_WR&lt;/code>&lt;/strong>, mapping them to your Teams Primary and Waiting Room policies.&lt;/p>
+&lt;p>You should now have two Routing Keys configured, similar to the following:&lt;/p>
+&lt;p>&lt;img src="../../../images/routing-keys.png" alt="Routing Keys">&lt;/p>
+&lt;div class="alert alert-success" role="alert">
+&lt;p class="alert-heading">Tip&lt;/p>
+&lt;div class="alert-body">
+&lt;p class="p-alert-body">
+You can assign a Routing Key to multiple Escalation Policies if required by simply selecting more from the list
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;p>If you now navigate back to &lt;strong>Teams → [Your Team Name] → Escalation Policies&lt;/strong> and look at the settings for your &lt;strong>Primary&lt;/strong> and &lt;strong>Waiting Room&lt;/strong> polices you will see that these now have &lt;strong>Routes&lt;/strong> assigned to them.&lt;/p>
+&lt;p>&lt;img src="../../../images/routing-keys-assigned.png" alt="Routing Keys Assigned">&lt;/p>
+&lt;p>The &lt;strong>24/7&lt;/strong> policy does not have a Route assigned as this will only be triggered via an &lt;strong>Execute Policy&lt;/strong> escalation from the &lt;strong>Primary&lt;/strong> policy.&lt;/p>
+&lt;hr>
+&lt;p>Please wait for the instructor before proceeding to the Incident Lifecycle/Overview module.&lt;/p></description></item></channel></rss>
