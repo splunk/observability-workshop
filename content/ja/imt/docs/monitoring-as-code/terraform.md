@@ -23,7 +23,7 @@ Splunk Terraform Providerの完全なドキュメントは[こちら](https://re
 AWS/EC2 インスタンスにログインして、`o11y-cloud-jumpstart` ディレクトリに移動します
 
 {{< tabpane >}}
-{{< tab header="Change directory" lang="bash" >}}
+{{< tab header="Change directory" lang="sh" >}}
 cd observability-content-contrib/integration-examples/terraform-jumpstart
 {{</tab >}}
 {{< /tabpane >}}
@@ -31,7 +31,7 @@ cd observability-content-contrib/integration-examples/terraform-jumpstart
 必要な環境変数は、[Helmによるインストール](../../gdi/k3s/#2-helm%E3%81%AB%E3%82%88%E3%82%8B%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB) ですでに設定されているはずです。そうでない場合は、以下の Terraform のステップで使用するために、以下の環境変数を作成してください。
 
 {{< tabpane >}}
-{{< tab header="Environment Variables" lang="bash" >}}
+{{< tab header="Environment Variables" lang="sh" >}}
 export ACCESS_TOKEN=<replace_with_O11y-Workshop-ACCESS_token>
 export REALM=<replace_with_splunk_realm>
 {{</tab >}}
@@ -44,7 +44,7 @@ Splunk Terraform Provider の新バージョンがリリースされるたびに
 {{% /alert %}}
 
 {{< tabpane >}}
-{{< tab header="Initialise Terraform" lang="bash" >}}
+{{< tab header="Initialise Terraform" lang="sh" >}}
 terraform init -upgrade
 {{</tab >}}
 {{< tab header="Initialise Output" lang="text" >}}
@@ -100,10 +100,10 @@ terraform init -upgrade
 plan コマンドだけでは、提案された変更を実際に実行はされなません。変更を適用する前に、以下のコマンドを実行して、提案された変更が期待したものと一致するかどうかを確認しましょう。
 
 {{< tabpane >}}
-{{< tab header="Execution Plan" lang="bash" >}}
+{{< tab header="Execution Plan" lang="sh" >}}
 terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
 {{</tab >}}
-{{< tab header="Execution Plan Output" lang="bash" >}}
+{{< tab header="Execution Plan Output" lang="text" >}}
 Plan: 146 to add, 0 to change, 0 to destroy.
 {{</tab >}}
 {{< /tabpane >}}
@@ -121,10 +121,10 @@ Plan: 146 to add, 0 to change, 0 to destroy.
 このワークショップでは、プレフィックスがユニークである必要があります。以下の `terraform apply` を実行してください。
 
 {{< tabpane >}}
-{{< tab header="Apply Plan" lang="bash" >}}
+{{< tab header="Apply Plan" lang="sh" >}}
 terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
 {{</tab >}}
-{{< tab header="Apply Plan Output" lang="bash" >}}
+{{< tab header="Apply Plan Output" lang="text" >}}
 Apply complete! Resources: 146 added, 0 changed, 0 destroyed.
 {{</tab >}}
 {{< /tabpane >}}
@@ -132,7 +132,7 @@ Apply complete! Resources: 146 added, 0 changed, 0 destroyed.
 適用が完了したら、 **Alerts → Detectors** でディテクターが作成されたことを確認してください。ディテクターのプレフィックスには、インスタンスのホスト名が入ります。プレフィックスの値を確認するには以下を実行してください。
 
 {{< tabpane >}}
-{{< tab header="Echo Hostname" lang="bash" >}}
+{{< tab header="Echo Hostname" lang="sh" >}}
 echo $(hostname)
 {{</tab >}}
 {{< /tabpane >}}
@@ -150,10 +150,10 @@ echo $(hostname)
 それでは、ここまでで適用したダッシュボードとディテクターを全て破壊しましょう！
 
 {{< tabpane >}}
-{{< tab header="Destroy" lang="bash" >}}
+{{< tab header="Destroy" lang="sh" >}}
 terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
 {{</tab >}}
-{{< tab header="Destroy Output" lang="bash" >}}
+{{< tab header="Destroy Output" lang="text" >}}
 Destroy complete! Resources: 146 destroyed.
 {{</tab >}}
 {{< /tabpane >}}
