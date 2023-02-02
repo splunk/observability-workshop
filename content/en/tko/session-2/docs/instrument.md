@@ -21,6 +21,7 @@ Provide the following to the Configure Integration Wizard:
 - Legacy Agent: no
 
 [o11y_cloud_ui](../images/configureintegration.png)
+
 We are instructed to:
   
 - Install the instrumentation packages for your Python environment.
