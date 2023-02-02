@@ -1,32 +1,34 @@
-# Instrument REVIEWS for Tracing 
-## Use Data Setup to instrument a Python application.
+# Instrument REVIEWS for Tracing
+
+## Use Data Setup to instrument a Python application
+
 Within the O11y Cloud UI:
 
 Data Setup -> Monitor Applications -> Python (traces) -> Add Integration
 
 Provide the following to the Configure Integration Wizard:
-- Service: review 
-- Django: no 
+
+- Service: review
+
+- Django: no
 - collector endpoint: http://localhost:4317
-- Environment: rtapp-workshop-<YOURNAME>
+- Environment: rtapp-workshop-[YOURNAME]
 - Kubernetes: yes 
 - Legacy Agent: no
-	
 
 We are instructed to:
   
-  * Install the instrumentation packages for your Python environment.
-      
-        pip install splunk-opentelemetry[all]
+- Install the instrumentation packages for your Python environment.
+
+      pip install splunk-opentelemetry[all]
   
         splunk-py-trace-bootstrap
 
-  * Configure the Downward API to expose environment variables to Kubernetes 
+  - Configure the Downward API to expose environment variables to Kubernetes 
    resources.
 
     For example, update a Deployment to inject environment variables by adding .spec.template.spec.containers.env like:
 
-  ```
 apiVersion: apps/v1
 kind: Deployment
 spec:
@@ -62,7 +64,7 @@ The actions we must perform include:
    - Update our Dockerfile for REVIEW so that our program is bootstrapped with splunk-py-trace
 
 {{% alert title="Note" color="info" %}}  We will accomplish this by 1) generating a new requirements.txt file, 2) generating a new container image with an updated Dockerfile for REVIEW and then 3) update the review.deployment.yaml to capture all of these changes.
-  {{% / alert}}
+{{% /alert%}}
 
   
 ##  1: Update the REVIEW container
