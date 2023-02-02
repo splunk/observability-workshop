@@ -6,7 +6,8 @@ defaultContentLanguageInSubdir: false
 enableMissingTranslationPlaceholders: true
 enableRobotsTXT: true
 theme:
-  - docsy
+  - github.com/google/docsy
+  - github.com/google/docsy/dependencies
 enableGitInfo: true
 taxonomies:
   tag: tags

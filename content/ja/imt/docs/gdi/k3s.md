@@ -32,22 +32,21 @@ Kubernetes が起動したら、Splunk の UI から Access Token[^1] を取得�
 環境変数 `ACCESS_TOKEN` と `REALM` を作成して、進行中の Helm のインストールコマンドで使用します。例えば、Realm が `us1` の場合は、`export REALM=us1` と入力し、`eu0` の場合は、`export REALM=eu0` と入力します。
 
 {{< tabpane >}}
-{{< tab header="Export Variables" lang="bash" >}}
-export ACCESS_TOKEN=<replace_with_O11y-Workshop-ACCESS_token>
-export REALM=<replace_with_splunk_realm>
+{{< tab header="Export ACCESS TOKEN" lang="sh" >}}
+export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
 {{< /tab >}}
-{{< tab header="Export Access Token" lang="bash" >}}
-export ACCESS_TOKEN=
-{{< /tab >}}
-{{< tab header="Export Realm" lang="bash" >}}
-export REALM=
+{{< /tabpane >}}
+
+{{< tabpane >}}
+{{< tab header="Export REALM" lang="sh" >}}
+export REALM="<replace_with_REALM>"
 {{< /tab >}}
 {{< /tabpane >}}
 
 Splunk Helm チャートを使って OpenTelemetry Collector をインストールします。まず、Splunk Helm chart のリポジトリを Helm に追加してアップデートします。
 
 {{< tabpane >}}
-{{< tab header="Helm Repo Add" lang="bash" >}}
+{{< tab header="Helm Repo Add" lang="sh" >}}
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update
 {{< /tab >}}
 {{< tab header="Helm Repo Add Output" lang="text" >}}
@@ -65,7 +64,7 @@ Update Complete. ⎈Happy Helming!⎈
 以下のコマンドでOpenTelemetry Collector Helmチャートをインストールします。これは **変更しないでください**。
 
 {{< tabpane >}}
-{{< tab header="Helm Install" lang="bash" >}}
+{{< tab header="Helm Install" lang="sh" >}}
 helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
@@ -75,9 +74,6 @@ helm install splunk-otel-collector \
 --set="environment=$(hostname)-apm-env" \
 splunk-otel-collector-chart/splunk-otel-collector \
 -f ~/workshop/k3s/otel-collector.yaml
-{{< /tab >}}
-{{< tab header="Helm Install Single Line" lang="bash" >}}
-helm install splunk-otel-collector --set="splunkObservability.realm=$REALM" --set="splunkObservability.accessToken=$ACCESS_TOKEN" --set="clusterName=$(hostname)-k3s-cluster" --set="splunkObservability.logsEnabled=true" --set="splunkObservability.profilingEnabled=true" --set="environment=$(hostname)-apm-env" splunk-otel-collector-chart/splunk-otel-collector -f ~/workshop/k3s/otel-collector.yaml
 {{< /tab >}}
 {{< tab header="Helm Install Output" lang="text" >}}
 Using ACCESS_TOKEN={REDACTED}

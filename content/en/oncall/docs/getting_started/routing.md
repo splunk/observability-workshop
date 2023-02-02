@@ -23,10 +23,10 @@ Your welcome e-mail informed you of the details of your EC2 Instance that has be
 The e-mail also contained the Hostname of the Instance, but you can also obtain it from the Instance directly. To get your Hostname from within the shell session connected to your Instance run the following command:
 
 {{< tabpane >}}
-{{< tab header="Export Hostname" lang="bash" >}}
+{{< tab header="Export Hostname" lang="sh" >}}
 echo ${HOSTNAME}
 {{< /tab >}}
-{{< tab header="Example Output" lang="bash" >}}
+{{< tab header="Example Output" lang="text" >}}
 zevn
 {{< /tab >}}
 {{< /tabpane >}}

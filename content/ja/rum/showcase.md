@@ -34,7 +34,7 @@ APMワークショップでサービスをインストールしました。こ�
 進行中のシェルスクリプトで環境変数 `RUM_TOKEN` を作成し、デプロイメントをパーソナライズします。
 
 {{< tabpane >}}
-{{< tab header="Export Variables" lang="bash" >}}
+{{< tab header="Export Variables" lang="sh" >}}
 export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
 {{< /tab >}}
 {{< /tabpane >}}
@@ -44,13 +44,13 @@ export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
 EC2インスタンスのkubernetes（K3s）にOnline Boutiqueのアプリケーションをデプロイするには、元のデプロイメントを削除し、RUM用のapm configスクリプトを実行し、RUMのデプロイメントを適用します。
 
 {{< tabpane >}}
-{{< tab header="Deploy Online Boutique with RUM" lang="bash" >}}
+{{< tab header="Deploy Online Boutique with RUM" lang="sh" >}}
 cd ~/workshop/apm
 kubectl delete -f deployment.yaml
 ./apm-config.sh -r
 kubectl apply -f deployment.yaml
 {{< /tab >}}
-{{< tab header="Partial Deployment Output" lang= "bash" >}}
+{{< tab header="Partial Deployment Output" lang= "text" >}}
 ......
 Adding RUM_TOKEN to deployment
 deployment.apps/recommendationservice created

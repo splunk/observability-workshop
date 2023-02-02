@@ -7,7 +7,7 @@ runs:
     - name: Setup Hugo
       uses: peaceiris/actions-hugo@v2
       with:
-        hugo-version: '0.92.2'
+        hugo-version: '0.110.0'
         extended: true
 
     - name: Setup yq
@@ -51,7 +51,7 @@ runs:
       shell: bash
       run: npm ci --cache .npm --prefer-offline
 
-    - name: Get Submodules
-      shell: bash
-      run: cd themes/docsy && git submodule update -f --init --jobs=6 && cd ../..
+#    - name: Get Submodules
+#      shell: bash
+#      run: cd themes/docsy && git submodule update -f --init --jobs=6 && cd ../..
 
