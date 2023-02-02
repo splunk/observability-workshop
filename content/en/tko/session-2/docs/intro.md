@@ -1,5 +1,5 @@
 ---
-title: GDI - Real Time Enrichment Workshop
+title: Intro to O11y GDI - Real Time Enrichment Workshop
 linkTitle: Introduction
 weight: 2
 ---
