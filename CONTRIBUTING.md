@@ -1,14 +1,8 @@
 # Contributing Guidelines
 
-Thank you for your interest in contributing to our repository! Whether it's a bug
-report, new feature, or question, we greatly value feedback and contributions from
-our community. Read through this document before submitting any issues or pull 
-requests to ensure we have all the necessary information to effectively respond
-to your bug report or contribution.
+Thank you for your interest in contributing to our repository! Whether it's a bug report, new feature, or question, we greatly value feedback and contributions from our community. Read through this document before submitting any issues or pull requests to ensure we have all the necessary information to effectively respond to your bug report or contribution.
 
-In addition to this document, review our [Code of Conduct](CODE_OF_CONDUCT.md). 
-For any code of conduct questions or comments, send an email to oss@splunk.com.
-
+In addition to this document, review our [Code of Conduct](CODE_OF_CONDUCT.md). For any code of conduct questions or comments, send an email to oss@splunk.com.
 
 ## Contributor License Agreement
 
@@ -20,8 +14,11 @@ When working on the workshop, we advise that you review your changes locally bef
 
 ## Install Hugo
 
-```bash
+``` bash
 cd ~
+```
+
+``` bash
 brew install hugo
 ```
 
@@ -29,41 +26,51 @@ brew install hugo
 
 You will also need to install `yq` if it is not already installed on your system.
 
-```bash
-cd ~
+``` bash
 brew install yq
 ```
 
-## Install node
+## Install Node
 
 You will also need to install `node` if it is not already installed on your system, then add the PostCSS CLI package
 
-```bash
-cd ~
+``` bash
 brew install node
+```
+
+``` bash
 npm install postcss-cli
 ```
 
-## Cloning the repo and installing dependencies
+## Cloning the reposistory
 
-```bash
-cd ~
+``` bash
 git clone https://github.com/splunk/observability-workshop.git
+```
+
+``` bash
 cd observability-workshop
-git submodule update --init --recursive
+```
+
+``` bash
+hugo server
 ```
 
 ## Running the docs server
 
-In most cases, the default settings with `hugo server` work well, and Hugo is available at <http://localhost:1313>. If you need to change the port, you can do so by passing the `--port` flag e.g. `hugo server --port=1314`.
-
-The documentation built from your current branch is then accessible through your favorite browser at <http://localhost:1314>.
+In most cases, the default settings with `hugo server` work well, and Hugo is available at `http://localhost:1313`. If you need to change the port, you can do so by passing the `--port` flag e.g. `hugo server --port=1314`. The documentation built from your current branch is then accessible through your favorite browser at e.g. `http://localhost:1314`.
 
 ## Optimising images
 
-Install `optipng` e.g. `brew install optipng` and then run the following command in the `content` directory:
+Install `optipng`:
 
-```bash
+``` bash
+brew install optipng
+```
+
+and then run the following command in the `content` directory:
+
+``` bash
 find . -type f -iname "*.png" -exec optipng -nb -nc {} \;
 ```
 
@@ -71,7 +78,7 @@ find . -type f -iname "*.png" -exec optipng -nb -nc {} \;
 
 Build a release with
 
-```bash
+``` bash
 ./.github/ci/build_site
 ```
 
@@ -81,7 +88,7 @@ To run a webserver that mimics GitHub Pages, install [devd][devd], e.g. with `br
 
 Then run
 
-```bash
+``` bash
 devd /observability-workshop/vdev/=./site/vdev /=./site/vdev
 ```
 
