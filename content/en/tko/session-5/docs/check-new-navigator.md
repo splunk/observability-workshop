@@ -111,8 +111,6 @@ Node Details shows you lots of great detail about what is happening on this Node
 
 You also have scrollable table views of both the Workloads and Containers running on the Node.  Clicking on any of the names in the tables will reopen the side panel with the appropriate panes for either Workloads or Containers.  Each of these can then also be expanded just like you did with the Node side panel, by clicking the expand button ![expand-sidebar.png](../images/expand-sidebar.png)
 
-
-
 ## 3. Workloads & Workload Details Tabs
 
 Assuming you have been able to answer the question about the Node CPU cores, you will now need to switch to the Workloads tab on the top toolbar.  The Workloads tab details all the workloads that are deployed within your cluster.
