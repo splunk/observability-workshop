@@ -22,12 +22,12 @@ isCJKLanguage: true
 Online BoutiqueアプリケーションをK3sにデプロイするには、以下のデプロイメントを適用します。
 
 {{< tabpane >}}
-{{< tab header="Deploy Online Boutique" lang="bash" >}}
+{{< tab header="Deploy Online Boutique" lang="sh" >}}
 cd ~/workshop/apm
 ./apm-config.sh
 kubectl apply -f deployment.yaml
 {{< /tab >}}
-{{< tab header="Deployment Output" lang= "bash" >}}
+{{< tab header="Deployment Output" lang= "text" >}}
 APM Only Deployment
 deployment.apps/recommendationservice created
 service/recommendationservice created
@@ -66,10 +66,10 @@ deployment.apps/rum-loadgen-deployment created
 Online Boutique アプリケーションが起動していることを確認するには:
 
 {{< tabpane >}}
-{{< tab header="Get Pods" lang="bash" >}}
+{{< tab header="Get Pods" lang="sh" >}}
 kubectl get pods
 {{< /tab >}}
-{{< tab header="Get Pods Output" lang= "bash" >}}
+{{< tab header="Get Pods Output" lang= "text" >}}
 NAME                                                          READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-k8s-cluster-receiver-56585564cc-xclzj   1/1     Running   0          84s
 splunk-otel-collector-agent-hkshj                             1/1     Running   0          84s

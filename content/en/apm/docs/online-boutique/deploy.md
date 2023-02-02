@@ -21,12 +21,12 @@ otherwise if you have received a fresh instance, please run the first two (2) se
 To deploy the Online Boutique application into K3s, run the apm-config script, then apply the deployment:
 
 {{< tabpane >}}
-{{< tab header="Deploy Online Boutique" lang="bash" >}}
+{{< tab header="Deploy Online Boutique" lang="sh" >}}
 cd ~/workshop/apm
 ./apm-config.sh
 kubectl apply -f deployment.yaml
 {{< /tab >}}
-{{< tab header="Deployment Output" lang= "bash" >}}
+{{< tab header="Deployment Output" lang= "text" >}}
 APM Only Deployment
 deployment.apps/recommendationservice created
 service/recommendationservice created
@@ -65,10 +65,10 @@ Then export the variable as described in the guide/message, followed by rerunnin
 To ensure the Online Boutique application is running:
 
 {{< tabpane >}}
-{{< tab header="Get Pods" lang="bash" >}}
+{{< tab header="Get Pods" lang="sh" >}}
 kubectl get pods
 {{< /tab >}}
-{{< tab header="Get Pods Output" lang= "bash" >}}
+{{< tab header="Get Pods Output" lang= "text" >}}
 NAME                                                       READY  STATUS  RESTARTS      AGE
 splunk-otel-collector-k8s-cluster-receiver-849cf595bf-l7mnq 1/1   Running   0           31m
 splunk-otel-collector-agent-pxrgp                           2/2   Running   0           31m
