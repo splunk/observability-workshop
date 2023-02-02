@@ -37,12 +37,12 @@ It is very important that when creating the Routing Keys you use the 4 letter ho
 
 Navigate to **Settings** on the main menu bar, you should now be at the **Routing Keys** page.
 
-You are going to create the following two Routing Keys using the naming conventions listed in the following table, but replacing {==HOSTNAME==} with the value from above and replace {==TEAM_NAME==} with the team you were allocated or created earlier.
+You are going to create the following two Routing Keys using the naming conventions listed in the following table, but replacing {==HOSTNAME==} with the value from above and replace **`TEAM_NAME`** with the team you were allocated or created earlier.
 
 | Routing Key | Escalation Policies |
 | --- | --- |
-| {==HOSTNAME==}_PRI | {==TEAM_NAME==} : Primary |
-| {==HOSTNAME==}_WR | {==TEAM_NAME==} : Waiting Room |
+| **`HOSTNAME`**_PRI | **`TEAM_NAME`** : Primary |
+| **`HOSTNAME`**_WR | **`TEAM_NAME`** : Waiting Room |
 
 There will probably already be a number of Routing Keys configured, but to add a new one simply scroll to the bottom of the page and then click **Add Key**
 
@@ -54,7 +54,7 @@ In the left hand box, enter the name for the key as per the table above.  In the
 If there are a large number of participants on the workshop, resulting in an unusually large number of Escalation Policies sometimes the search filter does not list all the Policies under your Team Name.  If this happens instead of using the search feature, simply scroll down to your team name, all the policies will then be listed.
 {{% /alert %}}
 
-Repeat the above steps for both Keys, {==xxxx_PRI==} and {==xxxx_WR==}, mapping them to your Teams Primary and Waiting Room policies.
+Repeat the above steps for both Keys, **`xxxx_PRI`** and **`xxxx_WR`**, mapping them to your Teams Primary and Waiting Room policies.
 
 You should now have two Routing Keys configured, similar to the following:
 

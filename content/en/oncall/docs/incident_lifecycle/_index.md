@@ -1,7 +1,7 @@
 ---
 title: Incident Lifecycle
 linkTitle: Incident Lifecycle
-weight: 5
+weight: 3
 description: >
   **40 minutes**
 ---

@@ -10,7 +10,7 @@ The aim of this module is for you to get more familiar with the Timeline Tab and
 
 ## 1. Timeline
 
-The aim of Splunk On-Call is to _**"Make On Call Suck Less"**_, and it does this by getting the critical data, to the right people, at the right time.
+The aim of Splunk On-Call is to make being on call more bearable, and it does this by getting the critical data, to the right people, at the right time.
 
 The key to making it work for you is to centralize all your alerting sources, sending them all to the Splunk On-Call platform, then you have a single pane of glass in which to manage all of your alerting.
 

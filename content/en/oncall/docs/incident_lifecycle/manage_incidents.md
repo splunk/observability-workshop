@@ -1,7 +1,7 @@
 ---
 title: Manage Incidents
 linkTitle: Manage Incidents
-weight: 2
+weight: 3
 ---
 
 ## 1. Acknowledge
