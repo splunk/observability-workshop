@@ -241,5 +241,3 @@ Note that the only lines, in bold, added to the Dockerfile
   splunk-otel-collector-1653114277-agent-jqxhh                      2/2     Running   0          26h
   review-6686859bd7-4pf5d                                           1/1     Running   0          15s
   ```
-
-Note that traces
