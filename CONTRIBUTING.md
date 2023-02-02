@@ -12,10 +12,14 @@ Before contributing, you must sign the [Splunk Contributor License Agreement (CL
 
 When working on the workshop, we advise that you review your changes locally before committing them. Use the `hugo server` command to live preview your changes (as you type) on your local machine.
 
-## Install Hugo
+## Install Go & Hugo
 
 ``` bash
 cd ~
+```
+
+``` bash
+brew install go
 ```
 
 ``` bash
