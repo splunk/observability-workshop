@@ -7,6 +7,7 @@ cascade:
 menu:
   main:
     weight: 3
+    pre: <i class='fa-brands fa-chrome'></i>
 ---
 
 **Splunk Synthetic Monitoring** offers the most comprehensive and in-depth capabilities for uptime and web performance optimization as part of the only complete observability suite, Splunk Observability Cloud.

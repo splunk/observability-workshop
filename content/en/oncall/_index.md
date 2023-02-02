@@ -4,6 +4,10 @@ linkTitle: Splunk OnCall
 weight: 1
 cascade:
   type: docs
+menu:
+  main:
+    weight: 5
+    pre: <i class="fa-regular fa-phone-flip"></i>
 ---
 
 ## Aim
