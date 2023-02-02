@@ -1,7 +1,7 @@
 ---
 title: GDI - Real Time Enrichment Workshop
 linkTitle: Getting started
-weight: 2
+weight: 3
 ---
 
 Please note to begin the following lab, you must have completed the prework:

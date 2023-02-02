@@ -1,7 +1,7 @@
 ---
 title: GDI - Real Time Enrichment Workshop
 linkTitle: Introduction
-weight: 1
+weight: 2
 ---
 
 ## Introduction

@@ -1,7 +1,7 @@
 ---
 title: Code to Kubernetes - Python
 linkTitle: Code to Kubernetes
-weight: 4
+weight: 5
 ---
 
 ## Code to Kubernetes - Python
@@ -81,9 +81,9 @@ python3 review.py
 ```
 
 Verify that the service is working
-- Use curl in your terminal
-- Or hit the URL http://{Your_EC2_IP_address}:5000 and http://{Your_EC2_IP_address}:5000/get_review with a browser
 
+- Use curl in your terminal
+- Or hit the URL `http://{Your_EC2_IP_address}:5000` and `http://{Your_EC2_IP_address}:5000/get_review` with a browser
 
 ``` bash
 curl localhost:5000
@@ -241,10 +241,10 @@ Notes about review.service.yaml:
 - the selector associates this service to pods with the label app with the value being review
 - the review service exposes the review pods as a network service
   - other pods can now ping 'review' and they will hit a review pod.
-  - a pod would get a review if it ran 'curl http://review:5000'
+  - a pod would get a review if it ran `curl http://review:5000`
 - NodePort service
   - the service is accessible to the K8 host by the nodePort, 30000
-  - Another machine that has this can get a review if it ran 'curl http://<k8 host ip>:30000'
+  - Another machine that has this can get a review if it ran `curl http://<k8 host ip>:30000`
 
 Apply the review deployment and service
 
