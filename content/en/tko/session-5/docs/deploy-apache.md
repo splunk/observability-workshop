@@ -190,6 +190,12 @@ Deploy the PHP/Apache application:
 kubectl apply -f ~/workshop/k3s/php-apache.yaml -n apache
 ```
 
+{{% alert title="Workshop Question" color="success" %}}
+What metrics for your Apache instance are being reported in the Apache Navigator?
+
+**Tip:** Click on `Infrastructure/Web Server/Apache web servers' to go to the navigator and look for a server with the same name as your EC2 host.
+{{% /alert %}}
+
 Ensure the deployment has been created:
 
 ``` bash
@@ -197,11 +203,7 @@ kubectl get statefulset -n apache
 ```
 
 {{% alert title="Workshop Question" color="success" %}}
-What metrics for your Apache instance are being reported in the Apache Dashboard?
-{{% /alert %}}
-
-{{% alert title="Workshop Question" color="success" %}}
-Using the Observability Kubernetes Navigator, can you find the status of the `php-apache-0` pod in **Workload Detail**?
+Using the Observability Kubernetes Navigator, can you find the status of the `php-apache`  **Workload**?
 
 **HINT:** Filter by `k8s.cluster.name` to isolate your instance!
 {{% /alert %}}

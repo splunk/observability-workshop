@@ -141,55 +141,57 @@ Now click on the `Find outliers` box *Marked by a yellow Stripe* and make sure t
 ![k8s-Heat-map](../images/set-find-outliers.png)
 
 {{% alert title="Workshop Question" color="success" %}}
-What happens to the Heatmap?.
+What happened to the Heatmap?
 {{% /alert %}}
 
-This view is used when you want to view all or a selection of your workloads (or any  service depending on the navigator used). It will give you a quick insight which of your workloads are behaving differently than they do normally and may need further investigation.
+The `Find outliers` view is very useful when you need to view all or a selection of your workloads (or any service depending on the navigator used) and need  o figure out if something has changed. It will give you a quick insight in items (workloads in our case) that are performing different (both increase or decreased) then usually making it easy to spot a problem.
 
-This is especially useful to detect items that are performing different (both increase or decreased) then usually.
+### 3.2 The Workload Overview pane
 
+The workload over view view give you a quick insight of the status of your deployment, you can see at once if the pods of your deployments are Pending, Running, Failed, Succeeded or in an unknown state.  
 
--------------------------
+![k8s-workload-overview](../images/k8s-workload-overview.png)
 
+* *Running* Means your pods are deployed and in a running state
+* *Pending* means waiting to be deployed
+* *Succeeded* means the pod has been deployed and completed its job and is finished
+* *Failed* means the containers in the pod have run and returned some kind of error
+* *Unknown* means Kubernetes doesn't report any of the know states</br>
+  (this may be during start or stopping pods for example)
 
+To get filter to a specific Workload, simply click on three dots `...` next to the workload name in the *k8s.workload.name* column  and choose filter from the drop down box. This will add the workload as a filter.
 
+### 3.3 Replicaset overview
 
-
-
-
-
-To get more detail on a specific Workload, simply click on its name in the Workload column (we assume you have the 'splunk-otel-collector-agent' workload selected), this will open the side panel, then click the expand button ![expand-sidebar.png](../images/expand-sidebar.png) to navigate to the Workload Detail Tab.
-
-This table provides lots of valuable insights into the state of your workloads, and will show you if any of them are not in their desired state.
-
-The default view has no Grouping applied but experiment with the various Group By options to see how the table changes.  Note how you can also use the various fields in the top toolbar to filter the data displayed, this would be essential in a large environment with hundreds or even thousands of different Workloads.
-
----
+The last chart will give you a birds eye view  on how many pods are deployed by Kubernetes for your deployment. In a replicaset you can indicate the min, max and desired number of pods you wish to run as part the deployment.
 
 {{% alert title="Workshop Question" color="success" %}}
-Find your Cluster in the Observability Kubernetes Navigator, and identify the number of containers that are running at this point.
-
-**Tip:** You may need to switch  the Color By option to containers and refresh the screen a few times until the cluster data is correlated in the background. Also, it is recommended to set the time frame to be `15m` (down from `3h` which is default).
+What is the desired number of pods for the `splunk-otel-collector-k8s-cluster-reciever` replicaset?
 {{% /alert %}}
 
----
+### 3.4. Drilling down into your Workload
 
-### 3.1 Workload Detail tab
+To bring up details of a workload in the Kubernetes Navigator you either need to expand  a namespace  in the list mode or clicking on a  workload square in the  heatmap view.
 
-Here you will get the general info about your Workload, the CPU and Memory the Containers are consuming, the Pods and their Phase, details of any Events, and finally a list of Pods related to this Workload.
+In the heatmap mode, double click on the square for the `splunk-otel-collector-agent` workload in the *splunk* namespace.
 
-As with the other Kubernetes Navigator views clicking on the name of a Pod within the table view will load the Side Panel with details about that resource, allowing you to 'click through' to these resources.  Select any of the listed Pods, then click the expand button ![expand-sidebar.png](../images/expand-sidebar.png) to navigate to the Pod Detail Tab.
+![workload-expand](../images/workload-expand.png)
+
+In the list view you can click on the link that appears when expanding a namespace.
+
+This will bring you to the workload detail page where you get more detail about the health and performance of your workload & Pods Detail.
 
 {{% alert title="Workshop Question" color="success" %}}
-How many containers does the `splunk-otel-collector-agent` Pod contain?
+What are the names of the container(s) in the **CPU resources (cpu units)** chart for the `splunk-otel-collector-agent`?
 {{% /alert %}}
 
-## 4. Pod Detail & Container Details Tabs
+## 4. Pivot Sidebar
 
-The last two Tabs that make up the Kubernetes Navigator are Pod Detail and Container Detail. The Pod Detail view will show you the Pod Properties, CPU, Memory and Network usage along with any events relevant to the Pod.
+Later in the workshop you will deploy a Apache server into you cluster and this will cause the pivot bar to appear.
+As soon as any metric that is displayed in a Navigator is flowing into your observability org  the system will add that service to the pivot bar.
 
-Clicking through to the Container Detail Tab, you should know how to do this by now, but just to play safe, select one of the Containers in the list then click the expand button ![expand-sidebar.png](../images/expand-sidebar.png) to navigate to the Container Detail Tab.  
+The pivot bar will expand and a link to the discovered service will be added.
 
-If you navigated straight to the Container Detail Tab by simply clicking on the Tab, try using the Container ID drop down to select a container, now you will see the benefit of 'clicking through' to get to the desired Container!
+![pivotbar](../images/pivotbar.png)
 
-You can now see the details for the Selected Container, with the Container Properties pane offering lots of detail on its configuration.
+This will allow for easy switching between navigators, teh same applies for your apache server instance it will have a pivot bar to get back to Kubernetes.
