@@ -108,18 +108,18 @@ curl localhost:5000/get_review
 
 To create a container image, you need to create a Dockerfile, run docker build to build the image referencing the Docker file and push it up to a remote repository so it can be pulled by other sources.
 
-- Create a Dockerfile
+- [Create a Dockerfile](https://docs.docker.com/get-started/02_our_app/)
 - Creating a Dockerfile typically requires you to consider the following:
   - Identify an appropriate container image
     - ubuntu vs. python vs. alpine/slim
     - ubuntu - overkill, large image size, wasted resources when running in K8
     - this is a python app, so pick an image that is optimized for it
-    - avoid alpine for python
+    - [avoid alpine for python](https://lih-verma.medium.com/alpine-makes-python-docker-builds-way-too-50-slower-and-images-double-2-larger-61d1d43cbc79)
   - Order matters
     - you're building layers.
     - re-use the layers as much as possible
     - have items that change often towards the end
-  - Other Best practices for writing Dockerfiles
+  - [Other Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
 
 Dockerfile for review
 
@@ -172,7 +172,8 @@ curl -s http://localhost:8000/v2/_catalog
 ## 3. Run REVIEW in Kubernetes
 
 Create K8 deployment yaml file for the REVIEW app
-Reference: Creating a Deployment
+
+Reference: [Creating a Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#creating-a-deployment)
 
 review.deployment.yaml
 
@@ -217,7 +218,9 @@ Notes regarding review.deployment.yaml:
 - regcred provides this deployment with the ability to access your dockerhub credentials which is necessary to pull the container image.
 - The volume definition and volumemount make the yelp dataset visible to the container
 
-Create a K8 service yaml file for the review app. Reference: Creating a service:
+Create a K8 service yaml file for the review app. 
+
+Reference: [Creating a service:](https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service)
 
 review.service.yaml
 

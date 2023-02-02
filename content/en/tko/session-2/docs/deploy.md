@@ -17,7 +17,7 @@ A prospect uses Kafka and MongoDB in their environment. Since there are integrat
 - Google “myservice helm chart”
 - `https://artifacthub.io/` (**Note:** Look for charts from trusted organizations, with high star count and frequent updates)
 
-### 2. Review Apache Kafka packaged by Bitnami
+### 2. Review [Apache Kafka packaged by Bitnami](https://github.com/bitnami/charts/tree/main/bitnami/kafka/#installing-the-chart)
 
 We will deploy the helm chart with these options enabled:
 
@@ -26,7 +26,7 @@ We will deploy the helm chart with these options enabled:
 - `metrics.kafka.enabled=true`
 - `deleteTopicEnable=true`
 
-### 3. Review MongoDB(R) packaged by Bitnami
+### 3. Review [MongoDB(R) packaged by Bitnami](https://github.com/bitnami/charts/tree/master/bitnami/mongodb/#installing-the-chart)
 
 We will deploy the helm chart with these options enabled:
 
@@ -72,9 +72,9 @@ Use information for each Helm chart and Splunk O11y Data Setup to generate value
 {{% /alert %}}
 
 - References:
-  - Apache Kafka packaged by Bitnami
-  - Configure application receivers for databases » Apache Kafka
-  - Kafkametricsreceiver
+  - [Apache Kafka packaged by Bitnami](https://github.com/bitnami/charts/tree/master/bitnami/spark/#installing-the-chart)
+  - [Configure application receivers for databases » Apache Kafka](https://docs.splunk.com/Observability/gdi/kafka/kafka.html)
+  - [Kafkametricsreceiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/kafkametricsreceiver)
 
 #### 4.1 Example kafka.values.yaml
 
@@ -188,9 +188,13 @@ splunk-otel-collector-1638910184-k8s-cluster-receiver-8587qmh9l   1/1     Runnin
 Verify that out of the box dashboards for Kafka, MongoDB and Zookeeper are populated in the Infrastructure Monitor landing page. Drill down into each component to view granular details for each service.
 
 - Infrastructure Monitoring Landing page:
+![IM-landing-page](../images/imlp.png)
 
 - K8 Navigator:
+![k8-navigator](../images/k8nav.png)
 
 - MongoDB Dashboard:
+![mongodb-dash](../images/mongodash.png)
 
 - Kafka Dashboard:
+![kafka-dash](../images/kafkadash.png)
