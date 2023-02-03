@@ -12,7 +12,7 @@ The aim of this module is for you to complete the first step of Team configurati
 
 Navigate to the **Teams** tab on the main toolbar, you should find you that a Team has been created for you as part of the workshop pre-setup and you would have been informed of your Team Name via e-mail.
 
-If you have found your pre-configured Team, **skip Step 2.** and proceed to **[Step 3. Configure Your Team](../team/#3-configure-your-team)**. However, if you cannot find you allocated Team, you will need to create a new one, so proceed with **Step 2. Create Team**
+If you have found your pre-configured Team, **skip Step 2.** and proceed to **[Step 3. Configure Your Team](../team/#3-configure-your-team)**. However, if you cannot find your allocated Team, you will need to create a new one, so proceed with **Step 2. Create Team**
 
 ## 2. Create Team
 
@@ -41,7 +41,7 @@ These users are dummy accounts who will not receive notifications when they are 
 
 Add the users to your team, using either the above list or the alternate one provided to you. The value in the **Shift** column can be ignored for now, but will be required for a later step.
 
-Click the **Invite User**{: .label-button .vo-ui-button} button on the right hand side, then either start typing the usernames (this will filter the list), or copy and paste them into the dialogue box. Once all users are added to the list click the **Add User** button.
+Click {{% labelbutton color="vo-ui-button" %}}**Invite User**{{% /labelbutton %}} button on the right hand side, then either start typing the usernames (this will filter the list), or copy and paste them into the dialogue box. Once all users are added to the list click the **Add User** button.
 
 ![Add Team Members](../../../images/add-team-members.png)
 
