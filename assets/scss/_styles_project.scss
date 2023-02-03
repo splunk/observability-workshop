@@ -215,13 +215,15 @@ body {
 
 .td-max-width-on-larger-screens {
     @include media-breakpoint-up(lg) {
-        max-width: 95%;
+        max-width: 80%;
     }
 }
 
+/*
 .td-content .highlight {
-    max-width: 95%;
+    max-width: 98%;
 }
+*/
 
 .td-content>h1 {
     font-weight: 300;
