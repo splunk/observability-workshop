@@ -42,7 +42,9 @@
           button.type = "button";
           button.innerHTML = svgCopy;
           button.addEventListener("click", () => {
-            clipboard.writeText(codeBlock.innerText).then(
+            textToCopy = codeBlock.innerText.replace(/^\s*\n/gm, "");
+            console.log(textToCopy)
+            clipboard.writeText(textToCopy).then(
               () => {
                 button.blur();
                 button.innerHTML = svgCheck;
