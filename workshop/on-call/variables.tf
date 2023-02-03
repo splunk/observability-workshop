@@ -1,9 +1,9 @@
 variable "access_token" {
-  description = "SignalFx Access Token"
+  description = "Splunk Access Token"
 }
 
 variable "realm" {
-  description = "SignalFx Realm"
+  description = "Splunk Realm"
 }
 
 variable "sfx_prefix" {
@@ -11,7 +11,7 @@ variable "sfx_prefix" {
 }
 
 variable "sfx_vo_id" {
-  description = "SignalFx On-Call Integration ID"
+  description = "Splunk On-Call Integration ID"
 }
 
 variable "routing_key" {
