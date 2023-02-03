@@ -41,7 +41,8 @@ cat ~/workshop/k3s/otel-apache.yaml
 This file contains the configuration for the OpenTelemetry agent to monitor the PHP/Apache deployment.
 
 {{< tabpane >}}
-{{< tab header="~/workshop/k3s/otel-apache.yaml" lang="yaml" >}}
+{{< tab header="~/workshop/k3s/" disabled=true />}}
+{{< tab header="otel-apache.yaml" lang="yaml" >}}
 agent:
   config:
     receivers:
