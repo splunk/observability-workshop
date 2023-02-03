@@ -5,7 +5,7 @@ provider "aws" {
 
 locals {
   common_tags = {
-    Component   = "o11y-for-${var.slug}"
+    Component   = "o11y-for-${lower(var.slug)}"
     Environment = "production"
   }
 }
@@ -158,7 +158,7 @@ resource "aws_instance" "observability-instance" {
   vpc_security_group_ids = [aws_security_group.o11y-ws-sg.id]
   user_data = templatefile("${path.module}/templates/userdata.yaml", merge(local.template_vars,
     {
-      instance_name = "${var.slug}-${count.index + 1}"
+      instance_name = "${lower(var.slug)}-${count.index + 1}"
   }))
 
   root_block_device {
@@ -169,8 +169,8 @@ resource "aws_instance" "observability-instance" {
     local.common_tags,
     {
       #Name = "observability-${count.index + 1}"
-      Instance = "${var.slug}-${format("%02d", count.index + 1)}"
-      Name     = "${var.slug}-${format("%02d", count.index + 1)}"
+      Instance = "${lower(var.slug)}-${format("%02d", count.index + 1)}"
+      Name     = "${lower(var.slug)}-${format("%02d", count.index + 1)}"
     }
   )
 
