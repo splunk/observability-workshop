@@ -95,7 +95,7 @@ markup:
       unsafe: true
       handwrap: false
   highlight:
-    style: catppuccin-latte
+    style: manni
 outputs:
   section:
     - HTML
