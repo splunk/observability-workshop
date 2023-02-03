@@ -93,10 +93,10 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+      handwrap: false
   highlight:
-    style: tango
+    style: catppuccin-latte
 outputs:
   section:
     - HTML
-    #    - print
     - RSS
