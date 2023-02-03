@@ -19,16 +19,16 @@ Then you'll need to select the workshop RUM token and define the application and
 
 Copy the generated code snippet in the wizard or copy and edit the snippet below accordingly:
 
-```html
-    <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous"></script>
-    <script>
-    SplunkRum.init({
-        beaconUrl: "https://rum-ingest.<REALM>.signalfx.com/v1/rum",
-        rumAuth: "<RUM_ACCESS_TOKEN>",
-        app: "<hostname>-petclinic-service",
-        environment: "<hostname>-petclinic-env"
-        });
-    </script>
+``` html
+<script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous"></script>
+<script>
+SplunkRum.init({
+    beaconUrl: "https://rum-ingest.<REALM>.signalfx.com/v1/rum",
+    rumAuth: "<RUM_ACCESS_TOKEN>",
+    app: "<hostname>-petclinic-service",
+    environment: "<hostname>-petclinic-env"
+    });
+</script>
 ```
 
 The Spring PetClinic application uses a single HTML page as the "layout" page, that is reused across all pages of the application. This is the perfect location to insert the Splunk RUM Instrumentation Library as it will be loaded in all pages automatically.
