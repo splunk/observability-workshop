@@ -1,33 +1,33 @@
 ---
 title: Deploying the OpenTelemetry Collector in Kubernetes using a NameSpace
-linkTitle: Prep & Deploy the OTel Collector
+linkTitle: Deploying the OTel Collector
 weight: 1
 ---
 
-## 0. Switching to the new Kubernetes Navigator 2.0 UI
+## 1. New Kubernetes Navigator 2.0 UI
 
-As we are in the process of switched to the new generation of the Kubernetes Navigator, please check if you are already on the new Kubernetes navigator.
+As we are in the process of switching to the new generation of the Kubernetes Navigator, please check if you are already on the new Kubernetes navigator.
 
-When you select `Infrastructure` from the main menu on the left, followed by selecting `Kubernetes`, you should see two services panes for Kubernetes, similar like the ones below:
+When you select **Infrastructure** from the main menu on the left, followed by selecting **Kubernetes**, you should see two services panes for Kubernetes, similar like the ones below:
 
 ![k8s-navi-v-2](../images/k8s-nav2-two.png)
 
-If you taken straight to the Kubernetes Navigator v1 Map view after selecting `Kubernetes`, you need to opt in  to the new Navigator yourself for this workshop by clicking on the big blue ![new-k8-button](../images/new-k8s-button.png). You should now be in the K8s Node view with chart below the cluster map similar like shown below:
+If you taken straight to the Kubernetes Navigator v1 Map view after selecting **Kubernetes**, you need to opt in to the new Navigator yourself for this workshop by clicking on the big blue ![new-k8-button](../images/new-k8s-button.png). You should now be in the K8s Node view with chart below the cluster map similar like shown below:
 
 ![k8s-navi-v-2](../images/new-k8s-view.png)
 
 {{% alert title="Note" color="info" %}}
-If you actually see three services for Kubernetes including one that is named `K8s clusters` you need to turn of Precognition in the Superpowers view.
+If you actually see three services for Kubernetes including one that is named `K8s clusters` you need to turn off Precognition in the Superpowers view.
 To do this, please change the Url in your browser to match the following: [https://app.[REALM].signalfx.com/#/superpowers](https://app.[REALM].signalfx.com/#/superpowers)
 
 Where [REALM] needs to match the Realm we are using for this workshop then remove the Precognition flag like in the example below. This is one of the first options you can set:
 
 ![Set-Precognition](../images/Precognition.png)
 
-Once its unset, you can refresh you page, and reselect Kubernetes from the infrastructure navigator menu.
+Once its unset, you can refresh you page, and reselect Kubernetes from the Infrastructure Navigator menu.
 {{% /alert %}}
 
-## 1. Connect to EC2 instance
+## 2. Connect to EC2 instance
 
 You will be able to connect to the workshop instance by using SSH from your Mac, Linux or Windows device.
 
@@ -37,7 +37,7 @@ To use SSH, open a terminal on your system and type `ssh ubuntu@x.x.x.x` (replac
 Your workshop instance has been pre-configured with the correct `ACCESS_TOKEN` and `REALM` for this workshop. There is no need for you to configure these.
 {{% /alert %}}
 
-## 2. Namespaces in Kubernetes
+## 3. Namespaces in Kubernetes
 
 Most of our customers will make use of some kind of private or public cloud service to run Kubernetes. They often choose to have only a few large Kubernetes clusters as it is easier to manage centrally.
 
@@ -47,7 +47,7 @@ Any number of namespaces are supported within a cluster, each logically separate
 
 Most customers will want to install the Splunk OpenTelemetry Collector in a separate namespace.  This workshop will follow that practice.
 
-## 3. Install Splunk OTel using Helm
+## 4. Install Splunk OTel using Helm
 
 Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository and update.
 
@@ -84,7 +84,7 @@ splunk-otel-collector-chart/splunk-otel-collector \
 {{< /tab >}}
 {{< /tabpane >}}
 
-## 4. Verify Deployment
+## 5. Verify Deployment
 
 You can monitor the progress of the deployment by running `kubectl get pods` and adding `-n splunk` to the command to see the pods in the `splunk` NameSpace which should typically report that the new pods are up and running after about 30 seconds.
 
