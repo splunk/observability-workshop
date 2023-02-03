@@ -124,10 +124,4 @@ As we have two way integration between Splunk Infrastructure Monitoring and Splu
 
 ---
 
-That completes this introduction to Splunk On-Call, but feel free to checkout the more advanced modules which will be published in the coming weeks in the **Optional Modules** section.  These will cover topics such as:
-
-* Reporting
-* Using the API
-* Webhooks
-* Alert Rules Engine
-* Maintenance Mode
+That completes this introduction to Splunk On-Call!
