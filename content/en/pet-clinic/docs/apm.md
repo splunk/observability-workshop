@@ -3,7 +3,7 @@ title: Zero Configuration Java application
 weight: 3
 ---
 
-## Spring PetClinic Application
+## 1. Spring PetClinic Application
 
 First thing we need to setup APM is... well, an application. For this exercise, we will use the Spring Pet Clinic application. This is a very popular sample java application built with Spring framework (Springboot).
 
@@ -67,7 +67,7 @@ Let's go visit our application again to generate some traffic `http://<VM_IP_ADD
 
 **Once your validation is complete you can stop the application by pressing** `Ctrl-c` **.**
 
-## Adding Resource Attributes to Spans
+## 2. Adding Resource Attributes to Spans
 
 Resource attributes can be added to every reported span. For example `version=0.314`. A comma separated list of resource attributes can also be defined e.g. `key1=val1,key2=val2`.
 
