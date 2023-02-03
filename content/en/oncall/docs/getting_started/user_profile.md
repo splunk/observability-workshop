@@ -79,7 +79,7 @@ For more information on Notification Types, see [here](https://help.victorops.co
 
 ## 5. Custom Paging Policies
 
-Custom paging polices enable you to override the primary policy based on the time and day of the week. A good example would be get the system to immediately phone you whenever you get a page during the evening or weekends as this is more likely to get your attention than a push notification.
+Custom paging polices enable you to override the primary policy based on the time and day of the week. A good example would be to get the system to immediately phone you whenever you get a page during the evening or weekends as this is more likely to get your attention than a push notification.
 
 Create a new Custom Policy by clicking **Add a Policy** and configure with the following settings:
 
@@ -113,7 +113,7 @@ Click {{% labelbutton color="vo-ui-button" %}}**Save**{{% /labelbutton %}} to sa
 
 These custom paging policies will be used during the specified times in place of the Primary Policy. However, admins do have the ability to ignore these custom policies, and we will highlight how this is achieved in a later module.
 
-The final option here is the setting for Recovery Notifications. As these are typically low priority simply sending you an email or a push notification are the typical settings used. Your profile is now fully configured using these example configurations.
+The final option here is the setting for Recovery Notifications. These are typically low priority, will default to Push, but can also be email, sms or phone call. Your profile is now fully configured using these example configurations.
 
 Organizations will have different views on how profiles should be configured and will typically issue guidelines for paging policies and times between escalations etc.
 
