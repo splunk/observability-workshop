@@ -40,22 +40,8 @@ cat ~/workshop/k3s/otel-apache.yaml
 
 This file contains the configuration for the OpenTelemetry agent to monitor the PHP/Apache deployment.
 
-{{< tabpane >}}
-{{< tab header="~/workshop/k3s/" disabled=true />}}
-{{< tab header="otel-apache.yaml" lang="yaml" >}}
-agent:
-  config:
-    receivers:
-      receiver_creator:
-        receivers:
-          smartagent/apache:
-            rule: type == "port" && pod.name matches "apache" && port == 80
-            config:
-              type: collectd/apache
-              url: http://php-apache-svc.apache.svc.cluster.local/server-status?auto
+{{< readfile file="/workshop/k3s/otel-apache.yaml" code="true" lang="yaml" >}}
 
-{{< /tab >}}
-{{< /tabpane >}}
 
 ## 3.  Observation Rules in the OpenTelemetry config
 
@@ -68,7 +54,7 @@ In the file above we tell the OpenTelemetry agent to look for Pods that match th
 To use the Apache configuration, you can upgrade the existing Splunk OpenTelemetry Collector Helm chart to use the `otel-apache.yaml` file with the following command:
 
 {{< tabpane >}}
-{{< tab header="Helm Upgrade" lang="text" >}}
+{{< tab header="Helm Upgrade" lang="sh" >}}
 helm upgrade splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
@@ -79,9 +65,6 @@ splunk-otel-collector-chart/splunk-otel-collector \
 --namespace splunk \
 -f ~/workshop/k3s/splunk-defaults.yaml \
 -f ~/workshop/k3s/otel-apache.yaml
-{{< /tab >}}
-{{< tab header="Helm Upgrade Single Line" lang="bash" >}}
-helm upgrade splunk-otel-collector --set="splunkObservability.realm=$REALM" --set="splunkObservability.accessToken=$ACCESS_TOKEN" --set="clusterName=$(hostname)-k3s-cluster" --set="splunkObservability.logsEnabled=true" --set="clusterReceiver.eventsEnabled=true" --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" splunk-otel-collector-chart/splunk-otel-collector --namespace splunk -f ~/workshop/k3s/splunk-defaults.yaml -f ~/workshop/k3s/otel-apache.yaml
 {{< /tab >}}
 {{< /tabpane >}}
 
@@ -140,52 +123,7 @@ cat ~/workshop/k3s/otel-apache.yaml
 
 A stateless application is one that does not care which network it is using, and it does not need permanent storage. Examples of stateless apps may include web servers such as Apache, Nginx, or Tomcat.
 
-{{< tabpane >}}
-{{< tab header="~/workshop/k3s/php-apache.yaml" lang="yaml" >}}
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: php-apache
-spec:
-  updateStrategy:
-    type: RollingUpdate
-  selector:
-    matchLabels:
-      run: php-apache
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        run: php-apache
-    spec:
-      containers:
-      - name: php-apache
-        image: ghcr.io/splunk/php-apache:latest
-        ports:
-        - containerPort: 80
-        resources:
-          limits:
-            cpu: "8"
-            memory: "9Mi"
-          requests:
-            cpu: "6"
-            memory: "4Mi"
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: php-apache-svc
-  labels:
-    run: php-apache
-spec:
-  ports:
-  - port: 80
-  selector:
-    run: php-apache
-
-{{< /tab >}}
-{{< /tabpane >}}
+{{< readfile file="/workshop/k3s/php-apache.yaml" code="true" lang="yaml" >}}
 
 ## 6. Deploy PHP/Apache
 

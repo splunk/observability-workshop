@@ -10,35 +10,7 @@ Now to see how the autoscaler reacts to increased load. To do this, you'll start
 
 Inspect the YAML file `~/workshop/k3s/loadgen.yaml` and validate the contents. This file contains the configuration for the load generator and will create a new StatefulSet with a single replica of the load generator image.
 
-{{< tabpane >}}
-{{< tab header="~/workshop/k3s/loadgen.yaml" lang="yaml" >}}
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: loadgen
-  labels:
-    app: loadgen
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: loadgen
-  template:
-    metadata:
-      name: loadgen
-      labels:
-        app: loadgen
-    spec:
-      containers:
-      - name: infinite-calls
-        image: busybox
-        command:
-        - /bin/sh
-        - -c
-        - "while true; do wget -q -O- http://php-apache-svc.apache.svc.cluster.local; done"
-
-{{< /tab >}}
-{{< /tabpane >}}
+{{< readfile file="/workshop/k3s/loadgen.yaml" code="true" lang="yaml" >}}
 
 ## 2. Create a new namespace
 
