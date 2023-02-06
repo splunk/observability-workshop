@@ -5,6 +5,7 @@ metadata:
   labels:
     app: loadgen
 spec:
+  serviceName: "loadgen"
   replicas: 1
   selector:
     matchLabels:
