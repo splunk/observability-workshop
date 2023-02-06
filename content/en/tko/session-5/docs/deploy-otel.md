@@ -12,19 +12,19 @@ When you select **Infrastructure** from the main menu on the left, followed by s
 
 ![k8s-navi-v-2](../images/k8s-nav2-two.png)
 
-If you taken straight to the Kubernetes Navigator v1 Map view after selecting **Kubernetes**, you need to opt in to the new Navigator yourself for this workshop by clicking on the big blue ![new-k8-button](../images/new-k8s-button.png). You should now be in the K8s Node view with chart below the cluster map similar like shown below:
+If you are taken straight to the Kubernetes Navigator v1 Map view after selecting **Kubernetes**, you need to opt-in to the new Navigator yourself for this workshop by clicking on the big blue ![new-k8-button](../images/new-k8s-button.png). You should now be in the K8s Node view with chart below the cluster map similar like shown below:
 
 ![k8s-navi-v-2](../images/new-k8s-view.png)
 
 {{% alert title="Note" color="info" %}}
-If you actually see three services for Kubernetes including one that is named `K8s clusters` you need to turn off Precognition in the Superpowers view.
+If you actually see three services for Kubernetes including one that is named `K8s clusters`, you need to turn off Precognition in the Superpowers view.
 To do this, please change the Url in your browser to match the following: [https://app.[REALM].signalfx.com/#/superpowers](https://app.[REALM].signalfx.com/#/superpowers)
 
-Where [REALM] needs to match the Realm we are using for this workshop then remove the Precognition flag like in the example below. This is one of the first options you can set:
+where [REALM] needs to match the Realm we are using for this workshop then remove the Precognition flag like in the example below. This is one of the first options you can set:
 
 ![Set-Precognition](../images/Precognition.png)
 
-Once its unset, you can refresh you page, and reselect Kubernetes from the Infrastructure Navigator menu.
+Once its unset, you can refresh your page and reselect Kubernetes from the Infrastructure Navigator menu.
 {{% /alert %}}
 
 ## 2. Connect to EC2 instance
