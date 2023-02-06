@@ -42,7 +42,6 @@ This file contains the configuration for the OpenTelemetry agent to monitor the 
 
 {{< readfile file="/workshop/k3s/otel-apache.yaml" code="true" lang="yaml" >}}
 
-
 ## 3.  Observation Rules in the OpenTelemetry config
 
 The above file contains an observation rule for Apache using the OTel `receiver_creator`. This receiver can instantiate other receivers at runtime based on whether observed endpoints match a configured rule.
