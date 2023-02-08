@@ -41,3 +41,4 @@ params:
   collapsibleMenu: true
   themeVariant: ["splunk"]
   disableNextPrev: false
+  disableInlineCopyToClipBoard: true
