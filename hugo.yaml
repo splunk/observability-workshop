@@ -20,11 +20,11 @@ languages:
     description: Splunk Observability Workshops
     languageName: English
     weight: 1
-  ja:
-    title: 'Splunk Observability Cloud Workshops'
-    description: Splunk Observability ワークショップ
-    languageName: 日本語
-    contentDir: content/ja
+#  ja:
+#    title: 'Splunk Observability Cloud Workshops'
+#    description: Splunk Observability ワークショップ
+#    contentDir: content/ja
+#    languageName: 日本語
 markup:
   goldmark:
     renderer:
@@ -39,6 +39,6 @@ params:
   showVisitedLinks: true
   disableSearch: false
   collapsibleMenu: true
-  themeVariant: ["splunk"]
+  themeVariant: ["splunk-dark", "splunk-light"]
   disableNextPrev: false
   disableInlineCopyToClipBoard: true
