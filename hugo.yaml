@@ -39,5 +39,5 @@ params:
   showVisitedLinks: true
   disableSearch: false
   collapsibleMenu: true
-  themeVariant: ["relearn-light", "relearn-dark"]
+  themeVariant: ["splunk"]
   disableNextPrev: false
