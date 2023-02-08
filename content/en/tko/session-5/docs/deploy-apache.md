@@ -71,7 +71,7 @@ splunk-otel-collector-chart/splunk-otel-collector \
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% alert title="Note" color="info" %}}
+{{% notice title="NOTE" style="info" %}}
 The **REVISION** number of the deployment has changed, which is a helpful way to keep track of your changes.
 
 ``` text
@@ -84,7 +84,7 @@ REVISION: 2
 TEST SUITE: None
 ```
 
-{{% /alert %}}
+{{% /notice %}}
 
 ## 4. Kubernetes ConfigMaps
 
@@ -98,9 +98,9 @@ The OpenTelemetry collector/agent uses ConfigMaps to store the configuration of 
 kubectl get cm -n splunk
 ```
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% notice title="Workshop Question" style="tip" icon="question" %}}
 How many ConfigMaps are used by the collector?
-{{% /alert %}}
+{{% /notice %}}
 
 When you have list of ConfigMaps from the namespace, select the one for the `otel-agent` and view it with the following command:
 
@@ -110,9 +110,9 @@ When you have list of ConfigMaps from the namespace, select the one for the `ote
 kubectl get cm splunk-otel-collector-otel-agent -n splunk -o yaml
 ```
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% notice title="Workshop Question" style="tip" icon="question" %}}
 Is the content of `otel-apache.yaml` saved in the ConfigMap for the collector agent?
-{{% /alert %}}
+{{% /notice %}}
 
 ## 5. Review PHP/Apache deployment YAML
 
@@ -126,7 +126,7 @@ cat ~/workshop/k3s/otel-apache.yaml
 
 A stateless application is one that does not care which network it is using, and it does not need permanent storage. Examples of stateless apps may include web servers such as Apache, Nginx, or Tomcat.
 
-{{< include file="/workshop/k3s/php-apache.yaml" code="true" lang="yaml" >}}
+{{< include file="/workshop/k3s/php-apache.yaml" >}}
 
 ## 6. Deploy PHP/Apache
 
@@ -144,11 +144,11 @@ Deploy the PHP/Apache application:
 kubectl apply -f ~/workshop/k3s/php-apache.yaml -n apache
 ```
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% notice title="Workshop Question" style="tip" icon="question" %}}
 What metrics for your Apache instance are being reported in the Apache Navigator?
 
-**Tip:** Click on `Infrastructure/Web Server/Apache web servers' to go to the navigator and look for a server with the same name as your EC2 host.
-{{% /alert %}}
+**Tip:** Click on **Infrastructure → Web Server → Apache web servers** to go to the Navigator and look for a server with the same name as your EC2 host.
+{{% /notice %}}
 
 Ensure the deployment has been created:
 
@@ -156,14 +156,14 @@ Ensure the deployment has been created:
 kubectl get statefulset -n apache
 ```
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% notice title="Workshop Question" style="tip" icon="question" %}}
 Using the Observability Kubernetes Navigator, can you find the status of the `php-apache`  **Workload**?
 
 **HINT:** Filter by `k8s.cluster.name` to isolate your instance!
-{{% /alert %}}
+{{% /notice %}}
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% notice title="Workshop Question" style="tip" icon="question" %}}
 Where else has the issue with `php-apache` been logged? What is being reported?
 
 **HINT:** Adjust your Table settings to use only `k8s.cluster.name`, `object.involvedObject.name` & `object.message`. Make sure you unselect `_raw`!
-{{% /alert %}}
+{{% /notice %}}

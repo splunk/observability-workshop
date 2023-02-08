@@ -31,11 +31,11 @@ If that fails, or if there is not enough space when you deploy your application,
 
 ## 2. Fix PHP/Apache Deployment
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% notice title="Workshop Question" style="tip" icon="question" %}}
 
 Before we start, let's check the current status of the PHP/Apache deployment. Under **Alerts & Detectors** which detector has fired? Where else can you find this information?
 
-{{% /alert %}}
+{{% /notice %}}
 
 To fix the PHP/Apache StatefulSet, edit `~/workshop/k3s/php-apache.yaml` using the following commands to reduce the CPU resources:
 

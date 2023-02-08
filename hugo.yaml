@@ -7,13 +7,6 @@ enableMissingTranslationPlaceholders: true
 enableRobotsTXT: true
 theme:
   - github.com/McShelby/hugo-theme-relearn 
-enableGitInfo: true
-permalinks:
-  blog: '/:section/:year/:month/:day/:slug/'
-imaging:
-  resampleFilter: CatmullRom
-  quality: 75
-  anchor: smart
 languages:
   en:
     title: 'Splunk Observability Cloud Workshops'
@@ -29,6 +22,8 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+  highlight:
+    style: tango
 outputs:
   home:
     - HTML
@@ -39,6 +34,6 @@ params:
   showVisitedLinks: true
   disableSearch: false
   collapsibleMenu: true
-  themeVariant: ["splunk-dark", "splunk-light"]
+  themeVariant: ["splunk-light", "splunk-dark"]
   disableNextPrev: false
   disableInlineCopyToClipBoard: true

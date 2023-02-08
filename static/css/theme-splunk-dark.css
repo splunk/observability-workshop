@@ -3,32 +3,34 @@
    - remove `markup.highlight.noClasses` from your config.toml
    - set `markup.highlight.style` to a predefined style name in your config.toml
    - remove the following `@import` of the self-defined chroma stylesheet */
-@import "chroma-relearn-dark.css";
 
 :root {
     --PRIMARY-color: #e20082;
     /* brand primary color */
-    --SECONDARY-color: #6c8ce3;
+    --SECONDARY-color: #e20082;
     /* brand secondary color */
     --ACCENT-color: #ff44ff;
     /* brand accent color, used for search highlights */
 
     --MAIN-TEXT-color: #e0e0e0;
     /* text color of content and h1 titles */
-    --MAIN-LINK-HOVER-color: #93b0ff;
+    --MAIN-LINK-HOVER-color: #e20082;
     /* hovered link color of content */
     --MAIN-BG-color: #202020;
     /* background color of content */
     --MAIN-TITLES-TEXT-color: #ffffff;
     /* text color of h2-h6 titles and transparent box titles */
+    --MAIN-LINK-color: #e20082;
 
     /* adjusted to relearn-dark chroma style */
-    --CODE-BLOCK-color: #f8f8f8;
+    --CODE-BLOCK-color: #000000;
     /* fallback text color of block code; should be adjusted to your selected chroma style */
-    --CODE-BLOCK-BG-color: #2b2b2b;
+    --CODE-BLOCK-BG-color: #730606;
     /* fallback background color of block code; should be adjusted to your selected chroma style */
+    --CODE-BLOCK-BORDER-color: #ffffff;
+    /* color of block code border */
 
-    --CODE-INLINE-color: #82e550;
+    --CODE-INLINE-color: #e20082;
     /* text color of inline code */
     --CODE-INLINE-BG-color: #2d2d2d;
     /* background color of inline code */

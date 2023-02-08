@@ -3,7 +3,7 @@
    - remove `markup.highlight.noClasses` from your config.toml
    - set `markup.highlight.style` to a predefined style name in your config.toml
    - remove the following `@import` of the self-defined chroma stylesheet */
-@import "chroma-relearn-light.css";
+@import "chroma-splunk-light.css";
 
 :root {
     --MAIN-TEXT-color: #323232;
@@ -19,12 +19,12 @@
     --MAIN-BG-color: #ffffff;
     /* color of text by default */
 
-    /* adjusted to base16-snazzy chroma style */
-    --CODE-BLOCK-color: #e2e4e5;
-    /* fallback color for code text */
-    --CODE-BLOCK-BG-color: #282a36;
+    /* adjusted to relearn-dark chroma style */
+    --CODE-BLOCK-color: #000000;
+    /* fallback text color of block code; should be adjusted to your selected chroma style */
+    --CODE-BLOCK-BG-color: #2b2b2b;
     /* fallback color for code background */
-    --CODE-BLOCK-BORDER-color: #282a36;
+    --CODE-BLOCK-BORDER-color: #ffffff;
     /* color of block code border */
 
     --CODE-INLINE-color: #5e5e5e;
