@@ -3,7 +3,6 @@
    - remove `markup.highlight.noClasses` from your config.toml
    - set `markup.highlight.style` to a predefined style name in your config.toml
    - remove the following `@import` of the self-defined chroma stylesheet */
-   @import "chroma-learn.css";
 
    :root {
        --MAIN-TEXT-color: #323232; /* Color of text by default */
@@ -19,14 +18,14 @@
        --CODE-BLOCK-BORDER-color: #282a36; /* color of block code border */
    
        --CODE-INLINE-color: #5e5e5e; /* color for inline code text */
-       --CODE-INLINE-BG-color: #fffae9; /* color for inline code background */
+       --CODE-INLINE-BG-color: #e1e1e1; /* color for inline code background */
        --CODE-INLINE-BORDER-color: #f8e8c8; /* color of inline code border */
    
-       --MENU-HOME-LINK-color: #382b2b; /* Color of the home button text */
-       --MENU-HOME-LINK-HOVER-color: #000000; /* Color of the hovered home button text */
+       --MENU-HOME-LINK-color: #ffffff; /* Color of the home button text */
+       --MENU-HOME-LINK-HOVER-color: #e20082; /* Color of the hovered home button text */
    
        --MENU-HEADER-BG-color: #e20082; /* Background color of menu header */
-       --MENU-HEADER-BORDER-color: #e20082; /*Color of menu header border */
+       --MENU-HEADER-BORDER-color: #000000; /*Color of menu header border */
    
        --MENU-SEARCH-color: #ffffff; /* Color of search field text */
        --MENU-SEARCH-BG-color: #e20082; /* Search field background color (by default borders + icons) */
