@@ -40,7 +40,18 @@ cat ~/workshop/k3s/otel-apache.yaml
 
 This file contains the configuration for the OpenTelemetry agent to monitor the PHP/Apache deployment.
 
-{{< include file="/workshop/k3s/otel-apache.yaml" code="true" lang="yaml" >}}
+```yaml
+agent:
+  config:
+    receivers:
+      receiver_creator:
+        receivers:
+          smartagent/apache:
+            rule: type == "port" && pod.name matches "apache" && port == 80
+            config:
+              type: collectd/apache
+              url: http://php-apache-svc.apache.svc.cluster.local/server-status?auto
+```
 
 ## 3.  Observation Rules in the OpenTelemetry config
 
@@ -119,14 +130,57 @@ Is the content of `otel-apache.yaml` saved in the ConfigMap for the collector ag
 Inspect the YAML file `~/workshop/k3s/php-apache.yaml` and validate the contents using the following command:
 
 ``` bash
-cat ~/workshop/k3s/otel-apache.yaml
+cat ~/workshop/k3s/php-apache.yaml
 ```
 
  This file contains the configuration for the PHP/Apache deployment and will create a new StatefulSet with a single replica of the PHP/Apache image.
 
 A stateless application is one that does not care which network it is using, and it does not need permanent storage. Examples of stateless apps may include web servers such as Apache, Nginx, or Tomcat.
 
-{{< include file="/workshop/k3s/php-apache.yaml" >}}
+```yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: php-apache
+spec:
+  updateStrategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      run: php-apache
+  serviceName: "php-apache-svc"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: php-apache
+    spec:
+      containers:
+      - name: php-apache
+        image: ghcr.io/splunk/php-apache:latest
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: "8"
+            memory: "9Mi"
+          requests:
+            cpu: "6"
+            memory: "4Mi"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: php-apache-svc
+  labels:
+    run: php-apache
+spec:
+  ports:
+  - port: 80
+  selector:
+    run: php-apache
+```
 
 ## 6. Deploy PHP/Apache
 
