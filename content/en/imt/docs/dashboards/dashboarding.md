@@ -29,8 +29,8 @@ This includes (but not limited to):
 
 Below is an example of above Markdown options you can use in your note.
 
-{{< tabpane >}}
-{{< tab header="Sample Markdown text" lang="markdown" >}}
+{{< tabs >}}
+{{< tab name="Sample Markdown text" lang="markdown" >}}
 
 # h1 Big headings
 
@@ -71,7 +71,7 @@ Ordered
 
 [link to dashboard with title](https://app.eu0.signalfx.com/#/dashboard/EaJHrbPAEAA?groupId=EaJHgrsAIAA&configId=EaJHsHzAEAA "Link to the Sample chart Dashboard!")
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 Copy the above by using the copy button and paste it in the *Edit* box.
 the preview will show you how it will look.

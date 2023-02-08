@@ -1,4 +1,6 @@
 github.com/FortAwesome/Font-Awesome v0.0.0-20220831210243-d3a7818c253f/go.mod h1:IUgezN/MFpCDIlFezw3L8j83oeiIuYoj28Miwr/KUYo=
+github.com/McShelby/hugo-theme-relearn v0.0.0-20230207170935-b40a766395ee h1:JiMs1U4eSVO+1mYtyDw54EKYQyldS8SVC6ly0jjCQVM=
+github.com/McShelby/hugo-theme-relearn v0.0.0-20230207170935-b40a766395ee/go.mod h1:mKQQdxZNIlLvAj8X3tMq+RzntIJSr9z7XdzuMomt0IM=
 github.com/google/docsy v0.6.0 h1:43bVF18t2JihAamelQjjGzx1vO2ljCilVrBgetCA8oI=
 github.com/google/docsy v0.6.0/go.mod h1:VKKLqD8PQ7AglJc98yBorATfW7GrNVsn0kGXVYF6G+M=
 github.com/google/docsy/dependencies v0.6.0/go.mod h1:EDGc2znMbGUw0RW5kWwy2oGgLt0iVXBmoq4UOqstuNE=

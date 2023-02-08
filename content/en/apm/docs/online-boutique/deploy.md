@@ -20,13 +20,13 @@ otherwise if you have received a fresh instance, please run the first two (2) se
 
 To deploy the Online Boutique application into K3s, run the apm-config script, then apply the deployment:
 
-{{< tabpane >}}
-{{< tab header="Deploy Online Boutique" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Deploy Online Boutique" lang="sh" >}}
 cd ~/workshop/apm
 ./apm-config.sh
 kubectl apply -f deployment.yaml
 {{< /tab >}}
-{{< tab header="Deployment Output" lang= "text" >}}
+{{< tab name="Deployment Output" lang= "text" >}}
 APM Only Deployment
 deployment.apps/recommendationservice created
 service/recommendationservice created
@@ -55,7 +55,7 @@ deployment.apps/emailservice created
 service/emailservice created
 deployment.apps/rum-loadgen-deployment created
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 {{% alert title="In case of a message about a VARIABLE being unset" color="warning" %}}
 Please undeploy the APM environment first by running **kubectl delete -f deployment.yaml**</br>
@@ -64,11 +64,11 @@ Then export the variable as described in the guide/message, followed by rerunnin
 
 To ensure the Online Boutique application is running:
 
-{{< tabpane >}}
-{{< tab header="Get Pods" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Get Pods" lang="sh" >}}
 kubectl get pods
 {{< /tab >}}
-{{< tab header="Get Pods Output" lang= "text" >}}
+{{< tab name="Get Pods Output" lang= "text" >}}
 NAME                                                       READY  STATUS  RESTARTS      AGE
 splunk-otel-collector-k8s-cluster-receiver-849cf595bf-l7mnq 1/1   Running   0           31m
 splunk-otel-collector-agent-pxrgp                           2/2   Running   0           31m
@@ -88,7 +88,7 @@ cartservice-7b58c88c45-xvxhq                                1/1   Running   0   
 loadgenerator-6bdc7b4857-9kxjd                              1/1   Running   2 (49s ago)  1m
 adservice-7b68d5b969-89ft2                                  1/1   Running   0            1m
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 {{% alert title="Info" color="info" %}}
 Usually it should only take around 1min 30secs for the pods to transition into a Running state.

@@ -31,25 +31,25 @@ Kubernetes が起動したら、Splunk の UI から Access Token[^1] を取得�
 
 環境変数 `ACCESS_TOKEN` と `REALM` を作成して、進行中の Helm のインストールコマンドで使用します。例えば、Realm が `us1` の場合は、`export REALM=us1` と入力し、`eu0` の場合は、`export REALM=eu0` と入力します。
 
-{{< tabpane >}}
-{{< tab header="Export ACCESS TOKEN" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Export ACCESS TOKEN" lang="sh" >}}
 export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
-{{< tabpane >}}
-{{< tab header="Export REALM" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Export REALM" lang="sh" >}}
 export REALM="<replace_with_REALM>"
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 Splunk Helm チャートを使って OpenTelemetry Collector をインストールします。まず、Splunk Helm chart のリポジトリを Helm に追加してアップデートします。
 
-{{< tabpane >}}
-{{< tab header="Helm Repo Add" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Helm Repo Add" lang="sh" >}}
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update
 {{< /tab >}}
-{{< tab header="Helm Repo Add Output" lang="text" >}}
+{{< tab name="Helm Repo Add Output" lang="text" >}}
 Using ACCESS_TOKEN={REDACTED}
 Using REALM=eu0
 "splunk-otel-collector-chart" has been added to your repositories
@@ -59,12 +59,12 @@ Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "splunk-otel-collector-chart" chart repository
 Update Complete. ⎈Happy Helming!⎈
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 以下のコマンドでOpenTelemetry Collector Helmチャートをインストールします。これは **変更しないでください**。
 
-{{< tabpane >}}
-{{< tab header="Helm Install" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Helm Install" lang="sh" >}}
 helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
@@ -75,7 +75,7 @@ helm install splunk-otel-collector \
 splunk-otel-collector-chart/splunk-otel-collector \
 -f ~/workshop/k3s/otel-collector.yaml
 {{< /tab >}}
-{{< tab header="Helm Install Output" lang="text" >}}
+{{< tab name="Helm Install Output" lang="text" >}}
 Using ACCESS_TOKEN={REDACTED}
 Using REALM=eu0
 NAME: splunk-otel-collector
@@ -85,32 +85,32 @@ STATUS: deployed
 REVISION: 1
 TEST SUITE: None
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 約30秒程度待ってから `kubectl get pods` を実行すると、新しいポッドが稼働していることが報告され、デプロイメントの進捗を監視することができます。
 
 続行する前に、ステータスがRunningと報告されていることを確認してください。
 
-{{< tabpane >}}
-{{< tab header="Kubectl Get Pods" lang="bash" >}}
+{{< tabs >}}
+{{< tab name="Kubectl Get Pods" lang="bash" >}}
 kubectl get pods
 {{< /tab >}}
-{{< tab header="Kubectl Get Pods Output" lang="text" >}}
+{{< tab name="Kubectl Get Pods Output" lang="text" >}}
 NAME                                                          READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-agent-2sk6k                             0/1     Running   0          10s
 splunk-otel-collector-k8s-cluster-receiver-6956d4446f-gwnd7   0/1     Running   0          10s
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 OpenTelemetry Collector podのログを確認して、エラーがないことを確認します。出力は、以下の出力例にあるログに似ているはずです。
 
 ログを確認するには、`helm` のインストールで設定したラベルを使用してください（終了するには **ctrl+c** を押します）。もしくは、インストールされている `k9s` ターミナル UI を使うとボーナスポイントがもらえます！
 
-{{< tabpane >}}
-{{< tab header="Kubectl Logs" lang="bash" >}}
+{{< tabs >}}
+{{< tab name="Kubectl Logs" lang="bash" >}}
 kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 {{< /tab >}}
-{{< tab header="Kubectl Logs Output" lang="text" >}}
+{{< tab name="Kubectl Logs Output" lang="text" >}}
 2021-03-21T16:11:10.900Z        INFO    service/service.go:364  Starting receivers...
 2021-03-21T16:11:10.900Z        INFO    builder/receivers_builder.go:70 Receiver is starting... {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
 2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:75 Receiver started.       {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
@@ -122,7 +122,7 @@ kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 2021-03-21T16:11:11.009Z        INFO    k8sclusterreceiver@v0.21.0/receiver.go:59       Starting shared informers and wait for initial cache sync.      {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
 2021-03-21T16:11:11.281Z        INFO    k8sclusterreceiver@v0.21.0/receiver.go:75       Completed syncing shared informer caches.       {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 {{% alert title="インストールに失敗した場合に削除する" color="info" %}}
 OpenTelemetry Collectorのインストールに失敗した場合は、次のようにしてインストールを削除することで、最初からやり直すことができます。
@@ -141,11 +141,11 @@ Splunk の UI で左下の **>>** を開いて **Infrastructure** をクリッ�
 
 クラスタが検出され、レポートされていることを確認するには、自分のクラスタを探します（ワークショップでは、他の多くのクラスタが表示されます）。クラスタ名を見つけるには、以下のコマンドを実行し、出力をクリップボードにコピーしてください。
 
-{{< tabpane >}}
-{{< tab header="Echo Cluster Name" lang="bash" >}}
+{{< tabs >}}
+{{< tab name="Echo Cluster Name" lang="bash" >}}
 echo $(hostname)-k3s-cluster
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 次に、UIで、Splunkロゴのすぐ下にある「Cluster: - 」メニューをクリックし、先程コピーしたクラスタ名を検索ボックスに貼り付け、チェックボックスをクリックしてクラスタを選択し、最後にメニューのその他の部分をクリックしてフィルタを適用します。
 

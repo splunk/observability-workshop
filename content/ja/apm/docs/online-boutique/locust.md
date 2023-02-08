@@ -26,14 +26,14 @@ Locust は、EC2インスタンスのIPアドレスの82番ポートで利用で
 
 ホスト名を調べるには、AWS/EC2インスタンス上で以下のコマンドを実行します:
 
-{{< tabpane >}}
-{{< tab header="Echo Hostname" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Echo Hostname" lang="sh" >}}
 echo $(hostname)-apm-env
 {{< /tab >}}
-{{< tab header="Output Example" lang= "text" >}}
+{{< tab name="Output Example" lang= "text" >}}
 bdzx-apm-env
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 前のステップで見つけた Environment を選択し、「frontend」サービスを選択し、時間を「Past 15 minutes」に設定します。
 
@@ -84,8 +84,8 @@ Open Telemetery Collector がデプロイされると、プラットフォーム
 
 また、シェルプロンプトから、テキストベースのブラウザを実行することもできます。
 
-{{< tabpane >}}
-{{< tab header="Lynx Command" lang="text" >}}
+{{< tabs >}}
+{{< tab name="Lynx Command" lang="text" >}}
 lynx http://localhost:55679/debug/tracez
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}

@@ -33,24 +33,24 @@ APMワークショップでサービスをインストールしました。こ�
 
 進行中のシェルスクリプトで環境変数 `RUM_TOKEN` を作成し、デプロイメントをパーソナライズします。
 
-{{< tabpane >}}
-{{< tab header="Export Variables" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Export Variables" lang="sh" >}}
 export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 ## 3. RUMを組み込んだOnline Boutiqueのデプロイ
 
 EC2インスタンスのkubernetes（K3s）にOnline Boutiqueのアプリケーションをデプロイするには、元のデプロイメントを削除し、RUM用のapm configスクリプトを実行し、RUMのデプロイメントを適用します。
 
-{{< tabpane >}}
-{{< tab header="Deploy Online Boutique with RUM" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Deploy Online Boutique with RUM" lang="sh" >}}
 cd ~/workshop/apm
 kubectl delete -f deployment.yaml
 ./apm-config.sh -r
 kubectl apply -f deployment.yaml
 {{< /tab >}}
-{{< tab header="Partial Deployment Output" lang= "text" >}}
+{{< tab name="Partial Deployment Output" lang= "text" >}}
 ......
 Adding RUM_TOKEN to deployment
 deployment.apps/recommendationservice created
@@ -80,7 +80,7 @@ deployment.apps/emailservice created
 service/emailservice created
 deployment.apps/rum-loadgen-deployment created
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 {{% alert title="変数未セットに関するメッセージが表示された場合" color="warning" %}}
 **kubectl delete -f deployment.yaml** コマンドを実行しAPM環境のデプロイ削除します。

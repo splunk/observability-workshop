@@ -16,7 +16,7 @@ cat ~/workshop/k3s/loadgen.yaml
 
 This file contains the configuration for the load generator and will create a new StatefulSet with a single replica of the load generator image.
 
-{{< readfile file="/workshop/k3s/loadgen.yaml" code="true" lang="yaml" >}}
+{{< include file="/workshop/k3s/loadgen.yaml" code="true" lang="yaml" >}}
 
 ## 2. Create a new namespace
 

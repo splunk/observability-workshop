@@ -1,0 +1,43 @@
+baseURL: https://splunk.github.io/
+title: Splunk Observability Cloud Workshops
+contentDir: content/en
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: false
+enableMissingTranslationPlaceholders: true
+enableRobotsTXT: true
+theme:
+  - github.com/McShelby/hugo-theme-relearn 
+enableGitInfo: true
+permalinks:
+  blog: '/:section/:year/:month/:day/:slug/'
+imaging:
+  resampleFilter: CatmullRom
+  quality: 75
+  anchor: smart
+languages:
+  en:
+    title: 'Splunk Observability Cloud Workshops'
+    description: Splunk Observability Workshops
+    languageName: English
+    weight: 1
+#  ja:
+#    title: 'Splunk Observability Cloud Workshops'
+#    description: Splunk Observability ワークショップ
+#    languageName: 日本語
+#    contentDir: content/ja
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+outputs:
+  home:
+    - HTML
+    - RSS
+    - SEARCH
+    - SEARCHPAGE
+params:
+  showVisitedLinks: true
+  disableSearch: false
+  collapsibleMenu: true
+  themeVariant: ["relearn-light"]
+  disableNextPrev: false

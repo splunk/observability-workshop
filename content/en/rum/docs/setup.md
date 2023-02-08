@@ -29,23 +29,23 @@ We have created a RUM Token specifically for this workshop with the appropriate 
 
 Create the `RUM_TOKEN` environment variable to use in the proceeding shell script to personalize your deployment.
 
-{{< tabpane >}}
-{{< tab header="Export Variables" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Export Variables" lang="sh" >}}
 export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 ## 2. Deploy Online Boutique
 
 To deploy the Online Boutique application into K3s, run the apm config script, then apply the deployment:
 
-{{< tabpane >}}
-{{< tab header="Deploy Online Boutique" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Deploy Online Boutique" lang="sh" >}}
 cd ~/workshop/apm
 ./apm-config.sh -r
 kubectl apply -f deployment.yaml
 {{< /tab >}}
-{{< tab header="Deployment Output" lang= "text" >}}
+{{< tab name="Deployment Output" lang= "text" >}}
 deployment.apps/checkoutservice created
 service/checkoutservice created
 deployment.apps/redis-cart created
@@ -72,7 +72,7 @@ service/shippingservice created
 deployment.apps/currencyservice created
 service/currencyservice created
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 {{% alert title="In case of a message about a VARIABLE being unset" color="warning" %}}
 Please undeploy the APM environment by running **kubectl delete -f deployment.yaml**</br>

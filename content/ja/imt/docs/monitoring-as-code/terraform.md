@@ -22,20 +22,20 @@ Splunk Terraform Providerの完全なドキュメントは[こちら](https://re
 
 AWS/EC2 インスタンスにログインして、`o11y-cloud-jumpstart` ディレクトリに移動します
 
-{{< tabpane >}}
-{{< tab header="Change directory" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Change directory" lang="sh" >}}
 cd observability-content-contrib/integration-examples/terraform-jumpstart
 {{</tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 必要な環境変数は、[Helmによるインストール](../../gdi/k3s/#2-helm%E3%81%AB%E3%82%88%E3%82%8B%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB) ですでに設定されているはずです。そうでない場合は、以下の Terraform のステップで使用するために、以下の環境変数を作成してください。
 
-{{< tabpane >}}
-{{< tab header="Environment Variables" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Environment Variables" lang="sh" >}}
 export ACCESS_TOKEN=<replace_with_O11y-Workshop-ACCESS_token>
 export REALM=<replace_with_splunk_realm>
 {{</tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 Terraform を初期化し、Splunk Terraform Provider を最新版にアップグレードします。
 
@@ -43,11 +43,11 @@ Terraform を初期化し、Splunk Terraform Provider を最新版にアップ�
 Splunk Terraform Provider の新バージョンがリリースされるたびに、以下のコマンドを実行する必要があります。リリース情報は [GitHub](https://github.com/splunk-terraform/terraform-provider-signalfx/releases) で確認できます。
 {{% /alert %}}
 
-{{< tabpane >}}
-{{< tab header="Initialise Terraform" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Initialise Terraform" lang="sh" >}}
 terraform init -upgrade
 {{</tab >}}
-{{< tab header="Initialise Output" lang="text" >}}
+{{< tab name="Initialise Output" lang="text" >}}
     Upgrading modules...
     - aws in modules/aws
     - azure in modules/azure
@@ -87,7 +87,7 @@ terraform init -upgrade
     rerun this command to reinitialize your working directory. If you forget, other
     commands will detect it and remind you to do so if necessary.
 {{</tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 ## 2. プランの作成
 
@@ -99,14 +99,14 @@ terraform init -upgrade
 
 plan コマンドだけでは、提案された変更を実際に実行はされなません。変更を適用する前に、以下のコマンドを実行して、提案された変更が期待したものと一致するかどうかを確認しましょう。
 
-{{< tabpane >}}
-{{< tab header="Execution Plan" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Execution Plan" lang="sh" >}}
 terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
 {{</tab >}}
-{{< tab header="Execution Plan Output" lang="text" >}}
+{{< tab name="Execution Plan Output" lang="text" >}}
 Plan: 146 to add, 0 to change, 0 to destroy.
 {{</tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 プランが正常に実行されれば、そのまま apply することができます。
 
@@ -120,22 +120,22 @@ Plan: 146 to add, 0 to change, 0 to destroy.
 
 このワークショップでは、プレフィックスがユニークである必要があります。以下の `terraform apply` を実行してください。
 
-{{< tabpane >}}
-{{< tab header="Apply Plan" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Apply Plan" lang="sh" >}}
 terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
 {{</tab >}}
-{{< tab header="Apply Plan Output" lang="text" >}}
+{{< tab name="Apply Plan Output" lang="text" >}}
 Apply complete! Resources: 146 added, 0 changed, 0 destroyed.
 {{</tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 適用が完了したら、 **Alerts → Detectors** でディテクターが作成されたことを確認してください。ディテクターのプレフィックスには、インスタンスのホスト名が入ります。プレフィックスの値を確認するには以下を実行してください。
 
-{{< tabpane >}}
-{{< tab header="Echo Hostname" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Echo Hostname" lang="sh" >}}
 echo $(hostname)
 {{</tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 新しいディテクターのリストが表示され、上から出力されたプレフィックスを検索することができます。
 
@@ -149,14 +149,14 @@ echo $(hostname)
 
 それでは、ここまでで適用したダッシュボードとディテクターを全て破壊しましょう！
 
-{{< tabpane >}}
-{{< tab header="Destroy" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Destroy" lang="sh" >}}
 terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
 {{</tab >}}
-{{< tab header="Destroy Output" lang="text" >}}
+{{< tab name="Destroy Output" lang="text" >}}
 Destroy complete! Resources: 146 destroyed.
 {{</tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 _**Alerts → Detectors**_ に移動して、すべてのディテクターが削除されたことを確認してください。
 

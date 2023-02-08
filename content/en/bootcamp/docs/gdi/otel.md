@@ -15,8 +15,8 @@ You can also start with a blank configuration, which is what the milestone does 
 
 Then run OpenTelemetry Collector with this configuration in a docker container:
 
-{{< tabpane >}}
-{{< tab header="Shell Command" lang="bash" >}}
+{{< tabs >}}
+{{< tab name="Shell Command" lang="bash" >}}
 docker run --rm \
     -e SPLUNK_ACCESS_TOKEN=${SPLUNK_ACCESS_TOKEN} \
     -e SPLUNK_REALM=${SPLUNK_REALM} \
@@ -25,7 +25,7 @@ docker run --rm \
     -p 6060:6060 -p 8888:8888 -p 9080:9080 -p 9411:9411 -p 9943:9943 \
     -v "${PWD}/collector.yaml":/etc/collector.yaml:ro \
     --name otelcol quay.io/signalfx/splunk-otel-collector:0.41.1{{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 The milestone for this task is `03service-metrics-otel`.
 

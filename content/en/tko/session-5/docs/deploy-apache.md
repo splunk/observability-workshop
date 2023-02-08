@@ -40,7 +40,7 @@ cat ~/workshop/k3s/otel-apache.yaml
 
 This file contains the configuration for the OpenTelemetry agent to monitor the PHP/Apache deployment.
 
-{{< readfile file="/workshop/k3s/otel-apache.yaml" code="true" lang="yaml" >}}
+{{< include file="/workshop/k3s/otel-apache.yaml" code="true" lang="yaml" >}}
 
 ## 3.  Observation Rules in the OpenTelemetry config
 
@@ -52,8 +52,8 @@ In the file above we tell the OpenTelemetry agent to look for Pods that match th
 
 To use the Apache configuration, you can upgrade the existing Splunk OpenTelemetry Collector Helm chart to use the `otel-apache.yaml` file with the following command:
 
-{{< tabpane >}}
-{{< tab header="Helm Upgrade" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Helm Upgrade" lang="sh" >}}
 helm upgrade splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
@@ -65,7 +65,7 @@ splunk-otel-collector-chart/splunk-otel-collector \
 -f ~/workshop/k3s/splunk-defaults.yaml \
 -f ~/workshop/k3s/otel-apache.yaml
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 {{% alert title="Note" color="info" %}}
 The **REVISION** number of the deployment has changed, which is a helpful way to keep track of your changes.
@@ -122,7 +122,7 @@ cat ~/workshop/k3s/otel-apache.yaml
 
 A stateless application is one that does not care which network it is using, and it does not need permanent storage. Examples of stateless apps may include web servers such as Apache, Nginx, or Tomcat.
 
-{{< readfile file="/workshop/k3s/php-apache.yaml" code="true" lang="yaml" >}}
+{{< include file="/workshop/k3s/php-apache.yaml" code="true" lang="yaml" >}}
 
 ## 6. Deploy PHP/Apache
 

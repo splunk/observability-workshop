@@ -18,17 +18,17 @@ Splunk Observability Cloud offers wizards to walk you through the setup of the C
 
 If you have already completed the **Splunk IM** workshop you can take advantage of the existing environment variables. Otherwise, create the `ACCESS_TOKEN` and `REALM` environment variables to use in the proceeding OpenTelemetry Collector install command. For instance, if your realm is `us1`, you would type `export REALM=us1` and for `eu0` type `export REALM=eu0` etc.
 
-{{< tabpane >}}
-{{< tab header="Export ACCESS TOKEN" lang="bash" >}}
+{{< tabs >}}
+{{< tab name="Export ACCESS TOKEN" lang="bash" >}}
 export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
-{{< tabpane >}}
-{{< tab header="Export REALM" lang="bash" >}}
+{{< tabs >}}
+{{< tab name="Export REALM" lang="bash" >}}
 export REALM="<replace_with_REALM>"
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 {{% alert title="Delete any existing OpenTelemetry Collectors" color="warning" %}}
 If you have completed the Splunk IM workshop, please ensure you have deleted the collector running in Kubernetes before continuing. This can be done by running the following command: `helm delete splunk-otel-collector`.

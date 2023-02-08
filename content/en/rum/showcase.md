@@ -32,24 +32,24 @@ We have created a RUM Token specifically for this workshop with the appropriate 
 
 Create the `RUM_TOKEN` environment variable to use in the proceeding shell script to personalize your deployment.
 
-{{< tabpane >}}
-{{< tab header="Export Variables" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Export Variables" lang="sh" >}}
 export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 ## 3. Deploy RUM based Online Boutique
 
 To deploy the Online Boutique application into your EC2 instance  kubernetes (K3s) installation delete the  original deployment, then run the apm config script for RUM, then apply the RUM deployment:
 
-{{< tabpane >}}
-{{< tab header="Deploy Online Boutique with RUM" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Deploy Online Boutique with RUM" lang="sh" >}}
 cd ~/workshop/apm
 kubectl delete -f deployment.yaml
 ./apm-config.sh -r
 kubectl apply -f deployment.yaml
 {{< /tab >}}
-{{< tab header="Partial Deployment Output" lang= "text" >}}
+{{< tab name="Partial Deployment Output" lang= "text" >}}
 ......
 Adding RUM_TOKEN to deployment
 deployment.apps/recommendationservice created
@@ -79,7 +79,7 @@ deployment.apps/emailservice created
 service/emailservice created
 deployment.apps/rum-loadgen-deployment created
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 {{% alert title="In case of a message about a VARIABLE being unset" color="warning" %}}
 Please undeploy the APM environment by running **kubectl delete -f deployment.yaml**

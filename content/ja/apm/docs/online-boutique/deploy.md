@@ -21,13 +21,13 @@ isCJKLanguage: true
 
 Online BoutiqueアプリケーションをK3sにデプロイするには、以下のデプロイメントを適用します。
 
-{{< tabpane >}}
-{{< tab header="Deploy Online Boutique" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Deploy Online Boutique" lang="sh" >}}
 cd ~/workshop/apm
 ./apm-config.sh
 kubectl apply -f deployment.yaml
 {{< /tab >}}
-{{< tab header="Deployment Output" lang= "text" >}}
+{{< tab name="Deployment Output" lang= "text" >}}
 APM Only Deployment
 deployment.apps/recommendationservice created
 service/recommendationservice created
@@ -56,7 +56,7 @@ deployment.apps/emailservice created
 service/emailservice created
 deployment.apps/rum-loadgen-deployment created
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 {{% alert title="変数未セットに関するメッセージが表示された場合" color="warning" %}}
 **kubectl delete -f deployment.yaml** コマンドを実行しAPM環境のデプロイ削除します。
@@ -65,11 +65,11 @@ deployment.apps/rum-loadgen-deployment created
 
 Online Boutique アプリケーションが起動していることを確認するには:
 
-{{< tabpane >}}
-{{< tab header="Get Pods" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Get Pods" lang="sh" >}}
 kubectl get pods
 {{< /tab >}}
-{{< tab header="Get Pods Output" lang= "text" >}}
+{{< tab name="Get Pods Output" lang= "text" >}}
 NAME                                                          READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-k8s-cluster-receiver-56585564cc-xclzj   1/1     Running   0          84s
 splunk-otel-collector-agent-hkshj                             1/1     Running   0          84s
@@ -88,7 +88,7 @@ frontend-b8f747b87-4tkxn                                      1/1     Running   
 cartservice-59d5979db7-bqf64                                  1/1     Running   1          53s
 loadgenerator-57c8b84966-7nr4f                                1/1     Running   3          53s
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 {{% alert title="Info" color="info" %}}
 通常、ポッドがRunning状態に移行するのに1分30秒程度かかります。

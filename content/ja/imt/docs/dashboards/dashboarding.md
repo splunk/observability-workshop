@@ -29,8 +29,8 @@ Markdown は、ウェブページでよく使われるプレーンテキスト�
 
 以下は、ノートで使用できる上記のMarkdownオプションの例です。
 
-{{< tabpane >}}
-{{< tab header="Sample Markdown text" lang="markdown" >}}
+{{< tabs >}}
+{{< tab name="Sample Markdown text" lang="markdown" >}}
 
 # h1 Big headings
 
@@ -71,7 +71,7 @@ Ordered
 
 [link to dashboard with title](https://app.eu0.signalfx.com/#/dashboard/EaJHrbPAEAA?groupId=EaJHgrsAIAA&configId=EaJHsHzAEAA "Link to the Sample chart Dashboard!")
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 上記をコピーボタンでコピーして、*Edit* ボックスにペーストしてみてください。
 プレビューで、どのように表示されるか確認できます。

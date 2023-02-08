@@ -6,11 +6,11 @@ The development team has broken up the monolithic service into microservices bae
 
 Test the service with:
 
-{{< tabpane >}}
-{{< tab header="Shell Command" lang="bash" >}}
+{{< tabs >}}
+{{< tab name="Shell Command" lang="bash" >}}
 curl -X POST http://127.0.0.1:8000/api -F text=@hamlet.txt
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 Add auto-instrumentation to the `public_api` microservice using the [Splunk distribution of OpenTelemetry Python][splunk-otel-python]. Review the [documentation][splunk-py-instrument] and the [getting Started][splunk-py-instrument] steps and apply it to `Dockerfile`.
 

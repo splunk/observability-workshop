@@ -31,23 +31,23 @@ Online BoutiqueがインストールされたEC2インスタンスにアクセ�
 
 EC2にSSHアクセスしているシェルスクリプトで環境変数 `RUM_TOKEN` を作成し、デプロイメントをパーソナライズします。
 
-{{< tabpane >}}
-{{< tab header="Export Variables" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Export Variables" lang="sh" >}}
 export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 ## 2. Online Boutiqueのデプロイ
 
 Online BoutiqueアプリケーションをK3sにデプロイするには、apm configスクリプトを実行し、デプロイを適用してください。
 
-{{< tabpane >}}
-{{< tab header="Deploy Online Boutique" lang="sh" >}}
+{{< tabs >}}
+{{< tab name="Deploy Online Boutique" lang="sh" >}}
 cd ~/workshop/apm
 ./apm-config.sh -r
 kubectl apply -f deployment.yaml
 {{< /tab >}}
-{{< tab header="Deployment Output" lang= "text" >}}
+{{< tab name="Deployment Output" lang= "text" >}}
 deployment.apps/checkoutservice created
 service/checkoutservice created
 deployment.apps/redis-cart created
@@ -74,7 +74,7 @@ service/shippingservice created
 deployment.apps/currencyservice created
 service/currencyservice created
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 {{% alert title="変数未セットに関するメッセージが表示された場合" color="warning" %}}
 **kubectl delete -f deployment.yaml** コマンドを実行しAPM環境のデプロイ削除します。

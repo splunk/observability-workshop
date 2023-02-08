@@ -28,19 +28,19 @@ Stop other instances of the app if you had any running.
 
 Then build and run the image:
 
-{{< tabpane >}}
-{{< tab header="Shell Command" lang="bash" >}}
+{{< tabs >}}
+{{< tab name="Shell Command" lang="bash" >}}
 docker build . -t wordcount
 docker run -p 5000:5000 wordcount:latest
 {{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 Test the service in another shell:
 
-{{< tabpane >}}
-{{< tab header="Shell Command" lang="bash" >}}
+{{< tabs >}}
+{{< tab name="Shell Command" lang="bash" >}}
 curl -X POST http://127.0.0.1:5000/wordcount -F text=@hamlet.txt{{< /tab >}}
-{{< /tabpane >}}
+{{< /tabs >}}
 
 The milestone for this task is `05docker`.
 
