@@ -1,6 +1,6 @@
 ---
-title: Real User Monitoring
-weight: 4
+title: 3. Real User Monitoring
+weight: 3
 ---
 
 ## 1. Enable RUM
@@ -9,8 +9,8 @@ For the Real User Monitoring (RUM) instrumentation, we will add the Open Telemet
 
 Select the preconfigured **RUM ACCESS TOKEN** from the dropdown, click **Next**. Enter **App name** and **Environment** using the following syntax:
 
-- `<hostname>-petclinic-service` - replacing <hostname> with your actual hostname.
-- `<hostname>-petclinic-env` - replacing <hostname> with your actual hostname.
+- `[hostname]-petclinic-service` - replacing `[hostname]` with your actual hostname.
+- `[hostname]-petclinic-env` - replacing `[hostname]` with your actual hostname.
 
 Then you'll need to select the workshop RUM token and define the application and environment names. The wizard will then show a snipped of HTML code that needs to be place at the top at the pages in the `<head>` section. In this example we are using:
 

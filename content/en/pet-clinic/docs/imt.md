@@ -1,6 +1,7 @@
 ---
-title: Install the OTel Collector
-weight: 2
+title: Installing the OpenTelemetry Collector
+linkTitle: 1. OpenTelemetry Collector
+weight: 1
 ---
 
 ## 1. Introduction

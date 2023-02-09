@@ -1,6 +1,7 @@
 ---
-title: Zero Configuration Java application
-weight: 3
+title: Zero Configuration Auto Instrumentation for Java
+linkTitle: 2. Zero Configuration
+weight: 2
 ---
 
 ## 1. Spring PetClinic Application

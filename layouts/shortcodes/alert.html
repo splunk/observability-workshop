@@ -1,14 +1,9 @@
-{{ $_hugo_config := `{ "version": 1 }` }}
-{{ $color := .Get "color" | default "primary" }}
-<div class="alert alert-{{ $color }}" role="alert">
-{{ with .Get "title" }}<p class="alert-heading">{{ . | safeHTML }}</p>{{ end }}
-<div class="alert-body">
-    <p class="p-alert-body">
-{{ if eq .Page.File.Ext "md" }}
-    {{ .Inner | markdownify }}
-{{ else }}
-    {{ .Inner | htmlUnescape | safeHTML }}
-{{ end }}
-</p>
-</div>
-</div>
+{{- $_hugo_config := `{ "version": 1 }` }}
+{{- partial "shortcodes/notice.html" (dict
+  "context" .
+  "color"   (.Get "color")
+  "content" .Inner
+  "icon"    (.Get "icon" | default (.Get 2))
+  "style"   (.Get "style" | default (.Get 0))
+  "title"   (.Get "title" | default (.Get 1))
+) }}

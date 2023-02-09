@@ -28,7 +28,7 @@ See how the chart changes to a heat map.
 
 ![Change to Heatmap](../../../images/change-to-heatmap.png)
 
-{{% alert title="Note" color="primary" %}}
+{{% alert title="Note" style="primary" %}}
 You can use different charts to visualize your metrics - you choose which chart type fits best for the visualization you want to have.
 
 For more info on the different chart types see [Choosing a chart type.](https://docs.splunk.com/Observability/data-visualization/charts/chart-types.html#chart-types)
