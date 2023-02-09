@@ -115,7 +115,7 @@ Is the content of `otel-apache.yaml` saved in the ConfigMap for the collector ag
 Inspect the YAML file `~/workshop/k3s/php-apache.yaml` and validate the contents using the following command:
 
 ``` bash
-cat ~/workshop/k3s/otel-apache.yaml
+cat ~/workshop/k3s/php-apache.yaml
 ```
 
  This file contains the configuration for the PHP/Apache deployment and will create a new StatefulSet with a single replica of the PHP/Apache image.
