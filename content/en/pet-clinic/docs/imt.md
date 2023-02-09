@@ -39,9 +39,14 @@ export REALM="<replace_with_REALM>"
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% alert title="Delete any existing OpenTelemetry Collectors" color="warning" %}}
-If you have completed the Splunk IM workshop, please ensure you have deleted the collector running in Kubernetes before continuing. This can be done by running the following command: `helm delete splunk-otel-collector`.
-{{% /alert %}}
+{{% notice title="Delete any existing OpenTelemetry Collectors" style="warning" %}}
+If you have completed the Splunk IM workshop, please ensure you have deleted the collector running in Kubernetes before continuing. This can be done by running the following command:
+
+``` bash
+helm delete splunk-otel-collector
+```
+
+{{% /notice %}}
 
 ## 3. Install the OpenTelemetry Collector
 

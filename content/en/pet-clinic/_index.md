@@ -2,8 +2,6 @@
 title: Pet Clinic Java Workshop
 cascade:
   type: docs
-description: >
-  Introduction
 ---
 
 The goal is to walk through the basic steps to configure the following components of the Splunk Observability platform:
@@ -23,13 +21,14 @@ After that, we will instrument the PetClinic's end user interface (HTML pages re
 
 Lastly, we will configure the Spring PetClinic application to write application logs to the filesystem and also configure the Splunk OpenTelemetry Collector to read (tail) the logs and report to Splunk Observability Cloud.
 
-{{% alert title="Prerequisites" %}}
+{{% notice title="Prerequisites" style="info" %}}
 A Splunk run workshop where an host/instance is provided  **OR** a self led workshop on own host / [multipass instance](https://github.com/splunk/observability-workshop/tree/main/multipass)
 
 For your own system you will need the following installed and enabled:
 
-1. Java installed
-2. Port `8080` open inbound/outbound
-{{% /alert %}}
+1. JDK 17 installed
+2. Maven
+3. Port `8080` open inbound/outbound
+{{% /notice %}}
 
 ![PetClinic Exercise](images/petclinic-exercise.png)
