@@ -34,7 +34,7 @@ cd /home/ubuntu/session-2
 # For "real" use, this script needs ERROR DETECTION AND LOGGING!!
 # --Variables that you must set -----
 # Set username using by splunkd to run.
-  SPLUNK_RUN_USER="splunk"
+  SPLUNK_RUN_USER="ubuntu"
 
 # Populate this file with a list of hosts that this script should install to,
 # with one host per line. This must be specified in the form that should
@@ -64,19 +64,19 @@ cd /home/ubuntu/session-2
 
 # After installation, the forwarder can have additional TA's added to the 
 # /app directory please provide the local where TA's will be. 
-  TA_INSTALL_DIRECTORY="/tmp"
+  TA_INSTALL_DIRECTORY="/home/ubuntu/session-2"
 
 # Set the seed app folder name for deploymentclien.conf
 #  DEPLOY_APP_FOLDER_NAME="seed_all_deploymentclient"
 # Set the new Splunk admin password
-  PASSWORD="changeme"
+  PASSWORD="buttercup"
 
 REMOTE_SCRIPT_DEPLOY="
   cd /opt
   sudo $WGET_CMD
   sudo tar xvzf $INSTALL_FILE
   sudo rm $INSTALL_FILE
-  sudo useradd $SPLUNK_RUN_USER
+  #sudo useradd $SPLUNK_RUN_USER
   sudo find $TA_INSTALL_DIRECTORY -name '*.tgz' -exec tar xzvf {} --directory /opt/splunkforwarder/etc/apps \;
   sudo chown -R $SPLUNK_RUN_USER:$SPLUNK_RUN_USER /opt/splunkforwarder
   echo \"[user_info] 
@@ -84,8 +84,10 @@ REMOTE_SCRIPT_DEPLOY="
   PASSWORD = $PASSWORD\" > /opt/splunkforwarder/etc/system/local/user-seed.conf   
   #sudo cp $TA_INSTALL_DIRECTORY/*.tgz /opt/splunkforwader/etc/apps/
   #sudo find /opt/splunkforwarder/etc/apps/ -name '*.tgz' -exec tar xzvf {} \;
-  sudo -u splunk /opt/splunkforwarder/bin/splunk start --accept-license --answer-yes --auto-ports --no-prompt
-  sudo /opt/splunkforwarder/bin/splunk enable boot-start -user $SPLUNK_RUN_USER
+  #sudo -u splunk /opt/splunkforwarder/bin/splunk start --accept-license --answer-yes --auto-ports --no-prompt
+  /opt/splunkforwarder/bin/splunk start --accept-license --answer-yes --auto-ports --no-prompt
+  #sudo /opt/splunkforwarder/bin/splunk enable boot-start -user $SPLUNK_RUN_USER
+  /opt/splunkforwarder/bin/splunk enable boot-start -user $SPLUNK_RUN_USER
   #sudo cp $TA_INSTALL_DIRECTORY/*.tgz /opt/splunkforwarder/etc/apps/
 
   exit
