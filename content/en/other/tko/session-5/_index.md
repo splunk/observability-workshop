@@ -1,7 +1,7 @@
 ---
 title: 5. How Platform Engineers Observe Kubernetes
 linkTitle: Session 5 
-weight: 1
+weight: 5
 alwaysopen: false
 ---
 
@@ -10,8 +10,9 @@ This workshop will equip you with the basic understanding of monitoring Kubernet
 You will learn about OpenTelemetry Receivers, Kubernetes Namespaces, ReplicaSets, Kubernetes Horizontal Pod AutoScaling and how to monitor all this using the Splunk Observability Cloud. The main learnings from the workshop will be a better understanding of the Kubernetes Navigator (and Dashboards) in Splunk Observability Cloud as well as seeing Kubernetes metrics, events and Auto-Detectors.
 
 In order to part take in this workshop you will need to have:
+
 - Access to a Splunk Observability Cloud account in US Splunk Show
-- Your laptop 
+- Your laptop
 - Hopefully a stable wi-fi connection :)
 
 In preparation for the workshop, Splunk has prepared an Ubuntu Linux instance in AWS/EC2.

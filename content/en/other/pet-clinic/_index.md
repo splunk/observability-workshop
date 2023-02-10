@@ -1,7 +1,7 @@
 ---
-title: Pet Clinic Java Workshop
+title: PetClinic Java Workshop
 alwaysopen: false
-weight: 8
+weight: 1
 description: A workshop using Zero Configuration Auto-Instrumentation for Java
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Deploying the Online Boutique in K3s
+title: Deploy the Online Boutique
 weight: 2
 ---
 
@@ -12,21 +12,27 @@ weight: 2
 
 ## 1. Check your EC2 server
 
-This assumes you are running this after you have run the IM workshop, and still have access to your ec2 instance.
-If this is the case, continue with paragraph 3. *Deploy Online Boutique*,
-otherwise if you have received a fresh instance, please run the first two (2) sections of [Deploying the OpenTelemetry Collector in Kubernetes](../../../../imt/docs/gdi/k3s) to get the system ready for the APM workshop, then continue with the next section.
+This assumes you are running this after you have run the IM workshop, and still have access to your EC2 instance.
+
+If this is the case, continue with [Deploy Online Boutique](#2-deploy-online-boutique), otherwise if you have received a fresh instance, please run the first two (2) sections of [Deploy the OTel Collector](../../../../imt/docs/gdi/k3s) to get the system ready for the APM workshop, then continue with the next section.
 
 ## 2. Deploy Online Boutique
 
-To deploy the Online Boutique application into K3s, run the apm-config script, then apply the deployment:
+To deploy the Online Boutique application into K3s, run the `apm-config.sh` script, then apply the deployment:
 
 {{< tabs >}}
-{{< tab name="Deploy Online Boutique" lang="sh" >}}
+{{% tab name="Deploy Online Boutique" %}}
+
+``` bash
 cd ~/workshop/apm
 ./apm-config.sh
 kubectl apply -f deployment.yaml
-{{< /tab >}}
-{{< tab name="Deployment Output" lang= "text" >}}
+```
+
+{{% /tab %}}
+{{% tab name="Deployment Output" %}}
+
+``` text
 APM Only Deployment
 deployment.apps/recommendationservice created
 service/recommendationservice created
@@ -54,21 +60,30 @@ service/frontend-external created
 deployment.apps/emailservice created
 service/emailservice created
 deployment.apps/rum-loadgen-deployment created
-{{< /tab >}}
+```
+
+{{% /tab %}}
 {{< /tabs >}}
 
-{{% notice title="In case of a message about a VARIABLE being unset" color="warning" %}}
-Please undeploy the APM environment first by running **kubectl delete -f deployment.yaml**</br>
+{{% notice title="In case of a message about a VARIABLE being unset" style="warning" %}}
+Please undeploy the APM environment first by running `kubectl delete -f deployment.yaml`.
+
 Then export the variable as described in the guide/message, followed by rerunning the deployment script above.
 {{% /notice %}}
 
 To ensure the Online Boutique application is running:
 
 {{< tabs >}}
-{{< tab name="Get Pods" lang="sh" >}}
+{{% tab name="Get Pods" lang="sh" %}}
+
+``` bash
 kubectl get pods
-{{< /tab >}}
-{{< tab name="Get Pods Output" lang= "text" >}}
+```
+
+{{% /tab %}}
+{{% tab name="Get Pods Output" %}}
+
+``` text
 NAME                                                       READY  STATUS  RESTARTS      AGE
 splunk-otel-collector-k8s-cluster-receiver-849cf595bf-l7mnq 1/1   Running   0           31m
 splunk-otel-collector-agent-pxrgp                           2/2   Running   0           31m
@@ -87,10 +102,12 @@ rum-loadgen-deployment-58ccf7bd8f-fvb4x                     1/1   Running   0   
 cartservice-7b58c88c45-xvxhq                                1/1   Running   0            1m
 loadgenerator-6bdc7b4857-9kxjd                              1/1   Running   2 (49s ago)  1m
 adservice-7b68d5b969-89ft2                                  1/1   Running   0            1m
-{{< /tab >}}
+```
+
+{{% /tab %}}
 {{< /tabs >}}
 
-{{% notice title="Info" color="info" %}}
+{{% notice title="Info" style="info" %}}
 Usually it should only take around 1min 30secs for the pods to transition into a Running state.
 {{% /notice %}}
 
@@ -98,11 +115,9 @@ Usually it should only take around 1min 30secs for the pods to transition into a
 
 ## 4. Validate in the UI
 
-In the Splunk UI click on Infrastructure ![infrastructure button](../../../images/infrastructure.png) this will bring you to the Infrastructure Overview dashboard, then click on **Kubernetes**.
+In the Splunk UI click on **Infrastructure** this will bring you to the Infrastructure Overview dashboard, then click on **Kubernetes**.
 
-Use the **Cluster** dropdown so select your cluster, you should see the new pods started and containers deployed.
-
-When you click on your cluster in the Splunk UI you should have a view that looks like below:
+Use the **Cluster** dropdown so select your Cluster, you should see the new pods started and containers deployed. When you click on your Cluster in the Splunk UI you should have a view that looks like below:
 
 ![back to Cluster](../../../images/online-boutique-k8s.png)
 
@@ -116,6 +131,6 @@ If you select the **WORKLOADS** tab again you should now see that there are a nu
 
 The Online Boutique is viewable on port 81 of the EC2 instance's IP address. The IP address is the one you used to SSH into the instance at the beginning of the workshop.
 
-Open your web browser and go to `http://{==EC2-IP==}:81/` where you will then be able to see the Online Boutique running.
+Open your web browser and go to `http://<ec2-ip-address>:81/` where you will then be able to see the Online Boutique running.
 
 ![Online Boutique](../../../images/online-boutique.png)

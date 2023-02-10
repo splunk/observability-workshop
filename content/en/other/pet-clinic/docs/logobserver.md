@@ -9,7 +9,7 @@ For the Splunk Log Observer component, we will configure the Spring PetClinic ap
 
 ## 2. FluentD Configuration
 
-We need to configure the Splunk OpenTelemetry Collector to tail the Spring Pet Clinic log file and report the data to the Splunk Observability Cloud endpoint.
+We need to configure the Splunk OpenTelemetry Collector to tail the Spring PetClinic log file and report the data to the Splunk Observability Cloud endpoint.
 
 The Splunk OpenTelemetry Collector uses FluentD to consume/report logs and to configure the proper setting to report Spring PetClinic logs, we just need to add a FluentD configuration file in the default directory (`/etc/otel/collector/fluentd/conf.d/`).
 
