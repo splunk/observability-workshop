@@ -59,7 +59,7 @@ isCJKLanguage: true
 
 ![Billing and Usage-Bottom](../../../images/usage-trends.png)
 
-{{% notice title="Info" color="primary" %}}
+{{% notice title="Info" style="info" %}}
 スクリーンショットからわかるように、Observability Cloudはコスト計算には最大値や95パーセンタイル値ではなく、実際の平均時間使用量を使用しています。これにより、超過料金のリスクなしに、パフォーマンステストやBlue/Greenスタイルのデプロイメントなどを行うことができます。
 {{% /notice %}}
 

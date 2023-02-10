@@ -30,8 +30,9 @@ Markdown は、ウェブページでよく使われるプレーンテキスト�
 以下は、ノートで使用できる上記のMarkdownオプションの例です。
 
 {{< tabs >}}
-{{< tab name="Sample Markdown text" lang="markdown" >}}
+{{% tab name="Sample Markdown text" %}}
 
+``` markdown
 # h1 Big headings
 
 ###### h6 To small headings
@@ -70,7 +71,9 @@ Ordered
 [link to webpage](https://www.splunk.com)
 
 [link to dashboard with title](https://app.eu0.signalfx.com/#/dashboard/EaJHrbPAEAA?groupId=EaJHgrsAIAA&configId=EaJHsHzAEAA "Link to the Sample chart Dashboard!")
-{{< /tab >}}
+```
+
+{{% /tab %}}
 {{< /tabs >}}
 
 上記をコピーボタンでコピーして、*Edit* ボックスにペーストしてみてください。

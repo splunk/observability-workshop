@@ -30,7 +30,7 @@ Splunk Observability Cloud では、ディテクター（検出器）、イベ�
 
 **Detector Name** の横にあるテキストフィールドで、提案されたディテクター名の最初に、**あなたのイニシャル** を追加してください。
 
-{{% notice title="ディテクターの名前を決める" color="primary" %}}
+{{% notice title="ディテクターの名前を決める" style="info" %}}
 提案されたディテクター名の前に自分のイニシャルを追加することをお忘れなく。
 
 次のような名前にしてください: **XYZ's Latency Chart Detector**
@@ -64,7 +64,7 @@ Detector ウィンドウの **Alert signal** の中で、アラートするシ�
 
 ![Alert Threshold](../../../images/alert-threshold.png)
 
-{{% notice title="プリフライトチェックについて" color="primary" %}}
+{{% notice title="プリフライトチェックについて" style="info" %}}
 アラート条件を設定すると、UIは現在の設定に基づいて、右上に設定された時間枠（ここでは過去1日）の中で、どのくらいのアラートが発生するかを予測します。
 
 すぐに、プラットフォームは現在の設定でシグナルの分析を開始し、「プリフライトチェック」と呼ばれる作業を行います。これにより、プラットフォーム内の過去のデータを使用してアラート条件をテストし、設定が妥当であり、誤って大量のアラートを発生させないようにすることができます。Splunk Observability Cloud を使用してのみ利用できるシンプルかつ非常に強力な方法で、アラートの設定から推測作業を取り除くことができます。
@@ -89,7 +89,7 @@ Detector ウィンドウの **Alert signal** の中で、アラートするシ�
 
 ![Add Recipient](../../../images/add-recipient.png)
 
-{{% notice title="通知サービス" color="primary" %}}
+{{% notice title="通知サービス" style="info" %}}
 これは、そのメールアドレスを入力したときと同じです。または、**E-mail...** をクリックして別のメールアドレスを入力することもできます。
 
 これは、予め用意されている多くの **Notification Services** の一例です。全てを確認するには、トップメニューの **Integrations** タブに移動し、**Notification Services** を参照してください。

@@ -13,38 +13,54 @@ The Kubernetes manifests are located in the `k8s` folder. Add auto-instrumentati
 Install the OpenTelemetry Collector to the environment using [Splunk's helm chart][splunk-otel-helm] and use the provided `values.yaml`:
 
 {{< tabs >}}
-{{< tab name="Shell Command" lang="bash" >}}
+{{% tab name="Shell Command" %}}
+
+``` text
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
 
-helm install my-splunk-otel-collector --set="splunkObservability.realm=${SPLUNK_REALM},splunkObservability.accessToken=${SPLUNK_ACCESS_TOKEN},clusterName=${CLUSTER_NAME}" splunk-otel-collector-chart/splunk-otel-collector -f values.yaml{{< /tab >}}{{< /tabs >}}
+helm install my-splunk-otel-collector --set="splunkObservability.realm=${SPLUNK_REALM},splunkObservability.accessToken=${SPLUNK_ACCESS_TOKEN},clusterName=${CLUSTER_NAME}" splunk-otel-collector-chart/splunk-otel-collector -f values.yaml
+```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 Rebuild the container images for the private registry:
 
 {{< tabs >}}
-{{< tab name="Shell Command" lang="bash" >}}
-docker-compose build{{< /tab >}}
+{{% tab name="Shell Command" lang="bash" %}}
+docker-compose build{{% /tab %}}
 {{< /tabs >}}
 
 Push the images to the private registry:
 
 {{< tabs >}}
-{{< tab name="Shell Command" lang="bash" >}}
-docker-compose push{{< /tab >}}
+{{% tab name="Shell Command" lang="bash" %}}
+docker-compose push{{% /tab %}}
 {{< /tabs >}}
 
 Deploy to the cluster with
 
 {{< tabs >}}
-{{< tab name="Shell Command" lang="bash" >}}
-kubectl apply -f k8s{{< /tab >}}
+{{% tab name="Shell Command" %}}
+
+``` bash
+kubectl apply -f k8s
+```
+
+{{% /tab %}}
 {{< /tabs >}}
 
-Test the service with
+Test the service with:
 
 {{< tabs >}}
-{{< tab name="Shell Command" lang="bash" >}}
+{{% tab name="Shell Command" %}}
+
+``` bash
 ENDPOINT=$(kubectl get service/public-api -o jsonpath='{.spec.clusterIP}')
-curl http://$ENDPOINT:8000/api -F text=@hamlet.txt{{< /tab >}}
+curl http://$ENDPOINT:8000/api -F text=@hamlet.txt
+```
+
+{{% /tab %}}
 {{< /tabs >}}
 
 The milestone for this task is `12microservices-k8s-autoi`. It has auto-instrumentation applied for *all* microservices.

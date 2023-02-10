@@ -23,12 +23,12 @@ Your welcome e-mail informed you of the details of your EC2 Instance that has be
 The e-mail also contained the Hostname of the Instance, but you can also obtain it from the Instance directly. To get your Hostname from within the shell session connected to your Instance run the following command:
 
 {{< tabs >}}
-{{< tab name="Export Hostname" lang="sh" >}}
+{{% tab name="Export Hostname" lang="sh" %}}
 echo ${HOSTNAME}
-{{< /tab >}}
-{{< tab name="Example Output" lang="text" >}}
+{{% /tab %}}
+{{% tab name="Example Output" lang="text" %}}
 zevn
-{{< /tab >}}
+{{% /tab %}}
 {{< /tabs >}}
 
 It is very important that when creating the Routing Keys you use the 4 letter hostname allocated to you as a Detector has been configured within Splunk Infrastructure Monitoring using this hostname, so any deviation will cause future exercises to fail.

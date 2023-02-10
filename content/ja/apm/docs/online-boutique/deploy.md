@@ -22,12 +22,12 @@ isCJKLanguage: true
 Online BoutiqueアプリケーションをK3sにデプロイするには、以下のデプロイメントを適用します。
 
 {{< tabs >}}
-{{< tab name="Deploy Online Boutique" lang="sh" >}}
+{{% tab name="Deploy Online Boutique" lang="sh" %}}
 cd ~/workshop/apm
 ./apm-config.sh
 kubectl apply -f deployment.yaml
-{{< /tab >}}
-{{< tab name="Deployment Output" lang= "text" >}}
+{{% /tab %}}
+{{% tab name="Deployment Output" lang= "text" %}}
 APM Only Deployment
 deployment.apps/recommendationservice created
 service/recommendationservice created
@@ -55,7 +55,7 @@ service/frontend-external created
 deployment.apps/emailservice created
 service/emailservice created
 deployment.apps/rum-loadgen-deployment created
-{{< /tab >}}
+{{% /tab %}}
 {{< /tabs >}}
 
 {{% notice title="変数未セットに関するメッセージが表示された場合" color="warning" %}}
@@ -66,10 +66,10 @@ deployment.apps/rum-loadgen-deployment created
 Online Boutique アプリケーションが起動していることを確認するには:
 
 {{< tabs >}}
-{{< tab name="Get Pods" lang="sh" >}}
+{{% tab name="Get Pods" lang="sh" %}}
 kubectl get pods
-{{< /tab >}}
-{{< tab name="Get Pods Output" lang= "text" >}}
+{{% /tab %}}
+{{% tab name="Get Pods Output" lang= "text" %}}
 NAME                                                          READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-k8s-cluster-receiver-56585564cc-xclzj   1/1     Running   0          84s
 splunk-otel-collector-agent-hkshj                             1/1     Running   0          84s
@@ -87,7 +87,7 @@ paymentservice-6c875bf647-dklzb                               1/1     Running   
 frontend-b8f747b87-4tkxn                                      1/1     Running   0          53s
 cartservice-59d5979db7-bqf64                                  1/1     Running   1          53s
 loadgenerator-57c8b84966-7nr4f                                1/1     Running   3          53s
-{{< /tab >}}
+{{% /tab %}}
 {{< /tabs >}}
 
 {{% notice title="Info" %}}

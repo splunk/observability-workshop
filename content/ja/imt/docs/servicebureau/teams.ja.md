@@ -52,7 +52,7 @@ Splunk のチーム UI を使用するには、左下の **>>** を開き、 **S
 
 これでチームリストに戻り、自分のチームと他の人が作成したチームが表示されます。
 
-{{% notice title="Note" color="primary" %}}
+{{% notice title="Note" style="info" %}}
 自分がメンバーになっているチームには、グレーの **Member** アイコンが前に表示されています。
 {{% /notice %}}
 
@@ -72,7 +72,7 @@ Splunk のチーム UI を使用するには、左下の **>>** を開き、 **S
 
 デフォルトでは、システムはチームの一般的な通知ルールを設定する機能を提供します。
 
-{{% notice title="Note" color="primary" %}}
+{{% notice title="Note" style="info" %}}
 **Email all team members** オプションは、アラートの種類に関わらず、このチームのすべてのメンバーにアラート情報のメールが送信されることを意味します。
 {{% /notice %}}
 

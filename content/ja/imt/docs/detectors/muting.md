@@ -26,7 +26,7 @@ isCJKLanguage: true
 
 **Muting Rule** ウィンドウで、 **Mute Indefinitely** をチェックし、理由を入力します。
 
-{{% notice title="Important" color="primary" %}}
+{{% notice title="Important" style="info" %}}
 この操作をすると、ここに戻ってきてこのボックスのチェックを外すか、このディテクターの通知を再開するまで、通知が永久的にミュートされます。
 {{% /notice %}}
 

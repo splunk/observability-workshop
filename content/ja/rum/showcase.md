@@ -16,7 +16,6 @@ isCJKLanguage: true
 前のセクションで説明したように、RUMホスト上で動作するOnline Boutiqueを使用します。
 RUMのみのワークショップに参加される方は、使用するシステムは既に準備されていますので、RUMインスタンスのURLを受け取った後、セクション4 [Online Boutiqueを使ってシステムに負荷を与える](./#4-online-boutiqueを使ってシステムに負荷を与える) まで進むことができます。
 
-
 ## 2. RUM Access Token の入手
 
 APMワークショップでサービスをインストールしました。これから、RUM機能もデプロイメントに追加していきます。
@@ -34,9 +33,9 @@ APMワークショップでサービスをインストールしました。こ�
 進行中のシェルスクリプトで環境変数 `RUM_TOKEN` を作成し、デプロイメントをパーソナライズします。
 
 {{< tabs >}}
-{{< tab name="Export Variables" lang="sh" >}}
+{{% tab name="Export Variables" lang="sh" %}}
 export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
-{{< /tab >}}
+{{% /tab %}}
 {{< /tabs >}}
 
 ## 3. RUMを組み込んだOnline Boutiqueのデプロイ
@@ -44,13 +43,13 @@ export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
 EC2インスタンスのkubernetes（K3s）にOnline Boutiqueのアプリケーションをデプロイするには、元のデプロイメントを削除し、RUM用のapm configスクリプトを実行し、RUMのデプロイメントを適用します。
 
 {{< tabs >}}
-{{< tab name="Deploy Online Boutique with RUM" lang="sh" >}}
+{{% tab name="Deploy Online Boutique with RUM" lang="sh" %}}
 cd ~/workshop/apm
 kubectl delete -f deployment.yaml
 ./apm-config.sh -r
 kubectl apply -f deployment.yaml
-{{< /tab >}}
-{{< tab name="Partial Deployment Output" lang= "text" >}}
+{{% /tab %}}
+{{% tab name="Partial Deployment Output" lang= "text" %}}
 ......
 Adding RUM_TOKEN to deployment
 deployment.apps/recommendationservice created
@@ -79,7 +78,7 @@ service/frontend-external created
 deployment.apps/emailservice created
 service/emailservice created
 deployment.apps/rum-loadgen-deployment created
-{{< /tab >}}
+{{% /tab %}}
 {{< /tabs >}}
 
 {{% notice title="変数未セットに関するメッセージが表示された場合" color="warning" %}}
@@ -88,6 +87,7 @@ deployment.apps/rum-loadgen-deployment created
 {{% /notice %}}
 
 ## 4. Online Boutiqueを使ってシステムに負荷を与える
+
 皆さんと一緒にOnline Boutiqueに接続し買い物をシミュレートする合成ユーザーもいます。これにより、複数の場所からのトラフィックが発生し、よりリアルなデータが得られます。
 
 ワークショップ講師からURLを受け取っているはずです。

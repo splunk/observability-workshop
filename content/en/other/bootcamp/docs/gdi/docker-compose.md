@@ -25,15 +25,15 @@ services:
 Build the service:
 
 {{< tabs >}}
-{{< tab name="Shell Command" lang="bash" >}}
-docker-compose build{{< /tab >}}
+{{% tab name="Shell Command" lang="bash" %}}
+docker-compose build{{% /tab %}}
 {{< /tabs >}}
 
 Then run the whole stack:
 
 {{< tabs >}}
-{{< tab name="Shell Command" lang="bash" >}}
-docker-compose up{{< /tab >}}
+{{% tab name="Shell Command" lang="bash" %}}
+docker-compose up{{% /tab %}}
 {{< /tabs >}}
 
 Test the service with curl by hitting the exposed port.

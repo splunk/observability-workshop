@@ -22,7 +22,7 @@ Full documentation for the Splunk Terraform Provider is available [here](https:/
 Remaining in your AWS/EC2 instance, change into the `o11y-cloud-jumpstart` directory
 
 {{< tabs >}}
-{{< tab name="Change directory" lang="sh" >}}
+{{% tab name="Change directory" lang="sh" %}}
 cd observability-content-contrib/integration-examples/terraform-jumpstart
 {{</tab >}}
 {{< /tabs >}}
@@ -30,28 +30,28 @@ cd observability-content-contrib/integration-examples/terraform-jumpstart
 The environment variables needed should already be set from [Installation using Helm](../../../otel/k3s/#2-installation-using-helm). If not, create the following environment variables to use in the Terraform steps below
 
 {{< tabs >}}
-{{< tab name="Export ACCESS TOKEN" lang="sh" >}}
+{{% tab name="Export ACCESS TOKEN" lang="sh" %}}
 export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
-{{< /tab >}}
+{{% /tab %}}
 {{< /tabs >}}
 
 {{< tabs >}}
-{{< tab name="Export REALM" lang="sh" >}}
+{{% tab name="Export REALM" lang="sh" %}}
 export REALM="<replace_with_REALM>"
-{{< /tab >}}
+{{% /tab %}}
 {{< /tabs >}}
 
 Initialize Terraform and upgrade to the latest version of the Splunk Terraform Provider
 
-{{% notice title="Note: Upgrading the SignalFx Terraform Provider" color="primary" %}}
+{{% notice title="Note: Upgrading the SignalFx Terraform Provider" style="info" %}}
 You will need to run the command below each time a new version of the Splunk Terraform Provider is released. You can track the releases on [GitHub.](https://github.com/splunk-terraform/terraform-provider-signalfx/releases)
 {{% /notice %}}
 
 {{< tabs >}}
-{{< tab name="Initialise Terraform" lang="sh" >}}
+{{% tab name="Initialise Terraform" lang="sh" %}}
 terraform init -upgrade
 {{</tab >}}
-{{< tab name="Initialise Output" lang="text" >}}
+{{% tab name="Initialise Output" lang="text" %}}
     Upgrading modules...
     - aws in modules/aws
     - azure in modules/azure
@@ -104,10 +104,10 @@ The `terraform plan` command creates an execution plan. By default, creating a p
 The plan command alone will not actually carry out the proposed changes, and so you can use this command to check whether the proposed changes match what you expected before you apply the changes
 
 {{< tabs >}}
-{{< tab name="Execution Plan" lang="sh" >}}
+{{% tab name="Execution Plan" lang="sh" %}}
 terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$(hostname)]"
 {{</tab >}}
-{{< tab name="Execution Plan Output" lang="text" >}}
+{{% tab name="Execution Plan Output" lang="text" %}}
 Plan: 146 to add, 0 to change, 0 to destroy.
 {{</tab >}}
 {{< /tabs >}}
@@ -125,10 +125,10 @@ The most straightforward way to use `terraform apply` is to run it without any a
 Due to this being a workshop it is required that the prefix is to be unique so you need to run the `terraform apply` below.
 
 {{< tabs >}}
-{{< tab name="Apply Plan" lang="sh" >}}
+{{% tab name="Apply Plan" lang="sh" %}}
 terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$(hostname)]"
 {{</tab >}}
-{{< tab name="Apply Plan Output" lang="text" >}}
+{{% tab name="Apply Plan Output" lang="text" %}}
 Apply complete! Resources: 146 added, 0 changed, 0 destroyed.
 {{</tab >}}
 {{< /tabs >}}
@@ -136,7 +136,7 @@ Apply complete! Resources: 146 added, 0 changed, 0 destroyed.
 Once the apply has completed, validate that the detectors were created, under the **Alerts & Detectors** and click on the **Detectors** tab. They will be prefixed by the hostname of your instance. To check the prefix value run:
 
 {{< tabs >}}
-{{< tab name="Echo Hostname" lang="sh" >}}
+{{% tab name="Echo Hostname" lang="sh" %}}
 echo $(hostname)
 {{</tab >}}
 {{< /tabs >}}
@@ -154,10 +154,10 @@ While you will typically not want to destroy long-lived objects in a production 
 Now go and destroy all the Detectors and Dashboards that were previously applied!
 
 {{< tabs >}}
-{{< tab name="Destroy" lang="sh" >}}
+{{% tab name="Destroy" lang="sh" %}}
 terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
 {{</tab >}}
-{{< tab name="Destroy Output" lang="text" >}}
+{{% tab name="Destroy Output" lang="text" %}}
 Destroy complete! Resources: 146 destroyed.
 {{</tab >}}
 {{< /tabs >}}

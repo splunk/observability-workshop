@@ -30,15 +30,15 @@ You will also need to obtain the name of the Realm[^2] for your Splunk account. 
 Create the `ACCESS_TOKEN` and `REALM` environment variables to use in the proceeding Helm install command. For instance, if your realm is `us1`, you would type `export REALM=us1` and for `eu0` type `export REALM=eu0`.
 
 {{< tabs >}}
-{{< tab name="Export ACCESS TOKEN" lang="sh" >}}
+{{% tab name="Export ACCESS TOKEN" lang="sh" %}}
 export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
-{{< /tab >}}
+{{% /tab %}}
 {{< /tabs >}}
 
 {{< tabs >}}
-{{< tab name="Export REALM" lang="sh" >}}
+{{% tab name="Export REALM" lang="sh" %}}
 export REALM="<replace_with_REALM>"
-{{< /tab >}}
+{{% /tab %}}
 {{< /tabs >}}
 
 Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository to Helm and update.
@@ -50,8 +50,8 @@ Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the 
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update
 ```
 
-{{< /tab >}}
-{{< tab name="Helm Repo Add Output" lang="text" >}}
+{{% /tab %}}
+{{% tab name="Helm Repo Add Output" lang="text" %}}
 Using ACCESS_TOKEN={REDACTED}
 Using REALM=eu0
 "splunk-otel-collector-chart" has been added to your repositories
@@ -60,13 +60,13 @@ Using REALM=eu0
 Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "splunk-otel-collector-chart" chart repository
 Update Complete. ⎈Happy Helming!⎈
-{{< /tab >}}
+{{% /tab %}}
 {{< /tabs >}}
 
 Install the OpenTelemetry Collector Helm chart with the following commands, do **NOT** edit this:
 
 {{< tabs >}}
-{{< tab name="Helm Install" lang="sh" >}}
+{{% tab name="Helm Install" lang="sh" %}}
 helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
@@ -77,8 +77,8 @@ helm install splunk-otel-collector \
 --set="environment=$(hostname)-apm-env" \
 splunk-otel-collector-chart/splunk-otel-collector \
 -f ~/workshop/k3s/otel-collector.yaml
-{{< /tab >}}
-{{< tab name="Helm Install Output" lang="text" >}}
+{{% /tab %}}
+{{% tab name="Helm Install Output" lang="text" %}}
 Using ACCESS_TOKEN={REDACTED}
 Using REALM=eu0
 NAME: splunk-otel-collector
@@ -87,8 +87,8 @@ NAMESPACE: default
 STATUS: deployed
 REVISION: 1
 TEST SUITE: None
-{{< /tab >}}
-{{< tab name="Install Network Explorer" lang="zsh" >}}
+{{% /tab %}}
+{{% tab name="Install Network Explorer" lang="zsh" %}}
 helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
@@ -105,7 +105,7 @@ helm install splunk-otel-collector \
 --set="environment=$(hostname)-apm-env" \
 splunk-otel-collector-chart/splunk-otel-collector \
 -f ~/workshop/k3s/otel-collector.yaml
-{{< /tab >}}
+{{% /tab %}}
 {{< /tabs >}}
 
 You can monitor the progress of the deployment by running `kubectl get pods` which should typically report a new pod is up and running after about 30 seconds.
@@ -113,14 +113,14 @@ You can monitor the progress of the deployment by running `kubectl get pods` whi
 Ensure the status is reported as Running before continuing.
 
 {{< tabs >}}
-{{< tab name="Kubectl Get Pods" lang="sh" >}}
+{{% tab name="Kubectl Get Pods" lang="sh" %}}
 kubectl get pods
-{{< /tab >}}
-{{< tab name="Kubectl Get Pods Output" lang="text" >}}
+{{% /tab %}}
+{{% tab name="Kubectl Get Pods Output" lang="text" %}}
 NAME                                                          READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-agent-2sk6k                             0/1     Running   0          10s
 splunk-otel-collector-k8s-cluster-receiver-6956d4446f-gwnd7   0/1     Running   0          10s
-{{< /tab >}}
+{{% /tab %}}
 {{< /tabs >}}
 
 Ensure there are no errors by tailing the logs from the OpenTelemetry Collector pod. Output should look similar to the log output shown in the Output tab below.
@@ -128,10 +128,10 @@ Ensure there are no errors by tailing the logs from the OpenTelemetry Collector 
 Use the label set by the `helm` install to tail logs (You will need to press `ctrl+c` to exit). Or use the installed `k9s` terminal UI for bonus points!
 
 {{< tabs >}}
-{{< tab name="Kubectl Logs" lang="sh" >}}
+{{% tab name="Kubectl Logs" lang="sh" %}}
 kubectl logs -l app=splunk-otel-collector -f --container otel-collector
-{{< /tab >}}
-{{< tab name="Kubectl Logs Output" lang="text" >}}
+{{% /tab %}}
+{{% tab name="Kubectl Logs Output" lang="text" %}}
 2021-03-21T16:11:10.900Z        INFO    service/service.go:364  Starting receivers...
 2021-03-21T16:11:10.900Z        INFO    builder/receivers_builder.go:70 Receiver is starting... {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
 2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:75 Receiver started.       {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
@@ -142,7 +142,7 @@ kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 2021-03-21T16:11:11.009Z        INFO    service/service.go:267  Everything is ready. Begin running and processing data.
 2021-03-21T16:11:11.009Z        INFO    k8sclusterreceiver@v0.21.0/receiver.go:59       Starting shared informers and wait for initial cache sync.      {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
 2021-03-21T16:11:11.281Z        INFO    k8sclusterreceiver@v0.21.0/receiver.go:75       Completed syncing shared informer caches.       {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
-{{< /tab >}}
+{{% /tab %}}
 {{< /tabs >}}
 
 {{% notice title="Deleting a failed installation" color="danger" %}}
@@ -167,9 +167,9 @@ Under **Containers** click on **Kubernetes** to open the Kubernetes Navigator Cl
 Validate that your cluster is discovered and reporting by finding your cluster (in the workshop you will see many other clusters). To find your cluster name run the following command and copy the output to your clipboard:
 
 {{< tabs >}}
-{{< tab name="Echo Cluster Name" lang="sh" >}}
+{{% tab name="Echo Cluster Name" lang="sh" %}}
 echo $(hostname)-k3s-cluster
-{{< /tab >}}
+{{% /tab %}}
 {{< /tabs >}}
 
 Then in the UI, click on the "Cluster: - " menu just below the Splunk Logo, and paste the Cluster name you just copied into the search box, click the box to select your cluster, and finally click off the menu into white space to apply the filter.

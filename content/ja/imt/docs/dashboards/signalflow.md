@@ -19,7 +19,7 @@ Infrastructure Monitoring は、Chart Builder ユーザーインターフェイ�
 
 SignalFlow には、時系列メトリックを入力とし、そのデータポイントに対して計算を行い、計算結果である時系列メトリックを出力する、分析関数の大規模なライブラリが組み込まれています。
 
-{{% notice title="Info" color="primary" %}}
+{{% notice title="Info" style="info" %}}
 SignalFlow の詳細については、 [Analyze incoming data using SignalFlow](https://docs.splunk.com/Observability/infrastructure/analytics/signalflow.html) を参照してください。
 {{% /notice %}}
 
@@ -36,11 +36,11 @@ SignalFlow の詳細については、 [Analyze incoming data using SignalFlow](
 ![Code](../../../images/show-signalflow.png)
 
 {{< tabs >}}
-{{< tab name="SignalFlow" lang="python" >}}
+{{% tab name="SignalFlow" lang="python" %}}
 A = data('demo.trans.latency', filter=filter('demo_datacenter', 'Paris')).percentile(pct=95).publish(label='A', enable=False)
 B = data('demo.trans.latency', filter=filter('demo_datacenter', 'Paris')).percentile(pct=95).timeshift('1w').publish(label='B', enable=False)
 C = (A-B).publish(label='C')
-{{< /tab >}}
+{{% /tab %}}
 {{< /tabs >}}
 
 **View Builder** をクリックすると、Chart **Builder** の UI に戻ります。

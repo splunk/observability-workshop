@@ -18,7 +18,7 @@ Infrastructure Monitoring creates these computations in the Chart Builder user i
 
 SignalFlow includes a large library of built-in analytical functions that take a metric time series as an input, performs computations on its datapoints, and outputs time series that are the result of the computation.
 
-{{% notice title="Info" color="primary" %}}
+{{% notice title="Info" style="info" %}}
 For more information on SignalFlow see [Analyze incoming data using SignalFlow.](https://docs.splunk.com/Observability/infrastructure/analytics/signalflow.html)
 {{% /notice %}}
 
@@ -35,11 +35,11 @@ Also, you can copy the SignalFlow and use it when interacting with the API or wi
 ![Code](../../../images/show-signalflow.png)
 
 {{< tabs >}}
-{{< tab name="SignalFlow" lang="python" >}}
+{{% tab name="SignalFlow" lang="python" %}}
 A = data('demo.trans.latency', filter=filter('demo_datacenter', 'Paris')).percentile(pct=95).publish(label='A', enable=False)
 B = data('demo.trans.latency', filter=filter('demo_datacenter', 'Paris')).percentile(pct=95).timeshift('1w').publish(label='B', enable=False)
 C = (A-B).publish(label='C')
-{{< /tab >}}
+{{% /tab %}}
 {{< /tabs >}}
 
 Click on **View Builder** to go back to the Chart **Builder** UI.

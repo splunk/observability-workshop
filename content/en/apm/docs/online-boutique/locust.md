@@ -26,12 +26,12 @@ For this we need to know the name of your application environment. In this works
 To find the hostname, on the AWS/EC2 instance run the following command:
 
 {{< tabs >}}
-{{< tab name="Echo Hostname" lang="sh" >}}
+{{% tab name="Echo Hostname" lang="sh" %}}
 echo $(hostname)-apm-env
-{{< /tab >}}
-{{< tab name="Output Example" lang= "text" >}}
+{{% /tab %}}
+{{% tab name="Output Example" lang= "text" %}}
 bdzx-apm-env
-{{< /tab >}}
+{{% /tab %}}
 {{< /tabs >}}
 
 Select your environment you found in the previous step then select the `frontend` service and set time to Past 15 minutes.
@@ -84,7 +84,11 @@ To debug the traces being sent you can use the zpages extension. [zpages][zpages
 Alternatively, from your shell prompt you can run a text based browser:
 
 {{< tabs >}}
-{{< tab name="Lynx Command" lang="text" >}}
+{{% tab name="Lynx Command" lang="text" %}}
+
+``` bash
 lynx http://localhost:55679/debug/tracez
-{{< /tab >}}
+```
+
+{{% /tab %}}
 {{< /tabs >}}

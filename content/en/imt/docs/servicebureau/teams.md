@@ -51,7 +51,7 @@ Make sure you have your group created with your initials and with yourself added
 
 This will bring you back to the **Teams** list that will now show your Team and the one's created by others.
 
-{{% notice title="Note" color="primary" %}}
+{{% notice title="Note" style="info" %}}
 The Teams(s) you are a member of have a grey **Member** icon in front of it.
 {{% /notice %}}
 
@@ -71,7 +71,7 @@ You can set up specific Notification rules per team, click on the **Notification
 
 By default the system offers you the ability to set up a general notification rule for your team.
 
-{{% notice title="Note" color="primary" %}}
+{{% notice title="Note" style="info" %}}
 The **Email all team members** option means all members of this Team will receive an email with the Alert information, regardless of the alert type.
 {{% /notice %}}
 

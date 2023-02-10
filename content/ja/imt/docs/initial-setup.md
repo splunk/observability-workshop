@@ -27,7 +27,7 @@ AWS/EC2 インスタンスの検索には、本ワークショップの登録時
 
 また、ssh や putty で接続できない場合に使用するブラウザアクセスのURLも記載されています。「[ブラウザ経由でEC2に接続する](./#5-ブラウザ経由でec2に接続する)」を参照してください。
 
-{{% notice title="Important" color="primary" %}}
+{{% notice title="Important" style="info" %}}
 可能であれば、SSH または Putty を使用してEC2インスタンスにアクセスしてください。
 ワークショップで必要になるので、IPアドレスをメモしておいてください。
 {{% /notice %}}
@@ -88,7 +88,7 @@ sshコマンドに関するヘルプテキスト（下のスクリーンショ�
 
 ssh がプリインストールされていない場合や、Windows システムを使用している場合、putty がおすすめです。Putty は [こちら](https://www.putty.org/) からダウンロードできます。
 
-{{% notice title="Important" color="primary" %}}
+{{% notice title="Important" style="info" %}}
 Putty がインストールできない場合は、 [ブラウザ経由でEC2に接続する](./#4-ブラウザ経由でec2に接続する) で進めてください。
 {{% /notice %}}
 
@@ -118,7 +118,7 @@ Putty を開き、**Host Name (or IP address)** の欄に、Google Sheets に記
 
 SSH（ポート22） の使用が禁止されている場合や、Putty がインストールできない場合は、Webブラウザを使用してワークショップのインスタンスに接続することができます。
 
-{{% notice title="Note" color="primary" %}}
+{{% notice title="Note" style="info" %}}
 ここでは、6501番ポートへのアクセスが、ご利用のネットワークのファイアウォールによって制限されていないことを前提としています。
 {{% /notice %}}
 
@@ -148,7 +148,7 @@ Webブラウザを開き、**http:/x.x.x.x:6501** （X.X.X.Xは Google Sheetsに
 
 表示されているテキストボックスにテキストを貼り付け、**OK** を押すと、コピー＆ペーストができます。
 
-{{% notice title="Note" color="primary" %}}
+{{% notice title="Note" style="info" %}}
 通常のSSH接続とは異なり、Webブラウザには60秒のタイムアウトがあり、接続が解除されると、Webターミナルの中央に **Connect** ボタンが表示されます。
 
 この **Connect** ボタンをクリックするだけで、再接続され、次の操作が可能になります。
