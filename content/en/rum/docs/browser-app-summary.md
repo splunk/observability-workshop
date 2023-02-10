@@ -1,6 +1,7 @@
 ---
 title: Check Browser Applications health at a glance
-weight: 3
+linkTitle: 5. Browser Application Summary
+weight: 5
 ---
 
 * Get familiar with the UI and options available from this landing page

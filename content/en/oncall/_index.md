@@ -1,7 +1,7 @@
 ---
 title: Initial Setup
 linkTitle: Splunk OnCall
-weight: 3
+weight: 5
 alwaysopen: false
 ---
 

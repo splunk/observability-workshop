@@ -1,6 +1,7 @@
 ---
 title: Reviewing the RUM Landing Page 
-weight: 2
+linkTitle: 4. RUM Landing Page
+weight: 4
 ---
 
 * Visit  the RUM landing page and and check the overview of the performance of all your RUM enabled applications with the Application Summary Dashboard (Both Mobile and Web based)

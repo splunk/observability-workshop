@@ -1,7 +1,7 @@
 ---
-title: Introduction
+title: Splunk Synthetics Introduction
 linkTitle: Splunk Synthetics
-weight: 5 
+weight: 4
 cascade:
   type: docs
 ---

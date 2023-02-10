@@ -1,9 +1,7 @@
 ---
 title: Showcase of RUM with the Online Boutique
-weight: 3
-menu:
-  docs:
-    weight: 3
+linkTitle: 2. Showcase
+weight: 2
 ---
 
 * Find the Web address of your workshop hosts Online Boutique
@@ -20,21 +18,25 @@ If you're participating in a RUM only workshop, after you have received the RUM 
 
 As part of the overall workshop you have installed services for the APM Workshop. We are now going to add the RUM capability to the deployment as well.
 
-The first thing we need to do is obtain a RUM_ACCESS_TOKEN with a RUM Authorization scope.  You can find the workshop RUM Access Token by clicking on the **settings** ![settings](../images/setting.png) menu button and then selecting **Access Tokens**.
+The first thing we need to do is obtain a RUM_ACCESS_TOKEN with a RUM Authorization scope.  You can find the workshop RUM Access Token by clicking on the **Settings Cog** menu button and then selecting **Access Tokens**.
 
 Expand the RUM workshop token that your host has instructed you to use e.g. **O11y-Workshop-RUM-TOKEN**, then click on **Show Token** to expose your token. Click the {{% labelbutton color="ui-button-grey" %}}Copy{{% /labelbutton %}} button to copy to clipboard. Please do not use the **Default** token! Make sure the token has RUM as its Authorization Scope.
 
-![Access Token](../images/RUM-Access-Token.png)
+![Access Token](../../images/RUM-Access-Token.png)
 
-{{% notice title="Please do not attempt to create your own token" color="warning" %}}
+{{% notice title="Please do not attempt to create your own token" style="warning" %}}
 We have created a RUM Token specifically for this workshop with the appropriate settings for the exercises you will be performing
 {{% /notice %}}
 
 Create the `RUM_TOKEN` environment variable to use in the proceeding shell script to personalize your deployment.
 
 {{< tabs >}}
-{{% tab name="Export Variables" lang="sh" %}}
+{{% tab name="Export Variables" %}}
+
+``` bash
 export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
+```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -43,13 +45,19 @@ export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
 To deploy the Online Boutique application into your EC2 instance  kubernetes (K3s) installation delete the  original deployment, then run the apm config script for RUM, then apply the RUM deployment:
 
 {{< tabs >}}
-{{% tab name="Deploy Online Boutique with RUM" lang="sh" %}}
+{{% tab name="Deploy Online Boutique with RUM" %}}
+
+``` bash
 cd ~/workshop/apm
 kubectl delete -f deployment.yaml
 ./apm-config.sh -r
 kubectl apply -f deployment.yaml
+```
+
 {{% /tab %}}
-{{% tab name="Partial Deployment Output" lang= "text" %}}
+{{% tab name="Partial Deployment Output" %}}
+
+``` text
 ......
 Adding RUM_TOKEN to deployment
 deployment.apps/recommendationservice created
@@ -78,6 +86,8 @@ service/frontend-external created
 deployment.apps/emailservice created
 service/emailservice created
 deployment.apps/rum-loadgen-deployment created
+```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -94,7 +104,7 @@ We are all connected to an Online Boutique, together with some synthetic users w
 You should have received the correct URL from your workshop host at this point.
 Open a new web browser and go to `http://{==RUM-HOST-EC2-IP==}:81/` where you will then be able to see the RUM enabled Online Boutique running.
 
-![Online Boutique](../images/online-boutique.png)
+![Online Boutique](../../images/online-boutique.png)
 
 ## 5. Generate traffic
 
@@ -103,8 +113,6 @@ For extra credit, you may even use the url from different browsers or from your 
 
 This will create  multiple sessions to investigate. Take your time to examine and buy the various products and put them in your cart:
 
-![Cart Online Boutique](../images/cart.png)
+![Cart Online Boutique](../../images/cart.png)
 
 Doesn't that HOME BARISTA KIT look tempting?...   Your time to start shopping now!
-
-![Clock](../images/Clock.gif)

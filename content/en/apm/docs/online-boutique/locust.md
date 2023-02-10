@@ -84,9 +84,11 @@ To debug the traces being sent you can use the zpages extension. [zpages][zpages
 Alternatively, from your shell prompt you can run a text based browser:
 
 {{< tabs >}}
-{{% tab name="Lynx Command" lang="text" %}}
-  lynx http://localhost:55679/debug/tracez
+{{% tab name="Lynx Command" %}}
+
+``` bash
+lynx http://localhost:55679/debug/tracez
+```
+
 {{% /tab %}}
 {{< /tabs >}}
-
-    lynx http://localhost:55679/debug/tracez

@@ -1,7 +1,7 @@
 ---
 title: Example of RUM enablement in your Website
-linkTitle:  Using RUM on your Website
-weight: 1
+linkTitle:  3. Using RUM on your Website
+weight: 3
 ---
 * Check the original HEAD section of your Online-boutique webpage (or use the examples here) in your browser
 * Find the Web address of your workshop hosts Online Boutique
@@ -21,7 +21,7 @@ As this Deployment we are about to do is also used as part of the RUM workshop s
 
 Expand the RUM workshop token that your host has instructed you to use e.g. **O11y-Workshop-RUM-TOKEN**, then click on **Show Token** to expose your token. Click the {{% labelbutton color="ui-button-grey" %}}Copy{{% /labelbutton %}} button to copy to clipboard. Please do not use the **Default** token! Make sure the token has RUM as its Authorization Scope.
 
-![Access Token](../../../images/RUM-Access-Token.png)
+![Access Token](../../images/RUM-Access-Token.png)
 
 {{% notice title="Please do not attempt to create your own token" color="warning" %}}
 We have created a RUM Token specifically for this workshop with the appropriate settings for the exercises you will be performing

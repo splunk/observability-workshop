@@ -1,7 +1,7 @@
 ---
 title: Splunk RUM, an introduction
 linkTitle:  Splunk RUM
-weight: 4
+weight: 3
 alwaysopen: false
 ---
 
