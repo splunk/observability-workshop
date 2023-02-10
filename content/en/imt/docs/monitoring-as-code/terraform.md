@@ -43,9 +43,9 @@ export REALM="<replace_with_REALM>"
 
 Initialize Terraform and upgrade to the latest version of the Splunk Terraform Provider
 
-{{% alert title="Note: Upgrading the SignalFx Terraform Provider" color="primary" %}}
+{{% notice title="Note: Upgrading the SignalFx Terraform Provider" color="primary" %}}
 You will need to run the command below each time a new version of the Splunk Terraform Provider is released. You can track the releases on [GitHub.](https://github.com/splunk-terraform/terraform-provider-signalfx/releases)
-{{% /alert %}}
+{{% /notice %}}
 
 {{< tabs >}}
 {{< tab name="Initialise Terraform" lang="sh" >}}

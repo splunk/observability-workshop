@@ -56,9 +56,9 @@ The blue line marked **Average Usage** indicates what Observability Cloud will u
 
 ![Billing and Usage-Bottom](../../../images/usage-trends.png)
 
-{{% alert title="Info" color="primary" %}}
+{{% notice title="Info" color="primary" %}}
 As you can see from the screenshot, Observability Cloud does not use High Watermark or P95% for cost calculation but the actual average hourly usage, allowing you to do performance testing or Blue/Green style deployments etc. without the risk of overage charges.
-{{% /alert %}}
+{{% /notice %}}
 
 To get a feel for the options you can change the metric displayed by selecting the different options from the **Usage Metric** drop down on the left, or change the **Subscription Usage Period** with the drop down on the right.
 

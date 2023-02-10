@@ -72,9 +72,9 @@ We are instructed to:
   - Update the deployment.yaml for each service to include these environment variables which will be used by the pod and container.
   - Update our Dockerfile for REVIEW so that our program is bootstrapped with splunk-py-trace
 
-{{% alert title="Note" color="info" %}}
+{{% notice title="Note" color="info" %}}
 We will accomplish this by 1) generating a new requirements.txt file, 2) generating a new container image with an updated Dockerfile for REVIEW and then 3) update the review.deployment.yaml to capture all of these changes.
-{{% /alert%}}
+{{% /notice %}}
 
 ## 2. Update the REVIEW container
 
@@ -97,9 +97,9 @@ We will accomplish this by 1) generating a new requirements.txt file, 2) generat
   CMD [ "python", "review.py" ]
   ```
 
-{{% alert title="Note" color="info" %}}
+{{% notice title="Note" color="info" %}}
 Note that the only lines, in bold, added to the Dockerfile
-{{% /alert%}}
+{{% /notice %}}
 
 - Generate a new container image with docker build in the ‘finished’ directory
 - Notice that I have changed the repository name from `localhost:8000/review:0.01` to `localhost:8000/review-splkotel:0.01`

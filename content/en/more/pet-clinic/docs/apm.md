@@ -32,9 +32,9 @@ Next, run the maven command to compile/build/package Pet Clinic:
 ./mvnw package -Dmaven.test.skip=true
 ```
 
-{{% alert title="Information" %}}
+{{% notice title="Information" %}}
 This will take a few minutes the first time you run, maven will download a lot of dependencies before it actually compiles the app. Future executions will be a lot shorter.
-{{% /alert %}}
+{{% /notice %}}
 
 Once the compilation is complete, you can run the application with the following command:
 

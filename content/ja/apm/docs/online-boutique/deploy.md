@@ -58,10 +58,10 @@ deployment.apps/rum-loadgen-deployment created
 {{< /tab >}}
 {{< /tabs >}}
 
-{{% alert title="変数未セットに関するメッセージが表示された場合" color="warning" %}}
+{{% notice title="変数未セットに関するメッセージが表示された場合" color="warning" %}}
 **kubectl delete -f deployment.yaml** コマンドを実行しAPM環境のデプロイ削除します。
 次にガイド、メッセージに表示されていた変数をexportし上記のデプロイスクリプトを再実行します。
-{{% /alert %}}
+{{% /notice %}}
 
 Online Boutique アプリケーションが起動していることを確認するには:
 
@@ -90,9 +90,9 @@ loadgenerator-57c8b84966-7nr4f                                1/1     Running   
 {{< /tab >}}
 {{< /tabs >}}
 
-{{% alert title="Info" color="info" %}}
+{{% notice title="Info" %}}
 通常、ポッドがRunning状態に移行するのに1分30秒程度かかります。
-{{% /alert %}}
+{{% /notice %}}
 
 ---
 

@@ -78,9 +78,9 @@ You should now have the following three escalation polices:
 
 You may have noticed that when we created each policy there was the following warning message:
 
-{{% alert title="Warning" color="danger" %}}
+{{% notice title="Warning" color="danger" %}}
 There are no routing keys for this policy - it will only receive incidents via manual reroute or when on another escalation policy
-{{% /alert %}}
+{{% /notice %}}
 
 This is because there are no Routing Keys linked to these Escalation Polices, so now that we have these polices configured we can create the Routing Keys and link them to our Polices..
 

@@ -14,11 +14,11 @@ Now that we have rebuilt and deployed our application, traffic is being sent onc
 
 We are waiting a few minutes . . .
 
-{{% alert title="Congratulations" color="info" %}}
+{{% notice title="Congratulations" color="info" %}}
 
 If you do not see Red in your service map, you have successfully completed our Inventory application review for Shri Lanka and Colorado locations!!
 
-{{% /alert %}}
+{{% /notice %}}
 
 Now let's ensure Chicago was on-boarded correctly. However, since we have been having so many issues related to "location" and we have added that custom attribute via Opentelemetry Manual Instrumentation, lets go to the Splunk Observability UI and create an APM metric set around that tag.
 

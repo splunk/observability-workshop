@@ -85,11 +85,11 @@ Enter **Confirm Order** for the **Name** and change the **Action** to **Wait for
 
 ![placeholder](../../images/image2.png)
 
-{{% alert title="Tip" color="info" %}}
+{{% notice title="Tip" color="info" %}}
 As you are creating the steps think about how to go about using the **Business Transaction** feature in Splunk Synthetic Monitoring which is very powerful.
 
 *"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
-{{% /alert %}}
+{{% /notice %}}
 
 Click on **Advanced** and make sure the **Viewport Size** is set to **Default desktop: 1366 x 768**
 
@@ -103,11 +103,11 @@ Click on **Create**{: .label-button .sfx-ui-button-blue} to save your Real Brows
 
 ![placeholder](../../images/image27.png)
 
-{{% alert title="Tip" color="info" %}}
+{{% notice title="Tip" color="info" %}}
 You can force to run your monitor now using **Run Now**
 
 ![placeholder](../../images/image8.png)
-{{% /alert %}}
+{{% /notice %}}
 
 Change your view to **Segment by location** and observe the difference. You can turn off/on locations by clicking on them.
 
@@ -160,11 +160,11 @@ Under the **Advanced** tab, update the following three settings and create your 
 
 Test & Validate the new monitor
 
-{{% alert title="Tip" color="info" %}}
+{{% notice title="Tip" color="info" %}}
 As you are creating the steps try using the **Business Transaction** feature in Splunk Synthetic Monitoring.
 
 *"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
-{{% /alert %}}
+{{% /notice %}}
 
 ## 5. Resources
 

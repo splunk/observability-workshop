@@ -94,9 +94,9 @@ Step 3: Place Order
 
 ![placeholder](../../images/image2.png)
 
-{{% alert title="Tip" color="info" %}}
+{{% notice title="Tip" color="info" %}}
 Step作成時には非常に強力な [Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions) 機能の利用もご検討ください。*「Business Transactionとは、Real Browserスクリプト内の連続したステップをまとめたものです。これらのトランザクションは、フローの類似部分を論理的にグループ化し、ユーザーは複数のステップとページ（複数可）のパフォーマンスを1つのビジネストランザクションにまとめて表示できるようにします。"*
-{{% /alert %}}
+{{% /notice %}}
 
 **Advanced** をクリックし、 **Viewport Size** が **Default desktop: 1366 x 768** であることを確認します。
 
@@ -110,11 +110,11 @@ Step作成時には非常に強力な [Business Transaction](https://help.rigor.
 
 ![placeholder](../../images/image27.png)
 
-{{% alert title="Tip" color="info" %}}
+{{% notice title="Tip" color="info" %}}
 **Run Now** を実行することでモニターを即座に実行できます。
 
 ![placeholder](../../images/image8.png)
-{{% /alert %}}
+{{% /notice %}}
 
 **Segment by location** をクリックし、見た目の変化を確認してください。クリックすることで各ロケーションのon/offが可能です。
 
@@ -167,9 +167,9 @@ Step作成時には非常に強力な [Business Transaction](https://help.rigor.
 
 新しいモニター設定をテスト＆確認します。
 
-{{% alert title="Tip" color="info" %}}
+{{% notice title="Tip" color="info" %}}
 Step作成時には非常に強力な [Business Transaction](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions) 機能の利用もご検討ください。*「Business Transactionとは、Real Browserスクリプト内の連続したステップをまとめたものです。これらのトランザクションは、フローの類似部分を論理的にグループ化し、ユーザーは複数のステップとページ（複数可）のパフォーマンスを1つのビジネストランザクションにまとめて表示できるようにします。"*
-{{% /alert %}}
+{{% /notice %}}
 
 ## 5. リソース
 

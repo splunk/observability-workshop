@@ -16,11 +16,11 @@ Let's check to see our InvalidLocale Exception is gone. Click Shop Service, clic
 
 Lets see if the newly added annotations provide us more relevant information for the next responder once we find the cause.
 
-{{% alert title="Note:" color="warning" %}}
+{{% notice title="Note:" color="warning" %}}
 
 We added additional information Parameter Values at Time of Latency. In this case the **Location** tag was created due our handy Annotator, that did the [OpenTelemetry Annotations](https://opentelemetry.io/docs/instrumentation/java/automatic/annotations/)
 
-{{% /alert %}}
+{{% /notice %}}
 
 ![image](https://user-images.githubusercontent.com/32849847/213582624-66466a19-00fa-4dda-acd0-f6970d594ba1.png)
 

@@ -23,9 +23,9 @@ Expand the RUM workshop token that your host has instructed you to use e.g. **O1
 
 ![Access Token](../../../images/RUM-Access-Token.png)
 
-{{% alert title="Please do not attempt to create your own token" color="warning" %}}
+{{% notice title="Please do not attempt to create your own token" color="warning" %}}
 We have created a RUM Token specifically for this workshop with the appropriate settings for the exercises you will be performing
-{{% /alert %}}
+{{% /notice %}}
 
 Create the `RUM_TOKEN` environment variable to use in the proceeding shell script to personalize your deployment.
 
@@ -74,10 +74,10 @@ service/currencyservice created
 {{< /tab >}}
 {{< /tabs >}}
 
-{{% alert title="In case of a message about a VARIABLE being unset" color="warning" %}}
+{{% notice title="In case of a message about a VARIABLE being unset" color="warning" %}}
 Please undeploy the APM environment by running **kubectl delete -f deployment.yaml**</br>
 Before exporting the variable as described in the guide and rerunning the deployment script above.
-{{% /alert %}}
+{{% /notice %}}
 
 Open your web browser and go to the Online Boutique.  (The one you previously used, or the one provided by the Workshop instructor). You will see the Non RUM Online Boutique running.
 
@@ -166,9 +166,9 @@ The first three lines  (marked in red) have been added to the HEAD section of th
 * It also adds an Access Token to :  `rumAuth: "1wCqZVUWIP5XSdNjPoQRFg"` (this of course is an example, you can create multiple RUM Access Tokens for all your applications)
 * And it is used to add identification tags like the application Name and environment to the RUM trace for use in the SPLUNK RUM UI:  `app: "ksnq-rum-app", environment: "ksnq-rum-env"}`
 
-{{% alert title="Info" color="info" %}}
+{{% notice title="Info" color="info" %}}
 In this example the app name is **ksnq-rum-app**, this will be different in the Workshop. Check with your host what the app name and environment to use in the RUM session will be and make a note of it!
-{{% /alert %}}
+{{% /notice %}}
 
 The above two lines are all that is required to enable RUM on your website!
 

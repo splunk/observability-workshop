@@ -80,13 +80,13 @@ isCJKLanguage: true
 
 {{% labelbutton color="ui-button-blue" %}}**Update**{{% /labelbutton %}} をクリックすると、アクセストークンの制限とアラートの設定が保存されます。
 
-{{% alert title="Note: トークンの上限を超えると、何が起こるのか" color="primary" %}}
+{{% notice title="Note: トークンの上限を超えると、何が起こるのか" color="primary" %}}
 トークンが使用カテゴリの上限に達したとき、または上限を超えたとき、その使用カテゴリの新しいメトリクスはObservability Cloudに保存されず、処理されません。これにより、チームが無制限にデータを送信することによる予期せぬコストが発生しないようになります。
-{{% /alert %}}
+{{% /notice %}}
 
-{{% alert title="Note: 高度なアラート通知" color="primary" %}}
+{{% notice title="Note: 高度なアラート通知" color="primary" %}}
 90%に達する前にアラートを取得したい場合は、必要な値を使用して追加のディテクターを作成できます。これらのディテクターは、特定のアクセストークンを消費しているチームをターゲットにすることができ、管理者が関与する必要がある前に行動を起こすことができます。
-{{% /alert %}}
+{{% /notice %}}
 
 これらの新しいアクセストークンを様々なチームに配布し、Observability Cloudに送信できる情報やデータの量をコントロールできるようになります。
 

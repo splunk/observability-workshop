@@ -26,9 +26,9 @@ Expand the RUM workshop token that your host has instructed you to use e.g. **O1
 
 ![Access Token](../images/RUM-Access-Token.png)
 
-{{% alert title="Please do not attempt to create your own token" color="warning" %}}
+{{% notice title="Please do not attempt to create your own token" color="warning" %}}
 We have created a RUM Token specifically for this workshop with the appropriate settings for the exercises you will be performing
-{{% /alert %}}
+{{% /notice %}}
 
 Create the `RUM_TOKEN` environment variable to use in the proceeding shell script to personalize your deployment.
 
@@ -81,11 +81,11 @@ deployment.apps/rum-loadgen-deployment created
 {{< /tab >}}
 {{< /tabs >}}
 
-{{% alert title="In case of a message about a VARIABLE being unset" color="warning" %}}
+{{% notice title="In case of a message about a VARIABLE being unset" color="warning" %}}
 Please undeploy the APM environment by running **kubectl delete -f deployment.yaml**
 
 Before exporting the variable as described in the guide and rerunning the deployment script above.
-{{% /alert %}}
+{{% /notice %}}
 
 ## 4. Using the Online Boutique to generate load on your system
 

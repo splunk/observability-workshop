@@ -59,9 +59,9 @@ isCJKLanguage: true
 
 ![Billing and Usage-Bottom](../../../images/usage-trends.png)
 
-{{% alert title="Info" color="primary" %}}
+{{% notice title="Info" color="primary" %}}
 スクリーンショットからわかるように、Observability Cloudはコスト計算には最大値や95パーセンタイル値ではなく、実際の平均時間使用量を使用しています。これにより、超過料金のリスクなしに、パフォーマンステストやBlue/Greenスタイルのデプロイメントなどを行うことができます。
-{{% /alert %}}
+{{% /notice %}}
 
 オプションを確認するには、左の **Usage Metric** ドロップダウンから異なるオプションを選択して表示するメトリックを変更するか、右のドロップダウンで **Billing Period** を変更します。
 

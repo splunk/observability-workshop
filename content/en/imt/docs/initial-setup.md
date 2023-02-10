@@ -26,10 +26,10 @@ Find your allocated IP address, SSH command (for Mac OS, Linux and the latest Wi
 
 It also has the Browser Access URL that you can use in case you cannot connect via ssh or putty - see [EC2 access via Web browser](#4-web-browser-all)
 
-{{% alert title="Important" color="primary" %}}
+{{% notice title="Important" color="primary" %}}
 Please use SSH or Putty  to gain access to your EC2 instance if possible and
 make a note of the IP address as you will need this during the workshop.
-{{% /alert %}}
+{{% /notice %}}
 
 ## 2. SSH (Mac OS/Linux)
 
@@ -84,9 +84,9 @@ At this point you are ready to continue and [start the workshop](../../gdi/k3s/)
 
 If you do not have ssh preinstalled or if you are on a Windows system,  the best option is to install putty, you can find [here.](https://www.putty.org/)
 
-{{% alert title="Important" color="primary" %}}
+{{% notice title="Important" color="primary" %}}
 If you **cannot** install Putty, please go to [Web Browser (All).](./#4-web-browser-all)
-{{% /alert %}}
+{{% /notice %}}
   
 Open Putty and enter the in **Host Name (or IP address)** field the IP address provided in the Google Sheet.
 
@@ -114,9 +114,9 @@ At this point you are ready to continue and [start the workshop](../../gdi/k3s/)
 
 If you are blocked from using SSH (Port 22) or unable to install Putty you may be able to connect to the workshop instance by using a web browser.
 
-{{% alert title="Note" color="primary" %}}
+{{% notice title="Note" color="primary" %}}
 This assumes that access to port 6501 is not restricted by your company's firewall.
-{{% /alert %}}
+{{% /notice %}}
 
 Open your web browser and type **[http://x.x.x.x:6501](http://x.x.x.x:6501)** (where X.X.X.X is the IP address from the Google Sheet).
 
@@ -144,11 +144,11 @@ This will open a dialog box asking for the text to be pasted into the web termin
 
 Paste the text in the text box as show, then press **OK** to complete the copy and paste process.
 
-{{% alert title="Note" color="primary" %}}
+{{% notice title="Note" color="primary" %}}
 Unlike regular SSH connection, the web browser has a 60 second time out, and you will be disconnected, and a **Connect** button will be shown in the center of the web terminal.
 
 Simply click the **Connect** button and you will be reconnected and will be able to continue.
-{{% /alert %}}
+{{% /notice %}}
 
 ![web reconnect](../../images//shellinabox-reconnect.png)
 

@@ -25,9 +25,9 @@ Online BoutiqueがインストールされたEC2インスタンスにアクセ�
 
 ![Access Token](../../images/RUM-Access-Token.png)
 
-{{% alert title="新規にトークンを作らないでください" color="warning" %}}
+{{% notice title="新規にトークンを作らないでください" color="warning" %}}
 このワークショップのために、皆さんが行う演習に適した設定をしたRUM Tokenを作成しています。
-{{% /alert %}}
+{{% /notice %}}
 
 EC2にSSHアクセスしているシェルスクリプトで環境変数 `RUM_TOKEN` を作成し、デプロイメントをパーソナライズします。
 
@@ -76,10 +76,10 @@ service/currencyservice created
 {{< /tab >}}
 {{< /tabs >}}
 
-{{% alert title="変数未セットに関するメッセージが表示された場合" color="warning" %}}
+{{% notice title="変数未セットに関するメッセージが表示された場合" color="warning" %}}
 **kubectl delete -f deployment.yaml** コマンドを実行しAPM環境のデプロイ削除します。
 次にガイド、メッセージに表示されていた変数をexportし上記のデプロイスクリプトを再実行します。
-{{% /alert %}}
+{{% /notice %}}
 
 ウェブブラウザーを起動し、Online Boutiqueにアクセスします。 (以前使用したもの、または新しくワークショップ講師が提供したもの）。RUMなしのOnline Boutiqueが起動していることが確認できます。
 
@@ -167,9 +167,9 @@ RUMに必要な変更は、WebページのHEADセクションに配置されま�
 * また、Access Tokenを追加しています。 `rumAuth: "1wCqZVUWIP5XSdNjPoQRFg"` (もちろんこれは例です。全てのアプリケーションに対して、複数のRUM Access Tokenを作成することができます。) *
 * また、SPLUNK RUM UIで使用するために、アプリケーション名や環境などの識別タグをRUMトレースに追加するために使用されます。 `app: "ksnq-rum-app", environment: "ksnq-rum-env"}`
 
-{{% alert title="Info" color="info" %}}
+{{% notice title="Info" color="info" %}}
 この例ではアプリ名は **ksnq-rum-app** ですが、これはワークショップでは異なるでしょう。RUMセッションで使用するアプリ名と環境は講師に確認し、メモしておいてください。
-{{% /alert %}}
+{{% /notice %}}
 
 上記の2行だけであなたのWebサイトでRUMを有効にすることができます。
 

@@ -39,9 +39,9 @@ export REALM=<replace_with_splunk_realm>
 
 Terraform を初期化し、Splunk Terraform Provider を最新版にアップグレードします。
 
-{{% alert title="Note: SignalFx Terraform Provider のアップグレード" color="primary" %}}
+{{% notice title="Note: SignalFx Terraform Provider のアップグレード" color="primary" %}}
 Splunk Terraform Provider の新バージョンがリリースされるたびに、以下のコマンドを実行する必要があります。リリース情報は [GitHub](https://github.com/splunk-terraform/terraform-provider-signalfx/releases) で確認できます。
-{{% /alert %}}
+{{% /notice %}}
 
 {{< tabs >}}
 {{< tab name="Initialise Terraform" lang="sh" >}}

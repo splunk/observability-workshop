@@ -67,9 +67,9 @@ kafka-0                           0/2     Pending             0          17s
 
 Use information for each Helm chart and Splunk O11y Data Setup to generate values.yaml for capturing metrics from Kafka and MongoDB.
 
-{{% alert title="Note" color="info" %}}
+{{% notice title="Note" color="info" %}}
 `values.yaml` for the different services will be passed to the Splunk Helm Chart at installation time. These will configure the OTEL collector to capture metrics from these services.
-{{% /alert %}}
+{{% /notice %}}
 
 - References:
   - [Apache Kafka packaged by Bitnami](https://github.com/bitnami/charts/tree/master/bitnami/spark/#installing-the-chart)

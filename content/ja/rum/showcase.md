@@ -27,9 +27,9 @@ APMワークショップでサービスをインストールしました。こ�
 
 ![Access Token](../images/RUM-Access-Token.png)
 
-{{% alert title="自分のトークンを作らないでください" color="warning" %}}
+{{% notice title="自分のトークンを作らないでください" color="warning" %}}
 このワークショップのために、皆さんが行う演習に適した設定をしたRUM Tokenを作成ししています。
-{{% /alert %}}
+{{% /notice %}}
 
 進行中のシェルスクリプトで環境変数 `RUM_TOKEN` を作成し、デプロイメントをパーソナライズします。
 
@@ -82,10 +82,10 @@ deployment.apps/rum-loadgen-deployment created
 {{< /tab >}}
 {{< /tabs >}}
 
-{{% alert title="変数未セットに関するメッセージが表示された場合" color="warning" %}}
+{{% notice title="変数未セットに関するメッセージが表示された場合" color="warning" %}}
 **kubectl delete -f deployment.yaml** コマンドを実行しAPM環境のデプロイ削除します。
 次にガイド、メッセージに表示されていた変数をexportし上記のデプロイスクリプトを再実行します。
-{{% /alert %}}
+{{% /notice %}}
 
 ## 4. Online Boutiqueを使ってシステムに負荷を与える
 皆さんと一緒にOnline Boutiqueに接続し買い物をシミュレートする合成ユーザーもいます。これにより、複数の場所からのトラフィックが発生し、よりリアルなデータが得られます。

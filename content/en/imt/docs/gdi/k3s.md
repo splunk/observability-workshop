@@ -17,9 +17,9 @@ Expand the workshop token that your host has instructed you to use e.g. **O11y-W
 
 ![Access Token](../../../images/access-token.png)
 
-{{% alert title="Please do not attempt to create your own token" color="warning" %}}
+{{% notice title="Please do not attempt to create your own token" color="warning" %}}
 We have created a Token specifically for this workshop with the appropriate settings for the exercises you will be performing so have allocated it both Ingest and API Permissions.  Best practice in production is to only allocate a single permission to a Token such as Ingest OR API OR RUM and use multiple Tokens where required.
-{{% /alert %}}
+{{% /notice %}}
 
 You will also need to obtain the name of the Realm[^2] for your Splunk account.  At the top of the side menu, click on your name. This will direct you to the **Account Settings** Page. Click the **Organizations**-tab. The Realm can be found at the top of the displayed information in the tab.  In this example it is `eu0`.
 
@@ -141,14 +141,14 @@ kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 {{< /tab >}}
 {{< /tabs >}}
 
-{{% alert title="Deleting a failed installation" color="danger" %}}
+{{% notice title="Deleting a failed installation" color="danger" %}}
 If you make an error installing the OpenTelemetry Collector you can start over by deleting the installation using:
 
 ``` sh
 helm delete splunk-otel-collector
 ```
 
-{{% /alert %}}
+{{% /notice %}}
 
 ---
 

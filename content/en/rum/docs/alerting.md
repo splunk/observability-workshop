@@ -34,11 +34,11 @@ If you previously done the Splunk IM Part of the Workshop, you will find this se
 
 u have added to the trace as part of the configuration of your website.
 
-{{% alert title="Addtional Tags" color="info" %}}
+{{% notice title="Addtional Tags" color="info" %}}
 We are already sending two additional tags, you have seen them defined in the *Beacon url* that was added to your website in the first section of this workshop! You can add additional tag in a similar way.
 
 ```javascript
 app: "[nodename]-rum-app", environment: "[nodename]-rum-env"
 ```
 
-{{% /alert %}}
+{{% /notice %}}

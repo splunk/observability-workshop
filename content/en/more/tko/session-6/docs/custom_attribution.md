@@ -16,11 +16,11 @@ It is important to remember that any developer should be able to debug a method 
 
 To expedite manual instrumentation implementation for this exercise, we have provided a tool which will annotate the entirety of the "shop" and "products" services with OpenTelemetry standard annotations for every method call without having to write any code. This "annotator" tool will also tag every parameter in every function, which adds a span tag with Parameter=Value.
 
-{{% alert title="Note:" color="info" %}}
+{{% notice title="Note:" color="info" %}}
 
 This Full-fidelity Every-method approach is the Monolith Use Case with Splunk APM for Java.
 
-{{% /alert %}}
+{{% /notice %}}
 
 ## 1. Run Manual Instrumentation Tool
 

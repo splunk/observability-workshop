@@ -26,8 +26,8 @@ Now we can see the long latency occurred in the products service and if we click
 
 Our next step here would be to send that trace to a developer by clicking download trace and they will have to debug the method. Before we do that please take note of the Tags available for the developer to leverage to find root cause.
 
-{{% alert title="Note:" color="info" %}}
+{{% notice title="Note:" color="info" %}}
 
 Since they do not have full parameter information it can be a long process.
 
-{{% /alert %}}
+{{% /notice %}}

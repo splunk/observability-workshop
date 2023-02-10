@@ -29,11 +29,11 @@ We are now going to create a new detector from a chart on this dashboard. Click 
 
 In the text field next to **Detector Name**, **ADD YOUR INITIALS** before the proposed detector name.
 
-{{% alert title="Naming the detector" color="primary" %}}
+{{% notice title="Naming the detector" color="primary" %}}
 It's important that you add your initials in front of the proposed detector name.
 
 It should be something like this: **XYZ's Latency Chart Detector**.
-{{% /alert %}}
+{{% /notice %}}
 
 Click on {{% labelbutton color="ui-button-blue" %}}Create Alert Rule{{% /labelbutton %}}
 
@@ -61,14 +61,14 @@ A pre-flight check will take place after 5 seconds. See the **Estimated alert co
 
 ![Alert Threshold](../../../images//alert-threshold.png)
 
-{{% alert title="About pre-flight checks" color="primary" %}}
+{{% notice title="About pre-flight checks" color="primary" %}}
 Once you set an alert condition, the UI estimates how many alerts you might get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.
 
 Immediately, the platform will start analyzing the signals with the current settings, and perform something we call a Pre-flight Check. This enables you to test the alert conditions using the historical data in the platform, to ensure the settings are logical and will not inadvertently generate an alert storm, removing the guess work from configuring alerts in a simple but very powerful way, only available using the Splunk Observability Cloud.
 
 To read more about detector previewing, please visit this link
 [Preview detector alerts.](https://docs.splunk.com/Observability/alerts-detectors-notifications/preview-detector-alerts.html#nav-Preview-detector-alerts)
-{{% /alert %}}
+{{% /notice %}}
 
 Click on {{% labelbutton color="ui-button-blue" %}}Proceed to Alert Message{{% /labelbutton %}}
 
@@ -86,11 +86,11 @@ Click on **Add Recipient** and then on your email address displayed as the first
 
 ![Add Recipient](../../../images//add-recipient.png)
 
-{{% alert title="Notification Services" color="primary" %}}
+{{% notice title="Notification Services" color="primary" %}}
 That's the same as entering that email address OR you can enter another email address by clicking on **E-mail...**.
 
 This is just one example of the many **Notification Services** the suite has available. You can check this out by going to the **Integrations** tab of the top menu, and see **Notification Services**.
-{{% /alert %}}
+{{% /notice %}}
 
 ---
 

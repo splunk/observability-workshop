@@ -50,9 +50,9 @@ data('VolumeWriteOps', filter=filter('namespace', 'AWS/EBS') and filter('stat', 
 
 Execute this search.
 
-{{% alert title="Caution" %}}
+{{% notice title="Caution" %}}
 Internal note: If I run the below search, my line chart is empty. Is this supposed to be like this?
-{{% /alert %}}
+{{% /notice %}}
 
 If you would like to see the results in a visualisation, you can append a *timechart* command to the search term with a "|". The complete search term would then look something like this:
 

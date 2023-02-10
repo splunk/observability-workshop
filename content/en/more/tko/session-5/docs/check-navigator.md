@@ -31,9 +31,9 @@ With your Cluster selected in the Cluster drop down, open the Kubernetes Cluster
 
 In our little cluster we have not yet had enough time or data to do more than highlight a condition detected like a pod restart. Over time, the system will show relationships and patterns between objects. You will find that as you drill down into your Clusters resources, the Analyzer adjusts what it displays depending on the chosen resource.
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% notice title="Workshop Question" style="tip" icon="question" %}}
 How many trouble indicators are there in your Cluster?
-{{% /alert %}}
+{{% /notice %}}
 
 ## 3.  Nodes & Node Details Tabs
 
@@ -61,9 +61,9 @@ Node Details shows you lots of great detail about what is happening on this Node
 
 You also have scrollable table views of both the Workloads and Containers running on the Node.  Clicking on any of the names in the tables will reopen the side panel with the appropriate panes for either Workloads or Containers.  Each of these can then also be expanded just like you did with the Node side panel, by clicking the expand button ![expand-sidebar.png](../images/expand-sidebar.png)
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% notice title="Workshop Question" style="tip" icon="question" %}}
 How much memory and how many CPU cores does our one node have?
-{{% /alert %}}
+{{% /notice %}}
 
 ## 4. Workloads & Workload Details Tabs
 
@@ -73,9 +73,9 @@ This table provides lots of valuable insights into the state of your workloads, 
 
 The default view has no Grouping applied but experiment with the various Group By options to see how the table changes.  Note how you can also use the various fields in the top toolbar to filter the data displayed, this would be essential in a large environment with hundreds or even thousands of different Workloads.
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% notice title="Workshop Question" style="tip" icon="question" %}}
 What type is the `splunk-otel-collector-agent` workload, and what is its desired configuration?
-{{% /alert %}}
+{{% /notice %}}
 
 To get more detail on a specific Workload, simply click on its name in the Workload column (we assume you have the 'splunk-otel-collector-agent' workload selected), this will open the side panel, then click the expand button ![expand-sidebar.png](../images/expand-sidebar.png) to navigate to the Workload Detail Tab.
 
@@ -87,9 +87,9 @@ Here you will get the general info about your Workload, the CPU and Memory the C
 
 As with the other Kubernetes Navigator views clicking on the name of a Pod within the table view will load the Side Panel with details about that resource, allowing you to 'click through' to these resources.  Select any of the listed Pods, then click the expand button ![expand-sidebar.png](../images/expand-sidebar.png) to navigate to the Pod Detail Tab.
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% notice title="Workshop Question" style="tip" icon="question" %}}
 How many containers does the `splunk-otel-collector-agent` Pod contain?
-{{% /alert %}}
+{{% /notice %}}
 
 ## 5. Pod Detail & Container Details Tabs
 

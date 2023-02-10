@@ -55,15 +55,16 @@ resources:
     memory: "4Mi"
 ```
 
-Save the changes youhave made. (Hint: Use `Esc` followed by `:wq!` to save your changes). 
+Save the changes youhave made. (Hint: Use `Esc` followed by `:wq!` to save your changes).
 
 Now, we must delete the existing StatefulSet and re-create it. StatefulSets are immutable, so we must delete the existing one and re-create it with the new changes.
 
 ``` bash
 kubectl delete statefulset php-apache -n apache
-
 ```
+
 Now, deploy your changes:
+
 ``` bash
 kubectl apply -f ~/workshop/k3s/php-apache.yaml -n apache
 ```
@@ -78,15 +79,15 @@ kubectl describe statefulset php-apache -n apache
 
 Validate the Pod is now running in Splunk Observability Cloud.
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% notice title="Workshop Question" style="tip" icon="question" %}}
 Is the **Apache Web Servers** dashboard showing any data now?
 
 **Tip:** Don't forget to use filters and time frames to narrow down your data.
-{{% /alert %}}
+{{% /notice %}}
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% notice title="Workshop Question" style="tip" icon="question" %}}
 Another Auto-Detect Detector has fired, which one is it this time?
-{{% /alert %}}
+{{% /notice %}}
 
 ## 4. Fix memory issue
 
@@ -105,7 +106,8 @@ resources:
     cpu: "0.5"
     memory: "12Mi"
 ```
-Save the changes youhave made. (Hint: Use `Esc` followed by `:wq!` to save your changes). 
+
+Save the changes youhave made. (Hint: Use `Esc` followed by `:wq!` to save your changes).
 
 Because the StatefulSet is immutable, we must delete the existing Pod and let the StatefulSet re-create it with the new changes.
 

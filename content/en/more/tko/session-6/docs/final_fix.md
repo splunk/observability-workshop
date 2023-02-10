@@ -64,10 +64,10 @@ We now see the 500 error is gone! Let's confirm a clean Service Map!
 
 ![Screen Shot 2022-11-28 at 8 35 11 AM](https://user-images.githubusercontent.com/32849847/204350088-fca43e3c-42ea-4933-8a61-01eb2083fd23.png)
 
-{{% alert title="Congratulations" color="info" %}}
+{{% notice title="Congratulations" color="info" %}}
 
 If you see a clean service map, free of errors and Latency you have successfully completed the Java Instrumentation Workshop!**
 
-{{% /alert %}}
+{{% /notice %}}
 
 **Have a lovely day!**

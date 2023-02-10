@@ -25,9 +25,9 @@ From the drop-down click on **Create Muting Rule...**
 
 In the **Muting Rule** window check **Mute Indefinitely** and enter a reason.
 
-{{% alert title="Important" color="primary" %}}
+{{% notice title="Important" color="primary" %}}
 This will mute the notifications permanently until you come back here and un-check this box or resume notifications for this detector.
-{{% /alert %}}
+{{% /notice %}}
 
 ![Mute Indefinitely](../../../images//mute-indefinitely.png)
 

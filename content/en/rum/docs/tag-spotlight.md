@@ -19,9 +19,9 @@ Once you have selected and clicked on the blue url, you will find yourself in th
 
 Here you will see all of the tags that have been sent to Splunk RUM as part of the RUM traces. The tags displayed will be relevant to the overview that you have selected.  These are generic Tags created automatically when the Trace was sent, and additional Tags you have added to the trace as part of the configuration of your website.
 
-{{% alert title="Additional Tags" color="info" %}}
+{{% notice title="Additional Tags" color="info" %}}
 We are already sending two additional tags, you have seen them defined in the *Beacon url* that was added to your website:  `app: "[nodename]-rum-app", environment: "[nodename]-rum-env"` in the first section of this workshop! You can add additional tags in a similar way.
-{{% /alert %}}
+{{% /notice %}}
 
 In our example we have selected the **Document Load Latency** view as shown here:
 

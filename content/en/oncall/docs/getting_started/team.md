@@ -49,8 +49,8 @@ To make a team member a Team Admin, simply click the :fontawesome-regular-edit: 
 
 ![Add Admin](../../../images/team-admin.png)
 
-{{% alert title="Tip" color="info" %}}
+{{% notice title="Tip" color="info" %}}
 For large team management you can use the APIs to streamline this process.
-{{% /alert %}}
+{{% /notice %}}
 
 Continue and also complete the [Configure Rotations](../rotations/) module.

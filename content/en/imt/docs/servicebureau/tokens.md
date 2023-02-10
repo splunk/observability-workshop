@@ -79,13 +79,13 @@ The severity for token alerts is always Critical.
 
 Click on {{% labelbutton color="ui-button-blue" %}}**Update**{{% /labelbutton %}} to save your Access Tokens limits and The Alert Settings.
 
-{{% alert title="Note: Going above token limit" color="primary" %}}
+{{% notice title="Note: Going above token limit" color="primary" %}}
 When a token is at or above its limit in a usage category, new metrics for that usage category will not be stored and processed by Observability Cloud. This will make sure you there  will be no unexpected cost due to a team sending in data without restriction.
-{{% /alert %}}
+{{% /notice %}}
 
-{{% alert title="Note: Advanced alerting" color="primary" %}}
+{{% notice title="Note: Advanced alerting" color="primary" %}}
 If you wish to get alerts before you hit 90%, you can create additional detectors using whatever values you want. These detectors could target the Teams consuming the specific Access Tokens so they can take action before the admins need to get involved.
-{{% /alert %}}
+{{% /notice %}}
 
 In your company you would distribute these new Access Tokens to various teams, controlling how much information/data they can send to Observability Cloud.
 

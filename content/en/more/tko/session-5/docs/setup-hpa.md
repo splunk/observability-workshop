@@ -26,10 +26,10 @@ kubectl get hpa -n apache
 
 Go to the **Workloads** or **Node Detail** tab in Kubernetes and check the HPA deployment.
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% notice title="Workshop Question" style="tip" icon="question" %}}
 How many additional `php-apache-x` pods have been created?
-{{% /alert %}}
+{{% /notice %}}
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% notice title="Workshop Question" style="tip" icon="question" %}}
 Which metrics in the Apache Dashboards have significantly increased again?
-{{% /alert %}}
+{{% /notice %}}

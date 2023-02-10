@@ -19,9 +19,9 @@ Kubernetes が起動したら、Splunk の UI から Access Token[^1] を取得�
 
 ![Access Token](../../../images/access-token.png)
 
-{{% alert title="独自のトークンを新たに作成しないようにしてください" color="warning" %}}
+{{% notice title="独自のトークンを新たに作成しないようにしてください" color="warning" %}}
 このワークショップのために設定のトークンを作成し、IngestとAPIの両方の権限を割り当てています。実運用でのベストプラクティスは、1つのTokenにはIngestまたはAPIまたはRUMのような単一のパーミッションを割り当て、必要な場合は複数のトークンを使用することです。
-{{% /alert %}}
+{{% /notice %}}
 
 また、Splunk アカウントの Realm[^2] の名前を取得する必要があります。サイドメニューの最上部の名前をクリックし、**Account Settings** ページに移動します。Organizations タブをクリックします。Realm はページの中央に表示されています。 この例では「us0」となっています。
 
@@ -124,10 +124,10 @@ kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 {{< /tab >}}
 {{< /tabs >}}
 
-{{% alert title="インストールに失敗した場合に削除する" color="info" %}}
+{{% notice title="インストールに失敗した場合に削除する" color="info" %}}
 OpenTelemetry Collectorのインストールに失敗した場合は、次のようにしてインストールを削除することで、最初からやり直すことができます。
 **helm delete splunk-otel-collector**
-{{% /alert %}}
+{{% /notice %}}
 
 ---
 

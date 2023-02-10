@@ -57,10 +57,10 @@ deployment.apps/rum-loadgen-deployment created
 {{< /tab >}}
 {{< /tabs >}}
 
-{{% alert title="In case of a message about a VARIABLE being unset" color="warning" %}}
+{{% notice title="In case of a message about a VARIABLE being unset" color="warning" %}}
 Please undeploy the APM environment first by running **kubectl delete -f deployment.yaml**</br>
 Then export the variable as described in the guide/message, followed by rerunning the deployment script above.
-{{% /alert %}}
+{{% /notice %}}
 
 To ensure the Online Boutique application is running:
 
@@ -90,9 +90,9 @@ adservice-7b68d5b969-89ft2                                  1/1   Running   0   
 {{< /tab >}}
 {{< /tabs >}}
 
-{{% alert title="Info" color="info" %}}
+{{% notice title="Info" color="info" %}}
 Usually it should only take around 1min 30secs for the pods to transition into a Running state.
-{{% /alert %}}
+{{% /notice %}}
 
 ---
 
