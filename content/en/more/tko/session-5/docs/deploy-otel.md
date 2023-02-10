@@ -78,7 +78,9 @@ Update Complete. ⎈Happy Helming!⎈
 Install the OpenTelemetry Collector Helm chart into the `splunk` namespace with the following commands, do **NOT** edit this:
 
 {{< tabs >}}
-{{< tab name="Helm Install" lang="sh" >}}
+{{% tab name="Helm Install" %}}
+
+``` bash
 helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
@@ -89,7 +91,9 @@ splunk-otel-collector-chart/splunk-otel-collector \
 --namespace splunk \
 --create-namespace \
 -f ~/workshop/k3s/splunk-defaults.yaml
-{{< /tab >}}
+```
+
+{{% /tab %}}
 {{< /tabs >}}
 
 ## 5. Verify Deployment

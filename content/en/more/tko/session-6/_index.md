@@ -2,8 +2,7 @@
 title: 6. O11y - Distributed Tracing for modern applications
 linkTitle: Session 6
 weight: 1
-cascade:
-  type: docs
+alwaysopen: false
 ---
 
 Here at Buttercup Instruments, our business is expanding ! We have recently added 3 new locations, two locations in the USA, Colorado and Chicago and one international location in SRI Lanka!
