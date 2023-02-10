@@ -9,6 +9,7 @@ Please note to begin the following lab, you must have completed the prework:
 - Obtain a Splunk Observability Cloud access key
 - Obtained a docker hub username
 - Understand cli commands
+- Be able to [Clone this repository](https://github.com/leungsteve/realtime_enrichment)
 
 Follow these steps if using O11y Workshop EC2 instances
 
