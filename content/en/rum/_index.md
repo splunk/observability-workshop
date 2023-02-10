@@ -1,14 +1,8 @@
 ---
 title: Splunk RUM, an introduction
 linkTitle:  Splunk RUM
-weight: 4 
-cascade:
-  type: docs
-menu:
-  main:
-    weight: 4
-    pre: <i class='fa-regular fa-chalkboard-user'></i>
-
+weight: 4
+alwaysopen: false
 ---
 
 Splunk RUM is the industry’s only end to end, full fidelity Real User Monitoring solution. It is built to optimize performance and aid in faster troubleshooting, giving you full visibility into end-user experiences.

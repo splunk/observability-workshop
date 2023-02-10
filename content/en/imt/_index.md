@@ -2,7 +2,6 @@
 title: Introduction
 linkTitle: Splunk IM
 weight: 1
-menuPre: "<i class='fa fa-sitemap'></i> "
 alwaysopen: false
 ---
 

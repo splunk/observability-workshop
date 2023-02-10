@@ -2,12 +2,7 @@
 title: Initial Setup
 linkTitle: Splunk OnCall
 weight: 3
-cascade:
-  type: docs
-menu:
-  main:
-    weight: 5
-    pre: <i class="fa-regular fa-phone-flip"></i>
+alwaysopen: false
 ---
 
 ## Aim

@@ -2,12 +2,7 @@
 title: Introduction
 linkTitle: Splunk APM
 weight: 2
-cascade:
-  type: docs
-menu:
-  main:
-    weight: 2
-    pre: <i class='fa-solid fa-code-fork'></i>
+alwaysopen: false
 ---
 
 Splunk APM is a NoSample™ Full-fidelity application performance monitoring and troubleshooting solution for cloud-native, microservices-based applications.
