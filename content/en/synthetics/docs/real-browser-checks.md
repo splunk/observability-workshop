@@ -1,6 +1,6 @@
 ---
-title: Real Browser Check 
-linkTitle: Real Browser Check 
+title: Real Browser Checks
+linkTitle: 1. Real Browser Checks
 weight: 1
 description: >
   Scripting and configuring a Real Browser Check

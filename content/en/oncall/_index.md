@@ -1,7 +1,7 @@
 ---
 title: Initial Setup
 linkTitle: Splunk OnCall
-weight: 1
+weight: 3
 cascade:
   type: docs
 menu:
@@ -102,7 +102,7 @@ If you are blocked from using SSH (Port 22) or unable to install Putty you may b
 !!! note
     This assumes that access to port 6501 is not restricted by your company's firewall.
 
-Open your web browser and type **http://X.X.X.X:6501** (where X.X.X.X is the IP address from the welcome e-mail).
+Open your web browser and type `http://x.x.x.x:650` (where `x.x.x.x` is the IP address from the welcome e-mail).
 
 ![http-6501](images/shellinabox-url.png)
 

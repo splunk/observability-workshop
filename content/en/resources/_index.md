@@ -1,7 +1,7 @@
 ---
 title: Additional Splunk for DevOps Resources
 linkTitle: Resources
-weight: 6
+weight: 20
 cascade:
   type: docs
 ---

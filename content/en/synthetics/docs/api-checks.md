@@ -1,6 +1,6 @@
 ---
 title: API Checks
-linkTitle:  API Checks
+linkTitle:  2. API Checks
 weight: 2
 description: >
   Scripting and configuring an API Check

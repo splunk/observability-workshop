@@ -2,6 +2,7 @@
 title: Pet Clinic Java Workshop
 cascade:
   type: docs
+weight: 8
 ---
 
 The goal is to walk through the basic steps to configure the following components of the Splunk Observability platform:

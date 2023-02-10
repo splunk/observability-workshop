@@ -48,5 +48,12 @@ params:
   disableNextPrev: false
   disableLandingPageButton: true
   titleSeparator: "::"
-  themeVariant: ["splunk-light", "splunk-dark"]
+  themeVariant: ["auto", "splunk-light", "splunk-dark"]
   additionalContentLanguage: [ "ja" ]
+
+menu:
+  shortcuts:
+  - name: "<i class='fab fa-fw fa-github'></i> GitHub repo"
+    url: "https://github.com/splunk/observability-workshop"
+    weight: 10
+
