@@ -56,4 +56,9 @@ menu:
   - name: "<i class='fab fa-fw fa-github'></i> GitHub repo"
     url: "https://github.com/splunk/observability-workshop"
     weight: 10
-
+  - name: <i class="fab fa-fw fa-twitter"></i> Twitter
+    url: "https://twitter.com/splunk"
+    weight: 20
+  - name: <i class="fab fa-fw fa-wpexplorer"></i> OpenTelemetry
+    url: "https://opentelemetry.io"
+    weight: 20
