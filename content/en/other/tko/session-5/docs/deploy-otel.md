@@ -12,7 +12,9 @@ When you select **Infrastructure** from the main menu on the left, followed by s
 
 ![k8s-navi-v-2](../images/k8s-nav2-two.png)
 
-If you are taken straight to the Kubernetes Navigator v1 Map view after selecting **Kubernetes**, you need to opt-in to the new Navigator yourself for this workshop by clicking on the big blue {{% button style="blue" %}}Switch to new navigator{{% /button %}}. You should now be in the K8s Node view with chart below the cluster map similar like shown below:
+If you are taken straight to the Kubernetes Navigator v1 Map view after selecting **Kubernetes**, you need to opt-in to the new Navigator yourself for this workshop by clicking on the big blue {{% button style="blue" %}}Switch to new navigator{{% /button %}}.
+
+You should now be in the K8s Node view with chart below the cluster map similar like shown below:
 
 ![k8s-navi-v-2](../images/new-k8s-view.png)
 

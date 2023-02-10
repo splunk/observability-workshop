@@ -44,8 +44,12 @@ export REALM="<replace_with_REALM>"
 Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository to Helm and update.
 
 {{< tabs >}}
-{{< tab name="Helm Repo Add" lang="sh" >}}
+{{% tab name="Helm Repo Add" %}}
+
+``` bash
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update
+```
+
 {{< /tab >}}
 {{< tab name="Helm Repo Add Output" lang="text" >}}
 Using ACCESS_TOKEN={REDACTED}

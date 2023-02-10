@@ -2,6 +2,7 @@
 title: Pet Clinic Java Workshop
 alwaysopen: false
 weight: 8
+description: A workshop using Zero Configuration Auto-Instrumentation for Java
 ---
 
 The goal is to walk through the basic steps to configure the following components of the Splunk Observability platform:

@@ -140,5 +140,3 @@ Paste the text in the text box as show, then press **OK** to complete the copy a
  ![web reconnect](images/shellinabox-reconnect.png)
 
 At this point you are ready to [continue with the workshop](../../oncall/getting_started/user_profile) when instructed to do so by the instructor
-
-[^1]: [Download Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/)

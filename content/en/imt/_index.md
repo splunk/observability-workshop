@@ -1,13 +1,9 @@
 ---
 title: Introduction
 linkTitle: Splunk IM
-cascade:
- type: docs
 weight: 1
-menu:
-  main:
-    weight: 1
-    pre: <i class='fa-regular fa-sitemap'></i>
+menuPre: "<i class='fa fa-sitemap'></i> "
+alwaysopen: false
 ---
 
 During this _**technical**_ Splunk Observability Cloud Infrastructure Monitoring and APM Workshop you will build out an environment based on a [lightweight](https://k3s.io/) Kubernetes[^1] cluster.
