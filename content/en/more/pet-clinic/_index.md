@@ -1,7 +1,6 @@
 ---
 title: Pet Clinic Java Workshop
-cascade:
-  type: docs
+alwaysopen: false
 weight: 8
 ---
 
