@@ -1,7 +1,10 @@
 ---
 title: Deploy the Online Boutique
-weight: 2
+weight: 1
+description: Deploy the Online Boutique application into Kubernetes (K3s) and generate some artificial traffic using Locust.
 ---
+
+{{% button icon="clock" %}}15 minutes{{% /button %}}
 
 * Deploy the Online Boutique application into Kubernetes (K3s)
 * Verify the application is running

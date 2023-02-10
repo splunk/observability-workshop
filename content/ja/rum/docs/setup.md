@@ -47,7 +47,7 @@ cd ~/workshop/apm
 ./apm-config.sh -r
 kubectl apply -f deployment.yaml
 {{% /tab %}}
-{{% tab name="Deployment Output" lang= "text" %}}
+{{% tab name="Deployment Output"  %}}
 deployment.apps/checkoutservice created
 service/checkoutservice created
 deployment.apps/redis-cart created

@@ -27,7 +27,7 @@ cd ~/workshop/apm
 ./apm-config.sh
 kubectl apply -f deployment.yaml
 {{% /tab %}}
-{{% tab name="Deployment Output" lang= "text" %}}
+{{% tab name="Deployment Output"  %}}
 APM Only Deployment
 deployment.apps/recommendationservice created
 service/recommendationservice created
@@ -69,7 +69,7 @@ Online Boutique アプリケーションが起動していることを確認す�
 {{% tab name="Get Pods" lang="sh" %}}
 kubectl get pods
 {{% /tab %}}
-{{% tab name="Get Pods Output" lang= "text" %}}
+{{% tab name="Get Pods Output"  %}}
 NAME                                                          READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-k8s-cluster-receiver-56585564cc-xclzj   1/1     Running   0          84s
 splunk-otel-collector-agent-hkshj                             1/1     Running   0          84s

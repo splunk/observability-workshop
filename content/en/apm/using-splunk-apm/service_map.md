@@ -1,7 +1,7 @@
 ---
 title: Service Map
 linkTitle: Service Map
-weight: 3
+weight: 2
 ---
 
 ## Service Map
@@ -10,4 +10,4 @@ Click on **paymentservice** in the service map and select **version** from the `
 
 You will now see the service map has been updated like the below screenshot to show the different versions of the **paymentservice**.
 
-![Payment Service](../../../images/paymentservice.png)
+![Payment Service](../../images/paymentservice.png)

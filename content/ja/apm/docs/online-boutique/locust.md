@@ -30,7 +30,7 @@ Locust は、EC2インスタンスのIPアドレスの82番ポートで利用で
 {{% tab name="Echo Hostname" lang="sh" %}}
 echo $(hostname)-apm-env
 {{% /tab %}}
-{{% tab name="Output Example" lang= "text" %}}
+{{% tab name="Output Example"  %}}
 bdzx-apm-env
 {{% /tab %}}
 {{< /tabs >}}

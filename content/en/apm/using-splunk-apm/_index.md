@@ -1,12 +1,11 @@
 ---
 title: Using Splunk APM
 linkTitle: Using Splunk APM
-weight: 2
-description: |
-  **15 minutes**
-
-  An overview of how to use Splunk APM
+weight: 3
+description: An overview of how to use Splunk APM
 ---
+
+{{% button icon="clock" %}}15 minutes{{% /button %}}
 
 * APM Overview - RED metrics
 * Using the Service Map
@@ -18,7 +17,7 @@ description: |
 
 A trace is a collection of spans that share the same trace ID, representing a unique transaction handled by your application and its constituent services.
 
-![Traces and Spans](../../images/trace-spans.png)
+![Traces and Spans](../images/trace-spans.png)
 
 Each span has a name, representing the operation captured by this span, and a service name, representing within which service the operation took place.
 

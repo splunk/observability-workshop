@@ -49,7 +49,7 @@ kubectl delete -f deployment.yaml
 ./apm-config.sh -r
 kubectl apply -f deployment.yaml
 {{% /tab %}}
-{{% tab name="Partial Deployment Output" lang= "text" %}}
+{{% tab name="Partial Deployment Output"  %}}
 ......
 Adding RUM_TOKEN to deployment
 deployment.apps/recommendationservice created
