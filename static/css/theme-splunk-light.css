@@ -22,7 +22,7 @@
     /* adjusted to relearn-dark chroma style */
     --CODE-BLOCK-color: #000000;
     /* fallback text color of block code; should be adjusted to your selected chroma style */
-    --CODE-BLOCK-BG-color: #2b2b2b;
+    --CODE-BLOCK-BG-color: #9b9b9b;
     /* fallback color for code background */
     --CODE-BLOCK-BORDER-color: #ffffff;
     /* color of block code border */

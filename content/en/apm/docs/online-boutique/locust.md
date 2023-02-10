@@ -85,10 +85,8 @@ Alternatively, from your shell prompt you can run a text based browser:
 
 {{< tabs >}}
 {{% tab name="Lynx Command" lang="text" %}}
-
-``` bash
-lynx http://localhost:55679/debug/tracez
-```
-
+  lynx http://localhost:55679/debug/tracez
 {{% /tab %}}
 {{< /tabs >}}
+
+    lynx http://localhost:55679/debug/tracez

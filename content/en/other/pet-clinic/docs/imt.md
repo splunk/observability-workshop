@@ -52,7 +52,7 @@ helm delete splunk-otel-collector
 
 We can then go ahead and install the Collector. There are two additional parameters passed to the install script, they are `--with-instrumentation` and `--deployment-environment`. The `--with-instrumentation` option the installer will install the agent from the Splunk distribution of OpenTelemetry Java, which is then loaded automatically when the PetClinic Java application starts up. No configuration required!
 
-``` sh
+``` bash
 curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-collector.sh && \
 sudo sh /tmp/splunk-otel-collector.sh --with-instrumentation --deployment-environment $(hostname)-petclinic --realm $REALM -- $ACCESS_TOKEN
 ```
