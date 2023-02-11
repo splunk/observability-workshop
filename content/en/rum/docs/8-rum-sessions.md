@@ -1,5 +1,5 @@
 ---
-title: Analyzing RUM Sessions
+title: 8. nalyzing RUM Sessions
 linkTitle: 8. Discover RUM Sessions
 weight: 8
 ---

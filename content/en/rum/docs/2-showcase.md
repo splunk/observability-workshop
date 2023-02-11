@@ -1,5 +1,5 @@
 ---
-title: Showcase of RUM with the Online Boutique
+title: 2. Showcase of RUM with the Online Boutique
 linkTitle: 2. Showcase
 weight: 2
 ---

@@ -1,5 +1,5 @@
 ---
-title: Example of RUM enablement in your Website
+title: 3. Example of RUM enablement in your Website
 linkTitle:  3. Using RUM on your Website
 weight: 3
 ---

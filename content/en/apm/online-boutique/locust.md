@@ -1,5 +1,5 @@
 ---
-title: Generate traffic using Locust
+title: 1.1 Generate traffic using Locust
 weight: 2
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: Tag Spotlight
-linkTitle: Tag Spotlight
+title: 2.2 Tag Spotlight
+linkTitle: 2.2 Tag Spotlight
 weight: 3
 ---
 

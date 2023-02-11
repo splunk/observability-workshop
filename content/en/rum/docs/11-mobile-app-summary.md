@@ -1,5 +1,5 @@
 ---
-title: Mobile Applications (Introduction)
+title: 11. Introdcution to RUM for Mobile Applications
 linkTitle: 11. Mobile Applications
 weight: 11
 ---

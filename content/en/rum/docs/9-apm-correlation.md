@@ -1,5 +1,5 @@
 ---
-title: Correlate between Splunk RUM and APM backend services
+title: 9. Correlate between Splunk RUM and APM backend services
 linkTitle: 9. APM & RUM Correlation
 weight: 9
 ---
