@@ -1,6 +1,7 @@
 ---
-title: Splunk RUM, an introduction
-linkTitle:  Splunk RUM
+title: Splunk RUM
+linkTitle: Splunk RUM
+description: End-to-end visibility helps you pinpoint customer-impacting issues from web browsers and native mobile apps to your backend services.
 weight: 3
 alwaysopen: false
 ---

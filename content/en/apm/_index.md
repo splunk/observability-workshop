@@ -1,6 +1,7 @@
 ---
-title: Splunk APM Introduction
+title: Splunk APM
 linkTitle: Splunk APM
+description: Splunk APM is a NoSample™ Full-fidelity application performance monitoring and troubleshooting solution for cloud-native, microservices-based applications.
 weight: 2
 alwaysopen: false
 ---

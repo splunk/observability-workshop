@@ -25,3 +25,5 @@ You can [contribute](https://github.com/splunk/observability-workshop) to this d
 {{% notice title="Twitter" color="#1DA1F2" icon="fab fa-twitter" %}}
 You can find information about updates and interesting reads in the Twitter channel of [Splunk](https://twitter.com/splunk).
 {{% /notice %}}
+
+{{%children containerstyle="div" style="h3" description="true" %}}

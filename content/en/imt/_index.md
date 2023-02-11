@@ -1,6 +1,7 @@
 ---
-title: Introduction
+title: Splunk IM
 linkTitle: Splunk IM
+description: Whether on-prem, hybrid or multicloud, Splunk delivers real-time monitoring and troubleshooting to help you maximize infrastructure performance with complete visibility.
 weight: 1
 alwaysopen: false
 ---
