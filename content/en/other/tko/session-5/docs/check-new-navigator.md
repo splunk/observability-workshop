@@ -12,6 +12,14 @@ The Kubernetes Navigator offers you two separate use cases to view your Kubernet
 
 You initially select either view depending on your need. (You can switch between the view on the fly if required)
 
+### 1.1 Finding your K8s cluster name
+
+Your first task is to identify and find your own cluster. The cluster will be named after your EC2 instance name: `ws-5-X-k3s-cluster` where `X` is the number of the EC2 instance assigned to you.
+
+To find your node name, look at the prompt of your EC2 instance. For example, if you are assigned the 7th EC2 instance, the prompt will show: `ubuntu@ws-5-7 ~ $`
+
+This means your cluster is named: `ws-5-7-k3s-cluster`. Please make a note of your cluster name as you will need this later in the workshop for filtering.
+
 ## 2 The K8s nodes & cluster Pane
 
 Go to the **Infrastructure** page in the Observability UI and select **Kubernetes**, this will offer you a set of Kubernetes services.
@@ -22,15 +30,7 @@ The first thing you notice is that the pane indicates how many kubernetes nodes 
 
 Click on the K8s Nodes pane and you will be taken to the `Infrastructure/Kubernetes/K8s nodes` overview pane. Here you will find a map representation of all the Kubernetes Clusters that are sending data to the Splunk Observability Cloud platform.
 
-### 2.1 Finding your K8s cluster name
-
-Your first task is to identify and find your own cluster. The cluster will be named after your EC2 instance name: `ws-5-X-k3s-cluster` where `X` is the number of the EC2 instance assigned to you.
-
-To find your node name, look at the prompt of your EC2 instance. For example, if you are assigned the 7th EC2 instance, the prompt will show: `ubuntu@ws-5-7 ~ $`
-
-This means your cluster is named: `ws-5-7-k3s-cluster`. Please make a note of your cluster name as you will need this later in the workshop for filtering.
-
-### 2.2 The K8s Cluster Map
+### 2.1 The K8s Cluster Map
 
 Initially, the cluster detail map will show you all the clusters reporting into your Observability Cloud Org. If an alert has fired for any of the clusters, it will be highlighted on the top right, *as marked with a red stripe in the image below*. You can go directly to the alert by clicking on it to expand it.
 
