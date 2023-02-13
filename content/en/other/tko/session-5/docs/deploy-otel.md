@@ -1,6 +1,6 @@
 ---
 title: Deploying the OpenTelemetry Collector in Kubernetes using a NameSpace
-linkTitle: Deploying the OTel Collector
+linkTitle: 1. Deploy the OTel Collector
 weight: 1
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Deploy Load Generator
-linkTitle: Deploy Load Generator
+linkTitle: 5. Deploy Load Generator
 weight: 5
 ---
 

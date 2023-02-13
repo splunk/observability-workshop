@@ -1,6 +1,6 @@
 ---
 title: Increase HPA Replicas
-linkTitle: Increase HPA Replicas
+linkTitle: 7. Increase HPA Replicas
 weight: 8
 ---
 

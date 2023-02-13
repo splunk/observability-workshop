@@ -1,6 +1,6 @@
 ---
 title: Setup Horizontal Pod Autoscaling (HPA)
-linkTitle: Setup HPA
+linkTitle: 6. Setup HPA
 weight: 6
 ---
 
