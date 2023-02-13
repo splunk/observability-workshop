@@ -7,30 +7,26 @@ weight: 2
 
 The Kubernetes Navigator offers you two separate use cases to view your Kubernetes data.
 
-* The `K8s nodes` or Admin view is focusing on providing insight into the performance of Clusters, Nodes, Pods & Containers.
+* The `K8s nodes` or Admin view is focusing on providing insight into the performance of clusters, Nodes, Pods & Containers.
 * The `K8s workloads` or Developer view is focusing on  providing information in regards to workloads a.k.a. *your deployments*.
 
 You initially select either view depending on your need. (You can switch between the view on the fly if required)
 
 ## 2 The K8s nodes & cluster Pane
 
-Go to the **Infrastructure** page in the Observability UI and select **Kubernetes**, this will offer you a set of Kubernetes services. For this exercise, pick the `K8s nodes` pane.
+Go to the **Infrastructure** page in the Observability UI and select **Kubernetes**, this will offer you a set of Kubernetes services.
 
 ![k8s-cluster-pane](../images/k8s-nodes.png)
 
 The first thing you notice is that the pane indicates how many kubernetes nodes are being monitored for you. The pane also shows a tiny graph giving you a bird's eye view of the load being handled across those Nodes. Also, if there are any alerts for one of the nodes, you will see a small alert indicator as shown in the image above.
 
-Click on the K8s Nodes pane and you will be taken to the `Infrastructure/Kubernetes/K8s nodes` overview pane. Here you will find a map representation of all the Kubernetes clusters that are sending data to the Splunk Observability Cloud platform.
+Click on the K8s Nodes pane and you will be taken to the `Infrastructure/Kubernetes/K8s nodes` overview pane. Here you will find a map representation of all the Kubernetes Clusters that are sending data to the Splunk Observability Cloud platform.
 
 ### 2.1 Finding your K8s cluster name
 
 Your first task is to identify and find your own cluster. The cluster will be named after your EC2 instance name: `ws-5-X-k3s-cluster` where `X` is the number of the EC2 instance assigned to you.
 
-To find your node name, look at the prompt of your EC2 instance. For example, if you are assigned the 7th EC2 instance, the prompt will show:
-
-``` bash
-ubuntu@ws-5-7 ~ $
-```
+To find your node name, look at the prompt of your EC2 instance. For example, if you are assigned the 7th EC2 instance, the prompt will show: `ubuntu@ws-5-7 ~ $`
 
 This means your cluster is named: `ws-5-7-k3s-cluster`. Please make a note of your cluster name as you will need this later in the workshop for filtering.
 
@@ -53,7 +49,7 @@ Let's find your own Cluster using the filter feature. First, let's switch the ti
 As soon as you find your cluster and it's highlighted, the charts below it show information on all the nodes in your cluster.
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
-How much memory and how many CPU cores does our one node have?
+How much memory does our node have?
 {{% /notice %}}
 
 You can switch to the Cluster View by selecting the *K8s cluster* tab just beneath the map view. Here you will see charts with details of your cluster(s).
@@ -82,7 +78,7 @@ Your Breadcrumbs above your Map view should look somewhat like this:
 
 ![Breadcrumbs](../images/crumbtrail.png)
 
-Note, you can walk back-up in the stack by clicking on the Pod, Node, Cluster & Service links.
+Note, you can walk back-up in the stack by clicking on the Pod, Node, Cluster and Service links.
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
 Which of the levels in the `Breadcrumbs` provides `Related Content` for logs?
@@ -94,9 +90,11 @@ Which of the levels in the `Breadcrumbs` provides `Related Content` for logs?
 
 You can switch to the `K8s Workloads` view in two ways:
 
-1) Go to the **Infrastructure** menu item in the Observability UI and select **Kubernetes** again, then pick the `K8s workloads` pane
-OR
-2) Simply change the value in the `Service` drop down box in the `Breadcrumbs` from *K8s nodes* to *K8s workloads*
+* Change the value in the **Service** drop down box in the breadcrumbs from *K8s nodes* to *K8s workloads*
+
+  **OR**
+
+* Go to the **Infrastructure** menu item in the Observability UI and select **Kubernetes** again, then pick the `K8s workloads` pane
 
 ![k8sNode](../images/K8s-Workloads.png) ![k8sToggle](../images/service-toggle.png)
 
