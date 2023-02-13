@@ -32,13 +32,13 @@ Kubernetes が起動したら、Splunk の UI から Access Token[^1] を取得�
 環境変数 `ACCESS_TOKEN` と `REALM` を作成して、進行中の Helm のインストールコマンドで使用します。例えば、Realm が `us1` の場合は、`export REALM=us1` と入力し、`eu0` の場合は、`export REALM=eu0` と入力します。
 
 {{< tabs >}}
-{{% tab name="Export ACCESS TOKEN" lang="sh" %}}
+{{% tab name="Export ACCESS TOKEN" %}}
 export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
 {{% /tab %}}
 {{< /tabs >}}
 
 {{< tabs >}}
-{{% tab name="Export REALM" lang="sh" %}}
+{{% tab name="Export REALM" %}}
 export REALM="<replace_with_REALM>"
 {{% /tab %}}
 {{< /tabs >}}
@@ -72,7 +72,7 @@ Update Complete. ⎈Happy Helming!⎈
 以下のコマンドでOpenTelemetry Collector Helmチャートをインストールします。これは **変更しないでください**。
 
 {{< tabs >}}
-{{% tab name="Helm Install" lang="sh" %}}
+{{% tab name="Helm Install" %}}
 helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \

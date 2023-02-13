@@ -23,7 +23,7 @@ Splunk Terraform Providerの完全なドキュメントは[こちら](https://re
 AWS/EC2 インスタンスにログインして、`o11y-cloud-jumpstart` ディレクトリに移動します
 
 {{< tabs >}}
-{{% tab name="Change directory" lang="sh" %}}
+{{% tab name="Change directory" %}}
 cd observability-content-contrib/integration-examples/terraform-jumpstart
 {{</tab >}}
 {{< /tabs >}}
@@ -31,7 +31,7 @@ cd observability-content-contrib/integration-examples/terraform-jumpstart
 必要な環境変数は、[Helmによるインストール](../../gdi/k3s/#2-helm%E3%81%AB%E3%82%88%E3%82%8B%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB) ですでに設定されているはずです。そうでない場合は、以下の Terraform のステップで使用するために、以下の環境変数を作成してください。
 
 {{< tabs >}}
-{{% tab name="Environment Variables" lang="sh" %}}
+{{% tab name="Environment Variables" %}}
 export ACCESS_TOKEN=<replace_with_O11y-Workshop-ACCESS_token>
 export REALM=<replace_with_splunk_realm>
 {{</tab >}}
@@ -44,7 +44,7 @@ Splunk Terraform Provider の新バージョンがリリースされるたびに
 {{% /notice %}}
 
 {{< tabs >}}
-{{% tab name="Initialise Terraform" lang="sh" %}}
+{{% tab name="Initialise Terraform" %}}
 terraform init -upgrade
 {{</tab >}}
 {{% tab name="Initialise Output" lang="text" %}}
@@ -100,7 +100,7 @@ terraform init -upgrade
 plan コマンドだけでは、提案された変更を実際に実行はされなません。変更を適用する前に、以下のコマンドを実行して、提案された変更が期待したものと一致するかどうかを確認しましょう。
 
 {{< tabs >}}
-{{% tab name="Execution Plan" lang="sh" %}}
+{{% tab name="Execution Plan" %}}
 terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
 {{</tab >}}
 {{% tab name="Execution Plan Output" lang="text" %}}
@@ -121,7 +121,7 @@ Plan: 146 to add, 0 to change, 0 to destroy.
 このワークショップでは、プレフィックスがユニークである必要があります。以下の `terraform apply` を実行してください。
 
 {{< tabs >}}
-{{% tab name="Apply Plan" lang="sh" %}}
+{{% tab name="Apply Plan" %}}
 terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="sfx_prefix=[$(hostname)]"
 {{</tab >}}
 {{% tab name="Apply Plan Output" lang="text" %}}
@@ -132,7 +132,7 @@ Apply complete! Resources: 146 added, 0 changed, 0 destroyed.
 適用が完了したら、 **Alerts → Detectors** でディテクターが作成されたことを確認してください。ディテクターのプレフィックスには、インスタンスのホスト名が入ります。プレフィックスの値を確認するには以下を実行してください。
 
 {{< tabs >}}
-{{% tab name="Echo Hostname" lang="sh" %}}
+{{% tab name="Echo Hostname" %}}
 echo $(hostname)
 {{</tab >}}
 {{< /tabs >}}
@@ -150,7 +150,7 @@ echo $(hostname)
 それでは、ここまでで適用したダッシュボードとディテクターを全て破壊しましょう！
 
 {{< tabs >}}
-{{% tab name="Destroy" lang="sh" %}}
+{{% tab name="Destroy" %}}
 terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
 {{</tab >}}
 {{% tab name="Destroy Output" lang="text" %}}

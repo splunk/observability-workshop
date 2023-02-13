@@ -33,7 +33,7 @@ APMワークショップでサービスをインストールしました。こ�
 進行中のシェルスクリプトで環境変数 `RUM_TOKEN` を作成し、デプロイメントをパーソナライズします。
 
 {{< tabs >}}
-{{% tab name="Export Variables" lang="sh" %}}
+{{% tab name="Export Variables" %}}
 export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
 {{% /tab %}}
 {{< /tabs >}}
@@ -43,7 +43,7 @@ export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
 EC2インスタンスのkubernetes（K3s）にOnline Boutiqueのアプリケーションをデプロイするには、元のデプロイメントを削除し、RUM用のapm configスクリプトを実行し、RUMのデプロイメントを適用します。
 
 {{< tabs >}}
-{{% tab name="Deploy Online Boutique with RUM" lang="sh" %}}
+{{% tab name="Deploy Online Boutique with RUM" %}}
 cd ~/workshop/apm
 kubectl delete -f deployment.yaml
 ./apm-config.sh -r

@@ -1,9 +1,7 @@
 ---
-title: API Check
-linkTitle:  API Check
+title: API Checks
+linkTitle:  2. API Checks
 weight: 2
-description: >
-  API Check のスクリプトと設定
 isCJKLanguage: true
 ---
 
@@ -13,23 +11,23 @@ API Checkは、APIエンドポイントの機能およびパフォーマンス�
 
 API Checkを行うために使用するグローバル変数を表示します。 **Admin Tools** の下にある **Global Variables** をクリックします。 spotifyのAPIトランザクションを行うために使用するグローバル変数を確認してください。
 
-![placeholder](../../images/global-variable.png)
+![placeholder](../images/global-variable.png)
 
 ## 2. API Check の作成
 
 新しい API Check を作成し、`<あなたのイニシャル>` の後に Splunk REST API Check をつけた名前にします （例: **AP - Spotify API**）
 
-![placeholder](../../images/new-api-check.png)
+![placeholder](../images/new-api-check.png)
 
 チェックに名前を付けたら、notificationタブを開いて、どのような設定があるか眺めてみましょう。
 
 次に、以下のAPI Check Stepsを追加します。
 
- ![placeholder](../../images/api-check-steps.png)
+ ![placeholder](../images/api-check-steps.png)
 
 変数はこちらから選ぶことができます:
 
-![placeholder](../../images/available-variables.png)
+![placeholder](../images/available-variables.png)
 
 **[Request Step](https://help.rigor.com/hc/en-us/articles/115004583747-API-Check-Request-Step)**
 
@@ -71,25 +69,25 @@ API Checkを行うために使用するグローバル変数を表示します�
 
 API Check に Splunk と API のタグを付けて SAVE します。
 
-![placeholder](../../images/tags.png)
+![placeholder](../images/tags.png)
 
 ## 3. REST API Checkのテスト
 
 edit configuration に戻り、ページの下にある 'test' を押して、エラーがないことを確認します。
 
-![placeholder](../../images/test-api-check.png)
+![placeholder](../images/test-api-check.png)
 
 ウィンドウを上にスライドさせると、正常に実行された場合の詳細が表示されます
 
-![placeholder](../../images/successful-run.png)
+![placeholder](../images/successful-run.png)
 
-![placeholder](../../images/request-step.png)
+![placeholder](../images/request-step.png)
 
 さて、モニターにもう少し機能を追加してみましょう。詳細ウィンドウを下にスライドさせ、手順5～8を追加します。
 
 **BONUS**：ステップ6を使用して、以下のレスポンスがタイムリーに戻ってきたことをアサートします（1000 ms)
 
-![placeholder](../../images/additional-steps.png)
+![placeholder](../images/additional-steps.png)
 
 ステップを追加したら、モニターをテストして保存します。
 

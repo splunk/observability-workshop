@@ -1,6 +1,6 @@
 ---
-title: Locustでトラフィックを発生させる
-weight: 3
+title: 1.1 Locustでトラフィックを発生させる
+weight: 2
 isCJKLanguage: true
 ---
 
@@ -8,36 +8,44 @@ isCJKLanguage: true
 
 Online Boutique のデプロイメントには、Locust が動作するコンテナが含まれており、これを使用してウェブサイトに対する負荷トラフィックを生成し、メトリクス、トレース、スパンを生成することができます。
 
-Locust は、EC2インスタンスのIPアドレスの82番ポートで利用できます。ウェブブラウザで新しいタブを開き、 `http://{==EC2-IP==}:82/` にアクセスすると、Locust が動作しているのが確認できます。
+Locust は、EC2インスタンスのIPアドレスの82番ポートで利用できます。ウェブブラウザで新しいタブを開き、 `http://<EC2-IP>:82/` にアクセスすると、Locust が動作しているのが確認できます。
 
-![Locust](../../../images/locust.png)
+![Locust](../../images/locust.png)
 
 **Spawn rate** を 2 に設定し、**Start Swarming** をクリックすると、アプリケーションに緩やかな負荷がかかり続けます。
 
-![Spawn Rate](../../../images/locust-spawn-rate.png)
+![Spawn Rate](../../images/locust-spawn-rate.png)
 
-![Statistics](../../../images/locust-statistics.png)
+![Statistics](../../images/locust-statistics.png)
 
 ---
 
-それでは、**![dashboards button](../../../images/dashboards.png) Dashboards → All Dashboards → APM Services → Service** を開きましょう。
+それでは、**![dashboards button](../../images/dashboards.png) Dashboards → All Dashboards → APM Services → Service** を開きましょう。
 
-このためには、アプリケーションの Environment 名を知る必要があります。このワークショップでは、`{==hostname==}-apm-env` のような Environment 名で定義されています。
+このためには、アプリケーションの Environment 名を知る必要があります。このワークショップでは、`<hostname>-apm-env` のような Environment 名で定義されています。
 
 ホスト名を調べるには、AWS/EC2インスタンス上で以下のコマンドを実行します:
 
 {{< tabs >}}
-{{% tab name="Echo Hostname" lang="sh" %}}
+{{% tab name="Echo Hostname" %}}
+
+``` bash
 echo $(hostname)-apm-env
+```
+
 {{% /tab %}}
 {{% tab name="Output Example"  %}}
+
+``` text
 bdzx-apm-env
+```
+
 {{% /tab %}}
 {{< /tabs >}}
 
 前のステップで見つけた Environment を選択し、「frontend」サービスを選択し、時間を「Past 15 minutes」に設定します。
 
-![APM Dashboard](../../../images/online-boutique-service-dashboard.png)
+![APM Dashboard](../../images/online-boutique-service-dashboard.png)
 
 この自動生成されたダッシュボードでは、RED (Rate, Error & Duration) メトリクスを使用して、サービスの状態を監視することができます。このダッシュボードでは、パフォーマンスに関連したさまざまなチャートのほか、基盤となるホストやKubernetesポッド（該当する場合）の相関情報も提供されます。
 
@@ -47,19 +55,19 @@ bdzx-apm-env
 
 ## 2. Splunk APM のメトリクスを確認する
 
-画面左のメニューから「APM」 ![apm button](../../../images/apm.png) をクリックするとAPM Overviewダッシュボードが表示されます。
+画面左のメニューから「APM」 ![apm button](../../images/apm.png) をクリックするとAPM Overviewダッシュボードが表示されます。
 
-![select APM](../../../images/online-boutique-apm.png)
+![select APM](../../images/online-boutique-apm.png)
 
 右側の **Explore** を選択し、先ほど見つけた Environment を選択し、時間を15分に設定します。これにより、自動的に生成されたOnline BoutiqueアプリケーションのDependency/Service Mapが表示されます。
 
 以下のスクリーンショットのように表示されます:
 
-![Online Boutique in APM](../../../images/online-boutique-map.png)
+![Online Boutique in APM](../../images/online-boutique-map.png)
 
 ページの下部にある凡例では、依存関係/サービスマップでの表記について説明しています。
 
-![APM Legend](../../../images/apm-legend.png)
+![APM Legend](../../images/apm-legend.png)
 
 * サービスリクエスト、エラーレート、ルートエラーレート。
 * リクエストレート、レイテンシー、エラーレート
@@ -70,9 +78,9 @@ bdzx-apm-env
 
 Open Telemetery Collector がデプロイされると、プラットフォームは自動的に OpenTelemetry Collector のメトリクスを表示するダッシュボードを作成します。
 
-左上のハンバーガーメニューから、 ![dashboards button](../../../images/dashboards.png) **Dashboards → OpenTelemetry Collector** を選択し、メトリクスとスパンが送信されていることを確認しましょう。
+左上のハンバーガーメニューから、 ![dashboards button](../../images/dashboards.png) **Dashboards → OpenTelemetry Collector** を選択し、メトリクスとスパンが送信されていることを確認しましょう。
 
-![OpenTelemetry Collector dashboard](../../../images/otel-dashboard.png)
+![OpenTelemetry Collector dashboard](../../images/otel-dashboard.png)
 
 ## 4. OpenTelemetry zpages
 
@@ -80,7 +88,7 @@ Open Telemetery Collector がデプロイされると、プラットフォーム
 
 [zpages]: https://github.com/open-telemetry/opentelemetry-specification/blob/main/experimental/trace/zpages.md#tracez
 
-![zpages](../../../images/zpages.png)
+![zpages](../../images/zpages.png)
 
 また、シェルプロンプトから、テキストベースのブラウザを実行することもできます。
 

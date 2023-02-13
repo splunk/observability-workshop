@@ -1,6 +1,6 @@
 ---
-title: K3s環境にOnline Boutiqueをデプロイする
-weight: 2
+title: 1. K3s環境にOnline Boutiqueをデプロイする
+weight: 1
 isCJKLanguage: true
 ---
 
@@ -22,12 +22,18 @@ isCJKLanguage: true
 Online BoutiqueアプリケーションをK3sにデプロイするには、以下のデプロイメントを適用します。
 
 {{< tabs >}}
-{{% tab name="Deploy Online Boutique" lang="sh" %}}
+{{% tab name="Deploy Online Boutique" %}}
+
+``` bash
 cd ~/workshop/apm
 ./apm-config.sh
 kubectl apply -f deployment.yaml
+```
+
 {{% /tab %}}
 {{% tab name="Deployment Output"  %}}
+
+``` text
 APM Only Deployment
 deployment.apps/recommendationservice created
 service/recommendationservice created
@@ -55,10 +61,12 @@ service/frontend-external created
 deployment.apps/emailservice created
 service/emailservice created
 deployment.apps/rum-loadgen-deployment created
+```
+
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% notice title="変数未セットに関するメッセージが表示された場合" color="warning" %}}
+{{% notice title="変数未セットに関するメッセージが表示された場合" style="warning" %}}
 **kubectl delete -f deployment.yaml** コマンドを実行しAPM環境のデプロイ削除します。
 次にガイド、メッセージに表示されていた変数をexportし上記のデプロイスクリプトを再実行します。
 {{% /notice %}}
@@ -66,10 +74,16 @@ deployment.apps/rum-loadgen-deployment created
 Online Boutique アプリケーションが起動していることを確認するには:
 
 {{< tabs >}}
-{{% tab name="Get Pods" lang="sh" %}}
+{{% tab name="Get Pods" %}}
+
+``` bash
 kubectl get pods
+```
+
 {{% /tab %}}
 {{% tab name="Get Pods Output"  %}}
+
+``` text
 NAME                                                          READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-k8s-cluster-receiver-56585564cc-xclzj   1/1     Running   0          84s
 splunk-otel-collector-agent-hkshj                             1/1     Running   0          84s
@@ -87,10 +101,12 @@ paymentservice-6c875bf647-dklzb                               1/1     Running   
 frontend-b8f747b87-4tkxn                                      1/1     Running   0          53s
 cartservice-59d5979db7-bqf64                                  1/1     Running   1          53s
 loadgenerator-57c8b84966-7nr4f                                1/1     Running   3          53s
+```
+
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% notice title="Info" %}}
+{{% notice title="Info" style="info" %}}
 通常、ポッドがRunning状態に移行するのに1分30秒程度かかります。
 {{% /notice %}}
 
@@ -98,17 +114,17 @@ loadgenerator-57c8b84966-7nr4f                                1/1     Running   
 
 ## 3. UIで検証する
 
-Splunk UIでInfrastructure ![infrastructure button](../../../images/infrastructure.png) をクリックします。Infrastructure Overviewダッシュボードに遷移しますので、 **Kubernetes** をクリックします。
+Splunk UIでInfrastructure ![infrastructure button](../images/infrastructure.png) をクリックします。Infrastructure Overviewダッシュボードに遷移しますので、 **Kubernetes** をクリックします。
 
 **Cluster** のドロップダウンを使用してクラスタを選択すると、新しいポッドが開始され、コンテナがデプロイされていることが確認できます。
 
 Splunk UI で Cluster をクリックすると、次のような画面が表示されているはずです。
 
-![back to Cluster](../../../images/online-boutique-k8s.png)
+![back to Cluster](../images/online-boutique-k8s.png)
 
 もう一度 **WORKLOADS** タブを選択すると、いくつかのデプロイメントとレプリカセットがあることがわかるはずです。
 
-![HOTROD loaded](../../../images/online-boutique-workload.png)
+![HOTROD loaded](../images/online-boutique-workload.png)
 
 ---
 
@@ -116,6 +132,6 @@ Splunk UI で Cluster をクリックすると、次のような画面が表示�
 
 Online Boutique は、EC2インスタンスのIPアドレスの81番ポートで閲覧できます。このIPアドレスは、ワークショップの冒頭でインスタンスにSSH接続したときに使用したものと同じIPアドレスです。
 
-ウェブブラウザを開き、 `http://{==EC2-IP==}:81/` にアクセスすると、Online Boutique が起動しているのが確認できます。
+ウェブブラウザを開き、 `http://<EC2-IP>:81/` にアクセスすると、Online Boutique が起動しているのが確認できます。
 
-![Online Boutique](../../../images/online-boutique.png)
+![Online Boutique](../images/online-boutique.png)

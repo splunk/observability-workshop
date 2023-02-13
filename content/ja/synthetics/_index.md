@@ -1,12 +1,7 @@
 ---
 title: はじめに
 linkTitle: Splunk Synthetics
-weight: 3
-cascade:
-  type: docs
-menu:
-  main:
-    weight: 3
+weight: 4
 isCJKLanguage: true
 ---
 
