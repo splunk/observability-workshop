@@ -30,7 +30,7 @@ We have created a RUM Token specifically for this workshop with the appropriate 
 Create the `RUM_TOKEN` environment variable to use in the proceeding shell script to personalize your deployment.
 
 {{< tabs >}}
-{{% tab name="Export Variables" lang="sh" %}}
+{{% tab name="Export Variables" %}}
 export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
 {{% /tab %}}
 {{< /tabs >}}
@@ -40,7 +40,7 @@ export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
 To deploy the Online Boutique application into K3s, run the apm config script, then apply the deployment:
 
 {{< tabs >}}
-{{% tab name="Deploy Online Boutique" lang="sh" %}}
+{{% tab name="Deploy Online Boutique" %}}
 cd ~/workshop/apm
 ./apm-config.sh -r
 kubectl apply -f deployment.yaml

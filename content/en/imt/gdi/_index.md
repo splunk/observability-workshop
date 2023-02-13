@@ -33,13 +33,13 @@ You will also need to obtain the name of the Realm[^2] for your Splunk account. 
 Create the `ACCESS_TOKEN` and `REALM` environment variables to use in the proceeding Helm install command. For instance, if your realm is `us1`, you would type `export REALM=us1` and for `eu0` type `export REALM=eu0`.
 
 {{< tabs >}}
-{{% tab name="Export ACCESS TOKEN" lang="sh" %}}
+{{% tab name="Export ACCESS TOKEN" %}}
 export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
 {{% /tab %}}
 {{< /tabs >}}
 
 {{< tabs >}}
-{{% tab name="Export REALM" lang="sh" %}}
+{{% tab name="Export REALM" %}}
 export REALM="<replace_with_REALM>"
 {{% /tab %}}
 {{< /tabs >}}
@@ -69,7 +69,7 @@ Update Complete. ⎈Happy Helming!⎈
 Install the OpenTelemetry Collector Helm chart with the following commands, do **NOT** edit this:
 
 {{< tabs >}}
-{{% tab name="Helm Install" lang="sh" %}}
+{{% tab name="Helm Install" %}}
 helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
@@ -116,7 +116,7 @@ You can monitor the progress of the deployment by running `kubectl get pods` whi
 Ensure the status is reported as Running before continuing.
 
 {{< tabs >}}
-{{% tab name="Kubectl Get Pods" lang="sh" %}}
+{{% tab name="Kubectl Get Pods" %}}
 kubectl get pods
 {{% /tab %}}
 {{% tab name="Kubectl Get Pods Output" lang="text" %}}
@@ -131,7 +131,7 @@ Ensure there are no errors by tailing the logs from the OpenTelemetry Collector 
 Use the label set by the `helm` install to tail logs (You will need to press `ctrl+c` to exit). Or use the installed `k9s` terminal UI for bonus points!
 
 {{< tabs >}}
-{{% tab name="Kubectl Logs" lang="sh" %}}
+{{% tab name="Kubectl Logs" %}}
 kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 {{% /tab %}}
 {{% tab name="Kubectl Logs Output" lang="text" %}}
@@ -170,7 +170,7 @@ Under **Containers** click on **Kubernetes** to open the Kubernetes Navigator Cl
 Validate that your cluster is discovered and reporting by finding your cluster (in the workshop you will see many other clusters). To find your cluster name run the following command and copy the output to your clipboard:
 
 {{< tabs >}}
-{{% tab name="Echo Cluster Name" lang="sh" %}}
+{{% tab name="Echo Cluster Name" %}}
 echo $(hostname)-k3s-cluster
 {{% /tab %}}
 {{< /tabs >}}

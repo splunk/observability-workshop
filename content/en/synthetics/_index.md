@@ -3,8 +3,6 @@ title: Splunk Synthetics
 linkTitle: Splunk Synthetics
 description: Proactively find and fix performance issues across user flows, business transactions and APIs to deliver better digital experiences.
 weight: 4
-cascade:
-  type: docs
 ---
 
 **Splunk Synthetic Monitoring** offers the most comprehensive and in-depth capabilities for uptime and web performance optimization as part of the only complete observability suite, Splunk Observability Cloud.

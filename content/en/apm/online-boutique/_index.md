@@ -77,7 +77,7 @@ Then, export the variable as described in the guide/message, followed by re-runn
 To ensure the Online Boutique application is running:
 
 {{< tabs >}}
-{{% tab name="Get Pods" lang="sh" %}}
+{{% tab name="Get Pods" %}}
 
 ``` bash
 kubectl get pods
