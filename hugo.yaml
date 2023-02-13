@@ -18,6 +18,7 @@ languages:
     description: Splunk Observability ワークショップ
     contentDir: content/ja
     languageName: 日本語
+    weight: 2
 markup:
   goldmark:
     renderer:
