@@ -41,11 +41,15 @@ We will deploy the helm chart with these options enabled:
 
 ``` bash
 helm repo add bitnami https://charts.bitnami.com/bitnami
+```
 
+``` bash
 helm install kafka --set replicaCount=3 --set metrics.jmx.enabled=true --set metrics.kafka.enabled=true  --set deleteTopicEnable=true bitnami/kafka
+```
 
+``` bash
 helm install mongodb --set metrics.enabled=true bitnami/mongodb --set global.namespaceOverride=default --set auth.rootUser=root --set auth.rootPassword=splunk --set auth.enabled=false --version 12.1.31
-
+```
 
 ###verify the helm chart installation
 helm list
@@ -149,12 +153,8 @@ otelAgent:
 ### 5. Install the Splunk OTEL helm chart
 
 ``` bash
-export SPLUNK_ACCESS_TOKEN=<your access token>
-export SPLUNK_REALM=<your realm>
-export clusterName=<your cluster name>
-
 cd ../otel_yamls
-helm repo add splunk-otel-collector-chart https://splunk.github.io/splunk-otel-collector-chart
+repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
 helm repo update
 
 helm install --set provider=' ' --set distro=' ' --set splunkObservability.accessToken=$SPLUNK_ACCESS_TOKEN --set clusterName=$clusterName --set splunkObservability.realm=$SPLUNK_REALM --set otelCollector.enabled='false' --set splunkObservability.logsEnabled='true' --set gateway.enabled='false' --values kafka.values.yaml --values mongodb.values.yaml --values zookeeper.values.yaml --values alwayson.values.yaml --values k3slogs.yaml --generate-name splunk-otel-collector-chart/splunk-otel-collector
@@ -189,16 +189,16 @@ Verify that out of the box dashboards for Kafka, MongoDB and Zookeeper are popul
 
 - Infrastructure Monitoring Landing page:
 
-![IM-landing-page](../images/imlp.png)
+![IM-landing-page](../images/inframon.jpg)
 
 - K8 Navigator:
 
-![k8-navigator](../images/k8nav.png)
+![k8-navigator](../images/k8navigator.jpg)
 
 - MongoDB Dashboard:
 
-![mongodb-dash](../images/mongodash.png)
+![mongodb-dash](../images/mongoDB.jpg)
 
 - Kafka Dashboard:
 
-![kafka-dash](../images/kafkadash.png)
+![kafka-dash](../images/kafka.jpg)
