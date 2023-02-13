@@ -18,13 +18,13 @@ You should now be in the K8s Node view with chart below the cluster map similar 
 
 ![k8s-navi-v-2](../images/new-k8s-view.png)
 
-{{% notice title="Note" color="info" %}}
+{{% notice title="Note" style="info" %}}
 If you actually see three services for Kubernetes including one that is named `K8s clusters`, you need to turn off Precognition in the Superpowers view.
 To do this, please change the Url in your browser to match the following: [https://app.[REALM].signalfx.com/#/superpowers](https://app.[REALM].signalfx.com/#/superpowers)
 
 where [REALM] needs to match the Realm we are using for this workshop then remove the Precognition flag like in the example below. This is one of the first options you can set:
 
-![Set-Precognition](../images/Precognition.png)
+![Set-Precognition](../images/precognition.png)
 
 Once its unset, you can refresh your page and reselect Kubernetes from the Infrastructure Navigator menu.
 {{% /notice %}}
