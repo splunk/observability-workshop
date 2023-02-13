@@ -1,6 +1,6 @@
 ---
 title: Setup Horizontal Pod Autoscaling (HPA)
-linkTitle: Setup HPA
+linkTitle: 6. Setup HPA
 weight: 6
 ---
 
@@ -26,10 +26,10 @@ kubectl get hpa -n apache
 
 Go to the **Workloads** or **Node Detail** tab in Kubernetes and check the HPA deployment.
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% alert title="Workshop Question" style="tip" icon="question" %}}
 How many additional `php-apache-x` pods have been created?
 {{% /alert %}}
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% alert title="Workshop Question" style="tip" icon="question" %}}
 Which metrics in the Apache Dashboards have significantly increased again?
 {{% /alert %}}

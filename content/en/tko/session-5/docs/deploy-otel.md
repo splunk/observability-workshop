@@ -1,6 +1,6 @@
 ---
 title: Deploying the OpenTelemetry Collector in Kubernetes using a NameSpace
-linkTitle: Deploying the OTel Collector
+linkTitle: 1. Deploy the OTel Collector
 weight: 1
 ---
 
@@ -12,17 +12,19 @@ When you select **Infrastructure** from the main menu on the left, followed by s
 
 ![k8s-navi-v-2](../images/k8s-nav2-two.png)
 
-If you are taken straight to the Kubernetes Navigator v1 Map view after selecting **Kubernetes**, you need to opt-in to the new Navigator yourself for this workshop by clicking on the big blue ![new-k8-button](../images/new-k8s-button.png). You should now be in the K8s Node view with chart below the cluster map similar like shown below:
+If you are taken straight to the Kubernetes Navigator v1 Map view after selecting **Kubernetes**, you need to opt-in to the new Navigator yourself for this workshop by clicking on the big blue **Switch to new navigator**.
+
+You should now be in the K8s Node view with chart below the cluster map similar like shown below:
 
 ![k8s-navi-v-2](../images/new-k8s-view.png)
 
-{{% alert title="Note" color="info" %}}
+{{% alert title="Note" style="info" %}}
 If you actually see three services for Kubernetes including one that is named `K8s clusters`, you need to turn off Precognition in the Superpowers view.
 To do this, please change the Url in your browser to match the following: [https://app.[REALM].signalfx.com/#/superpowers](https://app.[REALM].signalfx.com/#/superpowers)
 
 where [REALM] needs to match the Realm we are using for this workshop then remove the Precognition flag like in the example below. This is one of the first options you can set:
 
-![Set-Precognition](../images/Precognition.png)
+![Set-Precognition](../images/precognition.png)
 
 Once its unset, you can refresh your page and reselect Kubernetes from the Infrastructure Navigator menu.
 {{% /alert %}}
@@ -52,10 +54,13 @@ Most customers will want to install the Splunk OpenTelemetry Collector in a sepa
 Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository and update.
 
 {{< tabpane >}}
-{{< tab header="Helm Repo Add" lang="sh" >}}
+{{< tab name="Helm Repo Add" >}}
+
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update
+
 {{< /tab >}}
-{{< tab header="Helm Repo Add Output" lang="text" >}}
+{{< tab name="Helm Repo Add Output" >}}
+
 Using ACCESS_TOKEN={REDACTED}
 Using REALM=eu0
 "splunk-otel-collector-chart" has been added to your repositories
@@ -64,13 +69,16 @@ Using REALM=eu0
 Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "splunk-otel-collector-chart" chart repository
 Update Complete. ⎈Happy Helming!⎈
+
 {{< /tab >}}
 {{< /tabpane >}}
 
 Install the OpenTelemetry Collector Helm chart into the `splunk` namespace with the following commands, do **NOT** edit this:
 
 {{< tabpane >}}
-{{< tab header="Helm Install" lang="sh" >}}
+{{< tab name="Helm Install" >}}
+
+``` bash
 helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
@@ -81,27 +89,37 @@ splunk-otel-collector-chart/splunk-otel-collector \
 --namespace splunk \
 --create-namespace \
 -f ~/workshop/k3s/splunk-defaults.yaml
+```
+
 {{< /tab >}}
 {{< /tabpane >}}
 
 ## 5. Verify Deployment
 
-You can monitor the progress of the deployment by running `kubectl get pods` and adding `-n splunk` to the command to see the pods in the `splunk` NameSpace which should typically report that the new pods are up and running after about 30 seconds.
+You can monitor the progress of the deployment by running `kubectl get pods` and adding `-n splunk` to the command to see the pods in the `splunk` namespace which should typically report that the new pods are up and running after about 30 seconds.
 
 Ensure the status is reported as **Running** before continuing.
 
 {{< tabpane >}}
-{{< tab header="kubectl get pods" lang="sh" >}}
+{{< tab name="kubectl get pods" >}}
+
+``` bash
 kubectl get pods -n splunk
+```
+
 {{< /tab >}}
-{{< tab header="kubectl get pods Output" lang="text" >}}
+{{< tab name="kubectl get pods Output" >}}
+
+``` text
 NAME                                                          READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-agent-pvstb                             2/2     Running   0          19s
 splunk-otel-collector-k8s-cluster-receiver-6c454894f8-mqs8n   1/1     Running   0          19s
+```
+
 {{< /tab >}}
 {{< /tabpane >}}
 
-{{% alert title="Note" color="info" %}}
+{{% alert title="Note" style="info" %}}
 
 If you are using the Kubernetes Integration setup from the Data Management page from the O11y UI , you find that the guide will use
 `--generate-name splunk-otel-collector-chart/splunk-otel-collector` instead of just `splunk-otel-collector-chart/splunk-otel-collector` as we do in the above example.
@@ -114,8 +132,12 @@ Just make sure you use the correct label that is generated by the Helm chart if 
 Use the label set by the `helm` install to tail logs (You will need to press `ctrl + c` to exit).
 
 {{< tabpane >}}
-{{< tab header="kubectl logs" lang="sh" >}}
+{{< tab name="kubectl logs" >}}
+
+``` bash
 kubectl logs -l app=splunk-otel-collector -f --container otel-collector -n splunk
+```
+
 {{< /tab >}}
 {{< /tabpane >}}
 
@@ -123,7 +145,7 @@ Or use the installed `k9s` terminal UI.
 
 ![k9s](../images/k9s.png)
 
-{{% alert title="Deleting a failed installation" color="danger" %}}
+{{% alert title="Deleting a failed installation" style="warning" %}}
 If you make an error installing the Splunk OpenTelemetry Collector you can start over by deleting the installation using:
 
 ``` sh

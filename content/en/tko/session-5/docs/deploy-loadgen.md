@@ -1,6 +1,6 @@
 ---
 title: Deploy Load Generator
-linkTitle: Deploy Load Generator
+linkTitle: 5. Deploy Load Generator
 weight: 5
 ---
 
@@ -16,7 +16,33 @@ cat ~/workshop/k3s/loadgen.yaml
 
 This file contains the configuration for the load generator and will create a new StatefulSet with a single replica of the load generator image.
 
-{{< readfile file="/workshop/k3s/loadgen.yaml" code="true" lang="yaml" >}}
+``` yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: loadgen
+  labels:
+    app: loadgen
+spec:
+  serviceName: "loadgen"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loadgen
+  template:
+    metadata:
+      name: loadgen
+      labels:
+        app: loadgen
+    spec:
+      containers:
+      - name: infinite-calls
+        image: busybox
+        command:
+        - /bin/sh
+        - -c
+        - "while true; do wget -q -O- http://php-apache-svc.apache.svc.cluster.local; done"
+```
 
 ## 2. Create a new namespace
 
@@ -32,7 +58,7 @@ kubectl apply -f ~/workshop/k3s/loadgen.yaml --namespace loadgen
 
 Once you have deployed the load generator, you can see the Pod running in the `loadgen` namespace. Use previous similar commands to check the status of the Pod from the command line.
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% alert title="Workshop Question" style="tip" icon="question" %}}
 What metrics in the Apache Dashboard have now significantly increased?
 {{% /alert %}}
 
@@ -42,7 +68,7 @@ A ReplicaSet is a process that runs multiple instances of a Pod and keeps the sp
 
 ReplicaSet helps bring up a new instance of a Pod when the existing one fails, scale it up when the running instances are not up to the specified number, and scale down or delete Pods if another instance with the same label is created. A ReplicaSet ensures that a specified number of Pod replicas are running continuously and helps with load-balancing in case of an increase in resource usage.
 
-Let's scale our ReplicaSet to 4 replicas using the following command: 
+Let's scale our ReplicaSet to 4 replicas using the following command:
 
 ``` text
 kubectl scale statefulset/loadgen --replicas 4 -n loadgen
@@ -54,7 +80,7 @@ Validate the replicas are running from both the command line and Splunk Observab
 kubectl get statefulset loadgen -n loadgen
 ```
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% alert title="Workshop Question" style="tip" icon="question" %}}
 What impact did this have? Where in O11y can you see the increased replica number? Can you identify the point when you scaled?
 {{% /alert %}}
 
