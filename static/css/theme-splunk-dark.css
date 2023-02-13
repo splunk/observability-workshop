@@ -15,14 +15,14 @@
     --MAIN-TEXT-color: #e0e0e0;
     /* text color of content and h1 titles */
     --MAIN-LINK-HOVER-color: #e20082;
-    --MAIN-LINK-HOVER-color: #4bb1ff;
+    --MAIN-LINK-HOVER-color: #66d9ef;
     /* hovered link color of content */
     --MAIN-BG-color: #202020;
     /* background color of content */
     --MAIN-TITLES-TEXT-color: #ffffff;
     /* text color of h2-h6 titles and transparent box titles */
     /*--MAIN-LINK-color: #e20082;*/
-    --MAIN-LINK-color: #4bb1ff;
+    --MAIN-LINK-color: #66d9ef;
 
     /* adjusted to relearn-dark chroma style */
     --CODE-BLOCK-color: #000000;
@@ -32,7 +32,7 @@
     --CODE-BLOCK-BORDER-color: #ffffff;
     /* color of block code border */
 
-    --CODE-INLINE-color: #b1e200;
+    --CODE-INLINE-color: #a6e22e;
     /* text color of inline code */
     --CODE-INLINE-BG-color: #2d2d2d;
     /* background color of inline code */

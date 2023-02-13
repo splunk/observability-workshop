@@ -12,7 +12,7 @@ In order to simplify the workshop modules, a pre-configured AWS/EC2 instance is 
 
 The instance is pre-configured with all the software required to deploy the Splunk OpenTelemetery Connector[^2] in Kubernetes, deploy a NGINX[^3] ReplicaSet[^4] and finally deploy a microservices based application which has been instrumented using OpenTelemetry to send metrics, traces, spans and logs[^5].
 
-The workshops also introduce you to dashboards, editing and creating charts, creating detectors to fire alerts, Monitoring as Code[^6] and the Service Bureau[^6]
+The workshops also introduce you to dashboards, editing and creating charts, creating detectors to fire alerts, Monitoring as Code and the Service Bureau[^6]
 
 By the end of these technical workshops you will have a good understanding of some of the key features and capabilities of the Splunk Observability Cloud.
 
