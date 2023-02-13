@@ -15,12 +15,14 @@
     --MAIN-TEXT-color: #e0e0e0;
     /* text color of content and h1 titles */
     --MAIN-LINK-HOVER-color: #e20082;
+    --MAIN-LINK-HOVER-color: #4bb1ff;
     /* hovered link color of content */
     --MAIN-BG-color: #202020;
     /* background color of content */
     --MAIN-TITLES-TEXT-color: #ffffff;
     /* text color of h2-h6 titles and transparent box titles */
-    --MAIN-LINK-color: #e20082;
+    /*--MAIN-LINK-color: #e20082;*/
+    --MAIN-LINK-color: #4bb1ff;
 
     /* adjusted to relearn-dark chroma style */
     --CODE-BLOCK-color: #000000;
