@@ -26,4 +26,4 @@ You can [contribute](https://github.com/splunk/observability-workshop) to this d
 You can find information about updates and interesting reads in the Twitter channel of [Splunk](https://twitter.com/splunk).
 {{% /notice %}}
 
-{{%children containerstyle="div" style="h3" description="true" %}}
+{{%children containerstyle="div" style="h6" description="true" %}}
