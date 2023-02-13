@@ -5,7 +5,7 @@ weight: 4
 ---
 ## 1. Kubernetes Resources
 
-Especially in Production Kubernetes Clusters, CPU and Memory are considered precious resources.  Cluster Operators will normally require you to specify the amount of CPU and Memory your Pod or Service will require in the deployment, so they can have the Cluster automatically manage on which Node(s) your solution will be placed.
+Especially in Production Kubernetes Clusters, CPU and Memory are considered precious resources.  Cluster Operators will normally require you to specify the amount of CPU and Memory your Pod or Service will require in the deployment, so they can have the Cluster automatically manage which Node(s) your deployment will be placed on.
 
 You do this by placing a Resource section in the deployment of you application/Pod
 
