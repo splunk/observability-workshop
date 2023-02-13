@@ -36,4 +36,4 @@ Select any of the entries to view the details.  We can now see how the error was
 
 ![Error Details](../../images/error_details.png)
 
-Congratulations, you have now completed this APM Workshop.
+**Congratulations**, you have now completed the APM Workshop.

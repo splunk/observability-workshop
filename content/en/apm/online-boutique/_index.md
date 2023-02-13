@@ -15,9 +15,9 @@ description: Deploy the Online Boutique application into Kubernetes (K3s) and ge
 
 ## 1. Check your EC2 server
 
-This assumes you are running this after you have run the IM workshop, and still have access to your EC2 instance.
+This workshop module assumes you are running this after you have run the IM workshop, and still have access to your EC2 instance.
 
-If this is the case, continue with [Deploy Online Boutique](#2-deploy-online-boutique), otherwise if you have received a fresh instance, please run the first two (2) sections of [Deploy the OTel Collector](../../../../imt/docs/gdi/k3s) to get the system ready for the APM workshop, then continue with the next section.
+If this is the case, continue with [Deploy Online Boutique](#2-deploy-online-boutique), otherwise if you have received a fresh instance, please run the first two (2) sections of [Deploy the OTel Collector](../../../../imt/gdi/) to get the system ready for the APM workshop, then continue with the next section.
 
 ## 2. Deploy Online Boutique
 
@@ -69,9 +69,9 @@ deployment.apps/rum-loadgen-deployment created
 {{< /tabs >}}
 
 {{% notice title="In case of a message about a VARIABLE being unset" style="warning" %}}
-Please undeploy the APM environment first by running `kubectl delete -f deployment.yaml`.
+Delete the deployment running `kubectl delete -f deployment.yaml`.
 
-Then export the variable as described in the guide/message, followed by rerunning the deployment script above.
+Then, export the variable as described in the guide/message, followed by re-running the deployment script above.
 {{% /notice %}}
 
 To ensure the Online Boutique application is running:
@@ -122,11 +122,11 @@ In the Splunk UI click on **Infrastructure** this will bring you to the Infrastr
 
 Use the **Cluster** dropdown so select your Cluster, you should see the new pods started and containers deployed. When you click on your Cluster in the Splunk UI you should have a view that looks like below:
 
-![back to Cluster](../../../images/online-boutique-k8s.png)
+![Back to cluster](../images/online-boutique-k8s.png)
 
 If you select the **WORKLOADS** tab again you should now see that there are a number of Deployments and ReplicaSets:
 
-![HOTROD loaded](../../../images/online-boutique-workload.png)
+![Online Boutique loaded](../images/online-boutique-workload.png)
 
 ---
 
@@ -136,4 +136,4 @@ The Online Boutique is viewable on port 81 of the EC2 instance's IP address. The
 
 Open your web browser and go to `http://<ec2-ip-address>:81/` where you will then be able to see the Online Boutique running.
 
-![Online Boutique](../../../images/online-boutique.png)
+![Online Boutique](../images/online-boutique.png)

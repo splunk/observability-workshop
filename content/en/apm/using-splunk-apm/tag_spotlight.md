@@ -6,7 +6,7 @@ weight: 3
 
 ## Tag Spotlight
 
-On the right hand side of the screen scroll down on **Tag Spotlight**, ensure **Top Across All Indexed Tags** is selected in the dropdown click the full screen button ![full_screen button](../../images/full_screen.png) as indicated in the screenshot below.
+On the right hand side of the screen scroll down on **Tag Spotlight**, ensure **Top Across All Indexed Tags** is selected in the dropdown click the full screen button as indicated in the screenshot below.
 
 ![Tag Spotlight](../../images/tag-spotlight.png)
 
