@@ -22,7 +22,7 @@ The first thing we need to do is obtain a RUM_ACCESS_TOKEN with a RUM Authorizat
 
 Expand the RUM workshop token that your host has instructed you to use e.g. **O11y-Workshop-RUM-TOKEN**, then click on **Show Token** to expose your token. Click the {{% labelbutton color="ui-button-grey" %}}Copy{{% /labelbutton %}} button to copy to clipboard. Please do not use the **Default** token! Make sure the token has RUM as its Authorization Scope.
 
-![Access Token](../../images/RUM-Access-Token.png)
+![Access Token](../images/RUM-Access-Token.png)
 
 {{% notice title="Please do not attempt to create your own token" style="warning" %}}
 We have created a RUM Token specifically for this workshop with the appropriate settings for the exercises you will be performing
@@ -104,7 +104,7 @@ We are all connected to an Online Boutique, together with some synthetic users w
 You should have received the correct URL from your workshop host at this point.
 Open a new web browser and go to `http://{==RUM-HOST-EC2-IP==}:81/` where you will then be able to see the RUM enabled Online Boutique running.
 
-![Online Boutique](../../images/online-boutique.png)
+![Online Boutique](../images/online-boutique.png)
 
 ## 5. Generate traffic
 
@@ -113,6 +113,6 @@ For extra credit, you may even use the url from different browsers or from your 
 
 This will create  multiple sessions to investigate. Take your time to examine and buy the various products and put them in your cart:
 
-![Cart Online Boutique](../../images/cart.png)
+![Cart Online Boutique](../images/cart.png)
 
 Doesn't that HOME BARISTA KIT look tempting?...   Your time to start shopping now!
