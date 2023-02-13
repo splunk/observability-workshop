@@ -39,9 +39,9 @@
     --MENU-HOME-LINK-HOVER-color: #e20082;
     /* Color of the hovered home button text */
 
-    --MENU-HEADER-BG-color: #000000;
+    --MENU-HEADER-BG-color: #e20082;
     /* Background color of menu header */
-    --MENU-HEADER-BORDER-color: #e20082;
+    --MENU-HEADER-BORDER-color: #000000;
     /*Color of menu header border */
 
     --MENU-SEARCH-color: #ffffff;
