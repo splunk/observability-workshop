@@ -47,9 +47,9 @@ params:
   disableBreadcrumb: false
   disableInlineCopyToClipBoard: true
   disableNextPrev: false
-  disableLandingPageButton: true
+  disableLandingPageButton: false
   titleSeparator: "::"
-  themeVariant: ["splunk-light", "splunk-dark"]
+  themeVariant: ["splunk-light", "splunk-dark", "aws"]
   additionalContentLanguage: [ "ja" ]
 
 menu:
