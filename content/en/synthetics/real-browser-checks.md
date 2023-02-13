@@ -1,9 +1,7 @@
 ---
 title: Real Browser Checks
 linkTitle: 1. Real Browser Checks
-weight: 1
-description: >
-  Scripting and configuring a Real Browser Check
+weight: 2
 ---
 
 This Lab walks your through using the [Chrome Selenium IDE](https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd?hl=en) extension to create a synthetic transaction against a Splunk demo instance and creating a Splunk Synthetic Monitoring Real Browser Check (RBC). In addition you also get to learn other Splunk Synthetic Monitoring checks like REST API checks and Uptime Checks.
@@ -14,11 +12,11 @@ Ensure you can login with your username and password at [https://monitoring.rigo
 
 Edit your Splunk Synthetic Monitoring account personal information and adjust your timezone and email notifications. Splunk Synthetic Monitoring will default to start sending you notifications, you can turn them off at the monitor configuration level.
 
-![Edit Personal Information](../../images/image5.png)
+![Edit Personal Information](../images/image5.png)
 
 Add the [Chrome Selenium IDE](https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd?hl=en-US) extension to your **Chrome** Browser. Once installed click on the extension and you will see the following screen:
 
-![Selenium IDE](../../images/image17.png)
+![Selenium IDE](../images/image17.png)
 
 ## 2. Using Selenium IDE
 
@@ -35,55 +33,55 @@ Click on **Record a new test in a new project**, name the project **[YOUR_INITIA
     - Selenium runs on Windows, Linux, and macOS.
     - It is open-source software released under the Apache License 2.0.
 
-![placeholder](../../images/image29.png)
+![placeholder](../images/image29.png)
 
 Enter [http://splunk.o11ystore.com](http://splunk.o11ystore.com) as your base URL.
 
-![placeholder](../../images/image11.png)
+![placeholder](../images/image11.png)
 
  Click {{% labelbutton color="ui-button-grey" %}}Start Recording{{% /labelbutton %}}, a new window should open up with [splunk.o11ystore.com](http://splunk.o11ystore.com). Click **Vintage Camera Lens**, click **Add To Cart** and then click **Place Order**.
 
 Close the window and then stop the recording by navigating back to Selenium IDE. Finally name the test: **[YOUR_INITIALS] - Checkout Flow (Desktop)** e.g. RWC - Checkout Flow (Desktop).
 
-![placeholder](../../images/image10.png)
+![placeholder](../images/image10.png)
 
 Your Selenium IDE Project will look something like this:
 
-![placeholder](../../images/image19.png)
+![placeholder](../images/image19.png)
 
 Test your recording by pressing on the play button, make sure your recording successfully completes the transaction:
 
-![Run](../../images/image26.png)
+![Run](../images/image26.png)
 
 Save your Selenium IDE Project to your Downloads folder as `Workshop.side`
 
-![Save](../../images/image30.png)
+![Save](../images/image30.png)
 
-![Save SIDE Project](../../images/save-side-project.png)
+![Save SIDE Project](../images/save-side-project.png)
 
 ## 3. Create Real Browser Check
 
 Login to Splunk Synthetic Monitoring using [https://monitoring.rigor.com](https://monitoring.rigor.com). Click on **REAL BROWSER** and click **+New**{: .label-button .sfx-ui-button-blue}.
 
-![placeholder](../../images/image3.png)
+![placeholder](../images/image3.png)
 
 Click on "**From File**" and select your recording then click on Import
 
-![placeholder](../../images/image1.png)
+![placeholder](../images/image1.png)
 
 Set the **Frequency** to **5 Minutes**
 
-![placeholder](../../images/image15.png)
+![placeholder](../images/image15.png)
 
 Click on Steps and make the following adjustments to your recording provide a friendly name to Steps 1 (Click Camera), 2 (Add to Cart) & 3 (Place Order).
 
-![placeholder](../../images/image6.png)
+![placeholder](../images/image6.png)
 
 Next, click **+ Add Step**, with this new step we will add some validation to the monitor. This is to ensure the checkout completed successfully.
 
 Enter **Confirm Order** for the **Name** and change the **Action** to **Wait for text present** and finally enter **Your order is complete!** for the **Value**. You will now have a **Start Url** and 4 steps in your monitor configuration.
 
-![placeholder](../../images/image2.png)
+![placeholder](../images/image2.png)
 
 {{% notice title="Tip" color="info" %}}
 As you are creating the steps think about how to go about using the **Business Transaction** feature in Splunk Synthetic Monitoring which is very powerful.
@@ -93,20 +91,20 @@ As you are creating the steps think about how to go about using the **Business T
 
 Click on **Advanced** and make sure the **Viewport Size** is set to **Default desktop: 1366 x 768**
 
-![Viewport Size](../../images/viewport-size.png)
+![Viewport Size](../images/viewport-size.png)
 
 Click on "**Test**" to test your monitor. Once the test has successfully completed make sure to click on "**AFTER**" in Step 4 to validate the monitor was able to get to the order complete screenshot.
 
-![placeholder](../../images/image22.png)
+![placeholder](../images/image22.png)
 
 Click on **Create**{: .label-button .sfx-ui-button-blue} to save your Real Browser Monitor. After 5-10 minutes validate your monitor is working and producing successful checks e.g.
 
-![placeholder](../../images/image27.png)
+![placeholder](../images/image27.png)
 
 {{% notice title="Tip" color="info" %}}
 You can force to run your monitor now using **Run Now**
 
-![placeholder](../../images/image8.png)
+![placeholder](../images/image8.png)
 {{% /notice %}}
 
 Change your view to **Segment by location** and observe the difference. You can turn off/on locations by clicking on them.
@@ -114,33 +112,33 @@ Change your view to **Segment by location** and observe the difference. You can 
 !!! question "Question?"
     Which Location has the poorest **Response Time**?
 
-![placeholder](../../images/image9.png)
+![placeholder](../images/image9.png)
 
 Click on one of the successful circles to drill-down into that Run:
 
-![placeholder](../../images/image33.png)
+![placeholder](../images/image33.png)
 
 Take a moment to explore the metrics with the **CONFIGURE METRICS/HIDE METRICS** dropdown.
 
-![placeholder](../../images/image14.png)
+![placeholder](../images/image14.png)
 
 Click **Page 2** in the dropdown, and scroll down to view the **Filmstrip** and the **Waterfall Chart.**
 
-![placeholder](../../images/image16.png)
+![placeholder](../images/image16.png)
 
-![Filmstrip](../../images/filmstrip.png)
+![Filmstrip](../images/filmstrip.png)
 
-![Waterfall](../../images/waterfall.png)
+![Waterfall](../images/waterfall.png)
 
 Click on **Click Here to Analyze with Optimization** which will prompt you to login to your Splunk Synthetic Monitoring Optimization Account. If you **don't have this option**, navigate to this [page](https://optimization.rigor.com/s/2373818/?sh=3AF8C48AADD6D3E5F5DAA8B4B7BB7F45).
 
-![placeholder](../../images/image31.png)
+![placeholder](../images/image31.png)
 
 Click the "**Best Practices Score**" tab. Scroll down, and review all the findings
 
-![placeholder](../../images/image23.png)
+![placeholder](../images/image23.png)
 
-![Best Practices](../../images/best-practices.png)
+![Best Practices](../images/best-practices.png)
 
 Spend some time to review the findings. Click into any line item
 
@@ -148,15 +146,15 @@ Spend some time to review the findings. Click into any line item
 
 Copy the RBC you created above:
 
-![Copy Check](../../images/copy-check.png)
+![Copy Check](../images/copy-check.png)
 
 Rename it, for example: **RWC - Checkout Flow (Tablet)**
 
-![Copy Check](../../images/rename-check.png)
+![Copy Check](../images/rename-check.png)
 
 Under the **Advanced** tab, update the following three settings and create your new mobile RBC.
 
-![placeholder](../../images/image18.png)
+![placeholder](../images/image18.png)
 
 Test & Validate the new monitor
 
