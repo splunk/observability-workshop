@@ -4,6 +4,8 @@ linkTitle: 1. Access AWS/EC2 Instance
 weight: 1
 ---
 
+{{% button icon="clock" %}}5 minutes{{% /button %}}
+
 1. How to retrieve the IP address of the AWS/EC2 instance assigned to you.
 2. Connect to your instance using SSH, Putty[^1] or your web browser.
 3. Verify your connection to your AWS/EC2 cloud instance.

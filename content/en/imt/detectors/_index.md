@@ -1,8 +1,10 @@
 ---
 title: Working with Detectors
-linkTitle: Detectors
-weight: 5
+linkTitle: 4. Detectors
+weight: 4
 ---
+
+{{% button icon="clock" %}}10 minutes{{% /button %}}
 
 * Create a Detector from one of your charts
 * Setting Alert conditions

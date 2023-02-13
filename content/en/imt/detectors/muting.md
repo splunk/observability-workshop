@@ -1,6 +1,6 @@
 ---
-title: Working with Muting Rules - Lab Summary
-linkTitle: Creating a Muting Rule
+title: Working with Muting Rules
+linkTitle: 4.1 Creating a Muting Rule
 weight: 1
 ---
 

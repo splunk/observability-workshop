@@ -5,6 +5,8 @@ alwaysopen: false
 weight: 2
 ---
 
+{{% button icon="clock" %}}15 minutes{{% /button %}}
+
 * Use the Splunk Helm chart to install the OpenTelemetry Collector in K3s
 * Explore your cluster in the Kubernetes Navigator
 
