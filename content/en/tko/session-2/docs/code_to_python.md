@@ -55,7 +55,7 @@ Flask==2.0.2
 Create a virtual environment and Install the necessary python packages
 
 ``` bash
-cd Workshop/flask_apps_start/review
+cd workshop/flask_apps_start/review
 
 python3 -m venv rtapp-workshop
 source rtapp-workshop/bin/activate
