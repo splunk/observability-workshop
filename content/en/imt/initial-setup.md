@@ -1,9 +1,7 @@
 ---
 title: How to connect to your workshop environment
 linkTitle: Access AWS/EC2 Instance
-weight: 2
-description: > 
-  **5 minutes**
+weight: 1
 ---
 
 1. How to retrieve the IP address of the AWS/EC2 instance assigned to you.
@@ -20,7 +18,7 @@ To get access to the instance that you will be using in the workshop please visi
 
 Search for your AWS/EC2 instance by looking for your first  and last name, as provided during registration for this workshop.
 
-![attendee spreadsheet](../../images/spreadsheet-info.png)
+![attendee spreadsheet](../images/spreadsheet-info.png)
 
 Find your allocated IP address, SSH command (for Mac OS, Linux and the latest Windows versions) and password to enable you to connect to your workshop instance.
 
@@ -37,17 +35,17 @@ Most attendees will be able to connect to the workshop by using SSH from their M
 
 To use SSH, open a terminal on your system and type `ssh ubuntu@x.x.x.x` (replacing x.x.x.x with the IP address found in Step #1).
 
-![ssh login](../../images/ssh-1.png)
+![ssh login](../images/ssh-1.png)
 
 When prompted **`Are you sure you want to continue connecting (yes/no/[fingerprint])?`** please type **`yes`**.
 
-![ssh password](../../images/ssh-2.png)
+![ssh password](../images/ssh-2.png)
 
 Enter the password provided in the Google Sheet from Step #1.
 
 Upon successful login you will be presented with the Splunk logo and the Linux prompt.
 
-![ssh connected](../../images/ssh-3.png)
+![ssh connected](../images/ssh-3.png)
 
 ## 3. SSH (Windows 10 and above)
 
@@ -58,20 +56,20 @@ You can verify if SSH is enabled by simply executing `ssh`
 
 If you are shown a help text on how to use the ssh-command (like shown on the screenshot below), you are all set.
 
-![Windows SSH enabled](../../images/windows-ssh-enabled-feedback.png)
+![Windows SSH enabled](../images/windows-ssh-enabled-feedback.png)
 
 If the result of executing the command looks something like on the screenshot below, you want to enable the "OpenSSH Client" feature manually.
 
-![Windows SSH disabled](../../images/windows-ssh-disabled-feedback.png)
+![Windows SSH disabled](../images/windows-ssh-disabled-feedback.png)
 
 To do that, open the "Settings" menu, and click on "Apps". While being in the "Apps & features" section, click on "Optional features".
 
-![Windows Apps Settings](../../images/windows-gui-optionalfeatures.png)
+![Windows Apps Settings](../images/windows-gui-optionalfeatures.png)
 
 Here, you are presented a list of installed features. On the top, you see a button with a plus icon to "Add a feature". Click it.
 In the search input field, type "OpenSSH", and find a feature called "OpenSSH Client",  or respectively, "OpenSSH Client (Beta)", click on it, and click the "Install"-button.
 
-![Windows Enable OpenSSH Client](../../images/windows-enable-openssh-client.png)
+![Windows Enable OpenSSH Client](../images/windows-enable-openssh-client.png)
 
 Now you are set! In case you are not able to access the provided instance in spite of enabling the OpenSSH feature, please do not shy away from reaching
 out to the course instructor, either via chat or directly.
@@ -92,19 +90,19 @@ Open Putty and enter the in **Host Name (or IP address)** field the IP address p
 
 You can optionally save your settings by providing a name and pressing **Save**.
 
-![putty-2](../../images//putty-settings.png)
+![putty-2](../images//putty-settings.png)
 
 To then login to your instance click on the **Open** button as shown above.
 
 If this is the first time connecting to your AWS/EC2 workshop instance, you will be presented with a security dialog, please click **Yes**.
 
-![putty-3](../../images//putty-security.png)
+![putty-3](../images//putty-security.png)
 
 Once connected, login in as **ubuntu** and the password is the one provided in the Google Sheet.
 
 Once you are connected successfully you should see a screen similar to the one below:
 
-![putty-4](../../images//putty-loggedin.png)
+![putty-4](../images//putty-loggedin.png)
 
 At this point you are ready to continue and [start the workshop](../../gdi/k3s/)
 
@@ -120,15 +118,15 @@ This assumes that access to port 6501 is not restricted by your company's firewa
 
 Open your web browser and type **[http://x.x.x.x:6501](http://x.x.x.x:6501)** (where X.X.X.X is the IP address from the Google Sheet).
 
-![http-6501](../../images//shellinabox-url.png)
+![http-6501](../images//shellinabox-url.png)
 
 Once connected, login in as **ubuntu** and the password is the one provided in the Google Sheet.
 
-![http-connect](../../images//shellinabox-connect.png)
+![http-connect](../images//shellinabox-connect.png)
 
 Once you are connected successfully you should see a screen similar to the one below:
 
-![web login](../../images//shellinabox-login.png)
+![web login](../images//shellinabox-login.png)
 
 Unlike when you are using regular SSH, *copy and paste* does require a few extra steps to complete when using a browser session. This is due to cross browser restrictions.
 
@@ -136,11 +134,11 @@ When the workshop ask you to copy instructions into your terminal, please do the
 
 *Copy the instruction as normal, but when ready to paste it in the web terminal, choose **Paste from browser** as show below:*
 
-![web paste 1](../../images//shellinabox-paste-browser.png)
+![web paste 1](../images//shellinabox-paste-browser.png)
 
 This will open a dialog box asking for the text to be pasted into the web terminal:
 
-![web paste 3](../../images//shellinabox-example-1.png)
+![web paste 3](../images//shellinabox-example-1.png)
 
 Paste the text in the text box as show, then press **OK** to complete the copy and paste process.
 
@@ -150,7 +148,7 @@ Unlike regular SSH connection, the web browser has a 60 second time out, and you
 Simply click the **Connect** button and you will be reconnected and will be able to continue.
 {{% /notice %}}
 
-![web reconnect](../../images//shellinabox-reconnect.png)
+![web reconnect](../images//shellinabox-reconnect.png)
 
 At this point you are ready to continue and [start the workshop](../gdi/k3s/).
 

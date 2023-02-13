@@ -16,7 +16,7 @@ isCJKLanguage: true
 
 ナビバーにある ![alerts and detectors](../../../images/alerts-and-detectors.png) ボタンをクリックし、**Detectors** を選択します。現在設定されているディテクターの一覧が表示されます。フィルタを使ってディテクターを探すこともできます。
 
-![detectors list](../../../images//detectors.png) 
+![detectors list](../../../images//detectors.png)
 
 **Creating a Detector** でディテクターを作成した場合は、右端の3つの点 **`...`** をクリックすると、そのディテクターが表示されます。
 

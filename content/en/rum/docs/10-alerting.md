@@ -1,5 +1,5 @@
 ---
-title: 10. Custom Charts and Alerts based on RUM Metrics
+title: 10. Custom alerts and charts based on RUM Metrics
 linkTitle: 10. Alerts
 weight: 10
 ---

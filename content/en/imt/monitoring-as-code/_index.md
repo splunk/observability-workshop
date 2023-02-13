@@ -1,6 +1,6 @@
 ---
-title: Monitoring as Code 
-linkTitle: Plan, Apply, Destroy
+title: Monitoring as Code
+linkTitle: Monitoring as Code
 weight: 6
 ---
 
@@ -22,22 +22,34 @@ Full documentation for the Splunk Terraform Provider is available [here](https:/
 Remaining in your AWS/EC2 instance, change into the `o11y-cloud-jumpstart` directory
 
 {{< tabs >}}
-{{% tab name="Change directory" lang="sh" %}}
+{{% tab name="Change directory" %}}
+
+``` bash
 cd observability-content-contrib/integration-examples/terraform-jumpstart
-{{</tab >}}
+```
+
+{{% /tab %}}
 {{< /tabs >}}
 
 The environment variables needed should already be set from [Installation using Helm](../../../otel/k3s/#2-installation-using-helm). If not, create the following environment variables to use in the Terraform steps below
 
 {{< tabs >}}
-{{% tab name="Export ACCESS TOKEN" lang="sh" %}}
+{{% tab name="Export ACCESS TOKEN" %}}
+
+``` bash
 export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
+```
+
 {{% /tab %}}
 {{< /tabs >}}
 
 {{< tabs >}}
-{{% tab name="Export REALM" lang="sh" %}}
+{{% tab name="Export REALM" %}}
+
+``` bash
 export REALM="<replace_with_REALM>"
+```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -48,10 +60,16 @@ You will need to run the command below each time a new version of the Splunk Ter
 {{% /notice %}}
 
 {{< tabs >}}
-{{% tab name="Initialise Terraform" lang="sh" %}}
+{{% tab name="Initialise Terraform" %}}
+
+``` bash
 terraform init -upgrade
-{{</tab >}}
-{{% tab name="Initialise Output" lang="text" %}}
+```
+
+{{% /tab %}}
+{{% tab name="Initialise Output" %}}
+
+``` text
     Upgrading modules...
     - aws in modules/aws
     - azure in modules/azure
@@ -90,7 +108,9 @@ terraform init -upgrade
     If you ever set or change modules or backend configuration for Terraform,
     rerun this command to reinitialize your working directory. If you forget, other
     commands will detect it and remind you to do so if necessary.
-{{</tab >}}
+```
+
+{{% /tab %}}
 {{< /tabs >}}
 
 ## 2. Create execution plan
@@ -104,12 +124,20 @@ The `terraform plan` command creates an execution plan. By default, creating a p
 The plan command alone will not actually carry out the proposed changes, and so you can use this command to check whether the proposed changes match what you expected before you apply the changes
 
 {{< tabs >}}
-{{% tab name="Execution Plan" lang="sh" %}}
+{{% tab name="Execution Plan" %}}
+
+```bash
 terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$(hostname)]"
-{{</tab >}}
+```
+
+{{% /tab %}}
 {{% tab name="Execution Plan Output" lang="text" %}}
+
+``` text
 Plan: 146 to add, 0 to change, 0 to destroy.
-{{</tab >}}
+```
+
+{{% /tab %}}
 {{< /tabs >}}
 
 If the plan executes successfully, we can go ahead and apply:
@@ -125,25 +153,31 @@ The most straightforward way to use `terraform apply` is to run it without any a
 Due to this being a workshop it is required that the prefix is to be unique so you need to run the `terraform apply` below.
 
 {{< tabs >}}
-{{% tab name="Apply Plan" lang="sh" %}}
+{{% tab name="Apply Plan" %}}
+
+``` bash
 terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$(hostname)]"
-{{</tab >}}
+```
+
+{{% /tab %}}
 {{% tab name="Apply Plan Output" lang="text" %}}
+
+``` text
 Apply complete! Resources: 146 added, 0 changed, 0 destroyed.
-{{</tab >}}
+```
+
+{{% /tab %}}
 {{< /tabs >}}
 
 Once the apply has completed, validate that the detectors were created, under the **Alerts & Detectors** and click on the **Detectors** tab. They will be prefixed by the hostname of your instance. To check the prefix value run:
 
-{{< tabs >}}
-{{% tab name="Echo Hostname" lang="sh" %}}
+``` bash
 echo $(hostname)
-{{</tab >}}
-{{< /tabs >}}
+```
 
  You will see a list of the new detectors and you can search for the prefix that was output from above.
 
-![Detectors](../../../images//detectors.png)
+![Detectors](../images/detectors.png)
 
 ## 3. Destroy all your hard work
 
@@ -154,23 +188,26 @@ While you will typically not want to destroy long-lived objects in a production 
 Now go and destroy all the Detectors and Dashboards that were previously applied!
 
 {{< tabs >}}
-{{% tab name="Destroy" lang="sh" %}}
+{{% tab name="Destroy" %}}
+
+``` bash
 terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
-{{</tab >}}
+```
+
+{{% /tab %}}
 {{% tab name="Destroy Output" lang="text" %}}
+
+``` text
 Destroy complete! Resources: 146 destroyed.
-{{</tab >}}
+```
+
+{{% /tab %}}
 {{< /tabs >}}
 
 Validate all the detectors have been removed by navigating to _**Alerts → Detectors**_
 
-![Destroyed](../../../images/destroy.png)
+![Destroyed](../images/destroy.png)
 
-[^1]:
-    Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.
+[^1]: Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.
 
-    Configuration files describe to Terraform the components needed to run a single application or your entire datacenter. Terraform generates an execution plan describing what it will do to reach the desired state, and then executes it to build the described infrastructure. As the configuration changes, Terraform is able to determine what changed and create incremental execution plans which can be applied.
-
-    The infrastructure Terraform can manage includes low-level components such as compute instances, storage, and networking, as well as high-level components such as DNS entries, SaaS features, etc.
-[^2]:
-    A provider is responsible for understanding API interactions and exposing resources. Providers generally are an IaaS (e.g. Alibaba Cloud, AWS, GCP, Microsoft Azure, OpenStack), PaaS (e.g. Heroku), or SaaS services (e.g. Splunk, Terraform Cloud, DNSimple, Cloudflare).
+[^2]: A provider is responsible for understanding API interactions and exposing resources. Providers generally are an IaaS (e.g. Alibaba Cloud, AWS, GCP, Microsoft Azure, OpenStack), PaaS (e.g. Heroku), or SaaS services (e.g. Splunk, Terraform Cloud, DNSimple, Cloudflare).

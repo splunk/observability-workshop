@@ -1,7 +1,8 @@
 ---
 title: Deploying the OpenTelemetry Collector in Kubernetes
-linkTitle: Deploy the OTel Collector
-weight: 1
+linkTitle: Get Data In
+alwaysopen: false
+weight: 2
 ---
 
 * Use the Splunk Helm chart to install the OpenTelemetry Collector in K3s
@@ -15,7 +16,7 @@ You will need to obtain your Access Token[^1] from the Splunk UI. You can find t
 
 Expand the workshop token that your host has instructed you to use e.g. **O11y-Workshop-ACCESS**, then click on **Show Token** to expose your token. Click the {{% labelbutton color="ui-button-grey" %}}Copy{{% /labelbutton %}} button to copy to clipboard. Please do not use the **Default** token!
 
-![Access Token](../../../images/access-token.png)
+![Access Token](../images/access-token.png)
 
 {{% notice title="Please do not attempt to create your own token" color="warning" %}}
 We have created a Token specifically for this workshop with the appropriate settings for the exercises you will be performing so have allocated it both Ingest and API Permissions.  Best practice in production is to only allocate a single permission to a Token such as Ingest OR API OR RUM and use multiple Tokens where required.
@@ -23,7 +24,7 @@ We have created a Token specifically for this workshop with the appropriate sett
 
 You will also need to obtain the name of the Realm[^2] for your Splunk account.  At the top of the side menu, click on your name. This will direct you to the **Account Settings** Page. Click the **Organizations**-tab. The Realm can be found at the top of the displayed information in the tab.  In this example it is `eu0`.
 
-![Account Settings](../../../images/account-settings.png)
+![Account Settings](../images/account-settings.png)
 
 ## 2. Installation using Helm
 
@@ -160,7 +161,7 @@ helm delete splunk-otel-collector
 
 In the Splunk UI, click the **>>** bottom left and click on **Infrastructure**.
 
-![Selecting the Kubernetes Navigator Map](../../../images/clustermap-nav.png)
+![Selecting the Kubernetes Navigator Map](../images/clustermap-nav.png)
 
 Under **Containers** click on **Kubernetes** to open the Kubernetes Navigator Cluster Map to ensure metrics are being sent in.
 
@@ -174,19 +175,19 @@ echo $(hostname)-k3s-cluster
 
 Then in the UI, click on the "Cluster: - " menu just below the Splunk Logo, and paste the Cluster name you just copied into the search box, click the box to select your cluster, and finally click off the menu into white space to apply the filter.
 
-![K8S Clusters Filter](../../../images/search-k3s-cluster.png)
+![K8S Clusters Filter](../images/search-k3s-cluster.png)
 
-![Select K8S Cluster](../../../images/selecting-k3s-cluster.png)
+![Select K8S Cluster](../images/selecting-k3s-cluster.png)
 
-![Filtered K8S Cluster](../../../images/filtered-k3s-cluster.png)
+![Filtered K8S Cluster](../images/filtered-k3s-cluster.png)
 
-To examine the health of your node, hover over the pale blue background of your cluster, then click on the blue magnifying glass ![Magnifying Glass](../../../images/blue-cross.png) that appears in the top left hand corner.
+To examine the health of your node, hover over the pale blue background of your cluster, then click on the blue magnifying glass ![Magnifying Glass](../images/blue-cross.png) that appears in the top left hand corner.
 
 This will drill down to the node level.  Next, open the side bar by clicking on the side bar button to open the Metrics side bar.
 
 Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: CPU, Memory, Network, Events etc.
 
-![Sidebar metrics](../../../images/explore-metrics.png)
+![Sidebar metrics](../images/explore-metrics.png)
 
 [^1]: Access Tokens (sometimes called Org Tokens) are long-lived organization-level tokens. By default, these tokens persist for 5 years, and thus are suitable for embedding into emitters that send data points over long periods of time, or for any long-running scripts that call the Splunk API.
 

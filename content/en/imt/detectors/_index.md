@@ -1,7 +1,7 @@
 ---
-title: Working with Detectors - Lab Summary
-linkTitle: Creating a Detector
-weight: 2
+title: Working with Detectors
+linkTitle: Detectors
+weight: 5
 ---
 
 * Create a Detector from one of your charts
@@ -21,11 +21,11 @@ These conditions are expressed as one or more rules that trigger an alert when t
 
 In **Dashboards** click on your **Custom Dashboard Group** (that you created in the previous module) and then click on the dashboard name.
 
-![Custom Dashboard Group](../../../images//custom-dashboard-group.png)
+![Custom Dashboard Group](../images/custom-dashboard-group.png)
 
 We are now going to create a new detector from a chart on this dashboard. Click on the bell icon on the **Latency vs Load** chart, and then click **New Detector From Chart**.
 
-![New Detector](../../../images//new-detector.png)
+![New Detector](../images/new-detector.png)
 
 In the text field next to **Detector Name**, **ADD YOUR INITIALS** before the proposed detector name.
 
@@ -37,19 +37,19 @@ It should be something like this: **XYZ's Latency Chart Detector**.
 
 Click on {{% labelbutton color="ui-button-blue" %}}Create Alert Rule{{% /labelbutton %}}
 
-![Create Alert Rule](../../../images//create-alert-rule.png)
+![Create Alert Rule](../images/create-alert-rule.png)
 
 In the Detector window, inside **Alert signal**, the Signal we will alert on is marked with a (blue) bell in the **Alert on** column. The bell indicates which Signal is being used to generate the alert.
 
 Click on {{% labelbutton color="ui-button-blue" %}}Proceed to Alert Condition{{% /labelbutton %}}
 
-![Alert Signal](../../../images//alert-signal.png)
+![Alert Signal](../images/alert-signal.png)
 
 ## 3. Setting Alert condition
 
 In **Alert condition**, click on **Static Threshold** and then on {{% labelbutton color="ui-button-blue" %}}Proceed to Alert Settings{{% /labelbutton %}}
 
-![Alert Condition](../../../images//alert-condition.png)
+![Alert Condition](../images/alert-condition.png)
 
 In **Alert Settings**, enter the value **`290`** in the **Threshold** field. In the same window change **Time** on top right to past day (**-1d**).
 
@@ -59,7 +59,7 @@ In **Alert Settings**, enter the value **`290`** in the **Threshold** field. In 
 
 A pre-flight check will take place after 5 seconds. See the **Estimated alert count**. Based on the current alert settings, the amount of alerts we would have received in 1 day would have been **3**.
 
-![Alert Threshold](../../../images//alert-threshold.png)
+![Alert Threshold](../images/alert-threshold.png)
 
 {{% notice title="About pre-flight checks" style="info" %}}
 Once you set an alert condition, the UI estimates how many alerts you might get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.
@@ -78,13 +78,13 @@ Click on {{% labelbutton color="ui-button-blue" %}}Proceed to Alert Message{{% /
 
 In **Alert message**, under **Severity** choose **Major**.
 
-![Alert Message](../../../images//alert-message.png)
+![Alert Message](../images/alert-message.png)
 
 Click on {{% labelbutton color="ui-button-blue" %}}Proceed to Alert Recipients{{% /labelbutton %}}
 
 Click on **Add Recipient** and then on your email address displayed as the first option.
 
-![Add Recipient](../../../images//add-recipient.png)
+![Add Recipient](../images/add-recipient.png)
 
 {{% notice title="Notification Services" style="info" %}}
 That's the same as entering that email address OR you can enter another email address by clicking on **E-mail...**.
@@ -100,7 +100,7 @@ Click on {{% labelbutton color="ui-button-blue" %}}Proceed to Alert Activation{{
 
 In **Activate...** click on {{% labelbutton color="ui-button-blue" %}}Activate Alert Rule{{% /labelbutton %}}
 
-![Activate Alert](../../../images//activate-alert.png)
+![Activate Alert](../images/activate-alert.png)
 
 If you want to get alerts quicker you edit the rule and lower the value from **`290`** to say **`280`**.
 
@@ -110,6 +110,6 @@ Click on the ![alerts and detectors button](../../../images/alerts-and-detectors
 
 You will see you detector listed here. If you don't then please refresh your browser.
 
-![Detector List](../../../images//detectors.png)
+![Detector List](../images/detectors.png)
 
 **Congratulations**! You have created your first detector and activated it!
