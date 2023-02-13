@@ -20,7 +20,7 @@ Provide the following to the Configure Integration Wizard:
 - Kubernetes: yes
 - Legacy Agent: no
 
-[o11y_cloud_ui](../images/configureintegration.png)
+![o11y_cloud_ui](../images/configureintegration.png)
 
 We are instructed to:
   
@@ -106,7 +106,7 @@ Note that the only lines, in bold, added to the Dockerfile
 
   ```text
   pwd
-  ./Workshop/flask_apps_finish/review
+  ./workshop/flask_apps_finish/review
 
   docker build -f Dockerfile.review -t localhost:8000/review-splkotel:0.01 .
   [+] Building 27.1s (12/12) FINISHED
