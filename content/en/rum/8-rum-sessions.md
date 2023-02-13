@@ -1,6 +1,6 @@
 ---
-title: 8. nalyzing RUM Sessions
-linkTitle: 8. Discover RUM Sessions
+title: 8. Analyzing RUM Sessions
+linkTitle: 8. Analyzing RUM Sessions
 weight: 8
 ---
 * Dive into RUM Session information in the  RUM UI
