@@ -1,6 +1,7 @@
 ---
 title: はじめに
 linkTitle: Splunk Synthetics
+description: Proactively find and fix performance issues across user flows, business transactions and APIs to deliver better digital experiences.
 weight: 4
 isCJKLanguage: true
 ---

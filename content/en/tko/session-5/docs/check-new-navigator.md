@@ -74,7 +74,7 @@ As you selected your Node, you may notice that the `Breadcrumbs` above the Map v
 
 With the node selected, hunt in your node map for the *splunk-otel-collector-agent* pod, and once found, select the *otel-collector* container from that pod.
 
-Your Breadcrumbs above your Map view should look somewhat like this: 
+Your Breadcrumbs above your Map view should look somewhat like this:
 
 ![Breadcrumbs](../images/crumbtrail.png)
 
@@ -97,7 +97,7 @@ You can switch to the `K8s Workloads` view in two ways:
 
 * Go to the **Infrastructure** menu item in the Observability UI and select **Kubernetes** again, then pick the `K8s workloads` pane
 
-![k8sNode](../images/K8s-Workloads.png) 
+![k8sWorkloads](../images/K8s-Workloads.png)
 
 Initially, the workload view will show you all the workloads that are reported by your clusters into your Observability Cloud Org. If an alert has fired for any of the workloads, it will be highlighted on the top right, *as marked with a red stripe in the image below*. You can go directly to the alert by clicking it to expand it.
 
@@ -123,7 +123,7 @@ Once you expand a workload, you will note that each workload row has a colored r
 
 If there are many workloads, you can change the `Result per page box` *as marked by an orange line in the image above*, to increase the list size. (It will also offer pagination if required).
 
-Next, you can change the the list view to a heat map view by selecting either the Heat map icon or List icon in the upper-right corner of the screen: [heat-map-toggle](../images/heatmaptoggle.png) *(as marked with a purple line in the above image).*
+Next, you can change the list view to a heat map view by selecting either the Heat map icon or List icon in the upper-right corner of the screen: [heat-map-toggle](../images/heatmaptoggle.png) *(as marked with a purple line in the above image).*
 
 Changing this option will result in the following representation:
 
