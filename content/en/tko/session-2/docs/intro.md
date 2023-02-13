@@ -9,9 +9,9 @@ weight: 2
 During this technical workshop you will learn how to:
 
 - efficiently deploy complex environments
-- capture metrics from these environments to Splunk Observability
+- capture metrics from these environments to Splunk Observability Cloud
 - auto-instrument a python application
-- enabling logging to Splunk Enterprise via Universal Forwarder
+- enabling OS logging to Splunk Enterprise via Universal Forwarder
 
 In order to simplify the workshop modules, a pre-configured AWS EC2 instance is provided.
 
