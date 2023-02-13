@@ -149,7 +149,7 @@ Or use the installed `k9s` terminal UI.
 
 ![k9s](../images/k9s.png)
 
-{{% notice title="Deleting a failed installation" color="danger" %}}
+{{% notice title="Deleting a failed installation" style="warning" %}}
 If you make an error installing the Splunk OpenTelemetry Collector you can start over by deleting the installation using:
 
 ``` sh
