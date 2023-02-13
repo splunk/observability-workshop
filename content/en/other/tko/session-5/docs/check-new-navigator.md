@@ -91,12 +91,12 @@ Which of the levels in the `Breadcrumbs` provides `Related Content` for logs?
 You can switch to the `K8s Workloads` view in two ways:
 
 * Change the value in the **Service** drop down box in the breadcrumbs from *K8s nodes* to *K8s workloads*
-
+![k8sToggle](../images/service-toggle.png)
   **OR**
 
 * Go to the **Infrastructure** menu item in the Observability UI and select **Kubernetes** again, then pick the `K8s workloads` pane
 
-![k8sNode](../images/K8s-Workloads.png) ![k8sToggle](../images/service-toggle.png)
+![k8sNode](../images/K8s-Workloads.png) 
 
 Initially, the workload view will show you all the workloads that are reported by your clusters into your Observability Cloud Org. If an alert has fired for any of the workloads, it will be highlighted on the top right, *as marked with a red stripe in the image below*. You can go directly to the alert by clicking it to expand it.
 
@@ -132,7 +132,7 @@ This might be a useful view if you have many clusters as they can be grouped tog
 
 The last option, is `Find Outliers` which provides historical analytics of your clusters based on what is selected in the `Color by` box.
 
-Now, click on the `Find outliers` drop down *as marked by a yellow stripe in the above image* and make sure the dialog is set as below:
+Now, click on the `Find outliers` drop down *as marked by a yellow stripe in the above image* and make sure you change the Strategy in the dialog  to `Deviation from Median` as below:
 
 ![k8s-Heat-map](../images/set-find-outliers.png)
 
@@ -154,7 +154,11 @@ The workload overview gives you a quick insight of the status of your deployment
 * *Failed* means the containers in the pod have run and returned some kind of error
 * *Unknown* means Kubernetes isn't reporting any of the known states. (This may be during start or stopping pods, for example).
 
-To filter to a specific Workload, simply click on three dots `...` next to the workload name in the *k8s.workload.name* column and choose `filter` from the drop down box.
+You can expand the Workload name by hoovering you mouse on it, in case the name is longer then the chart allows.
+
+![k8s-workload-hoover](../images/k8s-workload-hoover.png)
+
+To filter to a specific Workload, you can click on three dots `...` next to the workload name in the *k8s.workload.name* column and choose `filter` from the drop down box.
 
 ![workload-add-filter](../images/workload-add-filter.png)
 
@@ -172,7 +176,8 @@ What is the desired number of pods for the `splunk-otel-collector-k8s-cluster-re
 
 To bring up details of a workload in the Kubernetes Navigator, you either need to expand a namespace in the list mode or click on a workload square in the heatmap view.
 
-In the heatmap mode, double click on the square for the `splunk-otel-collector-agent` workload in the *splunk* namespace.
+First, remove the filter you set in the previous step, by clicking on the `x` behind the filter at the top of the page.
+Then, in the heatmap mode, double click on the square for the `splunk-otel-collector-agent` workload in the *splunk* namespace.
 
 ![workload-expand](../images/workload-expand.png)
 
@@ -186,8 +191,8 @@ What are the names of the container(s) in the **CPU resources (cpu units)** char
 
 ## 4. Pivot Sidebar
 
-Later in the workshop, you will deploy an Apache server into your cluster which= will cause a pivot bar to appear.
-As soon as any metric that is displayed in a Navigator is flowing into your observability org, the system will add that service to the pivot bar.
+Later in the workshop, you will deploy an Apache server into your cluster which will cause a `pivot bar` to appear.
+As soon as any metric that is used by a Navigator, is flowing into your Observability org, the system will add that service to the pivot bar.
 
 The pivot bar will expand and a link to the discovered service will be added as seen in the image below:
 
