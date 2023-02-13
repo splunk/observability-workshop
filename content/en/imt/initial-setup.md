@@ -1,6 +1,6 @@
 ---
 title: How to connect to your workshop environment
-linkTitle: Access AWS/EC2 Instance
+linkTitle: 1. Access AWS/EC2 Instance
 weight: 1
 ---
 

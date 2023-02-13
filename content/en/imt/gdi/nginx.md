@@ -1,6 +1,6 @@
 ---
 title: Deploying NGINX in K3s
-linkTitle: Deploy and Monitor NGINX
+linkTitle: 2.1 Deploy and Monitor NGINX
 weight: 3
 ---
 

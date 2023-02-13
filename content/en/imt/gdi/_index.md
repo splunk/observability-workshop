@@ -1,6 +1,6 @@
 ---
 title: Deploying the OpenTelemetry Collector in Kubernetes
-linkTitle: Get Data In
+linkTitle: 2. Get Data In
 alwaysopen: false
 weight: 2
 ---
