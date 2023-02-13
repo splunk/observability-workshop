@@ -81,8 +81,8 @@ Your Breadcrumbs above your Map view should look somewhat like this:
 Note, you can walk back-up in the stack by clicking on the Pod, Node, Cluster and Service links *marked with a green line*.
 
 {{% notice title="Note" style="info" %}}
-Most level in the `Breadcrumbs` provide `Related Content` for logs.
-See if they appear at the bottom of the page when switching between levels in the breadcrumbs.
+Most dashboards you select, via in the `Breadcrumbs` or direct,  provide `Related Content`.
+Check if they appear at the bottom of the page when switching between levels in the breadcrumbs.
 
 **Tip:** You may need to refresh the screen a few time to refresh the log search data in the background.
 {{% /notice %}}
