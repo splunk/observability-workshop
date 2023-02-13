@@ -18,7 +18,7 @@ Go to the **Infrastructure** page in the Observability UI and select **Kubernete
 
 ![k8s-cluster-pane](../images/k8s-nodes.png)
 
-The first thing you notice is that the pane indicates how many kubernetes nodes are being monitored for you. The pane also shows a tiny graph giving you a bird's eye view of the load being handled across those Nodes. Also, if there are any alerts for one of the nodes, you will see a small alert indicator as shown in the image above. 
+The first thing you notice is that the pane indicates how many kubernetes nodes are being monitored for you. The pane also shows a tiny graph giving you a bird's eye view of the load being handled across those Nodes. Also, if there are any alerts for one of the nodes, you will see a small alert indicator as shown in the image above.
 
 Click on the K8s Nodes pane and you will be taken to the `Infrastructure/Kubernetes/K8s nodes` overview pane. Here you will find a map representation of all the Kubernetes clusters that are sending data to the Splunk Observability Cloud platform.
 
@@ -48,7 +48,7 @@ In a production environment, you can expect to see different sizes of Clusters w
 
 In our workshop environment, however, you each have a single node within your cluster, represented by a large, single, blue square.
 
-Let's find your own Cluster using the filter feature. First, let's switch the time filter in the upper-left corner from the default of 3 hours to the past 15 minutes. Then, click the *Add Filters* button and begin typing `k8s.cluster.name` in the filter toolbar (the type-ahead feature will help you!) For the cluster name, you can enter a partial name into the search box, such as 'ws-5-7*', to quickly find your cluster. 
+Let's find your own Cluster using the filter feature. First, let's switch the time filter in the upper-left corner from the default of 3 hours to the past 15 minutes. Then, click the *Add Filters* button and begin typing `k8s.cluster.name` in the filter toolbar (the type-ahead feature will help you!) For the cluster name, you can enter a partial name into the search box, such as 'ws-5-7*', to quickly find your cluster.
 
 As soon as you find your cluster and it's highlighted, the charts below it show information on all the nodes in your cluster.
 
@@ -124,7 +124,7 @@ Once you expand a workload, you will note that each workload row has a colored r
 
 If there are many workloads, you can change the `Result per page box` *as marked by an orange line in the image above*, to increase the list size. (It will also offer pagination if required).
 
-Next, you can change the the list view to a heat map view by selecting either the Heat map icon or List icon in the upper-right corner of the screen: [heat-map-toggle](../images/heatmaptoggle.png) *(as marked with a purple line in the above image).*
+Next, you can change the list view to a heat map view by selecting either the Heat map icon or List icon in the upper-right corner of the screen: ![heat-map-toggle](../images/heatmaptoggle.png) *(as marked with a purple line in the above image).*
 
 Changing this option will result in the following representation:
 
@@ -188,7 +188,7 @@ What are the names of the container(s) in the **CPU resources (cpu units)** char
 
 ## 4. Pivot Sidebar
 
-Later in the workshop, you will deploy an Apache server into your cluster which= will cause a pivot bar to appear.
+Later in the workshop, you will deploy an Apache server into your cluster which will cause a pivot bar to appear.
 As soon as any metric that is displayed in a Navigator is flowing into your observability org, the system will add that service to the pivot bar.
 
 The pivot bar will expand and a link to the discovered service will be added as seen in the image below:
