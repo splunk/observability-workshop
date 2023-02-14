@@ -2,6 +2,7 @@
 title: The New Kubernetes Navigator
 linkTitle: 2. Kubernetes Navigator v2
 weight: 2
+draft: true
 --- 
 ## 1. Cluster vs Workload View
 

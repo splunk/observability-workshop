@@ -69,3 +69,17 @@ How many additional `php-apache-x` pods have been created?
 {{% alert title="Workshop Question" color="success" %}}
 Which metrics in the Apache Dashboards have significantly increased again?
 {{% /alert %}}
+
+## 3. Increase the HPA replica count
+
+Increase the `maxReplicas` to 8
+
+``` bash
+kubectl edit hpa php-apache -n apache
+```
+
+Save the changes youhave made. (Hint: Use `Esc` followed by `:wq!` to save your changes).
+
+{{% alert title="Workshop Question" color="success" %}}
+How many pods are now in a running state? How many are pending? Why are they pending?
+{{% /alert %}}
