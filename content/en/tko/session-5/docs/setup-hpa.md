@@ -12,10 +12,46 @@ If the load decreases, and the number of Pods is above the configured minimum, t
 
 ## 1. Setup HPA
 
-Create an autoscaling deployment for when the CPU usage for `php-apache` deployment goes above 50% with a minimum of 1 pod and a maximum of 4 pods.
+Inspect the `~/workshop/k3s/hpa.yaml` file and validate the contents using the following command:
+
+``` bash
+cat ~/workshop/k3s/hpa.yaml
+```
+
+This file contains the configuration for the Horizontal Pod Autoscaler and will create a new HPA for the `php-apache` deployment.
+
+``` yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: php-apache
+  namespace: apache
+spec:
+  maxReplicas: 4
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        averageUtilization: 50
+        type: Utilization
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        averageUtilization: 75
+        type: Utilization
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: php-apache
+```
+
+Once deployed, `php-apache` will autoscale when either the average CPU usage and average memory usage for the deployment goes above 50%, with a minimum of 1 pod and a maximum of 4 pods.
 
 ``` text
-kubectl autoscale statefulset php-apache --cpu-percent=50 --min=1 --max=4 -n apache
+kubectl apply -f ~/workshop/k3s/hpa.yaml
 ```
 
 ## 2. Validate HPA
