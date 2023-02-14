@@ -48,7 +48,7 @@ Let's find your own Cluster using the filter feature. First, let's switch the ti
 
 As soon as you find your cluster and it's highlighted, the charts below it show information on all the nodes in your cluster.
 
-{{% alert title="Workshop Question" style="tip" icon="question" %}}
+{{% alert title="Workshop Question" color="success" %}}
 How much memory does our node have?
 {{% /alert %}}
 
@@ -64,7 +64,7 @@ You should now be able to see all the Pods and Containers running on your single
 
 As soon as you select your node in your cluster, you can see the overall performance of that node in the charts beneath the selected node.
 
-{{% alert title="Workshop Question" style="tip" icon="question" %}}
+{{% alert title="Workshop Question" color="success" %}}
 How many pods are running on your node at this point?
 {{% /alert %}}
 
@@ -80,7 +80,7 @@ Your Breadcrumbs above your Map view should look somewhat like this:
 
 Note, you can walk back-up in the stack by clicking on the Pod, Node, Cluster and Service links *marked with a green line*.
 
-{{% alert title="Note" style="info" %}}
+{{% alert title="Note" color="info" %}}
 Most dashboards you select, via in the `Breadcrumbs` or direct,  provide `Related Content`.
 Check if they appear at the bottom of the page when switching between levels in the breadcrumbs.
 
@@ -107,7 +107,7 @@ We can also use the Breadcrumbs feature that we have learned about earlier. As a
 
 Now, let's find your own cluster by filtering on the field `k8s.cluster.name` in the filter toolbar, *as marked with a blue stripe in the image below*. Note: you can enter a partial name into the search box, such as 'ws-5-7*', to quickly find your Cluster. Remember, it's is a good idea to switch the default time from the default 3 hours back to 15 minutes.
 
-{{% alert title="Workshop Question" style="tip" icon="question" %}}
+{{% alert title="Workshop Question" color="success" %}}
 How many workloads are running on your Cluster?
 {{% /alert %}}
 
@@ -137,7 +137,7 @@ Now, click on the `Find outliers` drop down *as marked by a yellow stripe in the
 
 ![k8s-Heat-map](../images/set-find-outliers.png)
 
-{{% alert title="Workshop Question" style="tip" icon="question" %}}
+{{% alert title="Workshop Question" color="success" %}}
 What happened to the Heatmap?
 {{% /alert %}}
 
@@ -169,7 +169,7 @@ This will add the selected workload to your filters.
 
 The last chart will give you a bird's eye view on how many pods are deployed by Kubernetes for your deployment. In a replicaset, you can indicate the min, max and desired number of pods you wish to run as part the deployment.
 
-{{% alert title="Workshop Question" style="tip" icon="question" %}}
+{{% alert title="Workshop Question" color="success" %}}
 What is the desired number of pods for the `splunk-otel-collector-k8s-cluster-reciever` replicaset?
 {{% /alert %}}
 
@@ -186,7 +186,7 @@ In the list view, you can click on the link that appears when expanding a namesp
 
 This will bring you to the `Workload detail` page where you get more details about the health and performance of your workload & pods.
 
-{{% alert title="Workshop Question" style="tip" icon="question" %}}
+{{% alert title="Workshop Question" color="success" %}}
 What are the names of the container(s) in the **CPU resources (cpu units)** chart for the `splunk-otel-collector-agent`?
 {{% /alert %}}
 

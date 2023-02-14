@@ -58,7 +58,7 @@ kubectl apply -f ~/workshop/k3s/loadgen.yaml --namespace loadgen
 
 Once you have deployed the load generator, you can see the Pod running in the `loadgen` namespace. Use previous similar commands to check the status of the Pod from the command line.
 
-{{% alert title="Workshop Question" style="tip" icon="question" %}}
+{{% alert title="Workshop Question" color="success" %}}
 What metrics in the Apache Dashboard have now significantly increased?
 {{% /alert %}}
 
@@ -80,7 +80,7 @@ Validate the replicas are running from both the command line and Splunk Observab
 kubectl get statefulset loadgen -n loadgen
 ```
 
-{{% alert title="Workshop Question" style="tip" icon="question" %}}
+{{% alert title="Workshop Question" color="success" %}}
 What impact did this have? Where in O11y can you see the increased replica number? Can you identify the point when you scaled?
 {{% /alert %}}
 

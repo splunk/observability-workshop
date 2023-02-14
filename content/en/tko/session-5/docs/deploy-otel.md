@@ -18,7 +18,8 @@ You should now be in the K8s Node view with chart below the cluster map similar 
 
 ![k8s-navi-v-2](../images/new-k8s-view.png)
 
-{{% alert title="Note" style="info" %}}
+{{% alert title="NOTE" color="info" %}}
+
 If you actually see three services for Kubernetes including one that is named `K8s clusters`, you need to turn off Precognition in the Superpowers view.
 To do this, please change the Url in your browser to match the following: [https://app.[REALM].signalfx.com/#/superpowers](https://app.[REALM].signalfx.com/#/superpowers)
 
@@ -109,7 +110,7 @@ splunk-otel-collector-k8s-cluster-receiver-6c454894f8-mqs8n   1/1     Running   
 {{< /tab >}}
 {{< /tabpane >}}
 
-{{% alert title="Note" style="info" %}}
+{{% alert title="NOTE" color="info" %}}
 
 If you are using the Kubernetes Integration setup from the Data Management page from the O11y UI , you find that the guide will use
 `--generate-name splunk-otel-collector-chart/splunk-otel-collector` instead of just `splunk-otel-collector-chart/splunk-otel-collector` as we do in the above example.

@@ -76,7 +76,8 @@ splunk-otel-collector-chart/splunk-otel-collector \
 -f ~/workshop/k3s/otel-apache.yaml
 ```
 
-{{% alert title="NOTE" style="info" %}}
+{{% alert title="NOTE" color="info" %}}
+
 The **REVISION** number of the deployment has changed, which is a helpful way to keep track of your changes.
 
 ``` text
@@ -103,7 +104,7 @@ The OpenTelemetry collector/agent uses ConfigMaps to store the configuration of 
 kubectl get cm -n splunk
 ```
 
-{{% alert title="Workshop Question" style="tip" icon="question" %}}
+{{% alert title="Workshop Question" color="success" %}}
 How many ConfigMaps are used by the collector?
 {{% /alert %}}
 
@@ -115,7 +116,7 @@ When you have list of ConfigMaps from the namespace, select the one for the `ote
 kubectl get cm splunk-otel-collector-otel-agent -n splunk -o yaml
 ```
 
-{{% alert title="Workshop Question" style="tip" icon="question" %}}
+{{% alert title="Workshop Question" color="success" %}}
 Is the content of `otel-apache.yaml` saved in the ConfigMap for the collector agent?
 {{% /alert %}}
 
@@ -192,7 +193,7 @@ Deploy the PHP/Apache application:
 kubectl apply -f ~/workshop/k3s/php-apache.yaml -n apache
 ```
 
-{{% alert title="Workshop Question" style="tip" icon="question" %}}
+{{% alert title="Workshop Question" color="success" %}}
 What metrics for your Apache instance are being reported in the Apache Navigator?
 
 **Tip:** Click on **Infrastructure → Web Server → Apache web servers** to go to the Navigator and look for a server with the same name as your EC2 host.
@@ -204,13 +205,13 @@ Ensure the deployment has been created:
 kubectl get statefulset -n apache
 ```
 
-{{% alert title="Workshop Question" style="tip" icon="question" %}}
+{{% alert title="Workshop Question" color="success" %}}
 Using the Observability Kubernetes Navigator, can you find the status of the `php-apache`  **Workload**?
 
 **HINT:** Filter by `k8s.cluster.name` to isolate your instance!
 {{% /alert %}}
 
-{{% alert title="Workshop Question" style="tip" icon="question" %}}
+{{% alert title="Workshop Question" color="success" %}}
 Where else has the issue with `php-apache` been logged? What is being reported?
 
 **HINT:** Adjust your Table settings to use only `k8s.cluster.name`, `object.involvedObject.name` & `object.message`. Make sure you unselect `_raw`!

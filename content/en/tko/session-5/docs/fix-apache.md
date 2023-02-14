@@ -31,7 +31,7 @@ If that fails, or if there is not enough space when you deploy your application,
 
 ## 2. Fix PHP/Apache Deployment
 
-{{% alert title="Workshop Question" style="tip" icon="question" %}}
+{{% alert title="Workshop Question" color="success" %}}
 
 Before we start, let's check the current status of the PHP/Apache deployment. Under **Alerts & Detectors** which detector has fired? Where else can you find this information?
 
@@ -79,13 +79,13 @@ kubectl describe statefulset php-apache -n apache
 
 Validate the Pod is now running in Splunk Observability Cloud.
 
-{{% alert title="Workshop Question" style="tip" icon="question" %}}
+{{% alert title="Workshop Question" color="success" %}}
 Is the **Apache Web Servers** dashboard showing any data now?
 
 **Tip:** Don't forget to use filters and time frames to narrow down your data.
 {{% /alert %}}
 
-{{% alert title="Workshop Question" style="tip" icon="question" %}}
+{{% alert title="Workshop Question" color="success" %}}
 Another Auto-Detect Detector has fired, which one is it this time?
 {{% /alert %}}
 
