@@ -68,6 +68,8 @@ What happened to the Heatmap?
 
 The `Find outliers` view is very useful when you need to view a selection of your workloads (or any service depending on the navigator used) and quickly need to figure out if something has changed. It will give you fast insight in items (workloads in our case) that are performing differently (both increase or decreased) which helps to make it easier to spot problems.
 
+Now switch the `Find Outliers` option back to off. 
+
 ### 2.2 The Workload Overview pane
 
 The workload overview gives you a quick insight of the status of your deployment. You can see at once if the pods of your deployments are Pending, Running, Failed, Succeeded or in an unknown state.  
@@ -88,7 +90,17 @@ To filter to a specific Workload, you can click on three dots `...` next to the 
 
 ![workload-add-filter](../images/workload-add-filter.png)
 
-This will add the selected workload to your filters.
+This will add the selected workload to your filters. Try this for the *splunk-otel-collector-k8s-cluster-receiver* workload. It should give you a single  rectangle in the `splunk' namespace.
+Confirm that you have th right filter by hoovering over the rectangle, and if it is indeed the *splunk-otel-collector-k8s-cluster-receiver*  workload, double click on it.
+
+This bring you to a more detailed view of your workload.
+
+{{% alert title="Workshop Question" color="success" %}}
+What are the CPU request  & CPU limit units for the otel-collector?
+{{% /alert %}}
+
+At this point you can drill into the information of the pods, but that is outside the scope of this workshop,
+for now reset your view by removing the filter for the *splunk-otel-collector-k8s-cluster-receiver* workload. and setting the `color by` option to *Pods Pending*.
 
 ## 3. Pivot Sidebar
 
