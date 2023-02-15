@@ -6,7 +6,7 @@ defaultContentLanguageInSubdir: false
 enableMissingTranslationPlaceholders: true
 enableRobotsTXT: true
 theme:
-  - github.com/McShelby/hugo-theme-relearn 
+  - github.com/McShelby/hugo-theme-relearn
 languages:
   en:
     title: 'Splunk Observability Cloud Workshops'
@@ -50,24 +50,23 @@ params:
   disableLandingPageButton: false
   titleSeparator: "::"
   themeVariant: ["splunk-light", "splunk-dark", "aws"]
-  additionalContentLanguage: [ "ja" ]
+  additionalContentLanguage: ["ja"]
   versions:
     - version: latest
       url: https://splunk.github.io/observability-workshop/latest/
-    - version: v4.53
-      url: https://splunk.github.io/observability-workshop/v4.53
     - version: v4.54
       url: https://splunk.github.io/observability-workshop/v4.54
+    - version: v4.55
+      url: https://splunk.github.io/observability-workshop/v4.55
   url_latest_version: https://splunk.github.io/observability-workshop/
 menu:
   shortcuts:
-  - name: "<i class='fab fa-fw fa-github'></i> GitHub Repository"
-    url: "https://github.com/splunk/observability-workshop"
-    weight: 10
-  - name: <i class="fab fa-fw fa-wpexplorer"></i> OpenTelemetry
-    url: "https://opentelemetry.io"
-    weight: 20
-  - name: <i class="fab fa-fw fa-twitter"></i> Twitter
-    url: "https://twitter.com/splunk"
-    weight: 30
-
+    - name: "<i class='fab fa-fw fa-github'></i> GitHub Repository"
+      url: "https://github.com/splunk/observability-workshop"
+      weight: 10
+    - name: <i class="fab fa-fw fa-wpexplorer"></i> OpenTelemetry
+      url: "https://opentelemetry.io"
+      weight: 20
+    - name: <i class="fab fa-fw fa-twitter"></i> Twitter
+      url: "https://twitter.com/splunk"
+      weight: 30
