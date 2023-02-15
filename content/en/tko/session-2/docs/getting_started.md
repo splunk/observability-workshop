@@ -20,8 +20,6 @@ ll /var/appdata/yelp*
 2. Export the following variables.
 
 ``` bash
-export SPLUNK_ACCESS_TOKEN=<your-access-token> \
-export SPLUNK_REALM=<your-o11y-cloud-realm> \
 export ACCESS_TOKEN=<your-access-token> \
 export REALM=<your-o11y-cloud-realm> \
 export clusterName=<your-k8s-cluster> 
