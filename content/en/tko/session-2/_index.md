@@ -17,4 +17,4 @@ During this technical workshop you will learn how to:
 
 In order to simplify the workshop modules, a pre-configured AWS EC2 instance is provided.
 
-By the end of this technical workshop you will have an approach to demonstrating metrics collection for complex environments and services and be able to describe, at a high-level, what is required to instrument an application for distributed tracing.
+By the end of this technical workshop you will have an approach to demonstrating metrics collection for complex environments and services.
