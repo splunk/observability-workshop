@@ -11,20 +11,27 @@ Please note to begin the following lab, you must have completed the prework:
 
 Follow these steps if using O11y Workshop EC2 instances
 
+1. Verify yelp data files are present
+
 ``` bash
-# note: verify yelp data files are present
 ll /var/appdata/yelp*
+```
 
-export SPLUNK_ACCESS_TOKEN=<your-access-token>
-export SPLUNK_REALM=<your-o11y-cloud-realm>
-export ACCESS_TOKEN=<your-access-token>
-export REALM=<your-o11y-cloud-realm>
-export clusterName=<your-k8s-cluster>
+2. Export the following variables.
 
+``` bash
+export SPLUNK_ACCESS_TOKEN=<your-access-token> \
+export SPLUNK_REALM=<your-o11y-cloud-realm> \
+export ACCESS_TOKEN=<your-access-token> \
+export REALM=<your-o11y-cloud-realm> \
+export clusterName=<your-k8s-cluster> 
+```
 
-cd /home/ubuntu
-git clone https://github.com/leungsteve/realtime_enrichment.git
-cd realtime_enrichment/workshop
-python3 -m venv rtapp-workshop
+3. Clone the following repo
+``` bash
+cd /home/ubuntu \
+git clone https://github.com/leungsteve/realtime_enrichment.git \
+cd realtime_enrichment/workshop \
+python3 -m venv rtapp-workshop \
 source rtapp-workshop/bin/activate
 ```
