@@ -89,7 +89,7 @@ sshコマンドに関するヘルプテキスト（下のスクリーンショ�
 ssh がプリインストールされていない場合や、Windows システムを使用している場合、putty がおすすめです。Putty は [こちら](https://www.putty.org/) からダウンロードできます。
 
 {{% notice title="Important" style="info" %}}
-Putty がインストールできない場合は、 [ブラウザ経由でEC2に接続する](./#4-ブラウザ経由でec2に接続する) で進めてください。
+Putty がインストールできない場合は、 [ブラウザ経由でEC2に接続する](./#5-ブラウザ経由でec2に接続する) で進めてください。
 {{% /notice %}}
 
 Putty を開き、**Host Name (or IP address)** の欄に、Google Sheets に記載されているIPアドレスを入力してください。

@@ -1,5 +1,5 @@
 ---
-title: Splunk RUM のご紹介
+title: Splunk RUM
 linkTitle: Splunk RUM
 weight: 3
 description: エンド・ツー・エンドの可視化により、Webブラウザやネイティブモバイルアプリからバックエンドサービスに至るまで、顧客に影響を与える問題をピンポイントで特定することができます。

@@ -109,4 +109,4 @@ deployment.apps/rum-loadgen-deployment created
 
 ![Cart Online Boutique](../images/cart.png)
 
-Home Barista Kitよくないですか？...  ショッピングを楽しんでください！
+Home Barista Kitかっこよくないですか？...  ショッピングを楽しんでください！
