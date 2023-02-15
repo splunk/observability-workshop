@@ -26,7 +26,7 @@ resource "aws_subnet" "o11y-ws-subnet" {
   vpc_id                  = aws_vpc.o11y-ws-vpc.id
   cidr_block              = "10.13.0.0/22"
   map_public_ip_on_launch = true
-  availability_zone       = "${var.aws_region}a"
+  # availability_zone       = "${var.aws_region}a"
   tags = merge(
     local.common_tags,
     {
