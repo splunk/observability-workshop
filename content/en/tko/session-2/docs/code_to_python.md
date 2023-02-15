@@ -18,6 +18,13 @@ weight: 5
 
 ## 1. Verify the code - Review service
 
+
+Navigate to the review directory
+``` bash
+/home/ubuntu/realtime_enrichment/flask_apps/review/review.py
+```
+
+
 Inspect review.py (workshop/flask_apps_start/review)
 
 ``` python
