@@ -4,6 +4,8 @@ weight: 2
 isCJKLanguage: true
 ---
 
+{{% button icon="clock" %}}5分{{% /button %}}
+
 ## 1. トラフィックを発生させる
 
 Online Boutique のデプロイメントには、Locust が動作するコンテナが含まれており、これを使用してウェブサイトに対する負荷トラフィックを生成し、メトリクス、トレース、スパンを生成することができます。
@@ -20,9 +22,9 @@ Locust は、EC2インスタンスのIPアドレスの82番ポートで利用で
 
 ---
 
-それでは、**![dashboards button](../../images/dashboards.png) Dashboards → All Dashboards → APM Services → Service** を開きましょう。
+それでは、 **Dashboards → All Dashboards → APM Services → Service** を開きましょう。
 
-このためには、アプリケーションの Environment 名を知る必要があります。このワークショップでは、`<hostname>-apm-env` のような Environment 名で定義されています。
+そのためには、アプリケーションの Environment 名を知る必要があります。このワークショップでは、`<hostname>-apm-env` のような Environment 名で定義されています。
 
 ホスト名を調べるには、AWS/EC2インスタンス上で以下のコマンドを実行します:
 
@@ -55,7 +57,7 @@ bdzx-apm-env
 
 ## 2. Splunk APM のメトリクスを確認する
 
-画面左のメニューから「APM」 ![apm button](../../images/apm.png) をクリックするとAPM Overviewダッシュボードが表示されます。
+画面左のメニューからAPMをクリックするとAPM Overviewダッシュボードが表示されます。
 
 ![select APM](../../images/online-boutique-apm.png)
 
@@ -78,7 +80,7 @@ bdzx-apm-env
 
 Open Telemetery Collector がデプロイされると、プラットフォームは自動的に OpenTelemetry Collector のメトリクスを表示するダッシュボードを作成します。
 
-左上のハンバーガーメニューから、 ![dashboards button](../../images/dashboards.png) **Dashboards → OpenTelemetry Collector** を選択し、メトリクスとスパンが送信されていることを確認しましょう。
+左上のナブメニューから、 **Dashboards → OpenTelemetry Collector** を選択し、メトリクスとスパンが送信されていることを確認しましょう。
 
 ![OpenTelemetry Collector dashboard](../../images/otel-dashboard.png)
 

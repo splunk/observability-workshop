@@ -37,11 +37,11 @@ Splunk Synthetic Monitoring アカウントの個人情報を編集し、タイ�
 
 ![placeholder](../images/image29.png)
 
-Base URLに [http://splunk.o11ystore.com](http://splunk.o11ystore.com) と入力します。
+Base URLに `http://splunk.o11ystore.com` と入力します。
 
 ![placeholder](../images/image11.png)
 
-Start Recording{: .label-button .sfx-ui-button-grey} をクリックすると [splunk.o11ystore.com](http://splunk.o11ystore.com)  が開かれた新しいウインドウが立ち上がります。 **Vintage Camera Lens** をクリックし、 **Add To Cart** をクリックし、次に **Place Order** をクリックします。
+Start Recording をクリックすると [splunk.o11ystore.com](http://splunk.o11ystore.com)  が開かれた新しいウインドウが立ち上がります。 **Vintage Camera Lens** をクリックし、 **Add To Cart** をクリックし、次に **Place Order** をクリックします。
 
 ウインドウを閉じ、Selenium IDEに戻りレコーディングを停止します。最後にテストケースに名前を付けます。 **[あなたのイニシャル] - Checkout Flow (Desktop)** （例：RWC - Checkout Flow (Desktop)）
 

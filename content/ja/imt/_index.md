@@ -1,12 +1,9 @@
 ---
-title: はじめに
+title: Splunk IM
 linkTitle: Splunk IM
-cascade:
- type: docs
+description: オンプレミス、ハイブリッド、マルチクラウドのいずれにおいても、Splunk はリアルタイムの監視とトラブルシューティングを提供し、完全な可視化によってインフラのパフォーマンスを最大化することを支援します。
 weight: 1
-menu:
-  main:
-    weight: 1
+alwaysopen: false
 isCJKLanguage: true
 ---
 
@@ -16,11 +13,11 @@ isCJKLanguage: true
 
 このインスタンスには、ワークショップに必要となるソフトウェアが予め設定されています。これに対してOpenTelemetery Collector[^2] を Kubernetes 上でデプロイし、 NGINX[^3] の ReplicaSet[^4] をデプロイし、最後に OpenTelemetry を使用して計装されたマイクロサービスベースのアプリケーションをデプロイして、メトリクス、トレース、スパン、ログ[^5]を送信していきます。
 
-さらにこのワークショップでは、ダッシュボード、チャートの編集と作成、アラートを発するためのディテクターの作成、Monitoring as Code[^6] および Service Bureau[^6] についても紹介します。
+さらにこのワークショップでは、ダッシュボード、チャートの編集と作成、アラートを発するためのディテクターの作成、Monitoring as Code および Service Bureau[^6] についても紹介します。
 
 このテクニカルワークショップを終える頃には、Splunk Observability Cloudの主要な機能や性能を十分に理解していることでしょう。
 
-事前に設定された [AWS/EC2 インスタンス](docs/initial-setup/) へのアクセス方法をご紹介します。
+事前に設定された [AWS/EC2 インスタンス](./initial-setup/) へのアクセス方法をご紹介します。
 
 ![Splunk Architecture](images/architecture.png)
 
