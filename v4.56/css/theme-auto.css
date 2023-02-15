@@ -1,0 +1,2 @@
+@import "theme-splunk-light.css" screen;
+@import "theme-splunk-dark.css" screen and (prefers-color-scheme: dark);
