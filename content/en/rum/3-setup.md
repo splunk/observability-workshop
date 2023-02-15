@@ -31,7 +31,9 @@ Create the `RUM_TOKEN` environment variable to use in the proceeding shell scrip
 
 {{< tabs >}}
 {{% tab name="Export Variables" %}}
+```bash
 export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
+```
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -41,9 +43,11 @@ To deploy the Online Boutique application into K3s, run the apm config script, t
 
 {{< tabs >}}
 {{% tab name="Deploy Online Boutique" %}}
+```bash
 cd ~/workshop/apm
 ./apm-config.sh -r
 kubectl apply -f deployment.yaml
+```
 {{% /tab %}}
 {{% tab name="Deployment Output"  %}}
 deployment.apps/checkoutservice created
@@ -95,7 +99,7 @@ Selecting it will show you the HTML page source code in a separate Tab.
 
 ![Chrome-see-html](../images/Chrome-html.png)
 
-If successful you can skip to [2 -  Review the unchanged HEAD section.](../RUM-Setup/#2-review-the-unchanged-head-section)
+If successful you can skip to [2 -  Review the unchanged HEAD section.](./#2----review-the-unchanged-head-section)
 
 ### 1.2 Safari Users - Check the Web page source
 
@@ -115,7 +119,7 @@ If you select that option on the Online-Boutique you will see the HTML source co
 
 ![Safari-html](../images/Safari-html.png)
 
-If successful you can skip to [2 -  Review the unchanged HEAD section.](../RUM-Setup/#2-review-the-unchanged-head-section)
+If successful you can skip to [2 -  Review the unchanged HEAD section.](./#2----review-the-unchanged-head-section)
 
 ### 1.3 Internet Explorer Users - Check the Web page source
 

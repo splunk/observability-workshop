@@ -108,7 +108,7 @@ If you want to get alerts quicker you edit the rule and lower the value from **`
 
 If you change the **Time** to **-1h** you can see how many alerts you might get with the threshold you have chosen based on the metrics from the last 1 hour.
 
-Click on the ![alerts and detectors button](../../../images/alerts-and-detectors.png) in the navbar and then click on **Detectors**. You can optionally filter for your initials.
+Click on the ![alerts and detectors button](../images/alerts-and-detectors.png) in the navbar and then click on **Detectors**. You can optionally filter for your initials.
 
 You will see you detector listed here. If you don't then please refresh your browser.
 

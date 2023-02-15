@@ -33,7 +33,7 @@ The RUM Application Overview Dashboard is focused on providing you with *at a gl
 
 The first section shows *Page Views / Errors*, & *Network Requests and Errors* charts show the quantity and trend of these issues in your application. This could be Javascript errors, or failed  network calls to back end services.
 
-![RUM-chart](../images/RUM-Chart.png)
+![RUM-chart](../images/Rum-chart.png)
 
 In the example above you can see that there are no failed network calls in the Network chart, but in the Page View chart you can see that a number of pages do experience some errors. These are often not visible for regular users, but can seriously impact the performance of your web site.
 

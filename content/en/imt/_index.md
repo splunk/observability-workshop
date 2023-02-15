@@ -16,7 +16,7 @@ The workshops also introduce you to dashboards, editing and creating charts, cre
 
 By the end of these technical workshops you will have a good understanding of some of the key features and capabilities of the Splunk Observability Cloud.
 
-Here are the instructions on how to access you pre-configured [AWS/EC2 instance](docs/initial-setup/)
+Here are the instructions on how to access you pre-configured [AWS/EC2 instance](./initial-setup/)
 
 ![Splunk Architecture](images/architecture.png)
 
