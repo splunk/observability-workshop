@@ -34,17 +34,21 @@ Create the `ACCESS_TOKEN` and `REALM` environment variables to use in the procee
 
 {{< tabs >}}
 {{% tab name="Export ACCESS TOKEN" %}}
+
 ```bash
 export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
 {{< tabs >}}
 {{% tab name="Export REALM" %}}
+
 ```bash
 export REALM="<replace_with_REALM>"
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -58,7 +62,7 @@ helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel
 ```
 
 {{% /tab %}}
-{{% tab name="Helm Repo Add Output" lang="text" %}}
+{{% tab name="Helm Repo Add Output" %}}
 Using ACCESS_TOKEN={REDACTED}
 Using REALM=eu0
 "splunk-otel-collector-chart" has been added to your repositories
@@ -74,6 +78,7 @@ Install the OpenTelemetry Collector Helm chart with the following commands, do *
 
 {{< tabs >}}
 {{% tab name="Helm Install" %}}
+
 ```bash
 helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
@@ -86,8 +91,11 @@ helm install splunk-otel-collector \
 splunk-otel-collector-chart/splunk-otel-collector \
 -f ~/workshop/k3s/otel-collector.yaml
 ```
+
 {{% /tab %}}
-{{% tab name="Helm Install Output" lang="text" %}}
+{{% tab name="Helm Install Output" %}}
+
+``` text
 Using ACCESS_TOKEN={REDACTED}
 Using REALM=eu0
 NAME: splunk-otel-collector
@@ -96,8 +104,11 @@ NAMESPACE: default
 STATUS: deployed
 REVISION: 1
 TEST SUITE: None
+```
+
 {{% /tab %}}
-{{% tab name="Install Network Explorer" lang="zsh" %}}
+{{% tab name="Install Network Explorer" %}}
+
 ```bash
 helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
@@ -116,6 +127,7 @@ helm install splunk-otel-collector \
 splunk-otel-collector-chart/splunk-otel-collector \
 -f ~/workshop/k3s/otel-collector.yaml
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -131,10 +143,14 @@ kubectl get pods
 ```
 
 {{% /tab %}}
-{{% tab name="Kubectl Get Pods Output" lang="text" %}}
+{{% tab name="Kubectl Get Pods Output" %}}
+
+``` text
 NAME                                                          READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-agent-2sk6k                             0/1     Running   0          10s
 splunk-otel-collector-k8s-cluster-receiver-6956d4446f-gwnd7   0/1     Running   0          10s
+```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -150,7 +166,7 @@ kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 ```
 
 {{% /tab %}}
-{{% tab name="Kubectl Logs Output" lang="text" %}}
+{{% tab name="Kubectl Logs Output" %}}
 2021-03-21T16:11:10.900Z        INFO    service/service.go:364  Starting receivers...
 2021-03-21T16:11:10.900Z        INFO    builder/receivers_builder.go:70 Receiver is starting... {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
 2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:75 Receiver started.       {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
@@ -187,9 +203,11 @@ Validate that your cluster is discovered and reporting by finding your cluster (
 
 {{< tabs >}}
 {{% tab name="Echo Cluster Name" %}}
+
 ```bash
 echo $(hostname)-k3s-cluster
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 

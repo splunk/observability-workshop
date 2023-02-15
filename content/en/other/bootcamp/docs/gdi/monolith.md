@@ -5,7 +5,7 @@ weight: 5
 Checkout the milestone for this task. See the introduction for a brief howto.
 
 {{< tabs >}}
-{{% tab name="Shell Command" lang="bash" %}}
+{{% tab name="Shell Command" %}}
 git reset --hard && git clean -fdx && git checkout 01service{{% /tab %}}
 {{< /tabs >}}
 
@@ -14,7 +14,7 @@ Let's get python sorted first. On a provided AWS instance, `python3` is already 
 If you are on a Mac:
 
 {{< tabs >}}
-{{% tab name="Shell Command" lang="bash" %}}
+{{% tab name="Shell Command" %}}
 brew install python@3
 {{% /tab %}}
 {{< /tabs >}}
@@ -34,7 +34,7 @@ python3 app.py
 ```
 
 {{% /tab %}}
-{{% tab name="Example Output python3" lang="text" %}}
+{{% tab name="Example Output python3" %}}
 
 ``` text
 * Serving Flask app 'app' (lazy loading)
@@ -57,7 +57,7 @@ Then test the service in a separate shell in the `~/o11y-bootcamp/bootcamp/servi
 
 ``` bash
 curl -X POST http://127.0.0.1:5000/wordcount -F text=@hamlet.txt{{% /tab %}}
-{{% tab name="Example Output: curl" lang="json" %}}
+{{% tab name="Example Output: curl" %}}
 [["in", 436], ["hamlet", 484], ["my", 514], ["a", 546], ["i", 546], ["you", 550], ["of", 671], ["to", 763], ["and", 969], ["the", 1143]]
 ```
 

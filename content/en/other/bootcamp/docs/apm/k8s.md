@@ -27,14 +27,14 @@ helm install my-splunk-otel-collector --set="splunkObservability.realm=${SPLUNK_
 Rebuild the container images for the private registry:
 
 {{< tabs >}}
-{{% tab name="Shell Command" lang="bash" %}}
+{{% tab name="Shell Command" %}}
 docker-compose build{{% /tab %}}
 {{< /tabs >}}
 
 Push the images to the private registry:
 
 {{< tabs >}}
-{{% tab name="Shell Command" lang="bash" %}}
+{{% tab name="Shell Command" %}}
 docker-compose push{{% /tab %}}
 {{< /tabs >}}
 

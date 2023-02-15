@@ -29,7 +29,7 @@ Stop other instances of the app if you had any running.
 Then build and run the image:
 
 {{< tabs >}}
-{{% tab name="Shell Command" lang="bash" %}}
+{{% tab name="Shell Command" %}}
 docker build . -t wordcount
 docker run -p 5000:5000 wordcount:latest
 {{% /tab %}}

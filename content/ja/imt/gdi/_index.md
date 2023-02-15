@@ -88,7 +88,7 @@ splunk-otel-collector-chart/splunk-otel-collector \
 -f ~/workshop/k3s/otel-collector.yaml
 ```
 {{% /tab %}}
-{{% tab name="Helm Install Output" lang="text" %}}
+{{% tab name="Helm Install Output" %}}
 Using ACCESS_TOKEN={REDACTED}
 Using REALM=eu0
 NAME: splunk-otel-collector
@@ -98,7 +98,7 @@ STATUS: deployed
 REVISION: 1
 TEST SUITE: None
 {{% /tab %}}
-{{% tab name="Install Network Explorer" lang="zsh" %}}
+{{% tab name="Install Network Explorer" %}}
 ```bash
 helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
@@ -125,12 +125,12 @@ splunk-otel-collector-chart/splunk-otel-collector \
 続行する前に、ステータスがRunningと報告されていることを確認してください。
 
 {{< tabs >}}
-{{% tab name="Kubectl Get Pods" lang="bash" %}}
+{{% tab name="Kubectl Get Pods" %}}
 ```bash
 kubectl get pods
 ```
 {{% /tab %}}
-{{% tab name="Kubectl Get Pods Output" lang="text" %}}
+{{% tab name="Kubectl Get Pods Output" %}}
 NAME                                                          READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-agent-2sk6k                             0/1     Running   0          10s
 splunk-otel-collector-k8s-cluster-receiver-6956d4446f-gwnd7   0/1     Running   0          10s
@@ -142,12 +142,12 @@ OpenTelemetry Collector podのログを確認して、エラーがないこと�
 ログを確認するには、`helm` のインストールで設定したラベルを使用してください（終了するには **ctrl+c** を押します）。もしくは、インストールされている `k9s` ターミナル UI を使うとボーナスポイントがもらえます！
 
 {{< tabs >}}
-{{% tab name="Kubectl Logs" lang="bash" %}}
+{{% tab name="Kubectl Logs" %}}
 ```bash
 kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 ```
 {{% /tab %}}
-{{% tab name="Kubectl Logs Output" lang="text" %}}
+{{% tab name="Kubectl Logs Output" %}}
 2021-03-21T16:11:10.900Z        INFO    service/service.go:364  Starting receivers...
 2021-03-21T16:11:10.900Z        INFO    builder/receivers_builder.go:70 Receiver is starting... {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
 2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:75 Receiver started.       {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
@@ -182,7 +182,7 @@ Splunk の UI で左下の **>>** を開いて **Infrastructure** をクリッ�
 クラスタが検出され、レポートされていることを確認するには、自分のクラスタを探します（ワークショップでは、他の多くのクラスタが表示されます）。クラスタ名を見つけるには、以下のコマンドを実行し、出力をクリップボードにコピーしてください。
 
 {{< tabs >}}
-{{% tab name="Echo Cluster Name" lang="bash" %}}
+{{% tab name="Echo Cluster Name" %}}
 ```bash
 echo $(hostname)-k3s-cluster
 ```

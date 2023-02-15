@@ -23,7 +23,7 @@ Splunk UI で **WORKLOADS** タブを選択して、実行中の Pod の数を�
 Multipass または AWS/EC2 のシェルセッションで、`nginx` ディレクトリに移動します。
 
 {{< tabs >}}
-{{% tab name="Change Directory" lang="bash" %}}
+{{% tab name="Change Directory" %}}
 ```bash
 cd ~/workshop/k3s/nginx
 ```
@@ -37,12 +37,12 @@ cd ~/workshop/k3s/nginx
 NGINX の ConfigMap[^1] を `nginx.conf` ファイルを使って作成します。
 
 {{< tabs >}}
-{{% tab name="Kubectl Configmap Create" lang="bash" %}}
+{{% tab name="Kubectl Configmap Create" %}}
 ```bash
 kubectl create configmap nginxconfig --from-file=nginx.conf
 ```
 {{% /tab %}}
-{{% tab name="Kubectl Create Configmap Output" lang="text" %}}
+{{% tab name="Kubectl Create Configmap Output" %}}
 configmap/nginxconfig created
 {{% /tab %}}
 {{< /tabs >}}
@@ -50,12 +50,12 @@ configmap/nginxconfig created
 続いて、デプロイメントを作成します。
 
 {{< tabs >}}
-{{% tab name="Kubectl Create Deployment" lang="bash" %}}
+{{% tab name="Kubectl Create Deployment" %}}
 ```bash
 kubectl create -f nginx-deployment.yaml
 ```
 {{% /tab %}}
-{{% tab name="Kubectl Create Deployment Output" lang="text" %}}
+{{% tab name="Kubectl Create Deployment Output" %}}
 deployment.apps/nginx created
 service/nginx created
 {{% /tab %}}
@@ -64,12 +64,12 @@ service/nginx created
 次に、NGINXに対する負荷テストを作成するため、 Locust[^2] をデプロイします。
 
 {{< tabs >}}
-{{% tab name="Kubectl Create Deployment" lang="bash" %}}
+{{% tab name="Kubectl Create Deployment" %}}
 ```bash
 kubectl create -f locust-deployment.yaml
 ```
 {{% /tab %}}
-{{% tab name="Kubectl Create Deployment Output" lang="text" %}}
+{{% tab name="Kubectl Create Deployment Output" %}}
 ```bash
 deployment.apps/nginx-loadgenerator created
 service/nginx-loadgenerator created
@@ -94,12 +94,12 @@ Pod が実行状態に移行するまでには 20 秒程度しかかかりませ
 これをシェルでも検証してみましょう。
 
 {{< tabs >}}
-{{% tab name="Kubectl Get Pods" lang="bash" %}}
+{{% tab name="Kubectl Get Pods" %}}
 ```bash
 kubectl get pods
 ```
 {{% /tab %}}
-{{% tab name="Kubectl Get Pods Output" lang="text" %}}
+{{% tab name="Kubectl Get Pods Output" %}}
 NAME                                                          READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-k8s-cluster-receiver-77784c659c-ttmpk   1/1     Running   0          9m19s
 splunk-otel-collector-agent-249rd                             1/1     Running   0          9m19s

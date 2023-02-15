@@ -29,7 +29,7 @@ The task is to write a python app to count words in a text file.
 Here is how to get to the milestone that completes this step:
 
 {{< tabs >}}
-{{% tab name="Shell Command" lang="text" %}}
+{{% tab name="Shell Command" %}}
 git checkout 01service{{% /tab %}}
 {{< /tabs >}}
 
@@ -38,7 +38,7 @@ This will put you on the first milestone.
 In case you have already worked on a milestone, you might see an error like:
 
 {{< tabs >}}
-{{% tab name="Example Output" lang="bash" %}}
+{{% tab name="Example Output" %}}
 error: Your local changes to the following files would be overwritten by checkout:
     app.py
 Please commit your changes or stash them before you switch branches.
@@ -49,7 +49,7 @@ This is because your work conflicts with changes on the milestone. You have the 
 
 1. If you have worked on a task and want to progress to the next one *and DROP all your changes*:
     {{< tabs >}}
-    {{% tab name="Shell Command: Git Reset" lang="text" %}}
+    {{% tab name="Shell Command: Git Reset" %}}
     git reset --hard && git clean -fdx && git checkout service{{% /tab %}}
     {{< /tabs >}}
 
@@ -58,14 +58,14 @@ This is because your work conflicts with changes on the milestone. You have the 
 1. To preserve your work but move it out of the way, you can use
 
     {{< tabs >}}
-    {{% tab name="Shell Command: Git Stash" lang="text" %}}
+    {{% tab name="Shell Command: Git Stash" %}}
     git stash && git checkout service{{% /tab %}}
     {{< /tabs >}}
 
     To restore your work, switch to the previous milestone (`main` in this case) and retrieve the stashed changes:
 
     {{< tabs >}}
-    {{% tab name="Shell Command: Git Checkout" lang="text" %}}
+    {{% tab name="Shell Command: Git Checkout" %}}
     git checkout main && git stash pop{{% /tab %}}
     {{< /tabs >}}
     Sometimes you run into conflicting changes with this approach. We recommend you use the first option in this case.
@@ -77,14 +77,14 @@ Use the first option and proceed.
 To compare two milestones, use
 
 {{< tabs >}}
-{{% tab name="Shell Command: Git Checkout" lang="text" %}}
+{{% tab name="Shell Command: Git Checkout" %}}
 git diff main..01service{{% /tab %}}
 {{< /tabs >}}
 
 To compare what you have with a milestone, , e.g. the milestone `service` use
 
 {{< tabs >}}
-{{% tab name="Shell Command: Git Checkout" lang="text" %}}
+{{% tab name="Shell Command: Git Checkout" %}}
 git diff ..01service{{% /tab %}}
 {{% tab name="Example Output (excerpt)" %}}
 ...

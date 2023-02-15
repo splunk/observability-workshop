@@ -133,7 +133,7 @@ terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="o11y_
 ```
 
 {{% /tab %}}
-{{% tab name="Execution Plan Output" lang="text" %}}
+{{% tab name="Execution Plan Output" %}}
 
 ``` text
 Plan: 146 to add, 0 to change, 0 to destroy.
@@ -162,7 +162,7 @@ terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="o11y
 ```
 
 {{% /tab %}}
-{{% tab name="Apply Plan Output" lang="text" %}}
+{{% tab name="Apply Plan Output" %}}
 
 ``` text
 Apply complete! Resources: 146 added, 0 changed, 0 destroyed.
@@ -197,7 +197,7 @@ terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
 ```
 
 {{% /tab %}}
-{{% tab name="Destroy Output" lang="text" %}}
+{{% tab name="Destroy Output" %}}
 
 ``` text
 Destroy complete! Resources: 146 destroyed.

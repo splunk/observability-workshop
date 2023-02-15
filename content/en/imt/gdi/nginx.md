@@ -22,7 +22,7 @@ Now switch back to the default cluster node view by selecting the **MAP** tab an
 In your AWS/EC2 or Multipass shell session change into the `nginx` directory:
 
 {{< tabs >}}
-{{% tab name="Change Directory" lang="bash" %}}
+{{% tab name="Change Directory" %}}
 ```bash
 cd ~/workshop/k3s/nginx
 ```
@@ -36,12 +36,12 @@ cd ~/workshop/k3s/nginx
 Create the NGINX ConfigMap[^1] using the `nginx.conf` file:
 
 {{< tabs >}}
-{{% tab name="Kubectl Configmap Create" lang="bash" %}}
+{{% tab name="Kubectl Configmap Create" %}}
 ```bash
 kubectl create configmap nginxconfig --from-file=nginx.conf
 ```
 {{% /tab %}}
-{{% tab name="Kubectl Create Configmap Output" lang="text" %}}
+{{% tab name="Kubectl Create Configmap Output" %}}
 configmap/nginxconfig created
 {{% /tab %}}
 {{< /tabs >}}
@@ -49,12 +49,12 @@ configmap/nginxconfig created
 Then create the deployment:
 
 {{< tabs >}}
-{{% tab name="Kubectl Create Deployment" lang="bash" %}}
+{{% tab name="Kubectl Create Deployment" %}}
 ```bash
 kubectl create -f nginx-deployment.yaml
 ```
 {{% /tab %}}
-{{% tab name="Kubectl Create Deployment Output" lang="text" %}}
+{{% tab name="Kubectl Create Deployment Output" %}}
 deployment.apps/nginx created
 service/nginx created
 {{% /tab %}}
@@ -63,12 +63,12 @@ service/nginx created
 Next we will deploy Locust[^2] which is an open source tool used for creating a load test against NGINX:
 
 {{< tabs >}}
-{{% tab name="Kubectl Create Deployment" lang="bash" %}}
+{{% tab name="Kubectl Create Deployment" %}}
 ```bash
 kubectl create -f locust-deployment.yaml
 ```
 {{% /tab %}}
-{{% tab name="Kubectl Create Deployment Output" lang="text" %}}
+{{% tab name="Kubectl Create Deployment Output" %}}
 deployment.apps/nginx-loadgenerator created
 service/nginx-loadgenerator created
 {{% /tab %}}
@@ -91,12 +91,12 @@ If you select the **WORKLOADS** tab again you will now see that there is a new R
 Let's validate this in your shell as well:
 
 {{< tabs >}}
-{{% tab name="Kubectl Get Pods" lang="bash" %}}
+{{% tab name="Kubectl Get Pods" %}}
 ```bash
 kubectl get pods
 ```
 {{% /tab %}}
-{{% tab name="Kubectl Get Pods Output" lang="text" %}}
+{{% tab name="Kubectl Get Pods Output" %}}
 NAME                                                          READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-k8s-cluster-receiver-77784c659c-ttmpk   1/1     Running   0          9m19s
 splunk-otel-collector-agent-249rd                             1/1     Running   0          9m19s

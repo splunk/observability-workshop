@@ -81,11 +81,7 @@ Your Breadcrumbs above your Map view should look somewhat like this:
 
 Note, you can walk back-up in the stack by clicking on the Pod, Node, Cluster and Service links *marked with a green line*.
 
-<<<<<<< HEAD
-{{% notice title="Note" style="info" %}}
-=======
 {{% notice title="Note" color="info" %}}
->>>>>>> main
 Most dashboards you select, via in the `Breadcrumbs` or direct,  provide `Related Content`.
 Check if they appear at the bottom of the page when switching between levels in the breadcrumbs.
 
@@ -98,17 +94,10 @@ You can switch to the `K8s Workloads` view in two ways:
 
 * Change the value in the **Service** drop down box in the breadcrumbs from *K8s nodes* to *K8s workloads*
 ![k8sToggle](../images/service-toggle.png)
-<<<<<<< HEAD
-  **OR**
-
-* Go to the **Infrastructure** menu item in the Observability UI and select **Kubernetes** again, then pick the `K8s workloads` pane
-
-=======
 
   **OR**
 
 * Go to the **Infrastructure** menu item in the Observability UI and select **Kubernetes** again, then pick the `K8s workloads` pane
->>>>>>> main
 ![k8sWorkloads](../images/K8s-Workloads.png)
 
 Initially, the workload view will show you all the workloads that are reported by your clusters into your Observability Cloud Org. If an alert has fired for any of the workloads, it will be highlighted on the top right, *as marked with a red stripe in the image below*. You can go directly to the alert by clicking it to expand it.
