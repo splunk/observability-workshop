@@ -30,15 +30,17 @@ In the chart builder, click on **View SignalFlow**.
 
 You will see the SignalFlow code that composes the chart we were working on. You can now edit the SignalFlow directly within the UI. Our documentation has the [full list](https://dev.splunk.com/observability/docs/signalflow/function_method_list) of SignalFlow functions and methods.
 
-Also, you can copy the SignalFlow and use it when interacting with the API or with Terraform to enable [Monitoring as Code](../../monitoring-as-code/terraform/)
+Also, you can copy the SignalFlow and use it when interacting with the API or with Terraform to enable [Monitoring as Code](../../monitoring-as-code/)
 
 ![Code](../../images/show-signalflow.png)
 
 {{< tabs >}}
 {{% tab name="SignalFlow" lang="python" %}}
+```python
 A = data('demo.trans.latency', filter=filter('demo_datacenter', 'Paris')).percentile(pct=95).publish(label='A', enable=False)
 B = data('demo.trans.latency', filter=filter('demo_datacenter', 'Paris')).percentile(pct=95).timeshift('1w').publish(label='B', enable=False)
 C = (A-B).publish(label='C')
+```
 {{% /tab %}}
 {{< /tabs >}}
 

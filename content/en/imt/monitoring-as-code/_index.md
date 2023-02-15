@@ -33,7 +33,7 @@ cd observability-content-contrib/integration-examples/terraform-jumpstart
 {{% /tab %}}
 {{< /tabs >}}
 
-The environment variables needed should already be set from [Installation using Helm](../../../otel/k3s/#2-installation-using-helm). If not, create the following environment variables to use in the Terraform steps below
+The environment variables needed should already be set from [Installation using Helm](../gdi/#2-installation-using-helm). If not, create the following environment variables to use in the Terraform steps below
 
 {{< tabs >}}
 {{% tab name="Export ACCESS TOKEN" %}}

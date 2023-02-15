@@ -31,7 +31,6 @@ isCJKLanguage: true
 
 ![Error Filter](../../images/error_filter.png)
 
-You should now have a shorter list of log entries which have a `severity` of `ERROR`
 `severity`が`ERROR`であるログエントリに絞り込まれます。
 
 

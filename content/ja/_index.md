@@ -2,28 +2,29 @@
 archetype: home
 title: Splunk Observability Workshops
 linkTitle: Splunk Observability Workshops
-description: Learn how to build observability solutions with Splunk
+description: Splunk を使用したオブザーバビリティソリューションの構築方法をご紹介します。
 weight: 1
+isCJKLanguage: true
 ---
 
-## Welcome to the Splunk Observability Workshops
+## Splunk Observabilityワークショップへようこそ
 
-Get insights into your applications and infrastructure in real-time with the help of the monitoring, analytics and response tools of the Splunk Observability Cloud
+Splunk Observability Cloud の監視、分析、対応ツールを使用して、アプリケーションとインフラストラクチャをリアルタイムで把握することができます。
 
-These workshops are going to take you through the best-in-class observability platform for ingesting, monitoring, visualizing and analyzing metrics, traces and logs.
+このワークショップでは、メトリクス、トレース、ログを取り込み、監視し、可視化し、分析するためのクラス最高のオブザーバビリティ（可観測性）プラットフォームについて説明します。
 
 ![gif](https://www.splunk.com/content/dam/splunk2/en_us/images/screenshots/products/observability/observability-hero-dashboard.gif)
 
 {{% notice title="OpenTelemetry" color="#4f62ad" icon="fab fa-wpexplorer" %}}
-[OpenTelemetry](https://opentelemetry.io) is used in this workshop to instrument, generate, collect and export telemetry data (metrics, traces and logs) to help you analyze your application and infrastructure.
+このワークショップで[OpenTelemetry](https://opentelemetry.io)をアプリケーションやインフラの分析に役立つテレメトリデータ（メトリクス、トレース、ログ）の計装、生成、収集、エクスポートに使用します。
 {{% /notice %}}
 
 {{% notice title="GitHub" color="#4078c0" icon="fab fa-github" %}}
-You can [contribute](https://github.com/splunk/observability-workshop) to this documentation via issues and pull requests. Please don't hesitate to help to make the workshops better.
+このドキュメントには、issue や pull request で [貢献](https://github.com/splunk/observability-workshop) することができます。より良いワークショップにするために、是非ご協力ください。
 {{% /notice %}}
 
 {{% notice title="Twitter" color="#1DA1F2" icon="fab fa-twitter" %}}
-You can find information about updates and interesting reads in the Twitter channel of [Splunk](https://twitter.com/splunk).
+[Splunk](https://twitter.com/splunk)のTwitterチャンネルでは、アップデート情報や興味深い読み物を紹介しています。
 {{% /notice %}}
 
 {{%children containerstyle="div" style="h6" description="true" %}}

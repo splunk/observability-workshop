@@ -1,8 +1,10 @@
 ---
-title: 1. K3s環境にOnline Boutiqueをデプロイする
+title: 1. Online Boutiqueのデプロイ
 weight: 1
-isCJKLanguage: true
+description: Online BoutiqueアプリケーションをKubernetes（K3s）にデプロイし、Locustを使って人工的なトラフィックを発生させます。
 ---
+
+{{% button icon="clock" %}}15分{{% /button %}}
 
 * Online BoutiqueアプリケーションをKubernetes(K3s)にデプロイします
 * アプリケーションが動作していることを確認します
@@ -14,8 +16,8 @@ isCJKLanguage: true
 ## 1. EC2サーバーを確認
 
 これからの操作は、IMワークショップを実行した後で、まだEC2インスタンスにアクセスできる状態であることを想定しています。
-もしアクセスできる場合は、3. *オンラインブティック* に進みます。
-新しいインスタンスを受け取った場合は、 [Deploying the OpenTelemetry Collector in Kubernetes](../../../../imt/docs/gdi/k3s) の最初の2つのセクションを実行して、システムをAPMワークショップのために準備し、次のセクションを続行してください。
+もしアクセスできる場合は、 2. Online Boutiqueをデプロイする に進みます。
+新しいインスタンスを受け取った場合は、 [データを取り込む](../../../../ja/imt/gdi/) の最初の2つのセクションを実行して、システムをAPMワークショップのために準備し、次のセクションを続行してください。
 
 ## 2. Online Boutiqueをデプロイする
 
@@ -67,7 +69,7 @@ deployment.apps/rum-loadgen-deployment created
 {{< /tabs >}}
 
 {{% notice title="変数未セットに関するメッセージが表示された場合" style="warning" %}}
-**kubectl delete -f deployment.yaml** コマンドを実行しAPM環境のデプロイ削除します。
+`kubectl delete -f deployment.yaml` コマンドを実行しAPM環境のデプロイ削除します。
 次にガイド、メッセージに表示されていた変数をexportし上記のデプロイスクリプトを再実行します。
 {{% /notice %}}
 

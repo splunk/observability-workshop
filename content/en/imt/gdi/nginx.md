@@ -23,7 +23,9 @@ In your AWS/EC2 or Multipass shell session change into the `nginx` directory:
 
 {{< tabs >}}
 {{% tab name="Change Directory" lang="bash" %}}
+```bash
 cd ~/workshop/k3s/nginx
+```
 {{% /tab %}}
 {{< /tabs >}}
   
@@ -35,7 +37,9 @@ Create the NGINX ConfigMap[^1] using the `nginx.conf` file:
 
 {{< tabs >}}
 {{% tab name="Kubectl Configmap Create" lang="bash" %}}
+```bash
 kubectl create configmap nginxconfig --from-file=nginx.conf
+```
 {{% /tab %}}
 {{% tab name="Kubectl Create Configmap Output" lang="text" %}}
 configmap/nginxconfig created
@@ -46,7 +50,9 @@ Then create the deployment:
 
 {{< tabs >}}
 {{% tab name="Kubectl Create Deployment" lang="bash" %}}
+```bash
 kubectl create -f nginx-deployment.yaml
+```
 {{% /tab %}}
 {{% tab name="Kubectl Create Deployment Output" lang="text" %}}
 deployment.apps/nginx created
@@ -58,7 +64,9 @@ Next we will deploy Locust[^2] which is an open source tool used for creating a 
 
 {{< tabs >}}
 {{% tab name="Kubectl Create Deployment" lang="bash" %}}
+```bash
 kubectl create -f locust-deployment.yaml
+```
 {{% /tab %}}
 {{% tab name="Kubectl Create Deployment Output" lang="text" %}}
 deployment.apps/nginx-loadgenerator created
@@ -84,7 +92,9 @@ Let's validate this in your shell as well:
 
 {{< tabs >}}
 {{% tab name="Kubectl Get Pods" lang="bash" %}}
+```bash
 kubectl get pods
+```
 {{% /tab %}}
 {{% tab name="Kubectl Get Pods Output" lang="text" %}}
 NAME                                                          READY   STATUS    RESTARTS   AGE

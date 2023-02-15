@@ -1,8 +1,10 @@
 ---
-title: はじめに
+title: Splunk APM
 linkTitle: Splunk APM
-description: Splunk APM is a NoSample™ Full-fidelity application performance monitoring and troubleshooting solution for cloud-native, microservices-based applications.
+description: Splunk APM は、クラウドネイティブ、マイクロサービスベースのアプリケーションのための NoSample™ Full-fidelity アプリケーションパフォーマンス監視およびトラブルシューティングソリューションです。
 weight: 2
+alwaysopen: false
+
 isCJKLanguage: true
 ---
 
@@ -13,3 +15,5 @@ Splunk APM は、クラウドネイティブなマイクロサービスベース
 インフラとアプリケーションのパフォーマンスは相互に依存しています。全体像を把握するために、Splunk APM はクラウドのインフラとその上で動作するマイクロサービスをシームレスに相関付けます。メモリリーク、ノイズの多い隣のコンテナ、その他のインフラ関連の問題が原因でアプリケーションが動作した場合、Splunk がすぐに知らせてくれます。さらに、Splunk のログやイベントにインコンテキストでアクセスすることで、より詳細なトラブルシューティングや根本原因の分析が可能になります。
 
 ![Architecture Overview](images/arch-overview.png)
+
+{{< children containerstyle="div" style="h3" description="true" >}}

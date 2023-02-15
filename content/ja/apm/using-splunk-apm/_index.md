@@ -2,8 +2,11 @@
 title: 2. トレースとスパン
 linkTitle: 2. トレースとスパン
 weight: 3
+description: Splunk APMの概要と使用方法
 isCJKLanguage: true
 ---
+
+{{% button icon="clock" %}}15分{{% /button %}}
 
 * APM の概要 - RED メトリクス
 * サービスマップを利用する
@@ -11,7 +14,6 @@ isCJKLanguage: true
 * トレースの例
 * インフラとのリンク
 
----
 
 ## トレースとスパンについて
 

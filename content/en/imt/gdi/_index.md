@@ -34,13 +34,17 @@ Create the `ACCESS_TOKEN` and `REALM` environment variables to use in the procee
 
 {{< tabs >}}
 {{% tab name="Export ACCESS TOKEN" %}}
+```bash
 export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
+```
 {{% /tab %}}
 {{< /tabs >}}
 
 {{< tabs >}}
 {{% tab name="Export REALM" %}}
+```bash
 export REALM="<replace_with_REALM>"
+```
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -70,6 +74,7 @@ Install the OpenTelemetry Collector Helm chart with the following commands, do *
 
 {{< tabs >}}
 {{% tab name="Helm Install" %}}
+```bash
 helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
@@ -80,6 +85,7 @@ helm install splunk-otel-collector \
 --set="environment=$(hostname)-apm-env" \
 splunk-otel-collector-chart/splunk-otel-collector \
 -f ~/workshop/k3s/otel-collector.yaml
+```
 {{% /tab %}}
 {{% tab name="Helm Install Output" lang="text" %}}
 Using ACCESS_TOKEN={REDACTED}
@@ -92,6 +98,7 @@ REVISION: 1
 TEST SUITE: None
 {{% /tab %}}
 {{% tab name="Install Network Explorer" lang="zsh" %}}
+```bash
 helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
@@ -108,6 +115,7 @@ helm install splunk-otel-collector \
 --set="environment=$(hostname)-apm-env" \
 splunk-otel-collector-chart/splunk-otel-collector \
 -f ~/workshop/k3s/otel-collector.yaml
+```
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -117,7 +125,9 @@ Ensure the status is reported as Running before continuing.
 
 {{< tabs >}}
 {{% tab name="Kubectl Get Pods" %}}
+```
 kubectl get pods
+```
 {{% /tab %}}
 {{% tab name="Kubectl Get Pods Output" lang="text" %}}
 NAME                                                          READY   STATUS    RESTARTS   AGE
@@ -132,7 +142,9 @@ Use the label set by the `helm` install to tail logs (You will need to press `ct
 
 {{< tabs >}}
 {{% tab name="Kubectl Logs" %}}
+```
 kubectl logs -l app=splunk-otel-collector -f --container otel-collector
+```
 {{% /tab %}}
 {{% tab name="Kubectl Logs Output" lang="text" %}}
 2021-03-21T16:11:10.900Z        INFO    service/service.go:364  Starting receivers...
@@ -171,7 +183,9 @@ Validate that your cluster is discovered and reporting by finding your cluster (
 
 {{< tabs >}}
 {{% tab name="Echo Cluster Name" %}}
+```bash
 echo $(hostname)-k3s-cluster
+```
 {{% /tab %}}
 {{< /tabs >}}
 

@@ -12,7 +12,7 @@ weight: 2
 ## 1. URL of RUM enabled Online Boutique
 
 As discussed in the previous section we are going to use an Online Boutique running on a RUM host.
-If you're participating in a RUM only workshop, after you have received the RUM instance URL, you can continue to Section 4: [Using the Online Boutique to generate load on your system](../showcase/#4-using-the-online-boutique-to-generate-load-on-your-system) as the system your going to use is already prepared.
+If you're participating in a RUM only workshop, after you have received the RUM instance URL, you can continue to Section 4: [Using the Online Boutique to generate load on your system](./#4-using-the-online-boutique-to-generate-load-on-your-system) as the system your going to use is already prepared.
 
 ## 2. Obtain RUM Access Token
 
