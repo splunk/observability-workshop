@@ -2,6 +2,7 @@
 title: The New Kubernetes Navigator
 linkTitle: 2. Kubernetes Navigator v2
 weight: 2
+draft: true
 --- 
 ## 1. Cluster vs Workload View
 
@@ -44,6 +45,7 @@ In a production environment, you can expect to see different sizes of Clusters w
 
 In our workshop environment, however, you each have a single node within your cluster, represented by a large, single, blue square.
 
+<<<<<<< HEAD
 Let's find your own Cluster using the filter feature. First, let's switch the time filter in the upper-left corner from the default of 3 hours to the past 15 minutes. Then, click the *Add Filters* button, *Marked with a blue line*, and begin typing `k8s.cluster.name` in the filter toolbar (the type-ahead feature will help you!) For the cluster name, you can enter a partial name into the search box, such as 'ws-5-7*', to quickly find your cluster.
 
 As soon as you find your cluster and it's highlighted, the charts below it show information on all the nodes in your cluster.
@@ -51,12 +53,21 @@ As soon as you find your cluster and it's highlighted, the charts below it show 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
 How much memory does our node have?
 {{% /notice %}}
+=======
+Let's find your own Cluster using the filter feature. First, let's switch the time filter in the upper-left corner from the default of 3 hours to the past 15 minutes. Then, click the *Add Filters* button, *Marked with a blue line*, and begin typing `k8s.cluster.name` in the filter toolbar (the type-ahead feature will help you!) For the cluster name, you can enter a partial name into the search box, such as `ws-5-7*`, to quickly find your cluster.
 
-You can switch to the Cluster View by selecting the *K8s cluster* tab just beneath the map view. Here you will see charts with details of your cluster(s).
+As soon as you find your cluster and it's highlighted, the charts below it show information on all the nodes in your cluster.
+
+{{% alert title="Workshop Question" color="success" %}}
+How much memory does our node have?
+{{% /alert %}}
+>>>>>>> main
+
+You can switch to the Cluster View by selecting the **K8s cluster** tab just beneath the map view. Here you will see charts with details of your cluster(s).
 
 ### 2.3. The Nodes & Cluster views
 
-Now, drill down into your single Node by hovering over the pale blue background, then clicking on either the magnifying glass that appears in the top left corner, or double clicking on the pale blue background. This will take you to the Node level view. Note that the `Breadcrumbs` has grown one level.
+Now, drill down into your single Node by hovering over the pale blue background, then clicking on either the magnifying glass that appears in the top left corner, or double clicking on the pale blue background. This will take you to the Node level view. Note that the breadcrumb has grown one level.
 
 You should now be able to see all the Pods and Containers running on your single Node Cluster.
 
@@ -80,7 +91,11 @@ Your Breadcrumbs above your Map view should look somewhat like this:
 
 Note, you can walk back-up in the stack by clicking on the Pod, Node, Cluster and Service links *marked with a green line*.
 
+<<<<<<< HEAD
 {{% notice title="Note" style="info" %}}
+=======
+{{% alert title="Note" color="info" %}}
+>>>>>>> main
 Most dashboards you select, via in the `Breadcrumbs` or direct,  provide `Related Content`.
 Check if they appear at the bottom of the page when switching between levels in the breadcrumbs.
 
@@ -93,10 +108,17 @@ You can switch to the `K8s Workloads` view in two ways:
 
 * Change the value in the **Service** drop down box in the breadcrumbs from *K8s nodes* to *K8s workloads*
 ![k8sToggle](../images/service-toggle.png)
+<<<<<<< HEAD
   **OR**
 
 * Go to the **Infrastructure** menu item in the Observability UI and select **Kubernetes** again, then pick the `K8s workloads` pane
 
+=======
+
+  **OR**
+
+* Go to the **Infrastructure** menu item in the Observability UI and select **Kubernetes** again, then pick the `K8s workloads` pane
+>>>>>>> main
 ![k8sWorkloads](../images/K8s-Workloads.png)
 
 Initially, the workload view will show you all the workloads that are reported by your clusters into your Observability Cloud Org. If an alert has fired for any of the workloads, it will be highlighted on the top right, *as marked with a red stripe in the image below*. You can go directly to the alert by clicking it to expand it.
