@@ -51,15 +51,40 @@ helm install kafka --set replicaCount=3 --set metrics.jmx.enabled=true --set met
 helm install mongodb --set metrics.enabled=true bitnami/mongodb --set global.namespaceOverride=default --set auth.rootUser=root --set auth.rootPassword=splunk --set auth.enabled=false --version 12.1.31
 ```
 
-###verify the helm chart installation
+Verify the helm chart installation
+
+{{< tabs >}}
+{{% tab name="helm list" %}}
+
+```bash
 helm list
+```
+
+{{% /tab %}}
+{{% tab name="helm list output" %}}
+
+``` text
 NAME    NAMESPACE   REVISION    UPDATED                                 STATUS      CHART           APP VERSION
 kafka   default     1           2022-11-14 11:21:36.328956822 -0800 PST deployed    kafka-19.1.3    3.3.1
 mongodb default     1           2022-11-14 11:19:36.507690487 -0800 PST deployed    mongodb-12.1.31 5.0.10
+```
+{{% /tab %}}
+{{< /tabs >}}
 
-###verify the helm chart installation
 
+Verify the helm chart installation
+
+
+{{< tabs >}}
+{{% tab name="kubectl get pods" %}}
+
+``` bash
 kubectl get pods
+```
+{{% /tab %}}
+{{% tab name "kubectl get pods Output" %}}
+
+``` text
 NAME                              READY   STATUS              RESTARTS   AGE
 kafka-exporter-595778d7b4-99ztt   0/1     ContainerCreating   0          17s
 mongodb-b7c968dbd-jxvsj           0/2     Pending             0          6s
@@ -68,6 +93,8 @@ kafka-2                           0/2     ContainerCreating   0          16s
 kafka-zookeeper-0                 0/1     Pending             0          17s
 kafka-0                           0/2     Pending             0          17s
 ```
+{{% /tab %}}
+{{< /tabs >}}
 
 Use information for each Helm chart and Splunk O11y Data Setup to generate values.yaml for capturing metrics from Kafka and MongoDB.
 
@@ -153,10 +180,12 @@ otelAgent:
 ### 5. Install the Splunk OTEL helm chart
 
 ``` bash
-cd ../otel_yamls
-repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
-helm repo update
+cd ../otel_yamls \
+repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart \
+helm repo update \
+```
 
+``` bash
 helm install --set provider=' ' --set distro=' ' --set splunkObservability.accessToken=$SPLUNK_ACCESS_TOKEN --set clusterName=$clusterName --set splunkObservability.realm=$SPLUNK_REALM --set otelCollector.enabled='false' --set splunkObservability.logsEnabled='true' --set gateway.enabled='false' --values kafka.values.yaml --values mongodb.values.yaml --values zookeeper.values.yaml --values alwayson.values.yaml --values k3slogs.yaml --generate-name splunk-otel-collector-chart/splunk-otel-collector
 ```
 
@@ -164,14 +193,37 @@ helm install --set provider=' ' --set distro=' ' --set splunkObservability.acces
 
 Verify that the Kafka, MongoDB and Splunk OTEL Collector helm charts are installed, note that names may differ.
 
+{{< tabs >}}
+{{% tab name="helm list" %}}
+
+``` bash
+helm list
+```
+
+{{% /tab %}}
+{{% tab name="helm list Output" %}}
+
 ``` text
-$helm list
 NAME                                NAMESPACE   REVISION    UPDATED                                 STATUS      CHART                           APP VERSION
 kafka                               default     1           2021-12-07 12:48:47.066421971 -0800 PST deployed    kafka-14.4.1                    2.8.1
 mongodb                             default     1           2021-12-07 12:49:06.132771625 -0800 PST deployed    mongodb-10.29.2                 4.4.10
 splunk-otel-collector-1638910184    default     1           2021-12-07 12:49:45.694013749 -0800 PST deployed    splunk-otel-collector-0.37.1    0.37.1
+```
 
-$ kubectl get pods
+{{ % /tab %}}
+{{< /tabs >}}
+
+{{< tabs >}}
+{{% tab name="kubectl get pods" %}}
+
+``` bash
+kubectl get pods
+```
+
+{{% /tab %}}
+{{% tab name="kubectl get pods Output" %}}
+
+``` text
 NAME                                                              READY   STATUS    RESTARTS   AGE
 kafka-zookeeper-0                                                 1/1     Running   0          18m
 kafka-2                                                           2/2     Running   1          18m
@@ -182,6 +234,9 @@ kafka-0                                                           2/2     Runnin
 splunk-otel-collector-1638910184-agent-27s5c                      2/2     Running   0          17m
 splunk-otel-collector-1638910184-k8s-cluster-receiver-8587qmh9l   1/1     Running   0          17m
 ```
+
+{{ % /tab %}}
+{{< /tabs >}}
 
 ### 7. Verify dashboards
 
