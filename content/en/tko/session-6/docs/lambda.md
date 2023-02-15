@@ -383,17 +383,25 @@ If you see a success message, generate more load: re-send that messate 5+ times.
 
 Now check the lambda logs output.
 
-#### Producer function logs
+{{< tabs >}}
+{{% tab name="Producer function logs" %}}
 
-```  bash
+``` bash
 serverless logs -f producer
 ```
 
-#### Consumer function logs
+{{% /tab %}}
+{{< /tabs >}}
+
+{{< tabs >}}
+{{% tab name="Consumer function logs" %}}
 
 ``` bash
 serverless logs -f consumer
 ```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 Examine the logs carefully. Do you notice the difference?
 
