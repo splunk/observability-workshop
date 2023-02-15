@@ -13,7 +13,7 @@ Splunk Observability Cloud の監視、分析、対応ツールを使用して�
 
 このワークショップでは、メトリクス、トレース、ログを取り込み、監視し、可視化し、分析するためのクラス最高のオブザーバビリティ（可観測性）プラットフォームについて説明します。
 
-![gif](https://www.splunk.com/content/dam/splunk2/en_us/images/screenshots/products/observability/observability-hero-dashboard.gif)
+![gif](images/observability-hero-dashboard.gif)
 
 {{% notice title="OpenTelemetry" color="#4f62ad" icon="fab fa-wpexplorer" %}}
 このワークショップで[OpenTelemetry](https://opentelemetry.io)をアプリケーションやインフラの分析に役立つテレメトリデータ（メトリクス、トレース、ログ）の計装、生成、収集、エクスポートに使用します。

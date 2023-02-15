@@ -12,7 +12,7 @@ Get insights into your applications and infrastructure in real-time with the hel
 
 These workshops are going to take you through the best-in-class observability platform for ingesting, monitoring, visualizing and analyzing metrics, traces and logs.
 
-![gif](/images/observability-hero-dashboard.gif)
+![gif](images/observability-hero-dashboard.gif)
 
 {{% notice title="OpenTelemetry" color="#4f62ad" icon="fab fa-wpexplorer" %}}
 [OpenTelemetry](https://opentelemetry.io) is used in this workshop to instrument, generate, collect and export telemetry data (metrics, traces and logs) to help you analyze your application and infrastructure.

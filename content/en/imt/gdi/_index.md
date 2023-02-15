@@ -125,9 +125,11 @@ Ensure the status is reported as Running before continuing.
 
 {{< tabs >}}
 {{% tab name="Kubectl Get Pods" %}}
-```
+
+``` bash
 kubectl get pods
 ```
+
 {{% /tab %}}
 {{% tab name="Kubectl Get Pods Output" lang="text" %}}
 NAME                                                          READY   STATUS    RESTARTS   AGE
@@ -142,9 +144,11 @@ Use the label set by the `helm` install to tail logs (You will need to press `ct
 
 {{< tabs >}}
 {{% tab name="Kubectl Logs" %}}
-```
+
+``` bash
 kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 ```
+
 {{% /tab %}}
 {{% tab name="Kubectl Logs Output" lang="text" %}}
 2021-03-21T16:11:10.900Z        INFO    service/service.go:364  Starting receivers...
