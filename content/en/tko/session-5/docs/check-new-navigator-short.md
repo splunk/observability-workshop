@@ -39,9 +39,9 @@ Now, let's find your own cluster by filtering on the field `k8s.cluster.name` in
 
 You should now just see information for your own cluster.
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% notice title="Workshop Question" color="success" %}}
 How many workloads are running & how many namespaces are in your Cluster?
-{{% /alert %}}
+{{% /notice %}}
 
 ### 2.1 Using the Navigator Selection chart
 
@@ -63,9 +63,9 @@ Now, let's select the `File system usage (bytes)` from the **Color by** drop dow
 
 ![k8s-Heat-map](../images/set-find-outliers.png)
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% notice title="Workshop Question" color="success" %}}
 What happened to the Heatmap?
-{{% /alert %}}
+{{% /notice %}}
 
 The `Find outliers` view is very useful when you need to view a selection of your workloads (or any service depending on the navigator used) and quickly need to figure out if something has changed. It will give you fast insight into items (workloads in our case) that are performing differently (both increased or decreased) which helps to make it easier to spot problems.
 
@@ -96,9 +96,9 @@ Confirm that you have the right filter by hovering over the rectangle, and if it
 
 This brings you to a more detailed view of your workload.
 
-{{% alert title="Workshop Question" color="success" %}}
+{{% notice title="Workshop Question" color="success" %}}
 What are the CPU request  & CPU limit units for the otel-collector?
-{{% /alert %}}
+{{% /notice %}}
 
 At this point you can drill into the information of the pods, but that is outside the scope of this workshop,
 for now reset your view by removing the filter for the *splunk-otel-collector-k8s-cluster-receiver* workload. and setting the `color by` option to *Pods Pending*.

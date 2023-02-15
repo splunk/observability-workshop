@@ -81,17 +81,11 @@ splunk-otel-collector-chart/splunk-otel-collector \
 -f ~/workshop/k3s/splunk-defaults.yaml \
 -f ~/workshop/k3s/otel-apache.yaml
 ```
-<<<<<<< HEAD
 
 {{% /tab %}}
 {{< /tabs >}}
 
 {{% notice title="NOTE" style="info" %}}
-=======
-
-{{% alert title="NOTE" color="info" %}}
-
->>>>>>> main
 The **REVISION** number of the deployment has changed, which is a helpful way to keep track of your changes.
 
 ``` text
@@ -211,11 +205,7 @@ kubectl apply -f ~/workshop/k3s/php-apache.yaml -n apache
 What metrics for your Apache instance are being reported in the Apache Navigator?
 
 **Tip:** Click on **Infrastructure → Web Server → Apache web servers** to go to the Navigator and look for a server with the same name as your EC2 host.
-<<<<<<< HEAD
 {{% /notice %}}
-=======
-{{% /alert %}}
->>>>>>> main
 
 Ensure the deployment has been created:
 

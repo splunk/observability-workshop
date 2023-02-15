@@ -45,7 +45,6 @@ In a production environment, you can expect to see different sizes of Clusters w
 
 In our workshop environment, however, you each have a single node within your cluster, represented by a large, single, blue square.
 
-<<<<<<< HEAD
 Let's find your own Cluster using the filter feature. First, let's switch the time filter in the upper-left corner from the default of 3 hours to the past 15 minutes. Then, click the *Add Filters* button, *Marked with a blue line*, and begin typing `k8s.cluster.name` in the filter toolbar (the type-ahead feature will help you!) For the cluster name, you can enter a partial name into the search box, such as 'ws-5-7*', to quickly find your cluster.
 
 As soon as you find your cluster and it's highlighted, the charts below it show information on all the nodes in your cluster.
@@ -53,15 +52,6 @@ As soon as you find your cluster and it's highlighted, the charts below it show 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
 How much memory does our node have?
 {{% /notice %}}
-=======
-Let's find your own Cluster using the filter feature. First, let's switch the time filter in the upper-left corner from the default of 3 hours to the past 15 minutes. Then, click the *Add Filters* button, *Marked with a blue line*, and begin typing `k8s.cluster.name` in the filter toolbar (the type-ahead feature will help you!) For the cluster name, you can enter a partial name into the search box, such as `ws-5-7*`, to quickly find your cluster.
-
-As soon as you find your cluster and it's highlighted, the charts below it show information on all the nodes in your cluster.
-
-{{% alert title="Workshop Question" color="success" %}}
-How much memory does our node have?
-{{% /alert %}}
->>>>>>> main
 
 You can switch to the Cluster View by selecting the **K8s cluster** tab just beneath the map view. Here you will see charts with details of your cluster(s).
 
@@ -94,7 +84,7 @@ Note, you can walk back-up in the stack by clicking on the Pod, Node, Cluster an
 <<<<<<< HEAD
 {{% notice title="Note" style="info" %}}
 =======
-{{% alert title="Note" color="info" %}}
+{{% notice title="Note" color="info" %}}
 >>>>>>> main
 Most dashboards you select, via in the `Breadcrumbs` or direct,  provide `Related Content`.
 Check if they appear at the bottom of the page when switching between levels in the breadcrumbs.
