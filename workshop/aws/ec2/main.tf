@@ -10,6 +10,10 @@ locals {
   }
 }
 
+# Fetch AZs in the current region
+data "aws_availability_zones" "available" {
+}
+
 resource "aws_vpc" "o11y-ws-vpc" {
   cidr_block           = "10.13.0.0/16"
   enable_dns_support   = true
@@ -22,23 +26,39 @@ resource "aws_vpc" "o11y-ws-vpc" {
   )
 }
 
-resource "aws_subnet" "o11y-ws-subnet" {
+
+# Create public subnets, each in a different AZ
+resource "aws_subnet" "o11y_ws_subnets" {
+  count                   = var.subnet_count
+  cidr_block              = cidrsubnet(aws_vpc.o11y-ws-vpc.cidr_block, 8, var.subnet_count + count.index)
+  availability_zone       = data.aws_availability_zones.available.names[count.index]
   vpc_id                  = aws_vpc.o11y-ws-vpc.id
-  cidr_block              = "10.13.0.0/22"
   map_public_ip_on_launch = true
-  # availability_zone       = "${var.aws_region}a"
   tags = merge(
     local.common_tags,
     {
-      "Name" = "o11y-ws-subnet"
+      "Name" = "o11y-ws-subnet-${count.index}"
     }
   )
 }
 
-resource "aws_security_group" "o11y-ws-sg" {
-  name   = "Observability-Workshop-SG"
-  vpc_id = aws_vpc.o11y-ws-vpc.id
+# resource "aws_subnet" "o11y-ws-subnet" {
+#   vpc_id                  = aws_vpc.o11y-ws-vpc.id
+#   cidr_block              = "10.13.0.0/22"
+#   map_public_ip_on_launch = true
+#   # availability_zone       = "${var.aws_region}a"
+#   tags = merge(
+#     local.common_tags,
+#     {
+#       "Name" = "o11y-ws-subnet"
+#     }
+#   )
+# }
 
+resource "aws_security_group" "o11y-ws-sg" {
+  name       = "Observability-Workshop-SG"
+  vpc_id = aws_vpc.o11y-ws-vpc.id
+  
   ingress {
     from_port   = 22
     to_port     = 22
@@ -142,10 +162,10 @@ resource "aws_route" "o11y-ws-route" {
   gateway_id             = aws_internet_gateway.o11y-ws-ig.id
 }
 
-resource "aws_route_table_association" "o11y-ws-rta" {
-  subnet_id      = aws_subnet.o11y-ws-subnet.id
-  route_table_id = aws_route_table.o11y-ws-rt.id
-}
+# resource "aws_route_table_association" "o11y-ws-rta" {
+#   subnet_id      = aws_subnet.o11y-ws-subnet.id
+#   route_table_id = aws_route_table.o11y-ws-rt.id
+# }
 
 locals {
   template_vars = {
@@ -161,8 +181,10 @@ resource "aws_instance" "observability-instance" {
   count                  = var.aws_instance_count
   ami                    = data.aws_ami.latest-ubuntu.id
   instance_type          = var.aws_instance_type
-  subnet_id              = aws_subnet.o11y-ws-subnet.id
+  # subnet_id              = aws_subnet.o11y-ws-subnet.id
+  subnet_id              = "${aws_subnet.o11y_ws_subnets.*.id[ count.index % length(aws_subnet.o11y_ws_subnets) ]}"
   vpc_security_group_ids = [aws_security_group.o11y-ws-sg.id]
+
   user_data = templatefile("${path.module}/templates/userdata.yaml", merge(local.template_vars,
     {
       instance_name = "${lower(var.slug)}-${count.index + 1}"
@@ -178,6 +200,7 @@ resource "aws_instance" "observability-instance" {
       #Name = "observability-${count.index + 1}"
       Instance = "${lower(var.slug)}-${format("%02d", count.index + 1)}"
       Name     = "${lower(var.slug)}-${format("%02d", count.index + 1)}"
+      Subnet   = "${aws_subnet.o11y_ws_subnets.*.id[ count.index % length(aws_subnet.o11y_ws_subnets) ]}"
     }
   )
 
@@ -190,3 +213,14 @@ resource "aws_instance" "observability-instance" {
   }
 }
 
+
+
+output "instance_details" {
+  value =  formatlist(
+    "%s, %s, %s, %s", 
+    aws_instance.observability-instance[*].tags["Instance"],
+    aws_instance.observability-instance.*.private_ip,
+    aws_instance.observability-instance.*.public_ip,
+    aws_instance.observability-instance[*].tags["Subnet"]
+  )
+}

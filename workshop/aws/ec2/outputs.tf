@@ -5,3 +5,7 @@ output "ip_addresses" {
 output "instance_names" {
   value = aws_instance.observability-instance[*].tags["Instance"]
 }
+
+output "public_subnet_ids" {
+    value = aws_subnet.o11y_ws_subnets.*.id
+}

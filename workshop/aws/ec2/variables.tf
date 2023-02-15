@@ -21,6 +21,16 @@ variable "aws_instance_count" {
   nullable = false
 }
 
+variable "subnet_count" {
+  description = "Subnet Count (Usually 1 for small workshops, but can be 2 or 3 for larger one, but never 4)"
+  nullable = false
+  default = "3"
+}
+
+variable "public_subnet_ids" {
+  default = []
+}
+
 variable "aws_region" {
   description = "AWS Region (for example: us-west-2)"
   nullable = false
