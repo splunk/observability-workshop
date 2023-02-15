@@ -36,11 +36,13 @@ Also, you can copy the SignalFlow and use it when interacting with the API or wi
 
 {{< tabs >}}
 {{% tab name="SignalFlow" %}}
+
 ```python
 A = data('demo.trans.latency', filter=filter('demo_datacenter', 'Paris')).percentile(pct=95).publish(label='A', enable=False)
 B = data('demo.trans.latency', filter=filter('demo_datacenter', 'Paris')).percentile(pct=95).timeshift('1w').publish(label='B', enable=False)
 C = (A-B).publish(label='C')
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 

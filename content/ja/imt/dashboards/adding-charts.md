@@ -36,7 +36,6 @@ isCJKLanguage: true
 
 ![Three Dashboard](../../images/M-MoreCharts-6.png)
 
-
 ## 3. 貼り付けたチャートを編集する
 
 ダッシュボードの **Latency History** チャートの3つの点 **`...`** をクリックし、**Open** をクリックします（または、チャートの名前（ここでは **Latency History**）をクリックすることもできます）。

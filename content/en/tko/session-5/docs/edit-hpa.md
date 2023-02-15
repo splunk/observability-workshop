@@ -12,11 +12,6 @@ Increase the `maxReplicas` to 8
 ``` bash
 kubectl edit hpa php-apache -n apache
 ```
-<<<<<<< HEAD
-=======
-
-Save the changes youhave made. (Hint: Use `Esc` followed by `:wq!` to save your changes).
->>>>>>> main
 
 Save the changes youhave made. (Hint: Use `Esc` followed by `:wq!` to save your changes).
 

@@ -35,17 +35,21 @@ Kubernetes が起動したら、Splunk の UI から Access Token[^1] を取得�
 
 {{< tabs >}}
 {{% tab name="Export ACCESS TOKEN" %}}
+
 ```bash
 export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
 {{< tabs >}}
 {{% tab name="Export REALM" %}}
+
 ```bash
 export REALM="<replace_with_REALM>"
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -75,6 +79,7 @@ Update Complete. ⎈Happy Helming!⎈
 
 {{< tabs >}}
 {{% tab name="Helm Install" %}}
+
 ```bash
 helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
@@ -87,6 +92,7 @@ helm install splunk-otel-collector \
 splunk-otel-collector-chart/splunk-otel-collector \
 -f ~/workshop/k3s/otel-collector.yaml
 ```
+
 {{% /tab %}}
 {{% tab name="Helm Install Output" %}}
 Using ACCESS_TOKEN={REDACTED}
@@ -99,6 +105,7 @@ REVISION: 1
 TEST SUITE: None
 {{% /tab %}}
 {{% tab name="Install Network Explorer" %}}
+
 ```bash
 helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
@@ -117,6 +124,7 @@ helm install splunk-otel-collector \
 splunk-otel-collector-chart/splunk-otel-collector \
 -f ~/workshop/k3s/otel-collector.yaml
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -126,14 +134,20 @@ splunk-otel-collector-chart/splunk-otel-collector \
 
 {{< tabs >}}
 {{% tab name="Kubectl Get Pods" %}}
+
 ```bash
 kubectl get pods
 ```
+
 {{% /tab %}}
 {{% tab name="Kubectl Get Pods Output" %}}
+
+``` text
 NAME                                                          READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-agent-2sk6k                             0/1     Running   0          10s
 splunk-otel-collector-k8s-cluster-receiver-6956d4446f-gwnd7   0/1     Running   0          10s
+```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -143,11 +157,15 @@ OpenTelemetry Collector podのログを確認して、エラーがないこと�
 
 {{< tabs >}}
 {{% tab name="Kubectl Logs" %}}
+
 ```bash
 kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 ```
+
 {{% /tab %}}
 {{% tab name="Kubectl Logs Output" %}}
+
+``` text
 2021-03-21T16:11:10.900Z        INFO    service/service.go:364  Starting receivers...
 2021-03-21T16:11:10.900Z        INFO    builder/receivers_builder.go:70 Receiver is starting... {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
 2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:75 Receiver started.       {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
@@ -158,6 +176,8 @@ kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 2021-03-21T16:11:11.009Z        INFO    service/service.go:267  Everything is ready. Begin running and processing data.
 2021-03-21T16:11:11.009Z        INFO    k8sclusterreceiver@v0.21.0/receiver.go:59       Starting shared informers and wait for initial cache sync.      {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
 2021-03-21T16:11:11.281Z        INFO    k8sclusterreceiver@v0.21.0/receiver.go:75       Completed syncing shared informer caches.       {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
+```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -167,6 +187,7 @@ OpenTelemetry Collectorのインストールに失敗した場合は、次のよ
 ``` sh
 helm delete splunk-otel-collector
 ```
+
 {{% /notice %}}
 
 ---
@@ -183,9 +204,11 @@ Splunk の UI で左下の **>>** を開いて **Infrastructure** をクリッ�
 
 {{< tabs >}}
 {{% tab name="Echo Cluster Name" %}}
+
 ```bash
 echo $(hostname)-k3s-cluster
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -198,7 +221,7 @@ echo $(hostname)-k3s-cluster
 ![Filtered K8S Cluster](../images/filtered-k3s-cluster.png)
 
 ノードの状態を確認するには、クラスターの淡いブルーの背景にカーソルを置き、左上に表示される青い虫眼鏡をクリックしてください 。
-![Magnifying Glass](../images/blue-cross.png) 
+![Magnifying Glass](../images/blue-cross.png)
 
 これで、ノードレベルまでドリルダウンできます。 次に、サイドバーボタンをクリックしてサイドバーを開き、Metricsサイドバーを開きます。
 

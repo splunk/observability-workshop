@@ -295,8 +295,8 @@ Look at all these differences!
 
 Notice how we are now importing some OpenTelemetry libraries directly into our function to handle some of the manual instrumenation tasks we require.
 
-We are using https://www.npmjs.com/package/@opentelemetry/api to manipulate the tracing logic in our functions.
-We are using https://www.npmjs.com/package/@opentelemetry/core to access the **Propagator** objects that we will use to manually propagate our context with.
+We are using <https://www.npmjs.com/package/@opentelemetry/api> to manipulate the tracing logic in our functions.
+We are using <https://www.npmjs.com/package/@opentelemetry/core> to access the **Propagator** objects that we will use to manually propagate our context with.
 
 The bellow code executes the following steps inside the Producer function:
 
@@ -425,8 +425,8 @@ Note how the *Trace ID* is something that makes up the trace *context* that we p
 
 You can read up on the two common propagation standards:
 
-1. W3C: https://www.w3.org/TR/trace-context/#traceparent-header
-2. B3: https://github.com/openzipkin/b3-propagation#overall-process
+1. W3C: <https://www.w3.org/TR/trace-context/#traceparent-header>
+2. B3: <https://github.com/openzipkin/b3-propagation#overall-process>
 
 Which one are we using? *It should be self-explanatory from the Propagator we are creating in the Functions*
 

@@ -26,14 +26,15 @@ AWS/EC2 インスタンスにログインして、`o11y-cloud-jumpstart` ディ�
 
 {{< tabs >}}
 {{% tab name="Change directory" %}}
+
 ```bash
 cd observability-content-contrib/integration-examples/terraform-jumpstart
 ```
+
 {{</tab >}}
 {{< /tabs >}}
 
 必要な環境変数は、[Helmによるインストール](../gdi/#2-helmによるインストール) ですでに設定されているはずです。そうでない場合は、以下の Terraform のステップで使用するために、以下の環境変数を作成してください。
-
 
 {{< tabs >}}
 {{% tab name="Export ACCESS TOKEN" %}}
@@ -63,11 +64,15 @@ Splunk Terraform Provider の新バージョンがリリースされるたびに
 
 {{< tabs >}}
 {{% tab name="Initialise Terraform" %}}
+
 ```bash
 terraform init -upgrade
 ```
+
 {{</tab >}}
 {{% tab name="Initialise Output" %}}
+
+``` text
     Upgrading modules...
     - aws in modules/aws
     - azure in modules/azure
@@ -106,6 +111,8 @@ terraform init -upgrade
     If you ever set or change modules or backend configuration for Terraform,
     rerun this command to reinitialize your working directory. If you forget, other
     commands will detect it and remind you to do so if necessary.
+```
+
 {{</tab >}}
 {{< /tabs >}}
 
@@ -150,12 +157,18 @@ Plan: 146 to add, 0 to change, 0 to destroy.
 
 {{< tabs >}}
 {{% tab name="Apply Plan" %}}
+
 ```bash
 terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$(hostname)]"
 ```
+
 {{</tab >}}
 {{% tab name="Apply Plan Output" %}}
+
+``` text
 Apply complete! Resources: 146 added, 0 changed, 0 destroyed.
+```
+
 {{</tab >}}
 {{< /tabs >}}
 
@@ -163,9 +176,11 @@ Apply complete! Resources: 146 added, 0 changed, 0 destroyed.
 
 {{< tabs >}}
 {{% tab name="Echo Hostname" %}}
+
 ```bash
 echo $(hostname)
 ```
+
 {{</tab >}}
 {{< /tabs >}}
 
@@ -183,12 +198,18 @@ echo $(hostname)
 
 {{< tabs >}}
 {{% tab name="Destroy" %}}
+
 ```bash
 terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
 ```
+
 {{</tab >}}
 {{% tab name="Destroy Output" %}}
+
+``` text
 Destroy complete! Resources: 146 destroyed.
+```
+
 {{</tab >}}
 {{< /tabs >}}
 
