@@ -22,9 +22,9 @@ variable "aws_instance_count" {
 }
 
 variable "subnet_count" {
-  description = "Subnet Count (Usually 1 for small workshops, but can be 2 or 3 for larger one, but never 4)"
+  description = "Subnet Count (Usually 1 for small workshops, but can be 2 or 3 for larger one, but never 4 and be aware some regions only support 2 due to limited flavor availabiity)"
   nullable = false
-  default = "3"
+  default = "2"
 }
 
 variable "public_subnet_ids" {
