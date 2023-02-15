@@ -6,78 +6,7 @@ defaultContentLanguageInSubdir: false
 enableMissingTranslationPlaceholders: true
 enableRobotsTXT: true
 theme:
-  - github.com/google/docsy
-  - github.com/google/docsy/dependencies
-enableGitInfo: true
-taxonomies:
-  tag: tags
-  category: categories
-params:
-  taxonomy:
-    taxonomyCloud:
-      - tags
-      - categories
-    taxonomyCloudTitle:
-      - Tag Cloud
-      - Categories
-    taxonomyPageHeader:
-      - tags
-      - categories
-    pygmentsCodeFences: true
-    pygmentsUseClasses: false
-    pygmentsUseClassic: false
-    pygmentsStyle: tango
-  copyright: Splunk Inc.
-  privacy_policy: ''
-  archived_version: false
-  version_menu: Releases
-  versions:
-    - version: latest
-      url: https://splunk.github.io/observability-workshop/latest/
-    - version: v4.53
-      url: https://splunk.github.io/observability-workshop/v4.53
-    - version: v4.54
-      url: https://splunk.github.io/observability-workshop/v4.54
-  url_latest_version: https://splunk.github.io/observability-workshop/
-  #github_repo: https://github.com/splunk/observability-workshop
-  #github_project_repo: https://github.com/splunk/observability-workshop
-  #gcs_engine_id: d72aa9b2712488cc3
-  workshop_menu: More Workshops
-  workshop_menu_urls:
-    - name: Pet Clinic Java Workshop
-      url: https://splunk.github.io/observability-workshop/latest/pet-clinic/
-    - name: O11y Bootcamp
-      url: https://splunk.github.io/observability-workshop/latest/bootcamp/
-    - name: Resources
-      url: https://splunk.github.io/observability-workshop/latest/resources/
-  algolia_docsearch: false
-  offlineSearch: true
-  ui:
-    breadcrumb_disable: false
-    footer_about_disable: false
-    navbar_logo: true
-    navbar_translucent_over_cover_disable: false
-    sidebar_menu_compact: false
-    sidebar_search_disable: false
-    sidebar_menu_foldable: false
-    readingtime:
-      enable: true
-  links:
-    developer:
-      - name: "GitHub"
-        url: "https://github.com/splunk/observability-workshop"
-        icon: "fab fa-github"
-    user:
-      - name: Twitter
-        url: 'https://twitter.com/splunk'
-        icon: fab fa-twitter
-        desc: Follow us on Twitter to get the latest news!
-permalinks:
-  blog: '/:section/:year/:month/:day/:slug/'
-imaging:
-  resampleFilter: CatmullRom
-  quality: 75
-  anchor: smart
+  - github.com/McShelby/hugo-theme-relearn 
 languages:
   en:
     title: 'Splunk Observability Cloud Workshops'
@@ -87,16 +16,58 @@ languages:
   ja:
     title: 'Splunk Observability Cloud Workshops'
     description: Splunk Observability ワークショップ
-    languageName: 日本語
     contentDir: content/ja
+    languageName: 日本語
+    weight: 2
 markup:
   goldmark:
     renderer:
       unsafe: true
-      handwrap: false
   highlight:
-    style: manni
+    style: tango
 outputs:
+  home:
+    - HTML
+    - RSS
+    - PRINT
+    - SEARCH
+    - SEARCHPAGE
   section:
     - HTML
     - RSS
+    - PRINT
+  page:
+    - HTML
+    - RSS
+    - PRINT
+params:
+  description: "Splunk Observability Workshops"
+  showVisitedLinks: true
+  collapsibleMenu: true
+  disableBreadcrumb: false
+  disableInlineCopyToClipBoard: true
+  disableNextPrev: false
+  disableLandingPageButton: false
+  titleSeparator: "::"
+  themeVariant: ["splunk-light", "splunk-dark", "aws"]
+  additionalContentLanguage: [ "ja" ]
+  versions:
+    - version: latest
+      url: https://splunk.github.io/observability-workshop/latest/
+    - version: v4.53
+      url: https://splunk.github.io/observability-workshop/v4.53
+    - version: v4.54
+      url: https://splunk.github.io/observability-workshop/v4.54
+  url_latest_version: https://splunk.github.io/observability-workshop/
+menu:
+  shortcuts:
+  - name: "<i class='fab fa-fw fa-github'></i> GitHub Repository"
+    url: "https://github.com/splunk/observability-workshop"
+    weight: 10
+  - name: <i class="fab fa-fw fa-wpexplorer"></i> OpenTelemetry
+    url: "https://opentelemetry.io"
+    weight: 20
+  - name: <i class="fab fa-fw fa-twitter"></i> Twitter
+    url: "https://twitter.com/splunk"
+    weight: 30
+
