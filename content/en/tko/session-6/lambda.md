@@ -4,25 +4,25 @@ linkTitle: Build a Distributed Trace
 weight: 99
 ---
 
-This lab will make a tracing superhero out of you! 
+This lab will make a tracing superhero out of you!
 
-In this lab you will learn how a distributed trace is constructed for a small serverless application that runs on [AWS Lambda](https://aws.amazon.com/lambda/), producing and consuming your message via [AWS Kinesis](https://aws.amazon.com/kinesis/). 
+In this lab you will learn how a distributed trace is constructed for a small serverless application that runs on [AWS Lambda](https://aws.amazon.com/lambda/), producing and consuming your message via [AWS Kinesis](https://aws.amazon.com/kinesis/).
 
 ![image](https://user-images.githubusercontent.com/5187861/219358330-50022c0d-7882-47a3-a047-c4edda81de0d.png)
 
-
 ## Pre-Requisites
 
-You should already have the lab content available on your ec2 lab host. 
+You should already have the lab content available on your ec2 lab host.
 
 Ensure that this lab's required folder `o11y-lambda-lab` is on your home directory:
 
-
 {{< tabs >}}
 {{% tab name="Command" %}}
+
 ``` bash
 cd ~ && ls
 ```
+
 {{% /tab %}}
 {{% tab name="Output" %}}
 o11y-lambda-lab
@@ -31,26 +31,28 @@ o11y-lambda-lab
 
 {{% notice style="note" %}}
 If you don't see it, fetch the lab contents by running the following command:
+
 ``` bash
 git clone https://github.com/kdroukman/o11y-lambda-lab.git
 ```
+
 {{% /notice %}}
-
-
 
 ### 1. Set Environment Variables
 
-In your Splunk Observability Cloud Organisation (Org) obtain your Access Token and Realm Values. 
+In your Splunk Observability Cloud Organisation (Org) obtain your Access Token and Realm Values.
 
 Please reset your environment variables from the earlier lab. Take care that for this lab we may be using different names - make sure to match the Environment Variable names bellow.
 
 {{< tabs >}}
 {{% tab name="Export Environment Variables" %}}
+
 ``` bash
 export ACCESS_TOKEN=CHANGE_ME \
 export REALM=CHANGE_ME \
 export PREFIX=$(hostname)
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -60,9 +62,11 @@ Update your auto-instrumentation Serverless template to include new values from 
 
 {{< tabs >}}
 {{% tab name="Substitute Environment Variables" %}}
+
 ```bash
 cat ~/o11y-lambda-lab/auto/serverless_unset.yml | envsubst > ~/o11y-lambda-lab/auto/serverless.yml
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -70,11 +74,14 @@ Examine the output of the updated serverless.yml contents (you may need to scrol
 
 {{< tabs >}}
 {{% tab name="Check file contents" %}}
+
 ``` bash
 cat ~/o11y-lambda-lab/auto/serverless.yml
 ```
+
 {{% /tab %}}
 {{% tab name="Expected Content" %}}
+
 ``` text
 # USER SET VALUES =====================              
 custom: 
@@ -83,9 +90,9 @@ custom:
   prefix: <updated to your Hostname>
 #====================================== 
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
-
 
 ### 3. Update Manual instrumentation template
 
@@ -93,9 +100,11 @@ Update your manual instrumentation Serverless template to include new values fro
 
 {{< tabs >}}
 {{% tab name="Substitute Environment Variables" %}}
+
 ``` bash
 cat ~/o11y-lambda-lab/manual/serverless_unset.yml | envsubst > ~/o11y-lambda-lab/manual/serverless.yml
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -103,11 +112,14 @@ Examine the output of the updated serverless.yml contents (you may need to scrol
 
 {{< tabs >}}
 {{% tab name="Check file contents" %}}
+
 ``` bash
 cat ~/o11y-lambda-lab/manual/serverless.yml
 ```
+
 {{% /tab %}}
 {{% tab name="Expected Content" %}}
+
 ``` text
 # USER SET VALUES =====================              
 custom: 
@@ -116,6 +128,7 @@ custom:
   prefix: <updated to your Hostname>
 #====================================== 
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -125,15 +138,17 @@ You will be provided with AWS Access Key ID and AWS Secret Access Key values - s
 
 {{< tabs >}}
 {{% tab name="Set AWS Credentials" %}}
+
 ``` bash
 sls config credentials --provider aws --key AWS_ACCCESS_KEY_ID --secret AWS_ACCESS_KEY_SECRET
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
-This command will create a file `~/.aws/credentials` with your AWS Credentails populated. 
+This command will create a file `~/.aws/credentials` with your AWS Credentails populated.
 
-Note that we are using `sls` here, which is a [Serverless](https://www.serverless.com/) framework for developing and deploying AWS Lambda functions. We will be using this command throughout the lab. 
+Note that we are using `sls` here, which is a [Serverless](https://www.serverless.com/) framework for developing and deploying AWS Lambda functions. We will be using this command throughout the lab.
 
 Now you are set up and ready go!
 
@@ -143,9 +158,11 @@ Navigate to the `auto` directory that contains auto-instrumentation code.
 
 {{< tabs >}}
 {{% tab name="Command" %}}
+
 ``` bash
 cd ~/o11y-lambda-lab/auto
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -154,9 +171,11 @@ Take a look at the `serverless.yml` template.
 
 {{< tabs >}}
 {{% tab name="Command" %}}
+
 ``` bash
 cat serverless.yml
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -184,17 +203,19 @@ You should also see a section where the Environment variables that are being set
       SPLUNK_REALM: ${self:custom.realm}
 ```
 
-Using the environment variables we are configuring and enriching our auto-instrumentation. 
+Using the environment variables we are configuring and enriching our auto-instrumentation.
 
-Here we provide minimum information, such as NodeJS wrapper location in the Splunk APM Layer, environment name, service name, and our Splunk Org credentials. We are sending trace data directly to Splunk Observability Cloud. You could alternatively export traces to an OpenTelemetry Collector set up in [Gateway](https://opentelemetry.io/docs/collector/deployment/#gateway) mode. 
+Here we provide minimum information, such as NodeJS wrapper location in the Splunk APM Layer, environment name, service name, and our Splunk Org credentials. We are sending trace data directly to Splunk Observability Cloud. You could alternatively export traces to an OpenTelemetry Collector set up in [Gateway](https://opentelemetry.io/docs/collector/deployment/#gateway) mode.
 
 Take a look at the function code.
 
 {{< tabs >}}
 {{% tab name="Command" %}}
+
 ``` bash
 cat handler.js
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -209,11 +230,14 @@ Run the following command to deploy your Lambda Functions:
 
 {{< tabs >}}
 {{% tab name="Deploy Command" %}}
+
 ``` bash
 sls deploy
 ```
+
 {{% /tab %}}
 {{% tab name="Expected Output" %}}
+
 ``` text
 Deploying hostname-lambda-lab to stage dev (us-east-1)
 ...
@@ -223,10 +247,11 @@ functions:
   producer: hostname-lambda-lab-dev-producer (1.6 kB)
   consumer: hostname-lambda-lab-dev-consumer (1.6 kB)
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
-This command will follow the instructions in your `serverless.yml` template to create your Lambda functions and your Kinesis stream. 
+This command will follow the instructions in your `serverless.yml` template to create your Lambda functions and your Kinesis stream.
 Note it may take a *1-2 minutes* to execute.
 
 {{% notice style="note" %}}
@@ -237,9 +262,11 @@ Check the details of your serverless functions:
 
 {{< tabs >}}
 {{% tab name="Command" %}}
+
 ``` bash
 sls info
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -249,22 +276,24 @@ Take note of your endpoint value:
 
 ### Send some Traffic
 
-Use the `curl` command to send a payload to your **producer** function. 
-Note the command option `-d` is followed by your message payload. 
+Use the `curl` command to send a payload to your **producer** function.
+Note the command option `-d` is followed by your message payload.
 
 Try changing the value of `name` to your name and telling the Lambda function about your `superpower`.
 Replace `YOUR_ENDPOINT` with the endpoint from your previous step.
 
-
 {{< tabs >}}
 {{% tab name="Command" %}}
+
 ``` bash
 curl -d '{ "name": "CHANGE_ME", "superpower": "CHANGE_ME" }' YOUR_ENDPOINT
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
 For example:
+
 ``` text
 curl -d '{ "name": "Kate", "superpower": "Distributed Tracing" }' https://xvq043lj45.execute-api.us-east-1.amazonaws.com/dev/producer
 ```
@@ -283,7 +312,7 @@ If unsuccessful, you will see:
 
 If this occurs, ask one of the lab facilitators for assistance.
 
-If you see a success message, generate more load: *re-send that messate **5+ times***. 
+If you see a success message, generate more load: *re-send that messate **5+ times***.
 You should keep seeing a success message after each send.
 
 Check the lambda logs output.
@@ -292,9 +321,11 @@ Check the lambda logs output.
 
 {{< tabs >}}
 {{% tab name="Producer Function Logs" %}}
+
 ``` bash
 sls logs -f producer
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -302,9 +333,11 @@ sls logs -f producer
 
 {{< tabs >}}
 {{% tab name="Consumer Function Logs" %}}
+
 ``` bash
 sls logs -f consumer
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -328,9 +361,8 @@ Go to Explore the Service Map to see the Dependencies between your Lambda Functi
 
 ![image](https://user-images.githubusercontent.com/5187861/219001784-a25e7c9f-981d-49b9-b6df-f39d2bff0975.png)
 
-You should be able to see the `producer-lambda` and the call it is making to `Kinesis` service. What about your `consumer-lambda`? 
+You should be able to see the `producer-lambda` and the call it is making to `Kinesis` service. What about your `consumer-lambda`?
 ![image](https://user-images.githubusercontent.com/5187861/219368350-5bebb65b-d658-42be-9895-5d39a8d60a2d.png)
-
 
 Click into *Traces* and examine some traces that container **procuder** function calls and traces with **consumer** function calls.
 ![image](https://user-images.githubusercontent.com/5187861/219002535-d11afd2f-9134-4e1b-87fb-f3af47969372.png)
@@ -339,8 +371,7 @@ We can see the `producer-lambda` putting a Record on the Kinesis stream. But the
 
 This is because the **Trace Context** is not being propagated.
 
-This is not something that is supported automatically Out-of-the-Box by Kinesis service at the time of this lab. 
-Our Distributed Trace stops at *Kinesis* inferred service, and we can't see the propagation any further.
+This is not something that is supported automatically Out-of-the-Box by Kinesis service at the time of this lab. Our Distributed Trace stops at *Kinesis* inferred service, and we can't see the propagation any further.
 
 Not yet...
 
@@ -352,9 +383,11 @@ Navigate to the `manual` directory that contains manually instrumentated code.
 
 {{< tabs >}}
 {{% tab name="Command" %}}
+
 ``` bash
 cd ~/o11y-lambda-lab/manual
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -363,9 +396,11 @@ Take a look at the `serverless.yml` template.
 
 {{< tabs >}}
 {{% tab name="Command" %}}
+
 ``` bash
 cat serverless.yml
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -375,17 +410,21 @@ You can try to compare them with a `diff` command:
 
 {{< tabs >}}
 {{% tab name="Diff Command" %}}
+
 ``` bash
 diff ~/o11y-lambda-lab/auto/serverless.yml ~/o11y-lambda-lab/manual/serverless.yml 
 ```
+
 {{% /tab %}}
 {{% tab name="Expected Output" %}}
+
 ``` text
 19c19
 < #======================================    
 ---
 > #======================================   
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -395,9 +434,11 @@ Now compare `handler.js` it with the same file in `auto` directory using the `di
 
 {{< tabs >}}
 {{% tab name="Diff Command" %}}
+
 ``` bash
 diff ~/o11y-lambda-lab/auto/handler.js ~/o11y-lambda-lab/manual/handler.js 
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -415,7 +456,8 @@ const otelcore = require('@opentelemetry/core');
 We are using <https://www.npmjs.com/package/@opentelemetry/api> to manipulate the tracing logic in our functions.
 We are using <https://www.npmjs.com/package/@opentelemetry/core> to access the **Propagator** objects that we will use to manually propagate our context with.
 
-#### Inject Trace Context in Producer Function
+### Inject Trace Context in Producer Function
+
 The bellow code executes the following steps inside the Producer function:
 
 1. Get the current Active Span.
@@ -438,6 +480,7 @@ console.log(`Record with Trace Context added:
 ```
 
 #### Extract Trace Context in Consumer Function
+
 The bellow code executes the following steps inside the Consumer function:
 
 1. Extract the context that we obtained from the Producer into a carrier object.
@@ -474,45 +517,55 @@ While remaining in your `manual` directory, run the following commandd to re-dep
 
 {{< tabs >}}
 {{% tab name="Deploy Producer Code" %}}
+
 ``` bash
 sls deploy -f producer
 ```
+
 {{% /tab %}}
 {{% tab name="Expected Output" %}}
+
 ``` text
 Deploying function producer to stage dev (us-east-1)
 
 ✔ Function code deployed (6s)
 Configuration did not change. Configuration update skipped. (6s)
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
 {{< tabs >}}
 {{% tab name="Deploy Consumer Code" %}}
+
 ``` bash
 sls deploy -f consumer
 ```
+
 {{% /tab %}}
 {{% tab name="Expected Output" %}}
+
 ``` text
 Deploying function consumer to stage dev (us-east-1)
 
 ✔ Function code deployed (6s)
 Configuration did not change. Configuration update skipped. (6s)
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
-Note that this deployment now only updates the code changes within the function. Our configuration remains the same. 
+Note that this deployment now only updates the code changes within the function. Our configuration remains the same.
 
 Check the details of your serverless functions:
 
 {{< tabs >}}
 {{% tab name="Command" %}}
+
 ``` bash
 sls info
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -522,22 +575,24 @@ You endpoint value should remain the same:
 
 ### Send some Traffic again
 
-Use the `curl` command to send a payload to your **producer** function. 
-Note the command option `-d` is followed by your message payload. 
+Use the `curl` command to send a payload to your **producer** function.
+Note the command option `-d` is followed by your message payload.
 
 Try changing the value of `name` to your name and telling the Lambda function about your `superpower`.
 Replace `YOUR_ENDPOINT` with the endpoint from your previous step.
 
-
 {{< tabs >}}
 {{% tab name="Command" %}}
+
 ``` bash
 curl -d '{ "name": "CHANGE_ME", "superpower": "CHANGE_ME" }' YOUR_ENDPOINT
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
 For example:
+
 ``` text
 curl -d '{ "name": "Kate", "superpower": "Distributed Tracing" }' https://xvq043lj45.execute-api.us-east-1.amazonaws.com/dev/producer
 ```
@@ -556,31 +611,29 @@ If unsuccessful, you will see:
 
 If this occurs, ask one of the lab facilitators for assistance.
 
-If you see a success message, generate more load: *re-send that messate **5+ times***. 
-You should keep seeing a success message after each send.
+If you see a success message, generate more load: *re-send that messate **5+ times***. You should keep seeing a success message after each send.
 
 Check the lambda logs output.
 
-#### Producer function logs
-
 {{< tabs >}}
 {{% tab name="Producer Function Logs" %}}
+
 ``` bash
 sls logs -f producer
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
-
-#### Consumer function logs
 
 {{< tabs >}}
 {{% tab name="Consumer Function Logs" %}}
+
 ``` bash
 sls logs -f consumer
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
-
 
 Examine the logs carefully. Do you notice the difference?
 
@@ -588,11 +641,9 @@ Note that we are logging our Record together with the Trace context that we have
 
 ![image](https://user-images.githubusercontent.com/5187861/219372916-ed1afce5-176f-4baf-a9a3-0aae29e3f01b.png)
 
-
-
 ### Find your updated Lambda data in Splunk APM
 
-Navigate back to APM in [Splunk Observabilty Cloud ](https://app.us1.signalfx.com/#/apm)
+Navigate back to APM in [Splunk Observabilty Cloud](https://app.us1.signalfx.com/#/apm)
 
 Go back to your Service Dependency map. Notice the difference?
 
@@ -625,23 +676,24 @@ Expand the **consumer-lambda** span. Can you find the attributes from your messa
 
 ![image](https://user-images.githubusercontent.com/5187861/219374303-d143515b-d1b1-46b4-bd03-0c4653ea08c0.png)
 
-# Before you Go
+## Before you Go
 
 Please kindly clean up your lab using the following command:
 
 {{< tabs >}}
 {{% tab name="Remove Functions" %}}
+
 ``` bash
 sls remove
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
-# Conclusion
+## Conclusion
 
 Congratuations on finishing the lab. You have seen how we complement auto-instrumentation with manual steps to force **Producer** function's context to be sent to **Consumer** function via a Record put on a Kinesis stream. This allowed us to build the expected Distributed Trace.
 
 ![image](https://user-images.githubusercontent.com/5187861/219375907-5a5e23ce-b9bb-4939-865d-7dbbaa668c53.png)
 
 You can now built out a Trace manually by linking two different functions together. This is very powerful when your auto-instrumenation, or third-party systems, do not support context propagation out of the box.
-

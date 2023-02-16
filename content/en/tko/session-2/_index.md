@@ -1,12 +1,11 @@
 ---
-archetype: chapter
 title: Getting Data In (GDI) & OTEL
 linkTitle: Session 2
 weight: 2
 alwaysopen: false
 ---
 
-## Introduction
+{{% button icon="clock" %}}45 minutes{{% /button %}}
 
 During this technical workshop you will learn how to:
 
