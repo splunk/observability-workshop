@@ -9,7 +9,7 @@ enableMissingTranslationPlaceholders: true
 enableRobotsTXT: true
 module:
   imports:
-  - path: github.com/McShelby/hugo-theme-relearn
+    - path: github.com/McShelby/hugo-theme-relearn
 theme:
   - github.com/McShelby/hugo-theme-relearn
 languages:
@@ -61,10 +61,10 @@ params:
   versions:
     - version: latest
       url: https://splunk.github.io/observability-workshop/latest/
-    - version: v4.56
-      url: https://splunk.github.io/observability-workshop/v4.56
     - version: v4.57
       url: https://splunk.github.io/observability-workshop/v4.57
+    - version: v4.58
+      url: https://splunk.github.io/observability-workshop/v4.58
   url_latest_version: https://splunk.github.io/observability-workshop/
 menu:
   shortcuts:
