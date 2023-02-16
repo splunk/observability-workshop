@@ -39,6 +39,10 @@ variable "splunk_jdk" {
   default     = false
 }
 
+variable "instance_password" {
+  default = ""
+}
+
 resource "random_string" "hostname" {
   length  = 4
   lower   = true
@@ -49,12 +53,13 @@ resource "random_string" "hostname" {
 
 locals {
   template_vars = {
-    access_token  = var.splunk_access_token
-    rum_token     = var.splunk_rum_token
-    realm         = var.splunk_realm
-    presetup      = var.splunk_presetup
-    jdk           = var.splunk_jdk
-    instance_name = "${random_string.hostname.result}"
+    access_token      = var.splunk_access_token
+    rum_token         = var.splunk_rum_token
+    realm             = var.splunk_realm
+    presetup          = var.splunk_presetup
+    jdk               = var.splunk_jdk
+    instance_name     = "${random_string.hostname.result}"
+    instance_password = var.instance_password
   }
 }
 
