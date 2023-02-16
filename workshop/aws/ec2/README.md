@@ -37,14 +37,24 @@ The file `terraform.tfvars` is ignored by git and should not be committed to the
 
 The following variables are available. Edit `terraform.tfvars` to reflect what you need.
 
+### Required variables
+
 - `aws_region`: Which region do you want the instances in?
 - `aws_instance_count`: How many instances?
-- `slug`: Workshop name slug that will be used to tag aws resources (keep this short as this forms part of the instance hostname e.g. `acme`)
+- `slug`: Short name/tag, e.g. acme. Used to derive project and hostnames, AWS tags and terraform workspace e.g. `emea-ws`)
+- `instance_password`: Password for the EC2 instance
+
+### Optional variables
+
 - `splunk_access_token`: Observability Access Token
 - `splunk_rum_token`: Observability RUM Token
 - `splunk_realm`: Observability Realm
-- `splunk_presetup`: Provide a preconfigured instance (OTel Collector and Online Boutique deployed with RUM enabled)
-- `splunk_jdk`: Install OpenJDK and Maven on the instance
+- `subnet_count`: How many subnets to create. The default is 2.
+
+### Instance type variables
+
+- `splunk_presetup`: Provide a preconfigured instance (OTel Collector and Online Boutique deployed with RUM enabled). The default is FALSE.
+- `splunk_jdk`: Install OpenJDK and Maven on the instance. The default is FALSE.
 
 ## 6. Create a Terraform plan
 
@@ -58,6 +68,7 @@ terraform apply \
 -input=false
 ```
 
+<!--
 Or you use the provided script `up` to request instances:
 
 Install the prerequisites, e.g. on Mac: `brew install terraform jq pssh`
@@ -69,3 +80,4 @@ Then use the script:
 ```
 
 This will create a terraform workspace `o11y-for-myproject`, request 12 instances and ensure all instances have completed provisioning.
+-->

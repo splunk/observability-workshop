@@ -1,6 +1,6 @@
 #cloud-config
 ssh_pwauth: yes
-password: Observability2023!
+password: ${instance_password}
 chpasswd:
   expire: false
 

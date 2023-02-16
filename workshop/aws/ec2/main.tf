@@ -56,9 +56,9 @@ resource "aws_subnet" "o11y_ws_subnets" {
 # }
 
 resource "aws_security_group" "o11y-ws-sg" {
-  name       = "Observability-Workshop-SG"
+  name   = "Observability-Workshop-SG"
   vpc_id = aws_vpc.o11y-ws-vpc.id
-  
+
   ingress {
     from_port   = 22
     to_port     = 22
@@ -175,11 +175,12 @@ resource "aws_route" "o11y-ws-route" {
 
 locals {
   template_vars = {
-    access_token = var.splunk_access_token
-    rum_token    = var.splunk_rum_token
-    realm        = var.splunk_realm
-    presetup     = var.splunk_presetup
-    jdk          = var.splunk_jdk
+    access_token      = var.splunk_access_token
+    rum_token         = var.splunk_rum_token
+    realm             = var.splunk_realm
+    presetup          = var.splunk_presetup
+    jdk               = var.splunk_jdk
+    instance_password = var.instance_password
   }
 }
 
@@ -187,8 +188,7 @@ resource "aws_instance" "observability-instance" {
   count                  = var.aws_instance_count
   ami                    = data.aws_ami.latest-ubuntu.id
   instance_type          = var.aws_instance_type
-  # subnet_id              = aws_subnet.o11y-ws-subnet.id
-  subnet_id              = "${aws_subnet.o11y_ws_subnets.*.id[ count.index % length(aws_subnet.o11y_ws_subnets) ]}"
+  subnet_id              = aws_subnet.o11y_ws_subnets.*.id[count.index % length(aws_subnet.o11y_ws_subnets)]
   vpc_security_group_ids = [aws_security_group.o11y-ws-sg.id]
 
   user_data = templatefile("${path.module}/templates/userdata.yaml", merge(local.template_vars,
@@ -206,7 +206,7 @@ resource "aws_instance" "observability-instance" {
       #Name = "observability-${count.index + 1}"
       Instance = "${lower(var.slug)}-${format("%02d", count.index + 1)}"
       Name     = "${lower(var.slug)}-${format("%02d", count.index + 1)}"
-      Subnet   = "${aws_subnet.o11y_ws_subnets.*.id[ count.index % length(aws_subnet.o11y_ws_subnets) ]}"
+      Subnet   = "${aws_subnet.o11y_ws_subnets.*.id[count.index % length(aws_subnet.o11y_ws_subnets)]}"
     }
   )
 
@@ -219,11 +219,9 @@ resource "aws_instance" "observability-instance" {
   }
 }
 
-
-
 output "instance_details" {
-  value =  formatlist(
-    "%s, %s, %s, %s", 
+  value = formatlist(
+    "%s, %s, %s, %s",
     aws_instance.observability-instance[*].tags["Instance"],
     aws_instance.observability-instance.*.private_ip,
     aws_instance.observability-instance.*.public_ip,

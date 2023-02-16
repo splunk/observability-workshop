@@ -1,30 +1,30 @@
 variable "cloud_init_print" {
   description = "Show rendered cloud_init output"
-  type  = bool
-  default = false
+  type        = bool
+  default     = false
 }
 
 variable "splunk_presetup" {
   description = "Presetup the instance? (true/false)"
-  type = bool
-  default = false
+  type        = bool
+  default     = false
 }
 
 variable "splunk_jdk" {
   description = "Enabled Java Development environment? (true/false)"
-  type = bool
-  default = false
+  type        = bool
+  default     = false
 }
 
 variable "aws_instance_count" {
   description = "Instance Count (Usually 1)"
-  nullable = false
+  nullable    = false
 }
 
 variable "subnet_count" {
-  description = "Subnet Count (Usually 1 for small workshops, but can be 2 or 3 for larger one, but never 4 and be aware some regions only support 2 due to limited flavor availabiity)"
-  nullable = false
-  default = "2"
+  description = "Subnet Count (Usually 1 for small workshops, but can be 2 or 3 for larger one, but never 4 and be aware some regions only support 2 due to limited flavour availabiity)"
+  nullable    = false
+  default     = "2"
 }
 
 variable "public_subnet_ids" {
@@ -33,11 +33,16 @@ variable "public_subnet_ids" {
 
 variable "aws_region" {
   description = "AWS Region (for example: us-west-2)"
-  nullable = false
+  nullable    = false
 }
 
 variable "slug" {
-  description = "Short name/tag, e.g. acme. Used to derive project and host names, aws tags and terraform workspace."
+  description = "Short name/tag, e.g. acme. Used to derive project and hostnames, AWS tags and terraform workspace"
+}
+
+variable "instance_password" {
+  description = "Password for the EC2 instance"
+  nullable    = false
 }
 
 variable "splunk_access_token" {
@@ -62,7 +67,7 @@ data "aws_ami" "latest-ubuntu" {
 
   filter {
     name   = "name"
-     values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
   }
 
   filter {
