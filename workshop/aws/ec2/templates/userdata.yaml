@@ -62,10 +62,13 @@ write_files:
         echo "Your instance is ready!";
       fi
 
-      if [ -e /etc/.instance ]; then
-        INSTANCE=$(cat /etc/.instance)
-        CLUSTER_NAME="$INSTANCE-cluster"
-      fi
+      INSTANCE=$(cat /etc/hostname)
+      CLUSTER_NAME="$INSTANCE-cluster"
+
+      #if [ -e /etc/.instance ]; then
+      #  INSTANCE=$(cat /etc/.instance)
+      #  CLUSTER_NAME="$INSTANCE-cluster"
+      #fi
       export INSTANCE CLUSTER_NAME
 
 %{ if presetup == true ~}
