@@ -68,12 +68,11 @@ NAME    NAMESPACE   REVISION    UPDATED                                 STATUS  
 kafka   default     1           2022-11-14 11:21:36.328956822 -0800 PST deployed    kafka-19.1.3    3.3.1
 mongodb default     1           2022-11-14 11:19:36.507690487 -0800 PST deployed    mongodb-12.1.31 5.0.10
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
-
 Verify the helm chart installation
-
 
 {{< tabs >}}
 {{% tab name="kubectl get pods" %}}
@@ -81,6 +80,7 @@ Verify the helm chart installation
 ``` bash
 kubectl get pods
 ```
+
 {{% /tab %}}
 {{% tab name "kubectl get pods Output" %}}
 
@@ -93,6 +93,7 @@ kafka-2                           0/2     ContainerCreating   0          16s
 kafka-zookeeper-0                 0/1     Pending             0          17s
 kafka-0                           0/2     Pending             0          17s
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -210,7 +211,7 @@ mongodb                             default     1           2021-12-07 12:49:06.
 splunk-otel-collector-1638910184    default     1           2021-12-07 12:49:45.694013749 -0800 PST deployed    splunk-otel-collector-0.37.1    0.37.1
 ```
 
-{{ % /tab %}}
+{{% /tab %}}
 {{< /tabs >}}
 
 {{< tabs >}}
@@ -235,7 +236,7 @@ splunk-otel-collector-1638910184-agent-27s5c                      2/2     Runnin
 splunk-otel-collector-1638910184-k8s-cluster-receiver-8587qmh9l   1/1     Running   0          17m
 ```
 
-{{ % /tab %}}
+{{% /tab %}}
 {{< /tabs >}}
 
 ### 7. Verify dashboards
