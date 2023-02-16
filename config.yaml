@@ -1,11 +1,15 @@
 baseURL: https://splunk.github.io/
 canonifyURLs: true
+relativeURLs: true
 title: Splunk Observability Cloud Workshops
 contentDir: content/en
 defaultContentLanguage: en
 defaultContentLanguageInSubdir: false
 enableMissingTranslationPlaceholders: true
 enableRobotsTXT: true
+module:
+  imports:
+  - path: github.com/McShelby/hugo-theme-relearn
 theme:
   - github.com/McShelby/hugo-theme-relearn
 languages:
@@ -42,9 +46,11 @@ outputs:
     - RSS
     - PRINT
 params:
+  alwaysopen: false
   description: "Splunk Observability Workshops"
   showVisitedLinks: true
   collapsibleMenu: true
+  disableSearch: false
   disableBreadcrumb: false
   disableInlineCopyToClipBoard: true
   disableNextPrev: false
