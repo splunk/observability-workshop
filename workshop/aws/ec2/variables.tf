@@ -40,11 +40,6 @@ variable "slug" {
   description = "Short name/tag, e.g. acme. Used to derive project and hostnames, AWS tags and terraform workspace"
 }
 
-variable "instance_password" {
-  description = "Password for the EC2 instance"
-  nullable    = false
-}
-
 variable "splunk_access_token" {
   description = "Splunk Oberservability Cloud Access Token"
   default     = ""

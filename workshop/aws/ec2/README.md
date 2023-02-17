@@ -42,7 +42,6 @@ The following variables are available. Edit `terraform.tfvars` to reflect what y
 - `aws_region`: Which region do you want the instances in?
 - `aws_instance_count`: How many instances?
 - `slug`: Short name/tag, e.g. acme. Used to derive project and hostnames, AWS tags and terraform workspace e.g. `emea-ws`)
-- `instance_password`: Password for the EC2 instance
 
 ### Optional variables
 
@@ -66,6 +65,22 @@ Run `terraform plan` to see what will be created. Once happy run `terraform appl
 terraform apply \
 -auto-approve \
 -input=false
+```
+
+Once the apply is complete, the output will contain the public IP addresses, instance names and the _(automatically generated)_ instance password.
+
+### Example output from Terraform
+
+``` text
+Apply complete! Resources: 10 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+login_details = tolist([
+  "workshop-01, 10.1.1.1, mKV50oR36MgASJd3",
+  "workshop-02, 10.1.1.2, mKV50oR36MgASJd3",
+  "workshop-03, 10.1.1.3, mKV50oR36MgASJd3",
+])
 ```
 
 <!--

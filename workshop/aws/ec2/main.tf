@@ -173,6 +173,11 @@ resource "aws_route" "o11y-ws-route" {
 #   route_table_id = aws_route_table.o11y-ws-rt.id
 # }
 
+resource "random_string" "password" {
+  length           = 16
+  override_special = "_%@$#!"
+}
+
 locals {
   template_vars = {
     access_token      = var.splunk_access_token
@@ -180,7 +185,7 @@ locals {
     realm             = var.splunk_realm
     presetup          = var.splunk_presetup
     jdk               = var.splunk_jdk
-    instance_password = var.instance_password
+    instance_password = random_string.password.result
   }
 }
 
@@ -219,12 +224,21 @@ resource "aws_instance" "observability-instance" {
   }
 }
 
-output "instance_details" {
+#output "instance_details" {
+#  value = formatlist(
+#    "%s, %s, %s, %s",
+#    aws_instance.observability-instance[*].tags["Instance"],
+#    aws_instance.observability-instance.*.private_ip,
+#    aws_instance.observability-instance.*.public_ip,
+#    aws_instance.observability-instance[*].tags["Subnet"]
+#  )
+#}
+
+output "login_details" {
   value = formatlist(
-    "%s, %s, %s, %s",
+    "%s, %s, %s",
     aws_instance.observability-instance[*].tags["Instance"],
-    aws_instance.observability-instance.*.private_ip,
     aws_instance.observability-instance.*.public_ip,
-    aws_instance.observability-instance[*].tags["Subnet"]
+    local.template_vars.instance_password
   )
 }
