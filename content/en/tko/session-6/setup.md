@@ -2,6 +2,7 @@
 title: Setup
 linkTitle: Setup
 weight: 1
+draft: true
 ---
 
 ## 1. Set Environment Variables

@@ -2,6 +2,7 @@
 title: Build and Deploy again
 linkTitle: Build and Deploy again
 weight: 8
+draft: true
 ---
 
 ## 1. Build and Deploy Application again

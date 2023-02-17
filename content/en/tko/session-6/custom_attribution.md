@@ -2,6 +2,7 @@
 title: Custom Attribution
 linkTitle: Custom Attribution
 weight: 5
+draft: true
 ---
 
 To take a deeper look at this issue, we will implement Custom Attributes via Opentelemetry Manual Instrumentation

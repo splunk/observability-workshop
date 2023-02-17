@@ -2,6 +2,7 @@
 title: Developer Role
 linkTitle: Developer Role
 weight: 4
+draft: true
 ---
 
 ## 1. Now let's play the role of the developer

@@ -2,6 +2,7 @@
 title: The Final Fix!
 linkTitle: Developer Role (Part 2)
 weight: 9
+draft: true
 ---
 
 ## 1. Let's play developer again

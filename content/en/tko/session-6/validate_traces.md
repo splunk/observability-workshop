@@ -2,6 +2,7 @@
 title: Validate Traces are being collected
 linkTitle: Validate Traces
 weight: 2
+draft: true
 ---
 
 ## 1. Users and Workflows

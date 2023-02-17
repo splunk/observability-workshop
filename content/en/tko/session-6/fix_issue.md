@@ -2,6 +2,7 @@
 title: Fix the issue
 linkTitle: Fix the issue
 weight: 6
+draft: true
 ---
 
 ## 1. Let's play Developer once again and fix our issue

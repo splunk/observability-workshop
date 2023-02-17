@@ -1,23 +1,15 @@
 ---
 title: 6. O11y - Distributed Tracing for modern applications
-linkTitle: Session 6
-weight: 6
+linkTitle: Module 1
+weight: 2
 alwaysopen: false
 ---
-
-{{% button icon="clock" %}}45 minutes{{% /button %}}
-
-Here at Buttercup Instruments, our business is expanding !  We have recently added 3 new locations, two locations in the USA, Colorado and Chicago and one international location in SRI Lanka !
-
-Our technical staff has already on-boarded the data from these new locations and incorporated them into our inventory application and it is our job to review these improvements and send any issues back to our developers for repairs.
-
-We now have a total of 6 locations !
 
 ## Set Environment Variables
 
 Environment Variables:
 
-Using nano edit .env in javashop-otel directory
+Using nano edit .env in `javashop-otel` directory
 
 ``` bash
 nano .env
@@ -31,11 +23,11 @@ SPLUNK_ACCESS_TOKEN=<your_token>
 SPLUNK_REALM=<your_realm>
 ```
 
-save in nano
+Save in nano
 
 CTRL-O ENTER
 
-exit nano
+Exit nano
 
 CTRL-X
 
@@ -80,7 +72,9 @@ It is recommended to use a -5m look back during this lab. Start there, use 15 if
 
 ![Service Map](https://user-images.githubusercontent.com/32849847/218923108-6c6a7efb-588e-4f7b-b788-768037eae4bb.png)
 
-NOTE: Typically, to identify root cause and route an issue, an SRE or alert responder would check metrics and logs to determine if it is a software or hardware related issue, and thus route to the correct party. In this exercise we are ONLY handling software issues, so we are skipping the metrics and logs parts of normal triage.
+{{% notice title="NOTE" style="note" %}}
+Typically, to identify root cause and route an issue, an SRE or alert responder would check metrics and logs to determine if it is a software or hardware related issue, and thus route to the correct party. In this exercise we are ONLY handling software issues, so we are skipping the metrics and logs parts of normal triage.
+{{% /notice %}}
 
 If your instrumentation was successful, the service-map will show latency from the shop service to the products service.
 
@@ -88,11 +82,9 @@ If your instrumentation was successful, the service-map will show latency from t
 
 Ok let's triage this SOFTWARE ISSUE and skip directly to the traces.
 
-Click on shop service
-
-click Traces ( right side )
-
-Sort by Duration
+- Click on shop service
+- Click Traces ( right side )
+- Sort by Duration
 
 Select the longest duration trace ( or one of the obvious much longer ones )
 
@@ -100,7 +92,7 @@ Select the longest duration trace ( or one of the obvious much longer ones )
 
 Now we can see the long latency occurred in the products service and if we click on products: /products
 we can see the offending method was products:ProductResource.getAllProducts
-÷≥«
+
 ![long-trace-detail-GetAllProducts](https://user-images.githubusercontent.com/32849847/204347855-724545bf-c3df-478a-a27d-e4f85f708e15.png)
 
 Our next step here would be to send that trace to a developer by clicking download trace and
@@ -182,11 +174,11 @@ Remember, without Full Fidelity, you have to either reproduce errors / latency i
 
 So they are stuck where we are, quite often.
 
-OK, enough fun ..let's make this easier for our developer... and show off some Splunk APM Scale !
+OK, enough fun ..let's make this easier for our developer... and show off some Splunk APM Scale!
 
-Ok exit your editor:
+OK, exit your editor:
 
-edit nano CTRL-X ( DO NOT SAVE IF MODIFIED )
+Edit nano CTRL-X ( DO NOT SAVE IF MODIFIED )
 
 ## Custom Attribution
 
@@ -223,17 +215,13 @@ Let's try to find our latency root cause again, this time with every function an
 
 ![Screen Shot 2022-12-08 at 11 48 58 AM](https://user-images.githubusercontent.com/32849847/206541846-7f0e6462-7659-44bc-bc48-3621c2872fc4.png)
 
-Click on shop service
-
-click Traces ( right side )
-
-Sort by Duration
+- Click on shop service
+- Click Traces ( right side )
+- Sort by Duration
 
 Select the longest duration trace ( or one of the obvious much longer ones )
 
 ![image](https://user-images.githubusercontent.com/32849847/213582624-66466a19-00fa-4dda-acd0-f6970d594ba1.png)
-
-## NEED SCREEN OF LOCATION TAG  "ProductResource.myCoolFunction234234234" was "myInt" with a value of 999
 
 We can see that the actual function call that has the latency was not ProductResource.getAllProducts but the function call "ProductResource.myCoolFunction234234234" !
 
@@ -241,7 +229,9 @@ Since we now have the parameter tagged as part of our span metadata the actual r
 
 Consider the case of debugging code which each of you have just experienced. Imagine that you may have not written the code yourself and the code is a mess, which I can tell you from a former developer, everyone else's code sucks.... So without Parameter Values at the time of the issue .. You would have no choice but to go line .... by line ..... by line..... which I am sorry I forced you to do earlier... this can take a very long time.
 
-NOTE: We added additional span information, which we call "Custom Attributes" here at Splunk, in this case our "Custom Attributes" are "Parameter Values at Time of Latency".
+{{% notice title="NOTE" style="note" %}}
+We added additional span information, which we call "Custom Attributes" here at Splunk, in this case our "Custom Attributes" are "Parameter Values at Time of Latency".
+{{% /notice %}}
 
 In our example  the "Location" tag was created due our handy Annotator, that did the [OpenTelemetry Annotations](https://opentelemetry.io/docs/instrumentation/java/automatic/annotations/ ) for us.
 
@@ -351,11 +341,9 @@ You may have noticed a new exception in our trace that was not present with Auto
 
 Return to the service map
 
-Click on shop service
-
-Click Traces ( right side )
-
-Select "Errors Only"
+- Click on shop service
+- Click Traces ( right side )
+- Select "Errors Only"
 
 ![Screen Shot 2022-11-28 at 7 36 50 AM](https://user-images.githubusercontent.com/32849847/204348492-84a4ad45-e11c-4e75-a6a9-d6e52e0eb13e.png)
 
@@ -444,7 +432,7 @@ Make sure you saved your changes to shop/src/main/java/com/shabushabu/javashop/s
 ./BuildAndDeploy.sh
 ```
 
-We are waiting a few minutes . . .
+We are waiting a few minutes...
 
 Return to the service map
 
@@ -452,11 +440,9 @@ If you do NOT see RED in your service map, you have completed the Latency Repair
 
 Now let's check for our exception in the traces.
 
-Click on shop service
-
-click Traces ( right side )
-
-Select "Errors Only"
+- Click on shop service
+- Click Traces ( right side )
+- Select "Errors Only"
 
 If you do not have red in your service map and you do not see Errors in traces, you have successfully completed our Inventory application review for Sri Lanka and Colorado locations!!
 
@@ -482,9 +468,8 @@ Return to the Splunk Observability UI and lets look once again at our Service Ma
 
 We see there was an un-handled exception thrown in Instruments service and some latency from our database that is related to the Chicago location !
 
-Click on Traces on the right
-
-Select "Errors Only"
+- Click on Traces on the right
+- Select "Errors Only"
 
 ![Screen Shot 2022-11-28 at 8 14 50 AM](https://user-images.githubusercontent.com/32849847/204349696-dc19d62f-ed82-4533-ad27-138237821b8e.png)
 
@@ -520,7 +505,7 @@ public Object findInstruments() {
 }
 ```
 
-To This:
+To this:
 
 ``` java
 // public Object findInstruments() {
@@ -550,13 +535,10 @@ cd javashop-otel directory
 
 Now let's test the Chicago location once again
 
-Open a browser and navigate to <http://localhost:8010>
+- Open a browser and navigate to <http://localhost:8010>
+- Select the Chicago Location and Login
 
-Select the Chicago Location and Login
-
-We now see the 500 error is gone !
-
-Let's confirm a clean Service Map
+We now see the 500 error is gone! Let's confirm a clean Service Map
 
 ![Screen Shot 2022-11-28 at 8 35 11 AM](https://user-images.githubusercontent.com/32849847/204350088-fca43e3c-42ea-4933-8a61-01eb2083fd23.png)
 

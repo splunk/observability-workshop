@@ -1,7 +1,7 @@
 ---
-title: Build a Distributed Trace
-linkTitle: Build a Distributed Trace
-weight: 99
+title: Build a Distributed Trace in Lambda
+linkTitle: Module 2
+weight: 3
 ---
 
 This lab will make a tracing superhero out of you!
@@ -12,7 +12,7 @@ In this lab you will learn how a distributed trace is constructed for a small se
 
 ## Pre-Requisites
 
-You should already have the lab content available on your ec2 lab host.
+You should already have the lab content available on your EC2 lab host.
 
 Ensure that this lab's required folder `o11y-lambda-lab` is on your home directory:
 
