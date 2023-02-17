@@ -2,7 +2,6 @@
 aws_region = ""
 aws_instance_count = ""
 slug = ""
-instance_password = ""
 
 # required if pre-setup is desired, optional otherwise. See variables.tf and README.md
 splunk_access_token = ""
