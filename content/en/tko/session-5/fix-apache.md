@@ -33,7 +33,7 @@ If that fails, or if there is not enough space when you deploy your application,
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
 
-Before we start, let's check the current status of the PHP/Apache deployment. Under **Alerts & Detectors** which detector has fired? Where else can you find this information?
+Before we start, let's check the current status of the PHP/Apache deployment. Under **Alerts & Detectors** which **[TKO]** detector has fired? Where else can you find this information?
 
 {{% /notice %}}
 
@@ -86,7 +86,7 @@ Is the **Apache Web Servers** dashboard showing any data now?
 {{% /notice %}}
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
-Another Auto-Detect Detector has fired, which one is it this time?
+Another **[TKO]** Detector has fired, which one is it this time?
 {{% /notice %}}
 
 ## 4. Fix memory issue
