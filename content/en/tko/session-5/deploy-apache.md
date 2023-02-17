@@ -219,5 +219,5 @@ Using the Observability Kubernetes Navigator, can you find the status of the `ph
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
 Where else has the issue with `php-apache` been logged? What is being reported?
 
-**HINT:** Adjust your Table settings to use only `k8s.cluster.name`, `object.involvedObject.name` & `object.message`. Make sure you unselect `_raw`!
+**HINT:** Adjust your **Table settings** by clicking on the cog to use only `k8s.cluster.name`, `object.involvedObject.name` & `object.message`. Make sure you unselect `_raw`!
 {{% /notice %}}

@@ -91,7 +91,7 @@ Another **[TKO]** Detector has fired, which one is it this time?
 
 ## 4. Fix memory issue
 
-Let's edit the stateful set and increase the memory to what is shown in the image below:
+If you navigate back to the Apache dashboard, you will notice that metrics are no longer coming in. We have another resource issue and this time we are Out of Memory. Let's edit the stateful set and increase the memory to what is shown in the image below:
 
 ``` bash
 kubectl edit statefulset php-apache -n apache
@@ -101,10 +101,10 @@ kubectl edit statefulset php-apache -n apache
 resources:
   limits:
     cpu: "1"
-    memory: "16Mi"
+    memory: 16Mi
   requests:
-    cpu: "0.5"
-    memory: "12Mi"
+    cpu: 500m
+    memory: 12Mi
 ```
 
 Save the changes youhave made. (Hint: Use `Esc` followed by `:wq!` to save your changes).
