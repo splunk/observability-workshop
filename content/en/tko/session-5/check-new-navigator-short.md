@@ -39,7 +39,7 @@ Now, let's find your own cluster by filtering on the field `k8s.cluster.name` in
 
 You should now just see information for your own cluster.
 
-{{% notice title="Workshop Question" color="success" %}}
+{{% notice title="Workshop Question" style="tip" icon="question" %}}
 How many workloads are running & how many namespaces are in your Cluster?
 {{% /notice %}}
 
@@ -63,7 +63,7 @@ Now, let's select the `File system usage (bytes)` from the **Color by** drop dow
 
 ![k8s-Heat-map](../images/set-find-outliers.png)
 
-{{% notice title="Workshop Question" color="success" %}}
+{{% notice title="Workshop Question" style="tip" icon="question" %}}
 What happened to the Heatmap?
 {{% /notice %}}
 
@@ -77,11 +77,11 @@ The workload overview gives you a quick insight of the status of your deployment
 
 ![k8s-workload-overview](../images/k8s-workload-overview.png)
 
-* *Running* Means your pods are deployed and in a running state
-* *Pending* means waiting to be deployed
-* *Succeeded* means the pod has been deployed and completed its job and is finished
-* *Failed* means the containers in the pod have run and returned some kind of error
-* *Unknown* means Kubernetes isn't reporting any of the known states. (This may be during start or stopping pods, for example).
+* *Running:* Pods are deployed and in a running state
+* *Pending:* Waiting to be deployed
+* *Succeeded:* Pod has been deployed and completed its job and is finished
+* *Failed:* Containers in the pod have run and returned some kind of error
+* *Unknown:* Kubernetes isn't reporting any of the known states. (This may be during start or stopping of pods, for example).
 
 You can expand the Workload name by hovering your mouse on it, in case the name is longer than the chart allows.
 
@@ -96,12 +96,11 @@ Confirm that you have the right filter by hovering over the rectangle, and if it
 
 This brings you to a more detailed view of your workload.
 
-{{% notice title="Workshop Question" color="success" %}}
+{{% notice title="Workshop Question" style="tip" icon="question" %}}
 What are the CPU request  & CPU limit units for the otel-collector?
 {{% /notice %}}
 
-At this point you can drill into the information of the pods, but that is outside the scope of this workshop,
-for now reset your view by removing the filter for the *splunk-otel-collector-k8s-cluster-receiver* workload. and setting the `color by` option to *Pods Pending*.
+At this point you can drill into the information of the pods, but that is outside the scope of this workshop, for now reset your view by removing the filter for the **splunk-otel-collector-k8s-cluster-receiver** workload and setting the **Color by** option to **Pods Running**.
 
 ## 3. Pivot Sidebar
 
@@ -112,4 +111,4 @@ The pivot bar will expand and a link to the discovered service will be added as 
 
 ![pivotbar](../images/pivotbar.png)
 
-This will allow for easy switching between navigators. The same applies for your Apache server instance -- it will have a pivot bar allowing you to quickly jump back to the Kubernetes navigator.
+This will allow for easy switching between Navigators. The same applies for your Apache server instance, it will have a pivot bar allowing you to quickly jump back to the Kubernetes navigator.
