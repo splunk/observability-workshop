@@ -10,7 +10,7 @@ Before contributing, you must sign the [Splunk Contributor License Agreement (CL
 
 ## Contributing to the Observability Workshop
 
-When working on the workshop, we advise that you review your changes locally before committing them. Use the `hugo server` command to live preview your changes (as you type) on your local machine.
+When working on the workshop, we advise that you review your changes locally before committing them, although we prefer Pull Requests. Use the `hugo server` command to live preview your changes (as you type) on your local machine.
 
 ## Install Go & Hugo
 
@@ -34,18 +34,6 @@ You will also need to install `yq` if it is not already installed on your system
 brew install yq
 ```
 
-## Install Node
-
-You will also need to install `node` if it is not already installed on your system, then add the PostCSS CLI package
-
-``` bash
-brew install node
-```
-
-``` bash
-npm install postcss-cli
-```
-
 ## Cloning the reposistory
 
 ``` bash
@@ -63,6 +51,12 @@ hugo server
 ## Running the docs server
 
 In most cases, the default settings with `hugo server` work well, and Hugo is available at `http://localhost:1313`. If you need to change the port, you can do so by passing the `--port` flag e.g. `hugo server --port=1314`. The documentation built from your current branch is then accessible through your favorite browser at e.g. `http://localhost:1314`.
+
+## Create Content
+
+The workshop uses the Hugo Relearn Theme. Documentation on how to use the theme can be found [here](https://mcshelby.github.io/hugo-theme-relearn/cont/index.html).
+
+Additional documentation for the shortcodes used in the theme can be found [here](https://mcshelby.github.io/hugo-theme-relearn/shortcodes/index.html).
 
 ## Optimising images
 
