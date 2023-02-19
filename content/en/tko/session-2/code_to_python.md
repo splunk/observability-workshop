@@ -62,10 +62,7 @@ Flask==2.0.2
 Create a virtual environment and Install the necessary python packages
 
 ``` bash
-cd workshop/flask_apps_start/review
-
-python3 -m venv rtapp-workshop
-source rtapp-workshop/bin/activate
+cd /home/ubuntu/realtime_enrichment/workshop/flask_apps_start/review/
 
 pip freeze #note output
 pip install -r requirements.txt
