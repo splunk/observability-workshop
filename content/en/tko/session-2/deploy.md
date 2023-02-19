@@ -82,7 +82,7 @@ kubectl get pods
 ```
 
 {{% /tab %}}
-{{% tab name "kubectl get pods Output" %}}
+{{% tab name="kubectl get pods Output" %}}
 
 ``` text
 NAME                              READY   STATUS              RESTARTS   AGE
@@ -181,9 +181,11 @@ otelAgent:
 ### 5. Install the Splunk OTEL helm chart
 
 ``` bash
-cd ../otel_yamls \
-repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart \
-helm repo update \
+cd /home/ubuntu/realtime_enrichment/otel_yamls/ 
+
+helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
+
+helm repo update
 ```
 
 ``` bash
