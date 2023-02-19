@@ -20,16 +20,16 @@ ll /var/appdata/yelp*
 2. Export the following variables.
 
 ``` bash
-export ACCESS_TOKEN=<your-access-token> \
-export REALM=<your-o11y-cloud-realm> \
+export ACCESS_TOKEN=<your-access-token> 
+export REALM=<your-o11y-cloud-realm> 
 export clusterName=<your-k8s-cluster> 
 ```
 
 3. Clone the following repo
 ``` bash
-cd /home/ubuntu \
-git clone https://github.com/leungsteve/realtime_enrichment.git \
-cd realtime_enrichment/workshop \
-python3 -m venv rtapp-workshop \
+cd /home/ubuntu 
+git clone https://github.com/leungsteve/realtime_enrichment.git 
+cd realtime_enrichment/workshop 
+python3 -m venv rtapp-workshop 
 source rtapp-workshop/bin/activate
 ```
