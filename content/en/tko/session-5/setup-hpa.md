@@ -83,3 +83,5 @@ Save the changes youhave made. (Hint: Use `Esc` followed by `:wq!` to save your 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
 How many pods are now in a running state? How many are pending? Why are they pending?
 {{% /notice %}}
+
+**Congratulations!** You have successfully completed the workshop.

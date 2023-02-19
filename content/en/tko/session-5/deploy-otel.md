@@ -6,6 +6,14 @@ weight: 1
 
 ## 1. New Kubernetes Navigator 2.0 UI
 
+{{% notice title="Note" style="warning" icon="exclamation" %}}
+As the new Kubernetes Navigator is still in Preview, some steps of this workshop might not work as expected. If you encounter any issues, please do the following:
+
+- Switch back to the old Kubernetes Navigator by clicking on the big blue {{% button style="blue" %}}Switch to old navigator{{% /button %}} button in the top right corner of the Kubernetes Navigator.
+
+- Let us know in the **#tko-2023-o11y-session-5 channel** in Slack.
+{{% /notice %}}}
+
 As we are in the process of switching to the new generation of the Kubernetes Navigator, please check if you are already on the new Kubernetes navigator.
 
 When you select **Infrastructure** from the main menu on the left, followed by selecting **Kubernetes**, you should see two services panes for Kubernetes, similar like the ones below:
@@ -45,7 +53,7 @@ Most of our customers will make use of some kind of private or public cloud serv
 
 Namespaces are a way to organize these large Kubernetes clusters into virtual sub-clusters. This can be helpful when different teams or projects share a Kubernetes cluster as this will give them the easy ability to just see and work with their own stuff.
 
-Any number of namespaces are supported within a cluster, each logically separated from others but with the ability to communicate with each other. Components are only "visible" when selecting a namespace or when adding the `--all-namespaces` flag to `kubectl` instead of allowing you to view just the components relevant to your project by selecting your namespace.
+Any number of namespaces are supported within a cluster, each logically separated from others but with the ability to communicate with each other. Components are only **visible** when selecting a namespace or when adding the `--all-namespaces` flag to `kubectl` instead of allowing you to view just the components relevant to your project by selecting your namespace.
 
 Most customers will want to install the Splunk OpenTelemetry Collector in a separate namespace.  This workshop will follow that practice.
 
