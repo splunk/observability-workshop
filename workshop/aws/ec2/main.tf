@@ -1,5 +1,4 @@
 provider "aws" {
-  #  profile = "default"
   region = var.aws_region
 }
 
@@ -25,7 +24,6 @@ resource "aws_vpc" "o11y-ws-vpc" {
     }
   )
 }
-
 
 # Create public subnets, each in a different AZ
 resource "aws_subnet" "o11y_ws_subnets" {
@@ -222,23 +220,4 @@ resource "aws_instance" "observability-instance" {
       error_message = "When requesting a pre-setup instance, splunk_realm, splunk_access_token and splunk_rum_token are required and cannot be null/empty"
     }
   }
-}
-
-#output "instance_details" {
-#  value = formatlist(
-#    "%s, %s, %s, %s",
-#    aws_instance.observability-instance[*].tags["Instance"],
-#    aws_instance.observability-instance.*.private_ip,
-#    aws_instance.observability-instance.*.public_ip,
-#    aws_instance.observability-instance[*].tags["Subnet"]
-#  )
-#}
-
-output "login_details" {
-  value = formatlist(
-    "%s, %s, %s",
-    aws_instance.observability-instance[*].tags["Instance"],
-    aws_instance.observability-instance.*.public_ip,
-    local.template_vars.instance_password
-  )
 }

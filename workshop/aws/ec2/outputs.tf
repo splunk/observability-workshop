@@ -13,3 +13,12 @@ output "instance_names" {
 output "instance_password" {
   value = random_string.password.result
 }
+
+output "login_details" {
+  value = formatlist(
+    "%s, %s, %s",
+    aws_instance.observability-instance[*].tags["Instance"],
+    aws_instance.observability-instance.*.public_ip,
+    local.template_vars.instance_password
+  )
+}
