@@ -22,7 +22,7 @@ These workshops are going to take you through the best-in-class observability pl
 You can [contribute](https://github.com/splunk/observability-workshop) to this documentation via issues and pull requests. Please don't hesitate to help to make the workshops better.
 {{% /notice %}}
 
-{{% notice title="Twitter" color="#1DA1F2" icon="fab fa-twitter" %}}
+{{% notice title="Twitter" color="#1da1f2" icon="fab fa-twitter" %}}
 You can find information about updates and interesting reads in the Twitter channel of [Splunk](https://twitter.com/splunk).
 {{% /notice %}}
 
