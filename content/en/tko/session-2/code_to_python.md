@@ -21,11 +21,15 @@ weight: 5
 
 Navigate to the review directory
 ``` bash
-/home/ubuntu/realtime_enrichment/flask_apps/review/review.py
+cd /home/ubuntu/realtime_enrichment/flask_apps/review/
 ```
 
 
 Inspect review.py (workshop/flask_apps_start/review)
+
+``` bash
+cat review.py
+```
 
 ``` python
 from flask import Flask, jsonify
