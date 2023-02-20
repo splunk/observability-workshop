@@ -90,7 +90,11 @@ python3 review.py
 
 Verify that the service is working
 
-- Use curl in your terminal
+- Open a new terminal and ssh into your ec2 instance. Then use the curl command in your terminal.
+``` bash 
+curl http://{Your_EC2_IP_address}:5000
+```
+
 - Or hit the URL `http://{Your_EC2_IP_address}:5000` and `http://{Your_EC2_IP_address}:5000/get_review` with a browser
 
 ``` bash
