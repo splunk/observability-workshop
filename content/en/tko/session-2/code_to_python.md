@@ -148,8 +148,14 @@ CMD [ "python", "review.py" ]
 Create a container image (locally)
 Run ‘docker build’ to build a local container image referencing the Dockerfile
 
+{{< tabs >}} {{% tab name="docker build" %}}
+
 ``` bash
-(venv)% docker build -f Dockerfile -t localhost:8000/review:0.01 .
+docker build -f Dockerfile -t localhost:8000/review:0.01 .
+```
+{{% /tab %}} {{% tab name="docker build Output" %}}
+
+``` text
 [+] Building 35.5s (11/11) FINISHED
  => [internal] load build definition from Dockerfile                              0.0s
          ...snip...
@@ -161,25 +167,43 @@ Run ‘docker build’ to build a local container image referencing the Dockerfi
  => => writing image sha256:61da27081372723363d0425e0ceb34bbad6e483e698c6fe439c5  0.0s
  => => naming to docker.io/localhost:8000/review:0.1                                   0.0
 ```
+{{% /tab %}}{{< /tabs >}}
 
 Push the container image into a container repository
 Run ‘docker push’ to place a copy of the REVIEW container to a remote location
 
+{{< tabs >}} {{% tab name="docker push" %}}
+
 ``` bash
 docker push localhost:8000/review:0.01
+```
+
+{{% /tab %}} {{% tab name="docker push Output" %}}
+
+``` text
 The push refers to repository [docker.io/localhost:8000/review]
 02c36dfb4867: Pushed
          ...snip...
 fd95118eade9: Pushed
 0.1: digest: sha256:3651f740abe5635af95d07acd6bcf814e4d025fcc1d9e4af9dee023a9b286f38 size: 2202
 ```
+{{% /tab %}}{{< /tabs >}}
+
 
 Verify that the image is in Docker Hub. The same info can be found in Docker Desktop
 
+{{< tabs >}} {{% tab name="get catalog" %}}
+
 ``` bash
 curl -s http://localhost:8000/v2/_catalog
+```
+
+{{% /tab %}} {{% tab name="get catalog Output" %}}
+
+``` text
 {"repositories":["review"]}
 ```
+{{% /tab %}}{{< /tabs >}}
 
 ## 3. Run REVIEW in Kubernetes
 
