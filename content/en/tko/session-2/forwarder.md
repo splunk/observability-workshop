@@ -123,11 +123,16 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
   
 ### 3. Run the install script
 
-We will run the install script now. You will see some Warnings at the end. This is totally normal. 
+We will run the install script now. You will see some Warnings at the end. This is totally normal. The script is built for use on remote machines, however for todays lab you will be using localhost.
 
 ``` bash
 ./install.sh
 ```
+
+You will be asked `Are you sure you want to continue connecting (yes/no/[fingerprint])? `
+Answer Yes.
+
+Enter your ssh password when prompted.
 
 ### 4. Verify installation of the Universal Forwarader
 
