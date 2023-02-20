@@ -21,11 +21,10 @@ weight: 5
 
 Navigate to the review directory
 ``` bash
-cd /home/ubuntu/realtime_enrichment/flask_apps_start/review/
+cd /home/ubuntu/realtime_enrichment/flask_apps/review/
 ```
 
-
-Inspect review.py (realtime_enrichment/flask_apps_start/review)
+Inspect review.py (realtime_enrichment/flask_apps/review)
 
 ``` bash
 cat review.py
