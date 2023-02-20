@@ -92,7 +92,7 @@ Verify that the service is working
 
 - Open a new terminal and ssh into your ec2 instance. Then use the curl command in your terminal.
 ``` bash 
-curl http://{Your_EC2_IP_address}:5000
+curl http://localhost:5000
 ```
 
 - Or hit the URL `http://{Your_EC2_IP_address}:5000` and `http://{Your_EC2_IP_address}:5000/get_review` with a browser
