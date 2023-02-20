@@ -297,7 +297,7 @@ Verify that the deployment and services are running:
 ``` bash
 kubectl get deployments
 ```
-{{% /tab %}}{{% tabe name="kubectl get deployments output" %}}
+{{% /tab %}}{{% tab name="kubectl get deployments output" %}}
 
 ``` text
 NAME                                                    READY   UP-TO-DATE   AVAILABLE   AGE
@@ -311,7 +311,7 @@ review                                                  1/1     1            1  
 kubectl get services
 ```
 
-{{% /tab %}}{{% tabe name="kubectl get services output" %}}
+{{% /tab %}}{{% tab name="kubectl get services output" %}}
 
 ``` text
 NAME                       TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                         AGE
@@ -327,7 +327,7 @@ review                     NodePort    10.43.175.21    <none>        5000:30000/
 curl localhost:30000
 ```
 
-{{% /tab %}}{{% tabe name="curl localhost Output" %}}
+{{% /tab %}}{{% tab name="curl localhost Output" %}}
 
 ``` text
 {
@@ -342,7 +342,7 @@ curl localhost:30000
 ``` bash
 curl localhost:30000/get_review
 ```
-{{% /tab %}}{{% tabe name="get review Output" %}}
+{{% /tab %}}{{% tab name="get review Output" %}}
 
 
 ``` text
