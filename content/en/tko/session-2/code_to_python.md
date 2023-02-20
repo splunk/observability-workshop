@@ -25,7 +25,7 @@ cd /home/ubuntu/realtime_enrichment/flask_apps/review/
 ```
 
 
-Inspect review.py (workshop/flask_apps_start/review)
+Inspect review.py (realtime_enrichment/flask_apps/review)
 
 ``` bash
 cat review.py
@@ -66,7 +66,7 @@ Flask==2.0.2
 Create a virtual environment and Install the necessary python packages
 
 ``` bash
-cd /home/ubuntu/realtime_enrichment/workshop/flask_apps_start/review/
+cd /home/ubuntu/realtime_enrichment/workshop/flask_apps/review/
 
 pip freeze #note output
 pip install -r requirements.txt
