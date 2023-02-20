@@ -84,4 +84,4 @@ kubectl get statefulset loadgen -n loadgen
 What impact did this have? Where in O11y can you see the increased replica number?
 {{% /notice %}}
 
-Let the load generator run for around 2-3 minutes and keep observing the metrics in the Kubernetes Navigator and the Apache dashboard.
+Let the load generator run for around 2-3 minutes and keep observing the metrics in the Kubernetes Navigator and the Apache Navigator.

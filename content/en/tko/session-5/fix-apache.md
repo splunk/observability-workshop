@@ -107,9 +107,13 @@ resources:
     memory: 12Mi
 ```
 
-Save the changes youhave made. (Hint: Use `Esc` followed by `:wq!` to save your changes).
+Save the changes you have made.
 
-Because the StatefulSet is immutable, we must delete the existing Pod and let the StatefulSet re-create it with the new changes.
+{{% notice title="Hint" style="info" icon="exclamation" %}}
+`kubectl edit` will open the contents in the `vi` editor, use `Esc` followed by `:wq!` to save your changes.
+{{% /notice %}}
+
+Because StatefulSets are immutable, we must delete the existing Pod and let the StatefulSet re-create it with the new changes.
 
 ``` bash
 kubectl delete pod php-apache-0 -n apache
