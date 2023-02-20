@@ -8,7 +8,7 @@ weight: 6
 
 Within the O11y Cloud UI:
 
-Data Setup -> Monitor Applications -> Python (traces) -> Add Integration
+Data Management -> Add Integration -> Monitor Applications -> Python (traces) -> Add Integration
 
 Provide the following to the Configure Integration Wizard:
 
@@ -104,11 +104,23 @@ Note that the only lines, in bold, added to the Dockerfile
 - Generate a new container image with docker build in the ‘finished’ directory
 - Notice that I have changed the repository name from `localhost:8000/review:0.01` to `localhost:8000/review-splkotel:0.01`
 
-  ```text
+
+
+Ensure you are in the correct directory.
+``` bash
   pwd
   ./workshop/flask_apps_finish/review
+  ```
+  
+{{< tabs >}}}
 
+{{% tab name="docker build" %}}
+  ``` bash
   docker build -f Dockerfile.review -t localhost:8000/review-splkotel:0.01 .
+  ```
+  {{% /tab %}}
+  {{% tab name="docker build Output" %}}
+  ``` text
   [+] Building 27.1s (12/12) FINISHED
   => [internal] load build definition from Dockerfile                                                        0.0s
   => => transferring dockerfile: 364B                                                                        0.0s
@@ -129,11 +141,21 @@ Note that the only lines, in bold, added to the Dockerfile
   => => writing image sha256:164977dd860a17743b8d68bcc50c691082bd3bfb352d1025dc3a54b15d5f4c4d                0.0s
   => => naming to docker.io/localhost:8000/review-splkotel:0.01                                              0.0s
   ```
+{{% /tab %}}{{< /tabs >}}
 
 - Push the image to Docker Hub with docker push command
 
-  ``` text
+{{< tabs >}}}
+
+{{% tab name="docker push" %}}
+  ``` bash
   docker push localhost:8000/review-splkotel:0.01
+  ```
+  
+  {{% /tab %}}
+  {{% tab name="docker push Output" %}}
+  
+  ``` text
   The push refers to repository [docker.io/localhost:8000/review-splkotel]
   682f0e550f2c: Pushed
   dd7dfa312442: Pushed
@@ -147,6 +169,7 @@ Note that the only lines, in bold, added to the Dockerfile
   fd95118eade9: Mounted from localhost:8000/review
   0.01: digest: sha256:3b251059724dbb510ea81424fc25ed03554221e09e90ef965438da33af718a45 size: 2412
   ```
+  {{% /tab %}}{{< /tabs >}}
   
 ## 3. Update the REVIEW deployment in Kubernetes
   
@@ -206,10 +229,12 @@ Note that the only lines, in bold, added to the Dockerfile
 
   - Notice that the review-* pod has been restarted
 
-  ``` text
-  kubectl apply -f review.deployment.yaml
+``` bash
+kubectl apply -f review.deployment.yaml
   deployment.apps/review configured
+```
 
+``` text
   kubectl get pods
   NAME                                                              READY   STATUS        RESTARTS   AGE
   kafka-client                                                      0/1     Unknown       0          155d
