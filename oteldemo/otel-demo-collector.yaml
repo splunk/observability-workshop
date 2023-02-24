@@ -1,0 +1,30 @@
+agent:
+  config:
+    exporters:
+      otlphttp:
+        traces_endpoint: "https://ingest.us1.signalfx.com/v2/trace/otlp"
+        compression: gzip
+        headers:
+          "X-SF-Token": "${SPLUNK_OBSERVABILITY_ACCESS_TOKEN}"
+      logging:
+        loglevel: debug
+    service:
+      pipelines:
+        traces:
+          exporters:
+          - sapm
+          - signalfx
+          - otlphttp
+          - logging
+          processors:
+          - memory_limiter
+          - k8sattributes
+          - batch
+          - resourcedetection
+          - resource
+          - resource/add_environment
+          receivers:
+          - otlp
+          - jaeger
+          - smartagent/signalfx-forwarder
+          - zipkin

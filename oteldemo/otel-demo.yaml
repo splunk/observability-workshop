@@ -1,0 +1,24 @@
+# Set the OTEL_COLLECTOR_NAME environment variable to the IP address of the node
+default:
+  envOverrides:
+    - name: OTEL_COLLECTOR_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
+
+# Configure the frontendProxy service to be of type LoadBalancer
+components:
+  frontendProxy:
+    service:
+      type: LoadBalancer
+
+# Disable the observability components incl. the collector
+observability:
+  otelcol:
+    enabled: false
+  jaeger:
+    enabled: false
+  prometheus:
+    enabled: false
+  grafana:
+    enabled: false
