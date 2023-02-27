@@ -9,7 +9,7 @@ isCJKLanguage: true
 
 ダッシュボードには、ダッシュボードの利用者を支援するための短い「説明」ペインを配置することがよくあります。
 
-ここでは、{{% labelbutton color="ui-button-blue" %}}New Text Note{{% /labelbutton %}} ボタンをクリックして、ノートを追加してみましょう。
+ここでは、{{% button style="blue" %}}New Text Note{{% /button %}} ボタンをクリックして、ノートを追加してみましょう。
 
 ![three charts](../../images/M-Notes-0.png)
 
@@ -83,7 +83,7 @@ Ordered
 
 ## 2. チャートの保存
 
-ノートチャートに名前を付けます。この例では、*Example text chart* としました。そして、{{< labelbutton  >}}Save And Close{{< /labelbutton >}} ボタンを押します。
+ノートチャートに名前を付けます。この例では、*Example text chart* としました。そして、{{% button %}}Save And Close{{% /button %}} ボタンを押します。
 
 ![saving note](../../images/M-Notes-2.png)
 

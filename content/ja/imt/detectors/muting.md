@@ -36,7 +36,7 @@ isCJKLanguage: true
 
 ![Confirm Rule](../../images//confirm-rule.png)
 
-{{% labelbutton color="ui-button-blue" %}}**Mute Indefinitely**{{% /labelbutton %}} をクリックして、設定を確定させます。
+{{% button style="blue" %}}**Mute Indefinitely**{{% /button %}} をクリックして、設定を確定させます。
 
 ![List muted rule](../../images/alert-muted.png)
 
@@ -52,7 +52,7 @@ isCJKLanguage: true
 
 ![Resume](../../images//muting-list.png)
 
-{{% labelbutton color="ui-button-blue" %}}**Resume**{{% /labelbutton %}} をクリックして、このディテクターの通知を確認し、再開します。
+{{% button style="blue" %}}**Resume**{{% /button %}} をクリックして、このディテクターの通知を確認し、再開します。
 
 ![Resume](../../images//resume.png)
 

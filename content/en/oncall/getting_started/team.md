@@ -41,7 +41,7 @@ These users are dummy accounts who will not receive notifications when they are 
 
 Add the users to your team, using either the above list or the alternate one provided to you. The value in the **Shift** column can be ignored for now, but will be required for a later step.
 
-Click {{% labelbutton color="vo-ui-button" %}}**Invite User**{{% /labelbutton %}} button on the right hand side, then either start typing the usernames (this will filter the list), or copy and paste them into the dialogue box. Once all users are added to the list click the **Add User** button.
+Click {{% button color="#00bce4" %}}Invite User{{% /button %}} button on the right hand side, then either start typing the usernames (this will filter the list), or copy and paste them into the dialogue box. Once all users are added to the list click the **Add User** button.
 
 ![Add Team Members](../../images/add-team-members.png)
 

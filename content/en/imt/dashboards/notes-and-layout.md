@@ -8,7 +8,7 @@ weight: 6
 
 Often on dashboards it makes sense to place a short "instruction" pane that helps users of a dashboard.
 
-Lets add one now by clicking on the {{% labelbutton color="ui-button-blue" %}}New Text Note{{% /labelbutton %}}
+Lets add one now by clicking on the {{% button style="blue" %}}New Text Note{{% /button %}}
  Button.
 
 ![three charts](../../images/M-Notes-0.png)
@@ -83,7 +83,7 @@ the preview will show you how it will look.
 
 ## 2. Saving our chart
 
-Give the Note chart a name, in our example we used *Example text chart*, then press the {{< labelbutton  >}}Save And Close{{< /labelbutton >}} Button.
+Give the Note chart a name, in our example we used *Example text chart*, then press the {{% button %}}Save And Close{{% /button %}} Button.
 
 ![saving note](../../images/M-Notes-2.png)
 

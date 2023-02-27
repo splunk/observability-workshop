@@ -12,7 +12,7 @@ Name the Chart **Latency History** and add a Chart Description if you wish.
 
 ![Save Chart 1](../../images/M-MoreCharts-1.png)
 
-Click on {{< labelbutton  >}}Save And Close{{< /labelbutton >}}. This returns you to your dashboard that now has two charts!
+Click on {{% button %}}Save And Close{{% /button %}}. This returns you to your dashboard that now has two charts!
 
 ![Save Chart 2](../../images/M-MoreCharts-2.png)
 Now let's quickly add another Chart based on the previous one.
@@ -43,7 +43,7 @@ First set the time for the chart to -1 hour in the Time box at the top right of 
 
 ![Set Visibility](../../images/M-MoreCharts-7.png)
 
-Click on the {{% labelbutton color="ui-button-blue" %}}Add Metric Or Event{{% /labelbutton %}} button. This will bring up the box for a new signal. Type and select `demo.trans.count` for Signal **D**.
+Click on the {{% button style="blue" %}}Add Metric Or Event{{% /button %}} button. This will bring up the box for a new signal. Type and select `demo.trans.count` for Signal **D**.
 
 ![Dashboard Info](../../images/M-MoreCharts-8.png)
 
@@ -51,7 +51,7 @@ This will add a new Signal **D** to your chart, It shows the number of active re
 
 ![rollup change](../../images/M-MoreCharts-9.png)
 
-Finally press the {{< labelbutton  >}}Save And Close{{< /labelbutton >}} button. This returns you to your dashboard that now has three different charts!
+Finally press the {{% button %}}Save And Close{{% /button %}} button. This returns you to your dashboard that now has three different charts!
 
 ![three charts](../../images/M-MoreCharts-10.png)
 

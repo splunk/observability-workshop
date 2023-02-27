@@ -21,7 +21,7 @@ Online BoutiqueがインストールされたEC2インスタンスにアクセ�
 
 これから行うデプロイメントは、RUM ワークショップセクションの一部としても使用されます。Splunk UIからRUM Access Tokenを取得する必要があります。ワークショップのアクセストークンは、左下の **>>** をクリックし ![settings](../images/setting.png) メニューをクリックして、 **Settings → Access Tokens** を選択すると見つけることができます。
 
-講師が使用するように指示したRUMワークショップトークン（例： **O11y-Workshop-RUM-TOKEN** ）を展開し、 **Show Token** をクリックしてトークンを公開します。 {{% labelbutton color="ui-button-grey" %}}Copy{{% /labelbutton %}} ボタンをクリックし、クリップボードにコピーしてください。 **Default** のトークンは使用しないでください。トークンのAuthorization ScopeがRUMであることを確認してください。
+講師が使用するように指示したRUMワークショップトークン（例： **O11y-Workshop-RUM-TOKEN** ）を展開し、 **Show Token** をクリックしてトークンを公開します。 {{% button style="grey" %}}Copy{{% /button %}} ボタンをクリックし、クリップボードにコピーしてください。 **Default** のトークンは使用しないでください。トークンのAuthorization ScopeがRUMであることを確認してください。
 
 ![Access Token](../images/RUM-Access-Token.png)
 
@@ -33,9 +33,11 @@ EC2にSSHアクセスしているシェルスクリプトで環境変数 `RUM_TO
 
 {{< tabs >}}
 {{% tab name="Export Variables" %}}
+
 ```bash
 export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -45,13 +47,17 @@ Online BoutiqueアプリケーションをK3sにデプロイするには、apm c
 
 {{< tabs >}}
 {{% tab name="Deploy Online Boutique" %}}
+
 ```bash
 cd ~/workshop/apm
 ./apm-config.sh -r
 kubectl apply -f deployment.yaml
 ```
+
 {{% /tab %}}
 {{% tab name="Deployment Output"  %}}
+
+``` text
 deployment.apps/checkoutservice created
 service/checkoutservice created
 deployment.apps/redis-cart created
@@ -77,6 +83,8 @@ deployment.apps/shippingservice created
 service/shippingservice created
 deployment.apps/currencyservice created
 service/currencyservice created
+```
+
 {{% /tab %}}
 {{< /tabs >}}
 

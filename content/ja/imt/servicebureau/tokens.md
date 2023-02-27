@@ -23,13 +23,13 @@ isCJKLanguage: true
 
 ## 2. 新しいトークンの作成
 
-{{% labelbutton color="ui-button-blue" %}}**New Token**{{% /labelbutton %}} ボタンをクリックして、新しいトークンを作成しましょう。**Name Your Access Token** ダイアログが表示されます。
+{{% button style="blue" %}}**New Token**{{% /button %}} ボタンをクリックして、新しいトークンを作成しましょう。**Name Your Access Token** ダイアログが表示されます。
 
 ここでは、**Ingest Token** と **API Token** の両方のチェックボックスにチェックを入れてください。
 
 ![Name Your token](../../images/new-access-token.png)
 
-{{% labelbutton color="ui-button-blue" %}}**OK**{{% /labelbutton %}} を押すと、**Access Token** のUIに戻ります。ここでは、既存のトークンの中に、あなたの新しいトークンが表示されているはずです。
+{{% button style="blue" %}}**OK**{{% /button %}} を押すと、**Access Token** のUIに戻ります。ここでは、既存のトークンの中に、あなたの新しいトークンが表示されているはずです。
 
 ![full tokenlist](../../images/access-token-created.png)
 
@@ -74,11 +74,11 @@ isCJKLanguage: true
 
 トークンリミットは、5分間の使用量がリミットの90％を超えたときに、1人または複数の受信者に通知するアラートのトリガーとして使用されます。
 
-受信者を指定するには、{{% labelbutton color="ui-button-blue" %}}**Add Recipient**{{% /labelbutton %}} をクリックして、使用する受信者または通知方法を選択します（受信者の指定は任意ですが、強くお勧めします）。
+受信者を指定するには、{{% button style="blue" %}}**Add Recipient**{{% /button %}} をクリックして、使用する受信者または通知方法を選択します（受信者の指定は任意ですが、強くお勧めします）。
 
 トークンアラートの重要度は常に「Critical」です。
 
-{{% labelbutton color="ui-button-blue" %}}**Update**{{% /labelbutton %}} をクリックすると、アクセストークンの制限とアラートの設定が保存されます。
+{{% button style="blue" %}}**Update**{{% /button %}} をクリックすると、アクセストークンの制限とアラートの設定が保存されます。
 
 {{% notice title="Note: トークンの上限を超えると、何が起こるのか" style="info" %}}
 トークンが使用カテゴリの上限に達したとき、または上限を超えたとき、その使用カテゴリの新しいメトリクスはObservability Cloudに保存されず、処理されません。これにより、チームが無制限にデータを送信することによる予期せぬコストが発生しないようになります。

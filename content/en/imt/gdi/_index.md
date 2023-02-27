@@ -16,7 +16,7 @@ weight: 2
 
 You will need to obtain your Access Token[^1] from the Splunk UI. You can find the workshop Access Token by clicking **>>** bottom left and then selecting **Settings → Access Tokens**.
 
-Expand the workshop token that your host has instructed you to use e.g. **O11y-Workshop-ACCESS**, then click on **Show Token** to expose your token. Click the {{% labelbutton color="ui-button-grey" %}}Copy{{% /labelbutton %}} button to copy to clipboard. Please do not use the **Default** token!
+Expand the workshop token that your host has instructed you to use e.g. **O11y-Workshop-ACCESS**, then click on **Show Token** to expose your token. Click the {{% button style="grey" %}}Copy{{% /button %}} button to copy to clipboard. Please do not use the **Default** token!
 
 ![Access Token](../images/access-token.png)
 

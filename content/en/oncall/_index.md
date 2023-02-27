@@ -32,7 +32,7 @@ If you have forgotten your password go to the <https://portal.victorops.com/memb
 
 ## 2. Activate your Splunk Infrastructure Monitoring Login
 
-You should have received an invitation to join the Splunk Infrastructure Monitoring - Observability Workshop.  If you have not already done so click the {{% labelbutton sfx-ui-button-black %}}**JOIN NOW**{{% /labelbutton %}} button and follow the prompts to set a password and activate your login.
+You should have received an invitation to join the Splunk Infrastructure Monitoring - Observability Workshop.  If you have not already done so click the {{% button  %}}**JOIN NOW**{{% /button %}} button and follow the prompts to set a password and activate your login.
 
 ## 3. Access your EC2 Instance
 
@@ -128,11 +128,10 @@ This will open a dialog box asking for the text to be pasted into the web termin
 
 Paste the text in the text box as show, then press **OK** to complete the copy and paste process.
 
-!!! note
-    Unlike regular SSH connection, the web browser has a 60 second time out, and you will be disconnected, and a **Connect** button will be shown in the center of the web terminal.
+{{% notice style="primary" %}}
+Unlike regular SSH connection, the web browser has a 60 second time out, and you will be disconnected, and a **Connect** button will be shown in the center of the web terminal.
 
-    Simply click the **Connect** button and you will be reconnected and will be able to continue.
-
- ![web reconnect](images/shellinabox-reconnect.png)
+Simply click the **Connect** button and you will be reconnected and will be able to continue.
+{{% /notice %}}
 
 At this point you are ready to [continue with the workshop](../../oncall/getting_started/user_profile) when instructed to do so by the instructor

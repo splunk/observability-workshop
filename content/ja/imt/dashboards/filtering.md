@@ -9,7 +9,7 @@ isCJKLanguage: true
 それでは、新しいチャートを作成し、ダッシュボードに保存してみましょう。
 
 UIの右上にある + アイコンを選択し、ドロップダウンから **Chart** を選択します。
-または、{{< labelbutton  >}}+ New Chart{{< /labelbutton >}} ボタンをクリックすると、新しいチャートが作成されます。
+または、{{% button %}}+ New Chart{{% /button %}} ボタンをクリックすると、新しいチャートが作成されます。
 
 ![Create new chart](../../images/M-Filter-0.png)
 
@@ -31,7 +31,7 @@ UIの右上にある + アイコンを選択し、ドロップダウンから **
 
 次に、**Paris** データセンターを選択して分析を行ってみましょう。そのためにはフィルタを使用します。
 
-**Plot Editor** タブに戻り、{{% labelbutton color="ui-button-blue" %}}Add Filter{{% /labelbutton %}} をクリックして、入力補助として選択肢が出てくるので、そこから **`demo_datacenter`** を選択し、**`Paris`** を選択します。
+**Plot Editor** タブに戻り、{{% button style="blue" %}}Add Filter{{% /button %}} をクリックして、入力補助として選択肢が出てくるので、そこから **`demo_datacenter`** を選択し、**`Paris`** を選択します。
 
 ![Filter](../../images/M-Filter-1.png)
 
@@ -81,7 +81,7 @@ UIの右上にある + アイコンを選択し、ドロップダウンから **
 
 ここでは、1日と7日の間のすべてのメトリック値の差をプロットしてみましょう。
 
-{{% labelbutton color="ui-button-blue" %}}Enter Formula{{% /labelbutton %}} をクリックして、**`A-B`** （AからBを引いた値）を入力し、**C** を除くすべてのシグナルを隠します（目アイコンの選択を解除します）。
+{{% button style="blue" %}}Enter Formula{{% /button %}} をクリックして、**`A-B`** （AからBを引いた値）を入力し、**C** を除くすべてのシグナルを隠します（目アイコンの選択を解除します）。
 
 ![Formulas](../../images/M-Filter-11.png)
 

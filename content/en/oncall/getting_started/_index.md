@@ -62,7 +62,7 @@ Click **Add a Step**
 * Every 5 minutes until we have reached you
 * Make a phone call to [your phone number]
 
-Click {{% labelbutton color="vo-ui-button" %}}**Save**{{% /labelbutton %}} to save the policy.
+Click {{% button color="#00bce4" %}}Save{{% /button %}} to save the policy.
 
 ![Step 3](../images/pri-page-step3.png)
 
@@ -95,7 +95,7 @@ Policy Name: Evening
 
 ![Evening](../images/evening.png)
 
-Click {{% labelbutton color="vo-ui-button" %}}**Save**{{% /labelbutton %}} to save the policy then add one more.
+Click {{% button color="#00bce4" %}}Save{{% /button %}} to save the policy then add one more.
 
 ### 5.2 Custom weekend policy
 
@@ -107,7 +107,7 @@ Policy Name: Weekend
   * Timezone
     * Between 9am and 7pm
 
-Click {{% labelbutton color="vo-ui-button" %}}**Save**{{% /labelbutton %}} to save the policy.
+Click {{% button color="#00bce4" %}}Save{{% /button %}} to save the policy.
 
 ![Weekends](../images/weekends.png)
 
@@ -118,4 +118,3 @@ The final option here is the setting for Recovery Notifications. These are typic
 Organizations will have different views on how profiles should be configured and will typically issue guidelines for paging policies and times between escalations etc.
 
 Please wait for the instructor before proceeding to the Teams module.
-

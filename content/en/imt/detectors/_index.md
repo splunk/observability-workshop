@@ -37,19 +37,19 @@ It's important that you add your initials in front of the proposed detector name
 It should be something like this: **XYZ's Latency Chart Detector**.
 {{% /notice %}}
 
-Click on {{% labelbutton color="ui-button-blue" %}}Create Alert Rule{{% /labelbutton %}}
+Click on {{% button style="blue" %}}Create Alert Rule{{% /button %}}
 
 ![Create Alert Rule](../images/create-alert-rule.png)
 
 In the Detector window, inside **Alert signal**, the Signal we will alert on is marked with a (blue) bell in the **Alert on** column. The bell indicates which Signal is being used to generate the alert.
 
-Click on {{% labelbutton color="ui-button-blue" %}}Proceed to Alert Condition{{% /labelbutton %}}
+Click on {{% button style="blue" %}}Proceed to Alert Condition{{% /button %}}
 
 ![Alert Signal](../images/alert-signal.png)
 
 ## 3. Setting Alert condition
 
-In **Alert condition**, click on **Static Threshold** and then on {{% labelbutton color="ui-button-blue" %}}Proceed to Alert Settings{{% /labelbutton %}}
+In **Alert condition**, click on **Static Threshold** and then on {{% button style="blue" %}}Proceed to Alert Settings{{% /button %}}
 
 ![Alert Condition](../images/alert-condition.png)
 
@@ -72,7 +72,7 @@ To read more about detector previewing, please visit this link
 [Preview detector alerts.](https://docs.splunk.com/Observability/alerts-detectors-notifications/preview-detector-alerts.html#nav-Preview-detector-alerts)
 {{% /notice %}}
 
-Click on {{% labelbutton color="ui-button-blue" %}}Proceed to Alert Message{{% /labelbutton %}}
+Click on {{% button style="blue" %}}Proceed to Alert Message{{% /button %}}
 
 ---
 
@@ -82,7 +82,7 @@ In **Alert message**, under **Severity** choose **Major**.
 
 ![Alert Message](../images/alert-message.png)
 
-Click on {{% labelbutton color="ui-button-blue" %}}Proceed to Alert Recipients{{% /labelbutton %}}
+Click on {{% button style="blue" %}}Proceed to Alert Recipients{{% /button %}}
 
 Click on **Add Recipient** and then on your email address displayed as the first option.
 
@@ -98,9 +98,9 @@ This is just one example of the many **Notification Services** the suite has ava
 
 ## 6. Alert Activation
 
-Click on {{% labelbutton color="ui-button-blue" %}}Proceed to Alert Activation{{% /labelbutton %}}
+Click on {{% button style="blue" %}}Proceed to Alert Activation{{% /button %}}
 
-In **Activate...** click on {{% labelbutton color="ui-button-blue" %}}Activate Alert Rule{{% /labelbutton %}}
+In **Activate...** click on {{% button style="blue" %}}Activate Alert Rule{{% /button %}}
 
 ![Activate Alert](../images/activate-alert.png)
 

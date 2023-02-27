@@ -21,23 +21,23 @@ APMワークショップでサービスをインストールしました。こ�
 
 まず、RUM Authorization スコープを持つ RUM_ACCESS_TOKEN を取得する必要があります。ワークショップのRUM Access Tokenは、 **settings** ![settings](../images/setting.png) メニューボタンをクリックし、 **Access Tokens** を選択することで見つけることができます。
 
-講師が使用するように指示したRUMワークショップトークン（例： **O11y-Workshop-RUM-TOKEN** ）を展開し、 **Show Token** をクリックしてトークンを表示します。 {{% labelbutton color="ui-button-grey" %}}Copy{{% /labelbutton %}} ボタンをクリックし、クリップボードにコピーしてください。 **Default** トークンは使用しないでください。トークンのAuthorization ScopeがRUMであることを確認してください。
+講師が使用するように指示したRUMワークショップトークン（例： **O11y-Workshop-RUM-TOKEN** ）を展開し、 **Show Token** をクリックしてトークンを表示します。 {{% button style="grey" %}}Copy{{% /button %}} ボタンをクリックし、クリップボードにコピーしてください。 **Default** トークンは使用しないでください。トークンのAuthorization ScopeがRUMであることを確認してください。
 
 ![Access Token](../images/RUM-Access-Token.png)
-
 
 {{% notice title="自分のトークンを作らないでください" style="warning" %}}
 このワークショップのために、皆さんが行う演習に適した設定をしたRUM Tokenを作成ししています。
 {{% /notice %}}
 
-
 進行中のシェルスクリプトで環境変数 `RUM_TOKEN` を作成し、デプロイメントをパーソナライズします。
 
 {{< tabs >}}
 {{% tab name="Export Variables" %}}
+
 ```bash
 export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -47,14 +47,18 @@ EC2インスタンスのkubernetes（K3s）にOnline Boutiqueのアプリケー�
 
 {{< tabs >}}
 {{% tab name="Deploy Online Boutique with RUM" %}}
+
 ```bash
 cd ~/workshop/apm
 kubectl delete -f deployment.yaml
 ./apm-config.sh -r
 kubectl apply -f deployment.yaml
 ```
+
 {{% /tab %}}
 {{% tab name="Partial Deployment Output"  %}}
+
+``` text
 ......
 Adding RUM_TOKEN to deployment
 deployment.apps/recommendationservice created
@@ -83,6 +87,8 @@ service/frontend-external created
 deployment.apps/emailservice created
 service/emailservice created
 deployment.apps/rum-loadgen-deployment created
+```
+
 {{% /tab %}}
 {{< /tabs >}}
 

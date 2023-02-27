@@ -12,16 +12,16 @@ To change the description click on **Spread of latency values across time.** and
 
 ![Save Chart](../../images/save-chart.png)
 
-Click the {{% labelbutton color="ui-button-blue" %}}Save As{{% /labelbutton %}} button. Make sure your chart has a name, it will use the name **Active Latency** the you defined in the previous step, but you can edit it here if needed.
+Click the {{% button style="blue" %}}Save As{{% /button %}} button. Make sure your chart has a name, it will use the name **Active Latency** the you defined in the previous step, but you can edit it here if needed.
 
-Press the {{% labelbutton color="ui-button-blue" %}}**Ok**{{% /labelbutton %}}
+Press the {{% button style="blue" %}}**Ok**{{% /button %}}
  button to continue.
 
 ![Name Chart](../../images/name-chart.png)
 
 ## 2. Creating a dashboard
 
-In the **Choose dashboard** dialog, we need to create a new dashboard, click on the {{% labelbutton color="ui-button-blue" %}}New Dashboard{{% /labelbutton %}}
+In the **Choose dashboard** dialog, we need to create a new dashboard, click on the {{% button style="blue" %}}New Dashboard{{% /button %}}
  button.
 
 ![Create Dashboard](../../images/create-dashboard.png)
@@ -34,14 +34,14 @@ Please replace **YOUR_NAME** with your own name, change the dashboard permission
 
 ![Name Dashboard](../../images/name-dashboard.png)
 
-You should see you own login information displayed, meaning you are now the only one who can edit this dashboard. Of course you have the option to add other users or teams from the drop box below that may edit your dashboard and charts, but for now make sure you change it back to *Everyone can Read or Write* to remove any restrictions and press the {{% labelbutton color="ui-button-blue" %}}Save{{% /labelbutton %}}
+You should see you own login information displayed, meaning you are now the only one who can edit this dashboard. Of course you have the option to add other users or teams from the drop box below that may edit your dashboard and charts, but for now make sure you change it back to *Everyone can Read or Write* to remove any restrictions and press the {{% button style="blue" %}}Save{{% /button %}}
  Button to continue.
 
 Your new dashboard is now available and selected so you can save your chart in your new dashboard.
 
 ![Choose Dashboard](../../images/choose-dashboard.png)
 
-Make sure you have your dashboard selected and press the {{% labelbutton color="ui-button-blue" %}}**Ok**{{% /labelbutton %}} button.
+Make sure you have your dashboard selected and press the {{% button style="blue" %}}**Ok**{{% /button %}} button.
 
 You will now be taken to your dashboard like below. You can see at the top left that your **YOUR_NAME-DASHBOARD** is part of a Dashboard Group **YOUR_NAME-Dashboard**. You can add other dashboards to this dashboard group.
 
@@ -57,7 +57,7 @@ This will bring you to your teams dashboard, We use the team ***Example Team*** 
 
 ![Team Dashboard](../../images/team-dashboard.png)
 
-Press the {{% labelbutton color="ui-button-blue" %}}**+**{{% /labelbutton %}} *Add Dashboard Group* button to add you dashboard to the team page.
+Press the {{% button style="blue" %}}**+**{{% /button %}} *Add Dashboard Group* button to add you dashboard to the team page.
 
 This will bring you to the **Select a dashboard group to link to this team** dialog.
 Type your name (that you used above) in the search box to find your Dashboard. Select it so its highlighted and click the **Ok** button to add your dashboard.

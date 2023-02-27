@@ -22,13 +22,13 @@ The **Usage Status** Column quickly shows if a token is above or below its assig
 
 ## 2. Creating a new token
 
-Let create a new token by clicking on  the {{% labelbutton color="ui-button-blue" %}}**New Token**{{% /labelbutton %}} button. This will provide you with the **Name Your Access Token** dialog.
+Let create a new token by clicking on  the {{% button style="blue" %}}**New Token**{{% /button %}} button. This will provide you with the **Name Your Access Token** dialog.
 
 Enter the new name of the new Token by using your Initials e.g. RWC-Token and make sure to tick both **Ingest Token** and **API Token** checkboxes!
 
 ![Name Your token](../../images/new-access-token.png)
 
-After you press {{% labelbutton color="ui-button-blue" %}}**OK**{{% /labelbutton %}} you will be taken back to the **Access Token** UI. Here your new token should be present, among the ones created by others.
+After you press {{% button style="blue" %}}**OK**{{% /button %}} you will be taken back to the **Access Token** UI. Here your new token should be present, among the ones created by others.
 
 ![full tokenlist](../../images/access-token-created.png)
 
@@ -73,11 +73,11 @@ For our lab use your own email address, and double check that you have the corre
 
 Token limits are used to trigger an alert that notify one or more recipients when the usage has been above 90% of the limit for 5 minutes.
 
-To specify the recipients, click {{% labelbutton color="ui-button-blue" %}}**Add Recipient**{{% /labelbutton %}}, then select the recipient or notification method you want to use (specifying recipients is optional but highly recommended).
+To specify the recipients, click {{% button style="blue" %}}**Add Recipient**{{% /button %}}, then select the recipient or notification method you want to use (specifying recipients is optional but highly recommended).
 
 The severity for token alerts is always Critical.
 
-Click on {{% labelbutton color="ui-button-blue" %}}**Update**{{% /labelbutton %}} to save your Access Tokens limits and The Alert Settings.
+Click on {{% button style="blue" %}}**Update**{{% /button %}} to save your Access Tokens limits and The Alert Settings.
 
 {{% notice title="Note: Going above token limit" style="info" %}}
 When a token is at or above its limit in a usage category, new metrics for that usage category will not be stored and processed by Observability Cloud. This will make sure you there  will be no unexpected cost due to a team sending in data without restriction.

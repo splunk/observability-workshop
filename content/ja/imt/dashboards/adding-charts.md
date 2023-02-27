@@ -15,7 +15,7 @@ isCJKLanguage: true
 
 ![Save Chart 1](../../images/M-MoreCharts-1.png)
 
-{{< labelbutton  >}}Save And Close{{< /labelbutton >}} をクリックします。これで、ダッシュボードに戻ると2つのチャートが表示されているはずです！
+{{% button %}}Save And Close{{% /button %}} をクリックします。これで、ダッシュボードに戻ると2つのチャートが表示されているはずです！
 
 ![Save Chart 2](../../images/M-MoreCharts-2.png)
 では、先ほどのチャートを元に、もう一つのチャートをさくっと追加してみましょう。
@@ -46,7 +46,7 @@ isCJKLanguage: true
 
 ![Set Visibility](../../images/M-MoreCharts-7.png)
 
-{{% labelbutton color="ui-button-blue" %}}Add Metric Or Event{{% /labelbutton %}} ボタンをクリックします。これにより、新しいシグナルのボックスが表示されます。シグナル **D** に `demo.trans.count` と入力・選択します。
+{{% button style="blue" %}}Add Metric Or Event{{% /button %}} ボタンをクリックします。これにより、新しいシグナルのボックスが表示されます。シグナル **D** に `demo.trans.count` と入力・選択します。
 
 ![Dashboard Info](../../images/M-MoreCharts-8.png)
 
@@ -54,7 +54,7 @@ isCJKLanguage: true
 
 ![rollup change](../../images/M-MoreCharts-9.png)
 
-最後に {{< labelbutton  >}}Save And Close{{< /labelbutton >}} ボタンを押します。これでダッシュボードに戻り、3つの異なるチャートが表示されます。
+最後に {{% button %}}Save And Close{{% /button %}} ボタンを押します。これでダッシュボードに戻り、3つの異なるチャートが表示されます。
 
 ![three charts](../../images/M-MoreCharts-10.png)
 

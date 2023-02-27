@@ -20,7 +20,7 @@ As part of the overall workshop you have installed services for the APM Workshop
 
 The first thing we need to do is obtain a RUM_ACCESS_TOKEN with a RUM Authorization scope.  You can find the workshop RUM Access Token by clicking on the **Settings Cog** menu button and then selecting **Access Tokens**.
 
-Expand the RUM workshop token that your host has instructed you to use e.g. **O11y-Workshop-RUM-TOKEN**, then click on **Show Token** to expose your token. Click the {{% labelbutton color="ui-button-grey" %}}Copy{{% /labelbutton %}} button to copy to clipboard. Please do not use the **Default** token! Make sure the token has RUM as its Authorization Scope.
+Expand the RUM workshop token that your host has instructed you to use e.g. **O11y-Workshop-RUM-TOKEN**, then click on **Show Token** to expose your token. Click the {{% button style="grey" %}}Copy{{% /button %}} button to copy to clipboard. Please do not use the **Default** token! Make sure the token has RUM as its Authorization Scope.
 
 ![Access Token](../images/RUM-Access-Token.png)
 

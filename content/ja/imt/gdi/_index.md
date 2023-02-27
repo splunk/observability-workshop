@@ -17,7 +17,7 @@ isCJKLanguage: true
 
 Kubernetes が起動したら、Splunk の UI から Access Token[^1] を取得する必要があります。Access Token は、左下にある **>>** を開き、 **Settings → Access Tokens** を選択すると表示されます。
 
-主催者が指示したワークショップトークン（例： **O11y-Workshop-ACCESS** 等）を開き、 **Show Token** をクリックしてトークンを公開します。{{% labelbutton color="ui-button-grey" %}}Copy{{% /labelbutton %}} ボタンをクリックし、クリップボードにコピーしてください。 **Default** のトークンは使用しないでください。
+主催者が指示したワークショップトークン（例： **O11y-Workshop-ACCESS** 等）を開き、 **Show Token** をクリックしてトークンを公開します。{{% button style="grey" %}}Copy{{% /button %}} ボタンをクリックし、クリップボードにコピーしてください。 **Default** のトークンは使用しないでください。
 
 ![Access Token](../images/access-token.png)
 

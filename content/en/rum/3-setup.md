@@ -19,7 +19,7 @@ If you have not got access to an EC2 instance with the Online Boutique installed
 
 As this Deployment we are about to do is also used as part of the RUM workshop section, you will need to obtain your RUM Access Token from the Splunk UI. You can find the workshop Access Token by clicking **>>** bottom left or the ![settings](../images/setting.png) menu option and then selecting **Settings → Access Tokens**.
 
-Expand the RUM workshop token that your host has instructed you to use e.g. **O11y-Workshop-RUM-TOKEN**, then click on **Show Token** to expose your token. Click the {{% labelbutton color="ui-button-grey" %}}Copy{{% /labelbutton %}} button to copy to clipboard. Please do not use the **Default** token! Make sure the token has RUM as its Authorization Scope.
+Expand the RUM workshop token that your host has instructed you to use e.g. **O11y-Workshop-RUM-TOKEN**, then click on **Show Token** to expose your token. Click the {{% button style="grey" %}}Copy{{% /button %}} button to copy to clipboard. Please do not use the **Default** token! Make sure the token has RUM as its Authorization Scope.
 
 ![Access Token](../images/RUM-Access-Token.png)
 
@@ -31,9 +31,11 @@ Create the `RUM_TOKEN` environment variable to use in the proceeding shell scrip
 
 {{< tabs >}}
 {{% tab name="Export Variables" %}}
+
 ```bash
 export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -43,13 +45,17 @@ To deploy the Online Boutique application into K3s, run the apm config script, t
 
 {{< tabs >}}
 {{% tab name="Deploy Online Boutique" %}}
+
 ```bash
 cd ~/workshop/apm
 ./apm-config.sh -r
 kubectl apply -f deployment.yaml
 ```
+
 {{% /tab %}}
 {{% tab name="Deployment Output"  %}}
+
+``` text
 deployment.apps/checkoutservice created
 service/checkoutservice created
 deployment.apps/redis-cart created
@@ -75,6 +81,8 @@ deployment.apps/shippingservice created
 service/shippingservice created
 deployment.apps/currencyservice created
 service/currencyservice created
+```
+
 {{% /tab %}}
 {{< /tabs >}}
 

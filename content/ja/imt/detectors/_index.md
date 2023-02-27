@@ -38,20 +38,19 @@ Splunk Observability Cloud では、ディテクター（検出器）、イベ�
 次のような名前にしてください: **XY's Latency Chart Detector**
 {{% /notice %}}
 
-{{% labelbutton color="ui-button-blue" %}}Create Alert Rule{{% /labelbutton %}} をクリックします。
+Click on {{% button style="blue" %}}Create Alert Rule{{% /button %}}
 
 ![Create Alert Rule](../images/create-alert-rule.png)
 
 Detector ウィンドウの **Alert signal** の中で、アラートするシグナルは **Alert on** 欄に青のベルが表示されています。このベルは、どのシグナルがアラートの生成に使用されているかを示しています。
 
-{{% labelbutton color="ui-button-blue" %}}Proceed to Alert Condition{{% /labelbutton %}} をクリックします。
+Click on {{% button style="blue" %}}Proceed to Alert Condition{{% /button %}}
 
 ![Alert Signal](../images/alert-signal.png)
 
-
 ## 3. アラート条件の設定
 
-**Alert condition** で、**Static Threshold** をクリックし、{{% labelbutton color="ui-button-blue" %}}Proceed to Alert Settings{{% /labelbutton %}} をクリックしてください。
+**Alert condition** で、**Static Threshold** をクリックし、{{% button style="blue" %}}Proceed to Alert Settings{{% /button %}} をクリックしてください。
 
 ![Alert Condition](../images/alert-condition.png)
 
@@ -72,8 +71,7 @@ Detector ウィンドウの **Alert signal** の中で、アラートするシ�
 [Preview detector alerts](https://docs.splunk.com/Observability/alerts-detectors-notifications/preview-detector-alerts.html#nav-Preview-detector-alerts)
 {{% /notice %}}
 
-{{% labelbutton color="ui-button-blue" %}}Proceed to Alert Message{{% /labelbutton %}} をクリックし、次に進みます。
-
+{{% button style="blue" %}}Proceed to Alert Message{{% /button %}} をクリックし、次に進みます。
 
 ## 5. アラートメッセージ
 
@@ -81,7 +79,7 @@ Detector ウィンドウの **Alert signal** の中で、アラートするシ�
 
 ![Alert Message](../images/alert-message.png)
 
-{{% labelbutton color="ui-button-blue" %}}Proceed to Alert Recipients{{% /labelbutton %}} をクリックします。
+{{% button style="blue" %}}Proceed to Alert Recipients{{% /button %}} をクリックします。
 
 **Add Recipient**（受信者の追加）をクリックし、最初の選択肢として表示されているメールアドレスをクリックします。
 
@@ -93,12 +91,11 @@ Detector ウィンドウの **Alert signal** の中で、アラートするシ�
 これは、予め用意されている多くの **Notification Services** の一例です。全てを確認するには、トップメニューの **Integrations** タブに移動し、**Notification Services** を参照してください。
 {{% /notice %}}
 
-
 ## 6. アラートの有効化
 
-{{% labelbutton color="ui-button-blue" %}}Proceed to Alert Activation{{% /labelbutton %}} をクリックします。
+{{% button style="blue" %}}Proceed to Alert Activation{{% /button %}} をクリックします。
 
-**Activivate...** で {{% labelbutton color="ui-button-blue" %}}Activate Alert Rule{{% /labelbutton %}} をクリックします。
+**Activivate...** で {{% button style="blue" %}}Activate Alert Rule{{% /button %}} をクリックします。
 
 ![Activate Alert](../images/activate-alert.png)
 
