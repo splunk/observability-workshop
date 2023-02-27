@@ -74,8 +74,8 @@ resource "local_file" "user_data" {
 
 resource "multipass_instance" "ubuntu" {
   name           = random_string.hostname.result
-  memory         = "8GiB"
-  disk           = "32GiB"
+  memory         = "8G"
+  disk           = "32G"
   cpus           = 4
   image          = "jammy"
   cloudinit_file = local_file.user_data.filename
