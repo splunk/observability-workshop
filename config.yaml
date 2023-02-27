@@ -29,7 +29,8 @@ markup:
     renderer:
       unsafe: true
   highlight:
-    style: tango
+    guessSyntax: false
+    noClasses: false
 outputs:
   home:
     - HTML

@@ -1,4 +1,6 @@
 
+@import "chroma-splunk-light.css";
+
 :root{
 
     --MAIN-TEXT-color:#323235; /* Color of text by default */
