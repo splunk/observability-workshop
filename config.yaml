@@ -5,7 +5,7 @@ title: Splunk Observability Cloud Workshops
 contentDir: content/en
 defaultContentLanguage: en
 defaultContentLanguageInSubdir: false
-enableMissingTranslationPlaceholders: true
+enableMissingTranslationPlaceholders: false
 enableRobotsTXT: true
 module:
   imports:
