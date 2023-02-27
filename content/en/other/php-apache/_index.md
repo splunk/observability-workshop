@@ -1,0 +1,16 @@
+---
+title: Monitoring Horizontal Pod Autoscaling in Kubernetes
+linkTitle: Horizonal Pod Autoscaling 
+weight: 2
+alwaysopen: false
+---
+
+{{% button icon="clock" %}}45 minutes{{% /button %}}
+
+This workshop will equip you with the basic understanding of monitoring Kubernetes using the Splunk OpenTelemetry Collector. During the workshop you will deploy PHP/Apache and a load generator.
+
+You will learn about OpenTelemetry Receivers, Kubernetes Namespaces, ReplicaSets, Kubernetes Horizontal Pod AutoScaling and how to monitor all this using the Splunk Observability Cloud. The main learnings from the workshop will be a better understanding of the Kubernetes Navigator (and Dashboards) in Splunk Observability Cloud as well as seeing Kubernetes metrics, events and Detectors.
+
+For this workshop Splunk has prepared an Ubuntu Linux instance in AWS/EC2 all pre-configured for you.
+
+To get access to the instance that you will be using in the workshop, please visit the URL provided by the workshop leader in the workshop Slack channel.
