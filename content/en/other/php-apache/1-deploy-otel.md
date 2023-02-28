@@ -38,7 +38,7 @@ Once its unset, you can refresh your page and reselect Kubernetes from the Infra
 
 ## 2. Connect to EC2 instance
 
-You will be able to connect to the workshop instance by using SSH from your Mac, Linux or Windows device. Open the link to the sheet provided in the **#tko-2023-o11y-session-5 channel** in Slack. This sheet contains the IP addresses and the password for the workshop instances. Please 
+You will be able to connect to the workshop instance by using SSH from your Mac, Linux or Windows device. Open the link to the sheet provided by your instructor. This sheet contains the IP addresses and the password for the workshop instances.
 
 To use SSH, open a terminal on your system and type `ssh ubuntu@x.x.x.x` (replacing x.x.x.x with the IP address assigned to you). The password for this workshop is also provided in the sheet.
 
