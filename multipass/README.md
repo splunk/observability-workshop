@@ -1,5 +1,7 @@
 # Launch a Multipass instance
 
+**NOTE:** Please disable any VPNs or proxies before running the commands below e.g. ZScaler, Cisco AnyConnect, etc. These tools can prevent the instance from being created properly.
+
 ## 1. Pre-requisites
 
 Install [Multipass](https://multipass.run/)[^1] and Terraform for your operating system. On a Mac you can also install via [Homebrew](https://brew.sh/) e.g.
