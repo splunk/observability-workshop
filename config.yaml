@@ -9,7 +9,7 @@ enableMissingTranslationPlaceholders: false
 enableRobotsTXT: true
 module:
   imports:
-    - path: github.com/McShelby/hugo-theme-relearn
+  - path: github.com/McShelby/hugo-theme-relearn
 theme:
   - github.com/McShelby/hugo-theme-relearn
 languages:
