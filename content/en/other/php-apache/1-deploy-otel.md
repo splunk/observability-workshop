@@ -50,7 +50,7 @@ Your workshop instance has been pre-configured with the correct `ACCESS_TOKEN` a
 
 Most of our customers will make use of some kind of private or public cloud service to run Kubernetes. They often choose to have only a few large Kubernetes clusters as it is easier to manage centrally.
 
-Namespaces are a way to organize these large Kubernetes clusters into virtual sub-clusters. This can be helpful when different teams or projects share a Kubernetes cluster as this will give them the easy ability to just see and work with their own stuff.
+Namespaces are a way to organize these large Kubernetes clusters into virtual sub-clusters. This can be helpful when different teams or projects share a Kubernetes cluster as this will give them the easy ability to just see and work with their ls -lown stuff.
 
 Any number of namespaces are supported within a cluster, each logically separated from others but with the ability to communicate with each other. Components are only **visible** when selecting a namespace or when adding the `--all-namespaces` flag to `kubectl` instead of allowing you to view just the components relevant to your project by selecting your namespace.
 
@@ -163,3 +163,5 @@ If you make an error installing the Splunk OpenTelemetry Collector you can start
 ``` sh
 helm delete splunk-otel-collector -n splunk
 ```
+
+{{% /notice %}}
