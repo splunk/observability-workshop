@@ -17,7 +17,9 @@ Splunk Observability Cloud offers wizards to walk you through the setup of the C
 
 ## 2. Configure environment variables
 
-If you have already completed the **Splunk IM** workshop you can take advantage of the existing environment variables. Otherwise, create the `ACCESS_TOKEN` and `REALM` environment variables to use in the proceeding OpenTelemetry Collector install command. For instance, if your realm is `us1`, you would type `export REALM=us1` and for `eu0` type `export REALM=eu0` etc.
+If you have already completed the **Splunk IM** workshop you can take advantage of the existing environment variables. Otherwise, create the `ACCESS_TOKEN` and `REALM` environment variables to use in the proceeding OpenTelemetry Collector install command.
+
+For instance, if your realm is `us1`, you would type `export REALM=us1` and for `eu0` type `export REALM=eu0` etc.
 
 {{< tabs >}}
 {{% tab name="Export ACCESS TOKEN" %}}
@@ -57,6 +59,21 @@ curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-co
 sudo sh /tmp/splunk-otel-collector.sh --with-instrumentation --deployment-environment $(hostname)-petclinic --realm $REALM -- $ACCESS_TOKEN
 ```
 
-This command will download and setup the OpenTelemetry Collector. Once the install is completed, you can navigate to the Infrastructure page to see the data from your host, **Infrastructure → My Data Center → Hosts**.
+{{% notice style="info" title="AWS/EC2 instances" %}}
+If you are attempting this workshop on an AWS/EC2 instance you will have to patch the collector to expose the hostname of the instance:
 
-Click {{% button style="default" %}}Add Filter{{% /button %}} select `host.name` and type or select the hostname of your virtual machine. Once you see data flowing for your host, we are then ready to get started with the APM component.
+``` bash
+sudo sed -i 's/gcp, ecs, ec2, azure, system/system, gcp, ecs, ec2, azure/g' /etc/otel/collector/agent_config.yaml
+```
+
+Once the `agent_config.yaml` has been patched, you will need to restart the collector:
+
+``` bash
+sudo systemctl restart splunk-otel-collector
+```
+
+{{% /notice %}}
+
+Once the install is completed, you can navigate to the **Hosts with agent installed** dashboard to see the data from your host, **Dashboards → Hosts with agent installed**.
+
+Use the dashboard filter and select `host.name` and type or select the hostname of your virtual machine. Once you see data flowing for your host, we are then ready to get started with the APM component.
