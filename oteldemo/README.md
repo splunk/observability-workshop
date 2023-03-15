@@ -32,9 +32,9 @@ agent:
           - resource/add_environment
           receivers:
           - otlp
-          - jaeger
-          - smartagent/signalfx-forwarder
-          - zipkin
+          #- jaeger
+          #- smartagent/signalfx-forwarder
+          #- zipkin
 ```
 
 Using a standard workshop instance install Splunk Otel Collector
