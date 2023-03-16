@@ -52,6 +52,13 @@ helm install splunk-otel-collector \
 --set="logsEngine=otel" \
 --set="splunkObservability.profilingEnabled=true" \
 --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
+--set="networkExplorer.enabled=true" \
+--set="networkExplorer.podSecurityPolicy.enabled=false" \
+--set="agent.enabled=true" \
+--set="gateway.replicaCount=1" \
+--set="gateway.resources.limits.cpu=500m" \
+--set="gateway.resources.limits.memory=1Gi" \
+--set="clusterReceiver.enabled=true" \
 --set="environment=$(hostname)-apm-env" \
 splunk-otel-collector-chart/splunk-otel-collector \
 -f otel-demo-collector.yaml
