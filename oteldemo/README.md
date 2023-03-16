@@ -8,7 +8,7 @@
 - DB Query Performance (Redis only)
 - Logs (using OTel Log Engine)
 - Synthetics (no Synthetics to APM due to no `Server-Timing` header support in upstream)
-- Redis Dashboard (coming soon!)
+- Redis Dashboard
 - Kafka Dashboard (coming soon!)
 
 ## Missing features
@@ -26,6 +26,13 @@ Edit the `otel-demo-collector.yaml` and set the REALM.
 ``` yaml
 agent:
   config:
+    receivers:
+      receiver_creator:
+        receivers:
+          smartagent/redis:
+            rule: type == "port" && pod.name matches "redis" && port == 6379
+            config:
+              type: collectd/redis
     exporters:
       otlphttp:
         traces_endpoint: "https://ingest.{REALM}.signalfx.com/v2/trace/otlp"
@@ -101,6 +108,31 @@ components:
   frontendProxy:
     service:
       type: LoadBalancer
+  kafka:
+    enabled: true
+    useDefault:
+      env: true
+    ports:
+      - name: plaintext
+        value: 9092
+      - name: controller
+        value: 9093
+    env:
+      - name: KAFKA_ADVERTISED_LISTENERS
+        value: 'PLAINTEXT://{{ include "otel-demo.name" . }}-kafka:9092'
+      - name: OTEL_EXPORTER_OTLP_ENDPOINT
+        value: http://$(OTEL_COLLECTOR_NAME):4317
+      - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
+        value: cumulative
+      - name: KAFKA_HEAP_OPTS
+        value: "-Xmx400M -Xms400M"
+    resources:
+      limits:
+        memory: 750Mi
+    securityContext:
+      runAsUser: 1000  # appuser
+      runAsGroup: 1000
+      runAsNonRoot: true
 
 # Disable the observability components incl. the collector
 observability:
