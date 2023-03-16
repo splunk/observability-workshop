@@ -1,4 +1,23 @@
-# OTel Demo Instructions
+# OpenTelemetry Astronomy Shop Demo Instructions
+
+## Features available
+
+- IM (Kubernetes)
+- APM
+- Network Explorer
+- DB Query Performance (Redis only)
+- Logs (using OTel Log Engine)
+- Synthetics (no Synthetics to APM due to no `Server-Timing` header support in upstream)
+- Redis Dashboard (coming soon!)
+- Kafka Dashboard (coming soon!)
+
+## Missing features
+
+- Code Profiling
+- DB Query Performance (PostgreSQL)
+- RUM
+
+## Configuration and installation
 
 Edit the `otel-demo-collector.yaml` and set the REALM.
 
@@ -104,5 +123,3 @@ helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm
 ``` text
 helm install my-otel-demo open-telemetry/opentelemetry-demo --values otel-demo.yaml
 ```
-
-**NOTE:** There is no profiling, DB Query Performance or RUM support
