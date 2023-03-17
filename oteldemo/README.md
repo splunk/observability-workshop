@@ -76,7 +76,6 @@ agent:
         metrics:
           exporters:
           - signalfx
-          - logging
           processors:
           - memory_limiter
           - batch
@@ -91,7 +90,6 @@ agent:
         traces:
           exporters:
           - otlphttp
-          - logging
           processors:
           - memory_limiter
           - k8sattributes
