@@ -16,6 +16,12 @@ variable "splunk_jdk" {
   default     = false
 }
 
+variable "otel_demo" {
+  description = "Spin up the OpenTelemetry Telescope shop demo? (true/false)"
+  type        = bool
+  default     = false
+}
+
 variable "aws_instance_count" {
   description = "Instance Count (Usually 1)"
   nullable    = false
