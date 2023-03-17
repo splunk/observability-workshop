@@ -52,6 +52,15 @@ agent:
               type: collectd/kafka
               endpoint: '`endpoint`:5555'
               clusterName: otel-kafka
+          smartagent/postgres:
+            rule: type == "pod" && name matches "ffspostgres"
+            config:
+              type: collectd/postgresql
+              endpoint: '`endpoint`:5432'
+              username: "ffs"
+              password: "ffs"
+              databases:
+              - name : "ffs"
     exporters:
       otlphttp:
         traces_endpoint: "https://ingest.{REALM}.signalfx.com/v2/trace/otlp"
@@ -71,7 +80,6 @@ agent:
           - batch
           - resourcedetection
           - resource
-          - metricstransform
           receivers:
           - hostmetrics
           - kubeletstats
