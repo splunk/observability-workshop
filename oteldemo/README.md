@@ -30,9 +30,28 @@ agent:
       receiver_creator:
         receivers:
           smartagent/redis:
-            rule: type == "port" && pod.name matches "redis" && port == 6379
+            rule: type == "pod" && name matches "redis"
             config:
               type: collectd/redis
+              endpoint: '`endpoint`:6379'
+          smartagent/kafka:
+            rule: type == "pod" && name matches "kafka"
+            config:
+              type: collectd/kafka
+              endpoint: '`endpoint`:5555'
+              clusterName: otel-kafka
+          smartagent/kafka_consumer:
+            rule: type == "pod" && name matches "kafka"
+            config:
+              type: collectd/kafka
+              endpoint: '`endpoint`:5555'
+              clusterName: otel-kafka
+          smartagent/kafka_producer:
+            rule: type == "pod" && name matches "kafka"
+            config:
+              type: collectd/kafka
+              endpoint: '`endpoint`:5555'
+              clusterName: otel-kafka
     exporters:
       otlphttp:
         traces_endpoint: "https://ingest.{REALM}.signalfx.com/v2/trace/otlp"
@@ -43,10 +62,24 @@ agent:
         loglevel: info
     service:
       pipelines:
+        metrics:
+          exporters:
+          - signalfx
+          - logging
+          processors:
+          - memory_limiter
+          - batch
+          - resourcedetection
+          - resource
+          - metricstransform
+          receivers:
+          - hostmetrics
+          - kubeletstats
+          - otlp
+          - receiver_creator
+          - signalfx
         traces:
           exporters:
-          #- sapm
-          #- signalfx
           - otlphttp
           - logging
           processors:
@@ -58,9 +91,6 @@ agent:
           - resource/add_environment
           receivers:
           - otlp
-          #- jaeger
-          #- smartagent/signalfx-forwarder
-          #- zipkin
 ```
 
 Using a standard workshop instance install Splunk Otel Collector
@@ -126,6 +156,8 @@ components:
         value: cumulative
       - name: KAFKA_HEAP_OPTS
         value: "-Xmx400M -Xms400M"
+      - name: KAFKA_OPTS
+        value: "-javaagent:/tmp/opentelemetry-javaagent.jar -Dotel.jmx.target.system=kafka-broker -Dcom.sun.management.jmxremote.port=5555"        
     resources:
       limits:
         memory: 750Mi
