@@ -47,13 +47,13 @@ agent:
           smartagent/kafka_consumer:
             rule: type == "pod" && name matches "kafka"
             config:
-              type: collectd/kafka
+              type: collectd/kafka_consumer
               endpoint: '`endpoint`:5555'
               clusterName: otel-kafka
           smartagent/kafka_producer:
             rule: type == "pod" && name matches "kafka"
             config:
-              type: collectd/kafka
+              type: collectd/kafka_producer
               endpoint: '`endpoint`:5555'
               clusterName: otel-kafka
           smartagent/postgres:
