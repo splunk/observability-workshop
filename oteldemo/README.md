@@ -9,7 +9,7 @@
 - Logs (using OTel Log Engine)
 - Synthetics (no Synthetics to APM due to no `Server-Timing` header support in upstream)
 - Redis Dashboard
-- Kafka Dashboard (Kafka metrics are flowing, need custom dashboard)
+- Kafka Dashboard
 
 ## Missing features
 
