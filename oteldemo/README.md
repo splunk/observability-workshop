@@ -2,15 +2,15 @@
 
 ## Features available
 
-- IM (Kubernetes)
+- Kubernetes Navigator
 - APM
 - Network Explorer
 - DB Query Performance (Redis only)
-- Logs (using OTel Log Engine)
+- Logs (using OTel Log Engine via Log Observer)
 - Synthetics (no Synthetics to APM due to no `Server-Timing` header support in upstream)
 - Redis Dashboard
-- Kafka Dashboard
-- PostgreSQL Dashboard
+- Kafka Dashboard (Partial)
+- PostgreSQL Dashboard (Partial)
 
 ## Missing features
 
@@ -18,9 +18,12 @@
 - DB Query Performance (PostgreSQL)
 - RUM
 
-## Configuration and installation
+## Splunk OpenTelemety Collector Configuration
 
-Edit the `otel-demo-collector.yaml` and set the REALM.
+The following configuration can be applied to a standard O11y workshop instance (EC2 or multipass).
+
+
+Create `otel-demo-collector.yaml` and change the `{REALM}` accordingly for the `traces_endpoint`.
 
 **otel-demo-collector.yaml**
 
@@ -102,7 +105,7 @@ agent:
           - otlp
 ```
 
-Using a standard workshop instance install Splunk Otel Collector
+### Deploy the OTel Collector via Helm chart
 
 ``` bash
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update
@@ -129,7 +132,14 @@ splunk-otel-collector-chart/splunk-otel-collector \
 -f otel-demo-collector.yaml
 ```
 
-Customise the OTel Demo deployment to not use Grafana, Jaeger, Prometheus and OTel Collector. Also, have the traces sent to the Splunk OTel Collector.
+## OpenTelemetry Astronomy Shop configuration
+
+Create `otel-demo.yaml`, this will be applied to the Helm chart and changes the default behaviour of a default install:
+
+- Set `OTEL_COLLECTOR_NAME` to the host IP Address for Metrics, Traces and Logs
+- Configure a load balencer for the `frontendProxy`
+- Customise Kafka configuration to expose metrics via JMX on port 5555
+- Disable native OTel Collector, Jaeger, Prometheus & Grafana
 
 **otel-demo.yaml**
 
@@ -187,7 +197,7 @@ observability:
     enabled: false
 ```
 
-Deploy the OTel Demo
+### Deploy the OpenTelemetry Astronomy Shopo
 
 ``` text
 helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
