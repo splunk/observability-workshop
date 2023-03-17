@@ -10,6 +10,7 @@
 - Synthetics (no Synthetics to APM due to no `Server-Timing` header support in upstream)
 - Redis Dashboard
 - Kafka Dashboard
+- PostgreSQL Dashboard
 
 ## Missing features
 
