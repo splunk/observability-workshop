@@ -202,3 +202,15 @@ helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm
 ``` text
 helm install my-otel-demo open-telemetry/opentelemetry-demo --values otel-demo.yaml
 ```
+
+## OpenTelemetry Receivers
+
+**Redis**
+
+``` yaml
+          redis:
+            rule: type == "pod" && name matches "redis"
+            config:
+              endpoint: '`endpoint`:6379'
+```
+
