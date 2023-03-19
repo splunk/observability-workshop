@@ -5,7 +5,7 @@
 - Kubernetes Navigator
 - APM
 - Network Explorer
-- DB Query Performance (Redis only)
+- DB Query Performance (Redis & PostgreSQL)
 - Logs (using OTel Log Engine via Log Observer)
 - Synthetics (no Synthetics to APM due to no `Server-Timing` header support in upstream)
 - Redis Dashboard
@@ -15,7 +15,6 @@
 ## Missing features
 
 - Code Profiling
-- DB Query Performance (PostgreSQL)
 - RUM
 
 ## Splunk OpenTelemety Collector Configuration
@@ -63,6 +62,16 @@ agent:
               password: "ffs"
               databases:
               - name : "ffs"
+    processors:
+      attributes/postgres:
+        include:
+          match_type: strict
+          services:
+            - featureflagservice
+        actions:
+          - key: db.type
+            value: postgres
+            action: upsert              
     exporters:
       otlphttp:
         traces_endpoint: "https://ingest.{REALM}.signalfx.com/v2/trace/otlp"
@@ -97,6 +106,7 @@ agent:
           - resourcedetection
           - resource
           - resource/add_environment
+          - attributes/postgres
           receivers:
           - otlp
 ```
