@@ -32,7 +32,7 @@ system_info:
     groups: [docker]
 
 write_files:
-  - path: /etc/skel/.profile
+  - path: /etc/skel/.profile  
     append: true
     content: |
 
@@ -88,8 +88,8 @@ write_files:
 %{ if otel_demo == true ~}
       export RUM_TOKEN=${rum_token}
       mkdir otel-demo && cd otel-demo
-      curl -o otel-demo-collector.yaml https://raw.githubusercontent.com/splunk/observability-workshop/main/oteldemo/otel-demo-collector.yaml
-      curl -o otel-demo.yaml https://raw.githubusercontent.com/splunk/observability-workshop/main/oteldemo/otel-demo.yaml
+      curl -s -OL https://raw.githubusercontent.com/splunk/observability-workshop/main/oteldemo/otel-demo-collector.yaml
+      curl -s -OL https://raw.githubusercontent.com/splunk/observability-workshop/main/oteldemo/otel-demo.yaml
       if [ ! -f ~/.helmok ]; then
         helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
         helm repo update
@@ -99,7 +99,7 @@ write_files:
         cd /home/ubuntu
       fi
 %{ endif ~}
-
+W
 
       export KUBECONFIG=/home/ubuntu/.kube/config
       alias kc='kubectl'
