@@ -26,6 +26,8 @@ Create `otel-demo-collector.yaml`.
 
 **otel-demo-collector.yaml**
 
+https://github.com/splunk/observability-workshop/blob/f5521963d9c4bb4a63745013f133c23db1b8ae2a/oteldemo/otel-demo-collector.yaml#L1-L82
+
 ``` yaml
 agent:
   config:
