@@ -99,7 +99,6 @@ write_files:
         cd /home/ubuntu
       fi
 %{ endif ~}
-W
 
       export KUBECONFIG=/home/ubuntu/.kube/config
       alias kc='kubectl'
