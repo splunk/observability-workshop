@@ -66,59 +66,7 @@ Create `otel-demo.yaml`, this will be applied to the Helm chart and changes the 
 
 **otel-demo.yaml**
 
-``` yaml
-# Set the OTEL_COLLECTOR_NAME environment variable to the IP address of the node
-default:
-  envOverrides:
-    - name: OTEL_COLLECTOR_NAME
-      valueFrom:
-        fieldRef:
-          fieldPath: status.hostIP
-
-# Configure the frontendProxy service to be of type LoadBalancer
-components:
-  frontendProxy:
-    service:
-      type: LoadBalancer
-  kafka:
-    enabled: true
-    useDefault:
-      env: true
-    ports:
-      - name: plaintext
-        value: 9092
-      - name: controller
-        value: 9093
-    env:
-      - name: KAFKA_ADVERTISED_LISTENERS
-        value: 'PLAINTEXT://{{ include "otel-demo.name" . }}-kafka:9092'
-      - name: OTEL_EXPORTER_OTLP_ENDPOINT
-        value: http://$(OTEL_COLLECTOR_NAME):4317
-      - name: OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE
-        value: cumulative
-      - name: KAFKA_HEAP_OPTS
-        value: "-Xmx400M -Xms400M"
-      - name: KAFKA_OPTS
-        value: "-javaagent:/tmp/opentelemetry-javaagent.jar -Dotel.jmx.target.system=kafka-broker -Dcom.sun.management.jmxremote.port=5555"        
-    resources:
-      limits:
-        memory: 750Mi
-    securityContext:
-      runAsUser: 1000  # appuser
-      runAsGroup: 1000
-      runAsNonRoot: true
-
-# Disable the observability components incl. the collector
-observability:
-  otelcol:
-    enabled: false
-  jaeger:
-    enabled: false
-  prometheus:
-    enabled: false
-  grafana:
-    enabled: false
-```
+https://github.com/splunk/observability-workshop/blob/a1e291e5d511a85c71f7d795945aea22059668d7/oteldemo/otel-demo.yaml#L1-L51
 
 ### Deploy the OpenTelemetry Astronomy Shopo
 
