@@ -1,3 +1,4 @@
+``` yaml
 agent:
   config:
     receivers:
