@@ -143,7 +143,7 @@ splunk-otel-collector-chart/splunk-otel-collector \
 Create `otel-demo.yaml`, this will be applied to the Helm chart and changes the default behaviour of a default install:
 
 - Set `OTEL_COLLECTOR_NAME` to the host IP Address for Metrics, Traces and Logs
-- Configure a load balencer for the `frontendProxy`
+- Configure a load balancer for the `frontendProxy` server
 - Customise Kafka configuration to expose metrics via JMX on port 5555
 - Disable native OTel Collector, Jaeger, Prometheus & Grafana
 
@@ -215,12 +215,14 @@ helm install my-otel-demo open-telemetry/opentelemetry-demo --values otel-demo.y
 
 ## OpenTelemetry Receivers
 
-**Redis**
+**OpenTelemetry Redis receiver configuration**
+
+At the time of writing there are no OOTB dashboards for OpenTelemetry receivers. You can still use these receivers and build out custom dashboards using the existing SmartAgent OOTB dashboards as templates. You can import `dashboard_REDIS INSTANCES (OTEL).json` as an example.
 
 ``` yaml
-          redis:
-            rule: type == "pod" && name matches "redis"
-            config:
-              endpoint: '`endpoint`:6379'
+redis:
+  rule: type == "pod" && name matches "redis"
+  config:
+    endpoint: '`endpoint`:6379'
 ```
 
