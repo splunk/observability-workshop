@@ -22,7 +22,7 @@
 The following configuration can be applied to a standard O11y workshop instance (EC2 or multipass).
 
 
-Create `otel-demo-collector.yaml` and change the `{REALM}` accordingly for the `traces_endpoint`.
+Create `otel-demo-collector.yaml`.
 
 **otel-demo-collector.yaml**
 
@@ -74,7 +74,7 @@ agent:
             action: upsert              
     exporters:
       otlphttp:
-        traces_endpoint: "https://ingest.{REALM}.signalfx.com/v2/trace/otlp"
+        traces_endpoint: "https://ingest.${REALM}.signalfx.com/v2/trace/otlp"
         compression: gzip
         headers:
           "X-SF-Token": "${SPLUNK_OBSERVABILITY_ACCESS_TOKEN}"
