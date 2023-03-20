@@ -65,7 +65,7 @@ Create `otel-demo.yaml`, this will be applied to the Helm chart and changes the 
 
 https://github.com/splunk/observability-workshop/blob/a1e291e5d511a85c71f7d795945aea22059668d7/oteldemo/otel-demo.yaml#L1-L51
 
-### Deploy the OpenTelemetry Astronomy Shopo
+### Deploy the OpenTelemetry Astronomy Shop
 
 ``` text
 helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
