@@ -17,7 +17,7 @@ variable "splunk_jdk" {
 }
 
 variable "otel_demo" {
-  description = "Spin up the OpenTelemetry Telescope shop demo? (true/false)"
+  description = "Spin up the OpenTelemetry Astronomy Shop Demo? (true/false)"
   type        = bool
   default     = false
 }
