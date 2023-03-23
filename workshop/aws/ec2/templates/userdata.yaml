@@ -99,7 +99,7 @@ write_files:
       if [ ! -f ~/.helmok ]; then
         helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
         helm repo update
-        helm install splunk-otel-collector \
+        REALM=$REALM envsubst < ~/workshop/oteldemo/otel-demo-collector.yaml | helm install splunk-otel-collector \
         --set="splunkObservability.realm=$REALM" \
         --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
         --set="clusterName=$INSTANCE-k3s-cluster" \
@@ -116,7 +116,7 @@ write_files:
         --set="clusterReceiver.enabled=true" \
         --set="environment=$INSTANCE-apm-env" \
         splunk-otel-collector-chart/splunk-otel-collector \
-        -f ~/workshop/oteldemo/otel-demo-collector.yaml
+        -f -
         helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
         helm install my-otel-demo open-telemetry/opentelemetry-demo --values ~/workshop/oteldemo/otel-demo.yaml
         echo $INSTANCE > ~/.helmok
