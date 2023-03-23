@@ -32,7 +32,7 @@ system_info:
     groups: [docker]
 
 write_files:
-  - path: /etc/skel/.profile  
+  - path: /etc/skel/.profile
     append: true
     content: |
 
