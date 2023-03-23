@@ -48,7 +48,7 @@ agent:
         traces_endpoint: "https://ingest.${REALM}.signalfx.com/v2/trace/otlp"
         compression: gzip
         headers:
-          "X-SF-Token": "${ACCESS_TOKEN}"
+          "X-SF-Token": "${SPLUNK_OBSERVABILITY_ACCESS_TOKEN}"
       logging:
         loglevel: info
     service:
