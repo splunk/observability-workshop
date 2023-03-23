@@ -183,7 +183,7 @@ locals {
     realm             = var.splunk_realm
     presetup          = var.splunk_presetup
     jdk               = var.splunk_jdk
-    otel_demo          = var.otel_demo
+    otel_demo         = var.otel_demo
     instance_password = random_string.password.result
   }
 }
