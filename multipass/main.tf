@@ -39,6 +39,12 @@ variable "splunk_jdk" {
   default     = false
 }
 
+variable "otel_demo" {
+  description = "Spin up the OpenTelemetry Astronomy Shop Demo? (true/false)"
+  type        = bool
+  default     = false
+}
+
 variable "instance_password" {
   default = ""
 }
@@ -58,6 +64,7 @@ locals {
     realm             = var.splunk_realm
     presetup          = var.splunk_presetup
     jdk               = var.splunk_jdk
+    otel_demo         = var.otel_demo
     instance_name     = "${random_string.hostname.result}"
     instance_password = var.instance_password
   }
