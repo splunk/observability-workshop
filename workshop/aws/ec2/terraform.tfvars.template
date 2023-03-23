@@ -11,3 +11,4 @@ splunk_realm = ""
 # optional
 splunk_presetup = false
 splunk_jdk = false
+otel_demo = false

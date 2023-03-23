@@ -57,6 +57,7 @@ commands will detect it and remind you to do so if necessary.
 - `splunk_realm`: Observability Realm
 - `splunk_presetup`: Provide a preconfigured instance (OTel Collector and Online Boutique deployed with RUM enabled)
 - `splunk_jdk`: Install OpenJDK and Maven on the instance (for PetClinic workshop or other Java based workshops)
+- `otel_demo` : Install and configure the OpenTelemetry Telescope Shop Demo. This requires that `splunk_presetup` is set to FALSE. The default is FALSE
 
 ## 6. Create Terraform variables file
 
@@ -76,6 +77,7 @@ splunk_rum_token = "1234xxxx5678yyyy"
 splunk_realm = "us1"
 splunk_presetup = true
 splunk_jdk = false
+otel_demo = false
 ```
 
 Then run `terraform plan` to see what will be created. Once happy run `terraform apply` to create the instances.

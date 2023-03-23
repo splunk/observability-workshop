@@ -54,6 +54,7 @@ The following variables are available. Edit `terraform.tfvars` to reflect what y
 
 - `splunk_presetup`: Provide a preconfigured instance (OTel Collector and Online Boutique deployed with RUM enabled). The default is FALSE.
 - `splunk_jdk`: Install OpenJDK and Maven on the instance. The default is FALSE.
+- `otel_demo` : Install and configure the OpenTelemetry Astronomy Shop Demo. This requires that `splunk_presetup` is set to FALSE. The default is FALSE
 
 ## 6. Create a Terraform plan
 
