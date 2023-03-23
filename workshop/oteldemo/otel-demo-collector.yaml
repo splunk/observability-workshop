@@ -42,13 +42,13 @@ agent:
         actions:
           - key: db.type
             value: postgres
-            action: upsert              
+            action: upsert
     exporters:
       otlphttp:
         traces_endpoint: "https://ingest.${REALM}.signalfx.com/v2/trace/otlp"
         compression: gzip
         headers:
-          "X-SF-Token": "${SPLUNK_OBSERVABILITY_ACCESS_TOKEN}"
+          "X-SF-Token": "${ACCESS_TOKEN}"
       logging:
         loglevel: info
     service:
