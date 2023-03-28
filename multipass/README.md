@@ -4,12 +4,8 @@
 
 ## 1. Pre-requisites
 
-Install [Multipass](https://multipass.run/)[^1] and Terraform for your operating system. **NOTE:** you will need to use `v1.10.1` as later versions crash with the Terraform Provider. On a Mac you can also install via [Homebrew](https://brew.sh/) e.g.
+Install [Multipass](https://multipass.run/)[^1] and Terraform for your operating system. **NOTE:** you will need to use `v1.10.1` as later versions crash with the Terraform Provider. The Homebrew Cask `multipass.rb` is included in this directory. On a Mac you can also install via [Homebrew](https://brew.sh/) e.g.
 
-```text
-brew install multipass
-brew install terraform
-```
 
 ## 2. Clone workshop repository
 
@@ -21,6 +17,11 @@ git clone https://github.com/splunk/observability-workshop
 
 ```bash
 cd observability-workshop/multipass
+```
+
+```text
+brew install multipass.rb
+brew install terraform
 ```
 
 ## 4. Initialise Terraform
