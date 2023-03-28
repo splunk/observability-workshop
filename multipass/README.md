@@ -4,7 +4,7 @@
 
 ## 1. Pre-requisites
 
-Install [Multipass](https://multipass.run/)[^1] and Terraform for your operating system. On a Mac you can also install via [Homebrew](https://brew.sh/) e.g.
+Install [Multipass](https://multipass.run/)[^1] and Terraform for your operating system. **NOTE:** you will need to use `v1.10.1` as later versions crash with the Terraform Provider. On a Mac you can also install via [Homebrew](https://brew.sh/) e.g.
 
 ```text
 brew install multipass
