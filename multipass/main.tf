@@ -75,6 +75,13 @@ resource "local_file" "user_data" {
   content  = templatefile("../workshop/aws/ec2/templates/userdata.yaml", merge(local.template_vars))
 }
 
+data "multipass_instance" "ubuntu" {
+  name = random_string.hostname.result
+  depends_on = [
+    multipass_instance.ubuntu
+  ]
+}
+
 resource "multipass_instance" "ubuntu" {
   name           = random_string.hostname.result
   memory         = "8G"

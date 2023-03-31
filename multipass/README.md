@@ -6,7 +6,6 @@
 
 Install [Multipass](https://multipass.run/)[^1] and Terraform for your operating system. **NOTE:** you will need to use `v1.10.1` as later versions crash with the Terraform Provider. The Homebrew Cask `multipass.rb` is included in this directory. On a Mac you can also install via [Homebrew](https://brew.sh/) e.g.
 
-
 ## 2. Clone workshop repository
 
 ```bash
@@ -95,13 +94,38 @@ terraform plan
 terraform apply
 ```
 
-```local_file.user_data: Creating...
-local_file.user_data: Creation complete after 0s [id=00ffc34e2fc7ebff9a09f80f53ec508544aa55d8]
+``` text
+random_string.hostname: Creating...
+random_string.hostname: Creation complete after 0s [id=cynu]
+local_file.user_data: Creating...
+local_file.user_data: Creation complete after 0s [id=46a5c50e396a1a7820c3999c131a09214db903dd]
 multipass_instance.ubuntu: Creating...
 multipass_instance.ubuntu: Still creating... [10s elapsed]
-...
-multipass_instance.ubuntu: Still creating... [4m30s elapsed]
-multipass_instance.ubuntu: Creation complete after 4m39s [name=lsvt]
+multipass_instance.ubuntu: Still creating... [20s elapsed]
+multipass_instance.ubuntu: Still creating... [30s elapsed]
+multipass_instance.ubuntu: Still creating... [40s elapsed]
+multipass_instance.ubuntu: Still creating... [50s elapsed]
+multipass_instance.ubuntu: Still creating... [1m0s elapsed]
+multipass_instance.ubuntu: Still creating... [1m10s elapsed]
+multipass_instance.ubuntu: Still creating... [1m20s elapsed]
+multipass_instance.ubuntu: Still creating... [1m30s elapsed]
+multipass_instance.ubuntu: Creation complete after 1m38s [name=cynu]
+data.multipass_instance.ubuntu: Reading...
+data.multipass_instance.ubuntu: Read complete after 1s [name=cynu]
+
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+instance_details = [
+  {
+    "image" = "Ubuntu 22.04.2 LTS"
+    "image_hash" = "345fbbb6ec82 (Ubuntu 22.04 LTS)"
+    "ipv4" = "192.168.205.185"
+    "name" = "cynu"
+    "state" = "Running"
+  },
+]
 ```
 
 Once the instance has been successfully created (this can take several minutes), shell into it using the `name` output above e.g.
