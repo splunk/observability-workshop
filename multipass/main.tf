@@ -70,13 +70,9 @@ locals {
   }
 }
 
-data "template_file" "user_data" {
-  template = templatefile("../workshop/aws/ec2/templates/userdata.yaml", merge(local.template_vars))
-}
-
 resource "local_file" "user_data" {
   filename = "ubuntu-cloudinit.yml"
-  content  = data.template_file.user_data.rendered
+  content  = templatefile("../workshop/aws/ec2/templates/userdata.yaml", merge(local.template_vars))
 }
 
 resource "multipass_instance" "ubuntu" {
