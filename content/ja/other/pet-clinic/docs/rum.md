@@ -35,8 +35,8 @@ Spring PetClinicアプリケーションでは、1つのHTMLページを「レ�
 
 では、レイアウトページを編集してみましょう：
 
-を編集してみましょう：``bash
-vi src/main/resources/templates/fragments/layout.html
+```bash
+nano src/main/resources/templates/fragments/layout.html
 ```
 
 そして、上で生成したスニップをページの `<head>` セクションに挿入してみましょう。さて、アプリケーションを再構築して、再び実行する必要があります：
