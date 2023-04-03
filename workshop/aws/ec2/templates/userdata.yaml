@@ -22,6 +22,8 @@ packages:
   - openjdk-17-jdk
 %{ endif ~}
   - python3-pip
+  - ansible
+  - python3-flask
   - zsh
 
 groups:
@@ -76,10 +78,49 @@ write_files:
       if [ ! -f ~/.helmok ]; then
         helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
         helm repo update
-        helm install splunk-otel-collector --set="splunkObservability.realm=$REALM" --set="splunkObservability.accessToken=$ACCESS_TOKEN" --set="clusterName=$INSTANCE-k3s-cluster" --set="splunkObservability.logsEnabled=true" --set="splunkObservability.profilingEnabled=true" --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" --set="environment=$INSTANCE-apm-env" splunk-otel-collector-chart/splunk-otel-collector -f ~/workshop/k3s/otel-collector.yaml
+        helm install splunk-otel-collector \
+        --set="splunkObservability.realm=$REALM" \
+        --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
+        --set="clusterName=$INSTANCE-k3s-cluster" \
+        --set="splunkObservability.logsEnabled=true" \
+        --set="splunkObservability.profilingEnabled=true" \
+        --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
+        --set="environment=$INSTANCE-apm-env" \
+        splunk-otel-collector-chart/splunk-otel-collector \
+        -f ~/workshop/k3s/otel-collector.yaml
         cd ~/workshop/apm/
         bash apm-config.sh -r
         sudo kubectl apply -f deployment.yaml
+        echo $INSTANCE > ~/.helmok
+        cd /home/ubuntu
+      fi
+%{ endif ~}
+
+%{ if otel_demo == true ~}
+      export RUM_TOKEN=${rum_token}
+      if [ ! -f ~/.helmok ]; then
+        helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
+        helm repo update
+        envsubst 'REALM=$REALM' < workshop/oteldemo/otel-demo-collector.yaml | helm install splunk-otel-collector \
+        --set="splunkObservability.realm=$REALM" \
+        --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
+        --set="clusterName=$INSTANCE-k3s-cluster" \
+        --set="splunkObservability.logsEnabled=true" \
+        --set="logsEngine=otel" \
+        --set="splunkObservability.profilingEnabled=true" \
+        --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
+        --set="networkExplorer.enabled=true" \
+        --set="networkExplorer.podSecurityPolicy.enabled=false" \
+        --set="agent.enabled=true" \
+        --set="gateway.replicaCount=1" \
+        --set="gateway.resources.limits.cpu=500m" \
+        --set="gateway.resources.limits.memory=1Gi" \
+        --set="clusterReceiver.enabled=true" \
+        --set="environment=$INSTANCE-apm-env" \
+        splunk-otel-collector-chart/splunk-otel-collector \
+        -f -
+        helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
+        helm install my-otel-demo open-telemetry/opentelemetry-demo --values ~/workshop/oteldemo/otel-demo.yaml
         echo $INSTANCE > ~/.helmok
         cd /home/ubuntu
       fi
@@ -134,13 +175,15 @@ runcmd:
   - curl -S -OL https://github.com/derailed/k9s/releases/download/v0.27.0/k9s_Linux_amd64.tar.gz
   - tar xfz k9s_Linux_amd64.tar.gz -C /usr/local/bin/ k9s
   # Download Workshop
-  - export WSVERSION=4.67
+  - export WSVERSION=4.74
   - 'export WSARCHIVE=$([ "$WSVERSION" = "main" ] && echo "main" || echo "v$WSVERSION")'
   - curl -s -OL https://github.com/splunk/observability-workshop/archive/$WSARCHIVE.zip
   - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
   - mkdir /home/ubuntu/workshop
   - mv /home/ubuntu/observability-workshop-$WSVERSION/workshop/* /home/ubuntu/workshop
+  - mv /home/ubuntu/workshop/ansible/playbook.yml /home/ubuntu
   - rm -rf /home/ubuntu/observability-workshop-$WSVERSION
+  - rm -rf /home/ubuntu/workshop/aws /home/ubuntu/workshop/cloud-init /home/ubuntu/workshop/gcp /home/ubuntu/workshop/ansible
   # Set apm-config.sh executable
   - chmod +x /home/ubuntu/workshop/apm/apm-config.sh
   # Download Splunk Observability Content Contrib Repo

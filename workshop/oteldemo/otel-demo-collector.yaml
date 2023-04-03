@@ -1,0 +1,82 @@
+agent:
+  config:
+    receivers:
+      receiver_creator:
+        receivers:
+          smartagent/redis:
+            rule: type == "pod" && name matches "redis"
+            config:
+              type: collectd/redis
+              endpoint: '`endpoint`:6379'
+          smartagent/kafka:
+            rule: type == "pod" && name matches "kafka"
+            config:
+              type: collectd/kafka
+              endpoint: '`endpoint`:5555'
+              clusterName: otel-demo-kafka
+          smartagent/kafka_consumer:
+            rule: type == "pod" && name matches "kafka"
+            config:
+              type: collectd/kafka_consumer
+              endpoint: '`endpoint`:5555'
+          smartagent/kafka_producer:
+            rule: type == "pod" && name matches "kafka"
+            config:
+              type: collectd/kafka_producer
+              endpoint: '`endpoint`:5555'
+          smartagent/postgres:
+            rule: type == "pod" && name matches "ffspostgres"
+            config:
+              type: collectd/postgresql
+              endpoint: '`endpoint`:5432'
+              username: "ffs"
+              password: "ffs"
+              databases:
+              - name : "ffs"
+    processors:
+      attributes/postgres:
+        include:
+          match_type: strict
+          services:
+            - featureflagservice
+        actions:
+          - key: db.type
+            value: postgres
+            action: upsert
+    exporters:
+      otlphttp:
+        traces_endpoint: "https://ingest.${REALM}.signalfx.com/v2/trace/otlp"
+        compression: gzip
+        headers:
+          "X-SF-Token": "${SPLUNK_OBSERVABILITY_ACCESS_TOKEN}"
+      logging:
+        loglevel: info
+    service:
+      pipelines:
+        metrics:
+          exporters:
+          - signalfx
+          processors:
+          - memory_limiter
+          - batch
+          - resourcedetection
+          - resource
+          receivers:
+          - hostmetrics
+          - kubeletstats
+          - otlp
+          - receiver_creator
+          - signalfx
+        traces:
+          exporters:
+          - otlphttp
+          processors:
+          - memory_limiter
+          - k8sattributes
+          - batch
+          - resourcedetection
+          - resource
+          - resource/add_environment
+          - attributes/postgres
+          receivers:
+          - otlp
