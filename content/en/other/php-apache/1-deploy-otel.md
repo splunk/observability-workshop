@@ -163,3 +163,4 @@ If you make an error installing the Splunk OpenTelemetry Collector you can start
 ``` sh
 helm delete splunk-otel-collector -n splunk
 ```
+{{% /notice %}}
