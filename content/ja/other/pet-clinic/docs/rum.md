@@ -1,5 +1,6 @@
 ---
-title: 4. Real User Monitoring
+title: Real User Monitoring
+linkTitle: 4. Real User Monitoring
 weight: 4
 ---
 
