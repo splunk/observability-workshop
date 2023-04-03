@@ -51,14 +51,23 @@ mavenコマンドを実行して、PetClinicをコンパイル/ビルド/パッ�
 ./mvnw package -Dmaven.test.skip=true
 ```
 
+
+そして、アプリケーションを動かしてみましょう。バージョンを `version=0.316` とするのをお忘れなく。
+
 ```bash
-java \
--Dotel.service.name=$(hostname)-petclinic.service \
+java -javaagent:./splunk-otel-javaagent.jar \
+-Dotel.service.name=$(hostname).service \
 -Dsplunk.profiler.enabled=true \
 -Dsplunk.metrics.enabled=true \
+-Dotel.resource.attributes=deployment.environment=$(hostname)-petclinic,version=0.316 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
+
+{{% notice title="versionを自動で設定する" style="info" %}}
+ここまできて `version` を毎回変えるためにコマンドラインを修正するのは大変だと思うことでしょう。実際、修正が漏れた人もいるかもしれません。
+本番環境では、環境変数でアプリケーションバージョンを与えたり、コンテナイメージの作成時にビルドIDを与えたりすることになるはずです。
+{{% /notice %}}
 
 次に、より多くのトラフィックを生成するために、アプリケーションに再度アクセスしてみましょう。 `http://<VM_IP_ADDRESS>:8080` にアクセスすると、今度はRUMトレースが報告されるはずです。
 
