@@ -13,6 +13,7 @@ description: JavaアプリケーションをつかったSplunk Oservabilityの�
   * Database Query Performance
   * AlwaysOn Profiling
 * Splunk Real User Monitoring (RUM)
+* Splunk LogObserver
 
 ワークショップの中では、Javaのサンプルアプリケーション（Spring PetClinic）をクローン（ダウンロード）し、アプリケーションのコンパイル、パッケージ、実行していきます。
 
