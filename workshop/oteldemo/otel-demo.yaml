@@ -40,12 +40,11 @@ components:
       runAsNonRoot: true
 
 # Disable the observability components incl. the collector
-observability:
-  otelcol:
-    enabled: false
-  jaeger:
-    enabled: false
-  prometheus:
-    enabled: false
-  grafana:
-    enabled: false
+opentelemetry-collector:
+  enabled: false
+jaeger:
+  enabled: false
+prometheus:
+  enabled: false
+grafana:
+  enabled: false
