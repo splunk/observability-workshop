@@ -1,6 +1,6 @@
 ---
 archetype: "home"
-title: Other Workshops
+title: さらなるワークショップ
 weight: 19
 ---
 
