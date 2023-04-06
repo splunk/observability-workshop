@@ -9,6 +9,8 @@ weight: 1
 1. How to retrieve the IP address of the AWS/EC2 instance assigned to you.
 2. Connect to your instance using SSH, Putty[^1] or your web browser.
 3. Verify your connection to your AWS/EC2 cloud instance.
+4. Using Putty (Optional)
+5. Using Multipass (Optional)
 
 ---
 
@@ -110,7 +112,7 @@ At this point you are ready to continue and [start the workshop](../gdi/)
 
 ---
 
-## 4. Web Browser (All)
+## 5. Web Browser (All)
 
 If you are blocked from using SSH (Port 22) or unable to install Putty you may be able to connect to the workshop instance by using a web browser.
 
@@ -156,7 +158,7 @@ At this point you are ready to continue and [start the workshop](../gdi/).
 
 ---
 
-## 5. Multipass (All)
+## 6. Multipass (All)
 
 If you are unable to access AWS, but you want to install software locally, follow the instructions for [using Multipass](https://github.com/splunk/observability-workshop/blob/main/multipass/README.md).
 
