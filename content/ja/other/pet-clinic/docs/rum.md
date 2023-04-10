@@ -21,15 +21,15 @@ Real User Monitoring (RUM)計装のために、Open Telemetry Javascript [https:
 ウィザードで編集済みコードスニペットをコピーするか、以下のスニペットをコピーして適宜編集してください：
 
 ``` html
-<script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous"></script>
-<script>
-SplunkRum.init({
-    beaconUrl: "https://rum-ingest.<REALM>.signalfx.com/v1/rum",
-    rumAuth: "<RUM_ACCESS_TOKEN>",
-    app: "<hostname>-petclinic-service",
-    environment: "<hostname>-petclinic-env"
+  <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous"></script>
+  <script>
+  SplunkRum.init({
+      beaconUrl: "https://rum-ingest.<REALM>.signalfx.com/v1/rum",
+      rumAuth: "<RUM_ACCESS_TOKEN>",
+      app: "<hostname>.service",
+      environment: "<hostname>"
     });
-</script>
+  </script>
 ```
 
 Spring PetClinicアプリケーションでは、1つのHTMLページを「レイアウト」ページとして使用し、アプリケーションのすべてのページで再利用しています。これは、Splunk RUM計装ライブラリを挿入するのに最適な場所であり、すべてのページで自動的に読み込まれます。
@@ -57,9 +57,10 @@ mavenコマンドを実行して、PetClinicをコンパイル/ビルド/パッ�
 ```bash
 java -javaagent:./splunk-otel-javaagent.jar \
 -Dotel.service.name=$(hostname).service \
+-Dotel.resource.attributes=deployment.environment=$(hostname),version=0.316 \
 -Dsplunk.profiler.enabled=true \
+-Dsplunk.profiler.memory.enabled=true \
 -Dsplunk.metrics.enabled=true \
--Dotel.resource.attributes=deployment.environment=$(hostname)-petclinic,version=0.316 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
@@ -71,4 +72,4 @@ java -javaagent:./splunk-otel-javaagent.jar \
 
 次に、より多くのトラフィックを生成するために、アプリケーションに再度アクセスしてみましょう。 `http://<VM_IP_ADDRESS>:8080` にアクセスすると、今度はRUMトレースが報告されるはずです。
 
-RUMにアクセスして、トレースとメトリクスのいくつかを見てみましょう **Hamburger Menu → RUM** すると、UIに表示されるSpring PetClinicのURLのいくつかが表示されます。
+RUMにアクセスして、トレースとメトリクスのいくつかを見てみましょう。左のメニューから **RUM** を選ぶと、Spring Pet Clinicでのユーザー（あなたです！）が体験したパフォーマンスが表示されます。

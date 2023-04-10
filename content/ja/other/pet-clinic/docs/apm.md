@@ -47,51 +47,49 @@ curl -L https://github.com/signalfx/splunk-otel-java/releases/latest/download/sp
 
 ```bash
 java -javaagent:./splunk-otel-javaagent.jar \
--Dotel.service.name=$(hostname)-petclinic.service \
+-Dotel.service.name=$(hostname).service \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
 
-アプリケーションが動作しているかどうかは、`http://<VM_IP_ADDRESS>:8080` にアクセスして確認することができます。次に、トラフィックを生成し、クリックしまくり、エラーを生成し、ペットを追加するなどしてください。その後、Splunk APM UIからExploreを開き、、アプリケーションのコンポーネントやトレースなどを調べることができます。
-
-検証が完了したら、ターミナルで **`Ctrl-c`** を押すと、アプリケーションを停止することができます。
-
-
-## 2. プロファイリングとJVMメトリクスを有効にする
-
-CPU とメモリのプロファイリングを有効にするには `splunk.profiler.enabled=true` を、メモリやGC等のJVMメトリクスを有効にする `splunk.metrics.enabled=true` をアプリケーションの起動時に渡します。アプリケーションが停止していることを確認し、メトリクスとプロファイリングを有効にするために以下のコマンドを実行します。
-
-```bash
-java -javaagent:./splunk-otel-javaagent.jar \
--Dotel.service.name=$(hostname)-petclinic.service \
--Dsplunk.profiler.enabled=true \
--Dsplunk.metrics.enabled=true \
--jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
-```
+アプリケーションが動作しているかどうかは、`http://<VM_IP_ADDRESS>:8080` にアクセスして確認することができます。
+次に、トラフィックを生成し、クリックしまくり、エラーを生成し、ペットを追加するなどしてください。その後、Splunk APM UIからExploreを開き、アプリケーションのコンポーネントやトレースなどを調べることができます。
 
 
-トラフィックを発生させるために、`http://<VM_IP_ADDRESS>:8080` を開いてアプリケーションにアクセスしてみましょう。クリックしまくり、エラーを発生させ、ペットを追加する、などなど。その後、Splunk APM UIにアクセスして、アプリケーションのコンポーネント、Traces、Profiling、Database Query Performance, Endpoint Performansや、DashboardからJVMメトリクスを調べることができます。
+## 2. いくつかのオプションを追加する
 
-検証が完了したら、ターミナルで **`Ctrl-c`** を押すと、アプリケーションを停止することができます。
+CPUとメモリのプロファイリングを有効にするには `splunk.profiler.enabled=true` と `splunk.profiler.memory.enabled=true` 、
+メモリやGC等のJVMメトリクスを有効にする `splunk.metrics.enabled=true` をアプリケーションの起動時に渡します。
 
+また、例えば `version=0.314` のように、リソース属性を報告されたすべてのスパンに追加することができます。。
+リソース属性のカンマ区切りリストで定義していきます。
+新しいリソース属性を使用して、PetClinicを再び起動してみましょう。
+以下では `deployment.environment=$(hostname).service` と同時に `version=0.314` を指定しています。。
 
-## 3. スパンにリソース属性を追加する
-
-リソース属性は、報告されたすべてのスパンに追加することができます。例えば、 `version=0.314` のように。また、リソース属性のカンマ区切りリストも定義することができます。
-
-新しいリソース属性を使用して、PetClinicを再び起動してみましょう。実行コマンドにリソース属性を追加すると、コレクタをインストールしたときに定義されたものが上書きされることに注意してください。そのため、新しいリソース属性と一緒に `deployment.environment` リソース属性も指定する必要があります。以下では `deployment.environment=$(hostname)-petclinic` と `version=0.314` を指定していることがわかると思います。
-
+アプリケーションが停止していることを確認し（ターミナルで **`Ctrl-c`** を押すと、停止することができます）、これらのオプションを有効にして、再びアプリケーションを動かしてみましょう。
 
 ```bash
 java -javaagent:./splunk-otel-javaagent.jar \
 -Dotel.service.name=$(hostname).service \
+-Dotel.resource.attributes=deployment.environment=$(hostname),version=0.314 \
 -Dsplunk.profiler.enabled=true \
+-Dsplunk.profiler.memory.enabled=true \
 -Dsplunk.metrics.enabled=true \
--Dotel.resource.attributes=deployment.environment=$(hostname)-petclinic,version=0.314 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
 
-アプリケーションに戻り、さらにトラフィックを発生させます。そして Splunk APM UI に戻って、最近のトレースをドリルダウンし、スパンの新しい属性 `version` を見ることができます。
+トラフィックを発生させるために、`http://<VM_IP_ADDRESS>:8080` を開いてアプリケーションにアクセスしてみましょう。
+クリックしまくり、エラーを発生させ、ペットを追加する、などなど。
+その後、Splunk APM UIにアクセスして、アプリケーションのコンポーネント、Traces、Profiling、Database Query Performance, Endpoint Performansや、DashboardからJVMメトリクスを調べることができます。
+
+スパンの新しい属性 `version` はトレースをドリルダウンするとを見ることができます。さらに、サービスマップでも Breakdown の機能で分析したり、Tag Spotlightを開くと `version` 毎のパフォーマンス分析が使えます。
+
+
+{{% notice title="Troubleshooting MetricSetsを追加する" style="info" %}}
+サービスマップやTab Spotlightで、 `version` などのカスタム属性で分析できるようにするためには、Troubleshooting MetricSetsの設定をあらかじめ追加する必要があります。 
+左メニューの **Settings → APM MetricSets** で、設定を管理することができます。 もしお使いのアカウントで分析できなければ、設定を追加してみましょう。
+{{% /notice %}}
+
 
 次のセクションではカスタム計装を追加して、OpenTelemetryでは何ができるのか、さらに見ていきます。

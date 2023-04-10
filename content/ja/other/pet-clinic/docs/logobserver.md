@@ -15,7 +15,14 @@ Splunk OpenTelemetry Collectorは、FluentDを使用してログの取得/報告
 Spring PetClinicのログを報告するための適切な設定を行うには、
 デフォルトディレクトリ（`/etc/otel/collector/fluentd/conf.d/`）にFluentDの設定ファイルを追加するだけです。
 
-以下は、サンプルのFluentD設定ファイル（`petclinic.conf`、ファイル`/tmp/spring-petclinic.log`を読み取り）です。
+以下は、サンプルのFluentD設定ファイル `petclinic.conf` を新たに作成し、
+
+```bash
+sudo nano /etc/otel/collector/fluentd/conf.d/petclinic.conf
+```
+
+
+ファイル `/tmp/spring-petclinic.log`を読み取るよう設定を記述します。
 
 ```
 <source>
@@ -31,29 +38,34 @@ Spring PetClinicのログを報告するための適切な設定を行うには�
 </source>
 ```
 
-したがって、ファイルを作成する必要があります。
 
-```bash
-sudo nano /etc/otel/collector/fluentd/conf.d/petclinic.conf
-```
-
-また、petclinic.confファイルのアクセス権と所有権を変更する必要があります。
+このとき、ファイル `petclinic.conf` のアクセス権と所有権を変更する必要があります。
 
 ```bash
 sudo chown td-agent:td-agent /etc/otel/collector/fluentd/conf.d/petclinic.conf
 sudo chmod 755 /etc/otel/collector/fluentd/conf.d/petclinic.conf
 ```
 
-そして、上のスニペットからコンテンツを貼り付けます。ファイルが作成されたら、FluentDプロセスを再起動する必要があります。
+ファイルが作成されたら、FluentDプロセスを再起動しましょう。
 
 ```bash
 sudo systemctl restart td-agent
 ```
 
+
 ## 3. Logbackの設定
 
-Spring PetClinicアプリケーションは、いくつかの異なるJavaログライブラリを使用して設定できます。
-このシナリオでは、logbackを使用しています。以下は、サンプルのlogback設定ファイルです。
+Spring Pet Clinicアプリケーションは、いくつかのJavaログライブラリを使用することができます。
+このシナリオでは、logbackを使ってみましょう。
+
+リソースフォルダに `logback.xml` という名前のファイルを作成して…
+
+```bash
+nano src/main/resources/logback.xml
+```
+
+
+以下の設定を保存しましょう:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -82,14 +94,7 @@ Spring PetClinicアプリケーションは、いくつかの異なるJavaログ
 </configuration>
 ```
 
-設定フォルダにlogback.xmlという名前のファイルを作成するだけです。
-
-```bash
-nano src/main/resources/logback.xml
-```
-
-そして、上のスニペットからXMLコンテンツを貼り付けます。
-その後、アプリケーションを再構築して再度実行する必要があります。
+その後、アプリケーションを再構築して再度実行していきます。
 
 
 ```bash
@@ -99,21 +104,21 @@ nano src/main/resources/logback.xml
 ```bash
 java -javaagent:./splunk-otel-javaagent.jar \
 -Dotel.service.name=$(hostname).service \
+-Dotel.resource.attributes=deployment.environment=$(hostname),version=0.317 \
 -Dsplunk.profiler.enabled=true \
+-Dsplunk.profiler.memory.enabled=true \
 -Dsplunk.metrics.enabled=true \
--Dotel.resource.attributes=deployment.environment=$(hostname)-petclinic,version=0.317 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
 
-次に、アプリケーションを再度アクセスしてもっと多くのトラフィックを生成し、
-`http://<VM_IP_ADDRESS>:8080` でログメッセージが報告されるようになります（遠慮なくナビゲートしてクリックしてください）。
+これまで通り、アプリケーション `http://<VM_IP_ADDRESS>:8080`  にアクセスしてトラフィックを生成すると、ログメッセージが報告されるようになります。
 
-左側のLog Observerアイコンをクリックして
-ホストとSpring PetClinicアプリケーションからのログメッセージのみを選択するためのフィルタを追加できます。
+左側のLog Observerアイコンをクリックして、ホストとSpring PetClinicアプリケーションからのログメッセージのみを選択するためのフィルタを追加できます。
 
-1. フィルタを追加 → フィールド → host.name → <あなたのホスト名>
-2. フィルタを追加 → フィールド → service.name → <あなたのホスト名>-petclinic.service
+1. Add Filter → Field → host.name → <あなたのホスト名>
+2. Add Filter → Field → service.name → <あなたのホスト名>.service
+
 
 ## 4. まとめ
 

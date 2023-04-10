@@ -18,10 +18,10 @@ nano pom.xml
 
 
 ```
-        <dependency>
-            <groupId>io.opentelemetry</groupId>
-            <artifactId>opentelemetry-api</artifactId>
-        </dependency>
+    <dependency>
+        <groupId>io.opentelemetry</groupId>
+        <artifactId>opentelemetry-api</artifactId>
+    </dependency>
 ```
 
 念の為、コンパイルできるか確かめてみましょう:
@@ -33,6 +33,7 @@ nano pom.xml
 {{% notice title="Tips: nanoの使い方と壊れたファイルの直し方" style="info" %}}
 nanoはLinux環境でよく使われる、シンプルなエディタの一つです。
 
+* `Alt-U` で、アンドゥができます。Macの場合は `Esc` キーを押したあとに `U` を押してください！
 * `ctrl-_` のあとに数字を入力すると、指定した行数にジャンプします。
 * `ctrl-O` のあとに `Enter` で、ファイルを保存します。
 * `ctrl-X` で、nanoを終了します。
@@ -75,7 +76,7 @@ import io.opentelemetry.api.trace.Span;
 
 このコードで、Last Nameとして指定された検索条件が、スパン属性 `lastName` としてSplunk Observabilityに伝えるようになりました。
 
-アプリケーションをコンパイルし直して...
+アプリケーションをコンパイルし直ししますが、Javaコードを多少汚してしまったかもしれません。 `spring-javaformat:apply` を指定しながらコンパイルしてみましょう。
 
 ```bash
 ./mvnw spring-javaformat:apply package -Dmaven.test.skip=true
@@ -87,9 +88,10 @@ import io.opentelemetry.api.trace.Span;
 ```bash
 java -javaagent:./splunk-otel-javaagent.jar \
 -Dotel.service.name=$(hostname).service \
+-Dotel.resource.attributes=deployment.environment=$(hostname),version=0.315 \
 -Dsplunk.profiler.enabled=true \
+-Dsplunk.profiler.memory.enabled=true \
 -Dsplunk.metrics.enabled=true \
--Dotel.resource.attributes=deployment.environment=$(hostname)-petclinic,version=0.315 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
