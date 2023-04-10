@@ -1,6 +1,6 @@
 ---
-title: Install OpenTelemetry Java Agent
-linkTitle: 2. OpenTelemetry Java Agent
+title: OpenTelemetry Javaエージェントをインストールする
+linkTitle: 2. Javaエージェント
 weight: 2
 ---
 
@@ -45,28 +45,6 @@ curl -L https://github.com/signalfx/splunk-otel-java/releases/latest/download/sp
 
 そして、以下のコマンドでアプリケーションを実行することができます:
 
-```bash
-java -javaagent:./splunk-otel-javaagent.jar \
--Dotel.service.name=$(hostname).service \
--jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
-```
-
-
-アプリケーションが動作しているかどうかは、`http://<VM_IP_ADDRESS>:8080` にアクセスして確認することができます。
-次に、トラフィックを生成し、クリックしまくり、エラーを生成し、ペットを追加するなどしてください。その後、Splunk APM UIからExploreを開き、アプリケーションのコンポーネントやトレースなどを調べることができます。
-
-
-## 2. いくつかのオプションを追加する
-
-CPUとメモリのプロファイリングを有効にするには `splunk.profiler.enabled=true` と `splunk.profiler.memory.enabled=true` 、
-メモリやGC等のJVMメトリクスを有効にする `splunk.metrics.enabled=true` をアプリケーションの起動時に渡します。
-
-また、例えば `version=0.314` のように、リソース属性を報告されたすべてのスパンに追加することができます。。
-リソース属性のカンマ区切りリストで定義していきます。
-新しいリソース属性を使用して、PetClinicを再び起動してみましょう。
-以下では `deployment.environment=$(hostname).service` と同時に `version=0.314` を指定しています。。
-
-アプリケーションが停止していることを確認し（ターミナルで **`Ctrl-c`** を押すと、停止することができます）、これらのオプションを有効にして、再びアプリケーションを動かしてみましょう。
 
 ```bash
 java -javaagent:./splunk-otel-javaagent.jar \
@@ -79,11 +57,17 @@ java -javaagent:./splunk-otel-javaagent.jar \
 ```
 
 
-トラフィックを発生させるために、`http://<VM_IP_ADDRESS>:8080` を開いてアプリケーションにアクセスしてみましょう。
-クリックしまくり、エラーを発生させ、ペットを追加する、などなど。
-その後、Splunk APM UIにアクセスして、アプリケーションのコンポーネント、Traces、Profiling、Database Query Performance, Endpoint Performansや、DashboardからJVMメトリクスを調べることができます。
+アプリケーションが動作しているかどうかは、`http://<VM_IP_ADDRESS>:8080` にアクセスして確認することができます。
+次に、トラフィックを生成し、クリックしまくり、エラーを生成し、ペットを追加するなどしてください。
 
-スパンの新しい属性 `version` はトレースをドリルダウンするとを見ることができます。さらに、サービスマップでも Breakdown の機能で分析したり、Tag Spotlightを開くと `version` 毎のパフォーマンス分析が使えます。
+* `-Dotel.service.name=$(hostname).service` では、アプリケーションの名前を定義しています。サービスマップ上のアプリケーションの名前等に反映されます。
+* `-Dotel.resource.attributes=deployment.environment=$(hostname),version=0.314` では、Environmentと、versionを定義しています。
+    - `deployment.environment=$(hostname)` は、Splunk APM UIの上部「Environment」に反映されます。
+    - `version=0.314` はここでは、アプリケーションのバージョンを示しています。トレースをドリルダウンしたり、サービスマップの Breakdown の機能で分析したり、Tag Spotlightを開くと `version` 毎のパフォーマンス分析が使えます。
+* `-Dsplunk.profiler.enabled=true` および `splunk.profiler.memory.enabled=true` では、CPUとメモリのプロファイリングを有効にしています。Splunk APM UIから、AlwaysOn Profilingを開いてみてください。
+* `-Dsplunk.metrics.enabled=true` では、メモリやスレッドなどJVMメトリクスの送信を有効にしています。Dashboardsから、APM java servicesを開いてみてください。
+
+その後、Splunk APM UIにアクセスして、それぞれのテレメトリーデータを確認してみましょう！
 
 
 {{% notice title="Troubleshooting MetricSetsを追加する" style="info" %}}

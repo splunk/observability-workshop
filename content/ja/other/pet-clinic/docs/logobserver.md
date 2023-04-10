@@ -1,5 +1,6 @@
 ---
-title: 5. Log Observer
+title: Log Observer
+linktitle: 5. Log Observer
 weight: 5
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: Manual Instrumentation
-linkTitle: 3. Manual Instrumentation
+title: マニュアル計装
+linkTitle: 3. マニュアル計装
 weight: 3
 ---
 
@@ -9,6 +9,8 @@ weight: 3
 前のセクション足したような、プロセス全体に渡る属性は便利なのですが、ときにはさらに、リクエストの内容に応じた状況を知りたくなるかもしれません。心配ありません、OpenTelemetryのAPIを通じてそれらを計装し、データを送り、Splunk Observabilityで分析できるようになります。
 
 最初に、JavaアプリケーションがOpenTelemetryのAPIを使えるように、ライブラリの依存を追加していきます。もちろん、vimなどのお好みのエディタをお使い頂いても大丈夫です！
+
+アプリケーションが起動中であれば、一旦停止しましょう。ターミナルで **`Ctrl-c`** を押すと、停止することができます。
 
 ```bash
 nano pom.xml
@@ -97,6 +99,10 @@ java -javaagent:./splunk-otel-javaagent.jar \
 
 
 `http://<VM_IP_ADDRESS>:8080` にアクセスして、オーナー検索をいくつか試してましょう。そしてSplunk APM UIからExploreを開き、アプリケーションのトレースを見ていきます。
+
+{{% notice title="さらなる情報: マニュアル計装について" style="info" %}}
+マニュアル計装で何ができるか、他の言語でのやり方などは、OpenTelemetryの公式ウェブサイトにある [Instrumentation](https://opentelemetry.io/docs/instrumentation/) ページをご覧ください。
+{{% /notice %}}
 
 検証が完了したら、ターミナルで **`Ctrl-c`** を押すと、アプリケーションを停止することができます。
 

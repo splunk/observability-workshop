@@ -1,5 +1,5 @@
 ---
-title: Installing the OpenTelemetry Collector
+title: OpenTelemetry Collectorをインストールする
 linkTitle: 1. OpenTelemetry Collector
 weight: 1
 ---
