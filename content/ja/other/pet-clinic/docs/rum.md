@@ -6,19 +6,19 @@ weight: 4
 
 ## 1. RUMを有効にする
 
-Real User Monitoring (RUM)計装のために、Open Telemetry Javascript [https://github.com/signalfx/splunk-otel-js-web](https://github.com/signalfx/splunk-otel-js-web) スニペットをページ内に追加します。再度ウィザードを使用します **Data Management → Add Integration → RUM Instrumentation → Browser Instrumentation**.
+Real User Monitoring (RUM)計装のために、Open Telemetry Javascript [https://github.com/signalfx/splunk-otel-js-web](https://github.com/signalfx/splunk-otel-js-web) スニペットをページ内に追加します。再度ウィザードを使用します **Data Management → Add Integrationボタン → Monitor user experience（画面上部タブ） → Browser Instrumentation**を開きます。
 
 ドロップダウンから設定済みの **RUM ACCESS TOKEN** を選択し、**Next** をクリックします。以下の構文で **App name** と**Environment** を入力します：
 
-- `[hostname]-petclinic-service` - `[hostname]` をお使いのホスト名に書き換えてください
-- `[hostname]-petclinic-env` - `[hostname]` をお使いのホスト名に書き換えてください
-
-次に、ワークショップのRUMトークンを選択し、 App nameとEnvironmentを定義する必要があります。ウィザードでは、ページ上部の `<head>` セクションに配置する必要のある HTML コードの断片が表示されます。この例では、次のように記述していますが、ウィザードでは先程入力した値が反映されてるはずです。
+次に、ワークショップのRUMトークンを選択し、 App nameとEnvironmentを定義します。ウィザードでは、ページ上部の `<head>` セクションに配置する必要のある HTML コードの断片が表示されます。この例では、次のように記述していますが、ウィザードでは先程入力した値が反映されてるはずです。
 
 - Application Name: `<hostname>-petclinic-service`
 - Environment: `<hostname>-petclinic-env`
 
-ウィザードで編集済みコードスニペットをコピーするか、以下のスニペットをコピーして適宜編集してください：
+ウィザードで編集済みコードスニペットをコピーするか、以下のスニペットをコピーして適宜編集してください。ただし：
+
+- `[hostname]-petclinic-service` - `[hostname]` をお使いのホスト名に書き換えてください
+- `[hostname]-petclinic-env` - `[hostname]` をお使いのホスト名に書き換えてください
 
 ``` html
   <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous"></script>
