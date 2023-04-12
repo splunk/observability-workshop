@@ -1,5 +1,9 @@
 name: 0Release new minor version
 
+permissions:
+  contents: read
+  pull-requests: write
+  
 on: workflow_dispatch
 
 jobs:
