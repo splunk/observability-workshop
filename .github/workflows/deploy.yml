@@ -1,8 +1,6 @@
 name: 0Release new minor version
 
-permissions:
-  contents: read
-  pull-requests: write
+permissions: write-all
   
 on: workflow_dispatch
 
