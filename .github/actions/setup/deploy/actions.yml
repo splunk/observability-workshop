@@ -1,6 +1,8 @@
 name: 'Deploy'
 description: 'Build and deploy workshop'
 
+permissions: write-all
+
 inputs:
   flavour:
     description: type of version to release
