@@ -1,6 +1,10 @@
 name: 'Deploy'
 description: 'Build and deploy workshop'
 
+permissions:
+  contents: read
+  pull-requests: write
+
 inputs:
   flavour:
     description: type of version to release
