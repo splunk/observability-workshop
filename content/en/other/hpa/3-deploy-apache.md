@@ -115,14 +115,16 @@ How many ConfigMaps are used by the collector?
 
 When you have list of ConfigMaps from the namespace, select the one for the `otel-agent` and view it with the following command:
 
-**Note:** The option `-o yaml` will print the content of the ConfigMap in a YAML format.
-
 ``` bash
 kubectl get cm splunk-otel-collector-otel-agent -n splunk -o yaml
 ```
 
+{{% notice title="NOTE" style="info" %}}
+The option `-o yaml` will output the content of the ConfigMap in a readable YAML format.
+{{% /notice %}}
+
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
-Is the content of `otel-apache.yaml` saved in the ConfigMap for the collector agent?
+Is the configuration from `otel-apache.yaml` visible in the ConfigMap for the collector agent?
 {{% /notice %}}
 
 ## 5. Review PHP/Apache deployment YAML
@@ -198,12 +200,6 @@ Deploy the PHP/Apache application:
 kubectl apply -f ~/workshop/k3s/php-apache.yaml -n apache
 ```
 
-{{% notice title="Workshop Question" style="tip" icon="question" %}}
-What metrics for your Apache instance are being reported in the Apache Navigator?
-
-**Tip:** Click on **Infrastructure → Web Server → Apache web servers** to go to the Navigator and look for a server with the same name as your EC2 host.
-{{% /notice %}}
-
 Ensure the deployment has been created:
 
 ``` bash
@@ -211,13 +207,13 @@ kubectl get statefulset -n apache
 ```
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
-Using the Observability Kubernetes Navigator, can you find the status of the `php-apache`  **Workload**?
+What metrics for your Apache instance are being reported in the Apache Navigator?
 
-**HINT:** Filter by `k8s.cluster.name` to isolate your instance!
+**Tip:** Use the Navigator Sidebar and click on the service name.
 {{% /notice %}}
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
-Where else has the issue with `php-apache` been logged? What is being reported?
+Using Log Observer what is the issue with the PHP/Apache deployment?
 
-**HINT:** Adjust your **Table settings** by clicking on the cog to use only `k8s.cluster.name`, `object.involvedObject.name` & `object.message`. Make sure you unselect `_raw`!
+**Tip:** Adjust your **Table settings** by clicking on the cog to use only `object.involvedObject.name`, `object.message` and `k8s.cluster.name`. Make sure you unselect `_raw`!
 {{% /notice %}}
