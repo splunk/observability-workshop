@@ -80,8 +80,14 @@ kubectl edit hpa php-apache -n apache
 
 Save the changes you have made. (Hint: Use `Esc` followed by `:wq!` to save your changes).
 
-{{% notice title="Workshop Question" style="tip" icon="question" %}}
-How many pods are now in a running state? How many are pending? Why are they pending?
+{{% notice title="Workshop Questions" style="tip" icon="question" %}}
+
+1. How many pods are now in a running state?
+
+2. How many are pending?
+
+3. Why are they pending?
+
 {{% /notice %}}
 
 **Congratulations!** You have successfully completed the workshop.

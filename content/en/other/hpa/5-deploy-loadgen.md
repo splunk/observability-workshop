@@ -4,7 +4,7 @@ linkTitle: 5. Deploy Load Generator
 weight: 5
 ---
 
-Now let's see how the autoscaler reacts to increased load. To do this, you'll start a different Pod to act as a client. The container within the client Pod runs in an infinite loop, sending queries to the `php-apache` service.
+Now let's apply some load against the `php-apache` pod. To do this, you will need start a different Pod to act as a client. The container within the client Pod runs in an infinite loop, sending HTTP GETs to the `php-apache` service.
 
 ## 1. Review loadgen YAML
 
@@ -14,7 +14,7 @@ Inspect the YAML file `~/workshop/k3s/loadgen.yaml` and validate the contents us
 cat ~/workshop/k3s/loadgen.yaml
 ```
 
-This file contains the configuration for the load generator and will create a new StatefulSet with a single replica of the load generator image.
+This file contains the configuration for the load generator and will create a new ReplicaSet with a two replicas of the load generator image.
 
 ``` yaml
 apiVersion: apps/v1
@@ -55,7 +55,7 @@ kubectl create namespace loadgen
 kubectl apply -f ~/workshop/k3s/loadgen.yaml --namespace loadgen
 ```
 
-Once you have deployed the load generator, you can see the Pod running in the `loadgen` namespace. Use previous similar commands to check the status of the Pod from the command line.
+Once you have deployed the load generator, you can see the Pods running in the `loadgen` namespace. Use previous similar commands to check the status of the Pods from the command line.
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
 Which metrics in the Apache Navigator have now significantly increased?
@@ -81,13 +81,8 @@ kubectl get replicaset loadgen -n loadgen
 
 ![Replicaset](../images/k8s-workload-replicaset.png)
 
-{{% notice title="Workshop Questions" style="tip" icon="question" %}}
-
-1. What impact did this have?
-
-2. Where in Splunk Observability Cloud can you see the increased replica number?
-
-**Hint:** Use the Kubernetes Navigator and make sure **Group by** is set to **none**.
+{{% notice title="Workshop Question" style="tip" icon="question" %}}
+What impact can you see in the Apache Navigator?
 {{% /notice %}}
 
 Let the load generator run for around 2-3 minutes and keep observing the metrics in the Kubernetes Navigator and the Apache Navigator.
