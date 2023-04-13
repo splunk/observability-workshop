@@ -51,6 +51,8 @@ agent:
             config:
               type: collectd/apache
               url: http://php-apache-svc.apache.svc.cluster.local/server-status?auto
+              extraDimensions:
+                service.name: php-apache
 ```
 
 ## 3.  Observation Rules in the OpenTelemetry config

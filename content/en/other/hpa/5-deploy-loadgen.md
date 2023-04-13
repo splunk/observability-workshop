@@ -18,14 +18,13 @@ This file contains the configuration for the load generator and will create a ne
 
 ``` yaml
 apiVersion: apps/v1
-kind: StatefulSet
+kind: ReplicaSet
 metadata:
   name: loadgen
   labels:
     app: loadgen
 spec:
-  serviceName: "loadgen"
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: loadgen
@@ -59,7 +58,7 @@ kubectl apply -f ~/workshop/k3s/loadgen.yaml --namespace loadgen
 Once you have deployed the load generator, you can see the Pod running in the `loadgen` namespace. Use previous similar commands to check the status of the Pod from the command line.
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
-What metrics in the Apache Dashboard have now significantly increased?
+Which metrics in the Apache Navigator have now significantly increased?
 {{% /notice %}}
 
 ## 4. Scale the load generator
@@ -71,17 +70,24 @@ ReplicaSet helps bring up a new instance of a Pod when the existing one fails, s
 Let's scale our ReplicaSet to 4 replicas using the following command:
 
 ``` text
-kubectl scale statefulset/loadgen --replicas 4 -n loadgen
+kubectl scale replicaset/loadgen --replicas 4 -n loadgen
 ```
 
 Validate the replicas are running from both the command line and Splunk Observability Cloud:
 
 ``` text
-kubectl get statefulset loadgen -n loadgen
+kubectl get replicaset loadgen -n loadgen
 ```
 
-{{% notice title="Workshop Question" style="tip" icon="question" %}}
-What impact did this have? Where in O11y can you see the increased replica number?
+![Replicaset](../images/k8s-workload-replicaset.png)
+
+{{% notice title="Workshop Questions" style="tip" icon="question" %}}
+
+1. What impact did this have?
+
+2. Where in Splunk Observability Cloud can you see the increased replica number?
+
+**Hint:** Use the Kubernetes Navigator and make sure **Group by** is set to **none**.
 {{% /notice %}}
 
 Let the load generator run for around 2-3 minutes and keep observing the metrics in the Kubernetes Navigator and the Apache Navigator.

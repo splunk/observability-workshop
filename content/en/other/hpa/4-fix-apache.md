@@ -85,8 +85,10 @@ Is the **Apache Web Servers** dashboard showing any data now?
 **Tip:** Don't forget to use filters and time frames to narrow down your data.
 {{% /notice %}}
 
+Monitor the Apache web servers Navigator dashboard for a few minutes.
+
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
-Another Detector has fired, which one is it this time?
+What is happening with the # Hosts reporting chart?
 {{% /notice %}}
 
 ## 4. Fix memory issue
