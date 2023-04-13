@@ -14,4 +14,4 @@ You will learn about OpenTelemetry Receivers, Kubernetes Namespaces, ReplicaSets
 
 For this workshop Splunk has prepared an Ubuntu Linux instance in AWS/EC2 all pre-configured for you.
 
-To get access to the instance that you will be using in the workshop, please visit the URL provided by the workshop leader in the workshop Slack channel.
+To get access to the instance that you will be using in the workshop, please visit the URL provided by the workshop leader.
