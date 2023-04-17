@@ -17,7 +17,7 @@ Then you'll need to select the workshop RUM token and define the application and
 - Application Name: `<hostname>-petclinic-service`
 - Environment: `<hostname>-petclinic-env`
 
-Copy the generated code snippet in the wizard or copy and edit the snippet below accordingly:
+Copy the generated code snippet in the wizard or copy and edit the snippet below accordingly. You need to replace `<REALM>`, `<RUM_ACCESS_TOKEN>` and `<hostname>` with the actual values.
 
 ``` html
 <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous"></script>
@@ -54,6 +54,7 @@ java \
 -Dotel.service.name=$(hostname)-petclinic.service \
 -Dsplunk.profiler.enabled=true \
 -Dsplunk.metrics.enabled=true \
+-Dotel.resource.attributes=deployment.environment=$(hostname)-petclinic,version=0.314 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 

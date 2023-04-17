@@ -15,7 +15,7 @@ The Splunk OpenTelemetry Collector uses FluentD to consume/report logs and to co
 
 Here's the sample FluentD configuration file (`petclinic.conf`, reading the file `/tmp/spring-petclinic.log`)
 
-```text
+```ini
 <source>
   @type tail
   @label @SPLUNK
@@ -69,7 +69,7 @@ The Spring PetClinic application can be configure to use a number of different j
     </rollingPolicy>
     <encoder>
       <pattern>
-      %d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg trace_id=%X{trace_id} span_id=%X{span_id} trace_flags=%X{trace_flags} service.name=%property{otel.resource.service.name}, deployment.environment=%property{otel.resource.deployment.environment} %n
+        %d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg trace_id=%X{trace_id} span_id=%X{span_id} trace_flags=%X{trace_flags} %n service: %property{otel.resource.service.name}, env: %property{otel.resource.deployment.environment}: %m%n
       </pattern>
     </encoder>
   </appender>
@@ -96,6 +96,7 @@ java \
 -Dotel.service.name=$(hostname)-petclinic.service \
 -Dsplunk.profiler.enabled=true \
 -Dsplunk.metrics.enabled=true \
+-Dotel.resource.attributes=deployment.environment=$(hostname)-petclinic,version=0.314 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
@@ -106,8 +107,7 @@ Hamburger Menu > Log Observer
 
 And you can add a filter to select only log messages from your host and the Spring PetClinic Application:
 
-1. Add Filter → Fields → `host.name` → `<your host name>`
-2. Add Filter → Fields → `service.name` → `<your host name>-petclinic.service`
+- Add Filter → Fields → `service.name` → `<your host name>-petclinic.service`
 
 ## 4. Summary
 

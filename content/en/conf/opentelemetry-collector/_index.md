@@ -6,6 +6,35 @@ weight: 2
 alwaysopen: false
 ---
 
+{{< mermaid >}}
+%%{
+  init:{
+    "theme":"base",
+    "themeVariables": {
+      "primaryColor": "#ffffff",
+      "clusterBkg": "#eff2fb",
+      "defaultLinkColor": "#333333"
+    }
+  }
+}%%
+
+flowchart LR;
+    subgraph Collector
+    A[OTLP] --> M(Receivers)
+    B[JAEGER] --> M(Receivers)
+    C[Prometheus] --> M(Receivers)
+    end
+    subgraph Processors
+    M(Receivers) --> H(Filters, Attributes, etc)
+    E(Extensions)
+    end
+    subgraph Exporters
+    H(Filters, Attributes, etc) --> S(OTLP)
+    H(Filters, Attributes, etc) --> T(JAEGER)
+    H(Filters, Attributes, etc) --> U(Prometheus)
+    end
+{{< /mermaid >}}
+
 ## Overview
 
 [https://docs.splunk.com/Observability/gdi/other-ingestion-methods/upstream-collector.html#nav-Send-telemetry-using-OpenTelemetry-Collector-Contrib](https://docs.splunk.com/Observability/gdi/other-ingestion-methods/upstream-collector.html#nav-Send-telemetry-using-OpenTelemetry-Collector-Contrib)

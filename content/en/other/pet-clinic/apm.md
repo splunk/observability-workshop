@@ -76,7 +76,7 @@ Let's launch the PetClinic again using a new resource attribute. Note, that addi
 
 ```bash
 java \
--Dotel.service.name=$(hostname).service \
+-Dotel.service.name=$(hostname)-petclinic.service \
 -Dsplunk.profiler.enabled=true \
 -Dsplunk.metrics.enabled=true \
 -Dotel.resource.attributes=deployment.environment=$(hostname)-petclinic,version=0.314 \
