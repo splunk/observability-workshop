@@ -21,5 +21,5 @@ To get started, please proceed to [The Splunk Observability Cloud Workshops Home
 If you are the host for the RUM workshop, please check this [README](https://github.com/splunk/observability-workshop/blob/main/workshop/apm/README.md)
 
 Latest versions of the workshop are:
+- [v4.77](https://splunk.github.io/observability-workshop/v4.77/)
 - [v4.76](https://splunk.github.io/observability-workshop/v4.76/)
-- [v4.75](https://splunk.github.io/observability-workshop/v4.75/)
