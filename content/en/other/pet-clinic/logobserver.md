@@ -13,7 +13,13 @@ We need to configure the Splunk OpenTelemetry Collector to tail the Spring PetCl
 
 The Splunk OpenTelemetry Collector uses FluentD to consume/report logs and to configure the proper setting to report Spring PetClinic logs, we just need to add a FluentD configuration file in the default directory (`/etc/otel/collector/fluentd/conf.d/`).
 
-Here's the sample FluentD configuration file (`petclinic.conf`, reading the file `/tmp/spring-petclinic.log`)
+So we need to create the a new FluentD configuration file:
+
+```bash
+sudo vi /etc/otel/collector/fluentd/conf.d/petclinic.conf
+```
+
+Copy and paste in the following configuration, this will read the file `/tmp/spring-petclinic.log` that will be configured in the next section.
 
 ```ini
 <source>
@@ -29,20 +35,14 @@ Here's the sample FluentD configuration file (`petclinic.conf`, reading the file
 </source>
 ```
 
-So we need to create the file
-
-```bash
-sudo vi /etc/otel/collector/fluentd/conf.d/petclinic.conf
-```
-
-We also need to change permission and ownership of the petclinic.conf file
+We now need to change permission and ownership of the petclinic.conf file so the agent can read it:
 
 ```bash
 sudo chown td-agent:td-agent /etc/otel/collector/fluentd/conf.d/petclinic.conf
 sudo chmod 755 /etc/otel/collector/fluentd/conf.d/petclinic.conf
 ```
 
-And paste the contents from the snippet above. Once the file is created, we need to restart the FluentD process
+Now that we have created the new configuration and changed the permissions we need to restart the FluentD process:
 
 ```bash
 sudo systemctl restart td-agent
@@ -50,7 +50,13 @@ sudo systemctl restart td-agent
 
 ## 3. Logback Settings
 
-The Spring PetClinic application can be configure to use a number of different java logging libraries. In this scenario, we are using logback. Here's a sample logback configuration file:
+The Spring PetClinic application can be configured to use a number of different java logging libraries. In this scenario, we are using logback. We just need to create a file named `logback.xml` in the configuration folder:
+
+```bash
+vi src/main/resources/logback.xml
+```
+
+Copy and paste the following XML content:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -69,7 +75,9 @@ The Spring PetClinic application can be configure to use a number of different j
     </rollingPolicy>
     <encoder>
       <pattern>
-        %d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg trace_id=%X{trace_id} span_id=%X{span_id} trace_flags=%X{trace_flags} %n service: %property{otel.resource.service.name}, env: %property{otel.resource.deployment.environment}: %m%n
+        %d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg trace_id=%X{trace_id} span_id=%X{span_id} trace_flags=%X{trace_flags}
+%n service.name=%property{otel.resource.service.name}, deployment.environment=%property{otel.resource.deployment.environmen
+t}: %m%n
       </pattern>
     </encoder>
   </appender>
@@ -79,17 +87,13 @@ The Spring PetClinic application can be configure to use a number of different j
 </configuration>
 ```
 
-We just need to create a file named logback.xml in the configuration folder.
-
-```bash
-vi src/main/resources/logback.xml
-```
-
-and paste the XML content from the snippet above. After that, we need to rebuild the application and run it again:
+Now we need to rebuild the application and run it again:
 
 ```bash
 ./mvnw package -Dmaven.test.skip=true
 ```
+
+And then run the application again:
 
 ```bash
 java \
@@ -107,8 +111,9 @@ Hamburger Menu > Log Observer
 
 And you can add a filter to select only log messages from your host and the Spring PetClinic Application:
 
+- Add Filter → Fields → `host.name` → `<your host name>`
 - Add Filter → Fields → `service.name` → `<your host name>-petclinic.service`
 
 ## 4. Summary
 
-This the end of the exercise and we have certainly covered a lot of ground. At this point you should have metrics, traces, logs, database query performance and code profiling being reported into Splunk Observability Cloud. **Congratulations**!
+This the end of the exercise and we have certainly covered a lot of ground. At this point you should have metrics, traces (APM & RUM), logs, database query performance and code profiling being reported into Splunk Observability Cloud. **Congratulations**!
