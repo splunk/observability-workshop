@@ -75,9 +75,7 @@ Copy and paste the following XML content:
     </rollingPolicy>
     <encoder>
       <pattern>
-        %d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg trace_id=%X{trace_id} span_id=%X{span_id} trace_flags=%X{trace_flags}
-%n service.name=%property{otel.resource.service.name}, deployment.environment=%property{otel.resource.deployment.environmen
-t}: %m%n
+        %d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg trace_id=%X{trace_id} span_id=%X{span_id} trace_flags=%X{trace_flags} %n service.name=%property{otel.resource.service.name}, deployment.environment=%property{otel.resource.deployment.environment}: %m%n
       </pattern>
     </encoder>
   </appender>
