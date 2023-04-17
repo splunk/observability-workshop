@@ -1,6 +1,6 @@
 ---
 title: OpenTelemetry Collector Receivers
-linkTitle: 1. Receivers
+linkTitle: 2. Receivers
 weight: 2
 ---
 

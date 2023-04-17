@@ -1,6 +1,6 @@
 ---
 title: OpenTelemetry Collector Processors
-linkTitle: 1. Processors
+linkTitle: 3. Processors
 weight: 3
 ---
 

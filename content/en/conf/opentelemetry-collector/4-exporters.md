@@ -1,6 +1,6 @@
 ---
 title: OpenTelemetry Collector Exporters
-linkTitle: 1. Exporters
+linkTitle: 4. Exporters
 weight: 4
 ---
 
