@@ -37,7 +37,7 @@ To work with to Splunk's Team UI click on the hamburger icon top left and select
 
 When the **Team** UI is selected you will be presented with the list of current Teams.
 
-To add a new **Team** click on the {{% button style="blue" %}}**Create New Team**{{% /button %}} button. This will present you with the **Create New Team** dialog.
+To add a new **Team** click on the {{% button style="blue" %}}Create New Team{{% /button %}} button. This will present you with the **Create New Team** dialog.
 
 ![Add Team](../../images/create-new-team.png)
 
@@ -47,7 +47,7 @@ Create your own team by naming it `[YOUR-INITIALS]-Team and` add yourself by sea
 
 You can remove selected users by pressing  **Remove** or the small **x**.
 
-Make sure you have your group created with your initials and with yourself added as a member, then click {{% button style="blue" %}}**Done**{{% /button %}}
+Make sure you have your group created with your initials and with yourself added as a member, then click {{% button style="blue" %}}Done{{% /button %}}
 
 This will bring you back to the **Teams** list that will now show your Team and the one's created by others.
 
@@ -77,7 +77,7 @@ The **Email all team members** option means all members of this Team will receiv
 
 ### 3.1 Adding recipients
 
-You can add other recipients, by clicking {{% button style="blue" %}}**Add Recipient**{{% /button %}}. These recipients do not need to be Observability Cloud users.
+You can add other recipients, by clicking {{% button style="blue" %}}Add Recipient{{% /button %}}. These recipients do not need to be Observability Cloud users.
 
 However if you click on the link **Configure separate notification tiers for different severity alerts** you can configure every alert level independently.
 
