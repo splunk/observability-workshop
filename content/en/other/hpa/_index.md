@@ -1,6 +1,6 @@
 ---
 title: Monitoring Horizontal Pod Autoscaling in Kubernetes
-linkTitle: Horizonal Pod Autoscaling
+linkTitle: Horizontal Pod Autoscaling
 description: This workshop will equip you with the basic understanding of monitoring Kubernetes using the Splunk OpenTelemetry Collector
 weight: 2
 alwaysopen: false
