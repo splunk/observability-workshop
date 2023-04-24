@@ -14,6 +14,10 @@ Next we will clone the PetClinic repository, then we will compile, build, packag
 git clone https://github.com/spring-projects/spring-petclinic
 ```
 
+```bash
+git checkout 276880e
+```
+
 Change into the `spring-petclinic` directory:
 
 ```bash
