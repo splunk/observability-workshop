@@ -39,11 +39,11 @@ Let's then edit the layout page:
 vi src/main/resources/templates/fragments/layout.html
 ```
 
-and let's insert the snipped we generated above in the `<head>` section of the page. Now we need to rebuild the application and run it again:
+Next, insert the snippet we generated above in the `<head>` section of the page. Now we need to rebuild the application and run it again:
 
 ## 2. Rebuild PetClinic
 
-run the maven command to compile/build/package PetClinic:
+Run the `maven` command to compile/build/package PetClinic:
 
 ```bash
 ./mvnw package -Dmaven.test.skip=true
@@ -51,13 +51,15 @@ run the maven command to compile/build/package PetClinic:
 
 ```bash
 java \
--Dotel.service.name=$(hostname)-petclinic.service \
+-Dotel.service.name=$(hostname)-petclinic-service \
 -Dsplunk.profiler.enabled=true \
 -Dsplunk.metrics.enabled=true \
 -Dotel.resource.attributes=deployment.environment=$(hostname)-petclinic,version=0.314 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
-Then let's visit the application again to generate more traffic `http://<VM_IP_ADDRESS>:8080`, now we should see RUM traces being reported
+Then let's visit the application using a browser to generate real-user traffic `http://<VM_IP_ADDRESS>:8080`, now we should see RUM traces being reported.
 
 Let's visit RUM and see some of the traces and metrics **Hamburger Menu → RUM** and you will see some of the Spring PetClinic URLs showing up in the UI.
+
+When you drill down into a RUM trace you will see a link to APM in the spans. Clicking on the trace ID will take you to the corresponding APM trace for the current RUM trace.

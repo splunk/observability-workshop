@@ -12,6 +12,7 @@ The goal is to walk through the basic steps to configure the following component
   * Database Query Performance
   * AlwaysOn Profiling
 * Splunk Real User Monitoring (RUM)
+* RUM spans to APM spans
 * Splunk LogsObserver (LO)
 
 We will also show the steps about how to clone (download) a sample Java application (Spring PetClinic), as well as how to compile, package and run the application.
