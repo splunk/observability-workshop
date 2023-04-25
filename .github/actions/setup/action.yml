@@ -26,19 +26,6 @@ runs:
       shell: bash
       run: pip install -r requirements.txt
 
-    - name: Setup Node
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
-    - name: Cache Node dependencies
-      uses: actions/cache@v2
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-
     - name: Cache go dependencies
       uses: actions/cache@v2
       with:
@@ -46,10 +33,6 @@ runs:
         key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
         restore-keys: |
           ${{ runner.os }}-hugomod-
-
-    - name: Setup Docsy
-      shell: bash
-      run: npm ci --cache .npm --prefer-offline
 
 #    - name: Get Submodules
 #      shell: bash
