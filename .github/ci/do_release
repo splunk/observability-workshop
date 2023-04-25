@@ -35,10 +35,12 @@ else
   TAG=dev
 fi
 
-echo "::set-output name=tag_name::${TAG}"
+#echo "::set-output name=tag_name::${TAG}"
+echo "tag_name=${TAG}" >> $GITHUB_OUTPUT
 
 BASE_URL="$(yq .baseURL config.yaml)"
-echo "::set-output name=base_url::${BASE_URL}"
+#echo "::set-output name=base_url::${BASE_URL}"
+echo "base_url=${BASE_URL}" >> $GITHUB_OUTPUT
 
 if [[ $DRY_RUN == 0 ]]; then
   awk "/Latest versions of the workshop are:/ { print; print \"- [v${TAG}](https://splunk.github.io/observability-workshop/v${TAG}/)\";next }1" README.md |
