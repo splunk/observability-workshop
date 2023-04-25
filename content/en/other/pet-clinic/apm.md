@@ -57,7 +57,7 @@ You can validate if the application is running by visiting `http://<VM_IP_ADDRES
 Next we will start a Docker container running Locust that will generate some simple traffic to the PetClinic application. Locust is a simple load testing tool that can be used to generate traffic to a web application.
 
 ```bash
-docker run --network="host" -d -p 8089:8089 -v /home/ubuntu/workshop/locust:/mnt/locust locustio/locust -f /mnt/locust/locustfile.py --headless -u 10 -r 3 -H http://127.0.0.1:8080
+docker run --network="host" -d -p 8089:8089 -v /home/ubuntu/workshop/petclinic:/mnt/locust locustio/locust -f /mnt/locust/locustfile.py --headless -u 10 -r 3 -H http://127.0.0.1:8080
 ```
 
 Then you can visit the Splunk APM UI and examine the application components, traces, etc. **Hamburger Menu → APM → Explore**.
