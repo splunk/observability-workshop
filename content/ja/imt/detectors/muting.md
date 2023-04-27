@@ -14,7 +14,7 @@ isCJKLanguage: true
 
 特定の通知をミュートする必要がある場合があります。例えば、サーバーやサーバー群のメンテナンスのためにダウンタイムを設定したい場合や、新しいコードや設定をテストしている場合などがあります。このような場合には、Splunk Observability Cloud でミューティングルールを使用できます。それでは作成してみましょう。
 
-ナビバーにある ![alerts and detectors](../../images/alerts-and-detectors.png) ボタンをクリックし、**Detectors** を選択します。現在設定されているディテクターの一覧が表示されます。フィルタを使ってディテクターを探すこともできます。
+ナビバーにある ![alerts and detectors](../../images/alerts-and-detectors.png?classes=inline&height=25px) ボタンをクリックし、**Detectors** を選択します。現在設定されているディテクターの一覧が表示されます。フィルタを使ってディテクターを探すこともできます。
 
 ![detectors list](../../images//detectors.png)
 
