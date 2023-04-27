@@ -78,3 +78,6 @@ menu:
     - name: <i class="fab fa-fw fa-twitter"></i> Twitter
       url: "https://twitter.com/splunk"
       weight: 30
+    - name: <i class="fas fa-tags"></i> Tags
+      url: "/tags"
+      weight: 40
