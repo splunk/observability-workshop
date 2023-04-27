@@ -2,9 +2,8 @@ baseURL: https://splunk.github.io/
 canonifyURLs: true
 relativeURLs: true
 title: Splunk Observability Cloud Workshops
-contentDir: content/en
 defaultContentLanguage: en
-defaultContentLanguageInSubdir: false
+defaultContentLanguageInSubdir: true
 enableMissingTranslationPlaceholders: false
 enableRobotsTXT: true
 module:
@@ -14,12 +13,13 @@ theme:
   - github.com/McShelby/hugo-theme-relearn
 languages:
   en:
-    title: 'Splunk Observability Cloud Workshops'
+    title: "Splunk Observability Cloud Workshops"
     description: Splunk Observability Workshops
     languageName: English
+    contentDir: content/en
     weight: 1
   ja:
-    title: 'Splunk Observability Cloud Workshops'
+    title: "Splunk Observability Cloud Workshops"
     description: Splunk Observability ワークショップ
     contentDir: content/ja
     languageName: 日本語

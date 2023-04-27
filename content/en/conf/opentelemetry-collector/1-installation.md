@@ -32,10 +32,28 @@ Created symlink /etc/systemd/system/multi-user.target.wants/otelcol-contrib.serv
 ## 3. Confirm the Collector is running
 
 ``` bash
-ps -ax | grep otel
+sudo systemctl status otelcol-contrib
 ```
 
 ``` text
-ubuntu@otel:~$ ps -ax | grep otel
-   1658 ?        Ssl    0:00 /usr/bin/otelcol-contrib --config=/etc/otelcol-contrib/config.yaml
+● otelcol-contrib.service - OpenTelemetry Collector Contrib
+     Loaded: loaded (/lib/systemd/system/otelcol-contrib.service; enabled; vendor preset: enabled)
+     Active: active (running) since Thu 2023-04-27 12:38:27 BST; 1h 51min ago
+   Main PID: 3393 (otelcol-contrib)
+      Tasks: 7 (limit: 1116)
+     Memory: 49.1M
+        CPU: 28.741s
+     CGroup: /system.slice/otelcol-contrib.service
+             └─3393 /usr/bin/otelcol-contrib --config=/etc/otelcol-contrib/config.yaml
+
+Apr 27 14:30:16 otel otelcol-contrib[3393]: Timestamp: 2023-04-27 13:30:15.958341145 +0000 UTC
+Apr 27 14:30:16 otel otelcol-contrib[3393]: Value: 0.000000
+Apr 27 14:30:16 otel otelcol-contrib[3393]: NumberDataPoints #7
+Apr 27 14:30:16 otel otelcol-contrib[3393]: Data point attributes:
+Apr 27 14:30:16 otel otelcol-contrib[3393]:      -> cpu: Str(cpu0)
+Apr 27 14:30:16 otel otelcol-contrib[3393]:      -> state: Str(wait)
+Apr 27 14:30:16 otel otelcol-contrib[3393]: StartTimestamp: 2023-04-27 09:01:16 +0000 UTC
+Apr 27 14:30:16 otel otelcol-contrib[3393]: Timestamp: 2023-04-27 13:30:15.958341145 +0000 UTC
+Apr 27 14:30:16 otel otelcol-contrib[3393]: Value: 9.700000
+Apr 27 14:30:16 otel otelcol-contrib[3393]:         {"kind": "exporter", "data_type": "metrics", "name": "logging"}
 ```

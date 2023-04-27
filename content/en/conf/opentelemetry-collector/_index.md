@@ -347,3 +347,67 @@ service:
       # Use instead when sending to gateway
       #exporters: [otlp]
 ```
+
+End goal for metrics only:
+
+```yaml
+extensions:
+  health_check:
+    endpoint: 0.0.0.0:13133
+  pprof:
+    endpoint: 0.0.0.0:1777
+  zpages:
+    endpoint: 0.0.0.0:55679
+
+receivers:
+  hostmetrics:
+    collection_interval: 10s
+    scrapers:
+      cpu:
+      disk:
+      filesystem:
+      memory:
+      network:
+      # System load average metrics https://en.wikipedia.org/wiki/Load_(computing)
+      load:
+      # Paging/Swap space utilization and I/O metrics
+      paging:
+      # Aggregated system process count metrics
+      processes:
+      # System processes metrics, disabled by default
+      # process:
+
+  # Collect own metrics
+  prometheus:
+    config:
+      scrape_configs:
+      - job_name: 'otel-collector'
+        scrape_interval: 10s
+        static_configs:
+        - targets: ['0.0.0.0:8888']
+
+processors:
+  batch:
+  resourcedetection:
+    detectors: [system]
+    override: true
+
+exporters:
+  logging:
+    loglevel: debug
+  otlphttp:
+    metrics_endpoint: https://ingest.eu0.signalfx.com/v2/datapoint/otlp
+    compression: gzip
+    headers:
+      X-SF-TOKEN: wduaYOsVDR4dKSRz009VJg
+
+service:
+  pipelines:
+    metrics:
+      receivers: [otlp, opencensus, prometheus, hostmetrics]
+      processors: [batch, resourcedetection]
+      exporters: [logging, otlphttp]
+
+  extensions: [health_check, pprof, zpages]
+  ```
+  
