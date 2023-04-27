@@ -15,7 +15,7 @@ isCJKLanguage: true
 
 {{% button style="blue" %}}Save As{{% /button %}}ボタンをクリックします。チャートに名前が付いていることを確認します。前のステップで定義した **現在のレイテンシー** という名前が使用されますが、必要に応じてここで編集することができます。
 
-{{% button style="blue" %}}**Ok**{{% /button %}}ボタンを押して続行します。
+{{% button style="blue" %}}Ok{{% /button %}}ボタンを押して続行します。
 
 ![Name Chart](../../images/name-chart.png)
 
@@ -39,7 +39,7 @@ isCJKLanguage: true
 
 ![Choose Dashboard](../../images/choose-dashboard.png)
 
-ダッシュボードが選択されていることを確認して、{{% button style="blue" %}}**Ok**{{% /button %}}ボタンを押します。
+ダッシュボードが選択されていることを確認して、{{% button style="blue" %}}Ok{{% /button %}}ボタンを押します。
 
 すると、下図のようにダッシュボードが表示されます。左上に、**YOUR_NAME-DASHBOARD** がダッシュボードグループ **YOUR_NAME-Dashboard** の一部であることがわかります。このダッシュボードグループに他のダッシュボードを追加することができます。
 
@@ -57,7 +57,7 @@ isCJKLanguage: true
 
 ![Team Dashboard](../../images/team-dashboard.png)
 
-{{% button style="blue" %}}**+**{{% /button %}} を押し、 *Add Dashboard Group* ボタンを押して、チームページにダッシュボードを追加します。
+{{% button style="blue" %}}+{{% /button %}} を押し、 *Add Dashboard Group* ボタンを押して、チームページにダッシュボードを追加します。
 
 すると、 **Select a dashboard group to link to this team** ダイアログが表示されます。
 検索ボックスにご自身のお名前（上記で使用したお名前）を入力して、ダッシュボードを探します。ダッシュボードがハイライトされるように選択し、**Ok** ボタンをクリックしてダッシュボードを追加します。

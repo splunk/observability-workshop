@@ -32,7 +32,7 @@ If you have forgotten your password go to the <https://portal.victorops.com/memb
 
 ## 2. Activate your Splunk Infrastructure Monitoring Login
 
-You should have received an invitation to join the Splunk Infrastructure Monitoring - Observability Workshop.  If you have not already done so click the {{% button  %}}**JOIN NOW**{{% /button %}} button and follow the prompts to set a password and activate your login.
+You should have received an invitation to join the Splunk Infrastructure Monitoring - Observability Workshop.  If you have not already done so click the {{% button  %}}JOIN NOW{{% /button %}} button and follow the prompts to set a password and activate your login.
 
 ## 3. Access your EC2 Instance
 

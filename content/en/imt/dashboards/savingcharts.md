@@ -14,7 +14,7 @@ To change the description click on **Spread of latency values across time.** and
 
 Click the {{% button style="blue" %}}Save As{{% /button %}} button. Make sure your chart has a name, it will use the name **Active Latency** the you defined in the previous step, but you can edit it here if needed.
 
-Press the {{% button style="blue" %}}**Ok**{{% /button %}}
+Press the {{% button style="blue" %}}Ok{{% /button %}}
  button to continue.
 
 ![Name Chart](../../images/name-chart.png)
@@ -41,7 +41,7 @@ Your new dashboard is now available and selected so you can save your chart in y
 
 ![Choose Dashboard](../../images/choose-dashboard.png)
 
-Make sure you have your dashboard selected and press the {{% button style="blue" %}}**Ok**{{% /button %}} button.
+Make sure you have your dashboard selected and press the {{% button style="blue" %}}Ok{{% /button %}} button.
 
 You will now be taken to your dashboard like below. You can see at the top left that your **YOUR_NAME-DASHBOARD** is part of a Dashboard Group **YOUR_NAME-Dashboard**. You can add other dashboards to this dashboard group.
 
@@ -57,7 +57,7 @@ This will bring you to your teams dashboard, We use the team ***Example Team*** 
 
 ![Team Dashboard](../../images/team-dashboard.png)
 
-Press the {{% button style="blue" %}}**+**{{% /button %}} *Add Dashboard Group* button to add you dashboard to the team page.
+Press the {{% button style="blue" %}}+{{% /button %}} *Add Dashboard Group* button to add you dashboard to the team page.
 
 This will bring you to the **Select a dashboard group to link to this team** dialog.
 Type your name (that you used above) in the search box to find your Dashboard. Select it so its highlighted and click the **Ok** button to add your dashboard.

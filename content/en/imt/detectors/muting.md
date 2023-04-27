@@ -35,7 +35,7 @@ Click **Next** and in the new modal window confirm the muting rule setup.
 
 ![Confirm Rule](../../images/confirm-rule.png)
 
-Click on {{% button style="blue" %}}**Mute Indefinitely**{{% /button %}} to confirm.
+Click on {{% button style="blue" %}}Mute Indefinitely{{% /button %}} to confirm.
 
 ![List muted rule](../../images/alert-muted.png)
 
@@ -51,7 +51,7 @@ Click on the thee dots **`...`** on the far right, and click on **Resume Notific
 
 ![Resume](../../images/muting-list.png)
 
-Click on {{% button style="blue" %}}**Resume**{{% /button %}} to confirm and resume notifications for this detector.
+Click on {{% button style="blue" %}}Resume{{% /button %}} to confirm and resume notifications for this detector.
 
 ![Resume](../../images/resume.png)
 

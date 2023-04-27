@@ -36,7 +36,7 @@ Splunk のチーム UI を使用するには、左下の **>>** を開き、 **S
 
 **Team** を選択すると、現在のチームのリストが表示されます。
 
-新しいチームを追加するには、{{% button style="blue" %}}**Create New Team**{{% /button %}} ボタンをクリックします。これにより、**Create New Team** ダイアログが表示されます。
+新しいチームを追加するには、{{% button style="blue" %}}Create New Team{{% /button %}} ボタンをクリックします。これにより、**Create New Team** ダイアログが表示されます。
 
 ![Add Team](../../images/create-new-team.png)
 
@@ -46,7 +46,7 @@ Splunk のチーム UI を使用するには、左下の **>>** を開き、 **S
 
 選択したユーザーを削除するには、**Remove** または **x** を押します。
 
-自分のイニシャルでグループを作成し、自分がメンバーとして追加されていることを確認して、{{% button style="blue" %}}**Done**{{% /button %}} をクリックします。
+自分のイニシャルでグループを作成し、自分がメンバーとして追加されていることを確認して、{{% button style="blue" %}}Done{{% /button %}} をクリックします。
 
 これでチームリストに戻り、自分のチームと他の人が作成したチームが表示されます。
 
@@ -74,7 +74,7 @@ Splunk のチーム UI を使用するには、左下の **>>** を開き、 **S
 
 ### 3.1 受信者の追加
 
-{{% button style="blue" %}}**Add Recipient**{{% /button %}} をクリックすると、他の受信者を追加することができます。これらの受信者は Observability Cloud のユーザーである必要はありません。
+{{% button style="blue" %}}Add Recipient{{% /button %}} をクリックすると、他の受信者を追加することができます。これらの受信者は Observability Cloud のユーザーである必要はありません。
 
 **Configure separate notification tiers for different severity alerts** をクリックすると、各アラートレベルを個別に設定できます。
 
