@@ -6,7 +6,7 @@ weight: 2
 
 Extensions are available primarily for tasks that do not involve processing telemetry data. Examples of extensions include health monitoring, service discovery, and data forwarding. Extensions are optional.
 
-Let's edit the `config.yaml` file to add the following extensions:
+Let's edit the `config.yaml` file and configure the extensions. Note that the `pprof` and `zpages` extensions are already configured in the default `config.yaml` file. We will only be updating the `health_check` extension.
 
 ``` bash
 sudo vi /etc/otelcol-contrib/config.yaml
@@ -30,6 +30,8 @@ sudo systemctl restart otelcol-contrib
 
 ## Health Check
 
+This extension enables an HTTP url that can be probed to check the status of the OpenTelemetry Collector. This extension can be used as a liveness and/or readiness probe on Kubernetes.
+
 ```bash
 curl http://localhost:13133
 ```
@@ -40,7 +42,11 @@ curl http://localhost:13133
 
 ## Performance Profiler
 
+Performance Profiler extension enables the golang net/http/pprof endpoint. This is typically used by developers to collect performance profiles and investigate issues with the service.
+
 ## zPages
+
+zPages are an in-process alternative to external exporters. When included, they collect and aggregate tracing and metrics information in the background; this data is served on web pages when requested.
 
 {{% notice style="tip" %}}
 Install a text-based web browser (or use your local browser using the instance IP address)

@@ -16,9 +16,15 @@ wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases
 
 Install the `.deb` package using `dpkg`:
 
+{{< tabs >}}
+{{% tab name="Install" %}}
+
 ``` bash
 sudo dpkg -i otelcol-contrib_0.75.0_linux_amd64.deb
 ```
+
+{{% /tab %}}
+{{% tab name="dpkg Output" %}}
 
 ``` text
 Selecting previously unselected package otelcol-contrib.
@@ -29,11 +35,20 @@ Setting up otelcol-contrib (0.75.0) ...
 Created symlink /etc/systemd/system/multi-user.target.wants/otelcol-contrib.service → /lib/systemd/system/otelcol-contrib.service.
 ```
 
+{{% /tab %}}
+{{< /tabs >}}
+
 ## 3. Confirm the Collector is running
+
+{{< tabs >}}
+{{% tab name="Command" %}}
 
 ``` bash
 sudo systemctl status otelcol-contrib
 ```
+
+{{% /tab %}}
+{{% tab name="Status Output" %}}
 
 ``` text
 ● otelcol-contrib.service - OpenTelemetry Collector Contrib
@@ -57,3 +72,89 @@ Apr 27 14:30:16 otel otelcol-contrib[3393]: Timestamp: 2023-04-27 13:30:15.95834
 Apr 27 14:30:16 otel otelcol-contrib[3393]: Value: 9.700000
 Apr 27 14:30:16 otel otelcol-contrib[3393]:         {"kind": "exporter", "data_type": "metrics", "name": "logging"}
 ```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+## 4. Default configuration
+
+Let's look at the default configuration that is supplied:
+
+{{< tabs >}}
+{{% tab name="Command" %}}
+
+```bash
+cat /etc/otelcol-contrib/config.yaml
+```
+
+{{% /tab %}}
+{{% tab name="Configuration Output" %}}
+
+```yaml
+extensions:
+  health_check:
+  pprof:
+    endpoint: 0.0.0.0:1777
+  zpages:
+    endpoint: 0.0.0.0:55679
+
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+  opencensus:
+
+  # Collect own metrics
+  prometheus:
+    config:
+      scrape_configs:
+      - job_name: 'otel-collector'
+        scrape_interval: 10s
+        static_configs:
+        - targets: ['0.0.0.0:8888']
+
+  jaeger:
+    protocols:
+      grpc:
+      thrift_binary:
+      thrift_compact:
+      thrift_http:
+
+  zipkin:
+
+processors:
+  batch:
+
+exporters:
+  logging:
+    verbosity: detailed
+
+service:
+
+  pipelines:
+
+    traces:
+      receivers: [otlp, opencensus, jaeger, zipkin]
+      processors: [batch]
+      exporters: [logging]
+
+    metrics:
+      receivers: [otlp, opencensus, prometheus]
+      processors: [batch]
+      exporters: [logging]
+
+  extensions: [health_check, pprof, zpages]
+  ```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+We will now walk through each section of the configuration file and modify it to send host metrics to Splunk Observability Cloud.
+
+Splunk does provide its own, fully supported, distribution of the OpenTelemetry Collector. This distribution is available to install from the [Splunk GitHub Repository](https://github.com/signalfx/splunk-otel-collector). This distribution includes a number of additional features and enhancements that are not available in the OpenTelemetry Collector Contrib distribution.
+
+- The Splunk Distribution of the OpenTelemetry Collector is production tested; it is in use by a number of customers in their production environments
+- Customers that use our distribution can receive direct help from official Splunk support within SLA's
+- Customers can use or migrate to the Splunk Distribution of the OpenTelemetry Collector without worrying about future breaking changes to its core configuration experience for metrics and traces collection (OpenTelemetry logs collection configuration is in beta). There may be breaking changes to the Collector's own metrics.

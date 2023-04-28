@@ -19,16 +19,9 @@ exporters:
 
 ```yaml
 service:
-
   pipelines:
-
-    traces:
-      receivers: [otlp, opencensus, jaeger, zipkin]
-      processors: [batch]
-      exporters: [logging]
-
     metrics:
-      receivers: [otlp, opencensus, prometheus, hostmetrics]
+      receivers: [prometheus, hostmetrics]
       processors: [batch, resourcedetection]
       exporters: [logging, otlphttp]
 ```
