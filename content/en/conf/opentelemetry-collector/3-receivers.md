@@ -39,4 +39,16 @@ receivers:
 
 You will also notice another receiver called `prometheus`. This receiver is used to scrape metrics from the OpenTelemetry Collector itself. These metrics can then be used to monitor the health of the collector.
 
+Let's modify the `prometheus` receiver to clearly show that it is for collecting metrics from the collector itself. Change the `config.yaml` file to look like this:
+
+```yaml
+  prometheus/internal:
+    config:
+      scrape_configs:
+      - job_name: 'otel-collector'
+        scrape_interval: 10s
+        static_configs:
+        - targets: ['0.0.0.0:8888']
+```
+
 ![otel-charts](../images/otel-charts.png)

@@ -16,12 +16,3 @@ exporters:
     headers:
       X-SF-TOKEN: <redacted>
 ```
-
-```yaml
-service:
-  pipelines:
-    metrics:
-      receivers: [prometheus, hostmetrics]
-      processors: [batch, resourcedetection]
-      exporters: [logging, otlphttp]
-```
