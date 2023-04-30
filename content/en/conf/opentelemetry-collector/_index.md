@@ -399,7 +399,7 @@ exporters:
     metrics_endpoint: https://ingest.eu0.signalfx.com/v2/datapoint/otlp
     compression: gzip
     headers:
-      X-SF-TOKEN: wduaYOsVDR4dKSRz009VJg
+      X-SF-TOKEN: <REDACTED>
 
 service:
   pipelines:
