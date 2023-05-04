@@ -17,12 +17,14 @@ Splunk Full Fidelity APM allows our customers development teams to debug their c
 To expedite manual instrumentation implementation for this exercise, we have provided a tool which will annotate the entirety of the "shop" and "products" services with OpenTelemetry standard annotations for every function call without having to write any code. This "annotator" tool will also tag every parameter in every function, which adds a span tag with Parameter=Value.
 
 * Run Manual Instrumentation Tool
-```
+
+``` bash
 ./AutomateManualInstrumentation.sh
 ```
 
 * Rebuild and Deploy the Application
-```
+
+``` bash
 ./BuildAndDeploy.sh
 ```
 
@@ -54,17 +56,18 @@ We added additional span information, which we call **Custom Attributes** here a
 In our exmaple the `myInt` tag was created due our handy Annotator, that did the OpenTelemetry Annotations for us.
 
 * Using nano:
-```
+
+``` bash
 nano products/src/main/java/com/shabushabu/javashop/products/resources/ProductResource.java
 ```
+
 * Search in Nano: **[CTRL]-w**
 * Enter in: **999 [Enter]**
 
 We can see here, someone wrote some very bad code in the form of a long Sleep!
 
-```
+``` java
 if (999==myInt) 
-	Thread.sleep(
-	  sleepy.nextInt(5000 - 3000)
-	    + 3000);
+    Thread.sleep(
+        sleepy.nextInt(5000 - 3000) + 3000);
 ```

@@ -10,15 +10,17 @@ How did we get here? How did the 999 end up in the trace as a Custom Attribute?
 
 Take a look at the function signature
 
-```
+``` java
 private void myCoolFunction234234234(@SpanAttribute("myInt") int myInt)
 ```
+
 `@SpanAttribute("myint")` is an OpenTelemetry Annotation that was added by our Java Otel Annotator tool.
 
 ## Fixing the code
 
 * Change this:
-```
+
+``` java
 private void myCoolFunction234234234(@SpanAttribute("myInt") int myInt) {
 
 // Generate a FAST sleep of 0 time !
@@ -32,22 +34,23 @@ sleepy.nextInt(5000 - 3000)
 ```
 
 * to this:
-```
+
+``` java
 private void myCoolFunction234234234(@SpanAttribute("myInt") int myInt) {
 
 // Generate a FAST sleep of 0 time !
 Random sleepy = new Random();
-try{	
+try{
 // if (999==myInt)
 // Thread.sleep(
-// sleepy.nextInt(5000 - 3000)	
+// sleepy.nextInt(5000 - 3000)
 // + 3000);
 } catch (Exception e){
 ```
 
 which is basically placing comments (//) before the lines in myCoolFunction234234234 that are causing the slowness:
 
-```
+``` java
 // if (999==myInt)
 // Thread.sleep(
 // sleepy.nextInt(5000 - 3000)
@@ -62,6 +65,7 @@ Until we rebuild and restart our application this change isn't implemented.
 {{% /notice %}}
 
 ## Find Other Issues
+
 Let's go see if our manual instrumentation uncovered any other issues we did not see before
 
 So you may be asking yourself: "How does manual instrumentation alone show us "more problems" than before? Latency is latency, isn't it?"
@@ -97,7 +101,7 @@ We already know exactly what file to look in and what method to look at as it is
 
 * Using nano:
 
-```
+``` bash
 nano shop/src/main/java/com/shabushabu/javashop/shop/model/Instrument.java
 ```
 
@@ -108,7 +112,7 @@ Look just above the `buildForLocale` function.
 
 Notice the Annotation `@WithSpan`? `@WithSpan` is an [OpenTelemetry Annotation](https://opentelemetry.io/docs/instrumentation/java/automatic/annotations/) for Java that automatically generates a span around a the function that follows.
 
-```
+``` java
 @WithSpan
 public Instrument buildForLocale(
   @SpanAttribute("id") long id, ...
@@ -120,7 +124,7 @@ Now let's fix this code. We are going to simply comment this out for now and see
 
 * Change this:
 
-```
+``` java
 if (!isEnglish(title)) {
   throw new InvalidLocaleException("Non English Characters found in Instrument Data");
  } else {
@@ -129,13 +133,14 @@ if (!isEnglish(title)) {
 ```
 
 * to this (comment out if block):
-```
+
+``` java
 // if (!isEnglish(title)) {
 //   throw new InvalidLocaleException("Non English Characters found in Instrument Data");
 // } else {
 //   System.out.println("Characters OK ");
 // }
 ```
+
 * Save the changes: **[CTRL]-o [Enter]**
 * Exit: **[CTRL]-x**
-

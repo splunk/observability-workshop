@@ -41,4 +41,3 @@ Now we can see the long latency occurred in the products service and if we click
 Our next step here would be to send that trace to a developer by clicking download trace and they will have to debug the function. Since we will be the developer there is no need to download the trace. Just remember that is normal workflow for alert responders to route an issue to the "Repairers" while providing trace data.
 
 Before we do that please take note of the Tags available for the developer to leverage to find root cause. We see standard out of the box Otel tags on the span, environmental information, but no indications of data specific to something inside custom code (which is where the problem often is).
-

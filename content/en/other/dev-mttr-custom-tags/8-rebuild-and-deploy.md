@@ -7,7 +7,8 @@ weight: 8
 ## Rebuild and Deploy
 
 * Run
-```
+
+``` bash
 ./BuildAndDeploy.sh
 ```
 
@@ -25,6 +26,3 @@ Now let's check for our exception in the traces.
 If you do not have red in your service map and you do not see Errors in traces, you have successfully completed our Inventory application review for Sri Lanka and Colorado locations.
 
 **Well done!**
-
-
-

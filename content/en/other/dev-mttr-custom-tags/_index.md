@@ -16,9 +16,10 @@ To get access to the instance that you will be using in the workshop, please vis
 
 ## Splunk Observability Cloud
 
-You must have the ability to send traces to Splunk Observability Cloud. If you do not have an account already, please start a trial here: https://www.splunk.com/en_us/download/apm-free-trial.html
+You must have the ability to send traces to Splunk Observability Cloud. If you do not have an account already, please start a trial here: [https://www.splunk.com/en_us/download/apm-free-trial.html](https://www.splunk.com/en_us/download/apm-free-trial.html)
 
 ## Workshop Story
+
 Here at Splunk Instruments, our business is expanding!
 
 We have recently added 3 new locations: Two locations in the USA (Colorado and Chicago) and one international location in Sri Lanka.

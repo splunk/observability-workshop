@@ -15,27 +15,31 @@ Without anything to go on other than "BAD FUNCTION", a Developer must then look 
 We will do the visual inspection mehtod next.
 
 * Using Nano:
-```
+
+``` bash
 nano products/src/main/java/com/shabushabu/javashop/products/resources/ProductResource.java
 ```
 
 * Search in Nano: **[CTRL]-w**
 * Enter in: **getAllProducts [Enter]**
 * You will be taken here:
-```
+
+``` java
   @GET
     public Response getAllProducts(@DefaultValue("California") @QueryParam("location") String location) {
-    	  
-    	// STEP X: All we know right now is somewhere in this function, latency was introduced.
+      
+      // STEP X: All we know right now is somewhere in this function, latency was introduced.
   
-    	myCoolFunction1(location);
-    	myCoolFunction2(location);
-    	myCoolFunction10(location);
-    	myCoolFunction13(location);
-    	myCoolFunction5(location);
-    	myCoolFunction6(location);
+      myCoolFunction1(location);
+      myCoolFunction2(location);
+      myCoolFunction10(location);
+      myCoolFunction13(location);
+      myCoolFunction5(location);
+      myCoolFunction6(location);
 ```
+
 We can see here in getAllProducts, the first call is to `myCoolFunction1()`, so as may have guessed our next step is to go look at `myCoolFunction1()`.
+
 * Search in Nano: **[CTRL]-w**
 * Enter in: myCoolFunction1 **[Enter]**
 * Find the next occurrence: **[CTRL]-w [Enter]**
@@ -43,7 +47,7 @@ We can see here in getAllProducts, the first call is to `myCoolFunction1()`, so 
 
 It looks like this:
 
-```
+``` java
 private void myCoolFunction1(String location) {
       // Generate a FAST sleep of 0 time !
       int sleepy = lookupLocation1(location);
@@ -55,6 +59,7 @@ private void myCoolFunction1(String location) {
       }
     }
 ```
+
 Now, `myCoolFunction1` calls `lookupLocation1(location)`
 
 * Search in Nano: **[CTRL]-w**

@@ -5,6 +5,7 @@ weight: 1
 ---
 
 ## Environment Setup - Mac
+
 {{% notice title="Note" style="info" %}}
 If you wish to run this on Mac directly, you can see the instructions [here in the appendix](../appendix-a-setup-mac) and skip the next section on Linux.
 
@@ -29,9 +30,8 @@ You can skip past the EC2 configuration to Linux Software Requirements if you al
 
 * Linux Software Requirements: docker, docker-compose, git, maven
 
-```
+``` bash
 sudo apt update
 sudo apt upgrade
 sudo apt install docker docker-compose maven
 ```
-
