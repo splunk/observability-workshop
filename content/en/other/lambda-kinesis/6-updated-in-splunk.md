@@ -30,8 +30,8 @@ Notice that the `Trace ID` is something that makes up the trace context that we 
 
 You can read up on the two common propagation standards:
 
-1. W3C: https://www.w3.org/TR/trace-context/#traceparent-header
-2. B3: https://github.com/openzipkin/b3-propagation#overall-process
+1. W3C: [https://www.w3.org/TR/trace-context/#traceparent-header](https://www.w3.org/TR/trace-context/#traceparent-header)
+2. B3: [https://github.com/openzipkin/b3-propagation#overall-process](https://github.com/openzipkin/b3-propagation#overall-process)
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
 Which one are we using?
@@ -50,5 +50,3 @@ Can you find the attributes from your message?
 {{% /notice %}}
 
 ![6-updated-4-attributes](../images/6-updated-4-attributes.png)
-
-

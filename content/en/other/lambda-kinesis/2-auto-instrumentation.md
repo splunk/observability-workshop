@@ -23,9 +23,11 @@ cat serverless.yml
 {{% /tab %}} {{< /tabs >}}
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
+
 * Can you identify which AWS entities are being created by this template?
 * Can you identify where OpenTelemetry instrumentation is being set up?
 * Can you determine which instrumentation information is being provided by the Environment Variables?
+
 {{% /notice %}}
 
 You should see the Splunk OpenTelemetry Lambda layer being added to each fuction.

@@ -9,29 +9,37 @@ weight: 5
 While remaining in your manual directory, run the following commandd to re-deploy your Lambda Functions:
 
 {{< tabs >}} {{% tab name="Deploy Producer Code" %}}
-```
+
+``` bash
 sls deploy -f producer
 ```
+
 {{% /tab %}} {{% tab name="Expected Output" %}}
-```
+
+``` text
 Deploying function producer to stage dev (us-east-1)
 
 ✔ Function code deployed (6s)
 Configuration did not change. Configuration update skipped. (6s)
 ```
+
 {{% /tab %}} {{< /tabs >}}
 
 {{< tabs >}} {{% tab name="Deploy Consumer Code" %}}
-```
+
+``` bash
 sls deploy -f consumer
 ```
+
 {{% /tab %}} {{% tab name="Expected Output" %}}
-```
+
+``` text
 Deploying function consumer to stage dev (us-east-1)
 
 ✔ Function code deployed (6s)
 Configuration did not change. Configuration update skipped. (6s)
 ```
+
 {{% /tab %}} {{< /tabs >}}
 
 Note that this deployment now only updates the code changes within the function. Our configuration remains the same.
@@ -39,9 +47,11 @@ Note that this deployment now only updates the code changes within the function.
 Check the details of your serverless functions:
 
 {{< tabs >}} {{% tab name="Command" %}}
-```
+
+``` bash
 sls info
 ```
+
 {{% /tab %}} {{< /tabs >}}
 
 You endpoint value should remain the same:
@@ -55,23 +65,28 @@ Use the `curl` command to send a payload to your producer function. Note the com
 Try changing the value of name to your name and telling the Lambda function about your superpower. Replace `YOUR_ENDPOINT` with the endpoint from your previous step.
 
 {{< tabs >}} {{% tab name="Command" %}}
-```
+
+``` bash
 curl -d '{ "name": "CHANGE_ME", "superpower": "CHANGE_ME" }' YOUR_ENDPOINT
 ```
+
 {{% /tab %}} {{< /tabs >}}
 
 For example:
-```
+
+``` bash
 curl -d '{ "name": "Kate", "superpower": "Distributed Tracing" }' https://xvq043lj45.execute-api.us-east-1.amazonaws.com/dev/producer
 ```
 
 You should see the following output if your message is successful:
-```
+
+``` json
 {"message":"Message placed in the Event Stream: hostname-eventSteam"}
 ```
 
 If unsuccessful, you will see:
-```
+
+``` json
 {"message": "Internal server error"}
 ```
 
@@ -82,15 +97,19 @@ If you see a success message, generate more load: re-send that messate 5+ times.
 Check the lambda logs output:
 
 {{< tabs >}} {{% tab name="Producer Function Logs" %}}
-```
+
+``` bash
 sls logs -f producer
 ```
+
 {{% /tab %}} {{< /tabs >}}
 
 {{< tabs >}} {{% tab name="Consumer Function Logs" %}}
-```
+
+``` bash
 sls logs -f consumer
 ```
+
 {{% /tab %}} {{< /tabs >}}
 
 Examine the logs carefully.

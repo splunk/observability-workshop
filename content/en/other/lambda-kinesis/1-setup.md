@@ -16,16 +16,29 @@ You should already have the lab content available on your EC2 lab host.
 
 Ensure that this lab's required folder o11y-lambda-lab is on your home directory:
 
-{{< tabs >}} {{% tab name="Command" %}}
-```
+{{< tabs >}}
+{{% tab name="Command" %}}
+
+``` bash
 cd ~ && ls
 ```
-{{% /tab %}} {{% tab name="Output" %}} `o11y-lambda-lab` {{% /tab %}} {{< /tabs >}}
+
+{{% /tab %}}
+{{% tab name="Output" %}}
+
+``` text
+o11y-lambda-lab
+```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 {{% notice style="note" %}} If you don't see it, fetch the lab contents by running the following command:
-```
+
+``` bash
 git clone https://github.com/kdroukman/o11y-lambda-lab.git
 ```
+
 {{% /notice %}}
 
 ## Set Environment Variables
@@ -34,32 +47,45 @@ In your Splunk Observability Cloud Organisation (Org) obtain your Access Token a
 
 Please reset your environment variables from the earlier lab. Take care that for this lab we may be using different names - make sure to match the Environment Variable names bellow.
 
-{{< tabs >}} {{% tab name="Export Environment Variables" %}}
-```
+{{< tabs >}}
+{{% tab name="Export Environment Variables" %}}
+
+``` ini
 export ACCESS_TOKEN=CHANGE_ME \
 export REALM=CHANGE_ME \
 export PREFIX=$(hostname)
 ```
-{{% /tab %}} {{< /tabs >}}
+
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Update Auto-instrumentation serverless template
 
 Update your auto-instrumentation Serverless template to include new values from the Enviornment variables.
 
-{{< tabs >}} {{% tab name="Substitute Environment Variables" %}}
-```
+{{< tabs >}}
+{{% tab name="Substitute Environment Variables" %}}
+
+``` bash
 cat ~/o11y-lambda-lab/auto/serverless_unset.yml | envsubst > ~/o11y-lambda-lab/auto/serverless.yml
 ```
-{{% /tab %}} {{< /tabs >}}
+
+{{% /tab %}}
+{{< /tabs >}}
 
 Examine the output of the updated serverless.yml contents (you may need to scroll up to the relevant section).
 
-{{< tabs >}} {{% tab name="Check file contents" %}}
-```
+{{< tabs >}}
+{{% tab name="Check file contents" %}}
+
+``` bash
 cat ~/o11y-lambda-lab/auto/serverless.yml
 ```
-{{% /tab %}} {{% tab name="Expected Content" %}}
-```
+
+{{% /tab %}}
+{{% tab name="Expected Content" %}}
+
+``` yaml
 # USER SET VALUES =====================              
 custom: 
   accessToken: <updated to your Access Token>
@@ -67,26 +93,37 @@ custom:
   prefix: <updated to your Hostname>
 #====================================== 
 ```
-{{% /tab %}} {{< /tabs >}}
+
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Update Manual instrumentation template
 
 Update your manual instrumentation Serverless template to include new values from the Enviornment variables.
 
-{{< tabs >}} {{% tab name="Substitute Environment Variables" %}}
-```
+{{< tabs >}}
+{{% tab name="Substitute Environment Variables" %}}
+
+``` bash
 cat ~/o11y-lambda-lab/manual/serverless_unset.yml | envsubst > ~/o11y-lambda-lab/manual/serverless.yml
 ```
-{{% /tab %}} {{< /tabs >}}
+
+{{% /tab %}}
+{{< /tabs >}}
 
 Examine the output of the updated serverless.yml contents (you may need to scroll up to the relevant section).
 
-{{< tabs >}} {{% tab name="Check file contents" %}}
-```
+{{< tabs >}}
+{{% tab name="Check file contents" %}}
+
+``` bash
 cat ~/o11y-lambda-lab/manual/serverless.yml
 ```
-{{% /tab %}} {{% tab name="Expected Content" %}}
-```
+
+{{% /tab %}}
+{{% tab name="Expected Content" %}}
+
+``` yaml
 # USER SET VALUES =====================              
 custom: 
   accessToken: <updated to your Access Token>
@@ -94,17 +131,23 @@ custom:
   prefix: <updated to your Hostname>
 #====================================== 
 ```
-{{% /tab %}} {{< /tabs >}}
+
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Set your AWS Credentials
 
 You will be provided with AWS Access Key ID and AWS Secret Access Key values - substitue these values in place of AWS_ACCESS_KEY_ID and AWS_ACCESS_KEY_SECRET in the bellow command:
 
-{{< tabs >}} {{% tab name="Set AWS Credentials" %}}
-```
+{{< tabs >}}
+{{% tab name="Set AWS Credentials" %}}
+
+``` bash
 sls config credentials --provider aws --key AWS_ACCCESS_KEY_ID --secret AWS_ACCESS_KEY_SECRET
 ```
-{{% /tab %}} {{< /tabs >}}
+
+{{% /tab %}}
+{{< /tabs >}}
 
 This command will create a file `~/.aws/credentials` with your AWS Credentials populated.
 

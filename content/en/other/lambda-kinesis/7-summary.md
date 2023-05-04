@@ -8,16 +8,19 @@ weight: 7
 
 Please kindly clean up your lab using the following command:
 
-{{< tabs >}} {{% tab name="Remove Functions" %}}
-```
+{{< tabs >}}
+{{% tab name="Remove Functions" %}}
+
+``` bash
 sls remove
 ```
-{{% /tab %}} {{< /tabs >}}
+
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Conclusion
 
 Congratuations on finishing the lab. You have seen how we complement auto-instrumentation with manual steps to force `Producer` function's context to be sent to `Consumer` function via a Record put on a Kinesis stream. This allowed us to build the expected Distributed Trace.
-
 
 ![7-conclusion-1-architecture](../images/7-conclusion-1-architecture.png)
 

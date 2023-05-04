@@ -23,12 +23,12 @@ Go to `Explore` the Service Map to see the Dependencies between your Lambda Func
 You should be able to see the `producer-lambda` and the call it is making to `Kinesis` service.
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
-What about your `consumer-lambda`? 
+What about your `consumer-lambda`?
 {{% /notice %}}
 
 ![3-splunk-3-map-producer](../images/3-splunk-3-map-producer.png)
 
-Click into `Traces` and examine some traces that container procuder function calls and traces with consumer function calls. 
+Click into `Traces` and examine some traces that container procuder function calls and traces with consumer function calls.
 
 ![3-splunk-4-trace-producer.png](../images/3-splunk-4-trace-producer.png)
 
