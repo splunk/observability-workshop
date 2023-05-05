@@ -1,7 +1,7 @@
 ---
-title: 2.1 Service Map
+title: 1.1 Service Map
 linkTitle: 2.1 Service Map
-weight: 2
+weight: 1
 ---
 
 ## Service Map
