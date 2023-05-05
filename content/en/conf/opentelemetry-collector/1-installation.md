@@ -78,7 +78,7 @@ Apr 27 14:30:16 otel otelcol-contrib[3393]:         {"kind": "exporter", "data_t
 
 ## 4. Default configuration
 
-Let's look at the default configuration that is supplied:
+OpenTelemetry is configured through .yaml files. These files have default configurations that we can modify to meet our needs. Let's look at the default configuration that is supplied:
 
 {{< tabs >}}
 {{% tab name="Command" %}}

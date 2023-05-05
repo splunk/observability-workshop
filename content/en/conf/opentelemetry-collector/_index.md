@@ -12,7 +12,7 @@ Adopting OpenTelemetry within your organisation can bring issues such as dealing
 
 ### Target Audience
 
-This talk is for developers and system administrators who are interested in learning more about OpenTelemetry.
+This talk is for developers and system administrators who are interested in learning more about architecture and deployment of the OpenTelemetry Collector.
 
 ### Prerequisites
 

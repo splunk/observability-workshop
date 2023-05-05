@@ -30,23 +30,32 @@ sudo systemctl restart otelcol-contrib
 
 ## Health Check
 
-This extension enables an HTTP url that can be probed to check the status of the OpenTelemetry Collector. This extension can be used as a liveness and/or readiness probe on Kubernetes.
+This extension enables an HTTP url that can be probed to check the status of the OpenTelemetry Collector. This extension can be used as a liveness and/or readiness probe on Kubernetes. To learn more about the curl command, check out the [curl man page.](https://curl.se/docs/manpage.html)
+
+{{< tabs >}}
+{{% tab name="Command" %}}
 
 ```bash
 curl http://localhost:13133
 ```
 
+{{% /tab %}}
+{{% tab name="Status Output" %}}
+
 ``` text
 {"status":"Server available","upSince":"2023-04-27T10:11:22.153295874+01:00","uptime":"16m24.684476004s"}
 ```
 
+{{% /tab %}}
+{{< /tabs >}}
+
 ## Performance Profiler
 
-Performance Profiler extension enables the golang net/http/pprof endpoint. This is typically used by developers to collect performance profiles and investigate issues with the service.
+[Performance Profiler](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/extension/pprofextension/README.md) extension enables the golang net/http/pprof endpoint. This is typically used by developers to collect performance profiles and investigate issues with the service.
 
 ## zPages
 
-zPages are an in-process alternative to external exporters. When included, they collect and aggregate tracing and metrics information in the background; this data is served on web pages when requested.
+[zPages](https://github.com/open-telemetry/opentelemetry-collector/blob/main/extension/zpagesextension/README.md) are an in-process alternative to external exporters. When included, they collect and aggregate tracing and metrics information in the background; this data is served on web pages when requested.
 
 {{% notice style="tip" %}}
 Install a text-based web browser (or use your local browser using the instance IP address)
