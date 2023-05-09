@@ -22,7 +22,7 @@ cd /home/ubuntu/session-2
 
 ### 2. Review the Universal Forwarder Install Script
 
-- Let's take a look at the script that will install the Universal Forwarder and Linux TA automatically for you. 
+- Let's take a look at the script that will install the Universal Forwarder and Linux TA automatically for you.
   - This script is primarily used for remote instances.
   - Note we are not using a deployment server in this lab, however it is recommended in production we do that.
   - What user are we installing Splunk as?
@@ -119,7 +119,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
   echo "---------------------------"
   echo "Done"
   echo "Please use the following app folder name to override deploymentclient.conf options: $DEPLOY_APP_FOLDER_NAME"
-  ```
+```
   
 ### 3. Run the install script
 
@@ -129,7 +129,7 @@ We will run the install script now. You will see some Warnings at the end. This 
 ./install.sh
 ```
 
-You will be asked `Are you sure you want to continue connecting (yes/no/[fingerprint])? `
+You will be asked `Are you sure you want to continue connecting (yes/no/[fingerprint])?`
 Answer Yes.
 
 Enter your ssh password when prompted.
@@ -137,22 +137,20 @@ Enter your ssh password when prompted.
 ### 4. Verify installation of the Universal Forwarader
 
 - We need to verify that the Splunk Universal Forwarder is installed and running.
-  - You should see a couple PID's return and a "Splunk is currently running." message. 
+  - You should see a couple PID's return and a "Splunk is currently running." message.
 
 ``` bash
 /opt/splunkforwarder/bin/splunk status
 ```
 
-#### 5. Configure the Universal Forwarder to Send Data to Splunk Enterprise.
+#### 5. Configure the Universal Forwarder to Send Data to Splunk Enterprise
 
 - We will be able to send the data to our Splunk Enterprise environment easily by entering one line into the cli.
-  -  [Universal Forwarder Config Guide](https://docs.splunk.com/Documentation/Forwarder/9.0.3/Forwarder/Configuretheuniversalforwarder)
+  - [Universal Forwarder Config Guide](https://docs.splunk.com/Documentation/Forwarder/9.0.3/Forwarder/Configuretheuniversalforwarder)
 
 ``` bash
 /opt/splunkforwarder/bin/splunk add forward-server <your_splunk_enterprise_ip>:9997
 ```
-
-
 
 #### 6. Verify the Data in Your Splunk Enterprise Environment
 

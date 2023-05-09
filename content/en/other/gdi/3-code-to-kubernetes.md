@@ -18,8 +18,8 @@ weight: 3
 
 ## 1. Verify the code - Review service
 
-
 Navigate to the review directory
+
 ``` bash
 cd /home/ubuntu/realtime_enrichment/flask_apps/review/
 ```
@@ -90,7 +90,8 @@ python3 review.py
 Verify that the service is working
 
 - Open a new terminal and ssh into your ec2 instance. Then use the curl command in your terminal.
-``` bash 
+
+``` bash
 curl http://localhost:5000
 ```
 
@@ -107,10 +108,12 @@ curl localhost:5000/get_review
 ```
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
+
 - What does this application do?
 - Do you see the yelp dataset being used?
 - Why did the output of pip freeze differ each time you ran it?
 - Which port is the REVIEW app listening on? Can other python apps use this same port?
+
 {{% /notice %}}
 
 ## 2. Create a REVIEW container
@@ -150,6 +153,7 @@ Run ‘docker build’ to build a local container image referencing the Dockerfi
 ``` bash
 docker build -f Dockerfile -t localhost:8000/review:0.01 .
 ```
+
 {{% /tab %}} {{% tab name="docker build Output" %}}
 
 ``` text
@@ -164,6 +168,7 @@ docker build -f Dockerfile -t localhost:8000/review:0.01 .
  => => writing image sha256:61da27081372723363d0425e0ceb34bbad6e483e698c6fe439c5  0.0s
  => => naming to docker.io/localhost:8000/review:0.1                                   0.0
 ```
+
 {{% /tab %}}{{< /tabs >}}
 
 Push the container image into a container repository
@@ -184,8 +189,8 @@ The push refers to repository [docker.io/localhost:8000/review]
 fd95118eade9: Pushed
 0.1: digest: sha256:3651f740abe5635af95d07acd6bcf814e4d025fcc1d9e4af9dee023a9b286f38 size: 2202
 ```
-{{% /tab %}}{{< /tabs >}}
 
+{{% /tab %}}{{< /tabs >}}
 
 Verify that the image is in Docker Hub. The same info can be found in Docker Desktop
 
@@ -200,6 +205,7 @@ curl -s http://localhost:8000/v2/_catalog
 ``` text
 {"repositories":["review"]}
 ```
+
 {{% /tab %}}{{< /tabs >}}
 
 ## 3. Run REVIEW in Kubernetes
@@ -251,7 +257,7 @@ Notes regarding review.deployment.yaml:
 - regcred provides this deployment with the ability to access your dockerhub credentials which is necessary to pull the container image.
 - The volume definition and volumemount make the yelp dataset visible to the container
 
-Create a K8 service yaml file for the review app. 
+Create a K8 service yaml file for the review app.
 
 Reference: [Creating a service:](https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service)
 
@@ -291,19 +297,22 @@ kubectl apply -f review.service.yaml -f review.deployment.yaml
 Verify that the deployment and services are running:
 
 {{< tabs >}} {{% tab name="kubectl get deployments" %}}
+
 ``` bash
 kubectl get deployments
 ```
+
 {{% /tab %}}{{% tab name="kubectl get deployments output" %}}
 
 ``` text
 NAME                                                    READY   UP-TO-DATE   AVAILABLE   AGE
 review                                                  1/1     1            1           19h
 ```
+
 {{% /tab %}}{{< /tabs >}}
 
-
 {{< tabs >}} {{% tab name="kubectl get services" %}}
+
 ``` bash
 kubectl get services
 ```
@@ -315,8 +324,8 @@ NAME                       TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    
 review                     NodePort    10.43.175.21    <none>        5000:30000/TCP                  154d
 
 ```
-{{% /tab %}}{{< /tabs >}}
 
+{{% /tab %}}{{< /tabs >}}
 
 {{< tabs >}} {{% tab name="curl localhost" %}}
 
@@ -331,20 +340,21 @@ curl localhost:30000
   "message": "Hello, you want to hit /get_review. We have 100000 reviews!"
 }
 ```
-{{% /tab %}}{{< /tabs >}}
 
+{{% /tab %}}{{< /tabs >}}
 
 {{< tabs >}} {{% tab name="get review" %}}
 
 ``` bash
 curl localhost:30000/get_review
 ```
-{{% /tab %}}{{% tab name="get review Output" %}}
 
+{{% /tab %}}{{% tab name="get review Output" %}}
 
 ``` text
 {"review_id":"Vv9rHtfBrFc-1M1DHRKN9Q","user_id":"EaNqIwKkM7p1bkraKotqrg","business_id":"TA1KUSCu8GkWP9w0rmElxw","stars":3.0,"useful":1,"funny":0,"cool":0,"text":"This is the first time I've actually written a review for Flip, but I've probably been here about 10 times.  \n\nThis used to be where I would take out of town guests who wanted a good, casual, and relatively inexpensive meal.  \n\nI hadn't been for a while, so after a long day in midtown, we decided to head to Flip.  \n\nWe had the fried pickles, onion rings, the gyro burger, their special burger, and split a nutella milkshake.  I have tasted all of the items we ordered previously (with the exception of the special) and have been blown away with how good they were.  My guy had the special which was definitely good, so no complaints there.  The onion rings and the fried pickles were greasier than expected.  Though I've thought they were delicious in the past, I probably wouldn't order either again.  The gyro burger was good, but I could have used a little more sauce.  It almost tasted like all of the ingredients didn't entirely fit together.  Something was definitely off. It was a friday night and they weren't insanely busy, so I'm not sure I would attribute it to the staff not being on their A game...\n\nDon't get me wrong.  Flip is still good.  The wait staff is still amazingly good looking.  They still make delicious milk shakes.  It's just not as amazing as it once was, which really is a little sad.","date":"2010-10-11 18:18:35"}
 ```
+
 {{% /tab %}}{{< /tabs >}}
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}

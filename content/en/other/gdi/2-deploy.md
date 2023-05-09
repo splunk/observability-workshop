@@ -93,6 +93,7 @@ kafka-2                           0/2     ContainerCreating   0          16s
 kafka-zookeeper-0                 0/1     Pending             0          17s
 kafka-0                           0/2     Pending             0          17s
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -244,7 +245,7 @@ splunk-otel-collector-1638910184-k8s-cluster-receiver-8587qmh9l   1/1     Runnin
 
 Verify that out of the box dashboards for Kafka, MongoDB and Zookeeper are populated in the Infrastructure Monitor landing page. Drill down into each component to view granular details for each service.
 
-Tip: You can use the filter `k8s.cluster.name` with your cluster name to find your instance. 
+Tip: You can use the filter `k8s.cluster.name` with your cluster name to find your instance.
 
 - Infrastructure Monitoring Landing page:
 
