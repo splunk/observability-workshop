@@ -20,9 +20,9 @@ ll /var/appdata/yelp*
 ## 2. Export the following variables
 
 ``` bash
-export ACCESS_TOKEN=<your-access-token> 
-export REALM=<your-o11y-cloud-realm> 
-export clusterName=<your-k8s-cluster> 
+export ACCESS_TOKEN=<your-access-token>
+export REALM=<your-o11y-cloud-realm>
+export clusterName=<your-k8s-cluster>
 ```
 
 ## 3. Clone the following repo
