@@ -26,39 +26,39 @@ We are instructed to:
   
 - Install the instrumentation packages for your Python environment.
 
-  ``` text
-  pip install splunk-opentelemetry[all]
-    
-  splunk-py-trace-bootstrap
-  ```
+``` text
+pip install splunk-opentelemetry[all]
+  
+splunk-py-trace-bootstrap
+```
 
 - Configure the Downward API to expose environment variables to Kubernetes resources.
 
   For example, update a Deployment to inject environment variables by adding `.spec.template.spec.containers.env` like:
 
-  ``` yaml
-  apiVersion: apps/v1
-  kind: Deployment
-  spec:
-    selector:
-      matchLabels:
-        app: your-application
-    template:
-      spec:
-        containers:
-          - name: myapp
-            env:
-              - name: SPLUNK_OTEL_AGENT
-                valueFrom:
-                  fieldRef:
-                    fieldPath: status.hostIP
-              - name: OTEL_EXPORTER_OTLP_ENDPOINT
-                value: "http://$(SPLUNK_OTEL_AGENT):4317"
-              - name: OTEL_SERVICE_NAME
-                value: "review"
-              - name: OTEL_RESOURCE_ATTRIBUTES
-                value: "deployment.environment=rtapp-workshop-stevel"
-    ```
+``` yaml
+apiVersion: apps/v1
+kind: Deployment
+spec:
+  selector:
+    matchLabels:
+      app: your-application
+  template:
+    spec:
+      containers:
+        - name: myapp
+          env:
+            - name: SPLUNK_OTEL_AGENT
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):4317"
+            - name: OTEL_SERVICE_NAME
+              value: "review"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "deployment.environment=rtapp-workshop-stevel"
+```
 
 - Enable the Splunk OTel Python agent by editing your Python service command.
 
@@ -73,7 +73,12 @@ We are instructed to:
   - Update our Dockerfile for REVIEW so that our program is bootstrapped with splunk-py-trace
 
 {{% notice title="Note" style="info" %}}
-We will accomplish this by 1) generating a new requirements.txt file, 2) generating a new container image with an updated Dockerfile for REVIEW and then 3) update the review.deployment.yaml to capture all of these changes.
+We will accomplish this by:
+
+1. generating a new requirements.txt file
+2. generating a new container image with an updated Dockerfile for REVIEW and then
+3. update the review.deployment.yaml to capture all of these changes.
+
 {{% /notice %}}
 
 ## 2. Update the REVIEW container
@@ -123,25 +128,25 @@ docker build -f Dockerfile.review -t localhost:8000/review-splkotel:0.01 .
 {{% tab name="docker build Output" %}}
 
 ``` text
-  [+] Building 27.1s (12/12) FINISHED
-  => [internal] load build definition from Dockerfile                                                        0.0s
-  => => transferring dockerfile: 364B                                                                        0.0s
-  => [internal] load .dockerignore                                                                           0.0s
-  => => transferring context: 2B                                                                             0.0s
-  => [internal] load metadata for docker.io/library/python:3.10-slim                                         1.6s
-  => [auth] library/python:pull token for registry-1.docker.io                                               0.0s
-  => [1/6] FROM docker.io/library/python:3.10-slim@sha256:54956d6c929405ff651516d5ebbc204203a6415c9d2757aad  0.0s
-  => [internal] load build context                                                                           0.3s
-  => => transferring context: 1.91kB                                                                         0.3s
-  => CACHED [2/6] WORKDIR /app                                                                               0.0s
-  => [3/6] COPY requirements.txt /app                                                                        0.0s
-  => [4/6] RUN pip install -r requirements.txt                                                              15.3s
-  => [5/6] RUN splk-py-trace-bootstrap                                                                       9.0s
-  => [6/6] COPY ./review.py /app                                                                             0.0s
-  => exporting to image                                                                                      0.6s
-  => => exporting layers                                                                                     0.6s
-  => => writing image sha256:164977dd860a17743b8d68bcc50c691082bd3bfb352d1025dc3a54b15d5f4c4d                0.0s
-  => => naming to docker.io/localhost:8000/review-splkotel:0.01                                              0.0s
+[+] Building 27.1s (12/12) FINISHED
+=> [internal] load build definition from Dockerfile                                                        0.0s
+=> => transferring dockerfile: 364B                                                                        0.0s
+=> [internal] load .dockerignore                                                                           0.0s
+=> => transferring context: 2B                                                                             0.0s
+=> [internal] load metadata for docker.io/library/python:3.10-slim                                         1.6s
+=> [auth] library/python:pull token for registry-1.docker.io                                               0.0s
+=> [1/6] FROM docker.io/library/python:3.10-slim@sha256:54956d6c929405ff651516d5ebbc204203a6415c9d2757aad  0.0s
+=> [internal] load build context                                                                           0.3s
+=> => transferring context: 1.91kB                                                                         0.3s
+=> CACHED [2/6] WORKDIR /app                                                                               0.0s
+=> [3/6] COPY requirements.txt /app                                                                        0.0s
+=> [4/6] RUN pip install -r requirements.txt                                                              15.3s
+=> [5/6] RUN splk-py-trace-bootstrap                                                                       9.0s
+=> [6/6] COPY ./review.py /app                                                                             0.0s
+=> exporting to image                                                                                      0.6s
+=> => exporting layers                                                                                     0.6s
+=> => writing image sha256:164977dd860a17743b8d68bcc50c691082bd3bfb352d1025dc3a54b15d5f4c4d                0.0s
+=> => naming to docker.io/localhost:8000/review-splkotel:0.01                                              0.0s
 ```
 
 {{% /tab %}}{{< /tabs >}}
@@ -186,49 +191,49 @@ fd95118eade9: Mounted from localhost:8000/review
 
   - Update review.deployment.yaml (updates highlighted in bold)
 
-  ``` yaml
-  apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-    name: review
-    labels:
-      app: review
-  spec:
-    replicas: 1
-    selector:
-      matchLabels:
+    ``` yaml
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: review
+      labels:
         app: review
-    template:
-      metadata:
-        labels:
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
           app: review
-      spec:
-        imagePullSecrets:
-          - name: regcred
-        containers:
-        - image: localhost:8000/review-splkotel:0.01
-          name: review
-          volumeMounts:
-          - mountPath: /var/appdata
-            name: appdata
-          env:
-          - name: SPLUNK_OTEL_AGENT
-            valueFrom:
-              fieldRef:
-                fieldPath: status.hostIP
-          - name: OTEL_SERVICE_NAME
-            value: 'review'
-          - name: SPLUNK_METRICS_ENDPOINT
-            value: "http://$(SPLUNK_OTEL_AGENT):9943"
-          - name: OTEL_EXPORTER_OTLP_ENDPOINT
-            value: "http://$(SPLUNK_OTEL_AGENT):4317"
-          - name: OTEL_RESOURCE_ATTRIBUTES
-            value: 'deployment.environment=rtapp-workshop-stevel'
-        volumes:
-        - name: appdata
-          hostPath:
-            path: /var/appdata
-  ```
+      template:
+        metadata:
+          labels:
+            app: review
+        spec:
+          imagePullSecrets:
+            - name: regcred
+          containers:
+          - image: localhost:8000/review-splkotel:0.01
+            name: review
+            volumeMounts:
+            - mountPath: /var/appdata
+              name: appdata
+            env:
+            - name: SPLUNK_OTEL_AGENT
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_SERVICE_NAME
+              value: 'review'
+            - name: SPLUNK_METRICS_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):9943"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://$(SPLUNK_OTEL_AGENT):4317"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: 'deployment.environment=rtapp-workshop-stevel'
+          volumes:
+          - name: appdata
+            hostPath:
+              path: /var/appdata
+    ```
 
 - Apply review.deployment.yaml. Kubernetes will automatically pick up the changes to the deployment and redeploy new pods with these updates
 
@@ -236,38 +241,40 @@ fd95118eade9: Mounted from localhost:8000/review
 
 ``` bash
 kubectl apply -f review.deployment.yaml
-  deployment.apps/review configured
+```
+
+``` bash
+kubectl get pods
 ```
 
 ``` text
-  kubectl get pods
-  NAME                                                              READY   STATUS        RESTARTS   AGE
-  kafka-client                                                      0/1     Unknown       0          155d
-  curl                                                              0/1     Unknown       0          155d
-  kafka-zookeeper-0                                                 1/1     Running       0          26h
-  kafka-2                                                           2/2     Running       0          26h
-  kafka-exporter-647bddcbfc-h9gp5                                   1/1     Running       2          26h
-  mongodb-6f6c78c76-kl4vv                                           2/2     Running       0          26h
-  kafka-1                                                           2/2     Running       1          26h
-  kafka-0                                                           2/2     Running       1          26h
-  splunk-otel-collector-1653114277-agent-n4dfn                      2/2     Running       0          26h
-  splunk-otel-collector-1653114277-k8s-cluster-receiver-5f48v296j   1/1     Running       0          26h
-  splunk-otel-collector-1653114277-agent-jqxhh                      2/2     Running       0          26h
-  review-6686859bd7-4pf5d                                           1/1     Running       0          11s
-  review-5dd8cfd77b-52jbd                                           0/1     Terminating   0          2d10h
+NAME                                                              READY   STATUS        RESTARTS   AGE
+kafka-client                                                      0/1     Unknown       0          155d
+curl                                                              0/1     Unknown       0          155d
+kafka-zookeeper-0                                                 1/1     Running       0          26h
+kafka-2                                                           2/2     Running       0          26h
+kafka-exporter-647bddcbfc-h9gp5                                   1/1     Running       2          26h
+mongodb-6f6c78c76-kl4vv                                           2/2     Running       0          26h
+kafka-1                                                           2/2     Running       1          26h
+kafka-0                                                           2/2     Running       1          26h
+splunk-otel-collector-1653114277-agent-n4dfn                      2/2     Running       0          26h
+splunk-otel-collector-1653114277-k8s-cluster-receiver-5f48v296j   1/1     Running       0          26h
+splunk-otel-collector-1653114277-agent-jqxhh                      2/2     Running       0          26h
+review-6686859bd7-4pf5d                                           1/1     Running       0          11s
+review-5dd8cfd77b-52jbd                                           0/1     Terminating   0          2d10h
 
-  kubectl get pods
-  NAME                                                              READY   STATUS    RESTARTS   AGE
-  kafka-client                                                      0/1     Unknown   0          155d
-  curl                                                              0/1     Unknown   0          155d
-  kafka-zookeeper-0                                                 1/1     Running   0          26h
-  kafka-2                                                           2/2     Running   0          26h
-  kafka-exporter-647bddcbfc-h9gp5                                   1/1     Running   2          26h
-  mongodb-6f6c78c76-kl4vv                                           2/2     Running   0          26h
-  kafka-1                                                           2/2     Running   1          26h
-  kafka-0                                                           2/2     Running   1          26h
-  splunk-otel-collector-1653114277-agent-n4dfn                      2/2     Running   0          26h
-  splunk-otel-collector-1653114277-k8s-cluster-receiver-5f48v296j   1/1     Running   0          26h
-  splunk-otel-collector-1653114277-agent-jqxhh                      2/2     Running   0          26h
-  review-6686859bd7-4pf5d                                           1/1     Running   0          15s
-  ```
+kubectl get pods
+NAME                                                              READY   STATUS    RESTARTS   AGE
+kafka-client                                                      0/1     Unknown   0          155d
+curl                                                              0/1     Unknown   0          155d
+kafka-zookeeper-0                                                 1/1     Running   0          26h
+kafka-2                                                           2/2     Running   0          26h
+kafka-exporter-647bddcbfc-h9gp5                                   1/1     Running   2          26h
+mongodb-6f6c78c76-kl4vv                                           2/2     Running   0          26h
+kafka-1                                                           2/2     Running   1          26h
+kafka-0                                                           2/2     Running   1          26h
+splunk-otel-collector-1653114277-agent-n4dfn                      2/2     Running   0          26h
+splunk-otel-collector-1653114277-k8s-cluster-receiver-5f48v296j   1/1     Running   0          26h
+splunk-otel-collector-1653114277-agent-jqxhh                      2/2     Running   0          26h
+review-6686859bd7-4pf5d                                           1/1     Running   0          15s
+```
