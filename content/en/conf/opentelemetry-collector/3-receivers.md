@@ -43,7 +43,7 @@ receivers:
 {{% /tab %}}
 {{% tab name="Host Metrics Receiver Configuration Complete" %}}
 
-```yaml
+```yaml {hl_lines=["9-30"]}
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133
@@ -133,7 +133,7 @@ Let's modify the `prometheus` receiver to clearly show that it is for collecting
 {{< tabs >}}
 {{% tab name="Prometheus Receiver Configuration" %}}
 
-```yaml
+```yaml {hl_lines=[1]}
 prometheus/internal:
   config:
     scrape_configs:
@@ -146,7 +146,7 @@ prometheus/internal:
 {{% /tab %}}
 {{% tab name="Prometheus Receiver Configuration Complete" %}}
 
-```yaml
+```yaml {hl_lines=[39]}
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133

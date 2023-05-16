@@ -15,20 +15,16 @@ sudo vi /etc/otelcol-contrib/config.yaml
 {{< tabs >}}
 {{% tab name="Extensions Configuration" %}}
 
-```yaml
+```yaml {hl_lines=[3]}
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133
-  pprof:
-    endpoint: 0.0.0.0:1777
-  zpages:
-    endpoint: 0.0.0.0:55679
 ```
 
 {{% /tab %}}
 {{% tab name="Extensions Configuration Complete" %}}
 
-```yaml
+```yaml {hl_lines=[3]}
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133

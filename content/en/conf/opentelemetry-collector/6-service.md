@@ -17,11 +17,76 @@ service:
   extensions: [health_check, pprof, zpages]
 ```
 
-```yaml
+## Configure Metric Pipeline
+
+### Hostmetrics Receiver
+
+```yaml {hl_lines=[11]}
 service:
+
   pipelines:
+
+    traces:
+      receivers: [otlp, opencensus, jaeger, zipkin]
+      processors: [batch]
+      exporters: [logging]
+
     metrics:
-      receivers: [prometheus, hostmetrics]
+      receivers: [hostmetrics, otlp, opencensus, prometheus]
+      processors: [batch]
+      exporters: [logging]
+```
+
+### Prometheus Internal Receiver
+
+```yaml {hl_lines=[11]}
+service:
+
+  pipelines:
+
+    traces:
+      receivers: [otlp, opencensus, jaeger, zipkin]
+      processors: [batch]
+      exporters: [logging]
+
+    metrics:
+      receivers: [hostmetrics, otlp, opencensus, prometheus/internal]
+      processors: [batch]
+      exporters: [logging]
+```
+
+### Resource Detection Processor
+
+```yaml {hl_lines=[12]}
+service:
+
+  pipelines:
+
+    traces:
+      receivers: [otlp, opencensus, jaeger, zipkin]
+      processors: [batch]
+      exporters: [logging]
+
+    metrics:
+      receivers: [hostmetrics, otlp, opencensus, prometheus/internal]
+      processors: [batch, resourcedetection]
+      exporters: [logging]
+```
+
+### OTLPHTTP Exporter
+
+```yaml {hl_lines=[13]}
+service:
+
+  pipelines:
+
+    traces:
+      receivers: [otlp, opencensus, jaeger, zipkin]
+      processors: [batch]
+      exporters: [logging]
+
+    metrics:
+      receivers: [hostmetrics, otlp, opencensus, prometheus/internal]
       processors: [batch, resourcedetection]
       exporters: [logging, otlphttp]
 ```
@@ -59,6 +124,14 @@ receivers:
       processes:
       # Per process CPU, Memory and Disk I/O metrics. Disabled by default.
       # process:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+  opencensus:
+
+  # Collect own metrics
   prometheus/internal:
     config:
       scrape_configs:
@@ -67,27 +140,43 @@ receivers:
         static_configs:
         - targets: ['0.0.0.0:8888']
 
+  jaeger:
+    protocols:
+      grpc:
+      thrift_binary:
+      thrift_compact:
+      thrift_http:
+
+  zipkin:
+
 processors:
   batch:
   resourcedetection:
     detectors: [system]
-    override: true
+    system:
+      hostname_sources: [os]
 
 exporters:
   logging:
-    loglevel: info
-  otlphttp:
-    metrics_endpoint: https://ingest.eu0.signalfx.com/v2/datapoint/otlp
-    compression: gzip
-    headers:
-      X-SF-TOKEN: Qz-qFy4Y85JRzw21U41f_w
+    verbosity: detailed
 
 service:
+
   pipelines:
+
+    traces:
+      receivers: [otlp, opencensus, jaeger, zipkin]
+      processors: [batch]
+      exporters: [logging]
+
     metrics:
-      receivers: [prometheus/internal, hostmetrics]
+      receivers: [hostmetrics, otlp, opencensus, prometheus/internal]
       processors: [batch, resourcedetection]
       exporters: [logging, otlphttp]
 
   extensions: [health_check, pprof, zpages]
 ```
+
+Now that we have a working configuration, let's restart the collector and then check to see what [zPages](../2-extensions/#zpages) is reporting.
+
+![pipelinez-full-config](../images/pipelinez-full-config.png)
