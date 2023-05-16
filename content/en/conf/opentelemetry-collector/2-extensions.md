@@ -12,6 +12,9 @@ Let's edit the `config.yaml` file and configure the extensions. Note that the `p
 sudo vi /etc/otelcol-contrib/config.yaml
 ```
 
+{{< tabs >}}
+{{% tab name="Extensions Configuration" %}}
+
 ```yaml
 extensions:
   health_check:
@@ -21,6 +24,71 @@ extensions:
   zpages:
     endpoint: 0.0.0.0:55679
 ```
+
+{{% /tab %}}
+{{% tab name="Extensions Configuration Complete" %}}
+
+```yaml
+extensions:
+  health_check:
+    endpoint: 0.0.0.0:13133
+  pprof:
+    endpoint: 0.0.0.0:1777
+  zpages:
+    endpoint: 0.0.0.0:55679
+
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+  opencensus:
+
+  # Collect own metrics
+  prometheus:
+    config:
+      scrape_configs:
+      - job_name: 'otel-collector'
+        scrape_interval: 10s
+        static_configs:
+        - targets: ['0.0.0.0:8888']
+
+  jaeger:
+    protocols:
+      grpc:
+      thrift_binary:
+      thrift_compact:
+      thrift_http:
+
+  zipkin:
+
+processors:
+  batch:
+
+exporters:
+  logging:
+    verbosity: detailed
+
+service:
+
+  pipelines:
+
+    traces:
+      receivers: [otlp, opencensus, jaeger, zipkin]
+      processors: [batch]
+      exporters: [logging]
+
+    metrics:
+      receivers: [otlp, opencensus, prometheus]
+      processors: [batch]
+      exporters: [logging]
+
+  extensions: [health_check, pprof, zpages]
+```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 Restart the collector:
 
@@ -70,10 +138,16 @@ sudo apt update && sudo apt install lynx -y
 
 Example URL: [http://localhost:55679/debug/servicez](http://localhost:55679/debug/servicez)
 
+![ServiceZ](../images/servicez.png)
+
 **PipelineZ** brings insight on the running pipelines running in the collector. You can find information on type, if data is mutated and the receivers, processors and exporters that are used for each pipeline.
 
 Example URL: [http://localhost:55679/debug/pipelinez](http://localhost:55679/debug/pipelinez)
-  
+
+![PipelineZ](../images/pipelinez.png)
+
 **ExtensionZ** shows the extensions that are active in the collector.
 
 Example URL: [http://localhost:55679/debug/extensionz](http://localhost:55679/debug/extensionz)
+
+![ExtensionZ](../images/extensionz.png)

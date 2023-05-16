@@ -53,24 +53,24 @@ sudo systemctl status otelcol-contrib
 ``` text
 ● otelcol-contrib.service - OpenTelemetry Collector Contrib
      Loaded: loaded (/lib/systemd/system/otelcol-contrib.service; enabled; vendor preset: enabled)
-     Active: active (running) since Thu 2023-04-27 12:38:27 BST; 1h 51min ago
-   Main PID: 3393 (otelcol-contrib)
-      Tasks: 7 (limit: 1116)
-     Memory: 49.1M
-        CPU: 28.741s
+     Active: active (running) since Tue 2023-05-16 08:23:23 UTC; 25s ago
+   Main PID: 1415 (otelcol-contrib)
+      Tasks: 5 (limit: 1141)
+     Memory: 22.2M
+        CPU: 125ms
      CGroup: /system.slice/otelcol-contrib.service
-             └─3393 /usr/bin/otelcol-contrib --config=/etc/otelcol-contrib/config.yaml
+             └─1415 /usr/bin/otelcol-contrib --config=/etc/otelcol-contrib/config.yaml
 
-Apr 27 14:30:16 otel otelcol-contrib[3393]: Timestamp: 2023-04-27 13:30:15.958341145 +0000 UTC
-Apr 27 14:30:16 otel otelcol-contrib[3393]: Value: 0.000000
-Apr 27 14:30:16 otel otelcol-contrib[3393]: NumberDataPoints #7
-Apr 27 14:30:16 otel otelcol-contrib[3393]: Data point attributes:
-Apr 27 14:30:16 otel otelcol-contrib[3393]:      -> cpu: Str(cpu0)
-Apr 27 14:30:16 otel otelcol-contrib[3393]:      -> state: Str(wait)
-Apr 27 14:30:16 otel otelcol-contrib[3393]: StartTimestamp: 2023-04-27 09:01:16 +0000 UTC
-Apr 27 14:30:16 otel otelcol-contrib[3393]: Timestamp: 2023-04-27 13:30:15.958341145 +0000 UTC
-Apr 27 14:30:16 otel otelcol-contrib[3393]: Value: 9.700000
-Apr 27 14:30:16 otel otelcol-contrib[3393]:         {"kind": "exporter", "data_type": "metrics", "name": "logging"}
+May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: NumberDataPoints #0
+May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: Data point attributes:
+May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:      -> exporter: Str(logging)
+May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:      -> service_instance_id: Str(df8a57f4-abdc-46b9-a847-acd62db1001f)
+May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:      -> service_name: Str(otelcol-contrib)
+May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:      -> service_version: Str(0.75.0)
+May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: StartTimestamp: 2023-05-16 08:23:39.006 +0000 UTC
+May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: Timestamp: 2023-05-16 08:23:39.006 +0000 UTC
+May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: Value: 0.000000
+May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:         {"kind": "exporter", "data_type": "metrics", "name": "logging"}
 ```
 
 {{% /tab %}}
@@ -155,6 +155,6 @@ We will now walk through each section of the configuration file and modify it to
 
 Splunk does provide its own, fully supported, distribution of the OpenTelemetry Collector. This distribution is available to install from the [Splunk GitHub Repository](https://github.com/signalfx/splunk-otel-collector). This distribution includes a number of additional features and enhancements that are not available in the OpenTelemetry Collector Contrib distribution.
 
-- The Splunk Distribution of the OpenTelemetry Collector is production tested; it is in use by a number of customers in their production environments
-- Customers that use our distribution can receive direct help from official Splunk support within SLA's
+- The Splunk Distribution of the OpenTelemetry Collector is production tested; it is in use by a number of customers in their production environments.
+- Customers that use our distribution can receive direct help from official Splunk support within SLA's.
 - Customers can use or migrate to the Splunk Distribution of the OpenTelemetry Collector without worrying about future breaking changes to its core configuration experience for metrics and traces collection (OpenTelemetry logs collection configuration is in beta). There may be breaking changes to the Collector's own metrics.

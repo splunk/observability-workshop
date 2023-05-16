@@ -18,6 +18,7 @@ This talk is for developers and system administrators who are interested in lear
 
 - Attendees should have a basic understanding of distributed systems and data collection.
 - A instance/host/VM running Ubuntu 20.04 LTS or 22.04 LTS.
+- Command line and vim/vi experience.
 
 ### Learning Objectives
 
