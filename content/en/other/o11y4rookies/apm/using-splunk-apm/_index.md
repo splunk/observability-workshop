@@ -1,6 +1,6 @@
 ---
-title: 2. Using Splunk APM
-linkTitle: 2. Using Splunk APM
+title: 1. Using Splunk APM
+linkTitle: 1. Using Splunk APM
 weight: 3
 description: An overview of how to use Splunk APM
 ---

@@ -1,6 +1,6 @@
 ---
-title: 2.3 Example trace
-linkTitle: 2.3 Example trace
+title: 1.3 Example trace
+linkTitle: 1.3 Example trace
 weight: 3
 ---
 
