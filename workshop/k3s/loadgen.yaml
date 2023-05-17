@@ -1,12 +1,11 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: ReplicaSet
 metadata:
   name: loadgen
   labels:
     app: loadgen
 spec:
-  serviceName: "loadgen"
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: loadgen
