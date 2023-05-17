@@ -23,7 +23,7 @@ This Dashboard has specific Dashboard Groups for Usage, SaaS and APM Business Wo
 
 They can use the menu along the top left to quickly navigate between their allocated teams, or they can use the **ALL TEAMS** dropdown on the right to select specific Team Dashboards, as well as quickly accessing **ALL Dashboards** using the adjacent link.
 
-![Teams](../../images/teams-homepage.png)
+![Teams](../../../../../imt/images/teams-homepage.png)
 
 Alerts can be linked to specific Teams so the Team can monitor only the Alerts they are interested in, and in the above example they currently have 1 active Critical Alert.
 
@@ -39,11 +39,11 @@ When the **Team** UI is selected you will be presented with the list of current 
 
 To add a new **Team** click on the {{% button style="blue" %}}Create New Team{{% /button %}} button. This will present you with the **Create New Team** dialog.
 
-![Add Team](../../images/create-new-team.png)
+![Add Team](../../../../../imt/images/create-new-team.png)
 
 Create your own team by naming it `[YOUR-INITIALS]-Team and` add yourself by searching for your name and selecting the **Add** link next to your name. This should result in a dialog similar to the one below:
 
-![Add Team complete](../../images/add-to-team.png)
+![Add Team complete](../../../../../imt/images/add-to-team.png)
 
 You can remove selected users by pressing  **Remove** or the small **x**.
 
@@ -67,7 +67,7 @@ The **...** menu gives you the option to Edit, Join, Leave or Delete a Team (lea
 
 You can set up specific Notification rules per team, click on the **Notification Policy** tab, this will open the notification edit menu.
 
-![Base notification menu](../../images/notification-policy.png)
+![Base notification menu](../../../../../imt/images/notification-policy.png)
 
 By default the system offers you the ability to set up a general notification rule for your team.
 
@@ -81,7 +81,7 @@ You can add other recipients, by clicking {{% button style="blue" %}}Add Recipie
 
 However if you click on the link **Configure separate notification tiers for different severity alerts** you can configure every alert level independently.
 
-![Multiple Notifications](../../images/single-policy.png)
+![Multiple Notifications](../../../../../imt/images/single-policy.png)
 
 Different alert rules for the different alert levels can be configured, as shown in the above image.
 
@@ -91,6 +91,6 @@ Critical and Major are using [Splunk\'s On-Call](https://www.splunk.com/en_us/ob
 
 In addition to sending alert notifications via email, you can configure Observability Cloud to send alert notifications to the services shown below.
 
-![Notifications options](../../images/integrations.png)
+![Notifications options](../../../../../imt/images/integrations.png)
 
 Take a moment to create some notification rules for you Team.

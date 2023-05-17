@@ -18,7 +18,7 @@ weight: 4
 
 To fully understand Observability Cloud engagement inside your organization, click on the **>>** bottom left and select the **Settings → Organization Overview**, this will provide you with the following dashboards that shows you how your Observability Cloud organization is being used:
 
-![Organization overview](../images/engagement.png)
+![Organization overview](../../../../imt/images/engagement.png)
 
 You will see various dashboards such as Throttling, System Limits, Entitlements & Engagement. The workshop organization you're using now may have less data to work with as this is cleared down after each workshop.
 
@@ -28,7 +28,7 @@ Take a minute to explore the various dashboards and charts in the Organization O
 
 If you want to see what your usage is against your subscription you can select **Subscription Usage**.
 
-![Left pane](../images/billing-and-usage-menu.png)
+![Left pane](../../../../imt/images/billing-and-usage-menu.png)
 
 This screen may take a few seconds to load whilst it calculates and pulls in the usage.
 
@@ -38,7 +38,7 @@ You will see a screen similar to the one below that will give you an overview of
 
 For more information about these categories please refer to [Monitor Splunk Infrastructure Monitoring subscription usage](https://docs.splunk.com/Observability/admin/monitor-imm-billing-usage.html).
 
-![Billing and Usage](../images/usage-charts.png)
+![Billing and Usage](../../../../imt/images/usage-charts.png)
 
 ---
 
@@ -50,13 +50,13 @@ Also, your current usage of the four catagories is displayed (shown at the red l
 
 In this example you can see that there are 25 Hosts, 0 Containers, 100 Custom Metrics and 0 High Resolution Metrics.
 
-![Billing and Usage-top](../images/usage-detail.png)
+![Billing and Usage-top](../../../../imt/images/usage-detail.png)
 
 In the bottom chart, you can see the usage per category for the current period (shown in the drop-down box on the top right of the chart).
 
 The blue line marked **Average Usage** indicates what Observability Cloud will use to calculate your average usage for the current Subscription Usage Period.
 
-![Billing and Usage-Bottom](../images/usage-trends.png)
+![Billing and Usage-Bottom](../../../../imt/images/usage-trends.png)
 
 {{% notice title="Info" style="info" %}}
 As you can see from the screenshot, Observability Cloud does not use High Watermark or P95% for cost calculation but the actual average hourly usage, allowing you to do performance testing or Blue/Green style deployments etc. without the risk of overage charges.
@@ -68,4 +68,4 @@ Please take a minute to explore the different time periods & categories and thei
 
 Finally, the pane on the right shows you information about your Subscription.
 
-![Billing and Usage-Pane](../images/subscription.png)
+![Billing and Usage-Pane](../../../../imt/images/subscription.png)

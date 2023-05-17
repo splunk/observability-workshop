@@ -26,13 +26,13 @@ For more information on SignalFlow see [Analyze incoming data using SignalFlow.]
 
 In the chart builder, click on **View SignalFlow**.
 
-![SignalFlow](../../images/view-signalflow.png)
+![SignalFlow](../../../../../imt/images/view-signalflow.png)
 
 You will see the SignalFlow code that composes the chart we were working on. You can now edit the SignalFlow directly within the UI. Our documentation has the [full list](https://dev.splunk.com/observability/docs/signalflow/function_method_list) of SignalFlow functions and methods.
 
 Also, you can copy the SignalFlow and use it when interacting with the API or with Terraform to enable [Monitoring as Code](../../monitoring-as-code/)
 
-![Code](../../images/show-signalflow.png)
+![Code](../../../../../imt/images/show-signalflow.png)
 
 {{< tabs >}}
 {{% tab name="SignalFlow" %}}
@@ -48,6 +48,6 @@ C = (A-B).publish(label='C')
 
 Click on **View Builder** to go back to the Chart **Builder** UI.
 
-![View Builder](../../images/view-builder.png)
+![View Builder](../../../../../imt/images/view-builder.png)
 
 Let's save this new chart to our Dashboard!

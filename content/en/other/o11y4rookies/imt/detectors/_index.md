@@ -23,11 +23,11 @@ These conditions are expressed as one or more rules that trigger an alert when t
 
 In **Dashboards** click on your **Custom Dashboard Group** (that you created in the previous module) and then click on the dashboard name.
 
-![Custom Dashboard Group](../images/custom-dashboard-group.png)
+![Custom Dashboard Group](../../../../imt/images/custom-dashboard-group.png)
 
 We are now going to create a new detector from a chart on this dashboard. Click on the bell icon on the **Latency vs Load** chart, and then click **New Detector From Chart**.
 
-![New Detector](../images/new-detector.png)
+![New Detector](../../../../imt/images/new-detector.png)
 
 In the text field next to **Detector Name**, **ADD YOUR INITIALS** before the proposed detector name.
 
@@ -39,19 +39,19 @@ It should be something like this: **XYZ's Latency Chart Detector**.
 
 Click on {{% button style="blue" %}}Create Alert Rule{{% /button %}}
 
-![Create Alert Rule](../images/create-alert-rule.png)
+![Create Alert Rule](../../../../imt/images/create-alert-rule.png)
 
 In the Detector window, inside **Alert signal**, the Signal we will alert on is marked with a (blue) bell in the **Alert on** column. The bell indicates which Signal is being used to generate the alert.
 
 Click on {{% button style="blue" %}}Proceed to Alert Condition{{% /button %}}
 
-![Alert Signal](../images/alert-signal.png)
+![Alert Signal](../../../../imt/images/alert-signal.png)
 
 ## 3. Setting Alert condition
 
 In **Alert condition**, click on **Static Threshold** and then on {{% button style="blue" %}}Proceed to Alert Settings{{% /button %}}
 
-![Alert Condition](../images/alert-condition.png)
+![Alert Condition](../../../../imt/images/alert-condition.png)
 
 In **Alert Settings**, enter the value **`290`** in the **Threshold** field. In the same window change **Time** on top right to past day (**-1d**).
 
@@ -61,7 +61,7 @@ In **Alert Settings**, enter the value **`290`** in the **Threshold** field. In 
 
 A pre-flight check will take place after 5 seconds. See the **Estimated alert count**. Based on the current alert settings, the amount of alerts we would have received in 1 day would have been **3**.
 
-![Alert Threshold](../images/alert-threshold.png)
+![Alert Threshold](../../../../imt/images/alert-threshold.png)
 
 {{% notice title="About pre-flight checks" style="info" %}}
 Once you set an alert condition, the UI estimates how many alerts you might get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.
@@ -80,13 +80,13 @@ Click on {{% button style="blue" %}}Proceed to Alert Message{{% /button %}}
 
 In **Alert message**, under **Severity** choose **Major**.
 
-![Alert Message](../images/alert-message.png)
+![Alert Message](../../../../imt/images/alert-message.png)
 
 Click on {{% button style="blue" %}}Proceed to Alert Recipients{{% /button %}}
 
 Click on **Add Recipient** and then on your email address displayed as the first option.
 
-![Add Recipient](../images/add-recipient.png)
+![Add Recipient](../../../../imt/images/add-recipient.png)
 
 {{% notice title="Notification Services" style="info" %}}
 That's the same as entering that email address OR you can enter another email address by clicking on **E-mail...**.
@@ -102,14 +102,14 @@ Click on {{% button style="blue" %}}Proceed to Alert Activation{{% /button %}}
 
 In **Activate...** click on {{% button style="blue" %}}Activate Alert Rule{{% /button %}}
 
-![Activate Alert](../images/activate-alert.png)
+![Activate Alert](../../../../imt/images/activate-alert.png)
 
 If you want to get alerts quicker you edit the rule and lower the value from **`290`** to say **`280`**.
 
 If you change the **Time** to **-1h** you can see how many alerts you might get with the threshold you have chosen based on the metrics from the last 1 hour.
 
-Click on the ![alerts and detectors button](../images/alerts-and-detectors.png?classes=inline&height=25px) in the navbar and then click on **Detectors**. You can optionally filter for your initials. You will see you detector listed here. If you don't then please refresh your browser.
+Click on the ![alerts and detectors button](../../../../imt/images/alerts-and-detectors.png?classes=inline&height=25px) in the navbar and then click on **Detectors**. You can optionally filter for your initials. You will see you detector listed here. If you don't then please refresh your browser.
 
-![Detector List](../images/detectors.png)
+![Detector List](../../../../imt/images/detectors.png)
 
 **Congratulations**! You have created your first detector and activated it!

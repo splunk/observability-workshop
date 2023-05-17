@@ -10,23 +10,23 @@ The API Check provides a flexible way to check the functionality and performance
 
 View the global variable that we'll use to perform our API check. Click on **Global Variables** under **Admin Tools**. View the global variable that we'll use to make the spotify API transaction
 
-![placeholder](../images/global-variable.png)
+![placeholder](../../../../synthetics/images/global-variable.png)
 
 ## 2. Create an API Check
 
 Create a new API Check and name it `<your initials>` followed by Splunk REST API Check for example: **AP - Spotify API**
 
-![placeholder](../images/new-api-check.png)
+![placeholder](../../../../synthetics/images/new-api-check.png)
 
 Take a second to explore the notification tab after you've named your check
 
 Add the following API Check Steps:
 
- ![placeholder](../images/api-check-steps.png)
+ ![placeholder](../../../../synthetics/images/api-check-steps.png)
 
 Available Variables to choose from:
 
-![placeholder](../images/available-variables.png)
+![placeholder](../../../../synthetics/images/available-variables.png)
 
 **[Request Step](https://help.rigor.com/hc/en-us/articles/115004583747-API-Check-Request-Step)**
 
@@ -68,25 +68,25 @@ Available Variables to choose from:
 
 Tag your API Check with Splunk and API and **SAVE** it
 
-![placeholder](../images/tags.png)
+![placeholder](../../../../synthetics/images/tags.png)
 
 ## 3. Test your REST API Check
 
 Press got back into the edit configuration and press 'test' at the bottom of the page to ensure there are no errors
 
-![placeholder](../images/test-api-check.png)
+![placeholder](../../../../synthetics/images/test-api-check.png)
 
 Slide the window up to view details about the successful run
 
-![placeholder](../images/successful-run.png)
+![placeholder](../../../../synthetics/images/successful-run.png)
 
-![placeholder](../images/request-step.png)
+![placeholder](../../../../synthetics/images/request-step.png)
 
 Now, let's add some more functionality to the monitor. Slide the detailed window back down and add steps 5-8
 
 **BONUS**: use step 6 to assert that the following response came back in a timely manner (1000 ms)
 
-![placeholder](../images/additional-steps.png)
+![placeholder](../../../../synthetics/images/additional-steps.png)
 
 Once the steps are added, test & save the monitor.
 

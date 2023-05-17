@@ -21,17 +21,17 @@ Dashboards are groupings of charts and visualizations of metrics. Well-designed 
 
 During this module we are going to create the following charts and dashboard and connect it to your Team page.
 
-![Example Dashboard](../images/example-dashboard.png)
+![Example Dashboard](../../../../imt/images/example-dashboard.png)
 
 ---
 
 ## 2. Your Teams' Page
 
-Click on the ![dashboards button](../images/dashboards.png) from the navbar. As you have already been assigned to a team, you will land on the team dashboard.
+Click on the ![dashboards button](../../../../imt/images/dashboards.png) from the navbar. As you have already been assigned to a team, you will land on the team dashboard.
 
 We use the ***Example Team*** as an example here. The one in your workshop will be different!
 
-![Team Dashboard1](../images/team-dashboard.png)
+![Team Dashboard1](../../../../imt/images/team-dashboard.png)
 
 This page shows the total number of team members, how many active alerts for your team and all dashboards that are assigned to your team. Right now they are no dashboards assigned but as stated before, we will add the new dashboard that you will create to your Teams page later.
 
@@ -42,7 +42,7 @@ This page shows the total number of team members, how many active alerts for you
 To continue, click on **All Dashboards** on the top right corner of the screen.
 This brings you to the view that shows all the available dashboards, including the pre-built ones.
 
-![Sample Data](../images/sample-data.png)
+![Sample Data](../../../../imt/images/sample-data.png)
 
 If you are already receiving metrics from a Cloud API integration or another service through the Splunk Agent you will see relevant dashboards for these services.
 
@@ -56,4 +56,4 @@ In the Sample Charts dashboard you can see a selection of charts that show a sam
 
 Have a look through all the dashboards in this dashboard group (**PART 1**, **PART 2**, **PART 3** and **INTRO TO SPLUNK OBSERVABILITY CLOUD**)
 
-![Sample Charts](../images/sample-charts.png)
+![Sample Charts](../../../../imt/images/sample-charts.png)

@@ -11,11 +11,11 @@ Often on dashboards it makes sense to place a short "instruction" pane that help
 Lets add one now by clicking on the {{% button style="blue" %}}New Text Note{{% /button %}}
  Button.
 
-![three charts](../../images/M-Notes-0.png)
+![three charts](../../../../../imt/images/M-Notes-0.png)
 
 This will open the notes editor.
 
-![Notes 1](../../images/M-Notes-1.png)
+![Notes 1](../../../../../imt/images/M-Notes-1.png)
 
 To allow you to add more then just text to you notes, Splunk is allowing you to use Markdown in these notes/panes.
 Markdown is a lightweight markup language for creating formatted text using plain-text often used in Webpages.
@@ -85,11 +85,11 @@ the preview will show you how it will look.
 
 Give the Note chart a name, in our example we used *Example text chart*, then press the {{% button %}}Save And Close{{% /button %}} Button.
 
-![saving note](../../images/M-Notes-2.png)
+![saving note](../../../../../imt/images/M-Notes-2.png)
 
 This will bring you back to you Dashboard, that now includes the note.
 
-![three charts and note](../../images/M-Notes-3.png)
+![three charts and note](../../../../../imt/images/M-Notes-3.png)
 
 ---
 
@@ -99,11 +99,11 @@ If you do not like the default order and sizes of your charts you can simply use
 
 Grab the **top** border of a chart and you should see the mouse pointer change to a drag icon (see picture below).
 
-![dragging charts](../../images/M-Notes-4.png)
+![dragging charts](../../../../../imt/images/M-Notes-4.png)
 
 Now drag the **Latency vs Load** chart to sit between the **Latency History** Chart and the **Example text chart**.
 
-![sizing](../../images/M-Notes-5.png)
+![sizing](../../../../../imt/images/M-Notes-5.png)
 
 You can also resize windows by dragging from the left, right and bottom edges.
 
@@ -111,6 +111,6 @@ As a last exercise reduce the width of the note chart to about a third of the ot
 
 Set the time to -1 h hour and you should have the following dashboard!
 
-![TaDA!](../../images/M-Notes-6.png)
+![TaDA!](../../../../../imt/images/M-Notes-6.png)
 
 On to Detectors!

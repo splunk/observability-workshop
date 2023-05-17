@@ -19,4 +19,4 @@ To see the full picture, Splunk RUM provides seamless correlation between our fr
 
 To complete the picture and offer full visibility, Splunk is also able to show in-context logs and events to enable deeper troubleshooting and root-cause analysis.
 
-![Architecture Overview](images/rum-architecture.png)
+![Architecture Overview](../../../rum/images/rum-architecture.png)

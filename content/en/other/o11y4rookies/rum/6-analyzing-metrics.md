@@ -10,13 +10,13 @@ weight: 5
 
 ## 1. RUM Overview Pages
 
-From your RUM Application Summary Dashboard you can see detailed information by opening the Application Overview Page via the tripple dot ![trippleburger](../images/trippleburger.png) menu on the right by selecting *Open Application Overview* or by clicking the link with your application name which is *jmcj-rum-app* in the example below.
+From your RUM Application Summary Dashboard you can see detailed information by opening the Application Overview Page via the tripple dot ![trippleburger](../../../../rum/images/trippleburger.png) menu on the right by selecting *Open Application Overview* or by clicking the link with your application name which is *jmcj-rum-app* in the example below.
 
-![RUM-SummaryHeader](../images/summaryHeader.png)
+![RUM-SummaryHeader](../../../../rum/images/summaryHeader.png)
 
 This will take you to the RUM Application Overview Page screen as shown below.
 
-![RUM-1](../images/RUM-1.png)
+![RUM-1](../../../../rum/images/RUM-1.png)
 
 ## 2. RUM Browser Overview
 
@@ -30,7 +30,7 @@ The RUM UI consists of 6 major sections. The first is the selection header, wher
 * A drop down list with the Various Web apps (You can use the one provided by the workshop host or use *All*)
 * ***Optionally*** a drop down to select Browser or Mobile metrics (*Might not be available in your workshop*)
 
-![RUM-Header](../images/RUM-Header.png)
+![RUM-Header](../../../../rum/images/RUM-Header.png)
 
 ### 2.2. Overview Pane
 
@@ -38,17 +38,17 @@ The Overview Panes, down the left hand side of the page, give you a summary of t
 
 In the example here you can see that the **checkout** and **cart** pages have errors due to the yellow triangles, and you can see that the load time has increased by 2.38 to 5.50 seconds.
 
-<!-- ![RUM-Top](../images/RUM-TOP.png) -->
+<!-- ![RUM-Top](../../../../rum/images/RUM-TOP.png) -->
 
-![RUM-Top](../images/RUM-Page-Load-Times.png)
+![RUM-Top](../../../../rum/images/RUM-Page-Load-Times.png)
 
 You also see an overview of the number of Front end Error and Backend Errors per minute, and we appear to have three JavaScript errors on our site.
 
-![RUM-Top](../images/RUM-JS-Errors.png)
+![RUM-Top](../../../../rum/images/RUM-JS-Errors.png)
 
 The last two panes show you the **Top Page Views** and the **Top Network Requests**.
 
-![RUM-Top](../images/RUM-Page-Views-Network.png)
+![RUM-Top](../../../../rum/images/RUM-Page-Views-Network.png)
 
 ### 2.3. Key Metrics Pane
 
@@ -56,7 +56,7 @@ The Key Metrics View is the location where you will find the metrics for the num
 **JavaScript Errors** per second, **Network Errors** per second an the **Backend/Resource Request Duration**.
 These Metrics are very useful to guide you to the location of an issue if you are experiencing problems with your site.
 
-![RUM-KeyMetrics](../images/RUM-Key-Metrics.png)
+![RUM-KeyMetrics](../../../../rum/images/RUM-Key-Metrics.png)
 
 ### 2.4. Web Vitals Pane
 
@@ -67,7 +67,7 @@ Web Vitals is an initiative by Google to provide unified guidance for quality si
 * **First Input Delay (FID)**, measures interactivity. To provide a good user experience, pages should have a FID of 100 milliseconds or less.
 * **Cumulative Layout Shift (CLS)**, measures visual stability. To provide a good user experience, pages should maintain a CLS of 0.1. or less.
 
-![RUM-WebVitals](../images/RUM-Web-Vitals.png)
+![RUM-WebVitals](../../../../rum/images/RUM-Web-Vitals.png)
 
 ### 2.5. Other Metrics Pane
 
@@ -77,7 +77,7 @@ The Other Metrics Pane is the location where you find other performance metrics,
 * **Long Task Duration**, a performance metric that can be used help developers to understand the bad user experience on the website, or can be an indication of a problem.
 * **Long Task Count**, a metric to indicate how often a long task occurs, again used for exploring user experiences or problem detection.
 
-![RUM-Other](../images/RUM-Other.png)
+![RUM-Other](../../../../rum/images/RUM-Other.png)
 
 ### 2.6. Custom Event Pane
 
@@ -92,4 +92,4 @@ var tracer=Provider.getTracer('appModuleLoader');
 
 These lines  will automatically create custom Events for every new Page, and you can also add these to pieces of custom code that are not part of a framework or an event you created so you can better understand the flow though your application. We support **Custom Event Requests**, **Custom Event Error Rates** and **Custom Event Latency** metrics.
 
-![RUM-CustomMetrics](../images/RUM-Custom-Events.png)
+![RUM-CustomMetrics](../../../../rum/images/RUM-Custom-Events.png)
