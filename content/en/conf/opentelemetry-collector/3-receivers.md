@@ -4,6 +4,8 @@ linkTitle: 3. Receivers
 weight: 3
 ---
 
+Welcome to the receiver portion of the workshop! This is the starting point of the data pipeline of the OpenTelemetry Collector. Let's dive in.
+
 A receiver, which can be push or pull based, is how data gets into the Collector. Receivers may support one or more data sources. Generally, a receiver accepts data in a specified format, translates it into the internal format and passes it to processors and exporters defined in the applicable pipelines.
 
 ### Host Metrics Receiver
@@ -238,3 +240,5 @@ The following screenshot shows an example dashboard of the metrics the Prometheu
 ## Other Receivers
 
 You will notice in the default configuration there are other receivers (`otlp`, `opencensus`, `jaeger` and `zipkin`). These are used to receive telemetry data from other sources. We will not be using these receivers in this workshop and can be left as they are.
+
+Now that we have reviewed how data gets into the OTEL Collector, we must now learn how the Collector processes the data. 

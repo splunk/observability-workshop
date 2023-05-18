@@ -6,6 +6,8 @@ weight: 1
 
 ## 1. Downloading the OpenTelemetry Collector Contrib distribution
 
+The first step in installing the Open Telemetry Collector is downloading it. For our lab we will use the 'wget' command to download the '.deb' package from the OpenTelemetry Github repository. 
+
 Obtain the `.deb` package for your platform from the [OpenTelemetry Collector Contrib releases page](https://github.com/open-telemetry/opentelemetry-collector-releases/releases)
 
 ``` bash
@@ -14,7 +16,7 @@ wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases
 
 ## 2. Installing the OpenTelemetry Collector Contrib distribution
 
-Install the `.deb` package using `dpkg`:
+Install the `.deb` package using `dpkg`. Not we are installing as root. Take a look at the Output tab in the box below to see what the exmple output of a successful install will look like:
 
 {{< tabs >}}
 {{% tab name="Install" %}}
@@ -39,6 +41,8 @@ Created symlink /etc/systemd/system/multi-user.target.wants/otelcol-contrib.serv
 {{< /tabs >}}
 
 ## 3. Confirm the Collector is running
+
+The collector should now be running. We will verify this as root using systemctl command.
 
 {{< tabs >}}
 {{% tab name="Command" %}}
@@ -150,6 +154,8 @@ service:
 
 {{% /tab %}}
 {{< /tabs >}}
+
+Congratulations! You have successfully downloaded and installed the OpenTelemtry Collector. You are well on your way to Ninja. But first lets chat through configuration files and different distrobutions of the OpenTelemetry Collector.
 
 We will now walk through each section of the configuration file and modify it to send host metrics to Splunk Observability Cloud.
 

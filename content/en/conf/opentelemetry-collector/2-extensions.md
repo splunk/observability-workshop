@@ -4,9 +4,11 @@ linkTitle: 2. Extensions
 weight: 2
 ---
 
+Now that we have the OpenTelemetry Collector is installed. Let's take a look at extensions for the OTEL Collector.
+
 Extensions are available primarily for tasks that do not involve processing telemetry data. Examples of extensions include health monitoring, service discovery, and data forwarding. Extensions are optional.
 
-Let's edit the `config.yaml` file and configure the extensions. Note that the `pprof` and `zpages` extensions are already configured in the default `config.yaml` file. We will only be updating the `health_check` extension.
+Extensions are configured in the same `config.yaml` file that we reference in module 1 of this lab. Let's edit the `config.yaml` file and configure the extensions. Note that the `pprof` and `zpages` extensions are already configured in the default `config.yaml` file. For the purpose of this lab, we will only be updating the `health_check` extension.
 
 ``` bash
 sudo vi /etc/otelcol-contrib/config.yaml
@@ -147,3 +149,5 @@ Example URL: [http://localhost:55679/debug/pipelinez](http://localhost:55679/deb
 Example URL: [http://localhost:55679/debug/extensionz](http://localhost:55679/debug/extensionz)
 
 ![ExtensionZ](../images/extensionz.png)
+
+Now that we have reviewed extensions, lets dive into the data pipeline portion of the workshop. The data pipeline in the OpenTelemetry Collector is made up of receivers, processors, and exporters. We will first start with receivers.
