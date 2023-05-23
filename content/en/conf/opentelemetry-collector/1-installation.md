@@ -14,13 +14,14 @@ Obtain the `.deb` package for your platform from the [OpenTelemetry Collector Co
 wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.75.0/otelcol-contrib_0.75.0_linux_amd64.deb
 ```
 
-{{%expand "🥷 Ninja: Build your own collector using _Open Telemetry Collector Builder (ocb)_"%}}
+***
+{{%expand "🥷 Ninja: Build your own collector using Open Telemetry Collector Builder (ocb)"%}}
 For this part we will require the following installed on your system:
 
 - Golang (latest version)
 - ocb installed
   - Most recent from the [project releases](https://github.com/open-telemetry/opentelemetry-collector/releases)
-  - Install using go by `go install go.opentelemetry.io/collector/cmd/builder@latest`
+  - Install using go by `go install go.opentelemetry.io/collector/cmd/builder@v0.75.0`
 - (Optional) Docker
 
 ## Why build your own collector?
@@ -80,7 +81,7 @@ exporters:
 - gomod: go.opentelemetry.io/collector/exporter/otlpexporter v0.75.0
 - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/splunkhecexporter v0.75.0
 - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/signalfxexporter v0.75.0
-- gomod:  github.com/open-telemetry/opentelemetry-collector-contrib/exporter/sapmexporter v0.75.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/sapmexporter v0.75.0
 
 processors:
 - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.75.0
@@ -119,6 +120,7 @@ Which leave you with the following directory structure:
 
 1. https://opentelemetry.io/docs/collector/custom-collector/
 {{% /expand%}}
+***
 
 ## 2. Installing the OpenTelemetry Collector Contrib distribution
 
@@ -204,9 +206,9 @@ cat /etc/otelcol-contrib/config.yaml
 extensions:
   health_check:
   pprof:
-    endpoint: 0.0.0.0:1777
+    endpoint: 127.0.0.1:1777
   zpages:
-    endpoint: 0.0.0.0:55679
+    endpoint: 127.0.0.1:55679
 
 receivers:
   otlp:
@@ -223,7 +225,7 @@ receivers:
       - job_name: 'otel-collector'
         scrape_interval: 10s
         static_configs:
-        - targets: ['0.0.0.0:8888']
+        - targets: ['127.0.0.1:8888']
 
   jaeger:
     protocols:

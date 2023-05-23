@@ -96,11 +96,11 @@ service:
 ``` yaml
 extensions:
   health_check:
-    endpoint: 0.0.0.0:13133
+    endpoint: 127.0.0.1:13133
   pprof:
-    endpoint: 0.0.0.0:1777
+    endpoint: 127.0.0.1:1777
   zpages:
-    endpoint: 0.0.0.0:55679
+    endpoint: 127.0.0.1:55679
 
 receivers:
   hostmetrics:
@@ -138,7 +138,7 @@ receivers:
       - job_name: 'otel-collector'
         scrape_interval: 10s
         static_configs:
-        - targets: ['0.0.0.0:8888']
+        - targets: ['127.0.0.1:8888']
 
   jaeger:
     protocols:
