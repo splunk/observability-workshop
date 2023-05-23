@@ -81,7 +81,7 @@ exporters:
 - gomod: go.opentelemetry.io/collector/exporter/otlpexporter v0.75.0
 - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/splunkhecexporter v0.75.0
 - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/signalfxexporter v0.75.0
-- gomod:  github.com/open-telemetry/opentelemetry-collector-contrib/exporter/sapmexporter v0.75.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/sapmexporter v0.75.0
 
 processors:
 - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.75.0
@@ -206,9 +206,9 @@ cat /etc/otelcol-contrib/config.yaml
 extensions:
   health_check:
   pprof:
-    endpoint: 0.0.0.0:1777
+    endpoint: 127.0.0.1:1777
   zpages:
-    endpoint: 0.0.0.0:55679
+    endpoint: 127.0.0.1:55679
 
 receivers:
   otlp:
@@ -225,7 +225,7 @@ receivers:
       - job_name: 'otel-collector'
         scrape_interval: 10s
         static_configs:
-        - targets: ['0.0.0.0:8888']
+        - targets: ['127.0.0.1:8888']
 
   jaeger:
     protocols:
