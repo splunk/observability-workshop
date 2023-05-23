@@ -14,7 +14,8 @@ Obtain the `.deb` package for your platform from the [OpenTelemetry Collector Co
 wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.75.0/otelcol-contrib_0.75.0_linux_amd64.deb
 ```
 
-{{%expand "🥷 Ninja: Build your own collector using _Open Telemetry Collector Builder (ocb)_"%}}
+***
+{{%expand "🥷 Ninja: Build your own collector using Open Telemetry Collector Builder (ocb)"%}}
 For this part we will require the following installed on your system:
 
 - Golang (latest version)
@@ -119,6 +120,7 @@ Which leave you with the following directory structure:
 
 1. https://opentelemetry.io/docs/collector/custom-collector/
 {{% /expand%}}
+***
 
 ## 2. Installing the OpenTelemetry Collector Contrib distribution
 
