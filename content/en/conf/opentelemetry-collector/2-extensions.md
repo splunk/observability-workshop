@@ -94,6 +94,61 @@ Restart the collector:
 sudo systemctl restart otelcol-contrib
 ```
 
+***
+
+{{% expand "🥷 Ninja: Improve data durability with storage extension" %}}
+For this, we will need to validate our distrobution has the `file_storage` extension installed,
+this can be down by running the command `otelcol-contrib components` and it should so something like:
+
+```yaml
+# ... truncated for clarity
+extensions:
+    - file_storage
+```
+
+This extension provides exporters the ability to queue data to disk in the event that exporter is unable
+to send data to the configured endpoint.
+
+In order to configure the extension, you will need to update to include the following information:
+
+```yaml
+extensions:
+  file_storage:
+    directory: /tmp/otel-data
+    timeout: 10s
+    compaction:
+       directory: /tmp/otel-data
+       on_start: true
+       on_rebound: true
+       rebound_needed_threshold_mib: 5
+       rebound_trigger_threshold_mib: 3
+
+# ... truncated for clarity
+
+service:
+  extension:
+  # Additiona extensions here 
+  - file_storage
+```
+
+## Why queue data to disk?
+
+This allows the collector to queue data (and even restart) to ensure data is sent 
+the upstream provider.
+
+## Considerations for queuing data to disk?
+
+There is a potential that this could impact data throughput performance due disk performance.
+
+#### References
+
+1. https://community.splunk.com/t5/Community-Blog/Data-Persistence-in-the-OpenTelemetry-Collector/ba-p/624583
+1. https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/storage/filestorage
+
+{{% /expand %}}
+
+***
+
 ## Health Check
 
 This extension enables an HTTP url that can be probed to check the status of the OpenTelemetry Collector. This extension can be used as a liveness and/or readiness probe on Kubernetes. To learn more about the curl command, check out the [curl man page.](https://curl.se/docs/manpage.html)
@@ -151,3 +206,4 @@ Example URL: [http://localhost:55679/debug/extensionz](http://localhost:55679/de
 ![ExtensionZ](../images/extensionz.png)
 
 Now that we have reviewed extensions, lets dive into the data pipeline portion of the workshop. The data pipeline in the OpenTelemetry Collector is made up of receivers, processors, and exporters. We will first start with receivers.
+

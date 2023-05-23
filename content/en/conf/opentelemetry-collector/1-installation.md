@@ -21,7 +21,7 @@ For this part we will require the following installed on your system:
 - Golang (latest version)
 - ocb installed
   - Most recent from the [project releases](https://github.com/open-telemetry/opentelemetry-collector/releases)
-  - Install using go by `go install go.opentelemetry.io/collector/cmd/builder@latest`
+  - Install using go by `go install go.opentelemetry.io/collector/cmd/builder@v0.75.0`
 - (Optional) Docker
 
 ## Why build your own collector?
