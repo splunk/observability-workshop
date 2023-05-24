@@ -6,7 +6,7 @@ weight: 1
 
 ## 1. Downloading the OpenTelemetry Collector Contrib distribution
 
-The first step in installing the Open Telemetry Collector is downloading it. For our lab we will use the 'wget' command to download the '.deb' package from the OpenTelemetry Github repository. 
+The first step in installing the Open Telemetry Collector is downloading it. For our lab we will use the 'wget' command to download the '.deb' package from the OpenTelemetry Github repository.
 
 Obtain the `.deb` package for your platform from the [OpenTelemetry Collector Contrib releases page](https://github.com/open-telemetry/opentelemetry-collector-releases/releases)
 
@@ -15,7 +15,7 @@ wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases
 ```
 
 ***
-{{%expand "🥷 Ninja: Build your own collector using Open Telemetry Collector Builder (ocb)"%}}
+{{% expand "🥷 Ninja: Build your own collector using Open Telemetry Collector Builder (ocb)" %}}
 For this part we will require the following installed on your system:
 
 - Golang (latest version)
@@ -36,7 +36,7 @@ When creating your own collector binaries, (commonly referred to as distrobution
 The benefits of this are:
 
 1. Small binaries sizes
-1. Can use existing go scanners for vulnerabilites 
+1. Can use existing go scanners for vulnerabilites
 1. Include internal components that can tie in with your organisation
 
 ## Considerations for building your own collector?
@@ -44,7 +44,7 @@ The benefits of this are:
 Now, this would not be a 🥷 ninja zone if it didn't come with some draw backs:
 
 1. Go experience is recommended if not required
-1. No splunk support
+1. **No** Splunk support
 1. Responsibiliy of distrobution and lifecycle management
 
 It is important to note that project is working towards stability but it does not mean
@@ -57,13 +57,14 @@ with your deployment needs.
 Once you have all the required tools installed to get started, you will need to create a
 new file named `otelcol-builder.yaml` and we will follow this directory structure:
 
-```
+``` bash
 .
 └── otelcol-builder.yaml
 ```
 
 Once we have the file created, we need to add a list of components for it to install with some additional metadata.
 For this example, we are going to create a builder manifest that will install only the components we need for the introduction config:
+
 ```yaml
 dist:
   name: otelcol-ninja
@@ -103,7 +104,7 @@ Once the yaml file has been updated for the _ocb_, then run the following comman
 
 Which leave you with the following directory structure:
 
-```
+``` text
 ├── dist
 │   ├── components.go
 │   ├── components_test.go
@@ -116,10 +117,12 @@ Which leave you with the following directory structure:
 └── otelcol-builder.yaml
 ```
 
-### References:
+### References
 
-1. https://opentelemetry.io/docs/collector/custom-collector/
-{{% /expand%}}
+1. [https://opentelemetry.io/docs/collector/custom-collector/](https://opentelemetry.io/docs/collector/custom-collector/)
+
+{{% /expand %}}
+
 ***
 
 ## 2. Installing the OpenTelemetry Collector Contrib distribution

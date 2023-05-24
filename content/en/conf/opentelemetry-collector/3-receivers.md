@@ -241,4 +241,4 @@ The following screenshot shows an example dashboard of the metrics the Prometheu
 
 You will notice in the default configuration there are other receivers (`otlp`, `opencensus`, `jaeger` and `zipkin`). These are used to receive telemetry data from other sources. We will not be using these receivers in this workshop and can be left as they are.
 
-Now that we have reviewed how data gets into the OTEL Collector, we must now learn how the Collector processes the data. 
+Now that we have reviewed how data gets into the OTEL Collector, we must now learn how the Collector processes the data.

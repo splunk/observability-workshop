@@ -133,17 +133,16 @@ service:
 
 ## Why queue data to disk?
 
-This allows the collector to queue data (and even restart) to ensure data is sent 
-the upstream provider.
+This allows the collector to queue data (and even restart) to ensure data is sent the upstream provider.
 
 ## Considerations for queuing data to disk?
 
 There is a potential that this could impact data throughput performance due disk performance.
 
-#### References
+### References
 
-1. https://community.splunk.com/t5/Community-Blog/Data-Persistence-in-the-OpenTelemetry-Collector/ba-p/624583
-1. https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/storage/filestorage
+1. [https://community.splunk.com/t5/Community-Blog/Data-Persistence-in-the-OpenTelemetry-Collector/ba-p/624583](https://community.splunk.com/t5/Community-Blog/Data-Persistence-in-the-OpenTelemetry-Collector/ba-p/624583)
+2. [https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/storage/filestorage](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/storage/filestorage)
 
 {{% /expand %}}
 
@@ -151,7 +150,7 @@ There is a potential that this could impact data throughput performance due disk
 
 ## Health Check
 
-This extension enables an HTTP url that can be probed to check the status of the OpenTelemetry Collector. This extension can be used as a liveness and/or readiness probe on Kubernetes. To learn more about the curl command, check out the [curl man page.](https://curl.se/docs/manpage.html)
+This extension enables an HTTP url that can be probed to check the status of the OpenTelemetry Collector. This extension can be used as a liveness and/or readiness probe on Kubernetes. To learn more about the curl command, check out the [curl man page](https://curl.se/docs/manpage.html).
 
 {{< tabs >}}
 {{% tab name="Command" %}}
@@ -206,4 +205,3 @@ Example URL: [http://localhost:55679/debug/extensionz](http://localhost:55679/de
 ![ExtensionZ](../images/extensionz.png)
 
 Now that we have reviewed extensions, lets dive into the data pipeline portion of the workshop. The data pipeline in the OpenTelemetry Collector is made up of receivers, processors, and exporters. We will first start with receivers.
-
