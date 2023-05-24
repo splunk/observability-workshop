@@ -96,14 +96,14 @@ sudo systemctl restart otelcol-contrib
 
 ***
 
-{{% expand "🥷 Ninja: Improve data durability with storage extension" %}}
+{{% expand title="🥷 **Ninja: Improve data durability with storage extension**" %}}
 For this, we will need to validate our distrobution has the `file_storage` extension installed,
 this can be down by running the command `otelcol-contrib components` and it should so something like:
 
 ```yaml
 # ... truncated for clarity
 extensions:
-    - file_storage
+  - file_storage
 ```
 
 This extension provides exporters the ability to queue data to disk in the event that exporter is unable

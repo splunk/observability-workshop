@@ -15,7 +15,8 @@ wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases
 ```
 
 ***
-{{% expand "🥷 Ninja: Build your own collector using Open Telemetry Collector Builder (ocb)" %}}
+
+{{% expand title="🥷 **Ninja: Build your own collector using Open Telemetry Collector Builder (ocb)**" %}}
 For this part we will require the following installed on your system:
 
 - Golang (latest version)
