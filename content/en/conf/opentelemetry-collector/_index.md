@@ -97,9 +97,9 @@ Vanilla/Contrib/Vendor
 extensions:
   health_check:
   pprof:
-    endpoint: 127.0.0.1:1777
+    endpoint: 0.0.0.0:1777
   zpages:
-    endpoint: 127.0.0.1:55679
+    endpoint: 0.0.0.0:55679
 
 receivers:
   otlp:
@@ -116,7 +116,7 @@ receivers:
       - job_name: 'otel-collector'
         scrape_interval: 10s
         static_configs:
-        - targets: ['127.0.0.1:8888']
+        - targets: ['0.0.0.0:8888']
 
   jaeger:
     protocols:
@@ -169,10 +169,10 @@ service:
 
 extensions:
   health_check:
-    endpoint: 127.0.0.1:13133
+    endpoint: 0.0.0.0:13133
   http_forwarder:
     ingress:
-      endpoint: 127.0.0.1:6060
+      endpoint: 0.0.0.0:6060
     egress:
       endpoint: "${SPLUNK_API_URL}"
       # Use instead when sending to gateway
@@ -182,7 +182,7 @@ extensions:
     collectd:
       configDir: "${SPLUNK_COLLECTD_DIR}"
   zpages:
-    #endpoint: 127.0.0.1:55679
+    #endpoint: 0.0.0.0:55679
   memory_ballast:
     # In general, the ballast should be set to 1/3 of the collector's memory, the limit
     # should be 90% of the collector's memory.
@@ -191,7 +191,7 @@ extensions:
 
 receivers:
   fluentforward:
-    endpoint: 127.0.0.1:8006
+    endpoint: 0.0.0.0:8006
   hostmetrics:
     collection_interval: 10s
     scrapers:
@@ -211,19 +211,19 @@ receivers:
   jaeger:
     protocols:
       grpc:
-        endpoint: 127.0.0.1:14250
+        endpoint: 0.0.0.0:14250
       thrift_binary:
-        endpoint: 127.0.0.1:6832
+        endpoint: 0.0.0.0:6832
       thrift_compact:
-        endpoint: 127.0.0.1:6831
+        endpoint: 0.0.0.0:6831
       thrift_http:
-        endpoint: 127.0.0.1:14268
+        endpoint: 0.0.0.0:14268
   otlp:
     protocols:
       grpc:
-        endpoint: 127.0.0.1:4317
+        endpoint: 0.0.0.0:4317
       http:
-        endpoint: 127.0.0.1:4318
+        endpoint: 0.0.0.0:4318
   # This section is used to collect the OpenTelemetry Collector metrics
   # Even if just a Splunk APM customer, these metrics are included
   prometheus/internal:
@@ -232,23 +232,23 @@ receivers:
       - job_name: 'otel-collector'
         scrape_interval: 10s
         static_configs:
-        - targets: ['127.0.0.1:8888']
+        - targets: ['0.0.0.0:8888']
         metric_relabel_configs:
           - source_labels: [ __name__ ]
             regex: '.*grpc_io.*'
             action: drop
   smartagent/signalfx-forwarder:
     type: signalfx-forwarder
-    listenAddress: 127.0.0.1:9080
+    listenAddress: 0.0.0.0:9080
   smartagent/processlist:
     type: processlist
   signalfx:
-    endpoint: 127.0.0.1:9943
+    endpoint: 0.0.0.0:9943
     # Whether to preserve incoming access token and use instead of exporter token
     # default = false
     #access_token_passthrough: true
   zipkin:
-    endpoint: 127.0.0.1:9411
+    endpoint: 0.0.0.0:9411
 
 processors:
   batch:
@@ -356,11 +356,11 @@ End goal for metrics only:
 ```yaml
 extensions:
   health_check:
-    endpoint: 127.0.0.1:13133
+    endpoint: 0.0.0.0:13133
   pprof:
-    endpoint: 127.0.0.1:1777
+    endpoint: 0.0.0.0:1777
   zpages:
-    endpoint: 127.0.0.1:55679
+    endpoint: 0.0.0.0:55679
 
 receivers:
   hostmetrics:
@@ -387,7 +387,7 @@ receivers:
       - job_name: 'otel-collector'
         scrape_interval: 10s
         static_configs:
-        - targets: ['127.0.0.1:8888']
+        - targets: ['0.0.0.0:8888']
 
 processors:
   batch:
