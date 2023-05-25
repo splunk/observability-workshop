@@ -16,7 +16,7 @@ wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases
 
 ***
 
-{{% expand title="🥷 **Ninja: Build your own collector using Open Telemetry Collector Builder (ocb)**" %}}
+{{% expand title="{{% badge style=primary icon=user-ninja title=**Ninja** %}}Build your own collector using Open Telemetry Collector Builder (ocb){{% /badge %}}" %}}
 For this part we will require the following installed on your system:
 
 - Golang (latest version)
@@ -210,9 +210,9 @@ cat /etc/otelcol-contrib/config.yaml
 extensions:
   health_check:
   pprof:
-    endpoint: 127.0.0.1:1777
+    endpoint: 0.0.0.0:1777
   zpages:
-    endpoint: 127.0.0.1:55679
+    endpoint: 0.0.0.0:55679
 
 receivers:
   otlp:
@@ -229,7 +229,7 @@ receivers:
       - job_name: 'otel-collector'
         scrape_interval: 10s
         static_configs:
-        - targets: ['127.0.0.1:8888']
+        - targets: ['0.0.0.0:8888']
 
   jaeger:
     protocols:
@@ -262,7 +262,7 @@ service:
       exporters: [logging]
 
   extensions: [health_check, pprof, zpages]
-  ```
+```
 
 {{% /tab %}}
 {{< /tabs >}}
