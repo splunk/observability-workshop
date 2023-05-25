@@ -15,13 +15,11 @@ theme:
 languages:
   en:
     title: "Splunk Observability Cloud Workshops"
-    description: Splunk Observability Workshops
     languageName: English
     contentDir: content/en
     weight: 1
   ja:
     title: "Splunk Observability Cloud Workshops"
-    description: Splunk Observability ワークショップ
     contentDir: content/ja
     languageName: 日本語
     weight: 2
