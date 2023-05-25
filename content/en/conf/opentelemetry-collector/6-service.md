@@ -88,7 +88,7 @@ service:
     metrics:
       receivers: [hostmetrics, otlp, opencensus, prometheus/internal]
       processors: [batch, resourcedetection]
-      exporters: [logging, otlphttp]
+      exporters: [logging, otlphttp/splunk]
 ```
 
 ## Final configuration
@@ -96,11 +96,11 @@ service:
 ``` yaml
 extensions:
   health_check:
-    endpoint: 127.0.0.1:13133
+    endpoint: 0.0.0.0:13133
   pprof:
-    endpoint: 127.0.0.1:1777
+    endpoint: 0.0.0.0:1777
   zpages:
-    endpoint: 127.0.0.1:55679
+    endpoint: 0.0.0.0:55679
 
 receivers:
   hostmetrics:
@@ -138,7 +138,7 @@ receivers:
       - job_name: 'otel-collector'
         scrape_interval: 10s
         static_configs:
-        - targets: ['127.0.0.1:8888']
+        - targets: ['0.0.0.0:8888']
 
   jaeger:
     protocols:
@@ -159,6 +159,10 @@ processors:
 exporters:
   logging:
     verbosity: detailed
+  otlphttp/splunk:
+    metrics_endpoint: https://ingest.eu0.signalfx.com/v2/datapoint/otlp
+    headers:
+      X-SF-TOKEN: CkX5Yc0OWpKXsFGeBaXH2Q
 
 service:
 
@@ -172,7 +176,7 @@ service:
     metrics:
       receivers: [hostmetrics, otlp, opencensus, prometheus/internal]
       processors: [batch, resourcedetection]
-      exporters: [logging, otlphttp]
+      exporters: [logging, otlphttp/splunk]
 
   extensions: [health_check, pprof, zpages]
 ```
