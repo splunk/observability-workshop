@@ -1,5 +1,6 @@
 ---
-title: 1.1 Generate load using Locust
+title: 1.1 Generate load 
+menuPost: " <i class='fa fa-user-ninja'></i>"
 weight: 2
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: Deploying the OpenTelemetry Collector in Kubernetes
 linkTitle: 2. Get Data In
+menuPost: " <i class='fa fa-user-ninja'></i>"
 alwaysopen: false
 weight: 2
 ---
@@ -201,7 +202,6 @@ Under **Containers** click on **Kubernetes** to open the Kubernetes Navigator Cl
 
 Validate that your cluster is discovered and reporting by finding your cluster (in the workshop you will see many other clusters). To find your cluster name run the following command and copy the output to your clipboard:
 
-{{< tabs >}}
 {{% tab name="Echo Cluster Name" %}}
 
 ```bash
@@ -209,7 +209,6 @@ echo $(hostname)-k3s-cluster
 ```
 
 {{% /tab %}}
-{{< /tabs >}}
 
 Then in the UI, click on the "Cluster: - " menu just below the Splunk Logo, and paste the Cluster name you just copied into the search box, click the box to select your cluster, and finally click off the menu into white space to apply the filter.
 
@@ -219,7 +218,7 @@ Then in the UI, click on the "Cluster: - " menu just below the Splunk Logo, and 
 
 ![Filtered K8S Cluster](../images/filtered-k3s-cluster.png)
 
-To examine the health of your node, hover over the pale blue background of your cluster, then click on the blue magnifying glass ![Magnifying Glass](../images/blue-cross.png) that appears in the top left hand corner.
+To examine the health of your node, hover over the pale blue background of your cluster, then click on the blue magnifying glass ![Magnifying Glass](../images/blue-cross.png?classes=inline&height=25px) that appears in the top left hand corner.
 
 This will drill down to the node level.  Next, open the side bar by clicking on the side bar button to open the Metrics side bar.
 

@@ -1,6 +1,7 @@
 ---
 title: Deploying NGINX in K3s
-linkTitle: 2.1 Deploy and Monitor NGINX
+linkTitle: 2.1 Deploy NGINX
+menuPost: " <i class='fa fa-user-ninja'></i>"
 weight: 3
 ---
 

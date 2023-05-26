@@ -1,6 +1,7 @@
 ---
 title: Monitoring as Code
 linkTitle: 5. Monitoring as Code
+menuPost: " <i class='fa fa-user-ninja'></i>"
 weight: 5
 ---
 
@@ -23,7 +24,6 @@ Full documentation for the Splunk Terraform Provider is available [here](https:/
 
 Remaining in your AWS/EC2 instance, change into the `o11y-cloud-jumpstart` directory
 
-{{< tabs >}}
 {{% tab name="Change directory" %}}
 
 ``` bash
@@ -31,11 +31,9 @@ cd observability-content-contrib/integration-examples/terraform-jumpstart
 ```
 
 {{% /tab %}}
-{{< /tabs >}}
 
 The environment variables needed should already be set from [Installation using Helm](../gdi/#2-installation-using-helm). If not, create the following environment variables to use in the Terraform steps below
 
-{{< tabs >}}
 {{% tab name="Export ACCESS TOKEN" %}}
 
 ``` bash
@@ -43,9 +41,7 @@ export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
 ```
 
 {{% /tab %}}
-{{< /tabs >}}
 
-{{< tabs >}}
 {{% tab name="Export REALM" %}}
 
 ``` bash
@@ -53,7 +49,6 @@ export REALM="<replace_with_REALM>"
 ```
 
 {{% /tab %}}
-{{< /tabs >}}
 
 Initialize Terraform and upgrade to the latest version of the Splunk Terraform Provider
 
