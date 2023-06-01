@@ -21,7 +21,7 @@
 
 The following configuration can be applied to a standard O11y workshop instance (EC2 or multipass).
 
-**otel-demo-collector.yaml**
+### otel-demo-collector.yaml
 
 https://github.com/splunk/observability-workshop/blob/f5521963d9c4bb4a63745013f133c23db1b8ae2a/oteldemo/otel-demo-collector.yaml#L1-L82
 
@@ -61,7 +61,7 @@ Create `otel-demo.yaml`, this will be applied to the Helm chart and changes the 
 - Customise Kafka configuration to expose metrics via JMX on port 5555
 - Disable native OTel Collector, Jaeger, Prometheus & Grafana
 
-**otel-demo.yaml**
+### otel-demo.yaml
 
 https://github.com/splunk/observability-workshop/blob/387727f814714a65ffbac9f73e5f89f05760268b/workshop/oteldemo/otel-demo.yaml#L1-L50
 
@@ -77,7 +77,7 @@ helm install my-otel-demo open-telemetry/opentelemetry-demo --values otel-demo.y
 
 ## OpenTelemetry Receivers
 
-**OpenTelemetry Redis receiver configuration**
+### OpenTelemetry Redis receiver configuration
 
 At the time of writing there are no OOTB dashboards for OpenTelemetry receivers. You can still use these receivers and build out custom dashboards using the existing SmartAgent OOTB dashboards as templates. You can import `dashboard_REDIS INSTANCES (OTEL).json` as an example.
 
@@ -87,4 +87,3 @@ redis:
   config:
     endpoint: '`endpoint`:6379'
 ```
-
