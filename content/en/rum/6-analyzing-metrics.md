@@ -10,7 +10,7 @@ weight: 6
 
 ## 1. RUM Overview Pages
 
-From your RUM Application Summary Dashboard you can see detailed information by opening the Application Overview Page via the tripple dot ![trippleburger](../images/trippleburger.png) menu on the right by selecting *Open Application Overview* or by clicking the link with your application name which is *jmcj-rum-app* in the example below.
+From your RUM Application Summary Dashboard you can see detailed information by opening the Application Overview Page via the tripple dot ![trippleburger](../images/trippleburger.png?classes=inline&height=25px) menu on the right by selecting *Open Application Overview* or by clicking the link with your application name which is *jmcj-rum-app* in the example below.
 
 ![RUM-SummaryHeader](../images/summaryHeader.png)
 

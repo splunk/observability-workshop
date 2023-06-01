@@ -59,7 +59,7 @@ By selecting the various Tag you build up a filter, you can see the current sele
 
 To clear the filter and see every trace click on **Clear All** at the top right of the page.
 
-If the overview page  is empty or shows ![RUM-Adam](../images/RUM-NoTime.png), no traces have been received in the selected timeslot.
+If the overview page  is empty or shows ![RUM-Adam](../images/RUM-NoTime.png?classes=inline&height=25px), no traces have been received in the selected timeslot.
 You need to increase the time window at the top left.  You can start with the *Last 12 hours* for example.
 
 You can then use your mouse to select the time slot you want like show in the view below and  activate that time filter by clicking on the little spyglass icon.

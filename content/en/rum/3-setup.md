@@ -1,6 +1,7 @@
 ---
 title: 3. Example of RUM enablement in your Website
 linkTitle:  3. Using RUM on your Website
+menuPost: " <i class='fa fa-user-ninja'></i>"
 weight: 3
 ---
 * Check the original HEAD section of your Online-boutique webpage (or use the examples here) in your browser
@@ -17,7 +18,7 @@ If you have not got access to an EC2 instance with the Online Boutique installed
 
 ## 2. Obtain RUM Access Token
 
-As this Deployment we are about to do is also used as part of the RUM workshop section, you will need to obtain your RUM Access Token from the Splunk UI. You can find the workshop Access Token by clicking **>>** bottom left or the ![settings](../images/setting.png) menu option and then selecting **Settings → Access Tokens**.
+As this Deployment we are about to do is also used as part of the RUM workshop section, you will need to obtain your RUM Access Token from the Splunk UI. You can find the workshop Access Token by clicking **>>** bottom left or the ![settings](../images/setting.png?classes=inline&height=25px) menu option and then selecting **Settings → Access Tokens**.
 
 Expand the RUM workshop token that your host has instructed you to use e.g. **O11y-Workshop-RUM-TOKEN**, then click on **Show Token** to expose your token. Click the {{% button style="grey" %}}Copy{{% /button %}} button to copy to clipboard. Please do not use the **Default** token! Make sure the token has RUM as its Authorization Scope.
 

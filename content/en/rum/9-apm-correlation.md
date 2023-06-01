@@ -10,12 +10,12 @@ weight: 9
 
 ## 1. Finding backend service issues
 
-Click on the ![RUM-JS](../images/RUM-JS-Error.png) to close the Span view.
+Click on the ![RUM-JS](../images/RUM-JS-Error.png?classes=inline&height=25px) to close the Span view.
 Now continue to scroll down and find the **POST /cart/checkout** line.
 
 ![RUM-APM-Click](../images/RUM-APM-Click.png)
 
-Click on the blue ![RUM-APM-BLUE](../images/RUM-APM.png) link, this should pop up a dialog showing information on the backend services that were part of the checkout action taken by the end user.
+Click on the blue ![RUM-APM-BLUE](../images/RUM-APM.png?classes=inline&height=25px) link, this should pop up a dialog showing information on the backend services that were part of the checkout action taken by the end user.
 
 ![RUM-APM-Trace](../images/RUM-Trace.png)
 
@@ -46,12 +46,11 @@ This will bring you to the Waterfall APM view that will show you what occurred i
 On the right you see the Trace Id: and again the Performance Summary, as we saw before.
 In the waterfall, you can identify the various backend services that were part of this call from the frontend.
 
-As you can see there are red error indicators ![RUM-APM-error-flag](../images/APM_Error_Flag.png)
-before the **Checkout** Service and the **Payment** Service.
+As you can see there are red error indicators ![RUM-APM-error-flag](../images/APM_Error_Flag.png?classes=inline&height=25px) before the **Checkout** Service and the **Payment** Service.
 
 ![RUM-APM-waterfall](../images/RUM-APM-Waterfall.png)
 
-Click on the ![RUM-APM-error-flag](../images/APM_Error_Flag.png) after the **paymentservice: grpc.hipstershop.PaymentService/Charge** line.
+Click on the ![RUM-APM-error-flag](../images/APM_Error_Flag.png?classes=inline&height=25px) after the **paymentservice: grpc.hipstershop.PaymentService/Charge** line.
 
 ![RUM-payment-click](../images/payment-click.png)
 

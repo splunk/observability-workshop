@@ -1,6 +1,7 @@
 ---
 title: 2. Showcase of RUM with the Online Boutique
 linkTitle: 2. Showcase
+menuPost: " <i class='fa fa-user-ninja'></i>"
 weight: 2
 ---
 

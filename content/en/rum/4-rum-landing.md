@@ -10,7 +10,7 @@ weight: 4
 
 ## 1. Visit the RUM Landing Page
 
-Login into your Splunk IM/APM/RUM Website. From the left side menu bar select **RUM** ![RUM-ico](../images/RUM_ico.png). This will bring you to your the RUM Landing Page.
+Login into your Splunk IM/APM/RUM Website. From the left side menu bar select **RUM** ![RUM-ico](../images/RUM_ico.png?classes=inline&height=25px). This will bring you to your the RUM Landing Page.
 
 The goal of this page is to give you in a single page, a clear indication of the health, performance and potential errors found in your application(s) and allow you to dive deeper into the information about your User Sessions collected from your web page/App. You will have a pane for each of your active RUM applications. (The view below is the default expanded view)
 
@@ -20,7 +20,7 @@ If you have multiple applications, (which will be the case when every attendee i
 
 ![RUM-App-sum-collapsed](../images/multiple_apps_collapsed.png)
 
-You can expanded a condensed RUM Application Summary View to the full dashboard by clicking on the small browser ![RUM-browser](../images/browser.png) or Mobile ![RUM-mobile](../images/mobile.png)icon. (Depending on the type of application: *Mobile* or *Browser* based) on the left in front of the applications name, highlighted by the red arrow.
+You can expanded a condensed RUM Application Summary View to the full dashboard by clicking on the small browser ![RUM-browser](../images/browser.png?classes=inline&height=25px) or Mobile ![RUM-mobile](../images/mobile.png?classes=inline&height=25px)icon. (Depending on the type of application: *Mobile* or *Browser* based) on the left in front of the applications name, highlighted by the red arrow.
 
 First find the right application to use for the workshop:
 
