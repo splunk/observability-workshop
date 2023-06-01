@@ -12,10 +12,12 @@ In order to send metrics over HTTP to Splunk Observability Cloud we will need to
 
 Let's edit our `/etc/otelcontribcol/config.yaml` file and configure the **otlphttp** exporter. Insert the following YAML under the **exporters** section, taking care to indent by two spaces e.g.
 
-```yaml {hl_lines=["4"]}
+We will also change the verbosity of the logging exporter to prevent the disk filling up. The default of `detailed` is very noisy.
+
+```yaml {hl_lines=["3-4"]}
 exporters:
   logging:
-    verbosity: detailed
+    verbosity: normal
   otlphttp/splunk:
 ```
 
@@ -26,7 +28,7 @@ The **otlphttp** exporter can also be configured to also send traces and logs by
 ```yaml {hl_lines=["5"]}
 exporters:
   logging:
-    verbosity: detailed
+    verbosity: normal
   otlphttp/splunk:
     metrics_endpoint: https://ingest.eu0.signalfx.com/v2/datapoint/otlp
 ```
@@ -40,7 +42,7 @@ The token can then be added to the configuration file by defining a _key_ named 
 ```yaml {hl_lines=["6-8"]}
 exporters:
   logging:
-    verbosity: detailed
+    verbosity: normal
   otlphttp/splunk:
     metrics_endpoint: https://ingest.eu0.signalfx.com/v2/datapoint/otlp
     headers:

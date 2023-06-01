@@ -158,7 +158,7 @@ processors:
 
 exporters:
   logging:
-    verbosity: detailed
+    verbosity: normal
   otlphttp/splunk:
     metrics_endpoint: https://ingest.eu0.signalfx.com/v2/datapoint/otlp
     headers:
