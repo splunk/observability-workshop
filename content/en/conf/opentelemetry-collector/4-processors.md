@@ -19,7 +19,7 @@ By default, the hostname is set to the FQDN if possible, otherwise the hostname 
 {{< tabs >}}
 {{% tab name="Resource Detection Processor Configuration" %}}
 
-``` yaml
+``` yaml {hl_lines=["3-7"]}
 processors:
   batch:
   resourcedetection:
@@ -31,7 +31,7 @@ processors:
 {{% /tab %}}
 {{% tab name="Resource Detection Processor Configuration Complete" %}}
 
-``` yaml
+``` yaml {hl_lines=["58-61"]}
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133

@@ -183,4 +183,8 @@ service:
 
 Now that we have a working configuration, let's restart the collector and then check to see what [zPages](../2-extensions/#zpages) is reporting.
 
+``` bash
+sudo systemctl restart otelcol-contrib
+```
+
 ![pipelinez-full-config](../images/pipelinez-full-config.png)

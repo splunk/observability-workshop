@@ -17,7 +17,7 @@ Let's edit our `/etc/otelcontribcol/config.yaml` file and configure the hostmetr
 {{< tabs >}}
 {{% tab name="Host Metrics Receiver Configuration" %}}
 
-```yaml
+```yaml {hl_lines=["2-22"]}
 receivers:
   hostmetrics:
     collection_interval: 10s
@@ -45,7 +45,7 @@ receivers:
 {{% /tab %}}
 {{% tab name="Host Metrics Receiver Configuration Complete" %}}
 
-```yaml {hl_lines=["9-30"]}
+```yaml {hl_lines=["10-30"]}
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133

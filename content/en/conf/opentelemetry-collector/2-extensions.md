@@ -128,7 +128,7 @@ extensions:
 
 service:
   extension:
-  # Additiona extensions here 
+  # Additional extensions here 
   - file_storage
 ```
 
@@ -151,7 +151,7 @@ There is a potential that this could impact data throughput performance due disk
 
 ## Health Check
 
-This extension enables an HTTP url that can be probed to check the status of the OpenTelemetry Collector. This extension can be used as a liveness and/or readiness probe on Kubernetes. To learn more about the curl command, check out the [curl man page](https://curl.se/docs/manpage.html).
+This extension enables a HTTP URL that can be probed to check the status of the OpenTelemetry Collector. This extension can be used as a liveness and/or readiness probe on Kubernetes. To learn more about the `curl` command, check out the [curl man page](https://curl.se/docs/manpage.html).
 
 {{< tabs >}}
 {{% tab name="Command" %}}
