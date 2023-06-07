@@ -12,13 +12,13 @@ terraform {
 variable "splunk_access_token" {
   description = "Splunk Observability Cloud Access Token"
   type        = string
-  default     = ""
+  nullable    = false
 }
 
 variable "splunk_rum_token" {
   description = "Splunk Observability Cloud RUM Token"
   type        = string
-  default     = ""
+  nullable    = false
 }
 
 variable "splunk_realm" {
@@ -95,6 +95,11 @@ resource "multipass_instance" "ubuntu" {
       # if splunk_presetup=true, tokens and realm cannot be empty
       condition     = var.splunk_presetup ? try(var.splunk_access_token, "") != "" && try(var.splunk_realm, "") != "" && try(var.splunk_rum_token, "") != "" : true
       error_message = "When requesting a pre-setup instance, splunk_realm, splunk_access_token and splunk_rum_token are required and cannot be null/empty"
+    }
+    precondition {
+      # if access_token and realm cannot be empty.
+      condition     = var.splunk_access_token != "" && var.splunk_realm != ""
+      error_message = "splunk_realm and splunk_access_token are required and cannot be null/empty."
     }
   }
 }

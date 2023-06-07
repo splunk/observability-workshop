@@ -1,7 +1,9 @@
-# Required if pre-setup is desired, optional otherwise. See variables.tf and README.md.
+# Required
 splunk_access_token = ""
-splunk_rum_token = ""
 splunk_realm = ""
+
+# Required if pre-setup is desired, optional otherwise. See variables.tf and README.md.
+splunk_rum_token = ""
 
 # Optional
 splunk_presetup = false

@@ -48,12 +48,12 @@ variable "slug" {
 
 variable "splunk_access_token" {
   description = "Splunk Oberservability Cloud Access Token"
-  default     = ""
+  nullable    = false
 }
 
 variable "splunk_rum_token" {
   description = "Splunk Oberservability Cloud RUM Token"
-  default     = ""
+  nullable    = false
 }
 
 variable "splunk_realm" {

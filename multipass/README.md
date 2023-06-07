@@ -52,12 +52,21 @@ commands will detect it and remind you to do so if necessary.
 
 ## 5. Terraform variables description
 
+### Required variables
+
 - `splunk_access_token`: Observability Access Token
 - `splunk_rum_token`: Observability RUM Token
-- `splunk_realm`: Observability Realm
-- `splunk_presetup`: Provide a preconfigured instance (OTel Collector and Online Boutique deployed with RUM enabled)
-- `splunk_jdk`: Install OpenJDK and Maven on the instance (for PetClinic workshop or other Java based workshops)
-- `otel_demo` : Install and configure the OpenTelemetry Telescope Shop Demo. This requires that `splunk_presetup` is set to FALSE. The default is FALSE
+
+### Optional variables
+
+- `splunk_realm`: Observability Realm. Required if `splunk_presetup` or `otel_demo` is `true`
+- `subnet_count`: How many subnets to create. The default is 2.
+
+### Instance type variables
+
+- `splunk_presetup`: Provide a preconfigured instance (OTel Collector and Online Boutique deployed with RUM enabled). The default is `false`.
+- `splunk_jdk`: Install OpenJDK and Maven on the instance. The default is `false`.
+- `otel_demo` : Install and configure the OpenTelemetry Astronomy Shop Demo. This requires that `splunk_presetup` is set to `false`. The default is `false`
 
 ## 6. Create Terraform variables file
 
