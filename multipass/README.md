@@ -131,7 +131,7 @@ instance_details = [
 Once the instance has been successfully created (this can take several minutes), shell into it using the `name` output above e.g.
 
 ```bash
-multipass shell lsvt
+multipass shell cynu
 ```
 
 ```text
