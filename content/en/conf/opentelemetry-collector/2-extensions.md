@@ -15,7 +15,7 @@ sudo vi /etc/otelcol-contrib/config.yaml
 ```
 
 {{< tabs >}}
-{{% tab name="Extensions Configuration" %}}
+{{% tab title="Extensions Configuration" %}}
 
 ```yaml {hl_lines=[3]}
 extensions:
@@ -24,7 +24,7 @@ extensions:
 ```
 
 {{% /tab %}}
-{{% tab name="Extensions Configuration Complete" %}}
+{{% tab title="Extensions Configuration Complete" %}}
 
 ```yaml {hl_lines=[3]}
 extensions:
@@ -154,14 +154,14 @@ There is a potential that this could impact data throughput performance due disk
 This extension enables a HTTP URL that can be probed to check the status of the OpenTelemetry Collector. This extension can be used as a liveness and/or readiness probe on Kubernetes. To learn more about the `curl` command, check out the [curl man page](https://curl.se/docs/manpage.html).
 
 {{< tabs >}}
-{{% tab name="Command" %}}
+{{% tab title="Command" %}}
 
 ```bash
 curl http://localhost:13133
 ```
 
 {{% /tab %}}
-{{% tab name="Status Output" %}}
+{{% tab title="Status Output" %}}
 
 ``` text
 {"status":"Server available","upSince":"2023-04-27T10:11:22.153295874+01:00","uptime":"16m24.684476004s"}

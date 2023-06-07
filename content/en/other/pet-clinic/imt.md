@@ -22,7 +22,7 @@ If you have already completed the **Splunk IM** workshop you can take advantage 
 For instance, if your realm is `us1`, you would type `export REALM=us1` and for `eu0` type `export REALM=eu0` etc.
 
 {{< tabs >}}
-{{% tab name="Export ACCESS TOKEN" %}}
+{{% tab title="Export ACCESS TOKEN" %}}
 
 ``` bash
 export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
@@ -32,7 +32,7 @@ export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
 {{< /tabs >}}
 
 {{< tabs >}}
-{{% tab name="Export REALM" %}}
+{{% tab title="Export REALM" %}}
 
 ``` bash
 export REALM="<replace_with_REALM>"

@@ -5,7 +5,7 @@ weight: 5
 Checkout the milestone for this task. See the introduction for a brief howto.
 
 {{< tabs >}}
-{{% tab name="Shell Command" %}}
+{{% tab title="Shell Command" %}}
 git reset --hard && git clean -fdx && git checkout 01service{{% /tab %}}
 {{< /tabs >}}
 
@@ -14,7 +14,7 @@ Let's get python sorted first. On a provided AWS instance, `python3` is already 
 If you are on a Mac:
 
 {{< tabs >}}
-{{% tab name="Shell Command" %}}
+{{% tab title="Shell Command" %}}
 brew install python@3
 {{% /tab %}}
 {{< /tabs >}}
@@ -24,7 +24,7 @@ On another system, install a recent version of python (i.e. 3.x) with your packa
 Navigate to `o11y-bootcamp/bootcamp/service/src` and run the provided python service:
 
 {{< tabs >}}
-{{% tab name="Shell Command: python3" %}}
+{{% tab title="Shell Command: python3" %}}
 
 ``` bash
 python3 -m venv .venv
@@ -34,7 +34,7 @@ python3 app.py
 ```
 
 {{% /tab %}}
-{{% tab name="Example Output python3" %}}
+{{% tab title="Example Output python3" %}}
 
 ``` text
 * Serving Flask app 'app' (lazy loading)
@@ -53,11 +53,11 @@ WARNING: This is a development server. Do not use it in a production deployment.
 Then test the service in a separate shell in the `~/o11y-bootcamp/bootcamp/service/src` directory with:
 
 {{< tabs >}}
-{{% tab name="Shell Command: curl" %}}
+{{% tab title="Shell Command: curl" %}}
 
 ``` bash
 curl -X POST http://127.0.0.1:5000/wordcount -F text=@hamlet.txt{{% /tab %}}
-{{% tab name="Example Output: curl" %}}
+{{% tab title="Example Output: curl" %}}
 [["in", 436], ["hamlet", 484], ["my", 514], ["a", 546], ["i", 546], ["you", 550], ["of", 671], ["to", 763], ["and", 969], ["the", 1143]]
 ```
 
@@ -67,7 +67,7 @@ curl -X POST http://127.0.0.1:5000/wordcount -F text=@hamlet.txt{{% /tab %}}
 The bootcamp contains other text files at `~/nlp/resources/corpora`. To use a random example:
 
 {{< tabs >}}
-{{% tab name="Shell Command" %}}
+{{% tab title="Shell Command" %}}
 
 ``` bash
 SAMPLE=$(find ~/nlp/resources/corpora/gutenberg -name '*.txt' | shuf -n1)
@@ -79,7 +79,7 @@ curl -X POST http://127.0.0.1:5000/wordcount -F text=@$SAMPLE{{% /tab %}}
 To generate load:
 
 {{< tabs >}}
-{{% tab name="Shell Command" %}}
+{{% tab title="Shell Command" %}}
 
 ``` bash
 FILES=$(find ~/nlp/resources/corpora/gutenberg -name '*.txt')

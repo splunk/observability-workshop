@@ -30,7 +30,7 @@ This includes (but not limited to):
 Below is an example of above Markdown options you can use in your note.
 
 {{< tabs >}}
-{{% tab name="Sample Markdown text" %}}
+{{% tab title="Sample Markdown text" %}}
 
 ``` markdown
 # h1 Big headings

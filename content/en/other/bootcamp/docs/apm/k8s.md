@@ -13,7 +13,7 @@ The Kubernetes manifests are located in the `k8s` folder. Add auto-instrumentati
 Install the OpenTelemetry Collector to the environment using [Splunk's helm chart][splunk-otel-helm] and use the provided `values.yaml`:
 
 {{< tabs >}}
-{{% tab name="Shell Command" %}}
+{{% tab title="Shell Command" %}}
 
 ``` text
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
@@ -27,21 +27,21 @@ helm install my-splunk-otel-collector --set="splunkObservability.realm=${SPLUNK_
 Rebuild the container images for the private registry:
 
 {{< tabs >}}
-{{% tab name="Shell Command" %}}
+{{% tab title="Shell Command" %}}
 docker-compose build{{% /tab %}}
 {{< /tabs >}}
 
 Push the images to the private registry:
 
 {{< tabs >}}
-{{% tab name="Shell Command" %}}
+{{% tab title="Shell Command" %}}
 docker-compose push{{% /tab %}}
 {{< /tabs >}}
 
 Deploy to the cluster with
 
 {{< tabs >}}
-{{% tab name="Shell Command" %}}
+{{% tab title="Shell Command" %}}
 
 ``` bash
 kubectl apply -f k8s
@@ -53,7 +53,7 @@ kubectl apply -f k8s
 Test the service with:
 
 {{< tabs >}}
-{{% tab name="Shell Command" %}}
+{{% tab title="Shell Command" %}}
 
 ``` bash
 ENDPOINT=$(kubectl get service/public-api -o jsonpath='{.spec.clusterIP}')

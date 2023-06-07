@@ -7,14 +7,14 @@ The development team has started using [Kubernetes][kubernetes] for container or
 Rebuild the container images for the private registry:
 
 {{< tabs >}}
-{{% tab name="Shell Command" %}}
+{{% tab title="Shell Command" %}}
 docker-compose build{{% /tab %}}
 {{< /tabs >}}
 
 Push the images to the private registry:
 
 {{< tabs >}}
-{{% tab name="Shell Command" %}}
+{{% tab title="Shell Command" %}}
 docker-compose push
 {{% /tab %}}
 {{< /tabs >}}
@@ -22,7 +22,7 @@ docker-compose push
 Then deploy the services into the cluster:
 
 {{< tabs >}}
-{{% tab name="Shell Command" %}}
+{{% tab title="Shell Command" %}}
 kubectl apply -f k8s
 {{% /tab %}}
 {{< /tabs >}}
@@ -30,7 +30,7 @@ kubectl apply -f k8s
 Test the service with
 
 {{< tabs >}}
-{{% tab name="Shell Command" %}}
+{{% tab title="Shell Command" %}}
 
 ``` bash
 ENDPOINT=$(kubectl get service/wordcount -o jsonpath='{.spec.clusterIP}')

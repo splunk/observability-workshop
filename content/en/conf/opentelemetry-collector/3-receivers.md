@@ -15,7 +15,7 @@ A receiver, which can be push or pull based, is how data gets into the Collector
 Let's edit our `/etc/otelcontribcol/config.yaml` file and configure the hostmetrics receiver. Insert the following YAML under the **receivers** section, taking care to indent by two spaces e.g.
 
 {{< tabs >}}
-{{% tab name="Host Metrics Receiver Configuration" %}}
+{{% tab title="Host Metrics Receiver Configuration" %}}
 
 ```yaml {hl_lines=["2-22"]}
 receivers:
@@ -43,7 +43,7 @@ receivers:
 ```
 
 {{% /tab %}}
-{{% tab name="Host Metrics Receiver Configuration Complete" %}}
+{{% tab title="Host Metrics Receiver Configuration Complete" %}}
 
 ```yaml {hl_lines=["10-30"]}
 extensions:
@@ -133,7 +133,7 @@ You will also notice another receiver called `prometheus`. [Prometheus](https://
 Let's modify the `prometheus` receiver to clearly show that it is for collecting metrics from the collector itself. Change the `config.yaml` file to look like this:
 
 {{< tabs >}}
-{{% tab name="Prometheus Receiver Configuration" %}}
+{{% tab title="Prometheus Receiver Configuration" %}}
 
 ```yaml {hl_lines=[1]}
 prometheus/internal:
@@ -146,7 +146,7 @@ prometheus/internal:
 ```
 
 {{% /tab %}}
-{{% tab name="Prometheus Receiver Configuration Complete" %}}
+{{% tab title="Prometheus Receiver Configuration Complete" %}}
 
 ```yaml {hl_lines=[39]}
 extensions:

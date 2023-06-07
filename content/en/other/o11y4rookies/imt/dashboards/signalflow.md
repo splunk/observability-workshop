@@ -35,7 +35,7 @@ Also, you can copy the SignalFlow and use it when interacting with the API or wi
 ![Code](../../../../../imt/images/show-signalflow.png)
 
 {{< tabs >}}
-{{% tab name="SignalFlow" %}}
+{{% tab title="SignalFlow" %}}
 
 ```python
 A = data('demo.trans.latency', filter=filter('demo_datacenter', 'Paris')).percentile(pct=95).publish(label='A', enable=False)

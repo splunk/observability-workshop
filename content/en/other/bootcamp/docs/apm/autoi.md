@@ -7,7 +7,7 @@ The development team has broken up the monolithic service into microservices bae
 Test the service with:
 
 {{< tabs >}}
-{{% tab name="Shell Command" %}}
+{{% tab title="Shell Command" %}}
 
 ``` bash
 curl -X POST http://127.0.0.1:8000/api -F text=@hamlet.txt

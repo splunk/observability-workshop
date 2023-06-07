@@ -17,7 +17,7 @@ The resource detection processor can be used to detect resource information from
 By default, the hostname is set to the FQDN if possible, otherwise the hostname provided by the OS is used as a fallback. This logic can be changed from using using the `hostname_sources` configuration option. To avoid getting the FQDN and use the hostname provided by the OS, we will set the `hostname_sources` to `os`.
 
 {{< tabs >}}
-{{% tab name="Resource Detection Processor Configuration" %}}
+{{% tab title="Resource Detection Processor Configuration" %}}
 
 ``` yaml {hl_lines=["3-7"]}
 processors:
@@ -29,7 +29,7 @@ processors:
 ```
 
 {{% /tab %}}
-{{% tab name="Resource Detection Processor Configuration Complete" %}}
+{{% tab title="Resource Detection Processor Configuration Complete" %}}
 
 ``` yaml {hl_lines=["58-61"]}
 extensions:

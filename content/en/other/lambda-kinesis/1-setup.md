@@ -17,14 +17,14 @@ You should already have the lab content available on your EC2 lab host.
 Ensure that this lab's required folder o11y-lambda-lab is on your home directory:
 
 {{< tabs >}}
-{{% tab name="Command" %}}
+{{% tab title="Command" %}}
 
 ``` bash
 cd ~ && ls
 ```
 
 {{% /tab %}}
-{{% tab name="Output" %}}
+{{% tab title="Output" %}}
 
 ``` text
 o11y-lambda-lab
@@ -48,7 +48,7 @@ In your Splunk Observability Cloud Organisation (Org) obtain your Access Token a
 Please reset your environment variables from the earlier lab. Take care that for this lab we may be using different names - make sure to match the Environment Variable names bellow.
 
 {{< tabs >}}
-{{% tab name="Export Environment Variables" %}}
+{{% tab title="Export Environment Variables" %}}
 
 ``` ini
 export ACCESS_TOKEN=CHANGE_ME \
@@ -64,7 +64,7 @@ export PREFIX=$(hostname)
 Update your auto-instrumentation Serverless template to include new values from the Enviornment variables.
 
 {{< tabs >}}
-{{% tab name="Substitute Environment Variables" %}}
+{{% tab title="Substitute Environment Variables" %}}
 
 ``` bash
 cat ~/o11y-lambda-lab/auto/serverless_unset.yml | envsubst > ~/o11y-lambda-lab/auto/serverless.yml
@@ -76,14 +76,14 @@ cat ~/o11y-lambda-lab/auto/serverless_unset.yml | envsubst > ~/o11y-lambda-lab/a
 Examine the output of the updated serverless.yml contents (you may need to scroll up to the relevant section).
 
 {{< tabs >}}
-{{% tab name="Check file contents" %}}
+{{% tab title="Check file contents" %}}
 
 ``` bash
 cat ~/o11y-lambda-lab/auto/serverless.yml
 ```
 
 {{% /tab %}}
-{{% tab name="Expected Content" %}}
+{{% tab title="Expected Content" %}}
 
 ``` yaml
 # USER SET VALUES =====================              
@@ -102,7 +102,7 @@ custom:
 Update your manual instrumentation Serverless template to include new values from the Enviornment variables.
 
 {{< tabs >}}
-{{% tab name="Substitute Environment Variables" %}}
+{{% tab title="Substitute Environment Variables" %}}
 
 ``` bash
 cat ~/o11y-lambda-lab/manual/serverless_unset.yml | envsubst > ~/o11y-lambda-lab/manual/serverless.yml
@@ -114,14 +114,14 @@ cat ~/o11y-lambda-lab/manual/serverless_unset.yml | envsubst > ~/o11y-lambda-lab
 Examine the output of the updated serverless.yml contents (you may need to scroll up to the relevant section).
 
 {{< tabs >}}
-{{% tab name="Check file contents" %}}
+{{% tab title="Check file contents" %}}
 
 ``` bash
 cat ~/o11y-lambda-lab/manual/serverless.yml
 ```
 
 {{% /tab %}}
-{{% tab name="Expected Content" %}}
+{{% tab title="Expected Content" %}}
 
 ``` yaml
 # USER SET VALUES =====================              
@@ -140,7 +140,7 @@ custom:
 You will be provided with AWS Access Key ID and AWS Secret Access Key values - substitue these values in place of AWS_ACCESS_KEY_ID and AWS_ACCESS_KEY_SECRET in the bellow command:
 
 {{< tabs >}}
-{{% tab name="Set AWS Credentials" %}}
+{{% tab title="Set AWS Credentials" %}}
 
 ``` bash
 sls config credentials --provider aws --key AWS_ACCCESS_KEY_ID --secret AWS_ACCESS_KEY_SECRET

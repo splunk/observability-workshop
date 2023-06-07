@@ -131,14 +131,14 @@ Which leave you with the following directory structure:
 Install the `.deb` package using `dpkg`. Not we are installing as root. Take a look at the Output tab in the box below to see what the exmple output of a successful install will look like:
 
 {{< tabs >}}
-{{% tab name="Install" %}}
+{{% tab title="Install" %}}
 
 ``` bash
 sudo dpkg -i otelcol-contrib_0.75.0_linux_amd64.deb
 ```
 
 {{% /tab %}}
-{{% tab name="dpkg Output" %}}
+{{% tab title="dpkg Output" %}}
 
 ``` text
 Selecting previously unselected package otelcol-contrib.
@@ -157,14 +157,14 @@ Created symlink /etc/systemd/system/multi-user.target.wants/otelcol-contrib.serv
 The collector should now be running. We will verify this as root using systemctl command.
 
 {{< tabs >}}
-{{% tab name="Command" %}}
+{{% tab title="Command" %}}
 
 ``` bash
 sudo systemctl status otelcol-contrib
 ```
 
 {{% /tab %}}
-{{% tab name="Status Output" %}}
+{{% tab title="Status Output" %}}
 
 ``` text
 ● otelcol-contrib.service - OpenTelemetry Collector Contrib
@@ -197,14 +197,14 @@ May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:         {"kind": "exporter"
 OpenTelemetry is configured through .yaml files. These files have default configurations that we can modify to meet our needs. Let's look at the default configuration that is supplied:
 
 {{< tabs >}}
-{{% tab name="Command" %}}
+{{% tab title="Command" %}}
 
 ```bash
 cat /etc/otelcol-contrib/config.yaml
 ```
 
 {{% /tab %}}
-{{% tab name="Configuration Output" %}}
+{{% tab title="Configuration Output" %}}
 
 ```yaml
 extensions:

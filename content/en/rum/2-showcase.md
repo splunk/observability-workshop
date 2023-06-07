@@ -32,7 +32,7 @@ We have created a RUM Token specifically for this workshop with the appropriate 
 Create the `RUM_TOKEN` environment variable to use in the proceeding shell script to personalize your deployment.
 
 {{< tabs >}}
-{{% tab name="Export Variables" %}}
+{{% tab title="Export Variables" %}}
 
 ``` bash
 export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
@@ -46,7 +46,7 @@ export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
 To deploy the Online Boutique application into your EC2 instance  kubernetes (K3s) installation delete the  original deployment, then run the apm config script for RUM, then apply the RUM deployment:
 
 {{< tabs >}}
-{{% tab name="Deploy Online Boutique with RUM" %}}
+{{% tab title="Deploy Online Boutique with RUM" %}}
 
 ``` bash
 cd ~/workshop/apm
@@ -56,7 +56,7 @@ kubectl apply -f deployment.yaml
 ```
 
 {{% /tab %}}
-{{% tab name="Partial Deployment Output" %}}
+{{% tab title="Partial Deployment Output" %}}
 
 ``` text
 ......
@@ -92,10 +92,8 @@ deployment.apps/rum-loadgen-deployment created
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% notice title="In case of a message about a VARIABLE being unset" color="warning" %}}
-Please undeploy the APM environment by running **kubectl delete -f deployment.yaml**
-
-Before exporting the variable as described in the guide and rerunning the deployment script above.
+{{% notice title="In case of a message about a VARIABLE being unset" style="warning" %}}
+Please undeploy the APM environment by running `kubectl delete -f deployment.yaml` before exporting the variable as described in the guide and rerunning the deployment script above.
 {{% /notice %}}
 
 ## 4. Using the Online Boutique to generate load on your system

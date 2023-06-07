@@ -78,7 +78,7 @@ You should now have the following three escalation polices:
 
 You may have noticed that when we created each policy there was the following warning message:
 
-{{% notice title="Warning" color="danger" %}}
+{{% notice title="Warning" style="warning" %}}
 There are no routing keys for this policy - it will only receive incidents via manual reroute or when on another escalation policy
 {{% /notice %}}
 

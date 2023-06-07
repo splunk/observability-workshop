@@ -8,7 +8,7 @@ weight: 4
 
 Navigate to the manual directory that contains manually instrumentated code.
 
-{{< tabs >}} {{% tab name="Command" %}}
+{{< tabs >}} {{% tab title="Command" %}}
 
 ``` bash
 cd ~/o11y-lambda-lab/manual
@@ -18,7 +18,7 @@ cd ~/o11y-lambda-lab/manual
 
 Inspect the contents of the files in this directory. Take a look at the serverless.yml template.
 
-{{< tabs >}} {{% tab name="Command" %}}
+{{< tabs >}} {{% tab title="Command" %}}
 
 ``` bash
 cat serverless.yml
@@ -32,13 +32,13 @@ Do you see any difference from the same file in your auto directory?
 
 You can try to compare them with a diff command:
 
-{{< tabs >}} {{% tab name="Diff Command" %}}
+{{< tabs >}} {{% tab title="Diff Command" %}}
 
 ``` bash
 diff ~/o11y-lambda-lab/auto/serverless.yml ~/o11y-lambda-lab/manual/serverless.yml 
 ```
 
-{{% /tab %}} {{% tab name="Expected Output" %}}
+{{% /tab %}} {{% tab title="Expected Output" %}}
 
 ``` text
 19c19
@@ -53,7 +53,7 @@ There is no difference! (Well, there shouldn't be. Ask your lab facilitator to a
 
 Now compare handler.js it with the same file in auto directory using the diff command:
 
-{{< tabs >}} {{% tab name="Diff Command" %}}
+{{< tabs >}} {{% tab title="Diff Command" %}}
 
 ``` bash
 diff ~/o11y-lambda-lab/auto/handler.js ~/o11y-lambda-lab/manual/handler.js 

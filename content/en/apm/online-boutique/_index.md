@@ -25,7 +25,7 @@ If this is the case, continue with [Deploy Online Boutique](#2-deploy-online-bou
 To deploy the Online Boutique application into K3s, run the `apm-config.sh` script, then apply the deployment:
 
 {{< tabs >}}
-{{% tab name="Deploy Online Boutique" %}}
+{{% tab title="Deploy Online Boutique" %}}
 
 ``` bash
 cd ~/workshop/apm
@@ -34,7 +34,7 @@ kubectl apply -f deployment.yaml
 ```
 
 {{% /tab %}}
-{{% tab name="Deployment Output" %}}
+{{% tab title="Deployment Output" %}}
 
 ``` text
 APM Only Deployment
@@ -78,14 +78,14 @@ Then, export the variable as described in the guide/message, followed by re-runn
 To ensure the Online Boutique application is running:
 
 {{< tabs >}}
-{{% tab name="Get Pods" %}}
+{{% tab title="Get Pods" %}}
 
 ``` bash
 kubectl get pods
 ```
 
 {{% /tab %}}
-{{% tab name="Get Pods Output" %}}
+{{% tab title="Get Pods Output" %}}
 
 ``` text
 NAME                                                       READY  STATUS  RESTARTS      AGE

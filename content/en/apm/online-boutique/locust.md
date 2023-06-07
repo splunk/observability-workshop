@@ -29,14 +29,14 @@ For this we need to know the name of your application environment. In this works
 To find the hostname, on the AWS/EC2 instance run the following command:
 
 {{< tabs >}}
-{{% tab name="Echo Hostname" %}}
+{{% tab title="Echo Hostname" %}}
 
 ``` bash
 echo $(hostname)-apm-env
 ```
 
 {{% /tab %}}
-{{% tab name="Output Example" %}}
+{{% tab title="Output Example" %}}
 
 ``` text
 bdzx-apm-env
@@ -95,7 +95,7 @@ To debug the traces being sent you can use the zpages extension. [zpages][zpages
 Alternatively, from your shell prompt you can run a text based browser:
 
 {{< tabs >}}
-{{% tab name="Lynx Command" %}}
+{{% tab title="Lynx Command" %}}
 
 ``` bash
 lynx http://localhost:55679/debug/tracez

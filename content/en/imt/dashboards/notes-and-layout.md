@@ -6,9 +6,7 @@ weight: 6
 
 ## 1. Adding Notes
 
-Often on dashboards it makes sense to place a short "instruction" pane that helps users of a dashboard.
-
-Lets add one now by clicking on the {{% button style="blue" %}}New Text Note{{% /button %}}
+Often on dashboards it makes sense to place a short "instruction" pane that helps users of a dashboard. Lets add one now by clicking on the {{% button style="blue" %}}New Text Note{{% /button %}}
  Button.
 
 ![three charts](../../images/M-Notes-0.png)
@@ -29,8 +27,7 @@ This includes (but not limited to):
 
 Below is an example of above Markdown options you can use in your note.
 
-{{< tabs >}}
-{{% tab name="Sample Markdown text" %}}
+{{% tab title="Sample Markdown text" %}}
 
 ``` markdown
 # h1 Big headings
@@ -74,7 +71,6 @@ Ordered
 ```
 
 {{% /tab %}}
-{{< /tabs >}}
 
 Copy the above by using the copy button and paste it in the *Edit* box.
 the preview will show you how it will look.
@@ -107,9 +103,7 @@ Now drag the **Latency vs Load** chart to sit between the **Latency History** Ch
 
 You can also resize windows by dragging from the left, right and bottom edges.
 
-As a last exercise reduce the width of the note chart to about a third of the other charts. The chart will automatically snap to one of the sizes it supports. Widen the 3 other charts to about a third of the Dashboard. Drag the notes to the right of the others and resize it to match it to the 3 others.
-
-Set the time to -1 h hour and you should have the following dashboard!
+As a last exercise reduce the width of the note chart to about a third of the other charts. The chart will automatically snap to one of the sizes it supports. Widen the 3 other charts to about a third of the Dashboard. Drag the notes to the right of the others and resize it to match it to the 3 others. Set the **Time** to **-1h** and you should have the following dashboard!
 
 ![TaDA!](../../images/M-Notes-6.png)
 
