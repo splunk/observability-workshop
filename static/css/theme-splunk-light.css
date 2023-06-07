@@ -79,3 +79,7 @@
     --BOX-TEXT-color: rgba(16, 16, 16, 1);
     /* text color of colored box content */
 }
+
+.expand > label {
+    line-height: 1.8;
+}

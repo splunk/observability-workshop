@@ -77,3 +77,8 @@
     /* background color of colored boxes */
     --BOX-TEXT-color: #e0e0e0;
     /* text color of colored box content */
+}
+
+.expand > label {
+   line-height: 1.8;
+}
