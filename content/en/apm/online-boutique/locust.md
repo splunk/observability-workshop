@@ -95,24 +95,18 @@ To debug the traces being sent you can use the zpages extension. [zpages][zpages
 
 {{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja** - Access zPages on your EC2 instance{{% /badge %}}" %}}
 {{% notice style="blue" %}}
-They are available on port `55679` of the EC2 instance's IP address. Open a new tab in your web browser and enter in `http://{==EC2-IP==}:55679/debug/tracez`, you will then be able to see the zpages output.
+zPages is available on port `55679` of the EC2 instance's IP address. Open a new tab in your web browser and enter in `http://{==EC2-IP==}:55679/debug/tracez`, you will then be able to see the zpages output.
 
 Alternatively, from your shell prompt you can run a text based browser:
-
-{{< tabs >}}
-{{% tab title="Lynx Command" %}}
 
 ``` bash
 lynx http://localhost:55679/debug/tracez
 ```
 
-{{% /tab %}}
-{{< /tabs >}}
-
 {{% /notice %}}
 {{% /expand %}}
 
-Your Workshop instructor will provide you with URL to access zPages. Enter this URL into your browser and you will see the zPages output.
+Your Workshop instructor will provide you with a URL to access zPages. Enter this URL into your browser and you will see the zPages output.
 
 [zpages]: https://github.com/open-telemetry/opentelemetry-specification/blob/main/experimental/trace/zpages.md#tracez
 
