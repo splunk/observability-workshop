@@ -157,7 +157,7 @@ See "man sudo_root" for details
 Waiting for cloud-init status...
 Your instance is ready!
 
-ubuntu@lsvt ~ $
+ubuntu@cynu ~ $
 ```
 
 Once your instance presents you with the Splunk logo, you have completed the preparation for your Multipass instance and can at this point you are ready to continue and [start the workshop](https://splunk.github.io/observability-workshop/latest/).
