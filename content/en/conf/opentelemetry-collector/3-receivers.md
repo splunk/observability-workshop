@@ -235,10 +235,14 @@ service:
 
 The following screenshot shows an example dashboard of the metrics the Prometheus internal receiver collects from the OpenTelemetry Collector. Here, we can see accepted and sent spans, metrics and log records.
 
+{{% notice style="note" %}}
+The following screenshot is an out of the box (OOTB) dashboard from Splunk Observability Cloud that allows your to easily monitor your Splunk OpenTelemetry Collector install base.
+{{% /notice %}}
+
 ![otel-charts](../images/otel-charts.png)
 
 ## Other Receivers
 
 You will notice in the default configuration there are other receivers (`otlp`, `opencensus`, `jaeger` and `zipkin`). These are used to receive telemetry data from other sources. We will not be using these receivers in this workshop and can be left as they are.
 
-Now that we have reviewed how data gets into the OTEL Collector, we must now learn how the Collector processes the data.
+Now that we have reviewed how data gets into the OTEL Collector, we can now learn how the Collector processes the data.

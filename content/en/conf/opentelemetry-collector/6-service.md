@@ -21,6 +21,8 @@ service:
 
 ### Hostmetrics Receiver
 
+Earlier in the workshop we defined the [Host Metrics Receiver](../3-receivers/#host-metrics-receiver) to generate metrics about the host system scraped from various sources. We now need to enabled this under the metrics pipeline. Update the `receivers` section to include `hostmetrics` under the `metrics` pipeline.
+
 ```yaml {hl_lines=[11]}
 service:
 

@@ -33,7 +33,7 @@ exporters:
     metrics_endpoint: https://ingest.eu0.signalfx.com/v2/datapoint/otlp
 ```
 
-By default `gzip` compression is enabled for all endpoints, this can be disabled by setting `compression: none` in the exporter configuration. We will leave compression enabled for this workshop and accept the default.
+By default `gzip` compression is enabled for all endpoints, this can be disabled by setting `compression: none` in the exporter configuration. We will leave compression enabled for this workshop and accept the default as this is the most efficient way to send data.
 
 In order to send metrics to Splunk Observability Cloud we need to define a token. This can be done by creating a new token in the Splunk Observability Cloud UI. For more information on how to create a token, see [Create a token](https://docs.splunk.com/Observability/admin/authentication-tokens/org-tokens.html). The token needs to be of type **INGEST**.
 
