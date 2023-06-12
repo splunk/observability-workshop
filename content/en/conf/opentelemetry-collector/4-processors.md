@@ -161,7 +161,7 @@ It takes a list of actions which are performed in order specified in the config.
 * `hash`: Hashes (SHA1) an existing attribute value.
 * `extract`: Extracts values using a regular expression rule from the input key to target keys specified in the rule. If a target key already exists, it will be overridden.
 
-We are going to create an attribute processor to add a new attribute to all our host metrics called `conf.attendee.name` with a value of your own name e.g. `rcastley`.
+We are going to create an attributes processor to `insert` a new attribute to all our host metrics called `conf.attendee.name` with a value of your own name e.g. `rcastley`.
 
 Later on in the workshop we will use this attribute to filter our metrics in Splunk Observability Cloud.
 
