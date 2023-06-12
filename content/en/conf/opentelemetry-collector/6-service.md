@@ -162,9 +162,9 @@ exporters:
   logging:
     verbosity: normal
   otlphttp/splunk:
-    metrics_endpoint: https://ingest.eu0.signalfx.com/v2/datapoint/otlp
+    metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
     headers:
-      X-SF-TOKEN: CkX5Yc0OWpKXsFGeBaXH2Q
+      X-SF-TOKEN: <TOKEN REDACTED>
 
 service:
 

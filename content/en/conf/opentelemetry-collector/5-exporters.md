@@ -21,7 +21,7 @@ exporters:
   otlphttp/splunk:
 ```
 
-Next we need to define the `metrics_endpoint` and configure the target URL. For Splunk Observerability Cloud the URL is `https://ingest.eu0.signalfx.com/v2/datapoint/otlp`.
+Next we need to define the `metrics_endpoint` and configure the target URL. For Splunk Observerability Cloud the URL is `https://ingest.us1.signalfx.com/v2/datapoint/otlp`.
 
 The **otlphttp** exporter can also be configured to also send traces and logs by defining target URL for `traces_endpoint` and `logs_endpoint` respectively.
 
@@ -30,7 +30,7 @@ exporters:
   logging:
     verbosity: normal
   otlphttp/splunk:
-    metrics_endpoint: https://ingest.eu0.signalfx.com/v2/datapoint/otlp
+    metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
 ```
 
 By default `gzip` compression is enabled for all endpoints, this can be disabled by setting `compression: none` in the exporter configuration. We will leave compression enabled for this workshop and accept the default as this is the most efficient way to send data.
@@ -44,7 +44,7 @@ exporters:
   logging:
     verbosity: normal
   otlphttp/splunk:
-    metrics_endpoint: https://ingest.eu0.signalfx.com/v2/datapoint/otlp
+    metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
     headers:
       X-SF-TOKEN: <redacted>
 ```
