@@ -20,6 +20,33 @@ wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases
 For this part we will require the following installed on your system:
 
 - Golang (latest version)
+
+  ``` bash
+  cd /tmp
+  wget https://golang.org/dl/go1.20.linux-amd64.tar.gz
+  sudo tar -C /usr/local -xzf go1.20.linux-amd64.tar.gz
+  ```
+
+  Edit `.profile` and add the following environment variables:
+
+  ``` bash
+  export GOROOT=/usr/local/go
+  export GOPATH=$HOME/go
+  export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+  ```
+
+  Renew your shell session:
+  
+  ``` bash
+  source ~/.profile
+  ```
+
+  Check Go version:
+
+  ``` bash
+  go version
+  ```
+  
 - ocb installed
   - Most recent from the [project releases](https://github.com/open-telemetry/opentelemetry-collector/releases)
   - Install using go by `go install go.opentelemetry.io/collector/cmd/builder@v0.75.0`
