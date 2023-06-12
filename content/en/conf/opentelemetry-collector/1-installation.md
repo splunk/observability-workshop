@@ -14,6 +14,72 @@ Obtain the `.deb` package for your platform from the [OpenTelemetry Collector Co
 wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.75.0/otelcol-contrib_0.75.0_linux_amd64.deb
 ```
 
+## 2. Installing the OpenTelemetry Collector Contrib distribution
+
+Install the `.deb` package using `dpkg`. Not we are installing as root. Take a look at the Output tab in the box below to see what the exmple output of a successful install will look like:
+
+{{< tabs >}}
+{{% tab title="Install" %}}
+
+``` bash
+sudo dpkg -i otelcol-contrib_0.75.0_linux_amd64.deb
+```
+
+{{% /tab %}}
+{{% tab title="dpkg Output" %}}
+
+``` text
+Selecting previously unselected package otelcol-contrib.
+(Reading database ... 64218 files and directories currently installed.)
+Preparing to unpack otelcol-contrib_0.75.0_linux_amd64.deb ...
+Unpacking otelcol-contrib (0.75.0) ...
+Setting up otelcol-contrib (0.75.0) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/otelcol-contrib.service → /lib/systemd/system/otelcol-contrib.service.
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+## 3. Confirm the Collector is running
+
+The collector should now be running. We will verify this as root using systemctl command.
+
+{{< tabs >}}
+{{% tab title="Command" %}}
+
+``` bash
+sudo systemctl status otelcol-contrib
+```
+
+{{% /tab %}}
+{{% tab title="Status Output" %}}
+
+``` text
+● otelcol-contrib.service - OpenTelemetry Collector Contrib
+     Loaded: loaded (/lib/systemd/system/otelcol-contrib.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2023-05-16 08:23:23 UTC; 25s ago
+   Main PID: 1415 (otelcol-contrib)
+      Tasks: 5 (limit: 1141)
+     Memory: 22.2M
+        CPU: 125ms
+     CGroup: /system.slice/otelcol-contrib.service
+             └─1415 /usr/bin/otelcol-contrib --config=/etc/otelcol-contrib/config.yaml
+
+May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: NumberDataPoints #0
+May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: Data point attributes:
+May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:      -> exporter: Str(logging)
+May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:      -> service_instance_id: Str(df8a57f4-abdc-46b9-a847-acd62db1001f)
+May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:      -> service_name: Str(otelcol-contrib)
+May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:      -> service_version: Str(0.75.0)
+May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: StartTimestamp: 2023-05-16 08:23:39.006 +0000 UTC
+May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: Timestamp: 2023-05-16 08:23:39.006 +0000 UTC
+May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: Value: 0.000000
+May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:         {"kind": "exporter", "data_type": "metrics", "name": "logging"}
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
 ***
 
 {{% expand title="{{% badge style=primary icon=user-ninja title=**Ninja** %}}Build your own collector using Open Telemetry Collector Builder (ocb){{% /badge %}}" %}}
@@ -152,72 +218,6 @@ Which leave you with the following directory structure:
 {{% /expand %}}
 
 ***
-
-## 2. Installing the OpenTelemetry Collector Contrib distribution
-
-Install the `.deb` package using `dpkg`. Not we are installing as root. Take a look at the Output tab in the box below to see what the exmple output of a successful install will look like:
-
-{{< tabs >}}
-{{% tab title="Install" %}}
-
-``` bash
-sudo dpkg -i otelcol-contrib_0.75.0_linux_amd64.deb
-```
-
-{{% /tab %}}
-{{% tab title="dpkg Output" %}}
-
-``` text
-Selecting previously unselected package otelcol-contrib.
-(Reading database ... 64218 files and directories currently installed.)
-Preparing to unpack otelcol-contrib_0.75.0_linux_amd64.deb ...
-Unpacking otelcol-contrib (0.75.0) ...
-Setting up otelcol-contrib (0.75.0) ...
-Created symlink /etc/systemd/system/multi-user.target.wants/otelcol-contrib.service → /lib/systemd/system/otelcol-contrib.service.
-```
-
-{{% /tab %}}
-{{< /tabs >}}
-
-## 3. Confirm the Collector is running
-
-The collector should now be running. We will verify this as root using systemctl command.
-
-{{< tabs >}}
-{{% tab title="Command" %}}
-
-``` bash
-sudo systemctl status otelcol-contrib
-```
-
-{{% /tab %}}
-{{% tab title="Status Output" %}}
-
-``` text
-● otelcol-contrib.service - OpenTelemetry Collector Contrib
-     Loaded: loaded (/lib/systemd/system/otelcol-contrib.service; enabled; vendor preset: enabled)
-     Active: active (running) since Tue 2023-05-16 08:23:23 UTC; 25s ago
-   Main PID: 1415 (otelcol-contrib)
-      Tasks: 5 (limit: 1141)
-     Memory: 22.2M
-        CPU: 125ms
-     CGroup: /system.slice/otelcol-contrib.service
-             └─1415 /usr/bin/otelcol-contrib --config=/etc/otelcol-contrib/config.yaml
-
-May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: NumberDataPoints #0
-May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: Data point attributes:
-May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:      -> exporter: Str(logging)
-May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:      -> service_instance_id: Str(df8a57f4-abdc-46b9-a847-acd62db1001f)
-May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:      -> service_name: Str(otelcol-contrib)
-May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:      -> service_version: Str(0.75.0)
-May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: StartTimestamp: 2023-05-16 08:23:39.006 +0000 UTC
-May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: Timestamp: 2023-05-16 08:23:39.006 +0000 UTC
-May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: Value: 0.000000
-May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:         {"kind": "exporter", "data_type": "metrics", "name": "logging"}
-```
-
-{{% /tab %}}
-{{< /tabs >}}
 
 ## 4. Default configuration
 
