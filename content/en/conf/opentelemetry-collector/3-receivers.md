@@ -21,6 +21,7 @@ A receiver, which can be push or pull based, is how data gets into the Collector
 }%%
 
 flowchart LR;
+    style M fill:#e20082,stroke:#333,stroke-width:4px,color:#fff
     subgraph Collector
     A[OTLP] --> M(Receivers)
     B[JAEGER] --> M(Receivers)
@@ -29,7 +30,6 @@ flowchart LR;
     subgraph Processors
     M(Receivers) --> H(Filters, Attributes, etc)
     E(Extensions)
-    style M fill:#e20082,stroke:#333,stroke-width:4px,color:#fff
     end
     subgraph Exporters
     H(Filters, Attributes, etc) --> S(OTLP)

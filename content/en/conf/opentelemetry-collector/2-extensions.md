@@ -21,6 +21,7 @@ Extensions are available primarily for tasks that do not involve processing tele
 }%%
 
 flowchart LR;
+    style E fill:#e20082,stroke:#333,stroke-width:4px,color:#fff
     subgraph Collector
     A[OTLP] --> M(Receivers)
     B[JAEGER] --> M(Receivers)
@@ -29,7 +30,6 @@ flowchart LR;
     subgraph Processors
     M(Receivers) --> H(Filters, Attributes, etc)
     E(Extensions)
-    style E fill:#e20082,stroke:#333,stroke-width:4px,color:#fff
     end
     subgraph Exporters
     H(Filters, Attributes, etc) --> S(OTLP)

@@ -64,7 +64,6 @@ service:
 The `resourcedetection` processor was added so that the collector could capture the hostname of the instance upon which it is installed and running. We now need to enable this under the metrics pipeline. Update the `processors` section to include `resourcedetection` under the `metrics` pipeline.
 
 ```yaml {hl_lines=[12]}
-```yaml {hl_lines=[12]}
 service:
 
   pipelines:

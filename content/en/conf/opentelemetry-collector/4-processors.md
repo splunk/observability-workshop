@@ -19,6 +19,7 @@ weight: 4
 }%%
 
 flowchart LR;
+    style Processors fill:#e20082,stroke:#333,stroke-width:4px,color:#fff
     subgraph Collector
     A[OTLP] --> M(Receivers)
     B[JAEGER] --> M(Receivers)
@@ -27,7 +28,6 @@ flowchart LR;
     subgraph Processors
     M(Receivers) --> H(Filters, Attributes, etc)
     E(Extensions)
-    style Processors fill:#e20082,stroke:#333,stroke-width:4px,color:#fff
     end
     subgraph Exporters
     H(Filters, Attributes, etc) --> S(OTLP)
@@ -148,8 +148,12 @@ service:
 {{% /tab %}}
 {{< /tabs >}}
 
-## Transform Processor
+## Attributes Processor
 
-Robert, thoughts on metrics transform processor example here?
-
-https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/metricstransformprocessor
+``` yaml
+  attributes/conf:
+    actions:
+      - key: my.name
+        action: insert
+        value: "rcastley"
+```
