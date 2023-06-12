@@ -122,7 +122,7 @@ Usually it should only take around 1min 30secs for the pods to transition into a
 
 In the Splunk UI click on **Infrastructure** this will bring you to the Infrastructure Overview dashboard, then click on **Kubernetes**.
 
-Use the **Cluster** dropdown so select your Cluster, you should see the new pods started and containers deployed. When you click on your Cluster in the Splunk UI you should have a view that looks like below:
+Use the **Cluster** dropdown to select the cluster name, you will see the new pods started and containers deployed. When you click on your Cluster in the Splunk UI you should have a view that looks like below:
 
 ![Back to cluster](../images/online-boutique-k8s.png)
 
