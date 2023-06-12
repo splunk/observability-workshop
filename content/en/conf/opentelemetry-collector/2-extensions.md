@@ -129,14 +129,14 @@ sudo systemctl restart otelcol-contrib
 This extension enables a HTTP URL that can be probed to check the status of the OpenTelemetry Collector. This extension can be used as a liveness and/or readiness probe on Kubernetes. To learn more about the `curl` command, check out the [curl man page](https://curl.se/docs/manpage.html).
 
 {{< tabs >}}
-{{% tab title="Command" %}}
+{{% tab title="curl Command" %}}
 
 ```bash
 curl http://localhost:13133
 ```
 
 {{% /tab %}}
-{{% tab title="Status Output" %}}
+{{% tab title="curl Output" %}}
 
 ``` text
 {"status":"Server available","upSince":"2023-04-27T10:11:22.153295874+01:00","uptime":"16m24.684476004s"}
