@@ -8,6 +8,36 @@ An exporter, which can be push or pull based, is how you send data to one or mor
 
 For this workshop we will be using the **otlphttp** exporter. The OpenTelemetry Protocol (OTLP) is a vendor-neutral, standardised protocol for transmitting telemetry data. The OTLP exporter sends data to a server that implements the OTLP protocol. The OTLP exporter supports both gRPC and HTTP/JSON protocols.
 
+{{< mermaid >}}
+%%{
+  init:{
+    "theme":"base",
+    "themeVariables": {
+      "primaryColor": "#ffffff",
+      "clusterBkg": "#eff2fb",
+      "defaultLinkColor": "#333333"
+    }
+  }
+}%%
+
+flowchart LR;
+    subgraph Collector
+    A[OTLP] --> M(Receivers)
+    B[JAEGER] --> M(Receivers)
+    C[Prometheus] --> M(Receivers)
+    end
+    subgraph Processors
+    M(Receivers) --> H(Filters, Attributes, etc)
+    E(Extensions)
+    style Exporters fill:#e20082,stroke:#333,stroke-width:4px,color:#fff
+    end
+    subgraph Exporters
+    H(Filters, Attributes, etc) --> S(OTLP)
+    H(Filters, Attributes, etc) --> T(JAEGER)
+    H(Filters, Attributes, etc) --> U(Prometheus)
+    end
+{{< /mermaid >}}
+
 In order to send metrics over HTTP to Splunk Observability Cloud we will need to configure the **otlphttp** exporter.
 
 Let's edit our `/etc/otelcontribcol/config.yaml` file and configure the **otlphttp** exporter. Insert the following YAML under the **exporters** section, taking care to indent by two spaces e.g.

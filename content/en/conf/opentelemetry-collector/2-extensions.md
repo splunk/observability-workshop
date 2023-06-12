@@ -8,6 +8,36 @@ Now that we have the OpenTelemetry Collector is installed. Let's take a look at 
 
 Extensions are available primarily for tasks that do not involve processing telemetry data. Examples of extensions include health monitoring, service discovery, and data forwarding. Extensions are optional.
 
+{{< mermaid >}}
+%%{
+  init:{
+    "theme":"base",
+    "themeVariables": {
+      "primaryColor": "#ffffff",
+      "clusterBkg": "#eff2fb",
+      "defaultLinkColor": "#333333"
+    }
+  }
+}%%
+
+flowchart LR;
+    subgraph Collector
+    A[OTLP] --> M(Receivers)
+    B[JAEGER] --> M(Receivers)
+    C[Prometheus] --> M(Receivers)
+    end
+    subgraph Processors
+    M(Receivers) --> H(Filters, Attributes, etc)
+    E(Extensions)
+    style E fill:#e20082,stroke:#333,stroke-width:4px,color:#fff
+    end
+    subgraph Exporters
+    H(Filters, Attributes, etc) --> S(OTLP)
+    H(Filters, Attributes, etc) --> T(JAEGER)
+    H(Filters, Attributes, etc) --> U(Prometheus)
+    end
+{{< /mermaid >}}
+
 Extensions are configured in the same `config.yaml` file that we reference in module 1 of this lab. Let's edit the `config.yaml` file and configure the extensions. Note that the `pprof` and `zpages` extensions are already configured in the default `config.yaml` file. For the purpose of this lab, we will only be updating the `health_check` extension.
 
 ``` bash

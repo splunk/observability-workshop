@@ -6,6 +6,36 @@ weight: 4
 
 [Processors](https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/README.md) are run on data between being received and being exported. Processors are optional though some are recommended. There are [a large number of processors](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor) included in the OpenTelemetry contrib Collector.
 
+{{< mermaid >}}
+%%{
+  init:{
+    "theme":"base",
+    "themeVariables": {
+      "primaryColor": "#ffffff",
+      "clusterBkg": "#eff2fb",
+      "defaultLinkColor": "#333333"
+    }
+  }
+}%%
+
+flowchart LR;
+    subgraph Collector
+    A[OTLP] --> M(Receivers)
+    B[JAEGER] --> M(Receivers)
+    C[Prometheus] --> M(Receivers)
+    end
+    subgraph Processors
+    M(Receivers) --> H(Filters, Attributes, etc)
+    E(Extensions)
+    style Processors fill:#e20082,stroke:#333,stroke-width:4px,color:#fff
+    end
+    subgraph Exporters
+    H(Filters, Attributes, etc) --> S(OTLP)
+    H(Filters, Attributes, etc) --> T(JAEGER)
+    H(Filters, Attributes, etc) --> U(Prometheus)
+    end
+{{< /mermaid >}}
+
 ## Batch Processor
 
 By default, only the **batch** processor is enabled. This processor is used to batch up data before it is exported. This is useful for reducing the number of network calls made to exporters. For this workshop we will accept the defaults (`send_batch_size: 8192`, `timeout: 200ms`, `send_batch_size_max: 0`).
@@ -117,7 +147,6 @@ service:
   
 {{% /tab %}}
 {{< /tabs >}}
-
 
 ## Transform Processor
 

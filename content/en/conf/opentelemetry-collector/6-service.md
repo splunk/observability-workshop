@@ -41,6 +41,8 @@ service:
 
 ### Prometheus Internal Receiver
 
+We renamed the `prometheus` receiver to reflect that is was collecting metrics internal to the collector. We now need to enable this under the metrics pipeline. Update the `receivers` section to include `prometheus/internal` under the `metrics` pipeline.
+
 ```yaml {hl_lines=[11]}
 service:
 
@@ -59,6 +61,9 @@ service:
 
 ### Resource Detection Processor
 
+The `resourcedetection` processor was added so that the collector could capture the hostname of the instance upon which it is installed and running. We now need to enable this under the metrics pipeline. Update the `processors` section to include `resourcedetection` under the `metrics` pipeline.
+
+```yaml {hl_lines=[12]}
 ```yaml {hl_lines=[12]}
 service:
 
@@ -77,6 +82,8 @@ service:
 
 ### OTLPHTTP Exporter
 
+We configured the `otlphttp` exporter to send metrics to Splunk Observability Cloud. We now need to enable this under the metrics pipeline. Update the `exporters` section to include `otlphttp/splunk` under the `metrics` pipeline.
+
 ```yaml {hl_lines=[13]}
 service:
 
@@ -94,6 +101,8 @@ service:
 ```
 
 ## Final configuration
+
+The final configuration should look like this:
 
 ``` yaml
 extensions:
