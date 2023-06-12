@@ -8,7 +8,7 @@ weight: 3
 Let's now create a new chart and save it in our dashboard!
 
 Select the plus icon (top right of the UI) and from the drop down, choose the option **Chart**.
-Or click on the {{% button %}}+ New Chart{{% /button %}} Button to create a new chart.
+Or click on the {{< button style="blue">}}+ New Chart{{< /button >}} Button to create a new chart.
 
 ![Create new chart](../../images/M-Filter-0.png)
 
