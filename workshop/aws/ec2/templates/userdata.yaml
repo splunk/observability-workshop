@@ -40,6 +40,7 @@ write_files:
 
       export ACCESS_TOKEN=${access_token}
       export REALM=${realm}
+      export RUM_TOKEN=${rum_token}
 
       helm() {
 
@@ -72,59 +73,6 @@ write_files:
       #  CLUSTER_NAME="$INSTANCE-cluster"
       #fi
       export INSTANCE CLUSTER_NAME
-
-%{ if presetup == true ~}
-      export RUM_TOKEN=${rum_token}
-      if [ ! -f ~/.helmok ]; then
-        helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
-        helm repo update
-        helm install splunk-otel-collector \
-        --set="splunkObservability.realm=$REALM" \
-        --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
-        --set="clusterName=$INSTANCE-k3s-cluster" \
-        --set="splunkObservability.logsEnabled=true" \
-        --set="splunkObservability.profilingEnabled=true" \
-        --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
-        --set="environment=$INSTANCE-apm-env" \
-        splunk-otel-collector-chart/splunk-otel-collector \
-        -f ~/workshop/k3s/otel-collector.yaml
-        cd ~/workshop/apm/
-        bash apm-config.sh -r
-        sudo kubectl apply -f deployment.yaml
-        echo $INSTANCE > ~/.helmok
-        cd /home/ubuntu
-      fi
-%{ endif ~}
-
-%{ if otel_demo == true ~}
-      export RUM_TOKEN=${rum_token}
-      if [ ! -f ~/.helmok ]; then
-        helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
-        helm repo update
-        envsubst 'REALM=$REALM' < workshop/oteldemo/otel-demo-collector.yaml | helm install splunk-otel-collector \
-        --set="splunkObservability.realm=$REALM" \
-        --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
-        --set="clusterName=$INSTANCE-k3s-cluster" \
-        --set="splunkObservability.logsEnabled=true" \
-        --set="logsEngine=otel" \
-        --set="splunkObservability.profilingEnabled=true" \
-        --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
-        --set="networkExplorer.enabled=true" \
-        --set="networkExplorer.podSecurityPolicy.enabled=false" \
-        --set="agent.enabled=true" \
-        --set="gateway.replicaCount=1" \
-        --set="gateway.resources.limits.cpu=500m" \
-        --set="gateway.resources.limits.memory=1Gi" \
-        --set="clusterReceiver.enabled=true" \
-        --set="environment=$INSTANCE-apm-env" \
-        splunk-otel-collector-chart/splunk-otel-collector \
-        -f -
-        helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
-        helm install my-otel-demo open-telemetry/opentelemetry-demo --values ~/workshop/oteldemo/otel-demo.yaml
-        echo $INSTANCE > ~/.helmok
-        cd /home/ubuntu
-      fi
-%{ endif ~}
 
       export KUBECONFIG=/home/ubuntu/.kube/config
       alias kc='kubectl'
@@ -165,6 +113,64 @@ write_files:
       echo "$NODE_IP $REGISTRY_NAME" | tee -a /etc/cloud/templates/hosts.debian.tmpl
       systemctl restart docker
 
+  - path: /tmp/pre-setup.sh
+    permissions: '0755'
+    content: |
+      export RUM_TOKEN=${rum_token}
+      export REALM=${realm}
+      export ACCESS_TOKEN=${access_token}
+      export INSTANCE="${instance_name}"
+      if [ ! -f /home/ubuntu/.helmok ]; then
+        helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
+        helm repo update
+        helm install splunk-otel-collector \
+        --set="splunkObservability.realm=${realm}" \
+        --set="splunkObservability.accessToken=${access_token}" \
+        --set="clusterName=${instance_name}-k3s-cluster" \
+        --set="splunkObservability.logsEnabled=true" \
+        --set="splunkObservability.profilingEnabled=true" \
+        --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
+        --set="environment=${instance_name}-apm-env" \
+        splunk-otel-collector-chart/splunk-otel-collector \
+        -f /home/ubuntu/workshop/k3s/otel-collector.yaml
+        cd /home/ubuntu/workshop/apm/
+        bash apm-config.sh -r
+        sudo kubectl apply -f deployment.yaml
+        echo ${instance_name} > /home/ubuntu/.helmok
+      fi
+
+  - path: /tmp/otel-demo-setup.sh
+    permissions: '0755'
+    content: |
+      export RUM_TOKEN=${rum_token}
+      export REALM=${realm}
+      export ACCESS_TOKEN=${access_token}
+      export INSTANCE="${instance_name}"
+      if [ ! -f /home/ubuntu/.helmok ]; then
+        helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
+        helm repo update
+        envsubst 'REALM=${realm}' < /home/ubuntu/workshop/oteldemo/otel-demo-collector.yaml | helm install splunk-otel-collector \
+        --set="splunkObservability.realm=${realm}" \
+        --set="splunkObservability.accessToken=${access_token}" \
+        --set="clusterName=${instance_name}-k3s-cluster" \
+        --set="splunkObservability.logsEnabled=true" \
+        --set="logsEngine=otel" \
+        --set="splunkObservability.profilingEnabled=true" \
+        --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
+        --set="networkExplorer.enabled=true" \
+        --set="networkExplorer.podSecurityPolicy.enabled=false" \
+        --set="agent.enabled=true" \
+        --set="gateway.replicaCount=1" \
+        --set="gateway.resources.limits.cpu=500m" \
+        --set="gateway.resources.limits.memory=1Gi" \
+        --set="clusterReceiver.enabled=true" \
+        --set="environment=${instance_name}-apm-env" \
+        splunk-otel-collector-chart/splunk-otel-collector -f -
+        helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
+        helm install my-otel-demo open-telemetry/opentelemetry-demo --values /home/ubuntu/workshop/oteldemo/otel-demo.yaml
+        echo ${instance_name} > /home/ubuntu/.helmok
+      fi
+
 runcmd:
   - chsh -s $(which zsh) ubuntu
   - su ubuntu -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
@@ -175,7 +181,7 @@ runcmd:
   - curl -S -OL https://github.com/derailed/k9s/releases/download/v0.27.0/k9s_Linux_amd64.tar.gz
   - tar xfz k9s_Linux_amd64.tar.gz -C /usr/local/bin/ k9s
   # Download Workshop
-  - export WSVERSION=4.89
+  - export WSVERSION=main
   - 'export WSARCHIVE=$([ "$WSVERSION" = "main" ] && echo "main" || echo "v$WSVERSION")'
   - curl -s -OL https://github.com/splunk/observability-workshop/archive/$WSARCHIVE.zip
   - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
@@ -210,3 +216,9 @@ runcmd:
   - sed -i "s/\"--no-beep\"/\"--no-beep --disable-ssl\"/" /etc/default/shellinabox
   - sudo service shellinabox restart
   - sed -i 's/_THEME=\"robbyrussell\"/_THEME=\"gentoo\"/g' home/ubuntu/.zshrc
+%{ if presetup == true ~}
+  - su ubuntu -c 'bash /tmp/pre-setup.sh'
+%{ endif ~}
+%{ if otel_demo == true ~}
+  - su ubuntu -c 'bash /tmp/otel-demo-setup.sh'
+%{ endif ~}
