@@ -1,6 +1,8 @@
 # Required
 splunk_access_token = ""
 splunk_realm = ""
+splunk_hec_url = ""
+splunk_hec_token = ""
 
 # Required if pre-setup is desired, optional otherwise. See variables.tf and README.md.
 splunk_rum_token = ""

@@ -4,6 +4,8 @@ aws_instance_count = ""
 slug = ""
 splunk_access_token = ""
 splunk_realm = ""
+splunk_hec_url = ""
+splunk_hec_token = ""
 
 # Required if splunk_presetup is true, optional otherwise. See variables.tf and README.md 
 splunk_rum_token = ""
