@@ -23,7 +23,7 @@ The following configuration can be applied to a standard O11y workshop instance 
 
 ### otel-demo-collector.yaml
 
-https://github.com/splunk/observability-workshop/blob/58592d0ddb00be300b81982712b3ef0618f13284/workshop/oteldemo/otel-demo-collector.yaml#L1C1-L93
+https://github.com/splunk/observability-workshop/blob/58592d0ddb00be300b81982712b3ef0618f13284/workshop/oteldemo/otel-demo-collector.yaml#L1-L93
 
 ### Deploy the OTel Collector via Helm chart
 
