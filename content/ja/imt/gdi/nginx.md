@@ -23,7 +23,7 @@ Splunk UI で **WORKLOADS** タブを選択して、実行中の Pod の数を�
 Multipass または AWS/EC2 のシェルセッションで、`nginx` ディレクトリに移動します。
 
 {{< tabs >}}
-{{% tab name="Change Directory" %}}
+{{% tab title="Change Directory" %}}
 
 ```bash
 cd ~/workshop/k3s/nginx
@@ -39,14 +39,14 @@ cd ~/workshop/k3s/nginx
 NGINX の ConfigMap[^1] を `nginx.conf` ファイルを使って作成します。
 
 {{< tabs >}}
-{{% tab name="Kubectl Configmap Create" %}}
+{{% tab title="Kubectl Configmap Create" %}}
 
 ```bash
 kubectl create configmap nginxconfig --from-file=nginx.conf
 ```
 
 {{% /tab %}}
-{{% tab name="Kubectl Create Configmap Output" %}}
+{{% tab title="Kubectl Create Configmap Output" %}}
 
 ``` text
 configmap/nginxconfig created
@@ -58,14 +58,14 @@ configmap/nginxconfig created
 続いて、デプロイメントを作成します。
 
 {{< tabs >}}
-{{% tab name="Kubectl Create Deployment" %}}
+{{% tab title="Kubectl Create Deployment" %}}
 
 ```bash
 kubectl create -f nginx-deployment.yaml
 ```
 
 {{% /tab %}}
-{{% tab name="Kubectl Create Deployment Output" %}}
+{{% tab title="Kubectl Create Deployment Output" %}}
 deployment.apps/nginx created
 service/nginx created
 {{% /tab %}}
@@ -74,14 +74,14 @@ service/nginx created
 次に、NGINXに対する負荷テストを作成するため、 Locust[^2] をデプロイします。
 
 {{< tabs >}}
-{{% tab name="Kubectl Create Deployment" %}}
+{{% tab title="Kubectl Create Deployment" %}}
 
 ```bash
 kubectl create -f locust-deployment.yaml
 ```
 
 {{% /tab %}}
-{{% tab name="Kubectl Create Deployment Output" %}}
+{{% tab title="Kubectl Create Deployment Output" %}}
 
 ```bash
 deployment.apps/nginx-loadgenerator created
@@ -108,14 +108,14 @@ Pod が実行状態に移行するまでには 20 秒程度しかかかりませ
 これをシェルでも検証してみましょう。
 
 {{< tabs >}}
-{{% tab name="Kubectl Get Pods" %}}
+{{% tab title="Kubectl Get Pods" %}}
 
 ```bash
 kubectl get pods
 ```
 
 {{% /tab %}}
-{{% tab name="Kubectl Get Pods Output" %}}
+{{% tab title="Kubectl Get Pods Output" %}}
 
 ``` text
 NAME                                                          READY   STATUS    RESTARTS   AGE

@@ -30,7 +30,7 @@ Markdown は、ウェブページでよく使われるプレーンテキスト�
 以下は、ノートで使用できる上記のMarkdownオプションの例です。
 
 {{< tabs >}}
-{{% tab name="Sample Markdown text" %}}
+{{% tab title="Sample Markdown text" %}}
 
 ``` markdown
 # h1 Big headings

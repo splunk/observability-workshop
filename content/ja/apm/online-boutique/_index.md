@@ -24,7 +24,7 @@ description: Online BoutiqueアプリケーションをKubernetes（K3s）にデ
 Online BoutiqueアプリケーションをK3sにデプロイするには、以下のデプロイメントを適用します。
 
 {{< tabs >}}
-{{% tab name="Deploy Online Boutique" %}}
+{{% tab title="Deploy Online Boutique" %}}
 
 ``` bash
 cd ~/workshop/apm
@@ -33,7 +33,7 @@ kubectl apply -f deployment.yaml
 ```
 
 {{% /tab %}}
-{{% tab name="Deployment Output"  %}}
+{{% tab title="Deployment Output"  %}}
 
 ``` text
 APM Only Deployment
@@ -76,14 +76,14 @@ deployment.apps/rum-loadgen-deployment created
 Online Boutique アプリケーションが起動していることを確認するには:
 
 {{< tabs >}}
-{{% tab name="Get Pods" %}}
+{{% tab title="Get Pods" %}}
 
 ``` bash
 kubectl get pods
 ```
 
 {{% /tab %}}
-{{% tab name="Get Pods Output"  %}}
+{{% tab title="Get Pods Output"  %}}
 
 ``` text
 NAME                                                          READY   STATUS    RESTARTS   AGE

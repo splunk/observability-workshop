@@ -34,7 +34,7 @@ Kubernetes が起動したら、Splunk の UI から Access Token[^1] を取得�
 環境変数 `ACCESS_TOKEN` と `REALM` を作成して、進行中の Helm のインストールコマンドで使用します。例えば、Realm が `us1` の場合は、`export REALM=us1` と入力し、`eu0` の場合は、`export REALM=eu0` と入力します。
 
 {{< tabs >}}
-{{% tab name="Export ACCESS TOKEN" %}}
+{{% tab title="Export ACCESS TOKEN" %}}
 
 ```bash
 export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
@@ -44,7 +44,7 @@ export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
 {{< /tabs >}}
 
 {{< tabs >}}
-{{% tab name="Export REALM" %}}
+{{% tab title="Export REALM" %}}
 
 ```bash
 export REALM="<replace_with_REALM>"
@@ -56,14 +56,14 @@ export REALM="<replace_with_REALM>"
 Splunk Helm チャートを使って OpenTelemetry Collector をインストールします。まず、Splunk Helm chart のリポジトリを Helm に追加してアップデートします。
 
 {{< tabs >}}
-{{% tab name="Helm Repo Add" %}}
+{{% tab title="Helm Repo Add" %}}
 
 ``` bash
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update
 ```
 
 {{% /tab %}}
-{{% tab name="Helm Repo Add Output" %}}
+{{% tab title="Helm Repo Add Output" %}}
 Using ACCESS_TOKEN={REDACTED}
 Using REALM=eu0
 "splunk-otel-collector-chart" has been added to your repositories
@@ -78,7 +78,7 @@ Update Complete. ⎈Happy Helming!⎈
 以下のコマンドでOpenTelemetry Collector Helmチャートをインストールします。これは **変更しないでください**。
 
 {{< tabs >}}
-{{% tab name="Helm Install" %}}
+{{% tab title="Helm Install" %}}
 
 ```bash
 helm install splunk-otel-collector \
@@ -94,7 +94,7 @@ splunk-otel-collector-chart/splunk-otel-collector \
 ```
 
 {{% /tab %}}
-{{% tab name="Helm Install Output" %}}
+{{% tab title="Helm Install Output" %}}
 Using ACCESS_TOKEN={REDACTED}
 Using REALM=eu0
 NAME: splunk-otel-collector
@@ -104,7 +104,7 @@ STATUS: deployed
 REVISION: 1
 TEST SUITE: None
 {{% /tab %}}
-{{% tab name="Install Network Explorer" %}}
+{{% tab title="Install Network Explorer" %}}
 
 ```bash
 helm install splunk-otel-collector \
@@ -133,14 +133,14 @@ splunk-otel-collector-chart/splunk-otel-collector \
 続行する前に、ステータスがRunningと報告されていることを確認してください。
 
 {{< tabs >}}
-{{% tab name="Kubectl Get Pods" %}}
+{{% tab title="Kubectl Get Pods" %}}
 
 ```bash
 kubectl get pods
 ```
 
 {{% /tab %}}
-{{% tab name="Kubectl Get Pods Output" %}}
+{{% tab title="Kubectl Get Pods Output" %}}
 
 ``` text
 NAME                                                          READY   STATUS    RESTARTS   AGE
@@ -156,14 +156,14 @@ OpenTelemetry Collector podのログを確認して、エラーがないこと�
 ログを確認するには、`helm` のインストールで設定したラベルを使用してください（終了するには **ctrl+c** を押します）。もしくは、インストールされている `k9s` ターミナル UI を使うとボーナスポイントがもらえます！
 
 {{< tabs >}}
-{{% tab name="Kubectl Logs" %}}
+{{% tab title="Kubectl Logs" %}}
 
 ```bash
 kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 ```
 
 {{% /tab %}}
-{{% tab name="Kubectl Logs Output" %}}
+{{% tab title="Kubectl Logs Output" %}}
 
 ``` text
 2021-03-21T16:11:10.900Z        INFO    service/service.go:364  Starting receivers...
@@ -203,7 +203,7 @@ Splunk の UI で左下の **>>** を開いて **Infrastructure** をクリッ�
 クラスタが検出され、レポートされていることを確認するには、自分のクラスタを探します（ワークショップでは、他の多くのクラスタが表示されます）。クラスタ名を見つけるには、以下のコマンドを実行し、出力をクリップボードにコピーしてください。
 
 {{< tabs >}}
-{{% tab name="Echo Cluster Name" %}}
+{{% tab title="Echo Cluster Name" %}}
 
 ```bash
 echo $(hostname)-k3s-cluster
