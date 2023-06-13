@@ -8,22 +8,30 @@ agent:
             config:
               type: collectd/redis
               endpoint: '`endpoint`:6379'
+              extraDimensions:
+                service.name: otel-demo-redis
           smartagent/kafka:
             rule: type == "pod" && name matches "kafka"
             config:
               type: collectd/kafka
               endpoint: '`endpoint`:5555'
               clusterName: otel-demo-kafka
+              extraDimensions:
+                service.name: otel-demo-kafka
           smartagent/kafka_consumer:
             rule: type == "pod" && name matches "kafka"
             config:
               type: collectd/kafka_consumer
               endpoint: '`endpoint`:5555'
+              extraDimensions:
+                service.name: otel-demo-kafka-consumer
           smartagent/kafka_producer:
             rule: type == "pod" && name matches "kafka"
             config:
               type: collectd/kafka_producer
               endpoint: '`endpoint`:5555'
+              extraDimensions:
+                service.name: otel-demo-kafka-producer
           smartagent/postgres:
             rule: type == "pod" && name matches "ffspostgres"
             config:
@@ -33,6 +41,8 @@ agent:
               password: "ffs"
               databases:
               - name : "ffs"
+              extraDimensions:
+                service.name: otel-demo-postgresql
     processors:
       attributes/postgres:
         include:
@@ -46,6 +56,7 @@ agent:
     exporters:
       otlphttp:
         traces_endpoint: "https://ingest.${REALM}.signalfx.com/v2/trace/otlp"
+        metrics_endpoint: "https://ingest.${REALM}.signalfx.com/v2/datapoint/otlp"
         compression: gzip
         headers:
           "X-SF-Token": "${SPLUNK_OBSERVABILITY_ACCESS_TOKEN}"
