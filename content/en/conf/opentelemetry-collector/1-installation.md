@@ -42,7 +42,7 @@ Created symlink /etc/systemd/system/multi-user.target.wants/otelcol-contrib.serv
 
 ## 3. Confirm the Collector is running
 
-The collector should now be running. We will verify this as root using systemctl command.
+The collector should now be running. We will verify this as root using systemctl command. To exit the status just press `q`.
 
 {{< tabs >}}
 {{% tab title="Command" %}}
@@ -298,7 +298,7 @@ Congratulations! You have successfully downloaded and installed the OpenTelemtry
 
 Splunk does provide its own, fully supported, distribution of the OpenTelemetry Collector. This distribution is available to install from the [Splunk GitHub Repository](https://github.com/signalfx/splunk-otel-collector). This distribution includes a number of additional features and enhancements that are not available in the OpenTelemetry Collector Contrib distribution.
 
-- The Splunk Distribution of the OpenTelemetry Collector is production tested; it is in use by a number of customers in their production environments.
+- The Splunk Distribution of the OpenTelemetry Collector is production tested; it is in use by the majority of customers in their production environments.
 - Customers that use our distribution can receive direct help from official Splunk support within SLA's.
 - Customers can use or migrate to the Splunk Distribution of the OpenTelemetry Collector without worrying about future breaking changes to its core configuration experience for metrics and traces collection (OpenTelemetry logs collection configuration is in beta). There may be breaking changes to the Collector's own metrics.
 

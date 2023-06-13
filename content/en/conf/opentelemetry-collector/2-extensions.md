@@ -38,7 +38,7 @@ flowchart LR;
     end
 {{< /mermaid >}}
 
-Extensions are configured in the same `config.yaml` file that we reference in module 1 of this lab. Let's edit the `config.yaml` file and configure the extensions. Note that the `pprof` and `zpages` extensions are already configured in the default `config.yaml` file. For the purpose of this lab, we will only be updating the `health_check` extension.
+Extensions are configured in the same `config.yaml` file that we referenced in the installation step. Let's edit the `config.yaml` file and configure the extensions. Note that the `pprof` and `zpages` extensions are already configured in the default `config.yaml` file. For the purpose of this workshop, we will only be updating the `health_check` extension to expose the port on which we can access the health of the collector.
 
 ``` bash
 sudo vi /etc/otelcol-contrib/config.yaml
@@ -50,7 +50,7 @@ sudo vi /etc/otelcol-contrib/config.yaml
 ```yaml {hl_lines=[3]}
 extensions:
   health_check:
-    endpoint: "0.0.0.0:13133"
+    endpoint: 0.0.0.0:13133
 ```
 
 {{% /tab %}}
@@ -151,7 +151,7 @@ curl http://localhost:13133
 
 ## zPages
 
-[zPages](https://github.com/open-telemetry/opentelemetry-collector/blob/main/extension/zpagesextension/README.md) are an in-process alternative to external exporters. When included, they collect and aggregate tracing and metrics information in the background; this data is served on web pages when requested. Super useful to ensure the collector is running as expected.
+[zPages](https://github.com/open-telemetry/opentelemetry-collector/blob/main/extension/zpagesextension/README.md) are an in-process alternative to external exporters. When included, they collect and aggregate tracing and metrics information in the background; this data is served on web pages when requested. zPages is an extremely useful diagnostic feature to ensure the collector is running as expected.
 
 {{% notice style="tip" %}}
 Install a text-based web browser (or use your local browser using the instance IP address)
@@ -167,7 +167,7 @@ sudo apt update && sudo apt install lynx -y
 
 **ServiceZ** gives an overview of the collector services and quick access to the pipelinez, extensionz, and featurez zPages. The page also provides build and runtime information.
 
-Example URL: [http://localhost:55679/debug/servicez](http://localhost:55679/debug/servicez)
+Example URL: [http://localhost:55679/debug/servicez](http://localhost:55679/debug/servicez) (change `localhost` to reflect your own environment).
 
 ![ServiceZ](../images/servicez.png)
 
@@ -176,7 +176,7 @@ Example URL: [http://localhost:55679/debug/servicez](http://localhost:55679/debu
 
 **PipelineZ** brings insight on the running pipelines running in the collector. You can find information on type, if data is mutated and the receivers, processors and exporters that are used for each pipeline.
 
-Example URL: [http://localhost:55679/debug/pipelinez](http://localhost:55679/debug/pipelinez)
+Example URL: [http://localhost:55679/debug/pipelinez](http://localhost:55679/debug/pipelinez) (change `localhost` to reflect your own environment).
 
 ![PipelineZ](../images/pipelinez.png)
 
@@ -185,7 +185,7 @@ Example URL: [http://localhost:55679/debug/pipelinez](http://localhost:55679/deb
 
 **ExtensionZ** shows the extensions that are active in the collector.
 
-Example URL: [http://localhost:55679/debug/extensionz](http://localhost:55679/debug/extensionz)
+Example URL: [http://localhost:55679/debug/extensionz](http://localhost:55679/debug/extensionz) (change `localhost` to reflect your own environment).
 
 ![ExtensionZ](../images/extensionz.png)
 
