@@ -55,8 +55,8 @@ agent:
             action: upsert
     exporters:
       otlphttp:
-        traces_endpoint: "https://ingest.<REALM>.signalfx.com/v2/trace/otlp"
-        metrics_endpoint: "https://ingest.<REALM>.signalfx.com/v2/datapoint/otlp"
+        traces_endpoint: "https://ingest.$REALM.signalfx.com/v2/trace/otlp"
+        metrics_endpoint: "https://ingest.$REALM.signalfx.com/v2/datapoint/otlp"
         compression: gzip
         headers:
           "X-SF-Token": "${SPLUNK_OBSERVABILITY_ACCESS_TOKEN}"
