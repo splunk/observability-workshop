@@ -19,7 +19,7 @@
 
 ## Splunk OpenTelemety Collector Configuration
 
-The following configuration can be applied to a standard O11y workshop instance (EC2 or multipass). Remember to change `${REALM}` to the actual realm your Org is running in.
+The following configuration can be applied to a standard O11y workshop instance (EC2 or multipass). Remember to change `<REALM>` to the actual realm your Org is running in.
 
 ### otel-demo-collector.yaml
 
