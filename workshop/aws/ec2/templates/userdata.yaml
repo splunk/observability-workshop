@@ -149,7 +149,7 @@ write_files:
       if [ ! -f /home/ubuntu/.helmok ]; then
         helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
         helm repo update
-        envsubst 'REALM=${realm}' < /home/ubuntu/workshop/oteldemo/otel-demo-collector.yaml | helm install splunk-otel-collector \
+        envsubst '<REALM>=${realm}' < /home/ubuntu/workshop/oteldemo/otel-demo-collector.yaml | helm install splunk-otel-collector \
         --set="splunkObservability.realm=${realm}" \
         --set="splunkObservability.accessToken=${access_token}" \
         --set="clusterName=${instance_name}-k3s-cluster" \
