@@ -32,7 +32,7 @@ Online BoutiqueがインストールされたEC2インスタンスにアクセ�
 EC2にSSHアクセスしているシェルスクリプトで環境変数 `RUM_TOKEN` を作成し、デプロイメントをパーソナライズします。
 
 {{< tabs >}}
-{{% tab name="Export Variables" %}}
+{{% tab title="Export Variables" %}}
 
 ```bash
 export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
@@ -46,7 +46,7 @@ export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
 Online BoutiqueアプリケーションをK3sにデプロイするには、apm configスクリプトを実行し、デプロイを適用してください。
 
 {{< tabs >}}
-{{% tab name="Deploy Online Boutique" %}}
+{{% tab title="Deploy Online Boutique" %}}
 
 ```bash
 cd ~/workshop/apm
@@ -55,7 +55,7 @@ kubectl apply -f deployment.yaml
 ```
 
 {{% /tab %}}
-{{% tab name="Deployment Output"  %}}
+{{% tab title="Deployment Output"  %}}
 
 ``` text
 deployment.apps/checkoutservice created

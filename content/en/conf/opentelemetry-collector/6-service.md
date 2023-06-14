@@ -21,6 +21,8 @@ service:
 
 ### Hostmetrics Receiver
 
+Earlier in the workshop we defined the [Host Metrics Receiver](../3-receivers/#host-metrics-receiver) to generate metrics about the host system scraped from various sources. We now need to enabled this under the metrics pipeline. Update the `receivers` section to include `hostmetrics` under the `metrics` pipeline.
+
 ```yaml {hl_lines=[11]}
 service:
 
@@ -38,6 +40,8 @@ service:
 ```
 
 ### Prometheus Internal Receiver
+
+We renamed the `prometheus` receiver to reflect that is was collecting metrics internal to the collector. We now need to enable this under the metrics pipeline. Update the `receivers` section to include `prometheus/internal` under the `metrics` pipeline.
 
 ```yaml {hl_lines=[11]}
 service:
@@ -57,6 +61,8 @@ service:
 
 ### Resource Detection Processor
 
+The `resourcedetection` processor was added so that the collector could capture the hostname of the instance upon which it is installed and running. We now need to enable this under the metrics pipeline. Update the `processors` section to include `resourcedetection` under the `metrics` pipeline.
+
 ```yaml {hl_lines=[12]}
 service:
 
@@ -75,6 +81,8 @@ service:
 
 ### OTLPHTTP Exporter
 
+We configured the `otlphttp` exporter to send metrics to Splunk Observability Cloud. We now need to enable this under the metrics pipeline. Update the `exporters` section to include `otlphttp/splunk` under the `metrics` pipeline.
+
 ```yaml {hl_lines=[13]}
 service:
 
@@ -88,10 +96,12 @@ service:
     metrics:
       receivers: [hostmetrics, otlp, opencensus, prometheus/internal]
       processors: [batch, resourcedetection]
-      exporters: [logging, otlphttp]
+      exporters: [logging, otlphttp/splunk]
 ```
 
 ## Final configuration
+
+The final configuration should look like this:
 
 ``` yaml
 extensions:
@@ -158,7 +168,11 @@ processors:
 
 exporters:
   logging:
-    verbosity: detailed
+    verbosity: normal
+  otlphttp/splunk:
+    metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
+    headers:
+      X-SF-TOKEN: <TOKEN REDACTED>
 
 service:
 
@@ -172,11 +186,15 @@ service:
     metrics:
       receivers: [hostmetrics, otlp, opencensus, prometheus/internal]
       processors: [batch, resourcedetection]
-      exporters: [logging, otlphttp]
+      exporters: [logging, otlphttp/splunk]
 
   extensions: [health_check, pprof, zpages]
 ```
 
 Now that we have a working configuration, let's restart the collector and then check to see what [zPages](../2-extensions/#zpages) is reporting.
+
+``` bash
+sudo systemctl restart otelcol-contrib
+```
 
 ![pipelinez-full-config](../images/pipelinez-full-config.png)

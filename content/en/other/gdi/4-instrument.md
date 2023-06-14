@@ -118,14 +118,14 @@ pwd
   
 {{< tabs >}}
 
-{{% tab name="docker build" %}}
+{{% tab title="docker build" %}}
 
 ``` bash
 docker build -f Dockerfile.review -t localhost:8000/review-splkotel:0.01 .
 ```
 
 {{% /tab %}}
-{{% tab name="docker build Output" %}}
+{{% tab title="docker build Output" %}}
 
 ``` text
 [+] Building 27.1s (12/12) FINISHED
@@ -155,14 +155,14 @@ docker build -f Dockerfile.review -t localhost:8000/review-splkotel:0.01 .
 
 {{< tabs >}}
 
-{{% tab name="docker push" %}}
+{{% tab title="docker push" %}}
 
 ``` bash
 docker push localhost:8000/review-splkotel:0.01
 ```
   
 {{% /tab %}}
-{{% tab name="docker push Output" %}}
+{{% tab title="docker push Output" %}}
   
 ``` text
 The push refers to repository [docker.io/localhost:8000/review-splkotel]

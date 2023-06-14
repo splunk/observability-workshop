@@ -51,20 +51,20 @@ You will now be taken to your dashboard like below. You can see at the top left 
 
 ## 3. Add to Team page
 
-It is common practice to link dashboards that are relevant to a Team to a teams page. So let's add your dashboard to the team page for easy access later. Use the ![dashboards button](../../images/dashboards.png) from the navbar again.
+It is common practice to link dashboards that are relevant to a Team to a teams page. So let's add your dashboard to the team page for easy access later. Use the ![dashboards button](../../images/dashboards.png?classes=inline&height=25px) from the navbar again.
 
 This will bring you to your teams dashboard, We use the team ***Example Team*** as an example here, the workshop one will be different.
 
 ![Team Dashboard](../../images/team-dashboard.png)
 
-Press the {{% button style="blue" %}}+{{% /button %}} *Add Dashboard Group* button to add you dashboard to the team page.
+Press the {{< button style="white" >}}+{{< /button >}} *Add Dashboard Group* button to add you dashboard to the team page.
 
 This will bring you to the **Select a dashboard group to link to this team** dialog.
 Type your name (that you used above) in the search box to find your Dashboard. Select it so its highlighted and click the **Ok** button to add your dashboard.
 
 ![Select Dashboard Group](../../images/select-dashboard-group.png)
 
-Your dashboard group will appear as part of the team page. Pleasu note during the course of the workshop many more will appear here.
+Your dashboard group will appear as part of the team page. Please note during the course of the workshop many more will appear here.
 
 ![New Team Dashboard](../../images/new-team-dashboard.png)
 

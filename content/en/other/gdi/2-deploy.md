@@ -54,14 +54,14 @@ helm install mongodb --set metrics.enabled=true bitnami/mongodb --set global.nam
 Verify the helm chart installation
 
 {{< tabs >}}
-{{% tab name="helm list" %}}
+{{% tab title="helm list" %}}
 
 ```bash
 helm list
 ```
 
 {{% /tab %}}
-{{% tab name="helm list output" %}}
+{{% tab title="helm list output" %}}
 
 ``` text
 NAME    NAMESPACE   REVISION    UPDATED                                 STATUS      CHART           APP VERSION
@@ -75,14 +75,14 @@ mongodb default     1           2022-11-14 11:19:36.507690487 -0800 PST deployed
 Verify the helm chart installation
 
 {{< tabs >}}
-{{% tab name="kubectl get pods" %}}
+{{% tab title="kubectl get pods" %}}
 
 ``` bash
 kubectl get pods
 ```
 
 {{% /tab %}}
-{{% tab name="kubectl get pods Output" %}}
+{{% tab title="kubectl get pods Output" %}}
 
 ``` text
 NAME                              READY   STATUS              RESTARTS   AGE
@@ -197,14 +197,14 @@ helm install --set provider=' ' --set distro=' ' --set splunkObservability.acces
 Verify that the Kafka, MongoDB and Splunk OTEL Collector helm charts are installed, note that names may differ.
 
 {{< tabs >}}
-{{% tab name="helm list" %}}
+{{% tab title="helm list" %}}
 
 ``` bash
 helm list
 ```
 
 {{% /tab %}}
-{{% tab name="helm list Output" %}}
+{{% tab title="helm list Output" %}}
 
 ``` text
 NAME                                NAMESPACE   REVISION    UPDATED                                 STATUS      CHART                           APP VERSION
@@ -217,14 +217,14 @@ splunk-otel-collector-1638910184    default     1           2021-12-07 12:49:45.
 {{< /tabs >}}
 
 {{< tabs >}}
-{{% tab name="kubectl get pods" %}}
+{{% tab title="kubectl get pods" %}}
 
 ``` bash
 kubectl get pods
 ```
 
 {{% /tab %}}
-{{% tab name="kubectl get pods Output" %}}
+{{% tab title="kubectl get pods Output" %}}
 
 ``` text
 NAME                                                              READY   STATUS    RESTARTS   AGE

@@ -19,7 +19,7 @@ Once you have selected and clicked on the blue url, you will find yourself in th
 
 Here you will see all of the tags that have been sent to Splunk RUM as part of the RUM traces. The tags displayed will be relevant to the overview that you have selected.  These are generic Tags created automatically when the Trace was sent, and additional Tags you have added to the trace as part of the configuration of your website.
 
-{{% notice title="Additional Tags" color="info" %}}
+{{% notice title="Additional Tags" style="info" %}}
 We are already sending two additional tags, you have seen them defined in the *Beacon url* that was added to your website:  `app: "[nodename]-rum-app", environment: "[nodename]-rum-env"` in the first section of this workshop! You can add additional tags in a similar way.
 {{% /notice %}}
 
@@ -59,7 +59,7 @@ By selecting the various Tag you build up a filter, you can see the current sele
 
 To clear the filter and see every trace click on **Clear All** at the top right of the page.
 
-If the overview page  is empty or shows ![RUM-Adam](../images/RUM-NoTime.png), no traces have been received in the selected timeslot.
+If the overview page  is empty or shows ![RUM-Adam](../images/RUM-NoTime.png?classes=inline&height=25px), no traces have been received in the selected timeslot.
 You need to increase the time window at the top left.  You can start with the *Last 12 hours* for example.
 
 You can then use your mouse to select the time slot you want like show in the view below and  activate that time filter by clicking on the little spyglass icon.

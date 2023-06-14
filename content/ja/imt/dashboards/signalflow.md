@@ -36,7 +36,7 @@ SignalFlow の詳細については、 [Analyze incoming data using SignalFlow](
 ![Code](../../images/show-signalflow.png)
 
 {{< tabs >}}
-{{% tab name="SignalFlow" %}}
+{{% tab title="SignalFlow" %}}
 
 ```python
 A = data('demo.trans.latency', filter=filter('demo_datacenter', 'Paris')).percentile(pct=95).publish(label='A', enable=False)

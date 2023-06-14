@@ -23,14 +23,14 @@ Your welcome e-mail informed you of the details of your EC2 Instance that has be
 The e-mail also contained the Hostname of the Instance, but you can also obtain it from the Instance directly. To get your Hostname from within the shell session connected to your Instance run the following command:
 
 {{< tabs >}}
-{{% tab name="Export Hostname" %}}
+{{% tab title="Export Hostname" %}}
 
 ``` bash
 echo ${HOSTNAME}
 ```
 
 {{% /tab %}}
-{{% tab name="Example Output" %}}
+{{% tab title="Example Output" %}}
 
 ``` text
 zevn
@@ -58,7 +58,7 @@ In the left hand box, enter the name for the key as per the table above.  In the
 
 ![Add Routing Key](../../images/routing-key-add.png)
 
-{{% notice title="Note" color="info" %}}
+{{% notice title="Note" style="info" %}}
 If there are a large number of participants on the workshop, resulting in an unusually large number of Escalation Policies sometimes the search filter does not list all the Policies under your Team Name.  If this happens instead of using the search feature, simply scroll down to your team name, all the policies will then be listed.
 {{% /notice %}}
 
@@ -68,7 +68,7 @@ You should now have two Routing Keys configured, similar to the following:
 
 ![Routing Keys](../../images/routing-keys.png)
 
-{{% notice title="Tip" color="success" %}}
+{{% notice title="Tip" style="tip" %}}
 You can assign a Routing Key to multiple Escalation Policies if required by simply selecting more from the list
 {{% /notice %}}
 

@@ -66,7 +66,7 @@ In the file above we tell the OpenTelemetry agent to look for Pods that match th
 To use the Apache configuration, you can upgrade the existing Splunk OpenTelemetry Collector Helm chart to use the `otel-apache.yaml` file with the following command:
 
 {{< tabs >}}
-{{% tab name="Helm Upgrade" %}}
+{{% tab title="Helm Upgrade" %}}
 
 ``` bash
 helm upgrade splunk-otel-collector \

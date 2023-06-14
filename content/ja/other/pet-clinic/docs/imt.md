@@ -22,7 +22,7 @@ Splunk Observability Cloudでは、インフラストラクチャーとアプリ
 例えば、Realmが `us1` の場合、`export REALM=us1` と入力し、`eu0` の場合は `export REALM=eu0` と入力します。
 
 {{< tabs >}}
-{{% tab name="ACCESS TOKENを環境変数に設定する" %}}
+{{% tab title="ACCESS TOKENを環境変数に設定する" %}}
 
 ``` bash
 export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
@@ -32,7 +32,7 @@ export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
 {{< /tabs >}}
 
 {{< tabs >}}
-{{% tab name="REALMを環境変数に設定する" %}}
+{{% tab title="REALMを環境変数に設定する" %}}
 
 ``` bash
 export REALM="<replace_with_REALM>"

@@ -61,7 +61,7 @@ Save your Selenium IDE Project to your Downloads folder as `Workshop.side`
 
 ## 3. Create Real Browser Check
 
-Login to Splunk Synthetic Monitoring using [https://monitoring.rigor.com](https://monitoring.rigor.com). Click on **REAL BROWSER** and click **+New**{: .label-button .sfx-ui-button-blue}.
+Login to Splunk Synthetic Monitoring using [https://monitoring.rigor.com](https://monitoring.rigor.com). Click on **REAL BROWSER** and click {{< button style="blue" >}}+ New{{< /button >}}.
 
 ![placeholder](../images/image3.png)
 
@@ -83,7 +83,7 @@ Enter **Confirm Order** for the **Name** and change the **Action** to **Wait for
 
 ![placeholder](../images/image2.png)
 
-{{% notice title="Tip" color="info" %}}
+{{% notice title="Tip" style="tip" %}}
 As you are creating the steps think about how to go about using the **Business Transaction** feature in Splunk Synthetic Monitoring which is very powerful.
 
 *"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
@@ -97,11 +97,11 @@ Click on "**Test**" to test your monitor. Once the test has successfully complet
 
 ![placeholder](../images/image22.png)
 
-Click on **Create**{: .label-button .sfx-ui-button-blue} to save your Real Browser Monitor. After 5-10 minutes validate your monitor is working and producing successful checks e.g.
+Click on {{% button style="blue" %}}Create{{% /button %}} to save your Real Browser Monitor. After 5-10 minutes validate your monitor is working and producing successful checks e.g.
 
 ![placeholder](../images/image27.png)
 
-{{% notice title="Tip" color="info" %}}
+{{% notice title="Tip" style="info" %}}
 You can force to run your monitor now using **Run Now**
 
 ![placeholder](../images/image8.png)
@@ -156,13 +156,7 @@ Under the **Advanced** tab, update the following three settings and create your 
 
 ![placeholder](../images/image18.png)
 
-Test & Validate the new monitor
-
-{{% notice title="Tip" color="info" %}}
-As you are creating the steps try using the **Business Transaction** feature in Splunk Synthetic Monitoring.
-
-*"Business Transactions are a combined group of contiguous steps in a Real Browser script that are to be measured as a whole. These transactions logically group similar parts of a flow together, so that users can view the performance of multiple steps and page(s) grouped under one Business Transaction."*
-{{% /notice %}}
+Test & Validate the new monitor.
 
 ## 5. Resources
 

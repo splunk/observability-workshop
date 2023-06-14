@@ -148,13 +148,13 @@ CMD [ "python", "review.py" ]
 Create a container image (locally)
 Run ‘docker build’ to build a local container image referencing the Dockerfile
 
-{{< tabs >}} {{% tab name="docker build" %}}
+{{< tabs >}} {{% tab title="docker build" %}}
 
 ``` bash
 docker build -f Dockerfile -t localhost:8000/review:0.01 .
 ```
 
-{{% /tab %}} {{% tab name="docker build Output" %}}
+{{% /tab %}} {{% tab title="docker build Output" %}}
 
 ``` text
 [+] Building 35.5s (11/11) FINISHED
@@ -174,13 +174,13 @@ docker build -f Dockerfile -t localhost:8000/review:0.01 .
 Push the container image into a container repository
 Run ‘docker push’ to place a copy of the REVIEW container to a remote location
 
-{{< tabs >}} {{% tab name="docker push" %}}
+{{< tabs >}} {{% tab title="docker push" %}}
 
 ``` bash
 docker push localhost:8000/review:0.01
 ```
 
-{{% /tab %}} {{% tab name="docker push Output" %}}
+{{% /tab %}} {{% tab title="docker push Output" %}}
 
 ``` text
 The push refers to repository [docker.io/localhost:8000/review]
@@ -194,13 +194,13 @@ fd95118eade9: Pushed
 
 Verify that the image is in Docker Hub. The same info can be found in Docker Desktop
 
-{{< tabs >}} {{% tab name="get catalog" %}}
+{{< tabs >}} {{% tab title="get catalog" %}}
 
 ``` bash
 curl -s http://localhost:8000/v2/_catalog
 ```
 
-{{% /tab %}} {{% tab name="get catalog Output" %}}
+{{% /tab %}} {{% tab title="get catalog Output" %}}
 
 ``` text
 {"repositories":["review"]}
@@ -296,13 +296,13 @@ kubectl apply -f review.service.yaml -f review.deployment.yaml
 
 Verify that the deployment and services are running:
 
-{{< tabs >}} {{% tab name="kubectl get deployments" %}}
+{{< tabs >}} {{% tab title="kubectl get deployments" %}}
 
 ``` bash
 kubectl get deployments
 ```
 
-{{% /tab %}}{{% tab name="kubectl get deployments output" %}}
+{{% /tab %}}{{% tab title="kubectl get deployments output" %}}
 
 ``` text
 NAME                                                    READY   UP-TO-DATE   AVAILABLE   AGE
@@ -311,13 +311,13 @@ review                                                  1/1     1            1  
 
 {{% /tab %}}{{< /tabs >}}
 
-{{< tabs >}} {{% tab name="kubectl get services" %}}
+{{< tabs >}} {{% tab title="kubectl get services" %}}
 
 ``` bash
 kubectl get services
 ```
 
-{{% /tab %}}{{% tab name="kubectl get services output" %}}
+{{% /tab %}}{{% tab title="kubectl get services output" %}}
 
 ``` text
 NAME                       TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                         AGE
@@ -327,13 +327,13 @@ review                     NodePort    10.43.175.21    <none>        5000:30000/
 
 {{% /tab %}}{{< /tabs >}}
 
-{{< tabs >}} {{% tab name="curl localhost" %}}
+{{< tabs >}} {{% tab title="curl localhost" %}}
 
 ``` bash
 curl localhost:30000
 ```
 
-{{% /tab %}}{{% tab name="curl localhost Output" %}}
+{{% /tab %}}{{% tab title="curl localhost Output" %}}
 
 ``` text
 {
@@ -343,13 +343,13 @@ curl localhost:30000
 
 {{% /tab %}}{{< /tabs >}}
 
-{{< tabs >}} {{% tab name="get review" %}}
+{{< tabs >}} {{% tab title="get review" %}}
 
 ``` bash
 curl localhost:30000/get_review
 ```
 
-{{% /tab %}}{{% tab name="get review Output" %}}
+{{% /tab %}}{{% tab title="get review Output" %}}
 
 ``` text
 {"review_id":"Vv9rHtfBrFc-1M1DHRKN9Q","user_id":"EaNqIwKkM7p1bkraKotqrg","business_id":"TA1KUSCu8GkWP9w0rmElxw","stars":3.0,"useful":1,"funny":0,"cool":0,"text":"This is the first time I've actually written a review for Flip, but I've probably been here about 10 times.  \n\nThis used to be where I would take out of town guests who wanted a good, casual, and relatively inexpensive meal.  \n\nI hadn't been for a while, so after a long day in midtown, we decided to head to Flip.  \n\nWe had the fried pickles, onion rings, the gyro burger, their special burger, and split a nutella milkshake.  I have tasted all of the items we ordered previously (with the exception of the special) and have been blown away with how good they were.  My guy had the special which was definitely good, so no complaints there.  The onion rings and the fried pickles were greasier than expected.  Though I've thought they were delicious in the past, I probably wouldn't order either again.  The gyro burger was good, but I could have used a little more sauce.  It almost tasted like all of the ingredients didn't entirely fit together.  Something was definitely off. It was a friday night and they weren't insanely busy, so I'm not sure I would attribute it to the staff not being on their A game...\n\nDon't get me wrong.  Flip is still good.  The wait staff is still amazingly good looking.  They still make delicious milk shakes.  It's just not as amazing as it once was, which really is a little sad.","date":"2010-10-11 18:18:35"}

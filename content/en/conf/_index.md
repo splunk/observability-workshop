@@ -1,7 +1,6 @@
 ---
 archetype: "home"
-title: .conf Workshops
-linkTitle: .conf Workshops
+title: .conf23 Workshops
 description: .conf 2023 - Workshops
 weight: 11
 alwaysopen: false

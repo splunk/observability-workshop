@@ -9,7 +9,7 @@ weight: 7
 Please kindly clean up your lab using the following command:
 
 {{< tabs >}}
-{{% tab name="Remove Functions" %}}
+{{% tab title="Remove Functions" %}}
 
 ``` bash
 sls remove

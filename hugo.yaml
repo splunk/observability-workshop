@@ -10,18 +10,14 @@ enableRobotsTXT: true
 module:
   imports:
     - path: github.com/McShelby/hugo-theme-relearn
-theme:
-  - github.com/McShelby/hugo-theme-relearn
 languages:
   en:
     title: "Splunk Observability Cloud Workshops"
-    description: Splunk Observability Workshops
     languageName: English
     contentDir: content/en
     weight: 1
   ja:
     title: "Splunk Observability Cloud Workshops"
-    description: Splunk Observability ワークショップ
     contentDir: content/ja
     languageName: 日本語
     weight: 2
@@ -63,10 +59,10 @@ params:
   versions:
     - version: latest
       url: https://splunk.github.io/observability-workshop/latest/
-    - version: v4.85
-      url: https://splunk.github.io/observability-workshop/v4.85
-    - version: v4.86
-      url: https://splunk.github.io/observability-workshop/v4.86
+    - version: v4.88
+      url: https://splunk.github.io/observability-workshop/v4.88
+    - version: v4.89
+      url: https://splunk.github.io/observability-workshop/v4.89
   url_latest_version: https://splunk.github.io/observability-workshop/
 menu:
   shortcuts:

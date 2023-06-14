@@ -1,6 +1,7 @@
 ---
 title: Deploying the OpenTelemetry Collector in Kubernetes
 linkTitle: 2. Get Data In
+menuPost: " <i class='fa fa-user-ninja'></i>"
 alwaysopen: false
 weight: 2
 ---
@@ -20,7 +21,7 @@ Expand the workshop token that your host has instructed you to use e.g. **O11y-W
 
 ![Access Token](../images/access-token.png)
 
-{{% notice title="Please do not attempt to create your own token" color="warning" %}}
+{{% notice title="Please do not attempt to create your own token" style="warning" %}}
 We have created a Token specifically for this workshop with the appropriate settings for the exercises you will be performing so have allocated it both Ingest and API Permissions.  Best practice in production is to only allocate a single permission to a Token such as Ingest OR API OR RUM and use multiple Tokens where required.
 {{% /notice %}}
 
@@ -33,7 +34,7 @@ You will also need to obtain the name of the Realm[^2] for your Splunk account. 
 Create the `ACCESS_TOKEN` and `REALM` environment variables to use in the proceeding Helm install command. For instance, if your realm is `us1`, you would type `export REALM=us1` and for `eu0` type `export REALM=eu0`.
 
 {{< tabs >}}
-{{% tab name="Export ACCESS TOKEN" %}}
+{{% tab title="Export ACCESS TOKEN" %}}
 
 ```bash
 export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
@@ -43,7 +44,7 @@ export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
 {{< /tabs >}}
 
 {{< tabs >}}
-{{% tab name="Export REALM" %}}
+{{% tab title="Export REALM" %}}
 
 ```bash
 export REALM="<replace_with_REALM>"
@@ -55,14 +56,14 @@ export REALM="<replace_with_REALM>"
 Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository to Helm and update.
 
 {{< tabs >}}
-{{% tab name="Helm Repo Add" %}}
+{{% tab title="Helm Repo Add" %}}
 
 ``` bash
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update
 ```
 
 {{% /tab %}}
-{{% tab name="Helm Repo Add Output" %}}
+{{% tab title="Helm Repo Add Output" %}}
 Using ACCESS_TOKEN={REDACTED}
 Using REALM=eu0
 "splunk-otel-collector-chart" has been added to your repositories
@@ -77,7 +78,7 @@ Update Complete. ⎈Happy Helming!⎈
 Install the OpenTelemetry Collector Helm chart with the following commands, do **NOT** edit this:
 
 {{< tabs >}}
-{{% tab name="Helm Install" %}}
+{{% tab title="Helm Install" %}}
 
 ```bash
 helm install splunk-otel-collector \
@@ -93,7 +94,7 @@ splunk-otel-collector-chart/splunk-otel-collector \
 ```
 
 {{% /tab %}}
-{{% tab name="Helm Install Output" %}}
+{{% tab title="Helm Install Output" %}}
 
 ``` text
 Using ACCESS_TOKEN={REDACTED}
@@ -107,7 +108,7 @@ TEST SUITE: None
 ```
 
 {{% /tab %}}
-{{% tab name="Install Network Explorer" %}}
+{{% tab title="Install Network Explorer" %}}
 
 ```bash
 helm install splunk-otel-collector \
@@ -136,14 +137,14 @@ You can monitor the progress of the deployment by running `kubectl get pods` whi
 Ensure the status is reported as Running before continuing.
 
 {{< tabs >}}
-{{% tab name="Kubectl Get Pods" %}}
+{{% tab title="Kubectl Get Pods" %}}
 
 ``` bash
 kubectl get pods
 ```
 
 {{% /tab %}}
-{{% tab name="Kubectl Get Pods Output" %}}
+{{% tab title="Kubectl Get Pods Output" %}}
 
 ``` text
 NAME                                                          READY   STATUS    RESTARTS   AGE
@@ -159,14 +160,14 @@ Ensure there are no errors by tailing the logs from the OpenTelemetry Collector 
 Use the label set by the `helm` install to tail logs (You will need to press `ctrl+c` to exit). Or use the installed `k9s` terminal UI for bonus points!
 
 {{< tabs >}}
-{{% tab name="Kubectl Logs" %}}
+{{% tab title="Kubectl Logs" %}}
 
 ``` bash
 kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 ```
 
 {{% /tab %}}
-{{% tab name="Kubectl Logs Output" %}}
+{{% tab title="Kubectl Logs Output" %}}
 2021-03-21T16:11:10.900Z        INFO    service/service.go:364  Starting receivers...
 2021-03-21T16:11:10.900Z        INFO    builder/receivers_builder.go:70 Receiver is starting... {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
 2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:75 Receiver started.       {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
@@ -180,7 +181,7 @@ kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% notice title="Deleting a failed installation" color="danger" %}}
+{{% notice title="Deleting a failed installation" style="info" %}}
 If you make an error installing the OpenTelemetry Collector you can start over by deleting the installation using:
 
 ``` sh
@@ -201,15 +202,13 @@ Under **Containers** click on **Kubernetes** to open the Kubernetes Navigator Cl
 
 Validate that your cluster is discovered and reporting by finding your cluster (in the workshop you will see many other clusters). To find your cluster name run the following command and copy the output to your clipboard:
 
-{{< tabs >}}
-{{% tab name="Echo Cluster Name" %}}
+{{% tab title="Echo Cluster Name" %}}
 
 ```bash
 echo $(hostname)-k3s-cluster
 ```
 
 {{% /tab %}}
-{{< /tabs >}}
 
 Then in the UI, click on the "Cluster: - " menu just below the Splunk Logo, and paste the Cluster name you just copied into the search box, click the box to select your cluster, and finally click off the menu into white space to apply the filter.
 
@@ -219,7 +218,7 @@ Then in the UI, click on the "Cluster: - " menu just below the Splunk Logo, and 
 
 ![Filtered K8S Cluster](../images/filtered-k3s-cluster.png)
 
-To examine the health of your node, hover over the pale blue background of your cluster, then click on the blue magnifying glass ![Magnifying Glass](../images/blue-cross.png) that appears in the top left hand corner.
+To examine the health of your node, hover over the pale blue background of your cluster, then click on the blue magnifying glass ![Magnifying Glass](../images/blue-cross.png?classes=inline&height=25px) that appears in the top left hand corner.
 
 This will drill down to the node level.  Next, open the side bar by clicking on the side bar button to open the Metrics side bar.
 

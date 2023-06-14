@@ -1,6 +1,7 @@
 ---
 title: Deploying NGINX in K3s
-linkTitle: 2.1 Deploy and Monitor NGINX
+linkTitle: 2.1 Deploy NGINX
+menuPost: " <i class='fa fa-user-ninja'></i>"
 weight: 3
 ---
 
@@ -22,10 +23,12 @@ Now switch back to the default cluster node view by selecting the **MAP** tab an
 In your AWS/EC2 or Multipass shell session change into the `nginx` directory:
 
 {{< tabs >}}
-{{% tab name="Change Directory" %}}
+{{% tab title="Change Directory" %}}
+
 ```bash
 cd ~/workshop/k3s/nginx
 ```
+
 {{% /tab %}}
 {{< /tabs >}}
   
@@ -36,12 +39,14 @@ cd ~/workshop/k3s/nginx
 Create the NGINX ConfigMap[^1] using the `nginx.conf` file:
 
 {{< tabs >}}
-{{% tab name="Kubectl Configmap Create" %}}
+{{% tab title="Kubectl Configmap Create" %}}
+
 ```bash
 kubectl create configmap nginxconfig --from-file=nginx.conf
 ```
+
 {{% /tab %}}
-{{% tab name="Kubectl Create Configmap Output" %}}
+{{% tab title="Kubectl Create Configmap Output" %}}
 configmap/nginxconfig created
 {{% /tab %}}
 {{< /tabs >}}
@@ -49,12 +54,14 @@ configmap/nginxconfig created
 Then create the deployment:
 
 {{< tabs >}}
-{{% tab name="Kubectl Create Deployment" %}}
+{{% tab title="Kubectl Create Deployment" %}}
+
 ```bash
 kubectl create -f nginx-deployment.yaml
 ```
+
 {{% /tab %}}
-{{% tab name="Kubectl Create Deployment Output" %}}
+{{% tab title="Kubectl Create Deployment Output" %}}
 deployment.apps/nginx created
 service/nginx created
 {{% /tab %}}
@@ -63,12 +70,14 @@ service/nginx created
 Next we will deploy Locust[^2] which is an open source tool used for creating a load test against NGINX:
 
 {{< tabs >}}
-{{% tab name="Kubectl Create Deployment" %}}
+{{% tab title="Kubectl Create Deployment" %}}
+
 ```bash
 kubectl create -f locust-deployment.yaml
 ```
+
 {{% /tab %}}
-{{% tab name="Kubectl Create Deployment Output" %}}
+{{% tab title="Kubectl Create Deployment Output" %}}
 deployment.apps/nginx-loadgenerator created
 service/nginx-loadgenerator created
 {{% /tab %}}
@@ -91,12 +100,14 @@ If you select the **WORKLOADS** tab again you will now see that there is a new R
 Let's validate this in your shell as well:
 
 {{< tabs >}}
-{{% tab name="Kubectl Get Pods" %}}
+{{% tab title="Kubectl Get Pods" %}}
+
 ```bash
 kubectl get pods
 ```
+
 {{% /tab %}}
-{{% tab name="Kubectl Get Pods Output" %}}
+{{% tab title="Kubectl Get Pods Output" %}}
 NAME                                                          READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-k8s-cluster-receiver-77784c659c-ttmpk   1/1     Running   0          9m19s
 splunk-otel-collector-agent-249rd                             1/1     Running   0          9m19s

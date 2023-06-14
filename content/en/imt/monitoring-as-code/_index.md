@@ -1,6 +1,7 @@
 ---
 title: Monitoring as Code
 linkTitle: 5. Monitoring as Code
+menuPost: " <i class='fa fa-user-ninja'></i>"
 weight: 5
 ---
 
@@ -23,37 +24,31 @@ Full documentation for the Splunk Terraform Provider is available [here](https:/
 
 Remaining in your AWS/EC2 instance, change into the `o11y-cloud-jumpstart` directory
 
-{{< tabs >}}
-{{% tab name="Change directory" %}}
+{{% tab title="Change directory" %}}
 
 ``` bash
 cd observability-content-contrib/integration-examples/terraform-jumpstart
 ```
 
 {{% /tab %}}
-{{< /tabs >}}
 
 The environment variables needed should already be set from [Installation using Helm](../gdi/#2-installation-using-helm). If not, create the following environment variables to use in the Terraform steps below
 
-{{< tabs >}}
-{{% tab name="Export ACCESS TOKEN" %}}
+{{% tab title="Export ACCESS TOKEN" %}}
 
 ``` bash
 export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
 ```
 
 {{% /tab %}}
-{{< /tabs >}}
 
-{{< tabs >}}
-{{% tab name="Export REALM" %}}
+{{% tab title="Export REALM" %}}
 
 ``` bash
 export REALM="<replace_with_REALM>"
 ```
 
 {{% /tab %}}
-{{< /tabs >}}
 
 Initialize Terraform and upgrade to the latest version of the Splunk Terraform Provider
 
@@ -62,14 +57,14 @@ You will need to run the command below each time a new version of the Splunk Ter
 {{% /notice %}}
 
 {{< tabs >}}
-{{% tab name="Initialise Terraform" %}}
+{{% tab title="Initialise Terraform" %}}
 
 ``` bash
 terraform init -upgrade
 ```
 
 {{% /tab %}}
-{{% tab name="Initialise Output" %}}
+{{% tab title="Initialise Output" %}}
 
 ``` text
     Upgrading modules...
@@ -126,14 +121,14 @@ The `terraform plan` command creates an execution plan. By default, creating a p
 The plan command alone will not actually carry out the proposed changes, and so you can use this command to check whether the proposed changes match what you expected before you apply the changes
 
 {{< tabs >}}
-{{% tab name="Execution Plan" %}}
+{{% tab title="Execution Plan" %}}
 
 ```bash
 terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$(hostname)]"
 ```
 
 {{% /tab %}}
-{{% tab name="Execution Plan Output" %}}
+{{% tab title="Execution Plan Output" %}}
 
 ``` text
 Plan: 146 to add, 0 to change, 0 to destroy.
@@ -155,14 +150,14 @@ The most straightforward way to use `terraform apply` is to run it without any a
 Due to this being a workshop it is required that the prefix is to be unique so you need to run the `terraform apply` below.
 
 {{< tabs >}}
-{{% tab name="Apply Plan" %}}
+{{% tab title="Apply Plan" %}}
 
 ``` bash
 terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$(hostname)]"
 ```
 
 {{% /tab %}}
-{{% tab name="Apply Plan Output" %}}
+{{% tab title="Apply Plan Output" %}}
 
 ``` text
 Apply complete! Resources: 146 added, 0 changed, 0 destroyed.
@@ -190,14 +185,14 @@ While you will typically not want to destroy long-lived objects in a production 
 Now go and destroy all the Detectors and Dashboards that were previously applied!
 
 {{< tabs >}}
-{{% tab name="Destroy" %}}
+{{% tab title="Destroy" %}}
 
 ``` bash
 terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
 ```
 
 {{% /tab %}}
-{{% tab name="Destroy Output" %}}
+{{% tab title="Destroy Output" %}}
 
 ``` text
 Destroy complete! Resources: 146 destroyed.

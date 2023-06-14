@@ -1,21 +1,23 @@
 ---
-title: 1. Deploy the Online Boutique
+title: 1. The Online Boutique
 weight: 1
-description: Deploy the Online Boutique application into Kubernetes (K3s) and generate some artificial traffic using Locust.
+description: Verify the Online Boutique application is deployed into Kubernetes (K3s) and generate some artificial traffic using a Load Generator (Locust).
 ---
 
 {{% button icon="clock" %}}15 minutes{{% /button %}}
 
-* Deploy the Online Boutique application into Kubernetes (K3s)
+* {{% badge style="primary" icon=user-ninja title="" %}}**Ninja**{{% /badge %}} Deploy the Online Boutique application in Kubernetes
 * Verify the application is running
 * Generate some artificial traffic using Locust
 * See APM metrics in the UI
 
 ---
 
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja** - Deploy the Online Boutique{{% /badge %}}" %}}
+
 ## 1. Check your EC2 server
 
-This workshop module assumes you are running this after you have run the IM workshop, and still have access to your EC2 instance.
+This workshop module assumes you are completing this after you have run the IM workshop, and still have access to your EC2 instance.
 
 If this is the case, continue with [Deploy Online Boutique](#2-deploy-online-boutique), otherwise if you have received a fresh instance, please run the first two (2) sections of [Deploy the OTel Collector](../../imt/gdi/) to get the system ready for the APM workshop, then continue with the next section.
 
@@ -24,7 +26,7 @@ If this is the case, continue with [Deploy Online Boutique](#2-deploy-online-bou
 To deploy the Online Boutique application into K3s, run the `apm-config.sh` script, then apply the deployment:
 
 {{< tabs >}}
-{{% tab name="Deploy Online Boutique" %}}
+{{% tab title="Deploy Online Boutique" %}}
 
 ``` bash
 cd ~/workshop/apm
@@ -33,7 +35,7 @@ kubectl apply -f deployment.yaml
 ```
 
 {{% /tab %}}
-{{% tab name="Deployment Output" %}}
+{{% tab title="Deployment Output" %}}
 
 ``` text
 APM Only Deployment
@@ -77,14 +79,14 @@ Then, export the variable as described in the guide/message, followed by re-runn
 To ensure the Online Boutique application is running:
 
 {{< tabs >}}
-{{% tab name="Get Pods" %}}
+{{% tab title="Get Pods" %}}
 
 ``` bash
 kubectl get pods
 ```
 
 {{% /tab %}}
-{{% tab name="Get Pods Output" %}}
+{{% tab title="Get Pods Output" %}}
 
 ``` text
 NAME                                                       READY  STATUS  RESTARTS      AGE
@@ -114,13 +116,13 @@ adservice-7b68d5b969-89ft2                                  1/1   Running   0   
 Usually it should only take around 1min 30secs for the pods to transition into a Running state.
 {{% /notice %}}
 
----
+{{% /expand %}}
 
-## 4. Validate in the UI
+## Validate Online Boutique is deployed
 
 In the Splunk UI click on **Infrastructure** this will bring you to the Infrastructure Overview dashboard, then click on **Kubernetes**.
 
-Use the **Cluster** dropdown so select your Cluster, you should see the new pods started and containers deployed. When you click on your Cluster in the Splunk UI you should have a view that looks like below:
+Use the **Cluster** dropdown to select the cluster name, you will see the new pods started and containers deployed. When you click on your Cluster in the Splunk UI you should have a view that looks like below:
 
 ![Back to cluster](../images/online-boutique-k8s.png)
 
@@ -128,12 +130,16 @@ If you select the **WORKLOADS** tab again you should now see that there are a nu
 
 ![Online Boutique loaded](../images/online-boutique-workload.png)
 
----
+## Visit the Online Boutique
 
-## 5. View Online Boutique
-
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja** - Visit the Online Boutique you just deployed{{% /badge %}}" %}}
+{{% notice style="blue" %}}
 The Online Boutique is viewable on port 81 of the EC2 instance's IP address. The IP address is the one you used to SSH into the instance at the beginning of the workshop.
 
 Open your web browser and go to `http://<ec2-ip-address>:81/` where you will then be able to see the Online Boutique running.
+{{% /notice %}}
+{{% /expand %}}
+
+Your Workshop instructor will provide you with URL to access the Online Boutique. Enter this URL into your browser and you will see the Online Boutique homepage.
 
 ![Online Boutique](../images/online-boutique.png)

@@ -8,7 +8,7 @@ weight: 2
 
 Navigate to the auto directory that contains auto-instrumentation code.
 
-{{< tabs >}} {{% tab name="Command" %}}
+{{< tabs >}} {{% tab title="Command" %}}
 ```
 cd ~/o11y-lambda-lab/auto
 ```
@@ -16,7 +16,7 @@ cd ~/o11y-lambda-lab/auto
 
 Inspect the contents of the files in this directory. Take a look at the serverless.yml template.
 
-{{< tabs >}} {{% tab name="Command" %}}
+{{< tabs >}} {{% tab title="Command" %}}
 ```
 cat serverless.yml
 ```
@@ -54,7 +54,7 @@ Here we provide minimum information, such as NodeJS wrapper location in the Splu
 
 Take a look at the function code.
 
-{{< tabs >}} {{% tab name="Command" %}}
+{{< tabs >}} {{% tab title="Command" %}}
 ```
 cat handler.js
 ```
@@ -71,11 +71,11 @@ Notice there is no mention of Splunk or OpenTelemetry in the code. We are adding
 
 Run the following command to deploy your Lambda Functions:
 
-{{< tabs >}} {{% tab name="Deploy Command" %}}
+{{< tabs >}} {{% tab title="Deploy Command" %}}
 ```
 sls deploy
 ```
-{{% /tab %}} {{% tab name="Expected Output" %}}
+{{% /tab %}} {{% tab title="Expected Output" %}}
 ```
 Deploying hostname-lambda-lab to stage dev (us-east-1)
 ...
@@ -93,7 +93,7 @@ This command will follow the instructions in your serverless.yml template to cre
 
 Check the details of your serverless functions:
 
-{{< tabs >}} {{% tab name="Command" %}}
+{{< tabs >}} {{% tab title="Command" %}}
 ```
 sls info
 ```
@@ -108,7 +108,7 @@ Use the curl command to send a payload to your producer function. Note the comma
 
 Try changing the value of name to your name and telling the Lambda function about your superpower. Replace YOUR_ENDPOINT with the endpoint from your previous step.
 
-{{< tabs >}} {{% tab name="Command" %}}
+{{< tabs >}} {{% tab title="Command" %}}
 ```
 curl -d '{ "name": "CHANGE_ME", "superpower": "CHANGE_ME" }' YOUR_ENDPOINT
 ```
@@ -134,7 +134,7 @@ Check the lambda logs output:
 
 Producer function logs:
 
-{{< tabs >}} {{% tab name="Producer Function Logs" %}}
+{{< tabs >}} {{% tab title="Producer Function Logs" %}}
 ```
 sls logs -f producer
 ```
@@ -142,7 +142,7 @@ sls logs -f producer
 
 Consumer function logs:
 
-{{< tabs >}} {{% tab name="Consumer Function Logs" %}}
+{{< tabs >}} {{% tab title="Consumer Function Logs" %}}
 ```
 sls logs -f consumer
 ```

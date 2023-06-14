@@ -8,13 +8,13 @@ weight: 5
 
 While remaining in your manual directory, run the following commandd to re-deploy your Lambda Functions:
 
-{{< tabs >}} {{% tab name="Deploy Producer Code" %}}
+{{< tabs >}} {{% tab title="Deploy Producer Code" %}}
 
 ``` bash
 sls deploy -f producer
 ```
 
-{{% /tab %}} {{% tab name="Expected Output" %}}
+{{% /tab %}} {{% tab title="Expected Output" %}}
 
 ``` text
 Deploying function producer to stage dev (us-east-1)
@@ -25,13 +25,13 @@ Configuration did not change. Configuration update skipped. (6s)
 
 {{% /tab %}} {{< /tabs >}}
 
-{{< tabs >}} {{% tab name="Deploy Consumer Code" %}}
+{{< tabs >}} {{% tab title="Deploy Consumer Code" %}}
 
 ``` bash
 sls deploy -f consumer
 ```
 
-{{% /tab %}} {{% tab name="Expected Output" %}}
+{{% /tab %}} {{% tab title="Expected Output" %}}
 
 ``` text
 Deploying function consumer to stage dev (us-east-1)
@@ -46,7 +46,7 @@ Note that this deployment now only updates the code changes within the function.
 
 Check the details of your serverless functions:
 
-{{< tabs >}} {{% tab name="Command" %}}
+{{< tabs >}} {{% tab title="Command" %}}
 
 ``` bash
 sls info
@@ -64,7 +64,7 @@ Use the `curl` command to send a payload to your producer function. Note the com
 
 Try changing the value of name to your name and telling the Lambda function about your superpower. Replace `YOUR_ENDPOINT` with the endpoint from your previous step.
 
-{{< tabs >}} {{% tab name="Command" %}}
+{{< tabs >}} {{% tab title="Command" %}}
 
 ``` bash
 curl -d '{ "name": "CHANGE_ME", "superpower": "CHANGE_ME" }' YOUR_ENDPOINT
@@ -96,7 +96,7 @@ If you see a success message, generate more load: re-send that messate 5+ times.
 
 Check the lambda logs output:
 
-{{< tabs >}} {{% tab name="Producer Function Logs" %}}
+{{< tabs >}} {{% tab title="Producer Function Logs" %}}
 
 ``` bash
 sls logs -f producer
@@ -104,7 +104,7 @@ sls logs -f producer
 
 {{% /tab %}} {{< /tabs >}}
 
-{{< tabs >}} {{% tab name="Consumer Function Logs" %}}
+{{< tabs >}} {{% tab title="Consumer Function Logs" %}}
 
 ``` bash
 sls logs -f consumer

@@ -25,14 +25,14 @@ services:
 Build the service:
 
 {{< tabs >}}
-{{% tab name="Shell Command" %}}
+{{% tab title="Shell Command" %}}
 docker-compose build{{% /tab %}}
 {{< /tabs >}}
 
 Then run the whole stack:
 
 {{< tabs >}}
-{{% tab name="Shell Command" %}}
+{{% tab title="Shell Command" %}}
 docker-compose up{{% /tab %}}
 {{< /tabs >}}
 

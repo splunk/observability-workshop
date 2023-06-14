@@ -27,9 +27,7 @@ During this module we are going to create the following charts and dashboard and
 
 ## 2. Your Teams' Page
 
-Click on the ![dashboards button](../images/dashboards.png) from the navbar. As you have already been assigned to a team, you will land on the team dashboard.
-
-We use the ***Example Team*** as an example here. The one in your workshop will be different!
+Click on the ![dashboards button](../images/dashboards.png?classes=inline&height=25px) from the navbar. As you have already been assigned to a team, you will land on the team dashboard. We use the ***Example Team*** as an example here. The one in your workshop will be different!
 
 ![Team Dashboard1](../images/team-dashboard.png)
 

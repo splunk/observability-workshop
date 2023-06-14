@@ -29,7 +29,7 @@ Stop other instances of the app if you had any running.
 Then build and run the image:
 
 {{< tabs >}}
-{{% tab name="Shell Command" %}}
+{{% tab title="Shell Command" %}}
 docker build . -t wordcount
 docker run -p 5000:5000 wordcount:latest
 {{% /tab %}}
@@ -38,7 +38,7 @@ docker run -p 5000:5000 wordcount:latest
 Test the service in another shell:
 
 {{< tabs >}}
-{{% tab name="Shell Command" %}}
+{{% tab title="Shell Command" %}}
 
 ``` bash
 curl -X POST http://127.0.0.1:5000/wordcount -F text=@hamlet.txt

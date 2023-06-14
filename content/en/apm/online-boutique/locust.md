@@ -1,5 +1,5 @@
 ---
-title: 1.1 Generate load using Locust
+title: 1.1 Generate load
 weight: 2
 ---
 
@@ -9,7 +9,13 @@ weight: 2
 
 The Online Boutique deployment contains a container running Locust that we can use to generate load traffic against the website to generate metrics, traces and spans.
 
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja** - Access your Locust instance{{% /badge %}}" %}}
+{{% notice style="blue" %}}
 Locust is available on port 82 of the EC2 instance's IP address. Open a new tab in your web browser and go to `http://<ec2-ip-address>:82/`, you will then be able to see the Locust running.
+{{% /notice %}}
+{{% /expand %}}
+
+Your Workshop instructor will provide you with URL to access the Locust load generator. Enter this URL into your browser and you will see the Locust Start new load test landing page.
 
 ![Locust](../../images/locust.png)
 
@@ -28,14 +34,14 @@ For this we need to know the name of your application environment. In this works
 To find the hostname, on the AWS/EC2 instance run the following command:
 
 {{< tabs >}}
-{{% tab name="Echo Hostname" %}}
+{{% tab title="Echo Hostname" %}}
 
 ``` bash
 echo $(hostname)-apm-env
 ```
 
 {{% /tab %}}
-{{% tab name="Output Example" %}}
+{{% tab title="Output Example" %}}
 
 ``` text
 bdzx-apm-env
@@ -85,20 +91,23 @@ From the top left hamburger menu **Dashboards → OpenTelemetry Collector**, scr
 
 ## 4. OpenTelemetry zpages
 
-To debug the traces being sent you can use the zpages extension. [zpages][zpages] are part of the OpenTelemetry collector and provide live data for troubleshooting and statistics. They are available on port `55679` of the EC2 instance's IP address. Open a new tab in your web browser and enter in `http://{==EC2-IP==}:55679/debug/tracez`, you will then be able to see the zpages output.
+To debug the traces being sent you can use the zpages extension. [zpages][zpages] are part of the OpenTelemetry collector and provide live data for troubleshooting and statistics.
 
-[zpages]: https://github.com/open-telemetry/opentelemetry-specification/blob/main/experimental/trace/zpages.md#tracez
-
-![zpages](../../images/zpages.png)
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja** - Access zPages on your EC2 instance{{% /badge %}}" %}}
+{{% notice style="blue" %}}
+zPages is available on port `55679` of the EC2 instance's IP address. Open a new tab in your web browser and enter in `http://{==EC2-IP==}:55679/debug/tracez`, you will then be able to see the zpages output.
 
 Alternatively, from your shell prompt you can run a text based browser:
-
-{{< tabs >}}
-{{% tab name="Lynx Command" %}}
 
 ``` bash
 lynx http://localhost:55679/debug/tracez
 ```
 
-{{% /tab %}}
-{{< /tabs >}}
+{{% /notice %}}
+{{% /expand %}}
+
+Your Workshop instructor will provide you with a URL to access zPages. Enter this URL into your browser and you will see the zPages output.
+
+[zpages]: https://github.com/open-telemetry/opentelemetry-specification/blob/main/experimental/trace/zpages.md#tracez
+
+![zpages](../../images/zpages.png)

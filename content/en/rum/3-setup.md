@@ -1,6 +1,7 @@
 ---
 title: 3. Example of RUM enablement in your Website
 linkTitle:  3. Using RUM on your Website
+menuPost: " <i class='fa fa-user-ninja'></i>"
 weight: 3
 ---
 * Check the original HEAD section of your Online-boutique webpage (or use the examples here) in your browser
@@ -17,34 +18,32 @@ If you have not got access to an EC2 instance with the Online Boutique installed
 
 ## 2. Obtain RUM Access Token
 
-As this Deployment we are about to do is also used as part of the RUM workshop section, you will need to obtain your RUM Access Token from the Splunk UI. You can find the workshop Access Token by clicking **>>** bottom left or the ![settings](../images/setting.png) menu option and then selecting **Settings → Access Tokens**.
+As this Deployment we are about to do is also used as part of the RUM workshop section, you will need to obtain your RUM Access Token from the Splunk UI. You can find the workshop Access Token by clicking **>>** bottom left or the ![settings](../images/setting.png?classes=inline&height=25px) menu option and then selecting **Settings → Access Tokens**.
 
 Expand the RUM workshop token that your host has instructed you to use e.g. **O11y-Workshop-RUM-TOKEN**, then click on **Show Token** to expose your token. Click the {{% button style="grey" %}}Copy{{% /button %}} button to copy to clipboard. Please do not use the **Default** token! Make sure the token has RUM as its Authorization Scope.
 
 ![Access Token](../images/RUM-Access-Token.png)
 
-{{% notice title="Please do not attempt to create your own token" color="warning" %}}
+{{% notice title="Please do not attempt to create your own token" style="note" %}}
 We have created a RUM Token specifically for this workshop with the appropriate settings for the exercises you will be performing
 {{% /notice %}}
 
 Create the `RUM_TOKEN` environment variable to use in the proceeding shell script to personalize your deployment.
 
-{{< tabs >}}
-{{% tab name="Export Variables" %}}
+{{% tab title="Export Variables" %}}
 
 ```bash
 export RUM_TOKEN=<replace_with_O11y-Workshop-RUM-TOKEN>
 ```
 
 {{% /tab %}}
-{{< /tabs >}}
 
 ## 2. Deploy Online Boutique
 
 To deploy the Online Boutique application into K3s, run the apm config script, then apply the deployment:
 
 {{< tabs >}}
-{{% tab name="Deploy Online Boutique" %}}
+{{% tab title="Deploy Online Boutique" %}}
 
 ```bash
 cd ~/workshop/apm
@@ -53,7 +52,7 @@ kubectl apply -f deployment.yaml
 ```
 
 {{% /tab %}}
-{{% tab name="Deployment Output"  %}}
+{{% tab title="Deployment Output" %}}
 
 ``` text
 deployment.apps/checkoutservice created
@@ -86,9 +85,8 @@ service/currencyservice created
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% notice title="In case of a message about a VARIABLE being unset" color="warning" %}}
-Please undeploy the APM environment by running **kubectl delete -f deployment.yaml**</br>
-Before exporting the variable as described in the guide and rerunning the deployment script above.
+{{% notice title="In case of a message about a VARIABLE being unset" style="warning" %}}
+Please undeploy the APM environment by running `kubectl delete -f deployment.yaml` before exporting the variable as described in the guide and rerunning the deployment script above.
 {{% /notice %}}
 
 Open your web browser and go to the Online Boutique.  (The one you previously used, or the one provided by the Workshop instructor). You will see the Non RUM Online Boutique running.
@@ -163,7 +161,7 @@ The changes needed for RUM are placed in the HEAD section of the hosts Web page,
 
 The first three lines  (marked in red) have been added to the HEAD section of the host Web page to enable RUM Tracing, the last three (marked in blue) are optional and used to enable Custom RUM events.
 
-```html
+``` html
 <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" type="text/javascript"></script>
 <script>window.SplunkRum && window.SplunkRum.init({beaconUrl: "https://rum-ingest.eu0.signalfx.com/v1/rum",
         rumAuth: "1wCqZVUWIP5XSdNjPoQRFg", app: "ksnq-rum-app", environment: "ksnq-rum-env"});</script>
@@ -178,7 +176,7 @@ The first three lines  (marked in red) have been added to the HEAD section of th
 * It also adds an Access Token to :  `rumAuth: "1wCqZVUWIP5XSdNjPoQRFg"` (this of course is an example, you can create multiple RUM Access Tokens for all your applications)
 * And it is used to add identification tags like the application Name and environment to the RUM trace for use in the SPLUNK RUM UI:  `app: "ksnq-rum-app", environment: "ksnq-rum-env"}`
 
-{{% notice title="Info" color="info" %}}
+{{% notice title="Info" style="info" %}}
 In this example the app name is **ksnq-rum-app**, this will be different in the Workshop. Check with your host what the app name and environment to use in the RUM session will be and make a note of it!
 {{% /notice %}}
 

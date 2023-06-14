@@ -19,45 +19,57 @@ cd observability-workshop/multipass
 ```
 
 ```text
-brew install multipass.rb
+brew install multipass
 brew install terraform
+```
+
+Make sure you have mulitpass `1.12.0` or above installed!
+
+```bash
+multipass --version
+
+multipass   1.12.0+mac
+multipassd  1.12.0+mac
 ```
 
 ## 4. Initialise Terraform
 
 ```bash
-terraform init --upgrade
+terraform init -upgrade
 ```
 
 ```text
 Initializing the backend...
 
 Initializing provider plugins...
-- Reusing previous version of hashicorp/template from the dependency lock file
-- Reusing previous version of larstobi/multipass from the dependency lock file
-- Reusing previous version of hashicorp/local from the dependency lock file
-- Reusing previous version of hashicorp/random from the dependency lock file
-- Using previously-installed hashicorp/random v3.4.3
-- Using previously-installed hashicorp/template v2.2.0
-- Using previously-installed larstobi/multipass v1.4.1
-- Using previously-installed hashicorp/local v2.2.3
-
-Terraform has been successfully initialized!
-
-You may now begin working with Terraform. Try running "terraform plan" to see any changes that are required for your infrastructure. All Terraform commands should now work.
-
-If you ever set or change modules or backend configuration for Terraform, rerun this command to reinitialize your working directory. If you forget, other
-commands will detect it and remind you to do so if necessary.
+- Finding latest version of hashicorp/local...
+- Finding larstobi/multipass versions matching "~> 1.4.1"...
+- Finding latest version of hashicorp/random...
+- Installing larstobi/multipass v1.4.2...
+- Installed larstobi/multipass v1.4.2 (self-signed, key ID 797707331BF3549C)
+- Installing hashicorp/random v3.5.1...
+- Installed hashicorp/random v3.5.1 (signed by HashiCorp)
+- Installing hashicorp/local v2.4.0...
+- Installed hashicorp/local v2.4.0 (signed by HashiCorp)
 ```
 
 ## 5. Terraform variables description
 
+### Required variables
+
 - `splunk_access_token`: Observability Access Token
 - `splunk_rum_token`: Observability RUM Token
-- `splunk_realm`: Observability Realm
-- `splunk_presetup`: Provide a preconfigured instance (OTel Collector and Online Boutique deployed with RUM enabled)
-- `splunk_jdk`: Install OpenJDK and Maven on the instance (for PetClinic workshop or other Java based workshops)
-- `otel_demo` : Install and configure the OpenTelemetry Telescope Shop Demo. This requires that `splunk_presetup` is set to FALSE. The default is FALSE
+
+### Optional variables
+
+- `splunk_realm`: Observability Realm. Required if `splunk_presetup` or `otel_demo` is `true`
+- `subnet_count`: How many subnets to create. The default is 2.
+
+### Instance type variables
+
+- `splunk_presetup`: Provide a preconfigured instance (OTel Collector and Online Boutique deployed with RUM enabled). The default is `false`.
+- `splunk_jdk`: Install OpenJDK and Maven on the instance. The default is `false`.
+- `otel_demo` : Install and configure the OpenTelemetry Astronomy Shop Demo. This requires that `splunk_presetup` is set to `false`. The default is `false`
 
 ## 6. Create Terraform variables file
 
@@ -131,7 +143,7 @@ instance_details = [
 Once the instance has been successfully created (this can take several minutes), shell into it using the `name` output above e.g.
 
 ```bash
-multipass shell lsvt
+multipass shell cynu
 ```
 
 ```text
@@ -148,7 +160,7 @@ See "man sudo_root" for details
 Waiting for cloud-init status...
 Your instance is ready!
 
-ubuntu@lsvt ~ $
+ubuntu@cynu ~ $
 ```
 
 Once your instance presents you with the Splunk logo, you have completed the preparation for your Multipass instance and can at this point you are ready to continue and [start the workshop](https://splunk.github.io/observability-workshop/latest/).

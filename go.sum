@@ -2,3 +2,15 @@ github.com/McShelby/hugo-theme-relearn v0.0.0-20230214203931-8b2380da2dcc h1:6SA
 github.com/McShelby/hugo-theme-relearn v0.0.0-20230214203931-8b2380da2dcc/go.mod h1:mKQQdxZNIlLvAj8X3tMq+RzntIJSr9z7XdzuMomt0IM=
 github.com/McShelby/hugo-theme-relearn v0.0.0-20230303193005-e619dabc51a1 h1:hGJYI84Tqtt5KMJlzyXH08ctE3M2Ygh1Tk4Mr0uYhfs=
 github.com/McShelby/hugo-theme-relearn v0.0.0-20230303193005-e619dabc51a1/go.mod h1:mKQQdxZNIlLvAj8X3tMq+RzntIJSr9z7XdzuMomt0IM=
+github.com/McShelby/hugo-theme-relearn v0.0.0-20230524182513-a135b2adb492 h1:VXmm38zqMcp9DF+7p7y/gdYCN3PBgPAJVXYgJKr/tRQ=
+github.com/McShelby/hugo-theme-relearn v0.0.0-20230524182513-a135b2adb492/go.mod h1:mKQQdxZNIlLvAj8X3tMq+RzntIJSr9z7XdzuMomt0IM=
+github.com/McShelby/hugo-theme-relearn v0.0.0-20230530160124-bbdaafd0d78d h1:1e8+ge1MQns8I5n0JoQDkNGDJjkdWwELjiWqCPJ2V2Y=
+github.com/McShelby/hugo-theme-relearn v0.0.0-20230530160124-bbdaafd0d78d/go.mod h1:mKQQdxZNIlLvAj8X3tMq+RzntIJSr9z7XdzuMomt0IM=
+github.com/McShelby/hugo-theme-relearn v0.0.0-20230531214427-61a3995389db h1:TchlitdK93iSmEViP0uBCUgwxCQmcynZPMKMjq6soxs=
+github.com/McShelby/hugo-theme-relearn v0.0.0-20230531214427-61a3995389db/go.mod h1:mKQQdxZNIlLvAj8X3tMq+RzntIJSr9z7XdzuMomt0IM=
+github.com/McShelby/hugo-theme-relearn v0.0.0-20230606183850-228ab819b917 h1:gswMg8P7Vat6bH6XJI2CanrTriro1ulh8zF7e7ed4Tk=
+github.com/McShelby/hugo-theme-relearn v0.0.0-20230606183850-228ab819b917/go.mod h1:mKQQdxZNIlLvAj8X3tMq+RzntIJSr9z7XdzuMomt0IM=
+github.com/McShelby/hugo-theme-relearn v0.0.0-20230609091118-35a4fd83ef76 h1:dGIPgufXJqXp0a4BrvaYOcF8vW6wF7SsfMXBGWbtm/g=
+github.com/McShelby/hugo-theme-relearn v0.0.0-20230609091118-35a4fd83ef76/go.mod h1:mKQQdxZNIlLvAj8X3tMq+RzntIJSr9z7XdzuMomt0IM=
+github.com/McShelby/hugo-theme-relearn v0.0.0-20230610122345-821002099413 h1:PzoTL2t7YfxPZXnIdtiGAg13b7tVD1sMp4lI0Wub/KI=
+github.com/McShelby/hugo-theme-relearn v0.0.0-20230610122345-821002099413/go.mod h1:mKQQdxZNIlLvAj8X3tMq+RzntIJSr9z7XdzuMomt0IM=
