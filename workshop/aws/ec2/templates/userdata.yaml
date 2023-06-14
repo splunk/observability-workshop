@@ -15,6 +15,7 @@ packages:
   - gnupg2
   - docker-compose
   - podman
+  - net-tools
   - python3-venv
   - jq
 %{ if jdk == true ~}
