@@ -45,6 +45,12 @@ variable "otel_demo" {
   default     = false
 }
 
+variable "wsversion" {
+  description = "Workshop version"
+  type        = string
+  default     = "4.89"
+}
+
 variable "instance_password" {
   default = ""
 }
@@ -66,6 +72,7 @@ locals {
     jdk               = var.splunk_jdk
     otel_demo         = var.otel_demo
     instance_name     = "${random_string.hostname.result}"
+    wsversion         = var.wsversion
     instance_password = var.instance_password
   }
 }

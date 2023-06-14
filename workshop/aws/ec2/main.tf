@@ -184,6 +184,7 @@ locals {
     presetup          = var.splunk_presetup
     jdk               = var.splunk_jdk
     otel_demo         = var.otel_demo
+    wsversion         = var.wsversion
     instance_password = random_string.password.result
   }
 }
