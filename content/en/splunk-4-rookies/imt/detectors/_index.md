@@ -1,15 +1,16 @@
 ---
 title: Working with Detectors
-linkTitle: 4. Detectors
-weight: 4
+linkTitle: 3. Detectors
+weight: 3
 ---
 
 {{% button icon="clock" %}}10 minutes{{% /button %}}
-
-* Create a Detector from one of your charts
-* Setting Alert conditions
-* Running a pre-flight check
-* Working with muting rules
+- Introduction
+  - {{% badge style="primary" icon=user-ninja title="" %}}**Ninja**{{% /badge %}} Monitoring as Code (Detectors)
+- Create a Detector from one of your charts
+- Setting Alert conditions
+- Running a pre-flight check
+- Working with muting rules
 
 ---
 
@@ -18,6 +19,13 @@ weight: 4
 Splunk Observability Cloud uses detectors, events, alerts, and notifications to keep you informed when certain criteria are met. For example, you might want a message sent to a Slack channel or to an email address for the Ops team when CPU Utilization has reached 95%, or when the number of concurrent users is approaching a limit that might require you to spin up an additional AWS instance.
 
 These conditions are expressed as one or more rules that trigger an alert when the conditions in the rules are met. Individual rules in a detector are labeled according to criticality: Info, Warning, Minor, Major, and Critical.
+
+---
+
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja** Monitoring as Code (Detectors){{% /badge %}}" %}}
+{{% /expand %}}
+
+---
 
 ## 2. Creating a Detector
 

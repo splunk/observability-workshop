@@ -4,6 +4,7 @@ linkTitle: O11y 4 Rookies
 description: This workshop will equip you with the basic understanding of monitoring Kubernetes using the Splunk OpenTelemetry Collector
 weight: 1
 alwaysopen: false
+draft: true
 ---
 
 {{% button icon="clock" %}}45 minutes{{% /button %}}

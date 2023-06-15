@@ -1,5 +1,5 @@
 ---
-title: Splunk IM
+title: Splunk4Rookies - Infrastructure Monitoring and APM Workshop
 linkTitle: Splunk IM
 description: Whether on-prem, hybrid or multicloud, Splunk delivers real-time monitoring and troubleshooting to help you maximize infrastructure performance with complete visibility.
 weight: 1

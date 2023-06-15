@@ -1,6 +1,7 @@
 ---
 archetype: "home"
-title: Other Workshops
+title: Advanced Workshops
+menuPost: " <i class='fa fa-user-ninja'></i>"
 weight: 19
 ---
 

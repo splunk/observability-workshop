@@ -1,7 +1,7 @@
 ---
 title: Adding charts to dashboards
-linkTitle: 3.5 Adding more charts
-weight: 5
+linkTitle: 3.4 Adding more charts
+weight: 4
 ---
 
 ## 1. Save to existing dashboard
@@ -12,7 +12,7 @@ Name the Chart **Latency History** and add a Chart Description if you wish.
 
 ![Save Chart 1](../../images/M-MoreCharts-1.png)
 
-Click on {{% button %}}Save And Close{{% /button %}}. This returns you to your dashboard that now has two charts!
+Click on {{% button style="blue" %}}Save And Close{{% /button %}} and this will return you to your dashboard that now has two charts!
 
 ![Save Chart 2](../../images/M-MoreCharts-2.png)
 Now let's quickly add another Chart based on the previous one.

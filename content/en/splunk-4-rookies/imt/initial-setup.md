@@ -3,6 +3,7 @@ title: How to connect to your workshop environment
 linkTitle: 1. Access AWS/EC2 Instance
 menuPost: " <i class='fa fa-user-ninja'></i>"
 weight: 1
+draft: true
 ---
 
 {{% button icon="clock" %}}5 minutes 🥷🏻{{% /button %}}

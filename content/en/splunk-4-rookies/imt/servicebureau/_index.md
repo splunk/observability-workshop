@@ -1,7 +1,7 @@
 ---
 title: Service Bureau
-linkTitle: 6. Service Bureau
-weight: 6
+linkTitle: 4. Service Bureau
+weight: 4
 ---
 
 {{% button icon="clock" %}}10 minutes{{% /button %}}
