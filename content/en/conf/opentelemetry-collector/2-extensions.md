@@ -361,6 +361,11 @@ There is a potential that this could impact data throughput performance due disk
 
 ## Configuration Check-in
 
+That's extensions covered, let's check our configuration changes.
+
+{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your configuration{{% /badge %}}" %}}
+
+{{< tabs >}}
 {{% tab title="config.yaml" %}}
 
 ```yaml {hl_lines=[3]}
@@ -423,5 +428,7 @@ service:
 ```
 
 {{% /tab %}}
+{{< /tabs >}}
+{{% /expand %}}
 
 Now that we have reviewed extensions, lets dive into the data pipeline portion of the workshop. The data pipeline in the OpenTelemetry Collector is made up of receivers, processors, and exporters. We will first start with receivers.
