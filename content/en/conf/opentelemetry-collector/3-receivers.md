@@ -40,9 +40,9 @@ flowchart LR;
 
 ### Host Metrics Receiver
 
-[The Host Metrics Receiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/README.md) generates metrics about the host system scraped from various sources. This is intended to be used when the collector is deployed as an agent which is what we will be doing in this workshop.
+[**The Host Metrics Receiver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/README.md) generates metrics about the host system scraped from various sources. This is intended to be used when the collector is deployed as an agent which is what we will be doing in this workshop.
 
-Let's edit our `/etc/otelcontribcol/config.yaml` file and configure the hostmetrics receiver. Insert the following YAML under the **receivers** section, taking care to indent by two spaces e.g.
+Let's update the `/etc/otelcontribcol/config.yaml` file and configure the **hostmetrics** receiver. Insert the following YAML under the **receivers** section, taking care to indent by two spaces e.g.
 
 ``` bash
 sudo vi /etc/otelcontribcol/config.yaml
@@ -162,9 +162,9 @@ service:
 {{% /tab %}}
 {{< /tabs >}}
 
-You will also notice another receiver called `prometheus`. [Prometheus](https://prometheus.io/docs/introduction/overview/) is an open-source toolkit used by the OpenTelemetry Collector. This receiver is used to scrape metrics from the OpenTelemetry Collector itself. These metrics can then be used to monitor the health of the collector.
+You will also notice another receiver called **prometheus**. [Prometheus](https://prometheus.io/docs/introduction/overview/) is an open-source toolkit used by the OpenTelemetry Collector. This receiver is used to scrape metrics from the OpenTelemetry Collector itself. These metrics can then be used to monitor the health of the collector.
 
-Let's modify the `prometheus` receiver to clearly show that it is for collecting metrics from the collector itself. By changing the name of the receiver from `prometheus` to `prometheus/internal`, it is now much clearer as to what that receiever is doing. Edit the `/etc/otelcontribcol/config.yaml` file to look like this:
+Let's modify the **prometheus** receiver to clearly show that it is for collecting metrics from the collector itself. By changing the name of the receiver from **prometheus** to **prometheus/internal**, it is now much clearer as to what that receiever is doing. Update the configuration file to look like this:
 
 {{< tabs >}}
 {{% tab title="Prometheus Receiver Configuration" %}}
@@ -277,6 +277,6 @@ The following screenshot is an out of the box (OOTB) dashboard from Splunk Obser
 
 ## Other Receivers
 
-You will notice in the default configuration there are other receivers (`otlp`, `opencensus`, `jaeger` and `zipkin`). These are used to receive telemetry data from other sources. We will not be using these receivers in this workshop and can be left as they are.
+You will notice in the default configuration there are other receivers (**otlp**, **opencensus**, **jaeger** and **zipkin**). These are used to receive telemetry data from other sources. We will not be using these receivers in this workshop and can be left as they are.
 
-Now that we have reviewed how data gets into the OTEL Collector, we can now learn how the Collector processes the data.
+Now that we have reviewed how data gets into the OpenTelemetry Collector, we can now learn how the Collector processes the data.

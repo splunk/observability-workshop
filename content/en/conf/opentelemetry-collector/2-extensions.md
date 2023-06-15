@@ -147,14 +147,14 @@ curl http://localhost:13133
 
 ## Performance Profiler
 
-[Performance Profiler](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/extension/pprofextension/README.md) extension enables the golang net/http/pprof endpoint. This is typically used by developers to collect performance profiles and investigate issues with the service. We will not be covering this in this workshop.
+[**Performance Profiler**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/extension/pprofextension/README.md) extension enables the golang net/http/pprof endpoint. This is typically used by developers to collect performance profiles and investigate issues with the service. We will not be covering this in this workshop.
 
 ## zPages
 
-[zPages](https://github.com/open-telemetry/opentelemetry-collector/blob/main/extension/zpagesextension/README.md) are an in-process alternative to external exporters. When included, they collect and aggregate tracing and metrics information in the background; this data is served on web pages when requested. zPages is an extremely useful diagnostic feature to ensure the collector is running as expected.
+[**zPages**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/extension/zpagesextension/README.md) are an in-process alternative to external exporters. When included, they collect and aggregate tracing and metrics information in the background; this data is served on web pages when requested. zPages is an extremely useful diagnostic feature to ensure the collector is running as expected.
 
 {{% notice style="tip" %}}
-Install a text-based web browser (or use your local browser using the instance IP address)
+Install a text-based web browser (or use your desktop browser using the instance IP address)
 
 ``` bash
 sudo apt update && sudo apt install lynx -y
