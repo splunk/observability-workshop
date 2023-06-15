@@ -6,7 +6,7 @@ weight: 5
 
 An exporter, which can be push or pull based, is how you send data to one or more backends/destinations. Exporters may support one or more data sources.
 
-For this workshop we will be using the **otlphttp** exporter. The OpenTelemetry Protocol (OTLP) is a vendor-neutral, standardised protocol for transmitting telemetry data. The OTLP exporter sends data to a server that implements the OTLP protocol. The OTLP exporter supports both gRPC and HTTP/JSON protocols.
+For this workshop we will be using the [**otlphttp**](https://opentelemetry.io/docs/specs/otel/protocol/exporter/) exporter. The OpenTelemetry Protocol (OTLP) is a vendor-neutral, standardised protocol for transmitting telemetry data. The OTLP exporter sends data to a server that implements the OTLP protocol. The OTLP exporter supports both gRPC and HTTP/JSON protocols.
 
 {{< mermaid >}}
 %%{
@@ -51,7 +51,7 @@ exporters:
   otlphttp/splunk:
 ```
 
-Next we need to define the `metrics_endpoint` and configure the target URL. For Splunk Observerability Cloud the URL is `https://ingest.us1.signalfx.com/v2/datapoint/otlp`.
+Next we need to define the `metrics_endpoint` and configure the target URL. For our workshop we will use the **US1** realm for Splunk Observerability Cloud, the URL is `https://ingest.us1.signalfx.com/v2/datapoint/otlp`. Splunk has realms in key geographical locations around the world for data residency.
 
 The **otlphttp** exporter can also be configured to also send traces and logs by defining target URL for `traces_endpoint` and `logs_endpoint` respectively.
 
