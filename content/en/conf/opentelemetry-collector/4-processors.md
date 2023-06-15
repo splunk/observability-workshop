@@ -177,7 +177,7 @@ processors:
     system:
       hostname_sources: [os]
   resourcedetection/ec2:
-    detectors: ["ec2"]
+    detectors: [ec2]
 ```
 
 {{% /tab %}}
@@ -217,7 +217,7 @@ processors:
     system:
       hostname_sources: [os]
   resourcedetection/ec2:
-    detectors: ["ec2"]
+    detectors: [ec2]
   attributes/conf:
     actions:
       - key: conf.attendee.name
@@ -291,7 +291,7 @@ processors:
     system:
       hostname_sources: [os]
   resourcedetection/ec2:
-    detectors: ["ec2"]
+    detectors: [ec2]
   attributes/conf:
     actions:
       - key: conf.attendee.name
@@ -321,3 +321,5 @@ service:
 
 {{% /tab %}}
 {{< /tabs >}}
+
+## Configuration Check-in

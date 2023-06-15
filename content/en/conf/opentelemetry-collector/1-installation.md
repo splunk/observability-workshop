@@ -80,7 +80,7 @@ May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:         {"kind": "exporter"
 {{% /tab %}}
 {{< /tabs >}}
 
-***
+---
 
 {{% expand title="{{% badge style=primary icon=user-ninja title=**Ninja** %}}Build your own collector using Open Telemetry Collector Builder (ocb){{% /badge %}}" %}}
 For this part we will require the following installed on your system:
@@ -217,7 +217,7 @@ Which leave you with the following directory structure:
 
 {{% /expand %}}
 
-***
+---
 
 ## 4. Default configuration
 

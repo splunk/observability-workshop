@@ -279,4 +279,6 @@ The following screenshot is an out of the box (OOTB) dashboard from Splunk Obser
 
 You will notice in the default configuration there are other receivers (**otlp**, **opencensus**, **jaeger** and **zipkin**). These are used to receive telemetry data from other sources. We will not be using these receivers in this workshop and can be left as they are.
 
+## Configuration Check-in
+
 Now that we have reviewed how data gets into the OpenTelemetry Collector, we can now learn how the Collector processes the data.

@@ -38,6 +38,8 @@ flowchart LR;
     end
 {{< /mermaid >}}
 
+## OTLP HTTP Exporter
+
 In order to send metrics over HTTP to Splunk Observability Cloud we will need to configure the **otlphttp** exporter.
 
 Let's edit our `/etc/otelcontribcol/config.yaml` file and configure the **otlphttp** exporter. Insert the following YAML under the **exporters** section, taking care to indent by two spaces e.g.
@@ -79,4 +81,8 @@ exporters:
       X-SF-TOKEN: <redacted>
 ```
 
+## Configuration Check-in
+
 Of course, you could easily configure the `metrics_endpoint` to point to any other solution that supports the **OTLP** protocol.
+
+Next we need to enable the receivers, processors and exporters we have just configured in the service section of the `config.yaml`.
