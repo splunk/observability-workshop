@@ -1,0 +1,1083 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="height=device-height,width=device-width,initial-scale=1,minimum-scale=1"><meta name=generator content="Hugo 0.110.0"><meta name=generator content="Relearn 5.16.2+tip"><meta name=description content=".conf 2023 - Workshops"><title>.conf23 Workshops :: Splunk Observability Cloud Workshops</title><link href=https://splunk.github.io/observability-workshop/v4.90/en/conf/index.html rel=canonical type=text/html title=".conf23 Workshops :: Splunk Observability Cloud Workshops"><link href=../../en/conf/index.xml rel=alternate type=application/rss+xml title=".conf23 Workshops :: Splunk Observability Cloud Workshops"><link href=../../images/favicon.ico?1686840499 rel=icon type=image/x-icon sizes=any><link href=../../css/fontawesome-all.min.css?1686840503 rel=stylesheet media=print onload='this.media="all",this.onload=null'><noscript><link href=../../css/fontawesome-all.min.css?1686840503 rel=stylesheet></noscript><link href=../../css/nucleus.css?1686840503 rel=stylesheet><link href=../../css/auto-complete.css?1686840503 rel=stylesheet media=print onload='this.media="all",this.onload=null'><noscript><link href=../../css/auto-complete.css?1686840503 rel=stylesheet></noscript><link href=../../css/perfect-scrollbar.min.css?1686840503 rel=stylesheet><link href=../../css/fonts.css?1686840503 rel=stylesheet media=print onload='this.media="all",this.onload=null'><noscript><link href=../../css/fonts.css?1686840503 rel=stylesheet></noscript><link href=../../css/theme.css?1686840503 rel=stylesheet><link href=../../css/theme-splunk-light.css?1686840503 rel=stylesheet id=variant-style><link href=../../css/variant.css?1686840503 rel=stylesheet><link href=../../css/print.css?1686840503 rel=stylesheet media=print><link href=../../css/format-print.css?1686840503 rel=stylesheet><link href=../../css/ie.css?1686840503 rel=stylesheet><script src=../../js/url.js?1686840503></script>
+<script src=../../js/variant.js?1686840503></script>
+<script>window.index_js_url="../../en/index.search.js";var root_url="../../",baseUriFull,baseUri=root_url.replace(/\/$/,"");window.T_Copy_to_clipboard="Copy to clipboard",window.T_Copied_to_clipboard="Copied to clipboard!",window.T_Copy_link_to_clipboard="Copy link to clipboard",window.T_Link_copied_to_clipboard="Copied link to clipboard!",window.T_No_results_found="No results found for \u0022{0}\u0022",window.T_N_results_found="{1} results found for \u0022{0}\u0022",baseUriFull="https://splunk.github.io/observability-workshop/v4.90/",window.variants&&variants.init(["splunk-light","splunk-dark","aws"])</script><style>@media screen and (min-width:1300px){#body .flex-block-wrapper{margin-left:auto;margin-right:auto;max-width:1300px;width:100%}}</style></head><body class="mobile-support print disableInlineCopyToClipboard" data-url=../../en/conf/index.html><div id=body class=default-animation><div id=sidebar-overlay></div><div id=toc-overlay></div><nav id=topbar class=highlightable><div><div id=breadcrumbs><span id=sidebar-toggle-span><a href=# id=sidebar-toggle class=topbar-link title='Menu (CTRL+ALT+n)'><i class="fas fa-bars fa-fw"></i></a></span><ol class=links itemscope itemtype=http://schema.org/BreadcrumbList><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item href=../../en/index.html><span itemprop=name>Splunk Observability Workshops</span></a><meta itemprop=position content="1">></li><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><span itemprop=name>.conf23 Workshops</span><meta itemprop=position content="2"></li></ol></div></div></nav><main id=body-inner class="highlightable home" tabindex=-1><div class=flex-block-wrapper><article class=home><header class=headline></header><h1 id=conf23-workshops>.conf23 Workshops</h1><div class="children children-h3 children-sort-"><h3><a href=../../en/conf/opentelemetry-collector/index.html>Making Your Observability Cloud Native With OpenTelemetry</a></h3><p>Abstract Adopting OpenTelemetry within your organisation can bring issues such as dealing with metric naming changes, rollout, and where to start. In this workshop, we will be focusing on using the OpenTelemetry collector and starting with the fundamentals of configuring the receivers, processors, and exporters ready to use with Splunk Observability Cloud. The journey will take attendees from novices to being able to start adding custom components to help solve for their business observability needs for their distributed platform.</p></div><footer class=footline></footer></article><section><h1 class=a11y-only>Subsections of .conf23 Workshops</h1><article class=default><header class=headline></header><h1 id=making-your-observability-cloud-native-with-opentelemetry>Making Your Observability Cloud Native With OpenTelemetry</h1><h3 id=abstract>Abstract</h3><p>Adopting OpenTelemetry within your organisation can bring issues such as dealing with metric naming changes, rollout, and where to start. In this workshop, we will be focusing on using the OpenTelemetry collector and starting with the fundamentals of configuring the receivers, processors, and exporters ready to use with Splunk Observability Cloud. The journey will take attendees from novices to being able to start adding custom components to help solve for their business observability needs for their distributed platform.</p><p>Throughout the workshop there will be expandable <span class="badge cstyle primary badge-with-title"><span class=badge-title><i class="fa-fw fas fa-user-ninja"></i> <strong>Ninja</strong></span><span class=badge-content>sections</span></span>:</p><div class=expand><input type=checkbox id=expand-0d3b6a7b8104addb12907f3c1a930cdc aria-controls=expandcontent-0d3b6a7b8104addb12907f3c1a930cdc>
+<label class=expand-label for=expand-0d3b6a7b8104addb12907f3c1a930cdc><i class="fas fa-chevron-down"></i>
+<i class="fas fa-chevron-right"></i>
+<span class="badge cstyle primary badge-with-title"><span class=badge-title><i class="fa-fw fas fa-user-ninja"></i> <strong>Ninja</strong></span><span class=badge-content>Test Me!</span></span></label><div id=expandcontent-0d3b6a7b8104addb12907f3c1a930cdc class=expand-content><p><strong>You are officially a Ninja!</strong></p></div></div><p>These will be more hands on and go into further technical detail that you can explore within the workshop or in your own time. Please note that the content in these sections may go out of date due to the frequent development being made to the OpenTelemetry project. Links will be provided in the event details are out of sync, please let us know if you spot something that needs updating.</p><h3 id=target-audience>Target Audience</h3><p>This interactive workshop is for developers and system administrators who are interested in learning more about architecture and deployment of the OpenTelemetry Collector.</p><h3 id=prerequisites>Prerequisites</h3><ul><li>Attendees should have a basci understanding of data collection</li><li>Command line and vim/vi experience.</li><li>A instance/host/VM running Ubuntu 20.04 LTS or 22.04 LTS.</li></ul><h3 id=learning-objectives>Learning Objectives</h3><p>By the end of this talk, attendees will be able to:</p><ul><li>Understand the components of OpenTelemetry</li><li>Use receivers, processors, and exporters to collect and analyze data</li><li>Identify the benefits of using OpenTelemetry</li><li>Build a custom component to solve their business needs</li></ul><h3 id=opentelemetry-architecture>OpenTelemetry Architecture</h3><div class="mermaid align-center">%%{
+init:{
+"theme":"base",
+"themeVariables": {
+"primaryColor": "#ffffff",
+"clusterBkg": "#eff2fb",
+"defaultLinkColor": "#333333"
+}
+}
+}%%
+flowchart LR;
+subgraph Collector
+A[OTLP] --> M(Receivers)
+B[JAEGER] --> M(Receivers)
+C[Prometheus] --> M(Receivers)
+end
+subgraph Processors
+M(Receivers) --> H(Filters, Attributes, etc)
+E(Extensions)
+end
+subgraph Exporters
+H(Filters, Attributes, etc) --> S(OTLP)
+H(Filters, Attributes, etc) --> T(JAEGER)
+H(Filters, Attributes, etc) --> U(Prometheus)
+end</div><footer class=footline></footer></article><section><h1 class=a11y-only>Subsections of Making Your Observability Cloud Native With OpenTelemetry</h1><article class=default><header class=headline></header><h1 id=installing-opentelemetry-collector-contrib>Installing OpenTelemetry Collector Contrib</h1><h2 id=1-downloading-the-opentelemetry-collector-contrib-distribution>1. Downloading the OpenTelemetry Collector Contrib distribution</h2><p>The first step in installing the Open Telemetry Collector is downloading it. For our lab we will use the &lsquo;wget&rsquo; command to download the &lsquo;.deb&rsquo; package from the OpenTelemetry Github repository.</p><p>Obtain the <code>.deb</code> package for your platform from the <a href=https://github.com/open-telemetry/opentelemetry-collector-releases/releases target=_blank>OpenTelemetry Collector Contrib releases page</a></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.75.0/otelcol-contrib_0.75.0_linux_amd64.deb
+</span></span></code></pre></div><h2 id=2-installing-the-opentelemetry-collector-contrib-distribution>2. Installing the OpenTelemetry Collector Contrib distribution</h2><p>Install the <code>.deb</code> package using <code>dpkg</code>. Not we are installing as root. Take a look at the Output tab in the box below to see what the exmple output of a successful install will look like:</p><div class=tab-panel data-tab-group=b4101b8a4f182cb6d83820663d14920a><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item=Install class="tab-nav-button tab-panel-style cstyle initial active" onclick='switchTab("b4101b8a4f182cb6d83820663d14920a","Install")'><div><div class=tab-nav-hidden>Install</div><div class=tab-nav-text>Install</div></div></button>
+<button data-tab-item="dpkg Output" class="tab-nav-button tab-panel-style cstyle initial" onclick='switchTab("b4101b8a4f182cb6d83820663d14920a","dpkg Output")'><div><div class=tab-nav-hidden>dpkg Output</div><div class=tab-nav-text>dpkg Output</div></div></button></div><div class=tab-content-container><div data-tab-item=Install class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo dpkg -i otelcol-contrib_0.75.0_linux_amd64.deb
+</span></span></code></pre></div></div></div><div data-tab-item="dpkg Output" class="tab-content tab-panel-style cstyle initial"><div class=tab-content-text><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>Selecting previously unselected package otelcol-contrib.
+</span></span><span class=line><span class=cl>(Reading database ... 64218 files and directories currently installed.)
+</span></span><span class=line><span class=cl>Preparing to unpack otelcol-contrib_0.75.0_linux_amd64.deb ...
+</span></span><span class=line><span class=cl>Unpacking otelcol-contrib (0.75.0) ...
+</span></span><span class=line><span class=cl>Setting up otelcol-contrib (0.75.0) ...
+</span></span><span class=line><span class=cl>Created symlink /etc/systemd/system/multi-user.target.wants/otelcol-contrib.service → /lib/systemd/system/otelcol-contrib.service.
+</span></span></code></pre></div></div></div></div></div><h2 id=3-confirm-the-collector-is-running>3. Confirm the Collector is running</h2><p>The collector should now be running. We will verify this as root using systemctl command. To exit the status just press <code>q</code>.</p><div class=tab-panel data-tab-group=7dc0742b80294dbabe0098dcb46deb13><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item=Command class="tab-nav-button tab-panel-style cstyle initial active" onclick='switchTab("7dc0742b80294dbabe0098dcb46deb13","Command")'><div><div class=tab-nav-hidden>Command</div><div class=tab-nav-text>Command</div></div></button>
+<button data-tab-item="Status Output" class="tab-nav-button tab-panel-style cstyle initial" onclick='switchTab("7dc0742b80294dbabe0098dcb46deb13","Status Output")'><div><div class=tab-nav-hidden>Status Output</div><div class=tab-nav-text>Status Output</div></div></button></div><div class=tab-content-container><div data-tab-item=Command class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo systemctl status otelcol-contrib
+</span></span></code></pre></div></div></div><div data-tab-item="Status Output" class="tab-content tab-panel-style cstyle initial"><div class=tab-content-text><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>● otelcol-contrib.service - OpenTelemetry Collector Contrib
+</span></span><span class=line><span class=cl>     Loaded: loaded (/lib/systemd/system/otelcol-contrib.service; enabled; vendor preset: enabled)
+</span></span><span class=line><span class=cl>     Active: active (running) since Tue 2023-05-16 08:23:23 UTC; 25s ago
+</span></span><span class=line><span class=cl>   Main PID: 1415 (otelcol-contrib)
+</span></span><span class=line><span class=cl>      Tasks: 5 (limit: 1141)
+</span></span><span class=line><span class=cl>     Memory: 22.2M
+</span></span><span class=line><span class=cl>        CPU: 125ms
+</span></span><span class=line><span class=cl>     CGroup: /system.slice/otelcol-contrib.service
+</span></span><span class=line><span class=cl>             └─1415 /usr/bin/otelcol-contrib --config=/etc/otelcol-contrib/config.yaml
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: NumberDataPoints #0
+</span></span><span class=line><span class=cl>May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: Data point attributes:
+</span></span><span class=line><span class=cl>May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:      -&gt; exporter: Str(logging)
+</span></span><span class=line><span class=cl>May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:      -&gt; service_instance_id: Str(df8a57f4-abdc-46b9-a847-acd62db1001f)
+</span></span><span class=line><span class=cl>May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:      -&gt; service_name: Str(otelcol-contrib)
+</span></span><span class=line><span class=cl>May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:      -&gt; service_version: Str(0.75.0)
+</span></span><span class=line><span class=cl>May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: StartTimestamp: 2023-05-16 08:23:39.006 +0000 UTC
+</span></span><span class=line><span class=cl>May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: Timestamp: 2023-05-16 08:23:39.006 +0000 UTC
+</span></span><span class=line><span class=cl>May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: Value: 0.000000
+</span></span><span class=line><span class=cl>May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:         {&#34;kind&#34;: &#34;exporter&#34;, &#34;data_type&#34;: &#34;metrics&#34;, &#34;name&#34;: &#34;logging&#34;}
+</span></span></code></pre></div></div></div></div></div><hr><div class=expand><input type=checkbox id=expand-6c3e243666a25333cf88e6eff0a4e06f aria-controls=expandcontent-6c3e243666a25333cf88e6eff0a4e06f>
+<label class=expand-label for=expand-6c3e243666a25333cf88e6eff0a4e06f><i class="fas fa-chevron-down"></i>
+<i class="fas fa-chevron-right"></i>
+<span class="badge cstyle primary badge-with-title"><span class=badge-title><i class="fa-fw fas fa-user-ninja"></i> <strong>Ninja</strong></span><span class=badge-content>Build your own collector using Open Telemetry Collector Builder (ocb)</span></span></label><div id=expandcontent-6c3e243666a25333cf88e6eff0a4e06f class=expand-content><p>For this part we will require the following installed on your system:</p><ul><li><p>Golang (latest version)</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>cd</span> /tmp
+</span></span><span class=line><span class=cl>wget https://golang.org/dl/go1.20.linux-amd64.tar.gz
+</span></span><span class=line><span class=cl>sudo tar -C /usr/local -xzf go1.20.linux-amd64.tar.gz
+</span></span></code></pre></div><p>Edit <code>.profile</code> and add the following environment variables:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>export</span> <span class=nv>GOROOT</span><span class=o>=</span>/usr/local/go
+</span></span><span class=line><span class=cl><span class=nb>export</span> <span class=nv>GOPATH</span><span class=o>=</span><span class=nv>$HOME</span>/go
+</span></span><span class=line><span class=cl><span class=nb>export</span> <span class=nv>PATH</span><span class=o>=</span><span class=nv>$GOPATH</span>/bin:<span class=nv>$GOROOT</span>/bin:<span class=nv>$PATH</span>
+</span></span></code></pre></div><p>Renew your shell session:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>source</span> ~/.profile
+</span></span></code></pre></div><p>Check Go version:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>go version
+</span></span></code></pre></div></li><li><p>ocb installed</p><ul><li>Most recent from the <a href=https://github.com/open-telemetry/opentelemetry-collector/releases target=_blank>project releases</a></li><li>Install using go by <code>go install go.opentelemetry.io/collector/cmd/builder@v0.75.0</code></li></ul></li><li><p>(Optional) Docker</p></li></ul><h2 id=why-build-your-own-collector>Why build your own collector?</h2><p>The default distrobutions of the collector (core and contrib) either container too much or too little in what they have to offer.
+It is also not advised to run the contrib collector in your production environments due to the amount of components installed
+which more than likely are not needed by your deployment.</p><h2 id=benefits-of-building-your-own-collector>Benefits of building your own collector?</h2><p>When creating your own collector binaries, (commonly referred to as distrobutions), means you build what you need.
+The benefits of this are:</p><ol><li>Small binaries sizes</li><li>Can use existing go scanners for vulnerabilites</li><li>Include internal components that can tie in with your organisation</li></ol><h2 id=considerations-for-building-your-own-collector>Considerations for building your own collector?</h2><p>Now, this would not be a 🥷 ninja zone if it didn&rsquo;t come with some draw backs:</p><ol><li>Go experience is recommended if not required</li><li><strong>No</strong> Splunk support</li><li>Responsibiliy of distrobution and lifecycle management</li></ol><p>It is important to note that project is working towards stability but it does not mean
+changes made will not break your workflow. The team at Splunk provide increased support
+and a higher level of stability so they can provide a curated experience helping you
+with your deployment needs.</p><h2 id=the-ninja-zone>The Ninja Zone</h2><p>Once you have all the required tools installed to get started, you will need to create a
+new file named <code>otelcol-builder.yaml</code> and we will follow this directory structure:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>└── otelcol-builder.yaml
+</span></span></code></pre></div><p>Once we have the file created, we need to add a list of components for it to install with some additional metadata.
+For this example, we are going to create a builder manifest that will install only the components we need for the introduction config:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>dist</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>otelcol-ninja</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>description</span><span class=p>:</span><span class=w> </span><span class=l>A custom build of the Open Telemetry Collector</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>output_path</span><span class=p>:</span><span class=w> </span><span class=l>./dist</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>gomod</span><span class=p>:</span><span class=w> </span><span class=l>go.opentelemetry.io/collector/extension/ballastextension v0.75.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>gomod</span><span class=p>:</span><span class=w> </span><span class=l>go.opentelemetry.io/collector/extension/zpagesextension  v0.75.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>gomod</span><span class=p>:</span><span class=w> </span><span class=l>github.com/open-telemetry/opentelemetry-collector-contrib/extension/httpforwarder v0.75.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>gomod</span><span class=p>:</span><span class=w> </span><span class=l>github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.75.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>exporters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>gomod</span><span class=p>:</span><span class=w> </span><span class=l>go.opentelemetry.io/collector/exporter/loggingexporter v0.75.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>gomod</span><span class=p>:</span><span class=w> </span><span class=l>go.opentelemetry.io/collector/exporter/otlpexporter v0.75.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>gomod</span><span class=p>:</span><span class=w> </span><span class=l>github.com/open-telemetry/opentelemetry-collector-contrib/exporter/splunkhecexporter v0.75.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>gomod</span><span class=p>:</span><span class=w> </span><span class=l>github.com/open-telemetry/opentelemetry-collector-contrib/exporter/signalfxexporter v0.75.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>gomod</span><span class=p>:</span><span class=w> </span><span class=l>github.com/open-telemetry/opentelemetry-collector-contrib/exporter/sapmexporter v0.75.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>processors</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>gomod</span><span class=p>:</span><span class=w> </span><span class=l>go.opentelemetry.io/collector/processor/batchprocessor v0.75.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>gomod</span><span class=p>:</span><span class=w> </span><span class=l>go.opentelemetry.io/collector/processor/memorylimiterprocessor v0.75.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>receivers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>gomod</span><span class=p>:</span><span class=w> </span><span class=l>go.opentelemetry.io/collector/receiver/otlpreceiver v0.75.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>gomod</span><span class=p>:</span><span class=w> </span><span class=l>github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver v0.75.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>gomod</span><span class=p>:</span><span class=w> </span><span class=l>github.com/open-telemetry/opentelemetry-collector-contrib/receiver/jaegerreceiver v0.75.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>gomod</span><span class=p>:</span><span class=w> </span><span class=l>github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.75.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>gomod</span><span class=p>:</span><span class=w> </span><span class=l>github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver v0.75.0</span><span class=w>
+</span></span></span></code></pre></div><p>Once the yaml file has been updated for the <em>ocb</em>, then run the following command:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>&gt; ocb --config<span class=o>=</span>otelcol-builder.yaml
+</span></span></code></pre></div><p>Which leave you with the following directory structure:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>├── dist
+</span></span><span class=line><span class=cl>│   ├── components.go
+</span></span><span class=line><span class=cl>│   ├── components_test.go
+</span></span><span class=line><span class=cl>│   ├── go.mod
+</span></span><span class=line><span class=cl>│   ├── go.sum
+</span></span><span class=line><span class=cl>│   ├── main.go
+</span></span><span class=line><span class=cl>│   ├── main_others.go
+</span></span><span class=line><span class=cl>│   ├── main_windows.go
+</span></span><span class=line><span class=cl>│   └── otelcol-ninja
+</span></span><span class=line><span class=cl>└── otelcol-builder.yaml
+</span></span></code></pre></div><h3 id=references>References</h3><ol><li><a href=https://opentelemetry.io/docs/collector/custom-collector/ target=_blank>https://opentelemetry.io/docs/collector/custom-collector/</a></li></ol></div></div><hr><h2 id=4-default-configuration>4. Default configuration</h2><p>OpenTelemetry is configured through .yaml files. These files have default configurations that we can modify to meet our needs. Let&rsquo;s look at the default configuration that is supplied:</p><div class=tab-panel data-tab-group=0fd357476388bcbecb8c1d696073bc73><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item=Command class="tab-nav-button tab-panel-style cstyle initial active" onclick='switchTab("0fd357476388bcbecb8c1d696073bc73","Command")'><div><div class=tab-nav-hidden>Command</div><div class=tab-nav-text>Command</div></div></button>
+<button data-tab-item="Configuration Output" class="tab-nav-button tab-panel-style cstyle initial" onclick='switchTab("0fd357476388bcbecb8c1d696073bc73","Configuration Output")'><div><div class=tab-nav-hidden>Configuration Output</div><div class=tab-nav-text>Configuration Output</div></div></button></div><div class=tab-content-container><div data-tab-item=Command class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>cat /etc/otelcol-contrib/config.yaml
+</span></span></code></pre></div></div></div><div data-tab-item="Configuration Output" class="tab-content tab-panel-style cstyle initial"><div class=tab-content-text><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>health_check</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pprof</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>1777</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zpages</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>55679</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>receivers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>otlp</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>opencensus</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Collect own metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>prometheus</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>config</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>scrape_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>job_name</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;otel-collector&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>scrape_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>static_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>targets</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s1>&#39;0.0.0.0:8888&#39;</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>jaeger</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_binary</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_compact</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zipkin</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>processors</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>batch</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>exporters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>logging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>verbosity</span><span class=p>:</span><span class=w> </span><span class=l>detailed</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pipelines</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>traces</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, jaeger, zipkin]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, prometheus]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>extensions</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>health_check, pprof, zpages]</span><span class=w>
+</span></span></span></code></pre></div></div></div></div></div><p>Congratulations! You have successfully downloaded and installed the OpenTelemtry Collector. You are well on your way to Ninja. But first lets chat through configuration files and different distributions of the OpenTelemetry Collector.</p><p>Splunk does provide its own, fully supported, distribution of the OpenTelemetry Collector. This distribution is available to install from the <a href=https://github.com/signalfx/splunk-otel-collector target=_blank>Splunk GitHub Repository</a>. This distribution includes a number of additional features and enhancements that are not available in the OpenTelemetry Collector Contrib distribution.</p><ul><li>The Splunk Distribution of the OpenTelemetry Collector is production tested; it is in use by the majority of customers in their production environments.</li><li>Customers that use our distribution can receive direct help from official Splunk support within SLA&rsquo;s.</li><li>Customers can use or migrate to the Splunk Distribution of the OpenTelemetry Collector without worrying about future breaking changes to its core configuration experience for metrics and traces collection (OpenTelemetry logs collection configuration is in beta). There may be breaking changes to the Collector&rsquo;s own metrics.</li></ul><p>We will now walk through each section of the configuration file and modify it to send host metrics to Splunk Observability Cloud.</p><footer class=footline></footer></article><article class=default><header class=headline></header><h1 id=opentelemetry-collector-extensions>OpenTelemetry Collector Extensions</h1><p>Now that we have the OpenTelemetry Collector is installed. Let&rsquo;s take a look at extensions for the OTEL Collector.</p><p>Extensions are available primarily for tasks that do not involve processing telemetry data. Examples of extensions include health monitoring, service discovery, and data forwarding. Extensions are optional.</p><div class="mermaid align-center">%%{
+init:{
+"theme":"base",
+"themeVariables": {
+"primaryColor": "#ffffff",
+"clusterBkg": "#eff2fb",
+"defaultLinkColor": "#333333"
+}
+}
+}%%
+flowchart LR;
+style E fill:#e20082,stroke:#333,stroke-width:4px,color:#fff
+subgraph Collector
+A[OTLP] --> M(Receivers)
+B[JAEGER] --> M(Receivers)
+C[Prometheus] --> M(Receivers)
+end
+subgraph Processors
+M(Receivers) --> H(Filters, Attributes, etc)
+E(Extensions)
+end
+subgraph Exporters
+H(Filters, Attributes, etc) --> S(OTLP)
+H(Filters, Attributes, etc) --> T(JAEGER)
+H(Filters, Attributes, etc) --> U(Prometheus)
+end</div><p>Extensions are configured in the same <code>config.yaml</code> file that we referenced in the installation step. Let&rsquo;s edit the <code>config.yaml</code> file and configure the extensions. Note that the <code>pprof</code> and <code>zpages</code> extensions are already configured in the default <code>config.yaml</code> file. For the purpose of this workshop, we will only be updating the <code>health_check</code> extension to expose the port on which we can access the health of the collector.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo vi /etc/otelcol-contrib/config.yaml
+</span></span></code></pre></div><div class=tab-panel data-tab-group=96c9e7a320dea11aa13543e3720d9d88><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item="Extensions Configuration" class="tab-nav-button tab-panel-style cstyle initial active" onclick='switchTab("96c9e7a320dea11aa13543e3720d9d88","Extensions Configuration")'><div><div class=tab-nav-hidden>Extensions Configuration</div><div class=tab-nav-text>Extensions Configuration</div></div></button>
+<button data-tab-item="Extensions Configuration Complete" class="tab-nav-button tab-panel-style cstyle initial" onclick='switchTab("96c9e7a320dea11aa13543e3720d9d88","Extensions Configuration Complete")'><div><div class=tab-nav-hidden>Extensions Configuration Complete</div><div class=tab-nav-text>Extensions Configuration Complete</div></div></button></div><div class=tab-content-container><div data-tab-item="Extensions Configuration" class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>health_check</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>13133</span><span class=w>
+</span></span></span></code></pre></div></div></div><div data-tab-item="Extensions Configuration Complete" class="tab-content tab-panel-style cstyle initial"><div class=tab-content-text><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>health_check</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>13133</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pprof</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>1777</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zpages</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>55679</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>receivers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>otlp</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>opencensus</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Collect own metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>prometheus</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>config</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>scrape_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>job_name</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;otel-collector&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>scrape_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>static_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>targets</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s1>&#39;0.0.0.0:8888&#39;</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>jaeger</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_binary</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_compact</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zipkin</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>processors</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>batch</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>exporters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>logging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>verbosity</span><span class=p>:</span><span class=w> </span><span class=l>detailed</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pipelines</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>traces</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, jaeger, zipkin]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, prometheus]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>extensions</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>health_check, pprof, zpages]</span><span class=w>
+</span></span></span></code></pre></div></div></div></div></div><p>Restart the collector:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo systemctl restart otelcol-contrib
+</span></span></code></pre></div><h2 id=health-check>Health Check</h2><p>This extension enables a HTTP URL that can be probed to check the status of the OpenTelemetry Collector. This extension can be used as a liveness and/or readiness probe on Kubernetes. To learn more about the <code>curl</code> command, check out the <a href=https://curl.se/docs/manpage.html target=_blank>curl man page</a>.</p><div class=tab-panel data-tab-group=769e3f898b99596955a5e0634f1128b1><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item="curl Command" class="tab-nav-button tab-panel-style cstyle initial active" onclick='switchTab("769e3f898b99596955a5e0634f1128b1","curl Command")'><div><div class=tab-nav-hidden>curl Command</div><div class=tab-nav-text>curl Command</div></div></button>
+<button data-tab-item="curl Output" class="tab-nav-button tab-panel-style cstyle initial" onclick='switchTab("769e3f898b99596955a5e0634f1128b1","curl Output")'><div><div class=tab-nav-hidden>curl Output</div><div class=tab-nav-text>curl Output</div></div></button></div><div class=tab-content-container><div data-tab-item="curl Command" class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>curl http://localhost:13133
+</span></span></code></pre></div></div></div><div data-tab-item="curl Output" class="tab-content tab-panel-style cstyle initial"><div class=tab-content-text><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>{&#34;status&#34;:&#34;Server available&#34;,&#34;upSince&#34;:&#34;2023-04-27T10:11:22.153295874+01:00&#34;,&#34;uptime&#34;:&#34;16m24.684476004s&#34;}
+</span></span></code></pre></div></div></div></div></div><h2 id=performance-profiler>Performance Profiler</h2><p><a href=https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/extension/pprofextension/README.md target=_blank>Performance Profiler</a> extension enables the golang net/http/pprof endpoint. This is typically used by developers to collect performance profiles and investigate issues with the service. We will not be covering this in this workshop.</p><h2 id=zpages>zPages</h2><p><a href=https://github.com/open-telemetry/opentelemetry-collector/blob/main/extension/zpagesextension/README.md target=_blank>zPages</a> are an in-process alternative to external exporters. When included, they collect and aggregate tracing and metrics information in the background; this data is served on web pages when requested. zPages is an extremely useful diagnostic feature to ensure the collector is running as expected.</p><div class="box notices cstyle tip"><div class=box-label><i class="fa-fw fas fa-lightbulb"></i> Tip</div><div class=box-content><p>Install a text-based web browser (or use your local browser using the instance IP address)</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt update <span class=o>&amp;&amp;</span> sudo apt install lynx -y
+</span></span></code></pre></div></div></div><div class=tab-panel data-tab-group=7490efa7ff3db772cb7e4c18d2b61d81><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item=ServiceZ class="tab-nav-button tab-panel-style cstyle initial active" onclick='switchTab("7490efa7ff3db772cb7e4c18d2b61d81","ServiceZ")'><div><div class=tab-nav-hidden>ServiceZ</div><div class=tab-nav-text>ServiceZ</div></div></button>
+<button data-tab-item=PipelineZ class="tab-nav-button tab-panel-style cstyle initial" onclick='switchTab("7490efa7ff3db772cb7e4c18d2b61d81","PipelineZ")'><div><div class=tab-nav-hidden>PipelineZ</div><div class=tab-nav-text>PipelineZ</div></div></button>
+<button data-tab-item=ExtensionZ class="tab-nav-button tab-panel-style cstyle initial" onclick='switchTab("7490efa7ff3db772cb7e4c18d2b61d81","ExtensionZ")'><div><div class=tab-nav-hidden>ExtensionZ</div><div class=tab-nav-text>ExtensionZ</div></div></button></div><div class=tab-content-container><div data-tab-item=ServiceZ class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><p><strong>ServiceZ</strong> gives an overview of the collector services and quick access to the pipelinez, extensionz, and featurez zPages. The page also provides build and runtime information.</p><p>Example URL: <a href=http://localhost:55679/debug/servicez target=_blank>http://localhost:55679/debug/servicez</a> (change <code>localhost</code> to reflect your own environment).</p><p><a href=#image-05a1c555d58131799682adbef30e6009 class=lightbox-link><img src=../../en/conf/opentelemetry-collector/2-extensions/../images/servicez.png alt=ServiceZ style=height:auto;width:auto loading=lazy></a>
+<a href=javascript:history.back(); class=lightbox id=image-05a1c555d58131799682adbef30e6009><img src=../../en/conf/opentelemetry-collector/2-extensions/../images/servicez.png alt=ServiceZ class=lightbox-image loading=lazy></a></p></div></div><div data-tab-item=PipelineZ class="tab-content tab-panel-style cstyle initial"><div class=tab-content-text><p><strong>PipelineZ</strong> brings insight on the running pipelines running in the collector. You can find information on type, if data is mutated and the receivers, processors and exporters that are used for each pipeline.</p><p>Example URL: <a href=http://localhost:55679/debug/pipelinez target=_blank>http://localhost:55679/debug/pipelinez</a> (change <code>localhost</code> to reflect your own environment).</p><p><a href=#image-7a52e949549e93b6909a8c71998464ba class=lightbox-link><img src=../../en/conf/opentelemetry-collector/2-extensions/../images/pipelinez.png alt=PipelineZ style=height:auto;width:auto loading=lazy></a>
+<a href=javascript:history.back(); class=lightbox id=image-7a52e949549e93b6909a8c71998464ba><img src=../../en/conf/opentelemetry-collector/2-extensions/../images/pipelinez.png alt=PipelineZ class=lightbox-image loading=lazy></a></p></div></div><div data-tab-item=ExtensionZ class="tab-content tab-panel-style cstyle initial"><div class=tab-content-text><p><strong>ExtensionZ</strong> shows the extensions that are active in the collector.</p><p>Example URL: <a href=http://localhost:55679/debug/extensionz target=_blank>http://localhost:55679/debug/extensionz</a> (change <code>localhost</code> to reflect your own environment).</p><p><a href=#image-4dc13c9a6cf958b7b9db6748dffc408d class=lightbox-link><img src=../../en/conf/opentelemetry-collector/2-extensions/../images/extensionz.png alt=ExtensionZ style=height:auto;width:auto loading=lazy></a>
+<a href=javascript:history.back(); class=lightbox id=image-4dc13c9a6cf958b7b9db6748dffc408d><img src=../../en/conf/opentelemetry-collector/2-extensions/../images/extensionz.png alt=ExtensionZ class=lightbox-image loading=lazy></a></p></div></div></div></div><hr><div class=expand><input type=checkbox id=expand-c4fbc2246cae2e017c04977e3a42f979 aria-controls=expandcontent-c4fbc2246cae2e017c04977e3a42f979>
+<label class=expand-label for=expand-c4fbc2246cae2e017c04977e3a42f979><i class="fas fa-chevron-down"></i>
+<i class="fas fa-chevron-right"></i>
+<span class="badge cstyle primary badge-with-title"><span class=badge-title><i class="fa-fw fas fa-user-ninja"></i> <strong>Ninja</strong></span><span class=badge-content>Improve data durability with storage extension</span></span></label><div id=expandcontent-c4fbc2246cae2e017c04977e3a42f979 class=expand-content><p>For this, we will need to validate our distribution has the <code>file_storage</code> extension installed, this can be down by running the command <code>otelcol-contrib components</code> and it should so something like:</p><div class=tab-panel data-tab-group=5dd3c9b5f303e43ca4a102e49e2f0d0d><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item="Truncated Output" class="tab-nav-button tab-panel-style cstyle initial active" onclick='switchTab("5dd3c9b5f303e43ca4a102e49e2f0d0d","Truncated Output")'><div><div class=tab-nav-hidden>Truncated Output</div><div class=tab-nav-text>Truncated Output</div></div></button>
+<button data-tab-item="Full Output" class="tab-nav-button tab-panel-style cstyle initial" onclick='switchTab("5dd3c9b5f303e43ca4a102e49e2f0d0d","Full Output")'><div><div class=tab-nav-hidden>Full Output</div><div class=tab-nav-text>Full Output</div></div></button></div><div class=tab-content-container><div data-tab-item="Truncated Output" class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># ... truncated for clarity</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=l>file_storage</span><span class=w>
+</span></span></span></code></pre></div></div></div><div data-tab-item="Full Output" class="tab-content tab-panel-style cstyle initial"><div class=tab-content-text><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>buildinfo</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=l>otelcol-contrib</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>description</span><span class=p>:</span><span class=w> </span><span class=l>OpenTelemetry Collector Contrib</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class=m>0.75.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>receivers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>prometheus_simple</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>apache</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>influxdb</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>purefa</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>purefb</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>receiver_creator</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>mongodbatlas</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>vcenter</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>snmp</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>expvar</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>jmx</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>kafka</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>skywalking</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>udplog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>carbon</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>kafkametrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>memcached</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>prometheus</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>windowseventlog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>zookeeper</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>otlp</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>awsecscontainermetrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>iis</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>mysql</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>nsxt</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>aerospike</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>elasticsearch</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>httpcheck</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>k8sobjects</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>mongodb</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>hostmetrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>signalfx</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>statsd</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>awsxray</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>cloudfoundry</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>collectd</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>couchdb</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>kubeletstats</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>jaeger</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>journald</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>riak</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>splunk_hec</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>active_directory_ds</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>awscloudwatch</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>sqlquery</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>windowsperfcounters</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>flinkmetrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>googlecloudpubsub</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>podman_stats</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>wavefront</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>k8s_events</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>postgresql</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>rabbitmq</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>sapm</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>sqlserver</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>redis</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>solace</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>tcplog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>awscontainerinsightreceiver</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>awsfirehose</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>bigip</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>filelog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>googlecloudspanner</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>cloudflare</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>docker_stats</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>k8s_cluster</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>pulsar</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>zipkin</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>nginx</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>opencensus</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>azureeventhub</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>datadog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>fluentforward</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>otlpjsonfile</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>syslog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>processors</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>resource</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>batch</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>cumulativetodelta</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>groupbyattrs</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>groupbytrace</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>k8sattributes</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>experimental_metricsgeneration</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>metricstransform</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>routing</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>attributes</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>datadog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>deltatorate</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>spanmetrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>span</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>memory_limiter</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>redaction</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>resourcedetection</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>servicegraph</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>transform</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>filter</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>probabilistic_sampler</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>tail_sampling</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>exporters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>otlp</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>carbon</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>datadog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>f5cloud</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>kafka</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>mezmo</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>skywalking</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>awsxray</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>dynatrace</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>loki</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>prometheus</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>logging</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>azuredataexplorer</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>azuremonitor</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>instana</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>jaeger</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>loadbalancing</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>sentry</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>splunk_hec</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>tanzuobservability</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>zipkin</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>alibabacloud_logservice</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>clickhouse</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>file</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>googlecloud</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>prometheusremotewrite</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>awscloudwatchlogs</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>googlecloudpubsub</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>jaeger_thrift</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>logzio</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>sapm</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>sumologic</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>otlphttp</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>googlemanagedprometheus</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>opencensus</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>awskinesis</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>coralogix</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>influxdb</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>logicmonitor</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>signalfx</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>tencentcloud_logservice</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>awsemf</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>elasticsearch</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>pulsar</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>zpages</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>bearertokenauth</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>oidc</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>host_observer</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>sigv4auth</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>file_storage</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>memory_ballast</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>health_check</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>oauth2client</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>awsproxy</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>http_forwarder</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>jaegerremotesampling</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>k8s_observer</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>pprof</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>asapclient</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>basicauth</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>headers_setter</span><span class=w>
+</span></span></span></code></pre></div></div></div></div></div><p>This extension provides exporters the ability to queue data to disk in the event that exporter is unable
+to send data to the configured endpoint.</p><p>In order to configure the extension, you will need to update to include the following information:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>file_storage</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>directory</span><span class=p>:</span><span class=w> </span><span class=l>/tmp/otel-data</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>timeout</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>compaction</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>       </span><span class=nt>directory</span><span class=p>:</span><span class=w> </span><span class=l>/tmp/otel-data</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>       </span><span class=nt>on_start</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>       </span><span class=nt>on_rebound</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>       </span><span class=nt>rebound_needed_threshold_mib</span><span class=p>:</span><span class=w> </span><span class=m>5</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>       </span><span class=nt>rebound_trigger_threshold_mib</span><span class=p>:</span><span class=w> </span><span class=m>3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># ... truncated for clarity</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>extension</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Additional extensions here </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=l>file_storage</span><span class=w>
+</span></span></span></code></pre></div><h2 id=why-queue-data-to-disk>Why queue data to disk?</h2><p>This allows the collector to queue data (and even restart) to ensure data is sent the upstream provider.</p><h2 id=considerations-for-queuing-data-to-disk>Considerations for queuing data to disk?</h2><p>There is a potential that this could impact data throughput performance due disk performance.</p><h3 id=references>References</h3><ol><li><a href=https://community.splunk.com/t5/Community-Blog/Data-Persistence-in-the-OpenTelemetry-Collector/ba-p/624583 target=_blank>https://community.splunk.com/t5/Community-Blog/Data-Persistence-in-the-OpenTelemetry-Collector/ba-p/624583</a></li><li><a href=https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/storage/filestorage target=_blank>https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/storage/filestorage</a></li></ol></div></div><hr><p>Now that we have reviewed extensions, lets dive into the data pipeline portion of the workshop. The data pipeline in the OpenTelemetry Collector is made up of receivers, processors, and exporters. We will first start with receivers.</p><footer class=footline></footer></article><article class=default><header class=headline></header><h1 id=opentelemetry-collector-receivers>OpenTelemetry Collector Receivers</h1><p>Welcome to the receiver portion of the workshop! This is the starting point of the data pipeline of the OpenTelemetry Collector. Let&rsquo;s dive in.</p><p>A receiver, which can be push or pull based, is how data gets into the Collector. Receivers may support one or more data sources. Generally, a receiver accepts data in a specified format, translates it into the internal format and passes it to processors and exporters defined in the applicable pipelines.</p><div class="mermaid align-center">%%{
+init:{
+"theme":"base",
+"themeVariables": {
+"primaryColor": "#ffffff",
+"clusterBkg": "#eff2fb",
+"defaultLinkColor": "#333333"
+}
+}
+}%%
+flowchart LR;
+style M fill:#e20082,stroke:#333,stroke-width:4px,color:#fff
+subgraph Collector
+A[OTLP] --> M(Receivers)
+B[JAEGER] --> M(Receivers)
+C[Prometheus] --> M(Receivers)
+end
+subgraph Processors
+M(Receivers) --> H(Filters, Attributes, etc)
+E(Extensions)
+end
+subgraph Exporters
+H(Filters, Attributes, etc) --> S(OTLP)
+H(Filters, Attributes, etc) --> T(JAEGER)
+H(Filters, Attributes, etc) --> U(Prometheus)
+end</div><h3 id=host-metrics-receiver>Host Metrics Receiver</h3><p><a href=https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/README.md target=_blank>The Host Metrics Receiver</a> generates metrics about the host system scraped from various sources. This is intended to be used when the collector is deployed as an agent which is what we will be doing in this workshop.</p><p>Let&rsquo;s edit our <code>/etc/otelcontribcol/config.yaml</code> file and configure the hostmetrics receiver. Insert the following YAML under the <strong>receivers</strong> section, taking care to indent by two spaces e.g.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo vi /etc/otelcontribcol/config.yaml
+</span></span></code></pre></div><div class=tab-panel data-tab-group=7d89b712701cf330ddf7b4f4c0403a6d><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item="Host Metrics Receiver Configuration" class="tab-nav-button tab-panel-style cstyle initial active" onclick='switchTab("7d89b712701cf330ddf7b4f4c0403a6d","Host Metrics Receiver Configuration")'><div><div class=tab-nav-hidden>Host Metrics Receiver Configuration</div><div class=tab-nav-text>Host Metrics Receiver Configuration</div></div></button>
+<button data-tab-item="Host Metrics Receiver Configuration Complete" class="tab-nav-button tab-panel-style cstyle initial" onclick='switchTab("7d89b712701cf330ddf7b4f4c0403a6d","Host Metrics Receiver Configuration Complete")'><div><div class=tab-nav-hidden>Host Metrics Receiver Configuration Complete</div><div class=tab-nav-text>Host Metrics Receiver Configuration Complete</div></div></button></div><div class=tab-content-container><div data-tab-item="Host Metrics Receiver Configuration" class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>receivers</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>hostmetrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>collection_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>scrapers</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=c># CPU utilization metrics</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>cpu</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=c># Disk I/O metrics</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>disk</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=c># File System utilization metrics</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>filesystem</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=c># Memory utilization metrics</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>memory</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=c># Network interface I/O metrics &amp; TCP connection metrics</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>network</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=c># CPU load metrics</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>load</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=c># Paging/Swap space utilization and I/O metrics</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>paging</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=c># Process count metrics</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>processes</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=c># Per process CPU, Memory and Disk I/O metrics. Disabled by default.</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=c># process:</span><span class=w>
+</span></span></span></code></pre></div></div></div><div data-tab-item="Host Metrics Receiver Configuration Complete" class="tab-content tab-panel-style cstyle initial"><div class=tab-content-text><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>health_check</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>13133</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pprof</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>1777</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zpages</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>55679</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>receivers</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>hostmetrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>collection_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>scrapers</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=c># CPU utilization metrics</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>cpu</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=c># Disk I/O metrics</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>disk</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=c># File System utilization metrics</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>filesystem</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=c># Memory utilization metrics</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>memory</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=c># Network interface I/O metrics &amp; TCP connection metrics</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>network</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=c># CPU load metrics</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>load</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=c># Paging/Swap space utilization and I/O metrics</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>paging</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=c># Process count metrics</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>processes</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=c># Per process CPU, Memory and Disk I/O metrics. Disabled by default.</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=c># process:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>otlp</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>opencensus</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Collect own metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>prometheus</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>config</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>scrape_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>job_name</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;otel-collector&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>scrape_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>static_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>targets</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s1>&#39;0.0.0.0:8888&#39;</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>jaeger</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_binary</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_compact</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zipkin</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>processors</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>batch</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>exporters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>logging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>verbosity</span><span class=p>:</span><span class=w> </span><span class=l>detailed</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pipelines</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>traces</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, jaeger, zipkin]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, prometheus]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>extensions</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>health_check, pprof, zpages]</span><span class=w>
+</span></span></span></code></pre></div></div></div></div></div><p>You will also notice another receiver called <code>prometheus</code>. <a href=https://prometheus.io/docs/introduction/overview/ target=_blank>Prometheus</a> is an open-source toolkit used by the OpenTelemetry Collector. This receiver is used to scrape metrics from the OpenTelemetry Collector itself. These metrics can then be used to monitor the health of the collector.</p><p>Let&rsquo;s modify the <code>prometheus</code> receiver to clearly show that it is for collecting metrics from the collector itself. By changing the name of the receiver from <code>prometheus</code> to <code>prometheus/internal</code>, it is now much clearer as to what that receiever is doing. Edit the <code>/etc/otelcontribcol/config.yaml</code> file to look like this:</p><div class=tab-panel data-tab-group=9fd24be4acd5369d25978a365983a905><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item="Prometheus Receiver Configuration" class="tab-nav-button tab-panel-style cstyle initial active" onclick='switchTab("9fd24be4acd5369d25978a365983a905","Prometheus Receiver Configuration")'><div><div class=tab-nav-hidden>Prometheus Receiver Configuration</div><div class=tab-nav-text>Prometheus Receiver Configuration</div></div></button>
+<button data-tab-item="Prometheus Receiver Configuration Complete" class="tab-nav-button tab-panel-style cstyle initial" onclick='switchTab("9fd24be4acd5369d25978a365983a905","Prometheus Receiver Configuration Complete")'><div><div class=tab-nav-hidden>Prometheus Receiver Configuration Complete</div><div class=tab-nav-text>Prometheus Receiver Configuration Complete</div></div></button></div><div class=tab-content-container><div data-tab-item="Prometheus Receiver Configuration" class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class="line hl"><span class=cl><span class=nt>prometheus/internal</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>config</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>scrape_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>job_name</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;otel-collector&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>scrape_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>static_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>targets</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s1>&#39;0.0.0.0:8888&#39;</span><span class=p>]</span><span class=w>
+</span></span></span></code></pre></div></div></div><div data-tab-item="Prometheus Receiver Configuration Complete" class="tab-content tab-panel-style cstyle initial"><div class=tab-content-text><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>health_check</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>13133</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pprof</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>1777</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zpages</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>55679</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>receivers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>hostmetrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>collection_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>scrapers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># CPU utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>cpu</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Disk I/O metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>disk</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># File System utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>filesystem</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Memory utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>memory</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Network interface I/O metrics &amp; TCP connection metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>network</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># CPU load metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>load</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Paging/Swap space utilization and I/O metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>paging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Process count metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Per process CPU, Memory and Disk I/O metrics. Disabled by default.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># process:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>otlp</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>opencensus</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Collect own metrics</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>prometheus/internal</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>config</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>scrape_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>job_name</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;otel-collector&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>scrape_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>static_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>targets</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s1>&#39;0.0.0.0:8888&#39;</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>jaeger</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_binary</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_compact</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zipkin</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>processors</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>batch</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>exporters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>logging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>verbosity</span><span class=p>:</span><span class=w> </span><span class=l>detailed</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pipelines</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>traces</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, jaeger, zipkin]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, prometheus]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>extensions</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>health_check, pprof, zpages]</span><span class=w>
+</span></span></span></code></pre></div></div></div></div></div><h2 id=example-dashboard---prometheus-metrics>Example Dashboard - Prometheus metrics</h2><p>The following screenshot shows an example dashboard of the metrics the Prometheus internal receiver collects from the OpenTelemetry Collector. Here, we can see accepted and sent spans, metrics and log records.</p><div class="box notices cstyle note"><div class=box-label><i class="fa-fw fas fa-exclamation-circle"></i> Note</div><div class=box-content><p>The following screenshot is an out of the box (OOTB) dashboard from Splunk Observability Cloud that allows your to easily monitor your Splunk OpenTelemetry Collector install base.</p></div></div><p><a href=#image-5e94d0180f320378cfef8637de22ab39 class=lightbox-link><img src=../../en/conf/opentelemetry-collector/3-receivers/../images/otel-charts.png alt=otel-charts style=height:auto;width:auto loading=lazy></a>
+<a href=javascript:history.back(); class=lightbox id=image-5e94d0180f320378cfef8637de22ab39><img src=../../en/conf/opentelemetry-collector/3-receivers/../images/otel-charts.png alt=otel-charts class=lightbox-image loading=lazy></a></p><h2 id=other-receivers>Other Receivers</h2><p>You will notice in the default configuration there are other receivers (<code>otlp</code>, <code>opencensus</code>, <code>jaeger</code> and <code>zipkin</code>). These are used to receive telemetry data from other sources. We will not be using these receivers in this workshop and can be left as they are.</p><p>Now that we have reviewed how data gets into the OTEL Collector, we can now learn how the Collector processes the data.</p><footer class=footline></footer></article><article class=default><header class=headline></header><h1 id=opentelemetry-collector-processors>OpenTelemetry Collector Processors</h1><p><a href=https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/README.md target=_blank>Processors</a> are run on data between being received and being exported. Processors are optional though some are recommended. There are <a href=https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor target=_blank>a large number of processors</a> included in the OpenTelemetry contrib Collector.</p><div class="mermaid align-center">%%{
+init:{
+"theme":"base",
+"themeVariables": {
+"primaryColor": "#ffffff",
+"clusterBkg": "#eff2fb",
+"defaultLinkColor": "#333333"
+}
+}
+}%%
+flowchart LR;
+style Processors fill:#e20082,stroke:#333,stroke-width:4px,color:#fff
+subgraph Collector
+A[OTLP] --> M(Receivers)
+B[JAEGER] --> M(Receivers)
+C[Prometheus] --> M(Receivers)
+end
+subgraph Processors
+M(Receivers) --> H(Filters, Attributes, etc)
+E(Extensions)
+end
+subgraph Exporters
+H(Filters, Attributes, etc) --> S(OTLP)
+H(Filters, Attributes, etc) --> T(JAEGER)
+H(Filters, Attributes, etc) --> U(Prometheus)
+end</div><h2 id=batch-processor>Batch Processor</h2><p>By default, only the <strong>batch</strong> processor is enabled. This processor is used to batch up data before it is exported. This is useful for reducing the number of network calls made to exporters. For this workshop we will accept the defaults (<code>send_batch_size: 8192</code>, <code>timeout: 200ms</code>, <code>send_batch_size_max: 0</code>).</p><h2 id=resource-detection-processor>Resource Detection Processor</h2><p>The resource detection processor can be used to detect resource information from the host and append or override the resource value in telemetry data with this information.</p><p>By default, the hostname is set to the FQDN if possible, otherwise the hostname provided by the OS is used as a fallback. This logic can be changed from using using the <code>hostname_sources</code> configuration option. To avoid getting the FQDN and use the hostname provided by the OS, we will set the <code>hostname_sources</code> to <code>os</code>.</p><div class=tab-panel data-tab-group=cc02360ff7f7e4a2663eaeb6bd90c508><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item="Resource Detection Processor Configuration" class="tab-nav-button tab-panel-style cstyle initial active" onclick='switchTab("cc02360ff7f7e4a2663eaeb6bd90c508","Resource Detection Processor Configuration")'><div><div class=tab-nav-hidden>Resource Detection Processor Configuration</div><div class=tab-nav-text>Resource Detection Processor Configuration</div></div></button>
+<button data-tab-item="Resource Detection Processor Configuration Complete" class="tab-nav-button tab-panel-style cstyle initial" onclick='switchTab("cc02360ff7f7e4a2663eaeb6bd90c508","Resource Detection Processor Configuration Complete")'><div><div class=tab-nav-hidden>Resource Detection Processor Configuration Complete</div><div class=tab-nav-text>Resource Detection Processor Configuration Complete</div></div></button></div><div class=tab-content-container><div data-tab-item="Resource Detection Processor Configuration" class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>processors</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>batch</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>resourcedetection</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>detectors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>system]</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>system</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>hostname_sources</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>os]</span><span class=w>
+</span></span></span></code></pre></div></div></div><div data-tab-item="Resource Detection Processor Configuration Complete" class="tab-content tab-panel-style cstyle initial"><div class=tab-content-text><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>health_check</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>13133</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pprof</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>1777</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zpages</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>55679</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>receivers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>hostmetrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>collection_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>scrapers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># CPU utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>cpu</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Disk I/O metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>disk</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># File System utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>filesystem</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Memory utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>memory</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Network interface I/O metrics &amp; TCP connection metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>network</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># CPU load metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>load</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Paging/Swap space utilization and I/O metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>paging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Process count metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Per process CPU, Memory and Disk I/O metrics. Disabled by default.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># process:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>otlp</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>opencensus</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Collect own metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>prometheus/internal</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>config</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>scrape_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>job_name</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;otel-collector&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>scrape_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>static_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>targets</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s1>&#39;0.0.0.0:8888&#39;</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>jaeger</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_binary</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_compact</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zipkin</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>processors</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>batch</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>resourcedetection</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>detectors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>system]</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>system</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>hostname_sources</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>os]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>exporters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>logging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>verbosity</span><span class=p>:</span><span class=w> </span><span class=l>detailed</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pipelines</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>traces</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, jaeger, zipkin]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, prometheus]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>extensions</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>health_check, pprof, zpages]</span><span class=w>
+</span></span></span></code></pre></div></div></div></div></div><h2 id=attributes-processor>Attributes Processor</h2><p>The attributes processor modifies attributes of a span, log, or metric. This processor also supports the ability to filter and match input data to determine if they should be included or excluded for specified actions.</p><p>It takes a list of actions which are performed in order specified in the config. The supported actions are:</p><ul><li><code>insert</code>: Inserts a new attribute in input data where the key does not already exist.</li><li><code>update</code>: Updates an attribute in input data where the key does exist.</li><li><code>upsert</code>: Performs insert or update. Inserts a new attribute in input data where the key does not already exist and updates an attribute in input data where the key does exist.</li><li><code>delete</code>: Deletes an attribute from the input data.</li><li><code>hash</code>: Hashes (SHA1) an existing attribute value.</li><li><code>extract</code>: Extracts values using a regular expression rule from the input key to target keys specified in the rule. If a target key already exists, it will be overridden.</li></ul><p>We are going to create an attributes processor to <code>insert</code> a new attribute to all our host metrics called <code>conf.attendee.name</code> with a value of your own name e.g. <code>rcastley</code>.</p><p>Later on in the workshop we will use this attribute to filter our metrics in Splunk Observability Cloud.</p><div class=tab-panel data-tab-group=50d7eed4d6ffd2228e76b375fbbe044b><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item="Attributes Processor Configuration" class="tab-nav-button tab-panel-style cstyle initial active" onclick='switchTab("50d7eed4d6ffd2228e76b375fbbe044b","Attributes Processor Configuration")'><div><div class=tab-nav-hidden>Attributes Processor Configuration</div><div class=tab-nav-text>Attributes Processor Configuration</div></div></button>
+<button data-tab-item="Attributes Processor Configuration Complete" class="tab-nav-button tab-panel-style cstyle initial" onclick='switchTab("50d7eed4d6ffd2228e76b375fbbe044b","Attributes Processor Configuration Complete")'><div><div class=tab-nav-hidden>Attributes Processor Configuration Complete</div><div class=tab-nav-text>Attributes Processor Configuration Complete</div></div></button></div><div class=tab-content-container><div data-tab-item="Attributes Processor Configuration" class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>processors</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>batch</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>resourcedetection</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>detectors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>system]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>system</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>hostname_sources</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>os]</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>attributes/conf</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>actions</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span>- <span class=nt>key</span><span class=p>:</span><span class=w> </span><span class=l>conf.attendee.name</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>        </span><span class=nt>action</span><span class=p>:</span><span class=w> </span><span class=l>insert</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>        </span><span class=nt>value</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;INSERT_YOUR_NAME_HERE&#34;</span><span class=w>
+</span></span></span></code></pre></div></div></div><div data-tab-item="Attributes Processor Configuration Complete" class="tab-content tab-panel-style cstyle initial"><div class=tab-content-text><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>health_check</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>13133</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pprof</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>1777</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zpages</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>55679</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>receivers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>hostmetrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>collection_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>scrapers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># CPU utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>cpu</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Disk I/O metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>disk</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># File System utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>filesystem</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Memory utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>memory</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Network interface I/O metrics &amp; TCP connection metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>network</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># CPU load metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>load</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Paging/Swap space utilization and I/O metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>paging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Process count metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Per process CPU, Memory and Disk I/O metrics. Disabled by default.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># process:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>otlp</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>opencensus</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Collect own metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>prometheus/internal</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>config</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>scrape_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>job_name</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;otel-collector&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>scrape_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>static_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>targets</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s1>&#39;0.0.0.0:8888&#39;</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>jaeger</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_binary</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_compact</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zipkin</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>processors</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>batch</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>resourcedetection</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>detectors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>system]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>system</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>hostname_sources</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>os]</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>attributes/conf</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>actions</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span>- <span class=nt>key</span><span class=p>:</span><span class=w> </span><span class=l>conf.attendee.name</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>        </span><span class=nt>action</span><span class=p>:</span><span class=w> </span><span class=l>insert</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>        </span><span class=nt>value</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;INSERT_YOUR_NAME_HERE&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>exporters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>logging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>verbosity</span><span class=p>:</span><span class=w> </span><span class=l>detailed</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pipelines</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>traces</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, jaeger, zipkin]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, prometheus]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>extensions</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>health_check, pprof, zpages]</span><span class=w>
+</span></span></span></code></pre></div></div></div></div></div><footer class=footline></footer></article><article class=default><header class=headline></header><h1 id=opentelemetry-collector-exporters>OpenTelemetry Collector Exporters</h1><p>An exporter, which can be push or pull based, is how you send data to one or more backends/destinations. Exporters may support one or more data sources.</p><p>For this workshop we will be using the <strong>otlphttp</strong> exporter. The OpenTelemetry Protocol (OTLP) is a vendor-neutral, standardised protocol for transmitting telemetry data. The OTLP exporter sends data to a server that implements the OTLP protocol. The OTLP exporter supports both gRPC and HTTP/JSON protocols.</p><div class="mermaid align-center">%%{
+init:{
+"theme":"base",
+"themeVariables": {
+"primaryColor": "#ffffff",
+"clusterBkg": "#eff2fb",
+"defaultLinkColor": "#333333"
+}
+}
+}%%
+flowchart LR;
+style Exporters fill:#e20082,stroke:#333,stroke-width:4px,color:#fff
+subgraph Collector
+A[OTLP] --> M(Receivers)
+B[JAEGER] --> M(Receivers)
+C[Prometheus] --> M(Receivers)
+end
+subgraph Processors
+M(Receivers) --> H(Filters, Attributes, etc)
+E(Extensions)
+end
+subgraph Exporters
+H(Filters, Attributes, etc) --> S(OTLP)
+H(Filters, Attributes, etc) --> T(JAEGER)
+H(Filters, Attributes, etc) --> U(Prometheus)
+end</div><p>In order to send metrics over HTTP to Splunk Observability Cloud we will need to configure the <strong>otlphttp</strong> exporter.</p><p>Let&rsquo;s edit our <code>/etc/otelcontribcol/config.yaml</code> file and configure the <strong>otlphttp</strong> exporter. Insert the following YAML under the <strong>exporters</strong> section, taking care to indent by two spaces e.g.</p><p>We will also change the verbosity of the logging exporter to prevent the disk filling up. The default of <code>detailed</code> is very noisy.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>exporters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>logging</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>verbosity</span><span class=p>:</span><span class=w> </span><span class=l>normal</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>otlphttp/splunk</span><span class=p>:</span><span class=w>
+</span></span></span></code></pre></div><p>Next we need to define the <code>metrics_endpoint</code> and configure the target URL. For Splunk Observerability Cloud the URL is <code>https://ingest.us1.signalfx.com/v2/datapoint/otlp</code>.</p><p>The <strong>otlphttp</strong> exporter can also be configured to also send traces and logs by defining target URL for <code>traces_endpoint</code> and <code>logs_endpoint</code> respectively.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>exporters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>logging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>verbosity</span><span class=p>:</span><span class=w> </span><span class=l>normal</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>otlphttp/splunk</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>metrics_endpoint</span><span class=p>:</span><span class=w> </span><span class=l>https://ingest.us1.signalfx.com/v2/datapoint/otlp</span><span class=w>
+</span></span></span></code></pre></div><p>By default <code>gzip</code> compression is enabled for all endpoints, this can be disabled by setting <code>compression: none</code> in the exporter configuration. We will leave compression enabled for this workshop and accept the default as this is the most efficient way to send data.</p><p>In order to send metrics to Splunk Observability Cloud we need to define a token. This can be done by creating a new token in the Splunk Observability Cloud UI. For more information on how to create a token, see <a href=https://docs.splunk.com/Observability/admin/authentication-tokens/org-tokens.html target=_blank>Create a token</a>. The token needs to be of type <strong>INGEST</strong>.</p><p>The token can then be added to the configuration file by defining a <em>key</em> named <code>X-SF-TOKEN</code> and a <em>value</em> of the token created above under <code>headers</code> section:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>exporters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>logging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>verbosity</span><span class=p>:</span><span class=w> </span><span class=l>normal</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>otlphttp/splunk</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metrics_endpoint</span><span class=p>:</span><span class=w> </span><span class=l>https://ingest.us1.signalfx.com/v2/datapoint/otlp</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>headers</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>X-SF-TOKEN</span><span class=p>:</span><span class=w> </span><span class=l>&lt;redacted&gt;</span><span class=w>
+</span></span></span></code></pre></div><p>Of course, you could easily configure the <code>metrics_endpoint</code> to point to any other solution that supports the <strong>OTLP</strong> protocol.</p><footer class=footline></footer></article><article class=default><header class=headline></header><h1 id=opentelemetry-collector-service>OpenTelemetry Collector Service</h1><p>The <strong>Service</strong> section is used to configure what components are enabled in the Collector based on the configuration found in the receivers, processors, exporters, and extensions sections. If a component is configured, but not defined within the service section then it is not enabled. The service section consists of three sub-sections:</p><ul><li>extensions</li><li>pipelines</li><li>telemetry</li></ul><p>In the default configuration the extension section has been configured to enable <code>health_check</code>, <code>pprof</code> and <code>zpages</code> which we configured in the Extensions module earlier.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>extensions</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>health_check, pprof, zpages]</span><span class=w>
+</span></span></span></code></pre></div><h2 id=configure-metric-pipeline>Configure Metric Pipeline</h2><h3 id=hostmetrics-receiver>Hostmetrics Receiver</h3><p>Earlier in the workshop we defined the <a href=../../en/conf/opentelemetry-collector/6-service/../3-receivers/#host-metrics-receiver>Host Metrics Receiver</a> to generate metrics about the host system scraped from various sources. We now need to enabled this under the metrics pipeline. Update the <code>receivers</code> section to include <code>hostmetrics</code> under the <code>metrics</code> pipeline.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pipelines</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>traces</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, jaeger, zipkin]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>hostmetrics, otlp, opencensus, prometheus]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span></code></pre></div><h3 id=prometheus-internal-receiver>Prometheus Internal Receiver</h3><p>We renamed the <code>prometheus</code> receiver to reflect that is was collecting metrics internal to the collector. We now need to enable this under the metrics pipeline. Update the <code>receivers</code> section to include <code>prometheus/internal</code> under the <code>metrics</code> pipeline.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pipelines</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>traces</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, jaeger, zipkin]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>hostmetrics, otlp, opencensus, prometheus/internal]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span></code></pre></div><h3 id=resource-detection-processor>Resource Detection Processor</h3><p>The <code>resourcedetection</code> processor was added so that the collector could capture the hostname of the instance upon which it is installed and running. We now need to enable this under the metrics pipeline. Update the <code>processors</code> section to include <code>resourcedetection</code> under the <code>metrics</code> pipeline.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pipelines</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>traces</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, jaeger, zipkin]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>hostmetrics, otlp, opencensus, prometheus/internal]</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch, resourcedetection]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span></code></pre></div><h3 id=otlphttp-exporter>OTLPHTTP Exporter</h3><p>We configured the <code>otlphttp</code> exporter to send metrics to Splunk Observability Cloud. We now need to enable this under the metrics pipeline. Update the <code>exporters</code> section to include <code>otlphttp/splunk</code> under the <code>metrics</code> pipeline.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pipelines</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>traces</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, jaeger, zipkin]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>hostmetrics, otlp, opencensus, prometheus/internal]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch, resourcedetection]</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging, otlphttp/splunk]</span><span class=w>
+</span></span></span></code></pre></div><h2 id=final-configuration>Final configuration</h2><p>The final configuration should look like this:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>health_check</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>13133</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pprof</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>1777</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zpages</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>55679</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>receivers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>hostmetrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>collection_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>scrapers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># CPU utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>cpu</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Disk I/O metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>disk</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># File System utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>filesystem</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Memory utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>memory</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Network interface I/O metrics &amp; TCP connection metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>network</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># CPU load metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>load</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Paging/Swap space utilization and I/O metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>paging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Process count metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Per process CPU, Memory and Disk I/O metrics. Disabled by default.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># process:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>otlp</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>opencensus</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Collect own metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>prometheus/internal</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>config</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>scrape_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>job_name</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;otel-collector&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>scrape_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>static_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>targets</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s1>&#39;0.0.0.0:8888&#39;</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>jaeger</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_binary</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_compact</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zipkin</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>processors</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>batch</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>resourcedetection</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>detectors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>system]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>system</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>hostname_sources</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>os]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>exporters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>logging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>verbosity</span><span class=p>:</span><span class=w> </span><span class=l>normal</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>otlphttp/splunk</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metrics_endpoint</span><span class=p>:</span><span class=w> </span><span class=l>https://ingest.us1.signalfx.com/v2/datapoint/otlp</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>headers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>X-SF-TOKEN</span><span class=p>:</span><span class=w> </span><span class=l>&lt;TOKEN REDACTED&gt;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pipelines</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>traces</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, jaeger, zipkin]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>hostmetrics, otlp, opencensus, prometheus/internal]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch, resourcedetection]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging, otlphttp/splunk]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>extensions</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>health_check, pprof, zpages]</span><span class=w>
+</span></span></span></code></pre></div><p>Now that we have a working configuration, let&rsquo;s restart the collector and then check to see what <a href=../../en/conf/opentelemetry-collector/6-service/../2-extensions/#zpages>zPages</a> is reporting.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo systemctl restart otelcol-contrib
+</span></span></code></pre></div><p><a href=#image-b288f8a8374bd99cec25fa45ee9ab0c1 class=lightbox-link><img src=../../en/conf/opentelemetry-collector/6-service/../images/pipelinez-full-config.png alt=pipelinez-full-config style=height:auto;width:auto loading=lazy></a>
+<a href=javascript:history.back(); class=lightbox id=image-b288f8a8374bd99cec25fa45ee9ab0c1><img src=../../en/conf/opentelemetry-collector/6-service/../images/pipelinez-full-config.png alt=pipelinez-full-config class=lightbox-image loading=lazy></a></p><footer class=footline></footer></article><article class=default><header class=headline></header><h1 id=data-visualisations>Data Visualisations</h1><div class="box attachments cstyle transparent"><div class=box-label><i class="fa-fw fas fa-paperclip"></i> Attachments</div><ul class="box-content attachments-files"><li><a href=../../en/conf/opentelemetry-collector/7-visualisation.files/dashboard_OTel-Contrib-Dashboard.json>dashboard_OTel-Contrib-Dashboard.json</a> (40 KB)</li></ul></div><p><a href=#image-b1e7b880dcb86e1bf094029f09e32171 class=lightbox-link><img src=../../en/conf/opentelemetry-collector/7-visualisation/../images/otel-dashboard.png alt=otel-dashboard style=height:auto;width:auto loading=lazy></a>
+<a href=javascript:history.back(); class=lightbox id=image-b1e7b880dcb86e1bf094029f09e32171><img src=../../en/conf/opentelemetry-collector/7-visualisation/../images/otel-dashboard.png alt=otel-dashboard class=lightbox-image loading=lazy></a></p><footer class=footline></footer></article></section></section></div></main></div><script src=../../js/clipboard.min.js?1686840504 defer></script>
+<script src=../../js/perfect-scrollbar.min.js?1686840504 defer></script>
+<script src=../../js/d3/d3-color.min.js?1686840504 defer></script>
+<script src=../../js/d3/d3-dispatch.min.js?1686840504 defer></script>
+<script src=../../js/d3/d3-drag.min.js?1686840504 defer></script>
+<script src=../../js/d3/d3-ease.min.js?1686840504 defer></script>
+<script src=../../js/d3/d3-interpolate.min.js?1686840504 defer></script>
+<script src=../../js/d3/d3-selection.min.js?1686840504 defer></script>
+<script src=../../js/d3/d3-timer.min.js?1686840504 defer></script>
+<script src=../../js/d3/d3-transition.min.js?1686840504 defer></script>
+<script src=../../js/d3/d3-zoom.min.js?1686840504 defer></script>
+<script src=../../js/mermaid.min.js?1686840504 defer></script>
+<script>window.themeUseMermaid=JSON.parse("{}")</script><script src=../../js/theme.js?1686840504 defer></script></body></html>
