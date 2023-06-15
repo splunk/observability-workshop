@@ -6,7 +6,7 @@ set -o nounset  # Disallow expansion of unset variables
 set -o pipefail # Use last non-zero exit code in a pipeline
 
 TAG_NAME=dev
-BASE_URL=$(yq .baseURL config.yaml)
+BASE_URL=$(yq .baseURL hugo.yaml)
 SERVE=0
 
 while getopts 'b:st:' opt; do

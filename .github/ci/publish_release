@@ -26,7 +26,7 @@ done
 
 publish_dir="$(pwd)/site/v${TAG_NAME}"
 commit_message="Docs: Releasing ${TAG_NAME}"
-version_filter=$(yq '[.params.versions[].version | select (. != "latest")] | . + ["'"v${TAG_NAME}"'"] | "! /^" + .[] + "\//"|[.]' config.yaml | yq 'join(" && ")')
+version_filter=$(yq '[.params.versions[].version | select (. != "latest")] | . + ["'"v${TAG_NAME}"'"] | "! /^" + .[] + "\//"|[.]' hugo.yaml | yq 'join(" && ")')
 
 if [[ -z "${GITHUB_ACTOR+x}" ]]; then
 	# running outside github action
