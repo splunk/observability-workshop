@@ -79,6 +79,26 @@ service:
       exporters: [logging]
 ```
 
+### Attributes Processor
+
+The `attributes/conf` processor was added so that the collector to inset a new attribute called `conf.attendee.name` to all the metrics. We now need to enable this under the metrics pipeline. Update the `processors` section to include `attributes/conf` under the `metrics` pipeline.
+
+```yaml {hl_lines=[12]}
+service:
+
+  pipelines:
+
+    traces:
+      receivers: [otlp, opencensus, jaeger, zipkin]
+      processors: [batch]
+      exporters: [logging]
+
+    metrics:
+      receivers: [hostmetrics, otlp, opencensus, prometheus/internal]
+      processors: [batch, resourcedetection/system, resourcedetection/ec2, attributes/conf]
+      exporters: [logging]
+```
+
 ### OTLPHTTP Exporter
 
 We configured the `otlphttp` exporter to send metrics to Splunk Observability Cloud. We now need to enable this under the metrics pipeline. Update the `exporters` section to include `otlphttp/splunk` under the `metrics` pipeline.
@@ -192,7 +212,7 @@ service:
 
     metrics:
       receivers: [hostmetrics, otlp, opencensus, prometheus/internal]
-      processors: [batch, resourcedetection/system, resourcedetection/ec2] 
+      processors: [batch, resourcedetection/system, resourcedetection/ec2, attributes/conf] 
       exporters: [logging, otlphttp/splunk]
 
   extensions: [health_check, pprof, zpages]
