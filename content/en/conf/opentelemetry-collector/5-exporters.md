@@ -83,6 +83,112 @@ exporters:
 
 ## Configuration Check-in
 
+That's exporters covered, let's check our configuration changes.
+
+{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your configuration{{% /badge %}}" %}}
+
+{{< tabs >}}
+{{% tab title="config.yaml" %}}
+
+```yaml {hl_lines=["72-76"]}
+extensions:
+  health_check:
+    endpoint: 0.0.0.0:13133
+  pprof:
+    endpoint: 0.0.0.0:1777
+  zpages:
+    endpoint: 0.0.0.0:55679
+
+receivers:
+  hostmetrics:
+    collection_interval: 10s
+    scrapers:
+      # CPU utilization metrics
+      cpu:
+      # Disk I/O metrics
+      disk:
+      # File System utilization metrics
+      filesystem:
+      # Memory utilization metrics
+      memory:
+      # Network interface I/O metrics & TCP connection metrics
+      network:
+      # CPU load metrics
+      load:
+      # Paging/Swap space utilization and I/O metrics
+      paging:
+      # Process count metrics
+      processes:
+      # Per process CPU, Memory and Disk I/O metrics. Disabled by default.
+      # process:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+  opencensus:
+
+  # Collect own metrics
+  prometheus/internal:
+    config:
+      scrape_configs:
+      - job_name: 'otel-collector'
+        scrape_interval: 10s
+        static_configs:
+        - targets: ['0.0.0.0:8888']
+
+  jaeger:
+    protocols:
+      grpc:
+      thrift_binary:
+      thrift_compact:
+      thrift_http:
+
+  zipkin:
+
+processors:
+  batch:
+  resourcedetection/system:
+    detectors: [system]
+    system:
+      hostname_sources: [os]
+  resourcedetection/ec2:
+    detectors: [ec2]
+  attributes/conf:
+    actions:
+      - key: conf.attendee.name
+        action: insert
+        value: "INSERT_YOUR_NAME_HERE"
+
+exporters:
+  logging:
+    verbosity: normal
+  otlphttp/splunk:
+    metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
+    headers:
+      X-SF-TOKEN: <redacted>
+
+service:
+
+  pipelines:
+
+    traces:
+      receivers: [otlp, opencensus, jaeger, zipkin]
+      processors: [batch]
+      exporters: [logging]
+
+    metrics:
+      receivers: [otlp, opencensus, prometheus]
+      processors: [batch]
+      exporters: [logging]
+
+  extensions: [health_check, pprof, zpages]
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+{{% /expand %}}
+
 Of course, you could easily configure the `metrics_endpoint` to point to any other solution that supports the **OTLP** protocol.
 
 Next we need to enable the receivers, processors and exporters we have just configured in the service section of the `config.yaml`.

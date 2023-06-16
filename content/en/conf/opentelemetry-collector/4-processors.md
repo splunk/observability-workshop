@@ -50,8 +50,7 @@ The **resourcedetection** processor can be used to detect resource information f
 
 By default, the hostname is set to the FQDN if possible, otherwise the hostname provided by the OS is used as a fallback. This logic can be changed from using using the `hostname_sources` configuration option. To avoid getting the FQDN and use the hostname provided by the OS, we will set the `hostname_sources` to `os`.
 
-{{< tabs >}}
-{{% tab title="Resource Detection Processor Configuration" %}}
+{{% tab title="System Resource Detection Processor Configuration" %}}
 
 ``` yaml {hl_lines=["3-7"]}
 processors:
@@ -63,94 +62,6 @@ processors:
 ```
 
 {{% /tab %}}
-{{% tab title="Resource Detection Processor Configuration Complete" %}}
-
-``` yaml {hl_lines=["58-61"]}
-extensions:
-  health_check:
-    endpoint: 0.0.0.0:13133
-  pprof:
-    endpoint: 0.0.0.0:1777
-  zpages:
-    endpoint: 0.0.0.0:55679
-
-receivers:
-  hostmetrics:
-    collection_interval: 10s
-    scrapers:
-      # CPU utilization metrics
-      cpu:
-      # Disk I/O metrics
-      disk:
-      # File System utilization metrics
-      filesystem:
-      # Memory utilization metrics
-      memory:
-      # Network interface I/O metrics & TCP connection metrics
-      network:
-      # CPU load metrics
-      load:
-      # Paging/Swap space utilization and I/O metrics
-      paging:
-      # Process count metrics
-      processes:
-      # Per process CPU, Memory and Disk I/O metrics. Disabled by default.
-      # process:
-  otlp:
-    protocols:
-      grpc:
-      http:
-
-  opencensus:
-
-  # Collect own metrics
-  prometheus/internal:
-    config:
-      scrape_configs:
-      - job_name: 'otel-collector'
-        scrape_interval: 10s
-        static_configs:
-        - targets: ['0.0.0.0:8888']
-
-  jaeger:
-    protocols:
-      grpc:
-      thrift_binary:
-      thrift_compact:
-      thrift_http:
-
-  zipkin:
-
-processors:
-  batch:
-  resourcedetection:
-    detectors: [system]
-    system:
-      hostname_sources: [os]
-
-exporters:
-  logging:
-    verbosity: detailed
-
-service:
-
-  pipelines:
-
-    traces:
-      receivers: [otlp, opencensus, jaeger, zipkin]
-      processors: [batch]
-      exporters: [logging]
-
-    metrics:
-      receivers: [otlp, opencensus, prometheus]
-      processors: [batch]
-      exporters: [logging]
-
-  extensions: [health_check, pprof, zpages]
-```
-  
-{{% /tab %}}
-{{< /tabs >}}
 
 As the workshop instance is running on an AWS/EC2 instance we can gather tags from the EC2 metadata API.
 
@@ -166,8 +77,7 @@ As the workshop instance is running on an AWS/EC2 instance we can gather tags fr
 
 We will create another processor to append these tags to our metrics.
 
-{{< tabs >}}
-{{% tab title="Resource Detection Processor Configuration" %}}
+{{% tab title="EC2 Resource Detection Processor Configuration" %}}
 
 ``` yaml {hl_lines=["7-8"]}
 processors:
@@ -181,13 +91,6 @@ processors:
 ```
 
 {{% /tab %}}
-{{% tab title="Resource Detection Processor Configuration Complete" %}}
-
-``` yaml {hl_lines=["58-61"]}
-```
-
-{{% /tab %}}
-{{< /tabs >}}
 
 ## Attributes Processor
 
@@ -206,10 +109,9 @@ We are going to create an attributes processor to `insert` a new attribute to al
 
 Later on in the workshop we will use this attribute to filter our metrics in Splunk Observability Cloud.
 
-{{< tabs >}}
 {{% tab title="Attributes Processor Configuration" %}}
 
-``` yaml {hl_lines=["7-11"]}
+``` yaml {hl_lines=["9-13"]}
 processors:
   batch:
   resourcedetection/system:
@@ -226,9 +128,17 @@ processors:
 ```
 
 {{%/ tab %}}
-{{% tab title="Attributes Processor Configuration Complete" %}}
 
-``` yaml {hl_lines=["62-66"]}
+## Configuration Check-in
+
+That's processors covered, let's check our configuration changes.
+
+{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your configuration{{% /badge %}}" %}}
+
+{{< tabs >}}
+{{% tab title="config.yaml" %}}
+
+```yaml {hl_lines=["58-68"]}
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133
@@ -321,5 +231,4 @@ service:
 
 {{% /tab %}}
 {{< /tabs >}}
-
-## Configuration Check-in
+{{% /expand %}}

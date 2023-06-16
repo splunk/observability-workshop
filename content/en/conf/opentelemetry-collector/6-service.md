@@ -61,7 +61,7 @@ service:
 
 ### Resource Detection Processor
 
-The `resourcedetection` processor was added so that the collector could capture the hostname of the instance upon which it is installed and running. We now need to enable this under the metrics pipeline. Update the `processors` section to include `resourcedetection` under the `metrics` pipeline.
+The `resourcedetection/system` and `resourcedetection/ec2` processors were added so that the collector could capture the hostname of the instance and AWS/EC2 metadata. We now need to enable this under the metrics pipeline. Update the `processors` section to include `resourcedetection/system` and `resourcedetection/ec2` under the `metrics` pipeline.
 
 ```yaml {hl_lines=[12]}
 service:
@@ -75,7 +75,7 @@ service:
 
     metrics:
       receivers: [hostmetrics, otlp, opencensus, prometheus/internal]
-      processors: [batch, resourcedetection]
+      processors: [batch, resourcedetection/system, resourcedetection/ec2]
       exporters: [logging]
 ```
 
@@ -103,7 +103,7 @@ service:
 
 The final configuration should look like this:
 
-``` yaml
+``` yaml {hl_lines=["88-90"]}
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133
@@ -161,10 +161,12 @@ receivers:
 
 processors:
   batch:
-  resourcedetection:
+  resourcedetection/system:
     detectors: [system]
     system:
       hostname_sources: [os]
+  resourcedetection/ec2:
+    detectors: [ec2]
   attributes/conf:
     actions:
       - key: conf.attendee.name
@@ -177,7 +179,7 @@ exporters:
   otlphttp/splunk:
     metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
     headers:
-      X-SF-TOKEN: <TOKEN REDACTED>
+      X-SF-TOKEN: <redacted>
 
 service:
 
@@ -190,7 +192,7 @@ service:
 
     metrics:
       receivers: [hostmetrics, otlp, opencensus, prometheus/internal]
-      processors: [batch, resourcedetection]
+      processors: [batch, resourcedetection/system, resourcedetection/ec2] 
       exporters: [logging, otlphttp/splunk]
 
   extensions: [health_check, pprof, zpages]
