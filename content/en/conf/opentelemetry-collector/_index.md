@@ -23,7 +23,7 @@ This interactive workshop is for developers and system administrators who are in
 
 ### Prerequisites
 
-- Attendees should have a basci understanding of data collection 
+- Attendees should have a basic understanding of data collection
 - Command line and vim/vi experience.
 - A instance/host/VM running Ubuntu 20.04 LTS or 22.04 LTS.
 
@@ -32,7 +32,7 @@ This interactive workshop is for developers and system administrators who are in
 By the end of this talk, attendees will be able to:
 
 - Understand the components of OpenTelemetry
-- Use receivers, processors, and exporters to collect and analyze data 
+- Use receivers, processors, and exporters to collect and analyze data
 - Identify the benefits of using OpenTelemetry
 - Build a custom component to solve their business needs
 

@@ -21,7 +21,7 @@ service:
 
 ### Hostmetrics Receiver
 
-Earlier in the workshop we defined the [Host Metrics Receiver](../3-receivers/#host-metrics-receiver) to generate metrics about the host system scraped from various sources. We now need to enabled this under the metrics pipeline. Update the `receivers` section to include `hostmetrics` under the `metrics` pipeline.
+Earlier in the workshop we defined the [Host Metrics Receiver](../3-receivers/#host-metrics-receiver) to generate metrics about the host system scraped from various sources. We now need to enable this under the metrics pipeline. Update the `receivers` section to include `hostmetrics` under the `metrics` pipeline.
 
 ```yaml {hl_lines=[11]}
 service:
@@ -61,7 +61,7 @@ service:
 
 ### Resource Detection Processor
 
-The `resourcedetection` processor was added so that the collector could capture the hostname of the instance upon which it is installed and running. We now need to enable this under the metrics pipeline. Update the `processors` section to include `resourcedetection` under the `metrics` pipeline.
+The `resourcedetection/system` and `resourcedetection/ec2` processors were added so that the collector could capture the hostname of the instance and AWS/EC2 metadata. We now need to enable this under the metrics pipeline. Update the `processors` section to include `resourcedetection/system` and `resourcedetection/ec2` under the `metrics` pipeline.
 
 ```yaml {hl_lines=[12]}
 service:
@@ -75,7 +75,27 @@ service:
 
     metrics:
       receivers: [hostmetrics, otlp, opencensus, prometheus/internal]
-      processors: [batch, resourcedetection]
+      processors: [batch, resourcedetection/system, resourcedetection/ec2]
+      exporters: [logging]
+```
+
+### Attributes Processor
+
+The `attributes/conf` processor was added so that the collector to inset a new attribute called `conf.attendee.name` to all the metrics. We now need to enable this under the metrics pipeline. Update the `processors` section to include `attributes/conf` under the `metrics` pipeline.
+
+```yaml {hl_lines=[12]}
+service:
+
+  pipelines:
+
+    traces:
+      receivers: [otlp, opencensus, jaeger, zipkin]
+      processors: [batch]
+      exporters: [logging]
+
+    metrics:
+      receivers: [hostmetrics, otlp, opencensus, prometheus/internal]
+      processors: [batch, resourcedetection/system, resourcedetection/ec2, attributes/conf]
       exporters: [logging]
 ```
 
@@ -101,9 +121,13 @@ service:
 
 ## Final configuration
 
-The final configuration should look like this:
+---
 
-``` yaml
+{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your final configuration{{% /badge %}}" %}}
+{{< tabs >}}
+{{% tab title="config.yaml" %}}
+
+``` yaml {hl_lines=["88-90"]}
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133
@@ -161,10 +185,17 @@ receivers:
 
 processors:
   batch:
-  resourcedetection:
+  resourcedetection/system:
     detectors: [system]
     system:
       hostname_sources: [os]
+  resourcedetection/ec2:
+    detectors: [ec2]
+  attributes/conf:
+    actions:
+      - key: conf.attendee.name
+        action: insert
+        value: "INSERT_YOUR_NAME_HERE"
 
 exporters:
   logging:
@@ -172,7 +203,7 @@ exporters:
   otlphttp/splunk:
     metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
     headers:
-      X-SF-TOKEN: <TOKEN REDACTED>
+      X-SF-TOKEN: <redacted>
 
 service:
 
@@ -185,11 +216,18 @@ service:
 
     metrics:
       receivers: [hostmetrics, otlp, opencensus, prometheus/internal]
-      processors: [batch, resourcedetection]
+      processors: [batch, resourcedetection/system, resourcedetection/ec2, attributes/conf] 
       exporters: [logging, otlphttp/splunk]
 
   extensions: [health_check, pprof, zpages]
 ```
+
+{{% /tab %}}
+{{% /tabs %}}
+
+{{% /expand %}}
+
+---
 
 Now that we have a working configuration, let's restart the collector and then check to see what [zPages](../2-extensions/#zpages) is reporting.
 

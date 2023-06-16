@@ -4,9 +4,9 @@ linkTitle: 2. Extensions
 weight: 2
 ---
 
-Now that we have the OpenTelemetry Collector is installed. Let's take a look at extensions for the OTEL Collector.
+Now that we have the OpenTelemetry Collector is installed. Let's take a look at extensions for the OpenTelemetry Collector.
 
-Extensions are available primarily for tasks that do not involve processing telemetry data. Examples of extensions include health monitoring, service discovery, and data forwarding. Extensions are optional.
+Extensions are optional and available primarily for tasks that do not involve processing telemetry data. Examples of extensions include health monitoring, service discovery, and data forwarding.
 
 {{< mermaid >}}
 %%{
@@ -38,13 +38,12 @@ flowchart LR;
     end
 {{< /mermaid >}}
 
-Extensions are configured in the same `config.yaml` file that we referenced in the installation step. Let's edit the `config.yaml` file and configure the extensions. Note that the `pprof` and `zpages` extensions are already configured in the default `config.yaml` file. For the purpose of this workshop, we will only be updating the `health_check` extension to expose the port on which we can access the health of the collector.
+Extensions are configured in the same `config.yaml` file that we referenced in the installation step. Let's edit the `config.yaml` file and configure the extensions. Note that the **pprof** and **zpages** extensions are already configured in the default `config.yaml` file. For the purpose of this workshop, we will only be updating the **health_check** extension to expose the port on which we can access the health of the collector.
 
 ``` bash
 sudo vi /etc/otelcol-contrib/config.yaml
 ```
 
-{{< tabs >}}
 {{% tab title="Extensions Configuration" %}}
 
 ```yaml {hl_lines=[3]}
@@ -54,69 +53,6 @@ extensions:
 ```
 
 {{% /tab %}}
-{{% tab title="Extensions Configuration Complete" %}}
-
-```yaml {hl_lines=[3]}
-extensions:
-  health_check:
-    endpoint: 0.0.0.0:13133
-  pprof:
-    endpoint: 0.0.0.0:1777
-  zpages:
-    endpoint: 0.0.0.0:55679
-
-receivers:
-  otlp:
-    protocols:
-      grpc:
-      http:
-
-  opencensus:
-
-  # Collect own metrics
-  prometheus:
-    config:
-      scrape_configs:
-      - job_name: 'otel-collector'
-        scrape_interval: 10s
-        static_configs:
-        - targets: ['0.0.0.0:8888']
-
-  jaeger:
-    protocols:
-      grpc:
-      thrift_binary:
-      thrift_compact:
-      thrift_http:
-
-  zipkin:
-
-processors:
-  batch:
-
-exporters:
-  logging:
-    verbosity: detailed
-
-service:
-
-  pipelines:
-
-    traces:
-      receivers: [otlp, opencensus, jaeger, zipkin]
-      processors: [batch]
-      exporters: [logging]
-
-    metrics:
-      receivers: [otlp, opencensus, prometheus]
-      processors: [batch]
-      exporters: [logging]
-
-  extensions: [health_check, pprof, zpages]
-```
-
-{{% /tab %}}
-{{< /tabs >}}
 
 Restart the collector:
 
@@ -147,20 +83,11 @@ curl http://localhost:13133
 
 ## Performance Profiler
 
-[Performance Profiler](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/extension/pprofextension/README.md) extension enables the golang net/http/pprof endpoint. This is typically used by developers to collect performance profiles and investigate issues with the service. We will not be covering this in this workshop.
+[**Performance Profiler**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/extension/pprofextension/README.md) extension enables the golang net/http/pprof endpoint. This is typically used by developers to collect performance profiles and investigate issues with the service. We will not be covering this in this workshop.
 
 ## zPages
 
-[zPages](https://github.com/open-telemetry/opentelemetry-collector/blob/main/extension/zpagesextension/README.md) are an in-process alternative to external exporters. When included, they collect and aggregate tracing and metrics information in the background; this data is served on web pages when requested. zPages is an extremely useful diagnostic feature to ensure the collector is running as expected.
-
-{{% notice style="tip" %}}
-Install a text-based web browser (or use your local browser using the instance IP address)
-
-``` bash
-sudo apt update && sudo apt install lynx -y
-```
-
-{{% /notice %}}
+[**zPages**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/extension/zpagesextension/README.md) are an in-process alternative to external exporters. When included, they collect and aggregate tracing and metrics information in the background; this data is served on web pages when requested. zPages is an extremely useful diagnostic feature to ensure the collector is running as expected.
 
 {{< tabs >}}
 {{% tab title="ServiceZ" %}}
@@ -191,7 +118,16 @@ Example URL: [http://localhost:55679/debug/extensionz](http://localhost:55679/de
 
 {{% /tab %}}
 {{% /tabs %}}
-***
+
+{{% notice style="info" %}}
+If you are not following along you can use your browser you can access a test environment emitting zPages information at:
+
+- **ServiceZ:** [http://63.33.64.193:55679/debug/servicez](http://63.33.64.193:55679/debug/servicez)
+- **PipelineZ:** [http://63.33.64.193:55679/debug/pipelinez](http://63.33.64.193:55679/debug/pipelinez)
+- **EntensionZ:** [http://63.33.64.193:55679/debug/extentionz](http://63.33.64.193:55679/debug/extensionz)
+{{% /notice %}}
+
+---
 
 {{% expand title="{{% badge style=primary icon=user-ninja title=**Ninja** %}}Improve data durability with storage extension{{% /badge %}}" %}}
 
@@ -421,6 +357,81 @@ There is a potential that this could impact data throughput performance due disk
 
 {{% /expand %}}
 
-***
+---
+
+## Configuration Check-in
+
+That's extensions covered, let's check our configuration changes.
+
+---
+
+{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your configuration{{% /badge %}}" %}}
+{{< tabs >}}
+{{% tab title="config.yaml" %}}
+
+```yaml {hl_lines=[3]}
+extensions:
+  health_check:
+    endpoint: 0.0.0.0:13133
+  pprof:
+    endpoint: 0.0.0.0:1777
+  zpages:
+    endpoint: 0.0.0.0:55679
+
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+  opencensus:
+
+  # Collect own metrics
+  prometheus:
+    config:
+      scrape_configs:
+      - job_name: 'otel-collector'
+        scrape_interval: 10s
+        static_configs:
+        - targets: ['0.0.0.0:8888']
+
+  jaeger:
+    protocols:
+      grpc:
+      thrift_binary:
+      thrift_compact:
+      thrift_http:
+
+  zipkin:
+
+processors:
+  batch:
+
+exporters:
+  logging:
+    verbosity: detailed
+
+service:
+
+  pipelines:
+
+    traces:
+      receivers: [otlp, opencensus, jaeger, zipkin]
+      processors: [batch]
+      exporters: [logging]
+
+    metrics:
+      receivers: [otlp, opencensus, prometheus]
+      processors: [batch]
+      exporters: [logging]
+
+  extensions: [health_check, pprof, zpages]
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+{{% /expand %}}
+
+---
 
 Now that we have reviewed extensions, lets dive into the data pipeline portion of the workshop. The data pipeline in the OpenTelemetry Collector is made up of receivers, processors, and exporters. We will first start with receivers.
