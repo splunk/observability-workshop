@@ -32,10 +32,10 @@ More information can be found here : [DNS for Service and Pods](https://kubernet
 
 ## 2. Review OTel receiver for PHP/Apache
 
-Inspect the YAML file `~/workshop/k3s/otel-apache.yaml` and validate the contents using the following command:
+Inspect the YAML file `~/workshop/k3s/hpa/otel-apache.yaml` and validate the contents using the following command:
 
 ``` bash
-cat ~/workshop/k3s/otel-apache.yaml
+cat ~/workshop/k3s/hpa/otel-apache.yaml
 ```
 
 This file contains the configuration for the OpenTelemetry agent to monitor the PHP/Apache deployment.
@@ -77,8 +77,8 @@ helm upgrade splunk-otel-collector \
 --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
 splunk-otel-collector-chart/splunk-otel-collector \
 --namespace splunk \
--f ~/workshop/k3s/splunk-defaults.yaml \
--f ~/workshop/k3s/otel-apache.yaml
+-f ~/workshop/k3s/hpa/splunk-defaults.yaml \
+-f ~/workshop/k3s/hpa/otel-apache.yaml
 ```
 
 {{% /tab %}}
