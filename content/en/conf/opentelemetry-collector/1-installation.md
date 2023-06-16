@@ -231,7 +231,7 @@ cat /etc/otelcol-contrib/config.yaml
 ```
 
 {{% /tab %}}
-{{% tab title="Configuration Output" %}}
+{{% tab title="config.yaml" %}}
 
 ```yaml
 extensions:

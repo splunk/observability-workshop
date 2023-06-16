@@ -121,7 +121,11 @@ service:
 
 ## Final configuration
 
-The final configuration should look like this:
+---
+
+{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your final configuration{{% /badge %}}" %}}
+{{< tabs >}}
+{{% tab title="config.yaml" %}}
 
 ``` yaml {hl_lines=["88-90"]}
 extensions:
@@ -217,6 +221,13 @@ service:
 
   extensions: [health_check, pprof, zpages]
 ```
+
+{{% /tab %}}
+{{% /tabs %}}
+
+{{% /expand %}}
+
+---
 
 Now that we have a working configuration, let's restart the collector and then check to see what [zPages](../2-extensions/#zpages) is reporting.
 

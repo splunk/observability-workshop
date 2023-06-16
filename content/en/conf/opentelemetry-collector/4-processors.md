@@ -133,8 +133,9 @@ processors:
 
 That's processors covered, let's check our configuration changes.
 
-{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your configuration{{% /badge %}}" %}}
+---
 
+{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your configuration{{% /badge %}}" %}}
 {{< tabs >}}
 {{% tab title="config.yaml" %}}
 
@@ -232,3 +233,5 @@ service:
 {{% /tab %}}
 {{< /tabs >}}
 {{% /expand %}}
+
+---

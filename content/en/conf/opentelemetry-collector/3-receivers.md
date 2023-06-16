@@ -113,8 +113,9 @@ You will notice in the default configuration there are other receivers (**otlp**
 
 That's receivers covered, let's check our configuration changes.
 
-{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your configuration{{% /badge %}}" %}}
+---
 
+{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your configuration{{% /badge %}}" %}}
 {{< tabs >}}
 {{% tab title="config.yaml" %}}
 
@@ -201,5 +202,7 @@ service:
 {{% /tab %}}
 {{< /tabs >}}
 {{% /expand %}}
+
+---
 
 Now that we have reviewed how data gets into the OpenTelemetry Collector, we can now learn how the Collector processes the data.
