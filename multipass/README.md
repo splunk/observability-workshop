@@ -59,10 +59,9 @@ Initializing provider plugins...
 
 - `splunk_access_token`: Observability Access Token
 - `splunk_realm`: Observability Realm e.g. `eu0`
+- `splunk_rum_token`: Observability RUM Token.
 
 ### Optional variables
-
-- `splunk_rum_token`: Observability RUM Token. Required if `splunk_presetup` or `otel_demo` is `true`
 
 ### Instance type variables
 
