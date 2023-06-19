@@ -1,6 +1,11 @@
 # Launch a Multipass workshop instance
 
-**NOTE:** Please disable any VPNs or proxies before running the commands below e.g. ZScaler, Cisco AnyConnect, etc. These tools can prevent the instance from being created properly.
+**NOTE:** Please disable any VPNs or proxies before running the commands below e.g:
+
+- ZScaler
+- Cisco AnyConnect
+
+These tools **will** prevent the instance from being created properly.
 
 ## 1. Pre-requisites
 
