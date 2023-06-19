@@ -175,3 +175,9 @@ kubectl version --output=yaml
 ```
 
 If you get an error please check that you have disabled any VPNs or proxies and try again e.g. ZScaler, Cisco AnyConnect.
+
+To start again, delete the instance and re-run `terraform apply`:
+
+```bash
+terraform destroy
+```
