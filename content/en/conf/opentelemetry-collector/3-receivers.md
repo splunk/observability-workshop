@@ -109,6 +109,54 @@ The following screenshot is an out of the box (OOTB) dashboard from Splunk Obser
 
 You will notice in the default configuration there are other receivers (**otlp**, **opencensus**, **jaeger** and **zipkin**). These are used to receive telemetry data from other sources. We will not be using these receivers in this workshop and can be left as they are.
 
+---
+{{% expand title="{{% badge style=primary icon=user-ninja title=**Ninja** %}}Create receivers dynamically{{% /badge %}}" %}}
+
+To help observe short live tasks like docker containers, kubernetes pods, or ssh sessions, we can use the 
+[receiver creator](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/receivercreator) with 
+[observer extensions](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/observer) 
+to create a new receiver as these services start up.
+
+## What do we need?
+
+In order to start using the receiver creator and its assocaited observer extensions, 
+they will need to be part of your collector build manifest.
+See [installation](/en/conf/opentelemetry-collector/1-installation/) for the details.
+
+## Things to consider?
+
+Some short lived task may require additional configuration such as _username_, and _password_.
+These values can be referenced via [enviroment variables](https://opentelemetry.io/docs/collector/configuration/#configuration-environment-variables),
+or use scheme expand syntax such as `${file:./path/to/database/password}`.
+Please adhere to your organisation's secret practices when taking this route.
+
+
+
+## The Ninja Zone
+
+There is only two things needed for this ninja zone:
+
+1. Make sure you have added receiver creater and observer extensions to the builder manifest.
+2. Create the config that can be used to match against discovered endpoints.
+
+To create the templated configurations, you can do the following:
+
+```yaml
+receiver_creator:
+  watch_observers: [host_observer]
+  receivers:
+    redis:
+      rule: type == "port" && port == 6379
+      config:
+        password: ${env:HOST_REDIS_PASSWORD}
+```
+
+For more examples, please take a look at [receiver creator's examples](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/receivercreator#examples).
+
+{{% /expand %}}
+
+---
+
 ## Configuration Check-in
 
 That's receivers covered, let's check our configuration changes.
