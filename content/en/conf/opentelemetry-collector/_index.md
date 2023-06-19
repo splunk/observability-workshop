@@ -11,9 +11,13 @@ Adopting OpenTelemetry within your organisation can bring issues such as dealing
 
 Throughout the workshop there will be expandable {{% badge style=primary icon=user-ninja title=**Ninja** %}}sections{{% /badge %}}:
 
+---
+
 {{% expand title="{{% badge style=primary icon=user-ninja title=**Ninja** %}}Test Me!{{% /badge %}}" %}}
-**You are officially a Ninja!**
+**By completing this workshop you will officially be an OpenTelemetry Collector Ninja!**
 {{% /expand %}}
+
+---
 
 These will be more hands on and go into further technical detail that you can explore within the workshop or in your own time. Please note that the content in these sections may go out of date due to the frequent development being made to the OpenTelemetry project. Links will be provided in the event details are out of sync, please let us know if you spot something that needs updating.
 
@@ -26,6 +30,7 @@ This interactive workshop is for developers and system administrators who are in
 - Attendees should have a basic understanding of data collection
 - Command line and vim/vi experience.
 - A instance/host/VM running Ubuntu 20.04 LTS or 22.04 LTS.
+  - Minimum requirements are an AWS/EC2 t2.micro (1 CPU, 1GB RAM, 8GB Storage)
 
 ### Learning Objectives
 
