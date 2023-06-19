@@ -33,7 +33,7 @@ You will see the SignalFlow code that composes the chart we were working on. You
 Also, you can copy the SignalFlow and use it when interacting with the API or with Terraform to being **Monitoring as Code**.
 
 ---
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja** Monitoring as Code (Dashboards){{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja Mode:** Monitoring as Code (Dashboards){{% /badge %}}" %}}
 
 ### 1.1 Initial setup
 
