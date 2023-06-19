@@ -49,7 +49,7 @@ The top chart shows you the current subscription levels per category. These are 
 
 Also, your current usage of the four catagories is displayed (shown at the red lines at the bottom of the chart).
 
-In the chart below you can see that there are **2**/200 Hosts, **20**/4,000 Containers, **211**/40,000 Custom Metrics and **0**/10,0000 High Resolution Metrics.
+In the chart below you can see that there are **3**/200 Hosts, **58**/4,000 Containers, **233**/40,000 Custom Metrics and **0**/10,0000 High Resolution Metrics.
 
 ![Billing and Usage-top](images/usage-detail.png)
 
