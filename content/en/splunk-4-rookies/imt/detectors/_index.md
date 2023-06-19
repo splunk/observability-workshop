@@ -1,12 +1,12 @@
 ---
 title: Working with Detectors
-linkTitle: 3. Detectors
+linkTitle: 2. Detectors
 weight: 3
 ---
 
 {{% button icon="clock" %}}10 minutes{{% /button %}}
+
 - Introduction
-  - {{% badge style="primary" icon=user-ninja title="" %}}**Ninja**{{% /badge %}} Monitoring as Code (Detectors)
 - Create a Detector from one of your charts
 - Setting Alert conditions
 - Running a pre-flight check
@@ -19,13 +19,6 @@ weight: 3
 Splunk Observability Cloud uses detectors, events, alerts, and notifications to keep you informed when certain criteria are met. For example, you might want a message sent to a Slack channel or to an email address for the Ops team when CPU Utilization has reached 95%, or when the number of concurrent users is approaching a limit that might require you to spin up an additional AWS instance.
 
 These conditions are expressed as one or more rules that trigger an alert when the conditions in the rules are met. Individual rules in a detector are labeled according to criticality: Info, Warning, Minor, Major, and Critical.
-
----
-
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja** Monitoring as Code (Detectors){{% /badge %}}" %}}
-{{% /expand %}}
-
----
 
 ## 2. Creating a Detector
 
@@ -63,8 +56,6 @@ In **Alert condition**, click on **Static Threshold** and then on {{% button sty
 
 In **Alert Settings**, enter the value **`290`** in the **Threshold** field. In the same window change **Time** on top right to past day (**-1d**).
 
----
-
 ## 4. Alert pre-flight check
 
 A pre-flight check will take place after 5 seconds. See the **Estimated alert count**. Based on the current alert settings, the amount of alerts we would have received in 1 day would have been **3**.
@@ -81,8 +72,6 @@ To read more about detector previewing, please visit this link
 {{% /notice %}}
 
 Click on {{% button style="blue" %}}Proceed to Alert Message{{% /button %}}
-
----
 
 ## 5. Alert message
 
@@ -101,8 +90,6 @@ That's the same as entering that email address OR you can enter another email ad
 
 This is just one example of the many **Notification Services** the suite has available. You can check this out by going to the **Integrations** tab of the top menu, and see **Notification Services**.
 {{% /notice %}}
-
----
 
 ## 6. Alert Activation
 

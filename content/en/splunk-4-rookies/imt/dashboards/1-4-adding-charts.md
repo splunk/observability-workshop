@@ -1,6 +1,6 @@
 ---
 title: Adding charts to dashboards
-linkTitle: 3.4 Adding more charts
+linkTitle: 1.4 Adding more charts
 weight: 4
 ---
 

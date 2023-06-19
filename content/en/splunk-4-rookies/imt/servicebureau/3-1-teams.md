@@ -1,6 +1,6 @@
 ---
 title: Teams
-linkTitle: 6.1 Teams
+linkTitle: 3.1 Teams
 weight: 1
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 3.6 SignalFlow
+title: 1.6 SignalFlow
 weight: 6
 ---
 
@@ -33,13 +33,13 @@ You will see the SignalFlow code that composes the chart we were working on. You
 Also, you can copy the SignalFlow and use it when interacting with the API or with Terraform to being **Monitoring as Code**.
 
 ---
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja Mode:** Monitoring as Code (Dashboards){{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja Mode:** Monitoring as Code{{% /badge %}}" %}}
 
-### 1.1 Initial setup
+## 1. Monitoring as Code
 
 Monitoring as code adopts the same approach as infrastructure as code. You can manage monitoring the same way you do applications, servers, or other infrastructure components. You can use monitoring as code to build out your visualisations, what to monitor, and when to alert, among other things. This means your monitoring setup, processes, and rules can be versioned, shared, and reused. Full documentation for the Splunk Terraform Provider is available [here](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest).
 
-Remaining in your AWS/EC2 instance, change into the `o11y-cloud-jumpstart` directory
+Open your terminal that is connected to your AWS/EC2 instance, change into the `o11y-cloud-jumpstart` directory
 
 ``` bash
 cd observability-content-contrib/integration-examples/terraform-jumpstart
@@ -58,44 +58,44 @@ terraform init -upgrade
 {{% tab title="Initialise Output" %}}
 
 ``` text
-    Upgrading modules...
-    - aws in modules/aws
-    - azure in modules/azure
-    - docker in modules/docker
-    - gcp in modules/gcp
-    - host in modules/host
-    - kafka in modules/kafka
-    - kubernetes in modules/kubernetes
-    - parent_child_dashboard in modules/dashboards/parent
-    - pivotal in modules/pivotal
-    - rum_and_synthetics_dashboard in modules/dashboards/rum_and_synthetics
-    - usage_dashboard in modules/dashboards/usage
+Initializing the backend...
+Upgrading modules...
+- aws in modules/aws
+- azure in modules/azure
+- docker in modules/docker
+- executive-dashboards in modules/dashboards/executive-dashboards
+- gcp in modules/gcp
+- host in modules/host
+- kafka in modules/kafka
+- kubernetes in modules/kubernetes
+- parent_child_dashboard in modules/dashboards/parent
+- pivotal in modules/pivotal
+- rum_and_synthetics_dashboard in modules/dashboards/rum_and_synthetics
+- usage_dashboard in modules/dashboards/usage
 
-    Initializing the backend...
+Initializing provider plugins...
+- Finding splunk-terraform/signalfx versions matching ">= 6.13.1"...
+- Installing splunk-terraform/signalfx v6.24.0...
+- Installed splunk-terraform/signalfx v6.24.0 (self-signed, key ID CE97B6074989F138)
 
-    Initializing provider plugins...
-    - Finding latest version of splunk-terraform/signalfx...
-    - Installing splunk-terraform/signalfx v6.20.0...
-    - Installed splunk-terraform/signalfx v6.20.0 (self-signed, key ID CE97B6074989F138)
+Partner and community providers are signed by their developers.
+If you'd like to know more about provider signing, you can read about it here:
+https://www.terraform.io/docs/cli/plugins/signing.html
 
-    Partner and community providers are signed by their developers.
-    If you'd like to know more about provider signing, you can read about it here:
-    https://www.terraform.io/docs/cli/plugins/signing.html
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
 
-    Terraform has created a lock file .terraform.lock.hcl to record the provider
-    selections it made above. Include this file in your version control repository
-    so that Terraform can guarantee to make the same selections by default when
-    you run "terraform init" in the future.
+Terraform has been successfully initialized!
 
-    Terraform has been successfully initialized!
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
 
-    You may now begin working with Terraform. Try running "terraform plan" to see
-    any changes that are required for your infrastructure. All Terraform commands
-    should now work.
-
-    If you ever set or change modules or backend configuration for Terraform,
-    rerun this command to reinitialize your working directory. If you forget, other
-    commands will detect it and remind you to do so if necessary.
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
 ```
 
 {{% /tab %}}
@@ -105,7 +105,7 @@ terraform init -upgrade
 You will need to run the command above each time a new version of the Splunk Terraform Provider is released. You can track the releases on [GitHub.](https://github.com/splunk-terraform/terraform-provider-signalfx/releases)
 {{% /notice %}}
 
-### 1.2 Plan
+### 1.1 Terraform Plan
 
 The `terraform plan` command creates an execution plan. By default, creating a plan consists of:
 
@@ -119,14 +119,14 @@ The plan command alone will not actually carry out the proposed changes, and so 
 {{% tab title="Execution Plan" %}}
 
 ```bash
-terraform plan -target=module.dashboards -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$(hostname)]"
+terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$(hostname)]"
 ```
 
 {{% /tab %}}
 {{% tab title="Execution Plan Output" %}}
 
 ``` text
-Plan: 146 to add, 0 to change, 0 to destroy.
+Plan: 202 to add, 0 to change, 0 to destroy.
 ```
 
 {{% /tab %}}
@@ -136,40 +136,40 @@ If the plan executes successfully, we can go ahead and apply:
 
 ---
 
-### 1.3. Apply
+### 1.2 Terraform Apply
 
 The `terraform apply` command executes the actions proposed in the Terraform plan above.
 
-The most straightforward way to use `terraform apply` is to run it without any arguments at all, in which case it will automatically create a new execution plan (as if you had run terraform plan) and then prompt you to provide the Access Token, Realm (the prefix defaults to `Splunk`) and approve the plan, before taking the indicated actions.
+The most straightforward way to use `terraform apply` is to run it without any arguments at all, in which case it will automatically create a new execution plan (as if you had run terraform plan) and then prompt you to provide the Access Token, Realm and prefix (the prefix defaults to `Splunk`) and approve the plan, before taking the indicated actions.
 
-Due to this being a workshop it is required that the prefix is to be unique so you need to run the `terraform apply` below.
+Due to this being a workshop it is required that the prefix is to be unique to you so you need to run the `terraform apply` below.
 
 {{< tabs >}}
 {{% tab title="Apply Plan" %}}
 
 ``` bash
-terraform apply -target=module.dashboards -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$(hostname)]"
+terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$(hostname)]"
 ```
 
 {{% /tab %}}
 {{% tab title="Apply Plan Output" %}}
 
+When prompted, "Do you want to perform these actions?", type `yes` and press `Enter`.
+
 ``` text
-Apply complete! Resources: 146 added, 0 changed, 0 destroyed.
+Apply complete! Resources: 202 added, 0 changed, 0 destroyed.
 ```
 
 {{% /tab %}}
 {{< /tabs >}}
 
-Once the apply has completed, validate that the detectors were created, under the **Alerts & Detectors** and click on the **Detectors** tab. They will be prefixed by the hostname of your instance. To check the prefix value run:
+Once the apply has completed, validate that the dashboards and detectors have been created. From the left hand menu, click on **Dashboards** and navigate down to **Custom Dashboard Groups**. Your custom dashboards will be prefixed with the hostname of your instance. Again, from the left hand manu click on **Alerts & Detectors** and then click on the **Detectors** tab. You can search for your detectors using the prefixed hostname of your instance.
+
+To check the prefix value run:
 
 ``` bash
 echo $(hostname)
 ```
-
- You will see a list of the new detectors and you can search for the prefix that was output from above.
-
-![Detectors](../images/detectors.png)
 
 {{% /expand %}}
 

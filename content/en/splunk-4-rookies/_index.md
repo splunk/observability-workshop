@@ -1,5 +1,6 @@
 ---
-title: Splunk4Rookies
+title: Infrastructure Monitoring and APM Workshop
+linkTitle: Splunk4Rookies
 description: Whether on-prem, hybrid or multicloud, Splunk delivers real-time monitoring and troubleshooting to help you maximize infrastructure performance with complete visibility.
 weight: 1
 ---
@@ -16,7 +17,7 @@ The workshop is available in two formats:
     Ninja Mode sections are marked with a {{% badge style="primary" icon=user-ninja title="" %}}**Ninja Mode**{{% /badge %}} badge and you will need to click on badge to expand the section.
 
 {{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja Mode:** Test Me!{{% /badge %}}" %}}
-**You are officially a Ninja!**
+**You are officially a Ninja in training!**
 {{% /expand %}}
 
 By the end of the workshop you will have a good understanding of some of the key features and capabilities of the Splunk IM and Splunk APM.

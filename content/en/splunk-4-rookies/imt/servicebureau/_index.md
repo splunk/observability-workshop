@@ -1,6 +1,6 @@
 ---
 title: Service Bureau
-linkTitle: 4. Service Bureau
+linkTitle: 3. Service Bureau
 weight: 4
 ---
 

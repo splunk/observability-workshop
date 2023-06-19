@@ -1,6 +1,6 @@
 ---
 title: Working with Dashboards
-linkTitle: 2. Dashboards
+linkTitle: 1. Dashboards
 weight: 2
 ---
 
@@ -12,7 +12,7 @@ weight: 2
 - Using formulas
 - Saving charts in a dashboard
 - Introduction to SignalFlow
-  - {{% badge style="primary" icon=user-ninja title="" %}}**Ninja**{{% /badge %}} Monitoring as Code - Dashboards
+  - {{% badge style="primary" icon=user-ninja title="" %}}**Ninja Mode**{{% /badge %}} Monitoring as Code
 
 ---
 

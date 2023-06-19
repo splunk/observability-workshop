@@ -1,6 +1,6 @@
 ---
 title: Adding Notes and Dashboard Layout
-linkTitle: 3.5 Notes and layout
+linkTitle: 1.5 Notes and layout
 weight: 5
 ---
 
