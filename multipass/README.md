@@ -175,6 +175,3 @@ kubectl version --output=yaml
 ```
 
 If you get an error please check that you have disabled any VPNs or proxies and try again e.g. ZScaler, Cisco AnyConnect.
-
-```text
-Once your instance presents you with the Splunk logo, you have completed the preparation for your Multipass instance and can at this point you are ready to continue and [start the workshop](https://splunk.github.io/observability-workshop/latest/).
