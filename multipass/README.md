@@ -1,6 +1,11 @@
-# Launch a Multipass workshop instance
+# Preparing a Multipass instance
 
-**NOTE:** Please disable any VPNs or proxies before running the commands below e.g. ZScaler, Cisco AnyConnect, etc. These tools can prevent the instance from being created properly.
+**NOTE:** Please disable any VPNs or proxies before running the commands below e.g:
+
+- ZScaler
+- Cisco AnyConnect
+
+These tools **will** prevent the instance from being created properly.
 
 ## 1. Pre-requisites
 
@@ -59,7 +64,7 @@ Initializing provider plugins...
 
 - `splunk_access_token`: Observability Access Token
 - `splunk_realm`: Observability Realm e.g. `eu0`
-- `splunk_rum_token`: Observability RUM Token.
+- `splunk_rum_token`: Observability RUM Token
 
 ### Optional variables
 
@@ -160,4 +165,18 @@ Your instance is ready!
 ubuntu@cynu ~ $
 ```
 
-Once your instance presents you with the Splunk logo, you have completed the preparation for your Multipass instance and can at this point you are ready to continue and [start the workshop](https://splunk.github.io/observability-workshop/latest/).
+## 9. Validate instance
+
+SSH into your instance using the IP address from the `instance_details`. Once in the shell you can validate that the instance is ready by running the following command:
+
+```bash
+kubectl version --output=yaml
+```
+
+If you get an error please check that you have disabled any VPNs or proxies and try again e.g. ZScaler, Cisco AnyConnect.
+
+To start again, delete the instance and re-run `terraform apply`:
+
+```bash
+terraform destroy
+```

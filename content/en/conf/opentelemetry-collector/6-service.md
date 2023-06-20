@@ -119,6 +119,78 @@ service:
       exporters: [logging, otlphttp/splunk]
 ```
 
+---
+{{% expand title="{{% badge style=primary icon=user-ninja title=**Ninja** %}}Observing the collector internals{{% /badge %}}" %}}
+
+The collector captures internal signals about its behaviour this also include additional signals from running components.
+The reason for this is that components that make decisions about the flow of data need a way to surface that information
+as metrics or traces.
+
+## Why monitor the collector?
+
+This is somewhat of a chicken and egg problem of, "Who is watching the the watcher?", but it is important
+that we can surface this information. Another interesting part of the collector's history is that it existed
+before the Go metrics' SDK was considered stable so the collector exposes a prometheus endpoint to provide
+this functionality for the time being.
+
+## Considerations
+
+Monitoring the internal usage of each running collector in your organisation can contribute a significant amount
+of new Metric Time Series (MTS). The Splunk distribution has curated these metrics for you and would be able to 
+to help forcast the expected increases.
+
+## The Ninja Zone
+
+The expose the internal observability of the collector, there is some additional settings that can be adjusted:
+
+{{< tabs >}}
+{{% tab title="telemetry schema" %}}
+```yaml
+---
+service:
+  telemetry:
+    logs:
+      level: <info|warn|error>
+      development: <true|false>
+      encoding: <console|json>
+      disable_caller: <true|false>
+      disable_stacktrace: <true|false>
+      output_paths: [<stdout|stderr>, paths...]
+      error_output_paths: [<stdout|stderr>, paths...]
+      initial_fields:
+        key: value
+    metrics:
+      level: <none|basic|normal|detailed>
+      # Address binds the promethues endpoint to scrape
+      address: <hostname:port>
+```
+{{% /tab %}}
+{{% tab title="example-config.yml" %}}
+
+```yaml
+---
+service:
+  telemetry:
+    logs: 
+      level: info
+      encoding: json
+      disable_stacktrace: true
+      initial_fields:
+        host.name: ${env:HOSTNAME}
+    metrics:
+      address: localhost:8043 
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+## References
+
+1. https://opentelemetry.io/docs/collector/configuration/#service
+
+{{% /expand %}}
+
+---
+
 ## Final configuration
 
 ---
