@@ -1,15 +1,16 @@
 ---
 title: Working with Detectors
-linkTitle: 4. Detectors
-weight: 4
+linkTitle: 2. Detectors
+weight: 3
 ---
 
 {{% button icon="clock" %}}10 minutes{{% /button %}}
 
-* Create a Detector from one of your charts
-* Setting Alert conditions
-* Running a pre-flight check
-* Working with muting rules
+- Introduction
+- Create a Detector from one of your charts
+- Setting Alert conditions
+- Running a pre-flight check
+- Working with muting rules
 
 ---
 
@@ -55,8 +56,6 @@ In **Alert condition**, click on **Static Threshold** and then on {{% button sty
 
 In **Alert Settings**, enter the value **`290`** in the **Threshold** field. In the same window change **Time** on top right to past day (**-1d**).
 
----
-
 ## 4. Alert pre-flight check
 
 A pre-flight check will take place after 5 seconds. See the **Estimated alert count**. Based on the current alert settings, the amount of alerts we would have received in 1 day would have been **3**.
@@ -73,8 +72,6 @@ To read more about detector previewing, please visit this link
 {{% /notice %}}
 
 Click on {{% button style="blue" %}}Proceed to Alert Message{{% /button %}}
-
----
 
 ## 5. Alert message
 
@@ -93,8 +90,6 @@ That's the same as entering that email address OR you can enter another email ad
 
 This is just one example of the many **Notification Services** the suite has available. You can check this out by going to the **Integrations** tab of the top menu, and see **Notification Services**.
 {{% /notice %}}
-
----
 
 ## 6. Alert Activation
 

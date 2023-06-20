@@ -1,6 +1,6 @@
 ---
 title: Editing charts
-linkTitle: 3.1 Editing charts
+linkTitle: 1.1 Editing charts
 weight: 1
 ---
 
