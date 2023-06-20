@@ -1,6 +1,6 @@
 ---
 title: Saving charts
-linkTitle: 1.2 Saving charts
+linkTitle: 3.2 Saving charts
 weight: 2
 ---
 

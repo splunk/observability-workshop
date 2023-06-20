@@ -37,10 +37,10 @@ Before we start, let's check the current status of the PHP/Apache deployment. Un
 
 {{% /notice %}}
 
-To fix the PHP/Apache StatefulSet, edit `~/workshop/k3s/hpa/php-apache.yaml` using the following commands to reduce the CPU resources:
+To fix the PHP/Apache StatefulSet, edit `~/workshop/k3s/php-apache.yaml` using the following commands to reduce the CPU resources:
 
 ``` bash
-vim ~/workshop/k3s/hpa/php-apache.yaml
+vim ~/workshop/k3s/php-apache.yaml
 ```
 
 Find the resources section and reduce the CPU limits to **1** and the CPU requests to **0.5**:
@@ -66,7 +66,7 @@ kubectl delete statefulset php-apache -n apache
 Now, deploy your changes:
 
 ``` bash
-kubectl apply -f ~/workshop/k3s/hpa/php-apache.yaml -n apache
+kubectl apply -f ~/workshop/k3s/php-apache.yaml -n apache
 ```
 
 ## 3. Validate the changes

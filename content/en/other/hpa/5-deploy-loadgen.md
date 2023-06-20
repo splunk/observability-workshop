@@ -8,10 +8,10 @@ Now let's apply some load against the `php-apache` pod. To do this, you will nee
 
 ## 1. Review loadgen YAML
 
-Inspect the YAML file `~/workshop/k3s/hpa/loadgen.yaml` and validate the contents using the following command:
+Inspect the YAML file `~/workshop/k3s/loadgen.yaml` and validate the contents using the following command:
 
 ``` bash
-cat ~/workshop/k3s/hpa/loadgen.yaml
+cat ~/workshop/k3s/loadgen.yaml
 ```
 
 This file contains the configuration for the load generator and will create a new ReplicaSet with a two replicas of the load generator image.
@@ -52,7 +52,7 @@ kubectl create namespace loadgen
 ## 3. Deploy the loadgen YAML
 
 ``` text
-kubectl apply -f ~/workshop/k3s/hpa/loadgen.yaml --namespace loadgen
+kubectl apply -f ~/workshop/k3s/loadgen.yaml --namespace loadgen
 ```
 
 Once you have deployed the load generator, you can see the Pods running in the `loadgen` namespace. Use previous similar commands to check the status of the Pods from the command line.

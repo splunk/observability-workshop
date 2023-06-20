@@ -1,18 +1,17 @@
 ---
 title: Working with Dashboards
-linkTitle: 1. Dashboards
-weight: 2
+linkTitle: 3. Dashboards
+weight: 3
 ---
 
 {{% button icon="clock" %}}20 minutes{{% /button %}}
 
-- Introduction to the Dashboards and charts
-- Editing and creating charts
-- Filtering and analytical functions
-- Using formulas
-- Saving charts in a dashboard
-- Introduction to SignalFlow
-  - {{% badge style="primary" icon=user-ninja title="" %}}**Ninja Mode**{{% /badge %}} Monitoring as Code
+* Introduction to the Dashboards and charts
+* Editing and creating charts
+* Filtering and analytical functions
+* Using formulas
+* Saving charts in a dashboard
+* Introduction to SignalFlow
 
 ---
 
@@ -20,9 +19,11 @@ weight: 2
 
 Dashboards are groupings of charts and visualizations of metrics. Well-designed dashboards can provide useful and actionable insight into your system at a glance. Dashboards can be complex or contain just a few charts that drill down only into the data you want to see.
 
-During this module we are going to create a dashboard with charts and connect it to your Team page.
+During this module we are going to create the following charts and dashboard and connect it to your Team page.
 
 ![Example Dashboard](../images/example-dashboard.png)
+
+---
 
 ## 2. Your Teams' Page
 

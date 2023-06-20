@@ -3,7 +3,6 @@ title: Monitoring as Code
 linkTitle: 5. Monitoring as Code
 menuPost: " <i class='fa fa-user-ninja'></i>"
 weight: 5
-draft: true
 ---
 
 {{% button icon="clock" %}}10 minutes{{% /button %}}
@@ -17,15 +16,45 @@ draft: true
 
 ## 1. Initial setup
 
-Monitoring as code adopts the same approach as infrastructure as code. You can manage monitoring the same way you do applications, servers, or other infrastructure components. You can use monitoring as code to build out your visualisations, what to monitor, and when to alert, among other things. This means your monitoring setup, processes, and rules can be versioned, shared, and reused. Full documentation for the Splunk Terraform Provider is available [here](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest).
+Monitoring as code adopts the same approach as infrastructure as code. You can manage monitoring the same way you do applications, servers, or other infrastructure components.
+
+You can use monitoring as code to build out your visualisations, what to monitor, and when to alert, among other things. This means your monitoring setup, processes, and rules can be versioned, shared, and reused.
+
+Full documentation for the Splunk Terraform Provider is available [here](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs).
 
 Remaining in your AWS/EC2 instance, change into the `o11y-cloud-jumpstart` directory
+
+{{% tab title="Change directory" %}}
 
 ``` bash
 cd observability-content-contrib/integration-examples/terraform-jumpstart
 ```
 
+{{% /tab %}}
+
+The environment variables needed should already be set from [Installation using Helm](../gdi/#2-installation-using-helm). If not, create the following environment variables to use in the Terraform steps below
+
+{{% tab title="Export ACCESS TOKEN" %}}
+
+``` bash
+export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
+```
+
+{{% /tab %}}
+
+{{% tab title="Export REALM" %}}
+
+``` bash
+export REALM="<replace_with_REALM>"
+```
+
+{{% /tab %}}
+
 Initialize Terraform and upgrade to the latest version of the Splunk Terraform Provider
+
+{{% notice title="Note: Upgrading the SignalFx Terraform Provider" style="info" %}}
+You will need to run the command below each time a new version of the Splunk Terraform Provider is released. You can track the releases on [GitHub.](https://github.com/splunk-terraform/terraform-provider-signalfx/releases)
+{{% /notice %}}
 
 {{< tabs >}}
 {{% tab title="Initialise Terraform" %}}
@@ -81,11 +110,7 @@ terraform init -upgrade
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% notice title="Upgrading the SignalFx Terraform Provider" style="tip" %}}
-You will need to run the command above each time a new version of the Splunk Terraform Provider is released. You can track the releases on [GitHub.](https://github.com/splunk-terraform/terraform-provider-signalfx/releases)
-{{% /notice %}}
-
-## 2. Plan
+## 2. Create execution plan
 
 The `terraform plan` command creates an execution plan. By default, creating a plan consists of:
 
@@ -116,7 +141,7 @@ If the plan executes successfully, we can go ahead and apply:
 
 ---
 
-## 3. Apply
+## 3. Apply execution plan
 
 The `terraform apply` command executes the actions proposed in the Terraform plan above.
 
@@ -151,7 +176,7 @@ echo $(hostname)
 
 ![Detectors](../images/detectors.png)
 
-## 3. Destroy
+## 3. Destroy all your hard work
 
 The `terraform destroy` command is a convenient way to destroy all remote objects managed by your Terraform configuration.
 
@@ -177,6 +202,8 @@ Destroy complete! Resources: 146 destroyed.
 {{< /tabs >}}
 
 Validate all the detectors have been removed by navigating to _**Alerts → Detectors**_
+
+![Destroyed](../images/destroy.png)
 
 [^1]: Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.
 

@@ -1,7 +1,7 @@
 ---
-title: Team Dashboards
-linkTitle: 1.7 Team Dashboards
-weight: 7
+title: Teams
+linkTitle: 6.1 Teams
+weight: 1
 ---
 
 * Introduction to Teams
@@ -28,6 +28,8 @@ They can use the menu along the top left to quickly navigate between their alloc
 Alerts can be linked to specific Teams so the Team can monitor only the Alerts they are interested in, and in the above example they currently have 1 active Critical Alert.
 
 The Description for the Team Dashboard can be customized and can include links to team specific resources (using Markdown).
+
+---
 
 ## 2. Creating a new Team
 
@@ -58,3 +60,37 @@ If no members are assigned to your Team, you should see a blue **Add Members** l
 This is the same dialog you get when pressing the 3 dots **...** at the end of the line with your Team and selecting **Edit Team**
 
 The **...** menu gives you the option to Edit, Join, Leave or Delete a Team (leave and join will depend on if you are currently a member).
+
+---
+
+## 3. Adding Notification Rules
+
+You can set up specific Notification rules per team, click on the **Notification Policy** tab, this will open the notification edit menu.
+
+![Base notification menu](../../images/notification-policy.png)
+
+By default the system offers you the ability to set up a general notification rule for your team.
+
+{{% notice title="Note" style="info" %}}
+The **Email all team members** option means all members of this Team will receive an email with the Alert information, regardless of the alert type.
+{{% /notice %}}
+
+### 3.1 Adding recipients
+
+You can add other recipients, by clicking {{% button style="blue" %}}Add Recipient{{% /button %}}. These recipients do not need to be Observability Cloud users.
+
+However if you click on the link **Configure separate notification tiers for different severity alerts** you can configure every alert level independently.
+
+![Multiple Notifications](../../images/single-policy.png)
+
+Different alert rules for the different alert levels can be configured, as shown in the above image.
+
+Critical and Major are using [Splunk\'s On-Call](https://www.splunk.com/en_us/observability/on-call.html) Incident Management solution. For the Minor alerts we send it to the Teams Slack channel and for Warning and Info we send an email.
+
+### 3.2 Notification Integrations
+
+In addition to sending alert notifications via email, you can configure Observability Cloud to send alert notifications to the services shown below.
+
+![Notifications options](../../images/integrations.png)
+
+Take a moment to create some notification rules for you Team.

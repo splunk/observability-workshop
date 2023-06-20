@@ -1,9 +1,9 @@
 ---
 title: Deploying the OpenTelemetry Collector in Kubernetes
-linkTitle: 1. Get Data In
+linkTitle: 2. Get Data In
 menuPost: " <i class='fa fa-user-ninja'></i>"
 alwaysopen: false
-weight: 1
+weight: 2
 ---
 
 {{% button icon="clock" %}}15 minutes{{% /button %}}

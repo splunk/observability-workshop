@@ -1,6 +1,6 @@
 ---
 title: Working with Muting Rules
-linkTitle: 2.1 Creating a Muting Rule
+linkTitle: 4.1 Creating a Muting Rule
 weight: 1
 ---
 
