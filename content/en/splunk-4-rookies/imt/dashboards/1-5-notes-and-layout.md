@@ -1,13 +1,12 @@
 ---
 title: Adding Notes and Dashboard Layout
-linkTitle: 3.6 Notes and layout
-weight: 6
+linkTitle: 1.5 Notes and layout
+weight: 5
 ---
 
 ## 1. Adding Notes
 
-Often on dashboards it makes sense to place a short "instruction" pane that helps users of a dashboard. Lets add one now by clicking on the {{% button style="white" %}}New Text Note{{% /button %}}
- Button.
+Often on dashboards it makes sense to place a short "instruction" pane that helps users of a dashboard. Lets add one now by clicking on the {{% button style="white" %}}New Text Note{{% /button %}} button.
 
 ![three charts](../../images/M-Notes-0.png)
 

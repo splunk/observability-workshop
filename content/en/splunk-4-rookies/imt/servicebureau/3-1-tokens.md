@@ -1,6 +1,6 @@
 ---
 title: Controlling Usage
-linkTitle: 6.2 Control Usage
+linkTitle: 3.1 Control Usage
 weight: 2
 ---
 

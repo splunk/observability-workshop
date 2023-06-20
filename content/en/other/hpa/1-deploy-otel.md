@@ -75,7 +75,7 @@ helm install splunk-otel-collector \
 splunk-otel-collector-chart/splunk-otel-collector \
 --namespace splunk \
 --create-namespace \
--f ~/workshop/k3s/splunk-defaults.yaml
+-f ~/workshop/k3s/hpa/splunk-defaults.yaml
 ```
 
 {{% /tab %}}

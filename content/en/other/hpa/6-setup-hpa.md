@@ -15,7 +15,7 @@ If the load decreases, and the number of Pods is above the configured minimum, t
 Inspect the `~/workshop/k3s/hpa.yaml` file and validate the contents using the following command:
 
 ``` bash
-cat ~/workshop/k3s/hpa.yaml
+cat ~/workshop/k3s/hpa/hpa.yaml
 ```
 
 This file contains the configuration for the Horizontal Pod Autoscaler and will create a new HPA for the `php-apache` deployment.
@@ -51,7 +51,7 @@ spec:
 Once deployed, `php-apache` will autoscale when either the average CPU usage goes above 50% and average memory usage for the deployment goes above 75%, with a minimum of 1 pod and a maximum of 4 pods.
 
 ``` text
-kubectl apply -f ~/workshop/k3s/hpa.yaml
+kubectl apply -f ~/workshop/k3s/hpa/hpa.yaml
 ```
 
 ## 2. Validate HPA
