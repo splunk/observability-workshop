@@ -133,33 +133,27 @@ processors:
 
 {{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Using connectors to gain internal insights{{% /badge %}}" %}}
 
-One of the most recent additions to the collector was the notion of a [connector](https://opentelemetry.io/docs/collector/configuration/#connectors),
-which allows you to join output of one one pipeline to input another pipeline.
+One of the most recent additions to the collector was the notion of a [connector](https://opentelemetry.io/docs/collector/configuration/#connectors), which allows you to join output of one pipeline to input of another pipeline.
 
-An example of how this is beneficial is that emit metrics based on the amount of datapoints being exported, number of logs containing an error status,
+An example of how this is beneficial is that some services emit metrics based on the amount of datapoints being exported, number of logs containing an error status,
 or the amount of data being sent from one deployment environment. The count connector helps address this for you out of the box.
 
 ## Why a connector instead of a processor?
 
-A processor is limited in what additional data it can produce considering it has to pass on the data
-it has processed making it hard to expose additional information. Connectors do not have to emit the 
-data they had received which means they provide an oppotunity to create those insights we are after.
+A processor is limited in what additional data it can produce considering it has to pass on the data it has processed making it hard to expose additional information. Connectors do not have to emit the data they received which means they provide an opportunity to create those insights we are after.
 
-For example, a connector could made to count the number of logs, metrics, and traces that do not have 
-the deployment environment attribute.
+For example, a connector could be made to count the number of logs, metrics, and traces that do not have the deployment environment attribute.
 
 A very simple example with the output of being able to break down data usage by deployment environment.
 
 ## Considerations with connectors
 
-A connector only accepts data exported from one pipeline and receiver by another pipeline, this means 
-you may have to consider how you construct your collector config to take advantage of it.
-
+A connector only accepts data exported from one pipeline and receiver by another pipeline, this means you may have to consider how you construct your collector config to take advantage of it.
 
 ## References
 
-1. https://opentelemetry.io/docs/collector/configuration/#connectors
-1. https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector
+1. [https://opentelemetry.io/docs/collector/configuration/#connectors](https://opentelemetry.io/docs/collector/configuration/#connectors)
+2. [https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector)
 
 {{% /expand %}}
 

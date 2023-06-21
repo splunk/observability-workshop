@@ -112,25 +112,21 @@ You will notice in the default configuration there are other receivers (**otlp**
 ---
 {{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Create receivers dynamically{{% /badge %}}" %}}
 
-To help observe short live tasks like docker containers, kubernetes pods, or ssh sessions, we can use the 
-[receiver creator](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/receivercreator) with 
-[observer extensions](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/observer) 
-to create a new receiver as these services start up.
+To help observe short-lived tasks like Docker containers, Kubernetes pods, or SSH sessions, we can use the [receiver creator](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/receivercreator) with [observer extensions](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/observer) to create a new receiver as these services start up.
 
 ## What do we need?
 
-In order to start using the receiver creator and its assocaited observer extensions, 
-they will need to be part of your collector build manifest.
+In order to start using the receiver creator and its associated observer extensions, they will need to be part of your collector build manifest.
+
 See [installation](/en/conf/opentelemetry-collector/1-installation/) for the details.
 
 ## Things to consider?
 
 Some short lived task may require additional configuration such as _username_, and _password_.
-These values can be referenced via [enviroment variables](https://opentelemetry.io/docs/collector/configuration/#configuration-environment-variables),
-or use scheme expand syntax such as `${file:./path/to/database/password}`.
+
+These values can be referenced via [environment variables](https://opentelemetry.io/docs/collector/configuration/#configuration-environment-variables), or use scheme expand syntax such as `${file:./path/to/database/password}`.
+
 Please adhere to your organisation's secret practices when taking this route.
-
-
 
 ## The Ninja Zone
 

@@ -16,7 +16,7 @@ wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases
 
 ## 2. Installing the OpenTelemetry Collector Contrib distribution
 
-Install the `.deb` package using `dpkg`. Not we are installing as root. Take a look at the Output tab in the box below to see what the exmple output of a successful install will look like:
+Install the `.deb` package using `dpkg`. Note we are installing as root. Take a look at the Output tab in the box below to see what the example output of a successful install will look like:
 
 {{< tabs >}}
 {{% tab title="Install" %}}
@@ -121,17 +121,18 @@ For this part we will require the following installed on your system:
 ## Why build your own collector?
 
 The default distrobutions of the collector (core and contrib) either container too much or too little in what they have to offer.
-It is also not advised to run the contrib collector in your production environments due to the amount of components installed
-which more than likely are not needed by your deployment.
+
+It is also not advised to run the contrib collector in your production environments due to the amount of components installed which more than likely are not needed by your deployment.
 
 ## Benefits of building your own collector?
 
 When creating your own collector binaries, (commonly referred to as distrobutions), means you build what you need.
+
 The benefits of this are:
 
-1. Small binaries sizes
-1. Can use existing go scanners for vulnerabilites
-1. Include internal components that can tie in with your organisation
+1. Smaller sized binaries
+2. Can use existing go scanners for vulnerabilites
+3. Include internal components that can tie in with your organisation
 
 ## Considerations for building your own collector?
 
@@ -139,17 +140,13 @@ Now, this would not be a 🥷 Ninja zone if it didn't come with some draw backs:
 
 1. Go experience is recommended if not required
 1. **No** Splunk support
-1. Responsibiliy of distrobution and lifecycle management
+1. Responsibiliy of distribution and lifecycle management
 
-It is important to note that project is working towards stability but it does not mean
-changes made will not break your workflow. The team at Splunk provide increased support
-and a higher level of stability so they can provide a curated experience helping you
-with your deployment needs.
+It is important to note that project is working towards stability but it does not mean changes made will not break your workflow. The team at Splunk provide increased support and a higher level of stability so they can provide a curated experience helping you with your deployment needs.
 
 ## The Ninja Zone
 
-Once you have all the required tools installed to get started, you will need to create a
-new file named `otelcol-builder.yaml` and we will follow this directory structure:
+Once you have all the required tools installed to get started, you will need to create a new file named `otelcol-builder.yaml` and we will follow this directory structure:
 
 ``` bash
 .
@@ -157,6 +154,7 @@ new file named `otelcol-builder.yaml` and we will follow this directory structur
 ```
 
 Once we have the file created, we need to add a list of components for it to install with some additional metadata.
+
 For this example, we are going to create a builder manifest that will install only the components we need for the introduction config:
 
 ```yaml
@@ -294,9 +292,9 @@ service:
 {{% /tab %}}
 {{< /tabs >}}
 
-Congratulations! You have successfully downloaded and installed the OpenTelemtry Collector. You are well on your way to Ninja. But first lets chat through configuration files and different distributions of the OpenTelemetry Collector.
+Congratulations! You have successfully downloaded and installed the OpenTelemetry Collector. You are well on your way to Ninja. But first lets chat through configuration files and different distributions of the OpenTelemetry Collector.
 
-Splunk does provide its own, fully supported, distribution of the OpenTelemetry Collector. This distribution is available to install from the [Splunk GitHub Repository](https://github.com/signalfx/splunk-otel-collector). This distribution includes a number of additional features and enhancements that are not available in the OpenTelemetry Collector Contrib distribution.
+Splunk does provide its own, fully supported, distribution of the OpenTelemetry Collector. This distribution is available to install from the [Splunk GitHub Repository](https://github.com/signalfx/splunk-otel-collector) or via a wizard in Splunk Observability Cloud that will build out a simple installation script to copy and paste. This distribution includes a number of additional features and enhancements that are not available in the OpenTelemetry Collector Contrib distribution.
 
 - The Splunk Distribution of the OpenTelemetry Collector is production tested; it is in use by the majority of customers in their production environments.
 - Customers that use our distribution can receive direct help from official Splunk support within SLA's.

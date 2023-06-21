@@ -4,7 +4,13 @@ linkTitle: 6. Service
 weight: 6
 ---
 
-The **Service** section is used to configure what components are enabled in the Collector based on the configuration found in the receivers, processors, exporters, and extensions sections. If a component is configured, but not defined within the service section then it is not enabled. The service section consists of three sub-sections:
+The **Service** section is used to configure what components are enabled in the Collector based on the configuration found in the receivers, processors, exporters, and extensions sections.
+
+{{% notice style="info" %}}
+If a component is configured, but not defined within the **Service** section then it is **not** enabled.
+{{% /notice %}}
+
+The service section consists of three sub-sections:
 
 - extensions
 - pipelines
@@ -298,6 +304,23 @@ service:
 {{% /expand %}}
 
 ---
+
+{{% notice style="tip" %}}
+It is recommended that you lint your configuration file before restarting the collector to ensure that it is valid. You can do this by doing the following:
+
+- Install `yamllint`:
+
+  ``` bash
+  sudo apt install -y yamllint
+  ```
+
+- Validate the `/etc/otelcol-contrib/config.yaml`
+
+  ``` bash
+  yamllint -d "{extends: relaxed}" /etc/otelcol-contrib/config.yaml
+  ```
+
+{{% /notice %}}
 
 Now that we have a working configuration, let's restart the collector and then check to see what [zPages](../2-extensions/#zpages) is reporting.
 

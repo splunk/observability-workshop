@@ -42,7 +42,7 @@ flowchart LR;
 
 In order to send metrics over HTTP to Splunk Observability Cloud we will need to configure the **otlphttp** exporter.
 
-Let's edit our `/etc/otelcontribcol/config.yaml` file and configure the **otlphttp** exporter. Insert the following YAML under the **exporters** section, taking care to indent by two spaces e.g.
+Let's edit our `/etc/otelcol-contrib/config.yaml` file and configure the **otlphttp** exporter. Insert the following YAML under the **exporters** section, taking care to indent by two spaces e.g.
 
 We will also change the verbosity of the logging exporter to prevent the disk filling up. The default of `detailed` is very noisy.
 

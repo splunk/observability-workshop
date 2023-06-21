@@ -4,7 +4,7 @@ linkTitle: 2. Extensions
 weight: 2
 ---
 
-Now that we have the OpenTelemetry Collector is installed. Let's take a look at extensions for the OpenTelemetry Collector.
+Now that we have the OpenTelemetry Collector installed, let's take a look at extensions for the OpenTelemetry Collector.
 
 Extensions are optional and available primarily for tasks that do not involve processing telemetry data. Examples of extensions include health monitoring, service discovery, and data forwarding.
 
@@ -120,7 +120,7 @@ Example URL: [http://localhost:55679/debug/extensionz](http://localhost:55679/de
 {{% /tabs %}}
 
 {{% notice style="info" %}}
-If you are not following along you can use your browser you can access a test environment emitting zPages information at:
+If you are not following along you can use your browser to access a test environment emitting zPages information at:
 
 - **ServiceZ:** [http://63.33.64.193:55679/debug/servicez](http://63.33.64.193:55679/debug/servicez)
 - **PipelineZ:** [http://63.33.64.193:55679/debug/pipelinez](http://63.33.64.193:55679/debug/pipelinez)
@@ -131,7 +131,7 @@ If you are not following along you can use your browser you can access a test en
 
 {{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Improve data durability with storage extension{{% /badge %}}" %}}
 
-For this, we will need to validate our distribution has the `file_storage` extension installed, this can be down by running the command `otelcol-contrib components` and it should so something like:
+For this, we will need to validate our distribution has the `file_storage` extension installed, this can be done by running the command `otelcol-contrib components` and will output something similar to the following:
 
 {{< tabs >}}
 {{% tab title="Truncated Output" %}}
@@ -320,7 +320,7 @@ extensions:
 This extension provides exporters the ability to queue data to disk in the event that exporter is unable
 to send data to the configured endpoint.
 
-In order to configure the extension, you will need to update to include the following information:
+In order to configure the extension, you will need to update to include the following information in the `/etc/otelcol-contrib/config.yaml` file:
 
 ```yaml
 extensions:
@@ -344,11 +344,11 @@ service:
 
 ## Why queue data to disk?
 
-This allows the collector to queue data (and even restart) to ensure data is sent the upstream provider.
+This allows the collector to weather network interruptions (and even collector restarts) to ensure data is sent to the upstream provider.
 
 ## Considerations for queuing data to disk?
 
-There is a potential that this could impact data throughput performance due disk performance.
+There is a potential that this could impact data throughput performance due to disk performance.
 
 ### References
 
