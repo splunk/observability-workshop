@@ -82,7 +82,7 @@ May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:         {"kind": "exporter"
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja title=**Ninja** %}}Build your own collector using Open Telemetry Collector Builder (ocb){{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Build your own collector using Open Telemetry Collector Builder (ocb){{% /badge %}}" %}}
 For this part we will require the following installed on your system:
 
 - Golang (latest version)
@@ -135,7 +135,7 @@ The benefits of this are:
 
 ## Considerations for building your own collector?
 
-Now, this would not be a 🥷 ninja zone if it didn't come with some draw backs:
+Now, this would not be a 🥷 Ninja zone if it didn't come with some draw backs:
 
 1. Go experience is recommended if not required
 1. **No** Splunk support

@@ -120,7 +120,7 @@ service:
 ```
 
 ---
-{{% expand title="{{% badge style=primary icon=user-ninja title=**Ninja** %}}Observing the collector internals{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Observing the collector internals{{% /badge %}}" %}}
 
 The collector captures internal signals about its behaviour this also include additional signals from running components.
 The reason for this is that components that make decisions about the flow of data need a way to surface that information

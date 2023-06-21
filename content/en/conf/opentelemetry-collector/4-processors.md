@@ -131,7 +131,7 @@ processors:
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja title=**Ninja** %}}Using connectors to gain internal insights{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Using connectors to gain internal insights{{% /badge %}}" %}}
 
 One of the most recent additions to the collector was the notion of a [connector](https://opentelemetry.io/docs/collector/configuration/#connectors),
 which allows you to join output of one one pipeline to input another pipeline.

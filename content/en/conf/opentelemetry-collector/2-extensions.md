@@ -129,7 +129,7 @@ If you are not following along you can use your browser you can access a test en
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja title=**Ninja** %}}Improve data durability with storage extension{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Improve data durability with storage extension{{% /badge %}}" %}}
 
 For this, we will need to validate our distribution has the `file_storage` extension installed, this can be down by running the command `otelcol-contrib components` and it should so something like:
 

@@ -110,7 +110,7 @@ The following screenshot is an out of the box (OOTB) dashboard from Splunk Obser
 You will notice in the default configuration there are other receivers (**otlp**, **opencensus**, **jaeger** and **zipkin**). These are used to receive telemetry data from other sources. We will not be using these receivers in this workshop and can be left as they are.
 
 ---
-{{% expand title="{{% badge style=primary icon=user-ninja title=**Ninja** %}}Create receivers dynamically{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Create receivers dynamically{{% /badge %}}" %}}
 
 To help observe short live tasks like docker containers, kubernetes pods, or ssh sessions, we can use the 
 [receiver creator](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/receivercreator) with 
@@ -134,7 +134,7 @@ Please adhere to your organisation's secret practices when taking this route.
 
 ## The Ninja Zone
 
-There is only two things needed for this ninja zone:
+There are only two things needed for this Ninja zone:
 
 1. Make sure you have added receiver creater and observer extensions to the builder manifest.
 2. Create the config that can be used to match against discovered endpoints.
