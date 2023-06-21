@@ -250,3 +250,7 @@ service:
 ---
 
 Now that we have reviewed how data gets into the OpenTelemetry Collector, we can now learn how the Collector processes the data.
+
+{{% notice style="warning" %}}
+As the `/etc/otelcol-contrib/config.yaml` is not complete, please **do not** attempt to restart the collector at this point.
+{{% /notice %}}
