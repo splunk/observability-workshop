@@ -80,6 +80,28 @@ May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:         {"kind": "exporter"
 {{% /tab %}}
 {{< /tabs >}}
 
+As will be running the rest of the workshop using the `otelcol-contrib` standalone binary, we will stop the service and then disable it from starting on boot:
+
+{{< tabs >}}
+{{% tab title="Command" %}}
+
+``` bash
+systemctl stop otelcol-contrib
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+{{< tabs >}}
+{{% tab title="Command" %}}
+
+``` bash
+systemctl disable otelcol-contrib
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
 ---
 
 {{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Build your own collector using Open Telemetry Collector Builder (ocb){{% /badge %}}" %}}

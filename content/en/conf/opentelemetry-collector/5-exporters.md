@@ -69,7 +69,9 @@ By default `gzip` compression is enabled for all endpoints, this can be disabled
 
 In order to send metrics to Splunk Observability Cloud we need to define a token. This can be done by creating a new token in the Splunk Observability Cloud UI. For more information on how to create a token, see [Create a token](https://docs.splunk.com/Observability/admin/authentication-tokens/org-tokens.html). The token needs to be of type **INGEST**.
 
-The token can then be added to the configuration file by defining a _key_ named `X-SF-TOKEN` and a _value_ of the token created above under `headers` section:
+For this workshop, the instance your are using has already been configured with a token (which has been set as an environment variable). We will reference that in our configuration file.
+
+The token can then be added to the configuration file by defining a _key_ named `X-SF-TOKEN` and a _value_ of the environment variable created above under `headers` section:
 
 ```yaml {hl_lines=["6-8"]}
 exporters:
@@ -78,7 +80,7 @@ exporters:
   otlphttp/splunk:
     metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
     headers:
-      X-SF-TOKEN: <redacted>
+      X-SF-TOKEN: ${env:ACCESS_TOKEN}
 ```
 
 ## Configuration Check-in
@@ -167,7 +169,7 @@ exporters:
   otlphttp/splunk:
     metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
     headers:
-      X-SF-TOKEN: <redacted>
+      X-SF-TOKEN: ${env:ACCESS_TOKEN}
 
 service:
 

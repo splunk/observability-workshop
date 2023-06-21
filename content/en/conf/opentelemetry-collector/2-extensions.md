@@ -40,9 +40,13 @@ flowchart LR;
 
 Extensions are configured in the same `config.yaml` file that we referenced in the installation step. Let's edit the `config.yaml` file and configure the extensions. Note that the **pprof** and **zpages** extensions are already configured in the default `config.yaml` file. For the purpose of this workshop, we will only be updating the **health_check** extension to expose the port on which we can access the health of the collector.
 
+{{% tab title="Command" %}}
+
 ``` bash
 sudo vi /etc/otelcol-contrib/config.yaml
 ```
+
+{{% /tab %}}
 
 {{% tab title="Extensions Configuration" %}}
 
@@ -54,15 +58,21 @@ extensions:
 
 {{% /tab %}}
 
-Restart the collector:
+Start the collector:
+
+{{% tab title="Command" %}}
 
 ``` bash
-sudo systemctl restart otelcol-contrib
+otelcol-contrib --config=file:/etc/otelcol-contrib/config.yaml
 ```
+
+{{% /tab %}}
 
 ## Health Check
 
-This extension enables a HTTP URL that can be probed to check the status of the OpenTelemetry Collector. This extension can be used as a liveness and/or readiness probe on Kubernetes. To learn more about the `curl` command, check out the [curl man page](https://curl.se/docs/manpage.html).
+This extension enables a HTTP URL that can be probed to check the status of the OpenTelemetry Collector. This extension can be used as a liveness and/or readiness probe on Kubernetes.
+
+Open a new terminal session and SSH into your instance to run the following command:
 
 {{< tabs >}}
 {{% tab title="curl Command" %}}
@@ -433,5 +443,9 @@ service:
 {{% /expand %}}
 
 ---
+
+{{% notice style="note" %}}
+You can now stop the collector running by pressing **`Ctrl-C`** on your keyboard.
+{{% /notice %}}
 
 Now that we have reviewed extensions, lets dive into the data pipeline portion of the workshop. The data pipeline in the OpenTelemetry Collector is made up of receivers, processors, and exporters. We will first start with receivers.

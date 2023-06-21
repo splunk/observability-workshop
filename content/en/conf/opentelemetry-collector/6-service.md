@@ -179,7 +179,7 @@ service:
       encoding: json
       disable_stacktrace: true
       initial_fields:
-        host.name: ${env:HOSTNAME}
+        instance.name: ${env:INSTANCE}
     metrics:
       address: localhost:8888 
 ```
@@ -279,7 +279,7 @@ exporters:
   otlphttp/splunk:
     metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
     headers:
-      X-SF-TOKEN: <redacted>
+      X-SF-TOKEN: ${env:ACCESS_TOKEN}
 
 service:
 
@@ -322,10 +322,14 @@ It is recommended that you lint your configuration file before restarting the co
 
 {{% /notice %}}
 
-Now that we have a working configuration, let's restart the collector and then check to see what [zPages](../2-extensions/#zpages) is reporting.
+Now that we have a working configuration, let's start the collector and then check to see what [zPages](../2-extensions/#zpages) is reporting.
+
+{{% tab title="Command" %}}
 
 ``` bash
-sudo systemctl restart otelcol-contrib
+otelcol-contrib --config=file:/etc/otelcol-contrib/config.yaml
 ```
+
+{{% /tab %}}
 
 ![pipelinez-full-config](../images/pipelinez-full-config.png)
