@@ -175,7 +175,7 @@ service:
       initial_fields:
         host.name: ${env:HOSTNAME}
     metrics:
-      address: localhost:8043 
+      address: localhost:8888 
 ```
 
 {{% /tab %}}
