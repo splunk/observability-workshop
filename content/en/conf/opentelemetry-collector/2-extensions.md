@@ -4,7 +4,7 @@ linkTitle: 2. Extensions
 weight: 2
 ---
 
-Now that we have the OpenTelemetry Collector is installed, let's take a look at extensions for the OpenTelemetry Collector.
+Now that we have the OpenTelemetry Collector installed, let's take a look at extensions for the OpenTelemetry Collector.
 
 Extensions are optional and available primarily for tasks that do not involve processing telemetry data. Examples of extensions include health monitoring, service discovery, and data forwarding.
 
@@ -130,7 +130,7 @@ Example URL: [http://localhost:55679/debug/extensionz](http://localhost:55679/de
 {{% /tabs %}}
 
 {{% notice style="info" %}}
-If you are not following along, you can use your browser you can access a test environment emitting zPages information at:
+If you are not following along, you can use your browser to access a test environment emitting zPages information at:
 
 - **ServiceZ:** [http://63.33.64.193:55679/debug/servicez](http://63.33.64.193:55679/debug/servicez)
 - **PipelineZ:** [http://63.33.64.193:55679/debug/pipelinez](http://63.33.64.193:55679/debug/pipelinez)
@@ -141,7 +141,7 @@ If you are not following along, you can use your browser you can access a test e
 
 {{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Improve data durability with storage extension{{% /badge %}}" %}}
 
-For this, we will need to validate that our distribution has the `file_storage` extension installed. This can be down by running the command `otelcol-contrib components` which should show results like:
+For this, we will need to validate that our distribution has the `file_storage` extension installed. This can be done by running the command `otelcol-contrib components` which should show results like:
 
 {{< tabs >}}
 {{% tab title="Truncated Output" %}}

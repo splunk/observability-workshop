@@ -48,7 +48,7 @@ service:
 ```
 
 ### Prometheus Internal Receiver
-Earlier in the workshop, we also renamed the `prometheus` receiver to reflect that is was collecting metrics internal to the collector, renaming it to `prometheus/internal`. We now need to enable this under the metrics pipeline. 
+Earlier in the workshop, we also renamed the `prometheus` receiver to reflect that is was collecting metrics internal to the collector, renaming it to `prometheus/internal`. 
 
  We now need to enable the `prometheus/internal` receiver under the metrics pipeline. Update the `receivers` section to include `prometheus/internal` under the `metrics` pipeline:
 

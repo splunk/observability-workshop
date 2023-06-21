@@ -96,17 +96,7 @@ prometheus/internal:
 ```
 
 {{% /tab %}}
-
-Be sure to also update the name of your receiver in your metrics pipeline:
-
-{{% tab title="Prometheus Pipeline Configuration" %}}
-
-```yaml {jl_lines=[1]}
-metrics:
-      receivers: [otlp, opencensus, prometheus/internal]
- ```
-
-{{% /tab %}}     
+  
 
 ## Example Dashboard - Prometheus metrics
 
