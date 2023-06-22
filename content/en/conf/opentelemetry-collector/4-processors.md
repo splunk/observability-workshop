@@ -52,7 +52,7 @@ By default, the hostname is set to the FQDN if possible, otherwise the hostname 
 
 {{% tab title="System Resource Detection Processor Configuration" %}}
 
-``` yaml {hl_lines=["3-7"]}
+``` yaml {hl_lines="3-7"}
 processors:
   batch:
   resourcedetection/system:
@@ -79,7 +79,7 @@ We will create another processor to append these tags to our metrics.
 
 {{% tab title="EC2 Resource Detection Processor Configuration" %}}
 
-``` yaml {hl_lines=["7-8"]}
+``` yaml {hl_lines="7-8"}
 processors:
   batch:
   resourcedetection/system:
@@ -107,11 +107,17 @@ It takes a list of actions which are performed in order specified in the config.
 
 We are going to create an attributes processor to `insert` a new attribute to all our host metrics called `conf.attendee.name` with a value of your own name e.g. `homer_simpson`.
 
+{{% notice style="warning" %}}
+
+Ensure you replace `INSERT_YOUR_NAME_HERE` with your own name and also ensure you **do not** use spaces in your name.
+
+{{% /notice %}}
+
 Later on in the workshop we will use this attribute to filter our metrics in Splunk Observability Cloud.
 
 {{% tab title="Attributes Processor Configuration" %}}
 
-``` yaml {hl_lines=["9-13"]}
+``` yaml {hl_lines="9-13"}
 processors:
   batch:
   resourcedetection/system:
@@ -169,7 +175,7 @@ That's processors covered, let's check our configuration changes.
 {{< tabs >}}
 {{% tab title="config.yaml" %}}
 
-```yaml {hl_lines=["58-68"]}
+```yaml {lineNos="table" wrap="true" hl_lines="58-68"}
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133

@@ -27,11 +27,11 @@ service:
 
 ### Hostmetrics Receiver
 
-If you recall from the Receivers portion of the workshop, we defined the [Host Metrics Receiver](../3-receivers/#host-metrics-receiver) to generate metrics about the host system, which are scraped from various sources. To enable the receiver, we must include the `hostmetrics` receiver in the metrics pipeline. 
+If you recall from the Receivers portion of the workshop, we defined the [Host Metrics Receiver](../3-receivers/#host-metrics-receiver) to generate metrics about the host system, which are scraped from various sources. To enable the receiver, we must include the `hostmetrics` receiver in the metrics pipeline.
 
 In the `metrics` pipeline, add `hostmetrics` to the metrics `receivers` section.
 
-```yaml {hl_lines=[11]}
+```yaml {hl_lines="11"}
 service:
 
   pipelines:
@@ -48,11 +48,12 @@ service:
 ```
 
 ### Prometheus Internal Receiver
-Earlier in the workshop, we also renamed the `prometheus` receiver to reflect that is was collecting metrics internal to the collector, renaming it to `prometheus/internal`. 
+
+Earlier in the workshop, we also renamed the `prometheus` receiver to reflect that is was collecting metrics internal to the collector, renaming it to `prometheus/internal`.
 
  We now need to enable the `prometheus/internal` receiver under the metrics pipeline. Update the `receivers` section to include `prometheus/internal` under the `metrics` pipeline:
 
-```yaml {hl_lines=[11]}
+```yaml {hl_lines="11"}
 service:
 
   pipelines:
@@ -70,11 +71,11 @@ service:
 
 ### Resource Detection Processor
 
-We also added `resourcedetection/system` and `resourcedetection/ec2` processors so that the collector can capture the instance hostname and AWS/EC2 metadata. We now need to enable these two processors under the metrics pipeline. 
+We also added `resourcedetection/system` and `resourcedetection/ec2` processors so that the collector can capture the instance hostname and AWS/EC2 metadata. We now need to enable these two processors under the metrics pipeline.
 
 Update the `processors` section to include `resourcedetection/system` and `resourcedetection/ec2` under the `metrics` pipeline:
 
-```yaml {hl_lines=[12]}
+```yaml {hl_lines="12"}
 service:
 
   pipelines:
@@ -92,11 +93,11 @@ service:
 
 ### Attributes Processor
 
-Also in the Processors section of this workshop, we added the `attributes/conf` processor so that the collector will inset a new attribute called `conf.attendee.name` to all the metrics. We now need to enable this under the metrics pipeline. 
+Also in the Processors section of this workshop, we added the `attributes/conf` processor so that the collector will inset a new attribute called `conf.attendee.name` to all the metrics. We now need to enable this under the metrics pipeline.
 
 Update the `processors` section to include `attributes/conf` under the `metrics` pipeline:
 
-```yaml {hl_lines=[12]}
+```yaml {hl_lines="12"}
 service:
 
   pipelines:
@@ -114,11 +115,11 @@ service:
 
 ### OTLPHTTP Exporter
 
-In the Exporters section of the workshop, we configured the `otlphttp` exporter to send metrics to Splunk Observability Cloud. We now need to enable this under the metrics pipeline. 
+In the Exporters section of the workshop, we configured the `otlphttp` exporter to send metrics to Splunk Observability Cloud. We now need to enable this under the metrics pipeline.
 
 Update the `exporters` section to include `otlphttp/splunk` under the `metrics` pipeline:
 
-```yaml {hl_lines=[13]}
+```yaml {hl_lines="13"}
 service:
 
   pipelines:
@@ -135,6 +136,7 @@ service:
 ```
 
 ---
+
 {{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Observing the collector internals{{% /badge %}}" %}}
 
 The collector captures internal signals about its behaviour this also include additional signals from running components.
@@ -157,7 +159,6 @@ To expose the internal observability of the collector, there are some additional
 {{% tab title="telemetry schema" %}}
 
 ```yaml
----
 service:
   telemetry:
     logs:
@@ -180,7 +181,6 @@ service:
 {{% tab title="example-config.yml" %}}
 
 ```yaml
----
 service:
   telemetry:
     logs: 
@@ -212,7 +212,7 @@ service:
 {{< tabs >}}
 {{% tab title="config.yaml" %}}
 
-``` yaml {hl_lines=["88-90"]}
+``` yaml {lineNos="table" wrap="true"}
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133

@@ -6,8 +6,6 @@ weight: 3
 
 Welcome to the receiver portion of the workshop! This is the starting point of the data pipeline of the OpenTelemetry Collector. Let's dive in.
 
-
-
 A receiver, which can be push or pull based, is how data gets into the Collector. Receivers may support one or more data sources. Generally, a receiver accepts data in a specified format, translates it into the internal format and passes it to processors and exporters defined in the applicable pipelines.
 
 {{< mermaid >}}
@@ -52,7 +50,7 @@ sudo vi /etc/otelcol-contrib/config.yaml
 
 {{% tab title="Host Metrics Receiver Configuration" %}}
 
-```yaml {hl_lines=["2-22"]}
+```yaml {hl_lines="2-22"}
 receivers:
   hostmetrics:
     collection_interval: 10s
@@ -85,7 +83,7 @@ Let's modify the **prometheus** receiver to clearly show that it is for collecti
 
 {{% tab title="Prometheus Receiver Configuration" %}}
 
-```yaml {hl_lines=[1]}
+```yaml {hl_lines="1"}
 prometheus/internal:
   config:
     scrape_configs:
@@ -96,11 +94,10 @@ prometheus/internal:
 ```
 
 {{% /tab %}}
-  
 
 ## Example Dashboard - Prometheus metrics
 
-The following screenshot shows an example dashboard of the metrics the Prometheus internal receiver collects from the OpenTelemetry Collector. Here, we can see accepted and sent spans, metrics and log records.
+The following screenshot shows an example dashboard of spme of the metrics the Prometheus internal receiver collects from the OpenTelemetry Collector. Here, we can see accepted and sent spans, metrics and log records.
 
 {{% notice style="note" %}}
 The following screenshot is an out-of-the-box (OOTB) dashboard from Splunk Observability Cloud that allows you to easily monitor your Splunk OpenTelemetry Collector install base.
@@ -113,12 +110,10 @@ The following screenshot is an out-of-the-box (OOTB) dashboard from Splunk Obser
 You will notice in the default configuration there are other receivers: **otlp**, **opencensus**, **jaeger** and **zipkin**. These are used to receive telemetry data from other sources. We will not be covering these receivers in this workshop and they can be left as they are.
 
 ---
+
 {{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Create receivers dynamically{{% /badge %}}" %}}
 
-To help observe short lived tasks like docker containers, kubernetes pods, or ssh sessions, we can use the 
-[receiver creator](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/receivercreator) with 
-[observer extensions](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/observer) 
-to create a new receiver as these services start up.
+To help observe short lived tasks like docker containers, kubernetes pods, or ssh sessions, we can use the [receiver creator](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/receivercreator) with [observer extensions](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/observer) to create a new receiver as these services start up.
 
 ## What do we need?
 
@@ -168,7 +163,7 @@ We've now covered receivers, so let's now check our configuration changes.
 {{< tabs >}}
 {{% tab title="config.yaml" %}}
 
-```yaml {hl_lines=["10-30", 39]}
+```yaml {lineNos="table" wrap="true" hl_lines="10-30 39"}
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133

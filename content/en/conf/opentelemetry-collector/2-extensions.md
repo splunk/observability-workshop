@@ -4,9 +4,7 @@ linkTitle: 2. Extensions
 weight: 2
 ---
 
-Now that we have the OpenTelemetry Collector installed, let's take a look at extensions for the OpenTelemetry Collector.
-
-Extensions are optional and available primarily for tasks that do not involve processing telemetry data. Examples of extensions include health monitoring, service discovery, and data forwarding.
+Now that we have the OpenTelemetry Collector installed, let's take a look at extensions for the OpenTelemetry Collector. Extensions are optional and available primarily for tasks that do not involve processing telemetry data. Examples of extensions include health monitoring, service discovery, and data forwarding.
 
 {{< mermaid >}}
 %%{
@@ -38,7 +36,7 @@ flowchart LR;
     end
 {{< /mermaid >}}
 
-Extensions are configured in the same `config.yaml` file that we referenced in the installation step. Let's edit the `config.yaml` file and configure the extensions. Note that the **pprof** and **zpages** extensions are already configured in the default `config.yaml` file. For the purpose of this workshop, we will only be updating the **health_check** extension to expose the port on which we can access the health of the collector.
+Extensions are configured in the same `config.yaml` file that we referenced in the installation step. Let's edit the `config.yaml` file and configure the extensions. Note that the **pprof** and **zpages** extensions are already configured in the default `config.yaml` file. For the purpose of this workshop, we will only be updating the **health_check** extension to expose the port on all network interfaces on which we can access the health of the collector.
 
 {{% tab title="Command" %}}
 
@@ -50,7 +48,7 @@ sudo vi /etc/otelcol-contrib/config.yaml
 
 {{% tab title="Extensions Configuration" %}}
 
-```yaml {hl_lines=[3]}
+```yaml {hl_lines="3"}
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133
@@ -329,7 +327,7 @@ extensions:
 
 This extension provides exporters the ability to queue data to disk in the event that exporter is unable to send data to the configured endpoint.
 
-In order to configure the extension, you will need to update your config to include the information below. First, be sure to create a /tmp/otel-data directory and give it read/write permissions: 
+In order to configure the extension, you will need to update your config to include the information below. First, be sure to create a /tmp/otel-data directory and give it read/write permissions:
 
 ```yaml
 extensions:
@@ -378,7 +376,7 @@ Now that we've covered extensions, let's check our configuration changes.
 {{< tabs >}}
 {{% tab title="config.yaml" %}}
 
-```yaml {hl_lines=[3]}
+```yaml { lineNos="table" wrap="true" hl_lines="3" }
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133
