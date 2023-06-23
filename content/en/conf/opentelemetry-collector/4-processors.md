@@ -52,7 +52,7 @@ By default, the hostname is set to the FQDN if possible, otherwise the hostname 
 
 {{% tab title="System Resource Detection Processor Configuration" %}}
 
-``` yaml {hl_lines=["3-7"]}
+``` yaml {hl_lines="3-7"}
 processors:
   batch:
   resourcedetection/system:
@@ -79,7 +79,7 @@ We will create another processor to append these tags to our metrics.
 
 {{% tab title="EC2 Resource Detection Processor Configuration" %}}
 
-``` yaml {hl_lines=["7-8"]}
+``` yaml {hl_lines="7-8"}
 processors:
   batch:
   resourcedetection/system:
@@ -107,11 +107,17 @@ It takes a list of actions which are performed in order specified in the config.
 
 We are going to create an attributes processor to `insert` a new attribute to all our host metrics called `conf.attendee.name` with a value of your own name e.g. `homer_simpson`.
 
+{{% notice style="warning" %}}
+
+Ensure you replace `INSERT_YOUR_NAME_HERE` with your own name and also ensure you **do not** use spaces in your name.
+
+{{% /notice %}}
+
 Later on in the workshop we will use this attribute to filter our metrics in Splunk Observability Cloud.
 
 {{% tab title="Attributes Processor Configuration" %}}
 
-``` yaml {hl_lines=["9-13"]}
+``` yaml {hl_lines="9-13"}
 processors:
   batch:
   resourcedetection/system:
@@ -131,35 +137,29 @@ processors:
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja title=**Ninja** %}}Using connectors to gain internal insights{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Using connectors to gain internal insights{{% /badge %}}" %}}
 
-One of the most recent additions to the collector was the notion of a [connector](https://opentelemetry.io/docs/collector/configuration/#connectors),
-which allows you to join output of one one pipeline to input another pipeline.
+One of the most recent additions to the collector was the notion of a [connector](https://opentelemetry.io/docs/collector/configuration/#connectors), which allows you to join output of one pipeline to input of another pipeline.
 
-An example of how this is beneficial is that emit metrics based on the amount of datapoints being exported, number of logs containing an error status,
+An example of how this is beneficial is that some services emit metrics based on the amount of datapoints being exported, number of logs containing an error status,
 or the amount of data being sent from one deployment environment. The count connector helps address this for you out of the box.
 
 ## Why a connector instead of a processor?
 
-A processor is limited in what additional data it can produce considering it has to pass on the data
-it has processed making it hard to expose additional information. Connectors do not have to emit the 
-data they had received which means they provide an oppotunity to create those insights we are after.
+A processor is limited in what additional data it can produce considering it has to pass on the data it has processed making it hard to expose additional information. Connectors do not have to emit the data they received which means they provide an opportunity to create those insights we are after.
 
-For example, a connector could made to count the number of logs, metrics, and traces that do not have 
-the deployment environment attribute.
+For example, a connector could be made to count the number of logs, metrics, and traces that do not have the deployment environment attribute.
 
 A very simple example with the output of being able to break down data usage by deployment environment.
 
 ## Considerations with connectors
 
-A connector only accepts data exported from one pipeline and receiver by another pipeline, this means 
-you may have to consider how you construct your collector config to take advantage of it.
-
+A connector only accepts data exported from one pipeline and receiver by another pipeline, this means you may have to consider how you construct your collector config to take advantage of it.
 
 ## References
 
-1. https://opentelemetry.io/docs/collector/configuration/#connectors
-1. https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector
+1. [https://opentelemetry.io/docs/collector/configuration/#connectors](https://opentelemetry.io/docs/collector/configuration/#connectors)
+2. [https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector)
 
 {{% /expand %}}
 
@@ -175,7 +175,7 @@ That's processors covered, let's check our configuration changes.
 {{< tabs >}}
 {{% tab title="config.yaml" %}}
 
-```yaml {hl_lines=["58-68"]}
+```yaml {lineNos="table" wrap="true" hl_lines="58-68"}
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133

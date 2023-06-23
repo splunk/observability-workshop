@@ -9,11 +9,11 @@ alwaysopen: false
 
 Adopting OpenTelemetry within your organisation can bring issues such as dealing with metric naming changes, rollout, and where to start. In this workshop, we will be focusing on using the OpenTelemetry collector and starting with the fundamentals of configuring the receivers, processors, and exporters ready to use with Splunk Observability Cloud. The journey will take attendees from novices to being able to start adding custom components to help solve for their business observability needs for their distributed platform.
 
-Throughout the workshop there will be expandable {{% badge style=primary icon=user-ninja title=**Ninja** %}}sections{{% /badge %}}:
+Throughout the workshop there will be expandable {{% badge style=primary icon=user-ninja %}}**Ninja:** sections{{% /badge %}}:
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja title=**Ninja** %}}Test Me!{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Test Me!{{% /badge %}}" %}}
 **By completing this workshop you will officially be an OpenTelemetry Collector Ninja!**
 {{% /expand %}}
 

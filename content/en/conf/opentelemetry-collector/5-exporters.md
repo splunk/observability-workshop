@@ -6,7 +6,7 @@ weight: 5
 
 An exporter, which can be push or pull based, is how you send data to one or more backends/destinations. Exporters may support one or more data sources.
 
-For this workshop we will be using the [**otlphttp**](https://opentelemetry.io/docs/specs/otel/protocol/exporter/) exporter. The OpenTelemetry Protocol (OTLP) is a vendor-neutral, standardised protocol for transmitting telemetry data. The OTLP exporter sends data to a server that implements the OTLP protocol. The OTLP exporter supports both [**gRPC**](https://grpc.io/) and [**HTTP**](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview)/[**JSON**](https://www.json.org/json-en.html) protocols.
+For this workshop, we will be using the [**otlphttp**](https://opentelemetry.io/docs/specs/otel/protocol/exporter/) exporter. The OpenTelemetry Protocol (OTLP) is a vendor-neutral, standardised protocol for transmitting telemetry data. The OTLP exporter sends data to a server that implements the OTLP protocol. The OTLP exporter supports both [**gRPC**](https://grpc.io/) and [**HTTP**](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview)/[**JSON**](https://www.json.org/json-en.html) protocols.
 
 {{< mermaid >}}
 %%{
@@ -40,24 +40,24 @@ flowchart LR;
 
 ## OTLP HTTP Exporter
 
-In order to send metrics over HTTP to Splunk Observability Cloud we will need to configure the **otlphttp** exporter.
+In order to send metrics over HTTP to Splunk Observability Cloud, we will need to configure the **otlphttp** exporter.
 
-Let's edit our `/etc/otelcontribcol/config.yaml` file and configure the **otlphttp** exporter. Insert the following YAML under the **exporters** section, taking care to indent by two spaces e.g.
+Let's edit our `/etc/otelcol-contrib/config.yaml` file and configure the **otlphttp** exporter. Insert the following YAML under the **exporters** section, taking care to indent by two spaces e.g.
 
 We will also change the verbosity of the logging exporter to prevent the disk filling up. The default of `detailed` is very noisy.
 
-```yaml {hl_lines=["3-4"]}
+```yaml {hl_lines="3-4"}
 exporters:
   logging:
     verbosity: normal
   otlphttp/splunk:
 ```
 
-Next we need to define the `metrics_endpoint` and configure the target URL. For our workshop we will use the **US1** realm for Splunk Observerability Cloud, the URL is `https://ingest.us1.signalfx.com/v2/datapoint/otlp`. Splunk has realms in key geographical locations around the world for data residency.
+Next we need to define the `metrics_endpoint` and configure the target URL. For our workshop, we will use the **US1** realm for Splunk Observerability Cloud. The URL is `https://ingest.us1.signalfx.com/v2/datapoint/otlp`. (Splunk has realms in key geographical locations around the world for data residency.)
 
-The **otlphttp** exporter can also be configured to also send traces and logs by defining target URL for `traces_endpoint` and `logs_endpoint` respectively.
+The **otlphttp** exporter can also be configured to send traces and logs by defining a target URL for `traces_endpoint` and `logs_endpoint` respectively. Configure these is outside the scope of this workshop.
 
-```yaml {hl_lines=["5"]}
+```yaml {hl_lines="5"}
 exporters:
   logging:
     verbosity: normal
@@ -65,25 +65,27 @@ exporters:
     metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
 ```
 
-By default `gzip` compression is enabled for all endpoints, this can be disabled by setting `compression: none` in the exporter configuration. We will leave compression enabled for this workshop and accept the default as this is the most efficient way to send data.
+By default, `gzip` compression is enabled for all endpoints. This can be disabled by setting `compression: none` in the exporter configuration. We will leave compression enabled for this workshop and accept the default as this is the most efficient way to send data.
 
-In order to send metrics to Splunk Observability Cloud we need to define a token. This can be done by creating a new token in the Splunk Observability Cloud UI. For more information on how to create a token, see [Create a token](https://docs.splunk.com/Observability/admin/authentication-tokens/org-tokens.html). The token needs to be of type **INGEST**.
+In order to send metrics to Splunk Observability Cloud, we need to use an Access Token. This can be done by creating a new token in the Splunk Observability Cloud UI. For more information on how to create a token, see [Create a token](https://docs.splunk.com/Observability/admin/authentication-tokens/org-tokens.html). The token needs to be of type **INGEST**.
 
-The token can then be added to the configuration file by defining a _key_ named `X-SF-TOKEN` and a _value_ of the token created above under `headers` section:
+For this workshop, the instance your are using has already been configured with an Access Token (which has been set as an environment variable). We will reference that environment variable in our configuration file.
 
-```yaml {hl_lines=["6-8"]}
+The token is defined in the configuration file by inserting `X-SF-TOKEN: ${env:ACCESS_TOKEN}` under a `headers:` section:
+
+```yaml {hl_lines="6-8"}
 exporters:
   logging:
     verbosity: normal
   otlphttp/splunk:
     metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
     headers:
-      X-SF-TOKEN: <redacted>
+      X-SF-TOKEN: ${env:ACCESS_TOKEN}
 ```
 
 ## Configuration Check-in
 
-That's exporters covered, let's check our configuration changes.
+Now that we've covered exporters, let's check our configuration changes:
 
 ---
 
@@ -91,7 +93,7 @@ That's exporters covered, let's check our configuration changes.
 {{< tabs >}}
 {{% tab title="config.yaml" %}}
 
-```yaml {hl_lines=["72-76"]}
+```yaml {lineNos="table" wrap="true" hl_lines="72-76"}
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133
@@ -167,7 +169,7 @@ exporters:
   otlphttp/splunk:
     metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
     headers:
-      X-SF-TOKEN: <redacted>
+      X-SF-TOKEN: ${env:ACCESS_TOKEN}
 
 service:
 
@@ -192,6 +194,6 @@ service:
 
 ---
 
-Of course, you could easily configure the `metrics_endpoint` to point to any other solution that supports the **OTLP** protocol.
+Of course, you can easily configure the `metrics_endpoint` to point to any other solution that supports the **OTLP** protocol.
 
-Next we need to enable the receivers, processors and exporters we have just configured in the service section of the `config.yaml`.
+Next, we need to enable the receivers, processors and exporters we have just configured in the service section of the `config.yaml`.

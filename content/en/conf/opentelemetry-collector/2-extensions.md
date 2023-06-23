@@ -4,9 +4,7 @@ linkTitle: 2. Extensions
 weight: 2
 ---
 
-Now that we have the OpenTelemetry Collector is installed. Let's take a look at extensions for the OpenTelemetry Collector.
-
-Extensions are optional and available primarily for tasks that do not involve processing telemetry data. Examples of extensions include health monitoring, service discovery, and data forwarding.
+Now that we have the OpenTelemetry Collector installed, let's take a look at extensions for the OpenTelemetry Collector. Extensions are optional and available primarily for tasks that do not involve processing telemetry data. Examples of extensions include health monitoring, service discovery, and data forwarding.
 
 {{< mermaid >}}
 %%{
@@ -38,15 +36,19 @@ flowchart LR;
     end
 {{< /mermaid >}}
 
-Extensions are configured in the same `config.yaml` file that we referenced in the installation step. Let's edit the `config.yaml` file and configure the extensions. Note that the **pprof** and **zpages** extensions are already configured in the default `config.yaml` file. For the purpose of this workshop, we will only be updating the **health_check** extension to expose the port on which we can access the health of the collector.
+Extensions are configured in the same `config.yaml` file that we referenced in the installation step. Let's edit the `config.yaml` file and configure the extensions. Note that the **pprof** and **zpages** extensions are already configured in the default `config.yaml` file. For the purpose of this workshop, we will only be updating the **health_check** extension to expose the port on all network interfaces on which we can access the health of the collector.
+
+{{% tab title="Command" %}}
 
 ``` bash
 sudo vi /etc/otelcol-contrib/config.yaml
 ```
 
+{{% /tab %}}
+
 {{% tab title="Extensions Configuration" %}}
 
-```yaml {hl_lines=[3]}
+```yaml {hl_lines="3"}
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133
@@ -54,15 +56,21 @@ extensions:
 
 {{% /tab %}}
 
-Restart the collector:
+Start the collector:
+
+{{% tab title="Command" %}}
 
 ``` bash
-sudo systemctl restart otelcol-contrib
+otelcol-contrib --config=file:/etc/otelcol-contrib/config.yaml
 ```
+
+{{% /tab %}}
 
 ## Health Check
 
 This extension enables a HTTP URL that can be probed to check the status of the OpenTelemetry Collector. This extension can be used as a liveness and/or readiness probe on Kubernetes. To learn more about the `curl` command, check out the [curl man page](https://curl.se/docs/manpage.html).
+
+Open a new terminal session and SSH into your instance to run the following command:
 
 {{< tabs >}}
 {{% tab title="curl Command" %}}
@@ -101,7 +109,7 @@ Example URL: [http://localhost:55679/debug/servicez](http://localhost:55679/debu
 {{% /tab %}}
 {{% tab title="PipelineZ" %}}
 
-**PipelineZ** brings insight on the running pipelines running in the collector. You can find information on type, if data is mutated and the receivers, processors and exporters that are used for each pipeline.
+**PipelineZ** provides insights on the running pipelines running in the collector. You can find information on type, if data is mutated, and you can also see information on the receivers, processors and exporters that are used for each pipeline.
 
 Example URL: [http://localhost:55679/debug/pipelinez](http://localhost:55679/debug/pipelinez) (change `localhost` to reflect your own environment).
 
@@ -120,7 +128,7 @@ Example URL: [http://localhost:55679/debug/extensionz](http://localhost:55679/de
 {{% /tabs %}}
 
 {{% notice style="info" %}}
-If you are not following along you can use your browser you can access a test environment emitting zPages information at:
+If you are not following along, you can use your browser to access a test environment emitting zPages information at:
 
 - **ServiceZ:** [http://63.33.64.193:55679/debug/servicez](http://63.33.64.193:55679/debug/servicez)
 - **PipelineZ:** [http://63.33.64.193:55679/debug/pipelinez](http://63.33.64.193:55679/debug/pipelinez)
@@ -129,9 +137,9 @@ If you are not following along you can use your browser you can access a test en
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja title=**Ninja** %}}Improve data durability with storage extension{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Improve data durability with storage extension{{% /badge %}}" %}}
 
-For this, we will need to validate our distribution has the `file_storage` extension installed, this can be down by running the command `otelcol-contrib components` and it should so something like:
+For this, we will need to validate that our distribution has the `file_storage` extension installed. This can be done by running the command `otelcol-contrib components` which should show results like:
 
 {{< tabs >}}
 {{% tab title="Truncated Output" %}}
@@ -317,10 +325,9 @@ extensions:
 {{% /tab %}}
 {{< /tabs >}}
 
-This extension provides exporters the ability to queue data to disk in the event that exporter is unable
-to send data to the configured endpoint.
+This extension provides exporters the ability to queue data to disk in the event that exporter is unable to send data to the configured endpoint.
 
-In order to configure the extension, you will need to update to include the following information:
+In order to configure the extension, you will need to update your config to include the information below. First, be sure to create a /tmp/otel-data directory and give it read/write permissions:
 
 ```yaml
 extensions:
@@ -344,11 +351,11 @@ service:
 
 ## Why queue data to disk?
 
-This allows the collector to queue data (and even restart) to ensure data is sent the upstream provider.
+This allows the collector to weather network interruptions (and even collector restarts) to ensure data is sent to the upstream provider.
 
 ## Considerations for queuing data to disk?
 
-There is a potential that this could impact data throughput performance due disk performance.
+There is a potential that this could impact data throughput performance due to disk performance.
 
 ### References
 
@@ -361,7 +368,7 @@ There is a potential that this could impact data throughput performance due disk
 
 ## Configuration Check-in
 
-That's extensions covered, let's check our configuration changes.
+Now that we've covered extensions, let's check our configuration changes.
 
 ---
 
@@ -369,7 +376,7 @@ That's extensions covered, let's check our configuration changes.
 {{< tabs >}}
 {{% tab title="config.yaml" %}}
 
-```yaml {hl_lines=[3]}
+```yaml { lineNos="table" wrap="true" hl_lines="3" }
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133
@@ -434,4 +441,6 @@ service:
 
 ---
 
-Now that we have reviewed extensions, lets dive into the data pipeline portion of the workshop. The data pipeline in the OpenTelemetry Collector is made up of receivers, processors, and exporters. We will first start with receivers.
+Now that we have reviewed extensions, let's dive into the data pipeline portion of the workshop. A pipeline defines a path the data follows in the Collector starting from reception, moving to  further processing or modification, and finally exiting the Collector via exporters.
+
+The data pipeline in the OpenTelemetry Collector is made up of receivers, processors, and exporters. We will first start with receivers.

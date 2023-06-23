@@ -4,13 +4,19 @@ linkTitle: 6. Service
 weight: 6
 ---
 
-The **Service** section is used to configure what components are enabled in the Collector based on the configuration found in the receivers, processors, exporters, and extensions sections. If a component is configured, but not defined within the service section then it is not enabled. The service section consists of three sub-sections:
+The **Service** section is used to configure what components are enabled in the Collector based on the configuration found in the receivers, processors, exporters, and extensions sections.
+
+{{% notice style="info" %}}
+If a component is configured, but not defined within the **Service** section then it is **not** enabled.
+{{% /notice %}}
+
+The service section consists of three sub-sections:
 
 - extensions
 - pipelines
 - telemetry
 
-In the default configuration the extension section has been configured to enable `health_check`, `pprof` and `zpages` which we configured in the Extensions module earlier.
+In the default configuration, the extension section has been configured to enable `health_check`, `pprof` and `zpages`, which we configured in the Extensions module earlier.
 
 ``` yaml
 service:
@@ -21,9 +27,11 @@ service:
 
 ### Hostmetrics Receiver
 
-Earlier in the workshop we defined the [Host Metrics Receiver](../3-receivers/#host-metrics-receiver) to generate metrics about the host system scraped from various sources. We now need to enable this under the metrics pipeline. Update the `receivers` section to include `hostmetrics` under the `metrics` pipeline.
+If you recall from the Receivers portion of the workshop, we defined the [Host Metrics Receiver](../3-receivers/#host-metrics-receiver) to generate metrics about the host system, which are scraped from various sources. To enable the receiver, we must include the `hostmetrics` receiver in the metrics pipeline.
 
-```yaml {hl_lines=[11]}
+In the `metrics` pipeline, add `hostmetrics` to the metrics `receivers` section.
+
+```yaml {hl_lines="11"}
 service:
 
   pipelines:
@@ -41,9 +49,11 @@ service:
 
 ### Prometheus Internal Receiver
 
-We renamed the `prometheus` receiver to reflect that is was collecting metrics internal to the collector. We now need to enable this under the metrics pipeline. Update the `receivers` section to include `prometheus/internal` under the `metrics` pipeline.
+Earlier in the workshop, we also renamed the `prometheus` receiver to reflect that is was collecting metrics internal to the collector, renaming it to `prometheus/internal`.
 
-```yaml {hl_lines=[11]}
+ We now need to enable the `prometheus/internal` receiver under the metrics pipeline. Update the `receivers` section to include `prometheus/internal` under the `metrics` pipeline:
+
+```yaml {hl_lines="11"}
 service:
 
   pipelines:
@@ -61,9 +71,11 @@ service:
 
 ### Resource Detection Processor
 
-The `resourcedetection/system` and `resourcedetection/ec2` processors were added so that the collector could capture the hostname of the instance and AWS/EC2 metadata. We now need to enable this under the metrics pipeline. Update the `processors` section to include `resourcedetection/system` and `resourcedetection/ec2` under the `metrics` pipeline.
+We also added `resourcedetection/system` and `resourcedetection/ec2` processors so that the collector can capture the instance hostname and AWS/EC2 metadata. We now need to enable these two processors under the metrics pipeline.
 
-```yaml {hl_lines=[12]}
+Update the `processors` section to include `resourcedetection/system` and `resourcedetection/ec2` under the `metrics` pipeline:
+
+```yaml {hl_lines="12"}
 service:
 
   pipelines:
@@ -81,9 +93,11 @@ service:
 
 ### Attributes Processor
 
-The `attributes/conf` processor was added so that the collector to inset a new attribute called `conf.attendee.name` to all the metrics. We now need to enable this under the metrics pipeline. Update the `processors` section to include `attributes/conf` under the `metrics` pipeline.
+Also in the Processors section of this workshop, we added the `attributes/conf` processor so that the collector will inset a new attribute called `conf.attendee.name` to all the metrics. We now need to enable this under the metrics pipeline.
 
-```yaml {hl_lines=[12]}
+Update the `processors` section to include `attributes/conf` under the `metrics` pipeline:
+
+```yaml {hl_lines="12"}
 service:
 
   pipelines:
@@ -101,9 +115,11 @@ service:
 
 ### OTLPHTTP Exporter
 
-We configured the `otlphttp` exporter to send metrics to Splunk Observability Cloud. We now need to enable this under the metrics pipeline. Update the `exporters` section to include `otlphttp/splunk` under the `metrics` pipeline.
+In the Exporters section of the workshop, we configured the `otlphttp` exporter to send metrics to Splunk Observability Cloud. We now need to enable this under the metrics pipeline.
 
-```yaml {hl_lines=[13]}
+Update the `exporters` section to include `otlphttp/splunk` under the `metrics` pipeline:
+
+```yaml {hl_lines="13"}
 service:
 
   pipelines:
@@ -120,7 +136,8 @@ service:
 ```
 
 ---
-{{% expand title="{{% badge style=primary icon=user-ninja title=**Ninja** %}}Observing the collector internals{{% /badge %}}" %}}
+
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Observing the collector internals{{% /badge %}}" %}}
 
 The collector captures internal signals about its behaviour this also include additional signals from running components.
 The reason for this is that components that make decisions about the flow of data need a way to surface that information
@@ -142,7 +159,6 @@ To expose the internal observability of the collector, there are some additional
 {{% tab title="telemetry schema" %}}
 
 ```yaml
----
 service:
   telemetry:
     logs:
@@ -165,7 +181,6 @@ service:
 {{% tab title="example-config.yml" %}}
 
 ```yaml
----
 service:
   telemetry:
     logs: 
@@ -173,9 +188,9 @@ service:
       encoding: json
       disable_stacktrace: true
       initial_fields:
-        host.name: ${env:HOSTNAME}
+        instance.name: ${env:INSTANCE}
     metrics:
-      address: localhost:8043 
+      address: localhost:8888 
 ```
 
 {{% /tab %}}
@@ -197,7 +212,7 @@ service:
 {{< tabs >}}
 {{% tab title="config.yaml" %}}
 
-``` yaml {hl_lines=["88-90"]}
+``` yaml {lineNos="table" wrap="true"}
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133
@@ -273,7 +288,7 @@ exporters:
   otlphttp/splunk:
     metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
     headers:
-      X-SF-TOKEN: <redacted>
+      X-SF-TOKEN: ${env:ACCESS_TOKEN}
 
 service:
 
@@ -299,10 +314,31 @@ service:
 
 ---
 
-Now that we have a working configuration, let's restart the collector and then check to see what [zPages](../2-extensions/#zpages) is reporting.
+{{% notice style="tip" %}}
+It is recommended that you lint your configuration file before restarting the collector to ensure that it is valid. You can do this by doing the following:
+
+- Install `yamllint`:
+
+  ``` bash
+  sudo apt install -y yamllint
+  ```
+
+- Validate the `/etc/otelcol-contrib/config.yaml`
+
+  ``` bash
+  yamllint -d "{extends: relaxed}" /etc/otelcol-contrib/config.yaml
+  ```
+
+{{% /notice %}}
+
+Now that we have a working configuration, let's start the collector and then check to see what [zPages](../2-extensions/#zpages) is reporting.
+
+{{% tab title="Command" %}}
 
 ``` bash
-sudo systemctl restart otelcol-contrib
+otelcol-contrib --config=file:/etc/otelcol-contrib/config.yaml
 ```
+
+{{% /tab %}}
 
 ![pipelinez-full-config](../images/pipelinez-full-config.png)
