@@ -64,12 +64,13 @@ docker run --network="host" -d -p 8089:8089 -v /home/ubuntu/workshop/petclinic:/
 
 ## 3. Enabling AlwaysOn Profiling and Metrics
 
-To enable CPU and Memory Profiling on the application we can start the application by passing `splunk.profiler.enabled=true` and for metrics pass `splunk.metrics.enabled=true`. Make sure the application is stopped and run the following command to enable metrics and profiling.
+To enable CPU and Memory Profiling on the application we can start the application by passing `splunk.profiler.enabled=true`, `splunk.profiler.memory.enabled=true` and for metrics pass `splunk.metrics.enabled=true`. Make sure the application is stopped and run the following command to enable metrics and profiling.
 
 ```bash
 java \
 -Dotel.service.name=$(hostname)-petclinic-service \
 -Dsplunk.profiler.enabled=true \
+-Dsplunk.profiler.memory.enabled=true \
 -Dsplunk.metrics.enabled=true \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
@@ -88,6 +89,7 @@ Let's launch the PetClinic again using a new resource attribute. Note, that addi
 java \
 -Dotel.service.name=$(hostname)-petclinic-service \
 -Dsplunk.profiler.enabled=true \
+-Dsplunk.profiler.memory.enabled=true \
 -Dsplunk.metrics.enabled=true \
 -Dotel.resource.attributes=deployment.environment=$(hostname)-petclinic,version=0.314 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql

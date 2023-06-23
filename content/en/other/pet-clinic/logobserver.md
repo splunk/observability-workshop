@@ -97,6 +97,7 @@ And then run the application again:
 java \
 -Dotel.service.name=$(hostname)-petclinic-service \
 -Dsplunk.profiler.enabled=true \
+-Dsplunk.profiler.memory.enabled=true \
 -Dsplunk.metrics.enabled=true \
 -Dotel.resource.attributes=deployment.environment=$(hostname)-petclinic,version=0.314 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
