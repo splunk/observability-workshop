@@ -86,7 +86,7 @@ As will be running the rest of the workshop using the `otelcol-contrib` standalo
 {{% tab title="Command" %}}
 
 ``` bash
-systemctl stop otelcol-contrib
+sudo systemctl stop otelcol-contrib
 ```
 
 {{% /tab %}}
@@ -96,7 +96,7 @@ systemctl stop otelcol-contrib
 {{% tab title="Command" %}}
 
 ``` bash
-systemctl disable otelcol-contrib
+sudo systemctl disable otelcol-contrib
 ```
 
 {{% /tab %}}
