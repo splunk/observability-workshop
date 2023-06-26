@@ -7,53 +7,49 @@ weight: 4
 
 For the Splunk Log Observer component, we will configure the Spring PetClinic application to write logs to a file in the filesystem and configure the Splunk OpenTelemetry Collect to read (tail) that log file and report the information to the Splunk Observability Platform.
 
-## 2. FluentD Configuration
+## 2. OpenTelemetry Filelog Configuration
 
-We need to configure the Splunk OpenTelemetry Collector to tail the Spring PetClinic log file and report the data to the Splunk Observability Cloud endpoint.
+We need to configure the Splunk OpenTelemetry Collector to tail the Spring PetClinic log file and report the data to the Splunk Cloud HEC URL.
 
-The Splunk OpenTelemetry Collector uses FluentD to consume/report logs and to configure the proper setting to report Spring PetClinic logs, we just need to add a FluentD configuration file in the default directory (`/etc/otel/collector/fluentd/conf.d/`).
+The Splunk OpenTelemetry Collector uses the [Filelog Receiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/filelogreceiver/README.md) to consume logs. We will need to edit the collectors configuration file:
 
-So we need to create the a new FluentD configuration file:
-
-```bash
-sudo vi /etc/otel/collector/fluentd/conf.d/petclinic.conf
+``` bash
+sudo vi /etc/otel/collector/agent_config.yaml
 ```
 
-Copy and paste in the following configuration, this will read the file `/tmp/spring-petclinic.log` that will be configured in the next section.
+Under `receivers:` create the Filelog Receiver (make sure to indent correctly):
 
-```ini
-<source>
-  @type tail
-  @label @SPLUNK
-  tag petclinic.app
-  path /tmp/spring-petclinic.log
-  pos_file /tmp/spring-petclinic.pos_file
-  read_from_head false
-  <parse>
-    @type none
-  </parse>
-</source>
+``` yaml {hl_lines="2-3"}
+receivers:
+  filelog:
+    include: [/home/ubuntu/spring-petclinic.log]
 ```
 
-We now need to change permission and ownership of the petclinic.conf file so the agent can read it:
+The under the `service:` section, find the `logs:` pipeline, replace `fluentforward` with`filelog` and remove `otlp`(again, make sure to indent correctly):
 
-```bash
-sudo chown td-agent:td-agent /etc/otel/collector/fluentd/conf.d/petclinic.conf
-sudo chmod 755 /etc/otel/collector/fluentd/conf.d/petclinic.conf
+``` yaml {hl_lines="2-7"}
+    logs:
+      receivers: [filelog]
 ```
 
-Now that we have created the new configuration and changed the permissions we need to restart the FluentD process:
+Save the file and exit the editor. Next, we need to validate the HEC Token and HEC URL are configured for the collector to use. We will inspect the `/etc/otel/collector/splunk-otel-collector.conf` file:
 
 ```bash
-sudo systemctl restart td-agent
+sudo cat /etc/otel/collector/splunk-otel-collector.conf
+```
+
+Make sure `SPLUNK_HEC_URL` and `SPLUNK_HEC_TOKEN` have values set, we can then restart the collector to apply the changes:
+
+``` bash
+sudo systemctl restart splunk-otel-collector
 ```
 
 ## 3. Logback Settings
 
-The Spring PetClinic application can be configured to use a number of different java logging libraries. In this scenario, we are using logback. We just need to create a file named `logback.xml` in the configuration folder:
+The Spring PetClinic application can be configured to use a number of different java logging libraries. In this scenario, we are going to use logback. We just need to create a file named `logback.xml` in the configuration folder:
 
 ```bash
-vi src/main/resources/logback.xml
+vi ~/spring-petclinic/src/main/resources/logback.xml
 ```
 
 Copy and paste the following XML content:
@@ -65,9 +61,9 @@ Copy and paste the following XML content:
   <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
       <resetJUL>true</resetJUL>
   </contextListener>
-  <logger name="org.springframework.samples.petclinic" level="debug"/>
+  <logger name="org.springframework.samples.petclinic" level="info"/>
   <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <file>/tmp/spring-petclinic.log</file>
+    <file>/home/ubuntu/spring-petclinic.log</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
       <fileNamePattern>springLogFile.%d{yyyy-MM-dd}.log</fileNamePattern>
       <maxHistory>5</maxHistory>
@@ -79,7 +75,7 @@ Copy and paste the following XML content:
       </pattern>
     </encoder>
   </appender>
-  <root level="debug">
+  <root level="info">
     <appender-ref ref="file" />
   </root>
 </configuration>
@@ -91,27 +87,22 @@ Now we need to rebuild the application and run it again:
 ./mvnw package -Dmaven.test.skip=true
 ```
 
-And then run the application again:
+Once the rebuild has completed we can then run the application again:
 
 ```bash
 java \
 -Dotel.service.name=$(hostname)-petclinic-service \
--Dsplunk.profiler.enabled=true \
--Dsplunk.profiler.memory.enabled=true \
--Dsplunk.metrics.enabled=true \
 -Dotel.resource.attributes=deployment.environment=$(hostname)-petclinic,version=0.314 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
-Then let's visit the application again to generate more traffic, now we should see log messages being reported `http://<VM_IP_ADDRESS>:8080` (feel free to navigate and click around).
+## 4. View Logs
 
-Then visit:
-Hamburger Menu > Log Observer
+From the left hand menu click on **Log Observer**. Click on **Index** and select **o11y-workshop-XXX.splunkcloud.com** (where **XXX** will be the realm you are running in). On the right hand side select **petclinic-workshop** and then click **Apply**. You should see log messages being reported.
 
-And you can add a filter to select only log messages from your host and the Spring PetClinic Application:
+Next click **Add Filter** and search for the field `service_name` and select the value `<your host name>-petclinic-service` and click `=` (include). You should now see only the log messages from your PetClinic application.
 
-- Add Filter → Fields → `host.name` → `<your host name>`
-- Add Filter → Fields → `service.name` → `<your host name>-petclinic.service`
+![Log Observer](../images/log-observer.png)
 
 ## 4. Summary
 
