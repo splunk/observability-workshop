@@ -314,7 +314,7 @@ service:
 {{% /tab %}}
 {{< /tabs >}}
 
-Congratulations! You have successfully downloaded and installed the OpenTelemetry Collector. You are well on your way to Ninja. But first lets chat through configuration files and different distributions of the OpenTelemetry Collector.
+Congratulations! You have successfully downloaded and installed the OpenTelemetry Collector. You are well on your way to becoming an OTel Ninja. But first lets walk through configuration files and different distributions of the OpenTelemetry Collector.
 
 {{% notice style="note" %}}
 
