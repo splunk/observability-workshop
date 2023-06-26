@@ -42,6 +42,8 @@ write_files:
       export ACCESS_TOKEN=${access_token}
       export REALM=${realm}
       export RUM_TOKEN=${rum_token}
+      export HEC_TOKEN=${hec_token}
+      export HEC_URL=${hec_url}
 
       helm() {
 
@@ -120,6 +122,8 @@ write_files:
       export RUM_TOKEN=${rum_token}
       export REALM=${realm}
       export ACCESS_TOKEN=${access_token}
+      export HEC_TOKEN=${hec_token}
+      export HEC_URL=${hec_url}
       export INSTANCE="${instance_name}"
       if [ ! -f /home/ubuntu/.helmok ]; then
         helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
@@ -146,6 +150,8 @@ write_files:
       export RUM_TOKEN=${rum_token}
       export REALM=${realm}
       export ACCESS_TOKEN=${access_token}
+      export HEC_TOKEN=${hec_token}
+      export HEC_URL=${hec_url}
       export INSTANCE="${instance_name}"
       if [ ! -f /home/ubuntu/.helmok ]; then
         helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart

@@ -181,6 +181,8 @@ locals {
     access_token      = var.splunk_access_token
     rum_token         = var.splunk_rum_token
     realm             = var.splunk_realm
+    hec_token         = var.splunk_hec_token
+    hec_url           = var.splunk_hec_url
     presetup          = var.splunk_presetup
     jdk               = var.splunk_jdk
     otel_demo         = var.otel_demo
