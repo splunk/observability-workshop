@@ -331,15 +331,16 @@ In order to configure the extension, you will need to update your config to incl
 
 ```yaml
 extensions:
+...
   file_storage:
     directory: /tmp/otel-data
     timeout: 10s
     compaction:
-       directory: /tmp/otel-data
-       on_start: true
-       on_rebound: true
-       rebound_needed_threshold_mib: 5
-       rebound_trigger_threshold_mib: 3
+      directory: /tmp/otel-data
+      on_start: true
+      on_rebound: true
+      rebound_needed_threshold_mib: 5
+      rebound_trigger_threshold_mib: 3
 
 # ... truncated for clarity
 
