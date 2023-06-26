@@ -63,7 +63,7 @@ processors:
 
 {{% /tab %}}
 
-As the workshop instance is running on an AWS/EC2 instance we can gather tags from the EC2 metadata API.
+If the workshop instance is running on an AWS/EC2 instance we can gather the following tags from the EC2 metadata API (this is not available on other platforms).
 
 - `cloud.provider ("aws")`
 - `cloud.platform ("aws_ec2")`
