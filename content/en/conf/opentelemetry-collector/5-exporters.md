@@ -69,7 +69,7 @@ By default, `gzip` compression is enabled for all endpoints. This can be disable
 
 In order to send metrics to Splunk Observability Cloud, we need to use an Access Token. This can be done by creating a new token in the Splunk Observability Cloud UI. For more information on how to create a token, see [Create a token](https://docs.splunk.com/Observability/admin/authentication-tokens/org-tokens.html). The token needs to be of type **INGEST**.
 
-For this workshop, the instance your are using has already been configured with an Access Token (which has been set as an environment variable). We will reference that environment variable in our configuration file.
+If you are an attendee to a Splunk hosted workshop, the instance your are using has already been configured with an Access Token (which has been set as an environment variable). We will reference that environment variable in our configuration file. Otherwise, you will need to create a new token and set it as an environment variable.
 
 The token is defined in the configuration file by inserting `X-SF-TOKEN: ${env:ACCESS_TOKEN}` under a `headers:` section:
 
