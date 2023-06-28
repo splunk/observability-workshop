@@ -26,6 +26,12 @@ Start a MySQL database for PetClinic to use:
 docker run -d -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=petclinic -p 3306:3306 docker.io/mysql:5.7.8
 ```
 
+Next we will start a Docker container running Locust that will generate some simple traffic to the PetClinic application. Locust is a simple load testing tool that can be used to generate traffic to a web application.
+
+```bash
+docker run --network="host" -d -p 8090:8090 -v /home/ubuntu/workshop/petclinic:/mnt/locust docker.io/locustio/locust -f /mnt/locust/locustfile.py --headless -u 10 -r 3 -H http://127.0.0.1:8080
+```
+
 Next, run the `maven` command to compile/build/package PetClinic:
 
 ```bash
@@ -44,38 +50,68 @@ java \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
-If you check the logs of the Splunk OpenTelemetry collector you will see that the collector automatically detected the application running and auto-instrumented it. You can view the logs using the following command:
-
-```bash
-sudo tail -f /var/log/syslog
-```
-
 You can validate if the application is running by visiting `http://<VM_IP_ADDRESS>:8080`.
 
-Once your validation is complete you can stop the application by pressing `Ctrl-c`.
+## 2. AlwaysOn Profiling and Metrics
 
-## 2. Generating Traffic
+When we installed the collector we configured it to enable AlwaysOn Profiling and Metrics. This means that the collector will automatically generate CPU and Memory profiles for the application and send them to Splunk Observability Cloud.
 
-Next we will start a Docker container running Locust that will generate some simple traffic to the PetClinic application. Locust is a simple load testing tool that can be used to generate traffic to a web application.
+When you start the PetClinic application you will see the collector automatically detect the application and instrument it for traces and profiling.
 
-```bash
-docker run --network="host" -d -p 8089:8089 -v /home/ubuntu/workshop/petclinic:/mnt/locust docker.io/locustio/locust -f /mnt/locust/locustfile.py --headless -u 10 -r 3 -H http://127.0.0.1:8080
+``` text {wrap="false"}
+Picked up JAVA_TOOL_OPTIONS: -javaagent:/usr/lib/splunk-instrumentation/splunk-otel-javaagent.jar -Dsplunk.profiler.enabled=true -Dsplunk.profiler.memory.enabled=true
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[otel.javaagent 2023-06-26 13:32:04:661 +0100] [main] INFO io.opentelemetry.javaagent.tooling.VersionLogger - opentelemetry-javaagent - version: splunk-1.25.0-otel-1.27.0
+[otel.javaagent 2023-06-26 13:32:05:294 +0100] [main] INFO com.splunk.javaagent.shaded.io.micrometer.core.instrument.push.PushMeterRegistry - publishing metrics for SignalFxMeterRegistry every 30s
+[otel.javaagent 2023-06-26 13:32:07:043 +0100] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger - -----------------------
+[otel.javaagent 2023-06-26 13:32:07:044 +0100] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger - Profiler configuration:
+[otel.javaagent 2023-06-26 13:32:07:047 +0100] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -                  splunk.profiler.enabled : true
+[otel.javaagent 2023-06-26 13:32:07:048 +0100] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -                splunk.profiler.directory : /tmp
+[otel.javaagent 2023-06-26 13:32:07:049 +0100] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -       splunk.profiler.recording.duration : 20s
+[otel.javaagent 2023-06-26 13:32:07:050 +0100] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -               splunk.profiler.keep-files : false
+[otel.javaagent 2023-06-26 13:32:07:051 +0100] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -            splunk.profiler.logs-endpoint : null
+[otel.javaagent 2023-06-26 13:32:07:053 +0100] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -              otel.exporter.otlp.endpoint : null
+[otel.javaagent 2023-06-26 13:32:07:054 +0100] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -           splunk.profiler.memory.enabled : true
+[otel.javaagent 2023-06-26 13:32:07:055 +0100] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -             splunk.profiler.tlab.enabled : true
+[otel.javaagent 2023-06-26 13:32:07:056 +0100] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -        splunk.profiler.memory.event.rate : 150/s
+[otel.javaagent 2023-06-26 13:32:07:057 +0100] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -      splunk.profiler.call.stack.interval : PT10S
+[otel.javaagent 2023-06-26 13:32:07:058 +0100] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -  splunk.profiler.include.internal.stacks : false
+[otel.javaagent 2023-06-26 13:32:07:059 +0100] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -      splunk.profiler.tracing.stacks.only : false
+[otel.javaagent 2023-06-26 13:32:07:059 +0100] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger - -----------------------
+[otel.javaagent 2023-06-26 13:32:07:060 +0100] [main] INFO com.splunk.opentelemetry.profiler.JfrActivator - Profiler is active.
 ```
 
-## 3. Enabling AlwaysOn Profiling and Metrics
+## 3. Configure Profiling Data Collection
 
-To enable CPU and Memory Profiling on the application we can start the application by passing `splunk.profiler.enabled=true`, `splunk.profiler.memory.enabled=true` and for metrics pass `splunk.metrics.enabled=true`. Make sure the application is stopped and run the following command to enable metrics and profiling.
+We need to edit the `/etc/otel/collector/agent_config.yaml` and add a new exporter to send the profiling data to Splunk Observability Cloud:
 
-```bash
-java \
--Dotel.service.name=$(hostname)-petclinic-service \
--Dsplunk.profiler.enabled=true \
--Dsplunk.profiler.memory.enabled=true \
--Dsplunk.metrics.enabled=true \
--jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
+``` yaml {hl_lines="1-3"}
+  splunk_hec/profiling:
+    token: "${SPLUNK_ACCESS_TOKEN}"
+    endpoint: "${SPLUNK_INGEST_URL}/v1/log"
 ```
 
-You can now visit the Splunk APM UI and examine the application components, traces, profiling, DB Query performance and metrics **Hamburger Menu → APM → Explore**.
+We then need to create a new pipeline called `logs/profiling` under the `service:` section:
+
+``` yaml {hl_lines="1-7"}
+    logs/profiling:
+      receivers: [otlp]
+      processors:
+      - memory_limiter
+      - batch
+      - resourcedetection
+      exporters: [splunk_hec/profiling]
+```
+
+Save the changes and exit the editor. We then need to restart the collector:
+
+``` bash
+sudo systemctl restart splunk-otel-collector
+```
+
+You can now visit the Splunk APM UI and examine the application components, traces, profiling, DB Query performance and metrics. From the left hand menu **APM → Explore**, click the environment dropdown and select your own environment (which is prefixed with your hostname of your instance).
+
+![APM Environment](../images/apm-environment.png)
 
 Once your validation is complete you can stop the application by pressing `Ctrl-c`.
 
@@ -88,9 +124,6 @@ Let's launch the PetClinic again using a new resource attribute. Note, that addi
 ```bash
 java \
 -Dotel.service.name=$(hostname)-petclinic-service \
--Dsplunk.profiler.enabled=true \
--Dsplunk.profiler.memory.enabled=true \
--Dsplunk.metrics.enabled=true \
 -Dotel.resource.attributes=deployment.environment=$(hostname)-petclinic,version=0.314 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```

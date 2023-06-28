@@ -249,7 +249,7 @@ service:
 
 ---
 
-Now that we have reviewed how data gets into the OpenTelemetry Collector through receivers, let's now take a look at how the Collector processes the rececived data.
+Now that we have reviewed how data gets into the OpenTelemetry Collector through receivers, let's now take a look at how the Collector processes the received data.
 
 {{% notice style="warning" %}}
 As the `/etc/otelcol-contrib/config.yaml` is not complete, please **do not** attempt to restart the collector at this point.
