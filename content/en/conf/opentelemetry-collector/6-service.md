@@ -286,7 +286,7 @@ exporters:
   logging:
     verbosity: normal
   otlphttp/splunk:
-    metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
+    metrics_endpoint: https://ingest.${env:REALM}.signalfx.com/v2/datapoint/otlp
     headers:
       X-SF-TOKEN: ${env:ACCESS_TOKEN}
 
