@@ -11,7 +11,7 @@ The first step in installing the Open Telemetry Collector is downloading it. For
 Obtain the `.deb` package for your platform from the [OpenTelemetry Collector Contrib releases page](https://github.com/open-telemetry/opentelemetry-collector-releases/releases)
 
 ``` bash
-wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.75.0/otelcol-contrib_0.75.0_linux_amd64.deb
+wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.80.0/otelcol-contrib_0.80.0_linux_amd64.deb
 ```
 
 ## 2. Installing the OpenTelemetry Collector Contrib distribution
@@ -22,7 +22,7 @@ Install the `.deb` package using `dpkg`. Take a look at the **dpkg Output** tab 
 {{% tab title="Install" %}}
 
 ``` bash
-sudo dpkg -i otelcol-contrib_0.75.0_linux_amd64.deb
+sudo dpkg -i otelcol-contrib_0.80.0_linux_amd64.deb
 ```
 
 {{% /tab %}}
