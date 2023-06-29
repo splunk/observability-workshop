@@ -315,20 +315,33 @@ service:
 ---
 
 {{% notice style="tip" %}}
-It is recommended that you lint your configuration file before restarting the collector to ensure that it is valid. You can do this by doing the following:
+It is recommended that you validate your configuration file before restarting the collector. You can do this by using the built-in `validate` command:
 
-- Install `yamllint`:
+{{< tabs >}}
+{{% tab title="Command" %}}
 
-  ``` bash
-  sudo apt install -y yamllint
-  ```
+``` bash
+otelcol-contrib validate --config=file:/etc/otelcol-contrib/config.yaml
+```
 
-- Validate the `/etc/otelcol-contrib/config.yaml`
+{{% /tab %}}
+{{% tab title="Example error output" %}}
 
-  ``` bash
-  yamllint -d "{extends: relaxed}" /etc/otelcol-contrib/config.yaml
-  ```
+``` text
+Error: failed to get config: cannot unmarshal the configuration: 1 error(s) decoding:
 
+* error decoding 'processors': error reading configuration for "attributes/conf": 1 error(s) decoding:
+
+* 'actions[0]' has invalid keys: actions
+2023/06/29 09:41:28 collector server run finished with error: failed to get config: cannot unmarshal the configuration: 1 error(s) decoding:
+
+* error decoding 'processors': error reading configuration for "attributes/conf": 1 error(s) decoding:
+
+* 'actions[0]' has invalid keys: actions
+```
+
+{{% /tab %}}
+{{< /tabs >}}
 {{% /notice %}}
 
 Now that we have a working configuration, let's start the collector and then check to see what [zPages](../2-extensions/#zpages) is reporting.
