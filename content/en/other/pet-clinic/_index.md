@@ -21,7 +21,7 @@ Once the application is up and running, we will instantly start seeing metrics a
 
 After that, we will instrument the PetClinic's end user interface (HTML pages rendered by the application) with the Splunk OpenTelemetry Javascript Libraries (RUM) that will generate RUM traces around all the individual clicks and page loads executed by an end user.
 
-Lastly, we will configure the Spring PetClinic application to write application logs to the filesystem and also configure the Splunk OpenTelemetry Collector to read (tail) the logs and report to Splunk Observability Cloud.
+Lastly, we will configure the Spring PetClinic application to write application logs to the filesystem and also configure the Splunk OpenTelemetry Collector to read (tail) the logs and send to Splunk Cloud.
 
 {{% notice title="Prerequisites" style="info" %}}
 A Splunk run workshop where an host/instance is provided  **OR** a self led workshop on own host / [multipass instance](https://github.com/splunk/observability-workshop/tree/main/multipass)
