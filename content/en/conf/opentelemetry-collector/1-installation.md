@@ -186,28 +186,28 @@ dist:
   output_path: ./dist
 
 extensions:
-- gomod: go.opentelemetry.io/collector/extension/ballastextension v0.75.0
-- gomod: go.opentelemetry.io/collector/extension/zpagesextension  v0.75.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/httpforwarder v0.75.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.75.0
+- gomod: go.opentelemetry.io/collector/extension/ballastextension v0.80.0
+- gomod: go.opentelemetry.io/collector/extension/zpagesextension  v0.80.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/httpforwarder v0.80.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.80.0
 
 exporters:
-- gomod: go.opentelemetry.io/collector/exporter/loggingexporter v0.75.0
-- gomod: go.opentelemetry.io/collector/exporter/otlpexporter v0.75.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/splunkhecexporter v0.75.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/signalfxexporter v0.75.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/sapmexporter v0.75.0
+- gomod: go.opentelemetry.io/collector/exporter/loggingexporter v0.80.0
+- gomod: go.opentelemetry.io/collector/exporter/otlpexporter v0.80.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/splunkhecexporter v0.80.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/signalfxexporter v0.80.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/sapmexporter v0.80.0
 
 processors:
-- gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.75.0
-- gomod: go.opentelemetry.io/collector/processor/memorylimiterprocessor v0.75.0
+- gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.80.0
+- gomod: go.opentelemetry.io/collector/processor/memorylimiterprocessor v0.80.0
 
 receivers:
-- gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.75.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver v0.75.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/jaegerreceiver v0.75.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.75.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver v0.75.0
+- gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.80.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver v0.80.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/jaegerreceiver v0.80.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.80.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver v0.80.0
 ```
 
 Once the yaml file has been updated for the _ocb_, then run the following command:
