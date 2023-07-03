@@ -52,7 +52,7 @@ Run the `maven` command to compile/build/package PetClinic:
 ```bash
 java \
 -Dotel.service.name=$(hostname)-petclinic-service \
--Dotel.resource.attributes=deployment.environment=$(hostname)-petclinic,version=0.314 \
+-Dotel.resource.attributes=version=0.314 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 

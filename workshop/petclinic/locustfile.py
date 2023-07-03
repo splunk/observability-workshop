@@ -11,4 +11,4 @@ class QuickstartUser(HttpUser):
     def view_items(self):
         for item_id in range(1, 10):
             self.client.get(f"/owners/{item_id}", name="/owners")
-            time.sleep(1)
+            time.sleep(10)
