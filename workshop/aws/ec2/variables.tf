@@ -25,7 +25,7 @@ variable "otel_demo" {
 variable "wsversion" {
   description = "Workshop version"
   type        = string
-  default     = "4.89"
+  default     = "4.91"
 }
 
 variable "aws_instance_count" {
@@ -64,9 +64,18 @@ variable "splunk_rum_token" {
 
 variable "splunk_realm" {
   description = "Splunk Oberservability Cloud Realm (us0, us1, us2, eu0, jp0, au0)"
-  default     = ""
+  nullable    = false
 }
 
+variable "splunk_hec_token" {
+  description = "Splunk Cloud HEC Token"
+  nullable    = false
+}
+
+variable "splunk_hec_url" {
+  description = "Splunk Cloud HEC URL"
+  nullable    = false
+}
 
 data "aws_ami" "latest-ubuntu" {
   most_recent = true

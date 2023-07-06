@@ -43,11 +43,13 @@ The following variables are available. Edit `terraform.tfvars` to reflect what y
 - `aws_instance_count`: How many instances?
 - `slug`: Short name/tag, e.g. acme. Used to derive project and hostnames, AWS tags and terraform workspace e.g. `emea-ws`)
 - `splunk_access_token`: Observability Access Token
+- `splunk_realm`: Observability Realm.
 - `splunk_rum_token`: Observability RUM Token
+- `splunk_hec_url`: Splunk HEC URL. 
+- `splunk_hec_token`: Splunk HEC Token
 
 ### Optional variables
 
-- `splunk_realm`: Observability Realm. Required if `splunk_presetup` or `otel_demo` is `true`
 - `subnet_count`: How many subnets to create. The default is 2.
 
 ### Instance type variables
