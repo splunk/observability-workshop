@@ -131,7 +131,7 @@ service:
 
     metrics:
       receivers: [hostmetrics, otlp, opencensus, prometheus/internal]
-      processors: [batch, resourcedetection]
+      processors: [batch, resourcedetection/system, resourcedetection/ec2, attributes/conf]
       exporters: [logging, otlphttp/splunk]
 ```
 
