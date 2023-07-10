@@ -124,7 +124,7 @@ See [installation](/en/conf/opentelemetry-collector/1-installation/) for the det
 ## Things to consider?
 
 Some short lived tasks may require additional configuration such as _username_, and _password_.
-These values can be referenced via [enviroment variables](https://opentelemetry.io/docs/collector/configuration/#configuration-environment-variables),
+These values can be referenced via [environment variables](https://opentelemetry.io/docs/collector/configuration/#configuration-environment-variables),
 or use a scheme expand syntax such as `${file:./path/to/database/password}`.
 Please adhere to your organisation's secret practices when taking this route.
 

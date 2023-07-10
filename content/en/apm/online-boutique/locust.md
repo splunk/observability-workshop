@@ -19,7 +19,7 @@ Your Workshop instructor will provide you with URL to access the Locust load gen
 
 ![Locust](../../images/locust.png)
 
-Set the **Spawn rate** to be 2 and click **Start Swarming**, this will start a gentle continous load on the application.
+Set the **Spawn rate** to be 2 and click **Start Swarming**, this will start a gentle continuous load on the application.
 
 ![Spawn Rate](../../images/locust-spawn-rate.png)
 
