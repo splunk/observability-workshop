@@ -60,7 +60,7 @@ variable "otel_demo" {
 variable "wsversion" {
   description = "Workshop version"
   type        = string
-  default     = "4.91"
+  default     = "4.92"
 }
 
 variable "instance_password" {
