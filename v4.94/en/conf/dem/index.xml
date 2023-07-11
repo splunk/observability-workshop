@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Digital Experience Monitoring (DEM) on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/v4.94/en/conf/dem/index.html</link><description>Recent content in Digital Experience Monitoring (DEM) on Splunk Observability Cloud Workshops</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://splunk.github.io/observability-workshop/v4.94/en/conf/dem/index.xml" rel="self" type="application/rss+xml"/><item><title>Understanding DEM</title><link>https://splunk.github.io/observability-workshop/v4.94/en/conf/dem/01-dem-context/index.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.94/en/conf/dem/01-dem-context/index.html</guid><description>DEM = Digital Experience Monitoring:
+What are your end users doing?
+Do you know how they&amp;rsquo;re interacting with your app, what the performance is, what errors are occuring, and why?
+How do your third party services impact the end user?
+When do you find out about user-impacting issues - how fast are they addressed, and how does this affect your internal teams?
+How does all of this affect your business?</description></item><item><title>RUM</title><link>https://splunk.github.io/observability-workshop/v4.94/en/conf/dem/02-rum/index.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.94/en/conf/dem/02-rum/index.html</guid><description>Open https://frothly.notsplunktshirtco.com/ on your laptop and mobile devices.
+Navigate around the site. Add some items to your cart and &amp;ldquo;check out&amp;rdquo; (don&amp;rsquo;t worry, you&amp;rsquo;re not being charged!)
+What&amp;rsquo;s the experience like?
+Go to RUM in Splunk Observability.
+What are the Web Vitals and their values for the Frothly app? Click LCP to see it in Tag Spotlight. Which city has visited the app the most in the past 15 minutes? Which browser version has visited the app the most in the past 15 minutes?</description></item><item><title>Synthetics</title><link>https://splunk.github.io/observability-workshop/v4.94/en/conf/dem/03-synthetics/index.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.94/en/conf/dem/03-synthetics/index.html</guid><description>We can see how RUM helpfully captures what end users are experiencing. What&amp;rsquo;s a drawback to only using RUM?
+Let&amp;rsquo;s look at a Synthetic test. What is it capturing?
+Now let&amp;rsquo;s create some Synthetic tests on the same site.
+Go to Synthetics in Observability
+Click Add new &amp;gt; Browser Test
+Name the test with three initials that identify you and high level info about the test
+For example, SEW Home Desktop US Enter the URL, locations, device type, frequency, and Save.</description></item><item><title>Dashboards - Trends and Comparisons</title><link>https://splunk.github.io/observability-workshop/v4.94/en/conf/dem/04-dashboard/index.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.94/en/conf/dem/04-dashboard/index.html</guid><description>Go to x dashboard.
+Click the three dots on the top right and click &amp;ldquo;Save As&amp;rdquo;
+Name the Dashboard starting with your three intitials, e.g. &amp;ldquo;SEW Digital Experience&amp;rdquo;
+Save to your dashboard group.
+Change the filter to include tests with your initials &amp;ldquo;test=SEW*&amp;rdquo;
+Open the table chart to see how this was made, and feel free to add/remove other tests and metrics as you&amp;rsquo;d like.
+Compare to other websites Create one or more Synthetic Browser Tests on your competitors&amp;rsquo; websites, with your initials in the title of the tests.</description></item><item><title>Detectors</title><link>https://splunk.github.io/observability-workshop/v4.94/en/conf/dem/05-detectors/index.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.94/en/conf/dem/05-detectors/index.html</guid><description>Now that we have seen trends and changes, let&amp;rsquo;s make it easier to know when something unexpected happens.
+Create a detector based on a chart on your dashboard.</description></item><item><title>Optimization</title><link>https://splunk.github.io/observability-workshop/v4.94/en/conf/dem/06-optimization/index.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v4.94/en/conf/dem/06-optimization/index.html</guid><description>Now that we&amp;rsquo;ve seen both real user and synthetic performance information &amp;ndash; how do we actually make improvements?
+Go to [this will be a link] optimization.rigor.com. This is an optimization scan on our own splunk.com website.
+Here we see some website scans that are capturing performance data as well as some web best practices to improve. Follow along as we take a tour.
+Click the &amp;ldquo;i&amp;rdquo; icon on the top right to see how the test was configured.</description></item></channel></rss>
