@@ -1,7 +1,7 @@
 ---
 title: Making Your Observability Cloud Native With OpenTelemetry
 linkTitle: Workshop OBS1768B 
-weight: 2
+weight: 1
 alwaysopen: false
 ---
 
