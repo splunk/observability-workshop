@@ -142,18 +142,18 @@ For this part we will require the following installed on your system:
 
 ## Why build your own collector?
 
-The default distrobutions of the collector (core and contrib) either container too much or too little in what they have to offer.
+The default distribution of the collector (core and contrib) either contain too much or too little in what they have to offer.
 
 It is also not advised to run the contrib collector in your production environments due to the amount of components installed which more than likely are not needed by your deployment.
 
 ## Benefits of building your own collector?
 
-When creating your own collector binaries, (commonly referred to as distrobutions), means you build what you need.
+When creating your own collector binaries, (commonly referred to as distribution), means you build what you need.
 
 The benefits of this are:
 
 1. Smaller sized binaries
-2. Can use existing go scanners for vulnerabilites
+2. Can use existing go scanners for vulnerabilities
 3. Include internal components that can tie in with your organisation
 
 ## Considerations for building your own collector?
@@ -162,7 +162,7 @@ Now, this would not be a 🥷 Ninja zone if it didn't come with some draw backs:
 
 1. Go experience is recommended if not required
 1. **No** Splunk support
-1. Responsibiliy of distribution and lifecycle management
+1. Responsibility of distribution and lifecycle management
 
 It is important to note that project is working towards stability but it does not mean changes made will not break your workflow. The team at Splunk provide increased support and a higher level of stability so they can provide a curated experience helping you with your deployment needs.
 
@@ -213,7 +213,7 @@ receivers:
 Once the yaml file has been updated for the _ocb_, then run the following command:
 
 ```shell
-> ocb --config=otelcol-builder.yaml
+ocb --config=otelcol-builder.yaml
 ```
 
 Which leave you with the following directory structure:
