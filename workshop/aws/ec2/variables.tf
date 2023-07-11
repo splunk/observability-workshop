@@ -25,7 +25,7 @@ variable "otel_demo" {
 variable "wsversion" {
   description = "Workshop version"
   type        = string
-  default     = "4.91"
+  default     = "4.92"
 }
 
 variable "aws_instance_count" {
@@ -53,17 +53,17 @@ variable "slug" {
 }
 
 variable "splunk_access_token" {
-  description = "Splunk Oberservability Cloud Access Token"
+  description = "Splunk Observability Cloud Access Token"
   nullable    = false
 }
 
 variable "splunk_rum_token" {
-  description = "Splunk Oberservability Cloud RUM Token"
+  description = "Splunk Observability Cloud RUM Token"
   nullable    = false
 }
 
 variable "splunk_realm" {
-  description = "Splunk Oberservability Cloud Realm (us0, us1, us2, eu0, jp0, au0)"
+  description = "Splunk Observability Cloud Realm (us0, us1, us2, eu0, jp0, au0)"
   nullable    = false
 }
 

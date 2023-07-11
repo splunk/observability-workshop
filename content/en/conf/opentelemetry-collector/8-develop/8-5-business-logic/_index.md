@@ -220,7 +220,7 @@ func (s scrape) scrape(ctx context.Context) (pmetric.Metrics, error) {
 {{% /tab%}}
 {{% /tabs %}}
 
-Once all of these steps have been completed, you now have built a custom Jenkins CI reciever!
+Once all of these steps have been completed, you now have built a custom Jenkins CI receiver!
 
 ## Whats next?
 

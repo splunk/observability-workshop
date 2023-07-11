@@ -34,6 +34,6 @@ since there are some trade offs that get made.
 | **(Auto) Instrumented** | Does not require an external API to be monitored in order to observe the system. | Changing instrumentation requires changes to the project. |
 | | Gives system owners/developers to make changes in their observability. | Requires additional runtime dependancies. |
 | | Understands system context and can corrolate captured data with _Exemplars_. | Can impact performance of the system. |
-| **Component** | - Changes to data names or semantics can be rolled out independantly of the system's release cycle. | Breaking API changes require a coordinated release between system and collector. |
+| **Component** | - Changes to data names or semantics can be rolled out independently of the system's release cycle. | Breaking API changes require a coordinated release between system and collector. |
 | | Updating/extending data collected is a seemless user facing change. | Captured data semantics can unexpectedly break that does not align with a new system release. |
 | | Does not require the supporting teams to have a deep understanding of observability practice. | Strictly external / exposed information can be surfaced from the system. |
