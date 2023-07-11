@@ -20,5 +20,3 @@ Outline:
 1. How do you compete?
 1. Advanced: multi-step browser tests
 1. Bonus: Web Optimization
-
-![Add new test](../images/add-test.png)
