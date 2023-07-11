@@ -7,7 +7,7 @@ weight: 6
 
 Now that we've seen both real user and synthetic performance information -- how do we actually make improvements?
 
-Go over to optimization.rigor.com and sign in with the credentials emailed.
+Go to [this will be a link] optimization.rigor.com. This is an optimization scan on our own splunk.com website.
 
 Here we see some website scans that are capturing performance data as well as some web best practices to improve. Follow along as we take a tour.
 

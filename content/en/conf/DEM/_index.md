@@ -14,8 +14,7 @@ Outline:
 1. Understand the context: what are RUM and Synthetics?
 1. Now it's time to get hands on! Navigate the website and see results in RUM
 1. Create a Synthetic browser test
-1. How does the Synthetic result compare to RUM?
-1. What happens when the site changes?
-1. Create a dashboard with RUM and Synthetics data
-1. Bonus: how do you compete?
+1. Dashboards and detectors
+1. How do you compete?
+1. Advanced: multi-step browser tests
 1. Bonus: Web Optimization
