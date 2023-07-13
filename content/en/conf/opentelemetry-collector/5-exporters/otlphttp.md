@@ -1,42 +1,8 @@
 ---
 title: OpenTelemetry Collector Exporters
-linkTitle: 5. Exporters
-weight: 5
+linkTitle: 5.1 OTLP HTTP
+weight: 1
 ---
-
-An exporter, which can be push or pull based, is how you send data to one or more backends/destinations. Exporters may support one or more data sources.
-
-For this workshop, we will be using the [**otlphttp**](https://opentelemetry.io/docs/specs/otel/protocol/exporter/) exporter. The OpenTelemetry Protocol (OTLP) is a vendor-neutral, standardised protocol for transmitting telemetry data. The OTLP exporter sends data to a server that implements the OTLP protocol. The OTLP exporter supports both [**gRPC**](https://grpc.io/) and [**HTTP**](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview)/[**JSON**](https://www.json.org/json-en.html) protocols.
-
-{{< mermaid >}}
-%%{
-  init:{
-    "theme":"base",
-    "themeVariables": {
-      "primaryColor": "#ffffff",
-      "clusterBkg": "#eff2fb",
-      "defaultLinkColor": "#333333"
-    }
-  }
-}%%
-
-flowchart LR;
-    style Exporters fill:#e20082,stroke:#333,stroke-width:4px,color:#fff
-    subgraph Collector
-    A[OTLP] --> M(Receivers)
-    B[JAEGER] --> M(Receivers)
-    C[Prometheus] --> M(Receivers)
-    end
-    subgraph Processors
-    M(Receivers) --> H(Filters, Attributes, etc)
-    E(Extensions)
-    end
-    subgraph Exporters
-    H(Filters, Attributes, etc) --> S(OTLP)
-    H(Filters, Attributes, etc) --> T(JAEGER)
-    H(Filters, Attributes, etc) --> U(Prometheus)
-    end
-{{< /mermaid >}}
 
 ## OTLP HTTP Exporter
 
@@ -53,23 +19,41 @@ exporters:
   otlphttp/splunk:
 ```
 
-Next we need to define the `metrics_endpoint` and configure the target URL. For our workshop, we will use the **US1** realm for Splunk Observerability Cloud. The URL is `https://ingest.us1.signalfx.com/v2/datapoint/otlp`. (Splunk has realms in key geographical locations around the world for data residency.)
+Next we need to define the `metrics_endpoint` and configure the target URL.
 
-The **otlphttp** exporter can also be configured to send traces and logs by defining a target URL for `traces_endpoint` and `logs_endpoint` respectively. Configure these is outside the scope of this workshop.
+{{% notice style="note" %}}
+If you are an attendee to a Splunk hosted workshop, the instance your are using has already been configured with a Realm environment variable. We will reference that environment variable in our configuration file. Otherwise, you will need to create a new environment variable and set the Realm e.g.
+
+``` bash
+export REALM="us1"
+```
+
+{{% /notice %}}
+
+The URL to use is `https://ingest.${env:REALM}.signalfx.com/v2/datapoint/otlp`. (Splunk has Realms in key geographical locations around the world for data residency).
+
+The **otlphttp** exporter can also be configured to send traces and logs by defining a target URL for `traces_endpoint` and `logs_endpoint` respectively. Configuring these is outside the scope of this workshop.
 
 ```yaml {hl_lines="5"}
 exporters:
   logging:
     verbosity: normal
   otlphttp/splunk:
-    metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
+    metrics_endpoint: https://ingest.${env:REALM}.signalfx.com/v2/datapoint/otlp
 ```
 
 By default, `gzip` compression is enabled for all endpoints. This can be disabled by setting `compression: none` in the exporter configuration. We will leave compression enabled for this workshop and accept the default as this is the most efficient way to send data.
 
 In order to send metrics to Splunk Observability Cloud, we need to use an Access Token. This can be done by creating a new token in the Splunk Observability Cloud UI. For more information on how to create a token, see [Create a token](https://docs.splunk.com/Observability/admin/authentication-tokens/org-tokens.html). The token needs to be of type **INGEST**.
 
-If you are an attendee to a Splunk hosted workshop, the instance your are using has already been configured with an Access Token (which has been set as an environment variable). We will reference that environment variable in our configuration file. Otherwise, you will need to create a new token and set it as an environment variable.
+{{% notice style="note" %}}
+If you are an attendee to a Splunk hosted workshop, the instance your are using has already been configured with an Access Token (which has been set as an environment variable). We will reference that environment variable in our configuration file. Otherwise, you will need to create a new token and set it as an environment variable e.g.
+
+``` bash
+export ACCESS_TOKEN=<replace-with-your-token>
+```
+
+{{% /notice %}}
 
 The token is defined in the configuration file by inserting `X-SF-TOKEN: ${env:ACCESS_TOKEN}` under a `headers:` section:
 
@@ -78,7 +62,7 @@ exporters:
   logging:
     verbosity: normal
   otlphttp/splunk:
-    metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
+    metrics_endpoint: https://ingest.${env:REALM}.signalfx.com/v2/datapoint/otlp
     headers:
       X-SF-TOKEN: ${env:ACCESS_TOKEN}
 ```
@@ -167,7 +151,7 @@ exporters:
   logging:
     verbosity: normal
   otlphttp/splunk:
-    metrics_endpoint: https://ingest.us1.signalfx.com/v2/datapoint/otlp
+    metrics_endpoint: https://ingest.${env:REALM}.signalfx.com/v2/datapoint/otlp
     headers:
       X-SF-TOKEN: ${env:ACCESS_TOKEN}
 

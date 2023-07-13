@@ -1,97 +1,8 @@
 ---
 title: OpenTelemetry Collector Extensions
-linkTitle: 2. Extensions
-weight: 2
+linkTitle: 2.3 zPages
+weight: 3
 ---
-
-Now that we have the OpenTelemetry Collector installed, let's take a look at extensions for the OpenTelemetry Collector. Extensions are optional and available primarily for tasks that do not involve processing telemetry data. Examples of extensions include health monitoring, service discovery, and data forwarding.
-
-{{< mermaid >}}
-%%{
-  init:{
-    "theme":"base",
-    "themeVariables": {
-      "primaryColor": "#ffffff",
-      "clusterBkg": "#eff2fb",
-      "defaultLinkColor": "#333333"
-    }
-  }
-}%%
-
-flowchart LR;
-    style E fill:#e20082,stroke:#333,stroke-width:4px,color:#fff
-    subgraph Collector
-    A[OTLP] --> M(Receivers)
-    B[JAEGER] --> M(Receivers)
-    C[Prometheus] --> M(Receivers)
-    end
-    subgraph Processors
-    M(Receivers) --> H(Filters, Attributes, etc)
-    E(Extensions)
-    end
-    subgraph Exporters
-    H(Filters, Attributes, etc) --> S(OTLP)
-    H(Filters, Attributes, etc) --> T(JAEGER)
-    H(Filters, Attributes, etc) --> U(Prometheus)
-    end
-{{< /mermaid >}}
-
-Extensions are configured in the same `config.yaml` file that we referenced in the installation step. Let's edit the `config.yaml` file and configure the extensions. Note that the **pprof** and **zpages** extensions are already configured in the default `config.yaml` file. For the purpose of this workshop, we will only be updating the **health_check** extension to expose the port on all network interfaces on which we can access the health of the collector.
-
-{{% tab title="Command" %}}
-
-``` bash
-sudo vi /etc/otelcol-contrib/config.yaml
-```
-
-{{% /tab %}}
-
-{{% tab title="Extensions Configuration" %}}
-
-```yaml {hl_lines="3"}
-extensions:
-  health_check:
-    endpoint: 0.0.0.0:13133
-```
-
-{{% /tab %}}
-
-Start the collector:
-
-{{% tab title="Command" %}}
-
-``` bash
-otelcol-contrib --config=file:/etc/otelcol-contrib/config.yaml
-```
-
-{{% /tab %}}
-
-## Health Check
-
-This extension enables a HTTP URL that can be probed to check the status of the OpenTelemetry Collector. This extension can be used as a liveness and/or readiness probe on Kubernetes. To learn more about the `curl` command, check out the [curl man page](https://curl.se/docs/manpage.html).
-
-Open a new terminal session and SSH into your instance to run the following command:
-
-{{< tabs >}}
-{{% tab title="curl Command" %}}
-
-```bash
-curl http://localhost:13133
-```
-
-{{% /tab %}}
-{{% tab title="curl Output" %}}
-
-``` text
-{"status":"Server available","upSince":"2023-04-27T10:11:22.153295874+01:00","uptime":"16m24.684476004s"}
-```
-
-{{% /tab %}}
-{{< /tabs >}}
-
-## Performance Profiler
-
-[**Performance Profiler**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/extension/pprofextension/README.md) extension enables the golang net/http/pprof endpoint. This is typically used by developers to collect performance profiles and investigate issues with the service. **We will not be covering this in this workshop**.
 
 ## zPages
 
@@ -104,7 +15,7 @@ curl http://localhost:13133
 
 Example URL: [http://localhost:55679/debug/servicez](http://localhost:55679/debug/servicez) (change `localhost` to reflect your own environment).
 
-![ServiceZ](../images/servicez.png)
+![ServiceZ](../../images/servicez.png)
 
 {{% /tab %}}
 {{% tab title="PipelineZ" %}}
@@ -113,7 +24,7 @@ Example URL: [http://localhost:55679/debug/servicez](http://localhost:55679/debu
 
 Example URL: [http://localhost:55679/debug/pipelinez](http://localhost:55679/debug/pipelinez) (change `localhost` to reflect your own environment).
 
-![PipelineZ](../images/pipelinez.png)
+![PipelineZ](../../images/pipelinez.png)
 
 {{% /tab %}}
 {{% tab title="ExtensionZ" %}}
@@ -122,7 +33,7 @@ Example URL: [http://localhost:55679/debug/pipelinez](http://localhost:55679/deb
 
 Example URL: [http://localhost:55679/debug/extensionz](http://localhost:55679/debug/extensionz) (change `localhost` to reflect your own environment).
 
-![ExtensionZ](../images/extensionz.png)
+![ExtensionZ](../../images/extensionz.png)
 
 {{% /tab %}}
 {{% /tabs %}}

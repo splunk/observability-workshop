@@ -13,7 +13,7 @@ The OpenTelemetry Collector is the core component of instrumenting infrastructur
 * Profiling data
 * Host and application logs
 
-Splunk Observability Cloud offers wizards to walk you through the setup of the Collector on both your infrastructure and applications. By default, the wizard will only provide the commands to only install the collector.
+Splunk Observability Cloud offers a wizard to walk you through the setup of the Collector on both your infrastructure and applications. By default, the wizard will only provide the commands to only install the collector.
 
 {{% notice title="Delete any existing OpenTelemetry Collectors" style="warning" %}}
 If you have completed the Splunk IM workshop, please ensure you have deleted the collector running in Kubernetes before continuing. This can be done by running the following command:
@@ -26,13 +26,13 @@ helm delete splunk-otel-collector
 
 ## 2. Confirm environment variables
 
-To ensure your instance is configured correctly, we need to confirm the environment variables are set correctly. In your terminal run the following command:
+To ensure your instance is configured correctly, we need to confirm that the required environment variables for this workshop are set correctly. In your terminal run the following command:
 
 ``` bash
 env
 ```
 
-In the output check the following are present and have values set:
+In the output check the following environment variables are present and have values set:
 
 ```text
 ACCESS_TOKEN
@@ -46,10 +46,10 @@ For the purposes of this workshop **all** of the above are required. If any are 
 
 ## 3. Install the OpenTelemetry Collector
 
-We can then go ahead and install the Collector. There are some additional parameters passed to the install script, they are:
+We can then go ahead and install the Collector. There are some additional parameters that are passed to the install script, they are:
 
 * `--with-instrumentation` - This will install the agent from the Splunk distribution of OpenTelemetry Java, which is then loaded automatically when the PetClinic Java application starts up. No configuration required!
-* `--deployment-environment` - Sets the resource attribute `deployment.environment` to the value passed. This is used to filter data in the UI.
+* `--deployment-environment` - Sets the resource attribute `deployment.environment` to the value passed. This is used to filter views in the UI.
 * `--enable-profiler` - Enables the profiler for the Java application. This will generate CPU profiles for the application.
 * `--enable-profiler-memory` - Enables the profiler for the Java application. This will generate memory profiles for the application.
 * `--enable-metrics` - Enables the exporting of Micrometer metrics

@@ -1,46 +1,10 @@
 ---
 title: Installing OpenTelemetry Collector Contrib
-linkTitle: 1. Installation
+linkTitle: 1.1 Confirm Installation
 weight: 1
 ---
 
-## 1. Downloading the OpenTelemetry Collector Contrib distribution
-
-The first step in installing the Open Telemetry Collector is downloading it. For our lab we will use the `wget` command to download the `.deb` package from the OpenTelemetry Github repository.
-
-Obtain the `.deb` package for your platform from the [OpenTelemetry Collector Contrib releases page](https://github.com/open-telemetry/opentelemetry-collector-releases/releases)
-
-``` bash
-wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.75.0/otelcol-contrib_0.75.0_linux_amd64.deb
-```
-
-## 2. Installing the OpenTelemetry Collector Contrib distribution
-
-Install the `.deb` package using `dpkg`. Take a look at the **dpkg Output** tab below to see what the example output of a successful install will look like:
-
-{{< tabs >}}
-{{% tab title="Install" %}}
-
-``` bash
-sudo dpkg -i otelcol-contrib_0.75.0_linux_amd64.deb
-```
-
-{{% /tab %}}
-{{% tab title="dpkg Output" %}}
-
-``` text
-Selecting previously unselected package otelcol-contrib.
-(Reading database ... 64218 files and directories currently installed.)
-Preparing to unpack otelcol-contrib_0.75.0_linux_amd64.deb ...
-Unpacking otelcol-contrib (0.75.0) ...
-Setting up otelcol-contrib (0.75.0) ...
-Created symlink /etc/systemd/system/multi-user.target.wants/otelcol-contrib.service → /lib/systemd/system/otelcol-contrib.service.
-```
-
-{{% /tab %}}
-{{< /tabs >}}
-
-## 3. Confirm the Collector is running
+## Confirm the Collector is running
 
 The collector should now be running. We will verify this as root using `systemctl` command. To exit the status just press `q`.
 
@@ -142,18 +106,18 @@ For this part we will require the following installed on your system:
 
 ## Why build your own collector?
 
-The default distrobutions of the collector (core and contrib) either container too much or too little in what they have to offer.
+The default distribution of the collector (core and contrib) either contain too much or too little in what they have to offer.
 
 It is also not advised to run the contrib collector in your production environments due to the amount of components installed which more than likely are not needed by your deployment.
 
 ## Benefits of building your own collector?
 
-When creating your own collector binaries, (commonly referred to as distrobutions), means you build what you need.
+When creating your own collector binaries, (commonly referred to as distribution), means you build what you need.
 
 The benefits of this are:
 
 1. Smaller sized binaries
-2. Can use existing go scanners for vulnerabilites
+2. Can use existing go scanners for vulnerabilities
 3. Include internal components that can tie in with your organisation
 
 ## Considerations for building your own collector?
@@ -162,7 +126,7 @@ Now, this would not be a 🥷 Ninja zone if it didn't come with some draw backs:
 
 1. Go experience is recommended if not required
 1. **No** Splunk support
-1. Responsibiliy of distribution and lifecycle management
+1. Responsibility of distribution and lifecycle management
 
 It is important to note that project is working towards stability but it does not mean changes made will not break your workflow. The team at Splunk provide increased support and a higher level of stability so they can provide a curated experience helping you with your deployment needs.
 
@@ -186,34 +150,34 @@ dist:
   output_path: ./dist
 
 extensions:
-- gomod: go.opentelemetry.io/collector/extension/ballastextension v0.75.0
-- gomod: go.opentelemetry.io/collector/extension/zpagesextension  v0.75.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/httpforwarder v0.75.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.75.0
+- gomod: go.opentelemetry.io/collector/extension/ballastextension v0.80.0
+- gomod: go.opentelemetry.io/collector/extension/zpagesextension  v0.80.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/httpforwarder v0.80.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/healthcheckextension v0.80.0
 
 exporters:
-- gomod: go.opentelemetry.io/collector/exporter/loggingexporter v0.75.0
-- gomod: go.opentelemetry.io/collector/exporter/otlpexporter v0.75.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/splunkhecexporter v0.75.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/signalfxexporter v0.75.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/sapmexporter v0.75.0
+- gomod: go.opentelemetry.io/collector/exporter/loggingexporter v0.80.0
+- gomod: go.opentelemetry.io/collector/exporter/otlpexporter v0.80.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/splunkhecexporter v0.80.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/signalfxexporter v0.80.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/sapmexporter v0.80.0
 
 processors:
-- gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.75.0
-- gomod: go.opentelemetry.io/collector/processor/memorylimiterprocessor v0.75.0
+- gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.80.0
+- gomod: go.opentelemetry.io/collector/processor/memorylimiterprocessor v0.80.0
 
 receivers:
-- gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.75.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver v0.75.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/jaegerreceiver v0.75.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.75.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver v0.75.0
+- gomod: go.opentelemetry.io/collector/receiver/otlpreceiver v0.80.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver v0.80.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/jaegerreceiver v0.80.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.80.0
+- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver v0.80.0
 ```
 
 Once the yaml file has been updated for the _ocb_, then run the following command:
 
 ```shell
-> ocb --config=otelcol-builder.yaml
+ocb --config=otelcol-builder.yaml
 ```
 
 Which leave you with the following directory structure:
@@ -239,7 +203,7 @@ Which leave you with the following directory structure:
 
 ---
 
-## 4. Default configuration
+## Default configuration
 
 OpenTelemetry is configured through YAML files. These files have default configurations that we can modify to meet our needs. Let's look at the default configuration that is supplied:
 
