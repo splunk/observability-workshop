@@ -1,7 +1,6 @@
 ---
 title: Getting Data In (GDI) with OTel and UF
 linkTitle: GDI (OTel & UF)
-description: "During this technical workshop you will learn how to: efficiently deploy complex environments, capture metrics from these environments to Splunk Observability Cloud, auto-instrument a python application and enable OS logging to Splunk Enterprise via Universal Forwarder."
 weight: 2
 alwaysopen: false
 ---
