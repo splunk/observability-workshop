@@ -56,7 +56,22 @@ metrics:
 ```
 
 {{% /tab %}}
-{{% tab title="config.go" %}}
+{{% /tabs %}}
+
+The bad configuration highlights how doing the opposite of the recomendations of configuration practices impacts the usability
+of the component. It doesn't make it clear what field values should be, it includes features that can be pushed to existing processors,
+and the field naming is not consistent with other components that exist in the collector.
+
+The good configuration keeps the required values simple, reuses field names from other components, and ensures the component focuses on
+just the interaction between Jenkins and the collector.
+
+The code tab shows how much is required to be added by us and what is already provided for us by shared libraries within the collector.
+These will be explained in more detail once we get to the business logic. The configuration should start off small and will change
+once the business logic has started to include additional features that is needed.
+
+## Write the code
+
+In order to implement the code needed for the configuration, we are going to create a new file named `config.go` with the following content:
 
 ``` go
 package jenkinscireceiver
@@ -81,17 +96,3 @@ type Config struct {
     metadata.MetricsBuilderConfig `mapstructure:",squash"`
 }
 ```
-
-{{% /tab %}}
-{{% /tabs %}}
-
-The bad configuration highlights how doing the opposite of the recomendations of configuration practices impacts the usability
-of the component. It doesn't make it clear what field values should be, it includes features that can be pushed to existing processors,
-and the field naming is not consistent with other components that exist in the collector.
-
-The good configuration keeps the required values simple, reuses field names from other components, and ensures the component focuses on
-just the interaction between Jenkins and the collector.
-
-The code tab shows how much is required to be added by us and what is already provided for us by shared libraries within the collector.
-These will be explained in more detail once we get to the business logic. The configuration should start off small and will change
-once the business logic has started to include additional features that is needed.
