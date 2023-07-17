@@ -31,7 +31,7 @@ Start the collector:
 {{% tab title="Command" %}}
 
 ``` bash
-otelcol-contrib --config=file:/etc/otelcol-contrib/config.yaml
+otelcol-contrib --config=file:/etc/otelcol-contrib/config.yaml &
 ```
 
 {{% /tab %}}

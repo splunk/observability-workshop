@@ -68,7 +68,7 @@ extensions:
 buildinfo:
     command: otelcol-contrib
     description: OpenTelemetry Collector Contrib
-    version: 0.75.0
+    version: 0.80.0
 receivers:
     - prometheus_simple
     - apache
