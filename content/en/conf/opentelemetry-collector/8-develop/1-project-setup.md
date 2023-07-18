@@ -10,7 +10,7 @@ weight: 9
 
 The time to finish this section of the workshop can vary depending on experience.
 
-A complete solution can be found [here](#create-link-to-src-code) incase you're stuck or want to follow
+A complete solution can be found [here](https://github.com/splunk/collector-workshop-example) incase you're stuck or want to follow
 along with the instructor.
 
 {{% /notice %}}
