@@ -111,7 +111,7 @@ For this part we will require the following installed on your system:
 
     ```bash
     go install go.opentelemetry.io/collector/cmd/builder@v0.80.0
-    mv $(GOPATH)/bin/builder /usr/bin/ocb
+    mv $(go env GOPATH)/bin/builder /usr/bin/ocb
     ```
 - (Optional) Docker
 
