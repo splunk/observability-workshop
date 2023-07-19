@@ -25,7 +25,7 @@ variable "otel_demo" {
 variable "wsversion" {
   description = "Workshop version"
   type        = string
-  default     = "4.96"
+  default     = "4.97"
 }
 
 variable "aws_instance_count" {
