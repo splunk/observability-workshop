@@ -40,6 +40,8 @@ Most attendees will be able to connect to the workshop by using SSH from their M
 
 To use SSH, open a terminal on your system and type `ssh ubuntu@x.x.x.x` (replacing x.x.x.x with the IP address found in Step #1).
 
+If using a non-standard SSH port (not 22), you can specify the port number by adding `-p xxxx` to the command (where xxxx is the port number): `ssh ubuntu@x.x.x.x -p xxxx`
+
 ![ssh login](../images/ssh-1.png)
 
 When prompted **`Are you sure you want to continue connecting (yes/no/[fingerprint])?`** please type **`yes`**.

@@ -99,3 +99,8 @@ variable "aws_instance_type" {
 variable "instance_disk_aws" {
   default = "40"
 }
+
+variable "ssh_port" {
+  type = number
+  default = 22
+}

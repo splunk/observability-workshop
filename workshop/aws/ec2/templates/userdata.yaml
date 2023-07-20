@@ -229,3 +229,9 @@ runcmd:
 %{ if otel_demo == true ~}
   - su ubuntu -c 'bash /tmp/otel-demo-setup.sh'
 %{ endif ~}
+
+%{ if ssh_port != 22 ~}
+  # Change default SSH port
+  - sed -i 's/#Port 22/Port ${ssh_port}/' /etc/ssh/sshd_config
+  - sudo service sshd restart
+%{ endif ~}
