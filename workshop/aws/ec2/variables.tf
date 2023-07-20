@@ -101,6 +101,6 @@ variable "instance_disk_aws" {
 }
 
 variable "ssh_port" {
-  type = number
+  type    = number
   default = 22
 }

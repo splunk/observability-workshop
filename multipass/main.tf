@@ -67,6 +67,11 @@ variable "instance_password" {
   default = ""
 }
 
+variable "ssh_port" {
+  type    = number
+  default = 22
+}
+
 resource "random_string" "hostname" {
   length  = 4
   lower   = true
@@ -88,6 +93,7 @@ locals {
     instance_name     = "${random_string.hostname.result}"
     wsversion         = var.wsversion
     instance_password = var.instance_password
+    ssh_port          = var.ssh_port
   }
 }
 

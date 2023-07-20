@@ -58,11 +58,12 @@ resource "aws_security_group" "o11y-ws-sg" {
   vpc_id = aws_vpc.o11y-ws-vpc.id
 
   ingress {
-    from_port   = 22
-    to_port     = 22
+    from_port   = var.ssh_port
+    to_port     = var.ssh_port
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
   ingress {
     from_port   = 81
     to_port     = 81
@@ -188,6 +189,7 @@ locals {
     otel_demo         = var.otel_demo
     wsversion         = var.wsversion
     instance_password = random_string.password.result
+    ssh_port          = var.ssh_port
   }
 }
 
