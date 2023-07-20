@@ -16,6 +16,7 @@ splunk_hec_token = ""
 splunk_presetup = false
 splunk_jdk = false
 otel_demo = false
+ssh_port = 65000
 
 # Advanced
 wsversion = "4.97"
