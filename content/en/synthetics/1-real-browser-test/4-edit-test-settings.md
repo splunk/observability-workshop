@@ -3,9 +3,7 @@ title: 1.4 Settings
 weight: 4
 ---
 
-## Simple test settings
-
-The simple settings allow you to configure the basics of the test.
+The simple settings allow you to configure the basics of the test:
 
 - **Name**: The name of the test (e.g. RWC - Online Boutique).
 - **Details**:

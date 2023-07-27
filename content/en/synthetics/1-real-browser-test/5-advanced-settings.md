@@ -18,3 +18,5 @@ In the case of this workshop, we will **not** be using any of these settings as 
   - **Custom headers**: Specify custom headers to send with each request. For example, you can add a header in your request to filter out requests from analytics on the back end by sending a specific header in the requests. You can also use custom headers to set cookies.
   - **Cookies**: Set cookies in the browser before the test starts. For example, to circumvent a popup modal from randomly appearing and interfering with your test, you can set cookies. Any cookies that are set will apply to the domain of the starting URL of the check. Splunk Synthetics Monitoring uses the public suffix list to determine the domain.
   - **Host overrides**: Add host override rules to reroute requests from one host to another. For example, you can create a host override to test an existing production site against page resources loaded from a development site or a specific CDN edge node.
+
+Next, we will edit the test steps to provide more meaningful names for each step.
