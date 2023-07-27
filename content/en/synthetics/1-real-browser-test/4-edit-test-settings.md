@@ -10,7 +10,7 @@ The simple settings allow you to configure the basics of the test:
   - **Locations**: The locations where the test will run from.
   - **Device**: Emulate different devices and connection speeds. Also, the viewport will be adjusted to match the chosen device.
   - **Frequency**: How often the test will run.
-  - **Round-robin**: If multiple locations are selected, the test will run from each location in a round-robin fashion.
+  - **Round-robin**: If multiple locations are selected, the test will run from one location at a time, rather than all locations at once.
   - **Active**: Set the test to active or inactive.
 
 ![Return to Test](../../img/return-to-test.png)

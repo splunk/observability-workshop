@@ -26,9 +26,13 @@ The starting URL for the workshop is different for **EMEA** and **AMER/APAC**. P
 
 ## Open the Chrome DevTools Recorder
 
-Next, open the Developer Tools (in the new tab that was opened above) by pressing `Ctrl + Shift + I` on Windows or `Cmd + Option + I` on a Mac, then click on **More tools** and select **Recorder**.
+Next, open the Developer Tools (in the new tab that was opened above) by pressing `Ctrl + Shift + I` on Windows or `Cmd + Option + I` on a Mac, then select **Recorder** from the top level menu or the **More tools** flyout menu.
 
 ![Open Recorder](../../img/open-recorder.png)
+
+{{% notice title="Note" style="info" %}}
+Site elements might change depending on viewport width. Before recording, set your browser window to the correct width for the test you want to create (Desktop, Tablet, or Mobile). Change the DevTools "dock side" to pop out as a separate window if it helps.
+{{% /notice %}}
 
 ## Create a new recording
 
