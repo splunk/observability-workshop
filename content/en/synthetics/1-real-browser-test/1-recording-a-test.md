@@ -1,5 +1,5 @@
 ---
-title: 1.1 Chrome DevTools Recorder
+title: 1.1 Recording a test
 weight: 1
 ---
 
