@@ -98,6 +98,7 @@ For this part we will require the following installed on your system:
   ``` bash
   go version
   ```  
+
 - ocb installed
   - Download the ocb binary from the [project releases](https://github.com/open-telemetry/opentelemetry-collector/releases/tag/cmd%2Fbuilder%2Fv0.80.0)
     and run the following commands:
@@ -113,6 +114,7 @@ For this part we will require the following installed on your system:
     go install go.opentelemetry.io/collector/cmd/builder@v0.80.0
     mv $(go env GOPATH)/bin/builder /usr/bin/ocb
     ```
+
 - (Optional) Docker
 
 ## Why build your own collector?
