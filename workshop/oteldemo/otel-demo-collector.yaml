@@ -62,6 +62,9 @@ agent:
           "X-SF-Token": "${SPLUNK_OBSERVABILITY_ACCESS_TOKEN}"
       logging:
         loglevel: info
+    connectors:
+      spanmetrics:
+      
     service:
       pipelines:
         metrics:
@@ -78,9 +81,11 @@ agent:
           - otlp
           - receiver_creator
           - signalfx
+          - spanmetrics
         traces:
           exporters:
           - otlphttp
+          - spanmetrics
           processors:
           - memory_limiter
           - k8sattributes
