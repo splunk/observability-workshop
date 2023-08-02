@@ -28,6 +28,12 @@ variable "wsversion" {
   default     = "5.0"
 }
 
+variable "user_data_tpl" {
+  description = "user data template filename in templates/"
+  type        = string
+  default     = "userdata.yaml"
+}
+
 variable "aws_instance_count" {
   description = "Instance Count (Usually 1)"
   nullable    = false

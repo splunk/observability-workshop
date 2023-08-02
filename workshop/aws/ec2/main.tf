@@ -219,7 +219,7 @@ resource "aws_instance" "observability-instance" {
   subnet_id              = aws_subnet.o11y_ws_subnets.*.id[count.index % length(aws_subnet.o11y_ws_subnets)]
   vpc_security_group_ids = [aws_security_group.o11y-ws-sg.id]
 
-  user_data = templatefile("${path.module}/templates/userdata.yaml", merge(local.template_vars,
+  user_data = templatefile("${path.module}/templates/${var.user_data_tpl}", merge(local.template_vars,
     {
       instance_name = "${lower(var.slug)}-${count.index + 1}"
   }))
