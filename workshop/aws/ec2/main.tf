@@ -195,6 +195,7 @@ locals {
     otel_demo         = var.otel_demo
     wsversion         = var.wsversion
     instance_password = random_string.password.result
+    pub_key           = var.pub_key
   }
 }
 
@@ -236,7 +237,7 @@ resource "aws_instance" "observability-instance" {
       error_message = "When requesting an otel_demo, splunk_realm, splunk_access_token and splunk_rum_token are required and cannot be null/empty. splunk_presetup variable must also be set to false. "
     }
     precondition {
-      # if access_token and realm cannot be empty.
+      # access_token and realm cannot be empty.
       condition     = var.splunk_access_token != "" && var.splunk_realm != ""
       error_message = "splunk_realm and splunk_access_token are required and cannot be null/empty."
     }
