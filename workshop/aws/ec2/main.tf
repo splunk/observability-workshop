@@ -180,7 +180,7 @@ resource "aws_route" "o11y-ws-route" {
 
 resource "random_string" "password" {
   length           = 16
-  override_special = "_%@$#!"
+  override_special = "_%@$#"
 }
 
 # ED25519 key
