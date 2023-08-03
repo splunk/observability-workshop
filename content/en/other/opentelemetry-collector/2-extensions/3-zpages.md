@@ -43,7 +43,7 @@ If you are not following along, you can use your browser to access a test enviro
 
 - **ServiceZ:** [http://63.33.64.193:55679/debug/servicez](http://63.33.64.193:55679/debug/servicez)
 - **PipelineZ:** [http://63.33.64.193:55679/debug/pipelinez](http://63.33.64.193:55679/debug/pipelinez)
-- **EntensionZ:** [http://63.33.64.193:55679/debug/extentionz](http://63.33.64.193:55679/debug/extensionz)
+- **ExtensionZ:** [http://63.33.64.193:55679/debug/extensionz](http://63.33.64.193:55679/debug/extensionz)
 {{% /notice %}}
 
 ---
