@@ -8,13 +8,24 @@ weight: 7
 
 Now that we have configured the OpenTelemetry Collector to send metrics to Splunk Observability Cloud, let's take a look at the data in Splunk Observability Cloud. If you have not received an invite to Splunk Observability Cloud, your instructor will provide you with login credentials.
 
-Once logged into Splunk Observability Cloud, using the left-hand navigation, navigate to **Dashboards**:
+Before that, lets make things a little more interesting and run a stress test on the instance. This in turn will light up the dashboards.
+
+``` bash
+sudo apt install stress
+while true; do stress -c 2 -t 40; stress -d 5 -t 40; stress -m 20 -t 40; done
+```
+
+Once you are logged into Splunk Observability Cloud, using the left-hand navigation, navigate to **Dashboards**:
 
 ![menu-dashboards](../images/menu-dashboards.png)
 
 In the search box, search for **OTel Contrib**:
 
 ![search-dashboards](../images/search-dashboards.png)
+
+{{% notice style="info" %}}
+If the dasboard does not exist, then your instructor will be able to quickly add it. If you are not attending a Splunk hosted version of this workshop then the Dashboard Group to import can be found at the bottom of this page.
+{{% /notice %}}
 
 Click on the **OTel Contrib Dashboard** dashboard to open it:
 
