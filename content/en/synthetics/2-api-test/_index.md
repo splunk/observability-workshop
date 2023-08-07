@@ -2,99 +2,81 @@
 title: API Check
 linkTitle:  2. API Check
 weight: 2
-hidden: true
+hidden: false
 ---
 
 The API Check provides a flexible way to check the functionality and performance of API endpoints. The shift toward API-first development has magnified the necessity to monitor the back-end services that provide your core front-end functionality. Whether you're interested in testing the multi-step API interactions or you want to gain visibility into the performance of your endpoints, the API Check can help you accomplish your goals.
 
-## 1. Create a Global Variable
+## 1. View Global Variables
 
-View the global variable that we'll use to perform our API check. Click on **Global Variables** under **Admin Tools**. View the global variable that we'll use to make the spotify API transaction
+View the global variable that we'll use to perform our API check. Click on **Global Variables** under the cog. The global variable named `env.encoded_auth` will be the one that we'll use to build the spotify API transaction.
 
-![placeholder](../images/global-variable.png)
+![placeholder](../img/global-variables.png)
 
-## 2. Create an API Check
+## 2. Create a new API Check
 
 Create a new API Check and name it `<your initials>` followed by Splunk REST API Check for example: **AP - Spotify API**
 
-![placeholder](../images/new-api-check.png)
+![placeholder](../img/new-api-check.png)
 
-Take a second to explore the notification tab after you've named your check
+## 3. Add Authentication Request
 
-Add the following API Check Steps:
+Click on {{< button >}}+ Add requests{{< /button >}} and enter the request step name e.g. **Authenticate with Spotify API**.
 
- ![placeholder](../images/api-check-steps.png)
+![placeholder](../img/add-request.png)
 
-Available Variables to choose from:
+Expand the Request section, from the drop down change the request method to **POST** and enter the following URL:
 
-![placeholder](../images/available-variables.png)
+``` text
+https://accounts.spotify.com/api/token
+```
 
-**[Request Step](https://help.rigor.com/hc/en-us/articles/115004583747-API-Check-Request-Step)**
+Next add two request headers with the following key/value pairings:
 
-- A Request Step makes an HTTP request to some endpoint and collects data from that interaction. Unlike other check types, API Checks do not require an initial URL to start the check. All HTTP requests are configured within Request Steps.
+- **CONTENT-TYPE: application/x-www-form-urlencoded**
+- **AUTHORIZATION: Basic {{env.encoded_auth}}**
 
-**[Extract Step](https://help.rigor.com/hc/en-us/articles/115004582607-API-Check-Extract-Step)**
+Expand the **Validation** section and add the following extraction:
 
-- An Extract Step extracts data out of JSON, XML, or HTML formatted data.
+- **Extract** from **Response body** **JSON** **$.access_token** **as** **access_token**. 
 
-- To extract data out of JSON, supply three things:
+This will parse the JSON payload that is received from the Spotify API and extract the access token and store it as a custom variable.
 
-- The source containing the JSON,
+![Add payload token](../img/add-payload-token.png)
 
-- The JSONPath expression to extract out the data, and
+## 4. Add Search Request
 
-- The name of the custom variable that you want to save to.
+Click on {{< button >}}+ Add Request{{< /button >}} to add the next step. Name the step **Search for Tracks named "Up around the bend"**.
 
-- The source can be any JSON, but most likely will come from the response body. The source could also come from a response header or can be a custom value. The source must be well-formed JSON.
+## 5. Save and view results
 
-**[Save Step](https://help.rigor.com/hc/en-us/articles/115004743868-API-Check-Save-Step)**
+Expand the **Request** section and change the request method to **GET** and enter the following URL:
 
-- A Save Step stores some data to be reused later in the check. To save data, supply the source and the name of the custom variable to save to. The source can be selected from the presets, including response headers, or by providing a custom value.
+``` text
+https://api.spotify.com/v1/search?q=Up%20around%20the%20bend&type=track&offset=0&limit=5
+```
 
-- Some additional use cases are appending bits of information to easily reuse in other steps and saving the results from one request to be reused after another request is made.
+Next add two request headers with the following key/value pairings:
 
-- It is important to remember that request variables are only available after a request is made. If you try to save a value from a request but haven't made a request yet, then an empty string will be saved.
+- **CONTENT-TYPE: application/json**
+- **AUTHORIZATION: Bearer {{custom.access_token}}**
 
-**[Assert Step](https://help.rigor.com/hc/en-us/articles/115004742408-API-Check-Assert-Step)**
+![Add search request](../img/add-search-request.png)
 
-- An Assert Step makes an assertion on two values. To make an assertion, supply two parameters along with the comparison that you would like to perform between the two.
+Expand the **Validation** section and add the following extraction:
 
-**[Comparisons](https://help.rigor.com/hc/en-us/articles/115004742408-API-Check-Assert-Step)**
+- **Extract** from **Response body** **JSON** **$.tracks.items[0].id** **as** **track_id**.
 
-- We currently support 3 types of comparisons: **string**, **numeric**, and **regular expression**.
+![Add search payload](../img/add-search-payload.png)
 
-- For **string** and **numeric** comparisons, values are coerced to the comparison type before the comparison is made.
+Click on {{< button style="blue" >}}< Return to test{{< /button >}} to return to the test configuration page. And then click {{< button style="blue" >}}Save{{< /button >}} to save the API Check.
 
-- For a **regular expression** comparison, the first parameter is a string and the second parameter is a regular expression.
+Wait for a few minutes for the test to provision and run. Once you see the test has run successfully, click on the run to view the test results:
 
-Tag your API Check with Splunk and API and **SAVE** it
+![API test result](../img/api-test-result.png)
 
-![placeholder](../images/tags.png)
+## 6. Resources
 
-## 3. Test your REST API Check
+- [How to Create an API Check](https://docs.splunk.com/Observability/synthetics/api-test/set-up-api-test.html)
 
-Press got back into the edit configuration and press 'test' at the bottom of the page to ensure there are no errors
-
-![placeholder](../images/test-api-check.png)
-
-Slide the window up to view details about the successful run
-
-![placeholder](../images/successful-run.png)
-
-![placeholder](../images/request-step.png)
-
-Now, let's add some more functionality to the monitor. Slide the detailed window back down and add steps 5-8
-
-**BONUS**: use step 6 to assert that the following response came back in a timely manner (1000 ms)
-
-![placeholder](../images/additional-steps.png)
-
-Once the steps are added, test & save the monitor.
-
-## 4. Resources
-
-- [How to Create an API Check](https://help.rigor.com/hc/en-us/articles/115004817308-How-to-Create-an-API-Check)
-
-- [API Check Overview](https://help.rigor.com/hc/en-us/articles/115004952508-API-Check-Overview)
-
-- [How Do I Use Business Transactions?](https://help.rigor.com/hc/en-us/articles/360049442854-How-Do-I-Use-Business-Transactions)
+- [API Check Overview](https://docs.splunk.com/Observability/synthetics/api-test/api-test.html)
