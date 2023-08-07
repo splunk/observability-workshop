@@ -17,7 +17,7 @@ It takes a list of actions which are performed in order specified in the config.
 - `hash`: Hashes (SHA1) an existing attribute value.
 - `extract`: Extracts values using a regular expression rule from the input key to target keys specified in the rule. If a target key already exists, it will be overridden.
 
-We are going to create an attributes processor to `insert` a new attribute to all our host metrics called `conf.attendee.name` with a value of your own name e.g. `homer_simpson`.
+We are going to create an attributes processor to `insert` a new attribute to all our host metrics called `participant.name` with a value of your own name e.g. `marge_simpson`.
 
 {{% notice style="warning" %}}
 
@@ -40,7 +40,7 @@ processors:
     detectors: [ec2]
   attributes/conf:
     actions:
-      - key: conf.attendee.name
+      - key: participant.name
         action: insert
         value: "INSERT_YOUR_NAME_HERE"
 ```
@@ -153,7 +153,7 @@ processors:
     detectors: [ec2]
   attributes/conf:
     actions:
-      - key: conf.attendee.name
+      - key: participant.name
         action: insert
         value: "INSERT_YOUR_NAME_HERE"
 

@@ -76,7 +76,7 @@
               },
               {
                 "enabled": false,
-                "property": "conf.attendee.name"
+                "property": "participant.name"
               },
               {
                 "enabled": false,
@@ -374,7 +374,7 @@
               },
               {
                 "enabled": true,
-                "property": "conf.attendee.name"
+                "property": "participant.name"
               }
             ]
           },
@@ -838,7 +838,7 @@
               },
               {
                 "enabled": false,
-                "property": "conf.attendee.name"
+                "property": "participant.name"
               },
               {
                 "enabled": false,

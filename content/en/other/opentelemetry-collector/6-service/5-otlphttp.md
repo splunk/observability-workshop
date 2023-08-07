@@ -169,7 +169,7 @@ processors:
     detectors: [ec2]
   attributes/conf:
     actions:
-      - key: conf.attendee.name
+      - key: participant.name
         action: insert
         value: "INSERT_YOUR_NAME_HERE"
 
