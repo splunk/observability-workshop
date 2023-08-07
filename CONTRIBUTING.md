@@ -34,7 +34,7 @@ You will also need to install `yq` if it is not already installed on your system
 brew install yq
 ```
 
-## Cloning the reposistory
+## Cloning the repository
 
 ``` bash
 git clone https://github.com/splunk/observability-workshop.git
