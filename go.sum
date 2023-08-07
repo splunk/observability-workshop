@@ -20,3 +20,5 @@ github.com/McShelby/hugo-theme-relearn v0.0.0-20230622170510-61ccf4e42f4f h1:7SM
 github.com/McShelby/hugo-theme-relearn v0.0.0-20230622170510-61ccf4e42f4f/go.mod h1:mKQQdxZNIlLvAj8X3tMq+RzntIJSr9z7XdzuMomt0IM=
 github.com/McShelby/hugo-theme-relearn v0.0.0-20230727192355-9221e7e07fee h1:VfJZkDTmbD5NjhzG1l6qI/tDP28AM5wJdrc0st4hC34=
 github.com/McShelby/hugo-theme-relearn v0.0.0-20230727192355-9221e7e07fee/go.mod h1:mKQQdxZNIlLvAj8X3tMq+RzntIJSr9z7XdzuMomt0IM=
+github.com/McShelby/hugo-theme-relearn v0.0.0-20230805123518-b2e841caaa33 h1:E4GrECVh7fzGdf+qedhpzCsqk80XUVkpE+u7KRiZ1Yc=
+github.com/McShelby/hugo-theme-relearn v0.0.0-20230805123518-b2e841caaa33/go.mod h1:mKQQdxZNIlLvAj8X3tMq+RzntIJSr9z7XdzuMomt0IM=
