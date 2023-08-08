@@ -6,6 +6,6 @@ weight: 2
 
 ## Create a new API Check
 
-Create a new API Check and name it `<your initials>` followed by Splunk REST API Check for example: **AP - Spotify API**
+Create a new API Check by click on the {{< button style="blue" >}}Add new test{{< /button >}} button and select **API test** from the dropdown. Name the test using **your initials** followed by **Spotify API** e.g. **RWC - Spotify API**
 
 ![placeholder](../../img/new-api-check.png)
