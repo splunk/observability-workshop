@@ -17,7 +17,7 @@ The following Orgs are used for running Observability Workshops. They have all t
 
 ### SWIPE
 
-SWIPE is an online tool to help configure the workshop environment in Observability Cloud and is available [here](https://swipe.splunk.com). Please note, the SWIPE does not provision EC2 instances. SWIPE will configure the following:
+SWIPE is an online tool to help configure the workshop environment in Observability Cloud and is available [here](https://swipe.splunk.show). Please note, the SWIPE does not provision EC2 instances. SWIPE will configure the following:
 
 - Create and invite users to the Org. Create a `csv` file with one e-mail address per line.
 - Create a team and add users.
