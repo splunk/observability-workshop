@@ -18,7 +18,7 @@ To help observe short lived tasks like docker containers, kubernetes pods, or ss
 
 In order to start using the receiver creator and its associated observer extensions, they will need to be part of your collector build manifest.
 
-See [installation](/en/conf/opentelemetry-collector/1-installation/) for the details.
+See [installation](/en/other/opentelemetry-collector/1-installation/) for the details.
 
 ## Things to consider?
 
