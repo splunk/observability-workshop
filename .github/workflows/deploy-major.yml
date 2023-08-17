@@ -1,5 +1,7 @@
 name: 1Release new major version
 
+permissions: write-all
+
 on: workflow_dispatch
 
 jobs:
