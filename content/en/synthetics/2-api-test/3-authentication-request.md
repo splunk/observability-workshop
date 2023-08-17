@@ -16,6 +16,12 @@ Expand the Request section, from the drop down change the request method to **PO
 https://accounts.spotify.com/api/token
 ```
 
+In the **Payload body** section enter the following:
+
+``` text
+grant_type=client_credentials
+```
+
 Next add two request headers with the following key/value pairings:
 
 - **CONTENT-TYPE: application/x-www-form-urlencoded**

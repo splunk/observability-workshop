@@ -24,7 +24,7 @@ Next add two request headers with the following key/value pairings:
 
 Expand the **Validation** section and add the following extraction:
 
-- **Extract** from **Response body** **JSON** **$.tracks.items[0].id** **as** **track_id**.
+- **Extract** from **Response body** **JSON** **$.tracks.items[0].id** **as** **track.id**.
 
 ![Add search payload](../../img/add-search-payload.png)
 
