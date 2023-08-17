@@ -106,6 +106,13 @@ resource "aws_security_group" "o11y-ws-sg" {
   }
 
   ingress {
+    from_port   = 13133
+    to_port     = 13133
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
     from_port   = 55679
     to_port     = 55679
     protocol    = "tcp"
