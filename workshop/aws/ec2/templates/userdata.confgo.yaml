@@ -120,10 +120,6 @@ write_files:
       environment: ${instance_name}-apps
       clusterName: ${instance_name}
       logsEngine: otel
-      networkExplorer:
-        enabled: true
-        podSecurityPolicy:
-          enabled: false
       splunkObservability:
         realm: ${realm}
         accessToken: ${access_token}
@@ -177,7 +173,7 @@ write_files:
               attributes:
               - action: insert
                 key: deployment.environment
-                value: staotel
+                value: ${instance_name}
           receivers:
             receiver_creator:
               receivers:
@@ -355,10 +351,11 @@ runcmd:
   - chmod -x /etc/update-motd.d/*
   - bash /usr/local/bin/setup-docker-registry.sh
   # Install K3s
+  - mkdir -p -m 700 /var/log/kubernetes/apiserver
   - mkdir -p -m 700 /var/lib/rancher/k3s/server/logs
   - touch /var/lib/rancher/k3s/server/logs/audit.log
   - chmod 600 /var/lib/rancher/k3s/server/logs/audit.log
-  - curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--kube-apiserver-arg=audit-log-path=/var/lib/rancher/k3s/server/logs/audit.log --kube-apiserver-arg=audit-policy-file=/var/lib/rancher/k3s/server/audit.yaml" sh -
+  - curl -sfL https://get.k3s.io | sh -s - --kube-apiserver-arg='audit-log-path=/var/lib/rancher/k3s/server/logs/audit.log' --kube-apiserver-arg='audit-policy-file=/var/lib/rancher/k3s/server/audit.yaml'
   # Create kube config and set correct permissions on ubuntu user home directory
   - mkdir /home/ubuntu/.kube && kubectl config view --raw > /home/ubuntu/.kube/config
   - chmod 400 /home/ubuntu/.kube/config
