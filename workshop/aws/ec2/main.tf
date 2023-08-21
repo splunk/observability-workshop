@@ -183,6 +183,16 @@ resource "random_string" "password" {
   override_special = "_%@$#!"
 }
 
+# ED25519 key
+resource "tls_private_key" "pk" {
+  algorithm = "ED25519"
+}
+
+resource "aws_key_pair" "kp" {
+  key_name   = "o11y-workshop-${var.slug}-kp"
+  public_key = tls_private_key.pk.public_key_openssh
+}
+
 locals {
   template_vars = {
     access_token      = var.splunk_access_token
@@ -195,7 +205,7 @@ locals {
     otel_demo         = var.otel_demo
     wsversion         = var.wsversion
     instance_password = random_string.password.result
-    pub_key           = var.pub_key
+    pub_key           = tls_private_key.pk.public_key_openssh
   }
 }
 
@@ -242,4 +252,27 @@ resource "aws_instance" "observability-instance" {
       error_message = "splunk_realm and splunk_access_token are required and cannot be null/empty."
     }
   }
+}
+
+locals {
+  ssh_priv_key = pathexpand("~/.ssh/id_o11y-workshop-${var.slug}")
+}
+
+resource "local_sensitive_file" "ssh_priv_key" {
+  filename = local.ssh_priv_key
+  file_permission = "400"
+  # directory_permission = "700"
+  # content  = tls_private_key.pk.private_key_pem
+  content  = tls_private_key.pk.private_key_openssh
+}
+
+resource "local_file" "ssh_client_config" {
+  filename = pathexpand("~/.ssh/config.d/o11y-workshop-${var.slug}")
+  file_permission = "600"
+  content = templatefile("${path.module}/templates/ssh_client_config.tpl",
+    {
+      ips : aws_instance.observability-instance[*].public_ip
+      names : aws_instance.observability-instance[*].tags["Instance"]
+      key : local.ssh_priv_key
+  })
 }
