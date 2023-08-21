@@ -86,6 +86,7 @@ helm install splunk-otel-collector \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
 --set="clusterName=$(hostname)-k3s-cluster" \
 --set="splunkObservability.logsEnabled=true" \
+--set="logsEngine=otel" \
 --set="splunkObservability.profilingEnabled=true" \
 --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
 --set="environment=$(hostname)-apm-env" \
