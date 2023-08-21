@@ -133,6 +133,7 @@ write_files:
         --set="splunkObservability.accessToken=${access_token}" \
         --set="clusterName=${instance_name}-k3s-cluster" \
         --set="splunkObservability.logsEnabled=true" \
+        --set="logsEngine=otel" \
         --set="splunkObservability.profilingEnabled=true" \
         --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
         --set="environment=${instance_name}-apm-env" \
