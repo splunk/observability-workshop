@@ -1,4 +1,18 @@
-# Instructions on how to set up EC2 cloud instances for participants
+## Using SWIPE to provision the workshop Org
+
+Goto [https://swipe.splunk.show](https://swipe.splunk.show) and provision your workshop environment.
+
+You will need:
+
+- User API Session Token (available from your profile page)
+- Realm
+- A CSV containing the email addresses of your attendees
+
+Follow the guidance provided by SWIPE and after provisioing completes, you will be provided with a **ACCESS** and **RUM** token. These will be used to populate the `terraform.tfvars` file in **Step 5** below.
+
+## Instructions on how to set up EC2 cloud instances for participants
+
+**NOTE:** Manual provisioning of EC2 instances will be going away in the near future and will be able to be done directly from Splunk Show.
 
 You will need access to an AWS account to obtain both **AWS_ACCESS_KEY_ID** and **AWS_SECRET_ACCESS_KEY**.
 
@@ -86,16 +100,12 @@ login_details = tolist([
 ])
 ```
 
-<!--
-Or you use the provided script `up` to request instances:
-
-Install the prerequisites, e.g. on Mac: `brew install terraform jq pssh`
-
-Then use the script:
+Next, let's export the addresses and password of our new instances. This will later be used to generate the spreadsheet for the workshop attendees.
 
 ```bash
-./up myproject 12 eu-central-1
-```
+# save the IPs of the EC2 instances you just created
+$ terraform output -json ip_addresses > ec2_ips.json
 
-This will create a terraform workspace `o11y-for-myproject`, request 12 instances and ensure all instances have completed provisioning.
--->
+# Get the randomly generated password for your EC2 instances. Copy/save this!
+$ terraform output -json instance_password
+```
