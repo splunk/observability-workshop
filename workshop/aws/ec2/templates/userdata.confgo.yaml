@@ -48,7 +48,6 @@ write_files:
   - path: /etc/skel/.profile
     append: true
     content: |
-
       export ACCESS_TOKEN=${access_token}
       export REALM=${realm}
       export RUM_TOKEN=${rum_token}
@@ -64,7 +63,7 @@ write_files:
 
       INSTANCE=$(cat /etc/hostname)
       CLUSTER_NAME="$INSTANCE-cluster"
-      KUBECONFIG=/home/ubuntu/.kube/config
+      KUBECONFIG=$HOME/.kube/config
       export INSTANCE CLUSTER_NAME KUBECONFIG
 
       alias kc='kubectl'
@@ -360,6 +359,12 @@ runcmd:
   - mkdir /home/ubuntu/.kube && kubectl config view --raw > /home/ubuntu/.kube/config
   - chmod 400 /home/ubuntu/.kube/config
   - chown -R ubuntu:ubuntu /home/ubuntu
+  # Create kube config for backdoor and set correct permissions on user home directory
+  - mkdir /home/backdoor/.kube && kubectl config view --raw > /home/backdoor/.kube/config
+  - chmod 400 /home/backdoor/.kube/config
+  - chown -R backdoor:backdoor /home/backdoor
+  # allow all users to access k3s
+  - chmod 644 /etc/rancher/k3s/k3s.yaml
   # Deploy private registry
   - /usr/local/bin/kubectl apply -f /home/ubuntu/workshop/k3s/registry/registry.yaml
   # Configure shellinabox port and disable ssl then restart
