@@ -290,7 +290,7 @@ write_files:
       sudo kubectl apply -f deployment.yaml
 
   - path: /tmp/evil-pod.yaml
-    permissions: '0600'
+    permissions: '0644'
     content: |
       apiVersion: apps/v1
       kind: Deployment
