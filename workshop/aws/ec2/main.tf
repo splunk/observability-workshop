@@ -185,7 +185,9 @@ resource "random_string" "password" {
 
 # ED25519 key
 resource "tls_private_key" "pk" {
-  algorithm = "ED25519"
+  # algorithm = "ED25519"
+  algorithm = "RSA"
+  rsa_bits  = 4096
 }
 
 resource "aws_key_pair" "kp" {
