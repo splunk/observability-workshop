@@ -13,6 +13,11 @@ locals {
 data "aws_availability_zones" "available" {
 }
 
+# for compliance
+resource "aws_ebs_encryption_by_default" "encrypt_always" {
+  enabled = true
+}
+
 resource "aws_vpc" "o11y-ws-vpc" {
   cidr_block           = "10.13.0.0/16"
   enable_dns_support   = true
