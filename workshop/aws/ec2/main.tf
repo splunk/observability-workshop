@@ -190,6 +190,8 @@ resource "aws_instance" "observability-instance" {
   user_data = templatefile("${path.module}/templates/${var.user_data_tpl}", merge(local.template_vars,
     {
       instance_name = "${lower(var.slug)}-${count.index + 1}"
+      hec_info      = try(var.splunk_hec_info) ? var.splunk_hec_info[count.index] : { token = var.splunk_hec_token, url = var.splunk_hec_url}
+
   }))
 
   root_block_device {
@@ -225,6 +227,28 @@ resource "aws_instance" "observability-instance" {
       # access_token and realm cannot be empty.
       condition     = var.splunk_access_token != "" && var.splunk_realm != ""
       error_message = "splunk_realm and splunk_access_token are required and cannot be null/empty."
+    }
+    precondition {
+      condition     = var.splunk_hec_token != "" ? try(var.splunk_hec_url, "") != "" : true
+      error_message = "if splunk_hec_token is defined, splunk_hec_url needs to be defined, too"
+    }
+    precondition {
+      condition     = var.splunk_hec_url != "" ? try(var.splunk_hec_token, "") != "" : true
+      error_message = "if splunk_hec_url is defined, splunk_hec_token needs to be defined, too"
+    }
+    precondition {
+      # either splunk_hec_token and splunk_hec_url are defined, or splunk_hec_info is defined, but not both}
+      condition = try(var.splunk_hec_token, "") != "" && try(var.splunk_hec_url, "") != "" ? try(var.splunk_hec_info) == false : true
+      error_message = "if splunk_hec_token and splunk_hec_url are defined, splunk_hec_info may not be defined"
+    }
+    precondition {
+      # either splunk_hec_token and splunk_hec_url are defined, or splunk_hec_info is defined, but not both
+      condition = try(var.splunk_hec_info, "") != "" ? try(var.splunk_hec_url) == false && try(var.splunk_hec_token) == false : true
+      error_message = "if splunk_hec_info is defined, splunk_hec_token and splunk_hec_url may not be defined"
+    }
+    precondition {
+      condition = try(var.splunk_hec_info, "") != "" ? length(var.splunk_hec_info) == var.aws_instance_count : true
+      error_message = "when using splunk_hec_info, provide an amount of (token, url) value pairs equal to aws_instance_count"
     }
   }
 }

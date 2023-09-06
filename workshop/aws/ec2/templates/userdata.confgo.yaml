@@ -51,8 +51,8 @@ write_files:
       export ACCESS_TOKEN=${access_token}
       export REALM=${realm}
       export RUM_TOKEN=${rum_token}
-      export HEC_TOKEN=${hec_token}
-      export HEC_URL=${hec_url}
+      export HEC_TOKEN=${hec_info.token}
+      export HEC_URL=${hec_info.url}
 
       echo "Waiting for cloud-init status..."
       if ! /usr/bin/timeout 180 grep -q 'Cloud-init .*finished at' <(sudo tail -f /var/log/cloud-init-output.log); then
@@ -125,13 +125,13 @@ write_files:
         profilingEnabled: true
         infrastructureMonitoringEventsEnabled: true
       splunkPlatform:
-        endpoint: ${hec_url}
+        endpoint: ${hec_info.url}
         index: otel_events
         insecureSkipVerify: true
         logsEnabled: true
         metricsEnabled: true
         metricsIndex: otel_metrics
-        token: ${hec_token}
+        token: ${hec_info.token}
       logsCollection:
         extraFileLogs:
           filelog/audit-log:
@@ -276,8 +276,8 @@ write_files:
       export RUM_TOKEN=${rum_token}
       export REALM=${realm}
       export ACCESS_TOKEN=${access_token}
-      export HEC_TOKEN=${hec_token}
-      export HEC_URL=${hec_url}
+      export HEC_TOKEN=${hec_info.token}
+      export HEC_URL=${hec_info.url}
       export INSTANCE="${instance_name}"
       helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
       helm repo update
