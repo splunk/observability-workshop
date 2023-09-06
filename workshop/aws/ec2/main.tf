@@ -190,7 +190,7 @@ resource "aws_instance" "observability-instance" {
   user_data = templatefile("${path.module}/templates/${var.user_data_tpl}", merge(local.template_vars,
     {
       instance_name = "${lower(var.slug)}-${count.index + 1}"
-      hec_info      = try(var.splunk_hec_info) ? var.splunk_hec_info[count.index] : { token = var.splunk_hec_token, url = var.splunk_hec_url}
+      hec_info      = try(var.splunk_hec_info) ? var.splunk_hec_info[count.index] : { token = var.splunk_hec_token, url = var.splunk_hec_url }
 
   }))
 
@@ -238,16 +238,16 @@ resource "aws_instance" "observability-instance" {
     }
     precondition {
       # either splunk_hec_token and splunk_hec_url are defined, or splunk_hec_info is defined, but not both}
-      condition = try(var.splunk_hec_token, "") != "" && try(var.splunk_hec_url, "") != "" ? try(var.splunk_hec_info) == false : true
+      condition     = try(var.splunk_hec_token, "") != "" && try(var.splunk_hec_url, "") != "" ? try(var.splunk_hec_info) == false : true
       error_message = "if splunk_hec_token and splunk_hec_url are defined, splunk_hec_info may not be defined"
     }
     precondition {
       # either splunk_hec_token and splunk_hec_url are defined, or splunk_hec_info is defined, but not both
-      condition = try(var.splunk_hec_info, "") != "" ? try(var.splunk_hec_url) == false && try(var.splunk_hec_token) == false : true
+      condition     = try(var.splunk_hec_info, "") != "" ? try(var.splunk_hec_url) == false && try(var.splunk_hec_token) == false : true
       error_message = "if splunk_hec_info is defined, splunk_hec_token and splunk_hec_url may not be defined"
     }
     precondition {
-      condition = try(var.splunk_hec_info, "") != "" ? length(var.splunk_hec_info) == var.aws_instance_count : true
+      condition     = try(var.splunk_hec_info, "") != "" ? length(var.splunk_hec_info) == var.aws_instance_count : true
       error_message = "when using splunk_hec_info, provide an amount of (token, url) value pairs equal to aws_instance_count"
     }
   }
@@ -258,11 +258,11 @@ locals {
 }
 
 resource "local_sensitive_file" "ssh_priv_key" {
-  filename = local.ssh_priv_key
+  filename        = local.ssh_priv_key
   file_permission = "400"
   # directory_permission = "700"
   # content  = tls_private_key.pk.private_key_pem
-  content  = tls_private_key.pk.private_key_openssh
+  content = tls_private_key.pk.private_key_openssh
 }
 
 resource "local_file" "ssh_client_config" {
