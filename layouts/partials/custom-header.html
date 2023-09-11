@@ -1,3 +1,18 @@
+<script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous"></script>
+<script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web-session-recorder.js" crossorigin="anonymous"></script>
+<script>
+    SplunkRum.init({ 
+        beaconUrl: 'https://rum-ingest.eu0.signalfx.com/v1/rum',
+        rumAuth: 'EDIbCJR4LlxWdXMLjkYX1g',
+        app: 'observability-workshop',
+        version: '1',
+        environment: 'observability-workshop-env'
+    });
+    SplunkSessionRecorder.init({
+        beaconUrl: 'https://rum-ingest.eu0.signalfx.com/v1/rumreplay',
+        rumAuth: 'EDIbCJR4LlxWdXMLjkYX1g'
+    });
+</script> 
 <style>
     /* we limit width if we have large screens */
     @media screen and (min-width: 1300px) {
