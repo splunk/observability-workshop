@@ -1,0 +1,12 @@
+{
+  "splunk_hec_info": [
+    {
+      "token": "token1",
+      "url": "https://host1.splunkcloud.com"
+    },
+    {
+      "token": "token2",
+      "url": "https://host2.splunkcloud.com"
+    }
+  ]
+}
