@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+tf=terraform
+S=confgo
+$tf plan -input=false -var-file="${S}.tfvars" -var-file="confgo-hec-info.json" -out "tfplan-${S}-create" && $tf apply "tfplan-${S}-create"
