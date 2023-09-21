@@ -27,7 +27,7 @@ Remaining in your AWS/EC2 instance, change into the `o11y-cloud-jumpstart` direc
 {{% tab title="Change directory" %}}
 
 ``` bash
-cd observability-content-contrib/integration-examples/terraform-jumpstart
+cd ~/observability-content-contrib/integration-examples/terraform-jumpstart
 ```
 
 {{% /tab %}}
