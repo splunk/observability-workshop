@@ -583,7 +583,7 @@ spec:
   selector:
     matchLabels:
       app: loadgenerator
-  replicas: 25
+  replicas: 8
   template:
     metadata:
       labels:
