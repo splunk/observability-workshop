@@ -227,6 +227,10 @@ resource "aws_instance" "observability-instance" {
     volume_size = var.instance_disk_aws
   }
 
+  # metadata_options {
+  #   http_tokens = "required"
+  # }
+
   tags = merge(
     local.common_tags,
     {
@@ -257,7 +261,7 @@ resource "aws_instance" "observability-instance" {
 }
 
 locals {
-  ssh_priv_key = pathexpand("~/.ssh/id_o11y-workshop-${var.slug}")
+  ssh_priv_key = "o11y-workshop-${var.slug}.key"
 }
 
 resource "local_sensitive_file" "ssh_priv_key" {
@@ -269,7 +273,7 @@ resource "local_sensitive_file" "ssh_priv_key" {
 }
 
 resource "local_file" "ssh_client_config" {
-  filename = pathexpand("~/.ssh/config.d/o11y-workshop-${var.slug}")
+  filename        = "o11y-workshop-${var.slug}.conf"
   file_permission = "600"
   content = templatefile("${path.module}/templates/ssh_client_config.tpl",
     {
