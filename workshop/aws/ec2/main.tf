@@ -251,7 +251,7 @@ resource "aws_instance" "observability-instance" {
       error_message = "if splunk_hec_info is defined, splunk_hec_token and splunk_hec_url may not be defined"
     }
     precondition {
-      condition     = try(var.splunk_hec_info, "") != "" ? length(var.splunk_hec_info) == var.aws_instance_count : true
+      condition     = length(try(var.splunk_hec_info, [])) > 0 ? length(var.splunk_hec_info) == var.aws_instance_count : true
       error_message = "when using splunk_hec_info, provide an amount of (token, url) value pairs equal to aws_instance_count"
     }
   }
