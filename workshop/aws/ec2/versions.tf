@@ -5,6 +5,11 @@ terraform {
       #version = "3.74.1"
     }
 
+    signalfx = {
+      source = "splunk-terraform/signalfx"
+      version = "9.0.0"
+    }
+
     tls = {
       source  = "hashicorp/tls"
       version = "4.0.4"

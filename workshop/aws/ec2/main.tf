@@ -2,6 +2,12 @@ provider "aws" {
   region = var.aws_region
 }
 
+# Configure the SignalFx provider
+provider "signalfx" {
+  auth_token = var.splunk_api_token
+  api_url = "https://api.${var.splunk_realm}.signalfx.com"
+}
+
 locals {
   common_tags = {
     Component   = "o11y-for-${lower(var.slug)}"
@@ -251,9 +257,22 @@ resource "aws_instance" "observability-instance" {
       error_message = "if splunk_hec_info is defined, splunk_hec_token and splunk_hec_url may not be defined"
     }
     precondition {
-      condition     = length(try(var.splunk_hec_info, [])) > 0 ? length(var.splunk_hec_info) == var.aws_instance_count : true
+      condition     = length(try(var.splunk_hec_info, [])) > 0 ? length(var.splunk_hec_info) >= var.aws_instance_count : true
       error_message = "when using splunk_hec_info, provide an amount of (token, url) value pairs equal to aws_instance_count"
     }
+  }
+}
+
+resource "signalfx_webhook_integration" "webhook_confgo" {
+  count         = var.aws_instance_count
+  name          = "${lower(var.slug)}-${format("%02d", count.index + 1)}"
+
+  enabled       = true
+  url = try(var.splunk_hec_info[count.index].url, var.splunk_hec_url)
+
+  headers {
+    header_key   = "Authorization"
+    header_value = format("Splunk %s",try(var.splunk_hec_info[count.index].token, var.splunk_hec_token))
   }
 }
 
