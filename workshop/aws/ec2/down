@@ -18,7 +18,7 @@ done
 
 SLUG=$1
 
-WORKSPACE=o11y-for-$SLUG
+WORKSPACE=$SLUG
 NUKE_PLAN=tfplan-$SLUG-destroy
 TFVARS=( -var-file="$SLUG.tfvars" )
 

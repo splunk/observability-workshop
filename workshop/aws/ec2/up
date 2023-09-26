@@ -21,7 +21,7 @@ done
 
 SLUG=$1
 
-WORKSPACE=o11y-for-$SLUG
+WORKSPACE=$SLUG
 CREATE_PLAN=tfplan-$SLUG-create
 CLOUD_INIT=../../cloud-init/k3s.yaml
 TFVARS=( -var-file="$SLUG.tfvars")
