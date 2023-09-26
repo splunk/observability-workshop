@@ -267,7 +267,8 @@ resource "signalfx_webhook_integration" "webhook_confgo" {
   count         = var.aws_instance_count
   name          = "${lower(var.slug)}-${format("%02d", count.index + 1)}"
   enabled       = true
-  url           = format("https://k7dkmaumd6.execute-api.eu-central-1.amazonaws.com/Prod?token=%s&index=otel_events&url=%s", try(var.splunk_hec_info[count.index].token, var.splunk_hec_token), try(var.splunk_hec_info[count.index].url, var.splunk_hec_url))
+  # parse as rfc3986 uri, extract authority part as host, remove port
+  url           = format("https://k7dkmaumd6.execute-api.eu-central-1.amazonaws.com/Prod?token=%s&index=otel_events&url=%s", try(var.splunk_hec_info[count.index].token, var.splunk_hec_token), split(":", regex("^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?", try(var.splunk_hec_info[count.index].url, var.splunk_hec_url))[3])[0])
 }
 
 resource "signalfx_detector" "k8s_rogue_node_detector" {
