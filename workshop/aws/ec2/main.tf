@@ -262,7 +262,7 @@ resource "aws_instance" "observability-instance" {
 }
 
 locals {
-  ssh_priv_key = "o11y-workshop-${var.slug}.key"
+  ssh_priv_key = "ssh-${var.slug}.key"
 }
 
 resource "local_sensitive_file" "ssh_priv_key" {
@@ -274,7 +274,7 @@ resource "local_sensitive_file" "ssh_priv_key" {
 }
 
 resource "local_file" "ssh_client_config" {
-  filename        = "o11y-workshop-${var.slug}.conf"
+  filename        = "ssh-${var.slug}.conf"
   file_permission = "600"
   content = templatefile("${path.module}/templates/ssh_client_config.tpl",
     {
