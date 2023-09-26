@@ -1,7 +1,7 @@
 # Required
 aws_region = ""
-aws_instance_count = ""
-slug = ""
+aws_instance_count = 1
+slug = "staotel"
 splunk_access_token = ""
 splunk_api_token = ""
 splunk_realm = ""
