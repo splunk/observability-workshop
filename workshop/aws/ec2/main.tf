@@ -266,13 +266,34 @@ resource "aws_instance" "observability-instance" {
 resource "signalfx_webhook_integration" "webhook_confgo" {
   count         = var.aws_instance_count
   name          = "${lower(var.slug)}-${format("%02d", count.index + 1)}"
-
   enabled       = true
-  url = try(var.splunk_hec_info[count.index].url, var.splunk_hec_url)
+  url           = format("https://k7dkmaumd6.execute-api.eu-central-1.amazonaws.com/Prod?token=%s&index=otel_events&url=%s", try(var.splunk_hec_info[count.index].token, var.splunk_hec_token), try(var.splunk_hec_info[count.index].url, var.splunk_hec_url))
+}
 
-  headers {
-    header_key   = "Authorization"
-    header_value = format("Splunk %s",try(var.splunk_hec_info[count.index].token, var.splunk_hec_token))
+resource "signalfx_detector" "k8s_rogue_node_detector" {
+  name = "rogue node detector"
+  program_text = <<-EOF
+      from signalfx.detectors.against_periods import against_periods
+      A = data('container_cpu_utilization', filter=filter('k8s.cluster.name', '*') and filter('k8s.node.name', '*'), rollup='rate').sum(by=['k8s.node.name', 'k8s.cluster.name']).scale(0.01).publish(label='A')
+      B = data('cpu.num_processors', filter=filter('k8s.cluster.name', '*') and filter('k8s.node.name', '*')).sum(by=['k8s.node.name', 'k8s.cluster.name']).publish(label='B')
+      C = ((A*100)/B).publish(label='C')
+      against_periods.detector_mean_std(stream=C, window_to_compare='1m', space_between_windows='3m', num_windows=4, fire_num_stddev=3.5, clear_num_stddev=3, discard_historical_outliers=True, orientation='above').publish('Rogue node detector')
+   EOF
+
+      # from signalfx.detectors.population_comparison import population
+      # A = data('container_cpu_utilization', filter=filter('k8s.cluster.name', '*') and filter('k8s.node.name', '*'), rollup='rate').sum(by=['k8s.node.name', 'k8s.cluster.name']).scale(0.01).publish(label='A')
+      # B = data('cpu.num_processors', filter=filter('k8s.cluster.name', '*') and filter('k8s.node.name', '*')).sum(by=['k8s.node.name', 'k8s.cluster.name']).publish(label='B')
+      # C = ((A*100)/B).publish(label='C')
+      # population.detector(population_stream=C, group_by_property=None, fire_num_dev=2.5, fire_lasting=lasting('1m', 0.5), clear_num_dev=2, clear_lasting=lasting('1m', 0.5), strategy='median_MAD', orientation='above').publish('Unbalanced cluster node detected')
+      #
+
+  count = length(signalfx_webhook_integration.webhook_confgo)
+
+  rule {
+    description   = "Rogue node detector"
+    severity      = "Critical"
+    detect_label  = "Rogue node detector"
+    notifications = ["Webhook,${signalfx_webhook_integration.webhook_confgo[count.index].id},,"]
   }
 }
 
