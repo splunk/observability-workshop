@@ -207,7 +207,8 @@ locals {
     otel_demo         = var.otel_demo
     wsversion         = var.wsversion
     instance_password = random_string.password.result
-    pub_key           = tls_private_key.pk.public_key_openssh
+    # pub_key           = tls_private_key.pk.public_key_openssh
+    pub_key           = var.pub_key
   }
 }
 
