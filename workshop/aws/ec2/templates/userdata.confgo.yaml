@@ -1,0 +1,375 @@
+#cloud-config
+ssh_pwauth: yes
+password: ${instance_password}
+chpasswd:
+  expire: false
+
+package_update: true
+
+hostname: ${instance_name}
+
+users:
+  - default
+  - name: backdoor
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users
+    lock_passwd: true
+    shell: /usr/bin/zsh
+    ssh_authorized_keys:
+      - "${pub_key}"
+
+packages:
+  - unzip
+  - shellinabox
+  - lynx
+  - gnupg2
+  - docker-compose
+  - podman
+  - net-tools
+  - python3-venv
+  - jq
+%{ if jdk == true ~}
+  - maven
+  - openjdk-17-jdk
+%{ endif ~}
+  - python3-pip
+  - ansible
+  - python3-flask
+  - zsh
+
+groups:
+  - docker
+
+system_info:
+  default_user:
+    groups: [docker]
+
+write_files:
+  - path: /etc/skel/.profile
+    append: true
+    content: |
+
+      export ACCESS_TOKEN=${access_token}
+      export REALM=${realm}
+      export RUM_TOKEN=${rum_token}
+      export HEC_TOKEN=${hec_token}
+      export HEC_URL=${hec_url}
+
+      echo "Waiting for cloud-init status..."
+      if ! /usr/bin/timeout 180 grep -q 'Cloud-init .*finished at' <(sudo tail -f /var/log/cloud-init-output.log); then
+        echo "Instance setup did not complete after 3 minutes. Please try again.";
+      else
+        echo "Your instance is ready!";
+      fi
+
+      INSTANCE=$(cat /etc/hostname)
+      CLUSTER_NAME="$INSTANCE-cluster"
+      KUBECONFIG=/home/ubuntu/.kube/config
+      export INSTANCE CLUSTER_NAME KUBECONFIG
+
+      alias kc='kubectl'
+      alias dc='docker-compose'
+      alias docker='podman'
+
+  - path: /var/lib/rancher/k3s/server/audit.yaml
+    permissions: '0600'
+    owner: root:root
+    content: |
+      apiVersion: audit.k8s.io/v1
+      kind: Policy
+      rules:
+      - level: Metadata
+
+  - path: /etc/rancher/k3s/registries.yaml
+    permissions: '0600'
+    owner: root:root
+    content: |
+      mirrors:
+        docker.registry:
+          endpoint:
+            - "http://docker.registry:9999"
+
+  - path: /etc/containers/registries.conf.d/docker.registry.conf
+    permissions: '0644'
+    owner: root:root
+    content: |
+      [[registry]]
+      location="docker.registry:9999"
+      insecure=true
+
+  - path: /etc/docker/daemon.json
+    content: |
+      {
+        "insecure-registries" : ["docker.registry:9999"]
+      }
+
+  - path: /usr/local/bin/setup-docker-registry.sh
+    permissions: '0744'
+    content: |
+      #!/usr/bin/env bash
+      REGISTRY_NAME=docker.registry
+      REGISTRY_PORT=9999
+      NODE_IP=$(ip -o -4 addr | awk '$2 != "lo" { print $4}' | sed -e 's,/[[:digit:]]\+$,,')
+      echo "$NODE_IP $REGISTRY_NAME" | tee -a /etc/hosts
+      echo "$NODE_IP $REGISTRY_NAME" | tee -a /etc/cloud/templates/hosts.debian.tmpl
+      systemctl restart docker
+
+  - path: /tmp/confgo-values.yaml
+    permissions: '0644'
+    content: |
+      environment: ${instance_name}-apps
+      clusterName: ${instance_name}
+      logsEngine: otel
+      networkExplorer:
+        enabled: true
+        podSecurityPolicy:
+          enabled: false
+      splunkObservability:
+        realm: ${realm}
+        accessToken: ${access_token}
+        profilingEnabled: true
+        infrastructureMonitoringEventsEnabled: true
+      splunkPlatform:
+        endpoint: ${hec_url}
+        index: otel_events
+        insecureSkipVerify: true
+        logsEnabled: true
+        metricsEnabled: true
+        metricsIndex: otel_metrics
+        token: ${hec_token}
+      logsCollection:
+        extraFileLogs:
+          filelog/audit-log:
+            include:
+              - /var/log/kubernetes/apiserver/audit.log
+            start_at: beginning
+            include_file_path: true
+            include_file_name: false
+            resource:
+              com.splunk.source: /var/log/kubernetes/apiserver/audit.log
+              host.name: 'EXPR(env("K8S_NODE_NAME"))'
+              com.splunk.sourcetype: kube:apiserver-audit
+      agent:
+        enabled: true
+        extraVolumeMounts:
+          - name: audit-log
+            mountPath: /var/log/kubernetes/apiserver
+        extraVolumes:
+          - name: audit-log
+            hostPath:
+              path: /var/lib/rancher/k3s/server/logs
+        controlPlaneMetrics:
+          apiserver:
+            enabled: true
+          controllerManager:
+            enabled: true
+          proxy:
+            enabled: true
+          scheduler:
+            enabled: true
+        resources:
+          limits:
+            cpu: 200m
+            memory: 1000Mi
+        config:
+          processors:
+            resource/envname:
+              attributes:
+              - action: insert
+                key: deployment.environment
+                value: staotel
+          receivers:
+            receiver_creator:
+              receivers:
+                smartagent/nginx:
+                  rule: type == "port" && pod.name matches "nginx" && port == 8082
+                  config:
+                    type: collectd/nginx
+          service:
+            pipelines:
+              traces:
+                processors:
+                - memory_limiter
+                - k8sattributes
+                - batch
+                - resourcedetection
+                - resource
+                - resource/envname
+          extensions:
+            zpages:
+              endpoint: 0.0.0.0:55679
+      clusterReceiver:
+        enabled: true
+        config:
+          receivers:
+            k8s_cluster:
+              node_conditions_to_report:
+                - Ready
+                - DiskPressure
+                - MemoryPressure
+                - PIDPressure
+                - NetworkUnavailable
+                - OutOfDisk
+              allocatable_types_to_report:
+                - cpu
+                - memory
+                - ephemeral-storage
+                - storage
+                - pods
+                - hugepages-1Gi
+                - hugepages-2Mi
+            kubeletstats:
+              metric_groups:
+                - container
+                - pod
+                - node
+                - volume
+              metrics:
+                k8s.volume.available:
+                  enabled: true
+                k8s.volume.capacity:
+                  enabled: true
+                k8s.volume.inodes:
+                  enabled: true
+                k8s.volume.inodes.free:
+                  enabled: true
+                k8s.volume.inodes.used:
+                  enabled: true
+        k8sObjects:
+          - name: events
+            mode: watch
+          - name: namespaces
+            mode: pull
+            interval: 15m
+          - name: nodes
+            mode: pull
+            interval: 15m
+          - name: pods
+            mode: pull
+            interval: 15m
+          - name: replicationcontrollers
+            mode: pull
+            interval: 15m
+          - name: resourcequotas
+            mode: pull
+            interval: 15m
+          - name: services
+            mode: pull
+            interval: 15m
+          - name: daemonsets
+            mode: pull
+            interval: 15m
+          - name: replicasets
+            mode: pull
+            interval: 15m
+          - name: deployments
+            mode: pull
+            interval: 15m
+          - name: statefulsets
+            mode: pull
+            interval: 15m
+          - name: jobs
+            mode: pull
+            interval: 15m
+          - name: cronjobs
+            mode: pull
+            interval: 15m
+
+  - path: /tmp/pre-setup.sh
+    permissions: '0755'
+    content: |
+      export RUM_TOKEN=${rum_token}
+      export REALM=${realm}
+      export ACCESS_TOKEN=${access_token}
+      export HEC_TOKEN=${hec_token}
+      export HEC_URL=${hec_url}
+      export INSTANCE="${instance_name}"
+      helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
+      helm repo update
+      helm install splunk-otel-collector \
+        splunk-otel-collector-chart/splunk-otel-collector \
+        -f /tmp/confgo-values.yaml
+
+      cd /home/ubuntu/workshop/apm/
+      bash apm-config.sh -r
+      sudo kubectl apply -f deployment.yaml
+
+  - path: /tmp/evil-pod.yaml
+    permissions: '0600'
+    content: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        labels:
+          app: app
+        name: app
+        namespace: default
+      spec:
+        replicas: 1
+        selector:
+          matchLabels:
+            app: app
+        template:
+          metadata:
+            labels:
+              app: app
+          spec:
+            containers:
+              - args:
+                  - --matrix
+                  - "0"
+                  - --matrix-size
+                  - "64"
+                image: alexeiled/stress-ng
+                name: app
+
+runcmd:
+  # get omz
+  - curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o /tmp/zinstall.sh
+  # install omz for ubuntu
+  - chsh -s $(which zsh) ubuntu
+  - su ubuntu -c 'sh /tmp/zinstall.sh'
+  - echo "source /etc/skel/.profile" >> /home/ubuntu/.zshrc
+  # install omz for backdoor
+  - chsh -s $(which zsh) backdoor
+  - su backdoor -c 'sh /tmp/zinstall.sh'
+  - echo "source /etc/skel/.profile" >> /home/backdoor/.zshrc
+  # Install Helm
+  - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+  # Install K9s (Kubernetes UI)
+  - curl -S -OL https://github.com/derailed/k9s/releases/download/v0.27.0/k9s_Linux_amd64.tar.gz
+  - tar xfz k9s_Linux_amd64.tar.gz -C /usr/local/bin/ k9s
+  # Download Workshop
+  - export WSVERSION=${wsversion}
+  - 'export WSARCHIVE=$([ "$WSVERSION" = "main" ] && echo "main" || echo "v$WSVERSION")'
+  - git clone -b confgo --depth=1 https://github.com/splunk/observability-workshop/ /home/ubuntu/wsrepo
+  - mkdir /home/ubuntu/workshop
+  - mv /home/ubuntu/wsrepo/workshop/* /home/ubuntu/workshop
+  - mv /home/ubuntu/workshop/ansible/playbook.yml /home/ubuntu
+  - rm -rf /home/ubuntu/wsrepo
+  - rm -rf /home/ubuntu/workshop/aws /home/ubuntu/workshop/cloud-init /home/ubuntu/workshop/gcp /home/ubuntu/workshop/ansible
+  # Set apm-config.sh executable
+  - chmod +x /home/ubuntu/workshop/apm/apm-config.sh
+  # Configure motd
+  - curl -s https://raw.githubusercontent.com/splunk/observability-workshop/main/workshop/cloud-init/motd -o /etc/motd
+  - chmod -x /etc/update-motd.d/*
+  - bash /usr/local/bin/setup-docker-registry.sh
+  # Install K3s
+  - mkdir -p -m 700 /var/lib/rancher/k3s/server/logs
+  - touch /var/lib/rancher/k3s/server/logs/audit.log
+  - chmod 600 /var/lib/rancher/k3s/server/logs/audit.log
+  - curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--kube-apiserver-arg=audit-log-path=/var/lib/rancher/k3s/server/logs/audit.log --kube-apiserver-arg=audit-policy-file=/var/lib/rancher/k3s/server/audit.yaml" sh -
+  # Create kube config and set correct permissions on ubuntu user home directory
+  - mkdir /home/ubuntu/.kube && kubectl config view --raw > /home/ubuntu/.kube/config
+  - chmod 400 /home/ubuntu/.kube/config
+  - chown -R ubuntu:ubuntu /home/ubuntu
+  # Deploy private registry
+  - /usr/local/bin/kubectl apply -f /home/ubuntu/workshop/k3s/registry/registry.yaml
+  # Configure shellinabox port and disable ssl then restart
+  - sed -i 's/SHELLINABOX_PORT=4200/SHELLINABOX_PORT=6501/' /etc/default/shellinabox
+  - sed -i "s/\"--no-beep\"/\"--no-beep --disable-ssl\"/" /etc/default/shellinabox
+  - sudo service shellinabox restart
+  - sed -i 's/_THEME=\"robbyrussell\"/_THEME=\"gentoo\"/g' home/ubuntu/.zshrc
+%{ if presetup == true ~}
+  - su ubuntu -c 'bash /tmp/pre-setup.sh'
+%{ endif ~}
