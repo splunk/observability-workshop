@@ -2,8 +2,8 @@
 
 set -Eeuo pipefail
 
-if [[ "$#" -ne 3 ]]; then
-	echo "Usage: up SLUG COUNT REGION"
+if [[ "$#" -ne 1 ]]; then
+	echo "Usage: down SLUG"
 	exit 1
 fi
 
@@ -17,12 +17,10 @@ for cmd in $COMMANDS; do
 done
 
 SLUG=$1
-COUNT=$2
-REGION=$3
 
 WORKSPACE=o11y-for-$SLUG
 NUKE_PLAN=tfplan-$SLUG-destroy
-TFVARS=( -var="slug=$SLUG" -var="aws_instance_count=$COUNT" -var="aws_region=$REGION" -var="splunk_presetup=false" )
+TFVARS=( -var-file="$SLUG.tfvars" )
 
 terraform workspace select "$WORKSPACE"
 terraform plan -destroy "${TFVARS[@]}" -input=false -out="$NUKE_PLAN"
