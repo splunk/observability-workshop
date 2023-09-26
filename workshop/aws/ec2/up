@@ -4,11 +4,9 @@ set -Eeuo pipefail
 
 STATUS_LOG=/run/cloud-init/status.json
 
-if [[ "$#" -ne 3 ]]; then
-	echo "Usage: up SLUG COUNT REGION"
+if [[ "$#" -ne 1 ]]; then
+	echo "Usage: up SLUG"
 	echo "  SLUG   Short name/tag, e.g. acme. Used to derive project name, aws tags and terraform workspace."
-	echo "  COUNT  Amount of instances, e.g. 12."
-	echo "  REGION AWS region for instances, e.g. eu-central-1."
 	exit 1
 fi
 
@@ -22,13 +20,11 @@ for cmd in $COMMANDS; do
 done
 
 SLUG=$1
-COUNT=$2
-REGION=$3
 
 WORKSPACE=o11y-for-$SLUG
 CREATE_PLAN=tfplan-$SLUG-create
 CLOUD_INIT=../../cloud-init/k3s.yaml
-TFVARS=( -var="slug=$SLUG" -var="aws_instance_count=$COUNT" -var="aws_region=$REGION" -var="splunk_presetup=false" )
+TFVARS=( -var-file="$SLUG.tfvars")
 
 terraform workspace select "$WORKSPACE" || terraform workspace new "$WORKSPACE"
 # shellcheck disable=SC2086
@@ -37,7 +33,7 @@ while :; do
 	terraform apply -input=false "$CREATE_PLAN"
 
 	sanity_check_tmp=$(mktemp -d)
-	yq '.password' "$CLOUD_INIT" | pssh -o "${sanity_check_tmp}" --par 60 -l ubuntu -A --hosts <(terraform output --json ip_addresses|jq -r '.[]') -x "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o PreferredAuthentications=password -o PubkeyAuthentication=no" -- "cat ${STATUS_LOG}"
+	pssh -o "${sanity_check_tmp}" --par 60 -l ubuntu -A --hosts <(terraform output --json ip_addresses|jq -r '.[]') -x "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o PubkeyAuthentication=yes IdentitiesOnly=yes PasswordAuthentication=no ChallengeResponseAuthentication=no CanonicalizeHostname=yes" -- "cat ${STATUS_LOG}"
 
 	ERR_COUNT=$(jq ' .v1 | .[] | values | select(.errors? | length > 0) | .errors[] ' "${sanity_check_tmp}"/* | jq -rs '. | length')
 
