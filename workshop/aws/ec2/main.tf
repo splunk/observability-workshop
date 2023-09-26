@@ -183,9 +183,8 @@ resource "random_string" "password" {
   override_special = "_%@$#"
 }
 
-# ED25519 key
+# ssh RSA key
 resource "tls_private_key" "pk" {
-  # algorithm = "ED25519"
   algorithm = "RSA"
   rsa_bits  = 4096
 }
@@ -218,6 +217,8 @@ resource "aws_instance" "observability-instance" {
   instance_type          = var.aws_instance_type
   subnet_id              = aws_subnet.o11y_ws_subnets.*.id[count.index % length(aws_subnet.o11y_ws_subnets)]
   vpc_security_group_ids = [aws_security_group.o11y-ws-sg.id]
+
+  key_name = aws_key_pair.kp.key_name
 
   user_data = templatefile("${path.module}/templates/${var.user_data_tpl}", merge(local.template_vars,
     {
