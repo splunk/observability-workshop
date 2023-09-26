@@ -272,29 +272,22 @@ resource "signalfx_webhook_integration" "webhook_confgo" {
 }
 
 resource "signalfx_detector" "k8s_rogue_node_detector" {
-  name = "rogue node detector"
+  name = "Rogue node detector"
   program_text = <<-EOF
-      from signalfx.detectors.against_periods import against_periods
+      from signalfx.detectors.against_recent import against_recent
       A = data('container_cpu_utilization', filter=filter('k8s.cluster.name', '*') and filter('k8s.node.name', '*'), rollup='rate').sum(by=['k8s.node.name', 'k8s.cluster.name']).scale(0.01).publish(label='A')
       B = data('cpu.num_processors', filter=filter('k8s.cluster.name', '*') and filter('k8s.node.name', '*')).sum(by=['k8s.node.name', 'k8s.cluster.name']).publish(label='B')
-      C = ((A*100)/B).publish(label='C')
-      against_periods.detector_mean_std(stream=C, window_to_compare='1m', space_between_windows='3m', num_windows=4, fire_num_stddev=3.5, clear_num_stddev=3, discard_historical_outliers=True, orientation='above').publish('Rogue node detector')
-   EOF
-
-      # from signalfx.detectors.population_comparison import population
-      # A = data('container_cpu_utilization', filter=filter('k8s.cluster.name', '*') and filter('k8s.node.name', '*'), rollup='rate').sum(by=['k8s.node.name', 'k8s.cluster.name']).scale(0.01).publish(label='A')
-      # B = data('cpu.num_processors', filter=filter('k8s.cluster.name', '*') and filter('k8s.node.name', '*')).sum(by=['k8s.node.name', 'k8s.cluster.name']).publish(label='B')
-      # C = ((A*100)/B).publish(label='C')
-      # population.detector(population_stream=C, group_by_property=None, fire_num_dev=2.5, fire_lasting=lasting('1m', 0.5), clear_num_dev=2, clear_lasting=lasting('1m', 0.5), strategy='median_MAD', orientation='above').publish('Unbalanced cluster node detected')
-      #
-
-  count = length(signalfx_webhook_integration.webhook_confgo)
+      C = ((A*100)/B).mean(over='3m').publish(label='C')
+      against_recent.detector_growth_rate_vanilla(stream=C, current_window='3m', historical_window='30m', fire_growth_rate_threshold=0.3, clear_growth_rate_threshold=0.2, orientation='above', calculation_mode='vanilla', auto_resolve_after='10m').publish('Rogue node detector')
+  EOF
 
   rule {
     description   = "Rogue node detector"
     severity      = "Critical"
     detect_label  = "Rogue node detector"
-    notifications = ["Webhook,${signalfx_webhook_integration.webhook_confgo[count.index].id},,"]
+    notifications = [
+      for i, v in signalfx_webhook_integration.webhook_confgo:
+        "Webhook,${v.id},,"]
   }
 }
 
