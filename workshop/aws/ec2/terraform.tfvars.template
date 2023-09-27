@@ -18,5 +18,5 @@ splunk_jdk = false
 otel_demo = false
 
 # Advanced
-wsversion = "5.0"
+wsversion = "5.1"
 user_data_tpl = "userdata.yaml"
