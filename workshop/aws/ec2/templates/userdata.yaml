@@ -1,5 +1,9 @@
 #cloud-config
 ssh_pwauth: yes
+%{ if pub_key != "" ~}
+ssh_authorized_keys:
+  - ${pub_key}
+%{ endif ~}
 password: ${instance_password}
 chpasswd:
   expire: false
@@ -7,6 +11,9 @@ chpasswd:
 package_update: true
 
 hostname: ${instance_name}
+
+users:
+  - default
 
 packages:
   - unzip
