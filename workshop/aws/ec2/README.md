@@ -111,3 +111,13 @@ $ terraform output -json ip_addresses > ec2_ips.json
 # Get the randomly generated password for your EC2 instances. Copy/save this!
 $ terraform output -json instance_password
 ```
+
+### Accessing instances as instructor via ssh
+
+The `var.pub_key` (if provided) is added to the default user `ubuntu` on the ec2 instances. In addition, ssh configuration and a keypair to access instances are generated as `ssh-<slug>.conf` and `ssh-<slug>.key`.
+
+To access an instance for a workshop with slug `acme`, use:
+
+```bash
+ssh -F ssh-acme.conf acme-01
+```
