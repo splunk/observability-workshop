@@ -51,20 +51,24 @@ variable "public_subnet_ids" {
 
 variable "aws_region" {
   description = "AWS Region (for example: us-west-2)"
+  type        = string
   nullable    = false
 }
 
 variable "slug" {
   description = "Short name/tag, e.g. acme. Used to derive project and hostnames, AWS tags and terraform workspace"
+  type        = string
 }
 
 variable "splunk_access_token" {
   description = "Splunk Oberservability Cloud Access Token"
+  type        = string
   nullable    = false
 }
 
 variable "splunk_rum_token" {
   description = "Splunk Oberservability Cloud RUM Token"
+  type        = string
   nullable    = false
 }
 
