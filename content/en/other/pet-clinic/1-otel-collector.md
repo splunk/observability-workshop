@@ -38,8 +38,6 @@ In the output check the following environment variables are present and have val
 ACCESS_TOKEN
 REALM
 RUM_TOKEN
-HEC_TOKEN
-HEC_URL
 ```
 
 For the purposes of this workshop **all** of the above are required. If any are missing, please contact your instructor.
@@ -56,7 +54,7 @@ We can then go ahead and install the Collector. There are some additional parame
 
 ``` bash
 curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-collector.sh && \
-sudo sh /tmp/splunk-otel-collector.sh --with-instrumentation --deployment-environment $INSTANCE-petclinic --realm $REALM -- $ACCESS_TOKEN --hec-token $HEC_TOKEN --hec-url $HEC_URL --enable-profiler --enable-profiler-memory --enable-metrics --mode agent --without-fluentd
+sudo sh /tmp/splunk-otel-collector.sh --with-instrumentation --deployment-environment $INSTANCE-petclinic --realm $REALM -- $ACCESS_TOKEN --enable-profiler --enable-profiler-memory --enable-metrics --mode agent --without-fluentd
 ```
 
 {{% notice style="info" title="AWS/EC2 instances" %}}

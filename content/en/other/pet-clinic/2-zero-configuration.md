@@ -85,33 +85,7 @@ OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader clas
 
 {{% /tab %}}
 
-## 3. Configure Profiling Data Collection
-
-We need to edit the collector configuration file `/etc/otel/collector/agent_config.yaml` and add a new exporter to send the profiling data to Splunk Observability Cloud:
-
-``` yaml {hl_lines="1-3"}
-  splunk_hec/profiling:
-    token: "${SPLUNK_ACCESS_TOKEN}"
-    endpoint: "${SPLUNK_INGEST_URL}/v1/log"
-```
-
-We, also, then need to create a new pipeline called `logs/profiling` under the `service:` section:
-
-``` yaml {hl_lines="1-7"}
-    logs/profiling:
-      receivers: [otlp]
-      processors:
-      - memory_limiter
-      - batch
-      - resourcedetection
-      exporters: [splunk_hec/profiling]
-```
-
-Save the changes and exit the editor, then restart the collector:
-
-``` bash
-sudo systemctl restart splunk-otel-collector
-```
+## 3. Review Profiling Data Collection
 
 You can now visit the Splunk APM UI and examine the application components, traces, profiling, DB Query performance and metrics. From the left hand menu **APM → Explore**, click the environment dropdown and select your own environment (which is prefixed with your hostname of your instance).
 
