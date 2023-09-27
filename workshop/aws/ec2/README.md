@@ -8,7 +8,7 @@ You will need:
 - Realm
 - A CSV containing the email addresses of your attendees
 
-Follow the guidance provided by SWIPE and after provisioing completes, you will be provided with a **ACCESS** and **RUM** token. These will be used to populate the `terraform.tfvars` file in **Step 5** below.
+Follow the guidance provided by SWIPE and after provisioning completes, you will be provided with a **ACCESS** and **RUM** token. These will be used to populate the `terraform.tfvars` file in **Step 5** below.
 
 ## Instructions on how to set up EC2 cloud instances for participants
 
@@ -57,14 +57,16 @@ The following variables are available. Edit `terraform.tfvars` to reflect what y
 - `aws_instance_count`: How many instances?
 - `slug`: Short name/tag, e.g. acme. Used to derive project and hostnames, AWS tags and terraform workspace e.g. `emea-ws`)
 - `splunk_access_token`: Observability Access Token
-- `splunk_realm`: Observability Realm.
+- `splunk_realm`: Observability Realm
 - `splunk_rum_token`: Observability RUM Token
-- `splunk_hec_url`: Splunk HEC URL. 
+- `splunk_hec_url`: Splunk HEC URL
 - `splunk_hec_token`: Splunk HEC Token
 
 ### Optional variables
 
 - `subnet_count`: How many subnets to create. The default is 2.
+- `user_data_tpl`: name of the cloud init template for the instances, read from `templates/` folder. The default is `userdata.yaml`.
+- `pub_key`: ssh public key to provision on the instances
 
 ### Instance type variables
 

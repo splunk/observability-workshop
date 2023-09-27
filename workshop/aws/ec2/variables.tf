@@ -70,16 +70,19 @@ variable "splunk_rum_token" {
 
 variable "splunk_realm" {
   description = "Splunk Oberservability Cloud Realm (us0, us1, us2, eu0, jp0, au0)"
+  type        = string
   nullable    = false
 }
 
 variable "splunk_hec_token" {
   description = "Splunk Cloud HEC Token"
+  type        = string
   nullable    = false
 }
 
 variable "splunk_hec_url" {
   description = "Splunk Cloud HEC URL"
+  type        = string
   nullable    = false
 }
 
@@ -100,6 +103,7 @@ data "aws_ami" "latest-ubuntu" {
 
 variable "pub_key" {
   description = "public key to provision on the instance"
+  type        = string
   nullable    = false
 }
 
