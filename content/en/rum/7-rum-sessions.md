@@ -1,7 +1,7 @@
 ---
-title: 8. Analyzing RUM Sessions
-linkTitle: 8. Analyzing RUM Sessions
-weight: 8
+title: 7. Analyzing RUM Sessions
+linkTitle: 7. Analyzing RUM Sessions
+weight: 7
 ---
 * Dive into RUM Session information in the  RUM UI
 * Identify Javascript errors in the Span of an user interaction

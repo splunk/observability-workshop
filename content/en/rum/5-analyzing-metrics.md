@@ -1,6 +1,6 @@
 ---
-title: 6. Analyzing RUM Metrics
-weight: 6
+title: 5. Analyzing RUM Metrics
+weight: 5
 ---
 
 * See RUM Metrics and Session information in the RUM UI

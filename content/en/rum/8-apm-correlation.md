@@ -1,7 +1,7 @@
 ---
-title: 9. Correlate between Splunk RUM and APM backend services
-linkTitle: 9. APM & RUM Correlation
-weight: 9
+title: 8. Correlate between Splunk RUM and APM backend services
+linkTitle: 8. APM & RUM Correlation
+weight: 8
 ---
 * Continue with the RUM Session information in the RUM UI
 * See correlated APM traces and logs in the APM & Log Observer UI
