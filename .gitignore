@@ -48,3 +48,5 @@ workshop/aws/ec2/terraform.tfars.save
 workshop/aws/ec2/terraform.tfvars
 workshop/aws/ec2/terraform.tfvars.save
 workshop/aws/ec2/terraform.tfvars.us1.1.pre copy.tfvars
+workshop/aws/ec2/*.conf
+workshop/aws/ec2/*.key
