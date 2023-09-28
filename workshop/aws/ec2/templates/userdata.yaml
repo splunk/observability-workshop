@@ -146,6 +146,12 @@ write_files:
         --set="environment=${instance_name}-apm-env" \
         splunk-otel-collector-chart/splunk-otel-collector \
         -f /home/ubuntu/workshop/k3s/otel-collector.yaml
+
+        # use IDMSv2
+        TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+        RUM_FRONTEND_IP=$(curl -sSH "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/local-ipv4)
+        export RUM_FRONTEND_IP
+
         cd /home/ubuntu/workshop/apm/
         bash apm-config.sh -r
         sudo kubectl apply -f deployment.yaml

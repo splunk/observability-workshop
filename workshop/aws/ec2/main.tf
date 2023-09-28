@@ -229,9 +229,9 @@ resource "aws_instance" "observability-instance" {
     volume_size = var.instance_disk_aws
   }
 
-  # metadata_options {
-  #   http_tokens = "required"
-  # }
+  metadata_options {
+    http_tokens = "required"
+  }
 
   tags = merge(
     local.common_tags,
