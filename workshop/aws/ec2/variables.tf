@@ -25,7 +25,7 @@ variable "otel_demo" {
 variable "wsversion" {
   description = "Workshop version"
   type        = string
-  default     = "5.1"
+  default     = "5.2"
 }
 
 variable "user_data_tpl" {
