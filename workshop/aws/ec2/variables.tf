@@ -108,7 +108,7 @@ data "aws_ami" "latest-ubuntu" {
 variable "pub_key" {
   description = "public key to provision on the instance"
   type        = string
-  nullable    = false
+  default     = ""
 }
 
 variable "aws_instance_type" {
