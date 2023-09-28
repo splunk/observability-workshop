@@ -47,6 +47,7 @@ write_files:
     content: |
 
       export ACCESS_TOKEN=${access_token}
+      export API_TOKEN=${api_token}
       export REALM=${realm}
       export RUM_TOKEN=${rum_token}
       export HEC_TOKEN=${hec_token}
@@ -62,7 +63,7 @@ write_files:
 
       terraform() {
 
-        echo >&2 "Using ACCESS_TOKEN=${access_token}"
+        echo >&2 "Using API_TOKEN=${api_token}"
         echo >&2 "Using REALM=${realm}"
 
         command terraform "$@"
@@ -129,6 +130,7 @@ write_files:
       export RUM_TOKEN=${rum_token}
       export REALM=${realm}
       export ACCESS_TOKEN=${access_token}
+      export API_TOKEN=${api_token}
       export HEC_TOKEN=${hec_token}
       export HEC_URL=${hec_url}
       export INSTANCE="${instance_name}"
@@ -164,6 +166,7 @@ write_files:
       export RUM_TOKEN=${rum_token}
       export REALM=${realm}
       export ACCESS_TOKEN=${access_token}
+      export API_TOKEN=${api_token}
       export HEC_TOKEN=${hec_token}
       export HEC_URL=${hec_url}
       export INSTANCE="${instance_name}"

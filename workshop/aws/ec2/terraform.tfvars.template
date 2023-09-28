@@ -3,6 +3,7 @@ aws_region = ""
 aws_instance_count = ""
 slug = ""
 splunk_access_token = ""
+splunk_api_token = ""
 splunk_realm = ""
 
 # Required if splunk_presetup is true, optional otherwise. See variables.tf and README.md

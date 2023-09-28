@@ -34,10 +34,10 @@ cd ~/observability-content-contrib/integration-examples/terraform-jumpstart
 
 The environment variables needed should already be set from [Installation using Helm](../gdi/#2-installation-using-helm). If not, create the following environment variables to use in the Terraform steps below
 
-{{% tab title="Export ACCESS TOKEN" %}}
+{{% tab title="Export API TOKEN" %}}
 
 ``` bash
-export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
+export API_TOKEN="<replace_with_O11y-Workshop-API_TOKEN>"
 ```
 
 {{% /tab %}}
@@ -124,7 +124,7 @@ The plan command alone will not actually carry out the proposed changes, and so 
 {{% tab title="Execution Plan" %}}
 
 ```bash
-terraform plan -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$(hostname)]"
+terraform plan -var="api_token=$API_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$(hostname)]"
 ```
 
 {{% /tab %}}
@@ -145,7 +145,7 @@ If the plan executes successfully, we can go ahead and apply:
 
 The `terraform apply` command executes the actions proposed in the Terraform plan above.
 
-The most straightforward way to use `terraform apply` is to run it without any arguments at all, in which case it will automatically create a new execution plan (as if you had run terraform plan) and then prompt you to provide the Access Token, Realm (the prefix defaults to `Splunk`) and approve the plan, before taking the indicated actions.
+The most straightforward way to use `terraform apply` is to run it without any arguments at all, in which case it will automatically create a new execution plan (as if you had run terraform plan) and then prompt you to provide the API Token, Realm (the prefix defaults to `Splunk`) and approve the plan, before taking the indicated actions.
 
 Due to this being a workshop it is required that the prefix is to be unique so you need to run the `terraform apply` below.
 
@@ -153,7 +153,7 @@ Due to this being a workshop it is required that the prefix is to be unique so y
 {{% tab title="Apply Plan" %}}
 
 ``` bash
-terraform apply -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$(hostname)]"
+terraform apply -var="api_token=$API_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$(hostname)]"
 ```
 
 {{% /tab %}}
@@ -188,7 +188,7 @@ Now go and destroy all the Detectors and Dashboards that were previously applied
 {{% tab title="Destroy" %}}
 
 ``` bash
-terraform destroy -var="access_token=$ACCESS_TOKEN" -var="realm=$REALM"
+terraform destroy -var="api_token=$API_TOKEN" -var="realm=$REALM"
 ```
 
 {{% /tab %}}

@@ -63,6 +63,7 @@ Initializing provider plugins...
 ### Required variables
 
 - `splunk_access_token`: Observability Access Token
+- `splunk_api_token`: Observability API Token
 - `splunk_rum_token`: Observability RUM Token
 - `splunk_realm`: Observability Realm e.g. `eu0`
 - `splunk_hec_url`: Splunk HEC URL

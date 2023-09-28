@@ -197,6 +197,7 @@ resource "aws_key_pair" "kp" {
 locals {
   template_vars = {
     access_token      = var.splunk_access_token
+    api_token         = var.splunk_api_token
     rum_token         = var.splunk_rum_token
     realm             = var.splunk_realm
     hec_token         = var.splunk_hec_token

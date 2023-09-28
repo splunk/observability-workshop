@@ -15,6 +15,12 @@ variable "splunk_access_token" {
   nullable    = false
 }
 
+variable "splunk_api_token" {
+  description = "Splunk Observability Cloud API Token"
+  type        = string
+  nullable    = false
+}
+
 variable "splunk_rum_token" {
   description = "Splunk Observability Cloud RUM Token"
   type        = string
