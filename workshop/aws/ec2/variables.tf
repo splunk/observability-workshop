@@ -63,13 +63,13 @@ variable "splunk_realm" {
 variable "splunk_hec_token" {
   description = "Splunk Cloud HEC Token"
   type        = string
-  nullable    = false
+  default     = ""
 }
 
 variable "splunk_hec_url" {
   description = "Splunk Cloud HEC URL"
   type        = string
-  nullable    = false
+  default     = ""
 }
 
 variable "splunk_presetup" {
