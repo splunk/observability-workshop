@@ -48,7 +48,7 @@ These attributes are set automatically by the SDK, to record information about t
 
 ### Containers
 
-For services running in containers, there are numerous attributes used to describe the container runtime, such as `container.id`, `container.name`, and `container.image.name`.  The full list can be found [here](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/host.md).
+For services running in containers, there are numerous attributes used to describe the container runtime, such as `container.id`, `container.name`, and `container.image.name`.  The full list can be found [here](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/container.md)).
 
 ### Hosts
 
