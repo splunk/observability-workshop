@@ -16,4 +16,4 @@ splunk_jdk = false
 otel_demo = false
 
 # Advanced
-wsversion = "5.3"
+wsversion = "5.4"
