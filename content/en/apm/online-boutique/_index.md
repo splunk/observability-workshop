@@ -30,7 +30,7 @@ To deploy the Online Boutique application into K3s, run the `apm-config.sh` scri
 
 ``` bash
 cd ~/workshop/apm
-./apm-config.sh
+./apm-config.sh -r
 kubectl apply -f deployment.yaml
 ```
 
