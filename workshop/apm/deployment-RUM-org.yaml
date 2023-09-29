@@ -1009,5 +1009,6 @@ spec:
       #    value: "192.168.1.99"
       containers:
       - name: rum-loadgen
-        image:  quay.io/phagen/rumloadgen:5.1
+        #image:  quay.io/phagen/rumloadgen:5.1
+        image: rcastley895/rumloadgen:5.2
         imagePullPolicy: Always
