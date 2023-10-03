@@ -157,8 +157,6 @@ runcmd:
   - mkdir /home/ubuntu/workshop
   - mv /home/ubuntu/observability-workshop-$WSVERSION/workshop/* /home/ubuntu/workshop
   - rm -rf /home/ubuntu/observability-workshop-$WSVERSION
-  # Set apm-config.sh executable
-  - chmod +x /home/ubuntu/workshop/apm/apm-config.sh
   # Download Splunk Observability Cloud Jumpstart
   - curl -s -L https://github.com/splunk/signalfx-jumpstart/archive/main.zip -o jumpstart.zip
   - unzip -qq jumpstart.zip -d /home/ubuntu/

@@ -23,14 +23,13 @@ If this is the case, continue with [Deploy Online Boutique](#2-deploy-online-bou
 
 ## 2. Deploy Online Boutique
 
-To deploy the Online Boutique application into K3s, run the `apm-config.sh` script, then apply the deployment:
+To deploy the Online Boutique application into K3s apply the deployment:
 
 {{< tabs >}}
 {{% tab title="Deploy Online Boutique" %}}
 
 ``` bash
 cd ~/workshop/apm
-./apm-config.sh -r
 kubectl apply -f deployment.yaml
 ```
 

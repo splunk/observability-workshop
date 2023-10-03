@@ -124,6 +124,25 @@ write_files:
       echo "$NODE_IP $REGISTRY_NAME" | tee -a /etc/cloud/templates/hosts.debian.tmpl
       systemctl restart docker
 
+  - path: /tmp/workshop-secret.yaml
+    permissions: '0755'
+    content: |
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: workshop-secret
+        namespace: default
+      type: Opaque
+      stringData:
+        rum_app: ${instance_name}-rum-app
+        rum_env: ${instance_name}-rum-env
+        access_token: ${access_token}
+        api_token: ${api_token}
+        realm: ${realm}
+        rum_token: ${rum_token}
+        hec_token: ${hec_token}
+        hec_url: ${hec_url}
+
   - path: /tmp/pre-setup.sh
     permissions: '0755'
     content: |
@@ -155,7 +174,6 @@ write_files:
         export RUM_FRONTEND_IP
 
         cd /home/ubuntu/workshop/apm/
-        bash apm-config.sh -r
         sudo kubectl apply -f deployment.yaml
         echo ${instance_name} > /home/ubuntu/.helmok
       fi
@@ -214,8 +232,6 @@ runcmd:
   - mv /home/ubuntu/workshop/ansible/playbook.yml /home/ubuntu
   - rm -rf /home/ubuntu/observability-workshop-$WSVERSION
   - rm -rf /home/ubuntu/workshop/aws /home/ubuntu/workshop/cloud-init /home/ubuntu/workshop/gcp /home/ubuntu/workshop/ansible
-  # Set apm-config.sh executable
-  - chmod +x /home/ubuntu/workshop/apm/apm-config.sh
   # Download Splunk Observability Content Contrib Repo
   - curl -s -L https://github.com/splunk/observability-content-contrib/archive/main.zip -o content-contrib.zip
   - unzip -qq content-contrib.zip -d /home/ubuntu/
@@ -235,6 +251,7 @@ runcmd:
   - chown -R ubuntu:ubuntu /home/ubuntu
   # Deploy private registry
   - /usr/local/bin/kubectl apply -f /home/ubuntu/workshop/k3s/registry/registry.yaml
+  - /usr/local/bin/kubectl apply -f /tmp/workshop-secret.yaml
   # Configure shellinabox port and disable ssl then restart
   - sed -i 's/SHELLINABOX_PORT=4200/SHELLINABOX_PORT=6501/' /etc/default/shellinabox
   - sed -i "s/\"--no-beep\"/\"--no-beep --disable-ssl\"/" /etc/default/shellinabox

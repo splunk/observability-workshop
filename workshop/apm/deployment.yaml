@@ -870,13 +870,25 @@ spec:
           - name: AD_SERVICE_ADDR
             value: "adservice:9555"
           - name: RUM_REALM
-            value: ${REALM}
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: realm
           - name: RUM_AUTH
-            value: ${RUM_TOKEN}
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: rum_token
           - name: RUM_APP_NAME
-            value: ${INSTANCE}-rum-app
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: rum_app
           - name: RUM_ENVIRONMENT
-            value: ${INSTANCE}-rum-env
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: rum_env
           - name: RUM_DEBUG
           - name: ENV_PLATFORM
             value: "aws"

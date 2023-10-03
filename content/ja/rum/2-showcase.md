@@ -51,7 +51,6 @@ EC2インスタンスのkubernetes（K3s）にOnline Boutiqueのアプリケー�
 ```bash
 cd ~/workshop/apm
 kubectl delete -f deployment.yaml
-./apm-config.sh -r
 kubectl apply -f deployment.yaml
 ```
 

@@ -50,7 +50,6 @@ Online BoutiqueアプリケーションをK3sにデプロイするには、apm c
 
 ```bash
 cd ~/workshop/apm
-./apm-config.sh -r
 kubectl apply -f deployment.yaml
 ```
 
