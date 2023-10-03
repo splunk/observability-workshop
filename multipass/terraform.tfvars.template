@@ -14,6 +14,9 @@ splunk_hec_token = ""
 splunk_presetup = false
 splunk_jdk = false
 otel_demo = false
+pub_key = ""
 
 # Advanced
 wsversion = "5.4"
+user_data_tpl = "userdata.yaml"
+

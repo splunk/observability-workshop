@@ -73,6 +73,12 @@ variable "instance_password" {
   default = ""
 }
 
+variable "pub_key" {
+  description = "public key to provision on the instance"
+  type        = string
+  default     = ""
+}
+
 resource "random_string" "hostname" {
   length  = 4
   lower   = true
@@ -85,6 +91,7 @@ locals {
   template_vars = {
     access_token      = var.splunk_access_token
     rum_token         = var.splunk_rum_token
+    api_token         = var.splunk_api_token
     realm             = var.splunk_realm
     hec_token         = var.splunk_hec_token
     hec_url           = var.splunk_hec_url
@@ -94,6 +101,7 @@ locals {
     instance_name     = "${random_string.hostname.result}"
     wsversion         = var.wsversion
     instance_password = var.instance_password
+    pub_key           = var.pub_key
   }
 }
 
