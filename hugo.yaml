@@ -59,10 +59,10 @@ params:
   versions:
     - version: latest
       url: https://splunk.github.io/observability-workshop/latest/
-    - version: v5.3
-      url: https://splunk.github.io/observability-workshop/v5.3
     - version: v5.4
       url: https://splunk.github.io/observability-workshop/v5.4
+    - version: v5.5
+      url: https://splunk.github.io/observability-workshop/v5.5
   url_latest_version: https://splunk.github.io/observability-workshop/
 menu:
   shortcuts:
