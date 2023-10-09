@@ -54,7 +54,7 @@ params:
   disableNextPrev: false
   disableLandingPageButton: false
   titleSeparator: "::"
-  themeVariant: ["splunk-light", "splunk-dark", "aws"]
+  themeVariant: ["auto", "splunk-light", "splunk-dark"]
   additionalContentLanguage: ["ja"]
   versions:
     - version: latest
