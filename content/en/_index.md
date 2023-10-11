@@ -6,8 +6,6 @@ description: Learn how to build observability solutions with Splunk
 weight: 1
 ---
 
-## Welcome to the Splunk Observability Workshops
-
 Get insights into your applications and infrastructure in real-time with the help of the monitoring, analytics and response tools of the Splunk Observability Cloud
 
 These workshops are going to take you through the best-in-class observability platform for ingesting, monitoring, visualizing and analyzing metrics, traces and logs.
@@ -25,5 +23,3 @@ You can [contribute](https://github.com/splunk/observability-workshop) to this d
 {{% notice title="Twitter" color="#1da1f2" icon="fab fa-twitter" %}}
 You can find information about updates and interesting reads in the Twitter channel of [Splunk](https://twitter.com/splunk).
 {{% /notice %}}
-
-{{%children containerstyle="div" style="h6" description="true" %}}
