@@ -3,9 +3,11 @@ title: Welcome to the Online Boutique
 weight: 1
 ---
 
-For attendees that taking the **interactive workshop**, you will need to install OpenTelemetry and deploy the application. For attendees that are taking the **pre-configured workshop**, the application will already be deployed for you.
+For attendees that are taking the **pre-configured workshop**, the application will already be deployed for you and your instructor will provide with a link to the Online Boutique application.
 
-For the pre-configured workshop your instructor will provide with a link to the Online Boutique application.
+For attendees that taking the **interactive workshop**, you will need to install OpenTelemetry and deploy the application. Hit the {{% badge style=primary icon=user-ninja %}}**Ninja{{% /badge %}} button below to expand the instructions.
+
+---
 
 {{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Interactive workshop build steps{{% /badge %}}" %}}
 
@@ -178,13 +180,15 @@ Usually it should only take around 1min 30secs for the pods to transition into a
 
 {{% /expand %}}
 
+---
+
 ## Let's go shopping
 
 Once you have a link to the Online Boutique have a browse through a few items, add them to your cart, and then checkout.
 
-- Did you notice anything about the checkout process?
-- Did it seem to take a while to complete, but it did ultimately complete?
-- Or did you give up?
+{{% notice icon="question-circle" style="green" %}}
+Did you notice anything about the checkout process? Did it seem to take a while to complete, but it did ultimately complete? Or did you give up?
+{{% /notice %}}
 
 This is what a poor user experience feels like and since this is a potential customer satisfaction issue we had better jump on this and troubleshoot.
 

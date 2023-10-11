@@ -3,7 +3,7 @@ title: 3. Dashboard Filters
 weight: 3
 ---
 {{% notice style="grey" title="Click the filter bar across the top, show different filtering options" %}}
-![Filter options for the dashboard](../img/filters.png?width=50vw)
+![Filter options for the dashboard](../images/filters.png?width=50vw)
 
 {{% /notice %}}
 
