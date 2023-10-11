@@ -21,7 +21,7 @@ SWiPE is an online tool to help configure a workshop environment in Splunk Obser
 
 - Create and invite users to the Org. Create a `.csv` file containing the e-mail addresses (one per line) **or** copy and paste e-mail addresses (one per line).
 - Create a team and add users.
-- Create an Access Token, API Token and a RUM token. You will need to make a copy of these in order to provision the EC2 instances in Splunk Show.
+- Create an INGEST, API and RUM tokens. You will need to make a copy of these in order to provision the EC2 instances in Splunk Show.
 
 Post-workshop, you can use SWIPE to clean up the Org. SWiPE will complete the following:
 
@@ -34,12 +34,12 @@ SWiPE does also provide some advanced features for deleting tokens and detectors
 
 ### Step 2: Provision the EC2 Instances Using Splunk Show
 
-Please visit [Splunk Show](https://show.splunk.com) to provision your EC2 environment. Under the **Workshops** section create a **Splunk4Rookies - Observability** workshop. Select the desired **Content Type** as follows:
+Please visit [Splunk Show](https://show.splunk.com/template/262/?type=workshop) to provision your EC2 environment(s). Select the desired **Content Type** as follows:
 
 - _Default (for interactive workshop)_ select this if your audience is technical and want a hands-on experience installing OpenTelemetry and deploying applications.
 - _Pre-configured Instances_ - select this if you need OpenTelemetry and all apps pre-deployed for a less technical audience. Attendees will only require a browser to complete the workshop.
 
-Select your Splunk Observability Cloud Realm and enter the Access Token, API Token and RUM Token that SWiPE generated for you.
+Select your Splunk Observability Cloud Realm and enter the INGEST, API and RUM tokens that SWiPE generated for you.
 
 For further guidance on using Splunk Show please see the [Splunk Show User Guide](http://go/show/user-guide).
 
