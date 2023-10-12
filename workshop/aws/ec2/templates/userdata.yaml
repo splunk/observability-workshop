@@ -206,7 +206,7 @@ write_files:
         --set="gateway.resources.limits.cpu=500m" \
         --set="gateway.resources.limits.memory=1Gi" \
         --set="clusterReceiver.enabled=true" \
-        --set="environment=${instance_name}-apm-env" \
+        --set="environment=${instance_name}-workshop" \
         splunk-otel-collector-chart/splunk-otel-collector -f -
         helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
         helm install my-otel-demo open-telemetry/opentelemetry-demo --values /home/ubuntu/workshop/oteldemo/otel-demo.yaml

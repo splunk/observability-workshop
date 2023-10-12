@@ -47,7 +47,7 @@ helm install splunk-otel-collector \
 --set="gateway.resources.limits.cpu=500m" \
 --set="gateway.resources.limits.memory=1Gi" \
 --set="clusterReceiver.enabled=true" \
---set="environment=$(hostname)-apm-env" \
+--set="environment=$(hostname)-workshop" \
 splunk-otel-collector-chart/splunk-otel-collector \
 -f otel-demo-collector.yaml
 ```
