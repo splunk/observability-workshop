@@ -54,20 +54,14 @@ write_files:
       export HEC_URL=${hec_url}
 
       helm() {
-
         echo >&2 "Using ACCESS_TOKEN=${access_token}"
         echo >&2 "Using REALM=${realm}"
-
-        command helm "$@"
-      }
+        command helm "$@"}
 
       terraform() {
-
         echo >&2 "Using API_TOKEN=${api_token}"
         echo >&2 "Using REALM=${realm}"
-
-        command terraform "$@"
-      }
+        command terraform "$@"}
 
       echo "Waiting for cloud-init status..."
       if ! /usr/bin/timeout 180 grep -q 'Cloud-init .*finished at' <(sudo tail -f /var/log/cloud-init-output.log); then
@@ -79,10 +73,6 @@ write_files:
       INSTANCE=$(cat /etc/hostname)
       CLUSTER_NAME="$INSTANCE-cluster"
 
-      #if [ -e /etc/.instance ]; then
-      #  INSTANCE=$(cat /etc/.instance)
-      #  CLUSTER_NAME="$INSTANCE-cluster"
-      #fi
       export INSTANCE CLUSTER_NAME
 
       export KUBECONFIG=/home/ubuntu/.kube/config
