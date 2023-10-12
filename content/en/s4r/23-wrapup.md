@@ -1,18 +1,24 @@
 ---
-title: 23. Demo Wrap-up
+title: 23. Workshop Wrap-up
 weight: 50
 ---
 
-{{% notice style="blue" title="Say" icon="user" %}}
-That wraps up the demo of Splunk Observability Cloud. We were able to:
+{{% notice style="blue" title="Conclusion"  %}}
+This wraps up the Splunk for Rookies Workshop of the Splunk Observability Cloud. We were able to:
 
 * Understand what real users were experiencing
+* Saw how we can detect these issue though Detectors, Dasboardsand Synthetic Tests
 * Troubleshoot a particularly long page load, by following it’s trace across the front and back end and right to the log entries
 * Use tag spotlight, in both RUM and APM, to understand blast radius and context for our performance issues and errors
 
 Today we didn’t even talk about the power of the rest of Splunk Observability Cloud, such as:
 
-* Infrastructure monitoring, which shows how our infrastructure is behaving -- hosts, kubernetes, and applications
-* and more about Synthetics, which can simulate web and mobile traffic and report on application behavior and potential areas for improvement 
+* Infrastructure monitoring, which shows how our infrastructure is behaving -- hosts, kubernetes, and applications via Dashboards, Navigators and Detectors
+* More about Synthetics, which can simulate web and mobile traffic and report on application behavior and potential areas for improvement 
+
+<!-- More information  can be found here:
+
+[API Test](https://docs.splunk.com/Observability/synthetics/api-test/api-test.html) and 
+[Uptime Test](https://docs.splunk.com/Observability/synthetics/uptime-test/uptime-test.html). -->
 
 {{% /notice %}}

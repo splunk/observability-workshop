@@ -3,11 +3,12 @@ title: 19. Synthetics
 weight: 40
 ---
 
-{{% notice style="grey" title="Change to your browser tab with the frontend demo Browser test" %}}
-![Synthetics test overview](../img/syn-test-overview.png?width=50vw)
+## Use the Splunk Observability Suite to check the perfomance of your Website/API Endpoint 
+So far we have have tested the perfomance of our Website by visting and running manual testscenario's to see how our web site perfomed. 
 
-{{% /notice %}}
+But what if we didn't have to wait for that, and could instead test the frontend whenever we want, in both production and pre-production? This is where Synthetics comes in. 
 
-{{% notice style="blue" title="Say" icon="user" %}}
-Now, we've seen how to diagnose an issue after a real user experiences it. But what if we didn't have to wait for that, and could instead test the frontend whenever we want, in both production and pre-production? This is where Synthetics comes in. Here we see a test that has some long durations as well as some failures.
-{{% /notice %}}
+![Synthetics overview](../images/SyntheticTests.png?width=50vw)
+<br>
+
+As part of this excersise we will clone an exsting Synthetic Test and  configure it to test against your website, and have it run automaticly. as part of this excercise we will also set up a detector that will will allow you to be automaticly informed/alerted if the perfomance of your webite is suboptimal.
