@@ -303,7 +303,10 @@ spec:
         - name: SIGNALFX_SERVICE_NAME
           value: "cartservice"
         - name: SIGNALFX_ENV
-          value: "frontend-demo-eu"
+          valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: app
         - name: EXTERNAL_DB_NAME
           value: "LxvGChW075"
         - name: EXTERNAL_DB_ACCESS_RATE
@@ -376,7 +379,7 @@ spec:
             - name: OTEL_SERVICE_NAME
               value: adservice
             - name: OTEL_RESOURCE_ATTRIBUTES
-              value: "deployment.environment={INSTANCE}-apm-env"
+              value: "deployment.environment={INSTANCE}-workshop"
             - name:  OTEL_PROPAGATORS
               value: "b3multi"
             - name: NODE_IP
@@ -830,7 +833,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: quay.io/phagen/frontend-rum-profile:3.0.0
+          image: quay.io/phagen/frontend-rum-profile:3.1.0
           #image: docker.io/harnit/shopdemo-frontend:2.1-customevents
           ports:
           - containerPort: 8080
@@ -883,12 +886,12 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: workshop-secret
-                key: rum_app
+                key: app
           - name: RUM_ENVIRONMENT
             valueFrom:
               secretKeyRef:
                 name: workshop-secret
-                key: rum_env
+                key: env
           - name: RUM_DEBUG
           - name: ENV_PLATFORM
             value: "aws"

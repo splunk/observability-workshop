@@ -46,9 +46,9 @@ write_files:
     append: true
     content: |
 
+      export REALM=${realm}
       export ACCESS_TOKEN=${access_token}
       export API_TOKEN=${api_token}
-      export REALM=${realm}
       export RUM_TOKEN=${rum_token}
       export HEC_TOKEN=${hec_token}
       export HEC_URL=${hec_url}
@@ -134,8 +134,8 @@ write_files:
         namespace: default
       type: Opaque
       stringData:
-        rum_app: ${instance_name}-rum-app
-        rum_env: ${instance_name}-rum-env
+        app: ${instance_name}-store
+        env: ${instance_name}-workshop
         access_token: ${access_token}
         api_token: ${api_token}
         realm: ${realm}
@@ -164,7 +164,7 @@ write_files:
         --set="logsEngine=otel" \
         --set="splunkObservability.profilingEnabled=true" \
         --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
-        --set="environment=${instance_name}-apm-env" \
+        --set="environment=${instance_name}-workshop" \
         splunk-otel-collector-chart/splunk-otel-collector \
         -f /home/ubuntu/workshop/k3s/otel-collector.yaml
 
