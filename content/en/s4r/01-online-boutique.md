@@ -47,7 +47,7 @@ helm install splunk-otel-collector \
 --set="logsEngine=otel" \
 --set="splunkObservability.profilingEnabled=true" \
 --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
---set="environment=$(hostname)-apm-env" \
+--set="environment=$(hostname)-workshop" \
 splunk-otel-collector-chart/splunk-otel-collector \
 -f ~/workshop/k3s/otel-collector.yaml
 ```

@@ -166,7 +166,7 @@ RUMに必要な変更は、WebページのHEADセクションに配置されま�
 ```html
 <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" type="text/javascript"></script>
 <script>window.SplunkRum && window.SplunkRum.init({beaconUrl: "https://rum-ingest.eu0.signalfx.com/v1/rum",
-        rumAuth: "1wCqZVUWIP5XSdNjPoQRFg", app: "ksnq-rum-app", environment: "ksnq-rum-env"});</script>
+        rumAuth: "1wCqZVUWIP5XSdNjPoQRFg", app: "ksnq-store", environment: "ksnq-workshop"});</script>
     <script>
     const Provider = SplunkRum.provider; 
     var tracer=Provider.getTracer('appModuleLoader');
@@ -176,10 +176,10 @@ RUMに必要な変更は、WebページのHEADセクションに配置されま�
 * 最初の行は、Splunk Open Telemetry Javascript ファイルをダウンロードする場所を指定しています。*<https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js>*  (必要であれば、ローカルに読み込むこともできます)
 * 2行目は、Beacon URLでトレースの送信先を定義しています。 `{beaconUrl: "https://rum-ingest.eu0.signalfx.com/v1/rum"`
 * また、Access Tokenを追加しています。 `rumAuth: "1wCqZVUWIP5XSdNjPoQRFg"` (もちろんこれは例です。全てのアプリケーションに対して、複数のRUM Access Tokenを作成することができます。) *
-* また、SPLUNK RUM UIで使用するために、アプリケーション名や環境などの識別タグをRUMトレースに追加するために使用されます。 `app: "ksnq-rum-app", environment: "ksnq-rum-env"}`
+* また、SPLUNK RUM UIで使用するために、アプリケーション名や環境などの識別タグをRUMトレースに追加するために使用されます。 `app: "ksnq-store", environment: "ksnq-workshop"}`
 
 {{% notice title="Info" color="info" %}}
-この例ではアプリ名は **ksnq-rum-app** ですが、これはワークショップでは異なるでしょう。RUMセッションで使用するアプリ名と環境は講師に確認し、メモしておいてください。
+この例ではアプリ名は **ksnq-store** ですが、これはワークショップでは異なるでしょう。RUMセッションで使用するアプリ名と環境は講師に確認し、メモしておいてください。
 {{% /notice %}}
 
 上記の2行だけであなたのWebサイトでRUMを有効にすることができます。

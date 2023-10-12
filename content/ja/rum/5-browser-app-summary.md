@@ -16,7 +16,7 @@ isCJKLanguage: true
 ### 1.1. ヘッダーバー
 
 前のセクションで見たように、RUM Application Summary ダッシュボードは5つの主要セクションで構成されています</br>。
-最初のセクションは選択ヘッダーで、 ![RUM-browser](../images/browser.png) ブラウザーアイコンまたはアプリケーション名の前の **>** を使用してペインを折りたたむことができます。また、アプリケーション名(下の例では *jmcj-rum-app* )のリンクをクリックすると、*Application Overview* ページにアクセスできます。
+最初のセクションは選択ヘッダーで、 ![RUM-browser](../images/browser.png) ブラウザーアイコンまたはアプリケーション名の前の **>** を使用してペインを折りたたむことができます。また、アプリケーション名(下の例では *jmcj-store* )のリンクをクリックすると、*Application Overview* ページにアクセスできます。
 
 また、右側のトリプルドット ![trippleburger](../images/trippleburger.png) メニューから、 *Application Overview* や *App Health ダッシュボード* を開くことができます。
 

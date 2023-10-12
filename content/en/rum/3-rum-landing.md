@@ -24,7 +24,7 @@ You can expanded a condensed RUM Application Summary View to the full dashboard 
 
 First find the right application to use for the workshop:
 
-If you are participating in a stand alone RUM workshop, the workshop leader will tell you the name of the application to use, in the case of a combined workshop, it will follow the naming convention we used for IM and APM and use the ec2 node name as a unique id like **jmcj-rum-app** as shown as the last app in the screenshot above.
+If you are participating in a stand alone RUM workshop, the workshop leader will tell you the name of the application to use, in the case of a combined workshop, it will follow the naming convention we used for IM and APM and use the ec2 node name as a unique id like **jmcj-store** as shown as the last app in the screenshot above.
 
 ## 2. Configure the RUM Application Summary Dashboard Header Section
 

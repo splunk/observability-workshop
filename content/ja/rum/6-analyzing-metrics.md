@@ -12,7 +12,7 @@ isCJKLanguage: true
 
 ## 1. RUM Overview Pages
 
-RUM Application Summaryダッシュボードの右側のトリプルドット ![trippleburger](../images/trippleburger.png) メニューから *Open Application Overview* を選択するか、アプリケーション名のリンク（以下の例では *jmcj-rum-app* ）をクリックして Application Overviewページを開き、詳細情報を確認することができます。
+RUM Application Summaryダッシュボードの右側のトリプルドット ![trippleburger](../images/trippleburger.png) メニューから *Open Application Overview* を選択するか、アプリケーション名のリンク（以下の例では *jmcj-store* ）をクリックして Application Overviewページを開き、詳細情報を確認することができます。
 
 ![RUM-SummaryHeader](../images/summaryHeader.png)
 

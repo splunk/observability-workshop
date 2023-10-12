@@ -24,7 +24,7 @@ Locust は、EC2インスタンスのIPアドレスの82番ポートで利用で
 
 それでは、 **Dashboards → All Dashboards → APM Services → Service** を開きましょう。
 
-そのためには、アプリケーションの Environment 名を知る必要があります。このワークショップでは、`<hostname>-apm-env` のような Environment 名で定義されています。
+そのためには、アプリケーションの Environment 名を知る必要があります。このワークショップでは、`<hostname>-workshop` のような Environment 名で定義されています。
 
 ホスト名を調べるには、AWS/EC2インスタンス上で以下のコマンドを実行します:
 
@@ -32,14 +32,14 @@ Locust は、EC2インスタンスのIPアドレスの82番ポートで利用で
 {{% tab title="Echo Hostname" %}}
 
 ``` bash
-echo $(hostname)-apm-env
+echo $(hostname)-workshop
 ```
 
 {{% /tab %}}
 {{% tab title="Output Example"  %}}
 
 ``` text
-bdzx-apm-env
+bdzx-workshop
 ```
 
 {{% /tab %}}

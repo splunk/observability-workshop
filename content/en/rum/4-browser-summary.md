@@ -15,7 +15,7 @@ weight: 4
 ### 1.1. Header Bar
 
 As seen in the previous section the RUM Application Summary Dashboard consists of 5 major sections.</br>
-The first section is the selection header, where you can collapse the Pane via the ![RUM-browser](../images/browser.png?classes=inline&height=25px) Browser icon or the **>** in front of the application name, which is *jmcj-rum-app* in the example below. It also provides access to the *Application Overview* page if you click the link with your application name which is *jmcj-rum-app* in the example below.
+The first section is the selection header, where you can collapse the Pane via the ![RUM-browser](../images/browser.png?classes=inline&height=25px) Browser icon or the **>** in front of the application name, which is *jmcj-store* in the example below. It also provides access to the *Application Overview* page if you click the link with your application name which is *jmcj-store* in the example below.
 
 Further, you can also open the *Application Overview*  or *App Health Dashboard* via the triple dot ![trippleburger](../images/trippleburger.png?classes=inline&height=25px) menu on the right.
 

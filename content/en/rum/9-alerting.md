@@ -38,7 +38,7 @@ u have added to the trace as part of the configuration of your website.
 We are already sending two additional tags, you have seen them defined in the *Beacon url* that was added to your website in the first section of this workshop! You can add additional tag in a similar way.
 
 ```javascript
-app: "[nodename]-rum-app", environment: "[nodename]-rum-env"
+app: "[nodename]-store", environment: "[nodename]-workshop"
 ```
 
 {{% /notice %}}

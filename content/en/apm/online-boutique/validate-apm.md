@@ -1,35 +1,15 @@
 ---
-title: 1.1 Generate load
+title: 1.1 Validate APM data
 weight: 2
 ---
 
 {{% button icon="clock" %}}5 minutes{{% /button %}}
 
-## 1. Generate traffic
+## 1. RED Metrics
 
-The Online Boutique deployment contains a container running Locust that we can use to generate load traffic against the website to generate metrics, traces and spans.
+Go to **Dashboards → All Dashboards → APM Services → Service**. Here we can view the RED metrics (Rate, Error & Duration) for the Online Boutique application.
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja** - Access your Locust instance{{% /badge %}}" %}}
-{{% notice style="blue" %}}
-Locust is available on port 82 of the EC2 instance's IP address. Open a new tab in your web browser and go to `http://<ec2-ip-address>:82/`, you will then be able to see the Locust running.
-{{% /notice %}}
-{{% /expand %}}
-
-Your Workshop instructor will provide you with URL to access the Locust load generator. Enter this URL into your browser and you will see the Locust Start new load test landing page.
-
-![Locust](../../images/locust.png)
-
-Set the **Spawn rate** to be 2 and click **Start Swarming**, this will start a gentle continuous load on the application.
-
-![Spawn Rate](../../images/locust-spawn-rate.png)
-
-![Statistics](../../images/locust-statistics.png)
-
----
-
-Now go to **Dashboards → All Dashboards → APM Services → Service**.
-
-For this we need to know the name of your application environment. In this workshop all the environments use: `<hostname>-apm-env`.
+For this we need to know the name of your application environment. In this workshop all the environments use: `<hostname>-workshop`.
 
 To find the hostname, on the AWS/EC2 instance run the following command:
 
@@ -37,14 +17,14 @@ To find the hostname, on the AWS/EC2 instance run the following command:
 {{% tab title="Echo Hostname" %}}
 
 ``` bash
-echo $(hostname)-apm-env
+echo $(hostname)-workshop
 ```
 
 {{% /tab %}}
 {{% tab title="Output Example" %}}
 
 ``` text
-bdzx-apm-env
+bdzx-workshop
 ```
 
 {{% /tab %}}
@@ -60,7 +40,7 @@ Take some time to explore the various charts in this dashboard
 
 ---
 
-## 2. Verify Splunk APM metrics
+## 2. APM Metrics
 
 In the left hand menu card click on **APM** this will bring you to the APM Overview dashboard:
 
