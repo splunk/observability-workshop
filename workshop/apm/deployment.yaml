@@ -304,9 +304,9 @@ spec:
           value: "cartservice"
         - name: SIGNALFX_ENV
           valueFrom:
-              secretKeyRef:
-                name: workshop-secret
-                key: app
+            secretKeyRef:
+              name: workshop-secret
+              key: env
         - name: EXTERNAL_DB_NAME
           value: "LxvGChW075"
         - name: EXTERNAL_DB_ACCESS_RATE
@@ -379,7 +379,10 @@ spec:
             - name: OTEL_SERVICE_NAME
               value: adservice
             - name: OTEL_RESOURCE_ATTRIBUTES
-              value: "deployment.environment={INSTANCE}-workshop"
+              valueFrom:
+                secretKeyRef:
+                  name: workshop-secret
+                  key: deployment
             - name:  OTEL_PROPAGATORS
               value: "b3multi"
             - name: NODE_IP

@@ -136,6 +136,7 @@ write_files:
       stringData:
         app: ${instance_name}-store
         env: ${instance_name}-workshop
+        deployment: "deployment.environment=${instance_name}-workshop"
         access_token: ${access_token}
         api_token: ${api_token}
         realm: ${realm}
