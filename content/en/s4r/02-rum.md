@@ -15,10 +15,12 @@ As we know, modern web experiences can appear simple, but are complex, asynchron
 
 From this page we can see a variety of metrics, such as: highest page load times, number of frontend and backend errors, top pages by views, top endpoints, and Google’s web vitals metrics. We also get out of the box views for front end health, back end health, and custom events so it's quick to see trends, anomalies, and even create detectors from these views.
 
-(Note: You can learn more about Web Vitals metrics here: https://web.dev/vitals/)
+{{% notice style="note" %}}
+You can learn more about Web Vitals metrics here: [https://web.dev/vitals](https://web.dev/vitals)
+{{% /notice %}}
 
 {{% notice style="grey" title="Click the filter bar across the top, show different filtering options" %}}
-![Filter options for the dashboard](../images/filters.png?width=50vw)
+![Filter options for the dashboard](../images/filters.png)
 
 {{% /notice %}}
 
@@ -31,12 +33,12 @@ In the top-left corner I can see that my highest page load times are higher than
 {{% /notice %}}
 
 {{% notice style="grey" title="Highlight “Page Load” chart, and click “See All”" %}}
-![Page load preview with URLs and load times](../images/load.png?width=50vw)
+![Page load preview with URLs and load times](../images/load.png)
 
 {{% /notice %}}
 
 {{% notice style="grey" title="Show and hide filters as you mention them" %}}
-![Tag Spotlight filters](../images/spotlight.png?width=50vw)
+![Tag Spotlight filters](../images/spotlight.png)
 
 {{% /notice %}}
 
@@ -47,7 +49,7 @@ In this graph at the top of the page I can see that there are some alarming page
 {{% /notice %}}
 
 {{% notice style="grey" title="Click and drag to filter the view down to one of the spikes on the graph, then click the sessions tab" %}}
-![Highlighting a spike on the line graph](../images/spike.jpg?width=50vw)
+![Highlighting a spike on the line graph](../images/spike.jpg)
 
 {{% /notice %}}
 
@@ -56,8 +58,8 @@ Now, if I look at these spikes I can see the P99 is even more alarming, so let�
 {{% /notice %}}
 
 {{% notice style="grey" title="Click on the session that appears after filtering with the long duration, if more than one click the one with the highest duration. Click on the /cart/checkout process in the waterfall view to collapse the expanded view so you no longer see the tags." %}}
-![List of user sessions associated with this app and time period](../images/sessions.png?width=50vw)
-![Waterfall of requests for a specific user session](../images/waterfall.png?width=50vw)
+![List of user sessions associated with this app and time period](../images/sessions.png)
+![Waterfall of requests for a specific user session](../images/waterfall.png)
 
 {{% /notice %}}
 
@@ -66,7 +68,7 @@ Here I can see one of the clicks this user made during this session. And I can s
 {{% /notice %}}
 
 {{% notice style="grey" title="Click on the long green checkout span that has a blue APM link" %}}
-![Long checkout span includes link to APM](../images/span.png?width=50vw)
+![Long checkout span includes link to APM](../images/span.png)
 
 {{% /notice %}}
 
