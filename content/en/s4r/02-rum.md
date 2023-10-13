@@ -19,59 +19,38 @@ From this page we can see a variety of metrics, such as: highest page load times
 You can learn more about Web Vitals metrics here: [https://web.dev/vitals](https://web.dev/vitals)
 {{% /notice %}}
 
-{{% notice style="grey" title="Click the filter bar across the top, show different filtering options" %}}
+Click the filter bar across the top, show different filtering options
 ![Filter options for the dashboard](../images/filters.png)
 
-{{% /notice %}}
-
-{{% notice style="blue" title="Say" icon="user" %}}
 I can also filter down my RUM view to isolate issues for specific operations, browser types, browser versions, or users from specific geographic regions, among others.
-{{% /notice %}}
 
-{{% notice style="blue" title="Say" icon="user" %}}
-In the top-left corner I can see that my highest page load times are higher than  they have been in the previous hour, and way too too high if I want to keep happy customers. Let’s dig into this a little more to see what’s happening here. 
-{{% /notice %}}
+In the top-left corner I can see that my highest page load times are higher than  they have been in the previous hour, and way too too high if I want to keep happy customers. Let’s dig into this a little more to see what’s happening here.
 
-{{% notice style="grey" title="Highlight “Page Load” chart, and click “See All”" %}}
 ![Page load preview with URLs and load times](../images/load.png)
 
-{{% /notice %}}
+Show and hide filters as you mention them
 
-{{% notice style="grey" title="Show and hide filters as you mention them" %}}
 ![Tag Spotlight filters](../images/spotlight.png)
 
-{{% /notice %}}
-
-{{% notice style="blue" title="Say" icon="user" %}}
-By clicking into the checkout process in the Highest P75 Page Load times you can see I am taken to the tag spotlight view, filtered down to the /cart/checkout process showing me all the tags associated with every user session such as browser, version, city, state and much more. I can also change this tag spotlight view to break this data down by any of the metrics available. 
+By clicking into the checkout process in the Highest P75 Page Load times you can see I am taken to the tag spotlight view, filtered down to the /cart/checkout process showing me all the tags associated with every user session such as browser, version, city, state and much more. I can also change this tag spotlight view to break this data down by any of the metrics available.
 
 In this graph at the top of the page I can see that there are some alarming page load times.
-{{% /notice %}}
 
-{{% notice style="grey" title="Click and drag to filter the view down to one of the spikes on the graph, then click the sessions tab" %}}
+Click and drag to filter the view down to one of the spikes on the graph, then click the sessions tab
+
 ![Highlighting a spike on the line graph](../images/spike.jpg)
 
-{{% /notice %}}
-
-{{% notice style="blue" title="Say" icon="user" %}}
 Now, if I look at these spikes I can see the P99 is even more alarming, so let’s filter this down and dig into the actual user session that took this alarming amount of time.
-{{% /notice %}}
 
-{{% notice style="grey" title="Click on the session that appears after filtering with the long duration, if more than one click the one with the highest duration. Click on the /cart/checkout process in the waterfall view to collapse the expanded view so you no longer see the tags." %}}
+Click on the session that appears after filtering with the long duration, if more than one click the one with the highest duration. Click on the /cart/checkout process in the waterfall view to collapse the expanded view so you no longer see the tags."
+
 ![List of user sessions associated with this app and time period](../images/sessions.png)
 ![Waterfall of requests for a specific user session](../images/waterfall.png)
 
-{{% /notice %}}
-
-{{% notice style="blue" title="Say" icon="user" %}}
 Here I can see one of the clicks this user made during this session. And I can see that there is 1 process that is taking up almost 99% of the duration of the whole transaction.
-{{% /notice %}}
 
-{{% notice style="grey" title="Click on the long green checkout span that has a blue APM link" %}}
+Click on the long green checkout span that has a blue APM link
+
 ![Long checkout span includes link to APM](../images/span.png)
 
-{{% /notice %}}
-
-{{% notice style="blue" title="Say" icon="user" %}}
 By expanding this I can see all the metadata associated with this span and all of the tags associated with it.
-{{% /notice %}}
