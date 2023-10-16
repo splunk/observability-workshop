@@ -21,7 +21,7 @@
 
       - name: Download demo-in-a-box
         get_url:
-	  url: "https://demo-in-a-box.s3.amazonaws.com/{{ o11y_diabversion }}.zip"
+          url: "https://demo-in-a-box.s3.amazonaws.com/{{ o11y_diabversion }}.zip"
           dest: /home/ubuntu/demo-in-a-box.zip
         become: true
         when: not wh_result.stat.exists
@@ -99,7 +99,7 @@
 
       - name: Wait for demoinabox.service to start
         pause:
-          seconds: 15
+          seconds: 10
         when: not wh_result.stat.exists
 
       - name: Save Demo-in-a-Box configuration
@@ -108,7 +108,7 @@
           method: POST
           body: "realm={{ realm }}&accessToken={{ ingest_token }}&rumAccessToken={{ rum_token }}&environment={{ o11y_env_name }}&loadgenLocation=aws"
           status_code: [ 200, 201 ]
-          timeout: 30
+          timeout: 10
         when: not wh_result.stat.exists
 
       - name: Start the OpenTelemetry Collector
@@ -121,7 +121,7 @@
 
       - name: Wait for OpenTelemetry Collector to start
         pause:
-          seconds: 60
+          seconds: 20
         when: not wh_result.stat.exists
 
       - name: Start the frontend demo
@@ -134,7 +134,7 @@
 
       - name: Wait for frontend demo to start
         pause:
-          seconds: 90
+          seconds: 30
         when: not wh_result.stat.exists
 
       - name: Wait for the Online Boutique to become available
