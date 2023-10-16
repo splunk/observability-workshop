@@ -9,7 +9,7 @@
         rum_token: "{{ lookup('env','RUM_TOKEN') }}"
         realm: "{{ lookup('env','REALM') }}"
         o11y_env_name: "{{ lookup('env','INSTANCE') }}"
-        o11y_diabversion: "demo-in-a-box-2.0"
+        o11y_diabversion: "demo-in-a-box-latest"
 
   tasks:
     - name: Configure Demo-in-a-Box
@@ -21,7 +21,7 @@
 
       - name: Download demo-in-a-box
         get_url:
-          url: "https://demoinabox-tst.s3.us-east-2.amazonaws.com/{{ o11y_diabversion }}.zip"
+	  url: "https://demo-in-a-box.s3.amazonaws.com/{{ o11y_diabversion }}.zip"
           dest: /home/ubuntu/demo-in-a-box.zip
         become: true
         when: not wh_result.stat.exists
