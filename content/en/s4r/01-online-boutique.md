@@ -5,7 +5,7 @@ weight: 1
 
 For attendees that are taking the **pre-configured workshop**, the application will already be deployed for you and your instructor will provide with a link to the Online Boutique application.
 
-For attendees that taking the **interactive workshop**, you will need to install OpenTelemetry and deploy the application. Hit the {{% badge style=primary icon=user-ninja %}}**Ninja{{% /badge %}} button below to expand the instructions.
+For attendees taking the **interactive workshop**, you will need to install OpenTelemetry and deploy the application. Hit the {{% badge style=primary icon=user-ninja %}}**Ninja{{% /badge %}} button below to expand the instructions.
 
 ---
 
