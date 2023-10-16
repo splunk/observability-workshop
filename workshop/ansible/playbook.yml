@@ -6,7 +6,7 @@
     - name: Set the required variables
       set_fact:
         ingest_token: "{{ lookup('env','ACCESS_TOKEN') }}"
-        rum_token: "i{{ lookup('env','RUM_TOKEN') }}"
+        rum_token: "{{ lookup('env','RUM_TOKEN') }}"
         realm: "{{ lookup('env','REALM') }}"
         o11y_env_name: "{{ lookup('env','INSTANCE') }}"
         o11y_diabversion: "demo-in-a-box-2.0"
