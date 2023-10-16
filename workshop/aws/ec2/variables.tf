@@ -22,6 +22,12 @@ variable "otel_demo" {
   default     = false
 }
 
+variable "splunk_diab" {
+  description = "Enabled Demo-in-a-box environment? (true/false)"
+  type        = bool
+  default     = false
+}
+
 variable "wsversion" {
   description = "Workshop version"
   type        = string
