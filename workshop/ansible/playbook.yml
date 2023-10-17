@@ -108,7 +108,7 @@
           method: POST
           body: "realm={{ realm }}&accessToken={{ ingest_token }}&rumAccessToken={{ rum_token }}&environment={{ o11y_env_name }}&loadgenLocation=aws"
           status_code: [ 200, 201 ]
-          timeout: 10
+          timeout: 30
         when: not wh_result.stat.exists
 
       - name: Start the OpenTelemetry Collector
@@ -121,7 +121,7 @@
 
       - name: Wait for OpenTelemetry Collector to start
         pause:
-          seconds: 20
+          seconds: 30
         when: not wh_result.stat.exists
 
       - name: Start the frontend demo
