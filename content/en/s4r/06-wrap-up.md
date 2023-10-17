@@ -1,9 +1,9 @@
 ---
-title: 23. Workshop Wrap-up
+title: Workshop Wrap-up
 weight: 50
 ---
 
-{{% notice style="blue" title="Conclusion"  %}}
+
 This wraps up the Splunk for Rookies Workshop of the Splunk Observability Cloud. We were able to:
 
 * Understand what real users were experiencing
@@ -20,5 +20,3 @@ Today we didn’t even talk about the power of the rest of Splunk Observability 
 
 [API Test](https://docs.splunk.com/Observability/synthetics/api-test/api-test.html) and 
 [Uptime Test](https://docs.splunk.com/Observability/synthetics/uptime-test/uptime-test.html). -->
-
-{{% /notice %}}
