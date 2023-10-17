@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-tf=terraform
-S=${1:-confgo}
-$tf plan -destroy -input=false -var-file="${S}.tfvars" -var-file="confgo-hec-info.json" -out tfplan-${S}-destroy && $tf apply tfplan-${S}-destroy
