@@ -134,6 +134,17 @@ write_files:
         hec_token: ${hec_token}
         hec_url: ${hec_url}
 
+  - path: /tmp/diab-setup.sh
+    permissions: '0755'
+    content: |
+      export RUM_TOKEN=${rum_token}
+      export REALM=${realm}
+      export ACCESS_TOKEN=${access_token}
+      export HEC_TOKEN=${hec_token}
+      export HEC_URL=${hec_url}
+      export INSTANCE="${instance_name}"
+      ansible-playbook /home/ubuntu/playbook.yml
+
   - path: /tmp/pre-setup.sh
     permissions: '0755'
     content: |
@@ -249,7 +260,7 @@ runcmd:
   - sudo service shellinabox restart
   - sed -i 's/_THEME=\"robbyrussell\"/_THEME=\"gentoo\"/g' home/ubuntu/.zshrc
 %{ if diab == true ~}
-  - su ubuntu -c 'ansible-playbook /home/ubuntu/playbook.yml'
+  - su ubuntu -c 'bash /tmp/diab-setup.sh'
 %{ endif ~}
 %{ if presetup == true ~}
   - su ubuntu -c 'bash /tmp/pre-setup.sh'
