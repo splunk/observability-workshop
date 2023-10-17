@@ -249,7 +249,7 @@ runcmd:
   - sudo service shellinabox restart
   - sed -i 's/_THEME=\"robbyrussell\"/_THEME=\"gentoo\"/g' home/ubuntu/.zshrc
 %{ if diab == true ~}
-  - ansible-playbook /home/ubuntu/playbook.yml
+  - su ubuntu -c 'ansible-playbook /home/ubuntu/playbook.yml'
 %{ endif ~}
 %{ if presetup == true ~}
   - su ubuntu -c 'bash /tmp/pre-setup.sh'
