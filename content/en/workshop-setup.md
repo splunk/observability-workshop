@@ -37,7 +37,9 @@ SWiPE does also provide some advanced features for deleting tokens and detectors
 Please visit [Splunk Show](https://show.splunk.com/template/262/?type=workshop) to provision your EC2 environment(s). Select the desired **Content Type** as follows:
 
 - _Default (for interactive workshop)_ select this if your audience is technical and want a hands-on experience installing OpenTelemetry and deploying applications.
+  - Select either Normal Workshop, Private Event or Public Event. Change **Estimated Participants** to the number of attendees you expect and set the same value in **O11y Shop Quantity**. This will provision the correct number of EC2 instances. It is recommended that you over-provision by 10% - 20% to allow for any last minute attendees.
 - _Pre-configured Instances_ - select this if you need OpenTelemetry and all apps pre-deployed for a less technical audience. Attendees will only require a browser to complete the workshop.
+  - Select Normal Workshop only! Ensure that **Estimated Participants** is set to **1** and **O11y Shop Quantity** is set to **1** also as only a single instance is required by the workshop instructor.
 
 Select your Splunk Observability Cloud Realm and enter the INGEST, API and RUM tokens that SWiPE generated for you.
 
