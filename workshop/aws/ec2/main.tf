@@ -40,19 +40,6 @@ resource "aws_subnet" "o11y_ws_subnets" {
   )
 }
 
-# resource "aws_subnet" "o11y-ws-subnet" {
-#   vpc_id                  = aws_vpc.o11y-ws-vpc.id
-#   cidr_block              = "10.13.0.0/22"
-#   map_public_ip_on_launch = true
-#   # availability_zone       = "${var.aws_region}a"
-#   tags = merge(
-#     local.common_tags,
-#     {
-#       "Name" = "o11y-ws-subnet"
-#     }
-#   )
-# }
-
 resource "aws_security_group" "o11y-ws-sg" {
   name   = "Observability-Workshop-SG"
   vpc_id = aws_vpc.o11y-ws-vpc.id
@@ -151,32 +138,11 @@ resource "aws_internet_gateway" "o11y-ws-ig" {
   )
 }
 
-# resource "aws_route_table" "o11y-ws-rt" {
-#   vpc_id = aws_vpc.o11y-ws-vpc.id
-#   tags = merge(
-#     local.common_tags,
-#     {
-#       "Name" = "o11y-ws-rt"
-#     }
-#   )
-# }
-
 resource "aws_route" "o11y-ws-route" {
   route_table_id         = aws_vpc.o11y-ws-vpc.main_route_table_id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.o11y-ws-ig.id
 }
-
-# resource "aws_route" "o11y-ws-route" {
-#   route_table_id         = aws_route_table.o11y-ws-rt.id
-#   destination_cidr_block = "0.0.0.0/0"
-#   gateway_id             = aws_internet_gateway.o11y-ws-ig.id
-# }
-
-# resource "aws_route_table_association" "o11y-ws-rta" {
-#   subnet_id      = aws_subnet.o11y-ws-subnet.id
-#   route_table_id = aws_route_table.o11y-ws-rt.id
-# }
 
 resource "random_string" "password" {
   length           = 16

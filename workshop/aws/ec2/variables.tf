@@ -4,36 +4,6 @@ variable "cloud_init_print" {
   default     = false
 }
 
-variable "splunk_presetup" {
-  description = "Presetup the instance? (true/false)"
-  type        = bool
-  default     = false
-}
-
-variable "splunk_jdk" {
-  description = "Enabled Java Development environment? (true/false)"
-  type        = bool
-  default     = false
-}
-
-variable "otel_demo" {
-  description = "Spin up the OpenTelemetry Astronomy Shop Demo? (true/false)"
-  type        = bool
-  default     = false
-}
-
-variable "splunk_diab" {
-  description = "Enabled Demo-in-a-box environment? (true/false)"
-  type        = bool
-  default     = false
-}
-
-variable "wsversion" {
-  description = "Workshop version"
-  type        = string
-  default     = "5.9"
-}
-
 variable "user_data_tpl" {
   description = "user data template filename in templates/"
   type        = string
@@ -100,6 +70,36 @@ variable "splunk_hec_url" {
   description = "Splunk Cloud HEC URL"
   type        = string
   nullable    = false
+}
+
+variable "splunk_presetup" {
+  description = "Presetup the instance? (true/false)"
+  type        = bool
+  default     = false
+}
+
+variable "splunk_jdk" {
+  description = "Enabled Java Development environment? (true/false)"
+  type        = bool
+  default     = false
+}
+
+variable "otel_demo" {
+  description = "Spin up the OpenTelemetry Astronomy Shop Demo? (true/false)"
+  type        = bool
+  default     = false
+}
+
+variable "splunk_diab" {
+  description = "Enabled Demo-in-a-box environment? (true/false)"
+  type        = bool
+  default     = false
+}
+
+variable "wsversion" {
+  description = "Workshop version"
+  type        = string
+  default     = "5.9"
 }
 
 data "aws_ami" "latest-ubuntu" {
