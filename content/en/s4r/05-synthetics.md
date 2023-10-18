@@ -13,16 +13,22 @@ telling you that your site is slow or not performant is Social Media or Down Det
 
 ![socialmedia](../images/social-media-post.png?width=50vw)
 
-But what if we didn't have to do it manually, andcould  avoid wating on your users to let you know the behaviour,</br>
+But what if we didn't have to do it manually, and ould avoid wating on your users to let you know the behaviour,</br>
 and could instead test the frontend whenever we want, in both production and pre-production? 
 
 This is where Splunk Synthetics comes in.
 
 ![Synthetics overview](../images/SyntheticTests.png?width=40vw)
 
-As the image above tries to shows. Synthetics (a part of the Splunks Observability Suite offering) acts like a set of "Robot" users to run different test against your sites, from various locations and allows you to set up Detectors  that warn you if the behaviour of your site(s) hanges.
+As the image above tries to shows, Synthetics (a part of the Splunks Observability Suite offering) acts like a set of "Robot" users to run different test against your sites, from various locations and allows you to set up Detectors that warn you if the behaviour of your site(s) changes.
 
-As part of this excersise we will clone an exsting Synthetic Test and configure it to test against your website, and have it run automaticly. as part of this excercise we will also set up a detector that will will allow you to be automaticly informed/alerted if the perfomance of your webite is suboptimal.
+before we are going to setup our own Test lets take a quick tour of the Synthetic ui.</br>
+Select Synthetic from the menu bar on the right (the robot icon) ![synthetics Menu](../images/syntheticsIcon.png?classes=inline&height=25px)
+
+We are now going to setup a browser test that will provide you continieus insight in the behaviour of your website.
+As part of this excersise we will clone an exsting Synthetic Test and configure it to test against your website, and have it run automaticly. 
+Lets find the  the prproviosned Browser tst in the Synthetics page of 
+as part of this excercise we will also set up a detector that will will allow you to be automaticly informed/alerted if the perfomance of your webite is suboptimal.
 
 Change to your browser tab with the recently failed test run containing long POST checkout request
 
