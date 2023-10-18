@@ -1,5 +1,9 @@
 #cloud-config
 ssh_pwauth: yes
+%{ if pub_key != "" ~}
+ssh_authorized_keys:
+  - ${pub_key}
+%{ endif ~}
 password: ${instance_password}
 chpasswd:
   expire: false
@@ -48,8 +52,9 @@ write_files:
   - path: /etc/skel/.profile
     append: true
     content: |
-      export ACCESS_TOKEN=${access_token}
       export REALM=${realm}
+      export ACCESS_TOKEN=${access_token}
+      export API_TOKEN=${api_token}
       export RUM_TOKEN=${rum_token}
       export HEC_TOKEN=${hec_info.token}
       export HEC_URL=${hec_info.url}
@@ -113,11 +118,42 @@ write_files:
       echo "$NODE_IP $REGISTRY_NAME" | tee -a /etc/cloud/templates/hosts.debian.tmpl
       systemctl restart docker
 
+  - path: /tmp/workshop-secret.yaml
+    permissions: '0755'
+    content: |
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: workshop-secret
+        namespace: default
+      type: Opaque
+      stringData:
+        app: ${instance_name}-store
+        env: ${instance_name}-workshop
+        deployment: "deployment.environment=${instance_name}-workshop"
+        access_token: ${access_token}
+        api_token: ${api_token}
+        realm: ${realm}
+        rum_token: ${rum_token}
+        hec_token: ${hec_token}
+        hec_url: ${hec_url}
+
+  - path: /tmp/diab-setup.sh
+    permissions: '0755'
+    content: |
+      export RUM_TOKEN=${rum_token}
+      export REALM=${realm}
+      export ACCESS_TOKEN=${access_token}
+      export HEC_TOKEN=${hec_token}
+      export HEC_URL=${hec_url}
+      export INSTANCE="${instance_name}"
+      ansible-playbook /home/ubuntu/playbook.yml
+
   - path: /tmp/confgo-values.yaml
     permissions: '0644'
     content: |
       environment: ${instance_name}-apps
-      clusterName: ${instance_name}
+      clusterName: ${instance_name}-k3s-cluster
       logsEngine: otel
       splunkObservability:
         realm: ${realm}
@@ -276,6 +312,7 @@ write_files:
       export RUM_TOKEN=${rum_token}
       export REALM=${realm}
       export ACCESS_TOKEN=${access_token}
+      export API_TOKEN=${api_token}
       export HEC_TOKEN=${hec_info.token}
       export HEC_URL=${hec_info.url}
       export INSTANCE="${instance_name}"
@@ -285,8 +322,12 @@ write_files:
         splunk-otel-collector-chart/splunk-otel-collector \
         -f /tmp/confgo-values.yaml
 
+      # use IDMSv2
+      TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+      RUM_FRONTEND_IP=$(curl -sSH "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/local-ipv4)
+      export RUM_FRONTEND_IP
+
       cd /home/ubuntu/workshop/apm/
-      bash apm-config.sh -r
       sudo kubectl apply -f deployment.yaml
 
   - path: /tmp/evil-pod.yaml
@@ -367,11 +408,15 @@ runcmd:
   - chmod 644 /etc/rancher/k3s/k3s.yaml
   # Deploy private registry
   - /usr/local/bin/kubectl apply -f /home/ubuntu/workshop/k3s/registry/registry.yaml
+  - /usr/local/bin/kubectl apply -f /tmp/workshop-secret.yaml
   # Configure shellinabox port and disable ssl then restart
   - sed -i 's/SHELLINABOX_PORT=4200/SHELLINABOX_PORT=6501/' /etc/default/shellinabox
   - sed -i "s/\"--no-beep\"/\"--no-beep --disable-ssl\"/" /etc/default/shellinabox
   - sudo service shellinabox restart
   - sed -i 's/_THEME=\"robbyrussell\"/_THEME=\"gentoo\"/g' home/ubuntu/.zshrc
+%{ if diab == true ~}
+  - su ubuntu -c 'bash /tmp/diab-setup.sh'
+%{ endif ~}
 %{ if presetup == true ~}
   - su ubuntu -c 'bash /tmp/pre-setup.sh'
 %{ endif ~}
