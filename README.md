@@ -22,8 +22,6 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 To get started, please proceed to [The Splunk Observability Cloud Workshops Homepage](https://splunk.github.io/observability-workshop/latest/).
 
-If you are the host for the RUM workshop, please check this [README](https://github.com/splunk/observability-workshop/blob/main/workshop/apm/README.md)
-
 Latest versions of the workshop are:
 - [v5.9](https://splunk.github.io/observability-workshop/v5.9/)
 - [v5.8](https://splunk.github.io/observability-workshop/v5.8/)
