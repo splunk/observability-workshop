@@ -1,6 +1,6 @@
 ---
 title: Splunk RUM
-weight: 2
+weight: 40
 ---
 
 Splunk Real User Monitoring (RUM) allows your teams to quickly identify and eliminate customer-facing issues across your entire architecture.

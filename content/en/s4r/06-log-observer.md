@@ -1,6 +1,6 @@
 ---
 title: Splunk Log Observer
-weight: 30
+weight: 60
 ---
 
 Hover over the boxes at the bottom of the trace

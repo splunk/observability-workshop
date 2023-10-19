@@ -1,6 +1,6 @@
 ---
 title: Splunk APM
-weight: 9
+weight: 50
 ---
 
 Hover over the APM link

@@ -1,6 +1,6 @@
 ---
 title: Splunk Synthetics
-weight: 40
+weight: 70
 ---
 
 ## Use the Splunk Observability Suite to check the perfomance of your Website/API Endpoint
