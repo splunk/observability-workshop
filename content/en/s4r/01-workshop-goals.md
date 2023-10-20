@@ -2,15 +2,15 @@
 title: Workshop Agenda
 weight: 10
 ---
-The goal of this workshop is to make you famliar with the Splunk Observability Suite and its key features.
-For this we have provided you with a complete application that includes a Website and a number of back end services  that make up the complete application.
+The goal of this workshop is to make you famliar with the Splunk Observability Suite and its key features. For this we have provided you with a complete application that includes a Website and a number of back end services  that make up the complete application.
 
-During this workshop you will expierince issues with this application. The goal of this excercise is to use several of the key features from the Splunk observability suite to detect the issue, locate  the cause of the issue, allowing you developerers to very quickly resolve the issue.
+During this workshop you will expierince issues with this application. The goal of this excercise is to use several of the key features from the Splunk observability suite to detect the issue, locate the cause of the issue, allowing your developmemt teams to very quickly resolve the issue.
 
-### 1. Inital Setup 
+## 1. Inital Setup
+
 For attendees that are taking the **pre-configured workshop**, the application will already be deployed for you and your instructor will provide with a link to the Online Boutique application.
 
-For attendees taking the **interactive workshop**, you will need to install OpenTelemetry and deploy the application. Hit the {{% badge style=primary icon=user-ninja %}}**Ninja{{% /badge %}} button below to expand the instructions.
+For attendees taking the **interactive workshop**, you will need to install OpenTelemetry and deploy the application. Hit the {{% badge style=primary icon=user-ninja %}}**Ninja**{{% /badge %}} button below to expand the instructions.
 
 ---
 
@@ -187,43 +187,48 @@ Usually it should only take around 1min 30secs for the pods to transition into a
 
 ---
 
-### 2. A quick tour of the Splunk Observability User Interface
+## 2. A quick tour of the Splunk Observability User Interface
 
-To make finding your way in the Splunk Observability suite User interface, We will take you on a quick tour that will give you the highlights and is designed to make the rest of the workhop simpler as you are already fmailiar with the locations of various components.
+To make finding your way in the Splunk Observability suite User interface, We will take you on a quick tour that will give you the highlights and is designed to make the rest of the workhop simpler as you are already familiar with the locations of various components.
 
 ---
 
-### 3. Using the Online Boutique Webshop to create traffic
+## 3. Using the Online Boutique Webshop to create traffic
+
 The next step in the workshop is to use the Web ui of the application we provided, We wil assk you to run several scenario's, and if possible repeat some of the actions on an other device, something like a mobile phone for example.
 
-This will generate traffic acorr our appliction and with that traffic comes the Open Telemetry signals, Metrics, Traces and logs,  that we can use to find and indentify the cause of the underlying issues. 
+This will generate traffic acorr our appliction and with that traffic comes the Open Telemetry signals, Metrics, Traces and logs,  that we can use to find and indentify the cause of the underlying issues.
 
 ---
 
-### 4. Splunk Real User Monitoring
+## 4. Splunk Real User Monitoring
 
-During this session we will examine the Real User  data that has been provided by the telemetry  recieved  from your website. The goal is to fidn and identify the activity you have created  with your browser, and if possible from a different device like a mobile phone.  This will show you some of the issues you can detect with Splunk RUM.  It will also show you how we can  folow intereactiosn from the front end website to the underlying dunctions in the back end services
+During this session we will examine the Real User data that has been provided by the telemetry recieved from end user browser sessions. The goal is to find and identify the activity you created with your own browser, and if possible from a different device like a mobile phone. This will show you some of the issues you can detect with Splunk RUM. It will also show you how we can follow interactions from the frontend to the underlying functions in the back end services.
 
 ---
 
-### 5 Splunk Application Perfomance Monitoring
+## 5. Splunk Application Perfomance Monitoring
 
-Follwing up form our finsing in the RUm session, we will follow theroute are request have takne though the underlying backend service.s for this we are using Application Monitoring or APM, all our services are sneding telemtry,or Traces and spans, that the Splunk observability suite can visualise, analyze and use to detect anomolise and errrors.
+Following on from finishing the RUM session, we will follow the route the requests have taken through the underlying backend services. For this we will use Application Performance Monitoring or APM, all the services are sending telemetry (traces and spans) that the Splunk observability suite can visualise, analyze and use to detect anomalies and errors.
+
 In this session we show you several ways to find and detect errors mannually or with the support of our smart Analytics.
 
 ---
 
-### 6 Using Logs with Splunk Log Observer
-Generally, you use metrics and traces to detect  and identify an issue, and use Logs with itch richer information pool, to indity the why, or the casue of the issue.  Within this section we will examine the functionality of Log observer, our gateway in the logs generated by our apllications.
+## 6. Using Logs with Splunk Log Observer
+
+Generally, you use metrics and traces to detect and identify an issue, and use logs with a much richer information pool, to indetify the why, or the casue of the issue.  Within this section we will examine the functionality of Log observer, our gateway in the logs generated by our apllications.
 
 ---
 
-### 7 Splunk Synthetics
+## 7. Splunk Synthetics
+
 The next step is is to make sure we do not rely on manual testing of our application, and we will look at how you can create  tests that can keep track of the performance and behaviour of your application that can run 24/7 from different location.
+
 We also look into how these test can alert you when ther is a deviation in behaviour of your site.
 
 ---
 
-### 8 Wrapping upp
+## 8. Wrapping upp
 
-Last but not least we will show some of the other features that can be help full in finding problems  befor clsoing the session.
+Last but not least we will show some of the other features that are helpful in finding problems before closing the session.

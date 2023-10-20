@@ -3,5 +3,5 @@ title: Quick guide to the Splunk Observability Suite UI
 weight: 20
 ---
 
- aquick tour of the ui
+A quick tour of the ui
 ---
