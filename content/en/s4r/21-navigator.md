@@ -16,3 +16,4 @@ Navigate to the K8s Navigator ... walk through
 * Back to Infrastructure
 
 Something to trigger alerts in Navigator?
+![kubernets](../images/im-kubernets.png)
