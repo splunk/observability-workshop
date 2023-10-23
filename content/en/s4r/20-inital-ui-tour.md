@@ -2,13 +2,14 @@
 title: Quick guide to the Splunk Observability Suite UI
 weight: 20
 ---
+
 {{% button icon="clock" %}}15 minutes{{% /button %}}
 
-The goal of this section is to make you comfortable with the UI of the Splunk Observability Suite. to achieve this, we first will examine the main components of the ui, followed by an exercise to get you started.
+The goal of this section is to make you comfortable with the UI of Splunk Observability Cloud. To achieve this, we first will examine the main components of the ui, followed by an exercise to get you started.
 
 ---
 
-### 1. Connecting  to the Splunk Observability Suite
+### 1. Login in to Splunk Observability Cloud
 
 Your instructor may already have told you that you should have received and e-mail from Splunk that invites you to the Workshop Org (short for Organization). This e-mail will look like the one below, and may have ended up in your Spam folder if you cannot find it. Once received, please click the {{% button style="blue" %}}Join Now{{% /button %}} or copy the provided url in the your browser.
 

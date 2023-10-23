@@ -7,6 +7,25 @@ agent:
             rule: type == "port" && pod.name matches "nginx" && port == 8082
             config:
               type: collectd/nginx
+          smartagent/mysql:
+            rule: type == "port" && pod.name matches "mysql" && port == 3306
+            config:
+              type: collectd/mysql
+              host: mysql
+              port: 3306
+              username: root
+              password: root
+              databases:
+                - name: "LxvGChW075"
+              name: "mysql agent {{environment}}"
+          smartagent/redis:
+            rule: type == "port" && pod.name matches "redis-cart" && port == 6379
+            config: 
+              type: collectd/redis
+              host: redis-cart
+              port: 6379
+              name: "redis agent {{environment}}"
+
     extensions:
       zpages:
         endpoint: 0.0.0.0:55679
