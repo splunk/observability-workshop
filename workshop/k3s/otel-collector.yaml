@@ -17,15 +17,18 @@ agent:
               password: root
               databases:
                 - name: "LxvGChW075"
-              name: "mysql agent {{environment}}"
+              name: "mysql-${K8S_NODE_NAME}"
+              extraDimensions:
+                service.name: "mysql-${K8S_NODE_NAME}"
           smartagent/redis:
             rule: type == "port" && pod.name matches "redis-cart" && port == 6379
             config: 
               type: collectd/redis
               host: redis-cart
               port: 6379
-              name: "redis agent {{environment}}"
-
+              name: "redis-${K8S_NODE_NAME}" 
+              extraDimensions:
+                service.name: "redis-${K8S_NODE_NAME}"
     extensions:
       zpages:
         endpoint: 0.0.0.0:55679
