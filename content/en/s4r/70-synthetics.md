@@ -18,7 +18,7 @@ and could instead test the frontend whenever we want, in both production and pre
 
 This is where Splunk Synthetics comes in.
 
-![Synthetics overview](../images/SyntheticTests.png?width=40vw)
+![Synthetics overview](../images/synthetictests.png?width=40vw)
 
 As the image above tries to shows, Synthetics (a part of the Splunks Observability Suite offering) acts like a set of "Robot" users to run different test against your sites, from various locations and allows you to set up Detectors that warn you if the behaviour of your site(s) changes.
 
