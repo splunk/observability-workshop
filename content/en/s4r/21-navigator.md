@@ -5,7 +5,9 @@ weight: 21
 
 TBD
 
-Navigate to the K8s Navigator ... walk through
+Navigate to the K8s Navigator ... walk through ... filtering, metrics, node dependencies, etc.
+
+Talk around what has been deployed
 
 * Talk around initial panes goto Nodes
 * Filter to workshop cluster

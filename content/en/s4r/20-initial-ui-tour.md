@@ -43,7 +43,7 @@ After you register and log into the Splunk observability UI, you will be taken t
 * 5. Org Switcher Pane, allows for switching between orgs that you are a member off.
 * 6. Expand menu Pane, This pane allow you to expand the Main menu for icon mode to full mode.
 
-{{% notice title="Info" style="info" title="Exercise" %}}
+{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 
 * Expand the main menu, check the drop down box if you have more than one Org assigned to you.
 * Click on **Settings**.
