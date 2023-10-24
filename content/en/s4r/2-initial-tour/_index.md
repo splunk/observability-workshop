@@ -15,7 +15,7 @@ Your instructor may already have told you that you should have received and e-ma
 
 ![email](../images/invite-email.png?&height=500px)
 
-If you cannot find your email, check our FAQ [here](../25-login-faq), if that did not resolve the issue, inform your Instructor.
+If you cannot find your email, check our FAQ [here](25-login-faq), if that did not resolve the issue, inform your Instructor.
 
 If you follow the link provided in the email, and this is your first time using this e-mail address with Splunk Observability, you will be presented by the below User Registration page, allowing you to set you desired name, and the desired password. After completing the form, click the {{% button style="blue" %}}SIGN IN NOW{{% /button %}} button.
 
