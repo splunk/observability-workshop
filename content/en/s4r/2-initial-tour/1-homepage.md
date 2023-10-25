@@ -1,5 +1,5 @@
 ---
-title: 1. Home Page
+title: 1. Home/Landing Page
 weight: 1
 ---
 
@@ -19,12 +19,12 @@ After you register and log into the Splunk observability UI, you will be taken t
 The following exercise will allow you to pick your preferred color mode:
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 
-* Expand the main menu, check the drop down box if you have more than one Org assigned to you.
-* Click on **Settings**.
+* Expand the main menu, check the drop-down box in Org Switcher Pane at the top to see if you have more than one Org assigned to you.
+* Click on ![Settings](../../images/settings-icon.png?classes=inline&height=25px) in the main menu.
 * At the bottom of the menu, click on either **Light**, **Dark** or **Auto** mode.
-* Did you also notice this is where the **Sign Out** option is?
-* Click **Back to Main Menu**.
+* Did you also notice this is where the  Sign out ![Sign Out](../../images/sign-out-icon.png?classes=inline&height=25px) option is?
+* Click ![Back to menu](../../images/back-main-menu.png?classes=inline&height=25px) to go back to the Main Menu.
 
 {{% /notice %}}
 
-Lets Continue on to APM.
+Lets continue on to APM.
