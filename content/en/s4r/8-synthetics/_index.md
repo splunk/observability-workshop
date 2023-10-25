@@ -1,48 +1,25 @@
 ---
-title: Splunk Synthetics
+title: Automate testing your application with Splunk Synthetics
+linkTitle: Splunk Synthetics
+description: This section of the workshop will equip you with the basic understanding of monitoring Kubernetes using the Splunk OpenTelemetry Collector
+
 weight: 70
 ---
 
-## Use the Splunk Observability Suite to check the perfomance of your Website/API Endpoint
+## Why use Splunk Synthetics
 
 So far we have have tested the performance of our Website by visiting and running manual test scenarios to see how our web site performed. However, this is not something you can do 24 hours a day, 7 days a week!
 
-If you were not testing your website performance and behaviour manually in production the likely source telling you that your site is slow or not performant would be Social Media or Down Detector.
+If you were not testing your website performance and behavior manually in production the likely source telling you that your site is slow or not performant would be Social Media or Down Detector.
 
-![socialmedia](../images/social-media-post.png?width=50vw)
+![social media](../images/social-media-post.png?width=40vw)
 
-But, what if we didn't have to do it manually and avoid waiting on your customers/users to let you know the behaviour of your site and could instead test the frontend whenever we wanted, in both production and pre-production?
+But, what if we didn't have to do it manually and avoid waiting on your customers/users to let you know the behavior of your site and could instead test the frontend whenever we wanted, in both production and pre-production?
 
 This is where Splunk Synthetics comes in.
 
-![Synthetics overview](../images/synthetictests.png?width=40vw)
+![Synthetics overview](../images/synthetic-tests.png?width=40vw)
 
-As the image above tries to shows, Synthetics (a part of the Splunk Observability Cloud offering) acts like a set of "Robot" users to run different test against your sites, from various locations and allows you to set up Detectors that warn you if the behaviour of your site(s) changes.
+As the image above tries to shows, Synthetics (a part of the Splunk Observability Cloud offering) acts like a set of "Robot" users to run different test against your sites, from various locations and allows you to set up Detectors that warn you if the behavior of your site(s) changes.
 
-before we are going to setup our own Test lets take a quick tour of the Synthetic ui. Select Synthetic from the menu bar on the right (the robot icon)
-
-![synthetics Menu](../images/syntheticsIcon.png?classes=inline&height=25px)
-
-We are now going to setup a browser test that will provide you continuous insight in the behaviour of your website. As part of this exercise we will clone an existing Synthetic Test and configure it to test against your website, and have it run automatically.
-
-Lets find the the provisioned Browser test in the Synthetics page of as part of this exercise we will also set up a detector that will will allow you to be automatically informed/alerted if the performance of your website is suboptimal.
-
-Change to your browser tab with the recently failed test run containing long POST checkout request
-
-![Synthetics test run details](../images/test-run.png?width=50vw)
-
-Synthetics can test uptime and APIs, but in this example let's look at a browser test, where we are emulating real user behavior of shopping and checking out on the desktop site for my retail application.
-
-We see the details of this test run, what the front end looks like visually, as well as a waterfall of all requests broken down by URL. Because this is a Synthetic test, we can define the test frequency, device type, and locations, as well as the critical user transactions that we want to track.
-
-Click the last Transaction or Page tab, scroll through the filmstrip to show the images, and scroll down to the long checkout request
-
-![Checkout requests](../images/failed-run-example.png?width=50vw)
-
-We see that this test run failed because it never got to confirm the Order ID. Looking at the requests in the checkout, we see a long POST request to checkout with an APM link. Familiar, right?
-
-Click the APM link on the long POST checkout request
-
-![Checkout requests](../images/syn-apm.png?width=50vw)
-
-Now if we follow the APM link as we did before in RUM, we see the same issue with an error in the payment service requests, and can follow the same workflow to investigate the issue.
+Let's move on and look at the UI and create  our own test.
