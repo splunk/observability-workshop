@@ -1,9 +1,9 @@
 ---
-title: 1. Home Page
-weight: 1
+title: 2. APM Page
+weight: 20
 ---
 
-{{% button icon="clock" %}}5 minutes{{% /button %}}
+{{% button icon="clock" %}}10 minutes{{% /button %}}
 
 After you register and log into the Splunk observability UI, you will be taken to the Home Page. This Home or landing page has 6 distinct section that provide either useful information or allows you to navigate the Splunk Observability Suite.
 
@@ -27,4 +27,4 @@ The following exercise will allow you to pick your preferred color mode:
 
 {{% /notice %}}
 
-Lets Continue on to APM.
+Lets Continue on to RUM.
