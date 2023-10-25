@@ -1,34 +1,12 @@
 ---
-title: Splunk Log Observer
+title: Splunk Log Observer Connect
 weight: 60
 ---
 
-Hover over the boxes at the bottom of the trace
+Log Observer Connect allows you to seamlessly bring in the same log data from your Splunk Platform into an intuitive and codeless interface designed to help you find and fix problems fast. You can easily perform log-based analysis and seamlessly correlate your logs with Splunk Infrastructure Monitoring’s real-time metrics and Splunk APM’s traces in one place.
 
-![Related content to the trace incldues Logs](../images/rel-logs.png?width=50vw)
+**End-to-end visibility:** By combining the powerful logging capabilities of Splunk Platform with Splunk Observability Cloud’s traces and real-time metrics for deeper insights and more context of your hybrid environment.  
+**Perform quick and easy log-based investigations:** By reusing logs that are already ingested in Splunk Cloud Platform or Enterprise in a simplified and intuitive interface (no need to know SPL!) with customizable and out-of-the box dashboards  
+**Achieve higher economies of scale and operational efficiency:** By centralizing log management across teams, break down data and team silos, and get better overall support
 
-We are federating logs across multiple Splunk instances and indexes, which can be extremely useful when I have logs in multiple places – on-prem or in the cloud.
-
-Let’s navigate to the linked logs.
-
-Click on the logs that are in Splunk Cloud integration
-
-![Link to Logs for this trace](../images/logo.png?width=50vw)
-
-I can now see the log entries coming from this specific trace.
-
-Search for “severity” on the right under the “Fields” section, hover over “error”, and click the = next to “error”
-
-![Logs narrowed down by severity](../images/log-errors.png?width=50vw)
-
-Log Observer gives me an easy way to aggregate and filter on the logs I need to. Here we are just filtering on the log entries that are errors.
-
-Click on one of the errors"
-
-![Error detail](../images/error-detail.png?width=50vw)
-
-I can see there is a bad token in the deployment of the new version. If we filter by this error message, we see the same issue is causing all of the errors.
-
-We’ve now been successful in narrowing down the offending service, version of code, and specific errors that were causing the problem.
-
-If I were still in the middle of my investigation I can see some additional content that can take me back to the map or trace or into the infrastructure where these errors are found. Splunk Observability helps to direct me to the right places to find context.
+## GRAPHIC REQUIRED -TBD
