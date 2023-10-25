@@ -27,4 +27,4 @@ The following exercise will allow you to pick your preferred color mode:
 
 {{% /notice %}}
 
-Lets continue on to APM.
+Let's continue on to APM.
