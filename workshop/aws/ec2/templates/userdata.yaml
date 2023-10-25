@@ -134,6 +134,20 @@ write_files:
         hec_token: ${hec_token}
         hec_url: ${hec_url}
 
+  - path: /tmp/create-browser-test.sh
+    permissions: '0755'
+    content: |
+      INSTANCE=$(cat /etc/hostname)
+      export INSTANCE
+      export REALM=${realm}
+      export API_TOKEN=${api_token}
+      export EXTERNALIP="$(curl -s http://ifconfig.me)"
+      envsubst < /home/ubuntu/workshop/synthetics/browser_test.json > /tmp/modified_test.json
+      curl -X POST "https://api.$REALM.signalfx.com/v2/synthetics/tests/browser" \
+      -H "Content-Type: application/json" \
+      -H "X-SF-TOKEN: $API_TOKEN" \
+      --data @/tmp/modified_test.json
+
   - path: /tmp/diab-setup.sh
     permissions: '0755'
     content: |
@@ -264,6 +278,7 @@ runcmd:
 %{ endif ~}
 %{ if presetup == true ~}
   - su ubuntu -c 'bash /tmp/pre-setup.sh'
+  - su ubuntu -c 'bash /tmp/create-browser-test.sh'
 %{ endif ~}
 %{ if otel_demo == true ~}
   - su ubuntu -c 'bash /tmp/otel-demo-setup.sh'
