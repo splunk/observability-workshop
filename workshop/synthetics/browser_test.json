@@ -18,10 +18,10 @@
           {
             "name": "Online Boutique",
             "type": "go_to_url",
-            "url": "http://$EXTERNALIP",
+            "url": "http://$EXTERNALIP:81/",
             "action": "go_to_url",
             "options": {
-              "url": "http://$EXTERNALIP"
+              "url": "http://$EXTERNALIP:81/"
             }
           },
           {
