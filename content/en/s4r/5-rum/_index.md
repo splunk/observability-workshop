@@ -10,7 +10,7 @@ Splunk RUM is the industry’s only end-to-end, **NoSample™** RUM solution - p
 **Correlate issues faster:** Infinite cardinality and full transaction analysis helps you pinpoint and correlate issues faster across complex distributed systems.  
 **Isolate latency and errors:** Easily identify latency, errors and poor performance for each code change and deployment. Measure how content, images and third-party dependencies impact your customers.  
 **Benchmark and improve page performance:** Leverage core web vitals to measure and improve your page load experience, interactivity and visual stability. Find and fix impactful JavaScript errors, and easily understand which pages to improve first.  
-**Explore meaningful metrics:** Instantly visualize the customer impact with metrics on specific workflows, custom tags and auto-suggest unindexed tags to quickly find the root cause of issues.  
+**Explore meaningful metrics:** Instantly visualize the customer impact with metrics on specific workflows, custom tags and auto-suggest un-indexed tags to quickly find the root cause of issues.  
 **Optimize end-user experience:** Correlate performance metrics alongside video reconstructions of all user interactions to optimize end-user experiences.
 
 ![Architecture Overview](../images/rum-architecture.png?width=40vw)

@@ -18,8 +18,6 @@ But, what if we didn't have to do it manually and avoid waiting on your customer
 
 This is where Splunk Synthetics comes in.
 
-![Synthetics overview](../../images/synthetic-tests.png?width=40vw)
-
 As the image above tries to shows, Synthetics (a part of the Splunk Observability Cloud offering) acts like a set of "Robot" users to run different test against your sites, from various locations and allows you to set up Detectors that warn you if the behavior of your site(s) changes.
 
 Let's move on and look at the UI and create  our own test.
