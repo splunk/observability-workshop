@@ -9,7 +9,7 @@ After you register and log into the Splunk observability UI, you will be taken t
 
 ![home page](../../images/home-screen.png?width=50vw)
 
-1. Explore Data Pane, Here you can see what function of the Suit are active and you can add additional integrations.
+1. Explore Data Pane, Here you can see what function of the Suite are active and you can add additional integrations.
 2. Instruction Pane, Here you will find video's and references to document pages of interest.
 3. Recent Pane, This pane shows your recently created or visited Dashboards or Detectors for easy access.
 4. Main Menu Pane, this pane allows for quick movement between the components of the Splunk Observability Suite.

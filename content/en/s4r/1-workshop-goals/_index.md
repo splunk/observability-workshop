@@ -9,9 +9,9 @@ The goal of this workshop is to make you familiar with the Splunk Observability 
 
 During this workshop you will experience issues with this application. The goal of this exercise is to use several of the key features from the Splunk observability suite to detect the issue, locate the cause of the issue, allowing your development teams to very quickly resolve the issue.
 
-#### 2. A quick tour of the Splunk Observability User Interface (introduce Splunk IM)
+#### 2. A quick tour of the Splunk Observability User Interface
 
-To make finding your way in the Splunk Observability suite User interface, We will take you on a quick tour that will give you the highlights and is designed to make the rest of the workshop simpler as you are already familiar with the locations of various components.
+To make finding your way in the Splunk Observability Suite, we will take you on a quick tour though  the UI for the 4 main components of the Splunk Observability Suite. This will give you the highlights and is designed to make the rest of the workshop simpler as you are already familiar with the locations of various components.
 
 #### 3. Using the Online Boutique Website to create traffic
 

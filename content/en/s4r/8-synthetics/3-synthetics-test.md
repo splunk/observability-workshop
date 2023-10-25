@@ -2,7 +2,7 @@
 title: Our first Synthetic test
 linkTitle: Create Your own test
 description: This section of the workshop will equip you with the basic understanding of the SyntheticsUI
-weight: 20
+weight: 30
 ---
 We are now going to setup a browser test that will provide you continuous insight in the behavior of your website. As part of this exercise we will clone an existing Synthetic Test and configure it to test against your website, and have it run automatically.
 
@@ -10,7 +10,7 @@ Lets find the the provisioned Browser test in the Synthetics page of as part of 
 
 Change to your browser tab with the recently failed test run containing long POST checkout request
 
-![Synthetics test run details](../../images/test-run.png?width=50vw)
+![Synthetics test run details](../images/test-run.png?width=50vw)
 
 Synthetics can test uptime and APIs, but in this example let's look at a browser test, where we are emulating real user behavior of shopping and checking out on the desktop site for my retail application.
 
