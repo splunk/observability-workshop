@@ -4,7 +4,7 @@ description: This section of the workshop will equip you with the basic understa
 weight: 60
 ---
 Before we are going to setup our own synthetic test, lets take a quick tour of the Synthetic UI.  
-Select Synthetic from the menu bar on the right (the robot icon) ![syntheticsMenu](../../images/syntheticsIcon.png?classes=inline&height=25px)  
+Select Synthetic from the menu bar on the right (the robot icon) ![syntheticsMenu](../../images/synthetics-icon.png?classes=inline&height=25px)  
 
 This will bring us to the Synthetic Home Page. It has 3 distinct sections that provide either useful information or allows you pick or create a Synthetic Test.
 
