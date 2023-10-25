@@ -15,11 +15,11 @@ This will bring us to the Synthetic Home Page. It has 3 distinct sections that p
 * 3. Create Test Pane, This  Drop down pane  give you the option to create an new version of tests supported by Splunk Synthetics, Browser test, API test & uptime test.
 
 To continue out tour, lets look at the result of an automatic browser test.  
-In the Test Pane, double Click on line ![example-check](../../images/workshop-example-icon.png?classes=inline&height=25px This should give you a page similar to the one below: 
+In the Test Pane, double Click on line ![example-check](../../images/workshop-example-icon.png?classes=inline&height=25px This should give you a page similar to the one below:
+
 ![Synthetics-overview](../../images/synthetics-test-overview.png?width=50vw)
 
 This page will give you an overview of the performance of your site.
-
 
 In the following exercise, we will create a new uptime test:
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}

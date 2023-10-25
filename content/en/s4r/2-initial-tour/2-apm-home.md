@@ -7,7 +7,7 @@ weight: 20
 
 If you have not done so already, please select ![APM](../../images/apm-icon.png?classes=inline&height=25px) from the Main menu. This will bring you to the APM Home page.
 
- ***WIP WIP WIP WIP WIP WIP ***
+***WIP WIP WIP WIP WIP WIP***
 
 this Page has 6 distinct sections that provide either useful information or allows you to navigate the Splunk Observability Suite.
 

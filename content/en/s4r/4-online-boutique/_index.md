@@ -3,7 +3,7 @@ title: Shopping at the Online Boutique
 weight: 30
 ---
 
-Excercise is to generate some traffic to the Online Boutique application and then use Splunk RUM to troubleshoot the checkout process.
+Exercise is to generate some traffic to the Online Boutique application and then use Splunk RUM to troubleshoot the checkout process.
 
 For attendees that are taking the **pre-configured workshop**, the application will already be deployed for you and your instructor will provide with a link to the Online Boutique application.
 

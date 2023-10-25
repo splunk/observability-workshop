@@ -5,7 +5,7 @@ weight: 1
 
 Hover over the boxes at the bottom of the trace
 
-![Related content to the trace incldues Logs](../../images/rel-logs.png?width=50vw)
+![Related content to the trace includes Logs](../../images/rel-logs.png?width=50vw)
 
 We are federating logs across multiple Splunk instances and indexes, which can be extremely useful when I have logs in multiple places – on-prem or in the cloud.
 

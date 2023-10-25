@@ -1,7 +1,7 @@
 ---
-title: Discover Splunk Infra monitoring with the Kubernetes Navigator
+title: Kubernetes Navigator
 linkTitle: Kubernetes Navigator
-description: This section of the workshop will equip you with the basic understanding of monitoring Kubernetes in the Splunk Observability suite  using the Kubernetes Navigator 
+description: This section of the workshop provides a basic understanding view Kubernetes metrics using the Kubernetes Navigator.
 weight: 21
 ---
 
