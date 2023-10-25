@@ -1,0 +1,65 @@
+{
+  "test": {
+    "name": "Workshop Browser Test for $INSTANCE",
+    "active": true,
+    "deviceId": 1,
+    "frequency": 5,
+    "schedulingStrategy": "round_robin",
+    "locationIds": [
+      "aws-eu-central-1",
+      "aws-eu-west-2",
+      "aws-eu-west-3"
+    ],
+    "type": "browser",
+    "transactions": [
+      {
+        "name": "Frontend Demo",
+        "steps": [
+          {
+            "name": "Online Boutique",
+            "type": "go_to_url",
+            "url": "http://$EXTERNALIP",
+            "action": "go_to_url",
+            "options": {
+              "url": "http://$EXTERNALIP"
+            }
+          },
+          {
+            "name": "Select Random Product",
+            "type": "run_javascript",
+            "value": "var products = [\n\"OLJCESPC7Z\",\n\"2ZYFJ3GM2N\",\n\"1YMWWN1N4O\",\n\"LS4PSXUNUM\",\n\"L9ECAV7KIM\",\n\"0PUK6V6EV0\",\n\"9SIQT8TOJO\",\n\"66VCHSJNUP\",\n\"6E92ZMYYFZ\"\n]\n\nvar randomProducts = products[Math.floor(Math.random() * products.length)];\n\nwindow.open(\"https://frontend-eu.o11ystore.com/product/\" + randomProducts, \"_self\");",
+            "waitForNav": true
+          },
+          {
+            "name": "Add to Cart",
+            "type": "click_element",
+            "selectorType": "xpath",
+            "selector": "//button[contains(text(), \"Add to Cart\")]",
+            "waitForNav": true
+          },
+          {
+            "name": "Place Order",
+            "type": "click_element",
+            "selectorType": "xpath",
+            "selector": "//button[contains(text(), \"Place order\")]",
+            "waitForNav": false
+          }
+        ]
+      }
+    ],
+    "device": {
+      "id": 1,
+      "label": "Default Desktop",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64; Splunk Synthetics) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.96 Safari/537.36",
+      "viewportWidth": 1366,
+      "viewportHeight": 768,
+      "networkConnection": {
+        "description": "Unthrottled",
+        "uploadBandwidth": null,
+        "downloadBandwidth": null,
+        "latency": null,
+        "packetLoss": null
+      }
+    }
+  }
+}
