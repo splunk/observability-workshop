@@ -64,6 +64,9 @@ params:
     - version: v5.10
       url: https://splunk.github.io/observability-workshop/v5.10
   url_latest_version: https://splunk.github.io/observability-workshop/
+  imageEffects:
+    border: false
+    shadow: true
 menu:
   shortcuts:
     - name: "<i class='fab fa-fw fa-github'></i> GitHub Repository"

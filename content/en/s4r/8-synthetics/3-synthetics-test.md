@@ -10,7 +10,7 @@ Lets find the the provisioned Browser test in the Synthetics page of as part of 
 
 Change to your browser tab with the recently failed test run containing long POST checkout request
 
-![Synthetics test run details](../images/test-run.png?width=50vw)
+![Synthetics test run details](../../images/test-run.png?width=50vw)
 
 Synthetics can test uptime and APIs, but in this example let's look at a browser test, where we are emulating real user behavior of shopping and checking out on the desktop site for my retail application.
 
