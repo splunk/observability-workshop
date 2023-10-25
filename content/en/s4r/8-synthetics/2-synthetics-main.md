@@ -9,7 +9,7 @@ Select Synthetic from the menu bar on the right (the robot icon) ![Synthetics Ic
 
 This will bring us to the Synthetic Home Page. It has 3 distinct sections that provide either useful information or allows you pick or create a Synthetic Test.
 
-![Synthetic main](../../images/synthetics-main.png?width=50vw)
+![Synthetic main](../../images/synthetics-main.png?width=40vw)
 
 1. Instruction Pane, Here you will find video's and references to document pages of interest related to Splunk Synthetics.
 2. Test Pane, Here you find the list of all the test that are active in your org, and you can select them to see the results

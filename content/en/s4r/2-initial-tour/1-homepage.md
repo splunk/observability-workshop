@@ -7,7 +7,7 @@ weight: 1
 
 After you register and log into the Splunk observability UI, you will be taken to the Home Page. This Home or landing page has 6 distinct section that provide either useful information or allows you to navigate the Splunk Observability Suite.
 
-![home page](../../images/home-screen.png?width=50vw)
+![home page](../../images/home-screen.png?width=40vw)
 
 1. Explore Data Pane, Here you can see what function of the Suite are active and you can add additional integrations.
 2. Instruction Pane, Here you will find video's and references to document pages of interest.
