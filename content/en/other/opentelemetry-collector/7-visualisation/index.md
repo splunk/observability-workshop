@@ -41,4 +41,4 @@ You can either start typing in your name you configured for `participant.name` i
 
 You can now see the host metrics for the host upon which you configured the OpenTelemetry Collector.
 
-{{% attachments sort="asc" /%}}
+{{% attachments sort="asc" style="info" title="Download Dashboard JSON for importing" /%}}
