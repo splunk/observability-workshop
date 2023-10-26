@@ -10,7 +10,7 @@ Lets find the the provisioned Browser test in the Synthetics page of as part of 
 
 Change to your browser tab with the recently failed test run containing long POST checkout request
 
-![Synthetics test run details](../../images/test-run.png?width=50vw)
+![Synthetics test run details](../images/test-run.png?width=50vw)
 
 Synthetics can test uptime and APIs, but in this example let's look at a browser test, where we are emulating real user behaviour of shopping and checking out on the desktop site for my retail application.
 
@@ -18,12 +18,12 @@ We see the details of this test run, what the front end looks like visually, as 
 
 Click the last Transaction or Page tab, scroll through the filmstrip to show the images, and scroll down to the long checkout request
 
-![Checkout requests](../../images/failed-run-example.png?width=50vw)
+![Checkout requests](../images/failed-run-example.png?width=50vw)
 
 We see that this test run failed because it never got to confirm the Order ID. Looking at the requests in the checkout, we see a long POST request to checkout with an APM link. Familiar, right?
 
 Click the APM link on the long POST checkout request
 
-![Checkout requests](../../images/syn-apm.png?width=50vw)
+![Checkout requests](../images/syn-apm.png?width=50vw)
 
 Now if we follow the APM link as we did before in RUM, we see the same issue with an error in the payment service requests, and can follow the same workflow to investigate the issue.
