@@ -1,6 +1,6 @@
-#output "ip_addresses" {
-#  value = aws_instance.observability-instance.*.public_ip
-#}
+output "ip_addresses" {
+  value = aws_instance.observability-instance[*].public_ip
+}
 
 #output "instance_names" {
 #  value = aws_instance.observability-instance[*].tags["Instance"]
@@ -18,7 +18,7 @@ output "login_details" {
   value = formatlist(
     "%s, ssh -p 2222 splunk@%s, %s",
     aws_instance.observability-instance[*].tags["instance"],
-    aws_instance.observability-instance.*.public_ip,
+    aws_instance.observability-instance[*].public_ip,
     local.template_vars.instance_password
   )
 }
