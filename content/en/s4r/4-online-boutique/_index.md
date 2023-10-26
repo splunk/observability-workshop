@@ -19,4 +19,4 @@ This is what a poor user experience feels like and since this is a potential cus
 
 Let’s go take a look at what this looks like in **Splunk RUM**.
 
-![Online retail site with large hero image](../images/shop.jpg)
+![Online retail site with large hero image](images/shop.jpg)

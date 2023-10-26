@@ -13,4 +13,4 @@ Splunk RUM is the industry’s only end-to-end, **NoSample™** RUM solution - p
 **Explore meaningful metrics:** Instantly visualize the customer impact with metrics on specific workflows, custom tags and auto-suggest un-indexed tags to quickly find the root cause of issues.  
 **Optimize end-user experience:** Correlate performance metrics alongside video reconstructions of all user interactions to optimize end-user experiences.
 
-![Architecture Overview](../images/rum-architecture.png?width=40vw)
+![Architecture Overview](images/rum-architecture.png?width=40vw)
