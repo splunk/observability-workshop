@@ -33,3 +33,23 @@ resource "local_file" "ssh_details" {
       password: local.template_vars.instance_password
   })
 }
+output "ssh_priv_key" {
+  value = tls_private_key.pk.private_key_openssh
+  sensitive = true
+}
+
+output "ssh_args" {
+  value = format("%s",
+    join(" ", [
+      format("-o IdentityFile=%s", local.ssh_priv_key),
+      "-F /dev/null",
+      "-o IdentitiesOnly=yes",
+      "-o PasswordAuthentication=no",
+      "-o PubkeyAuthentication=yes",
+      "-o ChallengeResponseAuthentication=no",
+      "-o CanonicalizeHostname=yes",
+      "-o StrictHostKeyChecking=accept-new",
+      "-o ForwardAgent=no",
+      "-l ubuntu"
+    ]))
+}
