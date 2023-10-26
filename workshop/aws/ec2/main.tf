@@ -238,19 +238,19 @@ resource "aws_instance" "observability-instance" {
 }
 
 locals {
-  ssh_priv_key = "ssh-${var.slug}.key"
+  workspace_slug = terraform.workspace == "default" ? var.slug : terraform.workspace == var.slug ? var.slug : join("_", [terraform.workspace, var.slug])
+
+  ssh_priv_key = "ssh-${local.workspace_slug}.key"
 }
 
 resource "local_sensitive_file" "ssh_priv_key" {
   filename        = local.ssh_priv_key
   file_permission = "400"
-  # directory_permission = "700"
-  # content  = tls_private_key.pk.private_key_pem
   content = tls_private_key.pk.private_key_openssh
 }
 
 resource "local_file" "ssh_client_config" {
-  filename        = "ssh-${var.slug}.conf"
+  filename        = "ssh-${local.workspace_slug}.conf"
   file_permission = "600"
   content = templatefile("${path.module}/templates/ssh_client_config.tpl",
     {
