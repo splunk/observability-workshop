@@ -3,9 +3,9 @@ title: Initial Tour of the UI
 weight: 20
 ---
 
-{{% button icon="clock" %}}15 minutes{{% /button %}}
+{{% button icon="clock" %}}5 minutes{{% /button %}}
 
-The goal of this section is to make you comfortable with the UI of Splunk Observability Cloud. We first need to log in, then we can examine the main components of the UI, followed by an exercise to get you started.
+The goal of this section is to make you comfortable with the UI of Splunk Observability Cloud. We first need to log in, then we can examine the main components of the UI, followed by a couple of exercise's to get you started.
 
 ### 1. Login in to Splunk Observability Cloud
 
@@ -26,4 +26,6 @@ Please click the checkbox to agree to the terms, and make sure you password you 
 
 {{% /notice %}}
 
-If you have problems connection, please check our FAQ [Here](99-login-faq)
+If you have problems connection, please check our FAQ [Here](99-login-faq)`
+
+Let's continue our tour with visiting the Splunk Observability Home page.`

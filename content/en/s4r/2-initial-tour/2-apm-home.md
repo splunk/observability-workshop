@@ -3,7 +3,7 @@ title: 2. APM Home Page
 weight: 20
 ---
  
-{{% button icon="clock" %}}10 minutes{{% /button %}}
+{{% button icon="clock" %}}5 minutes{{% /button %}}
 
 If you have not done so already, please select ![APM](../images/apm-icon.png?classes=inline&height=25px) from the Main menu. This will bring you to the APM Home page.
 
