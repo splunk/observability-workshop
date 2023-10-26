@@ -1,7 +1,7 @@
 ---
 title: Splunk IM
 linkTitle: Splunk IM
-description: Whether on-prem, hybrid or multicloud, Splunk delivers real-time monitoring and troubleshooting to help you maximize infrastructure performance with complete visibility.
+description: Splunk delivers real-time monitoring and troubleshooting to help you maximize infrastructure performance with complete visibility.
 weight: 1
 alwaysopen: false
 ---
@@ -10,7 +10,7 @@ During this _**technical**_ Splunk Observability Cloud Infrastructure Monitoring
 
 In order to simplify the workshop modules, a pre-configured AWS/EC2 instance is provided.
 
-The instance is pre-configured with all the software required to deploy the Splunk OpenTelemetery Connector[^2] in Kubernetes, deploy a NGINX[^3] ReplicaSet[^4] and finally deploy a microservices based application which has been instrumented using OpenTelemetry to send metrics, traces, spans and logs[^5].
+The instance is pre-configured with all the software required to deploy the Splunk OpenTelemetry Connector[^2] in Kubernetes, deploy a NGINX[^3] ReplicaSet[^4] and finally deploy a microservices based application which has been instrumented using OpenTelemetry to send metrics, traces, spans and logs[^5].
 
 The workshops also introduce you to dashboards, editing and creating charts, creating detectors to fire alerts, Monitoring as Code and the Service Bureau[^6]
 

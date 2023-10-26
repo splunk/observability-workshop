@@ -9,8 +9,8 @@ weight: 10
 The configuration portion of the component is how the user is able to have their inputs over the component,
 so the values that is used for the configuration need to be:
 
-1. Intuative for users to understand what that field controls
-1. Be explict in what is required and what is optional
+1. Intuitive for users to understand what that field controls
+1. Be explicit in what is required and what is optional
 1. Reuse common names and fields
 1. Keep the options simple
 
@@ -22,7 +22,7 @@ so the values that is used for the configuration need to be:
 jenkins_server_addr: hostname
 jenkins_server_api_port: 8089
 interval: 10m
-fitler_builds_by:
+filter_builds_by:
     - name: my-awesome-build
       status: amber
 track:
@@ -52,13 +52,13 @@ metrics:
     example.metric.3:
         enabled: true
     example.metric.4:
-        enabled: true                        
+        enabled: true
 ```
 
 {{% /tab %}}
 {{% /tabs %}}
 
-The bad configuration highlights how doing the opposite of the recomendations of configuration practices impacts the usability
+The bad configuration highlights how doing the opposite of the recommendations of configuration practices impacts the usability
 of the component. It doesn't make it clear what field values should be, it includes features that can be pushed to existing processors,
 and the field naming is not consistent with other components that exist in the collector.
 

@@ -79,7 +79,7 @@ In the search input field, type "OpenSSH", and find a feature called "OpenSSH Cl
 Now you are set! In case you are not able to access the provided instance in spite of enabling the OpenSSH feature, please do not shy away from reaching
 out to the course instructor, either via chat or directly.
 
-At this point you are ready to continue and [start the workshop](../gdi/)
+At this point you are ready to continue and [start the workshop](../gdi/index.html)
 
 ---
 
@@ -109,7 +109,7 @@ Once you are connected successfully you should see a screen similar to the one b
 
 ![putty-4](../images//putty-loggedin.png)
 
-At this point you are ready to continue and [start the workshop](../gdi/)
+At this point you are ready to continue and [start the workshop](../gdi/index.html)
 
 ---
 
@@ -155,7 +155,7 @@ Simply click the **Connect** button and you will be reconnected and will be able
 
 ![web reconnect](../images//shellinabox-reconnect.png)
 
-At this point you are ready to continue and [start the workshop](../gdi/).
+At this point you are ready to continue and [start the workshop](../gdi/index.html).
 
 ---
 

@@ -30,7 +30,7 @@ In the chart builder, click on **View SignalFlow**.
 
 You will see the SignalFlow code that composes the chart we were working on. You can now edit the SignalFlow directly within the UI. Our documentation has the [full list](https://dev.splunk.com/observability/docs/signalflow/function_method_list) of SignalFlow functions and methods.
 
-Also, you can copy the SignalFlow and use it when interacting with the API or with Terraform to enable [Monitoring as Code](../../monitoring-as-code/)
+Also, you can copy the SignalFlow and use it when interacting with the API or with Terraform to enable [Monitoring as Code](../../monitoring-as-code/index.html)
 
 ![Code](../../images/show-signalflow.png)
 

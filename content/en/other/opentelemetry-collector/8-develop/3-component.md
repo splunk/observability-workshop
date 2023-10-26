@@ -10,40 +10,40 @@ To recap the type of component we will need to in order to capture metrics from 
 
 {{% tabs %}}
 {{% tab title="Extension" %}}
-The business usecase an extension helps solves for are:
+The business use case an extension helps solves for are:
 
 1. Having shared functionality that requires runtime configuration
 1. Indirectly helps with observing the runtime of the collector
 
-See [Extensions Overview](/en/other/opentelemetry-collector/2-extensions) for more details.
+See [Extensions Overview](../2-extensions) for more details.
 {{% /tab %}}
 {{% tab title="Receiver" %}}
-The business usecase a receiver solves for:
+The business use case a receiver solves for:
 
 - Fetching data from a remote source
 - Receiving data from remote source(s)
 
-This are commonly referred to _pull_ vs _push_ based data collection, and you read more about the details in the [Receiver Overview](/en/other/opentelemetry-collector/3-receivers).
+This are commonly referred to _pull_ vs _push_ based data collection, and you read more about the details in the [Receiver Overview](../3-receivers).
 {{% /tab %}}
 {{% tab title="Processor" %}}
-The business usecase a processor solves for is:
+The business use case a processor solves for is:
 
 - Adding or removing data, fields, or values
 - Observing and making decisions on the data
-- Buffering, queueing, and reorodering
+- Buffering, queueing, and reordering
 
 The thing to keep in mind that the data type flowing through a processor needs to use the forward
 the same data type to its downstream components.
-Read through [Processor Overview](/en/other/opentelemetry-collector/4-processors) for the details.
+Read through [Processor Overview](../4-processors) for the details.
 {{% /tab %}}
 {{% tab title="Exporter" %}}
-The business usecase an exporter solves for:
+The business use case an exporter solves for:
 
 - Send the data to a tool, service, or storage
 
 The OpenTelemetry collector does not want to be "backend", an all in one observability suite, but rather
 keep to the principles that founded OpenTelemetry to begin with; A vendor agnostic Observability for all.
-To help revist the details, please read through [Exporter Overview](/en/other/opentelemetry-collector/5-exporters).
+To help revisit the details, please read through [Exporter Overview](../5-exporters).
 
 {{% /tab %}}
 {{% tab title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Connectors{{% /badge %}}"  %}}
@@ -62,7 +62,7 @@ The business case that a connector solves for:
 - Observing incoming data and producing its own data
   - Accepting metrics and generating analytical metrics of the data.
 
-There was a brief overview within the **Ninja** section as part of the [Processor Overview](/en/other/opentelemetry-collector/4-processors),
+There was a brief overview within the **Ninja** section as part of the [Processor Overview](../4-processors),
 and be sure what the project for updates for new connector components.
 {{% /tab %}}
 {{% /tabs %}}
