@@ -58,7 +58,7 @@ Upon successful login you will be presented with the Splunk logo and the Linux p
 
 ![ssh connected](images/ssh-3.png)
 
-At this point you are ready to [continue with the workshop](../../oncall/getting_started/user_profile) when instructed to do so by the instructor
+At this point you are ready to [continue with the workshop](./getting_started) when instructed to do so by the instructor
 
 ---
 
@@ -67,7 +67,7 @@ At this point you are ready to [continue with the workshop](../../oncall/getting
 If you do not have ssh preinstalled or if you are on a Windows system,  the best option is to install putty, you can find the downloads [here](https://www.putty.org/).
 
 !!! important
-    If you **cannot** install Putty, please go to [Web Browser (All)](../getting_started/#web-browser-all).
+    If you **cannot** install Putty, please go to [Web Browser (All)](./#web-browser-all).
 
 Open Putty and in the **Host Name (or IP address)** field enter the IP address provided in the welcome e-mail.
 
@@ -87,7 +87,7 @@ Once you are connected successfully you should see a screen similar to the one b
 
 ![putty-4](images/putty-loggedin.png)
 
-At this point you are ready to [continue with the workshop](../../oncall/getting_started/user_profile) when instructed to do so by the instructor
+At this point you are ready to [continue with the workshop](./getting_started) when instructed to do so by the instructor
 
 ---
 
@@ -134,4 +134,4 @@ Unlike regular SSH connection, the web browser has a 60 second time out, and you
 Simply click the **Connect** button and you will be reconnected and will be able to continue.
 {{% /notice %}}
 
-At this point you are ready to [continue with the workshop](../../oncall/getting_started/user_profile) when instructed to do so by the instructor
+At this point you are ready to [continue with the workshop](./getting_started) when instructed to do so by the instructor

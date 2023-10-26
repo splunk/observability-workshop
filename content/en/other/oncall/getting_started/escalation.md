@@ -85,4 +85,4 @@ There are no routing keys for this policy - it will only receive incidents via m
 This is because there are no Routing Keys linked to these Escalation Polices, so now that we have these polices configured we can create the Routing Keys and link them to our Polices..
 
 ---
-Continue and also complete the [Creating Routing Keys](../routing/) module.
+Continue and also complete the [Creating Routing Keys](./routing) module.

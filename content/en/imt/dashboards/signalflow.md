@@ -19,7 +19,7 @@ Infrastructure Monitoring creates these computations in the Chart Builder user i
 SignalFlow includes a large library of built-in analytical functions that take a metric time series as an input, performs computations on its datapoints, and outputs time series that are the result of the computation.
 
 {{% notice title="Info" style="info" %}}
-For more information on SignalFlow see [Analyze incoming data using SignalFlow.](https://docs.splunk.com/Observability/infrastructure/analytics/signalflow.html)
+For more information on SignalFlow see [Analyze incoming data using SignalFlow](https://docs.splunk.com/Observability/infrastructure/analytics/signalflow.html).
 {{% /notice %}}
 
 ## 2. View SignalFlow
@@ -30,7 +30,7 @@ In the chart builder, click on **View SignalFlow**.
 
 You will see the SignalFlow code that composes the chart we were working on. You can now edit the SignalFlow directly within the UI. Our documentation has the [full list](https://dev.splunk.com/observability/docs/signalflow/function_method_list) of SignalFlow functions and methods.
 
-Also, you can copy the SignalFlow and use it when interacting with the API or with Terraform to enable [Monitoring as Code](../../monitoring-as-code/index.html)
+Also, you can copy the SignalFlow and use it when interacting with the API or with Terraform to enable Monitoring as Code.
 
 ![Code](../../images/show-signalflow.png)
 

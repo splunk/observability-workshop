@@ -7,9 +7,9 @@ weight: 1
 ## Environment Setup - Mac
 
 {{% notice title="Note" style="info" %}}
-If you wish to run this on Mac directly, you can see the instructions [here in the appendix](../appendix-a-setup-mac) and skip the next section on Linux.
+If you wish to run this on Mac directly, you can see the instructions [here in the appendix](./appendix-a-setup-mac) and skip the next section on Linux.
 
-All installs must continue at [setting up the app](../2-setup-app).
+All installs must continue at [setting up the app](./2-setup-app).
 {{% /notice %}}
 
 ## Environment Setup - Linux

@@ -38,7 +38,7 @@ RUM Application Summary Dashboard consists of 6 major sections. The first is the
 
 ![RUM-SummaryHeader](../images/RUM_SummaryHeader.png)
 
-For the workshop lets do a deeper dive into the Application Summary screen in the next section: [Check Health Browser Application](../5-browser-app-summary)
+For the workshop lets do a deeper dive into the Application Summary screen in the next section: [Check Health Browser Application](./4-browser-summary)
 
 ---
 

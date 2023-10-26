@@ -56,4 +56,4 @@ Select the **Team Incidents** tab you should find that the **Triggered**, **Ackn
 
 Let's change that by generating your first incident!
 
-Continue with the [Create Incidents](../create_incidents/) module.
+Continue with the [Create Incidents](./create_incidents) module.
