@@ -31,7 +31,7 @@ SignalFlow の詳細については、 [Analyze incoming data using SignalFlow](
 
 作業していたチャートを構成する SignalFlow のコードが表示されます。UI内で直接 SignalFlow を編集できます。ドキュメントには、SignalFlow の関数やメソッドの [全てのリスト](https://dev.splunk.com/observability/docs/signalflow/function_method_list) が掲載されています。
 
-また、SignalFlow をコピーして、API や Terraform とやり取りする際に使用して、[Monitoring as Code](../../monitoring-as-code/) を実現することもできます。
+また、SignalFlow をコピーして、API や Terraform とやり取りする際に使用して、Monitoring as Code を実現することもできます。
 
 ![Code](../../images/show-signalflow.png)
 
