@@ -7,7 +7,7 @@ weight: 1
 
 After you register and log into the Splunk observability UI, you will be taken to the Home Page. This Home or landing page has 6 distinct section that provide either useful information or allows you to navigate the Splunk Observability Suite.
 
-![home page](../../images/home-screen.png?width=40vw)
+![home page](../images/home-screen.png?width=40vw)
 
 1. Explore Data Pane, Here you can see what function of the Suite are active and you can add additional integrations.
 2. Instruction Pane, Here you will find video's and references to document pages of interest.
@@ -20,10 +20,10 @@ The following exercise will allow you to pick your preferred color mode:
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 
 * Expand the main menu, check the drop-down box in Org Switcher Pane at the top to see if you have more than one Org assigned to you.
-* Click on ![Settings](../../images/settings-icon.png?classes=inline&height=25px) in the main menu.
+* Click on ![Settings](../images/settings-icon.png?classes=inline&height=25px) in the main menu.
 * At the bottom of the menu, click on either **Light**, **Dark** or **Auto** mode.
-* Did you also notice this is where the  Sign out ![Sign Out](../../images/sign-out-icon.png?classes=inline&height=25px) option is?
-* Click ![Back to menu](../../images/back-main-menu.png?classes=inline&height=25px) to go back to the Main Menu.
+* Did you also notice this is where the  Sign out ![Sign Out](../images/sign-out-icon.png?classes=inline&height=25px) option is?
+* Click ![Back to menu](../images/back-main-menu.png?classes=inline&height=25px) to go back to the Main Menu.
 
 {{% /notice %}}
 
