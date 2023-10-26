@@ -24,8 +24,6 @@ One of the core tenets in building the Splunk Observability Cloud is unifying te
 
 The workshop uses a microservices based application that is deployed on AWS EC2 instances. The application is a simple e-commerce application that allows users to browse products, add them to a cart, and checkout. The application is instrumented with OpenTelemetry.
 
-OpenTelemetry is a collection of tools, APIs and software development kits (SDKs). Used to instrument, generate, collect and export telemetry data (metrics, logs and traces) to help you analyze your software’s performance and behavior.
+OpenTelemetry is a collection of tools, APIs and software development kits (SDKs). Used to instrument, generate, collect and export telemetry data (metrics, logs and traces) to help you analyze your software’s performance and behaviour.
 
-The OpenTelemetry community is growing. As a joint project between Splunk, Google, Microsoft, Amazon and many other organizations, it currently has the second-largest number of contributors in the Cloud Native Computing Foundation after Kubernetes. 
-
-![Architecture Overview](images/arch-overview.png)
+The OpenTelemetry community is growing. As a joint project between Splunk, Google, Microsoft, Amazon and many other organizations, it currently has the second-largest number of contributors in the Cloud Native Computing Foundation after Kubernetes.

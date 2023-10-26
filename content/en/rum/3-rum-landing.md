@@ -38,9 +38,11 @@ RUM Application Summary Dashboard consists of 6 major sections. The first is the
 
 ![RUM-SummaryHeader](../images/RUM_SummaryHeader.png)
 
-For the workshop lets do a deeper dive into the Application Summary screen in the next section: [Check Health Browser Application](../5-browser-app-summary/)
+For the workshop lets do a deeper dive into the Application Summary screen in the next section: [Check Health Browser Application](../5-browser-app-summary)
 
 ---
 
-[^1]: A deployment environment is a distinct deployment of your system or application that allows you to set up configurations that don’t overlap with configurations in other deployments of the same application. Separate deployment environments are often used for different stages of the development process, such as development, staging, and production.</br></br>A common application deployment pattern is to have multiple, distinct application environments that don’t interact directly with each other but that are all being monitored by Splunk APM or RUM: for instance, quality assurance (QA) and production environments, or multiple distinct deployments in different datacenters, regions or cloud providers.
+[^1]: A deployment environment is a distinct deployment of your system or application that allows you to set up configurations that don’t overlap with configurations in other deployments of the same application. Separate deployment environments are often used for different stages of the development process, such as development, staging, and production.
+
+A common application deployment pattern is to have multiple, distinct application environments that don’t interact directly with each other but that are all being monitored by Splunk APM or RUM: for instance, quality assurance (QA) and production environments, or multiple distinct deployments in different datacenters, regions or cloud providers.
 [](http://nebezb.com/)
