@@ -10,7 +10,7 @@ hidden: true
 
 ### 1. Invite email or password renewal email not arriving
 
- The first step to take is to search for an email from **[noreply@signalfx.com](noreply@signalfx.com)**, across all you email folders, as this is the address used to send the invite and password renewal emails. If you don't see the email, check your spam/junk folder.
+ The first step to take is to search for an email from **<noreply@signalfx.com>**, across all you email folders, as this is the address used to send the invite and password renewal emails. If you don't see the email, check your spam/junk folder.
 
 If you are sure the email does not existing your email, ask th Instructor to verify the email used for the workshop and have him/her resend the invite.
 
