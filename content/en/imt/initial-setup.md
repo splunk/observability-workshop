@@ -85,7 +85,7 @@ At this point you are ready to continue and [start the workshop](../gdi/index.ht
 
 ## 4. Putty (For Windows Versions prior to Windows 10)
 
-If you do not have ssh preinstalled or if you are on a Windows system,  the best option is to install putty, you can find [here.](https://www.putty.org/)
+If you do not have ssh pre-installed or if you are on a Windows system,  the best option is to install putty, you can find [here.](https://www.putty.org/)
 
 {{% notice title="Important" style="info" %}}
 If you **cannot** install Putty, please go to [Web Browser (All)](#4-web-browser-all).
@@ -99,7 +99,7 @@ You can optionally save your settings by providing a name and pressing **Save**.
 
 To then login to your instance click on the **Open** button as shown above.
 
-If this is the first time connecting to your AWS/EC2 workshop instance, you will be presented with a security dialog, please click **Yes**.
+If this is the first time connecting to your AWS/EC2 workshop instance, you will be presented with a security dialogue, please click **Yes**.
 
 ![putty-3](../images//putty-security.png)
 
@@ -141,7 +141,7 @@ When the workshop ask you to copy instructions into your terminal, please do the
 
 ![web paste 1](../images//shellinabox-paste-browser.png)
 
-This will open a dialog box asking for the text to be pasted into the web terminal:
+This will open a dialogue box asking for the text to be pasted into the web terminal:
 
 ![web paste 3](../images//shellinabox-example-1.png)
 

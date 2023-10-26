@@ -16,11 +16,10 @@ Please select Splunk Infrastructure from the menu bar on the right by selecting 
 * 2. Test Pane, Here you find the list of all the test that are active in your org, and you can select them to see the results
 * 3. Create Test Pane, This drop down pane gives you the option to create a new Synthetic test.
 
-As part of the workshop we have created a default browser test against the application we are running, You find it in the Test Pane (2). It will have the following name **Workshop Browser Test for **, followed by the name of your Workshop.(Your instructor should have provided that to you.)
+As part of the workshop we have created a default browser test against the application we are running, You find it in the Test Pane (2). It will have the following name **Workshop Browser Test for**, followed by the name of your Workshop.(Your instructor should have provided that to you.)
 
 To continue our tour, lets look at the result of our workshop automatic browser test.  
 In the Test Pane, double click on line that contains the name of your workshop. The result should look like this:
-
 
 Let's run an exercise and  look at some UI options:
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}

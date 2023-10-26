@@ -20,11 +20,11 @@ Login to the Splunk On-Call UI and select the **Timeline** tab on the main menu 
 
 ## 2. People
 
-On the left we have the **People** section with the **Teams** and **Users** sub tabs. On the **Teams** tab, click on **All Teams** then expand _**[Your Teamname]**_.
+On the left we have the **People** section with the **Teams** and **Users** sub tabs. On the **Teams** tab, click on **All Teams** then expand _**[Your Team name]**_.
 
 Users with the Splunk On-Call Logo against their name are currently on call. Here you can see who is on call within a particular Team, or across all Teams via **Users → On-Call**.
 
-If you click into one of the currently on call users, you can see their status. It shows which Rotation they are on call for, when their current Shift ends and their next Shift starts (times are displayed in your timezone), what contact methods they have and which Teams they belong to (dummy users such as Hank do not have Contact Methods configured).
+If you click into one of the currently on call users, you can see their status. It shows which Rotation they are on call for, when their current Shift ends and their next Shift starts (times are displayed in your time zone), what contact methods they have and which Teams they belong to (dummy users such as Hank do not have Contact Methods configured).
 
 ![User Detail](../images/m7-user-detail.png)
 

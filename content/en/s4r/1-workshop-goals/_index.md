@@ -15,7 +15,7 @@ This will give you the highlights and is designed to make the rest of the worksh
 
 #### 3. Using the Online Boutique Website to create traffic
 
-Next, we encourage you to enjoy some retail therapy using the Online Boutique Website. Please use your browser, mobile or tablet to spend some hard earn virtual money and help generate some traffic that will send **metrics (we have a problem), traces (where is the problem) and logs (what is the problem)**. We will use this data to find and identify the cause of the underlying issue. 
+Next, we encourage you to enjoy some retail therapy using the Online Boutique Website. Please use your browser, mobile or tablet to spend some hard earn virtual money and help generate some traffic that will send **metrics (we have a problem), traces (where is the problem) and logs (what is the problem)**. We will use this data to find and identify the cause of the underlying issue.
 
 #### 4. Splunk Real User Monitoring
 

@@ -90,7 +90,7 @@ Policy Name: Evening
 * Every 5 minutes until we have reached you
   * Make a phone call to [your phone number]
   * Time Period: All 7 Days
-  * Timezone
+  * Time zone
     * Between 7pm and 9am
 
 ![Evening](../images/evening.png)
@@ -104,7 +104,7 @@ Policy Name: Weekend
 * Every 5 minutes until we have reached you
   * Make a phone call to [your phone number]
   * Time Period: Sat & Sun
-  * Timezone
+  * Time zone
     * Between 9am and 7pm
 
 Click {{% button color="#00bce4" %}}Save{{% /button %}} to save the policy.

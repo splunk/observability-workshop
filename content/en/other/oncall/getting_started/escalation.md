@@ -47,14 +47,14 @@ Click **Add Escalation Policy**
 ![Pri Escalation Policy Step 1](../../images/pri-escalation-policy-step-1.png)
 
 * Step 2
-* If still unacked after 15 minutes
+* If still un-acknowledged after 15 minutes
 * Notify the next user(s) in the current on-duty shift → Follow the Sun Support - Business Hours
 * Click **Add Step**
 
 ![Pri Escalation Policy Step 2](../../images/pri-escalation-policy-step-2.png)
 
 * Step 3
-* If still unacked after 15 more minutes
+* If still un-acknowledged after 15 more minutes
 * Execute Policy → [Your Team Name] : 24/7
 * Click **Save**
 
@@ -66,7 +66,7 @@ Click **Add Escalation Policy**
 
 * Policy Name: Waiting Room
 * Step 1
-* If still unacked after 10 more minutes
+* If still un-acknowledged after 10 more minutes
 * Execute Policy → [Your Team Name] : Primary
 * Click **Save**
 
