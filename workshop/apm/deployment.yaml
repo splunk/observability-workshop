@@ -1030,3 +1030,53 @@ spec:
         #image:  quay.io/phagen/rumloadgen:5.1
         image: rcastley895/rumloadgen:5.2
         imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: development
+  labels:
+    name: development
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: test-job
+  namespace: development
+spec:
+  template:
+    spec:
+      containers:
+      - name: java-beans
+        image: busybox
+        command: ["/bin/sh", "-c"]
+        args: ["echo 'Java Network Exception: \nAll host(s) tried for db query failed (tried: prod-db:3333) - no available connection and the queue has reached its max size 256 \nAll host(s) tried for db query failed (tried: prod-db:3333) - no available connection and the queue has reached its max size 256 \nAll host(s) tried for db query failed (tried: prod-db:3333) - no available connection and the queue has reached its max size 256 \nAll host(s) tried for db query failed (tried: prod-db:3333) - no available connection and the queue has reached its max size 256'; sleep 60; exit 1"]
+      restartPolicy: Never
+  backoffLimit: 1
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: oom-kill-job3
+  namespace: development
+spec:
+  ttlSecondsAfterFinished: 3600
+  backoffLimit: 0
+  template:
+    spec:
+      containers:
+      - args:
+        - 75Mi
+        - "0"
+        - 30Mi
+        - "80"
+        - "1"
+        image: us-central1-docker.pkg.dev/genuine-flight-317411/devel/memory-eater:1.0
+        imagePullPolicy: Always
+        name: memory-eater
+        resources:
+          limits:
+            memory: 100Mi
+          requests:
+            memory: 100Mi
+      restartPolicy: Never
