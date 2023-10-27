@@ -45,7 +45,7 @@ Select your Splunk Observability Cloud Realm and enter the INGEST, API and RUM t
 
 For further guidance on using Splunk Show please see the [Splunk Show User Guide](http://go/show/user-guide).
 
-### Workshop Cleanup
+### Workshop Clean-up
 
 Once you have completed your workshop session please remember to go back and clean up the environment using SWiPE. Also ensure your EC2 instances are spun down in order to save costs.
 
