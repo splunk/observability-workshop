@@ -16,22 +16,20 @@ users:
   - default
 
 packages:
-  - unzip
-  - shellinabox
-  - lynx
-  - gnupg2
-  - docker-compose
-  - podman
-  - net-tools
-  - python3-venv
-  - jq
-%{ if jdk == true ~}
-  - maven
-  - openjdk-17-jdk
-%{ endif ~}
-  - python3-pip
   - ansible
+  - docker
+  - docker-compose
+  - gnupg2
+  - jq
+  - lynx
+  - maven
+  - net-tools
+  - openjdk-17-jdk
   - python3-flask
+  - python3-pip
+  - python3-venv
+  - shellinabox
+  - unzip
   - zsh
 
 groups:
@@ -78,7 +76,6 @@ write_files:
       export KUBECONFIG=/home/ubuntu/.kube/config
       alias kc='kubectl'
       alias dc='docker-compose'
-      alias docker='podman'
 
   - path: /etc/rancher/k3s/registries.yaml
     permissions: '0600'
