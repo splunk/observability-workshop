@@ -5,7 +5,7 @@ weight: 1
 
 {{% button icon="clock" %}}5 minutes{{% /button %}}
 
-After you registered and logged into the Splunk Observability UI, as described [here](..), you will be taken to the Observability Suite Home Page. This Home or Landing page has 6 distinct section that provide either useful information or allows you to navigate the Splunk Observability Suite.
+After you registered and logged into the Splunk Observability UI, as described [here](../2-initial-tour/), you will be taken to the Observability Suite Home Page. This Home or Landing page has 6 distinct section that provide either useful information or allows you to navigate the Splunk Observability Suite.
 
 ![home page](../images/home-screen.png?width=40vw)
 

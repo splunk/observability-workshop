@@ -1,8 +1,9 @@
 ---
-title: Kubernetes Navigator
-linkTitle: Kubernetes Navigator
-description: This section of the workshop provides a basic understanding view Kubernetes metrics using the Kubernetes Navigator.
-weight: 21
+title: Splunk Infrastructure exercise with the Kubernetes Navigator
+linkTitle: Infrastructure exercise
+description: This section of the workshop provides an exercise using Splunk infra monitoring based on the Kubernetes Navigator.
+weight: 80
+hidden: true
 ---
 
 TBD
