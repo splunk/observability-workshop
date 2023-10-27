@@ -12,20 +12,16 @@ Please select Splunk Infrastructure from the menu bar on the right by selecting 
 
 ![Infra main](../images/infrastructure-main.png?width=40vw)
 
-* 1. Onboarding Pane, Here you will find video's and information related to Splunk Synthetics. (Can be closed by pressing the X, if space is a premium)
-* 2. Test Pane, Here you find the list of all the test that are active in your org, and you can select them to see the results
-* 3. Create Test Pane, This drop down pane gives you the option to create a new Synthetic test.
+* 1. Onboarding Pane, Here you will find video's and information related to Splunk Infrastructure. (Can be closed by pressing the X, if space is a premium)
+* 2. Time & Filter Pane, This pane is used to modify the time window, and will allow you to filteryou views when you dive deeper in Infrastructure.
+* 3. Integration Pane, This pane allows you to select a specific technology set  to focus on when looking at your infrastructure components.
+* 4. Details Pane, This pane PRrovides you an over view of all the components from the selected Technology set, also allows for a quick health status of your systems based on the  charts and alert
 
-As part of the workshop we have created a default browser test against the application we are running, You find it in the Test Pane (2). It will have the following name **Workshop Browser Test for**, followed by the name of your Workshop.(Your instructor should have provided that to you.)
-
-To continue our tour, lets look at the result of our workshop automatic browser test.  
-In the Test Pane, double click on line that contains the name of your workshop. The result should look like this:
 
 Let's run an exercise and  look at some UI options:
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 
-* In the Performance KPI Drop down box, change the time  from the default 8 hours to Last hour.  
-  What can you concluded from the dotted chart, how often are these test ran, and from where?
-* Click on a dot in the chart. This should bring you to a new screen. This is th detailed Test Run Results page for the selected test. We will examine this page in great detail later in the workshop, so for now  go back to the Synthetic Home page by clicking on the (the robot icon) ![syntheticsMenu](../../images/synthetics-icon.png?classes=inline&height=25px).
+* In the 
 {{% /notice %}}
-Lets continue to Infra mon and examine the infrastructure our application is running on.
+
+Let's move on and run a more detailed exercise based on Kubernetes and the Datastores in the next page
