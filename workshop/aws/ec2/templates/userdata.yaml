@@ -173,11 +173,14 @@ write_files:
         --set="splunkObservability.realm=${realm}" \
         --set="splunkObservability.accessToken=${access_token}" \
         --set="clusterName=${instance_name}-k3s-cluster" \
-        --set="splunkObservability.logsEnabled=true" \
+        --set="splunkObservability.logsEnabled=false" \
         --set="logsEngine=otel" \
         --set="splunkObservability.profilingEnabled=true" \
         --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
         --set="environment=${instance_name}-workshop" \
+        --set="splunkPlatform.endpoint=${hec_url}" \
+        --set="splunkPlatform.token=${hec_token}" \
+        --set="splunkPlatform.index=splunk4rookies-workshop" \
         splunk-otel-collector-chart/splunk-otel-collector \
         -f /home/ubuntu/workshop/k3s/otel-collector.yaml
 
