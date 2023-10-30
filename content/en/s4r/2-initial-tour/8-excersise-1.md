@@ -13,7 +13,24 @@ Please select the *K8s nodes* tile from the Tile pane if you have not yet done s
 (Select Kubernetes as your Technology). This will bring you to the Kubernetes Navigator Page.
 
 ![Kubernetes](../images/im-kubernetes.png?width=40vw)
-BD
+
+The screenshot above shows the main part of the kubernetes navigator.
+
+Let's make sure we are looking at our own cluster.
+
+{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+
+* First change the time filter at the top of the page from *-3h* to *Last 15 minutes*.
+* Once that is done, Use the ![k8s filter](../images/k8s-add-filter.png?classes=inline) option to pick your cluster.
+* This can be done by selecting *k8s.cluster.name* from the filter drop down box.
+* You then can start typing the name of you cluster, (as provided by your instructor). The name should also appear in the drop down values. Select yours and make sure just the one for your workshop is highlighted with a ![blue tick](../images/k8s-blue-tick.png?classes=inline).
+* Click the {{% button style="blue"  %}}  Apply Filter   {{% /button %}} button to focus on our Cluster
+* We now should have a single cluster visible.
+{{% /notice %}}
+
+Let's move on the next page of this exercise.
+
+---
 
 Navigate to the K8s Navigator ... walk through ... filtering, metrics, node dependencies, etc.
 

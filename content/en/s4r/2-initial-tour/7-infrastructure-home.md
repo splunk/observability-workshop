@@ -20,7 +20,7 @@ Please select Splunk Infrastructure from the menu bar on the right by selecting 
 
 Using the Infrastructure pane, we can select the infrastructure/technology we are interested in, let's do that now.
 
- {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 
 * Under the **Containers** section in the Integration Pane, select Kubernetes as the technology you wish to examine.
 * This should show you two Tiles, one for *K8s Nodes* and one for *K8s Workloads* as shown below.
