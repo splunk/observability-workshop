@@ -1,4 +1,6 @@
-## Using SWIPE to provision the workshop Org
+# Provisioning EC2 instances for a workshop
+
+**NOTE:** Due to new security restrictions the SSH port is now 2222.
 
 Goto [https://swipe.splunk.show](https://swipe.splunk.show) and provision your workshop environment.
 
@@ -8,7 +10,15 @@ You will need:
 - Realm
 - A CSV containing the email addresses of your attendees
 
-Follow the guidance provided by SWIPE and after provisioning completes, you will be provided with a **ACCESS** and **RUM** token. These will be used to populate the `terraform.tfvars` file in **Step 5** below.
+Follow the guidance provided by SWIPE and after provisioning completes, you will be provided with:
+
+- **INGEST Token**
+- **API Token**
+- **RUM Token**
+- **HEC URL**
+- **HEC Token**
+
+These will be used to populate the `terraform.tfvars` file in **Step 5** below.
 
 ## Instructions on how to set up EC2 cloud instances for participants
 
@@ -121,5 +131,5 @@ The `var.pub_key` (if provided) is added to the default user `ubuntu` on the ec2
 To access an instance for a workshop with slug `acme`, use:
 
 ```bash
-ssh -F ssh-acme.conf acme-01
+ssh -F ssh-acme.conf -p 2222 acme-01
 ```
