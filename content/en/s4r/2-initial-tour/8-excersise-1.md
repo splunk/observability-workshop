@@ -5,7 +5,15 @@ description: This section of the workshop provides an exercise using Splunk infr
 weight: 80
 ---
 
-TBD
+{{% button icon="clock" %}}15 minutes{{% /button %}}
+
+This is the second section, a deeper dive into some of the special features of the Splunk Observability suite.
+
+Please select the *K8s nodes* tile from the Tile pane if you have not yet done so.
+(Select Kubernetes as your Technology). This will bring you to the Kubernetes Navigator Page.
+
+![Kubernetes](../images/im-kubernetes.png?width=40vw)
+BD
 
 Navigate to the K8s Navigator ... walk through ... filtering, metrics, node dependencies, etc.
 
