@@ -28,20 +28,3 @@ Let's make sure we are looking at our own cluster.
 {{% /notice %}}
 
 Let's move on the next page of this exercise and look at your cluster in detail.
-
----
-
-Navigate to the K8s Navigator ... walk through ... filtering, metrics, node dependencies, etc.
-
-Talk around what has been deployed
-
-* Talk around initial panes goto Nodes
-* Filter to workshop cluster
-* Review default metrics
-* Node dependencies
-* Click on mysql pod
-* Talk around metadata for the container
-* Back to Infrastructure
-
-Something to trigger alerts in Navigator?
-![Kubernetes](../images/im-kubernetes.png)
