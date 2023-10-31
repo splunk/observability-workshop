@@ -1,5 +1,6 @@
 ---
-title: Initial Tour of the UI
+title: Connecting to the Splunk observability UI
+linkTitle: Connect to & Tour of the UI
 weight: 20
 ---
 

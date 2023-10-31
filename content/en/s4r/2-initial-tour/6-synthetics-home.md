@@ -17,17 +17,16 @@ If you have not done so yet, select Splunk Synthetic from the menu bar on the ri
 As part of the workshop we have created a default browser test against the application we are running, You find it in the Test Pane (2). It will have the following name **Workshop Browser Test for**, followed by the name of your Workshop.(Your instructor should have provided that to you.)
 
 To continue our tour, lets look at the result of our workshop automatic browser test.  
-In the Test Pane, double click on line that contains the name of your workshop. The result should look like this:
+{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+
+* In the Test Pane, double click on line that contains the name of your workshop. The result should look like this:
 
 ![Synthetics-overview](../../8-synthetics/images/synthetics-test-overview.png?width=40vw)
 
-On the Synthetic Tests Page, the first pane will show the performance of your site for the last day, 8 days and 30 days. As show in screenshot above, only if a test started far enough in the past, the corresponding chart will contain data.
-
-Let's run an exercise and  look at some UI options:
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
-
+* Note, On the Synthetic Tests Page, the first pane will show the performance of your site for the last day, 8 days and 30 days. As show in screenshot above, only if a test started far enough in the past, the corresponding chart will contain data. For the workshop, this depends when it was created for you if there is any data.
 * In the Performance KPI Drop down box, change the time  from the default 8 hours to Last hour.  
   What can you concluded from the dotted chart, how often are these test ran, and from where?
-* Click on a dot in the chart. This should bring you to a new screen. This is th detailed Test Run Results page for the selected test. We will examine this page in great detail later in the workshop, so for now  go back to the Synthetic Home page by clicking on the (the robot icon) ![syntheticsMenu](../../images/synthetics-icon.png?classes=inline&height=25px).
+* Click on a dot in the chart. This should bring you to a new screen. This is the detailed Test Run Results page for the selected test. We will examine this page in great detail later in the workshop, so for now  go back to the Synthetic Home page by clicking on the (the robot icon) ![syntheticsMenu](../../images/synthetics-icon.png?classes=inline&height=25px).
+
 {{% /notice %}}
 Lets continue to Infra mon and examine the infrastructure our application is running on.

@@ -1,6 +1,6 @@
 ---
-title: Splunk Infrastructure exercise with the Kubernetes Navigator
-linkTitle: 8. Infrastructure Exercise
+title: Infrastructure Exercise 1
+linkTitle: 8. Infrastructure Exercise 
 description: This section of the workshop provides an exercise using Splunk infra monitoring based on the Kubernetes Navigator.
 weight: 80
 ---
@@ -14,21 +14,20 @@ Please select the *K8s nodes* tile from the Tile pane if you have not yet done s
 
 ![Kubernetes](../images/im-kubernetes.png?width=40vw)
 
-The screenshot above shows the main part of the kubernetes navigator.
+The screenshot above shows the main part of the kubernetes navigator. It will show all the clusters & their nodes that send metrics to the Splunk Observability Suite. In the workshop you will mostly see single node kubernetes cluster.
 
 Let's make sure we are looking at our own cluster.
 
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 
-* First change the time filter at the top of the page from *-3h* to *Last 15 minutes*.
-* Once that is done, Use the ![k8s filter](../images/k8s-add-filter.png?classes=inline) option to pick your cluster.
+* First, use the ![k8s filter](../images/k8s-add-filter.png?classes=inline) option to pick your cluster.
 * This can be done by selecting *k8s.cluster.name* from the filter drop down box.
 * You then can start typing the name of you cluster, (as provided by your instructor). The name should also appear in the drop down values. Select yours and make sure just the one for your workshop is highlighted with a ![blue tick](../images/k8s-blue-tick.png?classes=inline).
 * Click the {{% button style="blue"  %}}  Apply Filter   {{% /button %}} button to focus on our Cluster
 * We now should have a single cluster visible.
 {{% /notice %}}
 
-Let's move on the next page of this exercise.
+Let's move on the next page of this exercise and look at your cluster in detail.
 
 ---
 
