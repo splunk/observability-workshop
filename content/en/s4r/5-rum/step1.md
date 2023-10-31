@@ -3,6 +3,29 @@ title: step 1
 weight: 1
 ---
 
+1. Go to RUM
+2. Select the workshop environment as instructed
+3. Explain RUM dashboard - Web vitals and detectors
+4. Click on the store as instructed
+5. Explain dashboard a loop through the tabs at the top
+6. PlaceOrder in Custom Event Latency chart, explain P75 ... highlight high latency
+7. Click on See All
+8. Explain Tag Spotlight
+9. Timeframe to 1 hour
+10. Add Placeorder to filter
+11. Find your city and also add to filter then click user sessions
+12. Add City to table (from Cog)
+13. Sort duration
+14. Pick the longest duration
+15. Explain the waterfall
+16. Walk through session replay
+17. Explain how long the order is taking to complete in the replay
+18. Explain the waterfall click through buttons (javascript errors)
+19. Click on All to reset the view
+20. Scroll down and hover over the first APM link to see details about the 1-2-1 APM trace
+21. Click on the workflow
+22. Move on to APM
+
 Splunk Real User Monitoring (RUM) allows your teams to quickly identify and eliminate customer-facing issues across your entire architecture.
 
 Splunk RUM collects performance metrics, web vitals, errors, and other forms of data for every user session to enable you to detect and troubleshoot problems in your application.
