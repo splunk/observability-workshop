@@ -6,7 +6,7 @@ weight: 70
 
 {{% button icon="clock" %}}5 minutes{{% /button %}}
 
-This section is split in two and is going to be a little longer, the first section is a quick intro to the main page, followed by a section to dive deeper into some of the special features of the Splunk Observability suite, before we start to use our application and validate performance.
+This section is split in multiple sections and is going to be a little longer, the first section is a quick intro to the main page, followed by a few sections to dive deeper into some of the special features of the Splunk Observability suite, before we start to use our application and validate performance.
 
 Please select Splunk Infrastructure from the menu bar on the right by selecting the ![Infra-monitoring](../images/inframon-icon.png?classes=inline&height=25px). This will bring us to the Infrastructure Home Page. It has 4 distinct sections that provide information on all technology that is sending metrics to the Splunk observability Suite.
 

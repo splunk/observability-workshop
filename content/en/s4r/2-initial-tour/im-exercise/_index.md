@@ -5,24 +5,38 @@ description: This section of the workshop provides an exercise using Splunk infr
 weight: 80
 ---
 
-{{% button icon="clock" %}}15 minutes{{% /button %}}
+{{% button icon="clock" %}}7 minutes{{% /button %}}
 
-This is the second section, a deeper dive into some of the special features of the Splunk Observability suite.
+This is the third section of our  Kubernetes Navigator exercise.
 
 Please select the *K8s nodes* tile from the Tile pane if you have not yet done so.
 (Select Kubernetes as your Technology). This will bring you to the Kubernetes Navigator Page.
 
-![Kubernetes](../images/im-kubernetes.png?width=40vw)
+![Kubernetes](images/im-kubernetes.png?width=40vw) 
 
 The screenshot above shows the main part of the kubernetes navigator. It will show all the clusters & their nodes that send metrics to the Splunk Observability Suite. In the workshop you will mostly see single node kubernetes cluster.
 
-Let's make sure we are looking at our own cluster.
+{{% notice title=" Kubernetes Terminology" style="info" %}}
+
+K8s, short for Kubernetes, is an open-source container orchestration platform. It manages the deployment, scaling, and maintenance of containerized applications, and we use it in this workshop to host our e-commerce application
+Some terminology:
+
+* A Kubernetes cluster is a group of machines, called nodes, that work together to run containerized applications.
+* Nodes are individual servers or VMs in the cluster. Typically, you would have several nodes in a cluster but you may have just one node, just like in this workshop.
+* Pods are the smallest deployable units in Kubernetes, representing one or more containers that share the same network and storage, enabling efficient application scaling and management
+* Applications is a collection of one or more pods interacting together to provide a service.
+* Namespaces help you keep your applications organized and separate within the cluster,by providing a logical separation for multiple teams or projects within a cluster.
+* Workloads are like a task list and  define how many instances of your application should run, how they should be created, and how they should respond to failures
+
+{{% /notice %}}
+
+Before we dive deeper, let's make sure we are looking at our own cluster.
 
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 
-* First, use the ![k8s filter](../images/k8s-add-filter.png?classes=inline) option to pick your cluster.
+* First, use the ![k8s filter](images/k8s-add-filter.png?classes=inline) option to pick your cluster.
 * This can be done by selecting *k8s.cluster.name* from the filter drop down box.
-* You then can start typing the name of you cluster, (as provided by your instructor). The name should also appear in the drop down values. Select yours and make sure just the one for your workshop is highlighted with a ![blue tick](../images/k8s-blue-tick.png?classes=inline).
+* You then can start typing the name of you cluster, (as provided by your instructor). The name should also appear in the drop down values. Select yours and make sure just the one for your workshop is highlighted with a ![blue tick](images/k8s-blue-tick.png?classes=inline).
 * Click the {{% button style="blue"  %}}  Apply Filter   {{% /button %}} button to focus on our Cluster
 * We now should have a single cluster visible.
 {{% /notice %}}

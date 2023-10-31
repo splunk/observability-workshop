@@ -5,43 +5,38 @@ description: This section of the workshop provides an exercise using Splunk infr
 weight: 10
 ---
 
-{{% button icon="clock" %}}15 minutes{{% /button %}}
+{{% button icon="clock" %}}8 minutes{{% /button %}}
 
-This is the second section, a deeper dive into some of the special features of the Splunk Observability suite.
+This is the second section, of the infra monitoring exercise,
+You should now have your single cluster visible.
 
-Please select the *K8s nodes* tile from the Tile pane if you have not yet done so.
-(Select Kubernetes as your Technology). This will bring you to the Kubernetes Navigator Page.
+![Alt Cluster](../images/k8s-cluster.png?width=40vw)
 
-![Kubernetes](../images/im-kubernetes.png?width=40vw)
+In the Kubernetes Navigator, your cluster is represented by the square with the black line, it will contain one or more  blue squares representing the node(s), each of them wil contain one or more colored boxes  that represent pods.
+and as you can guess, *Green* means healthy & *Red* means that there is a problem.
 
-The screenshot above shows the main part of the kubernetes navigator. It will show all the clusters & their nodes that send metrics to the Splunk Observability Suite. In the workshop you will mostly see single node kubernetes cluster.
-
-Let's make sure we are looking at our own cluster.
+Given there are two red boxes, lets see what is going on and if this will affect our E-commerce site.
 
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 
-* First, use the ![k8s filter](../images/k8s-add-filter.png?classes=inline) option to pick your cluster.
-* This can be done by selecting *k8s.cluster.name* from the filter drop down box.
-* You then can start typing the name of you cluster, (as provided by your instructor). The name should also appear in the drop down values. Select yours and make sure just the one for your workshop is highlighted with a ![blue tick](../images/k8s-blue-tick.png?classes=inline).
-* Click the {{% button style="blue"  %}}  Apply Filter   {{% /button %}} button to focus on our Cluster
-* We now should have a single cluster visible.
+* First, set the time window we are working with to  th last 15 minutes. You do this by using the drop down in the Filter pane ![time-window](../images/time-window.png?classes=inline) to *the last 15 minutes*.
+* The Cluster Metric charts you can see below the cluster representation,  provide information on your cluster, like the memory consumption and the number of pods per node. none of these will explain why there are red pods.
+* Let's check if the Spunk Kubernetes Analyzer can tell us something more useful, so click on **K8s analyzer**.
+
+* The Spunk Kubernetes Analyzer is a smart process that runs in the background in the Splunk Observability Suite,  designed to detect relations between anomalies.  
+It should have detected that the two Red pods are similar and come from the same name space.
+* Can you find what name space?  (hint, look for *k8s.namespace.name*)
+
+![Analyser result](../images/k8s-analyser-result.png?width=25vw)
+
+* Click on the name of namespace, this should add a filter to the filter pane, *k8s.namespace.name=development
+* This filter will highlight all pods that are part of the development namespace. As you can see only the two *"bad"* pods are highlighted This is a quick indication that our e-commerce site is not affected by these error pods. 
+
+* To confirm this click on **K8s node**. This will provide node metrics, and you can see that there are two pods in the development name space,  and in the node workloads chart, you should be able to see that the *test=job* is in a failed state.
+* If you now remove  the filter for the *k8s.namespace.space* from the filter Pane, the Node workload chart will show you all the workload on this node now, and again only the *test-job* in *development* has failed.
+
+The above scenario is common in a shared kubernetes environment, where teams deploy application in different stages. Kubernetes is designed to keep those environment completely separate.
+
 {{% /notice %}}
 
-Let's move on the next page of this exercise and look at your cluster in detail.
-
----
-
-Navigate to the K8s Navigator ... walk through ... filtering, metrics, node dependencies, etc.
-
-Talk around what has been deployed
-
-* Talk around initial panes goto Nodes
-* Filter to workshop cluster
-* Review default metrics
-* Node dependencies
-* Click on mysql pod
-* Talk around metadata for the container
-* Back to Infrastructure
-
-Something to trigger alerts in Navigator?
-![Kubernetes](../images/im-kubernetes.png)
+We can safely assume these pods do not affect us, so move on to look at few more things.
