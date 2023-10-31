@@ -17,17 +17,24 @@ The following Orgs are used for running Observability Workshops. They have all t
 
 ### Step 1: Configure Your Org Using SWiPE
 
-SWiPE is an online tool to help configure a workshop environment in Splunk Observability Cloud and is available [here](https://swipe.splunk.show). Please note, SWiPE does not provision EC2 instances - these are provisioned using Splunk Show (see step 2 below). SWiPE will configure the following:
+SWiPE is an online tool to help configure a workshop environment in Splunk Observability Cloud and is available [here](https://swipe.splunk.show). Please note, SWiPE **does not** provision EC2 instances - these are provisioned using Splunk Show (see Step 2 below). SWiPE will configure the following:
 
 - Create and invite users to the Org. Create a `.csv` file containing the e-mail addresses (one per line) **or** copy and paste e-mail addresses (one per line).
-- Create a team and add users.
-- Create an INGEST, API and RUM tokens. You will need to make a copy of these in order to provision the EC2 instances in Splunk Show.
+- Create a team and add users to the team.
+- Create tokens:
+  - INGEST
+  - API
+  - RUM
+  - HEC URL
+  - HEC Token
+
+  You will need to make a copy of these in order to provision the EC2 instances in Splunk Show.
 
 Post-workshop, you can use SWIPE to clean up the Org. SWiPE will complete the following:
 
 - Delete all the users associated with the workshop
 - Delete the team
-- Delete the tokens
+- Delete the tokens (INGEST, API and RUM)
 - Delete user dashboards
 
 SWiPE does also provide some advanced features for deleting tokens and detectors, but this must be used with caution.
@@ -41,7 +48,7 @@ Please visit [Splunk Show](https://show.splunk.com/template/262/?type=workshop) 
 - _Pre-configured Instances_ - select this if you need the OpenTelemetry Collector and the application pre-deployed for a less technical audience. Attendees will only require a browser to complete the workshop.
   - Select Normal Workshop only! Ensure that **Estimated Participants** is set to **1** and **O11y Shop Quantity** is set to **1** also as only a single instance is required by the workshop instructor.
 
-Select your Splunk Observability Cloud Realm and enter the INGEST, API and RUM tokens that SWiPE generated for you.
+Select your Splunk Observability Cloud Realm and enter the INGEST, API, RUM tokens and the HEC URL and HEC Token that SWiPE generated for you.
 
 For further guidance on using Splunk Show please see the [Splunk Show User Guide](http://go/show/user-guide).
 
