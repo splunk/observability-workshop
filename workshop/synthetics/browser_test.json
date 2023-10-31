@@ -42,7 +42,7 @@
             "type": "click_element",
             "selectorType": "xpath",
             "selector": "//button[contains(text(), \"Place order\")]",
-            "waitForNav": false
+            "waitForNav": true
           }
         ]
       }
