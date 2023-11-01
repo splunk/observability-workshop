@@ -32,7 +32,7 @@ In the following exercise, we will create a new uptime test:
 
  eck the drop-down box in Org Switcher Pane at the top to see if you have more than one Org assigned to you.
 
-* Click on ![Settings](../images/settings-icon.png?classes=inline&height=25px) in the main menu.
+* Click on ![Settings](../../images/settings-icon.png?classes=inline&height=25px) in the main menu.
 * At the bottom of the menu, click on either **Light**, **Dark** or **Auto** mode.
 * Did you also notice this is where the  Sign out ![Sign Out](../images/sign-out-icon.png?classes=inline&height=25px) option is?
 * Click ![Back to menu](../images/back-main-menu.png?classes=inline&height=25px) to go back to the Main Menu.
