@@ -19,7 +19,7 @@ Given there are two red boxes or tiles, lets see what is going on and if this wi
 
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 
-* First, set the time window we are working with to the last 15 minutes. You do this by using the drop down in the Filter pane ![time-window](../images/time-window.png?classes=inline) at the top of the page to *the last 15 minutes*.
+* First, set the time window we are working with to the last 15 minutes. You do this by using the drop down in the Filter pane ![time-window](../../../images/time-window.png?classes=inline) at the top of the page to *the last 15 minutes*.
 * First hoover with you mouse over the Cluster, Node and pods, both a *Green* & *Red* ones. The resulting information pane that appears will tell you the state of the object, Note, That the *Red* Pods show that they are in *Pod Phase : Failed* . This means they have crashed and are are not working.
 * Lets examine the Cluster Metric charts that provide information on your cluster,(the charts below the cluster image).  They provide general information about the health of your cluster like the memory consumption and the number of pods per node.
 * See if they provide any insight what the impact of the *Red* pods on our e-commerce site is?

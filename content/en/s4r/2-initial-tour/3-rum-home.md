@@ -1,11 +1,22 @@
 ---
-title: 2. APM Home Page
-weight: 20
+title: Real User Monitoring Home Page
+linkTitle: 3. RUM Home Page
+weight: 30
 ---
  
 {{% button icon="clock" %}}5 minutes{{% /button %}}
 
-If you have not done so already, please select ![APM](../images/apm-icon.png?classes=inline&height=25px) from the Main menu. This will bring you to the APM Home page. We will not go into all the sections for apm in this tour as we will do a deep dive later.
+If you have not done so already, please select
+
+
+### WIP WIP WIP WIP WIP WIP WIP
+
+
+
+---
+
+
+ ![RUM](../images/apm-icon.png?classes=inline&height=25px) from the Main menu. This will bring you to the APM Home page. We will not go into all the sections for apm in this tour as we will do a deep dive later.
 
 This Page has 4 distinct sections that provide information or allows you to navigate the APM UI.
 

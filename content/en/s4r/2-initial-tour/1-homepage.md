@@ -7,7 +7,7 @@ weight: 1
 
 After you registered and logged into the Splunk Observability UI, as described [here](../2-initial-tour/), you will be taken to the Observability Suite Home Page. This Home or Landing page has 6 distinct section that provide either useful information or allows you to navigate the Splunk Observability Suite.
 
-![home page](../images/home-screen.png?width=40vw)
+![home page](../images/home-screen.png?width=30vw)
 
 1. Explore Data Pane, Here you can see what function of the Suite are active and you can add additional integrations.
 2. Onboarding Pane, Here you will find video's and references to document pages of interest. (Can be toggled on/off by selecting **Hide Onboarding Content** from the ![hamburger-menu](../../images/hamburger-menu-icon.png?classes=inline&height=25px) menu button at the end of the Explore Data Pane, if space is at a premium)
@@ -29,4 +29,4 @@ Lets do an exercise to get familiar with the menu behaviour, and let's play with
 
 {{% /notice %}}
 
-Let's continue on to APM.
+To see what the Splunk Observability Suite does with Traces from you application(s), let's check out the Application Performance Monitoring or APM for short in the next page.

@@ -6,7 +6,7 @@ weight: 20
 
 {{% button icon="clock" %}}5 minutes{{% /button %}}
 
-The goal of this section is to make you comfortable with the UI of Splunk Observability Cloud. We first need to log in, then we can examine the main components of the UI, followed by a couple of exercise's to get you started.
+The goal of this section is to make you comfortable with the UI of Splunk Observability Cloud. We first need to log in, then we can examine the main components of the UI, and a couple of exercise's to get you started.
 
 ### 1. Login in to Splunk Observability Cloud
 

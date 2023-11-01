@@ -42,7 +42,7 @@ In the *Information pane*You should see two tiles for services detected, the two
 * We should now see just the information for your Redis Instance & there should also be an *Information Pane*.
 * Again we see Meta Data, but we also see that UI is showing in the *Related Content* tiles that this Redis Server runs in a Container running on Kubernetes.
 * Let's verify that by double clicking on the *Kubernetes* Tile.
-* We should be back in the Kubernetes Navigator, at the container level. 
+* We should be back in the Kubernetes Navigator, at the container level.
 * confirm that the name of the cluster, node are all visible at the top of the page and we are back looking at our cluster.
 
 {{% /notice %}}
