@@ -5,18 +5,10 @@ description: This section of the workshop provides an exercise using Splunk infr
 weight: 80
 ---
 
-{{% button icon="clock" %}}7 minutes{{% /button %}}
+{{% button icon="clock" %}}5 minutes{{% /button %}}
 
-This is the third section of our  Kubernetes Navigator exercise.
-
-Please select the *K8s nodes* tile from the Tile pane if you have not yet done so.
-(Select Kubernetes as your Technology). This will bring you to the Kubernetes Navigator Page.
-
-![Kubernetes](images/im-kubernetes.png?width=40vw) 
-
-The screenshot above shows the main part of the kubernetes navigator. It will show all the clusters & their nodes that send metrics to the Splunk Observability Suite. In the workshop you will mostly see single node kubernetes cluster.
-
-{{% notice title=" Kubernetes Terminology" style="info" %}}
+This is the first section of our Kubernetes Navigator exercise. Below is some high level information in regards to Kubernetes, just in case your not familiar with it.
+ {{% notice title=" Kubernetes Terminology" style="info" %}}
 
 K8s, short for Kubernetes, is an open-source container orchestration platform. It manages the deployment, scaling, and maintenance of containerized applications, and we use it in this workshop to host our e-commerce application
 Some terminology:
@@ -27,8 +19,14 @@ Some terminology:
 * Applications is a collection of one or more pods interacting together to provide a service.
 * Namespaces help you keep your applications organized and separate within the cluster,by providing a logical separation for multiple teams or projects within a cluster.
 * Workloads are like a task list and  define how many instances of your application should run, how they should be created, and how they should respond to failures
-
 {{% /notice %}}
+
+Please select the *K8s nodes* tile from the Tile pane if you have not yet done so.
+(Select Kubernetes as your Technology). This will bring you to the Kubernetes Navigator Page.
+
+![Kubernetes](images/im-kubernetes.png?width=30vw)
+
+The screenshot above shows the main part of the kubernetes navigator. It will show all the clusters & their nodes that send metrics to the Splunk Observability Suite, and the first row of charts that show cluster based Metrics. In the workshop you will mostly see single node kubernetes clusters.
 
 Before we dive deeper, let's make sure we are looking at our own cluster.
 
