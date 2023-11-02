@@ -1,7 +1,8 @@
 ---
-title: 6. Synthetics Home Page
+title: Splunk Synthetics Home Page
+linkTitle: 5. Synthetics Home Page
 description: This section of the workshop will equip you with the basic understanding of the Synthetics UI
-weight: 60
+weight: 50
 ---
 
 {{% button icon="clock" %}}5 minutes{{% /button %}}

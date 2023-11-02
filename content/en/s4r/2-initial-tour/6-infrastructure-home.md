@@ -1,7 +1,8 @@
 ---
-title: 7. Infrastructure Home Page
+title:  Splunk Infrastructure & Navigators
+linkTitle: 6. Infrastructure Home Page
 description: This section of the workshop will equip you with the basic understanding of the Kubernetes and Database Navigators in the infrastructure section.
-weight: 70
+weight: 60
 ---
 
 {{% button icon="clock" %}}5 minutes{{% /button %}}

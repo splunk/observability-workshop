@@ -1,8 +1,8 @@
 ---
 title: Infrastructure Exercise 1
-linkTitle: 8. Infrastructure Exercise 
+linkTitle: 7. Infrastructure Exercise 
 description: This section of the workshop provides an exercise using Splunk infra monitoring based on the Kubernetes Navigator.
-weight: 80
+weight: 70
 ---
 
 {{% button icon="clock" %}}5 minutes{{% /button %}}
