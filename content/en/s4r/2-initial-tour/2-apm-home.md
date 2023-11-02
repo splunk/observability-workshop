@@ -21,7 +21,7 @@ This Page has 4 distinct sections that provide information or allows you to navi
 
 {{% notice title=" About Environments" style="info" %}}
 Usually you will have multiple teams or applications send Trace data to Splunk APM. To differentiate between these teams or application, Splunk uses environments. And users can work with one or more environment at the same time. However, in this workshop everything is contained in one single environment.  
-This naming convention for your environment is *[NAME OF WORKSHOP]-workshop*. Your instructor can provide you with the correct name.
+The naming convention for your environment is *[NAME OF WORKSHOP]-workshop*. Your instructor can provide you with the correct name.
 
 {{% /notice %}}
 
