@@ -1,7 +1,7 @@
 ---
 title: Connecting to the Splunk observability UI
 linkTitle: Connect to & Tour of the UI
-weight: 20
+weight: 30
 ---
 
 {{% button icon="clock" %}}5 minutes{{% /button %}}

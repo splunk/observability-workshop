@@ -1,6 +1,6 @@
 ---
 title: Splunk APM
-weight: 50
+weight: 60
 ---
 
 Splunk APM provides a **NoSample™** end-to-end visibility of every service and its dependency to solve problems quicker across monoliths and microservices. Teams can immediately detect problems from new deployments, confidently troubleshoot by scoping and isolating the source of an issue, and optimize service performance by understanding how backend services impact end users and business workflows.

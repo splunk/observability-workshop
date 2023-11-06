@@ -1,7 +1,7 @@
 ---
 title: Automate testing your application with Splunk Synthetics
 linkTitle: Splunk Synthetics
-weight: 70
+weight: 80
 ---
 
 Splunk Synthetic Monitoring provides visibility across URLs, APIs and critical web services to solve problems faster. IT Operations and engineering teams can easily detect, alert and prioritize issues, simulate multi-step user journeys, measure business impact from new code deployments and optimize web performance with guided step-by-step recommendations to ensure better digital experiences.

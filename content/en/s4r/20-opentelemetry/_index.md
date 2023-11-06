@@ -1,9 +1,9 @@
 ---
 title: OpenTelemetry
-linkTitle: 1.5. OpenTelemetry
+linkTitle: OpenTelemetry
 description: This section of the workshop provides an exercise using Splunk infra monitoring based on the Kubernetes Navigator.
-weight: 15
-hidden: true
+weight: 20
+hidden: false
 ---
 
 TBD

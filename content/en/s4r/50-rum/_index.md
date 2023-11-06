@@ -1,6 +1,6 @@
 ---
 title: Splunk RUM
-weight: 40
+weight: 50
 slug: splunk-rum
 ---
 

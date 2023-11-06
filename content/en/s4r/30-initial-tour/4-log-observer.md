@@ -1,6 +1,6 @@
 ---
 title: Checking Logs With Log Observer
-linkTitle: 4. Log observer Home Page
+linkTitle: 4. Log Observer Home Page
 weight: 40
 ---
  

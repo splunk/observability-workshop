@@ -1,6 +1,6 @@
 ---
-title: Splunk Log Observer Connect
-weight: 60
+title: Splunk Log Observer
+weight: 70
 tags:
   - Logs
 ---
