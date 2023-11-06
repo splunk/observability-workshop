@@ -3,6 +3,31 @@ title: Traces and Spans Explained
 weight: 1
 ---
 
+1. Arrived in APM from a RUM trace
+2. Validate workflow is **frontend:/cart/checkout**. Talk to the service map and how it is auto-generated
+3. Click on Overview
+4. Validate environment is the correct workshop one
+5. Ensure APM Overview is visible
+6. What can you conclude from the top services by error rate chart?
+7. Explain inferred services
+8. Click Explore, explain that compared to earlier you now see all services (including inferred)
+9. Click on the paymentservice, what can you conclude from the error rate chart?
+10. Is there a pattern to this error rate? We have a handy tool for that, tag spotlight.
+11. Click on tag spotlight
+12. Ensure **Show tags with no values** is off.
+13. What can you conclude from the data you are seeing? Which chart helped you come to this conclusion? (Answer is version).
+14. Click on v350.10 add to filter
+15. Return to explorer, click tag spotlight and clear all
+16. Click on the payment service and then from breakdown select **version**
+17. You can see all errors are due to v350.10
+18. Click on traces and sort the traces by duration descending by longest duration
+19. Select the 1st trace ensuring it has a long duration
+20. What can you conclude is going on from the waterfall? (Answer multiple attempts)
+21. Verify version is **v350.10** by looking at the metadata under tags.
+22. Conclusion ... we have an problem.
+23. Draw attention to related content ... TBC
+24. Click on Logs for trace XXXXXXX
+
 A trace is a collection of spans that share the same trace ID, representing a unique transaction handled by your application and its constituent services.
 
 ![Traces and Spans](../images/trace-spans.png?width=40vw)

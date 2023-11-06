@@ -23,7 +23,7 @@ weight: 1
 18. Explain the waterfall click through buttons (javascript errors)
 19. Click on All to reset the view
 20. Scroll down and hover over the first APM link to see details about the 1-2-1 APM trace
-21. Click on the workflow
+21. Click on the workflow ensuring it says **frontend:/cart/checkout**
 22. Move on to APM
 
 Splunk Real User Monitoring (RUM) allows your teams to quickly identify and eliminate customer-facing issues across your entire architecture.
