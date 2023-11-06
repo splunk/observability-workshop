@@ -3,6 +3,28 @@ title: Step 1
 weight: 1
 ---
 
+1. We have come from a trace to the logs for paymentservice
+2. Note that the time window is set to a specific time range that is relevant to the trace which is included in the filter
+3. Group By Severity
+4. Notice that the chart changes and you have a legend of debug, error and info
+5. Click on error, and add to filter
+6. Now only have all error fields
+7. Click on an error entry, what is the error?
+8. Click on configure table and ensure the following is selected:
+  - `k8s.pod_name`
+  - `message`
+  - `version`
+9. Change to last 15m
+10. Remove trace id from filter and add service.name=paymentservice
+11. Click Save to Dashboard
+12. Enter name, description, select dashboard, new dashboard, name = initial+ War Room
+13. Ensure new dashboard is highlighted
+14. Click OK
+15. Select Log Timeline
+16. Save
+17. Repeat above for log view
+18. Click save and goto dashboard
+
 Hover over the boxes at the bottom of the trace
 
 ![Related content to the trace includes Logs](../images/rel-logs.png?width=50vw)
