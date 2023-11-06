@@ -1,8 +1,8 @@
 ---
-title: Splunk Infrastructure exercise with the Kubernetes Navigator
-linkTitle: Infrastructure exercise
+title: OpenTelemetry
+linkTitle: 1.5. OpenTelemetry
 description: This section of the workshop provides an exercise using Splunk infra monitoring based on the Kubernetes Navigator.
-weight: 80
+weight: 15
 hidden: true
 ---
 
