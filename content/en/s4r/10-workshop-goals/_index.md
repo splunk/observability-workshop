@@ -9,7 +9,7 @@ The goal of this workshop is to experience an issue and use Splunk Observability
 
 #### 2. Splunk Observability & OpenTelemetry
 
-A Quick intro in **why OpenTelemetry** and why is it mportant for Observability.
+A Quick intro in **why OpenTelemetry** and why is it important for Observability.
 
 #### 3. A tour of the Splunk Observability User Interface
 
