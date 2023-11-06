@@ -1,6 +1,6 @@
 ---
-title: Workshop Wrap-up
-weight: 90
+title: Workshop Wrap up
+weight: 100
 ---
 
 

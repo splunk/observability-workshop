@@ -8,7 +8,7 @@ weight: 40
 
 We continue out tour of the Splunk observability Ui with Log Observer. Log Observer is a feature within Splunk Observability Cloud hat allows you to seamlessly bring in log data from your Splunk Platform into an intuitive and codeless interface designed to help you find and fix problems fast. You will be able to easily perform log-based analysis and seamlessly correlate your logs with Splunk Infrastructure Monitoring’s real-time metrics and Splunk APM traces in one place.
 
-If you have not done so already, please select ![Log observer](../images/log-observer-icon.png?classes=inline&height=25px) from the Main menu. This will bring you to the Log Observer Home page.
+If you have not done so already, please select ![Log observer](../../images/log-observer-icon.png?classes=inline&height=25px) from the Main menu. This will bring you to the Log Observer Home page.
 
 This Page has 4 distinct sections that provide information or allows you to navigate the Log Observer UI and see log data from the selected Indexes..
 
@@ -17,7 +17,7 @@ This Page has 4 distinct sections that provide information or allows you to navi
 1. Onboarding Pane. Here you will find video's and references to document pages of interest for Log Observer.
 (Can be closed by the **X** on the right, if space is at a premium.)
 2. Filter Pane. This pane allows you to filter on Time, Indexes, Fields Application and source type. this pane also allows you to save or reused previously saved searches.
-3. Log's Table Pane. This pane shows you a
+3. Log's Table Pane. This pane shows you the Log Data , based on the Index and filter set in the Filter page.
 4. Fields Pane. Here you can find all the fields that have been  used in the current Index selection.
 
 #### WIP WIP WIP  WIP
@@ -52,8 +52,20 @@ Web Vitals they are an industry-wide initiative to improve web performance and u
 
 We will investigate RUM in more detail later, so lets have a look at how Splunk Log Observer works with Log data in the next page.
 
-{{% notice title=" Rum Environments & Apps" style="info" %}}
-As with APM, Real User Monitoring works with environments to separate RUM information/traces information, this allows you to separate RUM trace information from different teams/applications. It also adds an extra option for Apps (short for applications). This allows you to distinguish between separate browser applications in the same environment.
+{{% notice title=" Splunk index('s)" style="info" %}}
+In Splunk, an "index" refers to a specific storage location where data is stored, organized, and made searchable. It is a fundamental component of the Splunk platform, which is widely used for collecting, indexing, and searching large volumes of machine-generated data, such as log files and events.
 
-Splunk RUM offers RUM for both Browser & Mobile applications.  You will see that as the source type in the Ui. In this workshop we will just focus on browser based  RUM.
+Here's a simple explanation of a Splunk index:
+
+Storage Location: A Splunk index is a designated place where your data is stored. It's like a folder or container for your data.
+
+Organization: Data within a Splunk index is organized and structured in a way that makes it easy to search and analyze.
+
+Searchability: Splunk indexes are designed for fast and efficient searching, allowing users to quickly retrieve and analyze data based on search queries.
+
+Data Types: Different indexes can be created to store specific types of data. For example, you might have one index for web server logs, another for application logs, and so on.
+
+Retention and Configuration: You can configure various settings for each index, including how long data is retained, access controls, and data retention policies.
+
+In summary, a Splunk index is a crucial component that enables the Splunk platform to efficiently store, manage, and retrieve large volumes of data, making it valuable for analyzing and gaining insights from diverse sources of machine-generated data.th
 {{% /notice %}}

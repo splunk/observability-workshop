@@ -8,7 +8,7 @@ weight: 20
 
 As we will dive deeper into Splunk Application Performance Monitoring, or APM, later in the workshop, we will just visit some of they key part of APM in this initial tour.
 
-Let's start, please select ![APM](../images/apm-icon.png?classes=inline&height=25px) from the Main menu if you have not done so already. This will bring you to the APM Home page.  
+Let's start, please select ![APM](../images/apm-icon.png?classes=inline&height=25px) from the Main menu if you have not done so already. This will bring you to the APM Home page.
 
 This Page has 4 distinct sections that provide information or allows you to navigate the APM UI.
 

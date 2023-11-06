@@ -18,7 +18,7 @@ OpenTelemetry, an open-source project created by the Cloud Native Computing Foun
 
 OpenTelemetry can collect data about things like how long it takes for different parts of your software to execute, how many times certain functions are called, and other relevant information. This data is valuable for diagnosing problems, optimizing performance, and improving the overall quality of your applications.
 
-Observability is build on this dat, or Signals as they are also referred too, that are send from you applications and infrastructure.
+Observability is build on this data, or Signals as they are also called, that are send from you applications and infrastructure.
 
 In essence, OpenTelemetry, with these Signals, provides a way to gather insights into your software's inner workings, making it easier to maintain, troubleshoot, and improve your applications.
 
