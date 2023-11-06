@@ -8,7 +8,7 @@ hidden: false
 
 {{% button icon="clock" %}}5 minutes{{% /button %}}
 
-![otel](../20-opentelemetry/images/otel.png)
+![OpenTelemetry](../20-opentelemetry/images/otel.png)
 
 ### OpenTelemetry Explained
 
