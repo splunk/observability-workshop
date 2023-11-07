@@ -4,6 +4,7 @@ linkTitle: Create Your own test
 description: This section of the workshop will equip you with the basic understanding of the SyntheticsUI
 weight: 30
 ---
+
 We are now going to setup a browser test that will provide you continuous insight in the behaviour of your website. As part of this exercise we will clone an existing Synthetic Test and configure it to test against your website, and have it run automatically.
 
 Lets find the the provisioned Browser test in the Synthetics page of as part of this exercise we will also set up a detector that will will allow you to be automatically informed/alerted if the performance of your website is suboptimal.

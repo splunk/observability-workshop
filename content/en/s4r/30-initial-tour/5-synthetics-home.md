@@ -24,7 +24,7 @@ To continue our tour, let's look at the result of our workshop's automatic brows
 
 ![Synthetics-overview](../../8-synthetics/images/synthetics-test-overview.png?width=40vw)
 
-* Note, On the Synthetic Tests Page, the first pane will show the performance of your site for the last day, 8 days and 30 days. As shown in screenshot above, only if a test started far enough in the past, the corresponding chart will contain data. For the workshop, this depends on when it was created for you and if there is any data.
+* Note, On the Synthetic Tests Page, the first pane will show the performance of your site for the last day, 8 days and 30 days. As shown in the screenshot above, only if a test started far enough in the past, the corresponding chart will contain data. For the workshop, this depends on when it was created for you and if there is any data.
 * In the Performance KPI Drop down box, change the time from the default 8 hours to last hour.  
   What can you conclude from the dotted chart, how often are these tests run, and from where?
 * Click on a dot in the chart. This should bring you to a new screen. This is the detailed Test Run Results page for the selected test. We will examine this page in great detail later in the workshop, so for now  go back to the Synthetic Home page by clicking on the (the robot icon) ![syntheticsMenu](../../images/synthetics-icon.png?classes=inline&height=25px).

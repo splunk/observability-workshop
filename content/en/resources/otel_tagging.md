@@ -103,7 +103,7 @@ Metric cardinality is defined as **the number of unique metric time series (MTS)
 
 A metric has high cardinality when it has a high number of dimension keys and a high number of possible unique values for those dimension keys.
 
-For example, suppose your application sends in data for a metric named custom.metric.  In the absence of any attributes, `custom.metric` would generate a single metric time series (MTS).  
+For example, suppose your application sends in data for a metric named `custom.metric`.  In the absence of any attributes, `custom.metric` would generate a single metric time series (MTS).  
 
 On the other hand, if `custom.metric` includes an attribute named `customer.id`, and there are thousands of customer ID values, this would generate thousands of metric time series, which may impact costs and query performance.
 
