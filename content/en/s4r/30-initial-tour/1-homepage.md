@@ -6,7 +6,7 @@ weight: 1
 
 {{% button icon="clock" %}}5 minutes{{% /button %}}
 
-After you register and log into the Splunk Observability UI, as described [here](../2-initial-tour/), you will be taken to the Splunk Observability Cloud Home Page. This Home or Landing page has 6 distinct sections that provides either useful information or allows you to navigate Splunk Observability Cloud.
+After you register and log into the Splunk Observability UI, as described [here](../2-initial-tour/), you will be taken to the Splunk Observability Cloud Home Page. This Home or Landing page has 6 distinct sections that provide either useful information or allow you to navigate Splunk Observability Cloud.
 
 ![home page](../images/home-screen.png?width=30vw)
 
@@ -20,13 +20,13 @@ After you register and log into the Splunk Observability UI, as described [here]
 Let's do an exercise to get familiar with the menu behaviour, and let's play with some of the UI settings.
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 
-* Expand the main menu, check the drop-down box in Org Switcher Pane at the top to see if you have more than one Org assigned to you.
+* Expand the main menu, and check the drop-down box in Org Switcher Pane at the top to see if you have more than one Org assigned to you.
 * Click on ![Settings](../images/settings-icon.png?classes=inline&height=25px) in the main menu.
 * Select the ![Onboarding](../images/onboarding-icon.png?classes=inline&height=25px)option.  This will open a dialog that allows you to toggle the visibility of the onboarding panes on and off.
-* Give it a try, hide  the Home page content.
+* Give it a try, hide the Home page content.
 * At the bottom of the menu, click on either **Light**, **Dark** or **Auto** mode.
 * Did you also notice this is where the  Sign out ![Sign Out](../images/sign-out-icon.png?classes=inline&height=25px) option is?
-* Click ![Back to menu](../images/back-main-menu.png?classes=inline&height=25px) to go back to the Main Menu.
+* Click Back to the menu](../images/back-main-menu.png?classes=inline&height=25px) to go back to the Main Menu.
 
 {{% /notice %}}
 
