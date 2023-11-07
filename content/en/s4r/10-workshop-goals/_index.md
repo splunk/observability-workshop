@@ -5,21 +5,21 @@ weight: 10
 
 #### 1. Introduction
 
-The goal of this workshop is to experience an issue and use Splunk Observability Cloud to troubleshoot the issue and identify the route cause. For this we have provided you with a complete application that includes a frontend and a number of backend services that have been instrumented to send **metrics, traces and logs**.
+The goal of this workshop is to experience an issue and use Splunk Observability Cloud to troubleshoot the issue and identify the root cause. For this, we have provided you with a complete application that includes a frontend and a number of backend services that have been instrumented to send **metrics, traces, and logs**.
 
 #### 2. Splunk Observability & OpenTelemetry
 
-A Quick intro in **why OpenTelemetry** and why is it important for Observability.
+A Quick introduction to **why OpenTelemetry** and why is it important for Observability.
 
 #### 3. A tour of the Splunk Observability User Interface
 
-We will take you through the various components of the Splunk Observability Suite, and show you how to easily navigate the 5 main components (**Infrastructure, RUM, APM, Logs and Synthetics**).
+We will take you through the various components of the Splunk Observability Suite, and show you how to easily navigate the 5 main components (**Infrastructure, RUM, APM, Logs, and Synthetics**).
 
 This will give you the highlights and is designed to make the rest of the workshop simpler as you are already familiar with the locations of various components.
 
 #### 4. Using the Online Boutique Website to create traffic
 
-Next, we encourage you to enjoy some retail therapy using the Online Boutique Website. Please use your browser, mobile or tablet to spend some hard earn virtual money and help generate some traffic that will send **metrics (we have a problem), traces (where is the problem) and logs (what is the problem)**. We will use this data to find and identify the cause of the underlying issue.
+Next, we encourage you to enjoy some retail therapy using the Online Boutique Website. Please use your browser, mobile or tablet to spend some hard-earned virtual money and help generate some traffic that will send **metrics (we have a problem), traces (where is the problem) and logs (what is the problem)**. We will use this data to find and identify the cause of the underlying issue.
 
 #### 5. Splunk Real User Monitoring
 
@@ -35,7 +35,7 @@ All the services are sending telemetry (traces and spans) that Splunk Observabil
 
 #### 7. Using Logs with Splunk Log Observer
 
-Related Content is a powerful feature that allows you to jump from one component to another. In this case we will jump from the APM trace to the logs that are related to the trace, **your** trace.
+Related Content is a powerful feature that allows you to jump from one component to another. In this case, we will jump from the APM trace to the logs that are related to the trace, **your** trace.
 
 #### 8. Splunk Synthetics
 
