@@ -12,7 +12,7 @@ Let's start, please select ![APM](../images/apm-icon.png?classes=inline&height=2
 
 This Page has 3 distinct sections that provide information or allow you to navigate the APM UI.
 
-![apm page](../images/apm-main.png?width=30vw)
+![APM page](../images/apm-main.png?width=30vw)
 
 1. **Onboarding Pane Pane:** Here you will find videos and references to document pages of interest for APM (can be closed by the **X** on the right, if space is at a premium.)
 2. **APM Overview Pane:** This pane shows you dashboards of consolidated and unsampled trace information for  a real-time snapshot of your service's behaviour.
@@ -36,4 +36,4 @@ The naming convention for your environment is **[NAME OF WORKSHOP]-workshop**. Y
 
 {{% /notice %}}
 
-We will investigate APM in more detail later, so let's have a look at  how Real User Monitoring works on the next page.
+We will investigate APM in more detail later, so let's have a look at how Real User Monitoring works on the next page.
