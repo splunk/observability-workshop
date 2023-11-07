@@ -11,11 +11,11 @@ When deploying OpenTelemetry in a large organization, it’s critical to define 
 
 This ensures that MELT data collected via OpenTelemetry can be efficiently utilized for alerting, dashboarding, and troubleshooting purposes.  It also ensures that users of Splunk Observability Cloud can quickly find the data they’re looking for.
 
-Naming conventions also ensure that data can be aggregated effectively.  For example, if we wanted to count the number of unique hosts by environment, then it’s critical that we use a standardized convention for capturing the host and environment names.
+Naming conventions also ensure that data can be aggregated effectively.  For example, if we wanted to count the number of unique hosts by environment, then we must use a standardized convention for capturing the host and environment names.
 
 ## Attributes vs. Tags
 
-Before we go further, let’s make a note regarding terminology.  Tags in OpenTelemetry are called “attributes”.  Attributes can be attached to metrics, logs, and traces, either via manual instrumentation, or via automated instrumentation.
+Before we go further, let’s make a note regarding terminology.  Tags in OpenTelemetry are called “attributes”.  Attributes can be attached to metrics, logs, and traces, either via manual instrumentation or automated instrumentation.
 
 Attributes can also be attached to metrics, logs, and traces at the OpenTelemetry collector level, using various processors such as the [Resource Detection processor](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/resourcedetectionprocessor).
 
@@ -31,7 +31,7 @@ Alternatively, attributes can be used to create [Monitoring Metric Sets](https:/
 
 A number of attributes are used to describe the service being monitored.
 
-service.name is a required attribute that defines the logical name of the service. It’s added automatically by the OpenTelemetry SDK but can be customized.  It’s best to keep this simple (i.e. `inventoryservice` would be better than `inventoryservice-prod-hostxyz`, as other attributes can be utilized to capture other aspects of the service instead).
+`service.name` is a required attribute that defines the logical name of the service. It’s added automatically by the OpenTelemetry SDK but can be customized.  It’s best to keep this simple (i.e. `inventoryservice` would be better than `inventoryservice-prod-hostxyz`, as other attributes can be utilized to capture other aspects of the service instead).
 
 The following service attributes are recommended:
 
@@ -57,7 +57,7 @@ These attributes describe the host where the service is running, and include att
 
 ### Deployment Environment
 
-The deployment.environment attribute is used to identify the environment where the service is deployed, such as **staging** or **production**.
+The `deployment.environment` attribute is used to identify the environment where the service is deployed, such as **staging** or **production**.
 
 Splunk Observability Cloud uses this attribute to enable related content (as described [here](https://docs.splunk.com/observability/metrics-and-metadata/enablerelatedcontent.html)), so it’s important to include it.
 
@@ -79,7 +79,7 @@ These attributes include `k8s.cluster.name`, `k8s.node.name`, `k8s.pod.name`, `k
 
 Many organizations require attributes that go beyond what’s defined in OpenTelemetry’s resource semantic conventions.
 
-In this case, it’s important to avoid naming conflicts with attribute names already included in the semantic conventions.  So it’s a good idea to check the semantic conventions before deciding on a particular attribute name for your own naming convention.
+In this case, it’s important to avoid naming conflicts with attribute names already included in the semantic conventions.  So it’s a good idea to check the semantic conventions before deciding on a particular attribute name for your naming convention.
 
 In addition to a naming convention for attribute names, you also need to consider attribute values.  For example, if you’d like to capture the particular business unit with which an application belongs, then you’ll also want to have a standardized list of business unit values to choose from, to facilitate effective filtering.
 
@@ -99,20 +99,20 @@ They recommend:
 
 One final thing to keep in mind when deciding on naming standards for attribute names and values is related to metric cardinality.
 
-Metric cardinality is defined as **the number of unique metric time series (MTS) produced by a combination of metric name and its associated dimensions**.
+Metric cardinality is defined as **the number of unique metric time series (MTS) produced by a combination of metric **names and their associated dimensions**.
 
-A metric has high cardinality when it has a high number of dimension keys, and a high number of possible unique values for those dimension keys.
+A metric has high cardinality when it has a high number of dimension keys and a high number of possible unique values for those dimension keys.
 
 For example, suppose your application sends in data for a metric named custom.metric.  In the absence of any attributes, `custom.metric` would generate a single metric time series (MTS).  
 
 On the other hand, if `custom.metric` includes an attribute named `customer.id`, and there are thousands of customer ID values, this would generate thousands of metric time series, which may impact costs and query performance.
 
-Splunk Observability Cloud provides a [report](https://docs.splunk.com/Observability/infrastructure/metrics-pipeline/metrics-usage-report.html) that allows for management of metrics usage. And [rules](https://docs.splunk.com/Observability/infrastructure/metrics-pipeline/use-metrics-pipeline.html) can be created to drop undesirable dimensions.  However, the first line of defense is understanding how attribute name and value combinations can drive increased metric cardinality.
+Splunk Observability Cloud provides a [report](https://docs.splunk.com/Observability/infrastructure/metrics-pipeline/metrics-usage-report.html) that allows for the management of metrics usage. And [rules](https://docs.splunk.com/Observability/infrastructure/metrics-pipeline/use-metrics-pipeline.html) can be created to drop undesirable dimensions.  However, the first line of defence is understanding how attribute name and value combinations can drive increased metric cardinality.
 
 ## Summary
 
 In this document, we highlighted the importance of defining naming conventions for OpenTelemetry tags, preferably before starting a large rollout of OpenTelemetry instrumentation.
 
-We discussed how OpenTelemetry’s resource semantic conventions define the naming conventions for a number of attributes, many of which are automatically collected via the OpenTelemetry SDKs, as well as processors that run within the OpenTelemetry collector.
+We discussed how OpenTelemetry’s resource semantic conventions define the naming conventions for several attributes, many of which are automatically collected via the OpenTelemetry SDKs, as well as processors that run within the OpenTelemetry collector.
 
-Finally, we shared some best practices for creating your own attribute names, for situations where the resource semantic conventions are not sufficient for your organization’s needs.
+Finally, we shared some best practices for creating your attribute names, for situations where the resource semantic conventions are not sufficient for your organization’s needs.
