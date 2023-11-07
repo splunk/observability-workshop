@@ -17,10 +17,10 @@ Repeat this exercise a few times and if possible use different browsers, mobile 
 Did you notice anything about the checkout process? Did it seem to take a while to complete, but it did ultimately complete? Or did you plain give up?
 {{% /notice %}}
 
-If you order successfully completes, please copy the **Order Confirmation ID** and save it locally somewhere as we will need it later.
+If your order is completed, please copy the **Order Confirmation ID** and save it locally somewhere as we will need it later.
 
 This is what a poor user experience can feel like and since this is a potential customer satisfaction issue we had better jump on this and troubleshoot.
 
 Let’s go take a look at what the data looks like in **Splunk RUM**.
 
-![Online retail site with large hero image](images/shop.jpg)
+![Online retail site with a large hero image](images/shop.jpg)
