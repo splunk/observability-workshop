@@ -23,16 +23,20 @@ This Page has 4 distinct sections that provide information or allow you to navig
 {{% notice title=" Splunk indexes" style="info" %}}
 Generally, in Splunk, an "index" refers to a  designated place where your data is stored. It's like a folder or container for your data. Data within a Splunk index is organized and structured in a way that makes it easy to search and analyze. Different indexes can be created to store specific types of data. For example, you might have one index for web server logs, another for application logs, and so on.
 
-Within the Splunk Observability cloud suite you can retrieve and search log data from "indexes" that have been preconfigured by the Administrators of your SObservability Org.
+Within the Splunk Observability cloud suite you can retrieve and search log data from "indexes" that have been preconfigured by the Administrators of your Observability Org.
 {{% /notice %}}
 
-#### WIP WIP WIP  WIP
-
+Let's run a little search exercise.
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 
-* Again make sure the Time Window in the filter bar is set  
-*
+* Again make sure the Time Window in the filter bar is set to **-15m**.
+* Lets look at the logs for a specific service. Click on the {{% button style="gray" %}}Add Filter{{% /button %}} button in the filter bar. This will show you a dialog with option. Clicking on *fields* in the dialog so we can pick one from the list of known values.
+* Select *adservice* from the proposed options and click on **=** as show below
 
+![logo search](../images/search-logo.png?width=20vw)
+
+* This will now give you the log for just the *adservice*.
+* You can control the viualisation of the Log line., clikc on the *cog*  
 {{% /notice %}}
 
 We will investigate Log observer in more detail later, so let's have a look at how Splunk Synthetics allows you to the next page.
