@@ -4,7 +4,7 @@
     "name": "Workshop Browser Test for $INSTANCE",
     "deviceId": 1,
     "active": true,
-    "frequency": 5,
+    "frequency": 1,
     "schedulingStrategy": "round_robin",
     "locationIds": [
       "aws-eu-central-1",
