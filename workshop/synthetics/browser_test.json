@@ -1,19 +1,28 @@
 {
   "test": {
+    "id": 272,
     "name": "Workshop Browser Test for $INSTANCE",
     "active": true,
-    "deviceId": 1,
     "frequency": 5,
     "schedulingStrategy": "round_robin",
     "locationIds": [
-      "aws-eu-central-1",
       "aws-eu-west-2",
+      "aws-eu-south-2",
       "aws-eu-west-3"
     ],
     "type": "browser",
+    "advancedSettings": {
+      "authentication": null,
+      "cookies": null,
+      "headers": null,
+      "hostOverrides": [],
+      "userAgent": null,
+      "verifyCertificates": true,
+      "collectInteractiveMetrics": true
+    },
     "transactions": [
       {
-        "name": "Frontend Demo",
+        "name": "Home",
         "steps": [
           {
             "name": "Online Boutique",
@@ -23,25 +32,57 @@
             "options": {
               "url": "http://$EXTERNALIP:81/"
             }
-          },
+          }
+        ]
+      },
+      {
+        "name": "Shop",
+        "steps": [
           {
             "name": "Select Random Product",
             "type": "run_javascript",
             "value": "var products = [\n\"OLJCESPC7Z\",\n\"2ZYFJ3GM2N\",\n\"1YMWWN1N4O\",\n\"LS4PSXUNUM\",\n\"L9ECAV7KIM\",\n\"0PUK6V6EV0\",\n\"9SIQT8TOJO\",\n\"66VCHSJNUP\",\n\"6E92ZMYYFZ\"\n]\n\nvar randomProducts = products[Math.floor(Math.random() * products.length)];\n\nwindow.open(\"https://frontend-eu.o11ystore.com/product/\" + randomProducts, \"_self\");",
             "waitForNav": true
-          },
+          }
+        ]
+      },
+      {
+        "name": "Cart",
+        "steps": [
           {
-            "name": "Add to Cart",
+            "name": "Add to cart",
             "type": "click_element",
             "selectorType": "xpath",
             "selector": "//button[contains(text(), \"Add to Cart\")]",
             "waitForNav": true
-          },
+          }
+        ]
+      },
+      {
+        "name": "Place Order",
+        "steps": [
           {
             "name": "Place Order",
             "type": "click_element",
             "selectorType": "xpath",
             "selector": "//button[contains(text(), \"Place order\")]",
+            "waitForNav": true
+          },
+          {
+            "name": "confirm checkout",
+            "type": "assert_text_present",
+            "value": "Order Confirmation ID"
+          }
+        ]
+      },
+      {
+        "name": "Keep Browsing",
+        "steps": [
+          {
+            "name": "Keep Browsing",
+            "type": "click_element",
+            "selectorType": "xpath",
+            "selector": "//a[@role='button']",
             "waitForNav": true
           }
         ]
