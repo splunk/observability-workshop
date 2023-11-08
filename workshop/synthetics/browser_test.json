@@ -41,7 +41,7 @@
           {
             "name": "Select Random Product",
             "type": "run_javascript",
-            "value": "var products = [\n\"OLJCESPC7Z\",\n\"2ZYFJ3GM2N\",\n\"1YMWWN1N4O\",\n\"LS4PSXUNUM\",\n\"L9ECAV7KIM\",\n\"0PUK6V6EV0\",\n\"9SIQT8TOJO\",\n\"66VCHSJNUP\",\n\"6E92ZMYYFZ\"\n]\n\nvar randomProducts = products[Math.floor(Math.random() * products.length)];\n\nwindow.open(\"https://frontend-eu.o11ystore.com/product/\" + randomProducts, \"_self\");",
+            "value": "var products = [\n\"OLJCESPC7Z\",\n\"2ZYFJ3GM2N\",\n\"1YMWWN1N4O\",\n\"LS4PSXUNUM\",\n\"L9ECAV7KIM\",\n\"0PUK6V6EV0\",\n\"9SIQT8TOJO\",\n\"66VCHSJNUP\",\n\"6E92ZMYYFZ\"\n]\n\nvar randomProducts = products[Math.floor(Math.random() * products.length)];\n\nwindow.open(\"http://$EXTERNALIP:81/product/\" + randomProducts, \"_self\");",
             "waitForNav": true
           }
         ]
