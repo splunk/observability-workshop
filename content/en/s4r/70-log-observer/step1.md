@@ -24,6 +24,7 @@ weight: 1
 16. Save
 17. Repeat above for log view
 18. Click save and goto dashboard
+19. Explain that if we had 24/7 Synthetic monitoring, we would have been alerted to this issue before our customers were impacted.
 
 Hover over the boxes at the bottom of the trace
 
