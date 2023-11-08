@@ -7,7 +7,7 @@
     "frequency": 5,
     "schedulingStrategy": "round_robin",
     "locationIds": [
-      "aws-eu-west-2",
+      "aws-eu-central-1",
       "aws-eu-south-2",
       "aws-eu-west-3"
     ],
@@ -68,6 +68,11 @@
             "selectorType": "xpath",
             "selector": "//button[contains(text(), \"Place order\")]",
             "waitForNav": true
+          },
+          {
+            "name": "Wait 20 seconds",
+            "type": "wait",
+            "duration": 20000
           },
           {
             "name": "confirm checkout",
