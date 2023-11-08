@@ -13,6 +13,6 @@ Wait for a few minutes for the test to provision and run. Once you see the test 
 
 ## 6. Resources
 
-- [How to Create an API Check](https://docs.splunk.com/Observability/synthetics/api-test/set-up-api-test.html)
+- [How to Create an API Test](https://docs.splunk.com/Observability/synthetics/api-test/set-up-api-test.html)
 
-- [API Check Overview](https://docs.splunk.com/Observability/synthetics/api-test/api-test.html)
+- [API Test Overview](https://docs.splunk.com/Observability/synthetics/api-test/api-test.html)

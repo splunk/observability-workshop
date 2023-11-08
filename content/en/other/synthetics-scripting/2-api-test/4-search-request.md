@@ -28,4 +28,4 @@ Expand the **Validation** section and add the following extraction:
 
 ![Add search payload](../../img/add-search-payload.png)
 
-Click on {{< button style="blue" >}}< Return to test{{< /button >}} to return to the test configuration page. And then click {{< button style="blue" >}}Save{{< /button >}} to save the API Check.
+Click on {{< button style="blue" >}}< Return to test{{< /button >}} to return to the test configuration page. And then click {{< button style="blue" >}}Save{{< /button >}} to save the API test.
