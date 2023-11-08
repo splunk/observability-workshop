@@ -8,7 +8,7 @@
     "schedulingStrategy": "round_robin",
     "locationIds": [
       "aws-eu-central-1",
-      "aws-eu-south-2",
+      "aws-eu-west-2",
       "aws-eu-west-3"
     ],
     "type": "browser",
