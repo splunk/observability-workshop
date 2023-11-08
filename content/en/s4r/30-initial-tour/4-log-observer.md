@@ -30,7 +30,8 @@ Within the Splunk Observability cloud suite you can retrieve and search log data
 
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 
-TBD
+* Again make sure the Time Window in the filter bar is set  
+*
 
 {{% /notice %}}
 
