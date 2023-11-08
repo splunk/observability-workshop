@@ -13,12 +13,12 @@ The starting URL for the workshop is different for **EMEA** and **AMER/APAC**. P
 {{% tabs %}}
 {{% tab title="EMEA Workshop URL" %}}
 
-[http://34.242.111.159:81/](http://34.242.111.159:81/)
+[https://frontend-eu.o11ystore.com:81/](https://frontend-eu.o11ystore.com:81/)
 
 {{% /tab %}}
 {{% tab title="AMER/APAC Workshop URL" %}}
 
-[http://54.194.88.94:81/](http://54.194.88.94:81/)
+[https://frontend-us.o11ystore.com/:81/](https://frontend-us.o11ystore.com:81/)
 
 {{% /tab %}}
 {{% /tabs %}}
@@ -26,7 +26,7 @@ The starting URL for the workshop is different for **EMEA** and **AMER/APAC**. P
 
 ## Open the Chrome DevTools Recorder
 
-Next, open the Developer Tools (in the new tab that was opened above) by pressing `Ctrl + Shift + I` on Windows or `Cmd + Option + I` on a Mac, then select **Recorder** from the top level menu or the **More tools** flyout menu.
+Next, open the Developer Tools (in the new tab that was opened above) by pressing `Ctrl + Shift + I` on Windows or `Cmd + Option + I` on a Mac, then select **Recorder** from the top-level menu or the **More tools** flyout menu.
 
 ![Open Recorder](../../img/open-recorder.png)
 
@@ -86,11 +86,11 @@ Select **JSON** as the format, then click on **Save**
         },
         {
             "type": "navigate",
-            "url": "http://34.242.111.159:81/",
+            "url": "https://frontend-eu.o11ystore.com:81/",
             "assertedEvents": [
                 {
                     "type": "navigation",
-                    "url": "http://34.242.111.159:81/",
+                    "url": "https://frontend-eu.o11ystore.com:81/",
                     "title": "Online Boutique"
                 }
             ]

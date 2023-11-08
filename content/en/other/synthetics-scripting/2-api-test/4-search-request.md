@@ -15,7 +15,7 @@ Expand the **Request** section and change the request method to **GET** and ente
 https://api.spotify.com/v1/search?q=Up%20around%20the%20bend&type=track&offset=0&limit=5
 ```
 
-Next add two request headers with the following key/value pairings:
+Next, add two request headers with the following key/value pairings:
 
 - **CONTENT-TYPE: application/json**
 - **AUTHORIZATION: Bearer {{custom.access_token}}**
