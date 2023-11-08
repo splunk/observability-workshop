@@ -2,6 +2,7 @@
   "test": {
     "id": 272,
     "name": "Workshop Browser Test for $INSTANCE",
+    "deviceId": 1,
     "active": true,
     "frequency": 5,
     "schedulingStrategy": "round_robin",
