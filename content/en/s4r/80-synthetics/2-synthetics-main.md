@@ -5,6 +5,11 @@ description: This section of the workshop will equip you with a basic understand
 weight: 20
 ---
 
+* Click on a dot in the chart. This should bring you to a new screen. This is the detailed Test Run Results page for the selected test. We will examine this page in great detail later in the workshop, so for now  go back to the Synthetic Home page by clicking on the (the robot icon) ![syntheticsMenu](../../images/synthetics-icon.png?classes=inline&height=25px).
+
+
+
+
 Before we are going to set up our synthetic test, let's take a quick tour of the Synthetic UI.  
 Select Synthetic from the menu bar on the right (the robot icon) ![Synthetics Icon](../../images/synthetics-icon.png?classes=inline&height=25px)  
 

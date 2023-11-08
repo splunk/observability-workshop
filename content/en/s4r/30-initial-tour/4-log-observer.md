@@ -16,9 +16,15 @@ This Page has 4 distinct sections that provide information or allow you to navig
 
 1. **Onboarding Pane:** Here you will find videos and references to document pages of interest for Log Observer.
 (Can be closed by the **X** on the right, if space is at a premium.)
-2. **Filter Pane:** This pane allows you to filter on time, indexes, fields and source type. This pane also allows you to save or reuse previously saved searches.
-3. **Log's Table Pane:** This pane shows you the Log Data, based on the Index and filter set on the Filter page.
-4. **Fields Pane:** Here you can find all the fields that have been used in the current Index selection.
+2. **Filter Pane:** This pane allows you to filter on time, indexes (see below), fields and source type. This pane also allows you to save or reuse previously saved searches.
+3. **Log's Table Pane:** This pane shows you the Log Data retrieved from the selected index as set in the Filter pane.
+4. **Fields Pane:** Here you can find all the fields that have been used in the current Index selection including the active count of each field.
+
+{{% notice title=" Splunk indexes" style="info" %}}
+Generally, in Splunk, an "index" refers to a  designated place where your data is stored. It's like a folder or container for your data. Data within a Splunk index is organized and structured in a way that makes it easy to search and analyze. Different indexes can be created to store specific types of data. For example, you might have one index for web server logs, another for application logs, and so on.
+
+Within the Splunk Observability cloud suite you can retrieve and search log data from "indexes" that have been preconfigured by the Administrators of your SObservability Org.
+{{% /notice %}}
 
 #### WIP WIP WIP  WIP
 
@@ -26,29 +32,6 @@ This Page has 4 distinct sections that provide information or allow you to navig
 
 TBD
 
-{{% notice title="Web Vitals infos" style="info" %}}
-TBD
 {{% /notice %}}
 
-TBD
-{{% /notice %}}
-
-We will investigate RUM in more detail later, so let's have a look at how Splunk Log Observer works with Log data on the next page.
-
-{{% notice title=" Splunk indexes" style="info" %}}
-In Splunk, an "index" refers to a specific storage location where data is stored, organized, and made searchable. It is a fundamental component of the Splunk platform, which is widely used for collecting, indexing, and searching large volumes of machine-generated data, such as log files and events.
-
-Here's a simple explanation of a Splunk index:
-
-Storage Location: A Splunk index is a designated place where your data is stored. It's like a folder or container for your data.
-
-Organization: Data within a Splunk index is organized and structured in a way that makes it easy to search and analyze.
-
-Searchability: Splunk indexes are designed for fast and efficient searching, allowing users to quickly retrieve and analyze data based on search queries.
-
-Data Types: Different indexes can be created to store specific types of data. For example, you might have one index for web server logs, another for application logs, and so on.
-
-Retention and Configuration: You can configure various settings for each index, including how long data is retained, access controls, and data retention policies.
-
-In summary, a Splunk index is a crucial component that enables the Splunk platform to efficiently store, manage, and retrieve large volumes of data, making it valuable for analyzing and gaining insights from diverse sources of machine-generated data.th
-{{% /notice %}}
+We will investigate Log observer in more detail later, so let's have a look at how Splunk Synthetics allows you to the next page.
