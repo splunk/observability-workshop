@@ -4,30 +4,28 @@ linkTitle: 1. Home/Landing Page
 weight: 1
 ---
 
-{{% button icon="clock" %}}5 minutes{{% /button %}}
+{{% button icon="clock" color="#ed0090" %}}5 minutes{{% /button %}}
 
-After you register and log into the Splunk Observability UI, as described [here](../2-initial-tour/), you will be taken to the Splunk Observability Cloud Home Page. This Home or Landing page has 6 distinct sections that provide either useful information or allow you to navigate Splunk Observability Cloud.
+After you have registered and logged into the Splunk Observability Cloud UI you will be taken to the home page. Here, you will find a number of useful features to help you get started.
 
 ![home page](../images/home-screen.png?width=30vw)
 
-1. **Explore Data Pane:** Here you can see what functions of the Suite are active and you can add additional integrations.
-2. Onboarding Pane. Here you will find videos and references to document pages of interest. (Can be toggled on/off by selecting **Hide Onboarding Content** from the ![hamburger-menu](../../images/hamburger-menu-icon.png?classes=inline&height=25px) menu button at the end of the Explore Data Pane, if space is at a premium)
-3. **Recent Pane:** This pane shows your recently created or visited Dashboards or Detectors for easy access.
-4. **Main Menu Pane:** This pane allows for quick movement between the components of the Splunk Observability Suite.
-5. **Org Switcher Pane:** allows for switching between different organisations, if you are a member of more than one Org.
-6. **Expand Menu Pane:** This pane allows you to expand the Main menu from icon mode to full mode and vice versa.
+1. **Explore Data Pane:** Displays which integrations are enabled and you can add additional integrations.
+2. **Onboarding Pane:** Training videos and links to documentation to get you started with Splunk Observability Cloud.
+3. **Recent Pane:** Recently created/visited dashboards and/or detectors for quick access.
+4. **Main Menu Pane:** Navigate the components of Splunk Observability Cloud.
+5. **Org Switcher Pane:** Easily switch between Organizations, if you are a member of more than one Organization.
+6. **Expand Menu Pane:** Expand/Collapse the main menu.
 
-Let's do an exercise to get familiar with the menu behaviour, and let's play with some of the UI settings.
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 
-* Expand the main menu, and check the drop-down box in Org Switcher Pane at the top to see if you have more than one Org assigned to you.
-* Click on ![Settings](../images/settings-icon.png?classes=inline&height=25px) in the main menu.
-* Select the ![Onboarding](../images/onboarding-icon.png?classes=inline&height=25px)option.  This will open a dialog that allows you to toggle the visibility of the onboarding panes on and off.
-* Give it a try, hide the Home page content.
-* At the bottom of the menu, click on either **Light**, **Dark** or **Auto** mode.
-* Did you also notice this is where the  Sign out ![Sign Out](../images/sign-out-icon.png?classes=inline&height=25px) option is?
-* Click Back to the menu](../images/back-main-menu.png?classes=inline&height=25px) to go back to the Main Menu.
+* Click on **Settings** in the main menu.
+* Click **Onboarding Guidance**, here you can toggle the visibility of the onboarding panes.
+* Hide the Home page content.
+* At the bottom of the menu, select your preferred appearance: **Light**, **Dark** or **Auto** mode.
+* Did you also notice this is where the **Sign out** option is?
+* Click **<** to get back to the main menu.
 
 {{% /notice %}}
 
-To see what the Splunk Observability Suite does with Traces from your application(s), let's check out the Application Performance Monitoring or APM for short on the next page.
+Next, let's check out Application Performance Monitoring (APM).
