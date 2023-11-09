@@ -5,7 +5,7 @@ description: This section of the workshop will equip you with a basic understand
 weight: 50
 ---
 
-{{% button icon="clock" %}}5 minutes{{% /button %}}
+{{% button icon="clock" color="#ed0090" %}}5 minutes{{% /button %}}
 
 If you have not done so yet, select Splunk Synthetic from the menu bar on the right by selecting the (the robot icon) ![syntheticsMenu](../../images/synthetics-icon.png?classes=inline&height=25px). This will bring us to the Synthetic Home Page. It has 3 distinct sections that provide either useful information or allow you to pick or create a Synthetic Test.
 

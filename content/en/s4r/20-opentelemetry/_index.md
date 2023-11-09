@@ -6,8 +6,6 @@ weight: 20
 hidden: false
 ---
 
-{{% button icon="clock" %}}5 minutes{{% /button %}}
-
 ![OpenTelemetry](../20-opentelemetry/images/otel.png)
 
 ### OpenTelemetry explained

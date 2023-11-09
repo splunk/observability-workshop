@@ -5,7 +5,7 @@ description: This section of the workshop will equip you with a basic understand
 weight: 60
 ---
 
-{{% button icon="clock" %}}5 minutes{{% /button %}}
+{{% button icon="clock" color="#ed0090" %}}5 minutes{{% /button %}}
 
 This section is split into multiple sections and is going to be a little longer, the first section is a quick intro to the main page, followed by a few sections to dive deeper into some of the special features of the Splunk Observability suite, before we start to use our application and validate performance.
 

@@ -4,7 +4,7 @@ linkTitle: 3. RUM Home Page
 weight: 30
 ---
  
-{{% button icon="clock" %}}5 minutes{{% /button %}}
+{{% button icon="clock" color="#ed0090" %}}5 minutes{{% /button %}}
 
 Again, as this is a quick tour and we will be visiting the Real User Monitoring UI in more detail later, this will just highlight the main options.
 

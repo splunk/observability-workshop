@@ -4,7 +4,7 @@ linkTitle: 4. Log Observer Home Page
 weight: 40
 ---
  
-{{% button icon="clock" %}}5 minutes{{% /button %}}
+{{% button icon="clock" color="#ed0090" %}}5 minutes{{% /button %}}
 
 We continue our tour of the Splunk Observability UI with Log Observer. Log Observer is a feature within Splunk Observability Cloud that allows you to seamlessly bring in log data from your Splunk Platform into an intuitive and codeless interface designed to help you find and fix problems quickly. You will be able to easily perform log-based analysis and seamlessly correlate your logs with Splunk Infrastructure Monitoring’s real-time metrics and Splunk APM traces in one place.
 

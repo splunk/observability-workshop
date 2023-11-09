@@ -1,10 +1,10 @@
 ---
-title: Splunk Observability Home Page
-linkTitle: 1. Home/Landing Page
+title: Splunk Observability Cloud Home Page
+linkTitle: 1. Home Page
 weight: 1
 ---
 
-{{% button icon="clock" color="#ed0090" %}}5 minutes{{% /button %}}
+{{% button icon="clock" color="#ed0090" %}}3 minutes{{% /button %}}
 
 After you have registered and logged into the Splunk Observability Cloud UI you will be taken to the home page. Here, you will find a number of useful features to help you get started.
 

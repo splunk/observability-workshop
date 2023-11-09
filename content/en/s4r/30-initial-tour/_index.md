@@ -4,7 +4,7 @@ linkTitle: UI - Quick Tour
 weight: 30
 ---
 
-{{% button icon="clock" %}}5 minutes{{% /button %}}
+{{% button icon="clock" color="#ed0090" %}}2 minutes{{% /button %}}
 
 This section will get you logged in and introduce you to the Splunk Observability Cloud UI.
 
