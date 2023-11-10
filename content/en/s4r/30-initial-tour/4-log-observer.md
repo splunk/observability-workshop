@@ -36,7 +36,7 @@ Let's run a little search exercise.
 ![logo search](../images/search-logo.png?width=20vw)
 
 * This will now give you the log for just the *adservice*.
-* You can control the viualisation of the Log line., clikc on the *cog*  
+* You can control the visualisation of the Log line., click on the *cog*  
 {{% /notice %}}
 
 We will investigate Log observer in more detail later, so let's have a look at how Splunk Synthetics allows you to the next page.
