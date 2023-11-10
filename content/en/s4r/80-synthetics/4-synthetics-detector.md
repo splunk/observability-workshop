@@ -8,4 +8,3 @@ weight: 4
 3. Set trigger threshold to be 30000ms, leave the rest as default
 4. Click Activate
 5. Let's go back to our War Room dashboard
-
