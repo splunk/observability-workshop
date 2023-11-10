@@ -17,7 +17,7 @@ A walkthrough of the various components of Splunk Observability Cloud showing yo
 
 ##### 4. Using the Online Boutique Website to create traffic
 
-Enjoy some retail therapy using the Online Boutique Website. Use your browser, mobile or tablet to spend some hard-earned virtual money to send **metrics _(we have a problem)_, traces _(where is the problem)_ and logs _(what is the problem)_**.
+Enjoy some retail therapy using the Online Boutique Website. Use your browser, mobile or tablet to spend some hard-earned virtual money to send **metrics _(do we have a problem?)_, traces _(where is the problem?)_ and logs _(what is the problem?)_**.
 
 ##### 5. Splunk Real User Monitoring
 

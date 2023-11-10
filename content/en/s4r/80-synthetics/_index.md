@@ -1,5 +1,5 @@
 ---
-title: Automate testing your application with Splunk Synthetics
+title: Splunk Synthetics
 linkTitle: Splunk Synthetics
 weight: 80
 ---
