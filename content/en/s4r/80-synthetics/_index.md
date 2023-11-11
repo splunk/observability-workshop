@@ -13,4 +13,4 @@ Splunk Synthetic Monitoring provides visibility across URLs, APIs and critical w
 **Business Performance:** Easily define multi-step user flows for key business transactions and start recording and testing your critical user journeys in minutes. Track and report SLAs and SLOs for uptime and performance.  
 **Filmstrips and Video Playback:** View screen recordings, film strips, and screenshots alongside modern performance scores, competitive benchmarking, and metrics to visualize artificial end-user experiences. Optimize how fast you deliver visual content, and improve page stability and interactivity to deploy better digital experiences.
 
-![Synthetics overview](images/synthetic-tests.png?width=40vw)
+![Synthetics overview](images/synthetic-tests.png)

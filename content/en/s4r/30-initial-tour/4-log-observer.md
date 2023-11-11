@@ -1,5 +1,5 @@
 ---
-title: Checking Logs With Log Observer
+title: Log Observer Home Page
 linkTitle: 4. Log Observer Home Page
 weight: 40
 ---
@@ -12,7 +12,7 @@ If you have not done so already, please select ![Log Observer](../../images/log-
 
 This Page has 4 distinct sections that provide information or allow you to navigate the Log Observer UI and see log data from the selected Indexes.
 
-![Lo Page](../images/lo-home.png?width=30vw)
+![Lo Page](../images/lo-home.png)
 
 1. **Onboarding Pane:** Here you will find videos and references to document pages of interest for Log Observer.
 (Can be closed by the **X** on the right, if space is at a premium.)

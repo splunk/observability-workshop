@@ -12,10 +12,10 @@ Next, scroll down the page and you will see the **Tags** metadata (which is used
 
 Hover over the 1st blue **APM** link (the one next to `Doc Fetch` with `/cart/checkout` at the end of the URL).
 
-![RUM Session](../images/rum-waterfall.png?width=40vw)
+![RUM Session](../images/rum-waterfall.png)
 
 This brings up the APM Performance Summary. Having this end-to-end (RUM to APM) view is very useful when troubleshooting issues.
 
 You should see **paymentservice** and **checkoutservice** are in an error state as per the screenshot above. Under **Workflow Name** click on **frontend:/cart/checkout**. This will bring up the APM Service Map.
 
-![RUM to APM](../images/rum-to-apm.png?width=40vw)
+![RUM to APM](../images/rum-to-apm.png)

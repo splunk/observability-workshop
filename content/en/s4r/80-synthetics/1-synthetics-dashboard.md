@@ -14,7 +14,7 @@ However, this is not something you can/want to do 24 hours a day, 7 days a week!
 
 However, if you are not constantly testing your website performance & behaviour in production, the likely source telling you that your site is slow or not performant would be via Social Media or Down Detector.
 
-![social media](../images/social-media-post.png?width=40vw)
+![social media](../images/social-media-post.png)
 
 So, what if, we didn't have to do it manually and could avoid waiting on your customers/users to let you know the behaviour of your site and could instead test the front-end whenever we wanted, in both production and pre-production?
 

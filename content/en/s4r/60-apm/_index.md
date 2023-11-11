@@ -13,4 +13,4 @@ Splunk APM provides a **NoSample™** end-to-end visibility of every service and
 **Full stack correlation:** Within Splunk Observability, APM links traces, metrics, logs and profiling together to easily understand the performance of every component and its dependency across your stack.  
 **Monitor database query performance:** Easily identify how slow and high execution queries from SQL and NoSQL databases impact your services, endpoints and business workflows — no instrumentation required.  
 
-![Architecture Overview](images/arch-overview.png?width=40vw)
+![Architecture Overview](images/arch-overview.png)

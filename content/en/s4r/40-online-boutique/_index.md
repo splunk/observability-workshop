@@ -20,4 +20,5 @@ This is what a poor user experience can feel like and since this is a potential 
 
 Let’s go take a look at what the data looks like in **Splunk RUM**.
 
-![Online retail site with a large hero image](images/shop.jpg?width=40vw)
+![Online retail site with a large hero image](images/shop.jpg
+)

@@ -8,7 +8,7 @@ weight: 30
 
 Click **APM** in the main menu. The RUM Home Page is made up of 3 distinct sections:
 
-![RUM Page](../images/rum-main.png?width=30vw)
+![RUM Page](../images/rum-main.png)
 
 1. **Onboarding Pane:** Training videos and links to documentation to get you started with Splunk RUM.
 2. **Filter Pane:** Filter on timeframe, environment, application and source type.

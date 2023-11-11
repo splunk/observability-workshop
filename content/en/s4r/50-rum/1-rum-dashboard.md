@@ -14,7 +14,7 @@ This view has already been covered in the short introduction earlier. Next, clic
 
 This will bring up a dashboard view breaking down the metrics by **UX Metrics**, **Front-end Health**, **Back-end Health** and **Custom Events**. For more detailed information on the metrics collected by Splunk RUM see [**here**](https://docs.splunk.com/observability/en/gdi/get-data-in/rum/browser/rum-browser-data-model.html#rum-browser-data).
 
-![RUM Dashboard](../images/rum-dashboard.png?width=40vw)
+![RUM Dashboard](../images/rum-dashboard.png)
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
