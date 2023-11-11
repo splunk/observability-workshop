@@ -10,7 +10,7 @@ hidden: false
 
 ### OpenTelemetry explained
 
-OpenTelemetry, an open-source project created by the Cloud Native Computing Foundation (CNCF), is a set of tools and libraries that help software developers gather information about how their applications are performing and behaving. It's like a set of instruments that allows you to monitor and measure what's happening inside your software, so you can understand its behaviour, identify issues, and optimize its performance, not unlike your local car mechanic.
+OpenTelemetry, an open-source project created by the Cloud Native Computing Foundation (CNCF), is a set of tools and libraries that help software developers gather information about how their applications are performing and behaving. It's like a set of instruments that allows you to monitor and measure what's happening inside your software, so you can understand its behavior, identify issues, and optimize its performance, not unlike your local car mechanic.
 
 ![diagnostics](../20-opentelemetry/images/pexels-gustavo-fring-6870313.jpg?width=30vw)
 

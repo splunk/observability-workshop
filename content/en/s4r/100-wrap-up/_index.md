@@ -13,7 +13,7 @@ This wraps up the Splunk for Rookies Workshop of the Splunk Observability Cloud.
 Today we didn’t even talk about the power of the rest of Splunk Observability Cloud, such as:
 
 * Infrastructure monitoring, which shows how our infrastructure is behaving -- hosts, Kubernetes, and applications via Dashboards, Navigators and Detectors
-* More about Synthetics, which can simulate web and mobile traffic and report on application behaviour and potential areas for improvement.
+* More about Synthetics, which can simulate web and mobile traffic and report on application behavior and potential areas for improvement.
 
 <!-- More information  can be found here:
 

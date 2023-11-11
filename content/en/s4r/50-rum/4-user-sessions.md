@@ -3,8 +3,8 @@ title: 4. User Sessions
 weight: 4
 ---
 
-21. Click on the workflow ensuring it says **frontend:/cart/checkout**
-22. Move on to APM
+1. Click on the workflow ensuring it says **frontend:/cart/checkout**
+2. Move on to APM
 
 Close the RUM Session Replay by clicking on the **X** in the top right corner. Here, we can see the custom event **PlaceOrder**. Notice the length of the span. This is the time it took to complete the order, not good!
 

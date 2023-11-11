@@ -23,7 +23,7 @@ The following configuration can be applied to a standard O11y workshop instance 
 
 ### otel-demo-collector.yaml
 
-https://github.com/splunk/observability-workshop/blob/58592d0ddb00be300b81982712b3ef0618f13284/workshop/oteldemo/otel-demo-collector.yaml#L1-L93
+[otel-demo-collector.yaml](https://github.com/splunk/observability-workshop/blob/58592d0ddb00be300b81982712b3ef0618f13284/workshop/oteldemo/otel-demo-collector.yaml#L1-L93)
 
 ### Deploy the OTel Collector via Helm chart
 
@@ -54,7 +54,7 @@ splunk-otel-collector-chart/splunk-otel-collector \
 
 ## OpenTelemetry Astronomy Shop configuration
 
-Create `otel-demo.yaml`, this will be applied to the Helm chart and changes the default behaviour of a default install:
+Create `otel-demo.yaml`, this will be applied to the Helm chart and changes the default behavior of a default install:
 
 - Set `OTEL_COLLECTOR_NAME` to the host IP Address for Metrics, Traces and Logs
 - Configure a load balancer for the `frontendProxy` server

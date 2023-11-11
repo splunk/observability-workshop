@@ -6,7 +6,7 @@ weight: 30
  
 {{% button icon="clock" color="#ed0090" %}}2 minutes{{% /button %}}
 
-Click **APM** in the main menu. The RUM Home Page is made up of 3 distinct sections:
+Click **RUM** in the main menu, the RUM Home Page is made up of 3 distinct sections:
 
 ![RUM Page](../images/rum-main.png)
 
@@ -14,10 +14,12 @@ Click **APM** in the main menu. The RUM Home Page is made up of 3 distinct secti
 2. **Filter Pane:** Filter on timeframe, environment, application and source type.
 3. **Application Summary Pane:** Summary of all your applications that send RUM data. 
 
-{{% notice title=" Rum Environments & Apps" style="info" %}}
+{{% notice title=" RUM Environments & Apps" style="info" %}}
+
 As with APM, RUM uses **environments** that allow you to separate RUM trace information from different applications. There is also an extra option for Apps (short for applications) which allows you to distinguish between separate browser applications in the same environment.
 
 Splunk RUM is available for both browser and mobile applications, for this workshop, we will just focus on browser-based RUM.
+
 {{% /notice %}}
 
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
