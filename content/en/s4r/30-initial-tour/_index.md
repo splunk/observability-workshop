@@ -1,5 +1,5 @@
 ---
-title: Signing in to Splunk Observability Cloud
+title: UI - Quick Tour
 linkTitle: UI - Quick Tour
 weight: 30
 ---

@@ -1,5 +1,5 @@
 ---
-title: Splunk Observability Cloud Home Page
+title: Home Page
 linkTitle: 1. Home Page
 weight: 1
 ---
