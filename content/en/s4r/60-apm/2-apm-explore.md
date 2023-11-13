@@ -24,4 +24,6 @@ From the Overview Page, click on **Explore** on the top right of the page. You w
 
 {{% /notice %}}
 
+![APM Service Chart](../images/apm-service-popup-chart.png)
+
 We need to understand if there is a pattern to this error rate. We have a handy tool for that, Tag Spotlight.
