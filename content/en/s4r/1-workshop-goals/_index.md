@@ -6,7 +6,7 @@ weight: 1
 
 ##### 1. Introduction
 
-The goal of this workshop is to experience an issue and use Splunk Observability Cloud to troubleshoot and identify the root cause. For this, we have provided a complete microservices based application running in Kubernetes that has been instrumented to send **metrics, traces, and logs** to Splunk Observability Cloud.
+The goal of this workshop is to experience an issue and use Splunk Observability Cloud to troubleshoot and identify the root cause. For this, we have provided a complete microservices-based application running in Kubernetes that has been instrumented to send **metrics, traces, and logs** to Splunk Observability Cloud.
 
 ##### 2. OpenTelemetry
 

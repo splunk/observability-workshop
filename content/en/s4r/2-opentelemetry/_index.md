@@ -1,32 +1,56 @@
 ---
-title: Why OpenTelemetry?
+title: What is OpenTelemetry?
 linkTitle: 2. OpenTelemetry
-description: OpenTelemetry is the  open standard that is commonly used to provide the signals that are used by Splunk Observability Cloud - Metric, Traces & Logs
 weight: 2
-hidden: false
+tags:
+  - OpenTelemetry
 ---
 
-![OpenTelemetry](images/otel.png)
+With the rise of cloud computing, microservices architectures, and ever-more complex business requirements, the need for Observability has never been greater. Observability is the ability to understand the internal state of a system by examining its outputs. In the context of software, this means being able to understand the internal state of a system by examining its telemetry data, which includes **metrics**, **traces**, and **logs**.
 
-### OpenTelemetry explained
+To make a system observable, it must be instrumented. That is, the code must emit traces, metrics, and logs. The instrumented data must then be sent to an Observability backend such as **Splunk Observability Cloud**.
 
-OpenTelemetry, an open-source project created by the Cloud Native Computing Foundation (CNCF), is a set of tools and libraries that help software developers gather information about how their applications are performing and behaving. It's like a set of instruments that allows you to monitor and measure what's happening inside your software, so you can understand its behavior, identify issues, and optimize its performance, not unlike your local car mechanic.
+{{< mermaid >}}
 
-![diagnostics](images/pexels-gustavo-fring-6870313.jpg?width=30vw)
+---
+title: The 3 Pillars of Observability
 
-OpenTelemetry can collect data about things like how long it takes for different parts of your software to execute, how many times certain functions are called, and other relevant information. This data is valuable for diagnosing problems, optimizing performance, and improving the overall quality of your applications.
+---
 
-Observability is built on this data, or Signals as they are also called, that are sent from your applications and infrastructure.
+%%{
+  init:{
+    "theme": "neutral",
+    "themeVariables": {
+      "lineColor": "#ffffff"
+    }
+  }
+}%%
 
-In essence, OpenTelemetry, with these Signals, provides a way to gather insights into your software's inner workings, making it easier to maintain, troubleshoot, and improve your applications.
+graph LR;
+    A["`_Metrics_
+    **Do I have a problem?**`"]
+    B["`_Traces_
+    **Where is the problem?**`"]
+    C["`_Logs_
+    **What is the problem?**`"]
+    A --> B --> C
+{{< /mermaid >}}
 
-![three pillars](images/tree-pillars.png?width=30vw)
+OpenTelemetry does two important things:
 
-### Splunk Observability Cloud and OpenTelemetry
+* Allows you to own the data that you generate rather than be stuck with a proprietary data format or tool.
+* Allows you to learn a single set of APIs and conventions
 
-There are a lot of variables to consider when getting started with Observability, including the all-important question: "How do I get my data into an Observability tool?" The industry-wide adoption of OpenTelemetry makes this question easier to answer than ever.
+These two things combined enable teams and organizations the flexibility they need in today’s modern computing world.
 
-Why Should You Care?  
-In the past, monitoring and Observability tools relied heavily on proprietary agents meaning that the effort required to change or set up additional tooling required a large amount of changes across systems, from the infrastructure level to the application level. Since OpenTelemetry is vendor-neutral and supported by many industry leaders in the Observability space, adopters can switch between supported Observability tools at any time with minor changes to their instrumentation.  Splunk Observability Cloud is designed around and fully supports the OpenTelemetry standard and signals.
+## Splunk Observability Cloud and OpenTelemetry
 
-![full stack Splunk](images/splunk-full-stack.png?width=30vw)
+There are a lot of variables to consider when getting started with Observability, including the all-important question: _"How do I get my data into an Observability tool?"_. The industry-wide adoption of OpenTelemetry makes this question easier to answer than ever.
+
+### Why Should You Care?
+
+OpenTelemetry is completely open-source and free to use. In the past, monitoring and Observability tools relied heavily on proprietary agents meaning that the effort required to change or set up additional tooling required a large amount of changes across systems, from the infrastructure level to the application level.
+
+Since OpenTelemetry is vendor-neutral and supported by many industry leaders in the Observability space, adopters can switch between supported Observability tools at any time with minor changes to their instrumentation. This is true regardless of which distribution of OpenTelemetry is used – like with Linux, the various distributions bundle settings and add-ons but are all fundamentally based on the community-driven OpenTelemetry project.
+
+![full stack Splunk](images/splunk-full-stack.png?width=40vw)

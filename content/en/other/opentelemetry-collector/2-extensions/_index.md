@@ -9,7 +9,7 @@ Now that we have the OpenTelemetry Collector installed, let's take a look at ext
 {{< mermaid >}}
 %%{
   init:{
-    "theme":"base",
+    "theme": "base",
     "themeVariables": {
       "primaryColor": "#ffffff",
       "clusterBkg": "#eff2fb",
