@@ -1,16 +1,26 @@
 ---
-title: Splunk RUM
+linkTitle:  Splunk RUM
+title:  1. RUM Dashboard
 weight: 50
 slug: splunk-rum
 ---
 
-Splunk RUM is the industry’s only end-to-end, **NoSample™** RUM solution - providing visibility into the full user experience of every web and mobile session to uniquely combine all front-end traces with back-end metrics, traces, and logs as they happen. IT Operations and Engineering teams can quickly scope, prioritize and isolate errors, measure how performance impacts real users and optimize end-user experiences by correlating performance metrics alongside video reconstructions of all user interactions.
+In Splunk Observability Cloud from the main menu, click on **RUM**. From the drop-downs ensure the following is set/selected:
 
-**Full user session analysis:** Streaming analytics capture full user sessions from single and multi-page apps, measuring the customer impact of every resource, image, route change and API call.  
-**Correlate issues faster:** Infinite cardinality and full transaction analysis help you pinpoint and correlate issues faster across complex distributed systems.  
-**Isolate latency and errors:** Easily identify latency, errors and poor performance for each code change and deployment. Measure how content, images and third-party dependencies impact your customers.  
-**Benchmark and improve page performance:** Leverage core web vitals to measure and improve your page load experience, interactivity and visual stability. Find and fix impactful JavaScript errors, and easily understand which pages to improve first.  
-**Explore meaningful metrics:** Instantly visualize the customer impact with metrics on specific workflows, custom tags and auto-suggest un-indexed tags to quickly find the root cause of issues.  
-**Optimize end-user experience:** Correlate performance metrics alongside video reconstructions of all user interactions to optimize end-user experiences.
+* Timeframe is set to **-15m**.
+* Environment selected is **[NAME OF WORKSHOP]-workshop**.
+* App selected is **[NAME OF WORKSHOP]-shop**.
+* Source is set to **All**.
 
-![Architecture Overview](images/rum-architecture.png)
+This view has already been covered in the short introduction earlier. Next, click on the **[NAME OF WORKSHOP]-workshop** above the **Page Views / JavaScript Errors** chart.
+
+This will bring up a dashboard view breaking down the metrics by **UX Metrics**, **Front-end Health**, **Back-end Health** and **Custom Events**. For more detailed information on the metrics collected by Splunk RUM see [**here**](https://docs.splunk.com/observability/en/gdi/get-data-in/rum/browser/rum-browser-data-model.html#rum-browser-data).
+
+![RUM Dashboard](../images/rum-dashboard.png)
+
+{{% notice title="Exercise" style="green" icon="running" %}}
+
+* Click through each of the tabs (**UX Metrics**, **Front-end Health**, **Back-end Health** and **Custom Events**)
+* Identify the charts that clearly show there is an issue with the application.
+
+{{% /notice %}}

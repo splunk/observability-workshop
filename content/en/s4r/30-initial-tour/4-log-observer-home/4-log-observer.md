@@ -1,7 +1,6 @@
 ---
 title: Log Observer Home Page
-linkTitle: 4. Log Observer Home Page
-weight: 40
+weight: 10
 ---
  
 {{% button icon="clock" color="#ed0090" %}}2 minutes{{% /button %}}

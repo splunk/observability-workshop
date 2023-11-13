@@ -1,7 +1,7 @@
 ---
 title: 1. APM Service Map
-linkTitle: Splunk APM
-weight: 60
+weight: 1
+hidden: true
 ---
 
 1. Arrived in APM from a RUM trace

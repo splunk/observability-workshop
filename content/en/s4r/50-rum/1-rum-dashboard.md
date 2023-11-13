@@ -1,6 +1,7 @@
 ---
 title: 1. RUM Dashboard
 weight: 1
+hidden: true
 ---
 
 In Splunk Observability Cloud from the main menu, click on **RUM**. From the drop-downs ensure the following is set/selected:

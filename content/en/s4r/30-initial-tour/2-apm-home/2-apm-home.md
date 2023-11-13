@@ -1,14 +1,14 @@
 ---
 title: Application Performance Monitoring Home page
-linkTitle: 2. APM Home Page
-weight: 20
+linkTitle: APM Home Page 
+weight: 10
 ---
  
 {{% button icon="clock" color="#ed0090" %}}2 minutes{{% /button %}}
 
 Click **APM** in the main menu, the APM Home Page is made up of 3 distinct sections:
 
-![APM page](../images/apm-main.png)
+![APM page](../../images/apm-main.png)
 
 1. **Onboarding Pane Pane:** Training videos and links to documentation to get you started with Splunk APM.
 2. **APM Overview Pane:** Real-time metrics for the Top Services and Top Business Workflows.

@@ -1,6 +1,6 @@
 ---
 title: Real User Monitoring Home Page
-linkTitle: 3. RUM Home Page
+linkTitle: RUM Home Page
 weight: 30
 ---
  

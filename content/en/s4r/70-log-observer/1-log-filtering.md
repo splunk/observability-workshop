@@ -1,6 +1,7 @@
 ---
 title: 1. Log Filtering
 weight: 1
+hidden: true
 ---
 
 1. We have come from a trace to the logs for paymentservice

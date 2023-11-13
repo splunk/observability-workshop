@@ -1,16 +1,46 @@
 ---
-title: Splunk Synthetics
+title: 1. Synthetics Dashboard
 linkTitle: Splunk Synthetics
 weight: 80
 ---
 
-Splunk Synthetic Monitoring provides visibility across URLs, APIs and critical web services to solve problems faster. IT Operations and engineering teams can easily detect, alert and prioritize issues, simulate multi-step user journeys, measure business impact from new code deployments and optimize web performance with guided step-by-step recommendations to ensure better digital experiences.
+1. Goto Synthetics
+2. Your instructor will highlight which Synthetic test to use
+3. Click on the test
+4. Note: be aware of screenshot for this step
+5. Change to last hour
 
-**Ensure Availability:** Proactively monitor and alert on the health and availability of critical services, URLs and APIs with customizable browser tests to simulate multi-step workflows that make up the user experience.  
-**Improve Metrics:** Core Web Vitals and modern performance metrics allow users to view all their performance defects in one place, measure and improve page load, interactivity and visual stability, and find and fix JavaScript errors to improve page performance.  
-**Frontend to Backend:** Integrations with Splunk APM, Infrastructure Monitoring, On-Call and ITSI help teams view endpoint uptime against backend services, the underlying infrastructure and within their incident response coordination so they can troubleshoot across their entire environment, in a single UI.  
-**Detect and Alert:** Monitor and simulate end-user experiences to detect, communicate and resolve issues for APIs, service endpoints and critical business transactions before they impact customers.  
-**Business Performance:** Easily define multi-step user flows for key business transactions and start recording and testing your critical user journeys in minutes. Track and report SLAs and SLOs for uptime and performance.  
-**Filmstrips and Video Playback:** View screen recordings, film strips, and screenshots alongside modern performance scores, competitive benchmarking, and metrics to visualize artificial end-user experiences. Optimize how fast you deliver visual content, and improve page stability and interactivity to deploy better digital experiences.
+So far we have tested the performance of our Website by visiting and running manual test scenarios to see how our website performed.  
+However, this is not something you can/want to do 24 hours a day, 7 days a week!
 
-![Synthetics overview](images/synthetic-tests.png)
+However, if you are not constantly testing your website performance & behavior in production, the likely source telling you that your site is slow or not performant would be via Social Media or Down Detector.
+
+![social media](../images/social-media-post.png)
+
+So, what if, we didn't have to do it manually and could avoid waiting on your customers/users to let you know the behavior of your site and could instead test the front-end whenever we wanted, in both production and pre-production?
+
+This is where Splunk Synthetics comes in.
+
+Synthetics (a part of the Splunk Observability Cloud offering) acts like a set of "Robot" users that run a different test against your sites, from various locations across the globe and allow you to set up Detectors that warn you if the behavior of your site(s) changes.
+
+Lets find the the provisioned Browser test in the Synthetics page of as part of this exercise we will also set up a detector that will allow you to be automatically informed/alerted if the performance of your website is suboptimal.
+
+Change to your browser tab with the recently failed test run containing long POST checkout request
+
+![Synthetics test run details](../images/test-run.png?width=50vw)
+
+Synthetics can test uptime and APIs, but in this example let's look at a browser test, where we are emulating real user behavior of shopping and checking out on the desktop site for my retail application.
+
+We see the details of this test run, what the front end looks like visually, as well as a waterfall of all requests broken down by URL. Because this is a Synthetic test, we can define the test frequency, device type, and locations, as well as the critical user transactions that we want to track.
+
+Click the last Transaction or Page tab, scroll through the filmstrip to show the images, and scroll down to the long checkout request
+
+![Checkout requests](../images/failed-run-example.png?width=50vw)
+
+We see that this test run failed because it never got to confirm the Order ID. Looking at the requests in the checkout, we see a long POST request to checkout with an APM link. Familiar, right?
+
+Click the APM link on the long POST checkout request
+
+![Checkout requests](../images/syn-apm.png?width=50vw)
+
+Now if we follow the APM link as we did before in RUM, we see the same issue with an error in the payment service requests, and can follow the same workflow to investigate the issue.

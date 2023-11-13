@@ -1,6 +1,7 @@
 ---
 title: 1. Synthetics Dashboard
 weight: 1
+hidden: true
 ---
 
 1. Goto Synthetics
