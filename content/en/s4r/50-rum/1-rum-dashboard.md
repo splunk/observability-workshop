@@ -1,10 +1,7 @@
 ---
 title: 1. RUM Dashboard
 weight: 1
-<<<<<<< HEAD
 tags: RUM
-=======
->>>>>>> 42313fe93 (Moved images back under APM module)
 ---
 
 In Splunk Observability Cloud from the main menu, click on **RUM**. From the drop-downs ensure the following is set/selected:
