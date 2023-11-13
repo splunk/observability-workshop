@@ -1,6 +1,6 @@
 ---
-title: 7. APM Waterfall
-weight: 7
+title: 6. APM Waterfall
+weight: 6
 ---
 
 1. What can you conclude is going on from the waterfall? (Answer multiple attempts)

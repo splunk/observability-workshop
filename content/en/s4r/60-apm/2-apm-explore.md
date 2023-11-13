@@ -1,6 +1,6 @@
 ---
-title: 3. APM Explore
-weight: 3
+title: 2. APM Explore
+weight: 2
 ---
 
 1. Click Explore, and explain that compared to earlier you now see all services (including inferred)

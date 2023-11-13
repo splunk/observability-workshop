@@ -1,6 +1,6 @@
 ---
-title: 4. APM Tag Spotlight
-weight: 4
+title: 3. APM Tag Spotlight
+weight: 3
 ---
 
 1. Click on the **paymentservice**
