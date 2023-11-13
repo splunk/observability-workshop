@@ -14,7 +14,7 @@ A Quick introduction to **why OpenTelemetry** and why is it important for Observ
 
 ##### 3. A tour of the Splunk Observability User Interface
 
-A walkthrough of the various components of Splunk Observability Cloud showing you how to easily navigate the 5 main components:- **Infrastructure, RUM, APM, Logs, and Synthetics**.
+A walkthrough of the various components of Splunk Observability Cloud showing you how to easily navigate the 5 main components:- **APM, RUM, Log Observer, Synthetics and Infrastructure**.
 
 ##### 4. Using the Online Boutique Website to create traffic
 
@@ -34,7 +34,7 @@ Related Content is a powerful feature that allows you to jump from one component
 
 ##### 8. Splunk Synthetics
 
-Wouldn't it be great if we could have **24/7** monitoring of our application, and be **alerted** when there is a problem? This is where Synthetics comes in. We will show you a simple test that will run every 5 minutes and check the health of a typical user journey through the Online Boutique.
+Wouldn’t it be great if we could have **24/7** monitoring of our application, and be **alerted** when there is a problem? This is where Synthetics comes in. We will show you a simple test that runs every 1 minute and checks the performance and availability of a typical user journey through the Online Boutique.
 
 ##### 9. Wrapping up
 
