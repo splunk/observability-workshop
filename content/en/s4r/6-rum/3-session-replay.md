@@ -9,7 +9,12 @@ A session is a collection of traces that correspond to the actions a single user
 
 ![RUM Session](../images/rum-session.png)
 
-Towards the top of this view, you will see a button for RUM Session Replay {{% button icon="play" %}}Replay{{% /button %}}. RUM Session Replay allows you to replay the user session. This is a great way to see exactly what the user experienced. Click the button to start the replay.
+{{% notice title="Exercise" style="green" icon="running" %}}
+
+* Click the RUM Session Replay {{% button icon="play" %}}Replay{{% /button %}} button. RUM Session Replay allows you to replay the user session. This is a great way to see exactly what the user experienced.
+* Click the button to start the replay.
+
+{{% /notice %}}
 
 ![RUM Session](../images/rum-session-replay.png)
 
