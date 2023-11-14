@@ -27,4 +27,4 @@ To easily differentiate between multiple applications, Splunk uses **environment
 
 {{% /notice %}}
 
-We will revisit APM in more detail later. Next, let's check out Real User Monitoring (RUM).
+We will revisit APM in more detail later. Next, let's check out Splunk Log Observer (LO).

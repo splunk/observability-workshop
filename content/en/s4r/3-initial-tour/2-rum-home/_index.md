@@ -1,7 +1,7 @@
 ---
 title: Real User Monitoring
 linkTitle: Splunk RUM
-weight: 3
+weight: 2
 _build:
   render: never
 ---

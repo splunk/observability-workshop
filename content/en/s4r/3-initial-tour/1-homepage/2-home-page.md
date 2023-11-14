@@ -28,4 +28,4 @@ After you have registered and logged into the Splunk Observability Cloud UI you 
 
 {{% /notice %}}
 
-Next, let's check out Application Performance Monitoring (APM).
+Next, let's check out Splunk Real user Monitoring (RUM).

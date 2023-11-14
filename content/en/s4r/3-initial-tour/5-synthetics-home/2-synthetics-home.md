@@ -6,7 +6,7 @@ weight: 2
 
 {{% button icon="clock" color="#ed0090" %}}2 minutes{{% /button %}}
 
-Click on **Synthetics** in the mainn menu. This will bring us to the Synthetics Home Page. It has 3 distinct sections that provide either useful information or allow you to pick or create a Synthetic Test.
+Click on **Synthetics** in the main menu. This will bring us to the Synthetics Home Page. It has 3 distinct sections that provide either useful information or allow you to pick or create a Synthetic Test.
 
 ![Synthetic main](../images/synthetics-main.png)
 
@@ -30,4 +30,4 @@ To continue our tour, let's look at the result of our workshop's automatic brows
 * What can you conclude from the dotted chart, how often are these tests run, and from where?
 {{% /notice %}}
 
-Let's continue to Infra mon and examine the infrastructure our application is running on.
+Let's continue to Infra mon and examine the infrastructure our application is running on using Splunk Infrastructure Monitoring (IM)

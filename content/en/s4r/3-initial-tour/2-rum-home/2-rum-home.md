@@ -11,8 +11,8 @@ Click **RUM** in the main menu, the RUM Home Page is made up of 3 distinct secti
 ![RUM Page](../images/rum-main.png)
 
 1. **Onboarding Pane:** Training videos and links to documentation to get you started with Splunk RUM.
-2. **Filter Pane:** Filter on timeframe, environment, application and source type.
-3. **Application Summary Pane:** Summary of all your applications that send RUM data. 
+2. **Filter Pane:** Filter on time frame, environment, application and source type.
+3. **Application Summary Pane:** Summary of all your applications that send RUM data.
 
 {{% notice title=" RUM Environments & Apps" style="info" %}}
 
@@ -33,4 +33,4 @@ Splunk RUM is available for both browser and mobile applications, for this works
 
 {{% /notice %}}
 
-We will revisit RUM in more detail later. Next, let's check out Log Observer (LO).
+We will revisit RUM in more detail later. Next, let's check out Splunk Application Performance Monitoring (RUM).
