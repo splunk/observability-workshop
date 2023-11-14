@@ -22,19 +22,20 @@ Flow:
 12. Return to your war room dashboard and select past charts form  the **+* menu.
 13. At this point these chart are not filtered, so lets add the correct filter
 14. Add sf_environment=[WORKSHOPNAME] and sf_service=payment_service  to the override filter box.
-15. Now with the  info for our service lets rearange the chart  so the are o usefull
+15. Now with the  info for our service lets rearrange the chart  so the are o useful
 16. Drag Request rate to the top left and resize it  with 50 % by dragging the left edge.  add Error rate next to it.
 17. Drag the error rat cht next to the two chart and  resize it so it fille the page
-19. click on **new text note* and replace the text below with the text in the note  then click save  name the chart instructions
+18. click on **new text note* and replace the text below with the text in the note  then click save  name the chart instructions
 {{% notice title=" TExt for Text note" style="info" %}}
+
 <pre>
 This is a  war room dashboard for the **Payment service**,  
 Please pay attention  to any error in the logs.
 For more detail visit [link](https://https://www.splunk.com/en_us/products/observability.html)
 </pre>
 {{% /notice %}}
-20. place the instrunction belwo the requesrtt rate chart, add the time line log chart next  to it and size it to the page
-21. Make sure the Log view chart is the bottom chart, is full sized and  extended to the bottom of you page.
+19. place the instruction below the request rate chart, add the time line log chart next  to it and size it to the page
+20. Make sure the Log view chart is the bottom chart, is full sized and  extended to the bottom of you page.
 
-the result should be like this:
+The result should be like this:
 ![war room](images/warroom.png)
