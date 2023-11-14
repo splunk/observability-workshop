@@ -1,12 +1,6 @@
 ---
 title: Splunk4Rookies - Observability
 weight: 1
-tags:
-  - Frontend
-  - RUM
-  - APM
-  - Logs
-  - Synthetics
 hidden: true
 ---
 
