@@ -15,6 +15,10 @@ From the Overview Page, click on **Explore** on the top right of the page. You w
 
 {{% /notice %}}
 
+{{% notice title="Info" %}}
+Note about the **Database Query Performance** page
+{{% /notice %}}
+
 ![APM DB Query Performance](../images/apm-db-query.png)
 
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}

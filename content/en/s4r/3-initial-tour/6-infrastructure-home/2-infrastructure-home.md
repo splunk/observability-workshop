@@ -1,7 +1,7 @@
 ---
 title:  Infrastructure Navigators
-linkTitle: 1. Infrastructure Navigators
-weight: 1
+linkTitle: 2. Infrastructure Navigators
+weight: 2
 ---
 
 {{% button icon="clock" color="#ed0090" %}}2 minutes{{% /button %}}

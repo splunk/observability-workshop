@@ -1,6 +1,6 @@
 ---
 title: 4. Log View Chart
-weight: 1
+weight: 4
 ---
 
 
