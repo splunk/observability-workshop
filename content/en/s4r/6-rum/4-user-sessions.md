@@ -19,7 +19,7 @@ This brings up the APM Performance Summary. Having this end-to-end (RUM to APM) 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * You will see **paymentservice** and **checkoutservice** are in an error state as per the screenshot above.
-* Under **Workflow Name** click on **frontend:/cart/checkout**. This will bring up the APM Service Map.
+* Under **Workflow Name** click on **frontend:/cart/checkout**, this will bring up the APM Service Map.
 
 {{% /notice %}}
 
