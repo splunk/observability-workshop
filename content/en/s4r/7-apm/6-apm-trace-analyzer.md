@@ -1,6 +1,6 @@
 ---
-title: 5. APM Trace Analyzer
-weight: 5
+title: 6. APM Trace Analyzer
+weight: 6
 ---
 
 1. Click on traces 

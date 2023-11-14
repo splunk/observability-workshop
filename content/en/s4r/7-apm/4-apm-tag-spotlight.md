@@ -1,6 +1,6 @@
 ---
-title: 3. APM Tag Spotlight
-weight: 3
+title: 4. APM Tag Spotlight
+weight: 4
 ---
 
 To view the tags for the **paymentservice** click on the **paymentservice** and then click on **Tag Spotlight**. Once in **Tag Spotlight** ensure the toggle **Show tags with no values** is off.
