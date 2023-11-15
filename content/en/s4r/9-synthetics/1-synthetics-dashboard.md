@@ -9,18 +9,15 @@ weight: 1
 4. Note: be aware of screenshot for this step
 5. Change to last hour
 
-So far we have tested the performance of our Website by visiting and running manual test scenarios to see how our website performed.  
-However, this is not something you can/want to do 24 hours a day, 7 days a week!
+In Splunk Observability Cloud from the main menu, click on *Synthetics*. From the drop-downs ensure the following is set/selected:
 
-However, if you are not constantly testing your website performance & behavior in production, the likely source telling you that your site is slow or not performant would be via Social Media or Down Detector.
+    Timeframe is set to -15m.
+    Environment selected is [NAME OF WORKSHOP]-workshop.
+    App selected is [NAME OF WORKSHOP]-shop.
+    Source is set to All.
 
-![social media](../images/social-media-post.png)
-
-So, what if, we didn't have to do it manually and could avoid waiting on your customers/users to let you know the behavior of your site and could instead test the front-end whenever we wanted, in both production and pre-production?
-
-This is where Splunk Synthetics comes in.
-
-Synthetics (a part of the Splunk Observability Cloud offering) acts like a set of "Robot" users that run a different test against your sites, from various locations across the globe and allow you to set up Detectors that warn you if the behavior of your site(s) changes.
+This view has already been covered in the short introduction earlier. Next, click on the [NAME OF WORKSHOP]-workshop above the Page Views / JavaScript Errors chart.
+.
 
 Lets find the the provisioned Browser test in the Synthetics page of as part of this exercise we will also set up a detector that will allow you to be automatically informed/alerted if the performance of your website is suboptimal.
 
