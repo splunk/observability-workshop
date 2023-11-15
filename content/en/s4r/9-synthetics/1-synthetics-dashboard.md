@@ -2,41 +2,47 @@
 title: 1. Synthetics Dashboard
 weight: 1
 ---
-
 1. Goto Synthetics
 2. Your instructor will highlight which Synthetic test to use
 3. Click on the test
 4. Note: be aware of screenshot for this step
 5. Change to last hour
 
-In Splunk Observability Cloud from the main menu, click on *Synthetics*. From the drop-downs ensure the following is set/selected:
+In Splunk Observability Cloud from the main menu, click on *Synthetics*. Click on All or Browser test to see the list of active tests:
 
-    Timeframe is set to -15m.
-    Environment selected is [NAME OF WORKSHOP]-workshop.
-    App selected is [NAME OF WORKSHOP]-shop.
-    Source is set to All.
+This view has already been covered in the short introduction earlier. To continue, select the ***Workshop Browser Test for [NAME OF WORKSHOP]*** from the Test Pane.
 
-This view has already been covered in the short introduction earlier. Next, click on the [NAME OF WORKSHOP]-workshop above the Page Views / JavaScript Errors chart.
-.
+During our investigation  in the RUM section, we found there was an issue with the *Place Order* Transaction, Lets see if we can confirm this from the Synthetics tests as well.
+{{% notice title="Exercise" style="green" icon="running" %}}
 
-Lets find the the provisioned Browser test in the Synthetics page of as part of this exercise we will also set up a detector that will allow you to be automatically informed/alerted if the performance of your website is suboptimal.
+* Make sure the page you are looking at is the result page for the **Workshop Browser Test for [NAME OF WORKSHOP]**
+* Change the following options in the Performance KPI header:
+  * Set Time to -1h.
+  * Segment by  **Synthetic transactions*.
 
-Change to your browser tab with the recently failed test run containing long POST checkout request
+Looking at the dots, what do you recommend your developer, if your goal is to improve performance?
 
-![Synthetics test run details](../images/test-run.png?width=50vw)
+* To dive deeper:
+  * Reduce Time to -15m.
+  * Filter to just *Place Order*. (Remove all other transactions from the dialog box)
+* Click in the white space of the chart (not on a Dot!). You should get a black vertical line.
+* Drag your Mouse pointer horizontally across the chart. (the line should move along).
 
-Synthetics can test uptime and APIs, but in this example let's look at a browser test, where we are emulating real user behavior of shopping and checking out on the desktop site for my retail application.
+What can you conclude of the relation of the Dots and the red X's at the bottom?
 
-We see the details of this test run, what the front end looks like visually, as well as a waterfall of all requests broken down by URL. Because this is a Synthetic test, we can define the test frequency, device type, and locations, as well as the critical user transactions that we want to track.
+* Change the filter to just *Keep Browsing*, the dots should change both pattern and color.
+{{% /notice %}}
 
-Click the last Transaction or Page tab, scroll through the filmstrip to show the images, and scroll down to the long checkout request
+![Duration - Place Order](../images/duration-place-order.png)
 
-![Checkout requests](../images/failed-run-example.png?width=50vw)
+Select a successful test dot. (One that has no red X beneath it). If there are multiple tests in that time range you will be presented with a list of tests. Pick one that is around 20 seconds long and resulted in ✅ Success. 
 
-We see that this test run failed because it never got to confirm the Order ID. Looking at the requests in the checkout, we see a long POST request to checkout with an APM link. Familiar, right?
+![Results](../images/select-result.png)
 
-Click the APM link on the long POST checkout request
+This will take you to the Synthetic Test Details or Waterfall.
 
-![Checkout requests](../images/syn-apm.png?width=50vw)
+If the new page has a Red Banner like this on top:
 
-Now if we follow the APM link as we did before in RUM, we see the same issue with an error in the payment service requests, and can follow the same workflow to investigate the issue.
+![error](../images/run-result-error.png)
+
+You accidentally picked an test that had an error, it timed out. (This can happen as new tests are added and the UI just refreshed). In that case, Go back in the browser and try again.  
