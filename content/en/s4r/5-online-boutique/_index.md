@@ -10,9 +10,10 @@ The application will already be deployed for you and your instructor will provid
 {{% notice style="green" icon="running" title="Exercise - Let's go shopping" %}}
 
 * Once you have the link to the Online Boutique have a browse through a few items, add them to your cart and then, finally, checkout.
-* Repeat this exercise a few times and if possible use different browsers, mobile devices or tablets as this will generate more data for you to explore. Also, when using your mouse/touchpad to navigate accentuate your clicks and scrolls.
+* Repeat this exercise a few times and if possible use different browsers, mobile devices or tablets as this will generate more data for you to explore. Also, when using your mouse/touchpad to navigate, accentuate your clicks and scrolls.
 * Did you notice anything about the checkout process? Did it seem to take a while to complete, but it did ultimately complete? Or did you plain give up?
 * When your order is completed, please copy the **Order Confirmation ID** and save it locally somewhere as we will need it later.
+* Close the browser sessions you used to shop.
 
 {{% /notice %}}
 

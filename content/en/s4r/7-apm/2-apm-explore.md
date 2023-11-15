@@ -10,8 +10,8 @@ From the Overview Page, click on **Explore** on the top right of the page. You w
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 
 * How many services are there in total?
-* Click on the **mysql:LxvGChW075** inferred service.
-* Under **Database Query Performance** click on the top entry. This will take you to the **Database Query Performance** page. Click [**here**](https://docs.splunk.com/observability/en/apm/db-query-perf/db-query-performance.html) for documentation about **Database Query Performance**.
+* Click on the **mysql:LxvGChW075** inferred database.
+* Scroll down the right side functions pane, and under **Database Query Performance** click on the top entry. This will take you to the **Database Query Performance** page. Read our  [**Database Query performance docs**](https://docs.splunk.com/observability/en/apm/db-query-perf/db-query-performance.html) for more in-depth information.
 
 {{% /notice %}}
 
@@ -30,4 +30,4 @@ Note about the **Database Query Performance** page
 
 ![APM Service Chart](../images/apm-service-popup-chart.png)
 
-We need to understand if there is a pattern to this error rate. We have a handy tool for that, Tag Spotlight.
+We need to understand if there is a pattern to this error rate. We have a handy tool for that: Tag Spotlight.

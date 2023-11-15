@@ -17,7 +17,7 @@ Given there are two red boxes or tiles, let's see what is going on and if this w
 
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 
-* First, set the time window we are working with to the last 15 minutes. You do this by using the drop-down in the Filter pane **-3h** at the top of the page to **the last 15 minutes**.
+* First, set the time window we are working with to the last 15 minutes. You do this by using the drop-down in the Filter pane **-4h** at the top of the page to **the last 15 minutes**.
 
 * First hover with your mouse over the Cluster, Node and pods, both **green** and **red** ones. The resulting information pane that appears will tell you the state of the object. Note, That the **red** Pods show that they are in **Pod Phase: Failed**. This means they have crashed and are not working.
 Let's examine the Cluster Metric charts that provide information on your cluster, (the charts below the cluster image).  They provide general information about the health of your cluster like the memory consumption and the number of pods per node.
@@ -38,7 +38,7 @@ The Spunk Kubernetes Analyzer is a smart process that runs in the background in 
 
 * Click on **K8s node**. This will show the node metrics, and if you examine the charts, you can see that there are only two pods in the development namespace.
 
-* It is easier to see if you filter on the `k8s.namespace.space=development` in the Filter Pane. The **# Total Pods** chart shows only two pods and in the **Node Workload** chart there is only the *test-job* and it has failed.
+* It is easier to see if you filter on the `k8s.namespace.name=development` in the Filter Pane. The **# Total Pods** chart shows only two pods and in the **Node Workload** chart there is only the *test-job* and it has failed.
 
 {{% notice title=" Spunk Kubernetes Analyzer" style="info" %}}
 The above scenario is common in a shared Kubernetes environment, where teams deploy applications in different stages. Kubernetes is designed to keep these environments completely separate.

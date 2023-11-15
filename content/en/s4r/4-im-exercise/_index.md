@@ -35,7 +35,7 @@ Before we dive deeper, let's make sure we are looking at our own cluster.
 
 * First, use the ![k8s filter](images/k8s-add-filter.png?classes=inline) option to pick your cluster.
 * This can be done by selecting `k8s.cluster.name` from the filter drop-down box.
-* You then can start typing the name of your cluster, (as provided by your instructor). The name should also appear in the drop-down values. Select yours and make sure just the one for your workshop is highlighted with a ![blue tick](images/k8s-blue-tick.png?classes=inline).
+* You then can start typing the name of your cluster, (as provided by your instructor). The name should also appear in the drop-down values. Select yours and make sure just the one for your workshop is highlighted with a ![blue tick](images/select-checkmark.png?classes=inline&width=30px).
 * Click the {{% button style="blue"  %}}  Apply Filter   {{% /button %}} button to focus on our Cluster
 * We now should have a single cluster visible.
 {{% /notice %}}

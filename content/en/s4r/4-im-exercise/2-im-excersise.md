@@ -9,7 +9,7 @@ weight: 20
 
 Lets look at some other parts of th Ui like the *Information Pane* on the right of the navigator or the *Related Content Pane* at the bottom
 
-First lets look at the *Information Pane*, this pane provides alert information, info on detected services and shows the Meta Data related to the object your looking at.
+First lets look at the *Information Pane*, this pane provides alert information, info on detected services and shows the Meta Data related to the object you're looking at.
 
 ![info pane](../images/k8s-info-pane.png?width=15vw)
 
@@ -26,7 +26,7 @@ As we have seen in the previous exercise, these fields are very useful to filter
 An other feature of the Splunk Observability UI, is what we call *Related content*.  
 
 {{% notice title=" Related Content" style="info" %}}
-The Splunk Observability User Interface will attempt to show you additional information that is related to what your actively looking at.  
+The Splunk Observability User Interface will attempt to show you additional information that is related to what you're actively looking at.  
 A good example of this is the Kubernetes Navigator showing you related Content tiles in the information Pane for the services found running on this node.
 
 {{% /notice %}}

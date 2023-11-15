@@ -3,7 +3,7 @@ title: 4. APM Tag Spotlight
 weight: 4
 ---
 
-To view the tags for the **paymentservice** click on the **paymentservice** and then click on **Tag Spotlight**. Once in **Tag Spotlight** ensure the toggle **Show tags with no values** is off.
+To view the tags for the **paymentservice** click on the **paymentservice** and then click on **Tag Spotlight** in the right side functions pane. Once in **Tag Spotlight** ensure the toggle **Show tags with no values** is off.
 
 There are two views available in **Tag Spotlight**. The default is **Request/Errors** and the other is **Latency**.
 
@@ -18,6 +18,8 @@ Request/Error charts display the total number of requests, errors, and root caus
 
 {{% /notice %}}
 
+![APM Version Tag](../images/apm-version-tag.png)
+
 Now that we have identified the version of the **paymentservice** that is causing the issue, let's see if we can find out more information about the error. Click on **← Tag Spotlight** at the top of the page to get back to the Service Map.
 
-![APM Version Tag](../images/apm-version-tag.png)
+
