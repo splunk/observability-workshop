@@ -24,7 +24,6 @@ Right now we are looking at the result of a single Synthetic Browser Test. This 
 Similar to RUM, we provide the users ofSplunk Synthetic the option to view the interaction with the Website.
 The first part is the film strip, it contains screenshots that where made during the running of the test.
 
-* Change the duration above the film strip from  Every 1s to Every 100ms. This will rebuild the site with 
-
+* Change the duration above the film strip from *Every 1s* to *Every 100ms*. This will rebuild the filmstrip with more detail. Notice that building the initial web page increased from 2 screenshots to 20. This will help you see fine grained interactions  when required. (**Tip** click on the film strip and use your left and right arrow to move between screen shots)
 
   {{% /notice %}}
