@@ -3,7 +3,7 @@ title: 3. Session Replay
 weight: 3
 ---
 
-In the **User Sessions** table, click on the top **Session ID** (it should be around 50 seconds, or longer),  this will take you to the RUM Session view.
+In the **User Sessions** table, click on the top **Session ID** (it should be around 50 seconds, or longer), this will take you to the RUM Session view.
 
 A session is a collection of traces that correspond to the actions a single user takes when interacting with an application over a period of time. By default, a session lasts until 15 minutes have passed from the last event captured in the session. The maximum session duration is 4 hours.
 
