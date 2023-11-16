@@ -18,14 +18,14 @@ We will also show the steps about how to clone (download) a sample Java applicat
 
 Once the application is up and running, we will instantly start seeing metrics and traces via the Zero Configuration Auto Instrumentation for Java that will be used by the Splunk APM product.
 
-After that, we will instrument the PetClinic's end user interface (HTML pages rendered by the application) with the Splunk OpenTelemetry Javascript Libraries (RUM) that will generate RUM traces around all the individual clicks and page loads executed by an end user.
+After that, we will instrument PetClinic's end user interface (HTML pages rendered by the application) with the Splunk OpenTelemetry Javascript Libraries (RUM) that will generate RUM traces around all the individual clicks and page loads executed by an end user.
 
-Lastly, we will configure the Spring PetClinic application to write application logs to the filesystem and also configure the Splunk OpenTelemetry Collector to read (tail) the logs and send to Splunk Cloud.
+Lastly, we will configure the Spring PetClinic application to write application logs to the filesystem and also configure the Splunk OpenTelemetry Collector to read (tail) the logs and send them to Splunk Cloud.
 
 {{% notice title="Prerequisites" style="info" %}}
-A Splunk run workshop where an host/instance is provided  **OR** a self led workshop on own host / [multipass instance](https://github.com/splunk/observability-workshop/tree/main/multipass)
+A Splunk-run workshop where a host/instance is provided  **OR** a self-led workshop on your own host / [multipass instance](https://github.com/splunk/observability-workshop/tree/main/multipass)
 
-For your own system you will need the following installed and enabled:
+For your own system, you will need the following installed and enabled:
 
 1. JDK 17 installed
 2. Maven
