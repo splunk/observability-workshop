@@ -3,7 +3,7 @@ title: 2. Tag Spotlight
 weight: 2
 ---
 
-Click the **Custom Events** tab and have a look at the **Custom Event Latency** chart. The metrics shown here show the application latency. The comparison metrics to the side show the latency compared to **1 hour ago** (which is selected in the top filter bar). Click on the **see all** link under the chart title.
+Click the **Custom Events** tab and have a look at the **Custom Event Latency** chart. The metrics shown here show the application latency. The comparison metrics to the side show the latency compared to 1 hour ago (which is selected in the top filter bar). Click on the **see all** link under the chart title.
 
 ![RUM Tag Spotlight](../images/rum-tag-spotlight.png)
 
@@ -14,6 +14,8 @@ Let's drill down on the RUM data we generated earlier.
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * Change the timeframe to **Last 1 hour**.
+* Click **Add Filters**, select **OS Version** then click **!=** and select **Splunk** and **RUMLoadGen**.
+* Click {{% button style="blue" %}}Apply Filter{{% /button %}}. Now, we only see the data we generated earlier.
 * Find the **Custom Event Name** tile, locate **PlaceOrder** and click on it, then click **Add to filter**.
 * Find the **City** tile, locate your city and click on it, then click **Add to filter**.
 * Notice the large spikes in the graph across the top.
@@ -22,5 +24,7 @@ Let's drill down on the RUM data we generated earlier.
 * Click on the {{% icon icon="cog" %}} above the table and select **Sf Geo City** from the list of additional columns and click {{% button style="blue" %}}Save{{% /button %}}
 
 {{% /notice %}}
+
+We now have a User Session table that is sorted by longest duration descending and includes the cities of all the users that have been shopping on the site. We could apply more filters to further narrow down the data e.g. OS version, browser version, etc.
 
 ![RUM Tag Spotlight](../images/rum-user-sessions.png)
