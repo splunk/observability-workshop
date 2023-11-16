@@ -21,5 +21,3 @@ Request/Error charts display the total number of requests, errors, and root caus
 ![APM Version Tag](../images/apm-version-tag.png)
 
 Now that we have identified the version of the **paymentservice** that is causing the issue, let's see if we can find out more information about the error. Click on **← Tag Spotlight** at the top of the page to get back to the Service Map.
-
-
