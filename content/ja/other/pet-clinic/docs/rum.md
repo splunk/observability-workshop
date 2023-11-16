@@ -56,6 +56,7 @@ mavenコマンドを実行して、PetClinicをコンパイル/ビルド/パッ�
 
 ```bash
 java -javaagent:./splunk-otel-javaagent.jar \
+-Dserver.port=8083 \
 -Dotel.service.name=$(hostname).service \
 -Dotel.resource.attributes=deployment.environment=$(hostname),version=0.316 \
 -Dsplunk.profiler.enabled=true \
@@ -70,6 +71,6 @@ java -javaagent:./splunk-otel-javaagent.jar \
 本番環境では、環境変数でアプリケーションバージョンを与えたり、コンテナイメージの作成時にビルドIDを与えたりすることになるはずです。
 {{% /notice %}}
 
-次に、より多くのトラフィックを生成するために、アプリケーションに再度アクセスしてみましょう。 `http://<VM_IP_ADDRESS>:8080` にアクセスすると、今度はRUMトレースが報告されるはずです。
+次に、より多くのトラフィックを生成するために、アプリケーションに再度アクセスしてみましょう。 `http://<VM_IP_ADDRESS>:8083` にアクセスすると、今度はRUMトレースが報告されるはずです。
 
 RUMにアクセスして、トレースとメトリクスのいくつかを見てみましょう。左のメニューから **RUM** を選ぶと、Spring Pet Clinicでのユーザー（あなたです！）が体験したパフォーマンスが表示されます。

@@ -29,7 +29,7 @@ For your own system, you will need the following installed and enabled:
 
 1. JDK 17 installed
 2. Maven
-3. Port `8080` open inbound/outbound
+3. Port `8083` open inbound/outbound
 {{% /notice %}}
 
 ![PetClinic Exercise](images/petclinic-exercise.png)

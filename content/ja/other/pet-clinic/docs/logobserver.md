@@ -104,6 +104,7 @@ nano src/main/resources/logback.xml
 
 ```bash
 java -javaagent:./splunk-otel-javaagent.jar \
+-Dserver.port=8083 \
 -Dotel.service.name=$(hostname).service \
 -Dotel.resource.attributes=deployment.environment=$(hostname),version=0.317 \
 -Dsplunk.profiler.enabled=true \
@@ -113,7 +114,7 @@ java -javaagent:./splunk-otel-javaagent.jar \
 ```
 
 
-これまで通り、アプリケーション `http://<VM_IP_ADDRESS>:8080`  にアクセスしてトラフィックを生成すると、ログメッセージが報告されるようになります。
+これまで通り、アプリケーション `http://<VM_IP_ADDRESS>:8083`  にアクセスしてトラフィックを生成すると、ログメッセージが報告されるようになります。
 
 左側のLog Observerアイコンをクリックして、ホストとSpring PetClinicアプリケーションからのログメッセージのみを選択するためのフィルタを追加できます。
 

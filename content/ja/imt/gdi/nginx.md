@@ -137,7 +137,7 @@ nginx-loadgenerator-755c8f7ff6-x957q                          1/1     Running   
 
 ## 3. Locust の負荷テストの実行
 
-Locust はオープンソースの負荷テストツールで、EC2 インスタンスの IP アドレスの8080番ポートで Locust が利用できるようになりました。Webブラウザで新しいタブを開き、`http://{==EC2-IP==}:8080/`にアクセスすると、Locust が動作しているのが確認できます。
+Locust はオープンソースの負荷テストツールで、EC2 インスタンスの IP アドレスの8083番ポートで Locust が利用できるようになりました。Webブラウザで新しいタブを開き、`http://{==EC2-IP==}:8083/`にアクセスすると、Locust が動作しているのが確認できます。
 
 ![Locust](../../images/nginx-locust.png)
 

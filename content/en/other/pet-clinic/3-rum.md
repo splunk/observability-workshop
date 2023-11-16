@@ -51,12 +51,13 @@ Run the `maven` command to compile/build/package PetClinic:
 
 ```bash
 java \
+-Dserver.port=8083 \
 -Dotel.service.name=$(hostname)-petclinic-service \
 -Dotel.resource.attributes=version=0.314 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
-Then let's visit the application using a browser to generate real-user traffic `http://<VM_IP_ADDRESS>:8080`, now we should see RUM traces being reported.
+Then let's visit the application using a browser to generate real-user traffic `http://<VM_IP_ADDRESS>:8083`, now we should see RUM traces being reported.
 
 Let's visit RUM and see some of the traces and metrics **Hamburger Menu → RUM** and you will see some of the Spring PetClinic URLs showing up in the UI.
 

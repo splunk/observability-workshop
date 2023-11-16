@@ -29,7 +29,7 @@ docker run -d -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_
 Next, we will start a Docker container running Locust that will generate some simple traffic to the PetClinic application. Locust is a simple load-testing tool that can be used to generate traffic to a web application.
 
 ```bash
-docker run --network="host" -d -p 8090:8090 -v /home/ubuntu/workshop/petclinic:/mnt/locust docker.io/locustio/locust -f /mnt/locust/locustfile.py --headless -u 1 -r 1 -H http://127.0.0.1:8080
+docker run --network="host" -d -p 8090:8090 -v /home/ubuntu/workshop/petclinic:/mnt/locust docker.io/locustio/locust -f /mnt/locust/locustfile.py --headless -u 1 -r 1 -H http://127.0.0.1:8083
 ```
 
 Next, run the `maven` command to compile/build/package PetClinic:
@@ -46,11 +46,12 @@ Once the compilation is complete, you can run the application with the following
 
 ```bash
 java \
+-Dserver.port=8083 \
 -Dotel.service.name=$(hostname)-petclinic-service \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
-You can validate if the application is running by visiting `http://<VM_IP_ADDRESS>:8080`.
+You can validate if the application is running by visiting `http://<VM_IP_ADDRESS>:8083`.
 
 ## 2. AlwaysOn Profiling and Metrics
 
@@ -101,6 +102,7 @@ Let's launch the PetClinic again using a new resource attribute. Note, that addi
 
 ```bash
 java \
+-Dserver.port=8083 \
 -Dotel.service.name=$(hostname)-petclinic-service \
 -Dotel.resource.attributes=version=0.314 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
