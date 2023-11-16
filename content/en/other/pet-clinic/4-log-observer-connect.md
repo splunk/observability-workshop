@@ -11,7 +11,7 @@ For the Splunk Log Observer component, we will configure the Spring PetClinic ap
 
 We need to configure the Splunk OpenTelemetry Collector to tail the Spring PetClinic log file and report the data to the Splunk Cloud HEC URL.
 
-The Splunk OpenTelemetry Collector uses the [Filelog Receiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/filelogreceiver/README.md) to consume logs. We will need to edit the collectors configuration file:
+The Splunk OpenTelemetry Collector uses the [Filelog Receiver](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/filelogreceiver/README.md) to consume logs. We will need to edit the collectors' configuration file:
 
 ``` bash
 sudo vi /etc/otel/collector/agent_config.yaml
@@ -32,7 +32,7 @@ The under the `service:` section, find the `logs:` pipeline, replace `fluentforw
       receivers: [filelog]
 ```
 
-Save the file and exit the editor. Next, we need to validate the HEC Token and HEC URL are configured for the collector to use. We will inspect the `/etc/otel/collector/splunk-otel-collector.conf` file:
+Save the file and exit the editor. Next, we need to validate that the HEC Token and HEC URL are configured for the collector to use. We will inspect the `/etc/otel/collector/splunk-otel-collector.conf` file:
 
 ```bash
 sudo cat /etc/otel/collector/splunk-otel-collector.conf
@@ -46,7 +46,7 @@ sudo systemctl restart splunk-otel-collector
 
 ## 3. Logback Settings
 
-The Spring PetClinic application can be configured to use a number of different java logging libraries. In this scenario, we are going to use logback. We just need to create a file named `logback.xml` in the configuration folder:
+The Spring PetClinic application can be configured to use several different Java logging libraries. In this scenario, we are going to use logback. We just need to create a file named `logback.xml` in the configuration folder:
 
 ```bash
 vi ~/spring-petclinic/src/main/resources/logback.xml
@@ -87,10 +87,11 @@ Now we need to rebuild the application and run it again:
 ./mvnw package -Dmaven.test.skip=true
 ```
 
-Once the rebuild has completed we can then run the application again:
+Once the rebuild has been completed we can then run the application again:
 
 ```bash
 java \
+-Dserver.port=8083 \
 -Dotel.service.name=$(hostname)-petclinic-service \
 -Dotel.resource.attributes=version=0.314 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
@@ -98,12 +99,12 @@ java \
 
 ## 4. View Logs
 
-From the left hand menu click on **Log Observer**. Click on **Index** and select **o11y-workshop-XXX.splunkcloud.com** (where **XXX** will be the realm you are running in). On the right hand side select **petclinic-workshop** and then click **Apply**. You should see log messages being reported.
+From the left-hand menu click on **Log Observer**. Click on **Index** and select **o11y-workshop-XXX.splunkcloud.com** (where **XXX** will be the realm you are running in). On the right-hand side select **petclinic-workshop** and then click **Apply**. You should see log messages being reported.
 
-Next click **Add Filter** and search for the field `service_name` and select the value `<your host name>-petclinic-service` and click `=` (include). You should now see only the log messages from your PetClinic application.
+Next, click **Add Filter** search for the field `service_name` select the value `<your host name>-petclinic-service` and click `=` (include). You should now see only the log messages from your PetClinic application.
 
 ![Log Observer](../images/log-observer.png)
 
 ## 4. Summary
 
-This the end of the exercise and we have certainly covered a lot of ground. At this point you should have metrics, traces (APM & RUM), logs, database query performance and code profiling being reported into Splunk Observability Cloud. **Congratulations**!
+This is the end of the exercise and we have certainly covered a lot of ground. At this point, you should have metrics, traces (APM & RUM), logs, database query performance and code profiling being reported into Splunk Observability Cloud. **Congratulations**!

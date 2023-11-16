@@ -94,6 +94,7 @@ import io.opentelemetry.api.trace.Span;
 
 ```bash
 java -javaagent:./splunk-otel-javaagent.jar \
+-Dserver.port=8083 \
 -Dotel.service.name=$(hostname).service \
 -Dotel.resource.attributes=deployment.environment=$(hostname),version=0.315 \
 -Dsplunk.profiler.enabled=true \
@@ -103,7 +104,7 @@ java -javaagent:./splunk-otel-javaagent.jar \
 ```
 
 
-`http://<VM_IP_ADDRESS>:8080` にアクセスして、オーナー検索をいくつか試してましょう。そしてSplunk APM UIからExploreを開き、アプリケーションのトレースを見ていきます。
+`http://<VM_IP_ADDRESS>:8083` にアクセスして、オーナー検索をいくつか試してましょう。そしてSplunk APM UIからExploreを開き、アプリケーションのトレースを見ていきます。
 
 {{% notice title="さらなる情報: マニュアル計装について" style="info" %}}
 マニュアル計装で何ができるか、他の言語でのやり方などは、OpenTelemetryの公式ウェブサイトにある [Instrumentation](https://opentelemetry.io/docs/instrumentation/) ページをご覧ください。

@@ -67,7 +67,7 @@ service/nginx created
 {{% /tab %}}
 {{< /tabs >}}
 
-Next we will deploy Locust[^2] which is an open source tool used for creating a load test against NGINX:
+Next we will deploy Locust[^2] which is an open-source tool used for creating a load test against NGINX:
 
 {{< tabs >}}
 {{% tab title="Kubectl Create Deployment" %}}
@@ -125,11 +125,11 @@ nginx-loadgenerator-755c8f7ff6-x957q                          1/1     Running   
 
 ## 3. Run Locust load test
 
-Locust, an open source load generator, is available on port 8080 of the EC2 instance's IP address. Open a new tab in your web browser and go to `http://{==EC2-IP==}:8080/`, you will then be able to see the Locust running.
+Locust, an open-source load generator, is available on port 8083 of the EC2 instance's IP address. Open a new tab in your web browser and go to `http://{==EC2-IP==}:8083/`, you will then be able to see the Locust running.
 
 ![Locust](../../images/nginx-locust.png)
 
-Set the **Spawn rate** to be 2 and click **Start Swarming**.
+Set the **Spawn rate** to 2 and click **Start Swarming**.
 
 ![Locust Spawn Rate](../../images/nginx-locust-spawn-rate.png)
 
@@ -137,12 +137,12 @@ This will start a gentle continuous load on the application.
 
 ![Locust Statistics](../../images/nginx-locust-statistics.png)
 
-As you can see from the above screenshot, most of the calls will report a fail, this is expected, as we have not yet deployed the application behind it, however NGINX is reporting on your attempts and you should be able to see those metrics.  
+As you can see from the above screenshot, most of the calls will report a fail, this is expected, as we have not yet deployed the application behind it, however, NGINX is reporting on your attempts and you should be able to see those metrics.  
 
 Validate you are seeing those metrics in the UI by selecting **Dashboards → Built-in Dashboard Groups  → NGINX → NGINX Servers**. Using the **Overrides** filter on `k8s.cluster.name:`, find the name of your cluster as returned by `echo $(hostname)-k3s-cluster` in the terminal.
 
 ![NGINX Dashboard](../../images/nginx-dashboard.png)
 
-[^1]: A ConfigMap is an API object used to store non-confidential data in key-value pairs. Pods can consume ConfigMaps as environment variables, command-line arguments, or as configuration files in a volume. A ConfigMap allows you to decouple environment-specific configuration from your container images, so that your applications are easily portable.
+[^1]: A ConfigMap is an API object used to store non-confidential data in key-value pairs. Pods can consume ConfigMaps as environment variables, command-line arguments, or configuration files in a volume. A ConfigMap allows you to decouple environment-specific configuration from your container images so that your applications are easily portable.
 
 [^2]: [What is Locust?](https://locust.io/)

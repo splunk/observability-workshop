@@ -48,6 +48,7 @@ curl -L https://github.com/signalfx/splunk-otel-java/releases/latest/download/sp
 
 ```bash
 java -javaagent:./splunk-otel-javaagent.jar \
+-Dserver.port=8083 \
 -Dotel.service.name=$(hostname).service \
 -Dotel.resource.attributes=deployment.environment=$(hostname),version=0.314 \
 -Dsplunk.profiler.enabled=true \
@@ -57,7 +58,7 @@ java -javaagent:./splunk-otel-javaagent.jar \
 ```
 
 
-アプリケーションが動作しているかどうかは、`http://<VM_IP_ADDRESS>:8080` にアクセスして確認することができます。
+アプリケーションが動作しているかどうかは、`http://<VM_IP_ADDRESS>:8083` にアクセスして確認することができます。
 次に、トラフィックを生成し、クリックしまくり、エラーを生成し、ペットを追加するなどしてください。
 
 * `-Dotel.service.name=$(hostname).service` では、アプリケーションの名前を定義しています。サービスマップ上のアプリケーションの名前等に反映されます。

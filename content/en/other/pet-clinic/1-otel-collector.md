@@ -13,7 +13,7 @@ The OpenTelemetry Collector is the core component of instrumenting infrastructur
 * Profiling data
 * Host and application logs
 
-Splunk Observability Cloud offers a wizard to walk you through the setup of the Collector on both your infrastructure and applications. By default, the wizard will only provide the commands to only install the collector.
+Splunk Observability Cloud offers a wizard to walk you through the setup of the Collector on both your infrastructure and applications.
 
 {{% notice title="Delete any existing OpenTelemetry Collectors" style="warning" %}}
 If you have completed the Splunk IM workshop, please ensure you have deleted the collector running in Kubernetes before continuing. This can be done by running the following command:
@@ -40,13 +40,13 @@ REALM
 RUM_TOKEN
 ```
 
-For the purposes of this workshop **all** of the above are required. If any are missing, please contact your instructor.
+For this workshop, **all** of the above are required. If any are missing, please contact your instructor.
 
 ## 3. Install the OpenTelemetry Collector
 
-We can then go ahead and install the Collector. There are some additional parameters that are passed to the install script, they are:
+We can then go ahead and install the Collector. Some additional parameters are passed to the install script, they are:
 
-* `--with-instrumentation` - This will install the agent from the Splunk distribution of OpenTelemetry Java, which is then loaded automatically when the PetClinic Java application starts up. No configuration required!
+* `--with-instrumentation` - This will install the agent from the Splunk distribution of OpenTelemetry Java, which is then loaded automatically when the PetClinic Java application starts up. No configuration is required!
 * `--deployment-environment` - Sets the resource attribute `deployment.environment` to the value passed. This is used to filter views in the UI.
 * `--enable-profiler` - Enables the profiler for the Java application. This will generate CPU profiles for the application.
 * `--enable-profiler-memory` - Enables the profiler for the Java application. This will generate memory profiles for the application.
@@ -54,7 +54,7 @@ We can then go ahead and install the Collector. There are some additional parame
 
 ``` bash
 curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-collector.sh && \
-sudo sh /tmp/splunk-otel-collector.sh --with-instrumentation --deployment-environment $INSTANCE-petclinic --realm $REALM -- $ACCESS_TOKEN --enable-profiler --enable-profiler-memory --enable-metrics --mode agent --without-fluentd
+sudo sh /tmp/splunk-otel-collector.sh --realm $REALM -- $ACCESS_TOKEN --mode agent --without-fluentd --with-instrumentation --deployment-environment $INSTANCE-petclinic --enable-profiler --enable-profiler-memory --enable-metrics
 ```
 
 {{% notice style="info" title="AWS/EC2 instances" %}}
@@ -71,7 +71,6 @@ sudo systemctl restart splunk-otel-collector
 ```
 
 {{% /notice %}}
-
-Once the install is completed, you can navigate to the **Hosts with agent installed** dashboard to see the data from your host, **Dashboards → Hosts with agent installed**.
+Once the installation is completed, you can navigate to the **Hosts with agent installed** dashboard to see the data from your host, **Dashboards → Hosts with agent installed**.
 
 Use the dashboard filter and select `host.name` and type or select the hostname of your virtual machine. Once you see data flowing for your host, we are then ready to get started with the APM component.

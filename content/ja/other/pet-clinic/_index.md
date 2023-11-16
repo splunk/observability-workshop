@@ -27,7 +27,7 @@ description: JavaアプリケーションをつかったSplunk Oservabilityの�
 ご自身のシステムには、以下のものがインストールされ、有効になっている必要があります：
 
 1. JDK 17
-2. ポート `8080` が開いていること（インバウンド/アウトバウンド）
+2. ポート `8083` が開いていること（インバウンド/アウトバウンド）
 {{% /notice %}}
 
 ![PetClinic Exercise](images/petclinic-exercise.png)
