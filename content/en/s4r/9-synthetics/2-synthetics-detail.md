@@ -26,7 +26,12 @@ The first part is the film strip, it contains screenshots that where made during
 
 * Change the duration above the film strip from *Every 1s* to *Every 100ms*. This will rebuild the filmstrip with more detail. Notice that building the initial web page increased from 2 screenshots to 20. This will help you see fine grained interactions when required. (**Tip** click on the film strip and use your left and right arrow to move between screen shots)
 * In the Video pane, press on on Play **▶** and see the test being run. (Note that you can view it full screen, and if you click the ellipses **⋮** you can change the *playback speed*, view it *Picture in Picture* and even *Download* the video.)
-* In the Syntehtic Transaction pane, click on the first transaction **Home**
-* In the waterfall below 
+* In the Synthetic Transaction pane, click on the first transaction **Home**
+* The water fall below will show the list of interactions that are part of this Synthetic Transaction
+* In the waterfall find the line ***GET** splunk-otel-web.js*.
+* Click on the **>** button on front of it to drop open the MetaData section to see the URL & Request/Response Header information that are part of this specific step in the test. (Useful for debugging issues)
+* In the Synthetic Transaction pane, click on the second transaction **Shop**
+Note that the filmstrip adjust and moves to the beginning  of the new Transaction.
+* Repeat this for all the other Transactions, then select the **Place Order** transaction.
 
   {{% /notice %}}

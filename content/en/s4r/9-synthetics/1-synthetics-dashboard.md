@@ -35,7 +35,7 @@ What can you conclude of the relation of the Dots and the red X's at the bottom?
 
 ![Duration - Place Order](../images/duration-place-order.png)
 
-Select a successful test dot. (One that has no red X beneath it). If there are multiple tests in that time range you will be presented with a list of tests. Pick one that is around 20 seconds long and resulted in ✅ Success.
+Select a successful test dot. (One that has no red X beneath it). If there are multiple tests in that time range you will be presented with a list of tests. Pick one that is near 20 seconds or longer and resulted in ✅ Success.
 
 ![Results](../images/select-result.png)
 

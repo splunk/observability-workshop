@@ -3,8 +3,27 @@ title: 3. Synthetics to APM
 weight: 3
 ---
 
-1. You are in an APM trace view
-2. Validate you see errors
-3. Click on related content log link
-4. Repeat the exercise to filter down to errors only
-5. View the error log to validate the failed payment due to invalid Token.
+We now should have a view similar to the one below.  
+
+![Place Order](../images/run-results-place-order.png)
+
+{{% notice title="Exercise" style="green" icon="running" %}}
+
+* In the waterfall find the second call out to **POST checkout**.
+* Click on the **>** button on front of it to drop open the MetaData section.
+* Verify that the credit card information is passed to the service.
+* Close the Meta Data view and confirm you havre the same view as above.
+* Click on the blue **🔗APM** link behind the **checkout** line in the waterfall
+{{% /notice %}}
+
+![apm trace](../images/apm-trace.png)
+
+{{% notice title="Exercise" style="green" icon="running" %}}
+
+* You are in an APM trace view
+* Validate you see errors
+* Click on related content log link
+* Repeat the exercise to filter down to errors only
+* View the error log to validate the failed payment due to invalid Token.
+
+{{% /notice %}}
