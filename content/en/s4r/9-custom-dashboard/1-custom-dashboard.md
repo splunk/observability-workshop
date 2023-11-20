@@ -5,14 +5,36 @@ weight: 9
 ---
 
 As we already saved some useful log charts in a dashboard in the Log observer exercise, we are going to extend that dashboard.
+
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Go back to your dashboard with the two log charts, by clicking on **Dashboards*, and select your dashboard group from the linked dashboards at the bottom of the page.
+* Go back to your dashboard with the two log charts, by clicking on **Dashboards*, and select your dashboard group from the list of linked dashboards at the bottom of the page. This should bring you back to your previously saved dashboard.
+
+![log list](../images/log-charts.png)
+
+* Even if the log information is useful, it will need more information to have it make sense for our team so lets add a bit more information
+* The first step is adding a description chart to the dashboard. Click on the {{% button style="gray" %}}New text note{{% /button %}} and replace the text in the note with below with the text then click  the {{% button style="blue" %}}Save and close{{% /button %}}  button and name the chart **Instructions**
+{{% notice title=" information to use with text note" style="info" %}}
+
+```text
+
+This is a Custom Health Dashboard for the **Payment service**,  
+Please pay attention to any error in the logs.
+For more detail visit [link](https://https://www.splunk.com/en_us/products/observability.html)
+
+```
+
+{{% /notice %}}
+
+
+add request rate charts and Error rate charts.
+
+
 
 
 {{% /notice %}}
 
-2. It can use a bit more information, so let's add request rate charts and Error rate charts.
+
 3. Revisit APM, Select explore, and select the payment service.
 4. Select the Dashboard option on the top right of the screen.
 5. You should now be on the APM services map with the workshop and payment service selected.
