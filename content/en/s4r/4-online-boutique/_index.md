@@ -1,6 +1,6 @@
 ---
-title: 5. Shopping at the Online Boutique
-weight: 5
+title: 4. Shopping at the Online Boutique
+weight: 4
 ---
 
 The purpose of this exercise is for you to interact with the Online Boutique web application.  This is a sample application that is used to demonstrate the capabilities of Splunk Observability Cloud. The application is a simple e-commerce site that allows you to browse items, add them to your cart, and then checkout.

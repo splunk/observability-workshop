@@ -1,7 +1,7 @@
 ---
 title: Splunk Log Observer
-linkTitle: 8. Splunk Log Observer
-weight: 8
+linkTitle: 7. Splunk Log Observer
+weight: 7
 archetype: chapter
 ---
 

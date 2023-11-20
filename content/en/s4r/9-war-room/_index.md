@@ -1,7 +1,7 @@
 ---
 title: War Room Dashboard
-linkTitle: 10. War Room Dashboard
-weight: 10
+linkTitle: 9. War Room Dashboard
+weight: 9
 ---
 
 ### WIP WIP WIP WIP WIP

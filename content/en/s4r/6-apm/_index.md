@@ -1,7 +1,7 @@
 ---
 title: Splunk APM
-linkTitle: 7. Splunk APM
-weight: 7
+linkTitle: 6. Splunk APM
+weight: 6
 archetype: chapter
 ---
 

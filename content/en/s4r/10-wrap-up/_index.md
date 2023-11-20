@@ -1,7 +1,7 @@
 ---
 title: Workshop Wrap-up
-linkTitle: 11. Workshop Wrap-up
-weight: 11
+linkTitle: 10. Workshop Wrap-up
+weight: 10
 ---
 
 This wraps up the Splunk for Rookies Workshop of the Splunk Observability Cloud. We were able to:
