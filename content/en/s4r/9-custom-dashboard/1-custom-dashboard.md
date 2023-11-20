@@ -1,14 +1,17 @@
 ---
-title: Dashboard introduction
-linkTitle: 1. Dashboard introduction
+title: Dashboard Introduction
+linkTitle: 1. Dashboard Introduction
 weight: 9
 ---
 
-### WIP WIP WIP WIP WIP
+As we already saved some useful log charts in a dashboard in the Log observer exercise, we are going to extend that dashboard.
+{{% notice title="Exercise" style="green" icon="running" %}}
 
-Flow:
+* Go back to your dashboard with the two log charts, by clicking on **Dashboards*, and select your dashboard group from the linked dashboards at the bottom of the page.
 
-1. Go back to your war room dashboard with the two log charts
+
+{{% /notice %}}
+
 2. It can use a bit more information, so let's add request rate charts and Error rate charts.
 3. Revisit APM, Select explore, and select the payment service.
 4. Select the Dashboard option on the top right of the screen.
@@ -41,4 +44,10 @@ For more detail visit [link](https://https://www.splunk.com/en_us/products/obser
 20. Make sure the Log view chart is the bottom chart, is full size and extended to the bottom of your page.
 
 The result should be like this:
-![war room](images/warroom.png)
+![war room](../images/warroom.png)
+
+
+
+{{% notice title="Exercise" style="green" icon="running" %}}
+
+{{% /notice %}}
