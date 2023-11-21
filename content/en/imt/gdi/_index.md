@@ -109,28 +109,6 @@ TEST SUITE: None
 ```
 
 {{% /tab %}}
-{{% tab title="Install Network Explorer" %}}
-
-```bash
-helm install splunk-otel-collector \
---set="splunkObservability.realm=$REALM" \
---set="splunkObservability.accessToken=$ACCESS_TOKEN" \
---set="clusterName=$(hostname)-k3s-cluster" \
---set="splunkObservability.logsEnabled=true" \
---set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
---set="networkExplorer.enabled=true" \
---set="networkExplorer.podSecurityPolicy.enabled=false" \
---set="agent.enabled=true" \
---set="gateway.replicaCount=1" \
---set="gateway.resources.limits.cpu=500m" \
---set="gateway.resources.limits.memory=1Gi" \
---set="clusterReceiver.enabled=true" \
---set="environment=$(hostname)-workshop" \
-splunk-otel-collector-chart/splunk-otel-collector \
--f ~/workshop/k3s/otel-collector.yaml
-```
-
-{{% /tab %}}
 {{< /tabs >}}
 
 You can monitor the progress of the deployment by running `kubectl get pods` which should typically report a new pod is up and running after about 30 seconds.
