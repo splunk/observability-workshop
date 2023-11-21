@@ -4,13 +4,11 @@ linkTitle: 2. Add Chart's
 weight: 2
 ---
 
-In this section we are going to use the *Copy and Paste* functionality to extend our dashboard.
- As we have seen before, The APm services Dashboard has already a number of useful charts, so let re-use them.
+In this section, we are going to use the **Copy and Paste** functionality to extend our dashboard. As we have seen before, The APM services dashboard already has several useful charts, so let's reuse them. The next step will be to add some more charts for our payment service.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* The next step will be to add some more chart for our payment service.
-* Revisit APM, Select explore, and select the payment service.
+* Revisit APM, select explore, and select the payment service.
 * Select the Dashboard option on the top right of the screen.
 * You should now be on the APM services map with the workshop and payment service selected.
 * Click on the three dots **...** and select *Copy*
@@ -21,8 +19,5 @@ In this section we are going to use the *Copy and Paste* functionality to extend
 * This time select Error rate, click on the **...**  and select copy, do the same for the error rate chart, but this time choose Add to dashboard. This will allow you to select and add multiple charts in one go. Note That the **+** now shows the number of charts copied into the clipboard.
 * Return to your war room dashboard and select past charts from the **+* menu.* At this point these charts are not filtered, so let's add the correct filter
 * Add `sf_environment=[WORKSHOPNAME]` and `sf_service=payment_service` to the override filter box.
-{{% /notice %}}
-
-{{% notice title="Exercise" style="green" icon="running" %}}
 
 {{% /notice %}}
