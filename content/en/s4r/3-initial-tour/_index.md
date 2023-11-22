@@ -1,14 +1,15 @@
 ---
-title: UI - Quick Tour
+title: UI - Quick Tour 🚌
 linkTitle: 3. UI - Quick Tour
 weight: 3
 archetype: chapter
 ---
 
-A walkthrough of the various components of Splunk Observability Cloud showing you how to easily navigate the 5 main components:
+A short walkthrough of the various components of Splunk Observability Cloud to get you familiar with the UI.
 
-* **Application Performance Monitoring (APM)**
-* **Real User Monitoring (RUM)**
-* **Log Observer**
-* **Synthetics**
-* **Infrastructure Monitoring**
+1. **Signing in to Splunk Observability Cloud**
+2. **Real User Monitoring (RUM)**
+3. **Application Performance Monitoring (APM)**
+4. **Log Observer**
+5. **Synthetics**
+6. **Infrastructure Monitoring**
