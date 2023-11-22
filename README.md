@@ -1,6 +1,6 @@
 [![Deploy](https://github.com/splunk/observability-workshop/actions/workflows/deploy.yml/badge.svg)](https://github.com/splunk/observability-workshop/actions/workflows/deploy.yml)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/tag/splunk/observability-workshop)
-![GitHub commits since latest release (by SemVer)](https://img.shields.io/github/commits-since/splunk/observability-workshop/latest)
+![GitHub commits since the latest release (by SemVer)](https://img.shields.io/github/commits-since/splunk/observability-workshop/latest)
 ![GitHub repo size](https://img.shields.io/github/repo-size/splunk/observability-workshop)
 ![GitHub issues](https://img.shields.io/github/issues/splunk/observability-workshop)
 
@@ -8,7 +8,7 @@
 
 ## Splunk Copyright Notice
 
-```
+``` text
 Copyright 2023 Splunk Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
@@ -22,6 +22,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 To get started, please proceed to [The Splunk Observability Cloud Workshops Homepage](https://splunk.github.io/observability-workshop/latest/).
 
-Latest versions of the workshop are:
+The latest versions of the workshop are:
+
 - [v5.16](https://splunk.github.io/observability-workshop/v5.16/)
 - [v5.15](https://splunk.github.io/observability-workshop/v5.15/)
