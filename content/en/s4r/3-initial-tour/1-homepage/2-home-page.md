@@ -8,7 +8,7 @@ weight: 2
 
 After you have registered and logged into the Splunk Observability Cloud UI you will be taken to the home page. Here, you will find a number of useful features to help you get started.
 
-![home page](../../images/home-screen.png)
+![home page](../images/home-screen.png)
 
 1. **Explore Data Pane:** Displays which integrations are enabled and you can add additional integrations.
 2. **Onboarding Pane:** Training videos and links to documentation to get you started with Splunk Observability Cloud.
