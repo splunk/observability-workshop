@@ -1,12 +1,12 @@
 ---
-title: OpenTelemetry Collector Extensions
+title: OpenTelemetry Collector エクステンション
 linkTitle: 2.1 Health Check
 weight: 1
 ---
 
-## Health Check
+## Health Check エクステンション
 
-Extensions are configured in the same `config.yaml` file that we referenced in the installation step. Let's edit the `config.yaml` file and configure the extensions. Note that the **pprof** and **zpages** extensions are already configured in the default `config.yaml` file. For the purpose of this workshop, we will only be updating the **health_check** extension to expose the port on all network interfaces on which we can access the health of the collector.
+他のコンポーネントと同様に、エクステンションは `config.yaml` ファイルで設定できます。ここでは実際に `config.yaml` ファイルを編集して、エクステンションを設定していきましょう。デフォルトの `config.yaml` では、すでに **pprof** エクステンションと **zpages** エクステンションが設定されていることを確認してみてください。このワークショップでは、設定ファイルをアップデートして **health_check** エクステンションを追加し、ポートを解放し、外部ネットワークからコレクターのヘルスチェックにアクセスできるようにしていきます。
 
 {{% tab title="Command" %}}
 
@@ -26,7 +26,7 @@ extensions:
 
 {{% /tab %}}
 
-Start the collector:
+コレクターを起動します:
 
 {{% tab title="Command" %}}
 
@@ -36,9 +36,9 @@ otelcol-contrib --config=file:/etc/otelcol-contrib/config.yaml
 
 {{% /tab %}}
 
-This extension enables a HTTP URL that can be probed to check the status of the OpenTelemetry Collector. This extension can be used as a liveness and/or readiness probe on Kubernetes. To learn more about the `curl` command, check out the [curl man page](https://curl.se/docs/manpage.html).
+このエクステンションはHTTPのURLを公開し、OpenTelemetory Collectorの稼働状況をチェックするプローブを提供します。このエクステンションはKubernetes環境でのLiveness/Readinessプローブとしても使われています。 `curl` コマンドの使い方は、[curl man page](https://curl.se/docs/manpage.html) を参照してください。
 
-Open a new terminal session and SSH into your instance to run the following command:
+ターミナルを開いて、対象インスタンスにSSH接続し、次のコマンドを実行します:
 
 {{< tabs >}}
 {{% tab title="curl Command" %}}

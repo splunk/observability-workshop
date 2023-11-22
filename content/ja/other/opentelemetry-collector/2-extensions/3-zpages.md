@@ -1,37 +1,37 @@
 ---
-title: OpenTelemetry Collector Extensions
+title: OpenTelemetry Collector エクステンション
 linkTitle: 2.3 zPages
 weight: 3
 ---
 
-## zPages
+## zPages エクステンション
 
-[**zPages**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/extension/zpagesextension/README.md) are an in-process alternative to external exporters. When included, they collect and aggregate tracing and metrics information in the background; this data is served on web pages when requested. zPages are an extremely useful diagnostic feature to ensure the collector is running as expected.
+[**zPages**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/extension/zpagesextension/README.md) は、外部エクスポータに代わるプロセス内部の機能です。有効化すると、バックグラウンドでトレースとメトリクス情報を収集し、集計し、どのようなデータを扱ったかの Web ページを公開します。zpages は、コレクターが期待どおりに動作していることを確認するための非常に便利な診断機能です。
 
 {{< tabs >}}
 {{% tab title="ServiceZ" %}}
 
-**ServiceZ** gives an overview of the collector services and quick access to the pipelinez, extensionz, and featurez zPages. The page also provides build and runtime information.
+**ServiceZ** は、コレクターサービスの概要と、pipelinez、extensionz、featurez zPages へのクイックアクセスを提供します。このページでは、ビルドとランタイムの情報も提供します。
 
-Example URL: [http://localhost:55679/debug/servicez](http://localhost:55679/debug/servicez) (change `localhost` to reflect your own environment).
+URL: [http://localhost:55679/debug/servicez](http://localhost:55679/debug/servicez) (`localhost` は、適切なホスト名に切り替えてください)
 
 ![ServiceZ](../../images/servicez.png)
 
 {{% /tab %}}
 {{% tab title="PipelineZ" %}}
 
-**PipelineZ** provides insights on the running pipelines running in the collector. You can find information on type, if data is mutated, and you can also see information on the receivers, processors and exporters that are used for each pipeline.
+**PipelineZ** は、コレクターで実行中のパイプラインに関する情報を提供します。タイプ、データが変更されているか、各パイプラインで使用されているレシーバー、プロセッサー、エクスポーターの情報を見ることができます。
 
-Example URL: [http://localhost:55679/debug/pipelinez](http://localhost:55679/debug/pipelinez) (change `localhost` to reflect your own environment).
+URL: [http://localhost:55679/debug/pipelinez](http://localhost:55679/debug/pipelinez) (`localhost` は、適切なホスト名に切り替えてください)
 
 ![PipelineZ](../../images/pipelinez.png)
 
 {{% /tab %}}
 {{% tab title="ExtensionZ" %}}
 
-**ExtensionZ** shows the extensions that are active in the collector.
+**ExtensionZ** は、コレクターで有効化されたエクステンションを確認できます。
 
-Example URL: [http://localhost:55679/debug/extensionz](http://localhost:55679/debug/extensionz) (change `localhost` to reflect your own environment).
+Example URL: [http://localhost:55679/debug/extensionz](http://localhost:55679/debug/extensionz) (`localhost` は、適切なホスト名に切り替えてください)
 
 ![ExtensionZ](../../images/extensionz.png)
 
@@ -39,7 +39,7 @@ Example URL: [http://localhost:55679/debug/extensionz](http://localhost:55679/de
 {{% /tabs %}}
 
 {{% notice style="info" %}}
-If you are not following along, you can use your browser to access a test environment emitting zPages information at:
+ついていけない場合は、ブラウザーでzPagesの情報を発信しているテスト環境にアクセスしてください：
 
 - **ServiceZ:** [http://63.33.64.193:55679/debug/servicez](http://63.33.64.193:55679/debug/servicez)
 - **PipelineZ:** [http://63.33.64.193:55679/debug/pipelinez](http://63.33.64.193:55679/debug/pipelinez)
@@ -48,9 +48,9 @@ If you are not following along, you can use your browser to access a test enviro
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Improve data durability with storage extension{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** storage エクステンションでデータの耐久性を向上させる{{% /badge %}}" %}}
 
-For this, we will need to validate that our distribution has the `file_storage` extension installed. This can be done by running the command `otelcol-contrib components` which should show results like:
+これをこなうには、ディストリビューションに `file_storage` エクステンションモジュールがインストールされていることを確認する必要があります。確認するには、`otelcol-contrib components` コマンドを実行します: 
 
 {{< tabs >}}
 {{% tab title="Truncated Output" %}}
@@ -236,9 +236,9 @@ extensions:
 {{% /tab %}}
 {{< /tabs >}}
 
-This extension provides exporters the ability to queue data to disk in the event that exporter is unable to send data to the configured endpoint.
+このエクステンションは、エクスポーターが設定されたエンドポイントにデータを送信できない事象が発生したときに、データをディスクにキューイングする機能をエクスポーターに提供します。
 
-In order to configure the extension, you will need to update your config to include the information below. First, be sure to create a /tmp/otel-data directory and give it read/write permissions:
+このエクステンションを設定するには、以下の情報を含むように設定を更新する必要があります。まず、 /tmp/otel-data ディレクトリを作成し、読み取り/書き込み権限を与えてください：
 
 ```yaml
 extensions:
@@ -259,15 +259,15 @@ service:
   extensions: [health_check, pprof, zpages, file_storage]
 ```
 
-## Why queue data to disk?
+## なぜキューデータをディスクに書くの？
 
-This allows the collector to weather network interruptions (and even collector restarts) to ensure data is sent to the upstream provider.
+コレクターはネットワークの不調（および、コレクターの再起動）を乗り切って、アップストリームプロバイダーに確実にデータを送信できるようになります。
 
-## Considerations for queuing data to disk?
+## キューデータをディスクに書く時の注意事項は？
 
-There is a potential that this could impact data throughput performance due to disk performance.
+ディスクの性能により、データスループットの性能に影響を与える可能性があります
 
-### References
+### 参照
 
 1. [https://community.splunk.com/t5/Community-Blog/Data-Persistence-in-the-OpenTelemetry-Collector/ba-p/624583](https://community.splunk.com/t5/Community-Blog/Data-Persistence-in-the-OpenTelemetry-Collector/ba-p/624583)
 2. [https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/storage/filestorage](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/storage/filestorage)
@@ -276,13 +276,13 @@ There is a potential that this could impact data throughput performance due to d
 
 ---
 
-## Configuration Check-in
+## Check-in: エクステンションの設定
 
-Now that we've covered extensions, let's check our configuration changes.
+さて、エクステンションについて説明したので、設定の変更箇所を確認していきましょう。
 
 ---
 
-{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your configuration{{% /badge %}}" %}}
+{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}設定ファイルを確認してください{{% /badge %}}" %}}
 {{< tabs >}}
 {{% tab title="config.yaml" %}}
 
@@ -351,6 +351,6 @@ service:
 
 ---
 
-Now that we have reviewed extensions, let's dive into the data pipeline portion of the workshop. A pipeline defines a path the data follows in the Collector starting from reception, moving to  further processing or modification, and finally exiting the Collector via exporters.
+さて、エクステンションについて復習したところで、ワークショップのデータパイプラインの部分に飛び込んでみましょう。パイプラインとは、コレクター内でデータがたどる経路を定義するもので、レシーバーから始まり、追加の処理や変更をし、最終的にエクスポーターを経由してコレクターを出ます。
 
-The data pipeline in the OpenTelemetry Collector is made up of receivers, processors, and exporters. We will first start with receivers.
+OpenTelemetry Collector のデータパイプラインは、レシーバー、プロセッサー、エクスポーターで構成されています。まずは、レシーバーから見ていきましょう。

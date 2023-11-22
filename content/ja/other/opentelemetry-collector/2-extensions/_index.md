@@ -1,10 +1,10 @@
 ---
-title: OpenTelemetry Collector Extensions
-linkTitle: 2. Extensions
+title: OpenTelemetry Collector エクステンション
+linkTitle: 2. エクステンション
 weight: 2
 ---
 
-Now that we have the OpenTelemetry Collector installed, let's take a look at extensions for the OpenTelemetry Collector. Extensions are optional and available primarily for tasks that do not involve processing telemetry data. Examples of extensions include health monitoring, service discovery, and data forwarding.
+さて、OpenTelemetry Collector はインストールできました。次は OpenTelemetry Collector のエクステンション（拡張機能）を見てみましょう。エクステンションはオプションで、主にテレメトリーデータの処理を伴わないタスクで使用できます。例としては、ヘルスモニタリング、サービスディスカバリ、データ転送などがあります。
 
 {{< mermaid >}}
 %%{

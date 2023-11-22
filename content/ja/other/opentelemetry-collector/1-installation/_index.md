@@ -1,12 +1,12 @@
 ---
-title: OpenTelemetry Collector Contribをインストールする
+title: OpenTelemetry Collector Contrib をインストールする
 linkTitle: 1. インストール
 weight: 1
 ---
 
-## OpenTelemetry Collectorの Contrib ディストリビューションをダウンロードする
+## OpenTelemetry Collector の Contrib ディストリビューションをダウンロードする
 
-OpenTelemetry Collectorのインストールのために、まずはダウンロードするのが最初のステップです。このラボでは、 `wget` コマンドを使って OpenTelemetry の GitHub リポジトリから `.deb` パッケージをダウンロードしていきます。
+OpenTelemetry Collector のインストールのために、まずはダウンロードするのが最初のステップです。このラボでは、 `wget` コマンドを使って OpenTelemetry の GitHub リポジトリから `.deb` パッケージをダウンロードしていきます。
 
 [OpenTelemetry Collector Contrib releases page](https://github.com/open-telemetry/opentelemetry-collector-releases/releases)
 から、ご利用のプラットフォーム用の `.deb` パッケージを入手してください。
@@ -15,7 +15,7 @@ OpenTelemetry Collectorのインストールのために、まずはダウンロ
 wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.80.0/otelcol-contrib_0.80.0_linux_amd64.deb
 ```
 
-## OpenTelemetry Collectorの Contrib ディストリビューションをインストールする
+## OpenTelemetry Collector の Contrib ディストリビューションをインストールする
 
 `dpkg` を使って、 `.deb` パッケージをインストールします。下記の **dpkg Output** のようになれば、インストールは成功です！
 
