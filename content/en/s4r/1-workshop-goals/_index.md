@@ -26,7 +26,7 @@ Examine the real user data that has been provided by the telemetry received from
 
 ##### 6. Splunk Application Performance Monitoring
 
-Discover the power of **full end-to-end visibility** by jumping from a RUM trace (frontend) to an APM trace (backend). All the services are sending telemetry (traces and spans) that Splunk Observability Cloud can visualize, analyze and use to detect anomalies and errors.
+Discover the power of **full end-to-end visibility** by jumping from a RUM trace (front-end) to an APM trace (back-end). All the services are sending telemetry (traces and spans) that Splunk Observability Cloud can visualize, analyze and use to detect anomalies and errors.
 
 ##### 7. Using Logs with Splunk Log Observer
 

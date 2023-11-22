@@ -8,7 +8,7 @@ tags:
 
 With the rise of cloud computing, microservices architectures, and ever-more complex business requirements, the need for Observability has never been greater. Observability is the ability to understand the internal state of a system by examining its outputs. In the context of software, this means being able to understand the internal state of a system by examining its telemetry data, which includes **metrics**, **traces**, and **logs**.
 
-To make a system observable, it must be instrumented. That is, the code must emit traces, metrics, and logs. The instrumented data must then be sent to an Observability backend such as **Splunk Observability Cloud**.
+To make a system observable, it must be instrumented. That is, the code must emit traces, metrics, and logs. The instrumented data must then be sent to an Observability back-end such as **Splunk Observability Cloud**.
 
 {{< mermaid >}}
 
@@ -53,4 +53,4 @@ Since OpenTelemetry is vendor-neutral and supported by many industry leaders in 
 
 Splunk has fully committed to OpenTelemetry so that our customers can collect and use **ALL** their data, in any type, any structure, from any source, on any scale, and all in real-time. OpenTelemetry is fundamentally changing the monitoring landscape, enabling IT and DevOps teams to bring data to every question and every action. You will experience this during these workshops.
 
-![full stack Splunk](images/splunk-full-stack.png?width=40vw)
+![full stack Splunk](images/otel.png)
