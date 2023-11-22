@@ -62,4 +62,4 @@ For more detail visit [link](https://https://www.splunk.com/en_us/products/obser
 20. Make sure the Log view chart is the bottom chart, is full size and extended to the bottom of your page.
 
 The result should be like this:
-![war room](../images/warroom.png)
+![Service Health Dashboard](../images/service-health-dashboard.png)

@@ -1,23 +1,16 @@
 ---
-title: Adding Charts to Dashboard
-linkTitle: 2. Add Chart's
+title: Adding charts to the Service Health Dashboard
+linkTitle: 2. Add Charts
 weight: 2
 ---
 
-In this section, we are going to use the **Copy and Paste** functionality to extend our dashboard. As we have seen before, The APM services dashboard already has several useful charts, so let's reuse them. The next step will be to add some more charts for our payment service.
+In this section, we are going to use the **Copy and Paste** functionality to extend our dashboard. The next step will be to add some more charts for our payment service.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Revisit APM, select explore, and select the payment service.
-* Select the Dashboard option on the top right of the screen.
-* You should now be on the APM services map with the workshop and payment service selected.
-* Click on the three dots **...** and select *Copy*
-* Note that you now have a **1**  before the **+**  at the top right of the page, indicating you have a copied chart in your clipboard available.
-* Find your War room dashboard again.
-* Select the  **1+** at the top of the page and select Past Chart. this will create the chart in your dashboard.
-* Let's add some more, go back to the APM services dashboard either via the APM  or selecting the *APM services* dashboard group followed by the *service* dashboard from **Dashboards**
-* This time select Error rate, click on the **...**  and select copy, do the same for the error rate chart, but this time choose Add to dashboard. This will allow you to select and add multiple charts in one go. Note That the **+** now shows the number of charts copied into the clipboard.
-* Return to your war room dashboard and select past charts from the **+* menu.* At this point these charts are not filtered, so let's add the correct filter
+* Find your Service Health Dashboard.
+* Select the **2+** at the top of the page and select **Paste charts**, this will create the charts in your custom dashboard.
 * Add `sf_environment=[WORKSHOPNAME]` and `sf_service=payment_service` to the override filter box.
+* Click {{% button style="blue" %}}Save{{% /button %}}.
 
 {{% /notice %}}
