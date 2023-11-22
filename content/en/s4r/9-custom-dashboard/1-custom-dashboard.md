@@ -14,6 +14,7 @@ As we already saved some useful log charts in a dashboard in the Log Observer ex
 
 * Even if the log information is useful, it will need more information to have it make sense for our team so let's add a bit more information
 * The first step is adding a description chart to the dashboard. Click on the {{% button style="gray" %}}New text note{{% /button %}} and replace the text in the note with below with the text then click  the {{% button style="blue" %}}Save and close{{% /button %}}  button and name the chart **Instructions**
+
 {{% notice title=" information to use with text note" style="info" %}}
 
 ```text

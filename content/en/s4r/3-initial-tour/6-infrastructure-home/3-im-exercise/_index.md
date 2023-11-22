@@ -27,9 +27,9 @@ Please select the **K8s nodes** tile from the Tile pane if you have not yet done
 
 ![Kubernetes](images/im-kubernetes.png?width=30vw)
 
-The screenshot above shows the main part of the Kubernetes navigator. It will show all the clusters & their nodes that send metrics to the Splunk Observability Suite, and the first row of charts that show cluster-based Metrics. In the workshop, you will mostly see single-node Kubernetes clusters.
+The screenshot above shows the main part of the Kubernetes navigator. It will show all the clusters & their nodes that send metrics to Splunk Observability Cloud, and the first row of charts that show cluster-based Metrics. In the workshop, you will mostly see single-node Kubernetes clusters.
 
-Before we dive deeper, let's make sure we are looking at our own cluster.
+Before we dive deeper, let's make sure we are looking at our cluster.
 
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 

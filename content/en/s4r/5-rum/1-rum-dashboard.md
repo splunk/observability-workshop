@@ -6,10 +6,10 @@ tags: RUM
 
 In Splunk Observability Cloud from the main menu, click on **RUM**. From the drop-downs ensure the following is set/selected:
 
-* Timeframe is set to **-15m**.
-* Environment selected is **[NAME OF WORKSHOP]-workshop**.
-* App selected is **[NAME OF WORKSHOP]-store**.
-* Source is set to **All**.
+* The **Timeframe** is set to **-15m**.
+* The **Environment** selected is **[NAME OF WORKSHOP]-workshop**.
+* The **App** selected is **[NAME OF WORKSHOP]-store**.
+* The **Source** is set to **All**.
 
 This view has already been covered in the short introduction earlier. Next, click on the **[NAME OF WORKSHOP]-workshop** above the **Page Views / JavaScript Errors** chart.
 

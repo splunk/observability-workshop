@@ -11,7 +11,7 @@ Click **RUM** in the main menu, the RUM Home Page is made up of 3 distinct secti
 ![RUM Page](../images/rum-main.png)
 
 1. **Onboarding Pane:** Training videos and links to documentation to get you started with Splunk RUM.
-2. **Filter Pane:** Filter on time frame, environment, application and source type.
+2. **Filter Pane:** Filter on the time frame, environment, application and source type.
 3. **Application Summary Pane:** Summary of all your applications that send RUM data.
 
 {{% notice title=" RUM Environments & Apps" style="info" %}}

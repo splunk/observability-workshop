@@ -19,13 +19,13 @@ After you have registered and logged into the Splunk Observability Cloud UI you 
 
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 
-* Use the Expand Pane to expand the Main menu & click on **Settings** .
+* Use the Expand Pane to expand the Main menu & click on **Settings**.
 * Click **Onboarding Guidance**, here you can toggle the visibility of the onboarding panes.
 * Hide the Onboarding Content for the **Home Page**.
 * At the bottom of the menu, select your preferred appearance: **Light**, **Dark** or **Auto** mode.
-* Did you also notice this is where the **Sign out** option is?
+* Did you also notice this is where the **Sign Out** option is?
 * Click **<** to get back to the main menu.
 
 {{% /notice %}}
 
-Next, let's check out Splunk Real user Monitoring (RUM).
+Next, let's check out Splunk Real User Monitoring (RUM).
