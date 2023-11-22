@@ -16,7 +16,7 @@ A short walkthrough of the various components of Splunk Observability Cloud to g
 
 {{% notice style="tip" %}}
 
-The easiest way to navigate through this workshop is either by using:
+The easiest way to navigate through this workshop is by using:
 
 * the left/right arrows (**<** | **>**) on the top right of this page
 * the left (◀️) and right (▶️) cursor keys on your keyboard
