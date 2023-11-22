@@ -1,6 +1,6 @@
 ---
-title: 2. APM Explore
-weight: 2
+title: 3. APM Explore
+weight: 3
 ---
 
 From the Overview Page, click on **Explore** on the top right of the page. You will be presented with the full service map which now includes all services (including inferred services). Inferred services are visually represented by a dotted outline.
