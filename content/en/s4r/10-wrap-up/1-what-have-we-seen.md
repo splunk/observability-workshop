@@ -4,12 +4,12 @@ linkTitle: 1. Key Items
 weight: 1
 ---
 
-During our workshop we have seen how the Splunk Infrastructure Suite in combination with the OpenTelemetry signals **Metric's**, **Traces** and **Log's** can help you to discover problems and resolve them faster.
+During the workshop, we have seen how the Splunk Observability Cloud in combination with the OpenTelemetry signals (**metrics**, **traces** and **logs**) can help you to reduce mean time to detect (**MTTD**) and also reduce mean time to resolution (**MTTR**).
 
-* We have a better understanding of the Main User interface and its components, the *Landing, Infrastructure, APM, RUM, Synthetics, Dashboards* pages, and a quick peek at the *Settings* page.
+* We have a better understanding of the Main User interface and its components, the *Landing, Infrastructure, APM, RUM, Synthetics, Dashboard* pages, and a quick peek at the *Settings* page.
 * Depending on time, we did an *Infrastructure* exercise and looked at *Metrics* used in the  Kubernetes Navigators and saw related services found on our Kubernetes cluster:
 
-![kubernetes](../images/infra.png)
+![Kubernetes](../images/infra.png)
 
 * Understood what users were experiencing and used RUM & APM to Troubleshoot a particularly long page load, by following its trace across the front and back end and right to the log entries.
 We used tools like RUM *Session replay* and the APM *Dependency map* with Breakdown to discover what is causing our issue:
@@ -20,13 +20,12 @@ We used tools like RUM *Session replay* and the APM *Dependency map* with Breakd
 
 ![tag and waterfall](../images/tag-spotligth-waterfall.png)
 
-* We used the *Related content* feature to follow the link between our *Trace*  directly to the *Log's* related to our *Trace* used filters to drill down to the exact cause of our issue.
+* We used the *Related content* feature to follow the link between our *Trace* directly to the *Logs* related to our *Trace* and used filters to drill down to the exact cause of our issue.
 
 ![logs](../images/log.png)
 
-* We then looked at Synthetics, which can simulate web and mobile traffic and we used the available  Synthetic Test, first to confirm our finding from RUM/AMm and Log observer, then we created a *Detector*  so we would be  alerted if when the run time of a test exceeded our SLA.
+* We then looked at Synthetics, which can simulate web and mobile traffic and we used the available  Synthetic Test, first to confirm our finding from RUM/AMm and Log observer, then we created a *Detector* so we would be alerted if when the run time of a test exceeded our SLA.
 
-* As the last exercise we create a health dashboard with the intention to keep that running for our Developers  and SRE on a TV screen:
+* In the final exercise, we created a health dashboard to keep that running for our Developers and SREs on a TV screen:
 
 ![synth and TV](../images/synth-tv.png)
-
