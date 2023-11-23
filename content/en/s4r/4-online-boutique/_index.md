@@ -11,15 +11,13 @@ The application will already be deployed for you and your instructor will provid
 
 * Once you have the link to the Online Boutique have a browse through a few items, add them to your cart and then, finally, checkout.
 * Repeat this exercise a few times and if possible use different browsers, mobile devices or tablets as this will generate more data for you to explore. Also, when using your mouse/touchpad to navigate, accentuate your clicks and scrolls.
-* Did you notice anything about the checkout process? Did it seem to take a while to complete, but it did ultimately complete? Or did you plain give up?
-* When your order is completed, please copy the **Order Confirmation ID** and save it locally somewhere as we will need it later.
+* Did you notice anything about the checkout process? Did it seem to take a while to complete, but it did ultimately complete? When this happens please copy the **Order Confirmation ID** and save it locally somewhere as we will need it later.
 * Close the browser sessions you used to shop.
 
 {{% /notice %}}
 
 This is what a poor user experience can feel like and since this is a potential customer satisfaction issue we had better jump on this and troubleshoot.
 
-Let’s go take a look at what the data looks like in **Splunk RUM**.
+![Online Boutique](images/shop.png)
 
-![Online retail site with a large hero image](images/shop.jpg
-)
+Let’s go take a look at what the data looks like in **Splunk RUM**.
