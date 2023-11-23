@@ -4,62 +4,40 @@ linkTitle: 3. Add Custom Chart
 weight: 3
 ---
 
-As we already saved some useful log charts in a dashboard in the Log Observer exercise, we are going to extend that dashboard.
+In this part of the workshop we are going to create a chart that we will add to our dashboard, we will also link it to the detector we previously build. This will allow us to see the behaviour of our test and get alerted if one or more of our test runs breaches its SLA.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Go back to your dashboard with the two log charts, by clicking on **Dashboards**, and select your dashboard group from the list of linked dashboards at the bottom of the page. This should bring you back to your previously saved dashboard.
+* At the top of the dashboard click on the **+** and select *chart*. This will bring us to the new chart screen.
 
-![log list](../images/log-charts.png)
+![new chart screen](../images/new-chart.png)
 
-* Even if the log information is useful, it will need more information to have it make sense for our team so let's add a bit more information
-* The first step is adding a description chart to the dashboard. Click on the {{% button style="gray" %}}New text note{{% /button %}} and replace the text in the note with below with the text then click  the {{% button style="blue" %}}Save and close{{% /button %}}  button and name the chart **Instructions**
-{{% notice title=" information to use with text note" style="info" %}}
+* First use the {{% button style="gray" %}}Untitled chart{{% /button %}} input field and name the chart **Overall Test Duration**. Next, you can set the Description to **Showing the Synthetic Test for the complete application**.
+* For this exercise we want a bar or column chart, so click on the 3d icon ![column chart](../images/barchart-icon.png?classes=inline&height=25px)in the chart option box.
+* We need to provide a signal or metric that we are going to display. In this case we want *synthetics.run.duration.time.ms* (This is runtime in duration for our test)
+* Click the {{% button style="blue" %}}Add filter{{% /button %}} button.
+* Set the filter to successful ones by selecting *success:true*, the button now should contain that.
+* Right now we see different colored bars, a different color for each region the test runs from. We change that behaviour by adding some analytics.
+* Click the {{% button style="blue" %}}Add analytics{{% /button %}} button.
+* From the drop down choose the *Mean* option, then pick **mean**:*aggregation* and click outside the dialog. the button should now say **Mean*, and the bars should now have the same color.
+* We now looking at the aggregated results of the tests instead of showing each region separately.
+* Click on the settings *⚙️* icon at the end of the plot line. It will open the following dialog.
+![signal setup](../images/signal-setup.png)
+* Change the *Display units* in the drop down box from *None* to *Time (autoscaling)/Milliseconds(ms)*. The dropdown changes to *Millisecond* and the label in front of the chart should now represent Time.
+* Close the dialog, either clicking on the settings *⚙️* icon or the {{% button style="gray" %}}close{{% /button %}} button.
+* Add our detector by clicking {{% button style="blue" %}}Link Detector{{% /button %}}t typing the name of the detector. (Start with you initials, assuming you used the recommended naming method.) the detector name should appear. A colored bar appears around your chart, indicating the status of the alert, (Green OK, Red Alert), as well as a bell signal at the top of the page as shown below.
 
-```text
+![detector added](../images/detector-added.png)
 
-This is a Custom Health Dashboard for the **Payment service**,  
-Please pay attention to any error in the logs.
-For more detail visit [link](https://https://www.splunk.com/en_us/products/observability.html)
+* Click the {{% button style="blue" %}}Save and close{{% /button %}} button.
 
-```
-
-{{% /notice %}}
-
-* The next step will be to add some more charts for our payment service.
-dd request rate charts and Error rate charts.
-
-{{% /notice %}}
-
-3. Revisit APM, Select explore, and select the payment service.
-4. Select the Dashboard option on the top right of the screen.
-5. You should now be on the APM services map with the workshop and payment service selected.
-6. Click on the three dots **...** and select *Copy*
-7. Note that you now have a **1**  before the **+**  at the top right of the page, indicating you have a copied chart in your clipboard available.
-8. Find your War room dashboard again.
-9. Select the  **1+** at the top of the page and select Past Chart. this will create the chart in your dashboard.
-10. Let's add some more, go back to the APM services dashboard either via the APM  or selecting the *APM services* dashboard group followed by the *service* dashboard from **Dashboards**
-11. This time select Error rate, click on the **...**  and select copy, do the same for the error rate chart, but this time choose Add to dashboard. This will allow you to select and add multiple charts in one go. Note That the **+** now shows the number of charts copied into the clipboard.
-12. Return to your war room dashboard and select past charts from the **+* menu.
-13. At this point these charts are not filtered, so let's add the correct filter
-14. Add `sf_environment=[WORKSHOPNAME]` and `sf_service=payment_service` to the override filter box.
-15. Now with the info for our service let's rearrange the chart so that they are useful
-16. Drag the Request rate to the top left, resize its width 50 percent by dragging the left edge, and add the Error rate chart next to it.
-17. Drag the error rate chart next to the two the chart and resize it so it fills the page
-18. click on **new text note* and replace the text below with the text in the note  then click save  name the chart instructions
-{{% notice title=" TExt for Text note" style="info" %}}
-
-```text
-
-This is a  war room dashboard for the **Payment service**,  
-Please pay attention  to any error in the logs.
-For more detail visit [link](https://https://www.splunk.com/en_us/products/observability.html)
-
-```
-
-{{% /notice %}}
-19. Place the instruction below the request rate chart, add the timeline log chart next to it and size it to fit the page.
-20. Make sure the Log view chart is the bottom chart, is full size and extended to the bottom of your page.
+* In our dashboard, size the *Log view* chart to be last 50% of the page width  and drag the new *Overall Test Duration* chart in front of it.
 
 The result should be like this:
 ![Service Health Dashboard](../images/service-health-dashboard.png)
+
+As the last task, find the the thee dots **...** at the top of the page (next to *Event Overlay*) and click on *View fullscreen*.  This will be the view you would use on the TV monitor on the wall.
+(press Esc to go back) For TV monitors, setting the background color to black seems to work best.
+
+{{% /notice %}}
+ Now lets  go and wrap up.
