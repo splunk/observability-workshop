@@ -1,6 +1,6 @@
 ---
-title: Review of the workshop
-linkTitle: 1. Key Items
+title: Key Takeaways
+linkTitle: 1. Key Takeaways
 weight: 1
 ---
 
@@ -18,7 +18,7 @@ We used tools like RUM *Session replay* and the APM *Dependency map* with Breakd
 
 * Used *Tag Spotlight*, in both RUM and APM, to understand blast radius, detect trends and context for our performance issues and errors. We drilled down in *Span's* in the APM *Trace waterfall* to  see how services interacted and find errors:
 
-![tag and waterfall](../images/tag-spotligth-waterfall.png)
+![tag and waterfall](../images/tag-spotlight-waterfall.png)
 
 * We used the *Related content* feature to follow the link between our *Trace* directly to the *Logs* related to our *Trace* and used filters to drill down to the exact cause of our issue.
 
