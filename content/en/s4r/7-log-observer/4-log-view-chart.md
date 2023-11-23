@@ -3,17 +3,15 @@ title: 4. Log View Chart
 weight: 4
 ---
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
-* Repeat Log Timeline exercise for Log View chart
-* Enter name, description, search for your dashboard
-* Click save and goto dashboard
-* Goto Team Dashboard
-* Click + Add Dashboard Group
-* Select your Dashboard
-* Validate it appears
+The **Log View** chart type will allow us to see log messages in our custom dashboard.
 
-![Custom Dashboard](../images/log-observer-custom-dashboard.png)
+{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+* Remaining in **Log Observer**, click on **Save** and then **Save to Dashboard**
+* Enter **Chart name**, this will be the name of the chart on the dashboard. Use the following format: `Initials - Log View Chart`
+* Click {{% button style="blue" %}}Select Dashboard{{% /button %}} and search for the Dashboard you created in the previous exercise.
+* Click on the returned entry to highlight is and click {{% button style="blue" %}}OK{{% /button %}}
+* Ensure **Log View** is selected as the **Chart Type** and click {{% button style="blue" %}}Save and go to dashboard{{% /button %}}
+
+  ![Custom Dashboard](../images/log-observer-custom-dashboard.png)
 
 {{% /notice %}}
-
-If we had 24/7 Synthetic monitoring, we would have been alerted to this issue before our customers were impacted.
