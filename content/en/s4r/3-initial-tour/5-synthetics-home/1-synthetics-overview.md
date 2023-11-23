@@ -1,5 +1,5 @@
 ---
-title: Splunk Synthetics Overview
+title: Synthetics Overview
 linkTitle: 1. Synthetics Overview
 weight: 1
 ---

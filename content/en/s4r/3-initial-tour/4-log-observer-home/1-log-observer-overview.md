@@ -1,5 +1,5 @@
 ---
-title: Splunk Log Observer Overview
+title: Log Observer Overview
 linkTitle: 1. Log Observer Overview
 weight: 1
 ---

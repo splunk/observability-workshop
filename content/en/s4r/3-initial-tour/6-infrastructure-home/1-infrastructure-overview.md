@@ -16,8 +16,8 @@ Splunk Infrastructure Monitoring (IM) is a market-leading monitoring and observa
 
 ![Infrastructure Overview](../images/infrastructure-overview.png)
 
-{{% notice title="The Optional Exercise" style="info" %}}
+{{% notice title="Optional Exercise" style="info" %}}
 
-The main focus of this workshop is to get you good overview of full product set. To make sure all major components are touched we have added an optional exercise that makes use of  Splunk's Kubernetes Navigator  to show you the use of  the  Splunk Infrastructure Navigators. It can be skipped in case of time constrains.
+The main focus of this workshop is to give a good overview of the full product set. To make sure all major components are touched we have added an optional exercise that makes use of the Kubernetes Navigator. It can be skipped in case of time constraints.
 
 {{% /notice %}}

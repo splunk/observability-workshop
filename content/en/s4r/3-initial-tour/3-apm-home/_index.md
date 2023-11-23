@@ -1,6 +1,5 @@
 ---
-title: Application Performance Monitoring Home page
-linkTitle: 3. Splunk APM
+linkTitle: 3. APM
 weight: 3
 _build:
   render: never
