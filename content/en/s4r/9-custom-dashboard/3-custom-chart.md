@@ -25,7 +25,7 @@ In this part of the workshop we are going to create a chart that we will add to 
 ![signal setup](../images/signal-setup.png)
 * Change the *Display units* in the drop down box from *None* to *Time (autoscaling)/Milliseconds(ms)*. The dropdown changes to *Millisecond* and the label in front of the chart should now represent Time.
 * Close the dialog, either clicking on the settings *⚙️* icon or the {{% button style="gray" %}}close{{% /button %}} button.
-* Add our detector by clicking {{% button style="blue" %}}Link Detector{{% /button %}}t typing the name of the detector. (Start with you initials, assuming you used the recommended naming method.) the detector name should appear. A colored bar appears around your chart, indicating the status of the alert, (Green OK, Red Alert), as well as a bell signal at the top of the page as shown below.
+* Add our detector by clicking {{% button style="blue" %}}Link Detector{{% /button %}} and typing the name of the detector. (Start with you initials, assuming you used the recommended naming method.) the detector name should appear. A colored bar appears around your chart, indicating the status of the alert, (Green OK, Red Alert), as well as a bell signal at the top of the page as shown below.
 
 ![detector added](../images/detector-added.png)
 
@@ -36,8 +36,8 @@ In this part of the workshop we are going to create a chart that we will add to 
 The result should be like this:
 ![Service Health Dashboard](../images/service-health-dashboard.png)
 
-As the last task, find the the thee dots **...** at the top of the page (next to *Event Overlay*) and click on *View fullscreen*.  This will be the view you would use on the TV monitor on the wall.
+As the last task, find the the thee dots **...** at the top of the page (next to *Event Overlay*) and click on *View fullscreen*. This will be the view you would use on the TV monitor on the wall.
 (press Esc to go back) For TV monitors, setting the background color to black seems to work best.
 
 {{% /notice %}}
- Now lets  go and wrap up.
+ Now lets go and wrap up.
