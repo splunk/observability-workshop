@@ -11,7 +11,7 @@ Let's look at some other parts of the UI like the *Information Pane* on the righ
 
 First, let's look at the *Information Pane*, this pane provides alert and detected services information and the metadata related to the object you're looking at.
 
-![info pane](../images/k8s-info-pane.png?width=15vw)
+![info pane](../images/k8s-info-pane.png)
 
 Meta Data is sent along with the metrics and is very useful for identifying trends when looking into issues. An example could be a pod failing when deployed on a specific Operating System.
 

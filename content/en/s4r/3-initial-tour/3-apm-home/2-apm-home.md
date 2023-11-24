@@ -5,7 +5,7 @@ weight: 2
 ---
  
 {{% button icon="clock" color="#ed0090" %}}2 minutes{{% /button %}}
-
+(needs padding)
 Click **APM** in the main menu, the APM Home Page is made up of 3 distinct sections:
 
 ![APM page](../images/apm-main.png)

@@ -9,7 +9,7 @@ weight: 10
 
 This is Part 2, of the Infrastructure Monitoring exercise, you should now have a single cluster visible.
 
-![Alt Cluster](../images/k8s-cluster.png?width=30vw)
+![Alt Cluster](../images/k8s-cluster.png)
 
 In the Kubernetes Navigator, the cluster is represented by the square with the black line around it and will contain one or more blue squares representing the node(s), each of them containing one or more colored boxes that represent pods. And, as you can guess, **green** means healthy and **red** means that there is a problem.
 
@@ -26,7 +26,7 @@ Let's examine the Cluster Metric charts that provide information on your cluster
 
 * Let's check if the Spunk Kubernetes Analyzer can tell us something more useful, so click on **K8s Analyzer**.
 {{% notice title=" Spunk Kubernetes Analyzer" style="info" %}}
-The Spunk Kubernetes Analyzer is a smart process that runs in the background in Splunk Observability Cloud and is designed to detect relations between anomalies.  
+The Splunk Kubernetes Analyzer is a smart process that runs in the background in Splunk Observability Cloud and is designed to detect relations between anomalies.  
 {{% /notice %}}
 
 * The **K8s Analyzer** should have detected that the two **red** pods are similar, indicated by the 2 after each line, and come from the same Namespace.

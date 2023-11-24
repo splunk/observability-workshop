@@ -5,6 +5,7 @@ weight: 2
 ---
  
 {{% button icon="clock" color="#ed0090" %}}2 minutes{{% /button %}}
+(padding. explain.. you can start investigating here, or  end here to proof you finding in outher product.. in other words padding)
 
 Click **Log Observer** in the main menu, the Log Observer Home Page is made up of 4 distinct sections:
 

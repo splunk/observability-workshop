@@ -5,7 +5,7 @@ weight: 2
 ---
 
 {{% button icon="clock" color="#ed0090" %}}2 minutes{{% /button %}}
-
+(padding)
 Click on **Infrastructure** in the main menu, the Infrastructure Home Page is made up of 4 distinct sections.
 
 ![Infra main](../images/infrastructure-main.png)

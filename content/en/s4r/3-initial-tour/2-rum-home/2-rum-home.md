@@ -5,7 +5,7 @@ weight: 2
 ---
  
 {{% button icon="clock" color="#ed0090" %}}2 minutes{{% /button %}}
-
+(RUm  Rething Webvitals info, and java sccript error (due to  ui bug) and got to dahsboard and explain)
 Click **RUM** in the main menu, the RUM Home Page is made up of 3 distinct sections:
 
 ![RUM Page](../images/rum-main.png)

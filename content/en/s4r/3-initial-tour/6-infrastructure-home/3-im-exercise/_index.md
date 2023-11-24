@@ -25,7 +25,7 @@ K8s, short for Kubernetes, is an open-source container orchestration platform. I
 Please select the **K8s nodes** tile from the Tile pane if you have not yet done so.
 (Select Kubernetes as your Technology). This will bring you to the Kubernetes Navigator Page.
 
-![Kubernetes](images/im-kubernetes.png?width=30vw)
+![Kubernetes](images/im-kubernetes.png)
 
 The screenshot above shows the main part of the Kubernetes navigator. It will show all the clusters & their nodes that send metrics to Splunk Observability Cloud, and the first row of charts that show cluster-based Metrics. In the workshop, you will mostly see single-node Kubernetes clusters.
 

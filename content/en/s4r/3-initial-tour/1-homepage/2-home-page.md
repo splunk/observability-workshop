@@ -5,7 +5,7 @@ weight: 2
 ---
 
 {{% button icon="clock" color="#ed0090" %}}3 minutes{{% /button %}}
-
+(NEED PADDING)
 After you have registered and logged into the Splunk Observability Cloud UI you will be taken to the home page. Here, you will find a number of useful features to help you get started.
 
 ![home page](../images/home-screen.png)

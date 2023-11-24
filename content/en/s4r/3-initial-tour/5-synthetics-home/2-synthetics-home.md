@@ -5,7 +5,7 @@ weight: 2
 ---
 
 {{% button icon="clock" color="#ed0090" %}}2 minutes{{% /button %}}
-
+(remove ninja stuff , general padding screen shot rmove 4)
 Click on **Synthetics** in the main menu. This will bring us to the Synthetics Home Page. It has 3 distinct sections that provide either useful information or allow you to pick or create a Synthetic Test.
 
 ![Synthetic main](../images/synthetics-main.png)
@@ -14,7 +14,7 @@ Click on **Synthetics** in the main menu. This will bring us to the Synthetics H
 2. **Test Pane:** List of all the tests that are configured (**Browser**, **API** and **Uptime**)
 3. **Create Test Pane:** Drop-down for creating new Synthetic tests.
 4. **Private Locations & Global Variables:** Manage your [**Private locations**](https://docs.splunk.com/observability/en/synthetics/test-config/private-locations.html) and [**Global variables**](https://docs.splunk.com/observability/en/synthetics/test-config/global-variables.html).
-
+(Ninja remove)
 As part of the workshop we have created a default browser test against the application we are running, You find it in the Test Pane (2). It will have the following name **Workshop Browser Test for**, followed by the name of your Workshop (your instructor should have provided that to you).
 
 To continue our tour, let's look at the result of our workshop's automatic browser test.  
