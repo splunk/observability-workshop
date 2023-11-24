@@ -5,7 +5,7 @@ weight: 3
 archetype: chapter
 ---
 
-A short walkthrough of the various components of Splunk Observability Cloud to get you familiar with the UI.
+We are going to start with a short walkthrough of the various components of Splunk Observability Cloud. The aim of this is to get you familiar with the UI.
 
 1. **Signing in to Splunk Observability Cloud**
 2. **Real User Monitoring (RUM)**
