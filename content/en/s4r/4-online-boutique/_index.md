@@ -1,5 +1,6 @@
 ---
-title: 4. Shopping at the Online Boutique
+title: Shopping at the Online Boutique 💶
+linkTitle: 4. Shopping at the Online Boutique
 weight: 4
 ---
 
