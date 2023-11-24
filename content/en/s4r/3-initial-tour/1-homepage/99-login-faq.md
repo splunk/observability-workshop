@@ -18,10 +18,24 @@ If this fails, another solution is to provide the Instructor with a different em
 
 ### 2. Password not accepted
 
-The requirements for a password in Splunk Observability Cloud are that it must be between 8 and 32 characters, and contain at least one capital letter, one number, and one symbol.
+The requirements for a password in Splunk Observability Cloud are:
+
+* **Must** be between 8 and 32 characters
+* **Must** contain at least one capital letter
+* **Must** have at least one number
+* **Must** have at least one symbol (e.g. !@#$%^&*()_+)
+
+---
 
 ### 3. Invalid or unknown password
+
+The system does not recognise the password and username combination, please click on the reset password link to try and reset your password.
+You will be asked to provide a password. If that account exist, an email will be send to allow you to reset your password. follow the instruction in  that email.
+
+If no email is arriving, your username is not recognised , reach out ot your instructor to check it for you.
 
 ---
 
 ### 4. Other options
+
+TO Be Completed.
