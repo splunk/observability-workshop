@@ -6,6 +6,8 @@ tags:
   - OpenTelemetry
 ---
 
+## OpenTelemetry
+
 With the rise of cloud computing, microservices architectures, and ever-more complex business requirements, the need for Observability has never been greater. Observability is the ability to understand the internal state of a system by examining its outputs. In the context of software, this means being able to understand the internal state of a system by examining its telemetry data, which includes **metrics**, **traces**, and **logs**.
 
 To make a system observable, it must be instrumented. That is, the code must emit traces, metrics, and logs. The instrumented data must then be sent to an Observability back-end such as **Splunk Observability Cloud**.
@@ -38,8 +40,8 @@ graph LR;
 
 OpenTelemetry does two important things:
 
-* Allows you to own the data that you generate rather than be stuck with a proprietary data format or tool.
-* Allows you to learn a single set of APIs and conventions
+* Allows you to **own** the data that you generate rather than be stuck with a proprietary data format or tool.
+* Allows you to learn **a single set** of APIs and conventions
 
 These two things combined enable teams and organizations the flexibility they need in today’s modern computing world.
 
