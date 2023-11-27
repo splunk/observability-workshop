@@ -11,7 +11,7 @@ The advantage of this is, as it was with the link between RUM & APM, that you ar
 
 This view will include **all** the log lines from **all** applications or services that participated in the back-end transaction started by the end-user interaction with the Online Boutique.
 
-Even in a small application as our Online Boutique, the sheer amount of logs can make it hard to see the log lines that matter to the actual incident we were investigating.
+Even in a small application as our Online Boutique, the sheer amount of logs found can make it hard to see the specific log lines that matter to the actual incident we where investigating.
 
 So, let us run an exercise to drill down into the logs:
 
@@ -24,9 +24,9 @@ We need to focus on just the Error messages in the logs:
 
 ![legend](../images/severity-logs.png)
 
-* Selecting just the error logs can be done by either clicking on the word **error** (1) in the legend, followed by selecting the **Add to filter** option from the resulting dialog Box or by simply adding `severity = error` directly to the filter box.
+* Selecting just the error logs can be done by either clicking on the word **error** (1) in the legend, followed by selecting the *Add to filter* option from the resulting dialog Box or by simply adding  *severity = error* directly to filter box.
 * Either way, you now should have only all the error log lines.
-* You could add the service name (`sf_service=paymentservice`) to the filter if there are error lines for multiple services, but in our case, that is not necessary.
+* You could add the service name (*sf_service=paymentservice*) to the filter if there errors lines for multiple services, but in our case that is not really necessary.
 
 ![Error Logs](../images/log-observer-errors.png)
 

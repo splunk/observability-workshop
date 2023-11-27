@@ -30,6 +30,13 @@ The result should be similar to the dashboard below:
 
 ![Custom Dashboard](../images/log-observer-custom-dashboard.png)
 
+* As the last step in this exercise, lets add your dashboard to your workshop team page, this will make it easy to find later in the workshop.
+* At the  top of the page, click on the ***...*** behind the name of your dashboard (1).
+* Select Link to teams from the drop down (2).
+* In the follow **Link to teams** up dialog box, find the name of the workshops team, the instructor should have provided that for you
+
+![linking](../images/linking.png)
+
 {{% /notice %}}
 
 In the next session we will look at Splunk Synthetics to see how we can automate testing out Website.
