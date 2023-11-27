@@ -31,7 +31,7 @@ The screenshot above shows the main part of the Kubernetes navigator. It will sh
 
 Before we dive deeper, let's make sure we are looking at our cluster.
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 * First, use the ![k8s filter](images/k8s-add-filter.png?classes=inline) option to pick your cluster.
 * This can be done by selecting `k8s.cluster.name` from the filter drop-down box.

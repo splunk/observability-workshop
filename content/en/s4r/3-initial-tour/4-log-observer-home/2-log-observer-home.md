@@ -24,7 +24,7 @@ Generally, in Splunk, an "index" refers to a  designated place where your data i
 
 Let's run a little search exercise.
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 * Set the time frame to  **-15m**.
 * Click on {{% button style="gray" %}}Add Filter{{% /button %}} in the filter bar then click on **Fields** in the dialog.

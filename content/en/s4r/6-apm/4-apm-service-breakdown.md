@@ -7,7 +7,7 @@ From the service map view, click on **paymentservice** to select it. You can use
 
 More story here ...
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 * In the right-hand pane there is a button {{% button style="grey"  %}}Breakdown{{% /button %}}. Click on this button to view the tags the service can be broken down by.
 * Select `tenant.level`.
@@ -23,7 +23,7 @@ You will now see the **paymentservice** broken down by `tenant.level` and each t
 
 ![APM Service Breakdown](../images/apm-service-breakdown.png)
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 * Click on any one of the red dotted lines coming from the **checkoutservice** to `v350.10`.
 * Take a look at the **Service-to-Service Requests & Errors** chart.

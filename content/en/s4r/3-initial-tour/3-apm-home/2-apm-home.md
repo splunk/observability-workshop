@@ -22,7 +22,7 @@ To easily differentiate between multiple applications, Splunk uses **environment
 
 {{% /notice %}}
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 * Verify that the time window we are working with is set to the last 15 minutes (**-15m**).
 * Change the environment to the workshop one by selecting its name from the drop-down box and make sure that is the only one selected.

@@ -9,7 +9,7 @@ Each span in Splunk APM captures a single operation. Splunk APM considers a span
 
 ![Trace Waterfall](../images/apm-trace-waterfall.png)
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 * Click on the {{% button style="red"  %}}!{{% /button %}} next to the **paymentservice** span in the waterfall.
 * What is the error message being reported in the span metadata?

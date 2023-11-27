@@ -19,7 +19,7 @@ As part of the workshop we have created a default browser test against the appli
 
 To continue our tour, let's look at the result of our workshop's automatic browser test.  
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 * In the Test Pane, double-click on the line that contains the name of your workshop. The result should look like this:
 

@@ -11,7 +11,7 @@ Splunk Observability Cloud provides several tools for exploring application moni
 
 In **Trace Analyzer** you can filter traces by any indexed/unindexed span tag. In this case, we want to filter the traces by `version` as we know from the previous exercise that `v350.10` is causing problems.
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 * In the time picker select **Last 1 hour**.
 * Make sure **Sample Ratio** is set to `1:1` and **not** `1:10`.

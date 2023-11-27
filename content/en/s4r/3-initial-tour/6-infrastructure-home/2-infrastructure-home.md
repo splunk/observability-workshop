@@ -17,7 +17,7 @@ Click on **Infrastructure** in the main menu, the Infrastructure Home Page is ma
 
 Using the Infrastructure pane, we can select the infrastructure/technology we are interested in, let's do that now.
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 * Under the **Containers** section in the Integrations Pane (**3**), select **Kubernetes** as the technology you wish to examine.
 * This should show you two tiles, **K8s Nodes** and **K8s Workloads**.

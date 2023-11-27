@@ -20,7 +20,7 @@ We will be using these charts later on in the workshop. Click the back button in
 
 ![APM Explore](../images/apm-explore.png)
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 * In the Service Map hover over the **paymentservice**. What can you conclude from the popup service chart?
 

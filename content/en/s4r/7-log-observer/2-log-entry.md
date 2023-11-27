@@ -35,7 +35,7 @@ graph LR;
 * Using traces and span tags we found **where the problem is**. The **paymentservice** comprises two versions, `v350.9` and `v350.10`, and the error rate was **100%** for `v350.10`.
 * Using the power of Related Content we have arrived at the log entries for the failing **paymentservice** version. Now, we can determine **what the problem is**.
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 * Click on an error entry in the log table.
 * What is the error?

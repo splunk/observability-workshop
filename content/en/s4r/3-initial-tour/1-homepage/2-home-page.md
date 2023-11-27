@@ -19,7 +19,7 @@ After you have registered and logged into the Splunk Observability Cloud UI you 
 
 Lets start with our first exercise:
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 * Expand the Main Menu and click on **Settings**.
 * Click **Onboarding Guidance** (Here you can toggle the visibility of the onboarding panes. This is useful if you know the product well enough, and can use the space to show more information).

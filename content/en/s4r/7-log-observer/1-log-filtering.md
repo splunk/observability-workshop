@@ -15,7 +15,7 @@ Even in the small application as our Online Boutique, the sheer amount of logs c
 
 So lets run an exercise to drill down into the logs:
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 Lets focus on just the Error messages in the logs:
 

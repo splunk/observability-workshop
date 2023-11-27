@@ -15,7 +15,7 @@ In the Kubernetes Navigator, the cluster is represented by the square with the b
 
 Given there are two red boxes or tiles, let's see what is going on and if this will affect our E-commerce site.
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 * First, set the time window we are working with to the last 15 minutes. You do this by using the drop-down in the Filter pane **-4h** at the top of the page to **the last 15 minutes**.
 

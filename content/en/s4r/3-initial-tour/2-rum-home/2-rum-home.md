@@ -26,7 +26,7 @@ Independent of the type of Status Dashboard's used, the RUM Home Page is made up
 
 Lets run an exercise:
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 * Ensure the time window is set to **-15m**
 * Select the environment for your workshop from the drop-down box. The naming convention is **[NAME OF WORKSHOP]**

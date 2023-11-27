@@ -15,7 +15,7 @@ First, let's look at the *Information Pane*, this pane provides alert and detect
 
 Meta Data is sent along with the metrics and is very useful for identifying trends when looking into issues. An example could be a pod failing when deployed on a specific Operating System.
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 * Can you identify the Operating System and Architecture of the node from the metadata?
 
@@ -33,7 +33,7 @@ A good example of this is the Kubernetes Navigator showing you related Content t
 
 In the **Information Pane**, you should see two tiles for services detected, the two databases used by our e-commerce application. Let's use this **Related Content**.
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 * First, make sure you no longer have a filter for the development namespace active. (Simply click on the **x** to remove it from the Filter Pane) as there are no databases in the Development Namespace.
 * Hoover on the *Redis* tile, and click on the {{% button style="blue" %}}Goto all my Redis instances{{% /button %}} button

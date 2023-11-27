@@ -5,7 +5,7 @@ weight: 3
 
 The Log Timeline chart is a powerful tool for visualizing log messages over time. It is a great way to see the frequency of log messages and to identify patterns. It is also a great way to see the distribution of log messages across your environment. These charts can be saved to a custom dashboard (we will come on to this later in the workshop).
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 * Click on the cog to open **Table Settings**, untick **_raw** and ensure the following fields are selected:
   * `k8s.pod_name`
@@ -29,7 +29,7 @@ Next, we will create a **Log View** chart.
 
 The **Log View** chart type will allow us to see log messages in our custom dashboard.
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 * Click on **Save** and then **Save to Dashboard** again.
 * Enter **Chart name**, this will be the name of the chart on the dashboard. Use the following format: `Initials - Log View Chart`
