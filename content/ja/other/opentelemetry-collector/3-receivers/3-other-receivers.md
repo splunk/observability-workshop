@@ -1,40 +1,39 @@
 ---
-title: OpenTelemetry Collector Receivers
-linkTitle: 3. Other Receivers
+title: OpenTelemetry Collector レシーバー
+linkTitle: 3. その他のレシーバー
 weight: 3
 ---
 
-## Other Receivers
+## その他のレシーバー
 
-You will notice in the default configuration there are other receivers: **otlp**, **opencensus**, **jaeger** and **zipkin**. These are used to receive telemetry data from other sources. We will not be covering these receivers in this workshop and they can be left as they are.
+デフォルトの設定には、他のレシーバーがあることに気づくはずです。 **otlp**、**opencensus**、**jaeger**、**zipkin** が定義されています。これらは他のソースからテレメトリーデータを受信するために使われます。このワークショップでは、これらのレシーバーについては取り上げませんので、そのままにしておきましょう。
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Create receivers dynamically{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** レシーバーを動的に生成する{{% /badge %}}" %}}
 
-To help observe short lived tasks like docker containers, kubernetes pods, or ssh sessions, we can use the [receiver creator](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/receivercreator) with [observer extensions](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/observer) to create a new receiver as these services start up.
+dockerコンテナ、kubernetesポッド、sshセッションのような短時間のタスクを観測するために、[receiver creator](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/receivercreator) レシーバーと [observer](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/observer) エクステンションを使って、対象のサービスが起動するタイミングで新しいレシーバーを作成することができます。
 
-## What do we need?
+## 何が必要なの？
 
-In order to start using the receiver creator and its associated observer extensions, they will need to be part of your collector build manifest.
+receiver creator とそれに関連する observer エクステンションの使用を開始するには、collector build manifest に追加する必要があります。
 
-See [installation](../1-installation/) for the details.
+詳細は [installation](../1-installation/) を参照してください。
 
-## Things to consider?
+## 注意事項はある？
 
-Some short lived tasks may require additional configuration such as _username_, and _password_.
-These values can be referenced via [environment variables](https://opentelemetry.io/docs/collector/configuration/#configuration-environment-variables),
-or use a scheme expand syntax such as `${file:./path/to/database/password}`.
-Please adhere to your organisation's secret practices when taking this route.
+短命なタスクの中には、_username_ や _password_ のような追加設定を必要とするものがあります。それらの値は[環境変数](https://opentelemetry.io/docs/collector/configuration/#configuration-environment-variables) を参照したり、 `${file:./path/to/database/password}` のようなスキーム展開構文を使うこともできます。
 
-## The Ninja Zone
+組織における機密情報の取り扱い規定に従って、どのような方法を取るかを検討してください。
 
-There are only two things needed for this ninja zone:
+## Ninja ゾーン
 
-1. Make sure you have added receiver creater and observer extensions to the builder manifest.
-2. Create the config that can be used to match against discovered endpoints.
+この Ninja ゾーンに必要なものは2つだけです:
 
-To create the templated configurations, you can do the following:
+1. ビbuilder manifestに、 receiver creator レシーバーと observer エクステンションが追加する
+2. 検出されたエンドポイントを検出するように、設定を作成する
+
+次のようにすると、設定をテンプレート化できます:
 
 ```yaml
 receiver_creator:
@@ -46,19 +45,19 @@ receiver_creator:
         password: ${env:HOST_REDIS_PASSWORD}
 ```
 
-For more examples, refer to these [receiver creator's examples](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/receivercreator#examples).
+他の例は [receiver creator's examples](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/receivercreator#examples) にあります。
 
 {{% /expand %}}
 
 ---
 
-## Configuration Check-in
+## 設定の確認
 
-We've now covered receivers, so let's now check our configuration changes.
+これで、レシーバーをカバーできました。ここで、設定のの変更内容をチェックしてみましょう。
 
 ---
 
-{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your configuration{{% /badge %}}" %}}
+{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}設定をレビューしてください{{% /badge %}}" %}}
 {{< tabs >}}
 {{% tab title="config.yaml" %}}
 
@@ -148,8 +147,8 @@ service:
 
 ---
 
-Now that we have reviewed how data gets into the OpenTelemetry Collector through receivers, let's now take a look at how the Collector processes the received data.
+これで、レシーバーを通して OpenTelemetry Collector にデータがどのように取り込まれるかを確認しました。次に、コレクターが受信したデータをどのように処理するかを見てみましょう。
 
 {{% notice style="warning" %}}
-As the `/etc/otelcol-contrib/config.yaml` is not complete, please **do not** attempt to restart the collector at this point.
+**ここではコレクターを再起動しないでください**！  `/etc/otelcol-contrib/config.yaml` の変更はまだ完了していません。
 {{% /notice %}}

@@ -1,12 +1,14 @@
 ---
-title: OpenTelemetry Collector Receivers
-linkTitle: 3. Receivers
+title: OpenTelemetry Collector レシーバー
+linkTitle: 3. レシーバー
 weight: 3
 ---
 
-Welcome to the receiver portion of the workshop! This is the starting point of the data pipeline of the OpenTelemetry Collector. Let's dive in.
+レシーバーワークショップへようこそ！OpenTelemetry Collectorのデータパイプラインのスタート地点です。さあ、始めましょう。
 
-A receiver, which can be push or pull based, is how data gets into the Collector. Receivers may support one or more data sources. Generally, a receiver accepts data in a specified format, translates it into the internal format and passes it to processors and exporters defined in the applicable pipelines.
+レシーバーはデータをCollectorに取り込む方法で、プッシュベースとプルベースのものがあります。レシーバーは1つ以上のデータソースをサポートします。一般的に、レシーバーは指定されたフォーマットでデータを受け入れ、内部フォーマットに変換し、該当するパイプラインで定義されたプロセッサやエクスポータにデータを渡します。
+
+プッシュまたはプルベースのレシーバは、データをCollectorに取り込む方法です。レシーバは 1 つまたは複数のデータソースをサポートします。通常、レシーバは指定されたフォーマットでデータを受け入れ、内部フォーマットに変換し、該当するパイプラインで定義されたプロセッサーや エクスポーターにデータを渡します。
 
 {{< mermaid >}}
 %%{

@@ -1,14 +1,14 @@
 ---
-title: OpenTelemetry Collector Receivers
+title: OpenTelemetry Collector レシーバー
 linkTitle: 1. Host Metrics
 weight: 1
 ---
 
-## Host Metrics Receiver
+## Host Metrics レシーバー
 
-[**The Host Metrics Receiver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/README.md) generates metrics about the host system scraped from various sources. This is intended to be used when the collector is deployed as an agent which is what we will be doing in this workshop.
+[**Host Metrics レシーバー**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/README.md) は、さまざまなソースからスクレイピングされたホストシステムに関するメトリクスを生成します。これは、コレクターがエージェントとしてデプロイされるときに使用さます。
 
-Let's update the `/etc/otel-contrib/config.yaml` file and configure the **hostmetrics** receiver. Insert the following YAML under the **receivers** section, taking care to indent by two spaces.
+`etc/otel-contrib/config.yaml` ファイルを更新して、**hostmetrics** レシーバーを設定してみましょう。以下の YAML を **receivers** セクションの下に挿入します。
 
 ``` bash
 sudo vi /etc/otelcol-contrib/config.yaml

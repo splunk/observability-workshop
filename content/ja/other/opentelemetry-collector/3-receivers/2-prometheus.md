@@ -1,14 +1,14 @@
 ---
-title: OpenTelemetry Collector Receivers
+title: OpenTelemetry Collector レシーバー
 linkTitle: 2. Prometheus
 weight: 2
 ---
 
-## Prometheus Receiver
+## Prometheus レシーバー
 
-You will also notice another receiver called **prometheus**. [Prometheus](https://prometheus.io/docs/introduction/overview/) is an open-source toolkit used by the OpenTelemetry Collector. This receiver is used to scrape metrics from the OpenTelemetry Collector itself. These metrics can then be used to monitor the health of the collector.
+**prometheus** というレシーバーも、もちろんあります。[Prometheus](https://prometheus.io/docs/introduction/overview/) は OpenTelemetry Collector で使われているオープンソースのツールキットです。このレシーバーは、OpenTelemetry Collector 自身からメトリクスをスクレイピングするためにも使われます。これらのメトリクスは、コレクタの健全性をモニタリングするために使用できる。
 
-Let's modify the **prometheus** receiver to clearly show that it is for collecting metrics from the collector itself. By changing the name of the receiver from **prometheus** to **prometheus/internal**, it is now much clearer as to what that receiever is doing. Update the configuration file to look like this:
+ここでは、**prometheus** レシーバーを変更して、コレクター自身からメトリクスを収集できるようにしてみます。レシーバーの名前を **prometheus** から **prometheus/internal** に変更して、レシーバーが何をしているのかをより明確しましょう。設定ファイルを以下のように更新します：
 
 {{% tab title="Prometheus Receiver Configuration" %}}
 
@@ -24,12 +24,15 @@ prometheus/internal:
 
 {{% /tab %}}
 
-## Example Dashboard - Prometheus metrics
+## ダッシュボード例 - Prometheus メトリクス
 
-The following screenshot shows an example dashboard of spme of the metrics the Prometheus internal receiver collects from the OpenTelemetry Collector. Here, we can see accepted and sent spans, metrics and log records.
+
+
+このスクリーンショットは、 `prometheus/internal` レシーバーが OpenTelemetry Collector から収集したメトリクスの、spmeのダッシュボードの例です。ここではスパン・メトリクス・ログの、それぞれの受信および送信の様子を見ることができます。
 
 {{% notice style="note" %}}
-The following screenshot is an out-of-the-box (OOTB) dashboard from Splunk Observability Cloud that allows you to easily monitor your Splunk OpenTelemetry Collector install base.
+このダッシュボードはSplunk Observability Cloud にある組み込みダッシュボードで、Splunk OpenTelemetry Collector のインストールの状況を簡単にモニタリングできます。
 {{% /notice %}}
+
 
 ![otel-charts](../../images/otel-charts.png)
