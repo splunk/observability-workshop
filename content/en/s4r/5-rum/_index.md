@@ -1,5 +1,5 @@
 ---
-title: Real User Monitoring Exercise
+title: Splunk RUM
 linkTitle:  5. Splunk RUM
 weight: 5
 archetype: chapter
