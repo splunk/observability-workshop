@@ -1,14 +1,14 @@
 ---
-title: OpenTelemetry Collector Service
+title: OpenTelemetry Collector サービス
 linkTitle: 6.5 OTLP HTTP
 weight: 5
 ---
 
-## OTLP HTTP Exporter
+## OTLP HTTP エクスポーター
 
-In the Exporters section of the workshop, we configured the `otlphttp` exporter to send metrics to Splunk Observability Cloud. We now need to enable this under the metrics pipeline.
+ワークショップのエクスポーターセクションでは、`otlphttp` エクスポーターを設定して、メトリクスを Splunk Observability Cloud に送信するようにしました。これをメトリクスパイプライン下で有効にする必要があります。
 
-Update the `exporters` section to include `otlphttp/splunk` under the `metrics` pipeline:
+`metrics` パイプラインの下の `exporters` セクションを更新して、`otlphttp/splunk` を追加します：
 
 ```yaml {hl_lines="13"}
 service:
@@ -28,23 +28,21 @@ service:
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Observing the collector internals{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** コレクターの内部を観測する{{% /badge %}}" %}}
 
-The collector captures internal signals about its behavior this also include additional signals from running components.
-The reason for this is that components that make decisions about the flow of data need a way to surface that information
-as metrics or traces.
+コレクターは、その動作に関する内部シグナルを捕捉しています。これには実行中のコンポーネントからの追加されるシグナルも含まれます。これは、データの流れに関する決定を行うコンポーネントが、その情報をメトリクスやトレースとして表面化する方法を必要とするためです。
 
-## Why monitor the collector?
+## なぜコレクターを監視するの？
 
-This is somewhat of a chicken and egg problem of, "Who is watching the the watcher?", but it is important that we can surface this information. Another interesting part of the collector's history is that it existed before the Go metrics' SDK was considered stable so the collector exposes a prometheus endpoint to provide this functionality for the time being.
+これは「監視者を監視するのは誰か？」という種類の問題ですが、このような情報を表面化できることは重要です。コレクターの歴史の興味深い部分は、GoメトリクスのSDKが安定と考えられる前に存在していたことで、コレクターは当面の間、この機能を提供するために Prometheus エンドポイントを公開しています。
 
-## Considerations
+## 注意点
 
-Monitoring the internal usage of each running collector in your organisation can contribute a significant amount of new Metric Time Series (MTS). The Splunk distribution has curated these metrics for you and would be able to to help forcast the expected increases.
+組織内で稼働している各コレクターの内部使用状況を監視することは、新しいメトリクス量（MTS）を大幅な増加させる可能性があります。Splunkディストリビューションはこれらのメトリクスをキュレーションしており、増加を予測するのに役立ちます。
 
-## The Ninja Zone
+## Ninja ゾーン
 
-To expose the internal observability of the collector, there are some additional settings that can be adjusted:
+コレクターの内部オブザーバビリティを公開するためには、いくつかの設定を追加することがあります：
 
 {{< tabs >}}
 {{% tab title="telemetry schema" %}}
@@ -87,7 +85,7 @@ service:
 {{% /tab %}}
 {{< /tabs >}}
 
-## References
+## 参照
 
 1. [https://opentelemetry.io/docs/collector/configuration/#service](https://opentelemetry.io/docs/collector/configuration/#service)
 
@@ -95,11 +93,11 @@ service:
 
 ---
 
-## Final configuration
+## 完成した設定
 
 ---
 
-{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your final configuration{{% /badge %}}" %}}
+{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}完成した設定をレビューしてください{{% /badge %}}" %}}
 {{< tabs >}}
 {{% tab title="config.yaml" %}}
 
@@ -206,7 +204,7 @@ service:
 ---
 
 {{% notice style="tip" %}}
-It is recommended that you validate your configuration file before restarting the collector. You can do this by using the built-in `validate` command:
+コレクターを再起動する前に、設定ファイルを検証することをお勧めします。これは、組み込みの `validate` コマンドを使用して行うことができます：
 
 {{< tabs >}}
 {{% tab title="Command" %}}
@@ -235,7 +233,7 @@ Error: failed to get config: cannot unmarshal the configuration: 1 error(s) deco
 {{< /tabs >}}
 {{% /notice %}}
 
-Now that we have a working configuration, let's start the collector and then check to see what [zPages](../2-extensions/#zpages) is reporting.
+動作する設定ができたので、コレクターを起動し、その後 [zPages](../2-extensions/#zpages) が報告している内容を確認しましょう。
 
 {{% tab title="Command" %}}
 

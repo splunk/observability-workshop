@@ -1,14 +1,14 @@
 ---
-title: OpenTelemetry Collector Service
+title: OpenTelemetry Collector サービス
 linkTitle: 6.1 Host Metrics
 weight: 1
 ---
 
-## Hostmetrics Receiver
+## Hostmetrics レシーバー
 
-If you recall from the Receivers portion of the workshop, we defined the [Host Metrics Receiver](../3-receivers/#host-metrics-receiver) to generate metrics about the host system, which are scraped from various sources. To enable the receiver, we must include the `hostmetrics` receiver in the metrics pipeline.
+ワークショップのレシーバー部分で振り返ると、ホストシステムに関するメトリクスを生成するために、様々なソースからスクレイピングする [Host Metrics](../3-receivers/#host-metrics-receiver) レシーバーを定義しました。このレシーバーを有効にするためには、メトリクスパイプラインに `hostmetrics` レシーバーを含める必要があります。
 
-In the `metrics` pipeline, add `hostmetrics` to the metrics `receivers` section.
+`metrics` パイプラインで、メトリクスの `receivers` セクションに `hostmetrics` を追加します。
 
 ```yaml {hl_lines="11"}
 service:

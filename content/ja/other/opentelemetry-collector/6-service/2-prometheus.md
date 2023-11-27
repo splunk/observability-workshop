@@ -1,14 +1,14 @@
 ---
-title: OpenTelemetry Collector Service
+title: OpenTelemetry Collector サービス
 linkTitle: 6.2 Prometheus
 weight: 2
 ---
 
-## Prometheus Internal Receiver
+## Prometheus Internal レシーバー
 
-Earlier in the workshop, we also renamed the `prometheus` receiver to reflect that is was collecting metrics internal to the collector, renaming it to `prometheus/internal`.
+ワークショップの前半で、`prometheus` レシーバーの名前を変更し、コレクター内部のメトリクスを収集していることを反映して、`prometheus/internal` という名前にしました。
 
- We now need to enable the `prometheus/internal` receiver under the metrics pipeline. Update the `receivers` section to include `prometheus/internal` under the `metrics` pipeline:
+現在、メトリクスパイプラインの下で `prometheus/internal` レシーバーを有効にする必要があります。`metrics` パイプラインの下の `receivers` セクションを更新して、`prometheus/internal` を含めます：
 
 ```yaml {hl_lines="11"}
 service:

@@ -1,14 +1,14 @@
 ---
-title: OpenTelemetry Collector Service
+title: OpenTelemetry Collector サービス
 linkTitle: 6.4 Attributes
 weight: 4
 ---
 
-## Attributes Processor
+## Attributes プロセッサー
 
-Also in the Processors section of this workshop, we added the `attributes/conf` processor so that the collector will inset a new attribute called `participant.name` to all the metrics. We now need to enable this under the metrics pipeline.
+また、このワークショップのプロセッサーセクションでは、`attributes/conf` プロセッサーを追加し、コレクターがすべてのメトリクスに `participant.name` という新しい属性を挿入するようにしました。これをメトリクスパイプライン下で有効にする必要があります。
 
-Update the `processors` section to include `attributes/conf` under the `metrics` pipeline:
+`metrics` パイプラインの下の `processors` セクションを更新して、`attributes/conf` を追加します：
 
 ```yaml {hl_lines="12"}
 service:

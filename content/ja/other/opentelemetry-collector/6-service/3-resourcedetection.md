@@ -1,14 +1,14 @@
 ---
-title: OpenTelemetry Collector Service
+title: OpenTelemetry Collector サービス
 linkTitle: 6.3 Resource Detection
 weight: 3
 ---
 
-## Resource Detection Processor
+## Resource Detection プロセッサー
 
-We also added `resourcedetection/system` and `resourcedetection/ec2` processors so that the collector can capture the instance hostname and AWS/EC2 metadata. We now need to enable these two processors under the metrics pipeline.
+また、コレクターがインスタンスのホスト名やAWS/EC2のメタデータを取得できるように、`resourcedetection/system` および `resourcedetection/ec2` プロセッサーを追加しました。これらのプロセッサーをメトリクスパイプライン下で有効にする必要があります。
 
-Update the `processors` section to include `resourcedetection/system` and `resourcedetection/ec2` under the `metrics` pipeline:
+`metrics` パイプラインの下の `processors` セクションを更新して、`resourcedetection/system` および `resourcedetection/ec2` を追加します：
 
 ```yaml {hl_lines="12"}
 service:

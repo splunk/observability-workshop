@@ -1,26 +1,27 @@
 ---
-title: OpenTelemetry Collector Service
-linkTitle: 6. Service
+title: OpenTelemetry Collector サービス
+linkTitle: 6. サービス
 weight: 6
 ---
 
-The **Service** section is used to configure what components are enabled in the Collector based on the configuration found in the receivers, processors, exporters, and extensions sections.
+**Service** セクションでは、レシーバー、プロセッサー、エクスポーター、およびエクステンションにある設定に基づいて、コレクターで有効にするコンポーネントを設定していきます。
+
 
 {{% notice style="info" %}}
-If a component is configured, but not defined within the **Service** section then it is **not** enabled.
+コンポーネントが設定されていても、**Service** セクション内で定義されていない場合、そのコンポーネントは**有効化されません**。
 {{% /notice %}}
 
-The service section consists of three sub-sections:
+サービスのセクションは、以下の3つのサブセクションで構成されています：
 
-- extensions
-- pipelines
-- telemetry
+- extensions（拡張機能）
+- pipelines（パイプライン）
+- telemetry（テレメトリー）
 
-In the default configuration, the extension section has been configured to enable `health_check`, `pprof` and `zpages`, which we configured in the Extensions module earlier.
+デフォルトの設定では、拡張機能セクションが `health_check`、`pprof`、`zpages` を有効にするように設定されており、これらは以前のエクステンションのモジュールで設定しました。
 
 ``` yaml
 service:
   extensions: [health_check, pprof, zpages]
 ```
 
-So lets configure our Metric Pipeline!
+それでは、メトリックパイプラインを設定していきましょう！
