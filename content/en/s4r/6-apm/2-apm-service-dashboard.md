@@ -20,7 +20,6 @@ We will be using these charts later on in the workshop. Click the back button in
 
 ![APM Explore](../images/apm-explore.png)
 
-<!--
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 
 * In the Service Map hover over the **paymentservice**. What can you conclude from the popup service chart?
@@ -30,4 +29,3 @@ We will be using these charts later on in the workshop. Click the back button in
 ![APM Service Chart](../images/apm-service-popup-chart.png)
 
 We need to understand if there is a pattern to this error rate. We have a handy tool for that, **Tag Spotlight**.
--->

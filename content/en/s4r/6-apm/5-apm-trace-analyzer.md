@@ -1,6 +1,6 @@
 ---
-title: 6. APM Trace Analyzer
-weight: 6
+title: 5. APM Trace Analyzer
+weight: 5
 ---
 
 In the right-hand pane, click on **Traces**. To ensure we are using **Trace Analyzer** make sure the button {{% button %}}Switch to Classic View{{% /button %}} is showing. If it is not, click on {{% button style="blue" %}}Switch to Trace Analyzer{{% /button %}}.

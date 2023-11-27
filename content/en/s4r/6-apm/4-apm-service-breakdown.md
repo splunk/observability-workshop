@@ -1,6 +1,6 @@
 ---
-title: 5. APM Service Breakdown
-weight: 5
+title: 4. APM Service Breakdown
+weight: 4
 ---
 
 From the service map view, click on **paymentservice** to select it. You can use the Breakdown selector to break the service down by any indexed span tag.
