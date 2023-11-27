@@ -33,9 +33,9 @@ The result should be similar to the dashboard below:
 * As the last step in this exercise, lets add your dashboard to your workshop team page, this will make it easy to find later in the workshop.
 * At the  top of the page, click on the ***...*** behind the name of your dashboard (1).
 * Select Link to teams from the drop down (2).
-* In the follow **Link to teams** up dialog box, find the name of the workshops team, the instructor should have provided that for you
+* In the follow **Link to teams** up dialog box, find the name of the workshops team, the instructor should have provided that for you.
 
-![linking](../images/linking.png)
+![linking](../images/linking.png?width=40vw)
 
 {{% /notice %}}
 
