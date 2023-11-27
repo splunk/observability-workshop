@@ -15,9 +15,21 @@ The following Organizations are used for running Observability Workshops. They h
 - Observability Workshop AMER [US1]
 - APAC-O11y-Workshop [US1]
 
+It is also possible to create workshop environments in any Trial Org. Please note, the following features are not available in Trial Orgs by default and must be enabled:
+
+- Synthetic Monitoring
+
+The following Orgs are blacklisted and cannot be used for running workshops:
+
+- EU Splunk Show [EU0]
+- US Splunk Show [US1]
+- Show Playground [US1]
+
 ### Step 1: Configure Your Org Using SWiPE
 
-SWiPE is an online tool to help configure a workshop environment in Splunk Observability Cloud and is available [here](https://swipe.splunk.show). Please note, SWiPE **does not** provision EC2 instances - these are provisioned using Splunk Show (see Step 2 below). SWiPE will configure the following:
+![SWiPE](../images/swipe.png)
+
+**SWiPE** is an online tool to help configure a workshop environment in Splunk Observability Cloud and is available [here](https://swipe.splunk.show). Please note, **SWiPE** does not provision EC2 instances - these are provisioned using Splunk Show (see Step 2 below).**SWiPE** will configure the following:
 
 - Create and invite users to the Org. Create a `.csv` file containing the e-mail addresses (one per line) **or** copy and paste e-mail addresses (one per line).
 - Create a team and add users to the team.
@@ -30,16 +42,18 @@ SWiPE is an online tool to help configure a workshop environment in Splunk Obser
 
   You will need to make a copy of these to provision the EC2 instances in Splunk Show.
 
-Post-workshop, you can use SWIPE to clean up the Org. SWiPE will complete the following:
+Post-workshop, you can use SWIPE to clean up the Org. **SWiPE** will complete the following:
 
 - Delete all the users associated with the workshop
 - Delete the team
 - Delete the tokens (INGEST, API and RUM)
 - Delete user dashboards
 
-SWiPE does also provide some advanced features for deleting tokens and detectors, but this must be used with caution.
+**SWiPE** does also provide some advanced features for deleting tokens and detectors, but this must be used with caution.
 
 ### Step 2: Provision the EC2 Instances Using Splunk Show
+
+![Splunk Show](../images/splunk-show.png)
 
 Please visit [Splunk Show](https://show.splunk.com/template/262/?type=workshop) to provision your EC2 environment(s). Select the desired **Content Type** as follows:
 
@@ -54,6 +68,6 @@ For further guidance on using Splunk Show please see the [Splunk Show User Guide
 
 ### Workshop Clean-up
 
-Once you have completed your workshop session please remember to go back and clean up the environment using SWiPE. Also, ensure your EC2 instances are spun down to save costs.
+Once you have completed your workshop session please remember to go back and clean up the environment using **SWiPE**. Also, ensure your EC2 instances are spun down to save costs.
 
 Happy Workshopping!
