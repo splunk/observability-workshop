@@ -1,14 +1,14 @@
 ---
-title: OpenTelemetry Collector Processors
+title: OpenTelemetry Collector プロセッサー
 linkTitle: 4.2 Resource Detection
 weight: 2
 ---
 
-## Resource Detection Processor
+## Resource Detection プロセッサー
 
-The **resourcedetection** processor can be used to detect resource information from the host and append or override the resource value in telemetry data with this information.
+**resourcedetection** プロセッサーは、ホストからリソース情報を検出して、テレメトリーデータ内のリソース値をこの情報で追加または上書きすることができます。
 
-By default, the hostname is set to the FQDN if possible, otherwise the hostname provided by the OS is used as a fallback. This logic can be changed from using using the `hostname_sources` configuration option. To avoid getting the FQDN and use the hostname provided by the OS, we will set the `hostname_sources` to `os`.
+デフォルトでは、可能であればホスト名を FQDN に設定し、そうでなければ OS が提供するホスト名になります。このロジックは `hostname_sources` オプションを使って変更できます。FQDN を取得せず、OSが提供するホスト名を使用するには、`hostname_sources`を`os`に設定します。
 
 {{% tab title="System Resource Detection Processor Configuration" %}}
 
@@ -24,6 +24,7 @@ processors:
 {{% /tab %}}
 
 If the workshop instance is running on an AWS/EC2 instance we can gather the following tags from the EC2 metadata API (this is not available on other platforms).
+ワークショップのインスタンスが AWS/EC2 インスタンスで実行されている場合、EC2 のメタデータ API から以下のタグを収集します（これは他のプラットフォームでは利用できないものもあります）。
 
 - `cloud.provider ("aws")`
 - `cloud.platform ("aws_ec2")`
@@ -35,7 +36,7 @@ If the workshop instance is running on an AWS/EC2 instance we can gather the fol
 - `host.name`
 - `host.type`
 
-We will create another processor to append these tags to our metrics.
+これらのタグをメトリクスに追加するために、別のプロセッサーとして定義してみましょう。
 
 {{% tab title="EC2 Resource Detection Processor Configuration" %}}
 

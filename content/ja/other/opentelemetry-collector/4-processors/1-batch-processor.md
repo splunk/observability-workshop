@@ -1,13 +1,13 @@
 ---
-title: OpenTelemetry Collector Processors
+title: OpenTelemetry Collector プロセッサー
 linkTitle: 4.1 Batch
 weight: 1
 ---
 
-## Batch Processor
+## Batch プロセッサー
 
-By default, only the **batch** processor is enabled. This processor is used to batch up data before it is exported. This is useful for reducing the number of network calls made to exporters. For this workshop we will accept the defaults:
+デフォルトでは、**batch** プロセッサーだけが有効になっています。このプロセッサーは、データをエクスポートする前にバッチ処理して、エクスポーターへのネットワーク・コールの回数を減らすために使われます。このワークショップではデフォルトの設定を使用します：
 
-- `send_batch_size` (default = 8192): Number of spans, metric data points, or log records after which a batch will be sent regardless of the timeout. send_batch_size acts as a trigger and does not affect the size of the batch. If you need to enforce batch size limits sent to the next component in the pipeline see send_batch_max_size.
-- `timeout` (default = 200ms): Time duration after which a batch will be sent regardless of size. If set to zero, send_batch_size is ignored as data will be sent immediately, subject to only send_batch_max_size.
-- `send_batch_max_size` (default = 0): The upper limit of the batch size. 0 means no upper limit of the batch size. This property ensures that larger batches are split into smaller units. It must be greater than or equal to send_batch_size.
+- `send_batch_size` (デフォルト = 8192): タイムアウトに関係なく、バッチを送信するスパン、メトリクスデータポイント、またはログレコードの数。パイプラインの次のコンポーネントに送信されるバッチサイズを制限する場合には、 `send_batch_max_size` を使います。
+- `timeout` (デフォルト = 200ms): サイズに関係なく、バッチが送信されるまでの時間。ゼロに設定すると、`send_batch_size` の設定を無視して `send_batch_max_size` だけが適用され、データは直ちに送信されます。
+- `send_batch_max_size` (デフォルト = 0): バッチサイズの上限。`0` を設定すると、バッチサイズの上限がないことして扱われます。この設定は、大きなバッチが小さなユニットに分割されることを保証します。`send_batch_size` 以上でなければななりません。

@@ -1,10 +1,11 @@
 ---
-title: OpenTelemetry Collector Processors
-linkTitle: 4. Processors
+title: OpenTelemetry Collector プロセッサー
+linkTitle: 4. プロセッサー
 weight: 4
 ---
 
-[**Processors**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/README.md) are run on data between being received and being exported. Processors are optional though some are recommended. There are [a large number of processors](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor) included in the OpenTelemetry contrib Collector.
+
+[**プロセッサー**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/README.md)は、レシーバーとエクスポーターとの間で、データに対して実行される処理です。プロセッサーはオプションですが、いくつかは推奨されています。OpenTelemetry Collector Contrib には[多数のプロセッサー](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor)が含まれています。
 
 {{< mermaid >}}
 %%{

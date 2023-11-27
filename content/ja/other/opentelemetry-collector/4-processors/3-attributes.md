@@ -1,31 +1,31 @@
 ---
-title: OpenTelemetry Collector Processors
+title: OpenTelemetry Collector プロセッサー
 linkTitle: 4.3 Attributes
 weight: 3
 ---
 
-## Attributes Processor
+## Attributes プロセッサー
 
-The attributes processor modifies attributes of a span, log, or metric. This processor also supports the ability to filter and match input data to determine if they should be included or excluded for specified actions.
+attribute プロセッサーを使うと、スパン、ログ、またはメトリクスの属性を変更できます。また、このプロセッサーは、入力データをフィルタリングし、マッチさせ、指定されたアクションに含めるべきか、除外すべきかを決定する機能もサポートしています。
 
-It takes a list of actions which are performed in order specified in the config. The supported actions are:
+アクションを設定するには、指定された順序で実行されるアクションのリストを記述します。サポートされるアクションは以下の通りです：
 
-- `insert`: Inserts a new attribute in input data where the key does not already exist.
-- `update`: Updates an attribute in input data where the key does exist.
-- `upsert`: Performs insert or update. Inserts a new attribute in input data where the key does not already exist and updates an attribute in input data where the key does exist.
-- `delete`: Deletes an attribute from the input data.
-- `hash`: Hashes (SHA1) an existing attribute value.
-- `extract`: Extracts values using a regular expression rule from the input key to target keys specified in the rule. If a target key already exists, it will be overridden.
+- `insert`: その属性がない場合に、新しい属性値を挿入します。
+- `update`: その属性がある場合に、その属性値を更新します。
+- `upsert`: insert または update を実行します。属性がない場合には新しい属性値を挿入し、属性がある場合にはその値を更新します。
+- `delete`: 入力データから属性値を削除します。
+- `hash`: 属性値をハッシュ化 (SHA1) します。
+- `extract`: 入力キーの値を正規表現ルールを使って抽出し、対象キーの値を更新します。対象キーがすでに存在する場合は、その値は上書きされます。
 
-We are going to create an attributes processor to `insert` a new attribute to all our host metrics called `participant.name` with a value of your own name e.g. `marge_simpson`.
+次の例のように、attribute プロセッサーを使って、キーは `participant.name`、あたいはあなたの名前（例: `marge_simpson`）という新しい属性を追加してみましょう。
 
 {{% notice style="warning" %}}
 
-Ensure you replace `INSERT_YOUR_NAME_HERE` with your own name and also ensure you **do not** use spaces in your name.
+`INSERT_YOUR_NAME_HERE` の箇所は、自分の名前に置き換えてください。また、自分の名前に **スペースを使わない** ようにしてください。
 
 {{% /notice %}}
 
-Later on in the workshop we will use this attribute to filter our metrics in Splunk Observability Cloud.
+このワークショップの後半では、この属性を使用して Splunk Observability Cloud でメトリクスをフィルタリングします。
 
 {{% tab title="Attributes Processor Configuration" %}}
 
@@ -49,26 +49,25 @@ processors:
 
 ---
 
-{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Using connectors to gain internal insights{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** コネクターを使って内部への洞察を加速する{{% /badge %}}" %}}
 
-One of the most recent additions to the collector was the notion of a [connector](https://opentelemetry.io/docs/collector/configuration/#connectors), which allows you to join output of one pipeline to input of another pipeline.
+最近追加されたものの一つとして、[connector](https://opentelemetry.io/docs/collector/configuration/#connectors) というコンセプトがあります。これを使うと、あるパイプラインの出力を別のパイプラインの入力に結合できるようになります。
 
-An example of how this is beneficial is that some services emit metrics based on the amount of datapoints being exported, number of logs containing an error status,
-or the amount of data being sent from one deployment environment. The count connector helps address this for you out of the box.
+利用シーンとして、送信するデータポイントの量、エラーステータスを含むログの数をメトリクスをとして出力するサービスがあります。他には、あるデプロイ環境から送信されるデータ量のメトリクスを生成するサービスがあります。このような場合に、count コネクターですぐに対応できます。
 
-## Why a connector instead of a processor?
+## プロセッサーではなくコネクターなのはなぜ？
 
-A processor is limited in what additional data it can produce considering it has to pass on the data it has processed making it hard to expose additional information. Connectors do not have to emit the data they received which means they provide an opportunity to create those insights we are after.
+プロセッサーは、処理したデータを次に渡すものであり、追加の情報を出力することはできません。コネクターはレシーバーで受け取ったデータを出力せずに、私たちが求める洞察を作り出す機会を提供します。
 
-For example, a connector could be made to count the number of logs, metrics, and traces that do not have the deployment environment attribute.
+たとえば、count コネクターを使うと、環境変数 `deployment` を持たないログ、メトリクス、トレースの数をカウントすることができます。
 
-A very simple example with the output of being able to break down data usage by deployment environment.
+また、非常にシンプルな例として、`deployment` 別にデータ使用量を分解して出力することもできます。
 
-## Considerations with connectors
+## コネクターの注意事項
 
-A connector only accepts data exported from one pipeline and receiver by another pipeline, this means you may have to consider how you construct your collector config to take advantage of it.
+コネクターは、あるパイプラインからエクスポートされ、別のパイプラインでレシーバーで定義されたデータのみを受け入れます。コレクターをどう構築してどう利用するか、設定を検討する必要があります。
 
-## References
+## 参照
 
 1. [https://opentelemetry.io/docs/collector/configuration/#connectors](https://opentelemetry.io/docs/collector/configuration/#connectors)
 2. [https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector)
@@ -77,13 +76,13 @@ A connector only accepts data exported from one pipeline and receiver by another
 
 ---
 
-## Configuration Check-in
+## 設定の確認
 
-That's processors covered, let's check our configuration changes.
+これで、プロセッサーがカバーできました。ここで、設定のの変更内容をチェックしてみましょう。
 
 ---
 
-{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your configuration{{% /badge %}}" %}}
+{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}設定をレビューしてください{{% /badge %}}" %}}
 {{< tabs >}}
 {{% tab title="config.yaml" %}}
 
