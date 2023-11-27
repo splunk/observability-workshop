@@ -1,13 +1,9 @@
 ---
-title: 1. APM Overview
-weight: 1
+title: 3. APM Services Overview
+weight: 3
 ---
 
-The service map displays the dependencies and connections among your instrumented and inferred services in APM. The map is dynamically generated based on your selections in the time range, environment, workflow, service, and tag filters.
-
-When we clicked on the APM link in the RUM waterfall, filters were automatically added to the service map view to show the services that were involved in that particular trace.
-
-You can use the service map to identify dependencies, performance bottlenecks, and error propagation. To get a complete overview of the application click on the **Overview** button on the top left of the service map.
+You can use the APM Service Map to identify dependencies, performance bottlenecks, and error propagation. To get a complete overview of the application click on the {{% button %}}< Overview{{% /button %}} button on the top left of the service map.
 
 ![APM Explore](../images/apm-overview.png)
 

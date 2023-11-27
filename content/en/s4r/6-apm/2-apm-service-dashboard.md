@@ -1,6 +1,6 @@
 ---
-title: 3. APM Service Dashboard
-weight: 3
+title: 2. APM Service Dashboard
+weight: 2
 ---
 
 APM dashboards present request, error, and duration (RED) metrics based on Monitoring MetricSets created from endpoint spans for your services, endpoints, and Business Workflows. They also present related host and Kubernetes metrics to help you determine whether problems are related to the underlying infrastructure.
@@ -20,6 +20,7 @@ We will be using these charts later on in the workshop. Click the back button in
 
 ![APM Explore](../images/apm-explore.png)
 
+<!--
 {{% notice title="Info" style="green" title="Exercise" icon="running" %}}
 
 * In the Service Map hover over the **paymentservice**. What can you conclude from the popup service chart?
@@ -29,3 +30,4 @@ We will be using these charts later on in the workshop. Click the back button in
 ![APM Service Chart](../images/apm-service-popup-chart.png)
 
 We need to understand if there is a pattern to this error rate. We have a handy tool for that, **Tag Spotlight**.
+-->
