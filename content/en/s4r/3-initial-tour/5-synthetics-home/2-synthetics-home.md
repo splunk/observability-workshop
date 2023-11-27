@@ -30,4 +30,4 @@ To continue our tour, let's look at the result of our workshop's automatic brows
 * What can you conclude from the dotted chart, how often are these tests run, and from where?
 {{% /notice %}}
 
-Now let’s examine the infrastructure our application is running on using Splunk Infrastructure Monitoring (IM).
+Now let’s examine the infrastructure our application is running on using **Splunk Infrastructure Monitoring (IM)**.

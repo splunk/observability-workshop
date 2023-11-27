@@ -33,8 +33,8 @@ Let's run a little search exercise.
 
 ![logo search](../images/log-filter-bar.png?width=920px)
 
-* Click on one of the log entries in the Logs table to validate the entry contains `cardType: "visa"`.
+* Click on one of the log entries in the Logs table to validate that the entry contains `cardType: "visa"`.
 
 {{% /notice %}}
 
-We will revisit Log Observer in more detail later. Next, let's check out Splunk Synthetics.
+We will revisit Log Observer in more detail later. Next, let's check out **Splunk Synthetics**.

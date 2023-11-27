@@ -8,14 +8,14 @@ weight: 1
 
 ### 1. Sign in to Splunk Observability Cloud
 
-You should have received an e-mail from Splunk inviting you to the Workshop Org. This e-mail will look like the screenshot below, if you cannot find it, please check your Spam/Junk folders or inform your Instructor. You can also check for other solutions in our [login F.A.Q.](99-login-faq.md).
+You should have received an e-mail from Splunk inviting you to the Workshop Org. This e-mail will look like the screenshot below, if you cannot find it, please check your Spam/Junk folders or inform your Instructor. You can also check for other solutions in our [**login F.A.Q.**](99-login-faq.md).
 
  To proceed click the **Join Now** button or click on the link provided in the e-mail.
 
 If you have already completed the registration process you can skip the rest and proceed directly to Splunk Observability Cloud and login:
 
-* [https://app.eu0.signalfx.com **(EMEA)**](https://app.eu0.signalfx.com)
-* [https://app.us1.signalfx.com **(APAC/AMER)**](https://app.us1.signalfx.com)
+* [**https://app.eu0.signalfx.com (EMEA)**](https://app.eu0.signalfx.com)
+* [**https://app.us1.signalfx.com (APAC/AMER)**](https://app.us1.signalfx.com)
 
 ![email](../images/invite-email.png?width=25vw)
 

@@ -30,4 +30,4 @@ Lets start with our first exercise:
 
 {{% /notice %}}
 
-Next, let's check out Splunk Real User Monitoring (RUM).
+Next, let's check out **Splunk Real User Monitoring (RUM)**.
