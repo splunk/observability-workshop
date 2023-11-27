@@ -1,8 +1,7 @@
 ---
-title: Splunk Infrastructure exercise with the Kubernetes Navigator
-linkTitle: Exercise part 2
-description: This section of the workshop provides an exercise using Splunk infra monitoring based on the Kubernetes Navigator.
-weight: 10
+title: Infrastructure Exercise - Part 2
+linkTitle: Part 2
+weight: 2
 ---
 
 {{% button icon="clock" %}}10 minutes{{% /button %}}
@@ -26,7 +25,9 @@ Let's examine the Cluster Metric charts that provide information on your cluster
 
 * Let's check if the Spunk Kubernetes Analyzer can tell us something more useful, so click on **K8s Analyzer**.
 {{% notice title=" Spunk Kubernetes Analyzer" style="info" %}}
+
 The Splunk Kubernetes Analyzer is a smart process that runs in the background in Splunk Observability Cloud and is designed to detect relations between anomalies.  
+
 {{% /notice %}}
 
 * The **K8s Analyzer** should have detected that the two **red** pods are similar, indicated by the 2 after each line, and come from the same Namespace.
@@ -40,8 +41,10 @@ The Splunk Kubernetes Analyzer is a smart process that runs in the background in
 
 * It is easier to see if you filter on the `k8s.namespace.name=development` in the Filter Pane. The **# Total Pods** chart shows only two pods and in the **Node Workload** chart there is only the *test-job* and it has failed.
 
-{{% notice title=" Spunk Kubernetes Analyzer" style="info" %}}
+{{% notice title="Spunk Kubernetes Analyzer" style="info" %}}
+
 The above scenario is common in a shared Kubernetes environment, where teams deploy applications in different stages. Kubernetes is designed to keep these environments completely separate.
+
 {{% /notice %}}
 
 {{% /notice %}}

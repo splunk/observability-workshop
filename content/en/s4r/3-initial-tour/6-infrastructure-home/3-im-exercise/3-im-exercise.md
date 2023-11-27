@@ -1,8 +1,7 @@
 ---
-title: Splunk Infrastructure exercise with the Kubernetes Navigator
-linkTitle: Exercise part 3
-description: This section of the workshop provides an exercise using Splunk infra monitoring based on the Kubernetes Navigator.
-weight: 20
+title: Infrastructure Exercise - Part 3
+linkTitle: Part 3
+weight: 3
 ---
 
 {{% button icon="clock" %}}10 minutes{{% /button %}}
@@ -25,7 +24,8 @@ As we have seen in the previous exercise, these fields are very useful for filte
 
 Another feature in the UI is **Related content**.
 
-{{% notice title=" Related Content" style="info" %}}
+{{% notice title="Related Content" style="info" %}}
+
 The Splunk Observability User Interface will attempt to show you additional information that is related to what you're actively looking at.
 A good example of this is the Kubernetes Navigator showing you related Content tiles in the information Pane for the services found running on this node.
 
@@ -36,14 +36,14 @@ In the **Information Pane**, you should see two tiles for services detected, the
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * First, make sure you no longer have a filter for the development namespace active. (Simply click on the **x** to remove it from the Filter Pane) as there are no databases in the Development Namespace.
-* Hoover on the *Redis* tile, and click on the {{% button style="blue" %}}Goto all my Redis instances{{% /button %}} button
+* Hoover on the **Redis** tile, and click on the {{% button style="blue" %}}Goto all my Redis instances{{% /button %}} button
 * The Navigator view should change to the overall Redis instances view.
 * Select the the instance running on your cluster. (Click on the blue link, named **redis-[the name of your workshop]**, in the Redis Instances pane).
-* We should now see just the information for your Redis Instance & there should also be an *Information Pane*.
-* Again we see Meta Data, but we also see that UI is showing in the *Related Content* tiles that this Redis Server runs in a Container running on Kubernetes.
-* Let's verify that by clicking on the *Kubernetes* Tile.
+* We should now see just the information for your Redis Instance & there should also be an **Information Pane**.
+* Again we see Meta Data, but we also see that UI is showing in the **Related Content** tiles that this Redis Server runs in a Container running on Kubernetes.
+* Let's verify that by clicking on the **Kubernetes** Tile.
 * We should be back in the Kubernetes Navigator, at the container level.
-* Confirm that the names of our cluster and node are all visible at the top of the page and we are back looking at our K8S Cluster, where we started.
+* Confirm that the names of our cluster and node are all visible at the top of the page and we are back looking at our K8s Cluster, where we started.
 
 {{% /notice %}}
 
