@@ -1,16 +1,16 @@
 ---
-title: OpenTelemetry Collector Exporters
+title: OpenTelemetry Collector エクスポーター
 linkTitle: 5.1 OTLP HTTP
 weight: 1
 ---
 
-## OTLP HTTP Exporter
+## OTLP HTTP エクスポーター
 
-In order to send metrics over HTTP to Splunk Observability Cloud, we will need to configure the **otlphttp** exporter.
+Splunk Observability Cloud へ HTTP 経由でメトリックスを送信するためには、**otlphttp** エクスポーターを設定する必要があります。
 
-Let's edit our `/etc/otelcol-contrib/config.yaml` file and configure the **otlphttp** exporter. Insert the following YAML under the **exporters** section, taking care to indent by two spaces e.g.
+`/etc/otelcol-contrib/config.yaml` ファイルを編集し、**otlphttp** エクスポーターを設定しましょう。以下の YAML を **exporters** セクションの下に挿入し、例えば2スペースでインデントしてください。
 
-We will also change the verbosity of the logging exporter to prevent the disk filling up. The default of `detailed` is very noisy.
+また、ディスクの容量不足を防ぐために、ロギングエクスポーターの詳細度を変更します。デフォルトの `detailed` は非常に詳細です。
 
 ```yaml {hl_lines="3-4"}
 exporters:
@@ -19,10 +19,10 @@ exporters:
   otlphttp/splunk:
 ```
 
-Next we need to define the `metrics_endpoint` and configure the target URL.
+次に、`metrics_endpoint` を定義して、ターゲットURLを設定していきます。
 
 {{% notice style="note" %}}
-If you are an attendee to a Splunk hosted workshop, the instance your are using has already been configured with a Realm environment variable. We will reference that environment variable in our configuration file. Otherwise, you will need to create a new environment variable and set the Realm e.g.
+Splunk 主催のワークショップの参加者である場合、使用しているインスタンスにはすでに Realm 環境変数が設定されています。その環境変数を設定ファイルで参照します。それ以外の場合は、新しい環境変数を作成して Realm を設定する必要があります。例えば：
 
 ``` bash
 export REALM="us1"
@@ -30,9 +30,9 @@ export REALM="us1"
 
 {{% /notice %}}
 
-The URL to use is `https://ingest.${env:REALM}.signalfx.com/v2/datapoint/otlp`. (Splunk has Realms in key geographical locations around the world for data residency).
+使用するURLは `https://ingest.${env:REALM}.signalfx.com/v2/datapoint/otlp` です。（Splunkは、データの居住地に応じて世界中の主要地域に Realm を持っています）。
 
-The **otlphttp** exporter can also be configured to send traces and logs by defining a target URL for `traces_endpoint` and `logs_endpoint` respectively. Configuring these is outside the scope of this workshop.
+**otlphttp** エクスポーターは、`traces_endpoint` と `logs_endpoint` それぞれのターゲットURLを定義することにより、トレースとログを送信するようにも設定できますが、そのような設定はこのワークショップの範囲外とします。
 
 ```yaml {hl_lines="5"}
 exporters:
@@ -42,12 +42,12 @@ exporters:
     metrics_endpoint: https://ingest.${env:REALM}.signalfx.com/v2/datapoint/otlp
 ```
 
-By default, `gzip` compression is enabled for all endpoints. This can be disabled by setting `compression: none` in the exporter configuration. We will leave compression enabled for this workshop and accept the default as this is the most efficient way to send data.
+デフォルトでは、すべてのエンドポイントで `gzip` 圧縮が有効になっています。エクスポーターの設定で `compression: none` を設定することにより、圧縮を無効にすることができます。このワークショップでは圧縮を有効にしたままにし、データを送信する最も効率的な方法としてデフォルト設定を使っていきます。
 
-In order to send metrics to Splunk Observability Cloud, we need to use an Access Token. This can be done by creating a new token in the Splunk Observability Cloud UI. For more information on how to create a token, see [Create a token](https://docs.splunk.com/Observability/admin/authentication-tokens/org-tokens.html). The token needs to be of type **INGEST**.
+Splunk Observability Cloud にメトリクスを送信するためには、アクセストークンを使用する必要があります。これは、Splunk Observability Cloud UI で新しいトークンを作成することにより行うことができます。トークンの作成方法についての詳細は、[Create a token](https://docs.splunk.com/Observability/admin/authentication-tokens/org-tokens.html) を参照してください。トークンは **INGEST** タイプである必要があります。
 
 {{% notice style="note" %}}
-If you are an attendee to a Splunk hosted workshop, the instance your are using has already been configured with an Access Token (which has been set as an environment variable). We will reference that environment variable in our configuration file. Otherwise, you will need to create a new token and set it as an environment variable e.g.
+Splunk　主催のワークショップの参加者である場合、使用しているインスタンスにはすでにアクセストークンが設定されています（環境変数として設定されています）ので、その環境変数を設定ファイルで参照します。それ以外の場合は、新しいトークンを作成し、それを環境変数として設定する必要があります。例えば：
 
 ``` bash
 export ACCESS_TOKEN=<replace-with-your-token>
@@ -55,7 +55,7 @@ export ACCESS_TOKEN=<replace-with-your-token>
 
 {{% /notice %}}
 
-The token is defined in the configuration file by inserting `X-SF-TOKEN: ${env:ACCESS_TOKEN}` under a `headers:` section:
+トークンは、設定ファイル内で `headers:` セクションの下に `X-SF-TOKEN: ${env:ACCESS_TOKEN}` を挿入することにで定義します：
 
 ```yaml {hl_lines="6-8"}
 exporters:
@@ -67,13 +67,14 @@ exporters:
       X-SF-TOKEN: ${env:ACCESS_TOKEN}
 ```
 
-## Configuration Check-in
+## 設定を確認しましょう
 
+これで、エクスポーターもカバーできました。設定を確認していきましょう：
 Now that we've covered exporters, let's check our configuration changes:
 
 ---
 
-{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your configuration{{% /badge %}}" %}}
+{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}設定をレビューしてください{{% /badge %}}" %}}
 {{< tabs >}}
 {{% tab title="config.yaml" %}}
 
@@ -178,6 +179,6 @@ service:
 
 ---
 
-Of course, you can easily configure the `metrics_endpoint` to point to any other solution that supports the **OTLP** protocol.
+もちろん、**OTLP** プロトコルをサポートする他のソリューションを指すように `metrics_endpoint` を簡単に設定することができます。
 
-Next, we need to enable the receivers, processors and exporters we have just configured in the service section of the `config.yaml`.
+次に、`config.yaml` のサービスセクションで、今設定したレシーバー、プロセッサー、エクスポーターを有効にしていきます。
