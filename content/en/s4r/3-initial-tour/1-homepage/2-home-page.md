@@ -6,18 +6,18 @@ weight: 2
 
 {{% button icon="clock" color="#ed0090" %}}5 minutes{{% /button %}}
 
-After you have registered and logged into the Splunk Observability Cloud UI you will be taken to the home or landing page. This is where you usually will arrive if you login into the Splunk Observability Suite. Here, you will find a number of useful features to help you get started.
+After you have registered and logged into Splunk Observability Cloud you will be taken to the home or landing page. Here, you will find several useful features to help you get started.
 
 ![home page](../images/home-screen.png)
 
-1. **Explore your data pane:** Displays which integrations are enabled and allows you  to add additional integrations if you are an Administrator
+1. **Explore your data pane:** Displays which integrations are enabled and allows you to add additional integrations if you are an Administrator.
 2. **Documentation pane:** Training videos and links to documentation to get you started with Splunk Observability Cloud.
 3. **Recents pane:** Recently created/visited dashboards and/or detectors for quick access.
 4. **Main Menu pane:** Navigate the components of Splunk Observability Cloud.
 5. **Org Switcher:** Easily switch between Organizations (if you are a member of more than one Organization).
 6. **Expand/Contract Main Menu:** Expand **>>** / Collapse **<<** the main menu if space is at a premium.
 
-Lets start with our first exercise:
+Let's start with our first exercise:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
