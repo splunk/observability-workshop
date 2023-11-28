@@ -22,10 +22,11 @@ Let's start with our first exercise:
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * Expand the Main Menu and click on **Settings**.
-* Check in the **Org Switcher:** if you have access to more then on Organization.
+* Check in the **Org Switcher** if you have access to more then one Organization.
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-If you have used Splunk Observability before, you maybe placed in an Organization you used before.
+If you have used Splunk Observability before, you maybe placed in an Organization you have used previously.
+
 Make sure you are in the correct workshop organization. Verify this with your instructor if you have access to multiple Organizations.
 {{% /notice %}}
 
