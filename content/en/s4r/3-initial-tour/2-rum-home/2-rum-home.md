@@ -34,7 +34,7 @@ Independent of the type of Status Dashboard used, the RUM Home Page is made up o
 * The 3rd tile reports **Web Vitals**, a metric which focuses on three important aspects of the user experience: *loading*, *interactivity*, and *visual stability*.
 * Based on the **Web Vitals** info  provided, how do you rate the current web performance of the site?
 * The last tile, **Most recent detectors** tile, will show if any alerts have been triggered for the application.
-* Click on the down **⌵** arrow  in front of the the Application name to toggle the view to the compact style. Note that you still have all the main information available in this view. 
+* Click on the down **⌵** arrow  in front of the the Application name to toggle the view to the compact style. Note that you still have all the main information available in this view.
 * Click anywhere in the compact view for the workshop application to go back to the full view.
 
 {{% /notice %}}
