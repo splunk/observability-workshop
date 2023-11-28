@@ -3,7 +3,7 @@ title: 4. User Sessions
 weight: 4
 ---
 
-Close the RUM Session Replay by clicking on the **X** in the top right corner. Here, we can see the custom event **PlaceOrder**. Notice the length of the span. This is the time it took to complete the order, not good!
+Close the RUM Session Replay by clicking on the **X** in the top right corner. Here, we can see the custom event **PlaceOrder**. (If it is not immediately visible, type `PlaceOrder` in the search bar below thh Session replay section. Use the **⌵** & **⌃**  to find the longest one.) Notice the length of the span. This is the time it took to complete the order, not good!
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
