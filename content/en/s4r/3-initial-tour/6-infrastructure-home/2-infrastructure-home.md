@@ -26,4 +26,4 @@ Using the Infrastructure pane, we can select the infrastructure/technology we ar
 
 {{% /notice %}}
 
-Either move to the next page and run an *optional* but more detailed exercise based on Kubernetes and the data stores used in the *Online Boutique* application or go straight to the [Shopping experience](../../../4-online-boutique).
+Either move to the next page and run an *optional* but more detailed exercise based on Kubernetes and the data stores used in the *Online Boutique* application or just go shopping!
