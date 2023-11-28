@@ -21,10 +21,10 @@ Generally, in Splunk, an "index" refers to a  designated place where your data i
 
 {{% /notice %}}
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-If you have used Splunk Enterprise or Splunk Cloud before, you are likely used to start investigations with logs. As you will see in the following exercise, you can do that with the Splunk Observability Suite as well. This workshop however, will use all the **OpenTelemetry** signals for investigations.
+If you have used Splunk Enterprise or Splunk Cloud before, you are likely used to start investigations with logs. As you will see in the following exercise, you can do that with Splunk Observability Cloud as well. This workshop, however, will use all the **OpenTelemetry** signals for investigations.
 {{% /notice %}}
 
-Let's run a little search exercise.
+Let's run a little search exercise:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -33,18 +33,16 @@ Let's run a little search exercise.
 * Type in **cardType** and select it.
 * Under **Top values** click on **visa**, then click on **=** to add it to the filter.
 
-![logo search](../images/log-filter-bar.png?width=920px)
+  ![logo search](../images/log-filter-bar.png?width=920px)
 
 * Click on one of the log entries in the Logs table to validate that the entry contains `cardType: "visa"`.
-* Let's find all orders that have been shipped.
-  * Click on **Clear All** in the filter bar to remove the previous filter.
-  * In the **Fields** Pane type *severity* in the search box.
-
-   ![severity](../images/find-severity.png?width=15vw)
-  * Make sure you select the click {{% button style="gray"  %}}**Exclude all logs with this fields**{{% /button %}} as the order log line does not have a severity assigned.
-  * Click on the {{% button style="gray"  %}}**Add Filter**{{% /button %}} button in the filter bar.
-  * This time, just type **"order:"** in the *Enter Keyword...* box.
-  * You should now have a list of order sold for the last 15 minutes.
+* Let's find all the orders that have been shipped. Click on **Clear All** in the filter bar to remove the previous filter.
+* In the **Fields** Pane type `severity` in the search box.
+  ![severity](../images/find-severity.png?width=15vw&classes=left)
+* Make sure you select the click {{% button style="gray"  %}}**Exclude all logs with this fields**{{% /button %}} as the order log line does not have a severity assigned.
+* Click on the {{% button style="gray"  %}}**Add Filter**{{% /button %}} button in the filter bar.
+* This time, just type `order:` in the **Enter Keyword...** box and press enter.
+* You should now have a list of orders sold for the last 15 minutes.
 
 {{% /notice %}}
 

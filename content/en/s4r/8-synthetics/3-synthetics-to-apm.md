@@ -3,7 +3,7 @@ title: 3. Synthetics to APM
 weight: 3
 ---
 
-We now should have a view similar to the one below.  
+We now should have a view similar to the one below.
 
 ![Place Order](../images/run-results-place-order.png)
 
@@ -13,7 +13,7 @@ We now should have a view similar to the one below.
 * Click on the **>** button in front of it to drop open the metadata section.
 * Verify that the credit card information is passed to the service.
 * Close the Meta Data view and confirm you have the same view as above.
-* Click on the blue **🔗APM** link behind the **checkout** line in the waterfall.
+* Click on the blue {{% icon icon="link" %}} **APM** link on the **POST checkout** line in the waterfall.
 {{% /notice %}}
 
 ![APM trace](../images/apm-trace.png)

@@ -29,13 +29,12 @@ Independent of the type of Status Dashboard used, the RUM Home Page is made up o
 * Ensure the time window is set to **-15m**
 * Select the environment for your workshop from the drop-down box. The naming convention is **[NAME OF WORKSHOP]** (Selecting this will make sure the workshop RUM application is visible)
 * Select the **App** name. There the naming convention is **[NAME OF WORKSHOP]-shop**  and leave **Source** set to **All**
-* In the **JavaScript Errors** tile click on the **TypeError** entry that says: *Cannot read properties of undefined (reading 'Prcie')* to see more details. Note that you are given a quick indication in what part of the website the error occurred, allowing you to fix this quickly.
-* Close the pane by clicking the **X** at the top of the pane..
-* The 3rd tile reports **Web Vitals**, a metric which focuses on three important aspects of the user experience: *loading*, *interactivity*, and *visual stability*.
-* Based on the **Web Vitals** info  provided, how do you rate the current web performance of the site?
+* In the **JavaScript Errors** tile click on the **TypeError** entry that says: *Cannot read properties of undefined (reading 'Prcie')* to see more details. Note that you are given a quick indication of what part of the website the error occurred, allowing you to fix this quickly.
+* Close the pane.
+* The 3rd tile reports **Web Vitals**, a metric that focuses on three important aspects of the user experience: *loading*, *interactivity*, and *visual stability*.
+* Based on the **Web Vitals** information provided, how do you rate the current web performance of the site?
 * The last tile, **Most recent detectors** tile, will show if any alerts have been triggered for the application.
-* Click on the down **⌵** arrow  in front of the the Application name to toggle the view to the compact style. Note that you still have all the main information available in this view.
-* Click anywhere in the compact view for the workshop application to go back to the full view.
+* Click on the down **⌵** arrow in front of the Application name to toggle the view to the compact style. Note that you have all the main information available in this view as well. Click anywhere in the compact view to go back to the full view.
 
 {{% /notice %}}
 

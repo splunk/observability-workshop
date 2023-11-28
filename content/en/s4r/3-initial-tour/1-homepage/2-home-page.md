@@ -22,13 +22,15 @@ Let's start with our first exercise:
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * Expand the Main Menu and click on **Settings**.
-* Check in the **Org Switcher** if you have access to more then one Organization.
+* Check in the **Org Switcher** if you have access to more than one Organization.
+
+{{% /notice %}}
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-If you have used Splunk Observability before, you maybe placed in an Organization you have used previously.
-
-Make sure you are in the correct workshop organization. Verify this with your instructor if you have access to multiple Organizations.
+If you have used Splunk Observability before, you may be placed in an Organization you have used previously. Make sure you are in the correct workshop organization. Verify this with your instructor if you have access to multiple Organizations.
 {{% /notice %}}
+
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 * Click **Onboarding Guidance** (Here you can toggle the visibility of the onboarding panes. This is useful if you know the product well enough, and can use the space to show more information).
 * Hide the Onboarding Content for the **Home Page**.
