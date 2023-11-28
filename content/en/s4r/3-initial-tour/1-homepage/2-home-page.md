@@ -10,7 +10,7 @@ After you have registered and logged into the Splunk Observability Cloud UI you 
 
 ![home page](../images/home-screen.png)
 
-1. **Explore your data pane:** Displays which integrations are enabled and allows you  to add additional integrations if you are an Administrator.
+1. **Explore your data pane:** Displays which integrations are enabled and allows you  to add additional integrations if you are an Administrator
 2. **Documentation pane:** Training videos and links to documentation to get you started with Splunk Observability Cloud.
 3. **Recents pane:** Recently created/visited dashboards and/or detectors for quick access.
 4. **Main Menu pane:** Navigate the components of Splunk Observability Cloud.
