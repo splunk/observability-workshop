@@ -4,8 +4,8 @@ linkTitle: 2. Infrastructure Navigators
 weight: 2
 ---
 
-{{% button icon="clock" color="#ed0090" %}}2 minutes{{% /button %}}
-(padding)
+{{% button icon="clock" color="#ed0090" %}}5 minutes{{% /button %}}
+
 Click on **Infrastructure** in the main menu, the Infrastructure Home Page is made up of 4 distinct sections.
 
 ![Infra main](../images/infrastructure-main.png)
@@ -26,4 +26,4 @@ Using the Infrastructure pane, we can select the infrastructure/technology we ar
 
 {{% /notice %}}
 
-Let's move to the next page and run a more detailed exercise based on Kubernetes and the data stores.
+Either move to the next page and run an *optional* but more detailed exercise based on Kubernetes and the data stores used in the *Online Boutique* application or go straight to the [Shopping experience](../../../4-online-boutique).

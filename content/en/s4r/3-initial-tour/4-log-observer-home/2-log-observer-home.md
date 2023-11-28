@@ -6,8 +6,6 @@ weight: 2
  
 {{% button icon="clock" color="#ed0090" %}}7 minutes{{% /button %}}
 
-(padding. explain.. you can start investigating here, or  end here to proof you finding in other product.. in other words padding)
-
 Click **Log Observer** in the main menu, the Log Observer Home Page is made up of 4 distinct sections:
 
 ![Lo Page](../images/log-observer-main.png)
@@ -23,8 +21,9 @@ Generally, in Splunk, an "index" refers to a  designated place where your data i
 
 {{% /notice %}}
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-If you have used Splunk Enterprise or Splunk Cloud before, you are likely used to start investigations with logs. As you will see in the following exercise, you can do that with the Splunk Observability Suite as well. This workshop however, will use all the **OpenTelemetry** signals for investigations. 
+If you have used Splunk Enterprise or Splunk Cloud before, you are likely used to start investigations with logs. As you will see in the following exercise, you can do that with the Splunk Observability Suite as well. This workshop however, will use all the **OpenTelemetry** signals for investigations.
 {{% /notice %}}
+
 Let's run a little search exercise.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
