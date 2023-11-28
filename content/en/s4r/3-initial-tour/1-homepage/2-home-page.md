@@ -22,7 +22,7 @@ Let's start with our first exercise:
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * Expand the Main Menu and click on **Settings**.
-*Check in the **Org Switcher:** if you have access to more then on Organization.
+* Check in the **Org Switcher:** if you have access to more then on Organization.
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
 If you have used Splunk Observability before, you maybe placed in an Organization you used before.
