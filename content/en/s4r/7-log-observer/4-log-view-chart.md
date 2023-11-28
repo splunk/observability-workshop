@@ -31,4 +31,4 @@ As with the previous Log Timeline chart, we will add a version of this chart to 
 
 {{% /notice %}}
 
-In the next session, we will look at Splunk Synthetics to see how we can automate testing of web-based applications.
+In the next session, we will look at Splunk Synthetics to see how we can automate the testing of web-based applications.
