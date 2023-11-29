@@ -17,7 +17,7 @@ By default, Splunk Synthetics provides screenshots and video capture of the test
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Change the duration above the film strip from *Every 1s* to *Every 500ms*. This will rebuild the filmstrip to see in more detail how the page is rendered. Use your mouse to scroll left and right through the filmstrip.
+* Change the duration above the film strip from **Every 1s** to **Every 500ms**. This will rebuild the filmstrip to see in more detail how the page is rendered. Use your mouse to scroll left and right through the filmstrip.
 * In the Video pane, press on the play button **▶** to see the test playback. If you click the ellipses **⋮** you can change the *playback speed*, view it *Picture in Picture* and even *Download* the video.
 * In the Synthetic Transaction pane, click on the first Business Transaction **Home**
 * The waterfall below will show all the objects that make up the page. The first line is the HTML page itself. The next lines are the objects that make up the page (HTML, CSS, JavaScript, Images, Fonts, etc.).
