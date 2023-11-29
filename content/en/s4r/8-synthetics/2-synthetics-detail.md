@@ -13,7 +13,7 @@ Right now we are looking at the result of a single Synthetic Browser Test. This 
 4. **Synthetic transactions:**  List of the Synthetic transactions that made up the interaction with the site
 5. **Waterfall chart**  The waterfall chart is a visual representation of the interaction between the test runner and the site being tested.
 
-By default, Splunk Synthetics provides screenshots and video capture of the test. This is useful for debugging issues. You can see, for example, slow loading of large images, the slow rendering of a page etc.
+By default, Splunk Synthetics provides screenshots and video capture of the test. This is useful for debugging issues. You can see, for example, the slow loading of large images, the slow rendering of a page etc.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
