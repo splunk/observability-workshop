@@ -2,6 +2,7 @@
 title: Infrastructure Overview
 linkTitle: 1. Infrastructure Overview
 weight: 1
+hidden: true
 ---
 
 Splunk Infrastructure Monitoring (IM) is a market-leading monitoring and observability service for hybrid cloud environments. Built on a patented streaming architecture, it provides a **real-time** solution for engineering teams to visualize and analyze performance across infrastructure, services, and applications in a fraction of the time and with greater accuracy than traditional solutions.

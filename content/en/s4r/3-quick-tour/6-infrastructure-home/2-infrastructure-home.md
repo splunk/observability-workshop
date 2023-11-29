@@ -1,6 +1,6 @@
 ---
 title:  Infrastructure Navigators
-linkTitle: 2. Infrastructure Navigators
+linkTitle: 6.1 Infrastructure Navigators
 weight: 2
 ---
 

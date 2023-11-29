@@ -1,6 +1,6 @@
 ---
 title: Home Page
-linkTitle: 2. Home Page
+linkTitle: 1.1 Home Page
 weight: 2
 ---
 

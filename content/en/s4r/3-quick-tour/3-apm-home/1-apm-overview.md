@@ -2,6 +2,7 @@
 title: Application Performance Monitoring Overview
 linkTitle: 1. APM Overview
 weight: 1
+hidden: true
 ---
 
 Splunk APM provides a **NoSample™** end-to-end visibility of every service and its dependency to solve problems quicker across monoliths and microservices. Teams can immediately detect problems from new deployments, confidently troubleshoot by scoping and isolating the source of an issue, and optimize service performance by understanding how back-end services impact end users and business workflows.

@@ -1,6 +1,6 @@
 ---
 title: Log Observer Home Page
-linkTitle: 2. Log Observer Home Page
+linkTitle: 4.1 Log Observer Home Page
 weight: 2
 ---
  

@@ -1,6 +1,6 @@
 ---
 title: Synthetics Home Page
-linkTitle: 2. Synthetics Home Page
+linkTitle: 5.1 Synthetics Home Page
 weight: 2
 ---
 
