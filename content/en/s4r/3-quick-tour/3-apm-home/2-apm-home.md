@@ -24,7 +24,14 @@ To easily differentiate between multiple applications, Splunk uses **environment
 
 * Verify that the time window we are working with is set to the last 15 minutes (**-15m**).
 * Change the environment to the workshop one by selecting its name from the drop-down box and make sure that is the only one selected.
-* What can you conclude from the **Top Services by Error Rate** chart?
+{{< tabs >}}
+{{% tab title="Question" %}}
+**What can you conclude from the *Top Services by Error Rate* chart?**
+{{% /tab %}}
+{{% tab title="Answer" %}}
+**The *paymentservice* has a high error rate**
+{{% /tab %}}
+{{< /tabs >}}
 <!--
 * Click on the Explore Tile in the Function Pane. This will bring us to the automatically generated map of our services. This map shows how the services interact together based on the trace data being sent to Splunk Observability Cloud.
 -->

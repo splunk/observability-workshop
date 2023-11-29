@@ -22,8 +22,14 @@ We will be using these charts later on in the workshop. Click the back button in
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* In the Service Map hover over the **paymentservice**. What can you conclude from the popup service chart?
-
+{{< tabs >}}
+{{% tab title="Question" %}}
+**In the Service Map hover over the **paymentservice**. What can you conclude from the popup service chart?**
+{{% /tab %}}
+{{% tab title="Answer" %}}
+**The error percentage is very high.**
+{{% /tab %}}
+{{< /tabs >}}
 {{% /notice %}}
 
 ![APM Service Chart](../images/apm-service-popup-chart.png)

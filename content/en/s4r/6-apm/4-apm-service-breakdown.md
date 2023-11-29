@@ -15,7 +15,14 @@ More story here ...
 * Click on **gold** to select it.
 * Click on {{% button style="grey"  %}}Breakdown{{% /button %}} and select `version`.
 * Repeat this for **silver** and **bronze**.
-* What can you conclude from what you are seeing?
+{{< tabs >}}
+{{% tab title="Question" %}}
+**What can you conclude from what you are seeing?**
+{{% /tab %}}
+{{% tab title="Answer" %}}
+**Every tenant is being impacted by `v350.10`**
+{{% /tab %}}
+{{< /tabs >}}
 
 {{% /notice %}}
 
@@ -26,8 +33,7 @@ You will now see the **paymentservice** broken down by `tenant.level` and each t
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * Click on any one of the red dotted lines coming from the **checkoutservice** to `v350.10`.
-* Take a look at the **Service-to-Service Requests & Errors** chart.
-* What percentage of errors are there?
+* Repeat the same for `v350.9` and notice the difference in the error rate.
 
 {{% /notice %}}
 

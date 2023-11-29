@@ -12,7 +12,14 @@ Each span in Splunk APM captures a single operation. Splunk APM considers a span
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * Click on the {{% button style="red"  %}}!{{% /button %}} next to the **paymentservice** span in the waterfall.
-* What is the error message being reported in the span metadata?
+{{< tabs >}}
+{{% tab title="Question" %}}
+**What is the error message being reported in the span metadata?**
+{{% /tab %}}
+{{% tab title="Answer" %}}
+**Invalid request**
+{{% /tab %}}
+{{< /tabs >}}
 
 {{% /notice %}}
 

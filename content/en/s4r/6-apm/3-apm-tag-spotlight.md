@@ -13,8 +13,14 @@ Request/Error charts display the total number of requests, errors, and root caus
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* What can you conclude from the data you are seeing?
-* Which chart helped you come to this conclusion?
+{{< tabs >}}
+{{% tab title="Question" %}}
+**Which chart exposes the tag that identifies what the problem is?**
+{{% /tab %}}
+{{% tab title="Answer" %}}
+**The *version* chart. The number of requests against `v350.10` matches the number of errors.**
+{{% /tab %}}
+{{< /tabs >}}
 
 {{% /notice %}}
 

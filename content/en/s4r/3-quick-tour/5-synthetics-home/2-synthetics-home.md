@@ -24,7 +24,14 @@ To continue our tour, let's look at the result of our workshop's automatic brows
 
 * Note, On the Synthetic Tests Page, the first pane will show the performance of your site for the last day, 8 days and 30 days. As shown in the screenshot above, only if a test started far enough in the past, the corresponding chart will contain valid data. For the workshop, this depends on when it was created.
 * In the Performance KPI drop-down, change the time from the default 4 hours to the 1 last hour.  
-* What can you conclude from the dotted chart, how often are these tests run, and from where?
+{{< tabs >}}
+{{% tab title="Question" %}}
+**How often is the test run, and from where?**
+{{% /tab %}}
+{{% tab title="Answer" %}}
+**The test runs at a 1-minute round robin interval from Frankfurt, London and Paris**
+{{% /tab %}}
+{{< /tabs >}}
 {{% /notice %}}
 
 Now let’s examine the infrastructure our application is running on using **Splunk Infrastructure Monitoring (IM)**.

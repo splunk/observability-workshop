@@ -39,9 +39,16 @@ graph LR;
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * Click on an error entry in the log table (make sure it says `hostname: "paymentservice-xxxx"` in case there is a rare error from a different service in the list too.
-* Based on the message, what would you tell the development teams to fix in order to resolve the issue?
+{{< tabs >}}
+{{% tab title="Question" %}}
+**Based on the message, what would you tell the development teams to do to resolve the issue?**
+{{% /tab %}}
+{{% tab title="Answer" %}}
+**Either fix the issue in `v350.10` or rollback to `v350.9`**
+{{% /tab %}}
+{{< /tabs >}}
 
-  ![Log Message](../images/log-observer-log-message.png)
+![Log Message](../images/log-observer-log-message.png)
 
 {{% /notice %}}
 
