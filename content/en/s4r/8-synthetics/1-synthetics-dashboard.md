@@ -5,7 +5,7 @@ weight: 1
 
 In Splunk Observability Cloud from the main menu, click on **Synthetics**. Click on **All** or **Browser tests** to see the list of active tests.
 
-During our investigation in the RUM section, we found there was an issue with the **Place Order** Transaction. Let's see if we can confirm this from the Synthetics test as well.
+During our investigation in the RUM section, we found there was an issue with the **Place Order** Transaction. Let's see if we can confirm this from the Synthetics test as well. We will be using the metric **First byte time** for the 4th page of the test, which is the **Place Order** step.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
