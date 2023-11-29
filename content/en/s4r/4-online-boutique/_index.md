@@ -3,6 +3,9 @@ title: Let's go shopping 💶
 linkTitle: 4. Shopping at the Online Boutique
 weight: 4
 ---
+
+{{% badge icon="clock" color="#ed0090" %}}5 minutes{{% /badge %}}
+
 You are a **hip urban professional**, longing to buy your next novelty items in the famous Online Boutique shop. You have heard that the Online Boutique is the place to go for all your hipster needs.
 
 ---

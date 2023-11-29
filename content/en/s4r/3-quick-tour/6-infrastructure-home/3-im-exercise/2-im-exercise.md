@@ -4,7 +4,7 @@ linkTitle: Part 2
 weight: 2
 ---
 
-{{% button icon="clock" %}}10 minutes{{% /button %}}
+{{% badge icon="clock" %}}10 minutes{{% /badge %}}
 
 This is Part 2, of the Infrastructure Monitoring exercise, you should now have a single cluster visible.
 

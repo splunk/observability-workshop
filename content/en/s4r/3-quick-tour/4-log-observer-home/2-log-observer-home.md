@@ -3,8 +3,6 @@ title: Log Observer Home Page
 linkTitle: 4.1 Log Observer Home Page
 weight: 2
 ---
- 
-{{% button icon="clock" color="#ed0090" %}}7 minutes{{% /button %}}
 
 Click **Log Observer** in the main menu, the Log Observer Home Page is made up of 4 distinct sections:
 

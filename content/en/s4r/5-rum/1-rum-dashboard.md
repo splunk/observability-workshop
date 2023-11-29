@@ -1,7 +1,6 @@
 ---
 title: 1. RUM Dashboard
 weight: 1
-tags: RUM
 ---
 
 In Splunk Observability Cloud from the main menu, click on **RUM**. you arrive at the RUM Home page, this view has already been covered in the short introduction earlier.

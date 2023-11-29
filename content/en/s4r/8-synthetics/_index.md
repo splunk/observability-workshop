@@ -5,6 +5,8 @@ archetype: chapter
 weight: 8
 ---
 
+{{% badge icon="clock" color="#ed0090" %}}15 minutes{{% /badge %}}
+
 Putting your **SRE** hat back on, you have been asked to set up monitoring for the Online Boutique. You need to ensure that the application is available and performing well 24 hours a day, 7 days a week.
 
 ---

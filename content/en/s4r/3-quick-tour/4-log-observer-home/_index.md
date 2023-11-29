@@ -4,6 +4,8 @@ linkTitle: 4. Log Observer Overview
 weight: 4
 ---
 
+{{% badge icon="clock" color="#ed0090" %}}5 minutes{{% /badge %}}
+
 Log Observer Connect allows you to seamlessly bring in the same log data from your Splunk Platform into an intuitive and **no-code** interface designed to help you find and fix problems quickly. You can easily perform log-based analysis and seamlessly correlate your logs with Splunk Infrastructure Monitoring’s real-time metrics and Splunk APM traces in one place.
 
 **End-to-end visibility:** By combining the powerful logging capabilities of Splunk Platform with Splunk Observability Cloud’s traces and real-time metrics for deeper insights and more context of your hybrid environment.  

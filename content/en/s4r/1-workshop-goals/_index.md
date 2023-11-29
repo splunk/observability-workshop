@@ -4,6 +4,8 @@ linkTitle: 1. Workshop Overview
 weight: 1
 ---
 
+{{% badge icon="clock" color="#ed0090" %}}2 minutes{{% /badge %}}
+
 #### Introduction
 
 The goal of this workshop is to experience an issue and use Splunk Observability Cloud to troubleshoot and identify the root cause. For this, we have provided a complete microservices-based application running in Kubernetes that has been instrumented to send **metrics, traces, and logs** to Splunk Observability Cloud.

@@ -5,7 +5,7 @@ weight: 1
 hidden: true
 ---
 
-{{% button icon="clock" color="#ed0090" %}}2 minutes{{% /button %}}
+{{% badge icon="clock" color="#ed0090" %}}2 minutes{{% /badge %}}
 
 ### 1. Sign in to Splunk Observability Cloud
 

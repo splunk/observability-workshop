@@ -5,6 +5,8 @@ weight: 6
 archetype: chapter
 ---
 
+{{% badge icon="clock" color="#ed0090" %}}20 minutes{{% /badge %}}
+
 You are a **back-end developer** and you have been called in to help investigate an issue found by the SRE. The SRE has identified a poor user experience and has asked you to investigate the issue.
 
 ---

@@ -4,7 +4,7 @@ linkTitle: Part 1
 weight: 1
 ---
 
-{{% button icon="clock" %}}5 minutes{{% /button %}}
+{{% badge icon="clock" %}}5 minutes{{% /badge %}}
 
 This is the first section of our optimal Kubernetes Navigator exercise. Below is some high-level information regarding Kubernetes, just in case you're not familiar with it.
 

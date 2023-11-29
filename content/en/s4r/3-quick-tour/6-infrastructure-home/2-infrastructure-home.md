@@ -4,8 +4,6 @@ linkTitle: 6.1 Infrastructure Navigators
 weight: 2
 ---
 
-{{% button icon="clock" color="#ed0090" %}}5 minutes{{% /button %}}
-
 Click on **Infrastructure** in the main menu, the Infrastructure Home Page is made up of 4 distinct sections.
 
 ![Infra main](../images/infrastructure-main.png)

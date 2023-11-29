@@ -4,7 +4,7 @@ linkTitle: Part 3
 weight: 3
 ---
 
-{{% button icon="clock" %}}10 minutes{{% /button %}}
+{{% badge icon="clock" %}}10 minutes{{% /badge %}}
 
 Let's look at some other parts of the UI like the *Information Pane* on the right of the navigator or the *Related Content Pane* at the bottom.
 

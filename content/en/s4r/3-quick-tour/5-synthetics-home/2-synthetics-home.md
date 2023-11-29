@@ -4,8 +4,6 @@ linkTitle: 5.1 Synthetics Home Page
 weight: 2
 ---
 
-{{% button icon="clock" color="#ed0090" %}}5 minutes{{% /button %}}
-
 Click on **Synthetics** in the main menu. This will bring us to the Synthetics Home Page. It has 3 distinct sections that provide either useful information or allow you to pick or create a Synthetic Test.
 
 ![Synthetic main](../images/synthetics-main.png)

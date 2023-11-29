@@ -5,6 +5,8 @@ weight: 5
 archetype: chapter
 ---
 
+{{% badge icon="clock" color="#ed0090" %}}15 minutes{{% /badge %}}
+
 You are a **frontend engineer**, or an **SRE** tasked to do the first triage of a performance issue. You have been asked to investigate a potential customer satisfaction issue with the Online Boutique application.
 
 ---

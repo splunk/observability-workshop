@@ -4,6 +4,8 @@ linkTitle: 5. Synthetics Overview
 weight: 5
 ---
 
+{{% badge icon="clock" color="#ed0090" %}}5 minutes{{% /badge %}}
+
 Splunk Synthetic Monitoring provides visibility across URLs, APIs and critical web services to solve problems faster. IT Operations and engineering teams can easily detect, alert and prioritize issues, simulate multi-step user journeys, measure business impact from new code deployments and optimize web performance with guided step-by-step recommendations to ensure better digital experiences.
 
 **Ensure Availability:** Proactively monitor and alert on the health and availability of critical services, URLs and APIs with customizable browser tests to simulate multi-step workflows that make up the user experience.  

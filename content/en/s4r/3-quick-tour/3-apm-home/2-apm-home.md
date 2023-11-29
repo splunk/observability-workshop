@@ -4,8 +4,6 @@ linkTitle: 3.1 APM Home Page
 weight: 2
 ---
  
-{{% button icon="clock" color="#ed0090" %}}5 minutes{{% /button %}}
-
 Click **APM** in the main menu, the APM Home Page is made up of 3 distinct sections:
 
 ![APM page](../images/apm-main.png)

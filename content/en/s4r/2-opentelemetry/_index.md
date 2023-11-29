@@ -2,9 +2,9 @@
 title: What is OpenTelemetry & why should you care?
 linkTitle: 2. OpenTelemetry
 weight: 2
-tags:
-  - OpenTelemetry
 ---
+
+{{% badge icon="clock" color="#ed0090" %}}2 minutes{{% /badge %}}
 
 ## OpenTelemetry
 
