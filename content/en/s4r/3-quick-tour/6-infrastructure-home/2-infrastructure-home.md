@@ -41,14 +41,22 @@ A good example of this is the Kubernetes Navigator showing you **Related Content
 
 * Find and click on the **Redis** tile. This will take to the list of the *Redis* Datastore services. Select the one running on your cluster, the naming convention is **redis-[NAME OF WORKSHOP]**.
 
- ![redis](../images/redis.png)
+ ![redis](../images/redis-2.png)
 
-* This will bring you to the REDIS Data stoer Navigator., this will show chart with metric data from the active *Redis* cluster from our e-commerce site.
-* Note that again we have **related Content** tile, this time for Kubernetes. Click the tile, it will bring us back into the Kubernetes Navigator, this time at the Pod level showing the Pod that runs the Redis Service.
+* This will bring you to the Redis Datastore Navigator. This navigator will show charts with metric data from the active *Redis* cluster from our e-commerce site.
+{{< tabs >}}
+{{% tab title="Question" %}}
+**Are there Related Content Tiles?**
+{{% /tab %}}
+{{% tab title="Answer" color="green"%}}
+**Yes, there is one for Kubernetes.**
+* Click the tile, it will bring us back into the Kubernetes Navigator, this time at the Pod level showing the Pod that runs the Redis Service.
 * To return to the Cluster level, simply click on the link *Cluster* (1) at the top of the screen.
 
  ![node](../images/node-link.png)
 
+{{% /tab %}}
+{{< /tabs >}}
 {{% /notice %}}
 <!-- 
 Either move to the next page and run an *optional* but more detailed exercise based on Kubernetes and the data stores used in the *Online Boutique* application or just go shopping! -->
