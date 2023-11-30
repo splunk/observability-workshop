@@ -46,12 +46,12 @@ A good example of this is the Kubernetes Navigator showing you **Related Content
 * This will bring you to the Redis Datastore Navigator. This navigator will show charts with metric data from the active *Redis* cluster from our e-commerce site.
 {{< tabs >}}
 {{% tab title="Question" %}}
-**Are there Related Content Tiles?**
+**Are there Related Content Tiles? (Check answer for more info.)**
 {{% /tab %}}
 {{% tab title="Answer" color="green"%}}
 **Yes, there is one for Kubernetes.**
 * Click the tile, it will bring us back into the Kubernetes Navigator, this time at the Pod level showing the Pod that runs the Redis Service.
-* To return to the Cluster level, simply click on the link *Cluster* (1) at the top of the screen.
+* To return to full circle to the Cluster level, simply click on the link *Cluster* (1) at the top of the screen.
 
  ![node](../images/node-link.png)
 
