@@ -12,7 +12,7 @@ During our investigation in the RUM section, we found there was an issue with th
 * In the **Search** box enter **Workshop Browser Test** and select the test for your workshop (your instructor will advise as to which one to select).
 * Under **Performance KPIs** set the Time Picker to **-30m** and hit enter.
 * Click on **Location** and from the drop-down and select **Page**. The next filter will be populated with the pages that are part of the test.
-* Click on **Duration** and deselect **Duration** and then select **First byte time**.
+* Click on **Run Duration** and deselect **Run Duration** and then select **First byte time**.
   ![Transaction Filter](../images/synthetics-transaction-filter.png)
 * Look at the legend and note the color of **First byte time - Page 4**.
 * Select the highest data point for **First byte time - Page 4**.

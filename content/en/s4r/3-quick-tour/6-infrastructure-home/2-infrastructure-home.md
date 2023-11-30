@@ -24,7 +24,7 @@ Using the Infrastructure pane, we can select the infrastructure/technology we ar
 * You will see one or more representations of a Kubernetes Cluster.
 * Even if there is only one visible, still filter & select the Workshop Cluster, by clicking on the {{% button style="gray" %}}Add filters{{% /button %}} button. Type `k8s.cluster.name` and search for the workshop name. This time the naming convention is **[NAME OF WORKSHOP]-k3s-cluster**. Click on {{% button style="blue" %}}Apply Filters{{% /button %}} when selected.
 
-![cluster](../images/k8s-cluster.png)
+  ![cluster](../images/k8s-cluster.png)
 
 * The Kubernetes Navigator uses color to indicate health. As you can see there two pods or services that are unhealthy and in a Failed state (**1**). The rest are healthy and running. This is not uncommon in shared Kubernetes environments, so we replicated that for the workshop.
 * Note the tiles to the side, under **Nodes dependencies** (**2**), specifically the MySQL and Redis tiles. These are the two databases used by our e-commerce application.
@@ -41,7 +41,7 @@ A good example of this is the Kubernetes Navigator showing you **Related Content
 
 * Find and click on the **Redis** tile. This will take you to the list of the *Redis* Datastore services. Select the one running on your cluster, the naming convention is **redis-[NAME OF WORKSHOP]**.
 
- ![redis](../images/redis-2.png)
+  ![redis](../images/redis-2.png)
 
 * This will bring you to the Redis Datastore Navigator. This navigator will show charts with metric data from the active *Redis* cluster from our e-commerce site.
 {{< tabs >}}
