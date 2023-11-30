@@ -62,6 +62,8 @@ Please visit [Splunk Show](https://show.splunk.com/template/262/?type=workshop) 
 - _Pre-configured Instances_ - select this if you need the OpenTelemetry Collector and the application pre-deployed for a less technical audience. Attendees will only require a browser to complete the workshop.
   - Select Normal Workshop only! Ensure that **Estimated Participants** is set to **1** and **O11y Shop Quantity** is set to **1** also as only a single instance is required by the workshop instructor.
 
+**NOTE:** Ensure you set **Operating hours** to **Run always (24/7)** as this will prevent the instance from being suspended and obtaining a new IP address which breaks RUM and Synthetics.
+
 Select your Splunk Observability Cloud Realm and enter the INGEST, API, RUM tokens and the HEC URL and HEC Token that SWiPE generated for you.
 
 For further guidance on using Splunk Show please see the [Splunk Show User Guide](http://go/show/user-guide).
