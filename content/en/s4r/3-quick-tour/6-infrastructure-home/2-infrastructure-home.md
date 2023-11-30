@@ -26,16 +26,33 @@ Using the Infrastructure pane, we can select the infrastructure/technology we ar
 
 ![cluster](../images/k8s-cluster.png)
 
- A- steps fro after lunch
+* The Kubernetes Navigator uses color to indicate health. As you can see there two pods or services that are unhealthy and in Failed state (1). The rest are healthy and running. This is not uncommon in shared Kubernetes environments, so we replicated that for the workshop.
+* Note the two **Related content** tiles at the side, under *Nodes dependency* (2), one for Mysql and one for Redis.
+{{% /notice %}}
 
-* explain the red and green boxes, 
-* note the two detected services on this cluster, Mysql and REdis introduce related content.
-* clikc on redis
-* find the REdis running on your ncluster  (naming convention). See metrics for you data storee
-* note therelated  Kubneteres link,  click to go back to you cluster 
-* click on  cluster in the tree.. back to start.
+{{% notice title="Related Content" style="info" %}}
+
+The Splunk Observability User Interface will attempt to show you additional information that is related and relevant to what you're actively looking at.
+A good example of this is the Kubernetes Navigator showing you **Related Content** tiles in the information Pane for services discovered running on this node.
+
+{{% /notice %}}
+
+{{% notice title=" Related Content Exercise" style="green" icon="running" %}}
+
+* Find and click on the **Redis** tile. This will take to the list of the *Redis* Datastore services. Select the one running on your cluster, the naming convention is **redis-[NAME OF WORKSHOP]**.
+
+ ![redis](../images/redis.png)
+
+* This will bring you to the REDIS Data stoer Navigator., this will show chart with metric data from the active *Redis* cluster from our e-commerce site.
+* Note that again we have **related Content** tile, this time for Kubernetes. Click the tile, it will bring us back into the Kubernetes Navigator, this time at the Pod level showing the Pod that runs the Redis Service.
+* To return to the Cluster level, simply click on the link *Cluster* (1) at the top of the screen.
+
+ ![node](../images/node-link.png)
+
 {{% /notice %}}
 <!-- 
 Either move to the next page and run an *optional* but more detailed exercise based on Kubernetes and the data stores used in the *Online Boutique* application or just go shopping! -->
 
-This completes the tour of Splunk Observability Cloud.  Here, have some some virtual 💶 and let's go and look at our e-commerce site, the 'Online Boutique' and do some shopping.
+This completes the tour of Splunk Infrastructure and Splunk Observability Cloud.  
+
+Here, have some some virtual 💶 and let's go and look at our e-commerce site, the 'Online Boutique' and do some shopping.
