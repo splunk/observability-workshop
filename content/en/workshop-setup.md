@@ -42,7 +42,7 @@ The following Orgs are blacklisted and cannot be used for running workshops:
 
   You will need to make a copy of these to provision the EC2 instances in Splunk Show.
 
-Post-workshop, you can use SWIPE to clean up the Org. **SWiPE** will complete the following:
+Post-workshop, you can use **SWiPE** to clean up the Org. **SWiPE** will complete the following:
 
 - Delete all the users associated with the workshop
 - Delete the team
