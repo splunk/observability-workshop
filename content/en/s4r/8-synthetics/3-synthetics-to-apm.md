@@ -10,7 +10,7 @@ We now should have a view similar to the one below.
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * In the waterfall find an entry that starts with **POST checkout**.
-* Click on the **>** button in front of it to drop open the metadata section. Observe the metadata that is collected, note the **Server-Timing** header. This header is what allows us to correlate the test run to a back-end trace.
+* Click on the **>** button in front of it to drop open the metadata section. Observe the metadata that is collected, and note the **Server-Timing**** header. This header is what allows us to correlate the test run to a back-end trace.
 * Click on the blue {{% icon icon="link" %}} **APM** link on the **POST checkout** line in the waterfall.
 {{% /notice %}}
 
