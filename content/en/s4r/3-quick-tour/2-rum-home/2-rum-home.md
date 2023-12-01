@@ -39,7 +39,7 @@ Independent of the type of Status Dashboard used, the RUM Home Page is made up o
 {{% /tab %}}
 {{< /tabs >}}
 
-* The last tile, **Most recent detectors** tile, will show if any alerts have been triggered for the application.
+* The last tile, **Most recent detectors**, will show if any alerts have been triggered for the application.
 * Click on the down **⌵** arrow in front of the Application name to toggle the view to the compact style. Note that you have all the main information available in this view as well. Click anywhere in the compact view to go back to the full view.
 
 {{% /notice %}}
