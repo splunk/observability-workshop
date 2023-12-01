@@ -51,9 +51,6 @@ A good example of this is the Kubernetes Navigator showing you **Related Content
 {{% tab title="Answer" color="green"%}}
 **Yes, there is one for Kubernetes.**
 * Click the tile, it will bring us back into the Kubernetes Navigator, this time at the Pod level showing the Pod that runs the Redis Service.
-* To return to full circle to the Cluster level, simply click on the link *Cluster* (1) at the top of the screen.
-* This will bring you to the REDIS Data store Navigator, which will show charts with metrics data from the active *Redis* cluster from our e-commerce site.
-* Note that again we have a **Related Content** tile, this time for Kubernetes. Click the tile, it will bring us back into the Kubernetes Navigator, this time at the Pod level showing the Pod that runs the Redis Service.
 * To return to the Cluster level, simply click on the link *Cluster* (1) at the top of the screen.
 
  ![node](../images/node-link.png)
