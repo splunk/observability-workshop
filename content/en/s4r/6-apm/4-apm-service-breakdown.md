@@ -31,7 +31,7 @@ You will now see the **paymentservice** broken down by `tenant.level` and each t
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Click on any one of the `v350.10` red circles to select it.
+* Click on the outer main box that surrounds the 3 red circles, the box will become highlighted.
 
 {{% /notice %}}
 

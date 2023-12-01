@@ -19,15 +19,18 @@ In **Trace Analyzer** you can filter traces by any indexed/unindexed span tag. I
 
 * In the time picker select **Last 1 hour**.
 * Make sure the **Sample Ratio** is set to `1:1` and **not** `1:10`.
-* Click on **Group traces by** and select `version`.
-* Click on the ellipsis next to `v350.10` and click **Add to filter**.
 * Click on **Add filters**, type in **orderId** and select **orderId** from the **Unindexed Tags** list.
 * Paste in your **Order Confirmation ID** from when you went shopping earlier in the workshop and hit enter.
-
-![Traces by Duration](../images/apm-trace-by-duration.png)
+  ![Traces by Duration](../images/apm-trace-by-duration.png)
 
 {{% /notice %}}
 
-We have now filtered down to the exact trace where you encountered a poor user experience with a very long checkout wait. Click on the trace in the list.
+We have now filtered down to the exact trace where you encountered a poor user experience with a very long checkout wait.
+
+{{% notice title="Exercise" style="green" icon="running" %}}
+
+* Click on the trace in the list.
+
+{{% /notice %}}
 
 Next, we will walk through the trace waterfall.
