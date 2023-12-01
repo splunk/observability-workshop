@@ -7,8 +7,8 @@ Close the RUM Session Replay by clicking on the **X** in the top right corner. H
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Scroll down the page and you will see the **Tags** metadata (which is used in Tag Spotlight). After the tags, we come to the waterfall which shows the page objects loading (CSS, images, JavaScript etc.)
-* Scroll back up to the top of the metrics section and hover over the blue **APM** link (the one with `/cart/checkout` at the end of the URL).
+* Scroll down the page and you will see the **Tags** metadata (which is used in Tag Spotlight). After the tags, we come to the waterfall which shows the page objects that have been loaded (HTML, CSS, images, JavaScript etc.)
+* Keep scrolling down the page until you come to a blue **APM** link (the one with `/cart/checkout` at the end of the URL) and hover over it.
 
 {{% /notice %}}
 

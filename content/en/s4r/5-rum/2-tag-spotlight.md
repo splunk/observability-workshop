@@ -3,7 +3,13 @@ title: 2. Tag Spotlight
 weight: 2
 ---
 
-Click the **Custom Events** tab and have a look at the **Custom Event Latency** chart. The metrics shown here show the application latency. The comparison metrics to the side show the latency compared to 1 hour ago (which is selected in the top filter bar). Click on the **see all** link under the chart title.
+Click the **Custom Events** tab and have a look at the **Custom Event Latency** chart. The metrics shown here show the application latency. The comparison metrics to the side show the latency compared to 1 hour ago (which is selected in the top filter bar).
+
+{{% notice title="Exercise" style="green" icon="running" %}}
+
+* Click on the **see all** link under the chart title.
+
+{{% /notice %}}
 
 ![RUM Tag Spotlight](../images/rum-tag-spotlight.png)
 
@@ -13,7 +19,7 @@ In this dashboard view, you are presented with all the tags associated with the 
 
 * Change the timeframe to **Last 1 hour**.
 * Click **Add Filters**, select **OS Version**, click **!=** and select **Synthetics** and **RUMLoadGen** then click the {{% button style="blue" %}}Apply Filter{{% /button %}} button.
-* Find the **Custom Event Name** tile, locate **PlaceOrder** and click on it, this takes you to Tag Spotlight for RUM.
+* Find the **Custom Event Name** chart, locate **PlaceOrder** in the list and click on it and select **Add to filter**.
 * Notice the large spikes in the graph across the top.
 * Click on the **User Sessions** tab.
 * Click on the **Duration** heading twice to sort the sessions by duration (longest at the top).

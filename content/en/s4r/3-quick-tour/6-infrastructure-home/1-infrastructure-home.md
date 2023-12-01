@@ -20,7 +20,7 @@ Using the Infrastructure pane, we can select the infrastructure/technology we ar
 * Under the **Containers** section in the Integrations Pane (**3**), select **Kubernetes** as the technology you wish to examine.
 * This should show you two tiles, **K8s Nodes** and **K8s Workloads**.
 * The bottom part of each tile will have a history graph and the top part will show notifications for alerts that fired. Across all tiles, this additional information on each of the tiles will give you a good overview of the health of your infrastructure.
-* Click on the **K8s Nodes** tile to look in more detail at the load on the Kubernetes nodes.
+* Click on the **K8s Nodes** tile.
 * You will be presented with one or more representations of a Kubernetes Cluster.
 * Click on the {{% button %}}Add filters{{% /button %}} button. Type in `k8s.cluster.name` and click on the search result.
 * From the list, select **[NAME OF WORKSHOP]-k3s-cluster** then click on the {{% button style="blue" %}}Apply Filter{{% /button %}} button.
@@ -29,39 +29,34 @@ Using the Infrastructure pane, we can select the infrastructure/technology we ar
 
 * The Kubernetes Navigator uses color to indicate health. As you can see there are two pods or services that are unhealthy and in a Failed state (**1**). The rest are healthy and running. This is not uncommon in shared Kubernetes environments, so we replicated that for the workshop.
 * Note the tiles to the side, under **Nodes dependencies** (**2**), specifically the MySQL and Redis tiles. These are the two databases used by our e-commerce application.
-{{% /notice %}}
-
-{{% notice title="Related Content" style="info" %}}
-
-The Splunk Observability User Interface will attempt to show you additional information that is related and relevant to what you're actively looking at.
-A good example of this is the Kubernetes Navigator showing you **Related Content** tiles in the information Pane for services discovered running on this node.
 
 {{% /notice %}}
 
-{{% notice title=" Related Content Exercise" style="green" icon="running" %}}
+{{% notice title="Node Dependencies" style="info" %}}
 
-* Find and click on the **Redis** tile. This will take you to the list of the *Redis* Datastore services. Select the one running on your cluster, the naming convention is **redis-[NAME OF WORKSHOP]**.
+The UI will show services that are running on the node you have selected if they have been configured to be monitored in the OpenTelemetry Collector.
 
+{{% /notice %}}
+
+{{% notice title="Exercise" style="green" icon="running" %}}
+
+* Click on the **Redis** tile and this will take you to the **Redis instances** navigator. Under **REDIS INSTANCE** click on **redis-[NAME OF WORKSHOP]**.
+* This will bring you to the **Redis instance**. This navigator will show charts with metric data from the active Redis instance from our e-commerce site.
   ![redis](../images/redis-2.png)
-
-* This will bring you to the Redis Datastore Navigator. This navigator will show charts with metric data from the active *Redis* cluster from our e-commerce site.
 {{< tabs >}}
 {{% tab title="Question" %}}
-**Are there Related Content Tiles? (Check the answer for more info.)**
+**Can you name the Instance dependencies tile in this view?**
 {{% /tab %}}
-{{% tab title="Answer" color="green"%}}
+{{% tab title="Answer" %}}
 **Yes, there is one for Kubernetes.**
-* Click the tile, it will bring us back into the Kubernetes Navigator, this time at the Pod level showing the Pod that runs the Redis Service.
-* To return to the Cluster level, simply click on the link **Cluster** (**1**) at the top of the screen.
-
- ![node](../images/node-link.png)
-
 {{% /tab %}}
 {{< /tabs >}}
-{{% /notice %}}
-<!-- 
-Either move to the next page and run an *optional* but more detailed exercise based on Kubernetes and the data stores used in the *Online Boutique* application or just go shopping! -->
+* Click the tile, it will bring us back into the Kubernetes Navigator, this time at the Pod level showing the Pod that runs the Redis Service.
+* To return to the Cluster level, simply click on the link **Cluster** (**1**) at the top of the screen.
+ ![node](../images/node-link.png)
 
-This completes the tour of Splunk Infrastructure and Splunk Observability Cloud.  
+{{% /notice %}}
+
+This completes the tour of **Splunk Observability Cloud**.
 
 Here, have some virtual 💶 and let's go and look at our e-commerce site, the 'Online Boutique' and do some shopping.
