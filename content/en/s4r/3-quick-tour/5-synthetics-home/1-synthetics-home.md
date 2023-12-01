@@ -19,7 +19,7 @@ To continue our tour, let's look at the result of our workshop's automatic brows
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* In the Test Pane, double-click on the line that contains the name of your workshop. The result should look like this:
+* In the Test Pane, click on the line that contains the name of your workshop. The result should look like this:
 
 ![Synthetics-overview](../images/synthetics-test-overview.png)
 
