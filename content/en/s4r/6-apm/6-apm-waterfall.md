@@ -11,19 +11,19 @@ Each span in Splunk APM captures a single operation. Splunk APM considers a span
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Click on the {{% button style="red"  %}}!{{% /button %}} next to the **paymentservice** span in the waterfall.
+* Click on the {{% button style="red"  %}}!{{% /button %}} next to any of the `paymentservice:grpc.hipstershop.PaymentService/Charge` spans in the waterfall.
+
 {{< tabs >}}
 {{% tab title="Question" %}}
-**What is the error message being reported in the span metadata?**
+**What is the error message and version being reported in the span metadata?**
 {{% /tab %}}
 {{% tab title="Answer" %}}
-**Invalid request**
+**Invalid request and `v350.10`**
 {{% /tab %}}
 {{< /tabs >}}
 
 {{% /notice %}}
-
-At the very bottom of the **Trace Waterfall** click on the word **Logs (1)**. This highlights that there are **Related Logs** for this trace.
+Now that we have identified the version of the **paymentservice** that is causing the issue, let's see if we can find out more information about the error. This is where **Related Logs** come in.
 
 ![Related Logs](../images/apm-related-logs.png)
 
@@ -35,4 +35,9 @@ Related Content relies on specific metadata that allow APM, Infrastructure Monit
 * `trace_id`
 * `span_id`
 
-Click on the **Related Logs** link to view the logs for this trace. This will open the **Log Observer** in a new tab.
+{{% notice title="Exercise" style="green" icon="running" %}}
+
+* At the very bottom of the **Trace Waterfall** click on the word **Logs (1)**. This highlights that there are **Related Logs** for this trace.
+* Click on the **Logs for trace** entry in the pop-up, the will open the **Log Observer** view in a new tab.
+
+{{% /notice %}}

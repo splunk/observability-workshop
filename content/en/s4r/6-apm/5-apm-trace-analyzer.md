@@ -7,19 +7,18 @@ Splunk Observability Cloud provides several tools for exploring application moni
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* In the right-hand pane, click on **Traces**. To ensure we are using **Trace Analyzer** make sure the button {{% button %}}Switch to Classic View{{% /button %}} is showing. If it is not, click on {{% button style="blue" %}}Switch to Trace Analyzer{{% /button %}}.
+* In the right-hand pane, click on **Traces**.
+* To ensure we are using **Trace Analyzer** make sure the button {{% button %}}Switch to Classic View{{% /button %}} is showing. If it is not, click on {{% button style="blue" %}}Switch to Trace Analyzer{{% /button %}}.
 
 {{% /notice %}}
 
 ![APM Trace Analyzer](../images/apm-trace-analyzer.png)
 
-In **Trace Analyzer** you can filter traces by any indexed/unindexed span tag. In this case, we want to filter the traces by `version` as we know from the previous exercise that `v350.10` is causing problems.
-
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * In the time picker select **Last 1 hour**.
 * Make sure the **Sample Ratio** is set to `1:1` and **not** `1:10`.
-* Click on **Add filters**, type in **orderId** and select **orderId** from the **Unindexed Tags** list.
+* Click on **Add filters**, type in **orderId** and select **orderId** from the list.
 * Paste in your **Order Confirmation ID** from when you went shopping earlier in the workshop and hit enter.
   ![Traces by Duration](../images/apm-trace-by-duration.png)
 

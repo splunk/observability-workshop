@@ -5,9 +5,8 @@ weight: 4
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* From the service map view, click on **paymentservice** to select it. You can use the Breakdown selector to break the service down by any indexed span tag.
-* In the right-hand pane there is a button {{% button style="grey"  %}}Breakdown{{% /button %}}. Click on this button to view the tags the service can be broken down by.
-* Select `tenant.level`.
+* In the right-hand pane click on the {{% button style="grey"  %}}Breakdown{{% /button %}}.
+* Select `tenant.level` in the list.
 * Click on **gold** to select it.
 * Click on {{% button style="grey"  %}}Breakdown{{% /button %}} and select `version`.
 * Repeat this for **silver** and **bronze**.
