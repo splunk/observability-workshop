@@ -17,6 +17,6 @@ otel_demo = false
 pub_key = ""
 
 # Advanced
-wsversion = "5.24"
+wsversion = "5.25"
 user_data_tpl = "userdata.yaml"
 
