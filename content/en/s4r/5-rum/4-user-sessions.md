@@ -3,12 +3,12 @@ title: 4. User Sessions
 weight: 4
 ---
 
-Close the RUM Session Replay by clicking on the **X** in the top right corner. Here, we can see the custom event **PlaceOrder**. (If it is not immediately visible, type `PlaceOrder` in the search bar below thh Session replay section. Use the **⌵** & **⌃**  to find the longest one.) Notice the length of the span. This is the time it took to complete the order, not good!
+Close the RUM Session Replay by clicking on the **X** in the top right corner. Here, we can see the custom event **PlaceOrder** (if it is not immediately visible, type `PlaceOrder` in the search bar below the Session replay section). Note the length of the span, this is the time it took to complete the order, not good!
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * Scroll down the page and you will see the **Tags** metadata (which is used in Tag Spotlight). After the tags, we come to the waterfall which shows the page objects loading (CSS, images, JavaScript etc.)
-* Scroll back up to the top of the metrics section and hover over the blue **APM** link (the one next to `Doc Fetch` with `/cart/checkout` at the end of the URL).
+* Scroll back up to the top of the metrics section and hover over the blue **APM** link (the one with `/cart/checkout` at the end of the URL).
 
 {{% /notice %}}
 
