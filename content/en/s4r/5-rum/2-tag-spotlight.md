@@ -12,7 +12,7 @@ In this dashboard view, you are presented with all the tags associated with the 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * Change the timeframe to **Last 1 hour**.
-* Click **Add Filters**, select **OS Version**, click **!=** and select **Splunk** and **RUMLoadGen** then click the {{% button style="blue" %}}Apply Filter{{% /button %}} button.
+* Click **Add Filters**, select **OS Version**, click **!=** and select **Synthetics** and **RUMLoadGen** then click the {{% button style="blue" %}}Apply Filter{{% /button %}} button.
 * Find the **Custom Event Name** tile, locate **PlaceOrder** and click on it, then click **Add to filter**.
 * Notice the large spikes in the graph across the top.
 * Click on the **User Sessions** tab.
