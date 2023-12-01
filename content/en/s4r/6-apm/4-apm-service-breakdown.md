@@ -11,7 +11,6 @@ More story here ...
 
 * In the right-hand pane there is a button {{% button style="grey"  %}}Breakdown{{% /button %}}. Click on this button to view the tags the service can be broken down by.
 * Select `tenant.level`.
-* What can you conclude from what you are seeing?
 * Click on **gold** to select it.
 * Click on {{% button style="grey"  %}}Breakdown{{% /button %}} and select `version`.
 * Repeat this for **silver** and **bronze**.
@@ -29,6 +28,12 @@ More story here ...
 You will now see the **paymentservice** broken down by `tenant.level` and each tenant broken down by `version`. You can see that the **paymentservice** is broken down into three services **gold**, **silver** and **bronze**. Each tenant is broken down into two services, one for each version (`v350.10` and `v350.9`).
 
 ![APM Service Breakdown](../images/apm-service-breakdown.png)
+
+{{% notice title="Exercise" style="green" icon="running" %}}
+
+* Click on any one of the `v350.10` red circles to select it.
+
+{{% /notice %}}
 
 Using span tags to break down services is a very powerful feature. It allows you to see how your services are performing for different customers, different versions, different regions, etc. In this exercise, we have determined that `v350.10` of the **paymentservice** is causing problems for our customers.
 

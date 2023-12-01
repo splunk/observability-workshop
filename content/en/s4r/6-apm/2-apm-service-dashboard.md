@@ -11,10 +11,9 @@ APM Service Dashboards provide request, error, and duration (**RED**) metrics ba
 
 * In the **Request rate** text chart, click the **...** and select **Copy**. Note that you now have a **1** before the **+**  at the top right of the page, indicating you have a copied chart to the clipboard.
 * Click the **...** in the **Error rate** text chart and select **Add to clipboard**. Note that you now have **2** before the **+** on the top right of the page.
+* We will be using these charts later on in the workshop. Click the back button in your browser to return to the Service Map.
 
 {{% /notice %}}
-
-We will be using these charts later on in the workshop. Click the back button in your browser to return to the Service Map.
 
 ![APM Explore](../images/apm-explore.png)
 

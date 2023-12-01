@@ -3,7 +3,12 @@ title: 3. APM Tag Spotlight
 weight: 3
 ---
 
-To view the tags for the **paymentservice** click on the **paymentservice** and then click on **Tag Spotlight** in the right-hand side functions pane. Once in **Tag Spotlight** ensure the toggle **Show tags with no values** is off.
+{{% notice title="Exercise" style="green" icon="running" %}}
+
+* To view the tags for the **paymentservice** click on the **paymentservice** and then click on **Tag Spotlight** in the right-hand side functions pane (you may need to scroll down depending upon your screen resolution).
+* Once in **Tag Spotlight** ensure the toggle **Show tags with no values** is off.
+
+{{% /notice %}}
 
 ![APM Tag Spotlight](../images/apm-tag-spotlight.png)
 
@@ -22,6 +27,6 @@ Request/Error charts display the total number of requests, errors, and root caus
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% /notice %}}
+* Now that we have identified the version of the **paymentservice** that is causing the issue, let's see if we can find out more information about the error. Click on **← Tag Spotlight** at the top of the page to get back to the Service Map.
 
-Now that we have identified the version of the **paymentservice** that is causing the issue, let's see if we can find out more information about the error. Click on **← Tag Spotlight** at the top of the page to get back to the Service Map.
+{{% /notice %}}
