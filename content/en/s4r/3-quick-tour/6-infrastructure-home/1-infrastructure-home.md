@@ -21,8 +21,9 @@ Using the Infrastructure pane, we can select the infrastructure/technology we ar
 * This should show you two tiles, **K8s Nodes** and **K8s Workloads**.
 * The bottom part of each tile will have a history graph and the top part will show notifications for alerts that fired. Across all tiles, this additional information on each of the tiles will give you a good overview of the health of your infrastructure.
 * Click on the **K8s Nodes** tile to look in more detail at the load on the Kubernetes nodes.
-* You will see one or more representations of a Kubernetes Cluster.
-* Even if there is only one visible, still filter & select the Workshop Cluster, by clicking on the {{% button style="gray" %}}Add filters{{% /button %}} button. Type `k8s.cluster.name` and search for the workshop name. This time the naming convention is **[NAME OF WORKSHOP]-k3s-cluster**. Click on {{% button style="blue" %}}Apply Filters{{% /button %}} when selected.
+* You will be presented with one or more representations of a Kubernetes Cluster.
+* Click on the {{% button %}}Add filters{{% /button %}} button. Type in `k8s.cluster.name` and click on the search result.
+* From the list, select **[NAME OF WORKSHOP]-k3s-cluster** then click on the {{% button style="blue" %}}Apply Filter{{% /button %}} button.
 
   ![cluster](../images/k8s-cluster.png)
 
