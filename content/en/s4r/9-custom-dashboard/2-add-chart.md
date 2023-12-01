@@ -17,7 +17,7 @@ In this section, we are going to use the **Copy and Paste** functionality to ext
   ![edit chart](../images/edit-chart.png)
 * Click the {{% button style="blue" %}}Save and close {{% /button %}} button (**3**).
 * As the new pasted charts appeared at the bottom of our dashboard, we need to re-organize our dashboard again.
-* First drag the *Log view* chart to the second row, between the *Instructions* chart and the *Log Lines* chart, and expand it to fill the row.
+* First drag the *Log View* chart to the second row, between the *Instructions* chart and the *Log Lines* chart, and expand it to fill the row.
 * Resize the two new charts to be 1/3 of a row chart we just pasted, before moving them to the top row, so you have the *Instruction, Request Rate & Error Rate* chart taking up the top row.
   ![New dashboard look](../images/copyandpastedcharts.png)
 * Click the {{% button style="blue" %}}Save{{% /button %}} button again to keep the lates changes.
