@@ -22,7 +22,7 @@ Before we look at a specific log line, let's quickly recap what we have done so 
 **Based on the message, what would you tell the development teams to do to resolve the issue?**
 {{% /tab %}}
 {{% tab title="Answer" %}}
-**Either fix the issue in `v350.10` or rollback to `v350.9`**
+**Either fix the issue in `v350.10` or rollback to `v350.9`.**
 {{% /tab %}}
 {{< /tabs >}}
 
