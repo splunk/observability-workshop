@@ -13,7 +13,7 @@ In this dashboard view, you are presented with all the tags associated with the 
 
 * Change the timeframe to **Last 1 hour**.
 * Click **Add Filters**, select **OS Version**, click **!=** and select **Synthetics** and **RUMLoadGen** then click the {{% button style="blue" %}}Apply Filter{{% /button %}} button.
-* Find the **Custom Event Name** tile, locate **PlaceOrder** and click on it, then click **Add to filter**.
+* Find the **Custom Event Name** tile, locate **PlaceOrder** and click on it, this takes you to Tag Spotlight for RUM.
 * Notice the large spikes in the graph across the top.
 * Click on the **User Sessions** tab.
 * Click on the **Duration** heading twice to sort the sessions by duration (longest at the top).
