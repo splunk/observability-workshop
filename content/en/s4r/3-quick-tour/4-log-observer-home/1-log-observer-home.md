@@ -38,14 +38,13 @@ Let's run a little search exercise:
 
 * Click on one of the log entries in the Logs table to validate that the entry contains `cardType: "visa"`.
 * Let's find all the orders that have been shipped. Click on **Clear All** in the filter bar to remove the previous filter.
-* In the **Fields** Pane type `severity` in the search box.
-  ![severity](../images/find-severity.png?width=15vw&classes=left)
-* You may need to scroll down the page if you still have the onboarding content displayed at the top to see the **Exclude all logs with this fields** button in the next step.
-* Make sure you click the {{% button style="grey" %}}**Exclude all logs with this fields**{{% /button %}} as the order log line does not have a severity assigned.
-* Click on the {{% button style="grey" %}}**Add Filter**{{% /button %}} button in the filter bar.
-* This time, just type `order:` in the **Enter Keyword...** box and press enter.
+* Click again on {{% button style="gray" %}}Add Filter{{% /button %}} in the filter bar, then select **Keyword**. Next just type `order:` in the **Enter Keyword...** box and press enter.
+* You should now only have logs lines that contain the word "order:". There are still a lot of logs lines, so lets filter some more.
+* Add another filter, this time select the **Fields** box, then type `severity` in the **Find a field...** search box and select it.
+  ![severity](../images/find-severity.png?width=15vw&classes=left) 
+* Make sure you click the {{% button style="gray" %}}**Exclude all logs with this fields**{{% /button %}}  at the bottom of the dialog box, as the order log line does not have a severity assigned.  This will remove the others.
+* You may need to scroll down the page if you still have the onboarding content displayed at the top in order to see the **Exclude all logs with this fields** button.
 * You should now have a list of orders sold for the last 15 minutes.
-
 {{% /notice %}}
 
 Next, let's check out **Splunk Synthetics**.

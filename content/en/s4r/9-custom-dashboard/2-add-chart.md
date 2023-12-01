@@ -10,7 +10,14 @@ In this section, we are going to use the **Copy and Paste** functionality to ext
 
 * Find your Service Health Dashboard.
 * Select the **2+** at the top of the page and select **Paste charts**, this will create the charts in your custom dashboard.
-* Add `sf_environment:[WORKSHOPNAME]` and `sf_service:payment_service` to the override filter box. ( This will make sure the charts only show data for your workshop **paymentservice**).
+<!--* Add `sf_environment:[WORKSHOPNAME]` and `sf_service:payment_service` to the override filter box. ( This will make sure the charts only show data for your workshop **paymentservice**).
+-->
+* The chart currently show data for all *Environments* & *Services*, so lets add a filter to our environment and the paymentservice.
+* Click on the the 3 dots **...** at the  top right side of the **Request Rate** chart. This wil open the edit mode.
+* In the new screen, click on the {{% button style="blue" %}}sf_environment{{% /button %}} button (1) in the middle of the screen, and pick the [WORKSHOPNAME] from the drop down. The button should change to **sf_environment:[WORKSHOPNAME]**
+* Do the same with the {{% button style="blue" %}}sf_service.{{% /button %}} button (2), only this time change it to `paymentservice`.
+![edit chart](../images/edit-chart.png)
+* Click the {{% button style="blue" %}}Save and close {{% /button %}} button (3). 
 * Click {{% button style="blue" %}}Save{{% /button %}}.
 * As the new pasted charts appeared at the bottom of our dashboard, we need to re-organize our dashboard gain.
 * First drag the *Log view* chart to the second row, between the *Instructions* chart and the *Log Lines* chart, and expand it to fill the row.
