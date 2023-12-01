@@ -19,7 +19,7 @@ Generally, in Splunk, an "index" refers to a  designated place where your data i
 
 {{% /notice %}}
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-If you have used Splunk Enterprise or Splunk Cloud before, you are likely used to start investigations with logs. As you will see in the following exercise, you can do that with Splunk Observability Cloud as well. This workshop, however, will use all the **OpenTelemetry** signals for investigations.
+If you have used Splunk Enterprise or Splunk Cloud before, you are probably used to starting investigations with logs. As you will see in the following exercise, you can do that with Splunk Observability Cloud as well. This workshop however, will use all the **OpenTelemetry** signals for investigations.
 {{% /notice %}}
 
 Let's run a little search exercise:
@@ -37,7 +37,8 @@ Let's run a little search exercise:
 * Let's find all the orders that have been shipped. Click on **Clear All** in the filter bar to remove the previous filter.
 * In the **Fields** Pane type `severity` in the search box.
   ![severity](../images/find-severity.png?width=15vw&classes=left)
-* Make sure you select the click {{% button style="gray"  %}}**Exclude all logs with this fields**{{% /button %}} as the order log line does not have a severity assigned.
+* You may need to scroll down the page if you still have the onboarding content displayed at the top in order to see the **Exclude all logs with this fields** button in the next step.
+* Make sure you click the {{% button style="gray"% }}**Exclude all logs with this fields**{{% /button %}} as the order log line does not have a severity assigned.
 * Click on the {{% button style="gray"  %}}**Add Filter**{{% /button %}} button in the filter bar.
 * This time, just type `order:` in the **Enter Keyword...** box and press enter.
 * You should now have a list of orders sold for the last 15 minutes.
