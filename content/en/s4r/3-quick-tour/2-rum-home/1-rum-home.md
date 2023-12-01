@@ -17,7 +17,7 @@ Independent of the type of Status Dashboard used, the RUM Home Page is made up o
 {{% notice title="RUM Environments & Application and Source Type" style="info" %}}
 
 * Splunk Observability uses the **environments** Tag that is sent as part of the RUM trace, (created with every interaction with your website or Mobile App), to separate data coming from different environments like "Production" or "Development".
-* A further separation can be made by the  **Applications** Tag. This allows you allows you to distinguish between separate browser/mobile applications running in the same environment.
+* A further separation can be made by the  **Applications** Tag. This allows you to distinguish between separate browser/mobile applications running in the same environment.
 * Splunk RUM is available for both browser and mobile applications, you could use **Source Type** to distinguish between them, however for this workshop, we will only use browser-based RUM.
 
 {{% /notice %}}
