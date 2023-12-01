@@ -3,11 +3,9 @@ title: 2. APM Service Dashboard
 weight: 2
 ---
 
-APM dashboards present request, error, and duration (RED) metrics based on Monitoring MetricSets created from endpoint spans for your services, endpoints, and Business Workflows. They also present related host and Kubernetes metrics to help you determine whether problems are related to the underlying infrastructure.
+APM Service Dashboards provide request, error, and duration (**RED**) metrics based on Monitoring MetricSets created from endpoint spans for your services, endpoints, and Business Workflows. If you scroll down the dashboard you will also see the host and Kubernetes-related metrics which help you determine whether there are problems with the underlying infrastructure.
 
 ![Service Dashboard](../images/apm-service-dashboard.png)
-
-Note: *Need to explain some of the charts in the dashboard, and include using it the exercise*
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
