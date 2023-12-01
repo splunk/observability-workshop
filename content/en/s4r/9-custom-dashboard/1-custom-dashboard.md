@@ -13,7 +13,7 @@ As we already saved some useful log charts in a dashboard in the Log Observer ex
 ![log list](../images/log-charts.png?width=35vw)
 
 * Even if the log information is useful, it will need more information to have it make sense for our team so let's add a bit more information
-* The first step is adding a description chart to the dashboard. Click on the {{% button style="gray" %}}New text note{{% /button %}} and replace the text in the note with below with the text then click  the {{% button style="blue" %}}Save and close{{% /button %}}  button and name the chart **Instructions**
+* The first step is adding a description chart to the dashboard. Click on the {{% button style="grey" %}}New text note{{% /button %}} and replace the text in the note with the following text and then click the {{% button style="blue" %}}Save and close{{% /button %}} button and name the chart **Instructions**
 
 {{% notice title=" Information to use with text note" style="grey" %}}
 
@@ -28,14 +28,13 @@ For more detail visit [link](https://https://www.splunk.com/en_us/products/obser
 {{% /notice %}}
 
 * The charts are not in a nice order, let's correct that and rearrange the charts so that they are useful.
-* Move your mouse over the *Instruction* chart, your mouse pointer should change to a **☩**. This will allow you to drag a chart in the Dashboard. Drag the *Instruction* chart to the top left location and resize it to a 1/3rd of the page by dragging the left edge.
-* Drag and add the *Log Timeline view* chart next to the *Instruction* chart, resize it so it fills the other 2/3rd of the page
-to be the error rate chart next to the two the chart and resize it so it fills the page
+* Move your mouse over the top edge of the  *Instructions* chart, your mouse pointer will change to a **☩**. This will allow you to drag the chart in the dashboard. Drag the *Instructions* chart to the top left location and resize it to a 1/3rd of the page by dragging the right-hand edge.
+* Drag and add the *Log Timeline view* chart next to the *Instruction* chart, resize it so it fills the other 2/3rd of the page to be the error rate chart next to the two the chart and resize it so it fills the page
 * Next, resize the *Log lines* chart to be the width of the page and resize it the make it at least twice as long.
-
-You should have something similar to the dashboard below:
+* You should have something similar to the dashboard below:
 
 ![Initial Dashboard](../images/inital-dashboard.png)
 
-Already the dashboard is improved, let's continue and add more charts.
 {{% /notice %}}
+
+This looks great, let's continue and add more meaningful charts.
