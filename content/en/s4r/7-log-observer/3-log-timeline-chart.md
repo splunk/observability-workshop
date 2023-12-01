@@ -21,7 +21,7 @@ First, we will reduce the amount of information to just the columns we are inter
 * Click **Save** and select **Save to Dashboard**.
   ![save it](../images/save-query.png)
 * In the chart creation dialog box that appears, enter the **Chart name**, this will be the name of the chart on the dashboard. Use the following format: `Initials - Log Timeline Chart`
-* Ensure **Log Timeline** is selected as the **Chart Type**.
+* Ensure that **Log Timeline** is selected as the **Chart Type**.
   ![log timeline](../images/log-timeline.png?classes=left&width=25vw)
 * Click {{% button style="blue" %}}Select Dashboard{{% /button %}} and then click {{% button style="blue" %}}New Dashboard{{% /button %}} in the Dashboard Selection dialog box.
 * In the **New dashboard** dialog box, enter a name for the new dashboard (no need to enter a description). Use the following format: `Initials - Service Health Dashboard` and click {{% button style="blue" %}}Save{{% /button %}}
