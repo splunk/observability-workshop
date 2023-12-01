@@ -25,7 +25,7 @@ First, we will reduce the amount of information to just the columns we are inter
   ![log timeline](../images/log-timeline.png?classes=left&width=25vw)
 * Click {{% button style="blue" %}}Select Dashboard{{% /button %}} and then click {{% button style="blue" %}}New Dashboard{{% /button %}} in the Dashboard Selection dialog box.
 * In the **New dashboard** dialog box, enter a name for the new dashboard (no need to enter a description). Use the following format: `Initials - Service Health Dashboard` and click {{% button style="blue" %}}Save{{% /button %}}
-* Ensure the new dashboard is highlighted in the list **[1]** and click {{% button style="blue" %}}OK{{% /button %}} **[2]**
+* Ensure the new dashboard is highlighted in the list (**1**) and click {{% button style="blue" %}}OK{{% /button %}} (**2**).
   ![Save dashboard](../images/dashboard-save.png)
 * Click the {{% button %}}Save{{% /button %}} button.
 
