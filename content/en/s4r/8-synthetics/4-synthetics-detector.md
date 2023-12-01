@@ -15,16 +15,17 @@ Given you can run these tests 24/7, it is an ideal tool to get warned early if y
 
 ![synth detector](../images/synth-detector.png)
 
-* First, click on the pencil to rename the detector to something meaningful like [YOUR INITIALS - WORKSHOP Detector].
-* Ensure that Run Duration and static threshold are selected.
-* Set trigger threshold to be around 68000.  Make sure the threshold line is cutting through the long spikes as shown above. (You may have to adjust the threshold value a bit to match your actual latency.)
+UPDATE SCREENSHOT
+
+* Edit the text **New Synthetics Detector** (**1**) and replace it with `INITIALS -` [WORKSHOPNAME]`.
+* Ensure that {{% button %}}Run duration{{% /button %}} and {{% button %}}Static threshold{{% /button %}} are selected.
+* Set the **Trigger threshold** (**2**) to be around `65,000` to `68,000`.  Make sure you have more than one spike cutting through the threshold line as shown above (you may have to adjust the threshold value a bit to match your actual latency).
 * Leave the rest as default.
-* Note that there is now a row of red and white triangles appearing below the spikes. The red triangles let you know that your detector found that your test was above the given threshold & the white triangle indicates that the result returned below the threshold. Each red triangle will trigger an alert.  
-* You can change the Alerts criticality by changing the drop-down to a different setting, as well as the method of alerting.  Make sure you do **NOT** Add a Recipient. (This will help your Instructor with cleaning up the workshop afterward).
-* If you are interested in the analytics used for this detector you can click the ellipses **⋮**  at the top right of the dialog. This will show you the generated analytics.
-* Click Activate to deploy your detector
-* This returns you to the Synthetic home page, to see if your test is active click on {{% button style="white" %}}Edit Test{{% /button %}} button
-* At the bottom of the page, there is a list of active detectors,  including the one you just created.
+* Note that there is now a row of red and white triangles appearing below the spikes(**3**). The red triangles let you know that your detector found that your test was above the given threshold & the white triangle indicates that the result returned below the threshold. Each red triangle will trigger an alert.
+* You can change the Alerts criticality (**4**) by changing the drop-down to a different level, as well as the method of alerting.  Make sure you do **NOT** add a Recipient as this could lead to you being subjected to an alert storm!
+* Click {{% button style="blue" %}}Activate{{% /button %}} to deploy your detector.
+* To see your new created detector click {{% button style="white" %}}Edit Test{{% /button %}} button
+* At the bottom of the page is a list of active detectors.
 
 ![list of detectors](../images/detector-list.png)
 
