@@ -1,40 +1,20 @@
 ---
-title: OpenTelemetry Collector Development
+title: OpenTelemetry Collector を開発する
 linkTitle: 8.2 Configuration
 weight: 10 
 ---
 
-## Building The Configuration
+## Configuration の構築
 
-The configuration portion of the component is how the user is able to have their inputs over the component,
-so the values that is used for the configuration need to be:
+コンポーネントの Configuration 部分は、ユーザーがコンポーネントに対する入力を行う方法であり、設定に使用される値は以下のようである必要があります：
 
-1. Intuitive for users to understand what that field controls
-1. Be explicit in what is required and what is optional
-1. Reuse common names and fields
-1. Keep the options simple
+1. そのフィールドが何を制御するのか、ユーザーが直感的に理解できる
+1. 必須項目とオプション項目が明確である
+1. 共通の名前とフィールドを再利用する
+1. オプションをシンプルに保つ
 
 {{% tabs %}}
-{{% tab title="bad config" %}}
-
-```yaml
----
-jenkins_server_addr: hostname
-jenkins_server_api_port: 8089
-interval: 10m
-filter_builds_by:
-    - name: my-awesome-build
-      status: amber
-track:
-    values:
-        example.metric.1: yes
-        example.metric.2: yes
-        example.metric.3: no
-        example.metric.4: no
-```
-
-{{% /tab %}}
-{{% tab title="good config" %}}
+{{% tab title="良い config" %}}
 
 ``` yaml
 ---
@@ -56,22 +36,37 @@ metrics:
 ```
 
 {{% /tab %}}
+{{% tab title="悪い config" %}}
+
+```yaml
+---
+jenkins_server_addr: hostname
+jenkins_server_api_port: 8089
+interval: 10m
+filter_builds_by:
+    - name: my-awesome-build
+      status: amber
+track:
+    values:
+        example.metric.1: yes
+        example.metric.2: yes
+        example.metric.3: no
+        example.metric.4: no
+```
+
+{{% /tab %}}
 {{% /tabs %}}
 
-The bad configuration highlights how doing the opposite of the recommendations of configuration practices impacts the usability
-of the component. It doesn't make it clear what field values should be, it includes features that can be pushed to existing processors,
-and the field naming is not consistent with other components that exist in the collector.
+悪い例では、Configuration のベストプラクティスに反するとコンポーネントが使いにくくなってしまうことが理解できるはずです。
+フィールドの値が何であるべきかを明確ではなく、既存のプロセッサーに移譲できる機能を含み、コレクター内の他のコンポーネントと比較してフィールドの命名に一貫性がありません。
 
-The good configuration keeps the required values simple, reuses field names from other components, and ensures the component focuses on
-just the interaction between Jenkins and the collector.
+良い例では、必要な値をシンプルに保ち、他のコンポーネントからのフィールド名を再利用し、コンポーネントが Jenkins とコレクター間の相互作用にのみ焦点を当てています。
 
-The code tab shows how much is required to be added by us and what is already provided for us by shared libraries within the collector.
-These will be explained in more detail once we get to the business logic. The configuration should start off small and will change
-once the business logic has started to include additional features that is needed.
+設定値の中には、このコンポーネントで独自に追加するものと、コレクター内部の共有ライブラリによって提供されているものがあります。これらはビジネスロジックに取り組む際にさらに詳しく説明します。Configuration は小さく始めるべきで、ビジネスロジックに追加の機能が必要になったら、設定も追加していきましょう。
 
-## Write the code
+## コードを書く
 
-In order to implement the code needed for the configuration, we are going to create a new file named `config.go` with the following content:
+Configuration に必要なコードを実装するために、`config.go` という名前の新しいファイルを以下の内容で作成します：
 
 ``` go
 package jenkinscireceiver

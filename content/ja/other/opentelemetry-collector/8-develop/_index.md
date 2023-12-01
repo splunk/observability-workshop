@@ -1,39 +1,39 @@
 ---
-title: OpenTelemetry Collector Development
+title: OpenTelemetry Collector を開発する
 linkTitle: 8. Develop
 weight: 8
 ---
 
-## Developing a custom component
+## カスタムコンポーネントの開発
 
-Building a component for the Open Telemetry Collector requires three key parts:
+Open Telemetry Collectorのためのコンポーネントを構築するには、以下の3つの主要な部分が必要です：
 
-1. The Configuration - _What values are exposed to the user to configure_
-1. The Factory - _Make the component using the provided values_
-1. The Business Logic - _What the component needs to do_
+1. Configuration - _ユーザーが設定できる値は何か_
+1. Factory - _提供された値を使ってコンポーネントを作成する_
+1. Business Logic - _コンポーネントが実行する必要があること_
 
-For this, we will use the example of building a component that works with Jenkins so that we can track important DevOps metrics of our project(s).
+これについて、プロジェクトの重要なDevOpsメトリクスを追跡するためにJenkinsと連携するコンポーネントを構築する例を考えていきます。
 
-The metrics we are looking to measure are:
+測定しようとしているメトリクスは次のとおりです：
 
-1. Lead time for changes - _"How long it takes for a commit to get into production"_
-1. Change failure rate   - _"The percentage of deployments causing a failure in production"_
-1. Deployment frequency  - _"How often a [team] successfully releases to production"_
-1. Mean time to recover  - _"How long does it take for a [team] to recover from a failure in production"_
+1. 変更に対するリードタイム - _「コミットが本番環境に入るまでにかかる時間」_
+1. 変更失敗率 - _「本番環境での障害を引き起こすデプロイの割合」_
+1. デプロイ頻度 - _「[チーム]が本番環境に成功してリリースする頻度」_
+1. 平均復旧時間 - _「[チーム]が本番環境の障害から復旧するのにかかる時間」_
 
-These indicators were identified Google's DevOps Research and Assesment (DORA)[^1] team to help
-show performance of a software development team. The reason for choosing _Jenkins CI_ is that we remain in the same Open Source Software ecosystem which we can serve as the example for the vendor managed CI tools to adopt in future.
+これらの指標は Google の [DevOps Research and Assessment (DORA)](https://dora.dev/) チームによって特定されたもので、ソフトウェア開発チームのパフォーマンスを示すのに役立ちます。_Jenkins CI_ を選択した理由は、私たちが同じオープンソースソフトウェアエコシステムに留まり、将来的にベンダー管理のCIツールが採用する例となることができるためです。
 
-## Instrument Vs Component
+## 計装 🆚 コンポーネント
 
-There is something to consider when improving level of Observability within your organisation
-since there are some trade offs that get made.
+組織内でオブザーバビリティを向上させる際には、トレードオフが発生するため、考慮する点があります。
 
-| | Pros | Cons |
+| | 長所 | 短所 |
 | ----- | ----- | ----- |
-| **(Auto) Instrumented** | Does not require an external API to be monitored in order to observe the system. | Changing instrumentation requires changes to the project. |
-| | Gives system owners/developers to make changes in their observability. | Requires additional runtime dependancies. |
-| | Understands system context and can corrolate captured data with _Exemplars_. | Can impact performance of the system. |
-| **Component** | - Changes to data names or semantics can be rolled out independently of the system's release cycle. | Breaking API changes require a coordinated release between system and collector. |
-| | Updating/extending data collected is a seemless user facing change. | Captured data semantics can unexpectedly break that does not align with a new system release. |
-| | Does not require the supporting teams to have a deep understanding of observability practice. | Strictly external / exposed information can be surfaced from the system. |
+| **（自動）計装**[^1] | システムを観測するために外部APIが不要 | 計装を変更するにはプロジェクトの変更が必要 |
+| | システム所有者/開発者は可観測性の変更が可能 | ランタイムへの追加の依存が必要 |
+| | システムの文脈を理解し、_Exemplar_ とキャプチャされたデータを関連付けることが可能 | システムのパフォーマンスに影響を与える可能性がある |
+| **コンポーネント** | データ名や意味の変更をシステムのリリースサイクルから独立した展開が可能 | APIの破壊的な変更の可能性があり、システムとコレクター間でリリースの調整が必要 |
+| | その後の利用に合わせて収集されるデータの更新/拡張が容易 | キャプチャされたデータの意味がシステムリリースと一致せず、予期せず壊れる可能性がある |
+
+
+[^1]: 計装（instrument, インストゥルメント）とは、アプリケーションなどのシステムコンポーネントに対して、トレースやメトリクス、ログなどのテレメトリーデータを出力させる実装。計装ライブラリを最低限セットアップするだけで一通りのトレースやメトリクスなどを出力できるような対応を「自動計装」と呼びます。

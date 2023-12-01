@@ -1,33 +1,28 @@
 ---
-title: OpenTelemetry Collector Development
-linkTitle: 8.5 Building Business Logic 
+title: OpenTelemetry Collector を開発する
+linkTitle: 8.5 ビジネスロジックを作る
 weight: 13
 ---
 
-## Building The Business Logic
+## ビジネスロジックを作る
 
-At this point, we have a custom component that currently does nothing so we need to add in the required
-logic to capture this data from Jenkins.
+この時点では、何も行っていないカスタムコンポーネントが作成されています。ここから、Jenkins からデータを取得するための必要なロジックを追加していきましょう。
 
-From this point, the steps that we need to take are:
+ここからのステップは以下の通りです：
 
-1. Create a client that connect to Jenkins
-1. Capture all the configured jobs
-1. Report the status of the last build for the configured job
-1. Calculate the time difference between commit timestamp and job completion.
+1. Jenkinsに接続するクライアントを作成する
+1. 設定されたすべてのジョブをキャプチャする
+1. 設定されたジョブの最後のビルドのステータスを報告する
+1. コミットタイムスタンプとジョブ完了の時間差を計算する
 
-The changes will be made to `scraper.go`.
+変更を `scraper.go` に加えていきます。
 
 {{% tabs %}}
-{{% tab title="1. Add Jenkins client" %}}
+{{% tab title="1. Jenkins クライアントを追加する" %}}
 
-To be able to connect to the Jenkins server, we will be using the package,
-["github.com/yosida95/golang-jenkins"](https://pkg.go.dev/github.com/yosida95/golang-jenkins),
-which provides the functionality required to read data from the jenkins server.
+Jenkinsサーバーに接続するために、パッケージ ["github.com/yosida95/golang-jenkins"](https://pkg.go.dev/github.com/yosida95/golang-jenkins) を使用します。これには、Jenkinsサーバーからデータを読み取るために必要な機能が提供されています。
 
-Then we are going to utilise some of the helper functions from the,
-["go.opentelemetry.io/collector/receiver/scraperhelper"](https://pkg.go.dev/go.opentelemetry.io/collector/receiver/scraperhelper) ,
-library to create a start function so that we can connect to the Jenkins server once component has finished starting.
+次に、["go.opentelemetry.io/collector/receiver/scraperhelper"](https://pkg.go.dev/go.opentelemetry.io/collector/receiver/scraperhelper) ライブラリのいくつかのヘルパー関数を利用して、コンポーネントの起動が完了したらJenkinsサーバーに接続できるようにするスタート関数を作成します。
 
 ```go
 package jenkinscireceiver
@@ -78,17 +73,14 @@ func (scraper) scrape(ctx context.Context) (pmetric.Metrics, error) {
 }
 
 ```
+これで、Jenkinsレシーバーを初期化するために必要なすべてのコードが完成しました。
 
-This finishes all the setup code that is required in order to initialise a Jenkins receiver.
 {{% /tab%}}
-{{% tab title="2. Capture all configured jobs" %}}
+{{% tab title="2. ジョブをキャプチャする" %}}
 
-From this point on, we will be focuses on the `scrape` method that has been waiting to be filled in.
-This method will be run on each interval that is configured within the configuration (by default, every minute).
+ここから先は、実装が必要な `scrape` メソッドに焦点を当てます。このメソッドは、設定された間隔（デフォルトでは1分）ごとに実行されます。
 
-The reason we want to capture the number of jobs configured so we can see the growth of our Jenkins server,
-and measure of many projects have onboarded. To do this we will call the jenkins client to list all jobs,
-and if it reports an error, return that with no metrics, otherwise, emit the data from the metric builder.
+Jenkins サーバーの負荷状況や、どの程度のプロジェクトが実行されているかを測定するために、Jenkins で設定されているジョブの数をキャプチャしたいと考えています。これを行うために、Jenkins クライアントを呼び出してすべてのジョブをリスト化し、エラーが報告された場合はメトリクスなしでそれを返し、そうでなければメトリクスビルダーからのデータを発行します。
 
 ```go
 func (s scrape) scrape(ctx context.Context) (pmetric.Metrics, error) {
@@ -111,11 +103,10 @@ func (s scrape) scrape(ctx context.Context) (pmetric.Metrics, error) {
 ```
 
 {{% /tab%}}
-{{% tab title="3. Report the status of each job" %}}
+{{% tab title="3. ジョブの状態を報告する" %}}
 
-In the last step, we were able to capture all jobs ands report the number of jobs
-there was. Within this step, we are going to examine each job and use the report values
-to capture metrics.
+前のステップにより、すべてのジョブをキャプチャしてジョブの数をレポートできるようになりました。
+このステップでは、それぞれのジョブを調査し、レポートされた値を使用してメトリクスをキャプチャしていきます。
 
 ```go
 func (s scrape) scrape(ctx context.Context) (pmetric.Metrics, error) {
@@ -164,11 +155,11 @@ func (s scrape) scrape(ctx context.Context) (pmetric.Metrics, error) {
     return s.mb.Emit(), nil
 }
 ```
-{{% /tab%}}
-{{% tab title="4. Report the delta" %}}
 
-The final step is to calculate how long it took from 
-commit to job completion to help infer our DORA metrics.
+{{% /tab%}}
+{{% tab title="4. 差分を報告する" %}}
+
+最後のステップでは、コミットからジョブ完了までにかかった時間を計算して、[DORA メトリクス](https://cloud.google.com/blog/products/devops-sre/using-the-four-keys-to-measure-your-devops-performance) を推測するのに役立てていきます。
 
 ```go
 func (s scrape) scrape(ctx context.Context) (pmetric.Metrics, error) {
@@ -220,18 +211,15 @@ func (s scrape) scrape(ctx context.Context) (pmetric.Metrics, error) {
 {{% /tab%}}
 {{% /tabs %}}
 
-Once all of these steps have been completed, you now have built a custom Jenkins CI receiver!
+これらのステップがすべて完了すると、Jenkins CI レシーバーが完成します！
 
-## Whats next?
+## 次は何をするの？
 
-There are more than likely features that would be desired from component that you can think of, like:
+コンポーネントに必要な機能は、おそらく他にもたくさん思いつくでしょう。例えば：
 
-- Can I include the branch name that the job used?
-- Can I include the project name for the job?
-- How I calculate the collective job durations for project?
-- How do I validate the changes work?
+- ジョブで使用されたブランチ名を含めることはできますか？
+- ジョブのプロジェクト名を含めることはできますか？
+- プロジェクトのジョブの総持続時間をどのように計算しますか？
+- 変更が機能するかどうかをどのように検証しますか？
 
-Please take this time to play around, break it, change things around, or even try to capture logs from the builds.
-
-
-[^1]: [DORA Metrics](https://cloud.google.com/blog/products/devops-sre/using-the-four-keys-to-measure-your-devops-performance)
+この時間を使って遊んでみたり、壊してみたり、変更してみたり、ビルドからのログをキャプチャしてみるなどしてください。

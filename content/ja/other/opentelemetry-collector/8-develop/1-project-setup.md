@@ -1,32 +1,31 @@
 ---
-title: OpenTelemetry Collector Development
-linkTitle: 8.1 Project Setup
+title: OpenTelemetry Collector を開発する
+linkTitle: 8.1 セットアップ
 weight: 9
 ---
 
-## Project Setup {{% badge style=primary icon=user-ninja %}}**Ninja**{{% /badge %}}
+## プロジェクトのセットアップ {{% badge style=primary icon=user-ninja %}}**Ninja**{{% /badge %}}
 
 {{% notice style="note" %}}
 
-The time to finish this section of the workshop can vary depending on experience.
+このワークショップのセクションを完了する時間は経験によって異なる場合があります。
 
-A complete solution can be found [here](https://github.com/splunk/collector-workshop-example) incase you're stuck or want to follow
-along with the instructor.
+完成したものは[こちら](https://github.com/splunk/collector-workshop-example)にあります。詰まった場合や講師と一緒に進めたい場合に利用してください。
 
 {{% /notice %}}
 
-To get started developing a the new _Jenkins CI_ receiver, we first need to set up a Golang project.
-The steps to create your new Golang project is:
+新しい _Jenkins CI_ レシーバーの開発を始めるため、まずは Go プロジェクトのセットアップから始めていきます。
+新しい Go プロジェクトを作成する手順は以下の通りです：
 
-1. Create a new directoy named `${HOME}/go/src/jenkinscireceiver` and change into it
-    1. The actual directory name or location is not strict, you can choose your own development directory to make it in.
-1. Initialise the golang module by going `go mod init splunk.conf/workshop/example/jenkinscireceiver`
-    1. This will create a file named `go.mod` which is used to track our direct and indirect dependencies
-    1. Eventually there will be a `go.sum` which is the checksum values of the depedancies being imported.
+1. `${HOME}/go/src/jenkinscireceiver` という名前の新しいディレクトリを作成し、そのディレクトリに移動します。
+    1. 実際のディレクトリ名や場所は厳密ではありません。自分の開発ディレクトリを自由に選ぶことができます。
+1. `go mod init splunk.conf/workshop/example/jenkinscireceiver` を実行して、Go のモジュールを初期化します。
+    1. 依存関係を追跡するために使用される `go.mod` というファイルが作成されます。
+    1. インポートされている依存関係のチェックサム値が `go.sum` として保存されます。
 
-{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}Review your go.mod{{% /badge %}}" %}}
+{{% expand title="{{% badge icon=check color=green title=**Check-in** %}}go.modをレビューする{{% /badge %}}" %}}
 
-``` text
+`` text
 module splunk.conf/workshop/example/jenkinscireceiver
 
 go 1.20

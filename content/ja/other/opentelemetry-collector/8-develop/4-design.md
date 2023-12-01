@@ -1,12 +1,12 @@
 ---
-title: OpenTelemetry Collector Development
-linkTitle: 8.4 Designing the Metrics 
+title: OpenTelemetry Collector を開発する
+linkTitle: 8.4 メトリクスを設計する 
 weight: 12
 ---
 
-### Designing The Metrics
+### メトリクスを設計する
 
-To help define and export the metrics captured by our receiver, we will be using, [mdatagen](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/cmd/mdatagen), a tool developed for the collector that turns yaml defined metrics into code.
+レシーバーによってキャプチャされるメトリクスを定義し、エクスポートするために、コレクターのために開発された [mdatagen](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/cmd/mdatagen) を使って、yaml で定義したメトリクスをコードに変換していきます。
 
 {{% tabs %}}
 {{% tab title="metadata.yaml"%}}
@@ -82,16 +82,13 @@ package jenkinscireceiver
 {{% /tab%}}
 {{% /tabs %}}
 
-Create these files within the project folder before continuing onto the next section.
+次のセクションに進む前に、これらのファイルをプロジェクトフォルダ内に作成してください。
 
-## Building The Factory
+## Factory の構築
 
-The Factory is a software design pattern that effectively allows for an object, in this case a `jenkinscireceiver`, to be created
-dynamically with the provided configuration. To use a more real world example, it would be going to a phone store, asking for a phone
-that matches your exact description, and then provides it to you.
+Factory はソフトウェアデザインパターンの一種で、提供された Configuration を使って、動的にオブジェクト（この場合は `jenkinscireceiver`）を作成するものです。現実的な例では、携帯電話店に行って、あなたの正確な説明に合った携帯電話を求め、それを提供されるようなものです。
 
-Run the following command `go generate -x ./...` , it will create a new folder, `jenkinscireceiver/internal/metadata`,
-that contains all code required to export the defined metrics. The required code is:
+コマンド `go generate -x ./...` を実行すると、定義されたメトリクスをエクスポートするために必要なすべてのコードを含む新しいフォルダ `jenkinscireceiver/internal/metadata` が作成されます。生成されるコードは以下の通りです：
 
 {{% tabs %}}
 {{% tab title="factory.go" %}}
@@ -247,4 +244,4 @@ replaces:
 {{% /tab %}}
 {{% /tabs %}}
 
-Once you have written these file into the project with the expected contents then run, `go mod tidy`, which will fetch all the remote depedancies and update `go.mod` and generate the `go.sum` files.
+これらのファイルがプロジェクトに作成されたら、`go mod tidy` を実行します。すると、すべての依存ライブラリが取得され、`go.mod` が更新されます。

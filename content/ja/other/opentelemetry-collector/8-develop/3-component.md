@@ -1,70 +1,64 @@
 ---
-title: OpenTelemetry Collector Development
-linkTitle: 8.3 Component Review
+title: OpenTelemetry Collector を開発する
+linkTitle: 8.3 コンポーネントを検討する
 weight: 11
 ---
 
-## Component Review
+## コンポーネントを検討する
 
-To recap the type of component we will need to in order to capture metrics from Jenkins:
+Jenkinsからメトリクスを取得するために必要なコンポーネントの種類をおさらいしましょう：
 
 {{% tabs %}}
-{{% tab title="Extension" %}}
-The business use case an extension helps solves for are:
+{{% tab title="エクステンション" %}}
+エクステンションが解決するビジネスユースケースは以下の通りです：
 
-1. Having shared functionality that requires runtime configuration
-1. Indirectly helps with observing the runtime of the collector
+1. 実行時の設定が必要な共有機能を持つ
+1. コレクターの実行時間の観察に間接的に役立つ
 
-See [Extensions Overview](../2-extensions) for more details.
+詳細については、[エクステンションの概要](../2-extensions)を参照してください。
 {{% /tab %}}
-{{% tab title="Receiver" %}}
-The business use case a receiver solves for:
+{{% tab title="レシーバー" %}}
+レシーバーが解決するビジネスユースケースは以下の通りです：
 
-- Fetching data from a remote source
-- Receiving data from remote source(s)
+- リモートソースからのデータの取得
+- リモートソースからのデータの受信
 
-This are commonly referred to _pull_ vs _push_ based data collection, and you read more about the details in the [Receiver Overview](../3-receivers).
+これらは一般的に _pull_ 対 _push_ ベースのデータ収集と呼ばれ、詳細については[レシーバーの概要](../3-receivers)で読むことができます。
 {{% /tab %}}
-{{% tab title="Processor" %}}
-The business use case a processor solves for is:
+{{% tab title="プロセッサー" %}}
+プロセッサーが解決するビジネスユースケースは以下の通りです：
 
-- Adding or removing data, fields, or values
-- Observing and making decisions on the data
-- Buffering, queueing, and reordering
+- データ、フィールド、または値の追加または削除
+- データの観察と意思決定
+- バッファリング、キューイング、および並べ替え
 
-The thing to keep in mind that the data type flowing through a processor needs to use the forward
-the same data type to its downstream components.
-Read through [Processor Overview](../4-processors) for the details.
+プロセッサーを通過するデータタイプは、下流のコンポーネントに同じデータタイプを転送する必要があることを覚えておいてください。
+詳細については、[プロセッサーの概要](../4-processors)をご覧ください。
 {{% /tab %}}
-{{% tab title="Exporter" %}}
-The business use case an exporter solves for:
+{{% tab title="エクスポーター" %}}
+エクスポーターが解決するビジネスユースケースは以下の通りです：
 
-- Send the data to a tool, service, or storage
+- データをツール、サービス、またはストレージに送信する
 
-The OpenTelemetry collector does not want to be "backend", an all in one observability suite, but rather
-keep to the principles that founded OpenTelemetry to begin with; A vendor agnostic Observability for all.
-To help revisit the details, please read through [Exporter Overview](../5-exporters).
+OpenTelemetryコレクターは「バックエンド」、すべてを一元化した観測可能性スイートを目指すのではなく、OpenTelemetryの創設原則に忠実であり続けることを目指しています。つまり、ベンダーに依存しない全ての人のための観測可能性です。詳細については、[エクスポーターの概要](../5-exporters)をお読みください。
 
 {{% /tab %}}
-{{% tab title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Connectors{{% /badge %}}"  %}}
+{{% tab title="{{% badge style=primary icon=user-ninja %}}**Ninja:** コネクター{{% /badge %}}"  %}}
 
-This is a component type that was missed in the workshop since it is a relatively new addition to the collector,
-but the best way to think about a connector is that it is like a processor that allows to be used across different
-telemetry types, and pipelines. Meaning that a connector can accept data as logs, and output metrics, or accept
-metrics from one pipeline and provide metrics on the data it has observed.
+コネクターは比較的新しいコンポーネントで、このワークショップではあまり触れていません。
+コネクターは、異なるテレメトリタイプやパイプラインをまたいで使用できるプロセッサーのようなものだといえます。たとえば、コネクターはログとしてデータを受け取り、メトリクスとして出力したり、あるパイプラインからメトリクスを受け取り、テレメトリーデータに関するメトリクスを提供したりすることができます。
 
-The business case that a connector solves for:
+コネクターが解決するビジネスケースは以下の通りです：
 
-- Converting from different telemetry types
-  - logs to metrics
-  - traces to metrics
-  - metrics to logs
-- Observing incoming data and producing its own data
-  - Accepting metrics and generating analytical metrics of the data.
+- 異なるテレメトリタイプ間の変換
+  - ログからメトリクスへ
+  - トレースからメトリクスへ
+  - メトリクスからログへ
+- 受信したデータを観察し、自身のデータを生成する
+  - メトリクスを受け取り、データの分析メトリクスを生成する。
 
-There was a brief overview within the **Ninja** section as part of the [Processor Overview](../4-processors),
-and be sure what the project for updates for new connector components.
+**Ninja**セクションの一部として[プロセッサーの概要](../4-processors)内で簡単に概要が説明されています。
 {{% /tab %}}
 {{% /tabs %}}
 
-From the component overviews, it is clear that developing a pull based receiver for Jenkins.
+これらのコンポーネントについて考えると、Jenkins に対応する場合はプルベースのレシーバーを開発する必要があることがわかります。
