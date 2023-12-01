@@ -19,14 +19,15 @@ Before we look at a specific log line, let's quickly recap what we have done so 
 * Click on an error entry in the log table (make sure it says `hostname: "paymentservice-xxxx"` in case there is a rare error from a different service in the list too.
 {{< tabs >}}
 {{% tab title="Question" %}}
-**Based on the message, what would you tell the development teams to do to resolve the issue?**
+**Based on the message, what would you tell the development team to do to resolve the issue?**
 {{% /tab %}}
 {{% tab title="Answer" %}}
-**Either fix the issue in `v350.10` or rollback to `v350.9`.**
+**The development team needs to rebuild and deploy the container with a valid API Token or rollback to `v350.9`**.
 {{% /tab %}}
 {{< /tabs >}}
 
-![Log Message](../images/log-observer-log-message.png)
+  ![Log Message](../images/log-observer-log-message.png)
+* Click on the **X** in the log message pane to close it.
 
 {{% /notice %}}
 

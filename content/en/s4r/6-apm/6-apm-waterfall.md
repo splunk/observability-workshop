@@ -18,7 +18,7 @@ Each span in Splunk APM captures a single operation. Splunk APM considers a span
 **What is the error message and version being reported in the span metadata?**
 {{% /tab %}}
 {{% tab title="Answer" %}}
-**Invalid request and `v350.10`**
+**Invalid request and `v350.10`**.
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -38,6 +38,6 @@ Related Content relies on specific metadata that allow APM, Infrastructure Monit
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * At the very bottom of the **Trace Waterfall** click on the word **Logs (1)**. This highlights that there are **Related Logs** for this trace.
-* Click on the **Logs for trace** entry in the pop-up, the will open the **Log Observer** view in a new tab.
+* Click on the **Logs for trace XXX** entry in the pop-up, this will open the logs for the complete trace in **Log Observer**.
 
 {{% /notice %}}

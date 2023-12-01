@@ -4,7 +4,7 @@ linkTitle: 3. Add Custom Chart
 weight: 3
 ---
 
-In this part of the workshop we are going to create a chart that we will add to our dashboard, we will also link it to the detector we previously build. This will allow us to see the behaviour of our test and get alerted if one or more of our test runs breaches its SLA.
+In this part of the workshop we are going to create a chart that we will add to our dashboard, we will also link it to the detector we previously built. This will allow us to see the behavior of our test and get alerted if one or more of our test runs breach its SLA.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -12,7 +12,7 @@ In this part of the workshop we are going to create a chart that we will add to 
 
 ![new chart screen](../images/new-chart.png)
 
-* First, use the {{% button style="grey" %}}Untitled chart{{% /button %}} input field and name the chart **Overall Test Duration**. Next, you can set the Description to **Showing the Synthetic Test for the complete application**.
+* First, use the {{% button style="grey" %}}Untitled chart{{% /button %}} input field and name the chart **Overall Test Duration**. Next, you can set the Description to **Show the Synthetic Test for the complete application**.
 * For this exercise we want a bar or column chart, so click on the 3d icon ![column chart](../images/barchart-icon.png?classes=inline&height=25px)in the chart option box.
 * We need to provide a signal or metric that we are going to display. In this case, we want *synthetics.run.duration.time.ms* (This is runtime in duration for our test)
 * Click the {{% button style="blue" %}}Add filter{{% /button %}} button.

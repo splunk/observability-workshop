@@ -7,7 +7,7 @@ weight: 4
 
 * In the right-hand pane click on the {{% button style="grey"  %}}Breakdown{{% /button %}}.
 * Select `tenant.level` in the list.
-* Click on **gold** to select it.
+* Back in the Service MapClick on **gold** to select it.
 * Click on {{% button style="grey"  %}}Breakdown{{% /button %}} and select `version`.
 * Repeat this for **silver** and **bronze**.
 {{< tabs >}}
