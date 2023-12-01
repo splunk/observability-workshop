@@ -38,7 +38,7 @@ Let's run a little search exercise:
 * In the **Fields** Pane type `severity` in the search box.
   ![severity](../images/find-severity.png?width=15vw&classes=left)
 * You may need to scroll down the page if you still have the onboarding content displayed at the top in order to see the **Exclude all logs with this fields** button in the next step.
-* Make sure you click the {{% button style="gray"% }}**Exclude all logs with this fields**{{% /button %}} as the order log line does not have a severity assigned.
+* Make sure you click the {{% button style="gray"  %}}**Exclude all logs with this fields**{{% /button %}} as the order log line does not have a severity assigned.
 * Click on the {{% button style="gray"  %}}**Add Filter**{{% /button %}} button in the filter bar.
 * This time, just type `order:` in the **Enter Keyword...** box and press enter.
 * You should now have a list of orders sold for the last 15 minutes.
