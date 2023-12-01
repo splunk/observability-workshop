@@ -13,7 +13,7 @@ Click on **Synthetics** in the main menu. This will bring us to the Synthetics H
 3. **Create Test Pane:** Drop-down for creating new Synthetic tests.
 
 {{% notice title="Info" style="info" %}}
-As part of the workshop we have created a default browser test against the application we are running. You find it in the Test Pane (2). It will have the following name **Workshop Browser Test for**, followed by the name of your Workshop (your instructor should have provided that to you).
+As part of the workshop we have created a default browser test against the application we are running. You find it in the Test Pane (**2**). It will have the following name **Workshop Browser Test for**, followed by the name of your Workshop (your instructor should have provided that to you).
 {{% /notice %}}
 To continue our tour, let's look at the result of our workshop's automatic browser test.  
 
@@ -30,10 +30,10 @@ To continue our tour, let's look at the result of our workshop's automatic brows
 **How often is the test run, and from where?**
 {{% /tab %}}
 {{% tab title="Answer" %}}
-**The test runs at a 1-minute round robin interval from Frankfurt, London and Paris**
+**The test runs at **a 1-minute **round-robin** interval from** Frankfurt, London and Paris**
 {{% /tab %}}
 {{< /tabs >}}
 
 {{% /notice %}}
 
-Now let’s examine the infrastructure our application is running on using **Splunk Infrastructure Monitoring (IM)**.
+Next, let’s examine the infrastructure our application is running on using **Splunk Infrastructure Monitoring (IM)**.

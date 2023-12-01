@@ -13,7 +13,7 @@ The goal of this workshop is to experience an issue and use Splunk Observability
 
 #### Who should attend?
 
-Anyone wanting to gain an understanding of Splunk Observability in a hands-on environment. This workshop is designed for people with little or no experience with Splunk Observability.
+Those wanting to gain an understanding of Splunk Observability in a hands-on environment. This workshop is designed for people with little or no experience with Splunk Observability.
 
 #### What you’ll need
 

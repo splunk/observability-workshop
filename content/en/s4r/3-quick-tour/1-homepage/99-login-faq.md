@@ -29,13 +29,13 @@ The requirements for a password in Splunk Observability Cloud are:
 
 ### 3. Invalid or unknown password
 
-The system does not recognise the password and username combination, please click on the reset password link to try and reset your password.
-You will be asked to provide a password. If that account exist, an email will be send to allow you to reset your password. follow the instruction in  that email.
+The system does not recognize the password and username combination, please click on the reset password link to try and reset your password.
+You will be asked to provide a password. If that account exists, an email will be sent to allow you to reset your password. follow the instructions in that email.
 
-If no email is arriving, your username is not recognised , reach out ot your instructor to check it for you.
+If no email arrives or your username is not recognized, reach out to your instructor for assistance.
 
 ---
 
 ### 4. Other options
 
-TO Be Completed.
+To Be Completed.

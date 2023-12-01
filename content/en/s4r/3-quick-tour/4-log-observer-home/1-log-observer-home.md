@@ -44,4 +44,4 @@ Let's run a little search exercise:
 
 {{% /notice %}}
 
-We will revisit Log Observer in more detail later. Next, let's check out **Splunk Synthetics**.
+Next, let's check out **Splunk Synthetics**.

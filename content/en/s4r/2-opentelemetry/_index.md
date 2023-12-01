@@ -13,31 +13,9 @@ With the rise of cloud computing, microservices architectures, and ever-more com
 
 To make a system observable, it must be instrumented. That is, the code must emit traces, metrics, and logs. The instrumented data must then be sent to an Observability back-end such as **Splunk Observability Cloud**.
 
-{{< mermaid >}}
-
----
-title: The 3 Pillars of Observability
-
----
-
-%%{
-  init:{
-    "theme": "neutral",
-    "themeVariables": {
-      "lineColor": "#ffffff"
-    }
-  }
-}%%
-
-graph LR;
-    A["`_Metrics_
-    **Do I have a problem?**`"]
-    B["`_Traces_
-    **Where is the problem?**`"]
-    C["`_Logs_
-    **What is the problem?**`"]
-    A --> B --> C
-{{< /mermaid >}}
+| Metrics | Traces | Logs |
+|:-------:|:------:|:----:|
+| _**Do I have a problem?**_ | _**Where is the problem?**_ | _**What is the problem?**_ |
 
 OpenTelemetry does two important things:
 

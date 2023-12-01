@@ -41,4 +41,4 @@ If you scroll down the Overview Page you will notice some services listed have *
 
 Splunk APM can infer the presence of the remote service, or inferred service if the span calling the remote service has the necessary information. Examples of possible inferred services include databases, HTTP endpoints, and message queues. Inferred services are not instrumented, but they are displayed on the service map and the service list.
 
-We will revisit APM in more detail later. Next, let's check out **Splunk Log Observer (LO)**.
+Next, let's check out **Splunk Log Observer (LO)**.

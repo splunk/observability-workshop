@@ -32,10 +32,10 @@ Independent of the type of Status Dashboard used, the RUM Home Page is made up o
 * The 3rd tile reports **Web Vitals**, a metric that focuses on three important aspects of the user experience: *loading*, *interactivity*, and *visual stability*.
 {{< tabs >}}
 {{% tab title="Question" %}}
-**Based on the **Web Vitals** information provided, how do you rate the current web performance of the site?**
+**Based on the **Web Vitals** metrics, how do you rate the current web performance of the site?**
 {{% /tab %}}
 {{% tab title="Answer" %}}
-**According the *Web Vitals* Metrics, the initial load of the site is ok and rates a *Good Performance***
+**According to the *Web Vitals* Metrics, the initial load of the site is OK and is rated *Good***
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -44,4 +44,4 @@ Independent of the type of Status Dashboard used, the RUM Home Page is made up o
 
 {{% /notice %}}
 
-We will revisit RUM in more detail later. Next, let's check out **Splunk Application Performance Monitoring (APM)**.
+Next, let's check out **Splunk Application Performance Monitoring (APM)**.
