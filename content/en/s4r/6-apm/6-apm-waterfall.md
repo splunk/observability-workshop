@@ -23,7 +23,7 @@ Each span in Splunk APM captures a single operation. Splunk APM considers a span
 
 {{% /notice %}}
 
-At the very bottom of the **Trace Waterfall** click on the word **Logs(1)**. This highlights that there are **Related Logs** for this trace.
+At the very bottom of the **Trace Waterfall** click on the word **Logs (1)**. This highlights that there are **Related Logs** for this trace.
 
 ![Related Logs](../images/apm-related-logs.png)
 
