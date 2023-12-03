@@ -1,6 +1,6 @@
 ---
-title: Dashboard Introduction
-linkTitle: 1. Dashboard Introduction
+title: Enhancing the Dashboard
+linkTitle: 1. Enhancing the Dashboard
 weight: 1
 ---
 

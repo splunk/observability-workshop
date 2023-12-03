@@ -1,6 +1,6 @@
 ---
-title: Adding charts to the Service Health Dashboard 📋
-linkTitle: 2. Add Charts
+title: Adding Copied Charts
+linkTitle: 2. Adding Copied Charts
 weight: 2
 ---
 

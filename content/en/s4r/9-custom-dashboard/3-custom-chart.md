@@ -1,6 +1,6 @@
 ---
-title: Create Custom Chart & add to Dashboard
-linkTitle: 3. Add Custom Chart
+title: Adding a Custom Chart
+linkTitle: 3. Adding a Custom Chart
 weight: 3
 ---
 
