@@ -20,7 +20,7 @@ First, we will reduce the amount of information to only the columns we are inter
 * To make this work for all traces, remove the `trace_id` from the filter and add the fields `sf_service=paymentservice` and `sf_environment=[WORKSHOPNAME]`.
 * Click **Save** and select **Save to Dashboard**.
   ![save it](../images/save-query.png)
-* In the chart creation dialog box that appears, enter the **Chart name**, this will be the name of the chart on the dashboard. Use the following format: `Initials - Log Timeline Chart`
+* In the chart creation dialog box that appears, for the **Chart name** use **Log Timeline**.
 * Ensure that **Log Timeline** is selected as the **Chart Type**.
   ![log timeline](../images/log-timeline.png?classes=left&width=25vw)
 * Click {{% button style="blue" %}}Select Dashboard{{% /button %}} and then click {{% button style="blue" %}}New dashboard{{% /button %}} in the Dashboard Selection dialog box.

@@ -16,7 +16,7 @@ As with the previous Log Timeline chart, we will add a version of this chart to 
 * This will again provide you with the Chart creation dialog.
 * Ensure **Log View** is selected as the **Chart Type**.
   ![log view](../images/log-view.png?classes=left&width=30vw)
-* Enter a **Chart name**. Use the following format: `Initials - Log View Chart`
+* For the **Chart name** use **Log View**.
 * This time Click {{% button style="blue" %}}Select Dashboard{{% /button %}} and search for the Dashboard you created in the previous exercise. You can start by typing your initials in the search box (**1**).
   ![search dashboard](../images/search-dashboard.png)
 * Click on your dashboard name to highlight it (**2**) and click {{% button style="blue" %}}OK{{% /button %}} (**3**).
