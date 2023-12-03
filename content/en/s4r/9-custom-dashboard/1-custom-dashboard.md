@@ -6,6 +6,8 @@ weight: 1
 
 As we already saved some useful log charts in a dashboard in the Log Observer exercise, we are going to extend that dashboard.
 
+ ![Wall mounted](../images/wall-mount.png)
+
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * Go back to your dashboard with the two log charts, by clicking on **Dashboards*, and select your dashboard group from the list of linked dashboards at the bottom of the page. This should bring you back to your previously saved dashboard.
