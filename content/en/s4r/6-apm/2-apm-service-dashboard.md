@@ -14,10 +14,10 @@ APM Service Dashboards provide request, error, and duration (**RED**) metrics ba
 
 * Check the **Time** box **(1)**, you can see that the dashboards only show data relevant to the time it took for the APM trace we selected to complete (note that the charts are static).
 * In the **time** box change enter **-1h** and hit enter.
-* The text charts, **Request rate**, **Request latency (p90)**and **Error rate** will start updating every 10 seconds showing that we still have a large number of errors occurring.
+* The Single Value charts, **Request rate**, **Request latency (p90)**and **Error rate** will start updating every 10 seconds showing that we still have a large number of errors occurring.
 * These charts are very useful to quickly identify performance issues. You can use this dashboard to keep an eye on the health of your service or use it as a base for a custom one.
 * We want to use some of these charts in a later exercise:
-  * In the **Request rate** text chart (**2**), click the **...** and select **Copy**. Note that you now have a **1** before the **+** at the top right of the page (**3**), indicating you have a copied chart to the clipboard.
+  * In the **Request rate** Single Value chart (**2**), click the **...** and select **Copy**. Note that you now have a **1** before the **+** at the top right of the page (**3**), indicating you have a copied chart to the clipboard.
   * In the **Request rate** line chart (**4**), either click on the **Add to clipboard** indicator that appeared (just at the **(4)** in the screenshot) to add it to the clipboard or use the **...** and select **Add to clipboard**.
 * Note that you now have **2** before the **+** on the top right of the page. (**3**)
 * Now let's go back to the explore view, you can hit the back button in your Browser
