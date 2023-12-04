@@ -4,7 +4,9 @@ weight: 3
 ---
 
 {{% notice title="Sessions" style="info" %}}
-A session is a collection of traces that correspond to the actions a single user takes when interacting with an application over a period of time. By default, a session lasts until 15 minutes have passed from the last event captured in the session. The maximum session duration is 4 hours.
+
+A session is a collection of traces that correspond to the actions a single user takes when interacting with an application. By default, a session lasts until 15 minutes have passed from the last event captured in the session. The maximum session duration is 4 hours.
+
 {{% /notice %}}
 
 {{% notice title="Exercise" style="green" icon="running" %}}
@@ -27,5 +29,7 @@ A session is a collection of traces that correspond to the actions a single user
 RUM Session Replay can redact information, by default text is redacted. You can also redact images (which has been done for this workshop example). This is useful if you are replaying a session that contains sensitive information. You can also change the playback speed and pause the replay.
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
+
 When playing back the session, notice how the mouse movements are captured. This is useful to see where the user is focusing their attention.
+
 {{% /notice %}}
