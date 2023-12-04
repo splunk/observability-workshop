@@ -25,7 +25,7 @@ The screenshot below doesn't contain a red banner with an error in it however yo
 
 * Use your mouse to scroll left and right through the filmstrip to see how the site was being rendered during the test run.
 * In the Video pane, press on the play button **▶** to see the test playback. If you click the ellipses **⋮** you can change the *playback speed*, view it *Picture in Picture* and even *Download* the video.
-* In the Synthetic Transaction pane, under the header Business Transactions  click on **Home**
+* In the Synthetic Transaction pane, under the header *Business Transactions*, click on the first button {{% button style="blue" %}}**Home**{{% /button %}}
 * The waterfall below will show all the objects that make up the page. The first line is the HTML page itself. The next lines are the objects that make up the page (HTML, CSS, JavaScript, Images, Fonts, etc.).
 * In the waterfall find the line **GET** *splunk-otel-web.js*.
 * Click on the **>** button to open the metadata section to see the Request/Response Header information.
