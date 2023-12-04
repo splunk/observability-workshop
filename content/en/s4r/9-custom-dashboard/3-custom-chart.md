@@ -17,7 +17,7 @@ In this part of the workshop we are going to create a chart that we will add to 
 * Set the filter to successful ones by selecting *success:true*, the button now should contain that.
 * Right now we see different colored bars, a different color for each region the test runs from. We change that behavior by adding some analytics.
 * Click the {{% button style="blue" %}}Add analytics{{% /button %}} button.
-* From the drop-down choose the *Mean* option, then pick **mean**:*aggregation* and click outside the dialog. the button should now say **Mean*, and the bars should now have the same color.
+* From the drop-down choose the **Mean** option, then pick **mean**:*aggregation* and click outside the dialog. the button should now say **Mean*, and the bars should now have the same color.
 * We now looking at the aggregated results of the tests instead of showing each region separately.
 * Click on the settings *⚙️* icon at the end of the plot line. It will open the following dialog.
 ![signal setup](../images/signal-setup.png)

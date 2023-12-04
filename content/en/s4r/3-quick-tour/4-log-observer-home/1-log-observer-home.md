@@ -41,7 +41,7 @@ Let's run a little search exercise:
 * Click again on {{% button style="gray" %}}Add Filter{{% /button %}} in the filter bar, then select **Keyword**. Next just type `order:` in the **Enter Keyword...** box and press enter.
 * You should now only have log lines that contain the word "order:". There are still a lot of log lines, so let's filter some more.
 * Add another filter, this time select the **Fields** box, then type `severity` in the **Find a field...** search box and select it.
-  ![severity](../images/find-severity.png?width=15vw&classes=left) 
+  ![severity](../images/find-severity.png?width=15vw&classes=left)
 * Make sure you click the {{% button style="gray" %}}**Exclude all logs with this fields**{{% /button %}}  at the bottom of the dialog box, as the order log line does not have a severity assigned.  This will remove the others.
 * You may need to scroll down the page if you still have the onboarding content displayed at the top to see the **Exclude all logs with this fields** button.
 * You should now have a list of orders sold for the last 15 minutes.
