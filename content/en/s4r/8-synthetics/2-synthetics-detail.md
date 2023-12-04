@@ -5,6 +5,12 @@ weight: 2
 
 Right now we are looking at the result of a single Synthetic Browser Test. This test is split up into **Business Transactions**, think of this as a group of one or more logically related interactions that represent a business-critical user flow.
 
+{{% notice title="Info" style="info" %}}
+
+The screenshot below doesn't contain a red banner with an error in it however you might be seeing one in your run results. This is expected as in some cases the test run fails and does not impact the workshop.
+
+{{% /notice %}}
+
 ![waterfall](../images/synth-waterfall.png)
 
 1. **Filmstrip:** Offers a set of screenshots of site performance so that you can see how the page responds in real-time.
@@ -14,12 +20,6 @@ Right now we are looking at the result of a single Synthetic Browser Test. This 
 5. **Waterfall chart**  The waterfall chart is a visual representation of the interaction between the test runner and the site being tested.
 
 By default, Splunk Synthetics provides screenshots and video capture of the test. This is useful for debugging issues. You can see, for example, the slow loading of large images, the slow rendering of a page etc.
-
-{{% notice title="Info" style="info" %}}
-
-The screenshot below doesn't contain a red banner with an error in it however you might be seeing one in your run results. This is expected as in some cases the test run fails.
-
-{{% /notice %}}
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
