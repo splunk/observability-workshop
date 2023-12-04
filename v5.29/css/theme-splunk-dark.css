@@ -1,0 +1,14 @@
+@import "theme-relearn-dark.css";
+
+:root {
+    --PRIMARY-color: rgba( 237, 0, 144, 1 ); /* brand primary color */
+    --SECONDARY-color: rgba( 237, 0, 144, 1 ); /* brand secondary color */
+
+    --MAIN-LINK-HOVER-color: rgba( 237, 0, 144, 1 ); /* hovered link color of content */
+
+    --MENU-HOME-LINK-color: rgba( 255, 255, 255, 1 ); /* home button color if configured */
+    --MENU-HOME-LINK-HOVER-color: rgba( 237, 0, 144, 1 ); /* hovered home button color if configured */
+
+    --MENU-HEADER-BORDER-color: rgba( 0, 0, 0, 1); /* border color of the menu header */
+    --MENU-VISITED-color: rgba( 237, 0, 144, 1 ); /* icon color of visited menu topics if configured */
+}
