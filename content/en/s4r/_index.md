@@ -1,7 +1,6 @@
 ---
 title: Splunk4Rookies - Observability
 weight: 1
-hidden: true
 ---
 
 {{% badge icon="clock" color="#ed0090" %}}2 minutes{{% /badge %}}
