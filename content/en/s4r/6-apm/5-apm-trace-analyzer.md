@@ -2,6 +2,9 @@
 title: 5. APM Trace Analyzer
 weight: 5
 ---
+
+As Splunk APM provides a **NoSample™** end-to-end visibility of every service Splunk APM captures every trace. For this workshop, the **Order Confirmation ID** is available as a tag. This means that we can use this to search for the exact trace of the poor user experience you encountered earlier in the workshop.
+
 {{% notice title="Trace Analyzer" style="info" %}}
 
 Splunk Observability Cloud provides several tools for exploring application monitoring data. **Trace Analyzer** is suited to scenarios where you have high-cardinality, high-granularity searches and explorations to research unknown or new issues.
@@ -19,10 +22,10 @@ Splunk Observability Cloud provides several tools for exploring application moni
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * In the time picker select **Last 1 hour**.
-* Note, that most of our traces have errors (red) and there are only a limited amount of traces that are error free (blue).
+* Note, that most of our traces have errors (red) and there are only a limited amount of traces that are error-free (blue).
 * Make sure the **Sample Ratio** is set to `1:1` and **not** `1:10`.
 * Click on **Add filters**, type in `orderId` and select **orderId** from the list.
-* Paste in your **Order Confirmation ID** from when you went shopping earlier in the workshop and hit enter.
+* Paste in your **Order Confirmation ID** from when you went shopping earlier in the workshop and hit enter. If you didn't capture one, please ask your instructor for one.
   ![Traces by Duration](../images/apm-trace-by-duration.png)
 
 {{% /notice %}}

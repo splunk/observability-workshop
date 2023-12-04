@@ -6,7 +6,7 @@ weight: 4
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * In the right-hand pane click on the {{% button style="grey"  %}}Breakdown{{% /button %}}.
-* Select `tenant.level` in the list.  This is a tag that exposes the customers status and can be useful to see trent related to customer status.
+* Select `tenant.level` in the list.  This is a tag that exposes the customers' status and can be useful to see trends related to customer status.
 * Back in the Service Map Click on **gold** to select it.
 * Click on {{% button style="grey"  %}}Breakdown{{% /button %}} and select `version`, this is the tag that exposes the service version.
 * Repeat this for **silver** and **bronze**.
