@@ -6,9 +6,9 @@ weight: 4
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * In the right-hand pane click on the {{% button style="grey"  %}}Breakdown{{% /button %}}.
-* Select `tenant.level` in the list.
-* Back in the Service MapClick on **gold** to select it.
-* Click on {{% button style="grey"  %}}Breakdown{{% /button %}} and select `version`.
+* Select `tenant.level` in the list.  This is a tag that exposes the customers status and can be usefull to see trent related to customer status.
+* Back in the Service Map Click on **gold** to select it.
+* Click on {{% button style="grey"  %}}Breakdown{{% /button %}} and select `version`, this is the tag that exposes the service version.
 * Repeat this for **silver** and **bronze**.
 {{< tabs >}}
 {{% tab title="Question" %}}
@@ -21,7 +21,7 @@ weight: 4
 
 {{% /notice %}}
 
-You will now see the **paymentservice** broken down by `tenant.level` and each tenant broken down by `version`. You can see that the **paymentservice** is broken down into three services **gold**, **silver** and **bronze**. Each tenant is broken down into two services, one for each version (`v350.10` and `v350.9`).
+You will now see the **paymentservice** broken down into three services, **gold**, **silver** and **bronze**. Each tenant is broken down into two services, one for each version (`v350.10` and `v350.9`).
 
 ![APM Service Breakdown](../images/apm-service-breakdown.png)
 
@@ -31,6 +31,6 @@ You will now see the **paymentservice** broken down by `tenant.level` and each t
 
 {{% /notice %}}
 
-Using span tags to break down services is a very powerful feature. It allows you to see how your services are performing for different customers, different versions, different regions, etc. In this exercise, we have determined that `v350.10` of the **paymentservice** is causing problems for our customers.
+Using span tags to break down services is a very powerful feature. It allows you to see how your services are performing for different customers, different versions, different regions, etc. In this exercise, we have determined that `v350.10` of the **paymentservice** is causing problems for all our customers.
 
 Next, we need to drill down into a trace to see what is going on.
