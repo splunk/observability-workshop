@@ -16,7 +16,7 @@ During our investigation in the RUM section, we found there was an issue with th
   ![Transaction Filter](../images/synthetics-transaction-filter.png)
 * Look at the legend and note the color of **First byte time - Page 4**.
 * Select the highest data point for **First byte time - Page 4**.
-* A new pane will slide in from the right. Note the time at the top of the pane. Find this time in the list and click on it.
+* A new pane will slide in from the right. Note the time at the top of the pane. Find this time in the list and click on it as this is the slowest test result.
   ![Multiple Runs](../images/synthetics-multiple-runs.png)
 {{% /notice %}}
 

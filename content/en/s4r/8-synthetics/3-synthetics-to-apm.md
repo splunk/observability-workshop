@@ -18,9 +18,8 @@ We now should have a view similar to the one below.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Make sure you are in an APM trace view.
-* Validate you see errors for the **paymentservice**.
-* To validate that it's the same error, click on the **Related Content** log link.
+* Validate you see one or more errors for the **paymentservice** (**1**).
+* To validate that it's the same error, click on the related content for **Logs** (**2**).
 * Repeat the earlier exercise to filter down to the errors only.
 * View the error log to validate the failed payment due to an invalid token.
 
