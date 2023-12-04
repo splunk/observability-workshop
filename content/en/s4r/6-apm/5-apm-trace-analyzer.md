@@ -2,12 +2,14 @@
 title: 5. APM Trace Analyzer
 weight: 5
 ---
+{{% notice title="Trace Analyzer" style="info" %}}
 
 Splunk Observability Cloud provides several tools for exploring application monitoring data. **Trace Analyzer** is suited to scenarios where you have high-cardinality, high-granularity searches and explorations to research unknown or new issues.
+{{% /notice %}}
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* In the right-hand pane, click on **Traces**.
+* With the Outer box selected for the **paymentservice** In the right-hand pane, click on **Traces**.
 * To ensure we are using **Trace Analyzer** make sure the button {{% button %}}Switch to Classic View{{% /button %}} is showing. If it is not, click on {{% button style="blue" %}}Switch to Trace Analyzer{{% /button %}}.
 
 {{% /notice %}}
