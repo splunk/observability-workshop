@@ -3,9 +3,10 @@ title: 2. Tag Spotlight
 weight: 2
 ---
 
-Click the **Custom Events** tab and have a look at the **Custom Event Latency** chart. The metrics shown here show the application latency. The comparison metrics to the side show the latency compared to 1 hour ago (which is selected in the top filter bar).
-
 {{% notice title="Exercise" style="green" icon="running" %}}
+
+* Make sure you are on the **Custom Events** tab by selecting it.
+* Have a look at the **Custom Event Latency** chart. The metrics shown here show the application latency. The comparison metrics to the side show the latency compared to 1 hour ago (which is selected in the top filter bar).  
 
 * Click on the **see all** link under the chart title.
 
