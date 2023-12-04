@@ -22,6 +22,9 @@ languages:
     languageName: 日本語
     weight: 2
 markup:
+  goldmark:
+    renderer:
+      unsafe: true
   highlight:
     noClasses: false
 outputs:
