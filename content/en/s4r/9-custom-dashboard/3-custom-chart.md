@@ -8,10 +8,10 @@ In this part of the workshop we are going to create a chart that we will add to 
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* At the top of the dashboard click on the **+** and select *chart*. This will bring us to the new chart screen.
+* At the top of the dashboard click on the **+** and select **Chart**.
   ![new chart screen](../images/new-chart.png)
-* First, use the {{% button style="grey" %}}Untitled chart{{% /button %}} input field and name the chart **Overall Test Duration**. Next, you can set the Description to **Show the Synthetic Test for the complete application**.
-* For this exercise we want a bar or column chart, so click on the 3d icon ![column chart](../images/barchart-icon.png?classes=inline&height=25px)in the chart option box.
+* First, use the {{% button style="grey" %}}Untitled chart{{% /button %}} input field and name the chart **Overall Test Duration**.
+* For this exercise we want a bar or column chart, so click on the 3d icon {{% icon icon="chart-bar" %}} ![column chart](../images/barchart-icon.png?classes=inline&height=25px)in the chart option box.
 * We need to provide a signal or metric that we are going to display. In this case, we want *synthetics.run.duration.time.ms* (This is runtime in duration for our test)
 * Click the {{% button style="blue" %}}Add filter{{% /button %}} button.
 * Set the filter to successful ones by selecting *success:true*, the button now should contain that.
