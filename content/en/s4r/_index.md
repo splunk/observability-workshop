@@ -3,7 +3,7 @@ title: Splunk4Rookies - Observability
 weight: 1
 ---
 
-{{% badge icon="clock" color="#ed0090" %}}2 minutes{{% /badge %}}
+{{% badge icon="clock" style="primary" %}}2 minutes{{% /badge %}} {{% badge style="blue" title="Authors" %}}Robert Castley & Pieter Hagen{{% /badge %}}
 
 In this workshop, we will be showing how Splunk Observability Cloud provides instant visibility of the user experience – from the perspective of the front-end application to its back-end services – Letting you experience some of the most compelling product features and differentiators of **Splunk Observability Cloud**:
 
