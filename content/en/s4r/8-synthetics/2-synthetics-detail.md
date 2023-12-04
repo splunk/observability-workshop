@@ -29,7 +29,7 @@ The screenshot below doesn't contain a red banner with an error in it however yo
 * The waterfall below will show all the objects that make up the page. The first line is the HTML page itself. The next lines are the objects that make up the page (HTML, CSS, JavaScript, Images, Fonts, etc.).
 * In the waterfall find the line **GET** *splunk-otel-web.js*.
 * Click on the **>** button to open the metadata section to see the Request/Response Header information.
-* In the Synthetic Transaction pane, click on the second Business Transaction **Shop**. Note that the filmstrip adjusts and moves to the beginning of the new transaction.
-* Repeat this for all the other Transactions, then finally select the **Place Order** transaction.
+* In the Synthetic Transaction pane, click on the second Business Transaction {{% button style="blue" %}}**Shop**{{% /button %}}. Note that the filmstrip adjusts and moves to the beginning of the new transaction.
+* Repeat this for all the other Transactions, then finally select the{{% button style="blue" %}}**PlaceOrder**{{% /button %}} transaction.
 
 {{% /notice %}}
