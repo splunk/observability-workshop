@@ -32,10 +32,10 @@ In Splunk Observability Cloud from the main menu, click on **RUM**. you arrive a
 
 {{< tabs >}}
 {{% tab title="Question" %}}
-**Which chart clearly shows that there is an issue with the application?**
+**If you examine the charts in the *Custom Events* Tab, what chart show clearly the latency Spikes?**
 {{% /tab %}}
 {{% tab title="Answer" %}}
-**It is the *Custom Event Latency* chart in the *Custom Events* Tab**
+**It is the *Custom Event Latency* chart**
 {{% /tab %}}
 {{< /tabs >}}
 
