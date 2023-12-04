@@ -10,8 +10,8 @@ As we already saved some useful log charts in a dashboard in the Log Observer ex
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Go back to your dashboard with the two log charts, by clicking on **Dashboards*, and select your dashboard group from the list of linked dashboards at the bottom of the page. This should bring you back to your previously saved dashboard.
-  ![log list](../images/log-charts.png)
+* Go back to your dashboard with the two log charts, by clicking on **Dashboards**, and select your dashboard group from the list of linked dashboards at the bottom of the page. This should bring you back to your previously saved dashboard.
+  ![log list](../../7-log-observer/images/log-observer-custom-dashboard.png) <!--  this links to a log observer image-->
 * Even if the log information is useful, it will need more information to have it make sense for our team so let's add a bit more information
 * The first step is adding a description chart to the dashboard. Click on the {{% button style="grey" %}}New text note{{% /button %}} and replace the text in the note with the following text and then click the {{% button style="blue" %}}Save and close{{% /button %}} button and name the chart **Instructions**
 {{% notice title=" Information to use with text note" style="grey" %}}
