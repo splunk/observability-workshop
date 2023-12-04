@@ -19,7 +19,7 @@ In this section, we are going to use the **Copy and Paste** functionality to ext
 * Repeat the previous 4 steps for the **Request Rate** text chart
 * Click {{% button style="blue" %}}Save{{% /button %}} after you  have update the two charts.
 * As the new pasted charts appeared at the bottom of our dashboard, we need to re-organize our dashboard again.
-* Using the drag and drop and resizing skills you learnt earlier, make your dashboard look like the image below.
+* Using the drag and drop and resizing skills you learned earlier, make your dashboard look like the image below.
   ![New dashboard look](../images/copyandpastedcharts.png)
 {{% /notice %}}
 
