@@ -22,11 +22,7 @@ languages:
     languageName: 日本語
     weight: 2
 markup:
-  goldmark:
-    renderer:
-      unsafe: true
   highlight:
-    guessSyntax: false
     noClasses: false
 outputs:
   home:
