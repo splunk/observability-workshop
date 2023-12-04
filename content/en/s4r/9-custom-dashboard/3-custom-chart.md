@@ -32,4 +32,10 @@ In this part of the workshop we are going to create a chart that we will add to 
 
 {{% /notice %}}
 
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+
+In your spare time have a try at adding another custom chart to the dashboard using RUM metrics. You could copy a chart from the out-of-the-box **RUM applications** dashboard group. Or you could use the RUM metric `rum.client_error.count` to create a chart that shows the number of client errors in the application.
+
+{{% /notice %}}
+
  Finally, we will run through a workshop wrap-up.
