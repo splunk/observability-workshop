@@ -26,7 +26,7 @@ In this part of the workshop we are going to create a chart that we will add to 
 * Add our detector by clicking {{% button style="blue" %}}Link Detector{{% /button %}} and typing the name of the detector. (Start with your initials, assuming you used the recommended naming method.) the detector name should appear. A colored bar appears around your chart, indicating the status of the alert, (Green OK, Red Alert), as well as a bell signal at the top of the page as shown below.
   ![detector added](../images/detector-added.png)
 * Click the {{% button style="blue" %}}Save and close{{% /button %}} button.
-* In our dashboard, size the *Log view* chart to be the last 50% of the page width and drag the new *Overall Test Duration* chart in front of it.
+* In our dashboard, move the charts so they look like the screenshot below:.
   ![Service Health Dashboard](../images/service-health-dashboard.png)
 * As the last task, find the three dots **...** at the top of the page (next to *Event Overlay*) and click on *View fullscreen*. This will be the view you would use on the TV monitor on the wall (press Esc to go back). For TV monitors, setting the background color to black seems to work best.
 
