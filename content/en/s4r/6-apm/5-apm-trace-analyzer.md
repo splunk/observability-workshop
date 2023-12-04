@@ -9,7 +9,7 @@ Splunk Observability Cloud provides several tools for exploring application moni
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* With the Outer box selected for the **paymentservice** In the right-hand pane, click on **Traces**.
+* With the outer box of the **paymentservice**  selected, in the right-hand pane, click on **Traces**.
 * To ensure we are using **Trace Analyzer** make sure the button {{% button %}}Switch to Classic View{{% /button %}} is showing. If it is not, click on {{% button style="blue" %}}Switch to Trace Analyzer{{% /button %}}.
 
 {{% /notice %}}
