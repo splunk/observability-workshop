@@ -30,7 +30,7 @@ receiver creator とそれに関連する observer エクステンションの�
 
 この Ninja ゾーンに必要なものは2つだけです:
 
-1. ビbuilder manifestに、 receiver creator レシーバーと observer エクステンションが追加する
+1. builder manifestに、 receiver creator レシーバーと observer エクステンションを追加する
 2. 検出されたエンドポイントを検出するように、設定を作成する
 
 次のようにすると、設定をテンプレート化できます:
