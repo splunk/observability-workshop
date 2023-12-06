@@ -10,7 +10,7 @@ hidden: false
 
 {{% notice info %}}
 
-Please note, **SWiPE does not** provision EC2 instances - these are provisioned using Splunk Show.
+**SWiPE does not** provision EC2 instances - these are provisioned using Splunk Show.
 
 {{% /notice %}}
 
@@ -18,13 +18,14 @@ Please note, **SWiPE does not** provision EC2 instances - these are provisioned 
 
 **SWiPE** will configure the following:
 
-- Create and invite users to the Org. Create a `.csv` file containing the e-mail addresses (one per line) **or** copy and paste e-mail addresses (one per line).
+- Create and invite users to the Org.
+  - Create a `.csv` file containing the e-mail addresses (one per line) **or** copy and paste e-mail addresses (one per line).
 - Create a team and add users to the team.
 - Create tokens for:
   - INGEST
   - API
   - RUM
-  - HEC URL
-  - HEC Token
 
-  You will need to make a copy of these to provision the EC2 instances in Splunk Show.
+**SWiPE** will also provide a HEC Token and HEC URL for dedicated workshop Splunk Cloud environments. If you wish to use a different Splunk Cloud environment, you will need to provide a HEC Token and HEC URL for that environment in Splunk Show.
+
+You will need to make a copy of the above to provision the workshop instances in Splunk Show.

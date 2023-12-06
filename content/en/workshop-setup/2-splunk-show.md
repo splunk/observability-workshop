@@ -7,7 +7,9 @@ weight: 2
 
 ![Splunk Show](../images/splunk-show.png)
 
-Please visit [**Splunk Show**](https://show.splunk.com/template/262/?type=workshop) to provision your EC2 environment(s). Select the desired **Content Type** as follows:
+Please visit [**Splunk Show**](https://show.splunk.com/template/262/?type=workshop) to provision your workshop instance(s).
+
+Select the desired **Content Type** as follows:
 
 - _Default (for interactive workshop)_ - select this if your audience is technical and wants hands-on experience installing OpenTelemetry and deploying applications.
   - Select either Normal Workshop, Private Event or Public Event. Change **Estimated Participants** to the number of attendees you expect and set the same value in **O11y Shop Quantity**. This will provision the correct number of EC2 instances. It is recommended that you over-provision by 10% - 20% to allow for any last-minute attendees.
