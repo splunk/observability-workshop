@@ -15,7 +15,7 @@ sudo apt install stress
 while true; do stress -c 2 -t 40; stress -d 5 -t 40; stress -m 20 -t 40; done
 ```
 
-Once you are logged into Splunk Observability Cloud, using the left-hand navigation, navigate to **Dashboards**:
+Once you are logged into Splunk Observability Cloud, using the left-hand navigation, navigate to **Dashboards** from the main menu. This will take you to the Teams view. At the top of this view click on **All Dashboards** :
 
 ![menu-dashboards](../images/menu-dashboards.png)
 
@@ -31,14 +31,12 @@ Click on the **OTel Contrib Dashboard** dashboard to open it:
 
 ![otel-dashboard](../images/otel-dashboard.png)
 
-In the **Filter** box, at the top of the dashboard, type in **participant** and select **participant.name**:
-
-![search-filter](../images/search-filter.png)
-
-You can either start typing in the name you configured for `participant.name` in the `config.yaml` or you can select your name from the list:
+Click in the **Participant Name** box, at the top of the dashboard, and select the name you configured for `participant.name` in the `config.yaml` in the drop-down list or start typing the name to search for it:
 
 ![select-conf-attendee-name](../images/select-participant-name.png)
 
 You can now see the host metrics for the host upon which you configured the OpenTelemetry Collector.
+
+![participant-dashboard](../images/participant-dashboard.png)
 
 {{% attachments sort="asc" style="info" title="Download Dashboard  Group JSON for importing" /%}}

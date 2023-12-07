@@ -7,133 +7,8 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "FybsAETAwAI",
-        "importOf": "FwPCYY8AIB0",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Disk free",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "hideMissingValues": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "dsname"
-              },
-              {
-                "enabled": false,
-                "property": "host"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "plugin"
-              },
-              {
-                "enabled": true,
-                "property": "plugin_instance"
-              },
-              {
-                "enabled": false,
-                "property": "fs_type"
-              },
-              {
-                "enabled": false,
-                "property": "device"
-              },
-              {
-                "enabled": true,
-                "property": "mountpoint"
-              },
-              {
-                "enabled": true,
-                "property": "os.type"
-              },
-              {
-                "enabled": true,
-                "property": "type"
-              },
-              {
-                "enabled": true,
-                "property": "mode"
-              },
-              {
-                "enabled": true,
-                "property": "state"
-              },
-              {
-                "enabled": false,
-                "property": "host.id"
-              },
-              {
-                "enabled": false,
-                "property": "participant.name"
-              },
-              {
-                "enabled": false,
-                "property": "my.name"
-              }
-            ]
-          },
-          "maximumPrecision": 3,
-          "noDataOptions": {
-            "linkText": null,
-            "linkUrl": null,
-            "noDataMessage": null
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Used bytes",
-              "label": "A",
-              "paletteIndex": 4,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "time": {
-            "range": 900000,
-            "rangeEnd": 0,
-            "type": "relative"
-          },
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('system.filesystem.usage', filter=filter('state', 'free')).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "autoDetectRelatedDetectorIds": [],
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "FybsAETAwAM",
-        "importOf": "FwPCYY8AIBk",
+        "id": "GAvqZAwAABc",
+        "importOf": "FybsAETAwAM",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
         "name": "CPU Load Average (1m)",
@@ -189,12 +64,12 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Page swaps/sec",
-        "id": "FybsAETAwAQ",
-        "importOf": "FwPCYY8AIBo",
+        "description": "Operations/sec",
+        "id": "GAvqZAwAABg",
+        "importOf": "FybsAETAwAs",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Memory Paging",
+        "name": "Disk I/O",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -203,7 +78,7 @@
             {
               "highWatermark": null,
               "highWatermarkLabel": null,
-              "label": "Page in - RED",
+              "label": "Read ops - RED",
               "lowWatermark": null,
               "lowWatermarkLabel": null,
               "max": null,
@@ -212,7 +87,7 @@
             {
               "highWatermark": null,
               "highWatermarkLabel": null,
-              "label": "Page out - BLUE",
+              "label": "Write ops - BLUE",
               "lowWatermark": null,
               "lowWatermarkLabel": null,
               "max": null,
@@ -220,7 +95,649 @@
             }
           ],
           "axisPrecision": null,
+          "colorBy": "Metric",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": null,
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Read ops/sec",
+              "label": "A",
+              "paletteIndex": 4,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Write ops/sec",
+              "label": "B",
+              "paletteIndex": 1,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 1
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 7200000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('disk_ops.read',rollup='rate').sum().publish(label='A')\nB = data('disk_ops.write',rollup='rate').sum().publish(label='B')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "GAvqZAwAABk",
+        "importOf": "FybsAETAwA0",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Load average",
+        "options": {
           "colorBy": "Dimension",
+          "colorScale2": null,
+          "hideMissingValues": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "maximumPrecision": 3,
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "1m Average",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "5m Average",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "15m Average",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "+sf_metric",
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('system.cpu.load_average.1m').mean().publish(label='A')\nB = data('system.cpu.load_average.5m').mean().publish(label='B')\nC = data('system.cpu.load_average.15m').mean().publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Bits/sec",
+        "id": "GAvqZAwAABo",
+        "importOf": "FybsAETAwAc",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Network I/O",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "Input bits/s - RED",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": 0
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "Output bits/s - BLUE",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": 0
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Metric",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "device",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Input bits/sec",
+              "label": "A",
+              "paletteIndex": 4,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Output bits/sec",
+              "label": "B",
+              "paletteIndex": 1,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 1
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 7200000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Binary"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('system.network.io', filter=filter('direction', 'receive')).sum(by=['device']).publish(label='A')\nB = data('system.network.io', filter=filter('direction', 'transmit'), rollup='delta').sum(by=['device']).publish(label='B')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "GAvqZAwAABs",
+        "importOf": "FybsAETAwAk",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Disk used",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "hideMissingValues": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "device"
+              },
+              {
+                "enabled": false,
+                "property": "fs_type"
+              },
+              {
+                "enabled": false,
+                "property": "host"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": true,
+                "property": "mountpoint"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "plugin_instance"
+              },
+              {
+                "enabled": false,
+                "property": "plugin"
+              },
+              {
+                "enabled": false,
+                "property": "dsname"
+              },
+              {
+                "enabled": false,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": false,
+                "property": "os.type"
+              },
+              {
+                "enabled": true,
+                "property": "type"
+              },
+              {
+                "enabled": false,
+                "property": "mode"
+              },
+              {
+                "enabled": true,
+                "property": "state"
+              },
+              {
+                "enabled": false,
+                "property": "host.id"
+              },
+              {
+                "enabled": false,
+                "property": "participant.name"
+              },
+              {
+                "enabled": false,
+                "property": "my.name"
+              }
+            ]
+          },
+          "maximumPrecision": 3,
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "system.filesystem.usage",
+              "label": "A",
+              "paletteIndex": 4,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "A",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "B = (A).publish(label='B')\nA = data('system.filesystem.usage', filter=filter('state', 'used')).publish(label='A', enable=False)",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "GAvqZAwAABw",
+        "importOf": "FybsAETAwAo",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "CPU %",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": 0
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "CPU utilization (%)",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 7200000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('system.cpu.time', filter=filter('state', 'user')).scale(10).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "GAvqZAwAAB0",
+        "importOf": "FybsAETAwAw",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Total network bits/sec",
+        "options": {
+          "colorBy": "Metric",
+          "colorScale2": null,
+          "hideMissingValues": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "maximumPrecision": 4,
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Input bits/sec",
+              "label": "A",
+              "paletteIndex": 4,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Output bits/sec",
+              "label": "B",
+              "paletteIndex": 1,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 1
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "+sf_metric",
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Binary"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('system.network.io', filter=filter('direction', 'receive')).sum().publish(label='A')\nB = data('system.network.io', filter=filter('direction', 'transmit'), rollup='rate').sum().publish(label='B')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "GAvqZAwAAB4",
+        "importOf": "FybsAETAwAY",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Memory used",
+        "options": {
+          "colorBy": "Metric",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": 3,
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Used",
+              "label": "A",
+              "paletteIndex": 14,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 300000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "timestampHidden": true,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('system.memory.usage', filter=filter('state', 'used')).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Errors/sec",
+        "id": "GAvqZAwAAB8",
+        "importOf": "FybsAETAwAg",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Network errors",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "Interface errors - RED",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": 0
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "Retransmits - BLUE",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": 0
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Metric",
           "defaultPlotType": "LineChart",
           "eventPublishLabelOptions": [],
           "histogramChartOptions": {
@@ -250,9 +767,9 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "Page In",
+              "displayName": "Errors/sec",
               "label": "A",
-              "paletteIndex": 4,
+              "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
@@ -260,14 +777,24 @@
               "yAxis": 0
             },
             {
-              "displayName": "Page Out",
+              "displayName": "system.network.errors",
               "label": "B",
-              "paletteIndex": 1,
+              "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
               "valueUnit": null,
-              "yAxis": 1
+              "yAxis": 0
+            },
+            {
+              "displayName": "Interface errors/sec",
+              "label": "C",
+              "paletteIndex": 4,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
             }
           ],
           "showEventLines": false,
@@ -281,7 +808,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('system.paging.operations', filter=filter('direction', 'page_in'), rollup='delta').publish(label='A')\nB = data('system.paging.operations', filter=filter('direction', 'page_out'), rollup='delta').publish(label='B')",
+        "programText": "A = data('system.network.errors', filter=filter('direction', 'receive')).publish(label='A', enable=False)\nB = data('system.network.errors', filter=filter('direction', 'transmit')).publish(label='B', enable=False)\nC = (A+B).sum().publish(label='C')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -293,8 +820,8 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "FybsAETAwAU",
-        "importOf": "FwPCYY8AIBw",
+        "id": "GAvqZAwAACA",
+        "importOf": "FybsAETAwAU",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
         "name": "Memory",
@@ -490,70 +1017,12 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "",
-        "id": "FybsAETAwAY",
-        "importOf": "FwPCYY8AIBg",
+        "description": "Page swaps/sec",
+        "id": "GAvqZAwAACE",
+        "importOf": "FybsAETAwAQ",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Memory used",
-        "options": {
-          "colorBy": "Metric",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": 3,
-          "noDataOptions": {
-            "linkText": null,
-            "linkUrl": null,
-            "noDataMessage": null
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Used",
-              "label": "A",
-              "paletteIndex": 14,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 300000,
-            "rangeEnd": 0,
-            "type": "relative"
-          },
-          "timestampHidden": true,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('system.memory.usage', filter=filter('state', 'used')).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "autoDetectRelatedDetectorIds": [],
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Bits/sec",
-        "id": "FybsAETAwAc",
-        "importOf": "FwPCYY8AICE",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Network I/O",
+        "name": "Memory Paging",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -562,7 +1031,7 @@
             {
               "highWatermark": null,
               "highWatermarkLabel": null,
-              "label": "Input bits/s - RED",
+              "label": "Page in - RED",
               "lowWatermark": null,
               "lowWatermarkLabel": null,
               "max": null,
@@ -571,7 +1040,7 @@
             {
               "highWatermark": null,
               "highWatermarkLabel": null,
-              "label": "Output bits/s - BLUE",
+              "label": "Page out - BLUE",
               "lowWatermark": null,
               "lowWatermarkLabel": null,
               "max": null,
@@ -579,110 +1048,7 @@
             }
           ],
           "axisPrecision": null,
-          "colorBy": "Metric",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "noDataOptions": {
-            "linkText": null,
-            "linkUrl": null,
-            "noDataMessage": null
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": "device",
-            "showLegend": true
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Input bits/sec",
-              "label": "A",
-              "paletteIndex": 4,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Output bits/sec",
-              "label": "B",
-              "paletteIndex": 1,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 1
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 7200000,
-            "rangeEnd": 0,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Binary"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('system.network.io', filter=filter('direction', 'receive')).sum(by=['device']).publish(label='A')\nB = data('system.network.io', filter=filter('direction', 'transmit'), rollup='delta').sum(by=['device']).publish(label='B')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "autoDetectRelatedDetectorIds": [],
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Errors/sec",
-        "id": "FybsAETAwAg",
-        "importOf": "FwPCYY8AICI",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Network errors",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "Interface errors - RED",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": 0
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "Retransmits - BLUE",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": 0
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Metric",
+          "colorBy": "Dimension",
           "defaultPlotType": "LineChart",
           "eventPublishLabelOptions": [],
           "histogramChartOptions": {
@@ -712,34 +1078,24 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "Errors/sec",
+              "displayName": "Page In",
               "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "system.network.errors",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Interface errors/sec",
-              "label": "C",
               "paletteIndex": 4,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
               "valueUnit": null,
               "yAxis": 0
+            },
+            {
+              "displayName": "Page Out",
+              "label": "B",
+              "paletteIndex": 1,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 1
             }
           ],
           "showEventLines": false,
@@ -753,7 +1109,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('system.network.errors', filter=filter('direction', 'receive')).publish(label='A', enable=False)\nB = data('system.network.errors', filter=filter('direction', 'transmit')).publish(label='B', enable=False)\nC = (A+B).sum().publish(label='C')",
+        "programText": "A = data('system.paging.operations', filter=filter('direction', 'page_in'), rollup='delta').publish(label='A')\nB = data('system.paging.operations', filter=filter('direction', 'page_out'), rollup='delta').publish(label='B')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -765,11 +1121,11 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "FybsAETAwAk",
-        "importOf": "FwPCYY8AIB4",
+        "id": "GAvqZAwAACI",
+        "importOf": "FybsAETAwAI",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Disk used",
+        "name": "Disk free",
         "options": {
           "colorBy": "Dimension",
           "colorScale2": null,
@@ -777,12 +1133,8 @@
           "legendOptions": {
             "fields": [
               {
-                "enabled": true,
-                "property": "device"
-              },
-              {
                 "enabled": false,
-                "property": "fs_type"
+                "property": "dsname"
               },
               {
                 "enabled": false,
@@ -793,31 +1145,31 @@
                 "property": "sf_originatingMetric"
               },
               {
-                "enabled": true,
-                "property": "mountpoint"
-              },
-              {
                 "enabled": false,
                 "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "plugin_instance"
               },
               {
                 "enabled": false,
                 "property": "plugin"
               },
               {
-                "enabled": false,
-                "property": "dsname"
+                "enabled": true,
+                "property": "plugin_instance"
               },
               {
                 "enabled": false,
-                "property": "AWSUniqueId"
+                "property": "fs_type"
               },
               {
                 "enabled": false,
+                "property": "device"
+              },
+              {
+                "enabled": true,
+                "property": "mountpoint"
+              },
+              {
+                "enabled": true,
                 "property": "os.type"
               },
               {
@@ -825,7 +1177,7 @@
                 "property": "type"
               },
               {
-                "enabled": false,
+                "enabled": true,
                 "property": "mode"
               },
               {
@@ -860,19 +1212,9 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "system.filesystem.usage",
+              "displayName": "Used bytes",
               "label": "A",
               "paletteIndex": 4,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "A",
-              "label": "B",
-              "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
@@ -892,349 +1234,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "B = (A).publish(label='B')\nA = data('system.filesystem.usage', filter=filter('state', 'used')).publish(label='A', enable=False)",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "autoDetectRelatedDetectorIds": [],
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "FybsAETAwAo",
-        "importOf": "FwPCYY8AIBs",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "CPU %",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": 0
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "AreaChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "noDataOptions": {
-            "linkText": null,
-            "linkUrl": null,
-            "noDataMessage": null
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "CPU utilization (%)",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 7200000,
-            "rangeEnd": 0,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('system.cpu.time', filter=filter('state', 'user')).scale(10).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "autoDetectRelatedDetectorIds": [],
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Operations/sec",
-        "id": "FybsAETAwAs",
-        "importOf": "FwPCYY8AIB8",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Disk I/O",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "Read ops - RED",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": 0
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "Write ops - BLUE",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": 0
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Metric",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "noDataOptions": null,
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Read ops/sec",
-              "label": "A",
-              "paletteIndex": 4,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Write ops/sec",
-              "label": "B",
-              "paletteIndex": 1,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 1
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 7200000,
-            "rangeEnd": 0,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('disk_ops.read',rollup='rate').sum().publish(label='A')\nB = data('disk_ops.write',rollup='rate').sum().publish(label='B')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "autoDetectRelatedDetectorIds": [],
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "FybsAETAwAw",
-        "importOf": "FwPCYY8AICA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Total network bits/sec",
-        "options": {
-          "colorBy": "Metric",
-          "colorScale2": null,
-          "hideMissingValues": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "maximumPrecision": 4,
-          "noDataOptions": {
-            "linkText": null,
-            "linkUrl": null,
-            "noDataMessage": null
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Input bits/sec",
-              "label": "A",
-              "paletteIndex": 4,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Output bits/sec",
-              "label": "B",
-              "paletteIndex": 1,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 1
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "+sf_metric",
-          "time": {
-            "range": 900000,
-            "rangeEnd": 0,
-            "type": "relative"
-          },
-          "type": "List",
-          "unitPrefix": "Binary"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('system.network.io', filter=filter('direction', 'receive')).sum().publish(label='A')\nB = data('system.network.io', filter=filter('direction', 'transmit'), rollup='rate').sum().publish(label='B')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "autoDetectRelatedDetectorIds": [],
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "FybsAETAwA0",
-        "importOf": "FwPCYY8AICM",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Load average",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "hideMissingValues": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "maximumPrecision": 3,
-          "noDataOptions": {
-            "linkText": null,
-            "linkUrl": null,
-            "noDataMessage": null
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "1m Average",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "5m Average",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "15m Average",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "+sf_metric",
-          "time": {
-            "range": 900000,
-            "rangeEnd": 0,
-            "type": "relative"
-          },
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('system.cpu.load_average.1m').mean().publish(label='A')\nB = data('system.cpu.load_average.5m').mean().publish(label='B')\nC = data('system.cpu.load_average.15m').mean().publish(label='C')",
+        "programText": "A = data('system.filesystem.usage', filter=filter('state', 'free')).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1248,84 +1248,84 @@
         "chartDensity": "DEFAULT",
         "charts": [
           {
-            "chartId": "FybsAETAwAY",
+            "chartId": "GAvqZAwAAB4",
             "column": 3,
             "height": 1,
             "row": 0,
             "width": 3
           },
           {
-            "chartId": "FybsAETAwAw",
+            "chartId": "GAvqZAwAAB0",
             "column": 6,
             "height": 1,
             "row": 0,
             "width": 3
           },
           {
-            "chartId": "FybsAETAwAk",
+            "chartId": "GAvqZAwAABs",
             "column": 9,
             "height": 1,
             "row": 0,
             "width": 3
           },
           {
-            "chartId": "FybsAETAwAM",
+            "chartId": "GAvqZAwAABc",
             "column": 0,
             "height": 1,
             "row": 0,
             "width": 3
           },
           {
-            "chartId": "FybsAETAwAo",
+            "chartId": "GAvqZAwAABw",
             "column": 0,
             "height": 1,
             "row": 1,
             "width": 6
           },
           {
-            "chartId": "FybsAETAwA0",
+            "chartId": "GAvqZAwAABk",
             "column": 6,
             "height": 1,
             "row": 1,
             "width": 6
           },
           {
-            "chartId": "FybsAETAwAU",
+            "chartId": "GAvqZAwAACA",
             "column": 0,
             "height": 1,
             "row": 2,
             "width": 6
           },
           {
-            "chartId": "FybsAETAwAQ",
+            "chartId": "GAvqZAwAACE",
             "column": 6,
             "height": 1,
             "row": 2,
             "width": 6
           },
           {
-            "chartId": "FybsAETAwAs",
+            "chartId": "GAvqZAwAABg",
             "column": 0,
             "height": 1,
             "row": 3,
             "width": 6
           },
           {
-            "chartId": "FybsAETAwAI",
+            "chartId": "GAvqZAwAACI",
             "column": 6,
             "height": 1,
             "row": 3,
             "width": 6
           },
           {
-            "chartId": "FybsAETAwAc",
+            "chartId": "GAvqZAwAABo",
             "column": 0,
             "height": 1,
             "row": 4,
             "width": 6
           },
           {
-            "chartId": "FybsAETAwAg",
+            "chartId": "GAvqZAwAAB8",
             "column": 6,
             "height": 1,
             "row": 4,
@@ -1346,28 +1346,25 @@
           },
           "variables": [
             {
-              "alias": "host",
+              "alias": "Participant Name",
               "applyIfExists": false,
-              "description": "Host running collectd",
+              "description": "Name of Participant",
               "preferredSuggestions": [],
-              "property": "host",
+              "property": "participant.name",
               "propertyMappings": [
-                "host",
-                "host.name"
+                "participant.name"
               ],
               "replaceOnly": false,
-              "required": true,
+              "required": false,
               "restricted": false,
-              "value": [
-                "*"
-              ]
+              "value": ""
             }
           ]
         },
-        "groupId": "FybsAETAwAE",
+        "groupId": "GAvqZAwAABY",
         "groupName": "OpenTelemetry Contrib",
-        "id": "FybsAETAwA4",
-        "importOf": "FwPCYY8AICQ",
+        "id": "GAvqZAwAACM",
+        "importOf": "FybsAETAwA4",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
         "maxDelayOverride": null,
@@ -1386,24 +1383,24 @@
       "dashboardConfigs": [
         {
           "configId": "FwPCYY8AICU",
-          "dashboardId": "FybsAETAwA4",
+          "dashboardId": "GAvqZAwAACM",
           "descriptionOverride": null,
           "filtersOverride": null,
           "nameOverride": null
         }
       ],
       "dashboards": [
-        "FybsAETAwA4"
+        "GAvqZAwAACM"
       ],
       "description": "",
       "email": null,
-      "id": "FybsAETAwAE",
+      "id": "GAvqZAwAABY",
       "importDetails": {
-        "hashCode": -1470956163,
-        "importOf": "FwOxtI_AEB4",
-        "importTime": 1686585381165
+        "hashCode": 390745185,
+        "importOf": "FybsAETAwAE",
+        "importTime": 1701960702839
       },
-      "importOf": "FwOxtI_AEB4",
+      "importOf": "FybsAETAwAE",
       "lastUpdated": 0,
       "lastUpdatedBy": null,
       "name": "OpenTelemetry Contrib",
@@ -1411,8 +1408,8 @@
       "teams": null
     }
   },
-  "hashCode": 390745185,
-  "id": "FybsAETAwAE",
+  "hashCode": 2140540413,
+  "id": "GAvqZAwAABY",
   "modelVersion": 1,
   "packageType": "GROUP"
 }
