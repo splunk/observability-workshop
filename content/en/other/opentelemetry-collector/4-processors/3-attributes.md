@@ -51,7 +51,7 @@ processors:
 
 {{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Using connectors to gain internal insights{{% /badge %}}" %}}
 
-One of the most recent additions to the collector was the notion of a [connector](https://opentelemetry.io/docs/collector/configuration/#connectors), which allows you to join the output of one pipeline to the input of another pipeline.
+One of the most recent additions to the collector was the notion of a [**connector**](https://opentelemetry.io/docs/collector/configuration/#connectors), which allows you to join the output of one pipeline to the input of another pipeline.
 
 An example of how this is beneficial is that some services emit metrics based on the amount of datapoints being exported, the number of logs containing an error status,
 or the amount of data being sent from one deployment environment. The count connector helps address this for you out of the box.
@@ -70,8 +70,8 @@ A connector only accepts data exported from one pipeline and receiver by another
 
 ## References
 
-1. [https://opentelemetry.io/docs/collector/configuration/#connectors](https://opentelemetry.io/docs/collector/configuration/#connectors)
-2. [https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector)
+1. [**https://opentelemetry.io/docs/collector/configuration/#connectors**](https://opentelemetry.io/docs/collector/configuration/#connectors)
+2. [**https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector)
 
 {{% /expand %}}
 
