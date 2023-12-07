@@ -8,7 +8,7 @@ weight: 7
 
 Now that we have configured the OpenTelemetry Collector to send metrics to Splunk Observability Cloud, let's take a look at the data in Splunk Observability Cloud. If you have not received an invite to Splunk Observability Cloud, your instructor will provide you with login credentials.
 
-Before that, lets make things a little more interesting and run a stress test on the instance. This in turn will light up the dashboards.
+Before that, let's make things a little more interesting and run a stress test on the instance. This in turn will light up the dashboards.
 
 ``` bash
 sudo apt install stress
@@ -35,10 +35,10 @@ In the **Filter** box, at the top of the dashboard, type in **participant** and 
 
 ![search-filter](../images/search-filter.png)
 
-You can either start typing in your name you configured for `participant.name` in the `config.yaml` or you can select your name from the list:
+You can either start typing in the name you configured for `participant.name` in the `config.yaml` or you can select your name from the list:
 
 ![select-conf-attendee-name](../images/select-participant-name.png)
 
 You can now see the host metrics for the host upon which you configured the OpenTelemetry Collector.
 
-{{% attachments sort="asc" style="info" title="Download Dashboard JSON for importing" /%}}
+{{% attachments sort="asc" style="info" title="Download Dashboard  Group JSON for importing" /%}}

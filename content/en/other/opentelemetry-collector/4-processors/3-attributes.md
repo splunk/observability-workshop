@@ -8,7 +8,7 @@ weight: 3
 
 The attributes processor modifies attributes of a span, log, or metric. This processor also supports the ability to filter and match input data to determine if they should be included or excluded for specified actions.
 
-It takes a list of actions which are performed in order specified in the config. The supported actions are:
+It takes a list of actions that are performed in the order specified in the config. The supported actions are:
 
 - `insert`: Inserts a new attribute in input data where the key does not already exist.
 - `update`: Updates an attribute in input data where the key does exist.
@@ -17,15 +17,15 @@ It takes a list of actions which are performed in order specified in the config.
 - `hash`: Hashes (SHA1) an existing attribute value.
 - `extract`: Extracts values using a regular expression rule from the input key to target keys specified in the rule. If a target key already exists, it will be overridden.
 
-We are going to create an attributes processor to `insert` a new attribute to all our host metrics called `participant.name` with a value of your own name e.g. `marge_simpson`.
+We are going to create an attributes processor to `insert` a new attribute to all our host metrics called `participant.name` with a value of your name e.g. `marge_simpson`.
 
 {{% notice style="warning" %}}
 
-Ensure you replace `INSERT_YOUR_NAME_HERE` with your own name and also ensure you **do not** use spaces in your name.
+Ensure you replace `INSERT_YOUR_NAME_HERE` with your name and also ensure you **do not** use spaces in your name.
 
 {{% /notice %}}
 
-Later on in the workshop we will use this attribute to filter our metrics in Splunk Observability Cloud.
+Later on in the workshop, we will use this attribute to filter our metrics in Splunk Observability Cloud.
 
 {{% tab title="Attributes Processor Configuration" %}}
 
@@ -51,14 +51,14 @@ processors:
 
 {{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Using connectors to gain internal insights{{% /badge %}}" %}}
 
-One of the most recent additions to the collector was the notion of a [connector](https://opentelemetry.io/docs/collector/configuration/#connectors), which allows you to join output of one pipeline to input of another pipeline.
+One of the most recent additions to the collector was the notion of a [connector](https://opentelemetry.io/docs/collector/configuration/#connectors), which allows you to join the output of one pipeline to the input of another pipeline.
 
-An example of how this is beneficial is that some services emit metrics based on the amount of datapoints being exported, number of logs containing an error status,
+An example of how this is beneficial is that some services emit metrics based on the amount of datapoints being exported, the number of logs containing an error status,
 or the amount of data being sent from one deployment environment. The count connector helps address this for you out of the box.
 
 ## Why a connector instead of a processor?
 
-A processor is limited in what additional data it can produce considering it has to pass on the data it has processed making it hard to expose additional information. Connectors do not have to emit the data they received which means they provide an opportunity to create those insights we are after.
+A processor is limited in what additional data it can produce considering it has to pass on the data it has processed making it hard to expose additional information. Connectors do not have to emit the data they receive which means they provide an opportunity to create the insights we are after.
 
 For example, a connector could be made to count the number of logs, metrics, and traces that do not have the deployment environment attribute.
 

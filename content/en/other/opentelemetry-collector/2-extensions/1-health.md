@@ -36,7 +36,7 @@ otelcol-contrib --config=file:/etc/otelcol-contrib/config.yaml
 
 {{% /tab %}}
 
-This extension enables a HTTP URL that can be probed to check the status of the OpenTelemetry Collector. This extension can be used as a liveness and/or readiness probe on Kubernetes. To learn more about the `curl` command, check out the [curl man page](https://curl.se/docs/manpage.html).
+This extension enables an HTTP URL that can be probed to check the status of the OpenTelemetry Collector. This extension can be used as a liveness and/or readiness probe on Kubernetes. To learn more about the `curl` command, check out the [curl man page](https://curl.se/docs/manpage.html).
 
 Open a new terminal session and SSH into your instance to run the following command:
 
