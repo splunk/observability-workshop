@@ -285,10 +285,10 @@ Congratulations! You have successfully downloaded and installed the OpenTelemetr
 
 {{% notice style="note" %}}
 
-Splunk does provide its own, fully supported, distribution of the OpenTelemetry Collector. This distribution is available to install from the [Splunk GitHub Repository](https://github.com/signalfx/splunk-otel-collector) or via a wizard in Splunk Observability Cloud that will build out a simple installation script to copy and paste. This distribution includes a number of additional features and enhancements that are not available in the OpenTelemetry Collector Contrib distribution.
+Splunk does provide its own, fully supported, distribution of the OpenTelemetry Collector. This distribution is available to install from the [**Splunk GitHub Repository**](https://github.com/signalfx/splunk-otel-collector) or via a wizard in Splunk Observability Cloud that will build out a simple installation script to copy and paste. This distribution includes many additional features and enhancements that are not available in the OpenTelemetry Collector Contrib distribution.
 
 - The Splunk Distribution of the OpenTelemetry Collector is production-tested; it is in use by the majority of customers in their production environments.
-- Customers that use our distribution can receive direct help from official Splunk support within SLA's.
+- Customers that use our distribution can receive direct help from official Splunk support within SLAs.
 - Customers can use or migrate to the Splunk Distribution of the OpenTelemetry Collector without worrying about future breaking changes to its core configuration experience for metrics and traces collection (OpenTelemetry logs collection configuration is in beta). There may be breaking changes to the Collector's metrics.
 
 {{% /notice %}}
