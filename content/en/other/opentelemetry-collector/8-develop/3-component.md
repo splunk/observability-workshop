@@ -6,7 +6,7 @@ weight: 11
 
 ## Component Review
 
-To recap the type of component we will need in order to capture metrics from Jenkins:
+To recap the type of component we will need to capture metrics from Jenkins:
 
 {{% tabs %}}
 {{% tab title="Extension" %}}
