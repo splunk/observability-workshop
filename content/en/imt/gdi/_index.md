@@ -13,47 +13,9 @@ weight: 2
 
 ---
 
-## 1. Obtain Access Token
+## 1. Installation using Helm
 
-You will need to obtain your Access Token[^1] from the Splunk UI. You can find the workshop Access Token by clicking **>>** bottom left and then selecting **Settings → Access Tokens**.
-
-Expand the workshop token that your host has instructed you to use e.g. **O11y-Workshop-ACCESS**, then click on **Show Token** to expose your token. Click the {{% button style="grey" %}}Copy{{% /button %}} button to copy to clipboard. Please do not use the **Default** token!
-
-![Access Token](../images/access-token.png)
-
-{{% notice title="Please do not attempt to create your own token" style="warning" %}}
-We have created a Token specifically for this workshop with the appropriate settings for the exercises you will be performing so have allocated it both Ingest and API Permissions.  Best practice in production is to only allocate a single permission to a Token such as Ingest OR API OR RUM and use multiple Tokens where required.
-{{% /notice %}}
-
-You will also need to obtain the name of the Realm[^2] for your Splunk account.  At the top of the side menu, click on your name. This will direct you to the **Account Settings** Page. Click the **Organizations**-tab. The Realm can be found at the top of the displayed information in the tab.  In this example it is `eu0`.
-
-![Account Settings](../images/account-settings.png)
-
-## 2. Installation using Helm
-
-Create the `ACCESS_TOKEN` and `REALM` environment variables to use in the proceeding Helm install command. For instance, if your realm is `us1`, you would type `export REALM=us1` and for `eu0` type `export REALM=eu0`.
-
-{{< tabs >}}
-{{% tab title="Export ACCESS TOKEN" %}}
-
-```bash
-export ACCESS_TOKEN="<replace_with_O11y-Workshop-ACCESS_TOKEN>"
-```
-
-{{% /tab %}}
-{{< /tabs >}}
-
-{{< tabs >}}
-{{% tab title="Export REALM" %}}
-
-```bash
-export REALM="<replace_with_REALM>"
-```
-
-{{% /tab %}}
-{{< /tabs >}}
-
-Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository to Helm and update.
+Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository to Helm and update:
 
 {{< tabs >}}
 {{% tab title="Helm Repo Add" %}}

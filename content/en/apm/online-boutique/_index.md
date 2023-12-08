@@ -19,7 +19,7 @@ description: Verify the Online Boutique application is deployed into Kubernetes 
 
 This workshop module assumes you are completing this after you have run the IM workshop, and still have access to your EC2 instance.
 
-If this is the case, continue with [Deploy Online Boutique](#2-deploy-online-boutique), otherwise if you have received a fresh instance, please run the first two (2) sections of [Deploy the OTel Collector](../../imt/gdi/) to get the system ready for the APM workshop, then continue with the next section.
+If this is the case, continue with [**Deploy Online Boutique**](#2-deploy-online-boutique), otherwise, if you have received a fresh instance, please run the first two (2) sections of [**Deploy the OTel Collector**](../../imt/gdi/) to get the system ready for the APM workshop, then continue with the next section.
 
 ## 2. Deploy Online Boutique
 
@@ -125,7 +125,7 @@ Use the **Cluster** dropdown to select the cluster name, you will see the new po
 
 ![Back to cluster](../images/online-boutique-k8s.png)
 
-If you select the **WORKLOADS** tab again you should now see that there are a number of Deployments and ReplicaSets:
+If you select the **WORKLOADS** tab again you should now see that there are some Deployments and ReplicaSets:
 
 ![Online Boutique loaded](../images/online-boutique-workload.png)
 
@@ -133,12 +133,13 @@ If you select the **WORKLOADS** tab again you should now see that there are a nu
 
 {{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja** - Visit the Online Boutique you just deployed{{% /badge %}}" %}}
 {{% notice style="blue" %}}
+
 The Online Boutique is viewable on port 81 of the EC2 instance's IP address. The IP address is the one you used to SSH into the instance at the beginning of the workshop.
 
 Open your web browser and go to `http://<ec2-ip-address>:81/` where you will then be able to see the Online Boutique running.
 {{% /notice %}}
 {{% /expand %}}
 
-Your Workshop instructor will provide you with URL to access the Online Boutique. Enter this URL into your browser and you will see the Online Boutique homepage.
+Your Workshop instructor will provide you with a URL to access the Online Boutique. Enter this URL into your browser and you will see the Online Boutique homepage.
 
 ![Online Boutique](../images/online-boutique.png)

@@ -18,9 +18,9 @@ weight: 5
 
 Monitoring as code adopts the same approach as infrastructure as code. You can manage monitoring the same way you do applications, servers, or other infrastructure components.
 
-You can use monitoring as code to build out your visualisations, what to monitor, and when to alert, among other things. This means your monitoring setup, processes, and rules can be versioned, shared, and reused.
+You can use monitoring as code to build out your visualizations, what to monitor, and when to alert, among other things. This means your monitoring setup, processes, and rules can be versioned, shared, and reused.
 
-Full documentation for the Splunk Terraform Provider is available [here](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs).
+Full documentation for the Splunk Terraform Provider is available [**here**](https://registry.terraform.io/providers/splunk-terraform/signalfx/latest/docs).
 
 Remaining in your AWS/EC2 instance, change into the `o11y-cloud-jumpstart` directory
 
@@ -32,25 +32,7 @@ cd ~/observability-content-contrib/integration-examples/terraform-jumpstart
 
 {{% /tab %}}
 
-The environment variables needed should already be set from [Installation using Helm](../gdi/#2-installation-using-helm). If not, create the following environment variables to use in the Terraform steps below
-
-{{% tab title="Export API TOKEN" %}}
-
-``` bash
-export API_TOKEN="<replace_with_O11y-Workshop-API_TOKEN>"
-```
-
-{{% /tab %}}
-
-{{% tab title="Export REALM" %}}
-
-``` bash
-export REALM="<replace_with_REALM>"
-```
-
-{{% /tab %}}
-
-Initialize Terraform and upgrade to the latest version of the Splunk Terraform Provider
+Initialize Terraform and upgrade to the latest version of the Splunk Terraform Provider.
 
 {{% notice title="Note: Upgrading the SignalFx Terraform Provider" style="info" %}}
 You will need to run the command below each time a new version of the Splunk Terraform Provider is released. You can track the releases on [GitHub.](https://github.com/splunk-terraform/terraform-provider-signalfx/releases)
