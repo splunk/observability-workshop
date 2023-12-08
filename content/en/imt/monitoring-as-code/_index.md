@@ -124,7 +124,7 @@ The plan command alone will not actually carry out the proposed changes, and so 
 {{% tab title="Execution Plan" %}}
 
 ```bash
-terraform plan -var="api_token=$API_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$(hostname)]"
+terraform plan -var="api_token=$API_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$INSTANCE]"
 ```
 
 {{% /tab %}}
@@ -153,7 +153,7 @@ Due to this being a workshop it is required that the prefix is to be unique so y
 {{% tab title="Apply Plan" %}}
 
 ``` bash
-terraform apply -var="api_token=$API_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$(hostname)]"
+terraform apply -var="api_token=$API_TOKEN" -var="realm=$REALM" -var="o11y_prefix=[$INSTANCE]"
 ```
 
 {{% /tab %}}
@@ -166,10 +166,10 @@ Apply complete! Resources: 146 added, 0 changed, 0 destroyed.
 {{% /tab %}}
 {{< /tabs >}}
 
-Once the apply has completed, validate that the detectors were created, under the **Alerts & Detectors** and click on the **Detectors** tab. They will be prefixed by the hostname of your instance. To check the prefix value run:
+Once the apply has been completed, validate that the detectors were created, under the **Alerts & Detectors** and click on the **Detectors** tab. They will be prefixed by the instance name. To check the prefix value run:
 
 ``` bash
-echo $(hostname)
+echo $INSTANCE
 ```
 
  You will see a list of the new detectors and you can search for the prefix that was output from above.

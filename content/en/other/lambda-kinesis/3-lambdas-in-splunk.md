@@ -10,7 +10,7 @@ Now it's time to check how your Lambda traffic has been captured in Splunk APM.
 
 ## Navigate to your Splunk Observability Cloud
 
-Select APM from the Main Menu and then select your APM Environment. Your APM environment should be in the format `$(hostname)-apm-lambda` where the hostname value is a four letter name of your lab host. (Check it by looking at your command prompt, or by running `echo $(hostname)`).
+Select APM from the Main Menu and then select your APM Environment. Your APM environment should be in the format `$INSTANCE-apm-lambda` where the hostname value is a four letter name of your lab host. (Check it by looking at your command prompt, or by running `echo $INSTANCE`).
 
 {{% notice style="note" %}} It may take a few minutes for you traces to appear in Splunk APM. Try hitting refresh on your browser until you find your environement name in the list of Envrionments {{% /notice %}}
 

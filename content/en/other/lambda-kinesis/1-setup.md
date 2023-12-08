@@ -45,7 +45,7 @@ git clone https://github.com/kdroukman/o11y-lambda-lab.git
 
 In your Splunk Observability Cloud Organisation (Org) obtain your Access Token and Realm Values.
 
-Please reset your environment variables from the earlier lab. Take care that for this lab we may be using different names - make sure to match the Environment Variable names bellow.
+Please reset your environment variables from the earlier lab. Take care that for this lab we may be using different names - make sure to match the Environment Variable names below.
 
 {{< tabs >}}
 {{% tab title="Export Environment Variables" %}}
@@ -53,7 +53,7 @@ Please reset your environment variables from the earlier lab. Take care that for
 ``` ini
 export ACCESS_TOKEN=CHANGE_ME \
 export REALM=CHANGE_ME \
-export PREFIX=$(hostname)
+export PREFIX=$INSTANCE
 ```
 
 {{% /tab %}}

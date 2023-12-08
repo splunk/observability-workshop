@@ -9,15 +9,15 @@ For the Real User Monitoring (RUM) instrumentation, we will add the Open Telemet
 
 Select the preconfigured **RUM ACCESS TOKEN** from the dropdown, and click **Next**. Enter **App name** and **Environment** using the following syntax:
 
-- `[hostname]-petclinic-service` - replacing `[hostname]` with your actual hostname.
-- `[hostname]-petclinic-env` - replacing `[hostname]` with your actual hostname.
+- `[instance]-petclinic-service` - replacing `[instance]` with your actual hostname.
+- `[instance]-petclinic-env` - replacing `[instance]` with your actual hostname.
 
 Then you'll need to select the workshop RUM token and define the application and environment names. The wizard will then show a snippet of HTML code that needs to be placed at the top of the pages in the `<head>` section. In this example, we are using:
 
-- Application Name: `<hostname>-petclinic-service`
-- Environment: `<hostname>-petclinic-env`
+- Application Name: `<instance>-petclinic-service`
+- Environment: `<instance>-petclinic-env`
 
-Copy the generated code snippet in the wizard or copy and edit the snippet below accordingly. You need to replace `<REALM>`, `<RUM_ACCESS_TOKEN>` and `<hostname>` with the actual values.
+Copy the generated code snippet in the wizard or copy and edit the snippet below accordingly. You need to replace `<REALM>`, `<RUM_ACCESS_TOKEN>` and `<instance>` with the actual values.
 
 ``` html
 <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous"></script>
@@ -25,8 +25,8 @@ Copy the generated code snippet in the wizard or copy and edit the snippet below
 SplunkRum.init({
     beaconUrl: "https://rum-ingest.<REALM>.signalfx.com/v1/rum",
     rumAuth: "<RUM_ACCESS_TOKEN>",
-    app: "<hostname>-petclinic-service",
-    environment: "<hostname>-petclinic-env"
+    app: "<instance>-petclinic-service",
+    environment: "<instance>-petclinic-env"
     });
 </script>
 ```
@@ -52,7 +52,7 @@ Run the `maven` command to compile/build/package PetClinic:
 ```bash
 java \
 -Dserver.port=8083 \
--Dotel.service.name=$(hostname)-petclinic-service \
+-Dotel.service.name=$INSTANCE-petclinic-service \
 -Dotel.resource.attributes=version=0.314 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```

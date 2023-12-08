@@ -139,7 +139,7 @@ This will start a gentle continuous load on the application.
 
 As you can see from the above screenshot, most of the calls will report a fail, this is expected, as we have not yet deployed the application behind it, however, NGINX is reporting on your attempts and you should be able to see those metrics.  
 
-Validate you are seeing those metrics in the UI by selecting **Dashboards → Built-in Dashboard Groups  → NGINX → NGINX Servers**. Using the **Overrides** filter on `k8s.cluster.name:`, find the name of your cluster as returned by `echo $(hostname)-k3s-cluster` in the terminal.
+Validate you are seeing those metrics in the UI by selecting **Dashboards → Built-in Dashboard Groups  → NGINX → NGINX Servers**. Using the **Overrides** filter on `k8s.cluster.name:`, find the name of your cluster as returned by `echo $INSTANCE-k3s-cluster` in the terminal.
 
 ![NGINX Dashboard](../../images/nginx-dashboard.png)
 

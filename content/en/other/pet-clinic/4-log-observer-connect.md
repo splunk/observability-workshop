@@ -92,7 +92,7 @@ Once the rebuild has been completed we can then run the application again:
 ```bash
 java \
 -Dserver.port=8083 \
--Dotel.service.name=$(hostname)-petclinic-service \
+-Dotel.service.name=$INSTANCE-petclinic-service \
 -Dotel.resource.attributes=version=0.314 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```

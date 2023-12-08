@@ -69,7 +69,7 @@ Install the OpenTelemetry Collector Helm chart into a new **splunk** namespace w
 helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
---set="clusterName=$(hostname)-k3s-cluster" \
+--set="clusterName=$INSTANCE-k3s-cluster" \
 --set="splunkObservability.logsEnabled=true" \
 --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
 splunk-otel-collector-chart/splunk-otel-collector \

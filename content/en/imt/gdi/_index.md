@@ -84,16 +84,34 @@ Install the OpenTelemetry Collector Helm chart with the following commands, do *
 helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
---set="clusterName=$(hostname)-k3s-cluster" \
+--set="clusterName=$INSTANCE-k3s-cluster" \
+--set="splunkObservability.logsEnabled=false" \
+--set="logsEngine=otel" \
+--set="splunkObservability.profilingEnabled=true" \
+--set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
+--set="environment=$INSTANCE-workshop" \
+--set="splunkPlatform.endpoint=$HEC_URL" \
+--set="splunkPlatform.token=$HEC_TOKEN" \
+--set="splunkPlatform.index=splunk4rookies-workshop" \
+splunk-otel-collector-chart/splunk-otel-collector \
+-f ~/workshop/k3s/otel-collector.yaml
+
+```
+<!--
+```bash
+helm install splunk-otel-collector \
+--set="splunkObservability.realm=$REALM" \
+--set="splunkObservability.accessToken=$ACCESS_TOKEN" \
+--set="clusterName=$INSTANCE-k3s-cluster" \
 --set="splunkObservability.logsEnabled=true" \
 --set="logsEngine=otel" \
 --set="splunkObservability.profilingEnabled=true" \
 --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
---set="environment=$(hostname)-workshop" \
+--set="environment=$INSTANCE-workshop" \
 splunk-otel-collector-chart/splunk-otel-collector \
 -f ~/workshop/k3s/otel-collector.yaml
 ```
-
+-->
 {{% /tab %}}
 {{% tab title="Helm Install Output" %}}
 
@@ -179,12 +197,12 @@ In the Splunk UI, click the **>>** bottom left and click on **Infrastructure**.
 
 Under **Containers** click on **Kubernetes** to open the Kubernetes Navigator Cluster Map to ensure metrics are being sent in.
 
-Validate that your cluster is discovered and reporting by finding your cluster (in the workshop you will see many other clusters). To find your cluster name run the following command and copy the output to your clipboard:
+Validate that your cluster is discovered and reported by finding your cluster (in the workshop you will see many other clusters). To find your cluster name run the following command and copy the output to your clipboard:
 
 {{% tab title="Echo Cluster Name" %}}
 
 ```bash
-echo $(hostname)-k3s-cluster
+echo $INSTANCE-k3s-cluster
 ```
 
 {{% /tab %}}

@@ -47,7 +47,7 @@ Once the compilation is complete, you can run the application with the following
 ```bash
 java \
 -Dserver.port=8083 \
--Dotel.service.name=$(hostname)-petclinic-service \
+-Dotel.service.name=$INSTANCE-petclinic-service \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
@@ -103,7 +103,7 @@ Let's launch the PetClinic again using a new resource attribute. Note, that addi
 ```bash
 java \
 -Dserver.port=8083 \
--Dotel.service.name=$(hostname)-petclinic-service \
+-Dotel.service.name=$INSTANCE-petclinic-service \
 -Dotel.resource.attributes=version=0.314 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
