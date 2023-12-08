@@ -6,9 +6,9 @@ weight: 2
 
 ## Prometheus Receiver
 
-You will also notice another receiver called **prometheus**. [Prometheus](https://prometheus.io/docs/introduction/overview/) is an open-source toolkit used by the OpenTelemetry Collector. This receiver is used to scrape metrics from the OpenTelemetry Collector itself. These metrics can then be used to monitor the health of the collector.
+You will also notice another receiver called **prometheus**. [**Prometheus**](https://prometheus.io/docs/introduction/overview/) is an open-source toolkit used by the OpenTelemetry Collector. This receiver is used to scrape metrics from the OpenTelemetry Collector itself. These metrics can then be used to monitor the health of the collector.
 
-Let's modify the **prometheus** receiver to clearly show that it is for collecting metrics from the collector itself. By changing the name of the receiver from **prometheus** to **prometheus/internal**, it is now much clearer as to what that receiever is doing. Update the configuration file to look like this:
+Let's modify the `prometheus` receiver to clearly show that it is for collecting metrics from the collector itself. By changing the name of the receiver from `prometheus` to `prometheus/internal`, it is now much clearer as to what that receiver is doing. Update the configuration file to look like this:
 
 {{% tab title="Prometheus Receiver Configuration" %}}
 

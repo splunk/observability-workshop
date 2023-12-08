@@ -1,4 +1,10 @@
 agent:
+  extraEnvs:
+  - name: WORKSHOP_ENVIRONMENT
+    valueFrom:
+      secretKeyRef:
+        name: workshop-secret
+        key: env
   config:
     receivers:
       receiver_creator:
@@ -17,18 +23,37 @@ agent:
               password: root
               databases:
                 - name: "LxvGChW075"
-              name: "mysql-${K8S_NODE_NAME}"
+              name: mysql-${WORKSHOP_ENVIRONMENT}
               extraDimensions:
-                service.name: "mysql-${K8S_NODE_NAME}"
+                service.name: mysql-${WORKSHOP_ENVIRONMENT}
           smartagent/redis:
             rule: type == "port" && pod.name matches "redis-cart" && port == 6379
-            config: 
+            config:
               type: collectd/redis
               host: redis-cart
               port: 6379
-              name: "redis-${K8S_NODE_NAME}" 
+              name: "redis-${WORKSHOP_ENVIRONMENT}"
               extraDimensions:
-                service.name: "redis-${K8S_NODE_NAME}"
+                service.name: "redis-${WORKSHOP_ENVIRONMENT}"
     extensions:
       zpages:
         endpoint: 0.0.0.0:55679
+
+logsCollection:
+  extraFileLogs:
+    filelog/syslog:
+      include: [/var/log/syslog]
+      include_file_path: true
+      include_file_name: false
+      resource:
+        com.splunk.source: /var/log/syslog
+        host.name: 'EXPR(env("K8S_NODE_NAME"))'
+        com.splunk.sourcetype: syslog
+    filelog/auth_log:
+      include: [/var/log/auth.log]
+      include_file_path: true
+      include_file_name: false
+      resource:
+        com.splunk.source: /var/log/auth.log
+        host.name: 'EXPR(env("K8S_NODE_NAME"))'
+        com.splunk.sourcetype: auth_log

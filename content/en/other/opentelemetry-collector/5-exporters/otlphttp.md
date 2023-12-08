@@ -6,11 +6,11 @@ weight: 1
 
 ## OTLP HTTP Exporter
 
-In order to send metrics over HTTP to Splunk Observability Cloud, we will need to configure the **otlphttp** exporter.
+To send metrics over HTTP to Splunk Observability Cloud, we will need to configure the **otlphttp** exporter.
 
 Let's edit our `/etc/otelcol-contrib/config.yaml` file and configure the **otlphttp** exporter. Insert the following YAML under the **exporters** section, taking care to indent by two spaces e.g.
 
-We will also change the verbosity of the logging exporter to prevent the disk filling up. The default of `detailed` is very noisy.
+We will also change the verbosity of the logging exporter to prevent the disk from filling up. The default of `detailed` is very noisy.
 
 ```yaml {hl_lines="3-4"}
 exporters:
@@ -19,10 +19,10 @@ exporters:
   otlphttp/splunk:
 ```
 
-Next we need to define the `metrics_endpoint` and configure the target URL.
+Next, we need to define the `metrics_endpoint` and configure the target URL.
 
 {{% notice style="note" %}}
-If you are an attendee to a Splunk hosted workshop, the instance your are using has already been configured with a Realm environment variable. We will reference that environment variable in our configuration file. Otherwise, you will need to create a new environment variable and set the Realm e.g.
+If you are an attendee at a Splunk-hosted workshop, the instance you are using has already been configured with a Realm environment variable. We will reference that environment variable in our configuration file. Otherwise, you will need to create a new environment variable and set the Realm e.g.
 
 ``` bash
 export REALM="us1"
@@ -44,10 +44,10 @@ exporters:
 
 By default, `gzip` compression is enabled for all endpoints. This can be disabled by setting `compression: none` in the exporter configuration. We will leave compression enabled for this workshop and accept the default as this is the most efficient way to send data.
 
-In order to send metrics to Splunk Observability Cloud, we need to use an Access Token. This can be done by creating a new token in the Splunk Observability Cloud UI. For more information on how to create a token, see [Create a token](https://docs.splunk.com/Observability/admin/authentication-tokens/org-tokens.html). The token needs to be of type **INGEST**.
+To send metrics to Splunk Observability Cloud, we need to use an Access Token. This can be done by creating a new token in the Splunk Observability Cloud UI. For more information on how to create a token, see [Create a token](https://docs.splunk.com/Observability/admin/authentication-tokens/org-tokens.html). The token needs to be of type **INGEST**.
 
 {{% notice style="note" %}}
-If you are an attendee to a Splunk hosted workshop, the instance your are using has already been configured with an Access Token (which has been set as an environment variable). We will reference that environment variable in our configuration file. Otherwise, you will need to create a new token and set it as an environment variable e.g.
+If you are an attendee at a Splunk-hosted workshop, the instance you are using has already been configured with an Access Token (which has been set as an environment variable). We will reference that environment variable in our configuration file. Otherwise, you will need to create a new token and set it as an environment variable e.g.
 
 ``` bash
 export ACCESS_TOKEN=<replace-with-your-token>

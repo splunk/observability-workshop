@@ -30,21 +30,21 @@ service:
 
 {{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** Observing the collector internals{{% /badge %}}" %}}
 
-The collector captures internal signals about its behavior this also include additional signals from running components.
+The collector captures internal signals about its behavior this also includes additional signals from running components.
 The reason for this is that components that make decisions about the flow of data need a way to surface that information
 as metrics or traces.
 
 ## Why monitor the collector?
 
-This is somewhat of a chicken and egg problem of, "Who is watching the the watcher?", but it is important that we can surface this information. Another interesting part of the collector's history is that it existed before the Go metrics' SDK was considered stable so the collector exposes a prometheus endpoint to provide this functionality for the time being.
+This is somewhat of a chicken and egg problem of, "Who is watching the watcher?", but it is important that we can surface this information. Another interesting part of the collector's history is that it existed before the Go metrics' SDK was considered stable so the collector exposes a Prometheus endpoint to provide this functionality for the time being.
 
 ## Considerations
 
-Monitoring the internal usage of each running collector in your organisation can contribute a significant amount of new Metric Time Series (MTS). The Splunk distribution has curated these metrics for you and would be able to to help forcast the expected increases.
+Monitoring the internal usage of each running collector in your organization can contribute a significant amount of new Metric Time Series (MTS). The Splunk distribution has curated these metrics for you and would be able to help forecast the expected increases.
 
 ## The Ninja Zone
 
-To expose the internal observability of the collector, there are some additional settings that can be adjusted:
+To expose the internal observability of the collector, some additional settings can be adjusted:
 
 {{< tabs >}}
 {{% tab title="telemetry schema" %}}

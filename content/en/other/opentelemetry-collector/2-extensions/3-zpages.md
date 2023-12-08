@@ -39,11 +39,11 @@ Example URL: [http://localhost:55679/debug/extensionz](http://localhost:55679/de
 {{% /tabs %}}
 
 {{% notice style="info" %}}
-If you are not following along, you can use your browser to access a test environment emitting zPages information at:
+You can use your browser to access your environment emitting zPages information at (replace `<insert_your_ip>` with your IP address):
 
-- **ServiceZ:** [http://63.33.64.193:55679/debug/servicez](http://63.33.64.193:55679/debug/servicez)
-- **PipelineZ:** [http://63.33.64.193:55679/debug/pipelinez](http://63.33.64.193:55679/debug/pipelinez)
-- **ExtensionZ:** [http://63.33.64.193:55679/debug/extensionz](http://63.33.64.193:55679/debug/extensionz)
+- **ServiceZ:** [http://<insert_your_ip>:55679/debug/servicez](http://<insert_your_ip>:55679/debug/servicez)
+- **PipelineZ:** [http://<insert_your_ip>:55679/debug/pipelinez](http://<insert_your_ip>:55679/debug/pipelinez)
+- **ExtensionZ:** [http://<insert_your_ip>:55679/debug/extensionz](http://<insert_your_ip>:55679/debug/extensionz)
 {{% /notice %}}
 
 ---

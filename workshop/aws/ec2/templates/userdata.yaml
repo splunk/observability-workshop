@@ -248,14 +248,10 @@ write_files:
         --set="logsEngine=otel" \
         --set="splunkObservability.profilingEnabled=true" \
         --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
-        --set="networkExplorer.enabled=true" \
-        --set="networkExplorer.podSecurityPolicy.enabled=false" \
-        --set="agent.enabled=true" \
-        --set="gateway.replicaCount=1" \
-        --set="gateway.resources.limits.cpu=500m" \
-        --set="gateway.resources.limits.memory=1Gi" \
-        --set="clusterReceiver.enabled=true" \
         --set="environment=${instance_name}-workshop" \
+        --set="splunkPlatform.endpoint=${hec_url}" \
+        --set="splunkPlatform.token=${hec_token}" \
+        --set="splunkPlatform.index=splunk4rookies-workshop" \
         splunk-otel-collector-chart/splunk-otel-collector -f -
         helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
         helm install my-otel-demo open-telemetry/opentelemetry-demo --values /home/ubuntu/workshop/oteldemo/otel-demo.yaml

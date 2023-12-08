@@ -6,7 +6,7 @@ weight: 12
 
 ### Designing The Metrics
 
-To help define and export the metrics captured by our receiver, we will be using, [mdatagen](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/cmd/mdatagen), a tool developed for the collector that turns yaml defined metrics into code.
+To help define and export the metrics captured by our receiver, we will be using, [**mdatagen**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/cmd/mdatagen), a tool developed for the collector that turns YAML defined metrics into code.
 
 {{% tabs %}}
 {{% tab title="metadata.yaml"%}}
@@ -86,12 +86,10 @@ Create these files within the project folder before continuing onto the next sec
 
 ## Building The Factory
 
-The Factory is a software design pattern that effectively allows for an object, in this case a `jenkinscireceiver`, to be created
-dynamically with the provided configuration. To use a more real world example, it would be going to a phone store, asking for a phone
-that matches your exact description, and then provides it to you.
+The Factory is a software design pattern that effectively allows for an object, in this case a `jenkinscireceiver`, to be created dynamically with the provided configuration. To use a more real-world example, it would be going to a phone store, asking for a phone
+that matches your exact description, and then providing it to you.
 
-Run the following command `go generate -x ./...` , it will create a new folder, `jenkinscireceiver/internal/metadata`,
-that contains all code required to export the defined metrics. The required code is:
+Run the following command `go generate -x ./...` , it will create a new folder, `jenkinscireceiver/internal/metadata`, that contains all code required to export the defined metrics. The required code is:
 
 {{% tabs %}}
 {{% tab title="factory.go" %}}
@@ -247,4 +245,4 @@ replaces:
 {{% /tab %}}
 {{% /tabs %}}
 
-Once you have written these file into the project with the expected contents then run, `go mod tidy`, which will fetch all the remote depedancies and update `go.mod` and generate the `go.sum` files.
+Once you have written these files into the project with the expected contents run, `go mod tidy`, which will fetch all the remote dependencies and update `go.mod` and generate the `go.sum` files.

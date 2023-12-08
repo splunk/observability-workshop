@@ -8,7 +8,7 @@ weight: 2
 
 The **resourcedetection** processor can be used to detect resource information from the host and append or override the resource value in telemetry data with this information.
 
-By default, the hostname is set to the FQDN if possible, otherwise the hostname provided by the OS is used as a fallback. This logic can be changed from using using the `hostname_sources` configuration option. To avoid getting the FQDN and use the hostname provided by the OS, we will set the `hostname_sources` to `os`.
+By default, the hostname is set to the FQDN if possible, otherwise, the hostname provided by the OS is used as a fallback. This logic can be changed from using using the `hostname_sources` configuration option. To avoid getting the FQDN and use the hostname provided by the OS, we will set the `hostname_sources` to `os`.
 
 {{% tab title="System Resource Detection Processor Configuration" %}}
 

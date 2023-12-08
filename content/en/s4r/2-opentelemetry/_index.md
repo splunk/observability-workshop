@@ -2,44 +2,25 @@
 title: What is OpenTelemetry & why should you care?
 linkTitle: 2. OpenTelemetry
 weight: 2
-tags:
-  - OpenTelemetry
+archetype: chapter
 ---
+
+{{% badge icon="clock" color="#ed0090" %}}2 minutes{{% /badge %}}
+
+## OpenTelemetry
 
 With the rise of cloud computing, microservices architectures, and ever-more complex business requirements, the need for Observability has never been greater. Observability is the ability to understand the internal state of a system by examining its outputs. In the context of software, this means being able to understand the internal state of a system by examining its telemetry data, which includes **metrics**, **traces**, and **logs**.
 
-To make a system observable, it must be instrumented. That is, the code must emit traces, metrics, and logs. The instrumented data must then be sent to an Observability backend such as **Splunk Observability Cloud**.
+To make a system observable, it must be instrumented. That is, the code must emit traces, metrics, and logs. The instrumented data must then be sent to an Observability back-end such as **Splunk Observability Cloud**.
 
-{{< mermaid >}}
-
----
-title: The 3 Pillars of Observability
-
----
-
-%%{
-  init:{
-    "theme": "neutral",
-    "themeVariables": {
-      "lineColor": "#ffffff"
-    }
-  }
-}%%
-
-graph LR;
-    A["`_Metrics_
-    **Do I have a problem?**`"]
-    B["`_Traces_
-    **Where is the problem?**`"]
-    C["`_Logs_
-    **What is the problem?**`"]
-    A --> B --> C
-{{< /mermaid >}}
+| Metrics | Traces | Logs |
+|:-------:|:------:|:----:|
+| _**Do I have a problem?**_ | _**Where is the problem?**_ | _**What is the problem?**_ |
 
 OpenTelemetry does two important things:
 
-* Allows you to own the data that you generate rather than be stuck with a proprietary data format or tool.
-* Allows you to learn a single set of APIs and conventions
+* Allows you to **own** the data that you generate rather than be stuck with a proprietary data format or tool.
+* Allows you to learn **a single set** of APIs and conventions
 
 These two things combined enable teams and organizations the flexibility they need in today’s modern computing world.
 
@@ -53,4 +34,4 @@ Since OpenTelemetry is vendor-neutral and supported by many industry leaders in 
 
 Splunk has fully committed to OpenTelemetry so that our customers can collect and use **ALL** their data, in any type, any structure, from any source, on any scale, and all in real-time. OpenTelemetry is fundamentally changing the monitoring landscape, enabling IT and DevOps teams to bring data to every question and every action. You will experience this during these workshops.
 
-![full stack Splunk](images/splunk-full-stack.png?width=40vw)
+![OpenTelemetry Logo](images/otel.png)

@@ -29,7 +29,7 @@ while getopts 'b:st:' opt; do
   esac
 done
 
-hugo --minify --destination "site/v${TAG_NAME}" --baseURL "${BASE_URL}observability-workshop/v$TAG_NAME"
+hugo --minify --destination "site/v${TAG_NAME}" --baseURL "${BASE_URL}observability-workshop/v$TAG_NAME" --noChmod
 
 if [[ $SERVE == 1 ]]; then
     if ! command -v "devd" &> /dev/null; then

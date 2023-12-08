@@ -26,7 +26,6 @@ markup:
     renderer:
       unsafe: true
   highlight:
-    guessSyntax: false
     noClasses: false
 outputs:
   home:
@@ -54,15 +53,15 @@ params:
   disableNextPrev: false
   disableLandingPageButton: false
   titleSeparator: "::"
-  themeVariant: ["auto", "splunk-light", "splunk-dark"]
+  themeVariant: ["splunk-light", "splunk-dark"]
   additionalContentLanguage: ["ja"]
   versions:
     - version: latest
       url: https://splunk.github.io/observability-workshop/latest/
-    - version: v5.14
-      url: https://splunk.github.io/observability-workshop/v5.14
-    - version: v5.15
-      url: https://splunk.github.io/observability-workshop/v5.15
+    - version: v5.30
+      url: https://splunk.github.io/observability-workshop/v5.30
+    - version: v5.31
+      url: https://splunk.github.io/observability-workshop/v5.31
   url_latest_version: https://splunk.github.io/observability-workshop/
   imageEffects:
     border: false
@@ -78,6 +77,9 @@ menu:
     - name: <i class="fab fa-fw fa-twitter"></i> Twitter
       url: "https://twitter.com/splunk"
       weight: 30
-    - name: <i class="fas fa-tags"></i> Tags
-      url: "/tags"
-      weight: 40
+#    - name: <i class="fas fa-tags"></i> Tags
+#      url: "/tags"
+#      weight: 40
+#    - name: <i class="fas fa-layer-group"></i> Categories
+#      url: "/categories"
+#      weight: 50

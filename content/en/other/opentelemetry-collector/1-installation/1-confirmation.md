@@ -44,23 +44,13 @@ May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:         {"kind": "exporter"
 {{% /tab %}}
 {{< /tabs >}}
 
-As will be running the rest of the workshop using the `otelcol-contrib` standalone binary, we will stop the service and then disable it from starting on boot:
+Because we will be making multiple configuration file changes, setting environment variables and restarting the collector, we need to stop the collector service and disable it from starting on boot.
 
 {{< tabs >}}
 {{% tab title="Command" %}}
 
 ``` bash
-sudo systemctl stop otelcol-contrib
-```
-
-{{% /tab %}}
-{{< /tabs >}}
-
-{{< tabs >}}
-{{% tab title="Command" %}}
-
-``` bash
-sudo systemctl disable otelcol-contrib
+sudo systemctl stop otelcol-contrib && sudo systemctl disable otelcol-contrib
 ```
 
 {{% /tab %}}
@@ -119,7 +109,7 @@ For this part we will require the following installed on your system:
 
 ## Why build your own collector?
 
-The default distribution of the collector (core and contrib) either contain too much or too little in what they have to offer.
+The default distribution of the collector (core and contrib) either contains too much or too little in what they have to offer.
 
 It is also not advised to run the contrib collector in your production environments due to the amount of components installed which more than likely are not needed by your deployment.
 
@@ -131,17 +121,17 @@ The benefits of this are:
 
 1. Smaller sized binaries
 2. Can use existing go scanners for vulnerabilities
-3. Include internal components that can tie in with your organisation
+3. Include internal components that can tie in with your organization
 
-## Considerations for building your own collector?
+## Considerations for building your collector?
 
-Now, this would not be a 🥷 Ninja zone if it didn't come with some draw backs:
+Now, this would not be a 🥷 Ninja zone if it didn't come with some drawbacks:
 
 1. Go experience is recommended if not required
 1. **No** Splunk support
-1. Responsibility of distribution and lifecycle management
+1. Responsibility for distribution and lifecycle management
 
-It is important to note that project is working towards stability but it does not mean changes made will not break your workflow. The team at Splunk provide increased support and a higher level of stability so they can provide a curated experience helping you with your deployment needs.
+It is important to note that the project is working towards stability but it does not mean changes made will not break your workflow. The team at Splunk provides increased support and a higher level of stability so they can provide a curated experience helping you with your deployment needs.
 
 ## The Ninja Zone
 
@@ -291,15 +281,15 @@ service:
 {{% /tab %}}
 {{< /tabs >}}
 
-Congratulations! You have successfully downloaded and installed the OpenTelemetry Collector. You are well on your way to becoming an OTel Ninja. But first lets walk through configuration files and different distributions of the OpenTelemetry Collector.
+Congratulations! You have successfully downloaded and installed the OpenTelemetry Collector. You are well on your way to becoming an OTel Ninja. But first let's walk through configuration files and different distributions of the OpenTelemetry Collector.
 
 {{% notice style="note" %}}
 
-Splunk does provide its own, fully supported, distribution of the OpenTelemetry Collector. This distribution is available to install from the [Splunk GitHub Repository](https://github.com/signalfx/splunk-otel-collector) or via a wizard in Splunk Observability Cloud that will build out a simple installation script to copy and paste. This distribution includes a number of additional features and enhancements that are not available in the OpenTelemetry Collector Contrib distribution.
+Splunk does provide its own, fully supported, distribution of the OpenTelemetry Collector. This distribution is available to install from the [**Splunk GitHub Repository**](https://github.com/signalfx/splunk-otel-collector) or via a wizard in Splunk Observability Cloud that will build out a simple installation script to copy and paste. This distribution includes many additional features and enhancements that are not available in the OpenTelemetry Collector Contrib distribution.
 
-- The Splunk Distribution of the OpenTelemetry Collector is production tested; it is in use by the majority of customers in their production environments.
-- Customers that use our distribution can receive direct help from official Splunk support within SLA's.
-- Customers can use or migrate to the Splunk Distribution of the OpenTelemetry Collector without worrying about future breaking changes to its core configuration experience for metrics and traces collection (OpenTelemetry logs collection configuration is in beta). There may be breaking changes to the Collector's own metrics.
+- The Splunk Distribution of the OpenTelemetry Collector is production-tested; it is in use by the majority of customers in their production environments.
+- Customers that use our distribution can receive direct help from official Splunk support within SLAs.
+- Customers can use or migrate to the Splunk Distribution of the OpenTelemetry Collector without worrying about future breaking changes to its core configuration experience for metrics and traces collection (OpenTelemetry logs collection configuration is in beta). There may be breaking changes to the Collector's metrics.
 
 {{% /notice %}}
 
