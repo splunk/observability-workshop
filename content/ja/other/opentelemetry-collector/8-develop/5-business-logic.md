@@ -67,7 +67,7 @@ func newScraper(cfg *Config, set receiver.CreateSettings) (scraperhelper.Scraper
     )
 }
 
-func (scraper) scrape(ctx context.Context) (pmetric.Metrics, error) {
+func (s scraper) scrape(ctx context.Context) (pmetric.Metrics, error) {
     // To be filled in
     return pmetric.NewMetrics(), nil
 }
