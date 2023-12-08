@@ -45,7 +45,7 @@ import (
 )
 
 type scraper struct {
-    mb     *metadata.Metricsbuilder
+    mb     *metadata.MetricsBuilder
     client *jenkins.Jenkins
 }
 
@@ -57,8 +57,8 @@ func newScraper(cfg *Config, set receiver.CreateSettings) (scraperhelper.Scraper
     return scraperhelper.NewScraper(
         metadata.Type,
         s.scrape,
-        scarperhelper.WithStart(func(ctx context.Context, h component.Host) error {
-            client, err := cfg.ToClient(h, set)
+        scraperhelper.WithStart(func(ctx context.Context, h component.Host) error {
+            client, err := cfg.ToClient(h, set.TelemetrySettings)
             if err != nil {
                 return err
             }
@@ -68,11 +68,11 @@ func newScraper(cfg *Config, set receiver.CreateSettings) (scraperhelper.Scraper
             s.client = jenkins.NewJenkins(nil, cfg.Endpoint)
             s.client.SetHTTPClient(client)
             return nil
-        })
+        }),
     )
 }
 
-func (scraper) scrape(ctx context.Context) (pmetric.Metrics, error) {
+func (s scraper) scrape(ctx context.Context) (pmetric.Metrics, error) {
     // To be filled in
     return pmetric.NewMetrics(), nil
 }
@@ -118,7 +118,7 @@ there was. Within this step, we are going to examine each job and use the report
 to capture metrics.
 
 ```go
-func (s scrape) scrape(ctx context.Context) (pmetric.Metrics, error) {
+func (s scraper) scrape(ctx context.Context) (pmetric.Metrics, error) {
     jobs, err := s.client.GetJobs()
     if err != nil {
         return pmetric.Metrics{}, err
@@ -171,7 +171,7 @@ The final step is to calculate how long it took from
 commit to job completion to help infer our DORA metrics.
 
 ```go
-func (s scrape) scrape(ctx context.Context) (pmetric.Metrics, error) {
+func (s scraper) scrape(ctx context.Context) (pmetric.Metrics, error) {
     jobs, err := s.client.GetJobs()
     if err != nil {
         return pmetric.Metrics{}, err
