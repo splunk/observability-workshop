@@ -21,7 +21,7 @@ In preparation for the workshop, Splunk has prepared an Ubuntu Linux instance in
 
 To get access to the instance that you will be using in the workshop please visit the URL to access the Google Sheet provided by the workshop leader.
 
-Search for your AWS/EC2 instance by looking for your first  and last name, as provided during registration for this workshop.
+Search for your AWS/EC2 instance by looking for your first and last name, as provided during registration for this workshop.
 
 ![attendee spreadsheet](../images/spreadsheet-info.png)
 
@@ -30,7 +30,7 @@ Find your allocated IP address, SSH command (for Mac OS, Linux and the latest Wi
 It also has the Browser Access URL that you can use in case you cannot connect via ssh or putty - see [EC2 access via Web browser](#4-web-browser-all)
 
 {{% notice title="Important" style="info" %}}
-Please use SSH or Putty  to gain access to your EC2 instance if possible and
+Please use SSH or Putty to gain access to your EC2 instance if possible and
 make a note of the IP address as you will need this during the workshop.
 {{% /notice %}}
 
@@ -48,7 +48,7 @@ When prompted **`Are you sure you want to continue connecting (yes/no/[fingerpri
 
 Enter the password provided in the Google Sheet from Step #1.
 
-Upon successful login you will be presented with the Splunk logo and the Linux prompt.
+Upon successful login, you will be presented with the Splunk logo and the Linux prompt.
 
 ![ssh connected](../images/ssh-3.png)
 
@@ -63,20 +63,20 @@ If you are shown a help text on how to use the ssh-command (like shown on the sc
 
 ![Windows SSH enabled](../images/windows-ssh-enabled-feedback.png)
 
-If the result of executing the command looks something like on the screenshot below, you want to enable the "OpenSSH Client" feature manually.
+If the result of executing the command looks something like the screenshot below, you want to enable the "OpenSSH Client" feature manually.
 
 ![Windows SSH disabled](../images/windows-ssh-disabled-feedback.png)
 
-To do that, open the "Settings" menu, and click on "Apps". While being in the "Apps & features" section, click on "Optional features".
+To do that, open the "Settings" menu, and click on "Apps". While in the "Apps & features" section, click on "Optional features".
 
 ![Windows Apps Settings](../images/windows-gui-optionalfeatures.png)
 
-Here, you are presented a list of installed features. On the top, you see a button with a plus icon to "Add a feature". Click it.
+Here, you are presented with a list of installed features. On the top, you see a button with a plus icon to "Add a feature". Click it.
 In the search input field, type "OpenSSH", and find a feature called "OpenSSH Client",  or respectively, "OpenSSH Client (Beta)", click on it, and click the "Install"-button.
 
 ![Windows Enable OpenSSH Client](../images/windows-enable-openssh-client.png)
 
-Now you are set! In case you are not able to access the provided instance in spite of enabling the OpenSSH feature, please do not shy away from reaching
+Now you are set! In case you are not able to access the provided instance despite enabling the OpenSSH feature, please do not shy away from reaching
 out to the course instructor, either via chat or directly.
 
 At this point you are ready to continue and [start the workshop](../gdi/index.html)
@@ -85,13 +85,13 @@ At this point you are ready to continue and [start the workshop](../gdi/index.ht
 
 ## 4. Putty (For Windows Versions prior to Windows 10)
 
-If you do not have ssh pre-installed or if you are on a Windows system,  the best option is to install putty, you can find [here.](https://www.putty.org/)
+If you do not have SSH pre-installed or if you are on a Windows system,  the best option is to install putty, you can find [here.](https://www.putty.org/)
 
 {{% notice title="Important" style="info" %}}
 If you **cannot** install Putty, please go to [Web Browser (All)](#4-web-browser-all).
 {{% /notice %}}
   
-Open Putty and enter the in **Host Name (or IP address)** field the IP address provided in the Google Sheet.
+Open Putty and enter in the **Host Name (or IP address)** field the IP address provided in the Google Sheet.
 
 You can optionally save your settings by providing a name and pressing **Save**.
 
@@ -109,7 +109,7 @@ Once you are connected successfully you should see a screen similar to the one b
 
 ![putty-4](../images//putty-loggedin.png)
 
-At this point you are ready to continue and [start the workshop](../gdi/index.html)
+At this point, you are ready to continue and [start the workshop](../gdi/index.html)
 
 ---
 
@@ -135,7 +135,7 @@ Once you are connected successfully you should see a screen similar to the one b
 
 Unlike when you are using regular SSH, *copy and paste* does require a few extra steps to complete when using a browser session. This is due to cross browser restrictions.
 
-When the workshop ask you to copy instructions into your terminal, please do the following:
+When the workshop asks you to copy instructions into your terminal, please do the following:
 
 *Copy the instruction as normal, but when ready to paste it in the web terminal, choose **Paste from browser** as show below:*
 
@@ -145,10 +145,10 @@ This will open a dialogue box asking for the text to be pasted into the web term
 
 ![web paste 3](../images//shellinabox-example-1.png)
 
-Paste the text in the text box as show, then press **OK** to complete the copy and paste process.
+Paste the text in the text box as shown, then press **OK** to complete the copy and paste process.
 
 {{% notice title="Note" style="info" %}}
-Unlike regular SSH connection, the web browser has a 60 second time out, and you will be disconnected, and a **Connect** button will be shown in the center of the web terminal.
+Unlike regular SSH connection, the web browser has a 60-second time out, and you will be disconnected, and a **Connect** button will be shown in the center of the web terminal.
 
 Simply click the **Connect** button and you will be reconnected and will be able to continue.
 {{% /notice %}}
@@ -161,6 +161,6 @@ At this point you are ready to continue and [start the workshop](../gdi/index.ht
 
 ## 6. Multipass (All)
 
-If you are unable to access AWS, but you want to install software locally, follow the instructions for [using Multipass](https://github.com/splunk/observability-workshop/blob/main/multipass/README.md).
+If you are unable to access AWS, but want to install software locally, follow the instructions for [using Multipass](https://github.com/splunk/observability-workshop/blob/main/multipass/README.md).
 
 [^1]: [Download Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/)

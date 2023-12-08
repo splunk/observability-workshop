@@ -16,9 +16,9 @@ weight: 6
 
 ## 1. Understanding engagement
 
-To fully understand Observability Cloud engagement inside your organization, click on the **>>** bottom left and select the **Settings → Organization Overview**, this will provide you with the following dashboards that shows you how your Observability Cloud organization is being used:
+To fully understand Observability Cloud engagement inside your organization, click on the **>>** bottom left and select the **Settings → Organization Overview**, this will provide you with the following dashboards that show you how your Observability Cloud organization is being used:
 
-![Organization overview](../images/engagement.png)
+![Organization Overview](../images/engagement.png)
 
 You will see various dashboards such as Throttling, System Limits, Entitlements & Engagement. The workshop organization you're using now may have less data to work with as this is cleared down after each workshop.
 
@@ -46,9 +46,9 @@ For more information about these categories please refer to [Monitor Splunk Infr
 
 The top chart shows you the current subscription levels per category (shown by the red arrows at the top in the screenshot below).
 
-Also, your current usage of the four catagories is displayed (shown at the red lines at the bottom of the chart).
+Also, your current usage of the four categories is displayed (shown in the red lines at the bottom of the chart).
 
-In this example you can see that there are 25 Hosts, 0 Containers, 100 Custom Metrics and 0 High Resolution Metrics.
+In this example, you can see that there are 25 Hosts, 0 Containers, 100 Custom Metrics and 0 High Resolution Metrics.
 
 ![Billing and Usage-top](../images/usage-detail.png)
 
@@ -62,7 +62,7 @@ The blue line marked **Average Usage** indicates what Observability Cloud will u
 As you can see from the screenshot, Observability Cloud does not use High Watermark or P95% for cost calculation but the actual average hourly usage, allowing you to do performance testing or Blue/Green style deployments etc. without the risk of overage charges.
 {{% /notice %}}
 
-To get a feel for the options you can change the metric displayed by selecting the different options from the **Usage Metric** drop down on the left, or change the **Subscription Usage Period** with the drop down on the right.
+To get a feel for the options you can change the metric displayed by selecting the different options from the **Usage Metric** drop-down on the left, or change the **Subscription Usage Period** with the drop-down on the right.
 
 Please take a minute to explore the different time periods & categories and their views.
 

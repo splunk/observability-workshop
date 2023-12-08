@@ -48,7 +48,7 @@ spec:
     name: php-apache
 ```
 
-Once deployed, `php-apache` will autoscale when either the average CPU usage goes above 50% and the average memory usage for the deployment goes above 75%, with a minimum of 1 pod and a maximum of 4 pods.
+Once deployed, `php-apache` will autoscale when either the average CPU usage goes above 50% or the average memory usage for the deployment goes above 75%, with a minimum of 1 pod and a maximum of 4 pods.
 
 ``` text
 kubectl apply -f ~/workshop/k3s/hpa.yaml
@@ -90,4 +90,4 @@ Save the changes you have made. (Hint: Use `Esc` followed by `:wq!` to save your
 
 {{% /notice %}}
 
-**Congratulations!** You have successfully completed the workshop.
+**Congratulations!** You have completed the workshop.
