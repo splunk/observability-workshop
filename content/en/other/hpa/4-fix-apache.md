@@ -7,7 +7,7 @@ weight: 4
 
 Especially in Production Kubernetes Clusters, CPU and Memory are considered precious resources.  Cluster Operators will normally require you to specify the amount of CPU and Memory your Pod or Service will require in the deployment, so they can have the Cluster automatically manage on which Node(s) your solution will be placed.
 
-You do this by placing a Resource section in the deployment of you application/Pod
+You do this by placing a Resource section in the deployment of your application/Pod
 
 **Example:**
 
@@ -21,13 +21,13 @@ resources:
     memory: "4Mi" # Requesting 4Mb of memory
 ```
 
-More information can be found here : [Resource Management for Pods and Containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+More information can be found here: [**Resource Management for Pods and Containers**](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 
 If your application or Pod will go over the limits set in your deployment, Kubernetes will kill and restart your Pod to protect the other applications on the Cluster.
 
 Another scenario that you will run into is when there is not enough Memory or CPU on a Node. In that case, the Cluster will try to reschedule your Pod(s) on a different Node with more space.
 
-If that fails, or if there is not enough space when you deploy your application, the Cluster will put your workload/deployment in schedule mode until there is enough room on any of the available Nodes to deploy the Pods according their limits.
+If that fails, or if there is not enough space when you deploy your application, the Cluster will put your workload/deployment in schedule mode until there is enough room on any of the available Nodes to deploy the Pods according to their limits.
 
 ## 2. Fix PHP/Apache Deployment
 
@@ -55,7 +55,7 @@ resources:
     memory: "4Mi"
 ```
 
-Save the changes youhave made. (Hint: Use `Esc` followed by `:wq!` to save your changes).
+Save the changes you have made. (Hint: Use `Esc` followed by `:wq!` to save your changes).
 
 Now, we must delete the existing StatefulSet and re-create it. StatefulSets are immutable, so we must delete the existing one and re-create it with the new changes.
 
@@ -91,7 +91,7 @@ Monitor the Apache web servers Navigator dashboard for a few minutes.
 What is happening with the # Hosts reporting chart?
 {{% /notice %}}
 
-## 4. Fix memory issue
+## 4. Fix the memory issue
 
 If you navigate back to the Apache dashboard, you will notice that metrics are no longer coming in. We have another resource issue and this time we are Out of Memory. Let's edit the stateful set and increase the memory to what is shown in the image below:
 

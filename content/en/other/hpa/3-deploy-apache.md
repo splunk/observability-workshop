@@ -28,7 +28,7 @@ Any Pods exposed by a Service have the following DNS resolution available:
 my_pod.service-name.my-namespace.svc.cluster-domain.example
 ```
 
-More information can be found here : [DNS for Service and Pods](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
+More information can be found here: [**DNS for Service and Pods**](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
 
 ## 2. Review OTel receiver for PHP/Apache
 
@@ -61,7 +61,7 @@ The above file contains an observation rule for Apache using the OTel `receiver_
 
 The configured rules will be evaluated for each endpoint discovered. If the rule evaluates to true, then the receiver for that rule will be started as configured against the matched endpoint.
 
-In the file above we tell the OpenTelemetry agent to look for Pods that match the name `apache` and have port `80` open. Once found, the agent will configure an Apache receiver to read Apache metrics from the configured URL. Note, the K8s DNS based URL in the above YAML for the service.
+In the file above we tell the OpenTelemetry agent to look for Pods that match the name `apache` and have port `80` open. Once found, the agent will configure an Apache receiver to read Apache metrics from the configured URL. Note, the K8s DNS-based URL in the above YAML for the service.
 
 To use the Apache configuration, you can upgrade the existing Splunk OpenTelemetry Collector Helm chart to use the `otel-apache.yaml` file with the following command:
 
@@ -73,11 +73,15 @@ helm upgrade splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
 --set="clusterName=$INSTANCE-k3s-cluster" \
---set="splunkObservability.logsEnabled=true" \
+--set="splunkObservability.logsEnabled=false" \
+--set="logsEngine=otel" \
 --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
+--set="splunkPlatform.endpoint=$HEC_URL" \
+--set="splunkPlatform.token=$HEC_TOKEN" \
+--set="splunkPlatform.index=splunk4rookies-workshop" \
 splunk-otel-collector-chart/splunk-otel-collector \
 --namespace splunk \
--f ~/workshop/k3s/splunk-defaults.yaml \
+-f ~/workshop/k3s/otel-collector.yaml \
 -f ~/workshop/k3s/otel-apache.yaml
 ```
 
@@ -101,7 +105,7 @@ TEST SUITE: None
 
 ## 4. Kubernetes ConfigMaps
 
-A ConfigMap is an object in Kubernetes consisting of key-value pairs which can be injected into your application. With a ConfigMap, you can separate configuration from your Pods.
+A ConfigMap is an object in Kubernetes consisting of key-value pairs that can be injected into your application. With a ConfigMap, you can separate configuration from your Pods.
 
 Using ConfigMap, you can prevent hardcoding configuration data. ConfigMaps are useful for storing and sharing non-sensitive, unencrypted configuration information.
 
@@ -115,7 +119,7 @@ kubectl get cm -n splunk
 How many ConfigMaps are used by the collector?
 {{% /notice %}}
 
-When you have list of ConfigMaps from the namespace, select the one for the `otel-agent` and view it with the following command:
+When you have a list of ConfigMaps from the namespace, select the one for the `otel-agent` and view it with the following command:
 
 ``` bash
 kubectl get cm splunk-otel-collector-otel-agent -n splunk -o yaml
@@ -139,7 +143,7 @@ cat ~/workshop/k3s/php-apache.yaml
 
  This file contains the configuration for the PHP/Apache deployment and will create a new StatefulSet with a single replica of the PHP/Apache image.
 
-A stateless application is one that does not care which network it is using, and it does not need permanent storage. Examples of stateless apps may include web servers such as Apache, Nginx, or Tomcat.
+A stateless application does not care which network it is using, and it does not need permanent storage. Examples of stateless apps may include web servers such as Apache, Nginx, or Tomcat.
 
 ```yaml
 apiVersion: apps/v1
@@ -188,7 +192,7 @@ spec:
 
 ## 6. Deploy PHP/Apache
 
-Create an apache namespace then deploy the PHP/Apache application to the cluster.
+Create an `apache` namespace then deploy the PHP/Apache application to the cluster.
 
 Create the `apache` namespace:
 

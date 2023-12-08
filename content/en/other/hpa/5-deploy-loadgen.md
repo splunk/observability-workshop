@@ -4,7 +4,7 @@ linkTitle: 5. Deploy Load Generator
 weight: 5
 ---
 
-Now let's apply some load against the `php-apache` pod. To do this, you will need start a different Pod to act as a client. The container within the client Pod runs in an infinite loop, sending HTTP GETs to the `php-apache` service.
+Now let's apply some load against the `php-apache` pod. To do this, you will need to start a different Pod to act as a client. The container within the client Pod runs in an infinite loop, sending HTTP GETs to the `php-apache` service.
 
 ## 1. Review loadgen YAML
 
@@ -14,7 +14,7 @@ Inspect the YAML file `~/workshop/k3s/loadgen.yaml` and validate the contents us
 cat ~/workshop/k3s/loadgen.yaml
 ```
 
-This file contains the configuration for the load generator and will create a new ReplicaSet with a two replicas of the load generator image.
+This file contains the configuration for the load generator and will create a new ReplicaSet with two replicas of the load generator image.
 
 ``` yaml
 apiVersion: apps/v1
@@ -79,7 +79,7 @@ Validate the replicas are running from both the command line and Splunk Observab
 kubectl get replicaset loadgen -n loadgen
 ```
 
-![Replicaset](../images/k8s-workload-replicaset.png)
+![ReplicaSet](../images/k8s-workload-replicaset.png)
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
 What impact can you see in the Apache Navigator?

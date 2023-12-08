@@ -1,6 +1,6 @@
 ---
-title: Tour of the Kubernetes Navigator v2
-linkTitle: 2. Kubernetes Navigator v2
+title: Tour of the Kubernetes Navigator
+linkTitle: 2. Kubernetes Navigator
 weight: 2
 --- 
 
@@ -8,22 +8,20 @@ weight: 2
 
 The Kubernetes Navigator offers you two separate use cases to view your Kubernetes data.
 
-* The **K8s workloads** is focusing on providing information in regards to workloads a.k.a. *your deployments*.
-* The **K8s nodes** is focusing on providing insight into the performance of clusters, nodes, pods and containers.
+* The **K8s workloads** are focusing on providing information in regards to workloads a.k.a. *your deployments*.
+* The **K8s nodes** are focusing on providing insight into the performance of clusters, nodes, pods and containers.
 
-You will initially select either view depending on your need (you can switch between the view on the fly if required). The most common one we will use in this workshop is the  workload view and we will focus on that specifically.
+You will initially select either view depending on your need (you can switch between the view on the fly if required). The most common one we will use in this workshop is the workload view and we will focus on that specifically.
 
-### 1.1 Finding your K8s Cluster name
+### 1.1 Finding your K8s Cluster Name
 
-Your first task is to identify and find your own cluster. The cluster will be named after your EC2 instance name.
-
-To confirm your EC2 instance name, look at the prompt of your EC2 instance. For example, if you are assigned the 7th EC2 instance, the prompt will show:
+Your first task is to identify and find your cluster. The cluster will be named as determined by the preconfigured environment variable `INSTANCE`. To confirm the cluster name enter the following command in your terminal:
 
 ``` bash
-ubuntu@emea-ws-7 ~ $
+echo $INSTANCE-k3s-cluster
 ```
 
-This means your cluster will be named: `emea-ws-7-k3s-cluster`. Please make a note of your cluster name as you will need this later in the workshop for filtering.
+Please make a note of your cluster name as you will need this later in the workshop for filtering.
 
 ## 2. Workloads & Workload Details Pane
 
@@ -39,12 +37,12 @@ Initially, you will see all the workloads for all clusters that are reported int
 
 ![Workloads](../images/k8s-workload-screen.png)
 
-Now, let's find your own cluster by filtering on the field `k8s.cluster.name` in the filter toolbar (as marked with a blue stripe).
+Now, let's find your cluster by filtering on the field `k8s.cluster.name` in the filter toolbar (as marked with a blue stripe).
 
 {{% notice title="Note" style="info" %}}
-You can enter a partial name into the search box, such as 'emea-ws-7*', to quickly find your Cluster.
+You can enter a partial name into the search box, such as `emea-ws-7*`, to quickly find your Cluster.
 
-Also, it's a very good idea to switch the default time from the default **-3h** back to last 15 minutes (**-15m**).
+Also, it's a very good idea to switch the default time from the default **-3h** back to the last 15 minutes (**-15m**).
 {{% /notice %}}
 
 ![Workloads](../images/k8s-workload-filter.png)
@@ -55,15 +53,15 @@ You should now just see information for your own cluster.
 How many workloads are running & how many namespaces are in your Cluster?
 {{% /notice %}}
 
-### 2.1 Using the Navigator Selection chart
+### 2.1 Using the Navigator Selection Chart
 
-The **K8s workloads** table is a common feature used across most of the Navigator's and will offer you a list view of the data you are viewing. In our case, it shows a list of `Pods Failed` grouped by `k8s.namespace.name`.
+The **K8s workloads** table is a common feature used across most of the Navigators and will offer you a list view of the data you are viewing. In our case, it shows a list of `Pods Failed` grouped by `k8s.namespace.name`.
 
 ![k8s-workload-list](../images/workload-selection.png)
 
-Now let's change the list view to a heat map view by selecting either the Heat map icon or List icon in the upper-right corner of the screen (as marked with the purple line).
+Now let's change the list view to a heat map view by selecting either the Heat map icon or the List icon in the upper-right corner of the screen (as marked with the purple line).
 
-Changing this option will result in the following visualisation:
+Changing this option will result in the following visualization:
 
 ![k8s-Heat-map](../images/heatmap.png)
 
@@ -72,17 +70,17 @@ In this view, you will note that each workload is now a colored square. These sq
 
 Another valuable option in this screen is **Find Outliers** which provides historical analytics of your clusters based on what is selected in the **Color by** dropdown.
 
-Now, let's select the **File system usage (bytes)** from the **Color by** drop down box, then click on the **Find outliers** drop down *as marked by a yellow line* in the above image and make sure you change the **Scope** in the dialog to **Per k8s.namespace.name** and **Deviation from Median** as below:
+Now, let's select the **File system usage (bytes)** from the **Color by** drop-down box, then click on the **Find outliers** drop-down *as marked by a yellow line* in the above image and make sure you change the **Scope** in the dialog to **Per k8s.namespace.name** and **Deviation from Median** as below:
 
 ![k8s-Heat-map](../images/set-find-outliers.png)
 
-The **Find outliers** view is very useful when you need to view a selection of your workloads (or any service depending on the Navigator used) and quickly need to figure out if something has changed.
+The **Find Outliers** view is very useful when you need to view a selection of your workloads (or any service depending on the Navigator used) and quickly need to figure out if something has changed.
 
 It will give you fast insight into items (workloads in our case) that are performing differently (both increased or decreased) which helps to make it easier to spot problems.
 
-### 2.2 The Deployment overview pane
+### 2.2 The Deployment Overview pane
 
-The Deployment overview pane gives you a quick insight of the status of your deployments. You can see at once if the pods of your deployments are Pending, Running, Succeeded, Failed or in an Unknown state.  
+The Deployment Overview pane gives you a quick insight into the status of your deployments. You can see at once if the pods of your deployments are Pending, Running, Succeeded, Failed or in an Unknown state.  
 
 ![k8s-workload-overview](../images/k8s-deployment-overview.png)
 
@@ -102,7 +100,7 @@ To filter to a specific workload, you can click on three dots **...** next to th
 
 This will add the selected workload to your filters. Try this for the **splunk-otel-collector-k8s-cluster-receiver** workload. It will then list a single workload in the **splunk** namespace.
 
-The Heat map above will also filter down to a single coloured square. Click on the square to see more information about the workload.
+The Heat map above will also filter down to a single-colored square. Click on the square to see more information about the workload.
 
 ![workload-add-filter](../images/k8s-workload-detail.png)
 
@@ -110,7 +108,7 @@ The Heat map above will also filter down to a single coloured square. Click on t
 What are the CPU request  & CPU limit units for the otel-collector?
 {{% /notice %}}
 
-At this point you can drill into the information of the pods, but that is outside the scope of this workshop, for now reset your view by removing the filter for the **splunk-otel-collector-k8s-cluster-receiver** workload and setting the **Color by** option to **Pods Running**.
+At this point, you can drill into the information of the pods, but that is outside the scope of this workshop, for now reset your view by removing the filter for the **splunk-otel-collector-k8s-cluster-receiver** workload and setting the **Color by** option to **Pods Running**.
 
 ![workload-add-filter](../images/k8s-workload-remove-filter.png)
 
@@ -127,6 +125,6 @@ extraDimensions:
 
 The Navigator Sidebar will expand and a link to the discovered service will be added as seen in the image below:
 
-![pivotbar](../images/pivotbar.png)
+![Pivotbar](../images/pivotbar.png)
 
-This will allow for easy switching between Navigators. The same applies for your Apache server instance, it will have a Navigator Sidebar allowing you to quickly jump back to the Kubernetes Navigator.
+This will allow for easy switching between Navigators. The same applies to your Apache server instance, it will have a Navigator Sidebar allowing you to quickly jump back to the Kubernetes Navigator.

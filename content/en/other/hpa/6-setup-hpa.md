@@ -4,7 +4,7 @@ linkTitle: 6. Setup HPA
 weight: 6
 ---
 
-In Kubernetes, a HorizontalPodAutoscaler automatically updates a workload resource (such as a Deployment or StatefulSet), with the aim of automatically scaling the workload to match demand.
+In Kubernetes, a HorizontalPodAutoscaler automatically updates a workload resource (such as a Deployment or StatefulSet), to automatically scale the workload to match demand.
 
 Horizontal scaling means that the response to increased load is to deploy more Pods. This is different from vertical scaling, which for Kubernetes would mean assigning more resources (for example: memory or CPU) to the Pods that are already running for the workload.
 
@@ -48,7 +48,7 @@ spec:
     name: php-apache
 ```
 
-Once deployed, `php-apache` will autoscale when either the average CPU usage goes above 50% and average memory usage for the deployment goes above 75%, with a minimum of 1 pod and a maximum of 4 pods.
+Once deployed, `php-apache` will autoscale when either the average CPU usage goes above 50% and the average memory usage for the deployment goes above 75%, with a minimum of 1 pod and a maximum of 4 pods.
 
 ``` text
 kubectl apply -f ~/workshop/k3s/hpa.yaml
@@ -82,7 +82,7 @@ Save the changes you have made. (Hint: Use `Esc` followed by `:wq!` to save your
 
 {{% notice title="Workshop Questions" style="tip" icon="question" %}}
 
-1. How many pods are now in a running state?
+1. How many pods are now running?
 
 2. How many are pending?
 
