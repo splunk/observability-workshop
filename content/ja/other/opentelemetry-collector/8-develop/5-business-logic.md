@@ -40,7 +40,7 @@ import (
 )
 
 type scraper struct {
-    mb     *metadata.Metricsbuilder
+    mb     *metadata.MetricsBuilder
     client *jenkins.Jenkins
 }
 
@@ -52,8 +52,8 @@ func newScraper(cfg *Config, set receiver.CreateSettings) (scraperhelper.Scraper
     return scraperhelper.NewScraper(
         metadata.Type,
         s.scrape,
-        scarperhelper.WithStart(func(ctx context.Context, h component.Host) error {
-            client, err := cfg.ToClient(h, set)
+        scraperhelper.WithStart(func(ctx context.Context, h component.Host) error {
+            client, err := cfg.ToClient(h, set.TelemetrySettings)
             if err != nil {
                 return err
             }
@@ -63,7 +63,7 @@ func newScraper(cfg *Config, set receiver.CreateSettings) (scraperhelper.Scraper
             s.client = jenkins.NewJenkins(nil, cfg.Endpoint)
             s.client.SetHTTPClient(client)
             return nil
-        })
+        }),
     )
 }
 
@@ -83,7 +83,7 @@ func (scraper) scrape(ctx context.Context) (pmetric.Metrics, error) {
 Jenkins サーバーの負荷状況や、どの程度のプロジェクトが実行されているかを測定するために、Jenkins で設定されているジョブの数をキャプチャしたいと考えています。これを行うために、Jenkins クライアントを呼び出してすべてのジョブをリスト化し、エラーが報告された場合はメトリクスなしでそれを返し、そうでなければメトリクスビルダーからのデータを発行します。
 
 ```go
-func (s scrape) scrape(ctx context.Context) (pmetric.Metrics, error) {
+func (s scraper) scrape(ctx context.Context) (pmetric.Metrics, error) {
     jobs, err := s.client.GetJobs()
     if err != nil {
         return pmetric.Metrics{}, err
@@ -109,7 +109,7 @@ func (s scrape) scrape(ctx context.Context) (pmetric.Metrics, error) {
 このステップでは、それぞれのジョブを調査し、レポートされた値を使用してメトリクスをキャプチャしていきます。
 
 ```go
-func (s scrape) scrape(ctx context.Context) (pmetric.Metrics, error) {
+func (s scraper) scrape(ctx context.Context) (pmetric.Metrics, error) {
     jobs, err := s.client.GetJobs()
     if err != nil {
         return pmetric.Metrics{}, err
@@ -162,7 +162,7 @@ func (s scrape) scrape(ctx context.Context) (pmetric.Metrics, error) {
 最後のステップでは、コミットからジョブ完了までにかかった時間を計算して、[DORA メトリクス](https://cloud.google.com/blog/products/devops-sre/using-the-four-keys-to-measure-your-devops-performance) を推測するのに役立てていきます。
 
 ```go
-func (s scrape) scrape(ctx context.Context) (pmetric.Metrics, error) {
+func (s scraper) scrape(ctx context.Context) (pmetric.Metrics, error) {
     jobs, err := s.client.GetJobs()
     if err != nil {
         return pmetric.Metrics{}, err
