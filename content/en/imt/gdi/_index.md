@@ -114,7 +114,7 @@ splunk-otel-collector-k8s-cluster-receiver-6956d4446f-gwnd7   0/1     Running   
 {{% /tab %}}
 {{< /tabs >}}
 
-Ensure there are no errors by tailing the logs from the OpenTelemetry Collector pod. Output should look similar to the log output shown in the Output tab below.
+Ensure there are no errors by tailing the logs from the OpenTelemetry Collector pod. The output should look similar to the log output shown in the Output tab below.
 
 Use the label set by the `helm` install to tail logs (You will need to press `ctrl+c` to exit). Or use the installed `k9s` terminal UI for bonus points!
 
@@ -151,7 +151,7 @@ helm delete splunk-otel-collector
 
 ---
 
-## 3. Validate metrics in the UI
+## 2. Validate metrics in the UI
 
 In the Splunk UI, click the **>>** bottom left and click on **Infrastructure**.
 
@@ -177,9 +177,9 @@ Then in the UI, click on the "Cluster: - " menu just below the Splunk Logo, and 
 
 ![Filtered K8S Cluster](../images/filtered-k3s-cluster.png)
 
-To examine the health of your node, hover over the pale blue background of your cluster, then click on the blue magnifying glass ![Magnifying Glass](../images/blue-cross.png?classes=inline&height=25px) that appears in the top left hand corner.
+To examine the health of your node, hover over the pale blue background of your cluster, then click on the blue magnifying glass ![Magnifying Glass](../images/blue-cross.png?classes=inline&height=25px) that appears in the top left-hand corner.
 
-This will drill down to the node level.  Next, open the side bar by clicking on the side bar button to open the Metrics side bar.
+This will drill down to the node level.  Next, open the Metrics sidebar by clicking on the sidebar button.
 
 Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: CPU, Memory, Network, Events etc.
 

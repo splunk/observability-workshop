@@ -18,7 +18,7 @@ Verify the number of pods running in the Splunk UI by selecting the **WORKLOADS*
 
 Note the single agent container running per node among the default Kubernetes pods. This single container will monitor all the pods and services being deployed on this node!
 
-Now switch back to the default cluster node view by selecting the **MAP** tab and select your cluster again.
+Now switch back to the default cluster node view by selecting the **MAP** tab and selecting your cluster again.
 
 In your AWS/EC2 or Multipass shell session change into the `nginx` directory:
 
@@ -67,7 +67,7 @@ service/nginx created
 {{% /tab %}}
 {{< /tabs >}}
 
-Next we will deploy Locust[^2] which is an open-source tool used for creating a load test against NGINX:
+Next, we will deploy Locust[^2] which is an open-source tool used for creating a load test against NGINX:
 
 {{< tabs >}}
 {{% tab title="Kubectl Create Deployment" %}}
@@ -87,7 +87,7 @@ Validate the deployment has been successful and that the Locust and NGINX pods a
 
 If you have the Splunk UI open you should see new Pods being started and containers being deployed.
 
-It should only take around 20 seconds for the pods to transition into a Running state. In the Splunk UI you will have a cluster that looks like below:
+It should only take around 20 seconds for the pods to transition into a Running state. In the Splunk UI you will have a cluster that looks like the screenshot below:
 
 ![back to Cluster](../../images/cluster.png)
 
