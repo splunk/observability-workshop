@@ -91,7 +91,7 @@ and measure of many projects have onboarded. To do this we will call the jenkins
 and if it reports an error, return that with no metrics, otherwise, emit the data from the metric builder.
 
 ```go
-func (s scrape) scrape(ctx context.Context) (pmetric.Metrics, error) {
+func (s scraper) scrape(ctx context.Context) (pmetric.Metrics, error) {
     jobs, err := s.client.GetJobs()
     if err != nil {
         return pmetric.Metrics{}, err
