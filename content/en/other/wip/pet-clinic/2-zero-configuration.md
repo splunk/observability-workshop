@@ -6,18 +6,22 @@ weight: 2
 
 ## 1. Spring PetClinic Application
 
-The first thing we need to set up APM is... well, an application. For this exercise, we will use the Spring PetClinic application. This is a very popular sample Java application built with Spring framework (Springboot).
+The first thing we need to set up APM is... well, an application. For this exercise, we will use the Spring PetClinic Microservices Application. This is a very popular sample Java application built with Spring framework (Springboot), using a Microservices Architecture.
 
 First, clone the PetClinic GitHub repository, and then we will compile, build, package and test the application:
 
 ```bash
-git clone https://github.com/spring-projects/spring-petclinic
+git clone https://github.com/hagen-p/spring-petclinic-microservices.git
 ```
 
-Change into the `spring-petclinic` directory (and checkout a specific commit):
+<!--```bash
+git clone https://github.com/spring-projects/spring-petclinic
+```-->
+
+Change into the `spring-petclinic` directory <!--(and checkout a specific commit): -->
 
 ```bash
-cd spring-petclinic && git checkout 276880e
+cd spring-petclinic 
 ```
 
 Start a MySQL database for PetClinic to use:
@@ -47,7 +51,7 @@ Once the compilation is complete, you can run the application with the following
 ```bash
 java \
 -Dserver.port=8083 \
--Dotel.service.name=$(hostname)-petclinic-service \
+-Dotel.service.name=$INSTANCE-petclinic-service \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
