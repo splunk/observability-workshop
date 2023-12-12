@@ -39,7 +39,7 @@ Next, run the `maven` command to compile/build/package PetClinic:
 ```
 
 {{% notice style="info" %}}
-This will take a few minutes the first time you run, `maven` will download a lot of dependencies before it compiles the application. Future executions will be a lot quicker.
+This will take a few minutes the first time you run, `maven` will download a lot of dependencies before it compiles the application. Future builds will be a lot quicker.
 {{% /notice %}}
 
 Once the build completes, you need to obtain the public IP address of the instance you are running on. You can do this by running the following command:
@@ -104,7 +104,7 @@ OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader clas
 
 ## 3. Review Profiling Data Collection
 
-You can now visit the Splunk APM UI and examine the application components, traces, profiling, DB Query performance and metrics. From the left-hand menu **APM** → **Explore**, click the environment dropdown and select your environment e.g. `<INSTANCE>-petclinic-service` (where`<INSTANCE>` is replaced with the value you noted down earlier).
+You can now visit the Splunk APM UI and examine the application components, traces, profiling, DB Query performance and metrics. From the left-hand menu **APM** → **Explore**, click the environment dropdown and select your environment e.g. `<INSTANCE>-petclinic` (where`<INSTANCE>` is replaced with the value you noted down earlier).
 
 ![APM Environment](../images/apm-environment.png)
 

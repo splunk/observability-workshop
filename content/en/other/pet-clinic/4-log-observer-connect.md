@@ -5,13 +5,13 @@ weight: 4
 
 ## 1. Introduction
 
-For the Splunk Log Observer component, we will configure the Spring PetClinic application to write logs to a file in the filesystem and configure the Splunk OpenTelemetry Collect to read (tail) that log file and report the information to the Splunk Observability Platform.
+For the Splunk Log Observer component, we will configure the Spring PetClinic application to write logs to a file and configure the Splunk OpenTelemetry Collector to read (tail) that log file and send the logs to Splunk Cloud.
 
 ## 2. OpenTelemetry Filelog Configuration
 
-We need to configure the Splunk OpenTelemetry Collector to tail the Spring PetClinic log file and report the data to the Splunk Cloud HEC URL.
+We need to configure the Splunk OpenTelemetry Collector to tail the Spring PetClinic log file and send the log data to Splunk Cloud.
 
-The Splunk OpenTelemetry Collector uses the [**Filelog Receiver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/filelogreceiver/README.md) to consume logs. We will need to edit the collectors' configuration file:
+The Splunk OpenTelemetry Collector uses **Fluentd** by default but we will change the configuration to use the OpenTelemetry [**Filelog Receiver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/filelogreceiver/README.md) to consume the logs. We will need to edit the collectors' configuration file:
 
 ``` bash
 sudo vi /etc/otel/collector/agent_config.yaml
@@ -99,12 +99,14 @@ java \
 
 ## 4. View Logs
 
-From the left-hand menu click on **Log Observer** and ensure **Index** set to **splunk4rookies-workshop**.
+From the left-hand menu click on **Log Observer** and ensure **Index** is set to **splunk4rookies-workshop**.
 
-Next, click **Add Filter** search for the field `service_name` select the value `<your host name>-petclinic-service` and click `=` (include). You should now see only the log messages from your PetClinic application.
+Next, click **Add Filter** search for the field `service_name` select the value `<INSTANCE>-petclinic-service` and click `=` (include). You should now see only the log messages from your PetClinic application.
 
 ![Log Observer](../images/log-observer.png)
 
 ## 4. Summary
 
-This is the end of the exercise and we have certainly covered a lot of ground. At this point, you should have metrics, traces (APM & RUM), logs, database query performance and code profiling being reported into Splunk Observability Cloud. **Congratulations**!
+This is the end of the workshop and we have certainly covered a lot of ground. At this point, you should have metrics, traces (APM & RUM), logs, database query performance and code profiling being reported into Splunk Observability Cloud.
+
+**Congratulations!**

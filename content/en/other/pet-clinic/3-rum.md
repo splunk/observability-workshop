@@ -56,13 +56,12 @@ Next, insert the snippet we generated above in the `<head>` section of the page.
         deploymentEnvironment: "petclinic-1be0-petclinic-env"
     });
 </script>
+...
 ```
-
-Now we need to rebuild the application and run it again:
 
 ## 2. Rebuild PetClinic
 
-Run the `maven` command to compile/build/package PetClinic:
+With the code changes complete, we need to rebuild the application and run it again. Run the `maven` command to compile/build/package PetClinic:
 
 ```bash
 ./mvnw package -Dmaven.test.skip=true
@@ -76,8 +75,8 @@ java \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
-Then let's visit the application using a browser to generate real-user traffic `http://<IP_ADDRESS>:8083`, now we should see RUM traces being reported.
+Then let's visit the application using a browser to generate real-user traffic `http://<IP_ADDRESS>:8083`.
 
-Let's visit RUM and see some of the traces and metrics **Hamburger Menu → RUM** and you will see some of the Spring PetClinic URLs showing up in the UI.
+In RUM, filter down into the environment as defined in the RUM snippet above and click through to the dashboard.
 
 When you drill down into a RUM trace you will see a link to APM in the spans. Clicking on the trace ID will take you to the corresponding APM trace for the current RUM trace.
