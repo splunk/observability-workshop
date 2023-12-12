@@ -38,6 +38,8 @@ In the output check the following environment variables are present and have val
 ACCESS_TOKEN
 REALM
 RUM_TOKEN
+HEC_TOKEN
+HEC_URL
 ```
 
 For this workshop, **all** of the above are required. If any are missing, please contact your instructor.
@@ -51,11 +53,15 @@ We can then go ahead and install the Collector. Some additional parameters are p
 * `--enable-profiler` - Enables the profiler for the Java application. This will generate CPU profiles for the application.
 * `--enable-profiler-memory` - Enables the profiler for the Java application. This will generate memory profiles for the application.
 * `--enable-metrics` - Enables the exporting of Micrometer metrics
+* `--hec-token` - Sets the HEC token for the collector to use
+* `--hec-url` - Sets the HEC URL for the collector to use
 
 ``` bash
 curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-collector.sh && \
-sudo sh /tmp/splunk-otel-collector.sh --realm $REALM -- $ACCESS_TOKEN --mode agent --without-fluentd --with-instrumentation --deployment-environment $INSTANCE-petclinic --enable-profiler --enable-profiler-memory --enable-metrics
+sudo sh /tmp/splunk-otel-collector.sh --realm $REALM -- $ACCESS_TOKEN --mode agent --without-fluentd --with-instrumentation --deployment-environment $INSTANCE-petclinic --enable-profiler --enable-profiler-memory --enable-metrics --hec-token $HEC_TOKEN --hec-url $HEC_URL
 ```
+
+When prompted to restart services, select 'OK' and press enter.
 
 {{% notice style="info" title="AWS/EC2 instances" %}}
 If you are attempting this workshop on an AWS/EC2 instance you will have to patch the collector to expose the hostname of the instance:
@@ -73,4 +79,4 @@ sudo systemctl restart splunk-otel-collector
 {{% /notice %}}
 Once the installation is completed, you can navigate to the **Hosts with agent installed** dashboard to see the data from your host, **Dashboards → Hosts with agent installed**.
 
-Use the dashboard filter and select `host.name` and type or select the hostname of your virtual machine. Once you see data flowing for your host, we are then ready to get started with the APM component.
+Use the dashboard filter and select `host.name` and type or select the hostname of your workshop instance (you can get this from the command prompt in your terminal session). Once you see data flowing for your host, we are then ready to get started with the APM component.

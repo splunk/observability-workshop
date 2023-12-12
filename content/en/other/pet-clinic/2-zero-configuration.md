@@ -6,7 +6,7 @@ weight: 2
 
 ## 1. Spring PetClinic Application
 
-The first thing we need to set up APM is... well, an application. For this exercise, we will use the Spring PetClinic application. This is a very popular sample Java application built with Spring framework (Springboot).
+The first thing we need to set up APM is... well, an application. For this exercise, we will use the Spring PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot).
 
 First, clone the PetClinic GitHub repository, and then we will compile, build, package and test the application:
 
@@ -42,7 +42,23 @@ Next, run the `maven` command to compile/build/package PetClinic:
 This will take a few minutes the first time you run, `maven` will download a lot of dependencies before it compiles the application. Future executions will be a lot quicker.
 {{% /notice %}}
 
-Once the compilation is complete, you can run the application with the following command. Notice that we are passing the `mysql` profile to the application, this will tell the application to use the MySQL database we started earlier. We are also setting the `otel.service.name` to a logical service name that will also be used in the UI for filtering:
+Once the build completes, you need to obtain the public IP address of the instance you are running on. You can do this by running the following command:
+
+```bash
+curl ifconfig.me
+```
+
+You will see an IP address returned, make a note of this as we will need it to validate that the application is running.
+
+We also need to obtain the `INSTANCE` environment variable value, as this is what is being used as the `otel.service.name` attribute. You can do this by running the following command:
+
+```bash
+echo $INSTANCE
+```
+
+Also, make a note of this value as we will need it to filter the data in the UI.
+
+You can now run the application with the following command. Notice that we are passing the `mysql` profile to the application, this will tell the application to use the MySQL database we started earlier. We are also setting the `otel.service.name` to a logical service name that will also be used in the UI for filtering:
 
 ```bash
 java \
@@ -51,11 +67,11 @@ java \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
-You can validate if the application is running by visiting `http://<VM_IP_ADDRESS>:8083`.
+You can validate if the application is running by visiting `http://<IP_ADDRESS>:8083` (replace `<IP_ADDRESS>` with the IP address you obtained earlier). You should see the PetClinic application running.
 
 ## 2. AlwaysOn Profiling and Metrics
 
-When we installed the collector we configured it to enable AlwaysOn Profiling and Metrics. This means that the collector will automatically generate CPU and Memory profiles for the application and send them to Splunk Observability Cloud.
+When we installed the collector we configured it to enable **AlwaysOn Profiling** and **Metrics**. This means that the collector will automatically generate CPU and Memory profiles for the application and send them to Splunk Observability Cloud.
 
 When you start the PetClinic application you will see the collector automatically detect the application and instrument it for traces and profiling.
 
@@ -88,7 +104,7 @@ OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader clas
 
 ## 3. Review Profiling Data Collection
 
-You can now visit the Splunk APM UI and examine the application components, traces, profiling, DB Query performance and metrics. From the left-hand menu **APM** → Explore**, click the environment dropdown and select your environment (which is prefixed with the hostname of your instance).
+You can now visit the Splunk APM UI and examine the application components, traces, profiling, DB Query performance and metrics. From the left-hand menu **APM** → **Explore**, click the environment dropdown and select your environment e.g. `<INSTANCE>-petclinic-service` (where`<INSTANCE>` is replaced with the value you noted down earlier).
 
 ![APM Environment](../images/apm-environment.png)
 
