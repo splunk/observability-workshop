@@ -114,13 +114,13 @@ Once your validation is complete you can stop the application by pressing `Ctrl-
 
 Resource attributes can be added to every reported span. For example `version=0.314`. A comma-separated list of resource attributes can also be defined e.g. `key1=val1,key2=val2`.
 
-Let's launch the PetClinic again using a new resource attribute. Note, that adding resource attributes to the run command will override what was defined when we installed the collector. Let's add a new resource attribute `version=0.314`:
+Let's launch the PetClinic again using a new resource attribute. Note, that adding resource attributes to the run command will override what was defined when we installed the collector. Let's add two new resource attributes `deployment.environment=$INSTANCE-petclinic-env,version=0.314`:
 
 ```bash
 java \
 -Dserver.port=8083 \
 -Dotel.service.name=$INSTANCE-petclinic-service \
--Dotel.resource.attributes=version=0.314 \
+-Dotel.resource.attributes=deployment.environment=$INSTANCE-petclinic-env,version=0.314 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 

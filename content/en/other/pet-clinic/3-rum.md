@@ -47,7 +47,7 @@ Next, insert the snippet we generated above in the `<head>` section of the page.
 <html th:fragment="layout (template, menu)">
 
 <head>
-<script src="https://cdn.signalfx.com/o11y-gdi-rum/<version>/splunk-otel-web.js" crossorigin="anonymous"></script>
+<script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous"></script>
 <script>
     SplunkRum.init({
         realm: "eu0",
@@ -72,7 +72,7 @@ Run the `maven` command to compile/build/package PetClinic:
 java \
 -Dserver.port=8083 \
 -Dotel.service.name=$INSTANCE-petclinic-service \
--Dotel.resource.attributes=version=0.314 \
+-Dotel.resource.attributes=deployment.environment=$INSTANCE-petclinic-env,version=0.314 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 

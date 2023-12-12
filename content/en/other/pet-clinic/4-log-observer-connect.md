@@ -17,7 +17,7 @@ The Splunk OpenTelemetry Collector uses the [**Filelog Receiver**](https://githu
 sudo vi /etc/otel/collector/agent_config.yaml
 ```
 
-Under `receivers:` create the Filelog Receiver (make sure to indent correctly):
+Under the `receivers:` section create the Filelog Receiver (make sure to indent correctly):
 
 ``` yaml {hl_lines="2-3"}
 receivers:
@@ -25,7 +25,7 @@ receivers:
     include: [/tmp/spring-petclinic.log]
 ```
 
-The under the `service:` section, find the `logs:` pipeline, replace `fluentforward` with`filelog` (again, make sure to indent correctly):
+Then under the `service:` section, find the `logs:` pipeline, replace `fluentforward` with`filelog` (again, make sure to indent correctly):
 
 ``` yaml {hl_lines="2-7"}
     logs:
@@ -93,13 +93,13 @@ Once the rebuild has been completed we can then run the application again:
 java \
 -Dserver.port=8083 \
 -Dotel.service.name=$INSTANCE-petclinic-service \
--Dotel.resource.attributes=version=0.314 \
+-Dotel.resource.attributes=deployment.environment=$INSTANCE-petclinic-env,version=0.314 \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
 
 ## 4. View Logs
 
-From the left-hand menu click on **Log Observer**. Ensure **Index** set to **splunk4rookies-workshop**.
+From the left-hand menu click on **Log Observer** and ensure **Index** set to **splunk4rookies-workshop**.
 
 Next, click **Add Filter** search for the field `service_name` select the value `<your host name>-petclinic-service` and click `=` (include). You should now see only the log messages from your PetClinic application.
 
