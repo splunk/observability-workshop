@@ -11,10 +11,10 @@ Welcome to the Observability Workshop Setup Guide. This guide will walk you thro
 
 The following Organizations can be used for running Observability Workshops. They have all the features enabled to successfully run any of the available workshops:
 
-- CoE Workshop EMEA [EU0]
-- Observability Workshop EMEA [EU0]
-- Observability Workshop AMER [US1]
-- APAC-O11y-Workshop [US1]
+- [**CoE Workshop EMEA (EU0)**](https://app.eu0.signalfx.com/#/home/EsGF1sXAEAA)
+- [**Observability Workshop EMEA (EU0)**](https://app.eu0.signalfx.com/#/home/EaJHc4vAEAA)
+- [**Observability Workshop AMER (US1)**](https://app.us1.signalfx.com/#/home/EPNXccRAwAA)
+- [**APAC-O11y-Workshop (US1)**](https://app.us1.signalfx.com/#/home/FA-6LDcA4AA)
 
 ## Trial Orgs
 
@@ -26,9 +26,9 @@ Also, a Splunk Cloud/Enterprise environment is required to be able to send logs.
 
 The following Orgs are blacklisted and cannot be used for running workshops:
 
-- EU Splunk Show [EU0]
-- US Splunk Show [US1]
-- Show Playground [US1]
+- **EU Splunk Show (EU0)**
+- **US Splunk Show (US1)**
+- **Show Playground (US1)**
 
 ## Splunk4Rookies Workshop Presentation
 
