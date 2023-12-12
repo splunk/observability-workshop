@@ -99,7 +99,7 @@ variable "splunk_diab" {
 variable "wsversion" {
   description = "Workshop version"
   type        = string
-  default     = "5.33"
+  default     = "5.34"
 }
 
 data "aws_ami" "latest-ubuntu" {
