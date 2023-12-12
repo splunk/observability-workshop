@@ -1,57 +1,3 @@
-
-apiVersion: v1
-kind: Service
-metadata:
-  creationTimestamp: null
-  labels:
-    io.kompose.service: admin-server
-    app.kubernetes.io/part-of: spring-petclinic
-  name: admin-server
-spec:
-  ports:
-    - name: "9090"
-      port: 9090
-      targetPort: 9090
-  selector:
-    io.kompose.service: admin-server
-status:
-  loadBalancer: {}
----
-apiVersion: v1
-kind: Service
-metadata:
-  creationTimestamp: null
-  labels:
-    io.kompose.service: api-gateway
-    app.kubernetes.io/part-of: spring-petclinic
-  name: api-gateway
-spec:
-  ports:
-    - name: "8080"
-      port: 81
-      targetPort: 8080
-  selector:
-    io.kompose.service: api-gateway
-status:
-  loadBalancer: {}
----
-apiVersion: v1
-kind: Service
-metadata:
-  creationTimestamp: null
-  labels:
-    io.kompose.service: config-server
-    app.kubernetes.io/part-of: spring-petclinic
-  name: config-server
-spec:
-  ports:
-    - name: "8888"
-      port: 8888
-      targetPort: 8888
-  selector:
-    io.kompose.service: config-server
-status:
-  loadBalancer: {}
 ---
 apiVersion: v1
 kind: Service
@@ -68,24 +14,6 @@ spec:
       targetPort: 8081
   selector:
     io.kompose.service: customers-service
-status:
-  loadBalancer: {}
----
-apiVersion: v1
-kind: Service
-metadata:
-  creationTimestamp: null
-  labels:
-    io.kompose.service: discovery-server
-    app.kubernetes.io/part-of: spring-petclinic
-  name: discovery-server
-spec:
-  ports:
-    - name: "8761"
-      port: 8761
-      targetPort: 8761
-  selector:
-    io.kompose.service: discovery-server
 status:
   loadBalancer: {}
 ---
@@ -160,10 +88,32 @@ spec:
           ports:
             - containerPort: 9090
           resources:
+            requests:
+              cpu: 500m
+              memory: 500Mi
             limits:
-              memory: "536870912"
+            #  cpu: "1"
+              memory: 512Mi  
       restartPolicy: Always
 status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: admin-server
+    app.kubernetes.io/part-of: spring-petclinic
+  name: admin-server
+spec:
+  ports:
+    - name: "9090"
+      port: 9090
+      targetPort: 9090
+  selector:
+    io.kompose.service: admin-server
+status:
+  loadBalancer: {}
 ---
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
@@ -215,44 +165,34 @@ spec:
           ports:
             - containerPort: 8080
           resources:
+            requests:
+              cpu: 500m
+              memory: 500Mi
             limits:
-              memory: "536870912"
+            #  cpu: "1"
+              memory: 512Mi 
       restartPolicy: Always
 status: {}
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    io.kompose.service: config-server
+    io.kompose.service: api-gateway
     app.kubernetes.io/part-of: spring-petclinic
-  name: spring-petclinic-config-server
+  name: api-gateway
 spec:
-  replicas: 1
+  ports:
+    - name: "8080"
+      port: 81
+      targetPort: 8080
   selector:
-    matchLabels:
-      io.kompose.service: config-server
-  strategy: {}
-  template:
-    metadata:
-      creationTimestamp: null
-      labels:
-        io.kompose.network/spring-petclinic-default: "true"
-        io.kompose.service: config-server
-        app.kubernetes.io/part-of: spring-petclinic
-    spec:
-      containers:
-        - image: springcommunity/spring-petclinic-config-server
-          name: config-server
-          ports:
-            - containerPort: 8888
-          resources:
-            limits:
-              memory: "536870912"
-      restartPolicy: Always
-status: {}
+    io.kompose.service: api-gateway
+status:
+  loadBalancer: {}
 ---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -288,50 +228,16 @@ spec:
           ports:
             - containerPort: 8081
           resources:
+            requests:
+              cpu: 500m
+              memory: 500Mi
             limits:
-              memory: "536870912"
+            #  cpu: "1"
+              memory: 512Mi 
       restartPolicy: Always
 status: {}
 ---
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  creationTimestamp: null
-  labels:
-    io.kompose.service: discovery-server
-    app.kubernetes.io/part-of: spring-petclinic
-  name: spring-petclinic-discovery-server
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      io.kompose.service: discovery-server
-  strategy: {}
-  template:
-    metadata:
-      creationTimestamp: null
-      labels:
-        io.kompose.network/spring-petclinic-default: "true"
-        io.kompose.service: discovery-server
-        app.kubernetes.io/part-of: spring-petclinic
-    spec:
-      containers:
-        - command:
-            - ./dockerize
-            - -wait=tcp://config-server:8888
-            - -timeout=60s
-            - --
-            - java
-            - org.springframework.boot.loader.JarLauncher
-          image: springcommunity/spring-petclinic-discovery-server
-          name: discovery-server
-          ports:
-            - containerPort: 8761
-          resources:
-            limits:
-              memory: "536870912"
-      restartPolicy: Always
-status: {}
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -368,8 +274,12 @@ spec:
           ports:
             - containerPort: 8083
           resources:
+            requests:
+              cpu: 500m
+              memory: 500Mi
             limits:
-              memory: "536870912"
+            #  cpu: "1"
+              memory: 512Mi 
       restartPolicy: Always
 status: {}
 ---
@@ -408,7 +318,11 @@ spec:
           ports:
             - containerPort: 8082
           resources:
+            requests:
+              cpu: 500m
+              memory: 500Mi
             limits:
-              memory: "536870912"
+            #  cpu: "1"
+              memory: 512Mi 
       restartPolicy: Always
 status: {}
