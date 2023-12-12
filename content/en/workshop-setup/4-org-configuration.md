@@ -1,5 +1,5 @@
 ---
-title: 4. Org Configuration
+title: 4. Trial Org Configuration
 weight: 4
 ---
 
