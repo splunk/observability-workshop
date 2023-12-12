@@ -29,3 +29,7 @@ The following Orgs are blacklisted and cannot be used for running workshops:
 - EU Splunk Show [EU0]
 - US Splunk Show [US1]
 - Show Playground [US1]
+
+## Splunk4Rookies Workshop Presentation
+
+Click [**here**](https://docs.google.com/presentation/d/1EnP-V7mQ6c7w7yPdiiD-4szUR0SZITLFTPniz6yutqk/edit#slide=id.g260cba4d093_0_1533) to access the Splunk4Rookies Workshop Presentation.
