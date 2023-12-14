@@ -1028,8 +1028,13 @@ spec:
       containers:
       - name: rum-loadgen
         #image:  quay.io/phagen/rumloadgen:5.1
-        image: rcastley895/rumloadgen:5.2
+        image: rcastley895/rumloadgen:5.4
         imagePullPolicy: Always
+        env:
+        - name: RUM_PROTOCOL
+          value: "http"
+        - name: RUM_PORT
+          value: "81"
 ---
 apiVersion: v1
 kind: Namespace
