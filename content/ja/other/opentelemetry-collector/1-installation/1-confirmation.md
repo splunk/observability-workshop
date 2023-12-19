@@ -6,7 +6,7 @@ weight: 1
 
 ## Collector が動作していることを確認する
 
-これで、Collector が動いているはずです。root権限で `systemctl` コマンドを使って、それを確かめてみましょう。ステータス表示を中止するには `q` を押してください。
+これで、Collector が動いているはずです。root権限で `systemctl` コマンドを使って、それを確かめてみましょう。
 
 {{< tabs >}}
 {{% tab title="Command" %}}
@@ -44,7 +44,12 @@ May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:         {"kind": "exporter"
 {{% /tab %}}
 {{< /tabs >}}
 
-このワークショップでは、ここで設定した `otelcol-contrib` のスタンドアローンで動作するバイナリーを使っていきます。サービスを停止して、自動起動を無効化するために、次のコマンドを使ってください:
+
+{{% notice title="Tips: status 表示を中止するには" style="info" %}}
+`systemctl status` コマンドの表示を中止するときは `q` キーを押してください。
+{{% /notice %}}
+
+サービスを停止するときは、 `stop` コマンドを使います。
 
 {{< tabs >}}
 {{% tab title="Command" %}}
@@ -56,11 +61,13 @@ sudo systemctl stop otelcol-contrib
 {{% /tab %}}
 {{< /tabs >}}
 
+更新した設定ファイルを読み込ませるときは、 `restart` コマンドでサービスの再起動をしましょう。
+
 {{< tabs >}}
 {{% tab title="Command" %}}
 
 ``` bash
-sudo systemctl disable otelcol-contrib
+sudo systemctl restart otelcol-contrib
 ```
 
 {{% /tab %}}

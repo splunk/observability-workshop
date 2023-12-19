@@ -38,14 +38,6 @@ Example URL: [http://localhost:55679/debug/extensionz](http://localhost:55679/de
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% notice style="info" %}}
-ついていけない場合は、ブラウザーでzPagesの情報を発信しているテスト環境にアクセスしてください：
-
-- **ServiceZ:** [http://63.33.64.193:55679/debug/servicez](http://63.33.64.193:55679/debug/servicez)
-- **PipelineZ:** [http://63.33.64.193:55679/debug/pipelinez](http://63.33.64.193:55679/debug/pipelinez)
-- **ExtensionZ:** [http://63.33.64.193:55679/debug/extensionz](http://63.33.64.193:55679/debug/extensionz)
-{{% /notice %}}
-
 ---
 
 {{% expand title="{{% badge style=primary icon=user-ninja %}}**Ninja:** storage エクステンションでデータの耐久性を向上させる{{% /badge %}}" %}}

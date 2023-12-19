@@ -31,14 +31,14 @@ extensions:
 {{% tab title="Command" %}}
 
 ``` bash
-otelcol-contrib --config=file:/etc/otelcol-contrib/config.yaml
+sudo systemctl restart otelcol-contrib
 ```
 
 {{% /tab %}}
 
 このエクステンションはHTTPのURLを公開し、OpenTelemetory Collectorの稼働状況をチェックするプローブを提供します。このエクステンションはKubernetes環境でのLiveness/Readinessプローブとしても使われています。 `curl` コマンドの使い方は、[curl man page](https://curl.se/docs/manpage.html) を参照してください。
 
-ターミナルを開いて、対象インスタンスにSSH接続し、次のコマンドを実行します:
+次のコマンドを実行します:
 
 {{< tabs >}}
 {{% tab title="curl Command" %}}
