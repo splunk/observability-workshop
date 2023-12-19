@@ -2,8 +2,7 @@
 title: Splunk OnCall
 linkTitle: Splunk OnCall
 description: Make expensive service outages a thing of the past. Remediate issues faster, reduce on-call burnout and keep your services up and running.
-weight: 5
-alwaysopen: false
+weight: 9 
 ---
 
 ## Aim

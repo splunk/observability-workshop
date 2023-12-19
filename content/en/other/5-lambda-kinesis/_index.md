@@ -2,7 +2,7 @@
 title: Build a Distributed Trace in Lambda and Kinesis
 linkTitle: Lambda Tracing and Kinesis
 description: This workshop will equip you with how a distributed trace is constructed for a small serverless application that runs on AWS Lambda, producing and consuming a message via AWS Kinesis 
-weight: 2
+weight: 5 
 alwaysopen: false
 ---
 
