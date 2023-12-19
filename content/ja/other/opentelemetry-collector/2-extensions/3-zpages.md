@@ -45,6 +45,13 @@ Example URL: [http://localhost:55679/debug/extensionz](http://localhost:55679/de
 これをこなうには、ディストリビューションに `file_storage` エクステンションモジュールがインストールされていることを確認する必要があります。確認するには、`otelcol-contrib components` コマンドを実行します: 
 
 {{< tabs >}}
+{{% tab title="Command" %}}
+
+```bash
+otelcol-contrib components
+```
+
+{{% /tab %}}
 {{% tab title="Truncated Output" %}}
 
 ```yaml
