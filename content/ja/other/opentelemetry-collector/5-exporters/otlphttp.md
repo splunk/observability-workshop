@@ -70,7 +70,6 @@ exporters:
 ## 設定を確認しましょう
 
 これで、エクスポーターもカバーできました。設定を確認していきましょう：
-Now that we've covered exporters, let's check our configuration changes:
 
 ---
 
