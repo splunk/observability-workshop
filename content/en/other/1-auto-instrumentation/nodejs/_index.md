@@ -2,6 +2,7 @@
 title: NodeJS Workshop
 weight: 2
 description: A workshop using Zero Configuration Auto-Instrumentation for NodeJS.
+hidden: true
 ---
 
 The goal is to walk through the basic steps to configure the following components of the **Splunk Observability Cloud** platform:
