@@ -1,6 +1,5 @@
 ---
 title: PetClinic Java Workshop
-linkTitle: PetClinic Java Workshop
 weight: 1
 description: A workshop using Zero Configuration Auto-Instrumentation for Java.
 ---

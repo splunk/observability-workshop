@@ -4,4 +4,4 @@ menuPost: " <i class='fa fa-user-ninja'></i>"
 weight: 19
 ---
 
-{{% children %}}
+{{% children containerstyle="ul" style="li" depth="1" description="true" %}}

@@ -1,6 +1,8 @@
 ---
 title: Auto-Instrumentation Workshops
+description: Auto-Instrumentation Workshops
 weight: 1
+hidden: true
 ---
 
-{{%children containerstyle="div" style="h5" depth="1" description="true" %}}
+{{% children containerstyle="ul" depth="1" description="true" %}}
