@@ -23,7 +23,7 @@ weight: 5
 
 flowchart LR;
     style Exporters fill:#e20082,stroke:#333,stroke-width:4px,color:#fff
-    subgraph Collector
+    subgraph Receivers
     A[OTLP] --> M(Receivers)
     B[JAEGER] --> M(Receivers)
     C[Prometheus] --> M(Receivers)

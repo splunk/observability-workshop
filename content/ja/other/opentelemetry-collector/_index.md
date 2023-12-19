@@ -60,7 +60,7 @@ OpenTelemetry プロジェクトは頻繁に開発されているため、Ninja�
 }%%
 
 flowchart LR;
-    subgraph Collector
+    subgraph Receivers
     A[OTLP] --> M(Receivers)
     B[JAEGER] --> M(Receivers)
     C[Prometheus] --> M(Receivers)
