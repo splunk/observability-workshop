@@ -35,7 +35,7 @@ docker run --network="host" -d -p 8090:8090 -v ~/workshop/petclinic:/mnt/locust 
 Next, run the script that will use the `maven` command to compile/build/package the PetClinic Micro services into Docker containers:
 
 ```bash
-. ./scripts/build.sh
+
 ```
 
 {{% notice style="info" %}}

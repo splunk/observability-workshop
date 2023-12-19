@@ -1,0 +1,328 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: customers-service
+    app.kubernetes.io/part-of: spring-petclinic
+  name: customers-service
+spec:
+  ports:
+    - name: "8081"
+      port: 8081
+      targetPort: 8081
+  selector:
+    io.kompose.service: customers-service
+status:
+  loadBalancer: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: vets-service
+    app.kubernetes.io/part-of: spring-petclinic
+  name: vets-service
+spec:
+  ports:
+    - name: "8083"
+      port: 8083
+      targetPort: 8083
+  selector:
+    io.kompose.service: vets-service
+status:
+  loadBalancer: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: visits-service
+    app.kubernetes.io/part-of: spring-petclinic
+  name: visits-service
+spec:
+  ports:
+    - name: "8082"
+      port: 8082
+      targetPort: 8082
+  selector:
+    io.kompose.service: visits-service
+status:
+  loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: admin-server
+    app.kubernetes.io/part-of: spring-petclinic
+  name: spring-petclinic-admin-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: admin-server
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.network/spring-petclinic-default: "true"
+        io.kompose.service: admin-server
+        app.kubernetes.io/part-of: spring-petclinic
+    spec:
+      containers:
+        - command:
+            - ./dockerize
+            - -wait=tcp://discovery-server:8761
+            - -timeout=60s
+            - --
+            - java
+            - org.springframework.boot.loader.JarLauncher
+          image: springcommunity/spring-petclinic-admin-server
+          name: admin-server
+          ports:
+            - containerPort: 9090
+          resources:
+            requests:
+              cpu: 500m
+              memory: 500Mi
+            limits:
+            #  cpu: "1"
+              memory: 512Mi  
+      restartPolicy: Always
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: admin-server
+    app.kubernetes.io/part-of: spring-petclinic
+  name: admin-server
+spec:
+  ports:
+    - name: "9090"
+      port: 9090
+      targetPort: 9090
+  selector:
+    io.kompose.service: admin-server
+status:
+  loadBalancer: {}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  creationTimestamp: null
+  name: spring-petclinic-default
+spec:
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              io.kompose.network/spring-petclinic-default: "true"
+  podSelector:
+    matchLabels:
+      io.kompose.network/spring-petclinic-default: "true"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: api-gateway
+    app.kubernetes.io/part-of: spring-petclinic
+  name: spring-petclinic-api-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: api-gateway
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.network/spring-petclinic-default: "true"
+        io.kompose.service: api-gateway
+        app.kubernetes.io/part-of: spring-petclinic
+    spec:
+      containers:
+        - command:
+            - ./dockerize
+            - -wait=tcp://discovery-server:8761
+            - -timeout=60s
+            - --
+            - java
+            - org.springframework.boot.loader.JarLauncher
+          image: springcommunity/spring-petclinic-api-gateway
+          name: api-gateway
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 500m
+              memory: 500Mi
+            limits:
+            #  cpu: "1"
+              memory: 512Mi 
+      restartPolicy: Always
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: api-gateway
+    app.kubernetes.io/part-of: spring-petclinic
+  name: api-gateway
+spec:
+  ports:
+    - name: "8080"
+      port: 81
+      targetPort: 8080
+  selector:
+    io.kompose.service: api-gateway
+status:
+  loadBalancer: {}
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: customers-service
+    app.kubernetes.io/part-of: spring-petclinic
+  name: spring-petclinic-customers-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: customers-service
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.network/spring-petclinic-default: "true"
+        io.kompose.service: customers-service
+        app.kubernetes.io/part-of: spring-petclinic
+    spec:
+      containers:
+        - command:
+            - ./dockerize
+            - -wait=tcp://discovery-server:8761
+            - -timeout=60s
+            - --
+            - java
+            - org.springframework.boot.loader.JarLauncher
+          image: springcommunity/spring-petclinic-customers-service
+          name: customers-service
+          ports:
+            - containerPort: 8081
+          resources:
+            requests:
+              cpu: 500m
+              memory: 500Mi
+            limits:
+            #  cpu: "1"
+              memory: 512Mi 
+      restartPolicy: Always
+status: {}
+---
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: vets-service
+    app.kubernetes.io/part-of: spring-petclinic
+  name: spring-petclinic-vets-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: vets-service
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.network/spring-petclinic-default: "true"
+        io.kompose.service: vets-service
+        app.kubernetes.io/part-of: spring-petclinic
+    spec:
+      containers:
+        - command:
+            - ./dockerize
+            - -wait=tcp://discovery-server:8761
+            - -timeout=60s
+            - --
+            - java
+            - org.springframework.boot.loader.JarLauncher
+          image: springcommunity/spring-petclinic-vets-service
+          name: vets-service
+          ports:
+            - containerPort: 8083
+          resources:
+            requests:
+              cpu: 500m
+              memory: 500Mi
+            limits:
+            #  cpu: "1"
+              memory: 512Mi 
+      restartPolicy: Always
+status: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: visits-service
+    app.kubernetes.io/part-of: spring-petclinic
+  name: spring-petclinic-visits-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: visits-service
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.network/spring-petclinic-default: "true"
+        io.kompose.service: visits-service
+        app.kubernetes.io/part-of: spring-petclinic
+    spec:
+      containers:
+        - command:
+            - ./dockerize
+            - -wait=tcp://discovery-server:8761
+            - -timeout=60s
+            - --
+            - java
+            - org.springframework.boot.loader.JarLauncher
+          image: springcommunity/spring-petclinic-visits-service
+          name: visits-service
+          ports:
+            - containerPort: 8082
+          resources:
+            requests:
+              cpu: 500m
+              memory: 500Mi
+            limits:
+            #  cpu: "1"
+              memory: 512Mi 
+      restartPolicy: Always
+status: {}
