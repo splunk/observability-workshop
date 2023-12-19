@@ -101,7 +101,7 @@ service:
 {{< tabs >}}
 {{% tab title="config.yaml" %}}
 
-``` yaml {lineNos="table" wrap="true"}
+``` yaml {lineNos="table" wrap="true" hl_lines="88-90"}
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133
@@ -238,7 +238,7 @@ Error: failed to get config: cannot unmarshal the configuration: 1 error(s) deco
 {{% tab title="Command" %}}
 
 ``` bash
-otelcol-contrib --config=file:/etc/otelcol-contrib/config.yaml
+sudo systemctl restart otelcol-contrib
 ```
 
 {{% /tab %}}
