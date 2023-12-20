@@ -24,9 +24,22 @@ prometheus/internal:
 
 {{% /tab %}}
 
+
+上記の設定では、OpenTelemetry Collector 自身が公開している Prometheus エンドポイントをスクレイピングしています。どのような情報が得られるか、`curl` コマンドで試すことができます:
+
+```bash
+curl http://localhost:8888/metrics
+```
+
+
+{{% notice title="Tips: コンポーネントに名前をつける" style="info" %}}
+レシーバー、プロセッサー、エクスポーター、パイプラインなどのコンポーネントは、 `otlp` や `otlp/2` のように、 `type[/name]` 形式に従った識別子によって定義されます。識別子が一意である限り、与えられたタイプのコンポーネントを複数回定義することができるようになります。
+
+ここでは `prometheus/internal` という識別子でこのコンポーネントを特定できるようにしたので、別の `prometheus` レシーバーを追加して、監視対象インスタンスの Prometheus エンドポイントをスクレイピングさせることもできます。
+{{% /notice %}}
+
+
 ## ダッシュボード例 - Prometheus メトリクス
-
-
 
 このスクリーンショットは、 `prometheus/internal` レシーバーが OpenTelemetry Collector から収集したメトリクスの、spmeのダッシュボードの例です。ここではスパン・メトリクス・ログの、それぞれの受信および送信の様子を見ることができます。
 

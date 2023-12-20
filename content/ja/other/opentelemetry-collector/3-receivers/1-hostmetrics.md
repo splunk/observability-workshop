@@ -14,6 +14,20 @@ weight: 1
 sudo vi /etc/otelcol-contrib/config.yaml
 ```
 
+{{% notice title="Tips: vi or nano" style="info" %}}
+vi/vimの操作に慣れていない場合は、[nano](https://www.nano-editor.org/) もお試しいただくと良いかもしれません。nanoはLinux環境でよく使われる、シンプルなエディタの一つです。
+
+``` bash
+sudo nano /etc/otelcol-contrib/config.yaml
+```
+
+* `Alt-U` で、アンドゥができます。Macの場合は `Esc` キーを押したあとに `U` を押してください！
+* `ctrl-_` のあとに数字を入力すると、指定した行数にジャンプします。
+* `ctrl-O` のあとに `Enter` で、ファイルを保存します。
+* `ctrl-X` で、nanoを終了します。
+
+{{% /notice %}}
+
 {{% tab title="Host Metrics Receiver Configuration" %}}
 
 ```yaml {hl_lines="2-22"}

@@ -6,7 +6,7 @@ weight: 3
 
 ## その他のレシーバー
 
-デフォルトの設定には、他のレシーバーがあることに気づくはずです。 **otlp**、**opencensus**、**jaeger**、**zipkin** が定義されています。これらは他のソースからテレメトリーデータを受信するために使われます。このワークショップでは、これらのレシーバーについては取り上げませんので、そのままにしておきましょう。
+デフォルトの設定には、他のレシーバーがあることに気づくはずです。 **[otlp](https://github.com/open-telemetry/opentelemetry-collector/blob/main/receiver/otlpreceiver)**、**[opencensus](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/opencensusreceiver)**、**[jaeger](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/jaegerreceiver)**、**[zipkin](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/zipkinreceiver)** が定義されています。これらは他のソースからテレメトリーデータを受信するために使われます。このワークショップでは、これらのレシーバーについては取り上げませんので、そのままにしておきましょう。
 
 ---
 
