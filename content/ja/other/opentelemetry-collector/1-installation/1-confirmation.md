@@ -217,6 +217,14 @@ ocb --config=otelcol-builder.yaml
 └── otelcol-builder.yaml
 ```
 
+最後に、 `./dist/otelcol-ninja` を実行すれば、独自ビルドのCollectorが動作することがわかります。このコマンドを実行する前に、 `otelcol-contrib` サービスが停止していることを確認してください。
+
+```shell
+./dist/otelcol-ninja --config=file:/etc/otelcol-contrib/config.yaml
+```
+
+ **この設定ファイルで記述されているコンポーネントは、ビルドに含まれていないかもしれません。エラーの内容を含めて、何が起こるかを見てみましょう** 。
+
 ### リファレンス
 
 1. [https://opentelemetry.io/docs/collector/custom-collector/](https://opentelemetry.io/docs/collector/custom-collector/)
