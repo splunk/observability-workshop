@@ -2,7 +2,7 @@
 title: Splunk IM
 linkTitle: Splunk IM
 description: Splunk delivers real-time monitoring and troubleshooting to help you maximize infrastructure performance with complete visibility.
-weight: 2
+weight: 1
 ---
 
 During this _**technical**_ Splunk Observability Cloud Infrastructure Monitoring and APM Workshop, you will build out an environment based on a [lightweight](https://k3s.io/) Kubernetes[^1] cluster.

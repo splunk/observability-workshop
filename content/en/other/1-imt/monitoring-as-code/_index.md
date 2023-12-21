@@ -1,7 +1,6 @@
 ---
 title: Monitoring as Code
 linkTitle: 5. Monitoring as Code
-menuPost: " <i class='fa fa-user-ninja'></i>"
 weight: 5
 ---
 

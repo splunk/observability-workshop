@@ -2,7 +2,7 @@
 title: Splunk RUM
 linkTitle: Splunk RUM
 description: End-to-end visibility helps you pinpoint customer-impacting issues from web browsers and native mobile apps to your backend services.
-weight: 8 
+weight: 9
 ---
 
 Splunk RUM is the industry’s only end-to-end, full-fidelity Real User Monitoring solution. It is built to optimize performance and aid in faster troubleshooting, giving you full visibility into end-user experiences.

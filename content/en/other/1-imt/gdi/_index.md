@@ -1,8 +1,6 @@
 ---
 title: Deploying the OpenTelemetry Collector in Kubernetes
 linkTitle: 2. Get Data In
-menuPost: " <i class='fa fa-user-ninja'></i>"
-alwaysopen: false
 weight: 2
 ---
 
