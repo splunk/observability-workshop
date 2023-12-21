@@ -19,7 +19,7 @@ description: Verify the Online Boutique application is deployed into Kubernetes 
 
 This workshop module assumes you are completing this after you have run the IM workshop, and still have access to your EC2 instance.
 
-If this is the case, continue with [**Deploy Online Boutique**](#2-deploy-online-boutique), otherwise, if you have received a fresh instance, please run the first two (2) sections of [**Deploy the OTel Collector**](../../imt/gdi/) to get the system ready for the APM workshop, then continue with the next section.
+If this is the case, continue with [**Deploy Online Boutique**](#2-deploy-online-boutique), otherwise, if you have received a fresh instance, please run the first two (2) sections of [**Deploy the OTel Collector**](../../1-imt/gdi/) to get the system ready for the APM workshop, then continue with the next section.
 
 ## 2. Deploy Online Boutique
 
