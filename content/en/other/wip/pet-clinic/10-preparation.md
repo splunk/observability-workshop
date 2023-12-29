@@ -14,8 +14,7 @@ First, clone the PetClinic GitHub repository, and then we will compile, build, p
 git clone https://github.com/hagen-p/spring-petclinic-microservices.git
 ```
 
-Change into the `spring-petclinic` directory (and checkout a specific commit):
-
+Change into the `spring-petclinic` directory:
 ```bash
 cd spring-petclinic-microservices
 ```

@@ -52,10 +52,10 @@ spec:
             value: "true"
           resources:
             requests:
-              cpu: 125m
+              #cpu: 125m
               memory: 512Mi
             limits:
-              cpu: 250m
+              #cpu: 250m
               memory: 768Mi
 ---
 apiVersion: v1
@@ -133,10 +133,10 @@ spec:
             value: "true"
           resources:
             requests:
-              cpu: 125m
+              #cpu: 125m
               memory: 512Mi
             limits:
-              cpu: 250m
+              #cpu: 250m
               memory: 768Mi
 ---
 apiVersion: v1
@@ -215,10 +215,10 @@ spec:
             value: "true"
           resources:
             requests:
-              cpu: 125m
+              #cpu: 125m
               memory: 512Mi
             limits:
-              cpu: 250m
+              #cpu: 250m
               memory: 768Mi
 ---
 apiVersion: v1
@@ -317,10 +317,10 @@ spec:
             value: "true"
           resources:
             requests:
-              cpu: 125m
+              #cpu: 125m
               memory: 512Mi
             limits:
-              cpu: 250m
+              #cpu: 250m
               memory: 768Mi
 ---
 apiVersion: v1
@@ -398,10 +398,10 @@ spec:
             value: "true"
           resources:
             requests:
-              cpu: 125m
+              #cpu: 125m
               memory: 512Mi
             limits:
-              cpu: 250m
+              #cpu: 250m
               memory: 768Mi
 ---
 apiVersion: v1
@@ -479,10 +479,10 @@ spec:
             value: "true"
           resources:
             requests:
-              cpu: 125m
+              #cpu: 125m
               memory: 512Mi
             limits:
-              cpu: 250m
+              #cpu: 250m
               memory: 768Mi
 ---
 apiVersion: v1
@@ -560,10 +560,10 @@ spec:
             value: "true"
           resources:
             requests:
-              cpu: 120m
+              #cpu: 120m
               memory: 512Mi
             limits:
-              cpu: 250m
+              #cpu: 250m
               memory: 768Mi
 ---
 apiVersion: v1
