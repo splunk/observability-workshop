@@ -97,6 +97,23 @@ echo $INSTANCE
 
 Also, make a note of this value as we will need it to filter the data in the UI.
 
+2.1 Deploy the Helm Chart with the Operator enabled
+To install the chart with operator in an existing cluster, make sure you have cert-manager installed and available. Both the cert-manager and operator are subcharts of this chart and can be enabled with --set certmanager.enabled=true,operator.enabled=true. These helm install commands will deploy the chart to the current namespace for this example.
+
+# Check if a cert-manager is already installed by looking for cert-manager pods.
+kubectl get pods -l app=cert-manager --all-namespaces
+
+# If cert-manager is deployed, make sure to remove certmanager.enabled=true to the list of values to set
+helm install splunk-otel-collector -f ./my_values.yaml --set operator.enabled=true,certmanager.enabled=true,environment=dev splunk-otel-collector-chart/splunk-otel-collector
+2.2 Verify all the OpenTelemetry resources (collector, operator, webhook, instrumentation) are deployed successfully
+Expand for kubectl commands to run and output
+2.3 Instrument Application by Setting an Annotation
+Depending on the variety of applications you are instrumenting, you may want to use different scopes for annotations. This step shows how to annotate namespaces and individual pods.
+
+
+
+
+
 You can now run the application with the following command. Notice that we are passing the `mysql` profile to the application, this will tell the application to use the MySQL database we started earlier. We are also setting the `otel.service.name` to a logical service name that will also be used in the UI for filtering:
 
 ```bash
