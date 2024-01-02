@@ -29,60 +29,169 @@ helm delete splunk-otel-collector
 To ensure your instance is configured correctly, we need to confirm that the required environment variables for this workshop are set correctly. In your terminal run the following command:
 
 ``` bash
-env
+. ~/workshop/petclinic/scripts/check_env.sh
 ```
 
 In the output check the following environment variables are present and have values set:
 
 ```text
 ACCESS_TOKEN
-REALM
-RUM_TOKEN
+REALM 
+RUM_TOKEN 
 HEC_TOKEN
 HEC_URL
 ```
 
 For this workshop, **all** of the above are required. If any are missing, please contact your instructor.
 
-## 3. Install the OpenTelemetry Collector
+## 3. Install the OpenTelemetry Collector using Helm
 
-We can then go ahead and install the Collector. Some additional parameters are passed to the install script, they are:
+Install the OpenTelemetry Collector in Operator mode using the Splunk Helm chart. First, add the Splunk Helm chart repository to Helm and update:
 
-* `--with-instrumentation` - This will install the agent from the Splunk distribution of OpenTelemetry Java, which is then loaded automatically when the PetClinic Java application starts up. No configuration is required!
-* `--deployment-environment` - Sets the resource attribute `deployment.environment` to the value passed. This is used to filter views in the UI.
-* `--enable-profiler` - Enables the profiler for the Java application. This will generate CPU profiles for the application.
-* `--enable-profiler-memory` - Enables the profiler for the Java application. This will generate memory profiles for the application.
-* `--enable-metrics` - Enables the exporting of Micrometer metrics
-* `--hec-token` - Sets the HEC token for the collector to use
-* `--hec-url` - Sets the HEC URL for the collector to use
+{{< tabs >}}
+{{% tab title="Helm Repo Add" %}}
 
 ``` bash
-curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-collector.sh && \
-sudo sh /tmp/splunk-otel-collector.sh --realm $REALM -- $ACCESS_TOKEN --mode agent --without-fluentd --with-instrumentation --deployment-environment $INSTANCE-petclinic --enable-profiler --enable-profiler-memory --enable-metrics --hec-token $HEC_TOKEN --hec-url $HEC_URL
+helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update
 ```
 
-When prompted to restart services, select 'OK' and press enter.
+{{% /tab %}}
+{{% tab title="Helm Repo Add Output" %}}
+Using ACCESS_TOKEN={REDACTED}
+Using REALM=eu0
+"splunk-otel-collector-chart" has been added to your repositories
+Using ACCESS_TOKEN={REDACTED}
+Using REALM=eu0
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "splunk-otel-collector-chart" chart repository
+Update Complete. ⎈Happy Helming!⎈
+{{% /tab %}}
+{{< /tabs >}}
 
-Next, we will patch the collector to expose the hostname of the instance and not the AWS instance ID. This will make it easier to filter data in the UI. Run the following command to patch the collector:
+We are going to install the OpenTelemetry Collector with the OpenTelemetry Collector Helm chart with some additional options:
+
+* --set="operator.enabled=true" - this will install the Opentelemetry operator, that will be used to handle auto instrumentation
+* --set="certmanager.enabled=true" - This will install the required certificate manager for the operator.
+* --set="splunkObservability.profilingEnabled=true" - This enabled Code profiling via the operator
+
+To install the collector run the following commands, do **NOT** edit this
+:
+
+{{< tabs >}}
+{{% tab title="Helm Install" %}}
+
+```bash
+helm install splunk-otel-collector \
+--set="operator.enabled=true", \
+--set="certmanager.enabled=true", \
+--set="splunkObservability.realm=$REALM" \
+--set="splunkObservability.accessToken=$ACCESS_TOKEN" \
+--set="clusterName=$INSTANCE-k3s-cluster" \
+--set="splunkObservability.logsEnabled=false" \
+--set="logsEngine=otel" \
+--set="splunkObservability.profilingEnabled=true" \
+--set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
+--set="environment=$INSTANCE-workshop" \
+--set="splunkPlatform.endpoint=$HEC_URL" \
+--set="splunkPlatform.token=$HEC_TOKEN" \
+--set="splunkPlatform.index=splunk4rookies-workshop" \
+splunk-otel-collector-chart/splunk-otel-collector \
+-f ~/workshop/k3s/otel-collector.yaml
+
+{{% /tab %}}
+{{% tab title="Helm Install Output" %}}
+
+``` text
+Using ACCESS_TOKEN={REDACTED}
+Using REALM=eu0
+NAME: splunk-otel-collector
+LAST DEPLOYED: Tue Jan  2 13:46:16 2024
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+NOTES:
+Splunk OpenTelemetry Collector is installed and configured to send data to Splunk Platform endpoint "https://http-inputs-o11y-suite-eu0.stg.splunkcloud.com:443/services/collector/event".
+
+Splunk OpenTelemetry Collector is installed and configured to send data to Splunk Observability realm eu0.
+
+[INFO] You've enabled the operator's auto-instrumentation feature (operator.enabled=true), currently considered ALPHA.
+- Instrumentation library maturity varies (e.g., Java is more mature than Go). For library stability, visit: https://opentelemetry.io/docs/instrumentation/#status-and-releases
+  - Some libraries may be enabled by default. For current status, see: https://github.com/open-telemetry/opentelemetry-operator#controlling-instrumentation-capabilities
+  - Splunk provides best-effort support for native OpenTelemetry libraries, and full support for Splunk library distributions. For used libraries, refer to the values.yaml under "operator.instrumentation.spec".
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+You can monitor the progress of the deployment by running `kubectl get pods` which should typically report a new pod is up and running after about 30 seconds.
+
+Ensure the status is reported as Running before continuing.
+
+{{< tabs >}}
+{{% tab title="Kubectl Get Pods" %}}
 
 ``` bash
-sudo sed -i 's/gcp, ecs, ec2, azure, system/system, gcp, ecs, ec2, azure/g' /etc/otel/collector/agent_config.yaml
+kubectl get pods|grep splunk-otel 
 ```
 
-Once the `agent_config.yaml` has been patched, you will need to restart the collector:
+{{% /tab %}}
+{{% tab title="Kubectl Get Pods Output" %}}
+
+``` text
+splunk-otel-collector-certmanager-cainjector-5c5dc4ff8f-95z49   1/1     Running   0          10m
+splunk-otel-collector-certmanager-6d95596898-vjxss              1/1     Running   0          10m
+splunk-otel-collector-certmanager-webhook-69f4ff754c-nghxz      1/1     Running   0          10m
+splunk-otel-collector-k8s-cluster-receiver-6bd5567d95-5f8cj     1/1     Running   0          10m
+splunk-otel-collector-agent-tspd2                               1/1     Running   0          10m
+splunk-otel-collector-operator-69d476cb7-j7zwd                  2/2     Running   0          10m
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+Ensure there are no errors by tailing the logs from the OpenTelemetry Collector pod. The output should look similar to the log output shown in the Output tab below.
+
+Use the label set by the `helm` install to tail logs (You will need to press `ctrl+c` to exit). Or use the installed `k9s` terminal UI for bonus points!
+
+{{< tabs >}}
+{{% tab title="Kubectl Logs" %}}
 
 ``` bash
-sudo systemctl restart splunk-otel-collector
+kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 ```
+
+{{% /tab %}}
+{{% tab title="Kubectl Logs Output" %}}
+```text
+2021-03-21T16:11:10.900Z        INFO    service/service.go:364  Starting receivers...
+2021-03-21T16:11:10.900Z        INFO    builder/receivers_builder.go:70 Receiver is starting... {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
+2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:75 Receiver started.       {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
+2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:70 Receiver is starting... {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
+2021-03-21T16:11:11.009Z        INFO    k8sclusterreceiver@v0.21.0/watcher.go:195       Configured Kubernetes MetadataExporter  {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster", "exporter_name": "signalfx"}
+2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:75 Receiver started.       {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
+2021-03-21T16:11:11.009Z        INFO    healthcheck/handler.go:128      Health Check state change       {"component_kind": "extension", "component_type": "health_check", "component_name": "health_check", "status": "ready"}
+2021-03-21T16:11:11.009Z        INFO    service/service.go:267  Everything is ready. Begin running and processing data.
+2021-03-21T16:11:11.009Z        INFO    k8sclusterreceiver@v0.21.0/receiver.go:59       Starting shared informers and wait for initial cache sync.      {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
+2021-03-21T16:11:11.281Z        INFO    k8sclusterreceiver@v0.21.0/receiver.go:75       Completed syncing shared informer caches.       {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+{{% notice title="Deleting a failed installation" style="info" %}}
+If you make an error installing the OpenTelemetry Collector you can start over by deleting the installation using:
+
+``` sh
+helm delete splunk-otel-collector
+```
+
+{{% /notice %}}
 
 Once the installation is completed, you can navigate to the **Hosts with agent installed** dashboard to see the data from your host, **Dashboards → Hosts with agent installed**.
 
 Use the dashboard filter and select `host.name` and type or select the hostname of your workshop instance (you can get this from the command prompt in your terminal session). Once you see data flowing for your host, we are then ready to get started with the APM component.
 
-
-
-
-
-# Patch all the deployments (labeled with 'app.kubernetes.io/part-of=spring-petclinic) to add the inject annotation.
+<!-- # Patch all the deployments (labeled with 'app.kubernetes.io/part-of=spring-petclinic) to add the inject annotation.
 # This automatically causes pods to restart.
 kubectl get deployments -l app.kubernetes.io/part-of=spring-petclinic -o name | xargs -I % kubectl patch % -p "{\"spec\": {\"template\":{\"metadata\":{\"annotations\":{\"instrumentation.opentelemetry.io/inject-java\":\"true\"}}}}}"
+ -->

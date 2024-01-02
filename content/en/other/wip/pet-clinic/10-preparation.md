@@ -66,13 +66,15 @@ visits-service-6f94679459-6s4jt      1/1     Running   0          99s
 {{% /tab %}}
 {{< /tabs >}}
 
+Make sure the out put of get pods matches the  out put as shown above... and that all 7 services are shown as **RUNNING**.
+
 The application will take a few minutes to start up and synchronise all the services. so let get the actual application downloaded in the mean time.
 
-## 2. Downloading the Spring microservices etClinic Application
+## 2. Downloading the Spring Microservices PetClinic Application
 
  For this exercise, we will use the Spring microservices PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot) and we are using a proper microservices version.
 
-First, clone the PetClinic GitHub repository, as we will need this later in the workshop  to compile, build, package and containerize the application:
+First, clone the PetClinic GitHub repository, as we will need this later in the workshop to compile, build, package and containerize the application:
 
 ```bash
 git clone https://github.com/hagen-p/spring-petclinic-microservices.git
@@ -96,17 +98,48 @@ Next, we will start a Docker container running Locust that will generate some si
 docker run --network="host" -d -p 8090:8090 -v ~/workshop/petclinic:/mnt/locust docker.io/locustio/locust -f /mnt/locust/locustfile.py --headless -u 1 -r 1 -H http://127.0.0.1:8083
 ```
 -->
-Next, run the script that will use the `maven` command to compile/build/package the PetClinic Micro services into Docker containers:
+Next, run the script that will use the `maven` command to compile/build/package the PetClinic Micro services into local Docker containers:
+{{< tabs >}}
+{{% tab title="Running maven" %}}
 
 ```bash
-
+./mvnw clean install -DskipTests -P buildDocker
 ```
+
+{{% /tab %}}
+{{% tab title="Maven Output" %}}
+
+```text
+
+Successfully tagged quay.io/phagen/spring-petclinic-api-gateway:latest
+[INFO] Built quay.io/phagen/spring-petclinic-api-gateway
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] spring-petclinic-microservices 0.0.1 ............... SUCCESS [  0.770 s]
+[INFO] spring-petclinic-admin-server ...................... SUCCESS [01:03 min]
+[INFO] spring-petclinic-customers-service ................. SUCCESS [ 29.031 s]
+[INFO] spring-petclinic-vets-service ...................... SUCCESS [ 22.145 s]
+[INFO] spring-petclinic-visits-service .................... SUCCESS [ 20.451 s]
+[INFO] spring-petclinic-config-server ..................... SUCCESS [ 12.260 s]
+[INFO] spring-petclinic-discovery-server .................. SUCCESS [ 14.174 s]
+[INFO] spring-petclinic-api-gateway 0.0.1 ................. SUCCESS [ 29.832 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 03:14 min
+[INFO] Finished at: 2024-01-02T12:43:20Z
+[INFO] ------------------------------------------------------------------------
+```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 {{% notice style="info" %}}
 This will take a few minutes the first time you run, `maven` will download a lot of dependencies before it compiles the application. Future builds will be a lot quicker.
 {{% /notice %}}
 
-## 2. Check Docker Images
+## 3. Check Docker Images
 
 Once the build completes, you need to verify if the containers are indeed build:
 
@@ -145,6 +178,8 @@ eclipse-temurin                                     17        807dd649ff14   13 
 {{% /tab %}}
 {{< /tabs >}}
 
+## 4. Check the Pet shop Website
+
 To test the application you need to obtain the public IP address of the instance you are running on. You can do this by running the following command:
 
 ```bash
@@ -161,23 +196,21 @@ echo $INSTANCE
 ```
 
 Also, make a note of this value as we will need it to filter the data in the UI.
-
+<!-- 
 2.1 Deploy the Helm Chart with the Operator enabled
 To install the chart with operator in an existing cluster, make sure you have cert-manager installed and available. Both the cert-manager and operator are subcharts of this chart and can be enabled with --set certmanager.enabled=true,operator.enabled=true. These helm install commands will deploy the chart to the current namespace for this example.
 
 # Check if a cert-manager is already installed by looking for cert-manager pods.
+
 kubectl get pods -l app=cert-manager --all-namespaces
 
 # If cert-manager is deployed, make sure to remove certmanager.enabled=true to the list of values to set
+
 helm install splunk-otel-collector -f ./my_values.yaml --set operator.enabled=true,certmanager.enabled=true,environment=dev splunk-otel-collector-chart/splunk-otel-collector
 2.2 Verify all the OpenTelemetry resources (collector, operator, webhook, instrumentation) are deployed successfully
 Expand for kubectl commands to run and output
 2.3 Instrument Application by Setting an Annotation
 Depending on the variety of applications you are instrumenting, you may want to use different scopes for annotations. This step shows how to annotate namespaces and individual pods.
-
-
-
-
 
 You can now run the application with the following command. Notice that we are passing the `mysql` profile to the application, this will tell the application to use the MySQL database we started earlier. We are also setting the `otel.service.name` to a logical service name that will also be used in the UI for filtering:
 
@@ -187,9 +220,10 @@ java \
 -Dotel.service.name=$INSTANCE-petclinic-service \
 -jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
 ```
+-->
+You can validate if the application is running by visiting `http://<IP_ADDRESS>:81` (replace `<IP_ADDRESS>` with the IP address you obtained earlier). You should see the PetClinic application running.  
 
-You can validate if the application is running by visiting `http://<IP_ADDRESS>:8083` (replace `<IP_ADDRESS>` with the IP address you obtained earlier). You should see the PetClinic application running.
-
+<!--
 ## 2. AlwaysOn Profiling and Metrics
 
 When we installed the collector we configured it to enable **AlwaysOn Profiling** and **Metrics**. This means that the collector will automatically generate CPU and Memory profiles for the application and send them to Splunk Observability Cloud.
@@ -246,3 +280,6 @@ java \
 ```
 
 Back in the Splunk APM UI we can drill down on a recent trace and see the new `version` attribute in a span.
+-->
+![Pet shop](../images/petclinic.png)  
+Make sure the application is working correctly by visiting the **All Owners** and **Veterinarians** tabs, you should get a list of names in each case.
