@@ -1,9 +1,11 @@
 ---
-title: Workshop using  the Java microservices Pet Clinic demo.(Docker based).
+title: Workshop using the Java microservices Pet Clinic demo. (Kubernetes based).
 linkTitle: Java Microservices Workshop
 weight: 99
+description: Learn how to enable Open Telemetry (Auto) Instrumentation for your Java based application running in Kubernetes. Experience eal-time monitoring and troubleshooting to help you maximize application behaviour with end to end visibility.
 ---
-The goal is to walk through the basic steps to configure the following components of the **Splunk Observability Cloud** platform:
+
+The goal of this workshop is to walk through the basic steps to configure the instrumentation  to an existing Java application running in Kubernetes and enable the following components of the **Splunk Observability Cloud** platform:
 
 * Splunk Infrastructure Monitoring (IM)
 * Splunk Auto Instrumentation for Java (APM)
@@ -13,9 +15,9 @@ The goal is to walk through the basic steps to configure the following component
 * RUM to APM Correlation
 * Splunk Log Observer (LO)
 
-We will also show the steps about how to clone (download) a sample micro services Java application (Spring PetClinic), as well as how to compile, package and run the application.
+We will show the steps about how to clone (download) a sample micro services Java application (Spring PetClinic), as well as how to compile, package and deploy/run the application.
 
-Once the application is up and running, we will instantly start seeing metrics and traces via the **Auto Instrumentation** for Java that will be used by the **Splunk APM** product.
+Once the application is up and running, and auto instrumentation is enabled we will instantly start seeing metrics and traces via the **Auto Instrumentation** for Java that will be used by the **Splunk APM** product.
 
 After that, we will instrument PetClinic's end user interface (HTML pages rendered by the application) with the **Splunk OpenTelemetry Javascript Libraries (RUM)** that will generate RUM traces around all the individual clicks and page loads executed by an end user.
 
@@ -24,9 +26,9 @@ Lastly, we will configure the Spring PetClinic application to write application 
 {{% notice title="Prerequisites" style="primary" icon="info" %}}
 
 * Outbound SSH access to port `2222`.
-* Outbound HTTP access to port `8083`.
-* Familiarity with the `bash` shell and `vi/vim` editor.
+* Outbound HTTP access to port `81`.
+* Familiarity with the `bash` shell and `vi/vim/nano` editor.
 
 {{% /notice %}}
 
-![PetClinic Exercise](images/petclinic-exercise.png)
+![Splunk Otel Architecture](images/auto-instrumentation-java-diagram.png)

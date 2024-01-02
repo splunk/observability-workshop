@@ -2,7 +2,7 @@
 archetype: "home"
 title: Ninja Workshops (Work In Progress)
 menuPost: " <i class='fa fa-user-ninja'></i>"
-weight: 99
+weight: 100
 hidden: true
 ---
 

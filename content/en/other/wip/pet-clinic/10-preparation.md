@@ -4,17 +4,82 @@ linkTitle: 1. Preparation
 weight: 10
 ---
 
-## 1. Spring PetClinic Application build
+## 1. Deploying the prebuild containers into kubernetes
 
-The first thing we need to set up is... well, an application. For this exercise, we will use the Spring PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot). We are using the Micro services version of it.
+The first thing we need to set up is... well, an application.
+The first deployment of our application will be using prebuild containers to give us the base scenario: A running Java microservices based  application running in kubernetes.
 
-First, clone the PetClinic GitHub repository, and then we will compile, build, package and containerize the application:
+So let's deploy our application:
+{{< tabs >}}
+{{% tab title="kubectl apply" %}}
+
+```bash
+kubectl apply -f ~/workshop/petclinic/petclinic-deploy.yaml
+```
+
+{{% /tab %}}
+{{% tab title="kubectl apply Output" %}}
+
+```text
+deployment.apps/config-server created
+service/config-server created
+deployment.apps/discovery-server created
+service/discovery-server created
+deployment.apps/api-gateway created
+service/api-gateway created
+service/api-gateway-external created
+deployment.apps/customers-service created
+service/customers-service created
+deployment.apps/vets-service created
+service/vets-service created
+deployment.apps/visits-service created
+service/visits-service created
+deployment.apps/admin-server created
+service/admin-server created
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+and verify the deployment:
+{{< tabs >}}
+{{% tab title="kubectl get pods" %}}
+
+```bash
+kubectl get pods
+```
+
+{{% /tab %}}
+{{% tab title="kubectl get pods Output" %}}
+
+```text
+NAME                                 READY   STATUS    RESTARTS   AGE
+discovery-server-945bc74bf-fr9gb     1/1     Running   0          99s
+api-gateway-84f86f677-msfhg          1/1     Running   0          99s
+config-server-6878b6fb94-sbdkx       1/1     Running   0          99s
+admin-server-6d4c9fddb-mg628         1/1     Running   0          99s
+vets-service-64c446cc94-hs2c5        1/1     Running   0          99s
+customers-service-54d7cdf699-d7gqv   1/1     Running   0          99s
+visits-service-6f94679459-6s4jt      1/1     Running   0          99s
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+The application will take a few minutes to start up and synchronise all the services. so let get the actual application downloaded in the mean time.
+
+## 2. Downloading the Spring microservices etClinic Application
+
+ For this exercise, we will use the Spring microservices PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot) and we are using a proper microservices version.
+
+First, clone the PetClinic GitHub repository, as we will need this later in the workshop  to compile, build, package and containerize the application:
 
 ```bash
 git clone https://github.com/hagen-p/spring-petclinic-microservices.git
 ```
 
 Change into the `spring-petclinic` directory:
+
 ```bash
 cd spring-petclinic-microservices
 ```
