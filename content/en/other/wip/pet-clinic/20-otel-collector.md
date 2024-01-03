@@ -151,7 +151,7 @@ splunk-otel-collector-operator-69d476cb7-j7zwd                  2/2     Running 
 
 Ensure there are no errors by tailing the logs from the OpenTelemetry Collector pod. The output should look similar to the log output shown in the Output tab below.
 
-Use the label set by the `helm` install to tail logs (You will need to press `ctrl+c` to exit). Or use the installed `k9s` terminal UI for bonus points!
+Use the label set by the `helm` install to tail logs (You will need to press `ctrl + c` to exit). Or use the installed `k9s` terminal UI for bonus points!
 
 {{< tabs >}}
 {{% tab title="Kubectl Logs" %}}
@@ -188,9 +188,9 @@ helm delete splunk-otel-collector
 
 {{% /notice %}}
 
-Once the installation is completed, you can navigate to **Kubernetes Navigator** in the **Infrastructure** section to see the data from your cluster, the **k8s nodes** pane.
+Once the installation is completed, you can navigate to **Kubernetes Navigator** in the **Infrastructure** section to see the data from your cluster, the **K8s nodes** pane.
 
-Use the filter option and select `k8s.cluster.name ` and type or select the cluster name of your workshop instance (you can get the unique part from yout cluster name by using the *host name* from the command prompt in your terminal session). Once you see data flowing for your host, we are then ready to get started with the APM component.
+Use the filter option and select `k8s.cluster.name` and type or select the cluster name of your workshop instance (you can get the unique part from your cluster name by using the *hostname* from the command prompt in your terminal session). Once you see data flowing for your host, we are then ready to get started with the APM component.
 
 <!-- # Patch all the deployments (labeled with 'app.kubernetes.io/part-of=spring-petclinic) to add the inject annotation.
 # This automatically causes pods to restart.

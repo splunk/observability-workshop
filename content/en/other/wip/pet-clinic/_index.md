@@ -2,7 +2,7 @@
 title: Workshop using the Java microservices Pet Clinic demo. (Kubernetes based).
 linkTitle: Java Microservices Workshop
 weight: 99
-description: Learn how to enable Open Telemetry (Auto) Instrumentation for your Java based application running in Kubernetes. Experience eal-time monitoring and troubleshooting to help you maximize application behaviour with end to end visibility.
+description: Learn how to enable Open Telemetry (Auto) Instrumentation for your Java-based application running in Kubernetes. Experience real-time monitoring and troubleshooting to help you maximize application behavior with end-to-end visibility.
 ---
 
 The goal of this workshop is to walk through the basic steps to configure the instrumentation  to an existing Java application running in Kubernetes and enable the following components of the **Splunk Observability Cloud** platform:
@@ -15,7 +15,7 @@ The goal of this workshop is to walk through the basic steps to configure the in
 * RUM to APM Correlation
 * Splunk Log Observer (LO)
 
-We will show the steps about how to clone (download) a sample micro services Java application (Spring PetClinic), as well as how to compile, package and deploy/run the application.
+We will show the steps about how to clone (download) a sample microservices Java application (Spring PetClinic), as well as how to compile, package and deploy/run the application.
 
 Once the application is up and running, and auto instrumentation is enabled we will instantly start seeing metrics and traces via the **Auto Instrumentation** for Java that will be used by the **Splunk APM** product.
 

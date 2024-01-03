@@ -4,10 +4,9 @@ linkTitle: 1. Preparation
 weight: 10
 ---
 
-## 1. Deploying the prebuild containers into kubernetes
+## 1. Deploying the prebuilt containers into Kubernetes
 
-The first thing we need to set up is... well, an application.
-The first deployment of our application will be using prebuild containers to give us the base scenario: A running Java microservices based  application running in kubernetes.
+The first thing we need to set up is ... well, an application. The first deployment of our application will be using prebuilt containers to give us the base scenario: a Java microservices-based application running in Kubernetes.
 
 So let's deploy our application:
 {{< tabs >}}
@@ -66,9 +65,9 @@ visits-service-6f94679459-6s4jt      1/1     Running   0          99s
 {{% /tab %}}
 {{< /tabs >}}
 
-Make sure the out put of get pods matches the  out put as shown above... and that all 7 services are shown as **RUNNING**.
+Make sure the output of get pods matches the output as shown above ... and that all 7 services are shown as **RUNNING**.
 
-The application will take a few minutes to start up and synchronise all the services. so let get the actual application downloaded in the mean time.
+The application will take a few minutes to start up and synchronize all the services. so let's get the actual application downloaded in the meantime.
 
 ## 2. Downloading the Spring Microservices PetClinic Application
 
@@ -98,7 +97,7 @@ Next, we will start a Docker container running Locust that will generate some si
 docker run --network="host" -d -p 8090:8090 -v ~/workshop/petclinic:/mnt/locust docker.io/locustio/locust -f /mnt/locust/locustfile.py --headless -u 1 -r 1 -H http://127.0.0.1:8083
 ```
 -->
-Next, run the script that will use the `maven` command to compile/build/package the PetClinic Micro services into local Docker containers:
+Next, run the script that will use the `maven` command to compile/build/package the PetClinic microservices into local Docker containers:
 {{< tabs >}}
 {{% tab title="Running maven" %}}
 

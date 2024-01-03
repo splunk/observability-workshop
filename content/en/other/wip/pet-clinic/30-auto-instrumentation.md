@@ -6,7 +6,7 @@ weight: 30
 
 ## 1. setting up the Java auto instrumentation
 
-Patch all the deployments (labeled with 'app.kubernetes.io/part-of=spring-petclinic) to add the inject annotation.
+Patch all the deployments (labeled with `app.kubernetes.io/part-of=spring-petclinic`) to add the inject annotation.
  **This automatically causes pods to restart.**
 
 ```bash
