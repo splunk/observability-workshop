@@ -5,6 +5,8 @@ description: A workshop using Zero Configuration Auto-Instrumentation for NodeJS
 hidden: true
 ---
 
+{{% badge icon="clock" style="primary" %}}30 minutes{{% /badge %}} {{% badge style="blue" title="Author" %}}Robert Castley{{% /badge %}}
+
 The goal is to walk through the basic steps to configure the following components of the **Splunk Observability Cloud** platform:
 
 * Splunk Infrastructure Monitoring (IM)
