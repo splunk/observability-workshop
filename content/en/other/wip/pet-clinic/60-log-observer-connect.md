@@ -1,7 +1,7 @@
 ---
 title: Log Observer
-linkTitle: 5. Log Observer
-weight: 50
+linkTitle: 6. Log Observer
+weight: 60
 ---
 
 ## 1. Introduction

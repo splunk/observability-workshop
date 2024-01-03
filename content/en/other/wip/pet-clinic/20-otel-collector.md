@@ -162,6 +162,7 @@ kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 
 {{% /tab %}}
 {{% tab title="Kubectl Logs Output" %}}
+
 ```text
 2021-03-21T16:11:10.900Z        INFO    service/service.go:364  Starting receivers...
 2021-03-21T16:11:10.900Z        INFO    builder/receivers_builder.go:70 Receiver is starting... {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
@@ -187,9 +188,9 @@ helm delete splunk-otel-collector
 
 {{% /notice %}}
 
-Once the installation is completed, you can navigate to the **Hosts with agent installed** dashboard to see the data from your host, **Dashboards → Hosts with agent installed**.
+Once the installation is completed, you can navigate to **Kubernetes Navigator** in the **Infrastructure** section to see the data from your cluster, the **k8s nodes** pane.
 
-Use the dashboard filter and select `host.name` and type or select the hostname of your workshop instance (you can get this from the command prompt in your terminal session). Once you see data flowing for your host, we are then ready to get started with the APM component.
+Use the filter option and select `k8s.cluster.name ` and type or select the cluster name of your workshop instance (you can get the unique part from yout cluster name by using the *host name* from the command prompt in your terminal session). Once you see data flowing for your host, we are then ready to get started with the APM component.
 
 <!-- # Patch all the deployments (labeled with 'app.kubernetes.io/part-of=spring-petclinic) to add the inject annotation.
 # This automatically causes pods to restart.
