@@ -140,7 +140,7 @@ This will take a few minutes the first time you run, `maven` will download a lot
 
 ## 3. Check Docker Images
 
-Once the build completes, you need to verify if the containers are indeed build:
+Once the build completes, you need to verify if the containers are indeed built:
 
 {{< tabs >}}
 {{% tab title="Check Docker Containers" %}}

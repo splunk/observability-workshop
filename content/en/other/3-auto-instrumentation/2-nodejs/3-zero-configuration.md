@@ -1,8 +1,16 @@
 ---
-title: Zero Configuration Auto Instrumentation for Java
-linkTitle: 2. Zero Configuration
-weight: 2
+title: Zero Configuration Auto Instrumentation for NodeJS
+linkTitle: 3. Zero Configuration
+weight: 3
 ---
+
+``` bash
+kubectl patch deployment opentelemetry-demo-frontend -n otel-demo -p '{"spec": {"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-nodejs":"default/splunk-otel-collector"}}}} }'
+```
+
+``` bash
+kubectl patch deployment opentelemetry-demo-paymentservice -n otel-demo -p '{"spec": {"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-nodejs":"default/splunk-otel-collector"}}}} }'
+```
 
 ## 1. Spring PetClinic Application
 

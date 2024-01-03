@@ -10,8 +10,9 @@ The goal is to walk through the basic steps to configure the following component
 * Splunk Infrastructure Monitoring (IM)
 * Splunk Zero Configuration Auto Instrumentation for NodeJS (APM)
   * AlwaysOn Profiling
+* Splunk Log Observer (LO)
 
-We will deploy the OpenTelemetry Astronomy Shop application in Kubernetes, which contains a NodeJS service. Once the application is up and running, we will instantly start seeing metrics and traces via the **Zero Configuration Auto Instrumentation** for NodeJS that will be used by the **Splunk APM** product.
+We will deploy the OpenTelemetry Astronomy Shop application in Kubernetes, which contains two NodeJS services (**Frontend** & **Payment Service**). Once the application and the OpenTelemetry Connector are up and running, we will start seeing metrics, traces and logs via the **Zero Configuration Auto Instrumentation** for NodeJS that will be used by the **Splunk Observability Cloud** platform to provide insights into the application.
 
 {{% notice title="Prerequisites" style="primary" icon="info" %}}
 
@@ -21,36 +22,99 @@ We will deploy the OpenTelemetry Astronomy Shop application in Kubernetes, which
 
 {{% /notice %}}
 
-``` bash
-cd ~/workshop/apm
-kubectl apply -n otel-demo -f otel-demo.yaml
-kubectl port-forward svc/opentelemetry-demo-frontend 8083:8080 -n otel-demo --address='0.0.0.0'
-```
+Next, we will deploy the **OpenTelemetry Demo**.
 
-``` bash
-helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update
-helm install splunk-otel-collector \
---set="operator.enabled=true", \
---set="certmanager.enabled=true", \
---set="splunkObservability.realm=$REALM" \
---set="splunkObservability.accessToken=$ACCESS_TOKEN" \
---set="clusterName=$INSTANCE-k3s-cluster" \
---set="splunkObservability.logsEnabled=false" \
---set="logsEngine=otel" \
---set="splunkObservability.profilingEnabled=true" \
---set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
---set="environment=$INSTANCE-workshop" \
---set="splunkPlatform.endpoint=$HEC_URL" \
---set="splunkPlatform.token=$HEC_TOKEN" \
---set="splunkPlatform.index=splunk4rookies-workshop" \
-splunk-otel-collector-chart/splunk-otel-collector \
--f ~/workshop/k3s/otel-collector.yaml
-```
+{{< mermaid >}}
+graph TD
+subgraph Service Diagram
+accountingservice(Accounting Service):::golang
+adservice(Ad Service):::java
+cache[(Cache)]
+cartservice(Cart Service):::dotnet
+checkoutservice(Checkout Service):::golang
+currencyservice(Currency Service):::cpp
+emailservice(Email Service):::ruby
+frauddetectionservice(Fraud Detection Service):::kotlin
+frontend(Frontend):::typescript
+frontendproxy(Frontend Proxy):::cpp
+loadgenerator([Load Generator]):::python
+paymentservice(Payment Service):::javascript
+productcatalogservice(Product Catalog Service):::golang
+quoteservice(Quote Service):::php
+recommendationservice(Recommendation Service):::python
+shippingservice(Shipping Service):::rust
+featureflagservice(Feature Flag Service):::erlang
+featureflagstore[(Feature Flag Store)]
+queue[(queue)]
+Internet -->|HTTP| frontendproxy
+frontendproxy -->|HTTP| frontend
+frontendproxy -->|HTTP| featureflagservice
+loadgenerator -->|HTTP| frontendproxy
+accountingservice -->|TCP| queue
+cartservice --->|gRPC| featureflagservice
+checkoutservice --->|gRPC| cartservice --> cache
+checkoutservice --->|gRPC| productcatalogservice
+checkoutservice --->|gRPC| currencyservice
+checkoutservice --->|HTTP| emailservice
+checkoutservice --->|gRPC| paymentservice
+checkoutservice -->|gRPC| shippingservice
+checkoutservice --->|TCP| queue
+frontend -->|gRPC| adservice
+frontend -->|gRPC| cartservice
+frontend -->|gRPC| productcatalogservice
+frontend -->|gRPC| checkoutservice
+frontend -->|gRPC| currencyservice
+frontend -->|gRPC| recommendationservice -->|gRPC| productcatalogservice
+frontend -->|gRPC| shippingservice -->|HTTP| quoteservice
+frauddetectionservice -->|TCP| queue
+adservice --->|gRPC| featureflagservice
+productcatalogservice -->|gRPC| featureflagservice
+recommendationservice -->|gRPC| featureflagservice
+shippingservice -->|gRPC| featureflagservice
+featureflagservice --> featureflagstore
+end
 
-``` bash
-kubectl patch deployment opentelemetry-demo-frontend -n otel-demo -p '{"spec": {"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-nodejs":"default/splunk-otel-collector"}}}} }'
-```
+classDef dotnet fill:#178600,color:white;
+classDef cpp fill:#f34b7d,color:white;
+classDef erlang fill:#b83998,color:white;
+classDef golang fill:#00add8,color:black;
+classDef java fill:#b07219,color:white;
+classDef javascript fill:#f1e05a,color:black;
+classDef kotlin fill:#560ba1,color:white;
+classDef php fill:#4f5d95,color:white;
+classDef python fill:#3572A5,color:white;
+classDef ruby fill:#701516,color:white;
+classDef rust fill:#dea584,color:black;
+classDef typescript fill:#e98516,color:black;
+{{< /mermaid >}}
 
-```
-kubectl patch deployment opentelemetry-demo-paymentservice -n otel-demo -p '{"spec": {"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-nodejs":"default/splunk-otel-collector"}}}} }'
-```
+{{< mermaid >}}
+graph TD
+subgraph Service Legend
+  dotnetsvc(.NET):::dotnet
+  cppsvc(C++):::cpp
+  erlangsvc(Erlang/Elixir):::erlang
+  golangsvc(Go):::golang
+  javasvc(Java):::java
+  javascriptsvc(JavaScript):::javascript
+  kotlinsvc(Kotlin):::kotlin
+  phpsvc(PHP):::php
+  pythonsvc(Python):::python
+  rubysvc(Ruby):::ruby
+  rustsvc(Rust):::rust
+  typescriptsvc(TypeScript):::typescript
+end
+
+classDef dotnet fill:#178600,color:white;
+classDef cpp fill:#f34b7d,color:white;
+classDef erlang fill:#b83998,color:white;
+classDef golang fill:#00add8,color:black;
+classDef java fill:#b07219,color:white;
+classDef javascript fill:#f1e05a,color:black;
+classDef kotlin fill:#560ba1,color:white;
+classDef php fill:#4f5d95,color:white;
+classDef python fill:#3572A5,color:white;
+classDef ruby fill:#701516,color:white;
+classDef rust fill:#dea584,color:black;
+classDef typescript fill:#e98516,color:black;
+{{< /mermaid >}}
