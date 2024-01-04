@@ -2,7 +2,6 @@
 title: NodeJS Zero-Config Workshop
 weight: 2
 description: A workshop using Zero Configuration Auto-Instrumentation for NodeJS.
-hidden: true
 ---
 
 {{% badge icon="clock" style="primary" %}}30 minutes{{% /badge %}} {{% badge style="blue" title="Author" %}}Robert Castley{{% /badge %}}
