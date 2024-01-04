@@ -1,6 +1,6 @@
 ---
 title: Installing the OpenTelemetry Collector
-linkTitle: 2. OpenTelemetry Collector
+linkTitle: 2. Installing the Collector
 weight: 2
 ---
 
@@ -8,7 +8,7 @@ weight: 2
 
 {{% notice title="Delete any existing OpenTelemetry Collectors" style="warning" %}}
 
-If you have completed the Splunk IM workshop, please ensure you have deleted the collector running in Kubernetes before continuing. This can be done by running the following command:
+If you have completed any other Observability workshops, please ensure you delete the collector running in Kubernetes before continuing. This can be done by running the following command:
 
 ``` bash
 helm delete splunk-otel-collector

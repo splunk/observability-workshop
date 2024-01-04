@@ -1,8 +1,10 @@
 ---
 title: Deploying the OpenTelemetry Demo
-linkTitle: 1. OpenTelemetry Demo
+linkTitle: 1. Deploy OpenTelemetry Demo
 weight: 1
 ---
+
+## 1. Create a namespace
 
 To not conflict with other workshops, we will deploy the OpenTelemetry Demo in a separate namespace called `otel-demo`. To create the namespace, run the following command:
 
@@ -10,6 +12,7 @@ To not conflict with other workshops, we will deploy the OpenTelemetry Demo in a
 kubectl create namespace otel-demo
 ```
 
+## 2. Deploy the OpenTelemetry Demo
 Next, change to the directory containing the OpenTelemetry Demo application:
 
 ``` bash
@@ -105,6 +108,8 @@ opentelemetry-demo-cartservice-7c4f59bdd5-rfkf4             1/1     Running   0 
 
 {{% /tab %}}
 {{% /tabs %}}
+
+## 3. Validate the application is running
 
 To validate the application is running, we will port-forward the frontend service. To do this, run the following command:
 

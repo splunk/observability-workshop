@@ -1,8 +1,10 @@
 ---
-title: Zero Configuration Auto Instrumentation for NodeJS
-linkTitle: 3. Zero Configuration
+title: Zero Configuration - Frontend Service
+linkTitle: 3. Frontend Service
 weight: 3
 ---
+
+## 1. Patching the Frontend service
 
 First, confirm that you can see your environment in **APM**. There should be a service called `loadgenerator` displayed in the Service map.
 
@@ -22,12 +24,6 @@ After a few minutes, you should see the `frontend` service in **APM**.
 
 ![Frontend](../images/apm-frontend.png)
 
-Finally, we will patch the `paymentservice` deployment with an annotation to inject the NodeJS auto instrumentation. This will allow us to see the `paymentservice` service in **APM**.
+With the `frontend` service highlighted, click on the **Traces** tab to see the traces for the service. Select one of the traces and confirm that the trace contains metadata confirming that the Splunk Zero-Configuration Auto-Instrumentation for NodeJS is being used.
 
-``` bash
-kubectl patch deployment opentelemetry-demo-paymentservice -n otel-demo -p '{"spec": {"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-nodejs":"default/splunk-otel-collector"}}}} }'
-```
-
-This will cause the `opentelemetry-demo-paymentservice` pod to restart and after a few minutes, you should see the `paymentservice` service in **APM**.
-
-![Paymentservice](../images/apm-paymentservice.png)
+![Zero Configuration](../images/apm-frontend-trace.png)

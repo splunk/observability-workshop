@@ -1,5 +1,5 @@
 ---
-title: NodeJS Workshop
+title: NodeJS Zero-Config Workshop
 weight: 2
 description: A workshop using Zero Configuration Auto-Instrumentation for NodeJS.
 hidden: true
