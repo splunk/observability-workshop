@@ -1,4 +1,15 @@
 agent:
+  extraEnvs:
+  - name: WORKSHOP_ENVIRONMENT
+    valueFrom:
+      secretKeyRef:
+        name: workshop-secret
+        key: env
+  - name: REALM
+    valueFrom:
+      secretKeyRef:
+        name: workshop-secret
+        key: realm
   config:
     receivers:
       receiver_creator:
@@ -9,7 +20,7 @@ agent:
               type: collectd/redis
               endpoint: '`endpoint`:6379'
               extraDimensions:
-                service.name: otel-demo-redis
+                service.name: otel-demo-redis-${WORKSHOP_ENVIRONMENT}
           smartagent/kafka:
             rule: type == "pod" && name matches "kafka"
             config:
@@ -17,32 +28,16 @@ agent:
               endpoint: '`endpoint`:5555'
               clusterName: otel-demo-kafka
               extraDimensions:
-                service.name: otel-demo-kafka
-          smartagent/kafka_consumer:
-            rule: type == "pod" && name matches "kafka"
-            config:
-              type: collectd/kafka_consumer
-              endpoint: '`endpoint`:5555'
-              extraDimensions:
-                service.name: otel-demo-kafka-consumer
-          smartagent/kafka_producer:
-            rule: type == "pod" && name matches "kafka"
-            config:
-              type: collectd/kafka_producer
-              endpoint: '`endpoint`:5555'
-              extraDimensions:
-                service.name: otel-demo-kafka-producer
-          smartagent/postgres:
+                service.name: otel-demo-kafka-${WORKSHOP_ENVIRONMENT}
+          postgresql:
             rule: type == "pod" && name matches "ffspostgres"
             config:
-              type: collectd/postgresql
               endpoint: '`endpoint`:5432'
-              username: "ffs"
-              password: "ffs"
-              databases:
-              - name : "ffs"
+              username: ffs
+              password: ffs
+              databases: [ffs]
               extraDimensions:
-                service.name: otel-demo-postgresql
+                service.name: otel-demo-postgresql-${WORKSHOP_ENVIRONMENT}
     processors:
       attributes/postgres:
         include:
@@ -55,8 +50,8 @@ agent:
             action: upsert
     exporters:
       otlphttp:
-        traces_endpoint: "https://ingest.$REALM.signalfx.com/v2/trace/otlp"
-        metrics_endpoint: "https://ingest.$REALM.signalfx.com/v2/datapoint/otlp"
+        traces_endpoint: "https://ingest.${REALM}.signalfx.com/v2/trace/otlp"
+        metrics_endpoint: "https://ingest.${REALM}.signalfx.com/v2/datapoint/otlp"
         compression: gzip
         headers:
           "X-SF-Token": "${SPLUNK_OBSERVABILITY_ACCESS_TOKEN}"
@@ -68,31 +63,11 @@ agent:
     service:
       pipelines:
         metrics:
-          exporters:
-          - signalfx
-          processors:
-          - memory_limiter
-          - batch
-          - resourcedetection
-          - resource
-          receivers:
-          - hostmetrics
-          - kubeletstats
-          - otlp
-          - receiver_creator
-          - signalfx
-          - spanmetrics
+          exporters: [signalfx]
+          processors: [memory_limiter, batch, resourcedetection, resource]
+          receivers: [hostmetrics, kubeletstats, otlp, receiver_creator, signalfx, spanmetrics]
         traces:
-          exporters:
-          - otlphttp
-          - spanmetrics
-          processors:
-          - memory_limiter
-          - k8sattributes
-          - batch
-          - resourcedetection
-          - resource
-          - resource/add_environment
-          - attributes/postgres
-          receivers:
-          - otlp
+          exporters: [otlphttp, spanmetrics]
+          processors: [memory_limiter, batch, k8sattributes, resourcedetection, resource, resource/add_environment, attributes/postgres]
+          receivers: [otlp]
+

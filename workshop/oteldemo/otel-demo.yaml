@@ -28,7 +28,7 @@ components:
       - name: KAFKA_HEAP_OPTS
         value: "-Xmx400M -Xms400M"
       - name: KAFKA_OPTS
-        value: "-javaagent:/tmp/opentelemetry-javaagent.jar -Dotel.jmx.target.system=kafka-broker -Dcom.sun.management.jmxremote.port=5555"        
+        value: "-javaagent:/tmp/opentelemetry-javaagent.jar -Dotel.jmx.target.system=kafka-broker -Dcom.sun.management.jmxremote.port=5555"
     resources:
       limits:
         memory: 750Mi
