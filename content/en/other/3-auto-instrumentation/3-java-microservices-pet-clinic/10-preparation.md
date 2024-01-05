@@ -72,11 +72,11 @@ mysql-74bb96ddbf-wbrqk               1/1     Running   0          87s
 
 Make sure the output of get pods matches the output as shown above ... and that all 8 services are shown as **RUNNING**.
 
-The application will take a few minutes to start up and synchronize all the services, so let's get the actual application downloaded in the mean-time.
+The application will take a few minutes to start up , create the database and synchronize all the services, so let's get the actual source code for the application downloaded in the mean-time.
 
 ## 2. Downloading the Spring Microservices PetClinic Application
 
- For this exercise, we will use the Spring microservices PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot) and we are using a proper microservices version.
+ For this exercise, we will use the Spring microservices PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot) and we are using a version witch actual microservices.
 
 First, clone the PetClinic GitHub repository, as we will need this later in the workshop to compile, build, package and containerize the application:
 
@@ -90,12 +90,6 @@ Change into the `spring-petclinic` directory:
 cd spring-petclinic-microservices
 ```
 <!--
-Start a MySQL database for PetClinic to use:
-
-```bash
-docker run -d -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=petclinic -p 3306:3306 docker.io/mysql:5.7.8
-```
-
 Next, we will start a Docker container running Locust that will generate some simple traffic to the PetClinic application. Locust is a simple load-testing tool that can be used to generate traffic to a web application.
 
 ```bash
@@ -184,7 +178,7 @@ eclipse-temurin                                     17        807dd649ff14   13 
 
 ## 4. Set up a local Docker Repository
 
-As part of this workshop we going to use some of the advanced instrumentation features, and will add some annotations to our code to get even more valuable data from our Java application. Kubernetes need to pull these images form somewhere, so lets setup a local repository so Kubernetes can pull the local images.
+As part of this workshop we going to use some of the advanced instrumentation features, and will add some annotations to our code to get even more valuable data from our Java application. Kubernetes need to pull these images from somewhere, so lets setup a local repository, so Kubernetes can pull these local images.
 
 {{< tabs >}}
 {{% tab title="Install Docker Repository" %}}
