@@ -18,7 +18,7 @@
 
 ## Splunk OpenTelemety Collector Configuration
 
-The following configuration can be applied to a default O11y workshop Splunk Show instance (EC2 or multipass). Remember to remove any existing OTel Collector configuration.
+The following configuration can be applied to a default O11y workshop Splunk Show instance. Remember to remove any existing OTel Collector configuration.
 
 ``` bash
 helm delete splunk-otel-collector
@@ -36,12 +36,12 @@ helm install splunk-otel-collector \
 --set="certmanager.enabled=true" \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
---set="clusterName=$(hostname)-k3s-cluster" \
+--set="clusterName=$INSTANCE-k3s-cluster" \
 --set="splunkObservability.logsEnabled=false" \
 --set="logsEngine=otel" \
 --set="splunkObservability.profilingEnabled=true" \
 --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
---set="environment=$(hostname)-workshop" \
+--set="environment=$INSTANCE-workshop" \
 --set="splunkPlatform.endpoint=$HEC_URL" \
 --set="splunkPlatform.token=$HEC_TOKEN" \
 --set="splunkPlatform.index=splunk4rookies-workshop" \
@@ -51,7 +51,7 @@ splunk-otel-collector-chart/splunk-otel-collector \
 
 ## OpenTelemetry Astronomy Shop configuration
 
-The file `otel-demo.yaml` will be applied to the Helm chart and change the behavior of the default install:
+The file `otel-demo.yaml` will be applied to the Helm chart and change the behavior of the default configuration:
 
 - Set `OTEL_COLLECTOR_NAME` to the host IP Address for Metrics, Traces and Logs
 - Configure a load balancer for the `frontendProxy` server
