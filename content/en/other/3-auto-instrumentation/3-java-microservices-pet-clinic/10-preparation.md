@@ -35,6 +35,10 @@ deployment.apps/visits-service created
 service/visits-service created
 deployment.apps/admin-server created
 service/admin-server created
+service/mysql created
+deployment.apps/mysql created
+configmap/mysql-initdb-config created
+service/mysql-datastore created
 ```
 
 {{% /tab %}}
@@ -60,14 +64,15 @@ admin-server-6d4c9fddb-mg628         1/1     Running   0          99s
 vets-service-64c446cc94-hs2c5        1/1     Running   0          99s
 customers-service-54d7cdf699-d7gqv   1/1     Running   0          99s
 visits-service-6f94679459-6s4jt      1/1     Running   0          99s
+mysql-74bb96ddbf-wbrqk               1/1     Running   0          87s
 ```
 
 {{% /tab %}}
 {{< /tabs >}}
 
-Make sure the output of get pods matches the output as shown above ... and that all 7 services are shown as **RUNNING**.
+Make sure the output of get pods matches the output as shown above ... and that all 8 services are shown as **RUNNING**.
 
-The application will take a few minutes to start up and synchronize all the services. so let's get the actual application downloaded in the meantime.
+The application will take a few minutes to start up and synchronize all the services, so let's get the actual application downloaded in the mean-time.
 
 ## 2. Downloading the Spring Microservices PetClinic Application
 
@@ -177,7 +182,55 @@ eclipse-temurin                                     17        807dd649ff14   13 
 {{% /tab %}}
 {{< /tabs >}}
 
-## 4. Check the Pet shop Website
+## 4. Set up a local Docker Repository
+
+As part of this workshop we going to use some of the advanced instrumentation features, and will add some annotations to our code to get even more valuable data from our Java application. Kubernetes need to pull these images form somewhere, so lets setup a local repository so Kubernetes can pull the local images.
+
+{{< tabs >}}
+{{% tab title="Install Docker Repository" %}}
+
+```bash
+docker run -d -p 5000:5000 --restart=always --name registry registry:2 
+```
+
+{{% /tab %}}
+{{% tab title="Docker Output" %}}
+
+``` text
+Unable to find image 'registry:2' locally
+2: Pulling from library/registry
+c926b61bad3b: Pull complete 
+5501dced60f8: Pull complete 
+e875fe5e6b9c: Pull complete 
+21f4bf2f86f9: Pull complete 
+98513cca25bb: Pull complete 
+Digest: sha256:0a182cb82c93939407967d6d71d6caf11dcef0e5689c6afe2d60518e3b34ab86
+Status: Downloaded newer image for registry:2
+a7d52001836504cf1724e9817ad6167a4458a9e73d33a82f11f33681fe2d6c3e
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+We can see if  the repository is up and running by checking the inventory, it should return an empty list
+
+{{< tabs >}}
+{{% tab title="Install Docker Repository" %}}
+
+```bash
+ curl -X GET http://localhost:5000/v2/_catalog 
+```
+
+{{% /tab %}}
+{{% tab title="Curl Output" %}}
+
+``` text
+{"repositories":[]}
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+## 5. Check the Pet shop Website
 
 To test the application you need to obtain the public IP address of the instance you are running on. You can do this by running the following command:
 
@@ -210,15 +263,6 @@ helm install splunk-otel-collector -f ./my_values.yaml --set operator.enabled=tr
 Expand for kubectl commands to run and output
 2.3 Instrument Application by Setting an Annotation
 Depending on the variety of applications you are instrumenting, you may want to use different scopes for annotations. This step shows how to annotate namespaces and individual pods.
-
-You can now run the application with the following command. Notice that we are passing the `mysql` profile to the application, this will tell the application to use the MySQL database we started earlier. We are also setting the `otel.service.name` to a logical service name that will also be used in the UI for filtering:
-
-```bash
-java \
--Dserver.port=8083 \
--Dotel.service.name=$INSTANCE-petclinic-service \
--jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
-```
 -->
 You can validate if the application is running by visiting `http://<IP_ADDRESS>:81` (replace `<IP_ADDRESS>` with the IP address you obtained earlier). You should see the PetClinic application running.  
 

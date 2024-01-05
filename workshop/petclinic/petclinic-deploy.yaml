@@ -22,6 +22,8 @@ spec:
           ports:
           - containerPort: 8888   
           env:
+          - name: GIT_REPO
+            value: "~/workshop/petclinic/petclinic-repo" 
           - name: RUM_REALM
             valueFrom:
               secretKeyRef:
@@ -579,4 +581,53 @@ spec:
   ports:
   - name: tcp
     port: 9090
-    targetPort: 9090           
+    targetPort: 9090
+---    
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: mysql
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - image: mysql:5
+          name: mysql
+          env:
+            # Use secret in real usage
+            - name: MYSQL_ROOT_PASSWORD
+              value: petclinic
+            - name: MYSQL_DATABASE
+              value: "petclinic"
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+            - name: mysql-initdb
+              mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: mysql-persistent-storage
+        - name: mysql-initdb
+          configMap:
+            name: mysql-initdb-config
+---          
