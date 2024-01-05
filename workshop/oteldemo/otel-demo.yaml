@@ -8,9 +8,6 @@ default:
 
 # Configure the frontendProxy service to be of type LoadBalancer
 components:
-  frontendProxy:
-    service:
-      type: LoadBalancer
   kafka:
     enabled: true
     useDefault:
