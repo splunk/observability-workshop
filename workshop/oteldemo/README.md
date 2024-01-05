@@ -5,11 +5,11 @@
 - Kubernetes Navigator
 - APM
 - DB Query Performance (Redis & PostgreSQL)
-- Logs (using OTel Log Engine via Log Observer)
-- Synthetics (no Synthetics to APM due to no `Server-Timing` header support in upstream)
+- Logs
+- Synthetics (no Synthetics to APM due to no `Server-Timing` header support upstream)
 - Redis Dashboard
 - Kafka Dashboard (Partial)
-- PostgreSQL Dashboard (Partial)
+- PostgreSQL Dashboard
 
 ## Missing features
 
@@ -24,10 +24,6 @@ The following configuration can be applied to a default O11y workshop Splunk Sho
 helm delete splunk-otel-collector
 ```
 
-### otel-demo-collector.yaml
-
-[otel-demo-collector.yaml](https://github.com/splunk/observability-workshop/blob/58592d0ddb00be300b81982712b3ef0618f13284/workshop/oteldemo/otel-demo-collector.yaml#L1-L93)
-
 ### Deploy the OTel Collector via Helm chart
 
 ``` bash
@@ -36,14 +32,16 @@ helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel
 
 ``` bash
 helm install splunk-otel-collector \
+--set="operator.enabled=true" \
+--set="certmanager.enabled=true" \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
---set="clusterName=$INSTANCE-k3s-cluster" \
+--set="clusterName=$(hostname)-k3s-cluster" \
 --set="splunkObservability.logsEnabled=false" \
 --set="logsEngine=otel" \
 --set="splunkObservability.profilingEnabled=true" \
 --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
---set="environment=$INSTANCE-workshop" \
+--set="environment=$(hostname)-workshop" \
 --set="splunkPlatform.endpoint=$HEC_URL" \
 --set="splunkPlatform.token=$HEC_TOKEN" \
 --set="splunkPlatform.index=splunk4rookies-workshop" \
@@ -53,16 +51,12 @@ splunk-otel-collector-chart/splunk-otel-collector \
 
 ## OpenTelemetry Astronomy Shop configuration
 
-Create `otel-demo.yaml`, this will be applied to the Helm chart and changes the default behavior of a default install:
+The file `otel-demo.yaml` will be applied to the Helm chart and change the behavior of the default install:
 
 - Set `OTEL_COLLECTOR_NAME` to the host IP Address for Metrics, Traces and Logs
 - Configure a load balancer for the `frontendProxy` server
 - Customise Kafka configuration to expose metrics via JMX on port 5555
 - Disable native OTel Collector, Jaeger, Prometheus & Grafana
-
-### otel-demo.yaml
-
-https://github.com/splunk/observability-workshop/blob/387727f814714a65ffbac9f73e5f89f05760268b/workshop/oteldemo/otel-demo.yaml#L1-L50
 
 ### Deploy the OpenTelemetry Astronomy Shop
 
@@ -71,14 +65,18 @@ helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm
 ```
 
 ``` text
-helm install my-otel-demo open-telemetry/opentelemetry-demo --values otel-demo.yaml
+helm install opentelemetry-demo open-telemetry/opentelemetry-demo --values otel-demo.yaml
 ```
 
-## OpenTelemetry Receivers
+## Port forwarding
+
+``` bash
+kubectl port-forward svc/opentelemetry-demo-frontendproxy 8083:8080 --address="0.0.0.0"
+```
 
 ### OpenTelemetry Redis receiver configuration
 
-At the time of writing there are no OOTB dashboards for OpenTelemetry receivers. You can still use these receivers and build out custom dashboards using the existing SmartAgent OOTB dashboards as templates. You can import `dashboard_REDIS INSTANCES (OTEL).json` as an example.
+At the time of writing, there are no OOTB dashboards for OpenTelemetry receivers. You can still use these receivers and build out custom dashboards using the existing SmartAgent OOTB dashboards as templates. You can import `dashboard_REDIS INSTANCES (OTEL).json` as an example.
 
 ``` yaml
 redis:
