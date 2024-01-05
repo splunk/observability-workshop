@@ -36,8 +36,8 @@ agent:
               username: ffs
               password: ffs
               databases: [ffs]
-              extraDimensions:
-                service.name: otel-demo-postgresql-${WORKSHOP_ENVIRONMENT}
+              tls:
+                insecure: true
     processors:
       attributes/postgres:
         include:
@@ -48,6 +48,15 @@ agent:
           - key: db.type
             value: postgres
             action: upsert
+      attributes/postgres-servicename:
+        include:
+          match_type: strict
+          services:
+            - postgres:ffs
+        actions:
+          - key: service.name
+            value: otel-demo-postgresql-${WORKSHOP_ENVIRONMENT}
+            action: upsert
     exporters:
       otlphttp:
         traces_endpoint: "https://ingest.${REALM}.signalfx.com/v2/trace/otlp"
@@ -57,6 +66,7 @@ agent:
           "X-SF-Token": "${SPLUNK_OBSERVABILITY_ACCESS_TOKEN}"
       logging:
         loglevel: info
+
     connectors:
       spanmetrics:
       
@@ -64,10 +74,9 @@ agent:
       pipelines:
         metrics:
           exporters: [signalfx]
-          processors: [memory_limiter, batch, resourcedetection, resource]
+          processors: [memory_limiter, batch, resourcedetection, resource, attributes/postgres-servicename]
           receivers: [hostmetrics, kubeletstats, otlp, receiver_creator, signalfx, spanmetrics]
         traces:
           exporters: [otlphttp, spanmetrics]
-          processors: [memory_limiter, batch, k8sattributes, resourcedetection, resource, resource/add_environment, attributes/postgres]
+          processors: [memory_limiter, batch, k8sattributes, resourcedetection, resource, resource/add_environment, attributes/postgres, attributes/postgres-servicename]
           receivers: [otlp]
-
