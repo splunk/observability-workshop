@@ -254,7 +254,7 @@ write_files:
         --set="splunkPlatform.index=splunk4rookies-workshop" \
         splunk-otel-collector-chart/splunk-otel-collector -f -
         helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
-        helm install my-otel-demo open-telemetry/opentelemetry-demo --values /home/ubuntu/workshop/oteldemo/otel-demo.yaml
+        helm install opentelemetry-demo open-telemetry/opentelemetry-demo --values /home/ubuntu/workshop/oteldemo/otel-demo.yaml
         echo ${instance_name} > /home/ubuntu/.helmok
       fi
 
