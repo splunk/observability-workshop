@@ -96,7 +96,7 @@ helm install splunk-otel-collector \
 --set="splunkPlatform.token=$HEC_TOKEN" \
 --set="splunkPlatform.index=splunk4rookies-workshop" \
 splunk-otel-collector-chart/splunk-otel-collector \
--f ~/workshop/petclinic/k3s/otel-collector.yaml
+-f ~/workshop/k3s/otel-collector.yaml
 
 {{% /tab %}}
 {{% tab title="Helm Install Output" %}}
