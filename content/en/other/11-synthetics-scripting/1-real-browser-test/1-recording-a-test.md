@@ -13,12 +13,12 @@ The starting URL for the workshop is different for **EMEA** and **AMER/APAC**. P
 {{% tabs %}}
 {{% tab title="EMEA Workshop URL" %}}
 
-[https://frontend-eu.o11ystore.com:81/](https://frontend-eu.o11ystore.com:81/)
+[https://frontend-eu.o11ystore.com/](https://frontend-eu.o11ystore.com/)
 
 {{% /tab %}}
 {{% tab title="AMER/APAC Workshop URL" %}}
 
-[https://frontend-us.o11ystore.com/:81/](https://frontend-us.o11ystore.com:81/)
+[https://frontend-us.o11ystore.com/](https://frontend-us.o11ystore.com/)
 
 {{% /tab %}}
 {{% /tabs %}}
@@ -86,11 +86,11 @@ Select **JSON** as the format, then click on **Save**
         },
         {
             "type": "navigate",
-            "url": "https://frontend-eu.o11ystore.com:81/",
+            "url": "https://frontend-eu.o11ystore.com/",
             "assertedEvents": [
                 {
                     "type": "navigation",
-                    "url": "https://frontend-eu.o11ystore.com:81/",
+                    "url": "https://frontend-eu.o11ystore.com/",
                     "title": "Online Boutique"
                 }
             ]
@@ -114,7 +114,7 @@ Select **JSON** as the format, then click on **Save**
             "assertedEvents": [
                 {
                     "type": "navigation",
-                    "url": "http://34.242.111.159:81/product/66VCHSJNUP",
+                    "url": "https://frontend-eu.o11ystore.com/product/66VCHSJNUP",
                     "title": ""
                 }
             ]
@@ -144,7 +144,7 @@ Select **JSON** as the format, then click on **Save**
             "assertedEvents": [
                 {
                     "type": "navigation",
-                    "url": "http://34.242.111.159:81/cart",
+                    "url": "https://frontend-eu.o11ystore.com/cart",
                     "title": ""
                 }
             ]
@@ -174,7 +174,7 @@ Select **JSON** as the format, then click on **Save**
             "assertedEvents": [
                 {
                     "type": "navigation",
-                    "url": "http://34.242.111.159:81/cart/checkout",
+                    "url": "https://frontend-eu.o11ystore.com/cart/checkout",
                     "title": ""
                 }
             ]
