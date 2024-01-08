@@ -6,7 +6,8 @@ description: Learn how to enable Open Telemetry (Auto) Instrumentation for your 
 hidden: true
 ---
 
-The goal of this workshop is to walk through the basic steps to configure the instrumentation  to an existing Java application running in Kubernetes and enable the following components of the **Splunk Observability Cloud** platform:
+The goal of this workshop is to introduce the features of Splunk's Opentelemetry Java Auto instrumentation. 
+First we walk through the basic steps to enable auto-instrumentation for an existing Java application running in Kubernetes so it will start sending Opentelemetry signals to **Splunk Observability Cloud** platform and enable the following components:
 
 * Splunk Infrastructure Monitoring (IM)
 * Splunk Auto Instrumentation for Java (APM)
@@ -20,6 +21,8 @@ We will show the steps about how to clone (download) a sample microservices Java
 
 Once the application is up and running, and auto instrumentation is enabled we will instantly start seeing metrics and traces via the **Auto Instrumentation** for Java that will be used by the **Splunk APM** product.
 
+We also will examine Alwayson Profiling and Database Query performance.
+
 After that, we will instrument PetClinic's end user interface (HTML pages rendered by the application) with the **Splunk OpenTelemetry Javascript Libraries (RUM)** that will generate RUM traces around all the individual clicks and page loads executed by an end user.
 
 Lastly, we will configure the Spring PetClinic application to write application logs to the filesystem and also configure the Splunk OpenTelemetry Collector to read (tail) the logs and send them to **Splunk Cloud**.
@@ -32,4 +35,5 @@ Lastly, we will configure the Spring PetClinic application to write application 
 
 {{% /notice %}}
 
+This is an extension to the [example](https://github.com/signalfx/splunk-otel-collector-chart/blob/main/examples/enable-operator-and-auto-instrumentation/spring-petclinic-java.md) **Josh Voravong** has created.
 ![Splunk Otel Architecture](images/auto-instrumentation-java-diagram.png)
