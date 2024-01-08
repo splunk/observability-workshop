@@ -26,6 +26,19 @@ agent:
               name: mysql-${WORKSHOP_ENVIRONMENT}
               extraDimensions:
                 service.name: mysql-${WORKSHOP_ENVIRONMENT}
+          smartagent/mysql-petclinic:      
+            rule: type == "port" && pod.name matches "petclinic-db" && port == 3306
+            config:
+              type: collectd/mysql
+              host: petclinic-db
+              port: 3306
+              username: root
+              password: petclinic
+              databases:
+                - name: "petclinic"
+              name: mysql-${WORKSHOP_ENVIRONMENT}
+              extraDimensions:
+                service.name: mysql-${WORKSHOP_ENVIRONMENT}                   
           smartagent/redis:
             rule: type == "port" && pod.name matches "redis-cart" && port == 6379
             config:
