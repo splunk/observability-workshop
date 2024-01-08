@@ -28,7 +28,6 @@ spec:
           readOnly: true
         env:
         - name: _JAVA_OPTIONS
-          #value: "-Dspring.profiles.active=mysql -DGIT_REPO=~/workshop/petclinic/petclinic-repo"
           value: "-Dspring.profiles.active=native -DGIT_REPO=/petclinic-repo"
         - name: RUM_REALM
           valueFrom:
@@ -618,31 +617,31 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql
+  name: petclinic-db
 spec:
   ports:
     - port: 3306
   selector:
-    app: mysql
+    app: petclinic-db
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: petclinic-db
 spec:
   selector:
     matchLabels:
-      app: mysql
+      app: petclinic-db
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: mysql
+        app: petclinic-db
     spec:
       containers:
         - image: mysql:5.7
-          name: mysql
+          name: petclinic-db
           env:
             # Use secret in real usage
             - name: MYSQL_ROOT_PASSWORD
@@ -651,22 +650,22 @@ spec:
               value: "petclinic"
           ports:
             - containerPort: 3306
-              name: mysql
+              name: petclinic-db
           volumeMounts:
-            - name: mysql-persistent-storage
+            - name: petclinic-db-persistent-storage
               mountPath: /var/lib/mysql
-            - name: mysql-initdb
+            - name: petclinic-db-initdb
               mountPath: /docker-entrypoint-initdb.d
       volumes:
-        - name: mysql-persistent-storage
-        - name: mysql-initdb
+        - name: petclinic-db-persistent-storage
+        - name: petclinic-db-initdb
           configMap:
-            name: mysql-initdb-config        
+            name: petclinic-db-initdb-config        
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: mysql-initdb-config
+  name: petclinic-db-initdb-config
 data:
   initdb.sql: |
     CREATE DATABASE IF NOT EXISTS petclinic;
@@ -783,17 +782,4 @@ data:
     INSERT IGNORE INTO visits VALUES (2, 8, '2011-03-04', 'rabies shot');
     INSERT IGNORE INTO visits VALUES (3, 8, '2009-06-04', 'neutered');
     INSERT IGNORE INTO visits VALUES (4, 7, '2008-09-04', 'spayed');
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: mysql-datastore
-spec:
-  type: ClusterIP
-  selector:
-    app: mysql-datastore
-  ports:
-  - name: mysql
-    port: 3306
-    targetPort: 3306
 ---
