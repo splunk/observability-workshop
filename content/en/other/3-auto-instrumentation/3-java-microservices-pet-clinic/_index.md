@@ -34,6 +34,7 @@ Lastly, we will configure the Spring PetClinic application to write application 
 * Familiarity with the `bash` shell and `vi/vim/nano` editor.
 
 {{% /notice %}}
-
-This is an extension to the [example](https://github.com/signalfx/splunk-otel-collector-chart/blob/main/examples/enable-operator-and-auto-instrumentation/spring-petclinic-java.md) **Josh Voravong** has created.
 ![Splunk Otel Architecture](images/auto-instrumentation-java-diagram.png)
+
+---
+Based on the [example](https://github.com/signalfx/splunk-otel-collector-chart/blob/main/examples/enable-operator-and-auto-instrumentation/spring-petclinic-java.md) **Josh Voravong** has created.
