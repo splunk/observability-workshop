@@ -7,6 +7,7 @@ variables=(
 "RUM_TOKEN"
 "HEC_TOKEN"
 "HEC_URL"
+"INSTANCE"
  )
 
 # Iterate through the list of variables and print their values

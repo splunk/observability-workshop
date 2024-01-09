@@ -108,7 +108,6 @@ Next, run the script that will use the `maven` command to compile/build the PetC
 {{% tab title="Maven Output" %}}
 
 ```text
-
 Successfully tagged quay.io/phagen/spring-petclinic-api-gateway:latest
 [INFO] Built quay.io/phagen/spring-petclinic-api-gateway
 [INFO] ------------------------------------------------------------------------
@@ -197,15 +196,7 @@ curl ifconfig.me
 
 You will see an IP address returned, make a note of this as we will need it to validate that the application is running.
 
-We also need to obtain the `INSTANCE` environment variable value, as this is what is being used as an OpenTelemetry resource attribute `deployment.environment`  so every one has its own independent environment. It is also used as your cluster name. You can do this by running the following command:
-
-```bash
-echo $INSTANCE
-```
-
-Make a note of this value as we will need it to filter the data in the UI.
-
 You can validate if the application is running by visiting `http://<IP_ADDRESS>:81` (replace `<IP_ADDRESS>` with the IP address you obtained earlier). You should see the PetClinic application running.  
 
-![Pet shop](../images/petclinic.png)  
-Make sure the application is working correctly by visiting the **All Owners** and **Veterinarians** tabs, you should get a list of names in each case.
+![Pet shop](../images/petclinic.png)
+Make sure the application is working correctly by visiting the **All Owners** and **Veterinarians** tabs, you should get a list of names in each case. If your familiar with the Standard version, you will notice a slightly longer response time due to the architecture used.
