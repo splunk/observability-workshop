@@ -810,6 +810,10 @@ spec:
         image: rcastley895/rumloadgen:5.4
         imagePullPolicy: Always
         env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+             fieldPath: status.hostIP
         - name: RUM_PROTOCOL
           value: "http"
         - name: RUM_PORT
@@ -844,7 +848,7 @@ data:
                     const context = await browser.createIncognitoBrowserContext();
                     const page = await context.newPage();
                     await page.setUserAgent('Mozilla/5.0 (X11; Linux x86_64; Splunk RUMLoadGen) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36')
-                    const urls= ["http://34.254.238.152:81/#!/welcome"
+                    const urls= ["http://"+ process.env.NODE_IP +":81/#!/welcome"
                           ];
                     const timeout = 5000;       
                     for (const element of urls) {
@@ -1008,5 +1012,4 @@ data:
           setTimeout(resolve, time)
       });
     }
-
 ---

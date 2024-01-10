@@ -35,10 +35,11 @@ deployment.apps/visits-service created
 service/visits-service created
 deployment.apps/admin-server created
 service/admin-server created
-service/mysql created
-deployment.apps/mysql created
-configmap/mysql-initdb-config created
-service/mysql-datastore created
+service/petclinic-db created
+deployment.apps/petclinic-db created
+configmap/petclinic-db-initdb-config created
+deployment.apps/petclinic-loadgen-deployment created
+configmap/scriptfile created
 ```
 
 {{% /tab %}}
@@ -56,21 +57,22 @@ kubectl get pods
 {{% tab title="kubectl get pods Output" %}}
 
 ```text
-NAME                                 READY   STATUS    RESTARTS   AGE
-discovery-server-945bc74bf-fr9gb     1/1     Running   0          99s
-api-gateway-84f86f677-msfhg          1/1     Running   0          99s
-config-server-6878b6fb94-sbdkx       1/1     Running   0          99s
-admin-server-6d4c9fddb-mg628         1/1     Running   0          99s
-vets-service-64c446cc94-hs2c5        1/1     Running   0          99s
-customers-service-54d7cdf699-d7gqv   1/1     Running   0          99s
-visits-service-6f94679459-6s4jt      1/1     Running   0          99s
-mysql-74bb96ddbf-wbrqk               1/1     Running   0          87s
+NAME                                           READY   STATUS    RESTARTS   AGE
+config-server-7645d4449f-kdwh6                 1/1     Running   0          86s
+petclinic-db-64d998bb66-n2464                  1/1     Running   0          85s
+discovery-server-6f4c756dff-nx8tl              1/1     Running   0          86s
+admin-server-8f67bdf56-tcpkl                   1/1     Running   0          85s
+customers-service-74f5cf6d6f-nhkxh             1/1     Running   0          86s
+vets-service-6869959674-nb67v                  1/1     Running   0          86s
+visits-service-6f9d987c85-4476j                1/1     Running   0          85s
+api-gateway-6ddcf94c5f-k2ccg                   1/1     Running   0          86s
+petclinic-loadgen-deployment-994b69695-8rd9k   1/1     Running   0          85s
 ```
 
 {{% /tab %}}
 {{< /tabs >}}
 
-Make sure the output of get pods matches the output as shown above. This may take a minute or so, try again until all 8 services are shown as **RUNNING**.  
+Make sure the output of get pods matches the output as shown above. This may take a minute or so, try again until all services are shown as **RUNNING**.  
 
 Once they are running, the application will take a few minutes to  fully start up, create the database and synchronize all the services, so let's get the actual source code for the application downloaded in the mean-time.
 
@@ -89,13 +91,7 @@ Change into the `spring-petclinic` directory:
 ```bash
 cd spring-petclinic-microservices
 ```
-<!--
-Next, we will start a Docker container running Locust that will generate some simple traffic to the PetClinic application. Locust is a simple load-testing tool that can be used to generate traffic to a web application.
 
-```bash
-docker run --network="host" -d -p 8090:8090 -v ~/workshop/petclinic:/mnt/locust docker.io/locustio/locust -f /mnt/locust/locustfile.py --headless -u 1 -r 1 -H http://127.0.0.1:8083
-```
--->
 Next, run the script that will use the `maven` command to compile/build the PetClinic microservices:
 {{< tabs >}}
 {{% tab title="Running maven" %}}
@@ -108,24 +104,22 @@ Next, run the script that will use the `maven` command to compile/build the PetC
 {{% tab title="Maven Output" %}}
 
 ```text
-Successfully tagged quay.io/phagen/spring-petclinic-api-gateway:latest
-[INFO] Built quay.io/phagen/spring-petclinic-api-gateway
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary:
-[INFO] 
-[INFO] spring-petclinic-microservices 0.0.1 ............... SUCCESS [  0.770 s]
-[INFO] spring-petclinic-admin-server ...................... SUCCESS [01:03 min]
-[INFO] spring-petclinic-customers-service ................. SUCCESS [ 29.031 s]
-[INFO] spring-petclinic-vets-service ...................... SUCCESS [ 22.145 s]
-[INFO] spring-petclinic-visits-service .................... SUCCESS [ 20.451 s]
-[INFO] spring-petclinic-config-server ..................... SUCCESS [ 12.260 s]
-[INFO] spring-petclinic-discovery-server .................. SUCCESS [ 14.174 s]
-[INFO] spring-petclinic-api-gateway 0.0.1 ................. SUCCESS [ 29.832 s]
+[INFO]
+[INFO] spring-petclinic-microservices 0.0.1 ............... SUCCESS [  0.552 s]
+[INFO] spring-petclinic-admin-server ...................... SUCCESS [ 16.125 s]
+[INFO] spring-petclinic-customers-service ................. SUCCESS [  6.204 s]
+[INFO] spring-petclinic-vets-service ...................... SUCCESS [  1.791 s]
+[INFO] spring-petclinic-visits-service .................... SUCCESS [  1.696 s]
+[INFO] spring-petclinic-config-server ..................... SUCCESS [  1.466 s]
+[INFO] spring-petclinic-discovery-server .................. SUCCESS [  1.797 s]
+[INFO] spring-petclinic-api-gateway 0.0.1 ................. SUCCESS [ 13.999 s]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time: 03:14 min
-[INFO] Finished at: 2024-01-02T12:43:20Z
+[INFO] Total time: 45.431 s
+[INFO] Finished at: 2024-01-10T13:56:53Z
 [INFO] ------------------------------------------------------------------------
 ```
 
@@ -166,24 +160,11 @@ a7d52001836504cf1724e9817ad6167a4458a9e73d33a82f11f33681fe2d6c3e
 {{% /tab %}}
 {{< /tabs >}}
 
-We can see if  the repository is up and running by checking the inventory, it should return an empty list
-
-{{< tabs >}}
-{{% tab title="Install Docker Repository" %}}
+We can see if  the repository is up and running by checking the inventory, it should return an empty list **{"repositories":[]}**
 
 ```bash
  curl -X GET http://localhost:5000/v2/_catalog 
 ```
-
-{{% /tab %}}
-{{% tab title="Curl Output" %}}
-
-``` text
-{"repositories":[]}
-```
-
-{{% /tab %}}
-{{< /tabs >}}
 
 ## 4. Check the Petshop Website
 
