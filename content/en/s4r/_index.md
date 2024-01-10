@@ -1,5 +1,5 @@
 ---
-title: Splunk4Rookies - Observability
+title: Splunk4Rookies - Observability Cloud
 weight: 1
 ---
 
