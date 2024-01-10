@@ -783,3 +783,230 @@ data:
     INSERT IGNORE INTO visits VALUES (3, 8, '2009-06-04', 'neutered');
     INSERT IGNORE INTO visits VALUES (4, 7, '2008-09-04', 'spayed');
 ---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: petclinic-loadgen-deployment
+  labels:
+    app: petclinic-loadgen
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: petclinic-loadgen
+  template:
+    metadata:
+      labels:
+        app: petclinic-loadgen
+    spec:
+      # If you are NOT running this from AWS, but from multipass for example set the below env variable
+      # set RUM_FRONTEND_IP to the IP address where you can reach your local Online Boutique
+      #env:
+      #  - name: RUM_FRONTEND_IP
+      #    value: "192.168.1.99"
+      containers:
+      - name: petclinic-loadgen
+        image: rcastley895/rumloadgen:5.4
+        imagePullPolicy: Always
+        env:
+        - name: RUM_PROTOCOL
+          value: "http"
+        - name: RUM_PORT
+          value: "81"
+        volumeMounts:
+        - name: puppeteer
+          subPath: local-file
+          mountPath: /puppeteer/touchwebsite.js
+      volumes:
+      - name: puppeteer
+        configMap:
+          name: scriptfile
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: scriptfile
+data:
+  local-file: |
+    const { Console } = require('console');
+    const puppeteer = require('puppeteer');
+    function run () {
+        return new Promise(async (resolve, reject) => {
+            const browser = await puppeteer.launch({
+                headless: 'new',
+                defaultViewport: null,
+                args: ['--no-sandbox', '--disable-setuid-sandbox']
+            });
+            try {
+                const wait_time = 1000;  //Set up delay between page interactions
+                for (let loop=0; loop < 1;loop++) {  // as part of the load we run multiple of this script to generate multiple session
+                    const context = await browser.createIncognitoBrowserContext();
+                    const page = await context.newPage();
+                    await page.setUserAgent('Mozilla/5.0 (X11; Linux x86_64; Splunk RUMLoadGen) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36')
+                    const urls= ["http://34.254.238.152:81/#!/welcome"
+                          ];
+                    const timeout = 5000;       
+                    for (const element of urls) {
+                      const url = element;
+                      await page.goto(`${url}`);
+                      {
+                          const targetPage = page;
+                          await puppeteer.Locator.race([
+                              targetPage.locator('div.navbar-header > a > span'),
+                              targetPage.locator('::-p-xpath(/html/body/layout-nav/nav/div[1]/a/span)'),
+                              targetPage.locator(':scope >>> div.navbar-header > a > span')
+                          ])
+                              .setTimeout(timeout)
+                              .click({
+                              offset: {
+                                  x: 110,
+                                  y: 25,
+                              },
+                              });
+                        
+                          await page.waitForSelector('body > div > div > div > ui-view > layout-welcome > h1');
+                          const textContent = await page.evaluate(() => document.querySelector('body > div > div > div > ui-view > layout-welcome > h1').textContent);
+                          console.log('Welcome Text = ' + textContent);
+                        }
+                        { //click on owners link
+                          const targetPage = page;
+                          await puppeteer.Locator.race([
+                              targetPage.locator('::-p-aria(OWNERS)'),
+                              targetPage.locator('li.dropdown > a'),
+                              targetPage.locator('::-p-xpath(//*[@id=\\"main-navbar\\"]/ul/li[2]/a)'),
+                              targetPage.locator(':scope >>> li.dropdown > a'),
+                              targetPage.locator('::-p-text(Owners)')
+                          ])
+                              .setTimeout(timeout)
+                              .click({
+                              offset: {
+                                  x: 49.6875,
+                                  y: 33,
+                              },
+                              });
+                            console.log('@ALL');    
+                      }
+                      {
+                          const targetPage = page;
+                          await puppeteer.Locator.race([
+                              targetPage.locator('li.dropdown li:nth-of-type(1) span:nth-of-type(2)'),
+                              targetPage.locator('::-p-xpath(//*[@id=\\"main-navbar\\"]/ul/li[2]/ul/li[1]/a/span[2])'),
+                              targetPage.locator(':scope >>> li.dropdown li:nth-of-type(1) span:nth-of-type(2)'),
+                              targetPage.locator('::-p-text(All)')
+                          ])
+                              .setTimeout(timeout)
+                              .click({
+                              offset: {
+                                  x: 29.484375,
+                                  y: 7,
+                              },
+                              });
+                      }
+                      {
+                          const targetPage = page;
+                          await puppeteer.Locator.race([
+                              targetPage.locator('::-p-aria(Maria Escobito[role=\\"link\\"])'),
+                              targetPage.locator('tr:nth-of-type(8) a'),
+                              targetPage.locator('::-p-xpath(/html/body/div/div/div/ui-view/owner-list/table/tbody/tr[8]/td[1]/a)'),
+                              targetPage.locator(':scope >>> tr:nth-of-type(8) a'),
+                              targetPage.locator('::-p-text(Maria Escobito)')
+                          ])
+                              .setTimeout(timeout)
+                              .click({
+                              offset: {
+                                  x: 43,
+                                  y: 9,
+                              },
+                              });
+                        console.log('@owner details page');      
+                      }
+                      {
+                          const targetPage = page;
+                          await puppeteer.Locator.race([
+                              targetPage.locator('::-p-aria(Mulligan)'),
+                              targetPage.locator('table:nth-of-type(2) > tbody > tr > td:nth-of-type(1) a'),
+                              targetPage.locator('::-p-xpath(/html/body/div/div/div/ui-view/owner-details/table[2]/tbody/tr/td[1]/dl/dd[1]/a)'),
+                              targetPage.locator(':scope >>> table:nth-of-type(2) > tbody > tr > td:nth-of-type(1) a'),
+                              targetPage.locator('::-p-text(Mulligan)')
+                          ])
+                              .setTimeout(timeout)
+                              .click({
+                              offset: {
+                                  x: 40,
+                                  y: 5,
+                              },
+                              });
+                            console.log('@pet details page');
+                      }
+                      {
+                          const targetPage = page;
+                          await puppeteer.Locator.race([
+                              targetPage.locator('::-p-aria(Submit)'),
+                              targetPage.locator('body > div button'),
+                              targetPage.locator('::-p-xpath(/html/body/div/div/div/ui-view/pet-form/form/div[5]/div/button)'),
+                              targetPage.locator(':scope >>> body > div button'),
+                              targetPage.locator('::-p-text(Submit)')
+                          ])
+                              .setTimeout(timeout)
+                              .click({
+                              offset: {
+                                  x: 48.671875,
+                                  y: 14,
+                              },
+                              });
+                        console.log('@add pet page');      
+                      }
+
+                      {
+                          const targetPage = page;
+                          await puppeteer.Locator.race([
+                              targetPage.locator('li:nth-of-type(3) span:nth-of-type(2)'),
+                              targetPage.locator('::-p-xpath(//*[@id=\\"main-navbar\\"]/ul/li[3]/a/span[2])'),
+                              targetPage.locator(':scope >>> li:nth-of-type(3) span:nth-of-type(2)'),
+                              targetPage.locator('::-p-text(Veterinarians)')
+                          ])
+                              .setTimeout(timeout)
+                              .click({
+                              offset: {
+                                  x: 31.640625,
+                                  y: 2,
+                              },
+                              });
+                        console.log('@veterinarians page');      
+                      }
+
+                    }       
+                    await delay(wait_time );
+                    //Checking cookie, then deleting it
+                    console.log("cookies was")
+                    let before = await page.cookies()
+                    before.forEach(cookie => {
+                        console.log("Before: ",cookie.name)
+                    })
+                    await page.deleteCookie({
+                        name : "_splunk_rum_sid",
+                    })
+                    let after = await page.cookies()
+                    after.forEach(cookie => {
+                        console.log("After: ",cookie.name)
+                    })
+                    await browser.close()
+                }
+                process.exit();
+          } catch (e) {
+            console.log (e)
+          } finally {
+            await browser.close();
+          }
+        })
+    }
+    run().then(console.log).catch(console.error);
+
+    function delay(time) {
+      return new Promise(function(resolve) {
+          setTimeout(resolve, time)
+      });
+    }
+
+---
