@@ -11,7 +11,7 @@ Please visit [**Splunk Show**](https://show.splunk.com/template/262/?type=worksh
 
 Select the desired **Content Type** as follows:
 
-- _**Pre-configured Instances**_ - select this if you need the OpenTelemetry Collector and the application pre-deployed for a less technical audience. Attendees will only require a browser to complete the workshop. This option **must** be selected if you want to run the **Splunk4Rookies - Observability Workshop**.
+- _**Pre-configured Instances**_ - select this if you need the OpenTelemetry Collector and the application pre-deployed for a less technical audience. Attendees will only require a browser to complete the workshop. This option **must** be selected if you want to run the **Splunk4Rookies - Observability Cloud Workshop**.
   - Select Normal Workshop only! Ensure that **Estimated Participants** is set to **1** and **O11y Shop Quantity** is set to **1** also as only a single instance is required by the workshop.
 
 - _**Default (for interactive workshop)**_ - select this if your audience is technical and wants hands-on experience installing OpenTelemetry and deploying applications.

@@ -7,7 +7,7 @@ archetype: chapter
 
 {{% badge icon="clock" color="#ed0090" %}}10 minutes{{% /badge %}}
 
-Congratulations, you have completed the **Splunk4Rookies Observability Workshop**. Today, you have become familiar with how to use Splunk Observability Cloud to monitor your applications and infrastructure.
+Congratulations, you have completed the **Splunk4Rookies Observability Cloud Workshop**. Today, you have become familiar with how to use Splunk Observability Cloud to monitor your applications and infrastructure.
 
 Celebrate your achievement by adding this certificate to your {{< badge style="blue" icon="fab fa-fw fa-linkedin-in" >}}{{< linkedin >}}{{< /badge >}} profile.
 
