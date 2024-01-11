@@ -1,59 +1,18 @@
 ---
 title: Log Observer
-linkTitle: 6. Log Observer
+linkTitle: 60. Log Observer
 weight: 60
 ---
 
 ## 1. Introduction
 
-For the Splunk Log Observer component, we will configure the Spring PetClinic application to write logs to a file and configure the Splunk OpenTelemetry Collector to read (tail) that log file and send the logs to Splunk Cloud.
+For the Splunk Log Observer component, we will configure the Spring PetClinic application to use an Otel Based format to write logs, This will allow the (Auto)-instrumentation to add Otel relevant information to the logs that can be used to correlate Metric, traces and logs. 
 
-## 2. OpenTelemetry Filelog Configuration
+## 2. Update Logback config for the services
 
-We need to configure the Splunk OpenTelemetry Collector to tail the Spring PetClinic log file and send the log data to Splunk Cloud.
+The Spring PetClinic application can be configured to use several different Java logging libraries. In this scenario, the application is using `logback`.  to make sure we get the otel information in the logs we just need to update a file named `logback.xml` for each of the services in the petclinc microservices folders.
 
-The Splunk OpenTelemetry Collector uses **Fluentd** by default but we will change the configuration to use the OpenTelemetry [**Filelog Receiver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/filelogreceiver/README.md) to consume the logs. We will need to edit the collectors' configuration file:
-
-``` bash
-sudo vi /etc/otel/collector/agent_config.yaml
-```
-
-Under the `receivers:` section create the Filelog Receiver (make sure to indent correctly):
-
-``` yaml {hl_lines="2-3"}
-receivers:
-  filelog:
-    include: [/tmp/spring-petclinic.log]
-```
-
-Then under the `service:` section, find the `logs:` pipeline, replace `fluentforward` with`filelog` (again, make sure to indent correctly):
-
-``` yaml {hl_lines="2-7"}
-    logs:
-      receivers: [filelog, otlp]
-```
-
-Save the file and exit the editor. Next, we need to validate that the HEC Token and HEC URL are configured for the collector to use. We will inspect the `/etc/otel/collector/splunk-otel-collector.conf` file:
-
-```bash
-sudo cat /etc/otel/collector/splunk-otel-collector.conf
-```
-
-Make sure `SPLUNK_HEC_URL` and `SPLUNK_HEC_TOKEN` have values set. If they are not set, please reach out to your instructor. With the configuration change complete and validated, we can now restart the collector:
-
-```bash
-sudo systemctl restart splunk-otel-collector
-```
-
-## 3. Logback Settings
-
-The Spring PetClinic application can be configured to use several different Java logging libraries. In this scenario, we are going to use `logback`. We just need to create a file named `logback.xml` in the configuration folder:
-
-```bash
-vi ~/spring-petclinic/src/main/resources/logback.xml
-```
-
-Copy and paste the following XML content:
+Spring boot will allow you to set a global template, but for ease of use, replace the existing content  of the `logback-spring.xml` files of each service with the following XML content:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -82,22 +41,84 @@ Copy and paste the following XML content:
 </configuration>
 ```
 
-Now we need to rebuild the application and run it again:
+{{< tabs >}}
+{{% tab title="Update Logback files" %}}
 
-```bash
-./mvnw package -Dmaven.test.skip=true
+``` bash
+. ~/workshop/petclinic/scripts/update_logback.sh
 ```
 
-Once the rebuild has been completed we can then run the application again:
+{{% /tab %}}
+{{% tab title="Replace Output" %}}
 
-```bash
-java \
--Dserver.port=8083 \
--Dotel.service.name=$INSTANCE-petclinic-service \
--Dotel.resource.attributes=deployment.environment=$INSTANCE-petclinic-env,version=0.314 \
--jar target/spring-petclinic-*.jar --spring.profiles.active=mysql
+```text
+Overwritten /home/ubuntu/spring-petclinic-microservices/spring-petclinic-admin-server/src/main/resources/logback-spring.xml with new XML content.
+Overwritten /home/ubuntu/spring-petclinic-microservices/spring-petclinic-api-gateway/src/main/resources/logback-spring.xml with new XML content.
+Overwritten /home/ubuntu/spring-petclinic-microservices/spring-petclinic-config-server/src/main/resources/logback-spring.xml with new XML content.
+Overwritten /home/ubuntu/spring-petclinic-microservices/spring-petclinic-customers-service/src/main/resources/logback-spring.xml with new XML content.
+Overwritten /home/ubuntu/spring-petclinic-microservices/spring-petclinic-discovery-server/src/main/resources/logback-spring.xml with new XML content.
+Overwritten /home/ubuntu/spring-petclinic-microservices/spring-petclinic-vets-service/src/main/resources/logback-spring.xml with new XML content.
+Overwritten /home/ubuntu/spring-petclinic-microservices/spring-petclinic-visits-service/src/main/resources/logback-spring.xml with new XML content.
+Script execution completed.
 ```
 
+{{% /tab %}}
+{{< /tabs >}}
+
+We can verify if the replacement has been successful by examining the spring-logback.xml file from one of the services
+
+```bash
+cat /home/ubuntu/spring-petclinic-microservices/spring-petclinic-customers-service/src/main/resources/logback-spring.xml
+```
+
+Next, run the script that will use the `maven` command to compile/build/package the PetClinic microservices:
+{{< tabs >}}
+{{% tab title="Running maven" %}}
+
+```bash
+./mvnw clean install -DskipTests -P buildDocker
+```
+
+{{% /tab %}}
+{{% tab title="Maven Output" %}}
+
+```text
+
+Successfully tagged quay.io/phagen/spring-petclinic-api-gateway:latest
+[INFO] Built quay.io/phagen/spring-petclinic-api-gateway
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] spring-petclinic-microservices 0.0.1 ............... SUCCESS [  0.770 s]
+[INFO] spring-petclinic-admin-server ...................... SUCCESS [01:03 min]
+[INFO] spring-petclinic-customers-service ................. SUCCESS [ 29.031 s]
+[INFO] spring-petclinic-vets-service ...................... SUCCESS [ 22.145 s]
+[INFO] spring-petclinic-visits-service .................... SUCCESS [ 20.451 s]
+[INFO] spring-petclinic-config-server ..................... SUCCESS [ 12.260 s]
+[INFO] spring-petclinic-discovery-server .................. SUCCESS [ 14.174 s]
+[INFO] spring-petclinic-api-gateway 0.0.1 ................. SUCCESS [ 29.832 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 03:14 min
+[INFO] Finished at: 2024-01-02T12:43:20Z
+[INFO] ------------------------------------------------------------------------
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+docker push localhost:5000/spring-petclinic-api-gateway:local
+docker push localhost:5000/spring-petclinic-discovery-server:local
+docker push localhost:5000/spring-petclinic-config-server:local
+docker push localhost:5000/spring-petclinic-visits-service:local
+docker push localhost:5000/spring-petclinic-vets-service:local
+docker push localhost:5000/spring-petclinic-customers-service:local
+
+
+{"repositories":["spring-petclinic-admin-server","spring-petclinic-api-gateway","spring-petclinic-config-server","spring-petclinic-customers-service","spring-petclinic-discovery-server","spring-petclinic-vets-service","spring-petclinic-visits-service"]}
+
+docker images
 ## 4. View Logs
 
 From the left-hand menu click on **Log Observer** and ensure **Index** is set to **splunk4rookies-workshop**.
@@ -111,3 +132,7 @@ Next, click **Add Filter** search for the field `service_name` select the value 
 This is the end of the workshop and we have certainly covered a lot of ground. At this point, you should have metrics, traces (APM & RUM), logs, database query performance and code profiling being reported into Splunk Observability Cloud.
 
 **Congratulations!**
+
+
+
+docker system prune -a --volumes

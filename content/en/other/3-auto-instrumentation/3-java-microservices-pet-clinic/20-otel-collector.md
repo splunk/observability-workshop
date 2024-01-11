@@ -13,8 +13,6 @@ The Splunk OpenTelemetry Collector is the core component of instrumenting infras
 * Profiling data
 * Host and application logs
 
-Splunk Observability Cloud offers a wizard to walk you through the setup of the Collector on both your infrastructure and applications but to speed the workshop up, we will use one created earlier.
-
 {{% notice title="Delete any existing OpenTelemetry Collectors" style="warning" %}}
 If you have completed a Splunk Observability workshop using this EC2 instance, please ensure you have deleted the collector running in Kubernetes before continuing. This can be done by running the following command:
 
@@ -75,14 +73,13 @@ Update Complete. ⎈Happy Helming!⎈
 {{% /tab %}}
 {{< /tabs >}}
 
-We are going to install the OpenTelemetry Collector with the OpenTelemetry Collector Helm chart with some additional options:
+Splunk Observability Cloud offers a wizard in the **Splunk Observability Suite** UI to walk you through the setup of the Collector on both your infrastructure and applications but in interest of time, we will use one created earlier and are going to install the OpenTelemetry Collector with the OpenTelemetry Collector Helm chart with some additional options:
 
 * --set="operator.enabled=true" - this will install the Opentelemetry operator, that will be used to handle auto instrumentation
 * --set="certmanager.enabled=true" - This will install the required certificate manager for the operator.
 * --set="splunkObservability.profilingEnabled=true" - This enabled Code profiling via the operator
 
-To install the collector run the following commands, do **NOT** edit this
-:
+To install the collector run the following commands, do **NOT** edit this:
 
 {{< tabs >}}
 {{% tab title="Helm Install" %}}
@@ -198,9 +195,10 @@ helm delete splunk-otel-collector
 ## 4. Verify the installation by checking Metrics and Logs
 
 Once the installation is completed, you can login into the  **Splunk Observability Cloud** with the URL provided by the Instructor.
-First, Navigate to **Kubernetes Navigator** in the **Infrastructure** section to see the metrics from your cluster inthe **K8s nodes** pane.
+First, Navigate to **Kubernetes Navigator** in the **Infrastructure** section to see the metrics from your cluster inthe **K8s nodes** pane an change the *Time* filter to the last 15 Minutes (-15m).
 
-Use the filter option and select `k8s.cluster.name`**(1)**and type or select the cluster name of your workshop instance (you can get the unique part from your cluster name by using the `INSTANCE` from the output from the shell script you run earlier).
+Use the regular filter option and select `k8s.cluster.name`**(1)**and type or select the cluster name of your workshop instance (you can get the unique part from your cluster name by using the `INSTANCE` from the output from the shell script you run earlier). (You can also select you cluster by clicking on on its image in the cluster pane.)
+
 You should see metrics **(3)** & log events **(4)** related to your cluster. Also a `Mysql` pane **(5)** should appear,when you click on that pane, you can see the MySQL related metrics from you database.
 
 ![Navigator](../images/navigator.png)

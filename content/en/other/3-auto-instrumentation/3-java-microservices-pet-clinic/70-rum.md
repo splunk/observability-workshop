@@ -1,7 +1,7 @@
 ---
 title: Real User Monitoring
-linkTitle: 5. Real User Monitoring
-weight: 50
+linkTitle: 70. Real User Monitoring
+weight: 70
 ---
 
 ## 1. Enable RUM

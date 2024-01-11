@@ -16,8 +16,8 @@ spec:
     spec:
       terminationGracePeriodSeconds: 5
       containers:
-      - image: quay.io/phagen/spring-petclinic-config-server:0.0.2
-      #- image: localhost:5000/spring-petclinic-config-server:local
+        image: quay.io/phagen/spring-petclinic-config-server:0.0.2
+        #image: localhost:5000/spring-petclinic-config-server:local
         name: config-server
         imagePullPolicy: Always
         ports:
@@ -113,6 +113,7 @@ spec:
             - java
             - org.springframework.boot.loader.JarLauncher
           image: quay.io/phagen/spring-petclinic-discovery-server:0.0.2
+          #image: localhost:5000/spring-petclinic-discovery-server:local
           name: discovery-server
           imagePullPolicy: Always
           ports:
@@ -198,6 +199,7 @@ spec:
             - org.springframework.boot.loader.JarLauncher
           name: api-gateway
           image: quay.io/phagen/spring-petclinic-api-gateway:0.0.2
+          #image: localhost:5000/spring-petclinic-api-gateway:local
           imagePullPolicy: Always
           ports:
           - containerPort: 8080
@@ -301,6 +303,7 @@ spec:
             - java
             - org.springframework.boot.loader.JarLauncher
           image: quay.io/phagen/spring-petclinic-customers-service:0.0.2
+          #image: localhost:5000/spring-petclinic-customers-service:local
           name: customers-service
           imagePullPolicy: Always
           ports:
@@ -386,6 +389,7 @@ spec:
             - java
             - org.springframework.boot.loader.JarLauncher
           image: quay.io/phagen/spring-petclinic-vets-service:0.0.2
+          #image: localhost:5000/spring-petclinic-vets-service:local
           name: vets-service
           imagePullPolicy: Always
           ports:
@@ -471,6 +475,7 @@ spec:
             - java
             - org.springframework.boot.loader.JarLauncher
           image: quay.io/phagen/spring-petclinic-visits-service:0.0.2
+          #image: localhost:5000/spring-petclinic-visits-service:local
           name: visits-service
           imagePullPolicy: Always
           ports:
@@ -556,6 +561,7 @@ spec:
             - java
             - org.springframework.boot.loader.JarLauncher
           image: quay.io/phagen/spring-petclinic-admin-server:0.0.2
+          #image: localhost:5000/spring-petclinic-admin-server:local
           name: admin-server
           imagePullPolicy: Always
           ports:
@@ -843,14 +849,13 @@ data:
                 args: ['--no-sandbox', '--disable-setuid-sandbox']
             });
             try {
-                const wait_time = 1000;  //Set up delay between page interactions
+                const wait_time = 10000;  //Set up delay between page interactions
                 for (let loop=0; loop < 1;loop++) {  // as part of the load we run multiple of this script to generate multiple session
                     const context = await browser.createIncognitoBrowserContext();
                     const page = await context.newPage();
                     await page.setUserAgent('Mozilla/5.0 (X11; Linux x86_64; Splunk RUMLoadGen) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36')
-                    const urls= ["http://"+ process.env.NODE_IP +":81/#!/welcome"
-                          ];
-                    const timeout = 5000;       
+                    const urls= ["http://"+ process.env.NODE_IP +":81/#!/welcome"];
+                    const timeout = 30000;       
                     for (const element of urls) {
                       const url = element;
                       await page.goto(`${url}`);
@@ -871,7 +876,7 @@ data:
                         
                           await page.waitForSelector('body > div > div > div > ui-view > layout-welcome > h1');
                           const textContent = await page.evaluate(() => document.querySelector('body > div > div > div > ui-view > layout-welcome > h1').textContent);
-                          console.log('Welcome Text = ' + textContent);
+                          console.log('{"severity":"info","msg":"Welcome Text = "' + textContent + '"}');
                         }
                         { //click on owners link
                           const targetPage = page;
@@ -889,7 +894,7 @@ data:
                                   y: 33,
                               },
                               });
-                            console.log('@ALL');    
+                            console.log('{"severity":"info","msg":"@ALL"');    
                       }
                       {
                           const targetPage = page;
@@ -923,7 +928,7 @@ data:
                                   y: 9,
                               },
                               });
-                        console.log('@owner details page');      
+                        console.log('{"severity":"info","msg":"@owner details page"}');      
                       }
                       {
                           const targetPage = page;
@@ -941,7 +946,7 @@ data:
                                   y: 5,
                               },
                               });
-                            console.log('@pet details page');
+                            console.log('{"severity":"info","msg":"@pet details page"}');
                       }
                       {
                           const targetPage = page;
@@ -959,7 +964,7 @@ data:
                                   y: 14,
                               },
                               });
-                        console.log('@add pet page');      
+                        console.log('{"severity":"info","msg":"@add pet page"}');      
                       }
 
                       {
@@ -977,29 +982,29 @@ data:
                                   y: 2,
                               },
                               });
-                        console.log('@veterinarians page');      
+                        console.log('{"severity":"info","msg":"@veterinarians page"}');      
                       }
 
                     }       
                     await delay(wait_time );
                     //Checking cookie, then deleting it
-                    console.log("cookies was")
+                    console.log('{"severity":"info","msg":"cookies was"}')
                     let before = await page.cookies()
                     before.forEach(cookie => {
-                        console.log("Before: ",cookie.name)
-                    })
+                        console.log('{"severity":"info","msg":":"Before: "' + cookie.name + '"}');
+                    });
                     await page.deleteCookie({
                         name : "_splunk_rum_sid",
                     })
                     let after = await page.cookies()
                     after.forEach(cookie => {
-                        console.log("After: ",cookie.name)
+                        console.log('{"severity":"info","msg":":"After: "' + cookie.name + '"}');
                     })
                     await browser.close()
                 }
                 process.exit();
           } catch (e) {
-            console.log (e)
+            console.log ('{"severity":"error","msg": "'+ e + '"}');
           } finally {
             await browser.close();
           }
@@ -1012,4 +1017,5 @@ data:
           setTimeout(resolve, time)
       });
     }
+
 ---
