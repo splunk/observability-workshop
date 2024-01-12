@@ -16,9 +16,9 @@ spec:
     spec:
       terminationGracePeriodSeconds: 5
       containers:
+      - name: config-server
         image: quay.io/phagen/spring-petclinic-config-server:0.0.2
         #image: localhost:5000/spring-petclinic-config-server:local
-        name: config-server
         imagePullPolicy: Always
         ports:
         - containerPort: 8888  
