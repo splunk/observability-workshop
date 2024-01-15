@@ -29,7 +29,7 @@ directory_paths=("admin-server" "api-gateway" "config-server" "customers-service
 
 # Loop through each file and overwrite its content
 for dir_path in "${directory_paths[@]}"; do
-    file_path="~/spring-petclinic-microservices/spring-petclinic-$dir_path/src/main/resources/logback-spring.xml"
+    file_path="/home/ubuntu/spring-petclinic-microservices/spring-petclinic-$dir_path/src/main/resources/logback-spring.xml"
     echo "$xml_content" > "$file_path"
     echo "Overwritten $file_path with new XML content."
 done
