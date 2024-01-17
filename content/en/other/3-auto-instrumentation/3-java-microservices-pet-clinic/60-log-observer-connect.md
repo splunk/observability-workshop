@@ -67,6 +67,8 @@ We can verify if the replacement has been successful by examining the spring-log
 cat /home/ubuntu/spring-petclinic-microservices/spring-petclinic-customers-service/src/main/resources/logback-spring.xml
 ```
 
+## 3. Recompile and store the services locally
+
 Next, run the script that will use the `maven` command to compile/build/package the PetClinic microservices:
 {{< tabs >}}
 {{% tab title="Running maven" %}}
@@ -104,18 +106,76 @@ Successfully tagged quay.io/phagen/spring-petclinic-api-gateway:latest
 {{% /tab %}}
 {{< /tabs >}}
 
-docker push localhost:5000/spring-petclinic-api-gateway:local
-docker push localhost:5000/spring-petclinic-discovery-server:local
-docker push localhost:5000/spring-petclinic-config-server:local
-docker push localhost:5000/spring-petclinic-visits-service:local
-docker push localhost:5000/spring-petclinic-vets-service:local
-docker push localhost:5000/spring-petclinic-customers-service:local
+Next, run the script that will push the newly build containers into our local repository:
 
+{{< tabs >}}
+{{% tab title="pushing Containers" %}}
 
+```bash
+. ~/workshop/petclinic/scripts/push_docker.sh 
+```
+
+{{% /tab %}}
+{{% tab title="Docker Push Output (partial)" %}}
+
+```text
+The push refers to repository [localhost:5000/spring-petclinic-vets-service]
+0391386bcb2a: Preparing 
+bbb67f51a186: Preparing 
+105351d0ada3: Preparing 
+49cfeae6cb9f: Preparing 
+b4da5101fcde: Preparing 
+49cfeae6cb9f: Pushed 
+e742c14be110: Mounted from spring-petclinic-visits-service 
+540aa741fede: Mounted from spring-petclinic-visits-service 
+a1dfe59d4939: Mounted from spring-petclinic-visits-service 
+1e99e92c46bf: Mounted from spring-petclinic-visits-service 
+f5aa38537736: Mounted from spring-petclinic-visits-service 
+d2210512edb4: Mounted from spring-petclinic-visits-service 
+8e87ff28f1b5: Mounted from spring-petclinic-visits-service 
+local: digest: sha256:42337b2a4ff7d0ac9b7c2cf3c70aa20b7b52d092f1e05d351e031dd7fad956fc size: 3040
+The push refers to repository [localhost:5000/spring-petclinic-customers-service]
+15d54d9adca8: Preparing 
+886f6def5b35: Preparing 
+1575ae90e858: Preparing 
+ccc884d92d18: Preparing 
+b4da5101fcde: Preparing 
+ccc884d92d18: Pushed 
+e742c14be110: Mounted from spring-petclinic-vets-service 
+540aa741fede: Mounted from spring-petclinic-vets-service 
+a1dfe59d4939: Mounted from spring-petclinic-vets-service 
+1e99e92c46bf: Mounted from spring-petclinic-vets-service 
+f5aa38537736: Mounted from spring-petclinic-vets-service 
+d2210512edb4: Mounted from spring-petclinic-vets-service 
+8e87ff28f1b5: Mounted from spring-petclinic-vets-service 
+local: digest: sha256:3601c6e7f58224001946058fb0400483fbb8f1b0ea8a6dbaf403c62b4c1908be size: 3042
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+The containers should now be stored in teh local repository, lets confirm by checking the catalog,
+
+```bash
+ curl -X GET http://localhost:5000/v2/_catalog 
+```
+
+The result should be :
+
+```text
 {"repositories":["spring-petclinic-admin-server","spring-petclinic-api-gateway","spring-petclinic-config-server","spring-petclinic-customers-service","spring-petclinic-discovery-server","spring-petclinic-vets-service","spring-petclinic-visits-service"]}
+```
 
-docker images
-## 4. View Logs
+## 5. Deploy new services to kubernetes
+
+To see the changes in effect, we need to redeploy the services, by applying the local version of the deployment yaml.
+
+```bash
+kubectl apply -f ~/workshop/petclinic/petclinic-local.yaml
+```
+this will cause the containers to be replaced with the local version, you can verify this by chcking the continers
+
+## 6. View Logs
 
 From the left-hand menu click on **Log Observer** and ensure **Index** is set to **splunk4rookies-workshop**.
 
@@ -123,7 +183,7 @@ Next, click **Add Filter** search for the field `service_name` select the value 
 
 ![Log Observer](../images/log-observer.png)
 
-## 4. Summary
+## 7. Summary
 
 This is the end of the workshop and we have certainly covered a lot of ground. At this point, you should have metrics, traces (APM & RUM), logs, database query performance and code profiling being reported into Splunk Observability Cloud.
 
