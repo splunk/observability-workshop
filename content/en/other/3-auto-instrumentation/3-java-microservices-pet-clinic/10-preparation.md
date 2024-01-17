@@ -182,3 +182,6 @@ You can validate if the application is running by visiting `http://<IP_ADDRESS>:
 
 ![Pet shop](../images/petclinic.png)
 Make sure the application is working correctly by visiting the **All Owners** and **Veterinarians** tabs, you should get a list of names in each case. If your familiar with the Standard version, you will notice a slightly longer response time due to the architecture used.
+
+We now have our application running in Kubernetes, without an OpenTelemetry Collector deployed, so there is no Observability data in **Splunk Observability Cloud** yet.
+Lets go and fix that.

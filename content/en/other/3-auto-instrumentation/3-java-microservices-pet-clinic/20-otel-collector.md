@@ -11,7 +11,7 @@ The Splunk OpenTelemetry Collector is the core component of instrumenting infras
 * Infrastructure metrics (disk, CPU, memory, etc)
 * Application Performance Monitoring (APM) traces
 * Profiling data
-* Host and application logs
+* Host and Application logs
 
 {{% notice title="Delete any existing OpenTelemetry Collectors" style="warning" %}}
 If you have completed a Splunk Observability workshop using this EC2 instance, please ensure you have deleted the collector running in Kubernetes before continuing. This can be done by running the following command:
@@ -47,7 +47,7 @@ For this workshop, **all** of the above are required. If any are missing, please
 
 ## 3. Install the OpenTelemetry Collector using Helm
 
-Install the OpenTelemetry Collector in Operator mode using the Splunk Helm chart. First, add the Splunk Helm chart repository to Helm and update:
+We are going to install the OpenTelemetry Collector in Operator mode using the Splunk Kubernetes Helm Chart for the Opentelemetry collector. First, we need to add the Splunk Helm chart repository to Helm and update so it knows where to find it:
 
 {{< tabs >}}
 {{% tab title="Helm Repo Add" %}}
@@ -73,7 +73,7 @@ Update Complete. ⎈Happy Helming!⎈
 {{% /tab %}}
 {{< /tabs >}}
 
-Splunk Observability Cloud offers a wizard in the **Splunk Observability Suite** UI to walk you through the setup of the Collector on both your infrastructure and applications but in interest of time, we will use one created earlier and are going to install the OpenTelemetry Collector with the OpenTelemetry Collector Helm chart with some additional options:
+Splunk Observability Cloud offers wizards in the **Splunk Observability Suite** UI to walk you through the setup of the Collector on both your infrastructure including Kubernetes, but in interest of time, we will use a setup created earlier and are going to install the OpenTelemetry Collector with the OpenTelemetry Collector Helm chart with some additional options:
 
 * --set="operator.enabled=true" - this will install the Opentelemetry operator, that will be used to handle auto instrumentation
 * --set="certmanager.enabled=true" - This will install the required certificate manager for the operator.
