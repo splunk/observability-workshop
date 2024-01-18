@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: creditprocessorservice 
+spec:
+  selector:
+    matchLabels:
+      app: creditprocessorservice
+  template:
+    metadata:
+      labels:
+        app: creditprocessorservice
+    spec:
+      tolerations:
+      nodeSelector:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - name: creditprocessorservice
+        image: docker.io/library/credit-check-service:main
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8899
+        env:
+        - name: PORT
+          value: "8899"
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        # If you are seeing this, you have solved 1 of the 3
+        # configurations needed for your service in the creditcheckservice.yaml
+        # manifest file. Can you find the other 2 settings?
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: "http://$(NODE_IP):4317"
+        resources:
+          requests:
+            cpu: 110m
+            memory: 90Mi
+          limits:
+            cpu: 130m
+            memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: creditprocessorservice
+spec:
+  type: ClusterIP
+  selector:
+    app: creditprocessorservice
+  ports:
+  - protocol: TCP
+    port: 8899
+    targetPort: 8899
