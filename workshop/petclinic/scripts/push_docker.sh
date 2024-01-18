@@ -1,4 +1,5 @@
 #!/bin/bash
+docker push localhost:5000/spring-petclinic-admin-server:local
 docker push localhost:5000/spring-petclinic-api-gateway:local
 docker push localhost:5000/spring-petclinic-discovery-server:local
 docker push localhost:5000/spring-petclinic-config-server:local

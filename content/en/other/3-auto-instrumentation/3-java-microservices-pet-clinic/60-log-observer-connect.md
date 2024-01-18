@@ -192,3 +192,19 @@ This is the end of the workshop and we have certainly covered a lot of ground. A
 
 
 docker system prune -a --volumes
+
+
+  81  . ~/workshop/petclinic/scripts/add_otel.sh
+   82  . ~/workshop/petclinic/scripts/update_logback.sh
+   83  ./mvnw clean install -DskipTests -P buildDocker
+   84  . ~/workshop/petclinic/scripts/push_docker.sh
+   85  . ~/workshop/petclinic/scripts/set_local.sh
+   86  kubectl apply -f ~/workshop/petclinic/petclinic-local.yaml
+   87  k9s
+   88  kubectl delete -f ~/workshop/petclinic/petclinic-local.yaml
+   89  kubectl apply -f ~/workshop/petclinic/petclinic-local.yaml
+   90  k9s
+   91  kubectl delete -f ~/workshop/petclinic/petclinic-local.yaml
+   92  kubectl apply -f ~/workshop/petclinic/petclinic-local.yaml
+   93  k9s
+   94  kubectl get deployments -l app.kubernetes.io/part-of=spring-petclinic -o name | xargs -I % kubectl patch % -p "{\"spec\": {\"template\":{\"metadata\":{\"annotations\":{\"instrumentation.opentelemetry.io/inject-java\":\"true\"}}}}}"
