@@ -1,5 +1,5 @@
 Flask==2.0.1
-Werkzeug==2.2.2
+Werkzeug==2.3.8
 requests
 waitress
 splunk-opentelemetry[all]
