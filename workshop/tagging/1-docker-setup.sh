@@ -29,8 +29,7 @@ echo \
 
 sudo apt-get update
 VERSION_STRING=5:23.0.0-1~ubuntu.22.04~jammy
-sudo apt-get install docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING containerd.io docker-buildx-plugin docker-compose-plugin
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt-get install -y docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING containerd.io docker-buildx-plugin docker-compose-plugin
 
 sudo groupadd docker
 sudo usermod -aG docker $USER

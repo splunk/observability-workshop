@@ -4,7 +4,7 @@
 # (1) Install helm
 # (2) Install the otel collector (for your org)
 
-# required for helm to work correctly 
+# required for helm to work correctly
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 
 # (1) Install helm
