@@ -15,6 +15,7 @@ curl -sfL https://get.k3s.io | sh -
 # NOTE: This is not generally recommended; doing this for
 #       simplicity of the environment
 sudo chmod +r /etc/rancher/k3s/k3s.yaml
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 
 # (3) Install docker
 sudo apt-get update

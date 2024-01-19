@@ -1,21 +1,29 @@
 #!/bin/bash
 
 # This setup script will:
-# (1) Install the otel collector (for your org)
+# (1) Install helm
+# (2) Install the otel collector (for your org)
+
+# (1) Install helm
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
+helm repo update
 
 # General variables
 SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "$SCRIPT")
 
 # Prompts
-echo 'Enter environment (i.e. qep):'
+echo 'Enter environment (i.e. tagging-workshop-yourname):'
 read ENVIRONMENT
 echo 'Enter realm (i.e. us1):'
 read REALM
 echo 'Enter ingest token:'
 read INGEST_TOKEN
 
-# (1) Install the otel collector (for your org)
+# (2) Install the otel collector (for your org)
 OTEL_VALUES_PATH="$SCRIPTPATH/otel/values.yaml"
 MY_OTEL_VALUES_PATH="$SCRIPTPATH/otel/values-mine.yaml"
 # Remove if previous exists
