@@ -18,4 +18,4 @@ COPY main.py .
 RUN splunk-py-trace-bootstrap
 
 # Set the entrypoint command to run the application
-CMD ["python3", "main.py"]
+CMD ["splunk-py-trace", python3", "main.py"]

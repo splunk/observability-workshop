@@ -16,7 +16,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: creditprocessorservice
-        image: docker.io/library/credit-processor-service:main
+        image: docker.io/library/credit-processor-service:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8899
@@ -27,11 +27,10 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: status.hostIP
-        # If you are seeing this, you have solved 1 of the 3
-        # configurations needed for your service in the creditcheckservice.yaml
-        # manifest file. Can you find the other 2 settings?
         - name: OTEL_EXPORTER_OTLP_ENDPOINT
           value: "http://$(NODE_IP):4317"
+        - name: OTEL_SERVICE_NAME
+          value: "creditprocessorservice"
         resources:
           requests:
             cpu: 110m
