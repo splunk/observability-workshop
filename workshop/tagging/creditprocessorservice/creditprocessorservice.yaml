@@ -31,6 +31,8 @@ spec:
           value: "http://$(NODE_IP):4317"
         - name: OTEL_SERVICE_NAME
           value: "creditprocessorservice"
+        - name: OTEL_PROPAGATORS
+          value: "tracecontext,baggage"
         resources:
           requests:
             cpu: 110m

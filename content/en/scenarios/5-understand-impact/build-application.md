@@ -8,21 +8,60 @@ For this workshop, we'll be using a microservices-based application. This applic
 
 ## Pre-requisites
 You will start with an EC2 environment that already has some useful components, but we will perform some [initial steps](#initial-steps) in order to get to the following state:
-* Install Kubernetes (k3s)
+* Install Kubernetes (k3s) and Docker
 * Deploy the **Splunk distribution of the OpenTelemetry Collector**
 * Build and deploy `creditcheckservice` and `creditprocessorservice`
 * Deploy a load generator to send traffic to the services
 
 ## Initial Steps
-To begin the exercise you will need to:
-* Get an "Observability Portfolio Demo" environment
-* Clone this repo
-* Run the setup scripts in order
+To begin the exercise you will need a Splunk Observablity Cloud environment that you can send data to. For this environment you'll need: 
+
+* The realm (i.e. us1)
+* An access token 
+
+The initial setup can be completed by executing the following steps on the command line of your EC2 instance, which runs Ubuntu 22.04: 
 ```
-cd workshop/tagging
+git clone https://github.com/splunk/observability-workshop.git
+
+cd observability-workshop/workshop/tagging
+
 ./1-docker-setup.sh
+
 # Exit and ssh back to this instance
+
 ./2-deploy-otel-collector.sh
 ./3-deploy-creditcheckservice.sh
 ./4-deploy-creditprocessorservice.sh
+./7-deploy-load-generator.sh
 ```
+
+## View your application in Splunk Observability Cloud 
+Navigate to APM, then use the Environment dropdown to select your environment (i.e. tagging-workshop-name). 
+
+If everything was deployed correctly, you should see creditprocessorservice and creditcheckservice displayed in the list of services: 
+
+![APM Overview](images/apm_overview.png)
+
+Click on Explore on the right-hand side to view the service map.  We can see that the creditcheckservice makes calls to the creditprocessorservice, with an average response time of around 3.5 seconds: 
+
+![Service Map](images/service_map.png)
+
+Next, click on Traces on the right-hand side to see the traces captured for this application. You'll see that some traces run relatively fast (i.e. just a few milliseconds), whereas others take a few seconds.  
+
+![Traces](images/traces.png)
+
+You'll also notice that some traces have errors: 
+
+![Traces](images/traces_with_errors.png)
+
+Sort the traces by duration then click on one of the longer running traces. In this example, the trace took five seconds, and we can see that most of the time was spent calling the /runCreditCheck operation, which is part of the creditprocessorservice. 
+
+![Long Running Trace](images/long_running_trace.png)
+
+Currently, we don't have enough details in our traces to understand why some requests finish in a few milliseconds, and others take several seconds. To provide the best possible customer experience, this will be critical for us to understand. 
+
+We also don't have enough information to understand why some requests result in errors, and others don't. For example, if we look at one of the error traces, we can see that the error occurs when the creditprocessorservice attempts to call another service named "otherservice".  But why do some requests results in a call to otherservice, and others don't? 
+
+![Long Running Trace](images/error_trace.png)
+
+We'll explore these questions and more in the workshop. 
