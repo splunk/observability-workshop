@@ -17,7 +17,7 @@ spec:
       containers:
       - name: creditprocessorservice
         image: docker.io/library/credit-processor-service:latest
-        imagePullPolicy: Always
+        imagePullPolicy: Never
         ports:
         - containerPort: 8899
         env:
