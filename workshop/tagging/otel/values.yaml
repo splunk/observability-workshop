@@ -1,0 +1,18 @@
+agent:
+  config:
+    processors:
+      resource/envname:
+        attributes:
+        - action: insert
+          key: deployment.environment
+          value: {{environment}}
+    service:
+      pipelines:
+        traces:
+          processors:
+          - memory_limiter
+          - k8sattributes
+          - batch
+          - resourcedetection
+          - resource
+          - resource/envname

@@ -22,6 +22,7 @@ To begin the exercise you will need to:
 cd workshop/tagging
 ./1-docker-setup.sh
 # Exit and ssh back to this instance
-./2-deploy-creditcheckservice.sh
-./3-deploy-creditprocessorservice.sh
+./2-deploy-otel-collector.sh
+./3-deploy-creditcheckservice.sh
+./4-deploy-creditprocessorservice.sh
 ```
