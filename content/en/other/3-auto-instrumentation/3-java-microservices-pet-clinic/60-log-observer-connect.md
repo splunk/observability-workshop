@@ -20,20 +20,23 @@ Spring boot will allow you to set a global template, but for ease of use,  we wi
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
     <!-- Required for Loglevel managment into the Spring Petclinic Admin Server-->
     <jmxConfigurator/>
-    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>
-                %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
-            </pattern>
-        </encoder>
+          <pattern>
+            %d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg trace_id=%X{trace_id} span_id=%X{span_id} trace_flags=%X{trace_flags} %n service.name=%property{otel.resource.service.name}, deployment.environment=%property{otel.resource.deployment.environment}: %m%n
+          </pattern>
+        </encoder> 
     </appender>
-    <appender name="OpenTelemetry"
-        class="io.opentelemetry.instrumentation.logback.appender.v1_0.OpenTelemetryAppender">
+
+    <!-- Just wrap your logging appender, for example ConsoleAppender, with OpenTelemetryAppender -->
+    <appender name="OTEL" class="io.opentelemetry.instrumentation.logback.mdc.v1_0.OpenTelemetryAppender">
+      <appender-ref ref="CONSOLE"/>
     </appender>
-    <root level="INFO">
-        <appender-ref ref="console"/>
-        <appender-ref ref="OpenTelemetry"/>
-    </root>
+
+     <!-- Use the wrapped "OTEL" appender instead of the original "CONSOLE" one -->
+     <root level="INFO">
+       <appender-ref ref="OTEL"/>
+     </root>
 </configuration>
 ```
 
@@ -154,7 +157,7 @@ local: digest: sha256:3601c6e7f58224001946058fb0400483fbb8f1b0ea8a6dbaf403c62b4c
 {{% /tab %}}
 {{< /tabs >}}
 
-The containers should now be stored in teh local repository, lets confirm by checking the catalog,
+The containers should now be stored in the local repository, lets confirm by checking the catalog,
 
 ```bash
  curl -X GET http://localhost:5000/v2/_catalog 

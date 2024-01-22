@@ -2,6 +2,7 @@
 title: Real User Monitoring
 linkTitle: 70. Real User Monitoring
 weight: 70
+hidden: true
 ---
 
 ## 1. Enable RUM

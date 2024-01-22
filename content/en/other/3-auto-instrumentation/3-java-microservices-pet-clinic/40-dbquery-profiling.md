@@ -2,6 +2,7 @@
 title: Database Query Performance & Always-on Profiling
 linkTitle: 40. Db-query & Profiling
 weight: 40
+hidden: true
 ---
 
 ## WIP

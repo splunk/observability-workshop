@@ -1,6 +1,6 @@
 ---
 title: Installing the OpenTelemetry Collector
-linkTitle: 2. OpenTelemetry Collector
+linkTitle: 20. OpenTelemetry Collector
 weight: 20
 ---
 

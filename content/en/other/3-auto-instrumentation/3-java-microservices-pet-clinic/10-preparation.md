@@ -1,6 +1,6 @@
 ---
 title: Preparation of the Pet Clinic application. 
-linkTitle: 1. Preparation
+linkTitle: 10. Preparation
 weight: 10
 ---
 
@@ -45,7 +45,15 @@ configmap/scriptfile created
 {{% /tab %}}
 {{< /tabs >}}
 
-and verify the deployment:
+{{% notice title="In case of error Unable to read /etc/rancher/k3s/k3s.yaml" style="warning" %}}
+In rare occasions, you may encounter the above error at this point, this is due to incorrect file permission on the Kubernetes config file. This can easily be resolved by running the following command:
+
+``` bash
+sudo chmod 777 /etc/rancher/k3s/k3s.yaml
+```
+
+{{% /notice %}}
+At this point we can verify the deployment by checking if the Pods are running:
 {{< tabs >}}
 {{% tab title="kubectl get pods" %}}
 
@@ -161,7 +169,8 @@ a7d52001836504cf1724e9817ad6167a4458a9e73d33a82f11f33681fe2d6c3e
 {{% /tab %}}
 {{< /tabs >}}
 
-We can see if  the repository is up and running by checking the inventory, it should return an empty list **{"repositories":[]}**
+We can see if the repository is up and running by checking the inventory with the below command, it should return an empty list 
+**{"repositories":[]}**
 
 ```bash
  curl -X GET http://localhost:5000/v2/_catalog 
