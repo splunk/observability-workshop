@@ -44,10 +44,9 @@ Next, we want to get the current span, and add an attribute (aka tag) to it:
 
 ````
 def credit_check():
-    customerNum = request.args.get('customernum')
-   
     current_span = trace.get_current_span()
-    current_span.set_attribute(“customer.num”, customerNum)
+    customerNum = request.args.get('customernum')
+    current_span.set_attribute("customer.num", customerNum)
 ...
 ````
 
@@ -55,13 +54,13 @@ That was pretty easy, right?  Let's capture some more, with the final result loo
 
 ````
 def credit_check():
-    customerNum = request.args.get('customernum')
-
     current_span = trace.get_current_span()
+    customerNum = request.args.get('customernum')
     current_span.set_attribute("customer.num", customerNum)
-    
+
     # Get Credit Score
     creditScoreReq = requests.get("http://creditprocessorservice:8899/getScore?customernum=" + customerNum)
+    creditScoreReq.raise_for_status()
     creditScore = int(creditScoreReq.text)
     current_span.set_attribute("credit.score", creditScore)
 
@@ -70,6 +69,7 @@ def credit_check():
 
     # Run Credit Check
     creditCheckReq = requests.get("http://creditprocessorservice:8899/runCreditCheck?customernum=" + str(customerNum) + "&score=" + str(creditScore))
+    creditCheckReq.raise_for_status()
     checkResult = str(creditCheckReq.text)
     current_span.set_attribute("credit.check.result", checkResult)
 
