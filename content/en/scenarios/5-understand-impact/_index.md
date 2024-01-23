@@ -7,8 +7,7 @@ archetype: chapter
 
 {{% badge icon="clock" style="primary" %}}2 minutes{{% /badge %}} {{% badge style="blue" title="Authors" %}}Derek Mitchell{{% /badge %}}
 
-
-**Splunk Observability Cloud** includes powerful features that dramatically reduce the time required for SREs to isolate issues across services, so they know which team to engage to troubleshoot the issue further.
+**Splunk Observability Cloud** includes powerful features that dramatically reduce the time required for SREs to isolate issues across services, so they know which team to engage to troubleshoot the issue further, and can provide context to help the team get a headstart on troubleshooting.
 
 Unlocking these features requires tags to be included with your application traces.  But how do you know which tags are the most valuable and how do you capture them?
 

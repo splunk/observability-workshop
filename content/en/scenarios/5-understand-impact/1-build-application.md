@@ -4,7 +4,7 @@ linkTitle: 5.1 Build the Sample Application
 weight: 1
 ---
 
-For this workshop, we'll be using a microservices-based application. This application is for an online retailer and normally includes more than a dozen services.  However, to keep the workshop simple, we'll be focusing on two services only:  the credit check service and the credit processor service. 
+For this workshop, we'll be using a microservices-based application. This application is for an online retailer and normally includes more than a dozen services.  However, to keep the workshop simple, we'll be focusing on two services used by the retailer as part of their payment processing workflow:  the credit check service and the credit processor service. 
 
 ## Pre-requisites
 You will start with an EC2 environment that already has some useful components, but we will perform some [initial steps](#initial-steps) in order to get to the following state:
@@ -36,6 +36,9 @@ cd observability-workshop/workshop/tagging
 ```
 
 ## View your application in Splunk Observability Cloud 
+
+Now that the setup is complete, let's confirm that it's sending data to Splunk Observability Cloud.
+
 Navigate to APM, then use the Environment dropdown to select your environment (i.e. tagging-workshop-name). 
 
 If everything was deployed correctly, you should see creditprocessorservice and creditcheckservice displayed in the list of services: 
