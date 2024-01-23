@@ -14,7 +14,7 @@ Ensure the **creditcheckservice** service is selected from the **Service** drop-
 
 With **Tag Spotlight**, we can see 100% of credit score requests that result in a score of "impossible" have an error, yet requests for all other credit score types have no errors at all! 
 
-**![Tag Spotlight with Errors](images/tag_spotlight_errors.png)**
+**![Tag Spotlight with Errors](../images/tag_spotlight_errors.png)**
 
 This illustrates the power of Tag Spotlight! Finding this pattern would be time consuming without it, as we'd have to manually look through hundreds of traces to identify the pattern (and even then, there's no guarantee we'd find it). 
 
@@ -24,7 +24,7 @@ Here, we can see that the requests with a "poor" credit score request are runnin
 
 We can also see that some requests with an "exceptional" credit score request are running slowly, with P99 times of around 5 seconds, though the P50 and P90 response times are relatively quick.
 
-**![Tag Spotlight with Latency](images/tag_spotlight_latency.png)**
+**![Tag Spotlight with Latency](../images/tag_spotlight_latency.png)**
 
 In summary, Tag Spotlight has uncovered several interesting patterns that we need to explore further. 
 

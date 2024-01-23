@@ -10,7 +10,7 @@ Now that we've captured several tags from our application, lets explore some of 
 
 Navigate to **APM**, then select **Traces**.  This takes us to the **Trace Analyzer**, where we can add filters to search for traces of interest. For example, we can filter on traces where the credit score starts with "7": 
 
-![Credit Check Starts with Seven](images/credit_score_starts_with_seven.png)
+![Credit Check Starts with Seven](../images/credit_score_starts_with_seven.png)
 
 If you load one of these traces, you'll see that the credit score indeed starts with seven. 
 
@@ -20,7 +20,7 @@ We can apply similar filters for the customer number, credit score category, and
 
 Let's remove the credit score filter and toggle "Errors only" to on, which results in a list of only those traces where an error occurred: 
 
-![Traces with Errors Only](images/traces_errors_only.png)
+![Traces with Errors Only](../images/traces_errors_only.png)
 
 Click on a few of these traces, and look at the tags we captured. Do you notice any patterns? 
 

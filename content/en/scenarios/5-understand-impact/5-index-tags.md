@@ -11,17 +11,17 @@ To do this, navigate to **Settings** -> **APM MetricSets**.  Then click the **+ 
 
 Let's index the **credit.score.category** tag to start with, by filling in the following details: 
 
-![Create Troubleshooting MetricSet](images/create_troubleshooting_metric_set.png)
+![Create Troubleshooting MetricSet](../images/create_troubleshooting_metric_set.png)
 
 Click **Start Analysis** to proceed. 
 
 The tag will appear in the list of **Pending MetricSets** while analysis is performed.  
 
-![Pending MetricSets](images/pending_metric_set.png)
+![Pending MetricSets](../images/pending_metric_set.png)
 
 Once analysis is complete, click on the checkbox in the **Actions** column.
 
-![MetricSet Configuraiton Applied](images/metricset_config_applied.png)
+![MetricSet Configuraiton Applied](../images/metricset_config_applied.png)
 
 ## How to choose tags for indexing
 

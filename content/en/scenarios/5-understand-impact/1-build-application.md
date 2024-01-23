@@ -43,28 +43,28 @@ Navigate to APM, then use the Environment dropdown to select your environment (i
 
 If everything was deployed correctly, you should see creditprocessorservice and creditcheckservice displayed in the list of services: 
 
-![APM Overview](images/apm_overview.png)
+![APM Overview](../images/apm_overview.png)
 
 Click on Explore on the right-hand side to view the service map.  We can see that the creditcheckservice makes calls to the creditprocessorservice, with an average response time of around 3.5 seconds: 
 
-![Service Map](images/service_map.png)
+![Service Map](../images/service_map.png)
 
 Next, click on Traces on the right-hand side to see the traces captured for this application. You'll see that some traces run relatively fast (i.e. just a few milliseconds), whereas others take a few seconds.  
 
-![Traces](images/traces.png)
+![Traces](../images/traces.png)
 
 You'll also notice that some traces have errors: 
 
-![Traces](images/traces_with_errors.png)
+![Traces](../images/traces_with_errors.png)
 
 Sort the traces by duration then click on one of the longer running traces. In this example, the trace took five seconds, and we can see that most of the time was spent calling the /runCreditCheck operation, which is part of the creditprocessorservice. 
 
-![Long Running Trace](images/long_running_trace.png)
+![Long Running Trace](../images/long_running_trace.png)
 
 Currently, we don't have enough details in our traces to understand why some requests finish in a few milliseconds, and others take several seconds. To provide the best possible customer experience, this will be critical for us to understand. 
 
 We also don't have enough information to understand why some requests result in errors, and others don't. For example, if we look at one of the error traces, we can see that the error occurs when the creditprocessorservice attempts to call another service named "otherservice".  But why do some requests results in a call to otherservice, and others don't? 
 
-![Long Running Trace](images/error_trace.png)
+![Long Running Trace](../images/error_trace.png)
 
 We'll explore these questions and more in the workshop. 
