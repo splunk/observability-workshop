@@ -1,7 +1,7 @@
 ---
 title: What are Tags?
-linkTitle: 5.1 What are Tags? 
-weight: 1
+linkTitle: 5.2 What are Tags? 
+weight: 2
 ---
 
 ## What are tags? 

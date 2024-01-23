@@ -1,7 +1,7 @@
 ---
 title: Capture Tags with OpenTelemetry
-linkTitle: 5.2 Capture Tags with OpenTelemetry
-weight: 2
+linkTitle: 5.3 Capture Tags with OpenTelemetry
+weight: 3
 ---
 
 Let's add some tags to our traces, so we can find out why some customers receive a poor experience from our application. 

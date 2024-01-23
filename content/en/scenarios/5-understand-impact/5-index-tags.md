@@ -1,7 +1,7 @@
 ---
 title: Index Tags
-linkTitle: 5.3 Index Tags
-weight: 3
+linkTitle: 5.5 Index Tags
+weight: 5
 ---
 
 ## Index Tags

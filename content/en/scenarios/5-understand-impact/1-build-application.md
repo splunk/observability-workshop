@@ -1,7 +1,7 @@
 ---
 title: Build the Sample Application
-linkTitle: 5.0 Build the Sample Application
-weight: 0
+linkTitle: 5.1 Build the Sample Application
+weight: 1
 ---
 
 For this workshop, we'll be using a microservices-based application. This application is for an online retailer and normally includes more than a dozen services.  However, to keep the workshop simple, we'll be focusing on two services only:  the credit check service and the credit processor service. 
