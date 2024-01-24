@@ -45,14 +45,14 @@ configmap/scriptfile created
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% notice title="In case of error Unable to read /etc/rancher/k3s/k3s.yaml" style="warning" %}}
+<!-- {{% notice title="In case of error Unable to read /etc/rancher/k3s/k3s.yaml" style="warning" %}}
 In rare occasions, you may encounter the above error at this point, this is due to incorrect file permission on the Kubernetes config file. This can easily be resolved by running the following command:
 
 ``` bash
 sudo chmod 777 /etc/rancher/k3s/k3s.yaml
 ```
 
-{{% /notice %}}
+{{% /notice %}} -->
 At this point we can verify the deployment by checking if the Pods are running:
 {{< tabs >}}
 {{% tab title="kubectl get pods" %}}

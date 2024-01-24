@@ -6,19 +6,35 @@ weight: 60
 
 ## 1. Introduction
 
-For the Splunk Log Observer component, we will configure the Spring PetClinic application to use an Otel Based format to write logs, This will allow the (Auto)-instrumentation to add Otel relevant information to the logs that can be used to correlate Metric, traces and logs. 
+Until this point, we have not touched or changed our code, yet we did receive Trace & Profiling/DB Query performance information.
+If we want to get more out of our Java application, we can introduce a small change to our application log setup.
+
+This change will configure the Spring PetClinic application to use an Otel Based format to write logs, This will allow the (Auto)-instrumentation to add Otel relevant information into the logs.
+
+The Splunk Log Observer component is used to view the logs and with this information can automatically relate logs information with APM Services and Traces. This feature called **Related Content** will also work with Infra structure.
 
 ## 2. Update Logback config for the services
 
-The Spring PetClinic application can be configured to use several different Java logging libraries. In this scenario, the application is using `logback`.  to make sure we get the otel information in the logs we just need to update a file named `logback.xml` for each of the services in the petclinc microservices folders.
+The Spring PetClinic application can be configured to use several different Java logging libraries. In this scenario, the application is using `logback`.  To make sure we get the otel information in the logs we need to update a file named `logback.xml` with the log structure, and add an Otel dependency to the `pom.xml` of each of the services in the petclinic microservices folders.
 
-Spring boot will allow you to set a global template, but for ease of use,  we will replace the existing content of the `logback-spring.xml` files of each service with the following XML content using a prepared script:
+First lets set the Log Structure/Format:
+
+Spring boot will allow you to set a global template, but for ease of use, we will replace the existing content of the `logback-spring.xml` files of each service with the following XML content using a prepared script:
+Note the following entries that will be added:  
+
+- trace_id
+- span_id
+- trace_flags
+- service.name
+- deployment.environment
+
+These fields allows the **Splunk Observability Cloud Suite** to display **Related Content**:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
-    <!-- Required for Loglevel managment into the Spring Petclinic Admin Server-->
+    <!-- Required for Loglevel management into the Spring Petclinic Admin Server-->
     <jmxConfigurator/>
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -39,6 +55,8 @@ Spring boot will allow you to set a global template, but for ease of use,  we wi
      </root>
 </configuration>
 ```
+
+So lets run the script that will update our log structure with the format above:
 
 {{< tabs >}}
 {{% tab title="Update Logback files" %}}
@@ -70,9 +88,15 @@ We can verify if the replacement has been successful by examining the spring-log
 cat /home/ubuntu/spring-petclinic-microservices/spring-petclinic-customers-service/src/main/resources/logback-spring.xml
 ```
 
-## 3. Recompile and store the services locally
+## 3. Reconfigure and build the services locally
 
-Next, run the script that will use the `maven` command to compile/build/package the PetClinic microservices:
+Before we can build the new services with the updated log format we need to add the dependency to the `Pom.xml`:
+
+```bash
+. ~/workshop/petclinic/scripts/add_otel.sh
+```
+
+The Services are now ready to be build, so run the script that will use the `maven` command to compile/build/package the PetClinic microservices (Note the -P buildDocker, this will build the new containers):
 {{< tabs >}}
 {{% tab title="Running maven" %}}
 
@@ -109,7 +133,7 @@ Successfully tagged quay.io/phagen/spring-petclinic-api-gateway:latest
 {{% /tab %}}
 {{< /tabs >}}
 
-Next, run the script that will push the newly build containers into our local repository:
+Given that Kubernetes needs to pull these freshly build images from somewhere, we are going to store them in the repository we set up earlier. To do this, run the script that will push the newly build containers into our local repository:
 
 {{< tabs >}}
 {{% tab title="pushing Containers" %}}
@@ -171,12 +195,31 @@ The result should be :
 
 ## 5. Deploy new services to kubernetes
 
-To see the changes in effect, we need to redeploy the services, by applying the local version of the deployment yaml.
+To see the changes in effect, we need to redeploy the services,  First let change the location of the images from the exterenal repo  to the local one by running the following script:
+
+```bash
+. ~/workshop/petclinic/scripts/set_local.sh
+```
+
+The result is a new file on disk called **petclinic-local.yaml**
+Let switch to the local version by applying the local version of the deployment yaml.
 
 ```bash
 kubectl apply -f ~/workshop/petclinic/petclinic-local.yaml
 ```
-this will cause the containers to be replaced with the local version, you can verify this by chcking the continers
+
+This will cause the containers to be replaced with the local version, you can verify this by checking the containers:
+
+```bash
+kubectl describe pods api-gateway |grep Image:
+```
+
+The resulting output should say:
+
+```text
+  Image:         ghcr.io/signalfx/splunk-otel-java/splunk-otel-java:v1.30.0
+  Image:         localhost:5000/spring-petclinic-api-gateway:local
+```
 
 ## 6. View Logs
 
@@ -192,10 +235,7 @@ This is the end of the workshop and we have certainly covered a lot of ground. A
 
 **Congratulations!**
 
-
-
 docker system prune -a --volumes
-
 
   81  . ~/workshop/petclinic/scripts/add_otel.sh
    82  . ~/workshop/petclinic/scripts/update_logback.sh
