@@ -101,7 +101,7 @@ The Services are now ready to be build, so run the script that will use the `mav
 {{% tab title="Running maven" %}}
 
 ```bash
-./mvnw clean install -DskipTests -P buildDocker
+./mvnw clean install -D skipTests -P buildDocker
 ```
 
 {{% /tab %}}
@@ -195,7 +195,7 @@ The result should be :
 
 ## 5. Deploy new services to kubernetes
 
-To see the changes in effect, we need to redeploy the services,  First let change the location of the images from the exterenal repo  to the local one by running the following script:
+To see the changes in effect, we need to redeploy the services,  First let change the location of the images from the external repo  to the local one by running the following script:
 
 ```bash
 . ~/workshop/petclinic/scripts/set_local.sh

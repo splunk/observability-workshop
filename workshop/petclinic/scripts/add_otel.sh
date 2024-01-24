@@ -15,9 +15,15 @@ new_dependencies="
         </dependency> 
         <dependency>
             <groupId>io.opentelemetry.instrumentation</groupId>
-            <artifactId>opentelemetry-logback-mdc-1.0</artifactId>
+            <artifactId>opentelemetry-logback-appender-1.0</artifactId>
             <version>2.0.0-alpha</version>
-        </dependency>"
+        </dependency>
+        <dependency>
+            <groupId>io.opentelemetry.instrumentation</groupId>
+            <artifactId>opentelemetry-logback-mdc-1.0</artifactId>
+             <version>2.0.0-alpha</version>
+        </dependency>
+"
 
 # Loop through the specified directories
 for dir in "${directories[@]}"; do

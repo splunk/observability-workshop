@@ -10,17 +10,16 @@ In the previous chapter, we enabled the OpenTelemetry Collector for Kubernetes o
 It is important to understand that Zero Config Auto instrumentation is designed to get Trace/Span & Profiling data out of your existing application, without requiring  you to change your code or requiring to rebuild.
 {{% /notice %}}
 
-
 For this workshop we will be using the Zero config option of the Opentelemetry Collector in Kubernetes.
 This means that the Collector monitors you pods running in Kubernetes, and if they match certain criteria, they will en able auto instrumentation on the pod.
 
-For Java this is the Kubernetes TAG `instrumentation.opentelemetry.io/inject-java\` set to `true`
+For Java it is looking for the Kubernetes TAG `instrumentation.opentelemetry.io/inject-java\` set to `true`
 
 ## 1. Setting up Java auto instrumentation on the first pod
 
 If you enable Zero configuration for a pod, the Collector will attach an initContainer to your existing pod, and restart the pod to activate it.
 
-To show what happens when you enable Auto instrumentation let first do a for & after of the content of a pod, the `api-gateway` in this case:
+To show what happens when you enable Auto instrumentation, lets do a For & After of the content of a pod, the `api-gateway` in this case:
 
 ```bash
 kubectl describe pods api-gateway |grep Image:
@@ -31,6 +30,8 @@ The resulting output should say:
 ```text
 Image:         quay.io/phagen/spring-petclinic-api-gateway:0.0.2
 ```
+
+This container is pulled from a remote repository `quay.io` and as you will see 
 
 Lets add the Java auto instrumentation TAG to the api-gateway service first with the `kubectl patch deployment` command.
 {{< tabs >}}
