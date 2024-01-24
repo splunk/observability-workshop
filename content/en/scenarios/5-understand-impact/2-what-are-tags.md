@@ -4,6 +4,8 @@ linkTitle: 5.2 What are Tags?
 weight: 2
 ---
 
+{{% badge icon="clock" style="primary" %}}3 minutes{{% /badge %}}
+
 To understand why some requests have errors or slow performance, we'll need to add context to our traces. We'll do this by adding tags. 
 
 ## What are tags? 
@@ -25,7 +27,7 @@ A note about terminology before we proceed. While this workshop is about **tags*
 
 ## What are tags so important? 
 
-Tags are essential for an application to be truly observable. As we saw with our credit score application, some users are having a great experience: fast with no errors. But other users get a slow experience or encounter errors.  
+Tags are essential for an application to be truly observable. As we saw with our credit check service, some users are having a great experience: fast with no errors. But other users get a slow experience or encounter errors.  
 
 Tags add the context to the traces to help us understand why some users get a great experience and others don't.  And powerful features in **Splunk Observability Cloud** utilize tags to help you jump quickly to root cause. 
 

@@ -4,6 +4,10 @@ linkTitle: 5.1 Build the Sample Application
 weight: 1
 ---
 
+{{% badge icon="clock" color="#ed0090" %}}10 minutes{{% /badge %}}
+
+## Introduction
+
 For this workshop, we'll be using a microservices-based application. This application is for an online retailer and normally includes more than a dozen services.  However, to keep the workshop simple, we'll be focusing on two services used by the retailer as part of their payment processing workflow:  the credit check service and the credit processor service. 
 
 ## Pre-requisites
@@ -14,9 +18,9 @@ You will start with an EC2 environment that already has some useful components, 
 * Deploy a load generator to send traffic to the services
 
 ## Initial Steps
-To begin the exercise you will need a Splunk Observablity Cloud environment that you can send data to. For this environment you'll need: 
+To begin the exercise you will need a **Splunk Observablity Cloud** environment that you can send data to. For this environment you'll need: 
 
-* The realm (i.e. us1)
+* The realm (i.e. `us1`)
 * An access token 
 
 The initial setup can be completed by executing the following steps on the command line of your EC2 instance, which runs Ubuntu 22.04: 
@@ -37,15 +41,15 @@ cd observability-workshop/workshop/tagging
 
 ## View your application in Splunk Observability Cloud 
 
-Now that the setup is complete, let's confirm that it's sending data to Splunk Observability Cloud.
+Now that the setup is complete, let's confirm that it's sending data to **Splunk Observability Cloud**.
 
-Navigate to APM, then use the Environment dropdown to select your environment (i.e. tagging-workshop-name). 
+Navigate to APM, then use the Environment dropdown to select your environment (i.e. `tagging-workshop-name`). 
 
-If everything was deployed correctly, you should see creditprocessorservice and creditcheckservice displayed in the list of services: 
+If everything was deployed correctly, you should see `creditprocessorservice` and `creditcheckservice` displayed in the list of services: 
 
 ![APM Overview](../images/apm_overview.png)
 
-Click on Explore on the right-hand side to view the service map.  We can see that the creditcheckservice makes calls to the creditprocessorservice, with an average response time of around 3.5 seconds: 
+Click on Explore on the right-hand side to view the service map.  We can see that the `creditcheckservice` makes calls to the `creditprocessorservice`, with an average response time of around 3.5 seconds: 
 
 ![Service Map](../images/service_map.png)
 
@@ -57,13 +61,13 @@ You'll also notice that some traces have errors:
 
 ![Traces](../images/traces_with_errors.png)
 
-Sort the traces by duration then click on one of the longer running traces. In this example, the trace took five seconds, and we can see that most of the time was spent calling the /runCreditCheck operation, which is part of the creditprocessorservice. 
+Sort the traces by duration then click on one of the longer running traces. In this example, the trace took five seconds, and we can see that most of the time was spent calling the `/runCreditCheck` operation, which is part of the `creditprocessorservice`. 
 
 ![Long Running Trace](../images/long_running_trace.png)
 
 Currently, we don't have enough details in our traces to understand why some requests finish in a few milliseconds, and others take several seconds. To provide the best possible customer experience, this will be critical for us to understand. 
 
-We also don't have enough information to understand why some requests result in errors, and others don't. For example, if we look at one of the error traces, we can see that the error occurs when the creditprocessorservice attempts to call another service named "otherservice".  But why do some requests results in a call to otherservice, and others don't? 
+We also don't have enough information to understand why some requests result in errors, and others don't. For example, if we look at one of the error traces, we can see that the error occurs when the `creditprocessorservice` attempts to call another service named `otherservice`.  But why do some requests results in a call to `otherservice`, and others don't? 
 
 ![Long Running Trace](../images/error_trace.png)
 
