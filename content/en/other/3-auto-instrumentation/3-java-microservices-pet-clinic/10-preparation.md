@@ -4,9 +4,32 @@ linkTitle: 10. Preparation
 weight: 10
 ---
 
-## 1. Deploying the prebuilt containers into Kubernetes
+## 1. Validate the settings for your workshop
 
-The first thing we need to set up is ... well, an application. The first deployment of our application will be using prebuilt containers to give us the base scenario: a Java microservices-based application running in Kubernetes.
+To ensure your instance is configured correctly, we need to confirm that the required environment variables for this workshop are set correctly. In your terminal run the following command:
+
+``` bash
+. ~/workshop/petclinic/scripts/check_env.sh
+```
+
+In the output check the following environment variables are present and have values set:
+
+```text
+ACCESS_TOKEN
+REALM 
+RUM_TOKEN 
+HEC_TOKEN
+HEC_URL
+INSTANCE
+```
+
+Please make a note of the `INSTANCE` environment variable value as this is the reference to you workshop instance and we will need it to filter the data in the **Splunk Observability Suite** UI.
+
+For this workshop, **all** of the above are required. If any are missing, please contact your instructor.
+
+## 2. Deploying the prebuilt containers into Kubernetes
+
+The second thing we need to do, well ..., is to set up our application. The first deployment of our application will be using prebuilt containers to give us the base scenario: a regular Java microservices-based application running in Kubernetes.
 
 So let's deploy our application:
 {{< tabs >}}
@@ -46,11 +69,7 @@ configmap/scriptfile created
 {{< /tabs >}}
 
 <!-- {{% notice title="In case of error Unable to read /etc/rancher/k3s/k3s.yaml" style="warning" %}}
-In rare occasions, you may encounter the above error at this point, this is due to incorrect file permission on the Kubernetes config file. This can easily be resolved by running the following command:
-
-``` bash
-sudo chmod 777 /etc/rancher/k3s/k3s.yaml
-```
+In rare occasions, you may encounter the above error at this point.  please lpg out and back in, and verify the above env variables are all set correctly. If not please, please contact your instructor.
 
 {{% /notice %}} -->
 At this point we can verify the deployment by checking if the Pods are running:
@@ -101,7 +120,7 @@ Change into the `spring-petclinic` directory:
 cd ~/spring-petclinic-microservices
 ```
 
-Next, run the script that will use the `maven` command to compile/build the PetClinic microservices:
+Next, lets test the download and run the script that will use the `maven` command to compile/build the PetClinic microservices:
 {{< tabs >}}
 {{% tab title="Running maven" %}}
 
@@ -141,7 +160,7 @@ This will take a few minutes the first time you run, `maven` will download a lot
 
 ## 3. Set up a local Docker Repository
 
-Once we have our Auto instrumentation up and running, we are going to use show some  of the additional instrumentation features of Opentelemetry Java. This will be the first time we will touch the source code and add some annotations to it to get even more valuable data from our Java application. Kubernetes will need to pull these new images from somewhere, so let's setup a local repository, so Kubernetes can pull these local images.
+Once we have our Auto instrumentation up and running with the existing containers, we are going to use show some  of the additional instrumentation features of Opentelemetry Java. That will be the first time we will touch the source code and add some annotations to it to get even more valuable data from our Java application. Kubernetes will need to pull these new images from somewhere, so let's setup a local repository, so Kubernetes can pull those local images.
 
 {{< tabs >}}
 {{% tab title="Install Docker Repository" %}}

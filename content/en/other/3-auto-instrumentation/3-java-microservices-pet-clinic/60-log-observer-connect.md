@@ -203,7 +203,12 @@ To see the changes in effect, we need to redeploy the services,  First let chang
 
 The result is a new file on disk called **petclinic-local.yaml**
 Let switch to the local version by applying the local version of the deployment yaml.
+ First delete the old deplyment with 
 
+```bash
+kubectl delete -f ~/workshop/petclinic/petclinic-local.yaml
+```
+followed by 
 ```bash
 kubectl apply -f ~/workshop/petclinic/petclinic-local.yaml
 ```
@@ -214,7 +219,7 @@ This will cause the containers to be replaced with the local version, you can ve
 kubectl describe pods api-gateway |grep Image:
 ```
 
-The resulting output should say:
+The resulting output should say ( again if you see double, its the old container being terminated, give it a few seconds):
 
 ```text
   Image:         ghcr.io/signalfx/splunk-otel-java/splunk-otel-java:v1.30.0
@@ -222,6 +227,30 @@ The resulting output should say:
 ```
 
 ## 6. View Logs
+
+First give the service time to get back into sync and lets tail the load generator log again
+{{< tabs >}}
+{{% tab title="Tail Log" %}}
+
+``` bash
+. ~/workshop/petclinic/scripts/tail_logs.sh
+```
+
+{{% /tab %}}
+{{% tab title="Tail Log Output" %}}
+
+```text
+{"severity":"info","msg":"Welcome Text = "Welcome to Petclinic"}
+{"severity":"info","msg":"@ALL"
+{"severity":"info","msg":"@owner details page"}
+{"severity":"info","msg":"@pet details page"}
+{"severity":"info","msg":"@add pet page"}
+{"severity":"info","msg":"@veterinarians page"}
+{"severity":"info","msg":"cookies was"}
+```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 From the left-hand menu click on **Log Observer** and ensure **Index** is set to **splunk4rookies-workshop**.
 

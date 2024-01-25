@@ -13,8 +13,10 @@ The Splunk OpenTelemetry Collector is the core component of instrumenting infras
 * Profiling data
 * Host and Application logs
 
+To get Observability signals into the **Splunk Observability Cloud** we need to add an OpenTelemetry Collector to our Kubernetes cluster.
+
 {{% notice title="Delete any existing OpenTelemetry Collectors" style="warning" %}}
-If you have completed a Splunk Observability workshop using this EC2 instance, please ensure you have deleted the collector running in Kubernetes before continuing. This can be done by running the following command:
+If you have completed a Splunk Observability workshop using this EC2 instance, please ensure you have deleted the collector running in Kubernetes before continuing with this workshop. This can be done by running the following command:
 
 ``` bash
 helm delete splunk-otel-collector
@@ -22,32 +24,9 @@ helm delete splunk-otel-collector
 
 {{% /notice %}}
 
-## 2. Confirm environment variables
+## 2. Install the OpenTelemetry Collector using Helm
 
-To ensure your instance is configured correctly, we need to confirm that the required environment variables for this workshop are set correctly. In your terminal run the following command:
-
-``` bash
-. ~/workshop/petclinic/scripts/check_env.sh
-```
-
-In the output check the following environment variables are present and have values set:
-
-```text
-ACCESS_TOKEN
-REALM 
-RUM_TOKEN 
-HEC_TOKEN
-HEC_URL
-INSTANCE
-```
-
-Please make a note of the `INSTANCE` environment variable value as this is the reference to you workshop instance and we will need it to filter the data in the **Splunk Observability Suite** UI.
-
-For this workshop, **all** of the above are required. If any are missing, please contact your instructor.
-
-## 3. Install the OpenTelemetry Collector using Helm
-
-We are going to install the OpenTelemetry Collector in Operator mode using the Splunk Kubernetes Helm Chart for the Opentelemetry collector. First, we need to add the Splunk Helm chart repository to Helm and update so it knows where to find it:
+We are going to install the Splunk distribution of the OpenTelemetry Collector in Operator mode using the Splunk Kubernetes Helm Chart for the Opentelemetry collector. First, we need to add the Splunk Helm chart repository to Helm and update so it knows where to find it:
 
 {{< tabs >}}
 {{% tab title="Helm Repo Add" %}}
@@ -73,7 +52,7 @@ Update Complete. ⎈Happy Helming!⎈
 {{% /tab %}}
 {{< /tabs >}}
 
-Splunk Observability Cloud offers wizards in the **Splunk Observability Suite** UI to walk you through the setup of the Collector on both your infrastructure including Kubernetes, but in interest of time, we will use a setup created earlier and are going to install the OpenTelemetry Collector with the OpenTelemetry Collector Helm chart with some additional options:
+Splunk Observability Cloud offers wizards in the **Splunk Observability Suite** UI to walk you through the setup of the Collector on your infrastructure including Kubernetes, but in interest of time, we will use a setup created earlier. As we want the auto instrumentation to be available, we will install the OpenTelemetry Collector with the OpenTelemetry Collector Helm chart with some additional options:
 
 * --set="operator.enabled=true" - this will install the Opentelemetry operator, that will be used to handle auto instrumentation
 * --set="certmanager.enabled=true" - This will install the required certificate manager for the operator.
@@ -192,7 +171,7 @@ helm delete splunk-otel-collector
 
 {{% /notice %}}
 
-## 4. Verify the installation by checking Metrics and Logs
+## 3. Verify the installation by checking Metrics and Logs
 
 Once the installation is completed, you can login into the  **Splunk Observability Cloud** with the URL provided by the Instructor.
 First, Navigate to **Kubernetes Navigator** in the **Infrastructure**![infra](../images/infra-icon.png?classes=inline&height=25px) section to see the metrics from your cluster in the **K8s nodes** pane. Change the *Time* filter to the last 15 Minutes (-15m) to focus on the lates data.

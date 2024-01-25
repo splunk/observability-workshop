@@ -31,9 +31,9 @@ The resulting output should say:
 Image:         quay.io/phagen/spring-petclinic-api-gateway:0.0.2
 ```
 
-This container is pulled from a remote repository `quay.io` and as you will see 
+This container is pulled from a remote repository `quay.io` and was not build to send traces to the **Splunk Observability Cloud**  
 
-Lets add the Java auto instrumentation TAG to the api-gateway service first with the `kubectl patch deployment` command.
+Lets enable the Java auto instrumentation on the api-gateway service first by adding the `inject-java` tag to kubernetes with the `kubectl patch deployment` command.
 {{< tabs >}}
 {{% tab title="Patch api-gateway service" %}}
 
@@ -108,7 +108,33 @@ deployment.apps/api-gateway patched (no change)
 {{% /tab %}}
 {{< /tabs >}}
 
-It will take the Petclinic Microservice application a few minutes to start up and fully synchronise, but after its fully initialized, you now should see all the different services in Splunk APM:
+It will take the Petclinic Microservice application a few minutes to start up and fully synchronise.
+Lets monitor the  load generator container until its capable to generate load as show in the output tab.
+
+{{< tabs >}}
+{{% tab title="Tail Log" %}}
+
+``` bash
+. ~/workshop/petclinic/scripts/tail_logs.sh
+```
+
+{{% /tab %}}
+{{% tab title="Tail Log Output" %}}
+
+```text
+{"severity":"info","msg":"Welcome Text = "Welcome to Petclinic"}
+{"severity":"info","msg":"@ALL"
+{"severity":"info","msg":"@owner details page"}
+{"severity":"info","msg":"@pet details page"}
+{"severity":"info","msg":"@add pet page"}
+{"severity":"info","msg":"@veterinarians page"}
+{"severity":"info","msg":"cookies was"}
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+Once the services are fully initialized, you now should see all the different services appear in Splunk APM:
 ![all services](../images/apm-full-service.png)
 Of course, we want to check the Dependency map by clicking Explore:
 ![full map](../images/apm-map-full.png)

@@ -1,36 +1,12 @@
 #!/bin/bash
 
-# '<?xml version="1.0" encoding="UTF-8"?>
-# <configuration>
-#     <include resource="org/springframework/boot/logging/logback/base.xml"/>
-#     <!-- Required for Loglevel managment into the Spring Petclinic Admin Server-->
-#     <jmxConfigurator/>
-#     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-#         <encoder>
-#           <pattern>
-#             %d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg trace_id=%X{trace_id} span_id=%X{span_id} trace_flags=%X{trace_flags} %n service.name=%property{otel.resource.service.name}, deployment.environment=%property{otel.resource.deployment.environment}: %m%n
-#           </pattern>
-#         </encoder> 
-#     </appender>
-
-#     <!-- Just wrap your logging appender, for example ConsoleAppender, with OpenTelemetryAppender -->
-#     <appender name="OTEL" class="io.opentelemetry.instrumentation.logback.mdc.v1_0.OpenTelemetryAppender">
-#       <appender-ref ref="CONSOLE"/>
-#     </appender>
-
-#      <!-- Use the wrapped "OTEL" appender instead of the original "CONSOLE" one -->
-#      <root level="INFO">
-#        <appender-ref ref="OTEL"/>
-#      </root>
-# </configuration>'
-
-
 xml_content='<?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>
-                logback: %d{HH:mm:ss.SSS} [%thread] %level %logger{36} - trace_id=%X{trace_id} span_id=%X{span_id} service.name=%property{otel.resource.service.name} trace_flags=%X{trace_flags} - %msg %kvp{DOUBLE}%n
+                logback: %d{HH:mm:ss.SSS} [%thread] severity=%-5level %logger{36} - trace_id=%X{trace_id} span_id=%X{span_id} service.name=%property{otel.resource.service.name} trace_flags=%X{trace_flags} - %msg %kvp{DOUBLE}%n
+            </pattern>
         </encoder>
     </appender>
     <appender name="OpenTelemetry"
