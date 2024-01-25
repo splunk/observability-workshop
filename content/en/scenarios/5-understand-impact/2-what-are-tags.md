@@ -6,7 +6,7 @@ weight: 2
 
 {{% badge icon="clock" style="primary" %}}3 minutes{{% /badge %}}
 
-To understand why some requests have errors or slow performance, we'll need to add context to our traces. We'll do this by adding tags. 
+To understand why some requests have errors or slow performance, we'll need to add context to our traces. We'll do this by adding tags. But first, let's take a moment to discuss what tags are, and why they're so important for observability. 
 
 ## What are tags? 
 

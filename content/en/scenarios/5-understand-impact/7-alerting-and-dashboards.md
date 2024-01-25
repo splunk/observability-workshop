@@ -8,19 +8,29 @@ weight: 7
 
 Earlier, we created a **Troubleshooting Metric Set** on the `credit.score.category` tag, which allowed us to use **Tag Spotlight** with that tag and identify a pattern to explain why some users received a poor experience. 
 
-In this section of the workshop, we'll explore a related concept:  **Monitoring MetricSets**
+In this section of the workshop, we'll explore a related concept:  **Monitoring MetricSets**. 
+
+## What are Monitoring MetricSets? 
 
 **Monitoring MetricSets** go beyond troubleshooting and allow us to use tags for alerting and dashboards. 
 
+## Create a Monitoring MetricSet
+
 Let's navigate to **Settings** -> **APM MetricSets**, and click the edit button (i.e. the little pencil) beside the MetricSet for `credit.score.category`. 
 
-Check the box beside **Also create Monitoring MetricSet** then click **Start Analysis**. 
+Check the box beside **Also create Monitoring MetricSet** then click **Start Analysis** (**note**: your workshop instructor will do this for you)
 
 ![Monitoring MetricSet](../images/monitoring_metricset.png)
 
 The `credit.score.category` tag appears again as a **Pending MetricSet**. After a few moments, a checkmark should appear.  Click this checkmark to enable the **Pending MetricSet**. 
 
-Next, let's explore how we can use this **Monitoring MetricSet**.  Navigate to **Metric Finder**, then type in the name of the tag, which is `credit_score_category` (note that the dots in the tag name were replaced by underscores when the MMS was created).  You'll see that multiple metrics exist that include this tag as a dimension: 
+## Using Monitoring MetricSets 
+
+Next, let's explore how we can use this **Monitoring MetricSet**.  
+
+### Dashboards 
+
+Navigate to **Metric Finder**, then type in the name of the tag, which is `credit_score_category` (note that the dots in the tag name were replaced by underscores when the MMS was created).  You'll see that multiple metrics include this tag as a dimension: 
 
 ![Metric Finder](../images/metric_finder.png)
 
@@ -36,7 +46,7 @@ This metric tracks the p99 response time of service requests in nanoseconds, bro
 
 ![Chart with Seconds](../images/chart_with_seconds.png)
 
-Next, let's break down the chart by credit score category. Click on the **Add analytics** button, select **Mean**, then **Mean:Aggregation**, then Group By the `credit_score_category` dimension: 
+Next, let's break down the chart by credit score category. Click on the **Add analytics** button on the first row, select **Mean**, then **Mean:Aggregation**, then Group By the `credit_score_category` dimension: 
 
 ![Duration by Credit Score](../images/duration_by_credit_score.png)
 
@@ -57,6 +67,8 @@ When asked which dashboard to save the chart to, let's create a new one named `C
 Now we can see the chart on our dashboard, and can add more charts as needed to monitor our credit check service: 
 
 ![Credit Check Service Dashboard](../images/credit_check_service_dashboard.png)
+
+### Alerts
 
 It's great that we have a dashboard to monitor the response times of the credit check service by credit score, but we don't want to stare at a dashboard all day. 
 
