@@ -110,8 +110,7 @@ Once they are running, the application will take a few minutes to  fully start u
 First, clone the PetClinic GitHub repository, as we will need this later in the workshop to compile, build, package and containerize the application:
 
 ```bash
-cd ~
-git clone https://github.com/hagen-p/spring-petclinic-microservices.git
+cd ~;git clone https://github.com/hagen-p/spring-petclinic-microservices.git
 ```
 
 Change into the `spring-petclinic` directory:
