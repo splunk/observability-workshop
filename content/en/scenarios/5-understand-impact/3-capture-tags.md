@@ -9,7 +9,7 @@ Let's add some tags to our traces, so we can find out why some customers receive
 
 ## Identify Useful Tags
 
-We'll start by reviewing the code for the `credit_check` function of `creditcheckservice` (which can be found in the `/home/ubuntu/observability-workshop/workshop/tagging/creditcheckservice/main.py` file): 
+We'll start by reviewing the code for the `credit_check` function of `creditcheckservice` (which can be found in the `/home/splunk/workshop/tagging/creditcheckservice/main.py` file): 
 
 ````
 @app.route('/check')
