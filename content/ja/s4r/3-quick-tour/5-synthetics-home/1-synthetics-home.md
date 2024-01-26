@@ -4,36 +4,37 @@ linkTitle: 5.1 Synthetics Home Page
 weight: 2
 ---
 
-Click on **Synthetics** in the main menu. This will bring us to the Synthetics Home Page. It has 3 distinct sections that provide either useful information or allow you to pick or create a Synthetic Test.
+**Synthetics**をメインメニューでクリックします。これによりSyntheticsホームページに移動します。このページには、有用な情報を提供するか、Syntheticテストを選択または作成するための3つの異なるセクションがあります。
 
 ![Synthetic main](../images/synthetics-main.png)
 
-1. **Onboarding Pane:** Training videos and links to documentation to get you started with Splunk Synthetics.
-2. **Test Pane:** List of all the tests that are configured (**Browser**, **API** and **Uptime**)
-3. **Create Test Pane:** Drop-down for creating new Synthetic tests.
+1. **オンボーディングパネル:** Splunk Syntheticsを始めるためのトレーニングビデオとドキュメンテーションへのリンク。
+2. **テストパネル:** 設定されているすべてのテストのリスト（**Browser**、**API**、および**Uptime**）
+3. **テストの作成パネル:** 新しいSyntheticテストを作成するためのドロップダウン。
 
 {{% notice title="Info" style="info" %}}
-As part of the workshop we have created a default browser test against the application we are running. You find it in the Test Pane (**2**). It will have the following name **Workshop Browser Test for**, followed by the name of your Workshop (your instructor should have provided that to you).
+ワークショップの一環として、実行しているアプリケーションに対するデフォルトのブラウザーテストが作成されています。テストパネル（**2**）で見つけることができます。その名前はワークショップの名前に続いて **Workshop Browser Test for** となります（インストラクターが提供したはずです）。
 {{% /notice %}}
-To continue our tour, let's look at the result of our workshop's automatic browser test.  
+
+ツアーを続けるために、ワークショップの自動ブラウザーテストの結果を見てみましょう。
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* In the Test Pane, click on the line that contains the name of your workshop. The result should look like this:
+* テストパネルで、ワークショップの名前が含まれている行をクリックします。結果は以下のようになります：
 
 ![Synthetics-overview](../images/synthetics-test-overview.png)
 
-* Note, On the Synthetic Tests Page, the first pane will show the performance of your site for the last day, 8 days and 30 days. As shown in the screenshot above, only if a test started far enough in the past, the corresponding chart will contain valid data. For the workshop, this depends on when it was created.
-* In the Performance KPI drop-down, change the time from the default 4 hours to the 1 last hour.  
+* 注：Synthetic Testsページでは、最後の1日、8日、および30日の間にサイトのパフォーマンスが表示されます。上のスクリーンショットに示されているように、テストが過去に十分に開始された場合のみ、対応するチャートに有効なデータが含まれます。ワークショップでは、これは作成された時点に依存します。
+* パフォーマンスKPIのドロップダウンで、デフォルトの4時間から最後の1時間に時間を変更してください。  
 {{< tabs >}}
-{{% tab title="Question" %}}
-**How often is the test run, and from where?**
+{{% tab title="質問" %}}
+**テストはどれくらいの頻度で実行され、どこから実行されていますか？**
 {{% /tab %}}
-{{% tab title="Answer" %}}
-**The test runs at **a 1-minute **round-robin** interval from** Frankfurt, London and Paris**
+{{% tab title="回答" %}}
+**テストは**フランクフルト、ロンドン、およびパリ**から**1分ごとのラウンドロビン**間隔で実行されます**
 {{% /tab %}}
 {{< /tabs >}}
 
 {{% /notice %}}
 
-Next, let’s examine the infrastructure our application is running on using **Splunk Infrastructure Monitoring (IM)**.
+次に、**Splunk Infrastructure Monitoring (IM)** を使用してアプリケーションが実行されているインフラストラクチャを調査しましょう。

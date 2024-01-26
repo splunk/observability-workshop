@@ -5,12 +5,12 @@ archetype: chapter
 weight: 8
 ---
 
-{{% badge icon="clock" color="#ed0090" %}}15 minutes{{% /badge %}}
+{{% badge icon="clock" color="#ed0090" %}}15分{{% /badge %}}
 
-{{% notice icon="user" style="orange" title="Persona" %}}
+{{% notice icon="user" style="orange" title="ペルソナ" %}}
 
-Putting your **SRE** hat back on, you have been asked to set up monitoring for the Online Boutique. You need to ensure that the application is available and performing well 24 hours a day, 7 days a week.
+あなたの **SRE** ハットを再びかぶり、Online Boutique のモニタリングを設定するように求められました。アプリケーションが24時間365日利用可能で、パフォーマンスが良好であることを確認する必要があります。
 
 {{% /notice %}}
 
-Wouldn’t it be great if we could have 24/7 monitoring of our application, and be alerted when there is a problem? This is where Synthetics comes in. We will show you a simple test that runs every 1 minute and checks the performance and availability of a typical user journey through the Online Boutique.
+アプリケーションのモニタリングを24時間365日行い、問題が発生したときにアラートを受け取ることができたら素晴らしいですよね？それが Synthetics の役割です。ここでは、Online Boutique を通る典型的なユーザージャーニーのパフォーマンスと利用可能性を1分ごとに確認するシンプルなテストをご紹介します。

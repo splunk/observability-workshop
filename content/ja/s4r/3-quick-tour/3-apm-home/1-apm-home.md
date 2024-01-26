@@ -1,44 +1,44 @@
 ---
-title: Application Performance Monitoring Home page
-linkTitle: 3.1 APM Home Page 
+title: アプリケーションパフォーマンスモニタリングのホームページ
+linkTitle: 3.1 APMホームページ
 weight: 2
 ---
- 
-Click **APM** in the main menu, the APM Home Page is made up of 3 distinct sections:
 
-![APM page](../images/apm-main.png)
+メインメニューで**APM**をクリックすると、APMホームページが表示されます。このページは3つの明確なセクションで構成されています：
 
-1. **Onboarding Pane Pane:** Training videos and links to documentation to get you started with Splunk APM.
-2. **APM Overview Pane:** Real-time metrics for the Top Services and Top Business Workflows.
-3. **Functions Pane:** Links for deeper analysis of your services, tags, traces, database query performance and code profiling.
+![APMページ](../images/apm-main.png)
 
-The **APM Overview** pan provides a high-level view of the health of your application. It includes a summary of the services, latency and errors in your application. It also includes a list of the top services by error rate and the top business workflows by error rate (a business workflow is the start-to-finish journey of the collection of traces associated with a given activity or transaction and enables monitoring of end-to-end KPIs and identifying root causes and bottlenecks).
+1. **オンボーディングパネル：** Splunk APMを始めるためのトレーニングビデオとドキュメンテーションへのリンク。
+2. **APM概要パネル：** トップサービスとトップビジネスワークフローのリアルタイムメトリクス。
+3. **機能パネル：** サービス、タグ、トレース、データベースクエリパフォーマンス、コードプロファイリングの詳細分析のためのリンク。
 
-{{% notice title=" About Environments" style="info" %}}
+**APM概要**パネルは、アプリケーションの健康状態の高レベルのビューを提供します。アプリケーションのサービス、レイテンシー、エラーのサマリーが含まれています。また、エラーレートでトップのサービスとビジネスワークフローのリストも含まれています（ビジネスワークフローは、特定の活動やトランザクションに関連するトレースの集まりの始まりから終わりまでの旅で、エンドツーエンドのKPIを監視し、根本原因とボトルネックを特定することを可能にします）。
 
-To easily differentiate between multiple applications, Splunk uses **environments**. The naming convention for workshop environments is **[NAME OF WORKSHOP]-workshop**. Your instructor will provide you with the correct one to select.
+{{% notice title="環境について" style="info" %}}
+
+複数のアプリケーションを簡単に区別するために、Splunkは**環境**を使用します。ワークショップ環境の命名規則は **[ワークショップの名前]-workshop** です。インストラクターが選択する正しいものを提供します。
 
 {{% /notice %}}
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="エクササイズ" style="green" icon="running" %}}
 
-* Verify that the time window we are working with is set to the last 15 minutes (**-15m**).
-* Change the environment to the workshop one by selecting its name from the drop-down box and make sure that is the only one selected.
+* 作業している時間ウィンドウが過去15分（**-15m**）に設定されていることを確認します。
+* ドロップダウンボックスからワークショップの環境を選択し、それが唯一選択されていることを確認します。
 {{< tabs >}}
-{{% tab title="Question" %}}
-**What can you conclude from the *Top Services by Error Rate* chart?**
+{{% tab title="質問" %}}
+**エラーレートでトップのサービスのチャートから何を結論付けることができますか？**
 {{% /tab %}}
-{{% tab title="Answer" %}}
-**The *paymentservice* has a high error rate**
+{{% tab title="回答" %}}
+**paymentserviceは高いエラーレートを持っています**
 {{% /tab %}}
 {{< /tabs >}}
 <!--
-* Click on the Explore Tile in the Function Pane. This will bring us to the automatically generated map of our services. This map shows how the services interact together based on the trace data being sent to Splunk Observability Cloud.
+* 機能パネルでExploreタイルをクリックします。これにより、私たちのサービスの自動生成されたマップに移動します。このマップは、Splunk Observability Cloudに送信されるトレースデータに基づいて、サービスがどのように相互作用するかを示しています。
 -->
 {{% /notice %}}
 
-If you scroll down the Overview Page you will notice some services listed have **Inferred Service** next to them.
+概要ページを下にスクロールすると、一部のサービスに**推測されるサービス**が表示されることに気づくでしょう。
 
-Splunk APM can infer the presence of the remote service, or inferred service if the span calling the remote service has the necessary information. Examples of possible inferred services include databases, HTTP endpoints, and message queues. Inferred services are not instrumented, but they are displayed on the service map and the service list.
+Splunk APMは、リモートサービスを呼び出すスパンに必要な情報がある場合、リモートサービスの存在、または推測されるサービスを推測することができます。推測される可能性のあるサービスの例としては、データベース、HTTPエンドポイント、メッセージキューなどがあります。推測されるサービスは計装されていませんが、サービスマップとサービスリストに表示されます。
 
-Next, let's check out **Splunk Log Observer (LO)**.
+次に、**Splunk Log Observer (LO)**をチェックしましょう。

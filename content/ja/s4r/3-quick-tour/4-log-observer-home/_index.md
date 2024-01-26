@@ -6,10 +6,10 @@ weight: 4
 
 {{% badge icon="clock" color="#ed0090" %}}5 minutes{{% /badge %}}
 
-Log Observer Connect allows you to seamlessly bring in the same log data from your Splunk Platform into an intuitive and **no-code** interface designed to help you find and fix problems quickly. You can easily perform log-based analysis and seamlessly correlate your logs with Splunk Infrastructure Monitoring’s real-time metrics and Splunk APM traces in one place.
+Log Observer Connectは、Splunkプラットフォームから同じログデータを直感的かつ**ノーコード**のインターフェースにシームレスに取り込むことを可能にし、素早く問題を見つけて修正できるよう設計されています。ログベースの分析を簡単に実行し、Splunk Infrastructure MonitoringのリアルタイムメトリクスとSplunk APMトレースとシームレスに相関させることができます。
 
-**End-to-end visibility:** By combining the powerful logging capabilities of Splunk Platform with Splunk Observability Cloud’s traces and real-time metrics for deeper insights and more context of your hybrid environment.  
-**Perform quick and easy log-based investigations:** By reusing logs that are already ingested in Splunk Cloud Platform or Enterprise in a simplified and intuitive interface (no need to know SPL!) with customizable and out-of-the-box dashboards  
-**Achieve higher economies of scale and operational efficiency:** By centralizing log management across teams, breaking down data and team silos, and getting better overall support
+**エンドツーエンドの可視性:** Splunkプラットフォームの強力なログ機能をSplunk Observability Cloudのトレースとリアルタイムメトリクスと組み合わせることで、ハイブリッド環境のより深い洞察とコンテキストを提供します。  
+**迅速かつ簡単なログベースの調査:** Splunk CloudプラットフォームまたはEnterpriseに既に取り込まれているログを再利用し、Splunk Observability Cloudの簡素で直感的なインターフェース（SPLの知識は不要！）でカスタマイズ可能なダッシュボードを使用します。  
+**規模の経済と操作効率の向上:** チーム全体でログ管理を一元化し、データとチームの障壁を取り払い、全体的なサポートを向上させます。
 
 ![Logo graph](images/logo-image-loop.png)

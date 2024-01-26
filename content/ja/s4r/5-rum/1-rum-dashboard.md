@@ -1,41 +1,41 @@
 ---
-title: 1. RUM Dashboard
+title: 1. RUM ダッシュボード
 weight: 1
 ---
 
-In Splunk Observability Cloud from the main menu, click on **RUM**. you arrive at the RUM Home page, this view has already been covered in the short introduction earlier.
+Splunk Observability Cloudのメインメニューから**RUM**をクリックします。RUMホームページに移動しますが、このビューは以前の短い導入で既に紹介されています。
 
 ![multiple apps](../images/multiple-apps.png)
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Make sure you select your workshop by ensuring the drop-downs are set/selected as follows:
-  * The **Time frame** is set to **-15m**.
-  * The **Environment** selected is **[NAME OF WORKSHOP]-workshop**.
-  * The **App** selected is **[NAME OF WORKSHOP]-store**.
-  * The **Source** is set to **All**.
-* Next, click on the **[NAME OF WORKSHOP]-store** above the **Page Views / JavaScript Errors** chart.
-* This will bring up a new dashboard view breaking down the metrics by **UX Metrics**, **Front-end Health**, **Back-end Health** and **Custom Events** and comparing them to historic metrics (1 hour by default).
+* ワークショップを選択するために、次のようにドロップダウンが設定/選択されていることを確認してください：
+  * **タイムフレーム**が **-15m** に設定されています。
+  * 選択された **Environment** は **[NAME OF WORKSHOP]-workshop** です。
+  * 選択された **App** は **[NAME OF WORKSHOP]-store** です。
+  * **Source** は **All** に設定されています。
+* 次に、**Page Views / JavaScript Errors** チャートの上にある **[NAME OF WORKSHOP]-store** をクリックします。
+* これにより、新しいダッシュボードビューが表示され、メトリクスが **UX Metrics**、**Front-end Health**、**Back-end Health**、**Custom Events** に分解され、それらを過去のメトリクスと比較します（デフォルトでは1時間）。
 
 {{% /notice %}}
 
 ![RUM Dashboard](../images/rum-dashboard.png)
 
-* **UX Metrics:** Page Views, Page Load and Web Vitals metrics.
-* **Front-end Health:** Breakdown of Javascript Errors and Long Task duration and count.
-* **Back-end Health:** Network Errors and Requests and Time to First Byte.
-* **Custom Events:** RED metrics (Rate, Error & Duration) for custom events.
+* **UX Metrics:** ページビュー、ページ読み込み、Web Vitalsメトリクス。
+* **Front-end Health:** JavascriptエラーおよびLong Taskの期間と回数の分解。
+* **Back-end Health:** ネットワークエラーおよびリクエスト、Time to First Byte。
+* **Custom Events:** カスタムイベントのREDメトリクス（Rate、Error＆Duration）。
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Click through each of the tabs (**UX Metrics**, **Front-end Health**, **Back-end Health** and **Custom Events**) and examine the data.
+* 各タブ（**UX Metrics**、**Front-end Health**、**Back-end Health**、**Custom Events**）をクリックしてデータを調査してください。
 
 {{< tabs >}}
 {{% tab title="Question" %}}
-**If you examine the charts in the *Custom Events* Tab, **what chart **shows** clearly the** latency Spikes?**
+**もし*Custom Events*タブのチャートを調査した場合、どのチャートが明確に**レイテンシースパイク**を示していますか？**
 {{% /tab %}}
 {{% tab title="Answer" %}}
-**It is the *Custom Event Latency* chart**
+**それは*Custom Event Latency*チャートです。**
 {{% /tab %}}
 {{< /tabs >}}
 

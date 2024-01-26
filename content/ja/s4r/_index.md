@@ -3,26 +3,26 @@ title: Splunk4Rookies - Observability Cloud
 weight: 1
 ---
 
-{{% badge icon="clock" style="primary" %}}2 minutes{{% /badge %}} {{% badge style="blue" title="Authors" %}}Robert Castley & Pieter Hagen{{% /badge %}}
+{{% badge icon="clock" style="primary" %}}2分{{% /badge %}} {{% badge style="blue" title="著者" %}}Robert Castley & Pieter Hagen{{% /badge %}}
 
-In this workshop, we will be showing how **Splunk Observability Cloud** provides instant visibility of the user experience – from the perspective of the front-end application to its back-end services – Letting you experience some of the most compelling product features and differentiators of **Splunk Observability Cloud**:
+このワークショップでは、**Splunk Observability Cloud** が提供する、フロントエンドアプリケーションからバックエンドサービスまで、ユーザーエクスペリエンスを即時に可視化する能力について紹介します。これを通じて、**Splunk Observability Cloud** の最も魅力的な製品機能と差別化要因のいくつかを体験できます。
 
-* Infrastructure Monitoring
-* **Full-fidelity** Real User Monitoring (RUM)
-* Complete **end-to-end NoSample™ Full-fidelity** trace visibility with Application Performance Monitoring (APM)
-* **No code** log querying
-* Synthetic Monitoring
-* Finding root causes with tag analytics and error stacks
-* Related content
+* インフラモニタリング
+* **完全で忠実な**リアルユーザーモニタリング（RUM）
+* アプリケーションパフォーマンスモニタリング（APM）による **End to End の NoSample™ で完全忠実な**トレースの可視性
+* **コード入力を必要としない**ログクエリ
+* シンセティックモニタリング
+* タグ分析とエラースタックを使用した根本原因の特定
+* 関連するコンテンツ
 
-A key factor in building the Splunk Observability Cloud is to unify telemetry data to create a complete picture of an end-user experience and your application stack.
+Splunk Observability Cloud を構成する重要な要素は、テレメトリデータを統一してエンドユーザーエクスペリエンスとアプリケーションスタックの完全なイメージを作り上げることです。
 
-The workshop uses a microservices-based application that is deployed on AWS EC2 instances. The application is a simple e-commerce application that allows users to browse products, add them to a cart, and checkout. The application is instrumented with OpenTelemetry.
+このワークショップでは、AWS EC2 インスタンスに展開されたマイクロサービスベースのアプリケーションを使用します。このアプリケーションは、ユーザーが製品を閲覧し、カートに追加し、チェックアウトすることができるシンプルなeコマースアプリケーションです。このアプリケーションは OpenTelemetry で計装されています。
 
 ---
 
-**[OpenTelemetry](https://opentelemetry.io)** is a collection of tools, APIs, and software development kits (SDKs), used to instrument, generate, collect, and export telemetry data (metrics, traces, and logs) to help you analyze your software’s performance and behavior.
+**[OpenTelemetry](https://opentelemetry.io)** は、テレメトリデータ（メトリクス、トレース、およびログ）を計装・生成・収集・エクスポートするためのツール、API、およびソフトウェア開発キット（SDK）のコレクションです。これにより、ソフトウェアのパフォーマンスと動作を分析できます。
 
-The OpenTelemetry community is growing. As a joint project between Splunk, Google, Microsoft, Amazon, and many other organizations, it currently has the second-largest number of contributors in the Cloud Native Computing Foundation after Kubernetes.
+OpenTelemetry コミュニティは成長を続けています。Splunk、Google、Microsoft、Amazonなど多くの組織が協力したプロジェクトで、現在、Kubernetes の次に多くの貢献者を有するプロジェクトとなっています。
 
 ![Full Stack](images/splunk-full-stack.png)

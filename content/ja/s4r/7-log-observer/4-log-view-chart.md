@@ -3,33 +3,33 @@ title: 4. Log View Chart
 weight: 4
 ---
 
-The next chart type that can be used with logs is the **Log View** chart type. This chart will allow us to see log messages based on predefined filters.
+次に、ログと共に使用できる次のチャートタイプは **Log View** チャートタイプです。このチャートを使用すると、事前定義されたフィルタに基づいてログメッセージを表示できます。
 
-As with the previous Log Timeline chart, we will add a version of this chart to our Customer Health Service Dashboard:
+前の Log Timeline チャートと同様に、このチャートのバージョンを Customer Health Service Dashboard に追加します：
 
-{{% notice title="Info" style="green" title="Exercise" icon="running" %}}
+{{% notice title="情報" style="green" title="演習" icon="running" %}}
 
-* After the previous exercise make sure you are still in **Log Observer**.
-* The filters should be the same as the previous exercise, with the time picker set to the **Last 15 minutes** and filtering on severity=error, `sf_service=paymentservice` and `sf_environment=[WORKSHOPNAME]`.
-* Make sure we have the header with just the fields we wanted.
-* Click again on **Save** and then **Save to Dashboard**.
-* This will again provide you with the Chart creation dialog.
-* For the **Chart name** use **Log View**.
-* This time Click {{% button style="blue" %}}Select Dashboard{{% /button %}} and search for the Dashboard you created in the previous exercise. You can start by typing your initials in the search box (**1**).
+* 前の演習後にまだ **Log Observer** にいることを確認してください。
+* フィルタは前の演習と同じである必要があり、タイムピッカーが **Last 15 minutes** に設定され、 severity=error、`sf_service=paymentservice` および `sf_environment=[WORKSHOPNAME]` でフィルタリングされています。
+* ウォンテッドなフィールドのみがあるヘッダーを確認してください。
+* 再び **Save** をクリックしてから **Save to Dashboard** をクリックします。
+* これにより、チャート作成ダイアログが提供されます。
+* **Chart name** に **Log View** を使用します。
+* 今回は {{% button style="blue" %}}Select Dashboard{{% /button %}} をクリックし、前回の演習で作成したダッシュボードを検索します。検索ボックスにイニシャルを入力して始めることができます（**1**）。
   ![search dashboard](../images/search-dashboard.png)
-* Click on your dashboard name to highlight it (**2**) and click {{% button style="blue" %}}OK{{% /button %}} (**3**).
-* This will return you to the create chart dialog.
-* Ensure **Log View** is selected as the **Chart Type**.
+* ダッシュボード名をクリックしてハイライト表示し（**2**）、 {{% button style="blue" %}}OK{{% /button %}} をクリックします（**3**）。
+* これで、チャート作成ダイアログに戻ります。
+* **Chart Type** として **Log View** が選択されていることを確認してください。
   ![log view](../images/log-view.png?classes=left&width=30vw)
-* To see your dashboard click {{% button style="blue" %}}Save and go to dashboard{{% /button %}}.
-* The result should be similar to the dashboard below:
+* ダッシュボードを見るには {{% button style="blue" %}}Save and go to dashboard{{% /button %}} をクリックします。
+* 結果は以下のダッシュボードと似ているはずです：
   ![Custom Dashboard](../images/log-observer-custom-dashboard.png)
-* As the last step in this exercise, let us add your dashboard to your workshop team page, this will make it easy to find later in the workshop.
-* At the top of the page, click on the ***...*** to the left of your dashboard name (**1**).
+* この演習の最後のステップとして、ダッシュボードをワークショップのチームページに追加しましょう。これにより、ワークショップ中に後で簡単に見つけることができます。
+* ページの上部で、ダッシュボード名の左にある ***...*** をクリックします（**1**）。
   ![linking](../images/linking.png)
-* Select **Link to teams** from the drop-down (**2**).
-* In the following **Link to teams** dialog box, find the Workshop team that your instructor will have provided for you and click {{% button style="blue" %}}Done{{% /button %}}.
+* ドロップダウンから **Link to teams** を選択します（**2**）。
+* 次に表示される **Link to teams** ダイアログボックスで、インストラクターが提供したワークショップのチームを見つけ、 {{% button style="blue" %}}Done{{% /button %}} をクリックします。
 
 {{% /notice %}}
 
-In the next session, we will look at Splunk Synthetics and see how we can automate the testing of web-based applications.
+次のセッションでは、Splunk Synthetics を見て、ウェブベースのアプリケーションのテストを自動化する方法を確認します。

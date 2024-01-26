@@ -1,18 +1,18 @@
 ---
-title: Custom Service Health Dashboard 🏥 
+title: カスタム サービスヘルスダッシュボード 🏥 
 linkTitle: 9. Service Health Dashboard
 weight: 9
 archetype: chapter
 ---
 
-{{% badge icon="clock" color="#ed0090" %}}15 minutes{{% /badge %}}
+{{% badge icon="clock" color="#ed0090" %}}15 分{{% /badge %}}
 
-{{% notice icon="user" style="orange" title="Persona" %}}
+{{% notice icon="user" style="orange" title="ペルソナ" %}}
 
-As the **SRE** hat suits you let's keep it on as you have been asked to build a custom Service Health Dashboard for the **paymentservice**. The requirement is to display RED metrics, logs and Synthetic test duration results.
+**SRE** の役割があなたに適しているので、引き続きそれを保ち、**paymentservice** 用のカスタムサービスヘルスダッシュボードの構築が求められています。要件は、RED メトリクス、ログ、および合成テストの所要時間の結果を表示することです。
 
 {{% /notice %}}
 
-It is common for development and SRE teams to require a summary of the health of their applications and/or services. More often or not these are displayed on wall-mounted TVs. Splunk Observability Cloud has the perfect solution for this by creating custom dashboards.
+開発チームやSREチームがアプリケーションやサービスの健康状態の概要を必要とすることは一般的です。これらは、壁に掛けられたテレビに表示されることがよくあります。Splunk Observability Cloud には、カスタムダッシュボードを作成するための完璧なソリューションがあります。
 
-In this section we are going to build a **Service Health Dashboard** we can use to display on teams' monitors or TVs.
+このセクションでは、モニターやテレビに表示するための **サービスヘルスダッシュボード** を構築します。

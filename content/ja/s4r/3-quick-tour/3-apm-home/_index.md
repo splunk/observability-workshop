@@ -1,19 +1,19 @@
 ---
-title: Application Performance Monitoring Overview
-linkTitle: 3. APM Overview
+title: アプリケーションパフォーマンスモニタリングの概要
+linkTitle: 3. APMの概要
 weight: 3
 ---
 
-{{% badge icon="clock" color="#ed0090" %}}5 minutes{{% /badge %}}
+{{% badge icon="clock" color="#ed0090" %}}5分{{% /badge %}}
 
-Splunk APM provides a **NoSample™** end-to-end visibility of every service and its dependency to solve problems quicker across monoliths and microservices. Teams can immediately detect problems from new deployments, confidently troubleshoot by scoping and isolating the source of an issue, and optimize service performance by understanding how back-end services impact end users and business workflows.
+Splunk APMは、**NoSample™**エンドツーエンドの可視性を提供し、モノリシックとマイクロサービスの両方で問題をより迅速に解決します。チームは新しいデプロイメントからの問題をすぐに検出し、問題の源をスコープ化して隔離することで自信を持ってトラブルシューティングを行い、バックエンドサービスがエンドユーザーとビジネスワークフローにどのような影響を与えるかを理解することでサービスパフォーマンスを最適化することができます。
 
-**Real-time monitoring and alerting:** Splunk provides out-of-the-box service dashboards and automatically detects and alerts on RED metrics (rate, error and duration) when there is a sudden change.
-**Dynamic telemetry maps:** Easily visualize service performance in modern production environments in real-time. End-to-end visibility of service performance from infrastructure, applications, end users, and all dependencies helps quickly scope new issues and troubleshoot more effectively.  
-**Intelligent tagging and analysis:** View all tags from your business, infrastructure and applications in one place to easily compare new trends in latency or errors to their specific tag values.  
-**AI-directed troubleshooting identifies the most impactful issues:** Instead of manually digging through individual dashboards, isolate problems more efficiently. Automatically identify anomalies and the sources of errors that impact services and customers the most.  
-**Complete distributed tracing analyses every transaction:** Identify problems in your cloud-native environment more effectively. Splunk distributed tracing visualizes and correlates every transaction from the back-end and front-end in context with your infrastructure, business workflows and applications.  
-**Full stack correlation:** Within Splunk Observability, APM links traces, metrics, logs and profiling together to easily understand the performance of every component and its dependency across your stack.  
-**Monitor database query performance:** Easily identify how slow and high execution queries from SQL and NoSQL databases impact your services, endpoints and business workflows — no instrumentation required.  
+**リアルタイムモニタリングとアラート：** Splunkは、サービスダッシュボードを提供し、急激な変化があるとREDメトリクス（レート、エラー、期間）を自動的に検出し、アラートを発します。
+**ダイナミックテレメトリーマップ：** モダンなプロダクション環境でのサービスパフォーマンスをリアルタイムで簡単に視覚化します。インフラストラクチャ、アプリケーション、エンドユーザー、およびすべての依存関係からのサービスパフォーマンスのエンドツーエンドの可視性は、新しい問題を迅速にスコープ化し、より効果的にトラブルシューティングを行うのに役立ちます。
+**インテリジェントタグ付けと分析：** ビジネス、インフラストラクチャ、アプリケーションからのすべてのタグを一か所で表示し、特定のタグ値に対するレイテンシーやエラーの新しいトレンドを簡単に比較します。
+**AIによるトラブルシューティングは最も影響力のある問題を特定します：** 個々のダッシュボードを手動で掘り下げる代わりに、問題をより効率的に隔離します。サービスと顧客に最も影響を与える異常とエラーの源を自動的に特定します。
+**完全な分散トレーシングはすべてのトランザクションを分析します：** クラウドネイティブ環境の問題をより効果的に特定します。Splunkの分散トレーシングは、バックエンドとフロントエンドからのすべてのトランザクションを視覚化し、インフラストラクチャ、ビジネスワークフロー、アプリケーションとのコンテキストで相関させます。
+**フルスタックの相関：** Splunk Observability内で、APMはトレース、メトリクス、ログ、プロファイリングをリンクして、スタック全体で各コンポーネントとその依存関係のパフォーマンスを簡単に理解します。
+**データベースクエリパフォーマンスの監視：** SQLおよびNoSQLデータベースからの遅いおよび高実行クエリがサービス、エンドポイント、およびビジネスワークフローにどのような影響を与えるかを簡単に特定します。計装は必要ありません。
 
-![Architecture Overview](images/arch-overview.png)
+![アーキテクチャの概要](images/arch-overview.png)

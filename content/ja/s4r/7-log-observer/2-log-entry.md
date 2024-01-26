@@ -3,42 +3,42 @@ title: 2. Viewing Log Entries
 weight: 2
 ---
 
-Before we look at a specific log line, let's quickly recap what we have done so far and why we are here based on the 3 pillars of Observability:
+特定のログ行を見る前に、これまでに行ったことと、以下の観点からなぜここにいるのかを簡単に振り返りましょう。
 
 | Metrics | Traces | Logs |
 |:-------:|:------:|:----:|
-| _**Do I have a problem?**_ | _**Where is the problem?**_ | _**What is the problem?**_ |
+| _**問題があるか？**_ | _**問題はどこにあるか？**_ | _**問題は何か？**_ |
 
-* Using metrics we identified **we have a problem** with our application. This was obvious from the error rate in the Service Dashboards as it was higher than it should be.
-* Using traces and span tags we found **where the problem is**. The **paymentservice** comprises of two versions, `v350.9` and `v350.10`, and the error rate was **100%** for `v350.10`.
-* We did see that this error from the **paymentservice** `v350.10` caused multiple retries and a long delay in the response back from the Online Boutique checkout.
-* From the trace, using the power of **Related Content**, we arrived at the log entries for the failing **paymentservice** version. Now, we can determine **what the problem is**.
+* メトリクスを使用して、アプリケーションに問題があることが判明しました。これは、サービスダッシュボードのエラーレートが期待よりも高かったため明らかでした。
+* トレースとスパンタグを使用して、問題がどこにあるかを見つけました。 **paymentservice** は `v350.9` と `v350.10` の2つのバージョンで構成されており、 `v350.10` に対するエラーレートは **100%** でした。
+* このエラーがオンラインブティックのチェックアウトからの応答に複数の再試行と長い遅延を引き起こしたことを確認しました。
+* トレースから **関連コンテンツ** の強力な機能を使用して、失敗した **paymentservice** バージョンのログエントリに到達しました。これにより、問題が **何であるか** を特定できるようになりました。
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="演習" style="green" icon="running" %}}
 
-* Click on an error entry in the log table (make sure it says `hostname: "paymentservice-xxxx"` in case there is a rare error from a different service in the list too.
+* ログテーブルのエラーエントリをクリックします（異なるサービスからのまれなエラーがある場合は、エントリに `hostname: "paymentservice-xxxx"` と表示されていることを確認してください）。
 {{< tabs >}}
-{{% tab title="Question" %}}
-**Based on the message, what would you tell the development team to do to resolve the issue?**
+{{% tab title="質問" %}}
+**メッセージに基づいて、開発チームにどのように問題を解決するように指示しますか？**
 {{% /tab %}}
-{{% tab title="Answer" %}}
-**The development team needs to rebuild and deploy the container with a valid API Token or rollback to `v350.9`**.
+{{% tab title="回答" %}}
+**開発チームは、有効なAPIトークンを使用してコンテナを再構築およびデプロイするか、 `v350.9` にロールバックする必要があります。**
 {{% /tab %}}
 {{< /tabs >}}
 
   ![Log Message](../images/log-observer-log-message.png)
-* Click on the **X** in the log message pane to close it.
+* ログメッセージペインの **X** をクリックして閉じます。
 
 {{% /notice %}}
 
-{{% notice style="blue" title="Congratulations" icon="wine-bottle" %}}
+{{% notice style="blue" title="おめでとうございます" icon="wine-bottle" %}}
 
-You have **successfully** used Splunk Observability Cloud to understand why you experienced a poor user experience whilst shopping at the Online Boutique. You used RUM, APM and logs to understand what happened in your service landscape and subsequently, found the underlying cause, all based on the 3 pillars of Observability, **metrics**, **traces** and **logs**
+Splunk Observability Cloud を使用して、オンラインブティックでショッピング中にユーザーエクスペリエンスが悪かった理由を理解しました。 サービスのランドスケープで何が起こったのかを理解するために、RUM、APM、およびログを使用し、その後、観測の3つの柱に基づいて潜在的な原因を見つけました。
 
-You also learned how to use Splunk's **intelligent tagging and analysis** with **Tag Spotlight** to detect patterns in your applications' behavior and to use the **full stack correlation** power of **Related Content** to quickly move between the different components whilst keeping in context of the issue.
+また、Splunkの**インテリジェントなタグ付けと分析**を **Tag Spotlight** で使用して、アプリケーションの振る舞いのパターンを検出し、**関連コンテンツ** の全体のスタックの相関パワーを使用して、異なるコンポーネント間を素早く移動しながら問題のコンテキストを保ちました。
 
 {{% /notice %}}
 
-In the next part of the workshop, we will move from **problem-finding mode** into **mitigation**, **prevention** and **process improvement mode**.
+ワークショップの次の部分では、**問題の特定モード** から **緩和**、 **予防**、および **プロセスの改善モード** に移行します。
 
-Next up, creating log charts in a custom dashboard.
+次に、カスタムダッシュボードでログチャートを作成します。

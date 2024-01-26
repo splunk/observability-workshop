@@ -1,38 +1,38 @@
 ---
-title: 4. APM Service Breakdown
+title: 4. APM サービスの分解
 weight: 4
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="演習" style="green" icon="running" %}}
 
-* In the right-hand pane click on the {{% button style="grey"  %}}Breakdown{{% /button %}}.
-* Select `tenant.level` in the list.  This is a tag that exposes the customers' status and can be useful to see trends related to customer status.
-* Back in the Service Map Click on **gold** to select it.
-* Click on {{% button style="grey"  %}}Breakdown{{% /button %}} and select `version`, this is the tag that exposes the service version.
-* Repeat this for **silver** and **bronze**.
+* 右側のペインで {{% button style="grey"  %}}分解{{% /button %}} をクリックします。
+* リストから `tenant.level` を選択します。これは顧客のステータスを露出するタグであり、顧客のステータスに関連するトレンドを見るのに役立ちます。
+* Service Map で **gold** をクリックして選択します。
+* {{% button style="grey"  %}}分解{{% /button %}} をクリックし、`version` を選択します。これはサービスのバージョンを示すタグです。
+* **silver** と **bronze** についても同様の手順を繰り返します。
 {{< tabs >}}
-{{% tab title="Question" %}}
-**What can you conclude from what you are seeing?**
+{{% tab title="質問" %}}
+**見ているものから何を結論付けることができますか？**
 {{% /tab %}}
-{{% tab title="Answer" %}}
-**Every tenant is being impacted by `v350.10`**
+{{% tab title="回答" %}}
+**すべてのテナントが `v350.10` に影響を受けている**
 {{% /tab %}}
 {{< /tabs >}}
 
 {{% /notice %}}
 
-You will now see the **paymentservice** broken down into three services, **gold**, **silver** and **bronze**. Each tenant is broken down into two services, one for each version (`v350.10` and `v350.9`).
+これで **paymentservice** が **gold**、**silver**、**bronze** の三つのサービスに分解されます。各テナントは二つのサービスに分かれ、それぞれのバージョン (`v350.10` と `v350.9`) が対応しています。
 
-![APM Service Breakdown](../images/apm-service-breakdown.png)
+![APM サービスの分解](../images/apm-service-breakdown.png)
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="演習" style="green" icon="running" %}}
 
-* Click on the outer main box that surrounds the 3 red circles, the box will become highlighted.
+* 3 つの赤い円を囲む外側のメインボックスをクリックします。ボックスがハイライト表示されます。
 
 {{% /notice %}}
 
-{{% notice title="Span Tags" style="info" %}}
-Using span tags to break down services is a very powerful feature. It allows you to see how your services are performing for different customers, different versions, different regions, etc. In this exercise, we have determined that `v350.10` of the **paymentservice** is causing problems for all our customers.
+{{% notice title="スパンのタグ" style="info" %}}
+サービスを分解するためにスパンのタグを使用すると、異なる顧客、異なるバージョン、異なる地域などに対するサービスのパフォーマンスを確認できます。この演習では、**paymentservice** の `v350.10` がすべての顧客に問題を引き起こしていることが判明しました。
 {{% /notice %}}
 
-Next, we need to drill down into a trace to see what is going on.
+次に、トレースを詳細に調査して問題の原因を見つける必要があります。

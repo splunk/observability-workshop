@@ -3,21 +3,21 @@ title: 1. Synthetics Dashboard
 weight: 1
 ---
 
-In Splunk Observability Cloud from the main menu, click on **Synthetics**. Click on **All** or **Browser tests** to see the list of active tests.
+Splunk Observability Cloudのメインメニューから **Synthetics** をクリックします。**All** または **Browser tests** をクリックして、アクティブなテストの一覧を表示します。
 
-During our investigation in the RUM section, we found there was an issue with the **Place Order** Transaction. Let's see if we can confirm this from the Synthetics test as well. We will be using the metric **First byte time** for the 4th page of the test, which is the **Place Order** step.
+RUMセクションでの調査中、**Place Order** トランザクションに問題があることが判明しました。Synthetics テストでもこれを確認できるかどうか見てみましょう。テストの4番目のページ、つまり **Place Order** ステップのメトリック **First byte time** を使用します。
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="実習" style="green" icon="running" %}}
 
-* In the **Search** box enter **[WORKSHOP NAME]** and select the test for your workshop (your instructor will advise as to which one to select).
-* Under **Performance KPIs** set the Time Picker to **-30m** and hit enter.
-* Click on **Location** and from the drop-down select **Page**. The next filter will be populated with the pages that are part of the test.
-* Click on **Duration**, deselect **Duration** and select **First byte time**.
+* **Search** ボックスに **[WORKSHOP NAME]** と入力し、ワークショップに対応するテストを選択します（インストラクターからの指示があります）。
+* **Performance KPIs** でタイムピッカーを **-30m** に設定し、Enter キーを押します。
+* **Location** をクリックし、ドロップダウンから **Page** を選択します。次のフィルタにはテストの一部であるページが表示されます。
+* **Duration** をクリックして **Duration** の選択を解除し、**First byte time** を選択します。
   ![Transaction Filter](../images/synthetics-transaction-filter.png)
-* Look at the legend and note the color of **First byte time - Page 4**.
-* Select the highest data point for **First byte time - Page 4**.
-* A new pane will slide in from the right. Note the time at the top of the pane. Find this time in the list and click on it as this is the slowest test result.
+* 凡例を確認し、**First byte time - Page 4** の色をメモします。
+* **First byte time - Page 4** の最高のデータポイントを選択します。
+* 右から新しいペインが表示されます。ペインの上部にある時間をメモします。リスト内でこの時間を見つけ、クリックします。これは最も遅いテスト結果です。
   ![Multiple Runs](../images/synthetics-multiple-runs.png)
 {{% /notice %}}
 
-You will now be taken to the **Run results** for this particular test run.
+これで、この特定のテストランの **Run results** に移動します。

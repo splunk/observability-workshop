@@ -5,14 +5,14 @@ weight: 7
 archetype: chapter
 ---
 
-{{% badge icon="clock" color="#ed0090" %}}20 minutes{{% /badge %}}
+{{% badge icon="clock" color="#ed0090" %}}20 分{{% /badge %}}
 
-{{% notice icon="user" style="orange" title="Persona" %}}
+{{% notice icon="user" style="orange" title="ペルソナ" %}}
 
-Remaining in your **back-end developer** role, you need to inspect the logs from your application to determine the root cause of the issue.
+引き続き **バックエンド開発者** の役割で、アプリケーションのログを調査して問題の原因を特定する必要があります。
 
 {{% /notice %}}
 
-Using the content related to the APM trace (logs) we will now use Splunk Log Observer to drill down further to understand exactly what the problem is.
+APMトレースに関連するコンテンツ（ログ）を使用して、Splunk Log Observerを使用して問題の詳細を理解するために掘り下げていきます。
 
-Related Content is a powerful feature that allows you to jump from one component to another and is available for **metrics**, **traces** and **logs**.
+関連コンテンツは、1つのコンポーネントから別のコンポーネントにジャンプするための強力な機能で、**メトリクス**、**トレース**、および **ログ** に対して利用できます。

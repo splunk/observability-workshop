@@ -4,61 +4,61 @@ linkTitle: 6.1 Infrastructure Navigators
 weight: 2
 ---
 
-Click on **Infrastructure** in the main menu, the Infrastructure Home Page is made up of 4 distinct sections.
+**Infrastructure**をメインメニューでクリックすると、Infrastructureホームページが4つの異なるセクションで構成されています。
 
 ![Infra main](../images/infrastructure-main.png)
 
-1. **Onboarding Pane:** Training videos and links to documentation to get you started with Splunk Infrastructure Monitoring.
-2. **Time & Filter Pane:** Time window (not configurable at the top level)
-3. **Integrations Pane:** List of all the technologies that are sending metrics to Splunk Observability Cloud.
-4. **Tile Pane:** Total number of services being monitored broken down by integration.
+1. **オンボーディングパネル:** Splunk Infrastructure Monitoringを始めるためのトレーニングビデオとドキュメンテーションへのリンク。
+2. **時間とフィルタパネル:** 時間ウィンドウ（トップレベルで構成不可）
+3. **統合パネル:** Splunk Observability Cloudにメトリクスを送信しているすべてのテクノロジのリスト。
+4. **タイルパネル:** 統合によって監視されているサービスの合計数（統合ごとに分割）
 
-Using the Infrastructure pane, we can select the infrastructure/technology we are interested in, let's do that now.
+Infrastructureパネルを使用して、興味を持っているインフラストラクチャ/テクノロジを選択できます。それをやってみましょう。
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Under the **Containers** section in the Integrations Pane (**3**), select **Kubernetes** as the technology you wish to examine.
-* This should show you two tiles, **K8s Nodes** and **K8s Workloads**.
-* The bottom part of each tile will have a history graph and the top part will show notifications for alerts that fired. Across all tiles, this additional information on each of the tiles will give you a good overview of the health of your infrastructure.
-* Click on the **K8s Nodes** tile.
-* You will be presented with one or more representations of a Kubernetes Cluster.
-* Click on the {{% button %}}Add filters{{% /button %}} button. Type in `k8s.cluster.name` and click on the search result.
-* From the list, select **[NAME OF WORKSHOP]-k3s-cluster** then click on the {{% button style="blue" %}}Apply Filter{{% /button %}} button.
+* 統合パネルの**Containers**セクション（**3**）の下で、調査したいテクノロジとして**Kubernetes**を選択します。
+* これにより、**K8s Nodes**と**K8s Workloads**の2つのタイルが表示されるはずです。
+* 各タイルの下部には履歴グラフがあり、上部にはアラートの通知が表示されます。これらのタイルの追加情報全体は、インフラストラクチャの健康状態について良い概要を提供します。
+* **K8s Nodes**タイルをクリックします。
+* Kubernetesクラスターの1つ以上の表現が表示されます。
+* {{% button %}}フィルタの追加{{% /button %}}ボタンをクリックします。 `k8s.cluster.name` と入力し、検索結果をクリックします。
+* リストから **[WORKSHOPの名前]-k3s-cluster** を選択し、{{% button style="blue" %}}フィルタの適用{{% /button %}} ボタンをクリックします。
 
   ![cluster](../images/k8s-cluster.png)
 
-* The Kubernetes Navigator uses color to indicate health. As you can see there are two pods or services that are unhealthy and in a Failed state (**1**). The rest are healthy and running. This is not uncommon in shared Kubernetes environments, so we replicated that for the workshop.
-* Note the tiles to the side, under **Nodes dependencies** (**2**), specifically the MySQL and Redis tiles. These are the two databases used by our e-commerce application.
+* Kubernetes Navigatorでは、色を使用して健康状態を示します。ご覧の通り、2つのポッドまたはサービスが健康でなく、Failed状態にあります（**1**）。残りは健康で実行しています。これは共有されたKubernetes環境では一般的なことであり、ワークショップでそれを再現しました。
+* サイドにあるタイルに注目してください。**Nodes dependencies**（**2**）の下に、特にMySQLとRedisのタイルがあります。これらは弊社のeコマースアプリケーションで使用されている2つのデータベースです。
 
 {{% /notice %}}
 
 {{% notice title="Node Dependencies" style="info" %}}
 
-The UI will show services that are running on the node you have selected if they have been configured to be monitored by the OpenTelemetry Collector.
+選択したノードで監視されている場合、UIにはそのノードで実行されているサービスが表示されます。
 
 {{% /notice %}}
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Click on the **Redis** tile and this will take you to the **Redis instances** navigator. Under **REDIS INSTANCE** click on **redis-[NAME OF WORKSHOP]**.
-* This will bring you to the **Redis instance**. This navigator will show charts with metric data from the active Redis instance from our e-commerce site.
+* **Redis**タイルをクリックすると、**Redis instances**ナビゲータに移動します。**REDIS INSTANCE**の下で **redis-[WORKSHOPの名前]** をクリックします。
+* これにより、**Redisインスタンス**に移動します。このナビゲータは、弊社のeコマースサイトのアクティブなRedisインスタンスからのメトリクスデータを含むチャートを表示します。
   ![redis](../images/redis-2.png)
 {{< tabs >}}
-{{% tab title="Question" %}}
-**Can you name the Instance dependencies tile in this view?**
+{{% tab title="質問" %}}
+**このビューでのInstance dependenciesタイルの名前を挙げられますか？**
 {{% /tab %}}
-{{% tab title="Answer" %}}
-**Yes, there is one for Kubernetes.**
+{{% tab title="回答" %}}
+**はい、それはKubernetesのものです。**
 {{% /tab %}}
 {{< /tabs >}}
 
-* Click the tile, it will bring us back into the Kubernetes Navigator, this time at the Pod level showing the Pod that runs the Redis Service.
-* To return to the Cluster level, simply click on the link **Cluster** (**1**) at the top of the screen.
- 
+* タイルをクリックすると、Redisサービスを実行するPodが表示されるPodレベルでのKubernetes Navigatorに移動します。
+* クラスターレベルに戻るには、画面の上部にある **Cluster**（**1**）のリンクをクリックします。
+
  ![node](../images/node-link.png)
 
 {{% /notice %}}
 
-This completes the tour of **Splunk Observability Cloud**.
+これで**Splunk Observability Cloud**のツアーが完了しました。
 
-Here, have some virtual 💶 and let's go and look at our e-commerce site, the 'Online Boutique' and do some shopping.
+さて、仮想の💶をお持ちいただき、eコマースサイト「Online Boutique」を見て、ショッピングをしてみましょう。

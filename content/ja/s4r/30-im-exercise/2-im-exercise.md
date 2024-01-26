@@ -1,52 +1,52 @@
 ---
-title: Infrastructure Exercise - Part 2
-linkTitle: Part 2
+title: インフラストラクチャ演習 - パート2
+linkTitle: パート2
 weight: 2
 ---
 
-{{% badge icon="clock" %}}10 minutes{{% /badge %}}
+{{% badge icon="clock" %}}10分{{% /badge %}}
 
-This is Part 2, of the Infrastructure Monitoring exercise, you should now have a single cluster visible.
+これは、インフラモニタリング演習のパート2です。これで、単一のクラスタが表示されるはずです。
 
 ![Alt Cluster](../images/k8s-cluster.png)
 
-* In the Kubernetes Navigator, the cluster is represented by the square with the black line around it.
-* It will contain one or more blue squares representing the node(s) or compute engines.
-* Each of them containing one or more colored boxes that represent Pods. (this is where your services run in).
-* And as you can guess, **green** means healthy and **red** means that there is a problem.
+* Kubernetes Navigatorでは、クラスタは黒い線で囲まれた四角形で表されます。
+* それには、ノードまたはコンピュートエンジンを表す1つ以上の青い四角形が含まれます。
+* それぞれがPodを表す1つまたは複数の色付きのボックスを含んでいます（これはサービスが実行される場所です）。
+* そして、**緑**は健康を示し、**赤**は問題があることを示します。
 
-Given there are two red boxes or tiles, let's see what is going on and if this will affect our Online Boutique site.
+2つの赤いボックスまたはタイルがあるので、何が起こっているか見て、これがオンラインブティックサイトに影響するかどうかを確認しましょう。
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="演習" style="green" icon="running" %}}
 
-* First, set the time window we are working with to the last 15 minutes. You do this by changing the  the Time picker in the filter pane from **-4h** to **Last 15 minutes**.
-* Hover with your mouse over the Cluster, Node and pods, both **green** and **red** ones.
-* The resulting information pane that appears will tell you the state of the object. Note, That the **red** Pods show that they are in **Pod Phase: Failed**. This means they have crashed and are not working.
-* Examine the Cluster Metric charts that provide information on your cluster. (The charts below the cluster image). They provide general information about the health of your cluster like Memory consumption and the number of pods per node.
-* Nothing flags for the **red** pods, as crashed pods do not affect the performance of Kubernetes.
-* Let's check if the Spunk Kubernetes Analyzer can tell us something more useful, so click on **K8s Analyzer**.
+* まず、作業する時間窓を最後の15分に変更します。これは、フィルタペインのTimeピッカーを**-4h**から**Last 15 minutes**に変更して行います。
+* マウスをクラスタ、ノード、およびPod、**緑**と**赤**の両方の上に重ねます。
+* 表示される情報パネルには、オブジェクトの状態が表示されます。**赤い**Podは**Pod Phase: Failed**であることが表示されます。これはクラッシュして機能していないことを意味します。
+* クラスタに関するメトリクスチャートを調べてください（クラスタイメージの下にあるチャート）。これらはクラスタの健康状態に関する一般的な情報を提供します（メモリの消費量、ノードごとのポッドの数など）。
+* クラッシュしたPodはKubernetesのパフォーマンスに影響を与えないため、**赤い**のポッドには何も表示されません。
+* Spunk Kubernetes Analyzerがもっと有用な情報を提供できるかどうかを確認しましょう。**K8s Analyzer**をクリックします。
 {{% notice title=" Spunk Kubernetes Analyzer" style="info" %}}
 
-The Splunk Kubernetes Analyzer is a smart process that runs in the background in Splunk Observability Cloud and is designed to detect relations between anomalies.  
+Splunk Kubernetes Analyzerは、Splunk Observability Cloudでバックグラウンドで実行されるスマートなプロセスであり、異常の間の関係を検出するように設計されています。
 
 {{% /notice %}}
 
-* The **K8s Analyzer** should have detected that the two **red** pods are similar, indicated by the 2 after each line, and running in the same Namespace.
-* In the K8s analyzer view can you find what namespace? (hint, look for `k8s.namespace.name`).
-* Next, we want to check this on the node level as well, so drill down to the node, first by hovering your mouse over the cluster until you see a blue line appear around the node with a ![blue triangle ](../images/node-blue-traingle.png?classes=inline) in the left top, inside the black Cluster Line. 
-* Click on the triangle . Your view should now show little boxes in each pod, these represent the  containers that run the actual code. The *K8s Analyzer* should confirm that this issue is also occurring on the node level.
+* **K8s Analyzer**は、2つの**赤い**ポッドが類似していることを検出しているはずで、それぞれの行の後に2が表示されています。また、同じ名前空間で実行されていることも示しています。
+* K8sアナライザのビューで、どの名前空間かを見つけることができますか？（ヒント：`k8s.namespace.name`を探してみてください）。
+* 次に、この問題がノードレベルでも発生しているかどうかを確認するために、最初にクラスタ上でマウスをホバリングさせ、左上に![青い三角形](../images/node-blue-traingle.png?classes=inline)が表示されるまで待ち、それをクリックします。
+* これで、各ポッドに小さなボックスが表示されるはずで、これは実際のコードを実行するコンテナを表しています。*K8s Analyzer*は、この問題がノードレベルでも発生していることを確認するはずです。
 
 ![Analyser result](../images/k8s-analyser-result.png?width=20vw)
 
-* Click on **K8s node**. This will show the node metrics, and if you examine the charts, you can see that there are only two pods in the development namespace.
-* It is easier to see if you filter on the `k8s.namespace.name=development` in the Filter Pane. The **# Total Pods** chart shows only two pods and in the **Node Workload** chart there is only the *test-job* and it has failed.
+* **K8s node**をクリックします。これにより、ノードのメトリクスが表示され、チャートを調べると、開発名前空間には2つのポッドしかないことがわかります。
+* フィルターペインで`k8s.namespace.name=development`にフィルタリングすると、**＃Total Pods**チャートには2つのポッドしか表示されず、**Node Workload**チャートには*test-job*しかなく、失敗していることがわかります。
 
 {{% notice title="Spunk Kubernetes Analyzer" style="info" %}}
 
-The above scenario is common in a shared Kubernetes environment, where teams deploy applications in different stages. Kubernetes is designed to keep these environments completely separate.
+上記のシナリオは、チームが異なるステージでアプリケーションをデプロイする共有のKubernetes環境では一般的です。 Kubernetesは、これらの環境を完全に分離するように設計されています。
 
 {{% /notice %}}
 
 {{% /notice %}}
 
-None of the Pods that make up our Online Boutique site run in the development namespace and all the other pods are green, we can safely assume these pods do not affect us, so let's move on to look at a few more things.
+オンラインブティックサイトを構成するPodはすべてdevelopment名前空間では実行されておらず、他のすべてのポッドは緑です。したがって、これらのポッドは私たちに影響を与えないと安全に仮定し、次に進みましょう。

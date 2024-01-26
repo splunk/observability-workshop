@@ -5,12 +5,12 @@ weight: 5
 archetype: chapter
 ---
 
-{{% badge icon="clock" color="#ed0090" %}}15 minutes{{% /badge %}}
+{{% badge icon="clock" color="#ed0090" %}}15 分{{% /badge %}}
 
-{{% notice icon="user" style="orange" title="Persona" %}}
+{{% notice icon="user" style="orange" title="ペルソナ" %}}
 
-You are a **frontend engineer**, or an **SRE** tasked to do the first triage of a performance issue. You have been asked to investigate a potential customer satisfaction issue with the Online Boutique application.
+あなたは**フロントエンドエンジニア**または**SRE**で、パフォーマンスの問題について最初のトリアージを実行するように指示されています。オンラインブティックアプリケーションに関する潜在的な顧客満足度の問題を調査するように求められています。
 
 {{% /notice %}}
 
-We are going to examine the real user data that has been provided by the telemetry received from all participants' browser sessions. The goal is to find a browser, mobile or tablet session that performed poorly and begin the troubleshooting process.
+私たちは、すべての参加者のブラウザセッションから受信したテレメトリによって提供された実際のユーザーデータを調査します。目標は、パフォーマンスが低い可能性のあるブラウザ、モバイル、またはタブレットセッションを見つけ、トラブルシューティングプロセスを開始することです。

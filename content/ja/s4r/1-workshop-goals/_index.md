@@ -1,52 +1,52 @@
 ---
-title: Workshop Overview
-linkTitle: 1. Workshop Overview
+title: ワークショップの概要
+linkTitle: 1. ワークショップの概要
 weight: 1
 archetype: chapter
 ---
 
-{{% badge icon="clock" color="#ed0090" %}}2 minutes{{% /badge %}}
+{{% badge icon="clock" color="#ed0090" %}}2分{{% /badge %}}
 
-#### Introduction
+#### イントロダクション
 
-The goal of this workshop is to experience an issue and use Splunk Observability Cloud to troubleshoot and identify the root cause. For this, we have provided a complete microservices-based application running in Kubernetes that has been instrumented to send **metrics, traces, and logs** to Splunk Observability Cloud.
+このワークショップの目的は、ある問題を体験し、Splunk Observability Cloud を使用してトラブルシューティングを行い、根本原因を特定することです。そのために、私たちは Kubernetes で動作する完全なマイクロサービスベースのアプリケーションを提供し、それが Splunk Observability Cloud に**メトリクス、トレース、ログ**を送信するように計装しました。
 
-#### Who should attend?
+#### 参加対象者は？
 
-Those wanting to gain an understanding of Splunk Observability in a hands-on environment. This workshop is designed for people with little or no experience with Splunk Observability.
+Splunk Observability をハンズオンの環境で理解したいと考えている方。このワークショップは、Splunk Observability にほとんど、または、まったく経験がない人向けに設計されています。
 
-#### What you’ll need
+#### 必要なものは何ですか？
 
-Just you, your laptop, and a browser that can access external websites. We run these workshops in person or on Zoom, if you don’t have the Zoom client on your device you will be able to access them via a web browser.
+あなた自身の参加と、あなたのパソコン、そして外部のウェブサイトにアクセスできるブラウザだけです。私たちはこれらのワークショップを対面、または、Zoom で実施しています。あなたのデバイスに Zoom クライアントがない場合でも、ウェブブラウザを通じてそれらにアクセスすることができます。
 
-#### What's covered in this workshop?
+#### このワークショップで何がカバーされていますか？
 
-This 3-hour session will take you through the basics of Splunk Observability, the only observability platform with **streaming analytics**, **NoSample™ Full Fidelity** distributed tracing in a hands-on environment.
+この3時間のセッションでは、ハンズオンの環境で**ストリーミング分析**、**NoSample™ で完全忠実な**分散トレーシングを備えた唯一の可観測性プラットフォームである Splunk Observability の基本を学びます。
 
 ##### OpenTelemetry
 
-A Quick introduction to **why OpenTelemetry** and why is it important for Observability.
+**なぜ OpenTelemetry が必要なのか**、そしてそれが可観測性にとってなぜ重要なのかについて簡単に紹介します。
 
-##### Tour of the Splunk Observability User Interface
+##### Splunk Observability ユーザーインターフェースのツアー
 
-A walkthrough of the various components of Splunk Observability Cloud showing you how to easily navigate the 5 main components:- **APM, RUM, Log Observer, Synthetics and Infrastructure**.
+Splunk Observability Cloud のさまざまなコンポーネントを歩きながら、5つの主要なコンポーネント（**APM、RUM、Log Observer、Synthetics、Infrastructure**）を簡単にナビゲートする方法を紹介します。
 
-##### Generate Real User Data
+##### リアルユーザーデータの生成
 
-Enjoy some retail therapy using the Online Boutique Website. Use your browser, mobile or tablet to spend some hard-earned virtual money to send **metrics _(do we have a problem?)_, traces _(where is the problem?)_ and logs _(what is the problem?)_**.
+Online Boutique Website を使用してお買い物を楽しみます。ブラウザ、モバイル、タブレットを使用して苦労して得た仮想通貨で買い物を行い、 **メトリクス（問題があるのか？）**、**トレース（問題はどこにあるのか？）**、**ログ（問題は何か？）** を送信します。
 
 ##### Splunk Real User Monitoring (RUM)
 
-Examine the real user data that has been provided by the telemetry received from all participants' browser sessions. The goal is to find a browser, mobile or tablet session that performed poorly and begin the troubleshooting process.
+すべての参加者のブラウザセッションから受信したテレメトリーによって提供されたリアルユーザーデータを調査します。目標は、パフォーマンスが悪かったブラウザ、モバイル、タブレットのセッションを見つけて、トラブルシューティングのプロセスを開始することです。
 
 ##### Splunk Application Performance Monitoring (APM)
 
-Discover the power of **full end-to-end visibility** by jumping from a RUM trace (front-end) to an APM trace (back-end). All the services are sending telemetry (traces and spans) that Splunk Observability Cloud can visualize, analyze and use to detect anomalies and errors.
+RUM トレース（フロントエンド）から APM トレース（バックエンド）へとジャンプすることで、**End to End の全体としての可視性**の力を理解します。すべてのサービスはテレメトリー（トレースとスパン）を送信しており、Splunk Observability Cloud はそれを視覚化、分析し、異常やエラーを検出するために使用できます。
 
 ##### Splunk Log Observer (LO)
 
-Related Content is a powerful feature that allows you to jump from one component to another. In this case, we will jump from the APM trace to the logs to the related logs.
+Related Content は、一つのコンポーネントから別のコンポーネントにジャンプすることを可能にする強力な機能です。この場合、私たちは APM トレースからログにジャンプし、関連するログにジャンプします。
 
 ##### Splunk Synthetics
 
-Wouldn’t it be great if we could have **24/7** monitoring of our application, and be **alerted** when there is a problem? This is where Synthetics comes in. We will show you a simple test that runs every 1 minute and checks the performance and availability of a typical user journey through the Online Boutique.
+私たちのアプリケーションを**24時間365日**で監視し、問題が発生したときに**アラート**を受け取ることができたら素晴らしいことではないでしょうか？これが Synthetics の役割です。私たちは、1分ごとに実行され、Online Boutique を通じた典型的なユーザージャーニーのパフォーマンスと可用性をチェックするシンプルなテストを示します。

@@ -6,13 +6,13 @@ weight: 5
 
 {{% badge icon="clock" color="#ed0090" %}}5 minutes{{% /badge %}}
 
-Splunk Synthetic Monitoring provides visibility across URLs, APIs and critical web services to solve problems faster. IT Operations and engineering teams can easily detect, alert and prioritize issues, simulate multi-step user journeys, measure business impact from new code deployments and optimize web performance with guided step-by-step recommendations to ensure better digital experiences.
+Splunk Synthetic Monitoringは、URL、API、および重要なWebサービス全体に対する可視性を提供し、問題の解決を迅速に行います。ITオペレーションおよびエンジニアリングチームは、簡単に問題を検出、アラートを発信し、優先順位をつけることができ、多段階のユーザージャーニーをシミュレートし、新しいコード展開からのビジネスへの影響を測定し、Webのパフォーマンスを最適化できます。さらに、ステップバイステップのアドバイスにより、より良いデジタルエクスペリエンスを確保します。
 
-**Ensure Availability:** Proactively monitor and alert on the health and availability of critical services, URLs and APIs with customizable browser tests to simulate multi-step workflows that make up the user experience.  
-**Improve Metrics:** Core Web Vitals and modern performance metrics allow users to view all their performance defects in one place, measure and improve page load, interactivity and visual stability, and find and fix JavaScript errors to improve page performance.  
-**front-end to back-end:** Integrations with Splunk APM, Infrastructure Monitoring, On-Call and ITSI help teams view endpoint uptime against back-end services, the underlying infrastructure and within their incident response coordination so they can troubleshoot across their entire environment, in a single UI.  
-**Detect and Alert:** Monitor and simulate end-user experiences to detect, communicate and resolve issues for APIs, service endpoints and critical business transactions before they impact customers.  
-**Business Performance:** Easily define multi-step user flows for key business transactions and start recording and testing your critical user journeys in minutes. Track and report SLAs and SLOs for uptime and performance.  
-**Filmstrips and Video Playback:** View screen recordings, film strips, and screenshots alongside modern performance scores, competitive benchmarking, and metrics to visualize artificial end-user experiences. Optimize how fast you deliver visual content, and improve page stability and interactivity to deploy better digital experiences.
+**可用性の確保:** 重要なサービス、URL、およびAPIの健康状態と利用可能性を積極的に監視し、ユーザーエクスペリエンスを構成する多段階のワークフローをシミュレートするためのカスタマイズ可能なブラウザーテストでアラートを発信します。  
+**メトリクスの向上:** Core Web Vitalsおよびモダンなパフォーマンスメトリクスを使用して、すべてのパフォーマンス欠陥を1か所で表示し、ページの読み込み、対話性、視覚的な安定性を測定および向上させ、JavaScriptエラーを見つけて修正し、ページのパフォーマンスを向上させます。  
+**フロントエンドからバックエンドまで:** Splunk APM、Infrastructure Monitoring、On-Call、およびITSIとの統合により、チームはバックエンドサービス、基盤インフラストラクチャ、インシデント対応調整内でエンドポイントのアップタイムを表示し、環境全体でトラブルシュートを行うことができます。  
+**検出とアラート:** API、サービスエンドポイント、および重要なビジネストランザクションに対するエンドユーザーエクスペリエンスを監視およびシミュレートし、顧客に影響を与える前に問題を検出、通知、および解決します。  
+**ビジネスパフォーマンス:** 主要なビジネストランザクションのために多段階のユーザーフローを簡単に定義し、数分でクリティカルなユーザージャーニーの記録とテストを開始します。アップタイムとパフォーマンスのためのSLAおよびSLOをトラックおよび報告します。  
+**フィルムストリップとビデオ再生:** 現代のパフォーマンススコア、競合ベンチマーク、およびメトリクスと一緒に画面の録画、フィルムストリップ、およびスクリーンショットを表示して、人工的なエンドユーザーエクスペリエンスを可視化します。視覚コンテンツの提供速度を最適化し、ページの安定性と対話性を向上させて、より良いデジタルエクスペリエンスを展開します。
 
 ![Synthetics overview](images/synthetic-tests.png)

@@ -1,41 +1,41 @@
 ---
-title: Log on FAQ
+title: ログイン - よくある質問
 weight: 99
 hidden: true
 ---
 
- This FAQ will address some of the more common issues we have encountered when logging into the Workshop.
+この FAQ では、ワークショップへのログイン時に発生することがある、より一般的な問題について紹介します。
 
-### 1. Invite email or password renewal email not arriving
+### 1. 招待メールまたはパスワード更新メールが届かない
 
- The first step to take is to search for an email from **<noreply@signalfx.com>**, across all your email folders, as this is the address used to send the invite and password renewal emails. If you don't see the email, check your spam/junk folder.
+最初に行うべきステップは、すべてのメールフォルダで **<noreply@signalfx.com>** からのメールを検索することです。これは、招待メールとパスワード更新メールを送信するために使用されるアドレスです。メールが見つからない場合は、スパム/ごみ箱フォルダを確認してください。
 
-If you are sure the email does not exist your email, ask the Instructor to verify the email used for the workshop and have him/her resend the invite.
+メールがあなたに届いていないことが確認できた場合は、インストラクターにワークショップで使用されたメールを確認してもらい、招待を再送してもらってください。
 
-If this fails, another solution is to provide the Instructor with a different email address (private e-mail address for example) and have him/her resend the invite.
-
----
-
-### 2. Password not accepted
-
-The requirements for a password in Splunk Observability Cloud are:
-
-* **Must** be between 8 and 32 characters
-* **Must** contain at least one capital letter
-* **Must** have at least one number
-* **Must** have at least one symbol (e.g. !@#$%^&*()_+)
+これが失敗した場合の別の解決策は、インストラクターに別のメールアドレス（例えばプライベートのメールアドレス）を提供し、招待を再送してもらうことです。
 
 ---
 
-### 3. Invalid or unknown password
+### 2. パスワードが受け付けられない
 
-The system does not recognize the password and username combination, please click on the reset password link to try and reset your password.
-You will be asked to provide a password. If that account exists, an email will be sent to allow you to reset your password. follow the instructions in that email.
+Splunk Observability Cloud でのパスワードの要件は以下の通りです：
 
-If no email arrives or your username is not recognized, reach out to your instructor for assistance.
+* **必須** 8文字から32文字の間でなければなりません
+* **必須** 少なくとも1つの大文字を含む必要があります
+* **必須** 少なくとも1つの数字を含む必要があります
+* **必須** 少なくとも1つの記号を含む必要があります（例：!@#$%^&*()_+）
 
 ---
 
-### 4. Other options
+### 3. 無効または不明なパスワード
 
-To Be Completed.
+システムはパスワードとユーザー名の組み合わせを認識しません。パスワードをリセットしようとするために、パスワードリセットリンクをクリックしてください。
+パスワードを提供するように求められます。そのアカウントが存在する場合、パスワードをリセットするためのメールが送信されます。そのメールの指示に従ってください。
+
+メールが届かない場合やユーザー名が認識されない場合は、インストラクターに連絡してサポートを求めてください。
+
+---
+
+### 4. その他のオプション
+
+更新予定

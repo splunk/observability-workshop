@@ -3,26 +3,26 @@ title: 1. APM Explore
 weight: 1
 ---
 
-The APM Service Map displays the dependencies and connections among your instrumented and inferred services in APM. The map is dynamically generated based on your selections in the time range, environment, workflow, service, and tag filters.
+APMサービスマップは、APMのインストゥルメンテーションおよび推測されたサービス間の依存関係と接続を表示します。このマップは、時間範囲、環境、ワークフロー、サービス、およびタグのフィルタで選択した内容に基づいて動的に生成されます。
 
-When we clicked on the APM link in the RUM waterfall, filters were automatically added to the service map view to show the services that were involved in that **WorkFlow Name** (`frontend:/cart/checkout`).
+RUMウォーターフォールでAPMリンクをクリックすると、サービスマップビューに自動的にフィルタが追加され、その**WorkFlow Name**（`frontend:/cart/checkout`）に関与したサービスが表示されます。
 
-You can see the services involved in the workflow in the **Service Map**. In the side pane, under **Business Workflow**, charts for the selected workflow are displayed. The **Service Map** and **Business Workflow** charts are synchronized. When you select a service in the **Service Map**, the charts in the **Business Workflow** pane are updated to show metrics for the selected service.
+**サービスマップ**でワークフローに関与するサービスが表示されます。サイドペインの**ビジネスワークフロー**の下には、選択したワークフローのチャートが表示されます。**サービスマップ**と**ビジネスワークフロー**のチャートは同期されています。**サービスマップ**でサービスを選択すると、**ビジネスワークフロー**ペインのチャートが更新され、選択したサービスのメトリクスが表示されます。
 
 ![APM Business Workflow](../images/apm-business-workflow.png)
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Click on the **paymentservice** in the Service Map.
+* **paymentservice**をサービスマップでクリックしてください。
 
 {{% /notice %}}
 
 ![APM Explore](../images/apm-explore.png)
 
-Splunk APM also provides a set of built-in dashboards that present charts and visualized metrics to help you see problems occurring in real time and quickly determine whether the problem is associated with a service, a specific endpoint, or the underlying infrastructure. Let's have a closer look.
+Splunk APMは、リアルタイムで発生している問題を確認し、問題がサービス、特定のエンドポイント、または基盤インフラストラクチャに関連しているかどうかを迅速に判断するための、視覚化されたメトリクスとチャートを提供する一連の組み込みダッシュボードもあります。これを詳しく見てみましょう。
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Click on **View Dashboard** top right of the **paymentservice** pane.
+* **paymentservice**パネルの右上にある**View Dashboard**をクリックしてください。
 
 {{% /notice %}}

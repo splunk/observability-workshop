@@ -6,14 +6,14 @@ weight: 6
 
 {{% badge icon="clock" color="#ed0090" %}}5 minutes{{% /badge %}}
 
-Splunk Infrastructure Monitoring (IM) is a market-leading monitoring and observability service for hybrid cloud environments. Built on a patented streaming architecture, it provides a **real-time** solution for engineering teams to visualize and analyze performance across infrastructure, services, and applications in a fraction of the time and with greater accuracy than traditional solutions.
+Splunk Infrastructure Monitoring (IM)は、ハイブリッドクラウド環境向けの市場をリードするモニタリングおよびオブザビリティサービスです。特許取得済みのストリーミングアーキテクチャに基づいており、従来のソリューションよりも短時間でかつ高い精度でインフラストラクチャ、サービス、およびアプリケーションのパフォーマンスを視覚化および分析する**リアルタイム**ソリューションを提供します。
 
-**OpenTelemetry standardization:** Gives you full control over your data — freeing you from vendor lock-in and implementing proprietary agents.  
-**Splunk’s OTel Collector:** Seamless installation and dynamic configuration, auto-discovers your entire stack in seconds for visibility across clouds, services, and systems.  
-**300+ Easy-to-use OOTB content:** Pre-built navigators and dashboards, deliver immediate visualizations of your entire environment so that you can interact with all your data in real time.  
-**Kubernetes navigator:** Provides an instant, comprehensive out-of-the-box hierarchical view of nodes, pods, and containers. Ramp up even the most novice Kubernetes user with easy-to-understand interactive cluster maps.  
-**AutoDetect alerts and detectors:** Automatically identify the most important metrics, out-of-the-box, to create alert conditions for detectors that accurately alert from the moment telemetry data is ingested and use real-time alerting capabilities for important notifications in seconds.  
-**Log views in dashboards:** Combine log messages and real-time metrics on one page with common filters and time controls for faster in-context troubleshooting.  
-**Metrics pipeline management:** Control metrics volume at the point of ingest without re-instrumentation with a set of aggregation and data-dropping rules to store and analyze only the needed data. Reduce metrics volume and optimize observability spend.  
+**OpenTelemetry標準化:** データに完全な制御を提供し、ベンダーロックインから解放され、独自のエージェントの実装を不要にします。  
+**SplunkのOTel Collector:** シームレスなインストールとダイナミックな構成により、クラウド、サービス、およびシステム全体を数秒で自動的に検出して、リアルタイムの可視性を提供します。  
+**300以上の簡単に使用可能なOOTBコンテンツ:** 事前に構築されたナビゲータとダッシュボードは、環境全体の即座の視覚化を提供し、すべてのデータと対話できるようにします。  
+**Kubernetesナビゲータ:** ノード、ポッド、およびコンテナの包括的なプリセットの階層ビューを提供します。わかりやすいインタラクティブなクラスターマップで、初心者でも簡単に理解できるようにします。  
+**AutoDetectアラートとディテクタ:** テレメトリデータが取り込まれるとすぐに正確なアラート条件を作成するために、最も重要なメトリクスを自動的に識別します。重要な通知に対するリアルタイムのアラート機能を使用して、数秒で通知します。  
+**ダッシュボード内のログビュー:** 一般的なフィルタと時間制御を使用して、ログメッセージとリアルタイムメトリクスを1ページで組み合わせ、コンテキスト内でのトラブルシューティングを迅速に行います。  
+**メトリクスパイプラインの管理:** ポイントでメトリクスのボリュームを制御し、再インストゥルメンテーションなしで必要なデータのみを保存および分析するための集約およびデータのドロップルールを使用します。メトリクスのボリュームを削減し、オブザビリティの支出を最適化します。
 
 ![Infrastructure Overview](images/infrastructure-overview.png)

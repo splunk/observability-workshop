@@ -1,43 +1,43 @@
 ---
 title: Let's go shopping 💶
-linkTitle: 4. Shopping at the Online Boutique
+linkTitle: 4. オンラインブティックでのショッピング
 weight: 4
 ---
 
-{{% badge icon="clock" color="#ed0090" %}}5 minutes{{% /badge %}}
+{{% badge icon="clock" color="#ed0090" %}}5 分{{% /badge %}}
 
-{{% notice icon="user" style="orange" title="Persona" %}}
+{{% notice icon="user" style="orange" title="ペルソナ" %}}
 
-You are a **hip urban professional**, longing to buy your next novelty items in the famous Online Boutique shop. You have heard that the Online Boutique is the place to go for all your hipster needs.
-
-{{% /notice %}}
-
-The purpose of this exercise is for you to interact with the Online Boutique web application.  This is a sample application that is used to demonstrate the capabilities of Splunk Observability Cloud. The application is a simple e-commerce site that allows you to browse items, add them to your cart, and then checkout.
-
-The application will already be deployed for you and your instructor will provide you with a link to the Online Boutique website.
-
-{{% notice style="green" icon="running" title="Exercise - Let's go shopping" %}}
-
-* Once you have the link to the Online Boutique, have a browse through a few items, add them to your cart and then, finally, do a checkout.
-* Repeat this exercise a few times and if possible use different browsers, mobile devices or tablets as this will generate more data for you to explore.
+あなたは**都会のヒップなプロフェッショナル**で、有名なオンラインブティックショップで次の新奇なアイテムを買いたくてウズウズしています。オンラインブティックは、あらゆるヒップなニーズに対応する場所であると聞いています。
 
 {{% /notice %}}
 
-{{% notice style="primary" icon="lightbulb" title="Tip" %}}
+この演習の目的は、オンラインブティックのウェブアプリケーションとやり取りすることです。これはSplunk Observability Cloudの機能をデモンストレーションするために使用されるサンプルアプリケーションで、アイテムを閲覧し、カートに追加してからチェックアウトすることができるシンプルなeコマースサイトです。
 
-While you are waiting for pages to load, please move your mouse cursor around the page. This will generate more data for us to explore at a later date in this workshop.
+アプリケーションは既に展開されており、インストラクターからオンラインブティックのウェブサイトへのリンクが提供されます。
 
-{{% /notice %}}
+{{% notice style="green" icon="running" title="演習 - ショッピングを始めましょう" %}}
 
-{{% notice style="green" icon="running" title="Exercise (cont.)" %}}
-
-* Did you notice anything about the checkout process? Did it seem to take a while to complete, but it did ultimately complete? When this happens please copy the **Order Confirmation ID** and save it locally somewhere as we will need it later.
-* Close the browser sessions you used to shop.
+* オンラインブティックへのリンクが手に入ったら、いくつかのアイテムを見て、カートに追加して、最後にチェックアウトしてみてください。
+* この演習を数回繰り返し、可能であれば異なるブラウザ、モバイルデバイス、またはタブレットを使用してください。これにより、探索するためのより多くのデータが生成されます。
 
 {{% /notice %}}
 
-This is what a poor user experience can feel like and since this is a potential customer satisfaction issue we had better jump on this and troubleshoot.
+{{% notice style="primary" icon="lightbulb" title="ヒント" %}}
+
+ページの読み込みを待っている間に、マウスカーソルをページ上で動かしてください。これにより、後でこのワークショップで探索するためのさらに多くのデータが生成されます。
+
+{{% /notice %}}
+
+{{% notice style="green" icon="running" title="演習（続き）" %}}
+
+* チェックアウトプロセスについて気づいたことはありますか？ 完了までに時間がかかったように見えましたが、最終的には完了しましたか？ これが発生した場合は、**注文確認ID**をコピーして、後で使用するためにローカルに保存してください。
+* ショッピングに使用したブラウザセッションを閉じてください。
+
+{{% /notice %}}
+
+これはユーザーエクスペリエンスが悪いと感じるかもしれません。これは潜在的な顧客満足度の問題なので、これを解決するために手を打ってみましょう。
 
 ![Online Boutique](images/shop.png)
 
-Let’s go take a look at what the data looks like in **Splunk RUM**.
+では、**Splunk RUM**でデータがどのように見えるかを見てみましょう。

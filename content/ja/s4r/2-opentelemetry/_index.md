@@ -1,37 +1,37 @@
 ---
-title: What is OpenTelemetry & why should you care?
+title: OpenTelemetry とは何か、なぜ注目するべきなのか？
 linkTitle: 2. OpenTelemetry
 weight: 2
 archetype: chapter
 ---
 
-{{% badge icon="clock" color="#ed0090" %}}2 minutes{{% /badge %}}
+{{% badge icon="clock" color="#ed0090" %}}2分{{% /badge %}}
 
 ## OpenTelemetry
 
-With the rise of cloud computing, microservices architectures, and ever-more complex business requirements, the need for Observability has never been greater. Observability is the ability to understand the internal state of a system by examining its outputs. In the context of software, this means being able to understand the internal state of a system by examining its telemetry data, which includes **metrics**, **traces**, and **logs**.
+クラウドコンピューティング、マイクロサービスアーキテクチャ、そしてますます複雑なビジネス要件の台頭により、可観測性の必要性はこれまで以上に高まっています。可観測性とは、システムの内部状態をその出力を調べることで理解する能力のことです。ソフトウェアの文脈では、これは**メトリクス**、**トレース**、および**ログ**を含むテレメトリーデータを調べることでシステムの内部状態を理解する能力を意味します。
 
-To make a system observable, it must be instrumented. That is, the code must emit traces, metrics, and logs. The instrumented data must then be sent to an Observability back-end such as **Splunk Observability Cloud**.
+システムを観測可能にするためには、計装が必要です。つまり、コードはトレース、メトリクス、およびログを出力する必要があります。計装されたデータは次に、**Splunk Observability Cloud** などの可観測性バックエンドに送信される必要があります。
 
-| Metrics | Traces | Logs |
+| メトリクス | トレース | ログ |
 |:-------:|:------:|:----:|
-| _**Do I have a problem?**_ | _**Where is the problem?**_ | _**What is the problem?**_ |
+| _**問題があるのか？**_ | _**問題はどこにあるのか？**_ | _**問題は何か？**_ |
 
-OpenTelemetry does two important things:
+OpenTelemetry は2つの重要な側面を持ちます。
 
-* Allows you to **own** the data that you generate rather than be stuck with a proprietary data format or tool.
-* Allows you to learn **a single set** of APIs and conventions
+* プロプライエタリなデータ形式やツールに縛られることなく、自分が生成するデータを**自分のものとする**ことを可能にします。
+* **単一の** APIと規約を学ぶことを可能にします
 
-These two things combined enable teams and organizations the flexibility they need in today’s modern computing world.
+これら2つのことが組み合わさることで、チームや組織は今日の現代的なコンピューティングの世界で必要な柔軟性を得ることができます。
 
-There are a lot of variables to consider when getting started with Observability, including the all-important question: _"How do I get my data into an Observability tool?"_. The industry-wide adoption of OpenTelemetry makes this question easier to answer than ever.
+可観測性に取りかかるときに考慮すべきことはたくさんありますが、その中でも重要な質問は _「可観測性ツールにデータをどのように取り込むのか？」_ というものです。OpenTelemetry の業界全体での採用により、これまで以上に簡単に、この質問に答えることができるようになっています。
 
-## Why Should You Care?
+## なぜ注目するべきなのか？
 
-OpenTelemetry is completely open-source and free to use. In the past, monitoring and Observability tools relied heavily on proprietary agents meaning that the effort required to change or set up additional tooling required a large amount of changes across systems, from the infrastructure level to the application level.
+OpenTelemetry は完全にオープンソースで、無料で使用することができます。過去には、監視および可観測性ツールはプロプライエタリなエージェントに大きく依存していました。これは、追加のツールを設定したり、変更したりするために必要な労力が、インフラストラクチャレベルからアプリケーションレベルまでのシステム全体で大量の変更を必要とすることを意味していました。
 
-Since OpenTelemetry is vendor-neutral and supported by many industry leaders in the Observability space, adopters can switch between supported Observability tools at any time with minor changes to their instrumentation. This is true regardless of which distribution of OpenTelemetry is used – like with Linux, the various distributions bundle settings and add-ons but are all fundamentally based on the community-driven OpenTelemetry project.
+OpenTelemetry はベンダーニュートラルであり、可観測性に関わる多くの業界のリーダーによってサポートされているため、利用者はいつでもサポートされている可観測性ツール間をわずかな計装に対する変更によって切り替えることができます。これは、どの OpenTelemetry のディストリビューションが使用されているかに関係なく真実です。Linux と同様に、さまざまなディストリビューションは設定とアドオンをバンドルしますが、すべてが根本的にコミュニティ主導の OpenTelemetry プロジェクトに基づいています。
 
-Splunk has fully committed to OpenTelemetry so that our customers can collect and use **ALL** their data, in any type, any structure, from any source, on any scale, and all in real-time. OpenTelemetry is fundamentally changing the monitoring landscape, enabling IT and DevOps teams to bring data to every question and every action. You will experience this during these workshops.
+Splunk は OpenTelemetry に完全にコミットしています。これにより、お客様は**すべての**データを収集し、いかなるタイプ、いかなる構造、いかなるソース、いかなるスケールであっても、すべてリアルタイムで使用することができます。OpenTelemetry は監視の風景を根本的に変えており、IT チームと DevOps チームがすべての疑問とすべてのアクションに対してデータを活用することを可能にしています。これらのワークショップ中にこのことを体験することになります。
 
-![OpenTelemetry Logo](images/otel.png)
+![OpenTelemetryのロゴ](images/otel.png)

@@ -9,10 +9,10 @@ archetype: chapter
 
 {{% notice icon="user" style="orange" title="Persona" %}}
 
-You are a **back-end developer** and you have been called in to help investigate an issue found by the SRE. The SRE has identified a poor user experience and has asked you to investigate the issue.
+あなたは**バックエンドの開発者**で、SREによって発見された問題の調査を支援するように呼ばれました。SREはユーザーエクスペリエンスが悪いと特定し、その問題の調査をお願いしています。
 
 {{% /notice %}}
 
-Discover the power of full end-to-end visibility by jumping from a RUM trace (front-end) to an APM trace (back-end). All the services are sending telemetry (traces and spans) that Splunk Observability Cloud can visualize, analyze and use to detect anomalies and errors.
+RUMトレース（フロントエンド）からAPMトレース（バックエンド）に移動することで、フルエンドツーエンドの可視性の力を発見します。すべてのサービスは、Splunk Observability Cloudが視覚化、分析、異常およびエラーの検出に使用できるトレースとスパンのテレメトリを送信しています。
 
-RUM and APM are two sides of the same coin. RUM is the client-side view of the application and APM is the server-side view. In this section, we will use APM to drill down and identify where the problem is.
+RUMとAPMは同じコインの二つの側面です。RUMはアプリケーションのクライアント側のビューであり、APMはサーバー側のビューです。このセクションでは、APMを使用して問題を特定するためにドリルダウンします。

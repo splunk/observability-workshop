@@ -2,9 +2,10 @@
 title: 2. APM Service Dashboard
 weight: 2
 ---
+
 {{% notice title="Service Dashboard" style="info" %}}
 
-APM Service Dashboards provide request, error, and duration (**RED**) metrics based on Monitoring MetricSets created from endpoint spans for your services, endpoints, and Business Workflows. If you scroll down the dashboard you will also see the host and Kubernetes-related metrics which help you determine whether there are problems with the underlying infrastructure.
+APMサービスダッシュボードは、サービス、エンドポイント、およびビジネスワークフローのためのエンドポイントスパンから作成されたモニタリングメトリクセットに基づいて、リクエスト、エラー、および所要時間（**RED**）メトリクスを提供します。ダッシュボードを下にスクロールすると、基盤と関連するKubernetesメトリクスも表示され、基盤インフラストラクチャに問題があるかどうかを判断するのに役立ちます。
 
 {{% /notice %}}
 
@@ -12,15 +13,15 @@ APM Service Dashboards provide request, error, and duration (**RED**) metrics ba
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Check the **Time** box **(1)**, you can see that the dashboards only show data relevant to the time it took for the APM trace we selected to complete (note that the charts are static).
-* In the **time** box change enter **-1h** and hit enter.
-* The Single Value charts, **Request rate**, **Request latency (p90)** and **Error rate** will start updating every 10 seconds showing that we still have a large number of errors occurring.
-* These charts are very useful to quickly identify performance issues. You can use this dashboard to keep an eye on the health of your service or use it as a base for a custom one.
-* We want to use some of these charts in a later exercise:
-  * In the **Request rate** Single Value chart (**2**), click the **...** and select **Copy**. Note that you now have a **1** before the **+** at the top right of the page (**3**), indicating you have a copied chart to the clipboard.
-  * In the **Request rate** line chart (**4**), either click on the **Add to clipboard** indicator that appeared (just at the **(4)** in the screenshot) to add it to the clipboard or use the **...** and select **Add to clipboard**.
-* Note that you now have **2** before the **+** on the top right of the page. (**3**)
-* Now let's go back to the explore view, you can hit the back button in your Browser
+* **Time**ボックス**(1)**を確認してください。ダッシュボードは選択したAPMトレースが完了するのにかかった時間に関連するデータのみを表示します（チャートは静的です）。
+* **time**ボックスに**-1h**と入力し、Enterキーを押します。
+* **Request rate**、**Request latency (p90)**、**Error rate**のSingle Valueチャートは、引き続き多くのエラーが発生していることを示すように、10秒ごとに更新されます。
+* これらのチャートはパフォーマンスの問題を迅速に特定するのに非常に役立ちます。このダッシュボードを使用してサービスの健康状態を監視したり、カスタムの基盤として使用したりできます。
+* これらのチャートのいくつかを後の演習で使用したいと思います：
+  * **Request rate** Single Valueチャート(**2**)で**...**をクリックし、**Copy**を選択します。これにより、ページの右上に**3**の前に**1**が表示され、クリップボードにコピーされたチャートがあることが示されます。
+  * **Request rate**の折れ線グラフ(**4**)では、**Add to clipboard**インジケータをクリックしてクリップボードに追加するか、**...**を使用して**Add to clipboard**を選択します。
+* ページの右上に**3**の前に**2**が表示されていることに注意してください。
+* それでは、エクスプロービューに戻りましょう。ブラウザのバックボタンをクリックしてください。
 
 {{% /notice %}}
 
@@ -30,14 +31,14 @@ APM Service Dashboards provide request, error, and duration (**RED**) metrics ba
 
 {{< tabs >}}
 {{% tab title="Question" %}}
-**In the Service Map hover over the **paymentservice**. What can you conclude from the popup service chart?**
+**サービスマップで**paymentservice**の上にカーソルを合わせると、ポップアップサービスチャートから何がわかりますか？**
 {{% /tab %}}
 {{% tab title="Answer" %}}
-**The error percentage is very high.**
+**エラー率が非常に高いです。**
 {{% /tab %}}
 {{< /tabs >}}
 {{% /notice %}}
 
 ![APM Service Chart](../images/apm-service-popup-chart.png)
 
-We need to understand if there is a pattern to this error rate. We have a handy tool for that, **Tag Spotlight**.
+このエラー率にパターンがあるかどうかを理解する必要があります。そのためには、**Tag Spotlight**が便利です。

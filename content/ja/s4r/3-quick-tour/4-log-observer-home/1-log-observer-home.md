@@ -4,48 +4,48 @@ linkTitle: 4.1 Log Observer Home Page
 weight: 2
 ---
 
-Click **Log Observer** in the main menu, the Log Observer Home Page is made up of 4 distinct sections:
+メインメニューで **Log Observer** をクリックすると、Log Observerホームページが4つの異なるセクションで構成されます：
 
 ![Lo Page](../images/log-observer-main.png)
 
-1. **Onboarding Pane:** Training videos and links to documentation to get you started with Splunk Log Observer.
-2. **Filter Bar:** Filter on time, indexes, and fields and also Save Queries.
-3. **Logs Table Pane:** List of log entries that match the current filter criteria.
-4. **Fields Pane:** List of fields available in the currently selected index.
+1. **オンボーディングパネル:** Splunk Log Observerを始めるためのトレーニングビデオとドキュメンテーションへのリンク。
+2. **フィルターバー:** 時間、インデックス、およびフィールドでフィルタリングし、クエリを保存することもできます。
+3. **ログテーブルパネル:** 現在のフィルタ条件に一致するログエントリのリスト。
+4. **フィールドパネル:** 現在選択されているインデックスで使用可能なフィールドのリスト。
 
-{{% notice title=" Splunk indexes" style="info" %}}
+{{% notice title="Splunkインデックス" style="info" %}}
 
-Generally, in Splunk, an "index" refers to a  designated place where your data is stored. It's like a folder or container for your data. Data within a Splunk index is organized and structured in a way that makes it easy to search and analyze. Different indexes can be created to store specific types of data. For example, you might have one index for web server logs, another for application logs, and so on.
-
-{{% /notice %}}
-
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-
-If you have used Splunk Enterprise or Splunk Cloud before, you are probably used to starting investigations with logs. As you will see in the following exercise, you can do that with Splunk Observability Cloud as well. This workshop, however, will use all the **OpenTelemetry** signals for investigations.
+一般的に、Splunkでは「インデックス」はデータが保存される指定された場所を指します。これはデータのためのフォルダまたはコンテナのようなものです。 Splunkインデックス内のデータは検索と分析が容易になるように整理され構造化されています。異なるインデックスを作成して特定のタイプのデータを格納することができます。たとえば、Webサーバーログ用の1つのインデックス、アプリケーションログ用の別のインデックスなどが考えられます。
 
 {{% /notice %}}
 
-Let's run a little search exercise:
+{{% notice title="ヒント" style="primary" icon="lightbulb" %}}
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+以前にSplunk EnterpriseまたはSplunk Cloudを使用したことがある場合、おそらくログから調査を開始することに慣れているでしょう。次の演習でも同じようにできますが、このワークショップでは調査にすべての **OpenTelemetry** シグナルを使用します。
 
-* Set the time frame to  **-15m**.
-* Click on {{% button style="gray" %}}Add Filter{{% /button %}} in the filter bar then click on **Fields** in the dialog.
-* Type in **cardType** and select it.
-* Under **Top values** click on **visa**, then click on **=** to add it to the filter.
+{{% /notice %}}
+
+さて、小さな検索演習を行いましょう：
+
+{{% notice title="演習" style="green" icon="running" %}}
+
+* 時間枠を **-15分** に設定します。
+* フィルターバーで {{% button style="gray" %}}フィルターの追加{{% /button %}} をクリックし、次にダイアログで **Fields** をクリックします。
+* **cardType** と入力して選択します。
+* **Top values** の下で **visa** をクリックし、その後 **=** をクリックしてフィルターに追加します。
 
   ![logo search](../images/log-filter-bar.png?width=920px)
 
-* Click on one of the log entries in the Logs table to validate that the entry contains `cardType: "visa"`.
-* Let's find all the orders that have been shipped. Click on **Clear All** in the filter bar to remove the previous filter.
-* Click again on {{% button style="gray" %}}Add Filter{{% /button %}} in the filter bar, then select **Keyword**. Next just type `order:` in the **Enter Keyword...** box and press enter.
-* You should now only have log lines that contain the word "order:". There are still a lot of log lines, so let's filter some more.
-* Add another filter, this time select the **Fields** box, then type `severity` in the **Find a field...** search box and select it.
+* ログテーブル内のログエントリの1つをクリックして、そのエントリに `cardType: "visa"` が含まれていることを確認します。
+* 出荷されたすべての注文を見つけましょう。フィルターバーで **Clear All** をクリックして前のフィルターを削除します。
+* 再度フィルターバーで {{% button style="gray" %}}フィルターの追加{{% /button %}} をクリックし、次に **Keyword** を選択します。次に **Enter Keyword...** ボックスに `order:` と入力してエンターキーを押します。
+* これで「order：」という単語を含むログ行しか表示されなくなります。まだ多くのログ行がありますので、さらにフィルタリングしましょう。
+* 別のフィルターを追加します。今度は **Fields** ボックスを選択し、**Find a field...** 検索ボックスに `severity` と入力して選択します。
   ![severity](../images/find-severity.png?width=15vw&classes=left)
-* Make sure you click the {{% button style="gray" %}}**Exclude all logs with this fields**{{% /button %}}  at the bottom of the dialog box, as the order log line does not have a severity assigned.  This will remove the others.
-* You may need to scroll down the page if you still have the onboarding content displayed at the top to see the **Exclude all logs with this fields** button.
-* You should now have a list of orders sold for the last 15 minutes.
+* ダイアログボックスの下部にある {{% button style="gray" %}}**Exclude all logs with this fields**{{% /button %}} をクリックしてください。なぜなら、注文ログ行には重要度が割り当てられていないからです。これにより他のログが削除されます。
+* まだ画面上部にオンボーディングコンテンツが表示されている場合は、**Exclude all logs with this fields** ボタンを見るためにページをスクロールする必要があります。
+* これで過去15分間に販売された注文のリストが表示されます。
 
 {{% /notice %}}
 
-Next, let's check out **Splunk Synthetics**.
+次に、**Splunk Synthetics** を確認しましょう。

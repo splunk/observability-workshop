@@ -1,32 +1,32 @@
 ---
-title: 3. APM Tag Spotlight
+title: 3. APM タグスポットライト
 weight: 3
 ---
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* To view the tags for the **paymentservice** click on the **paymentservice** and then click on **Tag Spotlight** in the right-hand side functions pane (you may need to scroll down depending upon your screen resolution).
-* Once in **Tag Spotlight** ensure the toggle **Show tags with no values** is off.
+* **paymentservice**のタグを表示するには、**paymentservice**をクリックしてから右側の機能ペインで**Tag Spotlight**をクリックします（画面解像度によってはスクロールが必要な場合があります）。
+* **Tag Spotlight**に入ったら、トグルスイッチ**Show tags with no values**がオフになっていることを確認してください。
 
 {{% /notice %}}
 
-![APM Tag Spotlight](../images/apm-tag-spotlight.png)
+![APM タグスポットライト](../images/apm-tag-spotlight.png)
 
-There are two views available in **Tag Spotlight**. The default is **Request/Errors** and the other is **Latency**.
+**Tag Spotlight**には、2つの表示モードがあります。デフォルトは**Request/Errors**で、もう1つは**Latency**です。
 
-Request/Error charts display the total number of requests, errors, and root cause errors. The Latency charts display p50, p90, and p99 latency. These values are based on Troubleshooting MetricSets (TMS), which Splunk APM generates for every indexed span tag. These are known as RED metrics (request, error, and duration).
+Request/Errorチャートでは、リクエストの合計数、エラーの合計数、およびルート原因のエラーが表示されます。Latencyチャートでは、p50、p90、およびp99のレイテンシが表示されます。これらの値は、Splunk APMがインデックス化された各スパンタグに対して生成するトラブルシューティングメトリクセット（TMS）に基づいています。これらはREDメトリクス（リクエスト、エラー、および所要時間）として知られています。
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 {{< tabs >}}
 {{% tab title="Question" %}}
-**Which chart exposes the tag that identifies what the problem is?**
+**どのチャートが問題を特定するためのタグを公開していますか？**
 {{% /tab %}}
 {{% tab title="Answer" %}}
-**The *version* chart. The number of requests against `v350.10` matches the number of errors.**
+** *version* チャートです。`v350.10`に対するリクエストの数はエラーの数と一致しています。**
 {{% /tab %}}
 {{< /tabs >}}
 
-* Now that we have identified the version of the **paymentservice** that is causing the issue, let's see if we can find out more information about the error. Click on **← Tag Spotlight** at the top of the page to get back to the Service Map.
+* これで、問題を引き起こしている**paymentservice**のバージョンを特定したので、エラーに関する詳細情報を見つけることができるかどうかを確認してみましょう。ページの上部にある**← Tag Spotlight**をクリックしてService Mapに戻ります。
 
 {{% /notice %}}

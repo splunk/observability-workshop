@@ -11,7 +11,7 @@ A session is a collection of traces that correspond to the actions a single user
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* In the **User Sessions** table, click on the top **Session ID**  with the longest **Duration** (over 20 seconds or longer), this will take you to the RUM Session view.
+* **User Sessions**テーブルで、最長の**Duration**（20秒以上）を持つトップの**Session ID**をクリックします。これにより、RUMセッションビューに移動します。
 
 {{% /notice %}}
 
@@ -19,17 +19,17 @@ A session is a collection of traces that correspond to the actions a single user
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Click the RUM Session Replay {{% button icon="play" %}}Replay{{% /button %}} button. RUM Session Replay allows you to replay and see the user session. This is a great way to see exactly what the user experienced.
-* Click the button to start the replay.
+* RUMセッションリプレイ {{% button icon="play" %}}Replay{{% /button %}} ボタンをクリックします。RUMセッションリプレイを使用すると、ユーザーセッションを再生して表示できます。これはユーザーが実際にどのような体験をしたかを正確に確認するための素晴らしい方法です。
+* リプレイを開始するためにボタンをクリックします。
 
 {{% /notice %}}
 
 ![RUM Session](../images/rum-session-replay.png)
 
-RUM Session Replay can redact information, by default text is redacted. You can also redact images (which has been done for this workshop example). This is useful if you are replaying a session that contains sensitive information. You can also change the playback speed and pause the replay.
+RUMセッションリプレイでは、デフォルトでテキストがマスキングされますが、画像もマスキングできます（このワークショップの例ではマスキングされています）。これは、セッションに機密情報が含まれている場合に役立ちます。再生速度を変更したり、リプレイを一時停止したりすることもできます。
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
 
-When playing back the session, notice how the mouse movements are captured. This is useful to see where the user is focusing their attention.
+セッションを再生する際に、マウスの動きがどのようにキャプチャされるかに注目してください。これは、ユーザーがどこに注意を集中しているかを確認するのに役立ちます。
 
 {{% /notice %}}

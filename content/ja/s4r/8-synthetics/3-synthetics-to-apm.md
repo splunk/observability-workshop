@@ -3,24 +3,24 @@ title: 3. Synthetics to APM
 weight: 3
 ---
 
-We now should have a view similar to the one below.
+これで、以下の画像のようなビューが得られるはずです。
 
 ![Place Order](../images/run-results-place-order.png)
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="実習" style="green" icon="running" %}}
 
-* In the waterfall find an entry that starts with **POST checkout**.
-* Click on the **>** button in front of it to drop open the metadata section. Observe the metadata that is collected, and note the **Server-Timing** header. This header is what allows us to correlate the test run to a back-end trace.
-* Click on the blue {{% icon icon="link" %}} **APM** link on the **POST checkout** line in the waterfall.
+* ウォーターフォールで **POST checkout** で始まるエントリを見つけます。
+* その前にある **>** ボタンをクリックして、メタデータセクションを展開します。収集されているメタデータを観察し、**Server-Timing** ヘッダーをメモします。このヘッダーにより、テストランをバックエンドのトレースに関連付けることができます。
+* ウォーターフォールの **POST checkout** 行の前にある青い {{% icon icon="link" %}} **APM** リンクをクリックします。
 {{% /notice %}}
 
 ![APM trace](../images/apm-trace.png)
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="実習" style="green" icon="running" %}}
 
-* Validate you see one or more errors for the **paymentservice** (**1**).
-* To validate that it's the same error, click on the related content for **Logs** (**2**).
-* Repeat the earlier exercise to filter down to the errors only.
-* View the error log to validate the failed payment due to an invalid token.
+* **paymentservice** に1つ以上のエラーが表示されることを確認してください（**1**）。
+* 同じエラーであることを確認するには、**Logs**の関連コンテンツをクリックします（**2**）。
+* 以前の演習と同様に、エラーのみに絞り込むための手順を繰り返します。
+* エラーログを表示して、無効なトークンによる支払いの失敗を確認します。
 
 {{% /notice %}}
