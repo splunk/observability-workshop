@@ -21,10 +21,6 @@ SCRIPTPATH=$(dirname "$SCRIPT")
 # Prompts
 echo 'Enter environment (i.e. tagging-workshop-yourname):'
 read ENVIRONMENT
-echo 'Enter realm (i.e. us1):'
-read REALM
-echo 'Enter ingest token:'
-read INGEST_TOKEN
 
 # (2) Install the otel collector (for your org)
 OTEL_VALUES_PATH="$SCRIPTPATH/otel/values.yaml"
@@ -40,7 +36,7 @@ sed -i "s/{{environment}}/$ENVIRONMENT/" $MY_OTEL_VALUES_PATH
 
 # Install the otel collector
 helm install --set cloudProvider=" " --set distribution=" " \
---set splunkObservability.accessToken="$INGEST_TOKEN" \
+--set splunkObservability.accessToken="$ACCESS_TOKEN" \
 --set clusterName="$ENVIRONMENT" --set splunkObservability.realm="$REALM" \
 --set gateway.enabled="false" \
 -f $MY_OTEL_VALUES_PATH \

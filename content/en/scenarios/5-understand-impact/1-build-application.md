@@ -18,12 +18,10 @@ You will start with an EC2 instance and perform some [initial steps](#initial-st
 * Deploy a load generator to send traffic to the services
 
 ## Initial Steps
-To begin the exercise you will need a **Splunk Observablity Cloud** environment that you can send data to. For this environment you'll need: 
 
-* The realm (i.e. `us1`)
-* An access token 
+The initial setup can be completed by executing the following steps on the command line of your EC2 instance. 
 
-The initial setup can be completed by executing the following steps on the command line of your EC2 instance, which runs Ubuntu 22.04: 
+You'll be asked to enter a name for your environment.  Please use `tagging-workshop-yourname` (where `yourname` is replaced by your actual name). 
 ```
 cd workshop/tagging
 
