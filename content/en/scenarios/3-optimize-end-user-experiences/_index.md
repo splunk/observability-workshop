@@ -5,4 +5,10 @@ weight: 3
 archetype: chapter
 ---
 
-TBD
+How we can use Splunk Observability to get insight into end user experience and proactively test scenarios to improve that experience.
+
+Sections:
+RUM
+Synthetics
+Dashboard charts
+Detectors
