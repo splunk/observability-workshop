@@ -157,41 +157,15 @@ Next, lets test the download and run the script that will use the `maven` comman
 This will take a few minutes the first time you run, `maven` will download a lot of dependencies before it compiles the application. Future builds will be a lot quicker.
 {{% /notice %}}
 
-## 3. Set up a local Docker Repository
+## 3. Check  the local Docker Repository
 
-Once we have our Auto instrumentation up and running with the existing containers, we are going to use show some  of the additional instrumentation features of Opentelemetry Java. That will be the first time we will touch the source code and add some annotations to it to get even more valuable data from our Java application. Kubernetes will need to pull these new images from somewhere, so let's setup a local repository, so Kubernetes can pull those local images.
-
-{{< tabs >}}
-{{% tab title="Install Docker Repository" %}}
-
-```bash
-docker run -d -p 5000:5000 --restart=always --name registry registry:2 
-```
-
-{{% /tab %}}
-{{% tab title="Docker Output" %}}
-
-``` text
-Unable to find image 'registry:2' locally
-2: Pulling from library/registry
-c926b61bad3b: Pull complete 
-5501dced60f8: Pull complete 
-e875fe5e6b9c: Pull complete 
-21f4bf2f86f9: Pull complete 
-98513cca25bb: Pull complete 
-Digest: sha256:0a182cb82c93939407967d6d71d6caf11dcef0e5689c6afe2d60518e3b34ab86
-Status: Downloaded newer image for registry:2
-a7d52001836504cf1724e9817ad6167a4458a9e73d33a82f11f33681fe2d6c3e
-```
-
-{{% /tab %}}
-{{< /tabs >}}
+Once we have our Auto instrumentation up and running with the existing containers, we are going to use show some of the additional instrumentation features of Opentelemetry Java. That will be the first time we will touch the source code and add some annotations to it to get even more valuable data from our Java application. Kubernetes will need to pull these new images from somewhere, so  we have created a local repository, so Kubernetes can pull those local images.
 
 We can see if the repository is up and running by checking the inventory with the below command, it should return an empty list 
 **{"repositories":[]}**
 
 ```bash
- curl -X GET http://localhost:5000/v2/_catalog 
+ curl -X GET http://localhost:9999/v2/_catalog 
 ```
 
 ## 4. Check the Petshop Website
