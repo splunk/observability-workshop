@@ -187,6 +187,7 @@ spec:
       labels:
         app: api-gateway
       annotations:
+#        instrumentation.opentelemetry.io/inject-java: "true"
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
       containers:

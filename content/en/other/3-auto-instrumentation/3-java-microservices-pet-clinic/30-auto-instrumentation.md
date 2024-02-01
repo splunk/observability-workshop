@@ -64,9 +64,33 @@ Image:         ghcr.io/signalfx/splunk-otel-java/splunk-otel-java:v1.30.0
 Image:         quay.io/phagen/spring-petclinic-api-gateway:0.0.2
 ```
 
+{{% notice title="Using the deployment.yaml" style="info" %}}
+If you want your pods to send traces automatically, you can add the annotation to the deployment.yaml as is shown below. This will add the instrumentation library during the initial deployment.
+
+```bash
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+  labels: 
+    app.kubernetes.io/part-of: spring-petclinic
+spec:
+  selector:
+    matchLabels:
+      app: api-gateway
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "true"
+```
+
+{{% /notice %}}
+
 ## 2. Check the result in Splunk APM
 
-Once the container is patched it will be restarted, let's go back to  the **Splunk Observability Cloud** with the URL provided by the Instructor to check our service.
+Once the container is patched it will be restarted, let's go back to the **Splunk Observability Cloud** with the URL provided by the Instructor to check our service.
 
 First, Navigate to the **APM** ![APM](../images/apm-icon.png?classes=inline&height=25px) section to see the traces from your service in the **Explore** Pane. Use the filter option and change the *environment* filter **(1)** and search for the name of your workshop instance in the drop down box, it should be the [INSTANCE]-workshop. (where `INSTANCE` is the value from the shell script you run earlier). Make sure it is the only one selected.
 ![apm](../images/apm-api-gateway-overview.png)
@@ -123,7 +147,7 @@ Lets monitor the  load generator container until its capable to generate load as
 
 ```text
 {"severity":"info","msg":"Welcome Text = "Welcome to Petclinic"}
-{"severity":"info","msg":"@ALL"
+{"severity":"info","msg":"@ALL"}
 {"severity":"info","msg":"@owner details page"}
 {"severity":"info","msg":"@pet details page"}
 {"severity":"info","msg":"@add pet page"}
