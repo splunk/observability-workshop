@@ -24,7 +24,7 @@ Your instance is ready!
 ubuntu@java-workshop-1 ~ $ 
 ```
 
-Please give it a minute, and try to log in again, as the instance might not yet finished the initial boot sequence. If it still does not show the above Welcome page, reach out to your Instructor.
+If this isn't shown, or you see an error, log out and give it a minute or so, then try to log in again as the instance might not have finished the initial boot sequence. If it still does not show the above Welcome page, reach out to your Instructor.
 
 Next, let's ensure your instance is configured correctly, we need to confirm that the required environment variables for this workshop are set correctly. In your terminal run the following command:
 
@@ -32,20 +32,20 @@ Next, let's ensure your instance is configured correctly, we need to confirm tha
 . ~/workshop/petclinic/scripts/check_env.sh
 ```
 
-In the output check the following environment variables are present and have actual values set:
+In the output check the following environment variables are present and have actual valid values set:
 
 ```text
-ACCESS_TOKEN
-REALM 
-RUM_TOKEN 
-HEC_TOKEN
-HEC_URL
-INSTANCE
+ACCESS_TOKEN = [Redacted]
+REALM = [Realm]
+RUM_TOKEN = [Redacted]
+HEC_TOKEN = [Redacted]
+HEC_URL = https://[...]/services/collector/event
+INSTANCE = [Your workshop name]
 ```
 
 Please make a note of the `INSTANCE` environment variable value as this is the reference to you workshop instance and we will need it later to filter data in the **Splunk Observability Suite** UI.
 
-For this workshop, **all** of the above are required. If any have values  missing, please contact your instructor.
+For this workshop, **all** of the above are required. If any have values missing, please contact your instructor.
 
 ## 2. Deploying the prebuilt containers into Kubernetes
 

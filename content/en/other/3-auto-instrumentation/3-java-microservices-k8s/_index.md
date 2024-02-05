@@ -1,6 +1,6 @@
 ---
 title: Workshop using the Java microservices Pet Clinic demo (Kubernetes based).
-linkTitle: Java Microservices Workshop
+linkTitle: PetClinic Java Microservices Workshop (Kubernetes)
 weight: 99
 description: Learn how to enable Open Telemetry (Auto) Instrumentation for your Java-based application running in Kubernetes. Experience real-time monitoring and troubleshooting to help you maximize application behavior with end-to-end visibility.
 hidden: false

@@ -1,5 +1,5 @@
 ---
-title: PetClinic Java Workshop
+title: PetClinic Java Workshop (Monolith)
 weight: 1
 description: A workshop using Zero Configuration Auto-Instrumentation for Java.
 ---
