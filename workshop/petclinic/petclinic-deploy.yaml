@@ -29,7 +29,7 @@ spec:
           readOnly: true
         env:
         - name: _JAVA_OPTIONS
-          value: "-Dspring.profiles.active=native -DGIT_REPO=/petclinic-repo -Dsplunk.profiler.call.stack.interval=150" 
+          value: "-Dspring.profiles.active=native -DGIT_REPO=/petclinic-repo -Dsplunk.profiler.call.stack.interval=1500" 
         - name: NODE_IP
           valueFrom:
             fieldRef: 
@@ -95,7 +95,7 @@ spec:
           - containerPort: 8761  
           env: 
           - name: JAVA_OPTIONS
-            value: "-Dsplunk.profiler.call.stack.interval=150"
+            value: "-Dsplunk.profiler.call.stack.interval=1500"
           - name: NODE_IP
             valueFrom:
               fieldRef:
@@ -159,7 +159,7 @@ spec:
           - containerPort: 8080
           env: 
           - name: JAVA_OPTIONS
-            value: "-Dsplunk.profiler.call.stack.interval=150"          
+            value: "-Dsplunk.profiler.call.stack.interval=1500"          
           - name: RUM_REALM
             valueFrom:
               secretKeyRef:
@@ -260,7 +260,7 @@ spec:
           - containerPort: 8081
           env:  
           - name: _JAVA_OPTIONS
-            value: "-Dspring.profiles.active=docker,mysql -Dsplunk.profiler.call.stack.interval=150" 
+            value: "-Dspring.profiles.active=docker,mysql -Dsplunk.profiler.call.stack.interval=1500" 
 
           - name: NODE_IP
             valueFrom:
@@ -321,7 +321,7 @@ spec:
           - containerPort: 8083      
           env:
           - name: _JAVA_OPTIONS
-            value: "-Dspring.profiles.active=docker,mysql -Dsplunk.profiler.call.stack.interval=150" 
+            value: "-Dspring.profiles.active=docker,mysql -Dsplunk.profiler.call.stack.interval=1500" 
 
           - name: NODE_IP
             valueFrom:
@@ -382,7 +382,7 @@ spec:
           - containerPort: 8082      
           env:
           - name: _JAVA_OPTIONS
-            value: "-Dspring.profiles.active=docker,mysql -Dsplunk.profiler.call.stack.interval=150" 
+            value: "-Dspring.profiles.active=docker,mysql -Dsplunk.profiler.call.stack.interval=1500" 
           - name: NODE_IP
             valueFrom:
               fieldRef:
