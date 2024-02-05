@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>The Door Game</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="/doorgame.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col text-center" id="game-heading">
+            LET'S PLAY THE DOOR GAME!
+        </div>
+    </div>
+    <div class="row visually-hidden" id="door-row">
+        <div class="col text-center door-cell">
+            <span id='door0' class='door' onclick="doorClicked(0)">🚪</span>
+            <span id="money0" class="visually-hidden">💰</span>
+            <span id="zonk0" class="visually-hidden">🐐</span>
+            <span id="door0-throb" class="visually-hidden"><img src="throbber.gif" class="throbber"/></span>
+        </div>
+        <div class="col text-center door-cell">
+            <span id='door1' class='door' onclick="doorClicked(1)">🚪</span>
+            <span id="money1" class="visually-hidden">💰</span>
+            <span id="zonk1" class="visually-hidden">🐐</span>
+            <span id="door1-throb" class="visually-hidden"><img src="throbber.gif" class="throbber"/></span>
+        </div>
+        <div class="col text-center door-cell">
+            <span id='door2' class='door' onclick="doorClicked(2)">🚪</span>
+            <span id="money2" class="visually-hidden">💰</span>
+            <span id="zonk2" class="visually-hidden">🐐</span>
+            <span id="door2-throb" class="visually-hidden"><img src="throbber.gif" class="throbber"/></span>
+        </div>
+    </div>
+    <div class="row" id="selected-row">
+        <div class="col text-center">
+            <span id="choose0" class="visually-hidden checkmark">⬆️</span>
+        </div>
+        <div class="col text-center">
+            <span id="choose1" class="checkmark visually-hidden">⬆️</span>
+        </div>
+        <div class="col text-center">
+            <span id="choose2" class="visually-hidden checkmark">⬆️</span>
+        </div>
+    </div>
+    <div class="row" id="start-button">
+        <div class="col text-center">
+            <div class="mb-4">
+                Behind one of these doors is a huge prize! Behind the other two are ZONKs 🐐. <br/>
+                After choosing a door, you will be shown one of the ZONKs and given a choice to stay or change. <br/>
+                Good luck!<br/>
+            </div>
+            <button id='lets-play' type="button" class="btn btn-dark btn-lg" onclick="startGame()">Let's Play</button>
+        </div>
+    </div>
+    <div class="row" id="game-throbber">
+        <div class="col text-center">
+            <div id="throbber1" class="visually-hidden">
+                <img src="throbber.gif" class="throbber"/>
+                <h2>fetching new game...</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <h1 id='choose-a-door' class="visually-hidden">CHOOSE A DOOR</h1>
+            <h1 id='change-prompt' class="visually-hidden"></h1>
+            <h1 id='win-lose' class="visually-hidden"></h1>
+            <button type="button" class="btn btn-success btn-lg visually-hidden" id="stay-button" onclick="choiceKeep()">Stay with Choice</button>
+            <button type="button" class="btn btn-success btn-lg visually-hidden" id="change-button" onclick="choiceChange()">Change to Door</button>
+            <button type="button" class="btn btn-success btn-lg visually-hidden" id="play-again" onclick="playAgain()">Play Again</button>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="/doorgame.js"></script>
+</body>
+</html>

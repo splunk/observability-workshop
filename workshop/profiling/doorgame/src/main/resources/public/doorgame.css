@@ -1,0 +1,26 @@
+
+#game-heading {
+    font-family: 'Bebas Neue', cursive;
+    color: red;
+    font-size: 5em;
+    drop-shadow(30px 10px 4px #4444dd);
+    -webkit-text-stroke: 1px black;
+}
+
+.door-cell {
+    font-size: 10em;
+}
+
+.checkmark {
+    font-size: 3em;
+    margin-top: -100px;
+    z-index: 100
+}
+
+.door-cell a {
+    text-decoration: none;
+}
+
+img.throbber {
+    width: 100px;
+}
