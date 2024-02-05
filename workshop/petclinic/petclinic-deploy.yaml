@@ -1,5 +1,130 @@
 
-
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-server
+  labels: 
+    app.kubernetes.io/part-of: spring-petclinic
+spec:
+  selector:
+    matchLabels:
+      app: config-server
+  template:
+    metadata:
+      labels:
+        app: config-server
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - name: config-server
+        image: quay.io/phagen/spring-petclinic-config-server:0.0.2
+        #image: localhost:5000/spring-petclinic-config-server:local
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8888  
+        volumeMounts:
+        - name: petclinic-repo
+          mountPath: /petclinic-repo
+          readOnly: true
+        env:
+        - name: _JAVA_OPTIONS
+          value: "-Dspring.profiles.active=native -DGIT_REPO=/petclinic-repo -Dsplunk.profiler.call.stack.interval=150" 
+        - name: NODE_IP
+          valueFrom:
+            fieldRef: 
+              fieldPath: status.hostIP  
+        - name:  SPLUNK_METRICS_ENDPOINT
+          value: "http://$(NODE_IP):9943"
+        resources:
+          requests:
+            memory: 512Mi
+          limits:
+            memory: 768Mi
+      volumes:
+        - name: petclinic-repo
+        # mount /home/ubuntu/workshop/petclinic/petclinic-repo, but only if that directory already exists
+          hostPath:
+            path: /home/ubuntu/workshop/petclinic/petclinic-repo # directory location on host
+            type: Directory # this field is optional
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-server
+  labels: 
+    app.kubernetes.io/part-of: spring-petclinic
+spec:
+  type: ClusterIP
+  selector:
+    app: config-server
+  ports:
+  - name: tcp
+    port: 8888
+    targetPort: 8888
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discovery-server
+  labels: 
+    app.kubernetes.io/part-of: spring-petclinic
+spec:
+  selector:
+    matchLabels:
+      app: discovery-server
+  template:
+    metadata:
+      labels:
+        app: discovery-server
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+        - command:
+            - ./dockerize
+            - -wait=tcp://config-server:8888
+            - -timeout=60s
+            - --
+            - java
+            - org.springframework.boot.loader.JarLauncher
+          image: quay.io/phagen/spring-petclinic-discovery-server:0.0.2
+          #image: localhost:5000/spring-petclinic-discovery-server:local
+          name: discovery-server
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 8761  
+          env: 
+          - name: JAVA_OPTIONS
+            value: "-Dsplunk.profiler.call.stack.interval=150"
+          - name: NODE_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.hostIP          
+          - name: SPLUNK_METRICS_ENDPOINT
+            value: "http://$(NODE_IP):9943"   
+          resources:
+            requests:
+              #cpu: 125m
+              memory: 512Mi
+            limits:
+              #cpu: 600m
+              memory: 768Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: discovery-server
+  labels: 
+    app.kubernetes.io/part-of: spring-petclinic
+spec:
+  type: ClusterIP
+  selector:
+    app: discovery-server
+  ports:
+  - name: tcp
+    port: 8761
+    targetPort: 8761
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -33,6 +158,8 @@ spec:
           ports:
           - containerPort: 8080
           env: 
+          - name: JAVA_OPTIONS
+            value: "-Dsplunk.profiler.call.stack.interval=150"          
           - name: RUM_REALM
             valueFrom:
               secretKeyRef:
@@ -740,5 +867,4 @@ data:
           setTimeout(resolve, time)
       });
     }
-
 ---
