@@ -37,8 +37,10 @@ sed -i "s/{{environment}}/$ENVIRONMENT/" $MY_OTEL_VALUES_PATH
 # Install the otel collector
 helm install --set cloudProvider=" " --set distribution=" " \
 --set splunkObservability.accessToken="$ACCESS_TOKEN" \
---set clusterName="$ENVIRONMENT" --set splunkObservability.realm="$REALM" \
+--set clusterName="$ENVIRONMENT" \
+--set splunkObservability.realm="$REALM" \
 --set gateway.enabled="false" \
+--set splunkObservability.profilingEnabled="true" \
 -f $MY_OTEL_VALUES_PATH \
 --generate-name splunk-otel-collector-chart/splunk-otel-collector
 
