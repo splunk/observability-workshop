@@ -5,13 +5,13 @@ weight: 3
 
 {{% notice title="Sessions" style="info" %}}
 
-A session is a collection of traces that correspond to the actions a single user takes when interacting with an application. By default, a session lasts until 15 minutes have passed from the last event captured in the session. The maximum session duration is 4 hours.
+セッションは、あるユーザーがアプリケーションを操作するときに実行するアクションに対応するトレースの集合です。 デフォルトでは、セッションは、セッション内でキャプチャされた最後のイベントから 15 分が経過するまで継続します。 セッションの最大継続時間は 4 時間です。
 
 {{% /notice %}}
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* **User Sessions**テーブルで、最長の**Duration**（20秒以上）を持つトップの**Session ID**をクリックします。これにより、RUMセッションビューに移動します。
+* **User Sessions** テーブルで、最長の **Duration**（20秒以上）を持つトップの **Session ID** をクリックします。これにより、RUM セッションビューに移動します。
 
 {{% /notice %}}
 
@@ -19,14 +19,14 @@ A session is a collection of traces that correspond to the actions a single user
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* RUMセッションリプレイ {{% button icon="play" %}}Replay{{% /button %}} ボタンをクリックします。RUMセッションリプレイを使用すると、ユーザーセッションを再生して表示できます。これはユーザーが実際にどのような体験をしたかを正確に確認するための素晴らしい方法です。
+* RUM セッションリプレイ {{% button icon="play" %}}Replay{{% /button %}} ボタンをクリックします。RUM セッションリプレイを使用すると、ユーザーセッションを再生して表示できます。これはユーザーが実際にどのような体験をしたかを正確に確認するための素晴らしい方法です。
 * リプレイを開始するためにボタンをクリックします。
 
 {{% /notice %}}
 
 ![RUM Session](../images/rum-session-replay.png)
 
-RUMセッションリプレイでは、デフォルトでテキストがマスキングされますが、画像もマスキングできます（このワークショップの例ではマスキングされています）。これは、セッションに機密情報が含まれている場合に役立ちます。再生速度を変更したり、リプレイを一時停止したりすることもできます。
+RUM セッションリプレイでは、デフォルトでテキストがマスキングされますが、画像もマスキングできます（このワークショップの例ではマスキングされています）。これは、セッションに機密情報が含まれている場合に役立ちます。再生速度を変更したり、リプレイを一時停止したりすることもできます。
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
 

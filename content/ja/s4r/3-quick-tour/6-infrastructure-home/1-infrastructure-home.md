@@ -11,7 +11,7 @@ weight: 2
 1. **オンボーディングパネル:** Splunk Infrastructure Monitoring を始めるためのトレーニングビデオとドキュメンテーションへのリンク。
 2. **時間とフィルタパネル:** 時間ウィンドウ（一覧画面上では設定変更できません）
 3. **Integration パネル:** Splunk Observability Cloud にメトリクスを送信しているすべてのテクノロジのリスト。
-4. **タイルパネル:** Integration によって監視されているサービスの合計数（ Integration 別に表示）
+4. **タイルパネル:** Integration によって監視されているサービスの合計数（Integration 別に表示）
 
 Infrastructure パネルを使用して、興味のあるインフラストラクチャ/テクノロジーを選択できます。やってみましょう。
 

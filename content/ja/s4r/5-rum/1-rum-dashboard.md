@@ -3,13 +3,13 @@ title: 1. RUM ダッシュボード
 weight: 1
 ---
 
-Splunk Observability Cloudのメインメニューから**RUM**をクリックします。RUMホームページに移動しますが、このビューは以前の短い導入で既に紹介されています。
+Splunk Observability Cloud のメインメニューから **RUM** をクリックします。RUM ホームページに移動しますが、このビューは以前の短い紹介で既に見たことがあるでしょう。
 
 ![multiple apps](../images/multiple-apps.png)
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* ワークショップを選択するために、次のようにドロップダウンが設定/選択されていることを確認してください：
+* あなたのワークショップ環境が選択されていることを確かめるために、次のようにドロップダウンが設定/選択されていることを確認してください：
   * **タイムフレーム**が **-15m** に設定されています。
   * 選択された **Environment** は **[NAME OF WORKSHOP]-workshop** です。
   * 選択された **App** は **[NAME OF WORKSHOP]-store** です。
@@ -21,10 +21,10 @@ Splunk Observability Cloudのメインメニューから**RUM**をクリック�
 
 ![RUM Dashboard](../images/rum-dashboard.png)
 
-* **UX Metrics:** ページビュー、ページ読み込み、Web Vitalsメトリクス。
-* **Front-end Health:** JavascriptエラーおよびLong Taskの期間と回数の分解。
+* **UX Metrics:** ページビュー、ページ読み込み、Web Vitals メトリクス。
+* **Front-end Health:** Javascript エラーおよび Long Task の期間と回数の分解。
 * **Back-end Health:** ネットワークエラーおよびリクエスト、Time to First Byte。
-* **Custom Events:** カスタムイベントのREDメトリクス（Rate、Error＆Duration）。
+* **Custom Events:** カスタムイベントの RED メトリクス（Rate、Error＆Duration）。
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -32,10 +32,10 @@ Splunk Observability Cloudのメインメニューから**RUM**をクリック�
 
 {{< tabs >}}
 {{% tab title="Question" %}}
-**もし*Custom Events*タブのチャートを調査した場合、どのチャートが明確に**レイテンシースパイク**を示していますか？**
+**もし *Custom Events* タブのチャートを調査した場合、どのチャートが*処理時間の急激な増加*を明確に示していますか？**
 {{% /tab %}}
 {{% tab title="Answer" %}}
-**それは*Custom Event Latency*チャートです。**
+**それは *Custom Event Latency* チャートです。**
 {{% /tab %}}
 {{< /tabs >}}
 
