@@ -6,13 +6,33 @@ weight: 10
 
 ## 1. Validate the settings for your workshop
 
-To ensure your instance is configured correctly, we need to confirm that the required environment variables for this workshop are set correctly. In your terminal run the following command:
+The instructor will provide you with the log in information for the instance that we will using during the workshop.
+When you first log into your instance, you wil be greeted by the Splunk Logo as shown below:
+
+```text
+❯ ssh -p 2222 ubuntu@[IP-ADRESS]
+
+███████╗██████╗ ██╗     ██╗   ██╗███╗   ██╗██╗  ██╗    ██╗  
+██╔════╝██╔══██╗██║     ██║   ██║████╗  ██║██║ ██╔╝    ╚██╗ 
+███████╗██████╔╝██║     ██║   ██║██╔██╗ ██║█████╔╝      ╚██╗
+╚════██║██╔═══╝ ██║     ██║   ██║██║╚██╗██║██╔═██╗      ██╔╝
+███████║██║     ███████╗╚██████╔╝██║ ╚████║██║  ██╗    ██╔╝ 
+╚══════╝╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝    ╚═╝  
+Last login: Mon Feb  5 11:04:54 2024 from [Redacted]
+Waiting for cloud-init status...
+Your instance is ready!
+ubuntu@java-workshop-1 ~ $ 
+```
+
+Please give it a minute, and try to log in again, as the instance might not yet finished the initial boot sequence. If it still does not show the above Welcome page, reach out to your Instructor.
+
+Next, let's ensure your instance is configured correctly, we need to confirm that the required environment variables for this workshop are set correctly. In your terminal run the following command:
 
 ``` bash
 . ~/workshop/petclinic/scripts/check_env.sh
 ```
 
-In the output check the following environment variables are present and have values set:
+In the output check the following environment variables are present and have actual values set:
 
 ```text
 ACCESS_TOKEN
@@ -23,9 +43,9 @@ HEC_URL
 INSTANCE
 ```
 
-Please make a note of the `INSTANCE` environment variable value as this is the reference to you workshop instance and we will need it to filter the data in the **Splunk Observability Suite** UI.
+Please make a note of the `INSTANCE` environment variable value as this is the reference to you workshop instance and we will need it later to filter data in the **Splunk Observability Suite** UI.
 
-For this workshop, **all** of the above are required. If any are missing, please contact your instructor.
+For this workshop, **all** of the above are required. If any have values  missing, please contact your instructor.
 
 ## 2. Deploying the prebuilt containers into Kubernetes
 
@@ -157,16 +177,20 @@ Next, lets test the download and run the script that will use the `maven` comman
 This will take a few minutes the first time you run, `maven` will download a lot of dependencies before it compiles the application. Future builds will be a lot quicker.
 {{% /notice %}}
 
-## 3. Check  the local Docker Repository
+## 3. Verify the local Docker Repository
 
-Once we have our Auto instrumentation up and running with the existing containers, we are going to use show some of the additional instrumentation features of Opentelemetry Java. That will be the first time we will touch the source code and add some annotations to it to get even more valuable data from our Java application. Kubernetes will need to pull these new images from somewhere, so  we have created a local repository, so Kubernetes can pull those local images.
+Once we have our Auto instrumentation up and running with the existing containers, we are going to build our own containers to show some of the additional instrumentation features of Opentelemetry Java. Only then we will touch the  config files or the source code. We will add some annotations to it to get even more valuable data from our Java application and enable the injection of trace data into  the logs. 
 
-We can see if the repository is up and running by checking the inventory with the below command, it should return an empty list 
+once we build these containers, Kubernetes will need to pull these new images from somewhere. To enable this we have created a local repository, so Kubernetes can pull those local images.
+
+We can see if the repository is up and running by checking the inventory with the below command, it should return an empty list  
 **{"repositories":[]}**
 
 ```bash
  curl -X GET http://localhost:9999/v2/_catalog 
 ```
+
+If this is not up, reach out to your Instructor for a replacement instance.
 
 ## 4. Check the Petshop Website
 

@@ -5,13 +5,9 @@ weight: 40
 hidden: false
 ---
 
-## WIP
-
 ## 1. Introduction
 
-
-
- ## 2. AlwaysOn Profiling and Metrics
+## 2. AlwaysOn Profiling and Metrics
 
 When we installed the collector we configured it to enable **AlwaysOn Profiling** and **Metrics**. This means that the collector will automatically generate CPU and Memory profiles for the application and send them to Splunk Observability Cloud.
 
@@ -52,6 +48,7 @@ You can now visit the Splunk APM UI and examine the application components, trac
 
 Once your validation is complete you can stop the application by pressing `Ctrl-c`.
 
+<!--
 ## 4. Adding Resource Attributes to Spans
 
 Resource attributes can be added to every reported span. For example `version=0.314`. A comma-separated list of resource attributes can also be defined e.g. `key1=val1,key2=val2`.
@@ -67,3 +64,4 @@ java \
 ```
 
 Back in the Splunk APM UI we can drill down on a recent trace and see the new `version` attribute in a span.
+-->
