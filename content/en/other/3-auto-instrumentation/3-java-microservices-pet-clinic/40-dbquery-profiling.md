@@ -6,6 +6,7 @@ hidden: false
 ---
 
 ## 1. Introduction
+As we have seen in the previous  chapter, you will be able to trace your inteactions between the service  using APM, however  you will get two mor features  that can help you find 
 
 ## 2. AlwaysOn Profiling and Metrics
 

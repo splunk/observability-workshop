@@ -28,17 +28,43 @@ spec:
           readOnly: true
         env:
         - name: _JAVA_OPTIONS
-          value: "-Dspring.profiles.active=native -DGIT_REPO=/petclinic-repo -Dsplunk.profiler.call.stack.interval=150" 
+          value: "-Dspring.profiles.active=native -DGIT_REPO=/petclinic-repo"
+        - name: RUM_REALM
+          valueFrom:
+            secretKeyRef:
+              name: workshop-secret
+              key: realm
+        - name: RUM_AUTH
+          valueFrom:
+            secretKeyRef:
+              name: workshop-secret
+              key: rum_token
+        - name: RUM_APP_NAME
+          valueFrom:
+            secretKeyRef:
+              name: workshop-secret
+              key: app
+        - name: RUM_ENVIRONMENT
+          valueFrom:
+            secretKeyRef:
+              name: workshop-secret
+              key: env
         - name: NODE_IP
           valueFrom:
-            fieldRef: 
-              fieldPath: status.hostIP  
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: SIGNALFX_ENDPOINT_URL
+          value: "http://$(NODE_IP):9411/api/v2/spans"
+        - name: SIGNALFX_SERVER_TIMING_CONTEXT
+          value: "true"    
         - name:  SPLUNK_METRICS_ENDPOINT
           value: "http://$(NODE_IP):9943"
         resources:
           requests:
+            #cpu: 125m
             memory: 512Mi
           limits:
+            #cpu: 600m
             memory: 768Mi
       volumes:
         - name: petclinic-repo
@@ -93,14 +119,36 @@ spec:
           ports:
           - containerPort: 8761  
           env: 
-          - name: JAVA_OPTIONS
-            value: "-Dsplunk.profiler.call.stack.interval=150"
+          - name: RUM_REALM
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: realm
+          - name: RUM_AUTH
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: rum_token
+          - name: RUM_APP_NAME
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: app
+          - name: RUM_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: NODE_IP
             valueFrom:
               fieldRef:
-                fieldPath: status.hostIP          
+                fieldPath: status.hostIP
+          - name: SIGNALFX_ENDPOINT_URL
+            value: "http://$(NODE_IP):9411/api/v2/spans"
+          - name: SIGNALFX_SERVER_TIMING_CONTEXT
+            value: "true"
           - name:  SPLUNK_METRICS_ENDPOINT
-          value: "http://$(NODE_IP):9943"   
+            value: "http://$(NODE_IP):9943"   
           resources:
             requests:
               #cpu: 125m
@@ -157,8 +205,6 @@ spec:
           ports:
           - containerPort: 8080
           env: 
-          - name: JAVA_OPTIONS
-            value: "-Dsplunk.profiler.call.stack.interval=150"          
           - name: RUM_REALM
             valueFrom:
               secretKeyRef:
@@ -183,12 +229,18 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: SIGNALFX_ENDPOINT_URL
+            value: "http://$(NODE_IP):9411/api/v2/spans"
+          - name: SIGNALFX_SERVER_TIMING_CONTEXT
+            value: "true"
           - name:  SPLUNK_METRICS_ENDPOINT
             value: "http://$(NODE_IP):9943"            
           resources:
             requests:
+              #cpu: 125m
               memory: 512Mi
             limits:
+              #cpu: 600m
               memory: 768Mi
 ---
 apiVersion: v1
@@ -259,18 +311,43 @@ spec:
           - containerPort: 8081
           env:  
           - name: _JAVA_OPTIONS
-            value: "-Dspring.profiles.active=docker,mysql -Dsplunk.profiler.call.stack.interval=150" 
-
+            value: "-Dspring.profiles.active=docker,mysql" 
+          - name: RUM_REALM
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: realm
+          - name: RUM_AUTH
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: rum_token
+          - name: RUM_APP_NAME
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: app
+          - name: RUM_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: NODE_IP
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: SIGNALFX_ENDPOINT_URL
+            value: "http://$(NODE_IP):9411/api/v2/spans"
+          - name: SIGNALFX_SERVER_TIMING_CONTEXT
+            value: "true"
           - name:  SPLUNK_METRICS_ENDPOINT
             value: "http://$(NODE_IP):9943"
           resources:
             requests:
+              #cpu: 125m
               memory: 512Mi
             limits:
+              #cpu: 600m
               memory: 768Mi
 ---
 apiVersion: v1
@@ -320,18 +397,43 @@ spec:
           - containerPort: 8083      
           env:
           - name: _JAVA_OPTIONS
-            value: "-Dspring.profiles.active=docker,mysql -Dsplunk.profiler.call.stack.interval=150" 
-
+            value: "-Dspring.profiles.active=docker,mysql" 
+          - name: RUM_REALM
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: realm
+          - name: RUM_AUTH
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: rum_token
+          - name: RUM_APP_NAME
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: app
+          - name: RUM_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: NODE_IP
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: SIGNALFX_ENDPOINT_URL
+            value: "http://$(NODE_IP):9411/api/v2/spans"
+          - name: SIGNALFX_SERVER_TIMING_CONTEXT
+            value: "true"
           - name:  SPLUNK_METRICS_ENDPOINT
             value: "http://$(NODE_IP):9943"
           resources:
             requests:
+              #cpu: 125m
               memory: 512Mi
             limits:
+              #cpu: 600m
               memory: 768Mi
 ---
 apiVersion: v1
@@ -381,11 +483,35 @@ spec:
           - containerPort: 8082      
           env:
           - name: _JAVA_OPTIONS
-            value: "-Dspring.profiles.active=docker,mysql -Dsplunk.profiler.call.stack.interval=150" 
+            value: "-Dspring.profiles.active=docker,mysql" 
+          - name: RUM_REALM
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: realm
+          - name: RUM_AUTH
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: rum_token
+          - name: RUM_APP_NAME
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: app
+          - name: RUM_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: NODE_IP
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: SIGNALFX_ENDPOINT_URL
+            value: "http://$(NODE_IP):9411/api/v2/spans"
+          - name: SIGNALFX_SERVER_TIMING_CONTEXT
+            value: "true"
           - name:  SPLUNK_METRICS_ENDPOINT
             value: "http://$(NODE_IP):9943"            
           resources:
@@ -442,16 +568,42 @@ spec:
           ports:
           - containerPort: 9090   
           env: 
+          - name: RUM_REALM
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: realm
+          - name: RUM_AUTH
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: rum_token
+          - name: RUM_APP_NAME
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: app
+          - name: RUM_ENVIRONMENT
+            valueFrom:
+              secretKeyRef:
+                name: workshop-secret
+                key: env
           - name: NODE_IP
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: SIGNALFX_ENDPOINT_URL
+            value: "http://$(NODE_IP):9411/api/v2/spans"
+          - name: SIGNALFX_SERVER_TIMING_CONTEXT
+            value: "true"
           - name:  SPLUNK_METRICS_ENDPOINT
             value: "http://$(NODE_IP):9943"
           resources:
             requests:
+              #cpu: 120m
               memory: 512Mi
             limits:
+              #cpu: 600m
               memory: 768Mi
 ---
 apiVersion: v1
