@@ -54,10 +54,10 @@ kind: Service
 metadata:
   name: doorgame
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: doorgame
   ports:
     - protocol: TCP
-      port: 9090
+      port: 81
       targetPort: 9090
