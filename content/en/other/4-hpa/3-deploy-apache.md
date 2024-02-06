@@ -4,7 +4,17 @@ linkTitle: 3. Deploying PHP/Apache
 weight: 3
 ---
 
-## 1.  DNS and Services in Kubernetes
+## 1. Namespaces in Kubernetes
+
+Most of our customers will make use of some kind of private or public cloud service to run Kubernetes. They often choose to have only a few large Kubernetes clusters as it is easier to manage centrally.
+
+Namespaces are a way to organize these large Kubernetes clusters into virtual sub-clusters. This can be helpful when different teams or projects share a Kubernetes cluster as this will give them the easy ability to just see and work with their resources.
+
+Any number of namespaces are supported within a cluster, each logically separated from others but with the ability to communicate with each other. Components are only **visible** when selecting a namespace or when adding the `--all-namespaces` flag to `kubectl` instead of allowing you to view just the components relevant to your project by selecting your namespace.
+
+Most customers will want to install the applications into a separate namespace.  This workshop will follow that best practice.
+
+## 2.  DNS and Services in Kubernetes
 
 The Domain Name System (DNS) is a mechanism for linking various sorts of information with easy-to-remember names, such as IP addresses. Using a DNS system to translate request names into IP addresses makes it easy for end-users to reach their target domain name effortlessly.
 
@@ -30,7 +40,7 @@ my_pod.service-name.my-namespace.svc.cluster-domain.example
 
 More information can be found here: [**DNS for Service and Pods**](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
 
-## 2. Review OTel receiver for PHP/Apache
+## 3. Review OTel receiver for PHP/Apache
 
 Inspect the YAML file `~/workshop/k3s/otel-apache.yaml` and validate the contents using the following command:
 
@@ -55,7 +65,7 @@ agent:
                 service.name: php-apache
 ```
 
-## 3.  Observation Rules in the OpenTelemetry config
+## 4.  Observation Rules in the OpenTelemetry config
 
 The above file contains an observation rule for Apache using the OTel `receiver_creator`. This receiver can instantiate other receivers at runtime based on whether observed endpoints match a configured rule.
 
@@ -80,7 +90,6 @@ helm upgrade splunk-otel-collector \
 --set="splunkPlatform.token=$HEC_TOKEN" \
 --set="splunkPlatform.index=splunk4rookies-workshop" \
 splunk-otel-collector-chart/splunk-otel-collector \
---namespace splunk \
 -f ~/workshop/k3s/otel-collector.yaml \
 -f ~/workshop/k3s/otel-apache.yaml
 ```
@@ -94,8 +103,8 @@ The **REVISION** number of the deployment has changed, which is a helpful way to
 ``` text
 Release "splunk-otel-collector" has been upgraded. Happy Helming!
 NAME: splunk-otel-collector
-LAST DEPLOYED: Tue Jan 31 16:57:22 2023
-NAMESPACE: splunk
+LAST DEPLOYED: Tue Feb  6 11:17:15 2024
+NAMESPACE: default
 STATUS: deployed
 REVISION: 2
 TEST SUITE: None
@@ -103,7 +112,7 @@ TEST SUITE: None
 
 {{% /notice %}}
 
-## 4. Kubernetes ConfigMaps
+## 5. Kubernetes ConfigMaps
 
 A ConfigMap is an object in Kubernetes consisting of key-value pairs that can be injected into your application. With a ConfigMap, you can separate configuration from your Pods.
 
@@ -112,7 +121,7 @@ Using ConfigMap, you can prevent hardcoding configuration data. ConfigMaps are u
 The OpenTelemetry collector/agent uses ConfigMaps to store the configuration of the agent and the K8s Cluster receiver. You can/will always verify the current configuration of an agent after a change by running the following commands:
 
 ``` bash
-kubectl get cm -n splunk
+kubectl get cm
 ```
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
@@ -122,7 +131,7 @@ How many ConfigMaps are used by the collector?
 When you have a list of ConfigMaps from the namespace, select the one for the `otel-agent` and view it with the following command:
 
 ``` bash
-kubectl get cm splunk-otel-collector-otel-agent -n splunk -o yaml
+kubectl get cm splunk-otel-collector-otel-agent -o yaml
 ```
 
 {{% notice title="NOTE" style="info" %}}
@@ -133,7 +142,7 @@ The option `-o yaml` will output the content of the ConfigMap in a readable YAML
 Is the configuration from `otel-apache.yaml` visible in the ConfigMap for the collector agent?
 {{% /notice %}}
 
-## 5. Review PHP/Apache deployment YAML
+## 6. Review PHP/Apache deployment YAML
 
 Inspect the YAML file `~/workshop/k3s/php-apache.yaml` and validate the contents using the following command:
 
@@ -171,7 +180,7 @@ spec:
         resources:
           limits:
             cpu: "8"
-            memory: "9Mi"
+            memory: "8Mi"
           requests:
             cpu: "6"
             memory: "4Mi"
@@ -190,7 +199,7 @@ spec:
     run: php-apache
 ```
 
-## 6. Deploy PHP/Apache
+## 7. Deploy PHP/Apache
 
 Create an `apache` namespace then deploy the PHP/Apache application to the cluster.
 
@@ -221,5 +230,5 @@ What metrics for your Apache instance are being reported in the Apache Navigator
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
 Using Log Observer what is the issue with the PHP/Apache deployment?
 
-**Tip:** Adjust your **Table settings** by clicking on the cog to use only `object.involvedObject.name`, `object.message` and `k8s.cluster.name`. Make sure you unselect `_raw`!
+**Tip:** Adjust your filters to use: `object = php-apache-svc` and `k8s.cluster.name = <your_cluster>`.
 {{% /notice %}}

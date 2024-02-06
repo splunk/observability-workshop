@@ -42,7 +42,7 @@ Now, let's find your cluster by filtering on the field `k8s.cluster.name` in the
 {{% notice title="Note" style="info" %}}
 You can enter a partial name into the search box, such as `emea-ws-7*`, to quickly find your Cluster.
 
-Also, it's a very good idea to switch the default time from the default **-3h** back to the last 15 minutes (**-15m**).
+Also, it's a very good idea to switch the default time from the default **-4h** back to the last 15 minutes (**-15m**).
 {{% /notice %}}
 
 ![Workloads](../images/k8s-workload-filter.png)
@@ -98,9 +98,11 @@ To filter to a specific workload, you can click on three dots **...** next to th
 
 ![workload-add-filter](../images/workload-add-filter.png)
 
-This will add the selected workload to your filters. Try this for the **splunk-otel-collector-k8s-cluster-receiver** workload. It will then list a single workload in the **splunk** namespace.
+This will add the selected workload to your filters. It would then list a single workload in the **default** namespace.
 
-The Heat map above will also filter down to a single-colored square. Click on the square to see more information about the workload.
+![workload-add-filter](../images/heatmap-filter-down.png)
+
+From the Heatmap above find the **splunk-otel-collector-k8s-cluster-receiver** in the **default** namespace and click on the square to see more information about the workload.
 
 ![workload-add-filter](../images/k8s-workload-detail.png)
 
@@ -108,9 +110,7 @@ The Heat map above will also filter down to a single-colored square. Click on th
 What are the CPU request  & CPU limit units for the otel-collector?
 {{% /notice %}}
 
-At this point, you can drill into the information of the pods, but that is outside the scope of this workshop, for now reset your view by removing the filter for the **splunk-otel-collector-k8s-cluster-receiver** workload and setting the **Color by** option to **Pods Running**.
-
-![workload-add-filter](../images/k8s-workload-remove-filter.png)
+At this point, you can drill into the information of the pods, but that is outside the scope of this workshop.
 
 ## 3. Navigator Sidebar
 

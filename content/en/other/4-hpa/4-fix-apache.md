@@ -15,7 +15,7 @@ You do this by placing a Resource section in the deployment of your application/
 resources:
   limits:         # Maximum amount of CPU & memory for peek use
     cpu: "8"      # Maximum of 8 cores of CPU allowed at for peek use
-    memory: "9Mi" # Maximum allowed 9Mb of memory
+    memory: "8Mi" # Maximum allowed 8Mb of memory
   requests:       # Request are the expected amount of CPU & memory for normal use
     cpu: "6"      # Requesting 4 cores of a CPU
     memory: "4Mi" # Requesting 4Mb of memory
@@ -49,7 +49,7 @@ Find the resources section and reduce the CPU limits to **1** and the CPU reques
 resources:
   limits:
     cpu: "1"
-    memory: "9Mi"
+    memory: "8Mi"
   requests:
     cpu: "0.5"
     memory: "4Mi"

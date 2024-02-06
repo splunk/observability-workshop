@@ -20,17 +20,7 @@ You will be able to connect to the workshop instance by using SSH from your Mac,
 Your workshop instance has been pre-configured with the correct **Access Token** and **Realm** for this workshop. There is no need for you to configure these.
 {{% /notice %}}
 
-## 3. Namespaces in Kubernetes
-
-Most of our customers will make use of some kind of private or public cloud service to run Kubernetes. They often choose to have only a few large Kubernetes clusters as it is easier to manage centrally.
-
-Namespaces are a way to organize these large Kubernetes clusters into virtual sub-clusters. This can be helpful when different teams or projects share a Kubernetes cluster as this will give them the easy ability to just see and work with their resources.
-
-Any number of namespaces are supported within a cluster, each logically separated from others but with the ability to communicate with each other. Components are only **visible** when selecting a namespace or when adding the `--all-namespaces` flag to `kubectl` instead of allowing you to view just the components relevant to your project by selecting your namespace.
-
-Most customers will want to install the Splunk OpenTelemetry Collector into a separate namespace.  This workshop will follow that best practice.
-
-## 4. Install Splunk OTel using Helm
+## 3. Install Splunk OTel using Helm
 
 Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository and update.
 
@@ -45,10 +35,10 @@ helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel
 {{% tab title="helm repo add output" %}}
 
 ```text
-Using ACCESS_TOKEN={REDACTED}
+Using ACCESS_TOKEN=<REDACTED>
 Using REALM=eu0
 "splunk-otel-collector-chart" has been added to your repositories
-Using ACCESS_TOKEN={REDACTED}
+Using ACCESS_TOKEN=<REDACTED>
 Using REALM=eu0
 Hang tight while we grab the latest from your chart repositories...
 ...Successfully got an update from the "splunk-otel-collector-chart" chart repository
@@ -58,7 +48,7 @@ Update Complete. ⎈Happy Helming!⎈
 {{% /tab %}}
 {{< /tabs >}}
 
-Install the OpenTelemetry Collector Helm chart into a new **splunk** namespace with the following commands, do **NOT** edit this:
+Install the OpenTelemetry Collector Helm with the following commands, do **NOT** edit this:
 
 {{< tabs >}}
 {{% tab title="helm install" %}}
@@ -75,8 +65,6 @@ helm install splunk-otel-collector \
 --set="splunkPlatform.token=$HEC_TOKEN" \
 --set="splunkPlatform.index=splunk4rookies-workshop" \
 splunk-otel-collector-chart/splunk-otel-collector \
---namespace splunk \
---create-namespace \
 -f ~/workshop/k3s/otel-collector.yaml
 ```
 
@@ -85,7 +73,7 @@ splunk-otel-collector-chart/splunk-otel-collector \
 
 ## 5. Verify Deployment
 
-You can monitor the progress of the deployment by running `kubectl get pods` and adding `-n splunk` to the command to see the pods in the `splunk` namespace which should typically report that the new pods are up and running after about 30 seconds.
+You can monitor the progress of the deployment by running `kubectl get pods` which should typically report that the new pods are up and running after about 30 seconds.
 
 Ensure the status is reported as **Running** before continuing.
 
@@ -93,7 +81,7 @@ Ensure the status is reported as **Running** before continuing.
 {{% tab title="kubectl get pods" %}}
 
 ``` bash
-kubectl get pods -n splunk
+kubectl get pods
 ```
 
 {{% /tab %}}
@@ -125,7 +113,7 @@ Use the label set by the `helm` install to tail logs (You will need to press `ct
 {{% tab title="kubectl logs" %}}
 
 ``` bash
-kubectl logs -l app=splunk-otel-collector -f --container otel-collector -n splunk
+kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 ```
 
 {{% /tab %}}
@@ -139,7 +127,7 @@ Or use the installed `k9s` terminal UI.
 If you make an error installing the Splunk OpenTelemetry Collector you can start over by deleting the installation using:
 
 ``` sh
-helm delete splunk-otel-collector -n splunk
+helm delete splunk-otel-collector
 ```
 
 {{% /notice %}}
