@@ -16,3 +16,13 @@ agent:
           - resourcedetection
           - resource
           - resource/envname
+        logs:
+          processors:
+          - memory_limiter
+          - k8sattributes
+          - filter/logs
+          - batch
+          - resourcedetection
+          - resource
+          - resource/logs
+          - resource/envname

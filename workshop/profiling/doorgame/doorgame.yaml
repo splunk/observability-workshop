@@ -38,9 +38,9 @@ spec:
             - name: SPLUNK_METRICS_ENDPOINT
               value: "http://$(NODE_IP):9943"
             - name: SPLUNK_PROFILER_ENABLED
-              value: "true"
+              value: "false"
             - name: SPLUNK_PROFILER_MEMORY_ENABLED
-              value: "true"
+              value: "false"
           resources:
             requests:
               cpu: 150m
