@@ -20,11 +20,11 @@ to 2 or more sampled call stacks. Let's proceed by clicking on the span to expan
 
 When a span does not have CPU call stack data, we would normally just see the span details.
 (you can drill into the parent stack to see this in action). When we expand the child span, however,
-we have the option to see "CPU Call Stack" data as well. 
+we have the option to see "CPU Call Stack" data as well.
 
-At the bottom of the call stack, we can see that the thread was busy sleeping: 
+At the bottom of the call stack, we can see that the thread was busy sleeping:
 
-```
+``` log
 com.splunk.profiling.workshop.ServiceMain$$Lambda$.handle(Unknown Source:0)
 com.splunk.profiling.workshop.ServiceMain.lambda$main$(ServiceMain.java:34)
 com.splunk.profiling.workshop.DoorGame.getOutcome(DoorGame.java:41)
@@ -64,7 +64,8 @@ simply removing the `precheck()` call because there could be unseen/unaccounted 
 effects.
 
 Down on line 29 we see the following:
-```java
+
+``` java
     private boolean checkDoorTwo(GameInfo gameInfo) {
         precheck(2);
         return gameInfo.isWinner(2);
@@ -80,6 +81,7 @@ With our developer hat on, we notice that the door number is zero based, so
 the first door is 0, the second is 1, and the 3rd is 2 (this is conventional).
 The `extra` value is used as extra/additional sleep time, and it is computed by taking
 `70^doorNum` (`Math.pow` performs an exponent calculation). That's odd, because this means:
+
 * door 0 => 70^0 => 1ms
 * door 1 => 70^1 => 70ms
 * door 2 => 70^2 => 4900ms
@@ -97,9 +99,9 @@ and make `precheck` now read like this:
     }
 ```
 
-Now all doors will have a consistent behavior. Save your work and then rebuild and redeploy the application using the following command: 
+Now all doors will have a consistent behavior. Save your work and then rebuild and redeploy the application using the following command:
 
-```
+``` bash
 cd workshop/profiling
 ./4-redeploy-doorgame.sh
 ```
@@ -113,4 +115,4 @@ Once the application has been redeployed successfully, visit The Door Game again
 * We learned how the call stack can tell us a story and point us to suspect lines of code.
 * We identified the slow code and fixed it to make it faster.
 
-In the next section, we'll explore how to enable the memory profiling component of AlwaysOn Profiling, which can tell us which objects are consuming the most heap memory. 
+In the next section, we'll explore how to enable the memory profiling component of AlwaysOn Profiling, which can tell us which objects are consuming the most heap memory.

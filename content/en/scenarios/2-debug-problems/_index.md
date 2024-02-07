@@ -7,7 +7,7 @@ archetype: chapter
 
 Details TBD
 
-Workshops :  
+Workshops :
 
 * [Splunk4rookies - Observability](https://splunk.github.io/observability-workshop/latest/en/s4r/index.html)
 * [APM Auto instrumentation - Java Based](https://splunk.github.io/observability-workshop/latest/en/other/3-auto-instrumentation/3-java-microservices-pet-clinic/)

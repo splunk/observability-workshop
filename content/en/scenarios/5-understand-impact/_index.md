@@ -11,15 +11,15 @@ archetype: chapter
 
 Unlocking these features requires tags to be included with your application traces.  But how do you know which tags are the most valuable and how do you capture them?
 
-In this workshop, we'll explore: 
+In this workshop, we'll explore:
 
 * What are **tags** and why are they such a critical part of making an application observable.
 * How to use [**OpenTelemetry**](https://opentelemetry.io) to capture tags of interest from your application.
 * How to index tags in **Splunk Observability Cloud** and the differences between **Troubleshooting MetricSets** and **Monitoring MetricSets**.
 * How to utilize tags in **Splunk Observability Cloud** to find “unknown unknowns” using the **Tag Spotlight** and **Dynamic Service Map** features.
-* How to utilize tags for alerting and dashboards. 
+* How to utilize tags for alerting and dashboards.
 
-The workshop uses a simple microservices-based application to illustrate these concepts.  Let's get started! 
+The workshop uses a simple microservices-based application to illustrate these concepts.  Let's get started!
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
 The easiest way to navigate through this workshop is by using:

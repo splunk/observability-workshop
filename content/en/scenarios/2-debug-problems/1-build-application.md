@@ -8,10 +8,12 @@ weight: 1
 
 ## Introduction
 
-For this workshop, we'll be using a Java-based application called `The Door Game`.  It will be hosted in Kubernetes. 
+For this workshop, we'll be using a Java-based application called `The Door Game`.  It will be hosted in Kubernetes.
 
 ## Pre-requisites
+
 You will start with an EC2 instance and perform some [initial steps](#initial-steps) in order to get to the following state:
+
 * Install Kubernetes (k3s) and Docker
 * Deploy the **Splunk distribution of the OpenTelemetry Collector**
 * Build and deploy the `doorgame` application container
@@ -21,7 +23,8 @@ You will start with an EC2 instance and perform some [initial steps](#initial-st
 The initial setup can be completed by executing the following steps on the command line of your EC2 instance.
 
 You'll be asked to enter a name for your environment.  Please use `profiling-workshop-yourname` (where `yourname` is replaced by your actual name).
-```
+
+``` bash
 cd workshop/profiling
 
 ./1-docker-setup.sh
@@ -38,25 +41,25 @@ sudo systemctl start docker
 ./3-deploy-doorgame.sh
 ```
 
-## Let's Play The Door Game! 
+## Let's Play The Door Game
 
-Now that the application is deployed, let's play with it and generate some observability data. 
+Now that the application is deployed, let's play with it and generate some observability data.
 
-Get the external IP address for your application instance using the following command: 
+Get the external IP address for your application instance using the following command:
 
-````
+```` bash
 kubectl describe svc doorgame | grep "LoadBalancer Ingress"
 ````
 
-The output should look like the following: 
+The output should look like the following:
 
-````
+```` text
 LoadBalancer Ingress:     52.23.184.60
 ````
 
-You should be able to access The Door Game application by pointing your browser to port 81 of the provided IP address.  For example: 
+You should be able to access The Door Game application by pointing your browser to port 81 of the provided IP address.  For example:
 
-````
+```` text
 http://52.23.184.60:81
 ````
 
@@ -64,7 +67,7 @@ You should be met with The Door Game intro screen:
 
 ![Door Game Welcome Screen](../images/door_game_initial_screen.png)
 
-Click `Let's Play` then choose a door: 
+Click `Let's Play` then choose a door:
 
 ![Door Game Choose Door Screen](../images/door_game_choose_door.png)
 
@@ -80,11 +83,10 @@ If everything was deployed correctly, you should see `doorgame` displayed in the
 
 ![APM Overview](../images/apm_overview.png)
 
-Click on **Explore** on the right-hand side to view the service map.  We should the `doorgame` application on the service map: 
+Click on **Explore** on the right-hand side to view the service map.  We should the `doorgame` application on the service map:
 
 ![Service Map](../images/service_map.png)
 
 Next, click on **Traces** on the right-hand side to see the traces captured for this application. You'll see that some traces run relatively fast (i.e. just a few milliseconds), whereas others take a few seconds.
 
 ![Traces](../images/traces.png)
-
