@@ -13,7 +13,7 @@ It is important to understand that Zero Config Auto instrumentation is designed 
 For this workshop we will be using the Zero config option of the Opentelemetry Collector in Kubernetes.
 This means that the Collector monitors you pods running in Kubernetes, and if they match certain criteria, they will en able auto instrumentation on the pod.
 
-For Java it is looking for the Kubernetes TAG `instrumentation.opentelemetry.io/inject-java\` set to `true`
+For Java it is looking for the Kubernetes TAG `instrumentation.opentelemetry.io/inject-java\` set to `true` or to the location of the otel collector, like `default/splunk-otel-collector`. The last one will work across namespaces, so this what we will use in our examples
 
 ## 1. Setting up Java auto instrumentation on the first pod
 
@@ -38,7 +38,7 @@ Lets enable the Java auto instrumentation on the api-gateway service first by ad
 {{% tab title="Patch api-gateway service" %}}
 
 ```bash
-kubectl patch deployment api-gateway -p '{"spec": {"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-java":"true"}}}} }'
+kubectl patch deployment api-gateway -p '{"spec": {"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-java":"default/splunk-otel-collector"}}}} }'
 ```
 
 {{% /tab %}}
@@ -112,7 +112,7 @@ Note, there will be no change for the *api-gateway* as we patched it earlier.
 {{% tab title="Patch all Petclinic services" %}}
 
 ```bash
-kubectl get deployments -l app.kubernetes.io/part-of=spring-petclinic -o name | xargs -I % kubectl patch % -p "{\"spec\": {\"template\":{\"metadata\":{\"annotations\":{\"instrumentation.opentelemetry.io/inject-java\":\"true\"}}}}}"
+kubectl get deployments -l app.kubernetes.io/part-of=spring-petclinic -o name | xargs -I % kubectl patch % -p "{\"spec\": {\"template\":{\"metadata\":{\"annotations\":{\"instrumentation.opentelemetry.io/inject-java\":\"default/splunk-otel-collector\"}}}}}"
 
 ```
 
@@ -133,7 +133,7 @@ deployment.apps/api-gateway patched (no change)
 {{< /tabs >}}
 
 It will take the Petclinic Microservice application a few minutes to start up and fully synchronise.
-Lets monitor the  load generator container until its capable to generate load as show in the output tab.
+Lets monitor the load generator container until it is capable to generate load again as show in the output tab.
 
 {{< tabs >}}
 {{% tab title="Tail Log" %}}
@@ -146,6 +146,8 @@ Lets monitor the  load generator container until its capable to generate load as
 {{% tab title="Tail Log Output" %}}
 
 ```text
+{"severity":"error","msg": "Error: net::ERR_CONNECTION_REFUSED at http://10.13.2.123:81/#!/welcome"}
+{"severity":"error","msg": "Error: net::ERR_CONNECTION_REFUSED at http://10.13.2.123:81/#!/welcome"}
 {"severity":"info","msg":"Welcome Text = "Welcome to Petclinic"}
 {"severity":"info","msg":"@ALL"}
 {"severity":"info","msg":"@owner details page"}

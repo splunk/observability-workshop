@@ -14,12 +14,14 @@ spec:
     metadata:
       labels:
         app: config-server
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "default/splunk-otel-collector"
     spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: config-server
         image: quay.io/phagen/spring-petclinic-config-server:0.0.2
-        #image: localhost:5000/spring-petclinic-config-server:local
+        #image: localhost:9999/spring-petclinic-config-server:local
         imagePullPolicy: Always
         ports:
         - containerPort: 8888  
@@ -29,7 +31,7 @@ spec:
           readOnly: true
         env:
         - name: _JAVA_OPTIONS
-          value: "-Dspring.profiles.active=native -DGIT_REPO=/petclinic-repo -Dsplunk.profiler.call.stack.interval=1500" 
+          value: "-Dspring.profiles.active=native -DGIT_REPO=/petclinic-repo -Xdebug -Dsplunk.profiler.call.stack.interval=1500" 
         - name: NODE_IP
           valueFrom:
             fieldRef: 
@@ -77,6 +79,8 @@ spec:
     metadata:
       labels:
         app: discovery-server
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "default/splunk-otel-collector"      
     spec:
       terminationGracePeriodSeconds: 5
       containers:
@@ -88,14 +92,14 @@ spec:
             - java
             - org.springframework.boot.loader.JarLauncher
           image: quay.io/phagen/spring-petclinic-discovery-server:0.0.2
-          #image: localhost:5000/spring-petclinic-discovery-server:local
+          #image: localhost:9999/spring-petclinic-discovery-server:local
           name: discovery-server
           imagePullPolicy: Always
           ports:
           - containerPort: 8761  
           env: 
           - name: JAVA_OPTIONS
-            value: "-Dsplunk.profiler.call.stack.interval=1500"
+            value: "-Xdebug -Dsplunk.profiler.call.stack.interval=1500"
           - name: NODE_IP
             valueFrom:
               fieldRef:
@@ -153,13 +157,13 @@ spec:
             - org.springframework.boot.loader.JarLauncher
           name: api-gateway
           image: quay.io/phagen/spring-petclinic-api-gateway:0.0.2
-          #image: localhost:5000/spring-petclinic-api-gateway:local
+          #image: localhost:9999/spring-petclinic-api-gateway:local
           imagePullPolicy: Always
           ports:
           - containerPort: 8080
           env: 
           - name: JAVA_OPTIONS
-            value: "-Dsplunk.profiler.call.stack.interval=1500"          
+            value: "-Xdebug -Dsplunk.profiler.call.stack.interval=1500"          
           - name: RUM_REALM
             valueFrom:
               secretKeyRef:
@@ -253,14 +257,14 @@ spec:
             - java
             - org.springframework.boot.loader.JarLauncher
           image: quay.io/phagen/spring-petclinic-customers-service:0.0.2
-          #image: localhost:5000/spring-petclinic-customers-service:local
+          #image: localhost:9999/spring-petclinic-customers-service:local
           name: customers-service
           imagePullPolicy: Always
           ports:
           - containerPort: 8081
           env:  
           - name: _JAVA_OPTIONS
-            value: "-Dspring.profiles.active=docker,mysql -Dsplunk.profiler.call.stack.interval=1500" 
+            value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=1500" 
 
           - name: NODE_IP
             valueFrom:
@@ -314,14 +318,14 @@ spec:
             - java
             - org.springframework.boot.loader.JarLauncher
           image: quay.io/phagen/spring-petclinic-vets-service:0.0.2
-          #image: localhost:5000/spring-petclinic-vets-service:local
+          #image: localhost:9999/spring-petclinic-vets-service:local
           name: vets-service
           imagePullPolicy: Always
           ports:
           - containerPort: 8083      
           env:
           - name: _JAVA_OPTIONS
-            value: "-Dspring.profiles.active=docker,mysql -Dsplunk.profiler.call.stack.interval=1500" 
+            value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=1500" 
 
           - name: NODE_IP
             valueFrom:
@@ -375,14 +379,14 @@ spec:
             - java
             - org.springframework.boot.loader.JarLauncher
           image: quay.io/phagen/spring-petclinic-visits-service:0.0.2
-          #image: localhost:5000/spring-petclinic-visits-service:local
+          #image: localhost:9999/spring-petclinic-visits-service:local
           name: visits-service
           imagePullPolicy: Always
           ports:
           - containerPort: 8082      
           env:
           - name: _JAVA_OPTIONS
-            value: "-Dspring.profiles.active=docker,mysql -Dsplunk.profiler.call.stack.interval=1500" 
+            value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=1500" 
           - name: NODE_IP
             valueFrom:
               fieldRef:
@@ -391,10 +395,9 @@ spec:
             value: "http://$(NODE_IP):9943"            
           resources:
             requests:
-              #cpu: 125m
+
               memory: 512Mi
             limits:
-              #cpu: 600m
               memory: 768Mi
 ---
 apiVersion: v1
@@ -437,7 +440,7 @@ spec:
             - java
             - org.springframework.boot.loader.JarLauncher
           image: quay.io/phagen/spring-petclinic-admin-server:0.0.2
-          #image: localhost:5000/spring-petclinic-admin-server:local
+          #image: localhost:9999/spring-petclinic-admin-server:local
           name: admin-server
           imagePullPolicy: Always
           ports:
@@ -744,7 +747,7 @@ data:
                                   y: 33,
                               },
                               });
-                            console.log('{"severity":"info","msg":"@ALL"');    
+                            console.log('{"severity":"info","msg":"@ALL"}');    
                       }
                       {
                           const targetPage = page;
