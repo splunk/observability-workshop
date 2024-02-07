@@ -7,7 +7,7 @@
 #     (Steps 2 and 3 are so we don't need to use a public registry)
 # (4) Deploy the service in kubernetes
 #
-# We will use 4-redeploy-doorgame.sh to update the app.
+# We will use 5-redeploy-doorgame.sh to update the app.
 # It adds a step of manually finding and deleting the pod,
 # because unless the kubernetes manifest is changed the pod
 # won't redeploy with the new container image until it restarts.
@@ -31,4 +31,4 @@ echo Deployed the new doorgame app.
 echo ""
 echo This is the service you will need to configure/code.
 echo ""
-echo You will use 4-redeploy-doorgame.sh after making any changes to redeploy the service.
+echo You will use 5-redeploy-doorgame.sh after making any changes to redeploy the service.

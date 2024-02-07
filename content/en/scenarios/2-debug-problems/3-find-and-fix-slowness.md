@@ -103,7 +103,7 @@ Now all doors will have a consistent behavior. Save your work and then rebuild a
 
 ``` bash
 cd workshop/profiling
-./4-redeploy-doorgame.sh
+./5-redeploy-doorgame.sh
 ```
 
 Once the application has been redeployed successfully, visit The Door Game again to confirm that your fix is in place:

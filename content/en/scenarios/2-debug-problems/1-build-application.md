@@ -16,6 +16,7 @@ You will start with an EC2 instance and perform some [initial steps](#initial-st
 
 * Install Kubernetes (k3s) and Docker
 * Deploy the **Splunk distribution of the OpenTelemetry Collector**
+* Deploy the MySQL database container and populate data 
 * Build and deploy the `doorgame` application container
 
 ## Initial Steps
@@ -38,7 +39,8 @@ cd workshop/profiling
 sudo systemctl start docker
 
 ./2-deploy-otel-collector.sh
-./3-deploy-doorgame.sh
+./3-deploy-mysql.sh
+./4-deploy-doorgame.sh
 ```
 
 ## Let's Play The Door Game

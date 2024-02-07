@@ -41,6 +41,11 @@ spec:
               value: "false"
             - name: SPLUNK_PROFILER_MEMORY_ENABLED
               value: "false"
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-user-pass
+                  key: MYSQL_ROOT_PASSWORD
           resources:
             requests:
               cpu: 150m
