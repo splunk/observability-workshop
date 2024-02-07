@@ -1,13 +1,13 @@
 ---
-title: Database Query Performance & Always-on Profiling
-linkTitle: 40. Db-query & Profiling
-weight: 40
+title:  Always-on Profiling
+linkTitle: 50. Profiling
+weight: 50
 hidden: false
 ---
 
 ## 1. Introduction
 
-As we have seen in the previous chapter, you aree able to trace your interactions between the various services using APM without touching your code,  which will allow you to identify issues faster, however beside tracing, Splunk Zero config for Java auto instrumentations offers two more features out of the box that can help you finding issues faster.
+As we have seen in the previous chapter, you are able to trace your interactions between the various services using APM without touching your code,  which will allow you to identify issues faster, however beside tracing, Splunk Zero config for Java auto instrumentations offers two more features out of the box that can help you finding issues faster.
 
 * Always-on Profiling
 * Database Query Perfomance

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # List of services to patch
-services=("config-server" "discovery-service" "admin-server")
+services=("config-server" "discovery-server" "admin-server")
 
 # Loop through each service and apply the kubectl patch command
 for service in "${services[@]}"; do

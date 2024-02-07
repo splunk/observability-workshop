@@ -174,7 +174,7 @@ helm delete splunk-otel-collector
 ## 3. Verify the installation by checking Metrics and Logs
 
 Once the installation is completed, you can login into the  **Splunk Observability Cloud** with the URL provided by the Instructor.
-First, Navigate to **Kubernetes Navigator** in the **Infrastructure**![infra](../images/infra-icon.png?classes=inline&height=25px) section to see the metrics from your cluster in the **K8s nodes** pane. Change the *Time* filter to the last 15 Minutes (-15m) to focus on the lates data.
+First, Navigate to **Kubernetes Navigator** in the **Infrastructure**![infra](../images/infra-icon.png?classes=inline&height=25px) section to see the metrics from your cluster in the **K8s nodes** pane. Change the *Time* filter to the last 15 Minutes (-15m) to focus on the latest data.
 
 Use the regular filter option at the top of the Navigator and select `k8s.cluster.name` **(1)** and type or select the cluster name of your workshop instance (you can get the unique part from your cluster name by using the `INSTANCE` from the output from the shell script you run earlier). (You can also select you cluster by clicking on on its image in the cluster pane.)
 
