@@ -1,7 +1,7 @@
 ---
 title: Frontend Dashboards
 linkTitle:  3. Frontend Dashboards
-weight: 3
+weight: 2
 hidden: false
 ---
 
