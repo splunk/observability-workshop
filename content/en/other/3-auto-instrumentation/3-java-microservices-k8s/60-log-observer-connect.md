@@ -241,7 +241,7 @@ First give the service time to get back into sync and lets tail the load generat
 
 ```text
 {"severity":"info","msg":"Welcome Text = "Welcome to Petclinic"}
-{"severity":"info","msg":"@ALL"
+{"severity":"info","msg":"@ALL}"
 {"severity":"info","msg":"@owner details page"}
 {"severity":"info","msg":"@pet details page"}
 {"severity":"info","msg":"@add pet page"}
@@ -263,7 +263,7 @@ Next, click **Add Filter** search for the field `service_name` select the value 
 This is the end of the workshop and we have certainly covered a lot of ground. At this point, you should have metrics, traces (APM & RUM), logs, database query performance and code profiling being reported into Splunk Observability Cloud.
 
 **Congratulations!**
-
+<!--
 docker system prune -a --volumes
 
   81  . ~/workshop/petclinic/scripts/add_otel.sh
@@ -280,3 +280,4 @@ docker system prune -a --volumes
    92  kubectl apply -f ~/workshop/petclinic/petclinic-local.yaml
    93  k9s
    94  kubectl get deployments -l app.kubernetes.io/part-of=spring-petclinic -o name | xargs -I % kubectl patch % -p "{\"spec\": {\"template\":{\"metadata\":{\"annotations\":{\"instrumentation.opentelemetry.io/inject-java\":\"true\"}}}}}"
+-->
