@@ -15,7 +15,7 @@ spec:
       labels:
         app: config-server
       annotations:
-        instrumentation.opentelemetry.io/inject-java: "default/splunk-otel-collector"
+        instrumentation.opentelemetry.io/inject-java: "true"
     spec:
       terminationGracePeriodSeconds: 5
       containers:
@@ -31,7 +31,7 @@ spec:
           readOnly: true
         env:
         - name: _JAVA_OPTIONS
-          value: "-Dspring.profiles.active=native -DGIT_REPO=/petclinic-repo -Xdebug -Dsplunk.profiler.call.stack.interval=1500" 
+          value: "-Dspring.profiles.active=native -DGIT_REPO=/petclinic-repo -Xdebug -Dsplunk.profiler.call.stack.interval=150" 
         - name: NODE_IP
           valueFrom:
             fieldRef: 
@@ -80,7 +80,7 @@ spec:
       labels:
         app: discovery-server
       annotations:
-        instrumentation.opentelemetry.io/inject-java: "default/splunk-otel-collector"      
+        instrumentation.opentelemetry.io/inject-java: "true"      
     spec:
       terminationGracePeriodSeconds: 5
       containers:
@@ -99,7 +99,7 @@ spec:
           - containerPort: 8761  
           env: 
           - name: JAVA_OPTIONS
-            value: "-Xdebug -Dsplunk.profiler.call.stack.interval=1500"
+            value: "-Xdebug -Dsplunk.profiler.call.stack.interval=150"
           - name: NODE_IP
             valueFrom:
               fieldRef:
@@ -163,7 +163,7 @@ spec:
           - containerPort: 8080
           env: 
           - name: JAVA_OPTIONS
-            value: "-Xdebug -Dsplunk.profiler.call.stack.interval=1500"          
+            value: "-Xdebug -Dsplunk.profiler.call.stack.interval=150"          
           - name: RUM_REALM
             valueFrom:
               secretKeyRef:
@@ -264,7 +264,7 @@ spec:
           - containerPort: 8081
           env:  
           - name: _JAVA_OPTIONS
-            value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=1500" 
+            value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=150" 
 
           - name: NODE_IP
             valueFrom:
@@ -325,7 +325,7 @@ spec:
           - containerPort: 8083      
           env:
           - name: _JAVA_OPTIONS
-            value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=1500" 
+            value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=150" 
 
           - name: NODE_IP
             valueFrom:
@@ -386,7 +386,7 @@ spec:
           - containerPort: 8082      
           env:
           - name: _JAVA_OPTIONS
-            value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=1500" 
+            value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=150" 
           - name: NODE_IP
             valueFrom:
               fieldRef:

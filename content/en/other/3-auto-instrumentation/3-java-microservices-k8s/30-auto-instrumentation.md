@@ -15,7 +15,15 @@ This means that the Collector monitors you pods running in Kubernetes, and if th
 
 For Java it is looking for the Kubernetes TAG `instrumentation.opentelemetry.io/inject-java\` set to `true` or to the location of the otel collector, like `default/splunk-otel-collector`. The last one will work across namespaces, so this what we will use in our examples
 
-## 1. Setting up Java auto instrumentation on the first pod
+## 1. Triggering Zero Configuration  Instrumentation for the Discovery, Config and Admin servers
+
+Due to the time it takes for the PetClinic microservices application to sync and get into a working order, we are going trigger auto instrumentation for the three management microservices of the Petclinic Java Application now as these services need to be up and running before the actual application can run. Let's run a script that will patch these three services and annotate them so the opentelemetry operator will initialise the zero config instrumentation and will start instrumenting them.
+
+```bash
+. ~/workshop/petclinic/scripts/patch-admin-services.sh
+```
+
+## 2. Setting up Java auto instrumentation on the first pod
 
 If you enable Zero configuration for a pod, the Collector will attach an initContainer to your existing pod, and restart the pod to activate it.
 
