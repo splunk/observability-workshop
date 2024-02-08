@@ -1,26 +1,26 @@
 ---
-title: Find and Fix Application Slowness
-linkTitle: 5.4 Find and Fix Application Slowness
-weight: 4
+title: Fix In Game Slowness
+linkTitle: 5.5 Fix In Game Slowness
+weight: 5
 ---
 
-In this section, we pick up where we left off last time.
-We will use the profiling tool to explore our slow span and link it
-back to the source code that caused the slowness. We will update the code to improve
-the performance of this span, and we will use the APM profiling tools to verify
-that our change is successful.
+{{% badge icon="clock" color="#ed0090" %}}10 minutes{{% /badge %}}
 
-### Exploring the Span
+Now that our game startup slowness has been resolved, let's play several rounds of the Door Game and ensure the rest of the game performs quickly. 
 
-At the end of the previous section, we have identified a span that was taking more
-than 5 seconds to complete. We observed that the span showed that it was linked
-to 2 or more sampled call stacks. Let's proceed by clicking on the span to expand its details.
+As you play the game, do you notice any slowness?  Let's look at the data in **Splunk Observability** Cloud to put some numbers on what we're seeing. 
+
+### Review Game Performance in Splunk Observability Cloud
+
+Navigate to APM then click on Traces on the right-hand side of the screen. Sort the traces by Duration in descending order: 
+
+![Slow Traces](../images/slow_trace.png)
+
+We can see that a few of the traces with an operation of `GET /game/:uid/picked/:picked/outcome` have a duration of just over five seconds. This explains why we're still seeing some slowness when we play the app (note that the slowness is no longer on the game startup operation, `GET /new-game`, but rather a different operation used while actually playing the game). 
+
+Let's click on one of the slow traces and take a closer look. Since profiling is still enabled, call stacks have been captured as part of this trace. Click on the child span in the waterfall view, then click CPU Stack Traces: 
 
 ![View Stack on Span](../images/view_stack_on_span.png)
-
-When a span does not have CPU call stack data, we would normally just see the span details.
-(you can drill into the parent stack to see this in action). When we expand the child span, however,
-we have the option to see "CPU Call Stack" data as well.
 
 At the bottom of the call stack, we can see that the thread was busy sleeping:
 
@@ -111,8 +111,7 @@ Once the application has been redeployed successfully, visit The Door Game again
 
 ## What did we accomplish?
 
-* We learned how to view a series of call stacks captured during a Span.
+* We found another performance issue with our application that impacts game play. 
+* We used the CPU call stacks included in the trace to understand application behavior. 
 * We learned how the call stack can tell us a story and point us to suspect lines of code.
 * We identified the slow code and fixed it to make it faster.
-
-In the next section, we'll explore how to enable the memory profiling component of AlwaysOn Profiling, which can tell us which objects are consuming the most heap memory.

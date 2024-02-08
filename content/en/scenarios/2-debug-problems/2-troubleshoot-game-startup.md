@@ -4,6 +4,8 @@ linkTitle: 5.2 Troubleshoot Game Startup
 weight: 2
 ---
 
+{{% badge icon="clock" color="#ed0090" %}}10 minutes{{% /badge %}}
+
 Let's use **Splunk Observability Cloud** to determine why the game started so slowly. 
 
 ## View your application in Splunk Observability Cloud

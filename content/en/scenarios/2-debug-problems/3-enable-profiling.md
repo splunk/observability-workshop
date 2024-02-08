@@ -4,6 +4,8 @@ linkTitle: 5.3 Enable AlwaysOn Profiling
 weight: 3
 ---
 
+{{% badge icon="clock" color="#ed0090" %}}20 minutes{{% /badge %}}
+
 Let's learn how to enable the memory and CPU profilers, verify their operation,
 and use the results in Splunk Observability Cloud to find out why our application startup is slow. 
 
