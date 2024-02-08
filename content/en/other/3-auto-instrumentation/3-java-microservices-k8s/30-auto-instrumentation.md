@@ -1,6 +1,6 @@
 ---
 title: Setting up Zero configuration Auto instrumentation for APM
-linkTitle: 30. Auto-instrumentation & APM
+linkTitle: 30. Auto-instrumentation & Metrics
 weight: 30
 ---
 
@@ -165,16 +165,16 @@ In the mean time let's examine the metrics that are available for each service t
 
 ## 5. Examine R.E.D. Metrics for the api-gateway
 
-In the Dependency map, make sure you have the `api-gateway` service selected as show above, then click on the ***View Dashboard** Link **(1)**  at the top of the right hand pane.
+ Splunk APM provides a set of built-in dashboards that present charts and visualized metrics to help you see problems occurring in real time and quickly determine whether the problem is associated with a service, a specific endpoint, or the underlying infrastructure.  To look at this dashboard for `api-gateway`, make sure you have the `api-gateway` service selected in the Dependency map as show above, then click on the ***View Dashboard** Link **(1)**  at the top of the right hand pane.
 This will bring you to the services dashboard:
 
 ![metrics dashboard](../images/zero-config-first-services-metrics.png)
 
-This dashboard, that is available for each of your instrumented services, offers an overview of the key `RED` performance Metrics.
-As the dashboards allow you to go back in time with the *Time picker* window **(1)**, its the perfect spot to identify behaviour you wish to be alerted of, and with a click on onr of the bell icons **(2)** in each chart you can set up an alert to do just that.
+This dashboard, that is available for each of your instrumented services, offers an overview of the key `request, error, and duration (RED)` metrics based on Monitoring MetricSets created from endpoint spans for your services, endpoints, and Business Workflows. They also present related host and Kubernetes metrics to help you determine whether problems are related to the underlying infrastructure, as in the above image.
+As the dashboards allow you to go back in time with the *Time picker* window **(1)**, its the perfect spot to identify behaviour you wish to be alerted on, and with a click on one of the bell icons **(2)** available in each chart, you can set up an alert to do just that.
 
 If you scroll down the page, you get host and Kubernetes metrics related to your service as well.
-Let's move on the Look at the Traces.
+Let's move on to look at some of the traces.
 <!--
 {{< tabs >}}
 {{% tab title="Tail Log" %}}

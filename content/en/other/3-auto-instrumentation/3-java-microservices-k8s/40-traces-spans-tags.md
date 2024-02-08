@@ -1,6 +1,6 @@
 ---
 title: Traces & Database Query Performance
-linkTitle: 40. Traces & Db-query Performance
+linkTitle: 40. Traces 
 weight: 40
 hidden: false
 ---
@@ -8,9 +8,9 @@ hidden: false
 ## 1. Introduction
 
 As we have seen in the previous chapter, once you have enabled Zero Config Auto Instrumentation and started to run invocations though your application, traces will be send to **Splunk Observability Cloud Suite**
-With these Traces we Splunk will automatically  generate Dependency maps and RED Metrics. In this next section we are going to examine the traces itself and what information they provide to help you understand the behaviour of your services all without touching your code.
+With these Traces we Splunk will automatically  generate Dependency maps and RED Metrics. In this next section we are going to examine the traces itself  and what information they provide to help you understand the behaviour of your services all without touching your code.
 
-## 2.  Traces and Spans
+## 2.  UpdatingTraces and Spans
 
 
 <!--

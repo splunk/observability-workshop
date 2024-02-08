@@ -182,4 +182,4 @@ You should see metrics **(3)** & log events **(4)** related to your cluster. Als
 
 ![Navigator](../images/navigator.png)
 
-Once you see data flowing for your host, we are then ready to get started with the auto instrumentation component.
+Once you see data flowing for your host and mysql shows metrics as well, we are then ready to get started with the auto instrumentation component.

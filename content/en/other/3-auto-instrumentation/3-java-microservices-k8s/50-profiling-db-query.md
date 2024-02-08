@@ -1,8 +1,8 @@
 ---
-title:  Always-on Profiling
-linkTitle: 50. Profiling
+title:   Quick overview of Always-on Profiling & & DB-query Performance
+linkTitle: 50. DB-Query performance & Profiling
 weight: 50
-hidden: false
+hidden: true
 ---
 
 ## 1. Introduction
