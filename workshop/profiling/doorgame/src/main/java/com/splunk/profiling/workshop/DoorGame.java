@@ -19,7 +19,10 @@ public class DoorGame {
         Random random = new Random();
         int winningDoor = random.nextInt(3);
         games.put(uuid, new GameInfo(uuid, winningDoor));
-        Util.sleep(1500);
+
+        UserData userData = new UserData();
+        userData.loadUserData();
+
         return uuid;
     }
 
