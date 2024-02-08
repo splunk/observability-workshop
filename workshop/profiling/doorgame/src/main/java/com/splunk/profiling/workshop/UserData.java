@@ -12,7 +12,7 @@ public class UserData {
     static final String DB_URL = "jdbc:mysql://mysql/DoorGameDB";
     static final String USER = "root";
     static final String PASS = System.getenv("MYSQL_ROOT_PASSWORD");
-    static final String SELECT_QUERY = "select * FROM DoorGameDB.Users, DoorGame.Organizations";
+    static final String SELECT_QUERY = "select * FROM DoorGameDB.Users, DoorGameDB.Organizations";
 
     HashMap<String, User> users;
 

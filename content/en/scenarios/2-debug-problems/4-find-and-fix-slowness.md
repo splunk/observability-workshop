@@ -1,7 +1,7 @@
 ---
 title: Find and Fix Application Slowness
-linkTitle: 5.3 Find and Fix Application Slowness
-weight: 3
+linkTitle: 5.4 Find and Fix Application Slowness
+weight: 4
 ---
 
 In this section, we pick up where we left off last time.

@@ -19,5 +19,5 @@ dependencies {
     implementation("org.slf4j:slf4j-simple:1.7.32")
     implementation("io.opentelemetry:opentelemetry-api:1.0.0")
     implementation("io.opentelemetry:opentelemetry-extension-annotations:1.0.0")
-
+    implementation("mysql:mysql-connector-java:8.0.33")
 }

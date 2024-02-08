@@ -69,26 +69,10 @@ You should be met with The Door Game intro screen:
 
 ![Door Game Welcome Screen](../images/door_game_initial_screen.png)
 
-Click `Let's Play` then choose a door:
+Click `Let's Play` to start the game: 
 
-![Door Game Choose Door Screen](../images/door_game_choose_door.png)
+![Let's Play](../images/lets_play.png)
 
-Play through a couple of times to get the feel for the application flow... and then play many times to ensure there are enough spans to create usable Profiling data...
+Did you notice that it took a long time after clicking `Let's Play` before we could actually start playing the game?   
 
-## View your application in Splunk Observability Cloud
-
-Now that the setup is complete, let's confirm that it's sending data to **Splunk Observability Cloud**.  Note that when the application is deployed for the first time, it may take a few minutes for the data to appear.
-
-Navigate to APM, then use the Environment dropdown to select your environment (i.e. `profiling-workshop-name`).
-
-If everything was deployed correctly, you should see `doorgame` displayed in the list of services:
-
-![APM Overview](../images/apm_overview.png)
-
-Click on **Explore** on the right-hand side to view the service map.  We should the `doorgame` application on the service map:
-
-![Service Map](../images/service_map.png)
-
-Next, click on **Traces** on the right-hand side to see the traces captured for this application. You'll see that some traces run relatively fast (i.e. just a few milliseconds), whereas others take a few seconds.
-
-![Traces](../images/traces.png)
+Let's use **Splunk Observability Cloud** to determine why the application startup is so slow. 

@@ -13,6 +13,9 @@ echo Creating a secret for the database password
 kubectl create secret generic db-user-pass \
 --from-literal=MYSQL_ROOT_PASSWORD="$MYSQL_ROOT_PASSWORD"
 
+echo Cleaning up existing database storage
+sudo rm -Rf /mnt/data
+
 echo Creating persistent volume and persistent volume claim
 # (1) Create a persistent volume and persistent volume claim to be used for a MySQL database
 kubectl apply -f mysql/volume.yaml
@@ -20,7 +23,6 @@ kubectl apply -f mysql/volume.yaml
 echo Deploying the MySQL database container
 # (2) Deploy a MySQL database pod and service in Kubernetes
 kubectl apply -f mysql/database.yaml
-
 
 echo Waiting for the MySQL pod to be ready
 while [[ $(kubectl get pods -l app=mysql -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do
@@ -52,7 +54,6 @@ kubectl run -it --rm --image=mysql:8.3.0 --restart=Never mysql-client -- mysql -
 
 kubectl run -it --rm --image=mysql:8.3.0 --restart=Never mysql-client -- mysql -h mysql -p"$MYSQL_ROOT_PASSWORD" \
   -e "LOAD DATA INFILE '/var/lib/mysql-files/organizations.csv' INTO TABLE DoorGameDB.Organizations FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;"
-
 
 echo ""
 echo Deployed the MySQL database
