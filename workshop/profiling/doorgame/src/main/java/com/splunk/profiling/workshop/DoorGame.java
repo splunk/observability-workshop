@@ -12,6 +12,7 @@ public class DoorGame {
 
     private final DoorChecker gameOfficial = new DoorChecker();
     private final Map<String, GameInfo> games = new ConcurrentHashMap<>();
+    private UserData userData = new UserData();
 
     @WithSpan(kind = SpanKind.INTERNAL)
     public String startNew() {
@@ -20,7 +21,6 @@ public class DoorGame {
         int winningDoor = random.nextInt(3);
         games.put(uuid, new GameInfo(uuid, winningDoor));
 
-        UserData userData = new UserData();
         userData.loadUserData();
 
         return uuid;
