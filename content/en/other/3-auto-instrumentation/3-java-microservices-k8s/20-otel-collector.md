@@ -26,7 +26,7 @@ helm delete splunk-otel-collector
 
 ## 2. Install the OpenTelemetry Collector using Helm
 
-We are going to install the Splunk distribution of the OpenTelemetry Collector in Operator mode using the Splunk Kubernetes Helm Chart for the Opentelemetry collector. First, we need to add the Splunk Helm chart repository to Helm and update so it knows where to find it:
+We are going to install the Splunk distribution of the OpenTelemetry Collector in Operator mode using the Splunk Kubernetes Helm Chart for the Opentelemetry collector. First, we need to add the Splunk Helm chart repository to Helm and update it so it knows where to find it:
 
 {{< tabs >}}
 {{% tab title="Helm Repo Add" %}}
@@ -52,7 +52,7 @@ Update Complete. ⎈Happy Helming!⎈
 {{% /tab %}}
 {{< /tabs >}}
 
-Splunk Observability Cloud offers wizards in the **Splunk Observability Suite** UI to walk you through the setup of the Collector on your infrastructure including Kubernetes, but in interest of time, we will use a setup created earlier. As we want the auto instrumentation to be available, we will install the OpenTelemetry Collector with the OpenTelemetry Collector Helm chart with some additional options:
+Splunk Observability Cloud offers wizards in the **Splunk Observability Suite** UI to walk you through the setup of the Collector on your infrastructure including Kubernetes, but in the interest of time, we will use a setup created earlier. As we want the auto instrumentation to be available, we will install the OpenTelemetry Collector with the OpenTelemetry Collector Helm chart with some additional options:
 
 * --set="operator.enabled=true" - this will install the Opentelemetry operator, that will be used to handle auto instrumentation
 * --set="certmanager.enabled=true" - This will install the required certificate manager for the operator.
@@ -176,10 +176,10 @@ helm delete splunk-otel-collector
 Once the installation is completed, you can login into the  **Splunk Observability Cloud** with the URL provided by the Instructor.
 First, Navigate to **Kubernetes Navigator** in the **Infrastructure**![infra](../images/infra-icon.png?classes=inline&height=25px) section to see the metrics from your cluster in the **K8s nodes** pane. Change the *Time* filter to the last 15 Minutes (-15m) to focus on the latest data.
 
-Use the regular filter option at the top of the Navigator and select `k8s.cluster.name` **(1)** and type or select the cluster name of your workshop instance (you can get the unique part from your cluster name by using the `INSTANCE` from the output from the shell script you run earlier). (You can also select you cluster by clicking on on its image in the cluster pane.)
+Use the regular filter option at the top of the Navigator and select `k8s.cluster.name` **(1)** and type or select the cluster name of your workshop instance (you can get the unique part from your cluster name by using the `INSTANCE` from the output from the shell script you ran earlier). (You can also select your cluster by clicking on its image in the cluster pane.)
 
-You should see metrics **(3)** & log events **(4)** related to your cluster. Also a `Mysql` pane **(5)** should appear,when you click on that pane, you can see the MySQL related metrics from you database.
+You should see metrics **(3)** & log events **(4)** related to your cluster. Also, a `Mysql` pane **(5)** should appear, when you click on that pane, you can see the MySQL related metrics from your database.
 
 ![Navigator](../images/navigator.png)
 
-Once you see data flowing for your host and mysql shows metrics as well, we are then ready to get started with the auto instrumentation component.
+Once you see data flowing for your host and MySQL shows metrics as well, we are then ready to get started with the auto instrumentation component.

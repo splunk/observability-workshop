@@ -9,9 +9,9 @@ weight: 60
 Until this point, we have not touched or changed our code, yet we did receive Trace & Profiling/DB Query performance information.
 If we want to get more out of our Java application, we can introduce a small change to our application log setup.
 
-This change will configure the Spring PetClinic application to use an Otel Based format to write logs, This will allow the (Auto)-instrumentation to add Otel relevant information into the logs.
+This change will configure the Spring PetClinic application to use an Otel-based format to write logs, This will allow the (Auto)-instrumentation to add Otel relevant information into the logs.
 
-The Splunk Log Observer component is used to view the logs and with this information can automatically relate logs information with APM Services and Traces. This feature called **Related Content** will also work with Infra structure.
+The Splunk Log Observer component is used to view the logs and with this information can automatically relate log information with APM Services and Traces. This feature called **Related Content** will also work with Infrastructure.
 
 ## 2. Update Logback config for the services
 
@@ -27,36 +27,8 @@ Note the following entries that will be added:
 - trace_flags
 - service.name
 - deployment.environment
-
-These fields allows the **Splunk Observability Cloud Suite** to display **Related Content**:
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-    <include resource="org/springframework/boot/logging/logback/base.xml"/>
-    <!-- Required for Loglevel management into the Spring Petclinic Admin Server-->
-    <jmxConfigurator/>
-    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-          <pattern>
-            %d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg trace_id=%X{trace_id} span_id=%X{span_id} trace_flags=%X{trace_flags} %n service.name=%property{otel.resource.service.name}, deployment.environment=%property{otel.resource.deployment.environment}: %m%n
-          </pattern>
-        </encoder> 
-    </appender>
-
-    <!-- Just wrap your logging appender, for example ConsoleAppender, with OpenTelemetryAppender -->
-    <appender name="OTEL" class="io.opentelemetry.instrumentation.logback.mdc.v1_0.OpenTelemetryAppender">
-      <appender-ref ref="CONSOLE"/>
-    </appender>
-
-     <!-- Use the wrapped "OTEL" appender instead of the original "CONSOLE" one -->
-     <root level="INFO">
-       <appender-ref ref="OTEL"/>
-     </root>
-</configuration>
-```
-
-So lets run the script that will update our log structure with the format above:
+These fields allow the **Splunk** Observability Cloud Suite** to display **Related Content**:
+So let's run the script that will update our log structure with the format above:
 
 {{< tabs >}}
 {{% tab title="Update Logback files" %}}
@@ -202,13 +174,14 @@ To see the changes in effect, we need to redeploy the services,  First let chang
 ```
 
 The result is a new file on disk called **petclinic-local.yaml**
-Let switch to the local version by applying the local version of the deployment yaml.
- First delete the old deplyment with 
+Let switch to the local version by applying the local version of the deployment yaml. First delete the old deplyment with:
 
 ```bash
 kubectl delete -f ~/workshop/petclinic/petclinic-local.yaml
 ```
-followed by 
+
+followed by:
+
 ```bash
 kubectl apply -f ~/workshop/petclinic/petclinic-local.yaml
 ```

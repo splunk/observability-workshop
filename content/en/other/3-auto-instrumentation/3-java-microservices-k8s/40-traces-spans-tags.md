@@ -12,7 +12,6 @@ With these Traces we Splunk will automatically  generate Dependency maps and RED
 
 ## 2.  UpdatingTraces and Spans
 
-
 <!--
 
 When we installed the collector we configured it to enable **AlwaysOn Profiling** and **Metrics**. This means that the collector will automatically generate CPU and Memory profiles for the application and send them to Splunk Observability Cloud.
@@ -53,7 +52,6 @@ You can now visit the Splunk APM UI and examine the application components, trac
 ![APM Environment](../images/apm-environment.png)
 
 Once your validation is complete you can stop the application by pressing `Ctrl-c`.
-
 
 ## 4. Adding Resource Attributes to Spans
 

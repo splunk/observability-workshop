@@ -7,18 +7,18 @@ hidden: true
 
 ## 1. Introduction
 
-As we have seen in the previous chapter, you are able to trace your interactions between the various services using APM without touching your code,  which will allow you to identify issues faster, however beside tracing, Splunk Zero config for Java auto instrumentations offers two more features out of the box that can help you finding issues faster.
+As we have seen in the previous chapter, you can trace your interactions between the various services using APM without touching your code,  which will allow you to identify issues faster. However beside tracing, Splunk Zero config for Java auto instrumentations offers two more features out of the box that can help you finding issues faster.
 
 * Always-on Profiling
-* Database Query Perfomance
+* Database Query Performance
 
-As part of this workshop we will have a quick look into both.
+As part of this workshop, we will have a quick look into both.
 
 ## 2. AlwaysOn Profiling and Metrics
 
 When we installed the collector we configured it to enable **AlwaysOn Profiling** and **Metrics**. This means that the collector will automatically generate CPU and Memory profiles for the application and send them to Splunk Observability Cloud.
 
-When you deployed the PetClinic application, the collector automatically detect the application and instrument it for traces and profiling.
+When you deploy the PetClinic application, the collector automatically detects the application and instruments it for traces and profiling.
 
 {{% tab title="Example output" %}}
 

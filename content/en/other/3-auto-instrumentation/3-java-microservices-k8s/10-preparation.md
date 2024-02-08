@@ -6,8 +6,8 @@ weight: 10
 
 ## 1. Validate the settings for your workshop
 
-The instructor will provide you with the log in information for the instance that we will using during the workshop.
-When you first log into your instance, you wil be greeted by the Splunk Logo as shown below:
+The instructor will provide you with the login information for the instance that we will be using during the workshop.
+When you first log into your instance, you will be greeted by the Splunk Logo as shown below:
 
 ```text
 ❯ ssh -p 2222 ubuntu@[IP-ADRESS]
@@ -43,7 +43,7 @@ HEC_URL = https://[...]/services/collector/event
 INSTANCE = [Your workshop name]
 ```
 
-Please make a note of the `INSTANCE` environment variable value as this is the reference to you workshop instance and we will need it later to filter data in the **Splunk Observability Suite** UI.
+Please make a note of the `INSTANCE` environment variable value as this is the reference to your workshop instance and we will need it later to filter data in the **Splunk Observability Suite** UI.
 
 For this workshop, **all** of the above are required. If any have values missing, please contact your instructor.
 
@@ -89,7 +89,7 @@ configmap/scriptfile created
 {{< /tabs >}}
 
 <!-- {{% notice title="In case of error Unable to read /etc/rancher/k3s/k3s.yaml" style="warning" %}}
-In rare occasions, you may encounter the above error at this point.  please lpg out and back in, and verify the above env variables are all set correctly. If not please, please contact your instructor.
+On rare occasions, you may encounter the above error at this point.  please log out and back in, and verify the above env variables are all set correctly. If not please, please contact your instructor.
 
 {{% /notice %}} -->
 At this point we can verify the deployment by checking if the Pods are running:
@@ -121,11 +121,11 @@ petclinic-loadgen-deployment-994b69695-8rd9k   1/1     Running   0          85s
 
 Make sure the output of get pods matches the output as shown above. This may take a minute or so, try again until all services are shown as **RUNNING**.  
 
-Once they are running, the application will take a few minutes to  fully start up, create the database and synchronize all the services, so let's get the actual source code for the application downloaded in the mean-time.
+Once they are running, the application will take a few minutes to fully start up, create the database and synchronize all the services, so let's get the actual source code for the application downloaded in the meantime.
 
 ## 2. Downloading the Spring Microservices PetClinic Application
 
- For this exercise, we will use the Spring microservices PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot) and we are using a version witch actual microservices.
+ For this exercise, we will use the Spring microservices PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot) and we are using a version with actual microservices.
 
 First, clone the PetClinic GitHub repository, as we will need this later in the workshop to compile, build, package and containerize the application:
 
@@ -134,12 +134,7 @@ cd ~;git clone https://github.com/hagen-p/spring-petclinic-microservices.git
 ```
 
 Change into the `spring-petclinic` directory:
-
-```bash
-cd ~/spring-petclinic-microservices
-```
-
-Next, lets test the download and run the script that will use the `maven` command to compile/build the PetClinic microservices:
+Next, let's test the download and run the script that will use the `maven` command to compile/build the PetClinic microservices:
 {{< tabs >}}
 {{% tab title="Running maven" %}}
 
@@ -179,7 +174,7 @@ This will take a few minutes the first time you run, `maven` will download a lot
 
 ## 3. Verify the local Docker Repository
 
-Once we have our Auto instrumentation up and running with the existing containers, we are going to build our own containers to show some of the additional instrumentation features of Opentelemetry Java. Only then we will touch the  config files or the source code. We will add some annotations to it to get even more valuable data from our Java application and enable the injection of trace data into  the logs. 
+Once we have our Auto instrumentation up and running with the existing containers, we are going to build our containers to show some of the additional instrumentation features of Opentelemetry Java. Only then we will touch the config files or the source code. We will add some annotations to it to get even more valuable data from our Java application and enable the injection of trace data into the logs.
 
 once we build these containers, Kubernetes will need to pull these new images from somewhere. To enable this we have created a local repository, so Kubernetes can pull those local images.
 
@@ -206,7 +201,7 @@ You will see an IP address returned, make a note of this as we will need it to v
 You can validate if the application is running by visiting `http://<IP_ADDRESS>:81` (replace `<IP_ADDRESS>` with the IP address you obtained earlier). You should see the PetClinic application running.  
 
 ![Pet shop](../images/petclinic.png)
-Make sure the application is working correctly by visiting the **All Owners** and **Veterinarians** tabs, you should get a list of names in each case. If your familiar with the Standard version, you will notice a slightly longer response time due to the architecture used.
+Make sure the application is working correctly by visiting the **All Owners** and **Veterinarians** tabs, you should get a list of names in each case. If you're familiar with the Standard version, you will notice a slightly longer response time due to the architecture used.
 
 We now have our application running in Kubernetes, without an OpenTelemetry Collector deployed, so there is no Observability data in **Splunk Observability Cloud** yet.
-Lets go and fix that.
+Let's go and fix that.
