@@ -16,7 +16,7 @@ You will start with an EC2 instance and perform some [initial steps](#initial-st
 
 * Install Kubernetes (k3s) and Docker
 * Deploy the **Splunk distribution of the OpenTelemetry Collector**
-* Deploy the MySQL database container and populate data 
+* Deploy the MySQL database container and populate data
 * Build and deploy the `doorgame` application container
 
 ## Initial Steps

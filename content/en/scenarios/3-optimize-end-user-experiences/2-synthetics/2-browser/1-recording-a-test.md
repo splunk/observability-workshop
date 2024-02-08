@@ -5,14 +5,13 @@ weight: 1
 
 ## Open the starting URL you want to test
 
-Open your starting URL in Chrome Incognito. This is important so you're not carrying cookies into the recording, that we won't have set up in the Synthetic test by default. If you would prefer to start on a demo site, feel free to use https://frontend-eu.splunko11y.com or https://frontend-us.splunko11y.com, which we are using in the examples below.
+Open your starting URL in Chrome Incognito. This is important so you're not carrying cookies into the recording, that we won't have set up in the Synthetic test by default. If you would prefer to start on a demo site, feel free to use [https://frontend-eu.splunko11y.com](https://frontend-eu.splunko11y.com) or [https://frontend-us.splunko11y.com](https://frontend-us.splunko11y.com), which we are using in the examples below.
 
 Have in mind a short user journey you want to test. Remember: smaller bites are easier to chew! In other words, get started with just a few steps. This is easier not only to create and maintain the test, but also to understand and act on ther results.
 
 {{% notice note %}}
 Record the test in the same type of viewport that you want to run it. For example, if you want to run a test on a mobile viewport, narrow your browser width to mobile and refresh before starting the recording. This way you are capturing the correct elements that could change depending on responsive rules for the viewport.
 {{% /notice %}}
-
 
 ## Open the Chrome DevTools Recorder
 

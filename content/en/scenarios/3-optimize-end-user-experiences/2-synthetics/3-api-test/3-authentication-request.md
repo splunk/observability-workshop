@@ -29,7 +29,7 @@ Next, add two request headers with the following key/value pairings:
 
 Expand the **Validation** section and add the following extraction:
 
-- **Extract** from **Response body** **JSON** **$.access_token** **as** **access_token**. 
+- **Extract** from **Response body** **JSON** **$.access_token** **as** **access_token**.
 
 This will parse the JSON payload that is received from the Spotify API, extract the access token and store it as a custom variable.
 

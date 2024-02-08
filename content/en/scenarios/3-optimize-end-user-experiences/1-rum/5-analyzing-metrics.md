@@ -34,7 +34,7 @@ The RUM UI consists of 6 major sections. The first is the selection header, wher
 
 ### 2.2. UX Metrics
 
-By default, RUM prioritizes the metrics that most directly reflect the experience of the end user. 
+By default, RUM prioritizes the metrics that most directly reflect the experience of the end user.
 
 {{% notice title="Additional Tags" style="info" %}}
 All of the dashboard charts allow us to compare trends over time, create detectors, and click through to further diagnose issues.
@@ -61,7 +61,6 @@ Common causes of frontend issues are javascript errors and long tasks, which can
 ![JS error charts](../images/rum-js-errors.png)
 ![Long task charts](../images/rum-long-tasks.png)
 
-
 ### 2.4. Back-end health
 
 Common back-end issues affecting user experience are network issues and resource requests. In this example, we clearly see a spike in Time To First Byte that lines up with a resource request spike, so we already have a good starting place to investigate.
@@ -80,6 +79,7 @@ As we have seen in the RUM enabled website, we have added the following two line
 const Provider = SplunkRum.provider;
 var tracer=Provider.getTracer('appModuleLoader');
 ```
+
 These lines  will automatically create custom Events for every new Page, and you can also add these to pieces of custom code that are not part of a framework or an event you created so you can better understand the flow though your application. We support **Custom Event Requests**, **Custom Event Error Rates** and **Custom Event Latency** metrics.
 
 ![RUM custom event charts](../images/rum-custom-events.png)
