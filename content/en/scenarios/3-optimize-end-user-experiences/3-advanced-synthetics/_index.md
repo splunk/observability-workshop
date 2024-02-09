@@ -1,7 +1,7 @@
 ---
-title: Splunk Synthetic Scripting
+title: Advanced Synthetics
 description: Proactively find and fix performance issues across user flows, business transactions and APIs to deliver better digital experiences.
-weight: 1
+weight: 3
 ---
 
 Proactively monitor the performance of your web app before problems affect your users. With **Splunk Synthetic Monitoring**, technical and business teams create detailed tests to proactively monitor the speed and reliability of websites, web apps, and resources over time, at any stage in the development cycle.

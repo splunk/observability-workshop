@@ -9,7 +9,7 @@ hidden: false
 
 Wait for a few minutes for the test to provision and run. Once you see the test has run successfully, click on the run to view the test results:
 
-![API test result](../../img/api-test-result.png)
+![API test result](../_img/api-test-result.png)
 
 ## 6. Resources
 

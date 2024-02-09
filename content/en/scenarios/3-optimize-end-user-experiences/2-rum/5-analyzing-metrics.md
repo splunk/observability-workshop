@@ -22,7 +22,7 @@ This will take you to the RUM Application Overview Page screen as shown below.
 
 ### 2.1. Header
 
-The RUM UI consists of 6 major sections. The first is the selection header, where you can set/filter a number of options:
+The RUM UI consists of five major sections. The first is the selection header, where you can set/filter a number of options:
 
 * A drop down for the time window you're reviewing (You are looking at the past 15 minutes in this case)
 * A drop down to select the Comparison window (You are comparing current performance on a rolling window   - in this case compared to 1 hour ago)
@@ -69,7 +69,7 @@ Common back-end issues affecting user experience are network issues and resource
 
 * **Time To First Byte (TTFB)**, measures how long it takes for a client's browser to receive the first byte of the response from the server. The longer it takes for the server to process the request and send a response, the slower your visitors' browser is at displaying your page.
 
-### 2.6. Custom Events
+### 2.5. Custom Events
 
 The Custom Events tab is where you will find the metrics for any event you may have added yourself to the web pages you are monitoring. See the docs for an [example scenario instrumenting Custom Events for RUM](https://docs.splunk.com/observability/en/rum/rum-scenario-library/spa-custom-event.html#create-a-custom-event-to-measure-user-engagement-on-blog-posts).
 

@@ -1,7 +1,7 @@
 ---
 title: API Test
-linkTitle:  3. API Test
-weight: 3
+linkTitle:  2. API Test
+weight: 2
 hidden: false
 ---
 
@@ -9,4 +9,4 @@ The API Test provides a flexible way to check the functionality and performance 
 
 Whether you're interested in testing the multi-step API interactions or you want to gain visibility into the performance of your endpoints, the API Test can help you accomplish your goals.
 
-![API test result](../img/api-test-result.png)
+![API test result](../_img/api-test-result.png)

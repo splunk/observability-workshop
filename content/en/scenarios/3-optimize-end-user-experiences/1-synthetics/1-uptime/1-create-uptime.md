@@ -33,7 +33,7 @@ weight: 1
 
 ![image](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-01/74e0492f-13a5-4a93-9f3c-f1f311d3dd8a/ascreenshot.jpeg?tl_px=0,560&br_px=1719,1521&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=385,277)
 
-8\. Change the test frequency to quickly gather data.
+8\. Change the test frequency to test your more critical endpoints more frequently.
 
 ![image](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-01/1307df14-9c74-437d-87a7-6194b265d772/ascreenshot.jpeg?tl_px=0,0&br_px=1719,961&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=448,187)
 

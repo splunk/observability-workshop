@@ -1,7 +1,7 @@
 ---
 title: Detectors
-linkTitle:  4. Detectors
-weight: 4
+linkTitle: Detectors
+weight: 5
 hidden: false
 ---
 
