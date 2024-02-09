@@ -7,7 +7,7 @@ hidden: false
 
 Starting with a single page browser test will let us capture how first- and third-party resources impact how our end users experience our browser-based site. It also allows us to start to understand our user experience metrics before introducing the complexity of multiple steps in one test.
 
-# Create a single page browser test
+## Create a single page browser test
 
 1\. Click "Add new test" and select Browser test
 
