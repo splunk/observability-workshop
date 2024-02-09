@@ -39,10 +39,14 @@ kubectl cp ./mysql/organizations.csv ${POD_NAME:4}:/var/lib/mysql-files/organiza
 kubectl cp ./mysql/populate_db.txt ${POD_NAME:4}:/tmp/populate_db.txt
 kubectl cp ./mysql/populate_db.sh ${POD_NAME:4}:/tmp/populate_db.sh
 
-# TODO: ensure the database is fully started
-#while [[ $(kubectl exec -it ${POD_NAME:4} -- mysql -p"$MYSQL_ROOT_PASSWORD" -e "Show Databases;")? != 0 ]]; do
-#   sleep 1
-#done
+echo Waiting for the database to be ready
+while ! kubectl exec -it ${POD_NAME:4} -- mysqladmin ping -p"$MYSQL_ROOT_PASSWORD" --silent; do
+    sleep 5
+done
+
+# added extra sleep as issues occur when we attempt
+# to connect to the database too quickly
+sleep 5
 
 echo Creating tables and application data
 kubectl exec -it ${POD_NAME:4} -- /tmp/populate_db.sh
