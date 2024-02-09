@@ -47,9 +47,176 @@ Please make a note of the `INSTANCE` environment variable value as this is the r
 
 For this workshop, **all** of the above are required. If any have values missing, please contact your instructor.
 
-## 2. Deploying the prebuilt containers into Kubernetes
+{{% notice title="Delete any existing OpenTelemetry Collectors" style="warning" %}}
+If you have completed a Splunk Observability workshop using this EC2 instance, please ensure you have deleted the collector running in Kubernetes before continuing with this workshop. This can be done by running the following command:
 
-The second thing we need to do, well ..., is to set up our application. The first deployment of our application will be using prebuilt containers to give us the base scenario: a regular Java microservices-based application running in Kubernetes.
+``` bash
+helm delete splunk-otel-collector
+```
+{{% /notice %}}
+
+## 2. The Splunk OpenTelemetry Collector
+
+The Splunk OpenTelemetry Collector is the core component of instrumenting infrastructure and applications.  Its role is to collect and send:
+
+* Infrastructure metrics (disk, CPU, memory, etc)
+* Application Performance Monitoring (APM) traces
+* Profiling data
+* Host and Application logs
+
+To get Observability signals (**Metrics, Traces** and **Logs**) into the **Splunk Observability Cloud** we need to add an OpenTelemetry Collector to our Kubernetes cluster.
+For this workshop we will be using the Splunk Kubernetes Helm Chart for the Opentelemetry collector and install the collector in `Operator` mode as this is required for Zero-config.
+
+## 3. Install the OpenTelemetry Collector using Helm
+
+First, we need to add the Splunk Helm chart repository to Helm and update it so it knows where to find it:
+
+{{< tabs >}}
+{{% tab title="Helm Repo Add" %}}
+
+``` bash
+helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update
+```
+
+{{% /tab %}}
+{{% tab title="Helm Repo Add Output" %}}
+
+```text
+Using ACCESS_TOKEN={REDACTED}
+Using REALM=eu0
+"splunk-otel-collector-chart" has been added to your repositories
+Using ACCESS_TOKEN={REDACTED}
+Using REALM=eu0
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "splunk-otel-collector-chart" chart repository
+Update Complete. ⎈Happy Helming!⎈
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+The Splunk Observability Cloud offers wizards in the **Splunk Observability Suite** UI to walk you through the setup of the Collector on  Kubernetes, but in the interest of time, we will use a setup created earlier. As we want the auto instrumentation to be available, we will install the OpenTelemetry Collector with the OpenTelemetry Collector Helm chart with some additional options:
+
+* --set="operator.enabled=true" - this will install the Opentelemetry operator, that will be used to handle auto instrumentation
+* --set="certmanager.enabled=true" - This will install the required certificate manager for the operator.
+* --set="splunkObservability.profilingEnabled=true" - This enabled Code profiling via the operator
+
+To install the collector run the following commands, do **NOT** edit this:
+
+{{< tabs >}}
+{{% tab title="Helm Install" %}}
+
+```bash
+helm install splunk-otel-collector \
+--set="operator.enabled=true", \
+--set="certmanager.enabled=true", \
+--set="splunkObservability.realm=$REALM" \
+--set="splunkObservability.accessToken=$ACCESS_TOKEN" \
+--set="clusterName=$INSTANCE-k3s-cluster" \
+--set="splunkObservability.logsEnabled=false" \
+--set="logsEngine=otel" \
+--set="splunkObservability.profilingEnabled=true" \
+--set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
+--set="environment=$INSTANCE-workshop" \
+--set="splunkPlatform.endpoint=$HEC_URL" \
+--set="splunkPlatform.token=$HEC_TOKEN" \
+--set="splunkPlatform.index=splunk4rookies-workshop" \
+splunk-otel-collector-chart/splunk-otel-collector \
+-f ~/workshop/k3s/otel-collector.yaml
+
+{{% /tab %}}
+{{% tab title="Helm Install Output" %}}
+
+```text
+Using ACCESS_TOKEN={REDACTED}
+Using REALM=eu0
+NAME: splunk-otel-collector
+LAST DEPLOYED: Tue Jan  2 13:46:16 2024
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+NOTES:
+Splunk OpenTelemetry Collector is installed and configured to send data to Splunk Platform endpoint "https://http-inputs-o11y-suite-eu0.stg.splunkcloud.com:443/services/collector/event".
+
+Splunk OpenTelemetry Collector is installed and configured to send data to Splunk Observability realm eu0.
+
+[INFO] You've enabled the operator's auto-instrumentation feature (operator.enabled=true), currently considered ALPHA.
+- Instrumentation library maturity varies (e.g., Java is more mature than Go). For library stability, visit: https://opentelemetry.io/docs/instrumentation/#status-and-releases
+  - Some libraries may be enabled by default. For current status, see: https://github.com/open-telemetry/opentelemetry-operator#controlling-instrumentation-capabilities
+  - Splunk provides best-effort support for native OpenTelemetry libraries, and full support for Splunk library distributions. For used libraries, refer to the values.yaml under "operator.instrumentation.spec".
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+You can monitor the progress of the deployment by running `kubectl get pods` which should typically report a new pod is up and running after about 30 seconds.
+
+Ensure the status is reported as **Running** before continuing.
+
+{{< tabs >}}
+{{% tab title="Kubectl Get Pods" %}}
+
+``` bash
+kubectl get pods|grep splunk-otel 
+```
+
+{{% /tab %}}
+{{% tab title="Kubectl Get Pods Output" %}}
+
+``` text
+splunk-otel-collector-certmanager-cainjector-5c5dc4ff8f-95z49   1/1     Running   0          10m
+splunk-otel-collector-certmanager-6d95596898-vjxss              1/1     Running   0          10m
+splunk-otel-collector-certmanager-webhook-69f4ff754c-nghxz      1/1     Running   0          10m
+splunk-otel-collector-k8s-cluster-receiver-6bd5567d95-5f8cj     1/1     Running   0          10m
+splunk-otel-collector-agent-tspd2                               1/1     Running   0          10m
+splunk-otel-collector-operator-69d476cb7-j7zwd                  2/2     Running   0          10m
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+Ensure there are no errors by tailing the logs from the OpenTelemetry Collector pod. The output should look similar to the log output shown in the Output tab below.
+
+Use the label set by the `helm` install to tail logs (You will need to press `ctrl + c` to exit). Or use the installed `k9s` terminal UI for bonus points!
+
+{{< tabs >}}
+{{% tab title="Kubectl Logs" %}}
+
+``` bash
+kubectl logs -l app=splunk-otel-collector -f --container otel-collector
+```
+
+{{% /tab %}}
+{{% tab title="Kubectl Logs Output" %}}
+
+```text
+2021-03-21T16:11:10.900Z        INFO    service/service.go:364  Starting receivers...
+2021-03-21T16:11:10.900Z        INFO    builder/receivers_builder.go:70 Receiver is starting... {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
+2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:75 Receiver started.       {"component_kind": "receiver", "component_type": "prometheus", "component_name": "prometheus"}
+2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:70 Receiver is starting... {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
+2021-03-21T16:11:11.009Z        INFO    k8sclusterreceiver@v0.21.0/watcher.go:195       Configured Kubernetes MetadataExporter  {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster", "exporter_name": "signalfx"}
+2021-03-21T16:11:11.009Z        INFO    builder/receivers_builder.go:75 Receiver started.       {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
+2021-03-21T16:11:11.009Z        INFO    healthcheck/handler.go:128      Health Check state change       {"component_kind": "extension", "component_type": "health_check", "component_name": "health_check", "status": "ready"}
+2021-03-21T16:11:11.009Z        INFO    service/service.go:267  Everything is ready. Begin running and processing data.
+2021-03-21T16:11:11.009Z        INFO    k8sclusterreceiver@v0.21.0/receiver.go:59       Starting shared informers and wait for initial cache sync.      {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
+2021-03-21T16:11:11.281Z        INFO    k8sclusterreceiver@v0.21.0/receiver.go:75       Completed syncing shared informer caches.       {"component_kind": "receiver", "component_type": "k8s_cluster", "component_name": "k8s_cluster"}
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+{{% notice title="Deleting a failed installation" style="info" %}}
+If you make an error installing the OpenTelemetry Collector you can start over by deleting the installation using:
+
+``` sh
+helm delete splunk-otel-collector
+```
+
+{{% /notice %}}
+
+## 4. Deploying the PetClinic Application with prebuilt containers into Kubernetes
+
+The next thing we need to do, well ..., is to set up our application. The first deployment of our application will be using prebuilt containers to give us the base scenario: a regular Java microservices-based application running in Kubernetes that we want to start observing.
 
 So let's deploy our application:
 {{< tabs >}}
@@ -92,7 +259,7 @@ configmap/scriptfile created
 On rare occasions, you may encounter the above error at this point.  please log out and back in, and verify the above env variables are all set correctly. If not please, please contact your instructor.
 
 {{% /notice %}} -->
-At this point we can verify the deployment by checking if the Pods are running:
+At this point we can verify the deployment by checking if the Pods are running, Not that these containers need to be downloaded and started, this may take a minute or so.
 {{< tabs >}}
 {{% tab title="kubectl get pods" %}}
 
@@ -104,16 +271,22 @@ kubectl get pods
 {{% tab title="kubectl get pods Output" %}}
 
 ```text
-NAME                                           READY   STATUS    RESTARTS   AGE
-config-server-7645d4449f-kdwh6                 1/1     Running   0          86s
-petclinic-db-64d998bb66-n2464                  1/1     Running   0          85s
-discovery-server-6f4c756dff-nx8tl              1/1     Running   0          86s
-admin-server-8f67bdf56-tcpkl                   1/1     Running   0          85s
-customers-service-74f5cf6d6f-nhkxh             1/1     Running   0          86s
-vets-service-6869959674-nb67v                  1/1     Running   0          86s
-visits-service-6f9d987c85-4476j                1/1     Running   0          85s
-api-gateway-6ddcf94c5f-k2ccg                   1/1     Running   0          86s
-petclinic-loadgen-deployment-994b69695-8rd9k   1/1     Running   0          85s
+NAME                                                            READY   STATUS    RESTARTS   AGE
+splunk-otel-collector-certmanager-dc744986b-z2gzw               1/1     Running   0          114s
+splunk-otel-collector-certmanager-cainjector-69546b87d6-d2fz2   1/1     Running   0          114s
+splunk-otel-collector-certmanager-webhook-78b59ffc88-r2j8x      1/1     Running   0          114s
+splunk-otel-collector-k8s-cluster-receiver-655dcd9b6b-dcvkb     1/1     Running   0          114s
+splunk-otel-collector-agent-dg2vj                               1/1     Running   0          114s
+splunk-otel-collector-operator-57cbb8d7b4-dk5wf                 2/2     Running   0          114s
+petclinic-db-64d998bb66-2vzpn                                   1/1     Running   0          58s
+api-gateway-d88bc765-jd5lg                                      1/1     Running   0          58s
+visits-service-7f97b6c579-bh9zj                                 1/1     Running   0          58s
+admin-server-76d8b956c5-mb2zv                                   1/1     Running   0          58s
+customers-service-847db99f79-mzlg2                              1/1     Running   0          58s
+vets-service-7bdcd7dd6d-2tcfd                                   1/1     Running   0          58s
+petclinic-loadgen-deployment-5d69d7f4dd-xxkn4                   1/1     Running   0          58s
+config-server-67f7876d48-qrsr5                                  1/1     Running   0          58s
+discovery-server-554b45cfb-bqhgt                                1/1     Running   0          58s
 ```
 
 {{% /tab %}}
@@ -121,62 +294,11 @@ petclinic-loadgen-deployment-994b69695-8rd9k   1/1     Running   0          85s
 
 Make sure the output of get pods matches the output as shown above. This may take a minute or so, try again until all services are shown as **RUNNING**.  
 
-Once they are running, the application will take a few minutes to fully start up, create the database and synchronize all the services, so let's get the actual source code for the application downloaded in the meantime.
+Once they are running, the application will take a few minutes to fully start up, create the database and synchronize all the services, so let's use the time to see if our local repository is active.
 
-## 2. Downloading the Spring Microservices PetClinic Application
+## 5. Verify the local Docker Repository
 
- For this exercise, we will use the Spring microservices PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot) and we are using a version with actual microservices.
-
-First, clone the PetClinic GitHub repository, as we will need this later in the workshop to compile, build, package and containerize the application:
-
-```bash
-cd ~;git clone https://github.com/hagen-p/spring-petclinic-microservices.git
-```
-
-Change into the `spring-petclinic` directory:
-Next, let's test the download and run the script that will use the `maven` command to compile/build the PetClinic microservices:
-{{< tabs >}}
-{{% tab title="Running maven" %}}
-
-```bash
-./mvnw clean install -DskipTests
-```
-
-{{% /tab %}}
-{{% tab title="Maven Output" %}}
-
-```text
-[INFO] ------------------------------------------------------------------------
-[INFO] Reactor Summary:
-[INFO]
-[INFO] spring-petclinic-microservices 0.0.1 ............... SUCCESS [  0.552 s]
-[INFO] spring-petclinic-admin-server ...................... SUCCESS [ 16.125 s]
-[INFO] spring-petclinic-customers-service ................. SUCCESS [  6.204 s]
-[INFO] spring-petclinic-vets-service ...................... SUCCESS [  1.791 s]
-[INFO] spring-petclinic-visits-service .................... SUCCESS [  1.696 s]
-[INFO] spring-petclinic-config-server ..................... SUCCESS [  1.466 s]
-[INFO] spring-petclinic-discovery-server .................. SUCCESS [  1.797 s]
-[INFO] spring-petclinic-api-gateway 0.0.1 ................. SUCCESS [ 13.999 s]
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 45.431 s
-[INFO] Finished at: 2024-01-10T13:56:53Z
-[INFO] ------------------------------------------------------------------------
-```
-
-{{% /tab %}}
-{{< /tabs >}}
-
-{{% notice style="info" %}}
-This will take a few minutes the first time you run, `maven` will download a lot of dependencies before it compiles the application. Future builds will be a lot quicker.
-{{% /notice %}}
-
-## 3. Verify the local Docker Repository
-
-Once we have our Auto instrumentation up and running with the existing containers, we are going to build our containers to show some of the additional instrumentation features of Opentelemetry Java. Only then we will touch the config files or the source code. We will add some annotations to it to get even more valuable data from our Java application and enable the injection of trace data into the logs.
-
-once we build these containers, Kubernetes will need to pull these new images from somewhere. To enable this we have created a local repository, so Kubernetes can pull those local images.
+Once we have our Auto instrumentation up and running with the existing containers, we are going to build our own containers to show some of the additional instrumentation features of Opentelemetry Java. Only then we will touch the config files or the source code. Once we build these containers, Kubernetes will need to pull these new images from somewhere. To enable this we have created a local repository, so Kubernetes can pull those local images.
 
 We can see if the repository is up and running by checking the inventory with the below command, it should return an empty list  
 **{"repositories":[]}**
@@ -186,22 +308,3 @@ We can see if the repository is up and running by checking the inventory with th
 ```
 
 If this is not up, reach out to your Instructor for a replacement instance.
-
-## 4. Check the Petshop Website
-
-To test the application you need to obtain the public IP address of the instance you are running on. You can do this by running the following command:
-
-```bash
-curl ifconfig.me
-
-```
-
-You will see an IP address returned, make a note of this as we will need it to validate that the application is running.
-
-You can validate if the application is running by visiting `http://<IP_ADDRESS>:81` (replace `<IP_ADDRESS>` with the IP address you obtained earlier). You should see the PetClinic application running.  
-
-![Pet shop](../images/petclinic.png)
-Make sure the application is working correctly by visiting the **All Owners** and **Veterinarians** tabs, you should get a list of names in each case. If you're familiar with the Standard version, you will notice a slightly longer response time due to the architecture used.
-
-We now have our application running in Kubernetes, without an OpenTelemetry Collector deployed, so there is no Observability data in **Splunk Observability Cloud** yet.
-Let's go and fix that.
