@@ -15,7 +15,7 @@ The simple settings allow you to configure the basics of the test:
 
 ![Return to Test]For this workshop, we will configure the locations that we wish to monitor from. Click in the **Locations** field and you will be presented with a list of global locations (over 50 in total).
 
-![Global Locations](../../img/global-locations.png)
+![Global Locations](../_img/global-locations.png)
 
 Select the following locations:
 
