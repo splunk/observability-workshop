@@ -1,0 +1,12 @@
+CREATE DATABASE IF NOT EXISTS DoorGameDB;
+USE DoorGameDB;
+
+DROP TABLE IF EXISTS Users;
+CREATE TABLE Users (UserId VARCHAR(20), FirstName VARCHAR(100), LastName VARCHAR(100));
+
+DROP TABLE IF EXISTS Organizations;
+CREATE TABLE Organizations (OrgId VARCHAR(256), Name VARCHAR(256), Country VARCHAR(256), Founded INT, NumEmployees INT);
+
+LOAD DATA INFILE '/var/lib/mysql-files/users.csv' INTO TABLE DoorGameDB.Users FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
+
+LOAD DATA INFILE '/var/lib/mysql-files/organizations.csv' INTO TABLE DoorGameDB.Organizations FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;

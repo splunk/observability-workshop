@@ -29,31 +29,23 @@ while [[ $(kubectl get pods -l app=mysql -o 'jsonpath={..status.conditions[?(@.t
    sleep 1
 done
 
-echo Creating a new table for user data
-# Create a new database and table for user data
-kubectl run -it --rm --image=mysql:8.3.0 --restart=Never mysql-client -- mysql -h mysql -p"$MYSQL_ROOT_PASSWORD" \
-  -e 'CREATE DATABASE IF NOT EXISTS DoorGameDB; USE DoorGameDB;DROP TABLE IF EXISTS Users; CREATE TABLE Users (UserId VARCHAR(20), FirstName VARCHAR(100), LastName VARCHAR(100));'
-
-echo Creating a new table for organization data
-# Create a new table for organization data
-kubectl run -it --rm --image=mysql:8.3.0 --restart=Never mysql-client -- mysql -h mysql -p"$MYSQL_ROOT_PASSWORD" \
-  -e 'USE DoorGameDB;DROP TABLE IF EXISTS Organizations; CREATE TABLE Organizations (OrgId VARCHAR(256), Name VARCHAR(256), Country VARCHAR(256), Founded INT, NumEmployees INT);'
-
 echo Capturing the pod name
 export POD_NAME=`kubectl get pod -l app=mysql -o name --no-headers=true`
 
-echo Copying sample data to the pod
+echo Copying sample data and scripts to the pod
 # Copy the sample data files to the database pod for import
 kubectl cp ./mysql/users.csv ${POD_NAME:4}:/var/lib/mysql-files/users.csv
 kubectl cp ./mysql/organizations.csv ${POD_NAME:4}:/var/lib/mysql-files/organizations.csv
+kubectl cp ./mysql/populate_db.txt ${POD_NAME:4}:/tmp/populate_db.txt
+kubectl cp ./mysql/populate_db.sh ${POD_NAME:4}:/tmp/populate_db.sh
 
-echo Loading sample data into MySQL
-# Load sample data into the database
-kubectl run -it --rm --image=mysql:8.3.0 --restart=Never mysql-client -- mysql -h mysql -p"$MYSQL_ROOT_PASSWORD" \
-  -e "LOAD DATA INFILE '/var/lib/mysql-files/users.csv' INTO TABLE DoorGameDB.Users FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 ROWS;"
+# TODO: ensure the database is fully started
+#while [[ $(kubectl exec -it ${POD_NAME:4} -- mysql -p"$MYSQL_ROOT_PASSWORD" -e "Show Databases;")? != 0 ]]; do
+#   sleep 1
+#done
 
-kubectl run -it --rm --image=mysql:8.3.0 --restart=Never mysql-client -- mysql -h mysql -p"$MYSQL_ROOT_PASSWORD" \
-  -e "LOAD DATA INFILE '/var/lib/mysql-files/organizations.csv' INTO TABLE DoorGameDB.Organizations FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;"
+echo Creating tables and application data
+kubectl exec -it ${POD_NAME:4} -- /tmp/populate_db.sh
 
 echo ""
 echo Deployed the MySQL database
