@@ -1,5 +1,5 @@
 ---
-title: Browser Test
+title: Single Page Browser Test
 linkTitle:  3. Browser Test
 weight: 3
 hidden: false
@@ -7,7 +7,7 @@ hidden: false
 
 Starting with a single page browser test will let us capture how first- and third-party resources impact how our end users experience our browser-based site. It also allows us to start to understand our user experience metrics before introducing the complexity of multiple steps in one test.
 
-## Create a single page browser test
+A page where your users commonly "land" is a good choice to start with a single page test. This could be your site homepage, a section main page, or any other high-traffic URL that is important to you and your end users. Another good choice is a page that is a critical part of a workflow and contains some essential feature to your users, like a support contact form, login widget, or date picker.
 
 1\. Click "Add new test" and select Browser test
 
@@ -46,3 +46,4 @@ Starting with a single page browser test will let us capture how first- and thir
 
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-09/a37a8de3-b1d2-4edc-929e-0ee9994d646a/ascreenshot.jpeg?tl_px=0,838&br_px=1719,1799&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=133,559)
 
+9. While our Synthetic tests are running, let's instrument RUM to start getting data from our real users.

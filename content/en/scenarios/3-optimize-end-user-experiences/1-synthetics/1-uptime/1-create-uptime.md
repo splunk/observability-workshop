@@ -3,8 +3,6 @@ title: 1 Creating a test
 weight: 1
 ---
 
-## Create an Uptime Test
-
 1\. Open Synthetics
 
 ![image](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-01/339ff6a1-1d8d-4f65-8127-b0b04dd853c2/user_cropped_screenshot.jpeg?tl_px=0,0&br_px=1047,610&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=23,256)

@@ -10,7 +10,7 @@ Open your starting URL in Chrome Incognito. This is important so you're not carr
 Have in mind a short user journey you want to test. Remember: smaller bites are easier to chew! In other words, get started with just a few steps. This is easier not only to create and maintain the test, but also to understand and act on ther results.
 
 {{% notice note %}}
-Record the test in the same type of viewport that you want to run it. For example, if you want to run a test on a mobile viewport, narrow your browser width to mobile and refresh before starting the recording. This way you are capturing the correct elements that could change depending on responsive rules for the viewport.
+Record the test in the same type of viewport that you want to run it. For example, if you want to run a test on a mobile viewport, narrow your browser width to mobile and refresh before starting the recording. This way you are capturing the correct elements that could change depending on responsive style rules.
 {{% /notice %}}
 
 ## Open the Chrome DevTools Recorder

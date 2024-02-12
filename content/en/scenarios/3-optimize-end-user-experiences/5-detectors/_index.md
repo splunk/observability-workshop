@@ -6,4 +6,5 @@ hidden: false
 ---
 
 OOTB per app or test
+
 Chart-based

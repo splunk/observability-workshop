@@ -3,9 +3,7 @@ title: 1.2 Understanding results
 weight: 2
 ---
 
-## Understand uptime test results
-
-1. Click through the Performance KPIs chart filters to see how you can slice and dice your data. This is a good place to get started understanding trends in your data. Later we will see what custom charts look like, so that you can have a consistent view of what you care about most.
+1. Click into a test summary view and play with the Performance KPIs chart filters to see how you can slice and dice your data. This is a good place to get started understanding trends in your data. Later we will see what custom charts look like, so that you can have a consistent view of what you care about most.
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
 How does the data look? Is it consistent across time and locations? Do certain locations run slower than others? Are there any spikes or failures?
