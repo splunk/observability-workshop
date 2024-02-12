@@ -6,19 +6,24 @@ hidden: false
 ---
 ## 1. Introduction
 
-As we have seen in the previous chapter, you can trace your interactions between the various services using APM without touching your code, which will allow you to identify issues faster. However as we seen, beside tracing, Splunk Zero Config for Auto-Instrumentations offers additional features out of the box that can help you finding issues faster. In this section we are going to look at 2 of them:
+As we have seen in the previous chapter, you can trace your interactions between the various services using APM without touching your code, which will allow you to identify issues faster. However as seen, beside tracing, Splunk Zero Config for Auto-Instrumentations offers additional features out of the box that can help you finding issues faster. In this section we are going to look at 2 of them:
 
 * Always-on Profiling and Java Metrics
 * Database Query Performance
 
 ## 2. AlwaysOn Profiling and Metrics
 
-When we installed the Splunk Distribution of the OpenTelemetry Collector using the Helm chart earlier , we configured it to enable **AlwaysOn Profiling** and **Metrics**. This means that the collector will automatically generate CPU and Memory profiles for the application and send them to Splunk Observability Cloud.
+When we installed the Splunk Distribution of the OpenTelemetry Collector using the Helm chart earlier, we configured it to enable **AlwaysOn Profiling** and **Metrics**. This means that the collector will automatically generate CPU and Memory profiles for the application and send them to Splunk Observability Cloud.
 
-When you deploy the PetClinic application, the collector automatically detects the application and instruments it for traces and profiling.
+When you deploy the PetClinic application, and set the Annotation, the collector automatically detects the application and instruments it for traces and profiling.
 
-we can verify this by examing the logs of one of our Java based containers we are instrumenting:
+we can verify this by examining the  startup logs of one of our Java based containers we are instrumenting by running the following script:
 
+```bash
+.  ~/workshop/petclinic/scripts/get_logs.sh
+```
+
+The logs will show what flags where picked up by the Jav Auto instrumentation agent:
 
 {{% tab title="Example output" %}}
 
@@ -47,7 +52,27 @@ OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader clas
 
 {{% /tab %}}
 
-## 3. Review Profiling Data Collection
+We are interested in the **Profiling Configuration**:
+
+We can see the various settings you can control, some that are  useful depending on your use case like the `splunk.profiler.directory` -  The location where the agent  writes the call stacks before sending them to Splunk. This may be different depending how you configure your containers.
+An other parameter you may want to change is `splunk.profiler.call.stack.interval` This is how often the system takes a CPU Stack trace. You may want to reduce this if you have short spans like we have in our application. (we kept the default as the spans in this demo application are extremely short, so Span may not always have a CPU  Call Stack related to it.)
+
+You can find how to set these parameters [here](https://docs.splunk.com/observability/en/gdi/get-data-in/application/java/configuration/advanced-java-otel-configuration.html#profiling-configuration-java). ad this is how you set it in your deployment.yaml  exactly how pass any JAVA option to the the java application running in your container:
+
+```text
+ env: 
+    - name: JAVA_OPTIONS
+      value: "-Dsplunk.profiler.call.stack.interval=150"
+```
+## 2. Look at Profiling Data  in the Trace Waterfall
+
+
+
+
+
+
+
+<!--
 
 You can now visit the Splunk APM UI and examine the application components, traces, profiling, DB Query performance and metrics. From the left-hand menu **APM** → **Explore**, click the environment dropdown and select your environment e.g. `<INSTANCE>-petclinic` (where`<INSTANCE>` is replaced with the value you noted down earlier).
 
@@ -55,7 +80,7 @@ You can now visit the Splunk APM UI and examine the application components, trac
 
 Once your validation is complete you can stop the application by pressing `Ctrl-c`.
 
-<!--
+
 ## 4. Adding Resource Attributes to Spans
 
 Resource attributes can be added to every reported span. For example `version=0.314`. A comma-separated list of resource attributes can also be defined e.g. `key1=val1,key2=val2`.
