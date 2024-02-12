@@ -11,6 +11,8 @@ As we have seen in the previous chapter, you can trace your interactions between
 * Always-on Profiling and Java Metrics
 * Database Query Performance
 
+If you want to dive deeper in Always-on Profiling or DB-Query performance, we have a separate Ninja Workshop called ***Debug Problems*** that you can follow.
+
 ## 2. AlwaysOn Profiling and Metrics
 
 When we installed the Splunk Distribution of the OpenTelemetry Collector using the Helm chart earlier, we configured it to enable **AlwaysOn Profiling** and **Metrics**. This means that the collector will automatically generate CPU and Memory profiles for the application and send them to Splunk Observability Cloud.
@@ -51,7 +53,7 @@ OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader clas
 ```
 
 {{% /tab %}}
-
+<!--
 We are interested in the **Profiling Configuration**:
 
 We can see the various settings you can control, some that are  useful depending on your use case like the `splunk.profiler.directory` -  The location where the agent  writes the call stacks before sending them to Splunk. This may be different depending how you configure your containers.
@@ -64,11 +66,22 @@ You can find how to set these parameters [here](https://docs.splunk.com/observab
     - name: JAVA_OPTIONS
       value: "-Dsplunk.profiler.call.stack.interval=150"
 ```
-## 2. Look at Profiling Data  in the Trace Waterfall
+-->
 
+## 2. Looking at Profiling Data in the Trace Waterfall
 
+Make sure you have your original (or similar) Trace  & Span **(1)** selected in the APM Waterfall view and select  **Memory Stack Traces (2)** from the right hand pane:
 
+![profiling from span](../images/flamechart-in-waterfall.png)
 
+The pane should show you  the  Memory Stack Trace Flame Chart **(3)**, you can scroll down and/or make the pane  for a better view wider by dragging the right  side of the pane.
+
+As AlwaysOn Profiling is constantly taking snapshots, or stack traces, of your application’s code and reading through thousands of stack traces is not practical, AlwaysOn Profiling aggregates and summarizes profiling data, providing a convenient way to explore Call Stacks in a view called the Flame Graph. It represents a summary of all stack traces captured from your application.  You can use the flame graph to discover which lines of code might be causing performance issues, and to confirm whether the changes you make to the code have the intended effect.
+
+To dive deeper in the **Flame Chart**, select Span **(3)** in the Profiling Pane under **Memory Stack Traces**
+This will bring you to the Always-on Profiling main screen, with the Memroy virew pre selected:
+
+![Profiling main](../images/profiling-memory.png)
 
 
 
