@@ -1,24 +1,24 @@
 ---
-title:   Quick overview of Always-on Profiling & & DB-query Performance
-linkTitle: 50. DB-Query performance & Profiling
+title: Splunk APM Database Query Performance & Always-on Profiling
+linkTitle: 50. Database Query Performance & Always-on Profiling
 weight: 50
-hidden: true
+hidden: false
 ---
-
 ## 1. Introduction
 
-As we have seen in the previous chapter, you can trace your interactions between the various services using APM without touching your code,  which will allow you to identify issues faster. However beside tracing, Splunk Zero config for Java auto instrumentations offers two more features out of the box that can help you finding issues faster.
+As we have seen in the previous chapter, you can trace your interactions between the various services using APM without touching your code, which will allow you to identify issues faster. However as we seen, beside tracing, Splunk Zero Config for Auto-Instrumentations offers additional features out of the box that can help you finding issues faster. In this section we are going to look at 2 of them:
 
-* Always-on Profiling
+* Always-on Profiling and Java Metrics
 * Database Query Performance
-
-As part of this workshop, we will have a quick look into both.
 
 ## 2. AlwaysOn Profiling and Metrics
 
-When we installed the collector we configured it to enable **AlwaysOn Profiling** and **Metrics**. This means that the collector will automatically generate CPU and Memory profiles for the application and send them to Splunk Observability Cloud.
+When we installed the Splunk Distribution of the OpenTelemetry Collector using the Helm chart earlier , we configured it to enable **AlwaysOn Profiling** and **Metrics**. This means that the collector will automatically generate CPU and Memory profiles for the application and send them to Splunk Observability Cloud.
 
 When you deploy the PetClinic application, the collector automatically detects the application and instruments it for traces and profiling.
+
+we can verify this by examing the logs of one of our Java based containers we are instrumenting:
+
 
 {{% tab title="Example output" %}}
 

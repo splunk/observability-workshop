@@ -34,6 +34,8 @@ Next, let's ensure your instance is configured correctly, we need to confirm tha
 
 In the output check the following environment variables are present and have actual valid values set:
 
+{{% tab title="Example output" %}}
+
 ```text
 ACCESS_TOKEN = [Redacted]
 REALM = [Realm]
@@ -42,6 +44,8 @@ HEC_TOKEN = [Redacted]
 HEC_URL = https://[...]/services/collector/event
 INSTANCE = [Your workshop name]
 ```
+
+{{% /tab %}}
 
 Please make a note of the `INSTANCE` environment variable value as this is the reference to your workshop instance and we will need it later to filter data in the **Splunk Observability Suite** UI.
 
@@ -300,11 +304,19 @@ Once they are running, the application will take a few minutes to fully start up
 
 Once we have our Auto instrumentation up and running with the existing containers, we are going to build our own containers to show some of the additional instrumentation features of Opentelemetry Java. Only then we will touch the config files or the source code. Once we build these containers, Kubernetes will need to pull these new images from somewhere. To enable this we have created a local repository, so Kubernetes can pull those local images.
 
-We can see if the repository is up and running by checking the inventory with the below command, it should return an empty list  
-**{"repositories":[]}**
+We can see if the repository is up and running by checking the inventory with the below command:
 
 ```bash
  curl -X GET http://localhost:9999/v2/_catalog 
 ```
 
+It should return an empty list  
+
+{{% tab title="Example output" %}}
+
+```text
+**{"repositories":[]}**
+```
+
+{{% /tab %}}
 If this is not up, reach out to your Instructor for a replacement instance.
