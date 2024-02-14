@@ -16,7 +16,7 @@
 
 output "login_details" {
   value = formatlist(
-    "%s, ssh -p 2222 ubuntu@%s, %s",
+    "%s, ssh -p 2222 splunk@%s, %s",
     aws_instance.observability-instance[*].tags["Instance"],
     aws_instance.observability-instance.*.public_ip,
     local.template_vars.instance_password

@@ -1,19 +1,27 @@
 #cloud-config
+system_info:
+  default_user:
+    name: splunk
+    groups: [docker]
+    lock_passwd: false
+
 ssh_pwauth: yes
 %{ if pub_key != "" ~}
 ssh_authorized_keys:
   - ${pub_key}
 %{ endif ~}
+
 password: ${instance_password}
+
 chpasswd:
   expire: false
 
-package_update: true
+groups:
+  - docker
 
 hostname: ${instance_name}
 
-users:
-  - default
+package_update: true
 
 packages:
   - ansible
@@ -32,46 +40,39 @@ packages:
   - unzip
   - zsh
 
-groups:
-  - docker
-
-system_info:
-  default_user:
-    groups: [docker]
-
 write_files:
   - path: /etc/ssh/sshd_config
     content: |
-         Port 2222
-         Protocol 2
-         HostKey /etc/ssh/ssh_host_rsa_key
-         HostKey /etc/ssh/ssh_host_dsa_key
-         HostKey /etc/ssh/ssh_host_ecdsa_key
-         HostKey /etc/ssh/ssh_host_ed25519_key
-         UsePrivilegeSeparation yes
-         KeyRegenerationInterval 3600
-         ServerKeyBits 1024
-         SyslogFacility AUTH
-         LogLevel INFO
-         LoginGraceTime 120
-         PermitRootLogin no
-         StrictModes yes
-         RSAAuthentication yes
-         PubkeyAuthentication yes
-         IgnoreRhosts yes
-         RhostsRSAAuthentication no
-         HostbasedAuthentication no
-         PermitEmptyPasswords no
-         ChallengeResponseAuthentication no
-         X11Forwarding yes
-         X11DisplayOffset 10
-         PrintMotd no
-         PrintLastLog yes
-         TCPKeepAlive yes
-         AcceptEnv LANG LC_*
-         Subsystem sftp /usr/lib/openssh/sftp-server
-         UsePAM yes
-         AllowUsers ubuntu
+      Port 2222
+      Protocol 2
+      HostKey /etc/ssh/ssh_host_rsa_key
+      HostKey /etc/ssh/ssh_host_dsa_key
+      HostKey /etc/ssh/ssh_host_ecdsa_key
+      HostKey /etc/ssh/ssh_host_ed25519_key
+      UsePrivilegeSeparation yes
+      KeyRegenerationInterval 3600
+      ServerKeyBits 1024
+      SyslogFacility AUTH
+      LogLevel INFO
+      LoginGraceTime 120
+      PermitRootLogin no
+      StrictModes yes
+      RSAAuthentication yes
+      PubkeyAuthentication yes
+      IgnoreRhosts yes
+      RhostsRSAAuthentication no
+      HostbasedAuthentication no
+      PermitEmptyPasswords no
+      ChallengeResponseAuthentication no
+      X11Forwarding yes
+      X11DisplayOffset 10
+      PrintMotd no
+      PrintLastLog yes
+      TCPKeepAlive yes
+      AcceptEnv LANG LC_*
+      Subsystem sftp /usr/lib/openssh/sftp-server
+      UsePAM yes
+      AllowUsers splunk
 
   - path: /etc/skel/.profile
     append: true
@@ -83,16 +84,6 @@ write_files:
       export RUM_TOKEN=${rum_token}
       export HEC_TOKEN=${hec_token}
       export HEC_URL=${hec_url}
-
-      helm() {
-        echo >&2 "Using ACCESS_TOKEN=${access_token}"
-        echo >&2 "Using REALM=${realm}"
-        command helm "$@"}
-
-      terraform() {
-        echo >&2 "Using API_TOKEN=${api_token}"
-        echo >&2 "Using REALM=${realm}"
-        command terraform "$@"}
 
       echo "Waiting for cloud-init status..."
       if ! /usr/bin/timeout 180 grep -q 'Cloud-init .*finished at' <(sudo tail -f /var/log/cloud-init-output.log); then
@@ -106,43 +97,9 @@ write_files:
 
       export INSTANCE CLUSTER_NAME
 
-      export KUBECONFIG=/home/ubuntu/.kube/config
+      export KUBECONFIG=/home/splunk/.kube/config
       alias kc='kubectl'
       alias dc='docker-compose'
-
-  - path: /etc/rancher/k3s/registries.yaml
-    permissions: '0600'
-    owner: root:root
-    content: |
-      mirrors:
-        docker.registry:
-          endpoint:
-            - "http://docker.registry:9999"
-
-  - path: /etc/containers/registries.conf.d/docker.registry.conf
-    permissions: '0644'
-    owner: root:root
-    content: |
-      [[registry]]
-      location="docker.registry:9999"
-      insecure=true
-
-  - path: /etc/docker/daemon.json
-    content: |
-      {
-        "insecure-registries" : ["docker.registry:9999"]
-      }
-
-  - path: /usr/local/bin/setup-docker-registry.sh
-    permissions: '0744'
-    content: |
-      #!/usr/bin/env bash
-      REGISTRY_NAME=docker.registry
-      REGISTRY_PORT=9999
-      NODE_IP=$(ip -o -4 addr | awk '$2 != "lo" { print $4}' | sed -e 's,/[[:digit:]]\+$,,')
-      echo "$NODE_IP $REGISTRY_NAME" | tee -a /etc/hosts
-      echo "$NODE_IP $REGISTRY_NAME" | tee -a /etc/cloud/templates/hosts.debian.tmpl
-      systemctl restart docker
 
   - path: /tmp/workshop-secret.yaml
     permissions: '0755'
@@ -164,20 +121,6 @@ write_files:
         hec_token: ${hec_token}
         hec_url: ${hec_url}
 
-  - path: /tmp/create-browser-test.sh
-    permissions: '0755'
-    content: |
-      INSTANCE=$(cat /etc/hostname)
-      export INSTANCE
-      export REALM=${realm}
-      export API_TOKEN=${api_token}
-      export EXTERNALIP="$(curl -s http://ifconfig.me)"
-      envsubst < /home/ubuntu/workshop/synthetics/browser_test.json > /tmp/modified_test.json
-      curl -X POST "https://api.$REALM.signalfx.com/v2/synthetics/tests/browser" \
-      -H "Content-Type: application/json" \
-      -H "X-SF-TOKEN: $API_TOKEN" \
-      --data @/tmp/modified_test.json
-
   - path: /tmp/diab-setup.sh
     permissions: '0755'
     content: |
@@ -187,7 +130,7 @@ write_files:
       export HEC_TOKEN=${hec_token}
       export HEC_URL=${hec_url}
       export INSTANCE="${instance_name}"
-      ansible-playbook /home/ubuntu/playbook.yml
+      ansible-playbook /home/splunk/playbook.yml
 
   - path: /tmp/pre-setup.sh
     permissions: '0755'
@@ -199,7 +142,7 @@ write_files:
       export HEC_TOKEN=${hec_token}
       export HEC_URL=${hec_url}
       export INSTANCE="${instance_name}"
-      if [ ! -f /home/ubuntu/.helmok ]; then
+      if [ ! -f /home/splunk/.helmok ]; then
         helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
         helm repo update
         helm install splunk-otel-collector \
@@ -215,16 +158,16 @@ write_files:
         --set="splunkPlatform.token=${hec_token}" \
         --set="splunkPlatform.index=splunk4rookies-workshop" \
         splunk-otel-collector-chart/splunk-otel-collector \
-        -f /home/ubuntu/workshop/k3s/otel-collector.yaml
+        -f /home/splunk/workshop/k3s/otel-collector.yaml
 
         # use IDMSv2
         TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
         RUM_FRONTEND_IP=$(curl -sSH "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/local-ipv4)
         export RUM_FRONTEND_IP
 
-        cd /home/ubuntu/workshop/apm/
+        cd /home/splunk/workshop/apm/
         sudo kubectl apply -f deployment.yaml
-        echo ${instance_name} > /home/ubuntu/.helmok
+        echo ${instance_name} > /home/splunk/.helmok
       fi
 
   - path: /tmp/otel-demo-setup.sh
@@ -237,10 +180,10 @@ write_files:
       export HEC_TOKEN=${hec_token}
       export HEC_URL=${hec_url}
       export INSTANCE="${instance_name}"
-      if [ ! -f /home/ubuntu/.helmok ]; then
+      if [ ! -f /home/splunk/.helmok ]; then
         helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
         helm repo update
-        envsubst '$REALM' < /home/ubuntu/workshop/oteldemo/otel-demo-collector.yaml | helm install splunk-otel-collector \
+        envsubst '$REALM' < /home/splunk/workshop/oteldemo/otel-demo-collector.yaml | helm install splunk-otel-collector \
         --set="splunkObservability.realm=${realm}" \
         --set="splunkObservability.accessToken=${access_token}" \
         --set="clusterName=${instance_name}-k3s-cluster" \
@@ -254,14 +197,14 @@ write_files:
         --set="splunkPlatform.index=splunk4rookies-workshop" \
         splunk-otel-collector-chart/splunk-otel-collector -f -
         helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
-        helm install opentelemetry-demo open-telemetry/opentelemetry-demo --values /home/ubuntu/workshop/oteldemo/otel-demo.yaml
-        echo ${instance_name} > /home/ubuntu/.helmok
+        helm install opentelemetry-demo open-telemetry/opentelemetry-demo --values /home/splunk/workshop/oteldemo/otel-demo.yaml
+        echo ${instance_name} > /home/splunk/.helmok
       fi
 
 runcmd:
-  - chsh -s $(which zsh) ubuntu
-  - su ubuntu -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
-  - echo "source /etc/skel/.profile" >> /home/ubuntu/.zshrc
+  - chsh -s $(which zsh) splunk
+  - su splunk -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+  - echo "source /etc/skel/.profile" >> /home/splunk/.zshrc
   # Install Helm
   - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
   # Install K9s (Kubernetes UI)
@@ -271,16 +214,16 @@ runcmd:
   - export WSVERSION=${wsversion}
   - 'export WSARCHIVE=$([ "$WSVERSION" = "main" ] && echo "main" || echo "v$WSVERSION")'
   - curl -s -OL https://github.com/splunk/observability-workshop/archive/$WSARCHIVE.zip
-  - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
-  - mkdir /home/ubuntu/workshop
-  - mv /home/ubuntu/observability-workshop-$WSVERSION/workshop/* /home/ubuntu/workshop
-  - mv /home/ubuntu/workshop/ansible/playbook.yml /home/ubuntu
-  - rm -rf /home/ubuntu/observability-workshop-$WSVERSION
-  - rm -rf /home/ubuntu/workshop/aws /home/ubuntu/workshop/cloud-init /home/ubuntu/workshop/ansible
+  - unzip -qq $WSARCHIVE.zip -d /home/splunk/
+  - mkdir /home/splunk/workshop
+  - mv /home/splunk/observability-workshop-$WSVERSION/workshop/* /home/splunk/workshop
+  - mv /home/splunk/workshop/ansible/playbook.yml /home/splunk
+  - rm -rf /home/splunk/observability-workshop-$WSVERSION
+  - rm -rf /home/splunk/workshop/aws /home/splunk/workshop/cloud-init /home/splunk/workshop/ansible
   # Download Splunk Observability Content Contrib Repo
   - curl -s -L https://github.com/splunk/observability-content-contrib/archive/main.zip -o content-contrib.zip
-  - unzip -qq content-contrib.zip -d /home/ubuntu/
-  - mv /home/ubuntu/observability-content-contrib-main /home/ubuntu/observability-content-contrib
+  - unzip -qq content-contrib.zip -d /home/splunk/
+  - mv /home/splunk/observability-content-contrib-main /home/splunk/observability-content-contrib
   # Configure motd
   - curl -s https://raw.githubusercontent.com/splunk/observability-workshop/main/workshop/cloud-init/motd -o /etc/motd
   - chmod -x /etc/update-motd.d/*
@@ -290,27 +233,27 @@ runcmd:
   - bash /usr/local/bin/setup-docker-registry.sh
   # Install K3s
   - curl -sfL https://get.k3s.io | sh -
-  # Create kube config and set correct permissions on ubuntu user home directory
-  - mkdir /home/ubuntu/.kube && kubectl config view --raw > /home/ubuntu/.kube/config
-  - chmod 400 /home/ubuntu/.kube/config
-  - chown -R ubuntu:ubuntu /home/ubuntu
+  # Create kube config and set correct permissions on splunk user home directory
+  - mkdir /home/splunk/.kube && kubectl config view --raw > /home/splunk/.kube/config
+  - chmod 400 /home/splunk/.kube/config
+  - chown -R splunk:splunk /home/splunk
   # Deploy private registry
-  - /usr/local/bin/kubectl apply -f /home/ubuntu/workshop/k3s/registry/registry.yaml
+  - /usr/local/bin/kubectl apply -f /home/splunk/workshop/k3s/registry/registry.yaml
   - /usr/local/bin/kubectl apply -f /tmp/workshop-secret.yaml
   # Configure shellinabox port and disable ssl then restart
   - sed -i 's/SHELLINABOX_PORT=4200/SHELLINABOX_PORT=6501/' /etc/default/shellinabox
   - sed -i "s/\"--no-beep\"/\"--no-beep --disable-ssl\"/" /etc/default/shellinabox
   - sudo service shellinabox restart
-  - sed -i 's/_THEME=\"robbyrussell\"/_THEME=\"gentoo\"/g' home/ubuntu/.zshrc
+  - sed -i 's/_THEME=\"robbyrussell\"/_THEME=\"gentoo\"/g' home/splunk/.zshrc
   # Make sure the locl path is correctly setup as k8s can only support full paths in the volume mounts
   - sed -i "s|/home/splunk/workshop|$HOME/workshop|" $HOME/workshop/petclinic/petclinic-deploy.yaml
 %{ if diab == true ~}
-  - su ubuntu -c 'bash /tmp/diab-setup.sh'
+  - su splunk -c 'bash /tmp/diab-setup.sh'
 %{ endif ~}
 %{ if presetup == true ~}
-  - su ubuntu -c 'bash /tmp/pre-setup.sh'
-  - su ubuntu -c 'bash /tmp/create-browser-test.sh'
+  - su splunk -c 'bash /tmp/pre-setup.sh'
+  - su splunk -c 'bash /tmp/create-browser-test.sh'
 %{ endif ~}
 %{ if otel_demo == true ~}
-  - su ubuntu -c 'bash /tmp/otel-demo-setup.sh'
+  - su splunk -c 'bash /tmp/otel-demo-setup.sh'
 %{ endif ~}
