@@ -181,7 +181,7 @@ otelAgent:
 ### 5. Install the Splunk OTEL helm chart
 
 ``` bash
-cd /home/ubuntu/realtime_enrichment/otel_yamls/ 
+cd /home/splunk/realtime_enrichment/otel_yamls/ 
 
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
 

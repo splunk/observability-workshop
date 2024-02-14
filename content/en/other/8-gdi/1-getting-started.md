@@ -28,7 +28,7 @@ export clusterName=<your-k8s-cluster>
 ## 3. Clone the following repo
 
 ``` bash
-cd /home/ubuntu 
+cd /home/splunk 
 git clone https://github.com/leungsteve/realtime_enrichment.git 
 cd realtime_enrichment/workshop 
 python3 -m venv rtapp-workshop 

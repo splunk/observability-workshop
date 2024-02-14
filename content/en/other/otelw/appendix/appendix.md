@@ -34,14 +34,14 @@ curl -sfL https://get.k3s.io | sh -
 Make a `.kube` directory in your home directory and create the `config` file e.g.:
 
 ```bash
-mkdir /home/ubuntu/.kube && kubectl config view --raw > /home/ubuntu/.kube/config
+mkdir /home/splunk/.kube && kubectl config view --raw > /home/splunk/.kube/config
 ```
 
 Set the correct permissions and owndership on the newly created `config` file e.g.:
 
 ```bash
-chmod 400 /home/ubuntu/.kube/config
-chown -R ubuntu:ubuntu /home/ubuntu
+chmod 400 /home/splunk/.kube/config
+chown -R ubuntu:ubuntu /home/splunk
 ```
 
 The stock configuration of K3s and this workshop's K8s examples have been tested on the following configurations:  

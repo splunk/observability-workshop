@@ -43,7 +43,7 @@ The welcome e-mail you received providing you all the details for this Workshop 
 
 Most attendees will be able to connect to the workshop by using SSH from their Mac or Linux device.
 
-To use SSH, open a terminal on your system and type `ssh ubuntu@x.x.x.x` (replacing x.x.x.x with the IP address found in your welcome e-mail).
+To use SSH, open a terminal on your system and type `ssh splunk@x.x.x.x` (replacing x.x.x.x with the IP address found in your welcome e-mail).
 
 ![ssh login](images/ssh-1.png)
 
@@ -80,7 +80,7 @@ If this is the first time connecting to your EC2 instance, you will be presented
 
 ![putty-3](images/putty-security.png)
 
-Once connected, login in as **ubuntu** using the password provided in the welcome e-mail.
+Once connected, login in as **splunk** using the password provided in the welcome e-mail.
 
 Once you are connected successfully you should see a screen similar to the one below:
 
@@ -101,7 +101,7 @@ Open your web browser and type `http://x.x.x.x:650` (where `x.x.x.x` is the IP a
 
 ![http-6501](images/shellinabox-url.png)
 
-Once connected, login in as **ubuntu** and the password is the one provided in the welcome e-mail.
+Once connected, login in as **splunk** and the password is the one provided in the welcome e-mail.
 
 ![http-connect](images/shellinabox-connect.png)
 

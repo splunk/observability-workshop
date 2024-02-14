@@ -21,7 +21,7 @@ weight: 3
 Navigate to the review directory
 
 ``` bash
-cd /home/ubuntu/realtime_enrichment/flask_apps/review/
+cd /home/splunk/realtime_enrichment/flask_apps/review/
 ```
 
 Inspect review.py (realtime_enrichment/flask_apps/review)
@@ -65,7 +65,7 @@ Flask==2.0.2
 Create a virtual environment and Install the necessary python packages
 
 ``` bash
-cd /home/ubuntu/realtime_enrichment/workshop/flask_apps_start/review/
+cd /home/splunk/realtime_enrichment/workshop/flask_apps_start/review/
 
 pip freeze #note output
 pip install -r requirements.txt

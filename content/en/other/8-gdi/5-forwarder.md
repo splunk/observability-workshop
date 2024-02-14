@@ -14,10 +14,10 @@ You've been tasked with monitoring the OS logs of the host running your Kubernet
 
 ### 1. Ensure You're in the Correct Directory
 
-- we will need to be in /home/ubuntu/session-2
+- we will need to be in /home/splunk/session-2
 
 ``` bash
-cd /home/ubuntu/session-2
+cd /home/splunk/session-2
 ```
 
 ### 2. Review the Universal Forwarder Install Script
@@ -64,7 +64,7 @@ cd /home/ubuntu/session-2
 
 # After installation, the forwarder can have additional TA's added to the 
 # /app directory please provide the local where TA's will be. 
-  TA_INSTALL_DIRECTORY="/home/ubuntu/session-2"
+  TA_INSTALL_DIRECTORY="/home/splunk/session-2"
 
 # Set the seed app folder name for deploymentclien.conf
 #  DEPLOY_APP_FOLDER_NAME="seed_all_deploymentclient"
