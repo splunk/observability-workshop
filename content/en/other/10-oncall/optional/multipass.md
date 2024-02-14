@@ -84,7 +84,7 @@ Once the VM has deployed successfully, in a **new** shell session connect to the
 
     ```text
     Last login: Tue Jun  9 15:10:19 2020 from 192.168.64.1
-    ubuntu@zevn:~$
+    splunk@zevn:~$
     ```
 
 ---

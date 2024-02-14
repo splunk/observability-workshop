@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Define the deployment YAML file path
-deployment_file="/home/ubuntu/workshop/petclinic/petclinic-deploy.yaml"
+deployment_file="/home/splunk/workshop/petclinic/petclinic-deploy.yaml"
 
 # Define the output file path
-output_file="/home/ubuntu/workshop/petclinic/petclinic-local.yaml"
+output_file="/home/splunk/workshop/petclinic/petclinic-local.yaml"
 
 # Replace "image: quay.io/phagen" with "# image: quay.io/phagen"
 sed 's/image: quay\.io\/phagen/#image: quay.io\/phagen/' "$deployment_file" > "$output_file"

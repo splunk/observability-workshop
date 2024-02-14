@@ -70,7 +70,7 @@ write_files:
       # Set prompt
       #export PS1='\u@\h:\w$ '
       export PS1="$fg_bold[cyan]%}$USER@%{$fg_bold[blue]%}%m ${PROMPT}"
-      export KUBECONFIG=/home/ubuntu/.kube/config
+      export KUBECONFIG=/home/splunk/.kube/config
       alias kc='kubectl'
       alias dc='docker-compose'
       alias d='docker'
@@ -125,17 +125,17 @@ write_files:
       export INSTANCE
 
       # Checkout all lab branches
-      git clone https://github.com/splunk/observability-bootcamp /home/ubuntu/bootcamp
-      export GIT_DIR=/home/ubuntu/bootcamp/.git
-      export GIT_WORK_DIR=/home/ubuntu/bootcamp
+      git clone https://github.com/splunk/observability-bootcamp /home/splunk/bootcamp
+      export GIT_DIR=/home/splunk/bootcamp/.git
+      export GIT_WORK_DIR=/home/splunk/bootcamp
       git branch -a --format '%(refname:lstrip=-1)' | grep -Evi 'main|head|gh-pages' | xargs -n1 git checkout
       # Switch to main
       git checkout main
       # setup milestones for diff
       for branch in $(git branch --all | grep '^\s*remotes' | grep -v -E '(:?HEAD|master|main|gh-pages)$'); do
           br="${branch##*/}"
-          mkdir -p /home/ubuntu/milestones/"$br"
-          git archive --format tar "$br"| tar xf - -C /home/ubuntu/milestones/"$br"/
+          mkdir -p /home/splunk/milestones/"$br"
+          git archive --format tar "$br"| tar xf - -C /home/splunk/milestones/"$br"/
       done
       unset GIT_DIR
       unset GIT_WORK_DIR
@@ -143,7 +143,7 @@ write_files:
 runcmd:
   - chsh -s $(which zsh) ubuntu
   - su ubuntu -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
-  - echo "source /etc/skel/.profile" >> /home/ubuntu/.zshrc
+  - echo "source /etc/skel/.profile" >> /home/splunk/.zshrc
   # Install Helm
   - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
   # Install K9s (Kubernetes UI)
@@ -153,14 +153,14 @@ runcmd:
   - export WSVERSION=4.89
   - 'export WSARCHIVE=$([ "$WSVERSION" = "main" ] && echo "main" || echo "v$WSVERSION")'
   - curl -s -OL https://github.com/splunk/observability-workshop/archive/$WSARCHIVE.zip
-  - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
-  - mkdir /home/ubuntu/workshop
-  - mv /home/ubuntu/observability-workshop-$WSVERSION/workshop/* /home/ubuntu/workshop
-  - rm -rf /home/ubuntu/observability-workshop-$WSVERSION
+  - unzip -qq $WSARCHIVE.zip -d /home/splunk/
+  - mkdir /home/splunk/workshop
+  - mv /home/splunk/observability-workshop-$WSVERSION/workshop/* /home/splunk/workshop
+  - rm -rf /home/splunk/observability-workshop-$WSVERSION
   # Download Splunk Observability Cloud Jumpstart
   - curl -s -L https://github.com/splunk/signalfx-jumpstart/archive/main.zip -o jumpstart.zip
-  - unzip -qq jumpstart.zip -d /home/ubuntu/
-  - mv /home/ubuntu/signalfx-jumpstart-main /home/ubuntu/signalfx-jumpstart
+  - unzip -qq jumpstart.zip -d /home/splunk/
+  - mv /home/splunk/signalfx-jumpstart-main /home/splunk/signalfx-jumpstart
   # Configure motd
   - curl -s https://raw.githubusercontent.com/splunk/observability-workshop/main/workshop/cloud-init/motd -o /etc/motd
   - chmod -x /etc/update-motd.d/*
@@ -172,11 +172,11 @@ runcmd:
   # Install K3s
   - curl -sfL https://get.k3s.io | sh -
   # Create kube config and set correct permissions on ubuntu user home directory
-  - mkdir /home/ubuntu/.kube && kubectl config view --raw > /home/ubuntu/.kube/config
-  - chmod 400 /home/ubuntu/.kube/config
-  - chown -R ubuntu:ubuntu /home/ubuntu
+  - mkdir /home/splunk/.kube && kubectl config view --raw > /home/splunk/.kube/config
+  - chmod 400 /home/splunk/.kube/config
+  - chown -R ubuntu:ubuntu /home/splunk
   # Deploy private registry
-  - /usr/local/bin/kubectl apply -f /home/ubuntu/workshop/k3s/registry/registry.yaml
+  - /usr/local/bin/kubectl apply -f /home/splunk/workshop/k3s/registry/registry.yaml
   # Configure shellinabox port and disable ssl then restart
   - sed -i 's/SHELLINABOX_PORT=4200/SHELLINABOX_PORT=6501/'  /etc/default/shellinabox
   - sed -i "s/\"--no-beep\"/\"--no-beep --disable-ssl\"/" /etc/default/shellinabox

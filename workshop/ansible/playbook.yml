@@ -22,14 +22,14 @@
       - name: Download demo-in-a-box
         get_url:
           url: "https://demo-in-a-box.s3.amazonaws.com/{{ o11y_diabversion }}.zip"
-          dest: /home/ubuntu/demo-in-a-box.zip
+          dest: /home/splunk/demo-in-a-box.zip
         become: true
         when: not wh_result.stat.exists
 
-      - name: Extract demo-in-a-box into /home/ubuntu/
+      - name: Extract demo-in-a-box into /home/splunk/
         unarchive:
           src: demo-in-a-box.zip
-          dest: /home/ubuntu/
+          dest: /home/splunk/
           owner: ubuntu
           group: ubuntu
           remote_src: yes
@@ -40,7 +40,7 @@
 
       - name: Delete demo-in-a-box.zip
         file:
-          path: /home/ubuntu/demo-in-a-box.zip
+          path: /home/splunk/demo-in-a-box.zip
           state: absent
         become: true
         when: not wh_result.stat.exists
@@ -69,8 +69,8 @@
             Restart=always
             RestartSec=1
             User=ubuntu
-            Environment="KUBECONFIG=/home/ubuntu/.kube/config"
-            WorkingDirectory=/home/ubuntu/{{ diab_dir_name.files[0] }}democonsole
+            Environment="KUBECONFIG=/home/splunk/.kube/config"
+            WorkingDirectory=/home/splunk/{{ diab_dir_name.files[0] }}democonsole
             ExecStart=/usr/bin/flask run -p 8081 --host=0.0.0.0
             [Install]
             WantedBy=multi-user.target
@@ -81,7 +81,7 @@
       - name: Install democonsole Python dependencies
         command: python3 -m pip install -r requirements.txt
         args:
-          chdir: "/home/ubuntu/{{ diab_dir_name.files[0] }}democonsole/"
+          chdir: "/home/splunk/{{ diab_dir_name.files[0] }}democonsole/"
         when: not wh_result.stat.exists
 
       - name: Helm OTel Collector repository add

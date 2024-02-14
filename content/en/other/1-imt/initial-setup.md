@@ -26,7 +26,7 @@ Search for your AWS/EC2 instance by looking for your first and last name, as pro
 
 Find your allocated IP address, SSH command (for Mac OS, Linux and the latest Windows versions) and password to enable you to connect to your workshop instance.
 
-It also has the Browser Access URL that you can use in case you cannot connect via ssh or putty - see [EC2 access via Web browser](#4-web-browser-all)
+It also has the Browser Access URL that you can use in case you cannot connect via ssh or Putty - see [EC2 access via Web browser](#4-web-browser-all)
 
 {{% notice title="Important" style="info" %}}
 Please use SSH or Putty to gain access to your EC2 instance if possible and
@@ -37,7 +37,7 @@ make a note of the IP address as you will need this during the workshop.
 
 Most attendees will be able to connect to the workshop by using SSH from their Mac or Linux device, or on Windows 10 and above.
 
-To use SSH, open a terminal on your system and type `ssh ubuntu@x.x.x.x` (replacing x.x.x.x with the IP address found in Step #1).
+To use SSH, open a terminal on your system and type `ssh splunk@x.x.x.x` (replacing x.x.x.x with the IP address found in Step #1).
 
 ![ssh login](../images/ssh-1.png)
 
@@ -102,7 +102,7 @@ If this is the first time connecting to your AWS/EC2 workshop instance, you will
 
 ![putty-3](../images//putty-security.png)
 
-Once connected, login in as **ubuntu** and the password is the one provided in the Google Sheet.
+Once connected, login in as **splunk** and the password is the one provided in the Google Sheet.
 
 Once you are connected successfully you should see a screen similar to the one below:
 
@@ -124,7 +124,7 @@ Open your web browser and type **[http://x.x.x.x:6501](http://x.x.x.x:6501)** (w
 
 ![http-6501](../images//shellinabox-url.png)
 
-Once connected, login in as **ubuntu** and the password is the one provided in the Google Sheet.
+Once connected, login in as **splunk** and the password is the one provided in the Google Sheet.
 
 ![http-connect](../images//shellinabox-connect.png)
 

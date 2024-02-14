@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Specify the base directory
-base_directory="/home/ubuntu/spring-petclinic-microservices/"
+base_directory="/home/splunk/spring-petclinic-microservices/"
 
 # Specify the list of directories to navigate into
 directories=("spring-petclinic-admin-server" "spring-petclinic-api-gateway" "spring-petclinic-config-server" "spring-petclinic-discovery-server" "spring-petclinic-customers-service" "spring-petclinic-vets-service" "spring-petclinic-visits-service")

@@ -55,8 +55,8 @@ runcmd:
   - export WSVERSION=5.39
   - 'export WSARCHIVE=$([ "$WSVERSION" = "main" ] && echo "main" || echo "v$WSVERSION")'
   - curl -s -OL https://github.com/splunk/observability-workshop/archive/$WSARCHIVE.zip
-  - unzip -qq $WSARCHIVE.zip -d /home/ubuntu/
-  - mv /home/ubuntu/observability-workshop-$WSVERSION /home/ubuntu/workshop
+  - unzip -qq $WSARCHIVE.zip -d /home/splunk/
+  - mv /home/splunk/observability-workshop-$WSVERSION /home/splunk/workshop
   # Configure motd
   - curl -s https://raw.githubusercontent.com/splunk/observability-workshop/main/cloud-init/motd -o /etc/motd
   - chmod -x /etc/update-motd.d/*
@@ -64,4 +64,4 @@ runcmd:
   - curl -S -OL https://releases.hashicorp.com/terraform/0.15.0/terraform_0.15.0_linux_amd64.zip
   - unzip -qq terraform_0.15.0_linux_amd64.zip -d /usr/local/bin
   # Set correct permissions on ubuntu user home directory
-  - chown -R ubuntu:ubuntu /home/ubuntu
+  - chown -R ubuntu:ubuntu /home/splunk

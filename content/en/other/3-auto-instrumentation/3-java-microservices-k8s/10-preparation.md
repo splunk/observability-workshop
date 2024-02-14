@@ -10,7 +10,7 @@ The instructor will provide you with the login information for the instance that
 When you first log into your instance, you will be greeted by the Splunk Logo as shown below:
 
 ```text
-❯ ssh -p 2222 ubuntu@[IP-ADDRESS]
+❯ ssh -p 2222 splunk@[IP-ADDRESS]
 
 ███████╗██████╗ ██╗     ██╗   ██╗███╗   ██╗██╗  ██╗    ██╗  
 ██╔════╝██╔══██╗██║     ██║   ██║████╗  ██║██║ ██╔╝    ╚██╗ 
