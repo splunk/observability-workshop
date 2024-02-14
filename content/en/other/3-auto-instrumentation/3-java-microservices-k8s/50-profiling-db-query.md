@@ -88,8 +88,8 @@ This will bring you to the Always-on Profiling main screen, with the Memory view
 * Java Function calls identified.**(3)**, allowing you to drill down  into the Methods called from that function.
 * The Flame Graph **(4)**,  with the visualization of hierarchical based on the stack traces of the profiled service.
 
-Once you have identified the relevant Function or method you are interested in, you can get drill down , and by right 
-
+Once you have identified the relevant Function or Method you are interested in,  select it **(1)**  and find it in the  Flame Graph **(2)**. Select it, once it shows the pane as shown in the image below, you can xee the Tread info **(3)** by clicking on the blue *Show Thread Info* link. By clicking on *Copy Stack Trace* **(4)**,  you can grab the actual stack trace that you can use in your coding platform to go to the actual lines of code use at this point (depending of course on your preferred Coding platform)
+![stack trace](../images/grab-stack-trace.png)
 
 <!--
 

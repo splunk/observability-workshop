@@ -302,6 +302,8 @@ runcmd:
   - sed -i "s/\"--no-beep\"/\"--no-beep --disable-ssl\"/" /etc/default/shellinabox
   - sudo service shellinabox restart
   - sed -i 's/_THEME=\"robbyrussell\"/_THEME=\"gentoo\"/g' home/ubuntu/.zshrc
+  # Make sure the locl path is correctly setup as k8s can only support full paths in the volume mounts
+  - sed -i "s|/home/splunk/workshop|$HOME/workshop|" $HOME/workshop/petclinic/petclinic-deploy.yaml
 %{ if diab == true ~}
   - su ubuntu -c 'bash /tmp/diab-setup.sh'
 %{ endif ~}

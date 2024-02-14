@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Specify the constant prefix
-pod_prefix="api-gateway-"
+pod_prefix="customers-service-"
 
 # Get the current pod name with the specified prefix
 pod_name=$(kubectl get pods -o=name | grep "$pod_prefix" | cut -d'/' -f 2)
