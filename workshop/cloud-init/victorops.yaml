@@ -63,5 +63,5 @@ runcmd:
   # Install Terraform
   - curl -S -OL https://releases.hashicorp.com/terraform/0.15.0/terraform_0.15.0_linux_amd64.zip
   - unzip -qq terraform_0.15.0_linux_amd64.zip -d /usr/local/bin
-  # Set correct permissions on ubuntu user home directory
-  - chown -R ubuntu:ubuntu /home/splunk
+  # Set correct permissions on splunk user home directory
+  - chown -R splunk:splunk /home/splunk
