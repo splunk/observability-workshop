@@ -47,7 +47,7 @@ spec:
         - name: petclinic-repo
         # mount /home/ubuntu/workshop/petclinic/petclinic-repo, but only if that directory already exists
           hostPath:
-            path: /home/ubuntu/workshop/petclinic/petclinic-repo # directory location on host
+            path: /home/splunk/workshop/petclinic/petclinic-repo # directory location on host
             type: Directory # this field is optional
 ---
 apiVersion: v1

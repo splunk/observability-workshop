@@ -10,7 +10,7 @@ The instructor will provide you with the login information for the instance that
 When you first log into your instance, you will be greeted by the Splunk Logo as shown below:
 
 ```text
-❯ ssh -p 2222 ubuntu@[IP-ADRESS]
+❯ ssh -p 2222 ubuntu@[IP-ADDRESS]
 
 ███████╗██████╗ ██╗     ██╗   ██╗███╗   ██╗██╗  ██╗    ██╗  
 ██╔════╝██╔══██╗██║     ██║   ██║████╗  ██║██║ ██╔╝    ╚██╗ 
@@ -21,7 +21,7 @@ When you first log into your instance, you will be greeted by the Splunk Logo as
 Last login: Mon Feb  5 11:04:54 2024 from [Redacted]
 Waiting for cloud-init status...
 Your instance is ready!
-ubuntu@java-workshop-1 ~ $ 
+splunk@show-no-config-i-0d1b29d967cb2e6ff:~$ 
 ```
 
 If this isn't shown, or you see an error, log out and give it a minute or so, then try to log in again as the instance might not have finished the initial boot sequence. If it still does not show the above Welcome page, reach out to your Instructor.

@@ -86,7 +86,10 @@ This will bring you to the Always-on Profiling main screen, with the Memory view
 * Java Memory Metric Charts **(1)**,  Allow you to `Monitor Heap Memory, Application Activity` like `Memory Allocation Rate`  and `Garbage Collecting` Metrics.
 * Ability to focus/see metrics and Stack Traces only related to the Span **(2)**, This will filter out background activities running in the Java application if required.
 * Java Function calls identified.**(3)**, allowing you to drill down  into the Methods called from that function.
-* The Flame Graph,  with details of the 
+* The Flame Graph **(4)**,  with the visualization of hierarchical based on the stack traces of the profiled service.
+
+Once you have identified the relevant Function or method you are interested in, you can get drill down , and by right 
+
 
 <!--
 
