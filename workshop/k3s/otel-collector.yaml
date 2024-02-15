@@ -26,7 +26,7 @@ agent:
               name: mysql-${WORKSHOP_ENVIRONMENT}
               extraDimensions:
                 service.name: mysql-${WORKSHOP_ENVIRONMENT}
-          smartagent/mysql-petclinic:      
+          smartagent/mysql-petclinic:
             rule: type == "port" && pod.name matches "petclinic-db" && port == 3306
             config:
               type: collectd/mysql
