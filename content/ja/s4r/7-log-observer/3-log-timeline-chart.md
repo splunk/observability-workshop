@@ -3,28 +3,28 @@ title: 3. Log Timeline Chart
 weight: 3
 ---
 
-特定の表示が Log Observer にあると、将来的に問題を検出または解決する時間を短縮するのに役立ちます。ワークショップの一環として、これらのチャートを使用するカスタムダッシュボードの例を作成します。
+Log Observer である決まったビューを持っておくと、あるダッシュボードの中でそのビューを活用し、将来的に問題の検出と解決にかかる時間を削減することに寄与するでしょう。ワークショップの一環として、これらのチャートを使用するカスタムダッシュボードの例を作成します。
 
-まず、**Log Timeline** チャートの作成を見てみましょう。Log Timeline チャートは、時間の経過とともにログメッセージを視覚化するために使用されます。これはログメッセージの頻度を確認し、パターンを識別する素晴らしい方法です。また、環境全体でのログメッセージの分布を確認する素晴らしい方法です。これらのチャートはカスタムダッシュボードに保存できます。
+まず、**Log Timeline** チャートの作成を見てみましょう。Log Timeline チャートは、時間の経過とともにログメッセージを表示するために使用されます。これはログメッセージの頻度を確認し、パターンを識別するのに適した表現方法です。また、環境全体でのログメッセージの出力傾向を確認するのにも適しています。これらのチャートはカスタムダッシュボードに保存できます。
 
-{{% notice title="情報" style="green" title="演習" icon="running" %}}
+{{% notice title="情報" style="green" title="Exercise" icon="running" %}}
 
-まず、興味がある列のみに情報量を削減します：
+まず、表示するログの列を必要なものに絞り込みます。
 
-* **Logs table** 上の **Configure Table** {{% icon icon="cog" %}} アイコンをクリックして **Table Settings** を開き、 `_raw` にチェックを入れず、次のフィールドが選択されていることを確認します `k8s.pod_name`, `message`, `version`。
+* **Logs table** 上の **Configure Table** {{% icon icon="cog" %}} アイコンをクリックして **Table Settings** を開きます。 `_raw` のチェックを外し、`k8s.pod_name`, `message`, `version` のフィールドが選択されていることを確認します。
   ![Log Table Settings](../images/log-observer-table.png)
-* タイムピッカーから固定時間を削除し、 **Last 15 minutes** に設定します。
-* これをすべてのトレースで機能させるために、フィルタから `trace_id` を削除し、 `sf_service=paymentservice` および `sf_environment=[WORKSHOPNAME]` フィールドを追加します。
+* 時間枠として固定の時間が入っている設定を外し、 **Last 15 minutes** を設定します。
+* すべてのトレースに対してログ参照ができるように、フィルタ設定から `trace_id` を削除し、 `sf_service=paymentservice` および `sf_environment=[WORKSHOPNAME]` フィールドを追加します。
 * **Save** をクリックし、**Save to Dashboard** を選択します。
   ![save it](../images/save-query.png)
-* 表示されるチャート作成ダイアログボックスで、**Chart name** に `Log Timeline` を使用します。
-* {{% button style="blue" %}}Select Dashboard{{% /button %}} をクリックし、ダッシュボード選択ダイアログボックスで {{% button style="blue" %}}New dashboard{{% /button %}} をクリックします。
-* **New dashboard** ダイアログボックスで、新しいダッシュボードの名前を入力します（説明は入力する必要はありません）。次の形式を使用します： `Initials - Service Health Dashboard` と入力し、 {{% button style="blue" %}}Save{{% /button %}} をクリックします。
+* チャート作成に関するダイアログが表示されます。**Chart name** に `Log Timeline` を入力します。
+* 次に、{{% button style="blue" %}}Select Dashboard{{% /button %}} をクリックします。ダッシュボード選択のダイアログでは {{% button style="blue" %}}New dashboard{{% /button %}} をクリックします。
+* **New dashboard** ダイアログで、新しいダッシュボードの名前を入力します（Description 欄は入力不要です）。名前には以下を使用します： `<受講者の方のイニシャル> - Service Health Dashboard` と入力し、 {{% button style="blue" %}}Save{{% /button %}} をクリックします。
 * 新しいダッシュボードがリストでハイライト表示されていることを確認し（**1**）、 {{% button style="blue" %}}OK{{% /button %}} をクリックします（**2**）。
   ![Save dashboard](../images/dashboard-save.png)
 * **Chart Type** として **Log Timeline** が選択されていることを確認します。
   ![log timeline](../images/log-timeline.png?classes=left&width=25vw)
-* {{% button %}}Save{{% /button %}} ボタンをクリックします（この時点で **Save and goto dashboard** をクリックしないでください）。
+* 最後に {{% button %}}Save{{% /button %}} ボタンをクリックします（この時点で **Save and goto dashboard** をクリックしないでください）。
 
 {{% /notice %}}
 
