@@ -15,7 +15,7 @@ spec:
       labels:
         app: config-server
       annotations:
-        instrumentation.opentelemetry.io/inject-java: "true"
+        instrumentation.opentelemetry.io/inject-java: "default/splunk-otel-collector"
     spec:
       terminationGracePeriodSeconds: 5
       containers:
@@ -80,7 +80,7 @@ spec:
       labels:
         app: discovery-server
       annotations:
-        instrumentation.opentelemetry.io/inject-java: "true"      
+        instrumentation.opentelemetry.io/inject-java: "default/splunk-otel-collector"      
     spec:
       terminationGracePeriodSeconds: 5
       containers:

@@ -180,7 +180,6 @@ splunk-otel-collector-operator-69d476cb7-j7zwd                  2/2     Running 
 {{< /tabs >}}
 
 Ensure there are no errors by tailing the logs from the OpenTelemetry Collector pod. The output should look similar to the log output shown in the Output tab below.
-
 Use the label set by the `helm` install to tail logs (You will need to press `ctrl + c` to exit). Or use the installed `k9s` terminal UI for bonus points!
 
 {{< tabs >}}
@@ -302,7 +301,7 @@ Once they are running, the application will take a few minutes to fully start up
 
 ## 5. Verify the local Docker Repository
 
-Once we have our Auto instrumentation up and running with the existing containers, we are going to build our own containers to show some of the additional instrumentation features of Opentelemetry Java. Only then we will touch the config files or the source code. Once we build these containers, Kubernetes will need to pull these new images from somewhere. To enable this we have created a local repository, so Kubernetes can pull those local images.
+Once we have tested our Zero Auto-Config Instrumentation the existing containers, we are going to build our own containers to show some of the additional instrumentation features of Opentelemetry Java. Only then we will touch the config files or the source code. Once we build these containers, Kubernetes will need to pull these new images from somewhere. To enable this we have created a local repository to store these new containers, so Kubernetes can pull the images locally.
 
 We can see if the repository is up and running by checking the inventory with the below command:
 

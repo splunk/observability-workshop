@@ -14,13 +14,17 @@ Make sure you are in  the APM Explore page either by going back in the browser o
 
 ## 2. Examine a Trace from the APM Dependency map
 
-For this exercise we are going to use a common scenario you would use if the service selected was showing high latency, or errors for example..
+For this exercise we are going to use a common scenario you would use if the service operation  was showing high latency, or errors for example.
 
-Select the **Customer Service** in the Dependency map, then select a line in the `Service Requests & Errors` chart, when the dot appear click to get a list of  sample traces:
+Select the **Customer Service** in the Dependency map **(1)**, then make sure the `customers-service` is selected in the **Services** dropdown box **(2)**. Next, select `GET /Owners` from the Operations Drop down **(3)**.
 
-![select a trace](../images/selecting-a-trace.png)
+![select a trace](../images/select-workflow.png)
 
- One you have the list of sample traces, make sure you look at the Duration, **(1)**  column and select the trace with the longest duration (more data to see in the trace) by clicking on the blue **(2)** Trace ID Link. (Make sure it has at least the customers-service mentioned in the Service Column.)
+This should give you the workflow  wit A filter on `GET /owners` **(1)** as shown below. To pick a trace, select a line in the `Service Requests & Errors` chart **(2)**, when the dot appear click to get a list of sample traces:
+
+![workflow-trace-pick](../images/selecting-a-trace.png)
+
+Once you have the list of sample traces, Clicking on the blue **(3)** Trace ID Link. (Make sure it has at thesame three services mentioned in the Service Column.)
 
  This bring us the the Trace selected in the Waterfall view:
 
@@ -40,7 +44,8 @@ First lets examine a Span:
 
 While we examine our spans, lets look at a number features that you get out of the box without code modifications when using Zero config Auto-Instrumentation on top of tracing:
 
-First, in the Waterfall Pane, make sure the `customers-service:SELECT petclinic.owners` Span is selected as shown in the screenshot below:
+Due to tha fact there are several  different routes
+First, in the Waterfall Pane, make sure the `customers-service:SELECT petclinic.owners`  or similar span is selected as shown in the screenshot below:
 
 ![db-query](../images/db-query.png)
 

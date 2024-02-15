@@ -19,54 +19,59 @@ When we installed the Splunk Distribution of the OpenTelemetry Collector using t
 
 When you deploy the PetClinic application, and set the Annotation, the collector automatically detects the application and instruments it for traces and profiling.
 
-we can verify this by examining the  startup logs of one of our Java based containers we are instrumenting by running the following script:
+we can verify this by examining the startup logs of one of our Java based containers we are instrumenting by running the following script:
 
 ```bash
 .  ~/workshop/petclinic/scripts/get_logs.sh
 ```
 
-The logs will show what flags where picked up by the Jav Auto instrumentation agent:
+The logs should show what flags where picked up by the Java Auto instrumentation agent:
 
 {{% tab title="Example output" %}}
 
 ``` text {wrap="false"}
+2024/02/15 09:42:00 Problem with dial: dial tcp 10.43.104.25:8761: connect: connection refused. Sleeping 1s
+2024/02/15 09:42:01 Problem with dial: dial tcp 10.43.104.25:8761: connect: connection refused. Sleeping 1s
+2024/02/15 09:42:02 Connected to tcp://discovery-server:8761
 Picked up JAVA_TOOL_OPTIONS:  -javaagent:/otel-auto-instrumentation-java/javaagent.jar
+Picked up _JAVA_OPTIONS: -Dspring.profiles.active=docker,mysql -Dsplunk.profiler.call.stack.interval=150
 OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
-[otel.javaagent 2024-02-06 15:25:20:210 +0000] [main] INFO io.opentelemetry.javaagent.tooling.VersionLogger - opentelemetry-javaagent - version: splunk-1.30.0-otel-1.32.0
-[otel.javaagent 2024-02-06 15:25:20:691 +0000] [main] INFO com.splunk.javaagent.shaded.io.micrometer.core.instrument.push.PushMeterRegistry - publishing metrics for SignalFxMeterRegistry every 30s
-[otel.javaagent 2024-02-06 15:25:22:485 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger - -----------------------
-[otel.javaagent 2024-02-06 15:25:22:485 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger - Profiler configuration:
-[otel.javaagent 2024-02-06 15:25:22:486 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -                  splunk.profiler.enabled : true
-[otel.javaagent 2024-02-06 15:25:22:487 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -                splunk.profiler.directory : /tmp
-[otel.javaagent 2024-02-06 15:25:22:487 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -       splunk.profiler.recording.duration : 20s
-[otel.javaagent 2024-02-06 15:25:22:488 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -               splunk.profiler.keep-files : false
-[otel.javaagent 2024-02-06 15:25:22:488 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -            splunk.profiler.logs-endpoint : http://10.13.2.123:4317
-[otel.javaagent 2024-02-06 15:25:22:489 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -              otel.exporter.otlp.endpoint : http://10.13.2.123:4317
-[otel.javaagent 2024-02-06 15:25:22:489 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -           splunk.profiler.memory.enabled : true
-[otel.javaagent 2024-02-06 15:25:22:490 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -             splunk.profiler.tlab.enabled : true
-[otel.javaagent 2024-02-06 15:25:22:490 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -        splunk.profiler.memory.event.rate : 150/s
-[otel.javaagent 2024-02-06 15:25:22:491 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -      splunk.profiler.call.stack.interval : PT10S
-[otel.javaagent 2024-02-06 15:25:22:491 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -  splunk.profiler.include.internal.stacks : false
-[otel.javaagent 2024-02-06 15:25:22:492 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -      splunk.profiler.tracing.stacks.only : false
-[otel.javaagent 2024-02-06 15:25:22:492 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger - -----------------------
-[otel.javaagent 2024-02-06 15:25:22:492 +0000] [main] INFO com.splunk.opentelemetry.profiler.JfrActivator - Profiler is active.
+[otel.javaagent 2024-02-15 09:42:03:056 +0000] [main] INFO io.opentelemetry.javaagent.tooling.VersionLogger - opentelemetry-javaagent - version: splunk-1.30.1-otel-1.32.1
+[otel.javaagent 2024-02-15 09:42:03:768 +0000] [main] INFO com.splunk.javaagent.shaded.io.micrometer.core.instrument.push.PushMeterRegistry - publishing metrics for SignalFxMeterRegistry every 30s
+[otel.javaagent 2024-02-15 09:42:07:478 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger - -----------------------
+[otel.javaagent 2024-02-15 09:42:07:478 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger - Profiler configuration:
+[otel.javaagent 2024-02-15 09:42:07:480 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -                  splunk.profiler.enabled : true
+[otel.javaagent 2024-02-15 09:42:07:505 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -                splunk.profiler.directory : /tmp
+[otel.javaagent 2024-02-15 09:42:07:505 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -       splunk.profiler.recording.duration : 20s
+[otel.javaagent 2024-02-15 09:42:07:506 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -               splunk.profiler.keep-files : false
+[otel.javaagent 2024-02-15 09:42:07:510 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -            splunk.profiler.logs-endpoint : http://10.13.2.38:4317
+[otel.javaagent 2024-02-15 09:42:07:513 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -              otel.exporter.otlp.endpoint : http://10.13.2.38:4317
+[otel.javaagent 2024-02-15 09:42:07:513 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -           splunk.profiler.memory.enabled : true
+[otel.javaagent 2024-02-15 09:42:07:515 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -             splunk.profiler.tlab.enabled : true
+[otel.javaagent 2024-02-15 09:42:07:516 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -        splunk.profiler.memory.event.rate : 150/s
+[otel.javaagent 2024-02-15 09:42:07:516 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -      splunk.profiler.call.stack.interval : PT0.15S
+[otel.javaagent 2024-02-15 09:42:07:517 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -  splunk.profiler.include.internal.stacks : false
+[otel.javaagent 2024-02-15 09:42:07:517 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger -      splunk.profiler.tracing.stacks.only : false
+[otel.javaagent 2024-02-15 09:42:07:517 +0000] [main] INFO com.splunk.opentelemetry.profiler.ConfigurationLogger - -----------------------
+[otel.javaagent 2024-02-15 09:42:07:518 +0000] [main] INFO com.splunk.opentelemetry.profiler.JfrActivator - Profiler is active.
 ```
 
 {{% /tab %}}
-<!--
-We are interested in the **Profiling Configuration**:
+
+We are interested in the section written by the  `com.splunk.opentelemetry.profiler.ConfigurationLogger` or the **Profiling Configuration**
 
 We can see the various settings you can control, some that are  useful depending on your use case like the `splunk.profiler.directory` -  The location where the agent  writes the call stacks before sending them to Splunk. This may be different depending how you configure your containers.
 An other parameter you may want to change is `splunk.profiler.call.stack.interval` This is how often the system takes a CPU Stack trace. You may want to reduce this if you have short spans like we have in our application. (we kept the default as the spans in this demo application are extremely short, so Span may not always have a CPU  Call Stack related to it.)
 
-You can find how to set these parameters [here](https://docs.splunk.com/observability/en/gdi/get-data-in/application/java/configuration/advanced-java-otel-configuration.html#profiling-configuration-java). ad this is how you set it in your deployment.yaml  exactly how pass any JAVA option to the the java application running in your container:
+You can find how to set these parameters [here](https://docs.splunk.com/observability/en/gdi/get-data-in/application/java/configuration/advanced-java-otel-configuration.html#profiling-configuration-java). And below is how you set a higher collection rate for call stack in your deployment.yaml, exactly how pass any JAVA option to the the java application running in your container:
 
 ```text
  env: 
     - name: JAVA_OPTIONS
       value: "-Dsplunk.profiler.call.stack.interval=150"
 ```
--->
+
+If you don't see those lines as a result from the script, the startup may have taken to long and generated to many connection errors, try looking at the logs directly with kubectl or the k9s utility that is installed.
 
 ## 2. Looking at Profiling Data in the Trace Waterfall
 
@@ -88,9 +93,15 @@ This will bring you to the Always-on Profiling main screen, with the Memory view
 * Java Function calls identified.**(3)**, allowing you to drill down  into the Methods called from that function.
 * The Flame Graph **(4)**,  with the visualization of hierarchical based on the stack traces of the profiled service.
 
-Once you have identified the relevant Function or Method you are interested in,  select it **(1)**  and find it in the  Flame Graph **(2)**. Select it, once it shows the pane as shown in the image below, you can xee the Tread info **(3)** by clicking on the blue *Show Thread Info* link. By clicking on *Copy Stack Trace* **(4)**,  you can grab the actual stack trace that you can use in your coding platform to go to the actual lines of code use at this point (depending of course on your preferred Coding platform)
+Once you have identified the relevant Function or Method you are interested in, `com.mysql.cj.protocol.a.NativePacketPayload.readBytes` in our example but yor may differ, so pick the top one **(1)**  and find it at the e bottom of the Flame Graph **(2)**. Click on it in the Flame Graph, it will show a pane as shown in the image below, where you can see the Thread information **(3)** by clicking on the blue *Show Thread Info* link. If you click on the *Copy Stack Trace* **(4)** button, you grab the actual stack trace that you can use in your coding platform to go to the actual lines of code use at this point (depending of course on your preferred Coding platform)
 ![stack trace](../images/grab-stack-trace.png)
 
+For more detail on Profiling, check the the **Debug Problems workshop**, or  check the documents [here](https://docs.splunk.com/observability/en/apm/profiling/intro-profiling.html#introduction-to-alwayson-profiling-for-splunk-apm)
+
+## 3. Database Query Performance
+
+
+WIP
 <!--
 
 You can now visit the Splunk APM UI and examine the application components, traces, profiling, DB Query performance and metrics. From the left-hand menu **APM** → **Explore**, click the environment dropdown and select your environment e.g. `<INSTANCE>-petclinic` (where`<INSTANCE>` is replaced with the value you noted down earlier).
@@ -98,7 +109,6 @@ You can now visit the Splunk APM UI and examine the application components, trac
 ![APM Environment](../images/apm-environment.png)
 
 Once your validation is complete you can stop the application by pressing `Ctrl-c`.
-
 
 ## 4. Adding Resource Attributes to Spans
 
