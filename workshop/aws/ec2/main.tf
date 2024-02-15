@@ -5,7 +5,7 @@ provider "aws" {
 locals {
   common_tags = {
     component                    = "o11y-for-${lower(var.slug)}"
-    environment                  = "production"
+    environment                  = "o11y-workshop"
     splunkit_data_classification = "public"
     splunkit_environment_type    = "customer-prd"
   }
