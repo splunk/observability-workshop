@@ -17,7 +17,7 @@
 output "login_details" {
   value = formatlist(
     "%s, ssh -p 2222 splunk@%s, %s",
-    aws_instance.observability-instance[*].tags["Instance"],
+    aws_instance.observability-instance[*].tags["instance"],
     aws_instance.observability-instance.*.public_ip,
     local.template_vars.instance_password
   )
@@ -29,7 +29,7 @@ resource "local_file" "ssh_details" {
   content = templatefile("${path.module}/templates/ssh_csv.tpl",
     {
       ips : aws_instance.observability-instance[*].public_ip
-      names : aws_instance.observability-instance[*].tags["Instance"]
+      names : aws_instance.observability-instance[*].tags["instance"]
       password: local.template_vars.instance_password
   })
 }

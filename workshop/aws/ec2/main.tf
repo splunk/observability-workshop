@@ -4,8 +4,10 @@ provider "aws" {
 
 locals {
   common_tags = {
-    Component   = "o11y-for-${lower(var.slug)}"
-    Environment = "production"
+    component                    = "o11y-for-${lower(var.slug)}"
+    environment                  = "production"
+    splunkit_data_classification = "public"
+    splunkit_environment_type    = "customer-prd"
   }
 }
 
@@ -20,7 +22,7 @@ resource "aws_vpc" "o11y-ws-vpc" {
   tags = merge(
     local.common_tags,
     {
-      "Name" = "o11y-ws-vpc"
+      "mame" = "o11y-ws-vpc"
     }
   )
 }
@@ -35,7 +37,7 @@ resource "aws_subnet" "o11y_ws_subnets" {
   tags = merge(
     local.common_tags,
     {
-      "Name" = "o11y-ws-subnet-${count.index}"
+      "name" = "o11y-ws-subnet-${count.index}"
     }
   )
 }
@@ -123,7 +125,7 @@ resource "aws_security_group" "o11y-ws-sg" {
   tags = merge(
     local.common_tags,
     {
-      "Name" = "o11y-ws-sg"
+      "name" = "o11y-ws-sg"
     }
   )
 }
@@ -133,7 +135,7 @@ resource "aws_internet_gateway" "o11y-ws-ig" {
   tags = merge(
     local.common_tags,
     {
-      "Name" = "o11y-ws-igw"
+      "name" = "o11y-ws-igw"
     }
   )
 }
@@ -204,9 +206,9 @@ resource "aws_instance" "observability-instance" {
     local.common_tags,
     {
       #Name = "observability-${count.index + 1}"
-      Instance = "${lower(var.slug)}-${format("%02d", count.index + 1)}"
-      Name     = "${lower(var.slug)}-${format("%02d", count.index + 1)}"
-      Subnet   = "${aws_subnet.o11y_ws_subnets.*.id[count.index % length(aws_subnet.o11y_ws_subnets)]}"
+      instance = "${lower(var.slug)}-${format("%02d", count.index + 1)}"
+      name     = "${lower(var.slug)}-${format("%02d", count.index + 1)}"
+      subnet   = "${aws_subnet.o11y_ws_subnets.*.id[count.index % length(aws_subnet.o11y_ws_subnets)]}"
     }
   )
 
@@ -234,11 +236,11 @@ locals {
 }
 
 resource "local_sensitive_file" "ssh_priv_key" {
-  filename = local.ssh_priv_key
+  filename        = local.ssh_priv_key
   file_permission = "400"
   # directory_permission = "700"
   # content  = tls_private_key.pk.private_key_pem
-  content  = tls_private_key.pk.private_key_openssh
+  content = tls_private_key.pk.private_key_openssh
 }
 
 resource "local_file" "ssh_client_config" {
@@ -247,7 +249,7 @@ resource "local_file" "ssh_client_config" {
   content = templatefile("${path.module}/templates/ssh_client_config.tpl",
     {
       ips : aws_instance.observability-instance[*].public_ip
-      names : aws_instance.observability-instance[*].tags["Instance"]
+      names : aws_instance.observability-instance[*].tags["instance"]
       key : local.ssh_priv_key
   })
 }
