@@ -7,7 +7,7 @@ archetype: chapter
 
 {{% badge icon="clock" color="#ed0090" %}}20 minutes{{% /badge %}}
 
-{{% notice icon="user" style="orange" title="Persona" %}}
+{{% notice icon="user" style="orange" title="ペルソナ" %}}
 
 あなたは**バックエンドの開発者**で、SRE によって発見された問題の調査を支援するように呼ばれました。SRE はユーザーエクスペリエンスが悪いと特定し、その問題の調査をお願いしています。
 

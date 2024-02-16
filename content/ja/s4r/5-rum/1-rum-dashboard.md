@@ -9,10 +9,10 @@ Splunk Observability Cloud のメインメニューから **RUM** をクリッ�
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* あなたのワークショップ環境が選択されていることを確かめるために、次のようにドロップダウンが設定/選択されていることを確認してください：
-  * **タイムフレーム**が **-15m** に設定されています。
-  * 選択された **Environment** は **[NAME OF WORKSHOP]-workshop** です。
-  * 選択された **App** は **[NAME OF WORKSHOP]-store** です。
+* あなたのワークショップ環境が選択されていることを確かめるために、次のようにドロップダウンが設定/選択されていることを確認してください。
+  * **時間枠**が **-15m** に設定されています。
+  * **Environment** は **[NAME OF WORKSHOP]-workshop** が選択されています。
+  * **App** は **[NAME OF WORKSHOP]-store** が選択されています。
   * **Source** は **All** に設定されています。
 * 次に、**Page Views / JavaScript Errors** チャートの上にある **[NAME OF WORKSHOP]-store** をクリックします。
 * これにより、新しいダッシュボードビューが表示され、メトリクスが **UX Metrics**、**Front-end Health**、**Back-end Health**、**Custom Events** に分解され、それらを過去のメトリクスと比較します（デフォルトでは1時間）。
@@ -32,10 +32,10 @@ Splunk Observability Cloud のメインメニューから **RUM** をクリッ�
 
 {{< tabs >}}
 {{% tab title="Question" %}}
-**もし *Custom Events* タブのチャートを調査した場合、どのチャートが*処理時間の急激な増加*を明確に示していますか？**
+***Custom Events* タブのチャートを調査した場合、明確に*処理時間の急激な増加*を示しているチャートはどれですか？**
 {{% /tab %}}
 {{% tab title="Answer" %}}
-**それは *Custom Event Latency* チャートです。**
+***Custom Event Latency* チャートです。**
 {{% /tab %}}
 {{< /tabs >}}
 

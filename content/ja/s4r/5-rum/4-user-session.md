@@ -13,7 +13,7 @@ weight: 4
 
 ![RUM Session](../images/rum-waterfall.png)
 
-これにより、APM パフォーマンスサマリーが表示されます。これはトラブルシューティング時に非常に役立つエンドツーエンド（RUM から APM への）ビューです。
+これにより、APM パフォーマンスサマリーが表示されます。これはトラブルシューティング時に非常に役立つ End to End（RUM から APM への）ビューです。
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
