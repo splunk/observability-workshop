@@ -100,8 +100,26 @@ For more detail on Profiling, check the the **Debug Problems workshop**, or  che
 
 ## 3. Database Query Performance
 
+With Database Query Performance, you can monitor the impact of your database queries on service availability directly in Splunk APM. This way, you can quickly identify long-running, unoptimized, or heavy queries and mitigate issues they might be causing, without having to instrument your databases.
 
-WIP
+To look at the performance of your database queries, make sure you are in the APM **Explore** page either by going back in the browser or navigate to the APM APM section in the Menu bar, then click on the **Explore** tile.
+Select the the inferred database service `mysql:petclinic` Inferred Database server in the Dependency map **(1)**, then scroll the right hand pane to find the **Database Query Performance** Pane **(2)**.
+
+![dbquery from map](../images/db-query-map.png)
+
+If the service you have selected in the map is indeed an (inferred) database server, this pane will populate with the top 90% (P90) database calls based on duration. To dive deeper in the db-query performance function click somewhere on the word **Database Query Performance** at the top of the pane.
+
+This wil bring us to the DB-query Performance overview screen.
+
+![db-query full](../images/db-query-full.png)
+
+This screen will show us all the Database queries **(1)** done towards our database from you application, based on the Traces & Spans send to the Splunk Observability Cloud.  Note that you can compare them across a time block or sort them on Total Time, P90 Latency & Requests **(2)**.
+
+By default, Splunk APM instrumentation sanitizes database queries to remove or mask sensible data, such as secrets or personal identifiable information (PII) from the db.statements. You  can find  how to turn off database query normalization[here](https://docs.splunk.com/observability/en/apm/db-query-perf/db-perf-troubleshooting.html#turn-off-database-query-normalization).
+
+
+
+
 <!--
 
 You can now visit the Splunk APM UI and examine the application components, traces, profiling, DB Query performance and metrics. From the left-hand menu **APM** → **Explore**, click the environment dropdown and select your environment e.g. `<INSTANCE>-petclinic` (where`<INSTANCE>` is replaced with the value you noted down earlier).

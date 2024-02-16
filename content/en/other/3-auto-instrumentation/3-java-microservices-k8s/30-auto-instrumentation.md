@@ -116,7 +116,7 @@ kubectl get deployments -l app.kubernetes.io/part-of=spring-petclinic -o name | 
 
 ```text
 deployment.apps/config-server patched (no change)
-deployment.apps/admin-server patched (no change)
+deployment.apps/admin-server patched
 deployment.apps/customers-service patched
 deployment.apps/visits-service patched
 deployment.apps/discovery-server patched (no change)
@@ -145,8 +145,8 @@ You should see the name **(2)** of the api-gateway service and metrics in the La
 Next, click on **Explore** **(3)** to see the services in the automatically generated dependency map and select the api-gateway service.
 ![apm map](../images/zero-config-first-services-map.png)
 
-THe Example above show  all the interaction between the all our services, as tt will take the Petclinic Microservice application a few minutes to start up and fully synchronize it make a bit for your map to look like this.
-reducing the time will help, if you pick a Custom time of 2 minutes,  the initial startup related errors will disappear form the view.)
+The Example above shows all the interaction between the all our services, Your may still be showing the map in the interim state as it will take the Petclinic Microservice application a few minutes to start up and fully synchronize to make  your map to look like t he one above.
+reducing the time will help, if you pick a Custom time of 2 minutes,  the initial startup related errors (Red Dots) will disappear from the view.)
 
 In the meantime let's examine the metrics that are available for each service that is instrumented and visit the request, error, and duration (RED) metrics Dashboard
 
