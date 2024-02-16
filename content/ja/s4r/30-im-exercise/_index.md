@@ -1,8 +1,8 @@
 ---
 title: インフラストラクチャ演習
-linkTitle: 6.2 オプショナル演習
+linkTitle: 6.2 オプションの演習
 weight: 40
-hidden: true
+hidden: false
 _build:
   render: never
 ---
