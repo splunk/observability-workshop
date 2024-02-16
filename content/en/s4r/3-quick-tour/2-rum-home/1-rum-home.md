@@ -25,8 +25,8 @@ Independent of the type of Status Dashboard used, the RUM Home Page is made up o
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * Ensure the time window is set to **-15m**
-* Select the environment for your workshop from the drop-down box. The naming convention is **[NAME OF WORKSHOP]** (Selecting this will make sure the workshop RUM application is visible)
-* Select the **App** name. There the naming convention is **[NAME OF WORKSHOP]-shop**  and leave **Source** set to **All**
+* Select the environment for your workshop from the drop-down box. The naming convention is **[NAME OF WORKSHOP]-workshop** (Selecting this will make sure the workshop RUM application is visible)
+* Select the **App** name. There the naming convention is **[NAME OF WORKSHOP]-store**  and leave **Source** set to **All**
 * In the **JavaScript Errors** tile click on the **TypeError** entry that says: *Cannot read properties of undefined (reading 'Prcie')* to see more details. Note that you are given a quick indication of what part of the website the error occurred, allowing you to fix this quickly.
 * Close the pane.
 * The 3rd tile reports **Web Vitals**, a metric that focuses on three important aspects of the user experience: *loading*, *interactivity*, and *visual stability*.
