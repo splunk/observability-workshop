@@ -57,6 +57,7 @@ If you have completed a Splunk Observability workshop using this EC2 instance, p
 ``` bash
 helm delete splunk-otel-collector
 ```
+
 {{% /notice %}}
 
 ## 2. The Splunk OpenTelemetry Collector
@@ -69,7 +70,7 @@ The Splunk OpenTelemetry Collector is the core component of instrumenting infras
 * Host and Application logs
 
 To get Observability signals (**Metrics, Traces** and **Logs**) into the **Splunk Observability Cloud** we need to add an OpenTelemetry Collector to our Kubernetes cluster.
-For this workshop we will be using the Splunk Kubernetes Helm Chart for the Opentelemetry collector and install the collector in `Operator` mode as this is required for Zero-config.
+For this workshop, we will be using the Splunk Kubernetes Helm Chart for the Opentelemetry collector and installing the collector in `Operator` mode as this is required for Zero-config.
 
 ## 3. Install the OpenTelemetry Collector using Helm
 
@@ -101,9 +102,9 @@ Update Complete. ⎈Happy Helming!⎈
 
 The Splunk Observability Cloud offers wizards in the **Splunk Observability Suite** UI to walk you through the setup of the Collector on  Kubernetes, but in the interest of time, we will use a setup created earlier. As we want the auto instrumentation to be available, we will install the OpenTelemetry Collector with the OpenTelemetry Collector Helm chart with some additional options:
 
-* --set="operator.enabled=true" - this will install the Opentelemetry operator, that will be used to handle auto instrumentation
-* --set="certmanager.enabled=true" - This will install the required certificate manager for the operator.
-* --set="splunkObservability.profilingEnabled=true" - This enabled Code profiling via the operator
+* `--set="operator.enabled=true"` - this will install the Opentelemetry operator, that will be used to handle auto instrumentation
+* `--set="certmanager.enabled=true"` - This will install the required certificate manager for the operator.
+* `--set="splunkObservability.profilingEnabled=true"` - This enabled Code profiling via the operator
 
 To install the collector run the following commands, do **NOT** edit this:
 
@@ -262,7 +263,7 @@ configmap/scriptfile created
 On rare occasions, you may encounter the above error at this point.  please log out and back in, and verify the above env variables are all set correctly. If not please, please contact your instructor.
 
 {{% /notice %}} -->
-At this point we can verify the deployment by checking if the Pods are running, Not that these containers need to be downloaded and started, this may take a minute or so.
+At this point, we can verify the deployment by checking if the Pods are running, Not that these containers need to be downloaded and started, this may take a minute or so.
 {{< tabs >}}
 {{% tab title="kubectl get pods" %}}
 
@@ -301,7 +302,7 @@ Once they are running, the application will take a few minutes to fully start up
 
 ## 5. Verify the local Docker Repository
 
-Once we have tested our Zero Auto-Config Instrumentation the existing containers, we are going to build our own containers to show some of the additional instrumentation features of Opentelemetry Java. Only then we will touch the config files or the source code. Once we build these containers, Kubernetes will need to pull these new images from somewhere. To enable this we have created a local repository to store these new containers, so Kubernetes can pull the images locally.
+Once we have tested our Zero Auto-Config Instrumentation in the existing containers, we are going to build our containers to show some of the additional instrumentation features of Opentelemetry Java. Only then we will touch the config files or the source code. Once we build these containers, Kubernetes will need to pull these new images from somewhere. To enable this we have created a local repository to store these new containers, so Kubernetes can pull the images locally.
 
 We can see if the repository is up and running by checking the inventory with the below command:
 

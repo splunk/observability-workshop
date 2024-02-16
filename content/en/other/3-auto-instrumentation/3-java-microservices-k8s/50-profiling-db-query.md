@@ -6,26 +6,24 @@ hidden: false
 ---
 ## 1. Introduction
 
-As we have seen in the previous chapter, you can trace your interactions between the various services using APM without touching your code, which will allow you to identify issues faster. However as seen, beside tracing, Splunk Zero Config for Auto-Instrumentations offers additional features out of the box that can help you finding issues faster. In this section we are going to look at 2 of them:
+As we have seen in the previous chapter, you can trace your interactions between the various services using APM without touching your code, which will allow you to identify issues faster. However as seen, besides tracing, Splunk Zero Config for Auto-Instrumentations offers additional features out of the box that can help you finding issues faster. In this section we are going to look at 2 of them:
 
 * Always-on Profiling and Java Metrics
 * Database Query Performance
 
-If you want to dive deeper in Always-on Profiling or DB-Query performance, we have a separate Ninja Workshop called ***Debug Problems*** that you can follow for more detailed info.
+If you want to dive deeper into Always-on Profiling or DB-Query performance, we have a separate Ninja Workshop called ***Debug Problems*** that you can follow for more detailed info.
 
 ## 2. AlwaysOn Profiling and Metrics
 
 When we installed the Splunk Distribution of the OpenTelemetry Collector using the Helm chart earlier, we configured it to enable **AlwaysOn Profiling** and **Metrics**. This means that the collector will automatically generate CPU and Memory profiles for the application and send them to Splunk Observability Cloud.
 
-When you deploy the PetClinic application, and set the Annotation, the collector automatically detects the application and instruments it for traces and profiling.
-
-we can verify this by examining the startup logs of one of our Java based containers we are instrumenting by running the following script:
+When you deploy the PetClinic application and set the annotation, the collector automatically detects the application and instruments it for traces and profiling. We can verify this by examining the startup logs of one of the Java containers we are instrumenting by running the following script:
 
 ```bash
 .  ~/workshop/petclinic/scripts/get_logs.sh
 ```
 
-The logs should show what flags where picked up by the Java Auto instrumentation agent:
+The logs should show what flags were picked up by the Java Auto instrumentation agent:
 
 {{% tab title="Example output" %}}
 
@@ -61,9 +59,9 @@ OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader clas
 We are interested in the section written by the  `com.splunk.opentelemetry.profiler.ConfigurationLogger` or the **Profiling Configuration**
 
 We can see the various settings you can control, some that are  useful depending on your use case like the `splunk.profiler.directory` -  The location where the agent  writes the call stacks before sending them to Splunk. This may be different depending how you configure your containers.
-An other parameter you may want to change is `splunk.profiler.call.stack.interval` This is how often the system takes a CPU Stack trace. You may want to reduce this if you have short spans like we have in our application. (we kept the default as the spans in this demo application are extremely short, so Span may not always have a CPU  Call Stack related to it.)
+Another parameter you may want to change is `splunk.profiler.call.stack.interval` This is how often the system takes a CPU Stack trace. You may want to reduce this if you have short spans like we have in our application. (we kept the default as the spans in this demo application are extremely short, so Span may not always have a CPU  Call Stack related to it.)
 
-You can find how to set these parameters [here](https://docs.splunk.com/observability/en/gdi/get-data-in/application/java/configuration/advanced-java-otel-configuration.html#profiling-configuration-java). And below is how you set a higher collection rate for call stack in your deployment.yaml, exactly how pass any JAVA option to the the java application running in your container:
+You can find how to set these parameters [here](https://docs.splunk.com/observability/en/gdi/get-data-in/application/java/configuration/advanced-java-otel-configuration.html#profiling-configuration-java). Below, is how you set a higher collection rate for call stack in your `deployment.yaml`, exactly how to pass any JAVA option to the the Java application running in your container:
 
 ```text
  env: 
@@ -104,18 +102,18 @@ For more detail on Profiling, check the the **Debug Problems workshop**, or  che
 With Database Query Performance, you can monitor the impact of your database queries on service availability directly in Splunk APM. This way, you can quickly identify long-running, unoptimized, or heavy queries and mitigate issues they might be causing, without having to instrument your databases.
 
 To look at the performance of your database queries, make sure you are in the APM **Explore** page either by going back in the browser or navigate to the APM APM section in the Menu bar, then click on the **Explore** tile.
-Select the the inferred database service `mysql:petclinic` Inferred Database server in the Dependency map **(1)**, then scroll the right hand pane to find the **Database Query Performance** Pane **(2)**.
+Select the inferred database service `mysql:petclinic` Inferred Database server in the Dependency map **(1)**, then scroll the right hand pane to find the **Database Query Performance** Pane **(2)**.
 
 ![db-query from map](../images/db-query-map.png)
 
-If the service you have selected in the map is indeed an (inferred) database server, this pane will populate with the top 90% (P90) database calls based on duration. To dive deeper in the db-query performance function click somewhere on the word **Database Query Performance** at the top of the pane.
+If the service you have selected in the map is indeed an (inferred) database server, this pane will populate with the top 90% (P90) database calls based on duration. To dive deeper into the db-query performance function click somewhere on the word **Database Query Performance** at the top of the pane.
 
-This wil bring us to the DB-query Performance overview screen.
+This will bring us to the DB-query Performance overview screen:
 
 ![db-query full](../images/db-query-full.png)
 
 {{% notice title="Database Query Normalization" style="info" %}}
-By default, Splunk APM instrumentation sanitizes database queries to remove or mask sensible data, such as secrets or personal identifiable information (PII) from the db.statements. You can find  how to turn off database query normalization [here](https://docs.splunk.com/observability/en/apm/db-query-perf/db-perf-troubleshooting.html#turn-off-database-query-normalization).
+By default, Splunk APM instrumentation sanitizes database queries to remove or mask sensible data, such as secrets or personal identifiable information (PII) from the db.statements. You can find how to turn off database query normalization [here](https://docs.splunk.com/observability/en/apm/db-query-perf/db-perf-troubleshooting.html#turn-off-database-query-normalization).
 {{% /notice %}}
 
 This screen will show us all the Database queries **(1)** done towards our database from you application, based on the Traces & Spans send to the Splunk Observability Cloud.  Note that you can compare them across a time block or sort them on Total Time, P90 Latency & Requests **(2)**.

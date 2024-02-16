@@ -43,7 +43,7 @@ spec:
 
 ## 2. Setting up Java auto instrumentation on the api-gateway pod
 
-Lets look how zero-config works with a single pod, the `api-gateway`. If you enable Zero configuration for a pod, the Collector will attach an init-Container to your existing pod, and restart the pod to activate it.
+Let's look at how zero-config works with a single pod, the `api-gateway`. If you enable Zero configuration for a pod, the Collector will attach an init-Container to your existing pod, and restart the pod to activate it.
 
 To show what happens when you enable Auto instrumentation, let's do a *For & After* of the content of a pod, the `api-gateway` in this case:
 
@@ -87,18 +87,18 @@ kubectl describe pods api-gateway |grep Image:
 
 Next to the original pod from before, you should see an initContainer named **opentelemetry-auto-instrumentation**. (If you get two api-gateway containers, the original one is still terminating, so give it a few seconds):
 
-
 {{% tab title="Example output" %}}
 
 ```text
 Image:         ghcr.io/signalfx/splunk-otel-java/splunk-otel-java:v1.30.0
 Image:         quay.io/phagen/spring-petclinic-api-gateway:0.0.2
 ```
+
 {{% /tab %}}
 
 ## 3. Enable Java auto instrumentation on all pods
 
-Now lets patch all other services so we can see the full interaction between all services with `app.kubernetes.io/part-of=spring-petclinic` as the inject annotation.
+Now let's patch all other services so we can see the full interaction between all services with `app.kubernetes.io/part-of=spring-petclinic` as the inject annotation.
 remember: **This automatically causes pods to restart.**
 
 Note, there will be no change for the *config-server, discovery-server, admin-server & api-gateway* as we patched these earlier.
@@ -129,14 +129,13 @@ deployment.apps/api-gateway patched (no change)
 
 ## 3. Check the result in Splunk APM
 
-Once the containers are patched they will be restarted, let's go back to the **Splunk Observability Cloud**  with the URL provided by the Instructor to check our cluster in the Kubernetes Navigator.
+Once the containers are patched they will be restarted, let's go back to the **Splunk Observability Cloud** with the URL provided by the Instructor to check our cluster in the Kubernetes Navigator.
 
-After a couple of minuted or so you should see that the Pods are being restarted  by the operator and the Zero config container will be added.
-This will look similar like the Screen shot below:
+After a couple of minutes or so you should see that the Pods are being restarted by the operator and the Zero config container will be added. This will look similar to the screenshot below:
 
 ![restart](../images/k8s-navigator-restarted-pods.png)
 
-Wait for the pods to turn green again.(You may want to refresh the screen, then navigate to the **APM** ![APM](../images/apm-icon.png?classes=inline&height=25px) section to look at the information provide by the traces generated from your service in the **Explore** Pane. Use the filter option and change the *environment* filter **(1)** and search for the name of your workshop instance in the drop down box, it should be the [INSTANCE]-workshop. (where `INSTANCE` is the value from the shell script you run earlier). Make sure it is the only one selected.
+Wait for the pods to turn green again (you may want to refresh the screen), then navigate to the **APM** ![APM](../images/apm-icon.png?classes=inline&height=25px) section to look at the information provided by the traces generated from your service in the **Explore** Pane. Use the filter option to change the *environment* filter **(1)** and search for the name of your workshop instance in the dropdown box, it should be the [INSTANCE]-workshop. (where `INSTANCE` is the value from the shell script you run earlier). Make sure it is the only one selected.
 
 ![apm](../images/zero-config-first-services-overview.png)
 
@@ -145,21 +144,20 @@ You should see the name **(2)** of the api-gateway service and metrics in the La
 Next, click on **Explore** **(3)** to see the services in the automatically generated dependency map and select the api-gateway service.
 ![apm map](../images/zero-config-first-services-map.png)
 
-The Example above shows all the interaction between the all our services, Your may still be showing the map in the interim state as it will take the Petclinic Microservice application a few minutes to start up and fully synchronize to make  your map to look like t he one above.
-reducing the time will help, if you pick a Custom time of 2 minutes,  the initial startup related errors (Red Dots) will disappear from the view.)
+The example above shows all the interactions between all our services. You may still be showing the map in the interim state as it will take the Petclinic Microservice application a few minutes to start up and fully synchronize to make your map to look like the one above. Reducing the time will help, if you pick a custom time of 2 minutes, the initial startup-related errors (Red Dots) will disappear from the view.
 
 In the meantime let's examine the metrics that are available for each service that is instrumented and visit the request, error, and duration (RED) metrics Dashboard
 
 ## 5. Examine default R.E.D. Metrics
 
- Splunk APM provides a set of built-in dashboards that present charts and visualized metrics to help you see problems occurring in real time and quickly determine whether the problem is associated with a service, a specific endpoint, or the underlying infrastructure. To look at this dashboard for the selected `api-gateway`, make sure you have the `api-gateway` service selected in the Dependency map as show above, then click on the ***View Dashboard** Link **(1)**  at the top of the right hand pane.
+ Splunk APM provides a set of built-in dashboards that present charts and visualized metrics to help you see problems occurring in real time and quickly determine whether the problem is associated with a service, a specific endpoint, or the underlying infrastructure. To look at this dashboard for the selected `api-gateway`, make sure you have the `api-gateway` service selected in the Dependency map as show above, then click on the ***View Dashboard** Link **(1)**  at the top of the right-hand pane.
 
 This will bring you to the services dashboard:
 
 ![metrics dashboard](../images/zero-config-first-services-metrics.png)
 
-This dashboard, that is available for each of your instrumented services, offers an overview of the key `request, error, and duration (RED)` metrics based on Monitoring MetricSets created from endpoint spans for your services, endpoints, and Business Workflows. They also present related host and Kubernetes metrics to help you determine whether problems are related to the underlying infrastructure, as in the above image.
-As the dashboards allow you to go back in time with the *Time picker* window **(1)**, its the perfect spot to identify behaviour you wish to be alerted on, and with a click on one of the bell icons **(2)** available in each chart, you can set up an alert to do just that.
+This dashboard, which is available for each of your instrumented services, offers an overview of the key `request, error, and duration (RED)` metrics based on Monitoring MetricSets created from endpoint spans for your services, endpoints, and Business Workflows. They also present related host and Kubernetes metrics to help you determine whether problems are related to the underlying infrastructure, as in the above image.
+As the dashboards allow you to go back in time with the *Time picker* window **(1)**, it's the perfect spot to identify the behavior you wish to be alerted on, and with a click on one of the bell icons **(2)** available in each chart, you can set up an alert to do just that.
 
 If you scroll down the page, you get host and Kubernetes metrics related to your service as well.
 Let's move on to look at some of the traces generated by the Zero Config Auto instrumentation.

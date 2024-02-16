@@ -33,9 +33,9 @@ cd ~/spring-petclinic-microservices
 
 ## 3. Update Logback config for the services
 
-The Spring PetClinic application can be configured to use several different Java logging libraries. In this scenario, the application is using `logback`.  To make sure we get the otel information in the logs we need to update a file named `logback.xml` with the log structure, and add an Otel dependency to the `pom.xml` of each of the services in the petclinic microservices folders.
+The Spring PetClinic application can be configured to use several different Java logging libraries. In this scenario, the application is using `logback`.  To make sure we get the OTel information in the logs we need to update a file named `logback.xml` with the log structure, and add an Otel dependency to the `pom.xml` of each of the services in the petclinic microservices folders.
 
-First lets set the Log Structure/Format:
+First, let's set the Log Structure/Format:
 
 Spring boot will allow you to set a global template, but for ease of use, we will replace the existing content of the `logback-spring.xml` files of each service with the following XML content using a prepared script:
 Note the following entries that will be added:  
@@ -93,7 +93,7 @@ Before we can build the new services with the updated log format we need to add 
 . ~/workshop/petclinic/scripts/add_otel.sh
 ```
 
-The Services are now ready to be build, so run the script that will use the `maven` command to compile/build/package the PetClinic microservices (Note the -P buildDocker, this will build the new containers):
+The Services are now ready to be built, so run the script that will use the `maven` command to compile/build/package the PetClinic microservices (Note the -P buildDocker, this will build the new containers):
 {{< tabs >}}
 {{% tab title="Running maven" %}}
 
@@ -130,7 +130,7 @@ Successfully tagged quay.io/phagen/spring-petclinic-api-gateway:latest
 {{% /tab %}}
 {{< /tabs >}}
 
-Given that Kubernetes needs to pull these freshly build images from somewhere, we are going to store them in the repository we tested earlier. To do this, run the script that will push the newly build containers into our local repository:
+Given that Kubernetes needs to pull these freshly built images from somewhere, we are going to store them in the repository we tested earlier. To do this, run the script that will push the newly built containers into our local repository:
 
 {{< tabs >}}
 {{% tab title="pushing Containers" %}}
@@ -190,16 +190,15 @@ The result should be :
 {"repositories":["spring-petclinic-admin-server","spring-petclinic-api-gateway","spring-petclinic-config-server","spring-petclinic-customers-service","spring-petclinic-discovery-server","spring-petclinic-vets-service","spring-petclinic-visits-service"]}
 ```
 
-## 5. Deploy new services to kubernetes
+## 5. Deploy new services to Kubernetes
 
-To see the changes in effect, we need to redeploy the services, First let change the location of the images from the external repo to the local one by running the following script:
+To see the changes in effect, we need to redeploy the services, First, let's change the location of the images from the external repo to the local one by running the following script:
 
 ```bash
 . ~/workshop/petclinic/scripts/set_local.sh
 ```
 
-The result is a new file on disk called **petclinic-local.yaml**
-Let switch to the local versions by using the new version of the deployment yaml. First delete the old containers from the original deployment with:
+The result is a new file on disk called **petclinic-local.yaml**. Let's switch to the local versions by using the new version of the `deployment yaml`. First delete the old containers from the original deployment with:
 
 ```bash
 kubectl delete -f ~/workshop/petclinic/petclinic-local.yaml
@@ -267,8 +266,7 @@ The resulting output should say (again if you see double, its the old container 
 
 Once the containers are patched they will be restarted, let's go back to the **Splunk Observability Cloud**  with the URL provided by the Instructor to check our cluster in the Kubernetes Navigator.
 
-After a couple of minuted or so you should see that the Pods are being restarted  by the operator and the Zero config container will be added.
-This will look similar like the Screen shot below:
+After a couple of minutes or so you should see that the Pods are being restarted by the operator and the Zero config container will be added. This will look similar to the screenshot below:
 
 ![restart](../images/k8s-navigator-restarted-pods.png)
 
@@ -283,12 +281,12 @@ Wait for Log Lines to show up with an injected trace-id like trace_id=08b5ce63e4
 ![Log Observer](../images/log-observer-trace-info.png)
 
 Click on a line with an injected trace_id, this should be all log lines created by your services that are part of a trace **(1)**.
-A Side pane opens where you can see the related  information about your logs. including the relevant Trace and Span Id's **(2)**.
+A Side pane opens where you can see the related information about your logs. including the relevant Trace and Span Id's **(2)**.
 
 Also, at the bottom next to APM, there should be a number, this is the number of related AP Content items for this log line.  click on the APM pane **(1)** as show below:
 ![RC](../images/log-apm-rc.png)
 
-- The *Map for customers-service*  **(2)** brings us to the APM dependency map with the workflow focused on Customer Services, allowing you to quick understand hwo this log line is related to the overall flow of service interaction.
+- The *Map for customers-service*  **(2)** brings us to the APM dependency map with the workflow focused on Customer Services, allowing you to quick understand how this log line is related to the overall flow of service interaction.
 - The *Trace for 34c98cbf7b300ef3dedab49da71a6ce3* **(3)** will bring us to the waterfall in APM for this specific trace that this log line was generated in.
 
 As a last exercise, click on  the Trace for Link, this will bering you to the waterfall for this specific trace:

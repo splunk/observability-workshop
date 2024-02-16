@@ -6,22 +6,22 @@ weight: 20
 
 ## 1. Verify the installation by checking Metrics and Logs
 
-Once the installation is completed, you can login into the  **Splunk Observability Cloud** with the URL provided by the Instructor.
+Once the installation is completed, you can log in to the  **Splunk Observability Cloud** with the URL provided by the Instructor.
 
-First, Navigate to **Kubernetes Navigator** view in the **Infrastructure** ![infra](../images/infra-icon.png?classes=inline&height=25px) section to see the metrics from your cluster in the **K8s nodes** pane. Once you are in the Kubernetes Navigator view, change the *Time* filter to the last 15 Minutes (-15m) to focus on the latest data.
+First, Navigate to the **Kubernetes Navigator** view in the **Infrastructure** ![infra](../images/infra-icon.png?classes=inline&height=25px) section to see the metrics from your cluster in the **K8s nodes** pane. Once you are in the Kubernetes Navigator view, change the *Time* filter to the last 15 Minutes (-15m) to focus on the latest data.
 
-Select your own cluster with the regular filter option at the top of the Navigator and a filter `k8s.cluster.name` **(1)**. Type or select the cluster name of your workshop instance (you can get the unique part from your cluster name by using the `INSTANCE` from the output from the shell script you ran earlier). (You can also select your cluster by clicking on its image in the cluster pane.)
+Select your cluster with the regular filter option at the top of the Navigator and a filter `k8s.cluster.name` **(1)**. Type or select the cluster name of your workshop instance (you can get the unique part from your cluster name by using the `INSTANCE` from the output from the shell script you ran earlier). (You can also select your cluster by clicking on its image in the cluster pane.)
 You should now only have your cluster visible **(2)**.
 
 ![Navigator](../images/navigator.png)
 
-You should see metrics **(3)** of your cluster and the log events **(4)** chart should start to be populated with log line events coming from your cluster. Click on one of the bars to peek at the log lines coming in from you cluster.
+You should see metrics **(3)** of your cluster and the log events **(4)** chart should start to be populated with log line events coming from your cluster. Click on one of the bars to peek at the log lines coming in from your cluster.
 
 ![logs](../images/k8s-peek-at-logs.png)
 
-Also, a `Mysql` pane **(5)** should appear, when you click on that pane, you can see the MySQL related metrics from your database.
+Also, a `Mysql` pane **(5)** should appear, when you click on that pane, you can see the MySQL-related metrics from your database.
 
-![mysql metrics](../images/mysql-metrics.png)
+![MySQL metrics](../images/mysql-metrics.png)
 
 Once you see data flowing in from your host (`metrics and logs`) and MySQL shows `metrics` as well we can move on to the actual PetClinic application.
 

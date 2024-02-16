@@ -1,5 +1,5 @@
 ---
-title: Workshop using the Java microservices Pet Clinic demo (Kubernetes based).
+title: Workshop using the Java microservices Pet Clinic demo (Kubernetes-based).
 linkTitle: PetClinic Java Microservices Workshop (Kubernetes)
 weight: 3
 description: Learn how to enable Open Telemetry (Auto) Instrumentation for your Java-based application running in Kubernetes. Experience real-time monitoring and troubleshooting to help you maximize application behavior with end-to-end visibility.
@@ -7,8 +7,8 @@ hidden: false
 ---
 
 The goal of this workshop is to introduce the features of Splunk's Opentelemetry Java Auto instrumentation.
-First we create the workshop scenario, by installing a simple Java microservices application in Kubernetes.
-We then walk through the basic steps to set up the OpenTelemetry Collector in Kubernetes, and enable auto-instrumentation on the existing Java application running in Kubernetes.  This  will start sending Opentelemetry signals to **Splunk Observability Cloud** platform and enable the following components:
+First, we create the workshop scenario, by installing a simple Java microservices application in Kubernetes.
+We then walk through the basic steps to set up the OpenTelemetry Collector in Kubernetes and enable auto-instrumentation on the existing Java application running in Kubernetes.  This  will start sending Opentelemetry signals to the **Splunk Observability Cloud** platform and enable the following components:
 
 * Splunk Infrastructure Monitoring (IM)
 * Splunk Auto Instrumentation for Java (APM)
@@ -22,7 +22,7 @@ We then walk through the basic steps to set up the OpenTelemetry Collector in Ku
 
 We will show the steps about how to clone (download) a sample microservices Java application (Spring PetClinic), as well as how to compile, package and deploy/run the application.
 
-Once the application is up and running, we will examine the default metrics send by the Opentelemetry Collector in the **Splunk Observability UI** Next, when auto instrumentation is enabled we will start seeing metrics and traces created via the **Auto Instrumentation** for Java that will be used by the **Splunk APM** product.
+Once the application is up and running, we will examine the default metrics sent by the Opentelemetry Collector in the **Splunk Observability UI** Next, when auto instrumentation is enabled we will start seeing metrics and traces created via the **Auto Instrumentation** for Java that will be used by the **Splunk APM** product.
 
 We also will examine Always-on Profiling and Database Query performance.
 
