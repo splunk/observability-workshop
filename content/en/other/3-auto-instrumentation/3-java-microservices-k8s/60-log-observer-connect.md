@@ -13,7 +13,25 @@ This change will configure the Spring PetClinic application to use an Otel-based
 
 The Splunk Log Observer component is used to view the logs and with this information can automatically relate log information with APM Services and Traces. This feature called **Related Content** will also work with Infrastructure.
 
-## 2. Update Logback config for the services
+Lets grab the actual code for the application now.
+
+## 2. Downloading the Spring Microservices PetClinic Application
+
+For this exercise, we will use the Spring microservices PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot) and we are using a version witch actual microservices.
+
+First, clone the PetClinic GitHub repository, as we will need this later in the workshop to compile, build, package and containerize the application:
+
+```bash
+cd ~;git clone https://github.com/hagen-p/spring-petclinic-microservices.git
+```
+
+Then change into the spring-petclinic directory:
+
+```bash
+cd ~/spring-petclinic-microservices
+```
+
+## 3. Update Logback config for the services
 
 The Spring PetClinic application can be configured to use several different Java logging libraries. In this scenario, the application is using `logback`.  To make sure we get the otel information in the logs we need to update a file named `logback.xml` with the log structure, and add an Otel dependency to the `pom.xml` of each of the services in the petclinic microservices folders.
 
@@ -27,8 +45,15 @@ Note the following entries that will be added:
 - trace_flags
 - service.name
 - deployment.environment
-These fields allow the **Splunk** Observability Cloud Suite** to display **Related Content**:
-So let's run the script that will update our log structure with the format above:
+These fields allow the **Splunk** Observability Cloud Suite** to display **Related Content** when used in a pattern shown below:
+
+```xml
+  <pattern>
+    logback: %d{HH:mm:ss.SSS} [%thread] severity=%-5level %logger{36} - trace_id=%X{trace_id} span_id=%X{span_id} service.name=%property{otel.resource.service.name} trace_flags=%X{trace_flags} - %msg %kvp{DOUBLE}%n
+  </pattern>
+```
+
+So let's run the script that will update the files with the log structure with the format above:
 
 {{< tabs >}}
 {{% tab title="Update Logback files" %}}
@@ -60,9 +85,9 @@ We can verify if the replacement has been successful by examining the spring-log
 cat /home/splunk/spring-petclinic-microservices/spring-petclinic-customers-service/src/main/resources/logback-spring.xml
 ```
 
-## 3. Reconfigure and build the services locally
+## 4. Reconfigure and build the services locally
 
-Before we can build the new services with the updated log format we need to add the dependency to the `Pom.xml`:
+Before we can build the new services with the updated log format we need to add the Opentelemetry dependency tht handles field injection to the `Pom.xml` of our services:
 
 ```bash
 . ~/workshop/petclinic/scripts/add_otel.sh
@@ -105,7 +130,7 @@ Successfully tagged quay.io/phagen/spring-petclinic-api-gateway:latest
 {{% /tab %}}
 {{< /tabs >}}
 
-Given that Kubernetes needs to pull these freshly build images from somewhere, we are going to store them in the repository we set up earlier. To do this, run the script that will push the newly build containers into our local repository:
+Given that Kubernetes needs to pull these freshly build images from somewhere, we are going to store them in the repository we tested earlier. To do this, run the script that will push the newly build containers into our local repository:
 
 {{< tabs >}}
 {{% tab title="pushing Containers" %}}
@@ -156,7 +181,7 @@ local: digest: sha256:3601c6e7f58224001946058fb0400483fbb8f1b0ea8a6dbaf403c62b4c
 The containers should now be stored in the local repository, lets confirm by checking the catalog,
 
 ```bash
- curl -X GET http://localhost:5000/v2/_catalog 
+ curl -X GET http://localhost:9999/v2/_catalog 
 ```
 
 The result should be :
@@ -167,14 +192,14 @@ The result should be :
 
 ## 5. Deploy new services to kubernetes
 
-To see the changes in effect, we need to redeploy the services,  First let change the location of the images from the external repo  to the local one by running the following script:
+To see the changes in effect, we need to redeploy the services, First let change the location of the images from the external repo to the local one by running the following script:
 
 ```bash
 . ~/workshop/petclinic/scripts/set_local.sh
 ```
 
 The result is a new file on disk called **petclinic-local.yaml**
-Let switch to the local version by applying the local version of the deployment yaml. First delete the old deplyment with:
+Let switch to the local versions by using the new version of the deployment yaml. First delete the old containers from the original deployment with:
 
 ```bash
 kubectl delete -f ~/workshop/petclinic/petclinic-local.yaml
@@ -192,50 +217,93 @@ This will cause the containers to be replaced with the local version, you can ve
 kubectl describe pods api-gateway |grep Image:
 ```
 
-The resulting output should say ( again if you see double, its the old container being terminated, give it a few seconds):
+The resulting output should say `localhost:9999` : 
 
 ```text
-  Image:         ghcr.io/signalfx/splunk-otel-java/splunk-otel-java:v1.30.0
-  Image:         localhost:5000/spring-petclinic-api-gateway:local
+  Image:         localhost:9999/spring-petclinic-api-gateway:local
 ```
 
-## 6. View Logs
+However,  as we only patched the deployment before, the new deployment does not have the right annotations  for zero config auto-instrumentation, so lets fix that now by running the patch command again:
 
-First give the service time to get back into sync and lets tail the load generator log again
+Note, there will be no change for the *config-server & discovery-server* as they do hav e  the annotation included in the deployment.
+
 {{< tabs >}}
-{{% tab title="Tail Log" %}}
+{{% tab title="Patch all Petclinic services" %}}
 
-``` bash
-. ~/workshop/petclinic/scripts/tail_logs.sh
+```bash
+kubectl get deployments -l app.kubernetes.io/part-of=spring-petclinic -o name | xargs -I % kubectl patch % -p "{\"spec\": {\"template\":{\"metadata\":{\"annotations\":{\"instrumentation.opentelemetry.io/inject-java\":\"default/splunk-otel-collector\"}}}}}"
 ```
 
 {{% /tab %}}
-{{% tab title="Tail Log Output" %}}
+{{% tab title="kubectl patch Output" %}}
 
 ```text
-{"severity":"info","msg":"Welcome Text = "Welcome to Petclinic"}
-{"severity":"info","msg":"@ALL}"
-{"severity":"info","msg":"@owner details page"}
-{"severity":"info","msg":"@pet details page"}
-{"severity":"info","msg":"@add pet page"}
-{"severity":"info","msg":"@veterinarians page"}
-{"severity":"info","msg":"cookies was"}
+deployment.apps/config-server patched (no change)
+deployment.apps/admin-server patched
+deployment.apps/customers-service patched
+deployment.apps/visits-service patched
+deployment.apps/discovery-server patched (no change)
+deployment.apps/vets-service patched
+deployment.apps/api-gateway patched
 ```
 
 {{% /tab %}}
 {{< /tabs >}}
 
-From the left-hand menu click on **Log Observer** and ensure **Index** is set to **splunk4rookies-workshop**.
+Lets check the `api-gateway` container again
 
-Next, click **Add Filter** search for the field `service_name` select the value `<INSTANCE>-petclinic-service` and click `=` (include). You should now see only the log messages from your PetClinic application.
+```bash
+kubectl describe pods api-gateway |grep Image:
+```
 
-![Log Observer](../images/log-observer.png)
+The resulting output should say (again if you see double, its the old container being terminated, give it a few seconds):
+
+```text
+  Image:         ghcr.io/signalfx/splunk-otel-java/splunk-otel-java:v1.30.0
+  Image:         localhost:9999/spring-petclinic-api-gateway:local
+```
+
+## 6. View Logs
+
+Once the containers are patched they will be restarted, let's go back to the **Splunk Observability Cloud**  with the URL provided by the Instructor to check our cluster in the Kubernetes Navigator.
+
+After a couple of minuted or so you should see that the Pods are being restarted  by the operator and the Zero config container will be added.
+This will look similar like the Screen shot below:
+
+![restart](../images/k8s-navigator-restarted-pods.png)
+
+Wait for the pods to turn green again.(You may want to refresh the screen), then from the left-hand menu click on **Log Observer** ![Logo](../images/logo-icon.png?classes=inline&height=25px) and ensure **Index** is set to **splunk4rookies-workshop**.
+
+Next, click **Add Filter** search for the field `deployment.environment` and select the value of rou Workshop (Remember the INSTANCE value ?) and click `=` (include). You should now see only the log messages from your PetClinic application.
+
+Next search for the field  `service_name` select the value `customers-service` and click `=` (include). Now the log files should be reduce to just the lines from your `customers-service`.
+
+Wait for Log Lines to show up with an injected trace-id like trace_id=08b5ce63e46ddd0ce07cf8cfd2d6161a as show below **(1)**: 
+
+![Log Observer](../images/log-observer-trace-info.png)
+
+Click on a line with an injected trace_id, this should be all log lines created by your services that are part of a trace **(1)**.
+A Side pane opens where you can see the related  information about your logs. including the relevant Trace and Span Id's **(2)**.
+
+Also, at the bottom next to APM, there should be a number, this is the number of related AP Content items for this log line.  click on the APM pane **(1)** as show below:
+![RC](../images/log-apm-rc.png)
+
+- The *Map for customers-service*  **(2)** brings us to the APM dependency map with the workflow focused on Customer Services, allowing you to quick understand hwo this log line is related to the overall flow of service interaction.
+- The *Trace for 34c98cbf7b300ef3dedab49da71a6ce3* **(3)** will bring us to the waterfall in APM for this specific trace that this log line was generated in.
+
+As a last exercise, click on  the Trace for Link, this will bering you to the waterfall for this specific trace:
+
+![waterfall logs](../images/waterfall-with-logs.png)
+
+Note that you now have Logs Related Content Pane **(1)** appear, clicking on this will bring you back to log observer with all the logs line that are part of this Trace.
+This will help you to quickly find relevant log lines for an interaction or a problem.
 
 ## 7. Summary
 
-This is the end of the workshop and we have certainly covered a lot of ground. At this point, you should have metrics, traces (APM & RUM), logs, database query performance and code profiling being reported into Splunk Observability Cloud.
+This is the end of the workshop and we have certainly covered a lot of ground. At this point, you should have metrics, traces, logs, database query performance and code profiling being reported into Splunk Observability Cloud.
 
 **Congratulations!**
+
 <!--
 docker system prune -a --volumes
 
