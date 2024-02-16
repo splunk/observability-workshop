@@ -94,6 +94,7 @@ This will bring you to the Always-on Profiling main screen, with the Memory view
 * The Flame Graph **(4)**,  with the visualization of hierarchical based on the stack traces of the profiled service.
 
 Once you have identified the relevant Function or Method you are interested in, `com.mysql.cj.protocol.a.NativePacketPayload.readBytes` in our example but yor may differ, so pick the top one **(1)**  and find it at the e bottom of the Flame Graph **(2)**. Click on it in the Flame Graph, it will show a pane as shown in the image below, where you can see the Thread information **(3)** by clicking on the blue *Show Thread Info* link. If you click on the *Copy Stack Trace* **(4)** button, you grab the actual stack trace that you can use in your coding platform to go to the actual lines of code use at this point (depending of course on your preferred Coding platform)
+
 ![stack trace](../images/grab-stack-trace.png)
 
 For more detail on Profiling, check the the **Debug Problems workshop**, or  check the documents [here](https://docs.splunk.com/observability/en/apm/profiling/intro-profiling.html#introduction-to-alwayson-profiling-for-splunk-apm)
@@ -105,7 +106,7 @@ With Database Query Performance, you can monitor the impact of your database que
 To look at the performance of your database queries, make sure you are in the APM **Explore** page either by going back in the browser or navigate to the APM APM section in the Menu bar, then click on the **Explore** tile.
 Select the the inferred database service `mysql:petclinic` Inferred Database server in the Dependency map **(1)**, then scroll the right hand pane to find the **Database Query Performance** Pane **(2)**.
 
-![dbquery from map](../images/db-query-map.png)
+![db-query from map](../images/db-query-map.png)
 
 If the service you have selected in the map is indeed an (inferred) database server, this pane will populate with the top 90% (P90) database calls based on duration. To dive deeper in the db-query performance function click somewhere on the word **Database Query Performance** at the top of the pane.
 
@@ -113,20 +114,19 @@ This wil bring us to the DB-query Performance overview screen.
 
 ![db-query full](../images/db-query-full.png)
 
+{{% notice title="Database Query Normalization" style="info" %}}
+By default, Splunk APM instrumentation sanitizes database queries to remove or mask sensible data, such as secrets or personal identifiable information (PII) from the db.statements. You can find  how to turn off database query normalization [here](https://docs.splunk.com/observability/en/apm/db-query-perf/db-perf-troubleshooting.html#turn-off-database-query-normalization).
+{{% /notice %}}
+
 This screen will show us all the Database queries **(1)** done towards our database from you application, based on the Traces & Spans send to the Splunk Observability Cloud.  Note that you can compare them across a time block or sort them on Total Time, P90 Latency & Requests **(2)**.
 
-By default, Splunk APM instrumentation sanitizes database queries to remove or mask sensible data, such as secrets or personal identifiable information (PII) from the db.statements. You  can find  how to turn off database query normalization[here](https://docs.splunk.com/observability/en/apm/db-query-perf/db-perf-troubleshooting.html#turn-off-database-query-normalization).
+For each Database query in the list, we see the hightest latency, the total number of calls during the time window, and the number of request per second **(3)**. This allows you to identify places where you might optimise your queries.
 
+You can select traces containing Database Calls via the two charts in the right hand pane **(5)**.  Use the Tag Spotlight pane **(6)** to drill down what tag are related to the database calls, based on endpoints or tags.
 
-
-
+If you click on a specific Query **(1)** you get a detailed query Details pane appear **(2)**, you can use for more detailed investigations:
+![details](../images/query-details.png)
 <!--
-
-You can now visit the Splunk APM UI and examine the application components, traces, profiling, DB Query performance and metrics. From the left-hand menu **APM** → **Explore**, click the environment dropdown and select your environment e.g. `<INSTANCE>-petclinic` (where`<INSTANCE>` is replaced with the value you noted down earlier).
-
-![APM Environment](../images/apm-environment.png)
-
-Once your validation is complete you can stop the application by pressing `Ctrl-c`.
 
 ## 4. Adding Resource Attributes to Spans
 
