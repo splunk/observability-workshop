@@ -42,7 +42,7 @@ Now that we are recording, complete a few actions on the site. An example for ou
 
 ![End Recording](../_img/end-recording.png)
 
-## Exporting the recording
+## Export the recording
 
 Click on the **Export** button:
 

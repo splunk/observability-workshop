@@ -27,4 +27,4 @@ Once complete, scroll down and click on Click on {{% button style="blue" %}}Subm
 
 The test will now be scheduled to run every 5 minutes from the 3 locations that we have selected. This does take a few minutes for the schedule to be created.
 
-So whilst we wait for the test to be scheduled, click on {{% button %}}Edit test{{% /button %}} so we can go through the Advanced settings.
+So while we wait for the test to be scheduled, click on {{% button %}}Edit test{{% /button %}} so we can go through the Advanced settings.
