@@ -25,6 +25,7 @@ The initial setup can be completed by executing the following steps on the comma
 You'll be asked to enter a name for your environment.  Please use `profiling-workshop-yourname` (where `yourname` is replaced by your actual name).
 
 ``` bash
+cd workshop/profiling
 ./1-deploy-otel-collector.sh
 ./2-deploy-mysql.sh
 ./3-deploy-doorgame.sh
