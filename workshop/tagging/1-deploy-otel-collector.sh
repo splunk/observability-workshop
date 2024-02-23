@@ -7,6 +7,10 @@
 # required for helm to work correctly
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 
+# NOTE: This is not generally recommended; doing this for
+#       simplicity of the environment
+sudo chmod +r /etc/rancher/k3s/k3s.yaml
+
 # (1) Install helm
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 chmod 700 get_helm.sh

@@ -14,7 +14,6 @@ For this workshop, we'll be using a microservices-based application. This applic
 
 You will start with an EC2 instance and perform some [initial steps](#initial-steps) in order to get to the following state:
 
-* Install Kubernetes (k3s) and Docker
 * Deploy the **Splunk distribution of the OpenTelemetry Collector**
 * Build and deploy `creditcheckservice` and `creditprocessorservice`
 * Deploy a load generator to send traffic to the services
@@ -26,22 +25,10 @@ The initial setup can be completed by executing the following steps on the comma
 You'll be asked to enter a name for your environment.  Please use `tagging-workshop-yourname` (where `yourname` is replaced by your actual name).
 
 ``` bash
-cd workshop/tagging
-
-./1-docker-setup.sh
-
-# Exit and ssh back to this instance
-
-# return to the same directory as before 
-cd workshop/tagging
-
-# ensure Docker is running 
-sudo systemctl start docker
-
-./2-deploy-otel-collector.sh
-./3-deploy-creditcheckservice.sh
-./4-deploy-creditprocessorservice.sh
-./7-deploy-load-generator.sh
+./1-deploy-otel-collector.sh
+./2-deploy-creditcheckservice.sh
+./3-deploy-creditprocessorservice.sh
+./4-deploy-load-generator.sh
 ```
 
 ## View your application in Splunk Observability Cloud
