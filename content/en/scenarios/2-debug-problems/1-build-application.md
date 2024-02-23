@@ -14,7 +14,6 @@ For this workshop, we'll be using a Java-based application called `The Door Game
 
 You will start with an EC2 instance and perform some [initial steps](#initial-steps) in order to get to the following state:
 
-* Install Kubernetes (k3s) and Docker
 * Deploy the **Splunk distribution of the OpenTelemetry Collector**
 * Deploy the MySQL database container and populate data
 * Build and deploy the `doorgame` application container
@@ -26,21 +25,9 @@ The initial setup can be completed by executing the following steps on the comma
 You'll be asked to enter a name for your environment.  Please use `profiling-workshop-yourname` (where `yourname` is replaced by your actual name).
 
 ``` bash
-cd workshop/profiling
-
-./1-docker-setup.sh
-
-# Exit and ssh back to this instance
-
-# return to the same directory as before 
-cd workshop/profiling
-
-# ensure Docker is running 
-sudo systemctl start docker
-
-./2-deploy-otel-collector.sh
-./3-deploy-mysql.sh
-./4-deploy-doorgame.sh
+./1-deploy-otel-collector.sh
+./2-deploy-mysql.sh
+./3-deploy-doorgame.sh
 ```
 
 ## Let's Play The Door Game
