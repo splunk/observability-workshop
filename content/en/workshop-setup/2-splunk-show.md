@@ -24,6 +24,6 @@ Select the desired **Content Type** as follows:
 
 {{% /notice %}}
 
-Select your Splunk Observability Cloud Realm and enter the INGEST, API, RUM tokens and the HEC URL and HEC Token that **SWiPE** generated for you.
+Select your Splunk Observability Cloud Realm and enter the **SWiPE ID** that was generated for you.
 
 For further guidance on using Splunk Show please see the [**Splunk Show User Guide**](http://go/show/user-guide).
