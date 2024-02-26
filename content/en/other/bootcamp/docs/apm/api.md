@@ -67,9 +67,9 @@ curl http://$ENDPOINT:8000/api -F text=@hamlet.txt
 {{% /tab %}}
 {{< /tabs >}}
 
-Verify in Splunk APM that traces contain the desired informations: TODO screenshot
+Verify in Splunk APM that traces contain the desired information: TODO screenshot
 
-[Create a new indexed span tag][index-span-tag] so that the business team is able to breakdown performance per customer profile.
+[Create a new indexed span tag][index-span-tag] so that the business team can breakdown performance per customer profile.
 
 The milestone for this task is `13custom-instr`. It adds the described custom instrumentation.
 
