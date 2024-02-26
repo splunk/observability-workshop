@@ -8,7 +8,7 @@ hidden: false
 FIRST DRAFT
 
 With our custom dashboard charts, we can create detectors focussed directly on the data and conditions we care about. In building our charts, we also built signals that can trigger alerts.
-
+https://scribehow.com/shared/Custom_chart_detector__Nixqyiy5QRGiMEbw6-LZVA 
 1. In the End User Experience dashboard, scroll down to the Syncreator Web Vitals chart. 
 
 1\. Click the bell icon on the top right of the Syncreator Web Vitals chart, and select "New detector from chart"

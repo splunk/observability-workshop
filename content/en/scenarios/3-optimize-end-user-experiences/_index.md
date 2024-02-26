@@ -18,9 +18,12 @@ Sections:
 - [Dashboard charts](./4-dashboards/_index.md) to capture our KPIs, show trends, and show data in context of our events
 - [Detectors](./5-detectors/_index.md) to alert on our KPIs
 
+{{% notice title="Tip" style="primary"  icon="lightbulb" %}}Keep in mind throughout the workshop: how can I prioritize strategically to get the fastest time to value for my end users and for myself/ my developers?{{% /notice %}}
+
+
 ## Context
 
-As a reminder, we need frontend performance testing to capture everything that goes into our end user experience. If we're just monitoring the backend, we're missing all of the other resources that are critical to our users' success. Read [What the Fastly Outage Can Teach Us About Observability](https://www.splunk.com/en_us/blog/devops/what-the-fastly-outage-can-teach-us-about-observability.html) for a real world illustration of this.
+As a reminder, we need frontend performance testing to capture everything that goes into our end user experience. If we're just monitoring the backend, we're missing all of the other resources that are critical to our users' success. Read [What the Fastly Outage Can Teach Us About Observability](https://www.splunk.com/en_us/blog/devops/what-the-fastly-outage-can-teach-us-about-observability.html) for a real world example.
 ![What goes into the front end](./_img/frontend.png)
 
 ## References
