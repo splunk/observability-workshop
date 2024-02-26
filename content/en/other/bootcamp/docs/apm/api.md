@@ -73,4 +73,4 @@ Verify in Splunk APM that traces contain the desired informations: TODO screensh
 
 The milestone for this task is `13custom-instr`. It adds the described custom instrumentation.
 
-[index-span-tag]: (https://docs.splunk.com/Observability/apm/span-tags/index-span-tags.html#index-a-new-span-tag)
+[index-span-tag](https://docs.splunk.com/Observability/apm/span-tags/index-span-tags.html#index-a-new-span-tag)
