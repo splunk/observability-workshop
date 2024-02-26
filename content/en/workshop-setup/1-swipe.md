@@ -20,6 +20,7 @@ hidden: false
 
 - Create and invite users to the Org.
   - Create a `.csv` file containing the e-mail addresses (one per line) **or** copy and paste e-mail addresses (one per line).
+- If Ninja Workshop is enabled, then the users will be provisioned with **Admin** access control.
 - Create a team and add users to the team.
 - Create a **SWiPE ID** for use in Splunk Show.
 
