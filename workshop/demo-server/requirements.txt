@@ -1,0 +1,3 @@
+flask
+kubernetes
+pandas

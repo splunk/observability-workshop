@@ -52,3 +52,5 @@ workshop/aws/ec2/*.conf
 workshop/aws/ec2/*.key
 workshop/aws/ec2/*.csv
 .idea/
+workshop/demo-client/venv/*
+workshop/demo-server/venv/*
