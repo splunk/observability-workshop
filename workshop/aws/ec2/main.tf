@@ -205,7 +205,7 @@ resource "aws_instance" "observability-instance" {
   tags = merge(
     local.common_tags,
     {
-      #Name = "observability-${count.index + 1}"
+      Name     = "${lower(var.slug)}-${format("%02d", count.index + 1)}" 
       instance = "${lower(var.slug)}-${format("%02d", count.index + 1)}"
       name     = "${lower(var.slug)}-${format("%02d", count.index + 1)}"
       subnet   = "${aws_subnet.o11y_ws_subnets.*.id[count.index % length(aws_subnet.o11y_ws_subnets)]}"
