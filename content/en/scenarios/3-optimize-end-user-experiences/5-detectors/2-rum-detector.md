@@ -17,7 +17,6 @@ Let's say we want to know about an issue in production without waiting for a tic
 
 1. Change the alert severity and add a recipient if you'd like, and click Activate to save the Detector.
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-16/ea3895cc-f7fb-419a-aed6-d3a944b0131a/ascreenshot.jpeg?tl_px=0,838&br_px=1719,1799&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=140,464)
-#### [Made with Scribe](https://scribehow.com/shared/RUM_detector__wa0x0tahTjqJNI6Ye1FI0w)
 
 
 

@@ -44,13 +44,15 @@ First, we see page load and route change information, which can help us understa
 
 ![Page load and route change charts](../images/page-load-route-change.png)
 
-Google has defined Core Web Vitals to quantify the user experience as measured by loading, interactivity, and visual stability.
+Next, Google has defined Core Web Vitals to quantify the user experience as measured by loading, interactivity, and visual stability. Splunk RUM builds in Google's thresholds into the UI, so you can easily see if your metrics are in an acceptable range. 
 
 ![Core Web Vitals charts](../images/core-web-vitals-overview.png)
 
 * **Largest Contentful Paint (LCP)**, measures loading performance. How long does it take for the largest block of content in the viewport to load? To provide a good user experience, LCP should occur within 2.5 seconds of when the page first starts loading.
 * **First Input Delay (FID)**, measures interactivity. How long does it take to be able to interact with the app? To provide a good user experience, pages should have a FID of 100 milliseconds or less.
 * **Cumulative Layout Shift (CLS)**, measures visual stability. How much does the content move around after the initial load? To provide a good user experience, pages should maintain a CLS of 0.1. or less.
+
+Improving Web Vitals is a key component to optimizing your end user experience, so being able to quickly understand them and create detectors if they exceed a threshold is critical.
 
 Google has some great resources if you want to learn more, for example [the business impact of Core Web Vitals](https://web.dev/case-studies/vitals-business-impact).
 

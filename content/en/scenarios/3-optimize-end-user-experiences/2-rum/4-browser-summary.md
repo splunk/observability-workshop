@@ -5,14 +5,14 @@ weight: 4
 ---
 
 * Get familiar with the UI and options available from this landing page
-* Identify Page Views/Errors and Request/Errors and Java Script Errors in a single view </br>
+* Identify Page Views/JavaScript Errors and Request/Errors in a single view </br>
   Check the Web Vitals metrics and any Detector that has fired for in relation to your Browser Application
 
 ---
 
-## 1. Application Summary Dashboard Overview
+## Application Summary Dashboard
 
-### 1.1. Header Bar
+### 1.Header Bar
 
 As seen in the previous section the RUM Application Summary Dashboard consists of 5 major sections.</br>
 The first section is the selection header, where you can collapse the Pane via the ![RUM-browser](../images/browser.png?classes=inline&height=25px) Browser icon or the **>** in front of the application name, which is *jmcj-store* in the example below. It also provides access to the *Application Overview* page if you click the link with your application name which is *jmcj-store* in the example below.
@@ -21,17 +21,13 @@ Further, you can also open the *Application Overview*  or *App Health Dashboard*
 
 ![RUM-SummaryHeader](../images/summaryHeader.png)
 
-First use the *View Dashboard* link to open the Browser App Health Dashboard which should open in a new tab.  Then switch back to original RUM tab, and then use the *Open Application Overview* link, or click on the name of the app to launch the Application Overview dashboard.
+For now, let's look at the high level information we get on the application summary dashboard.
 
-We will looking at the *Application Overview* and *Browser App Health* Dashboards in detail in the following sections.
+The RUM Application Summary Dashboard is focused on providing you with *at a glance* highlights of the status of your application.
 
-## 2. Application Overview
+### 2. Page Views / JavaScript Errors & Network Requests / Errors
 
-The RUM Application Overview Dashboard is focused on providing you with *at a glance* overview of the status of your application.
-
-### 2.1. Page Views / Errors & Network Requests / Errors
-
-The first section shows *Page Views / Errors*, & *Network Requests and Errors* charts show the quantity and trend of these issues in your application. This could be Javascript errors, or failed  network calls to back end services.
+The first section shows *Page Views / JavaScript Errors*, & *Network Requests and Errors* charts show the quantity and trend of these issues in your application. This could be Javascript errors, or failed  network calls to back end services.
 
 ![RUM-chart](../images/Rum-chart.png)
 
@@ -41,7 +37,7 @@ You can see the count of the Page Views / Network Requests / Errors by hovering 
 
 ![RUM-chart-clicked](../images/RUM-Chart-Clicked.png)
 
-### 2.2. JavaScript Errors
+### 3. JavaScript Errors
 
 With the second section of the RUM Application Summary Dashboard we are showing you an overview of the JavaScript errors occurring in your application, along with a count of each error.
 
@@ -51,23 +47,23 @@ In the example above you can see there are three JavaScript errors, one that app
 
 If you click on one of the errors a pop-out opens that will show a summary (below) of the errors over time, along with a Stack Trace of the JavaScript error, giving you an indication of where the problems occurred. (We will see this in more detail in one of the following sections)
 
-![RUM-javascript-chart](../images/expandedRUmJAVAscript-error.png)
+![RUM-javascript-chart](../images/type-error-detail.png)
 
-### 2.3. Web Vitals
+### 4. Web Vitals
 
-The third section of the RUM Application Summary Dashboard is showing you the crucial (google) Web Vitals, three metrics, that are used by Google in its ranking system, and give a very good indication of the speed  of your site for your end users.
+The next section of the RUM Application Summary Dashboard is showing you [Google's Core Web Vitals](https://web.dev/articles/vitals), three metrics that are not only used by Google in its search ranking system, but also quantify end user experience in terms of loading, interactivity, and visual stability.
 
 ![WEB-vitals](../images/RUM-QuickWebVitals.png)
 
 As you can see our site is well behaved and scores *Good* for all three Metrics. These metrics can be used to identify the effect changes to your application have, and help you improve the performance of your site.
 
-If you click on any of the Metrics shown in the Web Vitals pane you will be taken to the corresponding Tag Spotlight Dashboard.  e.g. clicking on the **Largest Contentful Paint (LCP)** chartlet, you will be taken to a dashboard similar to the screen shot below, that gives you timeline and table views for how this metric has performed. This should allow you to spot trends and identify where the problem may be more common, such as an OS or browser version, .
+If you click on any of the Metrics shown in the Web Vitals pane you will be taken to the corresponding Tag Spotlight Dashboard.  e.g. clicking on the **Largest Contentful Paint (LCP)** chartlet, you will be taken to a dashboard similar to the screen shot below, that gives you timeline and table views for how this metric has performed. This should allow you to spot trends and identify where the problem may be more common, such as an operating system, geolocation, or browser version.
 
 ![WEB-vitals-tag](../images/RUM-Tag-Spotlight.png)
 
-### 2.4. Most Recent Detectors
+### 5. Most Recent Detectors
 
-The fourth and final section of the RUM Application Summary Dashboard is focused on providing you an overview of any detector that has triggered for your application. We have created a detector for this screen shot but your pane will be empty for now, but we will add some detectors to your site and make sure they are triggered in one of the next sections.
+The final section of the RUM Application Summary Dashboard is focused on providing you an overview of recent detectors that have triggered for your application. We have created a detector for this screen shot but your pane will be empty for now. We will add some detectors to your site and make sure they are triggered in one of the next sections.
 
 ![detectors](../images/rum-detector.png)
 
@@ -76,5 +72,7 @@ In the screen shot you can see we have a critical alert for the *RUM Aggregated 
 ![alert](../images/click-alert.png)
 
 ---
-
+{{% notice title="Exercise" style="green" icon="running" %}}
 Please take a few minutes to experiment with the RUM Application Summary Dashboard  and the underlying chart and dashboards before going on to the next section.
+{{% /notice %}}
+

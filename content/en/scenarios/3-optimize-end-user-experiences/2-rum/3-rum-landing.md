@@ -10,7 +10,7 @@ weight: 3
 
 ## 1. Visit the RUM Landing Page
 
-Login into your Splunk IM/APM/RUM Website. From the left side menu bar select **RUM** ![RUM-ico](../images/RUM_ico.png?classes=inline&height=25px). This will bring you to your the RUM Landing Page.
+Login into Splunk Observability. From the left side menu bar select **RUM** ![RUM-ico](../images/RUM_ico.png?classes=inline&height=25px). This will bring you to your the RUM Landing Page.
 
 The goal of this page is to give you in a single page, a clear indication of the health, performance and potential errors found in your application(s) and allow you to dive deeper into the information about your User Sessions collected from your web page/App. You will have a pane for each of your active RUM applications. (The view below is the default expanded view)
 
