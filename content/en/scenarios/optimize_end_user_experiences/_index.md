@@ -1,7 +1,7 @@
 ---
 title: Optimizing End User Experiences
-linkTitle: 3. Optimizing End User Experiences
-weight: 3
+linkTitle: 4. Optimizing End User Experiences
+weight: 4
 archetype: chapter
 ---
 

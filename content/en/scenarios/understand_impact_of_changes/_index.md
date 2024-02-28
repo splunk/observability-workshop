@@ -1,7 +1,7 @@
 ---
-title: Understand Impact
-linkTitle: 5. Understand Impact
-weight: 5
+title: Understand Impact of Changes
+linkTitle: 2. Understand Impact of Changes
+weight: 2
 archetype: chapter
 ---
 

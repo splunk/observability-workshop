@@ -1,7 +1,7 @@
 ---
 title: Self-Service Observability
-linkTitle: 4. Self-Service Observability
-weight: 4
+linkTitle: 5. Self-Service Observability
+weight: 5
 archetype: chapter
 ---
 

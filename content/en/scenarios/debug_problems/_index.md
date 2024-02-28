@@ -1,7 +1,7 @@
 ---
-title: Debug Problems
-linkTitle: 2. Debug Problems
-weight: 2
+title: Debug Problems in Microservices
+linkTitle: 3. Debug Problems in Microservices
+weight: 3
 archetype: chapter
 ---
 {{% badge icon="clock" style="primary" %}}2 minutes{{% /badge %}} {{% badge style="blue" title="Authors" %}}Derek Mitchell{{% /badge %}}
