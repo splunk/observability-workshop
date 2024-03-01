@@ -6,7 +6,7 @@ weight: 4
 
 {{% badge icon="clock" style="primary" %}}5 minutes{{% /badge %}}
 
-Now that we've captured several tags from our application, let's explore some of the trace data we've captured that include this additional context, and see if we can identify what's causing poor user experience in some cases.
+Now that we've captured several tags from our application, let's explore some of the trace data we've captured that include this additional context, and see if we can identify what's causing a poor user experience in some cases.
 
 ## Use Trace Analyzer
 

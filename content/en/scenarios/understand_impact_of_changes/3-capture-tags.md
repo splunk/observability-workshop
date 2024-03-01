@@ -96,7 +96,7 @@ Once these changes are made, let's run the following script to rebuild the Docke
 
 ## Confirm Tag is Captured Successfully
 
-After a few minutes, return to **Splunk Observability Cloud** and load one of the latest traces to confirm that the tags were captured successfully (hint: sort by duration to find the latest traces):
+After a few minutes, return to **Splunk Observability Cloud** and load one of the latest traces to confirm that the tags were captured successfully (hint: sort by the timestamp to find the latest traces):
 
 **![Trace with Attributes](../images/trace_with_attributes.png)**
 
