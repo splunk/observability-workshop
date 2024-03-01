@@ -41,4 +41,4 @@ Splunk Observability Cloudにログインしたら、左側のナビゲーショ
 
 これで、OpenTelemetry Collector を設定したホストの、ホストメトリクスを確認することができます。
 
-{{% attachments sort="asc" style="info" title="ダッシュボードJSONのダウンロード方法" /%}}
+{{% resources sort="asc" style="info" title="ダッシュボードJSONのダウンロード方法" /%}}
