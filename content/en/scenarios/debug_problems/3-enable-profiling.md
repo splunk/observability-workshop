@@ -80,9 +80,8 @@ Let's open the AlwaysOn Profiler to review the CPU stack trace in more detail.  
 
 ![Flamegraph and table](../images/flamegraph_and_table.png)
 
-By default, the AlwaysOn Profiler shows both the table and [flamegraph](https://www.brendangregg.com/flamegraphs.html). Take some time to explore this view by doing some of the following:
+The AlwaysOn Profiler includes both a table and a [flamegraph](https://www.brendangregg.com/flamegraphs.html). Take some time to explore this view by doing some of the following:
 
-* toggle between flamegraph and table views
 * click a table item and notice the change in flamegraph
 * navigate the flamegraph by clicking on a stack frame to zoom in, and a parent frame to zoom out
 * add a search term like `splunk` or `jetty` to highlight some matching stack frames

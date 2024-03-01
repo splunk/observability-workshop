@@ -8,7 +8,7 @@ weight: 5
 
 Now that our game startup slowness has been resolved, let's play several rounds of the Door Game and ensure the rest of the game performs quickly. 
 
-As you play the game, do you notice any slowness?  Let's look at the data in **Splunk Observability** Cloud to put some numbers on what we're seeing. 
+As you play the game, do you notice any other slowness?  Let's look at the data in **Splunk Observability** Cloud to put some numbers on what we're seeing. 
 
 ### Review Game Performance in Splunk Observability Cloud
 
