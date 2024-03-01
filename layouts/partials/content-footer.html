@@ -20,9 +20,19 @@
   {{- end }}
 {{- end }}
 {{- if $LastModifierDisplayName }}
-              <i class='fas fa-user'></i> {{ with $LastModifierEmail }}<a href="mailto:{{ . }}">{{ end }}{{ $LastModifierDisplayName }}{{ with $LastModifierEmail }}</a>{{ end }}
+            <span class="badge cstyle tip badge-with-title">
+                <span class="badge-title" class="text-muted">
+                    <i class="fa-fw fas fa-user"></i>
+                </span>
+                <span class="badge-content">{{ $LastModifierDisplayName }}</span>
+            </span>
   {{- with $Date }}
-              <i class='fas fa-calendar'></i> {{ . }}
+            <span class="badge cstyle note badge-with-title">
+                <span class="badge-title" class="text-muted">
+                    <i class="fa-fw fas fa-calendar"></i>
+                </span>
+                <span class="badge-content">{{ . }}</span>
+            </span>
   {{- end }}
 {{- end }}
 {{- partial "term-list.html" (dict
