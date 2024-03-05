@@ -171,7 +171,7 @@ service:
       exporters: [logging]
 
     metrics:
-      receivers: [otlp, opencensus, prometheus]
+      receivers: [otlp, opencensus, prometheus/internal]
       processors: [batch]
       exporters: [logging]
 
