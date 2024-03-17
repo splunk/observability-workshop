@@ -8,7 +8,7 @@ import yaml
 
 year = datetime.now().year
 
-VERSION = "1.9.0"
+VERSION = "1.0.0"
 CAPTION = f"© {year} Splunk Inc. All rights reserved. **Version {VERSION}**"
 
 st.set_page_config(
@@ -29,15 +29,16 @@ st.session_state.valid_org = False
 if not "valid_inputs_received" in st.session_state:
     st.session_state.valid_inputs_received = False
 
-with st.form("demo_form") as form:
-    host = st.text_input("Host", placeholder="hostname")
-    port = st.text_input("Port", placeholder="8083", value="8083")
-    query = st.selectbox("Query", ("pods", "health", "Deploy Online Boutique"))
-    submit_button = st.form_submit_button(label="Submit")
+with st.sidebar:
+    with st.form("demo_form") as form:
+        host = st.text_input("Host", placeholder="hostname")
+        port = st.text_input("Port", placeholder="8083", value="8083")
+        query = st.selectbox("Query", ("pods", "health", "Deploy Online Boutique"))
+        submit_button = st.form_submit_button(label="Submit")
 
-    if submit_button:
-        st.cache_data.clear()
-        st.session_state.valid_inputs_received = True
+        if submit_button:
+            st.cache_data.clear()
+            st.session_state.valid_inputs_received = True
 
 if st.session_state.valid_inputs_received == False:
     st.warning(
