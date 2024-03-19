@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Infrastructure Overview on Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/v5.43/ja/s4r/3-quick-tour/6-infrastructure-home/index.html</link><description>Recent content in Infrastructure Overview on Splunk Observability Cloud Workshops</description><generator>Hugo -- gohugo.io</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/v5.43/ja/s4r/3-quick-tour/6-infrastructure-home/index.xml" rel="self" type="application/rss+xml"/><item><title>Infrastructure Navigators</title><link>https://splunk.github.io/observability-workshop/v5.43/ja/s4r/3-quick-tour/6-infrastructure-home/1-infrastructure-home/index.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v5.43/ja/s4r/3-quick-tour/6-infrastructure-home/1-infrastructure-home/index.html</guid><description>Infrastructure をメインメニューでクリックします。Infrastructure ホームページは4つの異なるセクションで構成されています。
+オンボーディングパネル: Splunk Infrastructure Monitoring を始めるためのトレーニングビデオとドキュメンテーションへのリンク。 時間とフィルタパネル: 時間ウィンドウ（一覧画面上では設定変更できません） Integration パネル: Splunk Observability Cloud にメトリクスを送信しているすべてのテクノロジのリスト。 タイルパネル: Integration によって監視されているサービスの合計数（Integration 別に表示） Infrastructure パネルを使用して、興味のあるインフラストラクチャ/テクノロジーを選択できます。やってみましょう。
+Exercise Integration パネルの Containers セクション（3）にある、Kubernetes を調査対象のテクノロジーとして選択します。
+K8s Nodes と K8s Workloads の2つのタイルが表示されるはずです。
+各タイルの下部には過去の推移を表すグラフがあり、上部にはアラートの通知が表示されます。これらの追加情報は全てのタイルに表示されており、インフラストラクチャのヘ健全性に関する概要を確認するのに役立つでしょう。
+K8s Nodes タイルをクリックします。
+Kubernetes クラスターが1つ以上の表示されます。
+次に Add filters ボタンをクリックします。 k8s.cluster.name と入力し、検索結果をクリックします。
+リストから [WORKSHOPの名前]-k3s-cluster を選択し、Apply Filter ボタンをクリックします。
+Kubernetes Navigator では、健全性を色で示します。ご覧の通り、2つの Pod またはサービスが健全ではなく、Failed 状態にあります（1）。残りは問題なく動いています。これは共用の Kubernetes 環境では一般的に発生することがあるもので、ワークショップではこれを再現しています。
+サイドにあるタイルに注目してください。Nodes dependencies（2）の下に、MySQL と Redis のタイルが表示されています。これらは我々のeコマースアプリケーションで使用されている2つのデータベースです。
+Node Dependencies OpenTelemetry Collector による監視が構成されている場合、UI 上には選択したノードで実行されているサービスが表示されます。</description></item></channel></rss>
