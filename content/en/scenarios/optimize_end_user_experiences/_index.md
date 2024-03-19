@@ -3,20 +3,21 @@ title: Optimizing End User Experiences
 linkTitle: 4. Optimizing End User Experiences
 weight: 4
 archetype: chapter
+draft: true
 ---
 
 How we can use Splunk Observability to get insight into end user experience, and proactively test scenarios to improve that experience.
 
 Sections:
 
-- Basic [Synthetics](./1-synthetics/_index.md) set up to understand availability and performance ASAP
-   - Uptime
-   - API
-   - Single page Browser Test
-- [RUM](./2-rum/_index.md) to understand our real users
-- [Advanced Synthetics](./3-advanced-synthetics/_index.md) based on what we've learned about our users and what we need them to do
-- [Dashboard charts](./4-dashboards/_index.md) to capture our KPIs, show trends, and show data in context of our events
-- [Detectors](./5-detectors/_index.md) to alert on our KPIs
+- Set up basic [Synthetic tests](./1-synthetics/_index.md) to understand availability and performance ASAP
+   - Uptime test
+   - API test
+   - Single page Browser test
+- Explore [RUM](./2-rum/_index.md) to understand our real users
+- Write [advanced Synthetics tests](./3-advanced-synthetics/_index.md) based on what we've learned about our users and what we need them to do
+- Customize [dashboard charts](./4-dashboards/_index.md) to capture our KPIs, show trends, and show data in context of our events
+- Create [Detectors](./5-detectors/_index.md) to alert on our KPIs
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}Keep in mind throughout the workshop: how can I prioritize activities strategically to get the fastest time to value for my end users and for myself/ my developers?{{% /notice %}}
 

@@ -3,7 +3,7 @@ title: 1.3 Import JSON
 weight: 3
 ---
 
-To begin configuring our test, we need to import the JSON that we exported from the Chrome DevTools Recorder. To enable the {{% button %}}**Import**{{% /button %}} button, we must first give our test a name e.g. **`<your initials>` - Online Boutique**.
+To begin configuring our test, we need to import the JSON that we exported from the Chrome DevTools Recorder. To enable the {{% button %}}**Import**{{% /button %}} button, we must first give our test a name e.g. **[`<your team name>`] `<your initials>` - Online Boutique**.
 
 ![Import](../_img/import.png)
 

@@ -4,7 +4,7 @@ linkTitle: 1.2 Understanding results
 weight: 2
 ---
 
-1. Click into a test summary view and play with the [Performance KPIs chart](https://docs.splunk.com/observability/en/synthetics/uptime-test/uptime-test-results.html#customize-the-performance-kpis-chart) filters to see how you can slice and dice your data. This is a good place to get started understanding trends in your data. Later, we will see what custom charts look like, so that you can have a consistent view of what you care about most.
+1. Click into a test summary view and play with the [Performance KPIs chart](https://docs.splunk.com/observability/en/synthetics/uptime-test/uptime-test-results.html#customize-the-performance-kpis-chart) filters to see how you can slice and dice your data. This is a good place to get started understanding trends. Later, we will see what custom charts look like, so you can tailor dashboards to the KPIs you care about most.
 ![KPI chart filters](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-09/c040b5f6-a868-4977-8d3b-bc3e431ffcc8/user_cropped_screenshot.jpeg?tl_px=1160,0&br_px=2880,961&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=755,44)
 {{% notice title="Workshop Question: Using the Performance KPIs chart" style="tip" icon="question" %}}
 What metrics are available? Is your data consistent across time and locations? Do certain locations run slower than others? Are there any spikes or failures?
@@ -23,7 +23,7 @@ If you need to edit the test for it to run successfully, click the test name in 
 ![Performance KPIs for Uptime Tests](../_img/ttfb.png)
 In the example above, we can see that TTFB varies consistently between locations. Knowing this, we can keep location in mind when reporting on metrics. We could also improve the experience, for example by serving users in those locations an endpoint hosted closer to them, which should reduce network latency. We can also see some slight variations in the results over time, but overall we already have a good idea of our baseline for this endpoint's KPIs. When we have a baseline, we can alert on worsening metrics as well as visualize improvements.
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-We are not setting a detector on this test yet, to make sure it is running consistently and successfully. If you are testing a highly critical endpoint and want to be alerted on it ASAP (and have tolerance for potential alert noise), jump to Single Test Detectors.
+We are not setting a detector on this test yet, to make sure it is running consistently and successfully. If you are testing a highly critical endpoint and want to be alerted on it ASAP (and have tolerance for potential alert noise), jump to **[Single Test Detectors](../../5-detectors/1-test-detector.md)**.
 {{% /notice %}}
 
-1. Once you have your Uptime test running successfully, let's move on to the next test type.
+Once you have your Uptime test running successfully, let's move on to the next test type.

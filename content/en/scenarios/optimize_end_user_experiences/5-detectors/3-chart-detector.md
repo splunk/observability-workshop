@@ -16,7 +16,7 @@ For many KPIs, we have a static value in mind as a threshold.
 1. Click the bell icon on the top right of the Syncreator Web Vitals chart, and select "New detector from chart"
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-17/2e7a0adf-f4f7-4183-b7e9-08bbe7350232/ascreenshot.jpeg?tl_px=1160,297&br_px=2880,1258&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=886,277)
 
-2. Change the detector name and adjust the alert details.
+2. Change the detector name to include your **team name** and **initials**, and adjust the alert details.
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-17/4a6f44da-2559-49bf-8c5a-a58220c6e64d/ascreenshot.jpeg?tl_px=0,152&br_px=1719,1113&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=444,277)
 
 3. Change the severity, and add yourself as a recipient before you save this detector.
