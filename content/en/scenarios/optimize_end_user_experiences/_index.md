@@ -3,6 +3,7 @@ title: Optimizing End User Experiences
 linkTitle: 4. Optimizing End User Experiences
 weight: 4
 archetype: chapter
+hidden: true
 ---
 
 How we can use Splunk Observability to get insight into end user experience, and proactively test scenarios to improve that experience.
