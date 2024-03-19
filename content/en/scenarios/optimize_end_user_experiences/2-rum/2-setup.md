@@ -15,7 +15,7 @@ Your workshop instructor will provide you with the Online Boutique URL that has 
 
 ## 2.  Inspecting the HTML source
 
-The changes needed for RUM are placed in the `<head>` section of the hosts Web page. Below is the updated `<head>` section with the changes required to enable RUM:
+The changes needed for RUM are placed in the `<head>` section of the hosts Web page. Right click to view the page source or to inspect the code. Below is an example of the `<head>` section with RUM:
 
 ![Online Boutique](../images/rum-inst.png)
 
@@ -31,3 +31,7 @@ The above lines 21 and 23-30 are all that is required to enable RUM on your webs
 Lines 22 and 31-34 are optional if you want Session Replay instrumented.
 
 Line 36-39 `var tracer=Provider.getTracer('appModuleLoader');` will add a Custom Event for every page change, allowing you to better track your website conversions and usage.  
+
+{{% notice title="Exercise" style="green" icon="running" %}}
+Time to shop! Take a minute to open the workshop store URL in as many browsers and devices as you'd like, shop around, add items to cart, checkout, and feel free to close the shopping browsers when you're finished.
+{{% /notice %}}

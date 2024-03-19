@@ -17,7 +17,7 @@ A page where your users commonly "land" is a good choice to start with a single 
 2. Use the test Name and Custom properties to describe the scope of the test. Then click {{< button >}}+ Edit steps{{< /button >}}<p></p>
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-09/8e3f2a3f-31b3-49b5-9bd1-735775d84652/ascreenshot.jpeg?tl_px=137,197&br_px=1856,1158&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=524,276)
 
-3. Change the transaction label (top left) and step name (on the right) to something readable that describes the step. Add the URL you'd like to test. In the below example, the transaction is "Home" and the step name is "Go to homepage".<p></p>
+3. Change the transaction label (top left) and step name (on the right) to something readable that describes the step. Add the URL you'd like to test. Your workshop instructor can provide you with a URL as well. In the below example, the transaction is "Home" and the step name is "Go to homepage".<p></p>
 ![Transaction and step label](../_img/single-step.png)
 
 4. To validate the test, change the location as needed and click {{< button >}}Try now{{< /button >}}. See the docs for more information on the [try now feature](https://docs.splunk.com/observability/en/synthetics/test-config/try-now.html).<p></p>
@@ -35,4 +35,4 @@ A page where your users commonly "land" is a good choice to start with a single 
 8. You can edit the Device and Frequency or leave them at their default values for now. Click {{% button style="blue" %}}Submit{{% /button %}} to save the test and start running it.<p></p>
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-09/a37a8de3-b1d2-4edc-929e-0ee9994d646a/ascreenshot.jpeg?tl_px=0,838&br_px=1719,1799&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=133,559)
 
-While our Synthetic tests are running, let's instrument RUM to start getting data from our real users!
+While our Synthetic tests are running, let's see how RUM is instrumented to start getting data from our real users!
