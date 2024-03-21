@@ -71,6 +71,7 @@ Common back-end issues affecting user experience are network issues and resource
 
 * **Time To First Byte (TTFB)**, measures how long it takes for a client's browser to receive the first byte of the response from the server. The longer it takes for the server to process the request and send a response, the slower your visitors' browser is at displaying your page.
 
+<!-- in progress
 ### 2.5. Custom Events
 
 The Custom Events tab is where you will find the metrics for any event you may have added yourself to the web pages you are monitoring. See the docs for an [example scenario instrumenting Custom Events for RUM](https://docs.splunk.com/observability/en/rum/rum-scenario-library/spa-custom-event.html#create-a-custom-event-to-measure-user-engagement-on-blog-posts).
@@ -84,4 +85,5 @@ var tracer=Provider.getTracer('appModuleLoader');
 
 These lines  will automatically create custom Events for every new Page, and you can also add these to pieces of custom code that are not part of a framework or an event you created so you can better understand the flow though your application. We support **Custom Event Requests**, **Custom Event Error Rates** and **Custom Event Latency** metrics.
 
-![RUM custom event charts](../images/rum-custom-events.png)
+![RUM custom event charts](../../images/rum-custom-events.png)
+-->

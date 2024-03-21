@@ -10,7 +10,7 @@ weight: 7
 
 2\. What can you learn about this test run? If it failed, use the error message, filmstrip, video replay, and waterfall to understand what happened.
 
-![image](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-01/274b798b-1f52-417b-9d7b-3840a3874b72/ascreenshot.jpeg?tl_px=0,0&br_px=1719,961&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=234,240)
+![Single test run result](../../_img/browser-run-result.png)
 
 3\. What do you see in the resources? Make sure to click through all of the page (or transaction) tabs.
 

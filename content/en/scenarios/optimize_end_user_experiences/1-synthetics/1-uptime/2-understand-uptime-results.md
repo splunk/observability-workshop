@@ -20,7 +20,7 @@ If you need to edit the test for it to run successfully, click the test name in 
 1. In addition to the test running successfully, there are other metrics to measure the health of your endpoints. For example, [Time to First Byte](https://web.dev/articles/ttfb)(TTFB) is a great indicator of performance, and you can [optimize TTFB](https://web.dev/articles/optimize-ttfb) to improve end user experience.
 
 1. Go back to the test overview page and change the Performance KPIs chart to display First Byte time, and change the interval if needed to better see trends in the data. 
-![Performance KPIs for Uptime Tests](../_img/ttfb.png)
+![Performance KPIs for Uptime Tests](../../_img/ttfb.png)
 In the example above, we can see that TTFB varies consistently between locations. Knowing this, we can keep location in mind when reporting on metrics. We could also improve the experience, for example by serving users in those locations an endpoint hosted closer to them, which should reduce network latency. We can also see some slight variations in the results over time, but overall we already have a good idea of our baseline for this endpoint's KPIs. When we have a baseline, we can alert on worsening metrics as well as visualize improvements.
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
 We are not setting a detector on this test yet, to make sure it is running consistently and successfully. If you are testing a highly critical endpoint and want to be alerted on it ASAP (and have tolerance for potential alert noise), jump to **[Single Test Detectors](../../5-detectors/1-test-detector.md)**.

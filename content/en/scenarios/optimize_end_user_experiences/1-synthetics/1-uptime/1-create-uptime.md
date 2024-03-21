@@ -5,7 +5,7 @@ weight: 1
 ---
 
 1. Open Synthetics
-![o11y nav with Synthetics icon highlighted](../_img/o11y-nav-syn.png)
+<img src="../../_img/o11y-nav-syn.png" alt="o11y nav with Synthetics icon highlighted" width=300px>
 
 1. Click the {{% button style="blue" %}}Add new test{{% /button %}} button on the right side of the screen, then select Uptime and HTTP test.
 ![image](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-01/1457c466-904f-4801-b06a-0062a3ea321a/ascreenshot.jpeg?tl_px=1160,671&br_px=2880,1632&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=632,276)
@@ -19,7 +19,7 @@ weight: 1
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}A common reason for {{% button %}}Try now{{% /button %}} to fail is that there is a non-2xx response code. If that is expected, add a Validation for the correct response code.{{% /notice %}}
 
 1. Add any additional validations needed, for example: response code, response header, and response size.
-![Advanced settings for test configuration](../_img/uptime-security.png)
+![Advanced settings for test configuration](../../_img/uptime-security.png)
 
 1. Add and remove any locations you'd like. Keep in mind where you expect your endpoint to be available.
 
