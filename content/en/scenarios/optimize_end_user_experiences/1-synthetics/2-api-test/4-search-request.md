@@ -19,17 +19,17 @@ Next, add two request headers with the following key/value pairings:
 - **AUTHORIZATION: Bearer {{custom.access_token}}**
   - This uses the custom variable we created in the previous step!
 
-![Add search request](../_img/add-search-request.png)
+![Add search request](../../_img/add-search-request.png)
 
 Expand the **Validation** section and add the following extraction:
 
 - **Extract** from **Response body** **JSON** **$.tracks.items[0].id** as **track.id**
 
-![Add search payload](../_img/add-search-payload.png)
+![Add search payload](../../_img/add-search-payload.png)
 
 To validate the test before saving, change the location as needed and click {{< button >}}Try now{{< /button >}}. See the docs for more information on the [try now feature](https://docs.splunk.com/observability/en/synthetics/test-config/try-now.html).
 
-![try now](../_img/try-now.png)
+![try now](../../_img/try-now.png)
 
 When the validation is successful, click on {{< button style="blue" >}}< Return to test{{< /button >}} to return to the test configuration page. And then click {{< button style="blue" >}}Save{{< /button >}} to save the API test.
 
