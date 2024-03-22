@@ -1,0 +1,25 @@
+<h1 id="{{ .Title | plainify | anchorize }}">{{ .Title }}</h1>
+{{- if .Param "time"}}
+<span class="badge cstyle primary badge-with-title">
+  <span class="badge-title" class="text-muted">
+      <i class="fa-fw fas fa-clock"></i>
+  </span>
+  <span class="badge-content">{{ .Param "time" }}</span>
+</span>
+{{- end }}
+{{- if .Param "authors" }}
+  <span class="badge cstyle blue badge-with-title">
+    <span class="badge-title" class="text-muted">
+      {{- if eq (len (index .Params "authors")) 1 }}
+        Author
+      {{- else if gt (len (index .Params "authors")) 1 }}
+        Authors
+      {{- end }}
+    </span>
+    <span class="badge-content">
+      {{ range .Param "authors" }}
+        {{ . }}
+      {{ end }}
+    </span>
+  </span>
+{{- end }}
