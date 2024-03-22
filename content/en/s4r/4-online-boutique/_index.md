@@ -2,9 +2,8 @@
 title: Let's go shopping 💶
 linkTitle: 4. Shopping at the Online Boutique
 weight: 4
+time: 5 minutes
 ---
-
-{{% badge icon="clock" color="#ed0090" %}}5 minutes{{% /badge %}}
 
 {{% notice icon="user" style="orange" title="Persona" %}}
 

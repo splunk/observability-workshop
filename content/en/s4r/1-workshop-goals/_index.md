@@ -3,9 +3,8 @@ title: Workshop Overview
 linkTitle: 1. Workshop Overview
 weight: 1
 archetype: chapter
+time: 2 minutes
 ---
-
-{{% badge icon="clock" color="#ed0090" %}}2 minutes{{% /badge %}}
 
 #### Introduction
 

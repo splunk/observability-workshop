@@ -2,9 +2,8 @@
 title: Use Tags for Troubleshooting
 linkTitle: 5.6 Use Tags for Troubleshooting
 weight: 6
+time: 5 minutes
 ---
-
-{{% badge icon="clock" style="primary" %}}5 minutes{{% /badge %}}
 
 ## Using Tag Spotlight
 

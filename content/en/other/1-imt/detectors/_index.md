@@ -2,9 +2,8 @@
 title: Working with Detectors
 linkTitle: 4. Detectors
 weight: 4
+time: 10 minutes
 ---
-
-{{% button icon="clock" %}}10 minutes{{% /button %}}
 
 * Create a Detector from one of your charts
 * Setting Alert conditions
@@ -15,7 +14,7 @@ weight: 4
 
 ## 1. Introduction
 
-Splunk Observability Cloud uses detectors, events, alerts, and notifications to keep you informed when certain criteria are met. For example, you might want a message sent to a Slack channel or to an email address for the Ops team when CPU Utilization has reached 95%, or when the number of concurrent users is approaching a limit that might require you to spin up an additional AWS instance.
+Splunk Observability Cloud uses detectors, events, alerts, and notifications to keep you informed when certain criteria are met. For example, you might want a message sent to a Slack channel or an email address for the Ops team when CPU Utilization has reached 95%, or when the number of concurrent users is approaching a limit that might require you to spin up an additional AWS instance.
 
 These conditions are expressed as one or more rules that trigger an alert when the conditions in the rules are met. Individual rules in a detector are labeled according to criticality: Info, Warning, Minor, Major, and Critical.
 
@@ -66,7 +65,7 @@ A pre-flight check will take place after 5 seconds. See the **Estimated alert co
 {{% notice title="About pre-flight checks" style="info" %}}
 Once you set an alert condition, the UI estimates how many alerts you might get based on the current settings, and in the timeframe set on the upper right corner - in this case, the past day.
 
-Immediately, the platform will start analyzing the signals with the current settings, and perform something we call a Pre-flight Check. This enables you to test the alert conditions using the historical data in the platform, to ensure the settings are logical and will not inadvertently generate an alert storm, removing the guess work from configuring alerts in a simple but very powerful way, only available using the Splunk Observability Cloud.
+Immediately, the platform will start analyzing the signals with the current settings, and perform something we call a Pre-flight Check. This enables you to test the alert conditions using the historical data in the platform, to ensure the settings are logical and will not inadvertently generate an alert storm, removing the guesswork from configuring alerts in a simple but very powerful way, only available using the Splunk Observability Cloud.
 
 To read more about detector previewing, please visit this link
 [Preview detector alerts.](https://docs.splunk.com/Observability/alerts-detectors-notifications/preview-detector-alerts.html#nav-Preview-detector-alerts)

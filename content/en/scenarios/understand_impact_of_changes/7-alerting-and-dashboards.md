@@ -2,9 +2,8 @@
 title: Use Tags with Alerting and Dashboards
 linkTitle: 5.7 Use Tags with Alerting and Dashboards
 weight: 7
+time: 10 minutes
 ---
-
-{{% badge icon="clock" style="primary" %}}10 minutes{{% /badge %}}
 
 Earlier, we created a **Troubleshooting Metric Set** on the `credit.score.category` tag, which allowed us to use **Tag Spotlight** with that tag and identify a pattern to explain why some users received a poor experience.
 

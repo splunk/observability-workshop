@@ -2,9 +2,8 @@
 title: Build the Sample Application
 linkTitle: 5.1 Build the Sample Application
 weight: 1
+time: 10 minutes
 ---
-
-{{% badge icon="clock" color="#ed0090" %}}10 minutes{{% /badge %}}
 
 ## Introduction
 

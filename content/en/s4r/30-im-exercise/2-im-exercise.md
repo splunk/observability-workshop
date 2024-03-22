@@ -2,9 +2,8 @@
 title: Infrastructure Exercise - Part 2
 linkTitle: Part 2
 weight: 2
+time: 10 minutes
 ---
-
-{{% badge icon="clock" %}}10 minutes{{% /badge %}}
 
 This is Part 2, of the Infrastructure Monitoring exercise, you should now have a single cluster visible.
 

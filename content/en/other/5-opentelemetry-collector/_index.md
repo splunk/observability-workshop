@@ -3,6 +3,8 @@ title: Making Your Observability Cloud Native With OpenTelemetry
 linkTitle: OpenTelemetry Collector
 weight: 5
 description: Learn the concepts of the OpenTelemetry Collector and how to use it to send data to Splunk Observability Cloud.
+authors: ["Robert Castley"]
+time: 1 hour
 ---
 
 ## Abstract

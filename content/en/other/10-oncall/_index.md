@@ -3,6 +3,8 @@ title: Splunk OnCall
 linkTitle: Splunk OnCall
 description: Make expensive service outages a thing of the past. Remediate issues faster, reduce on-call burnout and keep your services up and running.
 weight: 10
+authors: ["Geoff Higginbottom"]
+time: 1 hour 30 minutes
 ---
 
 ## Aim
@@ -15,9 +17,9 @@ Once you have access to each platform, keep them open for the duration of the wo
 
 You should have received an invitation to Activate your Splunk On-Call account via e-mail, if you have not already done so, click the _Activate Account_ link and follow the prompts.
 
-If you did not receive an invitation it is probably because you already have a Splunk On-Call login, linked to a different organisation.
+If you did not receive an invitation it is probably because you already have a Splunk On-Call login, linked to a different organization.
 
-If so login to that Org, then use the organisation dropdown next to your username in the top left to switch to the Observability Workshop Org.
+If so log in to that Org, then use the organization dropdown next to your username in the top left to switch to the Observability Workshop Org.
 
 ![Switch Org](images/switch-org.png)
 

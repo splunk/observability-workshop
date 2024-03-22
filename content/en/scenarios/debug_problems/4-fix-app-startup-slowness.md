@@ -2,9 +2,8 @@
 title: Fix Application Startup Slowness
 linkTitle: 5.4 Fix Application Startup Slowness
 weight: 4
+time: 10 minutes
 ---
-
-{{% badge icon="clock" color="#ed0090" %}}10 minutes{{% /badge %}}
 
 In this section, we'll use what we learned from the profiling data in **Splunk Observability Cloud** to resolve the slowness we saw when starting our application. 
 

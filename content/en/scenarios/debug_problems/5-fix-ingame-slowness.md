@@ -2,9 +2,8 @@
 title: Fix In Game Slowness
 linkTitle: 5.5 Fix In Game Slowness
 weight: 5
+time: 10 minutes
 ---
-
-{{% badge icon="clock" color="#ed0090" %}}10 minutes{{% /badge %}}
 
 Now that our game startup slowness has been resolved, let's play several rounds of the Door Game and ensure the rest of the game performs quickly. 
 

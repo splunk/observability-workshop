@@ -2,9 +2,8 @@
 title: Monitoring as Code
 linkTitle: 5. Monitoring as Code
 weight: 5
+time: 10 minutes
 ---
-
-{{% button icon="clock" %}}10 minutes{{% /button %}}
 
 * Use Terraform[^1] to manage Observability Cloud Dashboards and Detectors
 * Initialize the Terraform Splunk Provider[^2].

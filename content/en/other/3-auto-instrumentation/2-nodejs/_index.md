@@ -2,9 +2,9 @@
 title: NodeJS Zero-Config Workshop
 weight: 2
 description: A workshop using Zero Configuration Auto-Instrumentation for NodeJS.
+authors: ["Robert Castley"]
+time: 30 minutes
 ---
-
-{{% badge icon="clock" style="primary" %}}30 minutes{{% /badge %}} {{% badge style="blue" title="Author" %}}Robert Castley{{% /badge %}}
 
 The goal is to walk through the basic steps to configure the following components of the **Splunk Observability Cloud** platform:
 

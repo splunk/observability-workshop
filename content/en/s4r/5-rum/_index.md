@@ -3,9 +3,8 @@ title: Splunk RUM
 linkTitle:  5. Splunk RUM
 weight: 5
 archetype: chapter
+time: 15 minutes
 ---
-
-{{% badge icon="clock" color="#ed0090" %}}15 minutes{{% /badge %}}
 
 {{% notice icon="user" style="orange" title="Persona" %}}
 

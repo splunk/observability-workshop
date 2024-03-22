@@ -2,9 +2,8 @@
 title: What are Tags?
 linkTitle: 5.2 What are Tags? 
 weight: 2
+time: 3 minutes
 ---
-
-{{% badge icon="clock" style="primary" %}}3 minutes{{% /badge %}}
 
 To understand why some requests have errors or slow performance, we'll need to add context to our traces. We'll do this by adding tags. But first, let's take a moment to discuss what tags are, and why they're so important for observability.
 

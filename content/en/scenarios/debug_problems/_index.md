@@ -3,8 +3,9 @@ title: Debug Problems in Microservices
 linkTitle: 3. Debug Problems in Microservices
 weight: 3
 archetype: chapter
+time: 2 minutes
+authors: ["Derek Mitchell"]
 ---
-{{% badge icon="clock" style="primary" %}}2 minutes{{% /badge %}} {{% badge style="blue" title="Authors" %}}Derek Mitchell{{% /badge %}}
 
 **Service Maps** and **Traces** are extremely valuable in determining what service an issue resides in.  And related log data helps provide detail on why issues are occurring in that service.  
 

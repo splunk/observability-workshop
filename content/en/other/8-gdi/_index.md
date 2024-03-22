@@ -3,9 +3,8 @@ title: Getting Data In (GDI) with OTel and UF
 linkTitle: GDI (OTel & UF)
 weight: 8
 description: Learn how to get data into Splunk Observability Cloud with OpenTelemetry and the Splunk Universal Forwarder.
+time: 45 minutes
 ---
-
-{{% button icon="clock" %}}45 minutes{{% /button %}}
 
 During this technical workshop, you will learn how to:
 

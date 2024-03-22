@@ -3,9 +3,8 @@ title: Improving MTTR with Custom Tags
 linkTitle: Improving MTTR w/ Custom Tags
 description: This workshop will equip you with...
 weight: 7
+time: 45 minutes
 ---
-
-{{% button icon="clock" %}}45 minutes{{% /button %}}
 
 This workshop will:
 

@@ -2,9 +2,8 @@
 title: Explore Trace Data
 linkTitle: 5.4 Explore Trace Data
 weight: 4
+time: 5 minutes
 ---
-
-{{% badge icon="clock" style="primary" %}}5 minutes{{% /badge %}}
 
 Now that we've captured several tags from our application, let's explore some of the trace data we've captured that include this additional context, and see if we can identify what's causing a poor user experience in some cases.
 

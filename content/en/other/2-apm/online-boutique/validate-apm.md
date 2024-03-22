@@ -1,9 +1,8 @@
 ---
 title: 1.1 Validate APM data
 weight: 2
+time: 5 minutes
 ---
-
-{{% button icon="clock" %}}5 minutes{{% /button %}}
 
 ## 1. RED Metrics
 

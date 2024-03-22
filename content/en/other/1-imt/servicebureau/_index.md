@@ -2,9 +2,8 @@
 title: Service Bureau
 linkTitle: 6. Service Bureau
 weight: 6
+time: 10 minutes
 ---
-
-{{% button icon="clock" %}}10 minutes{{% /button %}}
 
 * How to keep track of the usage of Observability Cloud in your organization
 * Learn how to keep track of spend by exploring the Subscription Usage interface

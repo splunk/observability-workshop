@@ -2,9 +2,8 @@
 title: Index Tags
 linkTitle: 5.5 Index Tags
 weight: 5
+time: 5 minutes
 ---
-
-{{% badge icon="clock" style="primary" %}}5 minutes{{% /badge %}}
 
 ## Index Tags
 

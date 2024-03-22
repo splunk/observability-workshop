@@ -3,9 +3,8 @@ title: 2. Using Splunk APM
 linkTitle: 2. Using Splunk APM
 weight: 3
 description: An overview of how to use Splunk APM
+time: 15 minutes
 ---
-
-{{% button icon="clock" %}}15 minutes{{% /button %}}
 
 * APM Overview - RED metrics
 * Using the Service Map

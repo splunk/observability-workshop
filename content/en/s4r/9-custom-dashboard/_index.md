@@ -1,11 +1,10 @@
 ---
-title: Custom Service Health Dashboard 🏥 
+title: Custom Service Health Dashboard 🏥
 linkTitle: 9. Service Health Dashboard
 weight: 9
 archetype: chapter
+time: 15 minutes
 ---
-
-{{% badge icon="clock" color="#ed0090" %}}15 minutes{{% /badge %}}
 
 {{% notice icon="user" style="orange" title="Persona" %}}
 

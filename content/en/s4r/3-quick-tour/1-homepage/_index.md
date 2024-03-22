@@ -2,9 +2,8 @@
 title: Getting Started
 linkTitle: 1. Getting Started
 weight: 1
+time: 2 minutes
 ---
-
-{{% badge icon="clock" color="#ed0090" %}}2 minutes{{% /badge %}}
 
 ### 1. Sign in to Splunk Observability Cloud
 

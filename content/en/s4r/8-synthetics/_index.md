@@ -3,9 +3,8 @@ title: Splunk Synthetics
 linkTitle: 8. Splunk Synthetics
 archetype: chapter
 weight: 8
+time: 15 minutes
 ---
-
-{{% badge icon="clock" color="#ed0090" %}}15 minutes{{% /badge %}}
 
 {{% notice icon="user" style="orange" title="Persona" %}}
 

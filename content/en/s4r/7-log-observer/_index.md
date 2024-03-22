@@ -3,9 +3,8 @@ title: Splunk Log Observer
 linkTitle: 7. Splunk Log Observer
 weight: 7
 archetype: chapter
+time: 20 minutes
 ---
-
-{{% badge icon="clock" color="#ed0090" %}}20 minutes{{% /badge %}}
 
 {{% notice icon="user" style="orange" title="Persona" %}}
 

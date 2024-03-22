@@ -2,9 +2,8 @@
 title: Home Page
 linkTitle: 1.1 Home Page
 weight: 2
+time: 5 minutes
 ---
-
-{{% badge icon="clock" color="#ed0090" %}}5 minutes{{% /badge %}}
 
 After you have registered and logged into Splunk Observability Cloud you will be taken to the home or landing page. Here, you will find several useful features to help you get started.
 

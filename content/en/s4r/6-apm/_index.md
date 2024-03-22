@@ -3,9 +3,8 @@ title: Splunk APM
 linkTitle: 6. Splunk APM
 weight: 6
 archetype: chapter
+time: 20 minutes
 ---
-
-{{% badge icon="clock" color="#ed0090" %}}20 minutes{{% /badge %}}
 
 {{% notice icon="user" style="orange" title="Persona" %}}
 

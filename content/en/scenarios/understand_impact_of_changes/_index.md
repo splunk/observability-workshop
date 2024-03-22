@@ -3,9 +3,9 @@ title: Understand Impact of Changes
 linkTitle: 2. Understand Impact of Changes
 weight: 2
 archetype: chapter
+time: 2 minutes
+authors: ["Derek Mitchell"]
 ---
-
-{{% badge icon="clock" style="primary" %}}2 minutes{{% /badge %}} {{% badge style="blue" title="Authors" %}}Derek Mitchell{{% /badge %}}
 
 **Splunk Observability Cloud** includes powerful features that dramatically reduce the time required for SREs to isolate issues across services, so they know which team to engage to troubleshoot the issue further, and can provide context to help engineering get a head start on debugging.
 

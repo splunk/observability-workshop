@@ -2,9 +2,8 @@
 title: Infrastructure Exercise - Part 3
 linkTitle: Part 3
 weight: 3
+time: 10 minutes
 ---
-
-{{% badge icon="clock" %}}10 minutes{{% /badge %}}
 
 Let's look at some other parts of the UI like the *Information Pane* on the right of the navigator or the *Related Content Pane* at the bottom.
 

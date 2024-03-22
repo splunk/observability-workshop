@@ -1,10 +1,9 @@
 ---
 title: 1. The Online Boutique
 weight: 1
-description: Verify the Online Boutique application is deployed into Kubernetes (K3s) and generate some artificial traffic using a Load Generator (Locust).
+description: Verify the Online Boutique application is deployed into Kubernetes (K3s) and generates some artificial traffic using a Load Generator (Locust).
+time: 15 minutes
 ---
-
-{{% button icon="clock" %}}15 minutes{{% /button %}}
 
 * {{% badge style="primary" icon=user-ninja title="" %}}**Ninja**{{% /badge %}} Deploy the Online Boutique application in Kubernetes
 * Verify the application is running
