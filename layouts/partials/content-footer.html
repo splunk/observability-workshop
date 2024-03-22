@@ -27,8 +27,7 @@
       {{- else if gt (len (index .Params "authors")) 1 }}
         Authors
       {{- end }}
-    </span>
-    <span class="badge-content">
+    </span><span class="badge-content">
       {{ range .Param "authors" }}
         {{ . }}
       {{ end }}
@@ -39,15 +38,13 @@
   <span class="badge cstyle tip badge-with-title">
       <span class="badge-title" class="text-muted">
         Last Modified By
-      </span>
-      <span class="badge-content">{{ $LastModifierDisplayName }}</span>
+      </span><span class="badge-content">{{ $LastModifierDisplayName }}</span>
   </span>
 {{- with $Date }}
   <span class="badge cstyle note badge-with-title">
       <span class="badge-title" class="text-muted">
           <i class="fa-fw fas fa-calendar"></i>
-      </span>
-      <span class="badge-content">{{ . }}</span>
+      </span><span class="badge-content">{{ . }}</span>
   </span>
   {{- end }}
 {{- end }}
