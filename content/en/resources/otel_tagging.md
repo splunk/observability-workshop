@@ -25,7 +25,7 @@ Alternatively, attributes can be used to create [Monitoring Metric Sets](https:/
 
 ## Resource Semantic Conventions
 
-[OpenTelemetry resource semantic conventions](https://github.com/open-telemetry/opentelemetry-specification/tree/main/specification/resource/semantic_conventions#resource-semantic-conventions) should be used as a starting point when determining which attributes an organization should standardize on. In the following sections, we’ll review some of the more commonly used attributes.
+[OpenTelemetry resource semantic conventions](https://github.com/open-telemetry/semantic-conventions/tree/main) should be used as a starting point when determining which attributes an organization should standardize on. In the following sections, we’ll review some of the more commonly used attributes.
 
 ### Service Attributes
 
@@ -49,11 +49,11 @@ These attributes are set automatically by the SDK, to record information about t
 
 ### Containers
 
-For services running in containers, there are numerous attributes used to describe the container runtime, such as `container.id`, `container.name`, and `container.image.name`.  The full list can be found [here](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/container.md)).
+For services running in containers, there are numerous attributes used to describe the container runtime, such as `container.id`, `container.name`, and `container.image.name`.  The full list can be found [here](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/resource/container.md).
 
 ### Hosts
 
-These attributes describe the host where the service is running, and include attributes such as `host.id`, `host.name`, and `host.arch`. The full list can be found [here](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/host.md).
+These attributes describe the host where the service is running, and include attributes such as `host.id`, `host.name`, and `host.arch`. The full list can be found [here](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/resource/host.md).
 
 ### Deployment Environment
 
@@ -65,9 +65,9 @@ Splunk Observability Cloud uses this attribute to enable related content (as des
 
 There are also attributes to capture information for services running in public cloud environments, such as AWS.  Attributes include cloud.provider, `cloud.account.id`, and `cloud.region`.
 
-The full list of attributes can be found [here](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/cloud.md).
+The full list of attributes can be found [here](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/resource/cloud.md).
 
-Some cloud providers, such as [GCP](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/semantic_conventions/cloud_provider/gcp/README.md), define semantic conventions specific to their offering.
+Some cloud providers, such as [GCP](https://github.com/open-telemetry/semantic-conventions/tree/main/docs/resource/cloud-provider/gcp), define semantic conventions specific to their offering.
 
 ### Kubernetes
 
