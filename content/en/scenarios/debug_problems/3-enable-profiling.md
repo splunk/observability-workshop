@@ -1,6 +1,6 @@
 ---
 title: Enable AlwaysOn Profiling
-linkTitle: 5.3 Enable AlwaysOn Profiling
+linkTitle: 3 Enable AlwaysOn Profiling
 weight: 3
 time: 20 minutes
 ---

@@ -1,6 +1,6 @@
 ---
 title: Understand Impact of Changes
-linkTitle: 2. Understand Impact of Changes
+linkTitle: Understand Impact of Changes
 weight: 2
 archetype: chapter
 time: 2 minutes

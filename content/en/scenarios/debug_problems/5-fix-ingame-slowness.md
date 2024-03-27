@@ -1,6 +1,6 @@
 ---
 title: Fix In Game Slowness
-linkTitle: 5.5 Fix In Game Slowness
+linkTitle: 5 Fix In Game Slowness
 weight: 5
 time: 10 minutes
 ---

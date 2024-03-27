@@ -1,6 +1,6 @@
 ---
 title: What are Tags?
-linkTitle: 5.2 What are Tags? 
+linkTitle: 2 What are Tags? 
 weight: 2
 time: 3 minutes
 ---

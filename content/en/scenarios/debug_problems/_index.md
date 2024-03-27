@@ -1,6 +1,6 @@
 ---
 title: Debug Problems in Microservices
-linkTitle: 3. Debug Problems in Microservices
+linkTitle: Debug Problems in Microservices
 weight: 3
 archetype: chapter
 time: 2 minutes

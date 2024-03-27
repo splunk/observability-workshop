@@ -1,6 +1,6 @@
 ---
 title: Troubleshoot Game Startup
-linkTitle: 5.2 Troubleshoot Game Startup
+linkTitle: 2 Troubleshoot Game Startup
 weight: 2
 time: 10 minutes
 ---

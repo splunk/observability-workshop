@@ -1,6 +1,6 @@
 ---
 title: Fix Application Startup Slowness
-linkTitle: 5.4 Fix Application Startup Slowness
+linkTitle: 4 Fix Application Startup Slowness
 weight: 4
 time: 10 minutes
 ---

@@ -1,6 +1,6 @@
 ---
 title: Use Tags with Alerting and Dashboards
-linkTitle: 5.7 Use Tags with Alerting and Dashboards
+linkTitle: 7 Use Tags with Alerting and Dashboards
 weight: 7
 time: 10 minutes
 ---
