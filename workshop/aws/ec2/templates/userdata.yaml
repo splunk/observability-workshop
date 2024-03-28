@@ -220,7 +220,7 @@ runcmd:
   - mv /home/splunk/workshop/ansible/playbook.yml /home/splunk
   - rm -rf /home/splunk/observability-workshop-$WSVERSION
   - rm -rf /home/splunk/workshop/aws /home/splunk/workshop/cloud-init /home/splunk/workshop/ansible
-  - mv /home/splunk/k3s/demo-in-a-box.zip /home/splunk
+  - mv /home/splunk/workshop/k3s/demo-in-a-box.zip /home/splunk
   # Download Splunk Observability Content Contrib Repo
   - curl -s -L https://github.com/splunk/observability-content-contrib/archive/main.zip -o content-contrib.zip
   - unzip -qq content-contrib.zip -d /home/splunk/

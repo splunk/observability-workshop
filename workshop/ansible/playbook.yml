@@ -19,13 +19,6 @@
           path: /white_rabbit.followed
         register: wh_result
 
-      - name: Download demo-in-a-box
-        get_url:
-          url: "https://demo-in-a-box.s3.amazonaws.com/{{ o11y_diabversion }}.zip"
-          dest: /home/splunk/demo-in-a-box.zip
-        become: true
-        when: not wh_result.stat.exists
-
       - name: Extract demo-in-a-box into /home/splunk/
         unarchive:
           src: demo-in-a-box.zip
