@@ -32,12 +32,12 @@
         register: diab_dir_name
         when: not wh_result.stat.exists
 
-      - name: Delete demo-in-a-box.zip
-        file:
-          path: /home/splunk/demo-in-a-box.zip
-          state: absent
-        become: true
-        when: not wh_result.stat.exists
+      #- name: Delete demo-in-a-box.zip
+      #  file:
+      #    path: /home/splunk/demo-in-a-box.zip
+      #    state: absent
+      #  become: true
+      #  when: not wh_result.stat.exists
         
       - debug:
           var: diab_dir_name.files[0]
@@ -103,18 +103,18 @@
             User=splunk
             Environment="KUBECONFIG=/home/splunk/.kube/config"
             WorkingDirectory=/home/splunk/{{ diab_dir_name.files[0] }}manager
-            ExecStart=streamlit run app.py server.port=81
+            ExecStart=/bin/bash run-manager.sh
             [Install]
             WantedBy=multi-user.target
           marker: "## {mark} added by ansible (configuration demo-in-a-box)"
         become: true
         when: not wh_result.stat.exists
 
-      - name: Install democonsole Python dependencies
-        command: python3 -m pip install -r requirements.txt --upgrade
-        args:
-          chdir: "/home/splunk/{{ diab_dir_name.files[0] }}manager/"
-        when: not wh_result.stat.exists
+      #- name: Install democonsole Python dependencies
+      #  command: python3 -m pip install -r requirements.txt --upgrade
+      #  args:
+      #    chdir: "/home/splunk/{{ diab_dir_name.files[0] }}manager/"
+      #  when: not wh_result.stat.exists
 
       - name: Helm OTel Collector repository add
         command: helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
@@ -131,7 +131,7 @@
 
       - name: Wait for demoinabox.service to start
         pause:
-          seconds: 10
+          seconds: 20
         when: not wh_result.stat.exists
 
       - name: Save Demo-in-a-Box configuration
