@@ -103,7 +103,7 @@
             User=splunk
             Environment="KUBECONFIG=/home/splunk/.kube/config"
             WorkingDirectory=/home/splunk/{{ diab_dir_name.files[0] }}manager
-            ExecStart=/bin/bash run-manager-api.sh
+            ExecStart=/bin/bash scripts/run-manager-api.sh
             [Install]
             WantedBy=multi-user.target
           marker: "## {mark} added by ansible (configuration demo-in-a-box)"
@@ -132,7 +132,7 @@
             User=splunk
             Environment="KUBECONFIG=/home/splunk/.kube/config"
             WorkingDirectory=/home/splunk/{{ diab_dir_name.files[0] }}manager
-            ExecStart=/bin/bash run-manager.sh
+            ExecStart=/bin/bash scripts/run-manager.sh
             [Install]
             WantedBy=multi-user.target
           marker: "## {mark} added by ansible (configuration demo-in-a-box)"
@@ -145,9 +145,9 @@
       #    chdir: "/home/splunk/{{ diab_dir_name.files[0] }}manager/"
       #  when: not wh_result.stat.exists
 
-      - name: Helm OTel Collector repository add
-        command: helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
-        when: not wh_result.stat.exists
+      #- name: Helm OTel Collector repository add
+      #  command: helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
+      #  when: not wh_result.stat.exists
 
       #- name: Helm repository update
       #  command: helm repo update
@@ -175,7 +175,7 @@
 
       - name: Save Demo-in-a-Box configuration
         uri:
-          url: "http://localhost:8081/saveConfig"
+          url: "http://localhost:8082/saveConfig"
           method: POST
           body: "realm={{ realm }}&ingest_token={{ ingest_token }}&rum_token={{ rum_token }}&instance={{ instance }}"
           status_code: [ 200, 201 ]
@@ -184,7 +184,7 @@
 
       - name: Start the OpenTelemetry Collector
         uri:
-          url: "http://localhost:8081/startCollector"
+          url: "http://localhost:8082/startCollector"
           method: GET
           status_code: [ 200, 201 ]
           timeout: 30
@@ -195,13 +195,13 @@
           seconds: 30
         when: not wh_result.stat.exists
 
-      #- name: Start the frontend demo
-      #  uri:
-      #    url: "http://localhost:8081/startdemo?demo=frontend"
-      #    method: GET
-      #    status_code: [ 200, 201 ]
-      #    timeout: 30
-      #  when: not wh_result.stat.exists
+      - name: Start the frontend demo
+        uri:
+          url: "http://localhost:8082/startFrontendDemo"
+          method: GET
+          status_code: [ 200, 201 ]
+          timeout: 30
+        when: not wh_result.stat.exists
 
       - name: Wait for frontend demo to start
         pause:
@@ -210,7 +210,7 @@
 
       - name: Wait for the Online Boutique to become available
         uri:
-          url: "http://localhost:8081"
+          url: "http://localhost:81"
           method: GET
           validate_certs: no
           status_code: 200
