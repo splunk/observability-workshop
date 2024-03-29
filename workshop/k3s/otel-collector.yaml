@@ -38,7 +38,7 @@ agent:
                 - name: "petclinic"
               name: mysql-${WORKSHOP_ENVIRONMENT}
               extraDimensions:
-                service.name: mysql-${WORKSHOP_ENVIRONMENT}                   
+                service.name: mysql-${WORKSHOP_ENVIRONMENT}
           smartagent/redis:
             rule: type == "port" && pod.name matches "redis-cart" && port == 6379
             config:
