@@ -145,13 +145,13 @@
       #    chdir: "/home/splunk/{{ diab_dir_name.files[0] }}manager/"
       #  when: not wh_result.stat.exists
 
-      #- name: Helm OTel Collector repository add
-      #  command: helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
-      #  when: not wh_result.stat.exists
+      - name: Helm OTel Collector repository add
+        command: helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
+        when: not wh_result.stat.exists
 
-      #- name: Helm repository update
-      #  command: helm repo update
-      #  when: not wh_result.stat.exists
+      - name: Helm repository update
+        command: helm repo update
+        when: not wh_result.stat.exists
 
       - name: Start the diab-manager-api service
         command: systemctl enable --now diab-manager-api.service
