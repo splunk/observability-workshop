@@ -81,19 +81,48 @@
         command: kubectl apply -f workshop-secrets.yaml
         when: not wh_result.stat.exists
 
-      - name: Create service for Demo-in-a-Box
+      - name: Create service for Demo-in-a-Box Manager API
         file:
-          path: /etc/systemd/system/demoinabox.service
+          path: /etc/systemd/system/diab-manager-api.service
           state: touch
         become: true
         when: not wh_result.stat.exists
 
-      - name: Update service for demoinabox.service
+      - name: Update service for diab-manager-api.service
         ansible.builtin.blockinfile:
-          path: /etc/systemd/system/demoinabox.service
+          path: /etc/systemd/system/diab-manager-api.service
           block: |
             [Unit]
-            Description=demoinabox service
+            Description=demoinabox manager api service
+            After=network.target
+            StartLimitIntervalSec=0
+            [Service]
+            Type=simple
+            Restart=always
+            RestartSec=1
+            User=splunk
+            Environment="KUBECONFIG=/home/splunk/.kube/config"
+            WorkingDirectory=/home/splunk/{{ diab_dir_name.files[0] }}manager
+            ExecStart=/bin/bash run-manager-api.sh
+            [Install]
+            WantedBy=multi-user.target
+          marker: "## {mark} added by ansible (configuration demo-in-a-box)"
+        become: true
+        when: not wh_result.stat.exists
+
+      - name: Create service for Demo-in-a-Box Manager
+        file:
+          path: /etc/systemd/system/diab-manager.service
+          state: touch
+        become: true
+        when: not wh_result.stat.exists
+
+      - name: Update service for diab-manager.service
+        ansible.builtin.blockinfile:
+          path: /etc/systemd/system/diab-manager.service
+          block: |
+            [Unit]
+            Description=demoinabox manager service
             After=network.target
             StartLimitIntervalSec=0
             [Service]
@@ -120,18 +149,28 @@
         command: helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
         when: not wh_result.stat.exists
 
-      - name: Helm repository update
-        command: helm repo update
-        when: not wh_result.stat.exists
+      #- name: Helm repository update
+      #  command: helm repo update
+      #  when: not wh_result.stat.exists
 
-      - name: Start the demoinabox service
-        command: systemctl enable --now demoinabox.service
+      - name: Start the diab-manager-api service
+        command: systemctl enable --now diab-manager-api.service
         become: true
         when: not wh_result.stat.exists
 
-      - name: Wait for demoinabox.service to start
+      - name: Wait for diab-manager-api.service to start
         pause:
-          seconds: 20
+          seconds: 10
+        when: not wh_result.stat.exists
+
+      - name: Start the diab-manager service
+        command: systemctl enable --now diab-manager.service
+        become: true
+        when: not wh_result.stat.exists
+
+      - name: Wait for diab-manager.service to start
+        pause:
+          seconds: 10
         when: not wh_result.stat.exists
 
       - name: Save Demo-in-a-Box configuration
@@ -156,13 +195,13 @@
           seconds: 30
         when: not wh_result.stat.exists
 
-      - name: Start the frontend demo
-        uri:
-          url: "http://localhost:8081/startdemo?demo=frontend"
-          method: GET
-          status_code: [ 200, 201 ]
-          timeout: 30
-        when: not wh_result.stat.exists
+      #- name: Start the frontend demo
+      #  uri:
+      #    url: "http://localhost:8081/startdemo?demo=frontend"
+      #    method: GET
+      #    status_code: [ 200, 201 ]
+      #    timeout: 30
+      #  when: not wh_result.stat.exists
 
       - name: Wait for frontend demo to start
         pause:
@@ -171,7 +210,7 @@
 
       - name: Wait for the Online Boutique to become available
         uri:
-          url: "http://localhost:81"
+          url: "http://localhost:8081"
           method: GET
           validate_certs: no
           status_code: 200
