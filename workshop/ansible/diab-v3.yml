@@ -164,11 +164,11 @@
         when: not wh_result.stat.exists
 
       - name: Start the diab-manager service
-        command: systemctl enable --now diab-manager.service
+        command: systemctl enable --now diab-manager-ui.service
         become: true
         when: not wh_result.stat.exists
 
-      - name: Wait for diab-manager.service to start
+      - name: Wait for diab-manager-ui.service to start
         pause:
           seconds: 10
         when: not wh_result.stat.exists
