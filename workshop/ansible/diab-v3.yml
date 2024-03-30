@@ -20,7 +20,7 @@
           path: /white_rabbit.followed
         register: wh_result
 
-      - name: Extract demo-in-a-box into /home/splunk/
+      - name: Extract demo-in-a-box.zip into /home/splunk/
         unarchive:
           src: demo-in-a-box.zip
           dest: /home/splunk/
@@ -73,7 +73,7 @@
               rum_token: {{ rum_token }}
               hec_url: {{ hec_url }}
               hec_token: {{ hec_token }}
-          marker: "## {mark} added by ansible (configuration demo-in-a-box)"
+          marker: "## {mark} Added by ansible (configuration Demo-in-a-Box)"
         become: true
         when: not wh_result.stat.exists
 
@@ -93,7 +93,7 @@
           path: /etc/systemd/system/diab-manager-api.service
           block: |
             [Unit]
-            Description=demoinabox manager api service
+            Description=Demo-in-a-Box Manager API Service
             After=network.target
             StartLimitIntervalSec=0
             [Service]
@@ -106,23 +106,23 @@
             ExecStart=/bin/bash scripts/run-manager-api.sh
             [Install]
             WantedBy=multi-user.target
-          marker: "## {mark} added by ansible (configuration demo-in-a-box)"
+          marker: "## {mark} Added by ansible (configuration Demo-in-a-Box)"
         become: true
         when: not wh_result.stat.exists
 
-      - name: Create service for Demo-in-a-Box Manager
+      - name: Create service for Demo-in-a-Box Manager UI
         file:
-          path: /etc/systemd/system/diab-manager.service
+          path: /etc/systemd/system/diab-manager-ui.service
           state: touch
         become: true
         when: not wh_result.stat.exists
 
-      - name: Update service for diab-manager.service
+      - name: Update service for diab-manager-ui.service
         ansible.builtin.blockinfile:
-          path: /etc/systemd/system/diab-manager.service
+          path: /etc/systemd/system/diab-manager-ui.service
           block: |
             [Unit]
-            Description=demoinabox manager service
+            Description=Demo-in-a-Box Manager UI Service
             After=network.target
             StartLimitIntervalSec=0
             [Service]
@@ -132,10 +132,10 @@
             User=splunk
             Environment="KUBECONFIG=/home/splunk/.kube/config"
             WorkingDirectory=/home/splunk/{{ diab_dir_name.files[0] }}manager
-            ExecStart=/bin/bash scripts/run-manager.sh
+            ExecStart=/bin/bash scripts/run-manager-ui.sh
             [Install]
             WantedBy=multi-user.target
-          marker: "## {mark} added by ansible (configuration demo-in-a-box)"
+          marker: "## {mark} Added by ansible (configuration Demo-in-a-Box)"
         become: true
         when: not wh_result.stat.exists
 
