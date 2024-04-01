@@ -1,9 +1,9 @@
 ---
 title: Getting Started
-linkTitle: Getting Started
-weight: 2
+linkTitle: 1. Getting Started
+weight: 1
 authors: ["Tim Hard"]
-time: 2 minutes
+time: 3 minutes
 draft: true
 ---
 
@@ -13,11 +13,9 @@ To simplify the workshop modules, a pre-configured AWS/EC2 instance is provided.
 
 The instance is pre-configured with all the software required to deploy the Splunk OpenTelemetry Connector[^2] and the microservices-based OpenTelemetry Demo Application[^3] in Kubernetes which has been instrumented using OpenTelemetry to send metrics, traces, spans and logs.
 
-The workshops also introduce you to dashboards and how they can be re-used across teams, how metrics and logs can be correlated, creating detectors to fire alerts
+This workshop will introduce you to the benefits of standardized data collection, how content can be re-used across teams, correlating metrics and logs, and creating detectors to fire alerts. By the end of these technical workshops, you will have a good understanding of some of the key features and capabilities of the Splunk Observability Cloud.
 
-By the end of these technical workshops, you will have a good understanding of some of the key features and capabilities of the Splunk Observability Cloud.
-
-Here are the instructions on how to access your pre-configured [AWS](./1-access-ec2/)/[EC2 instance](./1-access-ec2/)
+Here are the instructions on how to access your pre-configured [AWS/EC2 instance](./1-access-ec2/)
 
 ![Splunk Architecture](../images/architecture.png)
 

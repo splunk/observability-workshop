@@ -1,13 +1,11 @@
 ---
 title: How to connect to your workshop environment
-linkTitle: 1. Access AWS/EC2 Instance
-weight: 3
+linkTitle: 1.1 Access AWS/EC2 Instance
+weight: 2
 authors: ["Tim Hard"]
-time: 2 minutes
+time: 5 minutes
 draft: true
 ---
-
-{{% button icon="clock" %}}5 minutes 🥷🏻{{% /button %}}
 
 1. How to retrieve the IP address of the AWS/EC2 instance assigned to you.
 2. Connect to your instance using SSH, Putty[^1] or your web browser.

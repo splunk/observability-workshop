@@ -75,6 +75,10 @@ agent:
       spanmetrics:
     service:
       pipelines:
+        logs:
+          exporters: [splunk_hec/o11y, splunk_hec/platform_logs]
+          processors: [memory_limiter, k8sattributes, filter/logs, batch, resourcedetection, resource, resource/logs, resource/add_environment, resource/add_store_location]
+          receivers: [filelog, fluentforward, otlp]
         metrics:
           exporters: [signalfx]
           processors: [memory_limiter, batch, resourcedetection, resource, attributes/postgres-servicename, resource/add_store_location]
