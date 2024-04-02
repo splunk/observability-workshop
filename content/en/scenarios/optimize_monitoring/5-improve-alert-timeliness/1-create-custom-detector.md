@@ -4,7 +4,7 @@ linkTitle: 5.1 Create Custom Detector
 weight: 5
 authors: ["Tim Hard"]
 time: 10 minutes
-draft: true
+draft: false
 ---
 
 Splunk Observability Cloud provides detectors, events, alerts, and notifications to keep you informed when certain criteria are met. There are a number of pre-built **AutoDetect Detectors** which automatically surface  when common problem patterns occur, such as when an EC2 instance’s CPU utilization is expected to reach its limit. Additionally, you can also create custom detectors if you want something more optimized or specific. For example, you want a message sent to a Slack channel or to an email address for the Ops team that manages this kubernetes cluster when Memory Utilization on their pods has reached 85%.

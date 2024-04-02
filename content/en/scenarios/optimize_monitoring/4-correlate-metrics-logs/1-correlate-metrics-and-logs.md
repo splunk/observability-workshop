@@ -4,7 +4,7 @@ linkTitle: 4.1 Correlate Metrics and Logs
 weight: 3
 authors: ["Tim Hard"]
 time: 5 minutes
-draft: true
+draft: false
 ---
 
 In this section, we'll dive into the seamless correlation of metrics and logs facilitated by the robust naming standards offered by **OpenTelemetry**. By harnessing the power of OpenTelemetry within **Splunk Observability Cloud**, we'll demonstrate how troubleshooting issues becomes significantly more efficient for Site Reliability Engineers (SREs) and operators. With this integration, contextualizing data across various telemetry sources no longer demands manual effort to correlate information. Instead, SREs and operators gain immediate access to the pertinent context they need, allowing them to swiftly pinpoint and resolve issues, improving system reliability and performance. 

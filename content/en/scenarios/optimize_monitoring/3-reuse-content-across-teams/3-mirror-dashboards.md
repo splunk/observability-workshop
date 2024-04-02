@@ -4,7 +4,7 @@ linkTitle: 3.3 Dashboard Mirroring
 weight: 3
 authors: ["Tim Hard"]
 time: 5 minutes
-draft: true
+draft: false
 ---
 
 Not only do the out-of-the-box dashboards provide rich visibility into the infrastructure that is being monitored, they can also be mirrored. This is important because it enables you to create standard dashboards for use by teams throughout your organization. This allows all teams to see any changes to the charts in the dashboard, and members of each team can set dashboard variables and filter customizations relevant to their requirements.

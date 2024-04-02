@@ -4,7 +4,7 @@ linkTitle: 3.2 Dashboard Cloning
 weight: 3
 authors: ["Tim Hard"]
 time: 5 minutes
-draft: true
+draft: false
 ---
 
 ITOps teams responsible for monitoring fleets of infrastructure frequently find themselves manually creating dashboards to visualize and analyze metrics, traces, and log data emanating from rapidly changing cloud-native workloads hosted in Kubernetes and serverless architectures, alongside existing on-premises systems. Moreover, due to the absence of a standardized troubleshooting workflow, teams often resort to creating numerous custom dashboards, each resembling the other in structure and content. As a result, administrative overhead skyrockets and MTTR slows. 

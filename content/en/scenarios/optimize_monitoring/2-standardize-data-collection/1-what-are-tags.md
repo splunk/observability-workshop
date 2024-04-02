@@ -4,7 +4,7 @@ linkTitle: 2.1 What Are Tags?
 weight: 2
 authors: ["Tim Hard"]
 time: 3 minutes
-draft: true
+draft: false
 ---
 
 Tags are key-value pairs that provide additional metadata about metrics, spans in a trace, or logs allowing you to enrich the context of the data you send to **Splunk Observability Cloud**. There are many tags that are collected by default such as hostname or OS type. Custom tags can be used to provide environment or application specific context. Examples of custom tags include:

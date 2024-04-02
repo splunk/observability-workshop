@@ -4,7 +4,7 @@ linkTitle: 2.2 Adding Context With Tags
 weight: 3
 authors: ["Tim Hard"]
 time: 3 minutes
-draft: true
+draft: false
 ---
 
 When you [deployed the OpenTelemetry Demo Application](../getting_started/2-deploy-application/) in the [Getting Started](../getting_started/) section of this workshop, you were asked to enter your favorite city. For this workshop, we'll be using that to show the value of custom tags.

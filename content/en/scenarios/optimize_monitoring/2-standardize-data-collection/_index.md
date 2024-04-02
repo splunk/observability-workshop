@@ -4,7 +4,7 @@ linkTitle: 2. Standardize Data Collection
 weight: 1
 authors: ["Tim Hard"]
 time: 2 minutes
-draft: true
+draft: false
 ---
 
 ## Why Standards Matter

@@ -4,7 +4,7 @@ linkTitle: 1.2 Deploy OpenTelemetry Demo Application
 weight: 3
 authors: ["Tim Hard"]
 time: 10 minutes
-draft: true
+draft: false
 ---
 
 ## Introduction

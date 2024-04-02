@@ -4,7 +4,7 @@ linkTitle: 5. Improve Timeliness of Alerts
 weight: 1
 authors: ["Tim Hard"]
 time: 1 minutes
-draft: true
+draft: false
 ---
 
 When monitoring hybrid and cloud environments, ensuring timely alerts for critical infrastructure and applications poses a significant challenge. Typically, this involves crafting intricate queries, meticulously scheduling searches, and managing alerts across various monitoring solutions. Moreover, the proliferation of disparate alerts generated from identical data sources often results in unnecessary duplication, contributing to alert fatigue and noise within the monitoring ecosystem.

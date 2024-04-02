@@ -4,7 +4,7 @@ linkTitle: 1. Getting Started
 weight: 1
 authors: ["Tim Hard"]
 time: 3 minutes
-draft: true
+draft: false
 ---
 
 During this _**technical**_ Optimize Cloud Monitoring Workshop, you will build out an environment based on a [lightweight](https://k3s.io/) Kubernetes[^1] cluster.

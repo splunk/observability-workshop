@@ -5,7 +5,7 @@ weight: 1
 archetype: chapter
 authors: ["Tim Hard"]
 time: 3 minutes
-draft: true
+draft: false
 ---
 
 The elasticity of cloud architectures means that monitoring artifacts must scale elastically as well, breaking the paradigm of purpose-built monitoring assets. As a result, administrative overhead, visibility gaps, and tech debt skyrocket while MTTR slows. This typically happens for three reasons:

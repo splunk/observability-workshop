@@ -4,7 +4,7 @@ linkTitle: 1.1 Access AWS/EC2 Instance
 weight: 2
 authors: ["Tim Hard"]
 time: 5 minutes
-draft: true
+draft: false
 ---
 
 1. How to retrieve the IP address of the AWS/EC2 instance assigned to you.

@@ -4,7 +4,7 @@ linkTitle: 4.2 Create Log-based Chart
 weight: 3
 authors: ["Tim Hard"]
 time: 5 minutes
-draft: true
+draft: false
 ---
 
 In Log Observer, you can perform codeless queries on logs to detect the source of problems in your systems. You can also extract fields from logs to set up log processing rules and transform your data as it arrives or send data to Infinite Logging S3 buckets for future use. See [What can I do with Log Observer?](https://docs.splunk.com/observability/en/logs/get-started-logs.html#logobserverfeatures) to learn more about Log Observer capabilities.
