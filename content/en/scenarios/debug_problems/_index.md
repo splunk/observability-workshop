@@ -5,6 +5,9 @@ weight: 3
 archetype: chapter
 time: 2 minutes
 authors: ["Derek Mitchell"]
+description: This scenario helps software developers to make debugging problems in microservices easier, faster, and more cost-effective for platform engineering teams rolling out standardized tooling. 
+
+
 ---
 
 **Service Maps** and **Traces** are extremely valuable in determining what service an issue resides in.  And related log data helps provide detail on why issues are occurring in that service.  
