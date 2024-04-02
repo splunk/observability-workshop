@@ -30,8 +30,8 @@ The above lines 21 and 23-30 are all that is required to enable RUM on your webs
 
 Lines 22 and 31-34 are optional if you want Session Replay instrumented.
 
-Line 36-39 `var tracer=Provider.getTracer('appModuleLoader');` will add a Custom Event for every page change, allowing you to better track your website conversions and usage.  
+Line 36-39 `var tracer=Provider.getTracer('appModuleLoader');` will add a Custom Event for every page change, allowing you to better track your website conversions and usage. This may or may not be instrumented for this workshop.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-Time to shop! Take a minute to open the workshop store URL in as many browsers and devices as you'd like, shop around, add items to cart, checkout, and feel free to close the shopping browsers when you're finished.
+Time to shop! Take a minute to open the workshop store URL in as many browsers and devices as you'd like, shop around, add items to cart, checkout, and feel free to close the shopping browsers when you're finished. Keep in mind this is a lightweight demo shop site, so don't be alarmed if the cart doesn't match the item you picked!
 {{% /notice %}}
