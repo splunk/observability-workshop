@@ -1,6 +1,6 @@
 ---
 title: Workshop List
-titleTitle: Workshop List
+linkTitle: Workshop List
 weight: 1
 description: A list of Observability Workshops.
 draft: false
