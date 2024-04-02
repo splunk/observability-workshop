@@ -1,5 +1,6 @@
 ---
-title: 1.4 Settings
+title: Test settings
+linkTitle: 4. Settings
 weight: 4
 ---
 

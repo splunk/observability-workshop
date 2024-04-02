@@ -1,5 +1,6 @@
 ---
-title: 1.1 Recording a test
+title: Record a test
+linkTitle: 1. Record a test
 weight: 1
 ---
 

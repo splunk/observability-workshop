@@ -1,26 +1,20 @@
 ---
-title: 1. Overview
+title: Overview
 linkTitle: 1. Overview
 weight: 1
 ---
 
 The aim of this Splunk Real User Monitoring (RUM) workshop is to let you:
 
-* Shop for items on the Online Boutique to create traffic, and create a number of RUM User Sessions[^1] that you can view in the Splunk Observability Suite.
-
+* Shop for items on the Online Boutique to create traffic, and create RUM User Sessions[^1] that you can view in the Splunk Observability Suite.
 * See an overview of the performance of all your application(s) in the Application Summary Dashboard
-
-* Examine the performance of a specific website or Mobile App with RUM metrics.
-
-* Investigate issues with your website and backend services.
-
-* (Optionally) See how to add RUM to your website.
+* Examine the performance of a specific website with RUM metrics.
 
 In order to reach this goal, we will use an online boutique to order various products. While shopping on the online boutique you will create what is called a User Session.
 
 You may encounter some issues with this web site, and you will use Splunk RUM to identify the issues, so they can be resolved by the developers.
 
-If this a standalone RUM workshop, the workshop host will provide you with a URL for an online boutique store that has RUM enabled.
+The workshop host will provide you with a URL for an online boutique store that has RUM enabled.
 
 Each of these Online Boutiques are also being visited by a few synthetic users; this will allow us to generate more live data to be analyzed later.
 

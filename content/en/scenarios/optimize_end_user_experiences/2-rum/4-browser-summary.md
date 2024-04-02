@@ -1,5 +1,5 @@
 ---
-title: 4. Check Browser Applications health at a glance
+title: Check Browser Applications health at a glance
 linkTitle: 4. Browser Application Summary
 weight: 4
 ---

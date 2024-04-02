@@ -1,5 +1,5 @@
 ---
-title: 5. Analyzing RUM Metrics
+title: Analyzing RUM Metrics
 weight: 5
 ---
 

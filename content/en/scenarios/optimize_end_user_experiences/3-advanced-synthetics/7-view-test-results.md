@@ -1,5 +1,6 @@
 ---
-title: 1.7 View test results
+title: View test results
+linkTitle: 7. View test results
 weight: 7
 ---
 

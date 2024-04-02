@@ -3,6 +3,7 @@ title: RUM
 linkTitle: RUM
 description: End-to-end visibility helps you pinpoint customer-impacting issues from web browsers and native mobile apps to your backend services.
 weight: 2
+time: 15 minutes
 ---
 
 With [RUM](https://docs.splunk.com/observability/en/rum/intro-to-rum.html) instrumented, we will be able to better understand our end users, what they are doing, and what issues they are encountering. 

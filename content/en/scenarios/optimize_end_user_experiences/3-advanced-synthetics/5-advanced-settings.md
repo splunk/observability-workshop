@@ -1,12 +1,13 @@
 ---
-title: 1.5 Advanced Settings
+title: Advanced Test Settings
+linkTitle: 5. Advanced Settings
 weight: 5
 ---
 
 Click on **Advanced**, these settings are optional and can be used to further configure the test.
 
 {{% notice note %}}
-In the case of this workshop, we will **not** be using any of these settings as this is for informational purposes only.
+In the case of this workshop, we will **not** be using any of these settings; this is for informational purposes only.
 {{% /notice %}}
 
 ![Advanced Settings](../../_img/advanced-settings.png)

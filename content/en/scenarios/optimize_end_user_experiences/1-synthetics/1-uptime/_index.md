@@ -1,6 +1,8 @@
 ---
-title: 1. Uptime Test
+title: Uptime Test
+linkTitle: 1. Uptime Test
 weight: 1
+time: 5 minutes
 ---
 
 ## Introduction

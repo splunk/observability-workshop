@@ -2,7 +2,7 @@
 title: API Test
 linkTitle:  2. API Test
 weight: 2
-hidden: false
+time: 5 minutes
 ---
 
 The [API test](https://docs.splunk.com/observability/en/synthetics/api-test/api-test.html) provides a flexible way to check the functionality and performance of API endpoints. The shift toward API-first development has magnified the necessity to monitor the back-end services that provide your core front-end functionality.

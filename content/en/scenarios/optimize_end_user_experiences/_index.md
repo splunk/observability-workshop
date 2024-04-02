@@ -1,12 +1,12 @@
 ---
 title: Optimizing End User Experiences
-linkTitle: 4. Optimizing End User Experiences
+linkTitle: Optimizing End User Experiences
 weight: 4
 archetype: chapter
-draft: true
-
+authors: ["Sarah Ware"]
+time: 90 minutes
+description: Use Splunk Real User Monitoring (RUM) and Synthetics to get insight into end user experience, and proactively test scenarios to improve that experience.
 ---
-{{% badge style="blue" title="Authors" %}}Sarah Ware{{% /badge %}}
 
 How can we use Splunk Observability to get insight into end user experience, and proactively test scenarios to improve that experience?
 

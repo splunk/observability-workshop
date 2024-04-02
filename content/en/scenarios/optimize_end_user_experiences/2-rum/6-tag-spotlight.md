@@ -1,5 +1,5 @@
 ---
-title: 6. Analyzing RUM Tags in the Tag Spotlight view
+title: Analyzing RUM Tags in the Tag Spotlight view
 linkTitle: 6. Using Tag Spotlight
 weight: 6
 ---

@@ -1,5 +1,6 @@
 ---
-title: 1.2 Create Real Browser Test
+title: Create a Browser Test
+linkTitle: 2. Create a Browser Test
 weight: 2
 ---
 

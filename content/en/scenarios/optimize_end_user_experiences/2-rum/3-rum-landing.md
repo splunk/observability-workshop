@@ -1,5 +1,5 @@
 ---
-title: 3. RUM Landing Page 
+title: RUM Landing Page 
 linkTitle: 3. RUM Landing Page
 weight: 3
 ---

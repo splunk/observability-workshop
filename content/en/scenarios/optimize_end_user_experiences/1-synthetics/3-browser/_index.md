@@ -2,7 +2,7 @@
 title: Single Page Browser Test
 linkTitle:  3. Browser Test
 weight: 3
-hidden: false
+time: 5 minutes
 ---
 
 We have started testing our endpoints, now let's test the front end browser experience.
@@ -14,7 +14,7 @@ A page where your users commonly "land" is a good choice to start with a single 
 1. Click {{% button style="blue" %}}Add new test{{% /button %}} and select Browser test<p></p>
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-09/e75aa6a0-c7f2-4e6d-86cf-3da32e0a087c/ascreenshot.jpeg?tl_px=1160,489&br_px=2880,1450&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=936,276)
 
-2. Include your **team name** and **initials** in the test name. Add to the Name and Custom properties to describe the scope of the test. Then click {{< button >}}+ Edit steps{{< /button >}}<p></p>
+2. Include your **team name** and **initials** in the test name. Add to the Name and Custom properties to describe the scope of the test (like Desktop for device type). Then click {{< button >}}+ Edit steps{{< /button >}}<p></p>
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-09/8e3f2a3f-31b3-49b5-9bd1-735775d84652/ascreenshot.jpeg?tl_px=137,197&br_px=1856,1158&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=524,276)
 
 3. Change the transaction label (top left) and step name (on the right) to something readable that describes the step. Add the URL you'd like to test. Your workshop instructor can provide you with a URL as well. In the below example, the transaction is "Home" and the step name is "Go to homepage".<p></p>
@@ -35,4 +35,8 @@ A page where your users commonly "land" is a good choice to start with a single 
 8. You can edit the Device and Frequency or leave them at their default values for now. Click {{% button style="blue" %}}Submit{{% /button %}} to save the test and start running it.<p></p>
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-09/a37a8de3-b1d2-4edc-929e-0ee9994d646a/ascreenshot.jpeg?tl_px=0,838&br_px=1719,1799&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=133,559)
 
-While our Synthetic tests are running, let's see how RUM is instrumented to start getting data from our real users!
+{{% notice title="Bonus Exercise" style="green" icon="running" %}}
+Have a few spare seconds? Copy this test and change just the title and device type, and save. Now you have visibility into the end user experience on another device and connection speed!
+{{% /notice %}}
+
+While our Synthetic tests are running, let's see how RUM is instrumented to start getting data from our real users.

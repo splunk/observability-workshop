@@ -1,5 +1,6 @@
 ---
-title: 1.3 Import JSON
+title: Import JSON
+linkTitle: 3. Import JSON
 weight: 3
 ---
 

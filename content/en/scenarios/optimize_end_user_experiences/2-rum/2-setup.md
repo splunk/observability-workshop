@@ -1,5 +1,5 @@
 ---
-title: 2. RUM instrumentation in a browser app
+title: RUM instrumentation in a browser app
 linkTitle:  2. RUM instrumentation
 weight: 2
 ---

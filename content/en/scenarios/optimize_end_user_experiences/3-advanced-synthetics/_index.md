@@ -2,6 +2,7 @@
 title: Advanced Synthetics
 description: Proactively find and fix performance issues across user flows, business transactions and APIs to deliver better digital experiences.
 weight: 3
+time: 30 minutes
 ---
 
 ## Introduction
@@ -16,16 +17,7 @@ The exported JSON from the Chrome DevTools Recorder will then be used to create 
 - Publicly browser-accessible URL
 - Access to Splunk Observability Cloud
 
-## Goals of Synthetics
-
-Proactively monitor the performance of your web app before problems affect your users. With **Splunk Synthetic Monitoring**, technical and business teams create detailed tests to proactively monitor the speed and reliability of websites, web apps, and resources over time, at any stage in the development cycle.
-
-**Splunk Synthetic Monitoring** offers the most comprehensive and in-depth capabilities for uptime and web performance optimization as part of the only complete observability suite, Splunk Observability Cloud.
-
-Easily set up monitoring for APIs, service endpoints and end-user-experience. With **Splunk Synthetic Monitoring**, go beyond basic uptime and performance monitoring and focus on proactively finding and fixing issues, optimizing web performance, and ensuring customers get the best user experience.
-
-With **Splunk Synthetic Monitoring** you can:
-
-- Detect and resolve issues fast across critical user flows, business transactions and API endpoints
-- Prevent web performance issues from affecting customers
-- And improve performance of all page resources and third-party dependencies
+## Supporting resources
+1. Lantern: [advanced Selectors for multi-step browser tests](https://lantern.splunk.com/Observability/UCE/Proactive_response/Optimize_End-User_Experiences/Running_Synthetics_browser_tests/Selectors_for_multi-step_browser_tests)
+1. Chrome for Developers [DevTools Tips](https://developer.chrome.com/blog/devtools-tips-4)
+1. web.dev [Core Web Vitals](https://web.dev/explore/learn-core-web-vitals) reference
