@@ -1,0 +1,1130 @@
+{
+  "chartExports": [
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "RUM",
+        "id": "GKK9eP1AwAA",
+        "importOf": "GJENOKUA0Aw",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "LCP - real users",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "time",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_metric",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "LCP - P75 by app",
+              "label": "A",
+              "paletteIndex": 11,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Nanosecond",
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('rum.webvitals_lcp.time.ns.p75', filter=filter('app', '*SynCreator*'), extrapolation='last_value').percentile(pct=75, by=['app']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "GKK9e8KA0AA",
+        "importOf": "GKKiF87A4AM",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Synthetics",
+        "options": {
+          "markdown": "<table width=\"100%\" height=\"100%\" rules=\"none\"><tr><td valign=\"middle\" align=\"center\" bgcolor=\"#ec008c\">\n<font size=\"5\" color=\"white\">SYN</font>\n</td></tr></table>",
+          "type": "Text"
+        },
+        "packageSpecifications": "",
+        "programText": "",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "GKK9wxRA4AE",
+        "importOf": "GKKdnFUAwA8",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Lighthouse Score (average)",
+        "options": {
+          "colorBy": "Scale",
+          "colorScale": null,
+          "colorScale2": [
+            {
+              "gt": 89,
+              "gte": null,
+              "lt": null,
+              "lte": 100,
+              "paletteIndex": 20
+            },
+            {
+              "gt": 49,
+              "gte": null,
+              "lt": null,
+              "lte": 89,
+              "paletteIndex": 18
+            },
+            {
+              "gt": null,
+              "gte": 0,
+              "lt": null,
+              "lte": 49,
+              "paletteIndex": 16
+            }
+          ],
+          "maximumPrecision": 2,
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": "Currently, no data is available for this chart."
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "synthetics.lighthouse.score - Mean by test",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": "",
+              "valueSuffix": "",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Linear",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('synthetics.lighthouse.score', extrapolation='last_value').mean(by=['test']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "reference",
+        "id": "GKK9xRrAwAA",
+        "importOf": "GKKg1OSAwAU",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Core Web Vitals",
+        "options": {
+          "markdown": "Google's Core Web Vitals quantify the user experience in terms of **page load, visual stability, and interactivity**. The synthetic equivalent to real user FID/INP for interactivity is Total Blocking Time (TBT). Learn more about the [web vitals with Google for Developers](https://developers.google.com/learn/pathways/web-vitals).",
+          "type": "Text"
+        },
+        "packageSpecifications": "",
+        "programText": "",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "GKK9xRtA0AA",
+        "importOf": "GJENOKUA0Ak",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "synthetic test success by location",
+        "options": {
+          "colorBy": "Scale",
+          "colorRange": null,
+          "colorScale": null,
+          "colorScale2": [
+            {
+              "gt": 100,
+              "gte": null,
+              "lt": null,
+              "lte": null,
+              "paletteIndex": 20
+            },
+            {
+              "gt": 90,
+              "gte": null,
+              "lt": null,
+              "lte": 100,
+              "paletteIndex": 19
+            },
+            {
+              "gt": 75,
+              "gte": null,
+              "lt": null,
+              "lte": 90,
+              "paletteIndex": 18
+            },
+            {
+              "gt": 50,
+              "gte": null,
+              "lt": null,
+              "lte": 75,
+              "paletteIndex": 17
+            },
+            {
+              "gt": null,
+              "gte": null,
+              "lt": null,
+              "lte": 50,
+              "paletteIndex": 16
+            }
+          ],
+          "groupBy": [
+            "location"
+          ],
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "programOptions": {
+            "disableSampling": true,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "A",
+              "label": "A",
+              "valuePrefix": "",
+              "valueSuffix": "",
+              "valueUnit": null
+            },
+            {
+              "displayName": "B",
+              "label": "B",
+              "valuePrefix": "",
+              "valueSuffix": "",
+              "valueUnit": null
+            },
+            {
+              "displayName": "C",
+              "label": "C",
+              "valuePrefix": "",
+              "valueSuffix": "",
+              "valueUnit": null
+            }
+          ],
+          "refreshInterval": null,
+          "sortDirection": "Ascending",
+          "sortProperty": "value",
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "Heatmap",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('synthetics.run.count', filter=filter('success', 'true') and filter('test', '*')).sum(by=['test', 'test_id', 'test_type', 'location']).sum(over=Args.get('ui.dashboard_window', '15m')).publish(label='A', enable=False)\nB = data('synthetics.run.count', filter=filter('test', '*')).sum(by=['test', 'test_id', 'test_type', 'location']).sum(over=Args.get('ui.dashboard_window', '15m')).publish(label='B', enable=False)\nC = (A/B*100).publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "RUM",
+        "id": "GKK9xRvA4AE",
+        "importOf": "GKKVAR6AwAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Traffic by browser type",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "views",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "sf_ua_browsername"
+              },
+              {
+                "enabled": true,
+                "property": "app"
+              },
+              {
+                "enabled": true,
+                "property": "sf_environment"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": "Currently, no data is available for this chart."
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_ua_browsername",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Page views or route changes",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": true,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('rum.page_view.count', filter=filter('sf_ua_browsername', '*') and filter('sf_environment', '*') and filter('app', '*')).sum(by=['sf_ua_browsername']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "GKK9xR3AwAA",
+        "importOf": "GKKek5rA0AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Real Users",
+        "options": {
+          "markdown": "<table width=\"100%\" height=\"100%\" rules=\"none\"><tr><td valign=\"middle\" align=\"center\" bgcolor=\"#f56a00\">\n<font size=\"5\" color=\"white\">RUM</font>\n</td></tr></table>",
+          "type": "Text"
+        },
+        "packageSpecifications": "",
+        "programText": "",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Synthetics: all locations",
+        "id": "GKK9xR8A0AE",
+        "importOf": "GJENOKUA0Ag",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Homepage web vitals",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "time",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "Score",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [
+            {
+              "displayName": "E",
+              "label": "E",
+              "paletteIndex": null
+            }
+          ],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "test_id"
+              },
+              {
+                "enabled": true,
+                "property": "test_type"
+              },
+              {
+                "enabled": true,
+                "property": "test"
+              },
+              {
+                "enabled": true,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": true,
+                "property": "failed"
+              },
+              {
+                "enabled": true,
+                "property": "location_id"
+              },
+              {
+                "enabled": true,
+                "property": "page_position"
+              },
+              {
+                "enabled": true,
+                "property": "success"
+              },
+              {
+                "enabled": true,
+                "property": "sf_product"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_metric",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": true,
+            "maxDelay": 30000,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "LCP",
+              "label": "B",
+              "paletteIndex": 8,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            },
+            {
+              "displayName": "TBT",
+              "label": "C",
+              "paletteIndex": 5,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            },
+            {
+              "displayName": "CLS",
+              "label": "D",
+              "paletteIndex": 13,
+              "plotType": null,
+              "valuePrefix": "",
+              "valueSuffix": "",
+              "valueUnit": null,
+              "yAxis": 1
+            }
+          ],
+          "showEventLines": true,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "E = alerts(detector_id='GGf2a4hAwYs').publish(label='E')\nB = data('synthetics.webvitals_lcp.time.ms', filter=filter('test_type', 'browser') and filter('test', '[syncreator] home - desktop US'), extrapolation='last_value').mean(by=['test_id', 'test', 'test_type']).publish(label='B')\nC = data('synthetics.webvitals_tbt.time.ms', filter=filter('test_type', 'browser') and filter('test', '[syncreator] home - desktop US'), extrapolation='last_value').mean(by=['test_id', 'test', 'test_type']).publish(label='C')\nD = data('synthetics.webvitals_cls.score', filter=filter('test_type', 'browser') and filter('test', '[syncreator] home - desktop US'), extrapolation='last_value').mean(by=['test_id', 'test', 'test_type']).publish(label='D')",
+        "relatedDetectorIds": [
+          "GGf2a4hAwYs"
+        ],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "SYN all tests",
+        "id": "GKK9xSFA4AA",
+        "importOf": "GKKe3KgAwAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "TBT",
+        "options": {
+          "colorBy": "Scale",
+          "colorScale": null,
+          "colorScale2": [
+            {
+              "gt": 300,
+              "gte": null,
+              "lt": null,
+              "lte": 400,
+              "paletteIndex": 16
+            },
+            {
+              "gt": 100,
+              "gte": null,
+              "lt": null,
+              "lte": 300,
+              "paletteIndex": 18
+            },
+            {
+              "gt": null,
+              "gte": 0,
+              "lt": null,
+              "lte": 100,
+              "paletteIndex": 20
+            }
+          ],
+          "maximumPrecision": null,
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "synthetics.webvitals_tbt.time.ms - P95",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Linear",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('synthetics.webvitals_tbt.time.ms').percentile(pct=95).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "SYN",
+        "id": "GKK9xfQAwAA",
+        "importOf": "GJIoCAVAwAE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "LCP - all tests",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "test",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": true,
+            "maxDelay": 5000,
+            "minimumResolution": 5000,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "synthetics.webvitals_lcp.time.ms - Mean by test,test_type,test_id,location",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('synthetics.webvitals_lcp.time.ms', filter=filter('test', '[syncreator] home - desktop US'), extrapolation='last_value').mean(by=['test', 'test_type', 'test_id', 'location']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "SYN all tests",
+        "id": "GKK-So_A0AA",
+        "importOf": "GKKetmkA4AE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "CLS Score",
+        "options": {
+          "colorBy": "Scale",
+          "colorScale": null,
+          "colorScale2": [
+            {
+              "gt": 0.25,
+              "gte": null,
+              "lt": null,
+              "lte": 0.5,
+              "paletteIndex": 16
+            },
+            {
+              "gt": 0.1,
+              "gte": null,
+              "lt": null,
+              "lte": 0.25,
+              "paletteIndex": 18
+            },
+            {
+              "gt": null,
+              "gte": 0,
+              "lt": null,
+              "lte": 0.1,
+              "paletteIndex": 20
+            }
+          ],
+          "maximumPrecision": null,
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "synthetics.webvitals_cls.score - P95",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Linear",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('synthetics.webvitals_cls.score').percentile(pct=95).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "SYN all tests (ms)",
+        "id": "GKK_aRlA4Ak",
+        "importOf": "GKKdnAfA4AY",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "LCP",
+        "options": {
+          "colorBy": "Scale",
+          "colorScale": null,
+          "colorScale2": [
+            {
+              "gt": 4000,
+              "gte": null,
+              "lt": null,
+              "lte": 6500,
+              "paletteIndex": 16
+            },
+            {
+              "gt": 2500,
+              "gte": null,
+              "lt": null,
+              "lte": 4000,
+              "paletteIndex": 18
+            },
+            {
+              "gt": null,
+              "gte": 0,
+              "lt": null,
+              "lte": 2500,
+              "paletteIndex": 20
+            }
+          ],
+          "maximumPrecision": null,
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "synthetics.webvitals_lcp.time.ms - P95",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Linear",
+          "showSparkLine": false,
+          "time": {
+            "range": 600000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('synthetics.webvitals_lcp.time.ms', extrapolation='last_value').percentile(pct=95).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    }
+  ],
+  "crossLinkExports": [],
+  "dashboardExports": [
+    {
+      "dashboard": {
+        "authorizedWriters": null,
+        "chartDensity": "HIGHEST",
+        "charts": [
+          {
+            "chartId": "GKK9xR8A0AE",
+            "column": 6,
+            "height": 1,
+            "row": 0,
+            "width": 6
+          },
+          {
+            "chartId": "GKK9xRvA4AE",
+            "column": 0,
+            "height": 1,
+            "row": 0,
+            "width": 6
+          },
+          {
+            "chartId": "GKK9eP1AwAA",
+            "column": 0,
+            "height": 1,
+            "row": 1,
+            "width": 4
+          },
+          {
+            "chartId": "GKK9xfQAwAA",
+            "column": 4,
+            "height": 1,
+            "row": 1,
+            "width": 4
+          },
+          {
+            "chartId": "GKK9xRrAwAA",
+            "column": 8,
+            "height": 1,
+            "row": 1,
+            "width": 4
+          },
+          {
+            "chartId": "GKK9xRtA0AA",
+            "column": 0,
+            "height": 2,
+            "row": 2,
+            "width": 12
+          },
+          {
+            "chartId": "GKK-So_A0AA",
+            "column": 6,
+            "height": 1,
+            "row": 4,
+            "width": 3
+          },
+          {
+            "chartId": "GKK9xSFA4AA",
+            "column": 9,
+            "height": 1,
+            "row": 4,
+            "width": 3
+          },
+          {
+            "chartId": "GKK9e8KA0AA",
+            "column": 0,
+            "height": 1,
+            "row": 4,
+            "width": 1
+          },
+          {
+            "chartId": "GKK9wxRA4AE",
+            "column": 1,
+            "height": 1,
+            "row": 4,
+            "width": 2
+          },
+          {
+            "chartId": "GKK_aRlA4Ak",
+            "column": 3,
+            "height": 1,
+            "row": 4,
+            "width": 3
+          },
+          {
+            "chartId": "GKK9xR3AwAA",
+            "column": 0,
+            "height": 1,
+            "row": 5,
+            "width": 1
+          }
+        ],
+        "created": 0,
+        "creator": null,
+        "customProperties": null,
+        "description": "",
+        "discoveryOptions": null,
+        "eventOverlays": [
+          {
+            "eventColorIndex": 15,
+            "eventLine": true,
+            "eventSignal": {
+              "detectorId": null,
+              "eventSearchText": "condition_changed",
+              "eventType": "eventTimeSeries"
+            },
+            "label": "condition_changed",
+            "overlayId": "ClvpX9",
+            "sources": []
+          }
+        ],
+        "filters": {
+          "sources": null,
+          "time": {
+            "end": "Now",
+            "start": "-1h"
+          },
+          "variables": []
+        },
+        "groupId": "GKK_Zn2AwAM",
+        "groupName": "Optimize End User Experiences",
+        "id": "GKK_aRlA4Ao",
+        "importOf": "GJENOKUA0BE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "maxDelayOverride": null,
+        "name": "End User Experience",
+        "permissions": null,
+        "selectedEventOverlays": [
+          {
+            "eventSignal": null,
+            "overlayId": "ClvpX9",
+            "sources": []
+          }
+        ],
+        "tags": null
+      }
+    }
+  ],
+  "groupExport": {
+    "group": {
+      "authorizedWriters": null,
+      "created": 0,
+      "creator": null,
+      "dashboardConfigs": [
+        {
+          "configId": "GKK_aRlA4As",
+          "dashboardId": "GKK_aRlA4Ao",
+          "descriptionOverride": null,
+          "filtersOverride": null,
+          "nameOverride": null
+        }
+      ],
+      "dashboards": [
+        "GKK_aRlA4Ao"
+      ],
+      "description": "Workshop dashboard group",
+      "email": null,
+      "id": "GKK_Zn2AwAM",
+      "lastUpdated": 0,
+      "lastUpdatedBy": null,
+      "name": "Optimize End User Experiences",
+      "permissions": null,
+      "teams": null
+    }
+  },
+  "hashCode": 1094461470,
+  "id": "GKK_Zn2AwAM",
+  "modelVersion": 1,
+  "packageType": "GROUP"
+}
