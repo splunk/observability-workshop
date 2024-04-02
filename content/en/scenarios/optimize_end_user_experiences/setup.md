@@ -15,6 +15,7 @@ Please follow these steps for the Optimize End User Experiences workshop setup, 
    1. Click "Enable RUM" on the top right of the Syncreator screen. Enter your realm and your RUM token and save the form. 
    1. Access your **Syncreator browser site URL** which is linked on the left side of the syncreator screen. Perform some interactions and close your browser session, and make sure the data starts coming into RUM in your o11y org. Check the site's `<head>` code to make sure the RUM instrumentation is there.
    1. Start with the Default condition active in Syncreator. 
+<!-- need to add Terraform instructions for dashboard -->
 
 ## During the workshop
 1. Provide the **team name** and **Syncreator browser site URL** to your attendees.
