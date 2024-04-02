@@ -160,7 +160,7 @@
 
       - name: Wait for diab-manager-api.service to start
         pause:
-          seconds: 20
+          seconds: 10
         when: not wh_result.stat.exists
 
       - name: Start the diab-manager service
@@ -170,7 +170,7 @@
 
       - name: Wait for diab-manager-ui.service to start
         pause:
-          seconds: 10
+          seconds: 5
         when: not wh_result.stat.exists
 
       - name: Save Demo-in-a-Box configuration
@@ -180,6 +180,10 @@
           body: "realm={{ realm }}&ingest_token={{ ingest_token }}&rum_token={{ rum_token }}&instance={{ instance }}"
           status_code: [ 200, 201 ]
           timeout: 30
+        register: splunk_api
+        until: splunk_api.status == 200
+        retries: 10
+        delay: 5
         when: not wh_result.stat.exists
 
       - name: Start the OpenTelemetry Collector
