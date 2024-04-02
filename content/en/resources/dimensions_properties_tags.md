@@ -1,6 +1,6 @@
 ---
 title: Dimension, Properties and Tags
-weight: 2
+weight: 3
 description: One conversation that frequently comes up is Dimensions vs Properties and when you should use one verus the other. 
 draft: false
 ---
