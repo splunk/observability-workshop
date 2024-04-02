@@ -1,7 +1,7 @@
 ---
 title: Frequently Asked Questions
 titleTitle: FAQ
-weight: 1
+weight: 2
 description: A collection of the common questions and their answers associated with Observability, DevOps, Incident Response and Splunk On-Call.
 draft: false
 ---
