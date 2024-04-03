@@ -3,6 +3,7 @@ title: Let's go shopping 💶
 linkTitle: 4. Shopping at the Online Boutique
 weight: 4
 time: 5 minutes
+description: Interact with the Online Boutique web application to generate data for Splunk Observability Cloud.
 ---
 
 {{% notice icon="user" style="orange" title="Persona" %}}

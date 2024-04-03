@@ -4,6 +4,7 @@ linkTitle:  5. Splunk RUM
 weight: 5
 archetype: chapter
 time: 15 minutes
+description: This section helps you understand how to use Splunk RUM to monitor the performance of your applications from the end user's perspective.
 ---
 
 {{% notice icon="user" style="orange" title="Persona" %}}

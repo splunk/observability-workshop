@@ -3,6 +3,7 @@ title: Getting Started
 linkTitle: 1. Getting Started
 weight: 1
 time: 2 minutes
+description: Learn how to get started with Splunk Observability Cloud.
 ---
 
 ### 1. Sign in to Splunk Observability Cloud

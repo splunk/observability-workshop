@@ -4,6 +4,7 @@ linkTitle: 10. Workshop Wrap-up
 weight: 10
 archetype: chapter
 time: 10 minutes
+description: Congratulations, you have completed the Splunk4Rookies - Observability Cloud Workshop. Today, you have become familiar with how to use Splunk Observability Cloud to monitor your applications and infrastructure.
 ---
 
 Congratulations, you have completed the **Splunk4Rookies - Observability Cloud Workshop**. Today, you have become familiar with how to use Splunk Observability Cloud to monitor your applications and infrastructure.
