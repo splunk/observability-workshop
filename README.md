@@ -23,5 +23,5 @@ Unless required by applicable law or agreed to in writing, software distributed 
 To get started, please proceed to [The Splunk Observability Cloud Workshops Homepage](https://splunk.github.io/observability-workshop/latest/).
 
 Latest versions of the workshop are:
+- [v5.47](https://splunk.github.io/observability-workshop/v5.47/)
 - [v5.46](https://splunk.github.io/observability-workshop/v5.46/)
-- [v5.45](https://splunk.github.io/observability-workshop/v5.45/)
