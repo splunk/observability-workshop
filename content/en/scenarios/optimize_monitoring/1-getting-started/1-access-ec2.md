@@ -27,7 +27,7 @@ Search for your AWS/EC2 instance by looking for your first and last name, as pro
 
 Find your allocated IP address, SSH command (for Mac OS, Linux and the latest Windows versions) and password to enable you to connect to your workshop instance.
 
-It also has the Browser Access URL that you can use in case you cannot connect via ssh or Putty - see [EC2 access via Web browser](#4-web-browser-all)
+It also has the Browser Access URL that you can use in case you cannot connect via SSH or Putty - see [EC2 access via Web browser](#4-web-browser-all)
 
 {{% notice title="Important" style="info" %}}
 Please use SSH or Putty to gain access to your EC2 instance if possible and
@@ -59,7 +59,7 @@ However, Windows regards its SSH Client as an "optional feature", which might ne
 
 You can verify if SSH is enabled by simply executing `ssh`
 
-If you are shown a help text on how to use the ssh-command (like shown on the screenshot below), you are all set.
+If you are shown a help text on how to use the SSH command (like shown in the screenshot below), you are all set.
 
 ![Windows SSH enabled](../../images/windows-ssh-enabled-feedback.png)
 
@@ -85,7 +85,7 @@ At this point you are ready to continue and [start the workshop](../gdi/index.ht
 
 ## 4. Putty (For Windows Versions prior to Windows 10)
 
-If you do not have SSH pre-installed or if you are on a Windows system,  the best option is to install putty, you can find [here.](https://www.putty.org/)
+If you do not have SSH pre-installed or if you are on a Windows system, the best option is to install Putty which you can find [here.](https://www.putty.org/)
 
 {{% notice title="Important" style="info" %}}
 If you **cannot** install Putty, please go to [Web Browser (All)](#4-web-browser-all).
@@ -137,7 +137,7 @@ Unlike when you are using regular SSH, *copy and paste* does require a few extra
 
 When the workshop asks you to copy instructions into your terminal, please do the following:
 
-*Copy the instruction as normal, but when ready to paste it in the web terminal, choose **Paste from browser** as show below:*
+*Copy the instruction as normal, but when ready to paste it in the web terminal, choose **Paste from the browser** as show below:*
 
 ![web paste 1](../../images//shellinabox-paste-browser.png)
 
@@ -155,12 +155,12 @@ Simply click the **Connect** button and you will be reconnected and will be able
 
 ![web reconnect](../../images//shellinabox-reconnect.png)
 
-At this point you are ready to continue and [start the workshop](../gdi/index.html).
+At this point, you are ready to continue and [start the workshop](../gdi/index.html).
 
 ---
 
 ## 6. Multipass (All)
 
-If you are unable to access AWS, but want to install software locally, follow the instructions for [using Multipass](https://github.com/splunk/observability-workshop/blob/main/multipass/README.md).
+If you are unable to access AWS but want to install software locally, follow the instructions for [using Multipass](https://github.com/splunk/observability-workshop/blob/main/multipass/README.md).
 
 [^1]: [Download Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/)
