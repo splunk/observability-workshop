@@ -24,7 +24,7 @@ cd ~/workshop/optimize-cloud-monitoring && \
 ./deploy-application.sh
 ```
 
-You'll be asked to enter your favorite city. This will be used in the OpenTelemetry Collector configuration as a **custom tag** to show how easy it is to add additional context to your observability data. 
+You'll be asked to enter your favorite city. This will be used in the OpenTelemetry Collector configuration as a **custom tag** to show how easy it is to add additional context to your observability data.
 
 {{% notice title="Note" style="info" %}}
 Custom tagging will be covered in more detail in the [Standardize Data Collection](../standardize_data_collection/) section of this workshop.
@@ -32,6 +32,4 @@ Custom tagging will be covered in more detail in the [Standardize Data Collectio
 
 ![Enter Favorite City](../../images/favorite-city.png?width=40vw)
 
-<center>
-<b>Your application should now be running and sending data to Splunk Observability Cloud. You'll dig into the data in the next section</b>
-</center>
+**Your application should now be running and sending data to Splunk Observability Cloud. You'll dig into the data in the next section.**

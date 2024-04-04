@@ -63,7 +63,10 @@
               namespace: default
             type: Opaque
             stringData:
-              frontend-app: {{ instance }}-frontend-store
+              instance: {{ instance }}-diab
+              frontend-1-app: {{ instance }}-frontend-1-store
+              frontend-2-app: {{ instance }}-frontend-2-store
+              frontend-3-app: {{ instance }}-frontend-3-store
               profiling-app: {{ instance }}-profiling-store
               astronomy-app: {{ instance }}-astronomy-store
               deployment: "deployment.environment={{ instance }}-diab"

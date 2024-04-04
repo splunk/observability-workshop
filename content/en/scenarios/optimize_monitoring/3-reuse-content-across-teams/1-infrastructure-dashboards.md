@@ -18,16 +18,17 @@ Splunk Infrastructure Monitoring (IM) is a market-leading monitoring and observa
 ![Infrastructure Overview](../../images/infra-overview.png)
 
 {{% notice title="Exercise: Find your Kubernetes Cluster" style="green" icon="running" %}}
+
 * From the **Splunk Observability Cloud** homepage, click the ![Infrastructure](../../images/infra-button.png?height=20px&classes=inline) button -> **Kubernetes** -> **K8s nodes**
 * First, use the ![k8s filter](../../images/k8s-add-filter.png?classes=inline) option to pick your cluster.
-* From the filter drop-down box, use the `store.location` value you entered when deploying the application..
+* From the filter drop-down box, use the `store.location` value you entered when deploying the application.
 * You then can start typing the city you used which should also appear in the drop-down values. Select yours and make sure just the one for your workshop is highlighted with a ![blue tick](../../images/select-checkmark.png?classes=inline&width=30px).
-* Click the {{% button style="blue"  %}} Apply Filter  {{% /button %}} button to focus on our Cluster
+* Click the {{% button style="blue"  %}} Apply Filter  {{% /button %}} button to focus on our Cluster.
 
 ![Kubernetes Navigator](../../images/k8s-nav.png)
 
 * You should now have your Kubernetes Cluster visible
-* Here we can see all of the different components of the cluster (Nodes, Pods, etc), each which has relevant metrics associated with it. On the right side, you can also see what services are running in the cluster.
+* Here we can see all of the different components of the cluster (Nodes, Pods, etc), each of which has relevant metrics associated with it. On the right side, you can also see what services are running in the cluster.
 
-<center><b>Before moving to the next section, take some time to explore the Kubernetes Navigator to see the data that is available Out of the Box</b></center>
+**Before moving to the next section, take some time to explore the Kubernetes Navigator to see the data that is available Out of the Box.**
 {{% /notice %}}
