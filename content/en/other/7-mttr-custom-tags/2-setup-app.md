@@ -9,7 +9,7 @@ weight: 2
 * Clone the workshop repository:
 
 ``` bash
-git clone -b tko-fy24-distributed-tracing https://github.com/shabuhabs/javashop-otel.git
+git clone -b distributed-tracing-for-development-teams https://github.com/shabuhabs/javashop-otel.git
 ```
 
 * Access the workshop directory:
