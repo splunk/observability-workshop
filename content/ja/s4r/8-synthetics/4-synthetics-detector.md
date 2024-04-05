@@ -7,7 +7,7 @@ weight: 4
 
 ![Social media](../images/social-media-post.png)
 
-それでは、テストが1.1分以上かかる場合に検出しましょう。
+それでは、テストが1.1分以上かかる場合にエラーを検出しましょう。
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
