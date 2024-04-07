@@ -43,9 +43,9 @@
           var: diab_dir_name.files[0]
         when: not wh_result.stat.exists
 
-      - name: Create workshop secrets deployment deployment.yaml
+      - name: Create workshop secrets deployment YAML
         file:
-          path: /home/splunk/workshop-secrets.yaml
+          path: /home/splunk/splunk-k8s-secrets.yaml
           owner: splunk
           group: splunk
           state: touch
@@ -54,29 +54,25 @@
 
       - name: Update yaml for workshop secrets
         ansible.builtin.blockinfile:
-          path: /home/splunk/workshop-secrets.yaml
+          path: /home/splunk/splunk-k8s-setup.yaml
           block: |
             apiVersion: v1
             kind: Secret
             metadata:
-              name: workshop-secret
+              name: splunk-secrets
               namespace: default
             type: Opaque
             stringData:
-              instance: {{ instance }}
+              app: {{ instance }}
               deployment: "deployment.environment={{ instance }}"
-              access_token: {{ ingest_token }}
-              api_token: {{ ingest_token }}
-              realm: {{ realm }}
+              instance: {{ instance }}
               rum_token: {{ rum_token }}
-              hec_url: {{ hec_url }}
-              hec_token: {{ hec_token }}
           marker: "## {mark} Added by ansible (configuration Demo-in-a-Box)"
         become: true
         when: not wh_result.stat.exists
 
-      - name: Install secrets
-        command: kubectl apply -f workshop-secrets.yaml
+      - name: Demo-in-a-Box Kubernetes setup
+        command: kubectl apply -f splunk-k8s-setup.yaml
         when: not wh_result.stat.exists
 
       - name: Create service for Demo-in-a-Box Manager API
