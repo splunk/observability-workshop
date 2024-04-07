@@ -66,6 +66,7 @@
               app: {{ instance }}
               deployment: "deployment.environment={{ instance }}"
               instance: {{ instance }}
+              realm: {{ realm }}
               rum_token: {{ rum_token }}
           marker: "## {mark} Added by ansible (configuration Demo-in-a-Box)"
         become: true
