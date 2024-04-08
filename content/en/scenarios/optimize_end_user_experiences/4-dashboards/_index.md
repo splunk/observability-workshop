@@ -11,5 +11,5 @@ Click the three dots on the top right to open the dashboard menu, and select Sav
 
 Save to the dashboard group that matches your email address. Now you have your own copy of this dashboard to customize!
 
-![Dashboard save as](../../_img/dashboard-save-as.png)
+![Dashboard save as](../_img/dashboard-save-as.png)
 

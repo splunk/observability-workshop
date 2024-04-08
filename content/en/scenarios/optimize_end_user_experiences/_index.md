@@ -1,6 +1,6 @@
 ---
-title: Optimizing End User Experiences
-linkTitle: Optimizing End User Experiences
+title: Optimize End User Experiences
+linkTitle: Optimize End User Experiences
 weight: 4
 archetype: chapter
 authors: ["Sarah Ware"]
