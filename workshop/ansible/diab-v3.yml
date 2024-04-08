@@ -155,7 +155,7 @@
 
       - name: Wait for diab-manager-api.service to start
         pause:
-          seconds: 10
+          seconds: 20
         when: not wh_result.stat.exists
 
       - name: Start the diab-manager service
