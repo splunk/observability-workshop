@@ -130,7 +130,7 @@ write_files:
       export HEC_TOKEN=${hec_token}
       export HEC_URL=${hec_url}
       export INSTANCE="${instance_name}"
-      ansible-playbook /home/splunk/playbook.yml
+      ansible-playbook /home/splunk/diab-v3.yml
 
   - path: /tmp/pre-setup.sh
     permissions: '0755'
@@ -217,7 +217,8 @@ runcmd:
   - unzip -qq $WSARCHIVE.zip -d /home/splunk/
   - mkdir /home/splunk/workshop
   - mv /home/splunk/observability-workshop-$WSVERSION/workshop/* /home/splunk/workshop
-  - mv /home/splunk/workshop/ansible/playbook.yml /home/splunk
+  - mv /home/splunk/workshop/ansible/diab-v2.yml /home/splunk
+  - mv /home/splunk/workshop/ansible/diab-v3.yml /home/splunk
   - rm -rf /home/splunk/observability-workshop-$WSVERSION
   - rm -rf /home/splunk/workshop/aws /home/splunk/workshop/cloud-init /home/splunk/workshop/ansible
   - mv /home/splunk/workshop/k3s/demo-in-a-box.zip /home/splunk
