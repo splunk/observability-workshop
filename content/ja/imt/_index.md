@@ -2,7 +2,7 @@
 title: Splunk IM
 linkTitle: Splunk IM
 description: オンプレミス、ハイブリッド、マルチクラウドのいずれにおいても、Splunk はリアルタイムの監視とトラブルシューティングを提供し、完全な可視化によってインフラのパフォーマンスを最大化することを支援します。
-weight: 1
+weight: 2
 alwaysopen: false
 isCJKLanguage: true
 ---

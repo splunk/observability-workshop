@@ -1,6 +1,6 @@
 ---
-title: Log Observer Overview
-linkTitle: 4. Log Observer Overview
+title: Log Observerの概要
+linkTitle: 4. Log Observerの概要
 weight: 4
 ---
 

@@ -8,7 +8,7 @@ weight: 2
 
 ![Infra main](../images/infrastructure-main.png)
 
-1. **オンボーディングパネル:** Splunk Infrastructure Monitoring を始めるためのトレーニングビデオとドキュメンテーションへのリンク。
+1. **オンボーディングパネル:** Splunk Infrastructure Monitoring を始める際に参照するトレーニングビデオとドキュメンテーションへのリンク。
 2. **時間とフィルタパネル:** 時間ウィンドウ（一覧画面上では設定変更できません）
 3. **Integration パネル:** Splunk Observability Cloud にメトリクスを送信しているすべてのテクノロジのリスト。
 4. **タイルパネル:** Integration によって監視されているサービスの合計数（Integration 別に表示）
@@ -19,7 +19,7 @@ Infrastructure パネルを使用して、興味のあるインフラストラ�
 
 * Integration パネルの **Containers** セクション（**3**）にある、**Kubernetes** を調査対象のテクノロジーとして選択します。
 * **K8s Nodes** と **K8s Workloads** の2つのタイルが表示されるはずです。
-* 各タイルの下部には過去の推移を表すグラフがあり、上部にはアラートの通知が表示されます。これらの追加情報は全てのタイルに表示されており、インフラストラクチャのヘ健全性に関する概要を確認するのに役立つでしょう。
+* 各タイルの下部には過去の推移を表すグラフがあり、上部には現在発生しているアラートの数が表示されます。これらの追加情報は全てのタイルに表示されており、インフラストラクチャの健全性を概要として確認するのに役立つはずです。
 * **K8s Nodes** タイルをクリックします。
 * Kubernetes クラスターが1つ以上の表示されます。
 * 次に {{% button %}}Add filters{{% /button %}} ボタンをクリックします。 `k8s.cluster.name` と入力し、検索結果をクリックします。
@@ -34,7 +34,7 @@ Infrastructure パネルを使用して、興味のあるインフラストラ�
 
 {{% notice title="Node Dependencies" style="info" %}}
 
-OpenTelemetry Collector による監視が構成されている場合、UI 上には選択したノードで実行されているサービスが表示されます。
+OpenTelemetry Collector によるモニタリングが構成されている場合、選択したノードで実行されているサービスが UI 上に表示されます。
 
 {{% /notice %}}
 
@@ -61,4 +61,4 @@ OpenTelemetry Collector による監視が構成されている場合、UI 上�
 
 これで **Splunk Observability Cloud** のツアーが完了しました。
 
-さて、仮想の💶をお持ちいただき、eコマースサイト「Online Boutique」を見て、ショッピングをしてみましょう。
+さて、eコマースサイト「Online Boutique」にアクセスし、仮想のクレジット💶を使ってショッピングをしてみましょう。

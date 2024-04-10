@@ -5,7 +5,7 @@ weight: 3
 archetype: chapter
 ---
 
-Splunk Observability Cloud のさまざまなコンポーネントの短いウォークスルーを始めます。これは UI に慣れるためのものです。
+まずは、Splunk Observability Cloud のさまざまなコンポーネントをウォークスルーしていきましょう。UI に慣れてもらうことが目的です。
 
 1. **Splunk Observability Cloud へのサインイン**
 2. **リアルユーザーモニタリング (RUM)**
@@ -15,7 +15,7 @@ Splunk Observability Cloud のさまざまなコンポーネントの短いウ�
 6. **Infrastructure Monitoring**
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-このワークショップをナビゲートする最も簡単な方法は、次の方法を使用することです：
+このワークショップでは、以下の方法で簡単に操作できます
 
 * このページの右上にある左矢印（**<** | **>**）
 * キーボードの左（◀️）および右（▶️）のカーソルキー
