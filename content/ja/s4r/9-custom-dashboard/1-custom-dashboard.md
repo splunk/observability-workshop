@@ -13,7 +13,7 @@ weight: 1
 * 2つのログチャートが含まれたダッシュボードに戻るために、メインメニューから **Dashboards** をクリックし、Team Dashboard ビューに移動します。**Dashboards** の下にある **Search dashboards** をクリックして、Service Health Dashboard グループを検索します。
 * 名前をクリックすると、以前に保存したダッシュボードが表示されます。
   ![log list](../../7-log-observer/images/log-observer-custom-dashboard.png)
-* ログ情報は有用ですが、チームがこれが何かを理解できるようにするには、もう少し情報が必要です。
+* ログ情報は役に立ちますが、これが何かをチームメンバーが理解できるようにするには、もう少し情報が必要です。
 * まず最初のステップとして、ダッシュボードに説明チャートを追加してみましょう。{{% button style="grey" %}}New text note{{% /button %}} をクリックし、ノートのテキストを次のテキストに置き換えます。その後 {{% button style="blue" %}}Save and close{{% /button %}} ボタンをクリックし、チャートに **Instructions** という名前を付けます。
 {{% notice title=" Text note に使用する情報" style="grey" %}}
 

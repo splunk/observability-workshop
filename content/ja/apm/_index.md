@@ -2,7 +2,7 @@
 title: Splunk APM
 linkTitle: Splunk APM
 description: Splunk APM は、クラウドネイティブ、マイクロサービスベースのアプリケーションのための NoSample™ Full-fidelity アプリケーションパフォーマンス監視およびトラブルシューティングソリューションです。
-weight: 2
+weight: 3
 alwaysopen: false
 
 isCJKLanguage: true

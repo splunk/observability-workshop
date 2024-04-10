@@ -7,7 +7,7 @@ weight: 1
 ワークショップでは、Splunk Observability Cloud と OpenTelemetry シグナル（**メトリクス**、**トレース**、**ログ**）を組み合わせることで、平均検出時間（**MTTD**）の短縮、平均解決時間（**MTTR**）の短縮にどれほど寄与するかを見てきました。
 
 * 主なユーザーインターフェースとそのコンポーネント、*ランディングページ、Infrastructure、APM、RUM、Synthetics、ダッシュボードページ* および *設定ページ*の理解を深めました。
-* 時間が許す場合、*インフラストラクチャ*の演習を行い、Kubernetes ナビゲーターで使用される*メトリクス*を見て、Kubernetes クラスターで見つかった関連するサービスを確認しました。
+* 時間の許す限り、*Infrastructure* の演習で Kubernetes ナビゲーターで使用される *メトリクス* を見て、Kubernetes クラスターで見つかった関連するサービスを確認しました。
 
 ![Kubernetes](../images/infra.png)
 

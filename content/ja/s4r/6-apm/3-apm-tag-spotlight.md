@@ -5,8 +5,8 @@ weight: 3
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* **paymentservice** のタグを表示するには、**paymentservice** をクリックしてから右側の機能ペインで **Tag Spotlight** をクリックします（画面解像度によってはスクロールが必要な場合があります）。
-* **Tag Spotlight** に入ったら、**Show tags with no values** のトグルスイッチがオフになっていることを確認してください。
+* **paymentservice** のタグを表示するには、**paymentservice** をクリックし、右側のメニューパネルで **Tag Spotlight** をクリックします（画面解像度によってはスクロールが必要な場合があります）。
+* **Tag Spotlight** に移動したら、**Show tags with no values** のトグルスイッチがオフになっていることを確認してください。
 
 {{% /notice %}}
 
@@ -19,10 +19,10 @@ Request/Error チャートでは、リクエストの合計数、エラーの合
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 {{< tabs >}}
-{{% tab title="Question" %}}
+{{% tab title="質問" %}}
 **どのチャートが問題を特定するタグでしょうか？**
 {{% /tab %}}
-{{% tab title="Answer" %}}
+{{% tab title="回答" %}}
 ***version* チャートです。`v350.10` に対するリクエストの数はエラーの数と一致しています。**
 {{% /tab %}}
 {{< /tabs >}}
