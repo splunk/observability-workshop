@@ -102,7 +102,6 @@ locals {
     hec_token         = var.splunk_hec_token
     hec_url           = var.splunk_hec_url
     presetup          = var.splunk_presetup
-    jdk               = var.splunk_jdk
     otel_demo         = var.otel_demo
     diab              = var.splunk_diab
     instance_name     = "${random_string.hostname.result}"
