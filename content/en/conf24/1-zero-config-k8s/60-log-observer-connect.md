@@ -13,11 +13,11 @@ This change will configure the Spring PetClinic application to use an Otel-based
 
 The Splunk Log Observer component is used to view the logs and with this information can automatically relate log information with APM Services and Traces. This feature called **Related Content** will also work with Infrastructure.
 
-Lets grab the actual code for the application now.
+Let's grab the actual code for the application now.
 
 ## 2. Downloading the Spring Microservices PetClinic Application
 
-For this exercise, we will use the Spring microservices PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot) and we are using a version witch actual microservices.
+For this exercise, we will use the Spring microservices PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot) and we are using a version with actual microservices.
 
 First, clone the PetClinic GitHub repository, as we will need this later in the workshop to compile, build, package and containerize the application:
 
@@ -45,6 +45,7 @@ Note the following entries that will be added:
 - trace_flags
 - service.name
 - deployment.environment
+
 These fields allow the **Splunk** Observability Cloud Suite** to display **Related Content** when used in a pattern shown below:
 
 ```xml
@@ -53,7 +54,7 @@ These fields allow the **Splunk** Observability Cloud Suite** to display **Relat
   </pattern>
 ```
 
-So let's run the script that will update the files with the log structure with the format above:
+So, let's run the script that will update the files with the log structure in the format above:
 
 {{< tabs >}}
 {{% tab title="Update Logback files" %}}
@@ -93,7 +94,8 @@ Before we can build the new services with the updated log format we need to add 
 . ~/workshop/petclinic/scripts/add_otel.sh
 ```
 
-The Services are now ready to be built, so run the script that will use the `maven` command to compile/build/package the PetClinic microservices (Note the -P buildDocker, this will build the new containers):
+The Services are now ready to be built, so run the script that will use the `maven` command to compile/build/package the PetClinic microservices (Note the `-P buildDocker`, this will build the new containers):
+
 {{< tabs >}}
 {{% tab title="Running maven" %}}
 
@@ -178,7 +180,7 @@ local: digest: sha256:3601c6e7f58224001946058fb0400483fbb8f1b0ea8a6dbaf403c62b4c
 {{% /tab %}}
 {{< /tabs >}}
 
-The containers should now be stored in the local repository, lets confirm by checking the catalog,
+The containers should now be stored in the local repository, let's confirm by checking the catalog,
 
 ```bash
  curl -X GET http://localhost:9999/v2/_catalog 
@@ -216,15 +218,15 @@ This will cause the containers to be replaced with the local version, you can ve
 kubectl describe pods api-gateway |grep Image:
 ```
 
-The resulting output should say `localhost:9999` : 
+The resulting output should say `localhost:9999`:
 
 ```text
   Image:         localhost:9999/spring-petclinic-api-gateway:local
 ```
 
-However,  as we only patched the deployment before, the new deployment does not have the right annotations  for zero config auto-instrumentation, so lets fix that now by running the patch command again:
+However, as we only patched the deployment before, the new deployment does not have the right annotations for zero config auto-instrumentation, so let's fix that now by running the patch command again:
 
-Note, there will be no change for the *config-server & discovery-server* as they do hav e  the annotation included in the deployment.
+Note, that there will be no change for the *config-server & discovery-server* as they do have the annotation included in the deployment.
 
 {{< tabs >}}
 {{% tab title="Patch all Petclinic services" %}}
@@ -249,13 +251,13 @@ deployment.apps/api-gateway patched
 {{% /tab %}}
 {{< /tabs >}}
 
-Lets check the `api-gateway` container again
+Let's check the `api-gateway` container again
 
 ```bash
 kubectl describe pods api-gateway |grep Image:
 ```
 
-The resulting output should say (again if you see double, its the old container being terminated, give it a few seconds):
+The resulting output should say (again if you see double, it's the old container being terminated, give it a few seconds):
 
 ```text
   Image:         ghcr.io/signalfx/splunk-otel-java/splunk-otel-java:v1.30.0
@@ -264,36 +266,36 @@ The resulting output should say (again if you see double, its the old container 
 
 ## 6. View Logs
 
-Once the containers are patched they will be restarted, let's go back to the **Splunk Observability Cloud**  with the URL provided by the Instructor to check our cluster in the Kubernetes Navigator.
+Once the containers are patched they will be restarted, let's go back to the **Splunk Observability Cloud** with the URL provided by the Instructor to check our cluster in the Kubernetes Navigator.
 
 After a couple of minutes or so you should see that the Pods are being restarted by the operator and the Zero config container will be added. This will look similar to the screenshot below:
 
 ![restart](../images/k8s-navigator-restarted-pods.png)
 
-Wait for the pods to turn green again.(You may want to refresh the screen), then from the left-hand menu click on **Log Observer** ![Logo](../images/logo-icon.png?classes=inline&height=25px) and ensure **Index** is set to **splunk4rookies-workshop**.
+Wait for the pods to turn green again (you may want to refresh the screen), then from the left-hand menu click on the **Log Observer** ![Logo](../images/logo-icon.png?classes=inline&height=25px) and ensure **Index** is set to **splunk4rookies-workshop**.
 
 Next, click **Add Filter** search for the field `deployment.environment` and select the value of rou Workshop (Remember the INSTANCE value ?) and click `=` (include). You should now see only the log messages from your PetClinic application.
 
-Next search for the field  `service_name` select the value `customers-service` and click `=` (include). Now the log files should be reduce to just the lines from your `customers-service`.
+Next search for the field  `service_name` select the value `customers-service` and click `=` (include). Now the log files should be reduced to just the lines from your `customers-service`.
 
-Wait for Log Lines to show up with an injected trace-id like trace_id=08b5ce63e46ddd0ce07cf8cfd2d6161a as show below **(1)**: 
+Wait for Log Lines to show up with an injected trace-id like trace_id=08b5ce63e46ddd0ce07cf8cfd2d6161a as shown below **(1)**: 
 
 ![Log Observer](../images/log-observer-trace-info.png)
 
 Click on a line with an injected trace_id, this should be all log lines created by your services that are part of a trace **(1)**.
 A Side pane opens where you can see the related information about your logs. including the relevant Trace and Span Id's **(2)**.
 
-Also, at the bottom next to APM, there should be a number, this is the number of related AP Content items for this log line.  click on the APM pane **(1)** as show below:
+Also, at the bottom next to APM, there should be a number, this is the number of related AP Content items for this logline.  click on the APM pane **(1)** as shown below:
 ![RC](../images/log-apm-rc.png)
 
-- The *Map for customers-service*  **(2)** brings us to the APM dependency map with the workflow focused on Customer Services, allowing you to quick understand how this log line is related to the overall flow of service interaction.
+- The *Map for customers-service*  **(2)** brings us to the APM dependency map with the workflow focused on Customer Services, allowing you to quickly understand how this logline is related to the overall flow of service interaction.
 - The *Trace for 34c98cbf7b300ef3dedab49da71a6ce3* **(3)** will bring us to the waterfall in APM for this specific trace that this log line was generated in.
 
-As a last exercise, click on  the Trace for Link, this will bering you to the waterfall for this specific trace:
+As a last exercise, click on  the Trace for Link, this will bring you to the waterfall for this specific trace:
 
 ![waterfall logs](../images/waterfall-with-logs.png)
 
-Note that you now have Logs Related Content Pane **(1)** appear, clicking on this will bring you back to log observer with all the logs line that are part of this Trace.
+Note that you now have Logs Related Content Pane **(1)** appear, clicking on this will bring you back to log observer with all the loglines that are part of this Trace.
 This will help you to quickly find relevant log lines for an interaction or a problem.
 
 ## 7. Summary

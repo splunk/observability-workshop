@@ -150,7 +150,7 @@ In the meantime let's examine the metrics that are available for each service th
 
 ## 5. Examine default R.E.D. Metrics
 
- Splunk APM provides a set of built-in dashboards that present charts and visualized metrics to help you see problems occurring in real time and quickly determine whether the problem is associated with a service, a specific endpoint, or the underlying infrastructure. To look at this dashboard for the selected `api-gateway`, make sure you have the `api-gateway` service selected in the Dependency map as show above, then click on the ***View Dashboard** Link **(1)**  at the top of the right-hand pane.
+ Splunk APM provides a set of built-in dashboards that present charts and visualized metrics to help you see problems occurring in real time and quickly determine whether the problem is associated with a service, a specific endpoint, or the underlying infrastructure. To look at this dashboard for the selected `api-gateway`, make sure you have the `api-gateway` service selected in the Dependency map as shown above, then click on the ***View Dashboard** Link **(1)**  at the top of the right-hand pane.
 
 This will bring you to the services dashboard:
 
