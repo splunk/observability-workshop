@@ -1,7 +1,7 @@
 ---
 title: Preparation of the Pet Clinic application. 
-linkTitle: 10. Preparation
-weight: 10
+linkTitle: 2. Preparation
+weight: 3
 ---
 
 ## 1. Validate the settings for your workshop

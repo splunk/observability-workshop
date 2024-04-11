@@ -1,7 +1,7 @@
 ---
 title: Setting up Zero configuration Auto instrumentation for APM
-linkTitle: 30. Auto-instrumentation & Metrics
-weight: 30
+linkTitle: 4. Auto-instrumentation & Metrics
+weight: 5
 ---
 
 ## 1. Introduction

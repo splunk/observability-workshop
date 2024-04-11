@@ -1,7 +1,7 @@
 ---
 title: Real User Monitoring
-linkTitle: 70. Real User Monitoring
-weight: 70
+linkTitle: 8. Real User Monitoring
+weight: 9
 hidden: true
 ---
 

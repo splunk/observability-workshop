@@ -1,8 +1,7 @@
 ---
 title: Splunk APM features available with Zero Config Auto-Instrumentation
-linkTitle: 40. Splunk APM Features
-weight: 40
-hidden: false
+linkTitle: 5. Splunk APM Features
+weight: 6
 ---
 
 ## 1. Introduction

@@ -1,7 +1,7 @@
 ---
 title: Verifying both Kubernetes and the PetClinic Microservices application
-linkTitle: 20. Verify Kubernetes and PetClinic
-weight: 20
+linkTitle: 3. Verify Kubernetes and PetClinic
+weight: 4
 ---
 
 ## 1. Verify the installation by checking Metrics and Logs
