@@ -78,12 +78,6 @@ variable "splunk_presetup" {
   default     = false
 }
 
-variable "splunk_jdk" {
-  description = "Enabled Java Development environment? (true/false)"
-  type        = bool
-  default     = false
-}
-
 variable "otel_demo" {
   description = "Spin up the OpenTelemetry Astronomy Shop Demo? (true/false)"
   type        = bool

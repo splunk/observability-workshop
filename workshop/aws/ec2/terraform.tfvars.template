@@ -15,9 +15,8 @@ splunk_hec_token = ""
 
 # Optional
 splunk_presetup = false
-splunk_jdk = false
 otel_demo = false
-diab = false
+splunk_diab = false
 pub_key = ""
 
 # Advanced
