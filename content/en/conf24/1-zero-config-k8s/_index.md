@@ -11,7 +11,7 @@ The goal of this workshop is to introduce the features of Splunk's Opentelemetry
 
 First, we create the workshop scenario, by installing a simple Java microservices application in Kubernetes.
 
-We then walk through the basic steps to set up the OpenTelemetry Collector in Kubernetes and enable auto-instrumentation on the existing Java application running in Kubernetes.  This  will start sending Opentelemetry signals to the **Splunk Observability Cloud** platform and enable the following components:
+We then walk through the basic steps to set up the OpenTelemetry Collector in Kubernetes and enable zero-config auto-instrumentation on the existing Java application running in Kubernetes.  This  will start sending Opentelemetry metrics, traces and logs to the **Splunk Observability Cloud** platform and enable the following components:
 
 * Splunk Infrastructure Monitoring (IM)
 * Splunk Auto Instrumentation for Java (APM)

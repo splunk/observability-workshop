@@ -24,6 +24,7 @@ Lastly, we will configure the Spring PetClinic application to inject trace infor
 * Familiarity with the `bash` shell and `vi/vim/nano` editor.
 
 {{% /notice %}}
+
 ![Splunk Otel Architecture](../images/auto-instrumentation-java-diagram.png)
 
 ---
