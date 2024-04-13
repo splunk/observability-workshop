@@ -40,6 +40,8 @@ packages:
   - unzip
   - zsh
 
+package_upgrade: true
+
 write_files:
   - path: /etc/ssh/sshd_config
     content: |
