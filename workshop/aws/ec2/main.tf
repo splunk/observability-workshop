@@ -8,6 +8,7 @@ locals {
     environment                  = "o11y-workshop"
     splunkit_data_classification = "public"
     splunkit_environment_type    = "customer-prd"
+    splunkit_golden_ami          = true
   }
 }
 
