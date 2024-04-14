@@ -7,7 +7,7 @@ locals {
     component                    = "o11y-for-${lower(var.slug)}"
     environment                  = "o11y-workshop"
     splunkit_data_classification = "public"
-    splunkit_environment_type    = "customer-prd"
+    splunkit_environment_type    = "customer-non-prd"
     splunkit_golden_ami          = true
   }
 }
