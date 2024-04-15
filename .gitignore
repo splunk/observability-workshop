@@ -55,3 +55,4 @@ workshop/aws/ec2/*.csv
 .idea/
 workshop/demo-client/venv/*
 workshop/demo-server/venv/*
+orbstack/orbstack.sh
