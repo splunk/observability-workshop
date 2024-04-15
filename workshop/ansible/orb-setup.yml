@@ -23,7 +23,6 @@
       - name: Add environment variables to .profile
         ansible.builtin.blockinfile:
           path: /etc/skel/.profile
-          prepend_newline: true
           block: |
             export REALM={{ realm }}
             export ACCESS_TOKEN={{ ingest_token }}
