@@ -17,7 +17,7 @@
       block:
       - name: Check to see if the config has run
         stat:
-          path: /white_rabbit.followed
+          path: /blue_rabbit.followed
         register: wh_result
 
       - name: Add environment variables to .profile
@@ -32,41 +32,9 @@
         become: true
         when: not wh_result.stat.exists
 
-      - name: Create K3s secrets YAML
-        file:
-          path: /home/splunk/splunk-k8s-secrets.yaml
-          owner: splunk
-          group: splunk
-          state: touch
-        become: true
-        when: not wh_result.stat.exists
-
-      - name: Update secrets YAML
-        ansible.builtin.blockinfile:
-          path: /home/splunk/splunk-k8s-secrets.yaml
-          block: |
-            apiVersion: v1
-            kind: Secret
-            metadata:
-              name: splunk-secrets
-              namespace: default
-            type: Opaque
-            stringData:
-              app: {{ instance }}
-              deployment: "deployment.environment={{ instance }}"
-              instance: {{ instance }}
-              realm: {{ realm }}
-              rum_token: {{ rum_token }}
-        become: true
-        when: not wh_result.stat.exists
-
-      - name: Apply secrets YAML
-        command: kubectl apply -f splunk-k8s-secrets.yaml
-        when: not wh_result.stat.exists
-
       - name: Create a file to signify that the config has run successfully
         file:
-          path: "/white_rabbit.followed"
+          path: "/blue_rabbit.followed"
           state: touch
         become: true
         when: not wh_result.stat.exists
