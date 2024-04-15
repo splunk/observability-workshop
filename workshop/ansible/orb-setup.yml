@@ -13,6 +13,13 @@
         hec_token: "{{ lookup('env','HEC_TOKEN') }}"
 
   tasks:
+    - name: Configure Orbstack
+      block:
+      - name: Check to see if the config has run
+        stat:
+          path: /white_rabbit.followed
+        register: wh_result
+
       - name: Add environment variables to .profile
         ansible.builtin.blockinfile:
           path: /etc/skel/.profile
@@ -26,7 +33,7 @@
         become: true
         when: not wh_result.stat.exists
 
-      - name: Create workshop secrets deployment YAML
+      - name: Create K3s secrets YAML
         file:
           path: /home/splunk/splunk-k8s-secrets.yaml
           owner: splunk
@@ -35,7 +42,7 @@
         become: true
         when: not wh_result.stat.exists
 
-      - name: Update yaml for workshop secrets
+      - name: Update secrets YAML
         ansible.builtin.blockinfile:
           path: /home/splunk/splunk-k8s-secrets.yaml
           block: |
@@ -51,10 +58,16 @@
               instance: {{ instance }}
               realm: {{ realm }}
               rum_token: {{ rum_token }}
-          marker: "## {mark} Added by ansible (configuration Demo-in-a-Box)"
         become: true
         when: not wh_result.stat.exists
 
-      - name: Demo-in-a-Box Kubernetes setup
+      - name: Apply secrets YAML
         command: kubectl apply -f splunk-k8s-secrets.yaml
+        when: not wh_result.stat.exists
+
+      - name: Create a file to signify that the config has run successfully
+        file:
+          path: "/white_rabbit.followed"
+          state: touch
+        become: true
         when: not wh_result.stat.exists
