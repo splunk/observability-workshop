@@ -69,7 +69,8 @@ runcmd:
   - mv /home/splunk/observability-workshop-main/workshop/* /home/splunk/workshop
   - mv /home/splunk/workshop/ansible/diab-v2.yml /home/splunk
   - mv /home/splunk/workshop/ansible/diab-v3.yml /home/splunk
-  - mv /home/splunk/workshop/ansible/orb-setup.yml /home/splunk
+  - mv /home/splunk/workshop/ansible/orb-configure-profile.yml /home/splunk
+  - mv /home/splunk/workshop/ansible/orb-configure-secrets.yml /home/splunk
   - rm -rf /home/splunk/observability-workshop-main
   - rm -rf /home/splunk/workshop/aws /home/splunk/workshop/cloud-init /home/splunk/workshop/ansible
   - mv /home/splunk/workshop/k3s/demo-in-a-box.zip /home/splunk
