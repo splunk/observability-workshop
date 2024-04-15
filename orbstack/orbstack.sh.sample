@@ -4,6 +4,7 @@ export REALM=
 export RUM_TOKEN=
 export HEC_TOKEN=
 export HEC_URL=
+export INSTANCE=
 
 orb create -c orbstack.yaml -a amd64 ubuntu:jammy
 sleep 2
