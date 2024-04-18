@@ -17,7 +17,7 @@ spec:
       containers:
         - name: creditprocessorservice
           image: derekmitchell399/credit-processor-service:1.0
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8899
           env:

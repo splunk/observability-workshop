@@ -70,7 +70,7 @@ spec:
             privileged: false
             readOnlyRootFilesystem: true
           image: derekmitchell399/loadgenerator:1.0
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           env:
             - name: CREDITCHECK_ADDR
               value: "creditcheckservice:8888"
