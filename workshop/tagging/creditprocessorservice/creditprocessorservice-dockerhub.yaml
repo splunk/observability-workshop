@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: creditprocessorservice
+spec:
+  selector:
+    matchLabels:
+      app: creditprocessorservice
+  template:
+    metadata:
+      labels:
+        app: creditprocessorservice
+    spec:
+      tolerations:
+      nodeSelector:
+      terminationGracePeriodSeconds: 5
+      containers:
+        - name: creditprocessorservice
+          image: derekmitchell399/credit-processor-service:1.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8899
+          env:
+            - name: PORT
+              value: "8899"
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://$(NODE_IP):4317"
+            - name: OTEL_SERVICE_NAME
+              value: "creditprocessorservice"
+            - name: OTEL_PROPAGATORS
+              value: "tracecontext,baggage"
+          resources:
+            requests:
+              cpu: 110m
+              memory: 90Mi
+            limits:
+              cpu: 130m
+              memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: creditprocessorservice
+spec:
+  type: ClusterIP
+  selector:
+    app: creditprocessorservice
+  ports:
+    - protocol: TCP
+      port: 8899
+      targetPort: 8899
