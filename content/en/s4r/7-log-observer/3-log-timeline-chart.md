@@ -11,7 +11,7 @@ Let's look at creating a **Log Timeline** chart. The Log Timeline chart is used 
 
 First, we will reduce the amount of information to only the columns we are interested in:
 
-* Click on the Configure Table {{% icon icon="cog" %}} icon above the **Logs table** to open the **Table Settings**, untick `_raw` and ensure the following fields are selected `k8s.pod_name`, `message` and `version`.
+* Click on the Configure Table {{% icon icon="cog" %}} icon above the **Logs table** to open the **Table Settings**, untick `_raw` and ensure the following fields are selected `k8s.pod.name`, `message` and `version`.
   ![Log Table Settings](../images/log-observer-table.png)
 * Remove the fixed time from the time picker, and set it to the **Last 15 minutes**.
 * To make this work for all traces, remove the `trace_id` from the filter and add the fields `sf_service=paymentservice` and `sf_environment=[WORKSHOPNAME]`.
