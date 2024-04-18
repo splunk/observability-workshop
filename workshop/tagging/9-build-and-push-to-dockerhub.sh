@@ -10,7 +10,7 @@
 #
 # Before running this script, you must run docker login and authenticate
 # to the desired docker hub account
-# 
+#
 
 # (1) Build the creditcheckservice, creditprocessorservice, and loadgenerator images
 docker build -t derekmitchell399/credit-check-service:1.0 creditcheckservice

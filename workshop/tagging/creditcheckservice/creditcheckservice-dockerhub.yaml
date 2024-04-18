@@ -17,7 +17,7 @@ spec:
       containers:
         - name: creditcheckservice
           image: derekmitchell399/credit-check-service:1.0
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8888
           env:
