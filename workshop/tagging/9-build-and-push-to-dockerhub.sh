@@ -7,6 +7,10 @@
 # In the event that workshop attendees experiences issues building images locally
 # they can use the pre-built images from Docker Hub instead. For the credit check
 # service, we'll build images both without tags (1.0) and with tags (1.1).
+#
+# Before running this script, you must run docker login and authenticate
+# to the desired docker hub account
+# 
 
 # (1) Build the creditcheckservice, creditprocessorservice, and loadgenerator images
 docker build -t derekmitchell399/credit-check-service:1.0 creditcheckservice
