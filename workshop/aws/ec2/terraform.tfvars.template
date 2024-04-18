@@ -20,5 +20,5 @@ splunk_diab = false
 pub_key = ""
 
 # Advanced
-wsversion = "5.48"
+wsversion = "5.49"
 user_data_tpl = "userdata.yaml"
