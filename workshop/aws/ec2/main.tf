@@ -174,6 +174,7 @@ locals {
     presetup          = var.splunk_presetup
     diab              = var.splunk_diab
     otel_demo         = var.otel_demo
+    tagging_workshop  = var.tagging_workshop
     wsversion         = var.wsversion
     instance_password = random_string.password.result
     pub_key           = var.pub_key
@@ -222,6 +223,11 @@ resource "aws_instance" "observability-instance" {
       # if otel_demo=true, tokens and realm cannot be empty. also presetup cannot also be true.
       condition     = var.otel_demo ? try(var.splunk_access_token, "") != "" && try(var.splunk_realm, "") != "" && try(var.splunk_rum_token, "") != "" && try(var.splunk_presetup, "") == false : true
       error_message = "When requesting an otel_demo, splunk_realm, splunk_access_token and splunk_rum_token are required and cannot be null/empty. splunk_presetup variable must also be set to false. "
+    }
+    precondition {
+      # if tagging_workshop=true, tokens and realm cannot be empty. also presetup cannot also be true.
+      condition     = var.tagging_workshop ? try(var.splunk_access_token, "") != "" && try(var.splunk_realm, "") != "" && try(var.splunk_presetup, "") == false : true
+      error_message = "When requesting an tagging_workshop, splunk_realm and splunk_access_token are required and cannot be null/empty. splunk_presetup variable must also be set to false. "
     }
     precondition {
       # access_token and realm cannot be empty.

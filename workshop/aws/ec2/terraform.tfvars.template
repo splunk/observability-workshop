@@ -17,6 +17,7 @@ splunk_hec_token = ""
 splunk_presetup = false
 otel_demo = false
 splunk_diab = false
+tagging_workshop = false
 pub_key = ""
 
 # Advanced
