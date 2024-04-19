@@ -501,7 +501,7 @@ spec:
         app: petclinic-db
     spec:
       containers:
-        - image: mysql:5.7
+        - image: mysql:8
           name: petclinic-db
           env:
             # Use secret in real usage
@@ -530,7 +530,6 @@ metadata:
 data:
   initdb.sql: |
     CREATE DATABASE IF NOT EXISTS petclinic;
-    GRANT ALL PRIVILEGES ON petclinic.* TO pcroot@localhost IDENTIFIED BY 'pc';
 
     USE petclinic;
 
