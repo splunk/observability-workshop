@@ -53,7 +53,7 @@ At this point, we can verify the deployment by checking if the Pods are running,
 {{< tabs >}}
 {{% tab title="kubectl get pods" %}}
 
-```bash
+``` bash
 kubectl get pods
 ```
 
@@ -90,14 +90,16 @@ Once they are running, the application will take a few minutes to fully start up
 
 Once we have tested our Zero Auto-Config Instrumentation in the existing containers, we are going to build our containers to show some of the additional instrumentation features of Opentelemetry Java. Only then we will touch the config files or the source code. Once we build these containers, Kubernetes will need to pull these new images from somewhere. To enable this we have created a local repository to store these new containers, so Kubernetes can pull the images locally.
 
-We can see if the repository is up and running by checking the inventory with the below command:
+We can see if the repository is up and running by checking the inventory with the below command. It will return an empty list:
 
-```bash
- curl -X GET http://localhost:9999/v2/_catalog 
+{{< tabs >}}
+{{% tab title="Check the local Docker Repository" %}}
+
+``` bash
+curl -X GET http://localhost:9999/v2/_catalog
 ```
 
-It should return an empty list  
-
+{{% /tab %}}
 {{% tab title="Example output" %}}
 
 ```text
@@ -105,4 +107,6 @@ It should return an empty list
 ```
 
 {{% /tab %}}
+{{< /tabs >}}
+
 If this is not up, reach out to your Instructor for a replacement instance.
