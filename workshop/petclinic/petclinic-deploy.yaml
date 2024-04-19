@@ -80,7 +80,7 @@ spec:
       labels:
         app: discovery-server
       annotations:
-        instrumentation.opentelemetry.io/inject-java: "default/splunk-otel-collector"      
+        instrumentation.opentelemetry.io/inject-java: "default/splunk-otel-collector"
     spec:
       terminationGracePeriodSeconds: 5
       containers:
@@ -103,9 +103,9 @@ spec:
           - name: NODE_IP
             valueFrom:
               fieldRef:
-                fieldPath: status.hostIP          
+                fieldPath: status.hostIP
           - name: SPLUNK_METRICS_ENDPOINT
-            value: "http://$(NODE_IP):9943"   
+            value: "http://$(NODE_IP):9943"
           resources:
             requests:
               #cpu: 125m
@@ -383,7 +383,7 @@ spec:
           name: visits-service
           imagePullPolicy: Always
           ports:
-          - containerPort: 8082      
+          - containerPort: 8082
           env:
           - name: _JAVA_OPTIONS
             value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=150" 
@@ -392,7 +392,7 @@ spec:
               fieldRef:
                 fieldPath: status.hostIP
           - name:  SPLUNK_METRICS_ENDPOINT
-            value: "http://$(NODE_IP):9943"            
+            value: "http://$(NODE_IP):9943"
           resources:
             requests:
 
@@ -429,6 +429,8 @@ spec:
     metadata:
       labels:
         app: admin-server
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "default/splunk-otel-collector"
     spec:
       terminationGracePeriodSeconds: 5
       containers:
@@ -519,7 +521,7 @@ spec:
         - name: petclinic-db-persistent-storage
         - name: petclinic-db-initdb
           configMap:
-            name: petclinic-db-initdb-config        
+            name: petclinic-db-initdb-config
 ---
 apiVersion: v1
 kind: ConfigMap
