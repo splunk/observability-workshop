@@ -15,10 +15,10 @@ It is important to understand that Zero Config Auto instrumentation is designed 
 For this workshop, we will be using the Zero config option of the Opentelemetry Collector in Kubernetes.
 This means that the Collector monitors your pods running in Kubernetes, and if they match certain criteria, they will enable auto-instrumentation on the pod.
 
-For Java, it is looking for the Kubernetes TAG `instrumentation.opentelemetry.io/inject-java\` set to `true` or to the location of the Otel collector, like `default/splunk-otel-collector`. The last one will work across namespaces, so this is what we will use in our examples.
+For Java, it is looking for the Kubernetes tag `instrumentation.opentelemetry.io/inject-java` set to `true` or to the location of the Otel collector, like `default/splunk-otel-collector`. The last one will work across namespaces, so this is what we will use in our examples.
 
 {{% notice title="Using the deployment.yaml" style="info" %}}
-If you want your pods to send traces automatically, you can add the annotation to the `deployment.yaml` as shown below. This will add the instrumentation library during the initial deployment. To speed things up we have done that for the management pods: `Admin-server, Config-server & Discovery server`.
+If you want your pods to send traces automatically, you can add the annotation to the `deployment.yaml` as shown below. This will add the instrumentation library during the initial deployment. To speed things up we have done that for the management pods: **admin-server**, **config-server** and **discovery-server**.
 
 ```bash
 apiVersion: apps/v1
