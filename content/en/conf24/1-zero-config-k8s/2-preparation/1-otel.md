@@ -77,20 +77,17 @@ splunk-otel-collector-chart/splunk-otel-collector \
 {{% tab title="Helm Install Output" %}}
 
 ```text
-Using ACCESS_TOKEN={REDACTED}
-Using REALM=eu0
-NAME: splunk-otel-collector
-LAST DEPLOYED: Tue Jan  2 13:46:16 2024
+LAST DEPLOYED: Fri Apr 19 09:39:54 2024
 NAMESPACE: default
 STATUS: deployed
 REVISION: 1
 NOTES:
-Splunk OpenTelemetry Collector is installed and configured to send data to Splunk Platform endpoint "https://http-inputs-o11y-suite-eu0.stg.splunkcloud.com:443/services/collector/event".
+Splunk OpenTelemetry Collector is installed and configured to send data to Splunk Platform endpoint "https://http-inputs-o11y-workshop-eu0.splunkcloud.com:443/services/collector/event".
 
 Splunk OpenTelemetry Collector is installed and configured to send data to Splunk Observability realm eu0.
 
 [INFO] You've enabled the operator's auto-instrumentation feature (operator.enabled=true), currently considered ALPHA.
-- Instrumentation library maturity varies (e.g., Java is more mature than Go). For library stability, visit: https://opentelemetry.io/docs/instrumentation/#status-and-releases
+  - Instrumentation library maturity varies (e.g., Java is more mature than Go). For library stability, visit: https://opentelemetry.io/docs/instrumentation/#status-and-releases
   - Some libraries may be enabled by default. For current status, see: https://github.com/open-telemetry/opentelemetry-operator#controlling-instrumentation-capabilities
   - Splunk provides best-effort support for native OpenTelemetry libraries, and full support for Splunk library distributions. For used libraries, refer to the values.yaml under "operator.instrumentation.spec".
 ```
