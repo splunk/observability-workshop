@@ -90,6 +90,12 @@ variable "splunk_diab" {
   default     = false
 }
 
+variable "tagging_workshop" {
+  description = "Spin up the Tagging Workshop application? (true/false)"
+  type        = bool
+  default     = false
+}
+
 variable "wsversion" {
   description = "Workshop version"
   type        = string
