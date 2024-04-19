@@ -26,28 +26,23 @@ agent:
             config:
               tls:
                 insecure: true
-              host: mysql.default.svc.cluster.local:3306
+              endpoint: '`endpoint`'
               username: root
               password: root
               database: LxvGChW075
           mysql/petclinic:
             rule: type =="port" && pod.name matches "petclinic-db" && port == 3306
-            configMap:
+            config:
               tls:
                 insecure: true
-              endpoint: petclinic-db.default.svc.cluster.local:3306
+              endpoint: '`endpoint`'
               username: root
               password: petclinic
               database: petclinic
-          smartagent/redis:
+          redis/workshop:
             rule: type == "port" && pod.name matches "redis-cart" && port == 6379
             config:
-              type: collectd/redis
-              host: redis-cart
-              port: 6379
-              name: "redis-${WORKSHOP_ENVIRONMENT}"
-              extraDimensions:
-                service.name: "redis-${WORKSHOP_ENVIRONMENT}"
+              endpoint: '`endpoint`'
     extensions:
       zpages:
         endpoint: 0.0.0.0:55679
