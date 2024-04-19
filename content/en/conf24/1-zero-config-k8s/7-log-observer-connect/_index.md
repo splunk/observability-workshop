@@ -9,15 +9,13 @@ weight: 8
 Until this point, we have not touched or changed our code, yet we did receive Trace & Profiling/DB Query performance information.
 If we want to get more out of our Java application, we can introduce a small change to our application log setup.
 
-This change will configure the Spring PetClinic application to use an Otel-based format to write logs, This will allow the (Auto)-instrumentation to add Otel relevant information into the logs.
+This change will configure the Spring PetClinic application to use an OpenTelemetry-based format to write logs, This will allow the Auto-Instrumentation to add OpenTelemetry relevant information into the logs.
 
-The Splunk Log Observer component is used to view the logs and with this information can automatically relate log information with APM Services and Traces. This feature called **Related Content** will also work with Infrastructure.
+The **Splunk Log Observer** component is used to view the logs and with this information can automatically relate log information with APM Services and Traces. This feature called **Related Content** will also work with Infrastructure.
 
 Let's grab the actual code for the application now.
 
 ## 2. Downloading the Spring Microservices PetClinic Application
-
-For this exercise, we will use the Spring microservices PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot) and we are using a version with actual microservices.
 
 First, clone the PetClinic GitHub repository, as we will need this later in the workshop to compile, build, package and containerize the application:
 
@@ -25,7 +23,7 @@ First, clone the PetClinic GitHub repository, as we will need this later in the 
 cd ~;git clone https://github.com/hagen-p/spring-petclinic-microservices.git
 ```
 
-Then change into the spring-petclinic directory:
+Then change into the `spring-petclinic-microservices` directory:
 
 ```bash
 cd ~/spring-petclinic-microservices
@@ -33,20 +31,21 @@ cd ~/spring-petclinic-microservices
 
 ## 3. Update Logback config for the services
 
-The Spring PetClinic application can be configured to use several different Java logging libraries. In this scenario, the application is using `logback`.  To make sure we get the OTel information in the logs we need to update a file named `logback.xml` with the log structure, and add an Otel dependency to the `pom.xml` of each of the services in the petclinic microservices folders.
+The Spring PetClinic application can be configured to use several different Java logging libraries. In this scenario, the application is using `logback`.  To make sure we get the OpenTelemetry information in the logs we need to update a file named `logback.xml` with the log structure and add an OpenTelemetry dependency to the `pom.xml` of each of the services in the PetClinic microservices folders.
 
-First, let's set the Log Structure/Format:
+First, let's set the Log Structure/Format. SpringBoot will allow you to set a global template, but for ease of use, we will replace the existing content of the `logback-spring.xml` files of each service with the following XML content using a prepared script.
 
-Spring boot will allow you to set a global template, but for ease of use, we will replace the existing content of the `logback-spring.xml` files of each service with the following XML content using a prepared script:
-Note the following entries that will be added:  
+{{% notice note %}}
+The following entries will be added:
 
 - trace_id
 - span_id
 - trace_flags
 - service.name
 - deployment.environment
+{{% /notice %}}
 
-These fields allow the **Splunk** Observability Cloud Suite** to display **Related Content** when used in a pattern shown below:
+These fields allow the **Splunk Observability Cloud Suite** to display **Related Content** when used in a pattern shown below:
 
 ```xml
   <pattern>
@@ -80,7 +79,7 @@ Script execution completed.
 {{% /tab %}}
 {{< /tabs >}}
 
-We can verify if the replacement has been successful by examining the spring-logback.xml file from one of the services
+We can verify if the replacement has been successful by examining the spring-logback.xml file from one of the services:
 
 ```bash
 cat /home/splunk/spring-petclinic-microservices/spring-petclinic-customers-service/src/main/resources/logback-spring.xml
@@ -88,13 +87,17 @@ cat /home/splunk/spring-petclinic-microservices/spring-petclinic-customers-servi
 
 ## 4. Reconfigure and build the services locally
 
-Before we can build the new services with the updated log format we need to add the Opentelemetry dependency tht handles field injection to the `Pom.xml` of our services:
+Before we can build the new services with the updated log format we need to add the Opentelemetry dependency that handles field injection to the `Pom.xml` of our services:
 
 ```bash
 . ~/workshop/petclinic/scripts/add_otel.sh
 ```
 
 The Services are now ready to be built, so run the script that will use the `maven` command to compile/build/package the PetClinic microservices (Note the `-P buildDocker`, this will build the new containers):
+
+{{% notice note %}}
+This will take 3-5 minutes to complete
+{{% /notice %}}
 
 {{< tabs >}}
 {{% tab title="Running maven" %}}
@@ -203,7 +206,7 @@ To see the changes in effect, we need to redeploy the services, First, let's cha
 The result is a new file on disk called **petclinic-local.yaml**. Let's switch to the local versions by using the new version of the `deployment yaml`. First delete the old containers from the original deployment with:
 
 ```bash
-kubectl delete -f ~/workshop/petclinic/petclinic-local.yaml
+kubectl delete -f ~/workshop/petclinic/petclinic-deploy.yaml
 ```
 
 followed by:
@@ -278,12 +281,12 @@ Next, click **Add Filter** search for the field `deployment.environment` and sel
 
 Next search for the field  `service_name` select the value `customers-service` and click `=` (include). Now the log files should be reduced to just the lines from your `customers-service`.
 
-Wait for Log Lines to show up with an injected trace-id like trace_id=08b5ce63e46ddd0ce07cf8cfd2d6161a as shown below **(1)**: 
+Wait for Log Lines to show up with an injected trace-id like trace_id=08b5ce63e46ddd0ce07cf8cfd2d6161a as shown below **(1)**:
 
 ![Log Observer](../images/log-observer-trace-info.png)
 
 Click on a line with an injected trace_id, this should be all log lines created by your services that are part of a trace **(1)**.
-A Side pane opens where you can see the related information about your logs. including the relevant Trace and Span Id's **(2)**.
+A Side pane opens where you can see the related information about your logs. including the relevant Trace and Span IDs **(2**)**.
 
 Also, at the bottom next to APM, there should be a number, this is the number of related AP Content items for this logline.  click on the APM pane **(1)** as shown below:
 ![RC](../images/log-apm-rc.png)
