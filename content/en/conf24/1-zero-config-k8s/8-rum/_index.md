@@ -10,10 +10,10 @@ hidden: false
 To enable Real User Monitoring (RUM) instrumentation for your application, you need to add the Open Telemetry Javascript [**https://github.com/signalfx/splunk-otel-js-web**](https://github.com/signalfx/splunk-otel-js-web) snippet in the web pages.
 
 The Spring PetClinic application uses a single HTML page as the "index" page, that is reused across all pages of the application. This is the perfect location to insert the Splunk RUM Instrumentation Library as it will be loaded in all pages automatically.
-For our workshop we will use the following snippet to the **HEAD** section of the index.html page to achieve the desired integration
+For our workshop, we will use the following snippet in the **HEAD** section of the index.html page to achieve the desired integration
 
 ``` html
-<script src="env.js"></script>  
+<script src="/static/env.js"></script>  
     <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous"></script>
     <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web-session-recorder.js" crossorigin="anonymous"></script>
     <script>
@@ -44,12 +44,12 @@ For our workshop we will use the following snippet to the **HEAD** section of th
     </script>
 ```
 
-To speed up the workshop we already added the snippet to the code in the Repo you have downloaded earlier, and you already have a build that includes this snippet when rebuild all the services in the previous exercise
+To speed up the workshop we already added the snippet to the code in the Repo you downloaded earlier, and you already have a build that includes this snippet when rebuilding all the services in the previous exercise
 
-If you want you can verify the snippet  we added to  the index.html by viewing the file:  
+If you want you can verify the snippet  we added to  the index.html by viewing the file:
 
 {{< tabs >}}
-{{% tab title="view index.html [esc q to quit]" %}}
+{{% tab title="view index.html [esc :q! to quit]" %}}
 
 ``` bash
  view ~/spring-petclinic-microservices/spring-petclinic-api-gateway/src/main/resources/static/index.html
@@ -58,9 +58,7 @@ If you want you can verify the snippet  we added to  the index.html by viewing t
 {{% /tab %}}
 {{< /tabs >}}
 
-Note, that we also include a env.js file, this contains/sets the variables used by the integration to the desired values,  right now they are empty so the integration isn't loaded. and no Rum traces are sent to splunk..
-
-Lets set the 
+Note, that we also include an `env.js` file, which contains/sets the variables used by the integration to the desired values,  right now they are empty so the integration isn't loaded. and no Rum traces are sent to Splunk.
 
 So, let's run the script that will update variables to the right value so we will see RUM traces in the Splunk Observability Suite RUM UI:
 
@@ -93,7 +91,7 @@ cat ~/spring-petclinic-microservices/spring-petclinic-api-gateway/src/main/resou
 {{% /tab %}}
 {{% tab title=" Output" %}}
 
-
+``` javascript
  env = {
   RUM_REALM: 'eu0',
   RUM_AUTH: '[redacted]',
@@ -105,11 +103,18 @@ cat ~/spring-petclinic-microservices/spring-petclinic-api-gateway/src/main/resou
 {{% /tab %}}
 {{< /tabs >}}
 
+``` bash
+./mvnw clean install -D skipTests -P buildDocker
+```
 
-Now restart the api-serveic
+``` bash
+. ~/workshop/petclinic/scripts/push_docker.sh
+```
 
-```text
- kubctl whatever to restart the container..
+Now restart the `api-gateway` to apply the changes:
+
+``` bash
+kubectl rollout restart deployment api-gateway
 ```
 
 In RUM, filter down into the environment as defined in the RUM snippet above and click through to the dashboard.
