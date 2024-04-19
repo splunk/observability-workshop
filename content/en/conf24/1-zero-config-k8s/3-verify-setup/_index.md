@@ -29,8 +29,8 @@ Once you see data flowing in from your host (`metrics and logs`) and MySQL shows
 
 To test the application you need to obtain the public IP address of the instance you are running on. You can do this by running the following command:
 
-```bash
-curl ifconfig.me
+``` bash
+curl http://ifconfig.me
 
 ```
 
@@ -40,7 +40,7 @@ You can validate if the application is running by visiting `http://<IP_ADDRESS>:
 
 ![Pet shop](../images/petclinic.png)
 
-Make sure the application is working correctly by visiting the **All Owners** **(1)** and **Veterinarians**  **(2)**tabs, you should get a list of names in each case.
+Make sure the application is working correctly by visiting the **All Owners** **(1)** and **Veterinarians** **(2)** tabs, you should get a list of names in each case.
 
 ![owners](../images/pet-clininc-owners.png)
 
