@@ -4,11 +4,11 @@ linkTitle: 3. Verify everything is working
 weight: 4
 ---
 
-Once the installation is completed, you can log in to the  **Splunk Observability Cloud** with the URL provided by the Instructor.
+Once the installation has been completed, you can log in to **Splunk Observability Cloud** and verify that the metrics are flowing in from your Kubernetes cluster.
 
-First, Navigate to the **Kubernetes Navigator** view in the **Infrastructure** ![infra](../images/infra-icon.png?classes=inline&height=25px) section to see the metrics from your cluster in the **K8s nodes** pane. Once you are in the Kubernetes Navigator view, change the *Time* filter to the last 15 Minutes (-15m) to focus on the latest data.
+From the left-hand menu click on **Infrastructure** ![infra](../images/infra-icon.png?classes=inline&height=25px) and select **Kubernetes** and then select the **K8s nodes** pane. Once you are in the **K8s node** view, change the **Time** filter from **4h** to the **last 15 Minutes (-15m)** to focus on the latest data.
 
-Select your cluster with the regular filter option at the top of the Navigator and a filter `k8s.cluster.name` **(1)**. Type or select the cluster name of your workshop instance (you can get the unique part from your cluster name by using the `INSTANCE` from the output from the shell script you ran earlier). (You can also select your cluster by clicking on its image in the cluster pane.)
+Next, click **Add filters** (next to the **Time filter**) and add the filter `k8s.cluster.name` **(1)**. Type or select the cluster name of your workshop instance (you can get the unique part from your cluster name by using the `INSTANCE` from the output from the shell script you ran earlier). (You can also select your cluster by clicking on its image in the cluster pane.)
 You should now only have your cluster visible **(2)**.
 
 ## MISSING SCREENSHOT
