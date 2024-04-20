@@ -203,6 +203,31 @@ write_files:
         echo ${instance_name} > /home/splunk/.helmok
       fi
 
+  - path: /tmp/tagging-workshop-setup.sh
+    permissions: '0755'
+    content: |
+      export REALM=${realm}
+      export ACCESS_TOKEN=${access_token}
+      export API_TOKEN=${api_token}
+      export INSTANCE="${instance_name}"
+      if [ ! -f /home/splunk/.helmok ]; then
+        helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
+        helm repo update
+        helm install splunk-otel-collector \
+        --set="splunkObservability.realm=${realm}" \
+        --set="splunkObservability.accessToken=${access_token}" \
+        --set="clusterName=${instance_name}-k3s-cluster" \
+        --set="environment=tagging-workshop-${instance_name}" \
+        splunk-otel-collector-chart/splunk-otel-collector -f -
+
+        cd /home/splunk/workshop/tagging/
+        ./2-deploy-creditcheckservice.sh
+        ./3-deploy-creditprocessorservice.sh
+        ./4-deploy-load-generator.sh
+      
+        echo ${instance_name} > /home/splunk/.helmok
+      fi
+
 runcmd:
   - chsh -s $(which zsh) splunk
   - su splunk -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
@@ -264,3 +289,9 @@ runcmd:
 %{ if otel_demo == true ~}
   - su splunk -c 'bash /tmp/otel-demo-setup.sh'
 %{ endif ~}
+  
+%{ if tagging_workshop == true ~}
+  - su splunk -c 'bash /tmp/tagging-workshop-setup.sh'
+%{ endif ~}
+
+
