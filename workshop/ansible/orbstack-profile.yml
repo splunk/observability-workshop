@@ -1,0 +1,41 @@
+---
+- hosts: localhost
+  gather_facts: false
+
+  pre_tasks:
+    - name: Set the required variables
+      set_fact:
+        ingest_token: "{{ lookup('env','ACCESS_TOKEN') }}"
+        rum_token: "{{ lookup('env','RUM_TOKEN') }}"
+        realm: "{{ lookup('env','REALM') }}"
+        instance: "{{ lookup('env','INSTANCE') }}"
+        hec_url: "{{ lookup('env','HEC_URL') }}"
+        hec_token: "{{ lookup('env','HEC_TOKEN') }}"
+
+  tasks:
+    - name: Configure Orbstack
+      block:
+      - name: Check to see if the config has run
+        stat:
+          path: /blue_rabbit.followed
+        register: wh_result
+
+      - name: Add environment variables to .profile
+        ansible.builtin.blockinfile:
+          path: /etc/skel/.profile
+          block: |
+            export REALM={{ realm }}
+            export ACCESS_TOKEN={{ ingest_token }}
+            export RUM_TOKEN={{ rum_token }}
+            export HEC_TOKEN={{ hec_token }}
+            export HEC_URL={{ hec_url }}
+            export INSTANCE={{ instance }}
+        become: true
+        when: not wh_result.stat.exists
+
+      - name: Create a file to signify that the config has run successfully
+        file:
+          path: "/blue_rabbit.followed"
+          state: touch
+        become: true
+        when: not wh_result.stat.exists
