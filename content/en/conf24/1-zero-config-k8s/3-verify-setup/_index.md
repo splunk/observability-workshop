@@ -11,8 +11,6 @@ From the left-hand menu click on **Infrastructure** ![infra](../images/infra-ico
 Next, click **Add filters** (next to the **Time filter**) and add the filter `k8s.cluster.name` **(1)**. Type or select the cluster name of your workshop instance (you can get the unique part from your cluster name by using the `INSTANCE` from the output from the shell script you ran earlier). (You can also select your cluster by clicking on its image in the cluster pane.)
 You should now only have your cluster visible **(2)**.
 
-## MISSING SCREENSHOT
-
 ![Navigator](../images/navigator.png)
 
 You should see metrics **(3)** of your cluster and the log events **(4)** chart should start to be populated with log line events coming from your cluster. Click on one of the bars to peek at the log lines coming in from your cluster.
