@@ -63,8 +63,7 @@
               namespace: default
             type: Opaque
             stringData:
-              app: {{ instance }}
-              env: {{ instance }}-store
+              app: {{ instance }}-store
               deployment: "deployment.environment={{ instance }}"
               instance: {{ instance }}
               realm: {{ realm }}
