@@ -12,5 +12,5 @@ sleep 2
 ORBENV=ACCESS_TOKEN:REALM:RUM_TOKEN:HEC_TOKEN:HEC_URL:INSTANCE orb -m $INSTANCE -u splunk ansible-playbook /home/splunk/orbstack-profile.yml
 sleep 2
 ORBENV=ACCESS_TOKEN:REALM:RUM_TOKEN:HEC_TOKEN:HEC_URL:INSTANCE orb -m $INSTANCE -u splunk ansible-playbook /home/splunk/orbstack-secrets.yml
-echo "ssh plunk@$INSTANCE@orb"
+echo "ssh splunk@$INSTANCE@orb"
 ssh splunk@$INSTANCE@orb
