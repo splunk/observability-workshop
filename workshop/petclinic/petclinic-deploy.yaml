@@ -501,7 +501,7 @@ spec:
         app: petclinic-db
     spec:
       containers:
-        - image: mysql:latest
+        - image: biarms/mysql:5.7
           name: petclinic-db
           env:
             # Use secret in real usage
