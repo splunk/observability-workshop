@@ -65,11 +65,13 @@
             stringData:
               app: {{ instance }}-store
               deployment: "deployment.environment={{ instance }}"
+              env: {{ instance}}
               instance: {{ instance }}
               realm: {{ realm }}
               rum_token: {{ rum_token }}
               hec_token: {{ hec_token }}
               hec_url: {{ hec_url }}
+              url: "http://frontend"
           marker: "## {mark} Added by ansible (configuration Demo-in-a-Box)"
         become: true
         when: not wh_result.stat.exists
