@@ -103,7 +103,7 @@ write_files:
       alias kc='kubectl'
       alias dc='docker-compose'
 
-  - path: /tmp/workshop-secret.yaml
+  - path: /tmp/workshop-secrets.yaml
     permissions: '0755'
     content: |
       apiVersion: v1
@@ -271,7 +271,7 @@ runcmd:
   - chown -R splunk:splunk /home/splunk
   # Deploy private registry
   - /usr/local/bin/kubectl apply -f /home/splunk/workshop/k3s/registry/registry.yaml
-  - /usr/local/bin/kubectl apply -f /tmp/workshop-secret.yaml
+  - /usr/local/bin/kubectl apply -f /tmp/workshop-secrets.yaml
   # Configure shellinabox port and disable ssl then restart
   - sed -i 's/SHELLINABOX_PORT=4200/SHELLINABOX_PORT=6501/' /etc/default/shellinabox
   - sed -i "s/\"--no-beep\"/\"--no-beep --disable-ssl\"/" /etc/default/shellinabox
