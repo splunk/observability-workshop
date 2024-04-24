@@ -23,7 +23,7 @@ cd spring-petclinic
 PetClinic が使用する MySQL データベースを起動します:
 
 ```bash
-docker run -d -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=petclinic -p 3306:3306 docker.io/mysql:5.7.8
+docker run -d -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=petclinic -p 3306:3306 docker.io/mysql:latest
 ```
 
 そして、Splunk版のOpenTelemetry Java APMエージェントをダウンロードしておきましょう。

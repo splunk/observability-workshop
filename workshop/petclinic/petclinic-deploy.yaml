@@ -501,7 +501,7 @@ spec:
         app: petclinic-db
     spec:
       containers:
-        - image: mysql:5.7
+        - image: mysql:latest
           name: petclinic-db
           env:
             # Use secret in real usage
