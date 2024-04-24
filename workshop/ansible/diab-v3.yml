@@ -45,7 +45,7 @@
 
       - name: Create K8s secrets YAML
         file:
-          path: /home/splunk/splunk-k8s-secrets.yaml
+          path: /home/splunk/workshop-secrets.yaml
           owner: splunk
           group: splunk
           state: touch
@@ -54,12 +54,12 @@
 
       - name: Update secrets YAML
         ansible.builtin.blockinfile:
-          path: /home/splunk/splunk-k8s-secrets.yaml
+          path: /home/splunk/workshop-secrets.yaml
           block: |
             apiVersion: v1
             kind: Secret
             metadata:
-              name: workshop-secrets
+              name: workshop-secret
               namespace: default
             type: Opaque
             stringData:
@@ -76,7 +76,7 @@
         when: not wh_result.stat.exists
 
       - name: Demo-in-a-Box Kubernetes setup
-        command: kubectl apply -f splunk-k8s-secrets.yaml
+        command: kubectl apply -f workshop-secrets.yaml
         when: not wh_result.stat.exists
 
       - name: Create service for Demo-in-a-Box Manager API
