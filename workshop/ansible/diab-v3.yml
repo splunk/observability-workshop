@@ -43,7 +43,7 @@
           var: diab_dir_name.files[0]
         when: not wh_result.stat.exists
 
-      - name: Create workshop secrets deployment YAML
+      - name: Create K8s secrets YAML
         file:
           path: /home/splunk/splunk-k8s-secrets.yaml
           owner: splunk
@@ -52,22 +52,25 @@
         become: true
         when: not wh_result.stat.exists
 
-      - name: Update yaml for workshop secrets
+      - name: Update secrets YAML
         ansible.builtin.blockinfile:
           path: /home/splunk/splunk-k8s-secrets.yaml
           block: |
             apiVersion: v1
             kind: Secret
             metadata:
-              name: splunk-secrets
+              name: workshop-secrets
               namespace: default
             type: Opaque
             stringData:
               app: {{ instance }}
+              env: {{ instance }}-store
               deployment: "deployment.environment={{ instance }}"
               instance: {{ instance }}
               realm: {{ realm }}
               rum_token: {{ rum_token }}
+              hec_token: {{ hec_token }}
+              hec_url: {{ hec_url }}
           marker: "## {mark} Added by ansible (configuration Demo-in-a-Box)"
         become: true
         when: not wh_result.stat.exists
