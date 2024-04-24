@@ -1,10 +1,11 @@
 #!/bin/bash
 echo "Building: $1";
-export ACCESS_TOKEN="wSgTADmdeTvrZBfHy3GPNA"
+export ACCESS_TOKEN="<redacted"
 export REALM="eu0"
-export RUM_TOKEN="XVZtGmYfvn2uQe9razgZbg"
-export HEC_TOKEN="***REMOVED***"
-export HEC_URL="https://http-inputs-o11y-workshop-eu0.splunkcloud.com:443/services/collector/event"
+export RUM_TOKEN="<redacted>"
+export HEC_TOKEN="<redacted>"
+#export HEC_URL="https://http-inputs-o11y-workshop-eu0.splunkcloud.com:443/services/collector/event"
+export HEC_URL="https://http-inputs-o11y-workshop-us1.splunkcloud.com:443/services/collector/event"
 export INSTANCE=$1
 
 orb create -c cloud-init.yaml -a arm64 ubuntu:jammy $INSTANCE
