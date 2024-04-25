@@ -1,5 +1,5 @@
 ---
-title: Conf24 Workshops
+title: .conf24 Workshops
 menuPost: " <i class='fa fa-user-ninja'></i>"
 weight: 20
 hidden: false
