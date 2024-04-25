@@ -1,10 +1,8 @@
 ---
 title: Preparation of the Pet Clinic application
-linkTitle: 1. OpenTelemetry Collector
+linkTitle: 1. Deploy OpenTelemetry Collector
 weight: 2
 ---
-
-## 1. The Splunk OpenTelemetry Collector
 
 The Splunk OpenTelemetry Collector is the core component of instrumenting infrastructure and applications.  Its role is to collect and send:
 
@@ -15,8 +13,6 @@ The Splunk OpenTelemetry Collector is the core component of instrumenting infras
 
 To get Observability signals (**Metrics, Traces** and **Logs**) into the **Splunk Observability Cloud** we need to add an OpenTelemetry Collector to our Kubernetes cluster.
 For this workshop, we will be using the Splunk Kubernetes Helm Chart for the Opentelemetry collector and installing the collector in `Operator` mode as this is required for Zero-config.
-
-## 2. Install the OpenTelemetry Collector using Helm
 
 First, we need to add the Splunk Helm chart repository to Helm and update it so it knows where to find it:
 
