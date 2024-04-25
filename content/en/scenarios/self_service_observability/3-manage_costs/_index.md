@@ -3,6 +3,7 @@ title: Manage Costs
 linkTitle: 3 Manage Costs
 weight: 3
 time: 10 minutes
+hidden: true
 ---
 
 ## Introduction

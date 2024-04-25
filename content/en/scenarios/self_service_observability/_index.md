@@ -5,7 +5,7 @@ weight: 5
 archetype: chapter
 time: 1 minute
 authors: ["Bill Grant"]
-draft: true
+draft: false
 description: This scenario helps platform engineering (or central tools) teams enable engineers with self-service observability tooling at scale, so developers and SREs can spend less time managing their toolchain and more time building and delivering cool software.
 ---
 
