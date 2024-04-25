@@ -57,7 +57,7 @@ splunk-otel-collector-chart/splunk-otel-collector \
 
 ```
 <!--
-```bash
+``` bash
 helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
