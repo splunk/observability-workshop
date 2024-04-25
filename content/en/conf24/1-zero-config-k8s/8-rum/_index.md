@@ -60,7 +60,7 @@ If you want you can verify the snippet  we added to  the index.html by viewing t
 
 Note, that we also include an `env.js` file, which contains/sets the variables used by the integration to the desired values,  right now they are empty so the integration isn't loaded. and no Rum traces are sent to Splunk.
 
-So, let's run the script that will update variables to the right value so we will see RUM traces in the Splunk Observability Suite RUM UI:
+So, let's run the script that will update variables to the right value so we will see RUM traces in the **Splunk Observability Cloud** RUM UI:
 
 {{< tabs >}}
 {{% tab title="Update env.js for RUM" %}}

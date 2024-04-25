@@ -11,14 +11,14 @@ First, let's set the Log Structure/Format. SpringBoot will allow you to set a gl
 {{% notice note %}}
 The following entries will be added:
 
-- trace_id
-- span_id
-- trace_flags
-- service.name
-- deployment.environment
+- `trace_id`
+- `span_id`
+- `trace_flags`
+- `service.name`
+- `deployment.environment`
 {{% /notice %}}
 
-These fields allow the **Splunk Observability Cloud Suite** to display **Related Content** when used in a pattern shown below:
+These fields allow the **Splunk Observability Cloud** to display **Related Content** when used in a pattern shown below:
 
 ``` xml
   <pattern>

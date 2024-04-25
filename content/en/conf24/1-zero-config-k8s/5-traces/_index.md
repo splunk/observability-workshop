@@ -6,10 +6,10 @@ weight: 6
 
 ## 1. Introduction
 
-As we have seen in the previous chapter, once you have enabled Zero Config Auto Instrumentation and started to run invocations through your application, traces will be sent to **Splunk** Observability Cloud Suite**
-With these traces Splunk will automatically generate Dependency Maps and RED Metrics. In this next section, we are going to examine the traces themselves and what information they provide to help you understand the behavior of your services all without touching your code.
+As we have seen in the previous chapter, once you have enabled Zero Config Auto Instrumentation and started to run invocations through your application, traces will be sent to **Splunk Observability Cloud**.
+With these traces, Splunk will automatically generate Dependency Maps and RED Metrics. In this next section, we are going to examine the traces themselves and what information they provide to help you understand the behavior of your services all without touching your code.
 
-Make sure you are in the APM Explorer page either by going back in the browser or navigating to the **APM** ![APM](../images/apm-icon.png?classes=inline&height=25px) section in the Menu bar, then click on the **Explore** tile.
+Make sure you are on the APM Explorer page either by going back in the browser or navigating to the **APM** ![APM](../images/apm-icon.png?classes=inline&height=25px) section in the Menu bar, then click on the **Explore** tile.
 
 ## 2. Examine a Trace from the APM Dependency map
 

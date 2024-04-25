@@ -90,7 +90,7 @@ Click on **Add Recipient** and then on your email address displayed as the first
 {{% notice title="Notification Services" style="info" %}}
 That's the same as entering that email address OR you can enter another email address by clicking on **E-mail...**.
 
-This is just one example of the many **Notification Services** the suite has available. You can check this out by going to the **Integrations** tab of the top menu, and see **Notification Services**.
+This is just one example of the many **Notification Services** the platform has available. You can check this out by going to the **Integrations** tab of the top menu, and see **Notification Services**.
 {{% /notice %}}
 
 ---
