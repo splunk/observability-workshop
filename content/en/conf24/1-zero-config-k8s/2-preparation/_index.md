@@ -50,7 +50,7 @@ INSTANCE = <your workshop name>
 {{% /tab %}}
 {{< /tabs >}}
 
-Please make a note of the `INSTANCE` environment variable value as this is the reference to your workshop instance and we will need it later to filter data in the **Splunk Observability Suite** UI.
+Please make a note of the `INSTANCE` environment variable value as this is the reference to your workshop instance and we will need it later to filter data in the **Splunk Observability Cloud** UI.
 
 For this workshop, **all** of the above are required. If any have values missing, please contact your instructor.
 

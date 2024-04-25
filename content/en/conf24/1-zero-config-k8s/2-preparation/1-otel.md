@@ -44,7 +44,7 @@ Update Complete. ⎈Happy Helming!⎈
 {{% /tab %}}
 {{< /tabs >}}
 
-The Splunk Observability Cloud offers wizards in the **Splunk Observability Suite** UI to walk you through the setup of the Collector on  Kubernetes, but in the interest of time, we will use a setup created earlier. As we want the auto instrumentation to be available, we will install the OpenTelemetry Collector with the OpenTelemetry Collector Helm chart with some additional options:
+**Splunk Observability Cloud** offers wizards in the UI to walk you through the setup of the OpenTelemetry Collector on  Kubernetes, but in the interest of time, we will use a setup created earlier. As we want the auto instrumentation to be available, we will install the OpenTelemetry Collector with the OpenTelemetry Collector Helm chart with some additional options:
 
 * `--set="operator.enabled=true"` - this will install the Opentelemetry operator, that will be used to handle auto instrumentation
 * `--set="certmanager.enabled=true"` - This will install the required certificate manager for the operator.
