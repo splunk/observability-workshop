@@ -71,9 +71,8 @@ runcmd:
   - unzip -qq content-contrib.zip -d /home/splunk/
   - mv /home/splunk/observability-content-contrib-main /home/splunk/observability-content-contrib
   # Install Terraform
-  - wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-  - echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-  - sudo apt update && sudo apt install terraform
+  - curl -S -OL https://releases.hashicorp.com/terraform/1.8.2/terraform_1.8.2_linux_arm64.zip
+  - unzip -qq terraform_1.8.2_linux_arm64.zip -d /usr/local/bin
   # Install K3s
   - curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" sh -
   # Create kube config and set correct permissions on splunk user home directory
@@ -85,4 +84,3 @@ runcmd:
   - sed -i 's/_THEME=\"robbyrussell\"/_THEME=\"gentoo\"/g' home/splunk/.zshrc
   # Chaos Mesh
   - curl -sSL https://mirrors.chaos-mesh.org/v2.6.3/install.sh | bash -s -- --k3s
-
