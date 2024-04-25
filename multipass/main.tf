@@ -72,7 +72,7 @@ variable "splunk_diab" {
 variable "wsversion" {
   description = "Workshop version"
   type        = string
-  default     = "5.50"
+  default     = "5.51"
 }
 
 variable "instance_password" {
