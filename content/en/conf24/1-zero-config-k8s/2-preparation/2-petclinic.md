@@ -4,22 +4,19 @@ linkTitle: 2. Deploy PetClinic Application
 weight: 3
 ---
 
-## 1. Deploying the PetClinic Application with prebuilt containers into Kubernetes
+The first deployment of our application will be using prebuilt containers to give us the base scenario: a regular Java microservices-based application running in Kubernetes that we want to start observing. So let's deploy our application:
 
-The next thing we need to do, well ..., is to set up our application. The first deployment of our application will be using prebuilt containers to give us the base scenario: a regular Java microservices-based application running in Kubernetes that we want to start observing.
-
-So let's deploy our application:
 {{< tabs >}}
 {{% tab title="kubectl apply" %}}
 
-```bash
+``` bash
 kubectl apply -f ~/workshop/petclinic/petclinic-deploy.yaml
 ```
 
 {{% /tab %}}
 {{% tab title="kubectl apply Output" %}}
 
-```text
+``` text
 deployment.apps/config-server created
 service/config-server created
 deployment.apps/discovery-server created
@@ -45,11 +42,8 @@ configmap/scriptfile created
 {{% /tab %}}
 {{< /tabs >}}
 
-<!-- {{% notice title="In case of error Unable to read /etc/rancher/k3s/k3s.yaml" style="warning" %}}
-On rare occasions, you may encounter the above error at this point.  please log out and back in, and verify the above env variables are all set correctly. If not please, please contact your instructor.
+At this point, we can verify the deployment by checking if the Pods are running. The containers need to be downloaded and started so this may take a couple of minutes.
 
-{{% /notice %}} -->
-At this point, we can verify the deployment by checking if the Pods are running, Not that these containers need to be downloaded and started, this may take a minute or so.
 {{< tabs >}}
 {{% tab title="kubectl get pods" %}}
 
@@ -60,7 +54,7 @@ kubectl get pods
 {{% /tab %}}
 {{% tab title="kubectl get pods Output" %}}
 
-```text
+``` text
 NAME                                                            READY   STATUS    RESTARTS   AGE
 splunk-otel-collector-certmanager-dc744986b-z2gzw               1/1     Running   0          114s
 splunk-otel-collector-certmanager-cainjector-69546b87d6-d2fz2   1/1     Running   0          114s
@@ -82,18 +76,16 @@ discovery-server-554b45cfb-bqhgt                                1/1     Running 
 {{% /tab %}}
 {{< /tabs >}}
 
-Make sure the output of get pods matches the output as shown above. This may take a minute or so, try again until all services are shown as **RUNNING**.  
+Make sure the output of get pods matches the output as shown above. This may take a minute or so, try again until all services are shown as **Running**. Once they are running, the application will take a few minutes to fully start up, create the database and synchronize all the services, so let's use the time to see if our local private repository is active.
 
-Once they are running, the application will take a few minutes to fully start up, create the database and synchronize all the services, so let's use the time to see if our local repository is active.
+### Verify the local Private Registry
 
-## 5. Verify the local Docker Repository
+Later on, when we test our **Zero-Config Auto-Instrumentation** we are going to build new containers to highlight some of the additional instrumentation features of the Splunk Distribution of OpenTelemetry Java. As configuration files and source code will be changed, the containers will need to be built and stored in a local private registory which has already been created.
 
-Once we have tested our Zero Auto-Config Instrumentation in the existing containers, we are going to build our containers to show some of the additional instrumentation features of Opentelemetry Java. Only then we will touch the config files or the source code. Once we build these containers, Kubernetes will need to pull these new images from somewhere. To enable this we have created a local repository to store these new containers, so Kubernetes can pull the images locally.
-
-We can see if the repository is up and running by checking the inventory with the below command. It will return an empty list:
+To check if the private registory is avaiable, run the following command (this will return an empty list):
 
 {{< tabs >}}
-{{% tab title="Check the local Docker Repository" %}}
+{{% tab title="Check the local Private Registry" %}}
 
 ``` bash
 curl -X GET http://localhost:9999/v2/_catalog
@@ -109,4 +101,4 @@ curl -X GET http://localhost:9999/v2/_catalog
 {{% /tab %}}
 {{< /tabs >}}
 
-If this is not up, reach out to your Instructor for a replacement instance.
+If this fails then reach out to your Instructor for a replacement instance.
