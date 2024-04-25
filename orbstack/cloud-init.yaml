@@ -63,6 +63,7 @@ runcmd:
   - mv /home/splunk/workshop/ansible/diab-v3.yml /home/splunk
   - mv /home/splunk/workshop/ansible/orbstack-profile.yml /home/splunk
   - mv /home/splunk/workshop/ansible/orbstack-secrets.yml /home/splunk
+  - mv /home/splunk/workshop/ansible/orbstack.yml /home/splunk
   - rm -rf /home/splunk/observability-workshop-main
   - rm -rf /home/splunk/workshop/aws /home/splunk/workshop/cloud-init /home/splunk/workshop/ansible
   - mv /home/splunk/workshop/k3s/demo-in-a-box.zip /home/splunk
@@ -85,3 +86,6 @@ runcmd:
   # Deploy private registry
   - /usr/local/bin/kubectl apply -f /home/splunk/workshop/k3s/registry/registry.yaml
   - sed -i 's/_THEME=\"robbyrussell\"/_THEME=\"gentoo\"/g' home/splunk/.zshrc
+  # Chaos Mesh
+  - curl -sSL https://mirrors.chaos-mesh.org/v2.6.3/install.sh | bash -s -- --k3s
+
