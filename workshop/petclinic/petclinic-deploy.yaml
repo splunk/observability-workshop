@@ -668,7 +668,7 @@ spec:
       #    value: "192.168.1.99"
       containers:
       - name: petclinic-loadgen
-        image: rcastley895/rumloadgen:5.4
+        image: rcastley895/rumloadgen:5.5
         imagePullPolicy: Always
         env:
         - name: NODE_IP
