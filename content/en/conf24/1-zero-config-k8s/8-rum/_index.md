@@ -2,7 +2,6 @@
 title: Real User Monitoring
 linkTitle: 8. Real User Monitoring
 weight: 9
-hidden: false
 ---
 
 To enable Real User Monitoring (RUM) instrumentation for your application, you need to add the Open Telemetry Javascript [**https://github.com/signalfx/splunk-otel-js-web**](https://github.com/signalfx/splunk-otel-js-web) snippet to your code.

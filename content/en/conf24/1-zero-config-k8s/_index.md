@@ -6,13 +6,16 @@ archetype: chapter
 description: Learn how to enable Open Telemetry Zero-Config Auto-Instrumention for your Java-based application running in Kubernetes. Experience real-time monitoring to help you maximize application behavior with end-to-end visibility.
 draft: true
 authors: ["Pieter Hagen"]
+time: 90 minnutes
 ---
 
-The goal of this workshop is to introduce the features of Splunk's Opentelemetry **Zero-Config Auto-Instrumentation** for Java.
+The goal of this workshop is to introduce the features of Splunk's **Zero-Config Auto-Instrumentation** for Java.
 
-The workshop scenario will be created by installing a simple Java microservices application in Kubernetes.
+The workshop scenario will be created by installing a simple (**un-instrumented**) Java microservices application in Kubernetes.
 
-By following the basic steps to install the OpenTelemetry Collector in Kubernetes and enable Zero-Config Auto-Instrumentation on the existing Java application running in Kubernetes.  This  will start sending Opentelemetry metrics, traces and logs to the **Splunk Observability Cloud** platform and enable the following components:
+By following the simple steps to install the Splunk OpenTelemetry Collector and enabling Zero-Config Auto-Instrumentation for existing Java based deployments you will learn how easy it is to send metrics, traces and logs to **Splunk Observability Cloud**.
+
+During this workshop we will cover the following components:
 
 * Splunk Infrastructure Monitoring (**IM**)
 * Splunk Auto Instrumentation for Java (**APM**)
@@ -20,3 +23,5 @@ By following the basic steps to install the OpenTelemetry Collector in Kubernete
   * AlwaysOn Profiling
 * Splunk Log Observer (**LO**)
 * Splunk Real User Monitoring (**RUM**)
+
+_Splunk Synthetics is feeling a little left out here, but we cover that in other workshops_ {{% icon icon="heart" %}}
