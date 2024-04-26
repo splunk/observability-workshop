@@ -12,12 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM python:3.12.0-slim@sha256:19a6235339a74eca01227b03629f63b6f5020abc21142436eced6ec3a9839a76 as base
+FROM python:3.12 as base
 
 FROM base as builder
 
 COPY requirements.txt .
 
+RUN apt-get update && apt-get install --yes --no-install-recommends build-essential linux-headers-generic
 RUN pip install --prefix="/install" -r requirements.txt
 
 FROM base
