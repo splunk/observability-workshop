@@ -706,7 +706,7 @@ data:
             try {
                 const wait_time = 10000;  //Set up delay between page interactions
                 for (let loop=0; loop < 1;loop++) {  // as part of the load we run multiple of this script to generate multiple session
-                    const context = await browser.createIncognitoBrowserContext();
+                    const context = await browser.createBrowserContext();
                     const page = await context.newPage();
                     await page.setUserAgent('Mozilla/5.0 (X11; Linux x86_64; Splunk RUMLoadGen) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36')
                     const urls= ["http://"+ process.env.NODE_IP +":81/#!/welcome"];
@@ -749,7 +749,7 @@ data:
                                   y: 33,
                               },
                               });
-                            console.log('{"severity":"info","msg":"@ALL"}');    
+                            console.log('{"severity":"info","msg":"@ALL"}');
                       }
                       {
                           const targetPage = page;
@@ -783,7 +783,7 @@ data:
                                   y: 9,
                               },
                               });
-                        console.log('{"severity":"info","msg":"@owner details page"}');      
+                        console.log('{"severity":"info","msg":"@owner details page"}');
                       }
                       {
                           const targetPage = page;
@@ -819,7 +819,7 @@ data:
                                   y: 14,
                               },
                               });
-                        console.log('{"severity":"info","msg":"@add pet page"}');      
+                        console.log('{"severity":"info","msg":"@add pet page"}');
                       }
 
                       {
@@ -837,24 +837,11 @@ data:
                                   y: 2,
                               },
                               });
-                        console.log('{"severity":"info","msg":"@veterinarians page"}');      
+                        console.log('{"severity":"info","msg":"@veterinarians page"}');
                       }
 
                     }       
                     await delay(wait_time );
-                    //Checking cookie, then deleting it
-                    console.log('{"severity":"info","msg":"cookies was"}')
-                    let before = await page.cookies()
-                    before.forEach(cookie => {
-                        console.log('{"severity":"info","msg":":"Before: "' + cookie.name + '"}');
-                    });
-                    await page.deleteCookie({
-                        name : "_splunk_rum_sid",
-                    })
-                    let after = await page.cookies()
-                    after.forEach(cookie => {
-                        console.log('{"severity":"info","msg":":"After: "' + cookie.name + '"}');
-                    })
                     await browser.close()
                 }
                 process.exit();
@@ -872,4 +859,3 @@ data:
           setTimeout(resolve, time)
       });
     }
----
