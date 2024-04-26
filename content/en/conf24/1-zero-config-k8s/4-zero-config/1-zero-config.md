@@ -14,6 +14,7 @@ To show what happens when you enable Auto instrumentation, let's do a *before an
 ``` bash
 kubectl describe pods api-gateway |grep Image:
 ```
+
 {{% /tab %}}
 {{% tab title="Describe Output" %}}
 
@@ -30,7 +31,7 @@ This container was pulled from a remote repository `quay.io` and was not built t
 {{% tab title="Patch api-gateway" %}}
 
 ```bash
-kubectl patch deployment api-gateway -p '{"spec": {"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-java":"default/splunk-otel-collector"}}}} }'
+kubectl patch deployment api-gateway -p '{"spec": {"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-java":"default/splunk-otel-collector"}}}}}'
 ```
 
 {{% /tab %}}
@@ -49,8 +50,9 @@ To check the container image(s) of the `api-gateway` pod again, run the followin
 {{% tab title="Describe api-gateway" %}}
 
 ``` bash
-kubectl describe pods api-gateway |grep Image:
+kubectl describe pods api-gateway | grep Image:
 ```
+
 {{% /tab %}}
 {{% tab title="Describe Output" %}}
 
@@ -64,7 +66,7 @@ Image:         quay.io/phagen/spring-petclinic-api-gateway:0.0.2
 
 A new image has been added to the `api-gateway` which will pull `splunk-otel-java` from `ghcr.io` (if you see two `api-gateway` containers, the original one is probably still terminating, so give it a few seconds).
 
-### Enable Java Zero-Config Auto-Instrumentation on all pods
+#### Enable Java Zero-Config Auto-Instrumentation on all pods
 
 To patch all the other services in the Spring Petclinic application, run the following command. This will add the `inject-java` annotation to all the services in the Spring Petclinic application. **This automatically causes pods to restart.**
 
@@ -92,4 +94,6 @@ deployment.apps/api-gateway patched (no change)
 {{% /tab %}}
 {{< /tabs >}}
 
-Note, there will be no change for the **config-server**, **discovery-server**, **admin-server** & **api-gateway** as we patched these earlier.
+{{% notice note %}}
+There will be no change for the **config-server**, **discovery-server**, **admin-server** and **api-gateway** as we patched these earlier.
+{{% /notice %}}
