@@ -19,6 +19,9 @@ FROM base as builder
 COPY requirements.txt .
 
 RUN apt-get update && apt-get install --yes --no-install-recommends build-essential linux-headers-generic
+
+ENV PIP_ROOT_USER_ACTION=ignore
+
 RUN pip install --prefix="/install" -r requirements.txt
 
 FROM base
