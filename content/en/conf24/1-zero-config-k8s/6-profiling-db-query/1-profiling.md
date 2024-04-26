@@ -8,12 +8,16 @@ When we installed the Splunk Distribution of the OpenTelemetry Collector using t
 
 When you deploy the PetClinic application and set the annotation, the collector automatically detects the application and instruments it for traces and profiling. We can verify this by examining the startup logs of one of the Java containers we are instrumenting by running the following script:
 
-```bash
+The logs should show what flags were picked up by the Java Auto instrumentation agent:
+
+{{< tabs >}}
+{{% tab title="Run the script" %}}
+
+``` logs
 .  ~/workshop/petclinic/scripts/get_logs.sh
 ```
 
-The logs should show what flags were picked up by the Java Auto instrumentation agent:
-
+{{% /tab %}}
 {{% tab title="Example output" %}}
 
 ``` text {wrap="false"}
@@ -44,18 +48,19 @@ OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader clas
 ```
 
 {{% /tab %}}
-
-We are interested in the section written by the  `com.splunk.opentelemetry.profiler.ConfigurationLogger` or the **Profiling Configuration**
+{{< /tabs >}}
+We are interested in the section written by the  `com.splunk.opentelemetry.profiler.ConfigurationLogger` or the **Profiling Configuration**.
 
 We can see the various settings you can control, some that are useful depending on your use case like the `splunk.profiler.directory` -  The location where the agent writes the call stacks before sending them to Splunk. This may be different depending on how you configure your containers.
+
 Another parameter you may want to change is `splunk.profiler.call.stack.interval` This is how often the system takes a CPU Stack trace. You may want to reduce this if you have short spans like we have in our application. (we kept the default as the spans in this demo application are extremely short, so Span may not always have a CPU  Call Stack related to it.)
 
 You can find how to set these parameters [here](https://docs.splunk.com/observability/en/gdi/get-data-in/application/java/configuration/advanced-java-otel-configuration.html#profiling-configuration-java). Below, is how you set a higher collection rate for call stack in your `deployment.yaml`, exactly how to pass any JAVA option to the Java application running in your container:
 
-```text
- env: 
-    - name: JAVA_OPTIONS
-      value: "-Dsplunk.profiler.call.stack.interval=150"
+``` yaml
+env: 
+- name: JAVA_OPTIONS
+  value: "-Xdebug -Dsplunk.profiler.call.stack.interval=150"
 ```
 
 If you don't see those lines as a result of the script, the startup may have taken too long and generated too many connection errors, try looking at the logs directly with `kubectl` or the `k9s` utility that is installed.
