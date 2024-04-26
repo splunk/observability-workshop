@@ -2,7 +2,6 @@
 title: Introduction
 linkTitle: 1. Introduction
 weight: 2
-draft: true
 ---
 
 We will show the steps about how to clone (download) a sample microservices Java application (Spring PetClinic), as well as how to compile, package and deploy/run the application.

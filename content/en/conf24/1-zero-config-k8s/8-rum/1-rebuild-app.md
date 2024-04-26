@@ -2,7 +2,6 @@
 title: Rebuild PetClinic with RUM enabled
 linkTitle: 1. Rebuild PetClinic
 weight: 1
-hidden: false
 ---
 
 At the top of the previous code snippet, there is a reference to the file `/static/env.js`, which contains/sets the variables used by the RUM, currently these are not configured and therefore no RUM traces are currently being sent.
