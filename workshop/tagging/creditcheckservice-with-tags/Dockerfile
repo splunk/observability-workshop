@@ -8,6 +8,8 @@ COPY requirements.txt .
 
 RUN apt update && apt install gcc -y
 
+ENV PIP_ROOT_USER_ACTION=ignore
+
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
