@@ -68,3 +68,5 @@ kubectl rollout restart deployment api-gateway
 In RUM, filter down into the environment as defined in the RUM snippet above and click through to the dashboard.
 
 When you drill down into a RUM trace you will see a link to APM in the spans. Clicking on the trace ID will take you to the corresponding APM trace for the current RUM trace.
+
+## More image's needed
