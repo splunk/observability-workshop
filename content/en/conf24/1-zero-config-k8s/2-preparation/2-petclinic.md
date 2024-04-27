@@ -1,5 +1,5 @@
 ---
-title: Deploying the PetClinic Application with prebuilt containers into Kubernetes
+title: Deploy the PetClinic Application
 linkTitle: 2. Deploy PetClinic Application
 weight: 3
 ---
@@ -78,11 +78,15 @@ discovery-server-554b45cfb-bqhgt                                1/1     Running 
 {{% /tab %}}
 {{< /tabs >}}
 
-Make sure the output of get pods matches the output as shown above. This may take a minute or so, try again until all services are shown as **Running**. Once they are running, the application will take a few minutes to fully start up, create the database and synchronize all the services, so let's use the time to see if our local private repository is active.
+Make sure the output of get pods matches the output as shown above. This may take a minute or so, try again until all services are shown as **Running** (or use `k9s` to contuuously monitor the status).
+
+Once they are running, the application will take a few minutes to fully start up, create the database and synchronize all the services, so let's use the time to see if our local private repository is active.
 
 #### Verify the local Private Registry
 
-Later on, when we test our **Zero-Config Auto-Instrumentation** we are going to build new containers to highlight some of the additional features of the Splunk Observability Cloud. As configuration files and source code will be changed, the containers will need to be built and stored in a local private registry which has already been created.
+Later on, when we test our **Zero-Config Auto-Instrumentation** we are going to build new containers to highlight some of the additional features of the Splunk Observability Cloud.
+
+As configuration files and source code will be changed, the containers will need to be built and stored in a local private registry which has already been created.
 
 To check if the private registry is avaiable, run the following command (this will return an empty list):
 
