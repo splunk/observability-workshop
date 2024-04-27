@@ -1,7 +1,7 @@
 ---
 title: Related Content
-linkTitle: 6. Related Content
-weight: 6
+linkTitle: 5. Related Content
+weight: 5
 ---
 
 Also, at the bottom next to APM, there should be a number, this is the number of related AP Content items for this logline.  click on the APM pane **(1)** as shown below:

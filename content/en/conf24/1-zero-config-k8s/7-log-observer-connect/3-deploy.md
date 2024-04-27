@@ -1,7 +1,7 @@
 ---
 title: Deploy to Kubernetes
-linkTitle: 4. Deploy to Kubernetes
-weight: 4
+linkTitle: 3. Deploy to Kubernetes
+weight: 3
 ---
 
 To see the changes in effect, we need to redeploy the services, First, let's change the location of the images from the external repo to the local one by running the following script:
@@ -25,7 +25,7 @@ kubectl apply -f ~/workshop/petclinic/petclinic-local.yaml
 This will cause the containers to be replaced with the local version, you can verify this by checking the containers:
 
 ```bash
-kubectl describe pods api-gateway |grep Image:
+kubectl describe pods api-gateway | grep Image:
 ```
 
 The resulting output should say `localhost:9999`:
@@ -34,9 +34,13 @@ The resulting output should say `localhost:9999`:
   Image:         localhost:9999/spring-petclinic-api-gateway:local
 ```
 
-However, as we only patched the deployment before, the new deployment does not have the right annotations for zero config auto-instrumentation, so let's fix that now by running the patch command again:
+However, as we only patched the deployment before, the new deployment does not have the right annotations for the **Zero-Config Auto-Instrumentation**, so let's fix that now by running the patch command again:
+
+{{< notice note >}}
 
 Note, that there will be no change for the *config-server & discovery-server* as they do have the annotation included in the deployment.
+
+{{< /notice >}}
 
 {{< tabs >}}
 {{% tab title="Patch all Petclinic services" %}}
@@ -61,15 +65,21 @@ deployment.apps/api-gateway patched
 {{% /tab %}}
 {{< /tabs >}}
 
-Let's check the `api-gateway` container again
+Check the `api-gateway` container (again if you see two `api-gateway` containers, it's the old container being terminated so give it a few seconds):
+
+{{< tabs >}}
+{{% tab title="Check Container" %}}
 
 ```bash
-kubectl describe pods api-gateway |grep Image:
+kubectl describe pods api-gateway | grep Image:
 ```
 
-The resulting output should say (again if you see double, it's the old container being terminated, give it a few seconds):
+{{% /tab %}}
+{{% tab title="Output" %}}
 
 ```text
-  Image:         ghcr.io/signalfx/splunk-otel-java/splunk-otel-java:v1.30.0
   Image:         localhost:9999/spring-petclinic-api-gateway:local
 ```
+
+{{% /tab %}}
+{{< /tabs >}}
