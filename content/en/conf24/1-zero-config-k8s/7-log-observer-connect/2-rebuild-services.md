@@ -1,7 +1,7 @@
 ---
-title: Re-compiling PetClinic
-linkTitle: 3. Re-compiling PetClinic
-weight: 3
+title: Rebuild PetClinic
+linkTitle: 2. Rebuild PetClinic
+weight: 2
 ---
 
 Before we can build the new services with the updated log format we need to add the Opentelemetry dependency that handles field injection to the `pom.xml` of our services:
@@ -10,10 +10,10 @@ Before we can build the new services with the updated log format we need to add 
 . ~/workshop/petclinic/scripts/add_otel.sh
 ```
 
-The Services are now ready to be built, so run the script that will use the `maven` command to compile/build/package the PetClinic microservices (Note the `-P buildDocker`, this will build the new containers):
+The Services are now ready to be built, so run the script that will use the `maven` command to compile/build/package the PetClinic microservices:
 
 {{% notice note %}}
-This will take 3-5 minutes to complete
+Note the `-P buildDocker`, this will build the new containers and take 3-5 minutes to complete.
 {{% /notice %}}
 
 {{< tabs >}}
@@ -27,7 +27,7 @@ This will take 3-5 minutes to complete
 {{% tab title="Maven Output" %}}
 
 ```text
-
+...
 Successfully tagged quay.io/phagen/spring-petclinic-api-gateway:latest
 [INFO] Built quay.io/phagen/spring-petclinic-api-gateway
 [INFO] ------------------------------------------------------------------------
@@ -100,14 +100,21 @@ local: digest: sha256:3601c6e7f58224001946058fb0400483fbb8f1b0ea8a6dbaf403c62b4c
 {{% /tab %}}
 {{< /tabs >}}
 
-The containers should now be stored in the local repository, let's confirm by checking the catalog,
+The containers should now be stored in the local repository, let's confirm by checking the catalog:
+
+{{< tabs >}}
+{{% tab title="Check Catalog" %}}
 
 ```bash
- curl -X GET http://localhost:9999/v2/_catalog 
+curl -X GET http://localhost:9999/v2/_catalog
 ```
 
-The result should be :
+{{% /tab %}}
+{{% tab title="Catalog Output" %}}
 
 ``` json
 {"repositories":["spring-petclinic-admin-server","spring-petclinic-api-gateway","spring-petclinic-config-server","spring-petclinic-customers-service","spring-petclinic-discovery-server","spring-petclinic-vets-service","spring-petclinic-visits-service"]}
 ```
+
+{{% /tab %}}
+{{< /tabs >}}

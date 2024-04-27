@@ -1,8 +1,20 @@
 ---
 title: Configuring Logback
-linkTitle: 2. Configure Logback
-weight: 2
+linkTitle: 1. Configure Logback
+weight: 1
 ---
+
+First, clone the PetClinic GitHub repository, as we will need this later in the workshop to compile, build, package and containerize the application:
+
+```bash
+cd ~ && git clone https://github.com/hagen-p/spring-petclinic-microservices.git
+```
+
+Then change into the `spring-petclinic-microservices` directory:
+
+```bash
+cd ~/spring-petclinic-microservices
+```
 
 The Spring PetClinic application can be configured to use several different Java logging libraries. In this scenario, the application is using `logback`.  To make sure we get the OpenTelemetry information in the logs we need to update a file named `logback.xml` with the log structure and add an OpenTelemetry dependency to the `pom.xml` of each of the services in the PetClinic microservices folders.
 
