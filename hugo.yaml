@@ -32,21 +32,17 @@ markup:
 outputs:
   home:
     - HTML
-    - RSS
     - PRINT
     - SEARCH
     - SEARCHPAGE
   section:
     - HTML
-    - RSS
     - PRINT
   page:
     - HTML
-    - RSS
     - PRINT
 params:
   alwaysopen: false
-  description: "Splunk Observability Workshops"
   showVisitedLinks: true
   collapsibleMenu: true
   disableSearch: false
