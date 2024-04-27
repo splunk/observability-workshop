@@ -12,7 +12,7 @@ weight: 1
 
 1. Name your test with your **team name** (provided by your workshop instructor), your initials, and any other details you'd like to include, like geographic region.
 
-1. For now let's test a **GET** request. Fill in the URL field. You can use one of your own, or one of ours like [https://frontend-eu.splunko11y.com](https://frontend-eu.splunko11y.com), [https://frontend-us.splunko11y.com](https://frontend-us.splunko11y.com), or [https://www.splunk.com](https://www.splunk.com).
+1. For now let's test a **GET** request. Fill in the URL field. You can use one of your own, or one of ours like [https://online-boutique-eu.splunko11y.com](https://online-boutique-eu.splunko11y.com), [https://online-boutique-us.splunko11y.com](https://online-boutique-us.splunko11y.com), or [https://www.splunk.com](https://www.splunk.com).
 
 1. Click {{% button %}}Try now{{% /button %}} to validate that the endpoint is accessible before the selected location before saving the test. {{% button %}}Try now{{% /button %}} does not count against your subscription usage, so this is a good practice to make sure you're not wasting real test runs on a misconfigured test.
 ![image](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-01/4168460c-aa9e-4c47-b856-eab08ff0425d/ascreenshot.jpeg?tl_px=0,521&br_px=1719,1482&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=452,277)
