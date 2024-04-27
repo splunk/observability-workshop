@@ -4,7 +4,6 @@ linkTitle: PetClinic Kubernetes Workshop
 weight: 1
 archetype: chapter
 description: Learn how to enable Open Telemetry Zero-Config Auto-Instrumention for your Java-based application running in Kubernetes. Experience real-time monitoring to help you maximize application behavior with end-to-end visibility.
-draft: true
 authors: ["Pieter Hagen"]
 time: 90 minnutes
 ---
