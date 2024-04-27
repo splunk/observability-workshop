@@ -15,6 +15,14 @@ The workshop scenario will be created by installing a simple (**un-instrumented*
 
 By following the simple steps to install the Splunk OpenTelemetry Collector and enabling Zero-Config Auto-Instrumentation for existing Java based deployments you will learn how easy it is to send metrics, traces and logs to **Splunk Observability Cloud**.
 
+{{% notice title="Prerequisites" style="primary" icon="info" %}}
+
+* Outbound SSH access to port **2222**.
+* Outbound HTTP access to port **81**.
+* Familiarity with the Linux command line.
+
+{{% /notice %}}
+
 During this workshop we will cover the following components:
 
 * Splunk Infrastructure Monitoring (**IM**)
