@@ -22,6 +22,7 @@ groups:
 hostname: ${instance_name}
 
 package_update: true
+package_upgrade: true
 
 packages:
   - ansible
@@ -39,8 +40,6 @@ packages:
   - shellinabox
   - unzip
   - zsh
-
-package_upgrade: true
 
 write_files:
   - path: /etc/ssh/sshd_config
@@ -229,14 +228,28 @@ write_files:
       fi
 
 runcmd:
+  # Configure zsh
   - chsh -s $(which zsh) splunk
   - su splunk -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
   - echo "source /etc/skel/.profile" >> /home/splunk/.zshrc
+
+  # Configure motd
+  - curl -s https://raw.githubusercontent.com/splunk/observability-workshop/main/workshop/cloud-init/motd -o /etc/motd
+  - chmod -x /etc/update-motd.d/*
+
   # Install Helm
   - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+
   # Install K9s (Kubernetes UI)
-  - curl -S -OL https://github.com/derailed/k9s/releases/download/v0.32.4/k9s_Linux_amd64.tar.gz
+  - K9S_VERSION=$(curl -s https://api.github.com/repos/derailed/k9s/releases/latest | jq -r '.tag_name')
+  - curl -S -OL https://github.com/derailed/k9s/releases/download/"$K9S_VERSION"/k9s_Linux_amd64.tar.gz
   - tar xfz k9s_Linux_amd64.tar.gz -C /usr/local/bin/ k9s
+
+  # Install Terraform
+  - TF_VERSION=$(curl -s https://api.github.com/repos/hashicorp/terraform/releases/latest | jq -r '.tag_name | ltrimstr("v")')
+  - curl -S -OL https://releases.hashicorp.com/terraform/"$TF_VERSION"/terraform_"$TF_VERSION"_linux_amd64.zip
+  - unzip -qq terraform_"$TF_VERSION"_linux_amd64.zip -d /usr/local/bin
+
   # Download Workshop
   - export WSVERSION=${wsversion}
   - 'export WSARCHIVE=$([ "$WSVERSION" = "main" ] && echo "main" || echo "v$WSVERSION")'
@@ -244,48 +257,44 @@ runcmd:
   - unzip -qq $WSARCHIVE.zip -d /home/splunk/
   - mkdir /home/splunk/workshop
   - mv /home/splunk/observability-workshop-$WSVERSION/workshop/* /home/splunk/workshop
-  - mv /home/splunk/workshop/ansible/diab-v2.yml /home/splunk
   - mv /home/splunk/workshop/ansible/diab-v3.yml /home/splunk
   - rm -rf /home/splunk/observability-workshop-$WSVERSION
   - rm -rf /home/splunk/workshop/aws /home/splunk/workshop/cloud-init /home/splunk/workshop/ansible
   - mv /home/splunk/workshop/k3s/demo-in-a-box.zip /home/splunk
+
   # Download Splunk Observability Content Contrib Repo
   - curl -s -L https://github.com/splunk/observability-content-contrib/archive/main.zip -o content-contrib.zip
   - unzip -qq content-contrib.zip -d /home/splunk/
   - mv /home/splunk/observability-content-contrib-main /home/splunk/observability-content-contrib
-  # Configure motd
-  - curl -s https://raw.githubusercontent.com/splunk/observability-workshop/main/workshop/cloud-init/motd -o /etc/motd
-  - chmod -x /etc/update-motd.d/*
-  # Install Terraform
-  #- curl -S -OL https://releases.hashicorp.com/terraform/1.3.7/terraform_1.3.7_linux_amd64.zip
-  #- unzip -qq terraform_1.3.7_linux_amd64.zip -d /usr/local/bin
-  - wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-  - echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-  - sudo apt update && sudo apt install terraform
-  #- bash /usr/local/bin/setup-docker-registry.sh
+
   # Install K3s
   - curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" sh -
   # Create kube config and set correct permissions on splunk user home directory
   - mkdir /home/splunk/.kube && kubectl config view --raw > /home/splunk/.kube/config
   - chmod 400 /home/splunk/.kube/config
   - chown -R splunk:splunk /home/splunk
+
   # Deploy private registry
   - /usr/local/bin/kubectl apply -f /home/splunk/workshop/k3s/registry/registry.yaml
+
+  # Deploy Splunk secrets
   - /usr/local/bin/kubectl apply -f /tmp/workshop-secrets.yaml
+
   # Configure shellinabox port and disable ssl then restart
   - sed -i 's/SHELLINABOX_PORT=4200/SHELLINABOX_PORT=6501/' /etc/default/shellinabox
   - sed -i "s/\"--no-beep\"/\"--no-beep --disable-ssl\"/" /etc/default/shellinabox
   - sudo service shellinabox restart
   - sed -i 's/_THEME=\"robbyrussell\"/_THEME=\"gentoo\"/g' home/splunk/.zshrc
-  # Make sure the locl path is correctly setup as k8s can only support full paths in the volume mounts
 
 %{ if diab == true ~}
   - su splunk -c 'bash /tmp/diab-setup.sh'
 %{ endif ~}
+
 %{ if presetup == true ~}
   - su splunk -c 'bash /tmp/pre-setup.sh'
   - su splunk -c 'bash /tmp/create-browser-test.sh'
 %{ endif ~}
+
 %{ if otel_demo == true ~}
   - su splunk -c 'bash /tmp/otel-demo-setup.sh'
 %{ endif ~}

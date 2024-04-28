@@ -11,35 +11,36 @@ The Spring PetClinic application uses a single HTML page as the "index" page, th
 The following snippet is inserted into the **<head>** section of the `index.html` page:
 
 ``` html
-<script src="/static/env.js"></script>  
-    <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web-session-recorder.js" crossorigin="anonymous"></script>
-    <script>
-        var realm = env.RUM_REALM;
-        console.log('Realm:', realm);
-        var auth = env.RUM_AUTH;
-        var appName = env.RUM_APP_NAME;
-        var environmentName = env.RUM_ENVIRONMENT
-        if (realm && auth) {
-            window.SplunkRum && window.SplunkRum.init({ 
-                beaconUrl: 'https://rum-ingest.' + realm + '.signalfx.com/v1/rum',
-                rumAuth: auth,
-                app: appName,
-                version: '1',
-                environment: environmentName
+<script src="/static/env.js"></script>
+<script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous"></script>
+<script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web-session-recorder.js" crossorigin="anonymous"></script>
+<script>
+    var realm = env.RUM_REALM;
+    console.log('Realm:', realm);
+    var auth = env.RUM_AUTH;
+    var appName = env.RUM_APP_NAME;
+    var environmentName = env.RUM_ENVIRONMENT
+    if (realm && auth) {
+        SplunkRum.init({
+            realm: realm,
+            rumAccessToken: auth,
+            applicationName: appName,
+            deploymentEnvironment: environmentName,
+            version: '1.0.0',
+        });
 
-            });
-            SplunkSessionRecorder.init({
-                beaconUrl: 'https://rum-ingest.' + realm + '.signalfx.com/v1/rumreplay',
-                rumAuth: auth
-            });
-            const Provider = SplunkRum.provider; 
-            var tracer=Provider.getTracer('appModuleLoader');
-        } else {
-        // Realm or auth is empty, provide default values or skip initialization
-        console.log("Realm or auth is empty. Skipping SplunkRum initialization.");
+        SplunkSessionRecorder.init({
+            app: appName,
+            realm: realm,
+            rumAccessToken: auth
+        });
+        const Provider = SplunkRum.provider; 
+        var tracer=Provider.getTracer('appModuleLoader');
+    } else {
+    // Realm or auth is empty, provide default values or skip initialization
+    console.log("Realm or auth is empty. Skipping Splunk Rum initialization.");
     }
-    </script>
+</script>
 ```
 
 The above snippet of code has already been added to `index.html` in the repository you cloned earlier, and you already have a build that includes this snippet when rebuilding all the services in the previous exercise

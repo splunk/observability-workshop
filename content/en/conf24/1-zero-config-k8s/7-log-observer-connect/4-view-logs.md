@@ -1,7 +1,7 @@
 ---
 title: Viewing the Logs
-linkTitle: 5. Viewing the Logs
-weight: 5
+linkTitle: 4. Viewing the Logs
+weight: 4
 ---
 
 Once the containers are patched they will be restarted, let's go back to the **Splunk Observability Cloud** with the URL provided by the Instructor to check our cluster in the Kubernetes Navigator.

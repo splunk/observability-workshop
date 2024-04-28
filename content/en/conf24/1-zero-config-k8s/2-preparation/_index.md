@@ -1,5 +1,5 @@
 ---
-title: Preparation of the Pet Clinic application
+title: Preparation of the Workshop instance
 linkTitle: 2. Preparation
 weight: 3
 ---
@@ -8,7 +8,7 @@ The instructor will provide you with the login information for the instance that
 When you first log into your instance, you will be greeted by the Splunk Logo as shown below. If you have any issues connecting to your workshop instance then please reach out to your Instructor.
 
 ``` text
-❯ ssh -p 2222 splunk@[IP-ADDRESS]
+$ ssh -p 2222 splunk@<ip-address>
 
 ███████╗██████╗ ██╗     ██╗   ██╗███╗   ██╗██╗  ██╗    ██╗  
 ██╔════╝██╔══██╗██║     ██║   ██║████╗  ██║██║ ██╔╝    ╚██╗ 
@@ -22,10 +22,10 @@ Your instance is ready!
 splunk@show-no-config-i-0d1b29d967cb2e6ff:~$ 
 ```
 
-To ensure your instance is configured correctly, we need to confirm that the required environment variables for this workshop are set correctly. In your terminal run the following command and check that the environment variables are present and set with actual valid values:
+To ensure your instance is configured correctly, we need to confirm that the required environment variables for this workshop are set correctly. In your terminal run the following script and check that the environment variables are present and set with actual valid values:
 
 {{< tabs >}}
-{{% tab title="Command" %}}
+{{% tab title="Script" %}}
 
 ``` bash
 . ~/workshop/petclinic/scripts/check_env.sh
@@ -40,18 +40,18 @@ REALM = <e.g. eu0, us1, us2, jp0, au0 etc.>
 RUM_TOKEN = <redacted>
 HEC_TOKEN = <redacted>
 HEC_URL = https://<...>/services/collector/event
-INSTANCE = <your workshop name>
+INSTANCE = <workshop name>
 ```
 
 {{% /tab %}}
 {{< /tabs >}}
 
-Please make a note of the `INSTANCE` environment variable value as this will used later to filter data in **Splunk Observability Cloud** UI.
+Please make a note of the `INSTANCE` environment variable value as this will used later to filter data in **Splunk Observability Cloud**.
 
-For this workshop, **all** of the above are required. If any have values missing, please contact your instructor.
+For this workshop, **all** of the above are required. If any have values missing, please contact your Instructor.
 
 {{% notice title="Delete any existing OpenTelemetry Collectors" style="warning" %}}
-If you have previously completed a Splunk Observability workshop using this EC2 instance, you need to ensure that any existing installation of the OpenTelemetry Collector is deleted. This can be done by running the following command:
+If you have previously completed a Splunk Observability workshop using this EC2 instance, you need to ensure that any existing installation of the Splunk OpenTelemetry Collector is deleted. This can be achieved by running the following command:
 
 ``` bash
 helm delete splunk-otel-collector
