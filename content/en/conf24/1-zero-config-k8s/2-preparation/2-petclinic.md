@@ -1,8 +1,10 @@
 ---
-title: Deploying the PetClinic Application with prebuilt containers into Kubernetes
+title: Deploy the PetClinic Application
 linkTitle: 2. Deploy PetClinic Application
 weight: 3
 ---
+
+#### Deploy the PetClinic Application
 
 The first deployment of our application will be using prebuilt containers to give us the base scenario: a regular Java microservices-based application running in Kubernetes that we want to start observing. So let's deploy our application:
 
@@ -14,7 +16,7 @@ kubectl apply -f ~/workshop/petclinic/petclinic-deploy.yaml
 ```
 
 {{% /tab %}}
-{{% tab title="kubectl apply Output" %}}
+{{% tab title="Output" %}}
 
 ``` text
 deployment.apps/config-server created
@@ -52,7 +54,7 @@ kubectl get pods
 ```
 
 {{% /tab %}}
-{{% tab title="kubectl get pods Output" %}}
+{{% tab title="Output" %}}
 
 ``` text
 NAME                                                            READY   STATUS    RESTARTS   AGE
@@ -76,13 +78,17 @@ discovery-server-554b45cfb-bqhgt                                1/1     Running 
 {{% /tab %}}
 {{< /tabs >}}
 
-Make sure the output of get pods matches the output as shown above. This may take a minute or so, try again until all services are shown as **Running**. Once they are running, the application will take a few minutes to fully start up, create the database and synchronize all the services, so let's use the time to see if our local private repository is active.
+Make sure the output of get pods matches the output as shown above. This may take a minute or so, try again until all services are shown as **Running** (or use `k9s` to contuuously monitor the status).
 
-### Verify the local Private Registry
+Once they are running, the application will take a few minutes to fully start up, create the database and synchronize all the services, so let's use the time to see if our local private repository is active.
 
-Later on, when we test our **Zero-Config Auto-Instrumentation** we are going to build new containers to highlight some of the additional instrumentation features of the Splunk Distribution of OpenTelemetry Java. As configuration files and source code will be changed, the containers will need to be built and stored in a local private registory which has already been created.
+#### Verify the local Private Registry
 
-To check if the private registory is avaiable, run the following command (this will return an empty list):
+Later on, when we test our **Zero-Config Auto-Instrumentation** we are going to build new containers to highlight some of the additional features of the Splunk Observability Cloud.
+
+As configuration files and source code will be changed, the containers will need to be built and stored in a local private registry which has already been created.
+
+To check if the private registry is avaiable, run the following command (this will return an empty list):
 
 {{< tabs >}}
 {{% tab title="Check the local Private Registry" %}}
@@ -92,7 +98,7 @@ curl -X GET http://localhost:9999/v2/_catalog
 ```
 
 {{% /tab %}}
-{{% tab title="Example output" %}}
+{{% tab title="Output" %}}
 
 ```text
 **{"repositories":[]}**

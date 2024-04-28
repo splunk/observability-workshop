@@ -1,20 +1,12 @@
 ---
-title: Preparation of the Pet Clinic application
+title: Deploy Slpunk OpenTelemetry Collector
 linkTitle: 1. Deploy OpenTelemetry Collector
 weight: 2
 ---
 
-The Splunk OpenTelemetry Collector is the core component of instrumenting infrastructure and applications.  Its role is to collect and send:
+To get Observability signals (**metrics, traces** and **logs**) into **Splunk Observability Cloud** the Splunk OpenTelemetry Collector needs to be deployed into the Kubernetes cluster.
 
-* Infrastructure metrics (disk, CPU, memory, etc)
-* Application Performance Monitoring (APM) traces
-* Profiling data
-* Host and Application logs
-
-To get Observability signals (**Metrics, Traces** and **Logs**) into the **Splunk Observability Cloud** we need to add an OpenTelemetry Collector to our Kubernetes cluster.
-For this workshop, we will be using the Splunk Kubernetes Helm Chart for the Opentelemetry collector and installing the collector in `Operator` mode as this is required for Zero-config.
-
-First, we need to add the Splunk Helm chart repository to Helm and update it so it knows where to find it:
+For this workshop, we will be using the Splunk OpenTelemetry Collector Helm Chart. First we need to add the Helm chart repository to Helm and update to ensure the latest state:
 
 {{< tabs >}}
 {{% tab title="Helm Repo Add" %}}
@@ -24,7 +16,7 @@ helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel
 ```
 
 {{% /tab %}}
-{{% tab title="Helm Repo Add Output" %}}
+{{% tab title="Output" %}}
 
 ```text
 Using ACCESS_TOKEN={REDACTED}
@@ -40,13 +32,13 @@ Update Complete. ⎈Happy Helming!⎈
 {{% /tab %}}
 {{< /tabs >}}
 
-**Splunk Observability Cloud** offers wizards in the UI to walk you through the setup of the OpenTelemetry Collector on  Kubernetes, but in the interest of time, we will use a setup created earlier. As we want the auto instrumentation to be available, we will install the OpenTelemetry Collector with the OpenTelemetry Collector Helm chart with some additional options:
+**Splunk Observability Cloud** offers wizards in the UI to walk you through the setup of the OpenTelemetry Collector on  Kubernetes, but in the interest of time, we will use the Helm command below. Some additional parameters are set to enable the operator and auto-instrumentation.
 
-* `--set="operator.enabled=true"` - this will install the Opentelemetry operator, that will be used to handle auto instrumentation
+* `--set="operator.enabled=true"` - this will install the Opentelemetry operator, that will be used to handle auto instrumentation.
 * `--set="certmanager.enabled=true"` - This will install the required certificate manager for the operator.
-* `--set="splunkObservability.profilingEnabled=true"` - This enabled Code profiling via the operator
+* `--set="splunkObservability.profilingEnabled=true"` - This enabled Code Profiling via the operator.
 
-To install the collector run the following commands, do **NOT** edit this:
+To install the collector run the following command, do **NOT** edit this:
 
 {{< tabs >}}
 {{% tab title="Helm Install" %}}
@@ -70,9 +62,9 @@ splunk-otel-collector-chart/splunk-otel-collector \
 -f ~/workshop/k3s/otel-collector.yaml
 
 {{% /tab %}}
-{{% tab title="Helm Install Output" %}}
+{{% tab title="Output" %}}
 
-```text
+``` plaintext
 LAST DEPLOYED: Fri Apr 19 09:39:54 2024
 NAMESPACE: default
 STATUS: deployed
@@ -91,19 +83,17 @@ Splunk OpenTelemetry Collector is installed and configured to send data to Splun
 {{% /tab %}}
 {{< /tabs >}}
 
-You can monitor the progress of the deployment by running `kubectl get pods` which should typically report a new pod is up and running after about 30 seconds.
-
-Ensure the status is reported as **Running** before continuing.
+Ensure the Pods are reported as **Running** before continuing (this typically takes around 30 seconds).
 
 {{< tabs >}}
-{{% tab title="Kubectl Get Pods" %}}
+{{% tab title="kubectl get pods" %}}
 
 ``` bash
-kubectl get pods|grep splunk-otel 
+kubectl get pods | grep splunk-otel 
 ```
 
 {{% /tab %}}
-{{% tab title="Kubectl Get Pods Output" %}}
+{{% tab title="Output" %}}
 
 ``` text
 splunk-otel-collector-certmanager-cainjector-5c5dc4ff8f-95z49   1/1     Running   0          10m
@@ -117,18 +107,17 @@ splunk-otel-collector-operator-69d476cb7-j7zwd                  2/2     Running 
 {{% /tab %}}
 {{< /tabs >}}
 
-Ensure there are no errors by tailing the logs from the OpenTelemetry Collector pod. The output should look similar to the log output shown in the Output tab below.
-Use the label set by the `helm` install to tail logs (You will need to press `ctrl + c` to exit). Or use the installed `k9s` terminal UI for bonus points!
+Ensure there are no errors reported by the Splunk OpenTelemetry Collector (press `ctrl + c` to exit) or use the installed **awesome** `k9s` terminal UI for bonus points!
 
 {{< tabs >}}
-{{% tab title="Kubectl Logs" %}}
+{{% tab title="kubectl logs" %}}
 
 ``` bash
 kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 ```
 
 {{% /tab %}}
-{{% tab title="Kubectl Logs Output" %}}
+{{% tab title="Output" %}}
 
 ```text
 2021-03-21T16:11:10.900Z        INFO    service/service.go:364  Starting receivers...

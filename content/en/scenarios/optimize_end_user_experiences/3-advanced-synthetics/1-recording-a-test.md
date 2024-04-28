@@ -10,7 +10,7 @@ Write down a short user journey you want to test. Remember: smaller bites are ea
 Record the test in the same type of viewport that you want to run it. For example, if you want to run a test on a mobile viewport, narrow your browser width to mobile and refresh before starting the recording. This way you are capturing the correct elements that could change depending on responsive style rules.
 {{% /notice %}}
 
-Open your starting URL in Chrome Incognito. This is important so you're not carrying cookies into the recording, which we won't set up in the Synthetic test by default. If you workshop instructor does not have a custom URL, feel free to use [https://frontend-eu.splunko11y.com](https://frontend-eu.splunko11y.com) or [https://frontend-us.splunko11y.com](https://frontend-us.splunko11y.com), which are in the examples below.
+Open your starting URL in Chrome Incognito. This is important so you're not carrying cookies into the recording, which we won't set up in the Synthetic test by default. If you workshop instructor does not have a custom URL, feel free to use [https://online-boutique-eu.splunko11y.com](https://online-boutique-eu.splunko11y.com) or [https://online-boutique-us.splunko11y.com](https://online-boutique-us.splunko11y.com), which are in the examples below.
 
 ## Open the Chrome DevTools Recorder
 
@@ -74,11 +74,11 @@ Select **JSON** as the format, then click on **Save**
         },
         {
             "type": "navigate",
-            "url": "https://frontend-eu.o11ystore.com/",
+            "url": "https://online-boutique-eu.o11ystore.com/",
             "assertedEvents": [
                 {
                     "type": "navigation",
-                    "url": "https://frontend-eu.o11ystore.com/",
+                    "url": "https://online-boutique-eu.o11ystore.com/",
                     "title": "Online Boutique"
                 }
             ]
@@ -102,7 +102,7 @@ Select **JSON** as the format, then click on **Save**
             "assertedEvents": [
                 {
                     "type": "navigation",
-                    "url": "https://frontend-eu.o11ystore.com/product/66VCHSJNUP",
+                    "url": "https://online-boutique-eu.o11ystore.com/product/66VCHSJNUP",
                     "title": ""
                 }
             ]
@@ -132,7 +132,7 @@ Select **JSON** as the format, then click on **Save**
             "assertedEvents": [
                 {
                     "type": "navigation",
-                    "url": "https://frontend-eu.o11ystore.com/cart",
+                    "url": "https://online-boutique-eu.o11ystore.com/cart",
                     "title": ""
                 }
             ]
@@ -162,7 +162,7 @@ Select **JSON** as the format, then click on **Save**
             "assertedEvents": [
                 {
                     "type": "navigation",
-                    "url": "https://frontend-eu.o11ystore.com/cart/checkout",
+                    "url": "https://online-boutique-eu.o11ystore.com/cart/checkout",
                     "title": ""
                 }
             ]
