@@ -169,8 +169,6 @@ write_files:
         --set="splunkPlatform.index=splunk4rookies-workshop" \
         splunk-otel-collector-chart/splunk-otel-collector \
         -f /home/splunk/workshop/k3s/otel-collector.yaml
-
-
         echo ${instance_name} > /home/splunk/.helmok
       fi
 
