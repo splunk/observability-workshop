@@ -64,9 +64,9 @@
             type: Opaque
             stringData:
               app: {{ instance }}-store
-              deployment: "deployment.environment={{ instance }}"
               env: {{ instance}}
-              instance: {{ instance }}
+              deployment: "deployment.environment={{ instance }}"
+              access_token: {{ ingest_token }}
               realm: {{ realm }}
               rum_token: {{ rum_token }}
               hec_token: {{ hec_token }}
