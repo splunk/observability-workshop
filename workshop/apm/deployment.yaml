@@ -40,7 +40,7 @@ spec:
         app: mysql
     spec:
       containers:
-        - image: mysql:8
+        - image: biarms/mysql:5.7
           name: mysql
           env:
             # Use secret in real usage
