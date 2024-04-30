@@ -1,18 +1,19 @@
 #cloud-config
-system_info:
-  default_user:
-    name: splunk
+package_update: true
+package_upgrade: true
+
+users:
+  - default
+  - name: splunk
     groups: [docker]
-    lock_passwd: false
+    lock_passwd: true
+    sudo: ALL=(ALL) NOPASSWD:ALL
 
 chpasswd:
   expire: false
 
 groups:
   - docker
-
-package_update: true
-package_upgrade: true
 
 packages:
   - ansible
