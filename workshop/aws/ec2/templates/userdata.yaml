@@ -115,12 +115,14 @@ write_files:
         app: ${instance_name}-store
         env: ${instance_name}-workshop
         deployment: "deployment.environment=${instance_name}-workshop"
+        instance: ${instance_name}-workshop
+        realm: ${realm}
         access_token: ${access_token}
         api_token: ${api_token}
-        realm: ${realm}
         rum_token: ${rum_token}
         hec_token: ${hec_token}
         hec_url: ${hec_url}
+        url: frontend-external
 
   - path: /tmp/diab-setup.sh
     permissions: '0755'
@@ -136,6 +138,7 @@ write_files:
   - path: /tmp/pre-setup.sh
     permissions: '0755'
     content: |
+      # Export environment variables
       export RUM_TOKEN=${rum_token}
       export REALM=${realm}
       export ACCESS_TOKEN=${access_token}
@@ -143,6 +146,12 @@ write_files:
       export HEC_TOKEN=${hec_token}
       export HEC_URL=${hec_url}
       export INSTANCE="${instance_name}"
+
+      # Deploy Online Boutique
+      cd /home/splunk/workshop/apm/
+      sudo kubectl apply -f deployment.yaml
+
+      # Install Splunk OpenTelemetry Collector
       if [ ! -f /home/splunk/.helmok ]; then
         helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
         helm repo update
@@ -160,14 +169,6 @@ write_files:
         --set="splunkPlatform.index=splunk4rookies-workshop" \
         splunk-otel-collector-chart/splunk-otel-collector \
         -f /home/splunk/workshop/k3s/otel-collector.yaml
-
-        # use IDMSv2
-        TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
-        RUM_FRONTEND_IP=$(curl -sSH "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/local-ipv4)
-        export RUM_FRONTEND_IP
-
-        cd /home/splunk/workshop/apm/
-        sudo kubectl apply -f deployment.yaml
         echo ${instance_name} > /home/splunk/.helmok
       fi
 
