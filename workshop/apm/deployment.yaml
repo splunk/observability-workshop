@@ -306,7 +306,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: workshop-secret
-                  key: instance
+                  key: env
             - name: EXTERNAL_DB_NAME
               value: "LxvGChW075"
             - name: EXTERNAL_DB_ACCESS_RATE
@@ -900,7 +900,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: workshop-secret
-                  key: instance
+                  key: env
             - name: RUM_DEBUG
             - name: ENV_PLATFORM
               value: "aws"
