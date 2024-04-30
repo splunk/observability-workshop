@@ -147,10 +147,6 @@ write_files:
       export HEC_URL=${hec_url}
       export INSTANCE="${instance_name}"
 
-      # Deploy Online Boutique
-      cd /home/splunk/workshop/apm/
-      sudo kubectl apply -f deployment.yaml
-
       # Install Splunk OpenTelemetry Collector
       if [ ! -f /home/splunk/.helmok ]; then
         helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
@@ -162,13 +158,16 @@ write_files:
         --set="splunkObservability.logsEnabled=false" \
         --set="logsEngine=otel" \
         --set="splunkObservability.profilingEnabled=true" \
-        --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
         --set="environment=${instance_name}-workshop" \
         --set="splunkPlatform.endpoint=${hec_url}" \
         --set="splunkPlatform.token=${hec_token}" \
         --set="splunkPlatform.index=splunk4rookies-workshop" \
         splunk-otel-collector-chart/splunk-otel-collector \
         -f /home/splunk/workshop/k3s/otel-collector.yaml
+
+      # Deploy Online Boutique
+      sudo kubectl apply -f /home/splunk/workshop/apm/deployment.yaml
+
         echo ${instance_name} > /home/splunk/.helmok
       fi
 
@@ -192,7 +191,6 @@ write_files:
         --set="splunkObservability.logsEnabled=true" \
         --set="logsEngine=otel" \
         --set="splunkObservability.profilingEnabled=true" \
-        --set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
         --set="environment=${instance_name}-workshop" \
         --set="splunkPlatform.endpoint=${hec_url}" \
         --set="splunkPlatform.token=${hec_token}" \
