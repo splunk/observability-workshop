@@ -115,7 +115,6 @@ write_files:
         app: ${instance_name}-store
         env: ${instance_name}-workshop
         deployment: "deployment.environment=${instance_name}-workshop"
-        instance: ${instance_name}-workshop
         realm: ${realm}
         access_token: ${access_token}
         api_token: ${api_token}

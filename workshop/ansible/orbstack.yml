@@ -56,8 +56,8 @@
               app: {{ instance }}-store
               deployment: "deployment.environment={{ instance }}"
               env: {{ instance }}
-              instance: {{ instance }}
               realm: {{ realm }}
+              access_token: {{ ingest_token }}
               rum_token: {{ rum_token }}
               hec_token: {{ hec_token }}
               hec_url: {{ hec_url }}
