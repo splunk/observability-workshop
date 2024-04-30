@@ -1,10 +1,9 @@
-
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: config-server
-  labels: 
+  labels:
     app.kubernetes.io/part-of: spring-petclinic
 spec:
   selector:
@@ -19,33 +18,33 @@ spec:
     spec:
       terminationGracePeriodSeconds: 5
       containers:
-      - name: config-server
-        image: quay.io/phagen/spring-petclinic-config-server:0.0.2
-        #image: localhost:9999/spring-petclinic-config-server:local
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8888  
-        volumeMounts:
-        - name: petclinic-repo
-          mountPath: /petclinic-repo
-          readOnly: true
-        env:
-        - name: _JAVA_OPTIONS
-          value: "-Dspring.profiles.active=native -DGIT_REPO=/petclinic-repo -Xdebug -Dsplunk.profiler.call.stack.interval=150" 
-        - name: NODE_IP
-          valueFrom:
-            fieldRef: 
-              fieldPath: status.hostIP  
-        - name:  SPLUNK_METRICS_ENDPOINT
-          value: "http://$(NODE_IP):9943"
-        resources:
-          requests:
-            memory: 512Mi
-          limits:
-            memory: 768Mi
+        - name: config-server
+          image: quay.io/phagen/spring-petclinic-config-server:0.0.2
+          #image: localhost:9999/spring-petclinic-config-server:local
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8888
+          volumeMounts:
+            - name: petclinic-repo
+              mountPath: /petclinic-repo
+              readOnly: true
+          env:
+            - name: _JAVA_OPTIONS
+              value: "-Dspring.profiles.active=native -DGIT_REPO=/petclinic-repo -Xdebug -Dsplunk.profiler.call.stack.interval=150"
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: SPLUNK_METRICS_ENDPOINT
+              value: "http://$(NODE_IP):9943"
+          resources:
+            requests:
+              memory: 512Mi
+            limits:
+              memory: 768Mi
       volumes:
         - name: petclinic-repo
-        # mount /home/splunk/workshop/petclinic/petclinic-repo, but only if that directory already exists
+          # mount /home/splunk/workshop/petclinic/petclinic-repo, but only if that directory already exists
           hostPath:
             path: /home/splunk/workshop/petclinic/petclinic-repo # directory location on host
             type: Directory # this field is optional
@@ -54,22 +53,22 @@ apiVersion: v1
 kind: Service
 metadata:
   name: config-server
-  labels: 
+  labels:
     app.kubernetes.io/part-of: spring-petclinic
 spec:
   type: ClusterIP
   selector:
     app: config-server
   ports:
-  - name: tcp
-    port: 8888
-    targetPort: 8888
+    - name: tcp
+      port: 8888
+      targetPort: 8888
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: discovery-server
-  labels: 
+  labels:
     app.kubernetes.io/part-of: spring-petclinic
 spec:
   selector:
@@ -96,16 +95,16 @@ spec:
           name: discovery-server
           imagePullPolicy: Always
           ports:
-          - containerPort: 8761  
-          env: 
-          - name: JAVA_OPTIONS
-            value: "-Xdebug -Dsplunk.profiler.call.stack.interval=150"
-          - name: NODE_IP
-            valueFrom:
-              fieldRef:
-                fieldPath: status.hostIP
-          - name: SPLUNK_METRICS_ENDPOINT
-            value: "http://$(NODE_IP):9943"
+            - containerPort: 8761
+          env:
+            - name: JAVA_OPTIONS
+              value: "-Xdebug -Dsplunk.profiler.call.stack.interval=150"
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: SPLUNK_METRICS_ENDPOINT
+              value: "http://$(NODE_IP):9943"
           resources:
             requests:
               #cpu: 125m
@@ -118,22 +117,22 @@ apiVersion: v1
 kind: Service
 metadata:
   name: discovery-server
-  labels: 
+  labels:
     app.kubernetes.io/part-of: spring-petclinic
 spec:
   type: ClusterIP
   selector:
     app: discovery-server
   ports:
-  - name: tcp
-    port: 8761
-    targetPort: 8761
+    - name: tcp
+      port: 8761
+      targetPort: 8761
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api-gateway
-  labels: 
+  labels:
     app.kubernetes.io/part-of: spring-petclinic
 spec:
   selector:
@@ -144,7 +143,7 @@ spec:
       labels:
         app: api-gateway
       annotations:
-#        instrumentation.opentelemetry.io/inject-java: "true"
+        #        instrumentation.opentelemetry.io/inject-java: "true"
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
       containers:
@@ -160,36 +159,36 @@ spec:
           #image: localhost:9999/spring-petclinic-api-gateway:local
           imagePullPolicy: Always
           ports:
-          - containerPort: 8080
-          env: 
-          - name: JAVA_OPTIONS
-            value: "-Xdebug -Dsplunk.profiler.call.stack.interval=150"          
-          - name: RUM_REALM
-            valueFrom:
-              secretKeyRef:
-                name: workshop-secret
-                key: realm
-          - name: RUM_AUTH
-            valueFrom:
-              secretKeyRef:
-                name: workshop-secret
-                key: rum_token
-          - name: RUM_APP_NAME
-            valueFrom:
-              secretKeyRef:
-                name: workshop-secret
-                key: app
-          - name: RUM_ENVIRONMENT
-            valueFrom:
-              secretKeyRef:
-                name: workshop-secret
-                key: env
-          - name: NODE_IP
-            valueFrom:
-              fieldRef:
-                fieldPath: status.hostIP
-          - name:  SPLUNK_METRICS_ENDPOINT
-            value: "http://$(NODE_IP):9943"            
+            - containerPort: 8080
+          env:
+            - name: JAVA_OPTIONS
+              value: "-Xdebug -Dsplunk.profiler.call.stack.interval=150"
+            - name: RUM_REALM
+              valueFrom:
+                secretKeyRef:
+                  name: workshop-secret
+                  key: realm
+            - name: RUM_AUTH
+              valueFrom:
+                secretKeyRef:
+                  name: workshop-secret
+                  key: rum_token
+            - name: RUM_APP_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: workshop-secret
+                  key: app
+            - name: RUM_ENVIRONMENT
+              valueFrom:
+                secretKeyRef:
+                  name: workshop-secret
+                  key: env
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: SPLUNK_METRICS_ENDPOINT
+              value: "http://$(NODE_IP):9943"
           resources:
             requests:
               memory: 512Mi
@@ -200,22 +199,22 @@ apiVersion: v1
 kind: Service
 metadata:
   name: api-gateway
-  labels: 
+  labels:
     app.kubernetes.io/part-of: spring-petclinic
 spec:
   type: ClusterIP
   selector:
     app: api-gateway
   ports:
-  - name: http
-    port: 82
-    targetPort: 8080
+    - name: http
+      port: 82
+      targetPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: api-gateway-external
-  labels: 
+  labels:
     app.kubernetes.io/part-of: spring-petclinic
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
@@ -228,15 +227,15 @@ spec:
   selector:
     app: api-gateway
   ports:
-  - name: http
-    port: 81
-    targetPort: 8080
----    
+    - name: http
+      port: 81
+      targetPort: 8080
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: customers-service
-  labels: 
+  labels:
     app.kubernetes.io/part-of: spring-petclinic
 spec:
   selector:
@@ -261,17 +260,17 @@ spec:
           name: customers-service
           imagePullPolicy: Always
           ports:
-          - containerPort: 8081
-          env:  
-          - name: _JAVA_OPTIONS
-            value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=150" 
+            - containerPort: 8081
+          env:
+            - name: _JAVA_OPTIONS
+              value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=150"
 
-          - name: NODE_IP
-            valueFrom:
-              fieldRef:
-                fieldPath: status.hostIP
-          - name:  SPLUNK_METRICS_ENDPOINT
-            value: "http://$(NODE_IP):9943"
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: SPLUNK_METRICS_ENDPOINT
+              value: "http://$(NODE_IP):9943"
           resources:
             requests:
               memory: 512Mi
@@ -282,22 +281,22 @@ apiVersion: v1
 kind: Service
 metadata:
   name: customers-service
-  labels: 
+  labels:
     app.kubernetes.io/part-of: spring-petclinic
 spec:
   type: ClusterIP
   selector:
     app: customers-service
   ports:
-  - name: tcp
-    port: 8081
-    targetPort: 8081
+    - name: tcp
+      port: 8081
+      targetPort: 8081
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: vets-service
-  labels: 
+  labels:
     app.kubernetes.io/part-of: spring-petclinic
 spec:
   selector:
@@ -322,17 +321,17 @@ spec:
           name: vets-service
           imagePullPolicy: Always
           ports:
-          - containerPort: 8083      
+            - containerPort: 8083
           env:
-          - name: _JAVA_OPTIONS
-            value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=150" 
+            - name: _JAVA_OPTIONS
+              value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=150"
 
-          - name: NODE_IP
-            valueFrom:
-              fieldRef:
-                fieldPath: status.hostIP
-          - name:  SPLUNK_METRICS_ENDPOINT
-            value: "http://$(NODE_IP):9943"
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: SPLUNK_METRICS_ENDPOINT
+              value: "http://$(NODE_IP):9943"
           resources:
             requests:
               memory: 512Mi
@@ -343,22 +342,22 @@ apiVersion: v1
 kind: Service
 metadata:
   name: vets-service
-  labels: 
+  labels:
     app.kubernetes.io/part-of: spring-petclinic
 spec:
   type: ClusterIP
   selector:
     app: vets-service
   ports:
-  - name: tcp
-    port: 8083
-    targetPort: 8083  
+    - name: tcp
+      port: 8083
+      targetPort: 8083
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: visits-service
-  labels: 
+  labels:
     app.kubernetes.io/part-of: spring-petclinic
 spec:
   selector:
@@ -383,19 +382,18 @@ spec:
           name: visits-service
           imagePullPolicy: Always
           ports:
-          - containerPort: 8082
+            - containerPort: 8082
           env:
-          - name: _JAVA_OPTIONS
-            value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=150" 
-          - name: NODE_IP
-            valueFrom:
-              fieldRef:
-                fieldPath: status.hostIP
-          - name:  SPLUNK_METRICS_ENDPOINT
-            value: "http://$(NODE_IP):9943"
+            - name: _JAVA_OPTIONS
+              value: "-Dspring.profiles.active=docker,mysql -Xdebug -Dsplunk.profiler.call.stack.interval=150"
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: SPLUNK_METRICS_ENDPOINT
+              value: "http://$(NODE_IP):9943"
           resources:
             requests:
-
               memory: 512Mi
             limits:
               memory: 768Mi
@@ -404,22 +402,22 @@ apiVersion: v1
 kind: Service
 metadata:
   name: visits-service
-  labels: 
+  labels:
     app.kubernetes.io/part-of: spring-petclinic
 spec:
   type: ClusterIP
   selector:
     app: visits-service
   ports:
-  - name: tcp
-    port: 8082
-    targetPort: 8082
+    - name: tcp
+      port: 8082
+      targetPort: 8082
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: admin-server
-  labels: 
+  labels:
     app.kubernetes.io/part-of: spring-petclinic
 spec:
   selector:
@@ -446,14 +444,14 @@ spec:
           name: admin-server
           imagePullPolicy: Always
           ports:
-          - containerPort: 9090   
-          env: 
-          - name: NODE_IP
-            valueFrom:
-              fieldRef:
-                fieldPath: status.hostIP
-          - name:  SPLUNK_METRICS_ENDPOINT
-            value: "http://$(NODE_IP):9943"
+            - containerPort: 9090
+          env:
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: SPLUNK_METRICS_ENDPOINT
+              value: "http://$(NODE_IP):9943"
           resources:
             requests:
               memory: 512Mi
@@ -464,17 +462,17 @@ apiVersion: v1
 kind: Service
 metadata:
   name: admin-server
-  labels: 
+  labels:
     app.kubernetes.io/part-of: spring-petclinic
 spec:
   type: ClusterIP
   selector:
     app: admin-server
   ports:
-  - name: tcp
-    port: 9090
-    targetPort: 9090
----    
+    - name: tcp
+      port: 9090
+      targetPort: 9090
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -644,7 +642,6 @@ data:
     INSERT IGNORE INTO visits VALUES (3, 8, '2009-06-04', 'neutered');
     INSERT IGNORE INTO visits VALUES (4, 7, '2008-09-04', 'spayed');
 ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -667,26 +664,26 @@ spec:
       #  - name: RUM_FRONTEND_IP
       #    value: "192.168.1.99"
       containers:
-      - name: petclinic-loadgen
-        image: rcastley895/rumloadgen:5.5
-        imagePullPolicy: Always
-        env:
-        - name: NODE_IP
-          valueFrom:
-            fieldRef:
-             fieldPath: status.hostIP
-        - name: RUM_PROTOCOL
-          value: "http"
-        - name: RUM_PORT
-          value: "81"
-        volumeMounts:
-        - name: puppeteer
-          subPath: local-file
-          mountPath: /puppeteer/touchwebsite.js
+        - name: petclinic-loadgen
+          image: rcastley895/rumloadgen:5.5
+          imagePullPolicy: Always
+          env:
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: RUM_PROTOCOL
+              value: "http"
+            - name: RUM_PORT
+              value: "81"
+          volumeMounts:
+            - name: puppeteer
+              subPath: local-file
+              mountPath: /puppeteer/touchwebsite.js
       volumes:
-      - name: puppeteer
-        configMap:
-          name: scriptfile
+        - name: puppeteer
+          configMap:
+            name: scriptfile
 ---
 apiVersion: v1
 kind: ConfigMap
