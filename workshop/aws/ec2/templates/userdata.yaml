@@ -147,6 +147,12 @@ write_files:
       export HEC_URL=${hec_url}
       export INSTANCE="${instance_name}"
 
+      # Deploy Online Boutique
+      sudo kubectl apply -f /home/splunk/workshop/apm/deployment.yaml
+
+      # Sleep for 1 minute to allow the services to start
+      sleep 60
+
       # Install Splunk OpenTelemetry Collector
       if [ ! -f /home/splunk/.helmok ]; then
         helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
@@ -164,9 +170,6 @@ write_files:
         --set="splunkPlatform.index=splunk4rookies-workshop" \
         splunk-otel-collector-chart/splunk-otel-collector \
         -f /home/splunk/workshop/k3s/otel-collector.yaml
-
-      # Deploy Online Boutique
-      sudo kubectl apply -f /home/splunk/workshop/apm/deployment.yaml
 
         echo ${instance_name} > /home/splunk/.helmok
       fi
