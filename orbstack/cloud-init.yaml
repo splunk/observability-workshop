@@ -54,8 +54,10 @@ runcmd:
   # Install Helm
   - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
   # Install K9s (Kubernetes UI)
-  - curl -S -OL https://github.com/derailed/k9s/releases/download/v0.32.4/k9s_Linux_amd64.tar.gz
-  - tar xfz k9s_Linux_amd64.tar.gz -C /usr/local/bin/ k9s
+  - K9S_VERSION='0.32.4'
+  - #K9S_VERSION=$(curl -s https://api.github.com/repos/derailed/k9s/releases/latest | jq -r '.tag_name')
+  - curl -S -OL https://github.com/derailed/k9s/releases/download/v"$K9S_VERSION"/k9s_Linux_arm64.tar.gz
+  - tar xfz k9s_Linux_arm64.tar.gz -C /usr/local/bin/ k9s
   # Download Workshop
   - curl -s -OL https://github.com/splunk/observability-workshop/archive/main.zip
   - unzip -qq main.zip -d /home/splunk/
@@ -70,9 +72,11 @@ runcmd:
   - curl -s -L https://github.com/splunk/observability-content-contrib/archive/main.zip -o content-contrib.zip
   - unzip -qq content-contrib.zip -d /home/splunk/
   - mv /home/splunk/observability-content-contrib-main /home/splunk/observability-content-contrib
-  # Install Terraform
-  - curl -S -OL https://releases.hashicorp.com/terraform/1.8.2/terraform_1.8.2_linux_arm64.zip
-  - unzip -qq terraform_1.8.2_linux_arm64.zip -d /usr/local/bin
+  # Install Terraform (latest)
+  - TF_VERSION='1.8.2'
+  - #TF_VERSION=$(curl -s https://api.github.com/repos/hashicorp/terraform/releases/latest | jq -r '.tag_name | ltrimstr("v")')
+  - curl -S -OL https://releases.hashicorp.com/terraform/"$TF_VERSION"/terraform_"$TF_VERSION"_linux_arm64.zip
+  - unzip -qq terraform_"$TF_VERSION"_linux_arm64.zip -d /usr/local/bin
   # Install K3s
   - curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" sh -
   # Create kube config and set correct permissions on splunk user home directory
