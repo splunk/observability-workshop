@@ -2,6 +2,8 @@
 title: Preparation of the Workshop instance
 linkTitle: 2. Preparation
 weight: 3
+archetype: chapter
+time: 15 minutes
 ---
 
 The instructor will provide you with the login information for the instance that we will be using during the workshop.
