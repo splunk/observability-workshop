@@ -1,10 +1,10 @@
 ---
-title: Zero-Config Setup
-linkTitle: 1. Zero-Config Setup
+title: Zero Configuration Setup
+linkTitle: 1. Zero Configuration Setup
 weight: 1
 ---
 
-To see how Zero-Config works with a single pod we will patch the `api-gateway`. Once patched, the OpenTelemetry Collector will inject the auto-instrumentation library and the Pod will be restarted in order to start sending traces and profiling data. To show what happens when you enable Auto-Instrumentation, let's do a *before and after* of the configuration:
+To see how Zero Configuration works with a single pod we will patch the `api-gateway`. Once patched, the OpenTelemetry Collector will inject the Auto Instrumentation library and the Pod will be restarted in order to start sending traces and profiling data. To show what happens when you enable Auto Instrumentation, let's do a *before and after* of the configuration:
 
 {{< tabs >}}
 {P}{{% tab title="Describe api-gateway" %}}

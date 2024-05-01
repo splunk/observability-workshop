@@ -5,7 +5,7 @@ weight: 6
 archetype: chapter
 ---
 
-As we have seen in the previous section, once you enable **Zero-Config Auto-Instrumentation** on your services traces are sent to **Splunk Observability Cloud**.
+As we have seen in the previous section, once you enable **Zero Configuration Auto Instrumentation** on your services traces are sent to **Splunk Observability Cloud**.
 
 With these traces, Splunk will automatically generate **Service Maps** and **RED Metrics**. These are the first steps in understanding the behavior of your services and how they interact with each other.
 

@@ -4,7 +4,7 @@ linkTitle: 2. APM Spans
 weight: 2
 ---
 
-While we examine our spans, let's look at several features that you get out of the box without code modifications when using Zero config Auto-Instrumentation on top of tracing:
+While we examine our spans, let's look at several features that you get out of the box without code modifications when using **Zero Configuration Auto Instrumentation** on top of tracing:
 
 Due to the fact there are several different routes
 First, in the Waterfall Pane, make sure the `customers-service:SELECT petclinic.owners`  or similar span is selected as shown in the screenshot below:
