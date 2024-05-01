@@ -12,7 +12,7 @@ To show what happens when you enable Auto instrumentation, let's do a *before an
 {P}{{% tab title="Describe api-gateway" %}}
 
 ``` bash
-kubectl describe pods api-gateway |grep Image:
+kubectl describe pods api-gateway | grep Image:
 ```
 
 {{% /tab %}}
@@ -95,5 +95,5 @@ deployment.apps/api-gateway patched (no change)
 {{< /tabs >}}
 
 {{% notice note %}}
-There will be no change for the **config-server**, **discovery-server**, **admin-server** and **api-gateway** as we patched these earlier.
+There will be no change for the **config-server**, **discovery-server**, **admin-server** and **api-gateway** as these have already been patched.
 {{% /notice %}}
