@@ -3,6 +3,7 @@ title: Always-On Profiling & DB Query Performance
 linkTitle: 6. Advanced Features
 weight: 7
 archetype: chapter
+time: 15 minutes
 ---
 
 As we have seen in the previous chapter, you can trace your interactions between the various services using APM without touching your code, which will allow you to identify issues faster.

@@ -5,7 +5,7 @@ weight: 1
 archetype: chapter
 description: Learn how to enable Open Telemetry Zero Configuration Auto-Instrumentation for your Java-based application running in Kubernetes. Experience real-time monitoring to help you maximize application behavior with end-to-end visibility.
 authors: ["Pieter Hagen"]
-time: 90 minnutes
+time: 90 minutes
 ---
 
 The goal of this workshop is to introduce the features of Splunk's **Zero Configuration Auto Instrumentation** for Java.

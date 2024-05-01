@@ -2,6 +2,7 @@
 title: Setting up Zero configuration Auto instrumentation for APM
 linkTitle: 4. Auto Instrumentation & Metrics
 weight: 5
+time: 10 minutes
 ---
 
 In this section we will enable **Zero Configuration Auto Instrumentation** for the Java services running in Kubernetes. This means that the OpenTelemetry Collector will look for Pod annotations that indicate that the Java application should be instrumented with the Splunk OpenTelemetry Java agent. This will allow us to get traces, spans, and profiling data from the Java services running on the cluster.

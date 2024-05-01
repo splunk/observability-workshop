@@ -3,6 +3,7 @@ title: APM Features
 linkTitle: 5. APM Features
 weight: 6
 archetype: chapter
+time: 15 minutes
 ---
 
 As we have seen in the previous section, once you enable **Zero Configuration Auto Instrumentation** on your services traces are sent to **Splunk Observability Cloud**.
