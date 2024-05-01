@@ -1,12 +1,10 @@
 ---
-title: Zero-Config Setup
-linkTitle: 1. Zero-Config Setup
+title: Zero Configuration Setup
+linkTitle: 1. Zero Configuration Setup
 weight: 1
 ---
 
-Let's look at how zero-config works with a single pod, the `api-gateway`. If you enable Zero configuration for a pod, the Collector will attach an init-Container to your existing pod, and restart the pod to activate it.
-
-To show what happens when you enable Auto instrumentation, let's do a *before and after* of the content of a pod, the `api-gateway` in this case:
+To see how Zero Configuration works with a single pod we will patch the `api-gateway`. Once patched, the OpenTelemetry Collector will inject the Auto Instrumentation library and the Pod will be restarted in order to start sending traces and profiling data. To show what happens when you enable Auto Instrumentation, let's do a *before and after* of the configuration:
 
 {{< tabs >}}
 {P}{{% tab title="Describe api-gateway" %}}
@@ -30,14 +28,14 @@ This container was pulled from a remote repository `quay.io` and was not built t
 {{< tabs >}}
 {{% tab title="Patch api-gateway" %}}
 
-```bash
+``` bash
 kubectl patch deployment api-gateway -p '{"spec": {"template":{"metadata":{"annotations":{"instrumentation.opentelemetry.io/inject-java":"default/splunk-otel-collector"}}}}}'
 ```
 
 {{% /tab %}}
 {{% tab title="Patch Output" %}}
 
-```text
+``` text
 deployment.apps/api-gateway patched
 ```
 
@@ -66,14 +64,12 @@ Image:         quay.io/phagen/spring-petclinic-api-gateway:0.0.2
 
 A new image has been added to the `api-gateway` which will pull `splunk-otel-java` from `ghcr.io` (if you see two `api-gateway` containers, the original one is probably still terminating, so give it a few seconds).
 
-#### Enable Java Zero-Config Auto-Instrumentation on all pods
-
-To patch all the other services in the Spring Petclinic application, run the following command. This will add the `inject-java` annotation to all the services in the Spring Petclinic application. **This automatically causes pods to restart.**
+To patch all the other services in the Spring Petclinic application, run the following command. This will add the `inject-java` annotation to the remaining services. There will be no change for the **config-server**, **discovery-server**, **admin-server** and **api-gateway** as these have already been patched.
 
 {{< tabs >}}
 {{% tab title="Patch all Petclinic services" %}}
 
-```bash
+``` bash
 kubectl get deployments -l app.kubernetes.io/part-of=spring-petclinic -o name | xargs -I % kubectl patch % -p "{\"spec\": {\"template\":{\"metadata\":{\"annotations\":{\"instrumentation.opentelemetry.io/inject-java\":\"default/splunk-otel-collector\"}}}}}"
 
 ```
@@ -81,7 +77,7 @@ kubectl get deployments -l app.kubernetes.io/part-of=spring-petclinic -o name | 
 {{% /tab %}}
 {{% tab title="Patch Output" %}}
 
-```text
+``` text
 deployment.apps/config-server patched (no change)
 deployment.apps/admin-server patched (no change)
 deployment.apps/customers-service patched
@@ -94,6 +90,6 @@ deployment.apps/api-gateway patched (no change)
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% notice note %}}
-There will be no change for the **config-server**, **discovery-server**, **admin-server** and **api-gateway** as these have already been patched.
-{{% /notice %}}
+Navigate back to the Kubernetes Navigator in **Splunk Observability Cloud**. After a couple of minutes you will see that the Pods are being restarted by the operator and the Zero config container will be added. This will look similar to the screenshot below:
+
+![restart](../../images/k8s-navigator-restarted-pods.png)

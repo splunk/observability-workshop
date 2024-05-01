@@ -34,7 +34,7 @@ The resulting output should say `localhost:9999`:
   Image:         localhost:9999/spring-petclinic-api-gateway:local
 ```
 
-However, as we only patched the deployment before, the new deployment does not have the right annotations for the **Zero-Config Auto-Instrumentation**, so let's fix that now by running the patch command again:
+However, as we only patched the deployment before, the new deployment does not have the right annotations for the **Zero Configuration Auto Instrumentation**, so let's fix that now by running the patch command again:
 
 {{< notice note >}}
 

@@ -84,7 +84,7 @@ Once they are running, the application will take a few minutes to fully start up
 
 #### Verify the local Private Registry
 
-Later on, when we test our **Zero-Config Auto-Instrumentation** we are going to build new containers to highlight some of the additional features of Splunk Observability Cloud.
+Later on, when we test our **Zero Configuration Auto Instrumentation** we are going to build new containers to highlight some of the additional features of Splunk Observability Cloud.
 
 As configuration files and source code will be changed, the containers will need to be built and stored in a local private registry (which has already been enabled for you).
 

@@ -4,6 +4,14 @@ linkTitle: 1. APM Service Map
 weight: 1
 ---
 
+Next, click on **Service Map** **(3)** to view the automatically generated Service Map and select the **api-gateway** service.
+
+![apm map](../../images/zero-config-first-services-map.png)
+
+The example above shows all the interactions between all of the services. The map may still be in an interim state as it will take the Petclinic Microservice application a few minutes to start up and fully synchronize. Reducing the time filter to a custom time of 2 minutes will help. The initial startup-related errors (red dots) will eventually disappear.
+
+Next, let's examine the metrics that are available for each service that is instrumented and visit the request, error, and duration (RED) metrics Dashboard
+
 For this exercise we are going to use a common scenario you would use if the service operation was showing high latency, or errors for example.
 
 ## I THINK WE SHOULD HAVE SOMETHING GENERATING ERRORS TO SHOW THE BENEFIT OF THIS SECTION
