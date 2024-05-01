@@ -32,11 +32,11 @@ Update Complete. ⎈Happy Helming!⎈
 {{% /tab %}}
 {{< /tabs >}}
 
-**Splunk Observability Cloud** offers wizards in the UI to walk you through the setup of the OpenTelemetry Collector on  Kubernetes, but in the interest of time, we will use the Helm command below. Some additional parameters are set to enable the operator and auto-instrumentation.
+**Splunk Observability Cloud** offers wizards in the UI to walk you through the setup of the OpenTelemetry Collector on  Kubernetes, but in the interest of time, we will use the Helm command below. Some additional parameters are set to enable the operator and Zero-Config Auto-Instrumentation.
 
-* `--set="operator.enabled=true"` - this will install the Opentelemetry operator, that will be used to handle auto instrumentation.
-* `--set="certmanager.enabled=true"` - This will install the required certificate manager for the operator.
-* `--set="splunkObservability.profilingEnabled=true"` - This enabled Code Profiling via the operator.
+* `--set="operator.enabled=true"` - this will install the Opentelemetry operator that will be used to handle auto-instrumentation.
+* `--set="certmanager.enabled=true"` - this will install the required certificate manager for the operator.
+* `--set="splunkObservability.profilingEnabled=true"` - this enables Code Profiling via the operator.
 
 To install the collector run the following command, do **NOT** edit this:
 
@@ -136,7 +136,7 @@ kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 {{< /tabs >}}
 
 {{% notice title="Deleting a failed installation" style="info" %}}
-If you make an error installing the OpenTelemetry Collector you can start over by deleting the installation using:
+If you make an error installing the OpenTelemetry Collector you can start over by deleting the installation with the following command:
 
 ``` sh
 helm delete splunk-otel-collector
