@@ -3,6 +3,7 @@ title: Log Observer
 linkTitle: 7. Log Observer
 weight: 8
 archetype: chapter
+time: 10 minutes
 ---
 
 Up until this point, there have been no code changes, yet tracing, profiling and Database Query Performance data is being sent to Splunk Observability Cloud.

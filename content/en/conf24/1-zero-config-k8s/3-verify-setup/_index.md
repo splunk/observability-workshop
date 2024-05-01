@@ -2,6 +2,7 @@
 title: Verify Kubernetes Cluster metrics
 linkTitle: 3. Verify everything is working
 weight: 4
+time: 10 minutes
 ---
 
 Once the installation has been completed, you can log in to **Splunk Observability Cloud** and verify that the metrics are flowing in from your Kubernetes cluster.
