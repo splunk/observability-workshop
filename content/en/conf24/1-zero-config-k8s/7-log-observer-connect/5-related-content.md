@@ -18,12 +18,6 @@ As a last exercise, click on  the Trace for Link, this will bring you to the wat
 Note that you now have Logs Related Content Pane **(1)** appear, clicking on this will bring you back to log observer with all the loglines that are part of this Trace.
 This will help you to quickly find relevant log lines for an interaction or a problem.
 
-## Summary
-
-This is the end of the workshop and we have certainly covered a lot of ground. At this point, you should have metrics, traces, logs, database query performance and code profiling being reported into Splunk Observability Cloud.
-
-**Congratulations!**
-
 <!--
 docker system prune -a --volumes
 
