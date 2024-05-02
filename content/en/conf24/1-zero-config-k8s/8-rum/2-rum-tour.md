@@ -12,10 +12,12 @@ Then change the **App** **(2)** dropdown box to the  name of your app, it will b
 
 ![rum select](../../images/rum-env-select.png)
 
-If you have selected  youe ENvironment and App, you see and overview page showing the RUM status of you App.
+If you have selected  your Environment and App, you see an overview page showing the RUM status of you App.
 
 ![rum overview](../../images/rum-overview.png)
 
-When you drill down into a RUM trace you will see a link to APM in the spans. Clicking on the trace ID will take you to the corresponding APM trace for the current RUM trace.
+Click on the blue link to get to the details page
+
+![rum  main](../../images/rum-main.png)
 
 
