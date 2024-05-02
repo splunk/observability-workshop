@@ -23,22 +23,23 @@ First, let's set the Log Structure/Format. SpringBoot will allow you to set a gl
 {{% notice note %}}
 The following entries will be added:
 
-- `trace_id`
-- `span_id`
-- `trace_flags`
-- `service.name`
-- `deployment.environment`
+- **trace_id**
+- **span_id**
+- **trace_flags**
+- **service.name**
+- **deployment.environment**
+
 {{% /notice %}}
 
-These fields allow the **Splunk Observability Cloud** to display **Related Content** when used in a pattern shown below:
+These fields allow the **Splunk Observability Cloud** to display **Related Content** when using the log pattern shown below:
 
 ``` xml
-  <pattern>
-    logback: %d{HH:mm:ss.SSS} [%thread] severity=%-5level %logger{36} - trace_id=%X{trace_id} span_id=%X{span_id} service.name=%property{otel.resource.service.name} trace_flags=%X{trace_flags} - %msg %kvp{DOUBLE}%n
-  </pattern>
+<pattern>
+  logback: %d{HH:mm:ss.SSS} [%thread] severity=%-5level %logger{36} - trace_id=%X{trace_id} span_id=%X{span_id} service.name=%property{otel.resource.service.name} trace_flags=%X{trace_flags} - %msg %kvp{DOUBLE}%n
+</pattern>
 ```
 
-So, let's run the script that will update the files with the log structure in the format above:
+The following script will update the `logback-spring.xml` for all of the services with the log structure in the format above:
 
 {{< tabs >}}
 {{% tab title="Update Logback files" %}}
@@ -64,7 +65,7 @@ Script execution completed.
 {{% /tab %}}
 {{< /tabs >}}
 
-We can verify if the replacement has been successful by examining the spring-logback.xml file from one of the services:
+We can verify if the replacement has been successful by examining the `logback-spring.xml` file from one of the services:
 
 ```bash
 cat /home/splunk/spring-petclinic-microservices/spring-petclinic-customers-service/src/main/resources/logback-spring.xml

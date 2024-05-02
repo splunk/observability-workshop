@@ -10,7 +10,7 @@ To see the changes in effect, we need to redeploy the services, First, let's cha
 . ~/workshop/petclinic/scripts/set_local.sh
 ```
 
-The result is a new file on disk called **petclinic-local.yaml**. Let's switch to the local versions by using the new version of the `deployment.yaml`. First delete the old containers from the original deployment with:
+The result is a new file on disk called `petclinic-local.yaml`. Switch to the local versions by using the new version of the deployment YAML. First delete the old containers from the original deployment with:
 
 ```bash
 kubectl delete -f ~/workshop/petclinic/petclinic-deploy.yaml
@@ -28,7 +28,7 @@ This will cause the containers to be replaced with the local version, you can ve
 kubectl describe pods api-gateway | grep Image:
 ```
 
-The resulting output should say `localhost:9999`:
+The resulting output will show `localhost:9999`:
 
 ```text
   Image:         localhost:9999/spring-petclinic-api-gateway:local
@@ -36,11 +36,11 @@ The resulting output should say `localhost:9999`:
 
 However, as we only patched the deployment before, the new deployment does not have the right annotations for the **Zero Configuration Auto Instrumentation**, so let's fix that now by running the patch command again:
 
-{{< notice note >}}
+{{% notice note %}}
 
-Note, that there will be no change for the *config-server & discovery-server* as they do have the annotation included in the deployment.
+There will be no change for the **admin-server**, **config-server** and **discovery-server** as they are already annotated.
 
-{{< /notice >}}
+{{% /notice %}}
 
 {{< tabs >}}
 {{% tab title="Patch all Petclinic services" %}}
@@ -50,11 +50,11 @@ kubectl get deployments -l app.kubernetes.io/part-of=spring-petclinic -o name | 
 ```
 
 {{% /tab %}}
-{{% tab title="kubectl patch Output" %}}
+{{% tab title="Output" %}}
 
 ```text
 deployment.apps/config-server patched (no change)
-deployment.apps/admin-server patched
+deployment.apps/admin-server patched (no change)
 deployment.apps/customers-service patched
 deployment.apps/visits-service patched
 deployment.apps/discovery-server patched (no change)
