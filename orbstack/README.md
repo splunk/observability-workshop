@@ -88,3 +88,22 @@ To start again, delete the instance and re-run `start.sh my-instance`:
 ```bash
 orb delete my-instance
 ```
+
+You can use Vscode with your new orb/container. 
+Make sure you have installed the remote ssh extension in  vscode
+
+here is a sample  config for you ssh_config
+
+```text
+Host conf
+  Hostname 127.0.0.1
+  Port 32222
+  User splunk@orb-1
+  # replace or symlink ~/.orbstack/ssh/id_ed25519 file to change the key
+  IdentityFile ~/.orbstack/ssh/id_ed25519
+  # only use this key
+  IdentitiesOnly yes
+  ProxyCommand '/Applications/OrbStack.app/Contents/MacOS/../Frameworks/OrbStack Helper.app/Contents/MacOS/OrbStack Helper' ssh-proxy-fdpass 501
+  ProxyUseFdpass yes
+ ```
+  

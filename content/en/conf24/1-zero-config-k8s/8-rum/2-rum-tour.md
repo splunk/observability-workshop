@@ -12,7 +12,7 @@ Then change the **App** **(2)** dropdown box to the  name of your app, it will b
 
 ![rum select](../../images/rum-env-select.png)
 
-If you have selected  your Environment and App, you see an overview page showing the RUM status of you App.
+If you have selected your Environment and App, you see an overview page showing the RUM status of you App.
 
 ![rum overview](../../images/rum-overview.png)
 
