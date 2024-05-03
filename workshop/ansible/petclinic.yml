@@ -1,5 +1,5 @@
 ---
-- hosts: workshop-instances
+- hosts: workshop_instances
   gather_facts: true
   remote_user: splunk
 
