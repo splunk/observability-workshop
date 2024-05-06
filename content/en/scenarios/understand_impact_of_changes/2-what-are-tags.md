@@ -24,10 +24,26 @@ While some tags can be added with the OpenTelemetry collector, the ones we’ll 
 
 A note about terminology before we proceed. While this workshop is about **tags**, and this is the terminology we use in **Splunk Observability Cloud**, OpenTelemetry uses the term **attributes** instead. So when you see tags mentioned throughout this workshop, you can treat them as synonymous with attributes.
 
-## What are tags so important?
+## Why are tags so important?
 
 Tags are essential for an application to be truly observable. As we saw with our credit check service, some users are having a great experience: fast with no errors. But other users get a slow experience or encounter errors.  
 
 Tags add the context to the traces to help us understand why some users get a great experience and others don't.  And powerful features in **Splunk Observability Cloud** utilize tags to help you jump quickly to root cause.
 
-Let's proceed to look at how tags can be captured using OpenTelemetry.
+## Sneak Peak: Tag Spotlight
+
+**Tag Spotlight** uses tags to discover trends that contribute to high latency or error rates: 
+
+![Tag Spotlight Preview](../images/tag_spotlight_preview.png)
+
+The screenshot above provides an example of Tag Spotlight from another application.
+
+Splunk has analyzed all of the tags included as part of traces that involve the payment service.
+
+It tells us very quickly whether some tag values have more errors than others.
+
+If we look at the version tag, we can see that version 350.10 of the service has a 100% error rate, whereas version 350.9 of the service has no errors at all: 
+
+![Tag Spotlight Preview](../images/tag_spotlight_preview_details.png)
+
+We’ll be using Tag Spotlight with the credit check service later on in the workshop, once we’ve captured some tags of our own.

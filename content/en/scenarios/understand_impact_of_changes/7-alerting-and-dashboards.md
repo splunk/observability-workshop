@@ -41,25 +41,25 @@ To see how, let's click on the metric named `service.request.duration.ns.p99`, w
 
 ![Service Request Duration](../images/service_request_duration_chart.png)
 
-This metric tracks the p99 response time of service requests in nanoseconds, broken down by various attributes. Nanoseconds are bit too granular for our needs, so let's click **Enter formula** and convert this to seconds by entering `A / 1000000000`.  Then we can hide `A` and show only `B`:
+Add filters for `sf_environment`, `sf_service`, and `sf_dimensionalized`.  Then set the **Extrapolation policy** to `Last value` and the **Display units** to `Nanosecond`:
 
-![Chart with Seconds](../images/chart_with_seconds.png)
+![Chart with Seconds](../images/chart_settings.png)
 
-Next, let's break down the chart by credit score category. Click on the **Add analytics** button on the first row, select **Mean**, then **Mean:Aggregation**, then Group By the `credit_score_category` dimension:
+With these settings, the chart allows us to visualize the service request duration by credit score category:
 
 ![Duration by Credit Score](../images/duration_by_credit_score.png)
 
-Now we can see the duration by credit score category. In my example, the green line represents the `exceptional` category, and we can see that the duration for these requests sometimes goes all the way up to 5 seconds.
+Now we can see the duration by credit score category. In my example, the red line represents the `exceptional` category, and we can see that the duration for these requests sometimes goes all the way up to 5 seconds.
 
-The yellow line represents the `very good` category, and has very fast response times.
+The orange represents the `very good` category, and has very fast response times.
 
-The magenta line represents the `poor` category, and has response times between 2-3 seconds.
+The green line represents the `poor` category, and has response times between 2-3 seconds.
 
 It may be useful to save this chart on a dashboard for future reference. To do this, click on the **Save as...** button and provide a name for the chart:
 
 ![Save Chart As](../images/save_chart_as.png)
 
-When asked which dashboard to save the chart to, let's create a new one named `Credit Check Service`:
+When asked which dashboard to save the chart to, let's create a new one named `Credit Check Service - Your Name` (substituting your actual name):
 
 ![Save Chart As](../images/create_dashboard.png)
 
