@@ -6,7 +6,7 @@ weight: 1
 
 At the top of the previous code snippet, there is a reference to the file `/static/env.js`, which contains/sets the variables used by the RUM, currently these are not configured and therefore no RUM traces are currently being sent.
 
-So, let's run the script that will update variables to enable RUM traces so they can be viewable in the **Splunk Observability Cloud** RUM UI:
+So, let's run the script that will update variables to enable RUM traces so they can be viewable in the **Splunk Observability Cloud** RUM UI. Note, that the Env.js script contains a deliberate Java script error, so we have one detected by Splunk RUM:
 
 {{< tabs >}}
 {{% tab title="Update env.js for RUM" %}}
@@ -42,30 +42,38 @@ cat ~/spring-petclinic-microservices/spring-petclinic-api-gateway/src/main/resou
  env = {
   RUM_REALM: 'eu0',
   RUM_AUTH: '[redacted]',
-  RUM_APP_NAME: 'o11y-workshop-1-store',
-  RUM_ENVIRONMENT: 'o11y-workshop-1-workshop'
+  RUM_APP_NAME: 'k8s-petclinic-workshop-store',
+  RUM_ENVIRONMENT: 'k8s-petclinic-workshop-workshop'
+}
+// non critical error so it shows in RUM when the realm is set
+if (env.RUM_REALM != "") {
+    let showJSErrorObject = false;
+    showJSErrorObject.property = 'true';
 }
 ```
+
+Let's move into the api-gateway directory and  force a build  for just the api-gateway service.
 
 {{% /tab %}}
 {{< /tabs >}}
 
 ``` bash
-./mvnw clean install -D skipTests -P buildDocker
+cd  ~/spring-petclinic-microservices/spring-petclinic-api-gateway
+../mvnw clean install -D skipTests -P buildDocker
 ```
 
 ``` bash
 . ~/workshop/petclinic/scripts/push_docker.sh
 ```
 
-Now restart the `api-gateway` to apply the changes:
+As soon as the containers are pushed into the repository, just restart the `api-gateway` to apply the changes:
 
 ``` bash
 kubectl rollout restart deployment api-gateway
 ```
 
-In RUM, filter down into the environment as defined in the RUM snippet above and click through to the dashboard.
+Validate that the application is running by visiting **http://<IP_ADDRESS>:81** (replace **<IP_ADDRESS>** with the IP address you obtained above). Make sure the application is working correctly by visiting the **All Owners** **(1)** and select an owner, then add a **visit** **(2)**.  We will use this action when checking RUM 
 
-When you drill down into a RUM trace you will see a link to APM in the spans. Clicking on the trace ID will take you to the corresponding APM trace for the current RUM trace.
+![pet](../../images/petclinic-pet.png)
 
-## More image's needed for better info plz? Pretty Pretty lease?
+If you want, you can access this website on your phone as well. This will also show up in RUM.

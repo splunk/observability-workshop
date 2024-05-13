@@ -44,9 +44,9 @@ The following snippet is inserted into the **<head>** section of the `index.html
 </script>
 ```
 
-The above snippet of code has already been added to `index.html` in the repository you cloned earlier, and you already have a build that includes this snippet when rebuilding all the services in the previous exercise
+The above snippet of code has already been added to `index.html` in the repository you cloned earlier, but it is not yet activated, we will do that in the next section.
 
-If you want you can verify the snippet  we added to the index.html by viewing the file:
+If you want you can verify the snippet, we added to the index.html by viewing the file:
 
 {{< tabs >}}
 {{% tab title="View index.html" %}}
