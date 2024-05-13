@@ -19,23 +19,18 @@ You will start with an EC2 instance and perform some [initial steps](#initial-st
 
 ## Initial Steps
 
-The initial setup can be completed by executing the following steps on the command line of your EC2 instance.
-
-You'll be asked to enter a name for your environment.  Please use `tagging-workshop-yourname` (where `yourname` is replaced by your actual name).
+The initial setup can be completed by executing the following steps on the command line of your EC2 instance: 
 
 ``` bash
 cd workshop/tagging
-./1-deploy-otel-collector.sh
-./2-deploy-creditcheckservice.sh
-./3-deploy-creditprocessorservice.sh
-./4-deploy-load-generator.sh
+./0-deploy-collector-with-services.sh
 ```
 
 ## View your application in Splunk Observability Cloud
 
 Now that the setup is complete, let's confirm that it's sending data to **Splunk Observability Cloud**.  Note that when the application is deployed for the first time, it may take a few minutes for the data to appear.
 
-Navigate to APM, then use the Environment dropdown to select your environment (i.e. `tagging-workshop-name`).
+Navigate to APM, then use the Environment dropdown to select your environment (i.e. `tagging-workshop-instancename`).
 
 If everything was deployed correctly, you should see `creditprocessorservice` and `creditcheckservice` displayed in the list of services:
 
