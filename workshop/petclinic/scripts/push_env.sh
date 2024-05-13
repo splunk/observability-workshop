@@ -20,6 +20,11 @@ env = {
   RUM_APP_NAME: '$INSTANCE-store',
   RUM_ENVIRONMENT: '$INSTANCE-workshop'
 }
+// non critical error so it shows in RUM when the realm is set
+if (env.RUM_REALM != "") {
+    let showJSErrorObject = false;
+    showJSErrorObject.property = 'true';
+  }
 EOF
 
     echo "JavaScript file generated at: $JS_FILE"

@@ -1,0 +1,46 @@
+---
+- hosts: workshop_instances
+  gather_facts: true
+  remote_user: splunk
+
+  tasks:
+    - name: check to see if the config has run
+      stat:
+        path: /white_rabbit.followed
+      register: wh_result
+
+    - name: run the deployment
+      shell: kubectl apply -f petclinic-deploy.yaml
+      become: yes
+      args:
+        chdir: /home/splunk/workshop/petclinic/
+      when:
+        - not wh_result.stat.exists
+
+    - name: pause for 1 minute to allow deployment to complete
+      pause:
+        minutes: 1
+      when:
+        - not wh_result.stat.exists
+
+    - name: install splunk otel collector
+      shell: helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
+      when:
+        - not wh_result.stat.exists
+
+    - name: helm repo update
+      shell: helm repo update
+      when:
+        - not wh_result.stat.exists
+
+    - name: install otel collector
+      shell: 'helm install splunk-otel-collector --set="operator.enabled=true" --set="certmanager.enabled=true" --set="splunkObservability.realm={{ ansible_env.REALM}}" --set="splunkObservability.accessToken={{ ansible_env.ACCESS_TOKEN }}" --set="clusterName={{ ansible_env.INSTANCE }}-k3s-cluster" --set="splunkObservability.logsEnabled=false" --set="logsEngine=otel" --set="splunkObservability.profilingEnabled=true" --set="environment={{ ansible_env.INSTANCE }}-workshop" --set="splunkPlatform.endpoint={{ ansible_env.HEC_URL }}" --set="splunkPlatform.token={{ ansible_env.HEC_TOKEN }}" --set="splunkPlatform.index=splunk4rookies-workshop" splunk-otel-collector-chart/splunk-otel-collector -f ~/workshop/k3s/otel-collector.yaml'
+      when:
+        - not wh_result.stat.exists
+
+    - name: create a file to signify that the config has run successfully
+      file:
+        path: "/white_rabbit.followed"
+        state: touch
+      become: yes
+      when: not wh_result.stat.exists
