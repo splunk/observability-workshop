@@ -48,7 +48,9 @@ Note that we aren't required to index tags to use them for filtering with **Trac
 
 ### Grouping
 
-With the grouping use case, we can surface trends for tags that we collect using the powerful **Tag Spotlight** feature in **Splunk Observability Cloud**, which we'll see in action shortly.
+With the grouping use case, we can use **Trace Analyzer** to group traces by a particular tag.
+
+But we can also go beyond this and surface trends for tags that we collect using the powerful **Tag Spotlight** feature in **Splunk Observability Cloud**, which we’ll see in action shortly.
 
 Tags used for grouping use cases should be low to medium-cardinality, with hundreds of unique values.
 
