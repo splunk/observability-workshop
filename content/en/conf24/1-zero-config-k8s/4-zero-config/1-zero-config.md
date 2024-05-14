@@ -1,10 +1,10 @@
 ---
-title: Zero Configuration Setup
-linkTitle: 1. Zero Configuration Setup
+title: Automatic Discovery and Configuration
+linkTitle: 1. Automatic Discovery and Configuration
 weight: 1
 ---
 
-To see how Zero Configuration works with a single pod we will patch the `api-gateway`. Once patched, the OpenTelemetry Collector will inject the Auto Instrumentation library and the Pod will be restarted in order to start sending traces and profiling data. To show what happens when you enable Auto Instrumentation, let's do a *before and after* of the configuration:
+To see how automatic discovery and configuration works with a single pod we will patch the `api-gateway`. Once patched, the OpenTelemetry Collector will inject the automatic discovery and configuration library and the Pod will be restarted in order to start sending traces and profiling data. To show what happens when you enable automatic discovery and configuration, let's do a *before and after* of the configuration:
 
 {{< tabs >}}
 {P}{{% tab title="Describe api-gateway" %}}
@@ -23,7 +23,7 @@ Image:         quay.io/phagen/spring-petclinic-api-gateway:0.0.2
 {{% /tab %}}
 {{< /tabs >}}
 
-This container was pulled from a remote repository `quay.io` and was not built to send traces to **Splunk Observability Cloud**. To enable the Java auto instrumentation on the api-gateway service add the `inject-java` annotation to Kubernetes with the `kubectl patch deployment` command.
+This container was pulled from a remote repository `quay.io` and was not built to send traces to **Splunk Observability Cloud**. To enable the Java automatic discovery and configuration on the api-gateway service add the `inject-java` annotation to Kubernetes with the `kubectl patch deployment` command.
 
 {{< tabs >}}
 {{% tab title="Patch api-gateway" %}}
@@ -90,6 +90,6 @@ deployment.apps/api-gateway patched (no change)
 {{% /tab %}}
 {{< /tabs >}}
 
-Navigate back to the Kubernetes Navigator in **Splunk Observability Cloud**. After a couple of minutes you will see that the Pods are being restarted by the operator and the Zero config container will be added. This will look similar to the screenshot below:
+Navigate back to the Kubernetes Navigator in **Splunk Observability Cloud**. After a couple of minutes you will see that the Pods are being restarted by the operator and the automatic discovery and configuration container will be added. This will look similar to the screenshot below:
 
 ![restart](../../images/k8s-navigator-restarted-pods.png)
