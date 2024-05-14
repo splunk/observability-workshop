@@ -10,7 +10,7 @@ Up until this point, there have been no code changes, yet tracing, profiling and
 
 Next we will add the **Splunk Log Observer** to the mix to obtain log data from the Spring PetClinic application.
 
-This change will update the configuration of [**logback**](https://logback.qos.ch/) in the Spring PetClinic application. This will allow the Auto Instrumentation to add OpenTelemetry relevant information into the logs.
+This change will update the configuration of [**logback**](https://logback.qos.ch/) in the Spring PetClinic application. This will allow the automatic discovery and configuration to add OpenTelemetry relevant information into the logs.
 
 The **Splunk Log Observer** is then used to view the logs and with the changes to the log format the platform can automatically correlate log information with services and traces.
 
