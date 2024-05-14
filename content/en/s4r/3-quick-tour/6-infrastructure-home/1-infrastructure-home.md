@@ -2,6 +2,7 @@
 title:  Infrastructure Navigators
 linkTitle: 6.1 Infrastructure Navigators
 weight: 2
+hidden: true
 ---
 
 Click on **Infrastructure** in the main menu, the Infrastructure Home Page is made up of 4 distinct sections.
@@ -54,8 +55,8 @@ The UI will show services that are running on the node you have selected if they
 
 * Click the tile, it will bring us back into the Kubernetes Navigator, this time at the Pod level showing the Pod that runs the Redis Service.
 * To return to the Cluster level, simply click on the link **Cluster** (**1**) at the top of the screen.
- 
- ![node](../images/node-link.png)
+
+![node](../images/node-link.png)
 
 {{% /notice %}}
 

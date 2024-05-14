@@ -3,16 +3,16 @@ title: Spring PetClinic SpringBoot Based Microservices On Kubernetes
 linkTitle: PetClinic Kubernetes Workshop
 weight: 1
 archetype: chapter
-description: Learn how to enable Open Telemetry Zero Configuration Auto-Instrumentation for your Java-based application running in Kubernetes. Experience real-time monitoring to help you maximize application behavior with end-to-end visibility.
+description: Learn how to enable automatic discovery and configuration for your Java-based application running in Kubernetes. Experience real-time monitoring to help you maximize application behavior with end-to-end visibility.
 authors: ["Pieter Hagen"]
 time: 90 minutes
 ---
 
-The goal of this workshop is to introduce the features of Splunk's **Zero Configuration Auto Instrumentation** for Java.
+The goal of this workshop is to introduce the features of Splunk's **automatic discovery and configuration** for Java.
 
 The workshop scenario will be created by installing a simple (**un-instrumented**) Java microservices application in Kubernetes.
 
-By following the simple steps to install the Splunk OpenTelemetry Collector and enabling Zero Configuration Auto Instrumentation for existing Java based deployments you will learn how easy it is to send metrics, traces and logs to **Splunk Observability Cloud**.
+By following the simple steps to install the Splunk OpenTelemetry Collector and enabling automatic discovery and configuration for existing Java based deployments you will learn how easy it is to send metrics, traces and logs to **Splunk Observability Cloud**.
 
 {{% notice title="Prerequisites" style="primary" icon="info" %}}
 
@@ -25,7 +25,7 @@ By following the simple steps to install the Splunk OpenTelemetry Collector and 
 During this workshop we will cover the following components:
 
 * Splunk Infrastructure Monitoring (**IM**)
-* Splunk Auto Instrumentation for Java (**APM**)
+* Splunk automatic discovery and configuration for Java (**APM**)
   * Database Query Performance
   * AlwaysOn Profiling
 * Splunk Log Observer (**LO**)
