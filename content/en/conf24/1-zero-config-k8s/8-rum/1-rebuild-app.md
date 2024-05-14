@@ -4,9 +4,9 @@ linkTitle: 1. Rebuild PetClinic
 weight: 1
 ---
 
-At the top of the previous code snippet, there is a reference to the file `/static/env.js`, which contains/sets the variables used by the RUM, currently these are not configured and therefore no RUM traces are currently being sent.
+At the top of the previous code snippet, there is a reference to the file `/static/env.js`, which contains/sets the variables used by RUM, currently these are not configured and therefore no RUM traces are currently being sent.
 
-So, let's run the script that will update variables to enable RUM traces so they can be viewable in the **Splunk Observability Cloud** RUM UI. Note, that the Env.js script contains a deliberate Java script error, so we have one detected by Splunk RUM:
+Run the script that will update variables to enable RUM traces so they are viewable in **Splunk Observability Cloud**. Note, that the `env.js` script contains a deliberate JavaScript error, that will be picked up in RUM:
 
 {{< tabs >}}
 {{% tab title="Update env.js for RUM" %}}
@@ -52,7 +52,7 @@ if (env.RUM_REALM != "") {
 }
 ```
 
-Let's move into the api-gateway directory and  force a build  for just the api-gateway service.
+Change into the `api-gateway` directory and force a new build for just the `api-gateway` service:
 
 {{% /tab %}}
 {{< /tabs >}}
@@ -66,7 +66,7 @@ cd  ~/spring-petclinic-microservices/spring-petclinic-api-gateway
 . ~/workshop/petclinic/scripts/push_docker.sh
 ```
 
-As soon as the containers are pushed into the repository, just restart the `api-gateway` to apply the changes:
+As soon as the container is pushed into the repository, just restart the `api-gateway` to apply the changes:
 
 ``` bash
 kubectl rollout restart deployment api-gateway
@@ -76,4 +76,4 @@ Validate that the application is running by visiting **http://<IP_ADDRESS>:81** 
 
 ![pet](../../images/petclinic-pet.png)
 
-If you want, you can access this website on your phone as well. This will also show up in RUM.
+If you want, you can access this website on your phone/tablet as well as this data will also show up in RUM.
