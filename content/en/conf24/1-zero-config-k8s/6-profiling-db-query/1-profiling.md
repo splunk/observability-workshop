@@ -8,7 +8,7 @@ When we installed the Splunk Distribution of the OpenTelemetry Collector using t
 
 When you deploy the PetClinic application and set the annotation, the collector automatically detects the application and instruments it for traces and profiling. We can verify this by examining the startup logs of one of the Java containers we are instrumenting by running the following script:
 
-The logs should show what flags were picked up by the Java Auto instrumentation agent:
+The logs should show what flags were picked up by the Java automatic discovery and configuration:
 
 {{< tabs >}}
 {{% tab title="Run the script" %}}

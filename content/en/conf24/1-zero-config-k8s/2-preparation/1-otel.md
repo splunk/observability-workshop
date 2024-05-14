@@ -32,9 +32,9 @@ Update Complete. ⎈Happy Helming!⎈
 {{% /tab %}}
 {{< /tabs >}}
 
-**Splunk Observability Cloud** offers wizards in the UI to walk you through the setup of the OpenTelemetry Collector on  Kubernetes, but in the interest of time, we will use the Helm command below. Some additional parameters are set to enable the operator and Zero Configuration Auto Instrumentation.
+**Splunk Observability Cloud** offers wizards in the UI to walk you through the setup of the OpenTelemetry Collector on  Kubernetes, but in the interest of time, we will use the Helm command below. Some additional parameters are set to enable the operator and automatic discovery and configuration.
 
-* `--set="operator.enabled=true"` - this will install the Opentelemetry operator that will be used to handle Auto Instrumentation.
+* `--set="operator.enabled=true"` - this will install the Opentelemetry operator that will be used to handle automatic discovery and configuration.
 * `--set="certmanager.enabled=true"` - this will install the required certificate manager for the operator.
 * `--set="splunkObservability.profilingEnabled=true"` - this enables Code Profiling via the operator.
 
