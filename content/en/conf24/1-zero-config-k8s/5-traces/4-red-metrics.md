@@ -1,7 +1,7 @@
 ---
 title: Rate, Errors, and Duration (RED) Metrics
-linkTitle: 3. RED Metrics
-weight: 3
+linkTitle: 4. RED Metrics
+weight: 4
 ---
 
 ## NEED TO UPDATE TO USE SERVICE CENTRIC VIEW

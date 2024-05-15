@@ -4,8 +4,6 @@ linkTitle: 2. Deploy PetClinic Application
 weight: 3
 ---
 
-#### Deploy the PetClinic Application
-
 The first deployment of our application will be using prebuilt containers to give us the base scenario: a regular Java microservices-based application running in Kubernetes that we want to start observing. So let's deploy our application:
 
 {{< tabs >}}
@@ -106,5 +104,3 @@ curl -X GET http://localhost:9999/v2/_catalog
 
 {{% /tab %}}
 {{< /tabs >}}
-
-If this fails then reach out to your Instructor for a replacement instance.

@@ -9,7 +9,7 @@ The diagram below details the architecture of the Spring PetClinic Java applicat
 
 The Spring PetClinic Java application is a simple microservices application that consists of a frontend and backend services. The frontend service is a Spring Boot application that serves a web interface to interact with the backend services. The backend services are Spring Boot applications that serve RESTful API's to interact with a MySQL database.
 
-By the end of this workshop, you will have a better understanding of how to enable **Splunk OpenTelemetry automatic discovery and configuration** for your Java-based applications running in Kubernetes.
+By the end of this workshop, you will have a better understanding of how to enable **automatic discovery and configuration** for your Java-based applications running in Kubernetes.
 
 ![Splunk Otel Architecture](../images/auto-instrumentation-java-diagram.png)
 

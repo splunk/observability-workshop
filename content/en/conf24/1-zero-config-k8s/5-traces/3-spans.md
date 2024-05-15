@@ -1,7 +1,7 @@
 ---
 title: APM Span
-linkTitle: 2. APM Spans
-weight: 2
+linkTitle: 3. APM Spans
+weight: 3
 ---
 
 While we examine our spans, let's look at several features that you get out of the box without code modifications when using **automatic discovery and configuration** on top of tracing:

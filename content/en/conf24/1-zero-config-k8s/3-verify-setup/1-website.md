@@ -1,6 +1,6 @@
 ---
 title: Verify the PetClinic Website
-linkTitle: 1. Verify the PetClinic Webiste
+linkTitle: 1. Verify PetClinic Website
 weight: 1
 ---
 
