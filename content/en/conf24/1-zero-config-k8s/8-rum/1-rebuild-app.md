@@ -26,7 +26,7 @@ JavaScript file generated at: /home/splunk/spring-petclinic-microservices/spring
 {{% /tab %}}
 {{< /tabs >}}
 
-Verify if the `env.js` has been created correctly and note the JavaScript Error snippet:
+Verify if the `env.js` has been created correctly:
 
 {{< tabs >}}
 {{% tab title="cat env.js" %}}
@@ -45,11 +45,7 @@ cat ~/spring-petclinic-microservices/spring-petclinic-api-gateway/src/main/resou
   RUM_APP_NAME: 'k8s-petclinic-workshop-store',
   RUM_ENVIRONMENT: 'k8s-petclinic-workshop-workshop'
 }
-// non critical error so it shows in RUM when the realm is set
-if (env.RUM_REALM != "") {
-    let showJSErrorObject = false;
-    showJSErrorObject.property = 'true';
-}
+
 ```
 
 {{% /tab %}}
