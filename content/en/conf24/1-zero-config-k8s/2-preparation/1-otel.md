@@ -6,10 +6,10 @@ weight: 2
 
 To get Observability signals (**metrics, traces** and **logs**) into **Splunk Observability Cloud** the Splunk OpenTelemetry Collector needs to be deployed into the Kubernetes cluster.
 
-For this workshop, we will be using the Splunk OpenTelemetry Collector Helm Chart. First we need to add the Helm chart repository to Helm and update to ensure the latest state:
+For this workshop, we will be using the Splunk OpenTelemetry Collector Helm Chart. First we need to add the Helm chart repository to Helm and update to ensure the latest version:
 
 {{< tabs >}}
-{{% tab title="Helm Repo Add" %}}
+{{% tab title="Install Helm Chart" %}}
 
 ``` bash
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update
@@ -32,7 +32,7 @@ Update Complete. ⎈Happy Helming!⎈
 {{% /tab %}}
 {{< /tabs >}}
 
-**Splunk Observability Cloud** offers wizards in the UI to walk you through the setup of the OpenTelemetry Collector on  Kubernetes, but in the interest of time, we will use the Helm command below. Some additional parameters are set to enable the operator and automatic discovery and configuration.
+**Splunk Observability Cloud** offers wizards in the UI to walk you through the setup of the OpenTelemetry Collector on  Kubernetes, but in the interest of time, we will use the Helm install command below. Additional parameters are set to enable the operator and automatic discovery and configuration.
 
 * `--set="operator.enabled=true"` - this will install the Opentelemetry operator that will be used to handle automatic discovery and configuration.
 * `--set="certmanager.enabled=true"` - this will install the required certificate manager for the operator.

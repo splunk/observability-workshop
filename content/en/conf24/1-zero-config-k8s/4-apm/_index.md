@@ -1,6 +1,6 @@
 ---
 title: Setting up automatic discovery and configuration for APM
-linkTitle: 4. automatic discovery and configuration & Metrics
+linkTitle: 4. Automatic discovery and configuration
 weight: 5
 time: 10 minutes
 ---
