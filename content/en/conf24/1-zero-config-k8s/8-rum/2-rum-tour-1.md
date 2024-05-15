@@ -22,4 +22,4 @@ To continue, click on the blue link (with your workshop name) to get to the deta
 Normally you have only one line inside the first chart,  Click on the link that relates to your Petclinic shop, 
 http://198.19.249.62 in our example:
 
-This will bring us to the Tag Spotlight page
+This will bring us to the Tag Spotlight page:
