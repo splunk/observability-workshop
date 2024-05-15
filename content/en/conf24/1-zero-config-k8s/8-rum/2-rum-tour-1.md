@@ -12,12 +12,14 @@ Then change the **App** **(2)** dropdown box to the name of your app, it will be
 
 ![rum select](../../images/rum-env-select.png)
 
-Once you have selected your **Environment** and **App**, you will see an overview page showing the RUM status of your App (if your Summary Dashboard is just a single row of numbers, you are looking at the condensed view. You can expand it by clicking on the **>** in front of the Application name) A deliberate JavaScript error was added to the HTML page to demonstrate that they get caught.
+Once you have selected your **Environment** and **App**, you will see an overview page showing the RUM status of your App (if your Summary Dashboard is just a single row of numbers, you are looking at the condensed view. You can expand it by clicking on the **>** in front of the Application name). If any JavaScript error occurred they will show up as shown below:
 
 ![rum overview](../../images/rum-overview.png)
 
-To continue, click on the blue link to get to the details page, This will bring up a new dashboard view breaking down the interactions by UX Metrics, Front-end Health, Back-end Health and Custom Events and comparing them to historic metrics (1 hour by default).
+To continue, click on the blue link (with your workshop name) to get to the details page, this will bring up a new dashboard view breaking down the interactions by UX Metrics, Front-end Health, Back-end Health and Custom Events and comparing them to historic metrics (1 hour by default).
 
 ![rum  main](../../images/rum-main.png)
+Normally you have only one line inside the first chart,  Click on the link that relates to your Petclinic shop, 
+http://198.19.249.62 in our example:
 
-To continue our  High level tour click on  
+This will bring us to the Tag Spotlight page

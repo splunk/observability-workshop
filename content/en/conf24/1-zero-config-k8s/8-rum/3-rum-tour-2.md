@@ -1,5 +1,5 @@
 ---
-title: RUM trace  Waterfall view & linking to APM 
+title: RUM trace Waterfall view & linking to APM 
 linkTitle: 2. Follow RUM Traces
 weight: 3
 ---
