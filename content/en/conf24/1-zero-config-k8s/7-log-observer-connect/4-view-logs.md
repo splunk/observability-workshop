@@ -4,12 +4,6 @@ linkTitle: 4. Viewing the Logs
 weight: 4
 ---
 
-Now that the Pods have been patched validate they are all running by executing the following command:
-
-```bash
-kubectl get pods
-```
-
 In order to see logs click on the **Log Observer** ![Logo](../../images/logo-icon.png?classes=inline&height=25px) in the left-hand menu. Once in Log Observer please ensure **Index** on the filter bar is set to **splunk4rookies-workshop**.
 
 Next, click **Add Filter** and search for the field `deployment.environment`, select your workshop instance and click `=` (to include). You will now see only the log messages from your PetClinic application.

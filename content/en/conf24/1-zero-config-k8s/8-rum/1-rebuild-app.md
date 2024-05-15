@@ -26,7 +26,7 @@ JavaScript file generated at: /home/splunk/spring-petclinic-microservices/spring
 {{% /tab %}}
 {{< /tabs >}}
 
-Verify if the `env.js` has been created correctly:
+Verify if the `env.js` has been created correctly and note the JavaScript Error snippet:
 
 {{< tabs >}}
 {{% tab title="cat env.js" %}}
@@ -52,15 +52,17 @@ if (env.RUM_REALM != "") {
 }
 ```
 
-Change into the `api-gateway` directory and force a new build for just the `api-gateway` service:
-
 {{% /tab %}}
 {{< /tabs >}}
+
+Change into the `api-gateway` directory and force a new build for just the `api-gateway` service:
 
 ``` bash
 cd  ~/spring-petclinic-microservices/spring-petclinic-api-gateway
 ../mvnw clean install -D skipTests -P buildDocker
 ```
+
+and push the new container to the local registry
 
 ``` bash
 . ~/workshop/petclinic/scripts/push_docker.sh
