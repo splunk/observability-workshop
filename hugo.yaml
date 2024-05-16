@@ -56,10 +56,10 @@ params:
   versions:
     - version: latest
       url: https://splunk.github.io/observability-workshop/latest/
-    - version: v5.55
-      url: https://splunk.github.io/observability-workshop/observability-workshop/v5.55
     - version: v5.56
       url: https://splunk.github.io/observability-workshop/v5.56
+    - version: v5.57
+      url: https://splunk.github.io/observability-workshop/v5.57
   url_latest_version: https://splunk.github.io/observability-workshop/
   imageEffects:
     border: false
