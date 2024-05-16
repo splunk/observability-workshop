@@ -45,22 +45,20 @@ cat ~/spring-petclinic-microservices/spring-petclinic-api-gateway/src/main/resou
   RUM_APP_NAME: 'k8s-petclinic-workshop-store',
   RUM_ENVIRONMENT: 'k8s-petclinic-workshop-workshop'
 }
-// non critical error so it shows in RUM when the realm is set
-if (env.RUM_REALM != "") {
-    let showJSErrorObject = false;
-    showJSErrorObject.property = 'true';
-}
-```
 
-Change into the `api-gateway` directory and force a new build for just the `api-gateway` service:
+```
 
 {{% /tab %}}
 {{< /tabs >}}
+
+Change into the `api-gateway` directory and force a new build for just the `api-gateway` service:
 
 ``` bash
 cd  ~/spring-petclinic-microservices/spring-petclinic-api-gateway
 ../mvnw clean install -D skipTests -P buildDocker
 ```
+
+and push the new container to the local registry
 
 ``` bash
 . ~/workshop/petclinic/scripts/push_docker.sh

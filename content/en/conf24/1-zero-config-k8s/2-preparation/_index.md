@@ -7,6 +7,7 @@ time: 15 minutes
 ---
 
 The instructor will provide you with the login information for the instance that we will be using during the workshop.
+
 When you first log into your instance, you will be greeted by the Splunk Logo as shown below. If you have any issues connecting to your workshop instance then please reach out to your Instructor.
 
 ``` text
@@ -42,7 +43,7 @@ REALM = <e.g. eu0, us1, us2, jp0, au0 etc.>
 RUM_TOKEN = <redacted>
 HEC_TOKEN = <redacted>
 HEC_URL = https://<...>/services/collector/event
-INSTANCE = <workshop name>
+INSTANCE = <instance_name>
 ```
 
 {{% /tab %}}

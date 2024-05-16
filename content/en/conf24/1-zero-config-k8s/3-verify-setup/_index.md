@@ -1,6 +1,6 @@
 ---
 title: Verify Kubernetes Cluster metrics
-linkTitle: 3. Verify everything is working
+linkTitle: 3. Verify Cluster Metrics
 weight: 4
 time: 10 minutes
 ---
