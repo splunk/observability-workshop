@@ -14,6 +14,6 @@ For this exercise we are going to use a common scenario you would use if the ser
 
 Select the **Customer Service** in the Dependency map **(1)**, then make sure the `customers-service` is selected in the **Services** dropdown box **(2)**. Next, select `GET /Owners` from the Operations dropdown **(3**)**.
 
-![select a trace](../../images/select-workflow.png)
+This should give you the workflow with a filter on `GET /owners` **(1)** as shown below.
 
-This should give you the workflow with a filter on `GET /owners` **(1)** as shown below. To pick a trace, select a line in the `Service Requests & Errors` chart **(2)**, when the dot appears click to get a list of sample traces:
+![select a trace](../../images/select-workflow.png)

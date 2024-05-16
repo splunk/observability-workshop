@@ -4,6 +4,8 @@ linkTitle: 2. APM Trace
 weight: 2
 ---
 
+To pick a trace, select a line in the `Service Requests & Errors` chart **(2)**, when the dot appears click to get a list of sample traces:
+
 Once you have the list of sample traces, click on the blue **(3)** Trace ID Link (make sure it has the same three services mentioned in the Service Column.)
 
 ![workflow-trace-pick](../../images/selecting-a-trace.png)
