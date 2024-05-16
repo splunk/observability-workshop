@@ -1,4 +1,4 @@
-baseURL: https://splunk.github.io/
+baseURL: https://splunk.github.io/observability-workshop/
 canonifyURLs: true
 relativeURLs: true
 noChmod: true
