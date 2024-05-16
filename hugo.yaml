@@ -1,5 +1,4 @@
-baseURL: https://splunk.github.io/observability-workshop/
-canonifyURLs: true
+baseURL: https://splunk.github.io/
 relativeURLs: true
 noChmod: true
 contentDir: content/en
