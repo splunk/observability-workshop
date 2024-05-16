@@ -3,15 +3,17 @@ title: Workshop Wrap-up 🎁
 linkTitle: 9. Workshop Wrap-up
 weight: 9
 archetype: chapter
-time: 10 minutes
 description: Congratulations, you have completed the Get the Most Out of Your Existing Kubernetes Java Applications Using Automatic Discovery and Configuration With OpenTelemetry. Today, you have become familiar with how easy it is to add tracing, Code Profiling and Database Query Performance to your existing Java application in Kubernetes to immediately improve the observability of your applications and infrastructure.
 ---
 
 Congratulations, you have completed the **Get the Most Out of Your Existing Kubernetes Java Applications Using Automatic Discovery and Configuration With OpenTelemetry** workshop.  
 
-Today, you have become familiar with how easy it is to add Tracing, Code Profiling and Database Query Performance to your existing Java application in Kubernetes to immediately improve the observability of your applications and infrastructure with out touching your code or configurations of your projects using the Automatic Discovery and Configuration feature.
+Today, you have learnt how easy it is to add Tracing, Code Profiling and Database Query Performance to your existing Java application in Kubernetes.
 
-You also learned that with simple configuration changes you can add even further Observability options (Log correlation and  RUM) to your applications to provide you with end to end Observability to your Java applications running on Kubernetes.
+You immediately improved the observability of the application and infrastructure with out touching a line of code or configuration using **Automatic Discovery and Configuration**.
+
+You also learnt that with simple configuration changes you can add even more observability (**logging** and **RUM**) to the application in order to provide end-to-end observability.
+
 <!-- 
 Celebrate your achievement by adding this certificate to your {{< badge style="blue" icon="fab fa-fw fa-linkedin-in" >}}{{< linkedin >}}{{< /badge >}} profile.
 
