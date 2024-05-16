@@ -1,0 +1,373 @@
+<!doctype html><html lang=en dir=ltr itemscope itemtype=http://schema.org/Article><head><meta charset=utf-8><meta name=viewport content="height=device-height,width=device-width,initial-scale=1,minimum-scale=1"><meta name=generator content="Hugo 0.125.5"><meta name=generator content="Relearn 6.0.0+tip"><meta name=description content='Now that we have the OpenTelemetry Collector installed, let’s take a look at extensions for the OpenTelemetry Collector. Extensions are optional and available primarily for tasks that do not involve processing telemetry data. Examples of extensions include health monitoring, service discovery, and data forwarding.
+%%{ init:{ "theme": "base", "themeVariables": { "primaryColor": "#ffffff", "clusterBkg": "#eff2fb", "defaultLinkColor": "#333333" } } }%% flowchart LR; style E fill:#e20082,stroke:#333,stroke-width:4px,color:#fff subgraph Collector A[OTLP] --> M(Receivers) B[JAEGER] --> M(Receivers) C[Prometheus] --> M(Receivers) end subgraph Processors M(Receivers) --> H(Filters, Attributes, etc) E(Extensions) end subgraph Exporters H(Filters, Attributes, etc) --> S(OTLP) H(Filters, Attributes, etc) --> T(JAEGER) H(Filters, Attributes, etc) --> U(Prometheus) end '><meta name=author content><meta name=twitter:card content="summary"><meta name=twitter:title content="OpenTelemetry Collector Extensions :: Splunk Observability Cloud Workshops"><meta name=twitter:description content='Now that we have the OpenTelemetry Collector installed, let’s take a look at extensions for the OpenTelemetry Collector. Extensions are optional and available primarily for tasks that do not involve processing telemetry data. Examples of extensions include health monitoring, service discovery, and data forwarding.
+%%{ init:{ "theme": "base", "themeVariables": { "primaryColor": "#ffffff", "clusterBkg": "#eff2fb", "defaultLinkColor": "#333333" } } }%% flowchart LR; style E fill:#e20082,stroke:#333,stroke-width:4px,color:#fff subgraph Collector A[OTLP] --> M(Receivers) B[JAEGER] --> M(Receivers) C[Prometheus] --> M(Receivers) end subgraph Processors M(Receivers) --> H(Filters, Attributes, etc) E(Extensions) end subgraph Exporters H(Filters, Attributes, etc) --> S(OTLP) H(Filters, Attributes, etc) --> T(JAEGER) H(Filters, Attributes, etc) --> U(Prometheus) end '><meta property="og:url" content="https://splunk.github.io/observability-workshop/observability-workshop/v5.55/en/other/5-opentelemetry-collector/2-extensions/index.html"><meta property="og:site_name" content="Splunk Observability Cloud Workshops"><meta property="og:title" content="OpenTelemetry Collector Extensions :: Splunk Observability Cloud Workshops"><meta property="og:description" content='Now that we have the OpenTelemetry Collector installed, let’s take a look at extensions for the OpenTelemetry Collector. Extensions are optional and available primarily for tasks that do not involve processing telemetry data. Examples of extensions include health monitoring, service discovery, and data forwarding.
+%%{ init:{ "theme": "base", "themeVariables": { "primaryColor": "#ffffff", "clusterBkg": "#eff2fb", "defaultLinkColor": "#333333" } } }%% flowchart LR; style E fill:#e20082,stroke:#333,stroke-width:4px,color:#fff subgraph Collector A[OTLP] --> M(Receivers) B[JAEGER] --> M(Receivers) C[Prometheus] --> M(Receivers) end subgraph Processors M(Receivers) --> H(Filters, Attributes, etc) E(Extensions) end subgraph Exporters H(Filters, Attributes, etc) --> S(OTLP) H(Filters, Attributes, etc) --> T(JAEGER) H(Filters, Attributes, etc) --> U(Prometheus) end '><meta property="og:locale" content="en"><meta property="og:type" content="website"><meta itemprop=name content="OpenTelemetry Collector Extensions :: Splunk Observability Cloud Workshops"><meta itemprop=description content='Now that we have the OpenTelemetry Collector installed, let’s take a look at extensions for the OpenTelemetry Collector. Extensions are optional and available primarily for tasks that do not involve processing telemetry data. Examples of extensions include health monitoring, service discovery, and data forwarding.
+%%{ init:{ "theme": "base", "themeVariables": { "primaryColor": "#ffffff", "clusterBkg": "#eff2fb", "defaultLinkColor": "#333333" } } }%% flowchart LR; style E fill:#e20082,stroke:#333,stroke-width:4px,color:#fff subgraph Collector A[OTLP] --> M(Receivers) B[JAEGER] --> M(Receivers) C[Prometheus] --> M(Receivers) end subgraph Processors M(Receivers) --> H(Filters, Attributes, etc) E(Extensions) end subgraph Exporters H(Filters, Attributes, etc) --> S(OTLP) H(Filters, Attributes, etc) --> T(JAEGER) H(Filters, Attributes, etc) --> U(Prometheus) end '><meta itemprop=dateModified content="2023-12-21T14:15:53+00:00"><meta itemprop=wordCount content="103"><title>OpenTelemetry Collector Extensions :: Splunk Observability Cloud Workshops</title>
+<link href=https://splunk.github.io/observability-workshop/observability-workshop/v5.55/en/other/5-opentelemetry-collector/2-extensions/index.html rel=canonical type=text/html title="OpenTelemetry Collector Extensions :: Splunk Observability Cloud Workshops"><link href=../../../../images/favicon.ico?1715859593 rel=icon type=image/x-icon sizes=any><link href=../../../../css/fontawesome-all.min.css?1715859607 rel=stylesheet media=print onload='this.media="all",this.onload=null'><noscript><link href=../../../../css/fontawesome-all.min.css?1715859607 rel=stylesheet></noscript><link href=../../../../css/nucleus.css?1715859607 rel=stylesheet><link href=../../../../css/auto-complete.css?1715859607 rel=stylesheet media=print onload='this.media="all",this.onload=null'><noscript><link href=../../../../css/auto-complete.css?1715859607 rel=stylesheet></noscript><link href=../../../../css/perfect-scrollbar.min.css?1715859607 rel=stylesheet><link href=../../../../css/fonts.css?1715859607 rel=stylesheet media=print onload='this.media="all",this.onload=null'><noscript><link href=../../../../css/fonts.css?1715859607 rel=stylesheet></noscript><link href=../../../../css/theme.css?1715859607 rel=stylesheet><link href=../../../../css/theme-splunk-light.css?1715859607 rel=stylesheet id=R-variant-style><link href=../../../../css/chroma-relearn-light.css?1715859607 rel=stylesheet id=R-variant-chroma-style><link href=../../../../css/variant.css?1715859607 rel=stylesheet><link href=../../../../css/print.css?1715859607 rel=stylesheet media=print><link href=../../../../css/format-print.css?1715859607 rel=stylesheet><script src=../../../../js/variant.js?1715859607></script><script>window.relearn=window.relearn||{},window.relearn.relBasePath="../../../..",window.relearn.relBaseUri="../../../..",window.relearn.absBaseUri="https://splunk.github.io/observability-workshop/observability-workshop/v5.55",window.index_js_url="../../../../en/index.search.js",window.variants&&variants.init(["splunk-light","splunk-dark"]),window.T_Copy_to_clipboard=`Copy to clipboard`,window.T_Copied_to_clipboard=`Copied to clipboard!`,window.T_Copy_link_to_clipboard=`Copy link to clipboard`,window.T_Link_copied_to_clipboard=`Copied link to clipboard!`,window.T_Reset_view=`Reset view`,window.T_View_reset=`View reset!`,window.T_No_results_found=`No results found for "{0}"`,window.T_N_results_found=`{1} results found for "{0}"`</script><script src=https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js crossorigin=anonymous></script><script src=https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web-session-recorder.js crossorigin=anonymous></script><script>SplunkRum.init({realm:"eu0",rumAccessToken:"TR9BBfgYo7qJfqrfgqjoqA",applicationName:"observability-workshop",deploymentEnvironment:"splunk.github.io",version:"1.0"}),SplunkSessionRecorder.init({app:"observability-workshop",realm:"eu0",rumAccessToken:"TR9BBfgYo7qJfqrfgqjoqA"})</script></script><style>:root{--MAIN-WIDTH-MAX:1000rem;--MENU-WIDTH-L:23rem}</style></head><body class="mobile-support print disableInlineCopyToClipboard" data-url=../../../../en/other/5-opentelemetry-collector/2-extensions/index.html><div id=R-body class=default-animation><div id=R-body-overlay></div><nav id=R-topbar><div class=topbar-wrapper><div class=topbar-sidebar-divider></div><div class="topbar-area topbar-area-start" data-area=start><div class="topbar-button topbar-button-sidebar" data-content-empty=disable data-width-s=show data-width-m=hide data-width-l=hide><button class=topbar-control onclick=toggleNav() type=button title="Menu (CTRL+ALT+n)"><i class="fa-fw fas fa-bars"></i></button></div></div><ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype=http://schema.org/BreadcrumbList><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item href=../../../../en/index.html><span itemprop=name>Splunk Observability Workshops</span></a><meta itemprop=position content="1">&nbsp;>&nbsp;</li><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item href=../../../../en/other/index.html><span itemprop=name>Ninja Workshops</span></a><meta itemprop=position content="2">&nbsp;>&nbsp;</li><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item href=../../../../en/other/5-opentelemetry-collector/index.html><span itemprop=name>OpenTelemetry Collector</span></a><meta itemprop=position content="3">&nbsp;>&nbsp;</li><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><span itemprop=name>2. Extensions</span><meta itemprop=position content="4"></li></ol><div class="topbar-area topbar-area-end" data-area=end><div class="topbar-button topbar-button-prev" data-content-empty=disable data-width-s=show data-width-m=show data-width-l=show><a class=topbar-control href=../../../../en/other/5-opentelemetry-collector/1-installation/1-confirmation/index.html title="Installing OpenTelemetry Collector Contrib (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></div><div class="topbar-button topbar-button-next" data-content-empty=disable data-width-s=show data-width-m=show data-width-l=show><a class=topbar-control href=../../../../en/other/5-opentelemetry-collector/2-extensions/1-health/index.html title="OpenTelemetry Collector Extensions (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></div></div></div></nav><div id=R-main-overlay></div><main id=R-body-inner class="highlightable default" tabindex=-1><div class=flex-block-wrapper><article class=default><header class=headline></header><h1 id=opentelemetry-collector-extensions>OpenTelemetry Collector Extensions</h1><p>Now that we have the OpenTelemetry Collector installed, let&rsquo;s take a look at extensions for the OpenTelemetry Collector. Extensions are optional and available primarily for tasks that do not involve processing telemetry data. Examples of extensions include health monitoring, service discovery, and data forwarding.</p><pre class="mermaid align-center">
+%%{
+  init:{
+    &#34;theme&#34;: &#34;base&#34;,
+    &#34;themeVariables&#34;: {
+      &#34;primaryColor&#34;: &#34;#ffffff&#34;,
+      &#34;clusterBkg&#34;: &#34;#eff2fb&#34;,
+      &#34;defaultLinkColor&#34;: &#34;#333333&#34;
+    }
+  }
+}%%
+
+flowchart LR;
+    style E fill:#e20082,stroke:#333,stroke-width:4px,color:#fff
+    subgraph Collector
+    A[OTLP] --&gt; M(Receivers)
+    B[JAEGER] --&gt; M(Receivers)
+    C[Prometheus] --&gt; M(Receivers)
+    end
+    subgraph Processors
+    M(Receivers) --&gt; H(Filters, Attributes, etc)
+    E(Extensions)
+    end
+    subgraph Exporters
+    H(Filters, Attributes, etc) --&gt; S(OTLP)
+    H(Filters, Attributes, etc) --&gt; T(JAEGER)
+    H(Filters, Attributes, etc) --&gt; U(Prometheus)
+    end
+</pre><footer class=footline><span class="badge cstyle tip badge-with-title"><span class=badge-title class=text-muted>Last Modified By
+</span><span class=badge-content>Robert Castley</span>
+</span>&nbsp;
+<span class="badge cstyle note badge-with-title"><span class=badge-title class=text-muted><i class="fa-fw fas fa-calendar"></i>
+</span><span class=badge-content>Dec 21, 2023</span></span></footer></article><section><h1 class=a11y-only>Subsections of OpenTelemetry Collector Extensions</h1><article class=default><header class=headline></header><h1 id=opentelemetry-collector-extensions>OpenTelemetry Collector Extensions</h1><h2 id=health-check>Health Check</h2><p>Extensions are configured in the same <code>config.yaml</code> file that we referenced in the installation step. Let&rsquo;s edit the <code>config.yaml</code> file and configure the extensions. Note that the <strong>pprof</strong> and <strong>zpages</strong> extensions are already configured in the default <code>config.yaml</code> file. For the purpose of this workshop, we will only be updating the <strong>health_check</strong> extension to expose the port on all network interfaces on which we can access the health of the collector.</p><div class=tab-panel data-tab-group=a7079b3183afa0fb1f84235f1d4ad9d8><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item=command class="tab-nav-button tab-panel-style cstyle initial active" tabindex=-1 onclick='switchTab("a7079b3183afa0fb1f84235f1d4ad9d8","command")'>
+<span class=tab-nav-text>Command</span></button></div><div class=tab-content-container><div data-tab-item=command class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class="highlight wrap-code"><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo vi /etc/otelcol-contrib/config.yaml</span></span></code></pre></div></div></div></div></div><div class=tab-panel data-tab-group=7f42044fae41608c314b5f81564b7342><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item=extensions-configuration class="tab-nav-button tab-panel-style cstyle initial active" tabindex=-1 onclick='switchTab("7f42044fae41608c314b5f81564b7342","extensions-configuration")'>
+<span class=tab-nav-text>Extensions Configuration</span></button></div><div class=tab-content-container><div data-tab-item=extensions-configuration class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class="highlight wrap-code" hl_lines=3><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>health_check</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>13133</span></span></span></code></pre></div></div></div></div></div><p>Start the collector:</p><div class=tab-panel data-tab-group=8020c201166a907da32be4ddd82aef2d><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item=command class="tab-nav-button tab-panel-style cstyle initial active" tabindex=-1 onclick='switchTab("8020c201166a907da32be4ddd82aef2d","command")'>
+<span class=tab-nav-text>Command</span></button></div><div class=tab-content-container><div data-tab-item=command class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class="highlight wrap-code"><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>otelcol-contrib --config<span class=o>=</span>file:/etc/otelcol-contrib/config.yaml</span></span></code></pre></div></div></div></div></div><p>This extension enables an HTTP URL that can be probed to check the status of the OpenTelemetry Collector. This extension can be used as a liveness and/or readiness probe on Kubernetes. To learn more about the <code>curl</code> command, check out the <a href=https://curl.se/docs/manpage.html rel=external target=_blank>curl man page</a>.</p><p>Open a new terminal session and SSH into your instance to run the following command:</p><div class=tab-panel data-tab-group=f4f554cca59fcffe3809e318b959477d><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item=curl-command class="tab-nav-button tab-panel-style cstyle initial active" tabindex=-1 onclick='switchTab("f4f554cca59fcffe3809e318b959477d","curl-command")'>
+<span class=tab-nav-text>curl Command</span>
+</button>
+<button data-tab-item=curl-output class="tab-nav-button tab-panel-style cstyle initial" onclick='switchTab("f4f554cca59fcffe3809e318b959477d","curl-output")'>
+<span class=tab-nav-text>curl Output</span></button></div><div class=tab-content-container><div data-tab-item=curl-command class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class="highlight wrap-code"><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>curl http://localhost:13133</span></span></code></pre></div></div></div><div data-tab-item=curl-output class="tab-content tab-panel-style cstyle initial"><div class=tab-content-text><div class="highlight wrap-code"><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>{&#34;status&#34;:&#34;Server available&#34;,&#34;upSince&#34;:&#34;2023-04-27T10:11:22.153295874+01:00&#34;,&#34;uptime&#34;:&#34;16m24.684476004s&#34;}</span></span></code></pre></div></div></div></div></div><footer class=footline><span class="badge cstyle tip badge-with-title"><span class=badge-title class=text-muted>Last Modified By
+</span><span class=badge-content>Robert Castley</span>
+</span>&nbsp;
+<span class="badge cstyle note badge-with-title"><span class=badge-title class=text-muted><i class="fa-fw fas fa-calendar"></i>
+</span><span class=badge-content>Dec 21, 2023</span></span></footer></article><article class=default><header class=headline></header><h1 id=opentelemetry-collector-extensions>OpenTelemetry Collector Extensions</h1><h2 id=performance-profiler>Performance Profiler</h2><p><a href=https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/extension/pprofextension/README.md rel=external target=_blank><strong>Performance Profiler</strong></a> extension enables the golang net/http/pprof endpoint. This is typically used by developers to collect performance profiles and investigate issues with the service. <strong>We will not be covering this in this workshop</strong>.</p><footer class=footline><span class="badge cstyle tip badge-with-title"><span class=badge-title class=text-muted>Last Modified By
+</span><span class=badge-content>Robert Castley</span>
+</span>&nbsp;
+<span class="badge cstyle note badge-with-title"><span class=badge-title class=text-muted><i class="fa-fw fas fa-calendar"></i>
+</span><span class=badge-content>Dec 21, 2023</span></span></footer></article><article class=default><header class=headline></header><h1 id=opentelemetry-collector-extensions>OpenTelemetry Collector Extensions</h1><h2 id=zpages>zPages</h2><p><a href=https://github.com/open-telemetry/opentelemetry-collector/blob/main/extension/zpagesextension/README.md rel=external target=_blank><strong>zPages</strong></a> are an in-process alternative to external exporters. When included, they collect and aggregate tracing and metrics information in the background; this data is served on web pages when requested. zPages are an extremely useful diagnostic feature to ensure the collector is running as expected.</p><div class=tab-panel data-tab-group=8038096a747a26d1e5848d58cddb8780><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item=servicez class="tab-nav-button tab-panel-style cstyle initial active" tabindex=-1 onclick='switchTab("8038096a747a26d1e5848d58cddb8780","servicez")'>
+<span class=tab-nav-text>ServiceZ</span>
+</button>
+<button data-tab-item=pipelinez class="tab-nav-button tab-panel-style cstyle initial" onclick='switchTab("8038096a747a26d1e5848d58cddb8780","pipelinez")'>
+<span class=tab-nav-text>PipelineZ</span>
+</button>
+<button data-tab-item=extensionz class="tab-nav-button tab-panel-style cstyle initial" onclick='switchTab("8038096a747a26d1e5848d58cddb8780","extensionz")'>
+<span class=tab-nav-text>ExtensionZ</span></button></div><div class=tab-content-container><div data-tab-item=servicez class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><p><strong>ServiceZ</strong> gives an overview of the collector services and quick access to the pipelinez, extensionz, and featurez zPages. The page also provides build and runtime information.</p><p>Example URL: <a href=http://localhost:55679/debug/servicez rel=external target=_blank>http://localhost:55679/debug/servicez</a> (change <code>localhost</code> to reflect your own environment).</p><p><a href=#R-image-3b1eb717c21e97eae18e2723025905b1 class=lightbox-link><img alt=ServiceZ class="noborder lazy lightbox noshadow figure-image" loading=lazy src=../../../../en/other/5-opentelemetry-collector/2-extensions/3-zpages/../../images/servicez.png style=height:auto;width:auto></a>
+<a href=javascript:history.back(); class=lightbox-back id=R-image-3b1eb717c21e97eae18e2723025905b1><img alt=ServiceZ class="noborder lazy lightbox noshadow lightbox-image" loading=lazy src=../../../../en/other/5-opentelemetry-collector/2-extensions/3-zpages/../../images/servicez.png></a></p></div></div><div data-tab-item=pipelinez class="tab-content tab-panel-style cstyle initial"><div class=tab-content-text><p><strong>PipelineZ</strong> provides insights on the running pipelines running in the collector. You can find information on type, if data is mutated, and you can also see information on the receivers, processors and exporters that are used for each pipeline.</p><p>Example URL: <a href=http://localhost:55679/debug/pipelinez rel=external target=_blank>http://localhost:55679/debug/pipelinez</a> (change <code>localhost</code> to reflect your own environment).</p><p><a href=#R-image-8ff003fc9ea99e7b6acec52cb1ed9e02 class=lightbox-link><img alt=PipelineZ class="noborder lazy lightbox noshadow figure-image" loading=lazy src=../../../../en/other/5-opentelemetry-collector/2-extensions/3-zpages/../../images/pipelinez.png style=height:auto;width:auto></a>
+<a href=javascript:history.back(); class=lightbox-back id=R-image-8ff003fc9ea99e7b6acec52cb1ed9e02><img alt=PipelineZ class="noborder lazy lightbox noshadow lightbox-image" loading=lazy src=../../../../en/other/5-opentelemetry-collector/2-extensions/3-zpages/../../images/pipelinez.png></a></p></div></div><div data-tab-item=extensionz class="tab-content tab-panel-style cstyle initial"><div class=tab-content-text><p><strong>ExtensionZ</strong> shows the extensions that are active in the collector.</p><p>Example URL: <a href=http://localhost:55679/debug/extensionz rel=external target=_blank>http://localhost:55679/debug/extensionz</a> (change <code>localhost</code> to reflect your own environment).</p><p><a href=#R-image-9965f7a808e118721c5b20369f575c05 class=lightbox-link><img alt=ExtensionZ class="noborder lazy lightbox noshadow figure-image" loading=lazy src=../../../../en/other/5-opentelemetry-collector/2-extensions/3-zpages/../../images/extensionz.png style=height:auto;width:auto></a>
+<a href=javascript:history.back(); class=lightbox-back id=R-image-9965f7a808e118721c5b20369f575c05><img alt=ExtensionZ class="noborder lazy lightbox noshadow lightbox-image" loading=lazy src=../../../../en/other/5-opentelemetry-collector/2-extensions/3-zpages/../../images/extensionz.png></a></p></div></div></div></div><div class="box notices cstyle info"><div class=box-label><i class="fa-fw fas fa-info-circle"></i> Info</div><div class=box-content><p>You can use your browser to access your environment emitting zPages information at (replace <code>&lt;insert_your_ip></code> with your IP address):</p><ul><li><strong>ServiceZ:</strong> <a href="http://<insert_your_ip>:55679/debug/servicez" rel=external target=_blank>http://&lt;insert_your_ip>:55679/debug/servicez</a></li><li><strong>PipelineZ:</strong> <a href="http://<insert_your_ip>:55679/debug/pipelinez" rel=external target=_blank>http://&lt;insert_your_ip>:55679/debug/pipelinez</a></li><li><strong>ExtensionZ:</strong> <a href="http://<insert_your_ip>:55679/debug/extensionz" rel=external target=_blank>http://&lt;insert_your_ip>:55679/debug/extensionz</a></li></ul></div></div><hr><div class=expand><input type=checkbox id=R-expand-f7cbe7247c5785c388d5786e3203b62e aria-controls=R-expandcontent-f7cbe7247c5785c388d5786e3203b62e>
+<label class=expand-label for=R-expand-f7cbe7247c5785c388d5786e3203b62e><i class="fa-fw fas fa-chevron-down"></i>
+<i class="fa-fw fas fa-chevron-right"></i>
+<span class="badge cstyle primary badge-with-title"><span class=badge-title><i class="fa-fw fas fa-user-ninja"></i></span><span class=badge-content><strong>Ninja:</strong> Improve data durability with storage extension</span></span></label><div id=R-expandcontent-f7cbe7247c5785c388d5786e3203b62e class=expand-content><p>For this, we will need to validate that our distribution has the <code>file_storage</code> extension installed. This can be done by running the command <code>otelcol-contrib components</code> which should show results like:</p><div class=tab-panel data-tab-group=09474884dc0bb2cb4223962ca70b308b><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item=truncated-output class="tab-nav-button tab-panel-style cstyle initial active" tabindex=-1 onclick='switchTab("09474884dc0bb2cb4223962ca70b308b","truncated-output")'>
+<span class=tab-nav-text>Truncated Output</span>
+</button>
+<button data-tab-item=full-output class="tab-nav-button tab-panel-style cstyle initial" onclick='switchTab("09474884dc0bb2cb4223962ca70b308b","full-output")'>
+<span class=tab-nav-text>Full Output</span></button></div><div class=tab-content-container><div data-tab-item=truncated-output class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class="highlight wrap-code"><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># ... truncated for clarity</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=l>file_storage</span></span></span></code></pre></div></div></div><div data-tab-item=full-output class="tab-content tab-panel-style cstyle initial"><div class=tab-content-text><div class="highlight wrap-code"><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>buildinfo</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class=l>otelcol-contrib</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>description</span><span class=p>:</span><span class=w> </span><span class=l>OpenTelemetry Collector Contrib</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class=m>0.80.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>receivers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>prometheus_simple</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>apache</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>influxdb</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>purefa</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>purefb</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>receiver_creator</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>mongodbatlas</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>vcenter</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>snmp</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>expvar</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>jmx</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>kafka</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>skywalking</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>udplog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>carbon</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>kafkametrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>memcached</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>prometheus</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>windowseventlog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>zookeeper</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>otlp</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>awsecscontainermetrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>iis</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>mysql</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>nsxt</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>aerospike</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>elasticsearch</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>httpcheck</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>k8sobjects</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>mongodb</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>hostmetrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>signalfx</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>statsd</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>awsxray</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>cloudfoundry</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>collectd</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>couchdb</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>kubeletstats</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>jaeger</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>journald</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>riak</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>splunk_hec</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>active_directory_ds</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>awscloudwatch</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>sqlquery</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>windowsperfcounters</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>flinkmetrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>googlecloudpubsub</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>podman_stats</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>wavefront</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>k8s_events</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>postgresql</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>rabbitmq</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>sapm</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>sqlserver</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>redis</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>solace</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>tcplog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>awscontainerinsightreceiver</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>awsfirehose</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>bigip</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>filelog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>googlecloudspanner</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>cloudflare</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>docker_stats</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>k8s_cluster</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>pulsar</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>zipkin</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>nginx</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>opencensus</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>azureeventhub</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>datadog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>fluentforward</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>otlpjsonfile</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>syslog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>processors</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>resource</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>batch</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>cumulativetodelta</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>groupbyattrs</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>groupbytrace</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>k8sattributes</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>experimental_metricsgeneration</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>metricstransform</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>routing</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>attributes</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>datadog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>deltatorate</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>spanmetrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>span</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>memory_limiter</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>redaction</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>resourcedetection</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>servicegraph</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>transform</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>filter</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>probabilistic_sampler</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>tail_sampling</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>exporters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>otlp</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>carbon</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>datadog</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>f5cloud</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>kafka</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>mezmo</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>skywalking</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>awsxray</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>dynatrace</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>loki</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>prometheus</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>logging</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>azuredataexplorer</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>azuremonitor</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>instana</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>jaeger</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>loadbalancing</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>sentry</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>splunk_hec</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>tanzuobservability</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>zipkin</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>alibabacloud_logservice</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>clickhouse</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>file</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>googlecloud</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>prometheusremotewrite</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>awscloudwatchlogs</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>googlecloudpubsub</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>jaeger_thrift</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>logzio</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>sapm</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>sumologic</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>otlphttp</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>googlemanagedprometheus</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>opencensus</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>awskinesis</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>coralogix</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>influxdb</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>logicmonitor</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>signalfx</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>tencentcloud_logservice</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>awsemf</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>elasticsearch</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>pulsar</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>zpages</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>bearertokenauth</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>oidc</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>host_observer</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>sigv4auth</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>file_storage</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>memory_ballast</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>health_check</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>oauth2client</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>awsproxy</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>http_forwarder</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>jaegerremotesampling</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>k8s_observer</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>pprof</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>asapclient</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>basicauth</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>headers_setter</span></span></span></code></pre></div></div></div></div></div><p>This extension provides exporters the ability to queue data to disk in the event that exporter is unable to send data to the configured endpoint.</p><p>In order to configure the extension, you will need to update your config to include the information below. First, be sure to create a /tmp/otel-data directory and give it read/write permissions:</p><div class="highlight wrap-code"><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nn>...</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>file_storage</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>directory</span><span class=p>:</span><span class=w> </span><span class=l>/tmp/otel-data</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>timeout</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>compaction</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>directory</span><span class=p>:</span><span class=w> </span><span class=l>/tmp/otel-data</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>on_start</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>on_rebound</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>rebound_needed_threshold_mib</span><span class=p>:</span><span class=w> </span><span class=m>5</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>rebound_trigger_threshold_mib</span><span class=p>:</span><span class=w> </span><span class=m>3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># ... truncated for clarity</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>extensions</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>health_check, pprof, zpages, file_storage]</span></span></span></code></pre></div><h2 id=why-queue-data-to-disk>Why queue data to disk?</h2><p>This allows the collector to weather network interruptions (and even collector restarts) to ensure data is sent to the upstream provider.</p><h2 id=considerations-for-queuing-data-to-disk>Considerations for queuing data to disk?</h2><p>There is a potential that this could impact data throughput performance due to disk performance.</p><h3 id=references>References</h3><ol><li><a href=https://community.splunk.com/t5/Community-Blog/Data-Persistence-in-the-OpenTelemetry-Collector/ba-p/624583 rel=external target=_blank>https://community.splunk.com/t5/Community-Blog/Data-Persistence-in-the-OpenTelemetry-Collector/ba-p/624583</a></li><li><a href=https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/storage/filestorage rel=external target=_blank>https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/storage/filestorage</a></li></ol></div></div><hr><h2 id=configuration-check-in>Configuration Check-in</h2><p>Now that we&rsquo;ve covered extensions, let&rsquo;s check our configuration changes.</p><hr><div class=expand><input type=checkbox id=R-expand-65dca55e64590fce23d8062c7dd64e2f aria-controls=R-expandcontent-65dca55e64590fce23d8062c7dd64e2f>
+<label class=expand-label for=R-expand-65dca55e64590fce23d8062c7dd64e2f><i class="fa-fw fas fa-chevron-down"></i>
+<i class="fa-fw fas fa-chevron-right"></i>
+<span class="badge cstyle default badge-with-title"><span class=badge-title><i class="fa-fw fas fa-check"></i> <strong>Check-in</strong></span><span class=badge-content style=background-color:green>Review your configuration</span></span></label><div id=R-expandcontent-65dca55e64590fce23d8062c7dd64e2f class=expand-content><div class=tab-panel data-tab-group=a61456a2ce3d3f684bd211ab6ecd8baa><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item=configyaml class="tab-nav-button tab-panel-style cstyle initial active" tabindex=-1 onclick='switchTab("a61456a2ce3d3f684bd211ab6ecd8baa","configyaml")'>
+<span class=tab-nav-text>config.yaml</span></button></div><div class=tab-content-container><div data-tab-item=configyaml class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class="highlight wrap-code" hl_lines=3 linenos=table><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=hl><span class=lnt> 3
+</span></span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>health_check</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>13133</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pprof</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>1777</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zpages</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>55679</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>receivers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>otlp</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>opencensus</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Collect own metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>prometheus</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>config</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>scrape_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>job_name</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;otel-collector&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>scrape_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>static_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>targets</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s1>&#39;0.0.0.0:8888&#39;</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>jaeger</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_binary</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_compact</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zipkin</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>processors</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>batch</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>exporters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>logging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>verbosity</span><span class=p>:</span><span class=w> </span><span class=l>detailed</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pipelines</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>traces</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, jaeger, zipkin]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, prometheus]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>extensions</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>health_check, pprof, zpages]</span></span></span></code></pre></td></tr></table></div></div></div></div></div></div></div></div><hr><p>Now that we have reviewed extensions, let&rsquo;s dive into the data pipeline portion of the workshop. A pipeline defines a path the data follows in the Collector starting from reception, moving to further processing or modification, and finally exiting the Collector via exporters.</p><p>The data pipeline in the OpenTelemetry Collector is made up of receivers, processors, and exporters. We will first start with receivers.</p><footer class=footline><span class="badge cstyle tip badge-with-title"><span class=badge-title class=text-muted>Last Modified By
+</span><span class=badge-content>Robert Castley</span>
+</span>&nbsp;
+<span class="badge cstyle note badge-with-title"><span class=badge-title class=text-muted><i class="fa-fw fas fa-calendar"></i>
+</span><span class=badge-content>Dec 21, 2023</span></span></footer></article></section></div></main></div><script src=../../../../js/clipboard.min.js?1715859607 defer></script><script src=../../../../js/perfect-scrollbar.min.js?1715859607 defer></script><script src=../../../../js/d3/d3-color.min.js?1715859607 defer></script><script src=../../../../js/d3/d3-dispatch.min.js?1715859607 defer></script><script src=../../../../js/d3/d3-drag.min.js?1715859607 defer></script><script src=../../../../js/d3/d3-ease.min.js?1715859607 defer></script><script src=../../../../js/d3/d3-interpolate.min.js?1715859607 defer></script><script src=../../../../js/d3/d3-selection.min.js?1715859607 defer></script><script src=../../../../js/d3/d3-timer.min.js?1715859607 defer></script><script src=../../../../js/d3/d3-transition.min.js?1715859607 defer></script><script src=../../../../js/d3/d3-zoom.min.js?1715859607 defer></script><script src=../../../../js/js-yaml.min.js?1715859607 defer></script><script src=../../../../js/mermaid.min.js?1715859607 defer></script><script>window.themeUseMermaid=JSON.parse("{}")</script><script src=../../../../js/theme.js?1715859607 defer></script></body></html>
