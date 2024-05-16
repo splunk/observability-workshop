@@ -83,3 +83,9 @@ kubectl describe pods api-gateway | grep Image:
 
 {{% /tab %}}
 {{< /tabs >}}
+
+Now that the Pods have been patched validate they are all running by executing the following command:
+
+```bash
+kubectl get pods
+```
