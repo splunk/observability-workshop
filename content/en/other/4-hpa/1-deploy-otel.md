@@ -71,7 +71,7 @@ splunk-otel-collector-chart/splunk-otel-collector \
 {{% /tab %}}
 {{< /tabs >}}
 
-## 5. Verify Deployment
+## 4. Verify Deployment
 
 You can monitor the progress of the deployment by running `kubectl get pods` which should typically report that the new pods are up and running after about 30 seconds.
 
