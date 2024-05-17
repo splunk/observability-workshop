@@ -71,7 +71,7 @@ You can find how to set these parameters [here](https://docs.splunk.com/observab
 
 If you don't see those lines as a result from the script, the startup may have taken to long and generated to many connection errors, try looking at the logs directly with kubectl or the k9s utility that is installed.
 
-## 2. Looking at Profiling Data in the Trace Waterfall
+## 3. Looking at Profiling Data in the Trace Waterfall
 
 Make sure you have your original (or similar) Trace  & Span **(1)** selected in the APM Waterfall view and select  **Memory Stack Traces (2)** from the right hand pane:
 
@@ -97,7 +97,7 @@ Once you have identified the relevant Function or Method you are interested in, 
 
 For more detail on Profiling, check the the **Debug Problems workshop**, or  check the documents [here](https://docs.splunk.com/observability/en/apm/profiling/intro-profiling.html#introduction-to-alwayson-profiling-for-splunk-apm)
 
-## 3. Database Query Performance
+## 4. Database Query Performance
 
 With Database Query Performance, you can monitor the impact of your database queries on service availability directly in Splunk APM. This way, you can quickly identify long-running, unoptimized, or heavy queries and mitigate issues they might be causing, without having to instrument your databases.
 

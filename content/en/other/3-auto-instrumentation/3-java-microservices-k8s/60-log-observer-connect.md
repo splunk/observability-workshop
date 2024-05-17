@@ -17,7 +17,7 @@ Lets grab the actual code for the application now.
 
 ## 2. Downloading the Spring Microservices PetClinic Application
 
-For this exercise, we will use the Spring microservices PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot) and we are using a version witch actual microservices.
+For this exercise, we will use the Spring microservices PetClinic application. This is a very popular sample Java application built with the Spring framework (Springboot) and we are using a version with actual microservices.
 
 First, clone the PetClinic GitHub repository, as we will need this later in the workshop to compile, build, package and containerize the application:
 

@@ -20,7 +20,7 @@ Select the **Customer Service** in the Dependency map **(1)**, then make sure th
 
 ![select a trace](../images/select-workflow.png)
 
-This should give you the workflow  wit A filter on `GET /owners` **(1)** as shown below. To pick a trace, select a line in the `Service Requests & Errors` chart **(2)**, when the dot appear click to get a list of sample traces:
+This should give you the workflow  with A filter on `GET /owners` **(1)** as shown below. To pick a trace, select a line in the `Service Requests & Errors` chart **(2)**, when the dot appear click to get a list of sample traces:
 
 ![workflow-trace-pick](../images/selecting-a-trace.png)
 

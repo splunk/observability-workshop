@@ -218,6 +218,15 @@ helm delete splunk-otel-collector
 
 {{% /notice %}}
 
+{{% notice title="Fixing crashing Otel Collector Agent pod" style="warning" %}}
+If Your otel collector agent is failing to start due to port **55679** being already in use, stop the `splunk-otel-collector` service using:
+
+``` bash
+sudo systemctl stop splunk-otel-collector
+```
+
+{{% /notice %}}
+
 ## 4. Deploying the PetClinic Application with prebuilt containers into Kubernetes
 
 The next thing we need to do, well ..., is to set up our application. The first deployment of our application will be using prebuilt containers to give us the base scenario: a regular Java microservices-based application running in Kubernetes that we want to start observing.
