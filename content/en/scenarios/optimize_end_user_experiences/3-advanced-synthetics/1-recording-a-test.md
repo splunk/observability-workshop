@@ -74,11 +74,11 @@ Select **JSON** as the format, then click on **Save**
         },
         {
             "type": "navigate",
-            "url": "https://online-boutique-eu.o11ystore.com/",
+            "url": "https://online-boutique-eu.splunko11y.com/",
             "assertedEvents": [
                 {
                     "type": "navigation",
-                    "url": "https://online-boutique-eu.o11ystore.com/",
+                    "url": "https://online-boutique-eu.splunko11y.com/",
                     "title": "Online Boutique"
                 }
             ]
@@ -102,7 +102,7 @@ Select **JSON** as the format, then click on **Save**
             "assertedEvents": [
                 {
                     "type": "navigation",
-                    "url": "https://online-boutique-eu.o11ystore.com/product/66VCHSJNUP",
+                    "url": "https://online-boutique-eu.splunko11y.com/product/66VCHSJNUP",
                     "title": ""
                 }
             ]
@@ -132,7 +132,7 @@ Select **JSON** as the format, then click on **Save**
             "assertedEvents": [
                 {
                     "type": "navigation",
-                    "url": "https://online-boutique-eu.o11ystore.com/cart",
+                    "url": "https://online-boutique-eu.splunko11y.com/cart",
                     "title": ""
                 }
             ]
@@ -162,7 +162,7 @@ Select **JSON** as the format, then click on **Save**
             "assertedEvents": [
                 {
                     "type": "navigation",
-                    "url": "https://online-boutique-eu.o11ystore.com/cart/checkout",
+                    "url": "https://online-boutique-eu.splunko11y.com/cart/checkout",
                     "title": ""
                 }
             ]
