@@ -4,6 +4,7 @@ linkTitle: Splunk Synthetics
 description: ユーザーフロー、ビジネストランザクション、APIにおけるパフォーマンスの問題を積極的に発見、修正し、より良いデジタル体験を提供します。
 weight: 4
 isCJKLanguage: true
+hidden: true
 ---
 
 **Splunk Synthetic Monitoring** は、完全なオブザーバビリティスイートである Splunk Observability Cloud の一部として、アップタイムと Webパフォーマンスの最適化のための最も包括的で詳細な機能を提供します。
