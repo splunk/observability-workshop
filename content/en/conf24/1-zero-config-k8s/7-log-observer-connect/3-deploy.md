@@ -6,21 +6,98 @@ weight: 3
 
 To see the changes in effect, we need to redeploy the services, First, let's change the location of the images from the external repo to the local one by running the following script:
 
+{{< tabs >}}
+{{% tab title="Change deployment to local containers" %}}
+
 ```bash
 . ~/workshop/petclinic/scripts/set_local.sh
 ```
 
+{{% /tab %}}
+{{% tab title="Output" %}}
+
+```text
+Script execution completed. Modified content saved to /home/splunk/workshop/petclinic/petclinic-local.yaml
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
 The result is a new file on disk called `petclinic-local.yaml`. Switch to the local versions by using the new version of the deployment YAML. First delete the old containers from the original deployment with:
+
+{{< tabs >}}
+{{% tab title="Deleting remote Petclinic services" %}}
 
 ```bash
 kubectl delete -f ~/workshop/petclinic/petclinic-deploy.yaml
 ```
 
+{{% /tab %}}
+{{% tab title="Output" %}}
+
+```text
+deployment.apps "config-server" deleted
+service "config-server" deleted
+deployment.apps "discovery-server" deleted
+service "discovery-server" deleted
+deployment.apps "api-gateway" deleted
+service "api-gateway" deleted
+service "api-gateway-external" deleted
+deployment.apps "customers-service" deleted
+service "customers-service" deleted
+deployment.apps "vets-service" deleted
+service "vets-service" deleted
+deployment.apps "visits-service" deleted
+service "visits-service" deleted
+deployment.apps "admin-server" deleted
+service "admin-server" deleted
+service "petclinic-db" deleted
+deployment.apps "petclinic-db" deleted
+configmap "petclinic-db-initdb-config" deleted
+deployment.apps "petclinic-loadgen-deployment" deleted
+configmap "scriptfile" deleted
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
 followed by:
+
+{{< tabs >}}
+{{% tab title="Starting local Petclinic  services" %}}
 
 ```bash
 kubectl apply -f ~/workshop/petclinic/petclinic-local.yaml
 ```
+
+{{% /tab %}}
+{{% tab title="Output" %}}
+
+```text
+deployment.apps/config-server created
+service/config-server created
+deployment.apps/discovery-server created
+service/discovery-server created
+deployment.apps/api-gateway created
+service/api-gateway created
+service/api-gateway-external created
+deployment.apps/customers-service created
+service/customers-service created
+deployment.apps/vets-service created
+service/vets-service created
+deployment.apps/visits-service created
+service/visits-service created
+deployment.apps/admin-server created
+service/admin-server created
+service/petclinic-db created
+deployment.apps/petclinic-db created
+configmap/petclinic-db-initdb-config created
+deployment.apps/petclinic-loadgen-deployment created
+configmap/scriptfile created
+```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 This will cause the containers to be replaced with the local version, you can verify this by checking the containers:
 
