@@ -54,7 +54,7 @@
             type: Opaque
             stringData:
               app: {{ instance }}-store
-              deployment: "deployment.environment={{ instance }}"
+              deployment: "deployment.environment={{ instance }}-workshop"
               env: {{ instance }}-workshop
               realm: {{ realm }}
               access_token: {{ ingest_token }}
