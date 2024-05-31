@@ -17,4 +17,3 @@ This will show you the trace related to your request from RUM:
 ![RUm-apm linked](../../images/rum-apm-waterfall.png)
 
 You can see that the entry point into your service now has a **RUM (1)** related content link added, allowing you to return back to your RUM session after you validated what happened in your Microservices.
-

@@ -80,6 +80,34 @@ The resulting output will show the local api gateway version `localhost:9999` an
 
 Now that the Pods have been patched validate they are all running by executing the following command:
 
+{{< tabs >}}
+{{% tab title="Checking if all Pods are running" %}}
+
 ```bash
 kubectl get pods
 ```
+
+{{% /tab %}}
+{{% tab title="Output" %}}
+
+```text
+NAME                                                           READY   STATUS    RESTARTS   AGE
+splunk-otel-collector-certmanager-cainjector-cd8459647-d42ls   1/1     Running   0          22h
+splunk-otel-collector-certmanager-85cbb786b6-xgjgb             1/1     Running   0          22h
+splunk-otel-collector-certmanager-webhook-75d888f9f7-477x4     1/1     Running   0          22h
+splunk-otel-collector-agent-nmmkm                              1/1     Running   0          22h
+splunk-otel-collector-k8s-cluster-receiver-7f96c94fd9-fv4p8    1/1     Running   0          22h
+splunk-otel-collector-operator-6b56bc9d79-r8p7w                2/2     Running   0          22h
+petclinic-loadgen-deployment-765b96d4b9-gm8fp                  1/1     Running   0          21h
+petclinic-db-774dbbf969-2q6md                                  1/1     Running   0          21h
+config-server-5784c9fbb4-9pdc8                                 1/1     Running   0          21h
+admin-server-849d877b6-pncr2                                   1/1     Running   0          21h
+discovery-server-6d856d978b-7x69f                              1/1     Running   0          21h
+visits-service-c7cd56876-grfn7                                 1/1     Running   0          21h
+customers-service-6c57cb68fd-hx68n                             1/1     Running   0          21h
+vets-service-688fd4cb47-z42t5                                  1/1     Running   0          21h
+api-gateway-59f4c7fbd6-prx5f                                   1/1     Running   0          20h
+```
+
+{{% /tab %}}
+{{< /tabs >}}
