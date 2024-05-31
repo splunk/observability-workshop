@@ -1,5 +1,5 @@
 ---
-title: Deploy Spleror unk OpenTelemetry Collector
+title: Deploy the Splunk OpenTelemetry Collector
 linkTitle: 1. Deploy OpenTelemetry Collector
 weight: 2
 ---
