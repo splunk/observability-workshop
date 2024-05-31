@@ -4,11 +4,30 @@ linkTitle: 2. Rebuild PetClinic
 weight: 2
 ---
 
-Before we can build the new services with the updated log format we need to add the Opentelemetry dependency that handles field injection to the `pom.xml` of our services:
+Before we can build the new services with the updated log format we need to add the OpenTelemetry dependency that handles field injection to the `pom.xml` of our services:
+{{< tabs >}}
+{{% tab title="Adding OTel dependencies" %}}
 
 ```bash
 . ~/workshop/petclinic/scripts/add_otel.sh
 ```
+
+{{% /tab %}}
+{{% tab title="Output" %}}
+
+```text
+Dependencies added successfully in spring-petclinic-admin-server
+Dependencies added successfully in spring-petclinic-api-gateway
+Dependencies added successfully in spring-petclinic-config-server
+Dependencies added successfully in spring-petclinic-discovery-server
+Dependencies added successfully in spring-petclinic-customers-service
+Dependencies added successfully in spring-petclinic-vets-service
+Dependencies added successfully in spring-petclinic-visits-service
+Dependency addition complete!
+```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 The Services are now ready to be built, so run the script that will use the `maven` command to compile/build/package the PetClinic microservices:
 

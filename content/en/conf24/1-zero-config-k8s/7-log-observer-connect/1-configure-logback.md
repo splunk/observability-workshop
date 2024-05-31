@@ -67,6 +67,37 @@ Script execution completed.
 
 We can verify if the replacement has been successful by examining the `logback-spring.xml` file from one of the services:
 
-```bash
+{{< tabs >}}
+{{% tab title="cat logback-spring.xml" %}}
+
+``` bash
 cat /home/splunk/spring-petclinic-microservices/spring-petclinic-customers-service/src/main/resources/logback-spring.xml
 ```
+
+{{% /tab %}}
+{{% tab title="Output" %}}
+
+```text
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                logback: %d{HH:mm:ss.SSS} [%thread] severity=%-5level %logger{36} - trace_id=%X{trace_id} span_id=%X{span_id} service.name=%property{otel.resource.service.name} trace_flags=%X{trace_flags} - %msg %kvp{DOUBLE}%n
+            </pattern>
+        </encoder>
+    </appender>
+    <appender name="OpenTelemetry"
+              class="io.opentelemetry.instrumentation.logback.appender.v1_0.OpenTelemetryAppender">
+        <captureExperimentalAttributes>true</captureExperimentalAttributes>
+        <captureKeyValuePairAttributes>true</captureKeyValuePairAttributes>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="console"/>
+        <appender-ref ref="OpenTelemetry"/>
+    </root>
+</configuration>
+```
+
+{{% /tab %}}
+{{< /tabs >}}
