@@ -1,5 +1,5 @@
 ---
-title: Deploy Slpunk OpenTelemetry Collector
+title: Deploy Spleror unk OpenTelemetry Collector
 linkTitle: 1. Deploy OpenTelemetry Collector
 weight: 2
 ---
