@@ -67,22 +67,16 @@ deployment.apps/api-gateway patched
 
 Check the `api-gateway` container (again if you see two `api-gateway` containers, it's the old container being terminated so give it a few seconds):
 
-{{< tabs >}}
-{{% tab title="Check Container" %}}
-
 ```bash
 kubectl describe pods api-gateway | grep Image:
 ```
 
-{{% /tab %}}
-{{% tab title="Output" %}}
+The resulting output will show the local api gateway version `localhost:9999` and the auto-instrumentation container:
 
 ```text
+  Image:         ghcr.io/signalfx/splunk-otel-java/splunk-otel-java:v1.32.1
   Image:         localhost:9999/spring-petclinic-api-gateway:local
 ```
-
-{{% /tab %}}
-{{< /tabs >}}
 
 Now that the Pods have been patched validate they are all running by executing the following command:
 
