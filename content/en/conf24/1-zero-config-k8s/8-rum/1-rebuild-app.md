@@ -89,7 +89,7 @@ and now push the new container to the local registry, the others get skipped:
 ```
 
 {{% /tab %}}
-{{% tab title="Verifying only change to api-gateway gets pushed" %}}
+{{% tab title="Output" %}}
 
 ```text
 The push refers to repository [localhost:9999/spring-petclinic-api-gateway]
