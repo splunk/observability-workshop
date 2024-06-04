@@ -8,6 +8,6 @@ Splunk APM provide **Service Centric Views** that provide engineers a deep under
 
 To see this dashboard for the `api-gateway`, make sure you have the `api-gateway` service selected in the Service Map, then click on the ***View Service** button in the top of the right-hand pane. This will bring you to the Service Centric View dashboard:
 
-This view, which is available for each of your instrumented services, offers an overview of **Service metrics**, **Runtime metrics** and **Infrastruture metrics**.
+This view, which is available for each of your instrumented services, offers an overview of **Service metrics**, **Runtime metrics** and **Infrastructure metrics**.
 
-![metrics dashboard](../../images/service-centric-view.png)
+You can select the  **Back*  function of you browser to go back to the previous view.
