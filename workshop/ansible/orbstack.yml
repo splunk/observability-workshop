@@ -54,13 +54,14 @@
             type: Opaque
             stringData:
               app: {{ instance }}-store
-              deployment: "deployment.environment={{ instance }}"
-              env: {{ instance }}
+              deployment: "deployment.environment={{ instance }}-workshop"
+              env: {{ instance }}-workshop
               realm: {{ realm }}
               access_token: {{ ingest_token }}
               rum_token: {{ rum_token }}
               hec_token: {{ hec_token }}
               hec_url: {{ hec_url }}
+              url: frontend
         become: true
         when: not wh_result.stat.exists
 
