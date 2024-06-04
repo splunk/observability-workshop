@@ -24,7 +24,7 @@ This code enables RUM Tracing, [Session Replay](https://docs.splunk.com/observab
 * The first part is to indicate where to download the Splunk Open Telemetry Javascript file from: `https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js` (this can also be hosted locally if so required).
 * The next section defines the location where to send the traces to in the beacon url: `{beaconUrl: "https://rum-ingest.eu0.signalfx.com/v1/rum"`
 * The RUM Access Token:  `rumAuth: "<redacted>"`.
-* Identification tags `app` and `environment` to indentify in the SPLUNK RUM UI e.g.  `app: "frontend-demo-us-store", environment: "frontend-demo-us"}` (these values will be different in your workshop)
+* Identification tags `app` and `environment` to indentify in the SPLUNK RUM UI e.g.  `app: "online-boutique-us-store", environment: "online-boutique-us"}` (these values will be different in your workshop)
 
 The above lines 21 and 23-30 are all that is required to enable RUM on your website!
 
