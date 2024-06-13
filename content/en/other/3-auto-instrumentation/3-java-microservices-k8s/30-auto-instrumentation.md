@@ -127,7 +127,7 @@ deployment.apps/api-gateway patched (no change)
 {{% /tab %}}
 {{< /tabs >}}
 
-## 3. Check the result in Splunk APM
+## 4. Check the result in Splunk APM
 
 Once the containers are patched they will be restarted, let's go back to the **Splunk Observability Cloud** with the URL provided by the Instructor to check our cluster in the Kubernetes Navigator.
 
