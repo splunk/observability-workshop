@@ -18,11 +18,11 @@ languages:
     languageName: English
     contentDir: content/en
     weight: 1
-  ja:
-    title: "Splunk Observability Cloud Workshops"
-    contentDir: content/ja
-    languageName: 日本語
-    weight: 2
+  #ja:
+  #  title: "Splunk Observability Cloud Workshops"
+  #  contentDir: content/ja
+  #  languageName: 日本語
+  #  weight: 2
 markup:
   goldmark:
     renderer:
