@@ -1,6 +1,7 @@
 @import "theme-relearn-light.css";
 
 :root {
+    --CODE-theme: relearn-light; /* code theme */
     --PRIMARY-color: rgba( 206, 0, 112, 1 ); /* brand primary color */
     --SECONDARY-color: rgba( 237, 0, 144, 1 ); /* brand secondary color */
 

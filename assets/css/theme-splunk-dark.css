@@ -1,6 +1,7 @@
 @import "theme-relearn-dark.css";
 
 :root {
+    --CODE-theme: relearn-dark; /* code theme */
     --PRIMARY-color: rgba( 206, 0, 112, 1 ); /* brand primary color */
     --SECONDARY-color: rgba( 206, 0, 112, 1 ); /* brand secondary color */
 
