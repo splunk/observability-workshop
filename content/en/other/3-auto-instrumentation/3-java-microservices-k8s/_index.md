@@ -5,6 +5,7 @@ weight: 3
 description: Learn how to enable Open Telemetry (Auto) Instrumentation for your Java-based application running in Kubernetes. Experience real-time monitoring and troubleshooting to help you maximize application behavior with end-to-end visibility.
 authors: ["Pieter Hagen"]
 time: 45 minutes
+hidden: true
 ---
 
 The goal of this workshop is to introduce the features of Splunk's Opentelemetry Java Auto instrumentation.
