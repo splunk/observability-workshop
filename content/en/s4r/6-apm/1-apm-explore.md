@@ -23,6 +23,9 @@ Splunk APM also provides a set of built-in dashboards that present charts and vi
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Click on **View Dashboard** top right of the **paymentservice** pane.
+* Click on the three dots next to **paymentservice** and select **APM Service**
 
 {{% /notice %}}
+
+
+![APM Service](../images/apm-service.png)
