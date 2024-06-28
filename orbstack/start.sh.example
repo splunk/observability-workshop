@@ -4,6 +4,7 @@ echo "Building: $1";
 # Change these values below to match your environment and safe this file as start.sh
 export ACCESS_TOKEN="<redacted>"
 export REALM="eu0"
+export API_TOKEN="<redacted>"
 export RUM_TOKEN="<redacted>"
 export HEC_TOKEN="<redacted>"
 #export HEC_URL="https://http-inputs-o11y-workshop-eu0.splunkcloud.com:443/services/collector/event"
@@ -13,6 +14,6 @@ export INSTANCE=$1
 # Do not change anything below this line
 orb create -c cloud-init.yaml -a arm64 ubuntu:jammy $INSTANCE
 sleep 2
-ORBENV=ACCESS_TOKEN:REALM:RUM_TOKEN:HEC_TOKEN:HEC_URL:INSTANCE orb -m $INSTANCE -u splunk ansible-playbook /home/splunk/orbstack.yml
+ORBENV=ACCESS_TOKEN:REALM:API_TOKEN:RUM_TOKEN:HEC_TOKEN:HEC_URL:INSTANCE orb -m $INSTANCE -u splunk ansible-playbook /home/splunk/orbstack.yml
 echo "ssh splunk@$INSTANCE@orb"
 ssh splunk@$INSTANCE@orb

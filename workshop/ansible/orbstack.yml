@@ -7,6 +7,7 @@
       set_fact:
         ingest_token: "{{ lookup('env','ACCESS_TOKEN') }}"
         rum_token: "{{ lookup('env','RUM_TOKEN') }}"
+        api_token: "{{ lookup('env','API_TOKEN') }}"
         realm: "{{ lookup('env','REALM') }}"
         instance: "{{ lookup('env','INSTANCE') }}"
         hec_url: "{{ lookup('env','HEC_URL') }}"
@@ -26,6 +27,7 @@
           block: |
             export REALM={{ realm }}
             export ACCESS_TOKEN={{ ingest_token }}
+            export API_TOKEN={{ api_token }}
             export RUM_TOKEN={{ rum_token }}
             export HEC_TOKEN={{ hec_token }}
             export HEC_URL={{ hec_url }}
@@ -58,6 +60,7 @@
               env: {{ instance }}-workshop
               realm: {{ realm }}
               access_token: {{ ingest_token }}
+              api_token: {{ api_token }}
               rum_token: {{ rum_token }}
               hec_token: {{ hec_token }}
               hec_url: {{ hec_url }}
