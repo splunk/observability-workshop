@@ -69,10 +69,22 @@ variable "splunk_diab" {
   default     = false
 }
 
+variable "tagging_workshop" {
+  description = "Spin up the Tagging Workshop application? (true/false)"
+  type        = bool
+  default     = false
+}
+
 variable "wsversion" {
   description = "Workshop version"
   type        = string
   default     = "5.63"
+}
+
+variable "user_data_tpl" {
+  description = "user data template filename in templates/"
+  type        = string
+  default     = "userdata.yaml"
 }
 
 variable "instance_password" {
@@ -103,6 +115,7 @@ locals {
     hec_url           = var.splunk_hec_url
     presetup          = var.splunk_presetup
     otel_demo         = var.otel_demo
+    tagging_workshop  = var.tagging_workshop
     diab              = var.splunk_diab
     instance_name     = "${random_string.hostname.result}"
     wsversion         = var.wsversion
@@ -113,7 +126,7 @@ locals {
 
 resource "local_file" "user_data" {
   filename = "ubuntu-cloudinit.yml"
-  content  = templatefile("../workshop/aws/ec2/templates/userdata.yaml", merge(local.template_vars))
+  content  = templatefile("../../workshop/aws/ec2/templates/${var.user_data_tpl}", merge(local.template_vars))
 }
 
 data "multipass_instance" "ubuntu" {
