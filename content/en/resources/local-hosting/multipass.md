@@ -1,4 +1,10 @@
-# Preparing a Multipass instance
+---
+title: Local Hosting with Multipass
+weight: 1
+draft: false
+---
+
+## Preparing a Multipass instance
 
 **NOTE:** Please disable any VPNs or proxies before running the commands below e.g:
 
@@ -9,7 +15,7 @@ These tools **will** prevent the instance from being created properly.
 
 ## 1. Pre-requisites
 
-Install [Multipass](https://multipass.run/) and Terraform for your operating system. On a Mac, you can also install via [Homebrew](https://brew.sh/) e.g.
+Install [Multipass](https://multipass.run/) and Terraform for your operating system. On a Mac (Intel), you can also install via [Homebrew](https://brew.sh/) e.g.
 
 ```text
 brew install multipass
@@ -34,7 +40,7 @@ git clone https://github.com/splunk/observability-workshop
 ## 3. Change into multipass directory
 
 ```bash
-cd observability-workshop/multipass
+cd observability-workshop/local-hosting/multipass
 ```
 
 ## 4. Initialise Terraform
@@ -81,13 +87,11 @@ Initializing provider plugins...
 
 ## 6. Create Terraform variables file
 
-Variables are kept in file `terrform.tfvars` and we provide a template as `terraform.tfvars.template` to copy and edit:
+Variables are kept in file `terrform.tfvars` and we provide a template, `terraform.tfvars.template`, to copy and edit:
 
 ```bash
 cp terraform.tfvars.template terraform.tfvars
 ```
-
-The file `terraform.tfvars` is ignored by git and should not be committed to the repository.
 
 Edit `terraform.tfvars` and set the variables accordingly to your needs e.g.
 
@@ -143,7 +147,7 @@ instance_details = [
 ]
 ```
 
-Once the instance has been successfully created (this can take several minutes), shell into it using the `name` output above e.g.
+Once the instance has been successfully created (this can take several minutes), shell into it using the `name` from the output above e.g.
 
 ```bash
 multipass shell cynu
@@ -167,8 +171,6 @@ ubuntu@cynu ~ $
 ```
 
 ## 9. Validate instance
-
-SSH into your instance using the IP address from the `instance_details`. Once in the shell you can validate that the instance is ready by running the following command:
 
 ```bash
 kubectl version --output=yaml
