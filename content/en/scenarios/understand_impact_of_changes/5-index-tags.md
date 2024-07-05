@@ -1,6 +1,6 @@
 ---
 title: Index Tags
-linkTitle: 5 Index Tags
+linkTitle: 5. Index Tags
 weight: 5
 time: 5 minutes
 ---
