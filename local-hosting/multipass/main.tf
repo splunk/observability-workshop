@@ -138,11 +138,11 @@ data "multipass_instance" "ubuntu" {
 
 resource "multipass_instance" "ubuntu" {
   name           = random_string.hostname.result
+  cpus           = 4
   memory         = "8G"
   disk           = "32G"
-  cpus           = 4
-  image          = "jammy"
-  cloudinit_file = local_file.user_data.filename
+  image          = "lts"
+  #cloudinit_file = local_file.user_data.filename
 
   lifecycle {
     precondition {
