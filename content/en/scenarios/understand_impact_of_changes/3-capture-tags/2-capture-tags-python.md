@@ -1,5 +1,5 @@
 ---
-title: 1. Capture Tags - Python
+title: 2. Capture Tags - Python
 weight: 2
 time: 15 minutes
 ---
