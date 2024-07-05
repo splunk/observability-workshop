@@ -1,7 +1,6 @@
 ---
-title: Capture Tags with OpenTelemetry
-linkTitle: 3 Capture Tags with OpenTelemetry
-weight: 3
+title: 1. Capture Tags - Python
+weight: 2
 time: 15 minutes
 ---
 

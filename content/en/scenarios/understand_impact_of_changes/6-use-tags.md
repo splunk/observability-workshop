@@ -1,6 +1,6 @@
 ---
 title: Use Tags for Troubleshooting
-linkTitle: 6 Use Tags for Troubleshooting
+linkTitle: 6. Use Tags for Troubleshooting
 weight: 6
 time: 5 minutes
 ---

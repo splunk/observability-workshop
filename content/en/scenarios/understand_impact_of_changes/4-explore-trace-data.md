@@ -1,6 +1,6 @@
 ---
 title: Explore Trace Data
-linkTitle: 4 Explore Trace Data
+linkTitle: 4. Explore Trace Data
 weight: 4
 time: 5 minutes
 ---

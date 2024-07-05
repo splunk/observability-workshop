@@ -1,6 +1,6 @@
 ---
 title: Summary
-linkTitle: 8 Summary
+linkTitle: 8. Summary
 weight: 8
 time: 2 minutes
 ---
