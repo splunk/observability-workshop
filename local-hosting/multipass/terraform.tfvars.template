@@ -1,0 +1,22 @@
+# Required
+splunk_access_token = ""
+splunk_api_token = ""
+splunk_realm = ""
+
+# Required if splunk_presetup is true, optional otherwise. See variables.tf and README.md
+splunk_rum_token = ""
+
+# Optional - Splunk Cloud
+splunk_hec_url = ""
+splunk_hec_token = ""
+
+# Optional
+splunk_presetup = false
+splunk_jdk = false
+otel_demo = false
+pub_key = ""
+
+# Advanced
+wsversion = "5.63"
+user_data_tpl = "userdata.yaml"
+
