@@ -42,7 +42,7 @@ RUN mkdir -p ${APP_HOME} && chown ${USR}:${GRP} -R ${APP_HOME}
 
 USER ${USR}
 WORKDIR ${APP_HOME}
-COPY --chown=${USR}:${GRP} --from=builder ${BUILD_HOME}/splunk-otel-javaagent.jar ${APP_HOME}/
+# COPY --chown=${USR}:${GRP} --from=builder ${BUILD_HOME}/splunk-otel-javaagent.jar ${APP_HOME}/
 COPY --chown=${USR}:${GRP} --from=builder ${ARTIFACTS}/BOOT-INF/lib /app/lib
 COPY --chown=${USR}:${GRP} --from=builder ${ARTIFACTS}/META-INF /app/META-INF
 COPY --chown=${USR}:${GRP} --from=builder ${ARTIFACTS}/BOOT-INF/classes /app
