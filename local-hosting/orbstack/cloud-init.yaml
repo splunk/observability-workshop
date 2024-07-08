@@ -18,6 +18,7 @@ groups:
 packages:
   - ansible
   - docker
+  - docker-buildx
   - curl
   - docker-compose
   - gnupg2
