@@ -1,18 +1,49 @@
+splunkObservability:
+  logsEnabled: false
+  profilingEnabled: true
+  infrastructureMonitoringEventsEnabled: true
+certmanager:
+  enabled: true
+operator:
+  enabled: true
 agent:
   config:
+    receivers:
+      kubeletstats:
+        insecure_skip_verify: true
+        auth_type: serviceAccount
+        endpoint: ${K8S_NODE_IP}:10250
+        metric_groups:
+          - container
+          - pod
+          - node
+          - volume
+        k8s_api_config:
+          auth_type: serviceAccount
+        extra_metadata_labels:
+          - container.id
+          - k8s.volume.type
     processors:
       resource/envname:
         attributes:
-        - action: insert
-          key: deployment.environment
-          value: {{environment}}
+          - action: insert
+            key: deployment.environment
+            value: waddev
+    extensions:
+      zpages:
+        endpoint: 0.0.0.0:55679
     service:
       pipelines:
+        metrics:
+          receivers:
+            - hostmetrics
+            - kubeletstats
+            - receiver_creator
         traces:
           processors:
-          - memory_limiter
-          - k8sattributes
-          - batch
-          - resourcedetection
-          - resource
-          - resource/envname
+            - memory_limiter
+            - k8sattributes
+            - batch
+            - resourcedetection
+            - resource
+            - resource/envname
