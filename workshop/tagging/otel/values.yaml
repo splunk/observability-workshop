@@ -10,35 +10,44 @@ operator:
     spec:
       java:
         repository: ghcr.io/signalfx/splunk-otel-java/splunk-otel-java
-        tag: 2.5.0
-      # env:
-      #   - name: OTEL_RESOURCE_ATTRIBUTES
-      #     value: "deployment.environment=dev"
+        tag: v2.5.0
+        image: ghcr.io/signalfx/splunk-otel-java/splunk-otel-java:v2.5.0
+        env:
+          - name: NODE_IP
+            valueFrom:
+              fieldRef:
+                apiVersion: v1
+                fieldPath: status.hostIP
+          - name: OTEL_EXPORTER_OTLP_ENDPOINT
+            value: http://$(NODE_IP):4318
+          - name: OTEL_LOGS_EXPORTER
+            value: "none"
+
 agent:
   config:
     receivers:
-      hostmetrics/process:
-        scrapers:
-          process:
-            metrics:
-              process.cpu.time:
-                enabled: true
-              process.cpu.utilization:
-                enabled: true
-              process.disk.io:
-                enabled: true
-              process.memory.usage:
-                enabled: true
-              process.memory.virtual:
-                enabled: true
-              process.context_switches:
-                enabled: true
-              process.disk.operations:
-                enabled: true
-              process.memory.utilization:
-                enabled: true
-              process.threads:
-                enabled: true
+      # hostmetrics/process:
+      #   scrapers:
+      #     process:
+      #       metrics:
+      #         process.cpu.time:
+      #           enabled: true
+      #         process.cpu.utilization:
+      #           enabled: true
+      #         process.disk.io:
+      #           enabled: true
+      #         process.memory.usage:
+      #           enabled: true
+      #         process.memory.virtual:
+      #           enabled: true
+      #         process.context_switches:
+      #           enabled: true
+      #         process.disk.operations:
+      #           enabled: true
+      #         process.memory.utilization:
+      #           enabled: true
+      #         process.threads:
+      #           enabled: true
       kubeletstats:
         insecure_skip_verify: true
         auth_type: serviceAccount
@@ -66,23 +75,23 @@ agent:
         attributes:
           - action: insert
             key: deployment.environment
-            value: {{environment}}
+            value: waddev
+    extensions:
+      zpages:
+        endpoint: 0.0.0.0:55679
     service:
       pipelines:
         metrics:
           receivers:
             - hostmetrics
-            - hostmetrics/process
+            # - hostmetrics/process
             - kubeletstats
             - receiver_creator
-      traces:
-        processors:
-          - memory_limiter
-          - k8sattributes
-          - batch
-          - resourcedetection
-          - resource
-          - resource/envname
-    extensions:
-      zpages:
-        endpoint: 0.0.0.0:55679
+        traces:
+          processors:
+            - memory_limiter
+            - k8sattributes
+            - batch
+            - resourcedetection
+            - resource
+            - resource/envname
