@@ -15,5 +15,5 @@ export INSTANCE=$1
 orb create -c cloud-init.yaml -a arm64 ubuntu:jammy $INSTANCE
 sleep 2
 ORBENV=ACCESS_TOKEN:REALM:API_TOKEN:RUM_TOKEN:HEC_TOKEN:HEC_URL:INSTANCE orb -m $INSTANCE -u splunk ansible-playbook /home/splunk/orbstack.yml
-echo "ssh splunk@$INSTANCE@orb"
-ssh splunk@$INSTANCE@orb
+echo "ssh -t splunk@$INSTANCE@orb ${SHELL} -l"
+ssh -t splunk@$INSTANCE@orb ${SHELL} -l
