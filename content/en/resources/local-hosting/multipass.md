@@ -170,7 +170,15 @@ Your instance is ready!
 ubuntu@cynu ~ $
 ```
 
-## 9. Validate instance
+## 9. Change user to splunk
+
+```bash
+su -l splunk
+```
+
+When prompted for the password, enter `Splunk123!`.
+
+## 10. Validate instance
 
 ```bash
 kubectl version --output=yaml
