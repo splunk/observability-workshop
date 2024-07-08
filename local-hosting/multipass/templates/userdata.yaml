@@ -1,0 +1,263 @@
+#cloud-config
+package_update: true
+package_upgrade: true
+
+users:
+  - name: splunk
+    groups: [docker]
+    lock_passwd: false
+    plain_text_passwd: ${instance_password}
+    sudo: ALL=(ALL) NOPASSWD:ALL
+
+password: ${instance_password}
+
+chpasswd:
+  expire: false
+
+groups:
+  - docker
+
+hostname: ${instance_name}
+
+packages:
+  - ansible
+  - docker
+  - docker-compose
+  - gnupg2
+  - jq
+  - lynx
+  - maven
+  - net-tools
+  - openjdk-17-jdk
+  - python3-flask
+  - python3-pip
+  - python3-venv
+  - shellinabox
+  - unzip
+  - zsh
+
+write_files:
+  - path: /etc/skel/.profile
+    append: true
+    content: |
+
+      export REALM=${realm}
+      export ACCESS_TOKEN=${access_token}
+      export API_TOKEN=${api_token}
+      export RUM_TOKEN=${rum_token}
+      export HEC_TOKEN=${hec_token}
+      export HEC_URL=${hec_url}
+
+      echo "Waiting for cloud-init status..."
+      if ! /usr/bin/timeout 180 grep -q 'Cloud-init .*finished at' <(sudo tail -f /var/log/cloud-init-output.log); then
+        echo "Instance setup did not complete after 3 minutes. Please try again.";
+      else
+        echo "Your instance is ready!";
+      fi
+
+      INSTANCE=$(cat /etc/hostname)
+      CLUSTER_NAME="$INSTANCE-cluster"
+
+      export INSTANCE CLUSTER_NAME
+
+      export KUBECONFIG=/home/splunk/.kube/config
+      alias kc='kubectl'
+      alias dc='docker-compose'
+
+  - path: /tmp/workshop-secrets.yaml
+    permissions: '0755'
+    content: |
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: workshop-secret
+        namespace: default
+      type: Opaque
+      stringData:
+        app: ${instance_name}-store
+        env: ${instance_name}-workshop
+        deployment: "deployment.environment=${instance_name}-workshop"
+        realm: ${realm}
+        access_token: ${access_token}
+        api_token: ${api_token}
+        rum_token: ${rum_token}
+        hec_token: ${hec_token}
+        hec_url: ${hec_url}
+        url: frontend-external
+
+  - path: /tmp/diab-setup.sh
+    permissions: '0755'
+    content: |
+      export RUM_TOKEN=${rum_token}
+      export REALM=${realm}
+      export ACCESS_TOKEN=${access_token}
+      export HEC_TOKEN=${hec_token}
+      export HEC_URL=${hec_url}
+      export INSTANCE="${instance_name}"
+      ansible-playbook /home/splunk/diab-v3.yml
+
+  - path: /tmp/pre-setup.sh
+    permissions: '0755'
+    content: |
+      # Export environment variables
+      export RUM_TOKEN=${rum_token}
+      export REALM=${realm}
+      export ACCESS_TOKEN=${access_token}
+      export API_TOKEN=${api_token}
+      export HEC_TOKEN=${hec_token}
+      export HEC_URL=${hec_url}
+      export INSTANCE="${instance_name}"
+
+      # Deploy Online Boutique
+      sudo kubectl apply -f /home/splunk/workshop/apm/deployment.yaml
+
+      # Sleep for 1 minute to allow the services to start
+      sleep 60
+
+      # Install Splunk OpenTelemetry Collector
+      if [ ! -f /home/splunk/.helmok ]; then
+        helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
+        helm repo update
+        helm install splunk-otel-collector \
+        --set="splunkObservability.realm=${realm}" \
+        --set="splunkObservability.accessToken=${access_token}" \
+        --set="clusterName=${instance_name}-k3s-cluster" \
+        --set="splunkObservability.logsEnabled=false" \
+        --set="logsEngine=otel" \
+        --set="splunkObservability.profilingEnabled=true" \
+        --set="environment=${instance_name}-workshop" \
+        --set="splunkPlatform.endpoint=${hec_url}" \
+        --set="splunkPlatform.token=${hec_token}" \
+        --set="splunkPlatform.index=splunk4rookies-workshop" \
+        splunk-otel-collector-chart/splunk-otel-collector \
+        -f /home/splunk/workshop/k3s/otel-collector.yaml
+
+        echo ${instance_name} > /home/splunk/.helmok
+      fi
+
+  - path: /tmp/otel-demo-setup.sh
+    permissions: '0755'
+    content: |
+      export RUM_TOKEN=${rum_token}
+      export REALM=${realm}
+      export ACCESS_TOKEN=${access_token}
+      export API_TOKEN=${api_token}
+      export HEC_TOKEN=${hec_token}
+      export HEC_URL=${hec_url}
+      export INSTANCE="${instance_name}"
+      if [ ! -f /home/splunk/.helmok ]; then
+        helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
+        helm repo update
+        envsubst '$REALM' < /home/splunk/workshop/oteldemo/otel-demo-collector.yaml | helm install splunk-otel-collector \
+        --set="splunkObservability.realm=${realm}" \
+        --set="splunkObservability.accessToken=${access_token}" \
+        --set="clusterName=${instance_name}-k3s-cluster" \
+        --set="splunkObservability.logsEnabled=true" \
+        --set="logsEngine=otel" \
+        --set="splunkObservability.profilingEnabled=true" \
+        --set="environment=${instance_name}-workshop" \
+        --set="splunkPlatform.endpoint=${hec_url}" \
+        --set="splunkPlatform.token=${hec_token}" \
+        --set="splunkPlatform.index=splunk4rookies-workshop" \
+        splunk-otel-collector-chart/splunk-otel-collector -f -
+        helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
+        helm install opentelemetry-demo open-telemetry/opentelemetry-demo --values /home/splunk/workshop/oteldemo/otel-demo.yaml
+        echo ${instance_name} > /home/splunk/.helmok
+      fi
+
+  - path: /tmp/tagging-workshop-setup.sh
+    permissions: '0755'
+    content: |
+      export REALM=${realm}
+      export ACCESS_TOKEN=${access_token}
+      export API_TOKEN=${api_token}
+      export INSTANCE="${instance_name}"
+      if [ ! -f /home/splunk/.helmok ]; then
+        helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
+        helm repo update
+        helm install splunk-otel-collector \
+        --set="splunkObservability.realm=${realm}" \
+        --set="splunkObservability.accessToken=${access_token}" \
+        --set="clusterName=${instance_name}-k3s-cluster" \
+        --set="environment=tagging-workshop-${instance_name}" \
+        splunk-otel-collector-chart/splunk-otel-collector -f -
+
+        cd /home/splunk/workshop/tagging/
+        ./2-deploy-creditcheckservice.sh
+        ./3-deploy-creditprocessorservice.sh
+        ./4-deploy-load-generator.sh
+      
+        echo ${instance_name} > /home/splunk/.helmok
+      fi
+
+runcmd:
+  # Configure zsh
+  - chsh -s $(which zsh) splunk
+  - su splunk -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+  - echo "source /etc/skel/.profile" >> /home/splunk/.zshrc
+
+  # Configure motd
+  - curl -s https://raw.githubusercontent.com/splunk/observability-workshop/main/workshop/cloud-init/motd -o /etc/motd
+  - chmod -x /etc/update-motd.d/*
+
+  # Install Helm
+  - curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+
+  # Install K9s (Kubernetes UI)
+  - K9S_VERSION=$(curl -s https://api.github.com/repos/derailed/k9s/releases/latest | jq -r '.tag_name')
+  - curl -S -OL https://github.com/derailed/k9s/releases/download/"$K9S_VERSION"/k9s_Linux_amd64.tar.gz
+  - tar xfz k9s_Linux_amd64.tar.gz -C /usr/local/bin/ k9s
+
+  # Install Terraform
+  - TF_VERSION=$(curl -s https://api.github.com/repos/hashicorp/terraform/releases/latest | jq -r '.tag_name | ltrimstr("v")')
+  - curl -S -OL https://releases.hashicorp.com/terraform/"$TF_VERSION"/terraform_"$TF_VERSION"_linux_amd64.zip
+  - unzip -qq terraform_"$TF_VERSION"_linux_amd64.zip -d /usr/local/bin
+
+  # Download Workshop
+  - export WSVERSION=${wsversion}
+  - 'export WSARCHIVE=$([ "$WSVERSION" = "main" ] && echo "main" || echo "v$WSVERSION")'
+  - curl -s -OL https://github.com/splunk/observability-workshop/archive/$WSARCHIVE.zip
+  - unzip -qq $WSARCHIVE.zip -d /home/splunk/
+  - mkdir /home/splunk/workshop
+  - mv /home/splunk/observability-workshop-$WSVERSION/workshop/* /home/splunk/workshop
+  - mv /home/splunk/workshop/ansible/diab-v3.yml /home/splunk
+  - rm -rf /home/splunk/observability-workshop-$WSVERSION
+  - rm -rf /home/splunk/workshop/aws /home/splunk/workshop/cloud-init /home/splunk/workshop/ansible
+  - mv /home/splunk/workshop/k3s/demo-in-a-box.zip /home/splunk
+
+  # Download Splunk Observability Content Contrib Repo
+  - curl -s -L https://github.com/splunk/observability-content-contrib/archive/main.zip -o content-contrib.zip
+  - unzip -qq content-contrib.zip -d /home/splunk/
+  - mv /home/splunk/observability-content-contrib-main /home/splunk/observability-content-contrib
+
+  # Install K3s
+  - curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE="644" sh -
+  # Create kube config and set correct permissions on splunk user home directory
+  - mkdir /home/splunk/.kube && kubectl config view --raw > /home/splunk/.kube/config
+  - chmod 400 /home/splunk/.kube/config
+  - chown -R splunk:splunk /home/splunk
+
+  # Deploy private registry
+  - /usr/local/bin/kubectl apply -f /home/splunk/workshop/k3s/registry/registry.yaml
+
+  # Deploy Splunk secrets
+  - /usr/local/bin/kubectl apply -f /tmp/workshop-secrets.yaml
+
+%{ if diab == true ~}
+  - su splunk -c 'bash /tmp/diab-setup.sh'
+%{ endif ~}
+
+%{ if presetup == true ~}
+  - su splunk -c 'bash /tmp/pre-setup.sh'
+  - su splunk -c 'bash /tmp/create-browser-test.sh'
+%{ endif ~}
+
+%{ if otel_demo == true ~}
+  - su splunk -c 'bash /tmp/otel-demo-setup.sh'
+%{ endif ~}
+  
+%{ if tagging_workshop == true ~}
+  - su splunk -c 'bash /tmp/tagging-workshop-setup.sh'
+%{ endif ~}
+
+
