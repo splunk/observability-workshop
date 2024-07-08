@@ -9,7 +9,7 @@
 # (5) Find and delete the pod (so it is redeployed)
 #
 # (1) Build the credit-check-service app
-docker build -t credit-check-service:latest creditcheckservice-with-tags
+docker build -t credit-check-service:latest creditcheckservice-py-with-tags
 
 # (2) Export the image from docker
 docker save --output credit-check-service.tar credit-check-service:latest

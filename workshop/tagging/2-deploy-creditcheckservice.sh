@@ -13,7 +13,7 @@
 # won't redeploy with the new container image until it restarts.
 
 # (1) Build the credit-check-service app
-docker build -t credit-check-service:latest creditcheckservice
+docker build -t credit-check-service:latest creditcheckservice-py
 
 # (2) Export the image from docker
 docker save --output credit-check-service.tar credit-check-service:latest
