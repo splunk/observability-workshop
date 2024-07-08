@@ -1,8 +1,10 @@
 ---
-title: Splunk IM
-linkTitle: Splunk IM
+title: Splunk Infra Monitoring and Administration
+linkTitle: Splunk IM & Admin
 description: Splunk delivers real-time monitoring and troubleshooting to help you maximize infrastructure performance with complete visibility.
-weight: 1
+weight: 99
+draft: true
+hidden: true
 ---
 
 During this _**technical**_ Splunk Observability Cloud Infrastructure Monitoring Workshop, you will build out an environment based on a [lightweight](https://k3s.io/) Kubernetes[^1] cluster.
@@ -13,7 +15,7 @@ The instance is pre-configured with all the software required to deploy the Splu
 
 The workshops also introduce you to dashboards, navigators editing and creating charts, creating detectors to fire alerts, Monitoring as Code and the Service Bureau[^6]
 
-### Connect via SSH
+### Connect to your instance via SSH
 
 When you first log into your instance, you will be greeted by the Splunk Logo as shown below. If you have any issues connecting to your workshop instance then please reach out to your Instructor.
 
@@ -59,7 +61,6 @@ INSTANCE = <instance_name>
 Please make a note of the `INSTANCE` environment variable value as this will used later to filter data in **Splunk Observability Cloud**.
 
 For this workshop, **all** of the above are required. If any have values missing, please contact your Instructor.
-
 
 ![Splunk Architecture](images/architecture.png)
 
