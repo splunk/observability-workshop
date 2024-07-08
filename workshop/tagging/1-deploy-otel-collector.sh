@@ -14,7 +14,9 @@
   --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
   --set="clusterName=$INSTANCE-k3s-cluster" \
   --set="environment=tagging-workshop-$INSTANCE" \
-  splunk-otel-collector-chart/splunk-otel-collector
+  --set="splunkObservability.profilingEnabled=true" \
+  splunk-otel-collector-chart/splunk-otel-collector \
+  -f otel/values.yaml
 
 echo ""
 echo ""
