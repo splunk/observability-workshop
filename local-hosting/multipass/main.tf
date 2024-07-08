@@ -51,12 +51,6 @@ variable "splunk_presetup" {
   default     = false
 }
 
-variable "splunk_jdk" {
-  description = "Enabled Java Development environment? (true/false)"
-  type        = bool
-  default     = false
-}
-
 variable "otel_demo" {
   description = "Spin up the OpenTelemetry Astronomy Shop Demo? (true/false)"
   type        = bool
@@ -88,7 +82,7 @@ variable "user_data_tpl" {
 }
 
 variable "instance_password" {
-  default = ""
+  default = "Splunk123!"
 }
 
 variable "pub_key" {
@@ -126,7 +120,7 @@ locals {
 
 resource "local_file" "user_data" {
   filename = "ubuntu-cloudinit.yml"
-  content  = templatefile("../../workshop/aws/ec2/templates/${var.user_data_tpl}", merge(local.template_vars))
+  content  = templatefile("templates/${var.user_data_tpl}", merge(local.template_vars))
 }
 
 data "multipass_instance" "ubuntu" {
@@ -141,8 +135,8 @@ resource "multipass_instance" "ubuntu" {
   cpus           = 4
   memory         = "8G"
   disk           = "32G"
-  image          = "lts"
-  #cloudinit_file = local_file.user_data.filename
+  image          = "jammy"
+  cloudinit_file = local_file.user_data.filename
 
   lifecycle {
     precondition {
