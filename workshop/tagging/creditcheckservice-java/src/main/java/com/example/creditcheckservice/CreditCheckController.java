@@ -11,6 +11,11 @@ import org.springframework.web.client.RestTemplate;
 import io.opentelemetry.api.OpenTelemetry;
 // import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.Tracer;
+// import static io.opentelemetry.api.common.AttributeKey.stringKey;
+// import io.opentelemetry.api.common.AttributeKey;
+// import io.opentelemetry.api.common.Attributes;
+// import io.opentelemetry.api.metrics.LongCounter;
+// import io.opentelemetry.api.metrics.Meter;
 // import io.opentelemetry.instrumentation.annotations.WithSpan;
 // import io.opentelemetry.instrumentation.annotations.SpanAttribute;
 
@@ -18,6 +23,12 @@ import io.opentelemetry.api.trace.Tracer;
 public class CreditCheckController {
 
     private final Tracer tracer;
+    private final Meter meter;
+
+    private static final String CATEGORY_IMPOSSIBLE = "impossible";
+    // private static final AttributeKey<String> CATEGORY_KEY = stringKey("credit score category");
+    // private static final Attributes SCORE_ATTRIBUTES_IMPOSSIBLE =
+    //     Attributes.of(CATEGORY_KEY, CATEGORY_IMPOSSIBLE);
 
     @Autowired
     private RestTemplate restTemplate;
@@ -25,6 +36,7 @@ public class CreditCheckController {
     @Autowired
     CreditCheckController(OpenTelemetry openTelemetry) {
         tracer = openTelemetry.getTracer(CreditCheckApplication.class.getName());
+        meter = openTelemetry.getMeter(CreditCheckApplication.class.getName());
     }
 
     @GetMapping("/")
@@ -67,9 +79,11 @@ public class CreditCheckController {
         return ResponseEntity.ok(checkResult);
     }
 
+    // https://github.com/open-telemetry/opentelemetry-java-instrumentation/pull/11354
     private String getCreditCategoryFromScore(int score) {
         if (score > 850) {
-            return "impossible";
+            // createCreditCheckCounter().add(1, SCORE_ATTRIBUTES_IMPOSSIBLE);
+            return CATEGORY_IMPOSSIBLE;
         } else if (score >= 800 && score <= 850) {
             return "exceptional";
         } else if (score >= 740 && score < 800) {
@@ -84,6 +98,14 @@ public class CreditCheckController {
             return "impossible";
         }
     }
+
+    // private LongCounter createCreditCheckCounter() {
+    //     return meter
+    //         .counterBuilder("credit_checks")
+    //         .setDescription("Counts credit checks")
+    //         .setUnit("unit")
+    //         .build();
+    // }
 }
 
 
