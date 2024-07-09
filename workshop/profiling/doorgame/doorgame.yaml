@@ -28,15 +28,11 @@ spec:
                 fieldRef:
                   fieldPath: status.hostIP
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
-              value: "http://$(NODE_IP):4317"
+              value: "http://$(NODE_IP):4318"
             - name: OTEL_SERVICE_NAME
               value: "doorgame"
             - name: OTEL_PROPAGATORS
               value: "tracecontext,baggage"
-            - name: SPLUNK_METRICS_ENABLED
-              value: "true"
-            - name: SPLUNK_METRICS_ENDPOINT
-              value: "http://$(NODE_IP):9943"
             - name: SPLUNK_PROFILER_ENABLED
               value: "false"
             - name: SPLUNK_PROFILER_MEMORY_ENABLED
