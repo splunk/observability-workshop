@@ -32,10 +32,10 @@ Next, let's redeploy the Door Game application by running the following command:
 
 ``` bash
 cd workshop/profiling
-./5-redeploy-doorgame.sh
+kubectl apply -f doorgame/doorgame.yaml
 ```
 
-After a few minutes, a new pod will be deployed with the updated application settings.
+After a few seconds, a new pod will be deployed with the updated application settings.
 
 ### Confirm operation
 
