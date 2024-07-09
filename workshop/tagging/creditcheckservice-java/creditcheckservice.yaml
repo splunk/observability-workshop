@@ -25,20 +25,8 @@ spec:
         env:
         - name: PORT
           value: "8888"
-        - name: NODE_IP
-          valueFrom:
-            fieldRef:
-              fieldPath: status.hostIP
-        - name: OTEL_EXPORTER_OTLP_ENDPOINT
-          value: "http://$(NODE_IP):4318"
-        - name: OTEL_LOGS_EXPORTER
-          value: "none"
         - name: OTEL_SERVICE_NAME
           value: "creditcheckservice"
-        - name: SPLUNK_PROFILER_ENABLED
-          value: "true"
-        - name: SPLUNK_PROFILER_MEMORY_ENABLED
-          value: "true"
         resources:
           requests:
             cpu: 500m
