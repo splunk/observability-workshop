@@ -45,11 +45,6 @@ agent:
         endpoint: 0.0.0.0:55679
     service:
       pipelines:
-        metrics:
-          receivers:
-            - hostmetrics
-            - kubeletstats
-            - receiver_creator
         traces:
           processors:
             - memory_limiter
