@@ -26,6 +26,17 @@ cd workshop/tagging
 ./0-deploy-collector-with-services.sh
 ```
 
+{{% notice title="Java" style="info" %}}
+There are implementations in multiple languages available for `creditcheckservice`.
+Run
+
+```bash
+./0-deploy-collector-with-services.sh java
+```
+
+to pick Java over Python.
+{{% /notice %}}
+
 ## View your application in Splunk Observability Cloud
 
 Now that the setup is complete, let's confirm that it's sending data to **Splunk Observability Cloud**.  Note that when the application is deployed for the first time, it may take a few minutes for the data to appear.
