@@ -1,19 +1,8 @@
 ---
 title: Local Hosting with Multipass
 weight: 1
-draft: false
+description: Learn how to create a local hosting environment with Multipass - Windows/Linux/Mac(Intel)
 ---
-
-## Preparing a Multipass instance
-
-**NOTE:** Please disable any VPNs or proxies before running the commands below e.g:
-
-- ZScaler
-- Cisco AnyConnect
-
-These tools **will** prevent the instance from being created properly.
-
-## 1. Pre-requisites
 
 Install [Multipass](https://multipass.run/) and Terraform for your operating system. On a Mac (Intel), you can also install via [Homebrew](https://brew.sh/) e.g.
 
@@ -22,32 +11,29 @@ brew install multipass
 brew install terraform
 ```
 
-**NOTE:** Make sure you have mulitpass `1.12.0` or above installed!
-
-```bash
-multipass --version
-
-multipass   1.12.0+mac
-multipassd  1.12.0+mac
-```
-
-## 2. Clone workshop repository
+Clone workshop repository:
 
 ```bash
 git clone https://github.com/splunk/observability-workshop
 ```
 
-## 3. Change into multipass directory
+Change into multipass directory:
 
 ```bash
 cd observability-workshop/local-hosting/multipass
 ```
 
-## 4. Initialise Terraform
+Initialise Terraform:
+
+{{< tabs >}}
+{{% tab title="Command" %}}
 
 ```bash
 terraform init -upgrade
 ```
+
+{{< /tab >}}
+{{< tab title="Example Output" >}}
 
 ```text
 Initializing the backend...
@@ -64,9 +50,16 @@ Initializing provider plugins...
 - Installed larstobi/multipass v1.4.2 (self-signed, key ID 797707331BF3549C)
 ```
 
-## 5. Terraform variables description
+{{< /tab >}}
+{{< /tabs >}}
 
-### Required variables
+Create Terraform variables file. Variables are kept in file `terrform.tfvars` and we provide a template, `terraform.tfvars.template`, to copy and edit:
+
+```bash
+cp terraform.tfvars.template terraform.tfvars
+```
+
+The following Terraform variables are required:
 
 - `splunk_access_token`: Observability Access Token
 - `splunk_api_token`: Observability API Token
@@ -75,48 +68,29 @@ Initializing provider plugins...
 - `splunk_hec_url`: Splunk HEC URL
 - `splunk_hec_token`: Splunk HEC Token
 
-### Instance type variables
+Instance type variables:
 
 - `splunk_presetup`: Provide a preconfigured instance (OTel Collector and Online Boutique deployed with RUM enabled). The default is `false`.
-- `splunk_jdk`: Install OpenJDK and Maven on the instance. The default is `false`.
+- `splunk_diab`: Install and run Demo-in-a-Box. The default is `false`.
+- `tagging_workshop`: Install and configure the Tagging Workshop. The default is `false`.
 - `otel_demo` : Install and configure the OpenTelemetry Astronomy Shop Demo. This requires that `splunk_presetup` is set to `false`. The default is `false`
 
-### Optional advanced variables
+Optional advanced variables:
 
 - `wsversion`: Set this to `main` if working on the development of the workshop, otherwise this can be omitted.
 
-## 6. Create Terraform variables file
-
-Variables are kept in file `terrform.tfvars` and we provide a template, `terraform.tfvars.template`, to copy and edit:
-
-```bash
-cp terraform.tfvars.template terraform.tfvars
-```
-
-Edit `terraform.tfvars` and set the variables accordingly to your needs e.g.
-
-```text
-splunk_access_token = "1234xxxx5678yyyy"
-splunk_rum_token = "1234xxxx5678yyyy"
-splunk_realm = "us1"
-splunk_presetup = true
-splunk_jdk = false
-otel_demo = false
-```
-
 Run `terraform plan` to check that all configuration is OK. Once happy run `terraform apply` to create the instance.
 
-## 7. Terraform plan
-
-```bash
-terraform plan
-```
-
-## 8. Terraform apply
+{{< tabs >}}
+{{% tab title="Command" %}}
 
 ```bash
 terraform apply
 ```
+
+{{< /tab >}}
+{{% tab title="Example Output" %}}
+
 
 ``` text
 random_string.hostname: Creating...
@@ -147,11 +121,20 @@ instance_details = [
 ]
 ```
 
+{{% /tab %}}
+{{< /tabs >}}
+
 Once the instance has been successfully created (this can take several minutes), shell into it using the `name` from the output above e.g.
+
+{{< tabs >}}
+{{% tab title="Command" %}}
 
 ```bash
 multipass shell cynu
 ```
+
+{{< /tab >}}
+{{% tab title="Example Output" %}}
 
 ```text
 ███████╗██████╗ ██╗     ██╗   ██╗███╗   ██╗██╗  ██╗    ██╗
@@ -170,23 +153,22 @@ Your instance is ready!
 ubuntu@cynu ~ $
 ```
 
-## 9. Change user to splunk
+{{% /tab %}}
+{{< /tabs >}}
+
+Change user to `splunk` (the password is `Splunk123!`):
 
 ```bash
 su -l splunk
 ```
 
-When prompted for the password, enter `Splunk123!`.
-
-## 10. Validate instance
+Validate the instance:
 
 ```bash
 kubectl version --output=yaml
 ```
 
-If you get an error please check that you have disabled any VPNs or proxies and try again e.g. ZScaler, Cisco AnyConnect.
-
-To start again, delete the instance and re-run `terraform apply`:
+To delete the instance, run the following command:
 
 ```bash
 terraform destroy
