@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import io.opentelemetry.api.OpenTelemetry;
-// import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.Tracer;
+// import io.opentelemetry.api.trace.Span;
 // import io.opentelemetry.instrumentation.annotations.WithSpan;
 // import io.opentelemetry.instrumentation.annotations.SpanAttribute;
 
