@@ -8,27 +8,34 @@ Let's add some tags to our traces, so we can find out why some customers receive
 
 ## Identify Useful Tags
 
-We'll start by reviewing the code for the `credit_check` function of `creditcheckservice` (which can be found in the `/home/splunk/workshop/tagging/creditcheckservice/main.py` file):
+We'll start by reviewing the code for the `creditCheck` function of `creditcheckservice` (which can be found in the file `/home/splunk/workshop/tagging/creditcheckservice-java/src/main/java/com/example/creditcheckservice/CreditCheckController.java`):
 
-```` python
-@app.route('/check')
-def credit_check():
-    customerNum = request.args.get('customernum')
+```java
+@GetMapping("/check")
+public ResponseEntity<String> creditCheck(@RequestParam("customernum") String customerNum) {
+    // Get Credit Score
+    int creditScore;
+    try {
+        String creditScoreUrl = "http://creditprocessorservice:8899/getScore?customernum=" + customerNum;
+        creditScore = Integer.parseInt(restTemplate.getForObject(creditScoreUrl, String.class));
+    } catch (HttpClientErrorException e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error getting credit score");
+    }
 
-    # Get Credit Score
-    creditScoreReq = requests.get("http://creditprocessorservice:8899/getScore?customernum=" + customerNum)
-    creditScoreReq.raise_for_status()
-    creditScore = int(creditScoreReq.text)
+    String creditScoreCategory = getCreditCategoryFromScore(creditScore);
 
-    creditScoreCategory = getCreditCategoryFromScore(creditScore)
+    // Run Credit Check
+    String creditCheckUrl = "http://creditprocessorservice:8899/runCreditCheck?customernum=" + customerNum + "&score=" + creditScore;
+    String checkResult;
+    try {
+        checkResult = restTemplate.getForObject(creditCheckUrl, String.class);
+    } catch (HttpClientErrorException e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error running credit check");
+    }
 
-    # Run Credit Check
-    creditCheckReq = requests.get("http://creditprocessorservice:8899/runCreditCheck?customernum=" + str(customerNum) + "&score=" + str(creditScore))
-    creditCheckReq.raise_for_status()
-    checkResult = str(creditCheckReq.text)
-
-    return checkResult
-````
+    return ResponseEntity.ok(checkResult);
+}
+```
 
 We can see that this function accepts a **customer number** as an input.  This would be helpful to capture as part of a trace.  What else would be helpful?
 
@@ -38,59 +45,82 @@ Great, we've identified four tags to capture from this service that could help w
 
 ## Capture Tags
 
-We start by adding importing the trace module by adding an import statement to the top of the `creditcheckservice/main.py` file:
+We start by adding OpenTelemetry imports to the top of the `CreditCheckController.java` file:
 
-```` python
-import requests
-from flask import Flask, request
-from waitress import serve
-from opentelemetry import trace  # <--- ADDED BY WORKSHOP
+```java
 ...
-````
+import io.opentelemetry.api.trace.Span;
+import io.opentelemetry.instrumentation.annotations.WithSpan;
+import io.opentelemetry.instrumentation.annotations.SpanAttribute;
+```
 
-Next, we need to get a reference to the current span so we can add an attribute (aka tag) to it:
+Next, we use the `@WithSpan` annotation to produce a span for `creditCheck`:
 
-```` python
-def credit_check():
-    current_span = trace.get_current_span()  # <--- ADDED BY WORKSHOP
-    customerNum = request.args.get('customernum')
-    current_span.set_attribute("customer.num", customerNum)  # <--- ADDED BY WORKSHOP
+```java
+@GetMapping("/check")
+@WithSpan // ADDED
+public ResponseEntity<String> creditCheck(@RequestParam("customernum") String customerNum) {
+    ...
+```
+
+We can now get a reference to the current span and add an attribute (aka tag) to it:
+
+```java
 ...
-````
+try {
+    String creditScoreUrl = "http://creditprocessorservice:8899/getScore?customernum=" + customerNum;
+    creditScore = Integer.parseInt(restTemplate.getForObject(creditScoreUrl, String.class));
+} catch (HttpClientErrorException e) {
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error getting credit score");
+}
+Span currentSpan = Span.current(); // ADDED
+currentSpan.setAttribute("credit.score", creditScore); // ADDED
+...
+```
 
 That was pretty easy, right?  Let's capture some more, with the final result looking like this:
 
-```` python
-def credit_check():
-    current_span = trace.get_current_span()  # <--- ADDED BY WORKSHOP
-    customerNum = request.args.get('customernum')
-    current_span.set_attribute("customer.num", customerNum)  # <--- ADDED BY WORKSHOP
+```java
+@GetMapping("/check")
+@WithSpan
+public ResponseEntity<String> creditCheck(@RequestParam("customernum")
+                                          @SpanAttribute("customer.num")
+                                          String customerNum) {
+    // Get Credit Score
+    int creditScore;
+    try {
+        String creditScoreUrl = "http://creditprocessorservice:8899/getScore?customernum=" + customerNum;
+        creditScore = Integer.parseInt(restTemplate.getForObject(creditScoreUrl, String.class));
+    } catch (HttpClientErrorException e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error getting credit score");
+    }
+    Span currentSpan = Span.current();
+    currentSpan.setAttribute("credit.score", creditScore);
 
-    # Get Credit Score
-    creditScoreReq = requests.get("http://creditprocessorservice:8899/getScore?customernum=" + customerNum)
-    creditScoreReq.raise_for_status()
-    creditScore = int(creditScoreReq.text)
-    current_span.set_attribute("credit.score", creditScore)  # <--- ADDED BY WORKSHOP
+    String creditScoreCategory = getCreditCategoryFromScore(creditScore);
+    currentSpan.setAttribute("credit.score.category", creditScoreCategory);
 
-    creditScoreCategory = getCreditCategoryFromScore(creditScore)
-    current_span.set_attribute("credit.score.category", creditScoreCategory)  # <--- ADDED BY WORKSHOP
+    // Run Credit Check
+    String creditCheckUrl = "http://creditprocessorservice:8899/runCreditCheck?customernum=" + customerNum + "&score=" + creditScore;
+    String checkResult;
+    try {
+        checkResult = restTemplate.getForObject(creditCheckUrl, String.class);
+    } catch (HttpClientErrorException e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error running credit check");
+    }
+    currentSpan.setAttribute("credit.check.result", checkResult);
 
-    # Run Credit Check
-    creditCheckReq = requests.get("http://creditprocessorservice:8899/runCreditCheck?customernum=" + str(customerNum) + "&score=" + str(creditScore))
-    creditCheckReq.raise_for_status()
-    checkResult = str(creditCheckReq.text)
-    current_span.set_attribute("credit.check.result", checkResult)  # <--- ADDED BY WORKSHOP
-
-    return checkResult
-````
+    return ResponseEntity.ok(checkResult);
+}
+```
 
 ## Redeploy Service
 
 Once these changes are made, let's run the following script to rebuild the Docker image used for `creditcheckservice` and redeploy it to our Kubernetes cluster:
 
-```` bash
-./5-redeploy-creditcheckservice.sh
-````
+``` bash
+./5-redeploy-creditcheckservice.sh java
+```
 
 ## Confirm Tag is Captured Successfully
 
