@@ -8,6 +8,8 @@ spec:
       app: creditcheckservice
   template:
     metadata:
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "true"
       labels:
         app: creditcheckservice
     spec:
