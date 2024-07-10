@@ -19,6 +19,8 @@ public class CreditCheckController {
 
     private final Tracer tracer;
 
+    private static final String CATEGORY_IMPOSSIBLE = "impossible";
+
     @Autowired
     private RestTemplate restTemplate;
 
@@ -69,7 +71,7 @@ public class CreditCheckController {
 
     private String getCreditCategoryFromScore(int score) {
         if (score > 850) {
-            return "impossible";
+            return CATEGORY_IMPOSSIBLE;
         } else if (score >= 800 && score <= 850) {
             return "exceptional";
         } else if (score >= 740 && score < 800) {
