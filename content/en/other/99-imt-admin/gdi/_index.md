@@ -2,6 +2,7 @@
 title: Deploying the OpenTelemetry Collector in Kubernetes
 linkTitle: 2. Get Data In
 weight: 2
+#archetype: chapter
 time: 15 minutes
 ---
 
@@ -145,43 +146,3 @@ helm delete splunk-otel-collector
 ```
 
 {{% /notice %}}
-
----
-
-## 2. Validate metrics in the UI
-
-In the Splunk UI, in the Right Hand menu, click on **Infrastructure**.
-
-![Selecting the Kubernetes Navigator Map](../images/clustermap-nav.png)
-
-Under **Containers** click on **Kubernetes** to open the Kubernetes Navigator Cluster Map to ensure metrics are being sent in.
-
-Validate that your cluster is discovered and reported by finding your cluster (in the workshop you will see many other clusters). To find your cluster name run the following command and copy the output to your clipboard:
-
-{{% tab title="Echo Cluster Name" %}}
-
-```bash
-echo $INSTANCE-k3s-cluster
-```
-
-{{% /tab %}}
-
-Then in the UI, click on the "Cluster: - " menu just below the Splunk Logo, paste the Cluster name you just copied into the search box, click the box to select your cluster, and finally click off the menu into white space to apply the filter.
-
-![K8S Clusters Filter](../images/search-k3s-cluster.png)
-
-![Select K8S Cluster](../images/selecting-k3s-cluster.png)
-
-![Filtered K8S Cluster](../images/filtered-k3s-cluster.png)
-
-To examine the health of your node, hover over the pale blue background of your cluster, then click on the blue magnifying glass ![Magnifying Glass](../images/blue-cross.png?classes=inline&height=25px) that appears in the top left-hand corner.
-
-This will drill down to the node level.  Next, open the Metrics sidebar by clicking on the sidebar button.
-
-Once it is open, you can use the slider on the side to explore the various charts relevant to your cluster/node: CPU, Memory, Network, Events etc.
-
-![Sidebar metrics](../images/explore-metrics.png)
-
-[^1]: Access Tokens (sometimes called Org Tokens) are long-lived organization-level tokens. By default, these tokens persist for 5 years and thus are suitable for embedding into emitters that send data points over long periods, or for any long-running scripts that call the Splunk API.
-
-[^2]: A realm is a self-contained deployment of Splunk in which your Organization is hosted. Different realms have different API endpoints (e.g. the endpoint for sending data is `ingest.us1.signalfx.com` for the **`us1`** realm and `ingest.eu0.signalfx.com` for the **`eu0`** realm). This realm name is shown on your profile page in the Splunk UI. If you do not include the realm name when specifying an endpoint, Splunk will interpret it as pointing to the **`us0`** realm.
