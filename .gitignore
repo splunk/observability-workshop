@@ -57,3 +57,4 @@ workshop/demo-client/venv/*
 workshop/demo-server/venv/*
 orbstack/orbstack.sh
 orbstack/start.sh
+local-hosting/orbstack/start.sh
