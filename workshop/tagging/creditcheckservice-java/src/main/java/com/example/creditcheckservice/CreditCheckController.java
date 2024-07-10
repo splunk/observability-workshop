@@ -19,6 +19,8 @@ public class CreditCheckController {
 
     private final Tracer tracer;
 
+    private static final String CATEGORY_IMPOSSIBLE = "impossible";
+
     @Autowired
     private RestTemplate restTemplate;
 

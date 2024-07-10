@@ -96,7 +96,7 @@ public class CreditCheckController {
         } else if (score >= 300 && score < 580) {
             return "poor";
         } else {
-            return "impossible";
+            return CATEGORY_IMPOSSIBLE;
         }
     }
 
