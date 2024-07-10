@@ -15,7 +15,7 @@
 # (1) Build the credit-check-service app
 IMPL=${1:-py}
 
-docker build -t credit-check-service:latest "creditcheckservice-$IMPL"
+docker build -t credit-check-service:latest "creditcheckservice-${IMPL}"
 
 # (2) Export the image from docker
 docker save --output credit-check-service.tar credit-check-service:latest
@@ -24,7 +24,7 @@ docker save --output credit-check-service.tar credit-check-service:latest
 sudo k3s ctr images import credit-check-service.tar
 
 # (4) Deploy the service in kubernetes
-kubectl apply -f "creditcheckservice-$IMPL/creditcheckservice.yaml"
+kubectl apply -f "creditcheckservice-${IMPL}/creditcheckservice.yaml"
 
 echo ""
 echo ""
