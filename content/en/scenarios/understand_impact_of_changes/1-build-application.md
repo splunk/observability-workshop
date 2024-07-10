@@ -19,7 +19,7 @@ You will start with an EC2 instance and perform some [initial steps](#initial-st
 
 ## Initial Steps
 
-The initial setup can be completed by executing the following steps on the command line of your EC2 instance: 
+The initial setup can be completed by executing the following steps on the command line of your EC2 instance:
 
 ``` bash
 cd workshop/tagging
