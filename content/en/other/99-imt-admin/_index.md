@@ -40,7 +40,7 @@ To ensure your instance is configured correctly, we need to confirm that the req
 {{% tab title="Script" %}}
 
 ``` bash
-. ~/workshop/petclinic/scripts/check_env.sh
+. ~/workshop/scripts/check_env.sh
 ```
 
 {{% /tab %}}
