@@ -150,7 +150,7 @@ helm delete splunk-otel-collector
 
 ## 2. Validate metrics in the UI
 
-In the Splunk UI, click the **>>** bottom left and click on **Infrastructure**.
+In the Splunk UI, in the Right Hand menu, click on **Infrastructure**.
 
 ![Selecting the Kubernetes Navigator Map](../images/clustermap-nav.png)
 

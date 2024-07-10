@@ -29,7 +29,7 @@ If this isn't shown, or you see an error, log out and give it a minute or so, th
 Next, let's ensure your instance is configured correctly, we need to confirm that the required environment variables for this workshop are set correctly. In your terminal run the following command:
 
 ``` bash
-. ~/workshop/petclinic/scripts/check_env.sh
+. ~/workshop/scripts/check_env.sh
 ```
 
 In the output check the following environment variables are present and have actual valid values set:
