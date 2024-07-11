@@ -30,6 +30,7 @@ packages:
   - ansible
   - docker
   - docker-compose
+  - docker-buildx
   - gnupg2
   - jq
   - lynx
@@ -226,7 +227,7 @@ write_files:
         ./2-deploy-creditcheckservice.sh
         ./3-deploy-creditprocessorservice.sh
         ./4-deploy-load-generator.sh
-      
+
         echo ${instance_name} > /home/splunk/.helmok
       fi
 
@@ -301,7 +302,7 @@ runcmd:
 %{ if otel_demo == true ~}
   - su splunk -c 'bash /tmp/otel-demo-setup.sh'
 %{ endif ~}
-  
+
 %{ if tagging_workshop == true ~}
   - su splunk -c 'bash /tmp/tagging-workshop-setup.sh'
 %{ endif ~}
