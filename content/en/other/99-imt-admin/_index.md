@@ -15,9 +15,11 @@ The instance is pre-configured with all the software required to deploy the Splu
 
 The workshops also introduce you to dashboards, navigators editing and creating charts, creating detectors to fire alerts, Monitoring as Code and the Service Bureau[^6]
 
+![Splunk Architecture](images/architecture.png)
+
 ### Connect to your instance via SSH
 
-When you first log into your instance, you will be greeted by the Splunk Logo as shown below. If you have any issues connecting to your workshop instance then please reach out to your Instructor.
+When you first log into your instance, you will be greeted by the Splunk Logo as shown below. If you have any issues connecting to your workshop instance, please reach out to your Instructor.
 
 ``` text
 $ ssh -p 2222 splunk@<ip-address>
@@ -61,8 +63,6 @@ INSTANCE = <instance_name>
 Please make a note of the `INSTANCE` environment variable value as this will used later to filter data in **Splunk Observability Cloud**.
 
 For this workshop, **all** of the above are required. If any have values missing, please contact your Instructor.
-
-![Splunk Architecture](images/architecture.png)
 
 [^1]: [**Kubernetes**](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/) is a portable, extensible, open-source platform for managing containerized workloads and services, that facilitates both declarative configuration and automation.
 [^2]: [**OpenTelemetry Collector**](https://opentelemetry.io/) offers a vendor-agnostic implementation on how to receive, process and export telemetry data. In addition, it removes the need to run, operate and maintain multiple agents/collectors to support open-source telemetry data formats (e.g. Jaeger, Prometheus, etc.) sending to multiple open-source or commercial back-ends.
