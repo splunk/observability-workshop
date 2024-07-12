@@ -6,6 +6,8 @@ WORKDIR /app
 # Copy requirements over
 COPY requirements.txt .
 
+RUN apt-get update && apt-get install --yes gcc python3-dev
+
 ENV PIP_ROOT_USER_ACTION=ignore
 
 # Install Python dependencies

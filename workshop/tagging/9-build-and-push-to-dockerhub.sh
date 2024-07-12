@@ -12,21 +12,30 @@
 # to the desired docker hub account
 #
 
+REGISTRY=docker.io
+R_USER=achimstaebler
+PLATFORMS=linux/arm64
+#,linux/amd64
+
+TAG=${R_USER}/
+
+
 # (1) Build the creditcheckservice, creditprocessorservice, and loadgenerator images
-docker build -t derekmitchell399/credit-check-service:1.0 creditcheckservice
-docker build -t derekmitchell399/credit-check-service:1.1 creditcheckservice-with-tags
-docker build -t derekmitchell399/credit-processor-service:1.0 creditprocessorservice
-docker build -t derekmitchell399/loadgenerator:1.0 loadgenerator
+docker build --platform ${PLATFORMS} -t ${TAG}credit-check-service:1.0 creditcheckservice-java
+docker build --platform ${PLATFORMS} -t ${TAG}credit-check-service:1.1 creditcheckservice-java-with-tags
+docker build --platform ${PLATFORMS} -t ${TAG}credit-processor-service:1.0 creditprocessorservice
+docker build --platform ${PLATFORMS} -t ${TAG}loadgenerator:1.0 loadgenerator
 
 echo ""
 echo ""
 echo ""
 echo Built the creditcheckservice, creditprocessorservice, and loadgenerator images successfully
 
-docker push derekmitchell399/credit-check-service:1.0
-docker push derekmitchell399/credit-check-service:1.1
-docker push derekmitchell399/credit-processor-service:1.0
-docker push derekmitchell399/loadgenerator:1.0
+docker login ${REGISTRY} -u ${USER}
+docker push ${TAG}credit-check-service:1.0
+docker push ${TAG}credit-check-service:1.1
+docker push ${TAG}credit-processor-service:1.0
+docker push ${TAG}loadgenerator:1.0
 
 echo ""
 echo ""
