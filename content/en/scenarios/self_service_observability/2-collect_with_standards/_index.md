@@ -23,7 +23,7 @@ We'll also be running some scripts to simulate data that we want to deal with.
 
 A simplified version of the architecture (leaving aside the specifics of kubernetes) will look something like the following:
 
-![Architecture](../images/arch.png)
+![Architecture](images/arch.png)
 
 * The **App** sends metrics and traces to the **Otel Collector**
 * The **Otel Collector** also collects metrics of its own
