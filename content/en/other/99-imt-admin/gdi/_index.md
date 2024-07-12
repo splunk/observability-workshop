@@ -1,6 +1,6 @@
 ---
 title: Deploying the OpenTelemetry Collector in Kubernetes
-linkTitle: 2. Get Data In
+linkTitle: 2. Get Data in from Kubernetes
 weight: 2
 #archetype: chapter
 time: 15 minutes
@@ -11,9 +11,9 @@ time: 15 minutes
 
 ---
 
-## 1. Installation using Helm
+## 1. Installation of the OpenTelemetry Collector using Helm
 
-Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository to Helm and update:
+Install the Splunk Distribution of the OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository to Helm and update:
 
 {{< tabs >}}
 {{% tab title="Helm Repo Add" %}}
