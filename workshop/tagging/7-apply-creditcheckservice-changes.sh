@@ -9,7 +9,9 @@
 # (5) Find and delete the pod (so it is redeployed)
 #
 # (1) Build the credit-check-service app
-docker build -t credit-check-service:latest creditcheckservice-py-with-tags
+IMPL=${1:-py}
+
+docker build -t credit-check-service:latest "creditcheckservice-${IMPL}-with-tags"
 
 # (2) Export the image from docker
 docker save --output credit-check-service.tar credit-check-service:latest
@@ -18,7 +20,7 @@ docker save --output credit-check-service.tar credit-check-service:latest
 sudo k3s ctr images import credit-check-service.tar
 
 # (4) Deploy the service in kubernetes
-kubectl apply -f creditcheckservice-with-tags/creditcheckservice.yaml
+kubectl apply -f "creditcheckservice-${IMPL}-with-tags/creditcheckservice.yaml"
 
 # (5) Find and delete the pod (so it is redeployed)
 podlist=$(kubectl get pods)
@@ -26,7 +28,7 @@ re="(creditcheckservice[^[:space:]]+)"
 if [[ $podlist =~ $re ]]; then
   POD=${BASH_REMATCH[1]};
   echo "Restarting creditcheckservice pod:"
-  kubectl delete po $POD
+  kubectl delete po "$POD"
 fi
 
 echo ""
