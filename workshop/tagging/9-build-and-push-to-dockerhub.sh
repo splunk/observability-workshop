@@ -31,7 +31,7 @@ echo ""
 echo ""
 echo Built the creditcheckservice, creditprocessorservice, and loadgenerator images successfully
 
-docker login ${REGISTRY} -u ${USER}
+docker login ${REGISTRY} -u ${R_USER}
 docker push ${TAG}credit-check-service:1.0
 docker push ${TAG}credit-check-service:1.1
 docker push ${TAG}credit-processor-service:1.0
