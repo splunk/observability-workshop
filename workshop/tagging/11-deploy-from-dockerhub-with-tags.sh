@@ -5,7 +5,8 @@
 # (2) Find and delete existing pods (to force redeployment)
 #
 # (1) Deploy the services in kubernetes using images from Docker Hub
-kubectl apply -f creditcheckservice-with-tags/creditcheckservice-dockerhub.yaml
+IMPL="${1:-py}"
+kubectl apply -f "creditcheckservice-${IMPL}-with-tags/creditcheckservice-dockerhub.yaml"
 
 # (2) Find and delete existing pods (to force redeployment)
 podlist=$(kubectl get pods)
