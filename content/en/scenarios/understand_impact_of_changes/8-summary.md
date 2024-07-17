@@ -11,7 +11,7 @@ In this workshop, we learned the following:
 * How to use [**OpenTelemetry**](https://opentelemetry.io) to capture tags of interest from your application.
 * How to index tags in **Splunk Observability Cloud** and the differences between **Troubleshooting MetricSets** and **Monitoring MetricSets**.
 * How to utilize tags in **Splunk Observability Cloud** to find “unknown unknowns” using the **Tag Spotlight** and **Dynamic Service Map** features.
-* How to utilize tags for alerting and dashboards.
+* How to utilize tags for dashboards, alerting and service level objectives.
 
 Collecting tags aligned with the best practices shared in this workshop will let you get even more value from the data you’re sending to **Splunk Observability Cloud**.  Now that you’ve completed this workshop, you have the knowledge you need to start collecting tags from your own applications!
 
