@@ -1,3 +1,7 @@
+variable "aws_profile" {
+  description = "AWS profile to use for the AWS provider."
+}
+
 variable "aws_region" {
   description = "Provide the desired region (for example: us-west-2)"
 }
