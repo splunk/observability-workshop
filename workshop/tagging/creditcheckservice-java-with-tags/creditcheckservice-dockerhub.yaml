@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: creditcheckservice
+spec:
+  selector:
+    matchLabels:
+      app: creditcheckservice
+  template:
+    metadata:
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "true"
+      labels:
+        app: creditcheckservice
+    spec:
+      tolerations:
+      nodeSelector:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - name: creditcheckservice
+        image: achimstaebler/credit-check-service:1.1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8888
+        env:
+        - name: PORT
+          value: "8888"
+        - name: OTEL_SERVICE_NAME
+          value: "creditcheckservice"
+        resources:
+          requests:
+            cpu: 500m
+            memory: 190Mi
+          limits:
+            cpu: 800m
+            memory: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: creditcheckservice
+spec:
+  type: ClusterIP
+  selector:
+    app: creditcheckservice
+  ports:
+  - protocol: TCP
+    port: 8888
+    targetPort: 8888
