@@ -37,11 +37,11 @@ public ResponseEntity<String> creditCheck(@RequestParam("customernum") String cu
 }
 ```
 
-We can see that this function accepts a **customer number** as an input.  This would be helpful to capture as part of a trace.  What else would be helpful?
+We can see that this function accepts a **customer number** as an input. This would be helpful to capture as part of a trace. What else would be helpful?
 
-Well, the **credit score** returned for this customer by the `creditprocessorservice` may be interesting (we want to ensure we don't capture any PII data though).  It would also be helpful to capture the **credit score category**, and the **credit check result**.
+Well, the **credit score** returned for this customer by the `creditprocessorservice` may be interesting (we want to ensure we don't capture any PII data though). It would also be helpful to capture the **credit score category**, and the **credit check result**.
 
-Great, we've identified four tags to capture from this service that could help with our investigation.  But how do we capture these?
+Great, we've identified four tags to capture from this service that could help with our investigation. But how do we capture these?
 
 ## Capture Tags
 
