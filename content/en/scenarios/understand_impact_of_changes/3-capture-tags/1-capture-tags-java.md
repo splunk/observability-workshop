@@ -82,7 +82,7 @@ That was pretty easy, right?  Let's capture some more, with the final result loo
 
 ```java
 @GetMapping("/check")
-@WithSpan
+@WithSpan(kind=SpanKind.SERVER)
 public ResponseEntity<String> creditCheck(@RequestParam("customernum")
                                           @SpanAttribute("customer.num")
                                           String customerNum) {

@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.Tracer;
+import io.opentelemetry.api.trace.SpanKind;
 import io.opentelemetry.instrumentation.annotations.WithSpan;
 import io.opentelemetry.instrumentation.annotations.SpanAttribute;
 
@@ -40,7 +41,7 @@ public class CreditCheckController {
     }
 
     @GetMapping("/check")
-    @WithSpan
+    @WithSpan(kind=SpanKind.SERVER)
     public ResponseEntity<String> creditCheck(@SpanAttribute("customer.num") @RequestParam("customernum") String customerNum) {
         // Get Credit Score
         int creditScore;
