@@ -14,17 +14,27 @@
 
 REGISTRY=docker.io
 R_USER=achimstaebler
-PLATFORMS=linux/arm64
-#,linux/amd64
+
+arch=$(uname -m)
+
+case "$arch" in
+    "aarch64")
+        PLATFORMS="linux/arm64"
+        ;;
+    "x86_64")
+        PLATFORMS="linux/amd64"
+        ;;
+    "*")
+        ;;
+esac
 
 TAG=${R_USER}/
 
-
 # (1) Build the creditcheckservice, creditprocessorservice, and loadgenerator images
-docker build --platform ${PLATFORMS} -t ${TAG}credit-check-service:1.0 creditcheckservice-java
-docker build --platform ${PLATFORMS} -t ${TAG}credit-check-service:1.1 creditcheckservice-java-with-tags
-docker build --platform ${PLATFORMS} -t ${TAG}credit-processor-service:1.0 creditprocessorservice
-docker build --platform ${PLATFORMS} -t ${TAG}loadgenerator:1.0 loadgenerator
+docker build --platform "${PLATFORMS}" -t "${TAG}credit-check-service:1.0" creditcheckservice-java
+docker build --platform "${PLATFORMS}" -t "${TAG}credit-check-service:1.1" creditcheckservice-java-with-tags
+docker build --platform "${PLATFORMS}" -t "${TAG}credit-processor-service:1.0" creditprocessorservice
+docker build --platform "${PLATFORMS}" -t "${TAG}loadgenerator:1.0" loadgenerator
 
 echo ""
 echo ""
