@@ -19,7 +19,7 @@ Let's call the detector `Latency by Credit Score Category`.  Set the environment
 
 ![Create New Detector](../../images/create_new_detector.png)
 
-As an alert condition instead of "**Static threshold**" we want to select "**Sudden Change**" to make the example more vivid. 
+As an alert condition instead of "**Static threshold**" we want to select "**Sudden Change**" to make the example more vivid.
 
 ![Alert Condition: Sudden Change](../../images/alert_condition_suddenchange.png)
 
