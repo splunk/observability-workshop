@@ -22,7 +22,7 @@ Let's navigate to **Settings** -> **APM MetricSets**, and click the edit button 
 
 ![edit APM MetricSet](../images/edit_apm_metricset.png)
 
-Check the box beside **Also create Monitoring MetricSet** then click **Start Analysis** 
+Check the box beside **Also create Monitoring MetricSet** then click **Start Analysis**
 
 ![Monitoring MetricSet](../images/monitoring_metricset.png)
 
