@@ -7,7 +7,7 @@ time: 10 minutes
 
 We can now use the created Monitoring MetricSet together with Service Level Objectives a similar way we used them with dashboards and detectors/alerts before. For that we want to be clear about some key concepts:
 
-## Key Conzepts of Service Level Monitoring
+## Key Concepts of Service Level Monitoring
 
 ([skip](#creating-a-new-service-level-objective) if you know this)
 
