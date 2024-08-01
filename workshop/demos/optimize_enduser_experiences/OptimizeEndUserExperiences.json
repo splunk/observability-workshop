@@ -1,0 +1,1664 @@
+{
+  "chartExports": [
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "custom events in mobile and browser apps",
+        "id": "GTqTUbZA4AE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Add to Cart vs Place Order",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_metric",
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "AddToCart",
+              "label": "A",
+              "paletteIndex": 6,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "PlaceOrder",
+              "label": "B",
+              "paletteIndex": 14,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('rum.workflow.count', filter=filter('workflow.name', 'AddToCart')).mean(by=['app']).publish(label='A')\nB = data('rum.workflow.count', filter=filter('workflow.name', 'PlaceOrder')).mean(by=['app']).publish(label='B')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "RUM P75 in seconds",
+        "id": "GTqTrKnAwAM",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Network latency distribution (ms)",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "Seconds",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": "Currently, no data is available for this chart."
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "app",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 10000,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "HTTP latency in seconds from web",
+              "label": "HTTP Latency in seconds from Web",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "def weighted_duration(base, product, filter_, groupby):\n    durations     = data(base + '.time.ns.p75', filter=filter_ and filter('sf_product', product),  rollup='average').mean(by=groupby)\n\n    counts     = data(base + '.count', filter=filter_ and filter('sf_product', product),  rollup='sum').sum(by=groupby)\n\n    weight     = (durations * counts).sum(over='1m')\n\n\n    return (weight / (counts.sum(over='1m') * 1000000000))\n\nfilter_ = filter('sf_environment', '*') and filter('app', '*')\ngroupby = ['app', 'sf_environment']\nweighted_duration('rum.resource_request', 'web', filter_, groupby).publish(label='HTTP Latency in seconds from Web')\n",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "RUM",
+        "id": "GTqUEf2A4AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Browser and App Traffic",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "app",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "rum.page_view.count - Sum by app",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('rum.page_view.count', filter=filter('app', '*') and filter('sf_environment', '*')).sum(by=['app']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Synthetics: all locations",
+        "id": "GTqUmItA4AE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Browser web vitals",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "Time",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "Score",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [
+            {
+              "displayName": "E",
+              "label": "E",
+              "paletteIndex": null
+            }
+          ],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "test_id"
+              },
+              {
+                "enabled": true,
+                "property": "test_type"
+              },
+              {
+                "enabled": true,
+                "property": "test"
+              },
+              {
+                "enabled": true,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": true,
+                "property": "failed"
+              },
+              {
+                "enabled": true,
+                "property": "location_id"
+              },
+              {
+                "enabled": true,
+                "property": "page_position"
+              },
+              {
+                "enabled": true,
+                "property": "success"
+              },
+              {
+                "enabled": true,
+                "property": "sf_product"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_metric",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": true,
+            "maxDelay": 30000,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "LCP",
+              "label": "B",
+              "paletteIndex": 11,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            },
+            {
+              "displayName": "TBT",
+              "label": "C",
+              "paletteIndex": 5,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            },
+            {
+              "displayName": "CLS",
+              "label": "D",
+              "paletteIndex": 13,
+              "plotType": null,
+              "valuePrefix": "",
+              "valueSuffix": "",
+              "valueUnit": null,
+              "yAxis": 1
+            }
+          ],
+          "showEventLines": true,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "E = alerts(detector_id='GGf2a4hAwYs').publish(label='E')\nB = data('synthetics.webvitals_lcp.time.ms', filter=filter('test_type', 'browser') and filter('test', '*online-boutique*')).mean(by=['test_id', 'test', 'test_type']).publish(label='B')\nC = data('synthetics.webvitals_tbt.time.ms', filter=filter('test_type', 'browser') and filter('test', '*online-boutique*')).mean(by=['test_id', 'test', 'test_type']).publish(label='C')\nD = data('synthetics.webvitals_cls.score', filter=filter('test_type', 'browser') and filter('test', '*online-boutique*')).mean(by=['test_id', 'test', 'test_type']).publish(label='D')",
+        "relatedDetectorIds": [
+          "GGf2a4hAwYs"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Synthetics: all locations",
+        "id": "GTqUu9sAwAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "browser content size",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "size",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "Score",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "test_id"
+              },
+              {
+                "enabled": true,
+                "property": "test_type"
+              },
+              {
+                "enabled": true,
+                "property": "test"
+              },
+              {
+                "enabled": true,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": true,
+                "property": "app"
+              },
+              {
+                "enabled": true,
+                "property": "net.host.connection.type"
+              },
+              {
+                "enabled": true,
+                "property": "sf_environment"
+              },
+              {
+                "enabled": true,
+                "property": "app.version"
+              },
+              {
+                "enabled": true,
+                "property": "os.version"
+              },
+              {
+                "enabled": true,
+                "property": "http.status_code"
+              },
+              {
+                "enabled": true,
+                "property": "sf_operation"
+              },
+              {
+                "enabled": true,
+                "property": "os.name"
+              },
+              {
+                "enabled": true,
+                "property": "sf_node_type"
+              },
+              {
+                "enabled": true,
+                "property": "sf_product"
+              },
+              {
+                "enabled": true,
+                "property": "http.method"
+              },
+              {
+                "enabled": true,
+                "property": "country"
+              },
+              {
+                "enabled": true,
+                "property": "sf_ua_browsername"
+              },
+              {
+                "enabled": true,
+                "property": "sf_ua_osname"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "test",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": true,
+            "maxDelay": 30000,
+            "minimumResolution": 5000,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "mobile",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            },
+            {
+              "displayName": "desktop",
+              "label": "C",
+              "paletteIndex": 5,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            },
+            {
+              "displayName": "tablet",
+              "label": "D",
+              "paletteIndex": 13,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": true,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Binary"
+        },
+        "packageSpecifications": "",
+        "programText": "B = data('synthetics.resource_request.size.bytes', filter=filter('test_type', 'browser')).mean(by=['test_id', 'test', 'test_type']).publish(label='B')\nC = data('synthetics.resource_request.size.bytes', filter=filter('test_type', 'browser')).mean(by=['test_id', 'test', 'test_type']).publish(label='C', enable=False)\nD = data('synthetics.resource_request.size.bytes', filter=filter('test_type', 'browser')).mean(by=['test_id', 'test', 'test_type']).publish(label='D', enable=False)",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "GTqUyUBA0AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "App crashes by app version",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "ColumnChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "sf_environment"
+              },
+              {
+                "enabled": true,
+                "property": "app"
+              },
+              {
+                "enabled": true,
+                "property": "app.version"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": "Currently, no data is available for this chart."
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "app.version",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Crash count by the app version",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": true,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('rum.crash.count', filter=filter('sf_environment', '*') and filter('app.version', '*') and filter('app', '*')).sum(by=['app', 'app.version', 'sf_environment']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "p75",
+        "id": "GTqYS_uA0AI",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "All Apps: Resource Request Time",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "app",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "rum.resource_request.time.ns.p75 - Mean by app",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Nanosecond",
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('rum.resource_request.time.ns.p75').mean(by=['app']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "GTqYmIDA0Eg",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Long task time by country",
+        "options": {
+          "colorBy": "Range",
+          "colorRange": {
+            "color": "#e9008a",
+            "max": null,
+            "min": null
+          },
+          "colorScale": null,
+          "colorScale2": null,
+          "groupBy": [],
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "rum.long_task.time.ns.p75 - Mean by country",
+              "label": "A",
+              "valuePrefix": "",
+              "valueSuffix": "",
+              "valueUnit": null
+            }
+          ],
+          "refreshInterval": null,
+          "sortDirection": "Ascending",
+          "sortProperty": null,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "Heatmap",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('rum.long_task.time.ns.p75').mean(by=['country']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "GTqZKAaA0AE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Checkout workflow duration",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [
+            {
+              "displayName": "checkout workflow latency sudden change",
+              "label": "B",
+              "paletteIndex": null
+            }
+          ],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_environment",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "workflows.duration.ns.p99 - Mean by sf_environment",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": "LineChart",
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Nanosecond",
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('workflows.duration.ns.p99', filter=filter('sf_workflow', 'frontend:/cart/checkout') and filter('sf_environment', '*online-boutique*')).mean(by=['sf_environment']).publish(label='A')\nB = alerts(detector_id='GNF9W_YAwBI').publish(label='B')",
+        "relatedDetectorIds": [
+          "GNF9W_YAwBI"
+        ],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "GTqZKAaA4AA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "RUM CLS",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "rum.webvitals_cls.score.p99",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('rum.webvitals_cls.score.p99', filter=filter('app', 'online-boutique-us-store')).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "all test types",
+        "id": "GTqZKBWA4AE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "synthetic test success by location",
+        "options": {
+          "colorBy": "Scale",
+          "colorRange": null,
+          "colorScale": null,
+          "colorScale2": [
+            {
+              "gt": 100,
+              "gte": null,
+              "lt": null,
+              "lte": null,
+              "paletteIndex": 20
+            },
+            {
+              "gt": 90,
+              "gte": null,
+              "lt": null,
+              "lte": 100,
+              "paletteIndex": 19
+            },
+            {
+              "gt": 75,
+              "gte": null,
+              "lt": null,
+              "lte": 90,
+              "paletteIndex": 18
+            },
+            {
+              "gt": 50,
+              "gte": null,
+              "lt": null,
+              "lte": 75,
+              "paletteIndex": 17
+            },
+            {
+              "gt": null,
+              "gte": null,
+              "lt": null,
+              "lte": 50,
+              "paletteIndex": 16
+            }
+          ],
+          "groupBy": [
+            "location"
+          ],
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "programOptions": {
+            "disableSampling": true,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "A",
+              "label": "A",
+              "valuePrefix": "",
+              "valueSuffix": "",
+              "valueUnit": null
+            },
+            {
+              "displayName": "B",
+              "label": "B",
+              "valuePrefix": "",
+              "valueSuffix": "",
+              "valueUnit": null
+            },
+            {
+              "displayName": "C",
+              "label": "C",
+              "valuePrefix": "",
+              "valueSuffix": "",
+              "valueUnit": null
+            }
+          ],
+          "refreshInterval": null,
+          "sortDirection": "Ascending",
+          "sortProperty": "value",
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "Heatmap",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('synthetics.run.count', filter=filter('success', 'true') and filter('test', '*')).sum(by=['test', 'test_id', 'test_type', 'location']).sum(over=Args.get('ui.dashboard_window', '15m')).publish(label='A', enable=False)\nB = data('synthetics.run.count', filter=filter('test', '*')).sum(by=['test', 'test_id', 'test_type', 'location']).sum(over=Args.get('ui.dashboard_window', '15m')).publish(label='B', enable=False)\nC = (A/B*100).publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "spikes might suggest performance issues",
+        "id": "GTqZKBXAwAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "SYN transaction duration",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "transaction",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "synthetics.duration.time.ms - Mean by transaction,test_id,test_type,test",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('synthetics.duration.time.ms', filter=filter('transaction', '*') and filter('test_type', 'browser')).mean(by=['transaction', 'test_id', 'test_type', 'test']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "GTqZKBcAwAE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Service Latencies",
+        "options": {
+          "colorBy": "Scale",
+          "colorScale2": [
+            {
+              "gt": 100,
+              "gte": null,
+              "lt": null,
+              "lte": 200,
+              "paletteIndex": 16
+            },
+            {
+              "gt": null,
+              "gte": 0,
+              "lt": null,
+              "lte": 100,
+              "paletteIndex": 20
+            }
+          ],
+          "hideMissingValues": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "sf_service"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": null
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "spans.duration.ns.p90 - P90 by sf_service",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Service Latency p90",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Radial",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('spans.duration.ns.p90', filter=filter('sf_environment', '*')).percentile(pct=90, by=['sf_service']).publish(label='A', enable=False)\nB = (A/1000000).publish(label='B')",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    },
+    {
+      "chart": {
+        "autoDetectRelatedDetectorIds": [],
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "RUM",
+        "id": "GTqZKB3AwAE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "HTTP error status codes received (%)",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "hideMissingValues": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "http.status_code"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              }
+            ]
+          },
+          "maximumPrecision": 4,
+          "noDataOptions": {
+            "linkText": null,
+            "linkUrl": null,
+            "noDataMessage": "Currently, no data is available for this chart."
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "A",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "B",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "HTTP error status code breakdown",
+              "label": "HTTP Error Status Code Breakdown",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "%",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": 60000,
+          "secondaryVisualization": "None",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "rangeEnd": 0,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "C = (100*A/B).publish(label='HTTP Error Status Code Breakdown')\nA = data('rum.resource_request.count', filter=filter('sf_product', 'web') and filter('sf_environment', '*') and filter('app', '*') and filter('sf_error', 'true')).sum(by=['http.status_code']).publish(label='A', enable=False)\nB = data('rum.resource_request.count', filter=filter('sf_product', 'web') and filter('sf_environment', '*') and filter('app', '*') and filter('sf_error', 'true')).sum().publish(label='B', enable=False)",
+        "relatedDetectorIds": [],
+        "tags": []
+      }
+    }
+  ],
+  "crossLinkExports": [],
+  "dashboardExports": [
+    {
+      "dashboard": {
+        "authorizedWriters": null,
+        "chartDensity": "DEFAULT",
+        "charts": [
+          {
+            "chartId": "GTqZKAaA0AE",
+            "column": 0,
+            "height": 1,
+            "row": 0,
+            "width": 6
+          },
+          {
+            "chartId": "GTqZKBWA4AE",
+            "column": 6,
+            "height": 1,
+            "row": 0,
+            "width": 6
+          },
+          {
+            "chartId": "GTqZKBcAwAE",
+            "column": 0,
+            "height": 3,
+            "row": 1,
+            "width": 6
+          },
+          {
+            "chartId": "GTqTUbZA4AE",
+            "column": 6,
+            "height": 1,
+            "row": 1,
+            "width": 6
+          },
+          {
+            "chartId": "GTqUEf2A4AA",
+            "column": 6,
+            "height": 1,
+            "row": 2,
+            "width": 6
+          },
+          {
+            "chartId": "GTqUmItA4AE",
+            "column": 6,
+            "height": 2,
+            "row": 3,
+            "width": 6
+          },
+          {
+            "chartId": "GTqUyUBA0AA",
+            "column": 0,
+            "height": 1,
+            "row": 4,
+            "width": 3
+          },
+          {
+            "chartId": "GTqZKB3AwAE",
+            "column": 3,
+            "height": 1,
+            "row": 4,
+            "width": 3
+          },
+          {
+            "chartId": "GTqTrKnAwAM",
+            "column": 0,
+            "height": 1,
+            "row": 5,
+            "width": 6
+          },
+          {
+            "chartId": "GTqUu9sAwAA",
+            "column": 6,
+            "height": 1,
+            "row": 5,
+            "width": 6
+          },
+          {
+            "chartId": "GTqYS_uA0AI",
+            "column": 0,
+            "height": 1,
+            "row": 6,
+            "width": 6
+          },
+          {
+            "chartId": "GTqZKBXAwAA",
+            "column": 6,
+            "height": 1,
+            "row": 6,
+            "width": 6
+          },
+          {
+            "chartId": "GTqZKAaA4AA",
+            "column": 6,
+            "height": 1,
+            "row": 7,
+            "width": 6
+          },
+          {
+            "chartId": "GTqYmIDA0Eg",
+            "column": 0,
+            "height": 1,
+            "row": 7,
+            "width": 6
+          }
+        ],
+        "created": 0,
+        "creator": null,
+        "customProperties": null,
+        "description": "",
+        "discoveryOptions": null,
+        "eventOverlays": null,
+        "filters": {
+          "sources": null,
+          "time": {
+            "end": "Now",
+            "start": "-1h"
+          },
+          "variables": []
+        },
+        "groupId": "GTqUJgRA0AA",
+        "groupName": "Optimize End-User Experiences",
+        "id": "GTqTvzrA0AE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "maxDelayOverride": null,
+        "name": "Optimize UX",
+        "permissions": null,
+        "selectedEventOverlays": [
+          {
+            "eventSignal": {
+              "detectorId": null,
+              "eventSearchText": "condition_changed",
+              "eventType": "eventTimeSeries"
+            },
+            "overlayId": null,
+            "sources": []
+          }
+        ],
+        "tags": null
+      }
+    }
+  ],
+  "groupExport": {
+    "group": {
+      "authorizedWriters": null,
+      "created": 0,
+      "creator": null,
+      "dashboardConfigs": [
+        {
+          "configId": "GTqTvzrA0AI",
+          "dashboardId": "GTqTvzrA0AE",
+          "descriptionOverride": null,
+          "filtersOverride": null,
+          "nameOverride": null
+        }
+      ],
+      "dashboards": [
+        "GTqTvzrA0AE"
+      ],
+      "description": "",
+      "email": null,
+      "id": "GTqUJgRA0AA",
+      "importQualifiers": [
+        {
+          "filters": [],
+          "metric": ""
+        }
+      ],
+      "lastUpdated": 0,
+      "lastUpdatedBy": null,
+      "name": "Optimize End-User Experiences",
+      "permissions": null,
+      "teams": null
+    }
+  },
+  "hashCode": -221719530,
+  "id": "GTqUJgRA0AA",
+  "modelVersion": 1,
+  "packageType": "GROUP"
+}
