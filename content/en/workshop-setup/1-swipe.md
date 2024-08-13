@@ -22,6 +22,4 @@ hidden: false
   - Create a `.csv` file containing the e-mail addresses (one per line) **or** copy and paste e-mail addresses (one per line).
 - If Ninja Workshop is enabled, then the users will be provisioned with **Admin** access control.
 - Create a team and add users to the team.
-- Create a **SWiPE ID** for use in Splunk Show.
-
-You will need to make a copy of the above to provision the workshop instances in Splunk Show.
+- Create a **SWiPE ID** for use in Splunk Show. You will need to copy the **SWiPE ID** to provision the workshop instance(s) in [**Splunk Show**](https://show.splunk.com/home/).
