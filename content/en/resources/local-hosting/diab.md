@@ -14,14 +14,7 @@ It provides:
 To leverage this locally using multipass:
 * Follow the [local hosting for multipass](../multipass) instructions
   * In the `terraform.tfvars` file, set `splunk_diab` to `true`
-  * Set the required items
-    * `splunk_access_token`
-    * `splunk_api_token`
-    * `splunk_realm`
-  * Set other important settings
-    * `splunk_rum_token`
-    * `splunk_hec_url`
-    * `splunk_hec_token`
+  * Then set the other required and important tokens/url
   * Then run the terraform steps
 * Once the instance is up, navigate in your browser to: `http://<IP>:8083`
   * If the instance isn't up or has errors you can try changing the `wsversion` from a version number to `main`
