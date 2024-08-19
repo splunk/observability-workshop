@@ -1,5 +1,8 @@
 # Preparing a Multipass instance
 
+Click [**here**](https://splunk.github.io/observability-workshop/latest/en/resources/local-hosting/multipass/index.html) for instructions on how to prepare a Multipass instance.
+
+<!--
 **NOTE:** Please disable any VPNs or proxies before running the commands below e.g:
 
 - ZScaler
@@ -188,3 +191,4 @@ To start again, delete the instance and re-run `terraform apply`:
 ```bash
 terraform destroy
 ```
+-->
