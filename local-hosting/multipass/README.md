@@ -25,6 +25,13 @@ multipass   1.12.0+mac
 multipassd  1.12.0+mac
 ```
 
+If you plan to use your own Splunk Observability Cloud Suite Org, you may need to create a **Log Observer Connect** connection:
+Follow the instructions found in the [documentation](https://docs.splunk.com/observability/en/logs/lo-connect-landing.html) for [Splunk Cloud](https://docs.splunk.com/observability/en/logs/scp.html#logs-scp) or [Splunk Enterprize](https://docs.splunk.com/observability/en/logs/set-up-logconnect.html).
+
+Additional requirements for running your own **Log Observer Connect** connection are: 
+Create an index called **splunk4rookies-workshop**
+Make sure the Service account user has access to the **splunk4rookies-workshop** index. (You can remove all other indexes, as all log data should go to this index)
+
 ## 2. Clone workshop repository
 
 ```bash
@@ -70,7 +77,7 @@ Initializing provider plugins...
 - `splunk_hec_token`: Splunk HEC Token
 
 ### Instance type variables
-
+- `splunk_hec_url`: Make sure your HEC_URL ends in https://[url]:[port]**/services/collector/event** as the raw endpoint will not work
 - `splunk_presetup`: Provide a preconfigured instance (OTel Collector and Online Boutique deployed with RUM enabled). The default is `false`.
 - `splunk_jdk`: Install OpenJDK and Maven on the instance. The default is `false`.
 - `otel_demo` : Install and configure the OpenTelemetry Astronomy Shop Demo. This requires that `splunk_presetup` is set to `false`. The default is `false`
