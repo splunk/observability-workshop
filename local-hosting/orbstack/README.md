@@ -15,6 +15,14 @@ Install Orbstack:
 brew install orbstack
 ```
 
+If you plan to use your own Splunk Observability Cloud Suite Org, you may need to create a **Log Observer Connect** connection:
+Follow the instructions found in the [documentation](https://docs.splunk.com/observability/en/logs/lo-connect-landing.html) for [Splunk Cloud](https://docs.splunk.com/observability/en/logs/scp.html#logs-scp) or [Splunk Enterprize](https://docs.splunk.com/observability/en/logs/set-up-logconnect.html).
+
+Additional requirements for running your own **Log Observer Connect** connection are: 
+Create an index called **splunk4rookies-workshop**
+Make sure the Service account user has access to the **splunk4rookies-workshop** index. (You can remove all other indexes, as all log data should go to this index)
+
+
 ## 2. Clone workshop repository
 
 ``` bash
@@ -58,6 +66,8 @@ echo "ssh splunk@$INSTANCE@orb"
 ssh splunk@$INSTANCE@orb
 
 ```
+
+Make sure your HEC_URL ends in https://[url]:[port]**/services/collector/event** as the raw endpoint does not process the logs as required.
 
 Run the script and provide an instance name e.g.: `./start.sh my-instance`.
 
