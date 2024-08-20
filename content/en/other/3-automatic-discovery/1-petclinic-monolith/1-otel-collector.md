@@ -4,8 +4,6 @@ linkTitle: 1. OpenTelemetry Collector
 weight: 1
 ---
 
-## 1. Introduction
-
 The Splunk OpenTelemetry Collector is the core component of instrumenting infrastructure and applications.  Its role is to collect and send:
 
 * Infrastructure metrics (disk, CPU, memory, etc)
@@ -13,9 +11,7 @@ The Splunk OpenTelemetry Collector is the core component of instrumenting infras
 * Profiling data
 * Host and application logs
 
-Splunk Observability Cloud offers a wizard to walk you through the setup of the Collector on both your infrastructure and applications.
-
-{{% notice title="Delete any existing OpenTelemetry Collectors" style="warning" %}}
+{{% notice title="Remove any existing OpenTelemetry Collectors" style="warning" %}}
 If you have completed the Splunk IM workshop, please ensure you have deleted the collector running in Kubernetes before continuing. This can be done by running the following command:
 
 ``` bash
@@ -24,15 +20,13 @@ helm delete splunk-otel-collector
 
 {{% /notice %}}
 
-## 2. Confirm environment variables
-
 To ensure your instance is configured correctly, we need to confirm that the required environment variables for this workshop are set correctly. In your terminal run the following command:
 
 ``` bash
-env
+. ~/workshop/scripts/check_env.sh
 ```
 
-In the output check the following environment variables are present and have values set:
+In the output check that all of the following environment variables are present and have values set. If any are missing, please contact your instructor:
 
 ```text
 ACCESS_TOKEN
@@ -40,11 +34,8 @@ REALM
 RUM_TOKEN
 HEC_TOKEN
 HEC_URL
+INSTANCE
 ```
-
-For this workshop, **all** of the above are required. If any are missing, please contact your instructor.
-
-## 3. Install the OpenTelemetry Collector
 
 We can then go ahead and install the Collector. Some additional parameters are passed to the install script, they are:
 
@@ -61,9 +52,7 @@ curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-co
 sudo sh /tmp/splunk-otel-collector.sh --realm $REALM -- $ACCESS_TOKEN --mode agent --without-fluentd --with-instrumentation --deployment-environment $INSTANCE-petclinic --enable-profiler --enable-profiler-memory --enable-metrics --hec-token $HEC_TOKEN --hec-url $HEC_URL
 ```
 
-When prompted to restart services, select 'OK' and press enter.
-
-Next, we will patch the collector to expose the hostname of the instance and not the AWS instance ID. This will make it easier to filter data in the UI. Run the following command to patch the collector:
+Next, we will patch the collector to expose the hostname of the instance and not the AWS instance ID. This will make it easier to filter data in the UI:
 
 ``` bash
 sudo sed -i 's/gcp, ecs, ec2, azure, system/system, gcp, ecs, ec2, azure/g' /etc/otel/collector/agent_config.yaml

@@ -3,8 +3,6 @@ title: 3. Real User Monitoring
 weight: 3
 ---
 
-## 1. Enable RUM
-
 For the Real User Monitoring (RUM) instrumentation, we will add the Open Telemetry Javascript [**https://github.com/signalfx/splunk-otel-js-web**](https://github.com/signalfx/splunk-otel-js-web) snippet in the pages, we will use the wizard again **Data Management → Add Integration → RUM Instrumentation → Browser Instrumentation**.
 
 Your instructor will inform you which token to use from the dropdown, click **Next**. Enter **App name** and **Environment** using the following syntax:
@@ -58,8 +56,6 @@ Next, insert the snippet we generated above in the `<head>` section of the page.
 </script>
 ...
 ```
-
-## 2. Rebuild PetClinic
 
 With the code changes complete, we need to rebuild the application and run it again. Run the `maven` command to compile/build/package PetClinic:
 

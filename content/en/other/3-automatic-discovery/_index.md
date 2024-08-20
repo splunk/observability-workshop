@@ -1,6 +1,6 @@
 ---
-title: Auto-Instrumentation Workshops
-description: Auto-Instrumentation Workshops
+title: Automatic Discovery Workshops
+description: Automatic Discovery Workshops
 weight: 3
 ---
 
