@@ -23,6 +23,15 @@ Change into multipass directory:
 cd observability-workshop/local-hosting/multipass
 ```
 
+Log Observer Connect:
+
+If you plan to use your own Splunk Observability Cloud Suite Org and or Splunk instance, you may need to create a new **Log Observer Connect** connection:
+Follow the instructions found in the [documentation](https://docs.splunk.com/observability/en/logs/lo-connect-landing.html) for [Splunk Cloud](https://docs.splunk.com/observability/en/logs/scp.html#logs-scp) or [Splunk Enterprize](https://docs.splunk.com/observability/en/logs/set-up-logconnect.html).
+
+Additional requirements for running your own **Log Observer Connect** connection are:
+Create an index called **splunk4rookies-workshop**
+Make sure the Service account user used in the **Log observer Connect** Connection has access to the **splunk4rookies-workshop** index. (You can remove all other indexes, as all workshop log data should go to this index)
+
 Initialise Terraform:
 
 {{< tabs >}}
@@ -70,6 +79,7 @@ The following Terraform variables are required:
 
 Instance type variables:
 
+- `splunk_hec_url`:  Do not use a Raw Endpoint, but use an Event Endpoint as this will process the logs correctly
 - `splunk_presetup`: Provide a preconfigured instance (OTel Collector and Online Boutique deployed with RUM enabled). The default is `false`.
 - `splunk_diab`: Install and run Demo-in-a-Box. The default is `false`.
 - `tagging_workshop`: Install and configure the Tagging Workshop. The default is `false`.
