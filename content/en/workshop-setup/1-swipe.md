@@ -23,3 +23,9 @@ hidden: false
 - If Ninja Workshop is enabled, then the users will be provisioned with **Admin** access control.
 - Create a team and add users to the team.
 - Create a **SWiPE ID** for use in Splunk Show. You will need to copy the **SWiPE ID** to provision the workshop instance(s) in [**Splunk Show**](https://show.splunk.com/home/).
+
+{{% notice warning %}}
+
+If you have more than **40 users** in your workshop, we suggest informing the support team to ensure the trial or workshop environment is properly scaled.
+
+{{% /notice %}}
