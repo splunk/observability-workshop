@@ -1,12 +1,11 @@
 ---
-title: Debug Problems in Microservices
-linkTitle: Debug Problems in Microservices
+title: Debug Problems in Microservices - Profiling
+linkTitle: Debug Problems in Microservices - Profiling
 weight: 3
 archetype: chapter
 time: 2 minutes
 authors: ["Derek Mitchell"]
-description: This scenario helps software developers to make debugging problems in microservices easier, faster, and more cost-effective for platform engineering teams rolling out standardized tooling. 
-
+description: This scenario uses Database Query Performance and AlwaysOn Profiling to reduce the time required for engineers to debug problems in microservices. 
 
 ---
 
