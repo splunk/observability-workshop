@@ -1,11 +1,11 @@
 ---
-title: Debug Problems in Microservices - Tagging
-linkTitle: Debug Problems in Microservices - Tagging
+title: Tagging Workshop
+linkTitle: Tagging Workshop
 weight: 2
 archetype: chapter
 time: 2 minutes
 authors: ["Derek Mitchell"]
-description: This scenario uses tags to reduce the time required for SREs to isolate issues across services, so they know which team to engage to troubleshoot the issue further, and can provide context to help engineering get a head start on debugging.
+description: This workshop shows how tags can be used to reduce the time required for SREs to isolate issues across services, so they know which team to engage to troubleshoot the issue further, and can provide context to help engineering get a head start on debugging.
 
 ---
 

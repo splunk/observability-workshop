@@ -1,11 +1,11 @@
 ---
-title: Debug Problems in Microservices - Profiling
-linkTitle: Debug Problems in Microservices - Profiling
+title: Profiling Workshop
+linkTitle: Profiling Workshop
 weight: 3
 archetype: chapter
 time: 2 minutes
 authors: ["Derek Mitchell"]
-description: This scenario uses Database Query Performance and AlwaysOn Profiling to reduce the time required for engineers to debug problems in microservices. 
+description: This workshop shows how Database Query Performance and AlwaysOn Profiling can be used to reduce the time required for engineers to debug problems in microservices. 
 
 ---
 
