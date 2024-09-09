@@ -1,12 +1,11 @@
 ---
-title: Understand Impact of Changes
-linkTitle: Understand Impact of Changes
+title: Tagging Workshop
+linkTitle: Tagging Workshop
 weight: 2
 archetype: chapter
 time: 2 minutes
 authors: ["Derek Mitchell"]
-description: This scenario helps SREs identify the impact of planned and unplanned changes to their environment so that they can address issues quickly to ensure the performance of key customer transactions.
-
+description: This workshop shows how tags can be used to reduce the time required for SREs to isolate issues across services, so they know which team to engage to troubleshoot the issue further, and can provide context to help engineering get a head start on debugging.
 
 ---
 
