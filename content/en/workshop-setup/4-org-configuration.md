@@ -5,7 +5,7 @@ weight: 4
 
 ## Log Observer Connect
 
-The workshops require a Log Observer Connect configuration to be completed. This is required to be able to send logs from the workshop instances to Splunk Cloud/Enterprise.
+The workshops require a Log Observer Connect configuration to be setup. This is required to be able to send logs from the workshop instances to Splunk Cloud/Enterprise. **SWiPE** provides a simple form to configure this and is available [**here**](https://swipe.splunk.show/log_observer_connect).
 
 ![Log Observer Connect](../images/log-observer-connect.png)
 
