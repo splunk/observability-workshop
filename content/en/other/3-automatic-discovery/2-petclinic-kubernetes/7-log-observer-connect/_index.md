@@ -8,9 +8,9 @@ time: 10 minutes
 
 Up until this point, there have been no code changes, yet tracing, profiling and Database Query Performance data is being sent to Splunk Observability Cloud.
 
-Next we will add the **Splunk Log Observer** to the mix to obtain log data from the Spring PetClinic application.
+Next we will work with the **Splunk Log Observer** to the mix to obtain log data from the Spring PetClinic application.
 
-This change will update the configuration of [**logback**](https://logback.qos.ch/) in the Spring PetClinic application. This will allow the automatic discovery and configuration to add OpenTelemetry relevant information into the logs.
+The **Splunk OpenTelemetry Collector** automatically collects logs from the Spring PetClinic application and sends them to Splunk Observability Cloud using the OTLP exporter, annotating the log events with `trace_id`, `span_id` and trace flags.
 
 The **Splunk Log Observer** is then used to view the logs and with the changes to the log format the platform can automatically correlate log information with services and traces.
 

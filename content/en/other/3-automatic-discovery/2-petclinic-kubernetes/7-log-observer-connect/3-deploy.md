@@ -2,6 +2,7 @@
 title: Deploy to Kubernetes
 linkTitle: 3. Deploy to Kubernetes
 weight: 3
+hidden: true
 ---
 
 To see the changes in effect, we need to redeploy the services, First, let's change the location of the images from the external repo to the local one by running the following script:

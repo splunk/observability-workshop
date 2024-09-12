@@ -2,6 +2,7 @@
 title: Rebuild PetClinic
 linkTitle: 2. Rebuild PetClinic
 weight: 2
+hidden: true
 ---
 
 Before we can build the new services with the updated log format we need to add the OpenTelemetry dependency that handles field injection to the `pom.xml` of our services:
