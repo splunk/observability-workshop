@@ -2,6 +2,7 @@
 title: Configuring Logback
 linkTitle: 1. Configure Logback
 weight: 1
+hidden: true
 ---
 
 First, clone the PetClinic GitHub repository, as we will need this later in the workshop to compile, build, package and containerize the application:
