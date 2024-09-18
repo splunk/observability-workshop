@@ -64,6 +64,12 @@ params:
   imageEffects:
     border: false
     shadow: false
+  boxStyle:
+  - color: "#ce0070"
+    i18n: ""
+    icon: circle-info
+    identifier: splunk
+    title: Splunk
 menu:
   shortcuts:
     - name: "<i class='fab fa-fw fa-github'></i> GitHub Repository"
