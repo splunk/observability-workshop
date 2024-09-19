@@ -19,36 +19,12 @@
     {{- $Date = . | time.Format ":date_medium" }}
   {{- end }}
 {{- end }}
-{{- if .Param "authors" }}
-  <span class="badge cstyle blue badge-with-title">
-    <span class="badge-title" class="text-muted">
-      {{- if eq (len (index .Params "authors")) 1 }}
-        Author
-      {{- else if gt (len (index .Params "authors")) 1 }}
-        Authors
-      {{- end }}
-    </span><span class="badge-content">
-      {{ range .Param "authors" }}
-        {{ . }}
-      {{ end }}
-    </span>
-  </span>
-  &nbsp;
-{{- end }}
-{{- if $LastModifierDisplayName }}
-  <span class="badge cstyle tip badge-with-title">
-      <span class="badge-title" class="text-muted">
-        Last Modified By
-      </span><span class="badge-content">{{ $LastModifierDisplayName }}</span>
-  </span>
-  &nbsp;
 {{- with $Date }}
-  <span class="badge cstyle note badge-with-title">
-      <span class="badge-title" class="text-muted">
-          <i class="fa-fw fas fa-calendar"></i>
-      </span><span class="badge-content">{{ . }}</span>
-  </span>
-  {{- end }}
+<span class="badge cstyle note badge-with-title">
+    <span class="badge-title" class="text-muted">
+        Last Modified
+    </span><span class="badge-content">{{ . }}</span>
+</span>
 {{- end }}
 {{- partial "term-list.html" (dict
   "page" .

@@ -1,6 +1,6 @@
 ---
 title: Scenarios
-weight: 4
+weight: 3
 hidden: false
 description: Learn how to build observability solutions with Splunk
 ---

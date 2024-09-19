@@ -1,7 +1,7 @@
 ---
 title: Ninja Workshops
 menuPost: " <i class='fa fa-user-ninja'></i>"
-weight: 19
+weight: 2
 description: The following workshops require Ninja skills, wax on, wax off.
 ---
 
