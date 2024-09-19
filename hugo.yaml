@@ -56,20 +56,20 @@ params:
   versions:
     - version: latest
       url: https://splunk.github.io/observability-workshop/latest/
-    - version: v5.65
-      url: https://splunk.github.io/observability-workshop/v5.65
     - version: v5.66
       url: https://splunk.github.io/observability-workshop/v5.66
+    - version: v5.67
+      url: https://splunk.github.io/observability-workshop/v5.67
   url_latest_version: https://splunk.github.io/observability-workshop/
   imageEffects:
     border: false
     shadow: false
   boxStyle:
-  - color: "#ce0070"
-    i18n: ""
-    icon: circle-info
-    identifier: splunk
-    title: Splunk
+    - color: "#ce0070"
+      i18n: ""
+      icon: circle-info
+      identifier: splunk
+      title: Splunk
 menu:
   shortcuts:
     - name: "<i class='fab fa-fw fa-github'></i> GitHub Repository"
