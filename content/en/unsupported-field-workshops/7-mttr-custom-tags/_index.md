@@ -4,6 +4,7 @@ linkTitle: Improving MTTR w/ Custom Tags
 description: This workshop offers a method for automatically adding annotations to your application.
 weight: 7
 time: 45 minutes
+hidden: true
 ---
 
 This workshop will:
