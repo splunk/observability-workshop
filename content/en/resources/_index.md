@@ -1,6 +1,6 @@
 ---
 title: Resources
-weight: 20
+weight: 4
 description: Resources for learning about Splunk Observability Cloud
 ---
 

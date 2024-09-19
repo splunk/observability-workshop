@@ -1,7 +1,7 @@
 ---
 title: Splunk Synthetic Scripting
 description: Proactively find and fix performance issues across user flows, business transactions and APIs to deliver better digital experiences.
-weight: 11
+weight: 4
 authors: ["Robert Castley"]
 time: 45 minutes
 ---
