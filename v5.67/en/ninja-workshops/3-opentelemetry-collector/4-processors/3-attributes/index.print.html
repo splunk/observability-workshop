@@ -1,0 +1,205 @@
+<!doctype html><html lang=en dir=ltr itemscope itemtype=http://schema.org/Article><head><meta charset=utf-8><meta name=viewport content="height=device-height,width=device-width,initial-scale=1,minimum-scale=1"><meta name=generator content="Hugo 0.125.5"><meta name=generator content="Relearn 6.4.0+tip"><meta name=description content="Attributes Processor The attributes processor modifies attributes of a span, log, or metric. This processor also supports the ability to filter and match input data to determine if they should be included or excluded for specified actions.
+It takes a list of actions that are performed in the order specified in the config. The supported actions are:
+insert: Inserts a new attribute in input data where the key does not already exist."><meta name=author content><meta name=twitter:card content="summary"><meta name=twitter:title content="OpenTelemetry Collector Processors :: Splunk Observability Cloud Workshops"><meta name=twitter:description content="Attributes Processor The attributes processor modifies attributes of a span, log, or metric. This processor also supports the ability to filter and match input data to determine if they should be included or excluded for specified actions.
+It takes a list of actions that are performed in the order specified in the config. The supported actions are:
+insert: Inserts a new attribute in input data where the key does not already exist."><meta property="og:url" content="https://splunk.github.io/observability-workshop/v5.67/en/ninja-workshops/3-opentelemetry-collector/4-processors/3-attributes/index.html"><meta property="og:site_name" content="Splunk Observability Cloud Workshops"><meta property="og:title" content="OpenTelemetry Collector Processors :: Splunk Observability Cloud Workshops"><meta property="og:description" content="Attributes Processor The attributes processor modifies attributes of a span, log, or metric. This processor also supports the ability to filter and match input data to determine if they should be included or excluded for specified actions.
+It takes a list of actions that are performed in the order specified in the config. The supported actions are:
+insert: Inserts a new attribute in input data where the key does not already exist."><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="Ninja Workshops"><meta property="article:modified_time" content="2024-09-19T16:47:03+01:00"><meta itemprop=name content="OpenTelemetry Collector Processors :: Splunk Observability Cloud Workshops"><meta itemprop=description content="Attributes Processor The attributes processor modifies attributes of a span, log, or metric. This processor also supports the ability to filter and match input data to determine if they should be included or excluded for specified actions.
+It takes a list of actions that are performed in the order specified in the config. The supported actions are:
+insert: Inserts a new attribute in input data where the key does not already exist."><meta itemprop=dateModified content="2024-09-19T16:47:03+01:00"><meta itemprop=wordCount content="735"><title>OpenTelemetry Collector Processors :: Splunk Observability Cloud Workshops</title>
+<link href=https://splunk.github.io/observability-workshop/v5.67/en/ninja-workshops/3-opentelemetry-collector/4-processors/3-attributes/index.html rel=canonical type=text/html title="OpenTelemetry Collector Processors :: Splunk Observability Cloud Workshops"><link href=/observability-workshop/v5.67/images/favicon.ico?1726779098 rel=icon type=image/x-icon sizes=any><link href=/observability-workshop/v5.67/css/fontawesome-all.min.css?1726779098 rel=stylesheet media=print onload='this.media="all",this.onload=null'><noscript><link href=/observability-workshop/v5.67/css/fontawesome-all.min.css?1726779098 rel=stylesheet></noscript><link href=/observability-workshop/v5.67/css/nucleus.css?1726779098 rel=stylesheet><link href=/observability-workshop/v5.67/css/auto-complete.css?1726779098 rel=stylesheet media=print onload='this.media="all",this.onload=null'><noscript><link href=/observability-workshop/v5.67/css/auto-complete.css?1726779098 rel=stylesheet></noscript><link href=/observability-workshop/v5.67/css/perfect-scrollbar.min.css?1726779098 rel=stylesheet><link href=/observability-workshop/v5.67/css/fonts.css?1726779098 rel=stylesheet media=print onload='this.media="all",this.onload=null'><noscript><link href=/observability-workshop/v5.67/css/fonts.css?1726779098 rel=stylesheet></noscript><link href=/observability-workshop/v5.67/css/theme.css?1726779098 rel=stylesheet><link href=/observability-workshop/v5.67/css/theme-splunk-light.css?1726779098 rel=stylesheet id=R-variant-style><link href=/observability-workshop/v5.67/css/chroma-relearn-light.css?1726779098 rel=stylesheet id=R-variant-chroma-style><link href=/observability-workshop/v5.67/css/variant.css?1726779098 rel=stylesheet><link href=/observability-workshop/v5.67/css/print.css?1726779098 rel=stylesheet media=print><link href=/observability-workshop/v5.67/css/format-print.css?1726779098 rel=stylesheet><script src=/observability-workshop/v5.67/js/variant.js?1726779098></script><script>window.relearn=window.relearn||{},window.relearn.relBasePath="../../../../..",window.relearn.relBaseUri="../../../../../../..",window.relearn.absBaseUri="https://splunk.github.io/observability-workshop/v5.67",window.relearn.disableAnchorCopy=!1,window.relearn.disableAnchorScrolling=!1,window.index_js_url="/observability-workshop/v5.67/en/index.search.js?1726779098",window.variants&&variants.init(["splunk-light","splunk-dark"]),window.T_Copy_to_clipboard=`Copy to clipboard`,window.T_Copied_to_clipboard=`Copied to clipboard!`,window.T_Copy_link_to_clipboard=`Copy link to clipboard`,window.T_Link_copied_to_clipboard=`Copied link to clipboard!`,window.T_Reset_view=`Reset view`,window.T_View_reset=`View reset!`,window.T_No_results_found=`No results found for "{0}"`,window.T_N_results_found=`{1} results found for "{0}"`</script><script src=https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js crossorigin=anonymous></script><script src=https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web-session-recorder.js crossorigin=anonymous></script><script>SplunkRum.init({realm:"us1",rumAccessToken:"dp3FKraOS_wVhe-l7eCOsA",applicationName:"observability-workshop",deploymentEnvironment:"splunk.github.io",version:"1.0"}),SplunkSessionRecorder.init({app:"observability-workshop",realm:"us1",rumAccessToken:"dp3FKraOS_wVhe-l7eCOsA"})</script></script><style>:root{--MAIN-WIDTH-MAX:130rem;--MENU-WIDTH-L:23rem}</style></head><body class="mobile-support print disableInlineCopyToClipboard" data-url=/observability-workshop/v5.67/en/ninja-workshops/3-opentelemetry-collector/4-processors/3-attributes/index.html><div id=R-body class=default-animation><div id=R-body-overlay></div><nav id=R-topbar><div class=topbar-wrapper><div class=topbar-sidebar-divider></div><div class="topbar-area topbar-area-start" data-area=start><div class="topbar-button topbar-button-sidebar" data-content-empty=disable data-width-s=show data-width-m=hide data-width-l=hide><button class=topbar-control onclick=toggleNav() type=button title="Menu (CTRL+ALT+n)"><i class="fa-fw fas fa-bars"></i></button></div></div><ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype=http://schema.org/BreadcrumbList><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item href=/observability-workshop/v5.67/en/index.html><span itemprop=name>Splunk Observability Workshops</span></a><meta itemprop=position content="1">&nbsp;>&nbsp;</li><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item href=/observability-workshop/v5.67/en/ninja-workshops/index.html><span itemprop=name>Ninja Workshops</span></a><meta itemprop=position content="2">&nbsp;>&nbsp;</li><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item href=/observability-workshop/v5.67/en/ninja-workshops/3-opentelemetry-collector/index.html><span itemprop=name>OpenTelemetry Collector</span></a><meta itemprop=position content="3">&nbsp;>&nbsp;</li><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item href=/observability-workshop/v5.67/en/ninja-workshops/3-opentelemetry-collector/4-processors/index.html><span itemprop=name>4. Processors</span></a><meta itemprop=position content="4">&nbsp;>&nbsp;</li><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><span itemprop=name>4.3 Attributes</span><meta itemprop=position content="5"></li></ol><div class="topbar-area topbar-area-end" data-area=end><div class="topbar-button topbar-button-prev" data-content-empty=disable data-width-s=show data-width-m=show data-width-l=show><a class=topbar-control href=/observability-workshop/v5.67/en/ninja-workshops/3-opentelemetry-collector/4-processors/2-resource-detection/index.html title="OpenTelemetry Collector Processors (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></div><div class="topbar-button topbar-button-next" data-content-empty=disable data-width-s=show data-width-m=show data-width-l=show><a class=topbar-control href=/observability-workshop/v5.67/en/ninja-workshops/3-opentelemetry-collector/5-exporters/index.html title="OpenTelemetry Collector Exporters (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></div></div></div></nav><div id=R-main-overlay></div><main id=R-body-inner class="highlightable default" tabindex=-1><div class=flex-block-wrapper><article class=default><header class=headline></header><h1 id=opentelemetry-collector-processors>OpenTelemetry Collector Processors</h1><h2 id=attributes-processor>Attributes Processor</h2><p>The attributes processor modifies attributes of a span, log, or metric. This processor also supports the ability to filter and match input data to determine if they should be included or excluded for specified actions.</p><p>It takes a list of actions that are performed in the order specified in the config. The supported actions are:</p><ul><li><code>insert</code>: Inserts a new attribute in input data where the key does not already exist.</li><li><code>update</code>: Updates an attribute in input data where the key does exist.</li><li><code>upsert</code>: Performs insert or update. Inserts a new attribute in input data where the key does not already exist and updates an attribute in input data where the key does exist.</li><li><code>delete</code>: Deletes an attribute from the input data.</li><li><code>hash</code>: Hashes (SHA1) an existing attribute value.</li><li><code>extract</code>: Extracts values using a regular expression rule from the input key to target keys specified in the rule. If a target key already exists, it will be overridden.</li></ul><p>We are going to create an attributes processor to <code>insert</code> a new attribute to all our host metrics called <code>participant.name</code> with a value of your name e.g. <code>marge_simpson</code>.</p><div class="box notices cstyle warning"><div class=box-label><i class="fa-fw fas fa-exclamation-triangle"></i> Warning</div><div class=box-content><p>Ensure you replace <code>INSERT_YOUR_NAME_HERE</code> with your name and also ensure you <strong>do not</strong> use spaces in your name.</p></div></div><p>Later on in the workshop, we will use this attribute to filter our metrics in Splunk Observability Cloud.</p><div class=tab-panel data-tab-group=d49c4a28dcfd7bc216289b5b13910991><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item=attributes-processor-configuration class="tab-nav-button tab-panel-style cstyle initial active" tabindex=-1 onclick='switchTab("d49c4a28dcfd7bc216289b5b13910991","attributes-processor-configuration")'>
+<span class=tab-nav-text>Attributes Processor Configuration</span></button></div><div class=tab-content-container><div data-tab-item=attributes-processor-configuration class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class="highlight wrap-code" hl_lines=9-13><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>processors</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>batch</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>resourcedetection/system</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>detectors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>system]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>system</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>hostname_sources</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>os]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>resourcedetection/ec2</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>detectors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>ec2]</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>attributes/conf</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>actions</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span>- <span class=nt>key</span><span class=p>:</span><span class=w> </span><span class=l>participant.name</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>        </span><span class=nt>action</span><span class=p>:</span><span class=w> </span><span class=l>insert</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>        </span><span class=nt>value</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;INSERT_YOUR_NAME_HERE&#34;</span></span></span></code></pre></div></div></div></div></div><hr><div class=expand><input type=checkbox id=R-expand-c7cdf4e8bdb2bd58358d0373c6c03f8c aria-controls=R-expandcontent-c7cdf4e8bdb2bd58358d0373c6c03f8c>
+<label class=expand-label for=R-expand-c7cdf4e8bdb2bd58358d0373c6c03f8c><i class="expander-icon fa-fw fas fa-chevron-down"></i>
+<i class="expander-icon fa-fw fas fa-chevron-right"></i> <span class="badge cstyle primary badge-with-title"><span class=badge-title><i class="fa-fw fas fa-user-ninja"></i></span><span class=badge-content><strong>Ninja:</strong> Using connectors to gain internal insights</span></span></label><div id=R-expandcontent-c7cdf4e8bdb2bd58358d0373c6c03f8c class=expand-content><p>One of the most recent additions to the collector was the notion of a <a href=https://opentelemetry.io/docs/collector/configuration/#connectors rel=external target=_blank><strong>connector</strong></a>, which allows you to join the output of one pipeline to the input of another pipeline.</p><p>An example of how this is beneficial is that some services emit metrics based on the amount of datapoints being exported, the number of logs containing an error status,
+or the amount of data being sent from one deployment environment. The count connector helps address this for you out of the box.</p><h2 id=why-a-connector-instead-of-a-processor>Why a connector instead of a processor?</h2><p>A processor is limited in what additional data it can produce considering it has to pass on the data it has processed making it hard to expose additional information. Connectors do not have to emit the data they receive which means they provide an opportunity to create the insights we are after.</p><p>For example, a connector could be made to count the number of logs, metrics, and traces that do not have the deployment environment attribute.</p><p>A very simple example with the output of being able to break down data usage by deployment environment.</p><h2 id=considerations-with-connectors>Considerations with connectors</h2><p>A connector only accepts data exported from one pipeline and receiver by another pipeline, this means you may have to consider how you construct your collector config to take advantage of it.</p><h2 id=references>References</h2><ol><li><a href=https://opentelemetry.io/docs/collector/configuration/#connectors rel=external target=_blank><strong>https://opentelemetry.io/docs/collector/configuration/#connectors</strong></a></li><li><a href=https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector rel=external target=_blank><strong>https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector</strong></a></li></ol></div></div><hr><h2 id=configuration-check-in>Configuration Check-in</h2><p>That&rsquo;s processors covered, let&rsquo;s check our configuration changes.</p><hr><div class=expand><input type=checkbox id=R-expand-c84134c36eedf2a5fbd0aef832305510 aria-controls=R-expandcontent-c84134c36eedf2a5fbd0aef832305510>
+<label class=expand-label for=R-expand-c84134c36eedf2a5fbd0aef832305510><i class="expander-icon fa-fw fas fa-chevron-down"></i>
+<i class="expander-icon fa-fw fas fa-chevron-right"></i> <span class="badge cstyle default badge-with-title"><span class=badge-title><i class="fa-fw fas fa-check"></i> <strong>Check-in</strong></span><span class=badge-content style=background-color:green>Review your configuration</span></span></label><div id=R-expandcontent-c84134c36eedf2a5fbd0aef832305510 class=expand-content><div class=tab-panel data-tab-group=9f50dada94c3c3de599760865a8b04ad><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item=configyaml class="tab-nav-button tab-panel-style cstyle initial active" tabindex=-1 onclick='switchTab("9f50dada94c3c3de599760865a8b04ad","configyaml")'>
+<span class=tab-nav-text>config.yaml</span></button></div><div class=tab-content-container><div data-tab-item=configyaml class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class="highlight wrap-code" hl_lines=58-68 linenos=table><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=hl><span class=lnt>58
+</span></span><span class=hl><span class=lnt>59
+</span></span><span class=hl><span class=lnt>60
+</span></span><span class=hl><span class=lnt>61
+</span></span><span class=hl><span class=lnt>62
+</span></span><span class=hl><span class=lnt>63
+</span></span><span class=hl><span class=lnt>64
+</span></span><span class=hl><span class=lnt>65
+</span></span><span class=hl><span class=lnt>66
+</span></span><span class=hl><span class=lnt>67
+</span></span><span class=hl><span class=lnt>68
+</span></span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span><span class=lnt>86
+</span><span class=lnt>87
+</span><span class=lnt>88
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>health_check</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>13133</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pprof</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>1777</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zpages</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>55679</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>receivers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>hostmetrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>collection_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>scrapers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># CPU utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>cpu</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Disk I/O metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>disk</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># File System utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>filesystem</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Memory utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>memory</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Network interface I/O metrics &amp; TCP connection metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>network</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># CPU load metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>load</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Paging/Swap space utilization and I/O metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>paging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Process count metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Per process CPU, Memory and Disk I/O metrics. Disabled by default.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># process:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>otlp</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>opencensus</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Collect own metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>prometheus/internal</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>config</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>scrape_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>job_name</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;otel-collector&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>scrape_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>static_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>targets</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s1>&#39;0.0.0.0:8888&#39;</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>jaeger</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_binary</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_compact</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zipkin</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>processors</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>batch</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>resourcedetection/system</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>detectors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>system]</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>system</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>hostname_sources</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>os]</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>resourcedetection/ec2</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>detectors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>ec2]</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>attributes/conf</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>actions</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span>- <span class=nt>key</span><span class=p>:</span><span class=w> </span><span class=l>participant.name</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>        </span><span class=nt>action</span><span class=p>:</span><span class=w> </span><span class=l>insert</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>        </span><span class=nt>value</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;INSERT_YOUR_NAME_HERE&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>exporters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>logging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>verbosity</span><span class=p>:</span><span class=w> </span><span class=l>detailed</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pipelines</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>traces</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, jaeger, zipkin]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, prometheus]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>extensions</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>health_check, pprof, zpages]</span></span></span></code></pre></td></tr></table></div></div></div></div></div></div></div></div><hr><footer class=footline><span class="badge cstyle note badge-with-title"><span class=badge-title class=text-muted>Last Modified
+</span><span class=badge-content>Sep 19, 2024</span></span></footer></article></div></main></div><script src=/observability-workshop/v5.67/js/clipboard.min.js?1726779098 defer></script><script src=/observability-workshop/v5.67/js/perfect-scrollbar.min.js?1726779098 defer></script><script src=/observability-workshop/v5.67/js/theme.js?1726779098 defer></script></body></html>
