@@ -60,6 +60,20 @@ variable "splunk_realm" {
   nullable    = false
 }
 
+variable "splunk_ingest_url" {
+  description = "Splunk Ingest URL for Observability data"
+  type        = string
+  nullable    = false
+  default = ""
+}
+
+variable "splunk_api_url" {
+  description = "Splunk API URL for Observabiltiy APIs"
+  type        = string
+  nullable    = false
+  default = ""
+}
+
 variable "splunk_hec_token" {
   description = "Splunk Cloud HEC Token"
   type        = string
@@ -70,6 +84,13 @@ variable "splunk_hec_url" {
   description = "Splunk Cloud HEC URL"
   type        = string
   nullable    = false
+}
+
+variable "splunk_index" {
+  description = "Splunk Enterprise/Cloud index to send logs to"
+  type        = string
+  nullable    = false
+  default     = "splunk4rookies-workshop"
 }
 
 variable "splunk_presetup" {

@@ -5,12 +5,15 @@
   pre_tasks:
     - name: Set the required variables
       set_fact:
+        ingest_url: "{{ lookup('env','INGEST_URL') }}"
+        api_url: "{{ lookup('env','API_URL') }}"
         ingest_token: "{{ lookup('env','ACCESS_TOKEN') }}"
         rum_token: "{{ lookup('env','RUM_TOKEN') }}"
         realm: "{{ lookup('env','REALM') }}"
         instance: "{{ lookup('env','INSTANCE') }}"
         hec_url: "{{ lookup('env','HEC_URL') }}"
         hec_token: "{{ lookup('env','HEC_TOKEN') }}"
+        splunk_index: "{{ lookup('env','SPLUNK_INDEX') }}"
 
   tasks:
     - name: Configure Demo-in-a-Box
@@ -64,9 +67,11 @@
             type: Opaque
             stringData:
               app: {{ instance }}-store
-              env: {{ instance}}
+              env: {{ instance }}
               deployment: "deployment.environment={{ instance }}"
               access_token: {{ ingest_token }}
+              ingest_url: {{ ingest_url }}
+              api_url: {{ api_url }}
               realm: {{ realm }}
               rum_token: {{ rum_token }}
               hec_token: {{ hec_token }}
@@ -176,9 +181,19 @@
         uri:
           url: "http://localhost:8082/saveConfig"
           method: POST
-          body: "realm={{ realm }}&ingest_token={{ ingest_token }}&rum_token={{ rum_token }}&hec_url={{ hec_url}}&hec_token={{ hec_token }}&splunk_index=splunk4rookies-workshop&instance={{ instance }}"
           status_code: [ 200, 201 ]
           timeout: 30
+          body_format: form-urlencoded
+          body:
+            ingest_url: "{{ ingest_url }}"
+            api_url: "{{ api_url }}"
+            realm: "{{ realm }}"
+            ingest_token: "{{ ingest_token }}"
+            rum_token: "{{ rum_token }}"
+            hec_url: "{{ hec_url}}"
+            hec_token: "{{ hec_token }}"
+            splunk_index: "{{ splunk_index }}"
+            instance: "{{ instance }}"
         register: splunk_api
         until: splunk_api.status == 200
         retries: 10

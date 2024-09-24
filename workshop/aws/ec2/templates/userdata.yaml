@@ -81,13 +81,15 @@ write_files:
   - path: /etc/skel/.profile
     append: true
     content: |
-
+      export INGEST_URL=${ingest_url}
+      export API_URL=${api_url}
       export REALM=${realm}
       export ACCESS_TOKEN=${access_token}
       export API_TOKEN=${api_token}
       export RUM_TOKEN=${rum_token}
       export HEC_TOKEN=${hec_token}
       export HEC_URL=${hec_url}
+      export SPLUNK_INDEX=${splunk_index}
 
       echo "Waiting for cloud-init status..."
       if ! /usr/bin/timeout 180 grep -q 'Cloud-init .*finished at' <(sudo tail -f /var/log/cloud-init-output.log); then
@@ -118,22 +120,28 @@ write_files:
         app: ${instance_name}-store
         env: ${instance_name}-workshop
         deployment: "deployment.environment=${instance_name}-workshop"
+        ingest_url: ${ingest_url}
+        api_url: ${api_url}
         realm: ${realm}
         access_token: ${access_token}
         api_token: ${api_token}
         rum_token: ${rum_token}
         hec_token: ${hec_token}
         hec_url: ${hec_url}
+        splunk_index: ${splunk_index}
         url: frontend-external
 
   - path: /tmp/diab-setup.sh
     permissions: '0755'
     content: |
+      export INGEST_URL=${ingest_url}
+      export API_URL=${api_url}
       export RUM_TOKEN=${rum_token}
       export REALM=${realm}
       export ACCESS_TOKEN=${access_token}
       export HEC_TOKEN=${hec_token}
       export HEC_URL=${hec_url}
+      export SPLUNK_INDEX=${splunk_index}
       export INSTANCE="${instance_name}"
       ansible-playbook /home/splunk/diab-v3.yml
 
@@ -141,12 +149,15 @@ write_files:
     permissions: '0755'
     content: |
       # Export environment variables
+      export INGEST_URL=${ingest_url}
+      export API_URL=${api_url}
       export RUM_TOKEN=${rum_token}
       export REALM=${realm}
       export ACCESS_TOKEN=${access_token}
       export API_TOKEN=${api_token}
       export HEC_TOKEN=${hec_token}
       export HEC_URL=${hec_url}
+      export SPLUNK_INDEX=${splunk_index}
       export INSTANCE="${instance_name}"
 
       # Deploy Online Boutique
@@ -160,6 +171,8 @@ write_files:
         helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
         helm repo update
         helm install splunk-otel-collector \
+        --set="splunkObservability.ingestUrl=${ingest_url}" \
+        --set="splunkObservability.apiUrl=${api_url}" \
         --set="splunkObservability.realm=${realm}" \
         --set="splunkObservability.accessToken=${access_token}" \
         --set="clusterName=${instance_name}-k3s-cluster" \
@@ -169,7 +182,7 @@ write_files:
         --set="environment=${instance_name}-workshop" \
         --set="splunkPlatform.endpoint=${hec_url}" \
         --set="splunkPlatform.token=${hec_token}" \
-        --set="splunkPlatform.index=splunk4rookies-workshop" \
+        --set="splunkPlatform.index=${splunk_index}" \
         splunk-otel-collector-chart/splunk-otel-collector \
         -f /home/splunk/workshop/k3s/otel-collector.yaml
 
@@ -179,17 +192,22 @@ write_files:
   - path: /tmp/otel-demo-setup.sh
     permissions: '0755'
     content: |
+      export INGEST_URL=${ingest_url}
+      export API_URL=${api_url}
       export RUM_TOKEN=${rum_token}
       export REALM=${realm}
       export ACCESS_TOKEN=${access_token}
       export API_TOKEN=${api_token}
       export HEC_TOKEN=${hec_token}
       export HEC_URL=${hec_url}
+      export SPLUNK_INDEX=${splunk_index}
       export INSTANCE="${instance_name}"
       if [ ! -f /home/splunk/.helmok ]; then
         helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
         helm repo update
         envsubst '$REALM' < /home/splunk/workshop/oteldemo/otel-demo-collector.yaml | helm install splunk-otel-collector \
+        --set="splunkObservability.ingestUrl=${ingest_url}" \
+        --set="splunkObservability.apiUrl=${api_url}" \
         --set="splunkObservability.realm=${realm}" \
         --set="splunkObservability.accessToken=${access_token}" \
         --set="clusterName=${instance_name}-k3s-cluster" \
@@ -199,7 +217,7 @@ write_files:
         --set="environment=${instance_name}-workshop" \
         --set="splunkPlatform.endpoint=${hec_url}" \
         --set="splunkPlatform.token=${hec_token}" \
-        --set="splunkPlatform.index=splunk4rookies-workshop" \
+        --set="splunkPlatform.index=${splunk_index}" \
         splunk-otel-collector-chart/splunk-otel-collector -f -
         helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
         helm install opentelemetry-demo open-telemetry/opentelemetry-demo --values /home/splunk/workshop/oteldemo/otel-demo.yaml
@@ -209,6 +227,8 @@ write_files:
   - path: /tmp/tagging-workshop-setup.sh
     permissions: '0755'
     content: |
+      export INGEST_URL=${ingest_url}
+      export API_URL=${api_url}
       export REALM=${realm}
       export ACCESS_TOKEN=${access_token}
       export API_TOKEN=${api_token}
@@ -217,6 +237,8 @@ write_files:
         helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
         helm repo update
         helm install splunk-otel-collector \
+        --set="splunkObservability.ingestUrl=${ingest_url}" \
+        --set="splunkObservability.apiUrl=${api_url}" \
         --set="splunkObservability.realm=${realm}" \
         --set="splunkObservability.accessToken=${access_token}" \
         --set="clusterName=${instance_name}-k3s-cluster" \

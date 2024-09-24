@@ -167,17 +167,20 @@ locals {
   template_vars = {
     access_token      = var.splunk_access_token
     api_token         = var.splunk_api_token
-    rum_token         = var.splunk_rum_token
-    realm             = var.splunk_realm
+    api_url           = var.splunk_api_url != "" ? var.splunk_api_url : "https://api.${var.splunk_realm}.signalfx.com"
+    diab              = var.splunk_diab
     hec_token         = var.splunk_hec_token
     hec_url           = var.splunk_hec_url
-    presetup          = var.splunk_presetup
-    diab              = var.splunk_diab
+    ingest_url        = var.splunk_ingest_url != "" ? var.splunk_ingest_url : "https://ingest.${var.splunk_realm}.signalfx.com"
+    instance_password = random_string.password.result
     otel_demo         = var.otel_demo
+    presetup          = var.splunk_presetup
+    pub_key           = var.pub_key
+    realm             = var.splunk_realm
+    rum_token         = var.splunk_rum_token
+    splunk_index      = var.splunk_index
     tagging_workshop  = var.tagging_workshop
     wsversion         = var.wsversion
-    instance_password = random_string.password.result
-    pub_key           = var.pub_key
   }
 }
 
