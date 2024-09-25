@@ -9,6 +9,7 @@ splunk_rum_token = ""
 # Optional - Splunk Cloud
 splunk_hec_url = ""
 splunk_hec_token = ""
+splunk_index = ""
 
 # Optional
 splunk_presetup = false
@@ -20,4 +21,4 @@ pub_key = ""
 # Advanced
 wsversion = "5.67"
 user_data_tpl = "userdata.yaml"
-
+architecture = "amd64" # amd64 or arm64

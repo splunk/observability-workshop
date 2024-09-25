@@ -47,6 +47,7 @@ write_files:
       export RUM_TOKEN=${rum_token}
       export HEC_TOKEN=${hec_token}
       export HEC_URL=${hec_url}
+      export INDEX=${index}
 
       echo "Waiting for cloud-init status..."
       if ! /usr/bin/timeout 180 grep -q 'Cloud-init .*finished at' <(sudo tail -f /var/log/cloud-init-output.log); then
@@ -83,6 +84,7 @@ write_files:
         rum_token: ${rum_token}
         hec_token: ${hec_token}
         hec_url: ${hec_url}
+        index: ${index}
         url: frontend-external
 
   - path: /tmp/diab-setup.sh
@@ -93,6 +95,7 @@ write_files:
       export ACCESS_TOKEN=${access_token}
       export HEC_TOKEN=${hec_token}
       export HEC_URL=${hec_url}
+      export INDEX=${index}
       export INSTANCE="${instance_name}"
       ansible-playbook /home/splunk/diab-v3.yml
 
@@ -106,6 +109,7 @@ write_files:
       export API_TOKEN=${api_token}
       export HEC_TOKEN=${hec_token}
       export HEC_URL=${hec_url}
+      export INDEX=${index}
       export INSTANCE="${instance_name}"
 
       # Deploy Online Boutique
@@ -128,7 +132,7 @@ write_files:
         --set="environment=${instance_name}-workshop" \
         --set="splunkPlatform.endpoint=${hec_url}" \
         --set="splunkPlatform.token=${hec_token}" \
-        --set="splunkPlatform.index=splunk4rookies-workshop" \
+        --set="splunkPlatform.index=${index}" \
         splunk-otel-collector-chart/splunk-otel-collector \
         -f /home/splunk/workshop/k3s/otel-collector.yaml
 
@@ -144,6 +148,7 @@ write_files:
       export API_TOKEN=${api_token}
       export HEC_TOKEN=${hec_token}
       export HEC_URL=${hec_url}
+      export INDEX=${index}
       export INSTANCE="${instance_name}"
       if [ ! -f /home/splunk/.helmok ]; then
         helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
@@ -158,7 +163,7 @@ write_files:
         --set="environment=${instance_name}-workshop" \
         --set="splunkPlatform.endpoint=${hec_url}" \
         --set="splunkPlatform.token=${hec_token}" \
-        --set="splunkPlatform.index=splunk4rookies-workshop" \
+        --set="splunkPlatform.index=${index}" \
         splunk-otel-collector-chart/splunk-otel-collector -f -
         helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
         helm install opentelemetry-demo open-telemetry/opentelemetry-demo --values /home/splunk/workshop/oteldemo/otel-demo.yaml
@@ -205,13 +210,13 @@ runcmd:
 
   # Install K9s (Kubernetes UI)
   - K9S_VERSION=$(curl -s https://api.github.com/repos/derailed/k9s/releases/latest | jq -r '.tag_name')
-  - curl -S -OL https://github.com/derailed/k9s/releases/download/"$K9S_VERSION"/k9s_Linux_amd64.tar.gz
-  - tar xfz k9s_Linux_amd64.tar.gz -C /usr/local/bin/ k9s
+  - curl -S -OL https://github.com/derailed/k9s/releases/download/"$K9S_VERSION"/k9s_Linux_${architecture}.tar.gz
+  - tar xfz k9s_Linux_${architecture}.tar.gz -C /usr/local/bin/ k9s
 
   # Install Terraform
   - TF_VERSION=$(curl -s https://api.github.com/repos/hashicorp/terraform/releases/latest | jq -r '.tag_name | ltrimstr("v")')
-  - curl -S -OL https://releases.hashicorp.com/terraform/"$TF_VERSION"/terraform_"$TF_VERSION"_linux_amd64.zip
-  - unzip -qq terraform_"$TF_VERSION"_linux_amd64.zip -d /usr/local/bin
+  - curl -S -OL https://releases.hashicorp.com/terraform/"$TF_VERSION"/terraform_"$TF_VERSION"_linux_${architecture}.zip
+  - unzip -qq terraform_"$TF_VERSION"_linux_${architecture}.zip -d /usr/local/bin
 
   # Download Workshop
   - export WSVERSION=${wsversion}
@@ -259,5 +264,3 @@ runcmd:
 %{ if tagging_workshop == true ~}
   - su splunk -c 'bash /tmp/tagging-workshop-setup.sh'
 %{ endif ~}
-
-
