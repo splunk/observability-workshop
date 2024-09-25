@@ -45,6 +45,12 @@ variable "splunk_hec_url" {
   nullable    = false
 }
 
+variable "splunk_index" {
+  description = "Splunk Cloud Index"
+  type        = string
+  default     = "splunk4rookies-workshop"
+}
+
 variable "splunk_presetup" {
   description = "Pre configure the instance? (true/false)"
   type        = bool
@@ -81,6 +87,12 @@ variable "user_data_tpl" {
   default     = "userdata.yaml"
 }
 
+variable "architecture" {
+  description = "Architecture of the instance (amd64 or arm64)"
+  type        = string
+  default     = "amd64"
+}
+
 variable "instance_password" {
   default = "Splunk123!"
 }
@@ -107,12 +119,14 @@ locals {
     realm             = var.splunk_realm
     hec_token         = var.splunk_hec_token
     hec_url           = var.splunk_hec_url
+    index             = var.splunk_index
     presetup          = var.splunk_presetup
     otel_demo         = var.otel_demo
     tagging_workshop  = var.tagging_workshop
     diab              = var.splunk_diab
     instance_name     = "${random_string.hostname.result}"
     wsversion         = var.wsversion
+    architecture      = var.architecture
     instance_password = var.instance_password
     pub_key           = var.pub_key
   }

@@ -29,8 +29,9 @@ If you plan to use your own Splunk Observability Cloud Suite Org and or Splunk i
 Follow the instructions found in the [documentation](https://docs.splunk.com/observability/en/logs/lo-connect-landing.html) for [Splunk Cloud](https://docs.splunk.com/observability/en/logs/scp.html#logs-scp) or [Splunk Enterprize](https://docs.splunk.com/observability/en/logs/set-up-logconnect.html).
 
 Additional requirements for running your own **Log Observer Connect** connection are:
-Create an index called **splunk4rookies-workshop**
-Make sure the Service account user used in the **Log observer Connect** Connection has access to the **splunk4rookies-workshop** index. (You can remove all other indexes, as all workshop log data should go to this index)
+
+- Create an index called **splunk4rookies-workshop**
+- Make sure the Service account user used in the **Log observer Connect** connection has access to the **splunk4rookies-workshop** index (you can remove all other indexes, as all workshop log data should go to this index).
 
 Initialise Terraform:
 
@@ -70,24 +71,25 @@ cp terraform.tfvars.template terraform.tfvars
 
 The following Terraform variables are required:
 
-- `splunk_access_token`: Observability Access Token
-- `splunk_api_token`: Observability API Token
-- `splunk_rum_token`: Observability RUM Token
-- `splunk_realm`: Observability Realm e.g. `eu0`
-- `splunk_hec_url`: Splunk HEC URL
+- `splunk_access_token`: Observability Cloud Access Token
+- `splunk_api_token`: Observability Cloud API Token
+- `splunk_rum_token`: Observability Cloud RUM Token
+- `splunk_realm`: Observability Cloud Realm e.g. `eu0`
+- `splunk_hec_url`: Splunk HEC URL. Do not use a `raw` endpoint, use the `event` endpoint so logs process correctly.
 - `splunk_hec_token`: Splunk HEC Token
+- `splunk_index`: Splunk Index to send logs to. Defaults to `splunk4rookies-workshop`.
 
 Instance type variables:
 
-- `splunk_hec_url`:  Do not use a Raw Endpoint, but use an Event Endpoint as this will process the logs correctly
 - `splunk_presetup`: Provide a preconfigured instance (OTel Collector and Online Boutique deployed with RUM enabled). The default is `false`.
 - `splunk_diab`: Install and run Demo-in-a-Box. The default is `false`.
 - `tagging_workshop`: Install and configure the Tagging Workshop. The default is `false`.
-- `otel_demo` : Install and configure the OpenTelemetry Astronomy Shop Demo. This requires that `splunk_presetup` is set to `false`. The default is `false`
+- `otel_demo` : Install and configure the OpenTelemetry Astronomy Shop Demo. This requires that `splunk_presetup` is set to `false`. The default is `false`.
 
 Optional advanced variables:
 
 - `wsversion`: Set this to `main` if working on the development of the workshop, otherwise this can be omitted.
+- `architecture`: Set this to `arm64` if you are running on Apple Silicon. Defaults to `amd64`.
 
 Run `terraform plan` to check that all configuration is OK. Once happy run `terraform apply` to create the instance.
 
