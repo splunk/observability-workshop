@@ -63,7 +63,7 @@ Initializing provider plugins...
 {{< /tab >}}
 {{< /tabs >}}
 
-Create Terraform variables file. Variables are kept in file `terrform.tfvars` and we provide a template, `terraform.tfvars.template`, to copy and edit:
+Create Terraform variables file. Variables are kept in file `terrform.tfvars` and a template is provided, `terraform.tfvars.template`, to copy and edit:
 
 ```bash
 cp terraform.tfvars.template terraform.tfvars
@@ -103,7 +103,6 @@ terraform apply
 {{< /tab >}}
 {{% tab title="Example Output" %}}
 
-
 ``` text
 random_string.hostname: Creating...
 random_string.hostname: Creation complete after 0s [id=cynu]
@@ -136,43 +135,27 @@ instance_details = [
 {{% /tab %}}
 {{< /tabs >}}
 
-Once the instance has been successfully created (this can take several minutes), shell into it using the `name` from the output above e.g.
+Once the instance has been successfully created (this can take several minutes), `exec` into it using the `name` from the output above. The password for Multipass instance is `Splunk123!`.
 
 {{< tabs >}}
 {{% tab title="Command" %}}
 
 ```bash
-multipass shell cynu
+multipass exec cynu -- su -l splunk
 ```
 
 {{< /tab >}}
 {{% tab title="Example Output" %}}
 
 ```text
-███████╗██████╗ ██╗     ██╗   ██╗███╗   ██╗██╗  ██╗    ██╗
-██╔════╝██╔══██╗██║     ██║   ██║████╗  ██║██║ ██╔╝    ╚██╗
-███████╗██████╔╝██║     ██║   ██║██╔██╗ ██║█████╔╝      ╚██╗
-╚════██║██╔═══╝ ██║     ██║   ██║██║╚██╗██║██╔═██╗      ██╔╝
-███████║██║     ███████╗╚██████╔╝██║ ╚████║██║  ██╗    ██╔╝
-╚══════╝╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝    ╚═╝
-
-To run a command as administrator (user "root"), use "sudo <command>".
-See "man sudo_root" for details
-
+$ multipass exec kdhl -- su -l splunk
+Password:
 Waiting for cloud-init status...
 Your instance is ready!
-
-ubuntu@cynu ~ $
 ```
 
 {{% /tab %}}
 {{< /tabs >}}
-
-Change user to `splunk` (the password is `Splunk123!`):
-
-```bash
-su -l splunk
-```
 
 Validate the instance:
 
@@ -180,7 +163,7 @@ Validate the instance:
 kubectl version --output=yaml
 ```
 
-To delete the instance, run the following command:
+To delete the instance, first make sure you have exited from instance and then run the following command:
 
 ```bash
 terraform destroy
