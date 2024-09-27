@@ -4,8 +4,6 @@ linkTitle: 1. Verify RUM Data
 weight: 1
 ---
 
-Once RUM has been configured and you have added a visit for a pet, you can log in to **Splunk Observability Cloud** and verify that RUM traces are flowing in.
-
 Lets start a quick high level tour into RUM by clicking **RUM** ![RUM](../../images/rum-icon.png?classes=inline&height=25px) in the left-hand menu. Then change the **Environment** filter **(1)** to the name of your workshop instance from the dropdown box, it will be **`<INSTANCE>-workshop`** **(1)** (where **`INSTANCE`** is the value from the shell script you ran earlier). Make sure it is the only one selected.
 
 Then change the **App** **(2)** dropdown box to the name of your app, it will be **`<INSTANCE>-store`**
@@ -22,4 +20,4 @@ To continue, click on the blue link (with your workshop name) to get to the deta
 Normally you have only one line inside the first chart,  Click on the link that relates to your Petclinic shop, 
 http://198.19.249.62 in our example:
 
-This will bring us to the Tag Spotlight page:
+This will bring us to the Tag Spotlight page.
