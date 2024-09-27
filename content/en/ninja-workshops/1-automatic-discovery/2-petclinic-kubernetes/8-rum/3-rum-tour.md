@@ -1,7 +1,7 @@
 ---
 title: RUM trace Waterfall view & linking to APM 
-linkTitle: 2. RUM Waterfall
-weight: 4
+linkTitle: 3. RUM Waterfall
+weight: 3
 ---
 
 We are now looking at the RUM Trace waterfall, this will tell you what happened during the session on the user device as they visited the page of our petclinic application.

@@ -155,7 +155,7 @@ spec:
             - java
             - org.springframework.boot.loader.JarLauncher
           name: api-gateway
-          image: quay.io/phagen/spring-petclinic-api-gateway:0.1  #Multi-arch
+          image: quay.io/phagen/spring-petclinic-api-gateway:0.0.7
           #image: localhost:9999/spring-petclinic-api-gateway:local
           imagePullPolicy: Always
           ports:
