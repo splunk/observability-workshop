@@ -4,7 +4,7 @@ linkTitle: 2. Deploy PetClinic Application
 weight: 3
 ---
 
-The first deployment of our application will be using prebuilt containers to give us the base scenario: a regular Java microservices-based application running in Kubernetes that we want to start observing. So let's deploy our application:
+The first deployment of the application will be using prebuilt containers to give the base scenario: a regular Java microservices-based application running in Kubernetes that we want to start observing. So let's deploy the application:
 
 {{< tabs >}}
 {{% tab title="kubectl apply" %}}
@@ -42,7 +42,7 @@ configmap/scriptfile created
 {{% /tab %}}
 {{< /tabs >}}
 
-At this point, we can verify the deployment by checking if the Pods are running. The containers need to be downloaded and started so this may take a couple of minutes.
+At this point, we can verify the deployment by checking that the Pods are running. The containers need to be downloaded and started so this may take a couple of minutes.
 
 {{< tabs >}}
 {{% tab title="kubectl get pods" %}}
@@ -76,9 +76,25 @@ discovery-server-554b45cfb-bqhgt                                1/1     Running 
 {{% /tab %}}
 {{< /tabs >}}
 
-Make sure the output of `kubectl get pods` matches the output as shown above. Ensure all the services are shown as **Running** (or use `k9s` to contuuously monitor the status).
+Make sure the output of `kubectl get pods` matches the output as shown above. Ensure all the services are shown as **Running** (or use `k9s` to continuously monitor the status).
 
-Once they are running, the application will take a few minutes to fully start up, create the database and synchronize all the services, so let's use the time to check the local private repository is active.
+To test the application you need to obtain the public IP address of the instance you are running on. You can do this by running the following command:
+
+``` bash
+curl http://ifconfig.me
+
+```
+
+You can validate if the application is running by visiting **http://<IP_ADDRESS>:81** (replace **<IP_ADDRESS>** with the IP address you obtained above). You should see the PetClinic application running.
+
+![Pet shop](../../images/petclinic.png)
+
+Make sure the application is working correctly by visiting the **All Owners** **(1)** and **Veterinarians** **(2)** tabs, you should get a list of names in each case.
+
+![owners](../../images/petclinic-owners.png)
+
+<!--
+Once they are all running, the application will take a few minutes to fully start up, create the database and synchronize all the services, so let's use the time to check the local private repository is active.
 
 #### Verify the local Private Registry
 
@@ -104,3 +120,4 @@ curl -X GET http://localhost:9999/v2/_catalog
 
 {{% /tab %}}
 {{< /tabs >}}
+-->

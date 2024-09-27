@@ -2,6 +2,7 @@
 title: Verify the PetClinic Website
 linkTitle: 1. Verify PetClinic Website
 weight: 1
+hidden: true
 ---
 
 To test the application you need to obtain the public IP address of the instance you are running on. You can do this by running the following command:
