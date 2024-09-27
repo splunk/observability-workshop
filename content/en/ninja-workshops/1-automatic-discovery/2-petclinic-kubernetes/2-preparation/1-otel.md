@@ -51,10 +51,7 @@ helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
 --set="clusterName=$INSTANCE-k3s-cluster" \
---set="splunkObservability.logsEnabled=false" \
---set="logsEngine=otel" \
 --set="splunkObservability.profilingEnabled=true" \
---set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
 --set="environment=$INSTANCE-workshop" \
 --set="splunkPlatform.endpoint=$HEC_URL" \
 --set="splunkPlatform.token=$HEC_TOKEN" \
@@ -136,11 +133,10 @@ kubectl logs -l app=splunk-otel-collector -f --container otel-collector
 {{% /tab %}}
 {{< /tabs >}}
 
-{{% notice title="Deleting a failed installation" style="info" %}}
-If you make an error installing the OpenTelemetry Collector you can start over by deleting the installation with the following command:
-
-``` sh
-helm delete splunk-otel-collector
-```
-
-{{% /notice %}}
+>[!INFO] Deleting a failed installation
+>If you make an error installing the OpenTelemetry Collector you can start over by deleting the
+>installation with the following command:
+>
+>``` bash
+>helm delete splunk-otel-collector
+>```

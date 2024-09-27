@@ -4,7 +4,6 @@ linkTitle: PetClinic Kubernetes Workshop
 weight: 2
 archetype: chapter
 description: Learn how to enable automatic discovery and configuration for your Java-based application running in Kubernetes. Experience real-time monitoring to help you maximize application behavior with end-to-end visibility.
-authors: ["Pieter Hagen"]
 time: 90 minutes
 ---
 
@@ -14,13 +13,11 @@ The workshop scenario will be created by installing a simple (**un-instrumented*
 
 By following the simple steps to install the Splunk OpenTelemetry Collector and enabling automatic discovery and configuration for existing Java based deployments you will learn how easy it is to send metrics, traces and logs to **Splunk Observability Cloud**.
 
-{{% notice title="Prerequisites" style="primary" icon="info" %}}
-
-* Outbound SSH access to port **2222**.
-* Outbound HTTP access to port **81**.
-* Familiarity with the Linux command line.
-
-{{% /notice %}}
+> [!SPLUNK]Prerequisites
+>
+> * Outbound SSH access to port **2222**.
+> * Outbound HTTP access to port **81**.
+> * Familiarity with the Linux command line.
 
 During this workshop we will cover the following components:
 

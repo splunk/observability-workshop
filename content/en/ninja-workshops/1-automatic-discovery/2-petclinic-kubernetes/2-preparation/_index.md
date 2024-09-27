@@ -53,11 +53,11 @@ Please make a note of the `INSTANCE` environment variable value as this will use
 
 For this workshop, **all** of the above are required. If any have values missing, please contact your Instructor.
 
-{{% notice title="Delete any existing OpenTelemetry Collectors" style="warning" %}}
-If you have previously completed a Splunk Observability workshop using this EC2 instance, you need to ensure that any existing installation of the Splunk OpenTelemetry Collector is deleted. This can be achieved by running the following command:
-
-``` bash
-helm delete splunk-otel-collector
-```
-
-{{% /notice %}}
+> [!SPLUNK] Delete any existing OpenTelemetry Collectors
+>If you have previously completed a Splunk Observability workshop using this EC2 instance, you
+>need to ensure that any existing installation of the Splunk OpenTelemetry Collector is
+>deleted. This can be achieved by running the following command:
+>
+>``` bash
+>helm delete splunk-otel-collector
+>```
