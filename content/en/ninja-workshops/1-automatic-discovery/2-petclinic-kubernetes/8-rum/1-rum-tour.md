@@ -1,7 +1,7 @@
 ---
 title: Select the RUM view for the Petclinic App
-linkTitle: 2. Verify RUM Data
-weight: 2
+linkTitle: 1. Verify RUM Data
+weight: 1
 ---
 
 Once RUM has been configured and you have added a visit for a pet, you can log in to **Splunk Observability Cloud** and verify that RUM traces are flowing in.
