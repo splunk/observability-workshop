@@ -18,10 +18,10 @@ service:
     traces:
       receivers: [otlp, opencensus, jaeger, zipkin]
       processors: [batch]
-      exporters: [logging]
+      exporters: [debug]
 
     metrics:
       receivers: [hostmetrics, otlp, opencensus, prometheus/internal]
       processors: [batch, resourcedetection/system, resourcedetection/ec2, attributes/conf]
-      exporters: [logging]
+      exporters: [debug]
 ```

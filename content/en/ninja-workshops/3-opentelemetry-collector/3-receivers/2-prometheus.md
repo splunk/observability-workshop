@@ -26,7 +26,7 @@ prometheus/internal:
 
 ## Example Dashboard - Prometheus metrics
 
-The following screenshot shows an example dashboard of spme of the metrics the Prometheus internal receiver collects from the OpenTelemetry Collector. Here, we can see accepted and sent spans, metrics and log records.
+The following screenshot shows an example dashboard of some of the metrics the Prometheus internal receiver collects from the OpenTelemetry Collector. Here, we can see accepted and sent spans, metrics and log records.
 
 {{% notice style="note" %}}
 The following screenshot is an out-of-the-box (OOTB) dashboard from Splunk Observability Cloud that allows you to easily monitor your Splunk OpenTelemetry Collector install base.

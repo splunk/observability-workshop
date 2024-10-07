@@ -51,7 +51,7 @@ curl http://localhost:13133
 {{% tab title="curl Output" %}}
 
 ``` text
-{"status":"Server available","upSince":"2023-04-27T10:11:22.153295874+01:00","uptime":"16m24.684476004s"}
+{"status":"Server available","upSince":"2024-10-07T11:00:08.004685295+01:00","uptime":"12.56420005s"}
 ```
 
 {{% /tab %}}

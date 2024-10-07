@@ -13,7 +13,7 @@ weight: 3
 
 **ServiceZ** gives an overview of the collector services and quick access to the pipelinez, extensionz, and featurez zPages. The page also provides build and runtime information.
 
-Example URL: [http://localhost:55679/debug/servicez](http://localhost:55679/debug/servicez) (change `localhost` to reflect your own environment).
+Example URL: [**http://localhost:55679/debug/servicez**](http://localhost:55679/debug/servicez) (change `localhost` to reflect your own environment).
 
 ![ServiceZ](../../images/servicez.png)
 
@@ -22,7 +22,7 @@ Example URL: [http://localhost:55679/debug/servicez](http://localhost:55679/debu
 
 **PipelineZ** provides insights on the running pipelines running in the collector. You can find information on type, if data is mutated, and you can also see information on the receivers, processors and exporters that are used for each pipeline.
 
-Example URL: [http://localhost:55679/debug/pipelinez](http://localhost:55679/debug/pipelinez) (change `localhost` to reflect your own environment).
+Example URL: [**http://localhost:55679/debug/pipelinez**](http://localhost:55679/debug/pipelinez) (change `localhost` to reflect your own environment).
 
 ![PipelineZ](../../images/pipelinez.png)
 
@@ -31,20 +31,12 @@ Example URL: [http://localhost:55679/debug/pipelinez](http://localhost:55679/deb
 
 **ExtensionZ** shows the extensions that are active in the collector.
 
-Example URL: [http://localhost:55679/debug/extensionz](http://localhost:55679/debug/extensionz) (change `localhost` to reflect your own environment).
+Example URL: [**http://localhost:55679/debug/extensionz**](http://localhost:55679/debug/extensionz) (change `localhost` to reflect your own environment).
 
 ![ExtensionZ](../../images/extensionz.png)
 
 {{% /tab %}}
 {{% /tabs %}}
-
-{{% notice style="info" %}}
-You can use your browser to access your environment emitting zPages information at (replace `<insert_your_ip>` with your IP address):
-
-- **ServiceZ:** [http://<insert_your_ip>:55679/debug/servicez](http://<insert_your_ip>:55679/debug/servicez)
-- **PipelineZ:** [http://<insert_your_ip>:55679/debug/pipelinez](http://<insert_your_ip>:55679/debug/pipelinez)
-- **ExtensionZ:** [http://<insert_your_ip>:55679/debug/extensionz](http://<insert_your_ip>:55679/debug/extensionz)
-{{% /notice %}}
 
 ---
 
@@ -286,7 +278,9 @@ Now that we've covered extensions, let's check our configuration changes.
 {{< tabs >}}
 {{% tab title="config.yaml" %}}
 
-```yaml { lineNos="table" wrap="true" hl_lines="3" }
+```yaml { lineNos="table" wrap="true" hl_lines="5" }
+# See https://github.com/open-telemetry/opentelemetry-collector/blob/main/docs/security-best-practices.md#safeguards-against-denial-of-service-attacks
+
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133
@@ -299,9 +293,12 @@ receivers:
   otlp:
     protocols:
       grpc:
+        endpoint: 0.0.0.0:4317
       http:
+        endpoint: 0.0.0.0:4318
 
   opencensus:
+    endpoint: 0.0.0.0:55678
 
   # Collect own metrics
   prometheus:
@@ -315,17 +312,22 @@ receivers:
   jaeger:
     protocols:
       grpc:
+        endpoint: 0.0.0.0:14250
       thrift_binary:
+        endpoint: 0.0.0.0:6832
       thrift_compact:
+        endpoint: 0.0.0.0:6831
       thrift_http:
+        endpoint: 0.0.0.0:14268
 
   zipkin:
+    endpoint: 0.0.0.0:9411
 
 processors:
   batch:
 
 exporters:
-  logging:
+  debug:
     verbosity: detailed
 
 service:
@@ -335,12 +337,17 @@ service:
     traces:
       receivers: [otlp, opencensus, jaeger, zipkin]
       processors: [batch]
-      exporters: [logging]
+      exporters: [debug]
 
     metrics:
       receivers: [otlp, opencensus, prometheus]
       processors: [batch]
-      exporters: [logging]
+      exporters: [debug]
+
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [debug]
 
   extensions: [health_check, pprof, zpages]
 ```
@@ -353,4 +360,4 @@ service:
 
 Now that we have reviewed extensions, let's dive into the data pipeline portion of the workshop. A pipeline defines a path the data follows in the Collector starting from reception, moving to  further processing or modification, and finally exiting the Collector via exporters.
 
-The data pipeline in the OpenTelemetry Collector is made up of receivers, processors, and exporters. We will first start with receivers.
+The data pipeline in the OpenTelemetry Collector is made up of **receivers**, **processors**, and **exporters**. We will first start with receivers.

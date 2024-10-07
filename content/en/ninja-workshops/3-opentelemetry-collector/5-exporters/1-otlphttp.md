@@ -77,7 +77,10 @@ Now that we've covered exporters, let's check our configuration changes:
 {{< tabs >}}
 {{% tab title="config.yaml" %}}
 
-```yaml {lineNos="table" wrap="true" hl_lines="72-76"}
+```yaml {lineNos="table" wrap="true" hl_lines="83-87"}
+# To limit exposure to denial of service attacks, change the host in endpoints below from 0.0.0.0 to a specific network interface.
+# See https://github.com/open-telemetry/opentelemetry-collector/blob/main/docs/security-best-practices.md#safeguards-against-denial-of-service-attacks
+
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133
@@ -111,9 +114,12 @@ receivers:
   otlp:
     protocols:
       grpc:
+        endpoint: 0.0.0.0:4317
       http:
+        endpoint: 0.0.0.0:4318
 
   opencensus:
+    endpoint: 0.0.0.0:55678
 
   # Collect own metrics
   prometheus/internal:
@@ -127,11 +133,16 @@ receivers:
   jaeger:
     protocols:
       grpc:
+        endpoint: 0.0.0.0:14250
       thrift_binary:
+        endpoint: 0.0.0.0:6832
       thrift_compact:
+        endpoint: 0.0.0.0:6831
       thrift_http:
+        endpoint: 0.0.0.0:14268
 
   zipkin:
+    endpoint: 0.0.0.0:9411
 
 processors:
   batch:
@@ -148,12 +159,12 @@ processors:
         value: "INSERT_YOUR_NAME_HERE"
 
 exporters:
-  logging:
+  debug:
     verbosity: normal
   otlphttp/splunk:
     metrics_endpoint: https://ingest.${env:REALM}.signalfx.com/v2/datapoint/otlp
     headers:
-      X-SF-TOKEN: ${env:ACCESS_TOKEN}
+      X-SF-Token: ${env:ACCESS_TOKEN}
 
 service:
 
@@ -162,12 +173,17 @@ service:
     traces:
       receivers: [otlp, opencensus, jaeger, zipkin]
       processors: [batch]
-      exporters: [logging]
+      exporters: [debug]
 
     metrics:
       receivers: [otlp, opencensus, prometheus]
       processors: [batch]
-      exporters: [logging]
+      exporters: [debug]
+
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [debug]
 
   extensions: [health_check, pprof, zpages]
 ```
