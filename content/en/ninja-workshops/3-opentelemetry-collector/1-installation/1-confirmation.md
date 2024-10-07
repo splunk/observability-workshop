@@ -21,24 +21,24 @@ sudo systemctl status otelcol-contrib
 ``` text
 ● otelcol-contrib.service - OpenTelemetry Collector Contrib
      Loaded: loaded (/lib/systemd/system/otelcol-contrib.service; enabled; vendor preset: enabled)
-     Active: active (running) since Tue 2023-05-16 08:23:23 UTC; 25s ago
-   Main PID: 1415 (otelcol-contrib)
-      Tasks: 5 (limit: 1141)
-     Memory: 22.2M
-        CPU: 125ms
+     Active: active (running) since Mon 2024-10-07 10:27:49 BST; 52s ago
+   Main PID: 17113 (otelcol-contrib)
+      Tasks: 13 (limit: 19238)
+     Memory: 34.8M
+        CPU: 155ms
      CGroup: /system.slice/otelcol-contrib.service
-             └─1415 /usr/bin/otelcol-contrib --config=/etc/otelcol-contrib/config.yaml
+             └─17113 /usr/bin/otelcol-contrib --config=/etc/otelcol-contrib/config.yaml
 
-May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: NumberDataPoints #0
-May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: Data point attributes:
-May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:      -> exporter: Str(logging)
-May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:      -> service_instance_id: Str(df8a57f4-abdc-46b9-a847-acd62db1001f)
-May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:      -> service_name: Str(otelcol-contrib)
-May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:      -> service_version: Str(0.75.0)
-May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: StartTimestamp: 2023-05-16 08:23:39.006 +0000 UTC
-May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: Timestamp: 2023-05-16 08:23:39.006 +0000 UTC
-May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]: Value: 0.000000
-May 16 08:23:39 ip-10-0-9-125 otelcol-contrib[1415]:         {"kind": "exporter", "data_type": "metrics", "name": "logging"}
+Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]: Descriptor:
+Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]:      -> Name: up
+Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]:      -> Description: The scraping was successful
+Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]:      -> Unit:
+Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]:      -> DataType: Gauge
+Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]: NumberDataPoints #0
+Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]: StartTimestamp: 1970-01-01 00:00:00 +0000 UTC
+Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]: Timestamp: 2024-10-07 09:28:36.942 +0000 UTC
+Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]: Value: 1.000000
+Oct 07 10:28:36 petclinic-rum-testing otelcol-contrib[17113]:         {"kind": "exporter", "data_type": "metrics", "name": "debug"}
 ```
 
 {{% /tab %}}
@@ -221,6 +221,9 @@ cat /etc/otelcol-contrib/config.yaml
 {{% tab title="config.yaml" %}}
 
 ```yaml { lineNos="table" wrap="true"}
+# To limit exposure to denial of service attacks, change the host in endpoints below from 0.0.0.0 to a specific network interface.
+# See https://github.com/open-telemetry/opentelemetry-collector/blob/main/docs/security-best-practices.md#safeguards-against-denial-of-service-attacks
+
 extensions:
   health_check:
   pprof:
@@ -232,9 +235,12 @@ receivers:
   otlp:
     protocols:
       grpc:
+        endpoint: 0.0.0.0:4317
       http:
+        endpoint: 0.0.0.0:4318
 
   opencensus:
+    endpoint: 0.0.0.0:55678
 
   # Collect own metrics
   prometheus:
@@ -248,17 +254,22 @@ receivers:
   jaeger:
     protocols:
       grpc:
+        endpoint: 0.0.0.0:14250
       thrift_binary:
+        endpoint: 0.0.0.0:6832
       thrift_compact:
+        endpoint: 0.0.0.0:6831
       thrift_http:
+        endpoint: 0.0.0.0:14268
 
   zipkin:
+    endpoint: 0.0.0.0:9411
 
 processors:
   batch:
 
 exporters:
-  logging:
+  debug:
     verbosity: detailed
 
 service:
@@ -268,12 +279,17 @@ service:
     traces:
       receivers: [otlp, opencensus, jaeger, zipkin]
       processors: [batch]
-      exporters: [logging]
+      exporters: [debug]
 
     metrics:
       receivers: [otlp, opencensus, prometheus]
       processors: [batch]
-      exporters: [logging]
+      exporters: [debug]
+
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [debug]
 
   extensions: [health_check, pprof, zpages]
 ```

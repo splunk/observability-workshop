@@ -18,12 +18,12 @@ service:
     traces:
       receivers: [otlp, opencensus, jaeger, zipkin]
       processors: [batch]
-      exporters: [logging]
+      exporters: [debug]
 
     metrics:
       receivers: [hostmetrics, otlp, opencensus, prometheus/internal]
       processors: [batch, resourcedetection/system, resourcedetection/ec2, attributes/conf]
-      exporters: [logging, otlphttp/splunk]
+      exporters: [debug, otlphttp/splunk]
 ```
 
 ---
@@ -104,6 +104,9 @@ service:
 {{% tab title="config.yaml" %}}
 
 ``` yaml {lineNos="table" wrap="true"}
+# To limit exposure to denial of service attacks, change the host in endpoints below from 0.0.0.0 to a specific network interface.
+# See https://github.com/open-telemetry/opentelemetry-collector/blob/main/docs/security-best-practices.md#safeguards-against-denial-of-service-attacks
+
 extensions:
   health_check:
     endpoint: 0.0.0.0:13133
@@ -137,9 +140,12 @@ receivers:
   otlp:
     protocols:
       grpc:
+        endpoint: 0.0.0.0:4317
       http:
+        endpoint: 0.0.0.0:4318
 
   opencensus:
+    endpoint: 0.0.0.0:55678
 
   # Collect own metrics
   prometheus/internal:
@@ -153,11 +159,16 @@ receivers:
   jaeger:
     protocols:
       grpc:
+        endpoint: 0.0.0.0:14250
       thrift_binary:
+        endpoint: 0.0.0.0:6832
       thrift_compact:
+        endpoint: 0.0.0.0:6831
       thrift_http:
+        endpoint: 0.0.0.0:14268
 
   zipkin:
+    endpoint: 0.0.0.0:9411
 
 processors:
   batch:
@@ -174,12 +185,12 @@ processors:
         value: "INSERT_YOUR_NAME_HERE"
 
 exporters:
-  logging:
+  debug:
     verbosity: normal
   otlphttp/splunk:
     metrics_endpoint: https://ingest.${env:REALM}.signalfx.com/v2/datapoint/otlp
     headers:
-      X-SF-TOKEN: ${env:ACCESS_TOKEN}
+      X-SF-Token: ${env:ACCESS_TOKEN}
 
 service:
 
@@ -188,12 +199,17 @@ service:
     traces:
       receivers: [otlp, opencensus, jaeger, zipkin]
       processors: [batch]
-      exporters: [logging]
+      exporters: [debug]
 
     metrics:
       receivers: [hostmetrics, otlp, opencensus, prometheus/internal]
-      processors: [batch, resourcedetection/system, resourcedetection/ec2, attributes/conf] 
-      exporters: [logging, otlphttp/splunk]
+      processors: [batch, resourcedetection/system, resourcedetection/ec2, attributes/conf]
+      exporters: [debug, otlphttp/splunk]
+
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [debug]
 
   extensions: [health_check, pprof, zpages]
 ```
@@ -206,33 +222,12 @@ service:
 ---
 
 {{% notice style="tip" %}}
-It is recommended that you validate your configuration file before restarting the collector. You can do this by using the built-in `validate` command:
+It is recommended that you validate your configuration file before restarting the collector. You can do this by pasting the contents of your `config.yaml` file into the [**OTelBin Configuration Validator**](https://otelbin.io/) tool.
 
-{{< tabs >}}
-{{% tab title="Command" %}}
+{{% expand title="{{% badge color=green title=**Screenshot** %}}OTelBin{{% /badge %}}" %}}
+![otelbin-validator](../../images/otelbin.png)
+{{% /expand %}}
 
-``` bash
-otelcol-contrib validate --config=file:/etc/otelcol-contrib/config.yaml
-```
-
-{{% /tab %}}
-{{% tab title="Example error output" %}}
-
-``` text
-Error: failed to get config: cannot unmarshal the configuration: 1 error(s) decoding:
-
-* error decoding 'processors': error reading configuration for "attributes/conf": 1 error(s) decoding:
-
-* 'actions[0]' has invalid keys: actions
-2023/06/29 09:41:28 collector server run finished with error: failed to get config: cannot unmarshal the configuration: 1 error(s) decoding:
-
-* error decoding 'processors': error reading configuration for "attributes/conf": 1 error(s) decoding:
-
-* 'actions[0]' has invalid keys: actions
-```
-
-{{% /tab %}}
-{{< /tabs >}}
 {{% /notice %}}
 
 Now that we have a working configuration, let's start the collector and then check to see what [zPages](../2-extensions/#zpages) is reporting.
@@ -245,4 +240,5 @@ otelcol-contrib --config=file:/etc/otelcol-contrib/config.yaml
 
 {{% /tab %}}
 
+Open up zPages in your browser: [**http://localhost:55679/debug/pipelinez**](http://localhost:55679/debug/pipelinez) (change `localhost` to reflect your own environment).
 ![pipelinez-full-config](../../images/pipelinez-full-config.png)
