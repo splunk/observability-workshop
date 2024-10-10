@@ -26,7 +26,7 @@ Sections:
 ## Context
 
 As a reminder, we need frontend performance monitoring to capture everything that goes into our end user experience. If we're just monitoring the backend, we're missing all of the other resources that are critical to our users' success. Read [What the Fastly Outage Can Teach Us About Observability](https://www.splunk.com/en_us/blog/devops/what-the-fastly-outage-can-teach-us-about-observability.html) for a real world example. Click the image below to zoom in.
-![What goes into the front end](./_img/frontend.png)
+![What goes into the front end](./images/frontend.png)
 
 ## References
 
