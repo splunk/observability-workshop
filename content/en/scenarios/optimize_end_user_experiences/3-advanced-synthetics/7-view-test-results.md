@@ -11,7 +11,7 @@ weight: 7
 
 2\. What can you learn about this test run? If it failed, use the error message, filmstrip, video replay, and waterfall to understand what happened.
 
-![Single test run result](../../_img/browser-run-result.png)
+![Single test run result](../../images/browser-run-result.png)
 
 3\. What do you see in the resources? Make sure to click through all of the page (or transaction) tabs.
 

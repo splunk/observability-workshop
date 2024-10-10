@@ -10,7 +10,7 @@ Click on **Advanced**, these settings are optional and can be used to further co
 In the case of this workshop, we will **not** be using any of these settings; this is for informational purposes only.
 {{% /notice %}}
 
-![Advanced Settings](../../_img/advanced-settings.png)
+![Advanced Settings](../../images/advanced-settings.png)
 
 - **Security**:
   - **TLS/SSL validation**: When activated, this feature is used to enforce the validation of expired, invalid hostname, or untrusted issuer on SSL/TLS certificates.

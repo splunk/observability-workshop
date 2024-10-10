@@ -11,4 +11,4 @@ Whether you're interested in testing multi-step API interactions or you want to 
 
 This excercise will walk through a multi-step test on the Spotify API. You can also use it as a reference to build tests on your own APIs or on those of your critical third parties.
 
-![API test result](../_img/api-test-result.png)
+![API test result](../images/api-test-result.png)

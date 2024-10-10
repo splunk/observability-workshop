@@ -18,13 +18,13 @@ A page where your users commonly "land" is a good choice to start with a single 
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-09/8e3f2a3f-31b3-49b5-9bd1-735775d84652/ascreenshot.jpeg?tl_px=137,197&br_px=1856,1158&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=524,276)
 
 3. Change the transaction label (top left) and step name (on the right) to something readable that describes the step. Add the URL you'd like to test. Your workshop instructor can provide you with a URL as well. In the below example, the transaction is "Home" and the step name is "Go to homepage".<p></p>
-![Transaction and step label](../_img/single-step.png)
+![Transaction and step label](../images/single-step.png)
 
 4. To validate the test, change the location as needed and click {{< button >}}Try now{{< /button >}}. See the docs for more information on the [try now feature](https://docs.splunk.com/observability/en/synthetics/test-config/try-now.html).<p></p>
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-09/e2d14ced-1538-4a58-9f90-0e71b17724ee/user_cropped_screenshot.jpeg?tl_px=0,0&br_px=1236,684&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=395,134)
 
 5. Wait for the test validation to complete. If the test validation failed, double check your URL and test location and try again. With {{< button >}}Try now{{< /button >}} you can see what the result of the test will be if it were saved and run as-is.<p></p>
-![Try Now browser test results](../_img/try-now.png)
+![Try Now browser test results](../images/try-now.png)
 
 6. Click {{% button style="blue" %}}< Return to test{{% /button %}} to continue the configuration.<p></p>
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-09/a0d97692-7e01-45da-b8b6-7ea3e8bda236/user_cropped_screenshot.jpeg?tl_px=0,0&br_px=1268,699&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=232,116)
