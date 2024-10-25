@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Infrastructureの概要 :: Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/v5.70/ja/s4r/3-quick-tour/6-infrastructure-home/index.html</link><description>5 minutes Splunk Infrastructure Monitoring (IM) は、ハイブリッドクラウド環境向けモニタリングおよびオブザビリティサービスとして市場でも高い評価を得ています。Splunk IM は特許取得済みのストリーミングアーキテクチャに基づいて構成されており、従来のソリューションよりも短時間かつ高精度で、インフラストラクチャ、サービス、およびアプリケーションのパフォーマンスを視覚化・分析できるリアルタイムソリューションを提供しています。
+OpenTelemetry 標準化: あなたのデータを完全にコントロールすることができます。ベンダーロックインから解放され、独自エージェントの導入が不要になります。
+Splunk の OTel Collector: シームレスなインストールとダイナミックな構成が可能で、ほんのわずかな時間ですべてのスタックに対して自動検出を行うことができます。これによりクラウド、サービス、およびシステム全体を横断的に可視化することができます。
+300 以上の簡単に使用できる OOTB コンテンツ: Navigator と Dashboard が事前に用意されており、あなたの環境全体をすぐに可視化できます。すべてのデータをリアルタイムに扱うことが可能です。
+Kubernetes ナビゲータ: すぐに利用できるプリセットのビューによって、ノード、Pod、およびコンテナの状態を包括的かつ構造的に理解できます。わかりやすく、インタラクティブなクラスターマップによって、初心者でも簡単に Kubernetes を理解できるでしょう。
+アラートの自動検出と Detector: メトリクス取得を行いはじめるとすぐに、重要なメトリクスを自動的に判別し、detector(アラート)の条件が生成されます。テレメトリデータが取り込まれた直後から正確なアラートを行うことができ、ほんのわずかな時間で重要なアラート通知をリアルタイムに受け取ることができます。
+ダッシュボード内のログ参照: ログメッセージとリアルタイムメトリクスを 1 ページで組み合わせて表示することができます。共通のフィルタ条件や時間制御により、共通のコンテキストに基づいて迅速にトラブルシューティングを行うことができます。
+メトリクスパイプラインの管理: データ取り込み時点でメトリクスのボリュームを制御することができます。Instrumentation（計装）を変更することなく、必要なデータのみを保存・分析できるようにデータ集約や破棄を設定できます。メトリクスのボリュームを削減し、オブザービリティに対する支出を最適化することができるはずです。</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/v5.70/ja/s4r/3-quick-tour/6-infrastructure-home/index.xml" rel="self" type="application/rss+xml"/><item><title>Infrastructure Navigators</title><link>https://splunk.github.io/observability-workshop/v5.70/ja/s4r/3-quick-tour/6-infrastructure-home/1-infrastructure-home/index.html</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://splunk.github.io/observability-workshop/v5.70/ja/s4r/3-quick-tour/6-infrastructure-home/1-infrastructure-home/index.html</guid><description>Infrastructure をメインメニューでクリックします。Infrastructure ホームページは4つの異なるセクションで構成されています。
+オンボーディングパネル: Splunk Infrastructure Monitoring を始める際に参照するトレーニングビデオとドキュメンテーションへのリンク。 時間とフィルタパネル: 時間ウィンドウ（一覧画面上では設定変更できません） Integration パネル: Splunk Observability Cloud にメトリクスを送信しているすべてのテクノロジのリスト。 タイルパネル: Integration によって監視されているサービスの合計数（Integration 別に表示） Infrastructure パネルを使用して、興味のあるインフラストラクチャ/テクノロジーを選択できます。やってみましょう。
+Exercise Integration パネルの Containers セクション（3）にある、Kubernetes を調査対象のテクノロジーとして選択します。
+K8s Nodes と K8s Workloads の2つのタイルが表示されるはずです。
+各タイルの下部には過去の推移を表すグラフがあり、上部には現在発生しているアラートの数が表示されます。これらの追加情報は全てのタイルに表示されており、インフラストラクチャの健全性を概要として確認するのに役立つはずです。
+K8s Nodes タイルをクリックします。
+Kubernetes クラスターが1つ以上の表示されます。
+次に Add filters ボタンをクリックします。 k8s.cluster.name と入力し、検索結果をクリックします。
+リストから [WORKSHOPの名前]-k3s-cluster を選択し、Apply Filter ボタンをクリックします。</description></item></channel></rss>
