@@ -32,15 +32,15 @@ markup:
 outputs:
   home:
     - HTML
-#    - PRINT
+#   - PRINT
 #    - SEARCH
 #    - SEARCHPAGE
-  section:
-    - HTML
-#    - PRINT
-  page:
-    - HTML
-#    - PRINT
+#  section:
+#    - HTML
+#   - PRINT
+#  page:
+#   - HTML
+#   - PRINT
 params:
   alwaysopen: false
   showVisitedLinks: true
