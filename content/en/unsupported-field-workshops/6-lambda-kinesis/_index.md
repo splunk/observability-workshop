@@ -5,6 +5,7 @@ description: This workshop will equip you with how a distributed trace is constr
 weight: 6
 authors: ["Katie Hymers"]
 time: 45 minutes
+hidden: true
 ---
 
 This workshop will equip you with how a distributed trace is constructed for a small serverless application that runs on AWS Lambda, producing and consuming a message via AWS Kinesis.
