@@ -34,29 +34,33 @@ Seeing as we're in a new directory, we will need to initialize Terraform here on
 
 Let's go ahead and deploy those resources again as well!
 
-- Run the Terraform command to have the Lambda function and other supporting resources deployed from the `main.tf` file:
-
+- Run the **terraform plan** command, ensuring there are no issues.
+  ```bash
+  terraform plan
+  ```
+  
+- Follow up with the **terraform apply** command to deploy the Lambda functions and other supporting resources from the **main.tf** file:
   ```bash
   terraform apply
   ```
-
-  - respond `yes` when you see the `Enter a value:` prompt
+  - _Respond **yes** when you see the **Enter a value:** prompt_
 
   - This will result in the following outputs:
-
     ```bash
     Outputs:
 
-    lambda_bucket_name = "lambda-shop-______-______"
     base_url = "https://______.amazonaws.com/serverless_stage/producer"
-    producer_function_name = "______-producer"
-    producer_log_group_arn = "arn:aws:logs:us-east-1:############:log-group:/aws/lambda/______-producer"
     consumer_function_name = "_____-consumer"
     consumer_log_group_arn = "arn:aws:logs:us-east-1:############:log-group:/aws/lambda/______-consumer"
+    consumer_log_group_name = "/aws/lambda/______-consumer"
     environment = "______-lambda-shop"
+    lambda_bucket_name = "lambda-shop-______-______"
+    producer_function_name = "______-producer"
+    producer_log_group_arn = "arn:aws:logs:us-east-1:############:log-group:/aws/lambda/______-producer"
+    producer_log_group_name = "/aws/lambda/______-producer"
     ```
 
-As you can tell, aside from the first portion of the base_url, the output should be largely the same as when you ran the auto-instrumentation portion of this workshop
+As you can tell, aside from the first portion of the base_url and the log gropu ARNs, the output should be largely the same as when you ran the auto-instrumentation portion of this workshop up to this same point.
 
 #### Send some traffic to the `producer-lambda` endpoint (base_url)
 
@@ -82,12 +86,10 @@ Once more, we will send our `name` and `superpower` as a message to our endpoint
   nohup ./send_message.py --name CHANGEME --superpower CHANGEME &
   ```
 
-- Next, check the contents of the nohup.out file for successful calls to our`producer-lambda` endpoint:
-
+- Next, check the contents of the response.logs file for successful calls to our**producer-lambda** endpoint:
   ```bash
-  cat nohup.out
+  cat response.logs
   ```
-
   - You should see the following output among the lines printed to your screen if your message is successful:
 
     ```bash
@@ -107,21 +109,15 @@ Once more, we will send our `name` and `superpower` as a message to our endpoint
 
 Let's see what our logs look like now.
 
-- Run the following script to view your `producer-lambda` logs:
-
+- Check the **producer.logs** file:
   ```bash
-  ./get_logs.py --function producer
+  cat producer.logs
   ```
 
-  - Hit `[CONTROL-C]` to stop the live stream after some log events show up
-
-- Run the following to view your `consumer-lambda` logs:
-
+- And the **consumer.logs** file:
   ```bash
-  ./get_logs.py --function consumer
+  cat consumer.logs
   ```
-
-  - Hit `[CONTROL-C]` to stop the live stream after some log events show up
 
 Examine the logs carefully.
 
