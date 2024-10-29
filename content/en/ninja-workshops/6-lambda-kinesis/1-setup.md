@@ -4,17 +4,28 @@ linkTitle: 1. Setup
 weight: 1
 ---
 
-![Lambda application, not yet instrumented](../images/01-Architecture.png)
+![Lambda application, not yet manually instrumented](../images/01-Architecture.png)
 
 ## Prerequisites
 
 ### Observability Workshop Instance
 The Observability Workshop is most often completed on a Splunk-issued and preconfigured EC2 instance running Ubuntu.
-- Your workshop instructor will have provided you with your credentials to access your instance.
-- Alternatively, you can deploy a local observability workshop instance using Multipass.
+
+Your workshop instructor will provide you with the credentials to your assigned workshop instance.
+
+Your instance should have the following environment variables already set:
+- **ACCESS_TOKEN**
+- **REALM**
+  - _These are the Splunk Observability Cloud **Access Token** and **Realm** for your workshop._
+  - _They will be used by the OpenTelemetry Collector to forward your data to the correct Splunk Observability Cloud organization._
+
+> [!NOTE]
+> _Alternatively, you can deploy a local observability workshop instance using Multipass._
 
 ### AWS Command Line Interface (awscli)
 The AWS Command Line Interface, or `awscli`, is an API used to interact with AWS resources. In this workshop, it is used by certain scripts to interact with the resource you'll deploy. 
+
+Your Splunk-issued workshop instance should already have the **awscli** installed.
 
 - Check if the **aws** command is installed on your instance with the following command:
   ```bash
@@ -37,6 +48,8 @@ We will be using Terraform at the command line in this workshop to deploy the fo
 4. CloudWatch Log Groups
 5. S3 Bucket
     - _and other supporting resources_
+  
+Your Splunk-issued workshop instance should already have **terraform** installed.
 
 - Check if the **terraform** command is installed on your instance:
   ```bash
@@ -72,44 +85,55 @@ The Workshop Directory `o11y-lambda-workshop` is a repository that contains all 
 #### AWS
 The AWS CLI requires that you have credentials to be able to access and manage resources deployed by their services. Both Terraform and the Python scripts in this workshop require these variables to perform their tasks.
 
-- Ensure you have the following environment variables set for AWS access:
+- Configure the **awscli** with the _**access key ID**_, _**secret access key**_ and _**region**_ for this workshop:
   ```bash
-  echo $AWS_ACCESS_KEY_ID
-  echo $AWS_SECRET_ACCESS_KEY
+  aws configure
   ```
-    - _These commands should output text results for your **access key ID** and **secret access key**_
+    - _This command should provide a prompt similar to the one below:_
+      ```bash
+      AWS Access Key ID [None]: XXXXXXXXXXXXXXXX
+      AWS Secret Acces Key [None]: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+      Default region name [None]: us-east-1
+      Default outoput format [None]:
+      ```
 
-- If the AWS environment variables aren't set, request those keys from your instructor.
-  - Replace the **CHANGEME** values for the following variables, then copy and paste them into your command line.
+- If the **awscli** is not configured on your instance, run the following command and provide the values your instructor would provide you with.
   ```bash
-  export AWS_ACCESS_KEY_ID="CHANGEME"
-  export AWS_SECRET_ACCESS_KEY="CHANGEME"
+  aws configure
   ```
 
 #### Terraform
-Terraform supports the passing of variables to ensure sensitive or dynamic data is not hard-coded in your .tf configuration files.
+Terraform supports the passing of variables to ensure sensitive or dynamic data is not hard-coded in your .tf configuration files, as well as to make those values reusable throughout your resource definitions.
 
-Terraform variables are defined by setting TF_VAR_ environment variables and declaring those variables in our TF configuration files.
+In our workshop, Terraform requires variables necessary for deploying the Lambda functions with the right values for the OpenTelemetry Lambda layer; For the ingest values for Splunk Observability Cloud; And to make your environment and resources unique and immediatley recognizable.
 
-In our workshop, Terraform requires variables necessary for deploying the Lambda functions with the right environment variables for the OpenTelemetry Lambda layer, as well as the ingest values for Splunk Observability Cloud.
+Terraform variables are defined in the following manner:
+- Define the variables in your _**main.tf**_ file or a _**variables.tf**_
+- Set the values for those variables in either of the following ways:
+  - setting environment variables at the host level, with the same variable names as in their definition, and with _**TF_VAR**__ as a prefix
+  - setting the values for your variables in a _**terraform.tfvars**_ file
+  - passing the values as arguments when running terraform apply
+ 
+We will be using a combination of _**variables.tf**_ and _**terraform.tfvars**_ files to set our variables in this workshop.
 
-- Ensure you have the following environment variables set for AWS access:
+- Using either **vi** or **nano**, open the _**terraform.tfvars**_ file in either the **auto** or **manual** directory
   ```bash
-  echo $TF_VAR_o11y_access_token
-  echo $TF_VAR_o11y_realm
-  echo $TF_VAR_otel_lambda_layer
-  echo $TF_VAR_prefix
+  vi ~/o11y-lambda-workshop/auto/terraform.tfvars
   ```
-    - _These commands should output text for the **access token**, **realm**, and **otel lambda layer** for Splunk Observability Cloud, which your instructor has, or can, share with you._
-    - _Also there should be an output for the **prefix** that will be used to name your resources. It will be a value that you provide._
-
-- If the Terraform environment variables aren't set, request the **access token**, **realm**, and **otel lambda layer** from your instructor.
-  - Replace the **CHANGEME** values for the following variables, then copy and paste them into your command line.
+- Set the variables with their values. Replace the **CHANGEME** placeholders with those provided by your instructor.
   ```bash
-  export TF_VAR_o11y_access_token="CHANGEME"
-  export TF_VAR_o11y_realm="CHANGEME"
-  export TF_VAR_otel_lambda_layer='["CHANGEME"]'
-  export TF_VAR_prefix="CHANGEME"
+  o11y_access_token = "CHANGEME"
+  o11y_realm        = "CHANGEME"
+  otel_lambda_layer = ["CHANGEME"]
+  prefix            = "CHANGEME"
   ```
+  - _Ensure you change only the placeholders, leaving the quotes and brackets intact, where applicable._
+  - _The _**prefix**_ is a unique identifier you can choose for yourself, to make your resources distinct from other participants' resources. We suggest using a short form of your name, for example._
+- Save your file and exit the editor.
+- Finally, copy the _**terraform.tfvars**_ file you just edited to the other directory.
+  ```bash
+  cp ~/o11y-lambda-workshop/auto/terraform.tfvars ~/o11y-lambda-workshop/manual
+  ```
+  - _We do this as we will be using the same values for both the autoinstrumentation and manual instrumentation protions of the workshop_
 
 Now that we've squared off the prerequisites, we can get started with the workshop!
