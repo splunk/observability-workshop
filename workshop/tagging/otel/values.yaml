@@ -6,16 +6,6 @@ certmanager:
   enabled: true
 operator:
   enabled: true
-  instrumentation:
-    spec:
-      env:
-        - name: NODE_IP
-          valueFrom:
-            fieldRef:
-              apiVersion: v1
-              fieldPath: status.hostIP
-        - name: SPLUNK_METRICS_ENDPOINT
-          value: http://$(NODE_IP):9943
 
 agent:
   config:
