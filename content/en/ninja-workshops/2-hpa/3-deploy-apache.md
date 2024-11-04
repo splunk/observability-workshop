@@ -101,11 +101,15 @@ The **REVISION** number of the deployment has changed, which is a helpful way to
 ``` text
 Release "splunk-otel-collector" has been upgraded. Happy Helming!
 NAME: splunk-otel-collector
-LAST DEPLOYED: Tue Feb  6 11:17:15 2024
+LAST DEPLOYED: Mon Nov  4 14:56:25 2024
 NAMESPACE: default
 STATUS: deployed
 REVISION: 2
 TEST SUITE: None
+NOTES:
+Splunk OpenTelemetry Collector is installed and configured to send data to Splunk Platform endpoint "https://http-inputs-workshop.splunkcloud.com:443/services/collector/event".
+
+Splunk OpenTelemetry Collector is installed and configured to send data to Splunk Observability realm eu0.
 ```
 
 {{% /notice %}}
