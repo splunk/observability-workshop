@@ -7,15 +7,14 @@ weight: 3
 The Lambda functions should be generating a sizeable amount of trace data, which we would need to take a look at. Through the combination of environment variables and the OpenTelemetry Lambda layer configured in the resource definition for our Lambda functions, we should now be ready to view our functions and traces in Splunk APM.
 
 #### View your Environment name in the Splunk APM Overview
-
-Let's start by making sure that Splunk APM is aware of our `Environment` from the trace data it is receiving. This is the `deployment.name` we set as part of the `OTEL_RESOURCE_ATTRIBUTES` variable we set on our Lambda function definitions in `main.tf`.
+Let's start by making sure that Splunk APM is aware of our `Environment` from the trace data it is receiving. This is the `deployment.name` we set as part of the `OTEL_RESOURCE_ATTRIBUTES` variable we set on our Lambda function definitions in `main.tf`. It was also one of the outputs from the `terraform apply` command we ran earlier.
 
 In Splunk Observability Cloud:
 
 - Click on the `APM` Button from the Main Menu on the left. This will take you to the Splunk APM Overview.
 
 - Select your APM Environment from the `Environment:` dropdown.
-  - _Your APM environment should be in the `PREFIX-lambda-shop` format, where the `PREFIX is obtained from the environment variable you set in the Prerequisites section_
+  - _Your APM environment should be in the `PREFIX-lambda-shop` format, where the `PREFIX` is obtained from the environment variable you set in the Prerequisites section_
 
 > [!NOTE]
 > It may take a few minutes for your traces to appear in Splunk APM. Try hitting refresh on your browser until you find your environment name in the list of environments.
@@ -54,7 +53,7 @@ On this page, we can see the traces that have been ingested from the OpenTelemet
 
 We can see that the `producer-lambda` function is putting a record into the Kinesis Stream. But the action of the `consumer-lambda` function is missing!
 
-This is because the trace context is not being propagated. Trace context propagation is not supported out-of-the-box by Kinesis service at the time of this workshop. Our distributed trace stops at the Kinesis service, and we can't see the propagation any further.
+This is because the trace context is not being propagated. Trace context propagation is not supported out-of-the-box by Kinesis service at the time of this workshop. Our distributed trace stops at the Kinesis service, and because its context isn't automatically propagated through the stream, we can't see any further.
 
 Not yet, at least...
 
@@ -104,4 +103,4 @@ Please follow these steps to destroy your resources:
   - respond `yes` when you see the `Enter a value:` prompt
   - This will result in the resources being destroyed, leaving you with a clean environment
 
-This process will leave you with a few files and directories in the `auto` directory. Do not worry about those.
+This process will leave you with the files and directories created as a result of our activity. Do not worry about those.
