@@ -8,8 +8,8 @@ In the bottom pane is where any related content will be reported. In the screens
 
 ![RC](../../images/log-apm-rc.png)
 
-By clicking on **Trace for 4be8b620a98aa938e76cf76aa1bde396** **(2)** will take us to the waterfall in APM for this specific trace that this log line was generated from:
+By clicking **(2)**  on **Trace for 960432ac9f16b98be84618778905af50** we will be taken to the waterfall in APM for this specific trace, where this log line was generated:
 
 ![waterfall logs](../../images/waterfall-with-logs.png)
 
-Note that you now have Related Content pane for Logs appear **(1)**. Clicking on this will take you back to Log Observer and will display all the log lines that are part of this trace.
+Note that you now have a **Related Content** pane for Logs appear **(1)**. Clicking on this will take you back to Log Observer and will display all the log lines that are part of this trace.

@@ -4,9 +4,9 @@ linkTitle: 3. Database Query Performance
 weight: 3
 ---
 
-With Database Query Performance, you can monitor the impact of your database queries on service availability directly in Splunk APM. This way, you can quickly identify long-running, unoptimized, or heavy queries and mitigate issues they might be causing, without having to instrument your databases.
+With Database Query Performance, you can monitor the impact of your database queries on service availability directly in Splunk APM. This way, you can quickly identify long-running, un-optimized, or heavy queries and mitigate issues they might be causing, without having to instrument your databases.
 
-To look at the performance of your database queries, make sure you are on the APM **Explore** page either by going back in the browser or navigating to the APM section in the Menu bar, then click on the **Explore** tile.
+To look at the performance of your database queries, make sure you are on the APM **Service Map** page either by going back in the browser or navigating to the APM section in the Menu bar, then click on the **Service Map** tile.
 Select the inferred database service `mysql:petclinic` Inferred Database server in the Dependency map **(1)**, then scroll the right-hand pane to find the **Database Query Performance** Pane **(2)**.
 
 ![DB-query from map](../../images/db-query-map.png)
@@ -27,8 +27,12 @@ For each Database query in the list, we see the highest latency, the total numbe
 
 You can select traces containing Database Calls via the two charts in the right-hand pane **(5)**. Use the Tag Spotlight pane **(6)** to drill down what tags are related to the database calls, based on endpoints or tags.
 
-If you click on a specific Query **(1)** you get a detailed query Details pane appears **(2)**, which you can use for more detailed investigations:
+If you need to see a detailed view of a query:
+
 ![details](../../images/query-details.png)
+
+Click on the specific Query **(1)**, this wil give you a detailed query Details pane **(2)**, which you can use for more detailed investigations:
+
 <!--
 
 ## 4. Adding Resource Attributes to Spans

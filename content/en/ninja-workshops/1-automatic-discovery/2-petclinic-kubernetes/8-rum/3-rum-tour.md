@@ -6,7 +6,7 @@ weight: 3
 
 We are now looking at the RUM Trace waterfall, this will tell you what happened during the session on the user device as they visited the page of our petclinic application.
 
-If you scroll down the waterfall find click on the **Vets**  segment on the right **(1)**, you see a list of action that occurred during the handling of the Vets request. Note, that the HTTP request have a blue **APM** link before the return code. Pick one, and click on the APM link.  This will show you the APM info for this Ser vice call to our Microservices in Kubernetes.
+If you scroll down the waterfall find click on the **#!/owners/details** segment on the right **(1)**, you see a list of action that occurred during the handling of the Vets request. Note, that the HTTP request have a blue **APM** link before the return code. Pick one, and click on the APM link.  This will show you the APM info for this Ser vice call to our Microservices in Kubernetes.
 
 ![rum apm link](../../images/rum-trace.png)
 

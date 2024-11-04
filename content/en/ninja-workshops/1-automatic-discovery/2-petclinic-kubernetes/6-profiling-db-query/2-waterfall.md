@@ -4,7 +4,7 @@ linkTitle: 2. Trace Waterfall
 weight: 2
 ---
 
-Make sure you have your original (or similar) Trace  & Span **(1)** selected in the APM Waterfall view and select  **Memory Stack Traces (2)** from the right-hand pane:
+Make sure you have your original (or similar) Trace & Span **(1)** selected in the APM Waterfall view and select  **Memory Stack Traces (2)** from the right-hand pane:
 
 ![profiling from span](../../images/flamechart-in-waterfall.png)
 
@@ -17,12 +17,15 @@ This will bring you to the Always-on Profiling main screen, with the Memory view
 
 ![Profiling main](../../images/profiling-memory.png)
 
-* Java Memory Metric Charts **(1)**,  Allow you to `Monitor Heap Memory, Application Activity` like `Memory Allocation Rate`  and `Garbage Collecting` Metrics.
-* Ability to focus/see metrics and Stack Traces only related to the Span **(2)**, This will filter out background activities running in the Java application if required.
-* Java Function calls identified. **(3)**, allowing you to drill down into the Methods called from that function.
-* The Flame Graph **(4)**,  with the visualization of hierarchy based on the stack traces of the profiled service.
+* Time filter will be set to the time frame of the span we selected **(1)**
+* Java Memory Metric Charts **(2)**,  Allow you to `Monitor Heap Memory, Application Activity` like `Memory Allocation Rate` and `Garbage Collecting` Metrics.
+* Ability to focus/see metrics and Stack Traces only related to the Span **(3)**, This will filter out background activities running in the Java application if required.
+* Java Function calls identified. **(4)**, allowing you to drill down into the Methods called from that function.
+* The Flame Graph **(5)**,  with the visualization of hierarchy based on the stack traces of the profiled service.
+* Ability to select the Service instance **(6)** in case the service spins up multiple version of it self.  
 
-For further investigation the UI let's you grab the actual stack trace, so you can use in your coding platform to go to the actual lines of code used at this point (depending of course on your preferred Coding platform)
+For further investigation the UI let's you grab the actual stack trace, by selecting a function and the relevant line from the flam chart, so you can use in your coding platform to go to the actual lines of code used at this point (depending of course on your preferred Coding platform)
+
 <!-- Once you have identified the relevant Function or Method you are interested in, `com.mysql.cj.protocol.a.NativePacketPayload.readBytes` in our example but yours may differ, so pick the top one **(1)**  and find it at the e bottom of the Flame Graph **(2)**. Click on it in the Flame Graph, it will show a pane as shown in the image below, where you can see the Thread information **(3)** by clicking on the blue *Show Thread Info* link. If you click on the *Copy Stack Trace* **(4)** button, you grab the actual stack trace that you can use in your coding platform to go to the actual lines of code used at this point (depending of course on your preferred Coding platform)
 
 ![stack trace](../../images/grab-stack-trace.png)
