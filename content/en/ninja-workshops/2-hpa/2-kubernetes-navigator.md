@@ -25,19 +25,13 @@ Please make a note of your cluster name as you will need this later in the works
 
 ## 2. Workloads & Workload Details Pane
 
-Go to the **Infrastructure** page in the Observability UI and select **Kubernetes**, this will offer you a set of Kubernetes services, one of them being the **K8s workloads** pane.
+Go to the **Infrastructure** page in the Observability UI and select **Kubernetes**, this will offer you a set of Kubernetes services, one of them being the **Kubernetes workloads** pane. The pane will show a tiny graph giving you a bird's eye view of the load being handled across all workloads. Click on the **Kubernetes workloads** pane and you will be taken to the workload view.
 
-The pane will show a tiny graph giving you a bird's eye view of the load being handled across those Workloads. Also, if there are any alerts for one of the workloads, you will see a small alert indicator as shown in the image below.
+Initially, you will see all the workloads for all clusters that are reported into your Observability Cloud Org. If an alert has fired for any of the workloads, it will be highlighted on the top right in the image below.
 
-![k8sWorkloads](../images/K8s-Workloads.png)
+![workloads](../images/k8s-workloads-screen.png)
 
-Click on the **K8s workloads** pane and you will be taken to the workload view.
-
-Initially, you will see all the workloads for all clusters that are reported into your Observability Cloud Org. If an alert has fired for any of the workloads, it will be highlighted on the top right (as marked with a red stripe) in the image below. You can go directly to the alert by clicking it to expand it.
-
-![Workloads](../images/k8s-workload-screen.png)
-
-Now, let's find your cluster by filtering on the field `k8s.cluster.name` in the filter toolbar (as marked with a blue stripe).
+Now, let's find your cluster by filtering on **Cluster** in the filter toolbar.
 
 {{% notice title="Note" style="info" %}}
 You can enter a partial name into the search box, such as `emea-ws-7*`, to quickly find your Cluster.
@@ -45,9 +39,9 @@ You can enter a partial name into the search box, such as `emea-ws-7*`, to quick
 Also, it's a very good idea to switch the default time from the default **-4h** back to the last 15 minutes (**-15m**).
 {{% /notice %}}
 
-![Workloads](../images/k8s-workload-filter.png)
+![workloads-filter](../images/k8s-workloads-filter.png)
 
-You should now just see information for your own cluster.
+You will now just see data just for your own cluster.
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
 How many workloads are running & how many namespaces are in your Cluster?
@@ -55,22 +49,19 @@ How many workloads are running & how many namespaces are in your Cluster?
 
 ### 2.1 Using the Navigator Selection Chart
 
-The **K8s workloads** table is a common feature used across most of the Navigators and will offer you a list view of the data you are viewing. In our case, it shows a list of `Pods Failed` grouped by `k8s.namespace.name`.
+By default, the **Kubernetes Workloads** table filters by `# Pods Failed` grouped by `k8s.namespace.name`. Go ahead and expand the `default` namespace to see the workloads in the namespace.
 
-![k8s-workload-list](../images/workload-selection.png)
+![k8s-workload-selection](../images/workload-selection.png)
 
-Now let's change the list view to a heat map view by selecting either the Heat map icon or the List icon in the upper-right corner of the screen (as marked with the purple line).
+Now, let's change the list view to a heatmap view by selecting **Map** icon (next to the **Table** icon). Changing this option will result in the following visualization (or similar):
 
-Changing this option will result in the following visualization:
+![k8s-Heat-map](../images/workloads-heatmap.png)
 
-![k8s-Heat-map](../images/heatmap.png)
+In this view, you will note that each workload is now a colored square. These squares will change color according to the **Color by** option you select. The colors give a visual indication of health and/or usage. You can check the meaning by hovering over the **legend** exclamation icon {{% icon icon="exclamation-circle" %}} bottom right of the heatmaps.
 
-In this view, you will note that each workload is now a colored square. These squares will change color according to the **Color by** option you selected, *as marked by the first green line* in the image above. The colors give a visual indication of health and/or usage. You can check the meaning by hovering over the **legend** exclamation icon {{% icon icon="exclamation-circle" %}}
- bottom right of the heatmaps.
+Another valuable option in this screen is **Find outliers** which provides historical analytics of your clusters based on what is selected in the **Color by** dropdown.
 
-Another valuable option in this screen is **Find Outliers** which provides historical analytics of your clusters based on what is selected in the **Color by** dropdown.
-
-Now, let's select the **File system usage (bytes)** from the **Color by** drop-down box, then click on the **Find outliers** drop-down *as marked by a yellow line* in the above image and make sure you change the **Scope** in the dialog to **Per k8s.namespace.name** and **Deviation from Median** as below:
+Now, let's select the **Network transferred (bytes)** from the **Color by** drop-down box, then click on the **Find outliers** and change the **Scope** in the dialog to **Per k8s.namespace.name** and **Deviation from Median** as below:
 
 ![k8s-Heat-map](../images/set-find-outliers.png)
 
@@ -92,17 +83,15 @@ The Deployment Overview pane gives you a quick insight into the status of your d
 
 You can expand the Workload name by hovering your mouse on it, in case the name is longer than the chart allows.
 
-![k8s-workload-hoover](../images/k8s-workload-hover.png)
-
-To filter to a specific workload, you can click on three dots **...** next to the workload name in the **k8s.workload.name** column and choose **Filter** from the dropdown box.
+To filter to a specific workload, you can click on three dots **...** next to the workload name in the **k8s.workload.name** column and choose **Filter** from the dropdown box:
 
 ![workload-add-filter](../images/workload-add-filter.png)
 
-This will add the selected workload to your filters. It would then list a single workload in the **default** namespace.
+This will add the selected workload to your filters. It would then list a single workload in the **default** namespace:
 
 ![workload-add-filter](../images/heatmap-filter-down.png)
 
-From the Heatmap above find the **splunk-otel-collector-k8s-cluster-receiver** in the **default** namespace and click on the square to see more information about the workload.
+From the Heatmap above find the **splunk-otel-collector-k8s-cluster-receiver** in the **default** namespace and click on the square to see more information about the workload:
 
 ![workload-add-filter](../images/k8s-workload-detail.png)
 
