@@ -6,7 +6,7 @@ weight: 1
 
 ![apm map](../../images/zero-config-first-services-map.png)
 
-The above map shows all the interactions between all of the services. The map may still be in an interim state as it will take the Petclinic Microservice application a few minutes to start up and fully synchronize. Reducing the time filter to a custom time of **2 minutes** will help. The initial startup-related errors (red dots) will eventually disappear.
+The above map shows all the interactions between all of the services. The map may still be in an interim state as it will take the Petclinic Microservice application a few minutes to start up and fully synchronize. Reducing the time filter to a custom time of **2 minutes** will help. You can click on the **Refresh** button **(1)** on the top right of the screen. The initial startup-related errors (red dots) will eventually disappear.
 
 Next, let's examine the metrics that are available for each service that is instrumented and visit the request, error, and duration (RED) metrics Dashboard
 
