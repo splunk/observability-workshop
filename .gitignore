@@ -56,3 +56,4 @@ local-hosting/orbstack/start.sh
 local-hosting/multipass/terraform.tfvars
 local-hosting/multipass/ubuntu-cloudinit.yml
 workshop/aws/ec2/terraform.tfvars copy.template
+workshop/profiling/doorgame/*
