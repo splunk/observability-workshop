@@ -1,18 +1,10 @@
 ---
-title: Deploying the OpenTelemetry Collector in Kubernetes using a NameSpace
+title: Deploying the OpenTelemetry Collector in Kubernetes
 linkTitle: 1. Deploy the OTel Collector
 weight: 1
 ---
 
-## 1. Kubernetes Navigator 2.0 UI
-
-We will be starting this workshop using the new Kubernetes Navigator so please check that you are already using the new Navigator.
-
-When you select **Infrastructure** from the main menu on the left, followed by selecting **Kubernetes**, you should see two service panes (**K8s nodes** and **K8s workloads**) for Kubernetes, similar to the ones below:
-
-![k8s-navi-v-2](../images/k8s-nav2-two.png)
-
-## 2. Connect to EC2 instance
+## 1. Connect to EC2 instance
 
 You will be able to connect to the workshop instance by using SSH from your Mac, Linux or Windows device. Open the link to the sheet provided by your instructor. This sheet contains the IP addresses and the password for the workshop instances.
 
@@ -20,9 +12,9 @@ You will be able to connect to the workshop instance by using SSH from your Mac,
 Your workshop instance has been pre-configured with the correct **Access Token** and **Realm** for this workshop. There is no need for you to configure these.
 {{% /notice %}}
 
-## 3. Install Splunk OTel using Helm
+## 2. Install Splunk OTel using Helm
 
-Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository and update.
+Install the OpenTelemetry Collector using the Splunk Helm chart. First, add the Splunk Helm chart repository and update:
 
 {{< tabs >}}
 {{% tab title="helm repo add" %}}
@@ -58,9 +50,7 @@ helm install splunk-otel-collector \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
 --set="clusterName=$INSTANCE-k3s-cluster" \
---set="splunkObservability.logsEnabled=false" \
 --set="logsEngine=otel" \
---set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
 --set="splunkPlatform.endpoint=$HEC_URL" \
 --set="splunkPlatform.token=$HEC_TOKEN" \
 --set="splunkPlatform.index=splunk4rookies-workshop" \
@@ -71,7 +61,7 @@ splunk-otel-collector-chart/splunk-otel-collector \
 {{% /tab %}}
 {{< /tabs >}}
 
-## 4. Verify Deployment
+## 3. Verify Deployment
 
 You can monitor the progress of the deployment by running `kubectl get pods` which should typically report that the new pods are up and running after about 30 seconds.
 
