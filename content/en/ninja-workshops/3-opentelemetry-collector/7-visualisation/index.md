@@ -27,11 +27,7 @@ In the search box, search for **OTel Contrib**:
 If the dashboard does not exist, then your instructor will be able to quickly add it. If you are not attending a Splunk hosted version of this workshop then the Dashboard Group to import can be found at the bottom of this page.
 {{% /notice %}}
 
-Click on the **OTel Contrib Dashboard** dashboard to open it:
-
-![otel-dashboard](../images/otel-dashboard.png)
-
-Click in the **Participant Name** box, at the top of the dashboard, and select the name you configured for `participant.name` in the `config.yaml` in the drop-down list or start typing the name to search for it:
+Click on the **OTel Contrib Dashboard** dashboard to open it, next click in the **Participant Name** box, at the top of the dashboard, and select the name you configured for `participant.name` in the `config.yaml` in the drop-down list or start typing the name to search for it:
 
 ![select-conf-attendee-name](../images/select-participant-name.png)
 
