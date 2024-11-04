@@ -35,6 +35,7 @@ packages:
   - ca-certificates
   - software-properties-common
   - git
+  - wget
 
 write_files:
   - path: /etc/skel/.profile
