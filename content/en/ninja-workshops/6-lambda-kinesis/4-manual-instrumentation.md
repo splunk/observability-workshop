@@ -27,8 +27,8 @@ Once again, we will first start by taking a look at our operating directory, and
   - _The output should include the following files and directories:_
 
     ```bash
-    get_logs.py    main.tf       send_message.py
-    handler        outputs.tf    terraform.tf
+    handler             outputs.tf          terraform.tf        variables.tf
+    main.tf             send_message.py     terraform.tfvars
     ```
 
 {{% notice title="Workshop Question" style="tip" icon="question" %}}
