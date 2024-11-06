@@ -71,8 +71,6 @@ agent:
           "X-SF-Token": "${SPLUNK_OBSERVABILITY_ACCESS_TOKEN}"
       logging:
         loglevel: info
-    connectors:
-      spanmetrics:
     service:
       pipelines:
         logs:
@@ -82,9 +80,9 @@ agent:
         metrics:
           exporters: [signalfx]
           processors: [memory_limiter, batch, resourcedetection, resource, attributes/postgres-servicename, resource/add_store_location]
-          receivers: [hostmetrics, kubeletstats, otlp, receiver_creator, signalfx, spanmetrics]
+          receivers: [hostmetrics, kubeletstats, otlp, receiver_creator, signalfx]
         traces:
-          exporters: [otlphttp, spanmetrics]
+          exporters: [otlphttp]
           processors: [memory_limiter, batch, k8sattributes, resourcedetection, resource, resource/add_environment, attributes/postgres, attributes/postgres-servicename, resource/add_store_location]
           receivers: [otlp]
 clusterReceiver:
