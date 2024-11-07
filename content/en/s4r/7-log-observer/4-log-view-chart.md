@@ -25,9 +25,9 @@ As with the previous Log Timeline chart, we will add a version of this chart to 
 * The result should be similar to the dashboard below:
   ![Custom Dashboard](../images/log-observer-custom-dashboard.png)
 * As the last step in this exercise, let us add your dashboard to your workshop team page, this will make it easy to find later in the workshop.
-* At the top of the page, click on the ***...*** to the left of your dashboard name (**1**).
+* At the top of the page, click on the ***...*** to the left of your dashboard name.
   ![linking](../images/linking.png)
-* Select **Link to teams** from the drop-down (**2**).
+* Select **Link to teams** from the drop-down.
 * In the following **Link to teams** dialog box, find the Workshop team that your instructor will have provided for you and click {{% button style="blue" %}}Done{{% /button %}}.
 
 {{% /notice %}}
