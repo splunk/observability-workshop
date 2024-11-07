@@ -32,7 +32,7 @@ For more detail visit [link](https://https://www.splunk.com/en_us/products/obser
 * Drag and add the **Log Timeline view** chart next to the **Instruction** chart, resize it so it fills the other 2/3rd of the page to be the error rate chart next to the two the chart and resize it so it fills the page
 * Next, resize the **Log lines** chart to be the width of the page and resize it the make it at least twice as long.
 * You should have something similar to the dashboard below:
-  ![Initial Dashboard](../images/inital-dashboard.png)
+  ![Initial Dashboard](../images/initial-dashboard.png)
 
 {{% /notice %}}
 
