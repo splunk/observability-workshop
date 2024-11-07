@@ -5,7 +5,7 @@ weight: 1
 
 In Splunk Observability Cloud from the main menu, click on **RUM**. you arrive at the RUM Home page, this view has already been covered in the short introduction earlier.
 
-![multiple apps](../images/multiple-apps.png)
+![multiple apps](../images/rum-dashboard.png)
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -19,7 +19,7 @@ In Splunk Observability Cloud from the main menu, click on **RUM**. you arrive a
 
 {{% /notice %}}
 
-![RUM Dashboard](../images/rum-dashboard.png)
+![RUM Dashboard](../images/rum-metrics-dashboard.png)
 
 * **UX Metrics:** Page Views, Page Load and Web Vitals metrics.
 * **Front-end Health:** Breakdown of Javascript Errors and Long Task duration and count.
