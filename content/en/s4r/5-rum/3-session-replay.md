@@ -24,8 +24,6 @@ A session is a collection of traces that correspond to the actions a single user
 
 {{% /notice %}}
 
-![RUM Session](../images/rum-session-replay.png)
-
 RUM Session Replay can redact information, by default text is redacted. You can also redact images (which has been done for this workshop example). This is useful if you are replaying a session that contains sensitive information. You can also change the playback speed and pause the replay.
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
