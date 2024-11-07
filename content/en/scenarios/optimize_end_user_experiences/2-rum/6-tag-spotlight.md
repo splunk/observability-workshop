@@ -11,11 +11,11 @@ weight: 6
 
 From the RUM Overview page, please select the url for the **Cart** endpoint to dive deeper into the information available for this endpoint.
 
-![RUM-Cart2](../images/RUM-select-cart.png)
+![RUM-Cart2](../images/rum-url-cart.png)
 
 Once you have selected and clicked on the blue url, you will find yourself in the **Tag Spotlight** overview
 
-![RUM-Tag](../images/RUM-TAG-Overview.png)
+![RUM-Tag](../images/rum-tag-spotlight.png)
 
 Here you will see all of the tags that have been sent to Splunk RUM as part of the RUM traces. The tags displayed will be relevant to the overview that you have selected.  These are generic Tags created automatically when the Trace was sent, and additional Tags you have added to the trace as part of the configuration of your website.
 
@@ -23,7 +23,7 @@ Here you will see all of the tags that have been sent to Splunk RUM as part of t
 We are already sending two additional tags, you have seen them defined in the *Beacon url* that was added to your website:  `app: "[nodename]-store", environment: "[nodename]-workshop"` in the first section of this workshop! You can add additional tags in a similar way.
 {{% /notice %}}
 
-In our example we have selected the **Document Load Latency** view as shown here:
+In our example we have selected the **Page Load** view as shown here:
 
 ![RUM-Header](../images/RUM-Selection.png)
 
@@ -37,7 +37,7 @@ You can select any of the following Tag views, each focused on a specific metric
 
 The Tag spotlight is designed to help you identify  problems, either through the chart view,, where you may quickly identify outliers or via the TAGs.
 
-In the **Document Load Latency** view, if you look at the **Browser**, **Browser Version** & **OS Name** Tag views,you can see the various browser types and versions, as well as for the underlying OS.
+In the **Page Load** view, if you look at the **Browser**, **Browser Version** & **OS Name** Tag views,you can see the various browser types and versions, as well as for the underlying OS.
 
 This makes it easy to identify problems related to specific browser or OS versions, as they would be highlighted.
 
@@ -49,7 +49,7 @@ A further example are the regional Tags that you can use to identify problems re
 
 ![RUM-click](../images/RUM-Region.png)
 
-This will select only the traces relevant to the city selected as shown below:
+This will select only the sessions relevant to the city selected as shown below:
 
 ![RUM-Adam](../images/RUM-Adam.png)
 

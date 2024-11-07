@@ -8,33 +8,25 @@ weight: 7
 
 ---
 
-## 1. Again select the cart URL
-
-After you have focussed the time slot with the time selector, you need to reselect the *cart* url from **Url Name** view, as shown below:
-
-![RUM-Cart-3](../images/RUM-Cart-All.png)
-
-In the example above we selected `http://34.246.124.162:81/cart`
-
-## 2. Drill down in the Sessions
+## 1. Drill down in the Sessions
 
 After you have analyzed the  information and drilled down via the Tag Spotlight to a subset of the traces, you can view the actual session as it was run by the end-user's browser.
 
-You do this by clicking on the link **Example Sessions** as shown below:
+You do this by clicking on the link **User Sessions** as shown below:
 
-![RUM-Header](../images/RUM-ExampleSessions.png)
+![RUM-Header](../images/rum-sessions-link.png)
 
 This will give you a list of sessions that matched both the time filter and the subset selected in the Tag Profile.
 
 Select one  by clicking on the session ID, It is a good idea to select one that has the longest duration (preferably over 700 ms).
 
-![RUM-Header](../images/RUM-Session-Selected.png)
+![RUM-Header](../images/rum-session-list.png)
 
 Once you have selected the session, you will be taken to the session details page. As you are selecting a specific action that is part of the session, you will likely arrive somewhere in the middle of the session, at the moment of the interaction.
 
-You can see the URL `http://34.246.124.162:81/cart`, the one you selected earlier, is where we are focusing on in the session stream.
+You can see the URL that you selected earlier is where we are focusing on in the waterfall.
 
-![RUM-Session-Tag](../images/Session-Tag.png)
+![RUM-Session-Tag](../images/rum-session.png)
 
 Scroll down a little bit on the page, so you see the end of the operation as shown below.
 
