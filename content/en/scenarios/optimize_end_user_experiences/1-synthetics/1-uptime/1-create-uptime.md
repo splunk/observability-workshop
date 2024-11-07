@@ -32,6 +32,6 @@ weight: 1
    - Remember that your license is based on the number of test runs per month. Turning Round-robin off will multiply the number of test runs by the number of locations you have selected.
 
 1. When you are ready for the test to start running, make sure "Active" is on, then scroll down and click {{% button style="blue" %}}Submit{{% /button %}} to save the test configuration.
-![image](../../_img/submit.png)
+![submit button](../../_img/submit.png)
 
 Now the test will start running with your saved configuration. Take a water break, then we'll look at the results!

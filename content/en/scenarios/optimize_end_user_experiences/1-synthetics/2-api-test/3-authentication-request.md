@@ -6,7 +6,7 @@ weight: 3
 
 Click on {{< button >}}+ Add requests{{< /button >}} and enter the request step name e.g. **Authenticate with Spotify API**.
 
-![placeholder](../../images/add-request.png)
+![placeholder](../../_img/add-request.png)
 
 Expand the Request section, from the drop-down change the request method to **POST** and enter the following URL:
 
@@ -31,4 +31,4 @@ Expand the **Validation** section and add the following extraction:
 
 This will parse the JSON payload that is received from the Spotify API, extract the access token and store it as a custom variable.
 
-![Add payload token](../../images/add-payload-token.png)
+![Add request payload token](../../_img/api-payload-token.png)
