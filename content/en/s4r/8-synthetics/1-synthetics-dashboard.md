@@ -10,14 +10,10 @@ During our investigation in the RUM section, we found there was an issue with th
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 * In the **Search** box enter **[WORKSHOP NAME]** and select the test for your workshop (your instructor will advise as to which one to select).
-* Under **Performance KPIs** set the Time Picker to **-30m** and hit enter.
+* Under **Performance KPIs** set the Time Picker to **Last 1 hour** and hit enter.
 * Click on **Location** and from the drop-down select **Page**. The next filter will be populated with the pages that are part of the test.
 * Click on **Duration**, deselect **Duration** and select **First byte time**.
   ![Transaction Filter](../images/synthetics-transaction-filter.png)
 * Look at the legend and note the color of **First byte time - Page 4**.
-* Select the highest data point for **First byte time - Page 4**.
-* A new pane will slide in from the right. Note the time at the top of the pane. Find this time in the list and click on it as this is the slowest test result.
-  ![Multiple Runs](../images/synthetics-multiple-runs.png)
+* Select the highest data point for **First byte time - Page 4**. You will now be taken to the **Run results** for this particular test run.
 {{% /notice %}}
-
-You will now be taken to the **Run results** for this particular test run.
