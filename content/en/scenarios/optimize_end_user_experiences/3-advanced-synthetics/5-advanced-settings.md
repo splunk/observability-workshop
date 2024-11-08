@@ -10,7 +10,7 @@ Click on **Advanced**, these settings are optional and can be used to further co
 In the case of this workshop, we will **not** be using any of these settings; this is for informational purposes only.
 {{% /notice %}}
 
-![Advanced Settings](../../images/advanced-settings.png)
+![Advanced Settings](../_img/browser-advanced.png)
 
 - **Security**:
   - **TLS/SSL validation**: When activated, this feature is used to enforce the validation of expired, invalid hostname, or untrusted issuer on SSL/TLS certificates.
@@ -19,5 +19,7 @@ In the case of this workshop, we will **not** be using any of these settings; th
   - **Custom headers**: Specify custom headers to send with each request. For example, you can add a header in your request to filter out requests from analytics on the back end by sending a specific header in the requests. You can also use custom headers to set cookies.
   - **Cookies**: Set cookies in the browser before the test starts. For example, to prevent a popup modal from randomly appearing and interfering with your test, you can set cookies. Any cookies that are set will apply to the domain of the starting URL of the check. Splunk Synthetics Monitoring uses the public suffix list to determine the domain.
   - **Host overrides**: Add host override rules to reroute requests from one host to another. For example, you can create a host override to test an existing production site against page resources loaded from a development site or a specific CDN edge node.
+
+See the [Advanced Settings for Browser Tests](https://docs.splunk.com/observability/en/synthetics/browser-test/set-up-browser-test.html#advanced-settings-for-browser-tests) section of the Docs for more information.
 
 Next, we will edit the test steps to provide more meaningful names for each step.

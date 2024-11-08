@@ -14,9 +14,9 @@ The simple settings allow you to configure the basics of the test:
   - **Round-robin**: If multiple locations are selected, the test will run from one location at a time, rather than all locations at once.
   - **Active**: Set the test to active or inactive.
 
-![Return to Test]For this workshop, we will configure the locations that we wish to monitor from. Click in the **Locations** field and you will be presented with a list of global locations (over 50 in total).
+For this workshop, we will configure the locations that we wish to monitor from. Click in the **Locations** field and you will be presented with a list of global locations (over 50 in total).
 
-![Global Locations](../../images/global-locations.png)
+![Global Locations](../_img/browser-loc-field.png)
 
 Select the following locations:
 
