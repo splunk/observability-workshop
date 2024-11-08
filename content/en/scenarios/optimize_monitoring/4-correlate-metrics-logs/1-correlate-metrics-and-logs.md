@@ -12,7 +12,7 @@ In this section, we'll dive into the seamless correlation of metrics and logs fa
 {{% notice title="Exercise: View pod logs" style="green" icon="running" %}}
 The **Kubernetes Pods Dashboard** you created in the previous section already includes a chart that contains all of the pod logs for your Kubernetes Cluster. The log entries are split by container in this stacked bar chart. To view specific log entries perform the following steps:
 
-1. On the **Kubernetes Pods **Dashboard** click on one of the bar charts. A modal will open with the most recent log entries for the container you've selected.
+1. On the **Kubernetes Pods Dashboard** click on one of the bar charts. A modal will open with the most recent log entries for the container you've selected.
 
     ![K8s pod logs](../../images/k8s-pod-logs.png?width=40vw)
 
