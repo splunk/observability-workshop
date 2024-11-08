@@ -26,10 +26,10 @@ Why would we want a [detector on a single Synthetic test](https://docs.splunk.co
 1. Now, **change the signal to Largest contentful paint**. This is a key web vital related to the user experience as it relates to loading time. Change the threshold to **2500ms**. It's okay if there is no sample alert event in the detector preview.
 
 1. Scroll down in this window to see the notification options, including severity and recipients.
-![notification options](../images/detector-notifications.png)
+![notification options](../_img/detector-notifications.png)
 
 1. Click the notifications link to customize the alert subject, message, tip, and runbook link.
-![notification customization dialog](../images/notification-custom.png)
+![notification customization dialog](../_img/notification-custom.png)
 
 1. When you are happy with the amount of alert noise this detector would generate, click Activate.
 ![activate the detector](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-02-16/6a80893a-fffc-475b-a22c-98c89c239095/ascreenshot.jpeg?tl_px=0,838&br_px=1719,1799&force_format=png&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=168,451)
