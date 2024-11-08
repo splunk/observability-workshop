@@ -14,6 +14,8 @@ Splunk Observability Cloud provides several tools for exploring application moni
 
 * With the outer box of the **paymentservice** selected, in the right-hand pane, click on **Traces**.
 * To ensure we are using **Trace Analyzer** make sure the button {{% button %}}Switch to Classic View{{% /button %}} is showing. If it is not, click on {{% button style="blue" %}}Switch to Trace Analyzer{{% /button %}}.
+* Set **Time Range** to **Last 15 minutes**.
+* Ensure the **Sample Ratio** is set to `1:1` and **not** `1:10`.
 
 {{% /notice %}}
 
@@ -31,9 +33,9 @@ The **Trace & error count** view shows the total traces and traces with errors i
 
 The **Trace Duration** view shows a heatmap of traces by duration.  The heatmap represents 3 dimensions of data:
 
-1. Time on the x-axis
-2. Trace duration on the y-axis
-3. The traces (or requests) per second are represented by the heatmap shades
+* Time on the x-axis
+* Trace duration on the y-axis
+* The traces (or requests) per second are represented by the heatmap shades
 
 You can use your mouse to select an area on the heatmap, to focus on a specific time period and trace duration range.  
 
@@ -49,7 +51,9 @@ You can use your mouse to select an area on the heatmap, to focus on a specific 
 
 {{% /notice %}}
 
-We have now filtered down to the exact trace where you encountered a poor user experience with a very long checkout wait. A secondary benefit to viewing this trace is that the trace will be accessible for up to 13 months. This will allow developers to come back to this issue at a later stage and still view this trace for example.
+We have now filtered down to the exact trace where you encountered a poor user experience with a very long checkout wait.
+
+A secondary benefit to viewing this trace is that the trace will be accessible for up to 13 months. This will allow developers to come back to this issue at a later stage and still view this trace for example.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
