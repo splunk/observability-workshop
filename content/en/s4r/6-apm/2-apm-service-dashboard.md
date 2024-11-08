@@ -4,7 +4,7 @@ weight: 2
 ---
 {{% notice title="Service Dashboard" style="info" %}}
 
-APM Service Dashboards provide request, error, and duration (**RED**) metrics based on Monitoring MetricSets created from endpoint spans for your services, endpoints, and Business Workflows. If you scroll down the dashboard you will also see the host and Kubernetes-related metrics which help you determine whether there are problems with the underlying infrastructure.
+As a service owners you can use the service view in Splunk APM to get a complete view of your service health in a single pane of glass. The service view includes a service-level indicator (SLI) for availability, dependencies, request, error, and duration (RED) metrics, runtime metrics, infrastructure metrics, Tag Spotlight, endpoints, and logs for a selected service. You can also quickly navigate to code profiling and memory profiling for your service from the service view.
 
 {{% /notice %}}
 
@@ -12,8 +12,8 @@ APM Service Dashboards provide request, error, and duration (**RED**) metrics ba
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Check the **Time** box **(1)**, you can see that the dashboards only show data relevant to the time it took for the APM trace we selected to complete (note that the charts are static).
-* In the **time** box change enter **-1h** and hit enter.
+* Check the **Time** box, you can see that the dashboards only show data relevant to the time it took for the APM trace we selected to complete (note that the charts are static).
+* In the **Time** box change the timeframe to **-1h**.
 * The Single Value charts, **Request rate**, **Request latency (p90)** and **Error rate** will start updating every 10 seconds showing that we still have a large number of errors occurring.
 * These charts are very useful to quickly identify performance issues. You can use this dashboard to keep an eye on the health of your service or use it as a base for a custom one.
 * We want to use some of these charts in a later exercise:
