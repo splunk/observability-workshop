@@ -10,7 +10,7 @@ As we already saved some useful log charts in a dashboard in the Log Observer ex
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* To get back to your dashboard with the two log charts, click on **Dashboards** from the main menu and you will be taken to your Team Dashboard view. Under **Dashboards** click in **Search dashboards** to search for your Service Health Dashboard group. 
+* To get back to your dashboard with the two log charts, click on **Dashboards** from the main menu and you will be taken to your Team Dashboard view. Under **Dashboards** click in **Search dashboards** to search for your Service Health Dashboard group.
 * Click on the name and this will bring up your previously saved dashboard.
   ![log list](../../7-log-observer/images/log-observer-custom-dashboard.png)
 * Even if the log information is useful, it will need more information to have it make sense for our team so let's add a bit more information
