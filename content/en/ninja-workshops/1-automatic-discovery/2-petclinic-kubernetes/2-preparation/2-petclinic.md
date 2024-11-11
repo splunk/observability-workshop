@@ -85,7 +85,7 @@ curl http://ifconfig.me
 
 ```
 
-You can validate if the application is running by visiting **http://<IP_ADDRESS>:81** (replace **<IP_ADDRESS>** with the IP address you obtained above). You should see the PetClinic application running.
+You can validate if the application is running by visiting **http://<IP_ADDRESS>:81** (replace **<IP_ADDRESS>** with the IP address you obtained above). You should see the PetClinic application running. The application is also running on ports **80** & **443** if you prefer to use those or port **81** is unreachable.
 
 ![Pet shop](../../images/petclinic.png)
 

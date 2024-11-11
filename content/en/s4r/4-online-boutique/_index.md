@@ -14,7 +14,9 @@ You are a **hip urban professional**, longing to buy your next novelty items in 
 
 The purpose of this exercise is for you to interact with the Online Boutique web application.  This is a sample application that is used to demonstrate the capabilities of Splunk Observability Cloud. The application is a simple e-commerce site that allows you to browse items, add them to your cart, and then checkout.
 
-The application will already be deployed for you and your instructor will provide you with a link to the Online Boutique website.
+The application will already be deployed for you and your instructor will provide you with a link to the Online Boutique website e.g:
+
+* **http://<s4r-workshop-i-xxx.splunk>.show:81/**. The application is also running on ports **80** & **443** if you prefer to use those or port **81** is unreachable.
 
 {{% notice style="green" icon="running" title="Exercise - Let's go shopping" %}}
 
