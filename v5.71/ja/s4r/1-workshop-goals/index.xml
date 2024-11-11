@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ワークショップの概要 :: Splunk Observability Cloud Workshops</title><link>https://splunk.github.io/observability-workshop/v5.71/ja/s4r/1-workshop-goals/index.html</link><description>2分 イントロダクション このワークショップのゴールは、ある問題を体験し、Splunk Observability Cloud を使用してトラブルシューティングを行い、根本原因を特定することです。これを実現するために、私たちは Kubernetes で動作する完全なマイクロサービスベースのアプリケーションを提供し、それが Splunk Observability Cloud にメトリクス、トレース、ログを送信するように計装しています。
-参加対象者は？ Splunk Observability をハンズオンの環境で理解したいと考えている方。このワークショップは、ほとんど、または、まったく Splunk Observability の経験がない人向けに設計されています。
-必要なものは何ですか？ 皆様自身の参加と、パソコン、外部のウェブサイトにアクセスできるブラウザがあれば十分です。私たちはこれらのワークショップを対面、または、Zoom で実施しています。あなたのデバイスに Zoom クライアントがない場合でも、ウェブブラウザを通じてワークショップ環境にアクセスすることができます。
-このワークショップで何がカバーされていますか？ この3時間のセッションでは、ハンズオンの環境でストリーミング分析、NoSample™ で完全忠実な分散トレーシングを備えた唯一の可観測性プラットフォームである Splunk Observability の基本を学びます。
-OpenTelemetry なぜ OpenTelemetry が必要なのか、そして、それが可観測性にとってなぜ重要なのかについて簡単に紹介します。
-Splunk Observability ユーザーインターフェースのツアー Splunk Observability Cloud のさまざまなコンポーネントを渡り歩きながら、5つの主要なコンポーネント（APM、RUM、Log Observer、Synthetics、Infrastructure）を操作する方法を紹介します。
-リアルユーザーデータの生成 オンラインブティックというウェブサイトを使用してお買い物を楽しみます。ブラウザ、モバイル、タブレットを使用し、架空の通貨で買い物を行っていただきます。これを通じて、 メトリクス（問題があるのか？）、トレース（問題はどこにあるのか？）、ログ（問題は何か？） を送信します。
-Splunk Real User Monitoring (RUM) すべての参加者のブラウザセッションから受信するテレメトリーデータに基づいて実際のユーザーのデータを調査します。ここでのゴールは、パフォーマンスが悪かったブラウザ、モバイル、タブレットのセッションを見つけて、トラブルシューティングのプロセスを開始することです。
-Splunk Application Performance Monitoring (APM) RUM トレース（フロントエンド）から APM トレース（バックエンド）へとジャンプすることで、End to End 全体を可視化する能力を理解しましょう。すべてのサービスはテレメトリー（トレースとスパン）を送信しており、Splunk Observability Cloud はそれを可視化・分析し、異常やエラーを検出するために使用することができます。</description><generator>Hugo</generator><language>ja</language><atom:link href="https://splunk.github.io/observability-workshop/v5.71/ja/s4r/1-workshop-goals/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
