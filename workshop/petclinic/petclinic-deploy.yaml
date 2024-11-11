@@ -642,6 +642,24 @@ data:
     INSERT IGNORE INTO visits VALUES (3, 8, '2009-06-04', 'neutered');
     INSERT IGNORE INTO visits VALUES (4, 7, '2008-09-04', 'spayed');
 ---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-gateway-ingress
+  annotations:
+spec:
+  ingressClassName: traefik
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: api-gateway
+            port:
+              number: 82
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
