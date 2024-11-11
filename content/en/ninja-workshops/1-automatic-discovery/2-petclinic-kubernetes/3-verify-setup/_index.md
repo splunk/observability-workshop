@@ -7,7 +7,7 @@ time: 10 minutes
 
 Once the installation has been completed, you can log in to **Splunk Observability Cloud** and verify that the metrics are flowing in from your Kubernetes cluster.
 
-From the left-hand menu click on ![infra](../images/infra-icon.png?classes=inline&height=25px)   **Infrastructure** and select **Kubernetes**, then select the **Kubernetes nodes** pane. Once you are in the **Kubernetes nodes** view, change the **Time** filter from **-4h** to the last 15 minutes **(-15m)** to focus on the latest data.
+From the left-hand menu click on **Infrastructure** and select **Kubernetes**, then select the **Kubernetes nodes** pane. Once you are in the **Kubernetes nodes** view, change the **Time** filter from **-4h** to the last 15 minutes **(-15m)** to focus on the latest data.
 
 Next, from the list of clusters, select the cluster name of your workshop instance (you can get the unique part from your cluster name by using the `INSTANCE` from the output from the shell script you ran earlier). **(1)**
 
