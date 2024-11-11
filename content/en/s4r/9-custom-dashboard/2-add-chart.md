@@ -2,6 +2,7 @@
 title: Adding Copied Charts
 linkTitle: 2. Adding Copied Charts
 weight: 2
+hidden: true
 ---
 
 In this section, we are going to use the **Copy and Paste** functionality to extend our dashboard. Remember we copied some charts during the APM Service Dashboard section, we will now add those charts to our dashboard.
