@@ -1,6 +1,6 @@
 ---
 title: Adding a Custom Chart
-linkTitle: 3. Adding a Custom Chart
+linkTitle: 2. Adding a Custom Chart
 weight: 3
 ---
 
