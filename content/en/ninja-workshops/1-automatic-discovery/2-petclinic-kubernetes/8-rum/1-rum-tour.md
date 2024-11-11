@@ -4,7 +4,7 @@ linkTitle: 1. Verify RUM Data
 weight: 1
 ---
 
-Lets start a quick high level tour into RUM by clicking ![RUM](../../images/rum-icon.png?classes=inline&height=25px)  **RUM** in the left-hand menu. Then change the **Environment** filter **(1)** to the name of your workshop instance from the dropdown box, it will be **`<INSTANCE>-workshop`** **(1)** (where **`INSTANCE`** is the value from the shell script you ran earlier). Make sure it is the only one selected.
+Lets start a quick high level tour into RUM by clicking **RUM** in the left-hand menu. Then change the **Environment** filter **(1)** to the name of your workshop instance from the dropdown box, it will be **`<INSTANCE>-workshop`** **(1)** (where **`INSTANCE`** is the value from the shell script you ran earlier). Make sure it is the only one selected.
 
 Then change the **App** **(2)** dropdown box to the name of your app, it will be **`<INSTANCE>-store`**
 
