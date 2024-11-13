@@ -49,16 +49,14 @@ helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel
 ```
 
 ``` bash
-helm install splunk-otel-collector \
+helm install splunk-otel-collector --version {{< otel-version >}} \
 --set="operator.enabled=true", \
 --set="certmanager.enabled=true", \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
 --set="clusterName=$INSTANCE-k3s-cluster" \
---set="splunkObservability.logsEnabled=false" \
 --set="logsEngine=otel" \
 --set="splunkObservability.profilingEnabled=true" \
---set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
 --set="environment=$INSTANCE-workshop" \
 --set="splunkPlatform.endpoint=$HEC_URL" \
 --set="splunkPlatform.token=$HEC_TOKEN" \

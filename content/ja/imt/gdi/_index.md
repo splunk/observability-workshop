@@ -81,7 +81,7 @@ Update Complete. ⎈Happy Helming!⎈
 {{% tab title="Helm Install" %}}
 
 ```bash
-helm install splunk-otel-collector \
+helm install splunk-otel-collector --version {{< otel-version >}} \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
 --set="clusterName=$(hostname)-k3s-cluster" \

@@ -46,7 +46,7 @@ Install the OpenTelemetry Collector Helm with the following commands, do **NOT**
 {{% tab title="helm install" %}}
 
 ``` bash
-helm install splunk-otel-collector \
+helm install splunk-otel-collector --version {{< otel-version >}} \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
 --set="clusterName=$INSTANCE-k3s-cluster" \

@@ -89,16 +89,14 @@ echo -e " "
 
 #Install the otel collector.
 echo -e "\e[1mInstalling OpenTelemetry Collector\e[0m"
-helm install splunk-otel-collector \
+helm install splunk-otel-collector --version 0.111.0 \
 --set="operator.enabled=true" \
 --set="certmanager.enabled=true" \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
 --set="clusterName=$INSTANCE-k3s-cluster" \
---set="splunkObservability.logsEnabled=false" \
 --set="logsEngine=otel" \
 --set="splunkObservability.profilingEnabled=true" \
---set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
 --set="environment=$INSTANCE-workshop" \
 --set="splunkPlatform.endpoint=$HEC_URL" \
 --set="splunkPlatform.token=$HEC_TOKEN" \
