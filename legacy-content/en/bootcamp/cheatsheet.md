@@ -225,7 +225,7 @@ signalfx-agent signalfx/signalfx-agent \
 helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart && helm repo update
 helm delete splunk-otel-collector
 helm uninstall splunk-otel-collector
-helm install splunk-otel-collector \
+helm install splunk-otel-collector --version {{< otel-version >}} \
 --set="splunkRealm=$REALM" \
 --set="splunkAccessToken=$ACCESS_TOKEN" \
 --set="clusterName=<MY-CLUSTER>" \

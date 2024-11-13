@@ -40,14 +40,12 @@ Install the OpenTelemetry Collector Helm chart with the following commands, do *
 {{% tab title="Helm Install" %}}
 
 ```bash
-helm install splunk-otel-collector \
+helm install splunk-otel-collector --version {{< otel-version >}} \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
 --set="clusterName=$INSTANCE-k3s-cluster" \
---set="splunkObservability.logsEnabled=false" \
 --set="logsEngine=otel" \
 --set="splunkObservability.profilingEnabled=true" \
---set="splunkObservability.infrastructureMonitoringEventsEnabled=true" \
 --set="environment=$INSTANCE-workshop" \
 --set="splunkPlatform.endpoint=$HEC_URL" \
 --set="splunkPlatform.token=$HEC_TOKEN" \
@@ -58,7 +56,7 @@ splunk-otel-collector-chart/splunk-otel-collector \
 ```
 <!--
 ``` bash
-helm install splunk-otel-collector \
+helm install splunk-otel-collector --version {{< otel-version >}} \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
 --set="clusterName=$INSTANCE-k3s-cluster" \

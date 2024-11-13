@@ -45,7 +45,7 @@ To install the collector run the following command, do **NOT** edit this:
 {{% tab title="Helm Install" %}}
 
 ```bash
-helm install splunk-otel-collector --version 0.111.0 \
+helm install splunk-otel-collector --version {{< otel-version >}} \
 --set="operator.enabled=true", \
 --set="certmanager.enabled=true", \
 --set="splunkObservability.realm=$REALM" \

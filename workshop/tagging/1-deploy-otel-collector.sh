@@ -9,7 +9,7 @@
 
   helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
   helm repo update
-  helm install splunk-otel-collector \
+  helm install splunk-otel-collector --version 0.111.0 \
   --set="splunkObservability.realm=$REALM" \
   --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
   --set="clusterName=$INSTANCE-k3s-cluster" \
