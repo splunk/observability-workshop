@@ -8,7 +8,7 @@ Let's add some tags to our traces, so we can find out why some customers receive
 
 ## Identify Useful Tags
 
-We'll start by reviewing the code for the `credit_check` function of `creditcheckservice` (which can be found in the `/home/splunk/workshop/tagging/creditcheckservice/main.py` file):
+We'll start by reviewing the code for the `credit_check` function of `creditcheckservice` (which can be found in the `/home/splunk/workshop/tagging/creditcheckservice-py/main.py` file):
 
 ```` python
 @app.route('/check')
@@ -38,7 +38,7 @@ Great, we've identified four tags to capture from this service that could help w
 
 ## Capture Tags
 
-We start by adding importing the trace module by adding an import statement to the top of the `creditcheckservice/main.py` file:
+We start by adding importing the trace module by adding an import statement to the top of the `creditcheckservice-py/main.py` file:
 
 ```` python
 import requests
@@ -96,7 +96,7 @@ Once these changes are made, let's run the following script to rebuild the Docke
 
 After a few minutes, return to **Splunk Observability Cloud** and load one of the latest traces to confirm that the tags were captured successfully (hint: sort by the timestamp to find the latest traces):
 
-**![Trace with Attributes](../images/trace_with_attributes.png)**
+**![Trace with Attributes](../../images/trace_with_attributes.png)**
 
 Well done, you've leveled up your OpenTelemetry game and have added context to traces using tags.
 
