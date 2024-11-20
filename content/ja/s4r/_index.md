@@ -9,7 +9,7 @@ weight: 1
 
 * インフラ監視（Infrastructure Monitoring）
 * **完全で忠実な** Real User Monitoring（RUM）
-* Application Performance Monitoring（APM）による **End to End の NoSample™ で完全忠実な**トレースの可視性
+* Application Performance Monitoring（APM）による **End to End の NoSample で完全忠実な**トレースの可視性
 * **コード入力を必要としない**ログクエリ
 * 外形監視・合成監視（Synthetic Monitoring）
 * タグ分析とエラースタックを使用した根本原因の特定

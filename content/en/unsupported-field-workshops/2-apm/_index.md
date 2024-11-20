@@ -1,12 +1,12 @@
 ---
 title: Splunk APM
 linkTitle: Splunk APM
-description: Splunk APM is a NoSample™ Full-fidelity application performance monitoring and troubleshooting solution for cloud-native, microservices-based applications.
+description: Splunk APM is a NoSample Full-fidelity application performance monitoring and troubleshooting solution for cloud-native, microservices-based applications.
 weight: 2
 hidden: true
 ---
 
-Splunk APM is a NoSample™ Full-fidelity application performance monitoring and troubleshooting solution for cloud-native, microservices-based applications.
+Splunk APM is a NoSample Full-fidelity application performance monitoring and troubleshooting solution for cloud-native, microservices-based applications.
 
 By collecting all traces, instead of a sampled subset, no anomaly goes undetected. Whether a user experiences an error or longer-than-usual latency, you’ll be able to know and act on it within seconds. Furthermore, not all bad behavior results in errors — as your developers create new applications they need to know whether their canary releases provide the expected results. Only by collecting all trace data will you ensure that your cloud-native applications behave the way they are supposed to.
 

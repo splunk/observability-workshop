@@ -10,7 +10,7 @@ In this workshop, we will be showing how **Splunk Observability Cloud** provides
 
 * Infrastructure Monitoring
 * **Full-fidelity** Real User Monitoring (RUM)
-* Complete **end-to-end NoSample™ Full-fidelity** trace visibility with Application Performance Monitoring (APM)
+* Complete **end-to-end NoSample Full-fidelity** trace visibility with Application Performance Monitoring (APM)
 * **No code** log querying
 * Synthetic Monitoring
 * Finding root causes with tag analytics and error stacks

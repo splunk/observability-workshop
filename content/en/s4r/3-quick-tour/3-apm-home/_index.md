@@ -5,7 +5,7 @@ weight: 3
 time: 5 minutes
 ---
 
-Splunk APM provides a **NoSample™** end-to-end visibility of every service and its dependency to solve problems quicker across monoliths and microservices. Teams can immediately detect problems from new deployments, confidently troubleshoot by scoping and isolating the source of an issue, and optimize service performance by understanding how back-end services impact end users and business workflows.
+Splunk APM provides a **NoSample** end-to-end visibility of every service and its dependency to solve problems quicker across monoliths and microservices. Teams can immediately detect problems from new deployments, confidently troubleshoot by scoping and isolating the source of an issue, and optimize service performance by understanding how back-end services impact end users and business workflows.
 
 **Real-time monitoring and alerting:** Splunk provides out-of-the-box service dashboards and automatically detects and alerts on RED metrics (rate, error and duration) when there is a sudden change.
 **Dynamic telemetry maps:** Easily visualize service performance in modern production environments in real-time. End-to-end visibility of service performance from infrastructure, applications, end users, and all dependencies helps quickly scope new issues and troubleshoot more effectively.  
