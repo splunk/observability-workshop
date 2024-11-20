@@ -6,7 +6,7 @@ time: 5 minutes
 description: Learn about Splunk RUM and how it can help you monitor the full user experience of every web and mobile session.
 ---
 
-Splunk RUM is the industry’s only end-to-end, **NoSample™** RUM solution - providing visibility into the full user experience of every web and mobile session to uniquely combine all front-end traces with back-end metrics, traces, and logs as they happen. IT Operations and Engineering teams can quickly scope, prioritize and isolate errors, measure how performance impacts real users and optimize end-user experiences by correlating performance metrics alongside video reconstructions of all user interactions.
+Splunk RUM is the industry’s only end-to-end, **NoSample** RUM solution - providing visibility into the full user experience of every web and mobile session to uniquely combine all front-end traces with back-end metrics, traces, and logs as they happen. IT Operations and Engineering teams can quickly scope, prioritize and isolate errors, measure how performance impacts real users and optimize end-user experiences by correlating performance metrics alongside video reconstructions of all user interactions.
 
 **Full user session analysis:** Streaming analytics capture full user sessions from single and multi-page apps, measuring the customer impact of every resource, image, route change and API call.  
 **Correlate issues faster:** Infinite cardinality and full transaction analysis help you pinpoint and correlate issues faster across complex distributed systems.  

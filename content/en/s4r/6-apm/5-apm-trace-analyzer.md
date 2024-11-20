@@ -3,7 +3,7 @@ title: 5. APM Trace Analyzer
 weight: 5
 ---
 
-As Splunk APM provides a **NoSample™** end-to-end visibility of every service Splunk APM captures every trace. For this workshop, the **Order Confirmation ID** is available as a tag. This means that we can use this to search for the exact trace of the poor user experience you encountered earlier in the workshop.
+As Splunk APM provides a **NoSample** end-to-end visibility of every service Splunk APM captures every trace. For this workshop, the **Order Confirmation ID** is available as a tag. This means that we can use this to search for the exact trace of the poor user experience you encountered earlier in the workshop.
 
 {{% notice title="Trace Analyzer" style="info" %}}
 

@@ -3,7 +3,7 @@ title: 5. APM Trace Analyzer
 weight: 5
 ---
 
-Splunk APM では、**NoSample™** の End to End の可視性が提供され、すべてのサービスのトレースがキャプチャされます。このワークショップでは、**Order Confirmation ID** がタグとして利用可能です。これにより、ワークショップの前半で遭遇したユーザーエクスペリエンスの問題のトレースを正確に検索できます。
+Splunk APM では、**NoSample** の End to End の可視性が提供され、すべてのサービスのトレースがキャプチャされます。このワークショップでは、**Order Confirmation ID** がタグとして利用可能です。これにより、ワークショップの前半で遭遇したユーザーエクスペリエンスの問題のトレースを正確に検索できます。
 
 {{% notice title="Trace Analyzer" style="info" %}}
 

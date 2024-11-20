@@ -21,7 +21,7 @@ Just you, your laptop, and a browser that can access external websites. We run t
 
 #### What's covered in this workshop?
 
-This 3-hour session will take you through the basics of Splunk Observability, the only observability platform with **streaming analytics**, **NoSample™ Full Fidelity** distributed tracing in a hands-on environment.
+This 3-hour session will take you through the basics of Splunk Observability, the only observability platform with **streaming analytics**, **NoSample Full Fidelity** distributed tracing in a hands-on environment.
 
 ##### OpenTelemetry
 
