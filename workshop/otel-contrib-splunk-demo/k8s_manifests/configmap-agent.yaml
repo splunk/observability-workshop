@@ -292,6 +292,9 @@ data:
               - /snap/*
               - /boot/*
               - /boot
+              - /opt/orbstack/*
+              - /mnt/machines/*
+              - /Users/*
           load: null
           memory: null
           network: null
