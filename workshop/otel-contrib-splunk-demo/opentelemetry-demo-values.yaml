@@ -1,0 +1,32 @@
+default:
+  envOverrides:
+    - name: OTEL_SERVICE_NAME
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: "metadata.labels['app.kubernetes.io/name']"
+    - name: OTEL_COLLECTOR_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
+    - name: DEPLOYMENT_ENVIRONMENT
+      valueFrom:
+        configMapKeyRef:
+          name: otel-configmap
+          key: deployment_environment
+    - name: OTEL_RESOURCE_ATTRIBUTES
+      value: 'service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version={{ .Chart.AppVersion }},deployment.environment=$(DEPLOYMENT_ENVIRONMENT)'
+components:
+  frontendProxy:
+    service:
+      type: LoadBalancer
+opentelemetry-collector:
+  enabled: false
+jaeger:
+  enabled: false
+prometheus:
+  enabled: false
+grafana:
+  enabled: false
+opensearch:
+  enabled: false
