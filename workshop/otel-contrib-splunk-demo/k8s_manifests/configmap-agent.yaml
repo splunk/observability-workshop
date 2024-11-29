@@ -323,6 +323,9 @@ data:
             endpoint: 0.0.0.0:4317
           http:
             endpoint: 0.0.0.0:4318
+            cors:
+              allowed_origins:
+                - http://opentelemetry-demo-frontendproxy:8080
       prometheus/agent:
         config:
           scrape_configs:
