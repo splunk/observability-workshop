@@ -30,11 +30,10 @@ spec:
     spec:
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
-      serviceAccountname: default-otel-collector
+      serviceAccountName: default-otel-collector
       nodeSelector:
         kubernetes.io/os: linux
       tolerations:
-
         - effect: NoSchedule
           key: node-role.kubernetes.io/master
         - effect: NoSchedule
