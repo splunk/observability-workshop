@@ -36,7 +36,7 @@ kubectl apply -f k8s_manifests/
 
 ## OpenTelemetry Astronomy Shop configuration
 
-The file `otel-demo.yaml` will be applied to the Helm chart and change the behavior of the default configuration:
+The file `opentelemetry-demo-values.yaml` will be applied to the Helm chart and change the behaviour of the default configuration:
 
 - Set `OTEL_COLLECTOR_NAME` to the host IP Address for Metrics, Traces and Logs
 - Configure a load balancer for the `frontendProxy` server
