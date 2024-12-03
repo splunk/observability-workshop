@@ -4,7 +4,7 @@
 
 - Kubernetes Navigator
 - APM
-- DB Query Performance (Redis & PostgreSQL)
+- DB Query Performance (Redis)
 - Logs
 - Synthetics (no Synthetics to APM due to no `Server-Timing` header support upstream)
 
