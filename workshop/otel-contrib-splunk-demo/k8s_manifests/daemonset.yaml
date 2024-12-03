@@ -30,6 +30,7 @@ spec:
     spec:
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
+      serviceAccount: default-otel-collector
       serviceAccountName: default-otel-collector
       nodeSelector:
         kubernetes.io/os: linux
@@ -149,6 +150,8 @@ spec:
           limits:
             cpu: 200m
             memory: 500Mi
+        securityContext:
+          runAsUser: 0
         volumeMounts:
         - mountPath: /conf
           name: otel-configmap
@@ -170,14 +173,12 @@ spec:
         - mountPath: /hostfs/var/run/utmp
           name: host-var-run-utmp
           readOnly: true
-        - mountPath: /usr/lib/splunk-otel-collector/agent-bundle/run/collectd
-          name: run-collectd
-          readOnly: false
+        - mountPath: /var/log
+          name: varlog
+        - mountPath: /var/lib/docker/containers
+          name: varlibdockercontainers
       terminationGracePeriodSeconds: 600
       volumes:
-      - name: run-collectd
-        emptyDir:
-          sizeLimit: 25Mi
       - name: host-dev
         hostPath:
           path: /dev
@@ -196,6 +197,12 @@ spec:
       - name: host-var-run-utmp
         hostPath:
           path: /var/run/utmp
+      - name: varlog
+        hostPath:
+          path: /var/log
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
       - name: otel-configmap
         configMap:
           name: default-otel-collector-otel-agent
