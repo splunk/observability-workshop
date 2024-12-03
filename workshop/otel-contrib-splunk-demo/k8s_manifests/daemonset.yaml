@@ -132,6 +132,11 @@ spec:
               secretKeyRef:
                 name: default-otel-collector
                 key: splunk_hec_token
+          - name: SPLUNK_INDEX
+            valueFrom:
+              configMapKeyRef:
+                name: otel-configmap
+                key: splunk_index
         readinessProbe:
           httpGet:
             path: /

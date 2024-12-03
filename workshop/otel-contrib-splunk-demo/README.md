@@ -28,7 +28,7 @@ helm delete splunk-otel-collector
 cd ~/workshop/otel-contrib-splunk-demo
 ```
 
-Edit `k8s_manifests/configmap-and-secrets.yaml` and configure `REALM`, `splunk_hec_url`, `k8s_cluster_name`, `deployment_environment`, `splunk_observability_access_token` and `splunk_hec_token`.
+Edit `k8s_manifests/configmap-and-secrets.yaml` and configure `REALM`, `splunk_hec_url`, `splunk_index`, `k8s_cluster_name`, `deployment_environment`, `splunk_observability_access_token` and `splunk_hec_token`.
 
 ``` bash
 kubectl apply -f k8s_manifests/
