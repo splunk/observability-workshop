@@ -12,7 +12,7 @@ default:
     - name: DEPLOYMENT_ENVIRONMENT
       valueFrom:
         configMapKeyRef:
-          name: otel-configmap
+          name: otel-contrib-configmap
           key: deployment_environment
     - name: OTEL_RESOURCE_ATTRIBUTES
       value: 'service.name=$(OTEL_SERVICE_NAME),service.namespace=opentelemetry-demo,service.version={{ .Chart.AppVersion }},deployment.environment=$(DEPLOYMENT_ENVIRONMENT)'
