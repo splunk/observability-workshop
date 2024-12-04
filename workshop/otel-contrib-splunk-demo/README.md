@@ -49,5 +49,5 @@ helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm
 ```
 
 ``` text
-helm install opentelemetry-demo open-telemetry/opentelemetry-demo --values opentelemetry-demo-values.yaml
+helm install otelshop open-telemetry/opentelemetry-demo --values opentelemetry-demo-values.yaml
 ```
