@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: default-otel-collector-agent
+  name: otel-contrib-collector-agent
   namespace: default
   labels:
     app.kubernetes.io/name: otel-collector
@@ -31,7 +31,7 @@ spec:
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
       serviceAccount: default-otel-collector
-      serviceAccountName: default-otel-collector
+      serviceAccountName: otel-contrib-collector
       nodeSelector:
         kubernetes.io/os: linux
       tolerations:
@@ -84,17 +84,17 @@ spec:
           - name: SPLUNK_API_URL
             valueFrom:
               configMapKeyRef:
-                name: otel-configmap
+                name: otel-contrib-configmap
                 key: splunk_api_url
           - name: SPLUNK_INGEST_URL
             valueFrom:
               configMapKeyRef:
-                name: otel-configmap
+                name: otel-contrib-configmap
                 key: splunk_ingest_url
           - name: K8S_CLUSTER_NAME
             valueFrom:
               configMapKeyRef:
-                name: otel-configmap
+                name: otel-contrib-configmap
                 key: k8s_cluster_name
           - name: K8S_NODE_IP
             valueFrom:
@@ -121,22 +121,22 @@ spec:
           - name: SPLUNK_OBSERVABILITY_ACCESS_TOKEN
             valueFrom:
               secretKeyRef:
-                name: default-otel-collector
+                name: otel-contrib-collector
                 key: splunk_observability_access_token
           - name: SPLUNK_HEC_URL
             valueFrom:
               configMapKeyRef:
-                name: otel-configmap
+                name: otel-contrib-configmap
                 key: splunk_hec_url
           - name: SPLUNK_HEC_TOKEN
             valueFrom:
               secretKeyRef:
-                name: default-otel-collector
+                name: otel-contrib-collector
                 key: splunk_hec_token
           - name: SPLUNK_INDEX
             valueFrom:
               configMapKeyRef:
-                name: otel-configmap
+                name: otel-contrib-configmap
                 key: splunk_index
         readinessProbe:
           httpGet:
@@ -154,7 +154,7 @@ spec:
           runAsUser: 0
         volumeMounts:
         - mountPath: /conf
-          name: otel-configmap
+          name: otel-contrib-configmap
         - mountPath: /hostfs/dev
           name: host-dev
           readOnly: true
@@ -203,9 +203,9 @@ spec:
       - name: varlibdockercontainers
         hostPath:
           path: /var/lib/docker/containers
-      - name: otel-configmap
+      - name: otel-contrib-configmap
         configMap:
-          name: default-otel-collector-otel-agent
+          name: otel-contrib-collector-otel-agent
           items:
             - key: relay
               path: relay.yaml

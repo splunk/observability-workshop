@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: default-otel-collector-k8s-cluster-receiver
+  name: otel-contrib-collector-k8s-cluster-receiver
   namespace: default
   labels:
     app.kubernetes.io/name: otel-collector
@@ -26,7 +26,7 @@ spec:
       annotations:
         checksum/config: 4b62199b9bbcfb6f7dc9ae4dd0ec6fc45a2a5953d7002ed90e884883b6f0ad4b
     spec:
-      serviceAccountName: default-otel-collector
+      serviceAccountName: otel-contrib-collector
       nodeSelector:
           kubernetes.io/os: linux
       containers:
@@ -46,17 +46,17 @@ spec:
           - name: SPLUNK_API_URL
             valueFrom:
               configMapKeyRef:
-                name: otel-configmap
+                name: otel-contrib-configmap
                 key: splunk_api_url
           - name: SPLUNK_INGEST_URL
             valueFrom:
               configMapKeyRef:
-                name: otel-configmap
+                name: otel-contrib-configmap
                 key: splunk_ingest_url
           - name: K8S_CLUSTER_NAME
             valueFrom:
               configMapKeyRef:
-                name: otel-configmap
+                name: otel-contrib-configmap
                 key: k8s_cluster_name
           - name: K8S_POD_IP
             valueFrom:
@@ -78,7 +78,7 @@ spec:
           - name: SPLUNK_OBSERVABILITY_ACCESS_TOKEN
             valueFrom:
               secretKeyRef:
-                name: default-otel-collector
+                name: otel-contrib-collector
                 key: splunk_observability_access_token
         readinessProbe:
           httpGet:
@@ -99,7 +99,7 @@ spec:
       volumes:
       - name: collector-configmap
         configMap:
-          name: default-otel-collector-otel-k8s-cluster-receiver
+          name: otel-contrib-collector-otel-k8s-cluster-receiver
           items:
             - key: relay
               path: relay.yaml
