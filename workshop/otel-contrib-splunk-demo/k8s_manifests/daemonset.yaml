@@ -30,7 +30,6 @@ spec:
     spec:
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
-      serviceAccount: default-otel-collector
       serviceAccountName: otel-contrib-collector
       nodeSelector:
         kubernetes.io/os: linux
