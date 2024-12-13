@@ -3,6 +3,7 @@ title: Spring PetClinic SpringBoot Based Microservices On Kubernetes
 linkTitle: PetClinic Kubernetes Workshop
 weight: 2
 archetype: chapter
+authors: ["Pieter Hagen"]
 description: Learn how to enable automatic discovery and configuration for your Java-based application running in Kubernetes. Experience real-time monitoring to help you maximize application behavior with end-to-end visibility.
 time: 90 minutes
 ---
