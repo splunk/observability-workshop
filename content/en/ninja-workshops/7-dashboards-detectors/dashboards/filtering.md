@@ -1,5 +1,5 @@
 ---
-title: 3 Using Filters & Formulas
+title: Using Filters & Formulas
 weight: 3
 ---
 
@@ -7,37 +7,37 @@ weight: 3
 
 Let's now create a new chart and save it in our dashboard!
 
-Select the plus icon (top right of the UI) and from the drop down, choose the option **Chart**.
-Or click on the {{< button style="blue">}}+ New Chart{{< /button >}} Button to create a new chart.
+Select the plus icon **(1)** (top right of the UI) and from the drop down, choose the option **Chart (2)**.
+Or click on the {{< button style="blue">}}+ New Chart{{< /button >}} Button **(3)** to create a new chart.
 
-![Create new chart](../../images/M-Filter-0.png)
+![Create new chart](../../images/new-chart.png)
 
 You will now see a chart template like the following.
 
-![Empty Chart](../../images/M-Editing-6.png)
+![Empty Chart](../../images/empty-new-chart.png)
 
 Let's enter a metric to plot. We are still going to use the metric **`demo.trans.latency`**.
 
-In the **Plot Editor** tab under **Signal** enter **`demo.trans.latency`**.
+In the **Plot Editor (1)** tab under **Signal (2)** enter **`demo.trans.latency`(3)**.
 
 ![Signal](../../images/plot-editor.png)
 
-You should now have a familiar line chart. Please switch the time to 15 mins.
+You should now have a familiar line chart with 18 Timeseries reporting **(4)**. Please switch the time to 15 mins by using the dropdown **(1)**.
 
-![Signal](../../images/M-Filter-10.png)
+![Signal](../../images/line-chart-15-mins.png)
 
 ## 2. Filtering and Analytics
 
 Let's now select the **Paris** datacenter to do some analytics - for that we will use a filter.
 
 Let's go back to the **Plot Editor** tab and click on {{% button style="blue" %}}Add Filter{{% /button %}}
-, wait until it automatically populates, choose **`demo_datacenter`**, and then **`Paris`**.
+button, **(2)** in the screen shot above, wait until it automatically populates , choose **`demo_datacenter` (1)**, and then add **`Paris` (2)**.
 
-![Filter](../../images/M-Filter-1.png)
+![Filter](../../images/select-filter.png)
 
-In the **F(x)** column, add the analytic function **`Percentile:Aggregation`**, and leave the value to **`95`** (click outside to confirm).
+In the **F(x) (1)** column, click on the {{% button style="blue" %}}Add Analytics{{% /button %}} button and add the analytic function **`Percentile` (2)** from the dropdown list, then pick the  **`Percentile:Aggregation` (3)** version, and leave the value of the desired percentile on **`90`** in the follow up screen. (Afterwards click outside the pane to confirm **(4)**).
 
-![Analytics](../../images/M-Filter-2.png)
+![Analytics](../../images/prepare_filter.png)
 
 For info on the **Percentile** function and the other functions see [Chart Analytics](https://docs.splunk.com/Observability/data-visualization/charts/gain-insights-through-chart-analytics.html#gain-insights-through-chart-analytics).
 
