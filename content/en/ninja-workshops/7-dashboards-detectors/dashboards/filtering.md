@@ -1,5 +1,5 @@
 ---
-title: 3.3 Using Filters & Formulas
+title: 3 Using Filters & Formulas
 weight: 3
 ---
 
