@@ -48,7 +48,81 @@ What does all this mean?  Let's break it down.
 
 ## Walking through the Dockerfile 
 
-TODO 
+We've used a multi-stage Dockerfile for this example, which separates the Docker image creation process into the following stages: 
+
+* Base
+* Build
+* Publish
+* Final
+
+While a multi-stage approach is more complex, it allows us to create a 
+lighter-weight runtime image for deployment.  We'll explain the purpose of 
+each of these stages below. 
+
+### The Base Stage
+
+The base stage defines the user that will 
+be running the app, the working directory, and exposes 
+the port that will be used to access the app. 
+It's based off of Microsoft's `mcr.microsoft.com/dotnet/aspnet:8.0` image: 
+
+``` dockerfile
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+USER app
+WORKDIR /app
+EXPOSE 8080
+```
+
+Note that the `mcr.microsoft.com/dotnet/aspnet:8.0` image includes the .NET runtime only, 
+rather than the SDK, so is relatively lightweight. It's based off of the Debian 12 Linux 
+distribution.  You can find more information about the ASP.NET Core Runtime Docker images 
+in [GitHub](https://github.com/dotnet/dotnet-docker/blob/main/README.aspnet.md). 
+
+### The Build Stage
+
+The next stage of the Dockerfile is the build stage.  For this stage, the 
+`mcr.microsoft.com/dotnet/sdk:8.0` image is used, which is also based off of 
+Debian 12 but includes the full [.NET SDK](https://github.com/dotnet/dotnet-docker/blob/main/README.sdk.md) rather than just the runtime.  
+
+This stage copies the application code to the build image and then 
+uses `dotnet build` to build the project and its dependencies into a 
+set of `.dll` binaries: 
+
+``` dockerfile
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+COPY ["helloworld.csproj", "helloworld/"]
+RUN dotnet restore "./helloworld/./helloworld.csproj"
+WORKDIR "/src/helloworld"
+COPY . .
+RUN dotnet build "./helloworld.csproj" -c $BUILD_CONFIGURATION -o /app/build
+```
+
+### The Publish Stage
+
+The third stage is publish, which is based on build stage image rather than a Microsoft image.  In this stage, `dotnet publish` is used to 
+package the application and its dependencies for deployment: 
+
+``` dockerfile
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "./helloworld.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+```
+
+### The Final Stage 
+
+The fourth stage is our final stage, which is based on the base 
+stage image (which is lighter-weight than the build and publish stages). It copies the output from the publish stage image and 
+defines the entry point for our application: 
+
+``` dockerfile
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+
+ENTRYPOINT ["dotnet", "helloworld.dll"]
+```
 
 ## Build a Docker Image
 

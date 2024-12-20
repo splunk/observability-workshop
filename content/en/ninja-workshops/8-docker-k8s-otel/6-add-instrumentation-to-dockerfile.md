@@ -20,10 +20,17 @@ After the .NET application is built in the Dockerfile, we want to:
 * Download the Splunk OTel .NET installer
 * Install the distribution
 
-We can add the following to the Dockerfile to do so: 
+We can add the following to the build stage of the Dockerfile to do so: 
 
 ``` dockerfile
-RUN dotnet build "./diceroll-app.csproj" -c $BUILD_CONFIGURATION -o /app/build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+COPY ["helloworld.csproj", "helloworld/"]
+RUN dotnet restore "./helloworld/./helloworld.csproj"
+WORKDIR "/src/helloworld"
+COPY . .
+RUN dotnet build "./helloworld.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # Add dependencies for splunk-otel-dotnet-install.sh
 RUN apt-get update && \
@@ -36,13 +43,12 @@ RUN curl -sSfL https://github.com/signalfx/splunk-otel-dotnet/releases/latest/do
 RUN sh ./splunk-otel-dotnet-install.sh
 ```
 
-Next, we'll update the Dockerfile to make the following changes to the final image: 
+Next, we'll update the final stage of the Dockerfile with the following changes: 
 
 * Copy the /root/.splunk-otel-dotnet/ from the build image to the final image 
 * Copy the entrypoint.sh file as well 
 * Set the `OTEL_SERVICE_NAME` and `OTEL_RESOURCE_ATTRIBUTES` environment variables 
 * Set the `ENTRYPOINT` to `entrypoint.sh` 
-
 
 > Note: replace `$INSTANCE` in your Dockerfile with your instance name,
 > which can be determined by running `echo $INSTANCE`.
@@ -82,6 +88,21 @@ with the following content:
 # Then run the CMD
 exec "$@"
 ```
+
+The `entrypoint.sh` script is required for sourcing environment variables from the instrument.sh script, 
+which is included with the instrumentation. This ensures the correct setup of environment variables 
+for each platform.
+
+> You may be wondering, why can't we just include the following command in the Dockerfile to do this, 
+> like we did when activating OpenTelemetry .NET instrumentation on our Linux host? 
+> ``` dockerfile
+> RUN . $HOME/.splunk-otel-dotnet/instrument.sh
+> ```
+> The problem with this approach is that each Dockerfile RUN step runs a new container and a new shell. 
+> If you try to set an environment variable in one shell, it will not be visible later on.
+> This problem is resolved by using an entry point script, as we've done here. 
+> Refer to this [Stack Overflow post](https://stackoverflow.com/questions/55921914/how-to-source-a-script-with-environment-variables-in-a-docker-build-process) 
+> for further details on this issue. 
 
 ## Build the Docker Image 
 
