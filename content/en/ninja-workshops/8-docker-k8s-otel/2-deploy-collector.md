@@ -34,7 +34,13 @@ sudo sh /tmp/splunk-otel-collector.sh \
 {{% tab title="Example Output" %}}
 
 ``` bash
-TBD
+Splunk OpenTelemetry Collector Version: latest
+Memory Size in MIB: 512
+Realm: us1
+Ingest Endpoint: https://ingest.us1.signalfx.com
+API Endpoint: https://api.us1.signalfx.com
+HEC Endpoint: https://ingest.us1.signalfx.com/v1/log
+etc. 
 ```
 
 {{% /tab %}}
@@ -58,7 +64,18 @@ sudo systemctl status splunk-otel-collector
 {{% tab title="Example Output" %}}
 
 ``` bash
-TBD
+● splunk-otel-collector.service - Splunk OpenTelemetry Collector
+     Loaded: loaded (/lib/systemd/system/splunk-otel-collector.service; enabled; vendor preset: enabled)
+    Drop-In: /etc/systemd/system/splunk-otel-collector.service.d
+             └─service-owner.conf
+     Active: active (running) since Fri 2024-12-20 00:13:14 UTC; 45s ago
+   Main PID: 14465 (otelcol)
+      Tasks: 9 (limit: 19170)
+     Memory: 117.4M
+        CPU: 681ms
+     CGroup: /system.slice/splunk-otel-collector.service
+             └─14465 /usr/bin/otelcol
+
 ```
 
 {{% /tab %}}
@@ -79,7 +96,13 @@ sudo journalctl -u splunk-otel-collector
 {{% tab title="Example Output" %}}
 
 ``` bash
-TBD
+Dec 20 00:13:14 derek-1 systemd[1]: Started Splunk OpenTelemetry Collector.
+Dec 20 00:13:14 derek-1 otelcol[14465]: 2024/12/20 00:13:14 settings.go:483: Set config to /etc/otel/collector/agent_config.yaml
+Dec 20 00:13:14 derek-1 otelcol[14465]: 2024/12/20 00:13:14 settings.go:539: Set memory limit to 460 MiB
+Dec 20 00:13:14 derek-1 otelcol[14465]: 2024/12/20 00:13:14 settings.go:524: Set soft memory limit set to 460 MiB
+Dec 20 00:13:14 derek-1 otelcol[14465]: 2024/12/20 00:13:14 settings.go:373: Set garbage collection target percentage (GOGC) to 400
+Dec 20 00:13:14 derek-1 otelcol[14465]: 2024/12/20 00:13:14 settings.go:414: set "SPLUNK_LISTEN_INTERFACE" to "127.0.0.1"
+etc. 
 ```
 
 {{% /tab %}}

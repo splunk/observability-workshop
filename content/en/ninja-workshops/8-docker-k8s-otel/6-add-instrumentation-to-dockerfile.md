@@ -7,7 +7,7 @@ time: 10 minutes
 
 Now that we've successfully Dockerized our application, let's add in OpenTelemetry instrumentation. 
 
-This is similar to steps we took when instrumenting the application running on Linux, but there 
+This is similar to the steps we took when instrumenting the application running on Linux, but there 
 are some key differences to be aware of. 
 
 ## Update the Dockerfile 
@@ -43,6 +43,10 @@ Next, we'll update the Dockerfile to make the following changes to the final ima
 * Set the `OTEL_SERVICE_NAME` and `OTEL_RESOURCE_ATTRIBUTES` environment variables 
 * Set the `ENTRYPOINT` to `entrypoint.sh` 
 
+
+> Note: replace `$INSTANCE` in your Dockerfile with your instance name,
+> which can be determined by running `echo $INSTANCE`.
+
 ``` dockerfile 
 FROM base AS final
 
@@ -62,10 +66,8 @@ CMD ["dotnet", "helloworld.dll"]
 ```
 
 You can find the final version of the Dockerfile in the 
-`/home/splunk/workshop/docker-k8s-otel/helloworld/docker` directory. 
+`/home/splunk/workshop/docker-k8s-otel/docker` directory. 
 
-> Note: replace `$INSTANCE` in your Dockerfile with your instance name, 
-> which can be determined by running `echo $INSTANCE`.
 
 ## Create the entrypoint.sh file
 
@@ -95,9 +97,17 @@ docker build -t diceroll:1.1 .
 > docker ps -a
 > ```
 > Then run the following command to delete the container: 
+> ``` bash
 > docker rm <old container id> --force
+> ```
+> Now we can get the container image id:
+> ``` bash
+> docker images | grep 1.0
+> ```
 > Finally, we can run the following command to delete the old image: 
+> ``` bash
 > docker image rm <old image id>
+> ```
 
 ## Run the Application 
 

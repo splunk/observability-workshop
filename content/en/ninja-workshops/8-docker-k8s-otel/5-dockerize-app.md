@@ -14,7 +14,7 @@ The first step is to create a Docker image for our application.  This is known a
 
 ## Create a Dockerfile 
 
-Let's create a file named `Dockerfile` in the `/home/splunk/workshop/docker-k8s-otel/helloworld directory.  
+Let's create a file named `Dockerfile` in the `/home/splunk/workshop/docker-k8s-otel/helloworld` directory.  
 
 It should include the following content: 
 
@@ -63,9 +63,23 @@ This tells Docker to build an image using a tag of `helloworld:1.0` using the `D
 
 We can confirm it was created successfully with the following command: 
 
+{{< tabs >}}
+{{% tab title="Script" %}}
+
 ``` bash
 docker images
 ```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+``` bash
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+helloworld   1.0       db19077b9445   20 seconds ago   217MB
+```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Test the Docker Image
 
@@ -85,12 +99,23 @@ helloworld:1.0
 > is able to access resources on our instance, which is important later on when we need 
 > our application to send data to the collector running on localhost. 
 
-We can access our application as before: 
+We can access our application as before:
+
+{{< tabs >}}
+{{% tab title="Script" %}}
 
 ``` bash
-curl http://localhost:8080
+curl http://localhost:8080/hello/Docker
 ```
 
-As before, it should return `Hello, World!`. 
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+``` bash
+Hello, Docker! 
+```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 Congratulations, if you've made it this far, you've successfully Dockerized a .NET application. 

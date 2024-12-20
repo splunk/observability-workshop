@@ -9,7 +9,7 @@ time: 15 minutes
 
 With Kubernetes, environment variables are typically managed in the `.yaml` manifest files rather 
 than baking them into the Docker image.  So let's remove the following two environment variables from 
-the Dockerfile (in the `/home/splunk/workshop/docker-k8s-otel` folder): 
+the Dockerfile (in the `/home/splunk/workshop/docker-k8s-otel/helloworld` folder): 
 
 ``` dockerfile
 ENV OTEL_SERVICE_NAME=helloworld
@@ -21,6 +21,8 @@ ENV OTEL_RESOURCE_ATTRIBUTES='deployment.environment=otel-$INSTANCE'
 Let's build a new Docker image that excludes the environment variables:
 
 ``` bash
+cd /home/splunk/workshop/docker-k8s-otel/helloworld 
+
 docker build -t helloworld:1.2 .
 ```
 
@@ -30,9 +32,17 @@ docker build -t helloworld:1.2 .
 > docker ps -a
 > ```
 > Then run the following command to delete the container:
+> ``` bash
 > docker rm <old container id> --force
+> ```
+> Now we can get the container image id:
+> ``` bash
+> docker images | grep 1.1
+> ```
 > Finally, we can run the following command to delete the old image:
+> ``` bash
 > docker image rm <old image id>
+> ```
 
 ## Import the Docker Image to Kubernetes
 
@@ -100,6 +110,9 @@ spec:
 
 We can then use these manifest files to deploy our application: 
 
+{{< tabs >}}
+{{% tab title="Script" %}}
+
 ``` bash
 # create the deployment
 kubectl apply -f deployment.yaml
@@ -107,6 +120,17 @@ kubectl apply -f deployment.yaml
 # create the service
 kubectl apply -f service.yaml
 ```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+``` bash
+deployment.apps/helloworld created
+service/helloworld created
+```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Test the Application
 
@@ -143,6 +167,8 @@ environment variables to tell it where to send the data.
 
 Add the following to `deployment.yaml` file you created earlier: 
 
+> Be sure to replace $INSTANCE with your instance name.
+
 ``` yaml
           env:
             - name: PORT
@@ -158,8 +184,6 @@ Add the following to `deployment.yaml` file you created earlier:
             - name: OTEL_RESOURCE_ATTRIBUTES 
               value: "deployment.environment=otel-$INSTANCE" 
 ```
-
-> Replace $INSTANCE with your instance name. 
 
 Apply the changes with: 
 
