@@ -13,24 +13,11 @@ using the NuGet packages.
 We'll start by downloading the latest `splunk-otel-dotnet-install.sh` file, 
 which we'll use to instrument our .NET application:
 
-{{< tabs >}}
-{{% tab title="Script" %}}
-
 ``` bash
 cd ~/workshop/docker-k8s-otel/helloworld
 
 curl -sSfL https://github.com/signalfx/splunk-otel-dotnet/releases/latest/download/splunk-otel-dotnet-install.sh -O
 ```
-
-{{% /tab %}}
-{{% tab title="Example Output" %}}
-
-``` bash
-TBD
-```
-
-{{% /tab %}}
-{{< /tabs >}}
 
 Refer to [Install the Splunk Distribution of OpenTelemetry .NET manually](https://docs.splunk.com/observability/en/gdi/get-data-in/application/otel-dotnet/instrumentation/instrument-dotnet-application.html#install-the-splunk-distribution-of-opentelemetry-net-manually)
 for further details on the installation process.
@@ -78,23 +65,29 @@ environment within Splunk Observability Cloud:
 export OTEL_RESOURCE_ATTRIBUTES=deployment.environment=otel-$INSTANCE
 ```
 
-## A Challenge For You 
 
-Before starting our .NET application with the instrumentation, there's a challenge for you. 
+## Run the Application with Instrumentation
 
-How can we see what traces are being exported by the .NET application?  (i.e. on our Linux instance
-rather than within Observability Cloud)? 
+We can run the application as follows: 
+
+```
+dotnet run
+```
+
+## A Challenge For You
+
+How can we see what traces are being exported by the .NET application from our Linux instance?
 
 <details>
   <summary><b>Click here to see the answer</b></summary>
 
-There are two ways we can do this: 
+There are two ways we can do this:
 
 1. We could add `OTEL_TRACES_EXPORTER=otlp,console` at the start of the `dotnet run` command, which ensures that traces are both written to collector via OTLP as well as the console.
 ``` bash
 OTEL_TRACES_EXPORTER=otlp,console dotnet run 
 ```
-2. Alternatively, we could add the debug exporter to the collector configuration, and add it to the traces pipeline, which ensures the traces are written to the collector logs. 
+2. Alternatively, we could add the debug exporter to the collector configuration, and add it to the traces pipeline, which ensures the traces are written to the collector logs.
 
 ``` yaml
 exporters:
@@ -112,16 +105,9 @@ service:
 ```
 </details>
 
+## Access the Application
 
-## Run the Application with Instrumentation
-
-We can run the application as follows: 
-
-```
-dotnet run
-```
-
-Once it's running, use a second SSH terminal and access the application using curl:
+Once the application is running, use a second SSH terminal and access it using curl:
 
 ``` bash
 curl http://localhost:8080/hello

@@ -114,5 +114,5 @@ Where do we find the configuration that is used by this collector?
 
 It's available in the `/etc/otel/collector` directory.  Since we installed the 
 collector in `agent` mode, the collector configuration can be found in the 
-`agent_config.yaml file`. 
+`agent_config.yaml` file. 
 
