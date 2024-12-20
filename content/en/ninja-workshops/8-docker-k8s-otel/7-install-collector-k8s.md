@@ -79,12 +79,32 @@ environment: otel-$INSTANCE
 
 Now we can use the following command to install the collector: 
 
+{{< tabs >}}
+{{% tab title="Script" %}}
+
 ``` bash
 helm install \
 splunk-otel-collector \
 -f values.yaml \
 splunk-otel-collector-chart/splunk-otel-collector
 ```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+``` bash
+NAME: splunk-otel-collector
+LAST DEPLOYED: Fri Dec 20 01:01:43 2024
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+Splunk OpenTelemetry Collector is installed and configured to send data to Splunk Observability realm us1.
+```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Confirm the Collector is Running
 
@@ -101,9 +121,9 @@ kubectl get pods
 {{% tab title="Example Output" %}}
 
 ``` bash
-NAME                                                             READY   STATUS    RESTARTS   AGE
-my-splunk-otel-collector-agent-xr29g                             1/1     Running   0          12s
-my-splunk-otel-collector-k8s-cluster-receiver-5b7945d489-fvcjj   1/1     Running   0          12s
+NAME                                                         READY   STATUS    RESTARTS   AGE
+splunk-otel-collector-agent-8xvk8                            1/1     Running   0          49s
+splunk-otel-collector-k8s-cluster-receiver-d54857c89-tx7qr   1/1     Running   0          49s
 ```
 
 {{% /tab %}}
@@ -111,9 +131,9 @@ my-splunk-otel-collector-k8s-cluster-receiver-5b7945d489-fvcjj   1/1     Running
 
 ## Confirm your K8s Cluster is in O11y Cloud
 
-In Splunk Observability Cloud, navigate to Infrastructure -> K8s Nodes, 
+In Splunk Observability Cloud, navigate to **Infrastructure** -> **Kubernetes** -> **Kubernetes Nodes**, 
 and then Filter on your Cluster Name (which is `$INSTANCE-cluster`). 
 
 TODO:  show screenshot 
 
-
+![Kubernetes node](../images/k8snode.png)

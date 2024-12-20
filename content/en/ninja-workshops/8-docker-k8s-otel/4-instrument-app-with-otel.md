@@ -17,6 +17,8 @@ which we'll use to instrument our .NET application:
 {{% tab title="Script" %}}
 
 ``` bash
+cd ~/workshop/docker-k8s-otel/helloworld
+
 curl -sSfL https://github.com/signalfx/splunk-otel-dotnet/releases/latest/download/splunk-otel-dotnet-install.sh -O
 ```
 
@@ -50,9 +52,22 @@ sh ./splunk-otel-dotnet-install.sh
 
 Next, we can activate the OpenTelemetry instrumentation: 
 
+{{< tabs >}}
+{{% tab title="Script" %}}
+
 ``` bash
 . $HOME/.splunk-otel-dotnet/instrument.sh
 ```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+``` bash
+Downloading v1.8.0 for linux-glibc (/tmp/tmp.m3tSdtbmge/splunk-opentelemetry-dotnet-linux-glibc-x64.zip)...
+```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 ## Set the Deployment Environment
 
@@ -60,7 +75,7 @@ Let's set the deployment environment, to ensure our data flows into its own
 environment within Splunk Observability Cloud: 
 
 ``` bash 
-export OTEL_RESOURCE_ATTRIBUTES='deployment.environment='otel-$INSTANCE'
+export OTEL_RESOURCE_ATTRIBUTES=deployment.environment=otel-$INSTANCE
 ```
 
 ## A Challenge For You 
@@ -117,12 +132,53 @@ As before, it should return `Hello, World!`.
 If you enabled trace logging, you should see a trace written the console or collector logs such as the following: 
 
 ````
-TODO
+info: Program[0]
+      /hello endpoint invoked anonymously
+Activity.TraceId:            c7bbf57314e4856447508cd8addd49b0
+Activity.SpanId:             1c92ac653c3ece27
+Activity.TraceFlags:         Recorded
+Activity.ActivitySourceName: Microsoft.AspNetCore
+Activity.DisplayName:        GET /hello/{name?}
+Activity.Kind:               Server
+Activity.StartTime:          2024-12-20T00:45:25.6551267Z
+Activity.Duration:           00:00:00.0006464
+Activity.Tags:
+    server.address: localhost
+    server.port: 8080
+    http.request.method: GET
+    url.scheme: http
+    url.path: /hello
+    network.protocol.version: 1.1
+    user_agent.original: curl/7.81.0
+    http.route: /hello/{name?}
+    http.response.status_code: 200
+Resource associated with Activity:
+    splunk.distro.version: 1.8.0
+    telemetry.distro.name: splunk-otel-dotnet
+    telemetry.distro.version: 1.8.0
+    service.name: helloworld
+    os.type: linux
+    os.description: Ubuntu 22.04.5 LTS
+    os.build_id: 6.8.0-1021-aws
+    os.name: Ubuntu
+    os.version: 22.04
+    host.name: derek-1
+    host.id: 20cf15fcc7054b468647b73b8f87c556
+    process.owner: splunk
+    process.pid: 16997
+    process.runtime.description: .NET 8.0.11
+    process.runtime.name: .NET
+    process.runtime.version: 8.0.11
+    container.id: 2
+    telemetry.sdk.name: opentelemetry
+    telemetry.sdk.language: dotnet
+    telemetry.sdk.version: 1.9.0
+    deployment.environment: otel-derek-1
 ````
 
 ## View your application in Splunk Observability Cloud
 
-Now that the setup is complete, let's confirm that it's sending data to **Splunk Observability Cloud**.  Note that when the application is deployed for the first time, it may take a few minutes for the data to appear.
+Now that the setup is complete, let's confirm that traces are sent to **Splunk Observability Cloud**.  Note that when the application is deployed for the first time, it may take a few minutes for the data to appear.
 
 Navigate to APM, then use the Environment dropdown to select your environment (i.e. `otel-instancename`).
 
@@ -130,10 +186,14 @@ If everything was deployed correctly, you should see `helloworld` displayed in t
 
 ![APM Overview](../images/apm_overview.png)
 
-Click on **Explore** on the right-hand side to view the service map.  
+Click on **Service Map** on the right-hand side to view the service map.  
 
 ![Service Map](../images/service_map.png)
 
 Next, click on **Traces** on the right-hand side to see the traces captured for this application. 
 
 ![Traces](../images/traces.png)
+
+An individual trace should look like the following: 
+
+![Traces](../images/trace.png)
