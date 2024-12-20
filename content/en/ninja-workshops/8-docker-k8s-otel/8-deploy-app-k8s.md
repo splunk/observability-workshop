@@ -178,7 +178,7 @@ Add the following to `deployment.yaml` file you created earlier:
                 fieldRef:
                   fieldPath: status.hostIP
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
-              value: "http://$(NODE_IP):4317"
+              value: "http://$(NODE_IP):4318"
             - name: OTEL_SERVICE_NAME
               value: "helloworld"
             - name: OTEL_RESOURCE_ATTRIBUTES 
