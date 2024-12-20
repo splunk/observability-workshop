@@ -58,33 +58,33 @@ cd ~/workshop/docker-k8s-otel/helloworld
 ```
 
 We'll use a simple "Hello World" .NET application for this workshop.  The main logic is found 
-in the Program.cs file: 
+in the HelloWorldController.cs file: 
 
 ``` cs 
-using System.Globalization;
-
-using Microsoft.AspNetCore.Mvc;
-
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
-
-string Hello([FromServices]ILogger<Program> logger, string? name)
+public class HelloWorldController : ControllerBase
 {
-    if (string.IsNullOrEmpty(name))
+    private ILogger<HelloWorldController> logger;
+
+    public HelloWorldController(ILogger<HelloWorldController> logger)
     {
-        logger.LogInformation("Hello, World!);
-    }
-    else
-    {
-        logger.LogInformation("Hello, {result}!", name);
+        this.logger = logger;
     }
 
-    return result.ToString(CultureInfo.InvariantCulture);
+    [HttpGet("/hello/{name?}")]
+    public string Hello(string name)
+    {
+        if (string.IsNullOrEmpty(name))
+        {
+           logger.LogInformation("/hello endpoint invoked anonymously");
+           return "Hello, World!";
+        }
+        else
+        {
+            logger.LogInformation("/hello endpoint invoked by {name}", name);
+            return String.Format("Hello, {0}!", name);
+        }
+    }
 }
-
-app.MapGet("/hello/{name?}", Hello);
-
-app.Run();
 ```
 
 ## Build and Run the .NET Application

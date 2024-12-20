@@ -132,8 +132,6 @@ splunk-otel-collector-k8s-cluster-receiver-d54857c89-tx7qr   1/1     Running   0
 ## Confirm your K8s Cluster is in O11y Cloud
 
 In Splunk Observability Cloud, navigate to **Infrastructure** -> **Kubernetes** -> **Kubernetes Nodes**, 
-and then Filter on your Cluster Name (which is `$INSTANCE-cluster`). 
-
-TODO:  show screenshot 
+and then Filter on your Cluster Name (which is `$INSTANCE-cluster`): 
 
 ![Kubernetes node](../images/k8snode.png)

@@ -157,7 +157,7 @@ Then we can access the application by using the Cluster IP that was returned
 from the previous command.  For example: 
 
 ``` bash
-curl http://10.43.102.103:8080/hello
+curl http://10.43.102.103:8080/hello/Kubernetes
 ```
 
 ## Configure OpenTelemetry 

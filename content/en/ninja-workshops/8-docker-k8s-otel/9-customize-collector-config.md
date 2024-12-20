@@ -179,10 +179,9 @@ Ensure `smartagent/kubernetes-events` is included in the agent config now:
 
 ## Add the Debug Exporter 
 
-The Debug exporter can be helpful when troubleshooting various OpenTelememtry issues. 
-
 Suppose we want to see the traces and logs that are sent to the collector, so we can 
-inspect them before sending them to Splunk.  We can use the debug exporter for this purpose. 
+inspect them before sending them to Splunk.  We can use the debug exporter for this purpose, which 
+can be helpful for troubleshooting OpenTelemetry-related issues. 
 
 Let's add the debug exporter to the values.yaml file as follows: 
 
@@ -217,10 +216,10 @@ agent:
 ```
 
 > Note that our agent configuration already includes a traces pipeline (you can
-> verify this by review the agent config map), so we only needed to add the debug 
-> exporter.  However, there wasn't a logs pipeline in our config, because we didn't
-> enable logs when we installed the collector initially, so we'll need to add the 
-> full pipeline now. 
+> verify this by reviewing the agent config map), so we only needed to add the debug 
+> exporter.  However, there wasn't a logs pipeline in the agent config, because we didn't
+> enable logs when we installed the collector initially.  So we'll need to add the 
+> full logs pipeline now. 
 
 Once the file is saved, we can apply the changes with:
 
