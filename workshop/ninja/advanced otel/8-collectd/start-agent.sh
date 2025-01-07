@@ -1,1 +1,0 @@
-../collectors/otelcol-contrib --config agent-collectd.yaml
