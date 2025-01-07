@@ -1,1 +1,2 @@
-./otelcol-contrib --config agent-org.yaml
+#!/bin/sh
+./otelcol-contrib --config=agent.yaml
