@@ -1,0 +1,1 @@
+./otelcol-contrib --config agent-org.yaml
