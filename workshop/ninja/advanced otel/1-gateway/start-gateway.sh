@@ -1,0 +1,1 @@
+./otelcol-contrib --config gateway.yaml
