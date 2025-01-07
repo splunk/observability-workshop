@@ -1,0 +1,85 @@
+# Default configuration file for the Linux (deb/rpm) and Windows MSI collector packages
+
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: "0.0.0.0:4317"
+      http:
+        endpoint: "0.0.0.0:4318"
+  nop:
+
+processors:
+  batch:
+    metadata_keys:
+      - X-SF-Token
+  # Enabling the memory_limiter is strongly recommended for every pipeline.
+  # Configuration is based on the amount of memory allocated to the collector.
+  # For more information about memory limiter, see
+  # https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/memorylimiter/README.md
+  memory_limiter:
+    check_interval: 2s
+    limit_mib: 512
+
+  #resourcedetection:
+  #  detectors: [gcp, ecs, ec2, azure, system]
+  #  override: true
+
+  #resource/add_environment:
+    #attributes:
+      #- action: insert
+        #value: staging/production/...
+        #key: deployment.environment
+
+  # The following processor is used to add "otelcol.service.mode" attribute to the internal metrics
+  resource/add_mode:
+    attributes:
+      - action: insert
+        value: "agent"
+        key: otelcol.service.mode
+  
+  filter:
+    error_mode: ignore
+    metrics:
+      datapoint:
+        - metric.name == "thiswillbedropped" and value_int == 4
+
+
+exporters:
+  # Debug
+  debug:
+    verbosity: detailed
+    sampling_initial: 5
+    sampling_thereafter: 200
+
+  file:
+    path: ./agent.out 
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors:
+      - memory_limiter
+      - batch
+      #- resource/add_environment
+      exporters: [file]
+      # Use instead when sending to gateway
+      #exporters: [otlp/gateway, signalfx]
+    metrics:
+      receivers: [ otlp]
+      processors: [memory_limiter, batch]
+      exporters: [file]
+      # Use instead when sending to gateway
+      #exporters: [otlp/gateway]
+
+    logs:
+      receivers: [otlp]
+      processors:
+      - memory_limiter
+      - batch
+      #- resourcedetection
+      #- resource/add_environment
+      exporters: [file]
+      # Use instead when sending to gateway
+      #exporters: [otlp/gateway]

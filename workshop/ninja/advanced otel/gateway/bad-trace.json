@@ -1,0 +1,39 @@
+{
+    "resourceMetrics": [
+      {
+        "resource": {
+          "attributes": [
+            {
+              "key": "service.name",
+              "value": {
+                "stringValue": "example-service"
+              }
+            }
+          ]
+        },
+        "scopeMetrics": [
+          {
+            "scope": {},
+            "metrics": [
+              {
+                "name":  "thiswillbedropped",
+                "description": "A gauge metric with invalid temporality",
+                "unit": "1",
+                "gauge": {
+                  "dataPoints": [
+                    {
+                      "attributes": [],
+                      "startTimeUnixNano": "1581452772000000000",
+                      "timeUnixNano": "1581452773000000000",
+                      "asInteger": 4
+                    }
+                  ]
+                },
+                "aggregationTemporality": "AGGREGATION_TEMPORALITY_CUMULATIVE" 
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
