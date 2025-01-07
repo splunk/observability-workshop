@@ -2,10 +2,9 @@ receivers:
   otlp:
     protocols:
       grpc:
-        endpoint: "0.0.0.0:4317"
+        endpoint: "0.0.0.0:5317"
       http:
-        endpoint: "0.0.0.0:4318"
-  nop:
+        endpoint: "0.0.0.0:5318"
 
 processors:
   batch:
@@ -14,25 +13,18 @@ processors:
   memory_limiter:
     check_interval: 2s
     limit_mib: 512
-  resourcedetection:
-    detectors: [gcp, ecs, ec2, azure, system]
-    override: true
   resource/add_mode:
     attributes:
       - action: insert
-        value: "agent"
+        value: "gateway"
         key: otelcol.service.mode
-  filter:
-    error_mode: ignore
-    metrics:
-      datapoint:
-        - metric.name == "thiswillbedropped" and value_int == 4
+  resourcedetection/internal:
+    detectors: [gcp, ecs, ec2, azure, system]
+    override: true
 
 exporters:
   debug:
     verbosity: detailed
-  file:
-    path: ./agent.out
 
 service:
   pipelines:
@@ -41,15 +33,12 @@ service:
       processors:
       - memory_limiter
       - batch
-      exporters: [file]
+      exporters: [debug]
     metrics:
-      receivers: [ otlp]
+      receivers: [otlp]
       processors: [memory_limiter, batch]
-      exporters: [file]
+      exporters: [debug]
     logs:
       receivers: [otlp]
-      processors:
-      - memory_limiter
-      - batch
-      - resourcedetection
-      exporters: [file]
+      processors: [memory_limiter, batch]
+      exporters: [debug]
