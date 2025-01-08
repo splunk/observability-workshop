@@ -63,4 +63,4 @@ workshop/ninja/advanced otel/gateway/otelcol_darwin_arm64_splunk
 workshop/ninja/advanced otel/gateway/otelcol-contrib
 workshop/tagging/creditcheckservice-java/target/*
 workshop/tagging/creditcheckservice-java-with-tags/target/*
-agent.out
+*.out
