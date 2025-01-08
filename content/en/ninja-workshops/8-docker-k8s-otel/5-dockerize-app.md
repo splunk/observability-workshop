@@ -162,7 +162,7 @@ helloworld   1.0       db19077b9445   20 seconds ago   217MB
 We can run our application using the Docker image as follows: 
 
 ``` bash
-docker run --name diceroll \
+docker run --name helloworld \
 --detach \
 --expose 8080 \
 --network=host \
