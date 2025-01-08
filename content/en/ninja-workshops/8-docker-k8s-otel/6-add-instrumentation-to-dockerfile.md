@@ -109,7 +109,7 @@ for each platform.
 Let's build a new Docker image that includes the OpenTelemetry .NET instrumentation: 
 
 ``` bash
-docker build -t diceroll:1.1 .
+docker build -t helloworld:1.1 .
 ```
 
 > Note: we've used a different version (1.1) to distinguish the image from our earlier version. 
@@ -135,11 +135,11 @@ docker build -t diceroll:1.1 .
 Let's run the new Docker image: 
 
 ``` bash
-docker run --name diceroll \
+docker run --name helloworld \
 --detach \
 --expose 8080 \
 --network=host \
-diceroll:1.1
+helloworld:1.1
 ```
 
 We can access the application using: 
