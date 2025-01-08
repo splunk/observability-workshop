@@ -5,9 +5,61 @@ weight: 2
 time: 10 minutes
 ---
 
+## Uninstall the OpenTelemetry Collector
+
+Our EC2 instance may already have an older version the Splunk Distribution of the OpenTelemetry Collector 
+installed.  Before proceeding further, let's uninstall it using the following command:
+
+{{< tabs >}}
+{{% tab title="Script" %}}
+
+``` bash
+curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-collector.sh;
+sudo sh /tmp/splunk-otel-collector.sh --uninstall
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+``` bash
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages will be REMOVED:
+  splunk-otel-collector*
+0 upgraded, 0 newly installed, 1 to remove and 167 not upgraded.
+After this operation, 766 MB disk space will be freed.
+(Reading database ... 157441 files and directories currently installed.)
+Removing splunk-otel-collector (0.92.0) ...
+(Reading database ... 147373 files and directories currently installed.)
+Purging configuration files for splunk-otel-collector (0.92.0) ...
+Scanning processes...                                                                                                                                                                                              
+Scanning candidates...                                                                                                                                                                                             
+Scanning linux images...                                                                                                                                                                                           
+
+Running kernel seems to be up-to-date.
+
+Restarting services...
+ systemctl restart fail2ban.service falcon-sensor.service
+Service restarts being deferred:
+ systemctl restart networkd-dispatcher.service
+ systemctl restart unattended-upgrades.service
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+Successfully removed the splunk-otel-collector package
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
+
 ## Deploy the OpenTelemetry Collector
 
-Let’s deploy the Splunk Distribution of the OpenTelemetry Collector on our Linux EC2 instance. 
+Let’s deploy the latest version of the Splunk Distribution of the OpenTelemetry Collector on our Linux EC2 instance. 
 
 We can do this by downloading the collector binary using `curl`, and then running it  
 with specific arguments that tell the collector which realm to report data into, which access 
@@ -89,7 +141,7 @@ We can view the collector logs using `journalctl`:
 {{% tab title="Script" %}}
 
 ``` bash
-sudo journalctl -u splunk-otel-collector 
+sudo journalctl -u splunk-otel-collector -f -n 100
 ```
 
 {{% /tab %}}
