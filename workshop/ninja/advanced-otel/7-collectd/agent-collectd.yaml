@@ -1,0 +1,17 @@
+receivers:
+    collectd:
+      endpoint: "0.0.0.0:8081"
+
+exporters:
+    debug:
+      verbosity: detailed
+    file:
+      path: ./agent.out 
+      rotation:
+        max_megabytes: 2  
+        max_backups: 2
+service:
+    pipelines:
+      metrics:
+        receivers: [collectd]
+        exporters: [file]
