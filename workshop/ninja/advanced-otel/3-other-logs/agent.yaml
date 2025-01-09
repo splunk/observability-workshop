@@ -5,6 +5,15 @@ receivers:
         endpoint: "0.0.0.0:4317"
       http:
         endpoint: "0.0.0.0:4318"
+
+  filelog/important_logs:
+      include: [./important_logs.log]
+      include_file_path: true
+      include_file_name: false
+      resource:
+        com.splunk.source: ./important_logs.log
+        com.splunk.sourcetype: important_logs
+
   nop:
 
 processors:
@@ -47,7 +56,7 @@ service:
       processors: [memory_limiter, batch]
       exporters: [file]
     logs:
-      receivers: [otlp]
+      receivers: [otlp,filelog/important_logs]
       processors:
       - memory_limiter
       - batch
