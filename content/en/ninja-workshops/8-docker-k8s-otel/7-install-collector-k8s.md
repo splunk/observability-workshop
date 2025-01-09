@@ -67,15 +67,8 @@ the `/home/splunk` directory with the following contents:
 
 ``` yaml
 splunkObservability:
-  realm: us1
-  accessToken: <your access token> 
-clusterName: $INSTANCE-cluster
-environment: otel-$INSTANCE
+  logsEnabled: true
 ```
-
-> Replace $INSTANCE in the code snippet above with your instance name, which you 
-> can find by running `echo $INSTANCE`.  Do the same with the access token, which 
-> you can find by running `echo $ACCESS_TOKEN`. 
 
 Now we can use the following command to install the collector: 
 
@@ -83,10 +76,16 @@ Now we can use the following command to install the collector:
 {{% tab title="Script" %}}
 
 ``` bash
-helm install \
-splunk-otel-collector \
--f values.yaml \
-splunk-otel-collector-chart/splunk-otel-collector
+  helm install splunk-otel-collector --version 0.111.0 \
+  --set="splunkObservability.realm=$REALM" \
+  --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
+  --set="clusterName=$INSTANCE-cluster" \
+  --set="environment=otel-$INSTANCE" \
+  --set="splunkPlatform.token=$HEC_TOKEN" \
+  --set="splunkPlatform.endpoint=$HEC_URL" \
+  --set="splunkPlatform.index=splunk4rookies-workshop" \
+  -f values.yaml \
+  splunk-otel-collector-chart/splunk-otel-collector 
 ```
 
 {{% /tab %}}
