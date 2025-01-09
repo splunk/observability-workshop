@@ -64,3 +64,5 @@ workshop/ninja/advanced otel/gateway/otelcol-contrib
 workshop/tagging/creditcheckservice-java/target/*
 workshop/tagging/creditcheckservice-java-with-tags/target/*
 *.out
+checkpoint-folder
+checkpoint-folder/*

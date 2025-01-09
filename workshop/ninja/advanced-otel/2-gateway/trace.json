@@ -6,7 +6,7 @@
             {
               "key": "service.name",
               "value": {
-                "stringValue": "my.service"
+                "stringValue": "not my .service"
               }
             }
           ]
@@ -38,7 +38,7 @@
                   {
                     "keytest": "my.span.attr",
                     "value": {
-                      "stringValue": "some value"
+                      "stringValue": "ph was not here"
                     }
                   }
                 ]
