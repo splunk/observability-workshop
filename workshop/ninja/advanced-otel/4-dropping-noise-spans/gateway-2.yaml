@@ -18,6 +18,11 @@ processors:
       - action: upsert
         value: "gateway"
         key: otelcol.service.mode
+  filter:
+    error_mode: ignore
+    traces:
+      span:
+           - 'name == "/_healthz"'
 exporters:
   debug:
     verbosity: detailed
@@ -45,6 +50,7 @@ service:
       - memory_limiter
       - batch
       - resource/add_mode
+      - filter
       exporters: [file/traces, debug]
     metrics:
       receivers: [otlp]
