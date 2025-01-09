@@ -26,24 +26,11 @@ for further details on the installation process.
 
 In the terminal, install the distribution as follows
 
-``` bash
-sh ./splunk-otel-dotnet-install.sh
-```
-
-> Note: we may need to include the ARCHITECTURE environment when running the command above: 
-> ``` bash
-> ARCHITECTURE=x64 sh ./splunk-otel-dotnet-install.sh
-> ```
-
-## Activate the Instrumentation
-
-Next, we can activate the OpenTelemetry instrumentation: 
-
 {{< tabs >}}
 {{% tab title="Script" %}}
 
 ``` bash
-. $HOME/.splunk-otel-dotnet/instrument.sh
+sh ./splunk-otel-dotnet-install.sh
 ```
 
 {{% /tab %}}
@@ -55,6 +42,20 @@ Downloading v1.8.0 for linux-glibc (/tmp/tmp.m3tSdtbmge/splunk-opentelemetry-dot
 
 {{% /tab %}}
 {{< /tabs >}}
+
+
+> Note: we may need to include the ARCHITECTURE environment when running the command above: 
+> ``` bash
+> ARCHITECTURE=x64 sh ./splunk-otel-dotnet-install.sh
+> ```
+
+## Activate the Instrumentation
+
+Next, we can activate the OpenTelemetry instrumentation: 
+
+``` bash
+. $HOME/.splunk-otel-dotnet/instrument.sh
+```
 
 ## Set the Deployment Environment
 
