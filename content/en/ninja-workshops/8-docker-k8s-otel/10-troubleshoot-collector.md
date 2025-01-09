@@ -239,7 +239,12 @@ You might remember though that if we deploy the OpenTelemetry collector in a K8s
 and we include the log collection option, then the OpenTelemetry collector will use the File Log receiver 
 to automatically capture any container logs.  
 
-This would result in duplicate logs being captured for our application.  How do we avoid this? 
+This would result in duplicate logs being captured for our application.  For example, in the following screenshot we 
+can see two log entries for each request made to our service: 
+
+![Duplicate Log Entries](../images/duplicate_logs.png)
+
+How do we avoid this? 
 
 ## Avoiding Duplicate Logs in K8s 
 
