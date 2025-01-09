@@ -6,13 +6,13 @@ receivers:
       http:
         endpoint: "0.0.0.0:4318"
 
-  filelog/important_logs:
-      include: [./important_logs.log]
-      include_file_path: true
-      include_file_name: false
-      resource:
-        com.splunk.source: ./important_logs.log
-        com.splunk.sourcetype: important_logs
+  filelog/quotes:
+    include: [./quotes.log]
+    include_file_path: true
+    include_file_name: false
+    resource:
+      com.splunk.source: ./quotes.log
+      com.splunk.sourcetype: quotes
 
   nop:
 
@@ -48,17 +48,17 @@ service:
     traces:
       receivers: [otlp]
       processors:
-      - memory_limiter
-      - batch
+        - memory_limiter
+        - batch
       exporters: [file]
     metrics:
-      receivers: [ otlp]
+      receivers: [otlp]
       processors: [memory_limiter, batch]
       exporters: [file]
     logs:
-      receivers: [otlp,filelog/important_logs]
+      receivers: [otlp, filelog/quotes]
       processors:
-      - memory_limiter
-      - batch
-      - resourcedetection
+        - memory_limiter
+        - batch
+        - resourcedetection
       exporters: [file]

@@ -27,7 +27,7 @@ function Get-RandomQuote {
 
 # Function to generate a log entry
 function Generate-LogEntry {
-    $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss,fff"
+    $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     $LogLevel = Get-Random -InputObject "INFO", "WARN", "ERROR", "DEBUG"
     $Message = Get-RandomQuote
     return "$Timestamp [$LogLevel] - $Message"

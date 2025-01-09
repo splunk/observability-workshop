@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the log file
-LOG_FILE="important_logs.log"
+LOG_FILE="quotes.log"
 
 # Define quotes
 LOTR_QUOTES=(
@@ -35,13 +35,13 @@ get_random_log_level() {
 
 # Write log entries in Log4j format
 generate_log_entry() {
-    TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S,%3N")
+    TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
     LEVEL=$(get_random_log_level)
     MESSAGE=$(get_random_quote)
     echo "$TIMESTAMP [$LEVEL] - $MESSAGE"
 }
 
-# Main loop to write logs
+# Main loop to write logsdate
 echo "Writing logs to $LOG_FILE. Press Ctrl+C to stop."
 while true; do
     generate_log_entry >> "$LOG_FILE"
