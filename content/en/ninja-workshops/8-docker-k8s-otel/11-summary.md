@@ -16,3 +16,5 @@ This workshop provided hands-on experience with the following concepts:
 To see how other languages and environments are instrumented with OpenTelemetry,
 explore the [Splunk OpenTelemetry Examples GitHub repository](https://github.com/signalfx/splunk-opentelemetry-examples). 
 
+To run this workshop on your own in the future, refer back to these instructions and use the **Splunk4Rookies - Observability** 
+workshop template in Splunk Show to provision an EC2 instance. 

@@ -6,7 +6,8 @@ archetype: chapter
 time: 2 minutes
 authors: ["Derek Mitchell"]
 description: By the end of this workshop you'll have gotten hands-on experience deploying the OpenTelemetry Collector, instrumenting an application with OpenTelemetry, capturing tags from the application, and using Troubleshooting MetricSets and Tag Spotlight to determine the root cause of an issue. 
-draft: true
+draft: false
+hidden: true
 ---
 
 In this workshop, you'll get hands-on experience with the following:

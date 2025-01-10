@@ -5,6 +5,8 @@ weight: 7
 time: 15 minutes
 ---
 
+## Recap of Part 1 of the Workshop
+
 At this point in the workshop, we've successfully: 
 
 * Deployed the Splunk distribution of the OpenTelemetry Collector on our Linux Host
@@ -12,10 +14,52 @@ At this point in the workshop, we've successfully:
 * Deployed a .NET application and instrumented it with OpenTelemetry 
 * Dockerized the .NET application and ensured traces are flowing to o11y cloud
 
-In the next part of the workshop, we want to run the application in Kubernetes instead. 
+If you **haven't** completed the steps listed above, please execute the following commands before proceeding with
+the remainder of the workshop: 
 
-To do this, we first want to deploy the Splunk distribution of the OpenTelemetry Collector 
-to our Kubernetes cluster. 
+``` bash
+cp /home/splunk/workshop/docker-k8s-otel/docker/Dockerfile /home/splunk/workshop/docker-k8s-otel/helloworld/
+cp /home/splunk/workshop/docker-k8s-otel/docker/entrypoint.sh /home/splunk/workshop/docker-k8s-otel/helloworld/
+````
+
+## Introduction to Part 2 of the Workshop
+
+In the next part of the workshop, we want to run the application in Kubernetes, 
+so we'll need to deploy the Splunk distribution of the OpenTelemetry Collector 
+in our Kubernetes cluster. 
+
+Let's define some key terms first. 
+
+### Key Terms
+
+#### What is Kubernetes?
+
+_"Kubernetes is a portable, extensible, open source platform for managing containerized
+workloads and services, that facilitates both declarative configuration and automation."_
+
+Source:  https://kubernetes.io/docs/concepts/overview/
+
+We'll deploy the Docker image we built earlier for our application into our Kubernetes cluster, after making
+a small modification to the Dockerfile. 
+
+#### What is Helm?
+
+Helm is a package manager for Kubernetes.
+
+_“It helps you define, install, and upgrade even the most complex Kubernetes application.”_
+
+Source:  https://helm.sh/
+
+We'll use Helm to deploy the OpenTelemetry collector in our K8s cluster.
+
+#### Benefits of Helm
+
+* Manage Complexity
+  * deal with a single values.yaml file rather than dozens of manifest files
+* Easy Updates
+  * in-place upgrades
+* Rollback support
+  * Just use helm rollback to roll back to an older version of a release
 
 ## Uninstall the Host Collector 
 
@@ -25,25 +69,6 @@ Before moving forward, let’s remove the collector we installed earlier on the 
 curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-collector.sh;
 sudo sh /tmp/splunk-otel-collector.sh --uninstall
 ```
-
-## What is Helm? 
-
-We'll use Helm to deploy the OpenTelemetry collector in our K8s cluster.  But what is Helm? 
-
-Helm is a package manager for Kubernetes.
-
-“It helps you define, install, and upgrade even the most complex Kubernetes application.”
-
-Source:  https://helm.sh/ 
-
-## Benefits of Helm
-
-* Manage Complexity
-  * deal with a single values.yaml file rather than dozens of manifest files
-* Easy Updates
-  * in-place upgrades
-* Rollback support
-  * Just use helm rollback to roll back to an older version of a release 
 
 ## Install the Collector using Helm
 
@@ -66,16 +91,33 @@ To configure the helm chart deployment, let's create a new file named `values.ya
 the `/home/splunk` directory with the following contents: 
 
 ``` yaml
-splunkObservability:
-  realm: us1
-  accessToken: <your access token> 
-clusterName: $INSTANCE-cluster
-environment: otel-$INSTANCE
+logsEngine: otel
+agent:
+  config:
+    receivers:
+      hostmetrics:
+        collection_interval: 10s
+        root_path: /hostfs
+        scrapers:
+          cpu: null
+          disk: null
+          filesystem:
+            exclude_mount_points:
+              match_type: regexp
+              mount_points:
+              - /var/*
+              - /snap/*
+              - /boot/*
+              - /boot
+              - /opt/orbstack/*
+              - /mnt/machines/*
+              - /Users/*
+          load: null
+          memory: null
+          network: null
+          paging: null
+          processes: null
 ```
-
-> Replace $INSTANCE in the code snippet above with your instance name, which you 
-> can find by running `echo $INSTANCE`.  Do the same with the access token, which 
-> you can find by running `echo $ACCESS_TOKEN`. 
 
 Now we can use the following command to install the collector: 
 
@@ -83,10 +125,16 @@ Now we can use the following command to install the collector:
 {{% tab title="Script" %}}
 
 ``` bash
-helm install \
-splunk-otel-collector \
--f values.yaml \
-splunk-otel-collector-chart/splunk-otel-collector
+  helm install splunk-otel-collector --version 0.111.0 \
+  --set="splunkObservability.realm=$REALM" \
+  --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
+  --set="clusterName=$INSTANCE-cluster" \
+  --set="environment=otel-$INSTANCE" \
+  --set="splunkPlatform.token=$HEC_TOKEN" \
+  --set="splunkPlatform.endpoint=$HEC_URL" \
+  --set="splunkPlatform.index=splunk4rookies-workshop" \
+  -f values.yaml \
+  splunk-otel-collector-chart/splunk-otel-collector 
 ```
 
 {{% /tab %}}
