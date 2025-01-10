@@ -33,7 +33,7 @@ Close the trace and return to the Trace Analyzer. If you toggle **Errors only** 
 
 ![Traces](../images/traces_with_errors.png)
 
-If we look at one of the error traces, we can see that the error occurs when the `creditprocessorservice` attempts to call another service named `otherservice`.  But why do some requests results in a call to `otherservice`, and others don't?
+If we look at one of the error traces, we can see that the error occurs when the `creditprocessorservice` attempts to call another service named `otherservice`.  But why do some requests result in a call to `otherservice`, and others don't?
 
 ![Trace with Errors](../images/error_trace.png)
 

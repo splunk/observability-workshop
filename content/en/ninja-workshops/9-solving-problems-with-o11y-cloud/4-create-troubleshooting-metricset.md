@@ -9,7 +9,7 @@ time: 5 minutes
 
 To use advanced features in **Splunk Observability Cloud** such as **Tag Spotlight**, we'll need to first index one or more tags.
 
-To do this, navigate to **Settings** -> **APM MetricSets**.  Then click the **+ New MetricSet** button.
+To do this, navigate to **Settings** -> **MetricSets** and ensure the **APM** tab is selected.  Then click the **+ Add Custom MetricSet** button.
 
 Let's index the `credit.score.category` tag by entering the following details (**note**: since everyone in the workshop is using the same organization, the instructor will do this step on your behalf):
 
