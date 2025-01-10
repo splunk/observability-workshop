@@ -1,0 +1,14 @@
+receivers:
+
+exporters:
+    
+processors:
+  memory_limiter:
+    check_interval: 2s
+    limit_mib: 512
+  
+service:
+  pipelines:
+    traces:
+    metrics:
+    logs:
