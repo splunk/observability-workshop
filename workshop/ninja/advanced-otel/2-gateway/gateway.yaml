@@ -15,16 +15,27 @@ processors:
     limit_mib: 512
   resource/add_mode:
     attributes:
-      - action: insert
+      - action: upsert
         value: "gateway"
         key: otelcol.service.mode
-  resourcedetection/internal:
-    detectors: [gcp, ecs, ec2, azure, system]
-    override: true
-
 exporters:
   debug:
     verbosity: detailed
+  file/traces:
+    path: ./gateway-trace.out 
+    rotation:
+      max_megabytes: 2  
+      max_backups: 2  
+  file/metrics:
+    path: ./gateway-metric.out 
+    rotation:
+      max_megabytes: 2  
+      max_backups: 2  
+  file/logs:
+    path: ./gateway-logs.out 
+    rotation:
+      max_megabytes: 2  
+      max_backups: 2            
 
 service:
   pipelines:
@@ -33,12 +44,13 @@ service:
       processors:
       - memory_limiter
       - batch
-      exporters: [debug]
+      - resource/add_mode
+      exporters: [file/traces, debug]
     metrics:
       receivers: [otlp]
       processors: [memory_limiter, batch]
-      exporters: [debug]
+      exporters: [file/metrics, debug]
     logs:
       receivers: [otlp]
       processors: [memory_limiter, batch]
-      exporters: [debug]
+      exporters: [file/logs, debug]

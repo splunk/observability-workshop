@@ -1,0 +1,63 @@
+receivers:
+  hostmetrics:
+    collection_interval: 10s
+    scrapers:
+      cpu:
+  otlp:
+    protocols:
+      http:
+        endpoint: "0.0.0.0:4318"
+
+exporters:
+  debug:
+    verbosity: detailed
+  file:
+    path: ./agent.out
+    rotation:
+      max_megabytes: 2
+      max_backups: 2
+
+processors:
+  batch:
+    metadata_keys:
+      - X-SF-Token
+  memory_limiter:
+    check_interval: 2s
+    limit_mib: 512
+
+  resourcedetection:
+    detectors: [system]
+    override: true
+
+  resource/add_mode:
+    attributes:
+      - action: insert
+        value: "agent"
+        key: otelcol.service.mode
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors:
+        - memory_limiter
+        - batch
+        - resource/add_mode
+        - resourcedetection
+      exporters: [file, debug]
+    metrics:
+      receivers: [hostmetrics, otlp]
+      processors:
+        - memory_limiter
+        - batch
+        - resource/add_mode
+        - resourcedetection
+      exporters: [file, debug]
+    logs:
+      receivers: [otlp]
+      processors:
+        - memory_limiter
+        - batch
+        - resource/add_mode
+        - resourcedetection
+      exporters: [file, debug]
