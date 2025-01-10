@@ -1,12 +1,16 @@
 receivers:
-    otlp:
-      protocols:
-        http:
-          endpoint: "0.0.0.0:4318"
+  hostmetrics:
+    collection_interval: 10s
+    scrapers:
+      cpu:
+  otlp:
+    protocols:
+      http:
+        endpoint: "0.0.0.0:4318"
 
 exporters:
-    debug:
-        verbosity: detailed
+  debug:
+    verbosity: detailed
 
 processors:
   batch:
@@ -15,11 +19,11 @@ processors:
   memory_limiter:
     check_interval: 2s
     limit_mib: 512
-  
+
   resourcedetection:
     detectors: [system]
     override: true
-  
+
   resource/add_mode:
     attributes:
       - action: insert
@@ -27,25 +31,28 @@ processors:
         key: otelcol.service.mode
 
 service:
-    pipelines:
-        traces:
-            receivers: [otlp]
-            processors:
-            - memory_limiter
-            - batch
-            - resourcedetection
-            exporters: [debug]
-        metrics:
-            receivers: [otlp]
-            processors: 
-            - memory_limiter
-            - batch
-            - resourcedetection
-            exporters: [debug]
-        logs:
-            receivers: [otlp]
-            processors:
-            - memory_limiter
-            - batch
-            - resourcedetection
-            exporters: [debug]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors:
+        - memory_limiter
+        - batch
+        - resource/add_mode
+        - resourcedetection
+      exporters: [debug]
+    metrics:
+      receivers: [hostmetrics, otlp]
+      processors:
+        - memory_limiter
+        - batch
+        - resource/add_mode
+        - resourcedetection
+      exporters: [debug]
+    logs:
+      receivers: [otlp]
+      processors:
+        - memory_limiter
+        - batch
+        - resource/add_mode
+        - resourcedetection
+      exporters: [debug]
