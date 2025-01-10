@@ -1,5 +1,5 @@
 # Define the log file
-$LogFile = "important_logs.log"
+$LogFile = "quotes.log"
 
 # Define quotes
 $LOTRQuotes = @(
