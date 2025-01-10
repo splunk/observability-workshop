@@ -67,6 +67,31 @@ the `/home/splunk` directory with the following contents:
 
 ``` yaml
 logsEngine: otel
+agent:
+  config:
+    receivers:
+      hostmetrics:
+        collection_interval: 10s
+        root_path: /hostfs
+        scrapers:
+          cpu: null
+          disk: null
+          filesystem:
+            exclude_mount_points:
+              match_type: regexp
+              mount_points:
+              - /var/*
+              - /snap/*
+              - /boot/*
+              - /boot
+              - /opt/orbstack/*
+              - /mnt/machines/*
+              - /Users/*
+          load: null
+          memory: null
+          network: null
+          paging: null
+          processes: null
 ```
 
 Now we can use the following command to install the collector: 

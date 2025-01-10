@@ -109,6 +109,8 @@ This is done by add the following line to the `values.yaml` file:
 logsEngine: otel
 splunkObservability:
   infrastructureMonitoringEventsEnabled: true
+agent:
+...
 ```
 
 Once the file is saved, we can apply the changes with: 
@@ -196,6 +198,8 @@ splunkObservability:
   infrastructureMonitoringEventsEnabled: true
 agent:
   config:
+    receivers:
+     ...
     exporters:
       debug:
         verbosity: detailed
