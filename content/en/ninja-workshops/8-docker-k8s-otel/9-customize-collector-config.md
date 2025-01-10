@@ -190,7 +190,7 @@ Suppose we want to see the traces and logs that are sent to the collector, so we
 inspect them before sending them to Splunk.  We can use the debug exporter for this purpose, which 
 can be helpful for troubleshooting OpenTelemetry-related issues. 
 
-Let's add the debug exporter to the values.yaml file as follows: 
+Let's add the debug exporter to the bottom of the values.yaml file as follows: 
 
 ``` yaml
 logsEngine: otel
