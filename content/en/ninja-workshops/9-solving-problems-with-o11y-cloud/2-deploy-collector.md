@@ -239,6 +239,7 @@ agent:
     extensions:
       zpages:
         endpoint: 0.0.0.0:55679
+    # Add the section below 
     exporters:
       debug:
         verbosity: detailed

@@ -20,11 +20,27 @@ to review the actual configuration applied to the collector by looking at the co
 kubectl describe cm splunk-otel-collector-otel-agent
 ```
 
-Let's review the traces pipeline in the agent collector config.  It should look 
+Let's review the pipelines for logs and traces in the agent collector config.  They should look 
 like this: 
 
 ``` yaml
   pipelines:
+    logs:
+      exporters:
+      - debug
+      processors:
+      - memory_limiter
+      - k8sattributes
+      - filter/logs
+      - batch
+      - resourcedetection
+      - resource
+      - resource/logs
+      - resource/add_environment
+      receivers:
+      - filelog
+      - fluentforward
+      - otlp
     ...
     traces:
       exporters:
@@ -43,9 +59,10 @@ like this:
       - zipkin
 ```
 
-Do you see the problem?  Only the debug exporter is included in the traces pipeline. 
-The `otlphttp` and `signalfx` exporters that were present in the configuration previously are gone.
-This is why we no longer see traces in o11y cloud. 
+Do you see the problem?  Only the debug exporter is included in the traces and logs pipelines. 
+The `otlphttp` and `signalfx` exporters that were present in the traces pipeline configuration previously are gone.
+This is why we no longer see traces in o11y cloud.  And for the logs pipeline, the `splunk_hec/platform_logs` 
+exporter has been removed. 
 
 > How did we know what specific exporters were included before?  To find out,
 > we could have reverted our earlier customizations and then checked the config
@@ -53,14 +70,18 @@ This is why we no longer see traces in o11y cloud.
 > to the examples in the [GitHub repo for splunk-otel-collector-chart](https://github.com/signalfx/splunk-otel-collector-chart/blob/main/examples/default/rendered_manifests/configmap-agent.yaml)
 > which shows us what default agent config is used by the Helm chart.
 
-## How did the otlphttp and signalfx exporters get removed?
+## How did these exporters get removed?
 
 Let's review the customizations we added to the `values.yaml` file: 
 
 ``` yaml
-...
+logsEngine: otel
+splunkObservability:
+  infrastructureMonitoringEventsEnabled: true
 agent:
   config:
+    receivers:
+     ...
     exporters:
       debug:
         verbosity: detailed
@@ -72,13 +93,6 @@ agent:
         logs:
           exporters:
             - debug
-          processors:
-            - memory_limiter
-            - batch
-            - resourcedetection
-            - resource
-          receivers:
-            - otlp
 ```
 
 When we applied the `values.yaml` file to the collector using `helm upgrade`, the 
@@ -93,14 +107,13 @@ So when customizing an existing pipeline, we need to fully redefine that part of
 Our `values.yaml` file should thus be updated as follows: 
 
 ``` yaml
+logsEngine: otel
 splunkObservability:
-  realm: us1
-  accessToken: ***
   infrastructureMonitoringEventsEnabled: true
-clusterName: $INSTANCE-cluster
-environment: otel-$INSTANCE
 agent:
   config:
+    receivers:
+     ...
     exporters:
       debug:
         verbosity: detailed
@@ -113,20 +126,22 @@ agent:
             - debug
         logs:
           exporters:
+            - splunk_hec/platform_logs
             - debug
-          processors:
-            - memory_limiter
-            - batch
-            - resourcedetection
-            - resource
-          receivers:
-            - otlp
 ```
 
 Let's apply the changes:
 
 ``` bash
-helm upgrade splunk-otel-collector -f values.yaml \
+helm upgrade splunk-otel-collector \
+  --set="splunkObservability.realm=$REALM" \
+  --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
+  --set="clusterName=$INSTANCE-cluster" \
+  --set="environment=otel-$INSTANCE" \
+  --set="splunkPlatform.token=$HEC_TOKEN" \
+  --set="splunkPlatform.endpoint=$HEC_URL" \
+  --set="splunkPlatform.index=splunk4rookies-workshop" \
+  -f values.yaml \
 splunk-otel-collector-chart/splunk-otel-collector
 ```
 
@@ -136,11 +151,16 @@ And then check the agent config map:
 kubectl describe cm splunk-otel-collector-otel-agent
 ```
 
-This time, we should see a fully defined exporters pipeline for traces: 
+This time, we should see a fully defined exporters pipeline for both logs and traces: 
 
 ``` bash
   pipelines:
-    ...
+    logs:
+      exporters:
+      - splunk_hec/platform_logs
+      - debug
+      processors:
+      ...
     traces:
       exporters:
       - otlphttp
@@ -220,7 +240,12 @@ You might remember though that if we deploy the OpenTelemetry collector in a K8s
 and we include the log collection option, then the OpenTelemetry collector will use the File Log receiver 
 to automatically capture any container logs.  
 
-This would result in duplicate logs being captured for our application.  How do we avoid this? 
+This would result in duplicate logs being captured for our application.  For example, in the following screenshot we 
+can see two log entries for each request made to our service: 
+
+![Duplicate Log Entries](../images/duplicate_logs.png)
+
+How do we avoid this? 
 
 ## Avoiding Duplicate Logs in K8s 
 
