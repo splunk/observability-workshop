@@ -75,12 +75,13 @@ exporter has been removed.
 Let's review the customizations we added to the `values.yaml` file: 
 
 ``` yaml
-...
 logsEngine: otel
 splunkObservability:
   infrastructureMonitoringEventsEnabled: true
 agent:
   config:
+    receivers:
+     ...
     exporters:
       debug:
         verbosity: detailed
@@ -111,6 +112,8 @@ splunkObservability:
   infrastructureMonitoringEventsEnabled: true
 agent:
   config:
+    receivers:
+     ...
     exporters:
       debug:
         verbosity: detailed
