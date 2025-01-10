@@ -1,0 +1,142 @@
+extensions:
+  file_storage/checkpoint:
+    directory: ./checkpoint-folder
+    create_directory: true
+    timeout: 1s
+    compaction:
+        on_start: true
+        directory: ./checkpoint-folder
+        max_transaction_size: 65_536
+
+receivers:
+    otlp:
+      protocols:
+        http:
+          endpoint: "0.0.0.0:4318"
+        #filelog:  
+        #  include: [ /output/file.log ]
+        #  storage: file_storage/checkpoint      
+
+exporters:
+    debug:
+        verbosity: detailed
+    file:
+      path: ./agent.out 
+      rotation:
+        max_megabytes: 2  
+        max_backups: 2
+    
+    otlp/gateway:
+      endpoint: "localhost:5317"
+      tls:
+        insecure: true
+      retry_on_failure:
+        enabled: true
+      #    initial_interval: 1s
+      #    max_interval: 5s
+      #    max_elapsed_time: 20s
+      sending_queue:
+        enabled: true    
+        num_consumers: 10
+        queue_size: 10000
+        storage: file_storage/checkpoint
+
+      timeout: 5s
+      headers:
+       X-SF-Token: "123456"
+
+processors:
+  batch:
+    metadata_keys:
+      - X-SF-Token
+  memory_limiter:
+    check_interval: 2s
+    limit_mib: 512
+  
+  resourcedetection:
+    detectors: [system]
+    override: true
+  
+  resource/add_mode:
+    attributes:
+      - action: insert
+        value: "agent"
+        key: otelcol.service.mode
+  
+  # Overrides an existing tag for a span.
+  attributes/removetags:
+    actions:
+      - key: SPAN_TAG_KEY
+        from_attribute: "SPAN_TAG_VALUE"
+        action: delete
+
+  # Updates attribute values to remove and redact sensitive data      
+  attributes/update:
+    actions:
+      - key: cc_number
+        value: redacted
+        action: update
+      - key: account_password
+        action: delete
+      - key: account_email
+        action: hash
+
+  # Redaction processor
+  redaction/update:
+    # allow_all_keys is a flag which when set to true, which can disables the
+    # allowed_keys list. The list of blocked_values is applied regardless. If
+    # you just want to block values, set this to true.
+    allow_all_keys: false
+    # allowed_keys is a list of span attribute keys that are kept on the span and
+    # processed. The list is designed to fail closed. If allowed_keys is empty,
+    # no span attributes are allowed and all span attributes are removed. To
+    # allow all keys, set allow_all_keys to true.
+    allowed_keys:
+      - description
+      - group
+      - id
+      - name
+    # Ignore the following attributes, allow them to pass without redaction.
+    # Any keys in this list are allowed so they don't need to be in both lists.
+    ignored_keys:
+      - safe_attribute
+    # blocked_values is a list of regular expressions for blocking values of
+    # allowed span attributes. Values that match are masked
+    blocked_values:
+      - "4[0-9]{12}(?:[0-9]{3})?" ## Visa credit card number
+      - "(5[1-5][0-9]{14})"       ## MasterCard number
+    # summary controls the verbosity level of the diagnostic attributes that
+    # the processor adds to the spans when it redacts or masks other
+    # attributes. In some contexts a list of redacted attributes leaks
+    # information, while it is valuable when integrating and testing a new
+    # configuration. Possible values:
+    # - `debug` includes both redacted key counts and names in the summary
+    # - `info` includes just the redacted key counts in the summary
+    # - `silent` omits the summary attributes
+    summary: debug
+
+service:
+    extensions: [file_storage/checkpoint]
+    pipelines:
+        traces:
+            receivers: [otlp]
+            processors:
+            - memory_limiter
+            - batch
+            - resourcedetection
+            - resource/add_mode
+            exporters: [otlp/gateway, debug]
+        metrics:
+            receivers: [otlp]
+            processors: 
+            - memory_limiter
+            - batch
+            - resourcedetection
+            exporters: [ otlp/gateway, debug]
+        logs:
+            receivers: [otlp]
+            processors:
+            - memory_limiter
+            - batch
+            - resourcedetection
+            exporters: [ otlp/gateway, debug]
