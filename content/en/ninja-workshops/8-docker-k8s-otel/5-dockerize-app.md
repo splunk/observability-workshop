@@ -12,6 +12,37 @@ But how do we do that?
 The first step is to create a Docker image for our application.  This is known as 
 "dockerizing" and application, and the process begins with the creation of a `Dockerfile`. 
 
+But first, let's define some key terms. 
+
+## Key Terms 
+
+### What is Docker?  
+
+_"Docker provides the ability to package and run an application in a loosely isolated environment
+called a container. The isolation and security lets you run many containers simultaneously on
+a given host. Containers are lightweight and contain everything needed to run the application,
+so you don't need to rely on what's installed on the host."_
+
+Source:  https://docs.docker.com/get-started/docker-overview/
+
+### What is a container? 
+
+_"Containers are isolated processes for each of your app's components. Each component
+...runs in its own isolated environment, 
+completely isolated from everything else on your machine."_
+
+Source:  https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-container/
+
+### What is a container image?
+
+_"A container image is a standardized package that includes all of the files, binaries,
+libraries, and configurations to run a container."_
+
+### Dockerfile 
+
+_"A Dockerfile is a text-based document that's used to create a container image. It provides
+instructions to the image builder on the commands to run, files to copy, startup command, and more."_
+
 ## Create a Dockerfile 
 
 Let's create a file named `Dockerfile` in the `/home/splunk/workshop/docker-k8s-otel/helloworld` directory.  

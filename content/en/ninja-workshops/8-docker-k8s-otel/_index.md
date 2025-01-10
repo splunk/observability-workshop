@@ -7,6 +7,7 @@ time: 2 minutes
 authors: ["Derek Mitchell"]
 description: By the end of this workshop you'll have gotten hands-on experience instrumenting a .NET application with OpenTelemetry, then Dockerizing the application and deploying it to Kubernetes.  You’ll also gain experience deploying the OpenTelemetry collector using Helm, customizing the collector configuration, and troubleshooting collector configuration issues.
 draft: false
+hidden: true
 ---
 
 In this workshop, you'll get hands-on experience with the following: 

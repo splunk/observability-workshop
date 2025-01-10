@@ -5,6 +5,8 @@ weight: 7
 time: 15 minutes
 ---
 
+## Recap of Part 1 of the Workshop
+
 At this point in the workshop, we've successfully: 
 
 * Deployed the Splunk distribution of the OpenTelemetry Collector on our Linux Host
@@ -12,10 +14,52 @@ At this point in the workshop, we've successfully:
 * Deployed a .NET application and instrumented it with OpenTelemetry 
 * Dockerized the .NET application and ensured traces are flowing to o11y cloud
 
-In the next part of the workshop, we want to run the application in Kubernetes instead. 
+If you **haven't** completed the steps listed above, please execute the following commands before proceeding with
+the remainder of the workshop: 
 
-To do this, we first want to deploy the Splunk distribution of the OpenTelemetry Collector 
-to our Kubernetes cluster. 
+``` bash
+cp /home/splunk/workshop/docker-k8s-otel/docker/Dockerfile /home/splunk/workshop/docker-k8s-otel/helloworld/
+cp /home/splunk/workshop/docker-k8s-otel/docker/entrypoint.sh /home/splunk/workshop/docker-k8s-otel/helloworld/
+````
+
+## Introduction to Part 2 of the Workshop
+
+In the next part of the workshop, we want to run the application in Kubernetes, 
+so we'll need to deploy the Splunk distribution of the OpenTelemetry Collector 
+in our Kubernetes cluster. 
+
+Let's define some key terms first. 
+
+### Key Terms
+
+#### What is Kubernetes?
+
+_"Kubernetes is a portable, extensible, open source platform for managing containerized
+workloads and services, that facilitates both declarative configuration and automation."_
+
+Source:  https://kubernetes.io/docs/concepts/overview/
+
+We'll deploy the Docker image we built earlier for our application into our Kubernetes cluster, after making
+a small modification to the Dockerfile. 
+
+#### What is Helm?
+
+Helm is a package manager for Kubernetes.
+
+_“It helps you define, install, and upgrade even the most complex Kubernetes application.”_
+
+Source:  https://helm.sh/
+
+We'll use Helm to deploy the OpenTelemetry collector in our K8s cluster.
+
+#### Benefits of Helm
+
+* Manage Complexity
+  * deal with a single values.yaml file rather than dozens of manifest files
+* Easy Updates
+  * in-place upgrades
+* Rollback support
+  * Just use helm rollback to roll back to an older version of a release
 
 ## Uninstall the Host Collector 
 
@@ -25,25 +69,6 @@ Before moving forward, let’s remove the collector we installed earlier on the 
 curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-collector.sh;
 sudo sh /tmp/splunk-otel-collector.sh --uninstall
 ```
-
-## What is Helm? 
-
-We'll use Helm to deploy the OpenTelemetry collector in our K8s cluster.  But what is Helm? 
-
-Helm is a package manager for Kubernetes.
-
-“It helps you define, install, and upgrade even the most complex Kubernetes application.”
-
-Source:  https://helm.sh/ 
-
-## Benefits of Helm
-
-* Manage Complexity
-  * deal with a single values.yaml file rather than dozens of manifest files
-* Easy Updates
-  * in-place upgrades
-* Rollback support
-  * Just use helm rollback to roll back to an older version of a release 
 
 ## Install the Collector using Helm
 
