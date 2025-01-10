@@ -106,8 +106,8 @@ For our first example, let's enable infrastructure events monitoring for our K8s
 This is done by add the following line to the `values.yaml` file: 
 
 ``` yaml
+logsEngine: otel
 splunkObservability:
-  logsEnabled: true
   infrastructureMonitoringEventsEnabled: true
 ```
 
@@ -191,8 +191,8 @@ can be helpful for troubleshooting OpenTelemetry-related issues.
 Let's add the debug exporter to the values.yaml file as follows: 
 
 ``` yaml
+logsEngine: otel
 splunkObservability:
-  logsEnabled: true
   infrastructureMonitoringEventsEnabled: true
 agent:
   config:

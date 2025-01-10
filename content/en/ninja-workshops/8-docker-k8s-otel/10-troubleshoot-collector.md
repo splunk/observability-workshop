@@ -61,8 +61,8 @@ like this:
 
 Do you see the problem?  Only the debug exporter is included in the traces and logs pipelines. 
 The `otlphttp` and `signalfx` exporters that were present in the traces pipeline configuration previously are gone.
-This is why we no longer see traces in o11y cloud.  And for the logs pipeline, the `splunk_hec/o11y` and `splunk_hec/platform_logs` 
-exporters have been removed. 
+This is why we no longer see traces in o11y cloud.  And for the logs pipeline, the `splunk_hec/platform_logs` 
+exporter has been removed. 
 
 > How did we know what specific exporters were included before?  To find out,
 > we could have reverted our earlier customizations and then checked the config
@@ -70,14 +70,14 @@ exporters have been removed.
 > to the examples in the [GitHub repo for splunk-otel-collector-chart](https://github.com/signalfx/splunk-otel-collector-chart/blob/main/examples/default/rendered_manifests/configmap-agent.yaml)
 > which shows us what default agent config is used by the Helm chart.
 
-## How did the otlphttp and signalfx exporters get removed?
+## How did these exporters get removed?
 
 Let's review the customizations we added to the `values.yaml` file: 
 
 ``` yaml
 ...
+logsEngine: otel
 splunkObservability:
-  logsEnabled: true
   infrastructureMonitoringEventsEnabled: true
 agent:
   config:
@@ -106,8 +106,8 @@ So when customizing an existing pipeline, we need to fully redefine that part of
 Our `values.yaml` file should thus be updated as follows: 
 
 ``` yaml
+logsEngine: otel
 splunkObservability:
-  logsEnabled: true
   infrastructureMonitoringEventsEnabled: true
 agent:
   config:
@@ -123,7 +123,6 @@ agent:
             - debug
         logs:
           exporters:
-            - splunk_hec/o11y
             - splunk_hec/platform_logs
             - debug
 ```
@@ -155,7 +154,6 @@ This time, we should see a fully defined exporters pipeline for both logs and tr
   pipelines:
     logs:
       exporters:
-      - splunk_hec/o11y
       - splunk_hec/platform_logs
       - debug
       processors:

@@ -66,8 +66,7 @@ To configure the helm chart deployment, let's create a new file named `values.ya
 the `/home/splunk` directory with the following contents: 
 
 ``` yaml
-splunkObservability:
-  logsEnabled: true
+logsEngine: otel
 ```
 
 Now we can use the following command to install the collector: 
