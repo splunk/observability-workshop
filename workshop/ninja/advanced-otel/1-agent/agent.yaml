@@ -1,0 +1,26 @@
+receivers:
+  otlp:
+   protocols:
+     http: 
+       endpoint: "0.0.0.0:4318"
+
+exporters:
+  debug:
+    verbosity: detailed
+    
+processors:
+  memory_limiter:
+    check_interval: 2s
+    limit_mib: 512
+  
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [debug]
+    metrics:
+      receivers: [otlp]
+      exporters: [debug]
+    logs:
+      receivers: [otlp]
+      exporters: [debug]
