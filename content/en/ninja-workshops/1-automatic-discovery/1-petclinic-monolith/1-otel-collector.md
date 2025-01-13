@@ -18,6 +18,12 @@ If you have completed the Splunk IM workshop, please ensure you have deleted the
 helm delete splunk-otel-collector
 ```
 
+Also, you will need to remove a previous version of the Splunk OpenTelemetry Collector (v0.92.0) installed on the host. This can be done by running the following command:
+
+``` bash
+sudo apt remove splunk-otel-collector
+```
+
 {{% /notice %}}
 
 To ensure your instance is configured correctly, we need to confirm that the required environment variables for this workshop are set correctly. In your terminal run the following command:
