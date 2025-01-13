@@ -18,10 +18,11 @@ If you have completed the Splunk IM workshop, please ensure you have deleted the
 helm delete splunk-otel-collector
 ```
 
-Also, you will need to remove a previous version of the Splunk OpenTelemetry Collector (v0.92.0) installed on the host. This can be done by running the following command:
+The EC2 instance may already have an older version of the collector already installed. To uninstall the collector, run the following commands:
 
 ``` bash
-sudo apt remove splunk-otel-collector
+curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-collector.sh
+sudo sh /tmp/splunk-otel-collector.sh --uninstall
 ```
 
 {{% /notice %}}
