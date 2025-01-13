@@ -20,11 +20,16 @@ receivers:
 exporters:
     debug:
         verbosity: detailed
-    file:
-      path: ./agent.out 
+    file/a:
+      path: ./agent-A.out 
       rotation:
         max_megabytes: 2  
         max_backups: 2
+    file/b:
+      path: ./agent-B.out 
+      rotation:
+        max_megabytes: 2  
+        max_backups: 2    
     
     otlp/gateway:
       endpoint: "localhost:5317"
@@ -46,15 +51,15 @@ exporters:
        X-SF-Token: "123456"
 
 connectors:
-  routing:
-    default_pipelines: [traces/jaeger]
+ routing:
+    default_pipelines: [traces/alpha]
     error_mode: ignore
-    match_once: false
+    match_once: true
     table:
-      - statement: route() where attributes["X-Tenant"] == "acme"
-        pipelines: [traces/jaeger-acme]
-      - statement: delete_key(attributes, "X-Tenant") where IsMatch(attributes["X-Tenant"], ".*corp")
-        pipelines: [traces/jaeger-ecorp]
+      - statement: route() where attributes["security"] == "unknown"
+        pipelines: [traces/beta]
+#      - statement: delete_key(attributes, "X-Tenant") where IsMatch(attributes["X-Tenant"], ".*corp")
+#        pipelines: [traces/jaeger-ecorp]
 
 processors:
   batch:
@@ -79,23 +84,34 @@ service:
     pipelines:
         traces:
             receivers: [otlp]
+            exporters: [routing, debug]
+        traces/alpha:
+            receivers: [routing]    
             processors:
             - memory_limiter
             - batch
             - resourcedetection
             - resource/add_mode
-            exporters: [otlp/gateway, debug]
+            exporters: [file/a]
+        traces/beta:
+            receivers: [routing]    
+            processors:
+            - memory_limiter
+            - batch
+            - resourcedetection
+            - resource/add_mode
+            exporters: [file/b]            
         metrics:
             receivers: [otlp]
             processors: 
             - memory_limiter
             - batch
             - resourcedetection
-            exporters: [ otlp/gateway, debug]
+            exporters: [ file/a, debug]
         logs:
             receivers: [otlp]
             processors:
             - memory_limiter
             - batch
             - resourcedetection
-            exporters: [ otlp/gateway, debug]
+            exporters: [ file/a, debug]
