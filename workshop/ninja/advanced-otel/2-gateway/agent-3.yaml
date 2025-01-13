@@ -4,45 +4,45 @@ extensions:
     create_directory: true
     timeout: 1s
     compaction:
-        on_start: true
-        directory: ./checkpoint-folder
-        max_transaction_size: 65_536
+      on_start: true
+      directory: ./checkpoint-folder
+      max_transaction_size: 65_536
 receivers:
-    otlp:
-      protocols:
-        http:
-          endpoint: "0.0.0.0:4318"
-        #filelog:  
-        #  include: [ /output/file.log ]
-        #  storage: file_storage/checkpoint      
+  otlp:
+    protocols:
+      http:
+        endpoint: "0.0.0.0:4318"
+      #filelog:
+      #  include: [ /output/file.log ]
+      #  storage: file_storage/checkpoint
 
 exporters:
-    debug:
-        verbosity: detailed
-    file:
-      path: ./agent.out 
-      rotation:
-        max_megabytes: 2  
-        max_backups: 2
-    
-    otlp/gateway:
-      endpoint: "localhost:5317"
-      tls:
-        insecure: true
-      retry_on_failure:
-        enabled: true
-      #    initial_interval: 1s
-      #    max_interval: 5s
-      #    max_elapsed_time: 20s
-      sending_queue:
-        enabled: true    
-        num_consumers: 10
-        queue_size: 10000
-        storage: file_storage/checkpoint
+  debug:
+    verbosity: detailed
+  file:
+    path: ./agent.out
+    rotation:
+      max_megabytes: 2
+      max_backups: 2
 
-      timeout: 5s
-      headers:
-       X-SF-Token: "123456"
+  otlp/gateway:
+    endpoint: "localhost:5317"
+    tls:
+      insecure: true
+    retry_on_failure:
+      enabled: true
+    #    initial_interval: 1s
+    #    max_interval: 5s
+    #    max_elapsed_time: 20s
+    sending_queue:
+      enabled: true
+      num_consumers: 10
+      queue_size: 10000
+      storage: file_storage/checkpoint
+
+    timeout: 5s
+    headers:
+      X-SF-Token: "123456"
 processors:
   batch:
     metadata_keys:
@@ -50,11 +50,11 @@ processors:
   memory_limiter:
     check_interval: 2s
     limit_mib: 512
-  
+
   resourcedetection:
     detectors: [system]
     override: true
-  
+
   resource/add_mode:
     attributes:
       - action: insert
@@ -62,27 +62,27 @@ processors:
         key: otelcol.service.mode
 
 service:
-    extensions: [file_storage/checkpoint]
-    pipelines:
-        traces:
-            receivers: [otlp]
-            processors:
-            - memory_limiter
-            - batch
-            - resourcedetection
-            - resource/add_mode
-            exporters: [otlp/gateway, debug]
-        metrics:
-            receivers: [otlp]
-            processors: 
-            - memory_limiter
-            - batch
-            - resourcedetection
-            exporters: [ otlp/gateway, debug]
-        logs:
-            receivers: [otlp]
-            processors:
-            - memory_limiter
-            - batch
-            - resourcedetection
-            exporters: [ otlp/gateway, debug]
+  extensions: [file_storage/checkpoint]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors:
+        - memory_limiter
+        - batch
+        - resourcedetection
+        - resource/add_mode
+      exporters: [otlp/gateway, debug]
+    metrics:
+      receivers: [otlp]
+      processors:
+        - memory_limiter
+        - batch
+        - resourcedetection
+      exporters: [otlp/gateway, debug]
+    logs:
+      receivers: [otlp]
+      processors:
+        - memory_limiter
+        - batch
+        - resourcedetection
+      exporters: [otlp/gateway, debug]

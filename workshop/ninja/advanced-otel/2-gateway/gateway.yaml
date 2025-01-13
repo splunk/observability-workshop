@@ -22,29 +22,29 @@ exporters:
   debug:
     verbosity: detailed
   file/traces:
-    path: ./gateway-trace.out 
+    path: ./gateway-traces.out
     rotation:
-      max_megabytes: 2  
-      max_backups: 2  
+      max_megabytes: 2
+      max_backups: 2
   file/metrics:
-    path: ./gateway-metric.out 
+    path: ./gateway-metrics.out
     rotation:
-      max_megabytes: 2  
-      max_backups: 2  
+      max_megabytes: 2
+      max_backups: 2
   file/logs:
-    path: ./gateway-logs.out 
+    path: ./gateway-logs.out
     rotation:
-      max_megabytes: 2  
-      max_backups: 2            
+      max_megabytes: 2
+      max_backups: 2
 
 service:
   pipelines:
     traces:
       receivers: [otlp]
       processors:
-      - memory_limiter
-      - batch
-      - resource/add_mode
+        - memory_limiter
+        - batch
+        - resource/add_mode
       exporters: [file/traces, debug]
     metrics:
       receivers: [otlp]
