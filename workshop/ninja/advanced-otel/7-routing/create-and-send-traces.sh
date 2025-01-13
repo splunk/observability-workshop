@@ -47,7 +47,7 @@ generate_trace() {
   SPAN_ID=$(uuidgen | tr -d '-' | head -c 16)
   START_TIME=$(get_nanoseconds_timestamp)
   END_TIME=$((START_TIME + 1000000000)) # Add 1 second in nanoseconds
-  SECURITY_VALUE=$2
+  DEPLOYMENT_ENV=$2
 
   cat <<EOF > "$TRACE_DIR/trace_$SERVICE_$(uuidgen).json"
 {
@@ -55,35 +55,38 @@ generate_trace() {
     {
       "resource": {
         "attributes": [
-          {
-            "key": "service.name",
-            "value": { "stringValue": "$SERVICE" }
-          }
+          {"key": "deployment.environment", "value": {"stringValue": "$DEPLOYMENT_ENV"}},
+          {"key": "service.name", "value": {"stringValue": "$SERVICE"}},
+          {"key": "host.arch", "value": {"stringValue": "amd64"}},
+          {"key": "host.name", "value": {"stringValue": "show-no-config-i-09b043f1aa9632b1d"}},
+          {"key": "os.description", "value": {"stringValue": "Linux 6.2.0-1018-aws"}},
+          {"key": "os.type", "value": {"stringValue": "linux"}},
+          {"key": "process.command_args", "value": {"arrayValue": {"values": [
+            {"stringValue": "/usr/lib/jvm/java-17-openjdk-amd64/bin/java"},
+            {"stringValue": "-Dserver.port=8083"},
+            {"stringValue": "-Dotel.service.name=$SERVICE"},
+            {"stringValue": "-Dotel.resource.attributes=deployment.environment=$DEPLOYMENT_ENV"},
+            {"stringValue": "-jar"},
+            {"stringValue": "target/spring-petclinic-3.4.0-SNAPSHOT.jar"}
+          ]}}},
+          {"key": "service.version", "value": {"stringValue": "3.4.0-SNAPSHOT"}}
         ]
       },
       "scopeSpans": [
         {
-          "scope": {
-            "name": "$SERVICE.scope",
-            "version": "1.0.0"
-          },
+          "scope": {"name": "io.opentelemetry.tomcat-10.0", "version": "2.10.0-alpha"},
           "spans": [
             {
               "traceId": "$TRACE_ID",
               "spanId": "$SPAN_ID",
-              "name": "$SERVICE-operation",
-              "kind": "SPAN_KIND_INTERNAL",
+              "name": "GET /",
+              "kind": 2,
               "startTimeUnixNano": "$START_TIME",
               "endTimeUnixNano": "$END_TIME",
               "attributes": [
-                {
-                  "key": "security",
-                  "value": { "stringValue": "$SECURITY_VALUE" }
-                },
-                {
-                  "key": "operation",
-                  "value": { "stringValue": "$SERVICE-operation" }
-                }
+                {"key": "url.scheme", "value": {"stringValue": "http"}},
+                {"key": "http.request.method", "value": {"stringValue": "GET"}},
+                {"key": "http.response.status_code", "value": {"intValue": 200}}
               ]
             }
           ]
@@ -95,17 +98,17 @@ generate_trace() {
 EOF
 }
 
-# Generate 20 traces
-echo "Generating 20 traces..."
-for i in {1..20}; do
+# Generate 3 traces
+echo "Generating 3 traces..."
+for i in {1..3}; do
   SERVICE=${SERVICES[$RANDOM % ${#SERVICES[@]}]}
-  # Set security attribute to "unknown" for the first and last trace, "high" otherwise
-  if [ "$i" -eq 1 ] || [ "$i" -eq 20 ]; then
-    SECURITY_VALUE="unknown"
+  # Set deployment environment to "security_applications" for the first and last trace, "general_applications" otherwise
+  if [ "$i" -eq 1 ] || [ "$i" -eq 3 ]; then
+    DEPLOYMENT_ENV="security_applications"
   else
-    SECURITY_VALUE="high"
+    DEPLOYMENT_ENV="general_applications"
   fi
-  generate_trace "$SERVICE" "$SECURITY_VALUE"
+  generate_trace "$SERVICE" "$DEPLOYMENT_ENV"
 done
 echo "Traces generated in $TRACE_DIR"
 
