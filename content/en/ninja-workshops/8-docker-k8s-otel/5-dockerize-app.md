@@ -115,7 +115,10 @@ The next stage of the Dockerfile is the build stage.  For this stage, the
 `mcr.microsoft.com/dotnet/sdk:8.0` image is used, which is also based off of 
 Debian 12 but includes the full [.NET SDK](https://github.com/dotnet/dotnet-docker/blob/main/README.sdk.md) rather than just the runtime.  
 
-This stage copies the application code to the build image and then 
+This stage copies the `.csproj` file to the build image, and then uses `dotnet restore` to 
+download any dependencies used by the application. 
+
+It then copies the application code to the build image and 
 uses `dotnet build` to build the project and its dependencies into a 
 set of `.dll` binaries: 
 
