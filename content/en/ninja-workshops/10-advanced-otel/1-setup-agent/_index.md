@@ -8,7 +8,7 @@ In the location you are going to run the workshop on you machine, (we will use [
 
 In *[WORKSHOP]/1-agent* create  a file called **agent.yaml**  and copy the folowing starting config in there
 
-``` text
+```yaml
 receivers:
 
 exporters:
