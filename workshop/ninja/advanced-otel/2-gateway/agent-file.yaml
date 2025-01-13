@@ -1,4 +1,8 @@
 receivers:
+  hostmetrics:
+    collection_interval: 10s
+    scrapers:
+      cpu:
   otlp:
     protocols:
       http:
@@ -12,12 +16,13 @@ exporters:
     rotation:
       max_megabytes: 2
       max_backups: 2
-  otlp/gateway:
+  otlp/grpc-gateway:
     endpoint: "localhost:5317"
     tls:
       insecure: true
     headers:
       X-SF-Token: "123456"
+
 processors:
   batch:
     metadata_keys:
@@ -25,11 +30,9 @@ processors:
   memory_limiter:
     check_interval: 2s
     limit_mib: 512
-
   resourcedetection:
     detectors: [system]
     override: true
-
   resource/add_mode:
     attributes:
       - action: insert
@@ -45,18 +48,20 @@ service:
         - batch
         - resourcedetection
         - resource/add_mode
-      exporters: [otlp/gateway, debug]
+      exporters: [otlp/grpc-gateway,debug]
     metrics:
       receivers: [otlp]
       processors:
         - memory_limiter
         - batch
         - resourcedetection
-      exporters: [otlp/gateway, debug]
+        - resource/add_mode
+      exporters: [otlp/grpc-gateway, debug]
     logs:
       receivers: [otlp]
       processors:
         - memory_limiter
         - batch
         - resourcedetection
-      exporters: [otlp/gateway, debug]
+        - resource/add_mode
+      exporters: [otlp/grpc-gateway, debug]
