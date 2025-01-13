@@ -1,8 +1,8 @@
 receivers:
   otlp:
-   protocols:
-     http: 
-       endpoint: "0.0.0.0:4318"
+    protocols:
+      http:
+        endpoint: "0.0.0.0:4318"
 
 exporters:
   debug:
@@ -12,12 +12,12 @@ exporters:
     rotation:
       max_megabytes: 2
       max_backups: 2
-    
+
 processors:
   memory_limiter:
     check_interval: 2s
     limit_mib: 512
-  
+
 service:
   pipelines:
     traces:
