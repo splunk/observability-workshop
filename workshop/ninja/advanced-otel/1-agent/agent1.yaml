@@ -7,11 +7,7 @@ receivers:
 exporters:
   debug:
     verbosity: detailed
-  file:  
-    path: "./agent.out"
-    rotation:
-      max_megabytes: 2
-      max_backups: 2
+
     
 processors:
   memory_limiter:
@@ -22,10 +18,13 @@ service:
   pipelines:
     traces:
       receivers: [otlp]
-      exporters: [file, debug]
+      processors: [memory_limiter]
+      exporters: [ file, debug]
     metrics:
       receivers: [otlp]
+      processors: [memory_limiter]
       exporters: [file, debug]
     logs:
       receivers: [otlp]
-      exporters: [file, debug]
+      processors: [memory_limiter]
+      exporters: [ file, debug]

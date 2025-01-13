@@ -30,8 +30,9 @@ Let's start with our first exercise:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Add an **otlp** receiver, under the *protocols* section, add a *HTTP* entry, with an endpoint of *"0.0.0.0:4318"* and add it to all the pipelines  
-* Add a **debug** exporter with *verbosity* entry set to *detailed* and also add it to all the pipelines
+* Add an **otlp:** receiver, under the *protocols:* section, add a *HTTP:* entry, with an endpoint of *"0.0.0.0:4318"* and add it as a receiver to all the 8*receiver:* sections of the pipelines  
+* Enable the **memory_limiter:** processor by adding it in the *processor:* section of all the pipelines
+* Add a **debug:* exporter with *verbosity:* entry set to *detailed* and also add it as an exporter in all *exporter:* sections of the pipelines
 
 {{% /notice %}}
 
@@ -52,7 +53,7 @@ Run the following command to  test your config (make sure you use the right otel
 [LOCATION_OF_OTELCOLLECTOR]/otelcol_darwin_arm64 --config=agent.yaml
 ```
 
-If you have done everything correctly   the last line of the out put should be :
+If you have done everything correctly, the last line of the output should be :
 
 ```text
 2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261	Everything is ready. Begin running and processing data.
