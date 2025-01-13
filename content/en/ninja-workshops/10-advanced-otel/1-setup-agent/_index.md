@@ -25,10 +25,10 @@ service:
     logs:
 ```
 
-Add an **otlp** receiver, under the *protocols* section, add a HTTP entry, with an endpoint of "0.0.0.0:4318" and add it to all the pipelines  
-Add a **debug** exporter with *verbosity* set to *detailed* and also add it to all the pipelines
+Add an **otlp** receiver, under the `protocols` section, add a HTTP entry, with an endpoint of `0.0.0.0:4318` and add it to all the pipelines  
+Add a **debug** exporter with `verbosity` set to `detailed` and also add it to all the pipelines
 
-if youvalidate your agent.yaml with http://otellbin.io , your  pipelines should look like this:
+Validate your `agent.yaml` with [https://otelbin.io](https://otelbin.io), your pipelines should look like this:
 
 ![otelbin1](../images/agent-1-1.png)
 
@@ -38,15 +38,15 @@ Run the following command to  test your config (make sure you use the right otel
 otelcol_darwin_arm64 --config=agent.yaml
 ```
 
-If you have done everything correctly   the last line of the out put should be :
+If you have done everything correctly the last line of the out put should be:
 
 ```text
-2025-01-13T12:43:51.747+0100 info service@v0.115.0/service.go:261	Everything is ready. Begin running and processing data.
+2025-01-13T12:43:51.747+0100 info service@v0.115.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
 Now  start a new  shell and create a file called **trace.json* and copy the following content:
 
-```text
+```json
 {
     "resourceSpans": [
       {
@@ -104,12 +104,11 @@ Now  start a new  shell and create a file called **trace.json* and copy the foll
       }
     ]
   }
-
 ```
 
 then run the following command  to test you setup:
 
-```text
+```shell
 curl -X POST -i http://localhost:4318/v1/traces \
 -H "Content-Type: application/json" \
  -d @trace.json 
@@ -118,17 +117,17 @@ curl -X POST -i http://localhost:4318/v1/traces \
 Your collector should show the following output:
 
  ```text
- 2025-01-13T13:26:13.502+0100	info	Traces	{"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
-2025-01-13T13:26:13.502+0100	info	ResourceSpans #0
+2025-01-13T13:26:13.502+0100 info Traces {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
+2025-01-13T13:26:13.502+0100 info ResourceSpans #0
 Resource SchemaURL:
 Resource attributes:
-     -> service.name: Str(my.service)
-     -> deployment.environment: Str(my.environment)
+    -> service.name: Str(my.service)
+    -> deployment.environment: Str(my.environment)
 ScopeSpans #0
 ScopeSpans SchemaURL:
 InstrumentationScope my.library 1.0.0
 InstrumentationScope attributes:
-     -> my.scope.attribute: Str(some scope attribute)
+    -> my.scope.attribute: Str(some scope attribute)
 Span #0
     Trace ID       : 5b8efff798038103d269b633813fc60c
     Parent ID      : eee19b7ec3c1b173
@@ -140,6 +139,6 @@ Span #0
     Status code    : Unset
     Status message :
 Attributes:
-     -> : Str(some value)
-	{"kind": "exporter", "data_type": "traces", "name": "debug"}
+    -> : Str(some value)
+    {"kind": "exporter", "data_type": "traces", "name": "debug"}
 ```
