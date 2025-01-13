@@ -20,13 +20,13 @@ receivers:
 exporters:
     debug:
         verbosity: detailed
-    file/a:
-      path: ./agent-A.out 
+    file/standard:
+      path: ./agent-standard.out
       rotation:
         max_megabytes: 2  
         max_backups: 2
-    file/b:
-      path: ./agent-B.out 
+    file/security:
+      path: ./agent-security.out 
       rotation:
         max_megabytes: 2  
         max_backups: 2    
@@ -52,12 +52,11 @@ exporters:
 
 connectors:
  routing:
-    default_pipelines: [traces/alpha]
+    default_pipelines: [traces/standard]
     error_mode: ignore
-    match_once: true
     table:
-      - statement: route() where attributes["security"] == "unknown"
-        pipelines: [traces/beta]
+      - statement: route() where attributes["deployment.environment"] == "security_applications"
+        pipelines: [traces/security]
 #      - statement: delete_key(attributes, "X-Tenant") where IsMatch(attributes["X-Tenant"], ".*corp")
 #        pipelines: [traces/jaeger-ecorp]
 
@@ -85,33 +84,33 @@ service:
         traces:
             receivers: [otlp]
             exporters: [routing, debug]
-        traces/alpha:
+        traces/standard:
             receivers: [routing]    
             processors:
             - memory_limiter
             - batch
             - resourcedetection
             - resource/add_mode
-            exporters: [file/a]
-        traces/beta:
+            exporters: [file/standard]
+        traces/security:
             receivers: [routing]    
             processors:
             - memory_limiter
             - batch
             - resourcedetection
             - resource/add_mode
-            exporters: [file/b]            
+            exporters: [file/security]            
         metrics:
             receivers: [otlp]
             processors: 
             - memory_limiter
             - batch
             - resourcedetection
-            exporters: [ file/a, debug]
+            exporters: [file/standard, debug]
         logs:
             receivers: [otlp]
             processors:
             - memory_limiter
             - batch
             - resourcedetection
-            exporters: [ file/a, debug]
+            exporters: [file/standard, debug]

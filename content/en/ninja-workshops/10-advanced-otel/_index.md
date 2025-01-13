@@ -1,9 +1,9 @@
 ---
-title: Advanced Opentelemetry configurations
+title: Advanced Opentelemetry
 description: In this workshop you will practice setting up the otel collector configuration from scratch and go though several  advanced configuration scenarios's
 weight: 10
 archetype: chapter
-authors: ["Pieter Hagen", "Robert Castley"]
+authors: ["Robert Castley","&", "Pieter Hagen"]
 time: 90 minutes
 draft: true
 ---
@@ -30,7 +30,7 @@ Linux       - check your install [here](https://jqlang.github.io/jq/download/)
 
 ### Agenda
 
-during the workshop we will run though the following topics:
+During the workshop we will run though the following topics:
 
 * Setting up the agent locally, add meta data and introduce Debug exporter and File exporter
 * Add a collector as a Gateway and route traffic from the Agent to the Gateway
