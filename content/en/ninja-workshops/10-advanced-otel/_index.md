@@ -57,5 +57,4 @@ During the workshop we will run though the following topics:
 * Setup routing to different endpoints depending on values in the data received
 
 ---
-
 <!-- {{% children containerstyle="ul" depth="1" description="true" %}} -->
