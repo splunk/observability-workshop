@@ -1,9 +1,9 @@
 ---
-title: Add a File exporter and Meta Data.
-linkTitle: File exporter & Meta data
-weight: 15
+title: Add a File exporter.
+linkTitle: File exporter
+weight: 14
 ---
-As we want to be able to see the output generated for the pipeline we are going to write the otlp data to files, so we can compare.
+We want to see the output generated during the export phase of the pipeline, so we are going to write the otlp data to files for comparison.
 
 Let's run our second exercise:
 
@@ -35,11 +35,13 @@ If you send a trace again, you should get the same output as we saw previously, 
 In the file the trace is written as a single line in oltp.json format, when you look at the file it looks like this:
 
 ```text
-
+{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"my.service"}},{"key":"deployment.environment","value":{"stringValue":"my.environment"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5b8efff798038103d269b633813fc60c","spanId":"eee19b7ec3c1b174","parentSpanId":"eee19b7ec3c1b173","name":"I'm a server span","kind":2,"startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","attributes":[{"value":{"stringValue":"some value"}}],"status":{}}]}]}]}
 ```
 
-If you want it json expanded, you can cat the file and pipe it though jq ( if you have it installed)
+If you want it json expanded, you can cat the file and pipe it though jq (if you have it installed)
 
 ```bash
 cat ./agent.json | jq
 ```
+
+Copy agent.out to agent-1.out or something, so you can use it to compare other results with.
