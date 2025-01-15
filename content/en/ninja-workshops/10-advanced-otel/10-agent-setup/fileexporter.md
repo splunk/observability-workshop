@@ -11,7 +11,7 @@ Let's run our second exercise:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Add an  the following exporter
+* Add an the following exporter
 
 ```text
     file: exporter
