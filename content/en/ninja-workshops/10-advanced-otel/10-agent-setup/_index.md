@@ -7,11 +7,11 @@ weight: 10
 
 ### Setup
 
-Pick a location where you are going to run the workshop on your machine, (we will use [WORKSHOP] for this location), create a sub directory called **1-agent** and  move into it.
+In your `[WORKSHOP]` directory, create a sub directory called `1-agent` and change into it.
 
-In *[WORKSHOP]/1-agent* create  a file called **agent.yaml**  and copy the following starting config in it.
+In `[WORKSHOP]/1-agent` create a file called `agent.yaml` and copy the following starting config in it.
 
-``` text
+```yaml
 receivers:
 
 exporters:
@@ -32,13 +32,21 @@ Let's start with our first exercise:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Add the following as a receiver:
+- Add `otlp:` under the `receivers:` key (taking care to format it correctly)
+  - Under `otlp:` add the `protocols:` key
+    - Under `protocols:` and the `http:` key
+      - Under `http:` add the `endpoint:` key with the value `"0.0.0.0:4318"`
 
-```text
-  otlp: receiver
-    protocols: section
-      HTTP: entry, with an endpoint of "0.0.0.0:4318"
+{{% expand "Need a hint?" %}}
+
+```yaml
+  otlp:
+    protocols:
+      http:
+        endpoint: "0.0.0.0:4318"
 ```
+
+{{% /expand %}}
 
 * Add the receiver to all the *receiver:* sections in the pipelines
 * Enable the **memory_limiter:** processor by adding it in all the *processor:* sections of the pipelines

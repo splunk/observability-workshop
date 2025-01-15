@@ -8,24 +8,25 @@ time: 90 minutes
 draft: true
 ---
 
-The goal of this workshop is to make you comfortable creating and adjusting Opentelemetry Collector configuration files. We do this by starting with an almost empty `agent.yaml`, and configure several commonly asked scenarios.
+The goal of this workshop is to make you comfortable creating and adjusting Opentelemetry Collector configuration files. You will do this by starting with an almost empty `agent.yaml`, and configure several common advanced scenarios.
 
-This workshop requires a basic understanding of the OpenTelemetry Collector and the configuration file format. You will also need to be proficient in editing `YAML` files.
+This workshop requires a basic understanding of the OpenTelemetry Collector and the configuration file format. You will also need to be proficient in editing `YAML` files. The whole workshop is run locally and uses the `fileexporter` as the target output for the collector, thus negating the need for a backend to send data to.
 
-The whole workshop is run locally and uses the `fileexporter` as the target output for the collector.
+Create a directory on your machine where you will run the workshop e.g. `collector`, we will refer to this directory as `[WORKSHOP]` in the instructions. Download the latest of the collector (at the time of publication this was `v0.116.0`) for the device you will be using during the workshop and place it in the `[WORKSHOP]` directory.
 
-As pre-work for the workshop, it is required that attendees download the latest of the collector (at the time of publication this was `v0.116.0`) for the device they will use during the workshop:
-
-* Apple Mac (Arm): [otelcol_darwin_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.116.0/otelcol_darwin_arm64)
+* Apple Mac (ARM): [otelcol_darwin_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.116.0/otelcol_darwin_arm64)
 * Apple Mac (Intel): [otelcol_darwin_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.115.0/otelcol_darwin_amd64)
 * Windows 64: [splunk-otel-collector-0.116.0-amd64.msi](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.116.0/otelcol_windows_amd64.exe)
 * Linux (Intel): [otelcol_linux_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.116.0/otelcol_linux_amd64)
-* Linux (Arm): [otelcol_linux_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.116.0/otelcol_linux_arm64)
+* Linux (ARM): [otelcol_linux_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.116.0/otelcol_linux_arm64)
 
-If none of the above match your host platform, please select and download the correct of your required build [here (use incginito mode)](https://github.com/signalfx/splunk-otel-collector/releases/tag/v0.116.0)  
-Please put it in its own directory, we are going to run the workshop from this directory.  
-Rename your downloaded collector to  **otelcol** (or **otelcol.exe** on windows) for easier reference.
+{{% notice title="Note" style="info" icon="info" %}}
+If none of the above match your host platform, please select and download the correct of your required build [**here**](https://github.com/signalfx/splunk-otel-collector/releases/tag/v0.116.0).
+{{% /notice %}}
 
+Once downloaded, rename the file to `otelcol` (or `otelcol.exe` on Windows) for future reference.
+
+<!--
 Optionally, you can install `jq` to pretty view the json files:
 
 ###### Apple Mac
@@ -45,18 +46,19 @@ choco install  jq -y
 Check your install **[here](https://jqlang.github.io/jq/download/)**
 
 ### Agenda
+-->
 
 During the workshop we will run though the following topics:
 
-* Setting up the agent locally, add meta data and introduce the Debug exporter and File exporter
-* Add a collector as a Gateway and route traffic from the Agent to the Gateway
-* Add basic resilience to the agent
-* Use the Filelog receiver to collect log data from different files
-* Using processors
-  * Filtering out noise (health checks) by dropping specific spans
+* Setting up the agent locally, add meta data and introduce the **debug** and **file** exporter
+* Configure a Gateway and route traffic from the Agent to the Gateway
+* Configure basic resilience to the agent
+* Configure the **filelog** receiver to collect log data from different files
+* Configure processors:
+  * Filter out noise (health checks) by dropping specific spans
   * Remove specific tags
   * Transform attributes to match expected format
-* Setup routing to different endpoints depending on values in the data received
+* Configure routing to different endpoints based upon on values in the data received
 
 ---
 <!-- {{% children containerstyle="ul" depth="1" description="true" %}} -->
