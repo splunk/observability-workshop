@@ -95,6 +95,7 @@ service:
             - batch
             - resourcedetection
             - resource/add_mode
+            - transform/update
             exporters: [otlp/gateway, debug]
         metrics:
             receivers: [otlp]

@@ -67,7 +67,6 @@ processors:
   attributes/removetags:
     actions:
       - key: SPAN_TAG_KEY
-        from_attribute: "SPAN_TAG_VALUE"
         action: delete
 
   # Updates attribute values to remove and redact sensitive data      
@@ -125,6 +124,7 @@ service:
             - batch
             - resourcedetection
             - resource/add_mode
+            - attributes/removetags
             exporters: [otlp/gateway, debug]
         metrics:
             receivers: [otlp]
