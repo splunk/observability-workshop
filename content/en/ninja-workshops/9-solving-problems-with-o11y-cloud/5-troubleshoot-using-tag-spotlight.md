@@ -33,7 +33,7 @@ Close the trace and return to the Trace Analyzer. If you toggle **Errors only** 
 
 ![Traces](../images/traces_with_errors.png)
 
-If we look at one of the error traces, we can see that the error occurs when the `creditprocessorservice` attempts to call another service named `otherservice`.  But why do some requests results in a call to `otherservice`, and others don't?
+If we look at one of the error traces, we can see that the error occurs when the `creditprocessorservice` attempts to call another service named `otherservice`.  But why do some requests result in a call to `otherservice`, and others don't?
 
 ![Trace with Errors](../images/error_trace.png)
 
@@ -54,7 +54,9 @@ With **Tag Spotlight**, we can see 100% of credit score requests that result in 
 
 This illustrates the power of **Tag Spotlight**! Finding this pattern would be time-consuming without it, as we'd have to manually look through hundreds of traces to identify the pattern (and even then, there's no guarantee we'd find it).
 
-We've looked at errors, but what about latency? Let's click on **Latency** near the top of the screen to find out.
+We've looked at errors, but what about latency? Let's click on the **Requests & errors distribution** dropdown and change it to **Latency distribution**.
+
+Click on the settings icon beside **Cards display** to add the P50 and P99 metrics. 
 
 Here, we can see that the requests with a `poor` credit score request are running slowly, with P50, P90, and P99 times of around 3 seconds, which is too long for our users to wait, and much slower than other requests.
 
@@ -66,7 +68,7 @@ We can also see that some requests with an `exceptional` credit score request ar
 
 Now that we know the credit score category associated with the request can impact performance and error rates, let's explore another feature that utilizes indexed tags: **Dynamic Service Maps**.
 
-With Dynamic Service Maps, we can breakdown a particular service by a tag. For example, let's click on **APM**, then click **Explore** to view the service map.
+With Dynamic Service Maps, we can breakdown a particular service by a tag. For example, let's click on **APM**, then click **Service Map** to view the service map.
 
 Click on `creditcheckservice`. Then, on the right-hand menu, click on the drop-down that says **Breakdown**, and select the `credit.score.category` tag.
 

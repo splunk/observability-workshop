@@ -106,12 +106,11 @@ For our first example, let's enable infrastructure events monitoring for our K8s
 This is done by add the following line to the `values.yaml` file: 
 
 ``` yaml
+logsEngine: otel
 splunkObservability:
-  realm: us1
-  accessToken: ***
   infrastructureMonitoringEventsEnabled: true
-clusterName: $INSTANCE-cluster
-environment: otel-$INSTANCE
+agent:
+...
 ```
 
 Once the file is saved, we can apply the changes with: 
@@ -120,7 +119,15 @@ Once the file is saved, we can apply the changes with:
 {{% tab title="Script" %}}
 
 ``` bash
-helm upgrade splunk-otel-collector -f values.yaml \
+helm upgrade splunk-otel-collector \
+  --set="splunkObservability.realm=$REALM" \
+  --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
+  --set="clusterName=$INSTANCE-cluster" \
+  --set="environment=otel-$INSTANCE" \
+  --set="splunkPlatform.token=$HEC_TOKEN" \
+  --set="splunkPlatform.endpoint=$HEC_URL" \
+  --set="splunkPlatform.index=splunk4rookies-workshop" \
+  -f values.yaml \
 splunk-otel-collector-chart/splunk-otel-collector
 ```
 
@@ -183,17 +190,16 @@ Suppose we want to see the traces and logs that are sent to the collector, so we
 inspect them before sending them to Splunk.  We can use the debug exporter for this purpose, which 
 can be helpful for troubleshooting OpenTelemetry-related issues. 
 
-Let's add the debug exporter to the values.yaml file as follows: 
+Let's add the debug exporter to the bottom of the values.yaml file as follows: 
 
 ``` yaml
+logsEngine: otel
 splunkObservability:
-  realm: us1
-  accessToken: ***
   infrastructureMonitoringEventsEnabled: true
-clusterName: $INSTANCE-cluster
-environment: otel-$INSTANCE
 agent:
   config:
+    receivers:
+     ...
     exporters:
       debug:
         verbosity: detailed
@@ -205,21 +211,7 @@ agent:
         logs:
           exporters:
             - debug
-          processors:
-            - memory_limiter
-            - batch
-            - resourcedetection
-            - resource
-          receivers:
-            - otlp
-
 ```
-
-> Note that our agent configuration already includes a traces pipeline (you can
-> verify this by reviewing the agent config map), so we only needed to add the debug 
-> exporter.  However, there wasn't a logs pipeline in the agent config, because we didn't
-> enable logs when we installed the collector initially.  So we'll need to add the 
-> full logs pipeline now. 
 
 Once the file is saved, we can apply the changes with:
 
@@ -227,7 +219,15 @@ Once the file is saved, we can apply the changes with:
 {{% tab title="Script" %}}
 
 ``` bash
-helm upgrade splunk-otel-collector -f values.yaml \
+helm upgrade splunk-otel-collector \
+  --set="splunkObservability.realm=$REALM" \
+  --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
+  --set="clusterName=$INSTANCE-cluster" \
+  --set="environment=otel-$INSTANCE" \
+  --set="splunkPlatform.token=$HEC_TOKEN" \
+  --set="splunkPlatform.endpoint=$HEC_URL" \
+  --set="splunkPlatform.index=splunk4rookies-workshop" \
+  -f values.yaml \
 splunk-otel-collector-chart/splunk-otel-collector
 ```
 
@@ -323,7 +323,7 @@ Resource attributes:
      -> k8s.cluster.name: Str(derek-1-cluster)
 ````
 
-If you return to Splunk Observability Cloud though, you'll notice that traces are 
+If you return to Splunk Observability Cloud though, you'll notice that traces and logs are 
 no longer being sent there by the application. 
 
 Why do you think that is?  We'll explore it in the next section. 
