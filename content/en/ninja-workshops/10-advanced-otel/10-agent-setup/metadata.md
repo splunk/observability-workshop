@@ -63,7 +63,7 @@ If you compare it to the original agent.out file you will note that the collecto
 
 ### Adding Metrics
 
-As a last exercise in this section, we are going to add a metric receiver:
+As a last exercise in this section, we are going to add a metric receiver that triggers at startup, then scrapes once every hour (to reduce spam):
 
  {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -71,7 +71,7 @@ As a last exercise in this section, we are going to add a metric receiver:
 
 ```text
     hostmetrics: receiver
-      collection_interval: entry, with a value of 10s
+      collection_interval: entry, use a value of 3600s *(once every hour)
       scrapers: entry  
         cpu: the single entry in the array of possible scrapers
 ```
@@ -82,6 +82,8 @@ As a last exercise in this section, we are going to add a metric receiver:
 
 Validate again with [https://otelbin.io](https://otelbin.io), your result should look like this:
 ![otelbin-4](../../images/agent-1-4.png)
+
+ (if OTelBin complains about the scrapers entry, make sure you select the Splunk OpenTelemetry Collector from the validation target drop down at the top of the screen)
 
 ### Metric Test & Validate
 

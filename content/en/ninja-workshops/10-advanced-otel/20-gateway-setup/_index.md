@@ -98,26 +98,62 @@ Open our agent.yaml in your editor and make the following changes:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Add the following exporter
+* Add the following exporter *The new preferred exporter for our backend*
 
 ```text
   otlphttp: exporter
     endpoint: entry, with a value of "http://localhost:5318"   * using the port of the gateway   
     headers: entry,
-      "X-SF-Token": entry, with a fake access token "FAKE_SPLUNK_ACCESS_TOKEN"  
+      X-SF-Token: entry, with a fake access token like "FAKE_SPLUNK_ACCESS_TOKEN"  
   ```
 
-* Add this as the first exporter to all the sections of the pipelines.  (Remove file and leave debug in place) 
+* Add this as the first exporter to all the sections of the pipelines.  (Remove file and leave debug in place)
 
 {{% /notice %}}  
-  Again validate it with 
+  Again validate it with  [https://www.otelbin.io/](https://www.otelbin.io/), the results should look like this:
 
 ![otelbingw2](../images/gateway-2-2.png)
+
 ---
 
-### Validate setup
+### Validate Agent and Gateway routing
 
-In the second Shell, run the following command to test your setup:
+Verify the gateway is running in its own shell and is ready to recive data, then in the agent Shell, restart the agent with:
+
+```bash
+[LOCATION_OF_OTELCOLLECTOR]/otelcol --config=agent.yaml
+```
+
+The agent should start to send *cpu* metrics again and both the agent and the gateway should reflect that in their output:
+
+```text
+<snip>
+NumberDataPoints #37
+Data point attributes:
+     -> cpu: Str(cpu9)
+     -> state: Str(system)
+StartTimestamp: 2024-12-09 14:18:28 +0000 UTC
+Timestamp: 2025-01-15 15:27:51.319526 +0000 UTC
+Value: 9637.660000
+NumberDataPoints #38
+Data point attributes:
+     -> cpu: Str(cpu9)
+     -> state: Str(idle)
+StartTimestamp: 2024-12-09 14:18:28 +0000 UTC
+Timestamp: 2025-01-15 15:27:51.319526 +0000 UTC
+Value: 2064591.290000
+NumberDataPoints #39
+Data point attributes:
+     -> cpu: Str(cpu9)
+     -> state: Str(interrupt)
+StartTimestamp: 2024-12-09 14:18:28 +0000 UTC
+Timestamp: 2025-01-15 15:27:51.319526 +0000 UTC
+Value: 0.000000
+	{"kind": "exporter", "data_type": "metrics", "name": "debug"}
+  ```
+Check if a **gateway-metrics.out** is created.
+
+Now run the curl command to send a trace:
 
 ```text
 curl -X POST -i http://localhost:4318/v1/traces \
@@ -125,33 +161,5 @@ curl -X POST -i http://localhost:4318/v1/traces \
  -d @trace.json 
 ```
 
-Your collector should show the following output:
+Check for the gateway-traces.out
 
- ```text
- 2025-01-13T13:26:13.502+0100	info	Traces	{"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
-2025-01-13T13:26:13.502+0100	info	ResourceSpans #0
-Resource SchemaURL:
-Resource attributes:
-     -> service.name: Str(my.service)
-     -> deployment.environment: Str(my.environment)
-ScopeSpans #0
-ScopeSpans SchemaURL:
-InstrumentationScope my.library 1.0.0
-InstrumentationScope attributes:
-     -> my.scope.attribute: Str(some scope attribute)
-Span #0
-    Trace ID       : 5b8efff798038103d269b633813fc60c
-    Parent ID      : eee19b7ec3c1b173
-    ID             : eee19b7ec3c1b174
-    Name           : I'm a server span
-    Kind           : Server
-    Start time     : 2018-12-13 14:51:00 +0000 UTC
-    End time       : 2018-12-13 14:51:01 +0000 UTC
-    Status code    : Unset
-    Status message :
-Attributes:
-     -> : Str(some value)
-	{"kind": "exporter", "data_type": "traces", "name": "debug"}
-```
-
-Let's move on to adding a file exporter and use that to mimic our backend
