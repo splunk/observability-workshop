@@ -18,11 +18,13 @@ As pre-work for the workshop, it is required that attendees download the latest 
 
 * Apple Mac (Arm): [otelcol_darwin_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.116.0/otelcol_darwin_arm64)
 * Apple Mac (Intel): [otelcol_darwin_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.115.0/otelcol_darwin_amd64)
-* Windows 64: [splunk-otel-collector-0.116.0-amd64.msi](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.116.0/splunk-otel-collector-0.116.0-amd64.msi)
+* Windows 64: [splunk-otel-collector-0.116.0-amd64.msi](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.116.0/otelcol_windows_amd64.exe)
 * Linux (Intel): [otelcol_linux_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.116.0/otelcol_linux_amd64)
 * Linux (Arm): [otelcol_linux_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.116.0/otelcol_linux_arm64)
 
-If none of the above match your host platform, please select and download the correct of your required build [here](https://github.com/signalfx/splunk-otel-collector/releases/tag/v0.116.0)
+If none of the above match your host platform, please select and download the correct of your required build [here (use incginito mode)](https://github.com/signalfx/splunk-otel-collector/releases/tag/v0.116.0)  
+Please put it in its own directory, we are going to run the workshop from this directory.  
+Rename your downloaded collector to  **otelcol** (or **otelcol.exe** on windows) for easier reference.
 
 Optionally, you can install `jq` to pretty view the json files:
 
@@ -46,7 +48,7 @@ Check your install **[here](https://jqlang.github.io/jq/download/)**
 
 During the workshop we will run though the following topics:
 
-* Setting up the agent locally, add meta data and introduce Debug exporter and File exporter
+* Setting up the agent locally, add meta data and introduce the Debug exporter and File exporter
 * Add a collector as a Gateway and route traffic from the Agent to the Gateway
 * Add basic resilience to the agent
 * Use the Filelog receiver to collect log data from different files
