@@ -3,15 +3,37 @@ title: Add a File exporter.
 linkTitle: File exporter
 weight: 14
 ---
+### Setup
+
 We want to see the output generated during the export phase of the pipeline, so we are going to write the otlp data to files for comparison.
 
 Let's run our second exercise:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Add an **file:** exporter, add a *path:* entry, with a value of *"./agent.out"*
-* Configure file size constrains by adding a *rotation:* section, add a *max_megabytes:* entry  with a value of *"2"* as well as and *max_backups:* also with a value of 2
-* Add the exporter as the first exporter entry to all the pipelines (leaving debug as the second one )
+* Add an  the following exporter
+
+```text
+    file: exporter
+        path: entry, with a value of "./agent.out"
+```
+
+* Configure file size constrains. Add the following to the fiele exporter:
+
+```text
+        rotation: section
+            max_megabytes: entry with a value of 2      * This set the max size for the file exporter output file
+            max_backups: entry also with a value of 2   * This will set the max number rotational backup it creates 
+```
+
+* Add the exporter as the first exporter entry in the array (pick you preferred format):
+
+```text
+    - file
+    - debug
+
+or use [file, debug]  (leave debug as the second one)
+```
 
 {{% /notice %}}
 
@@ -19,10 +41,14 @@ Validate your new `agent.yaml` with [https://otelbin.io](https://otelbin.io), yo
 
 ![otelbin2](../../images/agent-1-2.png)
 
-start your collector again with your new config to test it:
+---
 
-```text
-otelcol_darwin_arm64 --config=agent.yaml
+### Test & Validate
+
+Restart your collect this time with your new config to test it:
+
+```bash
+[LOCATION_OF_OTELCOLLECTOR]/otelcol --config=agent.yaml
 ```
 
 Again, if you have done everything correctly, the last line of the output should be:

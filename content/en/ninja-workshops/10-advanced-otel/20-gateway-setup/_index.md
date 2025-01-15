@@ -1,15 +1,14 @@
 ---
-title: Initial setup our agent config  
-linkTitle: 1. Initial Agent Setup
+title: Route data though a gateway  
+linkTitle: 2. Gateway Setup
 time: 10 minutes
-weight: 10
+weight: 20
 ---
 
-### Setup
+### Gateway Setup
 
-Pick a location where you are going to run the workshop on your machine, (we will use [WORKSHOP] for this location), create a sub directory called **1-agent** and  move into it.
-
-In *[WORKSHOP]/1-agent* create  a file called **agent.yaml**  and copy the following starting config in it.
+In the location where you are running the workshop on your machine, create a sub directory called **2-gateway**, the copy the last version of the agent.yaml acrooss toe the new directory. 
+Move into the *[WORKSHOP]/2-gateway* directory and create a file called **gateway.yaml**  and copy the following starting config in it.
 
 ``` text
 receivers:
