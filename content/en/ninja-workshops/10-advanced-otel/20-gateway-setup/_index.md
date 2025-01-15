@@ -7,145 +7,115 @@ weight: 20
 
 ### Gateway Setup
 
-In the location where you are running the workshop on your machine, create a sub directory called **2-gateway**, the copy the last version of the agent.yaml acrooss toe the new directory. 
+In the location where you are running the workshop on your machine, create a sub directory called **2-gateway**, then copy the last version of the agent.yaml across to the new directory.  
 Move into the *[WORKSHOP]/2-gateway* directory and create a file called **gateway.yaml**  and copy the following starting config in it.
 
 ``` text
 receivers:
-
-exporters:
-    
+  otlp:
+    protocols:
+      http:
+        endpoint: "0.0.0.0:5318" # Note, the port number is 1000 higher then the regular port number since we going to run two collectors on the same machine
 processors:
   memory_limiter:
     check_interval: 2s
     limit_mib: 512
-  
+
+exporters:
+  debug:
+    verbosity: detailed
+
 service:
   pipelines:
     traces:
+      receivers: [otlp]
+      processors:
+        - memory_limiter
+      exporters: [ debug]
     metrics:
+      receivers: [otlp]
+      processors:
+        - memory_limiter
+      exporters: [ debug]
     logs:
+      receivers: [otlp]
+      processors:
+        - memory_limiter
+      exporters: [ debug]
 ```
 
-Let's start with our first exercise:
+Let's start with our next exercise:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Add the following as a receiver:
+* Add the following exporter
 
 ```text
-  otlp: receiver
-    protocols: section
-      HTTP: entry, with an endpoint of "0.0.0.0:4318"
+  file: exporter, name it /traces: 
+    path: entry, with a value of "./gateway-trace.out"
 ```
 
-* Add the receiver to all the *receiver:* sections in the pipelines
-* Enable the **memory_limiter:** processor by adding it in all the *processor:* sections of the pipelines
+* Configure file size constrains. Add the following to the file exporter:
 
 ```text
-  - memory_limiter or [memory_limiter] array
+    rotation: section
+      max_megabytes: entry with a value of 2    * This set the max size for the file exporter output
+      max_backups: entry also with a value of 2 * This will set the max number rotational backups 
 ```
 
-* Add the following exporter:
-
-```text
-  debug: exporter
-    verbosity: entry, set to detailed
-```
-
-Add it as an exporter in all *exporter:* sections of the pipelines
+* Add it as the first exporter in the **traces:** pipeline.
+* Repeat this two more time, name them */metrics* and */logs*, with path being *./gateway-metrics.out* and *gateway-logs.out* respectively and add them to the relevant pipeline
 
 {{% /notice %}}
 
-{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
- Note that in the exercise above we give you all key elements in yaml format, you just need to correct them yourself.
- Pay attention to the format as the configuration of the agent is yaml based.
+Verify your gateway.yaml with [https://www.otelbin.io/](https://www.otelbin.io/). If done correctly your view should look like this:
 
-{{% /notice %}}
-
-By using [https://www.otelbin.io/](https://www.otelbin.io/) to validate your agent.yaml, you can catch spelling and or configuration errors.  
-If done correctly your configuration should look like this:
-
-![otelbin1](../images/agent-1-1.png)
+![otelbin1](../images/gateway-2-1.png)
 
 ---
 
-### Test & Validate
+### Test Gateway
 
-Run the following command to  test your config (make sure you use the right otel collector you downloaded):
+Start an other Shell, make sure your in your workhop folder and run the following command  in the new shell to test your gateway config.
 
 ```text
-[LOCATION_OF_OTELCOLLECTOR]/otelcol --config=agent.yaml
+[LOCATION_OF_OTELCOLLECTOR]/otelcol --config=gateway.yaml
 ```
 
-If you have done everything correctly, the last line of the output should be :
+If you have done everything correctly, the first and the last line of the output should be:
 
 ```text
+2025/01/15 15:33:53 settings.go:478: Set config to [gateway.yaml]
+<snip to the end>
 2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261	Everything is ready. Begin running and processing data.
 ```
 
-Now  start a new shell and create a file called **trace.json* and copy the following content:
+---
+
+### Change agent config
+
+Open our agent.yaml in your editor and make the following changes:
+
+{{% notice title="Exercise" style="green" icon="running" %}}
+
+* Add the following exporter
 
 ```text
-{
-    "resourceSpans": [
-      {
-        "resource": {
-          "attributes": [
-            {
-              "key": "service.name",
-              "value": {
-                "stringValue": "my.service"
-              }
-            },
-            {
-              "key": "deployment.environment",
-              "value": {
-                "stringValue": "my.environment"
-              }
-            }
-          ]
-        },
-        "scopeSpans": [
-          {
-            "scope": {
-              "name": "my.library",
-              "version": "1.0.0",
-              "attributes": [
-                {
-                  "key": "my.scope.attribute",
-                  "value": {
-                    "stringValue": "some scope attribute"
-                  }
-                }
-              ]
-            },
-            "spans": [
-              {
-                "traceId": "5B8EFFF798038103D269B633813FC60C",
-                "spanId": "EEE19B7EC3C1B174",
-                "parentSpanId": "EEE19B7EC3C1B173",
-                "name": "I'm a server span",
-                "startTimeUnixNano": "1544712660000000000",
-                "endTimeUnixNano": "1544712661000000000",
-                "kind": 2,
-                "attributes": [
-                  {
-                    "keytest": "my.span.attr",
-                    "value": {
-                      "stringValue": "some value"
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
+  otlphttp: exporter
+    endpoint: entry, with a value of "http://localhost:5318"   * using the port of the gateway   
+    headers: entry,
+      "X-SF-Token": entry, with a fake access token "FAKE_SPLUNK_ACCESS_TOKEN"  
+  ```
 
-```
+* Add this as the first exporter to all the sections of the pipelines.  (Remove file and leave debug in place) 
+
+{{% /notice %}}  
+  Again validate it with 
+
+![otelbingw2](../images/gateway-2-2.png)
+---
+
+### Validate setup
 
 In the second Shell, run the following command to test your setup:
 
