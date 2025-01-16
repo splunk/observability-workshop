@@ -16,7 +16,7 @@ Create a directory on your machine where you will run the workshop e.g. `collect
 
 * Apple Mac (ARM): [otelcol_darwin_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.116.0/otelcol_darwin_arm64)
 * Apple Mac (Intel): [otelcol_darwin_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.115.0/otelcol_darwin_amd64)
-* Windows 64: [splunk-otel-collector-0.116.0-amd64.msi](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.116.0/otelcol_windows_amd64.exe)
+* Windows 64: [otelcol_windows_amd64.exe](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.116.0/otelcol_windows_amd64.exe)
 * Linux (Intel): [otelcol_linux_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.116.0/otelcol_linux_amd64)
 * Linux (ARM): [otelcol_linux_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.116.0/otelcol_linux_arm64)
 
