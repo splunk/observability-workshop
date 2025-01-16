@@ -206,8 +206,8 @@ Validate again with [https://otelbin.io](https://otelbin.io), your result should
 
 Restart the agent again using the agent.yaml and tail the agent.out, the collector  should  write metric lines to your agent.out every 10 seconds that looks like this:
 
-Note that we show the entries for *cpu1* only, you will get cpu entries for all the cpu's/cores present in your system.  
-Also note that in the resourceMetrics section, you find the same attributes added as with the trace, these will help with corelating between traces and metrics.
+Note that we show the entries for **cpu1** only, you will get cpu entries for all the cpu's/cores present in your system.  
+Also note that in the resourceMetrics section, you find the same attributes added as with the trace we looked at earlier, these will help with corelating between traces and metrics.
 
 {{% tabs %}}
 {{% tab title="Compact JSON" %}}
