@@ -5,39 +5,23 @@ weight: 1
 ---
 ### Setup
 
-We want to see the output generated during the export phase of the pipeline, so we are going to write the otlp data to files for comparison.
+We want to see the output generated during the export phase of the pipeline, so we are going to write the OTLP data to files for comparison.
 
 Let's run our second exercise:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Add an the following exporter
+- Add `file:` under `exporters:` key
+  - Add the `path:` key with a value of `"./agent.out"`
+  - Add `rotation:` key
+    - Add `max_megabytes:` key and set a value of 2 # This set the max size for the file exporter output file
+    - Add `max_backups:` key and set a value of 2 # This will set the max number rotational backup it creates 
 
-```text
-    file: exporter
-        path: entry, with a value of "./agent.out"
-```
-
-* Configure file size constrains. Add the following to the fiele exporter:
-
-```text
-        rotation: section
-            max_megabytes: entry with a value of 2      * This set the max size for the file exporter output file
-            max_backups: entry also with a value of 2   * This will set the max number rotational backup it creates 
-```
-
-* Add the exporter as the first exporter entry in the array (pick you preferred format):
-
-```text
-    - file
-    - debug
-
-or use [file, debug]  (leave debug as the second one)
-```
+Add the file exporter to the `metrics`, `traces` and `logs` pipelines.
 
 {{% /notice %}}
 
-Validate your new `agent.yaml` with [https://otelbin.io](https://otelbin.io), your pipelines should look like this:
+Validate your updated `agent.yaml` with [https://otelbin.io](https://otelbin.io), your pipelines should look like this:
 
 ![otelbin-a-1-2-w](../../images/agent-1-2w.png)
 
@@ -48,7 +32,7 @@ Validate your new `agent.yaml` with [https://otelbin.io](https://otelbin.io), yo
 Restart your collect this time with your new config to test it:
 
 ```bash
-[LOCATION_OF_OTELCOLLECTOR]/otelcol --config=agent.yaml
+[WORKSHOP]/otelcol --config=agent.yaml
 ```
 
 Again, if you have done everything correctly, the last line of the output should be:
@@ -57,11 +41,11 @@ Again, if you have done everything correctly, the last line of the output should
 2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
-If you send a trace again, you should get the same output as we saw previously, but you also should have a file in the same directory called **agent.out**
-In the file the trace is written as a single line in oltp.json format, when you look at the file it looks like this:
+If you send a trace again, you should get the same output as we saw previously, but you also should have a file in the same directory called `agent.out`.
+In the file the trace is written as a single line in JSON format, when you look at the file it looks like this:
 
 {{% tabs %}}
-{{% tab title="Compact JSON" %}}
+{{% tab title="Compacted JSON" %}}
 
 ```json
 {"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"my.service"}},{"key":"deployment.environment","value":{"stringValue":"my.environment"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5B8EFFF798038103D269B633813FC60C","spanId":"EEE19B7EC3C1B174","parentSpanId":"EEE19B7EC3C1B173","name":"I'm a server span","startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","kind":2,"attributes":[{"keytest":"my.span.attr","value":{"stringValue":"some value"}}]}]}]}]}
@@ -133,10 +117,10 @@ In the file the trace is written as a single line in oltp.json format, when you 
 {{% /tab %}}
 {{% /tabs %}}
 
-If you want  to see the json expanded on your device, you can cat the file and pipe it though **jq** (if you have it installed)
+If you want to see the JSON expanded on your device, you can cat the file and pipe it though `jq` (if you have it installed).
 
 ```bash
 cat ./agent.json | jq
 ```
 
-Copy agent.out to agent-1.out or something, so you can use it to compare other results later.
+Copy `agent.out` to `agent-1.out` so you can use it to compare against other results later on in this workshop.
