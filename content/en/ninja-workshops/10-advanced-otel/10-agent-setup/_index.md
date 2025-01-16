@@ -91,6 +91,16 @@ If you have done everything correctly, the last line of the output should be :
 
 Now  start a new shell and create a file called **trace.json* and copy the following content:
 
+{{% tabs %}}
+{{% tab title="Compact JSON" %}}
+
+```json
+{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"my.service"}},{"key":"deployment.environment","value":{"stringValue":"my.environment"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5B8EFFF798038103D269B633813FC60C","spanId":"EEE19B7EC3C1B174","parentSpanId":"EEE19B7EC3C1B173","name":"I'm a server span","startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","kind":2,"attributes":[{"keytest":"my.span.attr","value":{"stringValue":"some value"}}]}]}]}]}
+```
+
+{{% /tab %}}
+{{% tab title="Formatted JSON" %}}
+
 ```json
 {
     "resourceSpans": [
@@ -149,8 +159,10 @@ Now  start a new shell and create a file called **trace.json* and copy the follo
       }
     ]
   }
-
 ```
+
+{{% /tab %}}
+{{% /tabs %}}
 
 In the second shell, run the following command to test your setup and validate the output:
 
