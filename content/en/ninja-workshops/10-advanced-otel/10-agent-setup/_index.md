@@ -71,7 +71,7 @@ Add it as an exporter in all *exporter:* sections of the pipelines
 By using [https://www.otelbin.io/](https://www.otelbin.io/) to validate your agent.yaml, you can catch spelling and or configuration errors.  
 If done correctly your configuration should look like this:
 
-![otelbin1](../images/agent-1-1.png)
+![otelbin-a-1-1w](../images/agent-1-1w.png)
 
 ---
 
