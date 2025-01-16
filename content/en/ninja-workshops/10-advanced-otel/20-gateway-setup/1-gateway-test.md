@@ -1,7 +1,7 @@
 ---
 title: Test your gateway  
-linkTitle: Test your Gateway 
-weight: 22
+linkTitle: 2.1 Test your Gateway 
+weight: 1
 ---
 
 ## Test Gateway

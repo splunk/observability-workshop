@@ -1,7 +1,7 @@
 ---
 title: Testing the Route from agent via gateway
-linkTitle: Agent -> Gateway
-weight: 26
+linkTitle: 2.2 Agent -> Gateway
+weight: 2
 ---
 
 ## Validate Agent and Gateway routing
