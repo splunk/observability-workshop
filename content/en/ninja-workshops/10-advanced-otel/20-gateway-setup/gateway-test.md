@@ -42,5 +42,6 @@ Open our agent.yaml in your editor and make the following changes:
 {{% /notice %}}  
   Again validate it with  [https://www.otelbin.io/](https://www.otelbin.io/), the results should look like this:
 
-![otelbingw2](../images/gateway-1-2.png)
+![otelbingw2](../../images/gateway-1-2.png)
 
+![gatewaytestw](../../images/gateway2-2-w.png)
