@@ -89,7 +89,7 @@ If you have done everything correctly, the last line of the output should be :
 2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
-Now start a new shell and create a file called **trace.json* and copy the following content (Pick one of the tabs, both tabs contain the same trace data):
+Now start a new shell and create a file called `trace.json` and copy the following content (Pick one of the tabs, both tabs contain the same trace data):
 
 {{% tabs %}}
 {{% tab title="Compact JSON" %}}
