@@ -37,7 +37,7 @@ Let's start with our first exercise:
     - Under `protocols:` and the `http:` key
       - Under `http:` add the `endpoint:` key with the value `"0.0.0.0:4318"`
 
-{{% expand "Need a hint?" %}}
+{{% expand title="{{% badge style=primary icon=lightbulb %}}**Hint**{{% /badge %}}" %}}
 
 ```yaml
   otlp:
@@ -48,19 +48,15 @@ Let's start with our first exercise:
 
 {{% /expand %}}
 
-* Add the receiver to all the *receiver:* sections in the pipelines
-* Enable the **memory_limiter:** processor by adding it in all the *processor:* sections of the pipelines
+- Add the receiver to all the *receiver:* sections in the pipelines
+- Enable the **memory_limiter:** processor by adding it in all the *processor:* sections of the pipelines
 
 ```text
   - memory_limiter or [memory_limiter] array
 ```
 
-* Add the following exporter:
-
-```text
-  debug: exporter
-    verbosity: entry, set to detailed
-```
+- Add a `debug` exportor under `exporters:` key
+  - Set the `verbosity:` to `detailed` level
 
 Add it as an exporter in all *exporter:* sections of the pipelines
 
@@ -84,18 +80,18 @@ If done correctly your configuration should look like this:
 Run the following command to  test your config (make sure you use the right otel collector you downloaded):
 
 ```text
-[LOCATION_OF_OTELCOLLECTOR]/otelcol --config=agent.yaml
+[WORKSHOP]/otelcol --config=agent.yaml
 ```
 
 If you have done everything correctly, the last line of the output should be :
 
 ```text
-2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261	Everything is ready. Begin running and processing data.
+2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
 Now  start a new shell and create a file called **trace.json* and copy the following content:
 
-```text
+```json
 {
     "resourceSpans": [
       {
@@ -156,19 +152,23 @@ Now  start a new shell and create a file called **trace.json* and copy the follo
 
 ```
 
-In the second Shell, run the following command to test your setup:
+In the second shell, run the following command to test your setup and validate the output:
 
-```text
+{{% tabs %}}
+{{% tab title="Command" %}}
+
+```sh
 curl -X POST -i http://localhost:4318/v1/traces \
 -H "Content-Type: application/json" \
- -d @trace.json 
+-d @trace.json 
 ```
 
-Your collector should show the following output:
+{{% /tab %}}
+{{% tab title="Example Output" %}}
 
  ```text
- 2025-01-13T13:26:13.502+0100	info	Traces	{"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
-2025-01-13T13:26:13.502+0100	info	ResourceSpans #0
+ 2025-01-13T13:26:13.502+0100 info Traces {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
+2025-01-13T13:26:13.502+0100 info ResourceSpans #0
 Resource SchemaURL:
 Resource attributes:
      -> service.name: Str(my.service)
@@ -190,7 +190,10 @@ Span #0
     Status message :
 Attributes:
      -> : Str(some value)
-	{"kind": "exporter", "data_type": "traces", "name": "debug"}
+  {"kind": "exporter", "data_type": "traces", "name": "debug"}
 ```
 
-Let's move on to adding a file exporter and use that to mimic our backend
+{{% /tab %}}
+{{% /tabs %}}
+
+Next, we will configure a **file** exporter and use that to simluate data collection.

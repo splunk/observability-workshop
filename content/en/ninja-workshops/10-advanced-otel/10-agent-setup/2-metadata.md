@@ -1,7 +1,7 @@
 ---
-title: Add Meta Data.
-linkTitle: Adding Meta data
-weight: 16
+title: Add Meta Data
+linkTitle: 1.2 Adding Meta data
+weight: 2
 ---
 ### Setup
 
@@ -14,7 +14,7 @@ Let's run our next exercise:
 
 * Add the following processors:
 
-```text
+```yaml
   resourcedetection: processor
     detectors: entry, with a value of [system] 
     override: with the value true
@@ -40,7 +40,7 @@ Validate your new `agent.yaml` with [https://otelbin.io](https://otelbin.io), yo
 Restart your collector with your new config to test it:
 
 ```bash
-[LOCATION_OF_OTELCOLLECTOR]/otelcol --config=agent.yaml
+[WORKSHOP]/otelcol --config=agent.yaml
 ```
 
 Again, if you have done everything correctly, the last line of the output should be:
@@ -51,7 +51,7 @@ Again, if you have done everything correctly, the last line of the output should
 
 Send a trace again, check the agent.out, a new line should have been written for your trace:
 
-```text
+```json
 {"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"my.service"}},{"key":"deployment.environment","value":{"stringValue":"my.environment"}},{"key":"host.name","value":{"stringValue":"[YOUR_HOST_NAME]"}},{"key":"os.type","value":{"stringValue":"[YOUR_OS]"}},{"key":"otelcol.service.mode","value":{"stringValue":"agent"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5b8efff798038103d269b633813fc60c","spanId":"eee19b7ec3c1b174","parentSpanId":"eee19b7ec3c1b173","name":"I'm a server span","kind":2,"startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","attributes":[{"value":{"stringValue":"some value"}}],"status":{}}]}],"schemaUrl":"https://opentelemetry.io/schemas/1.6.1"}]}
 ```
 
@@ -69,7 +69,7 @@ As a last exercise in this section, we are going to add a metric receiver that t
 
 * Add a the following receiver:
 
-```text
+```yaml
     hostmetrics: receiver
       collection_interval: entry, use a value of 3600s *(once every hour)
       scrapers: entry  
@@ -92,7 +92,7 @@ Restart the agent again using the agent.yaml and tail the agent.out, the collect
 Note that we show the entries for *cpu1* only, you will get cpu entries for all the cpu's/cores present in your system.  
 Also note that in the resourceMetrics section, you find the same attributes added as with the trace, these will help with corelating between traces and metrics.
 
-```text
+```json
 {"resourceMetrics":[{"resource":{"attributes":[{"key":"host.name","value":{"stringValue":"YOUR_HOST_NAME"}},{"key":"os.type","value":{"stringValue":"YOUR_OS"}},{"key":"otelcol.service.mode","value":{"stringValue":"agent"}}]},"scopeMetrics":[{"scope":{"name":"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver/internal/scraper/cpuscraper","version":"v0.116.0"},"metrics":[{"name":"system.cpu.time","description":"Total seconds each logical CPU spent on each mode.","unit":"s","sum":{"dataPoints":[{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"user"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1736873595700306000","asDouble":1028590.93},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"system"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1736873595700306000","asDouble":447490.75},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"idle"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1736873595700306000","asDouble":553542.9},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"interrupt"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1736873595700306000","asDouble":0},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu1"}},{"key":"state","value":{"stringValue":"user"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1736873595700306000","asDouble":1029342.54},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu1"}},{"key":"state","value":{"stringValue":"system"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1736873595700306000","asDouble":441906.19},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu1"}},{"key":"state","value":{"stringValue":"idle"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1736873595700306000","asDouble":558385.54},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu1"}},{"key":"state","value":
 }]}]}}]}]}]}
 ```
