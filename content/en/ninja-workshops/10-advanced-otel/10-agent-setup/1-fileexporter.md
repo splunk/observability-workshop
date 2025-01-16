@@ -39,7 +39,7 @@ or use [file, debug]  (leave debug as the second one)
 
 Validate your new `agent.yaml` with [https://otelbin.io](https://otelbin.io), your pipelines should look like this:
 
-![otelbin2](../../images/agent-1-2.png)
+![otelbin-a-1-2-w](../../images/agent-1-2w.png)
 
 ---
 
@@ -60,14 +60,83 @@ Again, if you have done everything correctly, the last line of the output should
 If you send a trace again, you should get the same output as we saw previously, but you also should have a file in the same directory called **agent.out**
 In the file the trace is written as a single line in oltp.json format, when you look at the file it looks like this:
 
-```text
-{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"my.service"}},{"key":"deployment.environment","value":{"stringValue":"my.environment"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5b8efff798038103d269b633813fc60c","spanId":"eee19b7ec3c1b174","parentSpanId":"eee19b7ec3c1b173","name":"I'm a server span","kind":2,"startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","attributes":[{"value":{"stringValue":"some value"}}],"status":{}}]}]}]}
+{{% tabs %}}
+{{% tab title="Compact JSON" %}}
+
+```json
+{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"my.service"}},{"key":"deployment.environment","value":{"stringValue":"my.environment"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5B8EFFF798038103D269B633813FC60C","spanId":"EEE19B7EC3C1B174","parentSpanId":"EEE19B7EC3C1B173","name":"I'm a server span","startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","kind":2,"attributes":[{"keytest":"my.span.attr","value":{"stringValue":"some value"}}]}]}]}]}
 ```
 
-If you want it json expanded, you can cat the file and pipe it though jq (if you have it installed)
+{{% /tab %}}
+{{% tab title="Formatted JSON" %}}
+
+```json
+{
+    "resourceSpans": [
+      {
+        "resource": {
+          "attributes": [
+            {
+              "key": "service.name",
+              "value": {
+                "stringValue": "my.service"
+              }
+            },
+            {
+              "key": "deployment.environment",
+              "value": {
+                "stringValue": "my.environment"
+              }
+            }
+          ]
+        },
+        "scopeSpans": [
+          {
+            "scope": {
+              "name": "my.library",
+              "version": "1.0.0",
+              "attributes": [
+                {
+                  "key": "my.scope.attribute",
+                  "value": {
+                    "stringValue": "some scope attribute"
+                  }
+                }
+              ]
+            },
+            "spans": [
+              {
+                "traceId": "5B8EFFF798038103D269B633813FC60C",
+                "spanId": "EEE19B7EC3C1B174",
+                "parentSpanId": "EEE19B7EC3C1B173",
+                "name": "I'm a server span",
+                "startTimeUnixNano": "1544712660000000000",
+                "endTimeUnixNano": "1544712661000000000",
+                "kind": 2,
+                "attributes": [
+                  {
+                    "keytest": "my.span.attr",
+                    "value": {
+                      "stringValue": "some value"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+```
+
+{{% /tab %}}
+{{% /tabs %}}
+
+If you want  to see the json expanded on your device, you can cat the file and pipe it though **jq** (if you have it installed)
 
 ```bash
 cat ./agent.json | jq
 ```
 
-Copy agent.out to agent-1.out or something, so you can use it to compare other results with.
+Copy agent.out to agent-1.out or something, so you can use it to compare other results later.
