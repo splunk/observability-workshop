@@ -1,25 +1,24 @@
 ---
-title: Add Meta Data
-linkTitle: 1.2 Adding Meta data
+title: Adding Resource Metadata
+linkTitle: 1.2 Resource Metadata
 weight: 2
 ---
 ### Setup
 
-What we have so far is basically a straight copy from the trace we send though the otel collector,
-Now lets start adding Meta data to the base trace. this is information we can use during trouble shooting etc.
+What we have so far is basically a straight copy from the trace we send though the OTel collector. Now lets start adding some metadata to the base trace, this is information we can use during trouble shooting etc.
 
 Let's run our next exercise:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - Add `resourcedetection:` under the `processor:` key
-  -  Add `detectors:` key and set a value of `[system]`
-  -  Add `override:` key and set a value of `true`
+  - Add `detectors:` key and set a value of `[system]`
+  - Add `override:` key and set a value of `true`
 - Add `resource:` under the `processor:` key and name it `/add_mode:`
   - Add `attributes:` key
-      - Add  `action:` key and set a value of `insert`
-        - Add `value:` key wand set a value of `"agent"`
-        - Add `key:` key and set a value of `otelcol.service.mode`
+    - Add `action:` key and set a value of `insert`
+      - Add `key:` key and set a value of `otelcol.service.mode`
+      - Add `value:` key wand set a value of `"agent"`
 
 - Add the two processors to `processors:` array in the pipelines (leaving `memory_limiter` as the first one )
 
@@ -27,7 +26,7 @@ Let's run our next exercise:
 
 ---
 
-Validate your new `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)**, your pipelines should look like this:
+Validate your new `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)**.
 
 ![otelbin-a-1-3-w](../../images/agent-1-3w.png)
 
@@ -139,10 +138,11 @@ Send a trace again, check the agent.out, a new line should have been written for
 {{% /tab %}}
 {{% /tabs %}}
 
-If you compare it to the original agent.out file you will note that the collector has added the following attributes to the resourceSpans section with values relevant to your device automatically:
+If you compare it to the original agent.out file you will note that the collector has added the following attributes to the `resourceSpans` section with values relevant to your device automatically:
 
 {{% tabs %}}
 {{% tab title="Compact JSON" %}}
+
 ```json
 {"key":"host.name","value":{"stringValue":"[YOUR_HOST_NAME]"}},{"key":"os.type","value":{"stringValue":"[YOUR_OS]"}},{"key":"otelcol.service.mode","value":{"stringValue":"agent"}}
 ```
