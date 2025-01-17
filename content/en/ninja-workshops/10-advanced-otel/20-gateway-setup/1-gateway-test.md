@@ -43,3 +43,10 @@ Open our agent.yaml in your editor and make the following changes:
 Again validate the configuration using **[otelbin.io](https://www.otelbin.io/)**, the results should look like this:
 
 ![otelbin-g-2-2-w](../../images/gateway-2-2w.png)
+
+{{% notice title="Tip" style="primary"  icon="lightbulb" %}}  
+Use the **otlphttp** exporter as the default method to send traces to Splunk Observability Cloud.  
+This component is now included in the default configuration of the Splunk Distribution of the OpenTelemetry Collector to send traces and metrics to Splunk Observability Cloud when deploying in host monitoring (agent) mode
+
+The older *apm* and *signalfx* exporters you may be familiar with, will be phased out over time
+{{% /notice %}}
