@@ -12,7 +12,7 @@ Let's run our second exercise:
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - Add `file:` under `exporters:` key
-  - Add the `path:` key with a value of `"./agent.out"`
+  - Add `path:` key with a value of `"./agent.out"`
   - Add `rotation:` key
     - Add `max_megabytes:` key and set a value of `2` # This set the max size for the file exporter output file
     - Add `max_backups:` key and set a value of `2` # This will set the max number rotational backup it creates
