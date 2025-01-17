@@ -6,10 +6,10 @@ weight: 1
 
 ## Test Gateway
 
-Start an other Shell, make sure your in your workhop folder and run the following command  in the new shell to test your gateway config.
+Start an other shell, make sure your in your workhop folder and run the following command in the new shell to test your gateway config.
 
 ```text
-[LOCATION_OF_OTELCOLLECTOR]/otelcol --config=gateway.yaml
+[WORKSHOP]/otelcol --config=gateway.yaml
 ```
 
 If you have done everything correctly, the first and the last line of the output should be:
@@ -40,6 +40,6 @@ Open our agent.yaml in your editor and make the following changes:
 * Add this as the first exporter to all the sections of the pipelines.  (Remove file and leave debug in place)
 
 {{% /notice %}}  
-  Again validate it with  [https://www.otelbin.io/](https://www.otelbin.io/), the results should look like this:
+Again validate the configuration using **[otelbin.io](https://www.otelbin.io/)**, the results should look like this:
 
 ![otelbin-g-2-2-w](../../images/gateway-2-2w.png)

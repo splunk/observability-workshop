@@ -31,7 +31,7 @@ sudo cat /etc/otel/collector/splunk-otel-collector.conf
 And see that the config being used is `gateway_config.yaml`.
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-Diagrams created with [OTelBin.io](https://www.otelbin.io). Click on them to see them in detail.
+Diagrams created with **[otelbin.io](https://www.otelbin.io/)**. Click on them to see them in detail.
 {{% /notice %}}
 
 |Diagram|What it Tells Us|
