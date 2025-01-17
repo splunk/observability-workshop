@@ -89,7 +89,7 @@ Let's start with our first exercise:
  Note that in the exercise above we give you all key elements in yaml format, you just need to correct them yourself.
  Pay attention to the format as the configuration of the agent is yaml based.
 
- We will have limited hints going forward
+ We will have only a limited set hints going forward
 
  If you are unsure about the format you can look at **[otelbin.io](https://www.otelbin.io/)** as that wil show a default agent config when first visited
 

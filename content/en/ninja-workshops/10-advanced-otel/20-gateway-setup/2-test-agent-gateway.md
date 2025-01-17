@@ -39,7 +39,10 @@ Value: 0.000000
     {"kind": "exporter", "data_type": "metrics", "name": "debug"}
 ```
 
-Check to see if `gateway-metrics.out` has been created. Next, run the curl command to send a trace:
+Check to see if `gateway-metrics.out` has been created. 
+
+
+Next, run the curl command to send a trace:
 
 ```sh
 curl -X POST -i http://localhost:4318/v1/traces \
