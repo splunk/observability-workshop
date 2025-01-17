@@ -17,6 +17,7 @@ receivers:
     protocols:
       http:
         endpoint: "0.0.0.0:5318" # Note, the port number is 1000 higher then the regular port number since we going to run two collectors on the same machine
+        include_metadata: true # Note, this will enable token pass through mode, more on this later
 
 processors:
   memory_limiter:
@@ -53,23 +54,17 @@ Let's start with our next exercise:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Add the following exporter
+Lets create a separate file exporter for `traces:`, `metrics:` and `logs:`
 
-```text
-  file: exporter, name it /traces: 
-    path: entry, with a value of "./gateway-trace.out"
-```
+- Add `file:` under the `exporter:` key and name it `/traces:`
+  - Add `path:` key with a value of `"./agent.out"`
+  - Add `rotation:` key
+    - Add `max_megabytes:` key and set a value of `2` # This set the max size for the file exporter output file
+    - Add `max_backups:` key and set a value of `2` # This will set the max number rotational backup it creates
 
-* Configure file size constrains. Add the following to the file exporter:
+- Add it as the first exporter to the exporter array in the `traces:` pipeline (leaving `debug` as a second exporter).
 
-```text
-    rotation: section
-      max_megabytes: entry with a value of 2    * This set the max size for the file exporter output
-      max_backups: entry also with a value of 2 * This will set the max number rotational backups 
-```
-
-* Add it as the first exporter in the **traces:** pipeline.
-* Repeat this two more time, name them */metrics* and */logs*, with path being *./gateway-metrics.out* and *gateway-logs.out* respectively and add them to the relevant pipeline
+- Repeat the above two more time,  only name them `/metrics:` and `/logs:`, with path being `./gateway-metrics.out` and `./gateway-logs.out` respectively and add them to the relevant pipeline
 
 {{% /notice %}}
 
