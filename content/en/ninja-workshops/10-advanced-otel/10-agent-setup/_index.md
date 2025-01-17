@@ -24,8 +24,20 @@ processors:
 service:
   pipelines:
     traces:
+      receivers: []
+      processors:
+      -
+      exporter: []
     metrics:
-    logs:
+      receivers: []
+      processors: 
+       -
+      exporter: []
+    logs: 
+      receivers: []
+      processors: 
+      - 
+      exporter: []
 ```
 
 Let's start with our first exercise:
@@ -53,13 +65,31 @@ Let's start with our first exercise:
 - Add the `otlp` receiver to the `traces:`, `metrics:` and `logs:` pipelines
 - Add the `memory_limiter` processor to the `traces:`, `metrics:` and `logs:` pipelines
 - Add the `debug` exporter to the `traces:`, `metrics:` and `logs:` pipelines
+{{% expand title="{{% badge style=primary icon=lightbulb %}}**Hint**{{% /badge %}}" %}}
 
+```yaml
+ # here is an example of the tracing  pipeline.....
+
+  pipelines:
+    traces:
+      receivers: [otlp]
+
+      processors:
+      - memory_limiter
+      exporter: [debug]
+
+    # metrics: pipeline section...  
+```
+
+{{% /expand %}}
 
 {{% /notice %}}
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
  Note that in the exercise above we give you all key elements in yaml format, you just need to correct them yourself.
  Pay attention to the format as the configuration of the agent is yaml based.
+
+ If you are unsure about the format you can look at **[otelbin.io](https://www.otelbin.io/)** as that wil show a default agent config when first visited
 
 {{% /notice %}}
 
