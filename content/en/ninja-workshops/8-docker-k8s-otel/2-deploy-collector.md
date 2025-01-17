@@ -105,6 +105,8 @@ for further details on how to install the collector.
 
 Let's confirm that the collector is running successfully on our instance. 
 
+> Press Ctrl + C to exit out of the status command.
+
 {{< tabs >}}
 {{% tab title="Script" %}}
 
@@ -136,6 +138,8 @@ sudo systemctl status splunk-otel-collector
 ## How do we view the collector logs? 
 
 We can view the collector logs using `journalctl`: 
+
+> Press Ctrl + C to exit out of tailing the log.
 
 {{< tabs >}}
 {{% tab title="Script" %}}
