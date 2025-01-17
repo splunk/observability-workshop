@@ -31,7 +31,7 @@ Let's run our next exercise:
 
 ---
 
-Validate your new `agent.yaml` with [https://otelbin.io](https://otelbin.io), your pipelines should look like this:
+Validate your new `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)**, your pipelines should look like this:
 
 ![otelbin-a-1-3-w](../../images/agent-1-3w.png)
 
@@ -197,10 +197,10 @@ As a last exercise in this section, we are going to add a metric receiver that t
 
 {{% /notice %}}
 
-Validate again with [https://otelbin.io](https://otelbin.io), your result should look like this:
+Validate again with **[otelbin.io](https://www.otelbin.io/)**, your result should look like this:
 ![otelbin-a-1-4-w](../../images/agent-1-4w.png)
 
- (if OTelBin complains about the scrapers entry, make sure you select the Splunk OpenTelemetry Collector from the validation target drop down at the top of the screen)
+ (if **otelbin.io** complains about the scrapers entry, make sure you select the Splunk OpenTelemetry Collector from the validation target drop down at the top of the screen)
 
 ### Metric Test & Validate
 

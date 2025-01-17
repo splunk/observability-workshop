@@ -63,7 +63,7 @@ Let's start with our first exercise:
 
 {{% /notice %}}
 
-By using [https://www.otelbin.io/](https://www.otelbin.io/) to validate your agent.yaml, you can catch spelling and or configuration errors.  
+By using **[otelbin.io](https://www.otelbin.io/)** to validate your agent.yaml, you can catch spelling and or configuration errors.  
 If done correctly your configuration should look like this:
 
 ![otelbin-a-1-1w](../images/agent-1-1w.png)

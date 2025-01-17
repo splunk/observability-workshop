@@ -7,10 +7,11 @@ weight: 2
 
 ### Gateway Setup
 
-In the location where you are running the workshop on your machine, create a new sub directory called **2-gateway**, then copy the last version of the agent.yaml  we made across to the new directory.  
-Move into the *[WORKSHOP]/2-gateway* directory and create a file called **gateway.yaml**  and copy the following starting config in it.
+In the location where you are running the workshop on your machine, create a new sub directory called **2-gateway**, then copy the last version of the agent.yaml  we made across to the new directory.
 
-``` text
+Move into the `[WORKSHOP]/2-gateway` directory and create a file called `gateway.yaml` and copy the following starting config in it.
+
+```yaml
 receivers:
   otlp:
     protocols:
@@ -72,6 +73,6 @@ Let's start with our next exercise:
 
 {{% /notice %}}
 
-Verify your gateway.yaml with [https://www.otelbin.io/](https://www.otelbin.io/). If done correctly your view should look like this:
+Verify your gateway.yaml with **[otelbin.io](https://www.otelbin.io/)**. If done correctly your view should look like this:
 
 ![otelbin-g-2-1-w](../images/gateway-2-1w.png)
