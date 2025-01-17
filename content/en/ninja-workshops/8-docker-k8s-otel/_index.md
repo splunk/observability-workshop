@@ -12,7 +12,7 @@ hidden: true
 
 In this workshop, you'll get hands-on experience with the following: 
 
-* Practice deploying the collector and instrumenting a .NET application with the Splunk distribution of OpenTelemetry .NET in a Linux environment.
+* Practice deploying the collector and instrumenting a .NET application with the Splunk distribution of OpenTelemetry .NET in Linux and Kubernetes environments.
 * Practice “dockerizing” a .NET application, running it in Docker, and then adding Splunk OpenTelemetry instrumentation.
 * Practice deploying the Splunk distro of the collector in a K8s environment using Helm.  Then customize the collector config and troubleshoot an issue.
 
