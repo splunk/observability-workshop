@@ -9,7 +9,7 @@ weight: 1
 
 In your `[WORKSHOP]` directory, create a sub directory called `1-agent` and change into it.
 
-In `[WORKSHOP]/1-agent` create a file called `agent.yaml` and copy the following starting config in it.
+In `[WORKSHOP]/1-agent` create a file called `agent.yaml` and copy the following starting config in to it:
 
 ```yaml
 receivers:
@@ -48,17 +48,12 @@ Let's start with our first exercise:
 
 {{% /expand %}}
 
-- Add the receiver to all the *receiver:* sections in the pipelines
-- Enable the **memory_limiter:** processor by adding it in all the *processor:* sections of the pipelines
-
-```text
-  - memory_limiter or [memory_limiter] array
-```
-
-- Add a `debug` exportor under `exporters:` key
+- Add a `debug` exporter under the `exporters:` key
   - Set the `verbosity:` to `detailed` level
+- Add the `otlp` receiver to the `traces:`, `metrics:` and `logs:` pipelines
+- Add the `memory_limiter` processor to the `traces:`, `metrics:` and `logs:` pipelines
+- Add the `debug` exporter to the `traces:`, `metrics:` and `logs:` pipelines
 
-Add it as an exporter in all *exporter:* sections of the pipelines
 
 {{% /notice %}}
 
@@ -92,7 +87,7 @@ If you have done everything correctly, the last line of the output should be :
 Now start a new shell and create a file called `trace.json` and copy the following content (Pick one of the tabs, both tabs contain the same trace data):
 
 {{% tabs %}}
-{{% tab title="Compact JSON" %}}
+{{% tab title="Compacted JSON" %}}
 
 ```json
 {"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"my.service"}},{"key":"deployment.environment","value":{"stringValue":"my.environment"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5B8EFFF798038103D269B633813FC60C","spanId":"EEE19B7EC3C1B174","parentSpanId":"EEE19B7EC3C1B173","name":"I'm a server span","startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","kind":2,"attributes":[{"keytest":"my.span.attr","value":{"stringValue":"some value"}}]}]}]}]}
@@ -167,7 +162,7 @@ Now start a new shell and create a file called `trace.json` and copy the followi
 In the second shell, run the following command to test your setup and validate the output:
 
 {{% tabs %}}
-{{% tab title="Command" %}}
+{{% tab title="cURL Command" %}}
 
 ```sh
 curl -X POST -i http://localhost:4318/v1/traces \
@@ -176,7 +171,7 @@ curl -X POST -i http://localhost:4318/v1/traces \
 ```
 
 {{% /tab %}}
-{{% tab title="Example Output" %}}
+{{% tab title="Debug Output" %}}
 
  ```text
  2025-01-13T13:26:13.502+0100 info Traces {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
