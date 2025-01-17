@@ -260,11 +260,10 @@ Next, make sure both the gateway and the agent are running in their own shell, t
 ```sh
 curl -X POST -i http://localhost:4318/v1/traces \
 -H "Content-Type: application/json" \
- -d @trace.json 
+-d @trace.json 
 ```
 
 Now the gateway should have generated a new file  called `./gateway-traces.out`  and it should contain the following trace:
-
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
@@ -360,4 +359,4 @@ Now the gateway should have generated a new file  called `./gateway-traces.out` 
 
 Note that both the `./gateway-metrics.out` and the `./gateway-traces.out`  have a resource metric/attribute key  `"otelcol.service.mode"` with a value of `"agent"`
 
-We will correct that in a later section.  
+We will correct that in a later section.
