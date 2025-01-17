@@ -8,3 +8,7 @@ weight: 3
 The Filelog receiver is a receiver that reads log lines from a file. It is useful for testing and development purposes. The Filelog receiver is not recommended for production use, as it is not optimized for performance.
 
 For this part of the workshop, there is script that will generate log lines in a file. The Filelog receiver will read these log lines and send them to the OpenTelemetry Collector.
+
+Create a new sub directory called **3-filelog** and download the appropiate log generation script script for your operating system and move it to the new directoy.
+
+{{% resources sort="asc" style="splunk" title="Log Generation Scripts" icon="scroll" /%}}
