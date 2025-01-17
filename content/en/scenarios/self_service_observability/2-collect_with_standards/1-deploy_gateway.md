@@ -10,6 +10,7 @@ time: 5 minutes
 First we will deploy the **OTel Gateway**. The workshop instructor will deploy the gateway, but we will walk through the steps here if you wish to try this yourself on a second instance.
 
 The steps:
+
 * Click the **Data Management** icon in the toolbar
 * Click the **+ Add integration** button
 * Click **Deploy the Splunk OpenTelemetry Collector** button
@@ -24,6 +25,7 @@ The steps:
 Once our gateway is started we will notice... **Nothing**. The gateway, by default, doesn't send any data. It can be configured to send data, but it doesn't by default.
 
 We can review the config file with:
+
 ``` bash
 sudo cat /etc/otel/collector/splunk-otel-collector.conf
 ```
@@ -43,6 +45,7 @@ Diagrams created with **[otelbin.io](https://www.otelbin.io/)**. Click on them t
 We're not going to see any host metrics, and we aren't send any other data through the gateway yet. But we do have the **internal** metrics being sent in.
 
 You can find it by creating a new chart and adding a metric:
+
 * Click the **+** in the top-right
 * Click **Chart**
 * For the signal of Plot A, type `otelcol_process_uptime`
@@ -75,6 +78,7 @@ processors:
 ```
 
 And then to the pipelines (adding `attributes/gateway_config` to each):
+
 ``` yaml
 service:
   pipelines:
@@ -98,11 +102,13 @@ service:
 ```
 
 And finally we need to restart the gateway:
+
 ``` bash
 sudo systemctl restart splunk-otel-collector.service
 ```
 
 We can make sure it is still running fine by checking the status:
+
 ``` bash
 sudo systemctl status splunk-otel-collector.service 
 ```

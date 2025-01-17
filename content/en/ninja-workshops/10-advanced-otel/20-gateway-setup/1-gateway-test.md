@@ -17,7 +17,7 @@ If you have done everything correctly, the first and the last line of the output
 ```text
 2025/01/15 15:33:53 settings.go:478: Set config to [gateway.yaml]
 <snip to the end>
-2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261	Everything is ready. Begin running and processing data.
+2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
 ---
