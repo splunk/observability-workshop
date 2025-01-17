@@ -28,7 +28,7 @@ Open our agent.yaml in your editor and make the following changes:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* Add the following exporter *The new preferred exporter for our backend*
+* Add the following exporter *This is the new preferred exporter for our backend*
 
 ```text
   otlphttp: exporter
@@ -42,6 +42,4 @@ Open our agent.yaml in your editor and make the following changes:
 {{% /notice %}}  
   Again validate it with  [https://www.otelbin.io/](https://www.otelbin.io/), the results should look like this:
 
-![otelbingw2](../../images/gateway-1-2.png)
-
-![gatewaytestw](../../images/gateway2-2-w.png)
+![otelbin-g-2-2-w](../../images/gateway-2-2w.png)

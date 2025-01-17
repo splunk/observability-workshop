@@ -7,7 +7,7 @@ weight: 2
 
 ### Gateway Setup
 
-In the location where you are running the workshop on your machine, create a sub directory called **2-gateway**, then copy the last version of the agent.yaml across to the new directory.  
+In the location where you are running the workshop on your machine, create a new sub directory called **2-gateway**, then copy the last version of the agent.yaml  we made across to the new directory.  
 Move into the *[WORKSHOP]/2-gateway* directory and create a file called **gateway.yaml**  and copy the following starting config in it.
 
 ``` text
@@ -16,6 +16,7 @@ receivers:
     protocols:
       http:
         endpoint: "0.0.0.0:5318" # Note, the port number is 1000 higher then the regular port number since we going to run two collectors on the same machine
+
 processors:
   memory_limiter:
     check_interval: 2s
@@ -27,16 +28,19 @@ exporters:
 
 service:
   pipelines:
+
     traces:
       receivers: [otlp]
       processors:
         - memory_limiter
       exporters: [ debug]
+
     metrics:
       receivers: [otlp]
       processors:
         - memory_limiter
       exporters: [ debug]
+
     logs:
       receivers: [otlp]
       processors:
@@ -70,4 +74,4 @@ Let's start with our next exercise:
 
 Verify your gateway.yaml with [https://www.otelbin.io/](https://www.otelbin.io/). If done correctly your view should look like this:
 
-![otelbin1](../images/gateway-1-1.png)
+![otelbin-g-2-1-w](../images/gateway-2-1w.png)
