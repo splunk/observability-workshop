@@ -28,8 +28,8 @@ Open our agent.yaml in your editor and let's add the `OTLP/HTTP` exporter to the
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-  - Add `otlphttp:` under the `exporter:` key
-    - Add `endpoint:` key and set it to a value of `"http://localhost:5318"`   *  note that we use the port of the gateway
+- Add `otlphttp:` under the `exporter:` key
+  - Add `endpoint:` key and set it to a value of `"http://localhost:5318"`   *  note that we use the port of the gateway
     - Add `headers:` key
       - Add `X-SF-Token:` key and set it with a fake access token like `"FAKE_SPLUNK_ACCESS_TOKEN"`  
 
