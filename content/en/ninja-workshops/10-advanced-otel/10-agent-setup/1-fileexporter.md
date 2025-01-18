@@ -17,7 +17,7 @@ Let's run our second exercise:
     - Add `max_megabytes:` key and set a value of `2` # This set the max size for the file exporter output file
     - Add `max_backups:` key and set a value of `2` # This will set the max number rotational backup it creates
 
-Add the file exporter to the `metrics`, `traces` and `logs` pipelines.
+Add `file` as an exporter to  exporters array in the `metrics`, `traces` and `logs` pipelines. (leave debug as the first in the array)
 
 {{% /notice %}}
 
