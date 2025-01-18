@@ -146,4 +146,4 @@ However, the agent should start reading the `quotes.log` file, forward those log
 {{% /tab %}}
 {{% /tabs %}}
 
-AGain Note, the `resoureLogs` section contains the same attributes as we saw in `traces` and `metrics`, This mechanism is what will drive `related content`
+Again Note, the `resoureLogs` section contains the same attributes as we saw in `traces` and `metrics`, This mechanism is what will drive `related content`
