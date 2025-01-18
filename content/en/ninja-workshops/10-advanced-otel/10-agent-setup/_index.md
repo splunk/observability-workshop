@@ -27,17 +27,17 @@ service:
       receivers: []
       processors:
       -
-      exporter: []
+      exporters: []
     metrics:
       receivers: []
       processors: 
        -
-      exporter: []
+      exporters: []
     logs: 
       receivers: []
       processors: 
       - 
-      exporter: []
+      exporters: []
 ```
 
 Let's start with our first exercise:
@@ -45,9 +45,9 @@ Let's start with our first exercise:
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - Add `otlp:` under the `receivers:` key (taking care to format it correctly)
-  - Under `otlp:` add the `protocols:` key
-    - Under `protocols:` and the `http:` key
-      - Under `http:` add the `endpoint:` key with the value `"0.0.0.0:4318"`
+  - Add `otlp:` key
+    - Add `http:` key
+      - Add `endpoint:` key wand set a value of `"0.0.0.0:4318"`
 
 {{% expand title="{{% badge style=primary icon=lightbulb %}}**Hint**{{% /badge %}}" %}}
 
@@ -61,7 +61,7 @@ Let's start with our first exercise:
 {{% /expand %}}
 
 - Add a `debug` exporter under the `exporters:` key
-  - Set the `verbosity:` to `detailed` level
+  - Add `verbosity:`key and set it a value of `detailed`
 - Add the `otlp` receiver to the `traces:`, `metrics:` and `logs:` pipelines
 - Add the `memory_limiter` processor to the `traces:`, `metrics:` and `logs:` pipelines
 - Add the `debug` exporter to the `traces:`, `metrics:` and `logs:` pipelines
@@ -73,8 +73,7 @@ Let's start with our first exercise:
   pipelines:
     traces:
       receivers: [otlp]
-
-      processors:
+      processors:   # you also could use [memory_limiter]
       - memory_limiter
       exporter: [debug]
 
@@ -89,7 +88,7 @@ Let's start with our first exercise:
  Note that in the exercise above we give you all key elements in yaml format, you just need to correct them yourself.
  Pay attention to the format as the configuration of the agent is yaml based.
 
- We will have only a limited set hints going forward
+ We will have only a limited sets hints going forward
 
  If you are unsure about the format you can look at **[otelbin.io](https://www.otelbin.io/)** as that wil show a default agent config when first visited
 
