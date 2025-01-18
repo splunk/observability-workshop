@@ -6,7 +6,7 @@ weight: 1
 
 ## Test Gateway
 
-Start an other shell, make sure your in your workhop folder and run the following command in the new shell to test your gateway config.
+Start an other shell, make sure your in your [WORKSHOP]/2-gateway folder and run the following command in the new shell to test your gateway config.
 
 ```text
 [WORKSHOP]/otelcol --config=gateway.yaml
@@ -24,14 +24,14 @@ If you have done everything correctly, the first and the last line of the output
 
 ### Change agent config
 
-Open our agent.yaml in your editor and let's add the `OTLP/HTTP` exporter to the agent.yaml - *This is the new preferred exporter for our backend*:
+Again, check if you in your [WORKSHOP]/2-gateway folder.  Open the agent.yaml we copied across earlier in your editor and let's add the `OTLP/HTTP` exporter to the agent.yaml - *This is the new preferred exporter for our o O11Y backend*:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - Add `otlphttp:` under the `exporter:` key
   - Add `endpoint:` key and set it to a value of `"http://localhost:5318"`   *  note that we use the port of the gateway
-    - Add `headers:` key
-      - Add `X-SF-Token:` key and set it with a fake access token like `"FAKE_SPLUNK_ACCESS_TOKEN"`  
+  - Add `headers:` key
+    - Add `X-SF-Token:` key and set it with a fake access token like `"FAKE_SPLUNK_ACCESS_TOKEN"`  
 
 - Add this as the first exporter in all the `exporter` arrays of the pipelines.  (Replace `file` and leave debug in place)
 

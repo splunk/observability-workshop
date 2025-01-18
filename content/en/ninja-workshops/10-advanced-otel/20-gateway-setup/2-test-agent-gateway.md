@@ -39,8 +39,8 @@ Value: 0.000000
     {"kind": "exporter", "data_type": "metrics", "name": "debug"}
 ```
 
-At the the moment you started the agent, it did collect the above metrics and send it along via the gateway.  
-The Gateway  should have created  a file called `./gateway-metrics.out` as part of the exporting phase of the pipeline service.
+At the the moment you started the agent, it did collect the above metrics and send it along towards the gateway.  
+The Otel collector running `gateway` mode should have created a file called `./gateway-metrics.out` as part of the exporting phase of the pipeline service.
 
 Check to see if `gateway-metrics.out` has been created. It should contain at leasts the following metrics for `cpu1`
 
@@ -255,13 +255,57 @@ Check to see if `gateway-metrics.out` has been created. It should contain at lea
 
 {{% /tab %}}
 {{% /tabs %}}
-Next, make sure both the gateway and the agent are running in their own shell, then in a 3rd shell run the curl command to send a trace:
+Next, check if you copied the `trace.json` across to the  `2-gateway` folder. Make sure both the gateway and the agent are running in their own shell, then in a 3rd shell run the curl command to send a trace:
+
+
+{{% tabs %}}
+{{% tab title="Mac cURL Command" %}}
 
 ```sh
-curl -X POST -i http://localhost:4318/v1/traces \
--H "Content-Type: application/json" \
--d @trace.json 
+curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d @trace.json 
 ```
+
+{{% /tab %}}
+
+{{% tab title="Windows cURL Command" %}}
+
+```ps1
+ curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
+```
+
+{{% /tab %}}
+
+{{% tab title="Debug Output Agent/Gateway" %}}
+
+ ```text
+ 2025-01-13T13:26:13.502+0100 info Traces {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
+2025-01-13T13:26:13.502+0100 info ResourceSpans #0
+Resource SchemaURL:
+Resource attributes:
+     -> service.name: Str(my.service)
+     -> deployment.environment: Str(my.environment)
+ScopeSpans #0
+ScopeSpans SchemaURL:
+InstrumentationScope my.library 1.0.0
+InstrumentationScope attributes:
+     -> my.scope.attribute: Str(some scope attribute)
+Span #0
+    Trace ID       : 5b8efff798038103d269b633813fc60c
+    Parent ID      : eee19b7ec3c1b173
+    ID             : eee19b7ec3c1b174
+    Name           : I'm a server span
+    Kind           : Server
+    Start time     : 2018-12-13 14:51:00 +0000 UTC
+    End time       : 2018-12-13 14:51:01 +0000 UTC
+    Status code    : Unset
+    Status message :
+Attributes:
+     -> : Str(some value)
+  {"kind": "exporter", "data_type": "traces", "name": "debug"}
+```
+
+{{% /tab %}}
+{{% /tabs %}}
 
 Now the gateway should have generated a new file  called `./gateway-traces.out`  and it should contain the following trace:
 
