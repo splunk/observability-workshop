@@ -26,7 +26,7 @@ Validate again with **[otelbin.io](https://www.otelbin.io/)**, your result shoul
 
 ### Test & Validate
 
-Restart the agent again using the agent.yaml and tail the agent.out, the collector  should  write metric lines to your agent.out every 10 seconds that looks like this:
+Delete the current agent.out, then restart the agent again using the agent.yaml. Based on the current config, the collector should write some metric lines to your agent.out at startup, then will repeat that every hour. The output from agent.out looks like this:
 
 Note that we show the entries for **cpu1** only, you will get cpu entries for all the cpu's/cores present in your system.
 
