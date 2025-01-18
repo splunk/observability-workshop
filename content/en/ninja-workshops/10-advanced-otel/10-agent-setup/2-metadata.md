@@ -11,16 +11,28 @@ Let's run our next exercise:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- Add `resourcedetection:` under the `processor:` key
+- Add `resourcedetection:` under the `processors:` key
   - Add `detectors:` key and set a value of `[system]`
   - Add `override:` key and set a value of `true`
-- Add `resource:` under the `processor:` key and name it `/add_mode:`
+- Add `resource:` under the `processors:` key and name it `/add_mode:`
   - Add `attributes:` key
-    - Add `action:` key and set a value of `insert`
+    - Add `- action:` key and set a value of `insert` * The - is on the same ident as of attributes
       - Add `key:` key and set a value of `otelcol.service.mode`
       - Add `value:` key wand set a value of `"agent"`
 
-- Add the two processors to `processors:` array in the pipelines (leaving `memory_limiter` as the first one )
+{{% expand title="{{% badge style=primary icon=lightbulb %}}**Hint**{{% /badge %}}" %}}
+
+```yaml
+  resource/add_mode:
+    attributes:
+    - action:
+      key: #.......
+```
+
+{{% /expand %}}
+
+
+- Add the two processors to `processors:` array in the pipelines (leaving `memory_limiter` as the first one)
 
 {{% /notice %}}
 
@@ -32,7 +44,7 @@ Validate your new `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)**.
 
 ### Test & Validate
 
-Restart your collector with your new config to test it:
+Delete the existing `./agent.out` file, then restart your collector with your new config to test it:
 
 ```bash
 [WORKSHOP]/otelcol --config=agent.yaml
@@ -138,7 +150,7 @@ Send a trace again, check the agent.out, a new line should have been written for
 {{% /tab %}}
 {{% /tabs %}}
 
-If you compare it to the original agent.out file you will note that the collector has added the following attributes to the `resourceSpans` section with values relevant to your device automatically:
+If you compare it to the original agent.out file you will note, the collector has added  the `otelcol.service.mode` attribute and a number of `resourcedetection` & `resource` attributes to the `resourceSpans` section of the trace.  These values are based on your device and added automatically as part of the processors we added to the pipeline:
 
 {{% tabs %}}
 {{% tab title="Compact JSON" %}}
