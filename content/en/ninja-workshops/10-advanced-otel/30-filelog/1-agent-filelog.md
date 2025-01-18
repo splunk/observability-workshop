@@ -1,0 +1,149 @@
+---
+title: Configure the  filelog receiver in the agent  
+linkTitle: 3.1 Agent Filelog Config
+weight: 1
+---
+
+### Change agent config
+
+Check if you are in your [WORKSHOP]/3-filelog folder.  Open the agent.yaml we copied across earlier in your editor and let's add the `filelog` reciver to the agent.yaml.
+
+{{% notice title="Exercise" style="green" icon="running" %}}
+
+- Add `filelog` under the `receivers:` key and name it `./quotes:`
+  - Add `include:` key and set it to a value of  `[./quotes.log]`
+  - Add `include_file_path:` key and set it to a value of `true`
+  - Add `include_file_name:` key and set it to a value of `false`
+  - Add `resource:` key
+    - Add `com.splunk.source:` key and set it to a value of `./quotes.log`
+    - Add `com.splunk.sourcetype:` key and set it to a value of `quotes`
+
+- Add  `filelog/quotes` receiver to the `receivers:` array in the  `logs:` section of the pipelines.  (make sure it also contains `otlp`)
+
+{{% /notice %}}  
+Again validate the configuration using **[otelbin.io](https://www.otelbin.io/)**, the results should look like this:
+
+![otelbin-fl-3-1-w](../../images/filelog-3-1w.png)
+
+---
+
+## Test the Filelog receiver
+
+From the [WORKSHOP]/3-filelog folder, start the collector in `gateway` mode in its own shell and  wait until itis ready to receive data. Next make sure the quotes generating script is running its own shell, then  the 3rd shell start the agent with:
+
+```bash
+[WORKSHOP]/otelcol --config=agent.yaml
+```
+
+The agent should start to send *cpu* metrics again. However, the agent should start reading the `quotes.log` file,and both the agent and the gateway should reflect that in their debug output lke this:  
+
+```text
+2025-01-18T21:25:01.806+0100    info    ResourceLog #0
+Resource SchemaURL: https://opentelemetry.io/schemas/1.6.1
+Resource attributes:
+     -> com.splunk.sourcetype: Str(quotes)
+     -> com.splunk/source: Str(./quotes.log)
+     -> host.name: (YOUR_HOST_NAME)
+     -> os.type: Str(YOUR_OS)
+     -> otelcol.service.mode: Str(agent)
+ScopeLogs #0
+ScopeLogs SchemaURL:
+InstrumentationScope
+LogRecord #0
+ObservedTimestamp: 2025-01-18 20:25:01.7201606 +0000 UTC
+Timestamp: 1970-01-01 00:00:00 +0000 UTC
+SeverityText:
+SeverityNumber: Unspecified(0)
+Body: Str(2025-01-18 21:25:01 [WARN] - Do or do not, there is no try.)
+Attributes:
+     -> log.file.path: Str(quotes.log)
+Trace ID:
+Span ID:
+Flags: 0
+        {"kind": "exporter", "data_type": "logs", "name": "debug"}
+```
+However, the agent should start reading the `quotes.log` file, forward those log line s to the gateway and the gateway pipeline should cause the `gateway-log.out` file to be generated  with the following output:
+
+
+{{% tabs %}}
+{{% tab title="Compacted JSON" %}}
+
+```json
+{"resourceLogs":[{"resource":{"attributes":[{"key":"com.splunk.sourcetype","value":{"stringValue":"quotes"}},{"key":"com.splunk/source","value":{"stringValue":"./quotes.log"}},{"key":"host.name","value":{"stringValue":"[YOUR_HOST_NAME]"}},{"key":"os.type","value":{"stringValue":"[YOUR_OS]"}},{"key":"otelcol.service.mode","value":{"stringValue":"agent"}}]},"scopeLogs":[{"scope":{},"logRecords":[{"observedTimeUnixNano":"1737231901720160600","body":{"stringValue":"2025-01-18 21:25:01 [WARN] - Do or do not, there is no try."},"attributes":[{"key":"log.file.path","value":{"stringValue":"quotes.log"}}],"traceId":"","spanId":""}]}],"schemaUrl":"https://opentelemetry.io/schemas/1.6.1"}]}
+{"resourceLogs":[{"resource":{"attributes":[{"key":"com.splunk/source","value":{"stringValue":"./quotes.log"}},{"key":"com.splunk.sourcetype","value":{"stringValue":"quotes"}},{"key":"host.name","value":{"stringValue":"PH-Windows-Box.hagen-ict.nl"}},{"key":"os.type","value":{"stringValue":"windows"}},{"key":"otelcol.service.mode","value":{"stringValue":"agent"}}]},"scopeLogs":[{"scope":{},"logRecords":[{"observedTimeUnixNano":"1737231902719133000","body":{"stringValue":"2025-01-18 21:25:02 [DEBUG] - One does not simply walk into Mordor."},"attributes":[{"key":"log.file.path","value":{"stringValue":"quotes.log"}}],"traceId":"","spanId":""}]}],"schemaUrl":"https://opentelemetry.io/schemas/1.6.1"}]}
+```
+
+{{% /tab %}}
+{{% tab title="Formatted JSON" %}}
+
+```json
+{
+  "resourceLogs": [
+    {
+      "resource": {
+        "attributes": [
+          {
+            "key": "com.splunk/source",
+            "value": {
+              "stringValue": "./quotes.log"
+            }
+          },
+          {
+            "key": "com.splunk.sourcetype",
+            "value": {
+              "stringValue": "quotes"
+            }
+          },
+          {
+            "key": "host.name",
+            "value": {
+              "stringValue": "[YOUR_HOST_NAME]"
+            }
+          },
+          {
+            "key": "os.type",
+            "value": {
+              "stringValue": "[YOUR_OS]"
+            }
+          },
+          {
+            "key": "otelcol.service.mode",
+            "value": {
+              "stringValue": "agent"
+            }
+          }
+        ]
+      },
+      "scopeLogs": [
+        {
+          "scope": {},
+          "logRecords": [
+            {
+              "observedTimeUnixNano": "1737231902719133000",
+              "body": {
+                "stringValue": "2025-01-18 21:25:02 [DEBUG] - One does not simply walk into Mordor."
+              },
+              "attributes": [
+                {
+                  "key": "log.file.path",
+                  "value": {
+                    "stringValue": "quotes.log"
+                  }
+                }
+              ],
+              "traceId": "",
+              "spanId": ""
+            }
+          ]
+        }
+      ],
+      "schemaUrl": "https://opentelemetry.io/schemas/1.6.1"
+    }
+  ]
+}
+```
+
+{{% /tab %}}
+{{% /tabs %}}
+
+AGain Note, the `resoureLogs` section contains the same attributes as we saw in `traces` and `metrics`, This mechanism is what will drive `related content`
