@@ -7,7 +7,7 @@ weight: 2
 
 ### Gateway Setup
 
-In the location where you are running the workshop on your machine, create a new sub directory called **2-gateway**, then copy the last version of the agent.yaml  we made across to the new directory.
+In the location where you are running the workshop on your machine, create a new sub directory called **2-gateway**, then copy the last version of the `agent.yaml` and the `trace.json` we made earlier across to the new directory.
 
 Move into the `[WORKSHOP]/2-gateway` directory and create a file called `gateway.yaml` and copy the following starting config in it.
 
@@ -57,7 +57,7 @@ Let's start with our next exercise:
 Lets create a separate file exporter for `traces:`, `metrics:` and `logs:`
 
 - Add `file:` under the `exporter:` key and name it `/traces:`
-  - Add `path:` key with a value of `"./agent.out"`
+  - Add `path:` key with a value of `"./gateway-traces.out"`
   - Add `rotation:` key
     - Add `max_megabytes:` key and set a value of `2` # This set the max size for the file exporter output file
     - Add `max_backups:` key and set a value of `2` # This will set the max number rotational backup it creates
