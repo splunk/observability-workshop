@@ -193,15 +193,22 @@ Now start a new shell and create a file called `trace.json` and copy the followi
 In the second shell, run the following command to test your setup and validate the output:
 
 {{% tabs %}}
-{{% tab title="cURL Command" %}}
+{{% tab title="Mac cURL Command" %}}
 
 ```sh
-curl -X POST -i http://localhost:4318/v1/traces \
--H "Content-Type: application/json" \
--d @trace.json 
+curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d @trace.json 
 ```
 
 {{% /tab %}}
+
+{{% tab title="Windows cURL Command" %}}
+
+```ps1
+ curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
+```
+
+{{% /tab %}}
+
 {{% tab title="Debug Output" %}}
 
  ```text
