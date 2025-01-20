@@ -32,13 +32,13 @@ The `file_storage` extension is used to ensure that the OpenTelemetry Collector 
 
 - Add the `extensions:` key at the top of the `agent.yaml` file
   - Add the`file_storage` key and name is `/checkpoint:`
-      - Add the `directory:`key and set it to a value of `"./checkpoint-folder"`
-      - Add the `create_directory:` key and set it to a value of `true`
-      - Add the `timeout:` key and set it to a value of `1s`
-      - Add the `compaction:` key
-         - Add the `on_start:` key and set it to a value of `true`
-         -  Add the `directory:` key and set it to a value of `./checkpoint-folder`
-         -  Add the `max_transaction_size:` key and set it to a value of  `65_536`
+    - Add the `directory:`key and set it to a value of `"./checkpoint-folder"`
+    - Add the `create_directory:` key and set it to a value of `true`
+    - Add the `timeout:` key and set it to a value of `1s`
+    - Add the `compaction:` key
+      - Add the `on_start:` key and set it to a value of `true`
+      - Add the `directory:` key and set it to a value of `./checkpoint-folder`
+      - Add the `max_transaction_size:` key and set it to a value of  `65_536`
 
 {{% /notice%}}
 
