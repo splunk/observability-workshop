@@ -21,9 +21,9 @@ Check that you are in the `[WORKSHOP]/3-filelog` folder.  Open the `agent.yaml`w
 - Add `filelog/quotes` receiver to the `receivers:` array in the  `logs:` section of the pipelines.  (make sure it also contains `otlp`)
 
 {{% /notice %}}  
-Again validate the configuration using **[otelbin.io](https://www.otelbin.io/)**, the results should look like this:
+Again validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**, the results for the `Logs:` pipeline should look like this:
 
-![otelbin-fl-3-1-w](../../images/filelog-3-1w.png)
+![otelbin-f-3-1-logs](../../images/filelog-3-1-logs.png)
 
 ---
 
