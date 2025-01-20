@@ -88,16 +88,16 @@ Let's start with our first exercise:
  Note that in the exercise above we give you all key elements in yaml format, you just need to correct them yourself.
  Pay attention to the format as the configuration of the agent is yaml based.
 
- We will have only a limited sets hints going forward
+ We will only have a limited sets of hints going forward
 
  If you are unsure about the format you can look at **[otelbin.io](https://www.otelbin.io/)** as that wil show a default agent config when first visited
 
 {{% /notice %}}
 
 By using **[otelbin.io](https://www.otelbin.io/)** to validate your agent.yaml, you can catch spelling and or configuration errors.  
-If done correctly your configuration should look like this:
+If done correctly your configuration for all your pipelines should look like this:
 
-![otelbin-a-1-1w](../images/agent-1-1w.png)
+![otelbin-a-1-1-all](../images/agent-1-1-all.png)
 
 ---
 

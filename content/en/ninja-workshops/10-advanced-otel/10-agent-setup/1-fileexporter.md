@@ -21,9 +21,9 @@ Add `file` as an exporter to  exporters array in the `metrics`, `traces` and `lo
 
 {{% /notice %}}
 
-Validate your updated `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)**, your pipelines should look like this:
+Validate your updated `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)**. As an example, here is how the `Traces:` section of your pipelines should look:
 
-![otelbin-a-1-2-w](../../images/agent-1-2w.png)
+![otelbin-a-1-2-w](../../images/agent-1-2-traces.png?width=30vw)
 
 ---
 

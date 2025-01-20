@@ -70,8 +70,8 @@ Lets create a separate file exporter for `traces:`, `metrics:` and `logs:`
 
 {{% /notice %}}
 
-Verify your gateway.yaml with **[otelbin.io](https://www.otelbin.io/)**. If done correctly your view should look like this:
+Verify your gateway.yaml with **[otelbin.io](https://www.otelbin.io/)**. If done correctly your sections should like this Logs: example:
 
-![otelbin-g-2-1-w](../images/gateway-2-1w.png)
+![otelbin-logs](../images/gateway-2-1-logs.png?width=50vw)
 
 Note: we will explain the `batch:` key in the next section.
