@@ -4,22 +4,25 @@ linkTitle: 4. Resilience
 time: 10 minutes
 weight: 4
 ---
-we will walk through how to use OpenTelemetry Collector’s `file_storage` extension to build resilience into your telemetry pipeline. Specifically, we will demonstrate how to use the file storage extension for checkpointing, managing retries, and handling temporary failures effectively.
+
+We will walk through how to use OpenTelemetry Collector’s `file_storage` extension to build resilience into your telemetry pipeline. Specifically, we will demonstrate how to use the file storage extension for checkpointing, managing retries, and handling temporary failures effectively.
 
 The goal is to show how this configuration allows your OpenTelemetry Collector to reliably store intermediate states on disk, ensuring that no data is lost during network failures, and that the collector can resume where it left off.
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-Note, this will only be useful if the connections fails for a short period like up to 15 minutes or so.  
-If the connection is down for longer periods, the backend will drop the data anyways because the timing's are too far out of synch.
 
-Secondly, this will works for logs, but we will introduce a more robust solution in one of the upcoming collector builds.
+- This will only be useful if the connections fails for a short period like up to 15 minutes or so. If the connection is down for longer periods, the backend will drop the data anyways because the timing's are too far out of synch.
+- This will works for logs, but we will introduce a more robust solution in one of the upcoming collector builds.
 
 {{% /notice %}}
 
 ### Setup
 
 Create a new sub directory called `4-resilience` and copy the contents from `3-filelog` across.
-We are going to update the agent.yaml we have by adding an `extensions:` section.  
+
+[Insert file tree]
+
+We are going to update the agent.yaml we have by adding an `extensions:` section.
 This new section in an OpenTelemetry configuration YAML is used to define optional components that enhance or modify the behavior of the OpenTelemetry Collector. These components don’t handle telemetry data directly but provide additional capabilities or services to the Collector.
 The first exercise will be providing **Checkpointing** with the  `file_storage` extension.  
 The `file_storage` extension is used to ensure that the OpenTelemetry Collector can persist checkpoints to disk. This is especially useful in cases where there are network failures or restarts. This way, the collector can recover from where it left off without losing data.
@@ -38,7 +41,7 @@ The `file_storage` extension is used to ensure that the OpenTelemetry Collector 
     - Add the `compaction:` key
       - Add the `on_start:` key and set it to a value of `true`
       - Add the `directory:` key and set it to a value of `./checkpoint-folder`
-      - Add the `max_transaction_size:` key and set it to a value of  `65_536`
+      - Add the `max_transaction_size:` key and set it to a value of `65_536`
 
 {{% /notice%}}
 
@@ -47,7 +50,8 @@ The `file_storage` extension is used to ensure that the OpenTelemetry Collector 
 - `directory: ./checkpoint-folder`: Defines the folder where checkpoint files will be stored.
 - `create_directory: true`: Ensures that the directory is created if it doesn’t already exist.
 - `timeout: 1s`: Specifies a timeout for file operations related to the checkpointing.
-- `compaction`: Ensures that old checkpoint data is compacted periodically. The `max_transaction_size` defines the size limit for checkpoint transactions before compaction occurs.
+- `compaction`: Ensures that old checkpoint data is compacted periodically.
+- `max_transaction_size` defines the size limit for checkpoint transactions before compaction occurs.
 
 The next exercise is modifying the `otlphttp:` exporter where retries and queueing are configured.
 
@@ -73,8 +77,6 @@ exporters:
   - `num_consumers: 10`: Specifies the number of consumers reading from the queue.
   - `queue_size: 10000`: The maximum size of the queue.
   - `storage: file_storage/checkpoint`: Specifies that the queue state will be backed up in the file system.
-
----
 
 ### Step 3: Running the OpenTelemetry Collector with the Configuration
 
@@ -109,8 +111,6 @@ To test the resilience built into the system:
 4. **Inspect Logs and Files:**
    Inspect the logs to see the retry attempts. The `debug` exporter will output detailed logs, which should show retry attempts and any failures.
 
----
-
 ### Step 5: Fine-Tuning the Configuration for Production
 
 - **Timeouts and Interval Adjustments:**
@@ -126,8 +126,6 @@ To test the resilience built into the system:
 
 - **Compaction and Transaction Size:**
    Depending on your use case, adjust the `max_transaction_size` for checkpoint compaction. A smaller transaction size will make checkpoint files more frequent but smaller, while a larger size might reduce disk I/O but require more memory.
-
----
 
 ### Step 6: Monitoring and Maintenance
 
@@ -147,8 +145,6 @@ To test the resilience built into the system:
    ```
 
    This configuration rotates the log file when it reaches 2 MB, and keeps up to two backups.
-
----
 
 ### Conclusion
 
