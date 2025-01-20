@@ -53,8 +53,8 @@ During the workshop we will run though the following topics:
 
 * Setting up the agent locally, add meta data and introduce the **debug** and **file** exporters
 * Configure a gateway and route traffic from the agent to the gateway
-* Configure basic resilience to the agent
 * Configure the **filelog** receiver to collect log data from different files
+* Configure basic resilience to the agent
 * Configure processors:
   * Filter out noise (health checks) by dropping specific spans
   * Remove specific tags
