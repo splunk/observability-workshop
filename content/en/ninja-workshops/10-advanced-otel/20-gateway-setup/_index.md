@@ -74,4 +74,4 @@ Verify your gateway.yaml with **[otelbin.io](https://www.otelbin.io/)**. If done
 
 ![otelbin-g-2-1-w](../images/gateway-2-1w.png)
 
-Note: we will explain the `batch:` key in the next section. 
+Note: we will explain the `batch:` key in the next section.

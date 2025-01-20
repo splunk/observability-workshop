@@ -257,7 +257,6 @@ Check to see if `gateway-metrics.out` has been created. It should contain at lea
 {{% /tabs %}}
 Next, check if you copied the `trace.json` across to the  `2-gateway` folder. Make sure both the gateway and the agent are running in their own shell, then in a 3rd shell run the curl command to send a trace:
 
-
 {{% tabs %}}
 {{% tab title="Mac cURL Command" %}}
 
