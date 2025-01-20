@@ -1,12 +1,12 @@
 ---
-title: Configure the  filelog receiver in the agent  
+title: Configure the filelog receiver in the agent
 linkTitle: 3.1 Agent Filelog Config
 weight: 1
 ---
 
-### Change agent config
+### Upate the agent configuration
 
-Check that you are in the `[WORKSHOP]/3-filelog` folder.  Open the `agent.yaml`we copied across earlier in your editor and add the `filelog` receiver to the agent.yaml.
+Check that you are in the `[WORKSHOP]/3-filelog` folder.  Open the `agent.yaml` copied across earlier and in your editor and add the `filelog` receiver to the `agent.yaml`.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -20,7 +20,8 @@ Check that you are in the `[WORKSHOP]/3-filelog` folder.  Open the `agent.yaml`w
 
 - Add `filelog/quotes` receiver to the `receivers:` array in the  `logs:` section of the pipelines.  (make sure it also contains `otlp`)
 
-{{% /notice %}}  
+{{% /notice %}}
+
 Again validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**, the results for the `Logs:` pipeline should look like this:
 
 ![otelbin-f-3-1-logs](../../images/filelog-3-1-logs.png)
@@ -29,10 +30,10 @@ Again validate the agent configuration using **[otelbin.io](https://www.otelbin.
 
 ## Test the Filelog receiver
 
-From the `[WORKSHOP]/3-filelog` folder, start the collector in `gateway` mode in its own shell and  wait until it is ready to receive data. Next make sure the quotes generating script is running its own shell, then in the 3rd shell start the agent with:
+From the `[WORKSHOP]/3-filelog` folder, start the collector in `gateway` mode in its own shell and  wait until it is ready to receive data. Next, make sure the quotes generating script is running its own shell, then in the 3rd shell start the agent with:
 
 ```bash
-[WORKSHOP]/otelcol --config=agent.yaml
+../otelcol --config=agent.yaml
 ```
 
 The agent should start to send *cpu* metrics again. However, the agent should also start reading the `quotes.log` file,and both the agent and the gateway should reflect that in their debug output lke this:
