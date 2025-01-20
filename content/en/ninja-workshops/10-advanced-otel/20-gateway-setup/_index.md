@@ -66,11 +66,11 @@ Lets create a separate file exporter for `traces:`, `metrics:` and `logs:`
 
 - Add it as the first exporter to the exporter array in the `traces:` pipeline (leaving `debug` as a second exporter).
 
-- Repeat the above two more time,  only name them `/metrics:` and `/logs:`, with path being `./gateway-metrics.out` and `./gateway-logs.out` respectively and add them to the relevant pipeline
+- Repeat the above two more time, only name them `/metrics:` and `/logs:`, with path being `./gateway-metrics.out` and `./gateway-logs.out` respectively and add them to the relevant pipeline
 
 {{% /notice %}}
 
-Verify your gateway.yaml with **[otelbin.io](https://www.otelbin.io/)**. If done correctly your sections should like this Logs: example:
+Verify your gateway.yaml with **[otelbin.io](https://www.otelbin.io/)**. If done correctly your sections should like this `Logs:` example:
 
 ![otelbin-logs](../images/gateway-2-1-logs.png?width=50vw)
 
