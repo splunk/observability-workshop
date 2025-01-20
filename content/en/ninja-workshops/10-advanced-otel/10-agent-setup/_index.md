@@ -101,10 +101,12 @@ Let's start with our first exercise:
 
 {{% /notice %}}
 
-By using **[otelbin.io](https://www.otelbin.io/)** to validate your agent.yaml, you can catch spelling and or configuration errors.  
-If done correctly your configuration for all your pipelines should look like this:
+By using **[otelbin.io](https://www.otelbin.io/)** to validate your agent.yaml, you can catch spelling and or configuration errors. If done correctly your configuration for all your pipelines should look like this (click on an image to enlarge):
 
-![otelbin-a-1-1-all](../images/agent-1-1-all.png)
+<!--![otelbin-a-1-1-all](../images/agent-1-1-all.png)-->
+![agent-traces](../images/agent-traces.png?classes=inline&width=20vw)
+![agent-metrics](../images/agent-metrics.png?classes=inline&width=20vw)
+![agent-logs](../images/agent-logs.png?classes=inline&width=20vw)
 
 ---
 
