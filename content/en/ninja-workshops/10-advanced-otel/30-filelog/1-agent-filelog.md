@@ -6,7 +6,7 @@ weight: 1
 
 ### Change agent config
 
-Check if you are in your [WORKSHOP]/3-filelog folder.  Open the agent.yaml we copied across earlier in your editor and let's add the `filelog` receiver to the agent.yaml.
+Check that you are in the `[WORKSHOP]/3-filelog` folder.  Open the `agent.yaml`we copied across earlier in your editor and add the `filelog` receiver to the agent.yaml.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -18,7 +18,7 @@ Check if you are in your [WORKSHOP]/3-filelog folder.  Open the agent.yaml we co
     - Add `com.splunk.source:` key and set it to a value of `./quotes.log`
     - Add `com.splunk.sourcetype:` key and set it to a value of `quotes`
 
-- Add  `filelog/quotes` receiver to the `receivers:` array in the  `logs:` section of the pipelines.  (make sure it also contains `otlp`)
+- Add `filelog/quotes` receiver to the `receivers:` array in the  `logs:` section of the pipelines.  (make sure it also contains `otlp`)
 
 {{% /notice %}}  
 Again validate the configuration using **[otelbin.io](https://www.otelbin.io/)**, the results should look like this:
@@ -29,13 +29,13 @@ Again validate the configuration using **[otelbin.io](https://www.otelbin.io/)**
 
 ## Test the Filelog receiver
 
-From the [WORKSHOP]/3-filelog folder, start the collector in `gateway` mode in its own shell and  wait until it is ready to receive data. Next make sure the quotes generating script is running its own shell, then in the 3rd shell start the agent with:
+From the `[WORKSHOP]/3-filelog` folder, start the collector in `gateway` mode in its own shell and  wait until it is ready to receive data. Next make sure the quotes generating script is running its own shell, then in the 3rd shell start the agent with:
 
 ```bash
 [WORKSHOP]/otelcol --config=agent.yaml
 ```
 
-The agent should start to send *cpu* metrics again. However, the agent should also start reading the `quotes.log` file,and both the agent and the gateway should reflect that in their debug output lke this:  
+The agent should start to send *cpu* metrics again. However, the agent should also start reading the `quotes.log` file,and both the agent and the gateway should reflect that in their debug output lke this:
 
 ```text
 2025-01-18T21:25:01.806+0100    info    ResourceLog #0
@@ -146,4 +146,4 @@ As the agent is reading the `quotes.log` file and forwarding those log line  to 
 {{% /tab %}}
 {{% /tabs %}}
 
-Again Note, the `resoureLogs` section contains the same attributes as we saw in `traces` and `metrics`, This mechanism is what will drive `related content`
+Note that the `resoureLogs` section contains the same attributes as we saw in `traces` and `metrics`. This mechanism is what will drive `related content`.
