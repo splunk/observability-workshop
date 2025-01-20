@@ -33,7 +33,11 @@ Again, check if you in your [WORKSHOP]/2-gateway folder.  Open the agent.yaml we
   - Add `headers:` key
     - Add `X-SF-Token:` key and set it with a fake access token like `"FAKE_SPLUNK_ACCESS_TOKEN"`  
 
-- Add this as the first exporter in all the `exporter` arrays of the pipelines (replace `file` and leave debug in place)
+- Add `batch:` under the `protocol:` key
+  - Add `X-SF-Token:` key
+
+- Add `otlphttp` as the first exporter in all the `exporter` arrays of the pipelines. (Replace `file` and leave debug in place)
+- Add `batch` to the array list of the `processor:` section of all pipelines
 
 {{% /notice %}}  
 Again, validate the configuration using **[otelbin.io](https://www.otelbin.io/)**, the results should look like this:
@@ -50,4 +54,6 @@ The older *sapm* and *signalfx* exporters will be phased out over time.
 The `headers:` key with its sub key `X-SF-Token:` is the OpenTelemetry way to pass a access token.
 
 To enable the passthrough mode, we did set `include_metadata:` to `true` on the `otlp` receiver in the gateway. It’ll ensure that headers passed to the collector are passed along with the data down in the collector’s pipeline.
+
+The `batch:` section with they key `X-SF-Token:` will make sure that the collector will batch or group  traces, metrics and logs together with the same Access_Token before being send to the backend for efficiency.
 {{% /notice %}}
