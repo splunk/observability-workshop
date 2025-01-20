@@ -5,7 +5,8 @@ weight: 10
 archetype: chapter
 authors: ["Robert Castley,", "Charity Anderson", "&", "Pieter Hagen"]
 time: 90 minutes
-draft: true
+#draft: true
+hidden: true
 ---
 
 The goal of this workshop is to make you comfortable creating and adjusting Opentelemetry Collector configuration files. You will do this by starting with an almost empty `agent.yaml`, and configure several common advanced scenarios.
