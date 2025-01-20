@@ -4,58 +4,43 @@ linkTitle: 4. Resilience
 time: 10 minutes
 weight: 4
 ---
+we will walk through how to use OpenTelemetry Collector’s `file_storage` extension to build resilience into your telemetry pipeline. Specifically, we will demonstrate how to use the file storage extension for checkpointing, managing retries, and handling temporary failures effectively.
 
-In this section, you will learn how to you can add basic resilience to the OpenTelemetry Collector. This will have the collector create a local queue, and will use that to restart sending data when the connection is back.
+The goal is to show how this configuration allows your OpenTelemetry Collector to reliably store intermediate states on disk, ensuring that no data is lost during network failures, and that the collector can resume where it left off.
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-Note, this will only be useful if the connections fails for a short period like a couple of minutes.  
-If the connection is down for longer periods, the backend will drop the data anyways because the timing's are to far out of synch.
+Note, this will only be useful if the connections fails for a short period like up to 15 minutes or so.  
+If the connection is down for longer periods, the backend will drop the data anyways because the timing's are too far out of synch.
 
-Secondly, this will works for logs, but we wil introduce a more robust solution in one of the upcoming collector builds  
+Secondly, this will works for logs, but we will introduce a more robust solution in one of the upcoming collector builds.
 
 {{% /notice %}}
 
 ### Setup
 
-Create a new sub directory called `4-resilience` and copy the contents from `3-filelog` across. Create the appropriate log generation script script for your operating system in the new directory (`log-gen.sh` on Mac or Linux or `log-gen.ps1` for Windows).
-
-### Overview
-
-In this section, we will walk through how to use OpenTelemetry Collector’s `file_storage` extension to build resilience into your telemetry pipeline. Specifically, we will demonstrate how to use the file storage extension for checkpointing, managing retries, and handling temporary failures effectively.
-
-The goal is to show how this configuration allows your OpenTelemetry Collector to reliably store intermediate states on disk, ensuring that no data is lost during network failures, and that the collector can resume where it left off.
-
-We will use the provided YAML configuration to cover the following key concepts:
-
-1. **Checkpointing** with `file_storage/checkpoint` extension.
+Create a new sub directory called `4-resilience` and copy the contents from `3-filelog` across.
+We are going to update the agent.yaml we have by adding an `extensions:` section.  
+This new section in an OpenTelemetry configuration YAML is used to define optional components that enhance or modify the behavior of the OpenTelemetry Collector. These components don’t handle telemetry data directly but provide additional capabilities or services to the Collector.
+The first exercise will be providing **Checkpointing** with the  `file_storage` extension.  
+The `file_storage` extension is used to ensure that the OpenTelemetry Collector can persist checkpoints to disk. This is especially useful in cases where there are network failures or restarts. This way, the collector can recover from where it left off without losing data.
+<!--
 2. **Retries** with the `otlp/gateway` exporter.
 3. **Queueing** with `sending_queue` and the integration of file storage for resilience.
+-->
 
----
+{{% notice title="Exercise" style="green" icon="running" %}}
 
-### Step 1: Setting Up the OpenTelemetry Collector
+- Add the `extensions:` key at the top of the `agent.yaml` file
+  - Add the`file_storage` key and name is `/checkpoint:`
+      - Add the `directory:`key and set it to a value of `"./checkpoint-folder"`
+      - Add the `create_directory:` key and set it to a value of `true`
+      - Add the `timeout:` key and set it to a value of `1s`
+      - Add the `compaction:` key
+         - Add the `on_start:` key and set it to a value of `true`
+         -  Add the `directory:` key and set it to a value of `./checkpoint-folder`
+         -  Add the `max_transaction_size:` key and set it to a value of  `65_536`
 
-Ensure you have the OpenTelemetry Collector installed and running in your environment. You can download it from the [official OpenTelemetry website](https://opentelemetry.io/docs/collector/). For the sake of this workshop, we will assume you have already set up the OpenTelemetry Collector.
-
-### Step 2: Understand the Key Configuration Elements
-
-Let’s break down the key elements in your provided configuration file and understand how they contribute to resilience.
-
-#### 1. **File Storage Extension for Checkpointing**
-
-The `file_storage/checkpoint` extension is used to ensure that the OpenTelemetry Collector can persist checkpoints to disk. This is especially useful in cases where there are network failures or restarts. This way, the collector can recover from where it left off without losing data.
-
-```yaml
-extensions:
-  file_storage/checkpoint:
-    directory: ./checkpoint-folder
-    create_directory: true
-    timeout: 1s
-    compaction:
-      on_start: true
-      directory: ./checkpoint-folder
-      max_transaction_size: 65_536
-```
+{{% /notice%}}
 
 **Explanation:**
 
@@ -64,27 +49,11 @@ extensions:
 - `timeout: 1s`: Specifies a timeout for file operations related to the checkpointing.
 - `compaction`: Ensures that old checkpoint data is compacted periodically. The `max_transaction_size` defines the size limit for checkpoint transactions before compaction occurs.
 
-#### 2. **Receiver Configuration (OTLP)**
-
-The OTLP receiver will be configured to listen for telemetry data over HTTP on port `4318`.
-
-```yaml
-receivers:
-  otlp:
-    protocols:
-      http:
-        endpoint: "0.0.0.0:4318"
-```
-
-You could also configure additional protocols like `filelog` to receive logs from a file, but for this workshop, we focus on OTLP.
-
-#### 3. **Exporter Configuration**
-
-The exporter sends collected telemetry data to its destination, such as a debug exporter, a file exporter, or an OTLP gateway exporter. Let’s focus on the `otlp/gateway` exporter, where retries and queueing are configured.
+The next exercise is modifying the `otlphttp:` exporter where retries and queueing are configured.
 
 ```yaml
 exporters:
-  otlp/gateway:
+  otlphttp:
     endpoint: "localhost:5317"
     tls:
       insecure: true
