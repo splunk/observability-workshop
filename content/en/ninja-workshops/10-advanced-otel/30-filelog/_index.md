@@ -5,18 +5,14 @@ time: 10 minutes
 weight: 3
 ---
 
-The Filelog receiver is a receiver that reads log lines from a file. It is useful for testing and development purposes. The Filelog receiver is not recommended for production use, as it is not optimized for performance but can be useful in a pinch.
+The Filelog receiver is a receiver that reads log lines from a file. It is useful for testing and development purposes. The Filelog receiver is not recommended for production use, as it is not optimized for performance but can be useful in a pinch. For this part of the workshop, there is script that will generate log lines in a file. The Filelog receiver will read these log lines and send them to the OpenTelemetry Collector.
 
-For this part of the workshop, there is script that will generate log lines in a file. The Filelog receiver will read these log lines and send them to the OpenTelemetry Collector.
+Create a new sub directory called `3-filelog` and copy the contents from `2-gateway` across. Create the appropriate log generation script script for your operating system in the new directory (`log-gen.sh` on Mac or Linux or `log-gen.ps1` for Windows).
 
-Create a new sub directory called **3-filelog** and copy the contents from 2-gateway across. download the appropriate log generation script script for your operating system and move it to the new directory.
-
-{{% resources sort="asc" style="splunk" title="Log Generation Scripts" icon="scroll" /%}}
-
-Create a local file in the new directory called `log-gen.sh` on Mac or Linux or `log-gen.ps1` respectively, then copu the correct  version across:
+<!--{{% resources sort="asc" style="splunk" title="Log Generation Scripts" icon="scroll" /%}}-->
 
 {{% tabs %}}
-{{% tab title="Mac/Linux Shell Script" %}}
+{{% tab title="log-gen.sh (Mac/Linux)" %}}
 
 ```sh
 #!/bin/bash
@@ -71,7 +67,7 @@ done
 ```
 
 {{% /tab %}}
-{{% tab title="Windows ps1 script" %}}
+{{% tab title="log-gen.ps1 (Windows)" %}}
 
 ```ps1
 # Define the log file
@@ -121,8 +117,8 @@ while ($true) {
 {{% /tab %}}
 {{% /tabs %}}
 
- Run the new log generating script, it starts writing lines to a file called ./quotes.log, and the console output should be:
+ Run the new log generating script and it will start writing lines to a file called ./quotes.log, and the console output should be:
 
- ``` text
+ ```sh
  Writing logs to quotes.log. Press Ctrl+C to stop.
  ```
