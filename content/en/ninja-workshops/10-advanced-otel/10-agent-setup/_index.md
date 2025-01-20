@@ -12,8 +12,10 @@ In your `[WORKSHOP]` directory, create a sub directory called `1-agent` and chan
 In `[WORKSHOP]/1-agent` create a file called `agent.yaml` and copy the following starting config in to it:
 
 ```text
-[WORKSHOP]/1-agent/
-├── agent.yaml  # Configuration file
+[WORKSHOP]
+├── 1-agent         # Module directory
+│   └── agent.yaml  # OpenTelemetry Collector configuration file
+└── otelcol         # OpenTelemetry Collector binary
 ```
 
 ```yaml
@@ -52,7 +54,7 @@ Let's start with our first exercise:
 - Add `otlp:` under the `receivers:` key (taking care to format it correctly)
   - Add `otlp:` key
     - Add `http:` key
-      - Add `endpoint:` key wand set a value of `"0.0.0.0:4318"`
+      - Add `endpoint:` key and set a value of `"0.0.0.0:4318"`
 
 {{% expand title="{{% badge style=primary icon=lightbulb %}}**Hint**{{% /badge %}}" %}}
 
@@ -66,7 +68,7 @@ Let's start with our first exercise:
 {{% /expand %}}
 
 - Add a `debug` exporter under the `exporters:` key
-  - Add `verbosity:`key and set it a value of `detailed`
+  - Add `verbosity:`key and set it to a value of `detailed`
 - Add the `otlp` receiver to the `traces:`, `metrics:` and `logs:` pipelines
 - Add the `memory_limiter` processor to the `traces:`, `metrics:` and `logs:` pipelines
 - Add the `debug` exporter to the `traces:`, `metrics:` and `logs:` pipelines
@@ -111,7 +113,7 @@ If done correctly your configuration for all your pipelines should look like thi
 Run the following command to  test your config (make sure you use the right otel collector you downloaded):
 
 ```text
-[WORKSHOP]/otelcol --config=agent.yaml
+../otelcol --config=agent.yaml
 ```
 
 If you have done everything correctly, the last line of the output should be :

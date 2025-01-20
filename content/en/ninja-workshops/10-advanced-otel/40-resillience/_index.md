@@ -82,13 +82,13 @@ exporters:
    Make sure that the folder `./checkpoint-folder` exists in your working directory. The OpenTelemetry Collector will use this folder to store checkpoint and transaction files.
 
 2. **Save the Configuration:**
-   Save the YAML configuration to a file, such as `otel-collector-config.yaml`.
+   Save the YAML configuration to a file, such as `agent.yaml`.
 
 3. **Run the Collector:**
    Now, run the OpenTelemetry Collector using the configuration file you just created. You can do this by executing the following command in your terminal:
 
    ```bash
-   otelcontribcol --config otel-collector-config.yaml
+   otelcol --config agent.yaml
    ```
 
    This will start the collector with the configurations specified in the YAML file.
