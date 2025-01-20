@@ -11,6 +11,11 @@ In your `[WORKSHOP]` directory, create a sub directory called `1-agent` and chan
 
 In `[WORKSHOP]/1-agent` create a file called `agent.yaml` and copy the following starting config in to it:
 
+```text
+[WORKSHOP]/1-agent/
+├── agent.yaml  # Configuration file
+```
+
 ```yaml
 receivers:
 
