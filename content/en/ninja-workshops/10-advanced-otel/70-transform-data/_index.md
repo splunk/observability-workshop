@@ -5,7 +5,7 @@ time: 10 minutes
 weight: 7
 ---
 
-In this workshop, we will explore the **Transform Processor** in the OpenTelemetry Collector. This processor allows you to modify trace, metric, and log data at runtime by performing actions like adding, updating, or deleting attributes. It’s a powerful tool to reshape telemetry data before it is exported to the backend.
+In this section, we will explore the **Transform Processor** in the OpenTelemetry Collector. This processor allows you to modify trace, metric, and log data at runtime by performing actions like adding, updating, or deleting attributes. It’s a powerful tool to reshape telemetry data before it is exported to the backend.
 
 By the end of this workshop, you will learn how to:
 
@@ -212,7 +212,7 @@ This will delete the `sensitive_data` attribute from traces where the `http.stat
 
 ## Conclusion
 
-In this workshop, you have learned how to use the **Transform Processor** in the OpenTelemetry Collector to modify trace data dynamically. You’ve seen how to:
+In this section, you have learned how to use the **Transform Processor** in the OpenTelemetry Collector to modify trace data dynamically. You’ve seen how to:
 
 - Update existing attributes based on conditions.
 - Insert new attributes.

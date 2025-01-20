@@ -5,7 +5,7 @@ time: 10 minutes
 weight: 5
 ---
 
-In this workshop, we will explore how to use the filter processor in the OpenTelemetry Collector to selectively drop spans based on certain conditions. Specifically, we will drop traces based on the span name, which is commonly used to filter out unwanted spans such as health checks or internal communication traces.
+In this section, we will explore how to use the filter processor in the OpenTelemetry Collector to selectively drop spans based on certain conditions. Specifically, we will drop traces based on the span name, which is commonly used to filter out unwanted spans such as health checks or internal communication traces.
 
 By the end of this workshop, you'll know how to configure the OpenTelemetry Collector to:
 

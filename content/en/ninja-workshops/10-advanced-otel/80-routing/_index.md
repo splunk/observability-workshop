@@ -19,11 +19,11 @@ your_project/
 ├── agent-security.out         # Security trace export file
 ```
 
-In this workshop, you'll configure the routing connector in OpenTelemetry to route traces based on specific attributes, enabling you to handle traces differently based on their contents. You will also learn how to manage data checkpointing, apply various processors, and configure multiple exporters. By the end of this workshop, you will have a complete OpenTelemetry Collector configuration that processes and routes trace data efficiently.
+In this section, you'll configure the routing connector in OpenTelemetry to route traces based on specific attributes, enabling you to handle traces differently based on their contents. You will also learn how to manage data checkpointing, apply various processors, and configure multiple exporters. By the end of this workshop, you will have a complete OpenTelemetry Collector configuration that processes and routes trace data efficiently.
 
 ## Overview of the Configuration
 
-In this workshop, we’ll be using the following key components defined in the YAML configuration:
+In this section, we’ll be using the following key components defined in the YAML configuration:
 
 Extensions: File storage for checkpointing.
 Receivers: Collecting trace data using the OTLP protocol.
@@ -225,4 +225,4 @@ The checkpoint extension ensures that data is reliably stored and managed. Check
 Compaction: Large transactions will be compacted into smaller chunks, which helps in managing large data volumes.
 
 Conclusion
-In this workshop, you've learned how to configure the OpenTelemetry Collector to route traces based on attributes. You’ve also explored checkpointing, batching, resource detection, and the export of trace data to different destinations. You can extend this setup by adding more routing rules, processing options, and exporters as needed for your use case.
+In this section, you've learned how to configure the OpenTelemetry Collector to route traces based on attributes. You’ve also explored checkpointing, batching, resource detection, and the export of trace data to different destinations. You can extend this setup by adding more routing rules, processing options, and exporters as needed for your use case.

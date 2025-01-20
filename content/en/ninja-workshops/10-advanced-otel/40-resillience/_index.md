@@ -21,7 +21,7 @@ Create a new sub directory called `4-resilience` and copy the contents from `3-f
 
 ### Overview
 
-In this workshop, we will walk through how to use OpenTelemetry Collector’s `file_storage` extension to build resilience into your telemetry pipeline. Specifically, we will demonstrate how to use the file storage extension for checkpointing, managing retries, and handling temporary failures effectively.
+In this section, we will walk through how to use OpenTelemetry Collector’s `file_storage` extension to build resilience into your telemetry pipeline. Specifically, we will demonstrate how to use the file storage extension for checkpointing, managing retries, and handling temporary failures effectively.
 
 The goal is to show how this configuration allows your OpenTelemetry Collector to reliably store intermediate states on disk, ensuring that no data is lost during network failures, and that the collector can resume where it left off.
 
@@ -183,6 +183,6 @@ To test the resilience built into the system:
 
 ### Conclusion
 
-In this workshop, you learned how to enhance the resilience of the OpenTelemetry Collector by configuring the `file_storage/checkpoint` extension, setting up retry mechanisms for the OTLP exporter, and using a sending queue backed by file storage for storing data during temporary failures.
+In this section, you learned how to enhance the resilience of the OpenTelemetry Collector by configuring the `file_storage/checkpoint` extension, setting up retry mechanisms for the OTLP exporter, and using a sending queue backed by file storage for storing data during temporary failures.
 
 By leveraging file storage for checkpointing and queue persistence, you can ensure that your telemetry pipeline can recover gracefully from failures, making it more reliable for production environments.
