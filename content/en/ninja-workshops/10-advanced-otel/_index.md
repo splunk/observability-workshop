@@ -3,7 +3,7 @@ title: Advanced OpenTelemetry
 description: In this workshop you will practice setting up the OpenTelemetry Collector configuration from scratch and go though several advanced configuration scenarios's
 weight: 10
 archetype: chapter
-authors: ["Robert Castley", "&", "Pieter Hagen"]
+authors: ["Robert Castley,", "Charity Anderson", "&", "Pieter Hagen"]
 time: 90 minutes
 draft: true
 ---
