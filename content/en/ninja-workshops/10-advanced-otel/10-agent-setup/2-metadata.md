@@ -40,7 +40,7 @@ Let's run our next exercise:
 
 Validate your new `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)**.
 
-![otelbin-a-1-3-w](../../images/agent-1-3w.png)
+![otelbin-a-1-3-logs](../../images/agent-1-3-logs.png?width=50vw)
 
 ### Test & Validate
 

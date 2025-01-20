@@ -40,9 +40,9 @@ Again, check if you in your [WORKSHOP]/2-gateway folder.  Open the agent.yaml we
 - Add `batch` to the array list of the `processor:` section of all pipelines
 
 {{% /notice %}}  
-Again, validate the configuration using **[otelbin.io](https://www.otelbin.io/)**, the results should look like this:
+Again, validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)** As example here is  the result for the `metrics` pipeline:
 
-![otelbin-g-2-2-w](../../images/gateway-2-2w.png)
+![otelbin-g-2-2-metrics](../../images/gateway-2-2-metrics.png)
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}  
 The **otlphttp** exporter is now the default method to send metric and traces to Splunk Observability Cloud.
@@ -55,5 +55,5 @@ The `headers:` key with its sub key `X-SF-Token:` is the OpenTelemetry way to pa
 
 To enable the passthrough mode, we did set `include_metadata:` to `true` on the `otlp` receiver in the gateway. It’ll ensure that headers passed to the collector are passed along with the data down in the collector’s pipeline.
 
-The `batch:` section with they key `X-SF-Token:` will make sure that the collector will batch or group  traces, metrics and logs together with the same Access_Token before being send to the backend for efficiency.
+The `batch:` section with they key `X-SF-Token:` will make sure that the collector will batch or group  traces, metrics and logs together with the same Access_Token before being send to the backend for efficiency and performance.
 {{% /notice %}}

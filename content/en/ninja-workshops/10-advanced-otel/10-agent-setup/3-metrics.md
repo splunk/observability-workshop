@@ -18,9 +18,9 @@ As a last exercise in this section, we are going to add a metric receiver that t
 
 {{% /notice %}}
 
-Validate again with **[otelbin.io](https://www.otelbin.io/)**, your result should look like this:
+Validate again with **[otelbin.io](https://www.otelbin.io/)**. Given we updated the `metrics:` pipeline your result should look like this:
 
-![otelbin-a-1-4-w](../../images/agent-1-4w.png)
+![otelbin-a-1-4-metrics](../../images/agent-1-4-metrics.png?width=50vw)
 
  If **otelbin.io** complains about the scrapers entry, make sure you select the Splunk OpenTelemetry Collector from the validation target drop down at the top of the screen.
 

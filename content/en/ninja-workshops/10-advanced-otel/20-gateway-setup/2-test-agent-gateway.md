@@ -258,15 +258,8 @@ Check to see if `gateway-metrics.out` has been created. It should contain at lea
 Next, check if you copied the `trace.json` across to the  `2-gateway` folder. Make sure both the gateway and the agent are running in their own shell, then in a 3rd shell run the curl command to send a trace:
 
 {{% tabs %}}
-{{% tab title="Mac cURL Command" %}}
 
-```sh
-curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d @trace.json 
-```
-
-{{% /tab %}}
-
-{{% tab title="Windows cURL Command" %}}
+{{% tab title="cURL Command" %}}
 
 ```ps1
  curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
