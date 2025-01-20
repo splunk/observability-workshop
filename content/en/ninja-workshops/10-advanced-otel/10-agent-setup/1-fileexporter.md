@@ -41,7 +41,26 @@ Again, if you have done everything correctly, the last line of the output should
 2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
-If you send a trace again, you should get the same output as we saw previously, but you also should have a file in the same directory called `agent.out`.
+If you send a trace again, you should get the same output as we saw previously:
+
+{{% tab title="cURL Command" %}}
+
+```ps1
+ curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
+```
+
+{{% /tab %}}
+
+You now should have a file in the same directory called `agent.out`:
+
+```text
+[WORKSHOP]/1-agent/
+├── agent.yaml    # Configuration file
+├── agent.out     # Trace export file
+├── trace.json    # Trace JSON file
+
+```
+
 In the file the trace is written as a single line in JSON format, when you look at the file it looks like this:
 
 {{% tabs %}}
@@ -120,7 +139,7 @@ In the file the trace is written as a single line in JSON format, when you look 
 If you want to see the JSON expanded on your device, you can cat the file and pipe it though `jq` (if you have it installed).
 
 ```bash
-cat ./agent.json | jq
+cat ./agent.out | jq
 ```
 
 Copy `agent.out` to `agent-1.out` so you can use it to compare against other results later on in this workshop.
