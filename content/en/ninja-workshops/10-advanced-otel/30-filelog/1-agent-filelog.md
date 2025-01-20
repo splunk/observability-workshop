@@ -6,7 +6,7 @@ weight: 1
 
 ### Change agent config
 
-Check if you are in your [WORKSHOP]/3-filelog folder.  Open the agent.yaml we copied across earlier in your editor and let's add the `filelog` reciver to the agent.yaml.
+Check if you are in your [WORKSHOP]/3-filelog folder.  Open the agent.yaml we copied across earlier in your editor and let's add the `filelog` receiver to the agent.yaml.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -29,13 +29,13 @@ Again validate the configuration using **[otelbin.io](https://www.otelbin.io/)**
 
 ## Test the Filelog receiver
 
-From the [WORKSHOP]/3-filelog folder, start the collector in `gateway` mode in its own shell and  wait until itis ready to receive data. Next make sure the quotes generating script is running its own shell, then  the 3rd shell start the agent with:
+From the [WORKSHOP]/3-filelog folder, start the collector in `gateway` mode in its own shell and  wait until it is ready to receive data. Next make sure the quotes generating script is running its own shell, then in the 3rd shell start the agent with:
 
 ```bash
 [WORKSHOP]/otelcol --config=agent.yaml
 ```
 
-The agent should start to send *cpu* metrics again. However, the agent should start reading the `quotes.log` file,and both the agent and the gateway should reflect that in their debug output lke this:  
+The agent should start to send *cpu* metrics again. However, the agent should also start reading the `quotes.log` file,and both the agent and the gateway should reflect that in their debug output lke this:  
 
 ```text
 2025-01-18T21:25:01.806+0100    info    ResourceLog #0
@@ -62,8 +62,8 @@ Span ID:
 Flags: 0
         {"kind": "exporter", "data_type": "logs", "name": "debug"}
 ```
-However, the agent should start reading the `quotes.log` file, forward those log line s to the gateway and the gateway pipeline should cause the `gateway-log.out` file to be generated  with the following output:
 
+As the agent is reading the `quotes.log` file and forwarding those log line  to the gateway. The gateway pipeline should cause the `gateway-log.out` file to be generated with the following output:
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
