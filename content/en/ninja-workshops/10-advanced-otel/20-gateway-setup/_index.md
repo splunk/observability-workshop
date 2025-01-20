@@ -23,6 +23,8 @@ processors:
   memory_limiter:
     check_interval: 2s
     limit_mib: 512
+  batch:
+    X-SF-Token:     
 
 exporters:
   debug:
@@ -71,3 +73,5 @@ Lets create a separate file exporter for `traces:`, `metrics:` and `logs:`
 Verify your gateway.yaml with **[otelbin.io](https://www.otelbin.io/)**. If done correctly your view should look like this:
 
 ![otelbin-g-2-1-w](../images/gateway-2-1w.png)
+
+Note: we will explain the `batch:` key in the next section. 
