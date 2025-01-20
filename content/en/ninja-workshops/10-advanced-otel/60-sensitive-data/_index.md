@@ -146,6 +146,7 @@ redaction/update:
 Save the YAML configuration above into a file called otel-collector-config.yaml.
 
 #### 2.2 Run the OpenTelemetry Collector
+
 To run the OpenTelemetry Collector with your configuration file, use the following command:
 
 ```bash
