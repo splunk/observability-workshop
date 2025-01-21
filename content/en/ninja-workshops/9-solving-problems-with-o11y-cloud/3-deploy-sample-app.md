@@ -78,6 +78,9 @@ deployment.apps/loadgenerator created
 
 ## Explore the Application
 
+We'll provide an overview of the application in this section.  If you'd like to see the complete source 
+code for the application, refer to the [Observability Workshop repository in GitHub](https://github.com/splunk/observability-workshop/tree/main/workshop/tagging)
+
 ### OpenTelemetry Instrumentation
 
 If we look at the Dockerfile's used to build the credit check and credit processor services, we 
@@ -225,6 +228,8 @@ let's review what the debug exporter has captured by tailing the agent collector
 ``` bash
 kubectl logs -l component=otel-collector-agent -f
 ```
+
+Hint: use `CTRL+C` to stop tailing the logs. 
 
 You should see traces written to the agent collector logs such as the following:
 
