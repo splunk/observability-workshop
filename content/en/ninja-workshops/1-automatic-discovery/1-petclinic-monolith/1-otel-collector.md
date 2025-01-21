@@ -18,6 +18,13 @@ If you have completed the Splunk IM workshop, please ensure you have deleted the
 helm delete splunk-otel-collector
 ```
 
+The EC2 instance may already have an older version of the collector already installed. To uninstall the collector, run the following commands:
+
+``` bash
+curl -sSL https://dl.signalfx.com/splunk-otel-collector.sh > /tmp/splunk-otel-collector.sh
+sudo sh /tmp/splunk-otel-collector.sh --uninstall
+```
+
 {{% /notice %}}
 
 To ensure your instance is configured correctly, we need to confirm that the required environment variables for this workshop are set correctly. In your terminal run the following command:

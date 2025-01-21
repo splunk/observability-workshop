@@ -222,7 +222,7 @@ service:
 ---
 
 {{% notice style="tip" %}}
-It is recommended that you validate your configuration file before restarting the collector. You can do this by pasting the contents of your `config.yaml` file into the [**OTelBin Configuration Validator**](https://otelbin.io/) tool.
+It is recommended that you validate your configuration file before restarting the collector. You can do this by pasting the contents of your `config.yaml` file into **[otelbin.io](https://www.otelbin.io/)**.
 
 {{% expand title="{{% badge color=green title=**Screenshot** %}}OTelBin{{% /badge %}}" %}}
 ![otelbin-validator](../../images/otelbin.png)
