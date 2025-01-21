@@ -88,7 +88,14 @@ helm repo update
 ```
 
 To configure the helm chart deployment, let's create a new file named `values.yaml` in 
-the `/home/splunk` directory with the following contents: 
+the `/home/splunk` directory:
+
+``` bash
+vi /home/splunk/values.yaml
+```
+> Press ‘i’ to enter into insert mode in vi before pasting the text below.
+
+Then paste the following contents: 
 
 ``` yaml
 logsEngine: otel
@@ -118,6 +125,8 @@ agent:
           paging: null
           processes: null
 ```
+
+> To save your changes in vi, press the `esc` key to enter command mode, then type `wq!` followed by pressing the `enter/return` key.
 
 Now we can use the following command to install the collector: 
 

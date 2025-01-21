@@ -78,7 +78,7 @@ variable "tagging_workshop" {
 variable "wsversion" {
   description = "Workshop version"
   type        = string
-  default     = "5.75"
+  default     = "5.76"
 }
 
 variable "user_data_tpl" {
