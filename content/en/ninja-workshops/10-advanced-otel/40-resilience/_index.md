@@ -1,5 +1,5 @@
 ---
-title: Building Resilience in OpenTelemetry Collector Using the File Storage Extension
+title: Building Resilience in the OpenTelemetry Collector using the File Storage Extension
 linkTitle: 4. Resilience
 time: 10 minutes
 weight: 4
@@ -11,14 +11,13 @@ The goal is to show how this configuration allows your OpenTelemetry Collector t
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
 
-- This will only be useful if the connections fails for a short period like up to 15 minutes or so. If the connection is down for longer periods, the backend will drop the data anyways because the timing's are too far out of synch.
-- This will works for logs, but we will introduce a more robust solution in one of the upcoming collector builds.
+This solution will be effective only if the connection is down for a short period, such as up to 15 minutes. If the downtime lasts longer, the backend will eventually drop the data due to timing mismatches. While this approach will work for logs, we plan to introduce a more robust solution in one of the upcoming collector builds.
 
 {{% /notice %}}
 
 ### Setup
 
-Create a new sub directory called `4-resilience` and copy the content from `3-filelog` across and remove any *.out file. Your starting point for this exercise should be:
+Create a new subdirectory named `4-resilience` and copy the contents from the `3-filelog` directory into it. Be sure to remove any `*.out` files. Your directory structure should now look like this:
 
 ```text
 WORKSHOP
@@ -34,14 +33,9 @@ WORKSHOP
 └── otelcol
 ```
 
-In this exercise we are going to update the agent.yaml by adding an `extensions:` section.
-This new section in an OpenTelemetry configuration YAML is used to define optional components that enhance or modify the behavior of the OpenTelemetry Collector. These components don’t handle telemetry data directly but provide additional capabilities or services to the Collector.
-The first exercise will be providing **Checkpointing** with the  `file_storage` extension.  
-The `file_storage` extension is used to ensure that the OpenTelemetry Collector can persist checkpoints to disk. This is especially useful in cases where there are network failures or restarts. This way, the collector can recover from where it left off without losing data.
-<!--
-2. **Retries** with the `otlp/gateway` exporter.
-3. **Queueing** with `sending_queue` and the integration of file storage for resilience.
--->
+In this exercise, we will update the `agent.yaml` file by adding an `extensions:` section. This section is part of the OpenTelemetry configuration YAML, used to define optional components that enhance or modify the behavior of the OpenTelemetry Collector. These components do not handle telemetry data directly but provide additional capabilities or services to the Collector.
+
+The first task is to implement **checkpointing** using the `file_storage` extension. The `file_storage` extension ensures that the OpenTelemetry Collector can persist checkpoints to disk, which is especially useful in the event of network failures or restarts. This allows the Collector to resume from where it left off, without losing data.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -54,8 +48,8 @@ Let's add the extension part first:
 5. **Add** `timeout:` **key**: Set the value to `1s`.
 6. **Add** `compaction:` **key** section.
 7. **Add** `on_start:` **key**: Under the `compaction:` section, set the value to ``true`.
-7. **Add** `directory:` **key**: Set the value to `./checkpoint-folder/tmp`.
-8. **Add** `max_transaction_size:` **key**: Set it to a value of `65_536`
+8. **Add** `directory:` **key**: Set the value to `./checkpoint-folder/tmp`.
+9. **Add** `max_transaction_size:` **key**: Set it to a value of `65_536`
 
 {{% /notice%}}
 
@@ -108,4 +102,4 @@ Again, validate the agent configuration using **[otelbin.io](https://www.otelbin
 
 ![logs from otelbin](../images/filelog-3-1-logs.png)
 
-This setup ensures your OpenTelemetry Collector can handle network interruptions gracefully by storing telemetry data on disk and retrying failed transmissions. It combines checkpointing for recovery and queueing for efficient retries, making your pipeline more resilient and reliable. Now, let’s test this configuration!
+This setup enables your OpenTelemetry Collector to handle network interruptions smoothly by storing telemetry data on disk and retrying failed transmissions. It combines checkpointing for recovery with queuing for efficient retries, enhancing the resilience and reliability of your pipeline. Now, let’s test the configuration!
