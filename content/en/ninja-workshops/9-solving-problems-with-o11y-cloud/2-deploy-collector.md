@@ -24,41 +24,7 @@ Helm is a package manager for Kubernetes which provides the following benefits:
 
 ## Install the Collector using Helm
 
-We'll use a script to install the collector, which you can find in the following location: 
-
-``` bash
-/home/splunk/workshop/tagging/1-deploy-otel-collector.sh
-```
-
-This script first ensures that the environment variables set in the `~./profile` file are read: 
-
-``` bash
-source ~/.profile
-```
-
-It then installs the `splunk-otel-collector-chart` Helm chart and ensures it's up-to-date: 
-
-``` bash
-  helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
-  helm repo update
-```
-
-And finally, it uses `helm install` to install the collector: 
-
-``` bash
-  helm install splunk-otel-collector --version 0.111.0 \
-  --set="splunkObservability.realm=$REALM" \
-  --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
-  --set="clusterName=$INSTANCE-k3s-cluster" \
-  --set="environment=tagging-workshop-$INSTANCE" \
-  splunk-otel-collector-chart/splunk-otel-collector \
-  -f otel/values.yaml
-```
-
-> Note that the `helm install` command references a `values.yaml` file, which is used 
-> to customize the collector configuration.  We'll explore this is more detail below. 
- 
-We can use the following command to install the collector:
+Let's change into the correct directory and run a script to install the collector: 
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -87,6 +53,37 @@ Splunk OpenTelemetry Collector is installed and configured to send data to Splun
 
 {{% /tab %}}
 {{< /tabs >}}
+
+> Note that the script may take a minute or so to run. 
+
+How did this script install the collector? It first ensured that the environment variables set in the `~./profile` file are read: 
+
+``` bash
+source ~/.profile
+```
+
+It then installed the `splunk-otel-collector-chart` Helm chart and ensured it's up-to-date: 
+
+``` bash
+  helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
+  helm repo update
+```
+
+And finally, it used `helm install` to install the collector: 
+
+``` bash
+  helm install splunk-otel-collector --version 0.111.0 \
+  --set="splunkObservability.realm=$REALM" \
+  --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
+  --set="clusterName=$INSTANCE-k3s-cluster" \
+  --set="environment=tagging-workshop-$INSTANCE" \
+  splunk-otel-collector-chart/splunk-otel-collector \
+  -f otel/values.yaml
+```
+
+> Note that the `helm install` command references a `values.yaml` file, which is used 
+> to customize the collector configuration.  We'll explore this is more detail below. 
+
 
 ## Confirm the Collector is Running
 
