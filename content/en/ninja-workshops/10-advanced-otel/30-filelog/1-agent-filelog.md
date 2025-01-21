@@ -32,7 +32,7 @@ Again validate the agent configuration using **[otelbin.io](https://www.otelbin.
 
 From the `[WORKSHOP]/3-filelog` folder, start the collector in `gateway` mode in its own shell and wait until it is ready to receive data. Next, make sure the quotes generating script is running its own shell
 
-Once we start the agent, the resulting file structure should looks lik this.
+Once we start the agent, the resulting file structure will change to this:
 
 ```text
 WORKSHOP
@@ -49,13 +49,13 @@ WORKSHOP
 └── otelcol                 # OpenTelemetry Collector binary
 ```
 
-Now, start the agent in a 3rd shell with:
+To test teh `Filelog` receiver, start the agent in a 3rd shell with:
 
 ```bash
 ../otelcol --config=agent.yaml
 ```
 
-The agent should start to send *cpu* metrics again. However, the agent should also start reading the `quotes.log` file,and both the agent and the gateway should reflect that in their debug output lke this:
+The agent should start to send *cpu* metrics again as before. However, the agent should also start reading the `quotes.log` file,and both the agent and the gateway should reflect that in their debug output lke this:
 
 ```text
 2025-01-18T21:25:01.806+0100    info    ResourceLog #0
@@ -83,7 +83,7 @@ Flags: 0
         {"kind": "exporter", "data_type": "logs", "name": "debug"}
 ```
 
-As the agent is reading the `quotes.log` file and forwarding those log line to the gateway. The gateway pipeline should cause the `gateway-log.out` file to be generated with the following output:
+As the agent is reading the `quotes.log` file it  will forward those log line to the gateway. The gateway pipeline should cause the `gateway-log.out` file to be generated with the following output:
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
