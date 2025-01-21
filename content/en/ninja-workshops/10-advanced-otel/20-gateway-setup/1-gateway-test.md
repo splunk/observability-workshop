@@ -40,7 +40,7 @@ Again, check if you in your [WORKSHOP]/2-gateway folder.  Open the agent.yaml we
 - Add `batch` to the array list of the `processor:` section of all pipelines
 
 {{% /notice %}}  
-Again, validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)** As example here is  the result for the `metrics` pipeline:
+Again, validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)** As example here is the result for the `metrics` pipeline:
 
 ![otelbin-g-2-2-metrics](../../images/gateway-2-2-metrics.png)
 

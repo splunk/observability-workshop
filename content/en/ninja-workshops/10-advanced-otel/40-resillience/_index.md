@@ -52,10 +52,10 @@ Let's add the extension part first:
 3. **Add** `directory:` **key**: under the `file_storage` extension and set it to a value of `"./checkpoint-folder"`
 4. **Add** `create_directory:` **key**: Set the Value to `true`.
 5. **Add** `timeout:` **key**: Set the value to `1s`.
-6. **Add** `compaction:` **key**:
-7. **Add `on_start:` key**: Under the `compaction:` section,  Set the value to `true`
-8. **Add** `directory:` **key**: Set the value to `./checkpoint-folder`.
-9. **Add** `max_transaction_size:` **key**: Set it to a value of `65_536`
+6. **Add** `compaction:` **key** section.
+7. **Add** `on_start:` **key**: Under the `compaction:` section, set the value to ``true`.
+7. **Add** `directory:` **key**: Set the value to `./checkpoint-folder/tmp`.
+8. **Add** `max_transaction_size:` **key**: Set it to a value of `65_536`
 
 {{% /notice%}}
 
@@ -65,7 +65,9 @@ Let's add the extension part first:
 - `create_directory: true`: Ensures that the directory is created if it doesn’t already exist.
 - `timeout: 1s`: Specifies a timeout for file operations related to the checkpointing.
 - `compaction`: Ensures that old checkpoint data is compacted periodically.
-- `max_transaction_size` defines the size limit for checkpoint transactions before compaction occurs.
+  - `on_start: true` : Determines whether the compaction process begins immediately when the OpenTelemetry Collector starts.
+  - `directory:` `./checkpoint-folder/tmp`: Specifies the directory used for compaction (as a midstep).
+  - `max_transaction_size` defines the size limit for checkpoint transactions before compaction occurs.
 
 The next exercise is modifying the `otlphttp:` exporter where retries and queueing are configured.
 
@@ -84,7 +86,7 @@ exporters:
 
 1. **Add** `tls:` **key**: Place at the same indent level as `headers:`.
 2. **Add** `insecure:` **key**: Under the `tls:` key and set its value to `true`.
-3. **Add** `retry_on_failure:` **key**:
+3. **Add** `retry_on_failure:` **key**: Place at the same indent level as `headers:`.
 4. **Add** `enabled:` **key**: Under the `retry_on_failure:` key and set its value to `true`.
 5. **Add** `sending_queue:` **key**:
 6. **Add** `enabled:` **key**: Under the `sending_queue:` key and set its value to `true`.
@@ -102,3 +104,8 @@ exporters:
   - `queue_size: 10000`: The maximum size of the queue.
   - `storage: file_storage/checkpoint`: Specifies that the queue state will be backed up in the file system.
 
+Again, validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)** for spelling mistakes etc. Your `Logs:` pipeline should like this:
+
+![logs from otelbin](../images/filelog-3-1-logs.png)
+
+This setup ensures your OpenTelemetry Collector can handle network interruptions gracefully by storing telemetry data on disk and retrying failed transmissions. It combines checkpointing for recovery and queueing for efficient retries, making your pipeline more resilient and reliable. Now, let’s test this configuration!
