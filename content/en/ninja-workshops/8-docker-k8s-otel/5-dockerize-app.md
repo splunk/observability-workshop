@@ -86,13 +86,7 @@ COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "helloworld.dll"]
 ```
 
-To save your changes in vi, hit the ESC key then type
-
-``` bash
-:wq!
-
-```
-followed by the ENTER/RETURN key.
+> To save your changes in vi, press the `esc` key to enter command mode, then type `wq!` followed by pressing the `enter/return` key.
 
 
 What does all this mean?  Let's break it down. 
@@ -183,9 +177,36 @@ ENTRYPOINT ["dotnet", "helloworld.dll"]
 Now that we have the `Dockerfile`, we can use it to build a Docker image containing 
 our application: 
 
+{{< tabs >}}
+{{% tab title="Script" %}}
 ``` bash
 docker build -t helloworld:1.0 .
 ```
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+``` bash
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  281.1kB
+Step 1/19 : FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+8.0: Pulling from dotnet/aspnet
+af302e5c37e9: Pull complete 
+91ab5e0aabf0: Pull complete 
+1c1e4530721e: Pull complete 
+1f39ca6dcc3a: Pull complete 
+ea20083aa801: Pull complete 
+64c242a4f561: Pull complete 
+Digest: sha256:587c1dd115e4d6707ff656d30ace5da9f49cec48e627a40bbe5d5b249adc3549
+Status: Downloaded newer image for mcr.microsoft.com/dotnet/aspnet:8.0
+ ---> 0ee5d7ddbc3b
+Step 2/19 : USER app
+etc,
+```
+{{% /tab %}}
+{{< /tabs >}}
 
 This tells Docker to build an image using a tag of `helloworld:1.0` using the `Dockerfile` in the current directory. 
 
