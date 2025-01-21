@@ -32,8 +32,9 @@ Again validate the agent configuration using **[otelbin.io](https://www.otelbin.
 
 From the `[WORKSHOP]/3-filelog` folder, start the collector in `gateway` mode in its own shell and wait until it is ready to receive data. Next, make sure the quotes generating script is running its own shell
 
-Once we start the  agent, the resulting file structure should looks lik this.
+Once we start the agent, the resulting file structure should looks lik this.
 
+```text
 WORKSHOP
 ├── 1-agent
 ├── 2-gateway
@@ -46,6 +47,7 @@ WORKSHOP
 │   ├── quotes.log
 │   └── trace.json
 └── otelcol
+```
 
 Now, start the agent in a 3rd shell with:
 
@@ -81,7 +83,7 @@ Flags: 0
         {"kind": "exporter", "data_type": "logs", "name": "debug"}
 ```
 
-As the agent is reading the `quotes.log` file and forwarding those log line  to the gateway. The gateway pipeline should cause the `gateway-log.out` file to be generated: with the following output:
+As the agent is reading the `quotes.log` file and forwarding those log line to the gateway. The gateway pipeline should cause the `gateway-log.out` file to be generated with the following output:
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
@@ -164,4 +166,60 @@ As the agent is reading the `quotes.log` file and forwarding those log line  to 
 {{% /tab %}}
 {{% /tabs %}}
 
-Note that the `resoureLogs` section contains the same attributes as we saw in `traces` and `metrics`. This mechanism is what will drive `related content`.
+Note that the `resoureLogs` section contains the same attributes as we saw in `traces` and `metrics`. This mechanism is what will drive `related content` in Splunk Observability and  refers to the seamless linking and contextual correlation between logs, metrics, traces, and dashboards. This feature is designed to help users quickly identify and investigate issues by providing a unified view of related telemetry data. Instead of treating each data type in isolation, Splunk Observability connects them, enabling faster troubleshooting and root cause analysis.
+
+{{% tabs %}}
+{{% tab title="Compacted JSON" %}}
+
+```json
+{"resourceLogs":[{"resource":{"attributes":[{"key":"com.splunk.sourcetype","value":{"stringValue":"quotes"}},{"key":"com.splunk/source","value":{"stringValue":"./quotes.log"}},{"key":"host.name","value":{"stringValue":"[YOUR_HOST_NAME]"}},{"key":"os.type","value":{"stringValue":"[YOUR_OS]"}},{"key":"otelcol.service.mode","value":{"stringValue":"agent"}}]}}]}
+```
+
+{{% /tab %}}
+{{% tab title="Formatted JSON" %}}
+
+```json
+{
+  "resourceLogs": [
+    {
+      "resource": {
+        "attributes": [
+          {
+            "key": "com.splunk.sourcetype",
+            "value": {
+              "stringValue": "quotes"
+            }
+          },
+          {
+            "key": "com.splunk/source",
+            "value": {
+              "stringValue": "./quotes.log"
+            }
+          },
+          {
+            "key": "host.name",
+            "value": {
+              "stringValue": "[YOUR_HOST_NAME]"
+            }
+          },
+          {
+            "key": "os.type",
+            "value": {
+              "stringValue": "[YOUR_OS]"
+            }
+          },
+          {
+            "key": "otelcol.service.mode",
+            "value": {
+              "stringValue": "agent"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+{{% /tab %}}
+{{% /tabs %}}
