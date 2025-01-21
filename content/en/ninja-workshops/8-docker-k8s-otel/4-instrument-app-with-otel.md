@@ -184,3 +184,5 @@ Next, click on **Traces** on the right-hand side to see the traces captured for 
 An individual trace should look like the following: 
 
 ![Traces](../images/trace.png)
+
+> Press Ctrl + C to quit your Helloworld app before moving to the next step.
