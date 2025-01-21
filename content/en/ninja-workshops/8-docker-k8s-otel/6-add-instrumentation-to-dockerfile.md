@@ -20,9 +20,17 @@ After the .NET application is built in the Dockerfile, we want to:
 * Download the Splunk OTel .NET installer
 * Install the distribution
 
-We can add the following to the build stage of the Dockerfile to do so: 
+We can add the following to the build stage of the Dockerfile. Let's open the Dockerfile in vi:
+
+``` bash
+vi /home/splunk/workshop/docker-k8s-otel/helloworld/Dockerfile
+```
+> Press the i key to enter edit mode in vi
+
+> Paste the code beneath 'NEW CODE' into your Dockerfile in the build stage section:
 
 ``` dockerfile
+# CODE ALREADY IN YOUR DOCKERFILE:
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
@@ -32,6 +40,7 @@ WORKDIR "/src/helloworld"
 COPY . .
 RUN dotnet build "./helloworld.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
+# NEW CODE:
 # Add dependencies for splunk-otel-dotnet-install.sh
 RUN apt-get update && \
 	apt-get install -y unzip
@@ -49,6 +58,8 @@ Next, we'll update the final stage of the Dockerfile with the following changes:
 * Copy the entrypoint.sh file as well 
 * Set the `OTEL_SERVICE_NAME` and `OTEL_RESOURCE_ATTRIBUTES` environment variables 
 * Set the `ENTRYPOINT` to `entrypoint.sh` 
+
+It's easiest to simply replace the entire final stage with the following:
 
 > Note: replace `$INSTANCE` in your Dockerfile with your instance name,
 > which can be determined by running `echo $INSTANCE`.
@@ -71,6 +82,8 @@ ENTRYPOINT ["sh", "entrypoint.sh"]
 CMD ["dotnet", "helloworld.dll"]
 ```
 
+> To save your changes in vi, press the `esc` key to enter command mode, then type `wq!` followed by pressing the `enter/return` key.
+
 You can find the final version of the Dockerfile in the 
 `/home/splunk/workshop/docker-k8s-otel/docker` directory. 
 
@@ -81,6 +94,11 @@ We also need to create a file named `entrypoint.sh` in the `/home/splunk/worksho
 with the following content: 
 
 ``` bash
+vi /home/splunk/workshop/docker-k8s-otel/helloworld/entrypoint.sh
+```
+Then paste the following code into the newly created file:
+
+``` bash
 #!/bin/sh
 # Read in the file of environment settings
 . /$HOME/.splunk-otel-dotnet/instrument.sh
@@ -88,6 +106,7 @@ with the following content:
 # Then run the CMD
 exec "$@"
 ```
+> To save your changes in vi, press the `esc` key to enter command mode, then type `wq!` followed by pressing the `enter/return` key.
 
 The `entrypoint.sh` script is required for sourcing environment variables from the instrument.sh script, 
 which is included with the instrumentation. This ensures the correct setup of environment variables 
