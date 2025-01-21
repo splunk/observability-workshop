@@ -18,11 +18,23 @@ The goal is to show how this configuration allows your OpenTelemetry Collector t
 
 ### Setup
 
-Create a new sub directory called `4-resilience` and copy the contents from `3-filelog` across.
+Create a new sub directory called `4-resilience` and copy the content from `3-filelog` across and remove any *.out file. Your starting point for this exercise should be:
 
-[Insert file tree]
+```text
+WORKSHOP
+├── 1-agent
+├── 2-gateway
+├── 3-filelog
+├── 4-resilience
+│   ├── agent.yaml
+│   ├── gateway.yaml
+│   ├── log-gen.sh
+│   ├── quotes.log
+│   └── trace.json
+└── otelcol
+```
 
-We are going to update the agent.yaml we have by adding an `extensions:` section.
+In this exercise we are going to update the agent.yaml by adding an `extensions:` section.
 This new section in an OpenTelemetry configuration YAML is used to define optional components that enhance or modify the behavior of the OpenTelemetry Collector. These components don’t handle telemetry data directly but provide additional capabilities or services to the Collector.
 The first exercise will be providing **Checkpointing** with the  `file_storage` extension.  
 The `file_storage` extension is used to ensure that the OpenTelemetry Collector can persist checkpoints to disk. This is especially useful in cases where there are network failures or restarts. This way, the collector can recover from where it left off without losing data.
@@ -33,15 +45,17 @@ The `file_storage` extension is used to ensure that the OpenTelemetry Collector 
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- Add the `extensions:` key at the top of the `agent.yaml` file
-  - Add the`file_storage` key and name is `/checkpoint:`
-    - Add the `directory:`key and set it to a value of `"./checkpoint-folder"`
-    - Add the `create_directory:` key and set it to a value of `true`
-    - Add the `timeout:` key and set it to a value of `1s`
-    - Add the `compaction:` key
-      - Add the `on_start:` key and set it to a value of `true`
-      - Add the `directory:` key and set it to a value of `./checkpoint-folder`
-      - Add the `max_transaction_size:` key and set it to a value of `65_536`
+Let's add the extension part first:
+
+1. **Add** `extensions:` **section**: Place this at the top of the `agent.yaml`.
+2. **Add** `file_storage` **extension**: Under the **extensions** section. Name it `/checkpoint:`.
+3. **Add** `directory:` **key**: under the `file_storage` extension and set it to a value of `"./checkpoint-folder"`
+4. **Add** `create_directory:` **key**: Set the Value to `true`.
+5. **Add** `timeout:` **key**: Set the value to `1s`.
+6. **Add** `compaction:` **key**:
+7. **Add `on_start:` key**: Under the `compaction:` section,  Set the value to `true`
+8. **Add** `directory:` **key**: Set the value to `./checkpoint-folder`.
+9. **Add** `max_transaction_size:` **key**: Set it to a value of `65_536`
 
 {{% /notice%}}
 
@@ -55,20 +69,30 @@ The `file_storage` extension is used to ensure that the OpenTelemetry Collector 
 
 The next exercise is modifying the `otlphttp:` exporter where retries and queueing are configured.
 
+{{% notice title="Exercise" style="green" icon="running" %}}
+We are going to extend the existing `otlphttp` exporter:
+
 ```yaml
 exporters:
   otlphttp:
     endpoint: "localhost:5317"
-    tls:
-      insecure: true
-    retry_on_failure:
-      enabled: true
-    sending_queue:
-      enabled: true
-      num_consumers: 10
-      queue_size: 10000
-      storage: file_storage/checkpoint
+    headers:
+      X-SF-Token: "FAKE_SPLUNK_ACCESS_TOKEN" # or your own version of a token
 ```
+
+**Steps:**
+
+1. **Add** `tls:` **key**: Place at the same indent level as `headers:`.
+2. **Add** `insecure:` **key**: Under the `tls:` key and set its value to `true`.
+3. **Add** `retry_on_failure:` **key**:
+4. **Add** `enabled:` **key**: Under the `retry_on_failure:` key and set its value to `true`.
+5. **Add** `sending_queue:` **key**:
+6. **Add** `enabled:` **key**: Under the `sending_queue:` key and set its value to `true`.
+7. **Add** `num_consumers:` **key**: Set its value to `10`
+8. **Add** `queue_size:`  **key**: Set its value to `10000`
+9. **Add** `storage:` **key**: Set its value to `file_storage/checkpoint`
+
+{{% /notice%}}
 
 **Explanation:**
 
@@ -78,76 +102,3 @@ exporters:
   - `queue_size: 10000`: The maximum size of the queue.
   - `storage: file_storage/checkpoint`: Specifies that the queue state will be backed up in the file system.
 
-### Step 3: Running the OpenTelemetry Collector with the Configuration
-
-1. **Create Checkpoint Folder:**
-   Make sure that the folder `./checkpoint-folder` exists in your working directory. The OpenTelemetry Collector will use this folder to store checkpoint and transaction files.
-
-2. **Save the Configuration:**
-   Save the YAML configuration to a file, such as `agent.yaml`.
-
-3. **Run the Collector:**
-   Now, run the OpenTelemetry Collector using the configuration file you just created. You can do this by executing the following command in your terminal:
-
-   ```bash
-   otelcol --config agent.yaml
-   ```
-
-   This will start the collector with the configurations specified in the YAML file.
-
-### Step 4: Testing the Resilience
-
-To test the resilience built into the system:
-
-1. **Simulate Network Failure:**
-   Temporarily stop the OTLP receiver or shut down the endpoint where the telemetry data is being sent. You should see the retry mechanism kicking in, as the collector will attempt to resend the data.
-
-2. **Check the Checkpoint Folder:**
-   After a few retries, inspect the `./checkpoint-folder` directory. You should see checkpoint files stored there, which contain the serialized state of the queue.
-
-3. **Restart the Collector:**
-   Restart the OpenTelemetry Collector after stopping the OTLP receiver. The collector will resume sending data from the last checkpointed state, without losing any data.
-
-4. **Inspect Logs and Files:**
-   Inspect the logs to see the retry attempts. The `debug` exporter will output detailed logs, which should show retry attempts and any failures.
-
-### Step 5: Fine-Tuning the Configuration for Production
-
-- **Timeouts and Interval Adjustments:**
-   You may want to adjust the `retry_on_failure` parameters for different network environments. In high-latency environments, increasing the `max_interval` might reduce unnecessary retries.
-
-   ```yaml
-   retry_on_failure:
-     enabled: true
-     initial_interval: 1s
-     max_interval: 5s
-     max_elapsed_time: 20s
-   ```
-
-- **Compaction and Transaction Size:**
-   Depending on your use case, adjust the `max_transaction_size` for checkpoint compaction. A smaller transaction size will make checkpoint files more frequent but smaller, while a larger size might reduce disk I/O but require more memory.
-
-### Step 6: Monitoring and Maintenance
-
-- **Monitoring the Collector:**
-   Use Prometheus or other monitoring tools to collect metrics from the OpenTelemetry Collector. You can monitor retries, the state of the sending queue, and other performance metrics to ensure the collector is behaving as expected.
-
-- **Log Rotation:**
-   The `file` exporter has a built-in log rotation mechanism to ensure that logs do not fill up your disk.
-
-   ```yaml
-   exporters:
-     file:
-       path: ./agent.out
-       rotation:
-         max_megabytes: 2
-         max_backups: 2
-   ```
-
-   This configuration rotates the log file when it reaches 2 MB, and keeps up to two backups.
-
-### Conclusion
-
-In this section, you learned how to enhance the resilience of the OpenTelemetry Collector by configuring the `file_storage/checkpoint` extension, setting up retry mechanisms for the OTLP exporter, and using a sending queue backed by file storage for storing data during temporary failures.
-
-By leveraging file storage for checkpointing and queue persistence, you can ensure that your telemetry pipeline can recover gracefully from failures, making it more reliable for production environments.
