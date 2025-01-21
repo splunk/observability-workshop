@@ -45,9 +45,20 @@ instructions to the image builder on the commands to run, files to copy, startup
 
 ## Create a Dockerfile 
 
-Let's create a file named `Dockerfile` in the `/home/splunk/workshop/docker-k8s-otel/helloworld` directory.  
+Let's create a file named `Dockerfile` in the `/home/splunk/workshop/docker-k8s-otel/helloworld` directory. 
 
-It should include the following content: 
+``` bash
+cd /home/splunk/workshop/docker-k8s-otel/helloworld
+```
+
+You can use vi or nano to create the file. We will show an example using vi:
+
+``` bash
+vi Dockerfile
+```
+Copy and paste the following content into the newly opened file:
+
+> Press 'i' to enter into insert mode in vi before pasting the text below.
 
 ``` dockerfile
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
@@ -74,6 +85,15 @@ COPY --from=publish /app/publish .
 
 ENTRYPOINT ["dotnet", "helloworld.dll"]
 ```
+
+To save your changes in vi, hit the ESC key then type
+
+``` bash
+:wq!
+
+```
+followed by the ENTER/RETURN key.
+
 
 What does all this mean?  Let's break it down. 
 

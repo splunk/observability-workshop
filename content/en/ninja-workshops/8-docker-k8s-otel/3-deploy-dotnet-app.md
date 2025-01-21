@@ -144,7 +144,7 @@ info: Microsoft.Hosting.Lifetime[0]
 {{% /tab %}}
 {{< /tabs >}}
 
-Once it's running, open a second SSH terminal and access the application using curl: 
+Once it's running, open a second SSH terminal to your Ubuntu instance and access the application using curl: 
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -181,6 +181,8 @@ Hello, Tom!
 
 {{% /tab %}}
 {{< /tabs >}}
+
+> Press Ctrl + C to quit your Helloworld app before moving to the next step.
 
 ## Next Steps
 
