@@ -15,16 +15,21 @@ receivers:
           endpoint: "0.0.0.0:4318"
         #filelog:  
         #  include: [ /output/file.log ]
-        #  storage: file_storage/checkpoint      
+        #  storage: file_storage/checkpoint
 
 exporters:
     debug:
         verbosity: detailed
-    file:
-      path: ./agent.out 
+    file/standard:
+      path: ./agent-standard.out
       rotation:
         max_megabytes: 2  
         max_backups: 2
+    file/security:
+      path: ./agent-security.out 
+      rotation:
+        max_megabytes: 2  
+        max_backups: 2    
     
     otlp/gateway:
       endpoint: "localhost:5317"
@@ -46,15 +51,14 @@ exporters:
        X-SF-Token: "123456"
 
 connectors:
-  routing:
-    default_pipelines: [traces/jaeger]
+ routing:
+    default_pipelines: [traces/standard]
     error_mode: ignore
-    match_once: false
     table:
-      - statement: route() where attributes["X-Tenant"] == "acme"
-        pipelines: [traces/jaeger-acme]
-      - statement: delete_key(attributes, "X-Tenant") where IsMatch(attributes["X-Tenant"], ".*corp")
-        pipelines: [traces/jaeger-ecorp]
+      - statement: route() where attributes["deployment.environment"] == "security_applications"
+        pipelines: [traces/security]
+#      - statement: delete_key(attributes, "X-Tenant") where IsMatch(attributes["X-Tenant"], ".*corp")
+#        pipelines: [traces/jaeger-ecorp]
 
 processors:
   batch:
@@ -79,23 +83,34 @@ service:
     pipelines:
         traces:
             receivers: [otlp]
+            exporters: [routing, debug]
+        traces/standard:
+            receivers: [routing]
             processors:
             - memory_limiter
             - batch
             - resourcedetection
             - resource/add_mode
-            exporters: [otlp/gateway, debug]
+            exporters: [file/standard]
+        traces/security:
+            receivers: [routing]    
+            processors:
+            - memory_limiter
+            - batch
+            - resourcedetection
+            - resource/add_mode
+            exporters: [file/security]
         metrics:
             receivers: [otlp]
             processors: 
             - memory_limiter
             - batch
             - resourcedetection
-            exporters: [ otlp/gateway, debug]
+            exporters: [file/standard, debug]
         logs:
             receivers: [otlp]
             processors:
             - memory_limiter
             - batch
             - resourcedetection
-            exporters: [ otlp/gateway, debug]
+            exporters: [file/standard, debug]

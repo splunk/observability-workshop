@@ -22,35 +22,35 @@ processors:
     error_mode: ignore
     traces:
       span:
-           - 'name == "/_healthz"'
+        - 'name == "/_healthz"'
 exporters:
   debug:
     verbosity: detailed
   file/traces:
-    path: ./gateway-trace.out 
+    path: ./gateway-trace.out
     rotation:
-      max_megabytes: 2  
-      max_backups: 2  
+      max_megabytes: 2
+      max_backups: 2
   file/metrics:
-    path: ./gateway-metric.out 
+    path: ./gateway-metric.out
     rotation:
-      max_megabytes: 2  
-      max_backups: 2  
+      max_megabytes: 2
+      max_backups: 2
   file/logs:
-    path: ./gateway-logs.out 
+    path: ./gateway-logs.out
     rotation:
-      max_megabytes: 2  
-      max_backups: 2            
+      max_megabytes: 2
+      max_backups: 2
 
 service:
   pipelines:
     traces:
       receivers: [otlp]
       processors:
-      - memory_limiter
-      - batch
-      - resource/add_mode
-      - filter
+        - memory_limiter
+        - batch
+        - resource/add_mode
+        - filter
       exporters: [file/traces, debug]
     metrics:
       receivers: [otlp]
