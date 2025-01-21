@@ -9,19 +9,19 @@ The Filelog receiver is a receiver that reads log lines from a file. It is usefu
 
 Create a new sub directory called `3-filelog` and copy the content from `2-gateway` across. Delete any `*.out` files and create the appropriate log generation script for your operating system in the new directory (`log-gen.sh` on Mac or Linux or `log-gen.ps1` for Windows), make sure its executable.
 
-once we start the script the directory structuer  looks like this:
+Once we started the log-gen script the directory structure will look like this:
 
 ```text
 WORKSHOP
 ├── 1-agent
 ├── 2-gateway
 ├── 3-filelog
-│   ├── agent.yaml
-│   ├── gateway.yaml
-│   ├── log-gen.sh
-│   ├── quotes.log
-│   └── trace.json
-└── otelcol
+│   ├── agent.yaml          # Agent Collector configuration file
+│   ├── gateway.yaml        # Gateway Collector configuration file
+│   ├── log-gen.(sh or ps1) # Script to write a file with logs lines 
+│   ├── quotes.log          # File containing Random log lines
+│   └── trace.json          # Example trace file 
+└── otelcol                 # OpenTelemetry Collector binary
 ```
 
 <!--{{% resources sort="asc" style="splunk" title="Log Generation Scripts" icon="scroll" /%}}-->
@@ -132,8 +132,8 @@ while ($true) {
 {{% /tab %}}
 {{% /tabs %}}
 
- Run the new log generating script and it will start writing lines to a file called ./quotes.log, and the console output should be:
+ Run the new log generating script and it will start writing lines to a file called `./quotes.log`, and the console output a single line:
 
- ```sh
+ ```txt
  Writing logs to quotes.log. Press Ctrl+C to stop.
  ```
