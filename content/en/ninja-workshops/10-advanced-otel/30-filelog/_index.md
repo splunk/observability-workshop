@@ -5,7 +5,7 @@ time: 10 minutes
 weight: 3
 ---
 
-The `FileLog` receiver in the OpenTelemetry Collector is used to ingest logs from files. It monitors specified files for new log entries and streams those logs into the Collector for further processing or exporting. It is useful for testing and development purposes. 
+The `FileLog` receiver in the OpenTelemetry Collector is used to ingest logs from files. It monitors specified files for new log entries and streams those logs into the Collector for further processing or exporting. It is useful for testing and development purposes.
 
 The Filelog receiver is not recommended for production use, as it is not optimized for performance but can be useful in a pinch. For this part of the workshop, there is script that will generate log lines in a file. The Filelog receiver will read these log lines and send them to the OpenTelemetry Collector.
 

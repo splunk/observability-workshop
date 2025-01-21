@@ -31,7 +31,6 @@ Let's run our next exercise:
 
 {{% /expand %}}
 
-
 - Add the two processors to `processors:` array in the pipelines (leaving `memory_limiter` as the first one)
 
 {{% /notice %}}
