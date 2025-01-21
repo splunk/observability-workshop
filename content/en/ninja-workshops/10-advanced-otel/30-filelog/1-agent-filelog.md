@@ -39,14 +39,14 @@ WORKSHOP
 ├── 1-agent
 ├── 2-gateway
 ├── 3-filelog
-│   ├── agent.yaml
-│   ├── gateway-logs.out
-│   ├── gateway-metrics.out
-│   ├── gateway.yaml
-│   ├── log-gen.sh
-│   ├── quotes.log
-│   └── trace.json
-└── otelcol
+│   ├── agent.yaml          # Agent Collector configuration file
+│   ├── gateway-logs.out.   # Output from the gateway logs pipeline
+│   ├── gateway-metrics.out # Output from the gateway metrics pipeline
+│   ├── gateway.yaml        # Gateway Collector configuration file
+│   ├── log-gen.(sh or ps1) # Script to write a file with logs lines 
+│   ├── quotes.log          # File containing Random log lines
+│   └── trace.json          # Example trace file 
+└── otelcol                 # OpenTelemetry Collector binary
 ```
 
 Now, start the agent in a 3rd shell with:
