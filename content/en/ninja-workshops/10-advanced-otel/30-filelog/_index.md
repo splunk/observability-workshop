@@ -5,9 +5,15 @@ time: 10 minutes
 weight: 3
 ---
 
-The Filelog receiver is a receiver that reads log lines from a file. It is useful for testing and development purposes. The Filelog receiver is not recommended for production use, as it is not optimized for performance but can be useful in a pinch. For this part of the workshop, there is script that will generate log lines in a file. The Filelog receiver will read these log lines and send them to the OpenTelemetry Collector.
+The `FileLog` receiver in the OpenTelemetry Collector is used to ingest logs from files. It monitors specified files for new log entries and streams those logs into the Collector for further processing or exporting. It is useful for testing and development purposes. 
 
-Create a new sub directory called `3-filelog` and copy the content from `2-gateway` across. Delete any `*.out` files and create the appropriate log generation script for your operating system in the new directory (`log-gen.sh` on Mac or Linux or `log-gen.ps1` for Windows), make sure its executable.
+The Filelog receiver is not recommended for production use, as it is not optimized for performance but can be useful in a pinch. For this part of the workshop, there is script that will generate log lines in a file. The Filelog receiver will read these log lines and send them to the OpenTelemetry Collector.
+
+### Setup
+
+Create a new sub directory called `3-filelog` and copy the content from `2-gateway` across. Delete any `*.out` files.
+
+Copy one of the two version below and create the appropriate log generation script for your operating system in the new directory (`log-gen.sh` on Mac or Linux or `log-gen.ps1` for Windows). Make sure its executable.
 
 Once we started the log-gen script the directory structure will look like this:
 
@@ -132,8 +138,10 @@ while ($true) {
 {{% /tab %}}
 {{% /tabs %}}
 
- Run the new log generating script and it will start writing lines to a file called `./quotes.log`, and the console output a single line:
+ Run the new log generating script in its own shell and it will start writing lines to a file called `./quotes.log`, and the console output a single line:
 
  ```txt
  Writing logs to quotes.log. Press Ctrl+C to stop.
  ```
+
+Leave it running.

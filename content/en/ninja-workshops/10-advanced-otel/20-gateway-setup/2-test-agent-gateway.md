@@ -395,4 +395,5 @@ Now the gateway should have generated a new file  called `./gateway-traces.out` 
 
 Note that both the `./gateway-metrics.out` and the `./gateway-traces.out`  have a resource metric/attribute key  `"otelcol.service.mode"` with a value of `"agent"`
 
-We will correct that in a later section.
+We will correct that in a later section.  
+Stop the Agent and Gateway that are running using `Command-c/Ctrl-c`.

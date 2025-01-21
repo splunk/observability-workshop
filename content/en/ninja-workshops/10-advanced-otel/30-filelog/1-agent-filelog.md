@@ -223,3 +223,5 @@ Note that the `resoureLogs` section contains the same attributes as we saw in `t
 
 {{% /tab %}}
 {{% /tabs %}}
+
+Stop the Agent, Gateway and the Quotes generating script as well using `Command-c/Ctrl-c`.
