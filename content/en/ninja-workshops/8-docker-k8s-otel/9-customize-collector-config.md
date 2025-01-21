@@ -105,6 +105,8 @@ For our first example, let's enable infrastructure events monitoring for our K8s
 
 This is done by add the following line to the `values.yaml` file: 
 
+> Hint: steps to open and save in vi are in previous steps. 
+
 ``` yaml
 logsEngine: otel
 splunkObservability:
