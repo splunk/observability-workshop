@@ -7,46 +7,37 @@ time: 2 minutes
 description: Workshop Overview
 ---
 
-#### Introduction
+**Introduction**  
+The goal of this workshop is to give you hands-on experience troubleshooting an issue using Splunk Observability Cloud to identify its root cause. We’ve provided a fully instrumented microservices-based application running on Kubernetes, which sends metrics, traces, and logs to Splunk Observability Cloud for real-time analysis.
 
-The goal of this workshop is to experience an issue and use Splunk Observability Cloud to troubleshoot and identify the root cause. For this, we have provided a complete microservices-based application running in Kubernetes that has been instrumented to send **metrics, traces, and logs** to Splunk Observability Cloud.
+**Who Should Attend?**  
+This workshop is ideal for anyone looking to gain practical knowledge of Splunk Observability. It's designed for individuals with little or no prior experience with the platform.
 
-#### Who should attend?
+**What You’ll Need**  
+All you need is your laptop and a browser with access to external websites. The workshop can be attended either in-person or via Zoom. If you don’t have the Zoom client installed, you can still join using your browser.
 
-Those wanting to gain an understanding of Splunk Observability in a hands-on environment. This workshop is designed for people with little or no experience with Splunk Observability.
+**Workshop Overview**  
+In this 3-hour session, we’ll cover the fundamentals of Splunk Observability—the only platform offering streaming analytics and NoSample Full Fidelity distributed tracing—in an interactive, hands-on setting. Here's what you can expect:
 
-#### What you’ll need
+- **OpenTelemetry**  
+  Learn why OpenTelemetry is essential for modern observability and how it enhances visibility into your systems.
 
-Just you, your laptop, and a browser that can access external websites. We run these workshops in person or on Zoom, if you don’t have the Zoom client on your device you will be able to access them via a web browser.
+- **Tour of the Splunk Observability User Interface**  
+  Take a guided tour of Splunk Observability Cloud’s interface, where we’ll show you how to navigate the five key components: APM, RUM, Log Observer, Synthetics, and Infrastructure.
 
-#### What's covered in this workshop?
+- **Generate Real User Data**  
+  Dive into a simulated retail experience on the Online Boutique Website. Using your browser, mobile, or tablet, explore the site and generate real user data that includes metrics (Is there a problem?), traces (Where is the problem?), and logs (What’s causing the problem?).
 
-This 3-hour session will take you through the basics of Splunk Observability, the only observability platform with **streaming analytics**, **NoSample Full Fidelity** distributed tracing in a hands-on environment.
+- **Splunk Real User Monitoring (RUM)**  
+  Analyze the real user data collected from participants’ browser sessions. Your task is to identify poorly performing sessions and begin the troubleshooting process.
 
-##### OpenTelemetry
+- **Splunk Application Performance Monitoring (APM)**  
+  Gain end-to-end visibility by linking a RUM trace (front-end) to an APM trace (back-end). You’ll explore how telemetry from various services is captured and visualized in Splunk Observability Cloud, helping you detect anomalies and errors.
 
-A Quick introduction to **why OpenTelemetry** and why is it important for Observability.
+- **Splunk Log Observer (LO)**  
+  Learn how to leverage the "Related Content" feature to easily navigate between components. In this case, we’ll move from an APM trace to the related logs for deeper insight into issues.
 
-##### Tour of the Splunk Observability User Interface
+- **Splunk Synthetics**  
+  Discover how Synthetics can help with 24/7 monitoring of your application. We’ll walk you through setting up a simple synthetic test that runs every minute to monitor the performance and availability of the Online Boutique website.
 
-A walkthrough of the various components of Splunk Observability Cloud showing you how to easily navigate the 5 main components:- **APM, RUM, Log Observer, Synthetics and Infrastructure**.
-
-##### Generate Real User Data
-
-Enjoy some retail therapy using the Online Boutique Website. Use your browser, mobile or tablet to spend some hard-earned virtual money to send **metrics _(do we have a problem?)_, traces _(where is the problem?)_ and logs _(what is the problem?)_**.
-
-##### Splunk Real User Monitoring (RUM)
-
-Examine the real user data that has been provided by the telemetry received from all participants' browser sessions. The goal is to find a browser, mobile or tablet session that performed poorly and begin the troubleshooting process.
-
-##### Splunk Application Performance Monitoring (APM)
-
-Discover the power of **full end-to-end visibility** by jumping from a RUM trace (front-end) to an APM trace (back-end). All the services are sending telemetry (traces and spans) that Splunk Observability Cloud can visualize, analyze and use to detect anomalies and errors.
-
-##### Splunk Log Observer (LO)
-
-Related Content is a powerful feature that allows you to jump from one component to another. In this case, we will jump from the APM trace to the logs to the related logs.
-
-##### Splunk Synthetics
-
-Wouldn’t it be great if we could have **24/7** monitoring of our application, and be **alerted** when there is a problem? This is where Synthetics comes in. We will show you a simple test that runs every 1 minute and checks the performance and availability of a typical user journey through the Online Boutique.
+By the end of this session, you'll have gained practical experience with Splunk Observability Cloud and a solid understanding of how to troubleshoot and resolve issues across your application stack.

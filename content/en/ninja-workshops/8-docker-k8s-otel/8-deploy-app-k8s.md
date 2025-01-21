@@ -8,13 +8,18 @@ time: 15 minutes
 ## Update the Dockerfile
 
 With Kubernetes, environment variables are typically managed in the `.yaml` manifest files rather 
-than baking them into the Docker image.  So let's remove the following two environment variables from 
-the Dockerfile (in the `/home/splunk/workshop/docker-k8s-otel/helloworld` folder): 
+than baking them into the Docker image.  So let's remove the following two environment variables from the Dockerfile:
+
+``` bash
+vi /home/splunk/workshop/docker-k8s-otel/helloworld/Dockerfile
+```
+Then remove the following two environment variables: 
 
 ``` dockerfile
 ENV OTEL_SERVICE_NAME=helloworld
 ENV OTEL_RESOURCE_ATTRIBUTES='deployment.environment=otel-$INSTANCE'
 ```
+> To save your changes in vi, press the `esc` key to enter command mode, then type `wq!` followed by pressing the `enter/return` key.
 
 ## Build a new Docker Image 
 
@@ -61,8 +66,15 @@ sudo k3s ctr images import helloworld.tar
 
 ## Deploy the .NET Application
 
-To deploy our .NET application to K8s, let's create a file named `deployment.yaml` in `/home/splunk` with the 
-following contents: 
+> Hint: To enter edit mode in vi, press the 'i' key. To save changes, press the `esc` key to enter command mode, then type `wq!` followed by pressing the `enter/return` key. 
+
+To deploy our .NET application to K8s, let's create a file named `deployment.yaml` in `/home/splunk`:
+
+``` bash
+vi /home/splunk/deployment.yaml
+```
+
+And paste in the following:
 
 ``` yaml
 apiVersion: apps/v1
@@ -92,6 +104,12 @@ spec:
 
 Then, create a second file in the same directory named `service.yaml`: 
 
+``` bash
+vi service.yaml
+```
+
+And paste in the following: 
+
 ``` yaml
 apiVersion: v1
 kind: Service
@@ -107,7 +125,6 @@ spec:
     - port: 8080
       protocol: TCP
 ```
-
 We can then use these manifest files to deploy our application: 
 
 {{< tabs >}}
@@ -187,9 +204,19 @@ Add the following to `deployment.yaml` file you created earlier:
 
 Apply the changes with: 
 
+{{< tabs >}}
+{{% tab title="Script" %}}
+
 ``` bash
 kubectl apply -f deployment.yaml
 ```
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+``` bash
+deployment.apps/helloworld configured
+```
+{{% /tab %}}
+{{< /tabs >}}
 
 Then use `curl` to generate some traffic. 
 
