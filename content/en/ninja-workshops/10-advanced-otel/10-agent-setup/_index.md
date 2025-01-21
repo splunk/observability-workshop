@@ -7,9 +7,14 @@ weight: 1
 
 ### Setup
 
-In your `[WORKSHOP]` directory, create a sub directory called `1-agent` and change into it.
+In your `[WORKSHOP]` directory, create a subdirectory named 1-agent and navigate into it.
 
-In `[WORKSHOP]/1-agent` create a file called `agent.yaml` and copy the following starting config in to it:
+```text
+mkdir -p [WORKSHOP]/1-agent
+cd [WORKSHOP]/1-agent
+```
+
+Inside the `1-agent` directory, create a file called `agent.yaml` and paste the following starting configuration into it:
 
 ```text
 [WORKSHOP]
@@ -38,7 +43,7 @@ service:
     metrics:
       receivers: []
       processors: 
-       -
+      -
       exporters: []
     logs: 
       receivers: []
@@ -47,18 +52,27 @@ service:
       exporters: []
 ```
 
-Let's start with our first exercise:
+This is the basic structure of an OpenTelemetry Collector configuration file, defining the components you'll need to work with.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
+Let's walk through a few modifications to get started:
 
-- Add `otlp:` under the `receivers:` key (taking care to format it correctly)
-  - Add `otlp:` key
-    - Add `http:` key
-      - Add `endpoint:` key and set a value of `"0.0.0.0:4318"`
+1. **Add `otlp` receiver**: Under the `receivers` section, add the `otlp` receiver to enable the collector to receive telemetry data in the OTLP (OpenTelemetry Protocol) format.
+2. **Add `protocols` section**: Under the `otlp` receiver.
+3. **Add `http` key**: Under the `protocols` section, specify an `http` receiver type.
+4. **Add `endpoint` key**: Set the value to `0.0.0.0:4318`. This will tell the Collector to listen for incoming telemetry data on this endpoint.
 
+<!--
+  - Add `otlp:` under the `receivers:` key (taking care to format it correctly)
+    - Add `otlp:` key
+      - Add `http:` key
+        - Add `endpoint:` key and set a value of `"0.0.0.0:4318"`
+-->
 {{% expand title="{{% badge style=primary icon=lightbulb %}}**Hint**{{% /badge %}}" %}}
+For proper formatting, make sure to align the YAML structure, paying attention to indentation.
 
 ```yaml
+receivers:
   otlp:
     protocols:
       http:
@@ -67,16 +81,20 @@ Let's start with our first exercise:
 
 {{% /expand %}}
 
+5. **Add `debug` exporter**: Under the `exporters` section, add a `debug` exporter. This will help you see the collected data in a human-readable format in the logs.
+6. **Add `verbosity` level**: Set the `verbosity` of the exporter to `detailed` for more comprehensive logging output.
+7. **Update Pipelines**: Ensure that the `otlp` receiver, `memory_limiter` processor, and `debug` exporter are added to the pipelines for traces, metrics, and logs.
+
+<!--
 - Add a `debug` exporter under the `exporters:` key
   - Add `verbosity:`key and set it to a value of `detailed`
 - Add the `otlp` receiver to the `traces:`, `metrics:` and `logs:` pipelines
 - Add the `memory_limiter` processor to the `traces:`, `metrics:` and `logs:` pipelines
-- Add the `debug` exporter to the `traces:`, `metrics:` and `logs:` pipelines
+- Add the `debug` exporter to the `traces:`, `metrics:` and `logs:` pipelines-->
 {{% expand title="{{% badge style=primary icon=lightbulb %}}**Hint**{{% /badge %}}" %}}
 
 ```yaml
- # here is an example of the tracing  pipeline.....
-
+service:
   pipelines:
     traces:
       receivers: [otlp]
@@ -92,16 +110,14 @@ Let's start with our first exercise:
 {{% /notice %}}
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
- Note that in the exercise above we give you all key elements in yaml format, you just need to correct them yourself.
- Pay attention to the format as the configuration of the agent is yaml based.
+In the exercise above, we’ve provided all the key elements in YAML format, but it’s up to you to correct and complete them. Be mindful of the formatting, as the OpenTelemetry Collector configuration is YAML-based.
 
- We will only have a limited sets of hints going forward
+Going forward, we will provide only a limited set of hints, so you'll need to apply what you've learned.
 
- If you are unsure about the format you can look at **[otelbin.io](https://www.otelbin.io/)** as that wil show a default agent config when first visited
-
+If you’re ever unsure about the format, you can refer to otelbin.io, which will display the default agent configuration when first accessed.
 {{% /notice %}}
 
-By using **[otelbin.io](https://www.otelbin.io/)** to validate your agent.yaml, you can catch spelling and or configuration errors. If done correctly your configuration for all your pipelines should look like this (click on an image to enlarge):
+By using [**otelbin.io**](https://otelbin.io) to validate your `agent.yaml` file, you can quickly identify spelling or configuration errors. If everything is set up correctly, your configuration for all pipelines should look like this (click the image to enlarge):
 
 <!--![otelbin-a-1-1-all](../images/agent-1-1-all.png)-->
 ![agent-traces](../images/agent-traces.png?classes=inline&width=20vw)
@@ -112,19 +128,19 @@ By using **[otelbin.io](https://www.otelbin.io/)** to validate your agent.yaml, 
 
 ### Test & Validate
 
-Run the following command to  test your config (make sure you use the right otel collector you downloaded):
+To test your configuration, run the following command (ensure you’re using the correct OpenTelemetry Collector binary you downloaded):
 
 ```text
 ../otelcol --config=agent.yaml
 ```
 
-If you have done everything correctly, the last line of the output should be :
+If everything is set up correctly, the last line of the output should read:
 
 ```text
 2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
-Now start a new shell and create a file called `trace.json` and copy the following content (Pick one of the tabs, both tabs contain the same trace data):
+Next, open a new terminal window, create a file named `trace.json`, and copy the content from one of the tabs below (both tabs contain the same trace data):
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
@@ -199,7 +215,7 @@ Now start a new shell and create a file called `trace.json` and copy the followi
 {{% /tab %}}
 {{% /tabs %}}
 
-In the second shell, run the following command to test your setup and validate the output:
+In the second terminal window, run the following command to test your setup and validate the output:
 
 {{% tabs %}}
 {{% tab title="cURL Command" %}}
@@ -242,4 +258,4 @@ Attributes:
 {{% /tab %}}
 {{% /tabs %}}
 
-Next, we will configure a **file** exporter and use that to simluate data collection.
+Once you've updated the configuration, you’re ready to proceed to running the OpenTelemetry Collector with your new setup. This exercise sets the foundation for understanding how data flows through the OpenTelemetry Collector, including receivers, processors, and exporters.
