@@ -30,7 +30,24 @@ Again validate the agent configuration using **[otelbin.io](https://www.otelbin.
 
 ## Test the Filelog receiver
 
-From the `[WORKSHOP]/3-filelog` folder, start the collector in `gateway` mode in its own shell and  wait until it is ready to receive data. Next, make sure the quotes generating script is running its own shell, then in the 3rd shell start the agent with:
+From the `[WORKSHOP]/3-filelog` folder, start the collector in `gateway` mode in its own shell and wait until it is ready to receive data. Next, make sure the quotes generating script is running its own shell
+
+Once we start the  agent, the resulting file structure should looks lik this.
+
+WORKSHOP
+├── 1-agent
+├── 2-gateway
+├── 3-filelog
+│   ├── agent.yaml
+│   ├── gateway-logs.out
+│   ├── gateway-metrics.out
+│   ├── gateway.yaml
+│   ├── log-gen.sh
+│   ├── quotes.log
+│   └── trace.json
+└── otelcol
+
+Now, start the agent in a 3rd shell with:
 
 ```bash
 ../otelcol --config=agent.yaml
@@ -64,7 +81,7 @@ Flags: 0
         {"kind": "exporter", "data_type": "logs", "name": "debug"}
 ```
 
-As the agent is reading the `quotes.log` file and forwarding those log line  to the gateway. The gateway pipeline should cause the `gateway-log.out` file to be generated with the following output:
+As the agent is reading the `quotes.log` file and forwarding those log line  to the gateway. The gateway pipeline should cause the `gateway-log.out` file to be generated: with the following output:
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}

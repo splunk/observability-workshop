@@ -7,7 +7,22 @@ weight: 3
 
 The Filelog receiver is a receiver that reads log lines from a file. It is useful for testing and development purposes. The Filelog receiver is not recommended for production use, as it is not optimized for performance but can be useful in a pinch. For this part of the workshop, there is script that will generate log lines in a file. The Filelog receiver will read these log lines and send them to the OpenTelemetry Collector.
 
-Create a new sub directory called `3-filelog` and copy the contents from `2-gateway` across. Create the appropriate log generation script script for your operating system in the new directory (`log-gen.sh` on Mac or Linux or `log-gen.ps1` for Windows).
+Create a new sub directory called `3-filelog` and copy the content from `2-gateway` across. Delete any `*.out` files and create the appropriate log generation script for your operating system in the new directory (`log-gen.sh` on Mac or Linux or `log-gen.ps1` for Windows), make sure its executable.
+
+once we start the script the directory structuer  looks like this:
+
+```text
+WORKSHOP
+├── 1-agent
+├── 2-gateway
+├── 3-filelog
+│   ├── agent.yaml
+│   ├── gateway.yaml
+│   ├── log-gen.sh
+│   ├── quotes.log
+│   └── trace.json
+└── otelcol
+```
 
 <!--{{% resources sort="asc" style="splunk" title="Log Generation Scripts" icon="scroll" /%}}-->
 
