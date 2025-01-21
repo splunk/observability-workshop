@@ -5,7 +5,7 @@ extensions:
     timeout: 1s
     compaction:
       on_start: true
-      directory: ./checkpoint-folder
+      directory: ./checkpoint-folder/tmp
       max_transaction_size: 65_536
 receivers:
   otlp:
