@@ -16,20 +16,21 @@ receivers:
   otlp:
     protocols:
       http:
-        endpoint: "0.0.0.0:5318" # Port changed to prevent conflict with agent
-        include_metadata: true # Enable token pass through mode
+        endpoint: "0.0.0.0:5318"  # Port changed to prevent conflict with agent
+        include_metadata: true    # Enable token pass through mode
 
 processors:
   memory_limiter:
     check_interval: 2s
     limit_mib: 512
   batch:
-    X-SF-Token: # Include metadata in batches
-  resource/add_mode:               # Processor Type/Name
-    attributes:                    # Array of Attributes and modifications 
-    - action: insert               # Action taken is to `insert' a key 
-      key: otelcol.service.mode    # key Name
-      value: "agent"               # Key Value
+    X-SF-Token:                   # Include metadata in batches
+  resource/add_mode:              # Processor Type/Name
+    attributes:                   # Array of Attributes and modifications 
+    - action: upsert              # Action taken is to `insert' or 'update' a key 
+      key: otelcol.service.mode   # key Name
+      value: "gateway"            # Key Value
+
 exporters:
   debug:
     verbosity: detailed
@@ -72,9 +73,7 @@ service:
   exporters:
     file/traces:                       # Exporter Type/Name
       path: "./gateway-traces.out"     # Path where trace data will be saved in OTLP json format
-      rotation:                        # Rotation settings for trace file
-        max_megabytes: 2               # Maximum file size in MB before rotation
-        max_backups: 2                 # Maximum number of backups to keep
+      append: false                    # Overwrite the file each time
   ```
 
 - **Create similar exporters for metrics and logs**: Using the above example, set the exporter names appropriately and update the file paths to `./gateway-metrics.out` for metrics and `./gateway-logs.out` for logs.

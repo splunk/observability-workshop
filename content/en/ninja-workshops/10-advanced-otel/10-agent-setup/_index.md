@@ -77,9 +77,8 @@ Let's walk through a few modifications to get things started. For proper formatt
 - **Add a `debug` exporter**:
 
   ```yaml
-    # Outputs telemetry data to the console for debugging purposes
-    debug:
-      # Exporter outputs all details of every telemetry record
+    debug:                          # Exporter Type
+      # Exporter outputs detailed Debug info of every telemetry record
       verbosity: detailed
   ```
 

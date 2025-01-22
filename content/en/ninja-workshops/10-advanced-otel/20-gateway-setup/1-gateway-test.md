@@ -6,7 +6,7 @@ weight: 1
 
 ## Test Gateway
 
-Open a new terminal and navigateto the`[WORKSHOP]/2-gateway` folder and run the following command to test the gateway configuration:
+Open a new terminal and navigate to the`[WORKSHOP]/2-gateway` folder and run the following command to test the gateway configuration:
 
 ```text
 ../otelcol --config=gateway.yaml
@@ -39,7 +39,7 @@ Remaining in the `[WORKSHOP]/2-gateway` folder. Open the `agent.yaml` we copied 
         X-SF-Token: "FAKE_SPLUNK_ACCESS_TOKEN"
   ```
 
-- **Update Pipelines**: Add the `otlphttp` exporter to the `traces`, `metrics`, and `logs` pipelines.
+- **Update Pipelines**: replace the `file:` exporter with the `otlphttp` exporter in the `traces`, `metrics`, and `logs` pipelines.
 
   ```yaml
   service:
@@ -49,7 +49,7 @@ Remaining in the `[WORKSHOP]/2-gateway` folder. Open the `agent.yaml` we copied 
       processors:        # Array of Processors in thi pipeline
       - memory_limiter   # You also could use [memory_limiter]
       # Array of Exporters in this pipeline
-      exporter: [otlphttp, file, debug]
+      exporter: [otlphttp, debug]
   ```
 
 {{% /notice %}}  
@@ -64,7 +64,7 @@ This exporter is included in the default configuration of the Splunk Distributio
 
 The older `sapm` and `signalfx` exporters are being phased out gradually.  
 
-##### Key Details
+#### Key Details
 
 - **Headers Configuration**:
   Use the `headers:` key with the subkey `X-SF-Token:` to pass an access token. This aligns with the OpenTelemetry approach for token-based authentication.

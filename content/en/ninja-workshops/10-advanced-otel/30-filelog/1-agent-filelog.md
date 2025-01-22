@@ -65,7 +65,7 @@ Resource attributes:
      -> com.splunk/source: Str(./quotes.log)
      -> host.name: (YOUR_HOST_NAME)
      -> os.type: Str(YOUR_OS)
-     -> otelcol.service.mode: Str(agent)
+     -> otelcol.service.mode: Str(gateway)
 ScopeLogs #0
 ScopeLogs SchemaURL:
 InstrumentationScope

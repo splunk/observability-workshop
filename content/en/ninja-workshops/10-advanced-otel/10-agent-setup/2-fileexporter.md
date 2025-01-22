@@ -14,9 +14,7 @@ To capture more than just debug output on the screen, we also want to generate o
   ```yaml
     file:                  # Exporter Type
       path: "./agent.out"  # Path where data will be saved in OTLP json format
-      rotation:            # Rotation settings for trace file
-        max_megabytes: 2   # Maximum file size in MB before rotation
-        max_backups: 2     # Maximum number of backups to keep
+      append: false        # Overwrite the file each time
   ```
 
 - **Update the Pipelines Section**: Add the `file` exporter to the `metrics`, `traces` and `logs` pipelines (leave debug as the first in the array)
@@ -24,7 +22,7 @@ To capture more than just debug output on the screen, we also want to generate o
   ```yaml
      #traces:
       metrics:                    # Metrics Pipeline
-        receivers: [otlp].        # Array of Metric Receivers
+        receivers: [otlp]         # Array of Metric Receivers
         processors:               # Array of Metric Processors
         - memory_limiter          # Handles memory limits for this Pipeline
         exporters: [debug, file]  # Array of Metric Exporters
