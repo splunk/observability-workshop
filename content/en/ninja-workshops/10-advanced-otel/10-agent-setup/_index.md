@@ -36,18 +36,18 @@ service:
   pipelines:
     traces:
       receivers: []
-      processors: 
-      -                      # You also could use []
+      processors:            # Alternative syntax option [memory_limiter]
+      - memory_limiter
       exporters: []
     metrics:
       receivers: []
       processors:
-      -
+      - memory_limiter
       exporters: []
     logs: 
       receivers: []
       processors:
-      - 
+      - memory_limiter
       exporters: []
 ```
 
@@ -91,8 +91,8 @@ Let's walk through a few modifications to get things started. For proper formatt
         processors:        # Array of Processors in thi pipeline
         - memory_limiter   # You also could use [memory_limiter]
         exporter: [debug]  # Array of Exporters in this pipeline
-      # metrics:           # Metrics Pipeline
-      # logs:              # Logs Pipeline
+     #metrics:             # Metrics Pipeline
+     #logs:                # Logs Pipeline
   ```
 
 {{% /notice %}}

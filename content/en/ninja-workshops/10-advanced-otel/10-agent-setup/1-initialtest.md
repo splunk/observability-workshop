@@ -1,11 +1,10 @@
 ---
-title: Test out Initial agent config
-linkTitle: 1.1 Test Agent config
+title: Testing the initial agent configuration
+linkTitle: 1.1 Test Configuration
 weight: 1
 ---
-### Test & Validate
 
-Once you've updated the configuration, you’re ready to proceed to running the OpenTelemetry Collector with your new setup. This exercise sets the foundation for understanding how data flows through the OpenTelemetry Collector, including receivers, processors, and exporters.
+Once you've updated the configuration, you’re ready to proceed to running the OpenTelemetry Collector with your new setup. This exercise sets the foundation for understanding how data flows through the OpenTelemetry Collector.
 
 Run the following command from the `1-agent` directory (ensure you’re using the correct OpenTelemetry Collector binary you downloaded):
 
@@ -18,10 +17,12 @@ If everything is set up correctly, the  first and last line of the output should
 ```text
 2025/01/13T12:43:51 settings.go:478: Set config to [agent.yaml]
 <snip to the end>
-2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
+2025-01-13T12:43:51.747+0100 info service@v0.117.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
-Next, open a new terminal window, create a file named `trace.json`, and copy the content from one of the tabs below (both tabs contain the same trace data):
+Next, open a new terminal window and navigate to the `[WORKSHOP]/1-agent` directory.  
+
+Create a new file named `trace.json` and copy the content from one of the tabs below (both tabs contain the same trace data).
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
