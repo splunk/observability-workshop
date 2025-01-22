@@ -1,0 +1,36 @@
+receivers:
+  otlp:
+    protocols:
+      http:
+        endpoint: "0.0.0.0:5318" # Port changed to prevent conflict with agent
+        include_metadata: true # Enable token pass through mode
+
+processors:
+  memory_limiter:
+    check_interval: 2s
+    limit_mib: 512
+  batch:
+    X-SF-Token: # Include metadata in batches
+  resource/add_mode:               # Processor Type/Name
+    attributes:                    # Array of Attributes and modifications 
+    - action: insert               # Action taken is to `insert' a key 
+      key: otelcol.service.mode    # key Name
+      value: "agent"               # Key Value
+exporters:
+  debug:
+    verbosity: detailed
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [memory_limiter]
+      exporters: [ debug]
+    metrics:
+      receivers: [otlp]
+      processors: [memory_limiter]
+      exporters: [ debug]
+    logs:
+      receivers: [otlp]
+      processors: [memory_limiter]
+      exporters: [ debug]

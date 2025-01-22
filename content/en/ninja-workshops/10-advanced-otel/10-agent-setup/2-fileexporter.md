@@ -1,38 +1,35 @@
 ---
-title: Add a File exporter
-linkTitle: 1.2 Add File exporter
+title: Configuring a File exporter
+linkTitle: 1.2 Adding a File exporter
 weight: 2
 ---
 ### Setup
 
-We not only want to see some debug flying across the screen, we also  want to see the output generated during the export phase of the pipeline. For this we are going to add a `FileExporter`
-
-Let's run our next exercise:
+To capture more than just debug output on the screen, we also want to generate output during the export phase of the pipeline. For this, we'll add a **File Exporter** to write OTLP data to files for comparison.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Add** `file:` **exporter** that writes the OTLP data to files for comparison.
+- **Configuring a `file` exporter**: Add the following under the `exporters` section of your `agent.yaml`:
 
   ```yaml
-  exporters:
-    file:                            # Exporter Type
-      path: "./agent.out"            # Path where data will be saved in OTLP json format
-      rotation:                      # Rotation settings for trace file
-        max_megabytes: 2             # Maximum file size in MB before rotation
-        max_backups: 2               # Maximum number of backups to keep
+    file:                  # Exporter Type
+      path: "./agent.out"  # Path where data will be saved in OTLP json format
+      rotation:            # Rotation settings for trace file
+        max_megabytes: 2   # Maximum file size in MB before rotation
+        max_backups: 2     # Maximum number of backups to keep
   ```
 
-- **Update the Pipelines Section**: Add `file` exporter to the `metrics`, `traces` and `logs` pipelines. (leave debug as the first in the array)
+- **Update the Pipelines Section**: Add the `file` exporter to the `metrics`, `traces` and `logs` pipelines (leave debug as the first in the array)
 
-```yaml
-    # traces Pipeline
-      metrics:                       # Metrics Pipeline
-        receivers: [otlp].           # Array of Metric Receivers
-        processors:                  # Array of Metric Processors
-        - memory_limiter             # Handles memory limits for this Pipeline
-        exporters: [debug,file]      # Array of Metric Exporters
-     # logs Pipeline  
-```
+  ```yaml
+     #traces:
+      metrics:                    # Metrics Pipeline
+        receivers: [otlp].        # Array of Metric Receivers
+        processors:               # Array of Metric Processors
+        - memory_limiter          # Handles memory limits for this Pipeline
+        exporters: [debug, file]  # Array of Metric Exporters
+     #logs:
+  ```
 
 {{% /notice %}}
 
@@ -69,10 +66,12 @@ If you send a trace again, you should get the same output as we saw previously:
 You now should have a file in the same directory called `agent.out`:
 
 ```text
-[WORKSHOP]/1-agent/
-├── agent.yaml    # Configuration file
-├── agent.out     # Trace export file
-├── trace.json    # Trace JSON file
+[WORKSHOP]
+├── 1-agent
+│   ├── agent.out
+│   ├── agent.yaml
+│   └── trace.json
+└── otelcol
 
 ```
 
@@ -151,10 +150,10 @@ In the file the trace is written as a single line in JSON format, when you look 
 {{% /tab %}}
 {{% /tabs %}}
 
+---
+
 If you want to see the JSON expanded on your device, you can cat the file and pipe it though `jq` (if you have it installed).
 
 ```bash
 cat ./agent.out | jq
 ```
-
-Copy `agent.out` to `agent-1.out` so you can use it to compare against other results later on in this workshop.

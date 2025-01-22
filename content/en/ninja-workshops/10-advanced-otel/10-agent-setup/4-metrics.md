@@ -5,34 +5,26 @@ weight: 4
 ---
 ### Setup
 
-As a last exercise in this section, we are going to add a metric receiver that triggers at startup, then scrapes once every hour (to reduce spam):
+As a final exercise in this section, we’ll add the `hostmetric` receiver that triggers at startup and scrapes metrics once every hour to minimize unnecessary output.
 
  {{% notice title="Exercise" style="green" icon="running" %}}
  To show metrics flowing in, we are going to modify the agent.yaml some more:
 
-- **Add** `hostmetrics:` **receiver:**
+- **Add the `hostmetrics:` receiver**: Add the following under the `receivers` section:
 
   ```yaml
-    # otlp                           # Previous otlp receiver setup 
-    hostmetrics:                     # Receiver Type
-      collection_interval: 3600s.    # Sets the collection cycle to one hour 
-      scrapers:                      # Array of Host Metric scrapers
-        cpu:                         # Scraper for cpu metrics
+    hostmetrics:                  # Receiver Type
+      collection_interval: 3600s  # Scrape metrics every hour
+      scrapers:                   # Array of hostmetric scrapers
+        cpu:                      # Scraper for cpu metrics
   ```
 
-- **Add** `hostmetrics` **receiver** to `metrics:` Pipeline
+- **Update the `metrics` pipeline**: Add the `hostmetrics` receiver to the `metrics` pipeline in the `service` section:
 
   ```yaml
-      # Traces Pipeline section
     metrics:
       receivers: [otlp, hostmetrics]  # Array of Metric Receivers
-      processors:                     # Array of Metric Processors
-       - memory_limiter               # Handles memory limits for this Pipeline
-       - resourcedetection            # Adds System Attributes to data  flowing through this pipeline 
-       - resource/add_mode            # Adds Collectors mode to data flowing through this pipeline 
-      exporters: [debug,file]         # Array of exporters 
-      # Logs Pipeline section
-
+     #processors:                     # Array of Metric Processors
   ```
 
 {{% /notice %}}
@@ -257,4 +249,4 @@ Also note that in the `resourceMetrics` section you will find the same attribute
 {{% /tab %}}
 {{% /tabs %}}
 
-Stop the agent for now using `Command-c/Ctrl-c`.
+Stop the Agent and Gateway processes by pressing Command-C (macOS) or Ctrl-C (Windows/Linux) in their respective terminals.

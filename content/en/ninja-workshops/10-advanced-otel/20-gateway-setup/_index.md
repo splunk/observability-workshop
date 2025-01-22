@@ -25,7 +25,11 @@ processors:
     limit_mib: 512
   batch:
     X-SF-Token: # Include metadata in batches
-
+  resource/add_mode:               # Processor Type/Name
+    attributes:                    # Array of Attributes and modifications 
+    - action: insert               # Action taken is to `insert' a key 
+      key: otelcol.service.mode    # key Name
+      value: "agent"               # Key Value
 exporters:
   debug:
     verbosity: detailed
