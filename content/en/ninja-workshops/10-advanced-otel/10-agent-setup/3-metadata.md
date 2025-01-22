@@ -1,35 +1,33 @@
 ---
 title: Adding Resource Metadata
-linkTitle: 1.2 Resource Metadata
-weight: 2
+linkTitle: 1.3 Resource Metadata
+weight: 3
 ---
 ### Setup
 
-What we have so far is basically a straight copy from the trace we send though the OTel collector. Now lets start adding some metadata to the base trace, this is information we can use during trouble shooting etc.
+What we have done so far is basically exported a straight copy of trace we send though the OpenTelemetry collector. Now let's start adding some metadata to the base trace using `processors`, this is information we can use during trouble shooting and can be used for Related Content.
 
 Let's run our next exercise:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- Add `resourcedetection:` under the `processors:` key
-  - Add `detectors:` key and set a value of `[system]`
-  - Add `override:` key and set a value of `true`
-- Add `resource:` under the `processors:` key and name it `/add_mode:`
-  - Add `attributes:` key
-    - Add `- action:` key and set a value of `insert` * The - is on the same ident as of attributes
-      - Add `key:` key and set a value of `otelcol.service.mode`
-      - Add `value:` key wand set a value of `"agent"`
+- **Add** `resourcedetection:` **processor**
 
-{{% expand title="{{% badge style=primary icon=lightbulb %}}**Hint**{{% /badge %}}" %}}
+  ```yaml
+    resourcedetection:
+    detectors: [system]
+    override: true
+  ```
+
+- **Add** `resource:` **processor** and name it `add_mode:`
 
 ```yaml
   resource/add_mode:
     attributes:
-    - action:
-      key: #.......
-```
-
-{{% /expand %}}
+    - action: insert
+      key: otelcol.service.mode
+      value: "agent"
+  ```
 
 - Add the two processors to `processors:` array in the pipelines (leaving `memory_limiter` as the first one)
 
