@@ -61,7 +61,7 @@ Next, we'll update the final stage of the Dockerfile with the following changes:
 
 It's easiest to simply replace the entire final stage with the following:
 
-> Note: replace `$INSTANCE` in your Dockerfile with your instance name,
+> **IMPORTANT** replace `$INSTANCE` in your Dockerfile with your instance name,
 > which can be determined by running `echo $INSTANCE`.
 
 ``` dockerfile 

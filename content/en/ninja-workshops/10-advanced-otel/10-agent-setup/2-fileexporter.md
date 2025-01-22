@@ -1,27 +1,42 @@
 ---
 title: Add a File exporter
-linkTitle: 1.1 File exporter
-weight: 1
+linkTitle: 1.2 Add File exporter
+weight: 2
 ---
 ### Setup
 
-We want to see the output generated during the export phase of the pipeline, so we are going to write the OTLP data to files for comparison.
+We not only want to see some debug flying across the screen, we also  want to see the output generated during the export phase of the pipeline. For this we are going to add a `FileExporter`
 
-Let's run our second exercise:
+Let's run our next exercise:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- Add `file:` under `exporters:` key
-  - Add `path:` key with a value of `"./agent.out"`
-  - Add `rotation:` key
-    - Add `max_megabytes:` key and set a value of `2` # This set the max size for the file exporter output file
-    - Add `max_backups:` key and set a value of `2` # This will set the max number rotational backup it creates
+- **Add** `file:` **exporter** that writes the OTLP data to files for comparison.
 
-Add `file` as an exporter to  exporters array in the `metrics`, `traces` and `logs` pipelines. (leave debug as the first in the array)
+  ```yaml
+  exporters:
+    file:                            # Exporter Type
+      path: "./agent.out"            # Path where data will be saved in OTLP json format
+      rotation:                      # Rotation settings for trace file
+        max_megabytes: 2             # Maximum file size in MB before rotation
+        max_backups: 2               # Maximum number of backups to keep
+  ```
+
+- **Update the Pipelines Section**: Add `file` exporter to the `metrics`, `traces` and `logs` pipelines. (leave debug as the first in the array)
+
+```yaml
+    # traces Pipeline
+      metrics:                       # Metrics Pipeline
+        receivers: [otlp].           # Array of Metric Receivers
+        processors:                  # Array of Metric Processors
+        - memory_limiter             # Handles memory limits for this Pipeline
+        exporters: [debug,file]      # Array of Metric Exporters
+     # logs Pipeline  
+```
 
 {{% /notice %}}
 
-Validate your updated `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)**. As an example, here is how the `Traces:` section of your pipelines should look:
+Validate your updated `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)**. As an example, here is how the `Traces:` section of your pipelines should loo in OTelBin:
 
 ![otelbin-a-1-2-w](../../images/agent-1-2-traces.png?width=30vw)
 
@@ -32,7 +47,7 @@ Validate your updated `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)*
 Restart your collect this time with your new config to test it:
 
 ```bash
-[WORKSHOP]/otelcol --config=agent.yaml
+../otelcol --config=agent.yaml
 ```
 
 Again, if you have done everything correctly, the last line of the output should be:
