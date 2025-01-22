@@ -101,8 +101,8 @@ Next, open a new terminal window, create a file named `trace.json`, and copy the
 ```text
 [WORKSHOP]
 ├── 1-agent         # Module directory
-│   └── trace.json  # Sample trace data
 │   └── agent.yaml  # OpenTelemetry Collector configuration file
+│   └── trace.json  # Sample trace data
 └── otelcol         # OpenTelemetry Collector binary
 ```
 

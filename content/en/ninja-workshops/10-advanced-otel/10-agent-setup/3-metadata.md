@@ -23,12 +23,21 @@ Let's run our next exercise:
 - **Add** `resource:` **processor** and name it `add_mode:` to show what mode the agenn uses.
 
   ```yaml
+<<<<<<< HEAD
   resource/add_mode:               # Processor Type/Name
     attributes:                    # Array of Attributes and modifications 
     - action: insert               # Action taken is to `insert' a key 
       key: otelcol.service.mode    # key Name
       value: "agent"               # Key Value
   ```
+=======
+    resource/add_mode:
+      attributes:
+      - action: insert
+        key: otelcol.service.mode
+        value: "agent"
+    ```
+>>>>>>> abf6c90d9 (Formatting fixes)
 
 - Add the two processors to **ALL 3** `processors:` arrays in the pipelines (leaving `memory_limiter` as the first one)
 
