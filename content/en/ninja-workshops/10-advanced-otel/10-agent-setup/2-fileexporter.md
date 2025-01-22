@@ -1,7 +1,7 @@
 ---
 title: Add a File exporter
-linkTitle: 1.1 File exporter
-weight: 1
+linkTitle: 1.2 Add File exporter
+weight: 2
 ---
 ### Setup
 
