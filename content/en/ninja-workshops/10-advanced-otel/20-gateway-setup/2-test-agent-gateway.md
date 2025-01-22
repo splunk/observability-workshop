@@ -1,18 +1,17 @@
 ---
-title: Testing the Route from agent via gateway
-linkTitle: 2.2 Agent -> Gateway
-weight: 2
+title: Sending data from the Agent to the Gateway
+linkTitle: 2.2 Send Data from Agent to Gateway
 ---
 
 ## Validate Agent and Gateway routing
 
-Verify the gateway is running in its own shell and is ready to receive data, then in the agent shell, start the agent with:
+Verify the gateway is running in its own terminal and is ready to receive data, then in the agent terminal, run the following command to start the agent:
 
 ```bash
-[WORKSHOP]/otelcol --config=agent.yaml
+../otelcol --config=agent.yaml
 ```
 
-The agent should start to send *cpu* metrics again and both the agent and the gateway should reflect that in their debug output similar like the following snippet from the console's:
+Once started, the agent will begin sending CPU metrics. Both the agent and the gateway should reflect this in their debug output. The output should look similar to the following:
 
 ```text
 NumberDataPoints #37
@@ -39,10 +38,9 @@ Value: 0.000000
     {"kind": "exporter", "data_type": "metrics", "name": "debug"}
 ```
 
-At the the moment you started the agent, it did collect the above metrics and send it along towards the gateway.  
-The Otel collector running `gateway` mode should have created a file called `./gateway-metrics.out` as part of the exporting phase of the pipeline service.
+When the agent starts, it collects and sends the above metrics to the gateway. The OpenTelemetry Collector running in gateway mode should create a file named `./gateway-metrics.out` during the exporting phase of the pipeline service.
 
-Check to see if `gateway-metrics.out` has been created. It should contain at leasts the following metrics for `cpu1`
+Open the `gateway-metrics.out` file. It should contain CPU metrics, including details similar to those shown above.
 
 {{% tabs %}}
 {{% tab title="Compact JSON" %}}
@@ -255,10 +253,12 @@ Check to see if `gateway-metrics.out` has been created. It should contain at lea
 
 {{% /tab %}}
 {{% /tabs %}}
-Next, check if you copied the `trace.json` across to the  `2-gateway` folder. Make sure both the gateway and the agent are running in their own shell, then in a 3rd shell run the curl command to send a trace:
+
+Next, check that you have copied the `trace.json` to the  `2-gateway` folder. Make sure both the gateway and the agent are running in their respective terminals.
+
+Open a third terminal and run the following curl command to send a trace:
 
 {{% tabs %}}
-
 {{% tab title="cURL Command" %}}
 
 ```ps1
@@ -266,7 +266,6 @@ Next, check if you copied the `trace.json` across to the  `2-gateway` folder. Ma
 ```
 
 {{% /tab %}}
-
 {{% tab title="Debug Output Agent/Gateway" %}}
 
  ```text
@@ -299,7 +298,7 @@ Attributes:
 {{% /tab %}}
 {{% /tabs %}}
 
-Now the gateway should have generated a new file  called `./gateway-traces.out`  and it should contain the following trace:
+After executing the command, the gateway should generate a new file named `./gateway-traces.out`:
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
@@ -393,7 +392,8 @@ Now the gateway should have generated a new file  called `./gateway-traces.out` 
 {{% /tab %}}
 {{% /tabs %}}
 
-Note that both the `./gateway-metrics.out` and the `./gateway-traces.out`  have a resource metric/attribute key  `"otelcol.service.mode"` with a value of `"agent"`
+Note that both `./gateway-metrics.out` and `./gateway-traces.out` include a resource attribute key/value pair for `otelcol.service.mode` with a value of `agent`.
 
-We will correct that in a later section.  
-Stop the Agent and Gateway that are running using `Command-c/Ctrl-c`.
+This will be corrected in a later section by adding a `resource` processor to the gateway configuration.
+
+To proceed, stop the Agent and Gateway processes by pressing `Command-C` (macOS) or `Ctrl-C` (Windows/Linux) in their respective terminals.

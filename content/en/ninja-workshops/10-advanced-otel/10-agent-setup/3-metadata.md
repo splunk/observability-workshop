@@ -1,44 +1,63 @@
 ---
 title: Adding Resource Metadata
-linkTitle: 1.2 Resource Metadata
-weight: 2
+linkTitle: 1.3 Resource Metadata
+weight: 3
 ---
 ### Setup
 
-What we have so far is basically a straight copy from the trace we send though the OTel collector. Now lets start adding some metadata to the base trace, this is information we can use during trouble shooting etc.
+What we have done so far is basically exported a straight copy of trace we send though the OpenTelemetry collector. Now let's start adding some metadata to the base trace using `processors`, this is information we can use during trouble shooting and can be used for Related Content.
 
 Let's run our next exercise:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
+ We are going to modify data flowing though our pipelines with the following changes to the agent.yaml:
 
-- Add `resourcedetection:` under the `processors:` key
-  - Add `detectors:` key and set a value of `[system]`
-  - Add `override:` key and set a value of `true`
-- Add `resource:` under the `processors:` key and name it `/add_mode:`
-  - Add `attributes:` key
-    - Add `- action:` key and set a value of `insert` * The - is on the same ident as of attributes
-      - Add `key:` key and set a value of `otelcol.service.mode`
-      - Add `value:` key wand set a value of `"agent"`
+- **Add** `resourcedetection:` **processor** to detect info about the system the agent runs on.
 
-{{% expand title="{{% badge style=primary icon=lightbulb %}}**Hint**{{% /badge %}}" %}}
+  ```yaml
+  resourcedetection:               # Processor Type
+    detectors: [system]            # Array of Resource Detectors - (usually has cloud providers also)
+    override: true                 # Existing attributes in data are overwritten by the processor.
+  ```
 
-```yaml
-  resource/add_mode:
-    attributes:
-    - action:
-      key: #.......
-```
+- **Add** `resource:` **processor** and name it `add_mode:` to show what mode the agenn uses.
 
-{{% /expand %}}
+  ```yaml
+<<<<<<< HEAD
+  resource/add_mode:               # Processor Type/Name
+    attributes:                    # Array of Attributes and modifications 
+    - action: insert               # Action taken is to `insert' a key 
+      key: otelcol.service.mode    # key Name
+      value: "agent"               # Key Value
+  ```
+=======
+    resource/add_mode:
+      attributes:
+      - action: insert
+        key: otelcol.service.mode
+        value: "agent"
+    ```
+>>>>>>> abf6c90d9 (Formatting fixes)
 
+- Add the two processors to **ALL 3** `processors:` arrays in the pipelines (leaving `memory_limiter` as the first one)
 
-- Add the two processors to `processors:` array in the pipelines (leaving `memory_limiter` as the first one)
+  ```yaml
+  traces:                         # Traces Pipeline
+    receivers: [otlp]             # Array of Trace Receivers
+    processors:                   # Array of Trace Processors
+    - memory_limiter              # Handles memory limits for this Pipeline
+    - resourcedetection           # Adds System Attributes to data flowing through this pipeline 
+    - resource/add_mode           # Adds Collector mode to data flowing through this pipeline 
+    exporters: [debug,file]       # Array of Trace exporters 
+    # metric pipeline
+    # logs pipeline
+  ```
 
 {{% /notice %}}
 
 ---
 
-Validate your new `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)**.
+Validate your new `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)** for spelling etc..
 
 ![otelbin-a-1-3-logs](../../images/agent-1-3-logs.png?width=50vw)
 

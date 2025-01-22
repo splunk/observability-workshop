@@ -101,6 +101,8 @@ spec:
             - name: PORT
               value: "8080"
 ```
+> [!tip]- What is a Deployment in Kubernetes?
+> The deployment.yaml file is a kubernetes config file that is used to define a deployment resource. This file is the cornerstone of managing applications in Kubernetes! The deployment config defines the deployment’s ***desired state*** and Kubernetes then ensures the ***actual*** state matches it. This allows application pods to self-heal and also allows for easy updates or roll backs to applications.
 
 Then, create a second file in the same directory named `service.yaml`: 
 
@@ -125,6 +127,10 @@ spec:
     - port: 8080
       protocol: TCP
 ```
+
+> [!tip]- What is a Service in Kubernetes?
+> A Service in Kubernetes is an abstraction layer, working like a middleman, giving you a fixed IP address or DNS name to access your Pods, which stays the same, even if Pods are added, removed, or replaced over time. 
+
 We can then use these manifest files to deploy our application: 
 
 {{< tabs >}}
@@ -184,7 +190,8 @@ environment variables to tell it where to send the data.
 
 Add the following to `deployment.yaml` file you created earlier: 
 
-> Be sure to replace $INSTANCE with your instance name.
+> **IMPORTANT** replace `$INSTANCE` in your Dockerfile with your instance name,
+> which can be determined by running `echo $INSTANCE`.
 
 ``` yaml
           env:
