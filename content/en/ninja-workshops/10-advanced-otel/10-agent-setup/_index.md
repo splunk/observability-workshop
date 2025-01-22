@@ -7,7 +7,7 @@ weight: 1
 
 ### Setup
 
-In your `[WORKSHOP]` directory, create a subdirectory named 1-agent and navigate into it.
+In your `[WORKSHOP]` directory, create a subdirectory named `1-agent` and navigate into it.
 
 ```text
 mkdir -p [WORKSHOP]/1-agent
@@ -73,15 +73,17 @@ For proper formatting, make sure to align the YAML structure, paying attention t
     otlp:
       protocols:                    # list of Protocols used 
         http:                       # This wil enable the HTTP Protocol
-          endpoint: "0.0.0.0:4318"  # The agent will listen for incoming telemetry data on this endpoint.
+          endpoint: "0.0.0.0:4318"  # Endpoint for incoming telemetry data
   ```
 
 - **Add a `debug` exporter**:
 
   ```yaml
   exporters:
-    debug:                          # Shows collected data in a human-readable format on the console.
-      verbosity: detailed           # Set the detailed level for the output
+    # Outputs telemetry data to the console for debugging purposes
+    debug:
+      # Exporter outputs all details of every telemetry record
+      verbosity: detailed
   ```
 
 - **Update Pipelines**: Ensure that the `otlp` receiver, `memory_limiter` processor, and `debug` exporter are added to the pipelines for traces, metrics, and logs.
@@ -89,14 +91,11 @@ For proper formatting, make sure to align the YAML structure, paying attention t
   ```yaml
   service:
     pipelines:
-      traces:                       # Traces Pipeline
-        receivers: [otlp]           # Array of Trace Receivers in this pipeline
-        processors:                 # Array of Processors in this pipeline            
-        - memory_limiter            # You also could use [memory_limiter]
-        exporter: [debug]           # Array of Trace Exporters in this pipeline            
-
-      # metrics pipeline section
-      # logs pipeline section  
+      traces:              # Traces Pipeline
+        receivers: [otlp]  # Array of receivers in this pipeline
+        processors:        # Array of Processors in thi pipeline
+        - memory_limiter   # You also could use [memory_limiter]
+        exporter: [debug]  # Array of Exporters in this pipeline
   ```
 
 {{% /notice %}}
