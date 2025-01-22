@@ -16,13 +16,6 @@ cd [WORKSHOP]/1-agent
 
 Inside the `1-agent` directory, create a file called `agent.yaml` and paste the following starting configuration into it:
 
-```text
-[WORKSHOP]
-├── 1-agent         # Module directory
-│   └── agent.yaml  # OpenTelemetry Collector configuration file
-└── otelcol         # OpenTelemetry Collector binary
-```
-
 ```yaml
 receivers:
 
@@ -35,77 +28,73 @@ processors:
   
 service:
   pipelines:
+
     traces:
       receivers: []
-      processors:
-      -
+      processors: 
+      -                                # You also could use []
       exporters: []
+
     metrics:
       receivers: []
-      processors: 
+      processors:                      # You also could use [] 
       -
       exporters: []
+      
     logs: 
       receivers: []
-      processors: 
+      processors:                      # You also could use [] 
       - 
       exporters: []
 ```
 
-This is the basic structure of an OpenTelemetry Collector configuration file, defining the components you'll need to work with.
+This is the basic structure of an OpenTelemetry Collector configuration file, defining the components you'll need to work with. Once done, your directory structure should now look like this :
+
+```text
+[WORKSHOP]
+├── 1-agent         # Module directory
+│   └── agent.yaml  # OpenTelemetry Collector configuration file
+└── otelcol         # OpenTelemetry Collector binary
+```
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-Let's walk through a few modifications to get started:
+Let's walk through a few modifications to get things started.
 
-1. **Add `otlp` receiver**: Under the `receivers` section, add the `otlp` receiver to enable the collector to receive telemetry data in the OTLP (OpenTelemetry Protocol) format.
-2. **Add `protocols` section**: Under the `otlp` receiver.
-3. **Add `http` key**: Under the `protocols` section, specify an `http` receiver type.
-4. **Add `endpoint` key**: Set the value to `0.0.0.0:4318`. This will tell the Collector to listen for incoming telemetry data on this endpoint.
-
-<!--
-  - Add `otlp:` under the `receivers:` key (taking care to format it correctly)
-    - Add `otlp:` key
-      - Add `http:` key
-        - Add `endpoint:` key and set a value of `"0.0.0.0:4318"`
--->
-{{% expand title="{{% badge style=primary icon=lightbulb %}}**Hint**{{% /badge %}}" %}}
 For proper formatting, make sure to align the YAML structure, paying attention to indentation.
 
-```yaml
-receivers:
-  otlp:
-    protocols:
-      http:
-        endpoint: "0.0.0.0:4318"
-```
+- **Add** an `otlp` **receiver**: Configure to use `http` as its `protocol`.
 
-{{% /expand %}}
+  ```yaml
+  receivers:
+    otlp:
+      protocols:                    # list of Protocols used 
+        http:                       # This wil enable the HTTP Protocol
+          endpoint: "0.0.0.0:4318"  # The agent will listen for incoming telemetry data on this endpoint.
+  ```
 
-5. **Add `debug` exporter**: Under the `exporters` section, add a `debug` exporter. This will help you see the collected data in a human-readable format in the logs.
-6. **Add `verbosity` level**: Set the `verbosity` of the exporter to `detailed` for more comprehensive logging output.
-7. **Update Pipelines**: Ensure that the `otlp` receiver, `memory_limiter` processor, and `debug` exporter are added to the pipelines for traces, metrics, and logs.
+- **Add a `debug` exporter**:
 
-<!--
-- Add a `debug` exporter under the `exporters:` key
-  - Add `verbosity:`key and set it to a value of `detailed`
-- Add the `otlp` receiver to the `traces:`, `metrics:` and `logs:` pipelines
-- Add the `memory_limiter` processor to the `traces:`, `metrics:` and `logs:` pipelines
-- Add the `debug` exporter to the `traces:`, `metrics:` and `logs:` pipelines-->
-{{% expand title="{{% badge style=primary icon=lightbulb %}}**Hint**{{% /badge %}}" %}}
+  ```yaml
+  exporters:
+    debug:                         # Shows collected data in a human-readable format on the console.
+      verbosity: detailed          # Set the detailed level for the output
+  ```
 
-```yaml
-service:
-  pipelines:
-    traces:
-      receivers: [otlp]
-      processors:   # you also could use [memory_limiter]
-      - memory_limiter
-      exporter: [debug]
+- **Update Pipelines**: Ensure that the `otlp` receiver, `memory_limiter` processor, and `debug` exporter are added to the pipelines for traces, metrics, and logs.
 
-    # metrics: pipeline section...  
-```
+  ```yaml
+  service:
+    pipelines:
+      traces:                       # Traces Pipeline
+        receivers: [otlp]           # Array of receivers in this pipeline
+        processors:                 # Array of Processors in this pipeline            
+        - memory_limiter            # You also could use [memory_limiter]
+        exporter: [debug]           # Array of Exporters in this pipeline            
 
-{{% /expand %}}
+      # metrics: pipeline section.. .  
+  ```
+
+
 
 {{% /notice %}}
 
