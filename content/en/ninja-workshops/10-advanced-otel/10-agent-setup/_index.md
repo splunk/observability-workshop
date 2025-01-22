@@ -99,8 +99,6 @@ For proper formatting, make sure to align the YAML structure, paying attention t
       # logs pipeline section  
   ```
 
-
-
 {{% /notice %}}
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}

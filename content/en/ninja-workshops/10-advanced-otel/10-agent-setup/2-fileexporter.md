@@ -11,17 +11,18 @@ Let's run our next exercise:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Add** `file:`**`exporters:`** that writes the OTLP data to files for comparison.
+- **Add** `file:` **exporter** that writes the OTLP data to files for comparison.
 
   ```yaml
-    file:                          # Receiver Type
-      path: "./agent.out"          # Path name of the OTLP/json formatted file
-      rotation:                    # Section to setup file rotation
-        max_megabytes: 2           # Max file of the file generated
-        max_backups: 2             # Number of rotated files kept
+  exporters:
+    file:                            # Exporter Type
+      path: "./agent.out"            # Path where data will be saved in OTLP json format
+      rotation:                      # Rotation settings for trace file
+        max_megabytes: 2             # Maximum file size in MB before rotation
+        max_backups: 2               # Maximum number of backups to keep
   ```
 
-- Add `file` as an exporter to exporters array in the `metrics`, `traces` and `logs` pipelines. (leave debug as the first in the array)
+- **Update the Pipelines Section**: Add `file` exporter to the `metrics`, `traces` and `logs` pipelines. (leave debug as the first in the array)
 
 ```yaml
     # traces Pipeline
@@ -46,7 +47,7 @@ Validate your updated `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)*
 Restart your collect this time with your new config to test it:
 
 ```bash
-[WORKSHOP]/otelcol --config=agent.yaml
+../otelcol --config=agent.yaml
 ```
 
 Again, if you have done everything correctly, the last line of the output should be:

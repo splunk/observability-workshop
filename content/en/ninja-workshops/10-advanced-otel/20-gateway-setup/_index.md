@@ -66,11 +66,11 @@ service:
 
   ```yaml
   exporters:
-    file/traces:                    # Exporter Type/Name
-      path: "./gateway-traces.out"  # Path where trace data will be saved
-      rotation:                     # Rotation settings for trace file
-        max_megabytes: 2            # Maximum file size in MB before rotation
-        max_backups: 2              # Maximum number of backups to keep
+    file/traces:                       # Exporter Type/Name
+      path: "./gateway-traces.out"     # Path where trace data will be saved in OTLP json format
+      rotation:                        # Rotation settings for trace file
+        max_megabytes: 2               # Maximum file size in MB before rotation
+        max_backups: 2                 # Maximum number of backups to keep
   ```
 
 - **Create similar exporters for metrics and logs**: Using the above example, set the exporter names appropriately and update the file paths to `./gateway-metrics.out` for metrics and `./gateway-logs.out` for logs.
@@ -79,10 +79,10 @@ service:
   ```yaml
   service:
     pipelines:
-      traces:
-        receivers: [otlp]
-        processors: [memory_limiter]
-        exporters: [file/traces, debug]
+      traces:                           # Trace Pipeline
+        receivers: [otlp]               # Array of Trace Receivers 
+        processors: [memory_limiter]    # Array of Processors
+        exporters: [file/traces, debug] # Array of Trace Exporters
   ```
 
 {{% /notice %}}
