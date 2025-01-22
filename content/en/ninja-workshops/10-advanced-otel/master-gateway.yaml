@@ -2,23 +2,25 @@ receivers:
   otlp:
     protocols:
       http:
-        endpoint: "0.0.0.0:5318" # Port changed to prevent conflict with agent
-        include_metadata: true # Enable token pass through mode
+        endpoint: "0.0.0.0:5318"   # Port changed to prevent conflict with agent
+        include_metadata: true     # Enable token pass through mode
 
 processors:
-  memory_limiter:
-    check_interval: 2s
-    limit_mib: 512
+  memory_limiter:                  # Limits memory usage of the OpenTelemetry Collector
+    check_interval: 2s             # Interval to check memory usage
+    limit_mib: 512                 # Memory limit in MiB 
   batch:
-    X-SF-Token: # Include metadata in batches
+    X-SF-Token:                    # Include metadata in batches
   resource/add_mode:               # Processor Type/Name
     attributes:                    # Array of Attributes and modifications 
-    - action: insert               # Action taken is to `insert' a key 
+    - action: upsert               # Action taken is to `insert'or 'update' a key 
       key: otelcol.service.mode    # key Name
-      value: "agent"               # Key Value
+      value: "gateway"             # Key Value
+
 exporters:
-  debug:
-    verbosity: detailed
+    debug:                         # Exporter Type
+      ## Exporter outputs detailed Debug info of every telemetry record
+      verbosity: detailed
 
 service:
   pipelines:

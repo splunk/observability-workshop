@@ -20,7 +20,7 @@ In this section we are going to  simulate an outage on the network and see if ou
    ../otelcol --config agent.yaml
    ```
 
-At this point, the inital 
+At this point, the initial 
 3. **Run the log-gen script**: Start the Log Generator script to generate logs and send them to the agent.
 
 {{% tabs %}}
@@ -54,7 +54,7 @@ Resource attributes:
      -> com.splunk/source: Str(./quotes.log)
      -> host.name: (YOUR_HOST_NAME)
      -> os.type: Str(YOUR_OS)
-     -> otelcol.service.mode: Str(agent)
+     -> otelcol.service.mode: Str(gateway)
 ScopeLogs #0
 ScopeLogs SchemaURL:
 InstrumentationScope
@@ -72,15 +72,13 @@ Flags: 0
         {"kind": "exporter", "data_type": "logs", "name": "debug"}
 ```
 
-2. **Simulate Network Failure:** Temporarily stop the Gateway You should see the retry mechanism kicking in on the agent side , as the collector will attempt to resend the data.
+1. **Simulate Network Failure:** Temporarily stop the Gateway You should see the retry mechanism kicking in on the agent side , as the collector will attempt to resend the data.
 
 2. **Check the Checkpoint Folder:** After a few retries, inspect the `./checkpoint-folder` directory. You should see checkpoint files stored there, which contain the serialized state of the queue.
 
-4. **Stop the Log generating script**  Select the shell and use  `Command-c/Ctrl-c`.  This way... no new data is being handled by the agent if and when  the recovery 
+3. **Stop the Log generating script**  Select the shell and use  `Command-c/Ctrl-c`.  This way... no new data is being handled by the agent if and when  the recovery 
 
-3. **Restart the Agent:** Restart the OpenTelemetry Agent.  The collector will resume sending data from the last checkpointed state, without losing any data.
-
-
+4. **Restart the Agent:** Restart the OpenTelemetry Agent.  The collector will resume sending data from the last checkpointed state, without losing any data.
 
 ##### Conclusion
 
