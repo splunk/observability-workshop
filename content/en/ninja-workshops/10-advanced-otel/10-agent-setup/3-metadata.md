@@ -10,26 +10,41 @@ What we have done so far is basically exported a straight copy of trace we send 
 Let's run our next exercise:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
+ We are going to modify data flowing though our pipelines with the following changes to the agent.yaml:
 
-- **Add** `resourcedetection:` **processor**
+- **Add** `resourcedetection:` **processor** to detect info about the system the agent runs on.
 
   ```yaml
-    resourcedetection:
-    detectors: [system]
-    override: true
+  resourcedetection:             # Processor Type
+    detectors: [system]            # Array of Resource Detectors - (usually has cloud providers also)
+    override: true                 # Existing attributes in data are overwritten by the processor.
   ```
 
-- **Add** `resource:` **processor** and name it `add_mode:`
+- **Add** `resource:` **processor** and name it `add_mode:` to show what mode the agenn uses.
 
-```yaml
-  resource/add_mode:
-    attributes:
-    - action: insert
-      key: otelcol.service.mode
-      value: "agent"
+  ```yaml
+  resource/add_mode:               # Processor Type/Name
+    attributes:                    # Array of Attributes and modifications 
+    - action: insert               # Action taken is to `insert' a key 
+      key: otelcol.service.mode    # key Name
+      value: "agent"               # Key Value
   ```
 
-- Add the two processors to `processors:` array in the pipelines (leaving `memory_limiter` as the first one)
+- Add the two processors to **ALL 3** `processors:` arrays in the pipelines (leaving `memory_limiter` as the first one)
+
+  ```yaml
+  service:
+    pipelines:
+      traces:
+        receivers: [otlp]  # Array of Trace Receivers
+        processors:                     # Array of Trace Processors
+        - memory_limiter               # Handles memory limits for this Pipeline
+        - resourcedetection            # Adds System Attributes to data  flowing through this pipeline 
+        - resource/add_mode            # Adds Collector mode to data flowing through this pipeline 
+        exporters: [debug,file]         # Array of Trace exporters 
+        # Metric Pipeline section
+        # Logs Pipeline section
+  ```
 
 {{% /notice %}}
 
