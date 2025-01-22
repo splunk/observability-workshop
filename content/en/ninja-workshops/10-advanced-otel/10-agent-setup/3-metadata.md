@@ -15,7 +15,7 @@ Let's run our next exercise:
 - **Add** `resourcedetection:` **processor** to detect info about the system the agent runs on.
 
   ```yaml
-  resourcedetection:             # Processor Type
+  resourcedetection:               # Processor Type
     detectors: [system]            # Array of Resource Detectors - (usually has cloud providers also)
     override: true                 # Existing attributes in data are overwritten by the processor.
   ```
@@ -33,24 +33,22 @@ Let's run our next exercise:
 - Add the two processors to **ALL 3** `processors:` arrays in the pipelines (leaving `memory_limiter` as the first one)
 
   ```yaml
-  service:
-    pipelines:
-      traces:
-        receivers: [otlp]  # Array of Trace Receivers
-        processors:                     # Array of Trace Processors
-        - memory_limiter               # Handles memory limits for this Pipeline
-        - resourcedetection            # Adds System Attributes to data  flowing through this pipeline 
-        - resource/add_mode            # Adds Collector mode to data flowing through this pipeline 
-        exporters: [debug,file]         # Array of Trace exporters 
-        # Metric Pipeline section
-        # Logs Pipeline section
+  traces:                         # Traces Pipeline
+    receivers: [otlp]             # Array of Trace Receivers
+    processors:                   # Array of Trace Processors
+    - memory_limiter              # Handles memory limits for this Pipeline
+    - resourcedetection           # Adds System Attributes to data flowing through this pipeline 
+    - resource/add_mode           # Adds Collector mode to data flowing through this pipeline 
+    exporters: [debug,file]       # Array of Trace exporters 
+    # metric pipeline
+    # logs pipeline
   ```
 
 {{% /notice %}}
 
 ---
 
-Validate your new `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)**.
+Validate your new `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)** for spelling etc..
 
 ![otelbin-a-1-3-logs](../../images/agent-1-3-logs.png?width=50vw)
 
