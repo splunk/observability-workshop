@@ -46,6 +46,8 @@ service:
       exporters: [ debug]
 ```
 
+{{% tab title="Updated Directory Structure" %}}
+
 ```text
 [WORKSHOP]
 ├── 1-agent             # Module directory
@@ -55,6 +57,8 @@ service:
 │   └── trace.json      # Sample trace data
 └── otelcol             # OpenTelemetry Collector binary
 ```
+
+{{% /tab %}}
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -69,7 +73,7 @@ service:
         max_backups: 2              # Maximum number of backups to keep
   ```
 
-- Using the above example, create similar exporters for metrics and logs. Set the exporter names appropriately and update the file paths to `./gateway-metrics.out` for metrics and `./gateway-logs.out` for logs.
+- **Create similar exporters for metrics and logs**: Using the above example, set the exporter names appropriately and update the file paths to `./gateway-metrics.out` for metrics and `./gateway-logs.out` for logs.
 - **Update the Pipelines Section**: Add each newly created exporter to its corresponding pipeline in the service configuration.
 
   ```yaml
