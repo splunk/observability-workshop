@@ -22,6 +22,8 @@ If everything is set up correctly, the  first and last line of the output should
 
 Next, open a new terminal window and navigate to the `[WORKSHOP]/1-agent` directory.  
 
+Rather than instrumenting an application, we will simulate sending trace data, in JSON format, to the OpenTelemetry Collector using `curl`.
+
 Create a new file named `trace.json` and copy the content from one of the tabs below (both tabs contain the same trace data).
 
 {{% tabs %}}
@@ -109,13 +111,13 @@ Create a new file named `trace.json` and copy the content from one of the tabs b
 
 {{%/tab%}}
 
-In the second terminal window, run the following command to test your setup and validate the output:
+In the second terminal window, execute the following command to test your setup and verify the output:
 
 ```ps1
  curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
 ```
 
-The Agent console should show similar output like this: 
+The agent's debug log should display output similar to this:
 
 ```text
 2025-01-13T13:26:13.502+0100 info Traces {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
@@ -144,4 +146,4 @@ Attributes:
   {"kind": "exporter", "data_type": "traces", "name": "debug"}
 ```
 
-If this all worked, let's continue to build the agent yaml out some more.
+If everything worked as expected, you’re ready to continue building out the agent's YAML configuration.
