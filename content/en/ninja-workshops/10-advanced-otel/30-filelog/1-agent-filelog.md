@@ -10,19 +10,30 @@ Check that you are in the `[WORKSHOP]/3-filelog` folder.  Open the `agent.yaml` 
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- Add `filelog` under the `receivers:` key and name it `./quotes:`
-  - Add `include:` key and set it to a value of  `[./quotes.log]`
-  - Add `include_file_path:` key and set it to a value of `true`
-  - Add `include_file_name:` key and set it to a value of `false`
-  - Add `resource:` key
-    - Add `com.splunk.source:` key and set it to a value of `./quotes.log`
-    - Add `com.splunk.sourcetype:` key and set it to a value of `quotes`
+- **Add the `filelog` receiver**: The filelog receiver reads log data from a file and and includes custom resource attributes in the log data:
 
-- Add `filelog/quotes` receiver to the `receivers:` array in the  `logs:` section of the pipelines.  (make sure it also contains `otlp`)
+  ```yaml
+    # Define a filelog receiver named "quotes"
+    filelog/quotes:
+      # Specifies the file to read log data from (quotes.log)
+      include: ./quotes.log
+      # Includes the full file path in the log data
+      include_file_path: true
+      # Excludes the file name from the log data
+      include_file_name: false
+      # Add custom resource attributes to the log data
+      resource:
+        # Sets the source of the log data to "quotes.log"
+        com.splunk.source: ./quotes.log
+        # Sets the sourcetype for the log data to "quotes"
+        com.splunk.sourcetype: quotes
+  ```
+
+- Add `filelog/quotes` receiver to the `receivers` array in the `logs` section of the pipelines.  (make sure it also contains `otlp`)
 
 {{% /notice %}}
 
-Again validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**, the results for the `Logs:` pipeline should look like this:
+Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**, the results for the `Logs` pipeline should look like this:
 
 ![otelbin-f-3-1-logs](../../images/filelog-3-1-logs.png)
 
@@ -30,13 +41,9 @@ Again validate the agent configuration using **[otelbin.io](https://www.otelbin.
 
 ## Test the Filelog receiver
 
-Find your `Gateway` terminal window, Navigate to the `[WORKSHOP]/3-filelog` folder, start the collector in `gateway` mode and wait until it is ready to receive data. Next, make sure the quotes generating script is running its own `Log-gen` shell
+Find your `gateway` terminal window, navigate to the `[WORKSHOP]/3-filelog` folder, start the collector and wait until it is ready to receive data.
 
-To test the `Filelog` receiver, find your `Agent` terminal window, navigate to the `[WORKSHOP]/3-filelog` folder and start the agent with:
-
-```bash
-../otelcol --config=agent.yaml
-```
+To test the Filelog Receiver, find your `agent` terminal window, navigate to the `[WORKSHOP]/3-filelog` folder and start the agent.
 
 The agent should start to send *cpu* metrics again as before and both the agent and the gateway should reflect that in their debug output like this:
 
@@ -63,11 +70,11 @@ Attributes:
 Trace ID:
 Span ID:
 Flags: 0
-        {"kind": "exporter", "data_type": "logs", "name": "debug"}
 ```
 
-As the agent start reading the `quotes.log` file, it will show that on the debug console output, and forward those log line to the gateway.
-The gateway pipeline will cause the `gateway-log.out` file to be generated and at this point your directory structure looks like this:
+When the agent begins reading the quotes.log file, it will display this activity in the debug console output and forward the log lines to the gateway.
+
+The gateway pipeline will then generate the gateway-log.out file. At this point, your directory structure will appear as follows:
 
 {{% tab title="Updated Directory Structure" %}}
 
@@ -171,7 +178,9 @@ The resulting `gateway-log.out` should look like this: (We only show the top and
 {{% /tab %}}
 {{% /tabs %}}
 
-Note that the `resoureLogs` section contains the same attributes as we saw in `traces` and `metrics`. This mechanism is what will drive `related content` in Splunk Observability and  refers to the seamless linking and contextual correlation between logs, metrics, traces, and dashboards. This feature is designed to help users quickly identify and investigate issues by providing a unified view of related telemetry data. Instead of treating each data type in isolation, Splunk Observability connects them, enabling faster troubleshooting and root cause analysis.
+The `resourceLogs` section includes the same attributes we observed in the `traces` and `metrics` sections. This shared attribute mechanism powers the **Related Content** feature in Splunk Observability, which seamlessly links and correlates logs, metrics, traces, and dashboards. 
+
+This feature is designed to help users quickly identify and investigate issues by providing a unified view of related telemetry data. Instead of isolating each data type, Splunk Observability connects them, enabling faster troubleshooting and more efficient root cause analysis.
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}

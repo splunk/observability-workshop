@@ -182,4 +182,4 @@ Also note that in the `resourceMetrics` section you will find the same attribute
 {{% /tab %}}
 {{% /tabs %}}
 
-Stop the Agent process by pressing `Command-C` (macOS) or `Ctrl-C` (Windows/Linux) in the `Agent` terminal.
+Stop the agent process by pressing `Ctrl-C` in the `Agent` terminal.

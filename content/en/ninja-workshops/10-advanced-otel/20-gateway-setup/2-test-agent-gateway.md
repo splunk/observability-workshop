@@ -112,6 +112,7 @@ Open the `gateway-metrics.out` file. It should contain CPU metrics, including de
 Next, make sure both the gateway and the agent are still running in their respective terminals.
 
 Find your `test` terminal window, and also navigate to the `[WORKSHOP]/2-gateway` folder.
+
 Check that you have copied the `trace.json` to the `2-gateway` folder then run the following `curl` command to send a trace:
 
 {{% tabs %}}
@@ -254,4 +255,4 @@ Ensure that both `./gateway-metrics.out` and `./gateway-traces.out` include a re
 In the provided `gateway.yaml` configuration, we modified the `resource/add_mode` processor to use the `upsert` action instead of `insert`. The `upsert` action updates the value of the resource attribute key if it already exists, setting it to `"gateway"`. If the key is not present, the `upsert` action will add it.
 {{%/notice%}}
 
-To proceed, stop the Agent and Gateway processes by pressing `Command-C` (macOS) or `Ctrl-C` (Windows/Linux) in their respective terminals.
+To proceed, stop the agent and gateway processes by pressing `Ctrl-C` in their respective terminals.
