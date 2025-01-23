@@ -251,4 +251,4 @@ Also note that in the `resourceMetrics` section you will find the same attribute
 {{% /tab %}}
 {{% /tabs %}}
 
-Stop the Agent and Gateway processes by pressing Command-C (macOS) or Ctrl-C (Windows/Linux) in their respective terminals.
+Stop the Agent and Gateway processes by pressing `Command-C` (macOS) or `Ctrl-C` (Windows/Linux) in their respective terminals.
