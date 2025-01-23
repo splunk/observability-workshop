@@ -6,7 +6,7 @@ weight: 1
 
 Once you've updated the configuration, you’re ready to proceed to running the OpenTelemetry Collector with your new setup. This exercise sets the foundation for understanding how data flows through the OpenTelemetry Collector.
 
-Start your first terminal window, we will use this to run the `agent`.
+Start or reuse your initial terminal window, we will use this to run the `Agent`.
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
 To improve organization during the workshop, consider customizing your Terminal windows or Shells with unique names and colors. This will make it easier to identify and switch between them quickly.
@@ -122,13 +122,13 @@ Create a new file named `trace.json` and copy the content from one of the tabs b
 
 Next, open a second terminal window and also navigate to the `[WORKSHOP]/1-agent` directory.  
 
-In this new shell, which we will use for running `tests`, execute the following command to test your setup and verify the output:
+In this new shell, which we will use for running `Tests`, execute the following command to test your setup and verify the output:
 
 ```ps1
  curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
 ```
 
-The agent's debug log should display output similar to this:
+The agent's debug console should display output similar to this:
 
 ```text
 2025-01-13T13:26:13.502+0100 info Traces {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
