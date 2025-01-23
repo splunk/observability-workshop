@@ -68,12 +68,6 @@ Let's walk through a few modifications to get things started. For proper formatt
 - **Add an `otlp` receiver**: The [**OTLP receiver**](https://docs.splunk.com/observability/en/gdi/opentelemetry/components/otlp-receiver.html) will listen for incoming telemetry data over HTTP (or gRPC).
 
   ```yaml
-    receivers:
-      otlp:                   # Receiver Type
-        protocols:            # List of Protocols used
-          grpc: {}            # This will enable the gRPC Protocol
-
-  ```yaml
     otlp:
       protocols:                    # list of Protocols used 
         http:                       # This wil enable the HTTP Protocol

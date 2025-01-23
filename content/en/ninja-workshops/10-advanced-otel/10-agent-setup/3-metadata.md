@@ -10,7 +10,7 @@ So far, we’ve essentially exported a direct copy of the trace sent through the
 {{% notice title="Exercise" style="green" icon="running" %}}
 We will enhance the data flowing through our pipelines by making the following changes to the `agent.yaml`:  
 
-- **Add `resourcedetection` Processor**: The `resourcedetection` processor gathers information about the system where the agent runs.  
+- **Add the `resourcedetection` Processor**: The [**Resource Detection Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/resourcedetectionprocessor/README.md) can be used to detect resource information from the host and append or override the resource value in telemetry data with this information.
 
   ```yaml
     # Processor Type
@@ -21,7 +21,7 @@ We will enhance the data flowing through our pipelines by making the following c
       override: true
   ```
 
-- **Add `resource` Processor (`add_mode`)**: The `resource` processor is configured to insert metadata indicating the agent’s mode.  
+- **Add `resource` Processor (`add_mode`)**: The Resource Processor can be used to apply changes on resource attributes.
 
   ```yaml
     resource/add_mode:             # Processor Type/Name
@@ -31,7 +31,7 @@ We will enhance the data flowing through our pipelines by making the following c
         value: "agent"             # Key value
   ```
 
-- **Update All Pipelines**: Add both processors (`resourcedetection` and `resource/add_mode`) to the `processors:` array in **all pipelines** (traces, metrics, and logs). Ensure `memory_limiter` remains the first processor.
+- **Update All Pipelines**: Add both processors (`resourcedetection` and `resource/add_mode`) to the `processors` array in **all pipelines** (traces, metrics, and logs). Ensure `memory_limiter` remains the first processor.
 
   ```yaml
     traces:                     # Traces Pipeline
