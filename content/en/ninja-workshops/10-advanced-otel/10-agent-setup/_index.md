@@ -89,7 +89,7 @@ Let's walk through a few modifications to get things started. For proper formatt
         receivers: [otlp]  # Array of receivers in this pipeline
         processors:        # Array of Processors in thi pipeline
         - memory_limiter   # You also could use [memory_limiter]
-        exporter: [debug]  # Array of Exporters in this pipeline
+        exporters: [debug]  # Array of Exporters in this pipeline
      #metrics:             # Metrics Pipeline
      #logs:                # Logs Pipeline
   ```
