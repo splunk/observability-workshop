@@ -45,12 +45,11 @@ We will enhance the data flowing through our pipelines by making the following c
     #logs:
   ```
 
-- **Apply to Metrics and Logs Pipelines**: Follow a similar structure to update the **metrics** and **logs** pipelines.
 {{% /notice %}}
 
 By adding these processors, we enrich the data with system metadata and the agent’s operational mode, which aids in troubleshooting and provides useful context for related content.
 
-Validate your new `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)** for spelling etc..
+Validate your updated `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)**:
 
 ![otelbin-a-1-3-logs](../../images/agent-1-3-logs.png?width=50vw)
 
