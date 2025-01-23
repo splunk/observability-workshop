@@ -5,7 +5,7 @@ linkTitle: 2.2 Send Data from Agent to Gateway
 
 ## Validate Agent and Gateway routing
 
-Verify the gateway is running in its own terminal and is ready to receive data, then in the agent terminal, run the following command to start the agent:
+Verify the gateway is running in its own terminal (`gateway`) and is ready to receive data, then in the `agent` terminal, run the following command to start the agent:
 
 ```bash
 ../otelcol --config=agent.yaml
@@ -40,13 +40,13 @@ Value: 0.000000
 
 When the agent starts, it collects and sends the above metrics to the gateway. The OpenTelemetry Collector running in gateway mode should create a file named `./gateway-metrics.out` during the exporting phase of the pipeline service.
 
-Open the `gateway-metrics.out` file. It should contain CPU metrics, including details similar to those shown above.
+Open the `gateway-metrics.out` file. It should contain CPU metrics, including details similar to those shown above (We only show the resourceMetrics and the first set of cpu metrics, you likely will have more).
 
 {{% tabs %}}
 {{% tab title="Compact JSON" %}}
 
 ```json
-{"resourceMetrics":[{"resource":{"attributes":[{"key":"host.name","value":{"stringValue":"YOUR_HOST_NAME"}},{"key":"os.type","value":{"stringValue":"YOUR_OS"}},{"key":"otelcol.service.mode","value":{"stringValue":"gateway"}}]},"scopeMetrics":[{"scope":{"name":"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver/internal/scraper/cpuscraper","version":"v0.116.0"},"metrics":[{"name":"system.cpu.time","description":"Total seconds each logical CPU spent on each mode.","unit":"s","sum":{"dataPoints":[{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"user"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":1168005.59},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"system"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":504260.9},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"idle"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":615648.75},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"interrupt"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":0},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu1"}},{"key":"state","value":{"stringValue":"user"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":1168999.03},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu1"}},{"key":"state","value":{"stringValue":"system"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":497785.47},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu1"}},{"key":"state","value":{"stringValue":"idle"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":621140.39},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu1"}},{"key":"state","value":{"stringValue":"interrupt"}}]}]}}]}]}]}
+{"resourceMetrics":[{"resource":{"attributes":[{"key":"host.name","value":{"stringValue":"YOUR_HOST_NAME"}},{"key":"os.type","value":{"stringValue":"YOUR_OS"}},{"key":"otelcol.service.mode","value":{"stringValue":"gateway"}}]},"scopeMetrics":[{"scope":{"name":"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver/internal/scraper/cpuscraper","version":"v0.116.0"},"metrics":[{"name":"system.cpu.time","description":"Total seconds each logical CPU spent on each mode.","unit":"s","sum":{"dataPoints":[{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"user"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":1168005.59},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"system"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":504260.9},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"idle"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":615648.75},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"interrupt"}}]}]}}]}]}]}
 ```
 
 {{% /tab %}}
@@ -162,82 +162,6 @@ Open the `gateway-metrics.out` file. It should contain CPU metrics, including de
                           "stringValue": "interrupt"
                         }
                       }
-                    ],
-                    "startTimeUnixNano": "1733753908000000000",
-                    "timeUnixNano": "1737133726158376000",
-                    "asDouble": 0
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "cpu",
-                        "value": {
-                          "stringValue": "cpu1"
-                        }
-                      },
-                      {
-                        "key": "state",
-                        "value": {
-                          "stringValue": "user"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1733753908000000000",
-                    "timeUnixNano": "1737133726158376000",
-                    "asDouble": 1168999.03
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "cpu",
-                        "value": {
-                          "stringValue": "cpu1"
-                        }
-                      },
-                      {
-                        "key": "state",
-                        "value": {
-                          "stringValue": "system"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1733753908000000000",
-                    "timeUnixNano": "1737133726158376000",
-                    "asDouble": 497785.47
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "cpu",
-                        "value": {
-                          "stringValue": "cpu1"
-                        }
-                      },
-                      {
-                        "key": "state",
-                        "value": {
-                          "stringValue": "idle"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1733753908000000000",
-                    "timeUnixNano": "1737133726158376000",
-                    "asDouble": 621140.39
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "cpu",
-                        "value": {
-                          "stringValue": "cpu1"
-                        }
-                      },
-                      {
-                        "key": "state",
-                        "value": {
-                          "stringValue": "interrupt"
-                        }
-                      }
                     ]
                   }
                 ]
@@ -254,9 +178,10 @@ Open the `gateway-metrics.out` file. It should contain CPU metrics, including de
 {{% /tab %}}
 {{% /tabs %}}
 
-Next, check that you have copied the `trace.json` to the  `2-gateway` folder. Make sure both the gateway and the agent are running in their respective terminals.
+Next, make sure both the gateway and the agent are running in their respective terminals.
 
-Open a third terminal and run the following curl command to send a trace:
+Find your `test` terminal window, navigate to the `[WORKSHOP]/2-gateway` folder.
+Check that you have copied the `trace.json` to the  `2-gateway` folder then run the following curl command to send a trace:
 
 {{% tabs %}}
 {{% tab title="cURL Command" %}}

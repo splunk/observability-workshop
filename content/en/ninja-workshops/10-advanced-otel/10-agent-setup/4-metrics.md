@@ -41,15 +41,16 @@ Validate again with **[otelbin.io](https://www.otelbin.io/)**. Given we updated 
 
 Delete the current agent.out, then restart the agent again using the agent.yaml. Based on the current config, the collector should write some metric lines to your agent.out at startup, then will repeat that every hour. The output from agent.out looks like this:
 
-Note that we show the entries for **cpu1** only, you will get cpu entries for all the cpu's/cores present in your system.
+Note that we show the entries for **cpu0** only, you will get cpu entries for all the cpu's/cores present in your system.
 
 Also note that in the `resourceMetrics` section you will find the same attributes added as with the trace we looked at earlier, these will help with corelating between traces and metrics.
 
+
 {{% tabs %}}
-{{% tab title="Compacted JSON" %}}
+{{% tab title="Compact JSON" %}}
 
 ```json
-{"resourceMetrics":[{"resource":{"attributes":[{"key":"host.name","value":{"stringValue":"YOUR_HOST_NAME"}},{"key":"os.type","value":{"stringValue":"YOUR_OS"}},{"key":"otelcol.service.mode","value":{"stringValue":"agent"}}]},"scopeMetrics":[{"scope":{"name":"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver/internal/scraper/cpuscraper","version":"v0.116.0"},"metrics":[{"name":"system.cpu.time","description":"Total seconds each logical CPU spent on each mode.","unit":"s","sum":{"dataPoints":[{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"user"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1736873595700306000","asDouble":1028590.93},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"system"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1736873595700306000","asDouble":447490.75},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"idle"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1736873595700306000","asDouble":553542.9},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"interrupt"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1736873595700306000","asDouble":0},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu1"}},{"key":"state","value":{"stringValue":"user"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1736873595700306000","asDouble":1029342.54},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu1"}},{"key":"state","value":{"stringValue":"system"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1736873595700306000","asDouble":441906.19},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu1"}},{"key":"state","value":{"stringValue":"idle"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1736873595700306000","asDouble":558385.54},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu1"}}]}]}}]}]}]}
+{"resourceMetrics":[{"resource":{"attributes":[{"key":"host.name","value":{"stringValue":"YOUR_HOST_NAME"}},{"key":"os.type","value":{"stringValue":"YOUR_OS"}},{"key":"otelcol.service.mode","value":{"stringValue":"gateway"}}]},"scopeMetrics":[{"scope":{"name":"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver/internal/scraper/cpuscraper","version":"v0.116.0"},"metrics":[{"name":"system.cpu.time","description":"Total seconds each logical CPU spent on each mode.","unit":"s","sum":{"dataPoints":[{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"user"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":1168005.59},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"system"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":504260.9},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"idle"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":615648.75},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"interrupt"}}]}]}}]}]}]}
 ```
 
 {{% /tab %}}
@@ -76,7 +77,7 @@ Also note that in the `resourceMetrics` section you will find the same attribute
           {
             "key": "otelcol.service.mode",
             "value": {
-              "stringValue": "agent"
+              "stringValue": "gateway"
             }
           }
         ]
@@ -110,8 +111,8 @@ Also note that in the `resourceMetrics` section you will find the same attribute
                       }
                     ],
                     "startTimeUnixNano": "1733753908000000000",
-                    "timeUnixNano": "1736873595700306000",
-                    "asDouble": 1028590.93
+                    "timeUnixNano": "1737133726158376000",
+                    "asDouble": 1168005.59
                   },
                   {
                     "attributes": [
@@ -129,8 +130,8 @@ Also note that in the `resourceMetrics` section you will find the same attribute
                       }
                     ],
                     "startTimeUnixNano": "1733753908000000000",
-                    "timeUnixNano": "1736873595700306000",
-                    "asDouble": 447490.75
+                    "timeUnixNano": "1737133726158376000",
+                    "asDouble": 504260.9
                   },
                   {
                     "attributes": [
@@ -148,8 +149,8 @@ Also note that in the `resourceMetrics` section you will find the same attribute
                       }
                     ],
                     "startTimeUnixNano": "1733753908000000000",
-                    "timeUnixNano": "1736873595700306000",
-                    "asDouble": 553542.9
+                    "timeUnixNano": "1737133726158376000",
+                    "asDouble": 615648.75
                   },
                   {
                     "attributes": [
@@ -163,76 +164,6 @@ Also note that in the `resourceMetrics` section you will find the same attribute
                         "key": "state",
                         "value": {
                           "stringValue": "interrupt"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1733753908000000000",
-                    "timeUnixNano": "1736873595700306000",
-                    "asDouble": 0
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "cpu",
-                        "value": {
-                          "stringValue": "cpu1"
-                        }
-                      },
-                      {
-                        "key": "state",
-                        "value": {
-                          "stringValue": "user"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1733753908000000000",
-                    "timeUnixNano": "1736873595700306000",
-                    "asDouble": 1029342.54
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "cpu",
-                        "value": {
-                          "stringValue": "cpu1"
-                        }
-                      },
-                      {
-                        "key": "state",
-                        "value": {
-                          "stringValue": "system"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1733753908000000000",
-                    "timeUnixNano": "1736873595700306000",
-                    "asDouble": 441906.19
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "cpu",
-                        "value": {
-                          "stringValue": "cpu1"
-                        }
-                      },
-                      {
-                        "key": "state",
-                        "value": {
-                          "stringValue": "idle"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1733753908000000000",
-                    "timeUnixNano": "1736873595700306000",
-                    "asDouble": 558385.54
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "cpu",
-                        "value": {
-                          "stringValue": "cpu1"
                         }
                       }
                     ]
@@ -251,4 +182,8 @@ Also note that in the `resourceMetrics` section you will find the same attribute
 {{% /tab %}}
 {{% /tabs %}}
 
+<<<<<<< HEAD
 Stop the Agent and Gateway processes by pressing `Command-C` (macOS) or `Ctrl-C` (Windows/Linux) in their respective terminals.
+=======
+Stop the Agent processes by pressing `Command-C` (macOS) or `Ctrl-C` (Windows/Linux) in their respective terminals.
+>>>>>>> 191263721 ( checked  terminal window naming, and reduced cpu metric to cpu0 only till end of  gateway)

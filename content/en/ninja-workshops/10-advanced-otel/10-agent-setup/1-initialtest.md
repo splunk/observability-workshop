@@ -6,6 +6,12 @@ weight: 1
 
 Once you've updated the configuration, you’re ready to proceed to running the OpenTelemetry Collector with your new setup. This exercise sets the foundation for understanding how data flows through the OpenTelemetry Collector.
 
+Start your first terminal window, we will use this to run the `agent`.
+
+{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
+To improve organization during the workshop, consider customizing your Terminal windows or Shells with unique names and colors. This will make it easier to identify and switch between them quickly.
+{{% /notice %}}
+
 Run the following command from the `1-agent` directory (ensure you’re using the correct OpenTelemetry Collector binary you downloaded):
 
 ```text
@@ -19,12 +25,11 @@ If everything is set up correctly, the  first and last line of the output should
 <snip to the end>
 2025-01-13T12:43:51.747+0100 info service@v0.117.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
-{{% notice title="Exercise" style="green" icon="running" %}}
-On `Windows` you may see a dialog box popup, asking if you want to grant public and private networks access to the **otelcol.exe**, Please select **allow** to continue.
+
+{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
+On `Windows` you may see a dialog box popup now, asking if you want to grant public and private networks access to the **otelcol.exe**, Please select **allow** to continue.
 
 {{%/notice%}}
-
-Next, open a new terminal window and navigate to the `[WORKSHOP]/1-agent` directory.  
 
 Rather than instrumenting an application, we will simulate sending trace data, in JSON format, to the OpenTelemetry Collector using `curl`.
 
@@ -115,7 +120,9 @@ Create a new file named `trace.json` and copy the content from one of the tabs b
 
 {{%/tab%}}
 
-In the second terminal window, execute the following command to test your setup and verify the output:
+Next, open a second terminal window and also navigate to the `[WORKSHOP]/1-agent` directory.  
+
+In this new shell, which we will use for running `tests`, execute the following command to test your setup and verify the output:
 
 ```ps1
  curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
