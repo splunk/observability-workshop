@@ -36,18 +36,18 @@ service:
   pipelines:
     traces:
       receivers: []
-      processors: 
-      -                      # You also could use []
+      processors:            # Alternative syntax option [memory_limiter]
+      - memory_limiter
       exporters: []
     metrics:
       receivers: []
       processors:
-      -
+      - memory_limiter
       exporters: []
     logs: 
       receivers: []
       processors:
-      - 
+      - memory_limiter
       exporters: []
 ```
 
@@ -63,9 +63,9 @@ service:
 {{%/tab%}}
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-Let's walk through a few modifications to get things started. For proper formatting, make sure to align the YAML structure, paying attention to indentation.
+Let's walk through a few modifications to get things started.
 
-- **Add an `otlp` receiver**: Configure to use `http` as the `protocol`.
+- **Add an `otlp` receiver**: The [**OTLP receiver**](https://docs.splunk.com/observability/en/gdi/opentelemetry/components/otlp-receiver.html) will listen for incoming telemetry data over HTTP (or gRPC).
 
   ```yaml
     otlp:
@@ -74,13 +74,12 @@ Let's walk through a few modifications to get things started. For proper formatt
           endpoint: "0.0.0.0:4318"  # Endpoint for incoming telemetry data
   ```
 
-- **Add a `debug` exporter**:
+- **Add a `debug` exporter**: The [**Debug exporter**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/exporter/debugexporter/README.md) will output detailed debug information for every telemetry record.
 
   ```yaml
-    # Outputs telemetry data to the console for debugging purposes
-    debug:
-      # Exporter outputs all details of every telemetry record
-      verbosity: detailed
+    
+    debug:                 # Exporter Type
+      verbosity: detailed  # Enabled detailed debug output
   ```
 
 - **Update Pipelines**: Ensure that the `otlp` receiver, `memory_limiter` processor, and `debug` exporter are added to the pipelines for traces, metrics, and logs.
@@ -90,9 +89,9 @@ Let's walk through a few modifications to get things started. For proper formatt
         receivers: [otlp]  # Array of receivers in this pipeline
         processors:        # Array of Processors in thi pipeline
         - memory_limiter   # You also could use [memory_limiter]
-        exporter: [debug]  # Array of Exporters in this pipeline
-      # metrics:           # Metrics Pipeline
-      # logs:              # Logs Pipeline
+        exporters: [debug]  # Array of Exporters in this pipeline
+     #metrics:             # Metrics Pipeline
+     #logs:                # Logs Pipeline
   ```
 
 {{% /notice %}}

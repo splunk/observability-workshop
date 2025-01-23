@@ -5,7 +5,7 @@ linkTitle: 2.2 Send Data from Agent to Gateway
 
 ## Validate Agent and Gateway routing
 
-Verify the gateway is running in its own terminal and is ready to receive data, then in the agent terminal, run the following command to start the agent:
+Verify the gateway is running in its own terminal (`gateway`) and is ready to receive data, then in the `agent` terminal, run the following command to start the agent:
 
 ```bash
 ../otelcol --config=agent.yaml
@@ -21,32 +21,17 @@ Data point attributes:
 StartTimestamp: 2024-12-09 14:18:28 +0000 UTC
 Timestamp: 2025-01-15 15:27:51.319526 +0000 UTC
 Value: 9637.660000
-NumberDataPoints #38
-Data point attributes:
-     -> cpu: Str(cpu9)
-     -> state: Str(idle)
-StartTimestamp: 2024-12-09 14:18:28 +0000 UTC
-Timestamp: 2025-01-15 15:27:51.319526 +0000 UTC
-Value: 2064591.290000
-NumberDataPoints #39
-Data point attributes:
-     -> cpu: Str(cpu9)
-     -> state: Str(interrupt)
-StartTimestamp: 2024-12-09 14:18:28 +0000 UTC
-Timestamp: 2025-01-15 15:27:51.319526 +0000 UTC
-Value: 0.000000
-    {"kind": "exporter", "data_type": "metrics", "name": "debug"}
 ```
 
 When the agent starts, it collects and sends the above metrics to the gateway. The OpenTelemetry Collector running in gateway mode should create a file named `./gateway-metrics.out` during the exporting phase of the pipeline service.
 
-Open the `gateway-metrics.out` file. It should contain CPU metrics, including details similar to those shown above.
+Open the `gateway-metrics.out` file. It should contain CPU metrics, including details similar to those shown above (we only show the `resourceMetrics` and the first set of cpu metrics, you will likely have more).
 
 {{% tabs %}}
 {{% tab title="Compact JSON" %}}
 
 ```json
-{"resourceMetrics":[{"resource":{"attributes":[{"key":"host.name","value":{"stringValue":"YOUR_HOST_NAME"}},{"key":"os.type","value":{"stringValue":"YOUR_OS"}},{"key":"otelcol.service.mode","value":{"stringValue":"agent"}}]},"scopeMetrics":[{"scope":{"name":"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver/internal/scraper/cpuscraper","version":"v0.116.0"},"metrics":[{"name":"system.cpu.time","description":"Total seconds each logical CPU spent on each mode.","unit":"s","sum":{"dataPoints":[{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"user"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":1168005.59},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"system"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":504260.9},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"idle"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":615648.75},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"interrupt"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":0},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu1"}},{"key":"state","value":{"stringValue":"user"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":1168999.03},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu1"}},{"key":"state","value":{"stringValue":"system"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":497785.47},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu1"}},{"key":"state","value":{"stringValue":"idle"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":621140.39},{"attributes":[{"key":"cpu","value":{"stringValue":"cpu1"}},{"key":"state","value":{"stringValue":"interrupt"}}]}]}}]}]}]}
+{"resourceMetrics":[{"resource":{"attributes":[{"key":"host.name","value":{"stringValue":"YOUR_HOST_NAME"}},{"key":"os.type","value":{"stringValue":"YOUR_OS"}},{"key":"otelcol.service.mode","value":{"stringValue":"gateway"}}]},"scopeMetrics":[{"scope":{"name":"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver/internal/scraper/cpuscraper","version":"v0.116.0"},"metrics":[{"name":"system.cpu.time","description":"Total seconds each logical CPU spent on each mode.","unit":"s","sum":{"dataPoints":[{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"user"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":1168005.59}]}}]}]}]}
 ```
 
 {{% /tab %}}
@@ -73,7 +58,7 @@ Open the `gateway-metrics.out` file. It should contain CPU metrics, including de
           {
             "key": "otelcol.service.mode",
             "value": {
-              "stringValue": "agent"
+              "stringValue": "gateway"
             }
           }
         ]
@@ -110,136 +95,6 @@ Open the `gateway-metrics.out` file. It should contain CPU metrics, including de
                     "timeUnixNano": "1737133726158376000",
                     "asDouble": 1168005.59
                   },
-                  {
-                    "attributes": [
-                      {
-                        "key": "cpu",
-                        "value": {
-                          "stringValue": "cpu0"
-                        }
-                      },
-                      {
-                        "key": "state",
-                        "value": {
-                          "stringValue": "system"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1733753908000000000",
-                    "timeUnixNano": "1737133726158376000",
-                    "asDouble": 504260.9
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "cpu",
-                        "value": {
-                          "stringValue": "cpu0"
-                        }
-                      },
-                      {
-                        "key": "state",
-                        "value": {
-                          "stringValue": "idle"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1733753908000000000",
-                    "timeUnixNano": "1737133726158376000",
-                    "asDouble": 615648.75
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "cpu",
-                        "value": {
-                          "stringValue": "cpu0"
-                        }
-                      },
-                      {
-                        "key": "state",
-                        "value": {
-                          "stringValue": "interrupt"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1733753908000000000",
-                    "timeUnixNano": "1737133726158376000",
-                    "asDouble": 0
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "cpu",
-                        "value": {
-                          "stringValue": "cpu1"
-                        }
-                      },
-                      {
-                        "key": "state",
-                        "value": {
-                          "stringValue": "user"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1733753908000000000",
-                    "timeUnixNano": "1737133726158376000",
-                    "asDouble": 1168999.03
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "cpu",
-                        "value": {
-                          "stringValue": "cpu1"
-                        }
-                      },
-                      {
-                        "key": "state",
-                        "value": {
-                          "stringValue": "system"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1733753908000000000",
-                    "timeUnixNano": "1737133726158376000",
-                    "asDouble": 497785.47
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "cpu",
-                        "value": {
-                          "stringValue": "cpu1"
-                        }
-                      },
-                      {
-                        "key": "state",
-                        "value": {
-                          "stringValue": "idle"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1733753908000000000",
-                    "timeUnixNano": "1737133726158376000",
-                    "asDouble": 621140.39
-                  },
-                  {
-                    "attributes": [
-                      {
-                        "key": "cpu",
-                        "value": {
-                          "stringValue": "cpu1"
-                        }
-                      },
-                      {
-                        "key": "state",
-                        "value": {
-                          "stringValue": "interrupt"
-                        }
-                      }
-                    ]
-                  }
                 ]
               }
             }
@@ -254,14 +109,16 @@ Open the `gateway-metrics.out` file. It should contain CPU metrics, including de
 {{% /tab %}}
 {{% /tabs %}}
 
-Next, check that you have copied the `trace.json` to the  `2-gateway` folder. Make sure both the gateway and the agent are running in their respective terminals.
+Next, make sure both the gateway and the agent are still running in their respective terminals.
 
-Open a third terminal and run the following curl command to send a trace:
+Find your `test` terminal window, and also navigate to the `[WORKSHOP]/2-gateway` folder.
+
+Check that you have copied the `trace.json` to the `2-gateway` folder then run the following `curl` command to send a trace:
 
 {{% tabs %}}
 {{% tab title="cURL Command" %}}
 
-```ps1
+```zsh
  curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
 ```
 
@@ -269,12 +126,15 @@ Open a third terminal and run the following curl command to send a trace:
 {{% tab title="Debug Output Agent/Gateway" %}}
 
  ```text
- 2025-01-13T13:26:13.502+0100 info Traces {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
+2025-01-13T13:26:13.502+0100 info Traces {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
 2025-01-13T13:26:13.502+0100 info ResourceSpans #0
 Resource SchemaURL:
 Resource attributes:
      -> service.name: Str(my.service)
      -> deployment.environment: Str(my.environment)
+     -> host.name: (YOUR_HOST_NAME)
+     -> os.type: Str(YOUR_OS)
+     -> otelcol.service.mode: Str(gateway)
 ScopeSpans #0
 ScopeSpans SchemaURL:
 InstrumentationScope my.library 1.0.0
@@ -290,9 +150,6 @@ Span #0
     End time       : 2018-12-13 14:51:01 +0000 UTC
     Status code    : Unset
     Status message :
-Attributes:
-     -> : Str(some value)
-  {"kind": "exporter", "data_type": "traces", "name": "debug"}
 ```
 
 {{% /tab %}}
@@ -304,7 +161,7 @@ After executing the command, the gateway should generate a new file named `./gat
 {{% tab title="Compacted JSON" %}}
 
 ```json
-{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"my.service"}},{"key":"deployment.environment","value":{"stringValue":"my.environment"}},{"key":"host.name","value":{"stringValue":"YOUR_HOST_NAME"}},{"key":"os.type","value":{"stringValue":"YOUR_OS"}},{"key":"otelcol.service.mode","value":{"stringValue":"agent"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5b8efff798038103d269b633813fc60c","spanId":"eee19b7ec3c1b174","parentSpanId":"eee19b7ec3c1b173","name":"I'm a server span","kind":2,"startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","attributes":[{"value":{"stringValue":"some value"}}],"status":{}}]}],"schemaUrl":"https://opentelemetry.io/schemas/1.6.1"}]}
+{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"my.service"}},{"key":"deployment.environment","value":{"stringValue":"my.environment"}},{"key":"host.name","value":{"stringValue":"YOUR_HOST_NAME"}},{"key":"os.type","value":{"stringValue":"YOUR_OS"}},{"key":"otelcol.service.mode","value":{"stringValue":"gateway"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5b8efff798038103d269b633813fc60c","spanId":"eee19b7ec3c1b174","parentSpanId":"eee19b7ec3c1b173","name":"I'm a server span","kind":2,"startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","attributes":[{"value":{"stringValue":"some value"}}],"status":{}}]}],"schemaUrl":"https://opentelemetry.io/schemas/1.6.1"}]}
 ```
 
 {{% /tab %}}
@@ -331,19 +188,19 @@ After executing the command, the gateway should generate a new file named `./gat
           {
             "key": "host.name",
             "value": {
-              "stringValue": "PIHAGEN-M-2QPQ.hagen-ict.nl"
+              "stringValue": "[YOUR_HOST_NAME]"
             }
           },
           {
             "key": "os.type",
             "value": {
-              "stringValue": "darwin"
+              "stringValue": "[YOUR_OS]"
             }
           },
           {
             "key": "otelcol.service.mode",
             "value": {
-              "stringValue": "agent"
+              "stringValue": "gateway"
             }
           }
         ]
@@ -392,8 +249,10 @@ After executing the command, the gateway should generate a new file named `./gat
 {{% /tab %}}
 {{% /tabs %}}
 
-Note that both `./gateway-metrics.out` and `./gateway-traces.out` include a resource attribute key/value pair for `otelcol.service.mode` with a value of `agent`.
+{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
+Ensure that both `./gateway-metrics.out` and `./gateway-traces.out` include a resource attribute key-value pair for `otelcol.service.mode` with the value `gateway`. 
 
-This will be corrected in a later section by adding a `resource` processor to the gateway configuration.
+In the provided `gateway.yaml` configuration, we modified the `resource/add_mode` processor to use the `upsert` action instead of `insert`. The `upsert` action updates the value of the resource attribute key if it already exists, setting it to `"gateway"`. If the key is not present, the `upsert` action will add it.
+{{%/notice%}}
 
-To proceed, stop the Agent and Gateway processes by pressing `Command-C` (macOS) or `Ctrl-C` (Windows/Linux) in their respective terminals.
+To proceed, stop the agent and gateway processes by pressing `Ctrl-C` in their respective terminals.

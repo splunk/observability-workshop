@@ -5,80 +5,110 @@ weight: 3
 ---
 ### Setup
 
-What we have done so far is basically exported a straight copy of trace we send though the OpenTelemetry collector. Now let's start adding some metadata to the base trace using `processors`, this is information we can use during trouble shooting and can be used for Related Content.
-
-Let's run our next exercise:
+So far, we’ve essentially exported a direct copy of the trace sent through the OpenTelemetry Collector. Now, let’s enhance the base trace by adding metadata using `processors`. This additional information can be valuable for troubleshooting and for enabling features like Related Content.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
- We are going to modify data flowing though our pipelines with the following changes to the agent.yaml:
+We will enhance the data flowing through our pipelines by making the following changes to the `agent.yaml`:  
 
-- **Add** `resourcedetection:` **processor** to detect info about the system the agent runs on.
+- **Add the `resourcedetection` Processor**: The [**Resource Detection Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/resourcedetectionprocessor/README.md) can be used to detect resource information from the host and append or override the resource value in telemetry data with this information.
 
   ```yaml
-  resourcedetection:               # Processor Type
-    detectors: [system]            # Array of Resource Detectors - (usually has cloud providers also)
-    override: true                 # Existing attributes in data are overwritten by the processor.
+    # Processor Type
+    resourcedetection:
+      # Array of resource detectors (e.g., system, cloud providers)
+      detectors: [system]
+      # Overwrites existing attributes in the data
+      override: true
   ```
 
-- **Add** `resource:` **processor** and name it `add_mode:` to show what mode the agenn uses.
+- **Add `resource` Processor (`add_mode`)**: The Resource Processor can be used to apply changes on resource attributes.
 
   ```yaml
-<<<<<<< HEAD
-  resource/add_mode:               # Processor Type/Name
-    attributes:                    # Array of Attributes and modifications 
-    - action: insert               # Action taken is to `insert' a key 
-      key: otelcol.service.mode    # key Name
-      value: "agent"               # Key Value
+    resource/add_mode:             # Processor Type/Name
+      attributes:                  # Array of attributes and modifications
+      - action: insert             # Action is to insert a key
+        key: otelcol.service.mode  # Key name
+        value: "agent"             # Key value
   ```
-=======
-    resource/add_mode:
-      attributes:
-      - action: insert
-        key: otelcol.service.mode
-        value: "agent"
-    ```
->>>>>>> abf6c90d9 (Formatting fixes)
 
-- Add the two processors to **ALL 3** `processors:` arrays in the pipelines (leaving `memory_limiter` as the first one)
+- **Update All Pipelines**: Add both processors (`resourcedetection` and `resource/add_mode`) to the `processors` array in **all pipelines** (traces, metrics, and logs). Ensure `memory_limiter` remains the first processor.
 
   ```yaml
-  traces:                         # Traces Pipeline
-    receivers: [otlp]             # Array of Trace Receivers
-    processors:                   # Array of Trace Processors
-    - memory_limiter              # Handles memory limits for this Pipeline
-    - resourcedetection           # Adds System Attributes to data flowing through this pipeline 
-    - resource/add_mode           # Adds Collector mode to data flowing through this pipeline 
-    exporters: [debug,file]       # Array of Trace exporters 
-    # metric pipeline
-    # logs pipeline
+    traces:                     # Traces Pipeline
+      receivers: [otlp]         # Array of trace receivers
+      processors:               # Array of trace processors
+        - memory_limiter        # Handles memory limits for this pipeline
+        - resourcedetection     # Adds system attributes to the data
+        - resource/add_mode     # Adds collector mode metadata
+      exporters: [debug, file]  # Array of trace exporters
+    #metrics:
+    #logs:
   ```
 
 {{% /notice %}}
 
----
+By adding these processors, we enrich the data with system metadata and the agent’s operational mode, which aids in troubleshooting and provides useful context for related content.
 
-Validate your new `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)** for spelling etc..
+Validate your updated `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)**:
 
 ![otelbin-a-1-3-logs](../../images/agent-1-3-logs.png?width=50vw)
 
 ### Test & Validate
 
-Delete the existing `./agent.out` file, then restart your collector with your new config to test it:
+Rename `./agent.out` to `.agent.old`, ythis so you can compare it later.
 
-```bash
-[WORKSHOP]/otelcol --config=agent.yaml
+{{% tab title="Updated Directory Structure" %}}
+
+```text
+[WORKSHOP]
+├── 1-agent         # Module directory
+│   └── agent.yaml  # OpenTelemetry Collector configuration file
+│   └── trace.json  # Sample trace data
+│   └── agent.old   # Copy of previous agent.out
+└── otelcol         # OpenTelemetry Collector binary
 ```
 
-Again, if you have done everything correctly, the last line of the output should be:
+{{%/tab%}}
+
+Then restart your collector in the ` Agent` terminal window using the updated configuration to test the changes:
+
+```bash
+../otelcol --config=agent.yaml
+```
+
+If everything is set up correctly, the last line of the output should confirm the collector is running:
 
 ```text
 2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
-Send a trace again, check the agent.out, a new line should have been written for your trace:
+Next, from the `Test` terminal window, send a trace again with the `cURL` command to create a new `agent.out`:
+
+{{% tab title="cURL Command" %}}
+
+```ps1
+ curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
+```
+
+{{% /tab %}}
+{{% tab title="Updated Directory Structure" %}}
+
+```text
+[WORKSHOP]
+├── 1-agent         # Module directory
+│   └── agent.yaml  # OpenTelemetry Collector configuration file
+│   └── trace.json  # Sample trace data
+│   └── agent.old   # Copy of previous agent.out
+│   └── agent.out   # OTLP/Json output created by the File Exporter
+└── otelcol         # OpenTelemetry Collector binary
+```
+
+{{%/tab%}}
+
+Check the newly created agent.out file. You should see a new line written for the trace.
 
 {{% tabs %}}
-{{% tab title="Compact JSON" %}}
+{{% tab title="Compacted JSON" %}}
 
 ```json
 {"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"my.service"}},{"key":"deployment.environment","value":{"stringValue":"my.environment"}},{"key":"host.name","value":{"stringValue":"[YOUR_HOST_NAME]"}},{"key":"os.type","value":{"stringValue":"[YOUR_OS]"}},{"key":"otelcol.service.mode","value":{"stringValue":"agent"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5b8efff798038103d269b633813fc60c","spanId":"eee19b7ec3c1b174","parentSpanId":"eee19b7ec3c1b173","name":"I'm a server span","kind":2,"startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","attributes":[{"value":{"stringValue":"some value"}}],"status":{}}]}],"schemaUrl":"https://opentelemetry.io/schemas/1.6.1"}]}
@@ -169,10 +199,10 @@ Send a trace again, check the agent.out, a new line should have been written for
 {{% /tab %}}
 {{% /tabs %}}
 
-If you compare it to the original agent.out file you will note, the collector has added  the `otelcol.service.mode` attribute and a number of `resourcedetection` & `resource` attributes to the `resourceSpans` section of the trace.  These values are based on your device and added automatically as part of the processors we added to the pipeline:
+When you compare the new `agent.out` file to the original `agent.old`, you’ll notice that the collector has added the `otelcol.service.mode` attribute, along with several `resourcedetection` and `resource` attributes, to the `resourceSpans` section of the trace. These values are based on your device and were automatically added by the processors we configured in the pipeline:
 
 {{% tabs %}}
-{{% tab title="Compact JSON" %}}
+{{% tab title="Compacted JSON" %}}
 
 ```json
 {"key":"host.name","value":{"stringValue":"[YOUR_HOST_NAME]"}},{"key":"os.type","value":{"stringValue":"[YOUR_OS]"}},{"key":"otelcol.service.mode","value":{"stringValue":"agent"}}

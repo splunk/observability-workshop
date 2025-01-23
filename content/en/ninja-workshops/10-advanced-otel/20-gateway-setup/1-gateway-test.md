@@ -6,7 +6,7 @@ weight: 1
 
 ## Test Gateway
 
-Open a new terminal and navigateto the`[WORKSHOP]/2-gateway` folder and run the following command to test the gateway configuration:
+Open a 3rd terminal window,this one will be used to run the `gateway` and navigate to the`[WORKSHOP]/2-gateway` folder and run the following command to test the gateway configuration:
 
 ```text
 ../otelcol --config=gateway.yaml
@@ -24,14 +24,14 @@ If everything is set up correctly, the first and last lines of the output should
 
 ### Update agent configuration
 
-Remaining in the `[WORKSHOP]/2-gateway` folder. Open the `agent.yaml` we copied earlier in your editor, and configure a `otlphttp` exporter (this is now the preferred exporter for Splunk Observability Cloud):
+Select your `agent` terminal window, and also navigate to the `[WORKSHOP]/2-gateway` folder.  
+Open the `agent.yaml` we copied earlier in your editor, and configure a `otlphttp` exporter (this is now the preferred exporter for Splunk Observability Cloud):
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - **Configure the `otlphttp` exporter**: Ensure the `endpoint` is set to the gateway endpoint and add the `X-SF-Token` header with a Splunk Access Token.
 
   ```yaml
-  exporters:
     otlphttp:
       endpoint: "http://localhost:5318" # Gateway endpoint
       headers:
@@ -39,17 +39,17 @@ Remaining in the `[WORKSHOP]/2-gateway` folder. Open the `agent.yaml` we copied 
         X-SF-Token: "FAKE_SPLUNK_ACCESS_TOKEN"
   ```
 
-- **Update Pipelines**: Add the `otlphttp` exporter to the `traces`, `metrics`, and `logs` pipelines.
+- **Update Pipelines**: replace the `file:` exporter with the `otlphttp` exporter in the `traces`, `metrics`, and `logs` pipelines.
 
   ```yaml
-  service:
-  pipelines:
     traces:              # Traces Pipeline
       receivers: [otlp]  # Array of receivers in this pipeline
       processors:        # Array of Processors in thi pipeline
       - memory_limiter   # You also could use [memory_limiter]
       # Array of Exporters in this pipeline
-      exporter: [otlphttp, file, debug]
+      exporters: [otlphttp, debug]
+      # metrics: Pipeline
+      # logs: Pipeline
   ```
 
 {{% /notice %}}  
@@ -62,16 +62,18 @@ The `otlphttp` exporter is now the default method for sending metrics and traces
 
 This exporter is included in the default configuration of the Splunk Distribution of the OpenTelemetry Collector when deployed in host monitoring (agent) mode.  
 
-The older `sapm` and `signalfx` exporters are being phased out gradually.  
+The use of older `sapm` and `signalfx` exporters are being phased out gradually.  
 
-##### Key Details
+#### Additional info on how to use Splunk Access Tokens
 
 - **Headers Configuration**:
-  Use the `headers:` key with the subkey `X-SF-Token:` to pass an access token. This aligns with the OpenTelemetry approach for token-based authentication.
+  Use the `headers:` key with the subkey `X-SF-Token:` to pass an access token. This aligns with the OpenTelemetry approach for token-based authentication.  
+  This works both in `agent` as in `gateway` mode.
 
 - **Passthrough Mode**:
   To enable passthrough mode, set `include_metadata:` to `true` in the `otlp` receiver configuration on the gateway. This ensures that headers received by the collector are forwarded with the data through the collector's pipeline.
 
 - **Batch Processing**:
-  Configure the `batch:` section with the key `X-SF-Token:` to group traces, metrics, and logs by the same access token. This helps the collector batch data efficiently before sending it to the backend, improving performance and reducing overhead.
+  Configure the `batch:` section with the key `X-SF-Token:` to group traces, metrics, and logs by the same access token. This helps the collector batch data efficiently before sending it to the backend, improving performance and reducing overhead.   This works both in `agent` as in `gateway` mode.
+
 {{% /notice %}}

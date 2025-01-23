@@ -16,15 +16,21 @@ receivers:
   otlp:
     protocols:
       http:
-        endpoint: "0.0.0.0:5318" # Port changed to prevent conflict with agent
-        include_metadata: true # Enable token pass through mode
+        endpoint: "0.0.0.0:5318"  # Port changed to prevent conflict with agent
+        include_metadata: true    # Enable token pass through mode
 
 processors:
   memory_limiter:
     check_interval: 2s
     limit_mib: 512
   batch:
-    X-SF-Token: # Include metadata in batches
+    metadata_keys:                # Include token in batches
+      X-SF-Token:
+  resource/add_mode:              # Processor Type/Name
+    attributes:                   # Array of Attributes and modifications 
+    - action: upsert              # Action taken is to `insert' or 'update' a key 
+      key: otelcol.service.mode   # key Name
+      value: "gateway"            # Key Value
 
 exporters:
   debug:
@@ -60,6 +66,10 @@ service:
 
 {{% /tab %}}
 
+The [**batch processor**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/batchprocessor/README.md) groups spans, metrics, or logs into batches, improving compression and reducing outgoing connections. It supports batching based on size and time.
+
+It’s recommended to use the batch processor in every collector, placing it after the `memory_limiter` and sampling processors to ensure batching occurs after any data drops like sampling.
+
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - **Configure File Exporters**: Separate exporters need to be configured for traces, metrics, and logs. Below is the YAML configuration for traces:
@@ -68,21 +78,19 @@ service:
   exporters:
     file/traces:                       # Exporter Type/Name
       path: "./gateway-traces.out"     # Path where trace data will be saved in OTLP json format
-      rotation:                        # Rotation settings for trace file
-        max_megabytes: 2               # Maximum file size in MB before rotation
-        max_backups: 2                 # Maximum number of backups to keep
+      append: false                    # Overwrite the file each time
   ```
 
 - **Create similar exporters for metrics and logs**: Using the above example, set the exporter names appropriately and update the file paths to `./gateway-metrics.out` for metrics and `./gateway-logs.out` for logs.
-- **Update the Pipelines Section**: Add each newly created exporter to its corresponding pipeline in the service configuration.
+- **Update the Pipelines Section**: Add each newly created exporter to its corresponding pipeline in the service configuration. Also, add the `batch` processor to each pipeline.
 
   ```yaml
   service:
     pipelines:
-      traces:                           # Trace Pipeline
-        receivers: [otlp]               # Array of Trace Receivers 
-        processors: [memory_limiter]    # Array of Processors
-        exporters: [file/traces, debug] # Array of Trace Exporters
+      traces:                                # Trace Pipeline
+        receivers: [otlp]                    # Array of Trace Receivers 
+        processors: [memory_limiter, batch]  # Array of Processors
+        exporters: [file/traces, debug]      # Array of Trace Exporters
   ```
 
 {{% /notice %}}
