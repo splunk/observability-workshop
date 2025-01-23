@@ -19,6 +19,10 @@ If everything is set up correctly, the  first and last line of the output should
 <snip to the end>
 2025-01-13T12:43:51.747+0100 info service@v0.117.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
+{{% notice title="Exercise" style="green" icon="running" %}}
+On `Windows` you may see a dialog box popup, asking if you want to grant public and private networks access to the **otelcol.exe**, Please select **allow** to continue.
+
+{{%/notice%}}
 
 Next, open a new terminal window and navigate to the `[WORKSHOP]/1-agent` directory.  
 
