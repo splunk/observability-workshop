@@ -140,7 +140,7 @@ while ($true) {
 {{% /tab %}}
 {{% /tabs %}}
 
-In a new terminal window we are going to use for `Log-gen`, navigate to `[WORKSHOP]/3-filelog` folder and start your version of the script. It will start writing lines to a file called `./quotes.log`, and the console output a single line:
+In a new terminal window we are going to use for `log-gen`, navigate to `[WORKSHOP]/3-filelog` folder and start your version of the script. It will start writing lines to a file called `./quotes.log`, and the console output a single line:
 
  ```txt
  Writing logs to quotes.log. Press Ctrl+C to stop.
