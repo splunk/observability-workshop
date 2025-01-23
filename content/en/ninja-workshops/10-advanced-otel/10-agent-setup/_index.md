@@ -63,7 +63,7 @@ service:
 {{%/tab%}}
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-Let's walk through a few modifications to get things started. For proper formatting, make sure to align the YAML structure, paying attention to indentation.
+Let's walk through a few modifications to get things started.
 
 - **Add an `otlp` receiver**: The [**OTLP receiver**](https://docs.splunk.com/observability/en/gdi/opentelemetry/components/otlp-receiver.html) will listen for incoming telemetry data over HTTP (or gRPC).
 
