@@ -87,10 +87,10 @@ It’s recommended to use the batch processor in every collector, placing it aft
   ```yaml
   service:
     pipelines:
-      traces:                           # Trace Pipeline
-        receivers: [otlp]               # Array of Trace Receivers 
-        processors: [memory_limiter, batch]    # Array of Processors
-        exporters: [file/traces, debug] # Array of Trace Exporters
+      traces:                                # Trace Pipeline
+        receivers: [otlp]                    # Array of Trace Receivers 
+        processors: [memory_limiter, batch]  # Array of Processors
+        exporters: [file/traces, debug]      # Array of Trace Exporters
   ```
 
 {{% /notice %}}

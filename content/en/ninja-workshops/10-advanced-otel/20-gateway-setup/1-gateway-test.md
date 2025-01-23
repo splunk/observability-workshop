@@ -49,7 +49,7 @@ Remaining in the `[WORKSHOP]/2-gateway` folder. Open the `agent.yaml` we copied 
       processors:        # Array of Processors in thi pipeline
       - memory_limiter   # You also could use [memory_limiter]
       # Array of Exporters in this pipeline
-      exporter: [otlphttp, debug]
+      exporters: [otlphttp, debug]
   ```
 
 {{% /notice %}}  
