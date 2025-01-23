@@ -77,9 +77,9 @@ Let's walk through a few modifications to get things started. For proper formatt
 - **Add a `debug` exporter**: The [**Debug exporter**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/exporter/debugexporter/README.md) will output detailed debug information for every telemetry record.
 
   ```yaml
-    debug:                          # Exporter Type
-      # Exporter outputs detailed Debug info of every telemetry record
-      verbosity: detailed
+    
+    debug:                 # Exporter Type
+      verbosity: detailed  # Enabled detailed debug output
   ```
 
 - **Update Pipelines**: Ensure that the `otlp` receiver, `memory_limiter` processor, and `debug` exporter are added to the pipelines for traces, metrics, and logs.
