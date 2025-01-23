@@ -30,12 +30,18 @@ The appropriate binary for your platform is:
 If none of the above match your host platform, please select and download the correct of your required build [**here**](https://github.com/signalfx/splunk-otel-collector/releases/tag/v0.116.0).
 {{% /notice %}}
 
-Once downloaded, rename the file to `otelcol` (or `otelcol.exe` on Windows).
+Once downloaded, rename the file to `otelcol` (or `otelcol.exe` on Windows). For Mac/Linux, set the file permissions to allow execution:
+
+```bash
+chmod +x otelcol
+```
 
 ```text
 [WORKSHOP]
 └── otelcol    # OpenTelemetry Collector binary
 ```
+
+For Mac users you will need trust the executable - **[https://support.apple.com/en-mide/102445](https://support.apple.com/en-mide/102445)**.
 
 ### Workshop Overview
 
