@@ -11,11 +11,11 @@ The Filelog receiver is not recommended for production use, as it is not optimiz
 
 ### Setup
 
-Create a new sub directory called `3-filelog` and copy the content from `2-gateway` across. Delete any `*.out` files.
+Create a new sub directory called `3-filelog` and copy the content from `2-gateway` across. Delete any `*.out` or `*.old` files.
 
-Copy one of the two version below and create the appropriate log generation script for your operating system in the new directory (`log-gen.sh` on Mac or Linux or `log-gen.ps1` for Windows). Make sure its executable.
+Copy the script that matches your operating system below and create the appropriate log generation script for your operating system in the new directory (`log-gen.sh` on Mac or Linux or `log-gen.ps1` for Windows). Make sure its executable.
 
-Once we started the log-gen script the directory structure will look like this:
+{{% tab title="Directory Structure after script creation" %}}
 
 ```text
 WORKSHOP
@@ -25,10 +25,12 @@ WORKSHOP
 │   ├── agent.yaml          # Agent Collector configuration file
 │   ├── gateway.yaml        # Gateway Collector configuration file
 │   ├── log-gen.(sh or ps1) # Script to write a file with logs lines 
-│   ├── quotes.log          # File containing Random log lines
 │   └── trace.json          # Example trace file 
 └── otelcol                 # OpenTelemetry Collector binary
 ```
+
+{{%/tab%}}
+
 
 <!--{{% resources sort="asc" style="splunk" title="Log Generation Scripts" icon="scroll" /%}}-->
 
@@ -138,10 +140,27 @@ while ($true) {
 {{% /tab %}}
 {{% /tabs %}}
 
- Run the new log generating script in its own shell and it will start writing lines to a file called `./quotes.log`, and the console output a single line:
+In a new terminal window we are going to use for `log-gen`, navigate to `[WORKSHOP]/3-filelog` folder and start your version of the script. It will start writing lines to a file called `./quotes.log`, and the console output a single line:
 
  ```txt
  Writing logs to quotes.log. Press Ctrl+C to stop.
  ```
+
+{{% tab title="Updated Directory Structure" %}}
+
+```text
+WORKSHOP
+├── 1-agent
+├── 2-gateway
+├── 3-filelog
+│   ├── agent.yaml          # Agent Collector configuration file
+│   ├── gateway.yaml        # Gateway Collector configuration file
+│   ├── log-gen.(sh or ps1) # Script to write a file with logs lines 
+│   ├── quotes.log          # File containing Random log lines
+│   └── trace.json          # Example trace file 
+└── otelcol                 # OpenTelemetry Collector binary
+```
+
+{{%/tab%}}
 
 Leave it running.

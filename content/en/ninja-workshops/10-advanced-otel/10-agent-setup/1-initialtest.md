@@ -1,11 +1,16 @@
 ---
-title: Test out Initial agent config
-linkTitle: 1.1 Test Agent config
+title: Testing the initial agent configuration
+linkTitle: 1.1 Test Configuration
 weight: 1
 ---
-### Test & Validate
 
-Once you've updated the configuration, you’re ready to proceed to running the OpenTelemetry Collector with your new setup. This exercise sets the foundation for understanding how data flows through the OpenTelemetry Collector, including receivers, processors, and exporters.
+Once you've updated the configuration, you’re ready to proceed to running the OpenTelemetry Collector with your new setup. This exercise sets the foundation for understanding how data flows through the OpenTelemetry Collector.
+
+Start or reuse your initial terminal window, we will use this to run the `Agent`.
+
+{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
+To improve organization during the workshop, consider customizing your Terminal windows or Shells with unique names and colors. This will make it easier to identify and switch between them quickly.
+{{% /notice %}}
 
 Run the following command from the `1-agent` directory (ensure you’re using the correct OpenTelemetry Collector binary you downloaded):
 
@@ -18,10 +23,17 @@ If everything is set up correctly, the  first and last line of the output should
 ```text
 2025/01/13T12:43:51 settings.go:478: Set config to [agent.yaml]
 <snip to the end>
-2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
+2025-01-13T12:43:51.747+0100 info service@v0.117.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
-Next, open a new terminal window, create a file named `trace.json`, and copy the content from one of the tabs below (both tabs contain the same trace data):
+{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
+On `Windows` you may see a dialog box popup now, asking if you want to grant public and private networks access to the **otelcol.exe**, Please select **allow** to continue.
+
+{{%/notice%}}
+
+Rather than instrumenting an application, we will simulate sending trace data, in JSON format, to the OpenTelemetry Collector using `curl`.
+
+Create a new file named `trace.json` and copy the content from one of the tabs below (both tabs contain the same trace data).
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
@@ -108,13 +120,15 @@ Next, open a new terminal window, create a file named `trace.json`, and copy the
 
 {{%/tab%}}
 
-In the second terminal window, run the following command to test your setup and validate the output:
+Next, open a second terminal window and also navigate to the `[WORKSHOP]/1-agent` directory.  
+
+In this new shell, which we will use for running `Tests`, execute the following command to test your setup and verify the output:
 
 ```ps1
  curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
 ```
 
-The Agent console should show similar output like this: 
+The agent's debug console should display output similar to this:
 
 ```text
 2025-01-13T13:26:13.502+0100 info Traces {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
@@ -143,4 +157,4 @@ Attributes:
   {"kind": "exporter", "data_type": "traces", "name": "debug"}
 ```
 
-If this all worked, let's continue to build the agent yaml out some more.
+If everything worked as expected, you’re ready to continue building out the agent's YAML configuration.
