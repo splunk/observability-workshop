@@ -5,7 +5,9 @@ weight: 4
 ---
 ### Setup
 
-As a final exercise in this section, we’ll add the `hostmetric` receiver that triggers at startup and scrapes metrics once every hour to minimize unnecessary output.
+As a final exercise in this section, we’ll add the `hostmetric` receiver which is used to collect host-level metrics from the system where it is running. These metrics provide insights into the performance and health of the underlying infrastructure, such as CPU usage, memory consumption, disk activity, and network performance.
+
+For this exercise we will only scrape the CPU metrics once every hour to minimize the amount of data generated.
 
  {{% notice title="Exercise" style="green" icon="running" %}}
  To show metrics flowing in, we are going to modify the agent.yaml some more:
