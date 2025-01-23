@@ -6,7 +6,7 @@ weight: 1
 
 ## Test Gateway
 
-Open a new terminal and navigate to the`[WORKSHOP]/2-gateway` folder and run the following command to test the gateway configuration:
+Open a second terminal and navigate to the`[WORKSHOP]/2-gateway` folder and run the following command to test the gateway configuration:
 
 ```text
 ../otelcol --config=gateway.yaml
