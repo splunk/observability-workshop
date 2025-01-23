@@ -3,6 +3,9 @@ title: Configuring a File exporter
 linkTitle: 1.2 Adding a File exporter
 weight: 2
 ---
+### Different between Debug and FileExporter
+
+To capture more than just debug output on the screen, we also want to generate output during the export phase of the pipeline. For this, we'll add a **File Exporter** to write OTLP data to files for comparison.
 
 The difference between the OpenTelemetry **debug exporter** and the **file exporter** lies in their purpose and output destination:
 
@@ -16,9 +19,7 @@ The difference between the OpenTelemetry **debug exporter** and the **file expor
 
 In summary, the **debug exporter** is great for real-time, in-development troubleshooting, while the **file exporter** is better suited for storing telemetry data locally for later use.
 
-### Setup
-
-To capture more than just debug output on the screen, we also want to generate output during the export phase of the pipeline. For this, we'll add a **File Exporter** to write OTLP data to files for comparison.
+Let's configure and add the `FileExporter`:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -52,7 +53,7 @@ Validate your updated `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)*
 
 ### Test & Validate
 
-Restart your collect this time with your new config to test it:
+Restart your agent in the `Agent` terminal window, this time with your new config to test it:
 
 ```bash
 ../otelcol --config=agent.yaml
@@ -64,7 +65,7 @@ Again, if you have done everything correctly, the last line of the output should
 2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
-If you send a trace again, you should get the same output as we saw previously:
+If you send a trace again, from the `Test` terminal window you should get the same output on the console as we saw previously:
 
 {{% tab title="cURL Command" %}}
 
@@ -76,15 +77,18 @@ If you send a trace again, you should get the same output as we saw previously:
 
 You now should have a file in the same directory called `agent.out`:
 
+{{% tab title="Updated Directory Structure" %}}
+
 ```text
 [WORKSHOP]
-├── 1-agent
-│   ├── agent.out
-│   ├── agent.yaml
-│   └── trace.json
-└── otelcol
-
+├── 1-agent         # Module directory
+│   └── agent.yaml  # OpenTelemetry Collector configuration file
+│   └── trace.json  # Sample trace data
+│   └── agent.out   # OTLP/Json output created by the File Exporter
+└── otelcol         # OpenTelemetry Collector binary
 ```
+
+{{%/tab%}}
 
 In the file the trace is written as a single line in JSON format, when you look at the file it looks like this:
 

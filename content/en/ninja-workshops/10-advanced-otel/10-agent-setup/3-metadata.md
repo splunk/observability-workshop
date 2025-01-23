@@ -55,7 +55,22 @@ Validate your updated `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)*
 
 ### Test & Validate
 
-Rename `./agent.out` to `.agent.old`, then restart your collector using the updated configuration to test the changes:
+Rename `./agent.out` to `.agent.old`, ythis so you can compare it later.
+
+{{% tab title="Updated Directory Structure" %}}
+
+```text
+[WORKSHOP]
+├── 1-agent         # Module directory
+│   └── agent.yaml  # OpenTelemetry Collector configuration file
+│   └── trace.json  # Sample trace data
+│   └── agent.old   # Copy of previous agent.out
+└── otelcol         # OpenTelemetry Collector binary
+```
+
+{{%/tab%}}
+
+Then restart your collector in the ` Agent` terminal window using the updated configuration to test the changes:
 
 ```bash
 ../otelcol --config=agent.yaml
@@ -67,7 +82,30 @@ If everything is set up correctly, the last line of the output should confirm th
 2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
-Next, send a trace again and check the newly created agent.out file. You should see a new line written for the trace.
+Next, from the `Test` terminal window, send a trace again with the `cURL` command to create a new `agent.out`:
+
+{{% tab title="cURL Command" %}}
+
+```ps1
+ curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
+```
+
+{{% /tab %}}
+{{% tab title="Updated Directory Structure" %}}
+
+```text
+[WORKSHOP]
+├── 1-agent         # Module directory
+│   └── agent.yaml  # OpenTelemetry Collector configuration file
+│   └── trace.json  # Sample trace data
+│   └── agent.old   # Copy of previous agent.out
+│   └── agent.out   # OTLP/Json output created by the File Exporter
+└── otelcol         # OpenTelemetry Collector binary
+```
+
+{{%/tab%}}
+
+Check the newly created agent.out file. You should see a new line written for the trace.
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
@@ -161,7 +199,7 @@ Next, send a trace again and check the newly created agent.out file. You should 
 {{% /tab %}}
 {{% /tabs %}}
 
-When you compare the new `agent.out` file to the original, you’ll notice that the collector has added the `otelcol.service.mode` attribute, along with several `resourcedetection` and `resource` attributes, to the `resourceSpans` section of the trace. These values are based on your device and were automatically added by the processors we configured in the pipeline:
+When you compare the new `agent.out` file to the original `agent.old`, you’ll notice that the collector has added the `otelcol.service.mode` attribute, along with several `resourcedetection` and `resource` attributes, to the `resourceSpans` section of the trace. These values are based on your device and were automatically added by the processors we configured in the pipeline:
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}

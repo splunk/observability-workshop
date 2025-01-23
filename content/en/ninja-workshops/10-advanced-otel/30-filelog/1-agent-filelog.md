@@ -30,32 +30,15 @@ Again validate the agent configuration using **[otelbin.io](https://www.otelbin.
 
 ## Test the Filelog receiver
 
-From the `[WORKSHOP]/3-filelog` folder, start the collector in `gateway` mode in its own shell and wait until it is ready to receive data. Next, make sure the quotes generating script is running its own shell
+Find your `Gateway` terminal window, Navigate to the `[WORKSHOP]/3-filelog` folder, start the collector in `gateway` mode and wait until it is ready to receive data. Next, make sure the quotes generating script is running its own `Log-gen` shell
 
-Once we start the agent, the resulting file structure will change to this:
-
-```text
-WORKSHOP
-├── 1-agent
-├── 2-gateway
-├── 3-filelog
-│   ├── agent.yaml          # Agent Collector configuration file
-│   ├── gateway-logs.out.   # Output from the gateway logs pipeline
-│   ├── gateway-metrics.out # Output from the gateway metrics pipeline
-│   ├── gateway.yaml        # Gateway Collector configuration file
-│   ├── log-gen.(sh or ps1) # Script to write a file with logs lines 
-│   ├── quotes.log          # File containing Random log lines
-│   └── trace.json          # Example trace file 
-└── otelcol                 # OpenTelemetry Collector binary
-```
-
-To test teh `Filelog` receiver, start the agent in a 3rd shell with:
+To test the `Filelog` receiver, find your `Agent` terminal window, navigate to the `[WORKSHOP]/3-filelog` folder and start the agent with:
 
 ```bash
 ../otelcol --config=agent.yaml
 ```
 
-The agent should start to send *cpu* metrics again as before. However, the agent should also start reading the `quotes.log` file,and both the agent and the gateway should reflect that in their debug output lke this:
+The agent should start to send *cpu* metrics again as before and both the agent and the gateway should reflect that in their debug output like this:
 
 ```text
 2025-01-18T21:25:01.806+0100    info    ResourceLog #0
@@ -83,7 +66,29 @@ Flags: 0
         {"kind": "exporter", "data_type": "logs", "name": "debug"}
 ```
 
-As the agent is reading the `quotes.log` file it  will forward those log line to the gateway. The gateway pipeline should cause the `gateway-log.out` file to be generated with the following output:
+As the agent start reading the `quotes.log` file, it will show that on the debug console output, and forward those log line to the gateway.
+The gateway pipeline will cause the `gateway-log.out` file to be generated and at this point your directory structure looks like this:
+
+{{% tab title="Updated Directory Structure" %}}
+
+```text
+WORKSHOP
+├── 1-agent
+├── 2-gateway
+├── 3-filelog
+│   ├── agent.yaml          # Agent Collector configuration file
+│   ├── gateway-logs.out.   # Output from the gateway logs pipeline
+│   ├── gateway-metrics.out # Output from the gateway metrics pipeline
+│   ├── gateway.yaml        # Gateway Collector configuration file
+│   ├── log-gen.(sh or ps1) # Script to write a file with logs lines 
+│   ├── quotes.log          # File containing Random log lines
+│   └── trace.json          # Example trace file 
+└── otelcol                 # OpenTelemetry Collector binary
+```
+
+{{%/tab%}}
+
+The resulting `gateway-log.out` should look like this: (We only show the top and a single log line, you will have many more)
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
