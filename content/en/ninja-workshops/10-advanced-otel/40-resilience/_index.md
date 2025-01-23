@@ -91,10 +91,9 @@ We are going to extend the existing `otlphttp` exporter:
 
 {{% /notice%}}
 
-As we want to control the data flow for this exercise we  are going to remove the `hostmetrics` receiver from the Metric pipeline:
+As we want to control the data flow for this exercise we are going to temporarily  remove the `hostmetrics` receiver from the Metric pipeline:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-We are going to extend the existing `otlphttp` exporter:
 
 - **Update the `metrics` pipeline**:  Remove the `hostmetrics` receiver from `metrics` pipeline in the `service` section like this:
 
