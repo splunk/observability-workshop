@@ -65,7 +65,13 @@ service:
 {{% notice title="Exercise" style="green" icon="running" %}}
 Let's walk through a few modifications to get things started. For proper formatting, make sure to align the YAML structure, paying attention to indentation.
 
-- **Add an `otlp` receiver**: Configure to use `http` as the `protocol`.
+- **Add an `otlp` receiver**: The [**OTLP receiver**](https://docs.splunk.com/observability/en/gdi/opentelemetry/components/otlp-receiver.html) will listen for incoming telemetry data over HTTP (or gRPC).
+
+  ```yaml
+    receivers:
+      otlp:                   # Receiver Type
+        protocols:            # List of Protocols used
+          grpc: {}            # This will enable the gRPC Protocol
 
   ```yaml
     otlp:
@@ -74,7 +80,7 @@ Let's walk through a few modifications to get things started. For proper formatt
           endpoint: "0.0.0.0:4318"  # Endpoint for incoming telemetry data
   ```
 
-- **Add a `debug` exporter**:
+- **Add a `debug` exporter**: The [**Debug exporter**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/exporter/debugexporter/README.md) will output detailed debug information for every telemetry record.
 
   ```yaml
     debug:                          # Exporter Type
