@@ -11,13 +11,13 @@ The goal is to show how this configuration allows your OpenTelemetry Collector t
 
 {{% notice title="Tip" style="primary"  icon="lightbulb" %}}
 
-This solution will be effective only if the connection is down for a short period, such as up to 15 minutes. If the downtime lasts longer, the backend will eventually drop the data due to timing mismatches. While this approach will also work for logs, we plan to introduce a more robust log solution in one of the upcoming collector builds.
+This solution will work for metrics as long as the connection downtime is brief—up to 15 minutes. If the downtime exceeds this, the backend may still drop data due to timing mismatches. For logs, we’re planning to implement a more enterprise-ready solution in one of the upcoming collector builds.
 
 {{% /notice %}}
 
 ### Setup
 
-Create a new subdirectory named `4-resilience` and copy the contents from the `3-filelog` directory into it. Be sure to remove any `*.out` files. Your directory structure should now look like this:
+Create a new subdirectory named `4-resilience` and copy the contents from the `3-filelog` directory into it. Be sure to remove any `*.out` and `*.log` files. Your directory structure should now look like this:
 
 {{% tab title="Initial Directory Structure" %}}
 
@@ -29,8 +29,7 @@ WORKSHOP
 ├── 4-resilience
 │   ├── agent.yaml
 │   ├── gateway.yaml
-│   ├── log-gen.sh
-│   ├── quotes.log
+│   ├── log-gen.sh (or .ps1)
 │   └── trace.json
 └── otelcol
 ```
@@ -40,7 +39,7 @@ WORKSHOP
 In this exercise, we will update the `agent.yaml` file by updating the `extensions:` section. This section is part of the OpenTelemetry configuration YAML, used to define optional components that enhance or modify the behavior of the OpenTelemetry Collector. These components do not handle telemetry data directly but provide additional capabilities or services to the Collector.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-The first task is to implement **checkpointing** using the `file_storage` extension. The `file_storage` extension ensures that the OpenTelemetry Collector can persist checkpoints to disk, which is especially useful in the event of network failures or restarts. This allows the Collector to resume from where it left off, without losing data.
+Our first task is to implement **checkpointing** using the `file_storage` extension. The `file_storage` extension ensures that the OpenTelemetry Collector can persist checkpoints to disk, which is especially useful in the event of network failures or restarts. This allows the Collector to resume from where it left off, without losing data.
 
 1. **Add `file_storage:` extension** and name it `checkpoint:`
 
@@ -87,10 +86,26 @@ We are going to extend the existing `otlphttp` exporter:
         num_consumers: 10         
         queue_size: 10000      # The maximum size of the queue
         # Specifies queue state will be backed up in the file system
-        storage: file_storage/checkpoint 
+        storage: file_storage/checkpoint         
 ```
 
 {{% /notice%}}
+
+As we want to control the data flow for this exercise we  are going to remove the `hostmetrics` receiver from the Metric pipeline:
+
+{{% notice title="Exercise" style="green" icon="running" %}}
+We are going to extend the existing `otlphttp` exporter:
+
+- **Update the `metrics` pipeline**:  Remove the `hostmetrics` receiver from `metrics` pipeline in the `service` section like this:
+
+  ```yaml
+    metrics:
+     #receivers: [otlp, hostmetrics]  # Array of Metric Receivers
+     receivers: [otlp]                # Array of Metric Receivers
+     #processors:                     # Array of Metric Processors
+  ```
+
+{{% /notice %}}
 
 Again, validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)** for spelling mistakes etc. Your `Logs:` pipeline should like this:
 
