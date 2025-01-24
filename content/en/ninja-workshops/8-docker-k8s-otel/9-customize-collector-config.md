@@ -103,7 +103,12 @@ Let's look at an example.
 
 For our first example, let's enable infrastructure events monitoring for our K8s cluster. 
 
-This is done by add the following line to the `values.yaml` file: 
+> This will allow us to see Kubernetes events as part of the Events Feed section in charts. 
+> The cluster receiver will be configured with a Smart Agent receiver using the kubernetes-events 
+> monitor to send custom events.  See [Collect Kubernetes events](https://docs.splunk.com/observability/en/gdi/opentelemetry/collector-kubernetes/kubernetes-config-logs.html#collect-kubernetes-events) 
+> for further details. 
+
+This is done by adding the following line to the `values.yaml` file: 
 
 > Hint: steps to open and save in vi are in previous steps. 
 
