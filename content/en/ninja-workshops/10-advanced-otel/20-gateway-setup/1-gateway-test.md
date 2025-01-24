@@ -25,7 +25,7 @@ If everything is set up correctly, the first and last lines of the output should
 ### Update agent configuration
 
 Select your `agent` terminal window, and also navigate to the `[WORKSHOP]/2-gateway` folder.  
-Open the `agent.yaml` we copied earlier in your editor, and configure a `otlphttp` exporter (this is now the preferred exporter for Splunk Observability Cloud):
+Open the `agent.yaml` we copied earlier in your editor, and configure a `otlphttp` exporter by replacing the existing `file` one. (this is now the preferred exporter for Splunk Observability Cloud):
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 

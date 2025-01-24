@@ -17,6 +17,8 @@ Furthermore, this approach significantly enhances the debugging and troubleshoot
 
 To get the most out of this workshop, you should have a basic understanding of the OpenTelemetry Collector and its configuration file format. Additionally, proficiency in editing YAML files is required. The entire workshop is designed to run locally.
 
+You will benefit from having a good editor for the YAML we use in this Workshop, like Visual Studio Code. You can download it [here](https://code.visualstudio.com/download) if you need it.
+
 ### Prerequisites
 
 - **Create a directory** on your machine for the workshop (e.g., `collector`). We will refer to this directory as `[WORKSHOP]` in the instructions.

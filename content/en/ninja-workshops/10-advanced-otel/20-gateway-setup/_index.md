@@ -70,6 +70,8 @@ The [**batch processor**](https://github.com/open-telemetry/opentelemetry-collec
 
 It’s recommended to use the batch processor in every collector, placing it after the `memory_limiter` and sampling processors to ensure batching occurs after any data drops like sampling.
 
+Let's extend the `gateway.yaml` file we just created to seperate data to different files  
+
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - **Configure File Exporters**: Separate exporters need to be configured for traces, metrics, and logs. Below is the YAML configuration for traces:
