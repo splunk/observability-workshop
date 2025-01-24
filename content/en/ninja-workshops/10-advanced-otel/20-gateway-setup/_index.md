@@ -77,7 +77,6 @@ Let's extend the `gateway.yaml` file we just created to seperate data to differe
 - **Configure File Exporters**: Separate exporters need to be configured for traces, metrics, and logs. Below is the YAML configuration for traces:
 
   ```yaml
-  exporters:
     file/traces:                       # Exporter Type/Name
       path: "./gateway-traces.out"     # Path where trace data will be saved in OTLP json format
       append: false                    # Overwrite the file each time
@@ -87,12 +86,12 @@ Let's extend the `gateway.yaml` file we just created to seperate data to differe
 - **Update the Pipelines Section**: Add each newly created exporter to its corresponding pipeline in the service configuration. Also, add the `batch` processor to each pipeline.
 
   ```yaml
-  service:
-    pipelines:
       traces:                                # Trace Pipeline
         receivers: [otlp]                    # Array of Trace Receivers 
         processors: [memory_limiter, batch]  # Array of Processors
         exporters: [file/traces, debug]      # Array of Trace Exporters
+      # Metric pipeline
+      # Logs Pipeline  
   ```
 
 {{% /notice %}}
