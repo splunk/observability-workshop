@@ -1,6 +1,21 @@
 extensions:
   health_check:                   # Enables the health check extension
     endpoint: 0.0.0.0:13133
+  file_storage/checkpoint:      # Extension Type/Name
+  # Defines the folder where checkpoint files will be stored
+  directory: "./checkpoint-folder"   
+  # Ensures that the directory is created if not exist 
+  create_directory: true  
+  # Specifies timeout for file operations for checkpointing
+  timeout: 1s
+  # Ensures that old checkpoint data is compacted periodically
+  compaction:  
+    # Controls if compaction process begins at OpenTelemetry Collector startup               
+    on_start: true   
+    # Specifies the directory used for compaction (as a midstep)        
+    directory: "./checkpoint-folder/tmp"
+    # Size limit for checkpoint transactions before compaction occurs
+    max_transaction_size: 65_536        
 
 receivers:
   otlp:
@@ -19,6 +34,24 @@ exporters:
   file:                           # Exporter Type
     path: "./agent.out"           # Path where data will be saved in OTLP json format
     append: false                 # Overwrite the file each time
+  otlphttp:
+    endpoint: "localhost:5317"
+    headers:
+      X-SF-Token: "FAKE_SPLUNK_ACCESS_TOKEN" # or your own version of a token
+    tls:                       # Configure Transport Layer Security
+      # true disables TLS verification for the connection
+      insecure: true             
+    # Controls retrying when there is a failure in sending data  
+    retry_on_failure:             
+      enabled: true            # Enables retrying
+      # Configures an internal queue to store data that couldn’t be sent
+      sending_queue:              
+        enabled: true          # Enables Sending queue
+        # Specifies the number of consumers reading from the queue
+        num_consumers: 10         
+        queue_size: 10000      # The maximum size of the queue
+        # Specifies queue state will be backed up in the file system
+        storage: file_storage/checkpoint         
 
 processors:
   memory_limiter:                 # Limits memory usage of the OpenTelemetry Collector
@@ -44,18 +77,19 @@ service:
       - memory_limiter
       - resourcedetection
       - resource/add_mode
-      exporters: [debug, file]
+      exporters: [debug, otlphttp]
     metrics:
-      receivers: [otlp, hostmetrics]
+      #receivers: [otlp, hostmetrics]
+      receivers: [otlp]
       processors:
       - memory_limiter
       - resourcedetection
       - resource/add_mode
-      exporters: [debug, file]
+      exporters: [debug, otlphttp]
     logs: 
       receivers: [otlp]
       processors:
       - memory_limiter
       - resourcedetection
       - resource/add_mode
-      exporters: [debug, file]
+      exporters: [debug, otlphttp]
