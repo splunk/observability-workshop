@@ -25,7 +25,7 @@ processors:
     limit_mib: 512
   batch:
     metadata_keys:                # Include token in batches
-      X-SF-Token:
+    - X-SF-Token:
   resource/add_mode:              # Processor Type/Name
     attributes:                   # Array of Attributes and modifications 
     - action: upsert              # Action taken is to `insert' or 'update' a key 
