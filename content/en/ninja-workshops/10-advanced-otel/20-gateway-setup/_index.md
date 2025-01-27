@@ -78,7 +78,7 @@ For optimal performance, it is recommended to use the Batch Processor in every c
 
 ### Extend the Gateway Configuration
 
-In this section, we will extend the `gateway.yaml` configuration you just created to separate metric,traces & logs into different files.
+In this section, we will extend the `gateway.yaml` configuration you just created to separate metric, traces & logs into different files.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 

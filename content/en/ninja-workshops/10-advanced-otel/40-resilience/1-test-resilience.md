@@ -6,11 +6,11 @@ weight: 1
 
 ##### Setup Test environment
 
-In this section we are going to simulate an outage on the network between teh `agent` and the `gateway` and see if our configuration helps the Collector recover from that issue:
+In this section we are going to simulate an outage on the network between the `agent` and the `gateway` and see if our configuration helps the Collector recover from that issue:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Run the Gateway**:  
+- **Run the Gateway**:
    Find your `Gateway` terminal window, and navigate to the `[WORKSHOP]/4-resilience` folder and start the gateway with the following command.
 
    ```bash
@@ -20,8 +20,8 @@ In this section we are going to simulate an outage on the network between teh `a
 
    It should start up normally and state : `Everything is ready. Begin running and processing data.`
 
-- **Run the Agent**:   
-   Find your `Agent` terminal window, and navigate to the `[WORKSHOP]/4-resilience` folder and start the agent with the resilience configurations specified in the YAML file.
+- **Run the Agent**:
+   Find your `Agent` terminal window and navigate to the `[WORKSHOP]/4-resilience` folder and start the agent with the resilience configurations specified in the YAML file.
 
    ```bash
    ../otelcol --config agent.yaml
@@ -30,7 +30,7 @@ In this section we are going to simulate an outage on the network between teh `a
    It should also start up normally and state : `Everything is ready. Begin running and processing data.`
 
 - **Send a Test Trace**:  
-   Find your `Test` terminal window, and navigate to the `[WORKSHOP]/4-resilience` folder and start send our test trace to confirm everything is up and running and the gateway should generate an `./gateway-traces.out` again:
+   Find your `Test` terminal window, and navigate to the `[WORKSHOP]/4-resilience` folder and start send our test trace to confirm everything is up and running, and the gateway should generate a `./gateway-traces.out` again:
 
 {{% tabs %}}
 {{% tab title="cURL Command" %}}
@@ -71,24 +71,37 @@ In this section we are going to simulate an outage on the network between teh `a
 {{% /tab %}}
 {{% /tabs %}}
 
-{{%/notice%}}
+{{% /notice %}}
 
-##### Testing the Resilience
+##### Testing System Resilience
 
-To test the resilience built into the system we are going to send traces and see what happens if the Gateway is unreachable.
+To evaluate the system's resilience, we'll simulate a scenario where the Gateway is temporarily unreachable and observe the system's behavior.
 
-1. **Make sure data is flowing across into the Gateway** Make sure the Debug screen of the gateway shows  the data from the test trace.
+1. **Verify Data Flow to the Gateway**
+   Ensure that data is successfully flowing into the Gateway. Open the Gateway's Debug screen and confirm that it displays data from the test trace.
 
-2. **Simulate Network Failure:** Temporarily stop the Gateway and with the gateway stopped, send 3 or 4 traces whit thh cURL command again. You should see the retry mechanism kicking in on the agent side, as the agent will attempt to resend the data.
+2. **Simulate a Network Failure**
+   - Temporarily stop the Gateway.
+   - While the Gateway is stopped, send 3–4 traces using the `cURL` command.
+   - Observe the agent's retry mechanism as it attempts to resend the data.
 
-3. **Check the Checkpoint Folder:** After a few retries, inspect the `./checkpoint-folder` directory. You should see checkpoint files stored there, which contain the serialized state of the queue.
+3. **Inspect the Checkpoint Folder**
+   - After several retries, check the `./checkpoint-folder` directory.
+   - Confirm that checkpoint files are created and stored there, representing the serialized state of the data queue.
 
-4. **Stop the agent:**. This wil stop the agent trying to resend,  so we get a clearer picture of the recovery.
-5. **Restart the gateway:**  It should startup  normally and is waiting for  data.
-6. **Restart the Agent:** Restarting the OpenTelemetry Agent will cause the collector to resume sending data from the last checkpointed state, without losing any data.  this should be clear from the gateway as is start receiving the missing traces.
+4. **Stop the Agent**
+   Stop the agent to halt its retry attempts. This will help in clearly observing the recovery process.
 
-##### Conclusion
+5. **Restart the Gateway**
+   Start the Gateway again. It should initialize normally and be ready to receive data.
 
-In this section, you learned how to improve the resilience of the OpenTelemetry Collector by configuring the `file_storage` extension, setting up retry mechanisms for the OTLP exporter, and using a file-backed sending queue to store data during temporary failures.
+6. **Restart the Agent**
+   When you restart the OpenTelemetry Agent, it should resume sending data from the last checkpointed state. This ensures no data loss, which should be visible on the Gateway as it begins receiving the previously missed traces.
 
-By leveraging file storage for checkpointing and queue persistence, you ensure that your telemetry pipeline can recover gracefully from short interruptions, making it more reliable for production environments.
+---
+
+### Conclusion
+
+This exercise demonstrated how to enhance the resilience of the OpenTelemetry Collector by configuring the `file_storage` extension, enabling retry mechanisms for the OTLP exporter, and using a file-backed queue for temporary data storage.
+
+By implementing file-based checkpointing and queue persistence, you ensure the telemetry pipeline can gracefully recover from temporary interruptions, making it more robust and reliable for production environments.

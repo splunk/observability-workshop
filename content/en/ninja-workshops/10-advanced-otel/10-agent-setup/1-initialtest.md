@@ -8,7 +8,7 @@ Once you've updated the configuration, you’re ready to proceed to running the 
 
 Start or reuse your initial terminal window, we will use this to run the `Agent`.
 
-{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
 To improve organization during the workshop, consider customizing your Terminal windows or Shells with unique names and colors. This will make it easier to identify and switch between them quickly.
 {{% /notice %}}
 
@@ -18,7 +18,7 @@ Run the following command from the `1-agent` directory (ensure you’re using th
 ../otelcol --config=agent.yaml
 ```
 
-If everything is set up correctly, the  first and last line of the output should read:
+If everything is set up correctly, the first and last line of the output should read:
 
 ```text
 2025/01/13T12:43:51 settings.go:478: Set config to [agent.yaml]
@@ -26,10 +26,10 @@ If everything is set up correctly, the  first and last line of the output should
 2025-01-13T12:43:51.747+0100 info service@v0.117.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
-{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
 On `Windows` you may see a dialog box popup now, asking if you want to grant public and private networks access to the **otelcol.exe**, Please select **allow** to continue.
 
-{{%/notice%}}
+{{%/ notice %}}
 
 Rather than instrumenting an application, we will simulate sending trace data, in JSON format, to the OpenTelemetry Collector using `curl`.
 
@@ -118,7 +118,7 @@ Create a new file named `trace.json` and copy the content from one of the tabs b
 └── otelcol         # OpenTelemetry Collector binary
 ```
 
-{{%/tab%}}
+{{% /tab %}}
 
 Next, Open a second terminal window and navigate to the [WORKSHOP]/1-agent directory. In this new terminal (used for running 'Tests'), execute the following command to send a trace to test your setup:
 

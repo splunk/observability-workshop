@@ -45,7 +45,7 @@ Find your `gateway` terminal window, navigate to the `[WORKSHOP]/3-filelog` fold
 
 To test the Filelog Receiver, find your `agent` terminal window, navigate to the `[WORKSHOP]/3-filelog` folder and start the agent.
 
-The agent should start to send *cpu* metrics again as before and both the agent and the gateway should reflect that in their debug output like this:
+The agent should start to send **CPU** metrics again as before and both the agent and the gateway should reflect that in their debug output like this:
 
 ```text
 2025-01-18T21:25:01.806+0100    info    ResourceLog #0
@@ -74,7 +74,7 @@ Flags: 0
 
 When the agent begins reading the quotes.log file, it will display this activity in the debug console output and forward the log lines to the gateway.
 
-The gateway pipeline will then generate the gateway-log.out file. At this point, your directory structure will appear as follows:
+The gateway pipeline will then generate the `gateway-log.out` file. At this point, your directory structure will appear as follows:
 
 {{% tab title="Updated Directory Structure" %}}
 
@@ -93,7 +93,7 @@ WORKSHOP
 └── otelcol                 # OpenTelemetry Collector binary
 ```
 
-{{%/tab%}}
+{{% /tab %}}
 
 The resulting `gateway-log.out` should look like this: (We only show the top and a single log line, you will have many more)
 
@@ -178,7 +178,7 @@ The resulting `gateway-log.out` should look like this: (We only show the top and
 {{% /tab %}}
 {{% /tabs %}}
 
-The `resourceLogs` section includes the same attributes we observed in the `traces` and `metrics` sections. This shared attribute mechanism powers the **Related Content** feature in Splunk Observability, which seamlessly links and correlates logs, metrics, traces, and dashboards. 
+The `resourceLogs` section includes the same attributes we observed in the `traces` and `metrics` sections. This shared attribute mechanism powers the **Related Content** feature in Splunk Observability, which seamlessly links and correlates logs, metrics, traces, and dashboards.
 
 This feature is designed to help users quickly identify and investigate issues by providing a unified view of related telemetry data. Instead of isolating each data type, Splunk Observability connects them, enabling faster troubleshooting and more efficient root cause analysis.
 

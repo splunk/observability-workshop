@@ -6,7 +6,7 @@ weight: 1
 
 ## Test Gateway
 
-Open a 3rd terminal window,this one will be used to run the `gateway` and navigate to the`[WORKSHOP]/2-gateway` folder and run the following command to test the gateway configuration:
+Open a 3rd terminal window, this one will be used to run the `gateway` and navigate to the`[WORKSHOP]/2-gateway` folder and run the following command to test the gateway configuration:
 
 ```text
 ../otelcol --config=gateway.yaml
@@ -39,7 +39,8 @@ Open the `agent.yaml` we copied earlier in your editor, and configure a `otlphtt
         X-SF-Token: "FAKE_SPLUNK_ACCESS_TOKEN"
   ```
 
-- **Add a batch processor to the agent**:  since the agent can send dat from different sources, and benfit from retries,  adding a Batch processor is usefull too 
+- **Add a batch processor to the agent**: since the agent can send data from different sources, and benefit from retries, adding a Batch processor is useful too:
+
 ```yaml
     batch:                     # Processor Type
     # Array of metadata keys to batch data by
@@ -64,7 +65,7 @@ Again, validate the agent configuration using **[otelbin.io](https://www.otelbin
 
 ![otelbin-g-2-2-metrics](../../images/gateway-2-2-metrics.png)
 
-{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
 The `otlphttp` exporter is now the default method for sending metrics and traces to the Splunk Observability Cloud.  
 
 This exporter is included in the default configuration of the Splunk Distribution of the OpenTelemetry Collector when deployed in host monitoring (agent) mode.  
@@ -74,13 +75,13 @@ The use of older `sapm` and `signalfx` exporters are being phased out gradually.
 #### Additional info on how to use Splunk Access Tokens
 
 - **Headers Configuration**:
-  Use the `headers:` key with the subkey `X-SF-Token:` to pass an access token. This aligns with the OpenTelemetry approach for token-based authentication.  
+  Use the `headers:` key with the sub-key `X-SF-Token:` to pass an access token. This aligns with the OpenTelemetry approach for token-based authentication.  
   This works both in `agent` as in `gateway` mode.
 
-- **Passthrough Mode**:
-  To enable passthrough mode, set `include_metadata:` to `true` in the `otlp` receiver configuration on the gateway. This ensures that headers received by the collector are forwarded with the data through the collector's pipeline.
+- **Pass-through Mode**:
+  To enable pass-through mode, set `include_metadata:` to `true` in the `otlp` receiver configuration on the gateway. This ensures that headers received by the collector are forwarded with the data through the collector's pipeline.
 
 - **Batch Processing**:
-  Configure the `batch:` section with the key `X-SF-Token:` to group traces, metrics, and logs by the same access token. This helps the collector batch data efficiently before sending it to the backend, improving performance and reducing overhead.   This works both in `agent` as in `gateway` mode.
+  Configure the `batch:` section with the key `X-SF-Token:` to group traces, metrics, and logs by the same access token. This helps the collector batch data efficiently before sending it to the backend, improving performance and reducing overhead. This works both in `agent` as in `gateway` mode.
 
 {{% /notice %}}
