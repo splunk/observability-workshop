@@ -5,7 +5,7 @@ time: 10 minutes
 weight: 2
 ---
 
-### Gateway Setup
+### Initial Gateway Configuration
 
 On your machine, navigate to the directory where you're running the workshop. Create a new subdirectory called `2-gateway`, then copy the latest versions of `agent.yaml` and `trace.json` from `1-agent` into this new directory.
 
@@ -72,11 +72,13 @@ service:
 
 {{% /tab %}}
 
-The [**batch processor**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/batchprocessor/README.md) groups spans, metrics, or logs into batches, improving compression and reducing outgoing connections. It supports batching based on size and time.
+We are introducing the [**batch processor**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/batchprocessor/README.md) with this gateway config. The Batch processor groups spans, metrics, or logs into batches, improving compression and reducing outgoing connections. It supports batching based on size and time.
 
-It’s recommended to use the batch processor in every collector, placing it after the `memory_limiter` and sampling processors to ensure batching occurs after any data drops like sampling.
+For optimal performance, it is recommended to use the Batch Processor in every collector. Place it after the memory_limiter and sampling processors to ensure batching only happens after any potential data drops, such as those from sampling.
 
-Let's extend the `gateway.yaml` file we just created to seperate data to different files  
+### Extend the Gateway Configuration
+
+In this section, we will extend the `gateway.yaml` configuration you just created to separate metric,traces & logs into different files.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -89,12 +91,12 @@ Let's extend the `gateway.yaml` file we just created to seperate data to differe
   ```
 
 - **Create similar exporters for metrics and logs**: Using the above example, set the exporter names appropriately and update the file paths to `./gateway-metrics.out` for metrics and `./gateway-logs.out` for logs.
-- **Update the Pipelines Section**: Add each newly created exporter to its corresponding pipeline in the service configuration. Also, add the `batch` processor to each pipeline.
+- **Update the Pipelines Section**: Add each newly created exporter to its corresponding pipeline in the service configuration. Also, add the `batch` and `resource/add_mode` processors to each pipeline.
 
   ```yaml
       traces:                                # Trace Pipeline
         receivers: [otlp]                    # Array of Trace Receivers 
-        processors: [memory_limiter, batch]  # Array of Processors
+        processors: [memory_limiter, resource/add_mode, batch]  # Array of Processors
         exporters: [file/traces, debug]      # Array of Trace Exporters
       # Metric pipeline
       # Logs Pipeline  
