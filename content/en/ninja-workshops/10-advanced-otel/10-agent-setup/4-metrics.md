@@ -21,10 +21,12 @@ For this exercise we will only scrape the CPU metrics once every hour to minimiz
         cpu:                      # Scraper for cpu metrics
   ```
 
-- **Update the `metrics` pipeline**: Add the `hostmetrics` receiver to the `metrics` pipeline in the `service` section:
+- **Update the `metrics` pipeline**: Add the `hostmetrics` receiver to the `metrics` pipeline in the `service` section:  
+(keep a version of the original, by commenting it out):
 
   ```yaml
     metrics:
+      #receivers: [otlp]               # Array of Metric Receivers
       receivers: [otlp, hostmetrics]  # Array of Metric Receivers
      #processors:                     # Array of Metric Processors
   ```
@@ -35,16 +37,31 @@ Validate again with **[otelbin.io](https://www.otelbin.io/)**. Given we updated 
 
 ![otelbin-a-1-4-metrics](../../images/agent-1-4-metrics.png?width=50vw)
 
- If **otelbin.io** complains about the scrapers entry, make sure you select the Splunk OpenTelemetry Collector from the validation target drop down at the top of the screen.
 
-### Test & Validate
+### Validate Your Host Metric Changes
 
-Delete the current agent.out, then restart the agent again using the agent.yaml in the `Agent` terminal window.  
-Based on the current config, the collector should write some metric lines to your agent.out at startup, then will repeat that every hour. The output from agent.out looks like this:
+To validate the changes, delete the current `agent.out` file and restart the agent using the `agent.yaml` configuration in the `Agent` terminal window. When the agent restarts, the collector will write **cpu** metrics to agent.out. This process will repeat every hour as long as the agent continues running.
 
-Note that we show the entries for **cpu0** only, you will get cpu entries for all the cpu's/cores present in your system.
+``` text
+...
+NumberDataPoints #38
+Data point attributes:
+     -> cpu: Str(cpu9)
+     -> state: Str(idle)
+StartTimestamp: 2025-01-27 08:51:03 +0000 UTC
+Timestamp: 2025-01-27 10:58:05.111193 +0000 UTC
+Value: 7509.620000
+NumberDataPoints #39
+Data point attributes:
+     -> cpu: Str(cpu9)
+     -> state: Str(interrupt)
+StartTimestamp: 2025-01-27 08:51:03 +0000 UTC
+Timestamp: 2025-01-27 10:58:05.111193 +0000 UTC
+Value: 0.000000
+    {"kind": "exporter", "data_type": "metrics", "name": "debug"}
+```
 
-Also note that in the `resourceMetrics` section you will find the same attributes added as with the trace we looked at earlier, these will help with corelating between traces and metrics.
+The output in `agent.out` will also include metrics. The example provided below  focuses on **cpu0** only, but you will see entries for all CPUs/cores available on your system. Additionally, in the `'resourceMetrics` section, you will find the same attributes added by the 'processors' as those included in the traces we reviewed earlier. These attributes help match traces and metrics.
 
 {{% tabs %}}
 {{% tab title="Compact JSON" %}}

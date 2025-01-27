@@ -45,13 +45,19 @@ Let's configure and add the `FileExporter`:
 
 {{% /notice %}}
 
-Validate your updated `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)**. As an example, here is how the `Traces:` section of your pipelines should loo in OTelBin:
+### Validating your agent.yaml Configuration
+
+To ensure your updated `agent.yaml` is correct, validate it using  **[otelbin.io](https://www.otelbin.io/)**.  
+As an example, the `Traces:` section of your pipelines should look similar to this in OTelBin:
 
 ![otelbin-a-1-2-w](../../images/agent-1-2-traces.png?width=30vw)
 
----
+{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
+If otelbin.io flags an warning regarding the append entry in the exporter you added, check the validation target at the top of the screen. Ensure you’ve selected the Splunk OpenTelemetry Collector as the target.
 
-### Test & Validate
+{{%/notice%}}
+
+### Test your agent.yaml Configuration
 
 Restart your agent in the `Agent` terminal window, this time with your new config to test it:
 

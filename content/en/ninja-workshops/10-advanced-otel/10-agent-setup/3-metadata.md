@@ -53,9 +53,9 @@ Validate your updated `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)*
 
 ![otelbin-a-1-3-logs](../../images/agent-1-3-logs.png?width=50vw)
 
-### Test & Validate
+### Test the Metadata Configuration
 
-Rename `./agent.out` to `.agent.old`, ythis so you can compare it later.
+Rename `./agent.out` to `.agent.old`, this so you can compare it later.
 
 {{% tab title="Updated Directory Structure" %}}
 
@@ -91,6 +91,23 @@ Next, from the `Test` terminal window, send a trace again with the `cURL` comman
 ```
 
 {{% /tab %}}
+
+In the agent’s debug output, you should see three new lines in the `Resource attributes section`: (host.name, os.type & otelcol.service.mode.)
+
+```text
+<snip>
+Resource SchemaURL: https://opentelemetry.io/schemas/1.6.1
+Resource attributes:
+     -> service.name: Str(my.service)
+     -> deployment.environment: Str(my.environment)
+     -> host.name: Str([MY_HOST_NAME])
+     -> os.type: Str([MY_OS])
+     -> otelcol.service.mode: Str(agent)
+</snip>
+```
+
+also a new `agent.out` file should be created:
+
 {{% tab title="Updated Directory Structure" %}}
 
 ```text
@@ -105,7 +122,7 @@ Next, from the `Test` terminal window, send a trace again with the `cURL` comman
 
 {{%/tab%}}
 
-Check the newly created agent.out file. You should see a new line written for the trace.
+Check the newly created agent.out file. You should see a line written for the trace.
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
@@ -199,7 +216,7 @@ Check the newly created agent.out file. You should see a new line written for th
 {{% /tab %}}
 {{% /tabs %}}
 
-When you compare the new `agent.out` file to the original `agent.old`, you’ll notice that the collector has added the `otelcol.service.mode` attribute, along with several `resourcedetection` and `resource` attributes, to the `resourceSpans` section of the trace. These values are based on your device and were automatically added by the processors we configured in the pipeline:
+When you compare the new `agent.out` file to the original `agent.old`, you’ll notice that the collector has added the `otelcol.service.mode` attribute, along with several `resourcedetection` attributes (`host.name` & `os.type`) to the `resourceSpans` section of the trace. These values are based on your device and were automatically added by the processors we configured in the pipeline:
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
