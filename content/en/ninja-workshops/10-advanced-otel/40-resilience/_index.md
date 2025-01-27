@@ -70,7 +70,7 @@ The next exercise is modifying the `otlphttp:` exporter where retries and queuei
 
 ```yaml
   otlphttp:
-    endpoint: "localhost:5318"
+    endpoint: "http://localhost:5318" # Gateway endpoint
     headers:
       X-SF-Token: "FAKE_SPLUNK_ACCESS_TOKEN" # or your own token            
     # Controls retrying when there is a failure in sending data  
@@ -86,16 +86,16 @@ The next exercise is modifying the `otlphttp:` exporter where retries and queuei
     storage: file_storage/checkpoint         
 ```
 
-As we want to control the data flow for this exercise we are going to temporarily  remove the `hostmetrics` receiver from the Metric pipeline:
-
-  **Update the `services` section**:  Add the 'extensions:' section for the `Services`. this will cause the extension to be enabled. 
+**Update the `services` section**:  Add the 'extensions:' section for the `Services`. this will cause the extension to be enabled. 
 
   ```yaml
   service:
-   extensions: [health_check,file_storage/psq]
+   extensions: [health_check,file_storage/checkpoint]
    pipelines:
     #traces:
   ```
+
+As we want to control the data flow for this exercise we are going to temporarily  remove the `hostmetrics` receiver from the Metric pipeline:
 
 **Update the `metrics` pipeline**:  Remove the `hostmetrics` receiver from `metrics` pipeline in the `service` section like this:
 
@@ -110,6 +110,6 @@ As we want to control the data flow for this exercise we are going to temporaril
 
 Again, validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)** for spelling mistakes etc. Your `Logs:` pipeline should like this:
 
-![logs from otelbin](../images/filelog-3-1-logs.png)
+![logs from otelbin](../../../images/filelog-3-1-logs.png)
 
 This setup enables your OpenTelemetry Collector to handle network interruptions smoothly by storing telemetry data on disk and retrying failed transmissions. It combines checkpointing for recovery with queuing for efficient retries, enhancing the resilience and reliability of your pipeline. Now, let’s test the configuration!

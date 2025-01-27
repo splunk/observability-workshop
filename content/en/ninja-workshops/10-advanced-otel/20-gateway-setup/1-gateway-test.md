@@ -39,6 +39,13 @@ Open the `agent.yaml` we copied earlier in your editor, and configure a `otlphtt
         X-SF-Token: "FAKE_SPLUNK_ACCESS_TOKEN"
   ```
 
+- **Add a batch processor to the agent**:  since the agent can send dat from different sources, and benfit from retries,  adding a Batch processor is usefull too 
+```yaml
+    batch:                     # Processor Type
+    # Array of metadata keys to batch data by
+      metadata_keys: [X-SF-Token] 
+```
+
 - **Update Pipelines**: replace the `file:` exporter with the `otlphttp` exporter in the `traces`, `metrics`, and `logs` pipelines.
 
   ```yaml
