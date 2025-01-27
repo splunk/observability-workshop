@@ -54,6 +54,9 @@ Open the `agent.yaml` we copied earlier in your editor, and configure a `otlphtt
       receivers: [otlp]  # Array of receivers in this pipeline
       processors:        # Array of Processors in thi pipeline
       - memory_limiter   # You also could use [memory_limiter]
+      - resourcedetection
+      - resource/add_mode
+      - batch
       # Array of Exporters in this pipeline
       exporters: [otlphttp, debug]
       # metrics: Pipeline
