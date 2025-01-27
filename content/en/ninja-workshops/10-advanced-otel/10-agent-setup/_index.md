@@ -67,7 +67,7 @@ service:
 └── otelcol         # OpenTelemetry Collector binary
 ```
 
-{{%/tab%}}
+{{% /tab %}}
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 Let's walk through a few modifications to get things started.
@@ -103,7 +103,7 @@ Let's walk through a few modifications to get things started.
 
 {{% /notice %}}
 
-{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
 In the exercise above, we’ve provided all the key elements in YAML format, but it’s up to you to correct and complete them. Be mindful of the formatting, as the OpenTelemetry Collector configuration is YAML-based.
 
 Going forward, we will build upon these changes and apply what you've learned.

@@ -9,7 +9,7 @@ We will walk through how to use OpenTelemetry Collector’s `file_storage` exten
 
 The goal is to show how this configuration allows your OpenTelemetry Collector to reliably store intermediate states on disk, ensuring that no data is lost during network failures, and that the collector can resume where it left off.
 
-{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
 
 This solution will work for metrics as long as the connection downtime is brief—up to 15 minutes. If the downtime exceeds this, the backend may still drop data due to timing mismatches. For logs, we’re planning to implement a more enterprise-ready solution in one of the upcoming collector builds.
 
@@ -34,7 +34,7 @@ WORKSHOP
 └── otelcol
 ```
 
-{{%/tab%}}
+{{% /tab %}}
 
 In this exercise, we will update the `agent.yaml` file by updating the `extensions:` section. This section is part of the OpenTelemetry configuration YAML, used to define optional components that enhance or modify the behavior of the OpenTelemetry Collector. These components do not handle telemetry data directly but provide additional capabilities or services to the Collector.
 
@@ -61,9 +61,9 @@ Our first task is to implement **checkpointing** using the `file_storage` extens
       max_transaction_size: 65_536        
 ```
 
-{{% /notice%}}
+{{% /notice %}}
 
-The next exercise is modifying the `otlphttp:` exporter where retries and queueing are configured.
+The next exercise is modifying the `otlphttp:` exporter where retries and queuing are configured.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 **Extend** the existing `otlphttp` exporter:
@@ -86,7 +86,7 @@ The next exercise is modifying the `otlphttp:` exporter where retries and queuei
     storage: file_storage/checkpoint         
 ```
 
-**Update the `services` section**:  Add the 'extensions:' section for the `Services`. this will cause the extension to be enabled. 
+**Update the `services` section**: Add the 'extensions:' section for the `Services`. This will cause the extension to be enabled.
 
   ```yaml
   service:
@@ -95,9 +95,9 @@ The next exercise is modifying the `otlphttp:` exporter where retries and queuei
     #traces:
   ```
 
-As we want to control the data flow for this exercise we are going to temporarily  remove the `hostmetrics` receiver from the Metric pipeline:
+As we want to control the data flow for this exercise we are going to temporarily remove the `hostmetrics` receiver from the Metric pipeline:
 
-**Update the `metrics` pipeline**:  Remove the `hostmetrics` receiver from `metrics` pipeline in the `service` section like this:
+**Update the `metrics` pipeline**: Remove the `hostmetrics` receiver from `metrics` pipeline in the `service` section like this:
 
   ```yaml
     metrics:

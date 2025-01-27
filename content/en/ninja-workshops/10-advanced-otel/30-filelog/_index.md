@@ -11,7 +11,7 @@ The Filelog receiver is not recommended for production use, as it is not optimiz
 
 ### Setup
 
-Create a new sub directory called `3-filelog` and copy the content from `2-gateway` across. Delete any `*.out` or `*.old` files.
+Create a new subdirectory called `3-filelog` and copy the content from `2-gateway` across. Delete any `*.out` or `*.old` files.
 
 Copy the script that matches your operating system below and create the appropriate log generation script for your operating system in the new directory (`log-gen.sh` on Mac or Linux or `log-gen.ps1` for Windows). Make sure its executable.
 
@@ -29,8 +29,7 @@ WORKSHOP
 └── otelcol                 # OpenTelemetry Collector binary
 ```
 
-{{%/tab%}}
-
+{{% /tab %}}
 
 <!--{{% resources sort="asc" style="splunk" title="Log Generation Scripts" icon="scroll" /%}}-->
 
@@ -161,6 +160,6 @@ WORKSHOP
 └── otelcol                 # OpenTelemetry Collector binary
 ```
 
-{{%/tab%}}
+{{% /tab %}}
 
 Leave it running.

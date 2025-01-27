@@ -55,7 +55,7 @@ Validate your updated `agent.yaml` with **[otelbin.io](https://www.otelbin.io/)*
 
 ### Test the Metadata Configuration
 
-Rename `./agent.out` to `.agent.old`, this so you can compare it later.
+Rename `./agent.out` to `.agent.old`, this is so you can compare it later.
 
 {{% tab title="Updated Directory Structure" %}}
 
@@ -68,9 +68,9 @@ Rename `./agent.out` to `.agent.old`, this so you can compare it later.
 └── otelcol         # OpenTelemetry Collector binary
 ```
 
-{{%/tab%}}
+{{% /tab %}}
 
-Then restart your collector in the ` Agent` terminal window using the updated configuration to test the changes:
+Then restart your collector in the `Agent` terminal window using the updated configuration to test the changes:
 
 ```bash
 ../otelcol --config=agent.yaml
@@ -92,7 +92,7 @@ Next, from the `Test` terminal window, send a trace again with the `cURL` comman
 
 {{% /tab %}}
 
-In the agent’s debug output, you should see three new lines in the `Resource attributes section`: (host.name, os.type & otelcol.service.mode.)
+In the agent’s debug output, you should see three new lines in the `Resource attributes section`: (`host.name`, `os.type` & `otelcol.service.mode`):
 
 ```text
 <snip>
@@ -106,7 +106,7 @@ Resource attributes:
 </snip>
 ```
 
-also a new `agent.out` file should be created:
+A new `agent.out` file should be created:
 
 {{% tab title="Updated Directory Structure" %}}
 
@@ -120,7 +120,7 @@ also a new `agent.out` file should be created:
 └── otelcol         # OpenTelemetry Collector binary
 ```
 
-{{%/tab%}}
+{{% /tab %}}
 
 Check the newly created agent.out file. You should see a line written for the trace.
 

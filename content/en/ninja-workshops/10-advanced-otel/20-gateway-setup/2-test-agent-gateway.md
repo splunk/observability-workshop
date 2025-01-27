@@ -25,7 +25,7 @@ Value: 9637.660000
 
 When the agent starts, it collects and sends the above metrics to the gateway. The OpenTelemetry Collector running in gateway mode should create a file named `./gateway-metrics.out` during the exporting phase of the pipeline service.
 
-Open the `gateway-metrics.out` file. It should contain CPU metrics, including details similar to those shown above (we only show the `resourceMetrics` and the first set of cpu metrics, you will likely have more).
+Open the `gateway-metrics.out` file. It should contain CPU metrics, including details similar to those shown above (we only show the `resourceMetrics` and the first set of CPU metrics, you will likely have more).
 
 {{% tabs %}}
 {{% tab title="Compact JSON" %}}
@@ -249,10 +249,10 @@ After executing the command, the gateway should generate a new file named `./gat
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-Ensure that both `./gateway-metrics.out` and `./gateway-traces.out` include a resource attribute key-value pair for `otelcol.service.mode` with the value `gateway`. 
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+Ensure that both `./gateway-metrics.out` and `./gateway-traces.out` include a resource attribute key-value pair for `otelcol.service.mode` with the value `gateway`.
 
 In the provided `gateway.yaml` configuration, we modified the `resource/add_mode` processor to use the `upsert` action instead of `insert`. The `upsert` action updates the value of the resource attribute key if it already exists, setting it to `"gateway"`. If the key is not present, the `upsert` action will add it.
-{{%/notice%}}
+{{% /notice %}}
 
 To proceed, stop the agent and gateway processes by pressing `Ctrl-C` in their respective terminals.

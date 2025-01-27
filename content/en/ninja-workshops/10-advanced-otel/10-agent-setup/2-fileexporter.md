@@ -47,15 +47,15 @@ Let's configure and add the `FileExporter`:
 
 ### Validating your agent.yaml Configuration
 
-To ensure your updated `agent.yaml` is correct, validate it using  **[otelbin.io](https://www.otelbin.io/)**.  
+To ensure your updated `agent.yaml` is correct, validate it using  **[otelbin.io](https://www.otelbin.io/)**.
 As an example, the `Traces:` section of your pipelines should look similar to this in OTelBin:
 
 ![otelbin-a-1-2-w](../../images/agent-1-2-traces.png?width=30vw)
 
-{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
-If otelbin.io flags an warning regarding the append entry in the exporter you added, check the validation target at the top of the screen. Ensure you’ve selected the Splunk OpenTelemetry Collector as the target.
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+If **otelbin.io** flags a warning regarding the append entry in the exporter you added, check the validation target at the top of the screen. Ensure you’ve selected the Splunk OpenTelemetry Collector as the target.
 
-{{%/notice%}}
+{{% /notice %}}
 
 ### Test your agent.yaml Configuration
 
@@ -94,7 +94,7 @@ You now should have a file in the same directory called `agent.out`:
 └── otelcol         # OpenTelemetry Collector binary
 ```
 
-{{%/tab%}}
+{{% /tab %}}
 
 In the file the trace is written as a single line in JSON format, when you look at the file it looks like this:
 
