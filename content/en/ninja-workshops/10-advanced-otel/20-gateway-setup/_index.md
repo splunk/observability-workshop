@@ -12,12 +12,15 @@ On your machine, navigate to the directory where you're running the workshop. Cr
 Next, move into the `[WORKSHOP]/2-gateway` directory and create a file named `gateway.yaml`. Copy the following starting configuration into this file.
 
 ```yaml
+###########################  This section holds all the
+## Configuration section ##  configurations that can be 
+###########################  used in this OpenTelemetry Collector
 receivers:
   otlp:
     protocols:
       http:
         endpoint: "0.0.0.0:5318"  # Port changed to prevent conflict with agent
-        include_metadata: true    # Enable token pass through mode
+        include_metadata: true    # Needed for token pass through mode
 
 processors:
   memory_limiter:
@@ -25,7 +28,7 @@ processors:
     limit_mib: 512
   batch:
     metadata_keys:                # Include token in batches
-    - X-SF-Token:
+    - X-SF-Token                  # Batch data grouped by Token
   resource/add_mode:              # Processor Type/Name
     attributes:                   # Array of Attributes and modifications 
     - action: upsert              # Action taken is to `insert' or 'update' a key 
@@ -36,6 +39,9 @@ exporters:
   debug:
     verbosity: detailed
 
+###########################  This section controls what
+### Activation Section  ###  configuration  will be used  
+###########################  by the OpenTelemetry Collector
 service:
   pipelines:
     traces:

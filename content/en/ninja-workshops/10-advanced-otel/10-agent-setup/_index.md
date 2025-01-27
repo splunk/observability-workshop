@@ -19,8 +19,11 @@ Inside the `1-agent` directory, we will create a file containing the basic struc
 To do this, create a file called `agent.yaml` and paste the following starting configuration into it:
 
 ```yaml
+###########################  This section holds all the
+## Configuration section ##  configurations that can be 
+###########################  used in this OpenTelemetry Collector
 extensions:
-  health_check:              # Enables the health check extension
+  health_check:              # Configures the health check extension
     endpoint: 0.0.0.0:13133
 
 receivers:
@@ -31,8 +34,12 @@ processors:
   memory_limiter:            # Limits memory usage of the OpenTelemetry Collector
     check_interval: 2s       # Interval to check memory usage
     limit_mib: 512           # Memory limit in MiB
-  
+
+###########################  This section controls what
+### Activation Section  ###  configuration  will be used  
+###########################  by the OpenTelemetry Collector
 service:
+  extensions: [health_check] # Enabled extensions for this collector   
   pipelines:
     traces:
       receivers: []

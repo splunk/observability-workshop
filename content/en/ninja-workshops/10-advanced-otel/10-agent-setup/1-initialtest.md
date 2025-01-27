@@ -120,15 +120,27 @@ Create a new file named `trace.json` and copy the content from one of the tabs b
 
 {{%/tab%}}
 
-Next, open a second terminal window and also navigate to the `[WORKSHOP]/1-agent` directory.  
-
-In this new shell, which we will use for running `Tests`, execute the following command to test your setup and verify the output:
+Next, Open a second terminal window and navigate to the [WORKSHOP]/1-agent directory. In this new terminal (used for running 'Tests'), execute the following command to send a trace to test your setup:
 
 ```ps1
  curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
 ```
 
-The agent's debug console should display output similar to this:
+After you ran the **cURL** command in the 'Test' terminal, you should see an HTTP response like this in the terminal:
+
+ ```text
+ HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Mon, 27 Jan 2025 09:51:02 GMT
+Content-Length: 21
+
+{"partialSuccess":{}}%
+ ```
+
+- HTTP/1.1 200 OK: Confirms the request was processed successfully.
+- {“partialSuccess”:{}}: Indicates 100% success, as the field is empty. In case of a partial failure, this field will include details about any failed parts.
+
+Next, check the agent’s debug console in the `Agent` terminal window. You should see a debug log for the trace you just sent, similar to this:
 
 ```text
 2025-01-13T13:26:13.502+0100 info Traces {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
@@ -157,4 +169,4 @@ Attributes:
   {"kind": "exporter", "data_type": "traces", "name": "debug"}
 ```
 
-If everything worked as expected, you’re ready to continue building out the agent's YAML configuration.
+If everything worked as expected, you’re ready to continue building out the agent's YAML configuration file.

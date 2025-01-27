@@ -1,24 +1,24 @@
 extensions:
   health_check:                   # Enables the health check extension
     endpoint: 0.0.0.0:13133
-  file_storage/checkpoint:      # Extension Type/Name
-  # Defines the folder where checkpoint files will be stored
-  directory: "./checkpoint-folder"   
-  # Ensures that the directory is created if not exist 
-  create_directory: true  
-  # Specifies timeout for file operations for checkpointing
-  timeout: 1s
-  # Ensures that old checkpoint data is compacted periodically
-  compaction:  
-    # Controls if compaction process begins at OpenTelemetry Collector startup               
-    on_start: true   
-    # Specifies the directory used for compaction (as a midstep)        
-    directory: "./checkpoint-folder/tmp"
-    # Size limit for checkpoint transactions before compaction occurs
-    max_transaction_size: 65_536        
+  file_storage/psq:      # Extension Type/Name
+    # Defines the folder where checkpoint files will be stored
+    directory: "./checkpoint-folder"   
+    # Ensures that the directory is created if not exist 
+    create_directory: true  
+    # Specifies timeout for file operations for checkpointing
+    timeout: 1s
+    # Ensures that old checkpoint data is compacted periodically
+    compaction:  
+      # Controls if compaction process begins at OpenTelemetry Collector startup               
+      on_start: true   
+      # Specifies the directory used for compaction (as a midstep)        
+      directory: "./checkpoint-folder/tmp"
+      # Size limit for checkpoint transactions before compaction occurs
+      max_transaction_size: 65_536        
 
 receivers:
-  otlp:
+  otlp:                           # Receiver Type
     protocols:                    # list of Protocols used 
       http:                       # This wil enable the HTTP Protocol
         endpoint: "0.0.0.0:4318"  # Endpoint for incoming telemetry data
@@ -26,6 +26,13 @@ receivers:
     collection_interval: 3600s    # Scrape metrics every hour
     scrapers:                     # Array of hostmetric scrapers
       cpu:                        # Scraper for cpu metrics
+    filelog/quotes:               # Receiver Type/Receiver Name
+    include: [./quotes.log]       # Include the file quotes.log
+    include_file_path: true       # Include the file path in the data
+    include_file_name: false      # Exclude the file name in the data
+    resource:                     # Array of resource attributes
+      com.splunk/source: ./quotes.log  # Source attribute
+      com.splunk.sourcetype: quotes    # Sourcetype attribute
 
 exporters:
   debug:                          # Exporter Type
@@ -45,13 +52,13 @@ exporters:
     retry_on_failure:             
       enabled: true            # Enables retrying
       # Configures an internal queue to store data that couldn’t be sent
-      sending_queue:              
-        enabled: true          # Enables Sending queue
-        # Specifies the number of consumers reading from the queue
-        num_consumers: 10         
-        queue_size: 10000      # The maximum size of the queue
-        # Specifies queue state will be backed up in the file system
-        storage: file_storage/checkpoint         
+    sending_queue:              
+      enabled: true          # Enables Sending queue
+      # Specifies the number of consumers reading from the queue
+      num_consumers: 10         
+      queue_size: 10000      # The maximum size of the queue
+      # Specifies queue state will be backed up in the file system
+      storage: file_storage/psq  
 
 processors:
   memory_limiter:                 # Limits memory usage of the OpenTelemetry Collector

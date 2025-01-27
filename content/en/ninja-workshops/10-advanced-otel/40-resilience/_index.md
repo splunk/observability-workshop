@@ -80,13 +80,13 @@ We are going to extend the existing `otlphttp` exporter:
     retry_on_failure:             
       enabled: true            # Enables retrying
       # Configures an internal queue to store data that couldn’t be sent
-      sending_queue:              
-        enabled: true          # Enables Sending queue
-        # Specifies the number of consumers reading from the queue
-        num_consumers: 10         
-        queue_size: 10000      # The maximum size of the queue
-        # Specifies queue state will be backed up in the file system
-        storage: file_storage/checkpoint         
+    sending_queue:              
+      enabled: true          # Enables Sending queue
+      # Specifies the number of consumers reading from the queue
+      num_consumers: 10         
+      queue_size: 10000      # The maximum size of the queue
+      # Specifies queue state will be backed up in the file system
+    storage: file_storage/checkpoint         
 ```
 
 {{% /notice%}}
