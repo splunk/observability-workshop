@@ -79,13 +79,12 @@ To test the resilience built into the system we are going to send traces and see
 
 1. **Make sure data is flowing across into the Gateway** Make sure the Debug screen of the gateway shows incoming traffic like:
 
-1. **Simulate Network Failure:** Temporarily stop the Gateway You should see the retry mechanism kicking in on the agent side , as the collector will attempt to resend the data.
+1. **Simulate Network Failure:** Temporarily stop the Gateway.  
+Now send  3 of 4 tracves wiht teh Cutl command. You should see the retry mechanism kicking in on the agent side , as the collector will attempt to resend the data.
 
 2. **Check the Checkpoint Folder:** After a few retries, inspect the `./checkpoint-folder` directory. You should see checkpoint files stored there, which contain the serialized state of the queue.
 
-3. **Stop the Log generating script**  Select the shell and use  `Command-c/Ctrl-c`.  This way... no new data is being handled by the agent if and when  the recovery 
-
-4. **Restart the Agent:** Restart the OpenTelemetry Agent.  The collector will resume sending data from the last checkpointed state, without losing any data.
+3. **Restart the Agent:** Restart the OpenTelemetry Agent.  The collector will resume sending data from the last checkpointed state, without losing any data.
 
 ##### Conclusion
 
