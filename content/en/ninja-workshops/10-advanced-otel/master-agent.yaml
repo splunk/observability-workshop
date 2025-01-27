@@ -32,7 +32,7 @@ receivers:
     include_file_name: false      # Exclude the file name in the data
     resource:                     # Array of resource attributes
       com.splunk/source: ./quotes.log  # Source attribute
-      com.splunk.sourcetype: quotes    # Sourcetype attribute
+      com.splunk.sourcetype: quotes   # Sourcetype attribute
 
 exporters:
   debug:                          # Exporter Type
@@ -77,7 +77,8 @@ processors:
       value: "agent"              # Key value
 
 service:
-  pipelines:
+   extensions: [health_check,file_storage/psq]
+   pipelines:
     traces:
       receivers: [otlp]
       processors:                 # Alternative syntax option [memory_limiter]

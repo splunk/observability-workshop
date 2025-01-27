@@ -66,16 +66,13 @@ Our first task is to implement **checkpointing** using the `file_storage` extens
 The next exercise is modifying the `otlphttp:` exporter where retries and queueing are configured.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-We are going to extend the existing `otlphttp` exporter:
+**Extend** the existing `otlphttp` exporter:
 
 ```yaml
   otlphttp:
-    endpoint: "localhost:5317"
+    endpoint: "localhost:5318"
     headers:
-      X-SF-Token: "FAKE_SPLUNK_ACCESS_TOKEN" # or your own version of a token
-    tls:                       # Configure Transport Layer Security
-      # true disables TLS verification for the connection
-      insecure: true             
+      X-SF-Token: "FAKE_SPLUNK_ACCESS_TOKEN" # or your own token            
     # Controls retrying when there is a failure in sending data  
     retry_on_failure:             
       enabled: true            # Enables retrying
@@ -89,13 +86,18 @@ We are going to extend the existing `otlphttp` exporter:
     storage: file_storage/checkpoint         
 ```
 
-{{% /notice%}}
-
 As we want to control the data flow for this exercise we are going to temporarily  remove the `hostmetrics` receiver from the Metric pipeline:
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+  **Update the `services` section**:  Add the 'extensions:' section for the `Services`. this will cause the extension to be enabled. 
 
-- **Update the `metrics` pipeline**:  Remove the `hostmetrics` receiver from `metrics` pipeline in the `service` section like this:
+  ```yaml
+  service:
+   extensions: [health_check,file_storage/psq]
+   pipelines:
+    #traces:
+  ```
+
+**Update the `metrics` pipeline**:  Remove the `hostmetrics` receiver from `metrics` pipeline in the `service` section like this:
 
   ```yaml
     metrics:
