@@ -58,7 +58,7 @@ Our first task is to implement **checkpointing** using the `file_storage` extens
       # Specifies the directory used for compaction (as a midstep)        
       directory: "./checkpoint-folder/tmp"
       # Size limit for checkpoint transactions before compaction occurs
-      max_transaction_size: 65_536        
+      max_transaction_size: 65536        
 ```
 
 {{% /notice %}}
