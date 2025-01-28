@@ -11,19 +11,23 @@ Specifically, we will drop traces based on the span name, which is commonly used
 
 In the `[WORKSHOP]` directory create a new subdirectory called `5-dropping-spans`, then copy `agent.yaml`, `gateway.yaml`, `trace.json` and your `log-gen` script from `4-resilience`.
 
+{{% tab title="Initial Directory Structure" %}}
+
 ```text
 WORKSHOP
 ├── 1-agent
 ├── 2-gateway
 ├── 3-filelog
 ├── 4-resilience
-└── 5-dropping-spans
-    ├── agent.yaml
-    ├── gateway.yaml
-    ├── log-gen.sh (or .ps1)
-    └── trace.json
+├── 5-dropping-spans
+│   ├── agent.yaml
+│   ├── gateway.yaml
+│   ├── log-gen.sh (or .ps1)
+│   └── trace.json
 └── otelcol
 ```
+
+{{%/tab%}}
 
 Open the `gateway.yaml` and add the following configuration to the `processors` section:
 
@@ -126,6 +130,11 @@ Once the `span` payload is sent, the agent will process it, which you can confir
 The gateway console will remain unchanged, showing no indication that the data was received or handled.
 
 To confirm functionality, you can use the cURL command with the `trace.json` file again. This time, you should see both the agent and gateway process the spans successfully.
+
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+
+When using the `Filter` processor make sure you understand the look of your incoming data and test the configuration thoroughly. In general, use as specific a configuration as possible to lower the risk of the wrong data being dropped.
+{{%/notice%}}
 
 ### (Optional) Modify the Filter Condition
 

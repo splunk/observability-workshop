@@ -5,33 +5,50 @@ time: 10 minutes
 weight: 8
 ---
 
-The routing processor allows you to route data to different destinations based on the attributes of the data. The routing processor can be used to send data to different backends based on the attributes of the data. For example, you can use the routing processor to send data to different backends based on the service name or the environment.
+The routing connector in OpenTelemetry is a powerful feature that allows you to direct data (`traces`, `metrics`, or l`ogs`) to different pipelines based on specific criteria. This is especially useful in scenarios where you want to apply different processing or exporting logic to subsets of your telemetry data.
 
-![Routing Processor](../images/routing.png)
+For example, you might want to send *production* data to one exporter while directing *test* or *development* data to another. Similarly, you could route certain spans based on their attributes, such as service name, environment, or span name, to apply custom processing or storage logic.
 
-Directory structure testing:
+### Setup
+
+In the `[WORKSHOP]` directory create a new subdirectory called `8-routing`, then copy `*.yaml`, `*.json` and your `log-gen` script from the `7-transform-data` folder.
+
+{{% tab title="Initial Directory Structure" %}}
 
 ```text
-your_project/
-├── checkpoint-folder/
-├── otel-collector-config.yaml  # Configuration file
-├── agent-standard.out         # Trace export file
-├── agent-security.out         # Security trace export file
+WORKSHOP
+├── 1-agent
+├── 2-gateway
+├── 3-filelog
+├── 4-resilience
+├── 5-dropping-spans
+├── 6-sensitive-data
+├── 7-transform-data
+├── 8-routing
+│   ├── agent.yaml
+│   ├── gateway.yaml
+│   ├── log-gen.sh (or .ps1)
+│   ├── health.json
+│   └── trace.json
+└── otelcol
 ```
 
-In this section, you'll configure the routing connector in OpenTelemetry to route traces based on specific attributes, enabling you to handle traces differently based on their contents. You will also learn how to manage data checkpointing, apply various processors, and configure multiple exporters. By the end of this workshop, you will have a complete OpenTelemetry Collector configuration that processes and routes trace data efficiently.
+{{%/tab%}}
 
-## Overview of the Configuration
+Open the `gateway.yaml` and add the following configuration:
 
-In this section, we’ll be using the following key components defined in the YAML configuration:
+{{% notice title="Exercise" style="green" icon="running" %}}
 
-Extensions: File storage for checkpointing.
-Receivers: Collecting trace data using the OTLP protocol.
-Exporters: Exporting data to different locations including files and a remote OTLP endpoint.
-Connectors: Routing traces based on attributes.
-Processors: Enhancing data with resource detection, batching, and memory limiting.
-Service Pipelines: Defining data flow for traces, metrics, and logs.
-Let's dive into each section of the YAML configuration and learn how to use it.
+Teh first part of this excersise is to configure the `routing connector` in the `gateway` so it can route traces based on the 'deployment.environment' attribute in the spans you send, enabling you to handle traces differently based on their contents.
+
+```yaml
+Connectors:       # Routing data based on attributes.
+```
+{{%/notice%}}
+
+
+
+![Routing Processor](../images/routing.png)
 
 Step 1: Setting Up the Directory Structure
 First, ensure you have the required directory structure for the checkpoint folder and log files:
