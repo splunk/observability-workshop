@@ -36,8 +36,8 @@ processors:
     limit_mib: 512           # Memory limit in MiB
 
 ###########################  This section controls what
-### Activation Section  ###  configuration  will be used  
-###########################  by the OpenTelemetry Collector
+### Activation Section  ###  configurations will be used  
+###########################  by this OpenTelemetry Collector
 service:
   extensions: [health_check] # Enabled extensions for this collector   
   pipelines:
@@ -85,20 +85,20 @@ Let's walk through a few modifications to get things started.
 
   ```yaml
     
-    debug:                 # Exporter Type
-      verbosity: detailed  # Enabled detailed debug output
+    debug:                         # Exporter Type
+      verbosity: detailed          # Enabled detailed debug output
   ```
 
 - **Update Pipelines**: Ensure that the `otlp` receiver, `memory_limiter` processor, and `debug` exporter are added to the pipelines for traces, metrics, and logs.
 
   ```yaml
-      traces:              # Traces Pipeline
-        receivers: [otlp]  # Array of receivers in this pipeline
-        processors:        # Array of Processors in thi pipeline
-        - memory_limiter   # You also could use [memory_limiter]
+      traces:               # Traces Pipeline
+        receivers: [otlp]   # Array of receivers in this pipeline
+        processors:         # Array of Processors in thi pipeline
+        - memory_limiter    # You also could use [memory_limiter]
         exporters: [debug]  # Array of Exporters in this pipeline
-     #metrics:             # Metrics Pipeline
-     #logs:                # Logs Pipeline
+     #metrics:               # Metrics Pipeline
+     #logs:                  # Logs Pipeline
   ```
 
 {{% /notice %}}

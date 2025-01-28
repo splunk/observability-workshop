@@ -11,9 +11,10 @@ Verify the gateway is running in its own terminal (`gateway`) and is ready to re
 ../otelcol --config=agent.yaml
 ```
 
-Once started, the agent will begin sending CPU metrics. Both the agent and the gateway should reflect this in their debug output. The output should look similar to the following:
+Once started, the agent will begin sending CPU metrics. Both the agent and the gateway should reflect this in their debug output. The output should look similar to the following snippet:
 
 ```text
+<snip>
 NumberDataPoints #37
 Data point attributes:
      -> cpu: Str(cpu9)
@@ -113,7 +114,7 @@ Next, make sure both the gateway and the agent are still running in their respec
 
 Find your `test` terminal window, and also navigate to the `[WORKSHOP]/2-gateway` folder.
 
-Check that you have copied the `trace.json` to the `2-gateway` folder then run the following `curl` command to send a trace:
+Check that you have copied the `trace.json` to the `2-gateway` folder then run the following `curl` command to send a trace: (Both the `agent` and the `gateway` should show the Debug output from the second tab)
 
 {{% tabs %}}
 {{% tab title="cURL Command" %}}
