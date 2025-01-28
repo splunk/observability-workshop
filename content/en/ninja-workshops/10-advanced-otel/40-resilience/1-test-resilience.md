@@ -84,3 +84,5 @@ Note that only the 'gateway` will show that the checkpointed traces have arrived
 This exercise demonstrated how to enhance the resilience of the OpenTelemetry Collector by configuring the `file_storage` extension, enabling retry mechanisms for the OTLP exporter, and using a file-backed queue for temporary data storage.
 
 By implementing file-based checkpointing and queue persistence, you ensure the telemetry pipeline can gracefully recover from temporary interruptions, making it a more robust and reliable for production environments.
+
+Stop the `agent` and `gateway` using Command-c/Ctrl-c.
