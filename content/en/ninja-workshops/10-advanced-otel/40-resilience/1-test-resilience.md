@@ -4,7 +4,7 @@ linkTitle: 4.1 Testing the Setup
 weight: 1
 ---
 
-##### Setup Test environment
+### Setup Test environment
 
 In this section we are going to simulate an outage on the network between the `agent` and the `gateway` and see if our configuration helps the Collector recover from that issue:
 
@@ -71,9 +71,11 @@ In this section we are going to simulate an outage on the network between the `a
 {{% /tab %}}
 {{% /tabs %}}
 
+- Both the agent and gateway should display debug information, including the trace we just sent. If this is working as expected, we can proceed to test the system’s resilience.
+
 {{% /notice %}}
 
-##### Testing System Resilience
+### Testing System Resilience
 
 To evaluate the system's resilience, we'll simulate a scenario where the Gateway is temporarily unreachable and observe the system's behavior.
 
