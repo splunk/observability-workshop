@@ -37,10 +37,9 @@ Validate again with **[otelbin.io](https://www.otelbin.io/)**. Given we updated 
 
 ![otelbin-a-1-4-metrics](../../images/agent-1-4-metrics.png?width=50vw)
 
-
 ### Validate Your Host Metric Changes
 
-To validate the changes, delete the current `agent.out` file and restart the agent using the `agent.yaml` configuration in the `Agent` terminal window. When the agent restarts, the collector will write **cpu** metrics to agent.out. This process will repeat every hour as long as the agent continues running.
+To validate the changes, delete the current `agent.out` file and restart the agent using the `agent.yaml` configuration in the `Agent` terminal window. When the agent restarts, the collector will write **CPU** metrics to agent.out. This process will repeat every hour as long as the agent continues running.
 
 ``` text
 ...
@@ -61,7 +60,7 @@ Value: 0.000000
     {"kind": "exporter", "data_type": "metrics", "name": "debug"}
 ```
 
-The output in `agent.out` will also include metrics. The example provided below  focuses on **cpu0** only, but you will see entries for all CPUs/cores available on your system. Additionally, in the `'resourceMetrics` section, you will find the same attributes added by the 'processors' as those included in the traces we reviewed earlier. These attributes help match traces and metrics.
+The output in `agent.out` will also include metrics. The example provided below focuses on **cpu0** only, but you will see entries for all CPUs/cores available on your system. Additionally, in the `'resourceMetrics` section, you will find the same attributes added by the 'processors' as those included in the traces we reviewed earlier. These attributes help match traces and metrics.
 
 {{% tabs %}}
 {{% tab title="Compact JSON" %}}
