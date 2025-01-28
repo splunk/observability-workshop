@@ -9,7 +9,7 @@ Once you've updated the configuration, you’re ready to proceed to running the 
 Start or reuse your initial terminal window, we will use this to run the `Agent`.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-To improve organization during the workshop, consider customizing your Terminal windows or Shells with unique names and colors. This will make it easier to identify and switch between them quickly.
+To improve organization during the workshop, consider customizing your terminal windows or shells with unique names and colours. This will make it easier to identify and switch between them quickly.
 {{% /notice %}}
 
 Run the following command from the `1-agent` directory (ensure you’re using the correct OpenTelemetry Collector binary you downloaded):
@@ -27,7 +27,7 @@ If everything is set up correctly, the first and last line of the output should 
 ```
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-On `Windows` you may see a dialog box popup now, asking if you want to grant public and private networks access to the **otelcol.exe**, Please select **allow** to continue.
+On **Windows** you may see a dialog box popup now, asking if you want to grant public and private networks access to the `otelcol.exe`. Please select **allow** to continue.
 
 {{%/ notice %}}
 
@@ -122,11 +122,15 @@ Create a new file named `trace.json` and copy the content from one of the tabs b
 
 Next, Open a second terminal window and navigate to the [WORKSHOP]/1-agent directory. In this new terminal (used for running 'Tests'), execute the following command to send a trace to test your setup:
 
+{{% tabs %}}
+{{% tab title="cURL Command" %}}
+
 ```ps1
  curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
 ```
 
-After you ran the **cURL** command in the 'Test' terminal, you should see an HTTP response like this in the terminal:
+{{% /tab %}}
+{{% tab title="HTTP Response" %}}
 
  ```text
  HTTP/1.1 200 OK
@@ -137,8 +141,11 @@ Content-Length: 21
 {"partialSuccess":{}}%
  ```
 
-- HTTP/1.1 200 OK: Confirms the request was processed successfully.
-- {“partialSuccess”:{}}: Indicates 100% success, as the field is empty. In case of a partial failure, this field will include details about any failed parts.
+{{% /tab %}}
+{{% /tabs %}}
+
+- `HTTP/1.1 200 OK`: Confirms the request was processed successfully.
+- `{"partialSuccess":{}}`: Indicates 100% success, as the field is empty. In case of a partial failure, this field will include details about any failed parts.
 
 Next, check the agent’s debug console in the `Agent` terminal window. You should see a debug log for the trace you just sent, similar to this:
 
