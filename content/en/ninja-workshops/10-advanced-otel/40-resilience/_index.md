@@ -83,7 +83,7 @@ The next exercise is modifying the `otlphttp:` exporter where retries and queuin
       num_consumers: 10         
       queue_size: 10000      # The maximum size of the queue
       # Specifies queue state will be backed up in the file system
-    storage: file_storage/checkpoint         
+      storage: file_storage/checkpoint         
 ```
 
 **Update the `services` section**: Add the `file_storage/checkpoint` extension to the existing `extensions:` section. his will cause the extension to be enabled.
