@@ -11,9 +11,9 @@ The Filelog receiver is not recommended for production use, as it is not optimiz
 
 ### Setup
 
-Create a new subdirectory called `3-filelog` and copy the content from `2-gateway` across. Delete any `*.out` or `*.old` files.
+Create a new subdirectory named `3-filelog` and copy the contents from the `2-gateway` directory into it. Remove any files with the extensions `.out` or `.old`.
 
-Copy the script that matches your operating system below and create the appropriate log generation script for your operating system in the new directory (`log-gen.sh` on Mac or Linux or `log-gen.ps1` for Windows). Make sure its executable.
+Next, copy the script provided below that corresponds to your operating system. Create the appropriate log generation script in the new directory—`log-gen.sh` for Mac or Linux, or `log-gen.ps1` for Windows. Ensure the script is executable.
 
 {{% tab title="Directory Structure after script creation" %}}
 
@@ -30,8 +30,6 @@ WORKSHOP
 ```
 
 {{% /tab %}}
-
-<!--{{% resources sort="asc" style="splunk" title="Log Generation Scripts" icon="scroll" /%}}-->
 
 {{% tabs %}}
 {{% tab title="log-gen.sh (Mac/Linux)" %}}
@@ -139,7 +137,7 @@ while ($true) {
 {{% /tab %}}
 {{% /tabs %}}
 
-In a new terminal window we are going to use for `log-gen`, navigate to `[WORKSHOP]/3-filelog` folder and start your version of the script. It will start writing lines to a file called `./quotes.log`, and the console output a single line:
+In a second terminal window, which we’ll use for running `log-gen`, navigate to the `[WORKSHOP]/3-filelog` directory and start the appropriate script for your system. The script will begin writing lines to a file named `./quotes.log`, while displaying a single line of output in the console.
 
  ```txt
  Writing logs to quotes.log. Press Ctrl+C to stop.
@@ -162,4 +160,4 @@ WORKSHOP
 
 {{% /tab %}}
 
-Leave it running.
+Leave the script running!

@@ -87,7 +87,7 @@ processors:
 
 #### 1. Remove Tags (Attributes)
 
-The attributes/removetags processor allows you to delete specific attributes (tags) from spans. In this case, we're removing the tag SPAN_TAG_KEY:
+The `attributes/removetags` processor allows you to delete specific attributes (tags) from spans. In this case, we're removing the tag `SPAN_TAG_KEY`:
 
 ```yaml
 attributes/removetags:
