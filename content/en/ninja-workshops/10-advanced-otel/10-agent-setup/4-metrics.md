@@ -33,7 +33,7 @@ For this exercise we will only scrape the CPU metrics once every hour to minimiz
 
 {{% /notice %}}
 
-Validate again with **[otelbin.io](https://www.otelbin.io/)**. Given we updated the `metrics:` pipeline your result should look like this:
+Validate again with [**otelbin.io**](https://www.otelbin.io/). Given we updated the `metrics:` pipeline your result should look like this:
 
 ![otelbin-a-1-4-metrics](../../images/agent-1-4-metrics.png?width=50vw)
 

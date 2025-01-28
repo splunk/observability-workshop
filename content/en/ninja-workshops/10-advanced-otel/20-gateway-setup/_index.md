@@ -104,6 +104,6 @@ In this section, we will extend the `gateway.yaml` configuration you just create
 
 {{% /notice %}}
 
-Verify the `gateway.yaml` file at **[otelbin.io](https://www.otelbin.io/)**. If configured correctly, your sections should resemble the following example for logs:
+Verify the `gateway.yaml` file at [**otelbin.io**](https://www.otelbin.io/). If configured correctly, your sections should resemble the following example for logs:
 
 ![otelbin-logs](../images/gateway-2-1-logs.png?width=50vw)
