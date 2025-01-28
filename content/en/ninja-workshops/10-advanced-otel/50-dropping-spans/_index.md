@@ -9,9 +9,23 @@ In this section, we will explore how to use the **Filter Processor** to selectiv
 
 Specifically, we will drop traces based on the span name, which is commonly used to filter out unwanted spans such as health checks or internal communication traces.
 
-Filter Processor: The filter processor is the core of this workshop. It is configured to drop spans based on a specific condition. In this case, we are filtering out spans whose name is "/_healthz", typically associated with health check requests.
+Filter Processor: The filter processor is the core of this workshop. It is configured to drop spans based on a specific condition. In this case, we are filtering out spans whose name is `"/_healthz"`, typically associated with health check requests.
 
 In the `[WORKSHOP]` directory create a new subdirectory called `5-dropping-spans`, then copy all the files from `4-resilience`.
+
+```text
+WORKSHOP
+├── 1-agent
+├── 2-gateway
+├── 3-filelog
+├── 4-resilience
+└── 5-dropping-spans
+    ├── agent.yaml
+    ├── gateway.yaml
+    ├── log-gen.sh (or .ps1)
+    └── trace.json
+└── otelcol
+```
 
 Open the `gateway.yaml` and add the following configuration to the `processors` section:
 
@@ -34,7 +48,22 @@ Open the `gateway.yaml` and add the following configuration to the `processors` 
 
 {{% /notice %}}
 
-{{% tab title="health.json" %}}
+##### Simulate Trace Data
+
+To test your configuration, you'll need to generate some trace data that includes a span named `"/_healthz"`.
+
+Copy the following JSON and save to a file called `health.json` in the `5-dropping-spans` directory:
+
+{{% tabs %}}
+{{% tab title="Compacted JSON" %}}
+
+```json
+{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"frontend"}}]},"scopeSpans":[{"scope":{"name":"healthz","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5B8EFFF798038103D269B633813FC60C","spanId":"EEE19B7EC3C1B174","parentSpanId":"EEE19B7EC3C1B173","name":"/_healthz","startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","kind":2,"attributes":[]}]}]}]}
+```
+
+{{% /tab %}}
+
+{{% tab title="Formatted JSON" %}}
 
 ```json
 {
@@ -84,18 +113,9 @@ Open the `gateway.yaml` and add the following configuration to the `processors` 
 ```
 
 {{% /tab %}}
+{{% /tabs %}}
 
-##### Simulate Trace Data
-
-To test your configuration, you'll need to generate some trace data that includes a span named "/_healthz". This is typically seen in health check requests that many services send to verify their status.
-
-Once the data is sent, the OpenTelemetry Collector should process it and drop any spans with the name "/_healthz". You can confirm this by checking the trace data in the destination where it is exported (e.g., Jaeger, Zipkin, or any other trace backend).
-
-##### Error Mode Handling
-
-If the filter processor encounters any issues, the `error_mode: ignore` setting will ensure that the processing continues even if there's an error. However, it’s useful to set up logging and monitoring to ensure that the filter configuration is working as expected.
-
-For example, check the logs of the OpenTelemetry Collector for messages related to trace filtering.
+Using the `curl` command from a previous section modifiy that to send the `health.json` payload. Once the data is sent, the OpenTelemetry Collector will process it and drop any spans with the name `"/_healthz"`. You can verify this by checking the logs of the OpenTelemetry Collector.
 
 ##### Modify the Filter Condition
 
@@ -126,6 +146,6 @@ filter:
       - 'name == "/internal/metrics"'
 ```
 
-This will drop spans with the names "/_healthz" and "/internal/metrics".
+This will drop spans with the names `"/_healthz"` and `"/internal/metrics"`.
 
 You can further extend this configuration to filter out spans based on different attributes, tags, or other criteria, making the OpenTelemetry Collector more customizable and efficient for your observability needs.
