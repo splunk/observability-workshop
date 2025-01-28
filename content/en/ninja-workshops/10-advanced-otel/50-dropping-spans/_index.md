@@ -46,13 +46,6 @@ Open the `gateway.yaml` and add the following configuration to the `processors` 
 
 - **Add the `filter` processor**: Make sure you add the filter to the `traces` pipeline.
 
-```yaml
-    traces:
-      receivers: [otlp]
-      processors: [memory_limiter, filter, resource/add_mode, batch]
-      exporters: [ file/traces, debug]
-```
-
 {{% /notice %}}
 
 Validate the gateway configuration using **[otelbin.io](https://www.otelbin.io/)**, the results for the `traces` pipeline should look like this:
