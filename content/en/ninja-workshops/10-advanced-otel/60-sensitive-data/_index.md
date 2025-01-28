@@ -120,7 +120,7 @@ attributes/update:
 
 The redaction/update processor provides fine-grained control over which attributes are allowed or blocked from traces. We configure this processor to:
 
-Allow specific keys: description, group, id, and name are the only allowed attributes.
+Allow specific keys: `description`, `group`, `id`, and name are the only allowed attributes.
 Block sensitive data: Credit card numbers matching the provided regex patterns (Visa and MasterCard) will be blocked and redacted.
 
 ```yaml

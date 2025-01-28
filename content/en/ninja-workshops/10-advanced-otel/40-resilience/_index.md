@@ -108,7 +108,7 @@ As we want to control the data flow for this exercise we are going to temporaril
 
 {{% /notice %}}
 
-Again, validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)** for spelling mistakes etc. Your `Logs:` pipeline should like this:
+Again, validate the agent configuration using [**otelbin.io**](https://www.otelbin.io/) for spelling mistakes etc. Your `Logs:` pipeline should like this:
 
 ![logs from otelbin](../../../images/filelog-3-1-logs.png)
 

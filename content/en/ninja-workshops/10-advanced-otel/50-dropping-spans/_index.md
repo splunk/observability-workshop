@@ -7,9 +7,7 @@ weight: 5
 
 In this section, we will explore how to use the **Filter Processor** to selectively drop spans based on certain conditions.
 
-Specifically, we will drop traces based on the span name, which is commonly used to filter out unwanted spans such as health checks or internal communication traces.
-
-Filter Processor: The filter processor is the core of this workshop. It is configured to drop spans based on a specific condition. In this case, we are filtering out spans whose name is `"/_healthz"`, typically associated with health check requests.
+Specifically, we will drop traces based on the span name, which is commonly used to filter out unwanted spans such as health checks or internal communication traces. In this case, we will be filtering out spans whose name is `"/_healthz"`, typically associated with health check requests.
 
 In the `[WORKSHOP]` directory create a new subdirectory called `5-dropping-spans`, then copy all the files from `4-resilience`.
 
@@ -115,7 +113,7 @@ Copy the following JSON and save to a file called `health.json` in the `5-droppi
 {{% /tab %}}
 {{% /tabs %}}
 
-Using the `curl` command from a previous section modifiy that to send the `health.json` payload. Once the data is sent, the OpenTelemetry Collector will process it and drop any spans with the name `"/_healthz"`. You can verify this by checking the logs of the OpenTelemetry Collector.
+Using the `curl` command from a previous section modify that to send the `health.json` payload. Once the data is sent, the OpenTelemetry Collector will process it and drop any spans with the name `"/_healthz"`. You can verify this by checking the logs of the OpenTelemetry Collector.
 
 ##### Modify the Filter Condition
 
