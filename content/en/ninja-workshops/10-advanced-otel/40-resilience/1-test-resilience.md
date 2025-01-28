@@ -85,4 +85,6 @@ This exercise demonstrated how to enhance the resilience of the OpenTelemetry Co
 
 By implementing file-based checkpointing and queue persistence, you ensure the telemetry pipeline can gracefully recover from temporary interruptions, making it a more robust and reliable for production environments.
 
+If you want to know more about the `FileStorage` extension, you can find it [here](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/storage/filestorage)
+
 Stop the `agent` and `gateway` using Command-c/Ctrl-c.
