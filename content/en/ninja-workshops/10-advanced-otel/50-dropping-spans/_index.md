@@ -27,7 +27,7 @@ WORKSHOP
 └── otelcol
 ```
 
-{{%/tab%}}
+{{% /tab %}}
 
 Open the `gateway.yaml` and add the following configuration to the `processors` section:
 
@@ -134,7 +134,7 @@ To confirm functionality, you can use the cURL command with the `trace.json` fil
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 
 When using the `Filter` processor make sure you understand the look of your incoming data and test the configuration thoroughly. In general, use as specific a configuration as possible to lower the risk of the wrong data being dropped.
-{{%/notice%}}
+{{% /notice %}}
 
 ### (Optional) Modify the Filter Condition
 

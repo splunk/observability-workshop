@@ -86,7 +86,7 @@ The next exercise is modifying the `otlphttp:` exporter where retries and queuin
       storage: file_storage/checkpoint         
 ```
 
-**Update the `services` section**: Add the `file_storage/checkpoint` extension to the existing `extensions:` section. his will cause the extension to be enabled.
+**Update the `services` section**: Add the `file_storage/checkpoint` extension to the existing `extensions:` section. This will cause the extension to be enabled:
 
   ```yaml
   service:

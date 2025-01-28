@@ -33,7 +33,7 @@ WORKSHOP
 └── otelcol
 ```
 
-{{%/tab%}}
+{{% /tab %}}
 
 Open the `gateway.yaml` and add the following configuration:
 
@@ -66,20 +66,20 @@ In OpenTelemetry configuration files, `connectors` have their own dedicated sect
 
 - **Add the `routing` connector**:  
 We are setting up a `resourceSpans` attribute rule. In this configuration, spans will be routed if the `deployment.environment` resourceSpan attribute matches `"security_applications"`.  
-This approach can also be applied to `metrics` and `logs`, allowing you to route them based on attributes in `resourceMetrics` or `resourceLogs` in a similar manner.
+This approach can also be applied to `metrics` and `logs`, allowing you to route them based on attributes in `resourceMetrics` or `resourceLogs` similarly.
 
   ```yaml
   routing:
-      default_pipelines: [traces/standard] # Default pipeline to use if no matching rule
-      error_mode: ignore                   # Ignore errors in the routing 
-      table:                               # Array with routing rules
-        # Connector will route any span to target pipeline if if the resourceSpn attribute matches this rule 
-        - statement: route() where attributes["deployment.environment"] == "security_applications"
-          pipelines: [traces/security]     # Target pipeline 
+    default_pipelines: [traces/standard] # Default pipeline to use if no matching rule
+    error_mode: ignore                   # Ignore errors in the routing 
+    table:                               # Array with routing rules
+      # Connector will route any span to target pipeline if if the resourceSpn attribute matches this rule 
+      - statement: route() where attributes["deployment.environment"] == "security_applications"
+        pipelines: [traces/security]     # Target pipeline 
   ```
 
-- **Add both the `standard` and `security traces` pipelines**:  
-To enable routing we need to define two pipeline for traces:  
+- **Add both the `standard` and `security traces` pipelines**:
+To enable routing we need to define two pipelines for traces:
 
   1. **Standard** pipeline.  
   This pipeline will handle all spans that do not match the routing rule. Add it below the regular `traces:` pipeline, and leave the configuration unchanged for now.
@@ -118,7 +118,7 @@ To enable `routing`, you need to update the original `traces` pipeline by adding
 
 ```yaml
   pipelines:
-   traces:                        # Original traces pipeline
+    traces:                        # Original traces pipeline
       receivers: [otlp]           # Array of Trace Receivers
       exporters: [routing, debug] # Array of Trace exporters
 ```
@@ -128,8 +128,8 @@ To enable `routing`, you need to update the original `traces` pipeline by adding
 Keep in mind that any existing processors have been removed from this pipeline. They are now handled by either the standard pipeline or the target pipelines, depending on the routing rules.
 {{% /notice %}}
 
-{{%/notice%}}
- 
+{{% /notice %}}
+
 ![Routing Processor](../images/routing.png)
 
-Lets' test our configuration
+Lets' test our configuration!

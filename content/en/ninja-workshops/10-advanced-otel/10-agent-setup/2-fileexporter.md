@@ -48,7 +48,7 @@ Let's configure and add the `FileExporter`:
 ### Validating your agent.yaml Configuration
 
 To ensure your updated `agent.yaml` is correct, validate it using [**otelbin.io**](https://www.otelbin.io/).
-As an example, the `Traces:` section of your pipelines should look similar to this in OTelBin:
+As an example, the `Traces:` section of your pipelines should look similar to this in **otelbin.io**:
 
 ![otelbin-a-1-2-w](../../images/agent-1-2-traces.png?width=30vw)
 

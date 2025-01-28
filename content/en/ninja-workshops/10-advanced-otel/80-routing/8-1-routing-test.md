@@ -17,7 +17,7 @@ your_project/
 └── otel-collector-config.yaml   # OpenTelemetry Collector config file
 ```
 
- also configure a filelog receiver to read log data from files, but this is currently commented out.
+ Also, configure a Filelog receiver to read log data from files, but this is currently commented out.
 
 2.3 Exporters
 There are multiple exporters configured:
@@ -28,7 +28,7 @@ OTLP Gateway Exporter: Sends trace data to a remote OTLP endpoint with queuing a
 
 2.4 Connectors: Routing
 
-The routing connector routes traces based on attributes. Here, traces with the attribute deployment.environment == "security_applications" are routed to a separate pipeline, traces/security.
+The routing connector routes traces based on attributes. Here, traces with the attribute `deployment.environment == "security_applications"` are routed to a separate pipeline, `traces/security`:
 
 ```yaml
 connectors:
@@ -127,9 +127,9 @@ Verify that the Collector is running: Check the logs for any errors. If there ar
 Step 4: Testing the Routing
 To test the routing:
 
-Generate or simulate trace data with the attribute deployment.environment = security_applications.
-Verify that the traces are routed to the traces/security pipeline by checking the agent-security.out file.
-You can also check agent-standard.out to ensure that other traces are routed to the standard pipeline.
+Generate or simulate trace data with the attribute `deployment.environment = security_applications`.
+Verify that the traces are routed to the traces/security pipeline by checking the `agent-security.out` file.
+You can also check `agent-standard.out` to ensure that other traces are routed to the standard pipeline.
 
 Step 5: Checkpoint Management
 

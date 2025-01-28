@@ -34,13 +34,13 @@ If everything is working as expected, we can move on to testing the system’s r
 To evaluate the system’s resilience, we’ll simulate a scenario where the Gateway becomes temporarily unreachable by stopping it and observing how the system responds. First, we’ll generate traffic to the agent by sending some traces. Since the Gateway is down, the agent will enter retry mode.  Once we restart the agent, it will recover the traces from the persistent queue and successfully send them to the Gateway. Without the persistent queue, these traces would have been lost permanently.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-Let's start  our "network failure":
+Let's start our "network failure":
 
-**Simulate a Network Failure**:    
+**Simulate a Network Failure**:
 Stop the Gateway with `Command-c/Ctrl-c` and wait until the gateway console shows that it has stopped:
 
 ```text
-2025-01-28T13:24:32.785+0100	info	service@v0.116.0/service.go:309	Shutdown complete.
+2025-01-28T13:24:32.785+0100  info  service@v0.116.0/service.go:309  Shutdown complete.
 ```
 
 **Create Traffic during the "Network Failure"**:  
@@ -49,15 +49,15 @@ While the Gateway is stopped, send 3–4 traces using the cURL command we used e
 Notice that the agent’s retry mechanism is activated as it continuously attempts to resend the data. In the agent’s console output, you will see repeated messages similar to the following:
 
 ```text
-2025-01-28T14:22:47.020+0100	info	internal/retry_sender.go:126	Exporting failed. Will retry the request after interval.	{"kind": "exporter", "data_type": "traces", "name": "otlphttp", "error": "failed to make an HTTP request: Post \"http://localhost:5318/v1/traces\": dial tcp 127.0.0.1:5318: connect: connection refused", "interval": "9.471474933s"}
+2025-01-28T14:22:47.020+0100  info  internal/retry_sender.go:126  Exporting failed. Will retry the request after interval.  {"kind": "exporter", "data_type": "traces", "name": "otlphttp", "error": "failed to make an HTTP request: Post \"http://localhost:5318/v1/traces\": dial tcp 127.0.0.1:5318: connect: connection refused", "interval": "9.471474933s"}
 ```
 
 **Stop the Agent**:  
 Use 'Command-C/Ctrl-C' to stop the agent. Wait until the agent’s console confirms it has stopped.
 
 ```text
-2025-01-28T14:40:28.702+0100	info	extensions/extensions.go:66	Stopping extensions...
-2025-01-28T14:40:28.702+0100	info	service@v0.116.0/service.go:309	Shutdown complete.
+2025-01-28T14:40:28.702+0100  info  extensions/extensions.go:66  Stopping extensions...
+2025-01-28T14:40:28.702+0100  info  service@v0.116.0/service.go:309  Shutdown complete.
 ```
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
@@ -66,7 +66,7 @@ Stopping the agent will halt its retry attempts and prevent any future retry act
 If the agent runs for too long without successfully delivering data, it may begin dropping traces, depending on the retry configuration, to conserve memory. By stopping the agent, any metrics, traces, or logs currently stored in memory are lost before being dropped, ensuring they remain available for recovery.
 
 This step is essential for clearly observing the recovery process when the agent is restarted.
-{{%/notice%}}
+{{% /notice %}}
 
 **Simulate Network Recovery**:  
 Restart the Gateway. It should initialize as expected and be ready and waiting to receive data.
@@ -75,9 +75,9 @@ Restart the Gateway. It should initialize as expected and be ready and waiting t
 Once the `gateway` is up and running, restart the `agent`. It will resume sending data from the last checkpointed state, ensuring no data is lost. You should see the `gateway` begin receiving the previously missed traces without requiring any additional action on your part.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-Note that only the 'gateway` will show that the checkpointed traces have arrived. The agent will not display any indication that data new or old has been sent.
-{{%/notice%}}
-{{%/notice%}}
+Note that only the `gateway` will show that the checkpointed traces have arrived. The agent will not display any indication that data new or old has been sent.
+{{% /notice %}}
+{{% /notice %}}
 
 ### Conclusion
 
