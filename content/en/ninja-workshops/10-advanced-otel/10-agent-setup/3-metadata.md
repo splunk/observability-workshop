@@ -5,7 +5,7 @@ weight: 3
 ---
 ### Setup
 
-So far, we’ve essentially exported a direct copy of the trace sent through the OpenTelemetry Collector. Now, let’s enhance the base trace by adding metadata using `processors`. This additional information can be valuable for troubleshooting and for enabling features like Related Content.
+So far, we’ve essentially exported a direct copy of the `span` sent through the OpenTelemetry Collector. Now, let’s enhance the base `span` by adding metadata using `processors`. This additional information can be valuable for troubleshooting and for enabling features like `Related Content`.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 We will enhance the data flowing through our pipelines by making the following changes to the `agent.yaml`:  
@@ -121,6 +121,10 @@ A new `agent.out` file should be created:
 ```
 
 {{% /tab %}}
+
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+Note: On `Windows`, attempting to read an open file can cause issues. To avoid this, make sure to stop the `agent` or the `gateway` before examining a file when instructed to do so.
+{{% /notice %}}
 
 Check the newly created `agent.out` file. You should see a line written for the trace.
 

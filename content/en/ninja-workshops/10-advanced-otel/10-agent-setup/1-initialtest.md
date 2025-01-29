@@ -14,11 +14,13 @@ To improve organization during the workshop, consider customizing your terminal 
 
 Run the following command from the `1-agent` directory (ensure you’re using the correct OpenTelemetry Collector binary you downloaded):
 
-```text
+```sh
 ../otelcol --config=agent.yaml
 ```
 
-If everything is set up correctly, the first and last line of the output should read:
+In this workshop, we use `MacOS/Linux` commands by default. If you’re using Windows, adjust the commands as needed.
+
+If everything is set up correctly, the first and last lines of the output should display:
 
 ```text
 2025/01/13T12:43:51 settings.go:478: Set config to [agent.yaml]
