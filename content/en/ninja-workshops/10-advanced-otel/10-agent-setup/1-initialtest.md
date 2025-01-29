@@ -31,9 +31,10 @@ On **Windows** you may see a dialog box popup now, asking if you want to grant p
 
 {{%/ notice %}}
 
-Rather than instrumenting an application, we will simulate sending trace data, in JSON format, to the OpenTelemetry Collector using `curl`.
+Instead of instrumenting an application, we will simulate sending trace data to the OpenTelemetry Collector using `cURL`. The trace data, formatted in JSON, represents what an instrumentation library would typically generate and send.
 
-Create a new file named `trace.json` and copy the content from one of the tabs below (both tabs contain the same trace data).
+To begin, create a new file named `trace.json` and copy the contents from one of the tabs below. Both tabs contain the same data, which includes a **span** that is part of a larger trace.
+Create a new file named `trace.json` and copy the content from one of the tabs below (both tabs contain the same span data).
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
@@ -144,6 +145,8 @@ Create a new file named `trace.json` and copy the content from one of the tabs b
 {{% /tab %}}
 {{% /tabs %}}
 
+This file will allow us to test how the OpenTelemetry Collector processes and send **spans** within a trace, without requiring actual application instrumentation.
+
 {{% tab title="Updated Directory Structure" %}}
 
 ```text
@@ -156,7 +159,7 @@ Create a new file named `trace.json` and copy the content from one of the tabs b
 
 {{% /tab %}}
 
-Next, Open a second terminal window and navigate to the [WORKSHOP]/1-agent directory. In this new terminal (used for running 'Tests'), execute the following command to send a trace to test your setup:
+Next, Open a second terminal window and navigate to the `[WORKSHOP]/1-agent` folder. In this new terminal (used for running `Tests`), execute the following command to send a **span** to test your setup:
 
 {{% tabs %}}
 {{% tab title="cURL Command" %}}
@@ -183,7 +186,7 @@ Content-Length: 21
 - `HTTP/1.1 200 OK`: Confirms the request was processed successfully.
 - `{"partialSuccess":{}}`: Indicates 100% success, as the field is empty. In case of a partial failure, this field will include details about any failed parts.
 
-Next, check the agent’s debug console in the `Agent` terminal window. You should see a debug log for the trace you just sent, similar to this:
+Next, check the agent’s debug console in the `Agent` terminal window. You should see a debug log for the **span** you just sent, similar to this:
 
 ```text
 2025-01-13T13:26:13.502+0100 info Traces {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
@@ -208,8 +211,14 @@ Span #0
     Status code    : Unset
     Status message :
 Attributes:
-     -> : Str(some value)
-  {"kind": "exporter", "data_type": "traces", "name": "debug"}
+     -> user.name: Str(George Lucas)
+     -> user.phone_number: Str(+1555-867-5309)
+     -> user.email: Str(george@deathstar.email)
+     -> user.account_password: Str(LOTR>StarWars1-2-3)
+     -> user.visa: Str(4111 1111 1111 1111)
+     -> user.amex: Str(3782 822463 10005)
+     -> user.mastercard: Str(5555 5555 5555 4444)
+	{"kind": "exporter", "data_type": "traces", "name": "debug"}
 ```
 
 If everything worked as expected, you’re ready to continue building out the agent's YAML configuration file.
