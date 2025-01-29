@@ -4,137 +4,134 @@ linkTitle: 8.1 Testing Routing
 weight: 1
 ---
 
-## WORK IN PROGRESS
+### Setup Test
 
-Step 1: Setting Up the Directory Structure
-First, ensure you have the required directory structure for the checkpoint folder and log files:
+In this section, we will test the `routing` rule configured for the `gateway`. The expected result is that the`span` from the `security.json` file will be sent to the `gateway-traces-security.out` file.
 
-```bash
-your_project/
-├── checkpoint-folder/           # Directory for checkpoint files
-├── agent-standard.out           # Output file for standard traces
-├── agent-security.out           # Output file for security traces
-└── otel-collector-config.yaml   # OpenTelemetry Collector config file
+{{% notice title="Exercise" style="green" icon="running" %}}
+
+- **Run the Gateway**:
+Find your `Gateway` terminal window, and navigate to the `[WORKSHOP]/8-routing` folder and restart the gateway with the routing configurations specified in the gateway.yaml.  
+It should start up normally and state : `Everything is ready. Begin running and processing data.`
+
+- **Run the Agent**:
+Find your `Agent` terminal window and navigate to the `[WORKSHOP]/8-routing` folder and restart the agent with the regular `agent.yaml`.  
+It should also start up normally and state : `Everything is ready. Begin running and processing data.`
+
+- **Create a trace for different Environments**
+Find your `Test` terminal window and navigate to the `[WORKSHOP]/8-routing`.  
+To test your configuration, you need to generate span data with the correct `ResourceSpan` attributes to trigger the routing rule. Copy the following JSON and save it as `security.json` in the `[WORKSHOP]\8-routing` directory.
+
+{{% tabs %}}
+{{% tab title="Compacted JSON" %}}
+
+```json
+{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"password_check"}},{"key":"deployment.environment","value":{"stringValue":"security_applications"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5B8EFFF798038103D269B633813FC60C","spanId":"EEE19B7EC3C1B174","parentSpanId":"EEE19B7EC3C1B173","name":"I'm a server span","startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","kind":2,"attributes":[{"keytest":"my.span.attr","value":{"stringValue":"some value"}}]}]}]}]}
 ```
 
- Also, configure a Filelog receiver to read log data from files, but this is currently commented out.
+{{% /tab %}}
+{{% tab title="Formatted JSON" %}}
 
-2.3 Exporters
-There are multiple exporters configured:
-
-Debug Exporter: Outputs trace data in detailed verbosity for debugging.
-File Exporters: Writes trace data to files with rotation policies.
-OTLP Gateway Exporter: Sends trace data to a remote OTLP endpoint with queuing and retry options.
-
-2.4 Connectors: Routing
-
-The routing connector routes traces based on attributes. Here, traces with the attribute `deployment.environment == "security_applications"` are routed to a separate pipeline, `traces/security`:
-
-```yaml
-connectors:
-  routing:
-    default_pipelines: [traces/standard]  # Default pipeline for traces
-    error_mode: ignore                    # Ignore errors during routing
-    table:
-      - statement: route() where attributes["deployment.environment"] == "security_applications"
-        pipelines: [traces/security]
+```json
+{
+  "resourceSpans": [
+    {
+      "resource": {
+        "attributes": [
+          {
+            "key": "service.name",
+            "value": {
+              "stringValue": "password_check"
+            }
+          },
+          {
+            "key": "deployment.environment",
+            "value": {
+              "stringValue": "security_applications"
+            }
+          }
+        ]
+      },
+      "scopeSpans": [
+        {
+          "scope": {
+            "name": "my.library",
+            "version": "1.0.0",
+            "attributes": [
+              {
+                "key": "my.scope.attribute",
+                "value": {
+                  "stringValue": "some scope attribute"
+                }
+              }
+            ]
+          },
+          "spans": [
+            {
+              "traceId": "5B8EFFF798038103D269B633813FC60C",
+              "spanId": "EEE19B7EC3C1B174",
+              "parentSpanId": "EEE19B7EC3C1B173",
+              "name": "I'm a server span",
+              "startTimeUnixNano": "1544712660000000000",
+              "endTimeUnixNano": "1544712661000000000",
+              "kind": 2,
+              "attributes": [
+                {
+                  "keytest": "my.span.attr",
+                  "value": {
+                    "stringValue": "some value"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
 ```
 
-You can add additional routing rules by specifying different attribute conditions. The second routing rule is commented out but could be used to delete a specific key from the attributes before routing the data.
+{{% /tab %}}
+{{% /tabs %}}
 
-2.5 Processors
-Processors allow you to manipulate and enrich data before exporting it:
+{{% /notice %}}
 
-Batch Processor: Batches data to improve performance.
-Memory Limiter: Ensures that the collector doesn’t consume too much memory.
-Resource Detection: Adds system resource attributes to the traces.
-Resource Mode: Adds custom attributes to traces.
+### Testing the routing scenario
 
-```yaml
-processors:
-  batch:
-    metadata_keys:
-      - X-SF-Token   # Include metadata in batches
-  memory_limiter:
-    check_interval: 2s
-    limit_mib: 512   # Limits memory usage to 512 MB
-  resourcedetection:
-    detectors: [system]
-    override: true    # Overrides existing resource detection
-  resource/add_mode:
-    attributes:
-      - action: insert
-        value: "agent"
-        key: otelcol.service.mode
-```
+{{% notice title="Exercise" style="green" icon="running" %}}
+Make sure the are **NO** `*.out` files in the `[WORKSHOP]/8-routing` folder.
 
-2.6 Service Pipelines
-The service section defines how the traces, logs, and metrics will flow through the system, from receivers to processors and exporters.
+- **Send a Regular Span**:  
+Find your `Test` terminal window and navigate to the `[WORKSHOP]/8-routing` folder. From there, send a regular span using the `trace.json` file to confirm that communication is functioning as expected.  
+Both the `agent` and `gateway` should display debug information, including the span you just sent. Additionally, the gateway should generate a new `./gateway-traces-default.out` file, as this is now the destination for regular spans.
 
-```yaml
-service:
-  extensions: [file_storage/checkpoint]
-  pipelines:
-    traces:
-      receivers: [otlp]               # Receives traces via OTLP
-      exporters: [routing, debug]      # Routes and debugs traces
-    traces/standard:
-      receivers: [routing]            # Receives routed traces
-      processors:
-        - memory_limiter
-        - batch
-        - resourcedetection
-        - resource/add_mode
-      exporters: [file/standard]       # Exports to standard file
-    traces/security:
-      receivers: [routing]            # Receives routed security traces
-      processors:
-        - memory_limiter
-        - batch
-        - resourcedetection
-        - resource/add_mode
-      exporters: [file/security]       # Exports to security file
-    metrics:
-      receivers: [otlp]
-      processors:
-        - memory_limiter
-        - batch
-        - resourcedetection
-      exporters: [file/standard, debug]
-    logs:
-      receivers: [otlp]
-      processors:
-        - memory_limiter
-        - batch
-        - resourcedetection
-      exporters: [file/standard, debug]
-traces/standard: Default pipeline for traces that do not match the routing condition.
-traces/security: Pipeline for security-related traces routed by the connector.
-```
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+If you verify the `./gateway-traces-default.out` is should contain the span we send with the cURL command.
+{{% /notice %}}
 
-Step 3: Running OpenTelemetry Collector
+- **Send a Security Span**:  
+Make sure both the `agent` and `gateway` are running, then send a security span using the `security.json` file to test the routing rule in the gateway.  
+Both the `agent` and `gateway` should display debug information, including the span you just sent. Additionally, the gateway should generate a new `./gateway-traces-security.out` file, as this is  the destination for spans where the `deployment.environment` resourceSpan attribute matches `"security_applications"`.  
 
-Create the configuration file: Copy the YAML configuration into a file named otel-collector-config.yaml.
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+If you verify the `./gateway-traces-security.out` is should only contain the spans from the `"security_applications"` deployment.environment.
+{{% /notice %}}
 
-Start the OpenTelemetry Collector:
+{{% /notice %}}
 
-```bash
-otelcol --config=otel-collector-config.yaml
-```
+### Conclusion
 
-Verify that the Collector is running: Check the logs for any errors. If there are no errors, traces should be flowing through the collector.
+In this section, we successfully tested the routing connector in the gateway by sending different spans and verifying their destinations.
 
-Step 4: Testing the Routing
-To test the routing:
+- **Regular spans** were correctly routed to `gateway-traces-default.out`, confirming that spans without a matching `deployment.environment` attribute follow the default pipeline.
 
-Generate or simulate trace data with the attribute `deployment.environment = security_applications`.
-Verify that the traces are routed to the traces/security pipeline by checking the `agent-security.out` file.
-You can also check `agent-standard.out` to ensure that other traces are routed to the standard pipeline.
+- **Security-related spans** from `security.json` were routed to `gateway-traces-security.out`, demonstrating that the routing rule based on `"deployment.environment": "security_applications"` works as expected.
 
-Step 5: Checkpoint Management
+By inspecting the output files, we confirmed that the OpenTelemetry Collector *correctly evaluates span attributes and routes them to the appropriate destinations*. This validates that routing rules can effectively separate and direct telemetry data for different use cases.
 
-The checkpoint extension ensures that data is reliably stored and managed. Check the checkpoint-folder directory for checkpoint files created during operation.
-Compaction: Large transactions will be compacted into smaller chunks, which helps in managing large data volumes.
+You can now extend this approach by defining additional routing rules to further categorize spans, metrics, and logs based on different attributes.
 
-Conclusion
-In this section, you've learned how to configure the OpenTelemetry Collector to route traces based on attributes. You’ve also explored checkpointing, batching, resource detection, and the export of trace data to different destinations. You can extend this setup by adding more routing rules, processing options, and exporters as needed for your use case.
+If you want to know more about the `routing` connector , you can find it [here](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/routingconnector)
+
+Stop the `agent` and `gateway` using Command-c/Ctrl-c.

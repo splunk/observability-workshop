@@ -70,9 +70,9 @@ This same approach can also be applied to `metrics` and `logs`, allowing you to 
 The `routing connector` requires different targets for routing. To achieve this, update the default `file/traces:` exporter and name it `file/traces/default` and add a second file exporter called `file/traces/security:`. This will allow the routing connector to direct data to the appropriate target based on the rules you define.
 
   ```yaml
-    file/traces/default:               # Exporter Type/Name (For regular traces)
+    file/traces/standard:               # Exporter Type/Name (For regular traces)
       # Path where trace data will be saved in OTLP json format 
-      path: "./gateway-traces-default.out" 
+      path: "./gateway-traces-standard.out" 
       append: false    # Overwrite the file each time
     file/traces/security:              # Exporter Type/Name (For security traces)
       # Path where trace data will be saved in OTLP json format
@@ -95,7 +95,7 @@ To enable routing we need to define two pipelines for traces:
         - memory_limiter
         - batch
         - resource/add_mode
-        exporters: [file/traces/default] # Location for spans not matching rule
+        exporters: [file/traces/standard] # Location for spans not matching rule
   ```
 
   - The Target pipeline, that will handle all spans that match the routing rule.
@@ -129,83 +129,9 @@ To enable `routing`, you need to update the original `traces` pipeline by adding
 Keep in mind that any existing processors have been removed from this pipeline. They are now handled by either the standard pipeline or the target pipelines, depending on the routing rules.
 {{% /notice %}}
 
-- **Create a trace for different Environments**
-To test your configuration, you need to generate span data with the correct `ResourceSpan` attributes to trigger the routing rule. Copy the following JSON and save it as security.json in the `[WORKSHOP]\8-routing` directory.
-
-{{% tabs %}}
-{{% tab title="Compacted JSON" %}}
-
-```json
-{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"password_check"}},{"key":"deployment.environment","value":{"stringValue":"security_applications"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5B8EFFF798038103D269B633813FC60C","spanId":"EEE19B7EC3C1B174","parentSpanId":"EEE19B7EC3C1B173","name":"I'm a server span","startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","kind":2,"attributes":[{"keytest":"my.span.attr","value":{"stringValue":"some value"}}]}]}]}]}
-```
-
-{{% /tab %}}
-{{% tab title="Formatted JSON" %}}
-
-```json
-{
-  "resourceSpans": [
-    {
-      "resource": {
-        "attributes": [
-          {
-            "key": "service.name",
-            "value": {
-              "stringValue": "password_check"
-            }
-          },
-          {
-            "key": "deployment.environment",
-            "value": {
-              "stringValue": "security_applications"
-            }
-          }
-        ]
-      },
-      "scopeSpans": [
-        {
-          "scope": {
-            "name": "my.library",
-            "version": "1.0.0",
-            "attributes": [
-              {
-                "key": "my.scope.attribute",
-                "value": {
-                  "stringValue": "some scope attribute"
-                }
-              }
-            ]
-          },
-          "spans": [
-            {
-              "traceId": "5B8EFFF798038103D269B633813FC60C",
-              "spanId": "EEE19B7EC3C1B174",
-              "parentSpanId": "EEE19B7EC3C1B173",
-              "name": "I'm a server span",
-              "startTimeUnixNano": "1544712660000000000",
-              "endTimeUnixNano": "1544712661000000000",
-              "kind": 2,
-              "attributes": [
-                {
-                  "keytest": "my.span.attr",
-                  "value": {
-                    "stringValue": "some value"
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
-```
-
-{{% /tab %}}
-{{% /tabs %}}
-
 {{% /notice %}}
+
+Again, validate the `gateway` configuration using `otelbin.io` for spelling mistakes etc. Your `Traces:` pipeline should like this:
 
 ![Routing Processor](../images/routing.png)
 
