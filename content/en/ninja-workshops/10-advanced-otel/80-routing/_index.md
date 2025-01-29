@@ -35,11 +35,10 @@ WORKSHOP
 
 {{% /tab %}}
 
-Open the `gateway.yaml` and add the following configuration:
+In the following exercise, you will configure the `routing connector` in the `gateway.yaml` file. This setup will enable the `gateway` to route traces based on the `deployment.environment` attribute in the spans you send. By doing so, you can process and handle traces differently depending on their attributes.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-
-In this exercise, you will configure the `routing connector` in the `gateway.yaml` file. This setup will enable the `gateway` to route traces based on the `deployment.environment` attribute in the spans you send. By doing so, you can process and handle traces differently depending on their attributes.
+Open the `gateway.yaml` and add the following configuration:
 
 - **Add the `connectors:` section**:  
 In OpenTelemetry configuration files, `connectors` have their own dedicated section, similar to receivers and processors. In the `gateway.yaml`file, insert the `connectors:` section below the receivers section and above the processors section.
@@ -53,8 +52,9 @@ In OpenTelemetry configuration files, `connectors` have their own dedicated sect
   ```
 
 - **Add the `routing` connector**:  
-We are setting up a `resourceSpans` attribute rule. In this configuration, spans will be routed if the `deployment.environment` resourceSpan attribute matches `"security_applications"`.  
-This same approach can also be applied to `metrics` and `logs`, allowing you to route them based on attributes in `resourceMetrics` or `resourceLogs` in a similar way. Add the following under the `connectors:` section:
+  In this configuration, spans will be routed if the `deployment.environment` resource attribute matches `"security_applications"`.
+
+  This same approach can also be applied to `metrics` and `logs`, allowing you to route them based on attributes in `resourceMetrics` or `resourceLogs` similarly. Add the following under the `connectors:` section:
 
   ```yaml
     routing:
@@ -101,17 +101,16 @@ To enable routing we need to define two pipelines for traces:
 
   ```yaml
     pipelines:
-      #traces:                 
-      #traces/standard:         
+      #traces:
+      #traces/standard:
       traces/security:         # Array of Trace Receivers
         receivers: [routing]   # Only receives spans from the routing connector 
         processors:
         - memory_limiter
         - resource/add_mode
         exporters: [file/traces/security] # Location for spans matching rule
-      #metrics:  
+      #metrics:
   ```
-  
 
 - **Update the `traces` pipeline to handle routing**:  
 To enable `routing`, you need to update the original `traces` pipeline by adding `routing` as an exporter. This will send your span data through the `routing connector` for evaluation.

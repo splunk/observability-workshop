@@ -20,7 +20,7 @@ It should also start up normally and state : `Everything is ready. Begin running
 
 - **Create a trace for different Environments**
 Find your `Test` terminal window and navigate to the `[WORKSHOP]/8-routing`.  
-To test your configuration, you need to generate span data with the correct `ResourceSpan` attributes to trigger the routing rule. Copy the following JSON and save it as `security.json` in the `[WORKSHOP]\8-routing` directory.
+To test your configuration, you need to generate span data with the correct `ResourceSpan` attributes to trigger the routing rule. Copy the following JSON and save it as `security.json` in the `[WORKSHOP]/8-routing` directory.
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
@@ -100,27 +100,29 @@ To test your configuration, you need to generate span data with the correct `Res
 ### Testing the routing scenario
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-Make sure the are **NO** `*.out` files in the `[WORKSHOP]/8-routing` folder.
+Before proceeding, ensure that there are no `*.out` files in the `[WORKSHOP]/8-routing` directory.
 
 - **Send a Regular Span**:  
-Find your `Test` terminal window and navigate to the `[WORKSHOP]/8-routing` folder. From there, send a regular span using the `trace.json` file to confirm that communication is functioning as expected.  
-Both the `agent` and `gateway` should display debug information, including the span you just sent. Additionally, the gateway should generate a new `gateway-traces-default.out` file, as this is now the destination for regular spans.
+  1. Open your test terminal and navigate to the `[WORKSHOP]/8-routing` directory.
+  2. Send a regular span using the `trace.json` file to confirm proper communication.
+
+  Both the `agent` and `gateway` should display debug information, including the span you just sent. The gateway will also generate a new `gateway-traces-default.out` file, as this is now the designated destination for regular spans.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 If you check `gateway-traces-default.out`, it should contain the `span` sent using the `cURL` command. You will also see an empty `gateway-traces-security.out` file, as the routing configuration creates output files immediately, even if no matching spans have been processed yet.
 {{% /notice %}}
 
 - **Send a Security Span**:  
-Make sure both the `agent` and `gateway` are running, then send a security span using the `security.json` file to test the routing rule in the gateway.  
-Both the `agent` and `gateway` should display debug information, including the span you just sent. Additionally, the gateway should write  a line to the  `gateway-traces-security.out` file, as this is  the destination for spans where the `deployment.environment` resourceSpan attribute matches `"security_applications"`.  
+  1. Ensure both the `agent` and `gateway` are running.
+  2. Send a security span using the `security.json` file to test the gateway’s routing rule.
+
+Again, both the `agent` and `gateway` should display debug information, including the span you just sent. This time, the `gateway` will write a line to the `gateway-traces-security.out` file, which is designated for spans where the `deployment.environment` resource attribute matches `"security_applications"`.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-If you verify the `./gateway-traces-security.out` is should only contain the spans from the `"security_applications"` deployment.environment.
+If you verify the `./gateway-traces-security.out` it should only contain the spans from the `"security_applications"` deployment.environment.
 {{% /notice %}}
 
-You can repeat this scenario multiple times, and each trace should be written to its corresponding output file.
-
-
+You can repeat this scenario multiple times, and each trace will be written to its corresponding output file.
 {{% /notice %}}
 
 ### Conclusion
@@ -135,6 +137,6 @@ By inspecting the output files, we confirmed that the OpenTelemetry Collector *c
 
 You can now extend this approach by defining additional routing rules to further categorize spans, metrics, and logs based on different attributes.
 
-If you want to know more about the `routing` connector , you can find it [here](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/routingconnector)
+If you want to know more about the `routing` connector, you can find it [here](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/routingconnector)
 
-Stop the `agent` and `gateway` using Command-c/Ctrl-c.
+Stop the `agent` and `gateway` using `Ctrl-C`.
