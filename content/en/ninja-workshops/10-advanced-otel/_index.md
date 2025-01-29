@@ -30,7 +30,7 @@ You will benefit from having a good editor for the YAML we use in this Workshop,
   - **Linux (ARM/64): [otelcol_linux_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_arm64)**
 
 {{% notice title="Note" style="info" icon="info" %}}
-If none of the above match your host platform, please select and download the correct of your required build [**here**](https://github.com/signalfx/splunk-otel-collector/releases/tag/v0.117.0).
+If your host platform isn't listed above, you can find and download the appropriate version of your required build [**here**](https://github.com/signalfx/splunk-otel-collector/releases/tag/v0.117.0).
 {{% /notice %}}
 
 Once downloaded, rename the file to `otelcol` (or `otelcol.exe` on Windows). For Mac/Linux, set the file permissions to allow execution:
