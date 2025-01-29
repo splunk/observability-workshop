@@ -162,7 +162,7 @@ After executing the command, the gateway should generate a new file named `./gat
 {{% tab title="Compacted JSON" %}}
 
 ```json
-{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"my.service"}},{"key":"deployment.environment","value":{"stringValue":"my.environment"}},{"key":"host.name","value":{"stringValue":"YOUR_HOST_NAME"}},{"key":"os.type","value":{"stringValue":"YOUR_OS"}},{"key":"otelcol.service.mode","value":{"stringValue":"gateway"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5b8efff798038103d269b633813fc60c","spanId":"eee19b7ec3c1b174","parentSpanId":"eee19b7ec3c1b173","name":"I'm a server span","kind":2,"startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","attributes":[{"value":{"stringValue":"some value"}}],"status":{}}]}],"schemaUrl":"https://opentelemetry.io/schemas/1.6.1"}]}
+{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"my.service"}},{"key":"deployment.environment","value":{"stringValue":"my.environment"}},{"key":"host.name","value":{"stringValue":"[YOUR_HOST_NAME]"}},{"key":"os.type","value":{"stringValue":"[YOUR_OS]"}},{"key":"otelcol.service.mode","value":{"stringValue":"agent"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5b8efff798038103d269b633813fc60c","spanId":"eee19b7ec3c1b174","parentSpanId":"eee19b7ec3c1b173","name":"I'm a server span","kind":2,"startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","attributes":[{"key":"user.name","value":{"stringValue":"George Lucas"}},{"key":"user.phone_number","value":{"stringValue":"+1555-867-5309"}},{"key":"user.email","value":{"stringValue":"george@deathstar.email"}},{"key":"user.account_password","value":{"stringValue":"LOTR\u003eStarWars1-2-3"}},{"key":"user.visa","value":{"stringValue":"4111 1111 1111 1111"}},{"key":"user.amex","value":{"stringValue":"3782 822463 10005"}},{"key":"user.mastercard","value":{"stringValue":"5555 5555 5555 4444"}}],"status":{}}]}],"schemaUrl":"https://opentelemetry.io/schemas/1.6.1"}]}
 ```
 
 {{% /tab %}}
@@ -201,7 +201,7 @@ After executing the command, the gateway should generate a new file named `./gat
           {
             "key": "otelcol.service.mode",
             "value": {
-              "stringValue": "gateway"
+              "stringValue": "agent"
             }
           }
         ]
@@ -231,8 +231,45 @@ After executing the command, the gateway should generate a new file named `./gat
               "endTimeUnixNano": "1544712661000000000",
               "attributes": [
                 {
+                  "key": "user.name",
                   "value": {
-                    "stringValue": "some value"
+                    "stringValue": "George Lucas"
+                  }
+                },
+                {
+                  "key": "user.phone_number",
+                  "value": {
+                    "stringValue": "+1555-867-5309"
+                  }
+                },
+                {
+                  "key": "user.email",
+                  "value": {
+                    "stringValue": "george@deathstar.email"
+                  }
+                },
+                {
+                  "key": "user.account_password",
+                  "value": {
+                    "stringValue": "LOTR>StarWars1-2-3"
+                  }
+                },
+                {
+                  "key": "user.visa",
+                  "value": {
+                    "stringValue": "4111 1111 1111 1111"
+                  }
+                },
+                {
+                  "key": "user.amex",
+                  "value": {
+                    "stringValue": "3782 822463 10005"
+                  }
+                },
+                {
+                  "key": "user.mastercard",
+                  "value": {
+                    "stringValue": "5555 5555 5555 4444"
                   }
                 }
               ],
