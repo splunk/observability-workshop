@@ -29,7 +29,6 @@ WORKSHOP
 │   ├── gateway.yaml
 │   ├── log-gen.sh (or .ps1)
 │   ├── health.json
-│   ├── data.json
 │   └── trace.json
 └── otelcol
 ```
@@ -131,10 +130,9 @@ Keep in mind that any existing processors have been removed from this pipeline. 
 {{% /notice %}}
 
 - **Create a trace for different Environments**
+To test your configuration, you’ll need to generate some trace data that includes a span named
 
-Create a copy of your trace.json and name it security.json
-
-open an editor and update the RespourceSpan atttribute deployment.environem4etn and set it to "security_applications". ( You can change the service.name attribute  as well)
+Copy the following JSON and save to a file called security.json in the 8-routing directory:
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}

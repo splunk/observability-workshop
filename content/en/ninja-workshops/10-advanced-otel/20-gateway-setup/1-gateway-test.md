@@ -41,11 +41,11 @@ Open the `agent.yaml` we copied earlier in your editor, and configure a `otlphtt
 
 - **Add a batch processor to the agent**: since the agent can send data from different sources, and benefit from retries, adding a Batch processor is useful too:
 
-```yaml
+  ```yaml
     batch:                     # Processor Type
     # Array of metadata keys to batch data by
       metadata_keys: [X-SF-Token] 
-```
+  ```
 
 - **Update Pipelines**: replace the `file:` exporter with the `otlphttp` exporter in the `traces`, `metrics`, and `logs` pipelines.
 
