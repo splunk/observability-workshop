@@ -130,9 +130,7 @@ Keep in mind that any existing processors have been removed from this pipeline. 
 {{% /notice %}}
 
 - **Create a trace for different Environments**
-To test your configuration, you’ll need to generate some trace data that includes a span named
-
-Copy the following JSON and save to a file called security.json in the 8-routing directory:
+To test your configuration, you need to generate span data with the correct `ResourceSpan` attributes to trigger the routing rule. Copy the following JSON and save it as security.json in the `[WORKSHOP]\8-routing` directory.
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
@@ -206,8 +204,6 @@ Copy the following JSON and save to a file called security.json in the 8-routing
 
 {{% /tab %}}
 {{% /tabs %}}
-
-Save the security.json file.
 
 {{% /notice %}}
 
