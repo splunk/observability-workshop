@@ -9,7 +9,7 @@ Once you've updated the configuration, you’re ready to proceed to running the 
 Start or reuse your initial terminal window, we will use this to run the `Agent`.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-To improve organization during the workshop, consider customizing your terminal windows or shells with unique names and colours. This will make it easier to identify and switch between them quickly.
+To improve organization during the workshop, consider customizing your terminal windows or shells with unique names and colors. This will make it easier to identify and switch between them quickly.
 {{% /notice %}}
 
 Run the following command from the `1-agent` directory (ensure you’re using the correct OpenTelemetry Collector binary you downloaded):
@@ -220,7 +220,7 @@ Attributes:
      -> user.visa: Str(4111 1111 1111 1111)
      -> user.amex: Str(3782 822463 10005)
      -> user.mastercard: Str(5555 5555 5555 4444)
-	{"kind": "exporter", "data_type": "traces", "name": "debug"}
+  {"kind": "exporter", "data_type": "traces", "name": "debug"}
 ```
 
 If everything worked as expected, you’re ready to continue building out the agent's YAML configuration file.
