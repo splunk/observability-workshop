@@ -39,7 +39,7 @@ Create a new file named `trace.json` and copy the content from one of the tabs b
 {{% tab title="Compacted JSON" %}}
 
 ```json
-{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"my.service"}},{"key":"deployment.environment","value":{"stringValue":"my.environment"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5B8EFFF798038103D269B633813FC60C","spanId":"EEE19B7EC3C1B174","parentSpanId":"EEE19B7EC3C1B173","name":"I'm a server span","startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","kind":2,"attributes":[{"keytest":"my.span.attr","value":{"stringValue":"some value"}}]}]}]}]}
+{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"my.service"}},{"key":"deployment.environment","value":{"stringValue":"my.environment"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5B8EFFF798038103D269B633813FC60C","spanId":"EEE19B7EC3C1B174","parentSpanId":"EEE19B7EC3C1B173","name":"I'm a server span","startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","kind":2,"attributes":[{"key":"user.name","value":{"stringValue":"George Lucas"}},{"key":"user.phone_number","value":{"stringValue":"+1555-867-5309"}},{"key":"user.email","value":{"stringValue":"george@deathstar.email"}},{"key":"user.account_password","value":{"stringValue":"LOTR>StarWars1-2-3"}},{"key":"user.visa","value":{"stringValue":"4111 1111 1111 1111"}},{"key":"user.amex","value":{"stringValue":"3782 822463 10005"}},{"key":"user.mastercard","value":{"stringValue":"5555 5555 5555 4444"}}]}]}]}]}
 ```
 
 {{% /tab %}}
@@ -47,62 +47,98 @@ Create a new file named `trace.json` and copy the content from one of the tabs b
 
 ```json
 {
-    "resourceSpans": [
-      {
-        "resource": {
-          "attributes": [
-            {
-              "key": "service.name",
-              "value": {
-                "stringValue": "my.service"
-              }
-            },
-            {
-              "key": "deployment.environment",
-              "value": {
-                "stringValue": "my.environment"
-              }
-            }
-          ]
-        },
-        "scopeSpans": [
+  "resourceSpans": [
+    {
+      "resource": {
+        "attributes": [
           {
-            "scope": {
-              "name": "my.library",
-              "version": "1.0.0",
+            "key": "service.name",
+            "value": {
+              "stringValue": "my.service"
+            }
+          },
+          {
+            "key": "deployment.environment",
+            "value": {
+              "stringValue": "my.environment"
+            }
+          }
+        ]
+      },
+      "scopeSpans": [
+        {
+          "scope": {
+            "name": "my.library",
+            "version": "1.0.0",
+            "attributes": [
+              {
+                "key": "my.scope.attribute",
+                "value": {
+                  "stringValue": "some scope attribute"
+                }
+              }
+            ]
+          },
+          "spans": [
+            {
+              "traceId": "5B8EFFF798038103D269B633813FC60C",
+              "spanId": "EEE19B7EC3C1B174",
+              "parentSpanId": "EEE19B7EC3C1B173",
+              "name": "I'm a server span",
+              "startTimeUnixNano": "1544712660000000000",
+              "endTimeUnixNano": "1544712661000000000",
+              "kind": 2,
               "attributes": [
                 {
-                  "key": "my.scope.attribute",
+                  "key": "user.name",
                   "value": {
-                    "stringValue": "some scope attribute"
+                    "stringValue": "George Lucas"
+                  }
+                },
+                {
+                  "key": "user.phone_number",
+                  "value": {
+                    "stringValue": "+1555-867-5309"
+                  }
+                },
+                {
+                  "key": "user.email",
+                  "value": {
+                    "stringValue": "george@deathstar.email"
+                  }
+                },
+                {
+                  "key": "user.account_password",
+                  "value": {
+                    "stringValue": "LOTR>StarWars1-2-3"
+                  }
+                },
+                {
+                  "key": "user.visa",
+                  "value": {
+                    "stringValue": "4111 1111 1111 1111"
+                  }
+                },
+                {
+                  "key": "user.amex",
+                  "value": {
+                    "stringValue": "3782 822463 10005"
+                  }
+                },
+                {
+                  "key": "user.mastercard",
+                  "value": {
+                    "stringValue": "5555 5555 5555 4444"
                   }
                 }
               ]
-            },
-            "spans": [
-              {
-                "traceId": "5B8EFFF798038103D269B633813FC60C",
-                "spanId": "EEE19B7EC3C1B174",
-                "parentSpanId": "EEE19B7EC3C1B173",
-                "name": "I'm a server span",
-                "startTimeUnixNano": "1544712660000000000",
-                "endTimeUnixNano": "1544712661000000000",
-                "kind": 2,
-                "attributes": [
-                  {
-                    "keytest": "my.span.attr",
-                    "value": {
-                      "stringValue": "some value"
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
 ```
 
 {{% /tab %}}
