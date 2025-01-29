@@ -48,7 +48,7 @@ Open the `gateway.yaml` and add the following configuration to the `processors` 
           - 'name == "/_healthz"'
   ```
 
-- **Add the `filter` processor**: Make sure you add the filter to the `traces` pipeline.
+- **Add the `filter` processor**: Make sure you add the filter to the `traces` pipeline. Filtering should be applied as early as possible, ideally *right after the* memory_limiter and *before* the batch processor.
 
 {{% /notice %}}
 
