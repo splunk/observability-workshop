@@ -104,19 +104,22 @@ Make sure the are **NO** `*.out` files in the `[WORKSHOP]/8-routing` folder.
 
 - **Send a Regular Span**:  
 Find your `Test` terminal window and navigate to the `[WORKSHOP]/8-routing` folder. From there, send a regular span using the `trace.json` file to confirm that communication is functioning as expected.  
-Both the `agent` and `gateway` should display debug information, including the span you just sent. Additionally, the gateway should generate a new `./gateway-traces-default.out` file, as this is now the destination for regular spans.
+Both the `agent` and `gateway` should display debug information, including the span you just sent. Additionally, the gateway should generate a new `gateway-traces-default.out` file, as this is now the destination for regular spans.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-If you verify the `./gateway-traces-default.out` is should contain the span we send with the cURL command.
+If you check `gateway-traces-default.out`, it should contain the `span` sent using the `cURL` command. You will also see an empty `gateway-traces-security.out` file, as the routing configuration creates output files immediately, even if no matching spans have been processed yet.
 {{% /notice %}}
 
 - **Send a Security Span**:  
 Make sure both the `agent` and `gateway` are running, then send a security span using the `security.json` file to test the routing rule in the gateway.  
-Both the `agent` and `gateway` should display debug information, including the span you just sent. Additionally, the gateway should generate a new `./gateway-traces-security.out` file, as this is  the destination for spans where the `deployment.environment` resourceSpan attribute matches `"security_applications"`.  
+Both the `agent` and `gateway` should display debug information, including the span you just sent. Additionally, the gateway should write  a line to the  `gateway-traces-security.out` file, as this is  the destination for spans where the `deployment.environment` resourceSpan attribute matches `"security_applications"`.  
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 If you verify the `./gateway-traces-security.out` is should only contain the spans from the `"security_applications"` deployment.environment.
 {{% /notice %}}
+
+You can repeat this scenario multiple times, and each trace should be written to its corresponding output file.
+
 
 {{% /notice %}}
 

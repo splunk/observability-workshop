@@ -93,7 +93,6 @@ To enable routing we need to define two pipelines for traces:
         receivers: [routing]   # Only receives spans from the routing connector 
         processors:
         - memory_limiter
-        - batch
         - resource/add_mode
         exporters: [file/traces/standard] # Location for spans not matching rule
   ```
@@ -108,11 +107,11 @@ To enable routing we need to define two pipelines for traces:
         receivers: [routing]   # Only receives spans from the routing connector 
         processors:
         - memory_limiter
-        - batch
         - resource/add_mode
         exporters: [file/traces/security] # Location for spans matching rule
       #metrics:  
   ```
+  
 
 - **Update the `traces` pipeline to handle routing**:  
 To enable `routing`, you need to update the original `traces` pipeline by adding `routing` as an exporter. This will send your span data through the `routing connector` for evaluation.
@@ -127,6 +126,8 @@ To enable `routing`, you need to update the original `traces` pipeline by adding
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 
 Keep in mind that any existing processors have been removed from this pipeline. They are now handled by either the standard pipeline or the target pipelines, depending on the routing rules.
+
+Additionally, the `batch` processor has been removed from the new pipelines. This ensures that `spans` are written immediately, rather than waiting for multiple spans to arrive before processing. This change speeds up the workshop and allows you to see results faster.
 {{% /notice %}}
 
 {{% /notice %}}
