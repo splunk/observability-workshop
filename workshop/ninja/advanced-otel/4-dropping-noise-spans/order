@@ -1,0 +1,7 @@
+1 bring up geteway
+2 bring up agent and wait for both to be running ok
+3 kill gateway
+4 send trace and see agent accept and retry
+5 kill agent
+6 start gateway
+7 start agent and see aut recovery as trace appears in gatyeway
