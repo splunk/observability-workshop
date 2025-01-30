@@ -94,7 +94,7 @@ To enable routing we need to define two pipelines for traces:
         processors:
         - memory_limiter
         - resource/add_mode
-        exporters: [file/traces/standard] # Location for spans not matching rule
+        exporters: [file/traces/standard, debug] # Location for spans not matching rule
   ```
 
   - The Target pipeline, that will handle all spans that match the routing rule.
@@ -108,18 +108,20 @@ To enable routing we need to define two pipelines for traces:
         processors:
         - memory_limiter
         - resource/add_mode
-        exporters: [file/traces/security] # Location for spans matching rule
+        exporters: [file/traces/security, debug] # Location for spans matching rule
       #metrics:
   ```
 
 - **Update the `traces` pipeline to handle routing**:  
-To enable `routing`, you need to update the original `traces` pipeline by adding `routing` as an exporter. This will send your span data through the `routing connector` for evaluation.
+To enable `routing`, update the original `traces:` pipeline by adding `routing` as an exporter. This ensures that all span data is sent through the routing connector for evaluation.
+
+For clarity, we are removing the `debug` exporter from this pipeline, so that debug output is only shown from the new exporters behind the routing connector.
 
 ```yaml
   pipelines:
     traces:                       # Original traces pipeline
       receivers: [otlp]           # Array of Trace Receivers
-      exporters: [routing, debug] # Array of Trace exporters
+      exporters: [routing]       # Array of Trace exporters
 ```
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
@@ -133,6 +135,5 @@ Additionally, the `batch` processor has been removed from the new pipelines. Thi
 
 Again, validate the `gateway` configuration using `otelbin.io` for spelling mistakes etc. Your `Traces:` pipeline should like this:
 
-![Routing Processor](../images/routing.png)
-
+![Routing Connector](../images/routing-8-1.png)
 Lets' test our configuration!
