@@ -1,6 +1,6 @@
 ---
 title: Sending data from the Agent to the Gateway
-linkTitle: 2.2 Send Data from Agent to Gateway
+linkTitle: 5.2 Send Data from Agent to Gateway
 ---
 
 ## Validate Agent and Gateway routing

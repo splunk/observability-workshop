@@ -1,9 +1,8 @@
 ---
-title: Configuring a File exporter
+title: Configuring the File exporter
 linkTitle: 2. File Exporter
 weight: 2
 ---
-### Different between Debug and FileExporter
 
 To capture more than just debug output on the screen, we also want to generate output during the export phase of the pipeline. For this, we'll add a **File Exporter** to write OTLP data to files for comparison.
 
@@ -42,5 +41,17 @@ Let's configure and add the `FileExporter`:
         exporters: [debug, file]  # Array of Metric Exporters
      #logs:
   ```
+
+{{% /notice %}}
+
+### Validating your agent.yaml Configuration
+
+To ensure your updated `agent.yaml` is correct, validate it using [**otelbin.io**](https://www.otelbin.io/).
+As an example, the `Traces:` section of your pipelines should look similar to this in **otelbin.io**:
+
+![otelbin-a-1-2-w](../images/agent-1-2-traces.png?width=30vw)
+
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+If **otelbin.io** flags a warning regarding the append entry in the exporter you added, check the validation target at the top of the screen. Ensure you’ve selected the Splunk OpenTelemetry Collector as the target.
 
 {{% /notice %}}

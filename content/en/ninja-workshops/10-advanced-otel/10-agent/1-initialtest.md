@@ -29,14 +29,12 @@ If everything is set up correctly, the first and last lines of the output should
 ```
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-On **Windows** you may see a dialog box popup now, asking if you want to grant public and private networks access to the `otelcol.exe`. Please select **allow** to continue.
-
+On Windows, a dialog box may appear asking if you want to grant public and private network access to *otelcol.exe*. Click **"Allow"** to proceed.
 {{%/ notice %}}
 
 Instead of instrumenting an application, we will simulate sending trace data to the OpenTelemetry Collector using `cURL`. The trace data, formatted in JSON, represents what an instrumentation library would typically generate and send.
 
 To begin, create a new file named `trace.json` and copy the contents from one of the tabs below. Both tabs contain the same data, which includes a **span** that is part of a larger trace.
-Create a new file named `trace.json` and copy the content from one of the tabs below (both tabs contain the same span data).
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
@@ -227,6 +225,7 @@ Attributes:
      -> user.mastercard: Str(5555 5555 5555 4444)
   {"kind": "exporter", "data_type": "traces", "name": "debug"}
 ```
+
 {{% /expand %}}
 
 If everything worked as expected, you’re ready to continue building out the agent's YAML configuration file.

@@ -1,20 +1,8 @@
 ---
 title: Testing the File exporter
-linkTitle: 2.1 Testing the File Exporter
+linkTitle: 2.1 Test File Exporter
 weight: 1
 ---
-
-### Validating your agent.yaml Configuration
-
-To ensure your updated `agent.yaml` is correct, validate it using [**otelbin.io**](https://www.otelbin.io/).
-As an example, the `Traces:` section of your pipelines should look similar to this in **otelbin.io**:
-
-![otelbin-a-1-2-w](../../images/agent-1-2-traces.png?width=30vw)
-
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-If **otelbin.io** flags a warning regarding the append entry in the exporter you added, check the validation target at the top of the screen. Ensure you’ve selected the Splunk OpenTelemetry Collector as the target.
-
-{{% /notice %}}
 
 ### Test your agent.yaml Configuration
 

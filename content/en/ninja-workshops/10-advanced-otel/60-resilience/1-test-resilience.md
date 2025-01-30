@@ -1,6 +1,6 @@
 ---
 title: Test your Resilience Setup
-linkTitle: 4.1 Testing the Setup
+linkTitle: 6.1 Test File Storage Extension
 weight: 1
 ---
 
