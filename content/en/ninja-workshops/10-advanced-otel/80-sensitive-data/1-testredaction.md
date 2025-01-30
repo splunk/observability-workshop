@@ -6,7 +6,7 @@ weight: 1
 
 ### Step 2: Verify the Redaction
 
-Ensure that the `agent` is started the `[WORKSHOP]/6-sensitive-data` folder using the correct agent configuration yaml. Next, update and use the **cURL** command we used earlier to send the `health.json` payload, and send the `trace.json` data created above.
+Ensure that the `agent` is started the `[WORKSHOP]/6-remove-sensitive-data` folder using the correct agent configuration yaml. Next, update and use the **cURL** command we used earlier to send the `health.json` payload, and send the `trace.json` data in the previous step.
 
 After the collector processes the data, verify that:
 
