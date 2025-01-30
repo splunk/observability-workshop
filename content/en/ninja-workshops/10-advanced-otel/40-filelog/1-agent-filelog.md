@@ -6,7 +6,7 @@ weight: 1
 
 ### Update the agent configuration
 
-Check that you are in the `[WORKSHOP]/3-filelog` folder.  Open the `agent.yaml` copied across earlier and in your editor and add the `filelog` receiver to the `agent.yaml`.
+Check that you are in the `[WORKSHOP]/3-filelog` directory.  Open the `agent.yaml` copied across earlier and in your editor and add the `filelog` receiver to the `agent.yaml`.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -41,9 +41,9 @@ Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**
 
 ## Test the Filelog receiver
 
-Find your `gateway` terminal window, navigate to the `[WORKSHOP]/3-filelog` folder, start the `gateway` collector and wait until it is ready to receive data.
+Find your `gateway` terminal window, navigate to the `[WORKSHOP]/3-filelog` directory, start the `gateway` collector and wait until it is ready to receive data.
 
-Next, to test the Filelog Receiver, find your `agent` terminal window, navigate to the `[WORKSHOP]/3-filelog` folder and start the agent.
+Next, to test the Filelog Receiver, find your `agent` terminal window, navigate to the `[WORKSHOP]/3-filelog` directory and start the agent.
 
 The agent should start to send **CPU** metrics again as before and both the agent and the gateway should reflect that in their debug output like this:
 

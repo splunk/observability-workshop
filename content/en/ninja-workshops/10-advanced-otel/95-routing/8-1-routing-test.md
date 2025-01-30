@@ -11,11 +11,11 @@ In this section, we will test the `routing` rule configured for the `gateway`. T
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - **Run the Gateway**:
-Find your `Gateway` terminal window, and navigate to the `[WORKSHOP]/8-routing` folder and restart the gateway with the routing configurations specified in the gateway.yaml.  
+Find your `Gateway` terminal window, and navigate to the `[WORKSHOP]/8-routing` directory and restart the gateway with the routing configurations specified in the gateway.yaml.  
 It should start up normally and state : `Everything is ready. Begin running and processing data.`
 
 - **Run the Agent**:
-Find your `Agent` terminal window and navigate to the `[WORKSHOP]/8-routing` folder and restart the agent with the regular `agent.yaml`.  
+Find your `Agent` terminal window and navigate to the `[WORKSHOP]/8-routing` directory and restart the agent with the regular `agent.yaml`.  
 It should also start up normally and state : `Everything is ready. Begin running and processing data.`
 
 - **Create a trace for different Environments**

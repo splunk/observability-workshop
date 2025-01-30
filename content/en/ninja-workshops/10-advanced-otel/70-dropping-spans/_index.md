@@ -123,7 +123,7 @@ Copy the following JSON and save to a file called `health.json` in the `5-droppi
 {{% /tab %}}
 {{% /tabs %}}
 
-Ensure that both the `agent` and `gateway` are started from the `[WORKSHOP]/5-dropping-spans` folder using their respective configuration.yaml files. Next, update and use the **cURL** command we used earlier to send the `health.json` payload.
+Ensure that both the `agent` and `gateway` are started from the `[WORKSHOP]/5-dropping-spans` directory using their respective configuration.yaml files. Next, update and use the **cURL** command we used earlier to send the `health.json` payload.
 
 Once the `span` payload is sent, the agent will process it, which you can confirm by checking the agent’s debug output to see the span data. The `agent` will then forward the span to the `gateway`. However, because the `gateway` is configured with a filter to drop spans named `"/_healthz"`, the span will be discarded and not processed further.
 

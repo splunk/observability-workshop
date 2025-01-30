@@ -6,7 +6,7 @@ weight: 1
 
 ## Test Gateway
 
-Open a 3rd terminal window, this one will be used to run the `gateway` and navigate to the`[WORKSHOP]/2-gateway` folder and run the following command to test the gateway configuration:
+Open a 3rd terminal window, this one will be used to run the `gateway` and navigate to the`[WORKSHOP]/2-gateway` directory and run the following command to test the gateway configuration:
 
 ```text
 ../otelcol --config=gateway.yaml
@@ -24,7 +24,7 @@ If everything is set up correctly, the first and last lines of the output should
 
 ### Update agent configuration
 
-Select your `agent` terminal window, and also navigate to the `[WORKSHOP]/2-gateway` folder.  
+Select your `agent` terminal window, and also navigate to the `[WORKSHOP]/2-gateway` directory.  
 Open the `agent.yaml` we copied earlier in your editor, and configure a `otlphttp` exporter by replacing the existing `file` one. (this is now the preferred exporter for Splunk Observability Cloud):
 
 {{% notice title="Exercise" style="green" icon="running" %}}

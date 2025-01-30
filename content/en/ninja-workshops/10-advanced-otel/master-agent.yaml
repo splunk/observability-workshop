@@ -2,7 +2,7 @@ extensions:
   health_check:                   # Enables the health check extension
     endpoint: 0.0.0.0:13133
   file_storage/psq:      # Extension Type/Name
-    # Defines the folder where checkpoint files will be stored
+    # Defines the directory where checkpoint files will be stored
     directory: "./checkpoint-folder"   
     # Ensures that the directory is created if not exist 
     create_directory: true  
