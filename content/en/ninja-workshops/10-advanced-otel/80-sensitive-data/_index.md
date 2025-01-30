@@ -45,6 +45,7 @@ WORKSHOP
 
 For this section, you'll need to generate some trace data that includes sensitive data.
 
+{{% notice title="Exercise" style="green" icon="running" %}}
 Copy the following JSON and save to the file named `trace.json` in the `6-remove-sensitive-data` directory:
 
 {{% tabs %}}
@@ -162,20 +163,24 @@ Copy the following JSON and save to the file named `trace.json` in the `6-remove
 
 {{% /tab %}}
 {{% /tabs %}}
+{{% /notice %}}
 
-In this exercise, we will update the `agent.yaml` file by adding `attribute` and `redaction` processors.
 
-### Step 2 Configure Agent
+### Step 2: Configure Agent
+
+In this exercise, we will update the `agent.yaml` file by adding `attributes` and `redaction` processors.
 
 ### Breakdown of Key Configurations
 
 #### 2.1 Remove Tags (Attributes)
 
 The `attributes/removetags` processor allows you to delete specific attributes (tags) from spans. In this case, we're removing the tag `user.user_id`:
+The `attributes/removetags` processor allows you to delete specific attributes (tags) from spans. In this case, we're removing the tag `user.user_id`:
 
 ```yaml
 attributes/removetags:
   actions:
+    - key: user.user_id
     - key: user.user_id
       action: delete
 ```
@@ -185,6 +190,7 @@ attributes/removetags:
 The attributes/update processor is used to update or redact sensitive data. We perform the following actions:
 
 Redacting credit card numbers: Replace the amex card number with the word "redacted".
+Redacting credit card numbers: Replace the amex card number with the word "redacted".
 Deleting the account_password field to remove passwords from traces.
 Hashing the account_email to anonymize email addresses.
 
@@ -192,10 +198,13 @@ Hashing the account_email to anonymize email addresses.
 attributes/update:
   actions:
     - key: user.amex
+    - key: user.amex
       value: redacted
       action: update
     - key: user.account_password
+    - key: user.account_password
       action: delete
+    - key: user.account_email
     - key: user.account_email
       action: hash
 ```
@@ -204,26 +213,18 @@ attributes/update:
 
 The redaction/update processor provides fine-grained control over which attributes are allowed or blocked from traces. We configure this processor to:
 
-Allow specific keys: `description`, `group`, `id`, and name are the only allowed attributes.
 Block sensitive data: Credit card numbers matching the provided regex patterns (Visa and MasterCard) will be blocked and redacted.
 
 ```yaml
 redaction/update:
-  allow_all_keys: false
-  allowed_keys:
-    - description
-    - group
-    - id
-    - name
-  ignored_keys:
-    - safe_attribute  # Attributes that will not be redacted
+  allow_all_keys: true
   blocked_values:
     - "4[0-9]{12}(?:[0-9]{3})?"  # Visa card regex
     - "(5[1-5][0-9]{14})"         # MasterCard card regex
   summary: debug  # Show detailed debug information about redactions
 ```
 
-Open the `agent.yaml` and add the `attributes/removetags`, `attributes/update`, and `redaction/update` configuration to the `processors` section:
+In the next exercise you will configure the processors and add to the `traces` pipeline.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -232,61 +233,8 @@ Open the `agent.yaml` and add the `attributes/removetags`, `attributes/update`, 
 
 - **Add the `attribute` and `redaction` processors**: Make sure you add the processors to the `traces` pipeline.
 
+- **Validate the agent configuration**:
+Using **[otelbin.io](https://www.otelbin.io/)**, the results for the `traces` pipeline should look like this:
 {{% /notice %}}
 
-Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**, the results for the `traces` pipeline should look like this:
-
 ![otelbin-f-6-1-traces](../images/otelbin-f-6-1-trace.png)
-
-### Step 2: Verify the Redaction
-
-Ensure that the `agent` is started the `[WORKSHOP]/6-sensitive-data` folder using the correct agent configuration yaml. Next, update and use the **cURL** command we used earlier to send the `health.json` payload, and send the `trace.json` data created above.
-
-After the collector processes the data, verify that:
-
-- The user_id field is deleted.
-- The amex cc number field is redacted with the word redacted.
-- The account_password field is deleted.
-- The account_email field is hashed.
-- Sensitive credit card numbers (Visa, MasterCard) are properly masked using regex.
-- Check the exported trace data in the file or backend you're using.
-
-### Step 3: Debugging and Monitoring
-
-If you're unsure whether the redaction is working correctly, the summary field in the redaction/update processor will provide helpful debug information.
-
-- Set summary: debug in the configuration.
-- This will show detailed diagnostic information about which attributes are redacted, deleted, or updated.
-
-```yaml
-summary: debug  # Provides debug-level details on redactions
-```
-
-This will log information about each redacted or deleted attribute, helping you troubleshoot if something is missing.
-
-### Step 4: Advanced Configuration (Optional)
-
-#### 4.1 Redacting More Data
-
-You can easily extend the configuration to redact additional sensitive information. For example, if you need to redact phone numbers, social security numbers, or other personally identifiable information (PII), you can add more blocked_values in the redaction processor.
-
-Example:
-
-```yaml
-blocked_values:
-  - "(\\+\\d{1,2}\\s?)?\\(?\\d{3}\\)?\\s?-?\\d{3}-?\\d{4}"  # Phone number regex
-```
-
-#### 4.2 Using Multiple Redaction Strategies
-
-You can combine different strategies for redaction, such as:
-
--Replacing values with a fixed string ("REDACTED").
--Hashing values for anonymity.
--Deleting values to remove them completely from telemetry data.
-
-### Conclusion
-
-Congratulations! You've successfully configured the OpenTelemetry Collector to remove tags and redact sensitive data. By following the steps in this workshop, you've ensured that any sensitive information in your telemetry data is properly handled and protected. This configuration is critical for adhering to privacy standards and ensuring secure handling of data in your observability pipelines.
-
-Feel free to extend this configuration to suit your own use cases, and explore more advanced redaction patterns based on your requirements.
