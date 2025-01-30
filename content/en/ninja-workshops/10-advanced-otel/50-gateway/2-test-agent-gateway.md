@@ -112,9 +112,9 @@ Open the `gateway-metrics.out` file. It should contain CPU metrics, including de
 
 Next, make sure both the gateway and the agent are still running in their respective terminals.
 
-Find your `test` terminal window, and also navigate to the `[WORKSHOP]/2-gateway` folder.
+Find your `test` terminal window, and also navigate to the `[WORKSHOP]/2-gateway` directory.
 
-Check that you have copied the `trace.json` to the `2-gateway` folder then run the following `curl` command to send a trace: (Both the `agent` and the `gateway` should show the Debug output from the second tab)
+Check that you have copied the `trace.json` to the `2-gateway` directory then run the following `curl` command to send a trace: (Both the `agent` and the `gateway` should show the Debug output from the second tab)
 
 {{% tabs %}}
 {{% tab title="cURL Command" %}}

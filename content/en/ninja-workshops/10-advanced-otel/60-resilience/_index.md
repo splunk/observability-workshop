@@ -45,8 +45,8 @@ Our first task is to implement **checkpointing** using the `file_storage` extens
 
 ```yaml
   file_storage/checkpoint:      # Extension Type/Name
-    # Defines the folder where checkpoint files will be stored
-    directory: "./checkpoint-folder"   
+    # Defines the directory where checkpoint files will be stored
+    directory: "./checkpoint-dir"
     # Ensures that the directory is created if not exist 
     create_directory: true  
     # Specifies timeout for file operations for checkpointing
@@ -56,7 +56,7 @@ Our first task is to implement **checkpointing** using the `file_storage` extens
       # Controls if compaction process begins at OpenTelemetry Collector startup               
       on_start: true   
       # Specifies the directory used for compaction (as a midstep)        
-      directory: "./checkpoint-folder/tmp"
+      directory: "./checkpoint-dir/tmp"
       # Size limit for checkpoint transactions before compaction occurs
       max_transaction_size: 65536        
 ```

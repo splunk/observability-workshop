@@ -161,7 +161,7 @@ This file will allow us to test how the OpenTelemetry Collector processes and se
 
 {{% /tab %}}
 
-Next, Open a second terminal window and navigate to the `[WORKSHOP]/1-agent` folder. In this new terminal (used for running `Tests`), execute the following command to send a **span** to test your setup:
+Next, Open a second terminal window and navigate to the `[WORKSHOP]/1-agent` directory. In this new terminal (used for running `Tests`), execute the following command to send a **span** to test your setup:
 
 {{% tabs %}}
 {{% tab title="cURL Command" %}}
