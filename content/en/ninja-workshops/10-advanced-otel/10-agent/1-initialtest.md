@@ -192,6 +192,11 @@ Next, check the agent’s debug console in the `Agent` terminal window. You shou
 
 ```text
 2025-01-13T13:26:13.502+0100 info Traces {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
+```
+
+{{% expand "View Full Debug Log" %}}
+
+```text
 2025-01-13T13:26:13.502+0100 info ResourceSpans #0
 Resource SchemaURL:
 Resource attributes:
@@ -222,5 +227,6 @@ Attributes:
      -> user.mastercard: Str(5555 5555 5555 4444)
   {"kind": "exporter", "data_type": "traces", "name": "debug"}
 ```
+{{% /expand %}}
 
 If everything worked as expected, you’re ready to continue building out the agent's YAML configuration file.

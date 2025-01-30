@@ -1,6 +1,6 @@
 ---
 title: Adding Resource Metadata
-linkTitle: 1.3 Resource Metadata
+linkTitle: 3. Resource Metadata
 weight: 3
 ---
 ### Setup
