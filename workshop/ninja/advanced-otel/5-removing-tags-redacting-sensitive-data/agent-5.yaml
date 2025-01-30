@@ -66,18 +66,18 @@ processors:
   # Overrides an existing tag for a span.
   attributes/removetags:
     actions:
-      - key: SPAN_TAG_KEY
+      - key: user.user_id
         action: delete
 
   # Updates attribute values to remove and redact sensitive data      
   attributes/update:
     actions:
-      - key: cc_number
+      - key: user.amex
         value: redacted
         action: update
-      - key: account_password
+      - key: user.account_password
         action: delete
-      - key: account_email
+      - key: user.account_email
         action: hash
 
   # Redaction processor
@@ -125,6 +125,8 @@ service:
             - resourcedetection
             - resource/add_mode
             - attributes/removetags
+            - attributes/update
+            - redaction/update
             exporters: [otlp/gateway, debug]
         metrics:
             receivers: [otlp]
