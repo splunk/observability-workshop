@@ -1,8 +1,8 @@
 ---
 title: Building Resilience in the OpenTelemetry Collector using the File Storage Extension
-linkTitle: 4. Resilience
+linkTitle: 6. Resilience
 time: 10 minutes
-weight: 4
+weight: 6
 ---
 
 We will walk through how to use OpenTelemetry Collector’s `file_storage` extension to build resilience into your telemetry pipeline. Specifically, we will demonstrate how to use the file storage extension for checkpointing, managing retries, and handling temporary failures effectively.

@@ -1,8 +1,8 @@
 ---
 title: Routing
-linkTitle: 8. Routing
+linkTitle: 10. Routing
 time: 10 minutes
-weight: 8
+weight: 10
 ---
 
 The routing connector in OpenTelemetry is a powerful feature that allows you to direct data (`traces`, `metrics`, or l`ogs`) to different pipelines based on specific criteria. This is especially useful in scenarios where you want to apply different processing or exporting logic to subsets of your telemetry data.

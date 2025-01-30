@@ -16,6 +16,7 @@ cd [WORKSHOP]/1-agent
 
 Inside the `1-agent` directory, we will create a file containing the basic structure of an OpenTelemetry Collector configuration, defining the components you'll need to work with.
 
+{{% expand title = "agent.yaml" %}}
 To do this, create a file called `agent.yaml` and paste the following starting configuration into it:
 
 ```yaml
@@ -27,6 +28,10 @@ extensions:
     endpoint: 0.0.0.0:13133
 
 receivers:
+  hostmetrics:                  # Receiver Type
+    collection_interval: 3600s  # Scrape metrics every hour
+    scrapers:                   # Array of hostmetric scrapers
+      cpu:                      # Scraper for cpu metrics
 
 exporters:
     
@@ -57,6 +62,8 @@ service:
       - memory_limiter
       exporters: []
 ```
+
+{{% /expand %}}
 
 {{% tab title="Initial Directory Structure" %}}
 
