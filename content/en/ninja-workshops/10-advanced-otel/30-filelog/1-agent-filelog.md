@@ -39,7 +39,7 @@ Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**
 
 ---
 
-## Test the Filelog receiver
+### Test the Filelog receiver
 
 Find your `gateway` terminal window, navigate to the `[WORKSHOP]/3-filelog` directory, start the `gateway` collector and wait until it is ready to receive data.
 
