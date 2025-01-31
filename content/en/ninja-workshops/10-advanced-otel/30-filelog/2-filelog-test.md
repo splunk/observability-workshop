@@ -1,51 +1,16 @@
 ---
-title: Configure the filelog receiver in the agent
-linkTitle: 3.1 Agent Filelog Config
-weight: 1
+title: Test Filelog Receiver Configuration
+linkTitle: 3.2 Test Configuration
+weight: 2
 ---
 
-### Update the agent configuration
+In your gateway terminal window, navigate to the `[WORKSHOP]/3-filelog` directory, then start the gateway collector and wait for it to be ready to receive data.
 
-Check that you are in the `[WORKSHOP]/3-filelog` directory.  Open the `agent.yaml` copied across earlier and in your editor and add the `filelog` receiver to the `agent.yaml`.
+Next, to test the Filelog Receiver, switch to your agent terminal window, navigate to the same `[WORKSHOP]/3-filelog` directory, and start the agent.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+Once running, the agent should begin sending CPU metrics as before. Both the agent and the gateway should display debug output similar to the following:
 
-- **Add the `filelog` receiver**: The Filelog receiver reads log data from a file and includes custom resource attributes in the log data:
-
-  ```yaml
-    # Define a filelog receiver named "quotes"
-    filelog/quotes:
-      # Specifies the file to read log data from (quotes.log)
-      include: ./quotes.log
-      # Includes the full file path in the log data
-      include_file_path: true
-      # Excludes the file name from the log data
-      include_file_name: false
-      # Add custom resource attributes to the log data
-      resource:
-        # Sets the source of the log data to "quotes.log"
-        com.splunk.source: ./quotes.log
-        # Sets the sourcetype for the log data to "quotes"
-        com.splunk.sourcetype: quotes
-  ```
-
-- Add `filelog/quotes` receiver to the `receivers` array in the `logs` section of the pipelines.  (make sure it also contains `otlp`)
-
-{{% /notice %}}
-
-Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**, the results for the `Logs` pipeline should look like this:
-
-![otelbin-f-3-1-logs](../../images/filelog-3-1-logs.png)
-
----
-
-### Test the Filelog receiver
-
-Find your `gateway` terminal window, navigate to the `[WORKSHOP]/3-filelog` directory, start the `gateway` collector and wait until it is ready to receive data.
-
-Next, to test the Filelog Receiver, find your `agent` terminal window, navigate to the `[WORKSHOP]/3-filelog` directory and start the agent.
-
-The agent should start to send **CPU** metrics again as before and both the agent and the gateway should reflect that in their debug output like this:
+{{% expand title="{{% badge style=primary icon=scroll %}}Check Full Debug Log{{% /badge %}}" %}}
 
 ```text
 2025-01-18T21:25:01.806+0100    info    ResourceLog #0
@@ -72,9 +37,9 @@ Span ID:
 Flags: 0
 ```
 
-When the agent begins reading the `quotes.log` file, it will display this activity in the debug console output and forward the log lines to the gateway.
+{{% /expand %}}
 
-The gateway pipeline will then generate the `gateway-log.out` file. At this point, your directory structure will appear as follows:
+When the agent begins reading the `quotes.log` file, it will display this activity in the debug console output and forward the log lines to the gateway. The gateway pipeline will then generate the `gateway-log.out` file. At this point, your directory structure will appear as follows:
 
 {{% tab title="Updated Directory Structure" %}}
 
@@ -95,7 +60,7 @@ WORKSHOP
 
 {{% /tab %}}
 
-The resulting `gateway-log.out` should look like this: (We only show the top and a single log line, you will have many more)
+The generated `gateway-log.out` file should look like this (below is a preview showing the beginning and a single log line; your actual output will contain many more):
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}

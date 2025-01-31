@@ -5,6 +5,7 @@ weight: 2
 ---
 
 {{% notice title="Exercise" style="green" icon="running" %}}
+
 - Update Sensitive Data
 
 The attributes/update processor is used to update or redact sensitive data. We perform the following actions:
@@ -49,4 +50,5 @@ Open the `agent.yaml` and add the `attributes/removetags`, `attributes/update`, 
 
 Using **[otelbin.io](https://www.otelbin.io/)**, the results for the `traces` pipeline should look like this:
 
-![otelbin-f-6-1-traces](../images/otelbin-f-6-1-trace.png)
+**REPLACE THE FOLLOWING IMAGE**
+![otelbin-f-6-1-traces](../../images/otelbin-f-6-1-trace.png)
