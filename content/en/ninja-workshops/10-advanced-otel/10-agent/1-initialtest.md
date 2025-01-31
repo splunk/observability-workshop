@@ -18,7 +18,7 @@ Run the following command from the `1-agent` directory (ensure you’re using th
 ../otelcol --config=agent.yaml
 ```
 
-In this workshop, we use `MacOS/Linux` commands by default. If you’re using Windows, adjust the commands as needed.
+In this workshop, we use **macOS/Linux** commands by default. If you’re using Windows, adjust the commands as needed.
 
 If everything is set up correctly, the first and last lines of the output should display:
 
@@ -159,7 +159,7 @@ This file will allow us to test how the OpenTelemetry Collector processes and se
 
 {{% /tab %}}
 
-Next, Open a second terminal window and navigate to the `[WORKSHOP]/1-agent` directory. In this new terminal (used for running `Tests`), execute the following command to send a **span** to test your setup:
+Open a second terminal window and navigate to the `[WORKSHOP]/1-agent` directory. In this new terminal (used for running `Tests`), execute the following command to send a **span** to test your setup:
 
 {{% tabs %}}
 {{% tab title="cURL Command" %}}
@@ -186,13 +186,13 @@ Content-Length: 21
 - `HTTP/1.1 200 OK`: Confirms the request was processed successfully.
 - `{"partialSuccess":{}}`: Indicates 100% success, as the field is empty. In case of a partial failure, this field will include details about any failed parts.
 
-Next, check the agent’s debug console in the `Agent` terminal window. You should see a debug log for the **span** you just sent, similar to this:
+Next, open the Agent terminal window and check the agent's debug console. You should see the first line of the debug log for the span you just sent, which should look something like this:
 
 ```text
 2025-01-13T13:26:13.502+0100 info Traces {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
 ```
 
-{{% expand "View Full Debug Log" %}}
+{{% expand title="{{% badge style=primary icon=scroll %}}Check Full Debug Log{{% /badge %}}" %}}
 
 ```text
 2025-01-13T13:26:13.502+0100 info ResourceSpans #0

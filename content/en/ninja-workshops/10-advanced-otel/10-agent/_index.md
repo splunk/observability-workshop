@@ -16,7 +16,6 @@ cd [WORKSHOP]/1-agent
 
 Inside the `1-agent` directory, we will create a file containing the basic structure of an OpenTelemetry Collector configuration, defining the components you'll need to work with.
 
-{{% expand title = "agent.yaml" %}}
 To do this, create a file called `agent.yaml` and paste the following starting configuration into it:
 
 ```yaml
@@ -63,8 +62,6 @@ service:
       exporters: []
 ```
 
-{{% /expand %}}
-
 {{% tab title="Initial Directory Structure" %}}
 
 ```text
@@ -96,7 +93,7 @@ Let's walk through a few modifications to get things started.
       verbosity: detailed          # Enabled detailed debug output
   ```
 
-- **Update Pipelines**: Ensure that the `otlp` receiver, `memory_limiter` processor, and `debug` exporter are added to the pipelines for traces, metrics, and logs.
+- **Update Pipelines**: Ensure that the `otlp` receiver, `memory_limiter` processor, and `debug` exporter are added to the pipelines for `traces`, `metrics`, and `logs`.
 
   ```yaml
       traces:               # Traces Pipeline
