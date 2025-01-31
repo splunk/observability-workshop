@@ -93,10 +93,10 @@ In this exercise, we will **remove the** `user.account_password` **attribute** f
 
 ### Test the Tag Update
 
-Stop the `gateway` so you can delete the `*.out` files and to clear the screen.   Restart your `gateway` terminal window, and wait until it is ready to receive data.
+Stop the `gateway` so you can delete the `*.out` files and clear the screen.   Restart your `gateway` terminal window, and wait until it is ready to receive data.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-In this exercise, we will **update the** `user.phone_number` **attribute** & hash the `user.email` in the  span data before it is exported by the `agent`.
+In this exercise, we will **update** the `user.phone_number` **attribute** & **hash** the `user.email` in the span data before it is exported by the `agent`.
 
 - **Stop the `Agent` Collector**
 - **Enable the `attributes/update` processor** in the `traces` pipeline by removing the `#` in front of it. then restart the `agent`
@@ -110,6 +110,8 @@ In this exercise, we will **update the** `user.phone_number` **attribute** & has
        -> user.phone_number: Str(UNKNOWN NUMBER)
        -> user.email: Str. (62d5e03d8fd5808e77aee5ebbd90cf7627a470ae0be9ffd10e8025a4ad0e1287)
        -> user.mastercard: Str(5555 5555 5555 4444)
+       -> user.visa: Str(4111 1111 1111 1111)
+       -> user.amex: Str(Redacted)
   ```
 
 {{% /tab %}}
@@ -121,6 +123,8 @@ In this exercise, we will **update the** `user.phone_number` **attribute** & has
        -> user.email: Str(george@deathstar.email)
        -> user.account_password: Str(LOTR>StarWars1-2-3)
        -> user.mastercard: Str(5555 5555 5555 4444)
+       -> user.visa: Str(4111 1111 1111 1111)
+       -> user.amex: Str(3782 822463 10005)
   ```
 
 {{% /tab %}}
