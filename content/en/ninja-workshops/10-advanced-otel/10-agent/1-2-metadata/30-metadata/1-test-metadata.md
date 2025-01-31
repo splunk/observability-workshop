@@ -1,12 +1,10 @@
 ---
-title: Adding Resource Metadata
+title: Test Resource Metadata Configuration
 linkTitle: 1.3.1. Test Resource Metadata
 weight: 1
 ---
 
-### Test the Metadata Configuration
-
-Rename `./agent.out` to `.agent.old`, this is so you can compare it later.
+Rename `agent.out` to `agent.old`, this is so you can compare it later.
 
 {{% tab title="Updated Directory Structure" %}}
 
@@ -43,7 +41,7 @@ Next, from the `Test` terminal window, send a trace again with the `cURL` comman
 
 {{% /tab %}}
 
-In the agent’s debug output, you should see three new lines in the `Resource attributes section`: (`host.name`, `os.type` & `otelcol.service.mode`):
+In the agent’s debug output, you should see three new lines in the `resource attributes` section: (`host.name`, `os.type` & `otelcol.service.mode`):
 
 ```text
 <snip>
@@ -57,7 +55,7 @@ Resource attributes:
 </snip>
 ```
 
-A new `agent.out` file should be created:
+A new `agent.out` file will be created:
 
 {{% tab title="Updated Directory Structure" %}}
 
@@ -73,11 +71,11 @@ A new `agent.out` file should be created:
 
 {{% /tab %}}
 
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-Note: On `Windows`, attempting to read an open file can cause issues. To avoid this, make sure to stop the `agent` or the `gateway` before examining a file when instructed to do so.
+{{% notice note %}}
+On **Windows**, attempting to read an open file can cause issues. To avoid this, make sure to stop the `agent` or the `gateway` before examining a file when instructed to do so.
 {{% /notice %}}
 
-Check the newly created `agent.out` file. You should see a line written for the trace.
+When you compare the new `agent.out` file to the original `agent.old`, you’ll notice that the collector has added the `otelcol.service.mode` attribute, along with several `resourcedetection` attributes (`host.name` & `os.type`) to the `resourceSpans` section of the span we send. These values are based on your device and were automatically added by the processors we configured in the pipeline:
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
@@ -208,38 +206,4 @@ Check the newly created `agent.out` file. You should see a line written for the 
 {{% /tab %}}
 {{% /tabs %}}
 
-When you compare the new `agent.out` file to the original `agent.old`, you’ll notice that the collector has added the `otelcol.service.mode` attribute, along with several `resourcedetection` attributes (`host.name` & `os.type`) to the `resourceSpans` section of the span we send. These values are based on your device and were automatically added by the processors we configured in the pipeline:
-
-{{% tabs %}}
-{{% tab title="Compacted JSON" %}}
-
-```json
-{"key":"host.name","value":{"stringValue":"[YOUR_HOST_NAME]"}},{"key":"os.type","value":{"stringValue":"[YOUR_OS]"}},{"key":"otelcol.service.mode","value":{"stringValue":"agent"}}
-```
-
-{{% /tab %}}
-{{% tab title="Formatted JSON" %}}
-
-```json
-{
-  "key": "host.name",
-  "value": {
-    "stringValue": "[YOUR_HOST_NAME]"
-  }
-},
-{
-  "key": "os.type",
-  "value": {
-    "stringValue": "[YOUR_OS]"
-  }
-},
-{
-  "key": "otelcol.service.mode",
-  "value": {
-    "stringValue": "agent"
-  }
-}
-```
-
-{{% /tab %}}
-{{% /tabs %}}
+When you compare the new `agent.out` file to the original `agent.old`, you’ll notice that the collector has added the `otelcol.service.mode` attribute, along with several `resourcedetection` attributes (`host.name` & `os.type`) to the `resourceSpans` section of the span we send. These values are based on your device and were automatically added by the processors we configured in the pipeline.

@@ -1,10 +1,8 @@
 ---
-title: Testing the File exporter
+title: Test the File Exporter Confiuration
 linkTitle: 1.2.1 Test File Exporter
 weight: 1
 ---
-
-### Test your agent.yaml Configuration
 
 Restart your agent in the `Agent` terminal window, this time with your new config to test it:
 
