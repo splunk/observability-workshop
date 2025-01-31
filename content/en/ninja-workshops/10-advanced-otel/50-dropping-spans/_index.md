@@ -1,8 +1,8 @@
 ---
 title: Using a Filter to Drop Spans in OpenTelemetry Collector
-linkTitle: 7. Dropping Spans
+linkTitle: 5. Dropping Spans
 time: 10 minutes
-weight: 7
+weight: 5
 ---
 
 In this section, we will explore how to use the **Filter Processor** to selectively drop spans based on certain conditions.

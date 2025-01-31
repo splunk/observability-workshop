@@ -1,6 +1,6 @@
 ---
 title: Testing The Redaction Rules
-linkTitle: 8.1. Test Redaction
+linkTitle: 6.1. Test Redaction
 weight: 1
 ---
 

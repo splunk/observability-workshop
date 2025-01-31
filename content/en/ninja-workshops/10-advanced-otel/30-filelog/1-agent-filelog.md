@@ -1,6 +1,6 @@
 ---
 title: Configure the filelog receiver in the agent
-linkTitle: 4.1 Agent Filelog Config
+linkTitle: 3.1 Agent Filelog Config
 weight: 1
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: Route data though a gateway  
-linkTitle: 5. Gateway Setup
+linkTitle: 2. Gateway Setup
 time: 10 minutes
-weight: 5
+weight: 2
 ---
 
 ### Initial Gateway Configuration
