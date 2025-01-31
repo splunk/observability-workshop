@@ -1,7 +1,6 @@
 ---
 title: Testing the Attribute Processor
 linkTitle: 6.1 Test Attribute Processor
-time: 10 minutes
 weight: 1
 ---
 
