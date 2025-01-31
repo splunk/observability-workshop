@@ -14,7 +14,7 @@ We'll walk through how to configure several processors in the OpenTelemetry Coll
 
 ### Setup
 
-On your machine, navigate to the directory where you're running the workshop. Create a new subdirectory called `6-sensitive-data`, then copy the latest versions of `agent.yaml` and `trace.json` from `[WORKSHOP]\5-dropping-spans` into this new directory.
+On your machine, navigate to the directory where you're running the workshop. Create a new subdirectory called `6-sensitive-data`, then copy the latest versions of `agent.yaml` and `trace.json` from `[WORKSHOP]/5-dropping-spans` into this new directory.
 
 Next, move into the `[WORKSHOP]/6-sensitive-data` directory.
 
@@ -27,9 +27,9 @@ WORKSHOP
 ├── 3-filelog
 ├── 4-resilience
 ├── 5-dropping-spans
-├── 6-remove-sensitive-data
-│   ├── gateway.yam
-│   ├── agent.yam
+├── 6-sensitive-data
+│   ├── gateway.yaml
+│   ├── agent.yaml
 │   ├── log-gen.sh (or .ps1)
 │   ├── health.json
 │   └── trace.json
@@ -63,26 +63,42 @@ So, Let's start an exercise to clean those up:
 The `attributes` processor allows you to delete specific attributes (tags) from spans. In this case, we're removing the tag `user.account_password` using delete:
 
   ```yaml
-    attributes/removetags:
-      actions:
-        - key: user.account_password
-          action: delete
+    attributes/removetags:           # Processor Type/Name
+      actions:                       # Array of actions
+        - key: user.account_password # Target key
+          action: delete             # Action is delete 
   ```
 
 - **Add an other  `Attributes` Processor** and name it `update:`
-The `attributes` processor also allows you to update specific attributes (tags) from spans. In this case, we're update the tag `user.phone_number` to a all five's, hash the `user.email` :
+The `attributes` processor also allows you to update specific attributes (tags) from spans. In this case, we're update the tag `user.phone_number` to "UNKNOWN NUMBER", hash the `user.email` and replace the amex card number with the word "Redacted":
 
   ```yaml
-    attributes/update:
-      actions:
-        - key: user.phone_number
-          action: update
+    attributes/update:              # Processor Type/Name
+      actions:                      # Array of actions
+        - key: user.phone_number    # Target key
+          action: update            # Action is update key with value
           value: "UNKNOWN NUMBER" 
-        - key: user.email
-          action: hash
+        - key: user.email           # Target key
+          action: hash              # Action is hash key
+          action: update            # Target key
+          value: "Redacted"         # Action is update key with value
   ```
 
-- **Update the `traces`  pipeline**: Add the both the processors into the `traces:` pipeline but make sure the `attributes/update:` is commented out.
+- **Add a `redaction` Processor** and name it `redact:`
+
+  ```yaml
+    redaction/redact:               # Processor Type/Name
+      allow_all_keys: true          # False removes all key unless in allow list 
+      blocked_values:               # List of regex to check and hash
+          # Visa card regex.  - Please note the '' around the regex
+        - '\b4[0-9]{3}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}\b'
+          # MasterCard card regex - Please note the '' around the regex
+        - '\b5[1-5][0-9]{2}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}\b' 
+      summary: debug  # Show detailed debug information about the redaction 
+
+  ```
+
+- **Update the `traces`  pipeline**: Add the both the `attribute` processors and the  `redaction` processor into the `traces:` pipeline but make sure `attributes/update:`  & `redaction/redact` are commented out.
 
   ```yaml
       traces:
@@ -91,6 +107,7 @@ The `attributes` processor also allows you to update specific attributes (tags) 
         - memory_limiter        # Handles memory limits for this pipeline
         - attributes/removetags # Removes user.account_password attribute
         #- attributes/update     # Update and hash tags 
+        #- redaction/redact      # Redacting fields on regex 
         - resourcedetection     # Adds system attributes to the data
         - resource/add_mode     # Adds collector mode metadata
         - batch
