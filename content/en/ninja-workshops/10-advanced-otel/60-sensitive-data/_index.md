@@ -5,28 +5,18 @@ time: 10 minutes
 weight: 6
 ---
 
-In this section, you'll learn how to configure the OpenTelemetry Collector to remove specific tags and redact sensitive data from your telemetry (traces). This is essential when dealing with sensitive information such as credit card numbers, personal data, or other security-related information that needs to be protected or anonymized.
+In this section, you'll learn how to configure the OpenTelemetry Collector to **remove specific tags** and **redact sensitive data** from your telemetry (spans). This is essential when dealing with sensitive information such as credit card numbers, personal data, or other security-related information that needs to be protected or anonymized.
 
 We'll walk through how to configure several processors in the OpenTelemetry Collector, including:
 
-- **Removing Tags**.
-- **Redacting Sensitive Data** (such as credit card numbers and account credentials).
-- **Using regular expressions to block sensitive data**.
+- **Attributes** Processor.
+- **Redaction** Procesor
 
-By the end of this workshop, you'll have a working OpenTelemetry Collector configuration that securely handles sensitive telemetry data.
+### Setup
 
-Here’s a breakdown of the main components:
+On your machine, navigate to the directory where you're running the workshop. Create a new subdirectory called `6-sensitive-data`, then copy the latest versions of `agent.yaml` and `trace.json` from `[WORKSHOP]\5-dropping-spans` into this new directory.
 
-Processors: These will handle the data removal and redaction.
-Batch Processor: We'll use it to control how traces are batched and exported.
-Memory Limiter: Ensures that the collector does not consume too much memory.
-Redaction Processor: A dedicated processor for redacting sensitive data, including credit card numbers and account details.
-
-### Step 1: Initial Setup
-
-On your machine, navigate to the directory where you're running the workshop. Create a new subdirectory called `6-remove-sensitive-data`, then copy the latest versions of `agent.yaml` and `trace.json` from `1-agent` into this new directory.
-
-Next, move into the `[WORKSHOP]/6-remove-sensitive-data` directory.
+Next, move into the `[WORKSHOP]/6-sensitive-data` directory.
 
 ```text
 WORKSHOP
