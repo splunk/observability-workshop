@@ -72,18 +72,18 @@ The next exercise is modifying the `otlphttp:` exporter where retries and queuin
   otlphttp:
     endpoint: "http://localhost:5318" # Gateway endpoint
     headers:
-      X-SF-Token: "FAKE_SPLUNK_ACCESS_TOKEN" # or your own token            
-    # Controls retrying when there is a failure in sending data  
+      X-SF-Token: "FAKE_SPLUNK_ACCESS_TOKEN" # or your own token
+    # Controls retrying when there is a failure in sending data
     retry_on_failure:             
       enabled: true            # Enables retrying
-      # Configures an internal queue to store data that couldn’t be sent
+    # Configures an internal queue to store data that couldn't be sent
     sending_queue:              
       enabled: true          # Enables Sending queue
       # Specifies the number of consumers reading from the queue
       num_consumers: 10         
       queue_size: 10000      # The maximum size of the queue
       # Specifies queue state will be backed up in the file system
-      storage: file_storage/checkpoint         
+      storage: file_storage/checkpoint
 ```
 
 **Update the `services` section**: Add the `file_storage/checkpoint` extension to the existing `extensions:` section. This will cause the extension to be enabled:
