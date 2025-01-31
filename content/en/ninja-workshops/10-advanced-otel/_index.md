@@ -11,13 +11,9 @@ hidden: true
 
 The goal of this workshop is to help you become comfortable creating and modifying OpenTelemetry Collector configuration files. You’ll start with a minimal `agent.yaml` file and gradually configure several common advanced scenarios.
 
-The workshop also explores how to configure the OpenTelemetry Collector to store telemetry data locally instead of transmitting it to a third-party vendor backend.
+The workshop also explores how to configure the OpenTelemetry Collector to store telemetry data locally instead of transmitting it to a third-party vendor backend. Furthermore, this approach significantly enhances the debugging and troubleshooting process and is useful for testing and development environments where you don’t want to send data to a production system.
 
-Furthermore, this approach significantly enhances the debugging and troubleshooting process and is useful for testing and development environments where you don’t want to send data to a production system.
-
-To get the most out of this workshop, you should have a basic understanding of the OpenTelemetry Collector and its configuration file format. Additionally, proficiency in editing YAML files is required. The entire workshop is designed to run locally.
-
-You will benefit from having a good editor for the YAML we use in this Workshop, like Visual Studio Code. You can download it [here](https://code.visualstudio.com/download) if you need it.
+To get the most out of this workshop, you should have a basic understanding of the OpenTelemetry Collector and its configuration file format. Additionally, proficiency in editing YAML files is required. The entire workshop is designed to run locally. You will benefit from having a good editor for the YAML we use in this Workshop, like Visual Studio Code. You can download it [**here**](https://code.visualstudio.com/download) if you need it.
 
 ### Prerequisites
 
@@ -35,14 +31,23 @@ If your host platform isn't listed above, you can find and download the appropri
 
 Once downloaded, rename the file to `otelcol` (or `otelcol.exe` on Windows). For Mac/Linux, set the file permissions to allow execution:
 
+{{% tabs %}}
+{{% tab title="Set Permissions" %}}
+
 ```bash
 chmod +x otelcol
 ```
+
+{{% /tab %}}
+{{% tab title="Initial Directory Structure" %}}
 
 ```text
 [WORKSHOP]
 └── otelcol    # OpenTelemetry Collector binary
 ```
+
+{{% /tab %}}
+{{% /tabs %}}
 
 Mac users will need to trust the executable - **[https://support.apple.com/en-mide/102445](https://support.apple.com/en-mide/102445)**.
 

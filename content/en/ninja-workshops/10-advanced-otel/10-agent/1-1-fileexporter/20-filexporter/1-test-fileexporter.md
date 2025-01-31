@@ -154,10 +154,11 @@ The span is written to the `agent.json` as a single line in OTLP/JSON format:
 {{% /tab %}}
 {{% /tabs %}}
 
----
-
-If you want to see the JSON expanded on your device, you can cat the file and pipe it though `jq` (if you have it installed).
+{{% notice tip %}}
+If you want to see formatted JSON, you can cat the file and pipe it though `jq` (if you have it installed).
 
 ```bash
 cat ./agent.out | jq
 ```
+
+{{% /notice %}}

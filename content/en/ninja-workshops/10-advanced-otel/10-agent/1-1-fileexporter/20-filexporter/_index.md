@@ -30,12 +30,12 @@ Let's configure and add the `FileExporter`:
       append: false        # Overwrite the file each time
   ```
 
-- **Update the Pipelines Section**: Add the `file` exporter to the `metrics`, `traces` and `logs` pipelines (leave debug as the first in the array)
+- **Update the Pipelines Section**: Add the `file` exporter to the `metrics`, `traces` and `logs` pipelines (leave debug as the first in the array). Also, add the `hostmetrics` receiver to the `metrics` pipeline.
 
   ```yaml
      #traces:
       metrics:                    # Metrics Pipeline
-        receivers: [otlp]         # Array of Metric Receivers
+        receivers: [otlp, hostmetrics]         # Array of Metric Receivers
         processors:               # Array of Metric Processors
         - memory_limiter          # Handles memory limits for this Pipeline
         exporters: [debug, file]  # Array of Metric Exporters
@@ -49,7 +49,7 @@ Let's configure and add the `FileExporter`:
 To ensure your updated `agent.yaml` is correct, validate it using [**otelbin.io**](https://www.otelbin.io/).
 As an example, the `Traces:` section of your pipelines should look similar to this in **otelbin.io**:
 
-![otelbin-a-1-2-w](../images/agent-1-2-traces.png?width=30vw)
+![otelbin-a-1-2-w](../../../images/agent-1-2-metrics.png?width=25vw)
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 If **otelbin.io** flags a warning regarding the append entry in the exporter you added, check the validation target at the top of the screen. Ensure you’ve selected the Splunk OpenTelemetry Collector as the target.

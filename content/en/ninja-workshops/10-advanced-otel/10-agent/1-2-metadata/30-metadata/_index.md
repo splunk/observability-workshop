@@ -50,4 +50,4 @@ By adding these processors, we enrich the data with system metadata and the agen
 
 Validate your updated `agent.yaml` with [**otelbin.io**](https://www.otelbin.io/):
 
-![otelbin-a-1-3-logs](../images/agent-1-3-logs.png?width=50vw)
+![otelbin-a-1-3-logs](../../../images/agent-1-3-logs.png?width=50vw)
