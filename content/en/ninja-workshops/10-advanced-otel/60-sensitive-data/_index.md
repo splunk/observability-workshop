@@ -70,15 +70,15 @@ The `attributes` processor allows you to delete specific attributes (tags) from 
   ```
 
 - **Add an other  `Attributes` Processor** and name it `update:`
-The `attributes` processor also allows you to update specific attributes (tags) from spans. In this case, we're update the tag `user.phone_number` to a all five's, hash the `user.account_email` :
+The `attributes` processor also allows you to update specific attributes (tags) from spans. In this case, we're update the tag `user.phone_number` to a all five's, hash the `user.email` :
 
   ```yaml
     attributes/update:
       actions:
         - key: user.phone_number
           action: update
-          value: "555-555-555" 
-        - key: user.account_email
+          value: "UNKNOWN NUMBER" 
+        - key: user.email
           action: hash
   ```
 
@@ -90,8 +90,8 @@ The `attributes` processor also allows you to update specific attributes (tags) 
         processors:             # Alternative syntax option [memory_limiter]
         - memory_limiter        # Handles memory limits for this pipeline
         - attributes/removetags # Removes user.account_password attribute
-        - attributes/update     # Update and has tags 
-        #- resourcedetection     # Adds system attributes to the data
+        #- attributes/update     # Update and hash tags 
+        - resourcedetection     # Adds system attributes to the data
         - resource/add_mode     # Adds collector mode metadata
         - batch
         exporters: [debug,otlphttp] # Array of trace Exporters
