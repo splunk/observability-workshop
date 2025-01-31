@@ -1,6 +1,6 @@
 ---
 title: Test the gateway and prepare the agent
-linkTitle: 5.1 Test Gateway & Configure Agent
+linkTitle: 2.1 Test Gateway & Configure Agent
 weight: 1
 ---
 

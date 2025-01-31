@@ -1,6 +1,6 @@
 ---
 title: Using a Filter to Drop Spans in OpenTelemetry Collector
-linkTitle: 7.1 Test Filter Processor
+linkTitle: 5.1 Test Filter Processor
 weight: 1
 ---
 
