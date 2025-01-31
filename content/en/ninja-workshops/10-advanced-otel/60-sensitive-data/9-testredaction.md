@@ -1,7 +1,7 @@
 ---
 title: Testing The Redaction Rules
-linkTitle: 6.1. Test Redaction
-weight: 1
+linkTitle: 6.9.  Old Test Redaction
+weight: 9
 ---
 
 ### Step 2: Verify the Redaction

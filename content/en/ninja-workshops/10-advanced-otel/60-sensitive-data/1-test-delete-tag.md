@@ -1,69 +1,128 @@
 ---
-title: Testing the Tag delete
-linkTitle: 6. Test Tag Delete
+title: Testing the Attribute Processor
+linkTitle: 6.1 Test Attribute Processor
 time: 10 minutes
-weight: 6
+weight: 1
 ---
 
-### Test the Filelog receiver
+### Test the Tag Deletion
 
-Find your `gateway` terminal window, navigate to the `[WORKSHOP]/3-filelog` directory, start the `gateway` collector and wait until it is ready to receive data.
+Fnd your `gateway` terminal window, navigate to the `[WORKSHOP]/6-sensitive-data` directory, start the `gateway` collector and wait until it is ready to receive data.
 
-Next, to test the Filelog Receiver, find your `agent` terminal window, navigate to the `[WORKSHOP]/3-filelog` directory and start the agent.
-
-The 
+Next, to test the Tag deletion, find your `agent` terminal window, navigate to the `[WORKSHOP]/6-sensitive-data` directory and start the agent.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
+In this exercise, we will **remove the** `user.account_password` **attribute** from span data before it is exported by the `agent`.
 
-- Update Sensitive Data
+- **Ensure there are no existing** `.out` **files** in this directory. Delete them if necessary.
+- **Send a span containing `Sensitive data`** by running the **cURL** command to send `trace.json`.
+- **Check the debug output** of both the `Agent` and `Gateway` to confirm that `user.account.password` has been removed.
 
-The attributes/update processor is used to update or redact sensitive data. We perform the following actions:
+{{% tabs %}}
+{{% tab title="New Debug Output" %}}
 
-- Redacting credit card numbers: Replace the `user.amex` card number with the word `"redacted"`.
-- Deleting the `user.account_password` field to remove passwords from traces.
-- Hashing the `user.account_email` to anonymize email addresses.
+  ```text
+     -> user.email: Str(george@deathstar.email)
+     -> user.visa: Str(4111 1111 1111 1111) 
+  ```
 
-```yaml
-attributes/update:
-  actions:
-    - key: user.amex
-      value: redacted
-      action: update
-    - key: user.account_password
-      action: delete
-    - key: user.account_email
-      action: hash
-```
+{{% /tab %}}
+{{% tab title="Original Debug Output" %}}
 
-#### 2.3. Redaction Processor
+  ```text
+     -> user.email: Str(george@deathstar.email)
+     -> user.account_password: Str(LOTR>StarWars1-2-3)
+     -> user.visa: Str(4111 1111 1111 1111) 
+  ```
 
-The redaction/update processor provides fine-grained control over which attributes are allowed or blocked from traces. We configure this processor to:
+{{% /tab %}}
+{{% /tabs %}}
 
-Block sensitive data: Credit card numbers matching the provided regex patterns (Visa and MasterCard) will be blocked and redacted.
+- **Check** the new `gateway-traces.out` file to verify it does not contain the `user.account_password`:
 
-```yaml
-redaction/update:
-  allow_all_keys: true
-  blocked_values:
-    - "4[0-9]{12}(?:[0-9]{3})?"  # Visa card regex
-    - "(5[1-5][0-9]{14})"         # MasterCard card regex
-  summary: debug  # Show detailed debug information about redactions
-```
+{{% tabs %}}
+{{% tab title="New File Output" %}}
 
-{{% /notice %}}
+  ```json
+  "attributes": [
+                  {
+                    "key": "user.email",
+                    "value": {
+                      "stringValue": "george@deathstar.email"
+                    }
+                  },
+                  {
+                    "key": "user.visa",
+                    "value": {
+                      "stringValue": "4111 1111 1111 1111"
+                    }
+                  }
+                ]
+  ```
 
-In the next exercise you will configure the processors and add to the `traces` pipeline.
+{{% /tabs %}}
+{{% tab title="Original File Output" %}}
+
+  ```json
+  "attributes": [
+                  {
+                    "key": "user.email",
+                    "value": {
+                      "stringValue": "george@deathstar.email"
+                    }
+                  },
+                  {
+                    "key": "user.account_password",
+                    "value": {
+                      "stringValue": "LOTR>StarWars1-2-3"
+                    }
+                  },
+                  {
+                    "key": "user.visa",
+                    "value": {
+                      "stringValue": "4111 1111 1111 1111"
+                    }
+                  }
+                ]
+  ```
+
+{{% /tab %}}
+{{% /tabs %}}
+
+{{%/notice%}}
+
+### Test the Tag Update
+
+Stop the `gateway` so you can delete the `*.out` files and to clear the screen.   Restart your `gateway` terminal window, and wait until it is ready to receive data.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
+In this exercise, we will **update the** `user.phone_number` **attribute** & hash the `user.account_email` in the  span data before it is exported by the `agent`.
 
-- **Configure the processors**:
-Open the `agent.yaml` and add the `attributes/removetags`, `attributes/update`, and `redaction/update` configuration to the `processors` section
+- **Stop the `Agent` Collector**,
 
-- **Add the `attribute` and `redaction` processors**: Make sure you add the processors to the `traces` pipeline.
+- **Send a span containing `Sensitive data`** by running the **cURL** command to send `trace.json`.
+- **Check the debug output** of both the `Agent` and `Gateway` to confirm that `user.account.password` has been removed.
 
-- **Validate the agent configuration**:
-Using **[otelbin.io](https://www.otelbin.io/)**, the results for the `traces` pipeline should look like this:
+{{% tabs %}}
+{{% tab title="New Debug Output" %}}
+
+  ```text
+         -> user.email: Str(george@deathstar.email)
+         -> user.visa: Str(4111 1111 1111 1111) 
+  ```
+
+{{% /tab %}}
+{{% tab title="Original Debug Output" %}}
+
+ ```text
+       -> user.email: Str(george@deathstar.email)
+       -> user.account_password: Str(LOTR>StarWars1-2-3)
+       -> user.visa: Str(4111 1111 1111 1111) 
+  ```
+
+{{% /tab %}}
+{{% /tabs %}}
+
+- **Check** the new `gateway-traces.out` file to verify it does not contain the `user.account_password`:
 
 {{% /notice %}}
-
-![otelbin-f-6-1-traces](../images/otelbin-f-6-1-trace.png)
