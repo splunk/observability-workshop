@@ -5,20 +5,20 @@ time: 10 minutes
 weight: 6
 ---
 
-In this section, you'll learn how to configure the OpenTelemetry Collector to **remove specific tags** and **redact sensitive data** from your telemetry (spans). This is essential when dealing with sensitive information such as credit card numbers, personal data, or other security-related information that needs to be protected or anonymized.
+In this section, you'll learn how to configure the OpenTelemetry Collector to remove specific tags and redact sensitive data from telemetry spans. This is crucial for protecting sensitive information such as credit card numbers, personal data, or other security-related details that must be anonymized before being processed or exported.
 
-We'll walk through how to configure several processors in the OpenTelemetry Collector, including:
+We'll walk through configuring key processors in the OpenTelemetry Collector, including:
 
-- **Attributes** Processor
-- **Redaction** Processor
+- **Attributes Processor**: Modifies or removes specific span attributes.
+- **Redaction Processor**: Ensures sensitive data is sanitized before being stored or transmitted.
 
 ### Setup
 
-On your machine, navigate to the directory where you're running the workshop. Create a new subdirectory called `6-sensitive-data`, then copy the latest versions of `agent.yaml` and `trace.json` from `[WORKSHOP]/5-dropping-spans` into this new directory.
+Navigate to the directory where you're running the workshop. Create a new subdirectory called `6-sensitive-data`, then copy the latest versions of `agent.yaml` and `trace.json` from `[WORKSHOP]/5-dropping-spans` into this new directory.
 
-Next, move into the `[WORKSHOP]/6-sensitive-data` directory.
+Change into the `[WORKSHOP]/6-sensitive-data` directory to begin configuring the processors. Your updated workshop structure should now look like this:
 
-{{% tab title="Initial Directory Structure" %}}
+{{% tab title="Updated Directory Structure" %}}
 
 ```text
 WORKSHOP
@@ -38,9 +38,9 @@ WORKSHOP
 
 {{% /tab %}}
 
-In this section, we will update the `agent.yaml` file to include **attributes** and **redaction** processors. These will help handle **sensitive data** within span data.
+Next, we'll update `agent.yaml` to include the `attributes` and `redaction` processors. These processors will ensure that sensitive data within span attributes is properly handled before being logged or exported.
 
-Previously, you may have noticed certain **tags (attributes) containing personal data** in the span data displayed in the console:
+Previously, you may have noticed that certain span attributes displayed in the console contained personal data. In the following steps, we'll configure the necessary processors to filter out and redact this information effectively.
 
 ```text
 <snip>

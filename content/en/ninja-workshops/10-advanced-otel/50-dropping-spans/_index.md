@@ -11,7 +11,7 @@ Specifically, we will drop traces based on the span name, which is commonly used
 
 In the `[WORKSHOP]` directory create a new subdirectory called `5-dropping-spans`, then copy `agent.yaml`, `gateway.yaml`, `trace.json` and your `log-gen` script from `4-resilience`.
 
-{{% tab title="Initial Directory Structure" %}}
+{{% tab title="Updated Directory Structure" %}}
 
 ```text
 WORKSHOP

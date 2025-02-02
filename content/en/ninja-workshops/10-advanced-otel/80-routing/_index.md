@@ -13,7 +13,7 @@ For example, you might want to send *production* data to one exporter while dire
 
 In the `[WORKSHOP]` directory create a new subdirectory called `8-routing`, then copy `*.yaml`, `*.json` and your `log-gen` script from the `7-transform-data` directory.
 
-{{% tab title="Initial Directory Structure" %}}
+{{% tab title="Updated Directory Structure" %}}
 
 ```text
 WORKSHOP

@@ -62,7 +62,7 @@ service:
       exporters: []
 ```
 
-{{% tab title="Initial Directory Structure" %}}
+{{% tab title="Updated Directory Structure" %}}
 
 ```text
 [WORKSHOP]

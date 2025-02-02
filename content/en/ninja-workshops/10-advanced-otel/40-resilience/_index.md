@@ -19,7 +19,7 @@ This solution will work for metrics as long as the connection downtime is briefâ
 
 Create a new subdirectory named `4-resilience` and copy the contents from the `3-filelog` directory into it. Be sure to remove any `*.out` and `*.log` files. Your directory structure should now look like this:
 
-{{% tab title="Initial Directory Structure" %}}
+{{% tab title="Updated Directory Structure" %}}
 
 ```text
 WORKSHOP

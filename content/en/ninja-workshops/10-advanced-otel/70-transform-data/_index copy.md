@@ -3,6 +3,7 @@ title: Using the OpenTelemetry Transform Processor
 linkTitle: 7.3 Old Transform Data
 time: 10 minutes
 weight: 7
+hidden: true
 ---
 
 In this section, we will explore the **Transform Processor** in the OpenTelemetry Collector. This processor allows you to modify trace, metric, and log data at runtime by performing actions like adding, updating, or deleting attributes. It’s a powerful tool to reshape telemetry data before it is exported to the backend.

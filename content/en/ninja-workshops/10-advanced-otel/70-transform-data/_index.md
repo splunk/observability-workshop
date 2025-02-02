@@ -13,7 +13,7 @@ On your machine, navigate to the directory where you're running the workshop. Cr
 
 Next, move into the `[WORKSHOP]/7-transform-data` directory.
 
-{{% tab title="Initial Directory Structure" %}}
+{{% tab title="Updated Directory Structure" %}}
 
 ```text
 WORKSHOP
