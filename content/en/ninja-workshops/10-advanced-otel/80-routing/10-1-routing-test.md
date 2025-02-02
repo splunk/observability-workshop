@@ -1,6 +1,6 @@
 ---
-title: Test our Routing Connector
-linkTitle: 8.1 Testing Routing
+title: Test the Routing Connector
+linkTitle: 8.1 Test Routing
 weight: 1
 ---
 
