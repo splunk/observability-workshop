@@ -34,7 +34,7 @@ WORKSHOP
 
 In this section, we will update the `agent.yaml` file to include a **transform** processor. This processor will help filter log resource attributes and set the log severity text based on the message body.
 
-Previously, you may have noticed that the `SeverityText` and `SeverityNumber` values are undefined in the log record, but are included in the log message body
+Previously, you may have noticed that the `SeverityText` and `SeverityNumber` values are undefined in the log record, but the severity is included in the `level` field of the log body
 
 ```text
 <snip>
@@ -71,16 +71,29 @@ In this case, we will be filtering the resource attributes and keeping only rele
 
 Notice that the `keep_keys` statement is only applicable to the log resource context.
 
-- **Add another context block for the log along with set statements to set the severity_text of the log record based on the matching severity level from the unstructured log.
+Logs often contain structured data encoded as JSON within the log body. Extracting these fields into attributes allows for better indexing, filtering, and querying. Instead of manually parsing JSON in downstream systems, OTTL enables automatic transformation at the telemetry pipeline level.
+
+- **Add another context block** for the log along with set statements to set the severity_text and severity_number of the log record based on the matching severity level from the log body.
 
   ```yaml
       - context: log
         statements:
-          - set(severity_text, "INFO") where IsMatch(body, "\\[INFO\\]")
-          - set(severity_text, "WARN") where IsMatch(body, "\\[WARN\\]")
-          - set(severity_text, "DEBUG") where IsMatch(body, "\\[DEBUG\\]")
-          - set(severity_text, "ERROR") where IsMatch(body, "\\[ERROR\\]")
+      - context: log
+        statements:
+          - set(cache, ParseJSON(body)) where IsMatch(body, "^\\{")
+          - flatten(cache, "")
+          - merge_maps(attributes, cache, "upsert")
+          - set(severity_text, attributes["level"])
+          - set(severity_number, 1) where severity_text == "TRACE"
+          - set(severity_number, 5) where severity_text == "DEBUG"
+          - set(severity_number, 9) where severity_text == "INFO"
+          - set(severity_number, 13) where severity_text == "WARN"
+          - set(severity_number, 17) where severity_text == "ERROR"
+          - set(severity_number, 21) where severity_text == "FATAL"
   ```
+This transformation checks if the log body contains a JSON object, then extracts its fields into log attributes while preserving nested structures. The flatten(cache) step ensures that deeply nested JSON fields can be accessed as top-level attributes. 
+
+
 
 - **Update the `logs` pipeline**: Add the `transform` processor into the `logs:` pipeline:
 
