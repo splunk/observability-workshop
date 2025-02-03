@@ -19,7 +19,8 @@ To get the most out of this workshop, you should have a basic understanding of t
 
 - **Create a directory** on your machine for the workshop (e.g., `collector`). We will refer to this directory as `[WORKSHOP]` in the instructions.
 - **Download the latest OpenTelemetry Collector release** for your platform and place it in the `[WORKSHOP]` directory:
-| Platform                         | Binary Url          |
+
+| Platform                         | Binary URL          |
 |----------------------------------|---------------------|
 |  **Apple Mac (Apple Silicon)**:  | **[otelcol_darwin_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_arm64)** |
 |  **Apple Mac (Intel)**:          | **[otelcol_darwin_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_amd64)** |
@@ -36,9 +37,10 @@ Once downloaded, rename the file to `otelcol` (or `otelcol.exe` on Windows). For
 ```bash
 chmod +x otelcol
 ```
+
 Mac users will need to trust the executable, once they start it - **[https://support.apple.com/en-mide/102445](https://support.apple.com/en-mide/102445)**.
 
-{{% tab title="Inital Directory Structure" %}}
+{{% tab title="Initial Directory Structure" %}}
 
 ```text
 [WORKSHOP]
@@ -46,8 +48,6 @@ Mac users will need to trust the executable, once they start it - **[https://sup
 ```
 
 {{% /tab %}}
-
-
 
 ### Workshop Overview
 
