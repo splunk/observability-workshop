@@ -159,7 +159,7 @@ This file will allow us to test how the OpenTelemetry Collector processes and se
 
 {{% /tab %}}
 
-Find your `Tests` terminal window and, execute the following command to send a **span** to test your setup:
+Execute the following command to send a **span** to the agent:
 
 {{% tabs %}}
 {{% tab title="cURL Command" %}}
@@ -239,5 +239,3 @@ Attributes:
 ```
 
 {{% /expand %}}
-
-If everything worked as expected, you’re ready to continue building out the agent's YAML configuration file.
