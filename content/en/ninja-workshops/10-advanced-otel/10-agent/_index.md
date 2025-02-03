@@ -101,8 +101,8 @@ Let's walk through a few modifications to get things started.
         processors:         # Array of Processors in thi pipeline
         - memory_limiter    # You also could use [memory_limiter]
         exporters: [debug]  # Array of Exporters in this pipeline
-     #metrics:               # Metrics Pipeline
-     #logs:                  # Logs Pipeline
+      #metrics:              # Metrics Pipeline
+      #logs:                 # Logs Pipeline
   ```
 
 {{% /notice %}}
