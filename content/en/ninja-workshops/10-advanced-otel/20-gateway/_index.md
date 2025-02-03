@@ -47,15 +47,15 @@ service:
     traces:
       receivers: [otlp]
       processors: [memory_limiter]
-      exporters: [ debug]
+      exporters: [debug]
     metrics:
       receivers: [otlp]
       processors: [memory_limiter]
-      exporters: [ debug]
+      exporters: [debug]
     logs:
       receivers: [otlp]
       processors: [memory_limiter]
-      exporters: [ debug]
+      exporters: [debug]
 ```
 
 {{% tab title="Updated Directory Structure" %}}
