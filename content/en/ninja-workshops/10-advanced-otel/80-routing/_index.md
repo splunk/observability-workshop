@@ -11,7 +11,7 @@ For example, you might want to send *production* data to one exporter while dire
 
 ### Setup
 
-In the `[WORKSHOP]` directory create a new subdirectory called `8-routing`, then copy `*.yaml`, `*.json` and your `log-gen` script from the `7-transform-data` directory.
+Create a new subdirectory named `8-routing` and copy all contents from the `7-transform-data` directory into it. Then, delete any `*.out` and `*.log` files. Your updated directory structure should now look like this:
 
 {{% tab title="Updated Directory Structure" %}}
 

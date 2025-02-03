@@ -14,9 +14,7 @@ We'll walk through configuring key processors in the OpenTelemetry Collector, in
 
 ### Setup
 
-Navigate to the directory where you're running the workshop. Create a new subdirectory called `6-sensitive-data`, then copy the latest versions of `agent.yaml` and `trace.json` from `[WORKSHOP]/5-dropping-spans` into this new directory.
-
-Change into the `[WORKSHOP]/6-sensitive-data` directory to begin configuring the processors. Your updated workshop structure should now look like this:
+Create a new subdirectory named `6-sensitive-data` and copy all contents from the `5-dropping-spans` directory into it. Then, delete any `*.out` and `*.log` files. Your updated directory structure should now look like this:
 
 {{% tab title="Updated Directory Structure" %}}
 
