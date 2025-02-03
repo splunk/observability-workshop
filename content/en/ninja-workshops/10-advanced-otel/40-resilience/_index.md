@@ -5,19 +5,19 @@ time: 10 minutes
 weight: 4
 ---
 
-We will walk through how to use OpenTelemetry Collector’s `file_storage` extension to build resilience into your telemetry pipeline. Specifically, we will demonstrate how to use the file storage extension for checkpointing, managing retries, and handling temporary failures effectively.
+We’ll explore how to use OpenTelemetry Collector’s `file_storage` extension to enhance the resilience of your telemetry pipeline. Specifically, we’ll demonstrate how this extension helps with checkpointing, managing retries, and handling temporary failures effectively.  
 
-The goal is to show how this configuration allows your OpenTelemetry Collector to reliably store intermediate states on disk, ensuring that no data is lost during network failures, and that the collector can resume where it left off.
+By implementing this configuration, your OpenTelemetry Collector can reliably store intermediate states on disk, preventing data loss during network failures and enabling the collector to resume operations seamlessly.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 
-This solution will work for metrics as long as the connection downtime is brief—up to 15 minutes. If the downtime exceeds this, the backend may still drop data due to timing mismatches. For logs, we’re planning to implement a more enterprise-ready solution in one of the upcoming collector builds.
+This solution will work for metrics as long as the connection downtime is brief—up to 15 minutes. If the downtime exceeds this, the backend may still drop data due to timing mismatches. For logs, we’re planning to implement a more enterprise-ready solution in one of the upcoming collector releases.
 
 {{% /notice %}}
 
 ### Setup
 
-Create a new subdirectory named `4-resilience` and copy the contents from the `3-filelog` directory into it. Be sure to remove any `*.out` and `*.log` files. Your directory structure should now look like this:
+Create a new subdirectory named `4-resilience` and copy all contents from the `3-filelog` directory into it. Then, delete any `*.out` and `*.log` files. Your updated directory structure should now look like this:
 
 {{% tab title="Updated Directory Structure" %}}
 
