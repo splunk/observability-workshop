@@ -24,7 +24,7 @@ Find your `Agent` terminal window and navigate to the `[WORKSHOP]/7-transform-da
 It should also start up normally and state : `Everything is ready. Begin running and processing data.`
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-In this exercise, we will **remove the** `com.splunk/source` and `os.type`  **metadata** from log resource data before it is exported by the `agent`.
+In this exercise, we will **remove the** `com.splunk/source` and `os.type` **metadata** from log resource data before it is exported by the `agent`.
 
 - **Check the debug output** of both the `Agent` and `Gateway` to confirm that `com.splunk/source` and `os.type` have been removed.
 
@@ -53,7 +53,7 @@ In this exercise, we will **remove the** `com.splunk/source` and `os.type`  **me
 {{% /tab %}}
 {{% /tabs %}}
 
-- **Check the debug output** of both the `Agent` and `Gateway` to confirm that the SeverityText in the LogRecord is now defined with the matching severity from the log body
+- **Check the debug output** of both the `Agent` and `Gateway` to confirm that the `SeverityText` in the `LogRecord` is now defined with the matching severity from the log body
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
@@ -94,7 +94,7 @@ In this exercise, we will **remove the** `com.splunk/source` and `os.type`  **me
 {{% /tab %}}
 {{% /tabs %}}
 
-- **Check** the new `gateway-logs.out` file to verify the data has been transformed 
+- **Check** the new `gateway-logs.out` file to verify the data has been transformed:
 
 {{% tabs %}}
 {{% tab title="New File Output" %}}
@@ -214,4 +214,4 @@ In this exercise, we will **remove the** `com.splunk/source` and `os.type`  **me
 {{% /tab %}}
 {{% /tabs %}}
 
-{{%/notice%}}
+{{% /notice %}}

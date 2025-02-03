@@ -5,7 +5,7 @@ time: 10 minutes
 weight: 7
 ---
 
-The Transform Processor allows users to modify telemetry data (logs, metrics, and traces) as it passes through the pipeline. It enables users to filter, enrich, or transform data using OpenTelemetry's Telemetry Query Language (OTTL)
+The Transform Processor allows users to modify telemetry data (logs, metrics, and traces) as it passes through the pipeline. It enables users to filter, enrich, or transform data using OpenTelemetry Transformation Language (OTTL).
 
 ### Setup
 
@@ -51,7 +51,7 @@ Attributes:
 Trace ID:
 Span ID:
 Flags: 0
-	{"kind": "exporter", "data_type": "logs", "name": "debug"}
+  {"kind": "exporter", "data_type": "logs", "name": "debug"}
 ```
 
 So, Let's start an exercise to use a transform processor to enrich and filter the log record data.
@@ -59,9 +59,9 @@ So, Let's start an exercise to use a transform processor to enrich and filter th
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - **Add a `Transform` Processor** and name it `logs:`
-The `transform` processor allows you to manipulate logs, traces, and metrics dynamically without modifying application code. 
+The `transform` processor allows you to manipulate logs, traces, and metrics dynamically without modifying application code.
 
-In this case, we will be filtering the resource attributes and keeping only relevant metadata fields (sourcetype, host.name, service.mode) 
+In this case, we will be filtering the resource attributes and keeping only relevant metadata fields (`sourcetype`, `host.name`, `service.mode`):
 
   ```yaml
   transform/logs:
@@ -70,9 +70,10 @@ In this case, we will be filtering the resource attributes and keeping only rele
         statements:
           - keep_keys(attributes, ["com.splunk.sourcetype","host.name", "otelcol.service.mode"])
   ```
-Notice that the keep_keys statement is only applicable to the log resource context. 
 
-- **Add an other context block for the log along with set statements to set the severity_text of the log record based on the matching severity level from the unstructured log. 
+Notice that the keep_keys statement is only applicable to the log resource context.
+
+- **Add another context block for the log along with set statements to set the severity_text of the log record based on the matching severity level from the unstructured log.
 
   ```yaml
       - context: log
@@ -83,7 +84,7 @@ Notice that the keep_keys statement is only applicable to the log resource conte
           - set(severity_text, "ERROR") where IsMatch(body, "\\[ERROR\\]")
   ```
 
-- **Update the `logs` pipeline**: Add the `transform` processor into the `logs:` pipeline 
+- **Update the `logs` pipeline**: Add the `transform` processor into the `logs:` pipeline:
 
   ```yaml
   logs:                  # Logs Pipeline

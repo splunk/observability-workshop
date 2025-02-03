@@ -24,13 +24,13 @@ This is achieved using the `redaction` processor you added earlier, where we def
 
 ### Test the Redaction Processor
 
-Stop the `gateway` so you can delete the `*.out` files and clear the screen.   Restart your `gateway` terminal window, and wait until it is ready to receive data.
+Stop the `gateway` and delete the `*.out` files and clear the screen. Restart your `gateway` terminal window, and wait until it is ready to receive data.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-In this exercise, we will **redact** the `user.visa` & `user.mastercard` **attributes**  in the span data before it is exported by the `agent`.
+In this exercise, we will **redact** the `user.visa` & `user.mastercard` **attributes** in the span data before it is exported by the `agent`.
 
 - **Stop the `Agent` Collector**
-- **Enable the `redaction/redact` processor** in the `traces` pipeline by removing the `#` in front of it. then restart the `agent`
+- **Enable the `redaction/redact` processor** in the `traces` pipeline by removing the `#` in front of it and then restart the `agent`
 - **Send a span containing `Sensitive data`** by running the **cURL** command to send `trace.json`.
 - **Check the debug output** of both the `Agent` and `Gateway` to confirm that `user.visa` & `user.mastercard` have been updated.
 {{% tabs %}}
