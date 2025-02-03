@@ -34,7 +34,7 @@ On Windows, a dialog box may appear asking if you want to grant public and priva
 
 Instead of instrumenting an application, we will simulate sending trace data to the OpenTelemetry Collector using `cURL`. The trace data, formatted in JSON, represents what an instrumentation library would typically generate and send.
 
-To begin, create a new file named `trace.json` and copy the contents from one of the tabs below. Both tabs contain the same data, which includes a **span** that is part of a larger trace.
+Open a second terminal window and navigate to the `[WORKSHOP]/1-agent` directory. In this new terminal (used for running `Tests`), create a new file named `trace.json` and copy the contents from one of the tabs below. Both tabs contain the same data, which includes a **span** that is part of a larger trace.
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
@@ -159,7 +159,7 @@ This file will allow us to test how the OpenTelemetry Collector processes and se
 
 {{% /tab %}}
 
-Open a second terminal window and navigate to the `[WORKSHOP]/1-agent` directory. In this new terminal (used for running `Tests`), execute the following command to send a **span** to test your setup:
+Find your `Tests` terminal window and, execute the following command to send a **span** to test your setup:
 
 {{% tabs %}}
 {{% tab title="cURL Command" %}}
