@@ -43,6 +43,8 @@ In this exercise, we will **redact** the `user.visa` & `user.mastercard` **attri
        -> user.mastercard: Str(****)
        -> user.visa: Str(****)
        -> user.amex: Str(Redacted)
+       -> redaction.masked.keys: Str(user.mastercard,user.visa)
+       -> redaction.masked.count: Int(2)
   ```
 
 {{% /tab %}}
@@ -57,9 +59,12 @@ In this exercise, we will **redact** the `user.visa` & `user.mastercard` **attri
        -> user.visa: Str(4111 1111 1111 1111)
        -> user.amex: Str(3782 822463 10005)
   ```
-
 {{% /tab %}}
 {{% /tabs %}}
+
+{{% notice note %}}
+Notice that by including `summary:debug` in the redaction processor, the debug output will include summary information about which matching keys were redacted, along with the count of keys that were masked.
+{{% /notice %}}
 
 - **Check** the new `gateway-traces.out` file to verify confirm that `user.visa` & `user.mastercard` have been updated.
 
