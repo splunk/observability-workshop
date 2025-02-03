@@ -186,6 +186,13 @@ Content-Length: 21
 - `HTTP/1.1 200 OK`: Confirms the request was processed successfully.
 - `{"partialSuccess":{}}`: Indicates 100% success, as the field is empty. In case of a partial failure, this field will include details about any failed parts.
 
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+On Windows, you may encounter the following error:  
+{{< textcolor color="red" weight="bold" font="courier-new" >}}Invoke-WebRequest : Cannot bind parameter 'Headers'. Cannot convert the "Content-Type: application/json"{{< /textcolor >}}  
+To resolve this, use `curl.exe` instead of `curl`.
+
+{{% /notice %}}
+
 Next, open the Agent terminal window and check the agent's debug console. You should see the first line of the debug log for the span you just sent, which should look something like this:
 
 ```text
