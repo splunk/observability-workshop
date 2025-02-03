@@ -69,8 +69,8 @@ The `attributes` processor allows you to delete specific attributes (tags) from 
           action: delete             # Action is delete 
   ```
 
-- **Add an other  `Attributes` Processor** and name it `update:`
-The `attributes` processor also allows you to update specific attributes (tags) from spans. In this case, we're update the tag `user.phone_number` to "UNKNOWN NUMBER", hash the `user.email` and replace the amex card number with the word "Redacted":
+- **Add another `Attributes` Processor** and name it `update:`
+The `attributes` processor also allows you to update specific attributes (tags) from spans. In this case, we're updating the tag `user.phone_number` to `"UNKNOWN NUMBER"`, hash the `user.email` and replace the `amex` card number with the word `"Redacted"`:
 
   ```yaml
     attributes/update:              # Processor Type/Name
@@ -98,7 +98,7 @@ The `attributes` processor also allows you to update specific attributes (tags) 
 
   ```
 
-- **Update the `traces`  pipeline**: Add the both the `attribute` processors and the  `redaction` processor into the `traces:` pipeline but make sure `attributes/update:`  & `redaction/redact` are commented out.
+- **Update the `traces` pipeline**: Add the both the `attribute` processors and the `redaction` processor into the `traces:` pipeline but make sure `attributes/update:` and `redaction/redact` are commented out.
 
   ```yaml
       traces:

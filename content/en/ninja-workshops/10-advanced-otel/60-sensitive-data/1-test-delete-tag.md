@@ -6,7 +6,7 @@ weight: 1
 
 ### Test the Tag Deletion
 
-Fnd your `gateway` terminal window, navigate to the `[WORKSHOP]/6-sensitive-data` directory, start the `gateway` collector and wait until it is ready to receive data.
+Find your `gateway` terminal window, navigate to the `[WORKSHOP]/6-sensitive-data` directory, start the `gateway` collector and wait until it is ready to receive data.
 
 Next, to test the Tag deletion, find your `agent` terminal window, navigate to the `[WORKSHOP]/6-sensitive-data` directory and start the agent.
 
@@ -88,17 +88,17 @@ In this exercise, we will **remove the** `user.account_password` **attribute** f
 {{% /tab %}}
 {{% /tabs %}}
 
-{{%/notice%}}
+{{% /notice %}}
 
 ### Test the Tag Update
 
-Stop the `gateway` so you can delete the `*.out` files and clear the screen.   Restart your `gateway` terminal window, and wait until it is ready to receive data.
+Stop the `gateway` so, you can delete the `*.out` files and clear the screen. Restart your `gateway` terminal window, and wait until it is ready to receive data.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 In this exercise, we will **update** the `user.phone_number` **attribute** & **hash** the `user.email` in the span data before it is exported by the `agent`.
 
 - **Stop the `Agent` Collector**
-- **Enable the `attributes/update` processor** in the `traces` pipeline by removing the `#` in front of it. then restart the `agent`
+- **Enable the `attributes/update` processor** in the `traces` pipeline by removing the `#` in front of it, then restart the `agent`
 - **Send a span containing `Sensitive data`** by running the **cURL** command to send `trace.json`.
 - **Check the debug output** of both the `Agent` and `Gateway` to confirm that `user.phone_number` & `user.email` have been updated.
 {{% tabs %}}
