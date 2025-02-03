@@ -33,7 +33,7 @@ receivers:
       cpu:                      # Scraper for cpu metrics
 
 exporters:
-    
+
 processors:
   memory_limiter:            # Limits memory usage of the OpenTelemetry Collector
     check_interval: 2s       # Interval to check memory usage
@@ -55,7 +55,7 @@ service:
       processors:
       - memory_limiter
       exporters: []
-    logs: 
+    logs:
       receivers: []
       processors:
       - memory_limiter
