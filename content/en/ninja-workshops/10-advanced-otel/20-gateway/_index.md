@@ -1,5 +1,5 @@
 ---
-title: Route data though a gateway  
+title: Gateway Configuration
 linkTitle: 2. Gateway Setup
 time: 10 minutes
 weight: 2
