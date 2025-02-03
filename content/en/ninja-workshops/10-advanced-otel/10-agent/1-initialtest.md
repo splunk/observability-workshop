@@ -193,16 +193,18 @@ To resolve this, use `curl.exe` instead of `curl`.
 
 {{% /notice %}}
 
-Next, open the Agent terminal window and check the agent's debug console. You should see the first line of the debug log for the span you just sent, which should look something like this:
+Next, locate the terminal window where your `agent` is running and check its debug console. You’ll see log entries related to the span you just sent. Below, we display the first and last lines of the debug log for that `span`. To get the complete picture, review the full debug output:
 
 ```text
-2025-01-13T13:26:13.502+0100 info Traces {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
+2025-02-03T12:46:25.675+0100    info ResourceSpans #0
+<snip>
+        {"kind": "exporter", "data_type": "traces", "name": "debug"}
 ```
 
-{{% expand title="{{% badge style=primary icon=scroll %}}Check Full Debug Log{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=scroll %}} Full Debug Output{{% /badge %}}" %}}
 
 ```text
-2025-01-13T13:26:13.502+0100 info ResourceSpans #0
+2025-02-03T12:46:25.675+0100    info ResourceSpans #0  
 Resource SchemaURL:
 Resource attributes:
      -> service.name: Str(my.service)
@@ -230,7 +232,7 @@ Attributes:
      -> user.visa: Str(4111 1111 1111 1111)
      -> user.amex: Str(3782 822463 10005)
      -> user.mastercard: Str(5555 5555 5555 4444)
-  {"kind": "exporter", "data_type": "traces", "name": "debug"}
+        {"kind": "exporter", "data_type": "traces", "name": "debug"}
 ```
 
 {{% /expand %}}
