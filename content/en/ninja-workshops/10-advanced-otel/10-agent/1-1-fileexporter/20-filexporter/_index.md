@@ -8,13 +8,13 @@ To capture more than just debug output on the screen, we also want to generate o
 
 The difference between the OpenTelemetry **debug exporter** and the **file exporter** lies in their purpose and output destination:
 
-| Feature               | Debug Exporter                   | File Exporter                  |
-|-----------------------|----------------------------------|--------------------------------|
-| **Output Location**   | Console/Log                     | File on disk                  |
-| **Purpose**           | Real-time debugging             | Persistent offline analysis   |
-| **Best for**          | Quick inspection during testing | Temporary storage and sharing |
-| **Production Use**    | No                              | Rare, but possible            |
-| **Persistence**       | No                              | Yes                           |
+| Feature             | Debug Exporter                  | File Exporter                 |
+|---------------------|---------------------------------|-------------------------------|
+| **Output Location** | Console/Log                     | File on disk                  |
+| **Purpose**         | Real-time debugging             | Persistent offline analysis   |
+| **Best for**        | Quick inspection during testing | Temporary storage and sharing |
+| **Production Use**  | No                              | Rare, but possible            |
+| **Persistence**     | No                              | Yes                           |
 
 In summary, the **debug exporter** is great for real-time, in-development troubleshooting, while the **file exporter** is better suited for storing telemetry data locally for later use.
 
