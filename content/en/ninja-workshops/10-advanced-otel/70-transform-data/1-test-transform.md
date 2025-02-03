@@ -53,7 +53,9 @@ In this exercise, we will **remove the** `com.splunk/source` and `os.type` **met
 {{% /tab %}}
 {{% /tabs %}}
 
-- **Check the debug output** of both the `Agent` and `Gateway` to confirm that the `SeverityText` in the `LogRecord` is now defined with the matching severity from the log body
+- **Check the debug output** of both the `Agent` and `Gateway` to confirm that the `SeverityText` in the `LogRecord` is now defined with the severity from the log body, along with the matching severity number. 
+
+Confirm that the JSON fields from the body can be accessed as top-level log attributes.
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
@@ -63,10 +65,13 @@ In this exercise, we will **remove the** `com.splunk/source` and `os.type` **met
   ObservedTimestamp: 2025-01-31 21:49:29.924017 +0000 UTC
   Timestamp: 1970-01-01 00:00:00 +0000 UTC
   SeverityText: WARN
-  SeverityNumber: Unspecified(0)
+  SeverityNumber: Warn(13)
   Body: Str(2025-01-31 15:49:29 [WARN] - Do or do not, there is no try.)
   Attributes:
       -> log.file.path: Str(quotes.log)
+      -> timestamp: Str(2025-01-31 15:49:29)
+      -> level: Str(WARN)
+      -> message: Str(Do or do not, there is no try.)
   Trace ID:
   Span ID:
   Flags: 0
@@ -137,6 +142,24 @@ In this exercise, we will **remove the** `com.splunk/source` and `os.type` **met
                     "key": "log.file.path",
                     "value": {
                       "stringValue": "quotes.log"
+                    }
+                  },
+                  {
+                    "key": "timestamp",
+                    "value": {
+                      "stringValue": "2025-01-31 15:49:29"
+                    }
+                  },
+                  {
+                    "key": "level",
+                    "value": {
+                      "stringValue": "WARN"
+                    }
+                  },
+                  {
+                    "key": "message",
+                    "value": {
+                      "stringValue": "Do or do not, there is no try."
                     }
                   }
                 ],
