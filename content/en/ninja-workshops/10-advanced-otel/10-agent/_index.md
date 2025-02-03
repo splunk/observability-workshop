@@ -7,16 +7,16 @@ weight: 1
 
 ### Setup
 
-In your `[WORKSHOP]` directory, create a subdirectory named `1-agent` and navigate into it:
+In your [WORKSHOP] directory, create a subdirectory called 1-agent, then move into that directory.
 
 ```text
 mkdir -p [WORKSHOP]/1-agent
 cd [WORKSHOP]/1-agent
 ```
 
-Inside the `1-agent` directory, we will create a file containing the basic structure of an OpenTelemetry Collector configuration, defining the components you'll need to work with.
+Inside the `1-agent` directory, create a file named `agent.yaml`. This file will define the basic structure of an OpenTelemetry Collector configuration, including the necessary components.  
 
-To do this, create a file called `agent.yaml` and paste the following starting configuration into it:
+Copy and paste the following initial configuration into `agent.yaml`:
 
 ```yaml
 ###########################        This section holds all the
@@ -110,16 +110,12 @@ Let's walk through a few modifications to get things started.
 {{% /notice %}}
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-In the exercise above, we’ve provided all the key elements in YAML format, but it’s up to you to correct and complete them. Be mindful of the formatting, as the OpenTelemetry Collector configuration is YAML-based.
-
-Going forward, we will build upon these changes and apply what you've learned.
+Pay close attention to the formatting, as the OpenTelemetry Collector configuration relies on proper YAML structure.
 {{% /notice %}}
 
-By using [**otelbin.io**](https://otelbin.io) to validate your `agent.yaml` file, you can quickly identify spelling or configuration errors. If everything is set up correctly, your configuration for all pipelines should look like this (click the image to enlarge):
+Use [**otelbin.io**](https://otelbin.io) to validate your `agent.yaml` file, you can quickly identify spelling, YAML formatting and configuration errors. If everything is set up correctly, your configuration for all pipelines should look like this (click the image to enlarge):
 
 <!--![otelbin-a-1-1-all](../images/agent-1-1-all.png)-->
 ![agent-traces](../images/agent-traces.png?classes=inline&width=20vw)
 ![agent-metrics](../images/agent-metrics.png?classes=inline&width=20vw)
 ![agent-logs](../images/agent-logs.png?classes=inline&width=20vw)
-
-Let's test our config!
