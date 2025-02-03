@@ -18,7 +18,7 @@ The difference between the OpenTelemetry **debug exporter** and the **file expor
 
 In summary, the **debug exporter** is great for real-time, in-development troubleshooting, while the **file exporter** is better suited for storing telemetry data locally for later use.
 
-Find your `agent` terminal window, and stop the running collector by pressing `Ctrl-c`. Once it has stopped, open your `agent.yaml` and let's add and configure the `FileExporter`:
+Find your `agent` terminal window, and stop the running collector by pressing `Ctrl-C`. Once the `agent` has stopped, open the `agent.yaml` and configure the `FileExporter`:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -44,15 +44,14 @@ Find your `agent` terminal window, and stop the running collector by pressing `C
 
 {{% /notice %}}
 
-### Validating your agent.yaml Configuration
+To verify that your updated `agent.yaml` file is correct, validate it using [**otelbin.io**](https://www.otelbin.io/).
 
-To ensure your updated `agent.yaml` is correct, validate it using [**otelbin.io**](https://www.otelbin.io/).
-As an example, the `Traces:` section of your pipelines should look similar to this in **otelbin.io**:
+For reference, the `traces:` section of your pipelines should look similar to this:
 
 ![otelbin-a-1-2-w](../../images/agent-1-2-metrics.png?width=25vw)
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 
-If **otelbin.io** flags a warning regarding the append entry in the exporter you added, check the validation target at the top of the screen. Ensure you’ve selected the Splunk OpenTelemetry Collector as the target.
+If **otelbin.io** shows a warning regarding the `append` key, check the validation target at the top of the page. Make sure the **Splunk OpenTelemetry Collector** is selected as the validation target.
 
 {{% /notice %}}
