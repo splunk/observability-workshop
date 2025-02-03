@@ -42,7 +42,7 @@ Mac users will need to trust the executable, once they start it - **[https://sup
 
 ```text
 [WORKSHOP]
-└── otelcol  (.exe)  # OpenTelemetry Collector binary
+└── otelcol  (.exe)  # OpenTelemetry Collector binary, we use otelcol from now on
 ```
 
 {{% /tab %}}
