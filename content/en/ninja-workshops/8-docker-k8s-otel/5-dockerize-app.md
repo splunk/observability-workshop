@@ -248,6 +248,27 @@ helloworld:1.0
 > is able to access resources on our instance, which is important later on when we need 
 > our application to send data to the collector running on localhost. 
 
+Let's ensure that our Docker container is running: 
+
+{{< tabs >}}
+{{% tab title="Script" %}}
+
+``` bash
+docker ps
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+``` bash
+$ docker ps
+CONTAINER ID   IMAGE            COMMAND                  CREATED       STATUS       PORTS     NAMES
+5f5b9cd56ac5   helloworld:1.0   "dotnet helloworld.d…"   2 mins ago    Up 2 mins              helloworld
+```
+
+{{% /tab %}}
+{{< /tabs >}}
+
 We can access our application as before:
 
 {{< tabs >}}
