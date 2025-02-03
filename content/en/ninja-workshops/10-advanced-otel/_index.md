@@ -19,11 +19,13 @@ To get the most out of this workshop, you should have a basic understanding of t
 
 - **Create a directory** on your machine for the workshop (e.g., `collector`). We will refer to this directory as `[WORKSHOP]` in the instructions.
 - **Download the latest OpenTelemetry Collector release** for your platform and place it in the `[WORKSHOP]` directory:
-  - **Apple Mac (Apple Silicon): [otelcol_darwin_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_arm64)**
-  - **Apple Mac (Intel): [otelcol_darwin_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_amd64)**
-  - **Windows AMD/64: [otelcol_windows_amd64.exe](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_windows_amd64.exe)**
-  - **Linux (AMD/64): [otelcol_linux_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_amd64)**
-  - **Linux (ARM/64): [otelcol_linux_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_arm64)**
+| Platform                         | Binary Url          |
+|----------------------------------|---------------------|
+|  **Apple Mac (Apple Silicon)**:  | **[otelcol_darwin_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_arm64)** |
+|  **Apple Mac (Intel)**:          | **[otelcol_darwin_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_amd64)** |
+|  **Windows AMD/64**:             | **[otelcol_windows_amd64.exe](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_windows_amd64.exe)** |
+|  **Linux (AMD/64)**:             |**[otelcol_linux_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_amd64)** |
+|  **Linux (ARM/64)**:             |**[otelcol_linux_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_arm64)** |
 
 {{% notice title="Note" style="info" icon="info" %}}
 If your host platform isn't listed above, you can find and download the appropriate version of your required build [**here**](https://github.com/signalfx/splunk-otel-collector/releases/tag/v0.117.0).
@@ -31,25 +33,21 @@ If your host platform isn't listed above, you can find and download the appropri
 
 Once downloaded, rename the file to `otelcol` (or `otelcol.exe` on Windows). For Mac/Linux, set the file permissions to allow execution:
 
-{{% tabs %}}
-{{% tab title="Set Permissions" %}}
-
 ```bash
 chmod +x otelcol
 ```
+Mac users will need to trust the executable, once they start it - **[https://support.apple.com/en-mide/102445](https://support.apple.com/en-mide/102445)**.
 
-{{% /tab %}}
-{{% tab title="Initial Directory Structure" %}}
+{{% tab title="Inital Directory Structure" %}}
 
 ```text
 [WORKSHOP]
-└── otelcol    # OpenTelemetry Collector binary
+└── otelcol  (.exe)  # OpenTelemetry Collector binary
 ```
 
 {{% /tab %}}
-{{% /tabs %}}
 
-Mac users will need to trust the executable - **[https://support.apple.com/en-mide/102445](https://support.apple.com/en-mide/102445)**.
+
 
 ### Workshop Overview
 
@@ -57,7 +55,7 @@ During this workshop, we will cover the following topics:
 
 - **Setting up the agent locally**: Add metadata, and introduce the debug and file exporters.
 - **Configuring a gateway**: Route traffic from the agent to the gateway.
-- **Configuring the `filelog` receiver**: Collect log data from various log files.
+- **Configuring the Filelog receiver**: Collect log data from various log files.
 - **Enhancing agent resilience**: Basic configurations for fault tolerance.
 - **Configuring processors**:
   - Filter out noise by dropping specific spans (e.g., health checks).
