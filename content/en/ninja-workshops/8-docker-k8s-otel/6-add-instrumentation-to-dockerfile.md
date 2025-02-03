@@ -82,7 +82,7 @@ ENTRYPOINT ["sh", "entrypoint.sh"]
 CMD ["dotnet", "helloworld.dll"]
 ```
 
-> To save your changes in vi, press the `esc` key to enter command mode, then type `wq!` followed by pressing the `enter/return` key.
+> To save your changes in vi, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the `enter/return` key.
 
 You can find the final version of the Dockerfile in the 
 `/home/splunk/workshop/docker-k8s-otel/docker` directory. 
@@ -106,7 +106,7 @@ Then paste the following code into the newly created file:
 # Then run the CMD
 exec "$@"
 ```
-> To save your changes in vi, press the `esc` key to enter command mode, then type `wq!` followed by pressing the `enter/return` key.
+> To save your changes in vi, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the `enter/return` key.
 
 The `entrypoint.sh` script is required for sourcing environment variables from the instrument.sh script, 
 which is included with the instrumentation. This ensures the correct setup of environment variables 
