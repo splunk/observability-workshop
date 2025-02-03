@@ -1,5 +1,5 @@
 ---
-title: Test Filelog Receiver Configuration
+title: Test Filelog Receiver
 linkTitle: 3.2 Test Configuration
 weight: 2
 ---

@@ -1,5 +1,5 @@
 ---
-title: Test the File Exporter Confiuration
+title: Test File Exporter
 linkTitle: 1.2.1 Test File Exporter
 weight: 1
 ---

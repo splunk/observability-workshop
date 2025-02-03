@@ -1,5 +1,5 @@
 ---
-title: Removing Tags and Redacting Sensitive Data in OpenTelemetry Collector
+title: Redacting Sensitive Data
 linkTitle: 6. Sensitive Data
 time: 10 minutes
 weight: 6

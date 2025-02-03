@@ -1,5 +1,5 @@
 ---
-title: Adding Resource Metadata
+title: Resource Metadata
 linkTitle: 1.3. Resource Metadata
 weight: 3
 ---

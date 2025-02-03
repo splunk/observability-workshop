@@ -1,5 +1,5 @@
 ---
-title: Using the OpenTelemetry Transform Processor
+title: Transform Data
 linkTitle: 7. Transform Data
 time: 10 minutes
 weight: 7
