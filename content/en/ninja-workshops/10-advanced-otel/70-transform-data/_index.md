@@ -34,10 +34,9 @@ WORKSHOP
 
 {{% /tab %}}
 
-In this section, we will update the `agent.yaml` file to include a **transform** processor. This processor will help 
-filter log resource attributes and set the log severity text based on the message body.
+In this section, we will update the `agent.yaml` file to include a **transform** processor. This processor will help filter log resource attributes and set the log severity text based on the message body.
 
-Previously, you may have noticed that the SeverityText and SeverityNumber values are undefined in the log record, but are included in the log message body
+Previously, you may have noticed that the `SeverityText` and `SeverityNumber` values are undefined in the log record, but are included in the log message body
 
 ```text
 <snip>
