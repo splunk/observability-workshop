@@ -86,7 +86,7 @@ COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "helloworld.dll"]
 ```
 
-> To save your changes in vi, press the `esc` key to enter command mode, then type `wq!` followed by pressing the `enter/return` key.
+> To save your changes in vi, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the `enter/return` key.
 
 
 What does all this mean?  Let's break it down. 

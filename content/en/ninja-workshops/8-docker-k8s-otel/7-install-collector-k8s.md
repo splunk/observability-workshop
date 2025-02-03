@@ -126,7 +126,7 @@ agent:
           processes: null
 ```
 
-> To save your changes in vi, press the `esc` key to enter command mode, then type `wq!` followed by pressing the `enter/return` key.
+> To save your changes in vi, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the `enter/return` key.
 
 Now we can use the following command to install the collector: 
 
