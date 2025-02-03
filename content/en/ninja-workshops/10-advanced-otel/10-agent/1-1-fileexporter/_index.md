@@ -18,16 +18,16 @@ The difference between the OpenTelemetry **debug exporter** and the **file expor
 
 In summary, the **debug exporter** is great for real-time, in-development troubleshooting, while the **file exporter** is better suited for storing telemetry data locally for later use.
 
-Let's configure and add the `FileExporter`:
+Find your `agent` terminal window, and stop the running collector by pressing `Ctrl-c`. Once it has stopped, open your `agent.yaml` and let's add and configure the `FileExporter`:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - **Configuring a `file` exporter**: Add the following under the `exporters` section of your `agent.yaml`:
 
   ```yaml
-    file:                  # Exporter Type
-      path: "./agent.out"  # Path where data will be saved in OTLP json format
-      append: false        # Overwrite the file each time
+    file:                          # Exporter Type
+      path: "./agent.out"          # Path where data will be saved in OTLP json format
+      append: false                # Overwrite the file each time
   ```
 
 - **Update the Pipelines Section**: Add the `file` exporter to the `metrics`, `traces` and `logs` pipelines (leave debug as the first in the array). Also, add the `hostmetrics` receiver to the `metrics` pipeline.

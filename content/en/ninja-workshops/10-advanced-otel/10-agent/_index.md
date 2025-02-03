@@ -19,47 +19,50 @@ Inside the `1-agent` directory, we will create a file containing the basic struc
 To do this, create a file called `agent.yaml` and paste the following starting configuration into it:
 
 ```yaml
-###########################  This section holds all the
-## Configuration section ##  configurations that can be 
-###########################  used in this OpenTelemetry Collector
-extensions:
-  health_check:              # Configures the health check extension
-    endpoint: 0.0.0.0:13133
+###########################        This section holds all the
+## Configuration section ##        configurations that can be 
+###########################        used in this OpenTelemetry Collector
+extensions:                       # Array of Extensions
+  health_check:                   # Configures the health check extension
+    endpoint: 0.0.0.0:13133       # Endpoint to collect health check data
 
-receivers:
-  hostmetrics:                  # Receiver Type
-    collection_interval: 3600s  # Scrape metrics every hour
-    scrapers:                   # Array of hostmetric scrapers
-      cpu:                      # Scraper for cpu metrics
+receivers:                        # Array of Receivers
+  hostmetrics:                    # Receiver Type
+    collection_interval: 3600s    # Scrape metrics every hour
+    scrapers:                     # Array of hostmetric scrapers
+      cpu:                        # Scraper for cpu metrics
 
-exporters:
+exporters:                        # Array of Exporters
 
-processors:
-  memory_limiter:            # Limits memory usage of the OpenTelemetry Collector
-    check_interval: 2s       # Interval to check memory usage
-    limit_mib: 512           # Memory limit in MiB
+processors:                       # Array of Processors
+  memory_limiter:                 # Limits memory usage by Collectors pipeline
+    check_interval: 2s            # Interval to check memory usage
+    limit_mib: 512                # Memory limit in MiB
 
-###########################  This section controls what
-### Activation Section  ###  configurations will be used  
-###########################  by this OpenTelemetry Collector
-service:
-  extensions: [health_check] # Enabled extensions for this collector   
-  pipelines:
-    traces:
-      receivers: []
-      processors:            # Alternative syntax option [memory_limiter]
-      - memory_limiter
-      exporters: []
-    metrics:
-      receivers: []
-      processors:
-      - memory_limiter
-      exporters: []
-    logs:
-      receivers: []
-      processors:
-      - memory_limiter
-      exporters: []
+###########################         This section controls what
+### Activation Section  ###         configurations will be used  
+###########################         by this OpenTelemetry Collector
+service:                          # Services configured for this Collector
+  extensions: [health_check]      # Enabled extensions for this collector   
+  pipelines:                      # Array of configured pipelines  
+    traces:                       # Traces Pipeline
+      receivers: []               # Array of Traces Receivers
+      processors:                 # Array of Traces Processors
+      # Alternative syntax option [memory_limiter]
+      - memory_limiter            # Memory Limiter processor
+      exporters: []               # Array of Traces Exporters
+    metrics:                      # Metrics Pipeline
+      receivers: []               # Array of Metrics Receivers
+      processors:                 # Array of Metrics Processors
+      # Alternative syntax option [memory_limiter]
+      - memory_limiter            # Memory Limiter processor
+      exporters: []               # Array of Metrics Exporters
+    logs:                         # Logs Pipeline
+      receivers: []               # Array of Logs Receivers
+      processors:                 # Array of Logs Processors
+      # Alternative syntax option [memory_limiter]
+      - memory_limiter            # Memory Limiter processor
+      exporters: []               # Array of Logs Logs
 ```
 
 {{% tab title="Updated Directory Structure" %}}
@@ -79,7 +82,7 @@ Let's walk through a few modifications to get things started.
 - **Add an `otlp` receiver**: The [**OTLP receiver**](https://docs.splunk.com/observability/en/gdi/opentelemetry/components/otlp-receiver.html) will listen for incoming telemetry data over HTTP (or gRPC).
 
   ```yaml
-    otlp:
+    otlp:                           # Exporter Type
       protocols:                    # list of Protocols used 
         http:                       # This wil enable the HTTP Protocol
           endpoint: "0.0.0.0:4318"  # Endpoint for incoming telemetry data
@@ -87,10 +90,9 @@ Let's walk through a few modifications to get things started.
 
 - **Add a `debug` exporter**: The [**Debug exporter**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/exporter/debugexporter/README.md) will output detailed debug information for every telemetry record.
 
-  ```yaml
-    
-    debug:                         # Exporter Type
-      verbosity: detailed          # Enabled detailed debug output
+  ```yaml  
+    debug:                          # Exporter Type
+      verbosity: detailed           # Enabled detailed debug output
   ```
 
 - **Update Pipelines**: Ensure that the `otlp` receiver, `memory_limiter` processor, and `debug` exporter are added to the pipelines for `traces`, `metrics`, and `logs`.
