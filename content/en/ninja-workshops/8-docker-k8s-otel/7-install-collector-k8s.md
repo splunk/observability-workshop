@@ -22,6 +22,10 @@ cp /home/splunk/workshop/docker-k8s-otel/docker/Dockerfile /home/splunk/workshop
 cp /home/splunk/workshop/docker-k8s-otel/docker/entrypoint.sh /home/splunk/workshop/docker-k8s-otel/helloworld/
 ````
 
+> **IMPORTANT** once these files are copied, open `/home/splunk/workshop/docker-k8s-otel/helloworld/Dockerfile`  
+> with an editor and replace `$INSTANCE` in your Dockerfile with your instance name,
+> which can be determined by running `echo $INSTANCE`.
+
 ## Introduction to Part 2 of the Workshop
 
 In the next part of the workshop, we want to run the application in Kubernetes, 
