@@ -29,7 +29,7 @@ If everything is set up correctly, the first and last lines of the output should
 ```
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-On Windows, a dialog box may appear asking if you want to grant public and private network access to *otelcol.exe*. Click **"Allow"** to proceed.
+On Windows, a dialog box may appear asking if you want to grant public and private network access to `otelcol.exe`. Click **"Allow"** to proceed.
 {{%/ notice %}}
 
 Instead of instrumenting an application, we will simulate sending trace data to the OpenTelemetry Collector using `cURL`. The trace data, formatted in JSON, represents what an instrumentation library would typically generate and send.
@@ -165,14 +165,16 @@ Find your `Tests` terminal window and, execute the following command to send a *
 {{% tab title="cURL Command" %}}
 
 ```ps1
- curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
+ curl -X POST -i http://localhost:4318/v1/traces \
+ -H "Content-Type: application/json" \
+ -d "@trace.json"
 ```
 
 {{% /tab %}}
-{{% tab title="HTTP Response" %}}
+{{% tab title="cURL Response" %}}
 
- ```text
- HTTP/1.1 200 OK
+```text
+HTTP/1.1 200 OK
 Content-Type: application/json
 Date: Mon, 27 Jan 2025 09:51:02 GMT
 Content-Length: 21
@@ -187,13 +189,14 @@ Content-Length: 21
 - `{"partialSuccess":{}}`: Indicates 100% success, as the field is empty. In case of a partial failure, this field will include details about any failed parts.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-On Windows, you may encounter the following error:  
-{{< textcolor color="red" weight="bold" font="courier-new" >}}Invoke-WebRequest : Cannot bind parameter 'Headers'. Cannot convert the "Content-Type: application/json"{{< /textcolor >}}  
+On Windows, you may encounter the following error:
+{{% textcolor color="red" weight="bold" %}}Invoke-WebRequest : Cannot bind parameter 'Headers'. Cannot convert the "Content-Type: application/json"{{% /textcolor %}}
 To resolve this, use `curl.exe` instead of `curl`.
-
 {{% /notice %}}
 
-Next, locate the terminal window where your `agent` is running and check its debug console. You’ll see log entries related to the span you just sent. Below, we display the first and last lines of the debug log for that `span`. To get the complete picture, review the full debug output:
+Next, find the terminal window where your `Agent` is running and check the debug output. You should see log entries related to the span you just sent.  
+
+Below, we've highlighted the first and last lines of the debug log for that span. To get the full context, review the complete debug output.
 
 ```text
 2025-02-03T12:46:25.675+0100    info ResourceSpans #0
@@ -201,7 +204,7 @@ Next, locate the terminal window where your `agent` is running and check its deb
         {"kind": "exporter", "data_type": "traces", "name": "debug"}
 ```
 
-{{% expand title="{{% badge style=primary icon=scroll %}} Full Debug Output{{% /badge %}}" %}}
+{{% expand title="{{% badge style=primary icon=scroll %}}Complete Debug Output{{% /badge %}}" %}}
 
 ```text
 2025-02-03T12:46:25.675+0100    info ResourceSpans #0  
