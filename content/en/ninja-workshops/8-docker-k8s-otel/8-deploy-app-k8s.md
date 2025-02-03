@@ -19,7 +19,7 @@ Then remove the following two environment variables:
 ENV OTEL_SERVICE_NAME=helloworld
 ENV OTEL_RESOURCE_ATTRIBUTES='deployment.environment=otel-$INSTANCE'
 ```
-> To save your changes in vi, press the `esc` key to enter command mode, then type `wq!` followed by pressing the `enter/return` key.
+> To save your changes in vi, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the `enter/return` key.
 
 ## Build a new Docker Image 
 
@@ -66,7 +66,7 @@ sudo k3s ctr images import helloworld.tar
 
 ## Deploy the .NET Application
 
-> Hint: To enter edit mode in vi, press the 'i' key. To save changes, press the `esc` key to enter command mode, then type `wq!` followed by pressing the `enter/return` key. 
+> Hint: To enter edit mode in vi, press the 'i' key. To save changes, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the `enter/return` key. 
 
 To deploy our .NET application to K8s, let's create a file named `deployment.yaml` in `/home/splunk`:
 
@@ -185,7 +185,7 @@ curl http://10.43.102.103:8080/hello/Kubernetes
 
 ## Configure OpenTelemetry 
 
-OpenTelemetry instrumentation was already baked into the Docker image.  But we need to set a few 
+The .NET OpenTelemetry instrumentation was already baked into the Docker image.  But we need to set a few 
 environment variables to tell it where to send the data. 
 
 Add the following to `deployment.yaml` file you created earlier: 
