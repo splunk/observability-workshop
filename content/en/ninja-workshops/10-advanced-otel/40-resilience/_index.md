@@ -1,5 +1,5 @@
 ---
-title: Building Resilience in the OpenTelemetry Collector using the File Storage Extension
+title: Building In Resilience
 linkTitle: 4. Resilience
 time: 10 minutes
 weight: 4

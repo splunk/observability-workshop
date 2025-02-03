@@ -1,5 +1,5 @@
 ---
-title: Configuring the File exporter
+title: File Exporter
 linkTitle: 1.2. File Exporter
 weight: 2
 ---

@@ -1,5 +1,5 @@
 ---
-title: Test Resource Metadata Configuration
+title: Test Resource Metadata
 linkTitle: 1.3.1. Test Resource Metadata
 weight: 1
 ---

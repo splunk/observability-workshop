@@ -1,5 +1,5 @@
 ---
-title: Testing the initial agent configuration
+title: Test Configuration
 linkTitle: 1.1 Test Configuration
 weight: 1
 ---

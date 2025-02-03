@@ -1,5 +1,5 @@
 ---
-title: Initial setup our agent config  
+title: Initial Configuration
 linkTitle: 1. Initial Agent Setup
 time: 10 minutes
 weight: 1

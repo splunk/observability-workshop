@@ -1,5 +1,5 @@
 ---
-title: Using a Filter to Drop Spans in OpenTelemetry Collector
+title: Dropping Spans
 linkTitle: 5. Dropping Spans
 time: 10 minutes
 weight: 5
