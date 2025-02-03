@@ -30,8 +30,8 @@ processors:
     metadata_keys:                # Include token in batches
     - X-SF-Token                  # Batch data grouped by Token
   resource/add_mode:              # Processor Type/Name
-    attributes:                   # Array of Attributes and modifications 
-    - action: upsert              # Action taken is to `insert' or 'update' a key 
+    attributes:                   # Array of Attributes and modifications
+    - action: upsert              # Action taken is to `insert' or 'update' a key
       key: otelcol.service.mode   # key Name
       value: "gateway"            # Key Value
 
