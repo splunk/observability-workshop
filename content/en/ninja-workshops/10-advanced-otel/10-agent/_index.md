@@ -1,20 +1,20 @@
 ---
 title: Initial Configuration
-linkTitle: 1. Initial Agent Setup
+linkTitle: 1. Agent Configuration
 time: 10 minutes
 weight: 1
 ---
 
 ### Setup
 
-In your [WORKSHOP] directory, create a subdirectory called 1-agent, then move into that directory.
+In your `[WORKSHOP]` directory, create a subdirectory called `1-agent`, then move into that directory.
 
 ```text
 mkdir -p [WORKSHOP]/1-agent
 cd [WORKSHOP]/1-agent
 ```
 
-Inside the `1-agent` directory, create a file named `agent.yaml`. This file will define the basic structure of an OpenTelemetry Collector configuration, including the necessary components.  
+Inside the `1-agent` directory, create a file named `agent.yaml`. This file will define the basic structure of an OpenTelemetry Collector configuration, including the necessary components.
 
 Copy and paste the following initial configuration into `agent.yaml`:
 
