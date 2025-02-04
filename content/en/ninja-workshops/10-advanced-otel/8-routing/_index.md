@@ -169,8 +169,8 @@ graph LR
 classDef receiver fill:#8b5cf6,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
 classDef processor fill:#6366f1,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
 classDef exporter fill:#8b5cf6,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
-classDef con-receive fill:#00ff7f,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
-classDef con-export fill:#00ff7f,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
+classDef con-receive fill:#45c175,stroke:#333,stroke-width:2px, padding-left:110px,color:#333;
+classDef con-export fill:#45c175,stroke:#333,stroke-width:2px, padding-left:110px,color:#333;
 style box stroke:#333,stroke-width:2px,fill:#f9a9a9a;
 ```
 <!--

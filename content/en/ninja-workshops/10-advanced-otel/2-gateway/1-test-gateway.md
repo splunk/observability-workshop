@@ -73,25 +73,22 @@ graph LR
     %% Nodes
       A[otlp<br>fa:fa-download]:::receiver
       B[hostmetrics<br>fa:fa-download ]:::receiver
-      C[filelog<br>fa:fa-download]:::receiver
       D[memory_limiter<br>fa:fa-microchip]:::processor
-      D[resourcedetection<br>fa:fa-microchip]:::processor
       E[resource<br>fa:fa-microchip]:::processor
-      G[attributes<br>fa:fa-microchip]:::processor
-      H[redaction<br>fa:fa-microchip]:::processor
-      I[filter<br>fa:fa-microchip]:::processor
+      F[resourcedetection<br>fa:fa-microchip]:::processor      
       J[batch<br>fa:fa-microchip]:::processor
-      K[transform<br>fa:fa-microchip]:::processor
       L[debug<br>fa:fa-upload]:::exporter
-      M[file<br>fa:fa-upload]:::exporter
       N[otlphttp<br>fa:fa-upload]:::exporter
-      O[routing<br>fa:fa-upload]:::connector
+
     end
     %% Links
-      A --> C
-      B --> C
-      C --> D
-      C --> E
+      A --> D
+      B --> D
+      D --> F
+      F --> E
+      E --> J
+      J --> L
+      J --> N
 
 classDef receiver fill:#8b5cf6,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
 classDef processor fill:#6366f1,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
