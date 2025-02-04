@@ -186,7 +186,9 @@ Hello, Tom!
 
 ## Next Steps
 
-What are the two methods that we can use to instrument our application with OpenTelemetry?  
+What are the three methods that we can use to instrument our application with OpenTelemetry?  
 
-Hint:  see [Instrument your .NET application for Splunk Observability Cloud](https://docs.splunk.com/observability/en/gdi/get-data-in/application/otel-dotnet/instrumentation/instrument-dotnet-application.html) 
+![Traces](../images/NetInstrumentation.png)
+
+See: [Instrument your .NET application for Splunk Observability Cloud](https://docs.splunk.com/observability/en/gdi/get-data-in/application/otel-dotnet/instrumentation/instrument-dotnet-application.html) 
 for a discussion of the options. 
