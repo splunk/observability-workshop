@@ -25,21 +25,21 @@ Find your `agent` terminal window, and stop the running collector by pressing `C
 - **Configuring a `file` exporter**: Add the following under the `exporters` section of your `agent.yaml`:
 
   ```yaml
-    file:                          # Exporter Type
-      path: "./agent.out"          # Path where data will be saved in OTLP json format
-      append: false                # Overwrite the file each time
+    file:                           # Exporter Type
+      path: "./agent.out"           # Path where data will be saved in OTLP json format
+      append: false                 # Overwrite the file each time
   ```
 
-- **Update the Pipelines Section**: Add the `file` exporter to the `metrics`, `traces` and `logs` pipelines (leave debug as the first in the array). Also, add the `hostmetrics` receiver to the `metrics` pipeline.
+- **Update the Pipelines Section**: Add the `file` exporter to the `metrics`, `traces` and `logs` pipelines (leave debug as the first in the array).
 
   ```yaml
-     #traces:                      # Traces Pipeline
+      #traces:                    # Traces Pipeline
       metrics:                    # Metrics Pipeline
-        receivers: [otlp, hostmetrics]         # Array of Metric Receivers
+        receivers: [otlp]         # Array of Metric Receivers
         processors:               # Array of Metric Processors
         - memory_limiter          # Handles memory limits for this Pipeline
         exporters: [debug, file]  # Array of Metric Exporters
-     #logs:                        # Logs Pipeline
+      #logs:                      # Logs Pipeline
   ```
 
 {{% /notice %}}
@@ -52,6 +52,6 @@ For reference, the `metrics:` section of your pipelines should look similar to t
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 
-If **otelbin.io** shows a warning regarding the `append` key, check the validation target at the top of the page. Make sure the **Splunk OpenTelemetry Collector** is selected as the validation target.
+If **otelbin.io** shows a warning regarding the `scraper` or`append` keys, check the validation target at the top of the page. Make sure the **Splunk OpenTelemetry Collector** is selected as the validation target.
 
 {{% /notice %}}

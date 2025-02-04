@@ -46,23 +46,20 @@ service:                          # Services configured for this Collector
   extensions: [health_check]      # Enabled extensions for this collector   
   pipelines:                      # Array of configured pipelines  
     traces:                       # Traces Pipeline
-      receivers: []               # Array of Traces Receivers
+      receivers:                  # Array of Traces Receivers
       processors:                 # Array of Traces Processors
-      # Alternative syntax option [memory_limiter]
       - memory_limiter            # Memory Limiter processor
-      exporters: []               # Array of Traces Exporters
+      exporters:                  # Array of Traces Exporters
     metrics:                      # Metrics Pipeline
-      receivers: []               # Array of Metrics Receivers
+      receivers:                  # Array of Metrics Receivers
       processors:                 # Array of Metrics Processors
-      # Alternative syntax option [memory_limiter]
       - memory_limiter            # Memory Limiter processor
-      exporters: []               # Array of Metrics Exporters
+      exporters:                  # Array of Metrics Exporters
     logs:                         # Logs Pipeline
-      receivers: []               # Array of Logs Receivers
+      receivers:                  # Array of Logs Receivers
       processors:                 # Array of Logs Processors
-      # Alternative syntax option [memory_limiter]
       - memory_limiter            # Memory Limiter processor
-      exporters: []               # Array of Logs Exporters
+      exporters:                  # Array of Logs Exporters
 ```
 
 {{% tab title="Updated Directory Structure" %}}
@@ -82,7 +79,7 @@ Let's walk through a few modifications to get things started.
 - **Add an `otlp` receiver**: The [**OTLP receiver**](https://docs.splunk.com/observability/en/gdi/opentelemetry/components/otlp-receiver.html) will listen for incoming telemetry data over HTTP (or gRPC).
 
   ```yaml
-    otlp:                           # Exporter Type
+    otlp:                           # Receiver Type
       protocols:                    # list of Protocols used 
         http:                       # This wil enable the HTTP Protocol
           endpoint: "0.0.0.0:4318"  # Endpoint for incoming telemetry data
@@ -95,16 +92,18 @@ Let's walk through a few modifications to get things started.
       verbosity: detailed           # Enabled detailed debug output
   ```
 
-- **Update Pipelines**: Ensure that the `otlp` receiver, `memory_limiter` processor, and `debug` exporter are added to the pipelines for `traces`, `metrics`, and `logs`.
+- **Update Pipelines**: Ensure that the `otlp` receiver, `memory_limiter` processor, and `debug` exporter are added to the pipelines for `traces`, `metrics`, and `logs`. You can choose to use the format below or use array brackets   [memory_limiter]
 
   ```yaml
-      traces:               # Traces Pipeline
-        receivers: [otlp]   # Array of receivers in this pipeline
-        processors:         # Array of Processors in thi pipeline
-        - memory_limiter    # You also could use [memory_limiter]
-        exporters: [debug]  # Array of Exporters in this pipeline
-      #metrics:              # Metrics Pipeline
-      #logs:                 # Logs Pipeline
+      traces:                       # Traces Pipeline
+        receivers:                  # Array of receivers in this pipeline
+        - otlp                      # OTLP Receiver 
+        processors:                 # Array of Processors in thi pipeline
+        - memory_limiter            # Memory Limiter Processor for this pipeline  
+        exporters:                  # Array of Exporters in this pipeline
+        - debug                     # Debug Exporter
+      #metrics:                     # Metrics Pipeline
+      #logs:                        # Logs Pipeline
   ```
 
 {{% /notice %}}

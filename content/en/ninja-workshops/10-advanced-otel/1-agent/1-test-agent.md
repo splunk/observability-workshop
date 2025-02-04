@@ -165,9 +165,7 @@ Execute the following command to send a **span** to the agent:
 {{% tab title="cURL Command" %}}
 
 ```ps1
- curl -X POST -i http://localhost:4318/v1/traces \
- -H "Content-Type: application/json" \
- -d "@trace.json"
+ curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
 ```
 
 {{% /tab %}}
@@ -190,8 +188,8 @@ Content-Length: 21
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 On Windows, you may encounter the following error:
-{{% textcolor color="red" weight="bold" %}}Invoke-WebRequest : Cannot bind parameter 'Headers'. Cannot convert the "Content-Type: application/json"{{% /textcolor %}}
-To resolve this, use `curl.exe` instead of `curl`.
+{{% textcolor color="red" weight="bold" %}}Invoke-WebRequest : Cannot bind parameter 'Headers'. Cannot convert the "Content-Type: application/json" ...{{% /textcolor %}}
+To resolve this, use `curl.exe` instead of just `curl`.
 {{% /notice %}}
 
 Next, find the terminal window where your `Agent` is running and check the debug output. You should see log entries related to the span you just sent.  

@@ -47,11 +47,12 @@ Open the `agent.yaml` we copied earlier in your editor, and configure a `otlphtt
       metadata_keys: [X-SF-Token] 
   ```
 
-- **Update Pipelines**: replace the `file:` exporter with the `otlphttp` exporter in the `traces`, `metrics`, and `logs` pipelines.
+- **Update Pipelines**: replace the `file:` exporter with the `otlphttp` exporter in the `traces`, `metrics`, and `logs` pipelines. Also, add the `hostmetrics` receiver to the `metrics` pipeline.
 
   ```yaml
-    traces:              # Traces Pipeline
-      receivers: [otlp]  # Array of receivers in this pipeline
+     #traces:            # Traces Pipeline
+     metrics:            # Metrics Pipeline
+      receivers: [otlp, hostmetrics]  # Array of receivers in this pipeline
       processors:        # Array of Processors in thi pipeline
       - memory_limiter   # You also could use [memory_limiter]
       - resourcedetection
@@ -59,8 +60,7 @@ Open the `agent.yaml` we copied earlier in your editor, and configure a `otlphtt
       - batch
       # Array of Exporters in this pipeline
       exporters: [otlphttp, debug]
-      # metrics: Pipeline
-      # logs: Pipeline
+      # logs:            # Log's Pipeline
   ```
 
 {{% /notice %}}  
