@@ -19,7 +19,7 @@ The difference between the OpenTelemetry **debug exporter** and the **file expor
 
 In summary, the **debug exporter** is great for real-time, in-development troubleshooting, while the **file exporter** is better suited for storing telemetry data locally for later use.
 
-Find your `agent` terminal window, and stop the running collector by pressing `Ctrl-C`. Once the `agent` has stopped, open the `agent.yaml` and configure the `FileExporter`:
+Find your `Ananogent` terminal window, and stop the running collector by pressing `Ctrl-C`. Once the `agent` has stopped, open the `agent.yaml` and configure the `FileExporter`:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -34,20 +34,23 @@ Find your `agent` terminal window, and stop the running collector by pressing `C
 - **Update the Pipelines Section**: Add the `file` exporter to the `metrics`, `traces` and `logs` pipelines (leave debug as the first in the array).
 
   ```yaml
-      #traces:                    # Traces Pipeline
-      metrics:                    # Metrics Pipeline
-        receivers: [otlp]         # Array of Metric Receivers
-        processors:               # Array of Metric Processors
-        - memory_limiter          # Handles memory limits for this Pipeline
-        exporters: [debug, file]  # Array of Metric Exporters
-      #logs:                      # Logs Pipeline
+      #traces:       
+      metrics:
+        receivers:
+        - otlp                      # OTLP Receiver
+        processors:
+        - memory_limiter            # Memory Limiter Processor
+        exporters:
+        - debug                     # Debug Exporter
+        - file                      # File Exporter
+      #logs:
   ```
 
 {{% /notice %}}
 
 To verify that your updated `agent.yaml` file is correct, validate it using [**otelbin.io**](https://www.otelbin.io/).
 
-For reference, the `metrics:` section of your pipelines should look similar to this:
+For reference, the `traces:` section of your pipelines should look similar to this:
 
 ```mermaid
 ---
@@ -55,7 +58,6 @@ title: Traces
 ---
   flowchart LR;
   otlp(fa:fa-download otlp) --> memorylimiter(fa:fa-microchip memory_limiter)
-  hostmetrics(fa:fa-download hostmetrics) --> memorylimiter
   memorylimiter --> debug(fa:fa-upload debug)
   memorylimiter --> file(file fa:fa-upload)
 ```

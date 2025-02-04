@@ -3,6 +3,7 @@ title: Initial Configuration
 linkTitle: 1. Agent Configuration
 time: 10 minutes
 weight: 1
+#mermaidZoom: true
 ---
 
 ### Setup
@@ -57,10 +58,10 @@ service:                          # Services configured for this Collector
       exporters:
     logs:
       receivers:
-      processors:                 
+      processors:
       - memory_limiter            # Memory Limiter processor
       exporters:
-      
+
 ```
 
 {{% tab title="Updated Directory Structure" %}}
@@ -96,15 +97,15 @@ Let's walk through a few modifications to get things started.
 - **Update Pipelines**: Ensure that the `otlp` receiver, `memory_limiter` processor, and `debug` exporter are added to the pipelines for `traces`, `metrics`, and `logs`. You can choose to use the format below or use array brackets   [memory_limiter]
 
   ```yaml
-      traces:                        
-        receivers:                   
+      traces:
+        receivers:
         - otlp                      # OTLP Receiver 
-        processors:                    
+        processors:
         - memory_limiter            # Memory Limiter Processor  
-        exporters:                  
+        exporters:
         - debug                     # Debug Exporter
-      #metrics:                     
-      #logs:                        
+      #metrics:  
+      #logs:     
   ```
 
 {{% /notice %}}
@@ -113,9 +114,21 @@ Let's walk through a few modifications to get things started.
 Pay close attention to the formatting, as the OpenTelemetry Collector configuration relies on proper YAML structure.
 {{% /notice %}}
 
-Use [**otelbin.io**](https://otelbin.io) to validate your `agent.yaml` file, you can quickly identify spelling, YAML formatting and configuration errors. If everything is set up correctly, your configuration for all pipelines should look like this (click the image to enlarge) ():
+Use [**otelbin.io**](https://otelbin.io) to validate your `agent.yaml` file, you can quickly identify spelling, YAML formatting and configuration errors. If everything is set up correctly, your configuration for the all pipelines should look like this:
 
-<!--![otelbin-a-1-1-all](../images/agent-1-1-all.png)-->
+```mermaid
+---
+title: Traces, Metrics & Logs
+---
+flowchart LR
+  otlp(fa:fa-download otlp) --> memorylimiter(fa:fa-microchip memory_limiter)
+  memorylimiter --> debug(fa:fa-upload debug)
+
+```
+
+You can safely ignore the warning about the unused `hostmetrics` receiver, we will use it later.
+<!--![otelbin-a-1-1-all](../images/agent-1-1-all.png)
 ![agent-traces](../images/agent-traces.png?classes=inline&width=20vw)
 ![agent-metrics](../images/agent-metrics.png?classes=inline&width=20vw)
 ![agent-logs](../images/agent-logs.png?classes=inline&width=20vw)
+-->
