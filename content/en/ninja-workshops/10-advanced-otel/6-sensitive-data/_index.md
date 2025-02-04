@@ -57,29 +57,19 @@ So, Let's start an exercise to clean those up:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Add a `Attributes` Processor** and name it `removetags:`
-The `attributes` processor allows you to delete specific attributes (tags) from spans. In this case, we're removing the tag `user.account_password` using delete:
+- **Add an `Attributes` Processor** and name it `update:`
+The `attributes` processor also allows you to update or delete specific attributes (tags) from spans. In this case, we're updating the tag `user.phone_number` to `"UNKNOWN NUMBER"`, hash the `user.email` and replace the `amex` card number with the word `"Redacted"`:
 
   ```yaml
-    attributes/removetags:           # Processor Type/Name
+    attributes/update:               # Processor Type/Name
       actions:                       # Array of actions
+        - key: user.phone_number     # Target key
+          action: update             # Action is update key with value
+          value: "UNKNOWN NUMBER" 
+        - key: user.email            # Target key
+          action: hash               # Action is hash key
         - key: user.account_password # Target key
           action: delete             # Action is delete 
-  ```
-
-- **Add another `Attributes` Processor** and name it `update:`
-The `attributes` processor also allows you to update specific attributes (tags) from spans. In this case, we're updating the tag `user.phone_number` to `"UNKNOWN NUMBER"`, hash the `user.email` and replace the `amex` card number with the word `"Redacted"`:
-
-  ```yaml
-    attributes/update:              # Processor Type/Name
-      actions:                      # Array of actions
-        - key: user.phone_number    # Target key
-          action: update            # Action is update key with value
-          value: "UNKNOWN NUMBER" 
-        - key: user.email           # Target key
-          action: hash              # Action is hash key
-          action: update            # Target key
-          value: "Redacted"         # Action is update key with value
   ```
 
 - **Add a `redaction` Processor** and name it `redact:`
@@ -103,8 +93,7 @@ The `attributes` processor also allows you to update specific attributes (tags) 
         receivers: [otlp]       # Receiver  array for traces
         processors:             # Alternative syntax option [memory_limiter]
         - memory_limiter        # Handles memory limits for this pipeline
-        - attributes/removetags # Removes user.account_password attribute
-        #- attributes/update     # Update and hash tags 
+        #- attributes/update     # Update, hash and remove tags 
         #- redaction/redact      # Redacting fields on regex 
         - resourcedetection     # Adds system attributes to the data
         - resource/add_mode     # Adds collector mode metadata
