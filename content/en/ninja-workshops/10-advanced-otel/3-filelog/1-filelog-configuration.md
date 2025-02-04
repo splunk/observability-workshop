@@ -34,34 +34,35 @@ Check that you are in the `[WORKSHOP]/3-filelog` directory.  Open the `agent.yam
 Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**, the results for the `Logs` pipeline should look like this:
 
 ```mermaid
+%%{init:{"fontFamily":"monospace"}}%%
 graph LR
-  subgraph box[Logs]
-    direction LR
     %% Nodes
-      A[otlp<br>fa:fa-download]:::receiver
-      C[filelog<br>fa:fa-download]:::receiver
-      D[memory_limiter<br>fa:fa-microchip]:::processor
-      E[resource<br>fa:fa-microchip]:::processor
-      F[resourcedetection<br>fa:fa-microchip]:::processor      
-      J[batch<br>fa:fa-microchip]:::processor
-      L[debug<br>fa:fa-upload]:::exporter
-      N[otlphttp<br>fa:fa-upload]:::exporter
-
-    end
+      REC1(&nbsp;&nbsp;otlp&nbsp;&nbsp;<br>fa:fa-download):::receiver
+      REC2(filelog<br>fa:fa-download):::receiver
+      PRO1(memory_limiter<br>fa:fa-microchip):::processor
+      PRO2(resourcedetection<br>fa:fa-microchip):::processor
+      PRO3(resource<br>fa:fa-microchip):::processor
+      PRO4(batch<br>fa:fa-microchip):::processor
+      EXP1(&ensp;debug&ensp;<br>fa:fa-upload):::exporter
+      EXP2(otlphttp<br>fa:fa-upload):::exporter
     %% Links
-      A --> D
-      C --> D
-      D --> F
-      F --> E
-      E --> J
-      J --> L
-      J --> N
-
-classDef receiver fill:#8b5cf6,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
-classDef processor fill:#6366f1,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
-classDef exporter fill:#8b5cf6,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
-style box stroke:#333,stroke-width:2px,fill:#f9a9a9a;
+    subID1:::sub-logs
+    subgraph " "
+      subgraph subID1[Logs]
+      direction LR
+      REC1 --> PRO1
+      REC2 --> PRO1
+      PRO1 --> PRO2
+      PRO2 --> PRO3
+      PRO3 --> PRO4
+      PRO4 --> EXP1
+      PRO4 --> EXP2
+      end
+    end
+classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
+classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
+classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
+classDef sub-logs stroke:#34d399,stroke-width:2px, color:#34d399,stroke-dasharray: 5 5;
 ```
-<!--
-![otelbin-f-3-1-logs](../../images/filelog-3-1-logs.png)
--->
+
+<!--![otelbin-f-3-1-logs](../../images/filelog-3-1-logs.png)-->
