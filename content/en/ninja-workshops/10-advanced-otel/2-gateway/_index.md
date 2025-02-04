@@ -12,21 +12,25 @@ On your machine, navigate to the directory where you're running the workshop. Cr
 Next, move into the `[WORKSHOP]/2-gateway` directory and create a file named `gateway.yaml`. Copy the following starting configuration into this file.
 
 ```yaml
-###########################  This section holds all the
-## Configuration section ##  configurations that can be 
-###########################  used in this OpenTelemetry Collector
+###########################        This section holds all the
+## Configuration section ##        configurations that can be 
+###########################        used in this OpenTelemetry Collector
 receivers:
-  otlp:
-    protocols:
-      http:
-        endpoint: "0.0.0.0:5318"  # Port changed to prevent conflict with agent
+  otlp:                           # Receiver Type
+    protocols:                    # list of Protocols used 
+      http:                       # This wil enable the HTTP Protocol
+        endpoint: "0.0.0.0:5318"  # Port changed to prevent conflict with agent !!!
         include_metadata: true    # Needed for token pass through mode
 
-processors:
-  memory_limiter:
-    check_interval: 2s
-    limit_mib: 512
-  batch:
+exporters:                        # Array of Exporters
+  debug:                          # Exporter Type
+    verbosity: detailed           # Enabled detailed debug output
+
+processors:                       # Array of Processors
+  memory_limiter:                 # Limits memory usage by Collectors pipeline
+    check_interval: 2s            # Interval to check memory usage
+    limit_mib: 512                # Memory limit in MiB
+  batch:                          #Processor to Batch data before sending
     metadata_keys:                # Include token in batches
     - X-SF-Token                  # Batch data grouped by Token
   resource/add_mode:              # Processor Type/Name
@@ -35,27 +39,29 @@ processors:
       key: otelcol.service.mode   # key Name
       value: "gateway"            # Key Value
 
-exporters:
-  debug:
-    verbosity: detailed
+###########################         This section controls what
+### Activation Section  ###         configuration  will be used  
+###########################         by the OpenTelemetry Collector
 
-###########################  This section controls what
-### Activation Section  ###  configuration  will be used  
-###########################  by the OpenTelemetry Collector
-service:
-  pipelines:
+service:                          # Services configured for this Collector
+  extensions: [health_check]      # Enabled extensions for this collector   
+  pipelines:                      # Array of configured pipelines  
     traces:
-      receivers: [otlp]
-      processors: [memory_limiter]
-      exporters: [debug]
+      receivers:
+      processors:
+      - memory_limiter            # Memory Limiter processor                
+      exporters:
     metrics:
-      receivers: [otlp]
-      processors: [memory_limiter]
-      exporters: [debug]
+      receivers:
+      processors:
+      - memory_limiter            # Memory Limiter processor
+      exporters:
     logs:
-      receivers: [otlp]
-      processors: [memory_limiter]
-      exporters: [debug]
+      receivers:
+      processors:
+      - memory_limiter            # Memory Limiter processor
+      exporters:
+​
 ```
 
 {{% tab title="Updated Directory Structure" %}}
@@ -97,4 +103,31 @@ In this section, we will extend the `gateway.yaml` configuration you just create
 
 Verify the `gateway.yaml` file at [**otelbin.io**](https://www.otelbin.io/). If configured correctly, your sections should resemble the following example for logs:
 
+```mermaid
+graph LR
+  subgraph box[Logs]
+    direction LR
+    %% Nodes
+      A[otlp<br>fa:fa-download]:::receiver
+      D[memory_limiter<br>fa:fa-microchip]:::processor
+      F[resource<br>fa:fa-microchip]:::processor
+      J[batch<br>fa:fa-microchip]:::processor
+      L[debug<br>fa:fa-upload]:::exporter
+      M[file<br>fa:fa-upload]:::exporter
+    end
+    %% Links
+      A --> D
+      D --> F
+      F --> J
+      J --> L
+      J --> M
+
+classDef receiver fill:#8b5cf6,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
+classDef processor fill:#6366f1,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
+classDef exporter fill:#8b5cf6,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
+classDef connector fill:#00ff7f,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
+style box stroke:#333,stroke-width:2px,fill:#f9a9a9a;
+```
+<!--
 ![otelbin-logs](../images/gateway-2-1-logs.png?width=50vw)
+-->
