@@ -78,11 +78,11 @@ service:                          # Services configured for this Collector
 
 {{% /tab %}}
 
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
 We are introducing the [**batch processor**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/batchprocessor/README.md) with this gateway config. The Batch processor groups spans, metrics, or logs into batches, improving compression and reducing outgoing connections. It supports batching based on size and time.
 
 For optimal performance, it is recommended to use the Batch Processor in every collector. Place it after the memory_limiter and sampling processors to ensure batching only happens after any potential data drops, such as those from sampling.
-
-### Extend the Gateway Configuration
+{{% /notice %}}
 
 In this section, we will extend the `gateway.yaml` configuration you just created to separate metric, traces & logs into different files.
 
