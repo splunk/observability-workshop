@@ -1,15 +1,17 @@
 ---
-title: Transform Data
-linkTitle: 7. Transform Data
+title: Working with the Transform Processor
+linkTitle: 7. Working with the Transform Processor
 time: 10 minutes
 weight: 7
 ---
 
-The Transform Processor allows users to modify telemetry data (logs, metrics, and traces) as it passes through the pipeline. It enables users to filter, enrich, or transform data using the OpenTelemetry Transformation Language (OTTL).
+The **Transform Processor** lets you modify telemetry data—logs, metrics, and traces—as it flows through the pipeline. Using the **OpenTelemetry Transformation Language (OTTL)**, you can filter, enrich, and transform data on the fly without touching your application code.
+
+In this exercise, we'll focus on using the Transform Processor with OTTL to filter, parse, and transform JSON-structured log data.
 
 ### Setup
 
-Create a new subdirectory named `7-transform-data` and copy all contents from the `6-senstive-data` directory into it. Then, delete any `*.out` and `*.log` files. Your updated directory structure should now look like this:
+Create a new subdirectory named `7-transform-data` and copy all contents from the `6-sensitive-data` directory into it. Then, delete any `*.out` and `*.log` files. Your updated directory structure should now look like this:
 
 {{% tab title="Updated Directory Structure" %}}
 
@@ -32,9 +34,13 @@ WORKSHOP
 
 {{% /tab %}}
 
-In this section, we will update the `agent.yaml` file to include a **transform** processor. This processor will help filter log resource attributes and set the log severity text based on the message body.
+We’ll update `agent.yaml` to include a Transform Processor that will:
+- **Filter** log resource attributes
+- **Parse** JSON structured log data into attributes
+- **Set** log severity levels based on the log message body
 
-Previously, you may have noticed that the `SeverityText` and `SeverityNumber` values are undefined in the log record, but the severity is included in the `level` field of the log body
+
+You may have noticed that in previous logs, fields like SeverityText and SeverityNumber were undefined (this is typical of the filelog receiver) However, the severity is embedded within the log body:
 
 ```text
 <snip>
@@ -52,7 +58,7 @@ Flags: 0
   {"kind": "exporter", "data_type": "logs", "name": "debug"}
 ```
 
-So, let's start an exercise to use a transform processor to enrich and filter the log record data.
+We’ll correct this using the Transform Processor. 
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
