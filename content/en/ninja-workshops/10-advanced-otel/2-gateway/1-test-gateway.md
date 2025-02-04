@@ -25,7 +25,7 @@ If everything is set up correctly, the first and last lines of the output should
 ### Update agent configuration
 
 Select your `agent` terminal window, and also navigate to the `[WORKSHOP]/2-gateway` directory.  
-Open the `agent.yaml` we copied earlier in your editor, and configure a `otlphttp` exporter by replacing the existing `file` one. (this is now the preferred exporter for Splunk Observability Cloud):
+Open the `agent.yaml` we copied earlier in your editor, and configure a `otlphttp` exporter by replacing the existing `file` exporter. (this is now the preferred exporter for Splunk Observability Cloud):
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -35,39 +35,71 @@ Open the `agent.yaml` we copied earlier in your editor, and configure a `otlphtt
     otlphttp:
       endpoint: "http://localhost:5318" # Gateway endpoint
       headers:
-        # Replace with a Splunk Access Token
-        X-SF-Token: "FAKE_SPLUNK_ACCESS_TOKEN"
+        X-SF-Token: "A_ACCESS_TOKEN"    # New way to set an Splunk ACCESS_TOKEN
   ```
 
 - **Add a batch processor to the agent**: since the agent can send data from different sources, and benefit from retries, adding a Batch processor is useful too:
 
   ```yaml
-    batch:                     # Processor Type
-    # Array of metadata keys to batch data by
-      metadata_keys: [X-SF-Token] 
+    batch:                              # Processor Type
+      metadata_keys: [X-SF-Token]       # Array of metadata keys to batch 
   ```
 
-- **Update Pipelines**: replace the `file:` exporter with the `otlphttp` exporter in the `traces`, `metrics`, and `logs` pipelines.
+- **Update Pipelines**: replace the `file:` exporter with the `otlphttp` exporter in the `traces`, `metrics`, and `logs` pipelines. Also, add the `hostmetrics` receiver to the `metrics` pipeline.
 
   ```yaml
-    traces:              # Traces Pipeline
-      receivers: [otlp]  # Array of receivers in this pipeline
-      processors:        # Array of Processors in thi pipeline
-      - memory_limiter   # You also could use [memory_limiter]
-      - resourcedetection
-      - resource/add_mode
-      - batch
-      # Array of Exporters in this pipeline
-      exporters: [otlphttp, debug]
-      # metrics: Pipeline
-      # logs: Pipeline
+     #traces:
+     metrics:
+      receivers: 
+      - otlp                        # OTLP Receiver
+      - hostmetrics                 # Hostmetrics Receiver
+      processors:
+      - memory_limiter              # Memory Limiter Processor
+      - resourcedetection           # Adds system attributes to the data
+      - resource/add_mode           # Adds collector mode metadata
+      - batch                       # Batch Processor, groups data before send
+      exporters:
+      - debug                       # Debug Exporter 
+      - otlphttp                    # OTLP/HTTP EXporter used by Splunk O11Y
+      # logs:
   ```
 
 {{% /notice %}}  
 Again, validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. As example, here is the result for the `metrics` pipeline:
 
-![otelbin-g-2-2-metrics](../../images/gateway-2-2-metrics.png)
+```mermaid
+graph LR
+  subgraph box[Traces]
+    direction LR
+    %% Nodes
+      A[otlp<br>fa:fa-download]:::receiver
+      B[hostmetrics<br>fa:fa-download ]:::receiver
+      D[memory_limiter<br>fa:fa-microchip]:::processor
+      E[resource<br>fa:fa-microchip]:::processor
+      F[resourcedetection<br>fa:fa-microchip]:::processor      
+      J[batch<br>fa:fa-microchip]:::processor
+      L[debug<br>fa:fa-upload]:::exporter
+      N[otlphttp<br>fa:fa-upload]:::exporter
 
+    end
+    %% Links
+      A --> D
+      B --> D
+      D --> F
+      F --> E
+      E --> J
+      J --> L
+      J --> N
+
+classDef receiver fill:#8b5cf6,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
+classDef processor fill:#6366f1,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
+classDef exporter fill:#8b5cf6,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
+classDef connector fill:#00ff7f,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
+style box stroke:#333,stroke-width:2px,fill:#f9a9a9a;
+```
+<!--
+![otelbin-g-2-2-metrics](../../images/gateway-2-2-metrics.png)
+-->
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 The `otlphttp` exporter is now the default method for sending metrics and traces to the Splunk Observability Cloud.  
 

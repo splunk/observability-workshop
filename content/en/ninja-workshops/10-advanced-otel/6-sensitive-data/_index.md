@@ -57,29 +57,19 @@ So, Let's start an exercise to clean those up:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Add a `Attributes` Processor** and name it `removetags:`
-The `attributes` processor allows you to delete specific attributes (tags) from spans. In this case, we're removing the tag `user.account_password` using delete:
+- **Add an `Attributes` Processor** and name it `update:`
+The `attributes` processor also allows you to update or delete specific attributes (tags) from spans. In this case, we're updating the tag `user.phone_number` to `"UNKNOWN NUMBER"`, hash the `user.email` and replace the `amex` card number with the word `"Redacted"`:
 
   ```yaml
-    attributes/removetags:           # Processor Type/Name
+    attributes/update:               # Processor Type/Name
       actions:                       # Array of actions
+        - key: user.phone_number     # Target key
+          action: update             # Action is update key with value
+          value: "UNKNOWN NUMBER" 
+        - key: user.email            # Target key
+          action: hash               # Action is hash key
         - key: user.account_password # Target key
           action: delete             # Action is delete 
-  ```
-
-- **Add another `Attributes` Processor** and name it `update:`
-The `attributes` processor also allows you to update specific attributes (tags) from spans. In this case, we're updating the tag `user.phone_number` to `"UNKNOWN NUMBER"`, hash the `user.email` and replace the `amex` card number with the word `"Redacted"`:
-
-  ```yaml
-    attributes/update:              # Processor Type/Name
-      actions:                      # Array of actions
-        - key: user.phone_number    # Target key
-          action: update            # Action is update key with value
-          value: "UNKNOWN NUMBER" 
-        - key: user.email           # Target key
-          action: hash              # Action is hash key
-          action: update            # Target key
-          value: "Redacted"         # Action is update key with value
   ```
 
 - **Add a `redaction` Processor** and name it `redact:`
@@ -103,8 +93,7 @@ The `attributes` processor also allows you to update specific attributes (tags) 
         receivers: [otlp]       # Receiver  array for traces
         processors:             # Alternative syntax option [memory_limiter]
         - memory_limiter        # Handles memory limits for this pipeline
-        - attributes/removetags # Removes user.account_password attribute
-        #- attributes/update     # Update and hash tags 
+        #- attributes/update     # Update, hash and remove tags 
         #- redaction/redact      # Redacting fields on regex 
         - resourcedetection     # Adds system attributes to the data
         - resource/add_mode     # Adds collector mode metadata
@@ -116,4 +105,36 @@ The `attributes` processor also allows you to update specific attributes (tags) 
 
 Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**, the results for the `Traces` pipeline should look like this:
 
-![redacting 1](../images/senstive-data-6-1.png)
+```mermaid
+%%{init:{"fontFamily":"monospace"}}%%
+graph LR
+    %% Nodes
+      REC1(&nbsp;&nbsp;otlp&nbsp;&nbsp;<br>fa:fa-download):::receiver
+      PRO1(memory_limiter<br>fa:fa-microchip):::processor
+      PRO2(resourcedetection<br>fa:fa-microchip):::processor
+      PRO3(resource<br>fa:fa-microchip):::processor
+      PRO5(batch<br>fa:fa-microchip):::processor
+      PRO6(attributes<br>fa:fa-microchip):::processor
+      EXP1(otlphttp<br>fa:fa-upload):::exporter
+      EXP2(&ensp;&ensp;debug&ensp;&ensp;<br>fa:fa-upload):::exporter
+    %% Links
+    subID1:::sub-traces
+    subgraph " "
+      subgraph subID1[Traces]
+      direction LR
+      REC1 --> PRO1
+      PRO1 --> PRO6
+      PRO6 --> PRO2
+      PRO2 --> PRO3
+      PRO3 --> PRO5
+      PRO5 --> EXP2
+      PRO5 --> EXP1
+      end
+    end
+classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
+classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
+classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
+classDef sub-traces stroke:#fbbf24,stroke-width:2px, color:#fbbf24,stroke-dasharray: 5 5;
+```
+
+<!--![redacting 1](../images/senstive-data-6-1.png)-->

@@ -62,7 +62,7 @@ In this exercise, we will **redact** the `user.visa` & `user.mastercard` **attri
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% notice note %}}
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
 Notice that by including `summary:debug` in the redaction processor, the debug output will include summary information about which matching keys were redacted, along with the count of keys that were masked.
 {{% /notice %}}
 
@@ -154,3 +154,7 @@ Notice that by including `summary:debug` in the redaction processor, the debug o
 {{% /tabs %}}
 
 {{% /notice %}}
+
+In this section, we've covered two of the three types of processors that enabled real-time detection and redaction of sensitive data as it processes your telemetry, ensuring you can security transmit the redacted data to external platforms. 
+
+We'll take a look at the Transform Processor in the next section.

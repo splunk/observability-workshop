@@ -140,4 +140,4 @@ You can now extend this approach by defining additional routing rules to further
 
 If you want to know more about the `routing` connector, you can find it [here](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/routingconnector)
 
-Stop the `agent` and `gateway` using `Ctrl-C`.
+Stop the `Agent`, `Gateway` and the` Quotes generating script` as well using `Command-c/Ctrl-c`

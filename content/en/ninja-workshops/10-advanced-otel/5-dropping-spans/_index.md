@@ -54,4 +54,36 @@ Open the `gateway.yaml` and add the following configuration to the `processors` 
 
 Validate the gateway configuration using **[otelbin.io](https://www.otelbin.io/)**, the results for the `traces` pipeline should look like this:
 
-![otelbin-f-5-1-traces](../images/spans-5-1-trace.png)
+```mermaid
+%%{init:{"fontFamily":"monospace"}}%%
+graph LR
+    %% Nodes
+      REC1(&nbsp;&nbsp;otlp&nbsp;&nbsp;<br>fa:fa-download):::receiver
+      PRO1(memory_limiter<br>fa:fa-microchip):::processor
+      PRO2(resourcedetection<br>fa:fa-microchip):::processor
+      PRO3(resource<br>fa:fa-microchip):::processor
+      PRO5(batch<br>fa:fa-microchip):::processor
+      PRO6(attributes<br>fa:fa-microchip):::processor
+      EXP1(&ensp;debug&ensp;<br>fa:fa-upload):::exporter
+      EXP2(&ensp;&ensp;file&ensp;&ensp;<br>fa:fa-upload):::exporter
+    %% Links
+    subID1:::sub-traces
+    subgraph " "
+      subgraph subID1[Traces]
+      direction LR
+      REC1 --> PRO1
+      PRO1 --> PRO6
+      PRO6 --> PRO2
+      PRO2 --> PRO3
+      PRO3 --> PRO5
+      PRO5 --> EXP2
+      PRO5 --> EXP1
+      end
+    end
+classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
+classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
+classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
+classDef sub-traces stroke:#fbbf24,stroke-width:2px, color:#fbbf24,stroke-dasharray: 5 5;
+```
+
+<!--![otelbin-f-5-1-traces](../images/spans-5-1-trace.png)-->
