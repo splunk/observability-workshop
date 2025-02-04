@@ -67,11 +67,26 @@ Open the `agent.yaml` we copied earlier in your editor, and configure a `otlphtt
 Again, validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. As example, here is the result for the `metrics` pipeline:
 
 ```mermaid
-flowchart LR
-  otlp(fa:fa-download otlp) --> memorylimiter(fa:fa-microchip memory_limiter)
-  #hostmetrics(fa:fa-download hostmetrics) --> memorylimiter
-  memorylimiter --> debug(fa:fa-upload debug)
-  memorylimiter --> file(file fa:fa-upload)
+graph LR
+  subgraph box[Traces]
+    direction LR
+    %% Nodes
+      A[otlp<br>fa:fa-download]:::receiver
+      B[hostmetrics<br>fa:fa-download ]:::receiver
+      C[memory_limiter<br>fa:fa-microchip]:::processor
+      D[debug<br>fa:fa-upload]:::exporter
+      E[file<br>fa:fa-upload]:::exporter
+    end
+    %% Links
+      A --> C
+      B --> C
+      C --> D
+      C --> E
+
+classDef receiver fill:#8b5cf6,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
+classDef processor fill:#6366f1,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
+classDef exporter fill:#8b5cf6,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
+style box stroke:#333,stroke-width:2px,fill:#f9a9a9a;
 ```
 
 ![otelbin-g-2-2-metrics](../../images/gateway-2-2-metrics.png)

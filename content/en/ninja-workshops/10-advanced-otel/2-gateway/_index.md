@@ -93,15 +93,6 @@ In this section, we will extend the `gateway.yaml` configuration you just create
 - **Create similar exporters for metrics and logs**: Using the above example, set the exporter names appropriately and update the file paths to `./gateway-metrics.out` for metrics and `./gateway-logs.out` for logs.
 - **Update the Pipelines Section**: Add each newly created exporter to its corresponding pipeline in the service configuration. Also, add the `batch` and `resource/add_mode` processors to each pipeline.
 
-  ```yaml
-      traces:                                # Trace Pipeline
-        receivers: [otlp]                    # Array of Trace Receivers 
-        processors: [memory_limiter, resource/add_mode, batch]  # Array of Processors
-        exporters: [file/traces, debug]      # Array of Trace Exporters
-      # Metric pipeline
-      # Logs Pipeline  
-  ```
-
 {{% /notice %}}
 
 Verify the `gateway.yaml` file at [**otelbin.io**](https://www.otelbin.io/). If configured correctly, your sections should resemble the following example for logs:
