@@ -57,15 +57,13 @@ Span ID:
 Flags: 0
   {"kind": "exporter", "data_type": "logs", "name": "debug"}
 ```
+Logs often contain structured data encoded as JSON within the log body. Extracting these fields into attributes allows for better indexing, filtering, and querying. Instead of manually parsing JSON in downstream systems, OTTL enables automatic transformation at the telemetry pipeline level.
 
 We’ll correct this using the Transform Processor. 
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Add a `Transform` Processor** and name it `logs:`
-The `transform` processor allows you to manipulate logs, traces, and metrics dynamically without modifying application code.
-
-In this case, we will be filtering the resource attributes and keeping only relevant metadata fields (`com.splunk.sourcetype`, `host.name`, `otelcol.service.mode`):
+- **Configure the `transform(logs)` processor:** Ensure the processor is applied to `log_statements` in the `resource` context and filter the resource attributes, keeping only relevant metadata fields (`com.splunk.sourcetype`, `host.name`, `otelcol.service.mode`):
 
   ```yaml
   transform/logs:
@@ -75,15 +73,9 @@ In this case, we will be filtering the resource attributes and keeping only rele
           - keep_keys(attributes, ["com.splunk.sourcetype","host.name", "otelcol.service.mode"])
   ```
 
-Notice that the `keep_keys` statement is only applicable to the log resource context.
-
-Logs often contain structured data encoded as JSON within the log body. Extracting these fields into attributes allows for better indexing, filtering, and querying. Instead of manually parsing JSON in downstream systems, OTTL enables automatic transformation at the telemetry pipeline level.
-
-- **Add another context block** for the log along with set statements to set the severity_text and severity_number of the log record based on the matching severity level from the log body.
+- **Add another context block** for to the `log_statements` and set the severity_text and severity_number of the log record based on the matching severity level from the log body.
 
   ```yaml
-      - context: log
-        statements:
       - context: log
         statements:
           - set(cache, ParseJSON(body)) where IsMatch(body, "^\\{")
@@ -96,9 +88,13 @@ Logs often contain structured data encoded as JSON within the log body. Extracti
           - set(severity_number, 13) where severity_text == "WARN"
           - set(severity_number, 17) where severity_text == "ERROR"
           - set(severity_number, 21) where severity_text == "FATAL"
-  ```
-This transformation checks if the log body contains a JSON object, then extracts its fields into log attributes while preserving nested structures. The flatten(cache) step ensures that deeply nested JSON fields can be accessed as top-level attributes. 
 
+  ```
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+This transformation checks if the log body contains a JSON object, then extracts its fields into log attributes with merge_maps while preserving nested structures. The flatten(cache) step ensures that deeply nested JSON fields can be accessed as top-level attributes. 
+
+This method should only be used for **testing and debugging OTTL**. Mapping all fields from a JSON object would cause high cardinality in production scenarios. 
+{{% /notice %}}
 
 
 - **Update the `logs` pipeline**: Add the `transform` processor into the `logs:` pipeline:
