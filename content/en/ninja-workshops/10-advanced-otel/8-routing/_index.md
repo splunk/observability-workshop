@@ -149,9 +149,9 @@ graph LR
       L2[debug<br>fa:fa-upload]:::exporter
       M[file<br>fa:fa-upload]:::exporter
       M2[file<br>fa:fa-upload]:::exporter
-      O[routing<br>fa:fa-upload]:::con-export
-      P[routing<br>fa:fa-download ]:::con-receive
-      P2[routing<br>fa:fa-download ]:::con-receive
+      O[routing<br>fa:fa-route]:::con-export
+      P[routing<br>fa:fa-route]:::con-receive
+      P2[routing<br>fa:fa-route]:::con-receive
     end
     %% Links
       A --> O
