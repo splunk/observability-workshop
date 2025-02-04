@@ -1,6 +1,6 @@
 ---
-title: Working with the Transform Processor
-linkTitle: 7. Working with the Transform Processor
+title: Transform Data
+linkTitle: 7. Transform Data
 time: 10 minutes
 weight: 7
 ---
