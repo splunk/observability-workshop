@@ -41,7 +41,11 @@ You should now see a file named `agent.out` in the current directory. Since no m
 
 {{% /tab %}}
 
-The span is written to the `agent.json` as a single line in OTLP/JSON format:
+{{% notice note %}}
+On **Windows**, attempting to read an open file can cause issues. To avoid this, make sure to stop the `agent` or the `gateway` before examining a file when instructed to do so.
+{{% /notice %}}
+
+The span is written to the `agent.out` as a single line in OTLP/JSON format:
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}

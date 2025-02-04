@@ -73,9 +73,19 @@ graph LR
     %% Nodes
       A[otlp<br>fa:fa-download]:::receiver
       B[hostmetrics<br>fa:fa-download ]:::receiver
-      C[memory_limiter<br>fa:fa-microchip]:::processor
-      D[debug<br>fa:fa-upload]:::exporter
-      E[file<br>fa:fa-upload]:::exporter
+      C[filelog<br>fa:fa-download]:::receiver
+      D[memory_limiter<br>fa:fa-microchip]:::processor
+      D[resourcedetection<br>fa:fa-microchip]:::processor
+      E[resource<br>fa:fa-microchip]:::processor
+      G[attributes<br>fa:fa-microchip]:::processor
+      H[redaction<br>fa:fa-microchip]:::processor
+      I[filter<br>fa:fa-microchip]:::processor
+      J[batch<br>fa:fa-microchip]:::processor
+      K[transform<br>fa:fa-microchip]:::processor
+      L[debug<br>fa:fa-upload]:::exporter
+      M[file<br>fa:fa-upload]:::exporter
+      N[otlphttp<br>fa:fa-upload]:::exporter
+      O[routing<br>fa:fa-upload]:::connector
     end
     %% Links
       A --> C
@@ -86,6 +96,7 @@ graph LR
 classDef receiver fill:#8b5cf6,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
 classDef processor fill:#6366f1,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
 classDef exporter fill:#8b5cf6,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
+classDef connector fill:#00ff7f,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
 style box stroke:#333,stroke-width:2px,fill:#f9a9a9a;
 ```
 

@@ -117,13 +117,23 @@ Pay close attention to the formatting, as the OpenTelemetry Collector configurat
 Use [**otelbin.io**](https://otelbin.io) to validate your `agent.yaml` file, you can quickly identify spelling, YAML formatting and configuration errors. If everything is set up correctly, your configuration for the all pipelines should look like this:
 
 ```mermaid
----
-title: Traces, Metrics & Logs
----
-flowchart LR
-  otlp(fa:fa-download otlp) --> memorylimiter(fa:fa-microchip memory_limiter)
-  memorylimiter --> debug(fa:fa-upload debug)
+graph LR
+  subgraph box[Traces, Metrics & Logs]
+    direction LR
+    %% Nodes
+      A[otlp<br>fa:fa-download]:::receiver
+      D[memory_limiter<br>fa:fa-microchip]:::processor
+      L[debug<br>fa:fa-upload]:::exporter
+    end
+    %% Links
+      A --> D
+      D --> L
 
+classDef receiver fill:#8b5cf6,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
+classDef processor fill:#6366f1,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
+classDef exporter fill:#8b5cf6,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
+classDef connector fill:#00ff7f,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
+style box stroke:#333,stroke-width:2px,fill:#f9a9a9a;
 ```
 
 You can safely ignore the warning about the unused `hostmetrics` receiver, we will use it later.
