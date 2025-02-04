@@ -53,13 +53,25 @@ To verify that your updated `agent.yaml` file is correct, validate it using [**o
 For reference, the `traces:` section of your pipelines should look similar to this:
 
 ```mermaid
----
-title: Traces, Metrics & Logs
----
-  flowchart LR;
-  otlp(fa:fa-download otlp) --> memorylimiter(fa:fa-microchip memory_limiter)
-  memorylimiter --> debug(fa:fa-upload debug)
-  memorylimiter --> file(file fa:fa-upload)
+graph LR
+  subgraph box[Traces, Metrics & Logs]
+    direction LR
+    %% Nodes
+      A[otlp<br>fa:fa-download]:::receiver
+      D[memory_limiter<br>fa:fa-microchip]:::processor
+      L[debug<br>fa:fa-upload]:::exporter
+      M[file<br>fa:fa-upload]:::exporter
+    end
+    %% Links
+      A --> D
+      D --> L
+      D --> M
+      
+classDef receiver fill:#8b5cf6,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
+classDef processor fill:#6366f1,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
+classDef exporter fill:#8b5cf6,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
+classDef connector fill:#00ff7f,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
+style box stroke:#333,stroke-width:2px,fill:#f9a9a9a;
 ```
 
 <!--
@@ -67,7 +79,5 @@ title: Traces, Metrics & Logs
 -->
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-
 If **otelbin.io** shows a warning regarding the `scraper` or`append` keys, check the validation target at the top of the page. Make sure the **Splunk OpenTelemetry Collector** is selected as the validation target.
-
 {{% /notice %}}

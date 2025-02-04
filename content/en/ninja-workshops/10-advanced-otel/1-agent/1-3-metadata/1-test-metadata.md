@@ -4,7 +4,7 @@ linkTitle: 1.3.1. Test Resource Metadata
 weight: 1
 ---
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-Rename the existing `agent.out` to `agent.old`,  this this is so you can compare it later.
+Rename the existing `agent.out` to `agent.old`. This allows you to compare it with the new file later in this section.
 {{% /notice %}}
 
 {{% tab title="Updated Directory Structure" %}}
@@ -71,10 +71,6 @@ A new `agent.out` file will be created:
 ```
 
 {{% /tab %}}
-
-{{% notice note %}}
-On **Windows**, attempting to read an open file can cause issues. To avoid this, make sure to stop the `agent` or the `gateway` before examining a file when instructed to do so.
-{{% /notice %}}
 
 When you compare the new `agent.out` file to the original `agent.old`, you’ll notice that the collector has added the `otelcol.service.mode` attribute, along with several `resourcedetection` attributes (`host.name` & `os.type`) to the `resourceSpans` section of the span we send. These values are based on your device and were automatically added by the processors we configured in the pipeline:
 

@@ -28,7 +28,7 @@ If everything is set up correctly, the first and last lines of the output should
 2025-01-13T12:43:51.747+0100 info service@v0.117.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+{{% notice note %}}
 On Windows, a dialog box may appear asking if you want to grant public and private network access to `otelcol.exe`. Click **"Allow"** to proceed.
 {{%/ notice %}}
 
@@ -186,7 +186,7 @@ Content-Length: 21
 - `HTTP/1.1 200 OK`: Confirms the request was processed successfully.
 - `{"partialSuccess":{}}`: Indicates 100% success, as the field is empty. In case of a partial failure, this field will include details about any failed parts.
 
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+{{% notice note %}}
 On Windows, you may encounter the following error:
 {{% textcolor color="red" weight="bold" %}}Invoke-WebRequest : Cannot bind parameter 'Headers'. Cannot convert the "Content-Type: application/json" ...{{% /textcolor %}}
 To resolve this, use `curl.exe` instead of just `curl`.

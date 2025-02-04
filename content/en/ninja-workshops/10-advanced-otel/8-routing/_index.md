@@ -135,5 +135,45 @@ Additionally, the `batch` processor has been removed from the new pipelines. Thi
 
 Again, validate the `gateway` configuration using `otelbin.io` for spelling mistakes etc. Your `Traces:` pipeline should like this:
 
+```mermaid
+graph LR
+  subgraph box[Traces]
+    direction LR
+    %% Nodes
+      A[otlp<br>fa:fa-download]:::receiver
+      D[memory_limiter<br>fa:fa-microchip]:::processor
+      D2[memory_limiter<br>fa:fa-microchip]:::processor
+      F[resource<br>fa:fa-microchip]:::processor
+      F2[resource<br>fa:fa-microchip]:::processor
+      L[debug<br>fa:fa-upload]:::exporter
+      L2[debug<br>fa:fa-upload]:::exporter
+      M[file<br>fa:fa-upload]:::exporter
+      M2[file<br>fa:fa-upload]:::exporter
+      O[routing<br>fa:fa-upload]:::con-export
+      P[routing<br>fa:fa-download ]:::con-receive
+      P2[routing<br>fa:fa-download ]:::con-receive
+    end
+    %% Links
+      A --> O
+      O --> P
+      P --> D
+      D --> F
+      F --> L
+      F --> M
+      O --> P2
+      P2 --> D2
+      D2 --> F2
+      F2 --> L2
+      F2 --> M2
+
+classDef receiver fill:#8b5cf6,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
+classDef processor fill:#6366f1,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
+classDef exporter fill:#8b5cf6,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
+classDef con-receive fill:#00ff7f,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
+classDef con-export fill:#00ff7f,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
+style box stroke:#333,stroke-width:2px,fill:#f9a9a9a;
+```
+<!--
 ![Routing Connector](../images/routing-8-1.png)
+-->
 Lets' test our configuration!
