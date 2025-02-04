@@ -35,12 +35,12 @@ WORKSHOP
 {{% /tab %}}
 
 We’ll update `agent.yaml` to include a Transform Processor that will:
+
 - **Filter** log resource attributes
 - **Parse** JSON structured log data into attributes
 - **Set** log severity levels based on the log message body
 
-
-You may have noticed that in previous logs, fields like SeverityText and SeverityNumber were undefined (this is typical of the filelog receiver) However, the severity is embedded within the log body:
+You may have noticed that in previous logs, fields like `SeverityText` and `SeverityNumber` were undefined (this is typical of the filelog receiver) However, the severity is embedded within the log body:
 
 ```text
 <snip>
@@ -57,9 +57,10 @@ Span ID:
 Flags: 0
   {"kind": "exporter", "data_type": "logs", "name": "debug"}
 ```
+
 Logs often contain structured data encoded as JSON within the log body. Extracting these fields into attributes allows for better indexing, filtering, and querying. Instead of manually parsing JSON in downstream systems, OTTL enables automatic transformation at the telemetry pipeline level.
 
-We’ll correct this using the Transform Processor. 
+We’ll correct this using the Transform Processor.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
