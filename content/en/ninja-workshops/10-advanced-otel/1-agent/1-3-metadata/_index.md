@@ -52,29 +52,31 @@ By adding these processors, we enrich the data with system metadata and the agen
 Validate your updated `agent.yaml` with [**otelbin.io**](https://www.otelbin.io/):
 
 ```mermaid
+%%{init:{"fontFamily":"monospace"}}%%
 graph LR
-  subgraph box[Traces, Metrics & Logs]
-    direction LR
     %% Nodes
-      A[otlp<br>fa:fa-download]:::receiver
-      D[memory_limiter<br>fa:fa-microchip]:::processor
-      E[resourcedetection<br>fa:fa-microchip]:::processor
-      F[resource<br>fa:fa-microchip]:::processor
-      L[debug<br>fa:fa-upload]:::exporter
-      M[file<br>fa:fa-upload]:::exporter
-    end
+      REC1(&nbsp;&nbsp;otlp&nbsp;&nbsp;<br>fa:fa-download):::receiver
+      PRO1(memory_limiter<br>fa:fa-microchip):::processor
+      PRO2(resourcedetection<br>fa:fa-microchip):::processor
+      PRO3(resource<br>fa:fa-microchip):::processor
+      EXP1(&ensp;debug&ensp;<br>fa:fa-upload):::exporter
+      EXP2(&ensp;file&ensp;<br>fa:fa-upload):::exporter
     %% Links
-      A --> D
-      D --> E
-      E --> F
-      F --> L
-      F --> M
-
-classDef receiver fill:#8b5cf6,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
-classDef processor fill:#6366f1,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
-classDef exporter fill:#8b5cf6,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
-classDef connector fill:#00ff7f,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
-style box stroke:#333,stroke-width:2px,fill:#f9a9a9a;
+    subID1:::sub-traces
+    subgraph " "
+      subgraph subID1[Traces/Metrics/Logs]
+      direction LR
+      REC1 --> PRO1
+      PRO1 --> PRO2
+      PRO2 --> PRO3
+      PRO3 --> EXP1
+      PRO3 --> EXP2
+      end
+    end
+classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
+classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
+classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
+classDef sub-traces stroke:#fff,stroke-width:2px, color:#fff,stroke-dasharray: 5 5;
 ```
 <!--
 ![otelbin-a-1-3-logs](../../images/agent-1-3-logs.png?width=50vw)
