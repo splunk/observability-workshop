@@ -92,7 +92,7 @@ In this section, we will extend the `gateway.yaml` configuration you just create
 
   ```yaml
     file/traces:                       # Exporter Type/Name
-      path: "./gateway-traces.out"     # Path where trace data will be saved in OTLP json format
+      path: "./gateway-traces.out"     # Path where data will be saved in OTLP json format
       append: false                    # Overwrite the file each time
   ```
 

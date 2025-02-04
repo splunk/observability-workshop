@@ -96,9 +96,9 @@ classDef exporter fill:#8b5cf6,stroke:#333,stroke-width:2px, padding-left:110px,
 classDef connector fill:#00ff7f,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
 style box stroke:#333,stroke-width:2px,fill:#f9a9a9a;
 ```
-
+<!--
 ![otelbin-g-2-2-metrics](../../images/gateway-2-2-metrics.png)
-
+-->
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 The `otlphttp` exporter is now the default method for sending metrics and traces to the Splunk Observability Cloud.  
 
