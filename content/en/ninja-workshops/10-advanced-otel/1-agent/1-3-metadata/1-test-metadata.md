@@ -27,6 +27,15 @@ Then restart your collector in the `Agent` terminal window using the updated con
 
 If everything is set up correctly, the last line of the output should confirm the collector is running:
 
+{{% notice title="Charity Comment" style="red" icon="running" %}}
+
+At this point, if instructions have been followed, hostmetrics receiver will be enabled and added to the metrics pipeline, so the output won't actually be the "ready for processing" message, it's actually the output from the metrics exporter. 
+
+This also impacts the contents of agent.out
+
+Best solution would be to move the hostmetrics receiver added to pipeline from 1/1-2-fileexporter to 2/1-test-gateway
+{{% /notice %}}
+
 ```text
 2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
 ```

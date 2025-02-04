@@ -12,6 +12,15 @@ Restart your agent in the `Agent` terminal window, this time with your new confi
 
 Again, if you have done everything correctly, the last line of the output should be:
 
+{{% notice title="Charity Comment" style="red" icon="running" %}}
+
+At this point, if instructions have been followed, hostmetrics receiver will be enabled and added to the metrics pipeline, so the output won't actually be the "ready for processing" message, it's actually the output from the metrics exporter. 
+
+This also impacts when the agent.out file gets created (on otel startup, not after trace is sent)
+
+Best solution would be to move the hostmetrics receiver added to pipeline from 1/1-2-fileexporter to 2/1-test-gateway
+{{% /notice %}}
+
 ```text
 2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
@@ -152,7 +161,7 @@ The span is written to the `agent.json` as a single line in OTLP/JSON format:
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% notice tip %}}
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
 If you want to see formatted JSON, you can cat the file and pipe it though `jq` (if you have it installed).
 
 ```bash

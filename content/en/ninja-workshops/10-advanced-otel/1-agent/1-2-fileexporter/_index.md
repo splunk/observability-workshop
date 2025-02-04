@@ -33,20 +33,20 @@ Find your `agent` terminal window, and stop the running collector by pressing `C
 - **Update the Pipelines Section**: Add the `file` exporter to the `metrics`, `traces` and `logs` pipelines (leave debug as the first in the array). Also, add the `hostmetrics` receiver to the `metrics` pipeline.
 
   ```yaml
-     #traces:
+     #traces:                      # Traces Pipeline
       metrics:                    # Metrics Pipeline
         receivers: [otlp, hostmetrics]         # Array of Metric Receivers
         processors:               # Array of Metric Processors
         - memory_limiter          # Handles memory limits for this Pipeline
         exporters: [debug, file]  # Array of Metric Exporters
-     #logs:
+     #logs:                        # Logs Pipeline
   ```
 
 {{% /notice %}}
 
 To verify that your updated `agent.yaml` file is correct, validate it using [**otelbin.io**](https://www.otelbin.io/).
 
-For reference, the `traces:` section of your pipelines should look similar to this:
+For reference, the `metrics:` section of your pipelines should look similar to this:
 
 ![otelbin-a-1-2-w](../../images/agent-1-2-metrics.png?width=25vw)
 
