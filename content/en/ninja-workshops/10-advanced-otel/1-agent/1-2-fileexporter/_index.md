@@ -19,7 +19,7 @@ The difference between the OpenTelemetry **debug exporter** and the **file expor
 
 In summary, the **debug exporter** is great for real-time, in-development troubleshooting, while the **file exporter** is better suited for storing telemetry data locally for later use.
 
-Find your `Ananogent` terminal window, and stop the running collector by pressing `Ctrl-C`. Once the `agent` has stopped, open the `agent.yaml` and configure the `FileExporter`:
+Find your `Agent` terminal window, and stop the running collector by pressing `Ctrl-C`. Once the `agent` has stopped, open the `agent.yaml` and configure the `FileExporter`:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -53,26 +53,13 @@ To verify that your updated `agent.yaml` file is correct, validate it using [**o
 For reference, the `traces:` section of your pipelines should look similar to this:
 
 ```mermaid
-graph LR
-  subgraph box[Traces]
-    direction LR
-    %% Nodes
-      A[otlp<br>fa:fa-download]:::receiver
-      B[hostmetrics<br>fa:fa-download ]:::receiver
-      C[memory_limiter<br>fa:fa-microchip]:::processor
-      D[debug<br>fa:fa-upload]:::pipeline
-      E[file<br>fa:fa-upload]:::pipeline
-    end
-    %% Links
-      A --> C
-      B --> C
-      C --> D
-      C --> E
-
-classDef receiver fill:#8b5cf6,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
-classDef processor fill:#6366f1,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
-classDef pipeline fill:#8b5cf6,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
-style box stroke:#333,stroke-width:2px,fill:#f9fafb;
+---
+title: Traces, Metrics & Logs
+---
+  flowchart LR;
+  otlp(fa:fa-download otlp) --> memorylimiter(fa:fa-microchip memory_limiter)
+  memorylimiter --> debug(fa:fa-upload debug)
+  memorylimiter --> file(file fa:fa-upload)
 ```
 
 <!--
