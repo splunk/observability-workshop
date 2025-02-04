@@ -89,12 +89,15 @@ To enable routing we need to define two pipelines for traces:
   ```yaml
     pipelines:
       #traces:               
-      traces/standard:         # Array of Trace Receivers
-        receivers: [routing]   # Only receives spans from the routing connector 
+      traces/standard:                # New Default Traces/Spans Pipeline    
+        receivers: 
+        - routing                     # Routing Connector, Only receives data from Connector
         processors:
-        - memory_limiter
-        - resource/add_mode
-        exporters: [file/traces/standard, debug] # Location for spans not matching rule
+        - memory_limiter              # Memory Limiter Processor
+        - resource/add_mode           # Adds collector mode metadata
+        exporters:
+        - debug                       # Debug Exporter
+        - file/traces/standard        # File Exporter for spans NOT matching rule
   ```
 
   - The Target pipeline, that will handle all spans that match the routing rule.
@@ -103,12 +106,15 @@ To enable routing we need to define two pipelines for traces:
     pipelines:
       #traces:
       #traces/standard:
-      traces/security:         # Array of Trace Receivers
-        receivers: [routing]   # Only receives spans from the routing connector 
+      traces/security:                # New Security Traces/Spans Pipeline       
+        receivers: 
+        - routing                     # Routing Connector, Only receives data from Connector
         processors:
-        - memory_limiter
-        - resource/add_mode
-        exporters: [file/traces/security, debug] # Location for spans matching rule
+        - memory_limiter              # Memory Limiter Processor
+        - resource/add_mode           # Adds collector mode metadata
+        exporters:
+        - debug                       # Debug Exporter 
+        - file/traces/security        # File Exporter for spans matching rule
       #metrics:
   ```
 
@@ -119,9 +125,11 @@ For clarity, we are removing the `debug` exporter from this pipeline, so that de
 
 ```yaml
   pipelines:
-    traces:                       # Original traces pipeline
-      receivers: [otlp]           # Array of Trace Receivers
-      exporters: [routing]       # Array of Trace exporters
+    traces:                           # Original traces pipeline
+      receivers: 
+      - otlp                          # Debug Exporter            
+      exporters: 
+      - routing                       # Routing Connector, Only exports data to Connector
 ```
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
@@ -135,5 +143,52 @@ Additionally, the `batch` processor has been removed from the new pipelines. Thi
 
 Again, validate the `gateway` configuration using `otelbin.io` for spelling mistakes etc. Your `Traces:` pipeline should like this:
 
-![Routing Connector](../images/routing-8-1.png)
+```mermaid
+%%{init:{"fontFamily":"monospace"}}%%
+graph LR
+    %% Nodes
+      REC1(&nbsp;&nbsp;&nbsp;otlp&nbsp;&nbsp;&nbsp;<br>fa:fa-download):::receiver
+      PRO1(memory_limiter<br>fa:fa-microchip):::processor
+      PRO2(memory_limiter<br>fa:fa-microchip):::processor
+      PRO3(resource<br>fa:fa-microchip):::processor
+      PRO4(resource<br>fa:fa-microchip):::processor
+      EXP1(&nbsp;&ensp;debug&nbsp;&ensp;<br>fa:fa-upload):::exporter
+      EXP2(&emsp;&emsp;file&emsp;&emsp;<br>fa:fa-upload):::exporter
+      EXP3(&nbsp;&ensp;debug&nbsp;&ensp;<br>fa:fa-upload):::exporter
+      EXP4(&emsp;&emsp;file&emsp;&emsp;<br>fa:fa-upload):::exporter
+      ROUTE1(&nbsp;routing&nbsp;<br>fa:fa-route):::con-export
+      ROUTE2(&nbsp;routing&nbsp;<br>fa:fa-route):::con-receive
+      ROUTE3(&nbsp;routing&nbsp;<br>fa:fa-route):::con-receive
+    %% Links
+    subID1:::sub-traces
+    subID2:::sub-traces
+    subID3:::sub-traces
+    subgraph " "
+    direction LR
+      subgraph subID1[Traces]
+      REC1 --> ROUTE1
+      end
+      subgraph subID2[Traces/standard]
+      ROUTE1 --> ROUTE2
+      ROUTE2 --> PRO1
+      PRO1 --> PRO3
+      PRO3 --> EXP1
+      PRO3 --> EXP2
+      end
+      subgraph subID3[Traces/security]
+      ROUTE1 --> ROUTE3
+      ROUTE3 --> PRO2
+      PRO2 --> PRO4
+      PRO4 --> EXP3
+      PRO4 --> EXP4
+      end
+    end
+classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
+classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
+classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
+classDef sub-traces stroke:#fbbf24,stroke-width:2px, color:#fbbf24,stroke-dasharray: 5 5;
+```
+
+<!--![Routing Connector](../images/routing-8-1.png)-->
+
 Lets' test our configuration!

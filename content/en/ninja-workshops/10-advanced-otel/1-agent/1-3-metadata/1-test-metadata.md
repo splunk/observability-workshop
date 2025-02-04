@@ -3,8 +3,9 @@ title: Test Resource Metadata
 linkTitle: 1.3.1. Test Resource Metadata
 weight: 1
 ---
-
-Rename `agent.out` to `agent.old`, this is so you can compare it later.
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+Rename the existing `agent.out` to `agent.old`. This allows you to compare it with the new file later in this section.
+{{% /notice %}}
 
 {{% tab title="Updated Directory Structure" %}}
 
@@ -31,7 +32,7 @@ If everything is set up correctly, the last line of the output should confirm th
 2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
-Next, from the `Test` terminal window, send a trace again with the `cURL` command to create a new `agent.out`:
+Next, from the `Tests` terminal window, send a trace again with the `cURL` command to create a new `agent.out`:
 
 {{% tab title="cURL Command" %}}
 
@@ -70,10 +71,6 @@ A new `agent.out` file will be created:
 ```
 
 {{% /tab %}}
-
-{{% notice note %}}
-On **Windows**, attempting to read an open file can cause issues. To avoid this, make sure to stop the `agent` or the `gateway` before examining a file when instructed to do so.
-{{% /notice %}}
 
 When you compare the new `agent.out` file to the original `agent.old`, you’ll notice that the collector has added the `otelcol.service.mode` attribute, along with several `resourcedetection` attributes (`host.name` & `os.type`) to the `resourceSpans` section of the span we send. These values are based on your device and were automatically added by the processors we configured in the pipeline:
 

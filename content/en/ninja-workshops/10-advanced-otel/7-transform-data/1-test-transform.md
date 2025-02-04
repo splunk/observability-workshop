@@ -7,7 +7,13 @@ weight: 1
 ### Test the Transform
 
 **Run the Log Generator**:
-In a test terminal window, which we’ll use for running `log-gen`, navigate to the `[WORKSHOP]/7-transform-data` directory and start the appropriate script for your system. The script will begin writing lines to a file named `./quotes.log`, while displaying a single line of output in the console.
+In a test terminal window, navigate to the `[WORKSHOP]/7-transform-data` directory and start the appropriate `log-gen` script for your system. We want to work with structured JSON logs so add a `-json` flag to the script command. 
+
+```sh
+./log-gen.sh -json
+```
+
+The script will begin writing lines to a file named `./quotes.log`, while displaying a single line of output in the console. 
 
  ```txt
  Writing logs to quotes.log. Press Ctrl+C to stop.
@@ -24,7 +30,7 @@ Find your `Agent` terminal window and navigate to the `[WORKSHOP]/7-transform-da
 It should also start up normally and state : `Everything is ready. Begin running and processing data.`
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-In this exercise, we will **remove the** `com.splunk/source` and `os.type` **metadata** from log resource data before it is exported by the `agent`.
+In this exercise, we will **remove the** `com.splunk/source` and `os.type` **metadata** from log resource data before it is exported by the `agent`. We will also parse the log body to set the `SeverityText` and `SeverityNumber` for the `LogRecord` and promote the log json fields to `attributes`
 
 - **Check the debug output** of both the `Agent` and `Gateway` to confirm that `com.splunk/source` and `os.type` have been removed.
 
@@ -53,7 +59,7 @@ In this exercise, we will **remove the** `com.splunk/source` and `os.type` **met
 {{% /tab %}}
 {{% /tabs %}}
 
-- **Check the debug output** of both the `Agent` and `Gateway` to confirm that the `SeverityText` in the `LogRecord` is now defined with the matching severity from the log body
+- **Check the debug output** of both the `Agent` and `Gateway` to confirm that the `SeverityText` in the `LogRecord` is now defined with the severity from the log body, along with the matching severity number. Confirm that the JSON fields from the body can be accessed as top-level log attributes.
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
@@ -63,10 +69,13 @@ In this exercise, we will **remove the** `com.splunk/source` and `os.type` **met
   ObservedTimestamp: 2025-01-31 21:49:29.924017 +0000 UTC
   Timestamp: 1970-01-01 00:00:00 +0000 UTC
   SeverityText: WARN
-  SeverityNumber: Unspecified(0)
+  SeverityNumber: Warn(13)
   Body: Str(2025-01-31 15:49:29 [WARN] - Do or do not, there is no try.)
   Attributes:
       -> log.file.path: Str(quotes.log)
+      -> timestamp: Str(2025-01-31 15:49:29)
+      -> level: Str(WARN)
+      -> message: Str(Do or do not, there is no try.)
   Trace ID:
   Span ID:
   Flags: 0
@@ -137,6 +146,24 @@ In this exercise, we will **remove the** `com.splunk/source` and `os.type` **met
                     "key": "log.file.path",
                     "value": {
                       "stringValue": "quotes.log"
+                    }
+                  },
+                  {
+                    "key": "timestamp",
+                    "value": {
+                      "stringValue": "2025-01-31 15:49:29"
+                    }
+                  },
+                  {
+                    "key": "level",
+                    "value": {
+                      "stringValue": "WARN"
+                    }
+                  },
+                  {
+                    "key": "message",
+                    "value": {
+                      "stringValue": "Do or do not, there is no try."
                     }
                   }
                 ],
