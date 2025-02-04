@@ -104,30 +104,31 @@ In this section, we will extend the `gateway.yaml` configuration you just create
 Verify the `gateway.yaml` file at [**otelbin.io**](https://www.otelbin.io/). If configured correctly, your sections should resemble the following example for logs:
 
 ```mermaid
+%%{init:{"fontFamily":"monospace"}}%%
 graph LR
-  subgraph box[Logs]
-    direction LR
     %% Nodes
-      A[otlp<br>fa:fa-download]:::receiver
-      D[memory_limiter<br>fa:fa-microchip]:::processor
-      F[resource<br>fa:fa-microchip]:::processor
-      J[batch<br>fa:fa-microchip]:::processor
-      L[debug<br>fa:fa-upload]:::exporter
-      M[file<br>fa:fa-upload]:::exporter
-    end
+      REC1(&nbsp;&nbsp;otlp&nbsp;&nbsp;<br>fa:fa-download):::receiver
+      PRO1(memory_limiter<br>fa:fa-microchip):::processor
+      PRO2(resource<br>fa:fa-microchip):::processor
+      PRO3(batch<br>fa:fa-microchip):::processor
+      EXP1(&ensp;file&ensp;<br>fa:fa-upload):::exporter
+      EXP2(&ensp;debug&ensp;<br>fa:fa-upload):::exporter
     %% Links
-      A --> D
-      D --> F
-      F --> J
-      J --> L
-      J --> M
-
-classDef receiver fill:#8b5cf6,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
-classDef processor fill:#6366f1,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
-classDef exporter fill:#8b5cf6,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
-classDef connector fill:#00ff7f,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
-style box stroke:#333,stroke-width:2px,fill:#f9a9a9a;
+    subID1:::sub-logs
+    subgraph " "
+      subgraph subID1[Logs]
+      direction LR
+      REC1 --> PRO1
+      PRO1 --> PRO2
+      PRO2 --> PRO3
+      PRO3 --> EXP1
+      PRO3 --> EXP2
+      end
+    end
+classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
+classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
+classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
+classDef sub-logs stroke:#34d399,stroke-width:2px, color:#34d399,stroke-dasharray: 5 5;
 ```
-<!--
-![otelbin-logs](../images/gateway-2-1-logs.png?width=50vw)
--->
+
+<!--[otelbin-logs](../images/gateway-2-1-logs.png?width=50vw)-->

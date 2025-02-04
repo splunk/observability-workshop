@@ -94,7 +94,7 @@ Let's walk through a few modifications to get things started.
       verbosity: detailed           # Enabled detailed debug output
   ```
 
-- **Update Pipelines**: Ensure that the `otlp` receiver, `memory_limiter` processor, and `debug` exporter are added to the pipelines for `traces`, `metrics`, and `logs`. You can choose to use the format below or use array brackets   [memory_limiter]
+- **Update Pipelines**: Ensure that the `otlp` receiver, `memory_limiter` processor, and `debug` exporter are added to the pipelines for `traces`, `metrics`, and `logs`. You can choose to use the format below or use array brackets `[memory_limiter]`:
 
   ```yaml
       traces:
