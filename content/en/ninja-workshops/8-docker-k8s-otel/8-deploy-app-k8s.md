@@ -227,4 +227,115 @@ deployment.apps/helloworld configured
 
 Then use `curl` to generate some traffic. 
 
-After a minute or so, you should see traces flowing in the o11y cloud. 
+After a minute or so, you should see traces flowing in the o11y cloud. But, if you want to see your trace sooner, we have ... 
+
+## A Challenge For You
+
+If you are a developer and just want to quickly grab the trace id or see console feedback, what environment variable could you add to the deployment.yaml file?
+
+<details>
+  <summary><b>Click here to see the answer</b></summary>
+
+If you recall in our challenge from Section 4, *Instrument a .NET Application with OpenTelemetry*, we showed you a trick to write traces to the console using the `OTEL_TRACES_EXPORTER` environment variable. We can add this variable to our deployment.yaml, redeploy our application, and tail the logs from our helloworld app so that we can grab the trace id to then find the trace in Splunk Observability Cloud. (In the next section of our workshop, we will also walk through using the debug exporter, which is how you would typically debug your application in a K8s environment.)
+
+First, open the deployment.yaml file in vi:
+
+``` bash
+vi deployment.yaml
+
+```
+Then, add the `OTEL_TRACES_EXPORTER` environment variable: 
+
+``` yaml
+          env:
+            - name: PORT
+              value: "8080"
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://$(NODE_IP):4318"
+            - name: OTEL_SERVICE_NAME
+              value: "helloworld"
+            - name: OTEL_RESOURCE_ATTRIBUTES 
+              value: "deployment.environment=YOURINSTANCE"
+            # NEW VALUE HERE:
+            - name: OTEL_TRACES_EXPORTER
+              value: "otlp,console" 
+```
+Save your changes then redeploy the application:
+
+{{< tabs >}}
+{{% tab title="Script" %}}
+
+``` bash
+kubectl apply -f deployment.yaml
+```
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+```bash
+deployment.apps/helloworld configured
+```
+{{% /tab %}}
+{{< /tabs >}}
+
+Tail the helloworld logs:
+
+{{< tabs >}}
+{{% tab title="Script" %}}
+``` bash
+kubectl logs -l app=helloworld -f
+```
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+``` bash
+info: HelloWorldController[0]
+      /hello endpoint invoked by K8s9
+Activity.TraceId:            5bceb747cc7b79a77cfbde285f0f09cb
+Activity.SpanId:             ac67afe500e7ad12
+Activity.TraceFlags:         Recorded
+Activity.ActivitySourceName: Microsoft.AspNetCore
+Activity.DisplayName:        GET hello/{name?}
+Activity.Kind:               Server
+Activity.StartTime:          2025-02-04T15:22:48.2381736Z
+Activity.Duration:           00:00:00.0027334
+Activity.Tags:
+    server.address: 10.43.226.224
+    server.port: 8080
+    http.request.method: GET
+    url.scheme: http
+    url.path: /hello/K8s9
+    network.protocol.version: 1.1
+    user_agent.original: curl/7.81.0
+    http.route: hello/{name?}
+    http.response.status_code: 200
+Resource associated with Activity:
+    splunk.distro.version: 1.8.0
+    telemetry.distro.name: splunk-otel-dotnet
+    telemetry.distro.version: 1.8.0
+    os.type: linux
+    os.description: Debian GNU/Linux 12 (bookworm)
+    os.build_id: 6.2.0-1018-aws
+    os.name: Debian GNU/Linux
+    os.version: 12
+    host.name: helloworld-69f5c7988b-dxkwh
+    process.owner: app
+    process.pid: 1
+    process.runtime.description: .NET 8.0.12
+    process.runtime.name: .NET
+    process.runtime.version: 8.0.12
+    container.id: 39c2061d7605d8c390b4fe5f8054719f2fe91391a5c32df5684605202ca39ae9
+    telemetry.sdk.name: opentelemetry
+    telemetry.sdk.language: dotnet
+    telemetry.sdk.version: 1.9.0
+    service.name: helloworld
+    deployment.environment: otel-jen-tko-1b75
+
+```
+{{% /tab %}}
+{{< /tabs >}}
+
+Then, in your other terminal window, generate a trace with your curl command. You will see the trace id in the console in which you are tailing the logs. Copy the `Activity.TraceId:` value and paste it into the Trace search field in APM.
+
+</details>
