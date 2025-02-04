@@ -62,7 +62,7 @@ service:                          # Services configured for this Collector
       processors:                 # Array of Logs Processors
       # Alternative syntax option [memory_limiter]
       - memory_limiter            # Memory Limiter processor
-      exporters: []               # Array of Logs Logs
+      exporters: []               # Array of Logs Exporters
 ```
 
 {{% tab title="Updated Directory Structure" %}}

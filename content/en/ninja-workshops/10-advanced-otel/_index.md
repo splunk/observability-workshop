@@ -59,8 +59,8 @@ During this workshop, we will cover the following topics:
 - **Enhancing agent resilience**: Basic configurations for fault tolerance.
 - **Configuring processors**:
   - Filter out noise by dropping specific spans (e.g., health checks).
-  - Remove unnecessary tags.
-  - Transform attributes to match the expected format.
+  - Remove unnecessary tags, and handle sensitive data 
+  - Transform data using OTTL in the pipeline before exporting
 - **Configuring Connectors**: Route data to different endpoints based on the values received.
 
 By the end of this workshop, you'll be familiar with configuring the OpenTelemetry Collector for a variety of real-world use cases.

@@ -40,8 +40,8 @@ We will enhance the data flowing through our pipelines by making the following c
         - resourcedetection     # Adds system attributes to the data
         - resource/add_mode     # Adds collector mode metadata
       exporters: [debug, file]  # Array of trace exporters
-    #metrics:
-    #logs:
+    #metrics:                    # Metrics Pipeline
+    #logs:                       # Logs Pipeline
   ```
 
 {{% /notice %}}
