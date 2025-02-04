@@ -163,7 +163,7 @@ graph LR
     subID1:::sub-traces
     subID2:::sub-traces
     subID3:::sub-traces
-    subgraph main[" "]
+    subgraph " "
     direction LR
       subgraph subID1[Traces]
       REC1 --> ROUTE1
@@ -186,7 +186,6 @@ graph LR
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
 classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
-style main fill:#333
 classDef sub-traces stroke:#fbbf24,stroke-width:2px, color:#fbbf24;
 ```
 
