@@ -53,13 +53,26 @@ To verify that your updated `agent.yaml` file is correct, validate it using [**o
 For reference, the `traces:` section of your pipelines should look similar to this:
 
 ```mermaid
----
-title: Traces
----
-  flowchart LR;
-  otlp(fa:fa-download otlp) --> memorylimiter(fa:fa-microchip memory_limiter)
-  memorylimiter --> debug(fa:fa-upload debug)
-  memorylimiter --> file(file fa:fa-upload)
+graph LR
+  subgraph box[Traces]
+    direction LR
+    %% Nodes
+      A[otlp<br>fa:fa-download]:::receiver
+      B[hostmetrics<br>fa:fa-download ]:::receiver
+      C[memory_limiter<br>fa:fa-microchip]:::processor
+      D[debug<br>fa:fa-upload]:::pipeline
+      E[file<br>fa:fa-upload]:::pipeline
+    end
+    %% Links
+      A --> C
+      B --> C
+      C --> D
+      C --> E
+
+classDef receiver fill:#8b5cf6,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
+classDef processor fill:#6366f1,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
+classDef pipeline fill:#8b5cf6,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
+style box stroke:#333,stroke-width:2px,fill:#f9fafb;
 ```
 
 <!--
