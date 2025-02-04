@@ -90,12 +90,12 @@ We’ll correct this using the Transform Processor.
           - set(severity_number, 21) where severity_text == "FATAL"
 
   ```
+
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-This transformation checks if the log body contains a JSON object, then extracts its fields into log attributes with merge_maps while preserving nested structures. The flatten(cache) step ensures that deeply nested JSON fields can be accessed as top-level attributes. 
+This transformation checks if the log body contains a JSON object, then extracts its fields into log attributes with merge_maps while preserving nested structures. The flattened(cache) step ensures that deeply nested JSON fields can be accessed as top-level attributes.
 
-This method should only be used for **testing and debugging OTTL**. Mapping all fields from a JSON object would cause high cardinality in production scenarios. 
+This method should only be used for **testing and debugging OTTL**. Mapping all fields from a JSON object would cause high cardinality in production scenarios.
 {{% /notice %}}
-
 
 - **Update the `logs` pipeline**: Add the `transform` processor into the `logs:` pipeline:
 
@@ -114,4 +114,38 @@ This method should only be used for **testing and debugging OTTL**. Mapping all 
 
 Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**, the results for the `Logs` pipeline should look like this:
 
-![redacting 1](../images/transform-data-7-1.png)
+```mermaid
+%%{init:{"fontFamily":"monospace"}}%%
+graph LR
+    %% Nodes
+      REC1(&nbsp;&nbsp;otlp&nbsp;&nbsp;<br>fa:fa-download):::receiver
+      REC2(filelog<br>fa:fa-download):::receiver
+      PRO1(memory_limiter<br>fa:fa-microchip):::processor
+      PRO2(resourcedetection<br>fa:fa-microchip):::processor
+      PRO3(resource<br>fa:fa-microchip):::processor
+      PRO4(transform<br>fa:fa-microchip):::processor
+      PRO5(batch<br>fa:fa-microchip):::processor
+      EXP1(otlphttp<br>fa:fa-upload):::exporter
+      EXP2(&ensp;&ensp;debug&ensp;&ensp;<br>fa:fa-upload):::exporter
+    %% Links
+    subID1:::sub-logs
+    subgraph " "
+      subgraph subID1[Logs]
+      direction LR
+      REC1 --> PRO1
+      REC2 --> PRO1
+      PRO1 --> PRO2
+      PRO2 --> PRO3
+      PRO3 --> PRO4
+      PRO4 --> PRO5
+      PRO5 --> EXP1
+      PRO5 --> EXP2
+      end
+    end
+classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
+classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
+classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
+classDef sub-logs stroke:#34d399,stroke-width:2px, color:#34d399;
+```
+
+<!--![redacting 1](../images/transform-data-7-1.png)-->
