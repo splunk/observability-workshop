@@ -101,15 +101,44 @@ As we want to control the data flow for this exercise we are going to temporaril
 
   ```yaml
     metrics:
-     #receivers: [otlp, hostmetrics]  # Array of Metric Receivers
-     receivers: [otlp]                # Array of Metric Receivers
-     #processors:                     # Array of Metric Processors
+     receivers: 
+     otlp                        # OTLP Receiver
+     #hostmetrics                 # Hostmetrics Receiver
   ```
 
 {{% /notice %}}
 
-Again, validate the agent configuration using [**otelbin.io**](https://www.otelbin.io/) for spelling mistakes etc. Your `Logs:` pipeline should like this:
+Again, validate the agent configuration using [**otelbin.io**](https://www.otelbin.io/) for spelling mistakes etc. Your `metrics:` pipeline should like this:
 
+```mermaid
+graph LR
+  subgraph box[Metrics]
+    direction LR
+    %% Nodes
+      A[otlp<br>fa:fa-download]:::receiver
+      D[memory_limiter<br>fa:fa-microchip]:::processor
+      E[resource<br>fa:fa-microchip]:::processor
+      F[resourcedetection<br>fa:fa-microchip]:::processor      
+      J[batch<br>fa:fa-microchip]:::processor
+      L[debug<br>fa:fa-upload]:::exporter
+      N[otlphttp<br>fa:fa-upload]:::exporter
+
+    end
+    %% Links
+      A --> D
+      D --> F
+      F --> E
+      E --> J
+      J --> L
+      J --> N
+
+classDef receiver fill:#8b5cf6,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
+classDef processor fill:#6366f1,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
+classDef exporter fill:#8b5cf6,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
+style box stroke:#333,stroke-width:2px,fill:#f9a9a9a;
+```
+
+<!--
 ![logs from otelbin](../images/filelog-3-1-logs.png)
-
+-->
 This setup enables your OpenTelemetry Collector to handle network interruptions smoothly by storing telemetry data on disk and retrying failed transmissions. It combines checkpointing for recovery with queuing for efficient retries, enhancing the resilience and reliability of your pipeline. Now, let’s test the configuration!

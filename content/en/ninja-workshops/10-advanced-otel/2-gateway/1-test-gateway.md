@@ -35,32 +35,33 @@ Open the `agent.yaml` we copied earlier in your editor, and configure a `otlphtt
     otlphttp:
       endpoint: "http://localhost:5318" # Gateway endpoint
       headers:
-        # Replace with a Splunk Access Token
-        X-SF-Token: "FAKE_SPLUNK_ACCESS_TOKEN"
+        X-SF-Token: "A_ACCESS_TOKEN"    # New way to set an Splunk ACCESS_TOKEN
   ```
 
 - **Add a batch processor to the agent**: since the agent can send data from different sources, and benefit from retries, adding a Batch processor is useful too:
 
   ```yaml
-    batch:                     # Processor Type
-    # Array of metadata keys to batch data by
-      metadata_keys: [X-SF-Token] 
+    batch:                              # Processor Type
+      metadata_keys: [X-SF-Token]       # Array of metadata keys to batch 
   ```
 
 - **Update Pipelines**: replace the `file:` exporter with the `otlphttp` exporter in the `traces`, `metrics`, and `logs` pipelines. Also, add the `hostmetrics` receiver to the `metrics` pipeline.
 
   ```yaml
-     #traces:            # Traces Pipeline
-     metrics:            # Metrics Pipeline
-      receivers: [otlp, hostmetrics]  # Array of receivers in this pipeline
-      processors:        # Array of Processors in thi pipeline
-      - memory_limiter   # You also could use [memory_limiter]
-      - resourcedetection
-      - resource/add_mode
-      - batch
-      # Array of Exporters in this pipeline
-      exporters: [otlphttp, debug]
-      # logs:            # Log's Pipeline
+     #traces:
+     metrics:
+      receivers: 
+      - otlp                        # OTLP Receiver
+      - hostmetrics                 # Hostmetrics Receiver
+      processors:
+      - memory_limiter              # Memory Limiter Processor
+      - resourcedetection           # Adds system attributes to the data
+      - resource/add_mode           # Adds collector mode metadata
+      - batch                       # Batch Processor, groups data before send
+      exporters:
+      - debug                       # Debug Exporter 
+      - otlphttp                    # OTLP/HTTP EXporter used by Splunk O11Y
+      # logs:
   ```
 
 {{% /notice %}}  

@@ -54,4 +54,33 @@ Open the `gateway.yaml` and add the following configuration to the `processors` 
 
 Validate the gateway configuration using **[otelbin.io](https://www.otelbin.io/)**, the results for the `traces` pipeline should look like this:
 
+```mermaid
+graph LR
+  subgraph box[Traces]
+    direction LR
+    %% Nodes
+      A[otlp<br>fa:fa-download]:::receiver
+      D[memory_limiter<br>fa:fa-microchip]:::processor
+      E[resource<br>fa:fa-microchip]:::processor
+      F[resourcedetection<br>fa:fa-microchip]:::processor      
+      J[batch<br>fa:fa-microchip]:::processor
+      L[debug<br>fa:fa-upload]:::exporter
+      N[otlphttp<br>fa:fa-upload]:::exporter
+
+    end
+    %% Links
+      A --> D
+      D --> F
+      F --> E
+      E --> J
+      J --> L
+      J --> N
+
+classDef receiver fill:#8b5cf6,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
+classDef processor fill:#6366f1,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
+classDef exporter fill:#8b5cf6,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
+style box stroke:#333,stroke-width:2px,fill:#f9a9a9a;
+```
+<!--
 ![otelbin-f-5-1-traces](../images/spans-5-1-trace.png)
+-->
