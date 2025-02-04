@@ -55,32 +55,35 @@ Open the `gateway.yaml` and add the following configuration to the `processors` 
 Validate the gateway configuration using **[otelbin.io](https://www.otelbin.io/)**, the results for the `traces` pipeline should look like this:
 
 ```mermaid
+%%{init:{"fontFamily":"monospace"}}%%
 graph LR
-  subgraph box[Traces]
-    direction LR
     %% Nodes
-      A[otlp<br>fa:fa-download]:::receiver
-      D[memory_limiter<br>fa:fa-microchip]:::processor
-      E[resource<br>fa:fa-microchip]:::processor
-      F[resourcedetection<br>fa:fa-microchip]:::processor      
-      J[batch<br>fa:fa-microchip]:::processor
-      L[debug<br>fa:fa-upload]:::exporter
-      N[otlphttp<br>fa:fa-upload]:::exporter
-
-    end
+      REC1(&nbsp;&nbsp;otlp&nbsp;&nbsp;<br>fa:fa-download):::receiver
+      PRO1(memory_limiter<br>fa:fa-microchip):::processor
+      PRO2(resourcedetection<br>fa:fa-microchip):::processor
+      PRO3(resource<br>fa:fa-microchip):::processor
+      PRO5(batch<br>fa:fa-microchip):::processor
+      PRO6(attributes<br>fa:fa-microchip):::processor
+      EXP1(&ensp;debug&ensp;<br>fa:fa-upload):::exporter
+      EXP2(&ensp;&ensp;file&ensp;&ensp;<br>fa:fa-upload):::exporter
     %% Links
-      A --> D
-      D --> F
-      F --> E
-      E --> J
-      J --> L
-      J --> N
-
-classDef receiver fill:#8b5cf6,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
-classDef processor fill:#6366f1,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
-classDef exporter fill:#8b5cf6,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
-style box stroke:#333,stroke-width:2px,fill:#f9a9a9a;
+    subID1:::sub-traces
+    subgraph " "
+      subgraph subID1[Traces]
+      direction LR
+      REC1 --> PRO1
+      PRO1 --> PRO6
+      PRO6 --> PRO2
+      PRO2 --> PRO3
+      PRO3 --> PRO5
+      PRO5 --> EXP2
+      PRO5 --> EXP1
+      end
+    end
+classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
+classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
+classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
+classDef sub-traces stroke:#fbbf24,stroke-width:2px, color:#fbbf24;
 ```
-<!--
-![otelbin-f-5-1-traces](../images/spans-5-1-trace.png)
--->
+
+<!--![otelbin-f-5-1-traces](../images/spans-5-1-trace.png)-->
