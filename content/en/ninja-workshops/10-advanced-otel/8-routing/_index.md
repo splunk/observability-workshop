@@ -89,12 +89,15 @@ To enable routing we need to define two pipelines for traces:
   ```yaml
     pipelines:
       #traces:               
-      traces/standard:         # Array of Trace Receivers
-        receivers: [routing]   # Only receives spans from the routing connector 
+      traces/standard:                # New Default Traces/Spans Pipeline    
+        receivers: 
+        - routing                     # Routing Connector, Only receives data from Connector
         processors:
-        - memory_limiter
-        - resource/add_mode
-        exporters: [file/traces/standard, debug] # Location for spans not matching rule
+        - memory_limiter              # Memory Limiter Processor
+        - resource/add_mode           # Adds collector mode metadata
+        exporters:
+        - debug                       # Debug Exporter
+        - file/traces/standard        # File Exporter for spans NOT matching rule
   ```
 
   - The Target pipeline, that will handle all spans that match the routing rule.
@@ -103,12 +106,15 @@ To enable routing we need to define two pipelines for traces:
     pipelines:
       #traces:
       #traces/standard:
-      traces/security:         # Array of Trace Receivers
-        receivers: [routing]   # Only receives spans from the routing connector 
+      traces/security:                # New Security Traces/Spans Pipeline       
+        receivers: 
+        - routing                     # Routing Connector, Only receives data from Connector
         processors:
-        - memory_limiter
-        - resource/add_mode
-        exporters: [file/traces/security, debug] # Location for spans matching rule
+        - memory_limiter              # Memory Limiter Processor
+        - resource/add_mode           # Adds collector mode metadata
+        exporters:
+        - debug                       # Debug Exporter 
+        - file/traces/security        # File Exporter for spans matching rule
       #metrics:
   ```
 
@@ -119,9 +125,11 @@ For clarity, we are removing the `debug` exporter from this pipeline, so that de
 
 ```yaml
   pipelines:
-    traces:                       # Original traces pipeline
-      receivers: [otlp]           # Array of Trace Receivers
-      exporters: [routing]       # Array of Trace exporters
+    traces:                           # Original traces pipeline
+      receivers: 
+      - otlp                          # Debug Exporter            
+      exporters: 
+      - routing                       # Routing Connector, Only exports data to Connector
 ```
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
