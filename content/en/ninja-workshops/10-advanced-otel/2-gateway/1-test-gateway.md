@@ -68,38 +68,39 @@ Open the `agent.yaml` we copied earlier in your editor, and configure a `otlphtt
 Again, validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. As example, here is the result for the `metrics` pipeline:
 
 ```mermaid
+%%{init:{"fontFamily":"monospace"}}%%
 graph LR
-  subgraph box[Traces]
-    direction LR
     %% Nodes
-      A[otlp<br>fa:fa-download]:::receiver
-      B[hostmetrics<br>fa:fa-download ]:::receiver
-      D[memory_limiter<br>fa:fa-microchip]:::processor
-      E[resource<br>fa:fa-microchip]:::processor
-      F[resourcedetection<br>fa:fa-microchip]:::processor      
-      J[batch<br>fa:fa-microchip]:::processor
-      L[debug<br>fa:fa-upload]:::exporter
-      N[otlphttp<br>fa:fa-upload]:::exporter
-
-    end
+      REC1(hostmetrics<br>fa:fa-download):::receiver
+      REC2(&nbsp;&nbsp;&nbsp;&nbsp;otlp&nbsp;&nbsp;&nbsp;&nbsp;<br>fa:fa-download):::receiver
+      PRO1(memory_limiter<br>fa:fa-microchip):::processor
+      PRO2(resourcedetection<br>fa:fa-microchip):::processor
+      PRO3(resource<br>fa:fa-microchip):::processor
+      PRO4(batch<br>fa:fa-microchip):::processor
+      EXP1(otlphttp<br>fa:fa-upload):::exporter
+      EXP2(&ensp;debug&ensp;<br>fa:fa-upload):::exporter
     %% Links
-      A --> D
-      B --> D
-      D --> F
-      F --> E
-      E --> J
-      J --> L
-      J --> N
-
-classDef receiver fill:#8b5cf6,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
-classDef processor fill:#6366f1,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
-classDef exporter fill:#8b5cf6,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
-classDef connector fill:#00ff7f,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
-style box stroke:#333,stroke-width:2px,fill:#f9a9a9a;
+    subID1:::sub-metrics
+    subgraph " "
+      subgraph subID1[Metrics]
+      direction LR
+      REC1 --> PRO1
+      REC2 --> PRO1
+      PRO1 --> PRO2
+      PRO2 --> PRO3
+      PRO3 --> PRO4
+      PRO4 --> EXP1
+      PRO4 --> EXP2
+      end
+    end
+classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
+classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
+classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
+classDef sub-metrics stroke:#38bdf8,stroke-width:2px, color:#38bdf8,stroke-dasharray: 5 5;
 ```
-<!--
-![otelbin-g-2-2-metrics](../../images/gateway-2-2-metrics.png)
--->
+
+<!--![otelbin-g-2-2-metrics](../../images/gateway-2-2-metrics.png)-->
+
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 The `otlphttp` exporter is now the default method for sending metrics and traces to the Splunk Observability Cloud.  
 
