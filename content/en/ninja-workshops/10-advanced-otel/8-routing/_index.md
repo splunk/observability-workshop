@@ -144,44 +144,52 @@ Additionally, the `batch` processor has been removed from the new pipelines. Thi
 Again, validate the `gateway` configuration using `otelbin.io` for spelling mistakes etc. Your `Traces:` pipeline should like this:
 
 ```mermaid
+%%{init:{"fontFamily":"monospace"}}%%
 graph LR
-  subgraph box[Traces]
-    direction LR
     %% Nodes
-      A[otlp<br>fa:fa-download]:::receiver
-      D[memory_limiter<br>fa:fa-microchip]:::processor
-      D2[memory_limiter<br>fa:fa-microchip]:::processor
-      F[resource<br>fa:fa-microchip]:::processor
-      F2[resource<br>fa:fa-microchip]:::processor
-      L[debug<br>fa:fa-upload]:::exporter
-      L2[debug<br>fa:fa-upload]:::exporter
-      M[file<br>fa:fa-upload]:::exporter
-      M2[file<br>fa:fa-upload]:::exporter
-      O[routing<br>fa:fa-route]:::con-export
-      P[routing<br>fa:fa-route]:::con-receive
-      P2[routing<br>fa:fa-route]:::con-receive
-    end
+      REC1(&nbsp;&nbsp;&nbsp;otlp&nbsp;&nbsp;&nbsp;<br>fa:fa-download):::receiver
+      PRO1(memory_limiter<br>fa:fa-microchip):::processor
+      PRO2(memory_limiter<br>fa:fa-microchip):::processor
+      PRO3(resource<br>fa:fa-microchip):::processor
+      PRO4(resource<br>fa:fa-microchip):::processor
+      EXP1(&nbsp;&ensp;debug&nbsp;&ensp;<br>fa:fa-upload):::exporter
+      EXP2(&emsp;&emsp;file&emsp;&emsp;<br>fa:fa-upload):::exporter
+      EXP3(&nbsp;&ensp;debug&nbsp;&ensp;<br>fa:fa-upload):::exporter
+      EXP4(&emsp;&emsp;file&emsp;&emsp;<br>fa:fa-upload):::exporter
+      ROUTE1(&nbsp;routing&nbsp;<br>fa:fa-route):::con-export
+      ROUTE2(&nbsp;routing&nbsp;<br>fa:fa-route):::con-receive
+      ROUTE3(&nbsp;routing&nbsp;<br>fa:fa-route):::con-receive
     %% Links
-      A --> O
-      O --> P
-      P --> D
-      D --> F
-      F --> L
-      F --> M
-      O --> P2
-      P2 --> D2
-      D2 --> F2
-      F2 --> L2
-      F2 --> M2
-
-classDef receiver fill:#8b5cf6,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
-classDef processor fill:#6366f1,stroke:#333,stroke-width:2px,padding-left:110px,color:#fff;
-classDef exporter fill:#8b5cf6,stroke:#333,stroke-width:2px, padding-left:110px,color:#fff;
-classDef con-receive fill:#45c175,stroke:#333,stroke-width:2px, padding-left:110px,color:#333;
-classDef con-export fill:#45c175,stroke:#333,stroke-width:2px, padding-left:110px,color:#333;
-style box stroke:#333,stroke-width:2px,fill:#f9a9a9a;
+    subID1:::sub-traces
+    subID2:::sub-traces
+    subID3:::sub-traces
+    subgraph main[" "]
+    direction LR
+      subgraph subID1[Traces]
+      REC1 --> ROUTE1
+      end
+      subgraph subID2[Traces/standard]
+      ROUTE1 --> ROUTE2
+      ROUTE2 --> PRO1
+      PRO1 --> PRO3
+      PRO3 --> EXP1
+      PRO3 --> EXP2
+      end
+      subgraph subID3[Traces/security]
+      ROUTE1 --> ROUTE3
+      ROUTE3 --> PRO2
+      PRO2 --> PRO4
+      PRO4 --> EXP3
+      PRO4 --> EXP4
+      end
+    end
+classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
+classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
+classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
+style main fill:#333
+classDef sub-traces stroke:#fbbf24,stroke-width:2px, color:#fbbf24;
 ```
-<!--
-![Routing Connector](../images/routing-8-1.png)
--->
+
+<!--![Routing Connector](../images/routing-8-1.png)-->
+
 Lets' test our configuration!
