@@ -69,7 +69,7 @@ graph LR
     %% Links
     subID1:::sub-traces
     subgraph " "
-      subgraph subID1[Traces]
+      subgraph subID1[**Traces**]
       direction LR
       REC1 --> PRO1
       PRO1 --> PRO6
@@ -86,4 +86,4 @@ classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:
 classDef sub-traces stroke:#fbbf24,stroke-width:2px, color:#fbbf24,stroke-dasharray: 5 5;
 ```
 
-<!--![otelbin-f-5-1-traces](../images/spans-5-1-trace.png)-->
+![otelbin-f-5-1-traces](../images/spans-5-1-trace.png)
