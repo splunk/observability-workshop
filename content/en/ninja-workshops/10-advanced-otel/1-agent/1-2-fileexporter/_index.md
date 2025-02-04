@@ -2,6 +2,7 @@
 title: File Exporter
 linkTitle: 1.2. File Exporter
 weight: 2
+mermaidZoom: true
 ---
 
 To capture more than just debug output on the screen, we also want to generate output during the export phase of the pipeline. For this, we'll add a **File Exporter** to write OTLP data to files for comparison.
@@ -48,7 +49,20 @@ To verify that your updated `agent.yaml` file is correct, validate it using [**o
 
 For reference, the `metrics:` section of your pipelines should look similar to this:
 
+```mermaid
+---
+title: Traces
+---
+  flowchart LR;
+  otlp(fa:fa-download otlp) --> memorylimiter(fa:fa-microchip memory_limiter)
+  hostmetrics(fa:fa-download hostmetrics) --> memorylimiter
+  memorylimiter --> debug(fa:fa-upload debug)
+  memorylimiter --> file(file fa:fa-upload)
+```
+
+<!--
 ![otelbin-a-1-2-w](../../images/agent-1-2-metrics.png?width=25vw)
+-->
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 
