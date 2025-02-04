@@ -27,7 +27,7 @@ vi /home/splunk/workshop/docker-k8s-otel/helloworld/Dockerfile
 ```
 > Press the i key to enter edit mode in vi
 
-> Paste the code beneath 'NEW CODE' into your Dockerfile in the build stage section:
+> Paste the lines marked with 'NEW CODE' into your Dockerfile in the build stage section:
 
 ``` dockerfile
 # CODE ALREADY IN YOUR DOCKERFILE:
@@ -40,15 +40,14 @@ WORKDIR "/src/helloworld"
 COPY . .
 RUN dotnet build "./helloworld.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# NEW CODE:
-# Add dependencies for splunk-otel-dotnet-install.sh
+# NEW CODE: add dependencies for splunk-otel-dotnet-install.sh
 RUN apt-get update && \
 	apt-get install -y unzip
 
-# Download Splunk OTel .NET installer
+# NEW CODE: download Splunk OTel .NET installer
 RUN curl -sSfL https://github.com/signalfx/splunk-otel-dotnet/releases/latest/download/splunk-otel-dotnet-install.sh -O
 
-# Install the distribution
+# NEW CODE: install the distribution
 RUN sh ./splunk-otel-dotnet-install.sh
 ```
 
@@ -65,27 +64,89 @@ It's easiest to simply replace the entire final stage with the following:
 > which can be determined by running `echo $INSTANCE`.
 
 ``` dockerfile 
+# CODE ALREADY IN YOUR DOCKERFILE
 FROM base AS final
 
-# Copy instrumentation file tree
+# NEW CODE: Copy instrumentation file tree
 WORKDIR "//home/app/.splunk-otel-dotnet"
 COPY --from=build /root/.splunk-otel-dotnet/ .
 
+# CODE ALREADY IN YOUR DOCKERFILE
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+# NEW CODE: copy the entrypoint.sh script
 COPY entrypoint.sh .
 
+# NEW CODE: set OpenTelemetry environment variables
 ENV OTEL_SERVICE_NAME=helloworld
 ENV OTEL_RESOURCE_ATTRIBUTES='deployment.environment=otel-$INSTANCE'
 
+# NEW CODE: replace the prior ENTRYPOINT command with the following two lines 
 ENTRYPOINT ["sh", "entrypoint.sh"]
 CMD ["dotnet", "helloworld.dll"]
 ```
 
-> To save your changes in vi, press the `esc` key to enter command mode, then type `wq!` followed by pressing the `enter/return` key.
+> To save your changes in vi, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the `enter/return` key.
 
-You can find the final version of the Dockerfile in the 
-`/home/splunk/workshop/docker-k8s-otel/docker` directory. 
+After all of these changes, the Dockerfile should look like the following: 
+
+> **IMPORTANT** if you're going to copy and paste this content into your own Dockerfile, 
+> replace `$INSTANCE` in your Dockerfile with your instance name,
+> which can be determined by running `echo $INSTANCE`.
+
+``` dockerfile 
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+USER app
+WORKDIR /app
+EXPOSE 8080
+
+# CODE ALREADY IN YOUR DOCKERFILE:
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+COPY ["helloworld.csproj", "helloworld/"]
+RUN dotnet restore "./helloworld/./helloworld.csproj"
+WORKDIR "/src/helloworld"
+COPY . .
+RUN dotnet build "./helloworld.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+# NEW CODE: add dependencies for splunk-otel-dotnet-install.sh
+RUN apt-get update && \
+	apt-get install -y unzip
+
+# NEW CODE: download Splunk OTel .NET installer
+RUN curl -sSfL https://github.com/signalfx/splunk-otel-dotnet/releases/latest/download/splunk-otel-dotnet-install.sh -O
+
+# NEW CODE: install the distribution
+RUN sh ./splunk-otel-dotnet-install.sh
+
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "./helloworld.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+# CODE ALREADY IN YOUR DOCKERFILE
+FROM base AS final
+
+# NEW CODE: Copy instrumentation file tree
+WORKDIR "//home/app/.splunk-otel-dotnet"
+COPY --from=build /root/.splunk-otel-dotnet/ .
+
+# CODE ALREADY IN YOUR DOCKERFILE
+WORKDIR /app
+COPY --from=publish /app/publish .
+
+# NEW CODE: copy the entrypoint.sh script
+COPY entrypoint.sh .
+
+# NEW CODE: set OpenTelemetry environment variables
+ENV OTEL_SERVICE_NAME=helloworld
+ENV OTEL_RESOURCE_ATTRIBUTES='deployment.environment=otel-$INSTANCE'
+
+# NEW CODE: replace the prior ENTRYPOINT command with the following two lines 
+ENTRYPOINT ["sh", "entrypoint.sh"]
+CMD ["dotnet", "helloworld.dll"]
+```
 
 
 ## Create the entrypoint.sh file
@@ -106,7 +167,7 @@ Then paste the following code into the newly created file:
 # Then run the CMD
 exec "$@"
 ```
-> To save your changes in vi, press the `esc` key to enter command mode, then type `wq!` followed by pressing the `enter/return` key.
+> To save your changes in vi, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the `enter/return` key.
 
 The `entrypoint.sh` script is required for sourcing environment variables from the instrument.sh script, 
 which is included with the instrumentation. This ensures the correct setup of environment variables 
@@ -175,4 +236,42 @@ After a minute or so, confirm that you see new traces in Splunk Observability Cl
  
 ## Troubleshooting
 
-If you don't see traces appear in Splunk Observability Cloud, what can you do to troubleshoot? 
+If you don't see traces appear in Splunk Observability Cloud, here's how you can troubleshoot. 
+
+First, open the collector config file for editing: 
+
+``` bash
+vi /etc/otel/collector/agent_config.yaml
+```
+
+Next, add the debug exporter to the traces pipeline, which ensures the traces are written to the collector logs:
+
+``` yaml
+service:
+  extensions: [health_check, http_forwarder, zpages, smartagent]
+  pipelines:
+    traces:
+      receivers: [jaeger, otlp, zipkin]
+      processors:
+      - memory_limiter
+      - batch
+      - resourcedetection
+      #- resource/add_environment
+      # NEW CODE: add the debug exporter here
+      exporters: [otlphttp, signalfx, debug]
+```
+
+Then, restart the collector to apply the configuration changes: 
+
+``` bash
+sudo systemctl restart splunk-otel-collector
+```
+
+We can then view the collector logs using `journalctl`:
+
+> Press Ctrl + C to exit out of tailing the log.
+
+``` bash
+sudo journalctl -u splunk-otel-collector -f -n 100
+```
+
