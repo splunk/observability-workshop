@@ -18,7 +18,7 @@ Next, create a file called `gateway.yaml` and add the following initial configur
 extensions:                       # Array of Extensions
   health_check:                   # Configures the health check extension
     endpoint: 0.0.0.0:13133       # Endpoint to collect health check data
-    
+
 receivers:
   otlp:                           # Receiver Type
     protocols:                    # list of Protocols used
@@ -136,5 +136,3 @@ classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
 classDef sub-logs stroke:#34d399,stroke-width:1px, color:#34d399,stroke-dasharray: 3 3;
 ```
-
-<!--[otelbin-logs](../images/gateway-2-1-logs.png?width=50vw)-->
