@@ -138,6 +138,4 @@ By inspecting the output files, we confirmed that the OpenTelemetry Collector *c
 
 You can now extend this approach by defining additional routing rules to further categorize spans, metrics, and logs based on different attributes.
 
-If you want to know more about the `routing` connector, you can find it [here](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/routingconnector)
-
-Stop the **Agent**, **Gateway** and the` Quotes generating script` as well using `Ctrl-C`
+Stop the **Agent**, **Gateway** and the **quotes generating script**.
