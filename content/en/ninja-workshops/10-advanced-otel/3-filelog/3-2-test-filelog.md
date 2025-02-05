@@ -4,42 +4,50 @@ linkTitle: 3.2 Test Configuration
 weight: 2
 ---
 
-In your gateway terminal window, navigate to the `[WORKSHOP]/3-filelog` directory, then start the gateway collector and wait for it to be ready to receive data.
+In your `Gateway` terminal window, navigate to the `[WORKSHOP]/3-filelog` directory, then start the `gateway` collector and wait for it to be ready to receive data.
 
-Next, to test the Filelog Receiver, switch to your agent terminal window, navigate to the same `[WORKSHOP]/3-filelog` directory, and start the agent.
+Next, to test the `Filelog Receiver`, switch to your `Agent` terminal window, navigate to the same `[WORKSHOP]/3-filelog` directory, and start the `agent`.
 
-Once running, the agent should begin sending CPU metrics as before. Both the agent and the gateway should display debug output similar to the following:
+Once the agent is running, it will start sending CPU metrics as before. Initially, both the agent and the gateway will display CPU debug information. After that, a continuous stream of log data will appear. The debug output should look similar to the following:
+
+```text
+2025-02-05T18:05:17.050+0100    info    Logs    {"kind": "exporter", "data_type": "logs", "name": "debug", "resource logs": 1, "log records": 1}
+<snip>
+       {"kind": "exporter", "data_type": "logs", "name": "debug"}
+```
 
 {{% expand title="{{% badge style=primary icon=scroll %}}Check Full Debug Log{{% /badge %}}" %}}
 
 ```text
-2025-01-18T21:25:01.806+0100    info    ResourceLog #0
+2025-02-05T18:05:17.050+0100    info    Logs    {"kind": "exporter", "data_type": "logs", "name": "debug", "resource logs": 1, "log records": 1}
+2025-02-05T18:05:17.050+0100    info    ResourceLog #0
 Resource SchemaURL: https://opentelemetry.io/schemas/1.6.1
 Resource attributes:
+     -> com.splunk.source: Str(./quotes.log)
      -> com.splunk.sourcetype: Str(quotes)
-     -> com.splunk/source: Str(./quotes.log)
-     -> host.name: (YOUR_HOST_NAME)
-     -> os.type: Str(YOUR_OS)
+     -> host.name: Str(PH-Windows-Box.hagen-ict.nl)
+     -> os.type: Str(windows)
      -> otelcol.service.mode: Str(gateway)
 ScopeLogs #0
 ScopeLogs SchemaURL:
 InstrumentationScope
 LogRecord #0
-ObservedTimestamp: 2025-01-18 20:25:01.7201606 +0000 UTC
+ObservedTimestamp: 2025-02-05 17:05:16.6926816 +0000 UTC
 Timestamp: 1970-01-01 00:00:00 +0000 UTC
 SeverityText:
 SeverityNumber: Unspecified(0)
-Body: Str(2025-01-18 21:25:01 [WARN] - Do or do not, there is no try.)
+Body: Str(2025-02-05 18:05:16 [INFO] - All we have to decide is what to do with the time that is given)us.
 Attributes:
      -> log.file.path: Str(quotes.log)
 Trace ID:
 Span ID:
 Flags: 0
+        {"kind": "exporter", "data_type": "logs", "name": "debug"}
 ```
 
 {{% /expand %}}
 
-When the agent begins reading the `quotes.log` file, it will display this activity in the debug console output and forward the log lines to the gateway. The gateway pipeline will then generate the `gateway-log.out` file. At this point, your directory structure will appear as follows:
+When the agent is reading the `quotes.log` file, it will display this activity in the debug console output as we have seen. It then forwards the log lines to the gateway. The gateway pipeline will then generate the `gateway-log.out` file. At this point, your directory structure will appear as follows:
 
 {{% tab title="Updated Directory Structure" %}}
 
