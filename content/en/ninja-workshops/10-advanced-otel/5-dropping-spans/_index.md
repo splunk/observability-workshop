@@ -83,7 +83,7 @@ graph LR
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
 classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
-classDef sub-traces stroke:#fbbf24,stroke-width:2px, color:#fbbf24,stroke-dasharray: 5 5;
+classDef sub-traces stroke:#fbbf24,stroke-width:1px, color:#fbbf24,stroke-dasharray: 3 3;
 ```
 
 ![otelbin-f-5-1-traces](../images/spans-5-1-trace.png)
