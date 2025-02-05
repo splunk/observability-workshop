@@ -54,11 +54,22 @@ chmod +x otelcol
 
 Mac users must trust the executable when running `otelcol` for the first time. For more details, refer to [**Apple's support page**](https://support.apple.com/en-mide/102445).
 
-{{% tab title="Initial Directory Structure" %}}
+{{% tabs %}}
+{{% tab title="Initial Linux/Mac Directory Structure" %}}
 
 ```text
 [WORKSHOP]
-└── otelcol  (.exe)  # OpenTelemetry Collector binary
+└── otelcol      # OpenTelemetry Collector binary
 ```
 
 {{% /tab %}}
+{{% tab title="Initial Windows Directory Structure" %}}
+
+```text
+[WORKSHOP]
+└── otelcol.exe  # OpenTelemetry Collector binary
+```
+
+{{% /tab %}}
+
+{{% /tabs %}}

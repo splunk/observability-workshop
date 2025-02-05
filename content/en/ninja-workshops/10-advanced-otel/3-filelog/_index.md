@@ -11,11 +11,11 @@ The Filelog receiver is not recommended for production use, as it is not optimiz
 
 ### Setup
 
-In the [WORKSHOP] directory, create a new subdirectory named `3-filelog` and navigate into it. Then, copy the  contents from the `2-gateway` directory into it. Remove any files with the extensions `.out` or `.old`.
+In the `[WORKSHOP]` directory, create a new subdirectory named `3-filelog` and navigate into it. Then, copy the  contents from the `2-gateway` directory into it. Remove any files with the extensions `.out` or `.old`.
 
-Next, create a file called gateway.yaml and add the following initial configuration and the script provided below that corresponds to your operating system. Create the appropriate log generation script in the new directory—`log-gen.sh` for Mac or Linux, or `log-gen.ps1` for Windows. Ensure the script is executable.
+Create the appropriate log generation file in the new directory (`log-gen.sh` for Mac or Linux, or `log-gen.ps1` for Windows) using the script below that corresponds to your operating system. Ensure the script is executable.
 
-{{% tab title="Directory Structure after script creation" %}}
+{{% tab title="Updated Directory Structure" %}}
 
 ```text
 WORKSHOP
