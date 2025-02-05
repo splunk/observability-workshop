@@ -31,7 +31,7 @@ Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**
 graph LR
     %% Nodes
       REC1(&nbsp;&nbsp;otlp&nbsp;&nbsp;<br>fa:fa-download):::receiver
-      REC2(filelog<br>fa:fa-download):::receiver
+      REC2(filelog<br>fa:fa-download<br>quotes):::receiver
       PRO1(memory_limiter<br>fa:fa-microchip):::processor
       PRO2(resourcedetection<br>fa:fa-microchip):::processor
       PRO3(resource<br>fa:fa-microchip):::processor
