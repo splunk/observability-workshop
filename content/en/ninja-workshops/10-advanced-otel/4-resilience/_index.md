@@ -1,5 +1,5 @@
 ---
-title: Building In Resilience
+title: 4. Building In Resilience
 linkTitle: 4. Resilience
 time: 10 minutes
 weight: 4

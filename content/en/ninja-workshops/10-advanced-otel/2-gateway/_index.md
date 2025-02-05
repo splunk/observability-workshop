@@ -10,6 +10,7 @@ In the `[WORKSHOP]` directory, create a new subdirectory named `2-gateway` and n
 Next, create a file called `gateway.yaml` and add the following initial configuration.
 
 {{% tab title="gateway.yaml" %}}
+{{% expand title="{{% badge style=primary icon=scroll %}}Expand to view YAML{{% /badge %}}" %}}
 
 ```yaml
 ###########################         This section holds all the
@@ -72,6 +73,10 @@ service:                          # Services configured for this Collector
       - debug                     # Debug Exporter      
 ```
 
+{{% /expand %}}
+{{% /tab %}}
+
+{{% notice title="Exercise" style="green" icon="running" %}}
 {{% /tab %}}
 
 {{% tab title="Updated Directory Structure" %}}

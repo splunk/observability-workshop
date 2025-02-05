@@ -1,5 +1,5 @@
 ---
-title: Filelog Receiver
+title: 3. Filelog Receiver
 linkTitle: 3. Filelog Receiver Setup
 time: 10 minutes
 weight: 3
