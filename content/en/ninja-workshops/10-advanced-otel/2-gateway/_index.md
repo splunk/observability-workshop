@@ -15,6 +15,10 @@ Next, create a file called `gateway.yaml` and add the following initial configur
 ###########################         This section holds all the
 ## Configuration section ##         configurations that can be 
 ###########################         used in this OpenTelemetry Collector
+extensions:                       # Array of Extensions
+  health_check:                   # Configures the health check extension
+    endpoint: 0.0.0.0:13133       # Endpoint to collect health check data
+    
 receivers:
   otlp:                           # Receiver Type
     protocols:                    # list of Protocols used
@@ -47,19 +51,25 @@ service:                          # Services configured for this Collector
   pipelines:                      # Array of configured pipelines
     traces:
       receivers:
+      - otlp                      # OTLP Receiver
       processors:
       - memory_limiter            # Memory Limiter processor
       exporters:
+      - debug 
     metrics:
       receivers:
-      processors:
+      - otlp                      # OTLP Receiver
+    processors:
       - memory_limiter            # Memory Limiter processor
       exporters:
+      - debug                     # Debug Exporter      
     logs:
       receivers:
+      - otlp                      # OTLP Receiver    
       processors:
       - memory_limiter            # Memory Limiter processor
       exporters:
+      - debug                     # Debug Exporter      
 ```
 
 {{% /tab %}}
@@ -78,12 +88,6 @@ service:                          # Services configured for this Collector
 
 {{% /tab %}}
 
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-We are introducing the [**batch processor**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/batchprocessor/README.md) with this gateway config. The Batch processor groups spans, metrics, or logs into batches, improving compression and reducing outgoing connections. It supports batching based on size and time.
-
-For optimal performance, it is recommended to use the Batch Processor in every collector. Place it after the memory_limiter and sampling processors to ensure batching only happens after any potential data drops, such as those from sampling.
-{{% /notice %}}
-
 In this section, we will extend the `gateway.yaml` configuration you just created to separate metric, traces & logs into different files.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
@@ -91,13 +95,15 @@ In this section, we will extend the `gateway.yaml` configuration you just create
 - **Configure File Exporters**: Separate exporters need to be configured for traces, metrics, and logs. Below is the YAML configuration for traces:
 
   ```yaml
-    file/traces:                       # Exporter Type/Name
-      path: "./gateway-traces.out"     # Path where data will be saved in OTLP json format
-      append: false                    # Overwrite the file each time
+    file/traces:                    # Exporter Type/Name
+      path: "./gateway-traces.out"  # Path where data will be saved in OTLP json format
+      append: false                 # Overwrite the file each time
   ```
 
-- **Create similar exporters for metrics and logs**: Using the above example, set the exporter names appropriately and update the file paths to `./gateway-metrics.out` for metrics and `./gateway-logs.out` for logs.
-- **Update the Pipelines Section**: Add each newly created exporter to its corresponding pipeline in the service configuration. Also, add the `batch` and `resource/add_mode` processors to each pipeline.
+- **Create additional exporters for `metrics` and `logs`**: Follow the example above, and set appropriate exporter names. Update the file paths to `./gateway-metrics.out` for `metrics` and `./gateway-logs.out` for `logs`.
+- **Add exporters to each pipeline**: Ensure that each pipeline includes its corresponding `file` exporter, placing it after the `debug` exporter.
+
+- **Add exporters to each pipeline**: Include the `resource/add_mode` and `batch` processors in every pipeline after the `memory_limiter`.
 
 {{% /notice %}}
 
@@ -109,7 +115,7 @@ graph LR
     %% Nodes
       REC1(&nbsp;&nbsp;otlp&nbsp;&nbsp;<br>fa:fa-download):::receiver
       PRO1(memory_limiter<br>fa:fa-microchip):::processor
-      PRO2(resource<br>fa:fa-microchip):::processor
+      PRO2(resource<br>fa:fa-microchip<br>add_mode):::processor
       PRO3(batch<br>fa:fa-microchip):::processor
       EXP1(&ensp;file&ensp;<br>fa:fa-upload):::exporter
       EXP2(&ensp;debug&ensp;<br>fa:fa-upload):::exporter
@@ -121,8 +127,8 @@ graph LR
       REC1 --> PRO1
       PRO1 --> PRO2
       PRO2 --> PRO3
-      PRO3 --> EXP1
       PRO3 --> EXP2
+      PRO3 --> EXP1
       end
     end
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
