@@ -108,6 +108,4 @@ classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:
 classDef sub-traces stroke:#fbbf24,stroke-width:1px, color:#fbbf24,stroke-dasharray: 3 3;
 ```
 
-<!--![Routing Connector](../images/routing-8-1.png)-->
-
 Lets' test our configuration!
