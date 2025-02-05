@@ -114,8 +114,8 @@ splunk-otel-collector-operator-6fd9f9d569-wd5mn                 2/2     Running 
 
 ## Confirm your K8s Cluster is in O11y Cloud
 
-In Splunk Observability Cloud, navigate to **Infrastructure** -> **Kubernetes** -> **Kubernetes Nodes**,
-and then Filter on your Cluster Name (which is `$INSTANCE-k3s-cluster`):
+In Splunk Observability Cloud, navigate to **Infrastructure** -> **Kubernetes** -> **Kubernetes Clusters**,
+and then search for your Cluster Name (which is `$INSTANCE-k3s-cluster`):
 
 ![Kubernetes node](../images/k8snode.png)
 
@@ -204,7 +204,16 @@ Let's look at an example.
 
 Suppose we want to see the traces that are sent to the collector.  We can use the debug exporter for this purpose, which can be helpful for troubleshooting OpenTelemetry-related issues.
 
-Let's add the debug exporter to the bottom of the `/home/splunk/workshop/tagging/otel/values.yaml` file as follows:
+You can use vi or nano to edit the `values.yaml` file. We will show an example using vi:
+
+``` bash
+vi /home/splunk/workshop/tagging/otel/values.yaml
+```
+
+Add the debug exporter to the bottom of the `values.yaml` file by copying and pasting the 
+section marked with `Add the section below` in the following example: 
+
+> Press 'i' to enter into insert mode in vi before adding the text below. 
 
 ``` yaml
 splunkObservability:
@@ -248,6 +257,9 @@ agent:
             - signalfx
             - debug
 ```
+
+> To save your changes in vi, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the
+>  `enter/return` key. 
 
 Once the file is saved, we can apply the changes with:
 
