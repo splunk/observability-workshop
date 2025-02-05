@@ -1,5 +1,5 @@
 ---
-title: Initial Configuration
+title: 1. Agent Configuration
 linkTitle: 1. Agent Configuration
 time: 10 minutes
 weight: 1
@@ -17,6 +17,7 @@ Inside the `1-agent` directory, create a file named `agent.yaml`. This file will
 
 Copy and paste the following initial configuration into `agent.yaml`:
 
+{{% tab title="agent.yaml" %}}
 ```yaml
 ###########################        This section holds all the
 ## Configuration section ##        configurations that can be 
@@ -61,6 +62,8 @@ service:                          # Services configured for this Collector
       exporters:
 
 ```
+
+{{% /tab %}}
 
 {{% tab title="Updated Directory Structure" %}}
 

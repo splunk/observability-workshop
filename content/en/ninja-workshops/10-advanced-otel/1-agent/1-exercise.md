@@ -1,5 +1,5 @@
 ---
-title: Exercise
+title: 1.1 Exercise
 linkTitle: 1.1 Exercise
 weight: 1
 ---
@@ -55,7 +55,7 @@ graph LR
     %% Links
     subID1:::sub-traces
     subgraph " "
-      subgraph subID1[Traces/Metrics/Logs]
+      subgraph subID1[**Traces/Metrics/Logs**]
       direction LR
       REC1 --> PRO1
       PRO1 --> EXP1
@@ -64,9 +64,14 @@ graph LR
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
 classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
-classDef sub-traces stroke:#fff,stroke-width:2px, color:#fff,stroke-dasharray: 5 5;
+classDef sub-traces stroke:#fff,stroke-width:1px, color:#fff,stroke-dasharray: 3 3;
 ```
 
 {{% notice note %}}
-You can safely ignore the warning about the unused `hostmetrics` receiver, we will use it later.
+You can safely ignore the warning in **otelbin.io** about the unused `hostmetrics` receiver, we will use it later:
+
+```text
+Receiver "hostmetrics" is unused. (Line 9)
+```
+
 {{% /notice %}}

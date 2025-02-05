@@ -1,5 +1,5 @@
 ---
-title: Test Configuration
+title: 1.2 Test Configuration
 linkTitle: 1.2 Test Configuration
 weight: 2
 ---
@@ -36,114 +36,13 @@ Instead of instrumenting an application, we will simulate sending trace data to 
 
 Open a second terminal window and navigate to the `[WORKSHOP]/1-agent` directory. In this new terminal (used for running `Tests`), create a new file named `trace.json` and copy the contents from one of the tabs below. Both tabs contain the same data, which includes a **span** that is part of a larger trace.
 
-{{% tabs %}}
-{{% tab title="Compacted JSON" %}}
+{{% tab title="trace.json" %}}
 
 ```json
 {"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"my.service"}},{"key":"deployment.environment","value":{"stringValue":"my.environment"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5B8EFFF798038103D269B633813FC60C","spanId":"EEE19B7EC3C1B174","parentSpanId":"EEE19B7EC3C1B173","name":"I'm a server span","startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","kind":2,"attributes":[{"key":"user.name","value":{"stringValue":"George Lucas"}},{"key":"user.phone_number","value":{"stringValue":"+1555-867-5309"}},{"key":"user.email","value":{"stringValue":"george@deathstar.email"}},{"key":"user.account_password","value":{"stringValue":"LOTR>StarWars1-2-3"}},{"key":"user.visa","value":{"stringValue":"4111 1111 1111 1111"}},{"key":"user.amex","value":{"stringValue":"3782 822463 10005"}},{"key":"user.mastercard","value":{"stringValue":"5555 5555 5555 4444"}}]}]}]}]}
 ```
 
 {{% /tab %}}
-{{% tab title="Formatted JSON" %}}
-
-```json
-{
-  "resourceSpans": [
-    {
-      "resource": {
-        "attributes": [
-          {
-            "key": "service.name",
-            "value": {
-              "stringValue": "my.service"
-            }
-          },
-          {
-            "key": "deployment.environment",
-            "value": {
-              "stringValue": "my.environment"
-            }
-          }
-        ]
-      },
-      "scopeSpans": [
-        {
-          "scope": {
-            "name": "my.library",
-            "version": "1.0.0",
-            "attributes": [
-              {
-                "key": "my.scope.attribute",
-                "value": {
-                  "stringValue": "some scope attribute"
-                }
-              }
-            ]
-          },
-          "spans": [
-            {
-              "traceId": "5B8EFFF798038103D269B633813FC60C",
-              "spanId": "EEE19B7EC3C1B174",
-              "parentSpanId": "EEE19B7EC3C1B173",
-              "name": "I'm a server span",
-              "startTimeUnixNano": "1544712660000000000",
-              "endTimeUnixNano": "1544712661000000000",
-              "kind": 2,
-              "attributes": [
-                {
-                  "key": "user.name",
-                  "value": {
-                    "stringValue": "George Lucas"
-                  }
-                },
-                {
-                  "key": "user.phone_number",
-                  "value": {
-                    "stringValue": "+1555-867-5309"
-                  }
-                },
-                {
-                  "key": "user.email",
-                  "value": {
-                    "stringValue": "george@deathstar.email"
-                  }
-                },
-                {
-                  "key": "user.account_password",
-                  "value": {
-                    "stringValue": "LOTR>StarWars1-2-3"
-                  }
-                },
-                {
-                  "key": "user.visa",
-                  "value": {
-                    "stringValue": "4111 1111 1111 1111"
-                  }
-                },
-                {
-                  "key": "user.amex",
-                  "value": {
-                    "stringValue": "3782 822463 10005"
-                  }
-                },
-                {
-                  "key": "user.mastercard",
-                  "value": {
-                    "stringValue": "5555 5555 5555 4444"
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
-```
-
-{{% /tab %}}
-{{% /tabs %}}
 
 This file will allow us to test how the OpenTelemetry Collector processes and send **spans** within a trace, without requiring actual application instrumentation.
 
