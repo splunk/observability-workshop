@@ -20,7 +20,7 @@ The script will begin writing lines to a file named `./quotes.log`, while displa
  ```
 
 **Run the Gateway**:
-Find your `Gateway` terminal window, and navigate to the `[WORKSHOP]/7-transform-data` directory and restart the gateway.
+Find your **Gateway** terminal window, and navigate to the `[WORKSHOP]/7-transform-data` directory and restart the gateway.
 
 It should start up normally and state : `Everything is ready. Begin running and processing data.`
 
@@ -32,7 +32,7 @@ It should also start up normally and state : `Everything is ready. Begin running
 {{% notice title="Exercise" style="green" icon="running" %}}
 In this exercise, we will **remove the** `com.splunk/source` and `os.type` **metadata** from the log resource attributes before it is exported by the **Agent**. We will also parse the log body to set the `SeverityText` and `SeverityNumber` on the `LogRecord` and promote the log `body` json fields to log `attributes`.
 
-- **Check the debug output** of both the **Agent** and `Gateway` to confirm that `com.splunk/source` and `os.type` have been removed.
+- **Check the debug output** of both the **Agent** and **Gateway** to confirm that `com.splunk/source` and `os.type` have been removed.
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
@@ -59,7 +59,7 @@ In this exercise, we will **remove the** `com.splunk/source` and `os.type` **met
 {{% /tab %}}
 {{% /tabs %}}
 
-- **Check the debug output** of both the **Agent** and `Gateway` to confirm that `SeverityText` and `SeverityNumber` in the `LogRecord` is now defined with the severity `level` from the log body. Confirm that the JSON fields from the body can be accessed as top-level log `Attributes`.
+- **Check the debug output** of both the **Agent** and **Gateway** to confirm that `SeverityText` and `SeverityNumber` in the `LogRecord` is now defined with the severity `level` from the log body. Confirm that the JSON fields from the body can be accessed as top-level log `Attributes`.
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
@@ -243,4 +243,4 @@ In this exercise, we will **remove the** `com.splunk/source` and `os.type` **met
 
 {{% /notice %}}
 
-Stop the **Agent** and `gateway` using Command-c/Ctrl-c.
+Stop the **Agent** and **Gateway** using Ctrl-C.

@@ -35,7 +35,7 @@ WORKSHOP
 
 {{% /tab %}}
 
-In the following exercise, you will configure the `routing connector` in the `gateway.yaml` file. This setup will enable the `gateway` to route traces based on the `deployment.environment` attribute in the spans you send. By doing so, you can process and handle traces differently depending on their attributes.
+In the following exercise, you will configure the `routing connector` in the `gateway.yaml` file. This setup will enable the **Gateway** to route traces based on the `deployment.environment` attribute in the spans you send. By doing so, you can process and handle traces differently depending on their attributes.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 Open the `gateway.yaml` and add the following configuration:
@@ -141,7 +141,7 @@ Additionally, the `batch` processor has been removed from the new pipelines. Thi
 
 {{% /notice %}}
 
-Again, validate the `gateway` configuration using `otelbin.io` for spelling mistakes etc. Your `Traces:` pipeline should like this:
+Again, validate the **Gateway** configuration using `otelbin.io` for spelling mistakes etc. Your `Traces:` pipeline should like this:
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%

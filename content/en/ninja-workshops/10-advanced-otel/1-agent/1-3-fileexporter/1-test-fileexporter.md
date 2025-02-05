@@ -42,7 +42,7 @@ You should now see a file named `agent.out` in the current directory. Since no m
 {{% /tab %}}
 
 {{% notice note %}}
-On **Windows**, an open file may appear empty or cause issues when attempting to read it. To prevent this, make sure to stop the **Agent** or the `gateway` before inspecting the file, as instructed.
+On **Windows**, an open file may appear empty or cause issues when attempting to read it. To prevent this, make sure to stop the **Agent** or the **Gateway** before inspecting the file, as instructed.
 {{% /notice %}}
 
 The span is written to the `agent.out` as a single line in OTLP/JSON format:
