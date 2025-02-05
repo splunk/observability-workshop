@@ -1,5 +1,5 @@
 ---
-title: Dropping Spans
+title: 5. Dropping Spans
 linkTitle: 5. Dropping Spans
 time: 10 minutes
 weight: 5

@@ -1,5 +1,5 @@
 ---
-title: Test Redaction Processor
+title: 6.2 Test Redaction Processor
 linkTitle: 6.2 Test Redaction Processor
 weight: 2
 ---

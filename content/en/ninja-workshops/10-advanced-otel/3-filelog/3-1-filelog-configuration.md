@@ -1,5 +1,5 @@
 ---
-title: Filelog Receiver Configuration
+title: 3.1 Filelog Receiver Configuration
 linkTitle: 3.1 Filelog Configuration
 weight: 1
 ---

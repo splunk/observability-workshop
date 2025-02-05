@@ -1,5 +1,5 @@
 ---
-title: Redacting Sensitive Data
+title: 6. Redacting Sensitive Data
 linkTitle: 6. Sensitive Data
 time: 10 minutes
 weight: 6
