@@ -22,7 +22,7 @@ Find your `Agent` terminal window, and stop the running collector by pressing `C
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Configuring a `file` exporter**: Add the following under the `exporters` section of your `agent.yaml`:
+- **Configuring a `file` exporter**: The [**File Exporter**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/fileexporter/README.md) writes telemetry data to files on disk.
 
   ```yaml
     file:                           # Exporter Type
@@ -33,7 +33,6 @@ Find your `Agent` terminal window, and stop the running collector by pressing `C
 - **Update the Pipelines Section**: Add the `file` exporter to the `metrics`, `traces` and `logs` pipelines (leave debug as the first in the array).
 
   ```yaml
-      #traces:       
       metrics:
         receivers:
         - otlp                      # OTLP Receiver
@@ -42,7 +41,6 @@ Find your `Agent` terminal window, and stop the running collector by pressing `C
         exporters:
         - debug                     # Debug Exporter
         - file                      # File Exporter
-      #logs:
   ```
 
 {{% /notice %}}
