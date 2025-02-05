@@ -1,7 +1,7 @@
 ---
-title: 2.1 Access Tokens
-linkTitle: 2.1 Access Tokens
-weight: 1
+title: 2.3 Addendum - Access Tokens and Batch Processing
+linkTitle: 2.3 Addendum
+weight: 3
 ---
 
 
