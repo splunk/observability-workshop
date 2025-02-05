@@ -16,7 +16,7 @@ If everything is set up correctly, the last line of the output should confirm th
 2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
-Next, from the `Tests` terminal window, send a trace again with the `cURL` command to create a new `agent.out`:
+Next, from the **Tests** terminal window, send a trace again with the `cURL` command to create a new `agent.out`:
 
 {{% tab title="cURL Command" %}}
 
