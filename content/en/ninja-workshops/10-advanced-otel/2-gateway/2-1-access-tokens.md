@@ -13,12 +13,11 @@ The `otlphttp` exporter is now the default method for sending metrics and traces
 
 When deploying the Splunk Distribution of the OpenTelemetry Collector in host monitoring (agent) mode, the `otlphttp` exporter is included by default. This replaces older exporters such as `sapm` and `signalfx`, which are gradually being phased out.
 
+{{% /notice %}}
+
 ## Configuring Splunk Access Tokens
 
-To authenticate and send data to Splunk Observability Cloud, you need to configure access tokens properly. Here’s how you can do it:
-
-### Headers Configuration
-
+To authenticate and send data to Splunk Observability Cloud, you need to configure access tokens properly. 
 In OpenTelemetry, authentication is handled via HTTP headers. To pass an access token, use the `headers:` key with the sub-key `X-SF-Token:`. This configuration works in both agent and gateway mode.
 
 Example:
@@ -88,6 +87,3 @@ service:
 
 The `otlphttp` exporter is now the preferred method for sending telemetry data to Splunk Observability Cloud. Properly configuring Splunk Access Tokens ensures secure data transmission, while the Batch Processor helps optimize performance by reducing network overhead. By implementing these best practices, you can efficiently collect and transmit observability data at scale.
 
-
-
-{{% /notice %}}
