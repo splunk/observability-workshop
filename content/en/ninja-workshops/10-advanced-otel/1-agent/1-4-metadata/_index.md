@@ -18,7 +18,7 @@ Find your `Agent` terminal window, and stop the running collector by pressing `C
       detectors: [system]           # Resource detectors (system & cloud providers etc.)
       override: true                # Overwrites existing attributes in the data
 
-- **Add `resource` Processor ** and name it `add_mode`**: The Resource Processor can be used to apply changes on resource attributes.
+- **Add `resource` Processor** and name it `add_mode`**: The Resource Processor can be used to apply changes on resource attributes.
 
   ```yaml
     resource/add_mode:              # Processor Type/Name
