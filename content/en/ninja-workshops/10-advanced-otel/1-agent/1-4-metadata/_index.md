@@ -1,6 +1,6 @@
 ---
 title: Resource Metadata
-linkTitle: 1.3. Resource Metadata
+linkTitle: 1.4. Resource Metadata
 weight: 3
 ---
 

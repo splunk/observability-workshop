@@ -1,6 +1,6 @@
 ---
 title: Test Resource Metadata
-linkTitle: 1.3.1. Test Resource Metadata
+linkTitle: 1.4.1. Test Resource Metadata
 weight: 1
 ---
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
