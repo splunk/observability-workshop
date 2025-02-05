@@ -55,7 +55,7 @@ service:                          # Services configured for this Collector
       processors:
       - memory_limiter            # Memory Limiter processor
       exporters:
-      - debug 
+      - debug                     # Debug Exporter       
     metrics:
       receivers:
       - otlp                      # OTLP Receiver
@@ -120,7 +120,7 @@ graph LR
       PRO1(memory_limiter<br>fa:fa-microchip):::processor
       PRO2(resource<br>fa:fa-microchip<br>add_mode):::processor
       PRO3(batch<br>fa:fa-microchip):::processor
-      EXP1(&ensp;file&ensp;<br>fa:fa-upload):::exporter
+      EXP1(&ensp;file&ensp;<br>fa:fa-upload<br>logs):::exporter
       EXP2(&ensp;debug&ensp;<br>fa:fa-upload):::exporter
     %% Links
     subID1:::sub-logs
