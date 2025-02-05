@@ -50,18 +50,18 @@ Next, enable the `hostmetric` receiver in the `metrics` pipeline so that you can
 - **Update Pipelines**: **replace** the `file:` exporter with the `otlphttp` exporter in the `traces`, `metrics`, and `logs` pipelines. Also, **add** the `hostmetrics` receiver to the `metrics` pipeline.
 
   ```yaml
-     metrics:
-      receivers: 
-      - otlp                        # OTLP Receiver
-      - hostmetrics                 # Hostmetrics Receiver
-      processors:
-      - memory_limiter              # Memory Limiter Processor
-      - resourcedetection           # Adds system attributes to the data
-      - resource/add_mode           # Adds collector mode metadata
-      - batch                       # Batch Processor, groups data before send
-      exporters:
-      - debug                       # Debug Exporter 
-      - otlphttp                    # OTLP/HTTP EXporter used by Splunk O11Y
+      metrics:    
+        receivers: 
+        - otlp                        # OTLP Receiver
+        - hostmetrics                 # Hostmetrics Receiver
+        processors:
+        - memory_limiter              # Memory Limiter Processor
+        - resourcedetection           # Adds system attributes to the data
+        - resource/add_mode           # Adds collector mode metadata
+        - batch                       # Batch Processor, groups data before send
+        exporters:
+        - debug                       # Debug Exporter 
+        - otlphttp                    # OTLP/HTTP EXporter used by Splunk O11Y
   ```
 
 {{% /notice %}}  
