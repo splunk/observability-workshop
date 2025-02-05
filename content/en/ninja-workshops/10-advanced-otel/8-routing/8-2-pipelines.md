@@ -60,7 +60,7 @@ Additionally, the `batch` processor has been removed from the new pipelines. Thi
 
 {{% /notice %}}
 
-Again, validate the **Gateway** configuration using `otelbin.io` for spelling mistakes etc. Your `Traces:` pipeline should like this:
+Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `traces:` section of your pipelines will look similar to this:
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%

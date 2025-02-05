@@ -43,13 +43,11 @@ Let's walk through a few modifications to get things started.
 Pay close attention to the formatting, as the OpenTelemetry Collector configuration relies on proper YAML structure.
 {{% /notice %}}
 
-Use [**otelbin.io**](https://otelbin.io) to validate your `agent.yaml` file, you can quickly identify spelling, YAML formatting and configuration errors.
+Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 Make sure the **Splunk OpenTelemetry Collector** distribution is selected as the validation target.
 {{% /notice %}}
-
-If everything is set up correctly, your configuration for the all pipelines should look like this:
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%

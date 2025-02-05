@@ -107,7 +107,7 @@ In this section, we will extend the `gateway.yaml` configuration you just create
 
 {{% /notice %}}
 
-Verify the `gateway.yaml` file at [**otelbin.io**](https://www.otelbin.io/). If configured correctly, your sections should resemble the following example for logs:
+Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `logs:` section of your pipelines will look similar to this:
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%

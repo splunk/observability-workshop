@@ -43,7 +43,7 @@ Find your **Agent** terminal window, and stop the running collector by pressing 
 
 {{% /notice %}}
 
-To verify that your updated `agent.yaml` file is correct, validate it using [**otelbin.io**](https://www.otelbin.io/). For reference, the `traces:` section of your pipelines will look similar to this:
+Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**:
 
 ```mermaid
 flowchart LR

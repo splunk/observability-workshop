@@ -99,7 +99,7 @@ In this exercise, we will update the extensions: section of the `agent.yaml` fil
 
 {{% /notice %}}
 
-Validate the agent configuration using [**otelbin.io**](https://www.otelbin.io/):
+Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `logs:` section of your pipelines will look similar to this:
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%
