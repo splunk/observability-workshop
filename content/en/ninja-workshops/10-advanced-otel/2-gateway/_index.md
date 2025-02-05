@@ -59,7 +59,7 @@ service:                          # Services configured for this Collector
     metrics:
       receivers:
       - otlp                      # OTLP Receiver
-    processors:
+      processors:
       - memory_limiter            # Memory Limiter processor
       exporters:
       - debug                     # Debug Exporter      
@@ -72,9 +72,6 @@ service:                          # Services configured for this Collector
       - debug                     # Debug Exporter      
 ```
 
-{{% /tab %}}
-
-{{% notice title="Exercise" style="green" icon="running" %}}
 {{% /tab %}}
 
 {{% tab title="Updated Directory Structure" %}}

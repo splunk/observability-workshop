@@ -185,3 +185,5 @@ In the new `agent.out` file, you’ll see that the collector has added the`otelc
 
 {{% /tab %}}
 {{% /tabs %}}
+
+Stop the **Agent** process by pressing `Ctrl-C` in the terminal window.
