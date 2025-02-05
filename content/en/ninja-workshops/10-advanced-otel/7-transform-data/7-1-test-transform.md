@@ -7,13 +7,13 @@ weight: 1
 ### Test the Transform
 
 **Run the Log Generator**:
-In the `test` terminal window, navigate to the `[WORKSHOP]/7-transform-data` directory and start the appropriate `log-gen` script for your system. We want to work with structured JSON logs, so add the `-json` flag to the script command. 
+In the `test` terminal window, navigate to the `[WORKSHOP]/7-transform-data` directory and start the appropriate `log-gen` script for your system. We want to work with structured JSON logs, so add the `-json` flag to the script command.
 
 ```sh
 ./log-gen.sh -json
 ```
 
-The script will begin writing lines to a file named `./quotes.log`, while displaying a single line of output in the console. 
+The script will begin writing lines to a file named `./quotes.log`, while displaying a single line of output in the console.
 
  ```txt
  Writing logs to quotes.log. Press Ctrl+C to stop.

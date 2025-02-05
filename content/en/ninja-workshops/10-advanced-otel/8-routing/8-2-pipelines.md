@@ -5,9 +5,10 @@ weight: 2
 ---
 
 {{% notice title="Exercise" style="green" icon="running" %}}
+
 - **Add both the `standard` and `security` traces pipelines**:
 
-  1. **Standard** pipeline: This pipeline will handle all spans that do not match the routing rule. Add it below the regular `traces:` pipeline, and leave the configuration unchanged for now.
+  1. **Standard pipeline**: This pipeline will handle all spans that do not match the routing rule. Add it below the regular `traces:` pipeline, and leave the configuration unchanged for now.
 
   ```yaml
     pipelines:
@@ -22,7 +23,7 @@ weight: 2
         - file/traces/standard        # File Exporter for spans NOT matching rule
   ```
 
-  - **Target pipeline**: This pipepline will handle all spans that match the routing rule.
+  - **Target pipeline**: This pipeline will handle all spans that match the routing rule.
 
   ```yaml
     pipelines:
@@ -37,7 +38,7 @@ weight: 2
         - file/traces/security        # File Exporter for spans matching rule
   ```
 
-- **Update the `traces` pipeline to handle routing**: To enable `routing`, update the original `traces:` pipeline by adding `routing` as an exporter. This ensures that all span data is sent through the routing connector for evaluation.
+- **Update the `traces` pipeline to use routing**: To enable `routing`, update the original `traces:` pipeline by adding `routing` as an exporter. This ensures that all span data is sent through the routing connector for evaluation.
 
 For clarity, we are removing the `debug` exporter from this pipeline, so that debug output is only shown from the new exporters behind the routing connector.
 

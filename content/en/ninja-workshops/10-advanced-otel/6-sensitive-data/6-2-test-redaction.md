@@ -60,6 +60,7 @@ In this exercise, we will **redact** the `user.visa` & `user.mastercard` **value
        -> user.visa: Str(4111 1111 1111 1111)
        -> user.amex: Str(3782 822463 10005)
   ```
+
 {{% /tab %}}
 {{% /tabs %}}
 
@@ -176,6 +177,6 @@ Add the Amex card regex to `blocked_values` and restart **Agent** collector.
 '\b3[47][0-9]{2}[\s-]?[0-9]{6}[\s-]?[0-9]{5}\b'
 ```
 
-These are just a few examples of how `attributes` and `redaction` processors can be configured to protect sensitive data. 
+These are just a few examples of how `attributes` and `redaction` processors can be configured to protect sensitive data.
 
 Stop the **Agent** and **Gateway** using `Ctrl-C`.

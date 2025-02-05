@@ -17,7 +17,7 @@ When deploying the Splunk Distribution of the OpenTelemetry Collector in host mo
 
 ## Configuring Splunk Access Tokens
 
-To authenticate and send data to Splunk Observability Cloud, you need to configure access tokens properly. 
+To authenticate and send data to Splunk Observability Cloud, you need to configure access tokens properly.
 In OpenTelemetry, authentication is handled via HTTP headers. To pass an access token, use the `headers:` key with the sub-key `X-SF-Token:`. This configuration works in both agent and gateway mode.
 
 Example:
@@ -86,4 +86,3 @@ service:
 ## Conclusion
 
 The `otlphttp` exporter is now the preferred method for sending telemetry data to Splunk Observability Cloud. Properly configuring Splunk Access Tokens ensures secure data transmission, while the Batch Processor helps optimize performance by reducing network overhead. By implementing these best practices, you can efficiently collect and transmit observability data at scale.
-
