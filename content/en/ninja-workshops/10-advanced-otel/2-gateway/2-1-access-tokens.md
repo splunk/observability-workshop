@@ -7,7 +7,7 @@ weight: 1
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 
-## Introduction to the `otlphttp` Exporter
+## Introduction to the otlphttp Exporter
 
 The `otlphttp` exporter is now the default method for sending metrics and traces to Splunk Observability Cloud. This exporter provides a standardized and efficient way to transmit telemetry data using the OpenTelemetry Protocol (OTLP) over HTTP.
 
