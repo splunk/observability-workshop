@@ -17,7 +17,7 @@ Next, create a file called `gateway.yaml` and add the following initial configur
 ###########################         used in this OpenTelemetry Collector
 extensions:                       # Array of Extensions
   health_check:                   # Configures the health check extension
-    endpoint: 0.0.0.0:13133       # Endpoint to collect health check data
+    endpoint: 0.0.0.0:14133       # Port changed to prevent conflict with agent!!!
 
 receivers:
   otlp:                           # Receiver Type
