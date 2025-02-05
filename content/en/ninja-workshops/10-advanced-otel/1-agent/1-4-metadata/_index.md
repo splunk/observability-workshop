@@ -15,8 +15,8 @@ Find your `Agent` terminal window, and stop the running collector by pressing `C
 
   ```yaml
     resourcedetection:              # Processor Type
-      detectors: [system]           # Resource detectors (system & cloud providers etc.)
-      override: true                # Overwrites existing attributes in the data
+      detectors: [system]           # Detect system resource information
+      override: true                # Overwrites existing attributes
 
 - **Add `resource` Processor and name it `add_mode`**: The [**Resource Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/resourceprocessor/README.md) can be used to apply changes on resource attributes.
 
@@ -31,19 +31,17 @@ Find your `Agent` terminal window, and stop the running collector by pressing `C
 - **Update All Pipelines**: Add both processors (`resourcedetection` and `resource/add_mode`) to the `processors` array in **all pipelines** (traces, metrics, and logs). Ensure `memory_limiter` remains the first processor.
 
     ```yaml
-      #traces:
-      metrics:
-        receivers:
-        - otlp                        # OTLP Receiver
-        processors:
-        - memory_limiter              # Memory Limiter Processor
-        - resourcedetection           # Adds system attributes to the data
-        - resource/add_mode           # Adds collector mode metadata
-        exporters:
-        - debug                       # Debug Exporter
-        - file                        # File Exporter
-      #logs:
-  ```
+        metrics:
+          receivers:
+          - otlp                      # OTLP Receiver
+          processors:
+          - memory_limiter            # Memory Limiter Processor
+          - resourcedetection         # Adds system attributes to the data
+          - resource/add_mode         # Adds collector mode metadata
+          exporters:
+          - debug                     # Debug Exporter
+          - file                      # File Exporter
+    ```
 
 {{% /notice %}}
 
@@ -58,7 +56,7 @@ graph LR
       REC1(&nbsp;&nbsp;otlp&nbsp;&nbsp;<br>fa:fa-download):::receiver
       PRO1(memory_limiter<br>fa:fa-microchip):::processor
       PRO2(resourcedetection<br>fa:fa-microchip):::processor
-      PRO3(resource<br>fa:fa-microchip):::processor
+      PRO3(resource<br>fa:fa-microchip<br>add_mode):::processor
       EXP1(&ensp;debug&ensp;<br>fa:fa-upload):::exporter
       EXP2(&ensp;file&ensp;<br>fa:fa-upload):::exporter
     %% Links

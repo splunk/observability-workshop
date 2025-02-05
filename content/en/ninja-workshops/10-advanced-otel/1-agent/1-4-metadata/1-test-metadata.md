@@ -12,9 +12,9 @@ Rename the existing `agent.out` to `agent.old`. This allows you to compare it wi
 ```text
 [WORKSHOP]
 ├── 1-agent         # Module directory
+│   └── agent.old   # Copy of previous agent.out
 │   └── agent.yaml  # OpenTelemetry Collector configuration file
 │   └── trace.json  # Sample trace data
-│   └── agent.old   # Copy of previous agent.out
 └── otelcol         # OpenTelemetry Collector binary
 ```
 
@@ -63,10 +63,10 @@ A new `agent.out` file will be created:
 ```text
 [WORKSHOP]
 ├── 1-agent         # Module directory
-│   └── agent.yaml  # OpenTelemetry Collector configuration file
-│   └── trace.json  # Sample trace data
 │   └── agent.old   # Copy of previous agent.out
 │   └── agent.out   # OTLP/Json output created by the File Exporter
+│   └── agent.yaml  # OpenTelemetry Collector configuration file
+│   └── trace.json  # Sample trace data
 └── otelcol         # OpenTelemetry Collector binary
 ```
 
@@ -202,5 +202,3 @@ When you compare the new `agent.out` file to the original `agent.old`, you’ll 
 
 {{% /tab %}}
 {{% /tabs %}}
-
-When you compare the new `agent.out` file to the original `agent.old`, you’ll notice that the collector has added the `otelcol.service.mode` attribute, along with several `resourcedetection` attributes (`host.name` & `os.type`) to the `resourceSpans` section of the span we send. These values are based on your device and were automatically added by the processors we configured in the pipeline.
