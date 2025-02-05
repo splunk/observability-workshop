@@ -34,7 +34,7 @@ On Windows, a dialog box may appear asking if you want to grant public and priva
 
 Instead of instrumenting an application, we will simulate sending trace data to the OpenTelemetry Collector using `cURL`. The trace data, formatted in JSON, represents what an instrumentation library would typically generate and send.
 
-Open a second terminal window and navigate to the `[WORKSHOP]/1-agent` directory. In this new terminal (used for running `Tests`), create a new file named `trace.json` and copy the contents from one of the tabs below. Both tabs contain the same data, which includes a **span** that is part of a larger trace.
+Open a second terminal window and navigate to the `[WORKSHOP]/1-agent` directory. In this new terminal (used for running **Tests**), create a new file named `trace.json` and copy the contents from one of the tabs below. Both tabs contain the same data, which includes a **span** that is part of a larger trace.
 
 {{% tab title="trace.json" %}}
 

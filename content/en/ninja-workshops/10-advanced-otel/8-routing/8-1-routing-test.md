@@ -19,7 +19,7 @@ Find your **Agent** terminal window and navigate to the `[WORKSHOP]/8-routing` d
 It should also start up normally and state : `Everything is ready. Begin running and processing data.`
 
 - **Create a trace for different Environments**
-Find your `Tests` terminal window and navigate to the `[WORKSHOP]/8-routing`.  
+Find your **Tests** terminal window and navigate to the `[WORKSHOP]/8-routing`.  
 To test your configuration, you need to generate span data with the correct `ResourceSpan` attributes to trigger the routing rule. Copy the following JSON and save it as `security.json` in the `[WORKSHOP]/8-routing` directory.
 
 {{% tabs %}}
