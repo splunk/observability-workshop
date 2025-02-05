@@ -4,10 +4,11 @@ linkTitle: 1.4 Resource Metadata
 weight: 3
 ---
 
-So far, we’ve essentially exported a direct copy of the `span` sent through the OpenTelemetry Collector.  
-Now, let’s enhance the base `span` by adding metadata using `processors`. This additional information can be valuable for troubleshooting and for enabling features like `Related Content`.
+So far, we've simply exported an exact copy of the span sent through the OpenTelemetry Collector.
 
-Find your `Agent` terminal window, and stop the running collector by pressing `Ctrl-C`. Once the `agent` has stopped, open the `agent.yaml` and configure the `resourcedetection` and `resource` processors:
+Now, let's improve the base span by adding metadata with processors. This extra information can be helpful for troubleshooting.
+
+Find your **Agent** terminal window, and stop the running collector by pressing `Ctrl-C`. Once the **Agent** has stopped, open the `agent.yaml` and configure the `resourcedetection` and `resource` processors:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -45,9 +46,7 @@ Find your `Agent` terminal window, and stop the running collector by pressing `C
 
 {{% /notice %}}
 
-By adding these processors, we enrich the data with system metadata and the agent’s operational mode, which aids in troubleshooting and provides useful context for related content.
-
-Validate your updated `agent.yaml` with [**otelbin.io**](https://www.otelbin.io/):
+By adding these processors, we enrich the data with system metadata and the agent’s operational mode, which aids in troubleshooting and provides useful context for related content. Validate your updated `agent.yaml` with [**otelbin.io**](https://www.otelbin.io/):
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%

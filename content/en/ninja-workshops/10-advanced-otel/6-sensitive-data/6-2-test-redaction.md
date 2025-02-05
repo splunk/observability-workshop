@@ -27,12 +27,12 @@ This is achieved using the `redaction` processor you added earlier, where we def
 Delete the `*.out` files and clear the screen. Restart your `gateway` terminal window, and wait until it is ready to receive data.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-In this exercise, we will **redact** the `user.visa` & `user.mastercard` **values** in the span data before it is exported by the `agent`.
+In this exercise, we will **redact** the `user.visa` & `user.mastercard` **values** in the span data before it is exported by the **Agent**.
 
-- **Enable the `redaction/redact` processor** in the `traces` pipeline by removing the `#` in front of it and then restart the `agent`.
-- **Start the `Agent` Collector** from the `agent` terminal window.
+- **Enable the `redaction/redact` processor** in the `traces` pipeline by removing the `#` in front of it and then restart the **Agent**.
+- **Start the **Agent** Collector** from the **Agent** terminal window.
 - **Send a span containing `Sensitive data`** by running the **cURL** command to send `trace.json`.
-- **Check the debug output** of both the `Agent` and `Gateway` to confirm the values for `user.visa` & `user.mastercard` have been updated. Notice `user.amex` attribute value was NOT redacted because a matching regex pattern was not added to `blocked_values`
+- **Check the debug output** of both the **Agent** and `Gateway` to confirm the values for `user.visa` & `user.mastercard` have been updated. Notice `user.amex` attribute value was NOT redacted because a matching regex pattern was not added to `blocked_values`
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
@@ -170,7 +170,7 @@ By including `summary:debug` in the redaction processor, the debug output will i
 
 ### (Optional) Redact Amex CC number
 
-Add the Amex card regex to `blocked_values` and restart `agent` collector.
+Add the Amex card regex to `blocked_values` and restart **Agent** collector.
 
 ```yaml
 '\b3[47][0-9]{2}[\s-]?[0-9]{6}[\s-]?[0-9]{5}\b'
@@ -178,4 +178,4 @@ Add the Amex card regex to `blocked_values` and restart `agent` collector.
 
 These are just a few examples of how `attributes` and `redaction` processors can be configured to protect sensitive data. 
 
-Stop the `agent` and `gateway` using Command-c/Ctrl-c.
+Stop the **Agent** and `gateway` using Command-c/Ctrl-c.

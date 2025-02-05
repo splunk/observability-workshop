@@ -6,7 +6,7 @@ weight: 2
 
 Once you've updated the configuration, you’re ready to proceed to running the OpenTelemetry Collector with your new setup. This exercise sets the foundation for understanding how data flows through the OpenTelemetry Collector.
 
-Start or reuse your initial terminal window, we will use this to run the `Agent`.
+Start or reuse your initial terminal window, we will use this to run the **Agent**.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 To improve organization during the workshop, consider customizing your terminal windows or shells with unique names and colors. This will make it easier to identify and switch between them quickly.
@@ -91,7 +91,7 @@ On Windows, you may encounter the following error:
 To resolve this, use `curl.exe` instead of just `curl`.
 {{% /notice %}}
 
-Next, find the terminal window where your `Agent` is running and check the debug output. You should see log entries related to the span you just sent.  
+Next, find the terminal window where your **Agent** is running and check the debug output. You should see log entries related to the span you just sent.  
 
 Below, we've highlighted the first and last lines of the debug log for that span. To get the full context, review the complete debug output.
 

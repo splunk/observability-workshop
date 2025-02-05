@@ -15,7 +15,7 @@ Find your `Gateway` terminal window, and navigate to the `[WORKSHOP]/8-routing` 
 It should start up normally and state : `Everything is ready. Begin running and processing data.`
 
 - **Run the Agent**:
-Find your `Agent` terminal window and navigate to the `[WORKSHOP]/8-routing` directory and restart the agent with the regular `agent.yaml`.  
+Find your **Agent** terminal window and navigate to the `[WORKSHOP]/8-routing` directory and restart the agent with the regular `agent.yaml`.  
 It should also start up normally and state : `Everything is ready. Begin running and processing data.`
 
 - **Create a trace for different Environments**
@@ -106,17 +106,17 @@ Before proceeding, ensure that there are no `*.out` files in the `[WORKSHOP]/8-r
   1. Open your test terminal and navigate to the `[WORKSHOP]/8-routing` directory.
   2. Send a regular span using the `trace.json` file to confirm proper communication.
 
-  Both the `agent` and `gateway` should display debug information, including the span you just sent. The gateway will also generate a new `gateway-traces-standard.out` file, as this is now the designated destination for regular spans.
+  Both the **Agent** and `gateway` should display debug information, including the span you just sent. The gateway will also generate a new `gateway-traces-standard.out` file, as this is now the designated destination for regular spans.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 If you check `gateway-traces-standard.out`, it should contain the `span` sent using the `cURL` command. You will also see an empty `gateway-traces-security.out` file, as the routing configuration creates output files immediately, even if no matching spans have been processed yet.
 {{% /notice %}}
 
 - **Send a Security Span**:  
-  1. Ensure both the `agent` and `gateway` are running.
+  1. Ensure both the **Agent** and `gateway` are running.
   2. Send a security span using the `security.json` file to test the gateway’s routing rule.
 
-Again, both the `agent` and `gateway` should display debug information, including the span you just sent. This time, the `gateway` will write a line to the `gateway-traces-security.out` file, which is designated for spans where the `deployment.environment` resource attribute matches `"security_applications"`.
+Again, both the **Agent** and `gateway` should display debug information, including the span you just sent. This time, the `gateway` will write a line to the `gateway-traces-security.out` file, which is designated for spans where the `deployment.environment` resource attribute matches `"security_applications"`.
 The `gateway-traces-standard.out` should be unchanged.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
@@ -140,4 +140,4 @@ You can now extend this approach by defining additional routing rules to further
 
 If you want to know more about the `routing` connector, you can find it [here](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/routingconnector)
 
-Stop the `Agent`, `Gateway` and the` Quotes generating script` as well using `Command-c/Ctrl-c`
+Stop the **Agent**, `Gateway` and the` Quotes generating script` as well using `Command-c/Ctrl-c`
