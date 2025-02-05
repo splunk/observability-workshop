@@ -82,7 +82,7 @@ graph LR
     %% Links
     subID1:::sub-metrics
     subgraph " "
-      subgraph subID1[Metrics]
+      subgraph subID1[**Metrics**]
       direction LR
       REC1 --> PRO1
       REC2 --> PRO1
@@ -96,7 +96,7 @@ graph LR
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
 classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
-classDef sub-metrics stroke:#38bdf8,stroke-width:2px, color:#38bdf8,stroke-dasharray: 5 5;
+classDef sub-metrics stroke:#38bdf8,stroke-width:1px, color:#38bdf8,stroke-dasharray: 3 3;
 ```
 
 <!--![otelbin-g-2-2-metrics](../../images/gateway-2-2-metrics.png)-->

@@ -121,7 +121,7 @@ graph LR
     %% Links
     subID1:::sub-traces
     subgraph " "
-      subgraph subID1[Traces]
+      subgraph subID1[**Traces**]
       direction LR
       REC1 --> PRO1
       PRO1 --> PRO6
@@ -136,7 +136,7 @@ graph LR
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
 classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
-classDef sub-traces stroke:#fbbf24,stroke-width:2px, color:#fbbf24,stroke-dasharray: 5 5;
+classDef sub-traces stroke:#fbbf24,stroke-width:1px, color:#fbbf24,stroke-dasharray: 3 3;
 ```
 
 <!--![redacting 1](../images/senstive-data-6-1.png)-->

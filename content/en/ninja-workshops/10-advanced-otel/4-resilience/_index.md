@@ -139,7 +139,7 @@ graph LR
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
 classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
-classDef sub-logs stroke:#34d399,stroke-width:2px, color:#34d399,stroke-dasharray: 5 5;
+classDef sub-logs stroke:#34d399,stroke-width:1px, color:#34d399,stroke-dasharray: 3 3;
 ```
 
 <!--![logs from otelbin](../images/filelog-3-1-logs.png)-->

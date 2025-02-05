@@ -141,7 +141,7 @@ graph LR
     %% Links
     subID1:::sub-logs
     subgraph " "
-      subgraph subID1[Logs]
+      subgraph subID1[**Logs**]
       direction LR
       REC1 --> PRO1
       REC2 --> PRO1
@@ -156,7 +156,7 @@ graph LR
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
 classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
-classDef sub-logs stroke:#34d399,stroke-width:2px, color:#34d399,stroke-dasharray: 5 5;
+classDef sub-logs stroke:#34d399,stroke-width:1px, color:#34d399,stroke-dasharray: 3 3;
 ```
 
 <!--![redacting 1](../images/transform-data-7-1.png)-->

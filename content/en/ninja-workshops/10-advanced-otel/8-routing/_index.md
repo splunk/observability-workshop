@@ -165,17 +165,17 @@ graph LR
     subID3:::sub-traces
     subgraph " "
     direction LR
-      subgraph subID1[Traces]
+      subgraph subID1[**Traces**]
       REC1 --> ROUTE1
       end
-      subgraph subID2[Traces/standard]
+      subgraph subID2[**Traces/standard**]
       ROUTE1 --> ROUTE2
       ROUTE2 --> PRO1
       PRO1 --> PRO3
       PRO3 --> EXP1
       PRO3 --> EXP2
       end
-      subgraph subID3[Traces/security]
+      subgraph subID3[**Traces/security**]
       ROUTE1 --> ROUTE3
       ROUTE3 --> PRO2
       PRO2 --> PRO4
@@ -186,7 +186,7 @@ graph LR
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
 classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
-classDef sub-traces stroke:#fbbf24,stroke-width:2px, color:#fbbf24,stroke-dasharray: 5 5;
+classDef sub-traces stroke:#fbbf24,stroke-width:1px, color:#fbbf24,stroke-dasharray: 3 3;
 ```
 
 <!--![Routing Connector](../images/routing-8-1.png)-->

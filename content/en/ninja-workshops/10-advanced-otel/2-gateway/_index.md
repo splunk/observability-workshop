@@ -116,7 +116,7 @@ graph LR
     %% Links
     subID1:::sub-logs
     subgraph " "
-      subgraph subID1[Logs]
+      subgraph subID1[**Logs**]
       direction LR
       REC1 --> PRO1
       PRO1 --> PRO2
@@ -128,7 +128,7 @@ graph LR
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
 classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
-classDef sub-logs stroke:#34d399,stroke-width:2px, color:#34d399,stroke-dasharray: 5 5;
+classDef sub-logs stroke:#34d399,stroke-width:1px, color:#34d399,stroke-dasharray: 3 3;
 ```
 
 <!--[otelbin-logs](../images/gateway-2-1-logs.png?width=50vw)-->

@@ -3,7 +3,6 @@ title: 1. Agent Configuration
 linkTitle: 1. Agent Configuration
 time: 10 minutes
 weight: 1
-#mermaidZoom: true
 ---
 
 In your `[WORKSHOP]` directory, create a subdirectory called `1-agent`, then move into that directory.
