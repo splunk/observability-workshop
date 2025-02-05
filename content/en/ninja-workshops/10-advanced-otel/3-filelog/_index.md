@@ -178,6 +178,14 @@ In a new terminal window, which we’ll use for running `log-gen`, navigate to t
  Writing logs to quotes.log. Press Ctrl+C to stop.
  ```
 
+{{% notice note %}}
+
+```ps1
+powershell -ExecutionPolicy Bypass -File log-gen.ps1
+```
+
+{{% /notice %}}
+
 {{% tab title="Updated Directory Structure" %}}
 
 ```text
