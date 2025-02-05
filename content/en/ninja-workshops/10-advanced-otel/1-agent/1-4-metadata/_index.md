@@ -1,13 +1,13 @@
 ---
-title: Resource Metadata
-linkTitle: 1.4. Resource Metadata
+title: 1.4 Resource Metadata
+linkTitle: 1.4 Resource Metadata
 weight: 3
 ---
 
 So far, we’ve essentially exported a direct copy of the `span` sent through the OpenTelemetry Collector.  
 Now, let’s enhance the base `span` by adding metadata using `processors`. This additional information can be valuable for troubleshooting and for enabling features like `Related Content`.
 
-Find your `Agent` terminal window, and stop the running collector by pressing `Ctrl-C`. Once the `agent` has stopped, open the `agent.yaml` and configure the `resourcedetection` & `resource` processors:
+Find your `Agent` terminal window, and stop the running collector by pressing `Ctrl-C`. Once the `agent` has stopped, open the `agent.yaml` and configure the `resourcedetection` and `resource` processors:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -64,7 +64,7 @@ graph LR
     %% Links
     subID1:::sub-traces
     subgraph " "
-      subgraph subID1[Traces/Metrics/Logs]
+      subgraph subID1[**Traces/Metrics/Logs**]
       direction LR
       REC1 --> PRO1
       PRO1 --> PRO2
@@ -76,7 +76,7 @@ graph LR
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
 classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
-classDef sub-traces stroke:#fff,stroke-width:2px, color:#fff,stroke-dasharray: 5 5;
+classDef sub-traces stroke:#fff,stroke-width:1px, color:#fff,stroke-dasharray: 3 3;
 ```
 <!--
 ![otelbin-a-1-3-logs](../../images/agent-1-3-logs.png?width=50vw)
