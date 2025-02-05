@@ -6,13 +6,13 @@ weight: 3
 
 ## Validate Agent and Gateway routing
 
-Verify the gateway is running in its own terminal (`gateway`) and is ready to receive data, then in the `agent` terminal, run the following command to start the agent:
+Verify the gateway is running in its own terminal (`Gateway`) and is ready to receive data, then in the `Agent` terminal window, run the following command to start the agent:
 
 ```bash
 ../otelcol --config=agent.yaml
 ```
 
-Once started, the agent will begin sending CPU metrics. Both the agent and the gateway should reflect this in their debug output. The output should look similar to the following snippet:
+Once the `agent` starts, it will immediately begin sending **CPU** metrics. Both the `agent` and the `gateway` will display this activity in their debug output. The output should resemble the following snippet:
 
 ```text
 <snip>
@@ -25,9 +25,9 @@ Timestamp: 2025-01-15 15:27:51.319526 +0000 UTC
 Value: 9637.660000
 ```
 
-When the agent starts, it collects and sends the above metrics to the gateway. The OpenTelemetry Collector running in gateway mode should create a file named `./gateway-metrics.out` during the exporting phase of the pipeline service.
+At this stage, the `agent` collects **CPU** metrics once per hour or upon each restart and then sends them to the gateway. The OpenTelemetry Collector, running in `gateway` mode, processes these metrics and exports them, creating a file named `./gateway-metrics.out.` This file stores the exported metrics as part of the pipeline service.
 
-Open the `gateway-metrics.out` file. It should contain CPU metrics, including details similar to those shown above (we only show the `resourceMetrics` and the first set of CPU metrics, you will likely have more).
+Open the `gateway-metrics.out` file. It should contain **CPU** metrics, including details similar to those shown below: (We only show the `resourceMetrics`section and the first set of **CPU** metrics, you will likely have more).
 
 {{% tabs %}}
 {{% tab title="Compact JSON" %}}
@@ -111,32 +111,25 @@ Open the `gateway-metrics.out` file. It should contain CPU metrics, including de
 {{% /tab %}}
 {{% /tabs %}}
 
-Next, make sure both the gateway and the agent are still running in their respective terminals.
+Next, make sure both the gateway and the agent are still running in their respective terminals or restart them on Windows.
 
-Find your `test` terminal window, and also navigate to the `[WORKSHOP]/2-gateway` directory.
+Find your `Tests` terminal window, and also navigate to the `[WORKSHOP]/2-gateway` directory.
 
-Check that you have copied the `trace.json` to the `2-gateway` directory then run the following `curl` command to send a trace: (Both the `agent` and the `gateway` should show the Debug output from the second tab)
+Check that you have copied the `trace.json` to the `2-gateway` directory then run our`cURL` command to send a trace.  Use the button below to verify that both the `agent` and `gateway` displayed similar Debug output.
 
-{{% tabs %}}
-{{% tab title="cURL Command" %}}
+{{% expand title="{{% badge style=primary icon=scroll %}}Complete Debug Output{{% /badge %}}" %}}
 
-```zsh
- curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
-```
-
-{{% /tab %}}
-{{% tab title="Debug Output Agent/Gateway" %}}
-
- ```text
-2025-01-13T13:26:13.502+0100 info Traces {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
-2025-01-13T13:26:13.502+0100 info ResourceSpans #0
-Resource SchemaURL:
+```text
+        {"kind": "exporter", "data_type": "metrics", "name": "debug"}
+2025-02-05T15:55:18.966+0100    info    Traces  {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
+2025-02-05T15:55:18.966+0100    info    ResourceSpans #0
+Resource SchemaURL: https://opentelemetry.io/schemas/1.6.1
 Resource attributes:
      -> service.name: Str(my.service)
      -> deployment.environment: Str(my.environment)
-     -> host.name: (YOUR_HOST_NAME)
-     -> os.type: Str(YOUR_OS)
-     -> otelcol.service.mode: Str(gateway)
+     -> host.name: Str(PH-Windows-Box.hagen-ict.nl)
+     -> os.type: Str(windows)
+     -> otelcol.service.mode: Str(agent)
 ScopeSpans #0
 ScopeSpans SchemaURL:
 InstrumentationScope my.library 1.0.0
@@ -152,10 +145,14 @@ Span #0
     End time       : 2018-12-13 14:51:01 +0000 UTC
     Status code    : Unset
     Status message :
+Attributes:
+     -> user.name: Str(George Lucas)
+     -> user.phone_number: Str(+1555-867-5309)
+     -> user.email: Str(george@deathstar.email)
+     -> user.account_password: Str(LOTR>StarWars1-2-3)
 ```
 
-{{% /tab %}}
-{{% /tabs %}}
+{{% /expand %}}
 
 After executing the command, the gateway should generate a new file named `./gateway-traces.out`:
 
