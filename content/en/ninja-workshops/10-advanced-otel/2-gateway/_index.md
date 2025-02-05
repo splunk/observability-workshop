@@ -1,25 +1,25 @@
 ---
-title: Gateway Configuration
+title: 2. Gateway Configuration
 linkTitle: 2. Gateway Setup
 time: 10 minutes
 weight: 2
 ---
 
-### Initial Gateway Configuration
+In the `[WORKSHOP]` directory, create a new subdirectory named `2-gateway` and navigate into it. Then, copy the latest versions of `agent.yaml` and `trace.json` from the `1-agent` directory into `2-gateway`.  
 
-On your machine, navigate to the directory where you're running the workshop. Create a new subdirectory called `2-gateway`, then copy the latest versions of `agent.yaml` and `trace.json` from `1-agent` into this new directory.
+Next, create a file called `gateway.yaml` and add the following initial configuration.
 
-Next, move into the `[WORKSHOP]/2-gateway` directory and create a file named `gateway.yaml`. Copy the following starting configuration into this file.
+{{% tab title="gateway.yaml" %}}
 
 ```yaml
-###########################        This section holds all the
-## Configuration section ##        configurations that can be 
-###########################        used in this OpenTelemetry Collector
+###########################         This section holds all the
+## Configuration section ##         configurations that can be 
+###########################         used in this OpenTelemetry Collector
 receivers:
   otlp:                           # Receiver Type
-    protocols:                    # list of Protocols used 
+    protocols:                    # list of Protocols used
       http:                       # This wil enable the HTTP Protocol
-        endpoint: "0.0.0.0:5318"  # Port changed to prevent conflict with agent !!!
+        endpoint: "0.0.0.0:5318"  # Port changed to prevent conflict with agent!!!
         include_metadata: true    # Needed for token pass through mode
 
 exporters:                        # Array of Exporters
@@ -30,7 +30,7 @@ processors:                       # Array of Processors
   memory_limiter:                 # Limits memory usage by Collectors pipeline
     check_interval: 2s            # Interval to check memory usage
     limit_mib: 512                # Memory limit in MiB
-  batch:                          #Processor to Batch data before sending
+  batch:                          # Processor to Batch data before sending
     metadata_keys:                # Include token in batches
     - X-SF-Token                  # Batch data grouped by Token
   resource/add_mode:              # Processor Type/Name
@@ -40,16 +40,15 @@ processors:                       # Array of Processors
       value: "gateway"            # Key Value
 
 ###########################         This section controls what
-### Activation Section  ###         configuration  will be used  
+### Activation Section  ###         configuration  will be used
 ###########################         by the OpenTelemetry Collector
-
 service:                          # Services configured for this Collector
-  extensions: [health_check]      # Enabled extensions for this collector   
-  pipelines:                      # Array of configured pipelines  
+  extensions: [health_check]      # Enabled extensions for this collector
+  pipelines:                      # Array of configured pipelines
     traces:
       receivers:
       processors:
-      - memory_limiter            # Memory Limiter processor                
+      - memory_limiter            # Memory Limiter processor
       exporters:
     metrics:
       receivers:
@@ -61,8 +60,9 @@ service:                          # Services configured for this Collector
       processors:
       - memory_limiter            # Memory Limiter processor
       exporters:
-​
 ```
+
+{{% /tab %}}
 
 {{% tab title="Updated Directory Structure" %}}
 

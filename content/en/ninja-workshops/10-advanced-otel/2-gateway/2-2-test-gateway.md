@@ -1,10 +1,10 @@
 ---
-title: Test the gateway and prepare the agent
-linkTitle: 2.1 Test Gateway & Configure Agent
-weight: 1
+title: 2.2 Test the gateway and prepare the agent
+linkTitle: 2.2 Test Gateway & Configure Agent
+weight: 2
 ---
 
-## Test Gateway
+### Test Gateway
 
 Open a 3rd terminal window, this one will be used to run the `gateway` and navigate to the`[WORKSHOP]/2-gateway` directory and run the following command to test the gateway configuration:
 
@@ -98,26 +98,3 @@ classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
 classDef sub-metrics stroke:#38bdf8,stroke-width:1px, color:#38bdf8,stroke-dasharray: 3 3;
 ```
-
-<!--![otelbin-g-2-2-metrics](../../images/gateway-2-2-metrics.png)-->
-
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-The `otlphttp` exporter is now the default method for sending metrics and traces to the Splunk Observability Cloud.  
-
-This exporter is included in the default configuration of the Splunk Distribution of the OpenTelemetry Collector when deployed in host monitoring (agent) mode.  
-
-The use of older `sapm` and `signalfx` exporters are being phased out gradually.  
-
-#### Additional info on how to use Splunk Access Tokens
-
-- **Headers Configuration**:
-  Use the `headers:` key with the sub-key `X-SF-Token:` to pass an access token. This aligns with the OpenTelemetry approach for token-based authentication.  
-  This works both in `agent` as in `gateway` mode.
-
-- **Pass-through Mode**:
-  To enable pass-through mode, set `include_metadata:` to `true` in the `otlp` receiver configuration on the gateway. This ensures that headers received by the collector are forwarded with the data through the collector's pipeline.
-
-- **Batch Processing**:
-  Configure the `batch:` section with the key `X-SF-Token:` to group traces, metrics, and logs by the same access token. This helps the collector batch data efficiently before sending it to the backend, improving performance and reducing overhead. This works both in `agent` as in `gateway` mode.
-
-{{% /notice %}}
