@@ -179,6 +179,9 @@ In a new terminal window, which we’ll use for running `log-gen`, navigate to t
  ```
 
 {{% notice note %}}
+On Windows, you may encounter the following error:
+{{% textcolor color="red" weight="bold" %}}.\log-gen.ps1 : File .\log-gen.ps1 cannot be loaded because running scripts is disabled on this system ...{{% /textcolor %}}
+To resolve this, run:
 
 ```ps1
 powershell -ExecutionPolicy Bypass -File log-gen.ps1
