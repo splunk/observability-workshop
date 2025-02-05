@@ -4,7 +4,7 @@ linkTitle: 1.4.1 Test Resource Metadata
 weight: 1
 ---
 
-Find your `Agent` terminal window, and restart your collector using the updated configuration to test the changes:
+Find your **Agent** terminal window, and restart your collector using the updated configuration to test the changes:
 
 ```bash
 ../otelcol --config=agent.yaml

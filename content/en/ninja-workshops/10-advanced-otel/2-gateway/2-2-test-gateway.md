@@ -24,48 +24,48 @@ If everything is set up correctly, the first and last lines of the output should
 
 ### Update Agent Configuration
 
-Switch to your 'agent' terminal window and navigate to the `[WORKSHOP]/2-gateway` directory.
-Open the `agent.yaml` file that you copied earlier in your editor. Replace the existing `file` exporter with an `otlphttp` exporter, as this is now the preferred exporter for Splunk Observability Cloud.
-
-Next, enable the `hostmetric` receiver in the `metrics` pipeline so that you can capture and view system metrics.
+Select your **Agent** terminal window, and also navigate to the `[WORKSHOP]/2-gateway` directory.  
+Open the `agent.yaml` we copied earlier in your editor, and configure a `otlphttp` exporter by replacing the existing `file` exporter. (this is now the preferred exporter for Splunk Observability Cloud):
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - **Configure the `otlphttp` exporter**: Ensure the `endpoint` is set to the gateway endpoint and add the `X-SF-Token` header with a Splunk Access Token.
 
   ```yaml
-    otlphttp:                       # Exporter Type
+    otlphttp:
       endpoint: "http://localhost:5318" # Gateway endpoint
-      headers:                      # Headers to add to the HTTP call 
-        X-SF-Token: "ACCESS_TOKEN"  # New way to set an Splunk ACCESS_TOKEN Header
+      headers:
+        X-SF-Token: "A_ACCESS_TOKEN"    # New way to set an Splunk ACCESS_TOKEN
   ```
 
 - **Add a batch processor to the agent**: since the agent can send data from different sources, and benefit from retries, adding a Batch processor is useful too:
 
   ```yaml
-    batch:                          # Processor Type
-      metadata_keys: [X-SF-Token]   # Array of metadata keys to batch 
+    batch:                              # Processor Type
+      metadata_keys: [X-SF-Token]       # Array of metadata keys to batch 
   ```
 
-- **Update Pipelines**: **replace** the `file:` exporter with the `otlphttp` exporter in the `traces`, `metrics`, and `logs` pipelines. Also, **add** the `hostmetrics` receiver to the `metrics` pipeline.
+- **Update Pipelines**: replace the `file:` exporter with the `otlphttp` exporter in the `traces`, `metrics`, and `logs` pipelines. Also, add the `hostmetrics` receiver to the `metrics` pipeline.
 
   ```yaml
-      metrics:    
-        receivers: 
-        - otlp                        # OTLP Receiver
-        - hostmetrics                 # Hostmetrics Receiver
-        processors:
-        - memory_limiter              # Memory Limiter Processor
-        - resourcedetection           # Adds system attributes to the data
-        - resource/add_mode           # Adds collector mode metadata
-        - batch                       # Batch Processor, groups data before send
-        exporters:
-        - debug                       # Debug Exporter 
-        - otlphttp                    # OTLP/HTTP EXporter used by Splunk O11Y
+     #traces:
+     metrics:
+      receivers: 
+      - otlp                        # OTLP Receiver
+      - hostmetrics                 # Hostmetrics Receiver
+      processors:
+      - memory_limiter              # Memory Limiter Processor
+      - resourcedetection           # Adds system attributes to the data
+      - resource/add_mode           # Adds collector mode metadata
+      - batch                       # Batch Processor, groups data before send
+      exporters:
+      - debug                       # Debug Exporter 
+      - otlphttp                    # OTLP/HTTP EXporter used by Splunk O11Y
+      # logs:
   ```
 
 {{% /notice %}}  
-Again, validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. As example, here is the result for the `metrics` pipeline:
+Again, validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, this is the visualization for the `metrics` pipeline:
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%
@@ -75,7 +75,7 @@ graph LR
       REC2(&nbsp;&nbsp;&nbsp;&nbsp;otlp&nbsp;&nbsp;&nbsp;&nbsp;<br>fa:fa-download):::receiver
       PRO1(memory_limiter<br>fa:fa-microchip):::processor
       PRO2(resourcedetection<br>fa:fa-microchip):::processor
-      PRO3(resource<br>fa:fa-microchip<br>add_mode):::processor
+      PRO3(resource<br>fa:fa-microchip):::processor
       PRO4(batch<br>fa:fa-microchip):::processor
       EXP1(otlphttp<br>fa:fa-upload):::exporter
       EXP2(&ensp;debug&ensp;<br>fa:fa-upload):::exporter
@@ -89,8 +89,8 @@ graph LR
       PRO1 --> PRO2
       PRO2 --> PRO3
       PRO3 --> PRO4
-      PRO4 --> EXP2
       PRO4 --> EXP1
+      PRO4 --> EXP2
       end
     end
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;

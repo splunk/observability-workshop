@@ -16,9 +16,9 @@ The difference between the OpenTelemetry **debug exporter** and the **file expor
 | **Production Use**  | No                              | Rare, but possible            |
 | **Persistence**     | No                              | Yes                           |
 
-In summary, the **debug exporter** is great for real-time, in-development troubleshooting, while the **file exporter** is better suited for storing telemetry data locally for later use.
+In summary, the **Debug Exporter** is great for real-time, in-development troubleshooting, while the **File Exporter** is better suited for storing telemetry data locally for later use.
 
-Find your `Agent` terminal window, and stop the running collector by pressing `Ctrl-C`. Once the `agent` has stopped, open the `agent.yaml` and configure the `FileExporter`:
+Find your **Agent** terminal window, and stop the running collector by pressing `Ctrl-C`. Once the **Agent** has stopped, open the `agent.yaml` and configure the **File Exporter**:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -45,9 +45,7 @@ Find your `Agent` terminal window, and stop the running collector by pressing `C
 
 {{% /notice %}}
 
-To verify that your updated `agent.yaml` file is correct, validate it using [**otelbin.io**](https://www.otelbin.io/).
-
-For reference, the `traces:` section of your pipelines should look similar to this:
+To verify that your updated `agent.yaml` file is correct, validate it using [**otelbin.io**](https://www.otelbin.io/). For reference, the `traces:` section of your pipelines will look similar to this:
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%

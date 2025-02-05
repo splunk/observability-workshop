@@ -4,7 +4,7 @@ linkTitle: 1.3.1 Test File Exporter
 weight: 1
 ---
 
-Restart your agent in the `Agent` terminal window, this time with your new config to test it:
+Restart your agent in the **Agent** terminal window, this time with your new config to test it:
 
 ```bash
 ../otelcol --config=agent.yaml
@@ -42,7 +42,7 @@ You should now see a file named `agent.out` in the current directory. Since no m
 {{% /tab %}}
 
 {{% notice note %}}
-On **Windows**, an open file may appear empty or cause issues when attempting to read it. To prevent this, make sure to stop the `agent` or the `gateway` before inspecting the file, as instructed.
+On **Windows**, an open file may appear empty or cause issues when attempting to read it. To prevent this, make sure to stop the **Agent** or the `gateway` before inspecting the file, as instructed.
 {{% /notice %}}
 
 The span is written to the `agent.out` as a single line in OTLP/JSON format:

@@ -6,13 +6,13 @@ weight: 3
 
 ## Validate Agent and Gateway routing
 
-Verify the gateway is running in its own terminal (`Gateway`) and is ready to receive data, then in the `Agent` terminal window, run the following command to start the agent:
+Verify the gateway is running in its own terminal (`Gateway`) and is ready to receive data, then in the **Agent** terminal window, run the following command to start the agent:
 
 ```bash
 ../otelcol --config=agent.yaml
 ```
 
-Once the `agent` starts, it will immediately begin sending **CPU** metrics. Both the `agent` and the `gateway` will display this activity in their debug output. The output should resemble the following snippet:
+Once the **Agent** starts, it will immediately begin sending **CPU** metrics. Both the **Agent** and the `gateway` will display this activity in their debug output. The output should resemble the following snippet:
 
 ```text
 <snip>
@@ -25,7 +25,7 @@ Timestamp: 2025-01-15 15:27:51.319526 +0000 UTC
 Value: 9637.660000
 ```
 
-At this stage, the `agent` collects **CPU** metrics once per hour or upon each restart and then sends them to the gateway. The OpenTelemetry Collector, running in `gateway` mode, processes these metrics and exports them, creating a file named `./gateway-metrics.out.` This file stores the exported metrics as part of the pipeline service.
+At this stage, the **Agent** collects **CPU** metrics once per hour or upon each restart and then sends them to the gateway. The OpenTelemetry Collector, running in `gateway` mode, processes these metrics and exports them, creating a file named `./gateway-metrics.out.` This file stores the exported metrics as part of the pipeline service.
 
 Open the `gateway-metrics.out` file. It should contain **CPU** metrics, including details similar to those shown below: (We only show the `resourceMetrics`section and the first set of **CPU** metrics, you will likely have more).
 
@@ -115,7 +115,7 @@ Next, make sure both the gateway and the agent are still running in their respec
 
 Find your `Tests` terminal window, and also navigate to the `[WORKSHOP]/2-gateway` directory.
 
-Check that you have copied the `trace.json` to the `2-gateway` directory then run our`cURL` command to send a trace.  We show the first and last line of the Debug output but use the button below to verify that both the `agent` and `gateway` displayed similar Debug output.
+Check that you have copied the `trace.json` to the `2-gateway` directory then run our`cURL` command to send a trace.  We show the first and last line of the Debug output but use the button below to verify that both the **Agent** and `gateway` displayed similar Debug output.
 
 ```text
 2025-02-05T15:55:18.966+0100    info    Traces  {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}

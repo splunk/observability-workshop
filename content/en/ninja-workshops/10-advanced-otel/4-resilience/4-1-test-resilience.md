@@ -6,7 +6,7 @@ weight: 1
 
 ### Setup Test environment
 
-In this section we are going to simulate an outage on the network between the `agent` and the `gateway` and see if our configuration helps the Collector recover from that issue:
+In this section we are going to simulate an outage on the network between the **Agent** and the `gateway` and see if our configuration helps the Collector recover from that issue:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -16,7 +16,7 @@ Find your `Gateway` terminal window, and navigate to the `[WORKSHOP]/4-resilienc
 It should start up normally and state : `Everything is ready. Begin running and processing data.`
 
 **Run the Agent**:
-Find your `Agent` terminal window and navigate to the `[WORKSHOP]/4-resilience` directory and restart the agent with the resilience configurations specified in the YAML file.
+Find your **Agent** terminal window and navigate to the `[WORKSHOP]/4-resilience` directory and restart the agent with the resilience configurations specified in the YAML file.
 
 It should also start up normally and state : `Everything is ready. Begin running and processing data.`
 
@@ -72,7 +72,7 @@ This step is essential for clearly observing the recovery process when the agent
 Restart the Gateway. It should initialize as expected and be ready and waiting to receive data.
 
 **Restart the Agent**
-Once the `gateway` is up and running, restart the `agent`. It will resume sending data from the last checkpointed state, ensuring no data is lost. You should see the `gateway` begin receiving the previously missed traces without requiring any additional action on your part.
+Once the `gateway` is up and running, restart the **Agent**. It will resume sending data from the last checkpointed state, ensuring no data is lost. You should see the `gateway` begin receiving the previously missed traces without requiring any additional action on your part.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 Note that only the `gateway` will show that the checkpointed traces have arrived. The agent will not display any indication that data new or old has been sent.
@@ -87,4 +87,4 @@ By implementing file-based checkpointing and queue persistence, you ensure the t
 
 If you want to know more about the `FileStorage` extension, you can find it [here](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/storage/filestorage)
 
-Stop the `agent` and `gateway` using Command-c/Ctrl-c.
+Stop the **Agent** and `gateway` using Command-c/Ctrl-c.
