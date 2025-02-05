@@ -6,15 +6,15 @@ weight: 1
 
 ### Test the Attribute Processor tag updates
 
-Stop the `gateway` so, you can delete the `*.out` files and clear the screen. Restart your `gateway` terminal window, and wait until it is ready to receive data.
+Restart your `gateway` terminal window, and wait until it is ready to receive data.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 In this exercise, we will **delete** the `user.account_password`, **update** the `user.phone_number` **attribute** & **hash** the `user.email` in the span data before it is exported by the `agent`.
 
-- **Stop the `Agent` Collector**
-- **Enable the `attributes/update` processor** in the `traces` pipeline by removing the `#` in front of it, then restart the `agent`
+- **Disable the `redaction/redact` processor** in the `traces` pipeline by adding the comment character `#` in front of it.
+- **Start the `Agent` Collector** from the `agent` terminal window.
 - **Send a span containing `Sensitive data`** by running the **cURL** command to send `trace.json`.
-- **Check the debug output** of both the `Agent` and `Gateway` to confirm that `user.account_password` has been removed, `user.phone_number` & `user.email` have been updated.
+- **Check the debug output** of both the `Agent` and `Gateway` to confirm that `user.account_password` has been removed, and both `user.phone_number` & `user.email` have been updated.
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
 
@@ -24,7 +24,7 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
        -> user.email: Str. (62d5e03d8fd5808e77aee5ebbd90cf7627a470ae0be9ffd10e8025a4ad0e1287)
        -> user.mastercard: Str(5555 5555 5555 4444)
        -> user.visa: Str(4111 1111 1111 1111)
-       -> user.amex: Str(Redacted)
+       -> user.amex: Str(3782 822463 10005)
   ```
 
 {{% /tab %}}
@@ -43,7 +43,7 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
 {{% /tab %}}
 {{% /tabs %}}
 
-- **Check** the new `gateway-traces.out` file to verify confirm that `user.account_password` has been removed, `user.phone_number` & `user.email` have been updated.
+- **Check** the new `gateway-traces.out` file to confirm that `user.account_password` has been removed, and `user.phone_number` & `user.email` have been updated.
 
 {{% tabs %}}
 {{% tab title="New File Output" %}}
@@ -73,7 +73,19 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
                   "value": {
                     "stringValue": "5555 5555 5555 4444"
                   }
-                }
+                },
+                {
+                  "key": "user.visa",
+                  "value": {
+                    "stringValue": "4111 1111 1111 1111"
+                  }
+                },
+                {
+                  "key": "user.amex",
+                  "value": {
+                    "stringValue": "3782 822463 10005"
+                  }
+                } 
               ]
   ```
 
@@ -107,11 +119,23 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
                   }
                 },
                 {
+                  "key": "user.mastercard",
+                  "value": {
+                    "stringValue": "5555 5555 5555 4444"
+                  }
+                },
+                {
                   "key": "user.visa",
                   "value": {
                     "stringValue": "4111 1111 1111 1111"
                   }
-                }
+                },
+                {
+                  "key": "user.amex",
+                  "value": {
+                    "stringValue": "3782 822463 10005"
+                  }
+                } 
               ]
   ```
 
@@ -119,3 +143,4 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
 {{% /tabs %}}
 
 {{% /notice %}}
+Stop the `agent` and `gateway` using Command-c/Ctrl-c.

@@ -40,14 +40,14 @@ We’ll update `agent.yaml` to include a Transform Processor that will:
 - **Parse** JSON structured log data into attributes
 - **Set** log severity levels based on the log message body
 
-You may have noticed that in previous logs, fields like `SeverityText` and `SeverityNumber` were undefined (this is typical of the filelog receiver) However, the severity is embedded within the log body:
+You may have noticed that in previous logs, fields like `SeverityText` and `SeverityNumber` were undefined (this is typical of the filelog receiver). However, the severity is embedded within the log body:
 
 ```text
 <snip>
 LogRecord #0
 ObservedTimestamp: 2025-01-31 21:49:29.924017 +0000 UTC
 Timestamp: 1970-01-01 00:00:00 +0000 UTC
-SeverityText: WARN
+SeverityText: 
 SeverityNumber: Unspecified(0)
 Body: Str(2025-01-31 15:49:29 [WARN] - Do or do not, there is no try.)
 Attributes:
@@ -60,42 +60,52 @@ Flags: 0
 
 Logs often contain structured data encoded as JSON within the log body. Extracting these fields into attributes allows for better indexing, filtering, and querying. Instead of manually parsing JSON in downstream systems, OTTL enables automatic transformation at the telemetry pipeline level.
 
-We’ll correct this using the Transform Processor.
-
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - **Configure the `transform(logs)` processor:** Ensure the processor is applied to `log_statements` in the `resource` context and filter the resource attributes, keeping only relevant metadata fields (`com.splunk.sourcetype`, `host.name`, `otelcol.service.mode`):
 
   ```yaml
-  transform/logs:
-    log_statements: 
-      - context: resource
-        statements:
+  transform/logs:                     # Processor Type/Name
+    log_statements:                   # Log Processing Statements
+      - context: resource             # Log Context
+        statements:                   # Transform Statements Array
           - keep_keys(attributes, ["com.splunk.sourcetype","host.name", "otelcol.service.mode"])
+            #List of attribute keys to keep
   ```
 
-- **Add another context block** for to the `log_statements` and set the severity_text and severity_number of the log record based on the matching severity level from the log body.
+- **Add another context block** to the `log_statements` and set the `severity_text` and `severity_number` of the log record based on the matching severity `level` from the log `body`.
 
   ```yaml
-      - context: log
-        statements:
-          - set(cache, ParseJSON(body)) where IsMatch(body, "^\\{")
-          - flatten(cache, "")
-          - merge_maps(attributes, cache, "upsert")
-          - set(severity_text, attributes["level"])
-          - set(severity_number, 1) where severity_text == "TRACE"
-          - set(severity_number, 5) where severity_text == "DEBUG"
-          - set(severity_number, 9) where severity_text == "INFO"
-          - set(severity_number, 13) where severity_text == "WARN"
-          - set(severity_number, 17) where severity_text == "ERROR"
-          - set(severity_number, 21) where severity_text == "FATAL"
+      - context: log                  # Log Context
+        statements:                   # Transform Statements Array
+          - set(cache, ParseJSON(body)) where IsMatch(body, "^\\{")  
+            # Parses the log body as JSON and stores the result in a temporary 'cache' variable 
+            # Only applies if the body starts with '{', indicating it's JSON-formatted
+
+          - flatten(cache, "")        
+            # Flattens the JSON structure in 'cache' to remove nested levels, making all keys top-level
+            # Useful for simplifying complex JSON logs
+
+          - merge_maps(attributes, cache, "upsert")  
+            # Merges the flattened 'cache' data into the log's attributes
+            # 'upsert' ensures that existing keys are updated, and new keys are added
+
+          - set(severity_text, attributes["level"])  
+            # Maps the 'level' attribute from the log data to the OpenTelemetry 'severity_text' field
+            # Ensures that log severity levels are standardized
+
+          - set(severity_number, 1) where severity_text == "TRACE"  
+          - set(severity_number, 5) where severity_text == "DEBUG"  
+          - set(severity_number, 9) where severity_text == "INFO"   
+          - set(severity_number, 13) where severity_text == "WARN"  
+          - set(severity_number, 17) where severity_text == "ERROR"  
+          - set(severity_number, 21) where severity_text == "FATAL"  
+            # Assigns severity numbers by log level
 
   ```
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-This transformation checks if the log body contains a JSON object, then extracts its fields into log attributes with merge_maps while preserving nested structures. The flattened(cache) step ensures that deeply nested JSON fields can be accessed as top-level attributes.
-
-This method should only be used for **testing and debugging OTTL**. Mapping all fields from a JSON object would cause high cardinality in production scenarios.
+This method of mapping all JSON fields to top-level attributes should only be used for **testing and debugging OTTL**. It will result in high cardinality in a production scenario.
 {{% /notice %}}
 
 - **Update the `logs` pipeline**: Add the `transform` processor into the `logs:` pipeline:
@@ -120,11 +130,11 @@ Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**
 graph LR
     %% Nodes
       REC1(&nbsp;&nbsp;otlp&nbsp;&nbsp;<br>fa:fa-download):::receiver
-      REC2(filelog<br>fa:fa-download):::receiver
+      REC2(filelog<br>fa:fa-download<br>quotes):::receiver
       PRO1(memory_limiter<br>fa:fa-microchip):::processor
       PRO2(resourcedetection<br>fa:fa-microchip):::processor
-      PRO3(resource<br>fa:fa-microchip):::processor
-      PRO4(transform<br>fa:fa-microchip):::processor
+      PRO3(resource<br>fa:fa-microchip<br>add_mode):::processor
+      PRO4(transform<br>fa:fa-microchip<br>logs):::processor
       PRO5(batch<br>fa:fa-microchip):::processor
       EXP1(otlphttp<br>fa:fa-upload):::exporter
       EXP2(&ensp;&ensp;debug&ensp;&ensp;<br>fa:fa-upload):::exporter
