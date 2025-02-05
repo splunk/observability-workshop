@@ -33,9 +33,9 @@ You should now see a file named `agent.out` in the current directory. Since no m
 ```text
 [WORKSHOP]
 ├── 1-agent         # Module directory
+│   └── agent.out   # OTLP/Json output created by the File Exporter
 │   └── agent.yaml  # OpenTelemetry Collector configuration file
 │   └── trace.json  # Sample trace data
-│   └── agent.out   # OTLP/Json output created by the File Exporter
 └── otelcol         # OpenTelemetry Collector binary
 ```
 
