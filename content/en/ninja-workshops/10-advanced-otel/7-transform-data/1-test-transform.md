@@ -7,7 +7,7 @@ weight: 1
 ### Test the Transform
 
 **Run the Log Generator**:
-In a test terminal window, navigate to the `[WORKSHOP]/7-transform-data` directory and start the appropriate `log-gen` script for your system. We want to work with structured JSON logs so add a `-json` flag to the script command. 
+In the `test` terminal window, navigate to the `[WORKSHOP]/7-transform-data` directory and start the appropriate `log-gen` script for your system. We want to work with structured JSON logs, so add the `-json` flag to the script command. 
 
 ```sh
 ./log-gen.sh -json
@@ -30,7 +30,7 @@ Find your `Agent` terminal window and navigate to the `[WORKSHOP]/7-transform-da
 It should also start up normally and state : `Everything is ready. Begin running and processing data.`
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-In this exercise, we will **remove the** `com.splunk/source` and `os.type` **metadata** from log resource data before it is exported by the `agent`. We will also parse the log body to set the `SeverityText` and `SeverityNumber` for the `LogRecord` and promote the log json fields to `attributes`
+In this exercise, we will **remove the** `com.splunk/source` and `os.type` **metadata** from the log resource attributes before it is exported by the `agent`. We will also parse the log body to set the `SeverityText` and `SeverityNumber` on the `LogRecord` and promote the log `body` json fields to log `attributes`.
 
 - **Check the debug output** of both the `Agent` and `Gateway` to confirm that `com.splunk/source` and `os.type` have been removed.
 
@@ -59,7 +59,7 @@ In this exercise, we will **remove the** `com.splunk/source` and `os.type` **met
 {{% /tab %}}
 {{% /tabs %}}
 
-- **Check the debug output** of both the `Agent` and `Gateway` to confirm that the `SeverityText` in the `LogRecord` is now defined with the severity from the log body, along with the matching severity number. Confirm that the JSON fields from the body can be accessed as top-level log attributes.
+- **Check the debug output** of both the `Agent` and `Gateway` to confirm that `SeverityText` and `SeverityNumber` in the `LogRecord` is now defined with the severity `level` from the log body. Confirm that the JSON fields from the body can be accessed as top-level log `Attributes`.
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
@@ -242,3 +242,5 @@ In this exercise, we will **remove the** `com.splunk/source` and `os.type` **met
 {{% /tabs %}}
 
 {{% /notice %}}
+
+Stop the `agent` and `gateway` using Command-c/Ctrl-c.

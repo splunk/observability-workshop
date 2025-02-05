@@ -58,7 +58,7 @@ So, Let's start an exercise to clean those up:
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - **Add an `Attributes` Processor** and name it `update:`
-The `attributes` processor also allows you to update or delete specific attributes (tags) from spans. In this case, we're updating the tag `user.phone_number` to `"UNKNOWN NUMBER"`, hash the `user.email` and replace the `amex` card number with the word `"Redacted"`:
+The `attributes` processor also allows you to update or delete specific attributes (tags) from spans. In this case, we're updating the tag `user.phone_number` to `"UNKNOWN NUMBER"`, hash the `user.email` and removing the `user.account_password`:
 
   ```yaml
     attributes/update:               # Processor Type/Name
@@ -86,15 +86,15 @@ The `attributes` processor also allows you to update or delete specific attribut
 
   ```
 
-- **Update the `traces` pipeline**: Add the both the `attribute` processors and the `redaction` processor into the `traces:` pipeline but make sure `attributes/update:` and `redaction/redact` are commented out.
+- **Update the `traces` pipeline**: Add the both the `attribute` processors and the `redaction` processor into the `traces:` pipeline.
 
   ```yaml
       traces:
         receivers: [otlp]       # Receiver  array for traces
         processors:             # Alternative syntax option [memory_limiter]
         - memory_limiter        # Handles memory limits for this pipeline
-        #- attributes/update     # Update, hash and remove tags 
-        #- redaction/redact      # Redacting fields on regex 
+        - attributes/update     # Update, hash and remove tags 
+        - redaction/redact      # Redacting fields on regex 
         - resourcedetection     # Adds system attributes to the data
         - resource/add_mode     # Adds collector mode metadata
         - batch
@@ -112,9 +112,10 @@ graph LR
       REC1(&nbsp;&nbsp;otlp&nbsp;&nbsp;<br>fa:fa-download):::receiver
       PRO1(memory_limiter<br>fa:fa-microchip):::processor
       PRO2(resourcedetection<br>fa:fa-microchip):::processor
-      PRO3(resource<br>fa:fa-microchip):::processor
+      PRO3(resource<br>fa:fa-microchip<br>add_mode):::processor
       PRO5(batch<br>fa:fa-microchip):::processor
-      PRO6(attributes<br>fa:fa-microchip):::processor
+      PRO6(attributes<br>fa:fa-microchip<br>update):::processor
+      PRO7(redaction<br>fa:fa-microchip<br>redact):::processor
       EXP1(otlphttp<br>fa:fa-upload):::exporter
       EXP2(&ensp;&ensp;debug&ensp;&ensp;<br>fa:fa-upload):::exporter
     %% Links
@@ -124,7 +125,8 @@ graph LR
       direction LR
       REC1 --> PRO1
       PRO1 --> PRO6
-      PRO6 --> PRO2
+      PRO6 --> PRO7
+      PRO7 --> PRO2
       PRO2 --> PRO3
       PRO3 --> PRO5
       PRO5 --> EXP2
