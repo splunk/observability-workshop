@@ -3,24 +3,8 @@ title: 1.4.1 Test Resource Metadata
 linkTitle: 1.4.1 Test Resource Metadata
 weight: 1
 ---
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-Rename the existing `agent.out` to `agent.old`. This allows you to compare it with the new file later in this section.
-{{% /notice %}}
 
-{{% tab title="Updated Directory Structure" %}}
-
-```text
-[WORKSHOP]
-├── 1-agent         # Module directory
-│   └── agent.old   # Copy of previous agent.out
-│   └── agent.yaml  # OpenTelemetry Collector configuration file
-│   └── trace.json  # Sample trace data
-└── otelcol         # OpenTelemetry Collector binary
-```
-
-{{% /tab %}}
-
-Then restart your collector in the `Agent` terminal window using the updated configuration to test the changes:
+Find your `Agent` terminal window, and restart your collector using the updated configuration to test the changes:
 
 ```bash
 ../otelcol --config=agent.yaml
@@ -63,7 +47,6 @@ A new `agent.out` file will be created:
 ```text
 [WORKSHOP]
 ├── 1-agent         # Module directory
-│   └── agent.old   # Copy of previous agent.out
 │   └── agent.out   # OTLP/Json output created by the File Exporter
 │   └── agent.yaml  # OpenTelemetry Collector configuration file
 │   └── trace.json  # Sample trace data
@@ -72,7 +55,7 @@ A new `agent.out` file will be created:
 
 {{% /tab %}}
 
-When you compare the new `agent.out` file to the original `agent.old`, you’ll notice that the collector has added the `otelcol.service.mode` attribute, along with several `resourcedetection` attributes (`host.name` & `os.type`) to the `resourceSpans` section of the span we send. These values are based on your device and were automatically added by the processors we configured in the pipeline:
+In the new `agent.out` file, you’ll see that the collector has added the`otelcol.service.mode` attribute, along with several `resourcedetection` attributes (`host.name` and `os.type`) in the `resourceSpans` section of the `span` we send. These values are automatically added based on your device by the processors configured in the pipeline.
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
