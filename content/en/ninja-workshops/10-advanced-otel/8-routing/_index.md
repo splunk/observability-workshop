@@ -5,7 +5,7 @@ time: 10 minutes
 weight: 8
 ---
 
-The routing connector in OpenTelemetry is a powerful feature that allows you to direct data (`traces`, `metrics`, or l`ogs`) to different pipelines based on specific criteria. This is especially useful in scenarios where you want to apply different processing or exporting logic to subsets of your telemetry data.
+The routing connector in OpenTelemetry is a powerful feature that allows you to direct data (`traces`, `metrics`, or `logs`) to different pipelines based on specific criteria. This is especially useful in scenarios where you want to apply different processing or exporting logic to subsets of your telemetry data.
 
 For example, you might want to send *production* data to one exporter while directing *test* or *development* data to another. Similarly, you could route certain spans based on their attributes, such as service name, environment, or span name, to apply custom processing or storage logic.
 
@@ -26,9 +26,9 @@ WORKSHOP
 ├── 7-transform-data
 ├── 8-routing
 │   ├── agent.yaml
+│   ├── health.json
 │   ├── gateway.yaml
 │   ├── log-gen.sh (or .ps1)
-│   ├── health.json
 │   └── trace.json
 └── otelcol
 ```
@@ -41,13 +41,12 @@ In the following exercise, you will configure the `routing connector` in the `ga
 Open the `gateway.yaml` and add the following configuration:
 
 - **Add the `connectors:` section**:  
-In OpenTelemetry configuration files, `connectors` have their own dedicated section, similar to receivers and processors. In the `gateway.yaml`file, insert the `connectors:` section below the receivers section and above the processors section.
+In OpenTelemetry configuration files, `connectors` have their own dedicated section, similar to receivers and processors. In the `gateway.yaml` file, insert the `connectors:` section below the `receivers` section and above the `processors` section.
 
   ```yaml
   connectors:       # Section to configure connectors
 
   processors:
-    #memory_limiter:
 
   ```
 
@@ -67,7 +66,7 @@ In OpenTelemetry configuration files, `connectors` have their own dedicated sect
   ```
 
 - **Configure two `file:` Exporters**:
-The `routing connector` requires different targets for routing. To achieve this, update the default `file/traces:` exporter and name it `file/traces/default` and add a second file exporter called `file/traces/security:`. This will allow the routing connector to direct data to the appropriate target based on the rules you define.
+The `routing connector` requires different targets for routing. To achieve this, update the default `file/traces:` exporter and name it `file/traces/default:` and add a second file exporter called `file/traces/security:`. This will allow the routing connector to direct data to the appropriate target based on the rules you define.
 
   ```yaml
     file/traces/standard:               # Exporter Type/Name (For regular traces)
@@ -80,15 +79,12 @@ The `routing connector` requires different targets for routing. To achieve this,
       append: false                    # Overwrite the file each time 
   ```
 
-- **Add both the `standard` and `security traces` pipelines**:
-To enable routing we need to define two pipelines for traces:
+- **Add both the `standard` and `security` traces pipelines**:
 
-  1. **Standard** pipeline.  
-  This pipeline will handle all spans that do not match the routing rule. Add it below the regular `traces:` pipeline, and leave the configuration unchanged for now.
+  1. **Standard** pipeline: This pipeline will handle all spans that do not match the routing rule. Add it below the regular `traces:` pipeline, and leave the configuration unchanged for now.
 
   ```yaml
     pipelines:
-      #traces:               
       traces/standard:                # New Default Traces/Spans Pipeline    
         receivers: 
         - routing                     # Routing Connector, Only receives data from Connector
@@ -100,12 +96,10 @@ To enable routing we need to define two pipelines for traces:
         - file/traces/standard        # File Exporter for spans NOT matching rule
   ```
 
-  - The Target pipeline, that will handle all spans that match the routing rule.
+  - **Target pipeline**: This pipepline will handle all spans that match the routing rule.
 
   ```yaml
     pipelines:
-      #traces:
-      #traces/standard:
       traces/security:                # New Security Traces/Spans Pipeline       
         receivers: 
         - routing                     # Routing Connector, Only receives data from Connector
@@ -115,11 +109,9 @@ To enable routing we need to define two pipelines for traces:
         exporters:
         - debug                       # Debug Exporter 
         - file/traces/security        # File Exporter for spans matching rule
-      #metrics:
   ```
 
-- **Update the `traces` pipeline to handle routing**:  
-To enable `routing`, update the original `traces:` pipeline by adding `routing` as an exporter. This ensures that all span data is sent through the routing connector for evaluation.
+- **Update the `traces` pipeline to handle routing**: To enable `routing`, update the original `traces:` pipeline by adding `routing` as an exporter. This ensures that all span data is sent through the routing connector for evaluation.
 
 For clarity, we are removing the `debug` exporter from this pipeline, so that debug output is only shown from the new exporters behind the routing connector.
 
