@@ -107,7 +107,7 @@ spec:
 Then, create a second file in the same directory named `service.yaml`: 
 
 ``` bash
-vi service.yaml
+vi /home/splunk/service.yaml
 ```
 
 And paste in the following: 
@@ -190,7 +190,7 @@ environment variables to tell it where to send the data.
 
 Add the following to `deployment.yaml` file you created earlier: 
 
-> **IMPORTANT** replace `$INSTANCE` in your Dockerfile with your instance name,
+> **IMPORTANT** replace `$INSTANCE` in the YAML below with your instance name,
 > which can be determined by running `echo $INSTANCE`.
 
 ``` yaml
