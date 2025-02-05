@@ -75,6 +75,3 @@ classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
 classDef sub-traces stroke:#fff,stroke-width:1px, color:#fff,stroke-dasharray: 3 3;
 ```
-<!--
-![otelbin-a-1-3-logs](../../images/agent-1-3-logs.png?width=50vw)
--->
