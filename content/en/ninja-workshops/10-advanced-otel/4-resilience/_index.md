@@ -142,6 +142,4 @@ classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:
 classDef sub-logs stroke:#34d399,stroke-width:1px, color:#34d399,stroke-dasharray: 3 3;
 ```
 
-<!--![logs from otelbin](../images/filelog-3-1-logs.png)-->
-
 This setup enables your OpenTelemetry Collector to handle network interruptions smoothly by storing telemetry data on disk and retrying failed transmissions. It combines checkpointing for recovery with queuing for efficient retries, enhancing the resilience and reliability of your pipeline. Now, let’s test the configuration!
