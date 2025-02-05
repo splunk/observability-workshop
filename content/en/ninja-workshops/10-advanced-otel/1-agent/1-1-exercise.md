@@ -43,7 +43,13 @@ Let's walk through a few modifications to get things started.
 Pay close attention to the formatting, as the OpenTelemetry Collector configuration relies on proper YAML structure.
 {{% /notice %}}
 
-Use [**otelbin.io**](https://otelbin.io) to validate your `agent.yaml` file, you can quickly identify spelling, YAML formatting and configuration errors. If everything is set up correctly, your configuration for the all pipelines should look like this:
+Use [**otelbin.io**](https://otelbin.io) to validate your `agent.yaml` file, you can quickly identify spelling, YAML formatting and configuration errors.
+
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+Make sure the **Splunk OpenTelemetry Collector** distribution is selected as the validation target.
+{{% /notice %}}
+
+If everything is set up correctly, your configuration for the all pipelines should look like this:
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%
@@ -66,12 +72,3 @@ classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
 classDef sub-traces stroke:#fff,stroke-width:1px, color:#fff,stroke-dasharray: 3 3;
 ```
-
-{{% notice note %}}
-You can safely ignore the warning in **otelbin.io** about the unused `hostmetrics` receiver, we will use it later:
-
-```text
-Receiver "hostmetrics" is unused. (Line 9)
-```
-
-{{% /notice %}}

@@ -1,8 +1,7 @@
 ---
-title: File Exporter
+title: 1.3 File Exporter
 linkTitle: 1.3. File Exporter
 weight: 2
-mermaidZoom: true
 ---
 
 To capture more than just debug output on the screen, we also want to generate output during the export phase of the pipeline. For this, we'll add a **File Exporter** to write OTLP data to files for comparison.
@@ -63,7 +62,7 @@ graph LR
     %% Links
     subID1:::sub-traces
     subgraph " "
-      subgraph subID1[Traces/Metrics/Logs]
+      subgraph subID1[**Traces/Metrics/Logs**]
       direction LR
       REC1 --> PRO1
       PRO1 --> EXP1
@@ -73,13 +72,5 @@ graph LR
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
 classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
-classDef sub-traces stroke:#fff,stroke-width:2px, color:#fff,stroke-dasharray: 5 5;
+classDef sub-traces stroke:#fff,stroke-width:1px, color:#fff,stroke-dasharray: 3 3;
 ```
-
-<!--
-![otelbin-a-1-2-w](../../images/agent-1-2-metrics.png?width=25vw)
--->
-
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-If **otelbin.io** shows a warning regarding the `scraper` or`append` keys, check the validation target at the top of the page. Make sure the **Splunk OpenTelemetry Collector** is selected as the validation target.
-{{% /notice %}}

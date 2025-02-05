@@ -18,6 +18,7 @@ Inside the `1-agent` directory, create a file named `agent.yaml`. This file will
 Copy and paste the following initial configuration into `agent.yaml`:
 
 {{% tab title="agent.yaml" %}}
+
 ```yaml
 ###########################        This section holds all the
 ## Configuration section ##        configurations that can be 
@@ -40,15 +41,15 @@ processors:                       # Array of Processors
     limit_mib: 512                # Memory limit in MiB
 
 ###########################         This section controls what
-### Activation Section  ###         configurations will be used  
+### Activation Section  ###         configurations will be used
 ###########################         by this OpenTelemetry Collector
 service:                          # Services configured for this Collector
-  extensions: [health_check]      # Enabled extensions for this collector   
-  pipelines:                      # Array of configured pipelines  
+  extensions: [health_check]      # Enabled extensions for this collector
+  pipelines:                      # Array of configured pipelines
     traces:
       receivers:
       processors:
-      - memory_limiter            # Memory Limiter processor                
+      - memory_limiter            # Memory Limiter processor
       exporters:
     metrics:
       receivers:
