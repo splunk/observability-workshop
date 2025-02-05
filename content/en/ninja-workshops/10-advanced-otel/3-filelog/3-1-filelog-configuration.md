@@ -8,26 +8,19 @@ Check that you are in the `[WORKSHOP]/3-filelog` directory.  Open the `agent.yam
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Add the `filelog` receiver**: The Filelog receiver reads log data from a file and includes custom resource attributes in the log data:
+- **Add the `filelog` receiver**: The [**FileLog Receiver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/filelogreceiver/README.md) reads log data from a file and includes custom resource attributes in the log data:
 
   ```yaml
-    # Define a filelog receiver named "quotes"
-    filelog/quotes:
-      # Specifies the file to read log data from (quotes.log)
-      include: ./quotes.log
-      # Includes the full file path in the log data
-      include_file_path: true
-      # Excludes the file name from the log data
-      include_file_name: false
-      # Add custom resource attributes to the log data
-      resource:
-        # Sets the source of the log data to "quotes.log"
-        com.splunk.source: ./quotes.log
-        # Sets the sourcetype for the log data to "quotes"
-        com.splunk.sourcetype: quotes
+    filelog/quotes:                 # Receiver Type/Name                      
+      include: ./quotes.log         # The file to read log data from (quotes.log)
+      include_file_path: true       # Includes the full file path in the log data
+      include_file_name: false      # Excludes the file name from the log data
+      resource:                     # Add custom resource attributes to the log data
+        com.splunk.source: ./quotes.log # Sets the source of the log data to "quotes.log"
+        com.splunk.sourcetype: quotes   # Sets the sourcetype for the log data to "quotes"
   ```
 
-- Add `filelog/quotes` receiver to the `receivers` array in the `logs` section of the pipelines.  (make sure it also contains `otlp`)
+- **Add `filelog/quotes` receiver** to the `receivers` array in the `logs` section of the pipelines.  (make sure it also contains `otlp`)
 
 {{% /notice %}}
 
