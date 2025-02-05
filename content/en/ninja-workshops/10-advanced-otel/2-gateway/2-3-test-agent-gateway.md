@@ -115,7 +115,13 @@ Next, make sure both the gateway and the agent are still running in their respec
 
 Find your `Tests` terminal window, and also navigate to the `[WORKSHOP]/2-gateway` directory.
 
-Check that you have copied the `trace.json` to the `2-gateway` directory then run our`cURL` command to send a trace.  Use the button below to verify that both the `agent` and `gateway` displayed similar Debug output.
+Check that you have copied the `trace.json` to the `2-gateway` directory then run our`cURL` command to send a trace.  We show the first and last line of the Debug output but use the button below to verify that both the `agent` and `gateway` displayed similar Debug output.
+
+```text
+2025-02-05T15:55:18.966+0100    info    Traces  {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
+<snip>
+        {"kind": "exporter", "data_type": "traces", "name": "debug"}
+```
 
 {{% expand title="{{% badge style=primary icon=scroll %}}Complete Debug Output{{% /badge %}}" %}}
 
