@@ -243,4 +243,4 @@ In this exercise, we will **remove the** `com.splunk/source` and `os.type` **met
 
 {{% /notice %}}
 
-Stop the **Agent** and **Gateway** using Ctrl-C.
+Stop the **Agent** and **Gateway** using `Ctrl-C`.

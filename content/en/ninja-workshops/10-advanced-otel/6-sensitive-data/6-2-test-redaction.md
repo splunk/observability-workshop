@@ -178,4 +178,4 @@ Add the Amex card regex to `blocked_values` and restart **Agent** collector.
 
 These are just a few examples of how `attributes` and `redaction` processors can be configured to protect sensitive data. 
 
-Stop the **Agent** and **Gateway** using Ctrl-C.
+Stop the **Agent** and **Gateway** using `Ctrl-C`.

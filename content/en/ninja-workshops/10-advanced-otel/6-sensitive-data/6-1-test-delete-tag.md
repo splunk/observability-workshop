@@ -143,4 +143,4 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
 {{% /tabs %}}
 
 {{% /notice %}}
-Stop the **Agent** and **Gateway** using Ctrl-C.
+Stop the **Agent** and **Gateway** using `Ctrl-C`.

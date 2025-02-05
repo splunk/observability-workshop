@@ -115,4 +115,4 @@ This will drop spans with the names `"/_healthz"` and `"/internal/metrics"`.
 
 You can further extend this configuration to filter out spans based on different attributes, tags, or other criteria, making the OpenTelemetry Collector more customizable and efficient for your observability needs.
 
-Stop the **Agent** and **Gateway** using Ctrl-C.
+Stop the **Agent** and **Gateway** using `Ctrl-C`.
