@@ -290,7 +290,7 @@ After executing the command, the gateway should generate a new file named `./gat
 {{% /tabs %}}
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-Ensure that both `./gateway-metrics.out` and `./gateway-traces.out` include a resource attribute key-value pair for `otelcol.service.mode` with the value `gateway`.
+Ensure that both `./gateway-metrics.out` and `./gateway-traces.out` include a resource attribute key-value pair for `otelcol.service.mode` with the value **Gateway**.
 
 In the provided `gateway.yaml` configuration, we modified the `resource/add_mode` processor to use the `upsert` action instead of `insert`. The `upsert` action updates the value of the resource attribute key if it already exists, setting it to `"gateway"`. If the key is not present, the `upsert` action will add it.
 {{% /notice %}}

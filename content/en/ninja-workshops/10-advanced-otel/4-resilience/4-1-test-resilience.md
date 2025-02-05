@@ -6,12 +6,12 @@ weight: 1
 
 ### Setup Test environment
 
-In this section we are going to simulate an outage on the network between the **Agent** and the `gateway` and see if our configuration helps the Collector recover from that issue:
+In this section we are going to simulate an outage on the network between the **Agent** and the **Gateway** and see if our configuration helps the Collector recover from that issue:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 **Run the Gateway**:
-Find your `Gateway` terminal window, and navigate to the `[WORKSHOP]/4-resilience` directory and restart the gateway.
+Find your **Gateway** terminal window, and navigate to the `[WORKSHOP]/4-resilience` directory and restart the gateway.
 
 It should start up normally and state : `Everything is ready. Begin running and processing data.`
 
@@ -31,20 +31,20 @@ If everything is working as expected, we can move on to testing the system’s r
 
 ### Testing System Resilience
 
-To evaluate the system’s resilience, we’ll simulate a scenario where the Gateway becomes temporarily unreachable by stopping it and observing how the system responds. First, we’ll generate traffic to the agent by sending some traces. Since the Gateway is down, the agent will enter retry mode.  Once we restart the agent, it will recover the traces from the persistent queue and successfully send them to the Gateway. Without the persistent queue, these traces would have been lost permanently.
+To evaluate the system’s resilience, we’ll simulate a scenario where the **Gateway** becomes temporarily unreachable by stopping it and observing how the system responds. First, we’ll generate traffic to the agent by sending some traces. Since the **Gateway** is down, the agent will enter retry mode.  Once we restart the agent, it will recover the traces from the persistent queue and successfully send them to the Gateway. Without the persistent queue, these traces would have been lost permanently.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 Let's start our "network failure":
 
 **Simulate a Network Failure**:
-Stop the Gateway with `Command-c/Ctrl-c` and wait until the gateway console shows that it has stopped:
+Stop the **Gateway** with `Ctrl-C` and wait until the gateway console shows that it has stopped:
 
 ```text
 2025-01-28T13:24:32.785+0100  info  service@v0.116.0/service.go:309  Shutdown complete.
 ```
 
 **Create Traffic during the "Network Failure"**:  
-While the Gateway is stopped, send 3–4 traces using the cURL command we used earlier.
+While the **Gateway** is stopped, send 3–4 traces using the cURL command we used earlier.
 
 Notice that the agent’s retry mechanism is activated as it continuously attempts to resend the data. In the agent’s console output, you will see repeated messages similar to the following:
 
@@ -72,10 +72,10 @@ This step is essential for clearly observing the recovery process when the agent
 Restart the Gateway. It should initialize as expected and be ready and waiting to receive data.
 
 **Restart the Agent**
-Once the `gateway` is up and running, restart the **Agent**. It will resume sending data from the last checkpointed state, ensuring no data is lost. You should see the `gateway` begin receiving the previously missed traces without requiring any additional action on your part.
+Once the **Gateway** is up and running, restart the **Agent**. It will resume sending data from the last checkpointed state, ensuring no data is lost. You should see the **Gateway** begin receiving the previously missed traces without requiring any additional action on your part.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-Note that only the `gateway` will show that the checkpointed traces have arrived. The agent will not display any indication that data new or old has been sent.
+Note that only the **Gateway** will show that the checkpointed traces have arrived. The agent will not display any indication that data new or old has been sent.
 {{% /notice %}}
 {{% /notice %}}
 
@@ -87,4 +87,4 @@ By implementing file-based checkpointing and queue persistence, you ensure the t
 
 If you want to know more about the `FileStorage` extension, you can find it [here](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/storage/filestorage)
 
-Stop the **Agent** and `gateway` using Command-c/Ctrl-c.
+Stop the **Agent** and **Gateway** using Ctrl-C.
