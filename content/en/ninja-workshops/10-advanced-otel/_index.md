@@ -31,6 +31,8 @@ During this workshop, we will cover the following topics:
 
 By the end of this workshop, you'll be familiar with configuring the OpenTelemetry Collector for a variety of real-world use cases.
 
+---
+
 ### Prerequisites
 
 - **Create a directory** on your machine for the workshop (e.g., `collector`). We will refer to this directory as `[WORKSHOP]` in the instructions.
