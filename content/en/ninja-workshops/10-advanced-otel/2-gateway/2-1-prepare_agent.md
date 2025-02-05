@@ -64,8 +64,9 @@ Next, enable the `hostmetric` receiver in the `metrics` pipeline so that you can
         - otlphttp                    # OTLP/HTTP EXporter used by Splunk O11Y
   ```
 
-{{% /notice %}}  
-Again, validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. As example, here is the result for the `metrics` pipeline:
+{{% /notice %}}
+
+Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `metrics:` section of your pipelines will look similar to this:
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%

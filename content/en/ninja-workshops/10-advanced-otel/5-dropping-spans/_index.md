@@ -52,7 +52,7 @@ Open the `gateway.yaml` and add the following configuration to the `processors` 
 
 {{% /notice %}}
 
-Validate the gateway configuration using **[otelbin.io](https://www.otelbin.io/)**, the results for the `traces` pipeline should look like this:
+Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `traces:` section of your pipelines will look similar to this:
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%

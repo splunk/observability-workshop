@@ -24,7 +24,7 @@ Check that you are in the `[WORKSHOP]/3-filelog` directory.  Open the `agent.yam
 
 {{% /notice %}}
 
-Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**, the results for the `Logs` pipeline should look like this:
+Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `logs:` section of your pipelines will look similar to this:
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%

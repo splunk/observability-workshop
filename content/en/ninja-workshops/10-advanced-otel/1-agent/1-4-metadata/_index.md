@@ -46,7 +46,9 @@ Find your **Agent** terminal window, and stop the running collector by pressing 
 
 {{% /notice %}}
 
-By adding these processors, we enrich the data with system metadata and the agent’s operational mode, which aids in troubleshooting and provides useful context for related content. Validate your updated `agent.yaml` with [**otelbin.io**](https://www.otelbin.io/):
+By adding these processors, we enrich the data with system metadata and the agent’s operational mode, which aids in troubleshooting and provides useful context for related content.
+
+Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**:
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%
