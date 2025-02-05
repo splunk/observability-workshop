@@ -1,7 +1,7 @@
 ---
-title: 2.2 Test the gateway and prepare the agent
-linkTitle: 2.2 Test Gateway & Configure Agent
-weight: 2
+title: 2.1 Test the gateway and prepare the agent
+linkTitle: 2.1 Test Gateway & Configure Agent
+weight: 1
 ---
 
 ### Test Gateway
