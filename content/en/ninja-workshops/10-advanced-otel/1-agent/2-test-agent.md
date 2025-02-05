@@ -1,7 +1,7 @@
 ---
 title: Test Configuration
-linkTitle: 1.1 Test Configuration
-weight: 1
+linkTitle: 1.2 Test Configuration
+weight: 2
 ---
 
 Once you've updated the configuration, you’re ready to proceed to running the OpenTelemetry Collector with your new setup. This exercise sets the foundation for understanding how data flows through the OpenTelemetry Collector.
