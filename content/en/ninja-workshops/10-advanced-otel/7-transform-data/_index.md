@@ -30,8 +30,6 @@ Body: Str(2025-01-31 15:49:29 [WARN] - Do or do not, there is no try.)
 
 Logs often contain structured data encoded as JSON within the log body. Extracting these fields into attributes allows for better indexing, filtering, and querying. Instead of manually parsing JSON in downstream systems, OTTL enables automatic transformation at the telemetry pipeline level.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
-
 - Inside the `[WORKSHOP]` directory, create a new subdirectory named `7-transform`.
 - Next, copy all contents from the `6-sensitve-data` directory into `7-routing`.
 - After copying, remove any `*.out` and `*.log` files.
@@ -51,9 +49,7 @@ WORKSHOP
 ├── 6-sensitive-data
 ├── 7-transform-data
 │   ├── agent.yaml
-│   ├── agent.yaml
 │   ├── gateway.yaml
-│   ├── health.json
 │   ├── health.json
 │   ├── log-gen.sh (or .ps1)
 │   └── trace.json
@@ -61,6 +57,7 @@ WORKSHOP
 ```
 
 {{% /tab %}}
+{{% /tabs %}}
 
 We’ll update `agent.yaml` to include a Transform Processor that will:
 
