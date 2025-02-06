@@ -4,28 +4,32 @@ linkTitle: 2.2 Send Data from Agent to Gateway
 weight: 3
 ---
 
-Verify the gateway is running in your **Gateway** terminal and is ready to receive data, then in the **Agent** terminal window, start the agent:
+{{% notice title="Exercise" style="green" icon="running" %}}
 
-```bash
-../otelcol --config=agent.yaml
-```
+- **Verify the `gateway` is still running**: Check your **Gateway** terminal window and see of the 'gateway collector is running and is ready to receive data,.
 
-Once the **Agent** starts, it will immediately begin sending **CPU** metrics. Both the **Agent** and the **Gateway** will display this activity in their debug output. The output should resemble the following snippet:
+- **Start the the Agent**: Find your  **Agent** terminal window then start the agent:
 
-```text
-<snip>
-NumberDataPoints #37
-Data point attributes:
-     -> cpu: Str(cpu9)
-     -> state: Str(system)
-StartTimestamp: 2024-12-09 14:18:28 +0000 UTC
-Timestamp: 2025-01-15 15:27:51.319526 +0000 UTC
-Value: 9637.660000
-```
+  ```bash
+  ../otelcol --config=agent.yaml
+  ```
 
-At this stage, the **Agent** collects **CPU** metrics once per hour or upon each restart and sends them to the gateway. The OpenTelemetry Collector, running in **Gateway** mode, processes these metrics and exports them to a file named `./gateway-metrics.out`. This file stores the exported metrics as part of the pipeline service.  
+- **Verify CPU Metrics**: Once the **Agent** starts, it will immediately begin sending **CPU** metrics. Both the **Agent** and the **Gateway** will display this activity in their debug output. The output should resemble the following snippet:
 
-Open the `gateway-metrics.out` file. It should contain **CPU** metrics, including details similar to those shown below (we're only displaying the `resourceMetrics` section and the first set of **CPU** metrics—you will likely see more):
+  ```text
+  <snip>
+  NumberDataPoints #37
+  Data point attributes:
+      -> cpu: Str(cpu9)
+      -> state: Str(system)
+  StartTimestamp: 2024-12-09 14:18:28 +0000 UTC
+  Timestamp: 2025-01-15 15:27:51.319526 +0000 UTC
+  Value: 9637.660000
+  ```
+
+  At this stage, the **Agent** continues to collect **CPU** metrics once per hour or upon each restart and sends them to the gateway. The OpenTelemetry Collector, running in **Gateway** mode, processes these metrics and exports them to a file named `./gateway-metrics.out`. This file stores the exported metrics as part of the pipeline service.  
+
+- **Verify Data arrived at Gateway**: Open the newly created `gateway-metrics.out` file. It should contain **CPU** metrics, including details similar to those shown below (we're only displaying the `resourceMetrics` section and the first set of **CPU** metrics — You will likely see more):
 
 {{% tabs %}}
 {{% tab title="Compact JSON" %}}
@@ -109,7 +113,7 @@ Open the `gateway-metrics.out` file. It should contain **CPU** metrics, includin
 {{% /tab %}}
 {{% /tabs %}}
 
-Next, make sure both the **Gateway** and the **Agent** are still running in their respective terminals or restart them on Windows.
+- **Confirm** both the Gateway and the **Agent** are still running in their respective terminals or restart them on Windows.
 
 Find your **Tests** terminal window, and also navigate to the `[WORKSHOP]/2-gateway` directory.
 
@@ -288,11 +292,14 @@ After executing the command, the gateway should generate a new file named `./gat
 
 {{% /tab %}}
 {{% /tabs %}}
+{{% /notice %}}
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 Ensure that both `./gateway-metrics.out` and `./gateway-traces.out` include a resource attribute key-value pair for `otelcol.service.mode` with the value **Gateway**.
 
 In the provided `gateway.yaml` configuration, we modified the `resource/add_mode` processor to use the `upsert` action instead of `insert`. The `upsert` action updates the value of the resource attribute key if it already exists, setting it to `"gateway"`. If the key is not present, the `upsert` action will add it.
 {{% /notice %}}
+
+
 
 Stop the **Agent** and **Gateway** processes by pressing `Ctrl-C` in their respective terminals.
