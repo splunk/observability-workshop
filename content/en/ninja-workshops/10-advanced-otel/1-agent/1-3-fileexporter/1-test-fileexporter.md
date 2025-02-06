@@ -4,30 +4,29 @@ linkTitle: 1.3.1 Test File Exporter
 weight: 1
 ---
 
-Restart your agent in the **Agent** terminal window, this time with your new config to test it:
+{{% notice title="Exercise" style="green" icon="running" %}}
 
-```bash
-../otelcol --config=agent.yaml
-```
+- **Restart** your agent in the **Agent** terminal window, this time with your new config to test it:
 
-Again, if you have done everything correctly, the last line of the output should be:
+  ```bash
+  ../otelcol --config=agent.yaml
+  ```
 
-```text
-2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
-```
+  Again, if you have done everything correctly, the last line of the output should be:
 
-If you send a span again, from the `Test` terminal window you should get the same output on the console as we saw previously:
+  ```text
+  2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
+  ```
 
-{{% tab title="cURL Command" %}}
+- **Send a Trace**: If you send a span again, from the `Test` terminal window you should get the same output on the console as we saw previously:
 
-```ps1
- curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
-```
+  ```ps1
+  curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
+  ```
 
-{{% /tab %}}
+- **Verify that the `agent.out` file is written**: There should now be a file named `agent.out` in the current directory. Since no modifications have been made to the pipeline yet, this file should be identical to `trace.json`.
 
-You should now see a file named `agent.out` in the current directory. Since no modifications have been made to the pipeline yet, this file should be identical to `trace.json`.
-
+{{% tabs %}}
 {{% tab title="Updated Directory Structure" %}}
 
 ```text
@@ -40,22 +39,38 @@ You should now see a file named `agent.out` in the current directory. Since no m
 ```
 
 {{% /tab %}}
+{{% /tab %}}
+
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+If you want to view the file’s content, simply run:
+
+```sh
+cat agent.out`
+``` 
+
+For a formatted JSON output, you can use the same command but pipe it through **jq** (if installed):
+
+```bash
+cat ./agent.out | jq
+```
+
+{{% /notice %}}
 
 {{% notice note %}}
 On **Windows**, an open file may appear empty or cause issues when attempting to read it. To prevent this, make sure to stop the **Agent** or the **Gateway** before inspecting the file, as instructed.
 {{% /notice %}}
 
-The span is written to the `agent.out` as a single line in OTLP/JSON format:
+- **Verify the span is written**: The File Exporter writes the span to the `agent.out` as a single line in OTLP/JSON format:
 
 {{% tabs %}}
-{{% tab title="Compacted JSON" %}}
+{{% tab title="cat ./agent.out" %}}
 
 ```json
 {"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"my.service"}},{"key":"deployment.environment","value":{"stringValue":"my.environment"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5B8EFFF798038103D269B633813FC60C","spanId":"EEE19B7EC3C1B174","parentSpanId":"EEE19B7EC3C1B173","name":"I'm a server span","startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","kind":2,"attributes":[{"key":"user.name","value":{"stringValue":"George Lucas"}},{"key":"user.phone_number","value":{"stringValue":"+1555-867-5309"}},{"key":"user.email","value":{"stringValue":"george@deathstar.email"}},{"key":"user.account_password","value":{"stringValue":"LOTR>StarWars1-2-3"}},{"key":"user.visa","value":{"stringValue":"4111 1111 1111 1111"}},{"key":"user.amex","value":{"stringValue":"3782 822463 10005"}},{"key":"user.mastercard","value":{"stringValue":"5555 5555 5555 4444"}}]}]}]}]}
 ```
 
 {{% /tab %}}
-{{% tab title="Formatted JSON" %}}
+{{% tab title="cat ./agent.out | jq" %}}
 
 ```json
 {
@@ -155,12 +170,5 @@ The span is written to the `agent.out` as a single line in OTLP/JSON format:
 
 {{% /tab %}}
 {{% /tabs %}}
-
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-If you want to see formatted JSON, you can cat the file and pipe it though `jq` (if you have it installed).
-
-```bash
-cat ./agent.out | jq
-```
 
 {{% /notice %}}
