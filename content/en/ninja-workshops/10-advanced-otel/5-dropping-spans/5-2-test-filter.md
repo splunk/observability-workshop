@@ -1,7 +1,7 @@
 ---
-title: 5.1 Test Filter Processor
-linkTitle: 5.1 Test Filter Processor
-weight: 1
+title: 5.2 Test Filter Processor
+linkTitle: 5.2 Test Filter Processor
+weight: 2
 ---
 
 To test your configuration, you'll need to generate some trace data that includes a span named `"/_healthz"`.
