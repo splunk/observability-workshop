@@ -92,7 +92,7 @@ In this section, we will extend the `gateway.yaml` configuration you just create
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Configure File Exporters**: Separate exporters need to be configured for traces, metrics, and logs. Below is the YAML configuration for traces:
+- **Create a `file` Exporter and name it `traces`**: Separate exporters need to be configured for traces, metrics, and logs. Below is the YAML configuration for traces:
 
   ```yaml
     file/traces:                    # Exporter Type/Name
