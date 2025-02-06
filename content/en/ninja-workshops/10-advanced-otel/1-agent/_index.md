@@ -5,6 +5,21 @@ time: 10 minutes
 weight: 1
 ---
 
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+During this workshop, you will be using up to 4 terminal windows simultaneously.  
+To stay organized, consider customizing each terminal or shell with unique names and colors.  
+This will help you quickly identify and switch between them as needed.
+
+We will refer to these terminals as:
+
+- `Agent`
+- `Gateway`
+- `Tests`
+- `Log-gen`
+
+{{% /notice %}}
+
+
 In your `[WORKSHOP]` directory, create a subdirectory called `1-agent` and change into that directory.
 
 ```text
