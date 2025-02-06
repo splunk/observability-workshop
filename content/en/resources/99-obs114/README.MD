@@ -1,5 +1,5 @@
 ---
-title: Advanced OpenTelemetry
+title: Into & Pre Req for Advanced OpenTelemetry
 description: In this workshop you will practice setting up the OpenTelemetry Collector configuration from scratch and go though several advanced configuration scenarios's
 weight: 10
 archetype: chapter
@@ -35,7 +35,7 @@ By the end of this workshop, you'll be familiar with configuring the OpenTelemet
 
 ### Prerequisites
 
-- **Create a directory** on your machine for the workshop (e.g., `advanced-otel`). We will refer to this directory as `[WORKSHOP]` in the instructions.
+- **Create a directory** on your machine for the workshop (e.g., `collector`). We will refer to this directory as `[WORKSHOP]` in the instructions.
 - **Download the latest OpenTelemetry Collector release** for your platform and place it in the `[WORKSHOP]` directory:
 
 | Platform                         | Binary URL          |
