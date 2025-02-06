@@ -10,8 +10,8 @@ Once you've updated the configuration, you’re ready to proceed to running the 
 
 - **Find your Agent Terminal window**:
 
- 1. Move into the [`WORKSHOP/i-agent`] folder
- 2. Run the following command: (ensure you’re using the correct OpenTelemetry Collector binary you downloaded).
+    1. Move into the `[WORKSHOP]/1-agent folder
+    2. Run the following command: (ensure you’re using the correct OpenTelemetry Collector binary you downloaded).
 
     ```sh
      ../otelcol --config=agent.yaml
