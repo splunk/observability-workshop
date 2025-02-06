@@ -3,18 +3,31 @@ title: 3.2 Test Filelog Receiver
 linkTitle: 3.2 Test Configuration
 weight: 2
 ---
+{{% notice title="Exercise" style="green" icon="running" %}}
 
-In your `Gateway` terminal window, navigate to the `[WORKSHOP]/3-filelog` directory, then start the `gateway` collector and wait for it to be ready to receive data.
+- **Check the log-ge script is running**
+  1. Find the **Tests** Terminal window, and check the script is still running,and the last line is still stating the below. (if it not, restart it in the `[WORKSHOP]/3-filelog` folder.)
+  
+  ```text
+  Writing logs to quotes.log. Press Ctrl+C to stop.
+  ```
 
-Next, to test the `Filelog Receiver`, switch to your `Agent` terminal window, navigate to the same `[WORKSHOP]/3-filelog` directory, and start the `agent`.
+- **Start the Gateway**
+  1. Find your `Gateway` terminal window.
+  2. Navigate to the `[WORKSHOP]/3-filelog` directory.
+  3. Start the `gateway` collector there and wait for it to be ready to receive data.
 
-Once the agent is running, it will start sending CPU metrics as before. Initially, both the agent and the gateway will display CPU debug information. After that, a continuous stream of log data will appear. The debug output should look similar to the following:
+- **Start the Agent**
+  1. Switch to your `Agent` terminal window
+  2. Navigate to the `[WORKSHOP]/3-filelog` directory
+  3. Start the `agent` here with the latest configuration.
+  4. Ignore the initial **CPU** Metrics in the Debug output and wait until the continuous stream of log data from the `quotes.log` appears. The debug output should look similar to the following (use the *Check Full Debug Log* to see all data):
 
-```text
-2025-02-05T18:05:17.050+0100    info    Logs    {"kind": "exporter", "data_type": "logs", "name": "debug", "resource logs": 1, "log records": 1}
-<snip>
-       {"kind": "exporter", "data_type": "logs", "name": "debug"}
-```
+  ```text
+  2025-02-05T18:05:17.050+0100    info    Logs    {"kind": "exporter", "data_type": "logs", "name": "debug", "resource logs": 1, "log records": 1}
+  <snip>
+        {"kind": "exporter", "data_type": "logs", "name": "debug"}
+  ```
 
 {{% expand title="{{% badge style=primary icon=scroll %}}Check Full Debug Log{{% /badge %}}" %}}
 
@@ -47,8 +60,13 @@ Flags: 0
 
 {{% /expand %}}
 
-When the agent is reading the `quotes.log` file, it will display this activity in the debug console output as we have seen. It then forwards the log lines to the gateway. The gateway pipeline will then generate the `gateway-log.out` file. At this point, your directory structure will appear as follows:
+- **Verify the gateway has handled the logs**
+  1. Check if the 'gateway' has written a `./gateway-log.out` file. 
+  2. (Windows only). Stop the Agent and Gateway to flush the files
+  
+  At this point, your directory structure will appear as follows:
 
+{{% tabs %}}
 {{% tab title="Updated Directory Structure" %}}
 
 ```text
@@ -67,11 +85,15 @@ WORKSHOP
 ```
 
 {{% /tab %}}
+{{% /tabs %}}
 
-The generated `gateway-log.out` file should look like this (below is a preview showing the beginning and a single log line; your actual output will contain many more):
+- **Examine a log line in `gateway-log.out`**
+  1. Examine the content in `./gateway-log.out`
+  2. Compare a log line with the snippet below.
+  It is a preview showing the beginning and a single log line; your actual output will contain many, many more:
 
 {{% tabs %}}
-{{% tab title="Compacted JSON" %}}
+{{% tab title="cat /gateway-log.out" %}}
 
 ```json
 {"resourceLogs":[{"resource":{"attributes":[{"key":"com.splunk.sourcetype","value":{"stringValue":"quotes"}},{"key":"com.splunk/source","value":{"stringValue":"./quotes.log"}},{"key":"host.name","value":{"stringValue":"[YOUR_HOST_NAME]"}},{"key":"os.type","value":{"stringValue":"[YOUR_OS]"}},{"key":"otelcol.service.mode","value":{"stringValue":"agent"}}]},"scopeLogs":[{"scope":{},"logRecords":[{"observedTimeUnixNano":"1737231901720160600","body":{"stringValue":"2025-01-18 21:25:01 [WARN] - Do or do not, there is no try."},"attributes":[{"key":"log.file.path","value":{"stringValue":"quotes.log"}}],"traceId":"","spanId":""}]}],"schemaUrl":"https://opentelemetry.io/schemas/1.6.1"}]}
@@ -79,7 +101,7 @@ The generated `gateway-log.out` file should look like this (below is a preview s
 ```
 
 {{% /tab %}}
-{{% tab title="Formatted JSON" %}}
+{{% tab title="cat ./gateway-log.out | jq" %}}
 
 ```json
 {
@@ -151,9 +173,9 @@ The generated `gateway-log.out` file should look like this (below is a preview s
 {{% /tab %}}
 {{% /tabs %}}
 
-The `resourceLogs` section includes the same attributes we observed in the `traces` and `metrics` sections. This shared attribute mechanism powers the **Related Content** feature in Splunk Observability, which seamlessly links and correlates logs, metrics, traces, and dashboards.
+- **Examine the `resourceLogs` section**
 
-This feature is designed to help users quickly identify and investigate issues by providing a unified view of related telemetry data. Instead of isolating each data type, Splunk Observability connects them, enabling faster troubleshooting and more efficient root cause analysis.
+ 1. Verify that the files include the same attributes we observed in the `traces` and `metrics` sections.
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
@@ -211,8 +233,13 @@ This feature is designed to help users quickly identify and investigate issues b
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-You may have noticed that every log line contains empty placeholders for `"traceId":""` and `"spanId":""`. The Filelog receiver will populate these fields only if they are not already present in the log line. For example, if the log line is generated by an application instrumented with an OpenTelemetry instrumentation library, these fields will already be included and will not be overwritten.
+> > [!primary]
+> >This shared attribute mechanism powers the **Related Content** feature in Splunk Observability, which seamlessly links and correlates logs, metrics, traces, and dashboards. The feature is designed to help users quickly identify and investigate issues by providing a unified view of related telemetry data. Instead of isolating each data type, Splunk Observability connects them, enabling faster troubleshooting and more efficient root cause analysis.
+
+> > [!primary]
+> >You may also have noticed that every log line contains empty placeholders for `"traceId":""` and `"spanId":""`. 
+> >The FileLog receiver will populate these fields only if they are not already present in the log line. 
+> >For example, if the log line is generated by an application instrumented with an OpenTelemetry instrumentation library, these fields will already be included and will not be overwritten.
 {{% /notice %}}
 
 Stop the Agent, Gateway and the Quotes generating script as well using `Ctrl-C`.

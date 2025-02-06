@@ -315,6 +315,4 @@ The *upsert* action updates the value of the resource attribute key if it alread
 
 {{% /notice %}}
 
-
-
 Stop the **Agent** and **Gateway** processes by pressing `Ctrl-C` in their respective terminals.
