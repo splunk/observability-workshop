@@ -6,19 +6,17 @@ weight: 2
 
 Once you've updated the configuration, you’re ready to proceed to running the OpenTelemetry Collector with your new setup. This exercise sets the foundation for understanding how data flows through the OpenTelemetry Collector.
 
-Start or reuse your initial terminal window, we will use this to run the **Agent**.
-
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-To improve organization during the workshop, consider customizing your terminal windows or shells with unique names and colors. This will make it easier to identify and switch between them quickly.
-{{% /notice %}}
-
-Run the following command from the `1-agent` directory (ensure you’re using the correct OpenTelemetry Collector binary you downloaded):
+Find your `Agent` Terminal window. move into the [WORKSHOP/i-agent`] folder and the following command: (ensure you’re using the correct OpenTelemetry Collector binary you downloaded):
 
 ```sh
 ../otelcol --config=agent.yaml
 ```
 
 In this workshop, we use **macOS/Linux** commands by default. If you’re using Windows, adjust the commands as needed.
+
+{{% notice note %}}
+On Windows, a dialog box may appear asking if you want to grant public and private network access to `otelcol.exe`. Click **"Allow"** to proceed.
+{{%/ notice %}}
 
 If everything is set up correctly, the first and last lines of the output should display:
 
@@ -27,10 +25,6 @@ If everything is set up correctly, the first and last lines of the output should
 <snip to the end>
 2025-01-13T12:43:51.747+0100 info service@v0.117.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
-
-{{% notice note %}}
-On Windows, a dialog box may appear asking if you want to grant public and private network access to `otelcol.exe`. Click **"Allow"** to proceed.
-{{%/ notice %}}
 
 Instead of instrumenting an application, we will simulate sending trace data to the OpenTelemetry Collector using `cURL`. The trace data, formatted in JSON, represents what an instrumentation library would typically generate and send.
 
