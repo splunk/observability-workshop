@@ -71,6 +71,7 @@ Logs often contain structured data encoded as JSON within the log body. Extracti
         statements:                   # Transform Statements Array
           - keep_keys(attributes, ["com.splunk.sourcetype","host.name", "otelcol.service.mode"])
             #List of attribute keys to keep
+
   ```
 
 - **Add another context block** to the `log_statements` and set the `severity_text` and `severity_number` of the log record based on the matching severity `level` from the log `body`.
