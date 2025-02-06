@@ -1,6 +1,6 @@
 ---
-title: 1.1 Exercise
-linkTitle: 1.1 Exercise
+title: 1.1 Agent Configuration
+linkTitle: 1.1 Agent Configuration
 weight: 1
 ---
 Let's walk through a few modifications to our agent configuration to get things started:

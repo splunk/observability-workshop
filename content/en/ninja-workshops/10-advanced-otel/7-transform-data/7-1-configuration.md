@@ -6,7 +6,7 @@ weight: 1
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Configure the `transform/logs` processor**: Apply the processor to `log_statements` in the `resource` context and retain only relevant resource attributes (`com.splunk.sourcetype`, `host.name`, `otelcol.service.mode`):
+- **Configure the `transform/logs` processor**: In the `agent.yaml` apply the processor to `log_statements` in the `resource` context and retain only relevant resource attributes (`com.splunk.sourcetype`, `host.name`, `otelcol.service.mode`):
 
   ```yaml
   transform/logs:                     # Processor Type/Name

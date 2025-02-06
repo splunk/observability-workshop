@@ -1,8 +1,9 @@
 ---
-title: 6.2 Test Redaction Processor
-linkTitle: 6.2 Test Redaction Processor
-weight: 2
+title: 6.3 Test Redaction Processor
+linkTitle: 6.3 Test Redaction Processor
+weight: 3
 ---
+
 The `redaction` processor gives precise control over which attributes and values are **permitted** or **removed** from telemetry data.  
 
 Earlier we configured the agent collector to:
@@ -28,6 +29,7 @@ Delete the `*.out` files and clear the screen. Restart your **Gateway** terminal
 
 In this exercise, we will **redact** the `user.visa` & `user.mastercard` **values** in the span data before it is exported by the **Agent**.
 {{% notice title="Exercise" style="green" icon="running" %}}
+
 - **Enable the `redaction/redact` processor** in the `traces` pipeline by removing the `#` in front of it and then restart the **Agent**.
 - **Start the **Agent** Collector** from the `[WORKSHOP]/6-sensitive-data` directory in the **Agent** terminal window.
 - **Send a span containing `Sensitive data`** by running the **cURL** command to send `trace.json`.

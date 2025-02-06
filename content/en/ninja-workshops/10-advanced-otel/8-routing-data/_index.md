@@ -1,6 +1,6 @@
 ---
-title: 8. Routing
-linkTitle: 8. Routing
+title: 8. Routing Data
+linkTitle: 8. Routing Data
 time: 10 minutes
 weight: 8
 ---

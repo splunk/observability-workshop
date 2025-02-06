@@ -6,18 +6,12 @@ weight: 1
 ---
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-During this workshop, you will be using up to 4 terminal windows simultaneously. To stay organized, consider customizing each terminal or shell with unique names and colors.
-This will help you quickly identify and switch between them as needed.
+During this workshop, you will be using up to four terminal windows simultaneously. To stay organized, consider customizing each terminal or shell with unique names and colors. This will help you quickly identify and switch between them as needed.
 
-We will refer to these terminals as:
-
-- **Agent**
-- **Gateway**
-- **Tests**
-- **Log-gen**
-
+We will refer to these terminals as: **Agent**, **Gateway**, **Tests** and **Log-gen**.
 {{% /notice %}}
 
+{{% notice title="Exercise" style="green" icon="running" %}}
 In your `[WORKSHOP]` directory, create a subdirectory called `1-agent` and change into that directory.
 
 ```text
@@ -30,6 +24,7 @@ In the `1-agent` directory, create a file named `agent.yaml`. This file will def
 
 Copy and paste the following initial configuration into `agent.yaml`:
 
+{{% tabs %}}
 {{% tab title="agent.yaml" %}}
 
 ```yaml
@@ -78,7 +73,9 @@ service:                          # Services configured for this Collector
 ```
 
 {{% /tab %}}
+{{% /tabs %}}
 
+{{% tabs %}}
 {{% tab title="Updated Directory Structure" %}}
 
 ```text
@@ -89,3 +86,5 @@ service:                          # Services configured for this Collector
 ```
 
 {{% /tab %}}
+{{% /tabs %}}
+{{% /notice %}}
