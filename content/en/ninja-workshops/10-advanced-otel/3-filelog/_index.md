@@ -15,6 +15,10 @@ In the `[WORKSHOP]` directory, create a new subdirectory named `3-filelog` and n
 
 Create the appropriate log generation file in the new directory (`log-gen.sh` for Mac or Linux, or `log-gen.ps1` for Windows) using the script below that corresponds to your operating system. Ensure the script is executable.
 
+```bash
+chmod +x log-gen.sh
+```
+
 {{% tab title="Updated Directory Structure" %}}
 
 ```text
