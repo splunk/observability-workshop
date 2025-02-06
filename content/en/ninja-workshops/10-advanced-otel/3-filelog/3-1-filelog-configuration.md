@@ -4,7 +4,7 @@ linkTitle: 3.1 Filelog Configuration
 weight: 1
 ---
 
-Check that you are in the `[WORKSHOP]/3-filelog` directory.  Open the `agent.yaml` copied across earlier and in your editor and add the `filelog` receiver to the `agent.yaml`.
+Check that you are in the `[WORKSHOP]/3-filelog` directory.  Open the `agent.yaml` copied across earlier and in your editor add the `filelog` receiver to the `agent.yaml`.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 

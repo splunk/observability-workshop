@@ -17,7 +17,7 @@ For logs, there are plans to implement a more enterprise-ready solution in one o
 
 {{% /notice %}}
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+
 
 - Inside the `[WORKSHOP]` directory, create a new subdirectory named `4-resilience`.
 - Next, copy all contents from the `3-filelog` directory into `4-resilience`.
@@ -44,4 +44,3 @@ WORKSHOP
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% /notice %}}
