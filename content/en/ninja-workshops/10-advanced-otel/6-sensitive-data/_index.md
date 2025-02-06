@@ -26,10 +26,10 @@ WORKSHOP
 ├── 4-resilience
 ├── 5-dropping-spans
 ├── 6-sensitive-data
-│   ├── gateway.yaml
 │   ├── agent.yaml
-│   ├── log-gen.sh (or .ps1)
+│   ├── gateway.yaml
 │   ├── health.json
+│   ├── log-gen.sh (or .ps1)
 │   └── trace.json
 └── otelcol
 ```
@@ -56,9 +56,12 @@ Attributes:
 So, Let's start an exercise to clean those up:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
+- **Update Agent.yaml** Switch to your **Agent** terminal window and navigate to the `[WORKSHOP]/6-sensitive-data` directory. Open the `agent.yaml` file that you copied earlier in your editor.
 
 - **Add an `Attributes` Processor** and name it `update:`
-The `attributes` processor also allows you to update or delete specific attributes (tags) from spans. In this case, we're updating the tag `user.phone_number` to `"UNKNOWN NUMBER"`, hash the `user.email` and removing the `user.account_password`:
+The `attributes` processor also allows you to update or delete specific attributes (tags) from spans. 
+
+- In this case, we're updating the tag `user.phone_number` to `"UNKNOWN NUMBER"`, hash the `user.email` and removing the `user.account_password`:
 
   ```yaml
     attributes/update:               # Processor Type/Name
@@ -86,7 +89,7 @@ The `attributes` processor also allows you to update or delete specific attribut
 
   ```
 
-- **Update the `traces` pipeline**: Add the both the `attribute` processors and the `redaction` processor into the `traces:` pipeline.
+- **Update the `traces` pipeline**: Add the `attribute` processor and the `redaction` processor into the `traces:` pipeline.
 
   ```yaml
       traces:

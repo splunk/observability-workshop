@@ -7,7 +7,7 @@ weight: 1
 ### Test the Transform
 
 **Run the Log Generator**:
-In the `test` terminal window, navigate to the `[WORKSHOP]/7-transform-data` directory and start the appropriate `log-gen` script for your system. We want to work with structured JSON logs, so add the `-json` flag to the script command.
+In the **Test** terminal window, navigate to the `[WORKSHOP]/7-transform-data` directory and start the appropriate `log-gen` script for your system. We want to work with structured JSON logs, so add the `-json` flag to the script command.
 
 ```sh
 ./log-gen.sh -json
@@ -19,19 +19,12 @@ The script will begin writing lines to a file named `./quotes.log`, while displa
  Writing logs to quotes.log. Press Ctrl+C to stop.
  ```
 
-**Run the Gateway**:
-Find your **Gateway** terminal window, and navigate to the `[WORKSHOP]/7-transform-data` directory and restart the gateway.
 
-It should start up normally and state : `Everything is ready. Begin running and processing data.`
-
-**Run the Agent**:
-Find your **Agent** terminal window and navigate to the `[WORKSHOP]/7-transform-data` directory and restart the agent with the resilience configurations specified in the YAML file.
-
-It should also start up normally and state : `Everything is ready. Begin running and processing data.`
-
-{{% notice title="Exercise" style="green" icon="running" %}}
 In this exercise, we will **remove the** `com.splunk/source` and `os.type` **metadata** from the log resource attributes before it is exported by the **Agent**. We will also parse the log body to set the `SeverityText` and `SeverityNumber` on the `LogRecord` and promote the log `body` json fields to log `attributes`.
 
+{{% notice title="Exercise" style="green" icon="running" %}}
+- **Start the **Gateway** Agent** from the `[WORKSHOP]/7-transform-data` directory in the **Gateway** terminal window.
+- **Start the **Agent** Collector** from the `[WORKSHOP]/7-transform-data` directory in the **Agent** terminal window.
 - **Check the debug output** of both the **Agent** and **Gateway** to confirm that `com.splunk/source` and `os.type` have been removed.
 
 {{% tabs %}}
