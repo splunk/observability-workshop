@@ -33,8 +33,6 @@ Let's walk through a few modifications to get things started.
         - memory_limiter            # Memory Limiter Processor  
         exporters:
         - debug                     # Debug Exporter
-      #metrics:  
-      #logs:     
   ```
 
 {{% /notice %}}
