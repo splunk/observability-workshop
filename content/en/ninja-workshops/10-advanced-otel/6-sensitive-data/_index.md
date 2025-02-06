@@ -90,7 +90,8 @@ The `attributes` processor also allows you to update or delete specific attribut
 
   ```yaml
       traces:
-        receivers: [otlp]       # Receiver  array for traces
+        receivers:              # Receiver array for traces
+        - otlp
         processors:             # Alternative syntax option [memory_limiter]
         - memory_limiter        # Handles memory limits for this pipeline
         - attributes/update     # Update, hash and remove tags 
@@ -98,7 +99,9 @@ The `attributes` processor also allows you to update or delete specific attribut
         - resourcedetection     # Adds system attributes to the data
         - resource/add_mode     # Adds collector mode metadata
         - batch
-        exporters: [debug,otlphttp] # Array of trace Exporters
+        exporters:              # Array of trace Exporters
+        - debug
+        - otlphttp
   ```
 
 {{% /notice %}}

@@ -25,6 +25,7 @@ Once you've updated the configuration, you’re ready to proceed to running the 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - **Verify Debug output**: if everything is set up correctly, the first and last lines of the output should display:
+Open a second terminal window and navigate to the `[WORKSHOP]/1-agent` directory. In this new terminal (used for running **Tests**), create a new file named `trace.json` and copy the content from the tab below.
 
     ```text
     2025/01/13T12:43:51 settings.go:478: Set config to [agent.yaml]

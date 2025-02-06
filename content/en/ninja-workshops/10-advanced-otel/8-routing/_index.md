@@ -9,10 +9,15 @@ The [**Routing Connector**](https://github.com/open-telemetry/opentelemetry-coll
 
 For example, you might want to send *production* data to one exporter while directing *test* or *development* data to another. Similarly, you could route certain spans based on their attributes, such as service name, environment, or span name, to apply custom processing or storage logic.
 
-### Setup
+{{% notice title="Exercise" style="green" icon="running" %}}
 
-Create a new subdirectory named `8-routing` and copy all contents from the `7-transform-data` directory into it. Then, delete any `*.out` and `*.log` files. Your updated directory structure should now look like this:
+- Inside the `[WORKSHOP]` directory, create a new subdirectory named `8-routing`.
+- Next, copy all contents from the `7-transform-data` directory into `8-routing`.
+- After copying, remove any `*.out` and `*.log` files.
 
+Your updated directory structure will now look like this:
+
+{{% tabs %}}
 {{% tab title="Updated Directory Structure" %}}
 
 ```text
@@ -34,5 +39,7 @@ WORKSHOP
 ```
 
 {{% /tab %}}
+{{% /tabs %}}
+{{% /notice %}}
 
 Next, we will configure the routing connector and the respective pipelines.
