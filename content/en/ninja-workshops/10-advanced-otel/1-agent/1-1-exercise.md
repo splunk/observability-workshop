@@ -3,9 +3,9 @@ title: 1.1 Exercise
 linkTitle: 1.1 Exercise
 weight: 1
 ---
+Let's walk through a few modifications to our agent configuration to get things started:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-Let's walk through a few modifications to get things started.
 
 - **Add an `otlp` receiver**: The [**OTLP receiver**](https://docs.splunk.com/observability/en/gdi/opentelemetry/components/otlp-receiver.html) will listen for incoming telemetry data over HTTP (or gRPC).
 
@@ -41,10 +41,15 @@ Let's walk through a few modifications to get things started.
 Pay close attention to the formatting, as the OpenTelemetry Collector configuration relies on proper YAML structure.
 {{% /notice %}}
 
-Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**.
+During the workshop we will be using the **[otelbin.io](https://www.otelbin.io/)** website for quickly validating YAML syntax and OpenTelemetry configuration correctness. This helps avoid errors before applying configurations in production.
 
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-Make sure the **Splunk OpenTelemetry Collector** distribution is selected as the validation target.
+{{% notice title="Usage" style="primary" icon="lightbulb" %}}
+Open **[otelbin.io](https://www.otelbin.io/)** and replace the existing configuration by pasting your own YAML into the left pane.
+  
+At the top of the page, ensure that **Splunk OpenTelemetry Collector** is selected as the validation target.
+
+Once your configuration is validated, refer to the image representation below to check if your pipelines are set up correctly. Usually we will show just the key pipeline,  however when all three pipelines (**Traces**, **Metrics**, and **Logs**) follow the same structure, we will indicate this as show below rather than displaying each one separately.
+
 {{% /notice %}}
 
 ```mermaid
@@ -57,7 +62,7 @@ graph LR
     %% Links
     subID1:::sub-traces
     subgraph " "
-      subgraph subID1[**Traces/Metrics/Logs**]
+      subgraph subID1[**Traces**]
       direction LR
       REC1 --> PRO1
       PRO1 --> EXP1
