@@ -5,14 +5,40 @@ time: 10 minutes
 weight: 7
 ---
 
-The **Transform Processor** lets you modify telemetry data—logs, metrics, and traces—as it flows through the pipeline. Using the **OpenTelemetry Transformation Language (OTTL)**, you can filter, enrich, and transform data on the fly without touching your application code.
+The [**Transform Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/transformprocessor/README.md) lets you modify telemetry data—logs, metrics, and traces—as it flows through the pipeline.
 
-In this exercise, we'll focus on using the Transform Processor with OTTL to filter, parse, and transform JSON-structured log data.
+Using the **OpenTelemetry Transformation Language (OTTL)**, you can filter, enrich, and transform data on the fly without touching your application code.
 
-### Setup
+In this exercise we’ll update `agent.yaml` to include a **Transform Processor** that will:
 
-Create a new subdirectory named `7-transform-data` and copy all contents from the `6-sensitive-data` directory into it. Then, delete any `*.out` and `*.log` files. Your updated directory structure should now look like this:
+- **Filter** log resource attributes.
+- **Parse** JSON structured log data into attributes.
+- **Set** log severity levels based on the log message body.
 
+You may have noticed that in previous logs, fields like `SeverityText` and `SeverityNumber` were undefined (this is typical of the `filelog` receiver). However, the severity is embedded within the log body:
+
+```text
+<snip>
+LogRecord #0
+ObservedTimestamp: 2025-01-31 21:49:29.924017 +0000 UTC
+Timestamp: 1970-01-01 00:00:00 +0000 UTC
+SeverityText: 
+SeverityNumber: Unspecified(0)
+Body: Str(2025-01-31 15:49:29 [WARN] - Do or do not, there is no try.)
+</snip>
+```
+
+Logs often contain structured data encoded as JSON within the log body. Extracting these fields into attributes allows for better indexing, filtering, and querying. Instead of manually parsing JSON in downstream systems, OTTL enables automatic transformation at the telemetry pipeline level.
+
+{{% notice title="Exercise" style="green" icon="running" %}}
+
+- Inside the `[WORKSHOP]` directory, create a new subdirectory named `7-transform`.
+- Next, copy all contents from the `6-sensitve-data` directory into `7-routing`.
+- After copying, remove any `*.out` and `*.log` files.
+
+Your updated directory structure will now look like this:
+
+{{% tabs %}}
 {{% tab title="Updated Directory Structure" %}}
 
 ```text
@@ -25,7 +51,9 @@ WORKSHOP
 ├── 6-sensitive-data
 ├── 7-transform-data
 │   ├── agent.yaml
+│   ├── agent.yaml
 │   ├── gateway.yaml
+│   ├── health.json
 │   ├── health.json
 │   ├── log-gen.sh (or .ps1)
 │   └── trace.json
@@ -125,39 +153,3 @@ Logs often contain structured data encoded as JSON within the log body. Extracti
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 This method of mapping all JSON fields to top-level attributes should only be used for **testing and debugging OTTL**. It will result in high cardinality in a production scenario.
 {{% /notice %}}
-
-Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `logs:` section of your pipelines will look similar to this:
-
-```mermaid
-%%{init:{"fontFamily":"monospace"}}%%
-graph LR
-    %% Nodes
-      REC1(&nbsp;&nbsp;otlp&nbsp;&nbsp;<br>fa:fa-download):::receiver
-      REC2(filelog<br>fa:fa-download<br>quotes):::receiver
-      PRO1(memory_limiter<br>fa:fa-microchip):::processor
-      PRO2(resourcedetection<br>fa:fa-microchip):::processor
-      PRO3(resource<br>fa:fa-microchip<br>add_mode):::processor
-      PRO4(transform<br>fa:fa-microchip<br>logs):::processor
-      PRO5(batch<br>fa:fa-microchip):::processor
-      EXP1(otlphttp<br>fa:fa-upload):::exporter
-      EXP2(&ensp;&ensp;debug&ensp;&ensp;<br>fa:fa-upload):::exporter
-    %% Links
-    subID1:::sub-logs
-    subgraph " "
-      subgraph subID1[**Logs**]
-      direction LR
-      REC1 --> PRO1
-      REC2 --> PRO1
-      PRO1 --> PRO2
-      PRO2 --> PRO3
-      PRO3 --> PRO4
-      PRO4 --> PRO5
-      PRO5 --> EXP1
-      PRO5 --> EXP2
-      end
-    end
-classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
-classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
-classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
-classDef sub-logs stroke:#34d399,stroke-width:1px, color:#34d399,stroke-dasharray: 3 3;
-```

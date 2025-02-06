@@ -8,24 +8,25 @@ Once you've updated the configuration, you’re ready to proceed to running the 
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Find your Agent Terminal window**: Move into the [WORKSHOP/i-agent`] folder and the following command: (ensure you’re using the correct OpenTelemetry Collector binary you downloaded):
+- **Find your Agent Terminal window**:
 
-     ```sh
+    1. Move into the `[WORKSHOP]/1-agent folder
+    2. Run the following command: (ensure you’re using the correct OpenTelemetry Collector binary you downloaded).
+
+    ```sh
      ../otelcol --config=agent.yaml
-     ```
+    ```
 
     In this workshop, we use **macOS/Linux** commands by default. If you’re using Windows, adjust the commands as needed.
 
-{{% /notice %}}
+> > [!note] 
+> >On Windows, a dialog box may appear asking if you want to grant public and private network access to `otelcol.exe`. Click **"Allow"** to proceed.
 
-{{< notice note >}}
-          On Windows, a dialog box may appear asking if you want to grant public and private network access to `otelcol.exe`. Click **"Allow"** to proceed.
-{{< /notice >}}
+- **Verify Debug output**:
 
-{{% notice title="Exercise" style="green" icon="running" %}}
-
-- **Verify Debug output**: if everything is set up correctly, the first and last lines of the output should display:
-Open a second terminal window and navigate to the `[WORKSHOP]/1-agent` directory. In this new terminal (used for running **Tests**), create a new file named `trace.json` and copy the content from the tab below.
+    1. If everything is set up correctly, the first and last lines of the output should display:
+    2. Create or find your **Tests** terminal window and navigate to the `[WORKSHOP]/1-agent` directory. 
+    3. Create a new file named `trace.json` and copy the content from the tab below.
 
     ```text
     2025/01/13T12:43:51 settings.go:478: Set config to [agent.yaml]
@@ -36,10 +37,12 @@ Open a second terminal window and navigate to the `[WORKSHOP]/1-agent` directory
     Instead of instrumenting an application, we will simulate sending trace data to the OpenTelemetry Collector using `cURL`. The trace data, formatted in JSON, represents what an instrumentation library would typically generate and send.
 
 - **Create a test span file**:
-Find your Tests Terminal window** and navigate to the `[WORKSHOP]/1-agent` directory.
-In the **Tests** terminal window, copy and paste the following **span** data into a new file named `trace.json`:
+
+    1. Find your **Tests** Terminal window and verify it's using the `[WORKSHOP]/1-agent` directory.
+    2. Copy and paste the following **span** data into a new file named `trace.json`:
 
     This file will allow us to test how the OpenTelemetry Collector processes and send **spans** that are part of a trace, without requiring actual application instrumentation.
+
 {{% tabs %}}
 {{% tab title="trace.json" %}}
 
@@ -49,7 +52,6 @@ In the **Tests** terminal window, copy and paste the following **span** data int
 
 {{% /tab %}}
 {{% /tabs %}}
-
 
 {{% tabs %}}
 {{% tab title="Updated Directory Structure" %}}
@@ -65,7 +67,9 @@ In the **Tests** terminal window, copy and paste the following **span** data int
 {{% /tab %}}
 {{% /tabs %}}
 
-- **Send a test span**: Execute the following command to send a **span** to the agent:
+- **Send a test span**:
+
+    1. Execute the following command to send a **span** to the agent:
 
 {{% tabs %}}
 {{% tab title="cURL Command" %}}
@@ -102,15 +106,14 @@ To resolve this, use `curl.exe` instead of just `curl`.
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - **Verify Debug Output**:  
-Find the **Agent** terminal window and check the collector's debug output. You should see the Debug entries related to the span you just sent.  
+    1. Find the **Agent** terminal window and check the collector's debug output. You should see the Debug entries related to the span you just sent.  
+    2. We are showing the first and last lines of the debug log for that span. To get the full context, Use the **Complete Debug Output** Button to review.
 
-Below, we've highlighted the first and last lines of the debug log for that span. To get the full context, review the complete debug output.
-
-```text
-2025-02-03T12:46:25.675+0100    info ResourceSpans #0
-<snip>
-        {"kind": "exporter", "data_type": "traces", "name": "debug"}
-```
+    ```text
+    2025-02-03T12:46:25.675+0100    info ResourceSpans #0
+    <snip>
+            {"kind": "exporter", "data_type": "traces", "name": "debug"}
+    ```
 
 {{% expand title="{{% badge style=primary icon=scroll %}}Complete Debug Output{{% /badge %}}" %}}
 

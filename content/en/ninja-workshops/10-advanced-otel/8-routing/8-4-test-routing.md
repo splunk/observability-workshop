@@ -1,6 +1,6 @@
 ---
 title: 8.4 Test Routing Connector
-linkTitle: 8.4 Test Routing
+linkTitle: 8.4 Test Routing Connector
 weight: 3
 ---
 
