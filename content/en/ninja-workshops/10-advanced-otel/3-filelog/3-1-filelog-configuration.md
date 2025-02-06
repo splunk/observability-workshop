@@ -8,7 +8,7 @@ Check that you are in the `[WORKSHOP]/3-filelog` directory.  Open the `agent.yam
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Add the `filelog` receiver**: The [**FileLog Receiver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/filelogreceiver/README.md) reads log data from a file and includes custom resource attributes in the log data:
+- **Create the `filelog` receiver and name it `quotes`:** The [**FileLog Receiver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/filelogreceiver/README.md) reads log data from a file and includes custom resource attributes in the log data:
 
   ```yaml
     filelog/quotes:                 # Receiver Type/Name                      

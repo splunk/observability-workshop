@@ -10,7 +10,7 @@ While these components do not process telemetry data directly, they provide valu
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Add the `file_storage` extension**: Define a `file_storage` extension named `checkpoint:` to store intermediate states and improve resilience.
+- **Add the `file_storage` extension and name it `checkpoint`**: The [**FileStorage Extension**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/19bc7d6ee854c0c1b5c97d8d348e5b9d1199e8aa/extension/storage/filestorage/README.md) stores intermediate states and improves resilience.
 
     ```yaml
       file_storage/checkpoint:         # Extension Type/Name
