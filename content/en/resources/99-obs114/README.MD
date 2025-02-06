@@ -1,5 +1,5 @@
 ---
-title: Into & Pre Req for Advanced OpenTelemetry
+title: Advanced OpenTelemetry
 description: In this workshop you will practice setting up the OpenTelemetry Collector configuration from scratch and go though several advanced configuration scenarios's
 weight: 10
 archetype: chapter
@@ -35,24 +35,24 @@ By the end of this workshop, you'll be familiar with configuring the OpenTelemet
 
 ### Prerequisites
 
-- **Create a directory** on your machine for the workshop (e.g., `collector`). We will refer to this directory as `[WORKSHOP]` in the instructions.
+- **Create a directory** on your machine for the workshop (e.g., `advanced-otel`). We will refer to this directory as `[WORKSHOP]` in the instructions.
 - **Download the latest OpenTelemetry Collector release** for your platform and place it in the `[WORKSHOP]` directory:
 
 | Platform                         | Binary URL          |
 |----------------------------------|---------------------|
-|  **Apple Mac (Apple Silicon)**   | **[otelcol_darwin_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_arm64)** |
-|  **Apple Mac (Intel)**           | **[otelcol_darwin_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_amd64)** |
-|  **Windows AMD/64**              | **[otelcol_windows_amd64.exe](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_windows_amd64.exe)** |
-|  **Linux (AMD/64)**              |**[otelcol_linux_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_amd64)** |
-|  **Linux (ARM/64)**              |**[otelcol_linux_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_arm64)** |
+|  Apple Mac (Apple Silicon)   | **[otelcol_darwin_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_arm64)** |
+|  Apple Mac (Intel)           | **[otelcol_darwin_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_amd64)** |
+|  Windows AMD/64              | **[otelcol_windows_amd64.exe](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_windows_amd64.exe)** |
+|  Linux (AMD/64)              |**[otelcol_linux_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_amd64)** |
+|  Linux (ARM/64)              |**[otelcol_linux_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_arm64)** |
 
-Once downloaded, rename the file to `otelcol` (or `otelcol.exe` on Windows). For Mac/Linux, set the file permissions to allow execution:
+{{% notice title="Exercise" style="green" icon="running" %}}
+
+Once downloaded, rename the file to `otelcol` (or `otelcol.exe` on Windows). On Mac and Linux, update the file permissions to make it executable:
 
 ```bash
 chmod +x otelcol
 ```
-
-Mac users must trust the executable when running `otelcol` for the first time. For more details, refer to [**Apple's support page**](https://support.apple.com/en-mide/102445).
 
 {{% tabs %}}
 {{% tab title="Initial Linux/Mac Directory Structure" %}}
@@ -71,12 +71,16 @@ Mac users must trust the executable when running `otelcol` for the first time. F
 ```
 
 {{% /tab %}}
-
 {{% /tabs %}}
 
+{{% /notice %}}
+
+{{% notice note %}}
+Mac users must trust the executable when running `otelcol` for the first time. For more details, refer to [**Apple's support page**](https://support.apple.com/en-mide/102445).
+{{% /notice %}}
+
 {{% notice title=" Optional Tools" style="primary" icon="lightbulb" %}}
-For this workshop, using a good YAML editor like **Visual Studio Code** will be beneficial. If you don’t have it installed, you can download it [**here**](https://code.visualstudio.com/download).
+For this workshop, using a good YAML editor like [**Visual Studio Code**](https://code.visualstudio.com/download) will be beneficial.
 
-Additionally, having access to **jq** is recommended. This lightweight command-line tool helps process and format JSON data, making it easier to inspect traces, metrics, and logs from the OpenTelemetry Collector. If you do not have it, download it [**here**](https://jqlang.org/download/).
-
+Additionally, having access to [**jq**](https://jqlang.org/download/) is recommended. This lightweight command-line tool helps process and format JSON data, making it easier to inspect traces, metrics, and logs from the OpenTelemetry Collector.
 {{% /notice %}}
