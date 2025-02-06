@@ -21,11 +21,12 @@ weight: 1
 - **Send a Trace**:
   1. From the **Tests** terminal window, send a trace again with the `cURL` command to create a new `agent.out`:
 
-  ```ps1
-  curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
-  ```
+    ```ps1
+      curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
+    ```
 
-  2. Check the agent’s debug output, you should see three new lines in the `resource attributes` section: (`host.name`, `os.type` & `otelcol.service.mode`):
+- **Check the agent’s debug output**
+  1. You should see three new lines in the `resource attributes` section: (`host.name`, `os.type` & `otelcol.service.mode`):
 
     ```text
     <snip>
@@ -39,7 +40,8 @@ weight: 1
     </snip>
     ```
 
-- **Verify** that a new `agent.out` file is created:
+- **Verify file creation**
+  1. Make sure that a new `agent.out` file is created in the `[WORKSHOP]/1-agent` folder:
 {{% tabs %}}
 
 {{% tab title="Updated Directory Structure" %}}
