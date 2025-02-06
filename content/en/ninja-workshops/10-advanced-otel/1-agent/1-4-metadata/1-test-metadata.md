@@ -5,37 +5,39 @@ weight: 1
 ---
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Find** your **Agent** terminal window, and restart your collector using the updated configuration to test the changes:
+- **Restart your Agent**
+  1. Find your **Agent** terminal window, and restart your collector using the updated configuration to test the changes:
 
   ```bash
-  ../otelcol --config=agent.yaml
+    ../otelcol --config=agent.yaml
   ```
 
-  If everything is set up correctly, the last line of the output should confirm the collector is running:
+    If everything is set up correctly, the last line of the output should confirm the collector is running:
 
-  ```text
-  2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
-  ```
+    ```text
+    2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
+    ```
 
-- **Send a Trace**: From the **Tests** terminal window, send a trace again with the `cURL` command to create a new `agent.out`:
+- **Send a Trace**:
+  1. From the **Tests** terminal window, send a trace again with the `cURL` command to create a new `agent.out`:
 
   ```ps1
   curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
   ```
 
-  In the agent’s debug output, you should see three new lines in the `resource attributes` section: (`host.name`, `os.type` & `otelcol.service.mode`):
+  2. Check the agent’s debug output, you should see three new lines in the `resource attributes` section: (`host.name`, `os.type` & `otelcol.service.mode`):
 
-  ```text
-  <snip>
-  Resource SchemaURL: https://opentelemetry.io/schemas/1.6.1
-  Resource attributes:
-      -> service.name: Str(my.service)
-      -> deployment.environment: Str(my.environment)
-      -> host.name: Str([MY_HOST_NAME])
-      -> os.type: Str([MY_OS])
-      -> otelcol.service.mode: Str(agent)
-  </snip>
-  ```
+    ```text
+    <snip>
+    Resource SchemaURL: https://opentelemetry.io/schemas/1.6.1
+    Resource attributes:
+        -> service.name: Str(my.service)
+        -> deployment.environment: Str(my.environment)
+        -> host.name: Str([MY_HOST_NAME])
+        -> os.type: Str([MY_OS])
+        -> otelcol.service.mode: Str(agent)
+    </snip>
+    ```
 
 - **Verify** that a new `agent.out` file is created:
 {{% tabs %}}
@@ -54,7 +56,11 @@ weight: 1
 {{% /tab %}}
 {{% /tabs %}}
 
-- **Verify that MetaData is added**: In the new `agent.out` file, you’ll see that the collector has added the`otelcol.service.mode` attribute, along with several `resourcedetection` attributes (`host.name` and `os.type`) in the `resourceSpans` section of the `span` we send. These values are automatically added based on your device by the processors configured in the pipeline.
+- **Verify that MetaData is added** to spans in the new `agent.out` file.
+  1. Check for the existence of the`otelcol.service.mode` attribute in the `resourceSpans` section.
+  2. Verify that the `resourcedetection` attributes (`host.name` and `os.type`) exist too.
+
+  These values are automatically added based on your device by the processors configured in the pipeline.
 
 {{% tabs %}}
 {{% tab title="cat ./agent.out" %}}

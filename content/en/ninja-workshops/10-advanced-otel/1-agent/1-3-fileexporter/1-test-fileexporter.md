@@ -6,11 +6,12 @@ weight: 1
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Restart** your agent in the **Agent** terminal window, this time with your new config to test it:
+- **Restart your agent**
+  1. Find your **Agent** terminal window, and (re)start the agent, this time with your new config to test it.
 
-  ```bash
-  ../otelcol --config=agent.yaml
-  ```
+    ```bash
+    ../otelcol --config=agent.yaml
+    ```
 
   Again, if you have done everything correctly, the last line of the output should be:
 
@@ -18,13 +19,16 @@ weight: 1
   2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
   ```
 
-- **Send a Trace**: If you send a span again, from the `Test` terminal window you should get the same output on the console as we saw previously:
+- **Send a Trace**:
+  1. Send a span again, from the `Test` terminal window.
+  2. Verify you get the same output on the console as we saw previously:
 
   ```ps1
   curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
   ```
 
-- **Verify that the `agent.out` file is written**: There should now be a file named `agent.out` in the current directory. Since no modifications have been made to the pipeline yet, this file should be identical to `trace.json`.
+- **Verify that the `agent.out` file is written**:
+  1. Check that a file named `agent.out` is written in the current directory. 
 
 {{% tabs %}}
 {{% tab title="Updated Directory Structure" %}}
@@ -41,26 +45,14 @@ weight: 1
 {{% /tab %}}
 {{% /tab %}}
 
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-If you want to view the file’s content, simply run:
-
-```sh
-cat agent.out`
-``` 
-
-For a formatted JSON output, you can use the same command but pipe it through **jq** (if installed):
-
-```bash
-cat ./agent.out | jq
-```
-
-{{% /notice %}}
-
 {{% notice note %}}
 On **Windows**, an open file may appear empty or cause issues when attempting to read it. To prevent this, make sure to stop the **Agent** or the **Gateway** before inspecting the file, as instructed.
 {{% /notice %}}
 
-- **Verify the span is written**: The File Exporter writes the span to the `agent.out` as a single line in OTLP/JSON format:
+- **Verify the span format**:
+  1. Check the Format that The File Exporter has used to write the span to the `agent.out`
+  2. It should be a single line in OTLP/JSON format.
+  3. Since no modifications have been made to the pipeline yet, this file should be identical to `trace.json`.
 
 {{% tabs %}}
 {{% tab title="cat ./agent.out" %}}
@@ -170,5 +162,20 @@ On **Windows**, an open file may appear empty or cause issues when attempting to
 
 {{% /tab %}}
 {{% /tabs %}}
+
+{{% /notice %}}
+
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+If you want to view the file’s content, simply run:
+
+```sh
+cat agent.out`
+``` 
+
+For a formatted JSON output, you can use the same command but pipe it through **jq** (if installed):
+
+```bash
+cat ./agent.out | jq
+```
 
 {{% /notice %}}
