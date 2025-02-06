@@ -107,7 +107,7 @@ spec:
 Then, create a second file in the same directory named `service.yaml`: 
 
 ``` bash
-vi service.yaml
+vi /home/splunk/service.yaml
 ```
 
 And paste in the following: 
@@ -190,10 +190,48 @@ environment variables to tell it where to send the data.
 
 Add the following to `deployment.yaml` file you created earlier: 
 
-> **IMPORTANT** replace `$INSTANCE` in your Dockerfile with your instance name,
+> **IMPORTANT** replace `$INSTANCE` in the YAML below with your instance name,
 > which can be determined by running `echo $INSTANCE`.
 
 ``` yaml
+          env:
+            - name: PORT
+              value: "8080"
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://$(NODE_IP):4318"
+            - name: OTEL_SERVICE_NAME
+              value: "helloworld"
+            - name: OTEL_RESOURCE_ATTRIBUTES 
+              value: "deployment.environment=otel-$INSTANCE" 
+```
+
+The complete `deployment.yaml` file should be as follows (with **your** instance name rather than `$INSTANCE`): 
+
+``` yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld
+spec:
+  selector:
+    matchLabels:
+      app: helloworld
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: helloworld
+    spec:
+      containers:
+        - name: helloworld
+          image: docker.io/library/helloworld:1.2
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
           env:
             - name: PORT
               value: "8080"
