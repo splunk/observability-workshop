@@ -4,7 +4,9 @@ linkTitle: 4.1 Configuration
 weight: 1
 ---
 
-In this exercise, we will update the `extensions:` section of the `agent.yaml` file. This section is part of the OpenTelemetry configuration YAML and defines optional components that enhance or modify the OpenTelemetry Collector’s behavior. While these components do not process telemetry data directly, they provide valuable capabilities and services to improve the Collector’s functionality.
+In this exercise, we will update the `extensions:` section of the `agent.yaml` file. This section is part of the OpenTelemetry configuration YAML and defines optional components that enhance or modify the OpenTelemetry Collector’s behavior.
+
+While these components do not process telemetry data directly, they provide valuable capabilities and services to improve the Collector’s functionality.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -27,15 +29,16 @@ In this exercise, we will update the `extensions:` section of the `agent.yaml` f
 
     ```yaml
       otlphttp:
-        endpoint: "http://localhost:5318" # Gateway endpoint
+        # Gateway host and port
+        endpoint: "http://localhost:5318"
         headers:
-          X-SF-Token: "FAKE_SPLUNK_ACCESS_TOKEN" # or your own token
-        retry_on_failure:          # Retry on failure settings
-          enabled: true            # Enables retrying
-        sending_queue:             # Sending queue settings
-          enabled: true            # Enables Sending queue
-          num_consumers: 10        # Number of consumers
-          queue_size: 10000        # Maximum queue size
+          X-SF-Token: "DUMMY TOKEN"
+        retry_on_failure:             # Retry on failure settings
+          enabled: true               # Enables retrying
+        sending_queue:                # Sending queue settings
+          enabled: true               # Enables Sending queue
+          num_consumers: 10           # Number of consumers
+          queue_size: 10000           # Maximum queue size
           # File storage extension
           storage: file_storage/checkpoint
     ```
@@ -46,16 +49,16 @@ In this exercise, we will update the `extensions:` section of the `agent.yaml` f
     service:
       extensions:
       - health_check
-      - file_storage/checkpoint  # Enabled extensions for this collector
+      - file_storage/checkpoint       # Enabled extensions for this collector
     ```
 
-- **Update the `metrics` pipeline**: As we want to control the data flow for this exercise we are going to temporarily remove the `hostmetrics` receiver from the Metric pipeline:
+- **Update the `metrics` pipeline**: For this exercise we are going to temporarily remove the `hostmetrics` receiver from the Metric pipeline to reduce debug and log noise:
 
     ```yaml
       metrics:
         receivers: 
         - otlp                        # OTLP Receiver
-        # - hostmetrics                 # Hostmetrics Receiver
+        # - hostmetrics               # Hostmetrics Receiver
     ```
 
 {{% /notice %}}

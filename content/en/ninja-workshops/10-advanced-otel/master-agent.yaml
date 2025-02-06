@@ -44,7 +44,7 @@ exporters:
   otlphttp:
     endpoint: "localhost:5317"
     headers:
-      X-SF-Token: "FAKE_SPLUNK_ACCESS_TOKEN" # or your own version of a token
+      X-SF-Token: "DUMMY_TOKEN"
     tls:                       # Configure Transport Layer Security
       # true disables TLS verification for the connection
       insecure: true             
