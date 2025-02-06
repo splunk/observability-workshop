@@ -1,30 +1,19 @@
 ---
-title: 7.1 Test Transform Processor
-linkTitle: 7.1 Test Transform Processor
-weight: 1
+title: 7.3 Test Transform Processor
+linkTitle: 7.3 Test Transform Processor
+weight: 3
 ---
 
-### Test the Transform
+This test verifies that the `com.splunk/source` and `os.type` metadata have been **removed** from the log resource attributes before being exported by the **Agent**. Additionally, the test ensures that:  
 
-**Run the Log Generator**:
-In the **Test** terminal window, navigate to the `[WORKSHOP]/7-transform-data` directory and start the appropriate `log-gen` script for your system. We want to work with structured JSON logs, so add the `-json` flag to the script command.
+1. The log body is parsed to extract severity information.  
+   - `SeverityText` and `SeverityNumber` are set on the `LogRecord`.  
+2. JSON fields from the log body are promoted to log `attributes`.  
 
-```sh
-./log-gen.sh -json
-```
-
-The script will begin writing lines to a file named `./quotes.log`, while displaying a single line of output in the console.
-
- ```txt
- Writing logs to quotes.log. Press Ctrl+C to stop.
- ```
-
-
-In this exercise, we will **remove the** `com.splunk/source` and `os.type` **metadata** from the log resource attributes before it is exported by the **Agent**. We will also parse the log body to set the `SeverityText` and `SeverityNumber` on the `LogRecord` and promote the log `body` json fields to log `attributes`.
+This ensures proper metadata filtering, severity mapping, and structured log enrichment before export.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-- **Start the **Gateway** Agent** from the `[WORKSHOP]/7-transform-data` directory in the **Gateway** terminal window.
-- **Start the **Agent** Collector** from the `[WORKSHOP]/7-transform-data` directory in the **Agent** terminal window.
+
 - **Check the debug output** of both the **Agent** and **Gateway** to confirm that `com.splunk/source` and `os.type` have been removed.
 
 {{% tabs %}}
