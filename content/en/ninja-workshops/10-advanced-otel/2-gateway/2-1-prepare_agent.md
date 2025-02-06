@@ -6,7 +6,8 @@ weight: 1
 
 ### Test Gateway
 
-Open a third terminal window, this one will be used to run the **Gateway** and navigate to the`[WORKSHOP]/2-gateway` directory and run the following command to test the gateway configuration:
+{{% notice title="Exercise" style="green" icon="running" %}}
+Find your third (**Gateway**) terminal window and navigate to the`[WORKSHOP]/2-gateway` directory and run the following command to test the gateway configuration:
 
 ```text
 ../otelcol --config=gateway.yaml
@@ -20,34 +21,43 @@ If everything is set up correctly, the first and last lines of the output should
 2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
+{{% /notice %}}
+
 ---
 
 ### Update Agent Configuration
 
-Switch to your 'agent' terminal window and navigate to the `[WORKSHOP]/2-gateway` directory.
-Open the `agent.yaml` file that you copied earlier in your editor. Replace the existing `file` exporter with an `otlphttp` exporter, as this is now the preferred exporter for Splunk Observability Cloud.
-
-Next, enable the `hostmetric` receiver in the `metrics` pipeline so that you can capture and view system metrics.
-
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Configure the `otlphttp` exporter**: Ensure the `endpoint` is set to the gateway endpoint and add the `X-SF-Token` header with a Splunk Access Token.
+- **Update Agent.yaml**  
+Switch to your **Agent** terminal window and navigate to the `[WORKSHOP]/2-gateway` directory. Open the `agent.yaml` file that you copied earlier in your editor.
+
+- **Replace the existing `file` exporter with an `otlphttp` exporter**:  
+The [**OTLPHTTP Exporter**](https://docs.splunk.com/observability/en/gdi/opentelemetry/components/otlphttp-exporter.html) is used to send data from the agent to the gateway using the OTLP/HTTP protocol. This is now the preferred method for exporting data to Splunk Observability Cloud. *(More details in Section 3.3 Addendum.)*
 
   ```yaml
     otlphttp:                       # Exporter Type
-      endpoint: "http://localhost:5318" # Gateway endpoint
+      endpoint: "http://localhost:5318" # Gateway OTLP endpoint 
       headers:                      # Headers to add to the HTTP call 
         X-SF-Token: "ACCESS_TOKEN"  # New way to set an Splunk ACCESS_TOKEN Header
   ```
 
-- **Add a batch processor to the agent**: since the agent can send data from different sources, and benefit from retries, adding a Batch processor is useful too:
+  Ensure the `endpoint` is set to the gateway endpoint  and port number and add the `X-SF-Token` header with a random value.  
+  During this workshop, you can use **any** value for `X-SF-TOKEN`. However, if you are connecting to Splunk Observability Cloud, this is where you will need to enter your Splunk Access Token *(More details in Section 3.3 Addendum.)*
+
+- **Add a Batch Processor configuration**: The [**Batch Processor**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/batchprocessor/README.md) accepts spans, metrics, or logs and places them into batches. Batching helps better compress the data and reduce the number of outgoing connections required to transmit the data. It is highly recommended configuring the batch processor on every collector.
 
   ```yaml
     batch:                          # Processor Type
       metadata_keys: [X-SF-Token]   # Array of metadata keys to batch 
   ```
 
-- **Update Pipelines**: **replace** the `file:` exporter with the `otlphttp` exporter in the `traces`, `metrics`, and `logs` pipelines. Also, **add** the `hostmetrics` receiver to the `metrics` pipeline.
+- **Enable the `hostmetric` receiver**: The [**HostMetrics Reciver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/hostmetricsreceiver#readme) generates metrics about the host system scraped from various sources.  
+It was already configured in the original agent.yaml,  we just need to add it to the `metrics` pipeline so that you can capture and see system metrics as shown in the next YAML code.
+
+- **Add the Batch processor to the pipeline**: The batch processor should be defined in the pipeline after the memory_limiter as well as any sampling processors as shown in the next YAML code.
+
+- **Replace the `file:` exporter**: Use the `otlphttp` exporter in the `traces`, `metrics`, and `logs` pipelines instead.
 
   ```yaml
       metrics:    
