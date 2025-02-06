@@ -75,8 +75,7 @@ Mac users must trust the executable when running `otelcol` for the first time. F
 {{% /tabs %}}
 
 {{% notice title=" Optional Tools" style="primary" icon="lightbulb" %}}
-For this workshop, using a good YAML editor like **Visual Studio Code** will be beneficial. If you don’t have it installed, you can download it [**here**](https://code.visualstudio.com/download).
+For this workshop, using a good YAML editor like [**Visual Studio Code**](https://code.visualstudio.com/download) will be beneficial.
 
-Additionally, having access to **jq** is recommended. This lightweight command-line tool helps process and format JSON data, making it easier to inspect traces, metrics, and logs from the OpenTelemetry Collector. If you do not have it, download it [**here**](https://jqlang.org/download/).
-
+Additionally, having access to [**jq**](https://jqlang.org/download/) is recommended. This lightweight command-line tool helps process and format JSON data, making it easier to inspect traces, metrics, and logs from the OpenTelemetry Collector.
 {{% /notice %}}
