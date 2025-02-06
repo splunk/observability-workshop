@@ -6,6 +6,7 @@ weight: 1
 
 To test your configuration, you'll need to generate some trace data that includes a span named `"/_healthz"`.
 
+{{% notice title="Exercise" style="green" icon="running" %}}
 Copy the following JSON and save to a file called `health.json` in the `5-dropping-spans` directory:
 
 {{% tabs %}}
@@ -69,6 +70,24 @@ Copy the following JSON and save to a file called `health.json` in the `5-droppi
 {{% /tab %}}
 {{% /tabs %}}
 
+{{% tab title="Updated Directory Structure" %}}
+
+```text
+WORKSHOP
+├── 1-agent
+├── 2-gateway
+├── 3-filelog
+├── 4-resilience
+├── 5-dropping-spans
+│   ├── agent.yaml
+│   ├── gateway.yaml
+│   ├── health.json
+│   ├── log-gen.sh (or .ps1)
+│   └── trace.json
+└── otelcol
+```
+
+{{% /tab %}}
 Ensure that both the **Agent** and **Gateway** are started from the `[WORKSHOP]/5-dropping-spans` directory using their respective configuration.yaml files. Next, update and use the **cURL** command we used earlier to send the `health.json` payload.
 
 Once the `span` payload is sent, the agent will process it, which you can confirm by checking the agent’s debug output to see the span data. The **Agent** will then forward the span to the **Gateway**. However, because the **Gateway** is configured with a filter to drop spans named `"/_healthz"`, the span will be discarded and not processed further.
@@ -76,6 +95,7 @@ Once the `span` payload is sent, the agent will process it, which you can confir
 The gateway console will remain unchanged, showing no indication that the data was received or handled.
 
 To confirm functionality, you can use the cURL command with the `trace.json` file again. This time, you should see both the agent and gateway process the spans successfully.
+{{% /notice %}}
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 

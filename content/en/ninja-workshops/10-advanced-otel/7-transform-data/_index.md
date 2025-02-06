@@ -24,10 +24,10 @@ WORKSHOP
 ├── 5-dropping-spans
 ├── 6-sensitive-data
 ├── 7-transform-data
-│   ├── gateway.yaml
 │   ├── agent.yaml
-│   ├── log-gen.sh (or .ps1)
+│   ├── gateway.yaml
 │   ├── health.json
+│   ├── log-gen.sh (or .ps1)
 │   └── trace.json
 └── otelcol
 ```
@@ -61,6 +61,7 @@ Flags: 0
 Logs often contain structured data encoded as JSON within the log body. Extracting these fields into attributes allows for better indexing, filtering, and querying. Instead of manually parsing JSON in downstream systems, OTTL enables automatic transformation at the telemetry pipeline level.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
+- **Update Agent.yaml** Switch to your **Agent** terminal window and navigate to the `[WORKSHOP]/7-transform-data` directory. Open the `agent.yaml` file that you copied earlier in your editor.
 
 - **Configure the `transform(logs)` processor:** Ensure the processor is applied to `log_statements` in the `resource` context and filter the resource attributes, keeping only relevant metadata fields (`com.splunk.sourcetype`, `host.name`, `otelcol.service.mode`):
 
@@ -105,9 +106,7 @@ Logs often contain structured data encoded as JSON within the log body. Extracti
 
   ```
 
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-This method of mapping all JSON fields to top-level attributes should only be used for **testing and debugging OTTL**. It will result in high cardinality in a production scenario.
-{{% /notice %}}
+
 
 - **Update the `logs` pipeline**: Add the `transform` processor into the `logs:` pipeline:
 
@@ -122,6 +121,9 @@ This method of mapping all JSON fields to top-level attributes should only be us
       - batch
   ```
 
+{{% /notice %}}
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+This method of mapping all JSON fields to top-level attributes should only be used for **testing and debugging OTTL**. It will result in high cardinality in a production scenario.
 {{% /notice %}}
 
 Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `logs:` section of your pipelines will look similar to this:

@@ -6,14 +6,15 @@ weight: 1
 
 ### Test the Attribute Processor tag updates
 
-Restart your **Gateway** terminal window, and wait until it is ready to receive data.
+Start your gateway agent from the `[WORKSHOP]/6-sensitive-data` directory in the **Gateway** terminal window, and wait until it is ready to receive data.
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+
 In this exercise, we will **delete** the `user.account_password`, **update** the `user.phone_number` **attribute** & **hash** the `user.email` in the span data before it is exported by the **Agent**.
 
-- **Disable the `redaction/redact` processor** in the `traces` pipeline by adding the comment character `#` in front of it.
-- **Start the **Agent** Collector** from the **Agent** terminal window.
-- **Send a span containing `Sensitive data`** by running the **cURL** command to send `trace.json`.
+{{% notice title="Exercise" style="green" icon="running" %}}
+- **Disable the `redaction/redact` processor** in the `traces` pipeline by adding the comment character `#` in front of it and save the `agent.yaml` 
+- **Start the **Agent** Collector** from the `[WORKSHOP]/6-sensitive-data` directory in the **Agent** terminal window.
+- **Send a span containing `Sensitive data`** by running the **cURL** command from the `[WORKSHOP]/6-sensitive-data` directory in the **Test** terminal window to send `trace.json`.
 - **Check the debug output** of both the **Agent** and **Gateway** to confirm that `user.account_password` has been removed, and both `user.phone_number` & `user.email` have been updated.
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
