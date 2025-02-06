@@ -43,7 +43,7 @@ The [**OTLPHTTP Exporter**](https://docs.splunk.com/observability/en/gdi/opentel
   ```
 
   Ensure the `endpoint` is set to the gateway endpoint  and port number and add the `X-SF-Token` header with a random value.  
-  During this workshop, you can use **any** value for `X-SF-TOKEN`. However, if you are connecting to Splunk Observability Cloud, this is where you will need to enter your Splunk Access Token *(More details in Section 3.3 Addendum.)*
+  During this workshop, you can use **any** value for `X-SF-TOKEN`. However, if you are connecting to Splunk Observability Cloud, this is where you will need to enter your Splunk Access Token *(More details in Section 2.3 Addendum.)*
 
 - **Add a Batch Processor configuration**: The [**Batch Processor**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/batchprocessor/README.md) accepts spans, metrics, or logs and places them into batches. Batching helps better compress the data and reduce the number of outgoing connections required to transmit the data. It is highly recommended configuring the batch processor on every collector.
 
