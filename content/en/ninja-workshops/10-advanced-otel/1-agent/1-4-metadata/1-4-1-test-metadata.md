@@ -192,7 +192,6 @@ weight: 1
 
 {{% /tab %}}
 {{% /tabs %}}
-
-{{% /notice%}}
+{{% /notice %}}
 
 Stop the **Agent** process by pressing `Ctrl-C` in the terminal window.
