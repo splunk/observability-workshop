@@ -37,18 +37,16 @@ Let's walk through a few modifications to our agent configuration to get things 
 
 {{% /notice %}}
 
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-Pay close attention to the formatting, as the OpenTelemetry Collector configuration relies on proper YAML structure.
-{{% /notice %}}
-
-During the workshop we will be using the **[otelbin.io](https://www.otelbin.io/)** website for quickly validating YAML syntax and OpenTelemetry configuration correctness. This helps avoid errors before applying configurations in production.
-
 {{% notice title="Usage" style="primary" icon="lightbulb" %}}
-Open **[otelbin.io](https://www.otelbin.io/)** and replace the existing configuration by pasting your own YAML into the left pane.
-  
-At the top of the page, ensure that **Splunk OpenTelemetry Collector** is selected as the validation target.
+During this workshop, we will use **[otelbin.io](https://www.otelbin.io/)** to quickly validate YAML syntax and ensure OpenTelemetry configurations are correct. This helps prevent errors before applying configurations in production.
 
-Once your configuration is validated, refer to the image representation below to check if your pipelines are set up correctly. Usually we will show just the key pipeline,  however when all three pipelines (**Traces**, **Metrics**, and **Logs**) follow the same structure, we will indicate this as show below rather than displaying each one separately.
+To validate your configuration:
+
+1. Open **[otelbin.io](https://www.otelbin.io/)** and replace the existing configuration by pasting your own YAML into the left pane.
+2. At the top of the page, ensure that **Splunk OpenTelemetry Collector** is selected as the validation target.
+3. Once validated, refer to the image representation below to verify if your pipelines are correctly set up.
+
+In most cases, we will display only the key pipeline. However, if all three pipelines (**Traces**, **Metrics**, and **Logs**) share the same structure, we will indicate this instead of displaying each one separately.
 
 {{% /notice %}}
 
@@ -62,7 +60,7 @@ graph LR
     %% Links
     subID1:::sub-traces
     subgraph " "
-      subgraph subID1[**Traces**]
+      subgraph subID1[**Traces/Metrics/Logs**]
       direction LR
       REC1 --> PRO1
       PRO1 --> EXP1
