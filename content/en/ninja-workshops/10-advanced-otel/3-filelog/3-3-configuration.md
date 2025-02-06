@@ -1,26 +1,25 @@
 ---
-title: 3.1 Filelog Receiver Configuration
-linkTitle: 3.1 Filelog Configuration
-weight: 1
+title: 3.3 Filelog Configuration
+linkTitle: 3.3 Filelog Configuration
+weight: 3
 ---
 
-Check that you are in the `[WORKSHOP]/3-filelog` directory.  Open the `agent.yaml` copied across earlier and in your editor add the `filelog` receiver to the `agent.yaml`.
-
 {{% notice title="Exercise" style="green" icon="running" %}}
+Move to the **Agent** terminal window and change into the `[WORKSHOP]/3-filelog` directory.  Open the `agent.yaml` copied across earlier and in your editor add the `filelog` receiver to the `agent.yaml`.
 
-- **Create the `filelog` receiver and name it `quotes`:** The [**FileLog Receiver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/filelogreceiver/README.md) reads log data from a file and includes custom resource attributes in the log data:
+- **Create the quotes `filelog` receiver**: The [**FileLog Receiver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/filelogreceiver/README.md) reads log data from a file and includes custom resource attributes in the log data:
 
   ```yaml
-    filelog/quotes:                 # Receiver Type/Name                      
-      include: ./quotes.log         # The file to read log data from (quotes.log)
-      include_file_path: true       # Includes the full file path in the log data
-      include_file_name: false      # Excludes the file name from the log data
-      resource:                     # Add custom resource attributes to the log data
-        com.splunk.source: ./quotes.log # Sets the source of the log data to "quotes.log"
-        com.splunk.sourcetype: quotes   # Sets the sourcetype for the log data to "quotes"
+    filelog/quotes:                      # Receiver Type/Name
+      include: ./quotes.log              # The file to read log data from
+      include_file_path: true            # Include file path in the log data
+      include_file_name: false           # Exclude file name from the log data
+      resource:                          # Add custom resource attributes
+        com.splunk.source: ./quotes.log  # Source of the log data
+        com.splunk.sourcetype: quotes    # Source type of the log data
   ```
 
-- **Add `filelog/quotes` receiver** to the `receivers` array in the `logs` section of the pipelines.  (make sure it also contains `otlp`)
+- **Add `filelog/quotes` receiver**: to the `receivers` array in the `logs` section of the pipelines.  (make sure it also contains `otlp`)
 
 {{% /notice %}}
 
