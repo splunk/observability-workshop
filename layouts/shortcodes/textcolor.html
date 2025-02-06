@@ -1,4 +1,7 @@
 {{$color := .Get "color" | default "#000000"}}
 {{$font := .Get "font" | default "monospace"}}
 {{$weight := .Get "weight" | default "normal"}}
-<span style="color: {{$color}}; font-family: {{$font}}; font-weight: {{$weight}}">{{- .Inner | safeHTML -}}</span>
+
+<span style="color: {{$color}}; font-family: {{$font}}; font-weight: {{$weight}}">
+    {{ .Inner }}
+</span>
