@@ -55,21 +55,21 @@ service:                          # Services configured for this Collector
       processors:
       - memory_limiter            # Memory Limiter processor
       exporters:
-      - debug                     # Debug Exporter       
+      - debug                     # Debug Exporter
     metrics:
       receivers:
       - otlp                      # OTLP Receiver
       processors:
       - memory_limiter            # Memory Limiter processor
       exporters:
-      - debug                     # Debug Exporter      
+      - debug                     # Debug Exporter
     logs:
       receivers:
-      - otlp                      # OTLP Receiver    
+      - otlp                      # OTLP Receiver
       processors:
       - memory_limiter            # Memory Limiter processor
       exporters:
-      - debug                     # Debug Exporter      
+      - debug                     # Debug Exporter
 ```
 
 {{% /tab %}}
@@ -103,7 +103,7 @@ In this section, we will extend the `gateway.yaml` configuration you just create
 - **Create additional exporters for `metrics` and `logs`**: Follow the example above, and set appropriate exporter names. Update the file paths to `./gateway-metrics.out` for `metrics` and `./gateway-logs.out` for `logs`.
 - **Add exporters to each pipeline**: Ensure that each pipeline includes its corresponding `file` exporter, placing it after the `debug` exporter.
 
-- **Add exporters to each pipeline**: Include the `resource/add_mode` and `batch` processors in every pipeline after the `memory_limiter`.
+- **Add processors to each pipeline**: Include the `resource/add_mode` and `batch` processors in every pipeline after the `memory_limiter`.
 
 {{% /notice %}}
 
