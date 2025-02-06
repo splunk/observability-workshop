@@ -1,6 +1,6 @@
 ---
-title: 1.2 Test Configuration
-linkTitle: 1.2 Test Configuration
+title: 1.2 Test Agent Configuration
+linkTitle: 1.2 Test Agent Configuration
 weight: 2
 ---
 
@@ -10,35 +10,32 @@ Once you've updated the configuration, you’re ready to proceed to running the 
 
 - **Find your Agent Terminal window**:
 
-    1. Move into the `[WORKSHOP]/1-agent folder
-    2. Run the following command: (ensure you’re using the correct OpenTelemetry Collector binary you downloaded).
+    1. Change into the `[WORKSHOP]/1-agent` folder
+    2. Run the following command:
 
-    ```sh
-     ../otelcol --config=agent.yaml
-    ```
+        ```sh
+        ../otelcol --config=agent.yaml
+        ```
 
     In this workshop, we use **macOS/Linux** commands by default. If you’re using Windows, adjust the commands as needed.
 
-> > [!note] 
-> >On Windows, a dialog box may appear asking if you want to grant public and private network access to `otelcol.exe`. Click **"Allow"** to proceed.
+>> [!note]
+>> On Windows, a dialog box may appear asking if you want to grant public and private network access to `otelcol.exe`. Click **"Allow"** to proceed.
 
 - **Verify Debug output**:
 
     1. If everything is set up correctly, the first and last lines of the output should display:
-    2. Create or find your **Tests** terminal window and navigate to the `[WORKSHOP]/1-agent` directory. 
-    3. Create a new file named `trace.json` and copy the content from the tab below.
 
-    ```text
-    2025/01/13T12:43:51 settings.go:478: Set config to [agent.yaml]
-    <snip to the end>
-    2025-01-13T12:43:51.747+0100 info service@v0.117.0/service.go:261 Everything is ready. Begin running and processing data.
-    ```
-
-    Instead of instrumenting an application, we will simulate sending trace data to the OpenTelemetry Collector using `cURL`. The trace data, formatted in JSON, represents what an instrumentation library would typically generate and send.
+        ```text
+        2025/01/13T12:43:51 settings.go:478: Set config to [agent.yaml]
+        <snip to the end>
+        2025-01-13T12:43:51.747+0100 info service@v0.117.0/service.go:261 Everything is ready. Begin running and processing data.
+        ```
 
 - **Create a test span file**:
+  Instead of instrumenting an application, we will simulate sending trace data to the OpenTelemetry Collector using `cURL`. The trace data, formatted in JSON, represents what an instrumentation library would typically generate and send.
 
-    1. Find your **Tests** Terminal window and verify it's using the `[WORKSHOP]/1-agent` directory.
+    1. Find your **Tests** Terminal window and change into the `[WORKSHOP]/1-agent` directory.
     2. Copy and paste the following **span** data into a new file named `trace.json`:
 
     This file will allow us to test how the OpenTelemetry Collector processes and send **spans** that are part of a trace, without requiring actual application instrumentation.
@@ -69,12 +66,12 @@ Once you've updated the configuration, you’re ready to proceed to running the 
 
 - **Send a test span**:
 
-    1. Execute the following command to send a **span** to the agent:
+    1. Run the following command to send a **span** to the agent:
 
 {{% tabs %}}
 {{% tab title="cURL Command" %}}
 
-```ps1
+```sh
  curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
 ```
 
@@ -109,11 +106,11 @@ To resolve this, use `curl.exe` instead of just `curl`.
     1. Find the **Agent** terminal window and check the collector's debug output. You should see the Debug entries related to the span you just sent.  
     2. We are showing the first and last lines of the debug log for that span. To get the full context, Use the **Complete Debug Output** Button to review.
 
-    ```text
-    2025-02-03T12:46:25.675+0100    info ResourceSpans #0
-    <snip>
-            {"kind": "exporter", "data_type": "traces", "name": "debug"}
-    ```
+        ```text
+        2025-02-03T12:46:25.675+0100    info ResourceSpans #0
+        <snip>
+                {"kind": "exporter", "data_type": "traces", "name": "debug"}
+        ```
 
 {{% expand title="{{% badge style=primary icon=scroll %}}Complete Debug Output{{% /badge %}}" %}}
 

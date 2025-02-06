@@ -38,7 +38,7 @@ Let's walk through a few modifications to our agent configuration to get things 
 {{% /notice %}}
 
 {{% notice title="Usage" style="primary" icon="lightbulb" %}}
-During this workshop, we will use **[otelbin.io](https://www.otelbin.io/)** to quickly validate YAML syntax and ensure OpenTelemetry configurations are correct. This helps prevent errors before applying configurations in production.
+During this workshop, we will use **[otelbin.io](https://www.otelbin.io/)** to quickly validate YAML syntax and ensure OpenTelemetry configurations are correct. This helps prevent errors before running tests during this workshop.
 
 To validate your configuration:
 
