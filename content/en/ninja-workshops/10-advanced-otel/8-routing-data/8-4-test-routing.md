@@ -36,7 +36,7 @@ You can repeat this scenario multiple times, and each trace will be written to i
 
 In this section, we successfully tested the routing connector in the gateway by sending different spans and verifying their destinations.
 
-- **Regular spans** were correctly routed to `gateway-traces-default.out`, confirming that spans without a matching `deployment.environment` attribute follow the default pipeline.
+- **Regular spans** were correctly routed to `gateway-traces-standard.out`, confirming that spans without a matching `deployment.environment` attribute follow the default pipeline.
 
 - **Security-related spans** from `security.json` were routed to `gateway-traces-security.out`, demonstrating that the routing rule based on `"deployment.environment": "security_applications"` works as expected.
 
