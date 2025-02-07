@@ -140,8 +140,12 @@ if ($args -contains "-json") {
 # Main loop to write logs
 Write-Host "Writing logs to $LOG_FILE. Press Ctrl+C to stop."
 while ($true) {
-    Generate-LogEntry | Out-File -Append -FilePath $LOG_FILE
-    Start-Sleep -Seconds 1  # Adjust this value for log frequency
+    $logEntry = Generate-LogEntry
+
+    # Ensure UTF-8 encoding is used (without BOM) to avoid unwanted characters
+    $logEntry | Out-File -Append -FilePath $LOG_FILE -Encoding utf8
+
+    Start-Sleep -Seconds 1  # Adjust log frequency
 }
 
 ```
