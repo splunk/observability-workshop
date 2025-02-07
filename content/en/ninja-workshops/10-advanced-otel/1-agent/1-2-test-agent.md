@@ -91,8 +91,10 @@ Content-Length: 21
 {{% /tabs %}}
 
 {{% notice info %}}
+
 1. `HTTP/1.1 200 OK`: Confirms the request was processed successfully.
 2. `{"partialSuccess":{}}`: Indicates 100% success, as the field is empty. In case of a partial failure, this field will include details about any failed parts.
+
 {{% /notice %}}
 {{% /notice %}}
 
