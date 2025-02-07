@@ -39,10 +39,10 @@ weight: 1
   3. Open the `agent.yaml` file that you copied earlier in your editor.
 
 - **Add the `otlphttp` exporter**
-  1. The [**OTLP/HTTP Exporter**](https://docs.splunk.com/observability/en/gdi/opentelemetry/components/otlphttp-exporter.html) is used to send data from the agent to the gateway using the OTLP/HTTP protocol. This is now the preferred method for exporting data to Splunk Observability Cloud (more details in Section 3.3 Addendum).
-  2. Ensure the `endpoint` is set to the gateway endpoint and port number
-  3. Add the `X-SF-Token` header with a random value.  
-  During this workshop, you can use **any** value for `X-SF-TOKEN`. However, if you are connecting to Splunk Observability Cloud, this is where you will need to enter your Splunk Access Token *(More details in Section 2.3 Addendum.)*
+  1. The [**OTLP/HTTP Exporter**](https://docs.splunk.com/observability/en/gdi/opentelemetry/components/otlphttp-exporter.html) is used to send data from the agent to the gateway using the OTLP/HTTP protocol. This is now the preferred method for exporting data to Splunk Observability Cloud (more details in Section 2.3 Addendum).
+  2. Ensure the `endpoint` is set to the gateway endpoint and port number.
+  3. Add the `X-SF-Token` header with a random value.
+  During this workshop, you can use **any** value for `X-SF-TOKEN`. However, if you are connecting to Splunk Observability Cloud, this is where you will need to enter your Splunk Access Token (more details in Section 2.3 Addendum).
 
   ```yaml
     otlphttp:                       # Exporter Type
@@ -52,37 +52,35 @@ weight: 1
   ```
 
 - **Add a Batch Processor configuration**
-  1. Use the [**Batch Processor**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/batchprocessor/README.md). It will accept spans, metrics, or logs and places them into batches. Batching helps better compress the data and reduce the number of outgoing connections required to transmit the data. It is highly recommended configuring the batch processor on every collector.
+  - Use the [**Batch Processor**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/batchprocessor/README.md). It will accept spans, metrics, or logs and places them into batches. Batching helps better compress the data and reduce the number of outgoing connections required to transmit the data. It is highly recommended configuring the batch processor on every collector.
 
   ```yaml
     batch:                          # Processor Type
       metadata_keys: [X-SF-Token]   # Array of metadata keys to batch 
   ```
 
-- **Enable the `hostmetric` receiver**
-  1. Use the [**HostMetrics Reciver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/hostmetricsreceiver#readme).  
-  It will generate metrics about the host system scraped from various sources.  
-  2. As it is already pre-configured in the original agent.yaml, we just need to add it to the `metrics` pipeline so that you can capture and see system metrics as shown in the next YAML code.
+- **Add the `hostmetric` receiver to the metric pipeline**:
+  - The [**HostMetrics Receiver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/hostmetricsreceiver#readme) will generate host metrics. In the `agent.yaml`, add `hostmetrics` to the `metrics` pipeline.
 
 - **Add the Batch processor to the pipeline**
-  1. The batch processor should be defined in the pipeline after the `memory_limiter`, as well after any data sampling/updating processors as shown in the next YAML code.
+  - Add the `batch` processor after the `memory_limiter` in all pipelines.
 
-- **Replace the `file:` exporter**:
-  1. Use the `otlphttp` exporter in the `traces`, `metrics`, and `logs` pipelines instead.
+- **Replace the `file:` exporter in all pipelines**:
+  - Add the `otlphttp` exporter in the `traces`, `metrics`, and `logs` pipelines instead.
 
   ```yaml
-      metrics:    
-        receivers: 
-        - otlp                        # OTLP Receiver
-        - hostmetrics                 # Hostmetrics Receiver
-        processors:
-        - memory_limiter              # Memory Limiter Processor
-        - resourcedetection           # Adds system attributes to the data
-        - resource/add_mode           # Adds collector mode metadata
-        - batch                       # Batch Processor, groups data before send
-        exporters:
-        - debug                       # Debug Exporter 
-        - otlphttp                    # OTLP/HTTP EXporter used by Splunk O11Y
+    metrics:
+      receivers: 
+      - otlp                        # OTLP Receiver
+      - hostmetrics                 # Hostmetrics Receiver
+      processors:
+      - memory_limiter              # Memory Limiter Processor
+      - resourcedetection           # System attributes metadata
+      - resource/add_mode           # Collector mode metadata
+      - batch                       # Batch Processor, groups data before send
+      exporters:
+      - debug                       # Debug Exporter 
+      - otlphttp                    # OTLP/HTTP Exporter
   ```
 
 {{% /notice %}}
@@ -93,8 +91,8 @@ Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**
 %%{init:{"fontFamily":"monospace"}}%%
 graph LR
     %% Nodes
-      REC1(hostmetrics<br>fa:fa-download):::receiver
-      REC2(&nbsp;&nbsp;&nbsp;&nbsp;otlp&nbsp;&nbsp;&nbsp;&nbsp;<br>fa:fa-download):::receiver
+      REC1(&nbsp;&nbsp;&nbsp;&nbsp;otlp&nbsp;&nbsp;&nbsp;&nbsp;<br>fa:fa-download):::receiver
+      REC2(hostmetrics<br>fa:fa-download):::receiver
       PRO1(memory_limiter<br>fa:fa-microchip):::processor
       PRO2(resourcedetection<br>fa:fa-microchip):::processor
       PRO3(resource<br>fa:fa-microchip<br>add_mode):::processor

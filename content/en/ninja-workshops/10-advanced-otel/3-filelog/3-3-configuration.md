@@ -7,7 +7,7 @@ weight: 3
 {{% notice title="Exercise" style="green" icon="running" %}}
 Move to the **Agent** terminal window and change into the `[WORKSHOP]/3-filelog` directory.  Open the `agent.yaml` copied across earlier and in your editor add the `filelog` receiver to the `agent.yaml`.
 
-- **Create the quotes `filelog` receiver**: The [**FileLog Receiver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/filelogreceiver/README.md) reads log data from a file and includes custom resource attributes in the log data:
+- **Create the `filelog` receiver and name it `quotes`**: The **FileLog** receiver reads log data from a file and includes custom resource attributes in the log data:
 
   ```yaml
     filelog/quotes:                      # Receiver Type/Name
@@ -19,7 +19,21 @@ Move to the **Agent** terminal window and change into the `[WORKSHOP]/3-filelog`
         com.splunk.sourcetype: quotes    # Source type of the log data
   ```
 
-- **Add `filelog/quotes` receiver**: to the `receivers` array in the `logs` section of the pipelines.  (make sure it also contains `otlp`)
+- **Add `filelog/quotes` receiver**: In the `logs:` pipeline add the `filelog/quotes:` receiver.
+
+  ```yaml
+      logs:
+        receivers:
+        - otlp                      # OTLP Receiver
+        - filelog/quotes            # Filelog Receiver reading quotes.log
+        processors:
+        - memory_limiter            # Memory Limiter Processor
+        - resourcedetection         # Adds system attributes to the data
+        - resource/add_mode         # Adds collector mode metadata
+        exporters:
+        - debug                     # Debug Exporter
+        - otlphttp                  # OTLP/HTTP EXporter
+  ```
 
 {{% /notice %}}
 
