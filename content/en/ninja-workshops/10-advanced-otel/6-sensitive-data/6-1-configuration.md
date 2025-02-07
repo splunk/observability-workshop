@@ -37,7 +37,7 @@ We'll **update** the `user.phone_number`, **hash** the `user.email`, and **delet
       - key: user.email            # Hash the email value
         action: hash               
       - key: user.account_password # Remove the password
-        action: delete             
+        action: delete
   ```
 
 **Add a `redaction` Processor**: This processor will detect and redact sensitive values based on predefined patterns. We'll block credit card numbers using regular expressions.
