@@ -6,10 +6,10 @@ weight: 1
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Create the `log-gen` script**: In the `3-filelog` directory create the script `log-gen.sh` (macOS or Linux), or `log-gen.ps1` (Windows) using the appropriate script below for your operating system:
+- **Create the `log-gen` script**: In the `3-filelog` directory create the script `log-gen.sh` (macOS/Linux), or `log-gen.ps1` (Windows) using the appropriate script below for your operating system:
 
 {{% tabs %}}
-{{% tab title="log-gen.sh (Mac/Linux)" %}}
+{{% tab title="log-gen.sh (macOS/Linux)" %}}
 
 ```sh
 #!/bin/bash

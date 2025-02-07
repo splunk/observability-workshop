@@ -5,9 +5,8 @@ weight: 4
 ---
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Check the log-gen script is running**
-  1. Find the **Tests** Terminal window, and check the script is still running, and the last line is still stating the below. (if it not, restart it in the `[WORKSHOP]/3-filelog` folder.)
-  
+- **Check the log-gen script is running**: Find the **Tests** Terminal window, and check the script is still running, and the last line is still stating the below, if it not, restart it in the `[WORKSHOP]/3-filelog` folder.
+
   ```text
   Writing logs to quotes.log. Press Ctrl+C to stop.
   ```
@@ -15,19 +14,21 @@ weight: 4
 - **Start the Gateway**
   1. Find your `Gateway` terminal window.
   2. Navigate to the `[WORKSHOP]/3-filelog` directory.
-  3. Start the `gateway` collector there and wait for it to be ready to receive data.
+  3. Start the **Gateway** collector.
 
 - **Start the Agent**
   1. Switch to your `Agent` terminal window
   2. Navigate to the `[WORKSHOP]/3-filelog` directory
-  3. Start the `agent` here with the latest configuration.
-  4. Ignore the initial **CPU** Metrics in the Debug output and wait until the continuous stream of log data from the `quotes.log` appears. The debug output should look similar to the following (use the *Check Full Debug Log* to see all data):
+  3. Start the **Agent**.
+  4. Ignore the initial **CPU** metrics in the debug output and wait until the continuous stream of log data from the `quotes.log` appears. The debug output should look similar to the following (use the *Check Full Debug Log* to see all data):
 
-  ```text
-  2025-02-05T18:05:17.050+0100    info    Logs    {"kind": "exporter", "data_type": "logs", "name": "debug", "resource logs": 1, "log records": 1}
-  <snip>
-        {"kind": "exporter", "data_type": "logs", "name": "debug"}
-  ```
+      ```text
+      <snip>
+      Body: Str(2025-02-05 18:05:16 [INFO] - All we have to decide is what to do with the time that is given)us.
+      Attributes:
+          -> log.file.path: Str(quotes.log)
+      </snip>
+      ```
 
 {{% expand title="{{% badge style=primary icon=scroll %}}Check Full Debug Log{{% /badge %}}" %}}
 
@@ -61,9 +62,9 @@ Flags: 0
 {{% /expand %}}
 
 - **Verify the gateway has handled the logs**
-  1. Check if the 'gateway' has written a `./gateway-log.out` file.
-  2. (Windows only). Stop the Agent and Gateway to flush the files
-  
+  1. **Windows only**: Stop the **Agent** and **Gateway** to flush the files.
+  2. Check if the **Gateway** has written a `./gateway-log.out` file.
+
   At this point, your directory structure will appear as follows:
 
 {{% tabs %}}
@@ -75,7 +76,7 @@ WORKSHOP
 ├── 2-gateway
 ├── 3-filelog
 │   ├── agent.yaml          # Agent Collector configuration file
-│   ├── gateway-logs.out.   # Output from the gateway logs pipeline
+│   ├── gateway-logs.out    # Output from the gateway logs pipeline
 │   ├── gateway-metrics.out # Output from the gateway metrics pipeline
 │   ├── gateway.yaml        # Gateway Collector configuration file
 │   ├── log-gen.(sh or ps1) # Script to write a file with logs lines 
@@ -87,10 +88,7 @@ WORKSHOP
 {{% /tab %}}
 {{% /tabs %}}
 
-- **Examine a log line in `gateway-log.out`**
-  1. Examine the content in `./gateway-log.out`
-  2. Compare a log line with the snippet below.
-  It is a preview showing the beginning and a single log line; your actual output will contain many, many more:
+- **Examine a log line in `gateway-log.out`**: Compare a log line with the snippet below. It is a preview showing the beginning and a single log line; your actual output will contain many, many more:
 
 {{% tabs %}}
 {{% tab title="cat /gateway-log.out" %}}
@@ -173,9 +171,7 @@ WORKSHOP
 {{% /tab %}}
 {{% /tabs %}}
 
-- **Examine the `resourceLogs` section**
-
- 1. Verify that the files include the same attributes we observed in the `traces` and `metrics` sections.
+- **Examine the `resourceLogs` section**: Verify that the files include the same attributes we observed in the `traces` and `metrics` sections.
 
 {{% tabs %}}
 {{% tab title="Compacted JSON" %}}
@@ -232,9 +228,6 @@ WORKSHOP
 
 {{% /tab %}}
 {{% /tabs %}}
-
-> > [!primary]
-> >This shared attribute mechanism powers the **Related Content** feature in Splunk Observability, which seamlessly links and correlates logs, metrics, traces, and dashboards. The feature is designed to help users quickly identify and investigate issues by providing a unified view of related telemetry data. Instead of isolating each data type, Splunk Observability connects them, enabling faster troubleshooting and more efficient root cause analysis.
 
 > > [!primary]
 > >You may also have noticed that every log line contains empty placeholders for `"traceId":""` and `"spanId":""`.
