@@ -225,4 +225,3 @@ This ensures proper metadata filtering, severity mapping, and structured log enr
 
 {{% /notice %}}
 
-Stop the **Agent** and **Gateway** using `Ctrl-C`.

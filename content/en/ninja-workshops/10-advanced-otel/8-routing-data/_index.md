@@ -31,6 +31,7 @@ WORKSHOP
 ├── 6-sensitive-data
 ├── 7-transform-data
 ├── 8-routing
+│   ├───checkpoint-dir
 │   ├── agent.yaml
 │   ├── health.json
 │   ├── gateway.yaml
