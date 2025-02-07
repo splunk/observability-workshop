@@ -58,7 +58,7 @@ service:                          # Services configured for this Collector
       - otlp                      # OTLP Receiver
       processors:
       - memory_limiter            # Memory Limiter processor
-      - resource/add-mode
+      - resource/add_mode
       - batch
       exporters:
       - debug                     # Debug Exporter
@@ -67,7 +67,7 @@ service:                          # Services configured for this Collector
       - otlp                      # OTLP Receiver
       processors:
       - memory_limiter            # Memory Limiter processor
-      - resource/add-mode
+      - resource/add_mode
       - batch
       exporters:
       - debug                     # Debug Exporter
@@ -76,7 +76,7 @@ service:                          # Services configured for this Collector
       - otlp                      # OTLP Receiver
       processors:
       - memory_limiter            # Memory Limiter processor
-      - resource/add-mode
+      - resource/add_mode         # 
       - batch
       exporters:
       - debug                     # Debug Exporter
