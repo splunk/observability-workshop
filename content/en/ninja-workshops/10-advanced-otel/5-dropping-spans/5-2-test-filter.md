@@ -37,13 +37,13 @@ WORKSHOP
 **Start the Gateway**: In the **Gateway** terminal window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run:
 
 ```sh { title="Gateway" }
-../otelbin --config=gateway.yaml
+../otelcol --config=gateway.yaml
 ```
 
 **Start the Agent**: In the **Agent** terminal window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run:
 
 ```sh { title="Agent" }
-../otelbin --config=agent.yaml
+../otelcol --config=agent.yaml
 ```
 
 **Send the new `health.json` payload:** In the **Test** terminal window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run the `curl` command below. (**Windows use `curl.exe`**).
