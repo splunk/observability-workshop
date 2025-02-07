@@ -17,7 +17,7 @@ We'll walk through configuring key processors in the OpenTelemetry Collector, in
 - Inside the `[WORKSHOP]` directory, create a new subdirectory named `6-sensitive-data`.
 - Next, copy all contents from the `5-dropping-spans` directory into `6-sensitive-data`.
 - After copying, remove any `*.out` and `*.log` files.
-- Make sure all terminal window are pointing to the `[WORKSHOP]/6-sensitive-data` folder.
+- Change **all** terminal windows to the `[WORKSHOP]/6-sensitive-data` directory.
 
 Your updated directory structure will now look like this:
 

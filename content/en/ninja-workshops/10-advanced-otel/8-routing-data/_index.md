@@ -14,6 +14,7 @@ For example, you might want to send *production* data to one exporter while dire
 - Inside the `[WORKSHOP]` directory, create a new subdirectory named `8-routing`.
 - Next, copy all contents from the `7-transform-data` directory into `8-routing`.
 - After copying, remove any `*.out` and `*.log` files.
+- Change **all** terminal windows to the `[WORKSHOP]/8-routing` directory.
 
 Your updated directory structure will now look like this:
 

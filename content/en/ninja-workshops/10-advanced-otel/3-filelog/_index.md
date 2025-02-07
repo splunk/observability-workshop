@@ -17,6 +17,7 @@ For this part of the workshop, there is script that will generate log lines in a
 - Navigate to the `[WORKSHOP]` directory and create a new subdirectory named `3-filelog`.
 - Next, copy all contents from the `2-gateway` directory into `3-filelog`.
 - After copying, remove any `*.out` and `*.log` files.
+- Change **all** terminal windows to the `[WORKSHOP]/3-filelog` directory.
 
 Your updated directory structure will now look like this:
 

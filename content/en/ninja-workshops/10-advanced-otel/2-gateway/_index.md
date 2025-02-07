@@ -10,6 +10,7 @@ weight: 2
 - Next, copy all contents from the `1-agent` directory into `2-gateway`.
 - After copying, remove `agent.out`.
 - Create a file called `gateway.yaml` and add the following initial configuration:
+- Change **all** terminal windows to the `[WORKSHOP]/2-gateway` directory.
 
 {{% tabs %}}
 {{% tab title="gateway.yaml" %}}

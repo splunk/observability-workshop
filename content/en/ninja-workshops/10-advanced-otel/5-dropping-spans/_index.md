@@ -14,6 +14,7 @@ Specifically, we will drop traces based on the span name, which is commonly used
 - Inside the `[WORKSHOP]` directory, create a new subdirectory named `5-dropping-spans`.
 - Next, copy all contents from the `4-resilience` directory into `5-dropping-spans`.
 - After copying, remove any `*.out` and `*.log` files.
+- Change **all** terminal windows to the `[WORKSHOP]/5-dropping-spans` directory.
 
 Your updated directory structure will now look like this:
 Create a new subdirectory named `5-dropping-spans` and copy all contents from the `4-resilience` directory into it. Then, delete any `*.out` and `*.log` files. Your updated directory structure should now look like this:
