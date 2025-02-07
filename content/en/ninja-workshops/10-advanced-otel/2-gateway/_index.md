@@ -58,8 +58,8 @@ service:                          # Services configured for this Collector
       - otlp                      # OTLP Receiver
       processors:
       - memory_limiter            # Memory Limiter processor
-      - resource/add_mode
-      - batch
+      - resource/add_mode         # Add metadata about collector mode
+      - batch                     # Batch Processor, groups data before send                     
       exporters:
       - debug                     # Debug Exporter
     metrics:
@@ -67,8 +67,8 @@ service:                          # Services configured for this Collector
       - otlp                      # OTLP Receiver
       processors:
       - memory_limiter            # Memory Limiter processor
-      - resource/add_mode
-      - batch
+      - resource/add_mode         # Add metadata about collector mode
+      - batch                     # Batch Processor, groups data before send                     
       exporters:
       - debug                     # Debug Exporter
     logs:
@@ -76,8 +76,8 @@ service:                          # Services configured for this Collector
       - otlp                      # OTLP Receiver
       processors:
       - memory_limiter            # Memory Limiter processor
-      - resource/add_mode         # 
-      - batch
+      - resource/add_mode         # Add metadata about collector mode
+      - batch                     # Batch Processor, groups data before send
       exporters:
       - debug                     # Debug Exporter
 ```
