@@ -8,21 +8,16 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Start the Gateway**: In the **Gateway** terminal change into the `6-sensitive-data` directory:
+**Start the Gateway**: In the **Gateway** terminal window navigate to the `[WORKSHOP]/6-sensitive-data` directory and run:
 
 ```sh
-../otelcol --config=gateway.yaml
+../otelbin --config=gateway.yaml
 ```
-<!--  Moved this to the config... for speeding up the workshop
-**Update `agent.yaml`**:
 
-1. In the **Agent** terminal change into the `6-sensitive-data` directory and edit the `agent.yaml`.
-2. Disable the `redaction/redact` processor in the `traces` pipeline by adding the comment character `#` in front.
--->
-**Start the Agent**: Remaining in the **Agent** terminal window:
+**Start the Agent**: In the **Agent** terminal window navigate to the `[WORKSHOP]/6-sensitive-data` directory and run:
 
 ```sh
-../otel --config=agent.yaml
+../otelbin --config=agent.yaml
 ```
 
 **Send a span**:
