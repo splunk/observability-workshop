@@ -9,11 +9,11 @@ weight: 1
 **Configure the `transform/logs` processor**: In the `agent.yaml` apply the processor to `log_statements` in the `resource` context and retain only relevant resource attributes (`com.splunk.sourcetype`, `host.name`, `otelcol.service.mode`):
 
 ```yaml
-transform/logs:                     # Processor Type/Name
-  log_statements:                   # Log Processing Statements
-    - context: resource             # Log Context
-      statements:                   # List of attribute keys to keep
-        - keep_keys(attributes, ["com.splunk.sourcetype", "host.name", "otelcol.service.mode"])
+  transform/logs:                     # Processor Type/Name
+    log_statements:                   # Log Processing Statements
+      - context: resource             # Log Context
+        statements:                   # List of attribute keys to keep
+          - keep_keys(attributes, ["com.splunk.sourcetype", "host.name", "otelcol.service.mode"])
 ```
 
 This configuration ensures that only the specified attributes are retained, improving log efficiency and reducing unnecessary metadata.
@@ -21,18 +21,18 @@ This configuration ensures that only the specified attributes are retained, impr
 **Adding a Context Block for Log Severity Mapping**: To properly set the `severity_text` and `severity_number` fields of a log record, add another log `context` block within `log_statements`. This configuration extracts the `level` value from the log body, maps it to `severity_text`, and assigns the appropriate `severity_number`:
 
 ```yaml
-    - context: log                  # Log Context
-      statements:                   # Transform Statements Array
-        - set(cache, ParseJSON(body)) where IsMatch(body, "^\\{")
-        - flatten(cache, "")        
-        - merge_maps(attributes, cache, "upsert")
-        - set(severity_text, attributes["level"])
-        - set(severity_number, 1) where severity_text == "TRACE"
-        - set(severity_number, 5) where severity_text == "DEBUG"
-        - set(severity_number, 9) where severity_text == "INFO"
-        - set(severity_number, 13) where severity_text == "WARN"
-        - set(severity_number, 17) where severity_text == "ERROR"
-        - set(severity_number, 21) where severity_text == "FATAL"
+      - context: log                  # Log Context
+        statements:                   # Transform Statements Array
+          - set(cache, ParseJSON(body)) where IsMatch(body, "^\\{")
+          - flatten(cache, "")        
+          - merge_maps(attributes, cache, "upsert")
+          - set(severity_text, attributes["level"])
+          - set(severity_number, 1) where severity_text == "TRACE"
+          - set(severity_number, 5) where severity_text == "DEBUG"
+          - set(severity_number, 9) where severity_text == "INFO"
+          - set(severity_number, 13) where severity_text == "WARN"
+          - set(severity_number, 17) where severity_text == "ERROR"
+          - set(severity_number, 21) where severity_text == "FATAL"
 ```
 
 **Summary of Key Transformations**:
