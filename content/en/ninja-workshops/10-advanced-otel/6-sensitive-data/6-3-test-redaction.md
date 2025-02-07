@@ -74,6 +74,12 @@ In this exercise, we will **redact** the `user.visa` & `user.mastercard` **value
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 By including `summary:debug` in the redaction processor, the debug output will include summary information about which matching keys values were redacted, along with the count of values that were masked.
+
+```text
+     -> redaction.masked.keys: Str(user.mastercard,user.visa)
+     -> redaction.masked.count: Int(2)
+ ```
+
 {{% /notice %}}
 
 **Check file output**: In the newly created `gateway-traces.out` file to verify confirm that `user.visa` & `user.mastercard` have been updated.
@@ -176,7 +182,7 @@ By including `summary:debug` in the redaction processor, the debug output will i
 {{% /tabs %}}
 
 {{% /notice %}}
-
+<!--
 **(Optional) Redact Amex CC number**:
 
 Add the Amex card regex to `blocked_values` and restart **Agent** collector.
@@ -184,7 +190,7 @@ Add the Amex card regex to `blocked_values` and restart **Agent** collector.
 ```yaml
 '\b3[47][0-9]{2}[\s-]?[0-9]{6}[\s-]?[0-9]{5}\b'
 ```
-
+-->
 These are just a few examples of how `attributes` and `redaction` processors can be configured to protect sensitive data.
 
 Stop the **Agent** and **Gateway** using `Ctrl-C`.
