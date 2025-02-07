@@ -6,19 +6,21 @@ weight: 3
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Send a Regular Span**:  
-  1. Locate the **Test** terminal and navigate to the `[WORKSHOP]/8-routing` directory.
-  2. Send a regular span using the `trace.json` file to confirm proper communication.
+**Send a Regular Span**:
 
-  Both the **Agent** and **Gateway** should display debug information, including the span you just sent. The gateway will also generate a new `gateway-traces-standard.out` file, as this is now the designated destination for regular spans.
+1. Locate the **Test** terminal and navigate to the `[WORKSHOP]/8-routing` directory.
+2. Send a regular span using the `trace.json` file to confirm proper communication.
+
+Both the **Agent** and **Gateway** should display debug information, including the span you just sent. The gateway will also generate a new `gateway-traces-standard.out` file, as this is now the designated destination for regular spans.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 If you check `gateway-traces-standard.out`, it should contain the `span` sent using the `cURL` command. You will also see an empty `gateway-traces-security.out` file, as the routing configuration creates output files immediately, even if no matching spans have been processed yet.
 {{% /notice %}}
 
-- **Send a Security Span**:
-  1. Ensure both the **Agent** and **Gateway** are running.
-  2. Send a security span using the `security.json` file to test the gateway’s routing rule.
+**Send a Security Span**:
+
+1. Ensure both the **Agent** and **Gateway** are running.
+2. Send a security span using the `security.json` file to test the gateway’s routing rule.
 
 Again, both the **Agent** and **Gateway** should display debug information, including the span you just sent. This time, the **Gateway** will write a line to the `gateway-traces-security.out` file, which is designated for spans where the `deployment.environment` resource attribute matches `"security_applications"`.
 The `gateway-traces-standard.out` should be unchanged.

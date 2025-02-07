@@ -8,21 +8,21 @@ In this section, we will test the `routing` rule configured for the **Gateway**.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Start the Gateway**: In the **Gateway** terminal window navigate to the `[WORKSHOP]/8-routing` directory and run:
+**Start the Gateway**: In the **Gateway** terminal window navigate to the `[WORKSHOP]/8-routing` directory and run:
 
-  ```sh
-  ../otelbin --config=gateway.yaml
-  ```
+```sh
+../otelbin --config=gateway.yaml
+```
 
-- **Start the Agent**: In the **Agent** terminal window navigate to the `[WORKSHOP]/8-routing` directory and run:
+**Start the Agent**: In the **Agent** terminal window navigate to the `[WORKSHOP]/8-routing` directory and run:
 
-  ```sh
-  ../otelbin --config=agent.yaml
-  ```
+```sh
+../otelbin --config=agent.yaml
+```
 
-- **Create new security trace**: In the **Tests** terminal window navigate to the `[WORKSHOP]/8-routing` directory.
+**Create new security trace**: In the **Tests** terminal window navigate to the `[WORKSHOP]/8-routing` directory.
   
-  The following JSON contains attributes which will trigger the routing rule. Copy the content from the tab below and save into a file named `security.json`.
+The following JSON contains attributes which will trigger the routing rule. Copy the content from the tab below and save into a file named `security.json`.
 
 {{% tabs %}}
 {{% tab title="security.json" %}}
