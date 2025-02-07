@@ -21,13 +21,13 @@ Writing logs to quotes.log. Press Ctrl+C to stop.
 **Start the Gateway**: In the **Gateway** terminal window navigate to the `[WORKSHOP]/7-transform-data` directory and run:
 
 ```sh { title="Gateway" }
-../otelbin --config=gateway.yaml
+../otelcol --config=gateway.yaml
 ```
 
 **Start the Agent**: In the **Agent** terminal window navigate to the `[WORKSHOP]/7-transform-data` directory and run:
 
 ```sh { title="Agent" }
-../otelbin --config=agent.yaml
+../otelcol --config=agent.yaml
 ```
 
 {{% /notice %}}

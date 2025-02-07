@@ -11,13 +11,13 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
 **Start the Gateway**: In the **Gateway** terminal window navigate to the `[WORKSHOP]/6-sensitive-data` directory and run:
 
 ```sh { title="Gateway" }
-../otelbin --config=gateway.yaml
+../otelcol --config=gateway.yaml
 ```
 
 **Start the Agent**: In the **Agent** terminal window navigate to the `[WORKSHOP]/6-sensitive-data` directory and run:
 
 ```sh { title="Agent" }
-../otelbin --config=agent.yaml
+../otelcol --config=agent.yaml
 ```
 
 **Send a span**:

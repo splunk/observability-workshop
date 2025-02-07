@@ -11,13 +11,13 @@ Next, we will configure our environment to be ready for testing the **File Stora
 **Start the Gateway**: In the **Gateway** terminal window navigate to the `[WORKSHOP]/4-resilience` directory and run:
 
 ```sh { title="Gateway" }
-../otelbin --config=gateway.yaml
+../otelcol --config=gateway.yaml
 ```
 
 **Start the Agent**: In the **Agent** terminal window navigate to the `[WORKSHOP]/4-resilience` directory and run:
 
 ```sh { title="Agent" }
-../otelbin --config=agent.yaml
+../otelcol --config=agent.yaml
 ```
 
 **Send a test trace**: In the **Test** terminal window navigate to the `[WORKSHOP]/4-resilience` directory and run:
