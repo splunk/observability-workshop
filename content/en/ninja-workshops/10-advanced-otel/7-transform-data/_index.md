@@ -49,6 +49,7 @@ WORKSHOP
 ├── 5-dropping-spans
 ├── 6-sensitive-data
 ├── 7-transform-data
+│   ├───checkpoint-dir
 │   ├── agent.yaml
 │   ├── gateway.yaml
 │   ├── health.json
