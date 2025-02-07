@@ -32,7 +32,7 @@ We'll **update** the `user.phone_number`, **hash** the `user.email`, and **delet
   attributes/update:               # Processor Type/Name
     actions:                       # List of actions
       - key: user.phone_number     # Target key
-        action: update             # Replace value with:
+        action: update             # Replace value with "UNKNOWN NUMBER"
         value: "UNKNOWN NUMBER"
       - key: user.email            # Hash the email value
         action: hash               
@@ -51,7 +51,7 @@ We'll **update** the `user.phone_number`, **hash** the `user.email`, and **delet
     summary: debug  # Show debug details about redaction
 ```
 
-**Update the `traces` Pipeline**: Integrate both processors into the `traces` pipeline to ensure the redaction's and modifications take effect:
+**Update the `traces` Pipeline**: Integrate both processors into the `traces` pipeline. Make sure that you comment out the redaction processor at first: (We will enable it later)
 
 ```yaml
     traces:
@@ -60,7 +60,7 @@ We'll **update** the `user.phone_number`, **hash** the `user.email`, and **delet
       processors:
         - memory_limiter            # Manage memory usage
         - attributes/update         # Update, hash, and remove attributes
-        - redaction/redact          # Redact sensitive fields using regex
+        #- redaction/redact          # Redact sensitive fields using regex
         - resourcedetection         # Add system attributes
         - resource/add_mode         # Add metadata about collector mode
         - batch                     # Batch Processor, groups data before send
@@ -83,7 +83,6 @@ graph LR
       PRO3(resource<br>fa:fa-microchip<br>add_mode):::processor
       PRO5(batch<br>fa:fa-microchip):::processor
       PRO6(attributes<br>fa:fa-microchip<br>update):::processor
-      PRO7(redaction<br>fa:fa-microchip<br>redact):::processor
       EXP1(otlphttp<br>fa:fa-upload):::exporter
       EXP2(&ensp;&ensp;debug&ensp;&ensp;<br>fa:fa-upload):::exporter
     %% Links
@@ -93,8 +92,7 @@ graph LR
       direction LR
       REC1 --> PRO1
       PRO1 --> PRO6
-      PRO6 --> PRO7
-      PRO7 --> PRO2
+      PRO6 --> PRO2
       PRO2 --> PRO3
       PRO3 --> PRO5
       PRO5 --> EXP2

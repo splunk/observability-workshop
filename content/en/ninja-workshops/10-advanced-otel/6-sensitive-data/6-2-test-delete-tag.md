@@ -13,12 +13,12 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
 ```sh
 ../otelcol --config=gateway.yaml
 ```
-
+<!--  Moved this to the config... for speeding up the workshop
 **Update `agent.yaml`**:
 
 1. In the **Agent** terminal change into the `6-sensitive-data` directory and edit the `agent.yaml`.
 2. Disable the `redaction/redact` processor in the `traces` pipeline by adding the comment character `#` in front.
-
+-->
 **Start the Agent**: Remaining in the **Agent** terminal window:
 
 ```sh
