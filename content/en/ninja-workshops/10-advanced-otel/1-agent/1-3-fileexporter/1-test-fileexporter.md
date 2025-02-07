@@ -20,7 +20,7 @@ weight: 1
   ```
 
 - **Send a Trace**:
-  1. Send a span again, from the `Test` terminal window.
+  1. From the **Test** terminal window send another span.
   2. Verify you get the same output on the console as we saw previously:
 
   ```ps1
@@ -28,7 +28,7 @@ weight: 1
   ```
 
 - **Verify that the `agent.out` file is written**:
-  1. Check that a file named `agent.out` is written in the current directory. 
+  1. Check that a file named `agent.out` is written in the current directory.
 
 {{% tabs %}}
 {{% tab title="Updated Directory Structure" %}}
@@ -50,7 +50,7 @@ On **Windows**, an open file may appear empty or cause issues when attempting to
 {{% /notice %}}
 
 - **Verify the span format**:
-  1. Check the Format that The File Exporter has used to write the span to the `agent.out`
+  1. Check the Format that The File Exporter has used to write the span to the `agent.out`.
   2. It should be a single line in OTLP/JSON format.
   3. Since no modifications have been made to the pipeline yet, this file should be identical to `trace.json`.
 
@@ -169,8 +169,8 @@ On **Windows**, an open file may appear empty or cause issues when attempting to
 If you want to view the file’s content, simply run:
 
 ```sh
-cat agent.out`
-``` 
+cat agent.out
+```
 
 For a formatted JSON output, you can use the same command but pipe it through **jq** (if installed):
 

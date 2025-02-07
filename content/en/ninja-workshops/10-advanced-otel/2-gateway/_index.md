@@ -5,9 +5,12 @@ time: 10 minutes
 weight: 2
 ---
 {{% notice title="Exercise" style="green" icon="running" %}}
-In the `[WORKSHOP]` directory, create a new subdirectory named `2-gateway` and navigate into it. Then, copy the latest versions of `agent.yaml` and `trace.json` from the `1-agent` directory into `2-gateway`.  
 
-Next, create a file called `gateway.yaml` and add the following initial configuration.
+- Inside the `[WORKSHOP]` directory, create a new subdirectory named `2-gateway`.
+- Next, copy all contents from the `1-agent` directory into `2-gateway`.
+- After copying, remove `agent.out`.
+- Create a file called `gateway.yaml` and add the following initial configuration:
+
 {{% tabs %}}
 {{% tab title="gateway.yaml" %}}
 
@@ -54,6 +57,8 @@ service:                          # Services configured for this Collector
       - otlp                      # OTLP Receiver
       processors:
       - memory_limiter            # Memory Limiter processor
+      - resource/add-mode
+      - batch
       exporters:
       - debug                     # Debug Exporter
     metrics:
@@ -61,6 +66,8 @@ service:                          # Services configured for this Collector
       - otlp                      # OTLP Receiver
       processors:
       - memory_limiter            # Memory Limiter processor
+      - resource/add-mode
+      - batch
       exporters:
       - debug                     # Debug Exporter
     logs:
@@ -68,6 +75,8 @@ service:                          # Services configured for this Collector
       - otlp                      # OTLP Receiver
       processors:
       - memory_limiter            # Memory Limiter processor
+      - resource/add-mode
+      - batch
       exporters:
       - debug                     # Debug Exporter
 ```
@@ -91,11 +100,11 @@ service:                          # Services configured for this Collector
 
 {{% /tab %}}
 
-In this section, we will extend the `gateway.yaml` configuration you just created to separate metric, traces & logs into different files.
-
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Create a `file` Exporter and name it `traces`**: Separate exporters need to be configured for traces, metrics, and logs. Below is the YAML configuration for traces:
+In this section, we will extend the `gateway.yaml` configuration you just created to separate metric, traces & logs into different files.
+
+- **Create a `file` exporter and name it `traces`**: Separate exporters need to be configured for traces, metrics, and logs. Below is the YAML configuration for traces:
 
   ```yaml
     file/traces:                    # Exporter Type/Name
@@ -106,7 +115,18 @@ In this section, we will extend the `gateway.yaml` configuration you just create
 - **Create additional exporters for `metrics` and `logs`**: Follow the example above, and set appropriate exporter names. Update the file paths to `./gateway-metrics.out` for `metrics` and `./gateway-logs.out` for `logs`.
 - **Add exporters to each pipeline**: Ensure that each pipeline includes its corresponding `file` exporter, placing it after the `debug` exporter.
 
-- **Add processors to each pipeline**: Include the `resource/add_mode` and `batch` processors in every pipeline after the `memory_limiter`.
+  ```yaml
+    logs:
+      receivers:
+      - otlp                      # OTLP Receiver
+      processors:
+      - memory_limiter            # Memory Limiter processor
+      - resource/add_mode         # Adds collector mode metadata
+      - batch                     # Groups Data before send
+      exporters:
+      - debug                     # Debug Exporter
+      - file/logs                 # File Exporter for logs
+  ```
 
 {{% /notice %}}
 

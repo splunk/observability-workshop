@@ -6,7 +6,7 @@ weight: 3
 
 So far, we've simply exported an exact copy of the span sent through the OpenTelemetry Collector.
 
-Now, let's improve the base span by adding metadata with processors. This extra information can be helpful for troubleshooting.
+Now, let's improve the base span by adding metadata with processors. This extra information can be helpful for troubleshooting and correlation.
 
 Find your **Agent** terminal window, and stop the running collector by pressing `Ctrl-C`. Once the **Agent** has stopped, open the `agent.yaml` and configure the `resourcedetection` and `resource` processors:
 
