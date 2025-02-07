@@ -6,7 +6,7 @@ weight: 4
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Check the log-gen script is running**: Find the **Tests** Terminal window, and check the script is still running, and the last line is still stating the below, if it not, restart it in the `[WORKSHOP]/3-filelog` folder.
+**Check the log-gen script is running**: Find the **log-gen** Terminal window, and check the script is still running, and the last line is still stating the below, if it not, restart it in the `[WORKSHOP]/3-filelog` folder.
 
 ```text
 Writing logs to quotes.log. Press Ctrl+C to stop.
