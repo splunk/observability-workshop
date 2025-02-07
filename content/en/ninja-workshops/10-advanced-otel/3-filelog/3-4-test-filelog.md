@@ -3,6 +3,7 @@ title: 3.4 Test Filelog Receiver
 linkTitle: 3.4 Test Filelog Receiver
 weight: 4
 ---
+
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - **Check the log-gen script is running**: Find the **Tests** Terminal window, and check the script is still running, and the last line is still stating the below, if it not, restart it in the `[WORKSHOP]/3-filelog` folder.
@@ -22,14 +23,15 @@ weight: 4
   3. Start the **Agent**.
   4. Ignore the initial **CPU** metrics in the debug output and wait until the continuous stream of log data from the `quotes.log` appears. The debug output should look similar to the following (use the *Check Full Debug Log* to see all data):
 
-      ```text
-      <snip>
-      Body: Str(2025-02-05 18:05:16 [INFO] - All we have to decide is what to do with the time that is given)us.
-      Attributes:
-          -> log.file.path: Str(quotes.log)
-      </snip>
-      ```
+  ```text
+  <snip>
+  Body: Str(2025-02-05 18:05:16 [INFO] - All we have to decide is what to do with the time that is given)us.
+  Attributes:
+      -> log.file.path: Str(quotes.log)
+  </snip>
+  ```
 
+{{% /notice %}}
 {{% expand title="{{% badge style=primary icon=scroll %}}Check Full Debug Log{{% /badge %}}" %}}
 
 ```text
@@ -60,6 +62,8 @@ Flags: 0
 ```
 
 {{% /expand %}}
+
+{{% notice title="Exercise" style="green" icon="running" %}}
 
 - **Verify the gateway has handled the logs**
   1. **Windows only**: Stop the **Agent** and **Gateway** to flush the files.
