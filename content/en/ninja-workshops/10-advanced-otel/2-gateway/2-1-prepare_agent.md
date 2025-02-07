@@ -29,28 +29,27 @@ weight: 1
 
 ---
 
-### Update Agent Configuration
+### Configure the Agent to send to the Gateway
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Update Agent.yaml**  
+- **Update `agent.yaml`**
   1. Switch to your **Agent** terminal window.
   2. Make sure you are in the `[WORKSHOP]/2-gateway` directory.
   3. Open the `agent.yaml` file that you copied earlier in your editor.
 
-- **Replace the existing `file` exporter**
-  1. Use [**OTLPHTTP Exporter**](https://docs.splunk.com/observability/en/gdi/opentelemetry/components/otlphttp-exporter.html) as the replacement.
-  The `otelhttp` exporter is used to send data from the agent to the gateway using the OTLP/HTTP protocol. This is now the preferred method for exporting data to Splunk Observability Cloud. *(More details in Section 3.3 Addendum.)*
+- **Add the `otlphttp` exporter**
+  1. The [**OTLP/HTTP Exporter**](https://docs.splunk.com/observability/en/gdi/opentelemetry/components/otlphttp-exporter.html) is used to send data from the agent to the gateway using the OTLP/HTTP protocol. This is now the preferred method for exporting data to Splunk Observability Cloud (more details in Section 3.3 Addendum).
   2. Ensure the `endpoint` is set to the gateway endpoint and port number
   3. Add the `X-SF-Token` header with a random value.  
   During this workshop, you can use **any** value for `X-SF-TOKEN`. However, if you are connecting to Splunk Observability Cloud, this is where you will need to enter your Splunk Access Token *(More details in Section 2.3 Addendum.)*
 
-   ```yaml
-      otlphttp:                       # Exporter Type
-        endpoint: "http://localhost:5318" # Gateway OTLP endpoint 
-        headers:                      # Headers to add to the HTTP call 
-          X-SF-Token: "ACCESS_TOKEN"  # New way to set an Splunk ACCESS_TOKEN Header
-    ```
+  ```yaml
+    otlphttp:                       # Exporter Type
+      endpoint: "http://localhost:5318" # Gateway OTLP endpoint
+      headers:                      # Headers to add to the HTTPcall 
+        X-SF-Token: "ACCESS_TOKEN"  # Splunk ACCESS_TOKEN header
+  ```
 
 - **Add a Batch Processor configuration**
   1. Use the [**Batch Processor**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/batchprocessor/README.md). It will accept spans, metrics, or logs and places them into batches. Batching helps better compress the data and reduce the number of outgoing connections required to transmit the data. It is highly recommended configuring the batch processor on every collector.

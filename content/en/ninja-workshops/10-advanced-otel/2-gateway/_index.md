@@ -116,16 +116,16 @@ In this section, we will extend the `gateway.yaml` configuration you just create
 - **Add exporters to each pipeline**: Ensure that each pipeline includes its corresponding `file` exporter, placing it after the `debug` exporter.
 
   ```yaml
-    logs:
-      receivers:
-      - otlp                      # OTLP Receiver
-      processors:
-      - memory_limiter            # Memory Limiter processor
-      - resource/add_mode         # Adds collector mode metadata
-      - batch                     # Groups Data before send
-      exporters:
-      - debug                     # Debug Exporter
-      - file/logs                 # File Exporter for logs
+      logs:
+        receivers:
+        - otlp                      # OTLP Receiver
+        processors:
+        - memory_limiter            # Memory Limiter processor
+        - resource/add_mode         # Adds collector mode metadata
+        - batch                     # Groups Data before send
+        exporters:
+        - debug                     # Debug Exporter
+        - file/logs                 # File Exporter for logs
   ```
 
 {{% /notice %}}
