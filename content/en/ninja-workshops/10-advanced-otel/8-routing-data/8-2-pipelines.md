@@ -11,15 +11,15 @@ weight: 2
 1. **Standard pipeline**: This pipeline processes all spans that do not match the routing rule. Add it below the existing `traces:` pipeline, keeping the configuration unchanged for now:
 
     ```yaml
-      traces/standard:                # Default pipeline for unmatched spans
-        receivers: 
-        - routing                     # Receive data from the routing connector
-        processors:
-        - memory_limiter              # Limits memory usage
-        - resource/add_mode           # Adds collector mode metadata
-        exporters:
-        - debug                       # Debug exporter
-        - file/traces/standard        # File exporter for unmatched spans
+        traces/standard:                # Default pipeline for unmatched spans
+          receivers: 
+          - routing                     # Receive data from the routing connector
+          processors:
+          - memory_limiter              # Limits memory usage
+          - resource/add_mode           # Adds collector mode metadata
+          exporters:
+          - debug                       # Debug exporter
+          - file/traces/standard        # File exporter for unmatched spans
     ```
 
 2. **Security pipeline**: This pipeline will handle all spans that match the routing rule:
@@ -47,7 +47,7 @@ weight: 2
         traces:                           # Original traces pipeline
           receivers: 
           - otlp                          # OTLP Receiver
-          processors:
+          processors: []
           exporters: 
           - routing                       # Routing Connector
     ```
