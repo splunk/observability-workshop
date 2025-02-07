@@ -6,35 +6,34 @@ weight: 3
 
 To assess the **Agent's** resilience, we'll simulate a temporary **Gateway** outage and observe how the **Agent** handles it:
 
-- **Summary**:
-  1. **Send Traces to the Agent** – Generate traffic by sending traces to the **Agent**.
-  2. **Stop the Gateway** – This will trigger the **Agent** to enter retry mode.
-  3. **Restart the Gateway** – The **Agent** will recover traces from its persistent queue and forward them successfully.
+**Summary**:
 
-Without the persistent queue, these traces would have been lost permanently.
+1. **Send Traces to the Agent** – Generate traffic by sending traces to the **Agent**.
+2. **Stop the Gateway** – This will trigger the **Agent** to enter retry mode.
+3. **Restart the Gateway** – The **Agent** will recover traces from its persistent queue and forward them successfully. Without the persistent queue, these traces would have been lost permanently.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Simulate a network failure**: In the **Gateway** terminal stop the **Gateway** with `Ctrl-C` and wait until the gateway console shows that it has stopped:
+**Simulate a network failure**: In the **Gateway** terminal stop the **Gateway** with `Ctrl-C` and wait until the gateway console shows that it has stopped:
 
-    ```text
-    2025-01-28T13:24:32.785+0100  info  service@v0.116.0/service.go:309  Shutdown complete.
-    ```
+```text
+2025-01-28T13:24:32.785+0100  info  service@v0.116.0/service.go:309  Shutdown complete.
+```
 
-- **Send traces**: In the **Test** terminal window send two traces using the cURL command we used earlier.
+**Send traces**: In the **Test** terminal window send two traces using the `curl` command we used earlier.
 
-  Notice that the agent’s retry mechanism is activated as it continuously attempts to resend the data. In the agent’s console output, you will see repeated messages similar to the following:
+Notice that the agent’s retry mechanism is activated as it continuously attempts to resend the data. In the agent’s console output, you will see repeated messages similar to the following:
 
-    ```text
-    2025-01-28T14:22:47.020+0100  info  internal/retry_sender.go:126  Exporting failed. Will retry the request after interval.  {"kind": "exporter", "data_type": "traces", "name": "otlphttp", "error": "failed to make an HTTP request: Post \"http://localhost:5318/v1/traces\": dial tcp 127.0.0.1:5318: connect: connection refused", "interval": "9.471474933s"}
-    ```
+```text
+2025-01-28T14:22:47.020+0100  info  internal/retry_sender.go:126  Exporting failed. Will retry the request after interval.  {"kind": "exporter", "data_type": "traces", "name": "otlphttp", "error": "failed to make an HTTP request: Post \"http://localhost:5318/v1/traces\": dial tcp 127.0.0.1:5318: connect: connection refused", "interval": "9.471474933s"}
+```
 
-- **Stop the Agent**: Use `Ctrl-C` to stop the agent. Wait until the agent’s console confirms it has stopped:
+**Stop the Agent**: Use `Ctrl-C` to stop the agent. Wait until the agent’s console confirms it has stopped:
 
-    ```text
-    2025-01-28T14:40:28.702+0100  info  extensions/extensions.go:66  Stopping extensions...
-    2025-01-28T14:40:28.702+0100  info  service@v0.116.0/service.go:309  Shutdown complete.
-    ```
+```text
+2025-01-28T14:40:28.702+0100  info  extensions/extensions.go:66  Stopping extensions...
+2025-01-28T14:40:28.702+0100  info  service@v0.116.0/service.go:309  Shutdown complete.
+```
 
 {{% /notice %}}
 
