@@ -48,7 +48,7 @@ WORKSHOP
 **Start the Gateway and the Agent**:
 
 1. Make sure you are in the `[WORKSHOP]/5-dropping-spans` folder for both the **Gateway** and **Agent** terminal windows and start the collectors.
-2. **Send** the new `health.json` payload with the **cULR** command below. (**Windows use `curl.exe`**).
+2. **Send** the new `health.json` payload with the `curl` command below. (**Windows use `curl.exe`**).
   
 ```sh
 curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@health.json"

@@ -1,5 +1,5 @@
 ---
-title: 2.2 Conifgure Agent
+title: 2.2 Configure Agent
 linkTitle: 2.2 Configure Agent
 weight: 2
 ---
