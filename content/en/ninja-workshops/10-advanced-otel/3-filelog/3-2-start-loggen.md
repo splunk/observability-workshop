@@ -12,6 +12,10 @@ Start the appropriate script for your system. The script will begin writing line
 ./log-gen.sh
 ```
 
+```text
+Writing logs to quotes.log. Press Ctrl+C to stop.
+```
+
 {{% notice note %}}
 On Windows, you may encounter the following error:
 
@@ -26,9 +30,4 @@ powershell -ExecutionPolicy Bypass -File log-gen.ps1
 ```
 
 {{% /notice %}}
-
-```text
-Writing logs to quotes.log. Press Ctrl+C to stop.
-```
-
 {{% /notice %}}
