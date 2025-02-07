@@ -45,7 +45,9 @@ This configuration extracts the `level` value from the log body, maps it to `sev
 - **Map Severity Text**: Assigns severity_text from the log’s level attribute.
 - **Assign Severity Numbers**: Converts severity levels into standardized numerical values.
 
-This setup ensures that log severity is properly extracted, standardized, and structured for efficient processing.
+You should have a **SINGLE** `transform` processor containing two context blocks: one for `resource` and one for `log`.
+
+This configuration ensures that log severity is correctly extracted, standardized, and structured for efficient processing.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 This method of mapping all JSON fields to top-level attributes should only be used for **testing and debugging OTTL**. It will result in high cardinality in a production scenario.
