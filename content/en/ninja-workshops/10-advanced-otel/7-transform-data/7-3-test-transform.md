@@ -14,7 +14,7 @@ This ensures proper metadata filtering, severity mapping, and structured log enr
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Check the debug output** of both the **Agent** and **Gateway** to confirm that `com.splunk/source` and `os.type` have been removed.
+**Check the debug output**: For both the **Agent** and **Gateway** confirm that `com.splunk/source` and `os.type` have been removed:
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
@@ -41,7 +41,7 @@ This ensures proper metadata filtering, severity mapping, and structured log enr
 {{% /tab %}}
 {{% /tabs %}}
 
-- **Check the debug output** of both the **Agent** and **Gateway** to confirm that `SeverityText` and `SeverityNumber` in the `LogRecord` is now defined with the severity `level` from the log body. Confirm that the JSON fields from the body can be accessed as top-level log `Attributes`.
+**Check the debug output**: For both the **Agent** and **Gateway** confirm that `SeverityText` and `SeverityNumber` in the `LogRecord` is now defined with the severity `level` from the log body. Confirm that the JSON fields from the body can be accessed as top-level log `Attributes`:
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
@@ -85,7 +85,7 @@ This ensures proper metadata filtering, severity mapping, and structured log enr
 {{% /tab %}}
 {{% /tabs %}}
 
-- **Check** the new `gateway-logs.out` file to verify the data has been transformed:
+**Check file output**: In the new `gateway-logs.out` file verify the data has been transformed:
 
 {{% tabs %}}
 {{% tab title="New File Output" %}}
