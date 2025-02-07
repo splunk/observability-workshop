@@ -17,7 +17,7 @@ In this exercise, we’ll test how the **OpenTelemetry Collector** recovers from
 **Restart the Agent**: In the **Agent** terminal window run:
 
 ```sh
-../otelbin --config=gateway.yaml
+../otelbin --config==agent.yaml
 ```
 
 {{% /notice %}}
