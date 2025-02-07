@@ -7,34 +7,32 @@ weight: 1
 In this exercise, you will configure the `routing` connector in the `gateway.yaml` file. This setup enables the **Gateway** to route traces based on the `deployment.environment` attribute in the spans you send. By implementing this, you can process and handle traces differently depending on their attributes.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-Open the `gateway.yaml` and add the following configuration:
 
-- **Add the `routing` connector**: In OpenTelemetry configuration files, `connectors` have their own dedicated section, similar to receivers and processors. This approach also applies to `metrics` and `logs`, allowing them to be routed based on attributes in `resourceMetrics` or `resourceLogs`.
-  
-  Add the following below the `receivers:` section and above the `processors:` section:
+**Add the `routing` connector**: In the **Gateway** terminal window edit `gateway.yaml` and add the following below the `receivers:` section and above the `processors:` section:
 
-  ```yaml
-  connectors:
-    routing:
-      default_pipelines: [traces/standard] # Default pipeline if no rule matches
-      error_mode: ignore                   # Ignore errors in routing
-      table:                               # Define routing rules
-        # Routes spans to a target pipeline if the resourceSpan attribute matches the rule
-        - statement: route() where attributes["deployment.environment"] == "security_applications"
-          pipelines: [traces/security]     # Target pipeline 
-  ```
+```yaml
+connectors:
+  routing:
+    default_pipelines: [traces/standard] # Default pipeline if no rule matches
+    error_mode: ignore                   # Ignore errors in routing
+    table:                               # Define routing rules
+      # Routes spans to a target pipeline if the resourceSpan attribute matches the rule
+      - statement: route() where attributes["deployment.environment"] == "security_applications"
+        pipelines: [traces/security]     # Target pipeline 
+```
 
-- **Configure `file:` exporters**:
-The `routing` connector requires separate targets for routing. Add two file exporters, `file/traces/security` and `file/traces/standard`, to ensure data is directed correctly:
+In OpenTelemetry configuration files, `connectors` have their own dedicated section, similar to receivers and processors. This approach also applies to `metrics` and `logs`, allowing them to be routed based on attributes in `resourceMetrics` or `resourceLogs`.
 
-  ```yaml
-    file/traces/standard:                    # Exporter for regular traces
-      path: "./gateway-traces-standard.out"  # Path for saving trace data
-      append: false                          # Overwrite the file each time
-    file/traces/security:                    # Exporter for security traces
-      path: "./gateway-traces-security.out"  # Path for saving trace data
-      append: false                          # Overwrite the file each time 
-  ```
+**Configure `file:` exporters**: The `routing` connector requires separate targets for routing. Add two file exporters, `file/traces/security` and `file/traces/standard`, to ensure data is directed correctly:
+
+```yaml
+  file/traces/standard:                    # Exporter for regular traces
+    path: "./gateway-traces-standard.out"  # Path for saving trace data
+    append: false                          # Overwrite the file each time
+  file/traces/security:                    # Exporter for security traces
+    path: "./gateway-traces-security.out"  # Path for saving trace data
+    append: false                          # Overwrite the file each time 
+```
 
 {{% /notice %}}
 
