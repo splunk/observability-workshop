@@ -52,16 +52,16 @@ This method of mapping all JSON fields to top-level attributes should only be us
 **Update the `logs` pipeline**: Add the `transform/logs:` processor into the `logs:` pipeline:
 
 ```yaml
-logs:                    # Logs Pipeline
-    receivers:           # Array of receivers in this pipeline
-    - filelog/quotes
-    - otlp
-    processors:          # Array of Processors in this pipeline
-    - memory_limiter     # You also could use [memory_limiter]
-    - resourcedetection
-    - resource/add_mode
-    - transform/logs
-    - batch
+    logs:                  # Logs Pipeline
+      receivers:           # Array of receivers in this pipeline
+      - filelog/quotes
+      - otlp
+      processors:          # Array of Processors in this pipeline
+      - memory_limiter     # You also could use [memory_limiter]
+      - resourcedetection
+      - resource/add_mode
+      - transform/logs
+      - batch
 ```
 
 {{% /notice %}}
