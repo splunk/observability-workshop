@@ -9,8 +9,8 @@ In this section, you'll learn how to configure the OpenTelemetry Collector to re
 
 We'll walk through configuring key processors in the OpenTelemetry Collector, including:
 
-- **Attributes Processor**: Modifies or removes specific span attributes.
-- **Redaction Processor**: Ensures sensitive data is sanitized before being stored or transmitted.
+- **[Attributes Processor](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/attributesprocessor/README.md)**: Modifies or removes specific span attributes.
+- [**Redaction Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/redactionprocessor/README.md): Ensures sensitive data is sanitized before being stored or transmitted.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
