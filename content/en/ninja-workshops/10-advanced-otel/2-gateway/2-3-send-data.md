@@ -6,7 +6,7 @@ weight: 3
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Verify the `gateway` is still running**: Check your **Gateway** terminal window and see of the **Gateway** collector is running.
+**Verify the `gateway` is still running**: Check your **Gateway** terminal window and make sure the **Gateway** collector is running.
 
 **Start the Agent**: In the **Agent** terminal window start the agent with the updated configuration:
 
@@ -30,7 +30,7 @@ Timestamp: 2025-01-15 15:27:51.319526 +0000 UTC
 Value: 9637.660000
 ```
 
-At this stage, the **Agent** continues to collect **CPU** metrics once per hour or upon each restart and sends them to the gateway. The OpenTelemetry Collector, running in **Gateway** mode, processes these metrics and exports them to a file named `./gateway-metrics.out`. This file stores the exported metrics as part of the pipeline service.  
+At this stage, the **Agent** continues to collect **CPU** metrics once per hour or upon each restart and sends them to the gateway. The **OpenTelemetry Collector**, running in **Gateway** mode, processes these metrics and exports them to a file named `./gateway-metrics.out`. This file stores the exported metrics as part of the pipeline service.  
 
 **Verify Data arrived at Gateway**:
 
