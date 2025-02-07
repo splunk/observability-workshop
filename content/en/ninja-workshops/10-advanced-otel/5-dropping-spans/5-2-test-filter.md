@@ -7,69 +7,22 @@ weight: 2
 To test your configuration, you'll need to generate some trace data that includes a span named `"/_healthz"`.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-Copy the following JSON and save to a file called `health.json` in the `5-dropping-spans` directory:
+
+- **Create "noisy" 'Healthz' Span**
+  1. Create a new file called `health.json` in the `5-dropping-spans` directory.
+  2. Copy and paste the following JSON into the `health.json` file.
+  3. Note the span name is set to `{"name":"healthz"}` in the json.
 
 {{% tabs %}}
-{{% tab title="Compacted JSON" %}}
+{{% tab title="health.json" %}}
 
 ```json
 {"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"frontend"}}]},"scopeSpans":[{"scope":{"name":"healthz","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5B8EFFF798038103D269B633813FC60C","spanId":"EEE19B7EC3C1B174","parentSpanId":"EEE19B7EC3C1B173","name":"/_healthz","startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","kind":2,"attributes":[]}]}]}]}
 ```
 
 {{% /tab %}}
-
-{{% tab title="Formatted JSON" %}}
-
-```json
-{
-    "resourceSpans": [
-      {
-        "resource": {
-          "attributes": [
-            {
-              "key": "service.name",
-              "value": {
-                "stringValue": "frontend"
-              }
-            }
-          ]
-        },
-        "scopeSpans": [
-          {
-            "scope": {
-              "name": "healthz",
-              "version": "1.0.0",
-              "attributes": [
-                {
-                  "key": "my.scope.attribute",
-                  "value": {
-                    "stringValue": "some scope attribute"
-                  }
-                }
-              ]
-            },
-            "spans": [
-              {
-                "traceId": "5B8EFFF798038103D269B633813FC60C",
-                "spanId": "EEE19B7EC3C1B174",
-                "parentSpanId": "EEE19B7EC3C1B173",
-                "name": "/_healthz",
-                "startTimeUnixNano": "1544712660000000000",
-                "endTimeUnixNano": "1544712661000000000",
-                "kind": 2,
-                "attributes": []
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-```
-
-{{% /tab %}}
 {{% /tabs %}}
-
+{{% tabs %}}
 {{% tab title="Updated Directory Structure" %}}
 
 ```text
@@ -79,6 +32,7 @@ WORKSHOP
 ├── 3-filelog
 ├── 4-resilience
 ├── 5-dropping-spans
+│   ├───checkpoint-dir
 │   ├── agent.yaml
 │   ├── gateway.yaml
 │   ├── health.json
@@ -87,20 +41,47 @@ WORKSHOP
 └── otelcol
 ```
 
+{{% /tabs %}}
 {{% /tab %}}
-Ensure that both the **Agent** and **Gateway** are started from the `[WORKSHOP]/5-dropping-spans` directory using their respective configuration.yaml files. Next, update and use the **cURL** command we used earlier to send the `health.json` payload.
 
-Once the `span` payload is sent, the agent will process it, which you can confirm by checking the agent’s debug output to see the span data. The **Agent** will then forward the span to the **Gateway**. However, because the **Gateway** is configured with a filter to drop spans named `"/_healthz"`, the span will be discarded and not processed further.
+- **Start the Gateway and the Agent**
+  1. Make sure you are in the `[WORKSHOP]/5-dropping-spans` folder for both the **Gateway** and **Agent** terminal windows and start the collectors.
+  2. **Send** the new `health.json` payload with the **cULR** command below. (**Windows use `curl.exe`**).
+  
+  ```sh
+  curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@health.json"
+  ```
 
-The gateway console will remain unchanged, showing no indication that the data was received or handled.
+- **Verify Agent Debug output shows the `healthz` span**
+  1. Confirm that the span `span` payload is sent, Check the agent’s debug output to see the span data like the snippet below:
 
-To confirm functionality, you can use the cURL command with the `trace.json` file again. This time, you should see both the agent and gateway process the spans successfully.
+  ```text
+  <snip>
+  Span #0
+      Trace ID       : 5b8efff798038103d269b633813fc60c
+      Parent ID      : eee19b7ec3c1b173
+      ID             : eee19b7ec3c1b174
+      Name           : /_healthz
+      Kind           : Server
+  <snip>
+  ```
+
+  The **Agent** has forward the span to the **Gateway**.
+  
+- **Check the Gateway Debug output**
+  1. The Gateway should **NOT** show any span data received.  
+  This is because the **Gateway** is configured with a filter to drop spans named `"/_healthz"`, so the span will be discarded/dropped and not processed further.
+  2. Confirm normal span are processed by using the cURL command with the `trace.json` file again.  
+  This time, you should see both the agent and gateway process the spans successfully.
 {{% /notice %}}
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 
-When using the `Filter` processor make sure you understand the look of your incoming data and test the configuration thoroughly. In general, use as specific a configuration as possible to lower the risk of the wrong data being dropped.
+When using the `Filter` processor make sure you understand the look of your incoming data and test the configuration thoroughly. In general, use **as specific a configuration as possible** to lower the risk of the wrong data being dropped.
 {{% /notice %}}
+
+---
+The following excises can be done in your own time after the workshop.
 
 ### (Optional) Modify the Filter Condition
 
