@@ -8,10 +8,11 @@ To test your configuration, you'll need to generate some trace data that include
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Create "noisy" 'Healthz' Span**
-  1. Create a new file called `health.json` in the `5-dropping-spans` directory.
-  2. Copy and paste the following JSON into the `health.json` file.
-  3. Note the span name is set to `{"name":"healthz"}` in the json.
+**Create "noisy" 'healthz' span**:
+
+1. Create a new file called `health.json` in the `5-dropping-spans` directory.
+2. Copy and paste the following JSON into the `health.json` file.
+3. Note the span name is set to `{"name":"healthz"}` in the json.
 
 {{% tabs %}}
 {{% tab title="health.json" %}}
@@ -44,35 +45,34 @@ WORKSHOP
 {{% /tabs %}}
 {{% /tab %}}
 
-- **Start the Gateway and the Agent**
-  1. Make sure you are in the `[WORKSHOP]/5-dropping-spans` folder for both the **Gateway** and **Agent** terminal windows and start the collectors.
-  2. **Send** the new `health.json` payload with the **cULR** command below. (**Windows use `curl.exe`**).
+**Start the Gateway and the Agent**:
+
+1. Make sure you are in the `[WORKSHOP]/5-dropping-spans` folder for both the **Gateway** and **Agent** terminal windows and start the collectors.
+2. **Send** the new `health.json` payload with the **cULR** command below. (**Windows use `curl.exe`**).
   
-  ```sh
-  curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@health.json"
-  ```
+```sh
+curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@health.json"
+```
 
-- **Verify Agent Debug output shows the `healthz` span**
-  1. Confirm that the span `span` payload is sent, Check the agent’s debug output to see the span data like the snippet below:
+**Verify Agent Debug output shows the `healthz` span**: Confirm that the span `span` payload is sent, Check the agent’s debug output to see the span data like the snippet below:
 
-  ```text
-  <snip>
-  Span #0
-      Trace ID       : 5b8efff798038103d269b633813fc60c
-      Parent ID      : eee19b7ec3c1b173
-      ID             : eee19b7ec3c1b174
-      Name           : /_healthz
-      Kind           : Server
-  <snip>
-  ```
+```text
+<snip>
+Span #0
+    Trace ID       : 5b8efff798038103d269b633813fc60c
+    Parent ID      : eee19b7ec3c1b173
+    ID             : eee19b7ec3c1b174
+    Name           : /_healthz
+    Kind           : Server
+<snip>
+```
 
-  The **Agent** has forward the span to the **Gateway**.
+The **Agent** has forward the span to the **Gateway**.
   
-- **Check the Gateway Debug output**
-  1. The Gateway should **NOT** show any span data received.  
-  This is because the **Gateway** is configured with a filter to drop spans named `"/_healthz"`, so the span will be discarded/dropped and not processed further.
-  2. Confirm normal span are processed by using the cURL command with the `trace.json` file again.  
-  This time, you should see both the agent and gateway process the spans successfully.
+**Check the Gateway Debug output**:
+
+1. The Gateway should **NOT** show any span data received. This is because the **Gateway** is configured with a filter to drop spans named `"/_healthz"`, so the span will be discarded/dropped and not processed further.
+2. Confirm normal span are processed by using the cURL command with the `trace.json` file again. This time, you should see both the agent and gateway process the spans successfully.
 {{% /notice %}}
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
@@ -83,7 +83,7 @@ When using the `Filter` processor make sure you understand the look of your inco
 ---
 The following excises can be done in your own time after the workshop.
 
-### (Optional) Modify the Filter Condition
+**(Optional) Modify the Filter Condition**:
 
 If you’d like, you can customize the filter condition to drop spans based on different criteria. This step is optional and can be explored later. For example, you might configure the filter to drop spans that include a specific tag or attribute.
 
@@ -99,7 +99,7 @@ filter:
 
 This filter would drop spans where the `service.name` attribute is set to `frontend`.
 
-### (Optional) Filter Multiple Spans
+**(Optional) Filter Multiple Spans**:
 
 You can filter out multiple span names by extending the span list:
 

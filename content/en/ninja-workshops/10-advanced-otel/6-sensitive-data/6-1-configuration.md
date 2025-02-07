@@ -25,48 +25,48 @@ Attributes:
 
 Switch to your **Agent** terminal window. Navigate to the `[WORKSHOP]/6-sensitive-data` directory and open the `agent.yaml` file in your editor.
 
-* **Add an `attributes` Processor**: This processor allows you to update, delete, or hash specific attributes (tags) within spans. We'll update `user.phone_number`, hash `user.email`, and remove `user.account_password`:
+**Add an `attributes` Processor**: This processor allows you to update, delete, or hash specific attributes (tags) within spans. We'll update `user.phone_number`, hash `user.email`, and remove `user.account_password`:
 
-  ```yaml
-  attributes/update:               # Processor Type/Name
-    actions:                       # List of actions
-      - key: user.phone_number     # Target key
-        action: update             # Replace value with:
-        value: "UNKNOWN NUMBER"
-      - key: user.email            # Hash the email value
-        action: hash               
-      - key: user.account_password # Remove the password
-        action: delete             
-  ```
+```yaml
+attributes/update:               # Processor Type/Name
+  actions:                       # List of actions
+    - key: user.phone_number     # Target key
+      action: update             # Replace value with:
+      value: "UNKNOWN NUMBER"
+    - key: user.email            # Hash the email value
+      action: hash               
+    - key: user.account_password # Remove the password
+      action: delete             
+```
 
-* **Add a `redaction` Processor**: This processor will detect and redact sensitive values based on predefined patterns. We'll block credit card numbers using regular expressions.
+**Add a `redaction` Processor**: This processor will detect and redact sensitive values based on predefined patterns. We'll block credit card numbers using regular expressions.
 
-  ```yaml
-  redaction/redact:               # Processor Type/Name
-    allow_all_keys: true          # If false, only allowed keys will be retained
-    blocked_values:               # List of regex patterns to hash
-      - '\b4[0-9]{3}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}\b'  # Visa card
-      - '\b5[1-5][0-9]{2}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}\b'  # MasterCard
-    summary: debug  # Show debug details about redaction
-  ```
+```yaml
+redaction/redact:               # Processor Type/Name
+  allow_all_keys: true          # If false, only allowed keys will be retained
+  blocked_values:               # List of regex patterns to hash
+    - '\b4[0-9]{3}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}\b'  # Visa card
+    - '\b5[1-5][0-9]{2}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}\b'  # MasterCard
+  summary: debug  # Show debug details about redaction
+```
 
-* **Update the `traces` Pipeline**: Integrate both processors into the `traces` pipeline to ensure the redactions and modifications take effect:
+**Update the `traces` Pipeline**: Integrate both processors into the `traces` pipeline to ensure the redactions and modifications take effect:
 
-  ```yaml
-  traces:
-    receivers:              # Data input sources
-      - otlp
-    processors:             # Processing steps in the pipeline
-      - memory_limiter      # Manage memory usage
-      - attributes/update   # Update, hash, and remove attributes
-      - redaction/redact    # Redact sensitive fields using regex
-      - resourcedetection   # Add system attributes
-      - resource/add_mode   # Add metadata about collector mode
-      - batch
-    exporters:              # Output destinations
-      - debug
-      - otlphttp
-  ```
+```yaml
+traces:
+  receivers:              # Data input sources
+    - otlp
+  processors:             # Processing steps in the pipeline
+    - memory_limiter      # Manage memory usage
+    - attributes/update   # Update, hash, and remove attributes
+    - redaction/redact    # Redact sensitive fields using regex
+    - resourcedetection   # Add system attributes
+    - resource/add_mode   # Add metadata about collector mode
+    - batch
+  exporters:              # Output destinations
+    - debug
+    - otlphttp
+```
 
 {{% /notice %}}
 

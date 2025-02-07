@@ -30,10 +30,17 @@ Delete the `*.out` files and clear the screen. Restart your **Gateway** terminal
 In this exercise, we will **redact** the `user.visa` & `user.mastercard` **values** in the span data before it is exported by the **Agent**.
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Enable the `redaction/redact` processor** in the `traces` pipeline by removing the `#` in front of it and then restart the **Agent**.
-- **Start the **Agent** Collector** from the `[WORKSHOP]/6-sensitive-data` directory in the **Agent** terminal window.
-- **Send a span containing `Sensitive data`** by running the **cURL** command to send `trace.json`.
-- **Check the debug output** of both the **Agent** and **Gateway** to confirm the values for `user.visa` & `user.mastercard` have been updated. Notice `user.amex` attribute value was NOT redacted because a matching regex pattern was not added to `blocked_values`
+**Enable the `redaction/redact` processor**: In the **Agent** terminal window edit `agent.yaml` and remove the `#` we inserted in the previous exercise.
+
+**Start the Agent**: In the **Agent** terminal window run:
+
+```sh
+../otelcol --config=agent.yaml
+```
+
+**Send a span**: Run the `curl` command and in the **Test** terminal window to send `trace.json`.
+
+**Check the debug output**: For both the **Agent** and **Gateway** confirm the values for `user.visa` & `user.mastercard` have been updated. Notice `user.amex` attribute value was NOT redacted because a matching regex pattern was not added to `blocked_values`
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
@@ -69,7 +76,7 @@ In this exercise, we will **redact** the `user.visa` & `user.mastercard` **value
 By including `summary:debug` in the redaction processor, the debug output will include summary information about which matching keys values were redacted, along with the count of values that were masked.
 {{% /notice %}}
 
-- **Check** the new `gateway-traces.out` file to verify confirm that `user.visa` & `user.mastercard` have been updated.
+**Check file output**: In the newly created `gateway-traces.out` file to verify confirm that `user.visa` & `user.mastercard` have been updated.
 
 {{% tabs %}}
 {{% tab title="New File Output" %}}
@@ -170,7 +177,7 @@ By including `summary:debug` in the redaction processor, the debug output will i
 
 {{% /notice %}}
 
-### (Optional) Redact Amex CC number
+**(Optional) Redact Amex CC number**:
 
 Add the Amex card regex to `blocked_values` and restart **Agent** collector.
 

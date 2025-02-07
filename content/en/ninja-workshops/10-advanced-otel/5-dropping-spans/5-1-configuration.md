@@ -8,32 +8,32 @@ weight: 1
 
 Switch to your **Gateway** terminal window. Navigate to the `[WORKSHOP]/5-dropping-spans` directory and open the `gateway.yaml` and add the following configuration to the `processors` section:
 
-- **Add a `filter` processor**: Configure the OpenTelemetry Collector to drop spans with the name `"/_healthz"`:
+**Add a `filter` processor**: Configure the OpenTelemetry Collector to drop spans with the name `"/_healthz"`:
 
-  ```yaml
-    
-    filter/health:                  # Defines a filter processor
-      error_mode: ignore            # Ignore errors
-      traces:                       # Filtering rules for traces
-        span:                       # Exclude spans named "/_healthz"  
-          - 'name == "/_healthz"'
-  ```
+```yaml
+  
+  filter/health:                  # Defines a filter processor
+    error_mode: ignore            # Ignore errors
+    traces:                       # Filtering rules for traces
+      span:                       # Exclude spans named "/_healthz"  
+        - 'name == "/_healthz"'
+```
 
-- **Add the `filter` processor**: Make sure you add the filter to the `traces` pipeline. Filtering should be applied as early as possible, ideally *right after the* memory_limiter and *before* the batch processor.
+**Add the `filter` processor**: Make sure you add the filter to the `traces` pipeline. Filtering should be applied as early as possible, ideally *right after the* memory_limiter and *before* the batch processor:
 
-  ```yaml
-      traces:
-        receivers:                
-          - otlp                    # OTLP Receiver
-        processors:                
-          - memory_limiter          # Manage memory usage
-          - resource/add_mode       # Add metadata about collector mode
-          - filter/health           # Filter Processor. Filter's out Data based on rules
-          - batch                   # Groups Data before send
-        exporters:               
-          - debug                   # Debug Exporter
-          - file/traces             # File Exporter for Trace
-  ```
+```yaml
+    traces:
+      receivers:                
+        - otlp                    # OTLP Receiver
+      processors:                
+        - memory_limiter          # Manage memory usage
+        - resource/add_mode       # Add metadata about collector mode
+        - filter/health           # Filter Processor. Filter's out Data based on rules
+        - batch                   # Groups Data before send
+      exporters:               
+        - debug                   # Debug Exporter
+        - file/traces             # File Exporter for Trace
+```
 
 {{% /notice %}}
 

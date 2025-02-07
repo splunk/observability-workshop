@@ -4,18 +4,34 @@ linkTitle: 6.2 Test Attribute Processor
 weight: 2
 ---
 
-### Test the Attribute Processor tag updates
-
-Start your gateway agent from the `[WORKSHOP]/6-sensitive-data` directory in the **Gateway** terminal window, and wait until it is ready to receive data.
-
-In this exercise, we will **delete** the `user.account_password`, **update** the `user.phone_number` **attribute** & **hash** the `user.email` in the span data before it is exported by the **Agent**.
+In this exercise, we will **delete** the `user.account_password`, **update** the `user.phone_number` **attribute** and **hash** the `user.email` in the span data before it is exported by the **Agent**.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Disable the `redaction/redact` processor** in the `traces` pipeline by adding the comment character `#` in front of it and save the `agent.yaml`.
-- **Start the **Agent** Collector** from the `[WORKSHOP]/6-sensitive-data` directory in the **Agent** terminal window.
-- **Send a span containing `Sensitive data`** by running the **cURL** command from the `[WORKSHOP]/6-sensitive-data` directory in the **Test** terminal window to send `trace.json`.
-- **Check the debug output** of both the **Agent** and **Gateway** to confirm that `user.account_password` has been removed, and both `user.phone_number` & `user.email` have been updated.
+**Start the Gateway**: In the **Gateway** terminal change into the `6-sensitive-data` directory:
+
+```sh
+../otelcol --config=gateway.yaml
+```
+
+**Update `agent.yaml`**:
+
+1. In the **Agent** terminal change into the `6-sensitive-data` directory and edit the `agent.yaml`.
+2. Disable the `redaction/redact` processor in the `traces` pipeline by adding the comment character `#` in front.
+
+**Start the Agent**: Remaining in the **Agent** terminal window:
+
+```sh
+../otel --config=agent.yaml
+```
+
+**Send a span**:
+
+1. In the **Test** terminal window change into the `6-sensitive-data` directory.
+2. Send the span containing **sensitive data** by running the `curl` command to send `trace.json`.
+
+**Check the debug output**: For both the **Agent** and **Gateway** debug output, confirm that `user.account_password` has been removed, and both `user.phone_number` & `user.email` have been updated.
+
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
 
@@ -44,7 +60,7 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
 {{% /tab %}}
 {{% /tabs %}}
 
-- **Check** the new `gateway-traces.out` file to confirm that `user.account_password` has been removed, and `user.phone_number` & `user.email` have been updated.
+**Check file output**: In the new `gateway-traces.out` file confirm that `user.account_password` has been removed, and `user.phone_number` & `user.email` have been updated:
 
 {{% tabs %}}
 {{% tab title="New File Output" %}}
