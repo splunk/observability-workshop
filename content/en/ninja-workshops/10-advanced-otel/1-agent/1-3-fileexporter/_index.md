@@ -24,7 +24,7 @@ Find your **Agent** terminal window, and stop the running collector by pressing 
 
   ```yaml
     file:                           # Exporter Type
-      path: "./agent.out"           # Path where data will be saved in OTLP json format
+      path: "./agent.out"           # Save path (OTLP JSON)
       append: false                 # Overwrite the file each time
   ```
 
