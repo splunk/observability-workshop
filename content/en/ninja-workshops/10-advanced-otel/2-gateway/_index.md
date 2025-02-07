@@ -4,11 +4,11 @@ linkTitle: 2. Gateway Setup
 time: 10 minutes
 weight: 2
 ---
-
+{{% notice title="Exercise" style="green" icon="running" %}}
 In the `[WORKSHOP]` directory, create a new subdirectory named `2-gateway` and navigate into it. Then, copy the latest versions of `agent.yaml` and `trace.json` from the `1-agent` directory into `2-gateway`.  
 
 Next, create a file called `gateway.yaml` and add the following initial configuration.
-
+{{% tabs %}}
 {{% tab title="gateway.yaml" %}}
 
 ```yaml
@@ -73,6 +73,9 @@ service:                          # Services configured for this Collector
 ```
 
 {{% /tab %}}
+{{% /tabs %}}
+
+{{% /notice %}}
 
 {{% tab title="Updated Directory Structure" %}}
 
