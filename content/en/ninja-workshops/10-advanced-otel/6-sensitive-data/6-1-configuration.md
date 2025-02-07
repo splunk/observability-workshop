@@ -56,17 +56,17 @@ We'll **update** the `user.phone_number`, **hash** the `user.email`, and **delet
 ```yaml
     traces:
       receivers:
-        - otlp                      # OTLP Receiver
+      - otlp                      # OTLP Receiver
       processors:
-        - memory_limiter            # Manage memory usage
-        - attributes/update         # Update, hash, and remove attributes
-        #- redaction/redact          # Redact sensitive fields using regex
-        - resourcedetection         # Add system attributes
-        - resource/add_mode         # Add metadata about collector mode
-        - batch                     # Batch Processor, groups data before send
+      - memory_limiter            # Manage memory usage
+      - attributes/update         # Update, hash, and remove attributes
+      #- redaction/redact          # Redact sensitive fields using regex
+      - resourcedetection         # Add system attributes
+      - resource/add_mode         # Add metadata about collector mode
+      - batch                     # Batch Processor, groups data before send
       exporters:
-        - debug                     # Debug Exporter
-        - otlphttp                  # OTLP/HTTP EXporter used by Splunk O11Y 
+      - debug                     # Debug Exporter
+      - otlphttp                  # OTLP/HTTP EXporter used by Splunk O11Y 
 ```
 
 {{% /notice %}}
