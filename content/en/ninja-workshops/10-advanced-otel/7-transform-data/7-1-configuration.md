@@ -6,7 +6,9 @@ weight: 1
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Configure the `transform/logs` processor**: In the `agent.yaml` apply the processor to `log_statements` in the `resource` context and retain only relevant resource attributes (`com.splunk.sourcetype`, `host.name`, `otelcol.service.mode`):
+**Configure the `transform` processor** and name it `/logs`.  
+By using the `-context: resource` key we are targeting the **resourceLog** attributes of logs.  
+This configuration ensures that only the relevant resource attributes (`com.splunk.sourcetype`, `host.name`, `otelcol.service.mode`) are retained, improving log efficiency and reducing unnecessary metadata.
 
 ```yaml
   transform/logs:                     # Processor Type/Name
@@ -16,9 +18,9 @@ weight: 1
           - keep_keys(attributes, ["com.splunk.sourcetype", "host.name", "otelcol.service.mode"])
 ```
 
-This configuration ensures that only the specified attributes are retained, improving log efficiency and reducing unnecessary metadata.
-
-**Adding a Context Block for Log Severity Mapping**: To properly set the `severity_text` and `severity_number` fields of a log record, add another log `context` block within `log_statements`. This configuration extracts the `level` value from the log body, maps it to `severity_text`, and assigns the appropriate `severity_number`:
+**Adding a Context Block for Log Severity Mapping**:  
+To properly set the `severity_text` and `severity_number` fields of a log record, we add another log `context` block within `log_statements`.  
+This configuration extracts the `level` value from the log body, maps it to `severity_text`, and assigns the appropriate `severity_number`:
 
 ```yaml
       - context: log                  # Log Context
@@ -52,16 +54,16 @@ This method of mapping all JSON fields to top-level attributes should only be us
 **Update the `logs` pipeline**: Add the `transform/logs:` processor into the `logs:` pipeline:
 
 ```yaml
-    logs:                  # Logs Pipeline
-      receivers:           # Array of receivers in this pipeline
-      - filelog/quotes
-      - otlp
-      processors:          # Array of Processors in this pipeline
-      - memory_limiter     # You also could use [memory_limiter]
-      - resourcedetection
-      - resource/add_mode
-      - transform/logs
-      - batch
+    logs:
+      receivers:
+      - otlp                     # OTLP Receiver
+      - filelog/quotes           # Filelog Receiver reading quotes.log
+      processors:
+      - memory_limiter           # Memory Limiter Processor
+      - resourcedetection        # Adds system attributes to the data
+      - resource/add_mode        # Adds collector mode metadata
+      - transform/logs           # Transform Processor used to update log lines
+      - batch                    # Batch Processor, groups data before send   
 ```
 
 {{% /notice %}}
@@ -92,8 +94,8 @@ graph LR
       PRO2 --> PRO3
       PRO3 --> PRO4
       PRO4 --> PRO5
-      PRO5 --> EXP1
       PRO5 --> EXP2
+      PRO5 --> EXP1
       end
     end
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
