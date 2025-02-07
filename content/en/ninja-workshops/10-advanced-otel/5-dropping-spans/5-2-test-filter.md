@@ -88,7 +88,7 @@ The **Agent** has forward the span to the **Gateway**.
 
 When using the `Filter` processor make sure you understand the look of your incoming data and test the configuration thoroughly. In general, use **as specific a configuration as possible** to lower the risk of the wrong data being dropped.
 {{% /notice %}}
-
+<!--
 ---
 The following excises can be done in your own time after the workshop.
 
@@ -122,7 +122,7 @@ filter:
 ```
 
 This will drop spans with the names `"/_healthz"` and `"/internal/metrics"`.
-
+-->
 You can further extend this configuration to filter out spans based on different attributes, tags, or other criteria, making the OpenTelemetry Collector more customizable and efficient for your observability needs.
 
 Stop the **Agent** and **Gateway** using `Ctrl-C`.
