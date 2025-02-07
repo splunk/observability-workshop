@@ -28,6 +28,7 @@ WORKSHOP
 ├── 3-filelog
 ├── 4-resilience
 ├── 5-dropping-spans
+│   └───checkpoint-dir
 │   ├── agent.yaml
 │   ├── gateway.yaml
 │   ├── log-gen.sh (or .ps1)
