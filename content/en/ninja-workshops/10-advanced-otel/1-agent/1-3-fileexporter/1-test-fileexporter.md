@@ -6,29 +6,32 @@ weight: 1
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Restart your agent**
-  1. Find your **Agent** terminal window, and (re)start the agent, this time with your new config to test it.
+**Restart your agent**
 
-    ```bash
-    ../otelcol --config=agent.yaml
-    ```
+Find your **Agent** terminal window, and (re)start the agent, this time with your new config to test it:
 
-  Again, if you have done everything correctly, the last line of the output should be:
+```bash
+../otelcol --config=agent.yaml
+```
 
-  ```text
-  2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
-  ```
+Again, if you have done everything correctly, the last line of the output should be:
 
-- **Send a Trace**:
-  1. From the **Test** terminal window send another span.
-  2. Verify you get the same output on the console as we saw previously:
+```text
+2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
+```
 
-  ```ps1
-  curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
-  ```
+**Send a Trace**:
 
-- **Verify that the `agent.out` file is written**:
-  1. Check that a file named `agent.out` is written in the current directory.
+1. From the **Test** terminal window send another span.
+2. Verify you get the same output on the console as we saw previously:
+
+```sh
+curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
+```
+
+**Verify that the `agent.out` file is written**:
+
+Check that a file named `agent.out` is written in the current directory.
 
 {{% tabs %}}
 {{% tab title="Updated Directory Structure" %}}
@@ -49,10 +52,11 @@ weight: 1
 On **Windows**, an open file may appear empty or cause issues when attempting to read it. To prevent this, make sure to stop the **Agent** or the **Gateway** before inspecting the file, as instructed.
 {{% /notice %}}
 
-- **Verify the span format**:
-  1. Check the Format that The File Exporter has used to write the span to the `agent.out`.
-  2. It should be a single line in OTLP/JSON format.
-  3. Since no modifications have been made to the pipeline yet, this file should be identical to `trace.json`.
+**Verify the span format**:
+
+1. Check the Format that The File Exporter has used to write the span to the `agent.out`.
+2. It should be a single line in OTLP/JSON format.
+3. Since no modifications have been made to the pipeline yet, this file should be identical to `trace.json`.
 
 {{% tabs %}}
 {{% tab title="cat ./agent.out" %}}

@@ -8,37 +8,39 @@ Once you've updated the configuration, you’re ready to proceed to running the 
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Find your Agent Terminal window**:
+**Find your Agent terminal window**:
 
-    1. Change into the `[WORKSHOP]/1-agent` folder
-    2. Run the following command:
+1. Change into the `[WORKSHOP]/1-agent` folder
+2. Run the following command:
 
-        ```sh
-        ../otelcol --config=agent.yaml
-        ```
+```sh
+../otelcol --config=agent.yaml
+```
 
-    In this workshop, we use **macOS/Linux** commands by default. If you’re using Windows, adjust the commands as needed.
+In this workshop, we use **macOS/Linux** commands by default. If you’re using Windows, adjust the commands as needed i.e. use `./otelcol.exe`.
 
->> [!note]
->> On Windows, a dialog box may appear asking if you want to grant public and private network access to `otelcol.exe`. Click **"Allow"** to proceed.
+{{% /notice %}}
 
-- **Verify Debug output**:
+> [!note]
+> On Windows, a dialog box may appear asking if you want to grant public and private network access to `otelcol.exe`. Click **"Allow"** to proceed.
 
-    1. If everything is set up correctly, the first and last lines of the output should display:
+{{% notice title="Exercise" style="green" icon="running" %}}
 
-        ```text
-        2025/01/13T12:43:51 settings.go:478: Set config to [agent.yaml]
-        <snip to the end>
-        2025-01-13T12:43:51.747+0100 info service@v0.117.0/service.go:261 Everything is ready. Begin running and processing data.
-        ```
+**Verify debug output**: If everything is set up correctly, the first and last lines of the output should display:
 
-- **Create a test span file**:
-  Instead of instrumenting an application, we will simulate sending trace data to the OpenTelemetry Collector using `cURL`. The trace data, formatted in JSON, represents what an instrumentation library would typically generate and send.
+```text
+2025/01/13T12:43:51 settings.go:478: Set config to [agent.yaml]
+<snip to the end>
+2025-01-13T12:43:51.747+0100 info service@v0.117.0/service.go:261 Everything is ready. Begin running and processing data.
+```
 
-    1. Find your **Tests** Terminal window and change into the `[WORKSHOP]/1-agent` directory.
-    2. Copy and paste the following **span** data into a new file named `trace.json`:
+**Create a test span file**:
+Instead of instrumenting an application, we will simulate sending trace data to the OpenTelemetry Collector using `cURL`. The trace data, formatted in JSON, represents what an instrumentation library would typically generate and send.
 
-    This file will allow us to test how the OpenTelemetry Collector processes and send **spans** that are part of a trace, without requiring actual application instrumentation.
+1. Find your **Tests** Terminal window and change into the `[WORKSHOP]/1-agent` directory.
+2. Copy and paste the following **span** data into a new file named `trace.json`:
+
+This file will allow us to test how the OpenTelemetry Collector processes and send **spans** that are part of a trace, without requiring actual application instrumentation.
 
 {{% tabs %}}
 {{% tab title="trace.json" %}}
@@ -64,9 +66,7 @@ Once you've updated the configuration, you’re ready to proceed to running the 
 {{% /tab %}}
 {{% /tabs %}}
 
-- **Send a test span**:
-
-    1. Run the following command to send a **span** to the agent:
+**Send a test span**: Run the following command to send a **span** to the agent:
 
 {{% tabs %}}
 {{% tab title="cURL Command" %}}
@@ -90,8 +90,10 @@ Content-Length: 21
 {{% /tab %}}
 {{% /tabs %}}
 
-- `HTTP/1.1 200 OK`: Confirms the request was processed successfully.
-- `{"partialSuccess":{}}`: Indicates 100% success, as the field is empty. In case of a partial failure, this field will include details about any failed parts.
+{{% notice info %}}
+1. `HTTP/1.1 200 OK`: Confirms the request was processed successfully.
+2. `{"partialSuccess":{}}`: Indicates 100% success, as the field is empty. In case of a partial failure, this field will include details about any failed parts.
+{{% /notice %}}
 {{% /notice %}}
 
 {{% notice note %}}
@@ -102,15 +104,16 @@ To resolve this, use `curl.exe` instead of just `curl`.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Verify Debug Output**:  
-    1. Find the **Agent** terminal window and check the collector's debug output. You should see the Debug entries related to the span you just sent.  
-    2. We are showing the first and last lines of the debug log for that span. To get the full context, Use the **Complete Debug Output** Button to review.
+**Verify Debug Output**:
 
-        ```text
-        2025-02-03T12:46:25.675+0100    info ResourceSpans #0
-        <snip>
-                {"kind": "exporter", "data_type": "traces", "name": "debug"}
-        ```
+1. Find the **Agent** terminal window and check the collector's debug output. You should see the Debug entries related to the span you just sent.  
+2. We are showing the first and last lines of the debug log for that span. To get the full context, Use the **Complete Debug Output** Button to review.
+
+```text
+2025-02-03T12:46:25.675+0100    info ResourceSpans #0
+<snip>
+        {"kind": "exporter", "data_type": "traces", "name": "debug"}
+```
 
 {{% expand title="{{% badge style=primary icon=scroll %}}Complete Debug Output{{% /badge %}}" %}}
 
