@@ -6,9 +6,7 @@ weight: 1
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Restart your agent**
-
-Find your **Agent** terminal window, and (re)start the agent, this time with your new config to test it:
+**Restart your agent**: Find your **Agent** terminal window, and (re)start the agent, this time with your new config to test it:
 
 ```bash
 ../otelcol --config=agent.yaml
@@ -29,9 +27,7 @@ Again, if you have done everything correctly, the last line of the output should
 curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
 ```
 
-**Verify that the `agent.out` file is written**:
-
-Check that a file named `agent.out` is written in the current directory.
+**Verify that the `agent.out` file is written**: Check that a file named `agent.out` is written in the current directory.
 
 {{% tabs %}}
 {{% tab title="Updated Directory Structure" %}}

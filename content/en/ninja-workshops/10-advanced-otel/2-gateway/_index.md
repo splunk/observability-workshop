@@ -104,29 +104,30 @@ service:                          # Services configured for this Collector
 
 In this section, we will extend the `gateway.yaml` configuration you just created to separate metric, traces & logs into different files.
 
-- **Create a `file` exporter and name it `traces`**: Separate exporters need to be configured for traces, metrics, and logs. Below is the YAML configuration for traces:
+**Create a `file` exporter and name it `traces`**: Separate exporters need to be configured for traces, metrics, and logs. Below is the YAML configuration for traces:
 
-  ```yaml
-    file/traces:                    # Exporter Type/Name
-      path: "./gateway-traces.out"  # Path where data will be saved in OTLP json format
-      append: false                 # Overwrite the file each time
-  ```
+```yaml
+  file/traces:                    # Exporter Type/Name
+    path: "./gateway-traces.out"  # Path where data will be saved in OTLP json format
+    append: false                 # Overwrite the file each time
+```
 
-- **Create additional exporters for `metrics` and `logs`**: Follow the example above, and set appropriate exporter names. Update the file paths to `./gateway-metrics.out` for `metrics` and `./gateway-logs.out` for `logs`.
-- **Add exporters to each pipeline**: Ensure that each pipeline includes its corresponding `file` exporter, placing it after the `debug` exporter.
+**Create additional exporters for `metrics` and `logs`**: Follow the example above, and set appropriate exporter names. Update the file paths to `./gateway-metrics.out` for `metrics` and `./gateway-logs.out` for `logs`.
 
-  ```yaml
-      logs:
-        receivers:
-        - otlp                      # OTLP Receiver
-        processors:
-        - memory_limiter            # Memory Limiter processor
-        - resource/add_mode         # Adds collector mode metadata
-        - batch                     # Groups Data before send
-        exporters:
-        - debug                     # Debug Exporter
-        - file/logs                 # File Exporter for logs
-  ```
+**Add exporters to each pipeline**: Ensure that each pipeline includes its corresponding `file` exporter, placing it after the `debug` exporter.
+
+```yaml
+    logs:
+      receivers:
+      - otlp                      # OTLP Receiver
+      processors:
+      - memory_limiter            # Memory Limiter processor
+      - resource/add_mode         # Adds collector mode metadata
+      - batch                     # Groups Data before send
+      exporters:
+      - debug                     # Debug Exporter
+      - file/logs                 # File Exporter for logs
+```
 
 {{% /notice %}}
 
