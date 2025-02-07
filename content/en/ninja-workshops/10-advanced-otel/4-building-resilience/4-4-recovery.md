@@ -8,7 +8,13 @@ In this exercise, we’ll test how the **OpenTelemetry Collector** recovers from
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Start the Gateway**: In the Gateway terminal window run:
+- **Restart the Gateway**: In the **Gateway** terminal window run:
+
+  ```sh
+  ../otelbin --config=gateway.yaml
+  ```
+
+- **Restart the Agent**: In the **Agent** terminal window run:
 
   ```sh
   ../otelbin --config=gateway.yaml

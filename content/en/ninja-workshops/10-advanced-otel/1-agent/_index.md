@@ -52,7 +52,8 @@ processors:                       # Array of Processors
 ### Activation Section  ###         configurations will be used
 ###########################         by this OpenTelemetry Collector
 service:                          # Services configured for this Collector
-  extensions: [health_check]      # Enabled extensions for this collector
+  extensions:                     # Enabled extensions
+  - health_check
   pipelines:                      # Array of configured pipelines
     traces:
       receivers:
