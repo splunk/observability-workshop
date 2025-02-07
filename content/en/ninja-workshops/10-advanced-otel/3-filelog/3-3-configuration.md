@@ -30,6 +30,7 @@ Move to the **Agent** terminal window and change into the `[WORKSHOP]/3-filelog`
       - memory_limiter            # Memory Limiter Processor
       - resourcedetection         # Adds system attributes to the data
       - resource/add_mode         # Adds collector mode metadata
+      - batch                     # Batch Processor, groups data before send
       exporters:
       - debug                     # Debug Exporter
       - otlphttp                  # OTLP/HTTP EXporter
