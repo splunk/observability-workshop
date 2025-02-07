@@ -22,6 +22,7 @@ For logs, there are plans to implement a more enterprise-ready solution in one o
 - Inside the `[WORKSHOP]` directory, create a new subdirectory named `4-resilience`.
 - Next, copy all contents from the `3-filelog` directory into `4-resilience`.
 - After copying, remove any `*.out` and `*.log` files.
+- Change **all** terminal windows to the `[WORKSHOP]/4-reslilience` directory.
 
 Your updated directory structure will now look like this:
 
