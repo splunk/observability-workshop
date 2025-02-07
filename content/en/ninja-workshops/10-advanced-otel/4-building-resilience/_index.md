@@ -26,10 +26,7 @@ For logs, there are plans to implement a more enterprise-ready solution in one o
 
 Your updated directory structure will now look like this:
 
-{{% tabs %}}
-{{% tab title="Updated Directory Structure" %}}
-
-```text
+```text { title="Updated Directory Structure" }
 WORKSHOP
 ├── 1-agent
 ├── 2-gateway
@@ -41,8 +38,5 @@ WORKSHOP
 │   └── trace.json
 └── otelcol
 ```
-
-{{% /tab %}}
-{{% /tabs %}}
 
 {{% /notice %}}

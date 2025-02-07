@@ -18,10 +18,7 @@ For example, you might want to send *production* data to one exporter while dire
 
 Your updated directory structure will now look like this:
 
-{{% tabs %}}
-{{% tab title="Updated Directory Structure" %}}
-
-```text
+```text { title="Updated Directory Structure" }
 WORKSHOP
 ├── 1-agent
 ├── 2-gateway
@@ -40,8 +37,6 @@ WORKSHOP
 └── otelcol
 ```
 
-{{% /tab %}}
-{{% /tabs %}}
 {{% /notice %}}
 
 Next, we will configure the routing connector and the respective pipelines.

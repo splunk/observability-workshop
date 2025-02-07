@@ -39,10 +39,7 @@ Resource attributes:
 
 **Verify `agent.out`**: Validate the `agent.out` file contains the updated data:
 
-{{% tabs %}}
-{{% tab title="Updated Directory Structure" %}}
-
-```text
+```text { title="Updated Directory Structure" }
   [WORKSHOP]
   ├── 1-agent         # Module directory
   │   └── agent.out   # OTLP/Json output created by the File Exporter
@@ -50,9 +47,6 @@ Resource attributes:
   │   └── trace.json  # Sample trace data
   └── otelcol         # OpenTelemetry Collector binary
 ```
-
-{{% /tab %}}
-{{% /tabs %}}
 
 **Verify that metadata is added to spans in the new `agent.out` file**:
 

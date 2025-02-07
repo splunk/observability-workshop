@@ -18,10 +18,7 @@ Specifically, we will drop traces based on the span name, which is commonly used
 
 Your updated directory structure will now look like this:
 
-{{% tabs %}}
-{{% tab title="Updated Directory Structure" %}}
-
-```text
+```text { title="Updated Directory Structure" }
 WORKSHOP
 ├── 1-agent
 ├── 2-gateway
@@ -36,8 +33,6 @@ WORKSHOP
 └── otelcol
 ```
 
-{{% /tab %}}
-{{% /tabs %}}
 {{% /notice %}}
 
 Next, we will configure the **filter processor** and the respective pipelines.

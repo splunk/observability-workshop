@@ -8,11 +8,11 @@ weight: 2
 
 Start the appropriate script for your system. The script will begin writing lines to a file named `quotes.log`:
 
-```sh
+```sh { title="Log Generator" }
 ./log-gen.sh
 ```
 
-```text
+```text { title="Log Generator Output" }
 Writing logs to quotes.log. Press Ctrl+C to stop.
 ```
 

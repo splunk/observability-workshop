@@ -21,10 +21,7 @@ We'll walk through configuring key processors in the OpenTelemetry Collector, in
 
 Your updated directory structure will now look like this:
 
-{{% tabs %}}
-{{% tab title="Updated Directory Structure" %}}
-
-```text
+```text { title="Updated Directory Structure" }
 WORKSHOP
 ├── 1-agent
 ├── 2-gateway
@@ -41,6 +38,4 @@ WORKSHOP
 └── otelcol
 ```
 
-{{% /tab %}}
-{{% /tabs %}}
 {{% /notice %}}

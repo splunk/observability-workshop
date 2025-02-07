@@ -153,10 +153,7 @@ while ($true) {
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% tabs %}}
-{{% tab title="Updated Directory Structure" %}}
-
-```text
+```text { title="Updated Directory Structure" }
 WORKSHOP
 ├── 1-agent
 ├── 2-gateway
@@ -167,9 +164,6 @@ WORKSHOP
 │   └── trace.json          # Example trace file 
 └── otelcol                 # OpenTelemetry Collector binary
 ```
-
-{{% /tab %}}
-{{% /tabs %}}
 
 For **macOS/Linux** make sure the script is executable:
 
