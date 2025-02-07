@@ -18,7 +18,7 @@ transform/logs:                     # Processor Type/Name
 
 This configuration ensures that only the specified attributes are retained, improving log efficiency and reducing unnecessary metadata.
 
-**Adding a Context Block for Log Severity Mapping**: To properly set the `severity_text` and `severity_number` fields of a log record, add another log context block within log_statements. This configuration extracts the `level` value from the log body, maps it to `severity_text`, and assigns the appropriate `severity_number`:
+**Adding a Context Block for Log Severity Mapping**: To properly set the `severity_text` and `severity_number` fields of a log record, add another log `context` block within `log_statements`. This configuration extracts the `level` value from the log body, maps it to `severity_text`, and assigns the appropriate `severity_number`:
 
 ```yaml
     - context: log                  # Log Context
