@@ -21,10 +21,7 @@ For this part of the workshop, there is script that will generate log lines in a
 
 Your updated directory structure will now look like this:
 
-{{% tabs %}}
-{{% tab title="Updated Directory Structure" %}}
-
-```text
+```text { title="Updated Directory Structure" }
 WORKSHOP
 ├── 1-agent
 ├── 2-gateway
@@ -35,6 +32,4 @@ WORKSHOP
 └── otelcol                 # OpenTelemetry binary
 ```
 
-{{% /tab %}}
-{{% /tabs %}}
 {{% /notice %}}

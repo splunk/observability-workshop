@@ -6,7 +6,8 @@ weight: 1
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Configure the `transform` processor** and name it `/logs`: By using the `-context: resource` key we are targeting the **resourceLog** attributes of logs.  
+**Configure the `transform` processor** and name it `/logs`: By using the `-context: resource` key we are targeting the `resourceLog` attributes of logs.
+
 This configuration ensures that only the relevant resource attributes (`com.splunk.sourcetype`, `host.name`, `otelcol.service.mode`) are retained, improving log efficiency and reducing unnecessary metadata.
 
 ```yaml
@@ -17,7 +18,8 @@ This configuration ensures that only the relevant resource attributes (`com.splu
           - keep_keys(attributes, ["com.splunk.sourcetype", "host.name", "otelcol.service.mode"])
 ```
 
-**Adding a Context Block for Log Severity Mapping**: To properly set the `severity_text` and `severity_number` fields of a log record, we add another log `context` block within `log_statements`.  
+**Adding a Context Block for Log Severity Mapping**: To properly set the `severity_text` and `severity_number` fields of a log record, we add another log `context` block within `log_statements`.
+
 This configuration extracts the `level` value from the log body, maps it to `severity_text`, and assigns the appropriate `severity_number`:
 
 ```yaml
@@ -62,8 +64,8 @@ This method of mapping all JSON fields to top-level attributes should only be us
       - memory_limiter           # Memory Limiter Processor
       - resourcedetection        # Adds system attributes to the data
       - resource/add_mode        # Adds collector mode metadata
-      - transform/logs           # Transform Processor used to update log lines
-      - batch                    # Batch Processor, groups data before send   
+      - transform/logs           # Transform Processor to update log lines
+      - batch                    # Batch Processor, groups data before send
 ```
 
 {{% /notice %}}

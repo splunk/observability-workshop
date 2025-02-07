@@ -27,22 +27,22 @@ This is achieved using the `redaction` processor you added earlier, where we def
 
 In this exercise, we will **redact** the `user.visa` & `user.mastercard` **values** in the span data before it is exported by the **Agent**.
 {{% notice title="Exercise" style="green" icon="running" %}}
-Delete the `*.out` files and clear the screen. 
+
+**Prepare the terminals**: Delete the `*.out` files and clear the screen.
 
 **Enable the `redaction/redact` processor**: Edit `agent.yaml` and remove the `#` we inserted in the previous exercise.
 
 **Start the Gateway**: In the **Gateway** terminal window navigate to the `[WORKSHOP]/6-sensitive-data` directory and run:
 
-```sh
+```sh { title="Gateway" }
 ../otelbin --config=gateway.yaml
 ```
 
 **Start the Agent**: In the **Agent** terminal window navigate to the `[WORKSHOP]/6-sensitive-data` directory and run:
 
-```sh
+```sh { title="Agent" }
 ../otelbin --config=agent.yaml
 ```
-
 
 **Send a span**: Run the `curl` command and in the **Test** terminal window to send `trace.json`.
 

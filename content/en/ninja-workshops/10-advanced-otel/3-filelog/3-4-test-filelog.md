@@ -71,10 +71,7 @@ Flags: 0
 
 At this point, your directory structure will appear as follows:
 
-{{% tabs %}}
-{{% tab title="Updated Directory Structure" %}}
-
-```text
+```text { title="Updated Directory Structure" }
 WORKSHOP
 ├── 1-agent
 ├── 2-gateway
@@ -88,9 +85,6 @@ WORKSHOP
 │   └── trace.json          # Example trace file 
 └── otelcol                 # OpenTelemetry Collector binary
 ```
-
-{{% /tab %}}
-{{% /tabs %}}
 
 **Examine a log line in `gateway-log.out`**: Compare a log line with the snippet below. It is a preview showing the beginning and a single log line; your actual output will contain many, many more:
 

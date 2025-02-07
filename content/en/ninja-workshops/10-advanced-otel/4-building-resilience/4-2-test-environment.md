@@ -10,19 +10,19 @@ Next, we will configure our environment to be ready for testing the **File Stora
 
 **Start the Gateway**: In the **Gateway** terminal window navigate to the `[WORKSHOP]/4-resilience` directory and run:
 
-```sh
+```sh { title="Gateway" }
 ../otelbin --config=gateway.yaml
 ```
 
 **Start the Agent**: In the **Agent** terminal window navigate to the `[WORKSHOP]/4-resilience` directory and run:
 
-```sh
+```sh { title="Agent" }
 ../otelbin --config=agent.yaml
 ```
 
 **Send a test trace**: In the **Test** terminal window navigate to the `[WORKSHOP]/4-resilience` directory and run:
 
-```sh
+```sh { title="cURL command" }
 curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
 ```
 

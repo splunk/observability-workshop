@@ -52,19 +52,13 @@ This file will allow us to test how the OpenTelemetry Collector processes and se
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% tabs %}}
-{{% tab title="Updated Directory Structure" %}}
-
-```text
+```text { title="Updated Directory Structure" }
 [WORKSHOP]
 ├── 1-agent         # Module directory
 │   └── agent.yaml  # OpenTelemetry Collector configuration file
 │   └── trace.json  # Sample trace data
 └── otelcol         # OpenTelemetry Collector binary
 ```
-
-{{% /tab %}}
-{{% /tabs %}}
 
 **Send a test span**: Run the following command to send a **span** to the agent:
 

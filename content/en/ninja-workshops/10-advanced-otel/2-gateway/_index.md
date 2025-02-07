@@ -87,9 +87,7 @@ service:                          # Services configured for this Collector
 
 {{% /notice %}}
 
-{{% tab title="Updated Directory Structure" %}}
-
-```text
+```text { title="Updated Directory Structure" }
 [WORKSHOP]
 ├── 1-agent             # Module directory
 ├── 2-gateway           # Module directory
@@ -98,5 +96,3 @@ service:                          # Services configured for this Collector
 │   └── trace.json      # Sample trace data
 └── otelcol             # OpenTelemetry Collector binary
 ```
-
-{{% /tab %}}
