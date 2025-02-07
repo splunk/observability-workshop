@@ -6,61 +6,63 @@ weight: 1
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Configure the `transform/logs` processor**: In the `agent.yaml` apply the processor to `log_statements` in the `resource` context and retain only relevant resource attributes (`com.splunk.sourcetype`, `host.name`, `otelcol.service.mode`):
+**Configure the `transform/logs` processor**: In the `agent.yaml` apply the processor to `log_statements` in the `resource` context and retain only relevant resource attributes (`com.splunk.sourcetype`, `host.name`, `otelcol.service.mode`):
 
-  ```yaml
-  transform/logs:                     # Processor Type/Name
-    log_statements:                   # Log Processing Statements
-      - context: resource             # Log Context
-        statements:                   # List of attribute keys to keep
-          - keep_keys(attributes, ["com.splunk.sourcetype", "host.name", "otelcol.service.mode"])
-  ```
+```yaml
+transform/logs:                     # Processor Type/Name
+  log_statements:                   # Log Processing Statements
+    - context: resource             # Log Context
+      statements:                   # List of attribute keys to keep
+        - keep_keys(attributes, ["com.splunk.sourcetype", "host.name", "otelcol.service.mode"])
+```
 
-  This configuration ensures that only the specified attributes are retained, improving log efficiency and reducing unnecessary metadata.
-- **Adding a Context Block for Log Severity Mapping**: To properly set the `severity_text` and `severity_number` fields of a log record, add another log context block within log_statements. This configuration extracts the `level` value from the log body, maps it to `severity_text`, and assigns the appropriate `severity_number`:
+This configuration ensures that only the specified attributes are retained, improving log efficiency and reducing unnecessary metadata.
 
-  ```yaml
-      - context: log                  # Log Context
-        statements:                   # Transform Statements Array
-          - set(cache, ParseJSON(body)) where IsMatch(body, "^\\{")
-          - flatten(cache, "")        
-          - merge_maps(attributes, cache, "upsert")
-          - set(severity_text, attributes["level"])
-          - set(severity_number, 1) where severity_text == "TRACE"
-          - set(severity_number, 5) where severity_text == "DEBUG"
-          - set(severity_number, 9) where severity_text == "INFO"
-          - set(severity_number, 13) where severity_text == "WARN"
-          - set(severity_number, 17) where severity_text == "ERROR"
-          - set(severity_number, 21) where severity_text == "FATAL"
-  ```
+**Adding a Context Block for Log Severity Mapping**: To properly set the `severity_text` and `severity_number` fields of a log record, add another log context block within log_statements. This configuration extracts the `level` value from the log body, maps it to `severity_text`, and assigns the appropriate `severity_number`:
 
-- **Summary of Key Transformations**:
-  - **Parse JSON**: Extracts structured data from the log body.
-  - **Flatten JSON**: Converts nested JSON objects into a flat structure.
-  - **Merge Attributes**: Integrates extracted data into log attributes.
-  - **Map Severity Text**: Assigns severity_text from the log’s level attribute.
-  - **Assign Severity Numbers**: Converts severity levels into standardized numerical values.
+```yaml
+    - context: log                  # Log Context
+      statements:                   # Transform Statements Array
+        - set(cache, ParseJSON(body)) where IsMatch(body, "^\\{")
+        - flatten(cache, "")        
+        - merge_maps(attributes, cache, "upsert")
+        - set(severity_text, attributes["level"])
+        - set(severity_number, 1) where severity_text == "TRACE"
+        - set(severity_number, 5) where severity_text == "DEBUG"
+        - set(severity_number, 9) where severity_text == "INFO"
+        - set(severity_number, 13) where severity_text == "WARN"
+        - set(severity_number, 17) where severity_text == "ERROR"
+        - set(severity_number, 21) where severity_text == "FATAL"
+```
 
-  This setup ensures that log severity is properly extracted, standardized, and structured for efficient processing.
+**Summary of Key Transformations**:
+
+- **Parse JSON**: Extracts structured data from the log body.
+- **Flatten JSON**: Converts nested JSON objects into a flat structure.
+- **Merge Attributes**: Integrates extracted data into log attributes.
+- **Map Severity Text**: Assigns severity_text from the log’s level attribute.
+- **Assign Severity Numbers**: Converts severity levels into standardized numerical values.
+
+This setup ensures that log severity is properly extracted, standardized, and structured for efficient processing.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 This method of mapping all JSON fields to top-level attributes should only be used for **testing and debugging OTTL**. It will result in high cardinality in a production scenario.
 {{% /notice %}}
 
-- **Update the `logs` pipeline**: Add the `transform/logs:` processor into the `logs:` pipeline:
+**Update the `logs` pipeline**: Add the `transform/logs:` processor into the `logs:` pipeline:
 
-  ```yaml
-  logs:                    # Logs Pipeline
-      receivers:           # Array of receivers in this pipeline
-      - filelog/quotes
-      - otlp
-      processors:          # Array of Processors in this pipeline
-      - memory_limiter     # You also could use [memory_limiter]
-      - resourcedetection
-      - resource/add_mode
-      - transform/logs
-      - batch
-  ```
+```yaml
+logs:                    # Logs Pipeline
+    receivers:           # Array of receivers in this pipeline
+    - filelog/quotes
+    - otlp
+    processors:          # Array of Processors in this pipeline
+    - memory_limiter     # You also could use [memory_limiter]
+    - resourcedetection
+    - resource/add_mode
+    - transform/logs
+    - batch
+```
 
 {{% /notice %}}
 
