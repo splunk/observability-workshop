@@ -6,8 +6,7 @@ weight: 1
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Configure the `transform` processor** and name it `/logs`.  
-By using the `-context: resource` key we are targeting the **resourceLog** attributes of logs.  
+**Configure the `transform` processor** and name it `/logs`: By using the `-context: resource` key we are targeting the **resourceLog** attributes of logs.  
 This configuration ensures that only the relevant resource attributes (`com.splunk.sourcetype`, `host.name`, `otelcol.service.mode`) are retained, improving log efficiency and reducing unnecessary metadata.
 
 ```yaml
@@ -18,8 +17,7 @@ This configuration ensures that only the relevant resource attributes (`com.splu
           - keep_keys(attributes, ["com.splunk.sourcetype", "host.name", "otelcol.service.mode"])
 ```
 
-**Adding a Context Block for Log Severity Mapping**:  
-To properly set the `severity_text` and `severity_number` fields of a log record, we add another log `context` block within `log_statements`.  
+**Adding a Context Block for Log Severity Mapping**: To properly set the `severity_text` and `severity_number` fields of a log record, we add another log `context` block within `log_statements`.  
 This configuration extracts the `level` value from the log body, maps it to `severity_text`, and assigns the appropriate `severity_number`:
 
 ```yaml
@@ -45,7 +43,7 @@ This configuration extracts the `level` value from the log body, maps it to `sev
 - **Map Severity Text**: Assigns severity_text from the log’s level attribute.
 - **Assign Severity Numbers**: Converts severity levels into standardized numerical values.
 
-You should have a **SINGLE** `transform` processor containing two context blocks: one for `resource` and one for `log`.
+You should have a **single** `transform` processor containing two context blocks: one for `resource` and one for `log`.
 
 This configuration ensures that log severity is correctly extracted, standardized, and structured for efficient processing.
 
