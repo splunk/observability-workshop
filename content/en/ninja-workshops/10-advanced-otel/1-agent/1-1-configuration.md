@@ -7,33 +7,33 @@ Let's walk through a few modifications to our agent configuration to get things 
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Add an `otlp` receiver**: The [**OTLP receiver**](https://docs.splunk.com/observability/en/gdi/opentelemetry/components/otlp-receiver.html) will listen for incoming telemetry data over HTTP (or gRPC).
+**Add an `otlp` receiver**: The [**OTLP receiver**](https://docs.splunk.com/observability/en/gdi/opentelemetry/components/otlp-receiver.html) will listen for incoming telemetry data over HTTP (or gRPC).
 
-  ```yaml
-    otlp:                           # Receiver Type
-      protocols:                    # list of Protocols used 
-        http:                       # This wil enable the HTTP Protocol
-          endpoint: "0.0.0.0:4318"  # Endpoint for incoming telemetry data
-  ```
+```yaml
+  otlp:                           # Receiver Type
+    protocols:                    # list of Protocols used 
+      http:                       # This wil enable the HTTP Protocol
+        endpoint: "0.0.0.0:4318"  # Endpoint for incoming telemetry data
+```
 
-- **Add a `debug` exporter**: The [**Debug exporter**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/exporter/debugexporter/README.md) will output detailed debug information for every telemetry record.
+**Add a `debug` exporter**: The [**Debug exporter**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/exporter/debugexporter/README.md) will output detailed debug information for every telemetry record.
 
-  ```yaml  
-    debug:                          # Exporter Type
-      verbosity: detailed           # Enabled detailed debug output
-  ```
+```yaml  
+  debug:                          # Exporter Type
+    verbosity: detailed           # Enabled detailed debug output
+```
 
-- **Update Pipelines**: Ensure that the `otlp` receiver, `memory_limiter` processor, and `debug` exporter are added to the pipelines for `traces`, `metrics`, and `logs`. You can choose to use the format below or use array brackets `[memory_limiter]`:
+**Update Pipelines**: Ensure that the `otlp` receiver, `memory_limiter` processor, and `debug` exporter are added to the pipelines for `traces`, `metrics`, and `logs`. You can choose to use the format below or use array brackets `[memory_limiter]`:
 
-  ```yaml
-      traces:
-        receivers:
-        - otlp                      # OTLP Receiver 
-        processors:
-        - memory_limiter            # Memory Limiter Processor  
-        exporters:
-        - debug                     # Debug Exporter
-  ```
+```yaml
+    traces:
+      receivers:
+      - otlp                      # OTLP Receiver 
+      processors:
+      - memory_limiter            # Memory Limiter Processor  
+      exporters:
+      - debug                     # Debug Exporter
+```
 
 {{% /notice %}}
 

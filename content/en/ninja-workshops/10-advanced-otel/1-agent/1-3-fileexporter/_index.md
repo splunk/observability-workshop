@@ -20,26 +20,26 @@ In summary, the **Debug Exporter** is great for real-time, in-development troubl
 
 Find your **Agent** terminal window, and stop the running collector by pressing `Ctrl-C`. Once the **Agent** has stopped, open the `agent.yaml` and configure the **File Exporter**:
 
-- **Configuring a `file` exporter**: The [**File Exporter**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/fileexporter/README.md) writes telemetry data to files on disk.
+1. **Configuring a `file` exporter**: The [**File Exporter**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/fileexporter/README.md) writes telemetry data to files on disk.
 
-  ```yaml
-    file:                           # Exporter Type
-      path: "./agent.out"           # Save path (OTLP JSON)
-      append: false                 # Overwrite the file each time
-  ```
+    ```yaml
+      file:                           # Exporter Type
+        path: "./agent.out"           # Save path (OTLP JSON)
+        append: false                 # Overwrite the file each time
+    ```
 
-- **Update the Pipelines Section**: Add the `file` exporter to the `metrics`, `traces` and `logs` pipelines (leave debug as the first in the array).
+1. **Update the Pipelines Section**: Add the `file` exporter to the `metrics`, `traces` and `logs` pipelines (leave debug as the first in the array).
 
-  ```yaml
-      metrics:
-        receivers:
-        - otlp                      # OTLP Receiver
-        processors:
-        - memory_limiter            # Memory Limiter Processor
-        exporters:
-        - debug                     # Debug Exporter
-        - file                      # File Exporter
-  ```
+    ```yaml
+        metrics:
+          receivers:
+          - otlp                      # OTLP Receiver
+          processors:
+          - memory_limiter            # Memory Limiter Processor
+          exporters:
+          - debug                     # Debug Exporter
+          - file                      # File Exporter
+    ```
 
 {{% /notice %}}
 
