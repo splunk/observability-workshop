@@ -10,7 +10,9 @@ While these components do not process telemetry data directly, they provide valu
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Add the `file_storage` extension and name it `checkpoint`**: The [**FileStorage Extension**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/19bc7d6ee854c0c1b5c97d8d348e5b9d1199e8aa/extension/storage/filestorage/README.md) stores intermediate states and improves resilience.
+Open the `agent.yaml` in the **Agent** terminal window.
+
+- **Add the `file_storage` extension and name it `checkpoint`**:
 
     ```yaml
       file_storage/checkpoint:         # Extension Type/Name
@@ -25,14 +27,13 @@ While these components do not process telemetry data directly, they provide valu
           max_transaction_size: 65536
     ```
 
-- **Add `file_storage` to `otlphttp` exporter**: Modify the `otlphttp:` exporter to configure retry and queuing mechanisms, ensuring data is retained and resent if failures occur.
+- **Add `file_storage` to existing `otlphttp` exporter**: Modify the `otlphttp:` exporter to configure retry and queuing mechanisms, ensuring data is retained and resent if failures occur.
 
     ```yaml
-      otlphttp:
-        # Gateway host and port
-        endpoint: "http://localhost:5318"
-        headers:
-          X-SF-Token: "DUMMY TOKEN"
+      otlphttp:                       # Exporter Type
+        endpoint: "http://localhost:5318" # Gateway OTLP endpoint
+        headers:                      # Headers to add to the HTTPcall 
+          X-SF-Token: "ACCESS_TOKEN"  # Splunk ACCESS_TOKEN header
         retry_on_failure:             # Retry on failure settings
           enabled: true               # Enables retrying
         sending_queue:                # Sending queue settings
@@ -52,7 +53,7 @@ While these components do not process telemetry data directly, they provide valu
       - file_storage/checkpoint       # Enabled extensions for this collector
     ```
 
-- **Update the `metrics` pipeline**: For this exercise we are going to temporarily remove the `hostmetrics` receiver from the Metric pipeline to reduce debug and log noise:
+- **Update the `metrics` pipeline**: For this exercise we are going to remove the `hostmetrics` receiver from the Metric pipeline to reduce debug and log noise:
 
     ```yaml
       metrics:
@@ -63,14 +64,13 @@ While these components do not process telemetry data directly, they provide valu
 
 {{% /notice %}}
 
-Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `logs:` section of your pipelines will look similar to this:
+Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `metrics:` section of your pipelines will look similar to this:
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%
 graph LR
     %% Nodes
       REC1(&nbsp;&nbsp;otlp&nbsp;&nbsp;<br>fa:fa-download):::receiver
-      REC2(filelog<br>fa:fa-download):::receiver
       PRO1(memory_limiter<br>fa:fa-microchip):::processor
       PRO2(resourcedetection<br>fa:fa-microchip):::processor
       PRO3(resource<br>fa:fa-microchip):::processor
@@ -83,7 +83,6 @@ graph LR
       subgraph subID1[**Logs**]
       direction LR
       REC1 --> PRO1
-      REC2 --> PRO1
       PRO1 --> PRO2
       PRO2 --> PRO3
       PRO3 --> PRO4

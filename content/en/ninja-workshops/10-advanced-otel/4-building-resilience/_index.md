@@ -5,7 +5,7 @@ time: 10 minutes
 weight: 4
 ---
 
-The OpenTelemetry Collector’s **File Storage** extension enhances the resilience of your telemetry pipeline by providing reliable checkpointing, managing retries, and handling temporary failures effectively.  
+The OpenTelemetry Collector’s [**FileStorage Extension**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/19bc7d6ee854c0c1b5c97d8d348e5b9d1199e8aa/extension/storage/filestorage/README.md) extension enhances the resilience of your telemetry pipeline by providing reliable checkpointing, managing retries, and handling temporary failures effectively.  
 
 With this extension enabled, the OpenTelemetry Collector can store intermediate states on disk, preventing data loss during network disruptions and allowing it to resume operations seamlessly.
 
