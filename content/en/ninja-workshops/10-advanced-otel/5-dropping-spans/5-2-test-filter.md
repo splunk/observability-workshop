@@ -45,10 +45,19 @@ WORKSHOP
 {{% /tabs %}}
 {{% /tab %}}
 
-**Start the Gateway and the Agent**:
+**Start the Gateway**: In the **Gateway** terminal window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run:
 
-1. Make sure you are in the `[WORKSHOP]/5-dropping-spans` folder for both the **Gateway** and **Agent** terminal windows and start the collectors.
-2. **Send** the new `health.json` payload with the `curl` command below. (**Windows use `curl.exe`**).
+```sh
+../otelbin --config=gateway.yaml
+```
+
+**Start the Agent**: In the **Agent** terminal window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run:
+
+```sh
+../otelbin --config=agent.yaml
+```
+
+**Send the new `health.json` payload:** In the **Test** terminal window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run the `curl` command below. (**Windows use `curl.exe`**).
   
 ```sh
 curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@health.json"
