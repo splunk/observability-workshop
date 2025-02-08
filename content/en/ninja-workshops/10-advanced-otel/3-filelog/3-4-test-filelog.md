@@ -6,7 +6,7 @@ weight: 4
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Check the log-gen script is running**: Find the **log-gen** Terminal window, and check the script is still running, and the last line is still stating the below, if it not, restart it in the `[WORKSHOP]/3-filelog` folder.
+**Check the log-gen script is running**: Find the **log-gen** Terminal window, and check the script is still running, and the last line is still stating the below, if it not, restart it in the `[WORKSHOP]/3-filelog` directory:
 
 ```text
 Writing logs to quotes.log. Press Ctrl+C to stop.
@@ -16,12 +16,12 @@ Writing logs to quotes.log. Press Ctrl+C to stop.
 
 1. Find your `Gateway` terminal window.
 2. Navigate to the `[WORKSHOP]/3-filelog` directory.
-3. Start the **Gateway** collector.
+3. Start the **Gateway**.
 
 **Start the Agent**:
 
-1. Switch to your `Agent` terminal window
-2. Navigate to the `[WORKSHOP]/3-filelog` directory
+1. Switch to your `Agent` terminal window.
+2. Navigate to the `[WORKSHOP]/3-filelog` directory.
 3. Start the **Agent**.
 4. Ignore the initial **CPU** metrics in the debug output and wait until the continuous stream of log data from the `quotes.log` appears. The debug output should look similar to the following (use the *Check Full Debug Log* to see all data):
 

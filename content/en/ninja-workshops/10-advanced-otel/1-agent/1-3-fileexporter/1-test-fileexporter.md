@@ -8,7 +8,7 @@ weight: 1
 
 **Restart your agent**: Find your **Agent** terminal window, and (re)start the agent, this time with your new config to test it:
 
-```bash
+```sh { title="Agent" }
 ../otelcol --config=agent.yaml
 ```
 

@@ -73,7 +73,7 @@ classDef sub-logs stroke:#34d399,stroke-width:1px, color:#34d399,stroke-dasharra
 2. Navigate to the`[WORKSHOP]/2-gateway` directory.
 3. Run the following command to test the gateway configuration:
 
-```text
+```sh {title="Gateway"}
 ../otelcol --config=gateway.yaml
 ```
 

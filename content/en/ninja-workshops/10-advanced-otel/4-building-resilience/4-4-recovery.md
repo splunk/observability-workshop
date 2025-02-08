@@ -10,13 +10,13 @@ In this exercise, we’ll test how the **OpenTelemetry Collector** recovers from
 
 **Restart the Gateway**: In the **Gateway** terminal window run:
 
-```sh
+```sh {title="Gateway"}
 ../otelcol --config=gateway.yaml
 ```
 
 **Restart the Agent**: In the **Agent** terminal window run:
 
-```sh
+```sh { title="Agent" }
 ../otelcol --config=agent.yaml
 ```
 

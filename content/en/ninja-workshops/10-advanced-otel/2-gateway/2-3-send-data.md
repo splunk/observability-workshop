@@ -10,7 +10,7 @@ weight: 3
 
 **Start the Agent**: In the **Agent** terminal window start the agent with the updated configuration:
 
-```bash
+```sh { title="Agent" }
 ../otelcol --config=agent.yaml
 ```
 
