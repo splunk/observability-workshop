@@ -7,7 +7,7 @@ weight: 1
 
 **Restart your Agent**: Find your **Agent** terminal window, and restart your collector using the updated configuration to test the changes:
 
-```bash
+```sh { title="Agent" }
 ../otelcol --config=agent.yaml
 ```
 

@@ -10,13 +10,13 @@ In this section, we will test the `routing` rule configured for the **Gateway**.
 
 **Start the Gateway**: In the **Gateway** terminal window navigate to the `[WORKSHOP]/8-routing` directory and run:
 
-```sh
+```sh {title="Gateway"}
 ../otelcol --config=gateway.yaml
 ```
 
 **Start the Agent**: In the **Agent** terminal window navigate to the `[WORKSHOP]/8-routing` directory and run:
 
-```sh
+```sh { title="Agent" }
 ../otelcol --config=agent.yaml
 ```
 

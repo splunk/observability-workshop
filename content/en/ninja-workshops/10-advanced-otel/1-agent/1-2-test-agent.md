@@ -13,7 +13,7 @@ Once you've updated the configuration, you’re ready to proceed to running the 
 1. Change into the `[WORKSHOP]/1-agent` folder
 2. Run the following command:
 
-```sh
+```sh { title="Agent" }
 ../otelcol --config=agent.yaml
 ```
 
