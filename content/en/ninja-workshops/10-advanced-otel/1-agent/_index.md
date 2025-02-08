@@ -76,16 +76,11 @@ service:                          # Services configured for this Collector
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% tabs %}}
-{{% tab title="Updated Directory Structure" %}}
-
-```text
+```text { title="Updated Directory Structure" }
 [WORKSHOP]
 ├── 1-agent         # Module directory
 │   └── agent.yaml  # OpenTelemetry Collector configuration file
 └── otelcol         # OpenTelemetry Collector binary
 ```
 
-{{% /tab %}}
-{{% /tabs %}}
 {{% /notice %}}
