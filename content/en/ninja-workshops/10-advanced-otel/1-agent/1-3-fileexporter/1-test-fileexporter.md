@@ -29,10 +29,7 @@ curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/js
 
 **Verify that the `agent.out` file is written**: Check that a file named `agent.out` is written in the current directory.
 
-{{% tabs %}}
-{{% tab title="Updated Directory Structure" %}}
-
-```text
+```text { title="Updated Directory Structure" }
 [WORKSHOP]
 ├── 1-agent         # Module directory
 │   └── agent.out   # OTLP/Json output created by the File Exporter
@@ -40,9 +37,6 @@ curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/js
 │   └── trace.json  # Sample trace data
 └── otelcol         # OpenTelemetry Collector binary
 ```
-
-{{% /tab %}}
-{{% /tab %}}
 
 {{% notice note %}}
 On **Windows**, an open file may appear empty or cause issues when attempting to read it. To prevent this, make sure to stop the **Agent** or the **Gateway** before inspecting the file, as instructed.
