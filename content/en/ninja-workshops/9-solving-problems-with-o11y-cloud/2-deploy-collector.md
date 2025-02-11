@@ -58,6 +58,9 @@ Splunk OpenTelemetry Collector is installed and configured to send data to Splun
 
 How did this script install the collector? It first ensured that the environment variables set in the `~./profile` file are read: 
 
+> Important:  there's no need to run the following commands, as they were already run 
+> by the `1-deploy-otel-collector.sh` script. 
+
 ``` bash
 source ~/.profile
 ```
@@ -210,10 +213,26 @@ You can use vi or nano to edit the `values.yaml` file. We will show an example u
 vi /home/splunk/workshop/tagging/otel/values.yaml
 ```
 
-Add the debug exporter to the bottom of the `values.yaml` file by copying and pasting the 
-section marked with `Add the section below` in the following example: 
+Add the debug exporter by copying and pasting the following text
+to the bottom of the `values.yaml` file: 
 
 > Press 'i' to enter into insert mode in vi before adding the text below. 
+
+``` yaml
+    # NEW CONTENT
+    exporters:
+      debug:
+        verbosity: detailed
+    service:
+      pipelines:
+        traces:
+          exporters:
+            - sapm
+            - signalfx
+            - debug
+```
+
+After these changes, the `values.yaml` file should include the following contents: 
 
 ``` yaml
 splunkObservability:
@@ -245,7 +264,7 @@ agent:
     extensions:
       zpages:
         endpoint: 0.0.0.0:55679
-    # Add the section below 
+    # NEW CONTENT
     exporters:
       debug:
         verbosity: detailed
@@ -259,7 +278,7 @@ agent:
 ```
 
 > To save your changes in vi, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the
->  `enter/return` key. 
+>  `enter/return` key.
 
 Once the file is saved, we can apply the changes with:
 
