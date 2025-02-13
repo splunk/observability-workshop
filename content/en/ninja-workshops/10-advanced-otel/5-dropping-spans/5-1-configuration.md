@@ -27,8 +27,8 @@ Switch to your **Gateway** terminal window. Navigate to the `[WORKSHOP]/5-droppi
         - otlp                    # OTLP Receiver
       processors:                
         - memory_limiter          # Manage memory usage
-        - resource/add_mode       # Add metadata about collector mode
         - filter/health           # Filter Processor. Filter's out Data based on rules
+        - resource/add_mode       # Add metadata about collector mode
         - batch                   # Groups Data before send
       exporters:               
         - debug                   # Debug Exporter
@@ -56,9 +56,9 @@ graph LR
       subgraph subID1[**Traces**]
       direction LR
       REC1 --> PRO1
-      PRO1 --> PRO3
-      PRO3 --> PRO4
-      PRO4 --> PRO5
+      PRO1 --> PRO4
+      PRO4 --> PRO3
+      PRO3 --> PRO5
       PRO5 --> EXP1
       PRO5 --> EXP2
       end
