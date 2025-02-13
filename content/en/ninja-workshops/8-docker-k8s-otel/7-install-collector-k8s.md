@@ -22,6 +22,10 @@ cp /home/splunk/workshop/docker-k8s-otel/docker/Dockerfile /home/splunk/workshop
 cp /home/splunk/workshop/docker-k8s-otel/docker/entrypoint.sh /home/splunk/workshop/docker-k8s-otel/helloworld/
 ````
 
+> **IMPORTANT** once these files are copied, open `/home/splunk/workshop/docker-k8s-otel/helloworld/Dockerfile`  
+> with an editor and replace `$INSTANCE` in your Dockerfile with your instance name,
+> which can be determined by running `echo $INSTANCE`.
+
 ## Introduction to Part 2 of the Workshop
 
 In the next part of the workshop, we want to run the application in Kubernetes, 
@@ -91,7 +95,10 @@ To configure the helm chart deployment, let's create a new file named `values.ya
 the `/home/splunk` directory:
 
 ``` bash
-vi /home/splunk/values.yaml
+# swith to the /home/splunk dir
+cd /home/splunk
+# create a values.yaml file in vi
+vi values.yaml
 ```
 > Press ‘i’ to enter into insert mode in vi before pasting the text below.
 
@@ -126,7 +133,7 @@ agent:
           processes: null
 ```
 
-> To save your changes in vi, press the `esc` key to enter command mode, then type `wq!` followed by pressing the `enter/return` key.
+> To save your changes in vi, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the `enter/return` key.
 
 Now we can use the following command to install the collector: 
 
@@ -188,7 +195,7 @@ splunk-otel-collector-k8s-cluster-receiver-d54857c89-tx7qr   1/1     Running   0
 
 ## Confirm your K8s Cluster is in O11y Cloud
 
-In Splunk Observability Cloud, navigate to **Infrastructure** -> **Kubernetes** -> **Kubernetes Nodes**, 
-and then Filter on your Cluster Name (which is `$INSTANCE-cluster`): 
+In Splunk Observability Cloud, navigate to **Infrastructure** -> **Kubernetes** -> **Kubernetes Clusters**, 
+and then search for your cluster name (which is `$INSTANCE-cluster`): 
 
 ![Kubernetes node](../images/k8snode.png)

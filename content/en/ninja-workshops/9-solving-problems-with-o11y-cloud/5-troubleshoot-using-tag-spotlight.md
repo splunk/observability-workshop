@@ -56,7 +56,7 @@ This illustrates the power of **Tag Spotlight**! Finding this pattern would be t
 
 We've looked at errors, but what about latency? Let's click on the **Requests & errors distribution** dropdown and change it to **Latency distribution**.
 
-Click on the settings icon beside **Cards display** to add the P50 and P99 metrics. 
+> IMPORTANT: Click on the settings icon beside **Cards display** to add the P50 and P99 metrics. 
 
 Here, we can see that the requests with a `poor` credit score request are running slowly, with P50, P90, and P99 times of around 3 seconds, which is too long for our users to wait, and much slower than other requests.
 
