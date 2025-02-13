@@ -5,6 +5,7 @@ weight: 1
 ---
 
 {{% notice title="Exercise" style="green" icon="running" %}}
+Switch to your **Agent** terminal window. Navigate to the `[WORKSHOP]/7-transform-data` directory and open the `agent.yaml` file in your editor.
 
 **Configure the `transform` processor** and name it `/logs`: By using the `-context: resource` key we are targeting the `resourceLog` attributes of logs.
 
