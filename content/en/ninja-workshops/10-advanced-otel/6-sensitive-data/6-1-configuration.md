@@ -6,7 +6,7 @@ weight: 1
 
 In this step, we'll modify `agent.yaml` to include the `attributes` and `redaction` processors. These processors will help ensure that sensitive data within span attributes is properly handled before being logged or exported.
 
-Previously, you may have noticed that some span attributes displayed in the console contained personal data. We'll now configure the necessary processors to filter out and redact this information effectively.
+Previously, you may have noticed that some span attributes displayed in the console contained personal and sensitive data. We'll now configure the necessary processors to filter out and redact this information effectively.
 
 ```text
 <snip>
@@ -40,7 +40,7 @@ We'll **update** the `user.phone_number`, **hash** the `user.email`, and **delet
         action: delete
   ```
 
-**Add a `redaction` Processor**: This processor will detect and redact sensitive values based on predefined patterns. We'll block credit card numbers using regular expressions.
+**Add a `redaction` Processor**: This processor will detect and redact sensitive data values based on predefined patterns. We'll block credit card numbers using regular expressions.
 
 ```yaml
   redaction/redact:               # Processor Type/Name

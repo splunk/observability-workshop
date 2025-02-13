@@ -45,6 +45,9 @@ In this exercise, we will **redact** the `user.visa` & `user.mastercard` **value
 ```
 
 **Send a span**: Run the `curl` command and in the **Test** terminal window to send `trace.json`.
+```sh
+curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
+```
 
 **Check the debug output**: For both the **Agent** and **Gateway** confirm the values for `user.visa` & `user.mastercard` have been updated. Notice `user.amex` attribute value was NOT redacted because a matching regex pattern was not added to `blocked_values`
 
