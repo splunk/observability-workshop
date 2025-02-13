@@ -86,7 +86,7 @@ COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "helloworld.dll"]
 ```
 
-> To save your changes in vi, press the `esc` key to enter command mode, then type `wq!` followed by pressing the `enter/return` key.
+> To save your changes in vi, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the `enter/return` key.
 
 
 What does all this mean?  Let's break it down. 
@@ -247,6 +247,27 @@ helloworld:1.0
 > Note: we've included the `--network=host` parameter to ensure our Docker container 
 > is able to access resources on our instance, which is important later on when we need 
 > our application to send data to the collector running on localhost. 
+
+Let's ensure that our Docker container is running: 
+
+{{< tabs >}}
+{{% tab title="Script" %}}
+
+``` bash
+docker ps
+```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+``` bash
+$ docker ps
+CONTAINER ID   IMAGE            COMMAND                  CREATED       STATUS       PORTS     NAMES
+5f5b9cd56ac5   helloworld:1.0   "dotnet helloworld.d…"   2 mins ago    Up 2 mins              helloworld
+```
+
+{{% /tab %}}
+{{< /tabs >}}
 
 We can access our application as before:
 

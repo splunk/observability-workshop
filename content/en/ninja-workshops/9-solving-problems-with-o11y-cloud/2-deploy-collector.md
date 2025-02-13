@@ -58,6 +58,9 @@ Splunk OpenTelemetry Collector is installed and configured to send data to Splun
 
 How did this script install the collector? It first ensured that the environment variables set in the `~./profile` file are read: 
 
+> Important:  there's no need to run the following commands, as they were already run 
+> by the `1-deploy-otel-collector.sh` script. 
+
 ``` bash
 source ~/.profile
 ```
@@ -114,8 +117,8 @@ splunk-otel-collector-operator-6fd9f9d569-wd5mn                 2/2     Running 
 
 ## Confirm your K8s Cluster is in O11y Cloud
 
-In Splunk Observability Cloud, navigate to **Infrastructure** -> **Kubernetes** -> **Kubernetes Nodes**,
-and then Filter on your Cluster Name (which is `$INSTANCE-k3s-cluster`):
+In Splunk Observability Cloud, navigate to **Infrastructure** -> **Kubernetes** -> **Kubernetes Clusters**,
+and then search for your Cluster Name (which is `$INSTANCE-k3s-cluster`):
 
 ![Kubernetes node](../images/k8snode.png)
 
@@ -204,7 +207,32 @@ Let's look at an example.
 
 Suppose we want to see the traces that are sent to the collector.  We can use the debug exporter for this purpose, which can be helpful for troubleshooting OpenTelemetry-related issues.
 
-Let's add the debug exporter to the bottom of the `/home/splunk/workshop/tagging/otel/values.yaml` file as follows:
+You can use vi or nano to edit the `values.yaml` file. We will show an example using vi:
+
+``` bash
+vi /home/splunk/workshop/tagging/otel/values.yaml
+```
+
+Add the debug exporter by copying and pasting the following text
+to the bottom of the `values.yaml` file: 
+
+> Press 'i' to enter into insert mode in vi before adding the text below. 
+
+``` yaml
+    # NEW CONTENT
+    exporters:
+      debug:
+        verbosity: detailed
+    service:
+      pipelines:
+        traces:
+          exporters:
+            - sapm
+            - signalfx
+            - debug
+```
+
+After these changes, the `values.yaml` file should include the following contents: 
 
 ``` yaml
 splunkObservability:
@@ -236,7 +264,7 @@ agent:
     extensions:
       zpages:
         endpoint: 0.0.0.0:55679
-    # Add the section below 
+    # NEW CONTENT
     exporters:
       debug:
         verbosity: detailed
@@ -248,6 +276,9 @@ agent:
             - signalfx
             - debug
 ```
+
+> To save your changes in vi, press the `esc` key to enter command mode, then type `:wq!` followed by pressing the
+>  `enter/return` key.
 
 Once the file is saved, we can apply the changes with:
 
