@@ -21,22 +21,23 @@ Splunk alerts are triggered by search results that match specific criteria. We'l
    ```splunk
    index=main "Invalid user"
    ```
-    Use the time picker to select "Relative" and set the timespan to 10.
+    Use the time picker to select "Last 15 minutes"".
 
 2. **Configure the Alert:**
    * Click "Save As" and select "Alert."
    * Give your alert a descriptive name (e.g., "Numerous Invalid User Logins Attempted").
-   * **Trigger Condition:**
-      * **Scheduled:** Choose "Scheduled" to evaluate the search on a set schedule. Below scheduled will be the button to select the frequency, select "Run on Cron Schedule". If the time Range below that is different than 10 minutes, update it.
+   * **Alert type:**
+      * **Scheduled:** Choose "Scheduled" to evaluate the search on a set schedule. Below scheduled will be the button to select the frequency, select "Run on Cron Schedule". 
+      * **Cron Expression:** */15 * * * *
       * **Triggered when:** Select "Number of results" "is greater than" "100."
-      * **Time Range:** Set to "5 minutes."
+      * **Time Range:** Set to "15 minutes."
    * **Trigger Actions:**
       * For this basic example, choose "Add to Triggered Alerts."  In a real-world scenario, you'd configure email notifications, Slack integrations, or other actions.
    * **Save:** Save the alert.
 
 ![show-entry](../images/save_as_alert.png?classes=inline)
 
-**Explanation:** This alert runs the search every 10 minutes and triggers if the search returns more than 100 results. The "Add to Triggered Alerts" action simply adds a Alert to the Splunk Triggered Alerts list.
+**Explanation:** This alert runs the search every 15 minutes and triggers if the search returns more than 100 results. The "Add to Triggered Alerts" action simply adds a Alert to the Splunk Triggered Alerts list.
 
 **Time Ranges and Frequency:** Since everything in Splunk core is a search, you need to consider the search timespan and frequency so that you are not a) searching the same data multiple times with an overlap timespan, b) missing events because of a gap between timespan and frequency, c) running too frequently and adding overhead or d) running too infrequently and experiencing delays in alerting.
 
@@ -62,11 +63,11 @@ Splunk alerts are triggered by search results that match specific criteria. We'l
 
 **2. Create a Detector:**
    * Click "Detectors & SLOs" in the lefthand menu
-   * Click "Create Detector."
-   * Give the detector a descriptive name (e.g., "High CPU Utilization Alert").
+   * Click "Create Detector -> Custom Detector"
+   * Give the detector a descriptive name (e.g., "High CPU Utilization Alert - INITIALS").
    * **Signal:**
-      * Select the metric you want to monitor (e.g., "cpu.utilization").  Use the metric finder to locate the correct metric.
-      * Add any necessary filters to specify the host (e.g., `service.name:otelshop-loadgenerator`).
+      * Select the metric you want to monitor ("cpu.utilization"). 
+      * Add any necessary filters to specify the host (`service.name:otelshop-loadgenerator`).
    * **Condition:**
       * Set the threshold: "is above" "90" "%."
       * Configure the evaluation frequency and the "for" duration (how long the condition must be true before the alert triggers).

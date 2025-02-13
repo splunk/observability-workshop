@@ -14,4 +14,4 @@ The Workshop is titled **"Tech Summit 2025: OBS-122"** or you can go directly to
 
 # Splunk Observability Cloud Access
 
-Creating an alert in Observability Cloud should be done in the Observability Cloud **Show Playground** Org.
+Creating an alert in Observability Cloud should be done in the Observability Cloud US1 [Show Playground](https://app.us1.signalfx.com/#/home) Org.
