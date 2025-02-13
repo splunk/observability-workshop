@@ -8,11 +8,11 @@ Now that an Ingest Pipeline has been configured to convert Kubernetes Audit Logs
 
 {{% notice title="Exercise: Confirm Metrics in Splunk Observability Cloud" style="green" icon="running" %}}
 
-1. Login to the **Splunk Observability Cloud** organization you were invited for the workshop. In the upper-right corner, click the **+** Icon -> **Chart** to create a new chart.
+**1.** Login to the **Splunk Observability Cloud** organization you were invited for the workshop. In the upper-right corner, click the **+** Icon -> **Chart** to create a new chart.
 
 ![Create New Chart](../../images/create_new_chart.png?width=40vw)
 
-2. In the **Plot Editor** of the newly created chart enter the metric name you used while configuring the **Ingest Pipeline**.
+**2.** In the **Plot Editor** of the newly created chart enter the metric name you used while configuring the **Ingest Pipeline**.
 
 ![Review Metric](../../images/review_metric.png?width=40vw)
 

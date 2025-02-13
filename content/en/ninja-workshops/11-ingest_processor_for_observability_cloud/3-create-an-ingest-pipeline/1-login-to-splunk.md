@@ -8,27 +8,27 @@ In this section you will create an Ingest Pipeline which will convert Kubernetes
 
 {{% notice title="Pre-requisite: Login to Splunk Enterprise Cloud" style="green" icon="running" %}}
 
-Open the **Ingest Processor Cloud Stack** URL provided in the Splunk Show event details.
+**1.** Open the **Ingest Processor Cloud Stack** URL provided in the Splunk Show event details.
 
 ![Splunk Cloud Instance Details](../../images/show_instances_sec.png)
 
-In the Connection info click on the **Stack URL** link to open your Splunk Cloud stack.
+**2.** In the Connection info click on the **Stack URL** link to open your Splunk Cloud stack.
 
 ![Splunk Cloud Connection Details](../../images/sec_connection_details.png)
 
-Use the `admin` username and password to login to Splunk Cloud.
+**3.** Use the `admin` username and password to login to Splunk Cloud.
 
 ![Splunk Cloud Login](../../images/sec_login.png)
 
-After logging in, if prompted, accept the Terms of Service and click **OK**
+**4.** After logging in, if prompted, accept the Terms of Service and click **OK**
 
 ![Splunk Cloud Login](../../images/sec_terms.png)
 
-Navigate back to the Splunk Show event details and select the Ingest Processor SCS Tenant
+**5.** Navigate back to the Splunk Show event details and select the Ingest Processor SCS Tenant
 
 ![Ingest Processor Connection Details](../../images/show_instances_scs.png)
 
-Click on the **Console URL** to access the **Ingest Processor SCS Tenant**
+**6.** Click on the **Console URL** to access the **Ingest Processor SCS Tenant**
 
 {{% notice title="Note" style="primary" icon="lightbulb" %}}
 **Single Sign-On (SSO)**
