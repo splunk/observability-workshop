@@ -8,7 +8,7 @@ In this exercise, you will configure the `routing` connector in the `gateway.yam
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Add the `routing` connector**: In the **Gateway** terminal window edit `gateway.yaml` and add the following below the `receivers:` section and above the `processors:` section:
+**Add the `routing` connector**: In the **Gateway** terminal window edit `gateway.yaml` and add the following below the `receivers:` and `processors` sections and above the `exporters:` section:
 
 ```yaml
 connectors:
