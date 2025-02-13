@@ -67,7 +67,7 @@ Flags: 0
 **Verify the gateway has handled the logs**:
 
 1. **Windows only**: Stop the **Agent** and **Gateway** to flush the files.
-2. Check if the **Gateway** has written a `./gateway-log.out` file.
+2. Check if the **Gateway** has written a `./gateway-logs.out` file.
 
 At this point, your directory structure will appear as follows:
 
@@ -89,7 +89,7 @@ WORKSHOP
 **Examine a log line in `gateway-logs.out`**: Compare a log line with the snippet below. It is a preview showing the beginning and a single log line; your actual output will contain many, many more:
 
 {{% tabs %}}
-{{% tab title="cat /gateway-log.out" %}}
+{{% tab title="cat /gateway-logs.out" %}}
 
 ```json
 {"resourceLogs":[{"resource":{"attributes":[{"key":"com.splunk.sourcetype","value":{"stringValue":"quotes"}},{"key":"com.splunk/source","value":{"stringValue":"./quotes.log"}},{"key":"host.name","value":{"stringValue":"[YOUR_HOST_NAME]"}},{"key":"os.type","value":{"stringValue":"[YOUR_OS]"}},{"key":"otelcol.service.mode","value":{"stringValue":"agent"}}]},"scopeLogs":[{"scope":{},"logRecords":[{"observedTimeUnixNano":"1737231901720160600","body":{"stringValue":"2025-01-18 21:25:01 [WARN] - Do or do not, there is no try."},"attributes":[{"key":"log.file.path","value":{"stringValue":"quotes.log"}}],"traceId":"","spanId":""}]}],"schemaUrl":"https://opentelemetry.io/schemas/1.6.1"}]}
@@ -97,7 +97,7 @@ WORKSHOP
 ```
 
 {{% /tab %}}
-{{% tab title="cat `./gateway-log.out` | jq" %}}
+{{% tab title="cat `./gateway-logs.out` | jq" %}}
 
 ```json
 {
