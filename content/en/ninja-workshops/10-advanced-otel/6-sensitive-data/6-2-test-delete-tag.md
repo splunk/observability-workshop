@@ -24,6 +24,9 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
 
 1. In the **Test** terminal window change into the `6-sensitive-data` directory.
 2. Send the span containing **sensitive data** by running the `curl` command to send `trace.json`.
+```sh
+curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
+```
 
 **Check the debug output**: For both the **Agent** and **Gateway** debug output, confirm that `user.account_password` has been removed, and both `user.phone_number` & `user.email` have been updated.
 
