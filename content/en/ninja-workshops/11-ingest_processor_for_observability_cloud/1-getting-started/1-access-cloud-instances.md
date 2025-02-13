@@ -22,9 +22,11 @@ Login to Splunk Show using your [splunk.com](https://login.splunk.com/) credenti
 
 {{% notice title="Note" style="primary"  icon="lightbulb" %}}
 
-Take note of the Participant Number provided in your Splunk Show event details. This number will be included in the `sourcetype` that you will use for searching and filtering the Kubernetes data. Because this is a shared environment only use the participant number provided so that other participants data is not effected.
+Take note of the `User Id` provided in your Splunk Show event details. This number will be included in the `sourcetype` that you will use for searching and filtering the Kubernetes data. Because this is a shared environment only use the participant number provided so that other participants data is not effected.
 
 {{% /notice %}}
+
+![Splunk Show Instance Information](../../images/show_instance_information.png)
 
 ## 2. Splunk Observability Cloud Instances
 

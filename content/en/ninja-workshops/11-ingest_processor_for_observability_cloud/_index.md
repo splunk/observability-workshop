@@ -5,7 +5,6 @@ weight: 11
 archetype: chapter
 authors: ["Tim Hard"]
 description: Scenario Description
-hidden: true
 ---
 
 As infrastructure and application environments become exceedingly complex, the volume of data they generate continues to grow significantly. This increase in data volume and variety makes it challenging to gain actionable insights and can impact problem identification and troubleshooting efficiencies. Additionally, the cost of storing and accessing this data can skyrocket. Many data sources, particularly logs and events, provide critical visibility into system operations. However, in most cases, only a few details from these extensive logs are actually needed for effective monitoring and alerting.

@@ -8,7 +8,7 @@ In this section you will create an Ingest Pipeline which will convert Kubernetes
 
 {{% notice title="Exercise: Create Ingest Pipeline" style="green" icon="running" %}}
 
-1. Open the **Ingest Processor SCS Tenant** using the connection details provided in the Splunk Show event.
+**1.** Open the **Ingest Processor SCS Tenant** using the connection details provided in the Splunk Show event.
 
 ![Launch Splunk Cloud Platform](../../images/data_management_home.png?width=40vw)
 
@@ -20,40 +20,40 @@ When you open the  **Ingest Processor SCS Tenant**, if you are taken to a welcom
 
 {{% /notice %}}
 
-2. From the Splunk Data Management console select **Pipelines** -> **New pipeline** -> **Ingest Processor pipeline**.
+**2.** From the Splunk Data Management console select **Pipelines** -> **New pipeline** -> **Ingest Processor pipeline**.
 
 ![New Ingest Processor Pipeline](../../images/new_pipeline.png?width=40vw)
 
-3. In the **Get started** step of the Ingest Processor configuration page select **Blank Pipeline** and click **Next**.
+**3.** In the **Get started** step of the Ingest Processor configuration page select **Blank Pipeline** and click **Next**.
 
 ![Blank Ingest Processor Pipeline](../../images/blank_pipeline.png?width=40vw)
 
-4. In the **Define your pipeline’s partition** step of the Ingest Processor configuration page select **Partition by sourcetype**. Select the **= equals** Operator and enter `kube:apiserver:audit:PARTICIPANT_NUMBER` (Be sure to replace PARTICIPANT_NUMBER with the participant number you were assigned) for the value. Click **Apply**.
+**4.** In the **Define your pipeline’s partition** step of the Ingest Processor configuration page select **Partition by sourcetype**. Select the **= equals** Operator and enter `kube:apiserver:audit:USER_ID` (Be sure to replace USER_ID with the User ID you were assigned) for the value. Click **Apply**.
 
 ![Add Partition](../../images/add_partition.png?width=40vw)
 
-5. Click **Next**
+**5.** Click **Next**
 
-6. In the **Add sample data** step of the Ingest Processor configuration page select **Capture new snapshot**. Enter `k8s_audit` for the name and click **Capture**.
+**6.** In the **Add sample data** step of the Ingest Processor configuration page select **Capture new snapshot**. Enter `k8s_audit_USER_ID` (Be sure to replace USER_ID with the User ID you were assigned) for the Snapshot name and click **Capture**.
 
 ![Capture Snapshot](../../images/capture_snapshot.png?width=40vw)
 
-7. Make sure your newly created snapshot (`k8s_audit`) is selected and then click **Next**.
+**7.** Make sure your newly created snapshot (`k8s_audit_USER_ID`) is selected and then click **Next**.
 
 ![Configure Snapshot Sourcetype](../../images/capture_snapshot_sourcetype.png?width=20vw)
 
-8. In the **Select a metrics destination** step of the Ingest Processor configuration page select **show_o11y_org**. Click **Next**.
+**8.** In the **Select a metrics destination** step of the Ingest Processor configuration page select **show_o11y_org**. Click **Next**.
 
 ![Metrics Destination](../../images/metrics_destination.png?width=20vw)
 
-9. In the **Select a data destination** step of the Ingest Processor configuration page select **splunk_indexer**. Under **Specify how you want your events to be routed to an index** select **Default**. Click **Done**.
+**9.** In the **Select a data destination** step of the Ingest Processor configuration page select **splunk_indexer**. Under **Specify how you want your events to be routed to an index** select **Default**. Click **Done**.
 
 ![Event Routing](../../images/event_routing.png?width=20vw)
 
-10. In the **Pipeline search field** replace the default search with the following. 
+**10.** In the **Pipeline search field** replace the default search with the following. 
 
 {{% notice title="Note" style="primary" icon="lightbulb" %}}
-**Replace `UNIQUE_FIELD` in the metric name with a unique value which will be used to identify your metric in Observability Cloud.**
+**Replace `UNIQUE_FIELD` in the metric name with a unique value (such as your initials) which will be used to identify your metric in Observability Cloud.**
 {{% /notice %}}
 
 ```
@@ -63,12 +63,14 @@ import logs_to_metrics from /splunk/ingest/commands
 $pipeline =
 | from $source
 | thru [
-//define the metric name, type, and value for the Kubernetes Events
-| logs_to_metrics name="k8s_audit_UNIQUE_FIELD" metrictype="counter" value=1 time=_time
-| into $metrics_destination
-]
+        //define the metric name, type, and value for the Kubernetes Events
+        //
+        // REPLACE UNIQUE_FIELD WITH YOUR INITIALS
+        //
+        | logs_to_metrics name="k8s_audit_UNIQUE_FIELD" metrictype="counter" value=1 time=_time
+        | into $metrics_destination
+    ]
 | eval index = "kube_logs"
-//Send unfiltered logs to S3
 | into $destination;
 ```
 {{% notice title="New to SPL2?" style="info" icon="lightbulb" %}}
@@ -83,15 +85,15 @@ Here is a breakdown of what the SPL2 query is doing:
 
 {{% /notice %}}
 
-11. In the upper-right corner click the **Preview** button ![Preview Button](../../images/preview.png?height=20px&classes=inline) or press CTRL+Enter (CMD+Enter on Mac). From the **Previewing $pipeline** dropdown select **$metrics_destination**. Confirm you are seeing a preview of the metrics that will be sent to Splunk Observability Cloud.
+**11.** In the upper-right corner click the **Preview** button ![Preview Button](../../images/preview.png?height=20px&classes=inline) or press CTRL+Enter (CMD+Enter on Mac). From the **Previewing $pipeline** dropdown select **$metrics_destination**. Confirm you are seeing a preview of the metrics that will be sent to Splunk Observability Cloud.
 
 ![Preview Pipeline](../../images/preview_pipeline.png?width=40vw)
 
-12. In the upper-right corner click the **Save pipeline** button ![Save Pipeline Button](../../images/save_pipeline_btn.png?height=20px&classes=inline). Enter a name for your pipeline and click **Save**.
+**12.** In the upper-right corner click the **Save pipeline** button ![Save Pipeline Button](../../images/save_pipeline_btn.png?height=20px&classes=inline). Enter `Kubernetes Audit Logs2Metrics USER_ID` for your pipeline name and click **Save**.
 
 ![Save Pipeline Dialog](../../images/save_pipeline_dialog.png?width=40vw)
 
-13. After clicking save you will be asked if you would like to apply the newly created pipeline. Click **Yes, apply**.
+**13.** After clicking save you will be asked if you would like to apply the newly created pipeline. Click **Yes, apply**.
 
 ![Apply Pipeline Dialog](../../images/apply_pipeline_dialog.png?width=40vw)
 
