@@ -86,7 +86,7 @@ WORKSHOP
 └── otelcol                 # OpenTelemetry Collector binary
 ```
 
-**Examine a log line in `gateway-log.out`**: Compare a log line with the snippet below. It is a preview showing the beginning and a single log line; your actual output will contain many, many more:
+**Examine a log line in `gateway-logs.out`**: Compare a log line with the snippet below. It is a preview showing the beginning and a single log line; your actual output will contain many, many more:
 
 {{% tabs %}}
 {{% tab title="cat /gateway-log.out" %}}
