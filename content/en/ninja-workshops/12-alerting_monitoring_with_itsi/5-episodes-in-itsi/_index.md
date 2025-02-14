@@ -15,7 +15,7 @@ This section outlines the steps to create an aggregation policy in Splunk ITSI t
 
 ## Steps
 
-1. **Navigate to Notable Event Aggregation Policies:** In Splunk, go to the Notable Event Aggregation Policies section (usually under "Configuration" -> "Notable Event Aggregation Policies").
+1. **Navigate to Notable Event Aggregation Policies:** In Splunk, go to "Configuration" -> "Notable Event Aggregation Policies".
 
 2. **Create New Policy:** click the green "Create Notable Event Aggregation Policy" button in the upper right corner.
 
@@ -23,7 +23,7 @@ This section outlines the steps to create an aggregation policy in Splunk ITSI t
 
     * **Field:** Select "title" from the dropdown menu.
     * **Operator:** Choose "matches".
-    * **Value:** Enter the string "*Service Name**".
+    * **Value:** Enter the string "*Service Name**". (make sure to include the *)
 
 4. **Splitting Events:** Remove the "hosts" field that is provided by default and update it to use the "service" field. We want this generating new episodes for each Service that is found. In our example, it should only be 1.
 
@@ -35,15 +35,15 @@ This section outlines the steps to create an aggregation policy in Splunk ITSI t
 
 8. **Click Next**
 
-9. **Policy Name and Description:**
+9. **Policy Title and Description:**
     * **Policy Title:** *Service Name* Alert Grouping
     * **Description:** Grouping *Service Name* alerts together.
 
-8. **Save Policy:** Click the "Save" button to create the aggregation policy.
+8. **Save Policy:** Click the "Next" button to create the aggregation policy.
 
 ## Verification
 
-After saving the policy, navigate to the "Alerts and Episodes" page and filter alerts for last 15 minutes and add a filter to status=New and search for our Service Name in the search box.
+After saving the policy, navigate to the "Go to Episode Review" page and filter alerts for last 15 minutes and add a filter to status=New and search for our Service Name in the search box.
 
 There may already be an episode named after our specific alert already, if so,  close it out and wait for a new one to be generated with our new Title.
 

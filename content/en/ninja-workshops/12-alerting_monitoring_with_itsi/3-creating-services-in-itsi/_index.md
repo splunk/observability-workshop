@@ -16,3 +16,4 @@ We have two existing services: "Online-Boutique-US" (representing an application
 
 **Return to your Splunk Environment and under Apps, select IT Service Intelligence**
 
+In the Default Analyzer update the Filter to "Buttercup Business Health"
