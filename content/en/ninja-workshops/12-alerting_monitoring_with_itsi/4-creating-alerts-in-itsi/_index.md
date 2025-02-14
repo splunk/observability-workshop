@@ -26,20 +26,20 @@ This section guides you through configuring a basic alert in Splunk IT Service I
    ```
    index=itsi_summary kpi="*KPI*" alert_severity=critical
    ```
-    * **Time Range:** Last 5 minutes
+    * **Time Range:** Last 15 minutes
     * **Service:** *Service Name*
     * **Entity Lookup Field:** itsi_service_id
-    * **Run Every:** 5 minutes
+    * **Run Every:** minutes
     * **Notable Event Title:** *Service Name* *KPI* Critical
+    * **Severity:** Critical
     * **Notable Event Identified Fields:** source
-
-![show-entry](../images/alerts.png?classes=inline)
 
 **After Creating the Alert:**
 
 * You will need to wait 5-10 minutes for the alert to run
 * The alert will be listed in the "Alerts and Episodes" Pane in ITSI.
 
+![show-entry](../images/alerts.png?classes=inline)
 
 **Important Considerations:**
 

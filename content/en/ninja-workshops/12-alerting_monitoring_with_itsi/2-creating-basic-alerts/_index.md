@@ -42,35 +42,19 @@ Splunk alerts are triggered by search results that match specific criteria. We'l
 **Time Ranges and Frequency:** Since everything in Splunk core is a search, you need to consider the search timespan and frequency so that you are not a) searching the same data multiple times with an overlap timespan, b) missing events because of a gap between timespan and frequency, c) running too frequently and adding overhead or d) running too infrequently and experiencing delays in alerting.
 
 
-## 2. AppDynamics Alerts (Health Rule Violations)
+## 2. Splunk Observability Cloud Alerts (Detectors)
 
-**2. Create a Health Rule (or modify an existing one):**
-   * Click "Create Rule" (or edit an existing rule that applies to your application).
-   * Give the health rule a descriptive name (e.g., "Order Service Response Time Alert").
-   * **Scope:**  Select the application and tier (e.g., "OrderService").
-   * **Conditions:**
-      * Choose the metric "Average Response Time."
-      * Set the threshold: "is greater than" "500" "milliseconds."
-      * Configure the evaluation frequency (how often AppDynamics checks the metric).
-   * **Actions:**
-      * For this basic example, choose "Log to console."  In a real-world scenario, you would configure email, SMS, or other notification channels.
-   * **Save:** Save the health rule.
-
-**Explanation:** This health rule continuously monitors the average response time of the "OrderService." If the response time exceeds 500ms, the health rule is violated, triggering the alert and the configured actions.
-
-
-## 3. Splunk Observability Cloud Alerts (Detectors)
-
-**2. Create a Detector:**
+**Create a Detector:**
    * Click "Detectors & SLOs" in the lefthand menu
    * Click "Create Detector -> Custom Detector"
    * Give the detector a descriptive name (e.g., "High CPU Utilization Alert - INITIALS").
    * **Signal:**
       * Select the metric you want to monitor ("cpu.utilization"). 
       * Add any necessary filters to specify the host (`service.name:otelshop-loadgenerator`).
+      * Click "Proceed to Alert Condition"
    * **Condition:**
-      * Set the threshold: "is above" "90" "%."
-      * Configure the evaluation frequency and the "for" duration (how long the condition must be true before the alert triggers).
+      * Select Static Threshold
+      * Set the threshold: "is above" "90"
    * **Notifications:**
       * For this example, choose a simple notification method (e.g., a test webhook). In a real-world scenario, you would configure integrations with PagerDuty, Slack, or other notification systems.
    * **Save:** Save the detector.
