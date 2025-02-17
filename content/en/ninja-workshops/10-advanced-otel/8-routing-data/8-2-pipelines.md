@@ -8,7 +8,8 @@ weight: 2
 
 **Add both the `standard` and `security` traces pipelines**:
 
-1. **Standard pipeline**: This pipeline processes all spans that do not match the routing rule. Add it below the existing `traces:` pipeline, keeping the configuration unchanged for now:
+1. **Add the Standard pipeline**: This pipeline processes all spans that do not match the routing rule.  
+This pipeline is using `routing` as its receiver. Place it below the existing `traces:` pipeline, keeping its configuration unchanged for now:
 
     ```yaml
         traces/standard:                # Default pipeline for unmatched spans
@@ -22,7 +23,8 @@ weight: 2
           - file/traces/standard        # File exporter for unmatched spans
     ```
 
-2. **Security pipeline**: This pipeline will handle all spans that match the routing rule:
+2. **Configure the Security pipeline**: This pipeline will handle all spans that match the routing rule.  
+This also uses `routing` as its receiver. Add this below the Standard one:
 
     ```yaml
         traces/security:                # New Security Traces/Spans Pipeline       
@@ -38,9 +40,9 @@ weight: 2
 
 **Update the `traces` pipeline to use routing**:
 
-1. To enable `routing`, update the original `traces:` pipeline by adding `routing` as an exporter. This ensures all span data is sent through the routing connector for evaluation.
-
-2. Remove all processors as these are now defined in the `traces/standard` and `traces/security` pipelines.
+1. To enable `routing`, update the original `traces:` pipeline by using `routing` as the only exporter.  
+This ensures all span data is sent through the routing connector for evaluation.
+2. Remove all processors and replace it with an empty array []. These are now defined in the `traces/standard` and `traces/security` pipelines.
 
     ```yaml
       pipelines:

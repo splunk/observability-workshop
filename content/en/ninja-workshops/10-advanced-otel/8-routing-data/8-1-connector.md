@@ -8,7 +8,10 @@ In this exercise, you will configure the `routing` connector in the `gateway.yam
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Add the `routing` connector**: In the **Gateway** terminal window edit `gateway.yaml` and add the following below the `receivers:` and `processors:` stanzas and above the `exporters:` stanza:
+In OpenTelemetry configuration files, `connectors` have their own dedicated section, similar to receivers and processors.
+
+**Add the `routing` connector**:
+In the **Gateway** terminal window edit `gateway.yaml` and add the following below the `receivers:` section and above the `processors:` section:
 
 ```yaml
 connectors:
@@ -21,9 +24,9 @@ connectors:
         pipelines: [traces/security]     # Target pipeline 
 ```
 
-In OpenTelemetry configuration files, `connectors` have their own dedicated section, similar to receivers and processors. This approach also applies to `metrics` and `logs`, allowing them to be routed based on attributes in `resourceMetrics` or `resourceLogs`.
+The rules above apply to traces, but this approach also applies to `metrics` and `logs`, allowing them to be routed based on attributes in `resourceMetrics` or `resourceLogs`.
 
-**Configure `file:` exporters**: The `routing` connector requires separate targets for routing. Add two file exporters, `file/traces/security` and `file/traces/standard`, to ensure data is directed correctly:
+**Configure `file:` exporters**: The `routing` connector requires separate targets for routing. Add two file exporters, `file/traces/security` and `file/traces/standard`, to ensure data is directed correctly.
 
 ```yaml
   file/traces/standard:                    # Exporter for regular traces
