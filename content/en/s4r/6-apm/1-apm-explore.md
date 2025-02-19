@@ -21,7 +21,7 @@ Splunk APM also provides built-in **Service Centric Views** to help you see prob
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-* In the right hand pane, click on **View Service**.
+* In the right hand pane, click on **paymentservice** in blue.
 
 {{% /notice %}}
 
