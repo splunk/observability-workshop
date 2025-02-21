@@ -101,7 +101,7 @@
             RestartSec=1
             User=splunk
             Environment="KUBECONFIG=/home/splunk/.kube/config"
-            WorkingDirectory=/home/splunk/{{ diab_dir_name.files[0] }}manager
+            WorkingDirectory=/home/splunk/{{ diab_dir_name.files[0] }}v3
             ExecStart=/bin/bash scripts/run-manager-api.sh
             [Install]
             WantedBy=multi-user.target
@@ -130,7 +130,7 @@
             RestartSec=1
             User=splunk
             Environment="KUBECONFIG=/home/splunk/.kube/config"
-            WorkingDirectory=/home/splunk/{{ diab_dir_name.files[0] }}manager
+            WorkingDirectory=/home/splunk/{{ diab_dir_name.files[0] }}v3
             ExecStart=/bin/bash scripts/run-manager-ui.sh
             [Install]
             WantedBy=multi-user.target
