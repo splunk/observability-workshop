@@ -163,7 +163,6 @@ exporters:
 - gomod: go.opentelemetry.io/collector/exporter/otlpexporter v0.80.0
 - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/splunkhecexporter v0.80.0
 - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/signalfxexporter v0.80.0
-- gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/sapmexporter v0.80.0
 
 processors:
 - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.80.0
