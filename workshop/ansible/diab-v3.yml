@@ -138,12 +138,6 @@
         become: true
         when: not wh_result.stat.exists
 
-      #- name: Install democonsole Python dependencies
-      #  command: python3 -m pip install -r requirements.txt --upgrade
-      #  args:
-      #    chdir: "/home/splunk/{{ diab_dir_name.files[0] }}manager/"
-      #  when: not wh_result.stat.exists
-
       - name: Helm OTel Collector repository add
         command: helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel-collector-chart
         when: not wh_result.stat.exists
@@ -184,44 +178,6 @@
         retries: 10
         delay: 5
         when: not wh_result.stat.exists
-
-      #- name: Start the OpenTelemetry Collector
-      #  uri:
-      #    url: "http://localhost:8082/startCollector"
-      #    method: GET
-      #    status_code: [ 200, 201 ]
-      #    timeout: 30
-      #  when: not wh_result.stat.exists
-
-      #- name: Wait for OpenTelemetry Collector to start
-      #  pause:
-      #    seconds: 30
-      #  when: not wh_result.stat.exists
-
-      #- name: Start the frontend demo
-      #  uri:
-      #    url: "http://localhost:8082/startFrontendDemo"
-      #    method: GET
-      #    status_code: [ 200, 201 ]
-      #    timeout: 30
-      #  when: not wh_result.stat.exists
-
-      #- name: Wait for frontend demo to start
-      #  pause:
-      #    seconds: 30
-      #  when: not wh_result.stat.exists
-
-      #- name: Wait for the Online Boutique to become available
-      #  uri:
-      #    url: "http://localhost:81"
-      #    method: GET
-      #    validate_certs: no
-      #    status_code: 200
-      #    return_content: no
-      #  register: splunk_ui
-      #  until: splunk_ui.status == 200
-      #  delay: 5
-      #  retries: 30
 
       - name: Create a file to signify that the config has run successfully
         file:
