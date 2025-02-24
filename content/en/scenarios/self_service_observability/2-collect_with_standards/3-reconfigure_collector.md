@@ -8,6 +8,7 @@ time: 10 minutes
 ## Reconfigure Collector
 
 To reconfigure the collector we need to make these changes:
+
 * In `agent_config.yaml`
   * We need to adjust the **signalfx** exporter to use the gateway
   * The **otlp** exporter is already there, so we leave it alone
@@ -15,9 +16,10 @@ To reconfigure the collector we need to make these changes:
 * In `splunk-otel-collector.conf`
   * We need to set the `SPLUNK_GATEWAY_URL` to the url provided by the instructor
 
-See this [docs page](https://docs.splunk.com/observability/en/gdi/opentelemetry/deployment-modes.html#agent-configuration) for more details.
+See this [documentation page](https://docs.splunk.com/observability/en/gdi/opentelemetry/deployment-modes.html#agent-configuration) for more details.
 
 The exporters will be the following:
+
 ``` yaml
 exporters:
   # Metrics + Events
@@ -36,9 +38,11 @@ exporters:
     tls:
       insecure: true
 ```
-The others you can leave as they are but they won't be used, as you will see in the pipelines.
+
+The others you can leave as they are, but they won't be used, as you will see in the pipelines.
 
 The pipeline changes (you can see the items commented out and uncommented out):
+
 ``` yaml
 service:
   pipelines:
@@ -81,16 +85,19 @@ service:
 ```
 
 And finally we can add the `SPLUNK_GATEWAY_URL` in `splunk-otel-collector.conf`, for example:
+
 ``` conf
 SPLUNK_GATEWAY_URL=gateway.splunk011y.com
 ```
 
 Then we can restart the collector:
+
 ``` bash
 sudo systemctl restart splunk-otel-collector.service
 ```
 
 And check the status:
+
 ``` bash
 sudo systemctl status splunk-otel-collector.service
 ```
