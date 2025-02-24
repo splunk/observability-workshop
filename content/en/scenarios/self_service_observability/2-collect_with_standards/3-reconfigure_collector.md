@@ -87,7 +87,7 @@ service:
 And finally we can add the `SPLUNK_GATEWAY_URL` in `splunk-otel-collector.conf`, for example:
 
 ``` conf
-SPLUNK_GATEWAY_URL=gateway.splunk011y.com
+SPLUNK_GATEWAY_URL=gateway.splunko11y.com
 ```
 
 Then we can restart the collector:
