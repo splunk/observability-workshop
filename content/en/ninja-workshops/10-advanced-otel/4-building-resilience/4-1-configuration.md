@@ -76,9 +76,9 @@ graph LR
       EXP1(&ensp;debug&ensp;<br>fa:fa-upload):::exporter
       EXP2(otlphttp<br>fa:fa-upload):::exporter
     %% Links
-    subID1:::sub-logs
+    subID1:::sub-metrics
     subgraph " "
-      subgraph subID1[**Logs**]
+      subgraph subID1[**Metrics**]
       direction LR
       REC1 --> PRO1
       PRO1 --> PRO2
@@ -91,5 +91,5 @@ graph LR
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
 classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
-classDef sub-logs stroke:#34d399,stroke-width:1px, color:#34d399,stroke-dasharray: 3 3;
+classDef sub-metrics stroke:#38bdf8,stroke-width:1px, color:#38bdf8,stroke-dasharray: 3 3;
 ```
