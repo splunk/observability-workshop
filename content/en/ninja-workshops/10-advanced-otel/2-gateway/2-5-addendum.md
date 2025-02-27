@@ -1,7 +1,7 @@
 ---
-title: 2.4 Addendum - Info on Access Tokens and Batch Processing
-linkTitle: 2.4 Addendum
-weight: 4
+title: 2.5 Addendum - Info on Access Tokens and Batch Processing
+linkTitle: 2.5 Addendum
+weight: 5
 ---
 
 
