@@ -41,7 +41,6 @@ By the end of this workshop, you'll be familiar with configuring the OpenTelemet
 Having access to [**jq**](https://jqlang.org/download/) is recommended. This lightweight command-line tool helps process and format JSON data, making it easier to inspect traces, metrics, and logs from the OpenTelemetry Collector.
 {{% /notice %}}
 
-
 | Platform                         | Binary URL          |
 |----------------------------------|---------------------|
 |  Apple Mac (Apple Silicon)   | **[otelcol_darwin_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_arm64)** |
@@ -56,6 +55,7 @@ Once downloaded, rename the file to `otelcol` (or `otelcol.exe` on Windows). On 
 
 ```bash
 chmod +x otelcol
+./otelcol -v
 ```
 
 {{% tabs %}}
