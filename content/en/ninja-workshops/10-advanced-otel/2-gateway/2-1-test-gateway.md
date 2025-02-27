@@ -4,10 +4,9 @@ linkTitle: 2.1 Start Gateway
 weight: 1
 ---
 
-The configuration for the **Gateway** does not need any additional changes to function. This has been done to save time and focus on the core concepts of the **Gateway**.
+The configuration for the **Gateway** does not need any additional configuration changes to function. This has been done to save time and focus on the core concepts of the **Gateway**.
 
-
-First, validate the **Gateway** configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `logs:` section of your pipelines will look similar to this:
+Validate the **Gateway** configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `logs:` section of your pipelines will look similar to this:
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%
