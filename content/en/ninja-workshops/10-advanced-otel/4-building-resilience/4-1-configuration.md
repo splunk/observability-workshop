@@ -71,7 +71,7 @@ graph LR
       REC1(&nbsp;&nbsp;otlp&nbsp;&nbsp;<br>fa:fa-download):::receiver
       PRO1(memory_limiter<br>fa:fa-microchip):::processor
       PRO2(resourcedetection<br>fa:fa-microchip):::processor
-      PRO3(resource<br>fa:fa-microchip):::processor
+      PRO3(resource<br>fa:fa-microchip<br>add_mode):::processor
       PRO4(batch<br>fa:fa-microchip):::processor
       EXP1(&ensp;debug&ensp;<br>fa:fa-upload):::exporter
       EXP2(otlphttp<br>fa:fa-upload):::exporter
