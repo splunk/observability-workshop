@@ -24,10 +24,7 @@ In the `1-agent` directory, create a file named `agent.yaml`. This file will def
 
 Copy and paste the following initial configuration into `agent.yaml`:
 
-{{% tabs %}}
-{{% tab title="agent.yaml" %}}
-
-```yaml
+```yaml { title="agent.yaml" }
 ###########################        This section holds all the
 ## Configuration section ##        configurations that can be 
 ###########################        used in this OpenTelemetry Collector
@@ -91,9 +88,6 @@ service:                          # Services configured for this Collector
       exporters:
       - debug                     # Debug Exporter
 ```
-
-{{% /tab %}}
-{{% /tabs %}}
 
 ```text { title="Updated Directory Structure" }
 [WORKSHOP]
