@@ -17,9 +17,9 @@ Welcome to the Observability Workshop Setup Guide. This guide will walk you thro
   - [**Observability Workshop AMER (US1)**](https://app.us1.signalfx.com/#/home/EPNXccRAwAA)
   - [**APAC-O11y-Workshop (US1)**](https://app.us1.signalfx.com/#/home/FA-6LDcA4AA)
 
-**Blacklisted Orgs**:
+**Blocked Orgs**:
 
-- The following Orgs are blacklisted and cannot be used for running workshops:
+- The following Orgs are blocked and cannot be used for running workshops:
   - **EU Splunk Show (EU0)**
   - **US Splunk Show (US1)**
   - **Show Playground (US1)**
