@@ -24,14 +24,8 @@ In this section, we will test the `routing` rule configured for the **Gateway**.
   
 The following JSON contains attributes which will trigger the routing rule. Copy the content from the tab below and save into a file named `security.json`.
 
-{{% tabs %}}
-{{% tab title="security.json" %}}
-
-```json
+```json { title="security.json" }
 {"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"password_check"}},{"key":"deployment.environment","value":{"stringValue":"security_applications"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5B8EFFF798038103D269B633813FC60C","spanId":"EEE19B7EC3C1B174","parentSpanId":"EEE19B7EC3C1B173","name":"I'm a server span","startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","kind":2,"attributes":[{"keytest":"my.span.attr","value":{"stringValue":"some value"}}]}]}]}]}
 ```
-
-{{% /tab %}}
-{{% /tabs %}}
 
 {{% /notice %}}
