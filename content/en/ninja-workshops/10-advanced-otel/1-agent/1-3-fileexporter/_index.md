@@ -28,9 +28,17 @@ Find your **Agent** terminal window, and stop the running collector by pressing 
         append: false                 # Overwrite the file each time
     ```
 
-1. **Update the Pipelines Section**: Add the `file` exporter to the `metrics`, `traces` and `logs` pipelines (leave debug as the first in the array).
+1. **Update the Pipelines Section**: Add the `file` exporter to the `metrics`, `traces` and `logs` pipelines:
 
     ```yaml
+        traces:
+          receivers:
+          - otlp                      # OTLP Receiver
+          processors:
+          - memory_limiter            # Memory Limiter Processor
+          exporters:
+          - debug                     # Debug Exporter
+          - file                      # File Exporter
         metrics:
           receivers:
           - otlp                      # OTLP Receiver
@@ -39,6 +47,15 @@ Find your **Agent** terminal window, and stop the running collector by pressing 
           exporters:
           - debug                     # Debug Exporter
           - file                      # File Exporter
+        logs:
+          receivers:
+          - otlp                      # OTLP Receiver
+          processors:
+          - memory_limiter            # Memory Limiter Processor
+          exporters:
+          - debug                     # Debug Exporter
+          - file                      # File Exporter
+
     ```
 
 {{% /notice %}}
