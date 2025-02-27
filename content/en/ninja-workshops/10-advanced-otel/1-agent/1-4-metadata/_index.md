@@ -8,31 +8,25 @@ So far, we've simply exported an exact copy of the span sent through the OpenTel
 
 Now, let's improve the base span by adding metadata with processors. This extra information can be helpful for troubleshooting and correlation.
 
-Find your **Agent** terminal window, and stop the running collector by pressing `Ctrl-C`. Once the **Agent** has stopped, open the `agent.yaml` and configure the `resourcedetection` and `resource` processors:
-
 {{% notice title="Exercise" style="green" icon="running" %}}
+**Stop the collector**: In your **Agent** terminal window, and stop the running collector by pressing `Ctrl-C`. Once the **Agent** has stopped, open the `agent.yaml`.
 
-**Add the `resourcedetection` Processor**: The [**Resource Detection Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/resourcedetectionprocessor/README.md) can be used to detect resource information from the host and append or override the resource value in telemetry data with this information.
+**Update All Pipelines**: Add both processors (`resourcedetection` and `resource/add_mode`) to the `processors` array in **all pipelines**. Ensure `memory_limiter` remains the first processor.
 
-```yaml
-  resourcedetection:              # Processor Type
-    detectors: [system]           # Detect system resource information
-    override: true                # Overwrites existing attributes
-```
-
-**Add `resource` Processor and name it `add_mode`**: The [**Resource Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/resourceprocessor/README.md) can be used to apply changes on resource attributes.
+- The [**Resource Detection Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/resourcedetectionprocessor/README.md) is used to detect resource information from the host and append or override the resource value in telemetry data with this information.
+- The [**Resource Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/resourceprocessor/README.md) is used to apply changes on resource attributes. In this case, the default configuration adds a new attribute `otelcol.service.mode` with the value `agent`.
 
 ```yaml
-  resource/add_mode:              # Processor Type/Name
-    attributes:                   # Array of attributes and modifications
-    - action: insert              # Action is to insert a key
-      key: otelcol.service.mode   # Key name
-      value: "agent"              # Key value
-```
-
-**Update All Pipelines**: Add both processors (`resourcedetection` and `resource/add_mode`) to the `processors` array in **all pipelines** (traces, metrics, and logs). Ensure `memory_limiter` remains the first processor.
-
-```yaml
+    traces:
+      receivers:
+      - otlp                      # OTLP Receiver
+      processors:
+      - memory_limiter            # Memory Limiter Processor
+      - resourcedetection         # Adds system attributes to the data
+      - resource/add_mode         # Adds collector mode metadata
+      exporters:
+      - debug                     # Debug Exporter
+      - file                      # File Exporter
     metrics:
       receivers:
       - otlp                      # OTLP Receiver
@@ -43,6 +37,17 @@ Find your **Agent** terminal window, and stop the running collector by pressing 
       exporters:
       - debug                     # Debug Exporter
       - file                      # File Exporter
+    logs:
+      receivers:
+      - otlp                      # OTLP Receiver
+      processors:
+      - memory_limiter            # Memory Limiter Processor
+      - resourcedetection         # Adds system attributes to the data
+      - resource/add_mode         # Adds collector mode metadata
+      exporters:
+      - debug                     # Debug Exporter
+      - file                      # File Exporter
+
 ```
 
 {{% /notice %}}

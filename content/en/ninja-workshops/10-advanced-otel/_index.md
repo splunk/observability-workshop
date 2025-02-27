@@ -79,7 +79,7 @@ chmod +x otelcol
 
 {{% /notice %}}
 
-{{% notice warning %}}
+{{% notice style="warning" title="macOS Users" icon="desktop" %}}
 Before running the OpenTelemetry Collector on macOS, you need to remove the quarantine attribute that macOS applies to downloaded files. This step ensures the Collector can execute without restrictions.
 
 Run the following command in your terminal:

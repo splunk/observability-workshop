@@ -4,7 +4,7 @@ linkTitle: 1.2 Test Agent Configuration
 weight: 2
 ---
 
-Once you've updated the configuration, you’re ready to proceed to running the OpenTelemetry Collector with your new setup. This exercise sets the foundation for understanding how data flows through the OpenTelemetry Collector.
+You’re ready to start the OpenTelemetry Collector with the newly created `agent.yaml`. This exercise sets the foundation for understanding how data flows through the OpenTelemetry Collector.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -34,23 +34,16 @@ In this workshop, we use **macOS/Linux** commands by default. If you’re using 
 2025-01-13T12:43:51.747+0100 info service@v0.117.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
-**Create a test span file**:
-Instead of instrumenting an application, we will simulate sending trace data to the OpenTelemetry Collector using `cURL`. The trace data, formatted in JSON, represents what an instrumentation library would typically generate and send.
+**Create a test span file**: Rather than instrumenting an application, we’ll simulate sending trace data to the OpenTelemetry Collector using **curl**. The JSON-formatted trace data mimics what an instrumentation library would generate, allowing us to test the Collector’s processing logic.
 
-1. Find your **Tests** Terminal window and change into the `[WORKSHOP]/1-agent` directory.
-2. Copy and paste the following **span** data into a new file named `trace.json`:
+1. Open your **Tests Terminal** window and navigate to the `[WORKSHOP]/1-agent` directory.  
+2. Create a new file named **trace.json** and paste the following span data into it:  
 
-This file will allow us to test how the OpenTelemetry Collector processes and send **spans** that are part of a trace, without requiring actual application instrumentation.
-
-{{% tabs %}}
-{{% tab title="trace.json" %}}
-
-```json
+```json { title="trace.json" }
 {"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"my.service"}},{"key":"deployment.environment","value":{"stringValue":"my.environment"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5B8EFFF798038103D269B633813FC60C","spanId":"EEE19B7EC3C1B174","parentSpanId":"EEE19B7EC3C1B173","name":"I'm a server span","startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","kind":2,"attributes":[{"key":"user.name","value":{"stringValue":"George Lucas"}},{"key":"user.phone_number","value":{"stringValue":"+1555-867-5309"}},{"key":"user.email","value":{"stringValue":"george@deathstar.email"}},{"key":"user.account_password","value":{"stringValue":"LOTR>StarWars1-2-3"}},{"key":"user.visa","value":{"stringValue":"4111 1111 1111 1111"}},{"key":"user.amex","value":{"stringValue":"3782 822463 10005"}},{"key":"user.mastercard","value":{"stringValue":"5555 5555 5555 4444"}}]}]}]}]}
 ```
 
-{{% /tab %}}
-{{% /tabs %}}
+This file enables testing how the OpenTelemetry Collector processes and sends spans as part of a trace—without requiring actual application instrumentation.
 
 ```text { title="Updated Directory Structure" }
 [WORKSHOP]

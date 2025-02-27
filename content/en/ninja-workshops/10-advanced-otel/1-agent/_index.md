@@ -40,13 +40,27 @@ receivers:                        # Array of Receivers
     collection_interval: 3600s    # Scrape metrics every hour
     scrapers:                     # Array of hostmetric scrapers
       cpu:                        # Scraper for cpu metrics
+  otlp:                           # Receiver Type
+    protocols:                    # List of Protocols used 
+      http:                       # HTTP Protocol
+        endpoint: "0.0.0.0:4318"  # Endpoint for incoming telemetry data
 
 exporters:                        # Array of Exporters
+  debug:                          # Exporter Type
+    verbosity: detailed           # Enabled detailed debug output
 
 processors:                       # Array of Processors
   memory_limiter:                 # Limits memory usage by Collectors pipeline
     check_interval: 2s            # Interval to check memory usage
     limit_mib: 512                # Memory limit in MiB
+  resourcedetection:              # Processor Type
+    detectors: [system]           # Detect system resource information
+    override: true                # Overwrites existing attributes
+  resource/add_mode:              # Processor Type/Name
+    attributes:                   # Array of attributes and modifications
+    - action: insert              # Action is to insert a key
+      key: otelcol.service.mode   # Key name
+      value: "agent"              # Key value
 
 ###########################         This section controls what
 ### Activation Section  ###         configurations will be used
@@ -57,20 +71,25 @@ service:                          # Services configured for this Collector
   pipelines:                      # Array of configured pipelines
     traces:
       receivers:
+      - otlp                      # OTLP Receiver
       processors:
       - memory_limiter            # Memory Limiter processor
       exporters:
+      - debug                     # Debug Exporter
     metrics:
       receivers:
+      - otlp                      # OTLP Receiver
       processors:
       - memory_limiter            # Memory Limiter processor
       exporters:
+      - debug                     # Debug Exporter
     logs:
       receivers:
+      - otlp                      # OTLP Receiver
       processors:
       - memory_limiter            # Memory Limiter processor
       exporters:
-
+      - debug                     # Debug Exporter
 ```
 
 {{% /tab %}}
