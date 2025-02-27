@@ -33,8 +33,14 @@ By the end of this workshop, you'll be familiar with configuring the OpenTelemet
 
 ### Prerequisites
 
+- For this workshop, using a good YAML editor will be hugely beneficial. We recommend downloading [**Visual Studio Code**](https://code.visualstudio.com/download) or use the [**online version**](https://vscode.dev/).
 - **Create a directory** on your machine for the workshop (e.g., `advanced-otel`). We will refer to this directory as `[WORKSHOP]` in the instructions.
 - **Download the latest OpenTelemetry Collector release** for your platform and place it in the `[WORKSHOP]` directory:
+
+{{% notice note %}}
+Having access to [**jq**](https://jqlang.org/download/) is recommended. This lightweight command-line tool helps process and format JSON data, making it easier to inspect traces, metrics, and logs from the OpenTelemetry Collector.
+{{% /notice %}}
+
 
 | Platform                         | Binary URL          |
 |----------------------------------|---------------------|
@@ -73,12 +79,13 @@ chmod +x otelcol
 
 {{% /notice %}}
 
-{{% notice note %}}
-Mac users must trust the executable when running `otelcol` for the first time. For more details, refer to [**Apple's support page**](https://support.apple.com/en-mide/102445).
-{{% /notice %}}
+{{% notice warning %}}
+Before running the OpenTelemetry Collector on macOS, you need to remove the quarantine attribute that macOS applies to downloaded files. This step ensures the Collector can execute without restrictions.
 
-{{% notice title=" Optional Tools" style="primary" icon="lightbulb" %}}
-For this workshop, using a good YAML editor like [**Visual Studio Code**](https://code.visualstudio.com/download) will be beneficial.
+Run the following command in your terminal:
 
-Additionally, having access to [**jq**](https://jqlang.org/download/) is recommended. This lightweight command-line tool helps process and format JSON data, making it easier to inspect traces, metrics, and logs from the OpenTelemetry Collector.
+```bash
+xattr -dr com.apple.quarantine otelcol
+```
+
 {{% /notice %}}
