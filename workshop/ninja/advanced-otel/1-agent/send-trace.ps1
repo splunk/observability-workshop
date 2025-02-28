@@ -1,60 +1,146 @@
-# Generate new traceId and spanId
-$traceId = -join ((65..70) + (48..57) + (97..102) | Get-Random -Count 32 | % {[char]$_}) 
-$spanId = -join ((65..70) + (48..57) + (97..102) | Get-Random -Count 16 | % {[char]$_})
+# PowerShell equivalent of the Bash script to send spans to OpenTelemetry collector
 
-# Get current time in nanoseconds
-$startTime = [string]([int64](([datetime]::UtcNow - (Get-Date -Date "1970-01-01T00:00:00Z")).TotalSeconds * 1000000000))
-$endTime = [string]([int64]($startTime + 1000000000))  # Adds 1 second
+# Function to generate a random trace ID
+function Generate-TraceId {
+  return ((1..16 | ForEach-Object { "{0:X}" -f (Get-Random -Maximum 256) }) -join '').ToUpper()
+}
 
-# Construct span JSON
-$spanJson = @"
+# Function to generate a random span ID
+function Generate-SpanId {
+  return ((1..8 | ForEach-Object { "{0:X}" -f (Get-Random -Maximum 256) }) -join '').ToUpper()
+}
+
+# Function to get the current timestamp in nanoseconds
+function Get-CurrentTime {
+  return [string]([math]::Round((Get-Date -UFormat %s) * 1000000000))
+}
+
+# Function to send a base trace
+function Send-Trace {
+  param(
+      [string]$traceId,
+      [string]$spanId,
+      [string]$startTime,
+      [string]$endTime
+  )
+  
+  $spanJson = @"
 {
-  "resourceSpans": [
-    {
-      "resource": {
-        "attributes": [
-          { "key": "service.name", "value": { "stringValue": "my.service" } },
-          { "key": "deployment.environment", "value": { "stringValue": "my.environment" } }
-        ]
-      },
-      "scopeSpans": [
-        {
-          "scope": {
-            "name": "my.library",
-            "version": "1.0.0",
-            "attributes": [
-              { "key": "my.scope.attribute", "value": { "stringValue": "some scope attribute" } }
-            ]
-          },
-          "spans": [
-            {
-              "traceId": "$traceId",
-              "spanId": "$spanId",
-              "name": "I'm a server span",
-              "startTimeUnixNano": "$startTime",
-              "endTimeUnixNano": "$endTime",
-              "kind": 2,
-              "attributes": [
-                { "key": "user.name", "value": { "stringValue": "George Lucas" } }
-              ]
-            }
-          ]
-        }
+"resourceSpans": [
+  {
+    "resource": {
+      "attributes": [
+        { "key": "service.name", "value": { "stringValue": "Validation-service" } },
+        { "key": "deployment.environment", "value": { "stringValue": "Production" } }
       ]
-    }
-  ]
+    },
+    "scopeSpans": [
+      {
+        "scope": {
+          "name": "fintest.library",
+          "version": "1.0.0",
+          "attributes": [
+            { "key": "fintest.scope.attribute", "value": { "stringValue": "Euro, Dollar, Yen" } }
+          ]
+        },
+        "spans": [
+          {
+            "traceId": "$traceId",
+            "spanId": "$spanId",
+            "name": "Initial Login Span",
+            "startTimeUnixNano": "$startTime",
+            "endTimeUnixNano": "$endTime",
+            "kind": 2,
+            "status": {
+              "code": 1, 
+              "message": "Success"
+            },
+            "attributes": [
+              { "key": "user.name", "value": { "stringValue": "George Lucas" } }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
 }
 "@
 
-# Save to a temp file
-$tempFile = [System.IO.Path]::GetTempFileName()
-$spanJson | Out-File -FilePath $tempFile -Encoding utf8
+  Invoke-RestMethod -Uri "http://localhost:4318/v1/traces" -Method Post -ContentType "application/json" -Body $spanJson
+  Write-Output "Base trace sent with traceId: $traceId and spanId: $spanId"
+}
 
-# Send the JSON via curl
-$curlCommand = "curl -X POST `"`"http://localhost:4318/v1/traces`"`" -H `"`"Content-Type: application/json`"`" -d @$tempFile"
-cmd.exe /c $curlCommand
+# Function to send a health trace
+function Send-HealthTrace {
+  param(
+      [string]$traceId,
+      [string]$spanId,
+      [string]$startTime,
+      [string]$endTime
+  )
+  
+  $healthJson = @"
+{
+"resourceSpans": [
+  {
+    "resource": {
+      "attributes": [
+        { "key": "service.name", "value": { "stringValue": "frontend-service" } },
+        { "key": "deployment.environment", "value": { "stringValue": "Advanced-Otel" } }
+      ]
+    },
+    "scopeSpans": [
+      {
+        "scope": {
+          "name": "healthz",
+          "version": "1.0.0"
+        },
+        "spans": [
+          {
+            "traceId": "$traceId",
+            "spanId": "$spanId",
+            "name": "/_healthz",
+            "startTimeUnixNano": "$startTime",
+            "endTimeUnixNano": "$endTime",
+            "kind": 2,
+            "status": {
+              "code": 1, 
+              "message": "Success"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
+}
+"@
 
-# Cleanup temp file
-Remove-Item -Path $tempFile -Force
+  Invoke-RestMethod -Uri "http://localhost:4318/v1/traces" -Method Post -ContentType "application/json" -Body $healthJson
+  Write-Output "Health trace sent with traceId: $traceId and spanId: $spanId"
+}
 
-Write-Host "Trace sent with traceId: $traceId and spanId: $spanId"
+# Parse command-line flags
+param(
+  [switch]$health,
+  [switch]$security
+)
+
+Write-Output "Sending traces every 5 seconds. Use Ctrl-C to stop."
+
+while ($true) {
+  $traceId = Generate-TraceId
+  $spanId = Generate-SpanId
+  $currentTime = Get-CurrentTime
+  $endTime = [string]([long]$currentTime + 1000000000)
+
+  Send-Trace -traceId $traceId -spanId $spanId -startTime $currentTime -endTime $endTime
+
+  if ($health) {
+      Start-Sleep -Seconds 5
+      Send-HealthTrace -traceId $traceId -spanId (Generate-SpanId) -startTime (Get-CurrentTime) -endTime ([string]([long]$currentTime + 1000000000))
+  }
+
+  Start-Sleep -Seconds 5
+}
