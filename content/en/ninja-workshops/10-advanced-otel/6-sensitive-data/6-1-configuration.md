@@ -25,7 +25,7 @@ Attributes:
 
 Switch to your **Agent** terminal window. Navigate to the `[WORKSHOP]/6-sensitive-data` directory and open the `agent.yaml` file in your editor.
 
-**Add an `attributes` Processor**: This processor allows you to update, delete, or hash specific attributes (tags) within spans.  
+**Add an `attributes` Processor**: The [**Attributes Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/attributesprocessor) allows you to update, delete, or hash specific attributes (tags) within spans.  
 We'll **update** the `user.phone_number`, **hash** the `user.email`, and **delete** the `user.account_password`:
 
 ```yaml
@@ -40,7 +40,7 @@ We'll **update** the `user.phone_number`, **hash** the `user.email`, and **delet
         action: delete
   ```
 
-**Add a `redaction` Processor**: This processor will detect and redact sensitive data values based on predefined patterns. We'll block credit card numbers using regular expressions.
+**Add a `redaction` Processor**: [**The Redaction Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/redactionprocessor) will detect and redact sensitive data values based on predefined patterns. We'll block credit card numbers using regular expressions.
 
 ```yaml
   redaction/redact:               # Processor Type/Name

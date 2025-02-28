@@ -96,8 +96,6 @@ service:                          # Service configuration
       - file/logs
 ```
 
-{{% /notice %}}
-
 ```text { title="Updated Directory Structure" }
 [WORKSHOP]
 ├── 1-agent             # Module directory
@@ -107,3 +105,5 @@ service:                          # Service configuration
 │   └── trace.json      # Sample trace data
 └── otelcol             # OpenTelemetry Collector binary
 ```
+
+{{% /notice %}}

@@ -37,14 +37,14 @@ At this stage, the **Agent** continues to collect **CPU** metrics once per hour 
 3. The Metrics should include details similar to those shown below (We're only displaying the `resourceMetrics` section and the first set of **CPU** metrics):
 
 {{% tabs %}}
-{{% tab title="`cat ./gateway-metrics.out`" %}}
+{{% tab title="cat ./gateway-metrics.out" %}}
 
 ```json
 {"resourceMetrics":[{"resource":{"attributes":[{"key":"host.name","value":{"stringValue":"YOUR_HOST_NAME"}},{"key":"os.type","value":{"stringValue":"YOUR_OS"}},{"key":"otelcol.service.mode","value":{"stringValue":"gateway"}}]},"scopeMetrics":[{"scope":{"name":"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver/internal/scraper/cpuscraper","version":"v0.116.0"},"metrics":[{"name":"system.cpu.time","description":"Total seconds each logical CPU spent on each mode.","unit":"s","sum":{"dataPoints":[{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"user"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":1168005.59}]}}]}]}]}
 ```
 
 {{% /tab %}}
-{{% tab title="`cat ./gateway-metrics.out | jq`" %}}
+{{% tab title="cat ./gateway-metrics.out | jq" %}}
 
 ```json
 {

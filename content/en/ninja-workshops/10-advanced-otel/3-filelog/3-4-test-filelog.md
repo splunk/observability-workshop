@@ -97,7 +97,7 @@ WORKSHOP
 ```
 
 {{% /tab %}}
-{{% tab title="cat `./gateway-logs.out` | jq" %}}
+{{% tab title="cat ./gateway-logs.out | jq" %}}
 
 ```json
 {

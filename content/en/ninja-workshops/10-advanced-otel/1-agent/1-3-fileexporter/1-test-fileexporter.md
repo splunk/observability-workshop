@@ -44,9 +44,9 @@ On **Windows**, an open file may appear empty or cause issues when attempting to
 
 **Verify the span format**:
 
-1. Check the Format that The File Exporter has used to write the span to the `agent.out`.
-2. It should be a single line in OTLP/JSON format.
-3. Since no modifications have been made to the pipeline yet, this file should be identical to `trace.json`.
+1. Verify the format used by the File Exporter to write the span to `agent.out`.  
+2. The output should be a single line in OTLP/JSON format.  
+3. To view the contents of `agent.out`, you can use the `cat ./agent.out` command. For a more readable, formatted view, pipe the output to `jq` like this: `cat ./agent.out | jq`.
 
 {{% tabs %}}
 {{% tab title="cat ./agent.out" %}}
@@ -156,20 +156,5 @@ On **Windows**, an open file may appear empty or cause issues when attempting to
 
 {{% /tab %}}
 {{% /tabs %}}
-
-{{% /notice %}}
-
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-If you want to view the file’s content, simply run:
-
-```sh
-cat agent.out
-```
-
-For a formatted JSON output, you can use the same command but pipe it through **jq** (if installed):
-
-```bash
-cat ./agent.out | jq
-```
 
 {{% /notice %}}
