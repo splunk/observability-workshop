@@ -54,7 +54,7 @@ func sendBaseTrace(traceID, spanID string, startTime, endTime int64) {
 						map[string]interface{}{
 							"key": "deployment.environment",
 							"value": map[string]interface{}{
-								"stringValue": "Production",
+								"stringValue": "production",
 							},
 						},
 					},
@@ -151,13 +151,13 @@ func sendSecurityTrace(traceID, spanID string, startTime, endTime int64) {
 						map[string]interface{}{
 							"key": "service.name",
 							"value": map[string]interface{}{
-								"stringValue": "password_check",
+								"stringValue": "password-check",
 							},
 						},
 						map[string]interface{}{
 							"key": "deployment.environment",
 							"value": map[string]interface{}{
-								"stringValue": "security_applications",
+								"stringValue": "security-applications",
 							},
 						},
 					},
@@ -217,7 +217,7 @@ func sendHealthTrace(traceID, spanID string, startTime, endTime int64) {
 						map[string]interface{}{
 							"key": "deployment.environment",
 							"value": map[string]interface{}{
-								"stringValue": "Production",
+								"stringValue": "production",
 							},
 						},
 					},
@@ -347,8 +347,8 @@ Options:
   -h, --help  Display this help message
 
 Example:
-  trace_sender -health -security   Send health and security traces
-  trace_sender -logs -json         Write random quotes in JSON format to quotes.log`)
+  loadgen -health -security   Send health and security traces
+  loadgen -logs -json         Write random quotes in JSON format to quotes.log`)
 }
 
 func main() {
