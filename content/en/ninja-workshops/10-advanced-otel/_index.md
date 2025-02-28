@@ -43,11 +43,11 @@ Having access to [**jq**](https://jqlang.org/download/) is recommended. This lig
 
 | Platform                         | OpenTelemetry Collector | Load Generator |
 |----------------------------------|-------------------------|----------------|
-|  Apple Mac (Apple Silicon)   | **[otelcol_darwin_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_arm64)** | [**trace_sender_darwin_arm64**](https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/trace_sender_darwin_arm64) |
-|  Apple Mac (Intel)           | **[otelcol_darwin_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_amd64)** | |
+|  Apple Mac (Apple Silicon)   | **[otelcol_darwin_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_arm64)** | [**trace_sender_darwin_arm64**](https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/trace_sender_darwin_arm64) |
+|  Apple Mac (Intel)           | **[otelcol_darwin_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_amd64)** | [**trace_sender_darwin_amd64**](https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/trace_sender_darwin_amd64)|
 |  Windows AMD/64              | **[otelcol_windows_amd64.exe](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_windows_amd64.exe)** | [**trace_sender_windows_amd64.exe**](https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/trace_sender_windows_amd64.exe) |
-|  Linux (AMD/64)              |**[otelcol_linux_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_amd64)** | |
-|  Linux (ARM/64)              |**[otelcol_linux_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_arm64)** | |
+|  Linux (AMD/64)              |**[otelcol_linux_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_amd64)** | [**trace_sender_linux_amd64**](https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/trace_sender_linux_amd64)|
+|  Linux (ARM/64)              |**[otelcol_linux_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_arm64)** | [**trace_sender_linux_arm64**](https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/trace_sender_linux_arm64)|
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
