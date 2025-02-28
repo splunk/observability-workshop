@@ -337,7 +337,7 @@ func writeLogs(jsonOutput bool) {
 
 // Display usage instructions
 func printHelp() {
-	fmt.Println(`Usage: trace_sender [OPTIONS]
+	fmt.Println(`Usage: loadgen [OPTIONS]
 Options:
   -base       Send base traces (enabled by default)
   -health     Send health traces
