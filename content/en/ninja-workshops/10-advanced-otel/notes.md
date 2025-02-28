@@ -9,5 +9,3 @@
 - 4.1 Stress that only the metrics pipeline is being updated
 - 5 Update span generator to include health span
 - 5.1 Updated to comment out hostmetrics
-- 7.2 Make clearer the json flag needs setting
-- 8.2 add_mode is missing from mermaid diagram
