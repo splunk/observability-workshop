@@ -14,7 +14,7 @@ get_current_time() {
     echo $(($(date +%s) * 1000000000))
 }
 
-# Function to send a trace
+# Function to send a base trace
 send_trace() {
     local trace_id=$1
     local span_id=$2
@@ -28,7 +28,7 @@ send_trace() {
       "resource": {
         "attributes": [
           { "key": "service.name", "value": { "stringValue": "Validation-service" } },
-          { "key": "deployment.environment", "value": { "stringValue": "Advanced-Otel" } }
+          { "key": "deployment.environment", "value": { "stringValue": "Production" } }
         ]
       },
       "scopeSpans": [
@@ -44,11 +44,15 @@ send_trace() {
             {
               "traceId": "$trace_id",
               "spanId": "$span_id",
-              "name": "/Login Validator",
+              "name": "Initial Login Span",
               "startTimeUnixNano": "$start_time",
               "endTimeUnixNano": "$end_time",
               "kind": 2,
-              "attributes":  [
+              "status": {
+                "code": 1, 
+                "message": "Success"
+              },
+              "attributes": [
                 {
                   "key": "user.name",
                   "value": {
@@ -102,11 +106,66 @@ send_trace() {
 EOF
     )
 
-    curl -X POST "http://localhost:4318/v1/traces" \
-         -H "Content-Type: application/json" \
-         -d "$span_json"
-
+    curl -X POST "http://localhost:4318/v1/traces" -H "Content-Type: application/json" -d "$span_json"
     echo -e "\nBase trace sent with traceId: $trace_id and spanId: $span_id"
+}
+
+# Function to send a security span
+send_security_trace() {
+    local trace_id=$1
+    local span_id=$2
+    local start_time=$3
+    local end_time=$4
+
+    local security_json=$(cat <<EOF
+{
+  "resourceSpans": [
+    {
+      "resource": {
+        "attributes": [
+          { "key": "service.name", "value": { "stringValue": "password_check" } },
+          { "key": "deployment.environment", "value": { "stringValue": "security_applications" } }
+        ]
+      },
+      "scopeSpans": [
+        {
+          "scope": {
+            "name": "my.library",
+            "version": "1.0.0"
+          },
+          "spans": [
+            {
+              "traceId": "$trace_id",
+              "spanId": "$span_id",
+              "parentSpanId": "$(generate_span_id)",
+              "name": "password-validation",
+              "startTimeUnixNano": "$start_time",
+              "endTimeUnixNano": "$end_time",
+              "kind": 2,
+              "status": {
+                "code": 1, 
+                "message": "Success"
+              },
+              "attributes": [
+               {
+                  "key": "user.name",
+                  "value": {
+                    "stringValue": "George Lucas"
+                  }
+                }  
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+EOF
+    )
+
+    curl -X POST "http://localhost:4318/v1/traces" -H "Content-Type: application/json" -d "$security_json"
+    echo -e "\nSecurity trace sent with traceId: $trace_id and spanId: $span_id"
 }
 
 # Function to send a health span
@@ -122,17 +181,15 @@ send_health_trace() {
     {
       "resource": {
         "attributes": [
-          { "key": "service.name", "value": { "stringValue": "frontend-service" } }
-          { "key": "deployment.environment", "value": { "stringValue": "Advanced-Otel" } }      ]
+          { "key": "service.name", "value": { "stringValue": "frontend-service" } },
+          { "key": "deployment.environment", "value": { "stringValue": "Advanced-Otel" } }
+        ]
       },
       "scopeSpans": [
         {
           "scope": {
             "name": "healthz",
-            "version": "1.0.0",
-            "attributes": [
-              { "key": "healthz.scope.attribute", "value": { "stringValue": "Health check" } }
-            ]
+            "version": "1.0.0"
           },
           "spans": [
             {
@@ -142,9 +199,10 @@ send_health_trace() {
               "startTimeUnixNano": "$start_time",
               "endTimeUnixNano": "$end_time",
               "kind": 2,
-              "attributes": [
-                { "key": "health.status", "value": { "stringValue": "pass" } }
-              ]
+              "status": {
+                "code": 1, 
+                "message": "Success"
+              } 
             }
           ]
         }
@@ -155,51 +213,48 @@ send_health_trace() {
 EOF
     )
 
-    curl -X POST "http://localhost:4318/v1/traces" \
-         -H "Content-Type: application/json" \
-         -d "$health_json"
-
+    curl -X POST "http://localhost:4318/v1/traces" -H "Content-Type: application/json" -d "$health_json"
     echo -e "\nHealth trace sent with traceId: $trace_id and spanId: $span_id"
 }
 
-# Check for -h flag
+# Check for flags
 SEND_HEALTH=false
-while getopts ":h" opt; do
+SEND_SECURITY=false
+while getopts ":hs" opt; do
   case ${opt} in
     h )
       SEND_HEALTH=true
       ;;
+    s )
+      SEND_SECURITY=true
+      ;;
     \? )
-      echo "Usage: $0 [-h] (Use -h to send a health span in between)"
+      echo "Usage: $0 [-h] [-s] (Use -h for health span, -s for security span)"
       exit 1
       ;;
   esac
 done
 
-echo "Sending traces every 20 seconds. Use Ctrl-C to stop."
+echo "Sending traces every 5 seconds. Use Ctrl-C to stop."
 
 while true; do
-    # Generate trace and span IDs for base span
     TRACE_ID=$(generate_trace_id)
     SPAN_ID=$(generate_span_id)
     CURRENT_TIME=$(get_current_time)
-    END_TIME=$((CURRENT_TIME + 1000000000)) # Add 1 second
+    END_TIME=$((CURRENT_TIME + 1000000000))
 
-    # Send base trace
     send_trace "$TRACE_ID" "$SPAN_ID" "$CURRENT_TIME" "$END_TIME"
 
     if [ "$SEND_HEALTH" = true ]; then
-        sleep 10  # Wait 10 seconds before sending health span
-
-        # Generate trace and span IDs for health span
-        HEALTH_TRACE_ID=$(generate_trace_id)
-        HEALTH_SPAN_ID=$(generate_span_id)
-        HEALTH_START_TIME=$(get_current_time)
-        HEALTH_END_TIME=$((HEALTH_START_TIME + 1000000000))
-
-        # Send health trace
-        send_health_trace "$HEALTH_TRACE_ID" "$HEALTH_SPAN_ID" "$HEALTH_START_TIME" "$HEALTH_END_TIME"
+        sleep 5
+        send_health_trace "$TRACE_ID" "$(generate_span_id)" "$(get_current_time)" "$((CURRENT_TIME + 1000000000))"
     fi
 
-    sleep 10  # Wait remaining 10 seconds before repeating
+    if [ "$SEND_SECURITY" = true ]; then
+        sleep 5
+        send_security_trace "$TRACE_ID" "$(generate_span_id)" "$(get_current_time)" "$((CURRENT_TIME + 1000000000))"
+    fi
+
+    sleep 5
 done
+
