@@ -38,8 +38,8 @@ func getCurrentTime() int64 {
 	return time.Now().UnixNano()
 }
 
-// Function to send a trace
-func sendTrace(traceID, spanID string, startTime, endTime int64) {
+// Function to send a base trace
+func sendBaseTrace(traceID, spanID string, startTime, endTime int64) {
 	spanJSON := map[string]interface{}{
 		"resourceSpans": []interface{}{
 			map[string]interface{}{
@@ -54,7 +54,7 @@ func sendTrace(traceID, spanID string, startTime, endTime int64) {
 						map[string]interface{}{
 							"key": "deployment.environment",
 							"value": map[string]interface{}{
-								"stringValue": "Advanced-Otel",
+								"stringValue": "Production",
 							},
 						},
 					},
@@ -77,10 +77,14 @@ func sendTrace(traceID, spanID string, startTime, endTime int64) {
 							map[string]interface{}{
 								"traceId":           traceID,
 								"spanId":            spanID,
-								"name":              "/Login Validator",
+								"name":              "Initial Login Span",
 								"startTimeUnixNano": fmt.Sprintf("%d", startTime),
 								"endTimeUnixNano":   fmt.Sprintf("%d", endTime),
 								"kind":              2,
+								"status": map[string]interface{}{
+									"code":    1,
+									"message": "Success",
+								},
 								"attributes": []interface{}{
 									map[string]interface{}{
 										"key": "user.name",
@@ -137,6 +141,66 @@ func sendTrace(traceID, spanID string, startTime, endTime int64) {
 	fmt.Printf("\nBase trace sent with traceId: %s and spanId: %s\n", traceID, spanID)
 }
 
+// Function to send a security trace
+func sendSecurityTrace(traceID, spanID string, startTime, endTime int64) {
+	securityJSON := map[string]interface{}{
+		"resourceSpans": []interface{}{
+			map[string]interface{}{
+				"resource": map[string]interface{}{
+					"attributes": []interface{}{
+						map[string]interface{}{
+							"key": "service.name",
+							"value": map[string]interface{}{
+								"stringValue": "password_check",
+							},
+						},
+						map[string]interface{}{
+							"key": "deployment.environment",
+							"value": map[string]interface{}{
+								"stringValue": "security_applications",
+							},
+						},
+					},
+				},
+				"scopeSpans": []interface{}{
+					map[string]interface{}{
+						"scope": map[string]interface{}{
+							"name":    "my.library",
+							"version": "1.0.0",
+						},
+						"spans": []interface{}{
+							map[string]interface{}{
+								"traceId":           traceID,
+								"spanId":            spanID,
+								"parentSpanId":      generateSpanID(),
+								"name":              "password-validation",
+								"startTimeUnixNano": fmt.Sprintf("%d", startTime),
+								"endTimeUnixNano":   fmt.Sprintf("%d", endTime),
+								"kind":              2,
+								"status": map[string]interface{}{
+									"code":    1,
+									"message": "Success",
+								},
+								"attributes": []interface{}{
+									map[string]interface{}{
+										"key": "user.name",
+										"value": map[string]interface{}{
+											"stringValue": "George Lucas",
+										},
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+	}
+
+	sendJSON("http://localhost:4318/v1/traces", securityJSON)
+	fmt.Printf("\nSecurity trace sent with traceId: %s and spanId: %s\n", traceID, spanID)
+}
+
 // Function to send a health trace
 func sendHealthTrace(traceID, spanID string, startTime, endTime int64) {
 	healthJSON := map[string]interface{}{
@@ -163,14 +227,6 @@ func sendHealthTrace(traceID, spanID string, startTime, endTime int64) {
 						"scope": map[string]interface{}{
 							"name":    "healthz",
 							"version": "1.0.0",
-							"attributes": []interface{}{
-								map[string]interface{}{
-									"key": "healthz.scope.attribute",
-									"value": map[string]interface{}{
-										"stringValue": "Health check",
-									},
-								},
-							},
 						},
 						"spans": []interface{}{
 							map[string]interface{}{
@@ -180,13 +236,9 @@ func sendHealthTrace(traceID, spanID string, startTime, endTime int64) {
 								"startTimeUnixNano": fmt.Sprintf("%d", startTime),
 								"endTimeUnixNano":   fmt.Sprintf("%d", endTime),
 								"kind":              2,
-								"attributes": []interface{}{
-									map[string]interface{}{
-										"key": "health.status",
-										"value": map[string]interface{}{
-											"stringValue": "pass",
-										},
-									},
+								"status": map[string]interface{}{
+									"code":    1,
+									"message": "Success",
 								},
 							},
 						},
@@ -285,26 +337,29 @@ func writeLogs(jsonOutput bool) {
 
 // Display usage instructions
 func printHelp() {
-	fmt.Println(`Usage: loadgen [OPTIONS]
+	fmt.Println(`Usage: trace_sender [OPTIONS]
 Options:
-  -h, --help    Display this help message
-  -health       Send health traces in addition to base traces
-  -logs         Enable logging of random quotes to quotes.log
-  -json         Output logs in JSON format (only applicable with -logs)
+  -base       Send base traces (enabled by default)
+  -health     Send health traces
+  -security   Send security traces
+  -logs       Enable logging of random quotes to quotes.log
+  -json       Output logs in JSON format (only applicable with -logs)
+  -h, --help  Display this help message
 
 Example:
-  loadgen -health       Send both base and health traces every 20 seconds
-  loadgen -logs         Write random quotes to quotes.log
-  loadgen -logs -json   Write random quotes in JSON format to quotes.log`)
+  trace_sender -health -security   Send health and security traces
+  trace_sender -logs -json         Write random quotes in JSON format to quotes.log`)
 }
 
 func main() {
 	// Define flags
-	helpFlag := flag.Bool("h", false, "Display help message")
-	helpFlagLong := flag.Bool("help", false, "Display help message")
-	healthFlag := flag.Bool("health", false, "Send health traces in addition to base traces")
+	baseFlag := flag.Bool("base", true, "Send base traces")
+	healthFlag := flag.Bool("health", false, "Send health traces")
+	securityFlag := flag.Bool("security", false, "Send security traces")
 	logsFlag := flag.Bool("logs", false, "Enable logging of random quotes to quotes.log")
 	jsonFlag := flag.Bool("json", false, "Output logs in JSON format (only applicable with -logs)")
+	helpFlag := flag.Bool("h", false, "Display help message")
+	helpFlagLong := flag.Bool("help", false, "Display help message")
 
 	flag.Parse()
 
@@ -323,28 +378,25 @@ func main() {
 	fmt.Println("Sending traces every 5 seconds. Use Ctrl-C to stop.")
 
 	for {
-		// Generate trace and span IDs for base span
 		traceID := generateTraceID()
 		spanID := generateSpanID()
 		currentTime := getCurrentTime()
 		endTime := currentTime + int64(time.Second)
 
-		// Send base trace
-		sendTrace(traceID, spanID, currentTime, endTime)
-
-		if *healthFlag {
-			time.Sleep(10 * time.Second) // Wait 10 seconds before sending health span
-
-			// Generate trace and span IDs for health span
-			healthTraceID := generateTraceID()
-			healthSpanID := generateSpanID()
-			healthStartTime := getCurrentTime()
-			healthEndTime := healthStartTime + int64(time.Second)
-
-			// Send health trace
-			sendHealthTrace(healthTraceID, healthSpanID, healthStartTime, healthEndTime)
+		if *baseFlag {
+			sendBaseTrace(traceID, spanID, currentTime, endTime)
 		}
 
-		time.Sleep(5 * time.Second) // Wait remaining 10 seconds before repeating
+		if *healthFlag {
+			time.Sleep(5 * time.Second)
+			sendHealthTrace(traceID, generateSpanID(), getCurrentTime(), getCurrentTime()+int64(time.Second))
+		}
+
+		if *securityFlag {
+			time.Sleep(5 * time.Second)
+			sendSecurityTrace(traceID, generateSpanID(), getCurrentTime(), getCurrentTime()+int64(time.Second))
+		}
+
+		time.Sleep(5 * time.Second)
 	}
 }
