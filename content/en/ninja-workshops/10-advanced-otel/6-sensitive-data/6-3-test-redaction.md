@@ -4,26 +4,7 @@ linkTitle: 6.3 Test Redaction Processor
 weight: 3
 ---
 
-The `redaction` processor gives precise control over which attributes and values are **permitted** or **removed** from telemetry data.  
-
-Earlier we configured the agent collector to:
-
-**Block sensitive data**: Any values (in this case Credit card numbers) matching the provided regex patterns (Visa and MasterCard) are automatically detected and redacted.
-
-This is achieved using the `redaction` processor you added earlier, where we define `regex` patterns to filter out unwanted data:
-
-```yaml
-  redaction/redact:               # Processor Type/Name
-    allow_all_keys: true          # False removes all key unless in allow list 
-    blocked_values:               # List of regex to check and hash
-        # Visa card regex.  - Please note the '' around the regex
-      - '\b4[0-9]{3}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}\b'
-        # MasterCard card regex - Please note the '' around the regex
-      - '\b5[1-5][0-9]{2}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}\b' 
-    summary: debug  # Show detailed debug information about the redaction 
-```
-
-### Test the Redaction Processor
+The `redaction` processor gives precise control over which attributes and values are **permitted** or **removed** from telemetry data.
 
 In this exercise, we will **redact** the `user.visa` & `user.mastercard` **values** in the span data before it is exported by the **Agent**.
 {{% notice title="Exercise" style="green" icon="running" %}}
