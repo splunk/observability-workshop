@@ -35,7 +35,7 @@ By the end of this workshop, you'll be familiar with configuring the OpenTelemet
 
 - For this workshop, using a good YAML editor will be hugely beneficial. We recommend downloading [**Visual Studio Code**](https://code.visualstudio.com/download) or use the [**online version**](https://vscode.dev/).
 - **Create a directory** on your machine for the workshop (e.g., `advanced-otel`). We will refer to this directory as `[WORKSHOP]` in the instructions.
-- **Download the latest OpenTelemetry Collector release** for your platform and place it in the `[WORKSHOP]` directory:
+- **Download the OpenTelemetry Collector and Load Generator** for your platform and place it in the `[WORKSHOP]` directory:
 
 {{% notice note %}}
 Having access to [**jq**](https://jqlang.org/download/) is recommended. This lightweight command-line tool helps process and format JSON data, making it easier to inspect traces, metrics, and logs from the OpenTelemetry Collector.
@@ -51,11 +51,12 @@ Having access to [**jq**](https://jqlang.org/download/) is recommended. This lig
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-Once downloaded, rename the file to `otelcol` (or `otelcol.exe` on Windows). On Mac and Linux, update the file permissions to make it executable:
+Once downloaded, rename the collector binary to `otelcol` (`otelcol.exe` on Windows) and the load generator binary to `loadgen` (`loadgen.exe` on Windows). On Mac and Linux, update the file permissions to make them executable:
 
 ```bash
-chmod +x otelcol
-./otelcol -v
+chmod +x otelcol loadgen && \
+./otelcol -v && \
+./loadgen --help
 ```
 
 {{% tabs %}}
@@ -64,6 +65,7 @@ chmod +x otelcol
 ```text
 [WORKSHOP]
 └── otelcol      # OpenTelemetry Collector binary
+└── loadgen      # Load Generator binary
 ```
 
 {{% /tab %}}
@@ -72,6 +74,7 @@ chmod +x otelcol
 ```text
 [WORKSHOP]
 └── otelcol.exe  # OpenTelemetry Collector binary
+└── loadgen.exe  # Load Generator binary
 ```
 
 {{% /tab %}}
@@ -80,12 +83,13 @@ chmod +x otelcol
 {{% /notice %}}
 
 {{% notice style="warning" title="macOS Users" icon="desktop" %}}
-Before running the OpenTelemetry Collector on macOS, you need to remove the quarantine attribute that macOS applies to downloaded files. This step ensures the Collector can execute without restrictions.
+Before running the binaries on macOS, you need to remove the quarantine attribute that macOS applies to downloaded files. This step ensures they can execute without restrictions.
 
 Run the following command in your terminal:
 
 ```bash
-xattr -dr com.apple.quarantine otelcol
+xattr -dr com.apple.quarantine otelcol && \
+xattr -dr com.apple.quarantine loadgen
 ```
 
 {{% /notice %}}
