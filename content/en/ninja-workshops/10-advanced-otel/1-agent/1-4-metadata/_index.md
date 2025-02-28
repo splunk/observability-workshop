@@ -17,6 +17,10 @@ Now, let's improve the base span by adding metadata with processors. This extra 
 - The [**Resource Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/resourceprocessor/README.md) is used to apply changes on resource attributes. In this case, the default configuration adds a new attribute `otelcol.service.mode` with the value `agent`.
 
 ```yaml
+service:                          # Services configured for this Collector
+  extensions:                     # Enabled extensions
+  - health_check
+  pipelines:                      # Array of configured pipelines
     traces:
       receivers:
       - otlp                      # OTLP Receiver

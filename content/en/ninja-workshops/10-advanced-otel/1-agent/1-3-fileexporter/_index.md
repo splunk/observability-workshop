@@ -31,6 +31,10 @@ Find your **Agent** terminal window, and stop the running collector by pressing 
 1. **Update the Pipelines Section**: Add the `file` exporter to the `metrics`, `traces` and `logs` pipelines:
 
     ```yaml
+    service:                          # Services configured for this Collector
+      extensions:                     # Enabled extensions
+      - health_check
+      pipelines:                      # Array of configured pipelines
         traces:
           receivers:
           - otlp                      # OTLP Receiver
