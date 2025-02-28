@@ -19,7 +19,7 @@ Move to the **Agent** terminal window and change into the `[WORKSHOP]/3-filelog`
       com.splunk.sourcetype: quotes    # Source type of the log data
 ```
 
-**Add `filelog/quotes` receiver**: In the `logs:` pipeline add the `filelog/quotes:` receiver.
+**Add `filelog/quotes` receiver**: In the `logs:` pipeline only, add the `filelog/quotes:` receiver.
 
 ```yaml
     logs:
