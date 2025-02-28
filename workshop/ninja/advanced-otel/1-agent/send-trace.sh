@@ -28,7 +28,7 @@ send_trace() {
       "resource": {
         "attributes": [
           { "key": "service.name", "value": { "stringValue": "Validation-service" } },
-          { "key": "deployment.environment", "value": { "stringValue": "Production" } }
+          { "key": "deployment.environment", "value": { "stringValue": "Advanced-Otel" } }
         ]
       },
       "scopeSpans": [
@@ -44,12 +44,53 @@ send_trace() {
             {
               "traceId": "$trace_id",
               "spanId": "$span_id",
-              "name": "Initial Login Span",
+              "name": "/Login Validator",
               "startTimeUnixNano": "$start_time",
               "endTimeUnixNano": "$end_time",
               "kind": 2,
-              "attributes": [
-                { "key": "user.name", "value": { "stringValue": "George Lucas" } }
+              "attributes":  [
+                {
+                  "key": "user.name",
+                  "value": {
+                    "stringValue": "George Lucas"
+                  }
+                },
+                {
+                  "key": "user.phone_number",
+                  "value": {
+                    "stringValue": "+1555-867-5309"
+                  }
+                },
+                {
+                  "key": "user.email",
+                  "value": {
+                    "stringValue": "george@deathstar.email"
+                  }
+                },
+                {
+                  "key": "user.account_password",
+                  "value": {
+                    "stringValue": "LOTR>StarWars1-2-3"
+                  }
+                },
+                {
+                  "key": "user.visa",
+                  "value": {
+                    "stringValue": "4111 1111 1111 1111"
+                  }
+                },
+                {
+                  "key": "user.amex",
+                  "value": {
+                    "stringValue": "3782 822463 10005"
+                  }
+                },
+                {
+                  "key": "user.mastercard",
+                  "value": {
+                    "stringValue": "5555 5555 5555 4444"
+                  }
+                }
               ]
             }
           ]
@@ -81,8 +122,8 @@ send_health_trace() {
     {
       "resource": {
         "attributes": [
-          { "key": "service.name", "value": { "stringValue": "frontend" } }
-        ]
+          { "key": "service.name", "value": { "stringValue": "frontend-service" } }
+          { "key": "deployment.environment", "value": { "stringValue": "Advanced-Otel" } }      ]
       },
       "scopeSpans": [
         {
@@ -90,7 +131,7 @@ send_health_trace() {
             "name": "healthz",
             "version": "1.0.0",
             "attributes": [
-              { "key": "my.scope.attribute", "value": { "stringValue": "some scope attribute" } }
+              { "key": "healthz.scope.attribute", "value": { "stringValue": "Health check" } }
             ]
           },
           "spans": [
@@ -101,7 +142,9 @@ send_health_trace() {
               "startTimeUnixNano": "$start_time",
               "endTimeUnixNano": "$end_time",
               "kind": 2,
-              "attributes": []
+              "attributes": [
+                { "key": "health.status", "value": { "stringValue": "pass" } }
+              ]
             }
           ]
         }
