@@ -6,7 +6,11 @@ weight: 2
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Start the Log Generator**: In the **Test** terminal window, navigate to the `[WORKSHOP]/7-transform-data` directory and start the appropriate `log-gen` script for your system. We want to work with structured JSON logs, so add the `-json` flag.
+**Start the Log Generator**:  
+
+1. Open the **Test** terminal window and navigate to the `[WORKSHOP]/7-transform-data` directory.  
+2. Run the `log-gen` script for your system.  
+   - **Important**: To ensure the logs are structured in JSON format, include the `-json` flag when starting the script.  
 
 ```sh { title="Log Generator" }
 ./log-gen.sh -json
