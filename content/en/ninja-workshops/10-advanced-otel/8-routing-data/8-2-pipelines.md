@@ -69,8 +69,8 @@ graph LR
       REC1(&nbsp;&nbsp;&nbsp;otlp&nbsp;&nbsp;&nbsp;<br>fa:fa-download):::receiver
       PRO1(memory_limiter<br>fa:fa-microchip):::processor
       PRO2(memory_limiter<br>fa:fa-microchip):::processor
-      PRO3(resource<br>fa:fa-microchip):::processor
-      PRO4(resource<br>fa:fa-microchip):::processor
+      PRO3(resource<br>fa:fa-microchip<br>add_mode):::processor
+      PRO4(resource<br>fa:fa-microchip<br>add_mode):::processor
       EXP1(&nbsp;&ensp;debug&nbsp;&ensp;<br>fa:fa-upload):::exporter
       EXP2(&emsp;&emsp;file&emsp;&emsp;<br>fa:fa-upload):::exporter
       EXP3(&nbsp;&ensp;debug&nbsp;&ensp;<br>fa:fa-upload):::exporter
