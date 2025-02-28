@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Name of the Go application
-APP_NAME="trace-sender"
+APP_NAME="loadgen"
 
 # Output directory for compiled binaries
 OUTPUT_DIR="build"
