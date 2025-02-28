@@ -320,7 +320,7 @@ func main() {
 		return
 	}
 
-	fmt.Println("Sending traces every 20 seconds. Use Ctrl-C to stop.")
+	fmt.Println("Sending traces every 5 seconds. Use Ctrl-C to stop.")
 
 	for {
 		// Generate trace and span IDs for base span
@@ -345,6 +345,6 @@ func main() {
 			sendHealthTrace(healthTraceID, healthSpanID, healthStartTime, healthEndTime)
 		}
 
-		time.Sleep(10 * time.Second) // Wait remaining 10 seconds before repeating
+		time.Sleep(5 * time.Second) // Wait remaining 10 seconds before repeating
 	}
 }
