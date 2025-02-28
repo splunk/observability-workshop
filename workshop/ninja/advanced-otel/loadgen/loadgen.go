@@ -48,7 +48,7 @@ func sendBaseTrace(traceID, spanID string, startTime, endTime int64) {
 						map[string]interface{}{
 							"key": "service.name",
 							"value": map[string]interface{}{
-								"stringValue": "Validation-service",
+								"stringValue": "cinema-service",
 							},
 						},
 						map[string]interface{}{
@@ -62,13 +62,13 @@ func sendBaseTrace(traceID, spanID string, startTime, endTime int64) {
 				"scopeSpans": []interface{}{
 					map[string]interface{}{
 						"scope": map[string]interface{}{
-							"name":    "fintest.library",
+							"name":    "cinema.library",
 							"version": "1.0.0",
 							"attributes": []interface{}{
 								map[string]interface{}{
 									"key": "fintest.scope.attribute",
 									"value": map[string]interface{}{
-										"stringValue": "Euro, Dollar, Yen",
+										"stringValue": "Starwars, LOTR",
 									},
 								},
 							},
@@ -77,7 +77,7 @@ func sendBaseTrace(traceID, spanID string, startTime, endTime int64) {
 							map[string]interface{}{
 								"traceId":           traceID,
 								"spanId":            spanID,
-								"name":              "Initial Login Span",
+								"name":              "/movie-validator",
 								"startTimeUnixNano": fmt.Sprintf("%d", startTime),
 								"endTimeUnixNano":   fmt.Sprintf("%d", endTime),
 								"kind":              2,
@@ -165,7 +165,7 @@ func sendSecurityTrace(traceID, spanID string, startTime, endTime int64) {
 				"scopeSpans": []interface{}{
 					map[string]interface{}{
 						"scope": map[string]interface{}{
-							"name":    "my.library",
+							"name":    "movie.library",
 							"version": "1.0.0",
 						},
 						"spans": []interface{}{
@@ -217,7 +217,7 @@ func sendHealthTrace(traceID, spanID string, startTime, endTime int64) {
 						map[string]interface{}{
 							"key": "deployment.environment",
 							"value": map[string]interface{}{
-								"stringValue": "Advanced-Otel",
+								"stringValue": "Production",
 							},
 						},
 					},
