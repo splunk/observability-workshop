@@ -285,7 +285,7 @@ func writeLogs(jsonOutput bool) {
 
 // Display usage instructions
 func printHelp() {
-	fmt.Println(`Usage: trace_sender [OPTIONS]
+	fmt.Println(`Usage: loadgen [OPTIONS]
 Options:
   -h, --help    Display this help message
   -health       Send health traces in addition to base traces
@@ -293,9 +293,9 @@ Options:
   -json         Output logs in JSON format (only applicable with -logs)
 
 Example:
-  trace_sender -health       Send both base and health traces every 20 seconds
-  trace_sender -logs         Write random quotes to quotes.log
-  trace_sender -logs -json   Write random quotes in JSON format to quotes.log`)
+  loadgen -health       Send both base and health traces every 20 seconds
+  loadgen -logs         Write random quotes to quotes.log
+  loadgen -logs -json   Write random quotes in JSON format to quotes.log`)
 }
 
 func main() {
