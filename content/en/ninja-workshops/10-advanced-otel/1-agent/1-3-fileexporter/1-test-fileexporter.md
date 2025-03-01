@@ -18,13 +18,10 @@ Again, if you have done everything correctly, the last line of the output should
 2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
-**Send a Trace**:
+**Send a Trace**: From the **Test** terminal window send another span and verify you get the same output on the console as we saw previously:
 
-1. From the **Test** terminal window send another span.
-2. Verify you get the same output on the console as we saw previously:
-
-```sh
-curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
+```bash
+../loadgen
 ```
 
 **Verify that the `agent.out` file is written**: Check that a file named `agent.out` is written in the current directory.
@@ -34,7 +31,7 @@ curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/js
 ├── 1-agent         # Module directory
 │   └── agent.out   # OTLP/Json output created by the File Exporter
 │   └── agent.yaml  # OpenTelemetry Collector configuration file
-│   └── trace.json  # Sample trace data
+├── loadgen         # Load Generator binary
 └── otelcol         # OpenTelemetry Collector binary
 ```
 
@@ -52,7 +49,7 @@ On **Windows**, an open file may appear empty or cause issues when attempting to
 {{% tab title="cat ./agent.out" %}}
 
 ```json
-{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"my.service"}},{"key":"deployment.environment","value":{"stringValue":"my.environment"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5B8EFFF798038103D269B633813FC60C","spanId":"EEE19B7EC3C1B174","parentSpanId":"EEE19B7EC3C1B173","name":"I'm a server span","startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","kind":2,"attributes":[{"key":"user.name","value":{"stringValue":"George Lucas"}},{"key":"user.phone_number","value":{"stringValue":"+1555-867-5309"}},{"key":"user.email","value":{"stringValue":"george@deathstar.email"}},{"key":"user.account_password","value":{"stringValue":"LOTR>StarWars1-2-3"}},{"key":"user.visa","value":{"stringValue":"4111 1111 1111 1111"}},{"key":"user.amex","value":{"stringValue":"3782 822463 10005"}},{"key":"user.mastercard","value":{"stringValue":"5555 5555 5555 4444"}}]}]}]}]}
+{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"cinema-service"}},{"key":"deployment.environment","value":{"stringValue":"production"}}]},"scopeSpans":[{"scope":{"name":"cinema.library","version":"1.0.0","attributes":[{"key":"fintest.scope.attribute","value":{"stringValue":"Starwars, LOTR"}}]},"spans":[{"traceId":"27f34992fede51f15820645f027ae75a","spanId":"fd231d3d153905cb","parentSpanId":"","name":"/movie-validator","kind":2,"startTimeUnixNano":"1740832334606475000","endTimeUnixNano":"1740832335606475000","attributes":[{"key":"user.name","value":{"stringValue":"George Lucas"}},{"key":"user.phone_number","value":{"stringValue":"+1555-867-5309"}},{"key":"user.email","value":{"stringValue":"george@deathstar.email"}},{"key":"user.account_password","value":{"stringValue":"LOTR\u003eStarWars1-2-3"}},{"key":"user.visa","value":{"stringValue":"4111 1111 1111 1111"}},{"key":"user.amex","value":{"stringValue":"3782 822463 10005"}},{"key":"user.mastercard","value":{"stringValue":"5555 5555 5555 4444"}}],"status":{"message":"Success","code":1}}]}]}]}
 ```
 
 {{% /tab %}}
@@ -67,13 +64,13 @@ On **Windows**, an open file may appear empty or cause issues when attempting to
           {
             "key": "service.name",
             "value": {
-              "stringValue": "my.service"
+              "stringValue": "cinema-service"
             }
           },
           {
             "key": "deployment.environment",
             "value": {
-              "stringValue": "my.environment"
+              "stringValue": "production"
             }
           }
         ]
@@ -81,26 +78,26 @@ On **Windows**, an open file may appear empty or cause issues when attempting to
       "scopeSpans": [
         {
           "scope": {
-            "name": "my.library",
+            "name": "cinema.library",
             "version": "1.0.0",
             "attributes": [
               {
-                "key": "my.scope.attribute",
+                "key": "fintest.scope.attribute",
                 "value": {
-                  "stringValue": "some scope attribute"
+                  "stringValue": "Starwars, LOTR"
                 }
               }
             ]
           },
           "spans": [
             {
-              "traceId": "5B8EFFF798038103D269B633813FC60C",
-              "spanId": "EEE19B7EC3C1B174",
-              "parentSpanId": "EEE19B7EC3C1B173",
-              "name": "I'm a server span",
-              "startTimeUnixNano": "1544712660000000000",
-              "endTimeUnixNano": "1544712661000000000",
+              "traceId": "27f34992fede51f15820645f027ae75a",
+              "spanId": "fd231d3d153905cb",
+              "parentSpanId": "",
+              "name": "/movie-validator",
               "kind": 2,
+              "startTimeUnixNano": "1740832334606475000",
+              "endTimeUnixNano": "1740832335606475000",
               "attributes": [
                 {
                   "key": "user.name",
@@ -144,7 +141,11 @@ On **Windows**, an open file may appear empty or cause issues when attempting to
                     "stringValue": "5555 5555 5555 4444"
                   }
                 }
-              ]
+              ],
+              "status": {
+                "message": "Success",
+                "code": 1
+              }
             }
           ]
         }

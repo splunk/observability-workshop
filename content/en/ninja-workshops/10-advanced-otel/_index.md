@@ -64,7 +64,7 @@ chmod +x otelcol loadgen && \
 
 ```text
 [WORKSHOP]
-└── otelcol      # OpenTelemetry Collector binary
+├── otelcol      # OpenTelemetry Collector binary
 └── loadgen      # Load Generator binary
 ```
 
@@ -73,8 +73,8 @@ chmod +x otelcol loadgen && \
 
 ```text
 [WORKSHOP]
+├── loadgen.exe  # Load Generator binary
 └── otelcol.exe  # OpenTelemetry Collector binary
-└── loadgen.exe  # Load Generator binary
 ```
 
 {{% /tab %}}

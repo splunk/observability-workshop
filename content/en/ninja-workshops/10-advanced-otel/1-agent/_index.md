@@ -15,8 +15,7 @@ We will refer to these terminals as: **Agent**, **Gateway**, **Tests** and **Log
 In your `[WORKSHOP]` directory, create a subdirectory called `1-agent` and change into that directory.
 
 ```text
-cd [WORKSHOP]
-mkdir 1-agent
+mkdir 1-agent && \
 cd 1-agent
 ```
 
@@ -93,6 +92,7 @@ service:                          # Services configured for this Collector
 [WORKSHOP]
 ├── 1-agent         # Module directory
 │   └── agent.yaml  # OpenTelemetry Collector configuration file
+├── loadgen         # Load Generator binary
 └── otelcol         # OpenTelemetry Collector binary
 ```
 
