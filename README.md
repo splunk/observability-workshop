@@ -1,15 +1,15 @@
-[![Deploy](https://github.com/splunk/observability-workshop/actions/workflows/deploy.yml/badge.svg)](https://github.com/splunk/observability-workshop/actions/workflows/deploy.yml)
-![GitHub release (latest by date)](https://img.shields.io/github/v/tag/splunk/observability-workshop)
+# Splunk Observability Cloud Workshops
+
+![(https://github.com/splunk/observability-workshop/actions/workflows/deploy.yml/badge.svg)](https://github.com/splunk/observability-workshop/actions/workflows/deploy.yml)
+![GitHub release](https://img.shields.io/github/v/tag/splunk/observability-workshop)
 ![GitHub commits since the latest release (by SemVer)](https://img.shields.io/github/commits-since/splunk/observability-workshop/latest)
 ![GitHub repo size](https://img.shields.io/github/repo-size/splunk/observability-workshop)
 ![GitHub issues](https://img.shields.io/github/issues/splunk/observability-workshop)
 
-# Splunk Observability Cloud Workshops
-
 ## Splunk Copyright Notice
 
 ``` text
-Copyright 2025 Splunk Inc.
+&copy; 2005 - 2025 Splunk LLC All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
