@@ -5,7 +5,7 @@ weight: 1
 ---
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Restart your Agent**: Find your **Agent** terminal window, and restart your collector using the updated configuration to test the changes:
+**Restart your Agent**: In your **Agent terminal** window, and restart the `agent` using the updated configuration to test the changes:
 
 ```sh { title="Agent" }
 ../otelcol --config=agent.yaml
@@ -17,7 +17,7 @@ If everything is set up correctly, the last line of the output should confirm th
   2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
-**Send a Trace**: From the **Spans** terminal window (making sure you are in the `1-agent` directory), send spans again with the `loadgen` binary to create a new `agent.out`:
+**Send a Trace**: From the **Spans terminal** window (making sure you are in the `1-agent` directory), send spans again with the `loadgen` binary to create a new `agent.out`:
 
 ```sh
 ../loadgen
@@ -189,4 +189,4 @@ These values are automatically added based on your device by the processors conf
 {{% /tabs %}}
 {{% /notice %}}
 
-Stop the **Agent** process by pressing `Ctrl-C` in the terminal window.
+Stop the `agent` and `loadgen` processes by using `Ctrl-C` in the respective terminal windows.

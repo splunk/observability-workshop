@@ -4,9 +4,9 @@ linkTitle: 2.1 Start Gateway
 weight: 1
 ---
 
-The configuration for the **Gateway** does not need any additional configuration changes to function. This has been done to save time and focus on the core concepts of the **Gateway**.
+The configuration for the `gateway` does not need any additional configuration changes to function. This has been done to save time and focus on the core concepts of the **Gateway**.
 
-Validate the **Gateway** configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `logs:` section of your pipelines will look similar to this:
+Validate the `gateway` configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `logs:` section of your pipelines will look similar to this:
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%
@@ -40,9 +40,9 @@ classDef sub-logs stroke:#34d399,stroke-width:1px, color:#34d399,stroke-dasharra
 
 **Start the Gateway**:
 
-1. Find your **Gateway** terminal window.
+1. Find your **Gateway terminal** window.
 2. Navigate to the`[WORKSHOP]/2-gateway` directory.
-3. Run the following command to start the **Gateway**:
+3. Run the following command to start the `gateway`:
 
 ```sh {title="Gateway"}
 ../otelcol --config=gateway.yaml
@@ -58,4 +58,4 @@ If everything is configured correctly, the first and last lines of the output sh
 
 {{% /notice %}}
 
-Next, we will configure the **Agent** to send data to the newly created **Gateway**.
+Next, we will configure the `agent` to send data to the newly created `gateway`.

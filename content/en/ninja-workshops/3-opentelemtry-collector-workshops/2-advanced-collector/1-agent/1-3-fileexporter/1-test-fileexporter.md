@@ -6,7 +6,7 @@ weight: 1
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Restart your agent**: Find your **Agent** terminal window, and (re)start the agent, this time with your new config to test it:
+**Restart your agent**: Find your **Agent terminal** window, and (re)start the `agent` using the modified configuration:
 
 ```sh { title="Agent" }
 ../otelcol --config=agent.yaml
@@ -18,7 +18,7 @@ Again, if you have done everything correctly, the last line of the output should
 2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
-**Send a Trace**: From the **Test** terminal window send another span and verify you get the same output on the console as we saw previously:
+**Send a Trace**: From the **Spans terminal** window send another span and verify you get the same output on the console as we saw previously:
 
 ```bash
 ../loadgen
@@ -36,7 +36,7 @@ Again, if you have done everything correctly, the last line of the output should
 ```
 
 {{% notice note %}}
-On **Windows**, an open file may appear empty or cause issues when attempting to read it. To prevent this, make sure to stop the **Agent** or the **Gateway** before inspecting the file, as instructed.
+On **Windows**, an open file may appear empty or cause issues when attempting to read it. To prevent this, make sure to stop the `agent` or the `gateway` before inspecting the file, as instructed.
 {{% /notice %}}
 
 **Verify the span format**:

@@ -8,13 +8,13 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Start the Gateway**: In the **Gateway** terminal window navigate to the `[WORKSHOP]/6-sensitive-data` directory and run:
+**Start the Gateway**: In the **Gateway terminal** window navigate to the `[WORKSHOP]/6-sensitive-data` directory and run:
 
 ```sh { title="Gateway" }
 ../otelcol --config=gateway.yaml
 ```
 
-**Start the Agent**: In the **Agent** terminal window navigate to the `[WORKSHOP]/6-sensitive-data` directory and run:
+**Start the Agent**: In the **Agent terminal** window navigate to the `[WORKSHOP]/6-sensitive-data` directory and run:
 
 ```sh { title="Agent" }
 ../otelcol --config=agent.yaml
@@ -22,13 +22,13 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
 
 **Send a span**:
 
-1. In the **Test** terminal window change into the `6-sensitive-data` directory.
+1. In the **Spans terminal** window change into the `6-sensitive-data` directory.
 2. Send the span containing **sensitive data** by running the `curl` command to send `trace.json`.
 ```sh
 curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
 ```
 
-**Check the debug output**: For both the **Agent** and **Gateway** debug output, confirm that `user.account_password` has been removed, and both `user.phone_number` & `user.email` have been updated.
+**Check the debug output**: For both the `agent` and `gateway` debug output, confirm that `user.account_password` has been removed, and both `user.phone_number` & `user.email` have been updated.
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
@@ -159,4 +159,4 @@ curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/js
 
 {{% /notice %}}
 
-Stop the **Agent** and **Gateway** using `Ctrl-C`.
+Stop the `agent` and `gateway` using `Ctrl-C`.

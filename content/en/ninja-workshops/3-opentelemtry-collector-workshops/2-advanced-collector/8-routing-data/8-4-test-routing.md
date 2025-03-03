@@ -8,10 +8,10 @@ weight: 3
 
 **Send a Regular Span**:
 
-1. Locate the **Test** terminal and navigate to the `[WORKSHOP]/8-routing` directory.
+1. Locate the **Spans terminal** and navigate to the `[WORKSHOP]/8-routing` directory.
 2. Send a regular span using the `trace.json` file to confirm proper communication.
 
-Both the **Agent** and **Gateway** should display debug information, including the span you just sent. The gateway will also generate a new `gateway-traces-standard.out` file, as this is now the designated destination for regular spans.
+Both the `agent` and `gateway` should display debug information, including the span you just sent. The gateway will also generate a new `gateway-traces-standard.out` file, as this is now the designated destination for regular spans.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 If you check `gateway-traces-standard.out`, it should contain the `span` sent using the `cURL` command. You will also see an empty `gateway-traces-security.out` file, as the routing configuration creates output files immediately, even if no matching spans have been processed yet.
@@ -19,10 +19,10 @@ If you check `gateway-traces-standard.out`, it should contain the `span` sent us
 
 **Send a Security Span**:
 
-1. Ensure both the **Agent** and **Gateway** are running.
+1. Ensure both the `agent` and `gateway` are running.
 2. Send a security span using the `security.json` file to test the gateway’s routing rule.
 
-Again, both the **Agent** and **Gateway** should display debug information, including the span you just sent. This time, the **Gateway** will write a line to the `gateway-traces-security.out` file, which is designated for spans where the `deployment.environment` resource attribute matches `"security_applications"`.
+Again, both the `agent` and `gateway` should display debug information, including the span you just sent. This time, the `gateway` will write a line to the `gateway-traces-security.out` file, which is designated for spans where the `deployment.environment` resource attribute matches `"security_applications"`.
 The `gateway-traces-standard.out` should be unchanged.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
@@ -44,4 +44,4 @@ By inspecting the output files, we confirmed that the OpenTelemetry Collector *c
 
 You can now extend this approach by defining additional routing rules to further categorize spans, metrics, and logs based on different attributes.
 
-Stop the **Agent**, **Gateway** and the `log-gen` script in their respective terminals.
+Stop the **Agent**, `gateway` and the `log-gen` script in their respective terminals.

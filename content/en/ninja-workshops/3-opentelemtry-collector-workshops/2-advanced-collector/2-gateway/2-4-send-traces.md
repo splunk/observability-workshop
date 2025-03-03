@@ -8,12 +8,12 @@ weight: 4
 
 **Validate both collectors are running**:
 
-1. Find the **Agent** terminal window. If the **Agent** is stopped, restart it.
-2. Find the **Gateway** terminal window. Check if the **Gateway** is running, otherwise restart it.
+1. Find the **Agent terminal** window. If the `agent` is stopped, restart it.
+2. Find the **Gateway terminal** window. Check if the `gateway` is running, otherwise restart it.
 
 **Send a Test Trace**:
 
-1. Find your **Spans** terminal window
+1. Find your **Spans terminal** window
 2. Navigate it to the `[WORKSHOP]/2-gateway` directory.
 3. Run the following command to send spans:
 
@@ -21,7 +21,7 @@ weight: 4
 ../loadgen
 ```
   
-Below, we show the first and last lines of the debug output. Use the **Complete Debug Output** button below to verify that both the **Agent** and **Gateway** produced similar debug output.
+Below, we show the first and last lines of the debug output. Use the **Complete Debug Output** button below to verify that both the `agent` and `gateway` produced similar debug output.
 
 ```text
 2025-03-03T10:25:22.852Z        info    Traces  {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 1, "spans": 1}
@@ -211,4 +211,4 @@ In the provided `gateway.yaml` configuration, we modified the `resource/add_mode
 The `upsert` action updates the value of the resource attribute key if it already exists, setting it to `gateway`. If the key is not present, the `upsert` action will add it.
 {{% /notice %}}
 
-Stop the **Agent** and **Gateway** processes by pressing `Ctrl-C` in their respective terminals.
+Stop the `agent` and `gateway` processes by pressing `Ctrl-C` in their respective terminals.
