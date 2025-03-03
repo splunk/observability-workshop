@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY main.py .
 
 # Bootstrap OTel
-RUN splunk-py-trace-bootstrap
+RUN opentelemetry-bootstrap -a install
 
 # Set the entrypoint command to run the application
-CMD ["splunk-py-trace", "python3", "main.py"]
+CMD ["opentelemetry-instrument", "python3", "main.py"]
