@@ -11,7 +11,6 @@ Switch to your **Gateway terminal** window. Navigate to the `[WORKSHOP]/5-droppi
 **Add a `filter` processor**: Configure the OpenTelemetry Collector to drop spans with the name `"/_healthz"`:
 
 ```yaml
-  
   filter/health:                  # Defines a filter processor
     error_mode: ignore            # Ignore errors
     traces:                       # Filtering rules for traces
@@ -23,16 +22,16 @@ Switch to your **Gateway terminal** window. Navigate to the `[WORKSHOP]/5-droppi
 
 ```yaml
     traces:
-      receivers:                
-        - otlp                    # OTLP Receiver
-      processors:                
-        - memory_limiter          # Manage memory usage
-        - filter/health           # Filter Processor. Filter's out Data based on rules
-        - resource/add_mode       # Add metadata about collector mode
-        - batch                   # Groups Data before send
-      exporters:               
-        - debug                   # Debug Exporter
-        - file/traces             # File Exporter for Trace
+      receivers:
+      - otlp                      # OTLP Receiver
+      processors:
+      - memory_limiter            # Manage memory usage
+      - filter/health             # Filter Processor. Filter's out Data based on rules
+      - resource/add_mode         # Add metadata about collector mode
+      - batch                     # Groups Data before send
+      exporters:
+      - debug                     # Debug Exporter
+      - file/traces               # File Exporter for Trace
 ```
 
 {{% /notice %}}
