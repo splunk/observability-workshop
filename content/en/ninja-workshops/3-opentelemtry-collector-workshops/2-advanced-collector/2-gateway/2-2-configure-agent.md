@@ -8,7 +8,7 @@ weight: 2
 
 **Update `agent.yaml`**:
 
-1. Switch to your **Agent** terminal window.
+1. Switch to your **Agent terminal** window.
 2. Make sure you are in the `[WORKSHOP]/2-gateway` directory.
 3. Open the `agent.yaml` file that you copied earlier in your editor.
 

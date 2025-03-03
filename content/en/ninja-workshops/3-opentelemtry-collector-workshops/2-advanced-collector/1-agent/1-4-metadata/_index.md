@@ -9,7 +9,7 @@ So far, we've simply exported an exact copy of the span sent through the OpenTel
 Now, let's improve the base span by adding metadata with processors. This extra information can be helpful for troubleshooting and correlation.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-**Stop the collector**: In your **Agent** terminal window, and stop the running collector by pressing `Ctrl-C`. Once the **Agent** has stopped, open the `agent.yaml`.
+**Stop the collector**: In your **Agent terminal** window, and stop the running collector by pressing `Ctrl-C`. Once the `agent` has stopped, open the `agent.yaml`.
 
 **Update All Pipelines**: Add both processors (`resourcedetection` and `resource/add_mode`) to the `processors` array in **all pipelines**. Ensure `memory_limiter` remains the first processor.
 

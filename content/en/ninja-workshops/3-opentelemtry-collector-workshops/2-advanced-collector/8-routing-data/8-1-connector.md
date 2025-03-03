@@ -4,14 +4,14 @@ linkTitle: 8.1 Routing Configuration
 weight: 1
 ---
 
-In this exercise, you will configure the `routing` connector in the `gateway.yaml` file. This setup enables the **Gateway** to route traces based on the `deployment.environment` attribute in the spans you send. By implementing this, you can process and handle traces differently depending on their attributes.
+In this exercise, you will configure the `routing` connector in the `gateway.yaml` file. This setup enables the `gateway` to route traces based on the `deployment.environment` attribute in the spans you send. By implementing this, you can process and handle traces differently depending on their attributes.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 In OpenTelemetry configuration files, `connectors` have their own dedicated section, similar to receivers and processors.
 
 **Add the `routing` connector**:
-In the **Gateway** terminal window edit `gateway.yaml` and add the following below the `receivers:` section and above the `processors:` section:
+In the **Gateway terminal** window edit `gateway.yaml` and add the following below the `receivers:` section and above the `processors:` section:
 
 ```yaml
 connectors:

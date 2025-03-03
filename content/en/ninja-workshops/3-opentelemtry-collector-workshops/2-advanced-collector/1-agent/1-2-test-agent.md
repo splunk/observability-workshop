@@ -8,7 +8,7 @@ You’re ready to start the OpenTelemetry Collector with the newly created `agen
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**In your Agent terminal window**:
+**In the Agent terminal window**:
 
 1. Change into the `[WORKSHOP]/1-agent` folder
 2. Run the following command:
@@ -34,7 +34,7 @@ In this workshop, we use **macOS/Linux** commands by default. If you’re using 
 
 This approach enables testing of how the OpenTelemetry Collector processes and exports spans as part of a trace—without the need for actual application instrumentation.
 
-To send spans to the agent, run the following command:
+In the **Spans terminal** window, run the following command:
 
 {{% tabs %}}
 {{% tab title="Start Load Generator" %}}
@@ -60,7 +60,7 @@ Base trace sent with traceId: 1932f078af8ceea53e2beaaa3b84966d and spanId: 43b1d
 
 **Verify Debug Output**:
 
-1. Find the **Agent** terminal window and check the collector's debug output.
+1. In the **Agent terminal** window and check the collector's debug output.
 2. Below, we are showing the first and last lines of the debug log for a span. To get the full context, use the **Complete Debug Output** button to review.
 
 ```text

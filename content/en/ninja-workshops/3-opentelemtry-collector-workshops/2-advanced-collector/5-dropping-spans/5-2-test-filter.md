@@ -34,19 +34,19 @@ WORKSHOP
 └── otelcol
 ```
 
-**Start the Gateway**: In the **Gateway** terminal window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run:
+**Start the Gateway**: In the **Gateway terminal** window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run:
 
 ```sh { title="Gateway" }
 ../otelcol --config=gateway.yaml
 ```
 
-**Start the Agent**: In the **Agent** terminal window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run:
+**Start the Agent**: In the **Agent terminal** window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run:
 
 ```sh { title="Agent" }
 ../otelcol --config=agent.yaml
 ```
 
-**Send the new `health.json` payload:** In the **Test** terminal window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run the `curl` command below. (**Windows use `curl.exe`**).
+**Send the new `health.json` payload:** In the **Spans terminal** window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run the `curl` command below. (**Windows use `curl.exe`**).
   
 ```sh { title="cURL command" }
 curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@health.json"
@@ -65,11 +65,11 @@ Span #0
 <snip>
 ```
 
-The **Agent** has forward the span to the **Gateway**.
+The `agent` has forward the span to the **Gateway**.
   
 **Check the Gateway Debug output**:
 
-1. The Gateway should **NOT** show any span data received. This is because the **Gateway** is configured with a filter to drop spans named `"/_healthz"`, so the span will be discarded/dropped and not processed further.
+1. The Gateway should **NOT** show any span data received. This is because the `gateway` is configured with a filter to drop spans named `"/_healthz"`, so the span will be discarded/dropped and not processed further.
 2. Confirm normal span are processed by using the cURL command with the `trace.json` file again. This time, you should see both the agent and gateway process the spans successfully.
 {{% /notice %}}
 
@@ -114,4 +114,4 @@ This will drop spans with the names `"/_healthz"` and `"/internal/metrics"`.
 -->
 You can further extend this configuration to filter out spans based on different attributes, tags, or other criteria, making the OpenTelemetry Collector more customizable and efficient for your observability needs.
 
-Stop the **Agent** and **Gateway** using `Ctrl-C`.
+Stop the `agent` and `gateway` using `Ctrl-C`.

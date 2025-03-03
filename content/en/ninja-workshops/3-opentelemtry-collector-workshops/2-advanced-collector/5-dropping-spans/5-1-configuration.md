@@ -6,7 +6,7 @@ weight: 1
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-Switch to your **Gateway** terminal window. Navigate to the `[WORKSHOP]/5-dropping-spans` directory and open the `gateway.yaml` and add the following configuration to the `processors` section:
+Switch to your **Gateway terminal** window. Navigate to the `[WORKSHOP]/5-dropping-spans` directory and open the `gateway.yaml` and add the following configuration to the `processors` section:
 
 **Add a `filter` processor**: Configure the OpenTelemetry Collector to drop spans with the name `"/_healthz"`:
 

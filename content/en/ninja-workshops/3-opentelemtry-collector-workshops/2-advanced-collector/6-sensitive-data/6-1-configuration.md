@@ -23,7 +23,7 @@ Attributes:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-Switch to your **Agent** terminal window. Navigate to the `[WORKSHOP]/6-sensitive-data` directory and open the `agent.yaml` file in your editor.
+Switch to your **Agent terminal** window. Navigate to the `[WORKSHOP]/6-sensitive-data` directory and open the `agent.yaml` file in your editor.
 
 **Add an `attributes` Processor**: The [**Attributes Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/attributesprocessor) allows you to update, delete, or hash specific attributes (tags) within spans.  
 We'll **update** the `user.phone_number`, **hash** the `user.email`, and **delete** the `user.account_password`:

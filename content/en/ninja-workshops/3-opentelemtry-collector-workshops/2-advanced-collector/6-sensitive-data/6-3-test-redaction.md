@@ -13,24 +13,24 @@ In this exercise, we will **redact** the `user.visa` & `user.mastercard` **value
 
 **Enable the `redaction/redact` processor**: Edit `agent.yaml` and remove the `#` we inserted in the previous exercise.
 
-**Start the Gateway**: In the **Gateway** terminal window navigate to the `[WORKSHOP]/6-sensitive-data` directory and run:
+**Start the Gateway**: In the **Gateway terminal** window navigate to the `[WORKSHOP]/6-sensitive-data` directory and run:
 
 ```sh { title="Gateway" }
 ../otelcol --config=gateway.yaml
 ```
 
-**Start the Agent**: In the **Agent** terminal window navigate to the `[WORKSHOP]/6-sensitive-data` directory and run:
+**Start the Agent**: In the **Agent terminal** window navigate to the `[WORKSHOP]/6-sensitive-data` directory and run:
 
 ```sh { title="Agent" }
 ../otelcol --config=agent.yaml
 ```
 
-**Send a span**: Run the `curl` command and in the **Test** terminal window to send `trace.json`.
+**Send a span**: Run the `curl` command and in the **Spans terminal** window to send `trace.json`.
 ```sh
 curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
 ```
 
-**Check the debug output**: For both the **Agent** and **Gateway** confirm the values for `user.visa` & `user.mastercard` have been updated. Notice `user.amex` attribute value was NOT redacted because a matching regex pattern was not added to `blocked_values`
+**Check the debug output**: For both the `agent` and `gateway` confirm the values for `user.visa` & `user.mastercard` have been updated. Notice `user.amex` attribute value was NOT redacted because a matching regex pattern was not added to `blocked_values`
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
@@ -175,7 +175,7 @@ By including `summary:debug` in the redaction processor, the debug output will i
 <!--
 **(Optional) Redact Amex CC number**:
 
-Add the Amex card regex to `blocked_values` and restart **Agent** collector.
+Add the Amex card regex to `blocked_values` and restart `agent` collector.
 
 ```yaml
 '\b3[47][0-9]{2}[\s-]?[0-9]{6}[\s-]?[0-9]{5}\b'
@@ -183,4 +183,4 @@ Add the Amex card regex to `blocked_values` and restart **Agent** collector.
 -->
 These are just a few examples of how `attributes` and `redaction` processors can be configured to protect sensitive data.
 
-Stop the **Agent** and **Gateway** using `Ctrl-C`.
+Stop the `agent` and `gateway` using `Ctrl-C`.
