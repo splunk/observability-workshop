@@ -16,8 +16,10 @@ This pipeline is using `routing` as its receiver. Place it below the existing `t
           receivers: 
           - routing                     # Receive data from the routing connector
           processors:
-          - memory_limiter              # Limits memory usage
-          - resource/add_mode           # Adds collector mode metadata
+          - memory_limiter            # Memory Limiter Processor
+          - resourcedetection         # Adds system attributes to the data
+          - resource/add_mode         # Adds collector mode metadata
+          - batch
           exporters:
           - debug                       # Debug exporter
           - file/traces/standard        # File exporter for unmatched spans
@@ -27,22 +29,24 @@ This pipeline is using `routing` as its receiver. Place it below the existing `t
 This also uses `routing` as its receiver. Add this below the Standard one:
 
     ```yaml
-        traces/security:                # New Security Traces/Spans Pipeline       
+        traces/security:              # New Security Traces/Spans Pipeline
           receivers: 
-          - routing                     # Routing Connector, Only receives data from Connector
+          - routing                   # Routing Connector, Only receives data from Connector
           processors:
-          - memory_limiter              # Memory Limiter Processor
-          - resource/add_mode           # Adds collector mode metadata
+          - memory_limiter            # Memory Limiter Processor
+          - resourcedetection         # Adds system attributes to the data
+          - resource/add_mode         # Adds collector mode metadata
+          - batch
           exporters:
-          - debug                       # Debug Exporter 
-          - file/traces/security        # File Exporter for spans matching rule
+          - debug                     # Debug Exporter 
+          - file/traces/security      # File Exporter for spans matching rule
     ```
 
 **Update the `traces` pipeline to use routing**:
 
 1. To enable `routing`, update the original `traces:` pipeline by using `routing` as the only exporter.  
 This ensures all span data is sent through the routing connector for evaluation.
-2. Remove all processors and replace it with an empty array []. These are now defined in the `traces/standard` and `traces/security` pipelines.
+2. Remove all processors and replace it with an empty array (`[]`). These are now defined in the `traces/standard` and `traces/security` pipelines.
 
     ```yaml
       pipelines:
@@ -54,10 +58,6 @@ This ensures all span data is sent through the routing connector for evaluation.
           - routing                       # Routing Connector
     ```
 
-{{% /notice %}}
-
-{{% notice note %}}
-By excluding the batch processor, spans are written immediately instead of waiting for multiple spans to accumulate before processing. This improves responsiveness, making the workshop run faster and allowing you to see results sooner.
 {{% /notice %}}
 
 Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `traces:` section of your pipelines will look similar to this:
