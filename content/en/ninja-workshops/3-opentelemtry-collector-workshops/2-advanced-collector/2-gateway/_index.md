@@ -12,10 +12,9 @@ The gateway is useful because it centralizes telemetry data collection, enabling
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - Inside the `[WORKSHOP]` directory, create a new subdirectory named `2-gateway`.
-- Next, copy all contents from the `1-agent` directory into `2-gateway`.
-- After copying, remove `agent.out`.
-- Create a file called `gateway.yaml` and add the following initial configuration:
 - Change **all** terminal windows to the `[WORKSHOP]/2-gateway` directory.
+- Next, copy `agent.yaml` from the `1-agent` directory into `2-gateway`.
+- Create a file called `gateway.yaml` and add the following initial configuration:
 
 ```yaml { title="gateway.yaml" }
 ###########################         This section holds all the
