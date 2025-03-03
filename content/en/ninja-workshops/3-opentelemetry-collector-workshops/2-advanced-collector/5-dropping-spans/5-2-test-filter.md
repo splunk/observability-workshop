@@ -20,7 +20,7 @@ To test your configuration, you'll need to generate some trace data that include
 ../otelcol --config=agent.yaml
 ```
 
-**Send the new `health.json` payload:** In the **Spans terminal** window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run the `loadgen`:
+**Start the Loadgen**: In the **Spans terminal** window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run the `loadgen` with the flag to also send `healthz` spans:
   
 ```sh { title="Loadgen" }
 ../loadgen -health
@@ -39,12 +39,12 @@ Span #0
 <snip>
 ```
 
-The `agent` has forward the span to the **Gateway**.
+The `agent` has forwarded the span to the **Gateway**.
   
 **Check the Gateway Debug output**:
 
 1. The Gateway should **NOT** show any span data received. This is because the `gateway` is configured with a filter to drop spans named `"/_healthz"`, so the span will be discarded/dropped and not processed further.
-2. Confirm normal span are processed by using the cURL command with the `trace.json` file again. This time, you should see both the agent and gateway process the spans successfully.
+2. Confirm normal spans are processed as the `loadgen` continues to send spans.
 {{% /notice %}}
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
