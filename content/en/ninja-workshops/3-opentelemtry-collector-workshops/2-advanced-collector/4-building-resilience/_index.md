@@ -20,22 +20,16 @@ For logs, there are plans to implement a more enterprise-ready solution in one o
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - Inside the `[WORKSHOP]` directory, create a new subdirectory named `4-resilience`.
-- Next, copy all contents from the `3-filelog` directory into `4-resilience`.
-- After copying, remove any `*.out` and `*.log` files.
+- Next, copy `*.yaml` from the `3-filelog` directory into `4-resilience`.
 - Change **all** terminal windows to the `[WORKSHOP]/4-resilience` directory.
 
 Your updated directory structure will now look like this:
 
 ```text { title="Updated Directory Structure" }
 WORKSHOP
-├── 1-agent
-├── 2-gateway
-├── 3-filelog
-├── 4-resilience
+└── 4-resilience
 │   ├── agent.yaml
-│   ├── gateway.yaml
-├── loadgen
-└── otelcol
+│   └── gateway.yaml
 ```
 
 {{% /notice %}}
