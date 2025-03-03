@@ -102,7 +102,7 @@ service:                          # Service configuration
 ├── 2-gateway           # Module directory
 │   └── agent.yaml      # OpenTelemetry Collector configuration file
 │   └── gateway.yaml    # OpenTelemetry Collector configuration file
-│   └── trace.json      # Sample trace data
+├── loadgen             # Load Generator binary
 └── otelcol             # OpenTelemetry Collector binary
 ```
 
