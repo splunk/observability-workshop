@@ -18,6 +18,7 @@ The exported JSON from the Chrome DevTools Recorder will then be used to create 
 - Access to Splunk Observability Cloud
 
 ## Supporting resources
-1. Lantern: [advanced Selectors for multi-step browser tests](https://lantern.splunk.com/Observability/UCE/Proactive_response/Optimize_End-User_Experiences/Running_Synthetics_browser_tests/Selectors_for_multi-step_browser_tests)
+
+1. Lantern: [advanced Selectors for multistep browser tests](https://lantern.splunk.com/Observability/UCE/Proactive_response/Optimize_End-User_Experiences/Running_Synthetics_browser_tests/Selectors_for_multi-step_browser_tests)
 1. Chrome for Developers [DevTools Tips](https://developer.chrome.com/blog/devtools-tips-4)
 1. web.dev [Core Web Vitals](https://web.dev/explore/learn-core-web-vitals) reference

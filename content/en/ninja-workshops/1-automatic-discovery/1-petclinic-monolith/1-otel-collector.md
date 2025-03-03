@@ -6,7 +6,7 @@ weight: 1
 
 The Splunk OpenTelemetry Collector is the core component of instrumenting infrastructure and applications.  Its role is to collect and send:
 
-* Infrastructure metrics (disk, CPU, memory, etc)
+* Infrastructure metrics (disk, CPU, memory, etc.)
 * Application Performance Monitoring (APM) traces
 * Profiling data
 * Host and application logs
@@ -30,10 +30,10 @@ sudo sh /tmp/splunk-otel-collector.sh --uninstall
 To ensure your instance is configured correctly, we need to confirm that the required environment variables for this workshop are set correctly. In your terminal run the following command:
 
 ``` bash
-. ~/workshop/scripts/check_env.sh
+. ~/workshop/petclinic/scripts/check_env.sh
 ```
 
-In the output check that all of the following environment variables are present and have values set. If any are missing, please contact your instructor:
+In the output check that all the following environment variables are present and have values set. If any are missing, please contact your instructor:
 
 ```text
 ACCESS_TOKEN
@@ -44,7 +44,7 @@ HEC_URL
 INSTANCE
 ```
 
-We can then go ahead and install the Collector. Some additional parameters are passed to the install script, they are:
+We can then go ahead and install the Collector. Some additional parameters are passed to the installation script, they are:
 
 * `--with-instrumentation` - This will install the agent from the Splunk distribution of OpenTelemetry Java, which is then loaded automatically when the PetClinic Java application starts up. No configuration is required!
 * `--deployment-environment` - Sets the resource attribute `deployment.environment` to the value passed. This is used to filter views in the UI.

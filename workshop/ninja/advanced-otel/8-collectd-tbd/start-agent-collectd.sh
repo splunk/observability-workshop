@@ -1,1 +1,0 @@
-$HOME/collectors/otelcol_darwin_arm64_splunk --config agent-collectd.yaml
