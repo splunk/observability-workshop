@@ -41,7 +41,7 @@ classDef sub-logs stroke:#34d399,stroke-width:1px, color:#34d399,stroke-dasharra
 **Start the Gateway**:
 
 1. Find your **Gateway terminal** window.
-2. Navigate to the`[WORKSHOP]/2-gateway` directory.
+2. Ensure you are in the`[WORKSHOP]/2-gateway` directory.
 3. Run the following command to start the `gateway`:
 
 ```sh {title="Gateway"}
