@@ -90,10 +90,8 @@ service:                          # Services configured for this Collector
 
 ```text { title="Updated Directory Structure" }
 [WORKSHOP]
-├── 1-agent         # Module directory
-│   └── agent.yaml  # OpenTelemetry Collector configuration file
-├── loadgen         # Load Generator binary
-└── otelcol         # OpenTelemetry Collector binary
+└── 1-agent
+    └── agent.yaml  # OpenTelemetry Collector configuration file
 ```
 
 {{% /notice %}}

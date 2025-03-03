@@ -98,12 +98,9 @@ service:                          # Service configuration
 
 ```text { title="Updated Directory Structure" }
 [WORKSHOP]
-├── 1-agent             # Module directory
-├── 2-gateway           # Module directory
-│   └── agent.yaml      # OpenTelemetry Collector configuration file
-│   └── gateway.yaml    # OpenTelemetry Collector configuration file
-├── loadgen             # Load Generator binary
-└── otelcol             # OpenTelemetry Collector binary
+└── 2-gateway
+    └── agent.yaml
+    └── gateway.yaml
 ```
 
 {{% /notice %}}

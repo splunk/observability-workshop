@@ -4,7 +4,7 @@ linkTitle: 6.2 Test Attribute Processor
 weight: 2
 ---
 
-In this exercise, we will **delete** the `user.account_password`, **update** the `user.phone_number` **attribute** and **hash** the `user.email` in the span data before it is exported by the **Agent**.
+In this exercise, we will **delete** the `user.account_password`, **update** the `user.phone_number` **attribute** and **hash** the `user.email` in the span data before it is exported by the `agent`.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 

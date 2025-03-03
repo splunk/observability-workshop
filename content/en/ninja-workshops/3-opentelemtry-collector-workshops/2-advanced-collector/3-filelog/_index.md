@@ -40,24 +40,28 @@ The Filelog receiver will read these log lines and send them to the OpenTelemetr
 Your updated directory structure will now look like this:
 
 ```text { title="Updated Directory Structure" }
-WORKSHOP
-├── 1-agent
-├── 2-gateway
-├── 3-filelog
-│   ├── agent.yaml          # Agent Collector configuration file
-│   ├── gateway.yaml        # Gateway Collector configuration file
-├── loadgen                 # Load generator binary
-└── otelcol                 # OpenTelemetry binary
+[WORKSHOP]
+└── 3-filelog
+    ├── agent.yaml
+    └── gateway.yaml
 ```
 
 Start the `loadgen` and this will begin writing lines to a file named `quotes.log`:
 
-```sh { title="Log Load Generator" }
+{{% tabs %}}
+{{% tab title="Log Load Generator" %}}
+
+```sh
 ../loadgen -logs
 ```
 
-```text { title="Log Load Generator Output" }
+{{% /tab %}}
+{{% tab title="Log Load Generator Output" %}}
+
+```text
 Writing logs to quotes.log. Press Ctrl+C to stop.
 ```
 
+{{% /tab %}}
+{{% /tabs %}}
 {{% /notice %}}

@@ -4,7 +4,7 @@ linkTitle: 7.3 Test Transform Processor
 weight: 3
 ---
 
-This test verifies that the `com.splunk/source` and `os.type` metadata have been **removed** from the log resource attributes before being exported by the **Agent**. Additionally, the test ensures that:  
+This test verifies that the `com.splunk/source` and `os.type` metadata have been **removed** from the log resource attributes before being exported by the `agent`. Additionally, the test ensures that:  
 
 1. The log body is parsed to extract severity information.  
    - `SeverityText` and `SeverityNumber` are set on the `LogRecord`.  
