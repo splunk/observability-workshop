@@ -33,8 +33,7 @@ The Filelog receiver will read these log lines and send them to the OpenTelemetr
 
 - Move to the **Logs terminal** window.
 - Navigate to the `[WORKSHOP]` directory and create a new subdirectory named `3-filelog`.
-- Next, copy all contents from the `2-gateway` directory into `3-filelog`.
-- After copying, remove any `*.out` and `*.log` files.
+- Next, copy `*.yaml` from `2-gateway` into `3-filelog`.
 - Change **all** terminal windows to the `[WORKSHOP]/3-filelog` directory.
 
 Your updated directory structure will now look like this:
