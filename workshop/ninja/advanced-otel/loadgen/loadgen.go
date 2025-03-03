@@ -7,6 +7,7 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"log"
 	"math/rand"
 	"net/http"
 	"os"
@@ -28,7 +29,7 @@ func randomHex(length int) string {
 	b := make([]byte, length)
 	_, err := rand.Read(b)
 	if err != nil {
-		panic(err)
+		log.Fatalf("Failed to generate random bytes: %v", err)
 	}
 	return hex.EncodeToString(b)
 }
@@ -137,8 +138,11 @@ func sendBaseTrace(traceID, spanID string, startTime, endTime int64) {
 		},
 	}
 
-	sendJSON("http://localhost:4318/v1/traces", spanJSON)
-	fmt.Printf("\nBase trace sent with traceId: %s and spanId: %s\n", traceID, spanID)
+	if err := sendJSON("http://localhost:4318/v1/traces", spanJSON); err != nil {
+		log.Printf("Failed to send base trace: %v", err)
+	} else {
+		fmt.Printf("\nBase trace sent with traceId: %s and spanId: %s\n", traceID, spanID)
+	}
 }
 
 // Function to send a security trace
@@ -197,8 +201,11 @@ func sendSecurityTrace(traceID, spanID string, startTime, endTime int64) {
 		},
 	}
 
-	sendJSON("http://localhost:4318/v1/traces", securityJSON)
-	fmt.Printf("\nSecurity trace sent with traceId: %s and spanId: %s\n", traceID, spanID)
+	if err := sendJSON("http://localhost:4318/v1/traces", securityJSON); err != nil {
+		log.Printf("Failed to send security trace: %v", err)
+	} else {
+		fmt.Printf("\nSecurity trace sent with traceId: %s and spanId: %s\n", traceID, spanID)
+	}
 }
 
 // Function to send a health trace
@@ -248,28 +255,37 @@ func sendHealthTrace(traceID, spanID string, startTime, endTime int64) {
 		},
 	}
 
-	sendJSON("http://localhost:4318/v1/traces", healthJSON)
-	fmt.Printf("\nHealth trace sent with traceId: %s and spanId: %s\n", traceID, spanID)
+	if err := sendJSON("http://localhost:4318/v1/traces", healthJSON); err != nil {
+		log.Printf("Failed to send health trace: %v", err)
+	} else {
+		fmt.Printf("\nHealth trace sent with traceId: %s and spanId: %s\n", traceID, spanID)
+	}
 }
 
 // Helper function to send JSON data via HTTP POST
-func sendJSON(url string, data interface{}) {
+func sendJSON(url string, data interface{}) error {
 	jsonData, err := json.Marshal(data)
 	if err != nil {
-		panic(err)
+		return fmt.Errorf("failed to marshal JSON data: %w", err)
 	}
 
 	resp, err := http.Post(url, "application/json", bytes.NewBuffer(jsonData))
 	if err != nil {
-		panic(err)
+		return fmt.Errorf("HTTP POST request failed: %w", err)
 	}
 	defer resp.Body.Close()
 
+	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
+		return fmt.Errorf("received non-2xx HTTP status code: %d", resp.StatusCode)
+	}
+
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		panic(err)
+		return fmt.Errorf("failed to read response body: %w", err)
 	}
 	fmt.Println("Response:", string(body))
+
+	return nil
 }
 
 // Function to generate a random quote
@@ -327,7 +343,7 @@ func writeLogs(jsonOutput bool) {
 		logEntry := generateLogEntry(jsonOutput)
 		file, err := os.OpenFile(logFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 		if err != nil {
-			panic(err)
+			log.Fatalf("Failed to open log file: %v", err)
 		}
 		file.WriteString(logEntry + "\n")
 		file.Close()
