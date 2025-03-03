@@ -1,6 +1,6 @@
 ---
 title: Advanced OpenTelemetry
-description: In this workshop you will practice setting up the OpenTelemetry Collector configuration from scratch and go though several advanced configuration scenarios's
+description: Practice setting up the OpenTelemetry Collector configuration from scratch and go though several advanced configuration scenarios's.
 weight: 10
 archetype: chapter
 authors: ["Robert Castley,", "Charity Anderson,", "Pieter Hagen", "&", "Geoff Higginbottom"]

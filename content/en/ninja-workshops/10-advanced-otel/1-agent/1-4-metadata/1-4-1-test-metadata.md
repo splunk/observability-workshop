@@ -17,10 +17,10 @@ If everything is set up correctly, the last line of the output should confirm th
   2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
-**Send a Trace**: From the **Tests** terminal window, send a trace again with the `cURL` command to create a new `agent.out`:
+**Send a Trace**: From the **Tests** terminal window (making sure you are in the `1-agent` directory), send spans again with the `loadgen` binary to create a new `agent.out`:
 
-```ps1
-curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
+```sh
+../loadgen
 ```
 
 **Check the Agent’s debug output**: You should see three new lines in the `resource attributes` section: (`host.name`, `os.type` & `otelcol.service.mode`):
@@ -29,15 +29,15 @@ curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/js
 <snip>
 Resource SchemaURL: https://opentelemetry.io/schemas/1.6.1
 Resource attributes:
-    -> service.name: Str(my.service)
-    -> deployment.environment: Str(my.environment)
+    -> service.name: Str(cinema.service)
+    -> deployment.environment: Str(production)
     -> host.name: Str([MY_HOST_NAME])
     -> os.type: Str([MY_OS])
     -> otelcol.service.mode: Str(agent)
 </snip>
 ```
 
-**Verify `agent.out`**: Validate the `agent.out` file contains the updated data:
+**Verify `agent.out`**: Stop `loadgen` using `Ctrl-C` and validate the `agent.out` file contains the updated data:
 
 ```text { title="Updated Directory Structure" }
   [WORKSHOP]
@@ -45,6 +45,7 @@ Resource attributes:
   │   └── agent.out   # OTLP/Json output created by the File Exporter
   │   └── agent.yaml  # OpenTelemetry Collector configuration file
   │   └── trace.json  # Sample trace data
+  ├── loadgen         # Load Generator binary
   └── otelcol         # OpenTelemetry Collector binary
 ```
 
@@ -59,7 +60,7 @@ These values are automatically added based on your device by the processors conf
 {{% tab title="cat ./agent.out" %}}
 
 ```json
-{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"my.service"}},{"key":"deployment.environment","value":{"stringValue":"my.environment"}},{"key":"host.name","value":{"stringValue":"[YOUR_HOST_NAME]"}},{"key":"os.type","value":{"stringValue":"[YOUR_OS]"}},{"key":"otelcol.service.mode","value":{"stringValue":"agent"}}]},"scopeSpans":[{"scope":{"name":"my.library","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5b8efff798038103d269b633813fc60c","spanId":"eee19b7ec3c1b174","parentSpanId":"eee19b7ec3c1b173","name":"I'm a server span","kind":2,"startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","attributes":[{"key":"user.name","value":{"stringValue":"George Lucas"}},{"key":"user.phone_number","value":{"stringValue":"+1555-867-5309"}},{"key":"user.email","value":{"stringValue":"george@deathstar.email"}},{"key":"user.account_password","value":{"stringValue":"LOTR\u003eStarWars1-2-3"}},{"key":"user.visa","value":{"stringValue":"4111 1111 1111 1111"}},{"key":"user.amex","value":{"stringValue":"3782 822463 10005"}},{"key":"user.mastercard","value":{"stringValue":"5555 5555 5555 4444"}}],"status":{}}]}],"schemaUrl":"https://opentelemetry.io/schemas/1.6.1"}]}
+{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"cinema-service"}},{"key":"deployment.environment","value":{"stringValue":"production"}},{"key":"host.name","value":{"stringValue":"RCASTLEY-M-YQRY.local"}},{"key":"os.type","value":{"stringValue":"darwin"}},{"key":"otelcol.service.mode","value":{"stringValue":"agent"}}]},"scopeSpans":[{"scope":{"name":"cinema.library","version":"1.0.0","attributes":[{"key":"fintest.scope.attribute","value":{"stringValue":"Starwars, LOTR"}}]},"spans":[{"traceId":"ae921957a4d93fa11cee640cd7908eb8","spanId":"f6b0f29825efe585","parentSpanId":"","name":"/movie-validator","kind":2,"startTimeUnixNano":"1740994347431796000","endTimeUnixNano":"1740994348431796000","attributes":[{"key":"user.name","value":{"stringValue":"George Lucas"}},{"key":"user.phone_number","value":{"stringValue":"+1555-867-5309"}},{"key":"user.email","value":{"stringValue":"george@deathstar.email"}},{"key":"user.account_password","value":{"stringValue":"LOTR\u003eStarWars1-2-3"}},{"key":"user.visa","value":{"stringValue":"4111 1111 1111 1111"}},{"key":"user.amex","value":{"stringValue":"3782 822463 10005"}},{"key":"user.mastercard","value":{"stringValue":"5555 5555 5555 4444"}}],"status":{"message":"Success","code":1}}]}],"schemaUrl":"https://opentelemetry.io/schemas/1.6.1"}]}
 ```
 
 {{% /tab %}}
@@ -74,25 +75,25 @@ These values are automatically added based on your device by the processors conf
           {
             "key": "service.name",
             "value": {
-              "stringValue": "my.service"
+              "stringValue": "cinema-service"
             }
           },
           {
             "key": "deployment.environment",
             "value": {
-              "stringValue": "my.environment"
+              "stringValue": "production"
             }
           },
           {
             "key": "host.name",
             "value": {
-              "stringValue": "[YOUR_HOST_NAME]"
+              "stringValue": "RCASTLEY-M-YQRY.local"
             }
           },
           {
             "key": "os.type",
             "value": {
-              "stringValue": "[YOUR_OS]"
+              "stringValue": "darwin"
             }
           },
           {
@@ -106,26 +107,26 @@ These values are automatically added based on your device by the processors conf
       "scopeSpans": [
         {
           "scope": {
-            "name": "my.library",
+            "name": "cinema.library",
             "version": "1.0.0",
             "attributes": [
               {
-                "key": "my.scope.attribute",
+                "key": "fintest.scope.attribute",
                 "value": {
-                  "stringValue": "some scope attribute"
+                  "stringValue": "Starwars, LOTR"
                 }
               }
             ]
           },
           "spans": [
             {
-              "traceId": "5b8efff798038103d269b633813fc60c",
-              "spanId": "eee19b7ec3c1b174",
-              "parentSpanId": "eee19b7ec3c1b173",
-              "name": "I'm a server span",
+              "traceId": "ab984cd113463aa919ac200751fcfc1d",
+              "spanId": "db651e116290a8f2",
+              "parentSpanId": "",
+              "name": "/movie-validator",
               "kind": 2,
-              "startTimeUnixNano": "1544712660000000000",
-              "endTimeUnixNano": "1544712661000000000",
+              "startTimeUnixNano": "1740994462515044000",
+              "endTimeUnixNano": "1740994463515044000",
               "attributes": [
                 {
                   "key": "user.name",
@@ -170,7 +171,10 @@ These values are automatically added based on your device by the processors conf
                   }
                 }
               ],
-              "status": {}
+              "status": {
+                "message": "Success",
+                "code": 1
+              }
             }
           ]
         }
