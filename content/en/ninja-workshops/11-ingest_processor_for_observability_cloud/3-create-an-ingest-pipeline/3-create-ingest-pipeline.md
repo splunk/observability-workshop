@@ -14,13 +14,13 @@ In this section you will create an Ingest Pipeline which will convert Kubernetes
 
 {{% notice title="Note" style="primary" icon="lightbulb" %}}
 
-When you open the  **Ingest Processor SCS Tenant**, if you are taken to a welcome page, click on **Launch** under **Splunk Cloud Platform** to be taken the the Data Management page where you will configure the Ingest Pipeline.
+When you open the **Ingest Processor SCS Tenant**, if you are taken to a welcome page, click on **Launch** under **Splunk Cloud Platform** to be taken to the Data Management page where you will configure the Ingest Pipeline.
 
 ![Launch Splunk Cloud Platform](../../images/launch_scp.png)
 
 {{% /notice %}}
 
-**2.** From the Splunk Data Management console select **Pipelines** -> **New pipeline** -> **Ingest Processor pipeline**.
+**2.** From the Splunk Data Management console select **Pipelines** → **New pipeline** → **Ingest Processor pipeline**.
 
 ![New Ingest Processor Pipeline](../../images/new_pipeline.png?width=40vw)
 
@@ -50,13 +50,13 @@ When you open the  **Ingest Processor SCS Tenant**, if you are taken to a welcom
 
 ![Event Routing](../../images/event_routing.png?width=20vw)
 
-**10.** In the **Pipeline search field** replace the default search with the following. 
+**10.** In the **Pipeline search field** replace the default search with the following.
 
 {{% notice title="Note" style="primary" icon="lightbulb" %}}
 **Replace `UNIQUE_FIELD` in the metric name with a unique value (such as your initials) which will be used to identify your metric in Observability Cloud.**
 {{% /notice %}}
 
-```
+```text
 /*A valid SPL2 statement for a pipeline must start with "$pipeline", and include "from $source" and "into $destination".*/
 /* Import logs_to_metrics */
 import logs_to_metrics from /splunk/ingest/commands
@@ -73,15 +73,17 @@ $pipeline =
 | eval index = "kube_logs"
 | into $destination;
 ```
+
 {{% notice title="New to SPL2?" style="info" icon="lightbulb" %}}
 
 Here is a breakdown of what the SPL2 query is doing:
-* First, you are importing the built in `logs_to_metrics` command which will be used to convert the kubernetes events to metrics.
+
+* First, you are importing the built-in `logs_to_metrics` command which will be used to convert the kubernetes events to metrics.
 * You're using the source data, which you can see on the right is any event from the `kube:apiserver:audit` sourcetype.
 * Now, you use the `thru` command which writes the source dataset to the following command, in this case `logs_to_metrics`.
 * You can see that the metric name (`k8s_audit`), metric type (`counter`), value, and timestamp are all provided for the metric. You’re using a value of 1 for this metric because we want to count the number of times the event occurs.
 * Next, you choose the destination for the metric using the into `$metrics_destintation` command, which is our Splunk Observability Cloud organization
-* Finally, you can send the raw log events to another destination, in this case another index, so they are retained if we ever need to access them. 
+* Finally, you can send the raw log events to another destination, in this case another index, so they are retained if we ever need to access them.
 
 {{% /notice %}}
 
@@ -97,10 +99,10 @@ Here is a breakdown of what the SPL2 query is doing:
 
 ![Apply Pipeline Dialog](../../images/apply_pipeline_dialog.png?width=40vw)
 
-<center>
-<b>The Ingest Pipeline should now be sending metrics to Splunk Observability Cloud. Keep this tab open as it will be used it again in the next section.</b>
+{{% notice title="Note" style="info" %}}
+The Ingest Pipeline should now be sending metrics to Splunk Observability Cloud. Keep this tab open as it will be used it again in the next section.
 
 In the next step you'll confirm the pipeline is working by viewing the metrics you just created in Splunk Observability Cloud.
-</center>
+{{% /notice %}}
 
 {{% /notice %}}

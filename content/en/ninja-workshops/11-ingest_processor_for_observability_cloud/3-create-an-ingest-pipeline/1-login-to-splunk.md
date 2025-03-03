@@ -36,4 +36,3 @@ Single Sign-on (SSO) is configured between the Splunk Data Management service (â
 {{% /notice %}}
 
 {{% /notice %}}
-

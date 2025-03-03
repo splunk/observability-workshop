@@ -8,9 +8,9 @@ During this _**technical**_ Ingest Processor[^1] for Splunk Observability Cloud 
 
 To simplify the workshop modules, a pre-configured Splunk Enterprise Cloud instance is provided.
 
-The instance is pre-configured with all of the requirements for creating an Ingest Processor pipeline.
+The instance is pre-configured with all the requirements for creating an Ingest Processor pipeline.
 
-This workshop will introduce you to the benefits of using Ingest Processor to convert robust logs to metrics and send those metrics to Splunk Observability Cloud. By the end of these technical workshops, you will have a good understanding of some of the key features and capabilities of Ingest Processor in Splunk Enterprise Cloud and the value of using Splunk Observability Cloud as a destination within an Ingest Processor pipeline.
+This workshop will introduce you to the benefits of using Ingest Processor to convert robust logs to metrics and send those metrics to Splunk Observability Cloud. By the end of these technical workshops, you will have a good understanding of some key features and capabilities of Ingest Processor in Splunk Enterprise Cloud and the value of using Splunk Observability Cloud as a destination within an Ingest Processor pipeline.
 
 Here are the instructions on how to access your pre-configured [Splunk Enterprise Cloud](./1-access-cloud-instances/) instance.
 

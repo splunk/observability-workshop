@@ -10,18 +10,18 @@ In this section you will review the Kubernetes Audit Logs that are being collect
 
 **1.** Open your **Ingest Processor Cloud Stack** instance using the URL provided in the Splunk Show workshop details.
 
-**2.** Navigate to **Apps** -> **Search and Reporting**
+**2.** Navigate to **Apps** → **Search and Reporting**
 
 ![Search and Reporting](../../images/search_and_reporting.png?width=20vw)
 
-**3.** In the search bar, enter the following SPL search string. 
+**3.** In the search bar, enter the following SPL search string.
 
-{{% notice title="Note" style="primary"  icon="lightbulb" %}}
+{{% notice title="Note" style="primary" icon="lightbulb" %}}
 Make sure to replace `USER_ID` with the User ID provided in your Splunk Show instance information.
 {{% /notice %}}
 
-```
-```Replace USER_ID with the User ID provided in your Splunk Show instance information```
+``` sh
+### Replace USER_ID with the User ID provided in your Splunk Show instance information
 index=main sourcetype="kube:apiserver:audit:USER_ID"
 ```
 
@@ -29,8 +29,8 @@ index=main sourcetype="kube:apiserver:audit:USER_ID"
 
 ![Kubernetes Audit Log](../../images/k8s_audit_log.png)
 
-<center>
-<b>You should now see the Kubernetes Audit Logs for your environment. Notice that the events are fairly robust. Explore the available fields and start to think about what information would be good candidates for metrics and dimensions. Ask yourself: What fields would I like to chart and how would I like to be able to filter, group, or split those fields?</b>
-</center>
+{{% notice title="Note" style="info" %}}
+You should now see the Kubernetes Audit Logs for your environment. Notice that the events are fairly robust. Explore the available fields and start to think about what information would be good candidates for metrics and dimensions. Ask yourself: What fields would I like to chart, and how would I like to be able to filter, group, or split those fields?
+{{% /notice %}}
 
 {{%/ notice %}}

@@ -13,12 +13,12 @@ The logs from the Kubernetes environment are also being collected and sent to Sp
 * Pod logs (application logs)
 * Kubernetes Events
 * Kubernetes Cluster Logs
-    * Control Plane Node logs
-    * Worker Node logs
-    * Audit Logs
+  * Control Plane Node logs
+  * Worker Node logs
+  * Audit Logs
 
-As a Splunk Admin you want to ensure that the data you are collecting is optimized so it can be analyzed in the most efficient way possible. Taking this approach accelerates troubleshooting and ensures efficient license utilization.
+As a Splunk Admin you want to ensure that the data you are collecting is optimized, so it can be analyzed in the most efficient way possible. Taking this approach accelerates troubleshooting and ensures efficient license utilization.
 
-One way to accomplish this is by using Ingest Processor to convert robust logs to metrics and use Splunk Observability Cloud as the destination for those metrics. Not only does this make collecting the logs more efficient, you have the added ability of using the newly created metrics in Splunk Observability which can then be correlated with Splunk APM data (traces) and Splunk Infrastructure Monitoring data providing additional troubleshooting context. Because Splunk Observability Cloud uses a streaming metrics pipeline, the metrics can be alerted on in real-time speeding up problem identification. Additionally, you can use the Metrics Pipeline Management functionality to further optimize the data by aggregating, dropping unnecessary fields, and archiving less important or un-needed metrics.
+One way to accomplish this is by using Ingest Processor to convert robust logs to metrics and use Splunk Observability Cloud as the destination for those metrics. Not only does this make collecting the logs more efficient, you have the added ability of using the newly created metrics in Splunk Observability which can then be correlated with Splunk APM data (traces) and Splunk Infrastructure Monitoring data providing additional troubleshooting context. Because Splunk Observability Cloud uses a streaming metrics pipeline, the metrics can be alerted on in real-time speeding up problem identification. Additionally, you can use the Metrics Pipeline Management functionality to further optimize the data by aggregating, dropping unnecessary fields, and archiving less important or unneeded metrics.
 
 In the next step you'll create an Ingest Processor Pipeline which will convert Kubernetes Audit Logs to metrics that will be sent to Observability Cloud.
