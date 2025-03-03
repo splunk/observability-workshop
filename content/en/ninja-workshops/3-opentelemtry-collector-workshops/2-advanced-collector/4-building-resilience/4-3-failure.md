@@ -8,7 +8,7 @@ To assess the **Agent's** resilience, we'll simulate a temporary `gateway` outag
 
 **Summary**:
 
-1. **Send Traces to the Agent** – Generate traffic by sending traces to the **Agent**.
+1. **Send Traces to the Agent** – Generate traffic by sending traces to the `agent`.
 2. **Stop the Gateway** – This will trigger the `agent` to enter retry mode.
 3. **Restart the Gateway** – The `agent` will recover traces from its persistent queue and forward them successfully. Without the persistent queue, these traces would have been lost permanently.
 

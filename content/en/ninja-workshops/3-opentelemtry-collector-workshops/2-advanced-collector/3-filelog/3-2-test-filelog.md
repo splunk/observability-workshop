@@ -66,18 +66,13 @@ Flags: 0
 At this point, your directory structure will appear as follows:
 
 ```text { title="Updated Directory Structure" }
-WORKSHOP
-├── 1-agent
-├── 2-gateway
-├── 3-filelog
-│   ├── agent.yaml          # Agent Collector configuration file
-│   ├── gateway-logs.out    # Output from the gateway logs pipeline
-│   ├── gateway-metrics.out # Output from the gateway metrics pipeline
-│   ├── gateway.yaml        # Gateway Collector configuration file
-│   ├── quotes.log          # File containing Random log lines
-│   └── trace.json          # Example trace file
-├── loadgen                 # Load generator binary
-└── otelcol                 # OpenTelemetry Collector binary
+[WORKSHOP]
+└── 3-filelog
+    ├── agent.yaml
+    ├── gateway-logs.out    # Output from the gateway logs pipeline
+    ├── gateway-metrics.out # Output from the gateway metrics pipeline
+    ├── gateway.yaml
+    └── quotes.log          # File containing Random log lines
 ```
 
 **Examine a log line**: In `gateway-logs.out` compare a log line with the snippet below. Verify that the log entry includes the same attributes as we have seen in metrics and traces data previously:

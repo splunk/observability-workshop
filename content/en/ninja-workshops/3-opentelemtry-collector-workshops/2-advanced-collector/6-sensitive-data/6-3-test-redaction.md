@@ -6,7 +6,7 @@ weight: 3
 
 The `redaction` processor gives precise control over which attributes and values are **permitted** or **removed** from telemetry data.
 
-In this exercise, we will **redact** the `user.visa` & `user.mastercard` **values** in the span data before it is exported by the **Agent**.
+In this exercise, we will **redact** the `user.visa` & `user.mastercard` **values** in the span data before it is exported by the `agent`.
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 **Prepare the terminals**: Delete the `*.out` files and clear the screen.

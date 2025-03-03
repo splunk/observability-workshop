@@ -8,32 +8,6 @@ To test your configuration, you'll need to generate some trace data that include
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Create "noisy" 'healthz' span**:
-
-1. Create a new file called `health.json` in the `5-dropping-spans` directory.
-2. Copy and paste the following JSON into the `health.json` file.
-3. Note the span name is set to `{"name":"healthz"}` in the json.
-
-```json { title="health.json" }
-{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"frontend"}}]},"scopeSpans":[{"scope":{"name":"healthz","version":"1.0.0","attributes":[{"key":"my.scope.attribute","value":{"stringValue":"some scope attribute"}}]},"spans":[{"traceId":"5B8EFFF798038103D269B633813FC60C","spanId":"EEE19B7EC3C1B174","parentSpanId":"EEE19B7EC3C1B173","name":"/_healthz","startTimeUnixNano":"1544712660000000000","endTimeUnixNano":"1544712661000000000","kind":2,"attributes":[]}]}]}]}
-```
-
-```text { title="Updated Directory Structure" }
-WORKSHOP
-├── 1-agent
-├── 2-gateway
-├── 3-filelog
-├── 4-resilience
-├── 5-dropping-spans
-│   ├───checkpoint-dir
-│   ├── agent.yaml
-│   ├── gateway.yaml
-│   ├── health.json
-│   ├── log-gen.sh (or .ps1)
-│   └── trace.json
-└── otelcol
-```
-
 **Start the Gateway**: In the **Gateway terminal** window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run:
 
 ```sh { title="Gateway" }
@@ -46,10 +20,10 @@ WORKSHOP
 ../otelcol --config=agent.yaml
 ```
 
-**Send the new `health.json` payload:** In the **Spans terminal** window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run the `curl` command below. (**Windows use `curl.exe`**).
+**Send the new `health.json` payload:** In the **Spans terminal** window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run the `loadgen`:
   
-```sh { title="cURL command" }
-curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@health.json"
+```sh { title="Loadgen" }
+../loadgen -health
 ```
 
 **Verify Agent Debug output shows the `healthz` span**: Confirm that the span `span` payload is sent, Check the agent’s debug output to see the span data like the snippet below:

@@ -21,18 +21,11 @@ Specifically, we will drop traces based on the span name, which is commonly used
 Your updated directory structure will now look like this:
 
 ```text { title="Updated Directory Structure" }
-WORKSHOP
-├── 1-agent
-├── 2-gateway
-├── 3-filelog
-├── 4-resilience
-├── 5-dropping-spans
-│   ├───checkpoint-dir
-│   ├── agent.yaml
-│   ├── gateway.yaml
-│   ├── log-gen.sh (or .ps1)
-│   └── trace.json
-└── otelcol
+[WORKSHOP]
+└── 5-dropping-spans
+    ├── checkpoint-dir
+    ├── agent.yaml
+    └── gateway.yaml
 ```
 
 {{% /notice %}}

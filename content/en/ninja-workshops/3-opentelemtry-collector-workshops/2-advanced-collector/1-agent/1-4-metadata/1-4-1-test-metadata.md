@@ -37,19 +37,7 @@ Resource attributes:
 </snip>
 ```
 
-**Verify `agent.out`**: Stop `loadgen` using `Ctrl-C` and validate the `agent.out` file contains the updated data:
-
-```text { title="Updated Directory Structure" }
-  [WORKSHOP]
-  ├── 1-agent         # Module directory
-  │   └── agent.out   # OTLP/Json output created by the File Exporter
-  │   └── agent.yaml  # OpenTelemetry Collector configuration file
-  │   └── trace.json  # Sample trace data
-  ├── loadgen         # Load Generator binary
-  └── otelcol         # OpenTelemetry Collector binary
-```
-
-**Verify that metadata is added to spans in the new `agent.out` file**:
+**Verify that metadata is added to spans**: Stop `loadgen` using `Ctrl-C`. In the new `agent.out` file:
 
 1. Check for the existence of the`otelcol.service.mode` attribute in the `resourceSpans` section and that it has a value of `agent`.
 2. Verify that the `resourcedetection` attributes (`host.name` and `os.type`) exist too.
