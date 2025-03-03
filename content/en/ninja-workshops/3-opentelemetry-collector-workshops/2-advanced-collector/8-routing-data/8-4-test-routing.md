@@ -8,7 +8,7 @@ weight: 3
 
 **Send a Regular Span**:
 
-1. Locate the **Spans terminal** and navigate to the `[WORKSHOP]/8-routing` directory.
+1. Locate the **Spans terminal** and navigate to the `[WORKSHOP]/8-routing-data` directory.
 2. Send a regular span using the `trace.json` file to confirm proper communication.
 
 Both the `agent` and `gateway` should display debug information, including the span you just sent. The gateway will also generate a new `gateway-traces-standard.out` file, as this is now the designated destination for regular spans.
@@ -44,4 +44,4 @@ By inspecting the output files, we confirmed that the OpenTelemetry Collector *c
 
 You can now extend this approach by defining additional routing rules to further categorize spans, metrics, and logs based on different attributes.
 
-Stop the **Agent**, `gateway` and the `log-gen` script in their respective terminals.
+Stop the `agent`, `gateway` and the `loadgen` their respective terminals using `Ctrl-C.
