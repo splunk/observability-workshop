@@ -13,7 +13,7 @@ weight: 4
 
 **Send a Test Trace**:
 
-1. Find your **Tests** terminal window
+1. Find your **Spans** terminal window
 2. Navigate it to the `[WORKSHOP]/2-gateway` directory.
 3. Run the following command to send spans:
 

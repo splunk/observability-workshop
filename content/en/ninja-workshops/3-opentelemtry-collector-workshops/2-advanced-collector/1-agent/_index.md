@@ -8,7 +8,7 @@ weight: 1
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 During this workshop, you will be using up to four terminal windows simultaneously. To stay organized, consider customizing each terminal or shell with unique names and colors. This will help you quickly identify and switch between them as needed.
 
-We will refer to these terminals as: **Agent**, **Gateway**, **Tests** and **Log-gen**.
+We will refer to these terminals as: **Agent**, **Gateway**, **Spans** and **Logs**.
 {{% /notice %}}
 
 {{% notice title="Exercise" style="green" icon="running" %}}

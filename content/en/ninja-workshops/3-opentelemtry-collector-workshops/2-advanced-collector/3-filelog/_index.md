@@ -1,6 +1,6 @@
 ---
-title: 3. Filelog Setup
-linkTitle: 3. Filelog Setup
+title: 3. FileLog Setup
+linkTitle: 3. FileLog Setup
 time: 10 minutes
 weight: 3
 ---
@@ -9,11 +9,29 @@ The [**FileLog Receiver**](https://github.com/open-telemetry/opentelemetry-colle
 
 It monitors specified files for new log entries and streams those logs into the Collector for further processing or exporting. It is useful for testing and development purposes.
 
-For this part of the workshop, there is script that will generate log lines in a file. The Filelog receiver will read these log lines and send them to the OpenTelemetry Collector.
+For this part of the workshop, the `loadgen` will generate logs using random quotes:
+
+```golang
+lotrQuotes := []string{
+    "One does not simply walk into Mordor.",
+    "Even the smallest person can change the course of the future.",
+    "All we have to decide is what to do with the time that is given us.",
+    "There is some good in this world, and it's worth fighting for.",
+}
+
+starWarsQuotes := []string{
+    "Do or do not, there is no try.",
+    "The Force will be with you. Always.",
+    "I find your lack of faith disturbing.",
+    "In my experience, there is no such thing as luck.",
+}
+```
+
+The Filelog receiver will read these log lines and send them to the OpenTelemetry Collector.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- Move to the **log-gen** terminal window.
+- Move to the **Logs terminal** window.
 - Navigate to the `[WORKSHOP]` directory and create a new subdirectory named `3-filelog`.
 - Next, copy all contents from the `2-gateway` directory into `3-filelog`.
 - After copying, remove any `*.out` and `*.log` files.
@@ -28,8 +46,18 @@ WORKSHOP
 ├── 3-filelog
 │   ├── agent.yaml          # Agent Collector configuration file
 │   ├── gateway.yaml        # Gateway Collector configuration file
-│   └── trace.json          # Example trace file
+├── loadgen                 # Load generator binary
 └── otelcol                 # OpenTelemetry binary
+```
+
+Start the `loadgen` and this will begin writing lines to a file named `quotes.log`:
+
+```sh { title="Log Load Generator" }
+../loadgen -logs
+```
+
+```text { title="Log Load Generator Output" }
+Writing logs to quotes.log. Press Ctrl+C to stop.
 ```
 
 {{% /notice %}}
