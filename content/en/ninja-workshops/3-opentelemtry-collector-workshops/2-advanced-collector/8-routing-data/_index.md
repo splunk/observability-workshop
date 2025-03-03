@@ -19,22 +19,11 @@ For example, you might want to send *production* data to one exporter while dire
 Your updated directory structure will now look like this:
 
 ```text { title="Updated Directory Structure" }
-WORKSHOP
-├── 1-agent
-├── 2-gateway
-├── 3-filelog
-├── 4-resilience
-├── 5-dropping-spans
-├── 6-sensitive-data
-├── 7-transform-data
-├── 8-routing
-│   ├───checkpoint-dir
-│   ├── agent.yaml
-│   ├── health.json
-│   ├── gateway.yaml
-│   ├── log-gen.sh (or .ps1)
-│   └── trace.json
-└── otelcol
+[WORKSHOP]
+└── 8-routing
+    ├──checkpoint-dir
+    ├── agent.yaml
+    └── gateway.yaml
 ```
 
 {{% /notice %}}

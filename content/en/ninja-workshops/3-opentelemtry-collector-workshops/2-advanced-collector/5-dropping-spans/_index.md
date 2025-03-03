@@ -21,7 +21,7 @@ Your updated directory structure will now look like this:
 ```text { title="Updated Directory Structure" }
 [WORKSHOP]
 └── 5-dropping-spans
-    ├───checkpoint-dir
+    ├── checkpoint-dir
     ├── agent.yaml
     └── gateway.yaml
 ```
