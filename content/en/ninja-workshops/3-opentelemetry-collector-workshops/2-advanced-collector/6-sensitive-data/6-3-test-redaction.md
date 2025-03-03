@@ -25,11 +25,6 @@ In this exercise, we will **redact** the `user.visa` & `user.mastercard` **value
 ../otelcol --config=agent.yaml
 ```
 
-**Send a span**: Run the `curl` command and in the **Spans terminal** window to send `trace.json`.
-```sh
-curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
-```
-
 **Check the debug output**: For both the `agent` and `gateway` confirm the values for `user.visa` & `user.mastercard` have been updated. Notice `user.amex` attribute value was NOT redacted because a matching regex pattern was not added to `blocked_values`
 
 {{% tabs %}}
@@ -183,4 +178,4 @@ Add the Amex card regex to `blocked_values` and restart `agent` collector.
 -->
 These are just a few examples of how `attributes` and `redaction` processors can be configured to protect sensitive data.
 
-Stop the `agent` and `gateway` using `Ctrl-C`.
+Stop the `agent`, `gateway` and `loadgen` using `Ctrl-C`.

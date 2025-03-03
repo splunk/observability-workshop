@@ -20,12 +20,12 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
 ../otelcol --config=agent.yaml
 ```
 
-**Send a span**:
+**Start the Loadgen**:
 
 1. In the **Spans terminal** window change into the `6-sensitive-data` directory.
-2. Send the span containing **sensitive data** by running the `curl` command to send `trace.json`.
+2. Start the `loadgen`:
 ```sh
-curl -X POST -i http://localhost:4318/v1/traces -H "Content-Type: application/json" -d "@trace.json"
+../loadgen
 ```
 
 **Check the debug output**: For both the `agent` and `gateway` debug output, confirm that `user.account_password` has been removed, and both `user.phone_number` & `user.email` have been updated.
