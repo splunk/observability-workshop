@@ -33,45 +33,46 @@ weight: 2
 
 **Update the pipelines**:
 
-1. Add `hostmetrics` to the `metrics` pipeline. The [**HostMetrics Receiver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/hostmetricsreceiver#readme) will generate host metrics.
+1. Add `hostmetrics` to the `metrics` pipeline. The [**HostMetrics Receiver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/hostmetricsreceiver#readme) will generate host CPU metrics once per hour with the current configuration.
 2. Add the `batch` processor after the `resource/add_mode` processor in the `traces`, `metrics`, and `logs` pipelines.
 3. Replace the `file` exporter with the `otlphttp` exporter in the `traces`, `metrics`, and `logs` pipelines.
 
 ```yaml
-  traces:
-    receivers: 
-    - otlp                        # OTLP Receiver
-    processors:
-    - memory_limiter              # Memory Limiter Processor
-    - resourcedetection           # System attributes metadata
-    - resource/add_mode           # Collector mode metadata
-    - batch                       # Batch Processor, groups data before send
-    exporters:
-    - debug                       # Debug Exporter 
-    - otlphttp                    # OTLP/HTTP Exporter
-  metrics:
-    receivers: 
-    - otlp                        # OTLP Receiver
-    - hostmetrics                 # Hostmetrics Receiver
-    processors:
-    - memory_limiter              # Memory Limiter Processor
-    - resourcedetection           # System attributes metadata
-    - resource/add_mode           # Collector mode metadata
-    - batch                       # Batch Processor, groups data before send
-    exporters:
-    - debug                       # Debug Exporter 
-    - otlphttp                    # OTLP/HTTP Exporter
-  logs:
-    receivers: 
-    - otlp                        # OTLP Receiver
-    processors:
-    - memory_limiter              # Memory Limiter Processor
-    - resourcedetection           # System attributes metadata
-    - resource/add_mode           # Collector mode metadata
-    - batch                       # Batch Processor, groups data before send
-    exporters:
-    - debug                       # Debug Exporter 
-    - otlphttp                    # OTLP/HTTP Exporter
+  pipelines:                        # Array of configured pipelines
+    traces:
+      receivers: 
+      - otlp                        # OTLP Receiver
+      processors:
+      - memory_limiter              # Memory Limiter Processor
+      - resourcedetection           # System attributes metadata
+      - resource/add_mode           # Collector mode metadata
+      - batch                       # Batch Processor, groups data before send
+      exporters:
+      - debug                       # Debug Exporter 
+      - otlphttp                    # OTLP/HTTP Exporter
+    metrics:
+      receivers: 
+      - otlp                        # OTLP Receiver
+      - hostmetrics                 # Hostmetrics Receiver
+      processors:
+      - memory_limiter              # Memory Limiter Processor
+      - resourcedetection           # System attributes metadata
+      - resource/add_mode           # Collector mode metadata
+      - batch                       # Batch Processor, groups data before send
+      exporters:
+      - debug                       # Debug Exporter 
+      - otlphttp                    # OTLP/HTTP Exporter
+    logs:
+      receivers: 
+      - otlp                        # OTLP Receiver
+      processors:
+      - memory_limiter              # Memory Limiter Processor
+      - resourcedetection           # System attributes metadata
+      - resource/add_mode           # Collector mode metadata
+      - batch                       # Batch Processor, groups data before send
+      exporters:
+      - debug                       # Debug Exporter 
+      - otlphttp                    # OTLP/HTTP Exporter
 ```
 
 {{% /notice %}}
