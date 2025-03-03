@@ -14,7 +14,7 @@ Switch to your **Gateway terminal** window. Navigate to the `[WORKSHOP]/5-droppi
   filter/health:                  # Defines a filter processor
     error_mode: ignore            # Ignore errors
     traces:                       # Filtering rules for traces
-      span:                       # Exclude spans named "/_healthz"  
+      span:                       # Exclude spans named "/_healthz"
         - 'name == "/_healthz"'
 ```
 
@@ -26,7 +26,7 @@ Switch to your **Gateway terminal** window. Navigate to the `[WORKSHOP]/5-droppi
       - otlp                      # OTLP Receiver
       processors:
       - memory_limiter            # Manage memory usage
-      - filter/health             # Filter Processor. Filter's out Data based on rules
+      - filter/health             # Filters data based on rules
       - resource/add_mode         # Add metadata about collector mode
       - batch                     # Groups Data before send
       exporters:
