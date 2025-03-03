@@ -49,9 +49,9 @@ INSTANCE = <instance_name>
 {{% /tab %}}
 {{< /tabs >}}
 
-Please make a note of the `INSTANCE` environment variable value as this will used later to filter data in **Splunk Observability Cloud**.
+Please make a note of the `INSTANCE` environment variable value as this will be used later to filter data in **Splunk Observability Cloud**.
 
-For this workshop, **all** of the above are required. If any have values missing, please contact your Instructor.
+For this workshop, **all** the above are required. If any have values missing, please contact your Instructor.
 
 > [!SPLUNK] Delete any existing OpenTelemetry Collectors
 >If you have previously completed a Splunk Observability workshop using this EC2 instance, you

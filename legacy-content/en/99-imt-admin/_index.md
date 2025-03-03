@@ -9,9 +9,9 @@ hidden: true
 
 During this _**technical**_ Splunk Observability Cloud Infrastructure Monitoring Workshop, you will build out an environment based on a [lightweight](https://k3s.io/) Kubernetes[^1] cluster.
 
-To simplify the workshop modules, a pre-configured AWS/EC2 instance is provided and the instructor will provide you with the login information for the instance that you will be using during the workshop.
+To simplify the workshop modules, a pre-configured AWS/EC2 instance is provided, and the instructor will provide you with the login information for the instance that you will be using during the workshop.
 
-The instance is pre-configured with all the software required to deploy the Splunk OpenTelemetry Connector[^2] in Kubernetes, deploy an NGINX^3 ReplicaSet^4 and finally deploy a microservices-based application which has been instrumented using OpenTelemetry to send metrics, traces, spans and logs[^5].
+The instance is pre-configured with all the software required to deploy the Splunk OpenTelemetry Connector[^2] in Kubernetes, deploy an NGINX[^3] ReplicaSet[^4] and finally deploy a microservices-based application which has been instrumented using OpenTelemetry to send metrics, traces, spans and logs[^5].
 
 The workshops also introduce you to dashboards, navigators editing and creating charts, creating detectors to fire alerts, Monitoring as Code and the Service Bureau[^6]
 
@@ -60,9 +60,9 @@ INSTANCE = <instance_name>
 {{% /tab %}}
 {{< /tabs >}}
 
-Please make a note of the `INSTANCE` environment variable value as this will used later to filter data in **Splunk Observability Cloud**.
+Please make a note of the `INSTANCE` environment variable value as this will be used later to filter data in **Splunk Observability Cloud**.
 
-For this workshop, **all** of the above are required. If any have values missing, please contact your Instructor.
+For this workshop, **all** the above are required. If any have values missing, please contact your Instructor.
 
 [^1]: [**Kubernetes**](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/) is a portable, extensible, open-source platform for managing containerized workloads and services, that facilitates both declarative configuration and automation.
 [^2]: [**OpenTelemetry Collector**](https://opentelemetry.io/) offers a vendor-agnostic implementation on how to receive, process and export telemetry data. In addition, it removes the need to run, operate and maintain multiple agents/collectors to support open-source telemetry data formats (e.g. Jaeger, Prometheus, etc.) sending to multiple open-source or commercial back-ends.

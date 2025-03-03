@@ -20,10 +20,11 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
 ../otelcol --config=agent.yaml
 ```
 
-**Start the Loadgen**:
+**Start the Load Generator**:
 
 1. In the **Spans terminal** window change into the `6-sensitive-data` directory.
 2. Start the `loadgen`:
+
 ```sh
 ../loadgen
 ```
