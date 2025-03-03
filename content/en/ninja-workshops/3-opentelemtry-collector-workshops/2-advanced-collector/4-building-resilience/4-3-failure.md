@@ -28,13 +28,14 @@ Notice that the agent’s retry mechanism is activated as it continuously attemp
 2025-01-28T14:22:47.020+0100  info  internal/retry_sender.go:126  Exporting failed. Will retry the request after interval.  {"kind": "exporter", "data_type": "traces", "name": "otlphttp", "error": "failed to make an HTTP request: Post \"http://localhost:5318/v1/traces\": dial tcp 127.0.0.1:5318: connect: connection refused", "interval": "9.471474933s"}
 ```
 
-**Stop the Agent**: Use `Ctrl-C` to stop the agent. Wait until the agent’s console confirms it has stopped:
+**Stop the Agent**: In the **Agent terminal** window, use `Ctrl-C` to stop the agent. Wait until the agent’s console confirms it has stopped:
 
 ```text
 2025-01-28T14:40:28.702+0100  info  extensions/extensions.go:66  Stopping extensions...
 2025-01-28T14:40:28.702+0100  info  service@v0.116.0/service.go:309  Shutdown complete.
 ```
 
+**Stop the Load Generator**: In the **Spans terminal** window, use `Ctrl-C` to stop the load generator.
 {{% /notice %}}
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
