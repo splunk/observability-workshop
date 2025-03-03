@@ -20,7 +20,7 @@ In this section, we will test the `routing` rule configured for the **Gateway**.
 ../otelcol --config=agent.yaml
 ```
 
-**Create new security trace**: In the **Tests** terminal window navigate to the `[WORKSHOP]/8-routing` directory.
+**Create new security trace**: In the **Spans** terminal window navigate to the `[WORKSHOP]/8-routing` directory.
   
 The following JSON contains attributes which will trigger the routing rule. Copy the content from the tab below and save into a file named `security.json`.
 

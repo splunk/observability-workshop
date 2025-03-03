@@ -1,11 +1,11 @@
 ---
-title: 3.3 Filelog Configuration
-linkTitle: 3.3 Filelog Configuration
-weight: 3
+title: 3.1 FileLog Configuration
+linkTitle: 3.1 FileLog Configuration
+weight: 1
 ---
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-Move to the **Agent** terminal window and change into the `[WORKSHOP]/3-filelog` directory.  Open the `agent.yaml` copied across earlier and in your editor add the `filelog` receiver to the `agent.yaml`.
+Move to the **Agent terminal** window and change into the `[WORKSHOP]/3-filelog` directory.  Open the `agent.yaml` copied across earlier and in your editor add the `filelog` receiver to the `agent.yaml`.
 
 **Create the `filelog` receiver and name it `quotes`**: The **FileLog** receiver reads log data from a file and includes custom resource attributes in the log data:
 
