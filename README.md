@@ -1,6 +1,5 @@
 # Splunk Observability Cloud Workshops
 
-[!(https://github.com/splunk/observability-workshop/actions/workflows/deploy.yml/badge.svg)](https://github.com/splunk/observability-workshop/actions/workflows/deploy.yml)
 ![GitHub release](https://img.shields.io/github/v/tag/splunk/observability-workshop)
 ![GitHub commits since the latest release (by SemVer)](https://img.shields.io/github/commits-since/splunk/observability-workshop/latest)
 ![GitHub repo size](https://img.shields.io/github/repo-size/splunk/observability-workshop)
