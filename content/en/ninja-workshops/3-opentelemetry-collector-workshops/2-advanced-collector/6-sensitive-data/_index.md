@@ -15,8 +15,7 @@ We'll walk through configuring key processors in the OpenTelemetry Collector, in
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - Inside the `[WORKSHOP]` directory, create a new subdirectory named `6-sensitive-data`.
-- Next, copy all contents from the `5-dropping-spans` directory into `6-sensitive-data`.
-- After copying, remove any `*.out` and `*.log` files.
+- Next, copy `*.yaml` from the `5-dropping-spans` directory into `6-sensitive-data`.
 - Change **all** terminal windows to the `[WORKSHOP]/6-sensitive-data` directory.
 
 Your updated directory structure will now look like this:
@@ -24,7 +23,6 @@ Your updated directory structure will now look like this:
 ```text { title="Updated Directory Structure" }
 [WORKSHOP]
 └── 6-sensitive-data
-    ├───checkpoint-dir
     ├── agent.yaml
     └── gateway.yaml
 ```

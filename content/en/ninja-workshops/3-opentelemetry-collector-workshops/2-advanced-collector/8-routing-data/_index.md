@@ -11,16 +11,15 @@ For example, you might want to send *production* data to one exporter while dire
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- Inside the `[WORKSHOP]` directory, create a new subdirectory named `8-routing`.
-- Next, copy `*.yaml` from the `7-transform-data` directory into `8-routing`.
-- Change **all** terminal windows to the `[WORKSHOP]/8-routing` directory.
+- Inside the `[WORKSHOP]` directory, create a new subdirectory named `8-routing-data`.
+- Next, copy `*.yaml` from the `7-transform-data` directory into `8-routing-data`.
+- Change **all** terminal windows to the `[WORKSHOP]/8-routing-data` directory.
 
 Your updated directory structure will now look like this:
 
 ```text { title="Updated Directory Structure" }
 [WORKSHOP]
 └── 8-routing
-    ├──checkpoint-dir
     ├── agent.yaml
     └── gateway.yaml
 ```

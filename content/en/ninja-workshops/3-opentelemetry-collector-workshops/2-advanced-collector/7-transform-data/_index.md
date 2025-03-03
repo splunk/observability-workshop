@@ -31,8 +31,7 @@ Logs often contain structured data encoded as JSON within the log body. Extracti
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - Inside the `[WORKSHOP]` directory, create a new subdirectory named `7-transform`.
-- Next, copy all contents from the `6-sensitve-data` directory into `7-transform`.
-- After copying, remove any `*.out` and `*.log` files.
+- Next, copy `*.yaml` from the `6-sensitve-data` directory into `7-transform`.
 - Change **all** terminal windows to the `[WORKSHOP]/7-transform` directory.
 
 Your updated directory structure will now look like this:
@@ -40,7 +39,6 @@ Your updated directory structure will now look like this:
 ```text { title="Updated Directory Structure" }
 WORKSHOP
 └── 7-transform-data
-    ├───checkpoint-dir
     ├── agent.yaml
     └── gateway.yaml
 ```
