@@ -50,7 +50,7 @@ Having access to [**jq**](https://jqlang.org/download/) is recommended. This lig
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-Once downloaded, rename the collector binary to `otelcol` (`otelcol.exe` on Windows) and the load generator binary to `loadgen` (`loadgen.exe` on Windows). On Mac and Linux, update the file permissions to make them executable:
+Once downloaded, rename the collector binary to `otelcol` and the load generator binary to `loadgen`. On Mac and Linux, update the file permissions to make them executable:
 
 ```bash
 chmod +x otelcol loadgen && \
@@ -65,15 +65,6 @@ chmod +x otelcol loadgen && \
 [WORKSHOP]
 ├── otelcol      # OpenTelemetry Collector binary
 └── loadgen      # Load Generator binary
-```
-
-{{% /tab %}}
-{{% tab title="Initial Windows Directory Structure" %}}
-
-```text
-[WORKSHOP]
-├── loadgen.exe  # Load Generator binary
-└── otelcol.exe  # OpenTelemetry Collector binary
 ```
 
 {{% /tab %}}

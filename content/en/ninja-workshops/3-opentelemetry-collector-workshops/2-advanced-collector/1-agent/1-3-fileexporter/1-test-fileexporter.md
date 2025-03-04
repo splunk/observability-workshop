@@ -33,10 +33,6 @@ Again, if you have done everything correctly, the last line of the output should
     └── agent.yaml
 ```
 
-{{% notice note %}}
-On **Windows**, an open file may appear empty or cause issues when attempting to read it. To prevent this, make sure to stop the `agent` or the `gateway` before inspecting the file, as instructed.
-{{% /notice %}}
-
 **Verify the span format**:
 
 1. Verify the format used by the File Exporter to write the span to `agent.out`.  
