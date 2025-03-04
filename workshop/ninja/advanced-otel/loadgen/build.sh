@@ -10,10 +10,8 @@ OUTPUT_DIR="build"
 PLATFORMS=(
   "darwin/amd64"
   "darwin/arm64"
-  "windows/amd64"
   "linux/amd64"
   "linux/arm64"
-  "windows/amd64"
 )
 
 # Create the output directory if it doesn't exist
@@ -24,11 +22,6 @@ compile() {
   local GOOS=$1
   local GOARCH=$2
   local OUTPUT_FILE="$OUTPUT_DIR/$APP_NAME-$GOOS-$GOARCH"
-
-  # Add .exe extension for Windows
-  if [ "$GOOS" = "windows" ]; then
-    OUTPUT_FILE="$OUTPUT_FILE.exe"
-  fi
 
   echo "Compiling for $GOOS/$GOARCH..."
   env GOOS="$GOOS" GOARCH="$GOARCH" go build -o "$OUTPUT_FILE" .
