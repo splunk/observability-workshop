@@ -17,7 +17,7 @@ weight: 4
 2. Navigate it to the `[WORKSHOP]/2-gateway` directory.
 3. Run the following command to send spans:
 
-```sh
+```bash { title="Start the Load Generator"}
 ../loadgen
 ```
   

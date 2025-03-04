@@ -10,19 +10,19 @@ To test your configuration, you'll need to generate some trace data that include
 
 **Start the Gateway**: In the **Gateway terminal** window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run:
 
-```sh { title="Gateway" }
+```bash { title="Start the Gateway" }
 ../otelcol --config=gateway.yaml
 ```
 
 **Start the Agent**: In the **Agent terminal** window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run:
 
-```sh { title="Agent" }
+```bash { title="Start the Agent" }
 ../otelcol --config=agent.yaml
 ```
 
 **Start the Loadgen**: In the **Spans terminal** window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run the `loadgen` with the flag to also send `healthz` spans:
   
-```sh { title="Loadgen" }
+```bash { title="Loadgen" }
 ../loadgen -health
 ```
 

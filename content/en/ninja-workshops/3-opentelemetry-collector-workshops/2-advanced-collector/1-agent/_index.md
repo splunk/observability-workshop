@@ -14,7 +14,7 @@ We will refer to these terminals as: **Agent**, **Gateway**, **Spans** and **Log
 {{% notice title="Exercise" style="green" icon="running" %}}
 In your `[WORKSHOP]` directory, create a subdirectory called `1-agent` and change into that directory.
 
-```sh
+```bash { title="Create the 1-agent directory" }
 mkdir 1-agent && \
 cd 1-agent
 ```

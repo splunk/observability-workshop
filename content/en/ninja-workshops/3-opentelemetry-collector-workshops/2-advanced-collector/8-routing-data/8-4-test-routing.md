@@ -6,15 +6,17 @@ weight: 3
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
+## Needs re-writing to support new Loadgen
+
 **Send a Regular Span**:
 
 1. Locate the **Spans terminal** and navigate to the `[WORKSHOP]/8-routing-data` directory.
-2. Send a regular span using the `trace.json` file to confirm proper communication.
+2. Start the `loadgen`.
 
-Both the `agent` and `gateway` should display debug information, including the span you just sent. The gateway will also generate a new `gateway-traces-standard.out` file, as this is now the designated destination for regular spans.
+Both the `agent` and `gateway` will display debug information. The gateway will also generate a new `gateway-traces-standard.out` file, as this is now the designated destination for regular spans.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-If you check `gateway-traces-standard.out`, it should contain the `span` sent using the `cURL` command. You will also see an empty `gateway-traces-security.out` file, as the routing configuration creates output files immediately, even if no matching spans have been processed yet.
+If you check `gateway-traces-standard.out`, it will contain the `span` sent by `loadgen`. You will also see an empty `gateway-traces-security.out` file, as the routing configuration creates output files immediately, even if no matching spans have been processed yet.
 {{% /notice %}}
 
 **Send a Security Span**:

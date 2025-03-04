@@ -7,7 +7,7 @@ weight: 1
 
 **Restart your Agent**: In your **Agent terminal** window, and restart the `agent` using the updated configuration to test the changes:
 
-```sh { title="Agent" }
+```bash { title="Start the Agent" }
 ../otelcol --config=agent.yaml
 ```
 
@@ -19,7 +19,7 @@ If everything is set up correctly, the last line of the output should confirm th
 
 **Send a Trace**: From the **Spans terminal** window (making sure you are in the `1-agent` directory), send spans again with the `loadgen` binary to create a new `agent.out`:
 
-```sh
+```bash { title="Start Load Generator" }
 ../loadgen
 ```
 

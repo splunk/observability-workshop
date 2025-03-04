@@ -30,7 +30,7 @@ This also uses `routing` as its receiver. Add this below the Standard one:
     ```yaml
         traces/security:              # New Security Traces/Spans Pipeline
           receivers: 
-          - routing                   # Routing Connector, Only receives data from Connector
+          - routing                   # Receive data from the routing connector
           processors:
           - memory_limiter            # Memory Limiter Processor
           - resource/add_mode         # Adds collector mode metadata
@@ -109,5 +109,3 @@ classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
 classDef sub-traces stroke:#fbbf24,stroke-width:1px, color:#fbbf24,stroke-dasharray: 3 3;
 ```
-
-Lets' test our configuration!

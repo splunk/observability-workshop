@@ -50,7 +50,7 @@ Start the `loadgen` and this will begin writing lines to a file named `quotes.lo
 {{% tabs %}}
 {{% tab title="Log Load Generator" %}}
 
-```sh
+```bash { title="Start the Log Load Generator" }
 ../loadgen -logs
 ```
 

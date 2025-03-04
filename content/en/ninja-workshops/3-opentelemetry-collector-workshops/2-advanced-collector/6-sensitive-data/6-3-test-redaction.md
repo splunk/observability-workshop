@@ -15,13 +15,13 @@ In this exercise, we will **redact** the `user.visa` & `user.mastercard` **value
 
 **Start the Gateway**: In the **Gateway terminal** window navigate to the `[WORKSHOP]/6-sensitive-data` directory and run:
 
-```sh { title="Gateway" }
+```bash { title="Start the Gateway" }
 ../otelcol --config=gateway.yaml
 ```
 
 **Start the Agent**: In the **Agent terminal** window navigate to the `[WORKSHOP]/6-sensitive-data` directory and run:
 
-```sh { title="Agent" }
+```bash { title="Start the Agent" }
 ../otelcol --config=agent.yaml
 ```
 

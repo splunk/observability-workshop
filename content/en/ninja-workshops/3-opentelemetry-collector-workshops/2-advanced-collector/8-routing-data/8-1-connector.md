@@ -4,7 +4,7 @@ linkTitle: 8.1 Routing Configuration
 weight: 1
 ---
 
-In this exercise, you will configure the `routing` connector in the `gateway.yaml` file. This setup enables the `gateway` to route traces based on the `deployment.environment` attribute in the spans you send. By implementing this, you can process and handle traces differently depending on their attributes.
+In this exercise, you will configure the **Routing Connector** in the `gateway.yaml` file. This setup enables the `gateway` to route traces based on the `deployment.environment` attribute in the spans you send. By implementing this, you can process and handle traces differently depending on their attributes.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
