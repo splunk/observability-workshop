@@ -1,0 +1,44 @@
+name: Build Go Binaries
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger on version tags (e.g., v1.0.0)
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        goos: [linux, darwin, windows]
+        goarch: [amd64, arm64]
+      fail-fast: false
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'  # Replace with your desired Go version
+
+      - name: Navigate to Go code directory
+        run: workshop/ninja/advanced-otel/loadgen  # Replace with your Go code directory
+
+      - name: Build binary
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+        run: |
+          output_name="loadgen-${{ matrix.goos }}-${{ matrix.goarch }}"
+          if [ "${{ matrix.goos }}" = "windows" ]; then
+            output_name="$output_name.exe"
+          fi
+          go build -o $output_name .
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.goos }}-${{ matrix.goarch }}-binary
+          path: workshop/ninja/advanced-otel/loadgen/loadgen-${{ matrix.goos }}-${{ matrix.goarch }}*  # Adjust path to match the directory
