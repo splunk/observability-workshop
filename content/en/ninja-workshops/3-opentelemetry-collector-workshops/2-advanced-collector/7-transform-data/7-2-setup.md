@@ -13,7 +13,7 @@ weight: 2
    - **Important**: To ensure the logs are structured in JSON format, include the `-json` flag when starting the script.
 
 ```sh { title="Log Generator" }
-./loadgen -logs -json
+../loadgen -logs -json
 ```
 
 The `loadgen` will begin writing lines to a file named `./quotes.log`, while displaying a single line of output in the console.
