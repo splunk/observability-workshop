@@ -60,8 +60,7 @@ Flags: 0
 
 **Verify the gateway has handled the logs**:
 
-1. **Windows only**: Stop the `agent` and `gateway` to flush the files.
-2. Check if the `gateway` has written a `./gateway-logs.out` file.
+1. Check if the `gateway` has written a `./gateway-logs.out` file.
 
 At this point, your directory structure will appear as follows:
 

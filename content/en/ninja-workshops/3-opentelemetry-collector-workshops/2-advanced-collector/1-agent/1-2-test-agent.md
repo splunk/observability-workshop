@@ -17,11 +17,6 @@ You’re ready to start the OpenTelemetry Collector with the newly created `agen
 ../otelcol --config=agent.yaml
 ```
 
-In this workshop, we use **macOS/Linux** commands by default. If you’re using Windows, adjust the commands as needed i.e. use `../otelcol.exe`.
-
-> [!note]
-> On Windows, a dialog box may appear asking if you want to grant public and private network access to `otelcol.exe`. Click **"Allow"** to proceed.
-
 **Verify debug output**: If everything is configured correctly, the first and last lines of the output will look like:
 
 ```text
