@@ -12,17 +12,16 @@ weight: 2
 This pipeline is using `routing` as its receiver. Place it below the existing `traces:` pipeline, keeping its configuration unchanged for now:
 
     ```yaml
-        traces/standard:                # Default pipeline for unmatched spans
+        traces/standard:              # Default pipeline for unmatched spans
           receivers: 
-          - routing                     # Receive data from the routing connector
+          - routing                   # Receive data from the routing connector
           processors:
           - memory_limiter            # Memory Limiter Processor
-          - resourcedetection         # Adds system attributes to the data
           - resource/add_mode         # Adds collector mode metadata
           - batch
           exporters:
-          - debug                       # Debug exporter
-          - file/traces/standard        # File exporter for unmatched spans
+          - debug                     # Debug exporter
+          - file/traces/standard      # File exporter for unmatched spans
     ```
 
 2. **Configure the Security pipeline**: This pipeline will handle all spans that match the routing rule.  
@@ -34,7 +33,6 @@ This also uses `routing` as its receiver. Add this below the Standard one:
           - routing                   # Routing Connector, Only receives data from Connector
           processors:
           - memory_limiter            # Memory Limiter Processor
-          - resourcedetection         # Adds system attributes to the data
           - resource/add_mode         # Adds collector mode metadata
           - batch
           exporters:
@@ -71,10 +69,12 @@ graph LR
       PRO2(memory_limiter<br>fa:fa-microchip):::processor
       PRO3(resource<br>fa:fa-microchip<br>add_mode):::processor
       PRO4(resource<br>fa:fa-microchip<br>add_mode):::processor
+      PRO5(batch<br>fa:fa-microchip):::processor
+      PRO6(batch<br>fa:fa-microchip):::processor
       EXP1(&nbsp;&ensp;debug&nbsp;&ensp;<br>fa:fa-upload):::exporter
-      EXP2(&emsp;&emsp;file&emsp;&emsp;<br>fa:fa-upload):::exporter
+      EXP2(&emsp;&emsp;file&emsp;&emsp;<br>fa:fa-upload<br>traces):::exporter
       EXP3(&nbsp;&ensp;debug&nbsp;&ensp;<br>fa:fa-upload):::exporter
-      EXP4(&emsp;&emsp;file&emsp;&emsp;<br>fa:fa-upload):::exporter
+      EXP4(&emsp;&emsp;file&emsp;&emsp;<br>fa:fa-upload<br>traces):::exporter
       ROUTE1(&nbsp;routing&nbsp;<br>fa:fa-route):::con-export
       ROUTE2(&nbsp;routing&nbsp;<br>fa:fa-route):::con-receive
       ROUTE3(&nbsp;routing&nbsp;<br>fa:fa-route):::con-receive
@@ -91,15 +91,17 @@ graph LR
       ROUTE1 --> ROUTE2
       ROUTE2 --> PRO1
       PRO1 --> PRO3
-      PRO3 --> EXP1
-      PRO3 --> EXP2
+      PRO3 --> PRO5
+      PRO5 --> EXP1
+      PRO5 --> EXP2
       end
       subgraph subID3[**Traces/security**]
       ROUTE1 --> ROUTE3
       ROUTE3 --> PRO2
       PRO2 --> PRO4
-      PRO4 --> EXP3
-      PRO4 --> EXP4
+      PRO4 --> PRO6
+      PRO6 --> EXP3
+      PRO6 --> EXP4
       end
     end
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
