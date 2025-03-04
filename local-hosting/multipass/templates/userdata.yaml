@@ -41,6 +41,7 @@ write_files:
     append: true
     content: |
 
+      export TERM=xterm-256color
       export REALM=${realm}
       export ACCESS_TOKEN=${access_token}
       export API_TOKEN=${api_token}
