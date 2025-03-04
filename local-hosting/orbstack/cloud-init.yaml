@@ -41,6 +41,7 @@ write_files:
   - path: /etc/skel/.profile
     append: true
     content: |
+      export TERM=xterm-256color
       INSTANCE=$(cat /etc/hostname)
       CLUSTER_NAME="$INSTANCE-cluster"
 
