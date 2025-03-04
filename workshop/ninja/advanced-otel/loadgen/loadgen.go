@@ -106,25 +106,25 @@ func sendBaseTrace(traceID, spanID string, startTime, endTime int64) {
 										},
 									},
 									map[string]interface{}{
-										"key": "user.account_password",
+										"key": "user.secret_data",
 										"value": map[string]interface{}{
 											"stringValue": "LOTR>StarWars1-2-3",
 										},
 									},
 									map[string]interface{}{
-										"key": "user.visa",
+										"key": "user.card.1",
 										"value": map[string]interface{}{
 											"stringValue": "4111 1111 1111 1111",
 										},
 									},
 									map[string]interface{}{
-										"key": "user.amex",
+										"key": "user.card.2",
 										"value": map[string]interface{}{
 											"stringValue": "3782 822463 10005",
 										},
 									},
 									map[string]interface{}{
-										"key": "user.mastercard",
+										"key": "user.card.3",
 										"value": map[string]interface{}{
 											"stringValue": "5555 5555 5555 4444",
 										},
