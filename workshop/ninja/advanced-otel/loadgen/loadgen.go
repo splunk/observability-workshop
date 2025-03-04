@@ -289,7 +289,7 @@ func sendJSON(url string, data interface{}) error {
 }
 
 // Function to generate a random quote
-func getRandomQuote() string {
+func getRandomQuote() (string, string) {
 	lotrQuotes := []string{
 		"One does not simply walk into Mordor.",
 		"Even the smallest person can change the course of the future.",
@@ -305,9 +305,9 @@ func getRandomQuote() string {
 	}
 
 	if rand.Intn(2) == 0 {
-		return lotrQuotes[rand.Intn(len(lotrQuotes))]
+		return lotrQuotes[rand.Intn(len(lotrQuotes))], "LOTR"
 	}
-	return starWarsQuotes[rand.Intn(len(starWarsQuotes))]
+	return starWarsQuotes[rand.Intn(len(starWarsQuotes))], "SW"
 }
 
 // Function to generate a random log level
@@ -320,18 +320,19 @@ func getRandomLogLevel() string {
 func generateLogEntry(jsonOutput bool) string {
 	timestamp := time.Now().Format("2006-01-02 15:04:05")
 	level := getRandomLogLevel()
-	message := getRandomQuote()
+	quote, movie := getRandomQuote()
 
 	if jsonOutput {
 		logEntry := map[string]string{
 			"timestamp": timestamp,
 			"level":     level,
-			"message":   message,
+			"message":   quote,
+			"movie":     movie,
 		}
 		jsonData, _ := json.Marshal(logEntry)
 		return string(jsonData)
 	}
-	return fmt.Sprintf("%s [%s] - %s", timestamp, level, message)
+	return fmt.Sprintf("%s [%s] - %s %s", timestamp, level, quote, movie)
 }
 
 // Function to write logs to a file
