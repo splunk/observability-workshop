@@ -1,44 +1,58 @@
-name: Build Go Binaries
+name: Build and Release Loadgen
 
 on:
   push:
     tags:
-      - 'v*'  # Trigger on version tags (e.g., v1.0.0)
-  workflow_dispatch:  # Allow manual triggering
+      - 'v*'
+
+permissions:
+  contents: write
 
 jobs:
   build:
+    name: Build Loadgen Binary
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        goos: [linux, darwin, windows]
-        goarch: [amd64, arm64]
-      fail-fast: false
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Set up Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
-          go-version: '1.21'  # Replace with your desired Go version
+          go-version: stable
 
-      - name: Navigate to Go code directory
-        run: workshop/ninja/advanced-otel/loadgen/  # Replace with your Go code directory
-
-      - name: Build binary
-        env:
-          GOOS: ${{ matrix.goos }}
-          GOARCH: ${{ matrix.goarch }}
+      - name: Build Loadgen
         run: |
-          output_name="loadgen-${{ matrix.goos }}-${{ matrix.goarch }}"
-          if [ "${{ matrix.goos }}" = "windows" ]; then
-            output_name="$output_name.exe"
-          fi
-          go build -o $output_name .
+          cd workshop/ninja/advanced-otel/loadgen/
+          go build -o loadgen loadgen.go
 
-      - name: Upload artifact
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.goos }}-${{ matrix.goarch }}-binary
-          path: workshop/ninja/advanced-otel/loadgen/loadgen-${{ matrix.goos }}-${{ matrix.goarch }}*  # Adjust path to match the directory
+          name: loadgen-binary
+          path: workshop/ninja/advanced-otel/loadgen/loadgen
+
+  release:
+    name: Create GitHub Release
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: loadgen-binary
+          path: ./
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ./loadgen
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          draft: false
+          prerelease: false
