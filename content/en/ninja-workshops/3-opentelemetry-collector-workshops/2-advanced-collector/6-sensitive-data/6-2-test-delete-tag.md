@@ -10,13 +10,13 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
 
 **Start the Gateway**: In the **Gateway terminal** window navigate to the `[WORKSHOP]/6-sensitive-data` directory and run:
 
-```sh { title="Gateway" }
+```bash { title="Start the Gateway" }
 ../otelcol --config=gateway.yaml
 ```
 
 **Start the Agent**: In the **Agent terminal** window navigate to the `[WORKSHOP]/6-sensitive-data` directory and run:
 
-```sh { title="Agent" }
+```bash { title="Start the Agent" }
 ../otelcol --config=agent.yaml
 ```
 
@@ -25,7 +25,7 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
 1. In the **Spans terminal** window change into the `6-sensitive-data` directory.
 2. Start the `loadgen`:
 
-```sh
+```bash
 ../loadgen
 ```
 

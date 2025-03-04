@@ -52,7 +52,7 @@ Having access to [**jq**](https://jqlang.org/download/) is recommended. This lig
 
 Once downloaded, rename the collector binary to `otelcol` and the load generator binary to `loadgen`. On Mac and Linux, update the file permissions to make them executable:
 
-```bash
+```bash { title="Update File Permissions"}
 chmod +x otelcol loadgen && \
 ./otelcol -v && \
 ./loadgen --help
@@ -77,7 +77,7 @@ Before running the binaries on macOS, you need to remove the quarantine attribut
 
 Run the following command in your terminal:
 
-```bash
+```bash { title="Remove Quarantine Attribute"}
 xattr -dr com.apple.quarantine otelcol && \
 xattr -dr com.apple.quarantine loadgen
 ```

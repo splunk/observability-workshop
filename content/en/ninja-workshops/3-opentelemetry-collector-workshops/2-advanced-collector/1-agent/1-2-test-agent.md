@@ -13,7 +13,7 @@ You’re ready to start the OpenTelemetry Collector with the newly created `agen
 1. Change into the `[WORKSHOP]/1-agent` folder
 2. Run the following command:
 
-```sh { title="Start Collector" }
+```bash { title="Start Collector" }
 ../otelcol --config=agent.yaml
 ```
 
@@ -34,7 +34,7 @@ In the **Spans terminal** window, run the following command:
 {{% tabs %}}
 {{% tab title="Start Load Generator" %}}
 
-```sh
+```bash { title="Start Load Generator" }
 ../loadgen
 ```
 
