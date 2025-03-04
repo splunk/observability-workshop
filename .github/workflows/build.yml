@@ -24,7 +24,7 @@ jobs:
           go-version: '1.21'  # Replace with your desired Go version
 
       - name: Navigate to Go code directory
-        run: workshop/ninja/advanced-otel/loadgen  # Replace with your Go code directory
+        run: workshop/ninja/advanced-otel/loadgen/loadgen.go  # Replace with your Go code directory
 
       - name: Build binary
         env:
