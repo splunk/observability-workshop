@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   build:
-    name: Build Loadgen Binary
+    name: Build Loadgen Binaries
     runs-on: ubuntu-latest
 
     steps:
@@ -20,16 +20,23 @@ jobs:
         with:
           go-version: stable
 
-      - name: Build Loadgen
+      - name: Build Loadgen for multiple platforms
         run: |
           cd workshop/ninja/advanced-otel/loadgen/
-          go build -o loadgen loadgen.go
+          mkdir -p artifacts
+          for GOOS in linux darwin windows; do
+            for GOARCH in amd64 arm64; do
+              OUTPUT="loadgen-${GOOS}-${GOARCH}"
+              [ "$GOOS" == "windows" ] && OUTPUT+=".exe"
+              GOOS=$GOOS GOARCH=$GOARCH go build -o artifacts/$OUTPUT loadgen.go
+            done
+          done
 
-      - name: Upload Artifact
+      - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: loadgen-binary
-          path: workshop/ninja/advanced-otel/loadgen/loadgen
+          name: loadgen-binaries
+          path: workshop/ninja/advanced-otel/loadgen/artifacts/*
 
   release:
     name: Create GitHub Release
@@ -40,16 +47,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download Build Artifact
+      - name: Download Build Artifacts
         uses: actions/download-artifact@v4
         with:
-          name: loadgen-binary
-          path: ./
+          name: loadgen-binaries
+          path: ./artifacts
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          files: ./loadgen
+          files: ./artifacts/*
           tag_name: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
           draft: false
