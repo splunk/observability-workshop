@@ -19,7 +19,7 @@ During this workshop, we will cover the following topics:
 
 - **Setting up the agent locally**: Add metadata, and introduce the debug and file exporters.
 - **Configuring a gateway**: Route traffic from the agent to the gateway.
-- **Configuring the Filelog receiver**: Collect log data from various log files.
+- **Configuring the FileLog receiver**: Collect log data from various log files.
 - **Enhancing agent resilience**: Basic configurations for fault tolerance.
 - **Configuring processors**:
   - Filter out noise by dropping specific spans (e.g., health checks).
