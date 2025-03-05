@@ -50,16 +50,16 @@ By the end of this workshop, you'll be familiar with configuring the OpenTelemet
 {{% tab title="Splunk Workshop Instance" %}}
 
 ```bash
-wget https://github.com/signalfx/splunk-otel-collector/releases/download/{{< otel-version >}}/otelcol_linux_amd64 -O otelcol && \
-wget https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-amd64 -O loadgen && \
+curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v{{< otel-version >}}/otelcol_linux_amd64 -o otelcol && \
+curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-amd64 -o loadgen
 ```
 
 {{% /tab %}}
 {{% tab title="Apple Silicon" %}}
 
 ```bash
-wget https://github.com/signalfx/splunk-otel-collector/releases/download/{{< otel-version >}}/otelcol_darwin_arm64 -O otelcol && \
-wget https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-arm64 -O loadgen
+curl -L https://github.com/signalfx/splunk-otel-collector/releases/download/v{{< otel-version >}}/otelcol_darwin_arm64 -o otelcol && \
+curl -L https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-arm64 -o loadgen
 ```
 
 {{% notice style="warning" title="macOS Users" icon="desktop" %}}
