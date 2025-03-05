@@ -295,6 +295,9 @@ func getRandomQuote() (string, string) {
 		"Even the smallest person can change the course of the future.",
 		"All we have to decide is what to do with the time that is given us.",
 		"There is some good in this world, and it's worth fighting for.",
+		"Not all those who wander are lost.",
+		"There's some good in this world, Mr. Frodo … and it's worth fighting for.",
+		"I wish the Ring had never come to me. I wish none of this had happened.",
 	}
 
 	starWarsQuotes := []string{
@@ -302,9 +305,13 @@ func getRandomQuote() (string, string) {
 		"The Force will be with you. Always.",
 		"I find your lack of faith disturbing.",
 		"In my experience, there is no such thing as luck.",
+		"Help me, Obi-Wan Kenobi. You're my only hope.",
+		"May the Force be with you.",
+		"Your focus determines your reality.",
 	}
 
-	if rand.Intn(2) == 0 {
+	//if rand.Intn(2) == 0 {
+	if rand.Intn(100) < 66 {
 		return lotrQuotes[rand.Intn(len(lotrQuotes))], "LOTR"
 	}
 	return starWarsQuotes[rand.Intn(len(starWarsQuotes))], "SW"
