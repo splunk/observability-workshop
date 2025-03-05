@@ -41,7 +41,6 @@ For this workshop, **all** of the above are required. If any are missing, please
 We can then go ahead and install the Collector. Some additional parameters are passed to the `helm install` command, they are:
 
 * `--set="operator.enabled=true"` - Enabled the Splunk OpenTelemetry Collector Operator for Kubernetes.
-* `--set="certmanager.enabled=true"` - The cert-manager adds certificates and certificate issuers as resource types in Kubernetes clusters and simplifies the process of obtaining, renewing and using those certificates.
 * `--set="splunkObservability.profilingEnabled=true"` - Enables CPU/Memory profiling for supported languages.
 
 ``` bash
@@ -50,8 +49,8 @@ helm repo add splunk-otel-collector-chart https://signalfx.github.io/splunk-otel
 
 ``` bash
 helm install splunk-otel-collector --version {{< otel-version >}} \
+--set="operatorcrds.install=true", \
 --set="operator.enabled=true", \
---set="certmanager.enabled=true", \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
 --set="clusterName=$INSTANCE-k3s-cluster" \

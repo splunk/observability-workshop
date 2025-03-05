@@ -54,11 +54,8 @@ kubectl get pods
 {{% /tab %}}
 {{% tab title="Output" %}}
 
-``` text
+```bash
 NAME                                                            READY   STATUS    RESTARTS   AGE
-splunk-otel-collector-certmanager-dc744986b-z2gzw               1/1     Running   0          114s
-splunk-otel-collector-certmanager-cainjector-69546b87d6-d2fz2   1/1     Running   0          114s
-splunk-otel-collector-certmanager-webhook-78b59ffc88-r2j8x      1/1     Running   0          114s
 splunk-otel-collector-k8s-cluster-receiver-655dcd9b6b-dcvkb     1/1     Running   0          114s
 splunk-otel-collector-agent-dg2vj                               1/1     Running   0          114s
 splunk-otel-collector-operator-57cbb8d7b4-dk5wf                 2/2     Running   0          114s

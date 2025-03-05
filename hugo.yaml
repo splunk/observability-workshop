@@ -59,7 +59,7 @@ params:
     - version: v5.83
       url: https://splunk.github.io/observability-workshop/v5.83
   url_latest_version: https://splunk.github.io/observability-workshop/
-  stable_otel_version: 0.111.0
+  stable_otel_version: 0.120.0
   imageEffects:
     border: false
     shadow: false
