@@ -3,7 +3,6 @@
 title: Deploy the Splunk OpenTelemetry Collector
 linkTitle: 1. Deploy OpenTelemetry Collector
 weight: 1
-draft: true
 ---
 
 To get Observability signals (**metrics, traces** and **logs**) into **Splunk Observability Cloud** the Splunk OpenTelemetry Collector needs to be deployed into the Kubernetes cluster.
@@ -34,11 +33,9 @@ Update Complete. ⎈Happy Helming!⎈
 {{% /tab %}}
 {{< /tabs >}}
 
-**Splunk Observability Cloud** offers wizards in the UI to walk you through the setup of the OpenTelemetry Collector on  Kubernetes, but in the interest of time, we will use the Helm install command below. Additional parameters are set to enable the operator and automatic discovery and configuration.
+**Splunk Observability Cloud** offers wizards in the UI to walk you through the setup of the OpenTelemetry Collector on Kubernetes, but in the interest of time, we will use the Helm install command below. Additional parameters are set to enable the operator for automatic discovery and configuration and code profiling.
 
-* `--set="operatorcrds.install=true"` - 0.116.0 and later: Users must now explicitly configure their preferred CRD deployment by enabling a newly added value `operatorcrds.install`.
-* `--set="operator.enabled=true"` - this will install the Opentelemetry operator that will be used to handle automatic discovery and configuration.
-* `--set="certmanager.enabled=true"` - this will install the required certificate manager for the operator.
+* `--set="operator.enabled=true"` - this will install the OpenTelemetry operator that will be used to handle automatic discovery and configuration.
 * `--set="splunkObservability.profilingEnabled=true"` - this enables Code Profiling via the operator.
 
 To install the collector run the following command, do **NOT** edit this:
@@ -50,7 +47,6 @@ To install the collector run the following command, do **NOT** edit this:
 helm install splunk-otel-collector --version {{< otel-version >}} \
 --set="operatorcrds.install=true", \
 --set="operator.enabled=true", \
---set="certmanager.enabled=true", \
 --set="splunkObservability.realm=$REALM" \
 --set="splunkObservability.accessToken=$ACCESS_TOKEN" \
 --set="clusterName=$INSTANCE-k3s-cluster" \
@@ -97,9 +93,6 @@ kubectl get pods | grep splunk-otel
 {{% tab title="Output" %}}
 
 ``` text
-splunk-otel-collector-certmanager-cainjector-5c5dc4ff8f-95z49   1/1     Running   0          10m
-splunk-otel-collector-certmanager-6d95596898-vjxss              1/1     Running   0          10m
-splunk-otel-collector-certmanager-webhook-69f4ff754c-nghxz      1/1     Running   0          10m
 splunk-otel-collector-k8s-cluster-receiver-6bd5567d95-5f8cj     1/1     Running   0          10m
 splunk-otel-collector-agent-tspd2                               1/1     Running   0          10m
 splunk-otel-collector-operator-69d476cb7-j7zwd                  2/2     Running   0          10m
