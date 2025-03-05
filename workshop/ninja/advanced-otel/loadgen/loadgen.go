@@ -24,6 +24,13 @@ func generateSpanID() string {
 	return randomHex(8)
 }
 
+// GenerateRandomPayment generates a random payment amount between 50 and 100
+func generateRandomPayment() float64 {
+	rand.Seed(time.Now().UnixNano())
+	amount := 50.00 + rand.Float64()*(100.00-50.00) // Random float between 50.00 and 100.00
+	return float64(int(amount*100)) / 100           // Round to two decimal places
+}
+
 // Helper function to generate a random hex string of a given length
 func randomHex(length int) string {
 	b := make([]byte, length)
@@ -127,6 +134,12 @@ func sendBaseTrace(traceID, spanID string, startTime, endTime int64) {
 										"key": "user.mastercard",
 										"value": map[string]interface{}{
 											"stringValue": "5555 5555 5555 4444",
+										},
+									},
+									map[string]interface{}{
+										"key": "payment.amount",
+										"value": map[string]interface{}{
+											"doubleValue": generateRandomPayment(),
 										},
 									},
 								},
@@ -310,7 +323,6 @@ func getRandomQuote() (string, string) {
 		"Your focus determines your reality.",
 	}
 
-	//if rand.Intn(2) == 0 {
 	if rand.Intn(100) < 66 {
 		return lotrQuotes[rand.Intn(len(lotrQuotes))], "LOTR"
 	}
@@ -395,8 +407,7 @@ func main() {
 
 	// Start logging if -logs flag is provided
 	if *logsFlag {
-		writeLogs(*jsonFlag)
-		return
+		go writeLogs(*jsonFlag) // Run logs in a separate goroutine
 	}
 
 	fmt.Println("Sending traces every 5 seconds. Use Ctrl-C to stop.")
