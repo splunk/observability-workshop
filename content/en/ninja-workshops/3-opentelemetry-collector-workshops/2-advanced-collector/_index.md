@@ -24,8 +24,10 @@ During this workshop, we will cover the following topics:
 - **Configuring processors**:
   - Filter out noise by dropping specific spans (e.g., health checks).
   - Remove unnecessary tags, and handle sensitive data.
-  - Transform data using OTTL in the pipeline before exporting.
-- **Configuring Connectors**: Route data to different endpoints based on the values received.
+  - Transform data using OTTL (OpenTelemetry Transformation Language) in the pipeline before exporting.
+- **Configuring Connectors**:
+  - Route data to different endpoints based on the values received.
+  - Convert log and span data to metrics.
 
 By the end of this workshop, you'll be familiar with configuring the OpenTelemetry Collector for a variety of real-world use cases.
 
@@ -33,44 +35,32 @@ By the end of this workshop, you'll be familiar with configuring the OpenTelemet
 
 ### Prerequisites
 
-- For this workshop, using a good YAML editor will be hugely beneficial. We recommend downloading [**Visual Studio Code**](https://code.visualstudio.com/download) or use the [**online version**](https://vscode.dev/).
-- **Create a directory** on your machine for the workshop (e.g., `advanced-otel`). We will refer to this directory as `[WORKSHOP]` in the instructions.
-- **Download the OpenTelemetry Collector and Load Generator** for your platform and place it in the `[WORKSHOP]` directory:
-
-{{% notice note %}}
-Having access to [**jq**](https://jqlang.org/download/) is recommended. This lightweight command-line tool helps process and format JSON data, making it easier to inspect traces, metrics, and logs from the OpenTelemetry Collector.
-{{% /notice %}}
-
-| Platform                         | OpenTelemetry Collector | Load Generator |
-|----------------------------------|-------------------------|----------------|
-|  Apple Mac (Apple Silicon)   | **[otelcol_darwin_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_arm64)** | [**loadgen_darwin_arm64**](https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-arm64) |
-|  Apple Mac (Intel)           | **[otelcol_darwin_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_amd64)** | [**loadgen_darwin_amd64**](https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-amd64)|
-|  Linux (AMD/64)              |**[otelcol_linux_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_amd64)** | [**loadgen_linux_amd64**](https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-amd64)|
-|  Linux (ARM/64)              |**[otelcol_linux_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_arm64)** | [**loadgen_linux_arm64**](https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-arm64)|
+- Proficiency in editing YAML files using `vi`, `vim`, `nano`, or your preferred text editor.
+- Supported Environments:
+  - Splunk Workshop Instance (preferred)
+  - Apple Mac (Apple Silicon)
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-Once downloaded, rename the collector binary to `otelcol` and the load generator binary to `loadgen`. On Mac and Linux, update the file permissions to make them executable:
+**Create a workshop directory**: In your workshop instance create a new directory (e.g., `advanced-otel`). We will refer to this directory as `[WORKSHOP]` in the instructions.
 
-```bash { title="Update File Permissions"}
-chmod +x otelcol loadgen && \
-./otelcol -v && \
-./loadgen --help
-```
+**Download workshop binaries**: Change into your `[WORKSHOP]` directory and download the OpenTelemetry Collector and Load Generator binaries:
 
 {{% tabs %}}
-{{% tab title="Initial Linux/Mac Directory Structure" %}}
+{{% tab title="Splunk Workshop Instance" %}}
 
-```text
-[WORKSHOP]
-├── otelcol      # OpenTelemetry Collector binary
-└── loadgen      # Load Generator binary
+```bash
+wget https://github.com/signalfx/splunk-otel-collector/releases/download/v0.120.0/otelcol_linux_amd64 -O otelcol && \
+wget https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-amd64 -O loadgen && \
 ```
 
 {{% /tab %}}
-{{% /tabs %}}
+{{% tab title="Apple Silicon" %}}
 
-{{% /notice %}}
+```bash
+wget https://github.com/signalfx/splunk-otel-collector/releases/download/v0.120.0/otelcol_darwin_arm64 -O otelcol && \
+wget https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-arm64 -O loadgen
+```
 
 {{% notice style="warning" title="macOS Users" icon="desktop" %}}
 Before running the binaries on macOS, you need to remove the quarantine attribute that macOS applies to downloaded files. This step ensures they can execute without restrictions.
@@ -81,5 +71,37 @@ Run the following command in your terminal:
 xattr -dr com.apple.quarantine otelcol && \
 xattr -dr com.apple.quarantine loadgen
 ```
+
+{{% /notice %}}
+
+{{% /tab %}}
+{{% /tabs %}}
+
+<!--
+| Platform                         | OpenTelemetry Collector | Load Generator |
+|----------------------------------|-------------------------|----------------|
+|  Apple Mac (Apple Silicon)   | **[otelcol_darwin_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_arm64)** | [**loadgen_darwin_arm64**](https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-arm64) |
+|  Apple Mac (Intel)           | **[otelcol_darwin_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_amd64)** | [**loadgen_darwin_amd64**](https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-amd64)|
+|  Linux (AMD/64)              |**[otelcol_linux_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_amd64)** | [**loadgen_linux_amd64**](https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-amd64)|
+|  Linux (ARM/64)              |**[otelcol_linux_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_arm64)** | [**loadgen_linux_arm64**](https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-arm64)|
+-->
+
+Once downloaded, update the file permissions to make them executable:
+
+```bash { title="Update File Permissions"}
+chmod +x otelcol loadgen && \
+./otelcol -v && \
+./loadgen --help
+```
+
+```text { title="Initial Linux/Mac Directory Structure" }
+[WORKSHOP]
+├── otelcol      # OpenTelemetry Collector binary
+└── loadgen      # Load Generator binary
+```
+
+{{% notice note %}}
+Having access to [**jq**](https://jqlang.org/download/) is recommended (installed by default on Splunk workshop instances). This lightweight command-line tool helps process and format JSON data, making it easier to inspect traces, metrics, and logs from the OpenTelemetry Collector.
+{{% /notice %}}
 
 {{% /notice %}}
