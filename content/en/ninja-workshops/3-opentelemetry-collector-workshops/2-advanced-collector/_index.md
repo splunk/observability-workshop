@@ -50,7 +50,7 @@ By the end of this workshop, you'll be familiar with configuring the OpenTelemet
 {{% tab title="Splunk Workshop Instance" %}}
 
 ```bash
-wget https://github.com/signalfx/splunk-otel-collector/releases/download/v0.120.0/otelcol_linux_amd64 -O otelcol && \
+wget https://github.com/signalfx/splunk-otel-collector/releases/download/{{< otel-version >}}/otelcol_linux_amd64 -O otelcol && \
 wget https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-amd64 -O loadgen && \
 ```
 
@@ -58,7 +58,7 @@ wget https://github.com/splunk/observability-workshop/raw/refs/heads/main/worksh
 {{% tab title="Apple Silicon" %}}
 
 ```bash
-wget https://github.com/signalfx/splunk-otel-collector/releases/download/v0.120.0/otelcol_darwin_arm64 -O otelcol && \
+wget https://github.com/signalfx/splunk-otel-collector/releases/download/{{< otel-version >}}/otelcol_darwin_arm64 -O otelcol && \
 wget https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-arm64 -O loadgen
 ```
 
