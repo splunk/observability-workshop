@@ -6,70 +6,39 @@ weight: 4
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Start the Gateway**:
+**Start the Gateway**: In your **Gateway terminal** window start the `gateway`.
 
-1. Find your **Gateway terminal** window.
-2. Navigate to the `[WORKSHOP]/3-filelog` directory.
-3. Start the `gateway`.
+**Start the Agent**: In your **Agent terminal** window start the `agent`.
 
-**Start the Agent**:
+A continuous stream of log data from the `quotes.log` will be in the `agent` and `gateway` debug logs:
 
-1. Switch to your **Agent terminal** window.
-2. Navigate to the `[WORKSHOP]/3-filelog` directory.
-3. Start the `agent`.
-4. Ignore the initial **CPU** metrics in the debug output and wait until the continuous stream of log data from the `quotes.log` appears. The debug output should look similar to the following (use the {{% badge style=primary icon=scroll %}}Check Full Debug Log{{% /badge %}} to see all data):
-
-```text
-<snip>
-Body: Str(2025-03-03 15:11:17 [INFO] - All we have to decide is what to do with the time that is given us.)
-Attributes:
-     -> log.file.path: Str(quotes.log)
-</snip>
-```
-
-{{% expand title="{{% badge style=primary icon=scroll %}}Check Full Debug Log{{% /badge %}}" %}}
-
-```text
-2025-03-03T15:11:17.523Z        info    ResourceLog #0
-Resource SchemaURL: https://opentelemetry.io/schemas/1.6.1
-Resource attributes:
-     -> com.splunk.source: Str(./quotes.log)
-     -> com.splunk.sourcetype: Str(quotes)
-     -> host.name: Str(RCASTLEY-M-YQRY.local)
-     -> os.type: Str(darwin)
-     -> otelcol.service.mode: Str(gateway)
-ScopeLogs #0
-ScopeLogs SchemaURL:
-InstrumentationScope
-LogRecord #0
-ObservedTimestamp: 2025-03-03 15:11:17.128113 +0000 UTC
+```text { title="Agent/Gateway Debug Output" }
 Timestamp: 1970-01-01 00:00:00 +0000 UTC
 SeverityText:
 SeverityNumber: Unspecified(0)
-Body: Str(2025-03-03 15:11:17 [INFO] - All we have to decide is what to do with the time that is given us.)
+Body: Str(2025-03-06 15:18:32 [ERROR] - There is some good in this world, and it's worth fighting for. LOTR)
 Attributes:
      -> log.file.path: Str(quotes.log)
 Trace ID:
 Span ID:
 Flags: 0
-        {"kind": "exporter", "data_type": "logs", "name": "debug"}
-2025-03-03T15:11:18.325Z        info    Logs    {"kind": "exporter", "data_type": "logs", "name": "debug", "resource logs": 1, "log records": 1}
+LogRecord #1
 ```
 
-{{% /expand %}}
+**Stop the `loadgen`**: In the **Logs terminal** window, stop the `loadgen` using `Ctrl-C`.
 
-**Verify the gateway has handled the logs**:
-
-1. Check if the `gateway` has written a `./gateway-logs.out` file.
+**Verify the gateway**: Check if the `gateway` has written a `./gateway-logs.out` file.
 
 At this point, your directory structure will appear as follows:
 
 ```text { title="Updated Directory Structure" }
 [WORKSHOP]
 └── 3-filelog
+    ├── agent.out
     ├── agent.yaml
-    ├── gateway-logs.out    # Output from the gateway logs pipeline
-    ├── gateway-metrics.out # Output from the gateway metrics pipeline
+    ├── gateway-logs.out    # Output from the logs pipeline
+    ├── gateway-metrics.out # Output from the metrics pipeline
+    ├── gateway-traces.out  # Output from the traces pipeline
     ├── gateway.yaml
     └── quotes.log          # File containing Random log lines
 ```
@@ -80,7 +49,7 @@ At this point, your directory structure will appear as follows:
 {{% tab title="cat /gateway-logs.out" %}}
 
 ```json
-{"resourceLogs":[{"resource":{"attributes":[{"key":"com.splunk.source","value":{"stringValue":"./quotes.log"}},{"key":"com.splunk.sourcetype","value":{"stringValue":"quotes"}},{"key":"host.name","value":{"stringValue":"RCASTLEY-M-YQRY.local"}},{"key":"os.type","value":{"stringValue":"darwin"}},{"key":"otelcol.service.mode","value":{"stringValue":"gateway"}}]},"scopeLogs":[{"scope":{},"logRecords":[{"observedTimeUnixNano":"1741014677128113000","body":{"stringValue":"2025-03-03 15:11:17 [INFO] - All we have to decide is what to do with the time that is given us."},"attributes":[{"key":"log.file.path","value":{"stringValue":"quotes.log"}}],"traceId":"","spanId":""}]}],"schemaUrl":"https://opentelemetry.io/schemas/1.6.1"}]}
+{"resourceLogs":[{"resource":{"attributes":[{"key":"com.splunk.source","value":{"stringValue":"./quotes.log"}},{"key":"com.splunk.sourcetype","value":{"stringValue":"quotes"}},{"key":"host.name","value":{"stringValue":"workshop-instance"}},{"key":"os.type","value":{"stringValue":"linux"}},{"key":"otelcol.service.mode","value":{"stringValue":"gateway"}}]},"scopeLogs":[{"scope":{},"logRecords":[{"observedTimeUnixNano":"1741274312475540000","body":{"stringValue":"2025-03-06 15:18:32 [DEBUG] - All we have to decide is what to do with the time that is given us. LOTR"},"attributes":[{"key":"log.file.path","value":{"stringValue":"quotes.log"}}],"traceId":"","spanId":""},{"observedTimeUnixNano":"1741274312475560000","body":{"stringValue":"2025-03-06 15:18:32 [DEBUG] - Your focus determines your reality. SW"},"attributes":[{"key":"log.file.path","value":{"stringValue":"quotes.log"}}],"traceId":"","spanId":""}]}],"schemaUrl":"https://opentelemetry.io/schemas/1.6.1"}]}
 ```
 
 {{% /tab %}}
@@ -107,13 +76,13 @@ At this point, your directory structure will appear as follows:
           {
             "key": "host.name",
             "value": {
-              "stringValue": "RCASTLEY-M-YQRY.local"
+              "stringValue": "workshop-instance"
             }
           },
           {
             "key": "os.type",
             "value": {
-              "stringValue": "darwin"
+              "stringValue": "linux"
             }
           },
           {
@@ -129,9 +98,25 @@ At this point, your directory structure will appear as follows:
           "scope": {},
           "logRecords": [
             {
-              "observedTimeUnixNano": "1741014677128113000",
+              "observedTimeUnixNano": "1741274312475540000",
               "body": {
-                "stringValue": "2025-03-03 15:11:17 [INFO] - All we have to decide is what to do with the time that is given us."
+                "stringValue": "2025-03-06 15:18:32 [DEBUG] - All we have to decide is what to do with the time that is given us. LOTR"
+              },
+              "attributes": [
+                {
+                  "key": "log.file.path",
+                  "value": {
+                    "stringValue": "quotes.log"
+                  }
+                }
+              ],
+              "traceId": "",
+              "spanId": ""
+            },
+            {
+              "observedTimeUnixNano": "1741274312475560000",
+              "body": {
+                "stringValue": "2025-03-06 15:18:32 [DEBUG] - Your focus determines your reality. SW"
               },
               "attributes": [
                 {
@@ -163,4 +148,4 @@ At this point, your directory structure will appear as follows:
 
 {{% /notice %}}
 
-Stop the `agent`, `gateway` and `loagen` using `Ctrl-C`.
+Stop the `agent` and `gateway` using `Ctrl-C` in their respective terminal windows.

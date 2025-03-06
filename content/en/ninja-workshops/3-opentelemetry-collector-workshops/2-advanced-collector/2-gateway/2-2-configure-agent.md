@@ -53,27 +53,27 @@ weight: 2
       - otlphttp                    # OTLP/HTTP Exporter
     metrics:
       receivers: 
-      - otlp                        # OTLP Receiver
+      - otlp
       - hostmetrics                 # Hostmetrics Receiver
       processors:
-      - memory_limiter              # Memory Limiter Processor
-      - resourcedetection           # System attributes metadata
-      - resource/add_mode           # Collector mode metadata
-      - batch                       # Batch Processor, groups data before send
+      - memory_limiter
+      - resourcedetection
+      - resource/add_mode
+      - batch
       exporters:
-      - debug                       # Debug Exporter 
-      - otlphttp                    # OTLP/HTTP Exporter
+      - debug
+      - otlphttp
     logs:
       receivers: 
-      - otlp                        # OTLP Receiver
+      - otlp
       processors:
-      - memory_limiter              # Memory Limiter Processor
-      - resourcedetection           # System attributes metadata
-      - resource/add_mode           # Collector mode metadata
-      - batch                       # Batch Processor, groups data before send
+      - memory_limiter
+      - resourcedetection
+      - resource/add_mode
+      - batch
       exporters:
-      - debug                       # Debug Exporter 
-      - otlphttp                    # OTLP/HTTP Exporter
+      - debug
+      - otlphttp
 ```
 
 {{% /notice %}}
