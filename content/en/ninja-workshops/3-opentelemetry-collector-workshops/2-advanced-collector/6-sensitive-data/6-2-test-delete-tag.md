@@ -8,25 +8,14 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Start the Gateway**: In the **Gateway terminal** window navigate to the `[WORKSHOP]/6-sensitive-data` directory and run:
+**Start the Gateway**: In your **Gateway terminal** window start the `gateway`.
 
-```bash { title="Start the Gateway" }
-../otelcol --config=gateway.yaml
-```
+**Start the Agent**: In your **Agent terminal** window start the `agent`.
 
-**Start the Agent**: In the **Agent terminal** window navigate to the `[WORKSHOP]/6-sensitive-data` directory and run:
-
-```bash { title="Start the Agent" }
-../otelcol --config=agent.yaml
-```
-
-**Start the Load Generator**:
-
-1. In the **Spans terminal** window change into the `6-sensitive-data` directory.
-2. Start the `loadgen`:
+**Start the Load Generator**: In the **Spans terminal** window start the `loadgen`:
 
 ```bash
-../loadgen
+../loadgen -count 1
 ```
 
 **Check the debug output**: For both the `agent` and `gateway` debug output, confirm that `user.account_password` has been removed, and both `user.phone_number` & `user.email` have been updated.
@@ -35,129 +24,60 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
 {{% tab title="New Debug Output" %}}
 
   ```text
-       -> user.name: Str(George Lucas)
-       -> user.phone_number: Str(UNKNOWN NUMBER)
-       -> user.email: Str. (62d5e03d8fd5808e77aee5ebbd90cf7627a470ae0be9ffd10e8025a4ad0e1287)
-       -> user.mastercard: Str(5555 5555 5555 4444)
-       -> user.visa: Str(4111 1111 1111 1111)
-       -> user.amex: Str(3782 822463 10005)
+     -> user.name: Str(George Lucas)
+     -> user.phone_number: Str(UNKNOWN NUMBER)
+     -> user.email: Str(62d5e03d8fd5808e77aee5ebbd90cf7627a470ae0be9ffd10e8025a4ad0e1287)
+     -> payment.amount: Double(51.71)
+     -> user.visa: Str(4111 1111 1111 1111)
+     -> user.amex: Str(3782 822463 10005)
+     -> user.mastercard: Str(5555 5555 5555 4444)
   ```
 
 {{% /tab %}}
 {{% tab title="Original Debug Output" %}}
 
  ```text
-       -> user.name: Str(George Lucas)
-       -> user.phone_number: Str(+1555-867-5309)
-       -> user.email: Str(george@deathstar.email)
-       -> user.account_password: Str(LOTR>StarWars1-2-3)
-       -> user.mastercard: Str(5555 5555 5555 4444)
-       -> user.visa: Str(4111 1111 1111 1111)
-       -> user.amex: Str(3782 822463 10005)
+     -> user.name: Str(George Lucas)
+     -> user.phone_number: Str(+1555-867-5309)
+     -> user.email: Str(george@deathstar.email)
+     -> user.password: Str(LOTR>StarWars1-2-3)
+     -> user.visa: Str(4111 1111 1111 1111)
+     -> user.amex: Str(3782 822463 10005)
+     -> user.mastercard: Str(5555 5555 5555 4444)
+     -> payment.amount: Double(95.22)
   ```
 
 {{% /tab %}}
 {{% /tabs %}}
 
-**Check file output**: In the new `gateway-traces.out` file confirm that `user.account_password` has been removed, and `user.phone_number` & `user.email` have been updated:
+**Check file output**: Using `jq` validate that `user.account_password` has been removed, and `user.phone_number` & `user.email` have been updated in `gateway-taces.out`:
 
 {{% tabs %}}
-{{% tab title="New File Output" %}}
+{{% tab title="Validate attribute changes" %}}
 
-  ```json
-  "attributes": [
-                {
-                  "key": "user.name",
-                  "value": {
-                    "stringValue": "George Lucas"
-                  }
-                },
-                {
-                  "key": "user.phone_number",
-                  "value": {
-                    "stringValue": "UNKNOWN NUMBER"
-                  }
-                },
-                {
-                  "key": "user.email",
-                  "value": {
-                    "stringValue": "62d5e03d8fd5808e77aee5ebbd90cf7627a470ae0be9ffd10e8025a4ad0e1287"
-                  }
-                },
-                {
-                  "key": "user.mastercard",
-                  "value": {
-                    "stringValue": "5555 5555 5555 4444"
-                  }
-                },
-                {
-                  "key": "user.visa",
-                  "value": {
-                    "stringValue": "4111 1111 1111 1111"
-                  }
-                },
-                {
-                  "key": "user.amex",
-                  "value": {
-                    "stringValue": "3782 822463 10005"
-                  }
-                } 
-              ]
-  ```
+```bash
+jq '.resourceSpans[].scopeSpans[].spans[].attributes[] | select(.key == "user.password" or .key == "user.phone_number" or .key == "user.email") | {key: .key, value: .value.stringValue}' ./gateway-traces.out
+```
 
 {{% /tabs %}}
-{{% tab title="Original File Output" %}}
+{{% tab title="Output" %}}
 
-  ```json
-"attributes": [
-                {
-                  "key": "user.name",
-                  "value": {
-                    "stringValue": "George Lucas"
-                  }
-                },
-                {
-                  "key": "user.phone_number",
-                  "value": {
-                    "stringValue": "+1555-867-5309"
-                  }
-                },
-                {
-                  "key": "user.email",
-                  "value": {
-                    "stringValue": "george@deathstar.email"
-                  }
-                },
-                {
-                  "key": "user.account_password",
-                  "value": {
-                    "stringValue": "LOTR>StarWars1-2-3"
-                  }
-                },
-                {
-                  "key": "user.mastercard",
-                  "value": {
-                    "stringValue": "5555 5555 5555 4444"
-                  }
-                },
-                {
-                  "key": "user.visa",
-                  "value": {
-                    "stringValue": "4111 1111 1111 1111"
-                  }
-                },
-                {
-                  "key": "user.amex",
-                  "value": {
-                    "stringValue": "3782 822463 10005"
-                  }
-                } 
-              ]
-  ```
+Notice that the `user.account_password` has been removed, and the `user.phone_number` & `user.email` have been updated:
+
+```json
+{
+  "key": "user.phone_number",
+  "value": "UNKNOWN NUMBER"
+}
+{
+  "key": "user.email",
+  "value": "62d5e03d8fd5808e77aee5ebbd90cf7627a470ae0be9ffd10e8025a4ad0e1287"
+}
+```
 
 {{% /tab %}}
 {{% /tabs %}}
 
 {{% /notice %}}
 
-Stop the `agent` and `gateway` using `Ctrl-C`.
+Stop the `agent` and `gateway` using `Ctrl-C` in their respective terminals.
