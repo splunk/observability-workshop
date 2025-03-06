@@ -8,48 +8,76 @@ To test your configuration, you'll need to generate some trace data that include
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Start the Gateway**: In the **Gateway terminal** window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run:
+**Start the Gateway**: In your **Gateway terminal** window start the `gateway`.
 
-```bash { title="Start the Gateway" }
-../otelcol --config=gateway.yaml
-```
+**Start the Agent**: In your **Agent terminal** window start the `agent`.
 
-**Start the Agent**: In the **Agent terminal** window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run:
-
-```bash { title="Start the Agent" }
-../otelcol --config=agent.yaml
-```
-
-**Start the Loadgen**: In the **Spans terminal** window navigate to the `[WORKSHOP]/5-dropping-spans` directory and run the `loadgen` with the flag to also send `healthz` spans:
+**Start the Loadgen**: In the **Spans terminal** window run the `loadgen` with the flag to also send `healthz` spans along with base spans:
   
-```bash { title="Loadgen" }
-../loadgen -health
+```bash { title="Start Load Generator" }
+../loadgen -health -count 5
 ```
 
-**Verify Agent Debug output shows the `healthz` span**: Confirm that the span `span` payload is sent, Check the agent’s debug output to see the span data like the snippet below:
+**Verify `agent.out`**: Using `jq` confirm the name of the spans received by the `agent`:
 
-```text { title="Debug Output" }
-<snip>
-Span #0
-    Trace ID       : 5b8efff798038103d269b633813fc60c
-    Parent ID      : eee19b7ec3c1b173
-    ID             : eee19b7ec3c1b174
-    Name           : /_healthz
-    Kind           : Server
-<snip>
+{{% tabs %}}
+{{% tab title="Check spans in agent.out" %}}
+
+```bash
+jq -c '.resourceSpans[].scopeSpans[].spans[] | "Span \(input_line_number) found with name \(.name)"' ./agent.out
 ```
 
-The `agent` has forwarded the span to the **Gateway**.
-  
-**Check the Gateway Debug output**:
+{{% /tab %}}
+{{% tab title="Example output" %}}
 
-1. The Gateway should **NOT** show any span data received. This is because the `gateway` is configured with a filter to drop spans named `"/_healthz"`, so the span will be discarded/dropped and not processed further.
-2. Confirm normal spans are processed as the `loadgen` continues to send spans.
+```text
+"Span 1 found with name /movie-validator"
+"Span 2 found with name /_healthz"
+"Span 3 found with name /movie-validator"
+"Span 4 found with name /_healthz"
+"Span 5 found with name /movie-validator"
+"Span 6 found with name /_healthz"
+"Span 7 found with name /movie-validator"
+"Span 8 found with name /_healthz"
+"Span 9 found with name /movie-validator"
+"Span 10 found with name /_healthz"
+```
+
+{{% /tab %}}
+{{% /tabs %}}
+
+**Check the Gateway Debug output**: Using `jq` confirm the name of the spans received by the `gateway`:
+
+{{% tabs %}}
+{{% tab title="Check spans in gateway-traces.out" %}}
+
+```bash { title="Check spans in gateway-traces.out" }
+jq -c '.resourceSpans[].scopeSpans[].spans[] | "Span \(input_line_number) found with name \(.name)"' ./gateway-traces.out
+```
+
+{{% /tab %}}
+{{% tab title="Example output" %}}
+
+The `gateway-metrics.out` file will not contain any spans named `/_healthz`.
+
+```text
+"Span 1 found with name /movie-validator"
+"Span 2 found with name /movie-validator"
+"Span 3 found with name /movie-validator"
+"Span 4 found with name /movie-validator"
+"Span 5 found with name /movie-validator"
+```
+
+{{% /tab %}}
+{{% /tabs %}}
+
 {{% /notice %}}
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 
 When using the `Filter` processor make sure you understand the look of your incoming data and test the configuration thoroughly. In general, use **as specific a configuration as possible** to lower the risk of the wrong data being dropped.
+
+You can further extend this configuration to filter out spans based on different attributes, tags, or other criteria, making the OpenTelemetry Collector more customizable and efficient for your observability needs.
 {{% /notice %}}
 <!--
 ---
@@ -86,6 +114,5 @@ filter:
 
 This will drop spans with the names `"/_healthz"` and `"/internal/metrics"`.
 -->
-You can further extend this configuration to filter out spans based on different attributes, tags, or other criteria, making the OpenTelemetry Collector more customizable and efficient for your observability needs.
 
-Stop the `agent`, `gateway` and `loadgen` using `Ctrl-C`.
+Stop the `agent` and `gateway` using `Ctrl-C` in their respective terminal windows.

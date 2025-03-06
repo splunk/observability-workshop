@@ -6,9 +6,9 @@ weight: 1
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-Switch to your **Gateway terminal** window. Navigate to the `[WORKSHOP]/5-dropping-spans` directory and open the `gateway.yaml` and add the following configuration to the `processors` section:
+Switch to your **Gateway terminal** window, open the `gateway.yaml` and add the following configuration to the `processors` section:
 
-**Add a `filter` processor**: Configure the OpenTelemetry Collector to drop spans with the name `"/_healthz"`:
+**Add a `filter` processor**: Configure the `gateway` to drop spans with the name `"/_healthz"`:
 
 ```yaml
   filter/health:                  # Defines a filter processor
@@ -23,15 +23,15 @@ Switch to your **Gateway terminal** window. Navigate to the `[WORKSHOP]/5-droppi
 ```yaml
     traces:
       receivers:
-      - otlp                      # OTLP Receiver
+      - otlp
       processors:
-      - memory_limiter            # Manage memory usage
+      - memory_limiter
       - filter/health             # Filters data based on rules
-      - resource/add_mode         # Add metadata about collector mode
-      - batch                     # Groups Data before send
+      - resource/add_mode
+      - batch
       exporters:
-      - debug                     # Debug Exporter
-      - file/traces               # File Exporter for Trace
+      - debug
+      - file/traces
 ```
 
 {{% /notice %}}
