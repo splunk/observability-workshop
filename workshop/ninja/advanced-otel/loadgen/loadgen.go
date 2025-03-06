@@ -359,15 +359,30 @@ func writeLogs(jsonOutput bool, count int) {
 	logFile := "quotes.log"
 	fmt.Printf("Writing logs to %s. Press Ctrl+C to stop.\n", logFile)
 
-	for i := 0; count == 0 || i < count; i++ {
-		logEntry := generateLogEntry(jsonOutput)
-		file, err := os.OpenFile(logFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-		if err != nil {
-			log.Fatalf("Failed to open log file: %v", err)
+	// If count is 0, run infinitely
+	if count == 0 {
+		for {
+			logEntry := generateLogEntry(jsonOutput)
+			file, err := os.OpenFile(logFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+			if err != nil {
+				log.Fatalf("Failed to open log file: %v", err)
+			}
+			file.WriteString(logEntry + "\n")
+			file.Close()
+			time.Sleep(100 * time.Millisecond)
 		}
-		file.WriteString(logEntry + "\n")
-		file.Close()
-		time.Sleep(100 * time.Millisecond)
+	} else {
+		// Otherwise, run for the specified count
+		for i := 0; i < count; i++ {
+			logEntry := generateLogEntry(jsonOutput)
+			file, err := os.OpenFile(logFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+			if err != nil {
+				log.Fatalf("Failed to open log file: %v", err)
+			}
+			file.WriteString(logEntry + "\n")
+			file.Close()
+			time.Sleep(100 * time.Millisecond)
+		}
 	}
 }
 
