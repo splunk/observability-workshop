@@ -2,6 +2,7 @@
 title: 1.4 Resource Metadata
 linkTitle: 1.4 Resource Metadata
 weight: 3
+hidden: true
 ---
 
 So far, we've simply exported an exact copy of the span sent through the OpenTelemetry Collector.

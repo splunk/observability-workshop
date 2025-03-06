@@ -61,6 +61,9 @@ processors:                       # List of processors
 ### Activation Section  ###
 ###########################
 service:                          # Service configuration
+  telemetry:
+    metrics:
+      level: none                 # Disable metrics
   extensions: [health_check]      # Enabled extensions
   pipelines:                      # Configured pipelines
     traces:                       # Traces pipeline

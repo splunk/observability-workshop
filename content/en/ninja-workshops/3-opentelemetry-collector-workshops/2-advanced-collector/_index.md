@@ -38,11 +38,11 @@ By the end of this workshop, you'll be familiar with configuring the OpenTelemet
 - Proficiency in editing YAML files using `vi`, `vim`, `nano`, or your preferred text editor.
 - Supported Environments:
   - Splunk Workshop Instance (preferred)
-  - Apple Mac (Apple Silicon)
+  - Apple Mac (Apple Silicon). Installation of `jq` is required - [**https://jqlang.org/download/**](https://jqlang.org/download/)
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Create a workshop directory**: In your workshop instance create a new directory (e.g., `advanced-otel`). We will refer to this directory as `[WORKSHOP]` in the instructions.
+**Create a workshop directory**: In your environment create a new directory (e.g., `advanced-otel`). We will refer to this directory as `[WORKSHOP]` for the remainder of the workshop.
 
 **Download workshop binaries**: Change into your `[WORKSHOP]` directory and download the OpenTelemetry Collector and Load Generator binaries:
 
@@ -86,7 +86,7 @@ xattr -dr com.apple.quarantine loadgen
 |  Linux (ARM/64)              |**[otelcol_linux_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_arm64)** | [**loadgen_linux_arm64**](https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-arm64)|
 -->
 
-Once downloaded, update the file permissions to make them executable:
+Once downloaded, update the file permissions to make both executable:
 
 ```bash { title="Update File Permissions"}
 chmod +x otelcol loadgen && \
@@ -94,14 +94,15 @@ chmod +x otelcol loadgen && \
 ./loadgen --help
 ```
 
-```text { title="Initial Linux/Mac Directory Structure" }
+```text { title="Initial Directory Structure" }
 [WORKSHOP]
 ├── otelcol      # OpenTelemetry Collector binary
 └── loadgen      # Load Generator binary
 ```
 
+<!--
 {{% notice note %}}
 Having access to [**jq**](https://jqlang.org/download/) is recommended (installed by default on Splunk workshop instances). This lightweight command-line tool helps process and format JSON data, making it easier to inspect traces, metrics, and logs from the OpenTelemetry Collector.
 {{% /notice %}}
-
+-->
 {{% /notice %}}

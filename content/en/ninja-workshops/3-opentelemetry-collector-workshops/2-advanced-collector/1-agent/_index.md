@@ -24,68 +24,75 @@ In the `1-agent` directory, create a file named `agent.yaml`. This file will def
 Copy and paste the following initial configuration into `agent.yaml`:
 
 ```yaml { title="agent.yaml" }
-###########################        This section holds all the
-## Configuration section ##        configurations that can be 
-###########################        used in this OpenTelemetry Collector
-extensions:                       # Array of Extensions
-  health_check:                   # Configures the health check extension
-    endpoint: 0.0.0.0:13133       # Endpoint to collect health check data
+# Extensions
+extensions:
+  health_check:                   # Health Check Extension
+    endpoint: 0.0.0.0:13133       # Health Check Endpoint
 
-receivers:                        # Array of Receivers
-  hostmetrics:                    # Receiver Type
-    collection_interval: 3600s    # Scrape metrics every hour
-    scrapers:                     # Array of hostmetric scrapers
-      cpu:                        # Scraper for cpu metrics
-  otlp:                           # Receiver Type
-    protocols:                    # List of Protocols used 
-      http:                       # HTTP Protocol
-        endpoint: "0.0.0.0:4318"  # Endpoint for incoming telemetry data
+# Receivers Pipeline
+receivers:
+  hostmetrics:                    # Host Metrics Receiver
+    collection_interval: 3600s    # Collection Interval (1hr)
+    scrapers:
+      cpu:                        # CPU Scraper
+  otlp:                           # OTLP Receiver
+    protocols:
+      http:                       # Configure HTTP protocol
+        endpoint: "0.0.0.0:4318"  # Endpoint to bind to
 
-exporters:                        # Array of Exporters
-  debug:                          # Exporter Type
-    verbosity: detailed           # Enabled detailed debug output
+# Exporters Pipeline
+exporters:
+  debug:                          # Debug Exporter
+    verbosity: detailed           # Detailed verbosity level
 
-processors:                       # Array of Processors
+# Processors Pipeline
+processors:
   memory_limiter:                 # Limits memory usage by Collectors pipeline
-    check_interval: 2s            # Interval to check memory usage
+    check_interval: 2s            # Check interval
     limit_mib: 512                # Memory limit in MiB
-  resourcedetection:              # Processor Type
-    detectors: [system]           # Detect system resource information
+  resourcedetection:              # Resource Detection Processor
+    detectors: [system]           # Detect system resources
     override: true                # Overwrites existing attributes
-  resource/add_mode:              # Processor Type/Name
-    attributes:                   # Array of attributes and modifications
-    - action: insert              # Action is to insert a key
+  resource/add_mode:              # Resource Processor
+    attributes:
+    - action: insert              # Action to perform
       key: otelcol.service.mode   # Key name
       value: "agent"              # Key value
 
-###########################         This section controls what
-### Activation Section  ###         configurations will be used
-###########################         by this OpenTelemetry Collector
+# Connectors Pipeline
+
+# Service Section - Enabled Pipelines
 service:                          # Services configured for this Collector
-  extensions:                     # Enabled extensions
-  - health_check
-  pipelines:                      # Array of configured pipelines
+  extensions:
+  - health_check                  # Enable extension
+  pipelines:
     traces:
-      receivers:
+      receivers:                  # Enable Receivers
       - otlp                      # OTLP Receiver
-      processors:
+      processors:                 # Enable Processors
       - memory_limiter            # Memory Limiter processor
+      - resourcedetection         # Add system attributes to the data
+      - resource/add_mode         # Add collector mode metadata
       exporters:
       - debug                     # Debug Exporter
     metrics:
       receivers:
-      - otlp                      # OTLP Receiver
+      - otlp
       processors:
-      - memory_limiter            # Memory Limiter processor
+      - memory_limiter
+      - resourcedetection
+      - resource/add_mode
       exporters:
-      - debug                     # Debug Exporter
+      - debug
     logs:
       receivers:
-      - otlp                      # OTLP Receiver
+      - otlp
       processors:
-      - memory_limiter            # Memory Limiter processor
+      - memory_limiter
+      - resourcedetection
+      - resource/add_mode
       exporters:
-      - debug                     # Debug Exporter
+      - debug
 ```
 
 ```text { title="Updated Directory Structure" }

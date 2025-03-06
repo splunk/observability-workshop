@@ -30,38 +30,38 @@ Find your **Agent terminal** window, and stop the running collector by pressing 
         append: false                 # Overwrite the file each time
     ```
 
-1. **Update the Pipelines Section**: Add the `file` exporter to the `metrics`, `traces` and `logs` pipelines:
+1. **Update the Pipelines Section**: Add the `file` exporter to the `traces` pipelines:
 
     ```yaml
-    service:                          # Services configured for this Collector
-      extensions:                     # Enabled extensions
-      - health_check
-      pipelines:                      # Array of configured pipelines
+      pipelines:
         traces:
-          receivers:
+          receivers:                  # Enable Receivers
           - otlp                      # OTLP Receiver
-          processors:
-          - memory_limiter            # Memory Limiter Processor
+          processors:                 # Enable Processors
+          - memory_limiter            # Memory Limiter processor
+          - resourcedetection         # Add system attributes to the data
+          - resource/add_mode         # Add collector mode metadata
           exporters:
           - debug                     # Debug Exporter
           - file                      # File Exporter
         metrics:
           receivers:
-          - otlp                      # OTLP Receiver
+          - otlp
           processors:
-          - memory_limiter            # Memory Limiter Processor
+          - memory_limiter
+          - resourcedetection
+          - resource/add_mode
           exporters:
-          - debug                     # Debug Exporter
-          - file                      # File Exporter
+          - debug
         logs:
           receivers:
-          - otlp                      # OTLP Receiver
+          - otlp
           processors:
-          - memory_limiter            # Memory Limiter Processor
+          - memory_limiter
+          - resourcedetection
+          - resource/add_mode
           exporters:
-          - debug                     # Debug Exporter
-          - file                      # File Exporter
-
+          - debug
     ```
 
 {{% /notice %}}
@@ -69,20 +69,25 @@ Find your **Agent terminal** window, and stop the running collector by pressing 
 Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**:
 
 ```mermaid
-flowchart LR
+%%{init:{"fontFamily":"monospace"}}%%
+graph LR
     %% Nodes
       REC1(&nbsp;&nbsp;otlp&nbsp;&nbsp;<br>fa:fa-download):::receiver
       PRO1(memory_limiter<br>fa:fa-microchip):::processor
+      PRO2(resourcedetection<br>fa:fa-microchip):::processor
+      PRO3(resource<br>fa:fa-microchip<br>add_mode):::processor
       EXP1(&ensp;debug&ensp;<br>fa:fa-upload):::exporter
-      EXP2(&ensp;&ensp;file&ensp;&ensp;<br>fa:fa-upload):::exporter
+      EXP2(&ensp;file&ensp;<br>fa:fa-upload):::exporter
     %% Links
     subID1:::sub-traces
     subgraph " "
       subgraph subID1[**Traces/Metrics/Logs**]
       direction LR
       REC1 --> PRO1
-      PRO1 --> EXP1
-      PRO1 --> EXP2
+      PRO1 --> PRO2
+      PRO2 --> PRO3
+      PRO3 --> EXP1
+      PRO3 --> EXP2
       end
     end
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
