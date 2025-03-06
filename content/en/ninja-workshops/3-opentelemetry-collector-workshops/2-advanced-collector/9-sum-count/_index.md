@@ -1,8 +1,8 @@
 ---
-title: Create metrics using the count connector
-linkTitle: a. Sum connector
+title: Create metrics with count & sum connector
+linkTitle: 9. Sum & Count connector
 time: 10 minutes
-weight: 10
+weight: 9
 ---
 
 In this section, we will explore how to use the [**count Connector**](https://docs.splunk.com/observability/en/gdi/opentelemetry/components/count-connector.html) can be used to count attribute values from spans, span events, metrics, data points, and log records.

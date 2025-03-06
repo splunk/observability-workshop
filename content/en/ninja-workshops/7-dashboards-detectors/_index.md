@@ -8,7 +8,7 @@ time: 45 minutes
 draft: true
 ---
 
-The goal of this workshop is to introduce you to the concepts of building Dashboards and Detectors using the  Splunk Observability suite.
+The goal of this workshop is to introduce you to the concepts of building Dashboards and Detectors using the Splunk Observability suite.
 
 This workshop scenario is using existing demo data that is available in the Splunk Observability Suite. The Workshop can be completed on any trail or production Organization you have access too.
 
