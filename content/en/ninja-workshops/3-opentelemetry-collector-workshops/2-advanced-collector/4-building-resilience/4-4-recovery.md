@@ -46,7 +46,12 @@ You should see from the `gateway` debug screen, it has started receiving the pre
   ```
 
 **Check the `gateway-traces.out` file**  
-Count the number of traces in the recreated `./gateway-traces.out`. It should match the number you send when the `gateway` was down
+Using `jq`, count the number of traces in the recreated `gateway-traces.out`. It should match the number you send when the `gateway` was down.
+
+```bash
+jq '.resourceSpans | length | "\(.) resourceSpans found"' gateway-traces.out
+```
+
 {{% /notice %}}
 
 ### Conclusion

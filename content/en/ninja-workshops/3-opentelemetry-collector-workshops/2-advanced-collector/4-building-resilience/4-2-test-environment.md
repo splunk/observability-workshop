@@ -20,10 +20,10 @@ Next, we will configure our environment to be ready for testing the **File Stora
 ../otelcol --config=agent.yaml
 ```
 
-**Send test spans**: In the **Spans terminal** window navigate to the `[WORKSHOP]/4-resilience` directory and run:
+**Send five test spans**: In the **Spans terminal** window navigate to the `[WORKSHOP]/4-resilience` directory and run:
 
 ```bash { title="Start Load Generator" }
-../loadgen
+../loadgen -count 5
 ```
 
 Both the `agent` and `gateway` should display debug logs, and the `gateway` should create a `./gateway-traces.out` file.
