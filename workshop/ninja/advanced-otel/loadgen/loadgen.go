@@ -355,11 +355,11 @@ func generateLogEntry(jsonOutput bool) string {
 }
 
 // Function to write logs to a file
-func writeLogs(jsonOutput bool) {
+func writeLogs(jsonOutput bool, count int) {
 	logFile := "quotes.log"
 	fmt.Printf("Writing logs to %s. Press Ctrl+C to stop.\n", logFile)
 
-	for {
+	for i := 0; i < count; i++ {
 		logEntry := generateLogEntry(jsonOutput)
 		file, err := os.OpenFile(logFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 		if err != nil {
@@ -380,11 +380,12 @@ Options:
   -security   Send security traces
   -logs       Enable logging of random quotes to quotes.log
   -json       Output logs in JSON format (only applicable with -logs)
+  -count      Number of traces or logs to send (default: infinite)
   -h, --help  Display this help message
 
 Example:
-  loadgen -health -security   Send health and security traces
-  loadgen -logs -json         Write random quotes in JSON format to quotes.log`)
+  loadgen -health -security -count 10   Send 10 health and security traces
+  loadgen -logs -json -count 5          Write 5 random quotes in JSON format to quotes.log`)
 }
 
 func main() {
@@ -394,6 +395,7 @@ func main() {
 	securityFlag := flag.Bool("security", false, "Send security traces")
 	logsFlag := flag.Bool("logs", false, "Enable logging of random quotes to quotes.log")
 	jsonFlag := flag.Bool("json", false, "Output logs in JSON format (only applicable with -logs)")
+	countFlag := flag.Int("count", 0, "Number of traces or logs to send (default: infinite)")
 	helpFlag := flag.Bool("h", false, "Display help message")
 	helpFlagLong := flag.Bool("help", false, "Display help message")
 
@@ -407,12 +409,12 @@ func main() {
 
 	// Start logging if -logs flag is provided
 	if *logsFlag {
-		go writeLogs(*jsonFlag) // Run logs in a separate goroutine
+		go writeLogs(*jsonFlag, *countFlag) // Run logs in a separate goroutine
 	}
 
-	fmt.Println("Sending traces every 5 seconds. Use Ctrl-C to stop.")
+	fmt.Println("Sending traces. Use Ctrl-C to stop.")
 
-	for {
+	for i := 0; *countFlag == 0 || i < *countFlag; i++ {
 		traceID := generateTraceID()
 		spanID := generateSpanID()
 		currentTime := getCurrentTime()
