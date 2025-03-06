@@ -1,6 +1,6 @@
 ---
-title: 3.1 FileLog Configuration
-linkTitle: 3.1 FileLog Configuration
+title: 3.1 Configuration
+linkTitle: 3.1 Configuration
 weight: 1
 ---
 

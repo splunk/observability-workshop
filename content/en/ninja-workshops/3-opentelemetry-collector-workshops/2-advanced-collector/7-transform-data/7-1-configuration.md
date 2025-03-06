@@ -1,6 +1,6 @@
 ---
-title: 7.1 Transform Configuration
-linkTitle: 7.1 Transform Configuration
+title: 7.1 Configuration
+linkTitle: 7.1 Configuration
 weight: 1
 ---
 
