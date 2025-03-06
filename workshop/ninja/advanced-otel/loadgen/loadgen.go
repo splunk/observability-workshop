@@ -359,7 +359,7 @@ func writeLogs(jsonOutput bool, count int) {
 	logFile := "quotes.log"
 	fmt.Printf("Writing logs to %s. Press Ctrl+C to stop.\n", logFile)
 
-	for i := 0; i < count; i++ {
+	for i := 0; count == 0 || i < count; i++ {
 		logEntry := generateLogEntry(jsonOutput)
 		file, err := os.OpenFile(logFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 		if err != nil {
@@ -367,7 +367,7 @@ func writeLogs(jsonOutput bool, count int) {
 		}
 		file.WriteString(logEntry + "\n")
 		file.Close()
-		time.Sleep(1 * time.Second)
+		time.Sleep(100 * time.Millisecond)
 	}
 }
 
@@ -420,7 +420,7 @@ func main() {
 		currentTime := getCurrentTime()
 		endTime := currentTime + int64(time.Second)
 
-		if *baseFlag {
+		if *baseFlag && !*logsFlag {
 			sendBaseTrace(traceID, spanID, currentTime, endTime)
 		}
 
