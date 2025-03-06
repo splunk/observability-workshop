@@ -20,7 +20,7 @@ In summary, the **Debug Exporter** is great for real-time, in-development troubl
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-Find your **Agent terminal** window, and stop the running collector by pressing `Ctrl-C`. Once the `agent` has stopped, open the `agent.yaml` and configure the **File Exporter**:
+In the **Agent terminal** window ensure the collector is not running then edit the `agent.yaml` and configure the **File Exporter**:
 
 1. **Configuring a `file` exporter**: The [**File Exporter**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/fileexporter/README.md) writes telemetry data to files on disk.
 
@@ -81,7 +81,7 @@ graph LR
     %% Links
     subID1:::sub-traces
     subgraph " "
-      subgraph subID1[**Traces/Metrics/Logs**]
+      subgraph subID1[**Traces**]
       direction LR
       REC1 --> PRO1
       PRO1 --> PRO2
@@ -93,5 +93,5 @@ graph LR
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;
 classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
-classDef sub-traces stroke:#fff,stroke-width:1px, color:#fff,stroke-dasharray: 3 3;
+classDef sub-traces stroke:#fbbf24,stroke-width:1px, color:#fbbf24,stroke-dasharray: 3 3;
 ```

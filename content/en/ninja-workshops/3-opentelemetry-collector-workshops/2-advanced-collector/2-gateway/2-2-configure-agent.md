@@ -35,7 +35,7 @@ weight: 2
 
 1. Add `hostmetrics` to the `metrics` pipeline. The [**HostMetrics Receiver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/hostmetricsreceiver#readme) will generate host CPU metrics once per hour with the current configuration.
 2. Add the `batch` processor after the `resource/add_mode` processor in the `traces`, `metrics`, and `logs` pipelines.
-3. Replace the `file` exporter with the `otlphttp` exporter in the `traces`, `metrics`, and `logs` pipelines.
+3. Add the `otlphttp` exporter in the `traces`, `metrics`, and `logs` pipelines.
 
 ```yaml
   pipelines:                        # Array of configured pipelines
@@ -48,7 +48,8 @@ weight: 2
       - resource/add_mode           # Collector mode metadata
       - batch                       # Batch Processor, groups data before send
       exporters:
-      - debug                       # Debug Exporter 
+      - debug                       # Debug Exporter
+      - file                        # File Exporter
       - otlphttp                    # OTLP/HTTP Exporter
     metrics:
       receivers: 

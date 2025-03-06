@@ -28,7 +28,7 @@ weight: 1
 **Send a Trace**: From the **Spans terminal** window send another span and verify you get the same output on the console as we saw previously:
 
 ```bash { title="Start Load Generator" }
-../loadgen
+../loadgen -count 1
 ```
 
 **Verify that the `agent.out` file is written**: Check that a file named `agent.out` is written in the current directory.
@@ -185,3 +185,5 @@ weight: 1
 {{% /tabs %}}
 
 {{% /notice %}}
+
+Stop the `agent` in **Agent terminal** window using `Ctrl-C`.
