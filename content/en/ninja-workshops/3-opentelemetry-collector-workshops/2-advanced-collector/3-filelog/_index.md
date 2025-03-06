@@ -27,16 +27,13 @@ starWarsQuotes := []string{
 }
 ```
 
-The **FileLog receiver** will read these log lines and send them to the OpenTelemetry Collector.
+The **FileLog receiver** in the `agent` will read these log lines and send them to the `gateway`.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- Move to the **Logs terminal** window.
-- Navigate to the `[WORKSHOP]` directory and create a new subdirectory named `3-filelog`.
+- In the **Logs terminal** window, change into the `[WORKSHOP]` directory and create a new subdirectory named `3-filelog`.
 - Next, copy `*.yaml` from `2-gateway` into `3-filelog`.
 - Change **all** terminal windows to the `[WORKSHOP]/3-filelog` directory.
-
-Your updated directory structure will now look like this:
 
 ```text { title="Updated Directory Structure" }
 [WORKSHOP]
@@ -50,7 +47,7 @@ Start the `loadgen` and this will begin writing lines to a file named `quotes.lo
 {{% tabs %}}
 {{% tab title="Log Load Generator" %}}
 
-```bash { title="Start the Log Load Generator" }
+```bash
 ../loadgen -logs
 ```
 

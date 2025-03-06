@@ -11,21 +11,17 @@ weight: 4
 1. Validate `agent` and `gateway` are still running.
 2. Find your **Spans terminal** window
 3. Navigate it to the `[WORKSHOP]/2-gateway` directory.
-4. Run the following command to send 5 spans:
+4. Run the following command to send 5 spans and validate the `agent` and `gateway` debug logs:
 
-```bash { title="Start the Load Generator"}
+{{% tabs %}}
+{{% tab title="Start the Load Generator" %}}
+
+```bash
 ../loadgen -count 5
 ```
-  
-Below, we show the first and last lines of the debug output. Use the **Complete Debug Output** button below to verify that both the `agent` and `gateway` produced similar debug output.
 
-```text
-2025-03-06T11:49:00.456Z        info    Traces  {"otelcol.component.id": "debug", "otelcol.component.kind": "Exporter", "otelcol.signal": "traces", "resource spans": 1, "spans": 1}
-<snip>
-        {"otelcol.component.id": "debug", "otelcol.component.kind": "Exporter", "otelcol.signal": "traces"}
-```
-
-{{% expand title="{{% badge style=primary icon=scroll %}}Complete Debug Output{{% /badge %}}" %}}
+{{% /tab %}}
+{{% tab title="Agent/Gateway Debug Output" %}}
 
 ```text
 2025-03-06T11:49:00.456Z        info    Traces  {"otelcol.component.id": "debug", "otelcol.component.kind": "Exporter", "otelcol.signal": "traces", "resource spans": 1, "spans": 1}
@@ -64,13 +60,31 @@ Attributes:
         {"otelcol.component.id": "debug", "otelcol.component.kind": "Exporter", "otelcol.signal": "traces"}
 ```
 
-{{% /expand %}}
+{{% /tab %}}
+{{% /tabs %}}
 
-**Verify the Gateway has handled the spans**: Verify that the gateway has generated a new file named `./gateway-traces.out`.
+**Verify the Gateway has handled the spans**: After the gateway processes the incoming spans, it writes the trace data to a file named `gateway-traces.out`. To confirm that the gateway has successfully handled the spans, you can inspect this file. Specifically, you can use the `jq` command to extract and display relevant information about each span, such as its `spanId` and its position in the file.
+
+{{% tabs %}}
+{{% tab title="Inspect the Gateway Trace File" %}}
 
 ```bash
 jq -c '.resourceSpans[].scopeSpans[].spans[] | "Span \(input_line_number) found with spanId \(.spanId)"' ./gateway-traces.out
 ```
+
+{{% /tab %}}
+{{% tab title="Example Output" %}}
+
+```text
+"Span 1 found with spanId 830b45581f53b3d8"
+"Span 2 found with spanId a82662dbed83cdee"
+"Span 3 found with spanId b662569e8e52c6ac"
+"Span 4 found with spanId 28b78a41a76162fa"
+"Span 5 found with spanId 23b06e57f8af7336"
+```
+
+{{% /tab %}}
+{{% /tabs %}}
 
 {{% /notice %}}
 
