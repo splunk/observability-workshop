@@ -32,7 +32,7 @@ Logs often contain structured data encoded as JSON within the log body. Extracti
 
 - Inside the `[WORKSHOP]` directory, create a new subdirectory named `7-transform-data`.
 - Next, copy `*.yaml` from the `6-sensitve-data` directory into `7-transform-data`.
-- Change **all** terminal windows to the `[WORKSHOP]/7-transform` directory.
+- Change **all** terminal windows to the `[WORKSHOP]/7-transform-data` directory.
 
 Your updated directory structure will now look like this:
 
