@@ -32,86 +32,42 @@ At this stage, the `agent` continues to collect **CPU** metrics once per hour or
 
 **Verify Data arrived at Gateway**:
 
-1. Open the newly created `gateway-metrics.out` file.
-2. Check that it contains **CPU** metrics.
-3. The Metrics should include details similar to those shown below (We're only displaying the `resourceMetrics` section and the first set of **CPU** metrics):
+In order to verify that CPU metrics, specifically for `cpu0`, have successfully arrived at the gateway by checking the `gateway-metrics.out` we will use the `jq` command.
+
+This command below filters and extracts the `system.cpu.time` metric, focusing on `cpu0`, and displays its state (e.g., `user`, `system`, `idle`, `interrupt`) along with the corresponding values.
+
+Run the following command in the **Tests terminal** to check the `system.cpu.time` metric:
 
 {{% tabs %}}
-{{% tab title="cat ./gateway-metrics.out" %}}
+{{% tab title="Check CPU Metrics" %}}
 
-```json
-{"resourceMetrics":[{"resource":{"attributes":[{"key":"host.name","value":{"stringValue":"YOUR_HOST_NAME"}},{"key":"os.type","value":{"stringValue":"YOUR_OS"}},{"key":"otelcol.service.mode","value":{"stringValue":"gateway"}}]},"scopeMetrics":[{"scope":{"name":"github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver/internal/scraper/cpuscraper","version":"v0.116.0"},"metrics":[{"name":"system.cpu.time","description":"Total seconds each logical CPU spent on each mode.","unit":"s","sum":{"dataPoints":[{"attributes":[{"key":"cpu","value":{"stringValue":"cpu0"}},{"key":"state","value":{"stringValue":"user"}}],"startTimeUnixNano":"1733753908000000000","timeUnixNano":"1737133726158376000","asDouble":1168005.59}]}}]}]}]}
+```bash
+jq '.resourceMetrics[].scopeMetrics[].metrics[] | select(.name == "system.cpu.time") | .sum.dataPoints[] | select(.attributes[0].value.stringValue == "cpu0") | {cpu: .attributes[0].value.stringValue, state: .attributes[1].value.stringValue, value: .asDouble}' gateway-metrics.out
 ```
 
 {{% /tab %}}
-{{% tab title="cat ./gateway-metrics.out | jq" %}}
+{{% tab title="Example Output" %}}
 
 ```json
 {
-  "resourceMetrics": [
-    {
-      "resource": {
-        "attributes": [
-          {
-            "key": "host.name",
-            "value": {
-              "stringValue": "YOUR_HOST_NAME"
-            }
-          },
-          {
-            "key": "os.type",
-            "value": {
-              "stringValue": "YOUR_OS"
-            }
-          },
-          {
-            "key": "otelcol.service.mode",
-            "value": {
-              "stringValue": "gateway"
-            }
-          }
-        ]
-      },
-      "scopeMetrics": [
-        {
-          "scope": {
-            "name": "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver/internal/scraper/cpuscraper",
-            "version": "v0.116.0"
-          },
-          "metrics": [
-            {
-              "name": "system.cpu.time",
-              "description": "Total seconds each logical CPU spent on each mode.",
-              "unit": "s",
-              "sum": {
-                "dataPoints": [
-                  {
-                    "attributes": [
-                      {
-                        "key": "cpu",
-                        "value": {
-                          "stringValue": "cpu0"
-                        }
-                      },
-                      {
-                        "key": "state",
-                        "value": {
-                          "stringValue": "user"
-                        }
-                      }
-                    ],
-                    "startTimeUnixNano": "1733753908000000000",
-                    "timeUnixNano": "1737133726158376000",
-                    "asDouble": 1168005.59
-                  },
-                ]
-              }
-            }
-          ]
-        }
-      ]
-    }
-  ]
+  "cpu": "cpu0",
+  "state": "user",
+  "value": 123407.02
+}
+{
+  "cpu": "cpu0",
+  "state": "system",
+  "value": 64866.6
+}
+{
+  "cpu": "cpu0",
+  "state": "idle",
+  "value": 216427.87
+}
+{
+  "cpu": "cpu0",
+  "state": "interrupt",
+  "value": 0
 }
 ```
 

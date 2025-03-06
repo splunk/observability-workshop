@@ -27,23 +27,23 @@ You’re ready to start the OpenTelemetry Collector with the newly created `agen
 
 **Send Test Spans**: Instead of instrumenting an application, we’ll simulate sending trace data to the OpenTelemetry Collector using the `loadgen` tool.
 
-In the **Spans terminal** window, run the following command:
+In the **Spans terminal** window, run the following command to send a single span:
 
 {{% tabs %}}
 {{% tab title="Start Load Generator" %}}
 
-```bash { title="Start Load Generator" }
-../loadgen
+```bash
+../loadgen -count 1
 ```
 
 {{% /tab %}}
 {{% tab title="Load Generator Output" %}}
 
 ```text
-Sending traces every 5 seconds. Use Ctrl-C to stop.
+Sending traces. Use Ctrl-C to stop.
 Response: {"partialSuccess":{}}
 
-Base trace sent with traceId: 1932f078af8ceea53e2beaaa3b84966d and spanId: 43b1d9c1b0bacf41
+Base trace sent with traceId: 1aacb1db8a6d510f10e52f154a7fdb90 and spanId: 7837a3a2d3635d9f
  ```
 
 `{"partialSuccess":{}}`: Indicates 100% success, as the `partialSuccess` field is empty. In case of a partial failure, this field will include details about any failed parts.
@@ -93,3 +93,5 @@ Attributes:
 ```
 
 {{% /notice %}}
+
+Stop the `agent` in the **Agent terminal** window using `Ctrl-C`.
