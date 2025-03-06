@@ -425,15 +425,15 @@ func main() {
 		}
 
 		if *healthFlag {
-			time.Sleep(5 * time.Second)
+			time.Sleep(2 * time.Second)
 			sendHealthTrace(traceID, generateSpanID(), getCurrentTime(), getCurrentTime()+int64(time.Second))
 		}
 
 		if *securityFlag {
-			time.Sleep(5 * time.Second)
+			time.Sleep(2 * time.Second)
 			sendSecurityTrace(traceID, generateSpanID(), getCurrentTime(), getCurrentTime()+int64(time.Second))
 		}
 
-		time.Sleep(5 * time.Second)
+		time.Sleep(2 * time.Second)
 	}
 }
