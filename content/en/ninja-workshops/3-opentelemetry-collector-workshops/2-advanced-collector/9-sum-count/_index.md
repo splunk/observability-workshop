@@ -1,11 +1,11 @@
 ---
 title: Create metrics with Count Connector
-linkTitle: 9.  Count & Sum connector
+linkTitle: 9. Count & Sum Connector
 time: 10 minutes
 weight: 9
 ---
 
-In this section, we will explore how we can use the [**Count**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector) and [**Sum**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/sumconnector) Connectors to count attribute values from the logs and retrieve values from spans and turn them in to metrics.
+In this section, we will explore how we can use the [**Count Connector**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector) to count attribute values from the logs and turn them in to metrics.
 
 In this section we will use the count connector to count the number of Star Wars or Lord of the Rings quotes provided by our logs.
 
