@@ -27,7 +27,7 @@ starWarsQuotes := []string{
 }
 ```
 
-The Filelog receiver will read these log lines and send them to the OpenTelemetry Collector.
+The **FileLog receiver** will read these log lines and send them to the OpenTelemetry Collector.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -51,7 +51,7 @@ Start the `loadgen` and this will begin writing lines to a file named `quotes.lo
 {{% tab title="Log Load Generator" %}}
 
 ```bash { title="Start the Log Load Generator" }
-../loadgen -logs
+../loadgen -logs -count 50
 ```
 
 {{% /tab %}}
