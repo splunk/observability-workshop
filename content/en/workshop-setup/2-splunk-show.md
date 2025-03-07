@@ -3,27 +3,52 @@ title: 2. Using Splunk Show
 weight: 2
 ---
 
-## Provision the EC2 Instances Using Splunk Show
+##### **Provision EC2 Instances Using Splunk Show**
 
-![Splunk Show](../images/splunk-show.png)
+<!--![Splunk Show](../images/splunk-show.png)-->
 
-Please visit [**Splunk Show**](https://show.splunk.com/template/262/?type=workshop) to provision your workshop instance(s).
+To set up your workshop environment, visit [**Splunk Show**](https://show.splunk.com/) and provision your EC2 instances using the appropriate Observability Workshop template.
 
-Select the desired **Content Type** as follows:
+---
 
-- _**Pre-configured Instances**_ - select this if you need the OpenTelemetry Collector and the application pre-deployed for a less technical audience. Attendees will only require a browser to complete the workshop. This option **must** be selected if you want to run the **Splunk4Rookies - Observability Cloud Workshop**.
-  - Select Normal Workshop only! Ensure that **Estimated Participants** is set to **1** and **O11y Shop Quantity** is set to **1** also as only a single instance is required by the workshop.
+##### **Choose the Right Workshop Template**
 
-- _**Default (for interactive workshop)**_ - select this if your audience is technical and wants hands-on experience installing OpenTelemetry and deploying applications.
-  - Select either Normal Workshop, Private Event or Public Event. Change **Estimated Participants** to the number of attendees you expect and set the same value in **O11y Shop Quantity**. This will provision the correct number of EC2 instances. It is recommended that you over-provision by 10% - 20% to allow for any last-minute attendees.
+Splunk Show offers two templates for Observability workshops. Select the one that best fits your needs:
 
-{{% notice title="Important" style="primary" icon="info" %}}
+##### **1. Splunk4Rookies - Observability**  
 
-- Ensure you set **Operating hours** to **Run always (24/7)** as this will prevent the instance from being suspended and obtaining a new IP address which breaks RUM and Synthetics.
-- Ensure you set a **DNS name** for the instance(s) as this makes it easier to find environments in Splunk Observability Cloud during a workshop.
+- **Use this template** to run the **Splunk4Rookies - Observability Cloud Workshop**.  
+- This template pre-deploys the **OpenTelemetry Collector** and the **Online Boutique application**.  
+- Attendees only need a browser to complete the workshop.  
 
-{{% /notice %}}
+##### **2. Splunk4Ninjas - Observability**  
 
-Select your Splunk Observability Cloud Realm and enter the **SWiPE ID** that was generated for you.
+- **Use this template** for advanced (Ninja) workshops.  
+- This template creates an instance with everything required for hands-on activities, such as installing OpenTelemetry and deploying applications.  
+- Select the appropriate event type: **Normal Workshop**, **Private Event**, or **Public Event**.  
+- Set the **Estimated Participants** to the number of attendees you expect, and match this value in the **O11y Shop Quantity** field.  
+  - **Tip:** Over-provision by **10% - 20%** to accommodate last-minute attendees.  
 
-For further guidance on using Splunk Show please see the [**Splunk Show User Guide**](http://go/show/user-guide).
+---
+
+##### **Important Configuration Tips**
+
+When provisioning your instances, keep the following in mind:
+
+1. **Operating Hours**  
+   - Set **Operating hours** to **Run always (24/7)**.  
+   - This prevents the instance from being suspended, which could result in a new IP address and break RUM and Synthetics configurations.  
+
+2. **DNS Name**  
+   - Assign a **DNS name** to the instance(s).  
+   - This makes it easier to locate and manage environments in Splunk Observability Cloud during the workshop.  
+
+3. **Splunk Observability Cloud Realm and SWiPE ID**  
+   - Select your Splunk Observability Cloud **Realm**.  
+   - Enter the **SWiPE ID** generated for your workshop.  
+
+---
+
+### **Additional Resources**
+
+For more detailed guidance on using Splunk Show, refer to the [**Splunk Show User Guide**](http://go/show/user-guide).

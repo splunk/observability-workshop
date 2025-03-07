@@ -4,23 +4,34 @@ weight: 1
 hidden: false
 ---
 
-## Configure Your Org Using SWiPE
+## Configure your Org using SWiPE
 
-**SWiPE** is an online tool to help configure a workshop environment in Splunk Observability Cloud and is available [**here**](https://swipe.splunk.show).
+**SWiPE** is an online tool designed to help you configure a workshop environment in Splunk Observability Cloud. You can access SWiPE [**here**](https://swipe.splunk.show).
 
 > [!INFO]
-> **SWiPE does not** provision EC2 instances - these are provisioned using Splunk Show.
+> **Important Note:** SWiPE does **not** provision EC2 instances. These instances are provisioned separately using **Splunk Show**.
 
 ![SWiPE](../images/swipe.png)
 
-**SWiPE** will configure the following:
+SWiPE automates the following tasks for your workshop environment:
 
-- Create and invite users to the Org.
-  - Create a `.csv` file containing the e-mail addresses (one per line) **or** copy and paste e-mail addresses (one per line).
-- If **Ninja Workshop** is enabled, then the users will be provisioned with **Admin** access control.
-- If **Override HEC URL and Token** is enabled, then a custom HEC URL and Token can be configured to override the default values which are used for sending logs to Splunk.
-- Create a team and add users to the team.
-- Create a **SWiPE ID** for use in Splunk Show. You will need to copy the **SWiPE ID** to provision the workshop instance(s) in [**Splunk Show**](https://show.splunk.com/home/).
+1. **Create and Invite Users to the Organization**  
+   - Provide a list of email addresses for the users. You can either:  
+     - Upload a `.csv` file containing the email addresses (one per line), **or**  
+     - Copy and paste the email addresses directly (one per line).  
+
+2. **Admin Access for Ninja Workshops**  
+   - If the **Ninja Workshop** option is enabled, all users will be provisioned with **Admin** access control.  
+
+3. **Custom HEC URL and Token (Optional)**  
+   - If **Override HEC URL and Token** is enabled, you can configure a custom HTTP Event Collector (HEC) URL and token. This overrides the default values used for sending logs to Splunk.  
+
+4. **Create a Team and Add Users**  
+   - SWiPE will create a team and automatically add the users to it.  
+
+5. **Generate a SWiPE ID**  
+   - SWiPE will create a unique **SWiPE ID** for your workshop. You’ll need to copy this ID and use it when provisioning workshop instances in [**Splunk Show**](https://show.splunk.com/home/).  
 
 > [!WARNING]
-> If you have more than **40 users** in your workshop, we suggest informing the support team to ensure the trial or workshop environment is properly scaled.
+> **Workshops with More Than 40 Users**  
+> If your workshop has more than **40 users**, we recommend informing the support team in advance. This ensures that the trial or workshop environment is properly scaled to handle the load.
