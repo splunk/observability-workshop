@@ -4,7 +4,7 @@ weight: 1
 hidden: false
 ---
 
-## Configure your Org using SWiPE
+##### **Configure your Org using SWiPE**
 
 **SWiPE** is an online tool designed to help you configure a workshop environment in Splunk Observability Cloud. You can access SWiPE [**here**](https://swipe.splunk.show).
 
