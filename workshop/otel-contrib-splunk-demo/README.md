@@ -14,7 +14,7 @@
 - RUM
 - K8s SmartAgent monitors (no SmartAgent support for OTel)
 
-## Splunk OpenTelemety Collector Configuration
+## Splunk OpenTelemetry Collector Configuration
 
 The following configuration can be applied to a default O11y workshop Splunk Show instance. Remember to remove any existing OTel Collector configuration.
 
