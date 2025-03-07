@@ -3,6 +3,7 @@ title: Create metrics with Count Connector
 linkTitle: 9. Count & Sum Connector
 time: 10 minutes
 weight: 9
+draft: true
 ---
 
 In this section, we will explore how we can use the [**Count Connector**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector) to count attribute values from the logs and turn them in to metrics.
