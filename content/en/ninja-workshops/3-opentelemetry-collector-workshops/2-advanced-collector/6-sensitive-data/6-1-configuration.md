@@ -30,25 +30,25 @@ We'll **update** the `user.phone_number`, **hash** the `user.email`, and **delet
 
 ```yaml
   attributes/update:
-    actions:                        # Actions
-      - key: user.phone_number      # Target key
-        action: update              # Update action
-        value: "UNKNOWN NUMBER"     # New value
-      - key: user.email             # Target key
-        action: hash                # Hash the email value
-      - key: user.password          # Target key
-        action: delete              # Delete the password
+    actions:                           # Actions
+      - key: user.phone_number         # Target key
+        action: update                 # Update action
+        value: "UNKNOWN NUMBER"        # New value
+      - key: user.email                # Target key
+        action: hash                   # Hash the email value
+      - key: user.password             # Target key
+        action: delete                 # Delete the password
   ```
 
 **Add a `redaction` Processor**: [**The Redaction Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/redactionprocessor) will detect and redact sensitive data values based on predefined patterns. We'll block credit card numbers using regular expressions.
 
 ```yaml
   redaction/redact:
-    allow_all_keys: true            # If false, only allowed keys will be retained
-    blocked_values:                 # List of regex patterns to block
+    allow_all_keys: true               # If false, only allowed keys will be retained
+    blocked_values:                    # List of regex patterns to block
       - '\b4[0-9]{3}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}\b'       # Visa
       - '\b5[1-5][0-9]{2}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}\b'  # MasterCard
-    summary: debug                  # Show debug details about redaction
+    summary: debug                     # Show debug details about redaction
 ```
 
 **Update the `traces` Pipeline**: Integrate both processors into the `traces` pipeline. Make sure that you comment out the redaction processor at first: (We will enable it later)
@@ -59,8 +59,8 @@ We'll **update** the `user.phone_number`, **hash** the `user.email`, and **delet
       - otlp
       processors:
       - memory_limiter
-      - attributes/update           # Update, hash, and remove attributes
-      #- redaction/redact            # Redact sensitive fields using regex
+      - attributes/update              # Update, hash, and remove attributes
+      #- redaction/redact              # Redact sensitive fields using regex
       - resourcedetection
       - resource/add_mode
       - batch

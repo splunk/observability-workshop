@@ -13,16 +13,15 @@ While these components do not process telemetry data directly, they provide valu
 **Update the `agent.yaml`**: In the **Agent terminal** window, add the `file_storage` extension and name it `checkpoint`:
 
 ```yaml
-  file_storage/checkpoint:        # Extension Type/Name
-    directory: "./checkpoint-dir" # Define directory
-    create_directory: true        # Create directory
-    timeout: 1s                   # Timeout for file operations
-    compaction:                   # Compaction settings
-      on_start: true              # Start compaction at Collector startup
+  file_storage/checkpoint:             # Extension Type/Name
+    directory: "./checkpoint-dir"      # Define directory
+    create_directory: true             # Create directory
+    timeout: 1s                        # Timeout for file operations
+    compaction:                        # Compaction settings
+      on_start: true                   # Start compaction at Collector startup
       # Define compaction directory
       directory: "./checkpoint-dir/tmp"
-      # Max. size limit before compaction occurs
-      max_transaction_size: 65536
+      max_transaction_size: 65536      # Max. size limit before compaction occurs
 ```
 
 **Add `file_storage` to existing `otlphttp` exporter**: Modify the `otlphttp:` exporter to configure retry and queuing mechanisms, ensuring data is retained and resent if failures occur:
@@ -45,17 +44,16 @@ While these components do not process telemetry data directly, they provide valu
 service:
   extensions:
   - health_check
-  - file_storage/checkpoint       # Enabled extensions for this collector
+  - file_storage/checkpoint            # Enabled extensions for this collector
 ```
 
 **Update the `metrics` pipeline**: For this exercise we are going to remove the `hostmetrics` receiver from the Metric pipeline to reduce debug and log noise:
 
 ```yaml
     metrics:
-      receivers: 
-      - otlp                        # OTLP Receiver
-      # - hostmetrics               # Hostmetrics Receiver
-
+      receivers:
+      - otlp
+      # - hostmetrics                  # Hostmetrics Receiver
 ```
 
 {{% /notice %}}

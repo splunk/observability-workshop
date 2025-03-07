@@ -25,7 +25,7 @@ Move to the **Agent terminal** window and change into the `[WORKSHOP]/3-filelog`
     logs:
       receivers:
       - otlp
-      - filelog/quotes              # Filelog Receiver
+      - filelog/quotes                 # Filelog Receiver
       processors:
       - memory_limiter
       - resourcedetection

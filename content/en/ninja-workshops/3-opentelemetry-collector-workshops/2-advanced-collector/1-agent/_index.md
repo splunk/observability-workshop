@@ -27,55 +27,55 @@ We will refer to these terminals as: **Agent**, **Gateway**, **Spans** and **Log
 ```yaml { title="agent.yaml" }
 # Extensions
 extensions:
-  health_check:                   # Health Check Extension
-    endpoint: 0.0.0.0:13133       # Health Check Endpoint
+  health_check:                        # Health Check Extension
+    endpoint: 0.0.0.0:13133            # Health Check Endpoint
 
 # Receivers Pipeline
 receivers:
-  hostmetrics:                    # Host Metrics Receiver
-    collection_interval: 3600s    # Collection Interval (1hr)
+  hostmetrics:                         # Host Metrics Receiver
+    collection_interval: 3600s         # Collection Interval (1hr)
     scrapers:
-      cpu:                        # CPU Scraper
-  otlp:                           # OTLP Receiver
+      cpu:                             # CPU Scraper
+  otlp:                                # OTLP Receiver
     protocols:
-      http:                       # Configure HTTP protocol
-        endpoint: "0.0.0.0:4318"  # Endpoint to bind to
+      http:                            # Configure HTTP protocol
+        endpoint: "0.0.0.0:4318"       # Endpoint to bind to
 
 # Exporters Pipeline
 exporters:
-  debug:                          # Debug Exporter
-    verbosity: detailed           # Detailed verbosity level
+  debug:                               # Debug Exporter
+    verbosity: detailed                # Detailed verbosity level
 
 # Processors Pipeline
 processors:
-  memory_limiter:                 # Limits memory usage by Collectors pipeline
-    check_interval: 2s            # Check interval
-    limit_mib: 512                # Memory limit in MiB
-  resourcedetection:              # Resource Detection Processor
-    detectors: [system]           # Detect system resources
-    override: true                # Overwrites existing attributes
-  resource/add_mode:              # Resource Processor
+  memory_limiter:                      # Limits memory usage by Collectors pipeline
+    check_interval: 2s                 # Check interval
+    limit_mib: 512                     # Memory limit in MiB
+  resourcedetection:                   # Resource Detection Processor
+    detectors: [system]                # Detect system resources
+    override: true                     # Overwrites existing attributes
+  resource/add_mode:                   # Resource Processor
     attributes:
-    - action: insert              # Action to perform
-      key: otelcol.service.mode   # Key name
-      value: "agent"              # Key value
+    - action: insert                   # Action to perform
+      key: otelcol.service.mode        # Key name
+      value: "agent"                   # Key value
 
 # Connectors Pipeline
 
 # Service Section - Enabled Pipelines
-service:                          # Services configured for this Collector
+service:
   extensions:
-  - health_check                  # Enable extension
+  - health_check                       # Health Check Extension
   pipelines:
     traces:
-      receivers:                  # Enable Receivers
-      - otlp                      # OTLP Receiver
-      processors:                 # Enable Processors
-      - memory_limiter            # Memory Limiter processor
-      - resourcedetection         # Add system attributes to the data
-      - resource/add_mode         # Add collector mode metadata
+      receivers:
+      - otlp                           # OTLP Receiver
+      processors:
+      - memory_limiter                 # Memory Limiter processor
+      - resourcedetection              # Add system attributes to the data
+      - resource/add_mode              # Add collector mode metadata
       exporters:
-      - debug                     # Debug Exporter
+      - debug                          # Debug Exporter
     metrics:
       receivers:
       - otlp

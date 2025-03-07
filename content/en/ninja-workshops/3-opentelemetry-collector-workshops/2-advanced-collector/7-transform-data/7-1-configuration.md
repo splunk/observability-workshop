@@ -8,10 +8,10 @@ weight: 1
 **Add a `transform` processor**: Switch to your **Agent terminal** window and edit the `agent.yaml` and add the following `transform` processor:
 
 ```yaml
-  transform/logs:                   # Processor Type/Name
-    log_statements:                 # Log Processing Statements
-      - context: resource           # Log Context
-        statements:                 # List of attribute keys to keep
+  transform/logs:                      # Processor Type/Name
+    log_statements:                    # Log Processing Statements
+      - context: resource              # Log Context
+        statements:                    # List of attribute keys to keep
           - keep_keys(attributes, ["com.splunk.sourcetype", "host.name", "otelcol.service.mode"])
 ```
 
@@ -24,8 +24,8 @@ This configuration ensures that only the relevant resource attributes (`com.splu
 This configuration extracts the `level` value from the log body, maps it to `severity_text`, and assigns the appropriate `severity_number`:
 
 ```yaml
-      - context: log                # Log Context
-        statements:                 # Transform Statements Array
+      - context: log                   # Log Context
+        statements:                    # Transform Statements Array
           - set(cache, ParseJSON(body)) where IsMatch(body, "^\\{")
           - flatten(cache, "")        
           - merge_maps(attributes, cache, "upsert")
@@ -65,7 +65,7 @@ This method of mapping all JSON fields to top-level attributes should only be us
       - memory_limiter
       - resourcedetection
       - resource/add_mode
-      - transform/logs             # Transform log data
+      - transform/logs                 # Transform logs processor
       - batch
       exporters:
       - debug

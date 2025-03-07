@@ -25,9 +25,9 @@ In the **Agent terminal** window ensure the collector is not running then edit t
 1. **Configuring a `file` exporter**: The [**File Exporter**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/fileexporter/README.md) writes telemetry data to files on disk.
 
     ```yaml
-      file:                           # Exporter Type
-        path: "./agent.out"           # Save path (OTLP JSON)
-        append: false                 # Overwrite the file each time
+      file:                                # File Exporter
+        path: "./agent.out"                # Save path (OTLP/JSON)
+        append: false                      # Overwrite the file each time
     ```
 
 1. **Update the Pipelines Section**: Add the `file` exporter to the `traces` pipelines:
@@ -35,15 +35,15 @@ In the **Agent terminal** window ensure the collector is not running then edit t
     ```yaml
       pipelines:
         traces:
-          receivers:                  # Enable Receivers
-          - otlp                      # OTLP Receiver
-          processors:                 # Enable Processors
-          - memory_limiter            # Memory Limiter processor
-          - resourcedetection         # Add system attributes to the data
-          - resource/add_mode         # Add collector mode metadata
+          receivers:
+          - otlp                           # OTLP Receiver
+          processors:
+          - memory_limiter                 # Memory Limiter processor
+          - resourcedetection              # Add system attributes to the data
+          - resource/add_mode              # Add collector mode metadata
           exporters:
-          - debug                     # Debug Exporter
-          - file                      # File Exporter
+          - debug                          # Debug Exporter
+          - file                           # File Exporter
         metrics:
           receivers:
           - otlp
