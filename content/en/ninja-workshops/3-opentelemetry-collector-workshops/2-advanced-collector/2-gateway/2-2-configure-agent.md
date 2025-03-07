@@ -17,14 +17,14 @@ weight: 2
 2. Ensure the `endpoint` is set to the gateway endpoint and port number.
 
 ```yaml
-  otlphttp:                           # Exporter Type
-    endpoint: "http://localhost:5318" # Gateway OTLP endpoint
+  otlphttp:                            # Exporter Type
+    endpoint: "http://localhost:5318"  # Gateway OTLP endpoint
 ```
 
 **Add a Batch Processor configuration**: Use the [**Batch Processor**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/batchprocessor/README.md). It will accept spans, metrics, or logs and places them into batches. Batching helps better compress the data and reduce the number of outgoing connections required to transmit the data. It is highly recommended configuring the batch processor on every collector.
 
 ```yaml
-  batch:                          # Processor Type
+  batch:                               # Processor Type
 ```
 
 **Update the pipelines**:
@@ -34,23 +34,23 @@ weight: 2
 3. Add the `otlphttp` exporter in the `traces`, `metrics`, and `logs` pipelines.
 
 ```yaml
-  pipelines:                        # Array of configured pipelines
+  pipelines:
     traces:
-      receivers: 
-      - otlp                        # OTLP Receiver
+      receivers:
+      - otlp                           # OTLP Receiver
       processors:
-      - memory_limiter              # Memory Limiter Processor
-      - resourcedetection           # System attributes metadata
-      - resource/add_mode           # Collector mode metadata
-      - batch                       # Batch Processor, groups data before send
+      - memory_limiter                 # Memory Limiter processor
+      - resourcedetection              # Add system attributes to the data
+      - resource/add_mode              # Add collector mode metadata
+      - batch                          # Batch processor
       exporters:
-      - debug                       # Debug Exporter
-      - file                        # File Exporter
-      - otlphttp                    # OTLP/HTTP Exporter
+      - debug                          # Debug Exporter
+      - file                           # File Exporter
+      - otlphttp                       # OTLP/HTTP Exporter
     metrics:
-      receivers: 
+      receivers:
       - otlp
-      - hostmetrics                 # Hostmetrics Receiver
+      - hostmetrics                    # Host Metrics Receiver
       processors:
       - memory_limiter
       - resourcedetection
@@ -60,7 +60,7 @@ weight: 2
       - debug
       - otlphttp
     logs:
-      receivers: 
+      receivers:
       - otlp
       processors:
       - memory_limiter

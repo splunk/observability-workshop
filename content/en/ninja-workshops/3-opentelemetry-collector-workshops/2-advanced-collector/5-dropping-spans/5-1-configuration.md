@@ -11,10 +11,10 @@ Switch to your **Gateway terminal** window, open the `gateway.yaml` and add the 
 **Add a `filter` processor**: Configure the `gateway` to drop spans with the name `"/_healthz"`:
 
 ```yaml
-  filter/health:                  # Defines a filter processor
-    error_mode: ignore            # Ignore errors
-    traces:                       # Filtering rules for traces
-      span:                       # Exclude spans named "/_healthz"
+  filter/health:                       # Defines a filter processor
+    error_mode: ignore                 # Ignore errors
+    traces:                            # Filtering rules for traces
+      span:                            # Exclude spans named "/_healthz"
         - 'name == "/_healthz"'
 ```
 
