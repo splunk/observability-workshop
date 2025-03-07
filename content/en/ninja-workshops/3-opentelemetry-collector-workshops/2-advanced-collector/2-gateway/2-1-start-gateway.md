@@ -38,11 +38,7 @@ classDef sub-logs stroke:#34d399,stroke-width:1px, color:#34d399,stroke-dasharra
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Start the Gateway**:
-
-1. Find your **Gateway terminal** window.
-2. Ensure you are in the`[WORKSHOP]/2-gateway` directory.
-3. Run the following command to start the `gateway`:
+**Start the Gateway**: In the **Gateway terminal** window, run the following command to start the `gateway`:
 
 ```bash {title="Start the Gateway"}
 ../otelcol --config=gateway.yaml
@@ -53,7 +49,7 @@ If everything is configured correctly, the first and last lines of the output sh
 ```text
 2025/01/15 15:33:53 settings.go:478: Set config to [gateway.yaml]
 <snip to the end>
-2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
+2025-01-13T12:43:51.747+0100 info service@v0.120.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
 {{% /notice %}}

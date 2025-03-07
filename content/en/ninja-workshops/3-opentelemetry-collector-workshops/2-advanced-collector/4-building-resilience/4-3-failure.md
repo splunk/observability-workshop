@@ -17,7 +17,7 @@ To assess the **Agent's** resilience, we'll simulate a temporary `gateway` outag
 **Simulate a network failure**: In the **Gateway terminal** stop the `gateway` with `Ctrl-C` and wait until the gateway console shows that it has stopped:
 
 ```text
-2025-01-28T13:24:32.785+0100  info  service@v0.116.0/service.go:309  Shutdown complete.
+2025-01-28T13:24:32.785+0100  info  service@v0.120.0/service.go:309  Shutdown complete.
 ```
 
 **Send traces**: In the **Spans terminal** window send five more traces using the `loadgen`.
@@ -32,7 +32,7 @@ Notice that the agent’s retry mechanism is activated as it continuously attemp
 
 ```text
 2025-01-28T14:40:28.702+0100  info  extensions/extensions.go:66  Stopping extensions...
-2025-01-28T14:40:28.702+0100  info  service@v0.116.0/service.go:309  Shutdown complete.
+2025-01-28T14:40:28.702+0100  info  service@v0.120.0/service.go:309  Shutdown complete.
 ```
 
 {{% /notice %}}

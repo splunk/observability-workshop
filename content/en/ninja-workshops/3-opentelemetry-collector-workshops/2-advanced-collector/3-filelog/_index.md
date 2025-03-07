@@ -33,7 +33,9 @@ The **FileLog receiver** in the `agent` will read these log lines and send them 
 
 - In the **Logs terminal** window, change into the `[WORKSHOP]` directory and create a new subdirectory named `3-filelog`.
 - Next, copy `*.yaml` from `2-gateway` into `3-filelog`.
-- Change **all** terminal windows to the `[WORKSHOP]/3-filelog` directory.
+
+> [!IMPORTANT]
+> **Change _ALL_ terminal windows to the `[WORKSHOP]/3-filelog` directory.**
 
 ```text { title="Updated Directory Structure" }
 [WORKSHOP]

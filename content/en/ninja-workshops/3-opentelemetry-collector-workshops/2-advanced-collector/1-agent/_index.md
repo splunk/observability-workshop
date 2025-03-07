@@ -12,16 +12,17 @@ We will refer to these terminals as: **Agent**, **Gateway**, **Spans** and **Log
 {{% /notice %}}
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-In your `[WORKSHOP]` directory, create a subdirectory called `1-agent` and change into that directory.
 
-```bash { title="Create the 1-agent directory" }
-mkdir 1-agent && \
-cd 1-agent
-```
+- In the **Agent terminal** window, change into the `[WORKSHOP]` directory and create a new subdirectory named `1-agent`.
 
-In the `1-agent` directory, create a file named `agent.yaml`. This file will define the basic structure of an OpenTelemetry Collector configuration.
+    ```bash
+    mkdir 1-agent && \
+    cd 1-agent
+    ```
 
-Copy and paste the following initial configuration into `agent.yaml`:
+- Create a file named `agent.yaml`. This file will define the basic structure of an OpenTelemetry Collector configuration.
+
+- Copy and paste the following initial configuration into `agent.yaml`:
 
 ```yaml { title="agent.yaml" }
 # Extensions

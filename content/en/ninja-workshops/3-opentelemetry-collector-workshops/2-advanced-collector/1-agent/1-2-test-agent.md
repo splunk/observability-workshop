@@ -8,10 +8,7 @@ You’re ready to start the OpenTelemetry Collector with the newly created `agen
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**In the Agent terminal window**:
-
-1. Change into the `[WORKSHOP]/1-agent` folder
-2. Run the following command:
+**Start the Agent**: In the **Agent terminal** window run the following command:
 
 ```bash { title="Start Collector" }
 ../otelcol --config=agent.yaml
@@ -27,7 +24,7 @@ You’re ready to start the OpenTelemetry Collector with the newly created `agen
 
 **Send Test Spans**: Instead of instrumenting an application, we’ll simulate sending trace data to the OpenTelemetry Collector using the `loadgen` tool.
 
-In the **Spans terminal** window, run the following command to send a single span:
+In the **Spans terminal** window, change into the `1-agent` directory and run the following command to send a single span:
 
 {{% tabs %}}
 {{% tab title="Start Load Generator" %}}

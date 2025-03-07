@@ -21,7 +21,9 @@ For logs, there are plans to implement a more enterprise-ready solution in one o
 
 - Inside the `[WORKSHOP]` directory, create a new subdirectory named `4-resilience`.
 - Next, copy `*.yaml` from the `3-filelog` directory into `4-resilience`.
-- Change **all** terminal windows to the `[WORKSHOP]/4-resilience` directory.
+
+> [!IMPORTANT]
+> **Change _ALL_ terminal windows to the `[WORKSHOP]/4-resilience` directory.**
 
 Your updated directory structure will now look like this:
 

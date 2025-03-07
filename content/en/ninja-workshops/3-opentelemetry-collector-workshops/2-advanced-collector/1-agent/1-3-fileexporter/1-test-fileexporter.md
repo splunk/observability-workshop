@@ -19,7 +19,7 @@ weight: 1
 {{% tab title="Agent Output" %}}
 
 ```text
-2025-01-13T12:43:51.747+0100 info service@v0.116.0/service.go:261 Everything is ready. Begin running and processing data.
+2025-01-13T12:43:51.747+0100 info service@v0.120.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
 {{% /tab %}}

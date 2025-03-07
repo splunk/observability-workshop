@@ -17,9 +17,6 @@ You may have noticed that in previous logs, fields like `SeverityText` and `Seve
 
 ```text
 <snip>
-LogRecord #0
-ObservedTimestamp: 2025-01-31 21:49:29.924017 +0000 UTC
-Timestamp: 1970-01-01 00:00:00 +0000 UTC
 SeverityText: 
 SeverityNumber: Unspecified(0)
 Body: Str(2025-01-31 15:49:29 [WARN] - Do or do not, there is no try.)
@@ -32,7 +29,9 @@ Logs often contain structured data encoded as JSON within the log body. Extracti
 
 - Inside the `[WORKSHOP]` directory, create a new subdirectory named `7-transform-data`.
 - Next, copy `*.yaml` from the `6-sensitve-data` directory into `7-transform-data`.
-- Change **all** terminal windows to the `[WORKSHOP]/7-transform-data` directory.
+
+> [!IMPORTANT]
+> **Change _ALL_ terminal windows to the `[WORKSHOP]/7-transform-data` directory.**
 
 Your updated directory structure will now look like this:
 
