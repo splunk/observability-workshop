@@ -2,6 +2,7 @@
 title: 2.5 Addendum - Info on Access Tokens and Batch Processing
 linkTitle: 2.5 Addendum
 weight: 5
+hidden: true
 ---
 
 

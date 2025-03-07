@@ -9,9 +9,7 @@ weight: 4
 **Send a Test Trace**:
 
 1. Validate `agent` and `gateway` are still running.
-2. Find your **Spans terminal** window
-3. Navigate it to the `[WORKSHOP]/2-gateway` directory.
-4. Run the following command to send 5 spans and validate the `agent` and `gateway` debug logs:
+2. In the **Spans terminal** window, run the following command to send 5 spans and validate the `agent` and `gateway` debug logs:
 
 {{% tabs %}}
 {{% tab title="Start the Load Generator" %}}
