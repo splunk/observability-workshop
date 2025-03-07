@@ -5,23 +5,11 @@ time: 10 minutes
 weight: 9
 ---
 
-In this section, we will explore how we can use the [**Sum Connector**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/sumconnector) to retrieve values from the from spans and turn them in to metrics.
+In this section, we will explore how we can use the [**Sum Connector**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/sumconnector) to retrieve values from the spans and turn them in to metrics.
 
-In this section we will use the creditdit card charge that are part of our base spansount connector to count the number of Star Wars or Lord of the Rings quotes provided by our logs.
+In this section we will use the credit card charge that are part of our base spans with the sum connector to metricize the total charges.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-
-- Inside the `[WORKSHOP]` directory, create a new subdirectory named `9-sum-count`.
-- Next, copy all contents from the `8-routing-data` directory into `9-sum-count`.
-- After copying, remove any `*.out` and `*.log` files.
-- Change **all** terminal windows to the `[WORKSHOP]/9-sum-count` directory.
-
-```text { title="Updated Directory Structure" }
-[WORKSHOP]
-└── 9-sum-count
-    ├── agent.yaml
-    └── gateway.yaml
-```
 
 - **Add and configure the Sum Connector**
 
@@ -37,7 +25,9 @@ Include the Sum Connector in the connectors section of your configuration and de
         attributes:
           - key: user.name
 ```
+
 TBD
+
 - **Explanation of the Metrics Counters**
 
   - `logs.full.count`: Tracks the total number of logs processed during each interval
@@ -114,4 +104,5 @@ classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:
 classDef sub-logs stroke:#34d399,stroke-width:1px, color:#34d399,stroke-dasharray: 3 3;
 classDef sub-metrics stroke:#38bdf8,stroke-width:1px, color:#38bdf8,stroke-dasharray: 3 3;
 ```
+
 {{% /notice %}}
