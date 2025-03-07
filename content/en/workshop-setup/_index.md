@@ -5,37 +5,60 @@ linkTitle: Workshop Setup
 hidden: true
 ---
 
-Welcome to the Observability Workshop Setup Guide. This guide will walk you through the steps required to set up your workshop environments.
+##### **Welcome to the Observability Workshop Setup Guide**
 
-### Provided Orgs (Splunk Employees Only)
+This guide will walk you through the steps required to set up your workshop environments in Splunk Observability Cloud. Whether you’re using a pre-configured organization or setting up a trial, this guide has you covered.
 
-**Existing Workshop Orgs**:
+---
 
-- The following Organizations can be used by Splunkers for running Observability Workshops. They have all the features enabled to successfully run any of the available workshops:
-  - [**CoE Workshop EMEA (EU0)**](https://app.eu0.signalfx.com/#/home/EsGF1sXAEAA)
-  - [**Observability Workshop EMEA (EU0)**](https://app.eu0.signalfx.com/#/home/EaJHc4vAEAA)
-  - [**Observability Workshop AMER (US1)**](https://app.us1.signalfx.com/#/home/EPNXccRAwAA)
-  - [**APAC-O11y-Workshop (US1)**](https://app.us1.signalfx.com/#/home/FA-6LDcA4AA)
+##### **Provided Organizations (For Splunk Employees Only)**
 
-**Blocked Orgs**:
+If you’re a Splunk employee, you can use the following pre-configured organizations to run Observability Workshops. These organizations have all the necessary features enabled to support any of the available workshops:
 
-- The following Orgs are blocked and cannot be used for running workshops:
-  - **EU Splunk Show (EU0)**
-  - **US Splunk Show (US1)**
-  - **Show Playground (US1)**
+##### **Available Workshop Organizations**
 
-### Trial Orgs
+- **[CoE Workshop EMEA (EU0)](https://app.eu0.signalfx.com/#/home/EsGF1sXAEAA)**  
+- **[Observability Workshop EMEA (EU0)](https://app.eu0.signalfx.com/#/home/EaJHc4vAEAA)**  
+- **[Observability Workshop AMER (US1)](https://app.us1.signalfx.com/#/home/EPNXccRAwAA)**  
+- **[APAC-O11y-Workshop (US1)](https://app.us1.signalfx.com/#/home/FA-6LDcA4AA)**  
 
-You can create a workshop environment in any trial Org. A default trial provides 25 hosts, 25 APM hosts and 25 x 10k RUM sessions per month. Please note, the following features are not available in Trial Orgs by default and must be enabled:
+##### **Blocked Organizations**
+
+The following organizations are **blocked** and cannot be used for running workshops:
+
+- **EU Splunk Show (EU0)**  
+- **US Splunk Show (US1)**  
+- **Show Playground (US1)**  
+
+---
+
+##### **Trial Organizations**
+
+If you’re not using a pre-configured organization, you can create a workshop environment in any **trial organization**. A default trial provides the following resources per month:
+
+- 25 hosts
+- 25 APM hosts
+- 25 x 10k RUM sessions
+
+##### **Limitations in Trial Orgs**
+
+The following feature is **not available** in trial organizations by default and must be enabled:
 
 - **Synthetic Monitoring**
 
-Also, a Splunk Cloud/Enterprise environment is required to be able to send logs. In Splunk Cloud/Enterprise make sure an index exists called **splunk4rookies-workshop**.
+##### **Splunk Cloud/Enterprise Requirements**
 
-A Log Observer Connect configuration will also need to be completed. [**Follow these instructions**](https://docs.splunk.com/observability/en/logs/lo-connect-landing.html), if you are using **Splunk Enterprise** or **Splunk Cloud Platform**.
+To send logs to Splunk Observability Cloud, you’ll need access to a **Splunk Cloud** or **Splunk Enterprise** environment. Ensure the following:
 
-You will also need to configure what is under [**Trial Org Configuration**](4-org-configuration) for new trial Orgs.
+- An index named **splunk4rookies-workshop** exists in your Splunk environment.  
+- Log Observer Connect is configured. If you’re using **Splunk Enterprise** or **Splunk Cloud Platform**, follow the [**Log Observer Connect setup instructions**](https://docs.splunk.com/observability/en/logs/lo-connect-landing.html).  
 
-### Splunk4Rookies - Observability Cloud Workshop Presentation
+##### **Trial Org Configuration**
 
-The presentation is available [**here**](https://docs.google.com/presentation/d/1EnP-V7mQ6c7w7yPdiiD-4szUR0SZITLFTPniz6yutqk/edit#slide=id.g260cba4d093_0_1533).
+For new trial organizations, you’ll also need to complete the steps outlined in the [**Trial Org Configuration**](4-org-configuration) section.
+
+---
+
+##### **Splunk4Rookies - Observability Cloud Workshop Presentation**
+
+The official workshop presentation is available [**here**](https://docs.google.com/presentation/d/1EnP-V7mQ6c7w7yPdiiD-4szUR0SZITLFTPniz6yutqk/edit#slide=id.g260cba4d093_0_1533). Use this resource to guide your workshop participants through the material.
