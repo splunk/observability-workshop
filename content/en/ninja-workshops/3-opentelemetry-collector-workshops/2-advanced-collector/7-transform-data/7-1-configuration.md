@@ -5,27 +5,27 @@ weight: 1
 ---
 
 {{% notice title="Exercise" style="green" icon="running" %}}
-Switch to your **Agent terminal** window and open the `agent.yaml` file in your editor.
-
-**Configure the `transform` processor** and name it `/logs`: By using the `-context: resource` key we are targeting the `resourceLog` attributes of logs.
-
-This configuration ensures that only the relevant resource attributes (`com.splunk.sourcetype`, `host.name`, `otelcol.service.mode`) are retained, improving log efficiency and reducing unnecessary metadata.
+**Add a `transform` processor**: Switch to your **Agent terminal** window and edit the `agent.yaml` and add the following `transform` processor:
 
 ```yaml
-  transform/logs:                     # Processor Type/Name
-    log_statements:                   # Log Processing Statements
-      - context: resource             # Log Context
-        statements:                   # List of attribute keys to keep
+  transform/logs:                   # Processor Type/Name
+    log_statements:                 # Log Processing Statements
+      - context: resource           # Log Context
+        statements:                 # List of attribute keys to keep
           - keep_keys(attributes, ["com.splunk.sourcetype", "host.name", "otelcol.service.mode"])
 ```
+
+By using the `-context: resource` key we are targeting the `resourceLog` attributes of logs.
+
+This configuration ensures that only the relevant resource attributes (`com.splunk.sourcetype`, `host.name`, `otelcol.service.mode`) are retained, improving log efficiency and reducing unnecessary metadata.
 
 **Adding a Context Block for Log Severity Mapping**: To properly set the `severity_text` and `severity_number` fields of a log record, we add another log `context` block within `log_statements`.
 
 This configuration extracts the `level` value from the log body, maps it to `severity_text`, and assigns the appropriate `severity_number`:
 
 ```yaml
-      - context: log                  # Log Context
-        statements:                   # Transform Statements Array
+      - context: log                # Log Context
+        statements:                 # Transform Statements Array
           - set(cache, ParseJSON(body)) where IsMatch(body, "^\\{")
           - flatten(cache, "")        
           - merge_maps(attributes, cache, "upsert")
@@ -59,19 +59,22 @@ This method of mapping all JSON fields to top-level attributes should only be us
 ```yaml
     logs:
       receivers:
-      - otlp                     # OTLP Receiver
-      - filelog/quotes           # Filelog Receiver reading quotes.log
+      - otlp
+      - filelog/quotes
       processors:
-      - memory_limiter           # Memory Limiter Processor
-      - resourcedetection        # Adds system attributes to the data
-      - resource/add_mode        # Adds collector mode metadata
-      - transform/logs           # Transform Processor to update log lines
-      - batch                    # Batch Processor, groups data before send
+      - memory_limiter
+      - resourcedetection
+      - resource/add_mode
+      - transform/logs             # Transform log data
+      - batch
+      exporters:
+      - debug
+      - otlphttp
 ```
 
 {{% /notice %}}
 
-Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**. For reference, the `logs:` section of your pipelines will look similar to this:
+Validate the agent configuration using [**otelbin.io**](https://www.otelbin.io/). For reference, the `logs:` section of your pipelines will look similar to this:
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%
