@@ -6,32 +6,27 @@ weight: 2
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Start the Load Generator**:  
-
-1. Open the **Spans terminal** window and navigate to the `[WORKSHOP]/7-transform-data` directory.
-2. Run the `loadgen`.
-   - **Important**: To ensure the logs are structured in JSON format, include the `-json` flag when starting the script.
-
-```bash { title="Log Generator" }
-../loadgen -logs -json
-```
-
-The `loadgen` will begin writing lines to a file named `./quotes.log`, while displaying a single line of output in the console.
-
-```txt { title="Load Generator Output" }
-Writing logs to quotes.log. Press Ctrl+C to stop.
-```
-
-**Start the Gateway**: In the **Gateway terminal** window navigate to the `[WORKSHOP]/7-transform-data` directory and run:
+**Start the Gateway**: In the **Gateway terminal** run:
 
 ```bash { title="Start the Gateway" }
 ../otelcol --config=gateway.yaml
 ```
 
-**Start the Agent**: In the **Agent terminal** window navigate to the `[WORKSHOP]/7-transform-data` directory and run:
+**Start the Agent**: In the **Agent terminal** run:
 
 ```bash { title="Start the Agent" }
 ../otelcol --config=agent.yaml
 ```
+
+**Start the Load Generator**: Open the **Logs terminal** window and run the `loadgen`.
+
+> [!IMPORTANT]
+> To ensure the logs are structured in JSON format, include the `-json` flag when starting the script.
+
+```bash { title="Log Generator" }
+../loadgen -logs -json -count 5
+```
+
+The `loadgen` will write 5 log lines to `./quotes.log` in JSON format.
 
 {{% /notice %}}

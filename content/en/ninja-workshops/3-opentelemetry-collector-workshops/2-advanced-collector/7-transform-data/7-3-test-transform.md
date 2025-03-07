@@ -14,15 +14,17 @@ This ensures proper metadata filtering, severity mapping, and structured log enr
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
+**Stop the Load Generator**: In the **Logs terminal** window, press `Ctrl+C` to stop the `loadgen`.
+
 **Check the debug output**: For both the `agent` and `gateway` confirm that `com.splunk/source` and `os.type` have been removed:
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
 
   ```text
-    Resource attributes:
+Resource attributes:
      -> com.splunk.sourcetype: Str(quotes)
-     -> host.name: Str(YOUR_HOST_NAME)
+     -> host.name: Str(workshop-instance)
      -> otelcol.service.mode: Str(agent)
   ```
 
@@ -30,57 +32,48 @@ This ensures proper metadata filtering, severity mapping, and structured log enr
 {{% tab title="Original Debug Output" %}}
 
   ```text
-    Resource attributes:
+Resource attributes:
+     -> com.splunk.source: Str(./quotes.log)
      -> com.splunk.sourcetype: Str(quotes)
-     -> com.splunk/source: Str(./quotes.log)
-     -> host.name: Str(YOUR_HOST_NAME)
-     -> os.type: Str(YOUR_OS)
+     -> host.name: Str(workshop-instance)
+     -> os.type: Str(linux)
      -> otelcol.service.mode: Str(agent)
   ```
 
 {{% /tab %}}
 {{% /tabs %}}
 
-**Check the debug output**: For both the `agent` and `gateway` confirm that `SeverityText` and `SeverityNumber` in the `LogRecord` is now defined with the severity `level` from the log body. Confirm that the JSON fields from the body can be accessed as top-level log `Attributes`:
+For both the `agent` and `gateway` confirm that `SeverityText` and `SeverityNumber` in the `LogRecord` is now defined with the severity `level` from the log body. Confirm that the JSON fields from the body can be accessed as top-level log `Attributes`:
 
 {{% tabs %}}
 {{% tab title="New Debug Output" %}}
 
-  ```text
-  LogRecord #0
-  ObservedTimestamp: 2025-01-31 21:49:29.924017 +0000 UTC
-  Timestamp: 1970-01-01 00:00:00 +0000 UTC
-  SeverityText: WARN
-  SeverityNumber: Warn(13)
-  Body: Str(2025-01-31 15:49:29 [WARN] - Do or do not, there is no try.)
-  Attributes:
-      -> log.file.path: Str(quotes.log)
-      -> timestamp: Str(2025-01-31 15:49:29)
-      -> level: Str(WARN)
-      -> message: Str(Do or do not, there is no try.)
-  Trace ID:
-  Span ID:
-  Flags: 0
-    {"kind": "exporter", "data_type": "logs", "name": "debug"}
-  ```
+```text
+<snip>
+SeverityText: WARN
+SeverityNumber: Warn(13)
+Body: Str({"level":"WARN","message":"Your focus determines your reality.","movie":"SW","timestamp":"2025-03-07 11:17:26"})
+Attributes:
+     -> log.file.path: Str(quotes.log)
+     -> level: Str(WARN)
+     -> message: Str(Your focus determines your reality.)
+     -> movie: Str(SW)
+     -> timestamp: Str(2025-03-07 11:17:26)
+</snip>
+```
 
 {{% /tab %}}
 {{% tab title="Original Debug Output" %}}
 
-  ```text
-  LogRecord #0
-  ObservedTimestamp: 2025-01-31 21:49:29.924017 +0000 UTC
-  Timestamp: 1970-01-01 00:00:00 +0000 UTC
-  SeverityText: 
-  SeverityNumber: Unspecified(0)
-  Body: Str(2025-01-31 15:49:29 [WARN] - Do or do not, there is no try.)
-  Attributes:
-      -> log.file.path: Str(quotes.log)
-  Trace ID:
-  Span ID:
-  Flags: 0
-    {"kind": "exporter", "data_type": "logs", "name": "debug"}
-  ```
+```text
+<snip>
+SeverityText:
+SeverityNumber: Unspecified(0)
+Body: Str({"level":"WARN","message":"Your focus determines your reality.","movie":"SW","timestamp":"2025-03-07 11:17:26"})
+Attributes:
+     -> log.file.path: Str(quotes.log)
+</snip>
+```
 
 {{% /tab %}}
 {{% /tabs %}}
@@ -88,140 +81,48 @@ This ensures proper metadata filtering, severity mapping, and structured log enr
 **Check file output**: In the new `gateway-logs.out` file verify the data has been transformed:
 
 {{% tabs %}}
-{{% tab title="New File Output" %}}
+{{% tab title="jq Query" %}}
 
-  ```json
-        "resource": {
-          "attributes": [
-            {
-              "key": "com.splunk.sourcetype",
-              "value": {
-                "stringValue": "quotes"
-              }
-            },
-            {
-              "key": "host.name",
-              "value": {
-                "stringValue": "YOUR_HOST_NAME"
-              }
-            },
-            {
-              "key": "otelcol.service.mode",
-              "value": {
-                "stringValue": "agent"
-              }
-            }
-          ]
-        },
-        "scopeLogs": [
-          {
-            "scope": {},
-            "logRecords": [
-              {
-                "observedTimeUnixNano": "1738360169924017000",
-                "severityText": "WARN",
-                "body": {
-                  "stringValue": "2025-01-31 15:49:29 [WARN] - Do or do not, there is no try."
-                },
-                "attributes": [
-                  {
-                    "key": "log.file.path",
-                    "value": {
-                      "stringValue": "quotes.log"
-                    }
-                  },
-                  {
-                    "key": "timestamp",
-                    "value": {
-                      "stringValue": "2025-01-31 15:49:29"
-                    }
-                  },
-                  {
-                    "key": "level",
-                    "value": {
-                      "stringValue": "WARN"
-                    }
-                  },
-                  {
-                    "key": "message",
-                    "value": {
-                      "stringValue": "Do or do not, there is no try."
-                    }
-                  }
-                ],
-                "traceId": "",
-                "spanId": ""
-              }
-            ]
-          }
-        ]
-  ```
+```bash
+jq '[.resourceLogs[].scopeLogs[].logRecords[] | {severityText, severityNumber, body: .body.stringValue}]' gateway-logs.out
+```
 
 {{% /tabs %}}
-{{% tab title="Original File Output" %}}
+{{% tab title="Example Output" %}}
 
-  ```json
-        "resource": {
-          "attributes": [
-            {
-              "key": "com.splunk.sourcetype",
-              "value": {
-                "stringValue": "quotes"
-              }
-            },
-            {
-              "key": "com.splunk.source",
-              "value": {
-                "stringValue": "./quotes.log"
-              }
-            },
-            {
-              "key": "host.name",
-              "value": {
-                "stringValue": "YOUR_HOST_NAME"
-              }
-            },
-            {
-              "key": "os.type",
-              "value": {
-                "stringValue": "YOUR_OS"
-              }
-            },
-            {
-              "key": "otelcol.service.mode",
-              "value": {
-                "stringValue": "agent"
-              }
-            }
-          ]
-        },
-        "scopeLogs": [
-          {
-            "scope": {},
-            "logRecords": [
-              {
-                "observedTimeUnixNano": "1738349801265812000",
-                "body": {
-                  "stringValue": "2025-01-31 12:56:41 [INFO] - There is some good in this world, and it's worth fighting for."
-                },
-                "attributes": [
-                  {
-                    "key": "log.file.path",
-                    "value": {
-                      "stringValue": "quotes.log"
-                    }
-                  }
-                ],
-                "traceId": "",
-                "spanId": ""
-              }
-            ]
-          }
-        ]
-  ```
+```json
+[
+  {
+    "severityText": "DEBUG",
+    "severityNumber": 5,
+    "body": "{\"level\":\"DEBUG\",\"message\":\"All we have to decide is what to do with the time that is given us.\",\"movie\":\"LOTR\",\"timestamp\":\"2025-03-07 11:56:29\"}"
+  },
+  {
+    "severityText": "WARN",
+    "severityNumber": 13,
+    "body": "{\"level\":\"WARN\",\"message\":\"The Force will be with you. Always.\",\"movie\":\"SW\",\"timestamp\":\"2025-03-07 11:56:29\"}"
+  },
+  {
+    "severityText": "ERROR",
+    "severityNumber": 17,
+    "body": "{\"level\":\"ERROR\",\"message\":\"One does not simply walk into Mordor.\",\"movie\":\"LOTR\",\"timestamp\":\"2025-03-07 11:56:29\"}"
+  },
+  {
+    "severityText": "DEBUG",
+    "severityNumber": 5,
+    "body": "{\"level\":\"DEBUG\",\"message\":\"Do or do not, there is no try.\",\"movie\":\"SW\",\"timestamp\":\"2025-03-07 11:56:29\"}"
+  }
+]
+[
+  {
+    "severityText": "ERROR",
+    "severityNumber": 17,
+    "body": "{\"level\":\"ERROR\",\"message\":\"There is some good in this world, and it's worth fighting for.\",\"movie\":\"LOTR\",\"timestamp\":\"2025-03-07 11:56:29\"}"
+  }
+]
+```
 
 {{% /tab %}}
 {{% /tabs %}}
 
 {{% /notice %}}
-

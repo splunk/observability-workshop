@@ -36,7 +36,7 @@ We'll **update** the `user.phone_number`, **hash** the `user.email`, and **delet
         value: "UNKNOWN NUMBER"     # New value
       - key: user.email             # Target key
         action: hash                # Hash the email value
-      - key: user.password  # Target key
+      - key: user.password          # Target key
         action: delete              # Delete the password
   ```
 
