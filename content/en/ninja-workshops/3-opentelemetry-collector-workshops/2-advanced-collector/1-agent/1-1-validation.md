@@ -4,13 +4,21 @@ linkTitle: 1.1 Validation & Load Generation
 weight: 1
 ---
 
-In this workshop, we’ll use [**otelbin.io**](https://otelbin.io) to quickly validate YAML syntax and ensure your OpenTelemetry configurations are accurate. This step helps avoid errors before running tests during the session.
+In this workshop, we’ll use [**https://otelbin.io**](https://.otelbin.io/) to quickly validate YAML syntax and ensure your OpenTelemetry configurations are accurate. This step helps avoid errors before running tests during the session.
 
+{{% notice title="Exercise" style="green" icon="running" %}}
 Here’s how to validate your configuration:
 
-1. Open **otelbin.io** and replace the existing configuration by pasting your YAML into the left pane.  
-2. At the top of the page, make sure **Splunk OpenTelemetry Collector** is selected as the validation target.  
-3. Once validated, refer to the image representation below to confirm your pipelines are set up correctly.  
+1. Open [**https://otelbin.io**](https://.otelbin.io/) and replace the existing configuration by pasting your YAML into the left pane.
+    > [!INFO]
+    > If are on a Mac and **not** using a Splunk Workshop instance, you can quickly copy the contents of the `agent.yaml` file to your clipboard by running the following command:
+    >
+    > ```bash
+    > cat agent.yaml | pbcopy
+    > ```
+
+2. At the top of the page, make sure **Splunk OpenTelemetry Collector** is selected as the validation target.
+3. Once validated, refer to the image representation below to confirm your pipelines are set up correctly.
 
 In most cases, we’ll display only the **key pipeline**. However, if all three pipelines (Traces, Metrics, and Logs) share the same structure, we’ll note this instead of showing each one individually.
 
@@ -39,6 +47,10 @@ classDef processor fill:#6366f1,stroke:#333,stroke-width:1px,color:#fff;
 classDef con-receive,con-export fill:#45c175,stroke:#333,stroke-width:1px,color:#fff;
 classDef sub-traces stroke:#fff,stroke-width:1px, color:#fff,stroke-dasharray: 3 3;
 ```
+
+{{% /notice %}}
+
+---
 
 ## Load Generation Tool
 
