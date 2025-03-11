@@ -27,7 +27,7 @@ runs:
       run: pip install -r requirements.txt
 
     - name: Cache go dependencies
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: /tmp/hugo_cache
         key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
