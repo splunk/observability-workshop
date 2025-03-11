@@ -86,9 +86,9 @@ xattr -dr com.apple.quarantine loadgen
 |  Linux (ARM/64)              |**[otelcol_linux_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_arm64)** | [**loadgen_linux_arm64**](https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-arm64)|
 -->
 
-Once downloaded, update the file permissions to make both executable:
+**Update file permissions**: Once downloaded, update the file permissions to make both executable:
 
-```bash { title="Update File Permissions"}
+```bash
 chmod +x otelcol loadgen && \
 ./otelcol -v && \
 ./loadgen --help
