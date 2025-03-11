@@ -30,7 +30,7 @@ In the **Agent terminal** window ensure the collector is not running then edit t
         append: false                      # Overwrite the file each time
     ```
 
-1. **Update the Pipelines Section**: Add the `file` exporter to the `traces` pipelines:
+1. **Update the Pipelines Section**: Add the `file` exporter to the `traces` pipeline only:
 
     ```yaml
       pipelines:
@@ -66,7 +66,7 @@ In the **Agent terminal** window ensure the collector is not running then edit t
 
 {{% /notice %}}
 
-Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**:
+Validate the agent configuration using [**https://otelbin.io**](https://.otelbin.io/):
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%
