@@ -8,8 +8,8 @@ hidden: false
 
 **SWiPE** is an online tool designed to help you configure a workshop environment in Splunk Observability Cloud. You can access SWiPE [**here**](https://swipe.splunk.show).
 
-> [!INFO]
-> **Important Note:** SWiPE does **not** provision EC2 instances. These instances are provisioned separately using **Splunk Show**.
+> [!INFO] **Important Note**
+> SWiPE does **not** provision EC2 instances. These instances are provisioned separately using **Splunk Show**.
 
 ![SWiPE](../images/swipe.png)
 
@@ -32,6 +32,5 @@ SWiPE automates the following tasks for your workshop environment:
 5. **Generate a SWiPE ID**  
    - SWiPE will create a unique **SWiPE ID** for your workshop. You’ll need to copy this ID and use it when provisioning workshop instances in [**Splunk Show**](https://show.splunk.com/home/).  
 
-> [!WARNING]
-> **Workshops with More Than 40 Users**  
+> [!WARNING] **Workshops with More Than 40 Users**
 > If your workshop has more than **40 users**, we recommend informing the support team in advance. This ensures that the trial or workshop environment is properly scaled to handle the load.
