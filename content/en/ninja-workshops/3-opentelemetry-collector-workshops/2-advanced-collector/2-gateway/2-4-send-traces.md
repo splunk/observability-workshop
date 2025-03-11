@@ -9,7 +9,7 @@ weight: 4
 **Send a Test Trace**:
 
 1. Validate `agent` and `gateway` are still running.
-2. In the **Spans terminal** window, run the following command to send 5 spans and validate the `agent` and `gateway` debug logs:
+2. In the **Spans terminal** window, run the following command to send 5 spans and validate the output of the `agent` and `gateway` debug logs:
 
 {{% tabs %}}
 {{% tab title="Start the Load Generator" %}}
@@ -61,7 +61,9 @@ Attributes:
 {{% /tab %}}
 {{% /tabs %}}
 
-**Verify the Gateway has handled the spans**: After the gateway processes the incoming spans, it writes the trace data to a file named `gateway-traces.out`. To confirm that the gateway has successfully handled the spans, you can inspect this file. Specifically, you can use the `jq` command to extract and display relevant information about each span, such as its `spanId` and its position in the file.
+**Verify the Gateway has handled the spans**: Once the gateway processes incoming spans, it writes the trace data to a file named `gateway-traces.out`. To confirm that the spans have been successfully handled, you can inspect this file.
+
+Using the `jq` command, you can extract and display key details about each span, such as its `spanId` and its position in the file:
 
 {{% tabs %}}
 {{% tab title="Inspect the Gateway Trace File" %}}

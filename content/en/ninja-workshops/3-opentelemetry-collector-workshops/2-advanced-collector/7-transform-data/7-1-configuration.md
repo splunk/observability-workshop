@@ -74,7 +74,7 @@ This method of mapping all JSON fields to top-level attributes should only be us
 
 {{% /notice %}}
 
-Validate the agent configuration using [**otelbin.io**](https://www.otelbin.io/). For reference, the `logs:` section of your pipelines will look similar to this:
+Validate the agent configuration using [**https://otelbin.io**](https://.otelbin.io/). For reference, the `logs:` section of your pipelines will look similar to this:
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%

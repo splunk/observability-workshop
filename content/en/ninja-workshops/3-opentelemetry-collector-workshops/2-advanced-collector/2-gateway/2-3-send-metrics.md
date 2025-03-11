@@ -21,22 +21,22 @@ weight: 3
 <snip>
 NumberDataPoints #37
 Data point attributes:
-    -> cpu: Str(cpu9)
+    -> cpu: Str(cpu0)
     -> state: Str(system)
 StartTimestamp: 2024-12-09 14:18:28 +0000 UTC
 Timestamp: 2025-01-15 15:27:51.319526 +0000 UTC
 Value: 9637.660000
 ```
 
-At this stage, the `agent` continues to collect **CPU** metrics once per hour or upon each restart and sends them to the gateway. The **OpenTelemetry Collector**, running in `gateway` mode, processes these metrics and exports them to a file named `./gateway-metrics.out`. This file stores the exported metrics as part of the pipeline service.  
+At this stage, the `agent` continues to collect **CPU** metrics once per hour or upon each restart and sends them to the gateway.
 
-**Verify Data arrived at Gateway**:
+The `gateway` processes these metrics and exports them to a file named `./gateway-metrics.out`. This file stores the exported metrics as part of the pipeline service.  
 
-In order to verify that CPU metrics, specifically for `cpu0`, have successfully arrived at the gateway by checking the `gateway-metrics.out` we will use the `jq` command.
+**Verify Data arrived at Gateway**: To confirm that CPU metrics, specifically for `cpu0`, have successfully reached the gateway, we’ll inspect the `gateway-metrics.out` file using the `jq` command.
 
-This command below filters and extracts the `system.cpu.time` metric, focusing on `cpu0`, and displays its state (e.g., `user`, `system`, `idle`, `interrupt`) along with the corresponding values.
+The following command filters and extracts the `system.cpu.time` metric, focusing on `cpu0`. It displays the metric’s state (e.g., `user`, `system`, `idle`, `interrupt`) along with the corresponding values.
 
-Run the following command in the **Tests terminal** to check the `system.cpu.time` metric:
+Run the command below in the **Tests terminal** to check the `system.cpu.time` metric:
 
 {{% tabs %}}
 {{% tab title="Check CPU Metrics" %}}
