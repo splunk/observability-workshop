@@ -30,11 +30,11 @@ If you check `gateway-traces-standard.out`, it will contain the `span` sent by `
 ../loadgen -security -count 1
 ```
 
-Again, both the `agent` and `gateway` should display debug information, including the span you just sent. This time, the `gateway` will write a line to the `gateway-traces-security.out` file, which is designated for spans where the `deployment.environment` resource attribute matches `"security_applications"`.
+Again, both the `agent` and `gateway` should display debug information, including the span you just sent. This time, the `gateway` will write a line to the `gateway-traces-security.out` file, which is designated for spans where the `deployment.environment` resource attribute matches `"security-applications"`.
 The `gateway-traces-standard.out` should be unchanged.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-If you verify the `./gateway-traces-security.out` it should only contain the spans from the `"security_applications"` deployment.environment.
+If you verify the `./gateway-traces-security.out` it should only contain the spans from the `"security-applications"` deployment.environment.
 {{% /notice %}}
 
 You can repeat this scenario multiple times, and each trace will be written to its corresponding output file.
