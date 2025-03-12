@@ -9,8 +9,9 @@ weight: 2
 **Add the `otlphttp` exporter**: The [**OTLP/HTTP Exporter**](https://docs.splunk.com/observability/en/gdi/opentelemetry/components/otlphttp-exporter.html) is used to send data from the agent to the gateway using the **OTLP/HTTP** protocol.
 
 1. Switch to your **Agent terminal** window.
-2. Open the `agent.yaml` file that you copied earlier in your editor.
-3. Add the `otlphttp` exporter configuration to the `exporters` section:
+2. Validate that `gateway-logs.out`, `gateway-metrics.out`, and `gateway-traces.out` files are present in the directory.
+3. Open the `agent.yaml` file in your editor.
+4. Add the `otlphttp` exporter configuration to the `exporters:` section:
 
 ```yaml
   otlphttp:                            # Exporter Type
@@ -19,7 +20,7 @@ weight: 2
 
 **Add a Batch Processor configuration**: The [**Batch Processor**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/batchprocessor/README.md) will accept spans, metrics, or logs and place them into batches. Batching helps better compress the data and reduce the number of outgoing connections required to transmit the data. It is highly recommended configuring the batch processor on every collector.
 
-1. Add the `batch` processor configuration to the `processors` section:
+1. Add the `batch` processor configuration to the `processors:` section:
 
 ```yaml
   batch:                               # Processor Type
