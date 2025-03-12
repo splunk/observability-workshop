@@ -20,7 +20,7 @@ connectors:
     error_mode: ignore                   # Ignore errors in routing
     table:                               # Define routing rules
       # Routes spans to a target pipeline if the resourceSpan attribute matches the rule
-      - statement: route() where attributes["deployment.environment"] == "security_applications"
+      - statement: route() where attributes["deployment.environment"] == "security-applications"
         pipelines: [traces/security]     # Target pipeline 
 ```
 
