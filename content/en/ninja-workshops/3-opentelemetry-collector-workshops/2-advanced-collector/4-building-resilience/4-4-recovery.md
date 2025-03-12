@@ -31,14 +31,14 @@ It will start to dequeue the stored spans from the last checkpoint folder, ensur
 Note that the Agent Debug Screen does **NOT** change and still shows the following line indicating no new data is being exported.
   
   ```text
-  2025-02-07T13:40:12.195+0100    info    service@v0.117.0/service.go:253 Everything is ready. Begin running and processing data.
+  2025-02-07T13:40:12.195+0100    info    service@v0.120.0/service.go:253 Everything is ready. Begin running and processing data.
   ```
 
 **Watch the Gateway Debug output**  
 You should see from the `gateway` debug screen, it has started receiving the previously missed traces without requiring any additional action on your part.  
 
   ```txt
-  2025-02-07T12:44:32.651+0100    info    service@v0.117.0/service.go:253 Everything is ready. Begin running and processing data.
+  2025-02-07T12:44:32.651+0100    info    service@v0.120.0/service.go:253 Everything is ready. Begin running and processing data.
   2025-02-07T12:47:46.721+0100    info    Traces  {"kind": "exporter", "data_type": "traces", "name": "debug", "resource spans": 4, "spans": 4}
   2025-02-07T12:47:46.721+0100    info    ResourceSpans #0
   Resource SchemaURL: https://opentelemetry.io/schemas/1.6.1
