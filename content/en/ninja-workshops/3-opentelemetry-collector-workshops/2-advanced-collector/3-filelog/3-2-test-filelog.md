@@ -32,15 +32,14 @@ LogRecord #1
 At this point, your directory structure will appear as follows:
 
 ```text { title="Updated Directory Structure" }
-[WORKSHOP]
-└── 3-filelog
-    ├── agent.out
-    ├── agent.yaml
-    ├── gateway-logs.out    # Output from the logs pipeline
-    ├── gateway-metrics.out # Output from the metrics pipeline
-    ├── gateway-traces.out  # Output from the traces pipeline
-    ├── gateway.yaml
-    └── quotes.log          # File containing Random log lines
+.
+├── agent.out
+├── agent.yaml
+├── gateway-logs.out     # Output from the logs pipeline
+├── gateway-metrics.out  # Output from the metrics pipeline
+├── gateway-traces.out   # Output from the traces pipeline
+├── gateway.yaml
+└── quotes.log           # File containing Random log lines
 ```
 
 **Examine a log line**: In `gateway-logs.out` compare a log line with the snippet below. Verify that the log entry includes the same attributes as we have seen in metrics and traces data previously:

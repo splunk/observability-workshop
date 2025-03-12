@@ -36,10 +36,9 @@ Logs often contain structured data encoded as JSON within the log body. Extracti
 Your updated directory structure will now look like this:
 
 ```text { title="Updated Directory Structure" }
-WORKSHOP
-└── 7-transform-data
-    ├── agent.yaml
-    └── gateway.yaml
+.
+├── agent.yaml
+└── gateway.yaml
 ```
 
 {{% /notice %}}

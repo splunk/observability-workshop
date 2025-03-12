@@ -17,7 +17,8 @@ Here’s how to validate your configuration:
     > cat agent.yaml | pbcopy
     > ```
 
-2. At the top of the page, make sure **Splunk OpenTelemetry Collector** is selected as the validation target.
+2. At the top of the page, make sure **Splunk OpenTelemetry Collector** is selected as the validation target. If you **don't** select this option, then you will see warnings in the UI stating `Receiver "hostmetrics" is unused. (Line 8)`.
+
 3. Once validated, refer to the image representation below to confirm your pipelines are set up correctly.
 
 In most cases, we’ll display only the **key pipeline**. However, if all three pipelines (Traces, Metrics, and Logs) share the same structure, we’ll note this instead of showing each one individually.
