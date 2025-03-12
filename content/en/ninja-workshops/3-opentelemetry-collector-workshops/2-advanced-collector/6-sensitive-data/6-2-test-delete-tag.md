@@ -10,7 +10,15 @@ In this exercise, we will **delete** the `user.account_password`, **update** the
 
 **Start the Gateway**: In your **Gateway terminal** window start the `gateway`.
 
+```bash
+../otelcol --config=gateway.yaml
+```
+
 **Start the Agent**: In your **Agent terminal** window start the `agent`.
+
+```bash
+../otelcol --config=agent.yaml
+```
 
 **Start the Load Generator**: In the **Spans terminal** window start the `loadgen`:
 

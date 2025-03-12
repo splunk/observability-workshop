@@ -1,6 +1,6 @@
 ---
-title: 4.4 Simulate Recovery
-linkTitle: 4.4 Simulate Recovery
+title: 4.4 Recovery
+linkTitle: 4.4 Recovery
 weight: 4
 ---
 
