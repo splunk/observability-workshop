@@ -37,11 +37,12 @@ The reason for the delay is that the Count Connector in the OpenTelemetry Collec
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-- **Add and configure the Count Connector**
+- **Add the Count Connector**
 
-Include the Count Connector in the connectors section of your configuration and define the metrics counters:
+Include the Count Connector in the connector's section of your configuration and define the metrics counters:
 
 ```yaml
+connectors:
   count:
     logs:
       logs.full.count:
@@ -67,11 +68,60 @@ Include the Count Connector in the connectors section of your configuration and 
   - `logs.lotr.count`: Counts logs that contain a quote from a Lord of the Rings movie.
   - `logs.error.count`: Represents a real-world scenario by counting logs with a severity level of ERROR.
 
+- **Configure the Count Connector in the pipelines**
+
+```yaml
+  pipelines:
+    traces:
+      receivers:
+      - otlp
+      processors:
+      - memory_limiter
+      - attributes/update              # Update, hash, and remove attributes
+      - redaction/redact               # Redact sensitive fields using regex
+      - resourcedetection
+      - resource/add_mode
+      - batch
+      exporters:
+      - debug
+      - file
+      - otlphttp
+    metrics:
+      receivers:
+      - count
+      - otlp
+      #- hostmetrics                    # Host Metrics Receiver
+      processors:
+      - memory_limiter
+      - resourcedetection
+      - resource/add_mode
+      - batch
+      exporters:
+      - debug
+      - otlphttp
+    logs:
+      receivers:
+      - otlp
+      - filelog/quotes
+      processors:
+      - memory_limiter
+      - resourcedetection
+      - resource/add_mode
+      - transform/logs                 # Transform logs processor
+      - batch
+      exporters:
+      - count
+      - debug
+      - otlphttp
+```
+
 {{% /notice %}}
 
-We count logs based on their attributes. If your log data is stored in the log body instead of attributes, you’ll need to use a Transform processor in your pipeline to extract key/value pairs and add them as attributes.
+We count logs based on their attributes. If your log data is stored in the log body instead of attributes, you’ll need to use a `Transform` processor in your pipeline to extract key/value pairs and add them as attributes.
 
-In this workshop, we’ve already included `merge_maps(attributes, cache, "upsert")` in the Transform section. This ensures that all relevant data is available in the log attributes for processing.
+In this workshop, we’ve already added `merge_maps(attributes, cache, "upsert")` in the `07-transform` section. This ensures that all relevant data is included in the log attributes for processing.
+
+When selecting fields to create attributes from, be mindful—adding all fields indiscriminately is generally not ideal for production environments. Instead, choose only the fields that are truly necessary to avoid unnecessary data clutter.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
