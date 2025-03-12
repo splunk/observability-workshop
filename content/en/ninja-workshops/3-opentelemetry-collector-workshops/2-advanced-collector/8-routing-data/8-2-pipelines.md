@@ -6,6 +6,21 @@ weight: 2
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
+**Update the `traces` pipeline to use routing**:
+
+1. To enable `routing`, update the original `traces:` pipeline by using `routing` as the only exporter. This ensures all span data is sent through the routing connector for evaluation.
+2. Remove all processors and replace it with an empty array (`[]`). These are now defined in the `traces/standard` and `traces/security` pipelines.
+
+    ```yaml
+      pipelines:
+        traces:                           # Original traces pipeline
+          receivers: 
+          - otlp                          # OTLP Receiver
+          processors: []
+          exporters: 
+          - routing                       # Routing Connector
+    ```
+
 **Add both the `standard` and `security` traces pipelines**:
 
 1. **Add the Standard pipeline**: This pipeline processes all spans that do not match the routing rule.  
@@ -38,22 +53,6 @@ This also uses `routing` as its receiver. Add this below the Standard one:
           exporters:
           - debug                     # Debug Exporter 
           - file/traces/security      # File Exporter for spans matching rule
-    ```
-
-**Update the `traces` pipeline to use routing**:
-
-1. To enable `routing`, update the original `traces:` pipeline by using `routing` as the only exporter.  
-This ensures all span data is sent through the routing connector for evaluation.
-2. Remove all processors and replace it with an empty array (`[]`). These are now defined in the `traces/standard` and `traces/security` pipelines.
-
-    ```yaml
-      pipelines:
-        traces:                           # Original traces pipeline
-          receivers: 
-          - otlp                          # OTLP Receiver
-          processors: []
-          exporters: 
-          - routing                       # Routing Connector
     ```
 
 {{% /notice %}}
