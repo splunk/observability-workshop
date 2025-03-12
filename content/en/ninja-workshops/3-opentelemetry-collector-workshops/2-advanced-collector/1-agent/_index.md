@@ -30,7 +30,7 @@ We will refer to these terminals as: **Agent**, **Gateway**, **Spans** and **Log
       health_check:                        # Health Check Extension
         endpoint: 0.0.0.0:13133            # Health Check Endpoint
 
-    # Receivers Pipeline
+    # Receivers
     receivers:
       hostmetrics:                         # Host Metrics Receiver
         collection_interval: 3600s         # Collection Interval (1hr)
@@ -41,14 +41,14 @@ We will refer to these terminals as: **Agent**, **Gateway**, **Spans** and **Log
           http:                            # Configure HTTP protocol
             endpoint: "0.0.0.0:4318"       # Endpoint to bind to
 
-    # Exporters Pipeline
+    # Exporters
     exporters:
       debug:                               # Debug Exporter
         verbosity: detailed                # Detailed verbosity level
 
-    # Processors Pipeline
+    # Processors
     processors:
-      memory_limiter:                      # Limits memory usage by Collectors pipeline
+      memory_limiter:                      # Limits memory usage
         check_interval: 2s                 # Check interval
         limit_mib: 512                     # Memory limit in MiB
       resourcedetection:                   # Resource Detection Processor
@@ -60,7 +60,7 @@ We will refer to these terminals as: **Agent**, **Gateway**, **Spans** and **Log
           key: otelcol.service.mode        # Key name
           value: "agent"                   # Key value
 
-    # Connectors Pipeline
+    # Connectors
 
     # Service Section - Enabled Pipelines
     service:
