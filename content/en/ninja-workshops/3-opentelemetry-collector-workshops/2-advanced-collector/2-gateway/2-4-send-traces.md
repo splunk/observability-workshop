@@ -86,6 +86,7 @@ jq -c '.resourceSpans[].scopeSpans[].spans[] | "Span \(input_line_number) found 
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% /notice %}}
+> [!IMPORTANT]
+> Stop the `agent` and the `gateway` processes by pressing `Ctrl-C` in their respective terminals.
 
-Stop the `agent` and the `gateway` processes by pressing `Ctrl-C` in their respective terminals.
+{{% /notice %}}

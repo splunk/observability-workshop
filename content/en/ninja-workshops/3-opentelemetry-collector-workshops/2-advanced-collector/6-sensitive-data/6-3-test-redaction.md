@@ -95,6 +95,11 @@ Notice that the `user.account_password` has been removed, and the `user.phone_nu
 {{% /tab %}}
 {{% /tabs %}}
 
+These are just a few examples of how `attributes` and `redaction` processors can be configured to protect sensitive data.
+
+> [!IMPORTANT]
+> Stop the `agent` and the `gateway` processes by pressing `Ctrl-C` in their respective terminals.
+
 {{% /notice %}}
 <!--
 **(Optional) Redact Amex CC number**:
@@ -105,6 +110,3 @@ Add the Amex card regex to `blocked_values` and restart `agent` collector.
 '\b3[47][0-9]{2}[\s-]?[0-9]{6}[\s-]?[0-9]{5}\b'
 ```
 -->
-These are just a few examples of how `attributes` and `redaction` processors can be configured to protect sensitive data.
-
-Stop the `agent` and `gateway` using `Ctrl-C` in their respective terminals.

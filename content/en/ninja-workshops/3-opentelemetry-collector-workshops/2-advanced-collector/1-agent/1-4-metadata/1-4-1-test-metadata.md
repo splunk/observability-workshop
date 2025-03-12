@@ -175,6 +175,8 @@ These values are automatically added based on your device by the processors conf
 
 {{% /tab %}}
 {{% /tabs %}}
-{{% /notice %}}
 
-Stop the `agent` and `loadgen` processes by using `Ctrl-C` in the respective terminal windows.
+> [!IMPORTANT]
+> Stop the `agent` and `loadgen` processes by using `Ctrl-C` in the respective terminal windows.
+
+{{% /notice %}}

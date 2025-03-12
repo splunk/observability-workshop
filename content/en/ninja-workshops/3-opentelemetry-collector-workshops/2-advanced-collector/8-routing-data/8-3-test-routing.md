@@ -46,4 +46,20 @@ If you verify the `./gateway-traces-security.out` it should only contain the spa
 {{% /notice %}}
 
 You can repeat this scenario multiple times, and each trace will be written to its corresponding output file.
+
+> [!IMPORTANT]
+> Stop the `agent` and the `gateway` processes by pressing `Ctrl-C` in their respective terminals.
+
 {{% /notice %}}
+
+## Conclusion
+
+In this section, we successfully tested the routing connector in the gateway by sending different spans and verifying their destinations.
+
+- **Regular spans** were correctly routed to `gateway-traces-standard.out`, confirming that spans without a matching `deployment.environment` attribute follow the default pipeline.
+
+- **Security-related spans** were routed to `gateway-traces-security.out`, demonstrating that the routing rule based on `"deployment.environment": "security-applications"` works as expected.
+
+By inspecting the output files, we confirmed that the OpenTelemetry Collector *correctly evaluates span attributes and routes them to the appropriate destinations*. This validates that routing rules can effectively separate and direct telemetry data for different use cases.
+
+You can now extend this approach by defining additional routing rules to further categorize spans, metrics, and logs based on different attributes.
