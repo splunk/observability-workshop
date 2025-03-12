@@ -20,10 +20,9 @@ Specifically, we will drop traces based on the span name, which is commonly used
 Your updated directory structure will now look like this:
 
 ```text { title="Updated Directory Structure" }
-[WORKSHOP]
-└── 5-dropping-spans
-    ├── agent.yaml
-    └── gateway.yaml
+.
+├── agent.yaml
+└── gateway.yaml
 ```
 
 {{% /notice %}}

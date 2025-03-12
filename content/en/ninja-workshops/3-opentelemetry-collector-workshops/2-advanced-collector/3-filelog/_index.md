@@ -38,10 +38,9 @@ The **FileLog receiver** in the `agent` will read these log lines and send them 
 > **Change _ALL_ terminal windows to the `[WORKSHOP]/3-filelog` directory.**
 
 ```text { title="Updated Directory Structure" }
-[WORKSHOP]
-└── 3-filelog
-    ├── agent.yaml
-    └── gateway.yaml
+.
+├── agent.yaml
+└── gateway.yaml
 ```
 
 Start the `loadgen` and this will begin writing lines to a file named `quotes.log`:

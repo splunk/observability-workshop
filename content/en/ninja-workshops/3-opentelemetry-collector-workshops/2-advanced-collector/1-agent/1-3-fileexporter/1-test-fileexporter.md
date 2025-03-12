@@ -34,10 +34,9 @@ weight: 1
 **Verify that the `agent.out` file is written**: Check that a file named `agent.out` is written in the current directory.
 
 ```text { title="Updated Directory Structure" }
-[WORKSHOP]
-└── 1-agent
-    └── agent.out   # OTLP/Json output created by the File Exporter
-    └── agent.yaml
+.
+├── agent.out    # OTLP/Json output created by the File Exporter
+└── agent.yaml
 ```
 
 **Verify the span format**:

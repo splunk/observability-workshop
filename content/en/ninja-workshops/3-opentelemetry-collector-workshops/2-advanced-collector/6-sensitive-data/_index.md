@@ -23,10 +23,9 @@ We'll walk through configuring key processors in the OpenTelemetry Collector, in
 Your updated directory structure will now look like this:
 
 ```text { title="Updated Directory Structure" }
-[WORKSHOP]
-└── 6-sensitive-data
-    ├── agent.yaml
-    └── gateway.yaml
+.
+├── agent.yaml
+└── gateway.yaml
 ```
 
 {{% /notice %}}

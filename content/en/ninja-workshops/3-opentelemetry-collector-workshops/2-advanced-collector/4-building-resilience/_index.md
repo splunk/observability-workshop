@@ -28,10 +28,9 @@ For logs, there are plans to implement a more enterprise-ready solution in one o
 Your updated directory structure will now look like this:
 
 ```text { title="Updated Directory Structure" }
-WORKSHOP
-└── 4-resilience
-│   ├── agent.yaml
-│   └── gateway.yaml
+.
+├── agent.yaml
+└── gateway.yaml
 ```
 
 {{% /notice %}}

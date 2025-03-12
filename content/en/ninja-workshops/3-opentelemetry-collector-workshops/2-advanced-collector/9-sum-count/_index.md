@@ -18,10 +18,9 @@ In this section we will use the count connector to count the number of Star Wars
 - Change **all** terminal windows to the `[WORKSHOP]/9-sum-count` directory.
 
 ```text { title="Updated Directory Structure" }
-[WORKSHOP]
-└── 9-sum-count
-    ├── agent.yaml
-    └── gateway.yaml
+.
+├── agent.yaml
+└── gateway.yaml
 ```
 
 - **Update the agent.yaml** to change the frequency that we read logs.

@@ -18,10 +18,9 @@ For example, you might want to send *production* data to one exporter while dire
 Your updated directory structure will now look like this:
 
 ```text { title="Updated Directory Structure" }
-[WORKSHOP]
-└── 8-routing
-    ├── agent.yaml
-    └── gateway.yaml
+.
+├── agent.yaml
+└── gateway.yaml
 ```
 
 {{% /notice %}}

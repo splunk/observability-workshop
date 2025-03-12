@@ -104,10 +104,9 @@ service:                          # Service configuration
 ```
 
 ```text { title="Updated Directory Structure" }
-[WORKSHOP]
-└── 2-gateway
-    └── agent.yaml
-    └── gateway.yaml
+.
+├── agent.yaml
+└── gateway.yaml
 ```
 
 {{% /notice %}}
