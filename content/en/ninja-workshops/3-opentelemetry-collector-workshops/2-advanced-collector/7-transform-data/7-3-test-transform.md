@@ -14,8 +14,6 @@ This ensures proper metadata filtering, severity mapping, and structured log enr
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Stop the Load Generator**: In the **Logs terminal** window, press `Ctrl+C` to stop the `loadgen`.
-
 **Check the debug output**: For both the `agent` and `gateway` confirm that `com.splunk/source` and `os.type` have been removed:
 
 {{% tabs %}}
