@@ -61,6 +61,7 @@ We will refer to these terminals as: **Agent**, **Gateway**, **Spans** and **Log
           value: "agent"                   # Key value
 
     # Connectors
+    connectors:
 
     # Service Section - Enabled Pipelines
     service:
@@ -99,9 +100,8 @@ We will refer to these terminals as: **Agent**, **Gateway**, **Spans** and **Log
 4. Your directory structure should now look like this:
 
     ```text
-    [WORKSHOP]
-    └── 1-agent
-       └── agent.yaml  # OpenTelemetry Collector configuration file
+    .
+    └── agent.yaml  # OpenTelemetry Collector configuration file
     ```
 
 {{% /notice %}}
