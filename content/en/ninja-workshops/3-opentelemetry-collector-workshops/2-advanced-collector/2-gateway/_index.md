@@ -103,6 +103,9 @@ service:                          # Service configuration
       - file/logs
 ```
 
+> [!NOTE]
+> When the `gateway` is started it will generate three files: `gateway-traces.out`, `gateway-metrics.out`, and `gateway-logs.out`. These files will eventually contain the telemetry data received by the gateway.
+
 ```text { title="Updated Directory Structure" }
 .
 ├── agent.yaml
