@@ -46,54 +46,45 @@ jq '.resourceMetrics[].scopeMetrics[].metrics[]
 {{% /tab %}}
 {{% tab title="jq example output" %}}
 
-```text
+```json
 {
   "name": "logs.sw.count",
-  "value": "1"
-}
-{
-  "name": "logs.error.count",
-  "value": "1"
+  "value": "2"
 }
 {
   "name": "logs.lotr.count",
-  "value": "5"
-}
-{
-  "name": "logs.full.count",
-  "value": "6"
-}
-{
-  "name": "logs.error.count",
-  "value": "1"
-}
-{
-  "name": "logs.lotr.count",
-  "value": "7"
-}
-{
-  "name": "logs.full.count",
-  "value": "10"
-}
-{
-  "name": "logs.sw.count",
-  "value": "3"
-}
-{
-  "name": "logs.lotr.count",
-  "value": "3"
+  "value": "2"
 }
 {
   "name": "logs.full.count",
   "value": "4"
 }
 {
-  "name": "logs.sw.count",
+  "name": "logs.error.count",
+  "value": "2"
+}
+{
+  "name": "logs.error.count",
   "value": "1"
+}
+{
+  "name": "logs.sw.count",
+  "value": "2"
+}
+{
+  "name": "logs.lotr.count",
+  "value": "6"
+}
+{
+  "name": "logs.full.count",
+  "value": "8"
 }
 ```
 
 {{% /tab %}}
 {{% /tabs %}}
+{{% notice title="Tip" style="primary" icon="lightbulb" %}}
+Note: the `logs.full.count` should be equal to `logs.sw.count` + `logs.lotr.count`, while the `logs.error.count` will be a random
+{{% /notice %}}
 
 {{% /notice %}}
