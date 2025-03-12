@@ -123,4 +123,7 @@ jq '[.resourceLogs[].scopeLogs[].logRecords[] | {severityText, severityNumber, b
 {{% /tab %}}
 {{% /tabs %}}
 
+> [!IMPORTANT]
+> Stop the `agent` and the `gateway` processes by pressing `Ctrl-C` in their respective terminals.
+
 {{% /notice %}}
