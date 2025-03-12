@@ -2,7 +2,7 @@
 title: Create metrics with Count Connector
 linkTitle: 9. Count & Sum Connector
 time: 10 minutes
-weight: 9
+weight: 11
 draft: true
 ---
 

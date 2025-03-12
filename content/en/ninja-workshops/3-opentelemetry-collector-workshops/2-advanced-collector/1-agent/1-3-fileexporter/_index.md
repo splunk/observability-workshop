@@ -1,7 +1,7 @@
 ---
 title: 1.3 File Exporter
-linkTitle: 1.3. File Exporter
-weight: 2
+linkTitle: 1.3 File Exporter
+weight: 1
 ---
 
 To capture more than just debug output on the screen, we also want to generate output during the export phase of the pipeline. For this, we'll add a **File Exporter** to write OTLP data to files for comparison.

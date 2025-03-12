@@ -2,7 +2,7 @@
 title: 7. Transform Data
 linkTitle: 7. Transform Data
 time: 10 minutes
-weight: 7
+weight: 9
 ---
 
 The [**Transform Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/transformprocessor/README.md) lets you modify telemetry data—logs, metrics, and traces—as it flows through the pipeline. Using the **OpenTelemetry Transformation Language (OTTL)**, you can filter, enrich, and transform data on the fly without touching your application code.

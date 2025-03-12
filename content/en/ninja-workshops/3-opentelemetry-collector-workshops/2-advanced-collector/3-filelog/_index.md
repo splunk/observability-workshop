@@ -2,7 +2,7 @@
 title: 3. FileLog Setup
 linkTitle: 3. FileLog Setup
 time: 10 minutes
-weight: 3
+weight: 5
 ---
 
 The [**FileLog Receiver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/filelogreceiver/README.md) in the OpenTelemetry Collector is used to ingest logs from files.

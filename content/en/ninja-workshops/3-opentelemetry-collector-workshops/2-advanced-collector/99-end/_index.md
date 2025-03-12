@@ -1,7 +1,7 @@
 ---
 title:  Wrap-up
 linkTitle: 10. Wrap-up
-weight: 10
+weight: 12
 ---
 
 ![Well done](../images/welldone.png)
