@@ -2,7 +2,7 @@
 title: Create metrics with Sum Connector
 linkTitle: 9.2 Sum Connector
 time: 10 minutes
-weight: 9
+weight: 2
 ---
 
 In this section, we will explore how we can use the [**Sum Connector**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/sumconnector) to retrieve values from the spans and turn them in to metrics.
@@ -26,18 +26,54 @@ Include the Sum Connector in the connectors section of your configuration and de
           - key: user.name
 ```
 
-TBD
-
-- **Explanation of the Metrics Counters**
-
-  - `logs.full.count`: Tracks the total number of logs processed during each interval
-  - `logs.sw.count` Counts logs that contain a quote from a Star Wars movie.
-  - `logs.lotr.count`: Counts logs that contain a quote from a Lord of the Rings movie.
-  - `logs.error.count`: Represents a real-world scenario by counting logs with a severity level of ERROR.
+```yaml
+  pipelines:
+    traces:
+      receivers:
+      - otlp
+      processors:
+      - memory_limiter
+      - attributes/update              # Update, hash, and remove attributes
+      - redaction/redact               # Redact sensitive fields using regex
+      - resourcedetection
+      - resource/add_mode
+      - batch
+      exporters:
+      - debug
+      - file
+      - otlphttp
+    metrics:
+      receivers:
+      - count
+      - sum
+      - otlp
+      #- hostmetrics                    # Host Metrics Receiver
+      processors:
+      - memory_limiter
+      - resourcedetection
+      - resource/add_mode
+      - batch
+      exporters:
+      - debug
+      - otlphttp
+    logs:
+      receivers:
+      - otlp
+      - filelog/quotes
+      processors:
+      - memory_limiter
+      - resourcedetection
+      - resource/add_mode
+      - transform/logs                 # Transform logs processor
+      - batch
+      exporters:
+      - count
+      - sum
+      - debug
+      - otlphttp
+```
 
 {{% /notice %}}
-
-We count logs based on their attributes. If your log data is stored in the log body instead of attributes, you’ll need to use a Transform processor in your pipeline to extract key/value pairs and add them as attributes.
 
 In this workshop, we’ve already included `merge_maps(attributes, cache, "upsert")` in the Transform section. This ensures that all relevant data is available in the log attributes for processing.
 

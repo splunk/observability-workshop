@@ -1,7 +1,7 @@
 ---
 title: 9.3 Testing the Count Connector
 linkTitle: 9.3 Test Sum Connector
-weight: 1
+weight: 3
 ---
 
 {{% notice title="Exercise" style="green" icon="running" %}}
