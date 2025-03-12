@@ -19,10 +19,10 @@ You’re ready to start the OpenTelemetry Collector with the newly created `agen
 ```text
 2025/01/13T12:43:51 settings.go:478: Set config to [agent.yaml]
 <snip to the end>
-2025-01-13T12:43:51.747+0100 info service@v0.117.0/service.go:261 Everything is ready. Begin running and processing data.
+2025-01-13T12:43:51.747+0100 info service@v0.120.0/service.go:261 Everything is ready. Begin running and processing data.
 ```
 
-**Send Test Spans**: Instead of instrumenting an application, we’ll simulate sending trace data to the OpenTelemetry Collector using the `loadgen` tool.
+**Send Test Span**: Instead of instrumenting an application, we’ll simulate sending trace data to the OpenTelemetry Collector using the `loadgen` tool.
 
 In the **Spans terminal** window, change into the `1-agent` directory and run the following command to send a single span:
 
