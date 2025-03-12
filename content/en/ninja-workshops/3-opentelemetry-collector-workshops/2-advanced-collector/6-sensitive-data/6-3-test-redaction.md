@@ -13,9 +13,34 @@ In this exercise, we will **redact** the `user.visa` & `user.mastercard` **value
 
 **Start the Gateway**: In your **Gateway terminal** window start the `gateway`.
 
+```bash
+../otelcol --config=gateway.yaml
+```
+
 **Enable the `redaction/redact` processor**: In the **Agent terminal** window, edit `agent.yaml` and remove the `#` we inserted in the previous exercise.
 
+```yaml
+    traces:
+      receivers:
+      - otlp
+      processors:
+      - memory_limiter
+      - attributes/update              # Update, hash, and remove attributes
+      - redaction/redact               # Redact sensitive fields using regex
+      - resourcedetection
+      - resource/add_mode
+      - batch
+      exporters:
+      - debug
+      - file
+      - otlphttp
+```
+
 **Start the Agent**: In your **Agent terminal** window start the `agent`.
+
+```bash
+../otelcol --config=agent.yaml
+```
 
 **Start the Load Generator**: In the **Spans terminal** window start the `loadgen`:
 
@@ -67,24 +92,28 @@ By including `summary:debug` in the redaction processor, the debug output will i
 
 {{% /notice %}}
 
-**Check file output**: In the newly created `gateway-traces.out` file to verify confirm that `user.visa` & `user.mastercard` have been updated.
+**Check file output**: Using `jq` verify that `user.visa` & `user.mastercard` have been updated in the `gateway-traces.out`.
 
 {{% tabs %}}
 {{% tab title="Validate attribute changes" %}}
 
 ```bash
-jq '.resourceSpans[].scopeSpans[].spans[].attributes[] | select(.key == "user.visa" or .key == "user.mastercard") | {key: .key, value: .value.stringValue}' ./gateway-traces.out
+jq '.resourceSpans[].scopeSpans[].spans[].attributes[] | select(.key == "user.visa" or .key == "user.mastercard" or .key == "user.amex") | {key: .key, value: .value.stringValue}' ./gateway-traces.out
 ```
 
 {{% /tabs %}}
 {{% tab title="Output" %}}
 
-Notice that the `user.account_password` has been removed, and the `user.phone_number` & `user.email` have been updated:
+Notice that `user.amex` has not been redacted because a matching regex pattern was not added to `blocked_values`:
 
 ```json
 {
   "key": "user.visa",
   "value": "****"
+}
+{
+  "key": "user.amex",
+  "value": "3782 822463 10005"
 }
 {
   "key": "user.mastercard",
