@@ -47,6 +47,8 @@ exporters:                        # List of exporters
     path: "./gateway-logs.out"    # Path for OTLP JSON output
     append: false                 # Overwrite the file each time
 
+connectors:
+
 processors:                       # List of processors
   memory_limiter:                 # Limits memory usage
     check_interval: 2s            # Memory check interval
