@@ -2,7 +2,7 @@
 title: 5. Dropping Spans
 linkTitle: 5. Dropping Spans
 time: 10 minutes
-weight: 5
+weight: 7
 ---
 
 In this section, we will explore how to use the [**Filter Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/filterprocessor/README.md) to selectively drop spans based on certain conditions.

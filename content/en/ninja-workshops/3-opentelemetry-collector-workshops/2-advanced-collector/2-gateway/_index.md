@@ -2,7 +2,7 @@
 title: 2. Gateway Configuration
 linkTitle: 2. Gateway Setup
 time: 10 minutes
-weight: 2
+weight: 4
 ---
 
 The OpenTelemetry Gateway is designed to receive, process, and export telemetry data. It acts as an intermediary between telemetry sources (e.g. applications, services) and backends (e.g., observability platforms like Prometheus, Jaeger, or Splunk Observability Cloud).

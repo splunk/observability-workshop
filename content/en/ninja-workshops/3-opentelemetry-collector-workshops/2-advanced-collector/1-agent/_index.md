@@ -2,7 +2,7 @@
 title: 1. Agent Configuration
 linkTitle: 1. Agent Setup
 time: 10 minutes
-weight: 1
+weight: 3
 ---
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
