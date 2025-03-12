@@ -78,6 +78,10 @@ The `gateway-metrics.out` file will not contain any spans named `/_healthz`.
 When using the `Filter` processor make sure you understand the look of your incoming data and test the configuration thoroughly. In general, use **as specific a configuration as possible** to lower the risk of the wrong data being dropped.
 
 You can further extend this configuration to filter out spans based on different attributes, tags, or other criteria, making the OpenTelemetry Collector more customizable and efficient for your observability needs.
+
+> [!IMPORTANT]
+> Stop the `agent` and the `gateway` processes by pressing `Ctrl-C` in their respective terminals.
+
 {{% /notice %}}
 <!--
 ---
@@ -114,5 +118,3 @@ filter:
 
 This will drop spans with the names `"/_healthz"` and `"/internal/metrics"`.
 -->
-
-Stop the `agent` and `gateway` using `Ctrl-C` in their respective terminal windows.

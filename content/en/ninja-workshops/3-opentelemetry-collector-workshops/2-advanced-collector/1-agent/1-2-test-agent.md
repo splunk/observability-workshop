@@ -89,6 +89,7 @@ Attributes:
         {"otelcol.component.id": "debug", "otelcol.component.kind": "Exporter", "otelcol.signal": "traces"}
 ```
 
-{{% /notice %}}
+> [!IMPORTANT]
+> Stop the `agent` in the **Agent terminal** window using `Ctrl-C`.
 
-Stop the `agent` in the **Agent terminal** window using `Ctrl-C`.
+{{% /notice %}}

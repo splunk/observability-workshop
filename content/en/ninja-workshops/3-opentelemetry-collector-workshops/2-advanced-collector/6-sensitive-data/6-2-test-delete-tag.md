@@ -78,6 +78,7 @@ Notice that the `user.account_password` has been removed, and the `user.phone_nu
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% /notice %}}
+> [!IMPORTANT]
+> Stop the `agent` and the `gateway` processes by pressing `Ctrl-C` in their respective terminals.
 
-Stop the `agent` and `gateway` using `Ctrl-C` in their respective terminals.
+{{% /notice %}}

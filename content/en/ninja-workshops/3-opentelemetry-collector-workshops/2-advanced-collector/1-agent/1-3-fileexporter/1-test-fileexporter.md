@@ -184,6 +184,7 @@ weight: 1
 {{% /tab %}}
 {{% /tabs %}}
 
-{{% /notice %}}
+> [!IMPORTANT]
+> Stop the `agent` in the **Agent terminal** window using `Ctrl-C`.
 
-Stop the `agent` in **Agent terminal** window using `Ctrl-C`.
+{{% /notice %}}
