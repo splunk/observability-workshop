@@ -23,24 +23,8 @@ weight: 2
 
 **Add both the `standard` and `security` traces pipelines**:
 
-1. **Add the Standard pipeline**: This pipeline processes all spans that do not match the routing rule.  
-This pipeline is using `routing` as its receiver. Place it below the existing `traces:` pipeline, keeping its configuration unchanged for now:
-
-    ```yaml
-        traces/standard:              # Default pipeline for unmatched spans
-          receivers: 
-          - routing                   # Receive data from the routing connector
-          processors:
-          - memory_limiter            # Memory Limiter Processor
-          - resource/add_mode         # Adds collector mode metadata
-          - batch
-          exporters:
-          - debug                     # Debug exporter
-          - file/traces/standard      # File exporter for unmatched spans
-    ```
-
-2. **Configure the Security pipeline**: This pipeline will handle all spans that match the routing rule.  
-This also uses `routing` as its receiver. Add this below the Standard one:
+1. **Configure the Security pipeline**: This pipeline will handle all spans that match the routing rule for `security`.
+This uses `routing` as its receiver. Place it below the existing `traces:` pipeline:
 
     ```yaml
         traces/security:              # New Security Traces/Spans Pipeline
@@ -53,6 +37,22 @@ This also uses `routing` as its receiver. Add this below the Standard one:
           exporters:
           - debug                     # Debug Exporter 
           - file/traces/security      # File Exporter for spans matching rule
+    ```
+
+2. **Add the Standard pipeline**: This pipeline processes all spans that do not match the routing rule.
+This pipeline is also using `routing` as its receiver. Add this below the `traces/security` one:
+
+    ```yaml
+        traces/standard:              # Default pipeline for unmatched spans
+          receivers: 
+          - routing                   # Receive data from the routing connector
+          processors:
+          - memory_limiter            # Memory Limiter Processor
+          - resource/add_mode         # Adds collector mode metadata
+          - batch
+          exporters:
+          - debug                     # Debug exporter
+          - file/traces/standard      # File exporter for unmatched spans
     ```
 
 {{% /notice %}}
