@@ -19,15 +19,20 @@ weight: 2
 
 **Add a Batch Processor configuration**: The [**Batch Processor**](https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/batchprocessor/README.md) will accept spans, metrics, or logs and place them into batches. Batching helps better compress the data and reduce the number of outgoing connections required to transmit the data. It is highly recommended configuring the batch processor on every collector.
 
+1. Add the `batch` processor configuration to the `processors` section:
+
 ```yaml
   batch:                               # Processor Type
 ```
 
 **Update the pipelines**:
 
-1. **Enable Hostmetrics Receiver**: Add `hostmetrics` to the `metrics` pipeline. The [**HostMetrics Receiver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/hostmetricsreceiver#readme) will generate host CPU metrics once per hour with the current configuration.
-2. **Enable Batch Processor**: Add the `batch` processor (after the `resource/add_mode` processor) to the `traces`, `metrics`, and `logs` pipelines.
-3. **Enable OTLPHTTP Exporter**: Add the `otlphttp` exporter to the `traces`, `metrics`, and `logs` pipelines.
+1. **Enable Hostmetrics Receiver**:
+    - Add `hostmetrics` to the `metrics` pipeline. The [**HostMetrics Receiver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/hostmetricsreceiver#readme) will generate host CPU metrics once per hour with the current configuration.
+2. **Enable Batch Processor**:
+    - Add the `batch` processor (after the `resource/add_mode` processor) to the `traces`, `metrics`, and `logs` pipelines.
+3. **Enable OTLPHTTP Exporter**:
+    - Add the `otlphttp` exporter to the `traces`, `metrics`, and `logs` pipelines.
 
 ```yaml
   pipelines:
