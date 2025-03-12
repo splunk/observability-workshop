@@ -77,15 +77,6 @@ xattr -dr com.apple.quarantine loadgen
 {{% /tab %}}
 {{% /tabs %}}
 
-<!--
-| Platform                         | OpenTelemetry Collector | Load Generator |
-|----------------------------------|-------------------------|----------------|
-|  Apple Mac (Apple Silicon)   | **[otelcol_darwin_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_arm64)** | [**loadgen_darwin_arm64**](https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-arm64) |
-|  Apple Mac (Intel)           | **[otelcol_darwin_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_darwin_amd64)** | [**loadgen_darwin_amd64**](https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-darwin-amd64)|
-|  Linux (AMD/64)              |**[otelcol_linux_amd64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_amd64)** | [**loadgen_linux_amd64**](https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-amd64)|
-|  Linux (ARM/64)              |**[otelcol_linux_arm64](https://github.com/signalfx/splunk-otel-collector/releases/download/v0.117.0/otelcol_linux_arm64)** | [**loadgen_linux_arm64**](https://github.com/splunk/observability-workshop/raw/refs/heads/main/workshop/ninja/advanced-otel/loadgen/build/loadgen-linux-arm64)|
--->
-
 **Update file permissions**: Once downloaded, update the file permissions to make both executable:
 
 ```bash
