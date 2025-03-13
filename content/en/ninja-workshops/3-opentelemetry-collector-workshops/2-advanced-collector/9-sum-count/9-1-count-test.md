@@ -20,19 +20,20 @@ In the **Agent terminal** window navigate to the `[WORKSHOP]/9-sum-count` direct
 ../otelcol --config=agent.yaml
 ```
 
-**Start the Loadgen**:  
-In the **Spans terminal** window navigate to the `[WORKSHOP]/9-sum-count` directory. Send 20 log lines with the following `loadgen` command:
+**Send 12 Logs lines with the Loadgen**:  
+In the **Spans terminal** window navigate to the `[WORKSHOP]/9-sum-count` directory.  
+Send 12 log lines, they should be read in two intervals. Do this with the following `loadgen` command:
 
 ```bash { title="Loadgen" }
-../loadgen -logs -json -count 20
+../loadgen -logs -json -count 12
 ```
 
 Both the `agent` and `gateway` will display debug information, showing they are processing data. Wait until the loadgen completes.
 
-**Verify that metrics**  
-While processing the logs, the **Agent**, has generated metrics and passed them on to the **Gateway**. The **Gateway** has written them into `gateway-metrics.out`.
+**Verify metrics have been generated**  
+As the logs are processed, the **Agent** generates metrics and forwards them to the **Gateway**, which then writes them to `gateway-metrics.out`.
 
-To confirm the presence of `logs.full.count`, `logs.sw.count`, `logs.lotr.count` & `logs.error.count` in your metrics output, run the following jq query:
+To check if the metrics `logs.full.count`, `logs.sw.count`, `logs.lotr.count`, and `logs.error.count` are present in the output, run the following **jq** query:
 
 {{% tabs %}}
 {{% tab title="jq query command" %}}
@@ -84,7 +85,10 @@ jq '.resourceMetrics[].scopeMetrics[].metrics[]
 {{% /tab %}}
 {{% /tabs %}}
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-Note: the `logs.full.count` should be equal to `logs.sw.count` + `logs.lotr.count`, while the `logs.error.count` will be a random
+Note: the `logs.full.count` normally is equal to `logs.sw.count` + `logs.lotr.count`, while the `logs.error.count` will be a random number.
 {{% /notice %}}
+
+> [!IMPORTANT]
+> Stop the `agent` and the `gateway` processes by pressing `Ctrl-C` in their respective terminals.
 
 {{% /notice %}}

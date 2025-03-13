@@ -5,10 +5,9 @@ time: 10 minutes
 weight: 11
 draft: true
 ---
+In this section, we'll explore how to use the [**Count Connector**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector) to extract attribute values from logs and convert them into meaningful metrics.
 
-In this section, we will explore how we can use the [**Count Connector**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector) to count attribute values from the logs and turn them in to metrics.
-
-In this section we will use the count connector to count the number of Star Wars or Lord of the Rings quotes provided by our logs.
+Specifically, we'll use the Count Connector to track the number of "Star Wars" and "Lord of the Rings" quotes appearing in our logs, turning them into measurable data points.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
@@ -35,18 +34,20 @@ Find the `filelog/quotes` receiver in the agent.yaml and add a poll_interval att
 
 The reason for the delay is that the Count Connector in the OpenTelemetry Collector counts logs only within each processing interval. This means that every time the data is read, the count resets to zero for the next interval. With the default `Filelog reciever` interval of 200ms it reads every line the loadgen writes, giving us counts of 1. With this interval we make sure we have multiple entries to count.
 
+The Collector can maintain a running count for each read interval by omitting conditions, as shown below. However, it’s best practice to let your backend handle running counts since it can track them over a longer time period.
+
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - **Add the Count Connector**
 
-Include the Count Connector in the connector's section of your configuration and define the metrics counters:
+Include the Count Connector in the connector's section of your configuration and define the metrics counters we want to use:
 
 ```yaml
 connectors:
   count:
     logs:
       logs.full.count:
-        description: "FullCount"
+        description: "Running count of all logs read in interval"
       logs.sw.count:
         description: "StarWarsCount"
         conditions:
@@ -63,10 +64,12 @@ connectors:
 
 - **Explanation of the Metrics Counters**
 
-  - `logs.full.count`: Tracks the total number of logs processed during each interval
+  - `logs.full.count`: Tracks the total number of logs processed during each read interval.  
+  Since this metric has no filtering conditions, every log that passes through the system is included in the count. 
   - `logs.sw.count` Counts logs that contain a quote from a Star Wars movie.
   - `logs.lotr.count`: Counts logs that contain a quote from a Lord of the Rings movie.
-  - `logs.error.count`: Represents a real-world scenario by counting logs with a severity level of ERROR.
+  - `logs.error.count`: Represents a real-world scenario by counting logs with a severity level of ERROR for the read interval.
+
 
 - **Configure the Count Connector in the pipelines**
 
@@ -88,7 +91,7 @@ connectors:
       - otlphttp
     metrics:
       receivers:
-      - count
+      - count                          # Count Connector - Receiver
       - otlp
       #- hostmetrics                    # Host Metrics Receiver
       processors:
@@ -110,7 +113,7 @@ connectors:
       - transform/logs                 # Transform logs processor
       - batch
       exporters:
-      - count
+      - count                          # Count Connector - Exporter
       - debug
       - otlphttp
 ```
