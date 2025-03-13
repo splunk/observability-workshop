@@ -65,6 +65,9 @@ write_files:
       export KUBECONFIG=/home/splunk/.kube/config
       alias kc='kubectl'
       alias dc='docker-compose'
+      source <(kubectl completion zsh)
+      source <(helm completion zsh)
+      source <(docker completion zsh)
 
   - path: /tmp/workshop-secrets.yaml
     permissions: '0755'
