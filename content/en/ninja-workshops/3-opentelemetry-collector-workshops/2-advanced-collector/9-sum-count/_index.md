@@ -3,7 +3,6 @@ title: Create metrics with Count Connector
 linkTitle: 9. Count & Sum Connector
 time: 10 minutes
 weight: 11
-draft: true
 ---
 In this section, we'll explore how to use the [**Count Connector**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector) to extract attribute values from logs and convert them into meaningful metrics.
 
@@ -70,8 +69,8 @@ connectors:
   - `logs.lotr.count`: Counts logs that contain a quote from a Lord of the Rings movie.
   - `logs.error.count`: Represents a real-world scenario by counting logs with a severity level of ERROR for the read interval.
 
-
-- **Configure the Count Connector in the pipelines**
+- **Configure the Count Connector in the pipelines**  
+In the pipeline configuration below, the connector exporter is added to the `logs` section, while the connector receiver is added to the `metrics` section.
 
 ```yaml
   pipelines:

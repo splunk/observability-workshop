@@ -21,25 +21,25 @@ In the **Agent terminal** window navigate to the `[WORKSHOP]/9-sum-count` direct
 ```
 
 **Start the Loadgen**:  
-In the **Spans terminal** window navigate to the `[WORKSHOP]/9-sum-count` directory. Send 20 log lines with the following `loadgen` command:
+In the **Spans terminal** window navigate to the `[WORKSHOP]/9-sum-count` directory. Send 8 spans with the following `loadgen` command:
 
 ```bash { title="Loadgen" }
-../loadgen -logs -json -count 20
+../loadgen -count 8
 ```
 
 Both the `agent` and `gateway` will display debug information, showing they are processing data. Wait until the loadgen completes.
 
 **Verify that metrics**  
-While processing the logs, the **Agent**, has generated metrics and passed them on to the **Gateway**. The **Gateway** has written them into `gateway-metrics.out`.
+While processing the span, the **Agent**, has generated metrics and passed them on to the **Gateway**. The **Gateway** has written them into `gateway-metrics.out`.
 
-To confirm the presence of `logs.full.count`, `logs.sw.count`, `logs.lotr.count` & `logs.error.count` in your metrics output, run the following jq query:
+To confirm the presence of `user.card-charge`and verify each one has an attribute `user.name` in the metrics output, run the following jq query:
 
 {{% tabs %}}
 {{% tab title="jq query command" %}}
 
 ```bash
-printf "\033[1m%-20s %s\033[0m\n" "Name" "Credit Card Charge"
-jq -r '.resourceMetrics[].scopeMetrics[].metrics[] | select(.name == "user-card-total") | .sum.dataPoints[] | "\(.attributes[] | select(.key == "user.name").value.stringValue)\t\(.asDouble)"' gateway-metrics.out | while IFS=$'\t' read -r name charge; do
+
+jq -r '.resourceMetrics[].scopeMetrics[].metrics[] | select(.name == "user.card-charge") | .sum.dataPoints[] | "\(.attributes[] | select(.key == "user.name").value.stringValue)\t\(.asDouble)"' gateway-metrics.out | while IFS=$'\t' read -r name charge; do
     printf "%-20s %s\n" "$name" "$charge"
 done    
 ```
@@ -48,15 +48,20 @@ done
 {{% tab title="jq example output" %}}
 
 ```text
-George Lucas        68.02
-Frodo Baggins       57.58
-Frodo Baggins       79.95
-Thorin Oakenshield  85.55
-Thorin Oakenshield  81.27
-Frodo Baggins       61.28
+George Lucas         67.49
+Frodo Baggins        87.14
+Thorin Oakenshield   90.98
+Luke Skywalker       51.37
+Luke Skywalker       65.56
+Thorin Oakenshield   67.5
+Thorin Oakenshield   66.66
+Peter Jackson        94.39
 ```
 
 {{% /tab %}}
-{{% /tabs %}}
+{{% /tabs %}} 
+
+> [!IMPORTANT]
+> Stop the `agent` and the `gateway` processes by pressing `Ctrl-C` in their respective terminals.
 
 {{% /notice %}}
