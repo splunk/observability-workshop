@@ -63,24 +63,24 @@ Attributes:
 
 **Verify the Gateway has handled the spans**: Once the gateway processes incoming spans, it writes the trace data to a file named `gateway-traces.out`. To confirm that the spans have been successfully handled, you can inspect this file.
 
-Using the `jq` command, you can extract and display key details about each span, such as its `spanId` and its position in the file:
+Using the `jq` command, you can extract and display key details about each span, such as its `spanId` and its position in the file. Also, we can extract the attributes that the **Hostmetrics Receiver** added to the spans.
 
 {{% tabs %}}
 {{% tab title="Inspect the Gateway Trace File" %}}
 
 ```bash
-jq -c '.resourceSpans[].scopeSpans[].spans[] | "Span \(input_line_number) found with spanId \(.spanId)"' ./gateway-traces.out
+jq -c '.resourceSpans[] as $resource | $resource.scopeSpans[].spans[] | "Span \(input_line_number) found with spanId \(.spanId), hostname \($resource.resource.attributes[] | select(.key == "host.name") | .value.stringValue), os \($resource.resource.attributes[] | select(.key == "os.type") | .value.stringValue)"' ./gateway-traces.out
 ```
 
 {{% /tab %}}
 {{% tab title="Example Output" %}}
 
 ```text
-"Span 1 found with spanId 830b45581f53b3d8"
-"Span 2 found with spanId a82662dbed83cdee"
-"Span 3 found with spanId b662569e8e52c6ac"
-"Span 4 found with spanId 28b78a41a76162fa"
-"Span 5 found with spanId 23b06e57f8af7336"
+"Span 1 found with spanId d71fe6316276f97d, hostname workshop-instance, os linux"
+"Span 2 found with spanId e8d19489232f8c2a, hostname workshop-instance, os linux"
+"Span 3 found with spanId 9dfaf22857a6bd05, hostname workshop-instance, os linux"
+"Span 4 found with spanId c7f544a4b5fef5fc, hostname workshop-instance, os linux"
+"Span 5 found with spanId 30bb49261315969d, hostname workshop-instance, os linux"
 ```
 
 {{% /tab %}}
