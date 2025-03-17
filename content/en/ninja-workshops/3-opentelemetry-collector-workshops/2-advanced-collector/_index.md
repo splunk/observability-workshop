@@ -7,11 +7,16 @@ authors: ["Robert Castley,", "Charity Anderson,", "Pieter Hagen", "&", "Geoff Hi
 time: 90 minutes
 ---
 
-The goal of this workshop is to help you become comfortable creating and modifying OpenTelemetry Collector configuration files. You’ll start with a minimal `agent.yaml` file and gradually configure several common advanced scenarios.
+The goal of this workshop is to help you gain confidence in creating and modifying OpenTelemetry Collector configuration files. You’ll start with a minimal `agent.yaml` file and progressively build it out to handle several advanced, real-world scenarios.
 
-The workshop also explores how to configure the OpenTelemetry Collector to store telemetry data locally instead of transmitting it to a third-party vendor backend. Furthermore, this approach significantly enhances the debugging and troubleshooting process and is useful for testing and development environments where you don’t want to send data to a production system.
+A key focus of this workshop is learning how to configure the OpenTelemetry Collector to store telemetry data locally, rather than sending it to a third-party vendor backend. This approach not only simplifies debugging and troubleshooting but is also ideal for testing and development environments where you want to avoid sending data to production systems.
 
-To get the most out of this workshop, you should have a basic understanding of the OpenTelemetry Collector and its configuration file format. Additionally, proficiency in editing YAML files is required. The entire workshop is designed to run locally.
+To make the most of this workshop, you should have:
+
+- A basic understanding of the OpenTelemetry Collector and its configuration file structure.
+- Proficiency in editing YAML files.
+
+Everything in this workshop is designed to run locally, ensuring a hands-on and accessible learning experience. Let’s dive in and start building!
 
 ### Workshop Overview
 

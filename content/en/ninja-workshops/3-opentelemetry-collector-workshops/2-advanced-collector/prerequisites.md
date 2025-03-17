@@ -14,7 +14,7 @@ time: 90 minutes
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-**Create a workshop directory**: In your environment create a new directory (e.g., `advanced-otel`). We will refer to this directory as `[WORKSHOP]` for the remainder of the workshop.
+**Create a workshop directory**: In your environment create a new directory (e.g., `advanced-otel-workshop`). We will refer to this directory as `[WORKSHOP]` for the remainder of the workshop.
 
 **Download workshop binaries**: Change into your `[WORKSHOP]` directory and download the OpenTelemetry Collector and Load Generator binaries:
 
