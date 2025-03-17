@@ -1,0 +1,245 @@
+<!doctype html><html lang=ja dir=ltr itemscope itemtype=http://schema.org/Article data-r-output-format=print><head><meta charset=utf-8><meta name=viewport content="height=device-height,width=device-width,initial-scale=1,minimum-scale=1"><meta name=generator content="Hugo 0.134.3"><meta name=generator content="Relearn 7.2.1"><meta name=description content='プロセッサーは、レシーバーとエクスポーターとの間で、データに対して実行される処理です。プロセッサーはオプションですが、いくつかは推奨されています。OpenTelemetry Collector Contrib には多数のプロセッサーが含まれています。
+%%{ init:{ "theme":"base", "themeVariables": { "primaryColor": "#ffffff", "clusterBkg": "#eff2fb", "defaultLinkColor": "#333333" } } }%% flowchart LR; style Processors fill:#e20082,stroke:#333,stroke-width:4px,color:#fff subgraph Receivers A[OTLP] --> M(Receivers) B[JAEGER] --> M(Receivers) C[Prometheus] --> M(Receivers) end subgraph Processors M(Receivers) --> H(Filters, Attributes, etc) E(Extensions) end subgraph Exporters H(Filters, Attributes, etc) --> S(OTLP) H(Filters, Attributes, etc) --> T(JAEGER) H(Filters, Attributes, etc) --> U(Prometheus) end'><meta name=author content><meta name=twitter:card content="summary"><meta name=twitter:title content="OpenTelemetry Collector プロセッサー :: Splunk Observability Cloud Workshops"><meta name=twitter:description content='プロセッサーは、レシーバーとエクスポーターとの間で、データに対して実行される処理です。プロセッサーはオプションですが、いくつかは推奨されています。OpenTelemetry Collector Contrib には多数のプロセッサーが含まれています。
+%%{ init:{ "theme":"base", "themeVariables": { "primaryColor": "#ffffff", "clusterBkg": "#eff2fb", "defaultLinkColor": "#333333" } } }%% flowchart LR; style Processors fill:#e20082,stroke:#333,stroke-width:4px,color:#fff subgraph Receivers A[OTLP] --> M(Receivers) B[JAEGER] --> M(Receivers) C[Prometheus] --> M(Receivers) end subgraph Processors M(Receivers) --> H(Filters, Attributes, etc) E(Extensions) end subgraph Exporters H(Filters, Attributes, etc) --> S(OTLP) H(Filters, Attributes, etc) --> T(JAEGER) H(Filters, Attributes, etc) --> U(Prometheus) end'><meta property="og:url" content="https://splunk.github.io/observability-workshop/v5.87/ja/other/opentelemetry-collector/4-processors/index.html"><meta property="og:site_name" content="Splunk Observability Cloud Workshops"><meta property="og:title" content="OpenTelemetry Collector プロセッサー :: Splunk Observability Cloud Workshops"><meta property="og:description" content='プロセッサーは、レシーバーとエクスポーターとの間で、データに対して実行される処理です。プロセッサーはオプションですが、いくつかは推奨されています。OpenTelemetry Collector Contrib には多数のプロセッサーが含まれています。
+%%{ init:{ "theme":"base", "themeVariables": { "primaryColor": "#ffffff", "clusterBkg": "#eff2fb", "defaultLinkColor": "#333333" } } }%% flowchart LR; style Processors fill:#e20082,stroke:#333,stroke-width:4px,color:#fff subgraph Receivers A[OTLP] --> M(Receivers) B[JAEGER] --> M(Receivers) C[Prometheus] --> M(Receivers) end subgraph Processors M(Receivers) --> H(Filters, Attributes, etc) E(Extensions) end subgraph Exporters H(Filters, Attributes, etc) --> S(OTLP) H(Filters, Attributes, etc) --> T(JAEGER) H(Filters, Attributes, etc) --> U(Prometheus) end'><meta property="og:locale" content="ja"><meta property="og:type" content="website"><meta itemprop=name content="OpenTelemetry Collector プロセッサー :: Splunk Observability Cloud Workshops"><meta itemprop=description content='プロセッサーは、レシーバーとエクスポーターとの間で、データに対して実行される処理です。プロセッサーはオプションですが、いくつかは推奨されています。OpenTelemetry Collector Contrib には多数のプロセッサーが含まれています。
+%%{ init:{ "theme":"base", "themeVariables": { "primaryColor": "#ffffff", "clusterBkg": "#eff2fb", "defaultLinkColor": "#333333" } } }%% flowchart LR; style Processors fill:#e20082,stroke:#333,stroke-width:4px,color:#fff subgraph Receivers A[OTLP] --> M(Receivers) B[JAEGER] --> M(Receivers) C[Prometheus] --> M(Receivers) end subgraph Processors M(Receivers) --> H(Filters, Attributes, etc) E(Extensions) end subgraph Exporters H(Filters, Attributes, etc) --> S(OTLP) H(Filters, Attributes, etc) --> T(JAEGER) H(Filters, Attributes, etc) --> U(Prometheus) end'><meta itemprop=dateModified content="2023-12-19T12:19:15+09:00"><meta itemprop=wordCount content="62"><title>OpenTelemetry Collector プロセッサー :: Splunk Observability Cloud Workshops</title>
+<link href=https://splunk.github.io/observability-workshop/v5.87/ja/other/opentelemetry-collector/4-processors/index.html rel=canonical type=text/html title="OpenTelemetry Collector プロセッサー :: Splunk Observability Cloud Workshops"><link href=/observability-workshop/v5.87/images/favicon.ico?1742230480 rel=icon type=image/x-icon sizes=any><link href=/observability-workshop/v5.87/css/fontawesome-all.min.css?1742230480 rel=stylesheet media=print onload='this.media="all",this.onload=null'><noscript><link href=/observability-workshop/v5.87/css/fontawesome-all.min.css?1742230480 rel=stylesheet></noscript><link href=/observability-workshop/v5.87/css/auto-complete.css?1742230480 rel=stylesheet media=print onload='this.media="all",this.onload=null'><noscript><link href=/observability-workshop/v5.87/css/auto-complete.css?1742230480 rel=stylesheet></noscript><link href=/observability-workshop/v5.87/css/perfect-scrollbar.min.css?1742230480 rel=stylesheet><link href=/observability-workshop/v5.87/css/theme.min.css?1742230480 rel=stylesheet><link href=/observability-workshop/v5.87/css/format-print.min.css?1742230480 rel=stylesheet id=R-format-style><script>window.relearn=window.relearn||{},window.relearn.relBasePath="../../../..",window.relearn.relBaseUri="../../../../../..",window.relearn.absBaseUri="https://splunk.github.io/observability-workshop/v5.87",window.relearn.min=`.min`,window.relearn.disableAnchorCopy=!1,window.relearn.disableAnchorScrolling=!1,window.relearn.themevariants=["auto","splunk-light","splunk-dark"],window.relearn.customvariantname="my-custom-variant",window.relearn.changeVariant=function(e){var t=document.documentElement.dataset.rThemeVariant;window.localStorage.setItem(window.relearn.absBaseUri+"/variant",e),document.documentElement.dataset.rThemeVariant=e,t!=e&&document.dispatchEvent(new CustomEvent("themeVariantLoaded",{detail:{variant:e,oldVariant:t}}))},window.relearn.markVariant=function(){var t=window.localStorage.getItem(window.relearn.absBaseUri+"/variant"),e=document.querySelector("#R-select-variant");e&&(e.value=t)},window.relearn.initVariant=function(){var e=window.localStorage.getItem(window.relearn.absBaseUri+"/variant")??"";e==window.relearn.customvariantname||(!e||!window.relearn.themevariants.includes(e))&&(e=window.relearn.themevariants[0],window.localStorage.setItem(window.relearn.absBaseUri+"/variant",e)),document.documentElement.dataset.rThemeVariant=e},window.relearn.initVariant(),window.relearn.markVariant(),window.T_Copy_to_clipboard=`クリップボードにコピー`,window.T_Copied_to_clipboard=`クリップボードにコピー!`,window.T_Copy_link_to_clipboard=`リンクをクリップボードにコピー`,window.T_Link_copied_to_clipboard=`リンクをクリップボードにコピーしました!`,window.T_Reset_view=`ビューのリセット`,window.T_View_reset=`リセットを見る`,window.T_No_results_found=`"{0}" の結果が見つかりません`,window.T_N_results_found=`"{0}" で {1} 件の結果が見つかりました`</script><script src=https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js crossorigin=anonymous></script><script src=https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web-session-recorder.js crossorigin=anonymous></script><script>SplunkRum.init({realm:"us1",rumAccessToken:"dp3FKraOS_wVhe-l7eCOsA",applicationName:"observability-workshop",deploymentEnvironment:"splunk.github.io",version:"1.0"}),SplunkSessionRecorder.init({app:"observability-workshop",realm:"us1",rumAccessToken:"dp3FKraOS_wVhe-l7eCOsA"})</script></script><style>:root{--MAIN-WIDTH-MAX:130rem;--MENU-WIDTH-L:23rem}p{margin:.75rem 0}.highlight{max-height:500px;overflow-y:auto}pre:not(.mermaid){margin:0}</style></head><body class="mobile-support print disableInlineCopyToClipboard" data-url=/observability-workshop/v5.87/ja/other/opentelemetry-collector/4-processors/index.html><div id=R-body class=default-animation><div id=R-body-overlay></div><nav id=R-topbar><div class=topbar-wrapper><div class=topbar-sidebar-divider></div><div class="topbar-area topbar-area-start" data-area=start><div class="topbar-button topbar-button-sidebar" data-content-empty=disable data-width-s=show data-width-m=hide data-width-l=hide><button class=topbar-control onclick=toggleNav() type=button title="メニュー (CTRL+ALT+n)"><i class="fa-fw fas fa-bars"></i></button></div><div class="topbar-button topbar-button-toc" data-content-empty=hide data-width-s=show data-width-m=show data-width-l=show><button class=topbar-control onclick=toggleTopbarFlyout(this) type=button title="目次 (CTRL+ALT+t)"><i class="fa-fw fas fa-list-alt"></i></button><div class=topbar-content><div class=topbar-content-wrapper></div></div></div></div><ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype=http://schema.org/BreadcrumbList><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item href=/observability-workshop/v5.87/ja/index.html><span itemprop=name>Splunk Observability Workshops</span></a><meta itemprop=position content="1">&nbsp;>&nbsp;</li><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item href=/observability-workshop/v5.87/ja/other/index.html><span itemprop=name>Ninja Workshops</span></a><meta itemprop=position content="2">&nbsp;>&nbsp;</li><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><a itemprop=item href=/observability-workshop/v5.87/ja/other/opentelemetry-collector/index.html><span itemprop=name>OpenTelemetry Collector</span></a><meta itemprop=position content="3">&nbsp;>&nbsp;</li><li itemscope itemtype=https://schema.org/ListItem itemprop=itemListElement><span itemprop=name>4. プロセッサー</span><meta itemprop=position content="4"></li></ol><div class="topbar-area topbar-area-end" data-area=end><div class="topbar-button topbar-button-print" data-content-empty=disable data-width-s=area-more data-width-m=show data-width-l=show><a class=topbar-control href=/observability-workshop/v5.87/ja/other/opentelemetry-collector/4-processors/index.print.html title="章全体を印刷する (CTRL+ALT+p)"><i class="fa-fw fas fa-print"></i></a></div><div class="topbar-button topbar-button-prev" data-content-empty=disable data-width-s=show data-width-m=show data-width-l=show><a class=topbar-control href=/observability-workshop/v5.87/ja/other/opentelemetry-collector/3-receivers/3-other-receivers/index.html title="OpenTelemetry Collector レシーバー (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a></div><div class="topbar-button topbar-button-next" data-content-empty=disable data-width-s=show data-width-m=show data-width-l=show><a class=topbar-control href=/observability-workshop/v5.87/ja/other/opentelemetry-collector/4-processors/1-batch-processor/index.html title="OpenTelemetry Collector プロセッサー (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a></div><div class="topbar-button topbar-button-more" data-content-empty=hide data-width-s=show data-width-m=show data-width-l=show><button class=topbar-control onclick=toggleTopbarFlyout(this) type=button title=更に><i class="fa-fw fas fa-ellipsis-v"></i></button><div class=topbar-content><div class=topbar-content-wrapper><div class="topbar-area topbar-area-more" data-area=more></div></div></div></div></div></div></nav><div id=R-main-overlay></div><main id=R-body-inner class="highlightable other" tabindex=-1><div class=flex-block-wrapper><article class=default><header class=headline></header><h1 id=opentelemetry-collector-プロセッサー>OpenTelemetry Collector プロセッサー</h1><p><a href=https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/README.md rel=external target=_blank><strong>プロセッサー</strong></a>は、レシーバーとエクスポーターとの間で、データに対して実行される処理です。プロセッサーはオプションですが、いくつかは推奨されています。OpenTelemetry Collector Contrib には<a href=https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor rel=external target=_blank>多数のプロセッサー</a>が含まれています。</p><pre class="mermaid align-center">
+%%{
+  init:{
+    &#34;theme&#34;:&#34;base&#34;,
+    &#34;themeVariables&#34;: {
+      &#34;primaryColor&#34;: &#34;#ffffff&#34;,
+      &#34;clusterBkg&#34;: &#34;#eff2fb&#34;,
+      &#34;defaultLinkColor&#34;: &#34;#333333&#34;
+    }
+  }
+}%%
+
+flowchart LR;
+    style Processors fill:#e20082,stroke:#333,stroke-width:4px,color:#fff
+    subgraph Receivers
+    A[OTLP] --&gt; M(Receivers)
+    B[JAEGER] --&gt; M(Receivers)
+    C[Prometheus] --&gt; M(Receivers)
+    end
+    subgraph Processors
+    M(Receivers) --&gt; H(Filters, Attributes, etc)
+    E(Extensions)
+    end
+    subgraph Exporters
+    H(Filters, Attributes, etc) --&gt; S(OTLP)
+    H(Filters, Attributes, etc) --&gt; T(JAEGER)
+    H(Filters, Attributes, etc) --&gt; U(Prometheus)
+    end
+</pre><footer class=footline><span class="badge cstyle note badge-with-title"><span class=badge-title class=text-muted>Last Modified
+</span><span class=badge-content>2023/12/19</span></span></footer></article><section><h1 class=a11y-only>4. プロセッサーのサブセクション</h1><article class=default><header class=headline></header><h1 id=opentelemetry-collector-プロセッサー>OpenTelemetry Collector プロセッサー</h1><h2 id=batch-プロセッサー>Batch プロセッサー</h2><p>デフォルトでは、<strong>batch</strong> プロセッサーだけが有効になっています。このプロセッサーは、データをエクスポートする前にバッチ処理して、エクスポーターへのネットワーク・コールの回数を減らすために使われます。このワークショップではデフォルトの設定を使用します：</p><ul><li><code>send_batch_size</code> (デフォルト = 8192): タイムアウトに関係なく、バッチを送信するスパン、メトリクスデータポイント、またはログレコードの数。パイプラインの次のコンポーネントに送信されるバッチサイズを制限する場合には、 <code>send_batch_max_size</code> を使います。</li><li><code>timeout</code> (デフォルト = 200ms): サイズに関係なく、バッチが送信されるまでの時間。ゼロに設定すると、<code>send_batch_size</code> の設定を無視して <code>send_batch_max_size</code> だけが適用され、データは直ちに送信されます。</li><li><code>send_batch_max_size</code> (デフォルト = 0): バッチサイズの上限。<code>0</code> を設定すると、バッチサイズの上限がないことして扱われます。この設定は、大きなバッチが小さなユニットに分割されることを保証します。<code>send_batch_size</code> 以上でなければななりません。</li></ul><footer class=footline><span class="badge cstyle note badge-with-title"><span class=badge-title class=text-muted>Last Modified
+</span><span class=badge-content>2023/11/27</span></span></footer></article><article class=default><header class=headline></header><h1 id=opentelemetry-collector-プロセッサー>OpenTelemetry Collector プロセッサー</h1><h2 id=resource-detection-プロセッサー>Resource Detection プロセッサー</h2><p><strong>resourcedetection</strong> プロセッサーは、ホストからリソース情報を検出して、テレメトリーデータ内のリソース値をこの情報で追加または上書きすることができます。</p><p>デフォルトでは、可能であればホスト名を FQDN に設定し、そうでなければ OS が提供するホスト名になります。このロジックは <code>hostname_sources</code> オプションを使って変更できます。FQDN を取得せず、OSが提供するホスト名を使用するには、<code>hostname_sources</code>を<code>os</code>に設定します。</p><div class=tab-panel data-tab-group=ed3ea1ff60252adda40e738ff693b19b><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item=system-resource-detection-processor-configuration class="tab-nav-button tab-panel-style cstyle initial active" tabindex=-1 onclick='switchTab("ed3ea1ff60252adda40e738ff693b19b","system-resource-detection-processor-configuration")'>
+<span class=tab-nav-text>System Resource Detection Processor Configuration</span></button></div><div class=tab-content-container><div data-tab-item=system-resource-detection-processor-configuration class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class="highlight wrap-code" hl_lines=3-7><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>processors</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>batch</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>resourcedetection/system</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>detectors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>system]</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>system</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>hostname_sources</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>os]</span></span></span></code></pre></div></div></div></div></div><p>If the workshop instance is running on an AWS/EC2 instance we can gather the following tags from the EC2 metadata API (this is not available on other platforms).
+ワークショップのインスタンスが AWS/EC2 インスタンスで実行されている場合、EC2 のメタデータ API から以下のタグを収集します（これは他のプラットフォームでは利用できないものもあります）。</p><ul><li><code>cloud.provider ("aws")</code></li><li><code>cloud.platform ("aws_ec2")</code></li><li><code>cloud.account.id</code></li><li><code>cloud.region</code></li><li><code>cloud.availability_zone</code></li><li><code>host.id</code></li><li><code>host.image.id</code></li><li><code>host.name</code></li><li><code>host.type</code></li></ul><p>これらのタグをメトリクスに追加するために、別のプロセッサーとして定義してみましょう。</p><div class=tab-panel data-tab-group=9aaf8661468bb8e3ed722b45dbc8297a><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item=ec2-resource-detection-processor-configuration class="tab-nav-button tab-panel-style cstyle initial active" tabindex=-1 onclick='switchTab("9aaf8661468bb8e3ed722b45dbc8297a","ec2-resource-detection-processor-configuration")'>
+<span class=tab-nav-text>EC2 Resource Detection Processor Configuration</span></button></div><div class=tab-content-container><div data-tab-item=ec2-resource-detection-processor-configuration class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class="highlight wrap-code" hl_lines=7-8><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>processors</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>batch</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>resourcedetection/system</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>detectors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>system]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>system</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>hostname_sources</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>os]</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>resourcedetection/ec2</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>detectors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>ec2]</span></span></span></code></pre></div></div></div></div></div><footer class=footline><span class="badge cstyle note badge-with-title"><span class=badge-title class=text-muted>Last Modified
+</span><span class=badge-content>2023/11/27</span></span></footer></article><article class=default><header class=headline></header><h1 id=opentelemetry-collector-プロセッサー>OpenTelemetry Collector プロセッサー</h1><h2 id=attributes-プロセッサー>Attributes プロセッサー</h2><p>attribute プロセッサーを使うと、スパン、ログ、またはメトリクスの属性を変更できます。また、このプロセッサーは、入力データをフィルタリングし、マッチさせ、指定されたアクションに含めるべきか、除外すべきかを決定する機能もサポートしています。</p><p>アクションを設定するには、指定された順序で実行されるアクションのリストを記述します。サポートされるアクションは以下の通りです：</p><ul><li><code>insert</code>: その属性がない場合に、新しい属性値を挿入します。</li><li><code>update</code>: その属性がある場合に、その属性値を更新します。</li><li><code>upsert</code>: insert または update を実行します。属性がない場合には新しい属性値を挿入し、属性がある場合にはその値を更新します。</li><li><code>delete</code>: 入力データから属性値を削除します。</li><li><code>hash</code>: 属性値をハッシュ化 (SHA1) します。</li><li><code>extract</code>: 入力キーの値を正規表現ルールを使って抽出し、対象キーの値を更新します。対象キーがすでに存在する場合は、その値は上書きされます。</li></ul><p>次の例のように、attribute プロセッサーを使って、キーは <code>participant.name</code>、あたいはあなたの名前（例: <code>marge_simpson</code>）という新しい属性を追加してみましょう。</p><details open class="box cstyle notices warning"><summary class=box-label><i class="fa-fw fas fa-exclamation-triangle"></i>
+警告</summary><div class=box-content><p><code>INSERT_YOUR_NAME_HERE</code> の箇所は、自分の名前に置き換えてください。また、自分の名前に <strong>スペースを使わない</strong> ようにしてください。</p></div></details><p>このワークショップの後半では、この属性を使用して Splunk Observability Cloud でメトリクスをフィルタリングします。</p><div class=tab-panel data-tab-group=7e651e4812eb729658714e918c2fa711><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item=attributes-processor-configuration class="tab-nav-button tab-panel-style cstyle initial active" tabindex=-1 onclick='switchTab("7e651e4812eb729658714e918c2fa711","attributes-processor-configuration")'>
+<span class=tab-nav-text>Attributes Processor Configuration</span></button></div><div class=tab-content-container><div data-tab-item=attributes-processor-configuration class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class="highlight wrap-code" hl_lines=9-13><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>processors</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>batch</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>resourcedetection/system</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>detectors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>system]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>system</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>hostname_sources</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>os]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>resourcedetection/ec2</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>detectors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>ec2]</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>attributes/conf</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>actions</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span>- <span class=nt>key</span><span class=p>:</span><span class=w> </span><span class=l>participant.name</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>        </span><span class=nt>action</span><span class=p>:</span><span class=w> </span><span class=l>insert</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>        </span><span class=nt>value</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;INSERT_YOUR_NAME_HERE&#34;</span></span></span></code></pre></div></div></div></div></div><hr><details class="box cstyle notices transparent expand"><summary class=box-label><i class="expander-icon fa-fw fas fa-chevron-right"></i>
+<span class="badge cstyle primary badge-with-title"><span class=badge-title><i class="fa-fw fas fa-user-ninja"></i></span><span class=badge-content><strong>Ninja:</strong> コネクターを使って内部への洞察を加速する</span></span></summary><div class=box-content><p>最近追加されたものの一つとして、<a href=https://opentelemetry.io/docs/collector/configuration/#connectors rel=external target=_blank>connector</a> というコンセプトがあります。これを使うと、あるパイプラインの出力を別のパイプラインの入力に結合できるようになります。</p><p>利用シーンとして、送信するデータポイントの量、エラーステータスを含むログの数をメトリクスをとして出力するサービスがあります。他には、あるデプロイ環境から送信されるデータ量のメトリクスを生成するサービスがあります。このような場合に、count コネクターですぐに対応できます。</p><h2 id=プロセッサーではなくコネクターなのはなぜ>プロセッサーではなくコネクターなのはなぜ？</h2><p>プロセッサーは、処理したデータを次に渡すものであり、追加の情報を出力することはできません。コネクターはレシーバーで受け取ったデータを出力せずに、私たちが求める洞察を作り出す機会を提供します。</p><p>たとえば、count コネクターを使うと、環境変数 <code>deployment</code> を持たないログ、メトリクス、トレースの数をカウントすることができます。</p><p>また、非常にシンプルな例として、<code>deployment</code> 別にデータ使用量を分解して出力することもできます。</p><h2 id=コネクターの注意事項>コネクターの注意事項</h2><p>コネクターは、あるパイプラインからエクスポートされ、別のパイプラインでレシーバーで定義されたデータのみを受け入れます。コレクターをどう構築してどう利用するか、設定を検討する必要があります。</p><h2 id=参照>参照</h2><ol><li><a href=https://opentelemetry.io/docs/collector/configuration/#connectors rel=external target=_blank>https://opentelemetry.io/docs/collector/configuration/#connectors</a></li><li><a href=https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector rel=external target=_blank>https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/countconnector</a></li></ol></div></details><hr><h2 id=設定を確認しましょう>設定を確認しましょう</h2><p>これで、プロセッサーがカバーできました。ここで、設定のの変更内容をチェックしてみましょう。</p><hr><details class="box cstyle notices transparent expand"><summary class=box-label><i class="expander-icon fa-fw fas fa-chevron-right"></i>
+<span class="badge cstyle default badge-with-title"><span class=badge-title><i class="fa-fw fas fa-check"></i> <strong>Check-in</strong></span><span class=badge-content style=background-color:green>設定をレビューしてください</span></span></summary><div class=box-content><div class=tab-panel data-tab-group=c6d41cebe90952f886f81471f63e6a5a><div class=tab-nav><div class=tab-nav-title>&#8203;</div><button data-tab-item=configyaml class="tab-nav-button tab-panel-style cstyle initial active" tabindex=-1 onclick='switchTab("c6d41cebe90952f886f81471f63e6a5a","configyaml")'>
+<span class=tab-nav-text>config.yaml</span></button></div><div class=tab-content-container><div data-tab-item=configyaml class="tab-content tab-panel-style cstyle initial active"><div class=tab-content-text><div class="highlight wrap-code" hl_lines=58-68 linenos=table><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=hl><span class=lnt>58
+</span></span><span class=hl><span class=lnt>59
+</span></span><span class=hl><span class=lnt>60
+</span></span><span class=hl><span class=lnt>61
+</span></span><span class=hl><span class=lnt>62
+</span></span><span class=hl><span class=lnt>63
+</span></span><span class=hl><span class=lnt>64
+</span></span><span class=hl><span class=lnt>65
+</span></span><span class=hl><span class=lnt>66
+</span></span><span class=hl><span class=lnt>67
+</span></span><span class=hl><span class=lnt>68
+</span></span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span><span class=lnt>86
+</span><span class=lnt>87
+</span><span class=lnt>88
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>health_check</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>13133</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pprof</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>1777</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zpages</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>endpoint</span><span class=p>:</span><span class=w> </span><span class=m>0.0.0.0</span><span class=p>:</span><span class=m>55679</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>receivers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>hostmetrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>collection_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>scrapers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># CPU utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>cpu</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Disk I/O metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>disk</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># File System utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>filesystem</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Memory utilization metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>memory</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Network interface I/O metrics &amp; TCP connection metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>network</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># CPU load metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>load</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Paging/Swap space utilization and I/O metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>paging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Process count metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Per process CPU, Memory and Disk I/O metrics. Disabled by default.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># process:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>otlp</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>opencensus</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Collect own metrics</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>prometheus/internal</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>config</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>scrape_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>job_name</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;otel-collector&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>scrape_interval</span><span class=p>:</span><span class=w> </span><span class=l>10s</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>static_configs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>targets</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s1>&#39;0.0.0.0:8888&#39;</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>jaeger</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>protocols</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>grpc</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_binary</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_compact</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>thrift_http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>zipkin</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>processors</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>batch</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>resourcedetection/system</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>detectors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>system]</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>system</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>hostname_sources</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>os]</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>resourcedetection/ec2</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>detectors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>ec2]</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>attributes/conf</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>actions</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span>- <span class=nt>key</span><span class=p>:</span><span class=w> </span><span class=l>participant.name</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>        </span><span class=nt>action</span><span class=p>:</span><span class=w> </span><span class=l>insert</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>        </span><span class=nt>value</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;INSERT_YOUR_NAME_HERE&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>exporters</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>logging</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>verbosity</span><span class=p>:</span><span class=w> </span><span class=l>detailed</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pipelines</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>traces</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, jaeger, zipkin]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metrics</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>receivers</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>otlp, opencensus, prometheus]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>processors</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>batch]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>exporters</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>logging]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>extensions</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=l>health_check, pprof, zpages]</span></span></span></code></pre></td></tr></table></div></div></div></div></div></div></div></details><hr><footer class=footline><span class="badge cstyle note badge-with-title"><span class=badge-title class=text-muted>Last Modified
+</span><span class=badge-content>2023/12/01</span></span></footer></article></section></div></main></div><script src=/observability-workshop/v5.87/js/clipboard.min.js?1742230480 defer></script><script src=/observability-workshop/v5.87/js/perfect-scrollbar.min.js?1742230480 defer></script><script src=/observability-workshop/v5.87/js/d3/d3-color.min.js?1742230480 defer></script><script src=/observability-workshop/v5.87/js/d3/d3-dispatch.min.js?1742230480 defer></script><script src=/observability-workshop/v5.87/js/d3/d3-drag.min.js?1742230480 defer></script><script src=/observability-workshop/v5.87/js/d3/d3-ease.min.js?1742230480 defer></script><script src=/observability-workshop/v5.87/js/d3/d3-interpolate.min.js?1742230480 defer></script><script src=/observability-workshop/v5.87/js/d3/d3-selection.min.js?1742230480 defer></script><script src=/observability-workshop/v5.87/js/d3/d3-timer.min.js?1742230480 defer></script><script src=/observability-workshop/v5.87/js/d3/d3-transition.min.js?1742230480 defer></script><script src=/observability-workshop/v5.87/js/d3/d3-zoom.min.js?1742230480 defer></script><script src=/observability-workshop/v5.87/js/js-yaml.min.js?1742230480 defer></script><script src=/observability-workshop/v5.87/js/mermaid.min.js?1742230480 defer></script><script>window.themeUseMermaid=JSON.parse("{}")</script><script src=/observability-workshop/v5.87/js/theme.js?1742230480 defer></script></body></html>
