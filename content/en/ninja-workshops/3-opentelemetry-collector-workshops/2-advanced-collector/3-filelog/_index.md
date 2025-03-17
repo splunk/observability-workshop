@@ -7,7 +7,7 @@ weight: 5
 
 The [**FileLog Receiver**](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/filelogreceiver/README.md) in the OpenTelemetry Collector is used to ingest logs from files.
 
-It monitors specified files for new log entries and streams those logs into the Collector for further processing or exporting. It is useful for testing and development purposes.
+It monitors specified files for new log entries and streams those logs into the Collector for further processing or exporting. It is also useful for testing and development purposes.
 
 For this part of the workshop, the `loadgen` will generate logs using random quotes:
 

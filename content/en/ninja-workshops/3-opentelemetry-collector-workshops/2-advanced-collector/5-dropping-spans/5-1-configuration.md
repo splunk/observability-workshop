@@ -6,33 +6,37 @@ weight: 1
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-Switch to your **Gateway terminal** window, open the `gateway.yaml` and add the following configuration to the `processors` section:
+Switch to your **Gateway terminal** window and open the `gateway.yaml` file. Update the `processors` section with the following configuration:
 
-**Add a `filter` processor**: Configure the `gateway` to drop spans with the name `"/_healthz"`:
+1. **Add a `filter` processor**:  
+   Configure the gateway to exclude spans with the name `/_healthz`. The `error_mode: ignore` directive ensures that any errors encountered during filtering are ignored, allowing the pipeline to continue running smoothly. The `traces` section defines the filtering rules, specifically targeting spans named `/_healthz` for exclusion.
 
-```yaml
-  filter/health:                       # Defines a filter processor
-    error_mode: ignore                 # Ignore errors
-    traces:                            # Filtering rules for traces
-      span:                            # Exclude spans named "/_healthz"
-        - 'name == "/_healthz"'
-```
+   ```yaml
+   filter/health:                       # Defines a filter processor
+     error_mode: ignore                 # Ignore errors
+     traces:                            # Filtering rules for traces
+       span:                            # Exclude spans named "/_healthz"
+         - 'name == "/_healthz"'
+   ```
 
-**Add the `filter` processor**: Make sure you add the filter to the `traces` pipeline. Filtering should be applied as early as possible, ideally *right after the* memory_limiter and *before* the batch processor:
+2. **Add the `filter` processor to the `traces` pipeline**:  
+   Include the `filter/health` processor in the `traces` pipeline. For optimal performance, place the filter as early as possible—right after the `memory_limiter` and before the `batch` processor. Here’s how the configuration should look:
 
-```yaml
-    traces:
-      receivers:
-      - otlp
-      processors:
-      - memory_limiter
-      - filter/health             # Filters data based on rules
-      - resource/add_mode
-      - batch
-      exporters:
-      - debug
-      - file/traces
-```
+   ```yaml
+   traces:
+     receivers:
+       - otlp
+     processors:
+       - memory_limiter
+       - filter/health             # Filters data based on rules
+       - resource/add_mode
+       - batch
+     exporters:
+       - debug
+       - file/traces
+   ```
+
+This setup ensures that health check-related spans (`/_healthz`) are filtered out early in the pipeline, reducing unnecessary noise in your telemetry data.
 
 {{% /notice %}}
 
