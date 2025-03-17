@@ -23,10 +23,15 @@ Attributes:
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 
-Switch to your **Agent terminal** window and open the `agent.yaml` file in your editor.
+Switch to your **Agent terminal** window and open the `agent.yaml` file in your editor. We’ll add two processors to enhance the security and privacy of your telemetry data: the Attributes Processor and the Redaction Processor.
 
-**Add an `attributes` Processor**: The [**Attributes Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/attributesprocessor) allows you to update, delete, or hash specific attributes (tags) within spans.  
-We'll **update** the `user.phone_number`, **hash** the `user.email`, and **delete** the `user.account_password`:
+**Add an `attributes` Processor**: The [**Attributes Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/attributesprocessor) allows you to modify span attributes (tags) by updating, deleting, or hashing their values. This is particularly useful for obfuscating sensitive information before it is exported.
+
+In this step, we’ll:
+
+1. **Update** the `user.phone_number` attribute to a static value `("UNKNOWN NUMBER")`.
+2. **Hash** the `user.email` attribute to ensure the original email is not exposed.
+3. **Delete** the `user.password` attribute to remove it entirely from the span.
 
 ```yaml
   attributes/update:
@@ -40,7 +45,15 @@ We'll **update** the `user.phone_number`, **hash** the `user.email`, and **delet
         action: delete                 # Delete the password
   ```
 
-**Add a `redaction` Processor**: [**The Redaction Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/redactionprocessor) will detect and redact sensitive data values based on predefined patterns. We'll block credit card numbers using regular expressions.
+**Add a `redaction` Processor**: The [**The Redaction Processor**](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/redactionprocessor) detects and redacts sensitive data in span attributes based on predefined patterns, such as credit card numbers or other personally identifiable information (PII).
+
+In this step:
+
+- We set `allow_all_keys: true` to ensure all attributes are processed (if set to `false`, only explicitly allowed keys are retained).
+
+- We define blocked_values with regular expressions to detect and redact **Visa** and **MasterCard** credit card numbers.
+
+- The `summary: debug` option logs detailed information about the redaction process for debugging purposes.
 
 ```yaml
   redaction/redact:
@@ -51,7 +64,7 @@ We'll **update** the `user.phone_number`, **hash** the `user.email`, and **delet
     summary: debug                     # Show debug details about redaction
 ```
 
-**Update the `traces` Pipeline**: Integrate both processors into the `traces` pipeline. Make sure that you comment out the redaction processor at first: (We will enable it later)
+**Update the `traces` Pipeline**: Integrate both processors into the `traces` pipeline. Make sure that you comment out the redaction processor at first (we will enable it later in a separate exercise):
 
 ```yaml
     traces:

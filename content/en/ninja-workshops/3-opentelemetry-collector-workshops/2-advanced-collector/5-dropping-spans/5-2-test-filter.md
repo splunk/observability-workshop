@@ -10,11 +10,19 @@ To test your configuration, you'll need to generate some trace data that include
 
 **Start the Gateway**: In your **Gateway terminal** window start the `gateway`.
 
+```bash
+./otelcol --config ./gateway.yaml
+```
+
 **Start the Agent**: In your **Agent terminal** window start the `agent`.
+
+```bash
+./otelcol --config ./agent.yaml
+```
 
 **Start the Loadgen**: In the **Spans terminal** window run the `loadgen` with the flag to also send `healthz` spans along with base spans:
   
-```bash { title="Start Load Generator" }
+```bash
 ../loadgen -health -count 5
 ```
 
