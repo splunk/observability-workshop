@@ -41,9 +41,22 @@ If you check `gateway-traces-standard.out`, it will contain the `span` sent by `
 Again, both the `agent` and `gateway` should display debug information, including the span you just sent. This time, the `gateway` will write a line to the `gateway-traces-security.out` file, which is designated for spans where the `deployment.environment` resource attribute matches `"security-applications"`.
 The `gateway-traces-standard.out` should be unchanged.
 
-{{% notice title="Tip" style="primary" icon="lightbulb" %}}
-If you verify the `./gateway-traces-security.out` it should only contain the spans from the `"security-applications"` deployment.environment.
-{{% /notice %}}
+{{% tabs %}}
+{{% tab title="Validate resource attribute matches" %}}
+
+```bash
+jq -c '.resourceSpans[] as $resource | $resource.scopeSpans[].spans[] | {spanId: .spanId, deploymentEnvironment: ($resource.resource.attributes[] | select(.key == "deployment.environment") | .value.stringValue)}' gateway-traces-security.out
+```
+
+{{% /tabs %}}
+{{% tab title="Output" %}}
+
+```json
+{"spanId":"cb799e92e26d5782","deploymentEnvironment":"security-applications"}
+```
+
+{{% /tab %}}
+{{% /tabs %}}
 
 You can repeat this scenario multiple times, and each trace will be written to its corresponding output file.
 
