@@ -1,4 +1,4 @@
-name: 1Release new major version
+name: Release new major version
 
 permissions: write-all
 
@@ -7,7 +7,7 @@ on: workflow_dispatch
 jobs:
   deploy:
     name: Release new major version
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
