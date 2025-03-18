@@ -1,4 +1,4 @@
-name: 0Release new minor version
+name: Release new minor version
 
 permissions: write-all
   
@@ -7,7 +7,7 @@ on: workflow_dispatch
 jobs:
   deploy:
     name: Release new minor version
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
