@@ -4,7 +4,7 @@ linkTitle: 1. Patching the Deployment
 weight: 1
 ---
 
-To configure **automatic discovery and configuration** the deployments need to be patched to add the instrumentation annotation. Once patched, the OpenTelemetry Collector will inject the automatic discovery and configuration library and the Pods will be restarted in order to start sending traces and profiling data. First, confirm that the `api-gateway` does not have the `splunk-otel-java` image.
+To configure **automatic discovery and configuration**, the deployments need to be patched to add the instrumentation annotation. Once patched, the OpenTelemetry Collector will inject the automatic discovery and configuration library and the Pods will be restarted in order to start sending traces and profiling data. First, confirm that the `api-gateway` does not have the `splunk-otel-java` image by running the following:
 
 {{< tabs >}}
 {P}{{% tab title="Describe api-gateway" %}}
@@ -70,9 +70,9 @@ Image:         quay.io/phagen/spring-petclinic-api-gateway:0.0.2
 {{% /tab %}}
 {{< /tabs >}}
 
-A new image has been added to the `api-gateway` which will pull `splunk-otel-java` from `ghcr.io` (if you see two `api-gateway` containers, the original one is probably still terminating, so give it a few seconds).
+A new image has been added to the `api-gateway` which will pull `splunk-otel-java` from `ghcr.io` (Note: if you see two `api-gateway` containers, the original one is probably still terminating, so give it a few seconds).
 
-Navigate back to the Kubernetes Navigator in **Splunk Observability Cloud**. After a couple of minutes you will see that the Pods are being restarted by the operator and the automatic discovery and configuration container will be added. This will look similar to the screenshot below:
+Navigate back to the Kubernetes Navigator in **Splunk Observability Cloud**. After a couple of minutes, you will see that the Pods are being restarted by the operator and the automatic discovery and configuration container will be added. This will look similar to the screenshot below:
 
 ![restart](../../images/k8s-navigator-restarted-pods.png)
 
