@@ -12,7 +12,7 @@ The Spring PetClinic application uses a single [**index**](https://github.com/sp
 
 The `api-gateway` service is already running the instrumentation and sending RUM traces to Splunk Observability Cloud and we will review the data in the next section.
 
-If you want you can verify the snippet, you can view the page source in your browser by right-clicking on the page and selecting **View Page Source**.
+If you'd like to verify the snippet, you can view the page source in your browser by right-clicking on the page and selecting **View Page Source**.
 
 ``` html
     <script src="/env.js"></script>  

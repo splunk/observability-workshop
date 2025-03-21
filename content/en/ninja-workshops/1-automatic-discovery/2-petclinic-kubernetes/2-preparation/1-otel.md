@@ -5,9 +5,9 @@ linkTitle: 1. Deploy OpenTelemetry Collector
 weight: 1
 ---
 
-To get Observability signals (**metrics, traces** and **logs**) into **Splunk Observability Cloud** the Splunk OpenTelemetry Collector needs to be deployed into the Kubernetes cluster.
+To get Observability signals (**metrics, traces** and **logs**) into **Splunk Observability Cloud** we need to deploy the Splunk OpenTelemetry Collector into the Kubernetes cluster.
 
-For this workshop, we will be using the Splunk OpenTelemetry Collector Helm Chart. First we need to add the Helm chart repository to Helm and update to ensure the latest version:
+For this workshop, we will be using the Splunk OpenTelemetry Collector Helm Chart. First, we need to add the Helm chart repository to Helm and run helm repo update to ensure the latest version:
 
 {{< tabs >}}
 {{% tab title="Install Helm Chart" %}}
@@ -38,7 +38,7 @@ Update Complete. ⎈Happy Helming!⎈
 * `--set="operator.enabled=true"` - this will install the OpenTelemetry operator that will be used to handle automatic discovery and configuration.
 * `--set="splunkObservability.profilingEnabled=true"` - this enables Code Profiling via the operator.
 
-To install the collector run the following command, do **NOT** edit this:
+To install the collector run the following command. Do **NOT** edit this:
 
 {{< tabs >}}
 {{% tab title="Helm Install" %}}

@@ -12,7 +12,7 @@ The goal of this workshop is to introduce the features of Splunk's **automatic d
 
 The workshop scenario will be created by installing a simple (**un-instrumented**) Java microservices application in Kubernetes.
 
-By following the simple steps to install the Splunk OpenTelemetry Collector and enabling automatic discovery and configuration for existing Java based deployments you will learn how easy it is to send metrics, traces and logs to **Splunk Observability Cloud**.
+Following simple steps to install the Splunk OpenTelemetry Collector with automatic discovery for existing Java based deployments, we will see how easy it is to send metrics, traces and logs to **Splunk Observability Cloud**.
 
 > [!SPLUNK]Prerequisites
 >
