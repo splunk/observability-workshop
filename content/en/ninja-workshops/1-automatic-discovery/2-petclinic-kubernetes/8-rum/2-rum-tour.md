@@ -8,6 +8,7 @@ In the TAG Spotlight view, you are presented with all the tags associated with t
 ![RUM TAG](../../images/rum-tag-spotlight.png)
 
 Click on User Sessions **(1)**, this will show you the list of user session that occurred during the time window.
-We want to look at one of the session , so click on *Duration* **(2)** to sort on duration, and make sure you click on the link of one of the longer ones **(3)**:
+
+We want to look at one of the session, so click on *Duration* **(2)** to sort on duration, and make sure you click on the link of one of the longer ones **(3)**:
 
 ![User sessions](../../images/rum-user-sessions.png)
