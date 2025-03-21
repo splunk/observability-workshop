@@ -204,7 +204,9 @@ runcmd:
   - chsh -s $(which zsh) splunk
   - chsh -s $(which zsh) ubuntu
   - su splunk -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+  - su ubuntu -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
   - echo "source /etc/skel/.profile" >> /home/splunk/.zshrc
+  - echo "source /etc/skel/.profile" >> /home/ubuntu/.zshrc
 
   # Configure motd
   - curl -s https://raw.githubusercontent.com/splunk/observability-workshop/main/workshop/cloud-init/motd -o /etc/motd
@@ -251,6 +253,7 @@ runcmd:
   - /usr/local/bin/kubectl apply -f /home/splunk/workshop/k3s/registry/registry.yaml
 
   - sed -i 's/_THEME=\"robbyrussell\"/_THEME=\"gentoo\"/g' home/splunk/.zshrc
+  - sed -i 's/_THEME=\"robbyrussell\"/_THEME=\"gentoo\"/g' home/ubuntu/.zshrc
   # Chaos Mesh
   - curl -sSL https://mirrors.chaos-mesh.org/v2.7.1/install.sh | bash -s -- --k3s
 
