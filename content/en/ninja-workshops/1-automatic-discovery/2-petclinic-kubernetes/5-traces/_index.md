@@ -10,4 +10,4 @@ As we have seen in the previous section, once you enable **automatic discovery a
 
 With these traces, Splunk will automatically generate **Service Maps** and **RED Metrics**. These are the first steps in understanding the behavior of your services and how they interact with each other.
 
-In this next section, we are going to examine the traces themselves and what information they provide to help you understand the behavior of your services all without touching your code.
+In this next section, we are going to examine the traces themselves and the information they provide to help you understand the behavior of your services -- all without touching your code!
