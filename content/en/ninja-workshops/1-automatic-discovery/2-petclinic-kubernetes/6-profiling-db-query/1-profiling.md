@@ -4,11 +4,11 @@ linkTitle: 1. Always-On Profiling
 weight: 1
 ---
 
-When we installed the Splunk Distribution of the OpenTelemetry Collector using the Helm chart earlier, we configured it to enable **AlwaysOn Profiling** and **Metrics**. This means that the collector will automatically generate CPU and Memory profiles for the application and send them to Splunk Observability Cloud.
+When we installed the Splunk Distribution of the OpenTelemetry Collector using the Helm chart earlier, we configured it to enable **AlwaysOn Profiling** and **Metrics**. This means that OpenTelemetry Java will automatically generate CPU and Memory profiling for the application, sending them to Splunk Observability Cloud.
 
 When you deploy the PetClinic application and set the annotation, the collector automatically detects the application and instruments it for traces and profiling. We can verify this by examining the startup logs of one of the Java containers we are instrumenting by running the following script:
 
-The logs should show what flags were picked up by the Java automatic discovery and configuration:
+The logs will show the flags that were picked up by the Java automatic discovery and configuration:
 
 {{< tabs >}}
 {{% tab title="Run the script" %}}
@@ -51,11 +51,11 @@ OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader clas
 {{< /tabs >}}
 We are interested in the section written by the  `com.splunk.opentelemetry.profiler.ConfigurationLogger` or the **Profiling Configuration**.
 
-We can see the various settings you can control, some that are useful depending on your use case like the `splunk.profiler.directory` -  The location where the agent writes the call stacks before sending them to Splunk. This may be different depending on how you configure your containers.
+We can see the various settings you can control, such as the `splunk.profiler.directory`, which is the location where the agent writes the call stacks before sending them to Splunk. (This may be different depending on how you configure your containers.)
 
-Another parameter you may want to change is `splunk.profiler.call.stack.interval` This is how often the system takes a CPU Stack trace. You may want to reduce this if you have short spans like we have in our application. (we kept the default as the spans in this demo application are extremely short, so Span may not always have a CPU  Call Stack related to it.)
+Another parameter you may want to change is `splunk.profiler.call.stack.interval`. This is how often the system captures a CPU Stack trace. You may want to reduce this interval setting if you have short spans like the ones we have in our Pet Clinic application. For the demo application, we did not change the default interval value, so Spans may not always have a CPU Call Stack related to them.
 
-You can find how to set these parameters [here](https://docs.splunk.com/observability/en/gdi/get-data-in/application/java/configuration/advanced-java-otel-configuration.html#profiling-configuration-java). Below, is how you set a higher collection rate for call stack in your `deployment.yaml`, exactly how to pass any JAVA option to the Java application running in your container:
+You can find how to set these parameters [here](https://docs.splunk.com/observability/en/gdi/get-data-in/application/java/configuration/advanced-java-otel-configuration.html#profiling-configuration-java). In the example below, we see how to set a higher collection rate for call stacks in the `deployment.yaml`, by setting this value in the JAVA_OPTIONS config section.
 
 ``` yaml
 env: 
@@ -63,4 +63,7 @@ env:
   value: "-Xdebug -Dsplunk.profiler.call.stack.interval=150"
 ```
 
+<!--
+jwe: not sure what the next paragraph is referring to, so commenting out for now.
 If you don't see those lines as a result of the script, the startup may have taken too long and generated too many connection errors, try looking at the logs directly with `kubectl` or the `k9s` utility that is installed.
+-->

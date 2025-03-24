@@ -8,7 +8,7 @@ time: 15 minutes
 
 The instructor will provide you with the login information for the instance that we will be using during the workshop.
 
-When you first log into your instance, you will be greeted by the Splunk Logo as shown below. If you have any issues connecting to your workshop instance then please reach out to your Instructor.
+When you first log into your instance, you will be greeted by the Splunk Logo as shown below. If you have any issues connecting to your workshop instance, please reach out to your Instructor.
 
 ``` text
 $ ssh -p 2222 splunk@<ip-address>
@@ -25,7 +25,7 @@ Your instance is ready!
 splunk@show-no-config-i-0d1b29d967cb2e6ff:~$ 
 ```
 
-To ensure your instance is configured correctly, we need to confirm that the required environment variables for this workshop are set correctly. In your terminal run the following script and check that the environment variables are present and set with actual valid values:
+To ensure your instance is configured correctly, we need to confirm that the required environment variables for this workshop are set correctly. In your terminal, run the following script and check that the environment variables are present and set with actual valid values:
 
 {{< tabs >}}
 {{% tab title="Script" %}}
@@ -51,7 +51,7 @@ INSTANCE = <instance_name>
 
 Please make a note of the `INSTANCE` environment variable value as this will be used later to filter data in **Splunk Observability Cloud**.
 
-For this workshop, **all** the above are required. If any have values missing, please contact your Instructor.
+For this workshop, **all** the above environment variables are required. If any have values missing, please contact your Instructor.
 
 > [!SPLUNK] Delete any existing OpenTelemetry Collectors
 >If you have previously completed a Splunk Observability workshop using this EC2 instance, you

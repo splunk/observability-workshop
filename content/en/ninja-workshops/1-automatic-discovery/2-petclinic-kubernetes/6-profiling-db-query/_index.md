@@ -6,9 +6,9 @@ archetype: chapter
 time: 15 minutes
 ---
 
-As we have seen in the previous chapter, you can trace your interactions between the various services using APM without touching your code, which will allow you to identify issues faster.
+As we have seen in the previous chapter, you can trace your interactions between the various services using APM without touching your code, allowing you to identify issues faster.
 
-However, besides tracing **automatic discovery and configuration** offers additional features out of the box that can help you find issues even faster. In this section we are going to look at two of them:
+In addition to tracing, **automatic discovery and configuration** offers additional features out of the box that can help you find issues even faster! In this section we are going to look at two of them:
 
 - **Always-on Profiling and Java Metrics**
 - **Database Query Performance**
