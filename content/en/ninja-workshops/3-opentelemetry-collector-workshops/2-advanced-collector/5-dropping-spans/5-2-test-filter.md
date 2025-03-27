@@ -11,13 +11,13 @@ To test your configuration, you'll need to generate some trace data that include
 **Start the Gateway**: In your **Gateway terminal** window start the `gateway`.
 
 ```bash
-./otelcol --config ./gateway.yaml
+../otelcol --config ./gateway.yaml
 ```
 
 **Start the Agent**: In your **Agent terminal** window start the `agent`.
 
 ```bash
-./otelcol --config ./agent.yaml
+../otelcol --config ./agent.yaml
 ```
 
 **Start the Loadgen**: In the **Spans terminal** window run the `loadgen` with the flag to also send `healthz` spans along with base spans:
@@ -83,7 +83,7 @@ The `gateway-metrics.out` file will not contain any spans named `/_healthz`.
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
 
-When using the `Filter` processor make sure you understand the look of your incoming data and test the configuration thoroughly. In general, use **as specific a configuration as possible** to lower the risk of the wrong data being dropped.
+When using the `Filter` processor, make sure you understand the look of your incoming data and test the configuration thoroughly. In general, use **as specific a configuration as possible** to lower the risk of the wrong data being dropped.
 
 You can further extend this configuration to filter out spans based on different attributes, tags, or other criteria, making the OpenTelemetry Collector more customizable and efficient for your observability needs.
 

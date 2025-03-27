@@ -11,8 +11,7 @@ Specifically, we'll use the Count Connector to track the number of "Star Wars" a
 {{% notice title="Exercise" style="green" icon="running" %}}
 
 - Inside the `[WORKSHOP]` directory, create a new subdirectory named `9-sum-count`.
-- Next, copy all contents from the `8-routing-data` directory into `9-sum-count`.
-- After copying, remove any `*.out` and `*.log` files.
+- Next, copy `*.yaml` from the `8-routing-data` directory into `9-sum-count`.
 - Change **all** terminal windows to the `[WORKSHOP]/9-sum-count` directory.
 
 ```text { title="Updated Directory Structure" }
@@ -22,7 +21,7 @@ Specifically, we'll use the Count Connector to track the number of "Star Wars" a
 ```
 
 - **Update the agent.yaml** to change the frequency that we read logs.
-Find the `filelog/quotes` receiver in the agent.yaml and add a poll_interval attribute:
+Find the `filelog/quotes` receiver in the `agent.yaml` and add a `poll_interval` attribute:
 
 ```yaml
   filelog/quotes:                      # Receiver Type/Name
@@ -31,7 +30,7 @@ Find the `filelog/quotes` receiver in the agent.yaml and add a poll_interval att
   
 {{% /notice %}}
 
-The reason for the delay is that the Count Connector in the OpenTelemetry Collector counts logs only within each processing interval. This means that every time the data is read, the count resets to zero for the next interval. With the default `Filelog reciever` interval of 200ms it reads every line the loadgen writes, giving us counts of 1. With this interval we make sure we have multiple entries to count.
+The reason for the delay is that the Count Connector in the OpenTelemetry Collector counts logs only within each processing interval. This means that every time the data is read, the count resets to zero for the next interval. With the default `Filelog reciever` interval of 200ms, it reads every line the loadgen writes, giving us counts of 1. With this interval we make sure we have multiple entries to count.
 
 The Collector can maintain a running count for each read interval by omitting conditions, as shown below. However, it’s best practice to let your backend handle running counts since it can track them over a longer time period.
 

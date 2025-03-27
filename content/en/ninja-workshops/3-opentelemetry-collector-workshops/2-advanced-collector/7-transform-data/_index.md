@@ -13,7 +13,7 @@ In this exercise we’ll update `agent.yaml` to include a **Transform Processor*
 - **Parse** JSON structured log data into attributes.
 - **Set** log severity levels based on the log message body.
 
-You may have noticed that in previous logs, fields like `SeverityText` and `SeverityNumber` were undefined (this is typical of the `filelog` receiver). However, the severity is embedded within the log body:
+You may have noticed that in previous logs, fields like `SeverityText` and `SeverityNumber` were undefined. This is typical of the `filelog` receiver. However, the severity is embedded within the log body:
 
 ```text
 <snip>
