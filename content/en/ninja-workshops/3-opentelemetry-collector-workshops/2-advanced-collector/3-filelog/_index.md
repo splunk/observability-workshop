@@ -27,7 +27,7 @@ starWarsQuotes := []string{
 }
 ```
 
-The **FileLog receiver** in the `agent` will read these log lines and send them to the `gateway`.
+The **FileLog receiver** in the `agent` collector will read these log lines and send them to the `gateway`.
 
 {{% notice title="Exercise" style="green" icon="running" %}}
 

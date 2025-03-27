@@ -66,7 +66,7 @@ In the **Agent terminal** window ensure the collector is not running then edit t
 
 {{% /notice %}}
 
-Validate the agent configuration using [**https://otelbin.io**](https://.otelbin.io/):
+Validate the agent configuration using [**https://otelbin.io**](https://otelbin.io/):
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%
