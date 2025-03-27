@@ -83,7 +83,7 @@ In this exercise, we will **redact** the `user.visa` & `user.mastercard` **value
 {{% /tabs %}}
 
 {{% notice note %}}
-By including `summary:debug` in the redaction processor, the debug output will include summary information about which matching keys values were redacted, along with the count of values that were masked.
+By including `summary:debug` in the redaction processor, the debug output will include summary information about which matching key values were redacted, along with the count of values that were masked.
 
 ```text
      -> redaction.masked.keys: Str(user.mastercard,user.visa)

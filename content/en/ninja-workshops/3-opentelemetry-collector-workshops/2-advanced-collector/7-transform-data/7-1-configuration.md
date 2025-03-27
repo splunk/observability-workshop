@@ -53,7 +53,7 @@ This step is crucial because it ensures that all relevant fields from the log bo
 - **Map Severity Text**: Assigns severity_text from the log’s level attribute.
 - **Assign Severity Numbers**: Converts severity levels into standardized numerical values.
 
-You should have a **single** `transform` processor containing two context blocks: one for `resource` and one for `log`.
+You should have a **single** `transform` processor containing two context blocks: one whose context is for `resource` and one whose context is for `log`.
 
 This configuration ensures that log severity is correctly extracted, standardized, and structured for efficient processing.
 
@@ -81,7 +81,7 @@ This method of mapping all JSON fields to top-level attributes should only be us
 
 {{% /notice %}}
 
-Validate the agent configuration using [**https://otelbin.io**](https://.otelbin.io/). For reference, the `logs:` section of your pipelines will look similar to this:
+Validate the agent configuration using [**https://otelbin.io**](https://otelbin.io/). For reference, the `logs:` section of your pipelines will look similar to this:
 
 ```mermaid
 %%{init:{"fontFamily":"monospace"}}%%

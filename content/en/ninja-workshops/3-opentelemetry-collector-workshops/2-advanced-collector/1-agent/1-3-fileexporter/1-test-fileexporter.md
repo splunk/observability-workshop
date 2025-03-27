@@ -25,11 +25,13 @@ weight: 1
 {{% /tab %}}
 {{% /tabs %}}
 
-**Send a Trace**: From the **Spans terminal** window send another span and verify you get the same output on the console as we saw previously:
+**Send a Trace**: From the **Spans terminal** window, send another span and verify you get the same output on the console as we saw previously:
 
 ```bash { title="Start Load Generator" }
 ../loadgen -count 1
 ```
+
+We can now stop the `agent` in the **Agent terminal** window using `Ctrl-C` so that we can verify the `agent.out` file was written. 
 
 **Verify that the `agent.out` file is written**: Check that a file named `agent.out` is written in the current directory.
 
@@ -182,8 +184,5 @@ weight: 1
 
 {{% /tab %}}
 {{% /tabs %}}
-
-> [!IMPORTANT]
-> Stop the `agent` in the **Agent terminal** window using `Ctrl-C`.
 
 {{% /notice %}}
