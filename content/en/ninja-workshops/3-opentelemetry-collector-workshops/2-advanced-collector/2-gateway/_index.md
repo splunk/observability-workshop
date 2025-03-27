@@ -47,8 +47,6 @@ exporters:                        # List of exporters
     path: "./gateway-logs.out"    # Path for OTLP JSON output
     append: false                 # Overwrite the file each time
 
-connectors:
-
 processors:                       # List of processors
   memory_limiter:                 # Limits memory usage
     check_interval: 2s            # Memory check interval
@@ -61,6 +59,9 @@ processors:                       # List of processors
     - action: upsert              # Inserts or updates a key
       key: otelcol.service.mode   # Key name
       value: "gateway"            # Key value
+
+# Connectors
+#connectors:                      # leave this commented out; we will uncomment in an upcoming exercise
 
 ###########################
 ### Activation Section  ###

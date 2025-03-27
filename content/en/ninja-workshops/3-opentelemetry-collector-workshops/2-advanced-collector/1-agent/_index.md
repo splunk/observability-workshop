@@ -6,9 +6,9 @@ weight: 3
 ---
 
 {{% notice title="Tip" style="primary" icon="lightbulb" %}}
-During this workshop, you will be using up to four terminal windows simultaneously. To stay organized, consider customizing each terminal or shell with unique names and colors. This will help you quickly identify and switch between them as needed.
+During this workshop, you will be using up to five terminal windows simultaneously. To stay organized, consider customizing each terminal or shell with unique names and colors. This will help you quickly identify and switch between them as needed.
 
-We will refer to these terminals as: **Agent**, **Gateway**, **Spans** and **Logs**.
+We will refer to these terminals as: **Agent**, **Gateway**, **Spans**,  **Logs** and **Tests**.
 {{% /notice %}}
 
 {{% notice title="Exercise" style="green" icon="running" %}}
@@ -61,7 +61,7 @@ We will refer to these terminals as: **Agent**, **Gateway**, **Spans** and **Log
           value: "agent"                   # Key value
 
     # Connectors
-    connectors:
+    #connectors:                           # leave this commented out; we will uncomment in an upcoming exercise
 
     # Service Section - Enabled Pipelines
     service:

@@ -51,7 +51,7 @@ In this step:
 
 - We set `allow_all_keys: true` to ensure all attributes are processed (if set to `false`, only explicitly allowed keys are retained).
 
-- We define blocked_values with regular expressions to detect and redact **Visa** and **MasterCard** credit card numbers.
+- We define `blocked_values` with regular expressions to detect and redact **Visa** and **MasterCard** credit card numbers.
 
 - The `summary: debug` option logs detailed information about the redaction process for debugging purposes.
 
@@ -66,6 +66,9 @@ In this step:
 
 **Update the `traces` Pipeline**: Integrate both processors into the `traces` pipeline. Make sure that you comment out the redaction processor at first (we will enable it later in a separate exercise):
 
+> [!NOTE]
+> Leave the `redaction/redact` processor commented out in this exercise. We will enable it in an upcoming exercise.
+
 ```yaml
     traces:
       receivers:
@@ -73,7 +76,7 @@ In this step:
       processors:
       - memory_limiter
       - attributes/update              # Update, hash, and remove attributes
-      #- redaction/redact              # Redact sensitive fields using regex
+      #- redaction/redact               # Redact sensitive fields using regex
       - resourcedetection
       - resource/add_mode
       - batch
@@ -92,11 +95,11 @@ Validate the agent configuration using **[otelbin.io](https://www.otelbin.io/)**
 graph LR
     %% Nodes
       REC1(&nbsp;&nbsp;otlp&nbsp;&nbsp;<br>fa:fa-download):::receiver
-      PRO1(memory_limiter<br>fa:fa-microchip):::processor
-      PRO2(resourcedetection<br>fa:fa-microchip):::processor
-      PRO3(resource<br>fa:fa-microchip<br>add_mode):::processor
-      PRO5(batch<br>fa:fa-microchip):::processor
-      PRO6(attributes<br>fa:fa-microchip<br>update):::processor
+      PRML(memory_limiter<br>fa:fa-microchip):::processor
+      PRRD(resourcedetection<br>fa:fa-microchip):::processor
+      PRRS(resource<br>fa:fa-microchip<br>add_mode):::processor
+      PRBA(batch<br>fa:fa-microchip):::processor
+      PRUP(attributes<br>fa:fa-microchip<br>update):::processor
       EXP1(otlphttp<br>fa:fa-upload):::exporter
       EXP2(&ensp;&ensp;debug&ensp;&ensp;<br>fa:fa-upload):::exporter
       EXP3(file<br>fa:fa-upload):::exporter
@@ -106,14 +109,14 @@ graph LR
     subgraph " "
       subgraph subID1[**Traces**]
       direction LR
-      REC1 --> PRO1
-      PRO1 --> PRO6
-      PRO6 --> PRO2
-      PRO2 --> PRO3
-      PRO3 --> PRO5
-      PRO5 --> EXP2
-      PRO5 --> EXP3
-      PRO5 --> EXP1
+      REC1 --> PRML
+      PRML --> PRUP
+      PRUP --> PRRD
+      PRRD --> PRRS
+      PRRS --> PRBA
+      PRBA --> EXP2
+      PRBA --> EXP3
+      PRBA --> EXP1
       end
     end
 classDef receiver,exporter fill:#8b5cf6,stroke:#333,stroke-width:1px,color:#fff;

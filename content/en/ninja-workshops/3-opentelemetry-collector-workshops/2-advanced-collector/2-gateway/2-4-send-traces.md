@@ -63,7 +63,7 @@ Attributes:
 
 **Verify the Gateway has handled the spans**: Once the gateway processes incoming spans, it writes the trace data to a file named `gateway-traces.out`. To confirm that the spans have been successfully handled, you can inspect this file.
 
-Using the `jq` command, you can extract and display key details about each span, such as its `spanId` and its position in the file. Also, we can extract the attributes that the **Hostmetrics Receiver** added to the spans.
+In your **Tests terminal**, use the `jq` command to extract and display key details about each span, such as its `spanId` and its position in the file. Also, we can extract the attributes that the **Hostmetrics Receiver** added to the spans.
 
 {{% tabs %}}
 {{% tab title="Inspect the Gateway Trace File" %}}
