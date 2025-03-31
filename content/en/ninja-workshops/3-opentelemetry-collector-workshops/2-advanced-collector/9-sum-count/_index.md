@@ -89,7 +89,7 @@ In the pipeline configuration below, the connector exporter is added to the `log
       - otlphttp
     metrics:
       receivers:
-      - count                          # Count Connector - Receiver
+      - count                           # Count Connector that receives count metric from logs count exporter in logs pipeline. 
       - otlp
       #- hostmetrics                    # Host Metrics Receiver
       processors:
@@ -111,7 +111,7 @@ In the pipeline configuration below, the connector exporter is added to the `log
       - transform/logs                 # Transform logs processor
       - batch
       exporters:
-      - count                          # Count Connector - Exporter
+      - count                          # Count Connector that exports count as a metric to metrics pipeline.
       - debug
       - otlphttp
 ```
