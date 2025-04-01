@@ -56,13 +56,13 @@ In the pipeline configuration below, the connector exporter is added to the trac
       - debug
       - file
       - otlphttp
-      - sum                            # Sum Connector   - Receiver
+      - sum                            # Sum connector which aggregates payment.amount from spans and sends to metrics pipeline
     metrics:
       receivers:
-      - sum                            # Sum Connector   - 
-      - count                          # Count Connector - Receiver
+      - sum                            # Receives metrics from the sum exporter in the traces pipeline
+      - count                          # Receives count metric from logs count exporter in logs pipeline. 
       - otlp
-      #- hostmetrics                    # Host Metrics Receiver
+      #- hostmetrics                   # Host Metrics Receiver
       processors:
       - memory_limiter
       - resourcedetection
@@ -82,7 +82,7 @@ In the pipeline configuration below, the connector exporter is added to the trac
       - transform/logs                 # Transform logs processor
       - batch
       exporters:
-      - count                          # Count Connector - Exporter
+      - count                          # Count Connector that exports count as a metric to metrics pipeline.
       - debug
       - otlphttp
 ```
