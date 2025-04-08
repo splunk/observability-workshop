@@ -5,13 +5,12 @@ weight: 1
 time: 20 minutes
 ---
 
-
-
 ## 1. Dashboards
 
-Dashboards are groupings of charts and visualizations of metrics. Well-designed dashboards can provide useful and actionable insight into your system at a glance. Dashboards can be complex or contain just a few charts that drill down only into the data you want to see.
 
-During this module, we are going to create the following charts and dashboard.
+Dashboards are collections of charts and visualizations that display key metrics in one place. A well-designed dashboard gives you quick, actionable insights into the health and performance of your system. They can be as simple or as detailed as needed—ranging from a few focused charts to complex views across multiple services.
+
+In this module, you’ll build several charts and bring them together into the following custom dashboard.
 
 ![Example Dashboard](../images/example-dashboard.png)
 
