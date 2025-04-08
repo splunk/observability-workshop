@@ -1,12 +1,11 @@
 ---
-title: Working with Dashboards
-linkTitle: 1. Dashboards
-weight: 1
-time: 20 minutes
+title: Intro to Dashboards
+linkTitle: 1.0. Intro to Dashboards
+weight: 1.1
+time: 10 minutes
 ---
 
 ## 1. Dashboards
-
 
 Dashboards are collections of charts and visualizations that display key metrics in one place. A well-designed dashboard gives you quick, actionable insights into the health and performance of your system. They can be as simple or as detailed as needed—ranging from a few focused charts to complex views across multiple services.
 
@@ -15,33 +14,15 @@ In this module, you’ll build several charts and bring them together into the f
 ![Example Dashboard](../images/example-dashboard.png)
 
 ---
-<!-- 
-## 2. Your Teams' Page
 
-Click on the ![Dashboards button](../images/dashboards.png?classes=inline&height=25px) from the navbar. As you have already been assigned to a team, you will land on the team dashboard. We use the ***Example Team*** as an example here. The one in your workshop will be different!
+## 2. Accessing Dashboards
 
-![Team Dashboard1](../images/team-dashboard.png)
+To begin, let’s locate the dashboards in Splunk Observability suite.
 
-This page shows the total number of team members, how many active alerts for your team and all dashboards that are assigned to your team. Right now there are no dashboards assigned but as stated before, we will add the new dashboard that you will create to your Teams page later.
+Click the **Dashboards (1)** button in the left-hand navigation menu. If the menu is collapsed, you can expand it by clicking the hamburger icon in the top-left corner of the screen.
 
---- -->
+This will take you to the main Dashboard view, where you’ll see all available dashboards—including the pre-built ones provided by Splunk Observability.
 
-## 2. Sample Charts
-
-To continue, click on **Dashboards (1)** in the left menu pane. This brings you to the view that shows all the available dashboards, including the pre-built ones.
+If your organization is already ingesting data from a Cloud API integration or through the Splunk OpenTelemetry Agent, you may also see additional dashboards relevant to those services.
 
 ![Sample Data](../images/sample-data.png)
-
-If you are already receiving metrics from a Cloud API integration or another service through the Splunk Agent you will see relevant dashboards for these services.
-
----
-
-## 3. Inspecting the Sample Data
-
-Among the dashboards, you will see a Dashboard group called **Sample Data (2)**. Expand the **Sample Data** dashboard group by clicking on it, and then click on the **Sample Charts (3)** dashboard.
-
-In the Sample Charts dashboard, you can see a selection of charts that show a sample of the various styles, colors and formats you can apply to your charts in the dashboards.
-
-Have a look through all the dashboards in this dashboard group (**PART 1**, **PART 2**, **PART 3** and **INTRO TO SPLUNK OBSERVABILITY CLOUD**) using the menu bar  on top of the dashboard page.
-
-![Sample Charts](../images/sample-charts.png)
