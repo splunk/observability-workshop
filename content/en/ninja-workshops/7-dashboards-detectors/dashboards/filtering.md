@@ -1,6 +1,7 @@
 ---
 title: Using Filters & Formulas
-weight: 3
+linkTitle: 1.4 Filters & Formulas
+weight: 1.4
 ---
 
 ## 1 Creating a new chart

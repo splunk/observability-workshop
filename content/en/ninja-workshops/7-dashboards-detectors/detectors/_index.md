@@ -1,7 +1,7 @@
 ---
 title: Working with Detectors
-linkTitle: 4. Detectors
-weight: 4
+linkTitle: 2. Detectors
+weight: 2.0
 time: 10 minutes
 ---
 

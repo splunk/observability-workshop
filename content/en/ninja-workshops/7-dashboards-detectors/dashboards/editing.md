@@ -1,16 +1,22 @@
 ---
 title: Editing charts
-linkTitle: 1 Editing charts
-weight: 1
+linkTitle: 1.2 Editing charts
+weight: 1.2
 ---
+In this section, we’ll begin exploring how to edit charts by modifying an existing one. This is a great way to get familiar with the chart editor and understand how chart settings, data sources, and visual options work together.
 
 ## 1. Editing a chart
 
-Select the **SAMPLE CHARTS** dashboard and then click on the three dots **`...` (1)** on the **Latency histogram** chart, then on **Open (2)** (or you can click on the name of the chart which here is **Latency histogram**).
+To get started, make sure you have the **SAMPLE CHARTS** dashboard open.
+
+Find the **Latency histogram** chart, then click on the **three dots** (...) in the upper-right corner of the chart. From the menu, select **Open**. You can also simply click on the chart title (**Latency histogram**) to open it directly.
 
 ![Sample Charts](../../images/latency-histogram-open.png)
 
-You will see the plot options, current plot and signal (metric) for the **Latency histogram** chart in the chart editor UI.
+---
+Once the chart editor opens, you’ll see the configuration for the **Latency histogram** chart. This includes the **Plot Options**, the currently selected **Plot Type**, and the associated **Signal** (or metric) being visualized.
+
+The chart editor allows you to modify how the data is displayed — such as changing the chart type, adjusting time settings, or applying functions to the signal. This is where you can customize the look and behavior of the chart to better suit your needs.
 
 ![Latency Histogram](../../images/latency-histogram.png)
 
