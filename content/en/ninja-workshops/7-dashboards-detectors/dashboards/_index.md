@@ -1,7 +1,7 @@
 ---
 title: Intro to Dashboards
-linkTitle: 1.0. Intro to Dashboards
-weight: 1.1
+linkTitle: 1. Dashboards
+weight: 1.0
 time: 10 minutes
 ---
 
