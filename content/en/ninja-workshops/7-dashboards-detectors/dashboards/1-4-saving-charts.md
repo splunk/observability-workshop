@@ -1,7 +1,7 @@
 ---
-title: Saving charts
-linkTitle: 1.3 Saving charts
-weight: 1.3
+title: Saving Charts
+linkTitle: 1.4 Saving Charts
+weight: 1.4
 ---
 
 ## 1. Saving a chart
