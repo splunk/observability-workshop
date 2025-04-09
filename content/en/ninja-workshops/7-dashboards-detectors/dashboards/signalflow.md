@@ -1,23 +1,25 @@
 ---
 title: Using SignalFlow
-linkTitle: 1.5 Signalflow
-weight: 1.5
+linkTitle: 1.6 Signalflow
+weight: 1.6
 ---
 
-## 1. Introduction
+## 1. Introduction to SignalFlow
 
-Let's take a look at SignalFlow - the analytics language of Observability Cloud that can be used to setup monitoring as code.
+Now let’s take a closer look at **SignalFlow**, the powerful analytics language behind Splunk Observability Cloud. SignalFlow enables you to define monitoring logic as code, offering a flexible and real-time way to work with metrics and automate alerting.
 
-The heart of Splunk Infrastructure Monitoring is the SignalFlow analytics engine that runs computations written in a Python-like language. SignalFlow programs accept streaming input and produce output in real time. SignalFlow provides built-in analytical functions that take metric time series (MTS) as input, perform computations, and output a resulting MTS.
+At the core of **Splunk Infrastructure Monitoring** is the **SignalFlow analytics engine**, which processes streaming metric data in real time. SignalFlow is written in a Python-like syntax and allows you to build computations that take in **metric time series (MTS)**, perform transformations or calculations, and output new MTS.
 
-- Comparisons with historical norms, e.g. on a week-over-week basis
-- Population overviews using a distributed percentile chart
-- Detecting if the rate of change (or other metric expressed as a ratio, such as a service level objective) has exceeded a critical threshold
-- Finding correlated dimensions, e.g. to determine which service is most correlated with alerts for low disk space
+Some common use cases for SignalFlow include:
 
-Infrastructure Monitoring creates these computations in the Chart Builder user interface, which lets you specify the input MTS to use and the analytical functions you want to apply to them. You can also run SignalFlow programs directly by using the [SignalFlow API](https://dev.splunk.com/observability/docs/).
+* Comparing current values with historical trends, such as week-over-week comparisons
+* Creating population-level insights using distributed percentile charts
+* Monitoring rates of change or thresholds, such as detecting when a Service Level Objective (SLO) is breached
+* Identifying correlated dimensions, like pinpointing which service is linked to an increase in low disk space alerts
 
-SignalFlow includes a large library of built-in analytical functions that take a metric time series as an input, performs computations on its datapoints, and outputs time series that are the result of the computation.
+You can create SignalFlow based computations directly in the **Chart Builder** interface by selecting metrics and applying analytical functions visually. For more advanced use cases, you can also write and execute SignalFlow programs directly using the **SignalFlow API**.
+
+SignalFlow includes a robust set of built-in functions that operate on time series data—making it ideal for dynamic, real-time monitoring across complex systems.
 
 {{% notice title="Info" style="info" %}}
 For more information on SignalFlow see [Analyze incoming data using SignalFlow](https://docs.splunk.com/Observability/infrastructure/analytics/signalflow.html).

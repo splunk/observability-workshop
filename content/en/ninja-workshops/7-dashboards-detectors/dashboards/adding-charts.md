@@ -1,7 +1,7 @@
 ---
 title: Adding charts to dashboards
-linkTitle: 1.6 Adding more charts
-weight: 1.6
+linkTitle: 1.7 Adding more charts
+weight: 1.7
 ---
 
 ## 1. Save to existing dashboard

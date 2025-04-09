@@ -1,6 +1,6 @@
 ---
-title: Workshop Overview
-description: Workshop Overview
+title: Dashboard & Detectors Workshop
+description: Dashboard & Detectors
 weight: 7
 archetype: chapter
 authors: ["Pieter Hagen"]
