@@ -1,6 +1,7 @@
 ---
-title: 3.4 SignalFlow
-weight: 4
+title: Using SignalFlow
+linkTitle: 1.5 Signalflow
+weight: 1.5
 ---
 
 ## 1. Introduction
