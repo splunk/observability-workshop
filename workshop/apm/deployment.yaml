@@ -157,7 +157,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
         - name: recommendationservice
-          image: quay.io/signalfuse/microservices-demo-recommendationservice:4bf3dfd4f0
+          image: ghcr.io/splunk/online-boutique/microservices-demo-recommendationservice:4bf3dfd4f0
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -217,7 +217,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
         - name: productcatalogservice
-          image: quay.io/signalfuse/microservices-demo-productcatalogservice:4bf3dfd4f0
+          image: ghcr.io/splunk/online-boutique/microservices-demo-productcatalogservice:4bf3dfd4f0
           imagePullPolicy: Always
           ports:
             - containerPort: 3550
@@ -273,7 +273,7 @@ spec:
       terminationGracePeriodSeconds: 4
       containers:
         - name: cartservice
-          image: quay.io/phagen/cartserviceprofiling:2.1.3
+          image: ghcr.io/splunk/online-boutique/cartserviceprofiling:2.1.3
           imagePullPolicy: Always
           ports:
             - containerPort: 7070
@@ -371,7 +371,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
         - name: adservice
-          image: quay.io/phagen/adserviceprofiling:4.1
+          image: ghcr.io/splunk/online-boutique/adserviceprofiling:4.1
           imagePullPolicy: Always
           ports:
             - containerPort: 9555
@@ -463,7 +463,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
         - name: paymentservice
-          image: quay.io/signalfuse/microservices-demo-paymentservice:4bf3dfd4f0
+          image: ghcr.io/splunk/online-boutique/microservices-demo-paymentservice:4bf3dfd4f0
           imagePullPolicy: Always
           ports:
             - containerPort: 50051
@@ -530,7 +530,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
         - name: paymentservice-stable
-          image: quay.io/signalfuse/microservices-demo-paymentservice:4bf3dfd4f0
+          image: ghcr.io/splunk/online-boutique/microservices-demo-paymentservice:4bf3dfd4f0
           imagePullPolicy: Always
           ports:
             - containerPort: 50051
@@ -599,7 +599,7 @@ spec:
 #       restartPolicy: Always
 #       containers:
 #         - name: loadgenerator
-#           image: quay.io/signalfuse/microservices-demo-loadgenerator:4bf3dfd4f0
+#           image: ghcr.io/splunk/online-boutique/microservices-demo-loadgenerator:4bf3dfd4f0
 #           ports:
 #             - containerPort: 8089
 #           env:
@@ -649,7 +649,7 @@ spec:
     spec:
       containers:
         - name: shippingservice
-          image: quay.io/signalfuse/microservices-demo-shippingservice:4bf3dfd4f0
+          image: ghcr.io/splunk/online-boutique/microservices-demo-shippingservice:4bf3dfd4f0
           imagePullPolicy: Always
           ports:
             - containerPort: 50051
@@ -708,7 +708,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
         - name: currencyservice
-          image: quay.io/signalfuse/microservices-demo-currencyservice:4bf3dfd4f0
+          image: ghcr.io/splunk/online-boutique/microservices-demo-currencyservice:4bf3dfd4f0
           imagePullPolicy: Always
           ports:
             - name: grpc
@@ -766,8 +766,8 @@ spec:
     spec:
       containers:
         - name: checkoutservice
-          image: quay.io/signalfuse/microservices-demo-checkoutservice:4bf3dfd4f0
-          #image: quay.io/signalfuse/microservices-demo-checkoutservice:a728a64c18
+          image: ghcr.io/splunk/online-boutique/microservices-demo-checkoutservice:4bf3dfd4f0
+          #image: ghcr.io/splunk/online-boutique/microservices-demo-checkoutservice:a728a64c18
           #image: harnit/shopdemo-checkoutservice:1.1
           ports:
             - containerPort: 5050
@@ -842,7 +842,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: quay.io/phagen/frontend-rum-profile:3.1.0
+          image: ghcr.io/splunk/online-boutique/frontend-rum-profile:3.1.0
           #image: docker.io/harnit/shopdemo-frontend:2.1-customevents
           ports:
             - containerPort: 8080
@@ -968,7 +968,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
         - name: emailservice
-          image: quay.io/signalfuse/microservices-demo-emailservice:a24bc7e317
+          image: ghcr.io/splunk/online-boutique/microservices-demo-emailservice:a24bc7e317
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -1028,7 +1028,7 @@ spec:
     spec:
       containers:
         - name: rum-loadgen
-          image: rcastley895/rumloadgen:5.5
+          image: ghcr.io/splunk/online-boutique/rumloadgen:5.5
           imagePullPolicy: Always
           env:
             - name: RUM_FRONTEND_IP
