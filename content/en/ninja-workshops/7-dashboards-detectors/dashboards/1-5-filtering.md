@@ -29,12 +29,7 @@ You should now see a familiar line chart displaying **18 time series (4)**. To v
 
 ### 2. Filtering and Analytics
 
-Let's now select the **Paris** datacenter to do some analytics - for that we will use a filter.
-
-Let's go back to the **Plot Editor** tab and click on {{% button style="blue" %}}Add Filter{{% /button %}}
-button, **(2)** in the screen shot above, wait until it automatically populates , choose **`demo_datacenter` (1)**, and then add **`Paris` (2)**.
-
-Now let’s narrow down our data to focus on the **Paris** data center, which will allow us to apply more targeted analytics. We’ll do this by using a **filter**.
+Now let’s narrow down our data to focus on the **Paris** data center, which will allow us to apply more targeted analytics. We’ll do this by using a **Filter**.
 
 Start by returning to the **Plot Editor** tab. Click the {{% button style=“blue” %}}Add Filter{{% /button %}} button **(2)** as shown in the screenshot above.
 
@@ -49,7 +44,9 @@ This filter will limit the chart to show only the time series coming from the Pa
 
 In the **F(x) (1)** column of the chart editor, click the {{% button style="blue" %}}Add Analytics{{% /button %}} button o apply an analytic function.
 From the dropdown list, select **`Percentile` (2)**, and then choose the **`Percentile:Aggregation` (3)** option.
-In the follow-up panel, leave the percentile value set to **`90`**, which will display the 90th percentile of the selected time series.
+In the follow-up panel, leave the percentile value set to 90, which tells the chart to display the 90th percentile of the selected time series.
+
+In this context, the 90th percentile represents the value below which 90% of the latency measurements fall, in other words, only **the highest 10%** of values exceed this point. This is a useful way to understand “worst-case normal” performance—filtering out occasional spikes while still showing when latency is approaching unacceptable levels.
 
 To apply the function, simply click anywhere outside the panel to confirm your selection **(4)**.
 
@@ -61,25 +58,30 @@ For info on the **Percentile** function and the other functions see [Chart Analy
 
 ### 3. Using Timeshift analytical function
 
-Let's now compare with older metrics. Click on **`...`** and then on **Clone** in the dropdown to clone Signal **A**.
-Now let’s compare our current data to historical values using the **Timeshift** function.
-Start by clicking the **`...`** menu next to **Signal A**, then select **Clone** from the dropdown.
+Start by cloning **Signal A** by clicking the **`...`** menu **(1)** next to it, then selecting **Clone (2)** from the dropdown.
 
-![Clone Signal](../../images/M-Filter-3.png)
+Cloning a signal creates a second, identical version with the same metric, filters, and settings. This allows you to apply different analytics—such as comparing current data to historical trends—without changing the original.
 
-This creates a new row, **Signal B**, which is an identical copy of **A**. Both signals will now be visible and plotted on the chart, ready for further comparison.
+![Clone Signal](../../images/timeshift-filter.png)
 
-![Plot Editor](../../images/M-Filter-4.png)
+After cloning, you’ll see a new signal labeled **Signal B (1)**. Since it’s an exact copy of **Signal A**, both signals display the same data over the same time range. As a result, they appear to **overlap completely** on the chart, making it look like there’s only one line.
 
-For Signal **B**, in the **F(x)** column add the analytic function **Timeshift** and enter **`1w`** (or 7d for 7 days), and click outside to confirm.
+To make the comparison meaningful, we’ll apply a **Timeshift** to **Signal B**, shifting its data one week into the past. This allows us to see how current latency trends compare to those from the same time last week.
 
-![Timeshift](../../images/M-Filter-5.png)
+In the **F(x)** column next to Signal B, click the {{% button style="blue" %}} **+** {{% /button %}} **(2)**, then choose the **Timeshift (3)** function from the list.
 
-Click on the cog on the far right, and choose a **Plot Color** e.g. pink, to change color for the plot of **B**.
+![Plot Editor](../../images/ab-plot-full.png)
 
-![Change Plot Colour](../../images/M-Filter-6.png)
+When prompted, enter **1w** (or **7d** for 7 days) **(4)** as the time shift value. Click anywhere outside the panel **(5)** to confirm the change.
 
-Click on **Close**.
+This will shift **Signal B**’s data one week into the past, allowing you to visually compare current latency trends with those from the same time last week.  
+
+![Timeshift](../../images/b-shifted.png)
+
+To change the color of **Signal B**, click the ⚙️ settings icon **(1)** on the far right of its row to open the settings menu. Then, select a **Plot Color**, such as pink **(2)**, to visually distinguish **Signal B** from the original signal on the chart.
+When you are done, click on the{{% button style="gray" %}} Close {{% /button %}} **(3)**
+
+![Change Plot Color](../../images/b-pink.png)
 
 We now see plots for Signal **A** (the past 15 minutes) as a blue plot, and the plots from a week ago in pink.
 
