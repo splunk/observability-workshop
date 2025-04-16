@@ -4,50 +4,62 @@ linkTitle: 1.09. Adding more charts
 weight: 1.09
 ---
 
-## 1. Save to existing dashboard
+## 1. Saving to an Existing Dashboard
 
-Check that you have **YOUR_NAME-Dashboard: YOUR_NAME-Dashboard** in the top left corner. This means you chart will be saved in this Dashboard.
+Before saving your chart, check the top-left corner to confirm that **YOUR_NAME-Dashboard: YOUR_NAME-Dashboard (1)** is selected. This ensures that your chart will be saved to the correct dashboard.
 
-Name the Chart **Latency History** and add a Chart Description if you wish.
+Next, give your chart a name. Enter **Latency History** **(2)**, and if you’d like, add a brief description in the **Chart Description (3)** if you wish like in our example.
+![Save Chart 1](../../images/morecharts-1.png)
 
-![Save Chart 1](../../images/M-MoreCharts-1.png)
+---
+When you’re ready, click the {{% button style=blue %}}Save And Close{{% /button %}} button **(4)**. You’ll be returned to your dashboard, which now contains two charts.
+![Save Chart 2](../../images/morecharts-2.png)
 
-Click on {{% button %}}Save And Close{{% /button %}}. This returns you to your dashboard that now has two charts!
-
-![Save Chart 2](../../images/M-MoreCharts-2.png)
-Now let's quickly add another Chart based on the previous one.
+---
 
 ## 2. Copy and Paste a chart
 
-Click on the three dots **`...`** on the **Latency History** chart in your dashboard and then on **Copy**.
+Now let’s quickly add another chart by duplicating the one we just created.
 
-![Copy chart](../../images/M-MoreCharts-3.png)
+In your dashboard, locate the **Latency History** chart and click the three dots **`...`** **(1)** in the upper-right corner of the chart. From the menu, select **Copy (2)**.
 
-You see the chart being copied, and you should now have a red circle with a white 1 next to the **+** on the top left of the page.
+After copying, you’ll notice a small white **1** appear in front of the **+** icon **(3)** at the top of the page. This indicates that one chart is ready to be pasted.
+![Copy chart](../../images/morecharts-3.png)
 
-Click on the plus icon the top of the page, and then in the menu on *Paste Charts* (There should also be a red dot with a 1 visible at the end of the line).
-
-![Past charts](../../images/M-MoreCharts-5.png)
+---
+Click the **+** icon **()1** at the top of the page, and in the dropdown menu, select **(2)**.  
+You should also see a **1** at the end of that line, confirming that the copied chart is ready to be added.
+![Past charts](../../images/morecharts-4.png)
 
 This will place a copy of the previous chart in your dashboard.
+![Three Dashboard](../../images/morecharts-5.png)
 
-![Three Dashboard](../../images/M-MoreCharts-6.png)
+---
 
 ## 3. Edit the pasted chart
 
-Click on the three dots **`...`** on one of the **Latency History** charts in your dashboard and then on **Open** (or you can click on the name of the chart which here is **Latency History**).
+ To edit the duplicated chart, click the three dots **`...`** on one of the **Latency History** charts in your dashboard and then select **Open**.    Alternatively, you can click directly on the chart’s title, **Latency History**, to open it in the editor.
 
 This will bring you to the editor environment again.
 
-First set the time for the chart to -1 hour in the Time box at the top right of the chart. Then to make this a different chart, click on the eye icon in front of signal "*A*" to make it visible again, and then hide signal "*C*" via the eye icon and change the name for *Latency history* to **Latency vs Load**.
+Start by adjusting the time range in the top-right corner of the chart. Set it to **Past 1 Hour (1)** to give you a broader view of recent data.
 
-![Set Visibility](../../images/M-MoreCharts-7.png)
+Next, let’s customize the chart to make it unique. Click the eye icon next to **Signal A (2)** to make it visible again.  
+Then hide **Signal C (3)** by clicking its eye icon.
 
-Click on the {{% button style="blue" %}}Add Metric Or Event{{% /button %}} button. This will bring up the box for a new signal. Type and select `demo.trans.count` for Signal **D**.
+Update the chart title from *Latency history* to **Latency vs Load (4)**, and optionally add or edit the chart description to reflect the updated focus **(5)**.
+![Set Visibility](../../images/morecharts-6.png)
 
+---
+Click on the {{% button style=blue %}}Add Metric Or Event{{% /button %}} button to create a new signal. In the input field that appears, type and select `demo.trans.count` **(1)** to add it as **Signal D**.
 ![Dashboard Info](../../images/M-MoreCharts-8.png)
 
-This will add a new Signal **D** to your chart, It shows the number of active requests. Add the filter for the *demo_datacenter:Paris*, then change the Rollup type by clicking on the **Configure Plot** button and changing the roll-up from **Auto (Delta)** to **Rate/sec**. Change the name from **demo.trans.count** to **Latency vs Load**.
+---
+This adds a new signal, **Signal D**, to your chart. It represents the number of active requests being processed.
+
+To focus on the **Paris data center**, add a filter for **demo_datacenter: Paris**. Then, click the Configure Plot button to adjust how the data is displayed. Change the **rollup** type from **Auto (Delta)** to **Rate/sec** to show the rate of incoming requests per second.
+
+Finally, rename the signal from `demo.trans.count` to `Latency vs Load` to reflect its role in the chart more clearly.
 
 ![rollup change](../../images/M-MoreCharts-9.png)
 
