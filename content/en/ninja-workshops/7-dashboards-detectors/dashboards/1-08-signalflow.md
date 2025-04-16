@@ -27,15 +27,13 @@ For more information on SignalFlow see [Analyze incoming data using SignalFlow](
 
 ## 2. View SignalFlow
 
-In the chart builder, click on **View SignalFlow**.
+In the Chart Builder, click on **View SignalFlow**, to open the underlying code that powers your chart.
 
 ![SignalFlow](../../images/view-signalflow.png)
 
-You will see the SignalFlow code that composes the chart we were working on. You can now edit the SignalFlow directly within the UI. Our documentation has the [full list](https://dev.splunk.com/observability/docs/signalflow/function_method_list) of SignalFlow functions and methods.
+When you click **View SignalFlow**, you’ll see the **SignalFlow program (1)** that defines the logic and transformations behind your chart. This view gives you direct access to the code powering your visualization, allowing you to fine-tune or extend it beyond what’s possible in the visual editor.
 
-Also, you can copy the SignalFlow and use it when interacting with the API or with Terraform to enable Monitoring as Code.
-
-![Code](../../images/show-signalflow.png)
+Below is an example of the SignalFlow code for the chart we just created. This snippet shows how we defined the two percentile signals (current and one week ago), applied a timeshift, and calculated the difference between them. Reviewing the code helps clarify how each step contributes to the final chart.
 
 {{< tabs >}}
 {{% tab title="SignalFlow" %}}
@@ -49,8 +47,8 @@ C = (A-B).publish(label='C')
 {{% /tab %}}
 {{< /tabs >}}
 
-Click on **View Builder** to go back to the Chart **Builder** UI.
+Click on **View Builder (2)** to go back to the Chart **Builder** UI.
 
-![View Builder](../../images/view-builder.png)
+![View Builder](../../images/show-signalflow.png)
 
 Let's save this new chart to our Dashboard!
