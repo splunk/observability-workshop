@@ -1,7 +1,7 @@
 ---
 title: Saving Charts and Dashboards
-linkTitle: 1.4 Saving Charts
-weight: 1.4
+linkTitle: 1.04. Saving Charts
+weight: 1.04
 ---
 
 Once you’ve customized a chart to fit your needs, the next step is to save it as part of a dashboard. Saving your work lets you reuse, share, and monitor key visualizations over time. In this section, you’ll learn how to name and describe your chart, and how to add it to a dashboard for easy access later.

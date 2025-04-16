@@ -1,7 +1,7 @@
 ---
 title: Exploring Charts
-linkTitle: 1.2 Exploring Charts
-weight: 1.3
+linkTitle: 1.02. Exploring Charts
+weight: 1.02
 ---
 In this section, we’ll start by exploring how charts are built and displayed in Splunk Observability. By examining and interacting with an existing chart, you’ll get a feel for how the chart editor works—how data sources are selected, how visual options are configured, and how different settings shape what you see.
 
