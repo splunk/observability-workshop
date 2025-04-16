@@ -14,6 +14,24 @@ spec:
       tolerations:
       nodeSelector:
       terminationGracePeriodSeconds: 5
+      # use init containers to first ensure the MySQL database is available, then populate it with
+      # data required by the application
+      initContainers:
+        - name: wait-for-mysql
+          image: busybox:1.31
+          command: [ 'sh', '-c', 'echo -e "Checking for the availability of the MySQL database"; while ! nc -z mysql 3306; do sleep 1; printf "-"; done; echo -e "  >> MySQL database is ready";' ]
+        - name: populate-app-data
+          image: mysql:8.3.0
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-user-pass
+                  key: MYSQL_ROOT_PASSWORD
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /tmp
+          command: [ 'sh', '-c', 'echo -e "Populating the application data"; mysql --host=mysql.default.svc.cluster.local --password=$(MYSQL_ROOT_PASSWORD) < /tmp/populate_db.txt' ]
       containers:
         - name: doorgame
           image: docker.io/library/doorgame:latest
@@ -49,6 +67,17 @@ spec:
             limits:
               cpu: 300m
               memory: 4096Mi
+      volumes:
+        - name: mysql-data
+          configMap:
+            name: mysql-data
+            items:
+              - key: users.csv
+                path: users.csv
+              - key: organizations.csv
+                path: organizations.csv
+              - key: populate_db.txt
+                path: populate_db.txt
 ---
 apiVersion: v1
 kind: Service
