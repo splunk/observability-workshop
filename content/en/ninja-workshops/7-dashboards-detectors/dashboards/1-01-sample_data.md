@@ -1,7 +1,7 @@
 ---
 title: Locating our Sample Data
-linkTitle: 1.1. Sample Data
-weight: 1.1
+linkTitle: 1.01. Sample Data
+weight: 1.01
 time: 10 minutes
 ---
 

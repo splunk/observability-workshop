@@ -1,7 +1,7 @@
 ---
 title: Using SignalFlow
-linkTitle: 1.6 Signalflow
-weight: 1.6
+linkTitle: 1.08. Signalflow
+weight: 1.08
 ---
 
 ## 1. Introduction to SignalFlow

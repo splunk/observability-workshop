@@ -1,7 +1,7 @@
 ---
 title: Editing Charts
-linkTitle: 1.3 Editing Charts
-weight: 1.3
+linkTitle: 1.04. Editing Charts
+weight: 1.04
 ---
 In this section, we’ll start exploring how charts are structured by editing an existing one. This is a great way to get hands-on experience with the chart editor and understand how chart settings, data sources, and visualization options all come together.
 
