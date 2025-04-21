@@ -29,27 +29,8 @@ while [[ $(kubectl get pods -l app=mysql -o 'jsonpath={..status.conditions[?(@.t
    sleep 1
 done
 
-echo Capturing the pod name
-export POD_NAME=`kubectl get pod -l app=mysql -o name --no-headers=true`
-
-echo Copying sample data and scripts to the pod
-# Copy the sample data files to the database pod for import
-kubectl cp ./mysql/users.csv ${POD_NAME:4}:/var/lib/mysql-files/users.csv
-kubectl cp ./mysql/organizations.csv ${POD_NAME:4}:/var/lib/mysql-files/organizations.csv
-kubectl cp ./mysql/populate_db.txt ${POD_NAME:4}:/tmp/populate_db.txt
-kubectl cp ./mysql/populate_db.sh ${POD_NAME:4}:/tmp/populate_db.sh
-
-echo Waiting for the database to be ready
-while ! kubectl exec -it ${POD_NAME:4} -- mysqladmin ping -p"$MYSQL_ROOT_PASSWORD" --silent; do
-    sleep 5
-done
-
-# added extra sleep as issues occur when we attempt
-# to connect to the database too quickly
-sleep 5
-
-echo Creating tables and application data
-kubectl exec -it ${POD_NAME:4} -- /tmp/populate_db.sh
+echo Creating a config map for the sample data
+kubectl create configmap mysql-data --from-file=./mysql/users.csv --from-file=./mysql/organizations.csv --from-file=./mysql/populate_db.txt
 
 echo ""
 echo Deployed the MySQL database
