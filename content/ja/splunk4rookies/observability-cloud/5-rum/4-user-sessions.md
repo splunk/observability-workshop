@@ -1,25 +1,26 @@
 ---
-title: 4. User Sessions
+title: 4. ユーザーセッション
 weight: 4
 ---
-{{% notice title="Exercise" style="green" icon="running" %}}
 
-* Close the RUM Session Replay by clicking on the **X** in the top right corner.
-* Note the length of the span, this is the time it took to complete the order, not good!
-* Scroll down the page and you will see the **Tags** metadata (which is used in Tag Spotlight). After the tags, we come to the waterfall which shows the page objects that have been loaded (HTML, CSS, images, JavaScript etc.)
-* Keep scrolling down the page until you come to a blue **APM** link (the one with `/cart/checkout` at the end of the URL) and hover over it.
+{{% notice title="演習" style="green" icon="running" %}}
 
-{{% /notice %}}
-
-![RUM Session](../images/rum-waterfall.png)
-
-This brings up the APM Performance Summary. Having this end-to-end (RUM to APM) view is very useful when troubleshooting issues.
-
-{{% notice title="Exercise" style="green" icon="running" %}}
-
-* You will see **paymentservice** and **checkoutservice** are in an error state as per the screenshot above.
-* Under **Workflow Name** click on `front-end:/cart/checkout`, this will bring up the **APM Service Map**.
+- 右上隅の**X**をクリックして、RUM セッションリプレイを閉じます。
+- スパンの長さに注目してください。これは注文を完了するのにかかった時間で、良くありません！
+- ページを下にスクロールすると、**タグ**メタデータ（Tag Spotlight で使用されるもの）が表示されます。タグの後に、ウォーターフォールが表示され、読み込まれたページオブジェクト（HTML、CSS、画像、JavaScript など）が表示されます。
+- ページを下にスクロールし続けて、青い**APM**リンク（URL の末尾に`/cart/checkout`があるもの）まで移動し、その上にカーソルを置きます。
 
 {{% /notice %}}
 
-![RUM to APM](../images/rum-to-apm.png)
+![RUMセッション](../images/rum-waterfall.png)
+
+これにより APM パフォーマンスサマリーが表示されます。このエンドツーエンド（RUM から APM）のビューは、問題のトラブルシューティングを行う際に非常に便利です。
+
+{{% notice title="演習" style="green" icon="running" %}}
+
+- 上のスクリーンショットのように、**paymentservice**と**checkoutservice**がエラー状態にあることがわかります。
+- **ワークフロー名**の下にある`front-end:/cart/checkout`をクリックすると、**APM サービスマップ**が表示されます。
+
+{{% /notice %}}
+
+![RUMからAPMへ](../images/rum-to-apm.png)

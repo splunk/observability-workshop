@@ -1,33 +1,33 @@
 ---
-title: 4. APM Service Breakdown
+title: 4. APMサービスブレイクダウン
 weight: 4
 ---
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="演習" style="green" icon="running" %}}
 
-* Select the **paymentservice** in the Service Map.
-* In the right-hand pane click on the {{% button style="grey"  %}}Breakdown{{% /button %}}.
-* Select `tenant.level` in the list.
-* Back in the Service Map click on **gold**.
-* Click on {{% button style="grey"  %}}Breakdown{{% /button %}} and select `version`, this is the tag that exposes the service version.
-* Repeat this for **silver** and **bronze**.
-{{< tabs >}}
-{{% tab title="Question" %}}
-**What can you conclude from what you are seeing?**
-{{% /tab %}}
-{{% tab title="Answer" %}}
-**Every `tenant.level` is being impacted by `v350.10`**
-{{% /tab %}}
-{{< /tabs >}}
+- サービスマップで**paymentservice**を選択します。
+- 右側のペインで{{% button style="grey"  %}}ブレイクダウン{{% /button %}}をクリックします。
+- リストから`tenant.level`を選択します。
+- サービスマップに戻り、**gold**をクリックします。
+- {{% button style="grey"  %}}ブレイクダウン{{% /button %}}をクリックして`version`を選択します。これはサービスバージョンを表示するタグです。
+- これを**silver**と**bronze**についても繰り返します。
+  {{< tabs >}}
+  {{% tab title="質問" %}}
+  **表示されている内容からどのような結論が導き出せますか？**
+  {{% /tab %}}
+  {{% tab title="回答" %}}
+  **すべての`tenant.level`が`v350.10`の影響を受けています**
+  {{% /tab %}}
+  {{< /tabs >}}
 
 {{% /notice %}}
 
-You will now see the **paymentservice** broken down into three services, **gold**, **silver** and **bronze**. Each tenant is broken down into two services, one for each version (`v350.10` and `v350.9`).
+これで**paymentservice**が**gold**、**silver**、**bronze**の 3 つのサービスに分解されているのが確認できます。各テナントは 2 つのサービスに分解されており、それぞれのバージョン（`v350.10`と`v350.9`）に対応しています。
 
-![APM Service Breakdown](../images/apm-service-breakdown.png)
+![APMサービスブレイクダウン](../images/apm-service-breakdown.png)
 
-{{% notice title="Span Tags" style="info" %}}
-Using span tags to break down services is a very powerful feature. It allows you to see how your services are performing for different customers, different versions, different regions, etc. In this exercise, we have determined that `v350.10` of the **paymentservice** is causing problems for all our customers.
+{{% notice title="スパンタグ" style="info" %}}
+スパンタグを使用してサービスを分解することは非常に強力な機能です。これにより、異なる顧客、異なるバージョン、異なる地域などに対して、サービスがどのようにパフォーマンスを発揮しているかを確認できます。この演習では、**paymentservice**の`v350.10`がすべての顧客に問題を引き起こしていることを特定しました。
 {{% /notice %}}
 
-Next, we need to drill down into a trace to see what is going on.
+次に、何が起きているかを確認するためにトレースを詳しく調べる必要があります。

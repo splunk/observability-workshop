@@ -1,33 +1,33 @@
 ---
-title: 3. Session Replay
+title: 3. セッションリプレイ
 weight: 3
 ---
 
-{{% notice title="Sessions" style="info" %}}
+{{% notice title="セッション" style="info" %}}
 
-A session is a collection of traces that correspond to the actions a single user takes when interacting with an application. By default, a session lasts until 15 minutes have passed from the last event captured in the session. The maximum session duration is 4 hours.
-
-{{% /notice %}}
-
-{{% notice title="Exercise" style="green" icon="running" %}}
-
-* In the **User Sessions** table, click on the top **Session ID**  with the longest **Duration** (over 20 seconds or longer), this will take you to the RUM Session view.
+セッションは、ユーザーがアプリケーションと対話する際に実行するアクションに対応するトレースの集まりです。デフォルトでは、セッションはセッションでキャプチャされた最後のイベントから 15 分経過するまで続きます。最大セッション時間は 4 時間です。
 
 {{% /notice %}}
 
-![RUM Session](../images/rum-session.png)
+{{% notice title="演習" style="green" icon="running" %}}
 
-{{% notice title="Exercise" style="green" icon="running" %}}
-
-* Click the RUM Session Replay {{% button icon="play" %}}Replay{{% /button %}} button. RUM Session Replay allows you to replay and see the user session. This is a great way to see exactly what the user experienced.
-* Click the button to start the replay.
+- **ユーザーセッション**テーブルで、最も長い**期間**（20 秒以上）の上位の**セッション ID**をクリックすると、RUM セッションビューに移動します。
 
 {{% /notice %}}
 
-RUM Session Replay can redact information, by default text is redacted. You can also redact images (which has been done for this workshop example). This is useful if you are replaying a session that contains sensitive information. You can also change the playback speed and pause the replay.
+![RUMセッション](../images/rum-session.png)
 
-{{% notice title="Tip" style="primary"  icon="lightbulb" %}}
+{{% notice title="演習" style="green" icon="running" %}}
 
-When playing back the session, notice how the mouse movements are captured. This is useful to see where the user is focusing their attention.
+- RUM セッションリプレイ{{% button icon="play" %}}リプレイ{{% /button %}}ボタンをクリックします。RUM セッションリプレイでは、ユーザーセッションを再生して確認することができます。これはユーザーが体験した内容を正確に確認するための優れた方法です。
+- ボタンをクリックしてリプレイを開始します。
+
+{{% /notice %}}
+
+RUM セッションリプレイでは情報を編集することができます。デフォルトではテキストが編集されます。画像も編集することができます（このワークショップ例では実施済み）。これは、機密情報が含まれるセッションを再生する場合に役立ちます。また、再生速度を変更したり、再生を一時停止したりすることもできます。
+
+{{% notice title="ヒント" style="primary"  icon="lightbulb" %}}
+
+セッションを再生する際、マウスの動きがキャプチャされていることに注目してください。これは、ユーザーがどこに注意を向けているかを確認するのに役立ちます。
 
 {{% /notice %}}

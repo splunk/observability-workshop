@@ -1,41 +1,41 @@
 ---
-title: 1. RUM Dashboard
+title: 1. RUMダッシュボード
 weight: 1
 ---
 
-In Splunk Observability Cloud from the main menu, click on **RUM**. you arrive at the RUM Home page, this view has already been covered in the short introduction earlier.
+Splunk Observability Cloud のメインメニューから、**RUM**をクリックします。RUM ホームページに到着します。このビューについては、先ほどの短い紹介ですでに説明しました。
 
-![multiple apps](../images/rum-dashboard.png)
+![複数のアプリ](../images/rum-dashboard.png)
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="演習" style="green" icon="running" %}}
 
-* Make sure you select your workshop by ensuring the drop-downs are set/selected as follows:
-  * The **Time frame** is set to **-15m**.
-  * The **Environment** selected is **[NAME OF WORKSHOP]-workshop**.
-  * The **App** selected is **[NAME OF WORKSHOP]-store**.
-  * The **Source** is set to **All**.
-* Next, click on the **[NAME OF WORKSHOP]-store** above the **Page Views / JavaScript Errors** chart.
-* This will bring up a new dashboard view breaking down the metrics by **UX Metrics**, **Front-end Health**, **Back-end Health** and **Custom Events** and comparing them to historic metrics (1 hour by default).
+- ドロップダウンが以下のように設定/選択されていることを確認して、ワークショップを選択してください：
+  - **時間枠**は**-15m**に設定されていること。
+  - 選択されている**環境**は**[ワークショップ名]-workshop**であること。
+  - 選択されている**アプリ**は**[ワークショップ名]-store**であること。
+  - **ソース**は**All**に設定されていること。
+- 次に、**ページビュー / JavaScript エラー**チャートの上にある**[ワークショップ名]-store**をクリックします。
+- これにより、**UX メトリクス**、**フロントエンドヘルス**、**バックエンドヘルス**、**カスタムイベント**ごとにメトリクスを分類し、過去のメトリクス（デフォルトでは 1 時間）と比較する新しいダッシュボードビューが表示されます。
 
 {{% /notice %}}
 
-![RUM Dashboard](../images/rum-metrics-dashboard.png)
+![RUMダッシュボード](../images/rum-metrics-dashboard.png)
 
-* **UX Metrics:** Page Views, Page Load and Web Vitals metrics.
-* **Front-end Health:** Breakdown of Javascript Errors and Long Task duration and count.
-* **Back-end Health:** Network Errors and Requests and Time to First Byte.
-* **Custom Events:** RED metrics (Rate, Error & Duration) for custom events.
+- **UX メトリクス:** ページビュー、ページロード、Web バイタルメトリクス。
+- **フロントエンドヘルス:** JavaScript エラーとロングタスクの期間と数の内訳。
+- **バックエンドヘルス:** ネットワークエラー、リクエスト、最初のバイトまでの時間。
+- **カスタムイベント:** カスタムイベントの RED メトリクス（レート、エラー、期間）。
 
-{{% notice title="Exercise" style="green" icon="running" %}}
+{{% notice title="演習" style="green" icon="running" %}}
 
-* Click through each of the tabs (**UX Metrics**, **Front-end Health**, **Back-end Health** and **Custom Events**) and examine the data.
+- 各タブ（**UX メトリクス**、**フロントエンドヘルス**、**バックエンドヘルス**、**カスタムイベント**）をクリックしてデータを調べます。
 
 {{< tabs >}}
-{{% tab title="Question" %}}
-**If you examine the charts in the *Custom Events* Tab, **what chart **shows** clearly the** latency Spikes?**
+{{% tab title="質問" %}}
+**「カスタムイベント」タブのチャートを調べると、**どのチャートが**レイテンシースパイクを**明確に示していますか？**
 {{% /tab %}}
-{{% tab title="Answer" %}}
-**It is the *Custom Event Latency* chart**
+{{% tab title="回答" %}}
+**それは「カスタムイベントレイテンシー」チャートです\*\*
 {{% /tab %}}
 {{< /tabs >}}
 
